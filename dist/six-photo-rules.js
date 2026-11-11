@@ -189,7 +189,7 @@ export function createSixPhotoRules(api){
  }
  // Smash Burst follows the same physical card through its first zone change (QA48746).
  function smashSource320(s,t){for(const origin of['battle','hand','grave','mana','deck','extra']){const xs=origin==='battle'?s.players[t.p].battle.flatMap(api.allLayers):s.players[t.p][origin],x=xs.find(x=>x.uid===t.uid);if(x&&(origin==='battle'?(x.incarnation||0)===(t.incarnation||0):(x.zoneSerial||0)===(t.serial||0)+1))return{origin,x};}return null;}
- const send=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g34_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
+ const send=(s,p,x,op,more={},deferred)=>api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g34_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})},deferred);
  function bioKScore(s,p,source){
   const {recovery,effect}=card(source).g953BioK??{};
   const own=s.players[p],opp=s.players[1-p];
@@ -1529,6 +1529,14 @@ export function createSixPhotoRules(api){
  case'g34_AttackDeploy409':{const host=attackHost408(s,t),budget=host?cost(effective(host,s)):t.g399Attacker?.cost==='∞'?Infinity:t.g399Attacker?.cost;if(budget>0)start(s,t,[{op:'Select',origin:'mana',filter:{creature:true},deploy:true,n:2,optional:true,g409Budget:budget===Infinity?'∞':budget,title:'合計コストが'+(budget===Infinity?'∞':budget)+'未満になるよう2体まで選ぶ'}]);break;}
  case'g34_AttackOtherMana409':{const attacker=attackHost408(s,t),enemies=creatures(s,1-t.p).filter(y=>!y.sealed),rows=creatures(s,t.p).filter(y=>!y.sealed&&y!==attacker);if(rows.length)choice(s,t,t.g399Attacker?'攻撃中のクリーチャー以外をマナに置く？':'マナに置く自分のクリーチャーを1体選ぶ（任意）',[...rows.map(y=>opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},enemies.length?Math.min(...enemies.map(z=>cost(effective(z,s))*3))+4-cost(effective(y,s))*2:-10,y.cardId)),skip()]);break;}
  case'g34_AttackEndUntap408':if(attackHost408(s,t))(s.g408EndUntaps??=[]).push({p:t.p,source:t.source,g399Attacker:t.g399Attacker,turn:s.turn});break;
+ case'g34_JudgeUntap969':{
+  const host=sourceHost474(s,t.g399Attacker);
+  if(host?.x.tapped&&!host.x.sealed&&api.isCreature(s,host.x)&&api.canUntap(host.x))
+   start(s,t,[{op:'Offer',title:'攻撃クリーチャーをアンタップする？',defs:[
+    {op:'AttackUntap408',g399Attacker:t.g399Attacker,g562Creature:true,g764FollowControl:true}
+   ]}]);
+  break;
+ }
  case'g34_AttackUntap408':{
   const host=t.g764FollowControl&&t.g399Attacker?sourceHost474(s,t.g399Attacker):{p:t.p,x:attackHost408(s,t)},y=host?.x;
   if(y&&(!t.g562Creature||!y.sealed&&api.isCreature(s,y))&&api.canUntap(y)){
@@ -1981,7 +1989,15 @@ export function createSixPhotoRules(api){
    if(t.g947BlockBreak)(y.g34Grants??=[]).push(timedGrant335(s,t,{g947BlockBreak:true}));
   }
   break;
- case'g34_SelfExtraBreak444':if(own.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))))(s.extLimits??=[]).push({kind:'g412ExtraBreak',player:t.p,ref:{uid:t.uid,incarnation:t.incarnation||0},source:t.source,amount:t.amount,expires:'end',who:s.active});break;
+ case'g34_DeathStats969':{
+  const host=sourceHost474(s,t);
+  if(host&&!host.x.sealed&&api.isCreature(s,host.x))start(s,t,[
+   {op:'SelfBoost313',power:4000,g536Source:true},
+   {op:'SelfExtraBreak444',amount:1,g969FollowControl:true}
+  ]);
+  break;
+ }
+ case'g34_SelfExtraBreak444':if(t.g969FollowControl?sourceHost474(s,t):own.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))))(s.extLimits??=[]).push({kind:'g412ExtraBreak',player:t.p,ref:{uid:t.uid,incarnation:t.incarnation||0},source:t.source,amount:t.amount,expires:'end',who:s.active,...(t.g969FollowControl?{g969FollowControl:true}:{})});break;
  case'g34_SelfBoost313':{const y=t.g536Source?sourceHost474(s,t)?.x:x;if(y&&(!t.g694ClearOnSeal||!y.sealed&&api.isCreature(s,y))){(y.powerModifiers??=[]).push({amount:t.power,expires:'end',who:s.active,...(t.g694ClearOnSeal?{g694ClearOnSeal:true}:{}),...(t.g337PowerAttacker?{attackOnly:true,grantedAbility:true}:{})});if(t.breaker)(y.g34Grants??=[]).push({turn:s.turn,g313Breaker:t.breaker,...(t.g633DoubleBreaker?{g633DoubleBreaker:true}:{})});}break;}
  case'g34_SelfTap314':if(x)api.tap(s,t.p,x);break;
  case'g34_RevengeDeclare795':{
@@ -4325,7 +4341,7 @@ export function createSixPhotoRules(api){
   return n+((r.multi?colors(c).length>1:race(c,r.race))?r.amount:0);
  },c.g876BreakPerCount?countPower(s,x,c,false,{...c.g207CountPower,amount:1}):0),
  countBattleCivilizations,
- extraBreak412:(s,p,x)=>(s.extLimits||[]).filter(l=>l.kind==='g412ExtraBreak'&&l.player===p&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.source}))&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)).reduce((n,l)=>n+l.amount,0),
+ extraBreak412:(s,p,x)=>(s.extLimits||[]).filter(l=>l.kind==='g412ExtraBreak'&&(l.g969FollowControl||l.player===p)&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.source}))&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)).reduce((n,l)=>n+l.amount,0),
  winBattle(s,x){
   const c=effective(x,s);
   return !!c.g34AlwaysWin||!!c.g587AttackWins&&attacking587(s,x)||!!c.g587UntappedWins&&!x.tapped||
@@ -4408,6 +4424,18 @@ export function createSixPhotoRules(api){
   if(colors(c).length>1)for(const y of s.players[p].grave)
    if(!y.faceDown&&card(y).g922GraveMultiSummon)send(s,p,y,'GraveReturn754',{serial:y.zoneSerial||0});
  }for(const y of selectedOnce464(s,p,c))y.g464UsedTurn=s.turn;recordSummon463(s,p,c);if(c.type==='creature')consumeReduction456(s,p,c);if(c.type==='creature'&&['mana','grave'].includes(origin)&&typeof permit==='string'&&permit.startsWith('g450:'))((s.g450ZoneUses??=[{},{}])[p]??={})[permit]=s.turn;if(c.type!=='spell')noncreatureUse448(s,p,c);if(c.type==='creature'){countExecution(s,p,c);if(colors(c).includes('自然')&&Number(c.power)>=12000)s.g34Discounts=(s.g34Discounts||[]).filter(y=>y.p!==p||y.turn!==s.turn);}},
+ judgeWon969(s,p,deferred){
+  const wins=s.g969FirstJudgeWins??=[null,null];
+  if(wins[p]===s.turn)return;
+  // A win outside an attack still uses up the first win of the turn.
+  wins[p]=s.turn;
+  const attacker=s.players[p].battle.find(x=>x.uid===s.attack?.attacker&&!x.sealed);
+  if(!attacker||!api.isCreature(s,attacker))return;
+  const ref={uid:attacker.uid,incarnation:attacker.incarnation||0};
+  for(const source of s.players[p].battle)
+   if(card(source).g969FirstJudgeUntap&&!api.ignored(s,source)&&api.isCreature(s,source))
+    send(s,p,source,'JudgeUntap969',{g399Attacker:ref},deferred);
+ },
  spellCast(s,p,c){
   useBlockers524(s,p);consumeReduction456(s,p,c);noncreatureUse448(s,p,c);countExecution(s,p,c);
   // The shared spell count has already recorded this cast, including free casts.

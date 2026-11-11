@@ -1061,11 +1061,11 @@ function doEffectCore(s,p,c,sourceUid=null,entry=null){
  if(e==='searchCreature'){if(lookPublic(s,p)){const x=s.players[p].deck[0];if(x)log(s,p,'reveal','曲通風により山札の上1枚を公開：'+card(x).name,{cardId:x.cardId});}s.decision={type:'search',player:p,source:c.id};return;}
  const ts=targets(s,p,e);if(ts.length)s.decision={type:'effect',player:p,effect:e,source:c.id,targets:ts,optional:e==='bounceOptional'};
 }
-function enqueueEffect(s,p,entry){
+function enqueueEffect(s,p,entry,deferred){
  if(s.g24EntryMute===p&&s.players[p].battle.some(x=>(entry.uid?x.uid===entry.uid:x.cardId===entry.source)&&isCreature(s,x)))return;
  const ctx=s.g1Entering,self=ctx?.player===p&&(entry.uid?entry.uid===ctx.uid:entry.source===ctx.cardId);
  if(self&&s.players[1-p].battle.some(x=>effectiveCard(x,s).selfEntrySilence))return;
- const queue=s.triggers?s.triggers.entries:(s.pendingEffects??=[]);
+ const queue=deferred??(s.triggers?s.triggers.entries:(s.pendingEffects??=[]));
  if(entry.task)entry={...entry,task:{...entry.task,controller:entry.task.controller??p}};
  queue.push({...entry,player:p,effectId:s.effectSerial=(s.effectSerial||0)+1});
  if(self)extra.copyEntry(s,p,ctx,entry);
@@ -1427,6 +1427,7 @@ function advanceJudgeCosts(s){
   opponentCost==='no-card'||numeric(ownCost)>=numeric(opponentCost);
  log(s,j.player,'judgeResult',`ガチンコ・ジャッジ：${ownCost} 対 ${opponentCost}、${won?'勝ち':'負け'}`,{cardId:j.source});
  s.decision=null;
+ if(won)extra.six.judgeWon969(s,j.player,j.deferredEffects);
  if(j.mode==='single'){s.judge=j.parent||null;if(won&&j.onWin)extra.put(s,j.onWin);return;}
  if(j.mode==='spell'){s.judge=j.parent||null;if(won){extra.put(s,extra.task('finishJudgeCharger',j.player,j.source));draw(s,j.player,1);}else finishCharger(s);return;}
  if(won){j.wins++;s.decision={type:'judgeContinue',player:j.player};}

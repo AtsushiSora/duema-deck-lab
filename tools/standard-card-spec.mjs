@@ -3435,6 +3435,20 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=969&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmrp02-075'&&text==='自分の他のクリーチャーが破壊された時そのターンこのクリーチャーはパワーを+4000されシールドをさらに1つブレイクする。')
+   return {g303DeathWatch:{g891LookBackSelf:true,defs:[{op:'DeathStats969'}]}};
+  if(['dmx22b-013','dmx26-031'].includes(d.id)&&[
+   '自分の他のカレーパンすべてのパワーは+3000されシールドをさらにひとつブレイクする。',
+   '自分の他のカレーパンすべてのパワーは+3000されシールドをさらに1つブレイクする。'
+  ].includes(text))return {
+   g205Aura:{filter:{creature:true,race:'カレーパン'},power:3000,other:true},
+   g557BreakAura:{race:'カレーパン',amount:1,other:true}
+  };
+  if(['dmx08-019','promoy11-019'].includes(d.id)&&text==='自分のクリーチャーが攻撃していてターン中はじめてガチンコ・ジャッジに勝った時そのクリーチャーをアンタップしてもよい。')
+   return {g969FirstJudgeUntap:true};
+ }
  if(phase>=968&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmrp02-070'&&text==='このクリーチャーがどこからでも自分の墓地に置かれた時相手のパワー2000以下のクリーチャーを1体選び持ち主の手札に戻してもよい。')
