@@ -194739,21 +194739,115 @@
       ],
       "supportBatch": "phase-924",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm14-032",
+      "name": "爆炎料理人メタルコック",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ヒューマノイド",
+      "text": "バトルゾーンにあるクリーチャーはすべて、タップされていない多色クリーチャーを攻撃できる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-032",
+      "limit": 4,
+      "g925MulticolorAttackable": true,
+      "supportBatch": "phase-925",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm20-050",
+      "name": "追撃のライゼン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 3000,
+      "race": "ブレイブ・スピリット",
+      "text": "自分のティラノ・ドレイクがこのターン攻撃していなければ、このクリーチャーは攻撃することができない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-050",
+      "limit": 4,
+      "g225AttackRequires": {
+        "kind": "tyrannoDrake925"
+      },
+      "supportBatch": "phase-925",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23-018",
+      "name": "大作家グリム・グリメェー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ドリームメイト",
+      "text": "進化-自分のドリームメイト１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手の進化クリーチャーを１体選び、持ち主のマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-018",
+      "limit": 4,
+      "evolution": {
+        "race": "ドリームメイト"
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "filter": {
+            "evolution": true
+          },
+          "to": "mana",
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-925",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm20-037",
+      "name": "反骨鉄拳バーニアン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "グレートメカオー",
+      "text": "このクリーチャーのパワーは、バトルゾーンにある相手のクリーチャーの種族ひとつにつき+2000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-037",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "opponent": true,
+        "g925DistinctRaces": true,
+        "amount": 2000
+      },
+      "supportBatch": "phase-925",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 924,
+    "phase": 925,
     "checkedAt": "2026-11-11",
-    "baseCount": 6639,
+    "baseCount": 6643,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6643,
+    "totalCount": 6647,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35444/",
-      "https://dm.takaratomy.co.jp/rule/qa/39396/",
-      "https://dm.takaratomy.co.jp/rule/qa/31530/",
-      "https://dm.takaratomy.co.jp/rule/qa/33609/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35516/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35452/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -211246,6 +211340,25 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35459/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37349/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 924,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6639,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6643,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35444/",
+          "https://dm.takaratomy.co.jp/rule/qa/39396/",
+          "https://dm.takaratomy.co.jp/rule/qa/31530/",
+          "https://dm.takaratomy.co.jp/rule/qa/33609/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [

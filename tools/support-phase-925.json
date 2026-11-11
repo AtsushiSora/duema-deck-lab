@@ -1,0 +1,198 @@
+{
+  "phase": 925,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6643,
+  "description": "多色へのアンタップ攻撃、種族ごとの攻撃履歴、進化クリーチャーのマナ送り、相手の種族数によるパワー修整に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35516/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35452/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm14-032",
+      "name": "爆炎料理人メタルコック",
+      "faces": [
+        {
+          "name": "爆炎料理人メタルコック",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バトルゾーンにあるクリーチャーはすべて、タップされていない多色クリーチャーを攻撃できる。",
+          "race": "ヒューマノイド",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-032",
+      "spec": {
+        "g925MulticolorAttackable": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "01aae09cc673cc07269cce1cdce041bdad0d6ea7d14789b2d7d6236944ceb48a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm20-050",
+      "name": "追撃のライゼン",
+      "faces": [
+        {
+          "name": "追撃のライゼン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "自分のティラノ・ドレイクがこのターン攻撃していなければ、このクリーチャーは攻撃することができない。",
+          "race": "ブレイブ・スピリット",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-050",
+      "spec": {
+        "g225AttackRequires": {
+          "kind": "tyrannoDrake925"
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm20-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "26dc10e560879e53e8fd0a1b7cdd53de83aa7f8f190c883f8a64c76bb4aab089",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23-018",
+      "name": "大作家グリム・グリメェー",
+      "faces": [
+        {
+          "name": "大作家グリム・グリメェー",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "進化-自分のドリームメイト１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手の進化クリーチャーを１体選び、持ち主のマナゾーンに置いてもよい。",
+          "race": "ドリームメイト",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-018",
+      "spec": {
+        "evolution": {
+          "race": "ドリームメイト"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "filter": {
+              "evolution": true
+            },
+            "to": "mana",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "3777c1398ed46d8923556edeb1479435b07e7a9522381e6d2235bc39d05a88b5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm20-037",
+      "name": "反骨鉄拳バーニアン",
+      "faces": [
+        {
+          "name": "反骨鉄拳バーニアン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーのパワーは、バトルゾーンにある相手のクリーチャーの種族ひとつにつき+2000される。",
+          "race": "グレートメカオー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-037",
+      "spec": {
+        "g207CountPower": {
+          "zone": "battle",
+          "opponent": true,
+          "g925DistinctRaces": true,
+          "amount": 2000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm20-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "78ae6a29ff73fdf48cb6080c36cb9974dac24b34842789646371b4a5b8139507",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy5-021",
+      "canonicalId": "dm20-050",
+      "name": "追撃のライゼン",
+      "faces": [
+        {
+          "name": "追撃のライゼン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "自分のティラノ・ドレイクがこのターン攻撃していなければ、このクリーチャーは攻撃することができない。",
+          "race": "ブレイブ・スピリット",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy5-021",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy5-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "47f3a78288f59d671221ab2421c7877e01c2ff98bff6098060e462e864c269ee",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm14-032": 4,
+      "dm20-050": 4,
+      "dm23-018": 4,
+      "dm20-037": 4,
+      "promoy5-021": 4
+    }
+  }
+}

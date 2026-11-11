@@ -480,6 +480,8 @@ export function createSixPhotoRules(api){
   if(t.zone==='shields')return t.amount*owners.reduce((n,p)=>n+(typeof s.players[p].shields==='number'?s.players[p].shields:t.g333ShieldCards?s.players[p].shields.reduce((n,x)=>n+api.shieldCards(x).length,0):s.players[p].shields.length),0);
   const rows=owners.flatMap(p=>(s.players[p][t.zone]||[]).map(y=>({p,y}))).filter(({y})=>!t.other||y.uid!==x.uid);
   if(t.manaColor)return t.amount*rows.filter(({p,y})=>api.manaColors(card(y),s,p,true).includes(t.manaColor)).length;
+  if(t.g925DistinctRaces)return t.amount*new Set(rows.flatMap(({y})=>
+   !y.sealed&&!y.faceDown&&api.isCreature(s,y)?exactRaces(effective(y,s,true)):[])).size;
   if(t.civilizations){
    if(t.g561Battle)return t.amount*countBattleCivilizations(s,rows.map(({y})=>y));
    return t.amount*new Set(rows.flatMap(({p,y})=>api.manaColors(card(y),s,p,true)).filter(q=>['光','水','闇','火','自然'].includes(q))).size;
@@ -576,6 +578,8 @@ export function createSixPhotoRules(api){
    case'entries':return(own.enteredThisTurn||0)>=rule.min;
    case'ownBattleWin':return s.g587BattleWins?.turn===s.turn&&s.g587BattleWins.players[p];
    case'creatureDeath':return s.g612CreatureDeathTurn===s.turn;
+   case'tyrannoDrake925':return s.g481Attackers?.turn===s.turn&&
+    s.g481Attackers.events.some(e=>e.p===p&&e.tyrannoDrake925);
    case'spells':return(s.g37Spells?.[p]?.turn===s.turn?s.g37Spells[p].n:0)>=rule.min;
    case'draws':return(own.drawsThisTurn||0)>=rule.min;
    case'noncreatureUses':return(s.g448NoncreatureUses?.[p]?.turn===s.turn?s.g448NoncreatureUses[p].n:0)>=rule.min;
@@ -3756,9 +3760,11 @@ export function createSixPhotoRules(api){
  },
  stay577,
  zeroSafe:(s,x)=>!!effective(x,s).g34AlwaysWinAtZero&&api.power(x,false,s)<=0,
- // Resolved continuous effects are independent of the recipient's ignored abilities (QA34228).
- attackableUntapped924:(s,x)=>(s.extLimits||[]).some(l=>l.kind==='g924AttackableUntapped'&&l.turn===s.turn&&
+ attackableUntapped:(s,x)=>s.players.some(owner=>owner.battle.some(y=>!y.sealed&&card(y).g925MulticolorAttackable&&
+  effective(y,s).g925MulticolorAttackable))&&colors(effective(x,s)).length>1||
+  (s.extLimits||[]).some(l=>l.kind==='g924AttackableUntapped'&&l.turn===s.turn&&
   api.allLayers(x).some(y=>l.refs.includes(key(y)))&&!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})),
+ // Resolved continuous effects are independent of the recipient's ignored abilities (QA34228).
  attackEffect409:(s,x,kind)=>(s.extLimits||[]).some(l=>l.kind==='g409AttackEffect'&&l.effect===kind&&s.players[l.player].battle.includes(x)&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)),
  destroySafe409:(s,x)=>!!effective(x,s).g465DestroySafe||hooks.attackEffect409(s,x,'destroySafe'),
  extraBreak557:(s,p,x,c)=>s.players[p].battle.reduce((n,y)=>{
@@ -4001,7 +4007,7 @@ export function createSixPhotoRules(api){
    else queue(s,owner,x,watch.defs);
   }
   if(creature&&!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g468EntryWatch;if(!x.sealed&&watch&&(!watch.g565Other||x.uid!==y.uid)&&(!(x.uid===y.uid)||!options.selfMuted&&!api.selfStopped(s,p))&&matches(s,p,y,watch.filter))send(s,p,x,'Entry468',{mode:watch.mode,subject:{uid:y.uid,incarnation:y.incarnation||0}});}if(!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g251EntryDraw,self=x.uid===y.uid;if(!x.sealed&&watch&&(!watch.g895SummonedHand||options.execution===true&&options.origin==='hand')&&(!self||!options.selfMuted&&!api.selfStopped(s,p))&&(self&&watch.selfAlways||matches(s,p,y,watch.filter)))queue(s,p,x,watch.defs);}if(!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g250EntryDraw,self=x.uid===y.uid;if(!x.sealed&&watch&&(self?watch.self&&!options.selfMuted&&!api.selfStopped(s,p):matches(s,p,y,watch.filter)))queue(s,p,x,watch.defs);}if(s.active===p&&!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g249OtherEntry;if(!x.sealed&&x.uid!==y.uid&&watch&&matches(s,p,y,watch.filter))queue(s,p,x,watch.defs);}if(creature){const stopped=options.selfMuted||api.selfStopped(s,p);for(const x of active(s,p,'cabbage'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[select('mana',null,1,{creature:true,color:'自然',minPower:12000,exactCost:cost(c)-1},{deploy:true,optional:true})]);if(ninja(effective(y,s)))for(const x of active(s,p,'mukujimmed'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[E('Draw',{n:1,optional:true})]);if(angel(effective(y,s)))for(const x of active(s,p,'everries'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[E('Draw',{n:1,optional:true})]);for(const x of active(s,1-p,'nameko'))if(!options.paidMana)queue(s,1-p,x,[C('nameko',{target:y.uid,targetIncarnation:y.incarnation||0})]);if(options.execution===false)for(const x of active(s,1-p,'oogumo'))queue(s,1-p,x,[E('ExactMove',{to:'grave',target:y.uid,targetIncarnation:y.incarnation||0})]);}if(options.origin!=='hand')for(const x of s.players[1-p].battle.filter(x=>!api.ignored(s,x)))for(const layer of api.layers(x))if(card(layer).g34SoulDock)queue(s,1-p,x,[E('ExactMove',{to:'grave',target:y.uid,targetIncarnation:y.incarnation||0})]);},
- attack(s,p,x){if(s.g481Attackers?.turn!==s.turn)s.g481Attackers={turn:s.turn,events:[]};const refs=api.allLayers(x).map(key),first=!s.g481Attackers.events.some(e=>e.refs.some(r=>refs.includes(r)));s.g481Attackers.events.push({p,refs,...(s.attack?.target==='player'?{playerTarget:true}:{})});if(s.attackLifecycle){s.attackLifecycle.g543First=first;s.attackLifecycle.g543Refs=refs;}if(first)for(const r of s.extLimits||[]){
+ attack(s,p,x){if(s.g481Attackers?.turn!==s.turn)s.g481Attackers={turn:s.turn,events:[]};const refs=api.allLayers(x).map(key),first=!s.g481Attackers.events.some(e=>e.refs.some(r=>refs.includes(r)));s.g481Attackers.events.push({p,refs,...(race(effective(x,s,true),'ティラノ・ドレイク')?{tyrannoDrake925:true}:{}),...(s.attack?.target==='player'?{playerTarget:true}:{})});if(s.attackLifecycle){s.attackLifecycle.g543First=first;s.attackLifecycle.g543Refs=refs;}if(first)for(const r of s.extLimits||[]){
   if(r.kind!=='g543Shinka')continue;
   if(r.when==='firstAttack'&&refs.includes(key(r)))api.enqueue(s,r.p,{source:r.source,effect:'extended',
    task:task('g34_ResolveDelay537',r.p,r.source,{uid:r.uid,incarnation:r.incarnation,defs:[{op:'AfterAttack542',defs:[{op:'Untap',g191First:true}]}]})});

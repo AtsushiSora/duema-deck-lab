@@ -3449,6 +3449,21 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=925&&d.faces.length===1&&creature){
+  if(d.id==='dm14-032'&&compact363===
+   'バトルゾーンにあるクリーチャーはすべてタップされていない多色クリーチャーを攻撃できる。')
+   return {g925MulticolorAttackable:true};
+  if(['dm20-050','promoy5-021'].includes(d.id)&&compact363===
+   '自分のティラノ・ドレイクがこのターン攻撃していなければこのクリーチャーは攻撃することができない。')
+   return {g225AttackRequires:{kind:'tyrannoDrake925'}};
+  if(evolution&&d.id==='dm23-018'&&compact363===
+   '進化-自分のドリームメイト1体の上に置く。このクリーチャーをバトルゾーンに出した時バトルゾーンにある相手の進化クリーチャーを1体選び持ち主のマナゾーンに置いてもよい。')
+   return {evolution:{race:'ドリームメイト'},effect:'sixPhoto',
+    g34Tasks:[{op:'Target',filter:{evolution:true},to:'mana',optional:true}]};
+  if(d.id==='dm20-037'&&compact363===
+   'このクリーチャーのパワーはバトルゾーンにある相手のクリーチャーの種族ひとつにつき+2000される。')
+   return {g207CountPower:{zone:'battle',opponent:true,g925DistinctRaces:true,amount:2000}};
+ }
  if(phase>=924&&d.faces.length===1){
   if(creature&&d.id==='dm20-033'&&compact363===
    'このクリーチャーをバトルゾーンに出した時相手はバトルゾーンにある自分自身のクリーチャーを1体選び持ち主のマナゾーンに置く。'+
