@@ -195946,24 +195946,146 @@
       ],
       "supportBatch": "phase-937",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm21-004",
+      "name": "ティラノ・リンク・ノヴァ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 14,
+      "power": 0,
+      "race": "",
+      "text": "シンパシー：ティラノ・ドレイク・クリーチャーまたはブレイブ・スピリット・クリーチャー（この呪文を唱えるコストを、自分の、ティラノ・ドレイク・クリーチャーまたはブレイブ・スピリット・クリーチャー１体につき１少なくする。ただしコストは０以下にはならない）\n相手のシールドをすべてブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-004",
+      "limit": 4,
+      "g211Sympathy": {
+        "amount": 1,
+        "filter": {
+          "creature": true,
+          "raceAny": [
+            "ティラノ・ドレイク",
+            "ブレイブ・スピリット"
+          ]
+        }
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Break497",
+          "n": "all"
+        }
+      ],
+      "supportBatch": "phase-938",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm19-s06",
+      "name": "超神星プルート・デスブリンガー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 13000,
+      "race": "フェニックス",
+      "text": "進化GV-自分のデスパペット、グランド・デビル、ティラノ・ドレイクのいずれか３体を重ねた上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選んで墓地に置いてもよい。そうした場合、相手のクリーチャーを１体破壊する。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-s06",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "any": [
+              {
+                "race": "デスパペット"
+              },
+              {
+                "race": "グランド・デビル"
+              },
+              {
+                "race": "ティラノ・ドレイク"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "デスパペット"
+              },
+              {
+                "race": "グランド・デビル"
+              },
+              {
+                "race": "ティラノ・ドレイク"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "デスパペット"
+              },
+              {
+                "race": "グランド・デビル"
+              },
+              {
+                "race": "ティラノ・ドレイク"
+              }
+            ]
+          }
+        ]
+      },
+      "breaker": 3,
+      "g825Meteor": "destroy",
+      "supportBatch": "phase-938",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm21-048",
+      "name": "肝っ玉メリー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ドリームメイト",
+      "text": "自分のビークル・ビーがブロックされた時、バトルの後、ブロックしたクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-048",
+      "limit": 4,
+      "g938DestroyBlockerOfRace": "ビークル・ビー",
+      "supportBatch": "phase-938",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 937,
+    "phase": 938,
     "checkedAt": "2026-11-11",
-    "baseCount": 6682,
+    "baseCount": 6685,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6685,
+    "totalCount": 6688,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35564/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35466/",
-      "https://dm.takaratomy.co.jp/rule/qa/38635/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31411/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/34849/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37536/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37537/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36963/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37354/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35434/",
+      "https://dm.takaratomy.co.jp/rule/qa/42937/",
+      "https://dm.takaratomy.co.jp/rule/qa/46821/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -212717,6 +212839,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/40193/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35446/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35450/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 937,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6682,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6685,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35564/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35466/",
+          "https://dm.takaratomy.co.jp/rule/qa/38635/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37536/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37537/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36963/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -40,6 +40,7 @@ export function createPhoenixRules(api){
   if(t.follow825==='untap')api.untap(s,t.p,x);
   else if(t.follow825==='ramp')put(s,task('g34_Ramp',t.p,t.source,{n:1}));
   else if(t.follow825==='destroyBlocker')put(s,task('g34_Target',t.p,t.source,{to:'grave',filter:{blocker:true}}));
+  else if(t.follow825==='destroy')put(s,task('g34_Target',t.p,t.source,{to:'grave'}));
   else put(s,task('g34_Target',t.p,t.source,{anyOwner:true,to:'hand'}));
  }
  function marsCount(s,p){const fits=c=>/ファイアー・バード|フェニックス/.test(String(c.race));return s.players[p].mana.filter(x=>!x.faceDown&&faces(api.zoneCard(s,p,x,'mana')).some(fits)).length+s.players[p].battle.filter(x=>!x.sealed&&['creature','seed','gear','field','aura'].includes(card(x).type)&&fits(effective(x,s))).length;}
@@ -91,7 +92,7 @@ export function createPhoenixRules(api){
  case'g31_NonCreature':choice(s,t,'相手のクリーチャーでないカードを破壊する',targetOptions(s,t.p,opp.battle.filter(x=>!api.isCreature(s,x))));break;
  case'g31_Oni':choice(s,t,'手札に戻す自分のシールドを選ぶ',own.shields.map((x,i)=>opt('シールド'+(i+1),x.uid,10)));if(!own.shields.length)put(s,task('g31_OniDiscount',t.p,t.source));break;
  case'g31_OniDiscount':(s.g31Discounts??=[]).push({p:t.p,turn:s.turn,source:t.source});break;
- case'g31_Meteor':{const x=live(s,t),list=x&&api.layers(x).slice(1);if(list?.length)choice(s,t,'メテオバーン：下のカードを'+(t.kind==='apollo'?'好きな枚数':'1枚')+'墓地に置く？',[...list.map(y=>opt(y.faceDown?'裏向きの進化元':card(y).name,y.uid,t.kind==='apollo'?(t.count?5:30):30,y.faceDown?null:y.cardId)),opt('この内容で進む',null,t.count?20:0)]);else if(t.kind==='apollo'&&t.count)apolloMinus(s,t);break;}
+ case'g31_Meteor':{const x=live(s,t),list=x&&!(t.follow825==='destroy'&&x.sealed)&&api.layers(x).slice(1);if(list?.length)choice(s,t,'メテオバーン：下のカードを'+(t.kind==='apollo'?'好きな枚数':'1枚')+'墓地に置く？',[...list.map(y=>opt(y.faceDown?'裏向きの進化元':card(y).name,y.uid,t.kind==='apollo'?(t.count?5:30):30,y.faceDown?null:y.cardId)),opt('この内容で進む',null,t.count?20:0)]);else if(t.kind==='apollo'&&t.count)apolloMinus(s,t);break;}
  case'g31_GodRevive':choice(s,t,'龍神ヘヴィか龍神メタルを墓地から出す',own.grave.filter(x=>['龍神ヘヴィ','龍神メタル'].includes(card(x).name)&&api.canEnter(s,t.p,card(x),{origin:'grave',execution:false})).map(x=>opt(card(x).name,x.uid,30,x.cardId)));break;
  case'g31_ApolloShields':{const selected=t.selected||[],n=Math.min(2,opp.shields.length);if(selected.length===n){for(const uid of selected)api.moveShield(s,1-t.p,uid,'grave',{replacement:true});break;}choice(s,{...t,selected},'墓地に置く相手のシールドを2つ選ぶ',opp.shields.filter(x=>!selected.includes(x.uid)).map((x,i)=>opt('シールド'+(opp.shields.indexOf(x)+1),x.uid,20)));break;}
  case'g31_Xeno':{const x=live(s,t);if(x)choice(s,t,'進化フェニックスをこのクリーチャーの上に置く？',[...own.hand.filter(y=>card(y).evolution&&phoenix(card(y))&&cost(card(y))<=7&&api.canEnter(s,t.p,card(y),{origin:'hand',execution:false})).map(y=>opt(card(y).name,y.uid,30+cost(card(y)),y.cardId)),skip()]);break;}

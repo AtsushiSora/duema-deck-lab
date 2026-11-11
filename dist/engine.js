@@ -1596,6 +1596,17 @@ function resolveAttack(s,blockUid){
     selfRefs:layers(a).map(x=>({uid:x.uid,incarnation:x.incarnation||0}))
    }];
   }
+  for(const watcher of s.players[s.active].battle){
+   if(!card(watcher).g938DestroyBlockerOfRace||!isCreature(s,watcher))continue;
+   const race=effectiveCard(watcher,s).g938DestroyBlockerOfRace;
+   if(!race||!String(effectiveCard(a,s).race).includes(race))continue;
+   const prior=s.attack.g695BlockUntap;
+   s.attack.g695BlockUntap=[...(Array.isArray(prior)?prior:prior?[prior]:[]),{
+    controller:s.active,source:watcher.cardId,to:'grave',destroy:true,
+    g715BlockerRef:{uid:b.uid,incarnation:b.incarnation||0},
+    selfRefs:layers(b).map(x=>({uid:x.uid,incarnation:x.incarnation||0}))
+   }];
+  }
   tapCard(s,other,b);extra.block(s,other,b);
   log(s,other,'block',`${card(b).name}でブロック`,{cardId:b.cardId});
   extra.ninjaWindow(s,s.active);return;
@@ -2945,7 +2956,7 @@ export function rankHeuristicActions(s){
    if(!a.yes)return 0;const x=find(p,a.uid),defs=x&&effectiveCard(x,v).g496Silent;if(!defs)return -100;const drain=defs.reduce((n,d)=>n+(['Draw','Ramp','ShieldTop'].includes(d.op)?d.n||1:d.op==='Look'?1:0),0);if(drain&&drain>=me.deckCount-1)return -1000;
    const projected=structuredClone(v),own=projected.players[p];for(const y of own.battle){const c=effectiveCard(y,projected);if(y.uid!==x.uid&&!v.g496Kept.includes(y.uid)&&canUntap(y)&&!skipsStartUntap(projected,y)&&!c.g26Zaze&&!c.g40StartNoUntap)y.tapped=false;}
    let score=extra.six.tapScore439(projected,p,own.battle.find(y=>y.uid===x.uid),defs);
-   for(const d of defs){if(d.op==='ShieldTop')score+=12*(d.n||1);if(d.op==='Break497')score+=12*Math.min(d.n,them.shields);if(d.op==='InspectOne258'&&them.hand.length)score+=16;if(d.op==='ShieldExchange446'&&me.hand.length)score+=8;
+   for(const d of defs){if(d.op==='ShieldTop')score+=12*(d.n||1);if(d.op==='Break497')score+=12*(d.n==='all'?them.shields:Math.min(d.n,them.shields));if(d.op==='InspectOne258'&&them.hand.length)score+=16;if(d.op==='ShieldExchange446'&&me.hand.length)score+=8;
     if(d.op==='GroupGrant364'&&d.grant.g313Breaker)for(const y of own.battle){const c=effectiveCard(y,projected);if(!y.sealed&&!y.tapped&&!c.noAttack&&!c.noPlayerAttack&&(y.entered<v.turn||c.speedAttacker||isEvolution(y))&&extra.six.matches(projected,p,y,d.filter)&&(c.breaker||1)<d.grant.g313Breaker)score+=8;}
    }return score;
   }

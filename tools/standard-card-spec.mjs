@@ -3388,6 +3388,30 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=938&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='呪文'){
+   const races=['ティラノ・ドレイク','ブレイブ・スピリット'];
+   const oldHeader='シンパシー:'+races.join('と')+'(この呪文を唱える時支払うコストはバトルゾーンにある自分の'+races.join('または')+'1体につき1少なくなる。ただしコストは';
+   const newRaces=races.map(r=>r+'・クリーチャー').join('または');
+   const novaText={
+    'dm21-004':oldHeader+'1より少なくならない)相手は自分自身のシールドをすべて手札に加える。(相手はその「S・トリガー」を使うことができる)',
+    'dmex15-a043':oldHeader+'0以下にはならない)相手は自身のシールドをすべて手札に加える。(相手はその「S・トリガー」を使うことができる)',
+    'dm25ex3-CSP4':'シンパシー:'+newRaces+'(この呪文を唱えるコストを自分の'+newRaces+'1体につき1少なくする。ただしコストは0以下にはならない)相手のシールドをすべてブレイクする。'
+   };
+   // Rule 109.1 applies the latest printed ability to all copies.
+   if(text===novaText[d.id])return {g211Sympathy:{amount:1,filter:{creature:true,raceAny:races}},
+    effect:'sixPhoto',g34Tasks:[{op:'Break497',n:'all'}]};
+  }
+  if(['dm19-s06','dmc54-007'].includes(d.id)&&f.typeText==='進化クリーチャー(進化GV)'&&text===
+   '進化GV-自分のデスパペットグランド・デビルティラノ・ドレイクのいずれか3体を重ねた上に置く。メテオバーン-このクリーチャーが攻撃する時このクリーチャーの下にあるカードを1枚選んで墓地に置いてもよい。そうした場合相手のクリーチャーを1体破壊する。T・ブレイカー(このクリーチャーはシールドを3枚ブレイクする)')
+   return {evolution:{g31:true},g31Evolution:{zone:'battle',
+    conditions:Array.from({length:3},()=>({any:['デスパペット','グランド・デビル','ティラノ・ドレイク'].map(race=>({race}))}))},
+    breaker:3,g825Meteor:'destroy'};
+  if(d.id==='dm21-048'&&f.typeText==='クリーチャー'&&text===
+   '自分のビークル・ビーがブロックされた時バトルの後ブロックしたクリーチャーを破壊する。')
+   return {g938DestroyBlockerOfRace:'ビークル・ビー'};
+ }
  if(phase>=937&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dm20-026'&&f.typeText==='クリーチャー'&&text===

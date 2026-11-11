@@ -1,0 +1,301 @@
+{
+  "phase": 938,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6685,
+  "description": "シンパシーと相手の全シールドのブレイク、進化GVと攻撃時のメテオバーン、自分のビークル・ビーをブロックしたクリーチャーのバトル後の破壊を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31411/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34849/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37536/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37354/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35434/",
+    "https://dm.takaratomy.co.jp/rule/qa/42937/",
+    "https://dm.takaratomy.co.jp/rule/qa/46821/"
+  ],
+  "cards": [
+    {
+      "id": "dm21-004",
+      "name": "ティラノ・リンク・ノヴァ",
+      "faces": [
+        {
+          "name": "ティラノ・リンク・ノヴァ",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 14,
+          "costText": "14",
+          "abilityText": "シンパシー：ティラノ・ドレイクとブレイブ・スピリット(この呪文を唱える時支払うコストは、バトルゾーンにある自分のティラノ・ドレイクまたはブレイブ・スピリット１体につき１少なくなる。ただし、コストは１より少なくならない)\n相手は、自分自身のシールドをすべて手札に加える。(相手はその「S・トリガー」を使うことができる)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-004",
+      "spec": {
+        "g211Sympathy": {
+          "amount": 1,
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "ティラノ・ドレイク",
+              "ブレイブ・スピリット"
+            ]
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Break497",
+            "n": "all"
+          }
+        ]
+      },
+      "currentPrint": {
+        "id": "dm25ex3-CSP4",
+        "name": "ティラノ・リンク・ノヴァ",
+        "faces": [
+          {
+            "name": "ティラノ・リンク・ノヴァ",
+            "typeText": "呪文",
+            "civilizationText": "火",
+            "civilizations": [
+              "火"
+            ],
+            "cost": 14,
+            "costText": "14",
+            "abilityText": "シンパシー：ティラノ・ドレイク・クリーチャーまたはブレイブ・スピリット・クリーチャー（この呪文を唱えるコストを、自分の、ティラノ・ドレイク・クリーチャーまたはブレイブ・スピリット・クリーチャー１体につき１少なくする。ただしコストは０以下にはならない）\n相手のシールドをすべてブレイクする。",
+            "race": "",
+            "powerText": "",
+            "missingFields": []
+          }
+        ],
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-CSP4",
+        "useRulesText": true,
+        "verification": {
+          "checkedAt": "2026-11-11",
+          "sha256": "400479ca2c69a2cf182b8e6afd5d50e163a310fe036a3475981600cf718a76c4",
+          "facesMatched": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm21-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "93b9eddf10c4b5b235337513460a92fe27c686912870ec547d0479e7eabf4a42",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-s06",
+      "name": "超神星プルート・デスブリンガー",
+      "faces": [
+        {
+          "name": "超神星プルート・デスブリンガー",
+          "typeText": "進化クリーチャー(進化GV)",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "進化GV-自分のデスパペット、グランド・デビル、ティラノ・ドレイクのいずれか３体を重ねた上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選んで墓地に置いてもよい。そうした場合、相手のクリーチャーを１体破壊する。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "フェニックス",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-s06",
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "any": [
+                {
+                  "race": "デスパペット"
+                },
+                {
+                  "race": "グランド・デビル"
+                },
+                {
+                  "race": "ティラノ・ドレイク"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "デスパペット"
+                },
+                {
+                  "race": "グランド・デビル"
+                },
+                {
+                  "race": "ティラノ・ドレイク"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "デスパペット"
+                },
+                {
+                  "race": "グランド・デビル"
+                },
+                {
+                  "race": "ティラノ・ドレイク"
+                }
+              ]
+            }
+          ]
+        },
+        "breaker": 3,
+        "g825Meteor": "destroy"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-s06.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "997f5ebd4d98d9ea3d3f247ec1da611800a171941cfa826b083933a9bea29a93",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm21-048",
+      "name": "肝っ玉メリー",
+      "faces": [
+        {
+          "name": "肝っ玉メリー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のビークル・ビーがブロックされた時、バトルの後、ブロックしたクリーチャーを破壊する。",
+          "race": "ドリームメイト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-048",
+      "spec": {
+        "g938DestroyBlockerOfRace": "ビークル・ビー"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm21-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "001fd516a2222ec11c2d9451c373c9c00c0731738ce69db64ebaf3c3590465b8",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex15-a043",
+      "canonicalId": "dm21-004",
+      "name": "ティラノ・リンク・ノヴァ",
+      "faces": [
+        {
+          "name": "ティラノ・リンク・ノヴァ",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 14,
+          "costText": "14",
+          "abilityText": "シンパシー：ティラノ・ドレイクとブレイブ・スピリット（この呪文を唱える時支払うコストは、バトルゾーンにある自分のティラノ・ドレイクまたはブレイブ・スピリット１体につき１少なくなる。ただし、コストは０以下にはならない）\n相手は、自身のシールドをすべて手札に加える。（相手はその「S・トリガー」を使うことができる）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-a043",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex15-a043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "bc0a161f586feffc647b1e163c4fadff5264e83a7376b263b8bcd4a3b736b7f5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex3-CSP4",
+      "canonicalId": "dm21-004",
+      "name": "ティラノ・リンク・ノヴァ",
+      "faces": [
+        {
+          "name": "ティラノ・リンク・ノヴァ",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 14,
+          "costText": "14",
+          "abilityText": "シンパシー：ティラノ・ドレイク・クリーチャーまたはブレイブ・スピリット・クリーチャー（この呪文を唱えるコストを、自分の、ティラノ・ドレイク・クリーチャーまたはブレイブ・スピリット・クリーチャー１体につき１少なくする。ただしコストは０以下にはならない）\n相手のシールドをすべてブレイクする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-CSP4",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-CSP4.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "400479ca2c69a2cf182b8e6afd5d50e163a310fe036a3475981600cf718a76c4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc54-007",
+      "canonicalId": "dm19-s06",
+      "name": "超神星プルート・デスブリンガー",
+      "faces": [
+        {
+          "name": "超神星プルート・デスブリンガー",
+          "typeText": "進化クリーチャー(進化GV)",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "進化GV-自分のデスパペット、グランド・デビル、ティラノ・ドレイクのいずれか３体を重ねた上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選んで墓地に置いてもよい。そうした場合、相手のクリーチャーを１体破壊する。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "フェニックス",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc54-007",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc54-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "14250a74de835ee0283f289be0346d77650b464ccb95842e9a90df105e3190ec",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm21-004": 4,
+      "dm19-s06": 4,
+      "dm21-048": 4,
+      "dmex15-a043": 4,
+      "dm25ex3-CSP4": 4,
+      "dmc54-007": 4
+    }
+  }
+}

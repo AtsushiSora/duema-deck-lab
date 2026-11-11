@@ -25,6 +25,11 @@ if(process.argv.includes('--prepare')){
   const detail=details.cards.find(c=>c.id===row.id);assert.deepEqual(row.faces,detail.faces);
   assert.deepEqual(row.spec,standardCardSpec(detail,{phase}));
   assert.ok(row.verification?.facesMatched);assert.match(row.verification.sha256,/^[a-f0-9]{64}$/);
+  if(row.currentPrint?.useRulesText){
+   const latest=row.currentPrint;
+   assert.ok(latest.verification?.facesMatched);assert.match(latest.verification.sha256,/^[a-f0-9]{64}$/);
+   assert.deepEqual(row.spec,standardCardSpec({...detail,id:latest.id,faces:latest.faces},{phase}));
+  }
   if(row.manaReference){
    const reference=row.manaReference.verification;
    assert.ok(reference?.facesMatched);assert.match(reference.sha256,/^[a-f0-9]{64}$/);
