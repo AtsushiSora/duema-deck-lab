@@ -206584,26 +206584,147 @@
       ],
       "supportBatch": "phase-1017",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr18-016",
+      "name": "アクア警備員 ラスト",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "リキッド・ピープル閃/革命軍",
+      "text": "このクリーチャーがバトルゾーンに出た時、カードを１枚引く。その後、いずれかのシールドゾーンからシールドをひとつ選ぶ。そのシールドの持ち主はそれを自身の山札に加えてシャッフルする。そのターンの終わりに、そのプレイヤーは自身の山札の上から１枚を裏向きのまま、新しいシールドとしてシールドゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-016",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "ShieldShuffle1018"
+        }
+      ],
+      "supportBatch": "phase-1018",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr19-013",
+      "name": "究極ゲート",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、タップする。\n自分の山札をシャッフルし、上から１枚目を見る。そのカードが光のコスト９の侵略者なら、バトルゾーンに出してもよい。 こうしてクリーチャーをバトルゾーンに出したのでなければ、そのカードを手札に加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-013",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true,
+          "spell": true
+        },
+        {
+          "op": "Shuffle405"
+        },
+        {
+          "op": "LookDeploy530",
+          "n": 1,
+          "limit": 1,
+          "rest": "hand",
+          "g841DeckPeek": true,
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "color": "光",
+              "min": 9,
+              "max": 9,
+              "raceAll": [
+                "侵略者"
+              ]
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-1018",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr20-028",
+      "name": "革命船長 リーフ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 4000,
+      "race": "サイバー・ウイルス海/革命軍",
+      "text": "バトルゾーンに自分の水のクリーチャーがあれば、このクリーチャーに「S・トリガー」を与える。\n進化―自分の水のクリーチャー１体の上に置く。\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n革命２―このクリーチャーがバトルゾーンに出た時、自分のシールドが２つ以下なら、カードを３枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-028",
+      "limit": 4,
+      "evolution": {
+        "civilization": "水"
+      },
+      "blocker": true,
+      "g876ShieldTriggerCondition": {
+        "creature": true,
+        "color": "水"
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g265ShieldsMax": 2
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを3枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 3
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1018",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1017,
+    "phase": 1018,
     "checkedAt": "2026-11-12",
-    "baseCount": 6987,
-    "newEffectCards": 4,
+    "baseCount": 6991,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6991,
+    "totalCount": 6994,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/rule/rulechange/",
-      "https://dm.takaratomy.co.jp/rule/qa/34320/",
-      "https://dm.takaratomy.co.jp/rule/qa/34321/",
-      "https://dm.takaratomy.co.jp/rule/qa/48479/",
-      "https://dm.takaratomy.co.jp/rule/qa/48481/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316661/",
-      "https://dm.takaratomy.co.jp/rule/qa/40962/",
-      "https://dm.takaratomy.co.jp/rule/qa/39841/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316682/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37278/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37279/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37280/",
+      "https://dm.takaratomy.co.jp/rule/qa/31783/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37532/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316661/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -225013,6 +225134,29 @@
           "https://dm.takaratomy.co.jp/rule/qa/45462/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35971/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316677/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1017,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6987,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6991,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/",
+          "https://dm.takaratomy.co.jp/rule/qa/34320/",
+          "https://dm.takaratomy.co.jp/rule/qa/34321/",
+          "https://dm.takaratomy.co.jp/rule/qa/48479/",
+          "https://dm.takaratomy.co.jp/rule/qa/48481/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316661/",
+          "https://dm.takaratomy.co.jp/rule/qa/40962/",
+          "https://dm.takaratomy.co.jp/rule/qa/39841/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316682/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

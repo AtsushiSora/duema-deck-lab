@@ -3435,6 +3435,31 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=1018&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const entry='このクリーチャーがバトルゾーンに出た時';
+  if(f.typeText==='クリーチャー'&&d.id==='dmr18-016'&&text===entry+'カードを1枚引く。'+
+   'その後いずれかのシールドゾーンからシールドをひとつ選ぶ。そのシールドの持ち主はそれを自身の山札に加えてシャッフルする。'+
+   'そのターンの終わりにそのプレイヤーは自身の山札の上から1枚を裏向きのまま新しいシールドとしてシールドゾーンに置く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Draw',n:1},{op:'ShieldShuffle1018'}]};
+  if(f.typeText==='呪文'&&d.id==='dmr19-013'&&text===
+   'S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)'+
+   '相手のクリーチャーを1体選びタップする。自分の山札をシャッフルし上から1枚目を見る。'+
+   'そのカードが光のコスト9の侵略者ならバトルゾーンに出してもよい。こうしてクリーチャーをバトルゾーンに出したのでなければそのカードを手札に加える。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',tap:true,spell:true},{op:'Shuffle405'},
+    {op:'LookDeploy530',n:1,limit:1,rest:'hand',g841DeckPeek:true,
+     filter:{g228Face:{type:'creature',color:'光',min:9,max:9,raceAll:['侵略者']}}}
+   ]};
+  if(f.typeText==='進化クリーチャー'&&d.id==='dmr20-028'&&text===
+   'バトルゾーンに自分の水のクリーチャーがあればこのクリーチャーに「S・トリガー」を与える。'+
+   '進化―自分の水のクリーチャー1体の上に置く。'+
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   '革命2―'+entry+'自分のシールドが2つ以下ならカードを3枚引いてもよい。')
+   return {evolution:{civilization:'水'},blocker:true,g876ShieldTriggerCondition:{creature:true,color:'水'},
+    effect:'sixPhoto',g34Tasks:[{op:'IfOwn',filter:{g265ShieldsMax:2},defs:[
+     {op:'Offer',title:'カードを3枚引く？',defs:[{op:'Draw',n:3}]}
+    ]}]};
+ }
  if(phase>=1017&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const attack='このクリーチャーが攻撃する時';
