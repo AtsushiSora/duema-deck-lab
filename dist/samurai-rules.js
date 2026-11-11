@@ -30,7 +30,22 @@ export function createSamuraiRules(api){
  case'g18_Use':{const x=own[t.origin].find(x=>x.uid===t.uid),c=x&&faces(card(x))[t.face||0];if(!x||!canUse(s,t.p,c,t.origin))break;if(c.evolution||c.neoEvolution)choice(s,t,'サムライの進化元を選ぶ',[...(c.neoEvolution?[opt('進化せずに出す',null,0)]:[]),...api.evolutionBases(s,t.p,c).map(x=>opt(card(x).name,x.uid,5,x.cardId))]);else cast(s,t.p,x.uid,true,null,t.face||0,null,t.origin,t.reason||'サムライの能力');break;}
  case'g18_Order':{const remaining=t.remaining.filter(uid=>own.deck.some(x=>x.uid===uid));if(remaining.length<2){for(const uid of remaining){const x=remove(own.deck,uid);own.deck.push(x);}release(own,t.protected);break;}choice(s,{...t,remaining},'残りを山札の下へ置く順序を選ぶ',remaining.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,0,x.cardId);}));break;}
  case'g18_Maroku':{const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation);if(x&&api.isCreature(s,x)&&attached(s,t.p,x).length)put(s,{...t,op:'g18_Mekraid',maroku:true});break;}
- case'g18_FreeCross':{const g=own.battle.find(x=>x.uid===t.gear&&(x.incarnation||0)===t.gearInc);if(g&&card(g).type==='gear')choice(s,t,'メクレイドで出したクロスギアを無料でクロスする？',[...creatures(s,t.p).filter(x=>live(s,t.p,g)?.uid!==x.uid).map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)),skip()]);break;}
+ case'g18_ChooseFreeCross927':{
+  const hosts=creatures(s,t.p);
+  const rows=gears(s,t.p).filter(g=>!g.sealed&&!g.faceDown&&hosts.some(x=>!x.sealed&&live(s,t.p,g)?.uid!==x.uid));
+  choice(s,t,'無料でクロスする自分のクロスギアを選ぶ',rows.map(g=>opt(card(g).name,{uid:g.uid,incarnation:g.incarnation||0},live(s,t.p,g)?5:15,g.cardId)));
+  break;
+ }
+ case'g18_FreeCross':{
+  const g=own.battle.find(x=>x.uid===t.gear&&(x.incarnation||0)===t.gearInc&&card(x).type==='gear'&&(!t.required927||!x.sealed&&!x.faceDown));
+  if(g){
+   const hosts=creatures(s,t.p).filter(x=>(!t.required927||!x.sealed)&&live(s,t.p,g)?.uid!==x.uid)
+    .map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId));
+   if(t.required927)choice(s,t,'クロスする自分のクリーチャーを選ぶ',hosts);
+   else choice(s,t,'メクレイドで出したクロスギアを無料でクロスする？',[...hosts,skip()]);
+  }
+  break;
+ }
  case'g18_AfterMekUse':{const g=own.battle.find(x=>x.uid===t.gear&&(x.zoneSerial||0)===t.serial&&card(x).type==='gear');if(g)put(s,{...t,op:'g18_FreeCross',gearInc:g.incarnation||0});break;}
  case'g18_Flash':put(s,task('g19Yobi',t.p,t.source,{max:6}),task('g18_FlashGrant',t.p,t.source));break;
  case'g18_FlashGrant':for(const x of creatures(s,t.p)){api.untap(s,t.p,x);(x.g18Blocker??=[]).push({who:t.p,cost:6,spellSource:t.source});}break;
@@ -47,7 +62,11 @@ export function createSamuraiRules(api){
  case'g18_Mekraid':{release(own,v?[v.uid]:[]);const x=v&&own.deck.find(x=>x.uid===v.uid),c=x&&faces(card(x))[v.face||0];put(s,...(v?[task('g18_Use',t.p,t.source,{origin:'deck',...v,reason:'サムライ・メクレイド'})]:[]),...(t.maroku&&c?.type==='gear'?[task('g18_AfterMekUse',t.p,t.source,{gear:x.uid,serial:x.zoneSerial||0})]:[]),task('g18_Order',t.p,t.source,{remaining:t.uids.filter(uid=>uid!==v?.uid),protected:t.uids}));break;}
  case'g18_Use':cast(s,t.p,t.uid,true,v||null,t.face||0,null,t.origin,t.reason||'サムライの能力');break;
  case'g18_Order':{const x=remove(own.deck,v);if(x)own.deck.push(x);put(s,{...t,remaining:t.remaining.filter(uid=>uid!==v)});break;}
- case'g18_FreeCross':if(v){const g=own.battle.find(x=>x.uid===t.gear&&(x.incarnation||0)===t.gearInc),x=own.battle.find(x=>x.uid===v);if(g&&x&&api.isCreature(s,x))cross(s,t.p,g,x);}break;
+ case'g18_ChooseFreeCross927':if(v)put(s,{...t,op:'g18_FreeCross',gear:v.uid,gearInc:v.incarnation,required927:true});break;
+ case'g18_FreeCross':if(v){
+  const g=own.battle.find(x=>x.uid===t.gear&&(x.incarnation||0)===t.gearInc),x=own.battle.find(x=>x.uid===v);
+  if(g&&x&&api.isCreature(s,x)&&(!t.required927||!g.sealed&&!g.faceDown&&!x.sealed&&live(s,t.p,g)?.uid!==x.uid))cross(s,t.p,g,x);
+ }break;
  default:throw Error('未実装のサムライ選択：'+t.op);
  }return true;}
  function sharesCrossedRace(s,p,gear,c){

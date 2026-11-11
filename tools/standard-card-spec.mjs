@@ -3449,6 +3449,25 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=927&&d.faces.length===1){
+  if(f.typeText==='呪文'&&d.id==='dm22-014'&&compact363===
+   '相手のクリーチャーを1体破壊する。その後バトルゾーンにある自分のドラゴンまたはフェニックス1体につき相手のクリーチャーを1体追加で破壊する。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'battle',owner:'opponent',to:'grave',n:1,
+    filter:{creature:true},g173Targets:true,g193Select:true,after:[{op:'DestroyPerAlly927',raceAny:['ドラゴン','フェニックス']}]}]};
+  const tap927='このクリーチャーで攻撃するかわりにタップして次の能力を使ってもよい。';
+  const freeCross927='自分のクロスギアを1枚コストを支払わずに';
+  const ally927='自分のクリーチャー1体にクロスする。';
+  if(creature&&({
+   'dm15-010':tap927+'バトルゾーンにある'+freeCross927+ally927,
+   'dmc64-021':tap927+'バトルゾーンにある'+freeCross927+'バトルゾーンにある'+ally927,
+   'dmex16-043':tap927.replace('次の能力','次のt能力')+'t'+freeCross927+ally927
+  })[d.id]===compact363)
+   return {g736AttackInstead:true,g439Tap:[{op:'FreeCross927'}]};
+  if(creature&&d.id==='dm06-095'&&compact363===
+   'スピードアタッカー(このクリーチャーは召喚酔いしない)'+tap927.replace('かわり','代わり')+
+   'バトルゾーンにある自分のクリーチャーを1体選ぶ。このターンが終わるまでそのクリーチャーは「スピードアタッカー」を得る。')
+   return {speedAttacker:true,g736AttackInstead:true,g439Tap:[{op:'Target',owner:'self',grant:{speedAttacker:true},g927HasteScore:true}]};
+ }
  if(phase>=926&&d.faces.length===1){
   if(evolution&&d.id==='dm16-030'&&compact363===
    '進化-自分のビッグマッスル1体の上に置く。このクリーチャーはクロスギアをクロスされたタップされていないクリーチャーを攻撃できる。W・ブレイカー')

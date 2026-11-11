@@ -194912,23 +194912,115 @@
       "g926MandatoryAttackTarget": true,
       "supportBatch": "phase-926",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22-014",
+      "name": "連龍毒",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 8,
+      "power": 0,
+      "race": "",
+      "text": "相手のクリーチャーを１体破壊する。その後、バトルゾーンにある自分のドラゴンまたはフェニックス１体につき、相手のクリーチャーを１体、追加で破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-014",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "opponent",
+          "to": "grave",
+          "n": 1,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "after": [
+            {
+              "op": "DestroyPerAlly927",
+              "raceAny": [
+                "ドラゴン",
+                "フェニックス"
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-927",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm15-010",
+      "name": "フルスロット・サージェント",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "マーフォーク",
+      "text": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nバトルゾーンにある自分のクロスギアを１枚、コストを支払わずに自分のクリーチャー１体にクロスする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-010",
+      "limit": 4,
+      "g736AttackInstead": true,
+      "g439Tap": [
+        {
+          "op": "FreeCross927"
+        }
+      ],
+      "supportBatch": "phase-927",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm06-095",
+      "name": "ムラマサ・リザード",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "デューンゲッコー",
+      "text": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nこのクリーチャーで攻撃する代わりに、タップして次の 能力を使ってもよい。\nバトルゾーンにある自分のクリーチャーを１体選ぶ。このターンが終わるまで、そのクリーチャーは「スピードアタッカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-095",
+      "limit": 4,
+      "speedAttacker": true,
+      "g736AttackInstead": true,
+      "g439Tap": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "grant": {
+            "speedAttacker": true
+          },
+          "g927HasteScore": true
+        }
+      ],
+      "supportBatch": "phase-927",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 926,
+    "phase": 927,
     "checkedAt": "2026-11-11",
-    "baseCount": 6647,
+    "baseCount": 6650,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6650,
+    "totalCount": 6653,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35349/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35350/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35351/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35352/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35353/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35354/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35323/",
+      "https://dm.takaratomy.co.jp/rule/qa/39962/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -211457,6 +211549,27 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35516/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35452/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 926,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6647,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6650,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35349/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35350/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35351/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35352/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35353/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35354/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [

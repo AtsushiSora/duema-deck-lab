@@ -1,0 +1,215 @@
+{
+  "phase": 927,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6650,
+  "description": "ドラゴン・フェニックス数に応じた追加破壊と、攻撃の代わりの無料クロス・スピードアタッカー付与に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35323/",
+    "https://dm.takaratomy.co.jp/rule/qa/39962/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm22-014",
+      "name": "連龍毒",
+      "faces": [
+        {
+          "name": "連龍毒",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "相手のクリーチャーを１体破壊する。その後、バトルゾーンにある自分のドラゴンまたはフェニックス１体につき、相手のクリーチャーを１体、追加で破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-014",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "to": "grave",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "after": [
+              {
+                "op": "DestroyPerAlly927",
+                "raceAny": [
+                  "ドラゴン",
+                  "フェニックス"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "8051dc43b2aa257180763d405c5f63bc78884cb05c266bb89ef273fe29e86531",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm15-010",
+      "name": "フルスロット・サージェント",
+      "faces": [
+        {
+          "name": "フルスロット・サージェント",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nバトルゾーンにある自分のクロスギアを１枚、コストを支払わずに自分のクリーチャー１体にクロスする。",
+          "race": "マーフォーク",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-010",
+      "spec": {
+        "g736AttackInstead": true,
+        "g439Tap": [
+          {
+            "op": "FreeCross927"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm15-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "eb0a3579c758624f7e11171ec76d3f9777bc04dfba8c55beb236aa8a9a48e1bf",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-095",
+      "name": "ムラマサ・リザード",
+      "faces": [
+        {
+          "name": "ムラマサ・リザード",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nこのクリーチャーで攻撃する代わりに、タップして次の 能力を使ってもよい。\nバトルゾーンにある自分のクリーチャーを１体選ぶ。このターンが終わるまで、そのクリーチャーは「スピードアタッカー」を得る。",
+          "race": "デューンゲッコー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-095",
+      "spec": {
+        "speedAttacker": true,
+        "g736AttackInstead": true,
+        "g439Tap": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "speedAttacker": true
+            },
+            "g927HasteScore": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-095.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "5c6467b76c8df1dfb98c1d3164ce1aa475cf3405304d199b2d06d62f8eb970d4",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc64-021",
+      "canonicalId": "dm15-010",
+      "name": "フルスロット・サージェント",
+      "faces": [
+        {
+          "name": "フルスロット・サージェント",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の 能力を使ってもよい。\nバトルゾーンにある自分のクロスギアを１枚、コストを支払わずにバトルゾーンにある自分のクリーチャー１体にクロスする。",
+          "race": "マーフォーク",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc64-021",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc64-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "9ea22bd70f45703e4d20b12685686edd583d730adbfb0ff8d7b3319f1c9cc689",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex16-043",
+      "canonicalId": "dm15-010",
+      "name": "フルスロット・サージェント",
+      "faces": [
+        {
+          "name": "フルスロット・サージェント",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の t能力を使ってもよい。\nt自分のクロスギアを１枚、コストを支払わずに自分のクリーチャー１体にクロスする。",
+          "race": "マーフォーク",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex16-043",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex16-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "d1f0cba3bec5fe16b71a6e40fad927b5c22b8ffabe327938dd940e16c39dcbe4",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22-014": 4,
+      "dm15-010": 4,
+      "dm06-095": 4,
+      "dmc64-021": 4,
+      "dmex16-043": 4
+    }
+  }
+}

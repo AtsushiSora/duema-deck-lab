@@ -882,6 +882,11 @@ export function createSixPhotoRules(api){
  function groupPowerScore(s,t){return groupPowerRows(s,t).reduce((n,{p,y})=>{const before=api.power(y,y.uid===s.attack?.attacker,s),gain=t.power>0?Math.min(10,t.power/1000):before+t.power<=0?18+cost(effective(y,s))*3+Math.max(0,before)/2000:Math.min(8,-t.power/1000);return n+(p===t.p?1:-1)*(t.power>0?gain:-gain);},0);}
  // Only the new modal definitions use this evaluation; existing card-specific mode scores stay intact.
  // Score a selected creature from public characteristics; the tap/untap direction is chosen afterwards.
+ function hasteScore927(s,x){
+  if(x.tapped||x.entered!==s.turn||api.isEvolution(x))return 0;
+  const c=effective(x,s);
+  return c.speedAttacker||c.noAttack?0:20+cost(c);
+ }
  function tapStateScore235(s,t,p,y,tap){
   if(tap?y.tapped:!y.tapped||!api.canUntap(y))return 0;
   const value=10+cost(effective(y,s))*2+api.power(y,false,s)/3000;
@@ -1909,6 +1914,13 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_ShieldPlus414':put(s,{...t,op:'g71_Plus',optional:true});break;
+ case'g34_FreeCross927':put(s,{...t,op:'g18_ChooseFreeCross927'});break;
+ case'g34_DestroyPerAlly927':{
+  const n=creatures(s,t.p).filter(x=>!x.sealed&&matches(s,t.p,x,{raceAny:t.raceAny})).length;
+  if(n)start(s,t,[{op:'Select',origin:'battle',owner:'opponent',to:'grave',n,
+   filter:{creature:true},g173Targets:true,g193Select:true,title:'追加で破壊する相手クリーチャーを'+n+'体選ぶ'}]);
+  break;
+ }
  case'g34_BounceMatch917':{
   const def={op:'Select',origin:'battle',owner:'opponent',to:'hand',n:t.n,filter:{creature:true},
    g173Targets:true,g193Select:true,title:'手札に戻す相手のクリーチャーを'+t.n+'体選ぶ'};
@@ -2629,7 +2641,7 @@ export function createSixPhotoRules(api){
   else if(optional)api.beginManaExchange753(s,t,null);
   break;
  }
- case'g34_Target':{if(used792(s,t,t))break;const owner=t.owner==='self'?t.p:t.owner??1-t.p,ps=t.anyOwner?[t.p,1-t.p]:[owner],candidates=ps.flatMap(p=>s.players[p].battle.filter(y=>matches(s,p,y,{creature:!t.element,...t.filter})&&(!t.g824Panya||panyaCanReturn(s,y))&&(!t.g593OverMana||cost(effective(y,s))>opp.mana.length)&&(!t.g179Other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))));const eligible=t.g810Excluded?candidates.filter(y=>!api.allLayers(y).some(z=>t.g810Excluded.includes(key(z)))):candidates;const rows=t.g741MinPower?lowestPower741(s,eligible):eligible;choice(s,t,t.title||'対象を選ぶ',[...targetOptions(s,t.p,rows).map(o=>({...o,score:t.g503Stack?Math.min(api.allLayers(rows.find(y=>y.uid===o.value)).length,Math.max(0,s.players[t.p].deck.length-1))*8:t.g419Boost||t.g465DestroySafe||t.g521UntilStart||t.g797Stay?(s.players[t.p].battle.some(y=>y.uid===o.value)?15+cost(effective(rows.find(y=>y.uid===o.value),s)):-20):t.g242PowerMinus?powerMinusScore242(s,t,rows.find(x=>x.uid===o.value)):t.g235TapOrUntap?(()=>{const y=rows.find(x=>x.uid===o.value),p=s.players.findIndex(p=>p.battle.some(x=>x.uid===o.value));return Math.max(tapStateScore235(s,t,p,y,true),tapStateScore235(s,t,p,y,false));})():t.untap?(()=>{const y=rows.find(x=>x.uid===o.value),own=s.players[t.p].battle.includes(y);return y?.tapped&&api.canUntap(y)?(own?10+Math.abs(o.score):-10-Math.abs(o.score)):0;})():t.g301Grant?((()=>{const y=rows.find(y=>y.uid===o.value);return s.active===t.p&&y.entered===s.turn&&!y.tapped&&!effective(y,s).speedAttacker?25+cost(card(y)):1;})()):t.g177SelfMana||t.g179Return||t.anyOwner&&s.players[t.p].battle.some(x=>x.uid===o.value)?-Math.abs(o.score)-5:o.score,value:{uid:o.value,p:s.players.findIndex(p=>p.battle.some(x=>x.uid===o.value))}})),...(t.optional?[skip()]:[])]);break;}
+ case'g34_Target':{if(used792(s,t,t))break;const owner=t.owner==='self'?t.p:t.owner??1-t.p,ps=t.anyOwner?[t.p,1-t.p]:[owner],candidates=ps.flatMap(p=>s.players[p].battle.filter(y=>matches(s,p,y,{creature:!t.element,...t.filter})&&(!t.g824Panya||panyaCanReturn(s,y))&&(!t.g593OverMana||cost(effective(y,s))>opp.mana.length)&&(!t.g179Other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))));const eligible=t.g810Excluded?candidates.filter(y=>!api.allLayers(y).some(z=>t.g810Excluded.includes(key(z)))):candidates;const rows=t.g741MinPower?lowestPower741(s,eligible):eligible;choice(s,t,t.title||'対象を選ぶ',[...targetOptions(s,t.p,rows).map(o=>({...o,score:t.g503Stack?Math.min(api.allLayers(rows.find(y=>y.uid===o.value)).length,Math.max(0,s.players[t.p].deck.length-1))*8:t.g419Boost||t.g465DestroySafe||t.g521UntilStart||t.g797Stay?(s.players[t.p].battle.some(y=>y.uid===o.value)?15+cost(effective(rows.find(y=>y.uid===o.value),s)):-20):t.g242PowerMinus?powerMinusScore242(s,t,rows.find(x=>x.uid===o.value)):t.g235TapOrUntap?(()=>{const y=rows.find(x=>x.uid===o.value),p=s.players.findIndex(p=>p.battle.some(x=>x.uid===o.value));return Math.max(tapStateScore235(s,t,p,y,true),tapStateScore235(s,t,p,y,false));})():t.untap?(()=>{const y=rows.find(x=>x.uid===o.value),own=s.players[t.p].battle.includes(y);return y?.tapped&&api.canUntap(y)?(own?10+Math.abs(o.score):-10-Math.abs(o.score)):0;})():t.g301Grant?((()=>{const y=rows.find(y=>y.uid===o.value);return s.active===t.p&&y.entered===s.turn&&!y.tapped&&!effective(y,s).speedAttacker?25+cost(card(y)):1;})()):t.g927HasteScore?hasteScore927(s,rows.find(y=>y.uid===o.value)):t.g177SelfMana||t.g179Return||t.anyOwner&&s.players[t.p].battle.some(x=>x.uid===o.value)?-Math.abs(o.score)-5:o.score,value:{uid:o.value,p:s.players.findIndex(p=>p.battle.some(x=>x.uid===o.value))}})),...(t.optional?[skip()]:[])]);break;}
  case'g34_LockUntap606':{
   const rows=t.g869Refs?opp.battle.filter(y=>api.allLayers(y).some(x=>t.g869Refs.includes(key(x)))):
    creatures(s,1-t.p).filter(y=>!y.sealed&&matches(s,1-t.p,y,t.filter));
@@ -4306,7 +4318,7 @@ export function createSixPhotoRules(api){
    if(d.op==='OpponentSelect'){const rows=creatures(s,1-p).filter(y=>!y.sealed&&matches(s,1-p,y,d.filter));if(rows.length)score+=8+Math.min(...rows.map(y=>cost(effective(y,s))*2));}
    if(d.op==='SelfDestroy')score-=8+cost(effective(x,s))*2;
    if(d.op==='Sweep'&&d.both)score-=creatures(s,p).filter(y=>!y.sealed&&matches(s,p,y,d.filter)).reduce((n,y)=>n+12+cost(effective(y,s))*2+api.power(y,false,s)/3000,0);
-   if(d.op==='Target'&&d.owner==='self')score+=Math.max(0,...creatures(s,p).filter(y=>y.uid!==x.uid&&!y.tapped&&!y.sealed&&matches(s,p,y,d.filter)).map(y=>{const c=effective(y,s),ready=!c.noAttack&&(y.entered<s.turn||c.speedAttacker||api.isEvolution(y));return ready&&(d.power||d.grant?.slayer&&!c.slayer&&creatures(s,1-p).some(z=>!z.sealed)||d.grant?.unblockable&&!c.unblockable&&opp.battle.some(z=>!z.tapped&&!z.sealed&&effective(z,s).blocker))?8+cost(c):0;}));
+   if(d.op==='Target'&&d.owner==='self')score+=Math.max(0,...creatures(s,p).filter(y=>y.uid!==x.uid&&!y.tapped&&!y.sealed&&matches(s,p,y,d.filter)).map(y=>{const c=effective(y,s),ready=!c.noAttack&&(y.entered<s.turn||c.speedAttacker||api.isEvolution(y));if(d.g927HasteScore)return hasteScore927(s,y);return ready&&(d.power||d.grant?.slayer&&!c.slayer&&creatures(s,1-p).some(z=>!z.sealed)||d.grant?.unblockable&&!c.unblockable&&opp.battle.some(z=>!z.tapped&&!z.sealed&&effective(z,s).blocker))?8+cost(c):0;}));
   }
   return score;
  },
