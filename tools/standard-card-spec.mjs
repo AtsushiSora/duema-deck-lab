@@ -3388,6 +3388,27 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=954&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText),bioK=(race,effect)=>
+   'バイオ・K-自分の'+race+'が相手プレイヤーを攻撃してブロックされなかった時このカードを自分の手札から捨ててもよい。そうした場合'+effect;
+  const budget='相手クリーチャーをパワーの合計が3000以下になるように好きな数選び破壊する。';
+  if(d.id==='dm23-028'&&text===bioK('グランド・デビル',
+   'そのターンの終わりまで攻撃している自分のクリーチャーは「W・ブレイカー」を得る。(「W・ブレイカー」を得たクリーチャーはシールドを2枚ブレイクする)'))
+   return {g953BioK:{race:'グランド・デビル',effect:{op:'AttackGrant399',grant:{g313Breaker:2,g633DoubleBreaker:true}}}};
+  if(d.id==='dm23-s01'&&text===bioK('ティラノ・ドレイク',budget)+'W・ブレイカー(このクリーチャーはシールドを2枚破壊する)')
+   return {breaker:2,g953BioK:{race:'ティラノ・ドレイク',effect:powerBudget506(budget.replace('相手クリーチャー','相手のクリーチャー'))}};
+  const trigger='S・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)';
+  const entry=trigger+'このクリーチャーをバトルゾーンに出した時バトルゾーンにある自分の';
+  const countTargets=(race,destination)=>({trigger:true,effect:'sixPhoto',g34Tasks:[{
+   op:'CountOwn538',mode:'select',filter:{creature:true,race},def:{op:'Select',origin:'battle',owner:'opponent',
+    optional:true,g173Targets:true,g193Select:true,...destination}
+  }]});
+  if(d.id==='dm23-006'&&text===entry+'アーク・セラフィム1体につき相手のクリーチャーを1体選んでもよい。その後選んだクリーチャーをすべてタップする。')
+   return countTargets('アーク・セラフィム',{g193Tap:true,filter:{creature:true},title:'タップする相手のクリーチャーを選ぶ'});
+  if(d.id==='dm23-016'&&text===entry+'ティラノ・ドレイク1体につき相手のパワー2000以下のクリーチャーを1体破壊してもよい。')
+   return countTargets('ティラノ・ドレイク',{to:'grave',filter:{creature:true,maxPower:2000,g199Power:true},
+    title:'破壊するパワー2000以下の相手クリーチャーを選ぶ'});
+ }
  if(phase>=953&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText),bioT=(race,effect)=>
    'バイオ・T-自分の'+race+'が攻撃してバトルが始まった時このカードを自分の手札から捨ててもよい。そうした場合そのターンの終わりまで攻撃している自分のクリーチャー'+effect;

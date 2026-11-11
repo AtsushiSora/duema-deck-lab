@@ -1,0 +1,230 @@
+{
+  "phase": 954,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6741,
+  "description": "バイオ・Kのブレイカー付与とパワー合計による破壊、味方の種族数に応じたS・トリガー獣の登場能力を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31618/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35511/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35513/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316640/",
+    "https://dm.takaratomy.co.jp/rule/qa/44325/",
+    "https://dm.takaratomy.co.jp/rule/qa/40829/"
+  ],
+  "cards": [
+    {
+      "id": "dm23-028",
+      "name": "封魔サルバドル",
+      "faces": [
+        {
+          "name": "封魔サルバドル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "バイオ・K-自分のグランド・デビルが相手プレイヤーを攻撃してブロックされなかった時、このカードを自分の手札から捨ててもよい。そうした場合、そのターンの終わりまで、攻撃している自分のクリーチャーは「W・ブレイカー」を得る。(「W・ブレイカー」を得たクリーチャーはシールドを２枚ブレイクする)",
+          "race": "グランド・デビル",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-028",
+      "spec": {
+        "g953BioK": {
+          "race": "グランド・デビル",
+          "effect": {
+            "op": "AttackGrant399",
+            "grant": {
+              "g313Breaker": 2,
+              "g633DoubleBreaker": true
+            }
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "5650e539e016397895469a857abaa42129f4486d60be2ce3cb173e709d959a82",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23-s01",
+      "name": "フレア・フュージョン・ドラグーン",
+      "faces": [
+        {
+          "name": "フレア・フュージョン・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "バイオ・K-自分のティラノ・ドレイクが相手プレイヤーを攻撃してブロックされなかった時、このカードを自分の手札から捨ててもよい。そうした場合、相手クリーチャーをパワーの合計が3000以下になるように好きな数選び、破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚破壊する)",
+          "race": "ティラノ・ドレイク",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-s01",
+      "spec": {
+        "breaker": 2,
+        "g953BioK": {
+          "race": "ティラノ・ドレイク",
+          "effect": {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": "all",
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g506PowerBudget": 3000,
+            "title": "合計パワー3000以下になるよう好きな数選ぶ"
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-s01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "ee025efce6fef6c2986920be12889877b80abf721e94a5304ec49db993c7c2d1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23-006",
+      "name": "秘護精サルード",
+      "faces": [
+        {
+          "name": "秘護精サルード",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のアーク・セラフィム１体につき相手のクリーチャーを１体選んでもよい。その後、選んだクリーチャーをすべてタップする。",
+          "race": "セイント・ヘッド",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-006",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountOwn538",
+            "mode": "select",
+            "filter": {
+              "creature": true,
+              "race": "アーク・セラフィム"
+            },
+            "def": {
+              "op": "Select",
+              "origin": "battle",
+              "owner": "opponent",
+              "optional": true,
+              "g173Targets": true,
+              "g193Select": true,
+              "g193Tap": true,
+              "filter": {
+                "creature": true
+              },
+              "title": "タップする相手のクリーチャーを選ぶ"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "18388a42957a661c0b11757792b1aa61650ba40977a8a0e09d3374a30921e926",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23-016",
+      "name": "爆発のベイリーフェン",
+      "faces": [
+        {
+          "name": "爆発のベイリーフェン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のティラノ・ドレイク１体につき、相手のパワー2000以下のクリーチャーを１体、破壊してもよい。",
+          "race": "ブレイブ・スピリット",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-016",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountOwn538",
+            "mode": "select",
+            "filter": {
+              "creature": true,
+              "race": "ティラノ・ドレイク"
+            },
+            "def": {
+              "op": "Select",
+              "origin": "battle",
+              "owner": "opponent",
+              "optional": true,
+              "g173Targets": true,
+              "g193Select": true,
+              "to": "grave",
+              "filter": {
+                "creature": true,
+                "maxPower": 2000,
+                "g199Power": true
+              },
+              "title": "破壊するパワー2000以下の相手クリーチャーを選ぶ"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "0b411038d52c08a161c79fd40d044f565e456c5f7d8e15e021febe1ce6cb364f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23-028": 4,
+      "dm23-s01": 4,
+      "dm23-006": 4,
+      "dm23-016": 4
+    }
+  }
+}

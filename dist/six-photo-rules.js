@@ -191,8 +191,17 @@ export function createSixPhotoRules(api){
  function smashSource320(s,t){for(const origin of['battle','hand','grave','mana','deck','extra']){const xs=origin==='battle'?s.players[t.p].battle.flatMap(api.allLayers):s.players[t.p][origin],x=xs.find(x=>x.uid===t.uid);if(x&&(origin==='battle'?(x.incarnation||0)===(t.incarnation||0):(x.zoneSerial||0)===(t.serial||0)+1))return{origin,x};}return null;}
  const send=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g34_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
  function bioKScore(s,p,source){
-  const recovery=card(source).g953BioK?.recovery;
-  const own=s.players[p];
+  const {recovery,effect}=card(source).g953BioK??{};
+  const own=s.players[p],opp=s.players[1-p];
+  if(effect?.op==='AttackGrant399'){
+   const attacker=own.battle.find(x=>x.uid===s.attack?.attacker);
+   const breaker=attacker&&effective(attacker,s).breaker;
+   return attacker&&opp.shields.length>1&&(breaker??1)<2&&breaker!=='∞'?6:-5;
+  }
+  if(effect?.g506PowerBudget!==undefined){
+   const rows=creatures(s,1-p).filter(x=>!x.sealed&&fitsPower506(s,effect,x));
+   return targetOptions(s,p,rows).length?6:-5;
+  }
   return (recovery?own.grave.some(x=>matches(s,p,x,recovery.filter)):own.deck.length>2)?6:-5;
  }
  function declareHandBio(s,t){
@@ -3396,10 +3405,12 @@ export function createSixPhotoRules(api){
   else if(t.selected.length)put(s,{...t,done:true});
   break;
  case'g34_BioK951':{
-  const recovery=card(t.source).g953BioK?.recovery;
+  const rule=card(t.source).g953BioK;
   if(v&&own.hand.some(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial)){
-   const next=recovery?tasks(t.p,t.source,[recovery])[0]:task('g34_DrawUpTo',t.p,t.source,{n:2,g203Draw:true});
-   api.discardSelected(s,t.p,[t.uid],t.source,t.p,next);
+   const effect=rule?.effect??rule?.recovery??{op:'DrawUpTo',n:2,g203Draw:true};
+   const attacker=effect.op==='AttackGrant399'&&own.battle.find(x=>x.uid===s.attack?.attacker);
+   const context=attacker?{g399Attacker:{uid:attacker.uid,incarnation:attacker.incarnation||0}}:{};
+   api.discardSelected(s,t.p,[t.uid],t.source,t.p,tasks(t.p,t.source,[effect],context)[0]);
   }
   break;
  }

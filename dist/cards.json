@@ -197715,24 +197715,178 @@
       },
       "supportBatch": "phase-953",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23-028",
+      "name": "封魔サルバドル",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 3000,
+      "race": "グランド・デビル",
+      "text": "バイオ・K-自分のグランド・デビルが相手プレイヤーを攻撃してブロックされなかった時、このカードを自分の手札から捨ててもよい。そうした場合、そのターンの終わりまで、攻撃している自分のクリーチャーは「W・ブレイカー」を得る。(「W・ブレイカー」を得たクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-028",
+      "limit": 4,
+      "g953BioK": {
+        "race": "グランド・デビル",
+        "effect": {
+          "op": "AttackGrant399",
+          "grant": {
+            "g313Breaker": 2,
+            "g633DoubleBreaker": true
+          }
+        }
+      },
+      "supportBatch": "phase-954",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23-s01",
+      "name": "フレア・フュージョン・ドラグーン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "ティラノ・ドレイク",
+      "text": "バイオ・K-自分のティラノ・ドレイクが相手プレイヤーを攻撃してブロックされなかった時、このカードを自分の手札から捨ててもよい。そうした場合、相手クリーチャーをパワーの合計が3000以下になるように好きな数選び、破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚破壊する)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-s01",
+      "limit": 4,
+      "breaker": 2,
+      "g953BioK": {
+        "race": "ティラノ・ドレイク",
+        "effect": {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": "all",
+          "optional": true,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g506PowerBudget": 3000,
+          "title": "合計パワー3000以下になるよう好きな数選ぶ"
+        }
+      },
+      "supportBatch": "phase-954",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23-006",
+      "name": "秘護精サルード",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 1000,
+      "race": "セイント・ヘッド",
+      "text": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のアーク・セラフィム１体につき相手のクリーチャーを１体選んでもよい。その後、選んだクリーチャーをすべてタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-006",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountOwn538",
+          "mode": "select",
+          "filter": {
+            "creature": true,
+            "race": "アーク・セラフィム"
+          },
+          "def": {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "optional": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "filter": {
+              "creature": true
+            },
+            "title": "タップする相手のクリーチャーを選ぶ"
+          }
+        }
+      ],
+      "supportBatch": "phase-954",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23-016",
+      "name": "爆発のベイリーフェン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 2000,
+      "race": "ブレイブ・スピリット",
+      "text": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のティラノ・ドレイク１体につき、相手のパワー2000以下のクリーチャーを１体、破壊してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-016",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountOwn538",
+          "mode": "select",
+          "filter": {
+            "creature": true,
+            "race": "ティラノ・ドレイク"
+          },
+          "def": {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "optional": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 2000,
+              "g199Power": true
+            },
+            "title": "破壊するパワー2000以下の相手クリーチャーを選ぶ"
+          }
+        }
+      ],
+      "supportBatch": "phase-954",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 953,
+    "phase": 954,
     "checkedAt": "2026-11-11",
-    "baseCount": 6737,
+    "baseCount": 6741,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6741,
+    "totalCount": 6745,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
       "https://dm.takaratomy.co.jp/rule/rulechange/31618/",
       "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35509/",
-      "https://dm.takaratomy.co.jp/rule/qa/41413/",
-      "https://dm.takaratomy.co.jp/rule/qa/45589/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/変更点2026-07-23/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35511/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35513/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316640/",
+      "https://dm.takaratomy.co.jp/rule/qa/44325/",
+      "https://dm.takaratomy.co.jp/rule/qa/40829/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -214811,6 +214965,27 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35508/",
           "https://dm.takaratomy.co.jp/rule/qa/38718/",
           "https://dm.takaratomy.co.jp/rule/qa/40676/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 953,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6737,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6741,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31618/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35509/",
+          "https://dm.takaratomy.co.jp/rule/qa/41413/",
+          "https://dm.takaratomy.co.jp/rule/qa/45589/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/変更点2026-07-23/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
