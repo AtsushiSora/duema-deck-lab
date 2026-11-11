@@ -192794,24 +192794,114 @@
       ],
       "supportBatch": "phase-904",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp18-092",
+      "name": "巧みなアリスティー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ジョーカーズ/レクスターズ",
+      "text": "このクリーチャーの召喚コストを、自分のマナゾーンの進化クリーチャー１体につき１少なくする。ただしコストは０より少なくならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-092",
+      "limit": 4,
+      "g212CountDiscount": {
+        "zone": "mana",
+        "filter": {
+          "creature": true,
+          "evolution": true
+        },
+        "amount": 1,
+        "minimum": 0
+      },
+      "supportBatch": "phase-905",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-080",
+      "name": "隠密ピーピング",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "race": "",
+      "text": "このターン、自分の水のクリーチャーはブロックされない。\n相手の手札を１枚、見ないで選び、相手はそれを見せる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-080",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true,
+            "color": "水"
+          },
+          "grant": {
+            "unblockable": true
+          },
+          "spell": true
+        },
+        {
+          "op": "BlindReveal803",
+          "owner": "opponent"
+        }
+      ],
+      "supportBatch": "phase-905",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-006",
+      "name": "黙示録、それはラグナロク",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "月光王国",
+      "text": "自分のシールドをすべて墓地に置く。その後、このようにして墓地に置いたカードの枚数より１枚多く、自分の山札の上から裏向きのまま、それぞれ新しいシールドとしてシールドゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-006",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ragnarok"
+        }
+      ],
+      "supportBatch": "phase-905",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 904,
+    "phase": 905,
     "checkedAt": "2026-11-11",
-    "baseCount": 6577,
+    "baseCount": 6580,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6580,
+    "totalCount": 6583,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/42051/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/38048/",
-      "https://dm.takaratomy.co.jp/rule/qa/42955/",
-      "https://dm.takaratomy.co.jp/rule/qa/45451/",
-      "https://dm.takaratomy.co.jp/rule/qa/42363/",
-      "https://dm.takaratomy.co.jp/rule/qa/45450/",
-      "https://dm.takaratomy.co.jp/rule/qa/40652/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36775/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37043/",
+      "https://dm.takaratomy.co.jp/rule/qa/39075/",
+      "https://dm.takaratomy.co.jp/rule/qa/39076/",
+      "https://dm.takaratomy.co.jp/rule/qa/39077/",
+      "https://dm.takaratomy.co.jp/rule/qa/48486/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316683/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -208911,6 +209001,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/39429/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36030/",
           "https://dm.takaratomy.co.jp/rule/rulechange/%E5%A4%89%E6%9B%B4%E7%82%B92026-07-23/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 904,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6577,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6580,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/42051/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/38048/",
+          "https://dm.takaratomy.co.jp/rule/qa/42955/",
+          "https://dm.takaratomy.co.jp/rule/qa/45451/",
+          "https://dm.takaratomy.co.jp/rule/qa/42363/",
+          "https://dm.takaratomy.co.jp/rule/qa/45450/",
+          "https://dm.takaratomy.co.jp/rule/qa/40652/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

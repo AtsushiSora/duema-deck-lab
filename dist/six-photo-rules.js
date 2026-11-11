@@ -1489,10 +1489,12 @@ export function createSixPhotoRules(api){
   move(s,[{player:host.p,uid:host.x.uid,to:'mana',tapped:!!t.tapped,controller:t.controller??t.p}]);
   break;
  }
- case'g34_BlindReveal803':
-  if(own.hand.length)choice(s,t,'相手の手札を裏向きのまま1枚選ぶ',
-   own.hand.map((_,i)=>opt('裏向きの手札 '+(i+1),i,0)),1-t.p);
+ case'g34_BlindReveal803':{
+  const owner=t.owner==='opponent'?1-t.p:t.p,hand=s.players[owner].hand;
+  if(hand.length)choice(s,t,'相手の手札を裏向きのまま1枚選ぶ',
+   hand.map((_,i)=>opt('裏向きの手札 '+(i+1),i,0)),1-owner);
   break;
+ }
  case'g34_ManaTriggerCast803':{
   const rows=manaTriggerSpells803(s,t.p);
   if(!t.selected){
@@ -2093,6 +2095,12 @@ export function createSixPhotoRules(api){
   if(t.faceUp)put(s,{...t,op:'g33_FaceTop'});
   else api.shieldTop(s,t.p,card(t.source),null,t.g779Simultaneous?{count:t.n}:undefined);
   break;
+ case'g34_Ragnarok':{
+  const moved=api.moveShields(s,t.p,own.shields.map(api.shieldGroup),'grave');
+  const n=moved.filter(x=>own.grave.includes(x)).length+1;
+  start(s,t,[{op:'ShieldTop',n,g779Simultaneous:true}]);
+  break;
+ }
  case'g34_OnShieldMove654':{
   const x=own.shields.find(y=>y.uid===t.placed);
   if(x?.faceUp&&matches(s,t.p,x,t.g654MovedFilter))start(s,t,t.after);
@@ -2935,10 +2943,10 @@ export function createSixPhotoRules(api){
   if(moved.length&&t.then)start(s,t,t.then);
  }break;
  case'g34_BlindReveal803':{
-  const y=own.hand[v];
+  const owner=t.owner==='opponent'?1-t.p:t.p,y=s.players[owner].hand[v];
   if(y){
-   api.log(s,t.p,'reveal',card(t.source).name+'で公開：'+card(y).name,{cardId:y.cardId});
-   if(matches(s,t.p,y,{g223Multicolor:true}))start(s,t,[{op:'SelfGrant754',grant:{speedAttacker:true}}]);
+   api.log(s,owner,'reveal',card(t.source).name+'で公開：'+card(y).name,{cardId:y.cardId});
+   if(t.owner!=='opponent'&&matches(s,t.p,y,{g223Multicolor:true}))start(s,t,[{op:'SelfGrant754',grant:{speedAttacker:true}}]);
   }
   break;
  }

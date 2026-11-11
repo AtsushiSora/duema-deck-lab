@@ -3445,6 +3445,20 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=905&&d.faces.length===1){
+  if(creature&&d.id==='dmrp18-092'&&compact363===
+   'このクリーチャーの召喚コストを自分のマナゾーンの進化クリーチャー1体につき1少なくする。ただしコストは0より少なくならない。')
+   return {g212CountDiscount:{zone:'mana',filter:{creature:true,evolution:true},amount:1,minimum:0}};
+  if(f.typeText==='呪文'&&d.id==='dmrp10-080'&&compact363===
+   'このターン自分の水のクリーチャーはブロックされない。相手の手札を1枚見ないで選び相手はそれを見せる。')
+   return {effect:'sixPhoto',g34Tasks:[
+    {op:'GroupGrant364',owner:'self',filter:{creature:true,color:'水'},grant:{unblockable:true},spell:true},
+    {op:'BlindReveal803',owner:'opponent'}
+   ]};
+  if(f.typeText==='呪文'&&d.id==='dmrp16-006'&&compact363===
+   '自分のシールドをすべて墓地に置く。その後このようにして墓地に置いたカードの枚数より1枚多く自分の山札の上から裏向きのままそれぞれ新しいシールドとしてシールドゾーンに置く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Ragnarok'}]};
+ }
  if(phase>=904&&d.faces.length===1){
   if(creature&&['dmrp09-021','dmex17-057'].includes(d.id)&&compact363===
    '自分のクリーチャーがタップした時それを破壊してもよい。そうしたらカードを1枚引く。')

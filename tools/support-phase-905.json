@@ -1,0 +1,154 @@
+{
+  "phase": 905,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6580,
+  "description": "マナの進化クリーチャーによる召喚コスト軽減、水のクリーチャーのブロック不可と相手の手札の公開、シールドの墓地移動と再配置に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36775/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37043/",
+    "https://dm.takaratomy.co.jp/rule/qa/39075/",
+    "https://dm.takaratomy.co.jp/rule/qa/39076/",
+    "https://dm.takaratomy.co.jp/rule/qa/39077/",
+    "https://dm.takaratomy.co.jp/rule/qa/48486/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316683/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp18-092",
+      "name": "巧みなアリスティー",
+      "faces": [
+        {
+          "name": "巧みなアリスティー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーの召喚コストを、自分のマナゾーンの進化クリーチャー１体につき１少なくする。ただしコストは０より少なくならない。",
+          "race": "ジョーカーズ/レクスターズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-092",
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "mana",
+          "filter": {
+            "creature": true,
+            "evolution": true
+          },
+          "amount": 1,
+          "minimum": 0
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-092.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "dc093cee163244380df9bf78c863d3a84583371c27ba56f734e60ee50cb4e75e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp10-080",
+      "name": "隠密ピーピング",
+      "faces": [
+        {
+          "name": "隠密ピーピング",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このターン、自分の水のクリーチャーはブロックされない。\n相手の手札を１枚、見ないで選び、相手はそれを見せる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-080",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "color": "水"
+            },
+            "grant": {
+              "unblockable": true
+            },
+            "spell": true
+          },
+          {
+            "op": "BlindReveal803",
+            "owner": "opponent"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp10-080.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "2e5ae60e725a0007e5aca26d98ffba0da53fb82ff6ff75d882ad070ab3238fc9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-006",
+      "name": "黙示録、それはラグナロク",
+      "faces": [
+        {
+          "name": "黙示録、それはラグナロク",
+          "typeText": "呪文",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分のシールドをすべて墓地に置く。その後、このようにして墓地に置いたカードの枚数より１枚多く、自分の山札の上から裏向きのまま、それぞれ新しいシールドとしてシールドゾーンに置く。",
+          "race": "月光王国",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-006",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ragnarok"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "fe6eade8f0d07b4cc09bf926a92ba041b56f7c76fc44fec763ea300eae800f60",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp18-092": 4,
+      "dmrp10-080": 4,
+      "dmrp16-006": 4
+    }
+  }
+}
