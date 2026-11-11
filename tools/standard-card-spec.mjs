@@ -3435,6 +3435,15 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=978&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmr20-034'&&text==='自分のクリーチャーの数が自分のシールドの数以上ならこのクリーチャーを墓地から召喚してもよい。')
+   return {g978SelfGraveSummon:{g541CreaturesAtLeastShields:true}};
+  if(d.id==='dmrp21-060'&&text==='自分の闇のタマシードが出た時このクリーチャーを自分の墓地から出してもよい。')
+   return {g978GraveSeedWatch:'闇'};
+  if(d.id==='dm23ex1-077'&&text==='自分のクロスギアをジェネレートするコストを1少なくする。ただしコストは0以下にはならない。')
+   return {g978GenerateDiscount:true};
+ }
  if(phase>=977&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='クリーチャー'&&d.id==='dmrp03-035'&&text==='このカードを自分の手札から捨てる時墓地に置くかわりに自分のNEOクリーチャー1体の下に置いてもよい。')

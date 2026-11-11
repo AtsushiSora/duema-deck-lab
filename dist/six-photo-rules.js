@@ -23,7 +23,11 @@ export function createSixPhotoRules(api){
  function zonePermits450(s,p,x,c,origin){if(s.active!==p||c.type!=='creature'||origin==='mana'&&x.faceDown||!api.canMoveZone(s,p,origin))return[];return creatures(s,p).flatMap(y=>{const r=!y.sealed&&effective(y,s).g450ZoneSummon,k='g450:'+y.uid+'@'+(y.incarnation||0);return r&&r.origin===origin&&s.g450ZoneUses?.[p]?.[k]!==s.turn&&(r.anyShieldsMax===undefined||s.players.some(w=>w.shields.length<=r.anyShieldsMax))&&(!r.filter.evolution||api.isEvolution(x)||!!c.g48HandEvolution)&&matches(s,p,x,r.filter.evolution?{...r.filter,evolution:false}:r.filter)?[k]:[];});}
  // Count visible Joker cards in both zones; a twinpact is one mana card.
  function jokerCount539(s,p){return s.players[p].battle.filter(y=>!y.sealed&&!y.faceDown&&race(effective(y,s),'ジョーカーズ')).length+s.players[p].mana.filter(y=>!y.faceDown&&faces(card(y)).some(c=>race(c,'ジョーカーズ'))).length;}
- const gravePermits294=(s,p,x,c=card(x))=>s.active!==p||c.type!=='creature'||!api.canMoveZone(s,p,'grave')?[]:[...creatures(s,p).filter(y=>{const rule=effective(y,s).g294GraveAura;return !y.sealed&&rule&&(rule.race?race(c,rule.race):colors(c).includes('闇')&&(api.isEvolution(x)||!!c.g48HandEvolution));}).slice(0,1).map(y=>'g294:'+y.uid+'@'+(y.incarnation||0)),...zonePermits450(s,p,x,c,'grave')];
+ const gravePermits294=(s,p,x,c=card(x))=>s.active!==p||c.type!=='creature'||!api.canMoveZone(s,p,'grave')?[]:[
+  ...(!x.faceDown&&c.g978SelfGraveSummon&&ownCondition(s,p,c.g978SelfGraveSummon)?['g978:self']:[]),
+  ...creatures(s,p).filter(y=>{const rule=effective(y,s).g294GraveAura;return !y.sealed&&rule&&(rule.race?race(c,rule.race):colors(c).includes('闇')&&(api.isEvolution(x)||!!c.g48HandEvolution));}).slice(0,1).map(y=>'g294:'+y.uid+'@'+(y.incarnation||0)),
+  ...zonePermits450(s,p,x,c,'grave')
+ ];
  // Mana characteristics include both twinpact faces and live Courtney effects.
  const manaPermits297=(s,p,x,c=card(x))=>s.active!==p||x.faceDown||!s.players[p].mana.includes(x)||c.type!=='creature'||!api.canMoveZone(s,p,'mana')?[]:[
   ...((s.extLimits||[]).some(l=>l.kind==='g297ManaTurn'&&l.player===p&&l.turn===s.turn)?['g297:turn']:
@@ -4606,6 +4610,13 @@ export function createSixPhotoRules(api){
     for(const x of manaWatchers)
      if(enteredPower>=card(x).g975ManaSummonMinPower)
       send(s,p,x,'ManaSummonWatch975',{serial:x.zoneSerial||0});
+   }
+  }
+  if(!y.sealed&&!y.faceDown&&matches(s,p,y,{g295Tamaseed:true})){
+   const seedColors=colors(effective(y,s,true));
+   for(const x of s.players[p].grave){
+    if(!x.faceDown&&seedColors.includes(card(x).g978GraveSeedWatch))
+     send(s,p,x,'GraveSummonWatch766',{serial:x.zoneSerial||0});
    }
   }
   for(const {x,defs}of seedWatches548(s,p,y,options))queue(s,p,x,defs);

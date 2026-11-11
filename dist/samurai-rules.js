@@ -142,7 +142,8 @@ export function createSamuraiRules(api){
  },
  discount(s,p,c){
   const all=gears(s,p).filter(x=>active(s,x));
-  const gearReducers=c.type==='gear'?creatures(s,p).filter(x=>card(x).g856GearDiscount&&active(s,x)).length:0;
+  const gearReducers=c.type==='gear'?creatures(s,p).filter(x=>
+   (card(x).g856GearDiscount||!c.crossing&&card(x).g978GenerateDiscount)&&active(s,x)).length:0;
   return gearReducers+all.filter(x=>card(x).takion&&(c.type==='gear'||c.type==='creature'&&samurai(c))).length+
    Math.min(optionalReducers(s,p,c),c.g18Reducers??Infinity);
  },
