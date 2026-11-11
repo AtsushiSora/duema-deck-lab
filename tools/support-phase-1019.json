@@ -1,0 +1,460 @@
+{
+  "phase": 1019,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6994,
+  "description": "デュエゼウス、ウルトラスター、時の革命 ミラダンテ、デス・ザ・ロストの公式能力を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316661/",
+    "https://dm.takaratomy.co.jp/rule/qa/44344/",
+    "https://dm.takaratomy.co.jp/rule/qa/39785/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37265/",
+    "https://dm.takaratomy.co.jp/rule/qa/33477/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37266/",
+    "https://dm.takaratomy.co.jp/rule/qa/45073/",
+    "https://dm.takaratomy.co.jp/rule/qa/45591/"
+  ],
+  "cards": [
+    {
+      "id": "dmr20-s01",
+      "name": "九極革命 デュエゼウス",
+      "faces": [
+        {
+          "name": "九極革命 デュエゼウス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、自分のクリーチャーの数が自分のシールドの数以上なら、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置いてもよい。\n革命２―自分のシールドが２つ以下なら、自分の手札に加える、光のクリーチャーでコスト９のシールドカードすべてに「S・トリガー」を与える。",
+          "race": "エンジェル・コマンド/革命軍/侵略者",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-s01",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g687CreatureCountAtLeastShields": true
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "title": "山札の上から1枚をシールドに置く？",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g687CreatureCountAtLeastShields": true
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "title": "山札の上から1枚をシールドに置く？",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "g1019LightShieldTrigger": {
+          "creatureCost": 9
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr20-s01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "7132e253c26d0e2f121742013d956a86ada49b9e6d4d32d7c2e6d64f61848b87",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-s01",
+      "name": "革命聖龍 ウルトラスター",
+      "faces": [
+        {
+          "name": "革命聖龍 ウルトラスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分のシールドをすべて手札に加える。（ただし、その「S・トリガー」は使えない）その後、自分の山札の上から２枚を裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。\n革命２―自分のシールドが２つ以下なら、自分の光のシールド・カードに「S・トリガー」を与える。",
+          "race": "エンジェル・コマンド・ドラゴン/革命軍",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-s01",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true,
+            "g535Count": "all"
+          },
+          {
+            "op": "ShieldTop",
+            "n": 2,
+            "g779Simultaneous": true
+          }
+        ],
+        "g1019LightShieldTrigger": {}
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-s01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "6fb4553d4e4a8d81a9746e298a2a458e1c97e5840640f3e047389e6af67bd22f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-l01",
+      "name": "時の革命 ミラダンテ",
+      "faces": [
+        {
+          "name": "時の革命 ミラダンテ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化―自分の光のクリーチャー１体の上に置く。\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーをすべてタップする。それらは次の相手のターンのはじめにアンタップしない。\n革命０―自分のシールドが１枚もなければ、相手はクリーチャーを召喚できない。",
+          "race": "エンジェル・コマンド・ドラゴン/革命軍",
+          "powerText": "13500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-l01",
+      "spec": {
+        "evolution": {
+          "civilization": "光"
+        },
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LockUntap606",
+            "g1019Tap": true
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g265ShieldsMax": 0
+          },
+          "grants": {
+            "g1019SummonLock": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-l01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "61c4f1597159e7792db8c5606e567775757a986fdd324bfd5dba5036d87624b6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-l02",
+      "name": "魔の革命 デス・ザ・ロスト",
+      "faces": [
+        {
+          "name": "魔の革命 デス・ザ・ロスト",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化―自分の闇のクリーチャー１体の上に置く。\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手は自身の手札をすべて捨てる。\n革命０―このクリーチャーが攻撃する時、自分のシールドが１枚もなければ、相手のシールドをすべてブレイクする。",
+          "race": "デーモン・コマンド・ドラゴン/革命軍",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-l02",
+      "spec": {
+        "evolution": {
+          "civilization": "闇"
+        },
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "g756All": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g265ShieldsMax": 0
+            },
+            "defs": [
+              {
+                "op": "Break497",
+                "n": "all",
+                "g747CreatureBreak": true,
+                "g913DepartedBreaker": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-l02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "ad2f2d8f175e3f905e1956f8e71dfb1cd6a2713dd730892e22586494188fa299",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmr18-L1SEC1",
+      "canonicalId": "dmr18-l01",
+      "name": "時の革命 ミラダンテ",
+      "faces": [
+        {
+          "name": "時の革命 ミラダンテ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化―自分の光のクリーチャー１体の上に置く。\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーをすべてタップする。それらは次の相手のターンのはじめにアンタップしない。\n革命０―自分のシールドが１枚もなければ、相手はクリーチャーを召喚できない。",
+          "race": "エンジェル・コマンド・ドラゴン/革命軍",
+          "powerText": "13500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-L1SEC1",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-L1SEC1.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "3a2479cceb692d51ec45bfd7ee70de7b0a99847c56e2c8eac18ac272a03b5372",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-L1SEC2",
+      "canonicalId": "dmr18-l01",
+      "name": "時の革命 ミラダンテ",
+      "faces": [
+        {
+          "name": "時の革命 ミラダンテ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化―自分の光のクリーチャー１体の上に置く。\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーをすべてタップする。それらは次の相手のターンのはじめにアンタップしない。\n革命０―自分のシールドが１枚もなければ、相手はクリーチャーを召喚できない。",
+          "race": "エンジェル・コマンド・ドラゴン/革命軍",
+          "powerText": "13500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-L1SEC2",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-L1SEC2.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "bffc77e65ba65c002ba2d9c727340e57769263f03965ea919cc59fd0c096ee95",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-L2SEC1",
+      "canonicalId": "dmr18-l02",
+      "name": "魔の革命 デス・ザ・ロスト",
+      "faces": [
+        {
+          "name": "魔の革命 デス・ザ・ロスト",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化―自分の闇のクリーチャー１体の上に置く。\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手は自身の手札をすべて捨てる。\n革命０―このクリーチャーが攻撃する時、自分のシールドが１枚もなければ、相手のシールドをすべてブレイクする。",
+          "race": "デーモン・コマンド・ドラゴン/革命軍",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-L2SEC1",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-L2SEC1.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "77dddf2660bd27e8292275b8578ef60dc74a9dc90d7f9cc44105336438c38b98",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-L2SEC2",
+      "canonicalId": "dmr18-l02",
+      "name": "魔の革命 デス・ザ・ロスト",
+      "faces": [
+        {
+          "name": "魔の革命 デス・ザ・ロスト",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化―自分の闇のクリーチャー１体の上に置く。\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手は自身の手札をすべて捨てる。\n革命０―このクリーチャーが攻撃する時、自分のシールドが１枚もなければ、相手のシールドをすべてブレイクする。",
+          "race": "デーモン・コマンド・ドラゴン/革命軍",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-L2SEC2",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-L2SEC2.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "cc87dc07c96451b7b89621a89e8859c2551dc66d3d90720197f5f4ede47ac3aa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-L2SEC3",
+      "canonicalId": "dmr18-l02",
+      "name": "魔の革命 デス・ザ・ロスト",
+      "faces": [
+        {
+          "name": "魔の革命 デス・ザ・ロスト",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化―自分の闇のクリーチャー１体の上に置く。\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手は自身の手札をすべて捨てる。\n革命０―このクリーチャーが攻撃する時、自分のシールドが１枚もなければ、相手のシールドをすべてブレイクする。",
+          "race": "デーモン・コマンド・ドラゴン/革命軍",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-L2SEC3",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-L2SEC3.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "9ce35a1bb0fbfd3a610ceb85c4762246702d2c2eeff6649e29744543409fe018",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-TR01",
+      "canonicalId": "dmr18-l02",
+      "name": "魔の革命 デス・ザ・ロスト",
+      "faces": [
+        {
+          "name": "魔の革命 デス・ザ・ロスト",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化：闇のクリーチャー１体の上に置く。\nT・ブレイカー\nこのクリーチャーが出た時、相手は自身の手札をすべて捨てる。\n革命０：このクリーチャーが攻撃する時、自分のシールドが１つもなければ、相手のシールドをすべてブレイクする。",
+          "race": "デーモン・コマンド・ドラゴン/革命軍",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-TR01",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-TR01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "d53a39c07598cfe8b99193c4457366699c82450351ffde2cfebecb3e0149ccab",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4x-TR01",
+      "canonicalId": "dmr18-l02",
+      "name": "魔の革命 デス・ザ・ロスト",
+      "faces": [
+        {
+          "name": "魔の革命 デス・ザ・ロスト",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化：闇のクリーチャー１体の上に置く。\nT・ブレイカー\nこのクリーチャーが出た時、相手は自身の手札をすべて捨てる。\n革命０：このクリーチャーが攻撃する時、自分のシールドが１つもなければ、相手のシールドをすべてブレイクする。",
+          "race": "デーモン・コマンド・ドラゴン/革命軍",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-TR01",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-TR01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "66e8a9b136ccc1b39cb7856bbd504b763a0dff531ea38d777c118da7e271474e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr20-s01": 4,
+      "dmr19-s01": 4,
+      "dmr18-l01": 4,
+      "dmr18-l02": 4,
+      "dmr18-L1SEC1": 4,
+      "dmr18-L1SEC2": 4,
+      "dmr18-L2SEC1": 4,
+      "dmr18-L2SEC2": 4,
+      "dmr18-L2SEC3": 4,
+      "dm23rp4-TR01": 4,
+      "dm23rp4x-TR01": 4
+    }
+  }
+}

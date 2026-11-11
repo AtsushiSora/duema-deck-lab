@@ -510,6 +510,17 @@ function swapShield585(s,p,uid){
  for(const x of own.battle)if(effectiveCard(x,s).shieldEntryTapLock)enqueueEffect(s,p,{uid:x.uid,source:x.cardId,effect:'shieldEntryTapLock'});
  return true;
 }
+// Rules 113.6b/c distinguish cards in shields from cards being added to hand.
+function lightShieldTrigger1019(s,p,c,remaining){
+ if(!civilizations(c).includes('光'))return false;
+ return s.players[p].battle.some(x=>{
+  if(x.sealed||x.faceDown||!card(x).g1019LightShieldTrigger)return false;
+  const grant=effectiveCard(x,s).g1019LightShieldTrigger;
+  if(!grant)return false;
+  return grant.creatureCost===undefined?s.players[p].shields.length<=2:
+   remaining<=2&&c.type==='creature'&&costValue(c)===grant.creatureCost;
+ });
+}
 // Select every shield first, move all physical cards, then enqueue hand-entry effects.
 function moveShields535(s,p,uids,to,{cardOnly=false,handEffects=true,replacement=false,noST=false}={}){
  if(to==='shields'&&!canAddShield(s,p))return [];
@@ -563,11 +574,17 @@ function creatureCapReached616(s,p,c,pendingEntries=0){
   return (rule==='eachTurn'||rule==='opponentTurn'&&s.active===p)&&!x.faceDown&&!abilitiesIgnored(s,x)&&isCreature(s,x);
  });
 }
+function summonLocked1019(s,p){
+ const opponent=s.players[1-p];
+ return opponent.shields.length===0&&opponent.battle.some(x=>
+  !x.sealed&&!x.faceDown&&card(x).g260Self?.grants.g1019SummonLock&&effectiveCard(x,s).g1019SummonLock);
+}
 export function canEnterCreature(s,p,c=null,{origin='hand',execution=true,committed=false,ignoreMovement=false,declare=false,pendingEntries=0}={}){
  if(!declare&&creatureCapReached616(s,p,c,pendingEntries))return false;
  if(execution&&c?.type==='creature'&&c.g475NoSummon)return false;
  if(execution&&!committed&&c?.g755SummonHandMax!==undefined&&s.players[p].hand.length>c.g755SummonHandMax)return false;
  if(execution&&c?.type==='creature'&&c.g280NeedsSpell&&!(s.players[p].spellsThisTurn||0))return false;
+ if(execution&&(!c||c.type==='creature')&&summonLocked1019(s,p))return false;
  if(execution&&(!c||c.type==='creature')&&s.active===1-p&&s.players[1-p].battle.some(x=>effectiveCard(x,s).g277OwnTurnSummonLock))return false;
  if(origin!=='hand'&&c?.type!=='spell'&&s.players[1-p].battle.some(x=>!x.sealed&&effectiveCard(x,s).g607HandOnly))return false;
  if(!ignoreMovement&&!canMoveZone(s,p,origin)||!extra.originAllowed(s,p,origin)||!extra.viride.entryAllowed(s,p,c))return false;
@@ -1835,10 +1852,12 @@ function commitShieldBreak(s,defender,uids){
  const groups=uids.map(uid=>findShield(s.players[defender],uid)).filter(Boolean),count=breakContext?.replacementBreak?groups.length:groups.filter(x=>shieldCards(x).some(c=>!c.faceUp||!card(c).gCastle)).length,all=groups.flatMap(shieldCards);
  // Shields in the pending break do not count for ヤミノリミット (official QA 44581).
  const remaining=s.players[defender].shields.length-groups.length;
+ const handRemaining=remaining+groups.filter(x=>shieldCards(x).some(y=>y.g37ShieldHeld)).length;
+ const summonLocked=summonLocked1019(s,defender);
  const breaker=breakContext?.sourceUid?{uid:breakContext.sourceUid,incarnation:breakContext.incarnation}:undefined;
  // Pending broken shields are excluded from Duelangel's threshold at declaration.
  const pendingBreak={defender,remaining};
- const eligibleFaces=Object.fromEntries(all.flatMap(x=>{if(shieldLeavesToGrave(x)&&!breakContext?.replacementBreak)return [];const faces=!breakContext?.noST&&extra.triggersAllowed(s,defender)?playFaces(card(x)).flatMap((c,face)=>(c.g26Viride&&s.players[1-defender].battle.filter(x=>isCreature(s,x)).length>=3||extra.six.shieldTrigger(s,defender,x,c)||extra.requested393J.shieldTrigger(s,defender,x,c)||c.trigger||c.triggerPlus||c.superTrigger||c.graveTotalTrigger&&s.players.reduce((n,p)=>n+p.grave.length,0)>=c.graveTotalTrigger||c.rev2Trigger&&s.players[defender].shields.length-count<=2||x.g19ShieldST!==undefined||c.type==='spell'&&extra.spellShieldTrigger(s,defender)||c.shieldConditionalTrigger&&s.players[defender].grave.filter(x=>playFaces(card(x)).some(c=>c.type==='spell')).length>=2)&&extra.triggersAllowed(s,defender,c)&&!extra.triggerLocked597(s,defender,c,remaining,breaker)&&canCastSpell(s,defender,c)&&(extra.spellPermission(s,defender,c)||extra.six.allowsNonLightSpells687(s,c,pendingBreak))?[face]:[]):[];return faces.length?[[x.uid,faces]]:[];})),eligible=Object.keys(eligibleFaces);
+ const eligibleFaces=Object.fromEntries(all.flatMap(x=>{if(shieldLeavesToGrave(x)&&!breakContext?.replacementBreak)return [];const faces=!breakContext?.noST&&extra.triggersAllowed(s,defender)?playFaces(card(x)).flatMap((c,face)=>(c.g26Viride&&s.players[1-defender].battle.filter(x=>isCreature(s,x)).length>=3||extra.six.shieldTrigger(s,defender,x,c)||lightShieldTrigger1019(s,defender,c,handRemaining)||extra.requested393J.shieldTrigger(s,defender,x,c)||c.trigger||c.triggerPlus||c.superTrigger||c.graveTotalTrigger&&s.players.reduce((n,p)=>n+p.grave.length,0)>=c.graveTotalTrigger||c.rev2Trigger&&s.players[defender].shields.length-count<=2||x.g19ShieldST!==undefined||c.type==='spell'&&extra.spellShieldTrigger(s,defender)||c.shieldConditionalTrigger&&s.players[defender].grave.filter(x=>playFaces(card(x)).some(c=>c.type==='spell')).length>=2)&&(!summonLocked||c.type!=='creature')&&extra.triggersAllowed(s,defender,c)&&!extra.triggerLocked597(s,defender,c,remaining,breaker)&&canCastSpell(s,defender,c)&&(extra.spellPermission(s,defender,c)||extra.six.allowsNonLightSpells687(s,c,pendingBreak))?[face]:[]):[];return faces.length?[[x.uid,faces]]:[];})),eligible=Object.keys(eligibleFaces);
  const broken=[];for(const uid of uids){const root=removeShield(s,defender,uid);for(const x of shieldCards(root)){const toGrave=shieldLeavesToGrave(x)&&!breakContext?.replacementBreak;clearBattleState(x,'hand');if(toGrave)addZone(s,s.players[defender],'grave',x);else broken.push(x);}}
  if(!handOnly){
   if(count&&breakContext?.g909RequireBreak){

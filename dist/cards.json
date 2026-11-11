@@ -206707,24 +206707,204 @@
       ],
       "supportBatch": "phase-1018",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr20-s01",
+      "name": "九極革命 デュエゼウス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 9000,
+      "race": "エンジェル・コマンド/革命軍/侵略者",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、自分のクリーチャーの数が自分のシールドの数以上なら、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置いてもよい。\n革命２―自分のシールドが２つ以下なら、自分の手札に加える、光のクリーチャーでコスト９のシールドカードすべてに「S・トリガー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-s01",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g687CreatureCountAtLeastShields": true
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "山札の上から1枚をシールドに置く？",
+              "defs": [
+                {
+                  "op": "ShieldTop",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g687CreatureCountAtLeastShields": true
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "山札の上から1枚をシールドに置く？",
+              "defs": [
+                {
+                  "op": "ShieldTop",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "g1019LightShieldTrigger": {
+        "creatureCost": 9
+      },
+      "supportBatch": "phase-1019",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr19-s01",
+      "name": "革命聖龍 ウルトラスター",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "エンジェル・コマンド・ドラゴン/革命軍",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分のシールドをすべて手札に加える。（ただし、その「S・トリガー」は使えない）その後、自分の山札の上から２枚を裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。\n革命２―自分のシールドが２つ以下なら、自分の光のシールド・カードに「S・トリガー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-s01",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldHand",
+          "g238ShieldHand": true,
+          "g535Count": "all"
+        },
+        {
+          "op": "ShieldTop",
+          "n": 2,
+          "g779Simultaneous": true
+        }
+      ],
+      "g1019LightShieldTrigger": {},
+      "supportBatch": "phase-1019",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr18-l01",
+      "name": "時の革命 ミラダンテ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 13500,
+      "race": "エンジェル・コマンド・ドラゴン/革命軍",
+      "text": "進化―自分の光のクリーチャー１体の上に置く。\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーをすべてタップする。それらは次の相手のターンのはじめにアンタップしない。\n革命０―自分のシールドが１枚もなければ、相手はクリーチャーを召喚できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-l01",
+      "limit": 4,
+      "evolution": {
+        "civilization": "光"
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LockUntap606",
+          "g1019Tap": true
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g265ShieldsMax": 0
+        },
+        "grants": {
+          "g1019SummonLock": true
+        }
+      },
+      "supportBatch": "phase-1019",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr18-l02",
+      "name": "魔の革命 デス・ザ・ロスト",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 13000,
+      "race": "デーモン・コマンド・ドラゴン/革命軍",
+      "text": "進化―自分の闇のクリーチャー１体の上に置く。\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手は自身の手札をすべて捨てる。\n革命０―このクリーチャーが攻撃する時、自分のシールドが１枚もなければ、相手のシールドをすべてブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-l02",
+      "limit": 4,
+      "evolution": {
+        "civilization": "闇"
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "g756All": true
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g265ShieldsMax": 0
+          },
+          "defs": [
+            {
+              "op": "Break497",
+              "n": "all",
+              "g747CreatureBreak": true,
+              "g913DepartedBreaker": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1019",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1018,
+    "phase": 1019,
     "checkedAt": "2026-11-12",
-    "baseCount": 6991,
-    "newEffectCards": 3,
+    "baseCount": 6994,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6994,
+    "totalCount": 6998,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37278/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37279/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37280/",
-      "https://dm.takaratomy.co.jp/rule/qa/31783/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37532/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316661/"
+      "https://dm.takaratomy.co.jp/rule/rulechange/316661/",
+      "https://dm.takaratomy.co.jp/rule/qa/44344/",
+      "https://dm.takaratomy.co.jp/rule/qa/39785/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37265/",
+      "https://dm.takaratomy.co.jp/rule/qa/33477/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37266/",
+      "https://dm.takaratomy.co.jp/rule/qa/45073/",
+      "https://dm.takaratomy.co.jp/rule/qa/45591/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -225157,6 +225337,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/40962/",
           "https://dm.takaratomy.co.jp/rule/qa/39841/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316682/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1018,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6991,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6994,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37278/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37279/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37280/",
+          "https://dm.takaratomy.co.jp/rule/qa/31783/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37532/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316661/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

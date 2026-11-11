@@ -3417,7 +3417,10 @@ export function createSixPhotoRules(api){
  case'g34_LockUntap606':{
   const rows=t.g869Refs?opp.battle.filter(y=>api.allLayers(y).some(x=>t.g869Refs.includes(key(x)))):
    creatures(s,1-t.p).filter(y=>!y.sealed&&matches(s,1-t.p,y,t.filter));
-  for(const y of rows)startUntapLock210(t,y);
+  for(const y of rows){
+   if(t.g1019Tap)api.tap(s,1-t.p,y);
+   startUntapLock210(t,y);
+  }
   break;
  }
  case'g34_TapAll':for(const p of t.both?[0,1]:[1-t.p])for(const y of creatures(s,p))if(!t.g218Tap||matches(s,p,y,t.filter))api.tap(s,p,y);break;

@@ -3435,6 +3435,40 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=1019&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const entry='このクリーチャーがバトルゾーンに出た時';
+  if(f.typeText==='クリーチャー'&&d.id==='dmr20-s01'&&text===
+   'ブロッカーブロッカーW・ブレイカー'+entry+'または攻撃する時自分のクリーチャーの数が自分のシールドの数以上なら'+
+   '自分の山札の上から1枚目を裏向きのまま新しいシールドとして自分のシールドゾーンに置いてもよい。'+
+   '革命2―自分のシールドが2つ以下なら自分の手札に加える光のクリーチャーでコスト9のシールドカードすべてに「S・トリガー」を与える。'){
+   const defs=[{op:'IfOwn',filter:{g687CreatureCountAtLeastShields:true},defs:[
+    {op:'Offer',title:'山札の上から1枚をシールドに置く？',defs:[{op:'ShieldTop',n:1}]}
+   ]}];
+   return {blocker:true,breaker:2,effect:'sixPhoto',g34Tasks:defs,g34Attack:defs,g1019LightShieldTrigger:{creatureCost:9}};
+  }
+  if(f.typeText==='クリーチャー'&&d.id==='dmr19-s01'&&text===
+   'W・ブレイカー'+entry+'自分のシールドをすべて手札に加える。(ただしその「S・トリガー」は使えない)'+
+   'その後自分の山札の上から2枚を裏向きのまま新しいシールドとして自分のシールドゾーンに置く。'+
+   '革命2―自分のシールドが2つ以下なら自分の光のシールド・カードに「S・トリガー」を与える。')
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[
+    {op:'ShieldHand',g238ShieldHand:true,g535Count:'all'},{op:'ShieldTop',n:2,g779Simultaneous:true}
+   ],g1019LightShieldTrigger:{}};
+  if(f.typeText==='進化クリーチャー'&&/^dmr18-(?:l01|L1SEC[12])$/.test(d.id)&&text===
+   '進化―自分の光のクリーチャー1体の上に置く。T・ブレイカー'+entry+
+   '相手のクリーチャーをすべてタップする。それらは次の相手のターンのはじめにアンタップしない。'+
+   '革命0―自分のシールドが1枚もなければ相手はクリーチャーを召喚できない。')
+   return {evolution:{civilization:'光'},breaker:3,effect:'sixPhoto',
+    g34Tasks:[{op:'LockUntap606',g1019Tap:true}],g260Self:{filter:{g265ShieldsMax:0},grants:{g1019SummonLock:true}}};
+  if(f.typeText==='進化クリーチャー'&&(/^dmr18-(?:l02|L2SEC[123])$/.test(d.id)||/^dm23rp4x?-TR01$/.test(d.id))&&[
+   '進化―自分の闇のクリーチャー1体の上に置く。T・ブレイカー'+entry+'相手は自身の手札をすべて捨てる。'+
+   '革命0―このクリーチャーが攻撃する時自分のシールドが1枚もなければ相手のシールドをすべてブレイクする。',
+   '進化:闇のクリーチャー1体の上に置く。T・ブレイカーこのクリーチャーが出た時相手は自身の手札をすべて捨てる。'+
+   '革命0:このクリーチャーが攻撃する時自分のシールドが1つもなければ相手のシールドをすべてブレイクする。'
+  ].includes(text))
+   return {evolution:{civilization:'闇'},breaker:3,effect:'sixPhoto',g34Tasks:[{op:'Discard',g756All:true}],
+    g34Attack:[{op:'IfOwn',filter:{g265ShieldsMax:0},defs:[{op:'Break497',n:'all',g747CreatureBreak:true,g913DepartedBreaker:true}]}]};
+ }
  if(phase>=1018&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const entry='このクリーチャーがバトルゾーンに出た時';
