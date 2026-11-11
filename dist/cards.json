@@ -193561,20 +193561,121 @@
       ],
       "supportBatch": "phase-912",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm04-008",
+      "name": "フル・ディフェンサー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "S(シールド)・トリガー(このカードをシールドゾーンから手札に加えるとき、コストを支払わずにすぐ唱えてよい)\n自分の次のターンが始まるまで、バトルゾーンにある自分のクリーチャーはすべて「ブロッカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-008",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "grant": {
+            "blocker": true
+          },
+          "g521UntilStart": true,
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-913",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-046",
+      "name": "凶鬼79号 ジュージュ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 2000,
+      "race": "マフィ・ギャング",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがブロックした時、このターン、その相手クリーチャーのパワーを－9000する。（パワー０以下のクリーチャーは破壊される）\nこのターンの終わりに、このクリーチャーがタップしていたら、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-046",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "g178Block": [
+        {
+          "op": "EntryBoost755",
+          "power": -9000,
+          "g913BlockedAttacker": true
+        }
+      ],
+      "g474AnyEnd": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g590SourceTapped": true
+          },
+          "defs": [
+            {
+              "op": "SelfDestroy"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-913",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm05-026",
+      "name": "ミラクル・サーチャー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "このターン、自分のクリーチャーがシールドをブレイクするたびに、カードを２枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-026",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BreakDraw913"
+        }
+      ],
+      "supportBatch": "phase-913",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 912,
+    "phase": 913,
     "checkedAt": "2026-11-11",
-    "baseCount": 6602,
+    "baseCount": 6605,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6605,
+    "totalCount": 6608,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35603/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35604/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31637/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35082/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35971/",
+      "https://dm.takaratomy.co.jp/rule/qa/34314/",
+      "https://dm.takaratomy.co.jp/rule/qa/45462/",
+      "https://dm.takaratomy.co.jp/rule/qa/34191/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -209842,6 +209943,24 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35545/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35125/",
           "https://dm.takaratomy.co.jp/rule/qa/39860/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 912,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6602,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6605,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35603/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35604/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31637/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [

@@ -1758,6 +1758,9 @@ export function createSixPhotoRules(api){
  case'g34_BattleBreak828':
   (s.extLimits??=[]).push({kind:'g828BattleBreak',player:t.p,source:t.source,turn:s.turn,expires:'end',who:s.active});
   break;
+ case'g34_BreakDraw913':
+  (s.extLimits??=[]).push({kind:'g913BreakDraw',player:t.p,source:t.source,expires:'end',who:s.active});
+  break;
  case'g34_FairyManaExchange828':{
   const filter={race:'スノーフェアリー'};
   const fromMana={origin:'mana',to:'hand',filter};
@@ -2086,6 +2089,7 @@ export function createSixPhotoRules(api){
   else if(n)api.interruptBreak(s,owner,host?selected.slice(0,n):selected,{...t,op:'g34_AfterBreak278'},
    {player:t.p,sourceUid:host?.uid??t.uid,source:triggeredBreaker?(host?.cardId??triggeredBreaker):t.source,controller:t.p,g278Effect:true,
     ...(triggeredBreaker||t.g909AfterBreak?{incarnation:host?.incarnation??t.incarnation??0}:{}),
+    ...(triggeredBreaker&&!host?{g913DepartedBreaker:true}:{}),
     ...(t.g909AfterBreak?{g909RequireBreak:true}:{}),
     ...(host?{incarnation:host.incarnation||0,...(c.g122NoST?{noST:true}:{}),reverse:!!c.reverseBurn,burn:!!c.shieldBurn,...(c.qqLock?{qqBreak:true}:{})}:{})});
   break;
@@ -3532,7 +3536,9 @@ export function createSixPhotoRules(api){
   const hooks={
  block(s,p,x){
   const blocker=effective(x,s),defs=blocker.g178Block;
-  if(defs)queue(s,p,x,defs);
+  const owner=1-p,a=s.players[owner].battle.find(y=>y.uid===s.attack?.attacker);
+  if(defs)queue(s,p,x,defs.flatMap(d=>d.g913BlockedAttacker?
+   a?[{...d,subject:{uid:a.uid,incarnation:a.incarnation||0}}]:[]:[d]));
   for(const source of creatures(s,p)){
    if(source.sealed)continue;
    const races=effective(source,s).g700BlockDraw;
@@ -3541,7 +3547,7 @@ export function createSixPhotoRules(api){
     send(s,p,source,'Break497',{uid:x.uid,incarnation:x.incarnation||0,n:1,g747CreatureBreak:true,g830BlockBreaker:x.cardId});
    }
   }
-  const owner=1-p,a=s.players[owner].battle.find(y=>y.uid===s.attack?.attacker),blocked=a&&!a.sealed&&effective(a,s).g559Blocked;
+  const blocked=a&&!a.sealed&&effective(a,s).g559Blocked;
   if(blocked)queue(s,owner,a,blocked);
   if(a&&!a.sealed&&s.attack.g712PlayerTarget&&s.players[p].shields.length&&colors(effective(a,s)).includes('自然')){
    for(const rule of s.extLimits||[]){
@@ -3941,9 +3947,16 @@ export function createSixPhotoRules(api){
   if(!breaks.some(prior=>prior.length===refs.length&&prior.every((r,i)=>r===refs[i])))breaks.push(refs);
  },
  allyBreakDraw779(s,context,count){
-  if(!count||!context?.g756Breaker?.length)return;
-  for(const x of creatures(s,context.player))if(!x.sealed&&effective(x,s).g779AllyBreakDraw)
+  if(!count||!context)return;
+  const liveBreaker=context.g756Breaker?.length;
+  if(liveBreaker)for(const x of creatures(s,context.player))if(!x.sealed&&effective(x,s).g779AllyBreakDraw)
    queue(s,context.player,x,[E('Offer',{title:'カードを1枚引く？',defs:[E('Draw',{n:1})]})]);
+  // A creature can still perform an already-triggered break after leaving (QA35971).
+  if(!liveBreaker&&!context.g913DepartedBreaker)return;
+  // A simultaneous break is one event; each resolved copy grants its own optional draw (QA35082).
+  for(const l of s.extLimits||[])if(l.kind==='g913BreakDraw'&&l.player===context.player&&
+   !api.spellIgnored(s,{type:'spell',spellSource:l.source,cost:cost(card(l.source))}))
+   queue(s,l.player,{cardId:l.source},[E('Offer',{title:'カードを2枚引く？',defs:[E('Draw',{n:2})]})]);
  },
  // Remember the physical incarnation at the break, then follow later evolution at turn end.
  broken484(s,context,n){if(!n||!context||context.reverse||context.burn)return;const p=context.player,x=s.players[p]?.battle.find(x=>x.uid===context.sourceUid&&(context.incarnation===undefined||(x.incarnation||0)===context.incarnation));if(x&&!x.sealed&&effective(x,s).g484BreakEndReturn)queue(s,p,x,[E('BreakDelay484')]);},

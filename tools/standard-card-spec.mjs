@@ -3445,6 +3445,22 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=913&&d.faces.length===1){
+  if(f.typeText==='呪文'&&d.id==='dm04-008'&&compact363===
+   'S(シールド)・トリガー(このカードをシールドゾーンから手札に加えるときコストを支払わずにすぐ唱えてよい)'+
+   '自分の次のターンが始まるまでバトルゾーンにある自分のクリーチャーはすべて「ブロッカー」を得る。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'GroupGrant364',owner:'self',filter:{creature:true},grant:{blocker:true},g521UntilStart:true,spell:true}]};
+  if(creature&&d.id==='dmrp12-046'&&compact363===
+   'S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)'+
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   'このクリーチャーがブロックした時このターンその相手クリーチャーのパワーを-9000する。(パワー0以下のクリーチャーは破壊される)'+
+   'このターンの終わりにこのクリーチャーがタップしていたら破壊する。')
+   return {trigger:true,blocker:true,g178Block:[{op:'EntryBoost755',power:-9000,g913BlockedAttacker:true}],
+    g474AnyEnd:[{op:'IfOwn',filter:{g590SourceTapped:true},defs:[{op:'SelfDestroy'}]}]};
+  if(f.typeText==='呪文'&&d.id==='dm05-026'&&compact363===
+   'このターン自分のクリーチャーがシールドをブレイクするたびにカードを2枚引いてもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'BreakDraw913'}]};
+ }
  if(phase>=912&&creature&&d.faces.length===1){
   if(['dmr18-039','promoy14-033'].includes(d.id)&&[
    '自分の進化革命軍クリーチャーの召喚コストを',

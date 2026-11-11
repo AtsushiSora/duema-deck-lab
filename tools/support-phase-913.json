@@ -1,0 +1,162 @@
+{
+  "phase": 913,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6605,
+  "description": "全体への期限付きブロッカー付与、ブロックした相手のパワー低下とターン終了時の自壊、シールドブレイクに反応する任意ドローに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35082/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35971/",
+    "https://dm.takaratomy.co.jp/rule/qa/34314/",
+    "https://dm.takaratomy.co.jp/rule/qa/45462/",
+    "https://dm.takaratomy.co.jp/rule/qa/34191/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm04-008",
+      "name": "フル・ディフェンサー",
+      "faces": [
+        {
+          "name": "フル・ディフェンサー",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S(シールド)・トリガー(このカードをシールドゾーンから手札に加えるとき、コストを支払わずにすぐ唱えてよい)\n自分の次のターンが始まるまで、バトルゾーンにある自分のクリーチャーはすべて「ブロッカー」を得る。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-008",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "grant": {
+              "blocker": true
+            },
+            "g521UntilStart": true,
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm04-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "92ccb32ffbf26f24d52277feb3672194250160ad7b9b06b270f8912cb7df2985",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp12-046",
+      "name": "凶鬼79号 ジュージュ",
+      "faces": [
+        {
+          "name": "凶鬼79号 ジュージュ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがブロックした時、このターン、その相手クリーチャーのパワーを－9000する。（パワー０以下のクリーチャーは破壊される）\nこのターンの終わりに、このクリーチャーがタップしていたら、破壊する。",
+          "race": "マフィ・ギャング",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-046",
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "g178Block": [
+          {
+            "op": "EntryBoost755",
+            "power": -9000,
+            "g913BlockedAttacker": true
+          }
+        ],
+        "g474AnyEnd": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g590SourceTapped": true
+            },
+            "defs": [
+              {
+                "op": "SelfDestroy"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "bdf97312e862a1753589ef15f7120ec3852b4f625cd4e98a73bc0ac6247cbb88",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm05-026",
+      "name": "ミラクル・サーチャー",
+      "faces": [
+        {
+          "name": "ミラクル・サーチャー",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このターン、自分のクリーチャーがシールドをブレイクするたびに、カードを２枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-026",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BreakDraw913"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm05-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "c4883ec06f1e56a8d7cfdcf8312bb7a7675cd2d07c8dd9baca18854e3360529a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm04-008": 4,
+      "dmrp12-046": 4,
+      "dm05-026": 4
+    }
+  }
+}
