@@ -3435,6 +3435,35 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=1014&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const entry='このクリーチャーがバトルゾーンに出た時';
+  if(d.id==='dmr20-006'&&text==='スピードアタッカー'+
+   'このクリーチャーが攻撃する時自分の山札の上から1枚目を表向きにする。それが火のドラゴンなら自分の手札に加えそれ以外なら山札の一番下に置く。'+
+   'マナ武装5―このクリーチャーが破壊された時自分のマナゾーンに火のカードが5枚以上あれば火のコスト8以下のドラゴンを1体自分の手札からバトルゾーンに出してもよい。'){
+   const fireDragon={type:'creature',color:'火',raceAll:['ドラゴン']};
+   return {speedAttacker:true,
+    g34Attack:[{op:'RevealTop514',filter:{g228Face:fireDragon},to:'hand',elseTo:'deck',g1014BlindBottom:true}],
+    g172Death:[{op:'IfOwn',filter:{g267Mana:{n:5,color:'火'}},defs:[
+     {op:'Select',origin:'hand',n:1,deploy:true,optional:true,filter:{g228Face:{...fireDragon,max:8}}}
+    ]}]};
+  }
+  if(['dmr20-012','dmx23-023'].includes(d.id)&&text===
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   'このクリーチャーは相手プレイヤーを攻撃できない。'+entry+
+   '呪文を1枚自分のマナゾーンまたは墓地から手札に戻してもよい。'+
+   'このクリーチャーが破壊される時かわりに自分の山札の上に置く。')
+   return {blocker:true,noPlayerAttack:true,g846DestroyToTop:'mandatory',effect:'sixPhoto',
+    g34Tasks:[{op:'Select',zones:['mana','grave'],to:'hand',n:1,optional:true,
+     filter:{g228Face:{type:'spell'},faceUp:true}}]};
+  if(d.id==='dmr21-s03'&&text==='W・ブレイカー'+entry+
+   '自分のクリーチャーを1体破壊してもよい。そうしたらカードを2枚引く。'+
+   'このクリーチャーまたは自分の他のクリーチャーが破壊された時バトルゾーンに自分のD2フィールドがあれば相手のクリーチャーを1体破壊する。')
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'SacrificeAlly413',defs:[{op:'Draw',n:2}]}],
+    g303DeathWatch:{self:true,g891LookBackSelf:true,defs:[
+     {op:'IfOwn',filter:{g580D2Field:true},defs:[{op:'Target',to:'grave'}]}
+    ]}};
+ }
  if(phase>=1013&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const manaTap='マナゾーンに置く時このカードはタップして置く。';

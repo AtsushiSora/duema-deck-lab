@@ -206043,28 +206043,181 @@
       ],
       "supportBatch": "phase-1013",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr20-006",
+      "name": "ミスター・アメッチ隊長",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ファイアー・バード炎/革命軍",
+      "text": "スピードアタッカー\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目を表向きにする。それが火のドラゴンなら自分の手札に加え、それ以外なら山札の一番下に置く。\nマナ武装 ５―このクリーチャーが破壊された時、自分のマナゾーンに火のカードが５枚以上あれば、火のコスト８以下のドラゴンを１体、自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-006",
+      "limit": 4,
+      "speedAttacker": true,
+      "g34Attack": [
+        {
+          "op": "RevealTop514",
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "color": "火",
+              "raceAll": [
+                "ドラゴン"
+              ]
+            }
+          },
+          "to": "hand",
+          "elseTo": "deck",
+          "g1014BlindBottom": true
+        }
+      ],
+      "g172Death": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g267Mana": {
+              "n": 5,
+              "color": "火"
+            }
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 1,
+              "deploy": true,
+              "optional": true,
+              "filter": {
+                "g228Face": {
+                  "type": "creature",
+                  "color": "火",
+                  "raceAll": [
+                    "ドラゴン"
+                  ],
+                  "max": 8
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1014",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr20-012",
+      "name": "未来の玉 ダンテ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ジャスティス・オーブ/エンジェル・コマンド・ドラゴン/革命軍",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、呪文を１枚、自分のマナゾーンまたは墓地から手札に戻してもよい。\nこのクリーチャーが破壊される時、かわりに自分の山札の上に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-012",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g846DestroyToTop": "mandatory",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "zones": [
+            "mana",
+            "grave"
+          ],
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "g228Face": {
+              "type": "spell"
+            },
+            "faceUp": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1014",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-s03",
+      "name": "D2K ジゴクシヴァク",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "デーモン・コマンド/マスター・イニシャルズ",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体、破壊してもよい。そうしたら、カードを２枚引く。\nこのクリーチャーまたは自分の他のクリーチャーが破壊された時、バトルゾーンに自分のD２フィールドがあれば、相手のクリーチャーを１体、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-s03",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SacrificeAlly413",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 2
+            }
+          ]
+        }
+      ],
+      "g303DeathWatch": {
+        "self": true,
+        "g891LookBackSelf": true,
+        "defs": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g580D2Field": true
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave"
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1014",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1013,
+    "phase": 1014,
     "checkedAt": "2026-11-12",
-    "baseCount": 6975,
+    "baseCount": 6978,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6978,
+    "totalCount": 6981,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/rule/rulechange/",
-      "https://dm.takaratomy.co.jp/rule/qa/42657/",
-      "https://dm.takaratomy.co.jp/rule/qa/40653/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37871/",
-      "https://dm.takaratomy.co.jp/rule/qa/46841/",
-      "https://dm.takaratomy.co.jp/rule/qa/48140/",
-      "https://dm.takaratomy.co.jp/rule/qa/31824/",
-      "https://dm.takaratomy.co.jp/rule/qa/31825/",
-      "https://dm.takaratomy.co.jp/rule/qa/47495/",
-      "https://dm.takaratomy.co.jp/rule/qa/39993/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37804/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31654/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316661/",
+      "https://dm.takaratomy.co.jp/rule/qa/42955/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316669/",
+      "https://dm.takaratomy.co.jp/rule/qa/46605/",
+      "https://dm.takaratomy.co.jp/rule/qa/47896/",
+      "https://dm.takaratomy.co.jp/rule/qa/31824/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -224383,6 +224536,31 @@
           "https://dm.takaratomy.co.jp/rule/qa/40226/",
           "https://dm.takaratomy.co.jp/rule/qa/42657/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316661/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1013,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6975,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6978,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/",
+          "https://dm.takaratomy.co.jp/rule/qa/42657/",
+          "https://dm.takaratomy.co.jp/rule/qa/40653/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37871/",
+          "https://dm.takaratomy.co.jp/rule/qa/46841/",
+          "https://dm.takaratomy.co.jp/rule/qa/48140/",
+          "https://dm.takaratomy.co.jp/rule/qa/31824/",
+          "https://dm.takaratomy.co.jp/rule/qa/31825/",
+          "https://dm.takaratomy.co.jp/rule/qa/47495/",
+          "https://dm.takaratomy.co.jp/rule/qa/39993/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

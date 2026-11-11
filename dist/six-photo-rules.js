@@ -2867,10 +2867,10 @@ export function createSixPhotoRules(api){
  case'g34_ManaDown426':{const rows=own.mana.filter(y=>!y.faceDown);if(rows.length)choice(s,t,'裏向きにする自分のマナを1枚選ぶ（任意）',[...rows.map(y=>opt(card(y).name,{uid:y.uid,serial:y.zoneSerial||0},manaDownScore426(s,t,y),y.cardId)),skip()]);break;}
  // A failed deployment must not be confused with a failed printed condition.
  case'g34_RevealTop514':{
-  if(t.g1010DestroyBelowPower&&api.deckLocked(s,t.p)){
+  if((t.g1010DestroyBelowPower||t.g1014BlindBottom)&&api.deckLocked(s,t.p)){
    // QA 31654: a fixed top card still moves when it cannot be revealed.
    const held=reserved(own),top=own.deck.find(y=>!held.has(y.uid));
-   if(top)zoneMove(s,t.p,'deck',top.uid,'hand',t);
+   if(top)zoneMove(s,t.p,'deck',top.uid,t.g1014BlindBottom?'deck':'hand',t);
    api.deckCheck(s,t.p);
    break;
   }

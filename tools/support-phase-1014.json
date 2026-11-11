@@ -1,0 +1,251 @@
+{
+  "phase": 1014,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6978,
+  "description": "ミスター・アメッチ隊長、未来の玉 ダンテ、D2K ジゴクシヴァクの公式能力を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37804/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31654/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316661/",
+    "https://dm.takaratomy.co.jp/rule/qa/42955/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316669/",
+    "https://dm.takaratomy.co.jp/rule/qa/46605/",
+    "https://dm.takaratomy.co.jp/rule/qa/47896/",
+    "https://dm.takaratomy.co.jp/rule/qa/31824/"
+  ],
+  "cards": [
+    {
+      "id": "dmr20-006",
+      "name": "ミスター・アメッチ隊長",
+      "faces": [
+        {
+          "name": "ミスター・アメッチ隊長",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目を表向きにする。それが火のドラゴンなら自分の手札に加え、それ以外なら山札の一番下に置く。\nマナ武装 ５―このクリーチャーが破壊された時、自分のマナゾーンに火のカードが５枚以上あれば、火のコスト８以下のドラゴンを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "ファイアー・バード炎/革命軍",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-006",
+      "spec": {
+        "speedAttacker": true,
+        "g34Attack": [
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "color": "火",
+                "raceAll": [
+                  "ドラゴン"
+                ]
+              }
+            },
+            "to": "hand",
+            "elseTo": "deck",
+            "g1014BlindBottom": true
+          }
+        ],
+        "g172Death": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g267Mana": {
+                "n": 5,
+                "color": "火"
+              }
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "hand",
+                "n": 1,
+                "deploy": true,
+                "optional": true,
+                "filter": {
+                  "g228Face": {
+                    "type": "creature",
+                    "color": "火",
+                    "raceAll": [
+                      "ドラゴン"
+                    ],
+                    "max": 8
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr20-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "f5f6b10e7383188c6127e85a597acca187ed7f00e3ad759da9e5a041b284f84c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr20-012",
+      "name": "未来の玉 ダンテ",
+      "faces": [
+        {
+          "name": "未来の玉 ダンテ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、呪文を１枚、自分のマナゾーンまたは墓地から手札に戻してもよい。\nこのクリーチャーが破壊される時、かわりに自分の山札の上に置く。",
+          "race": "ジャスティス・オーブ/エンジェル・コマンド・ドラゴン/革命軍",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-012",
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g846DestroyToTop": "mandatory",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "zones": [
+              "mana",
+              "grave"
+            ],
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "g228Face": {
+                "type": "spell"
+              },
+              "faceUp": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr20-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "c081b4398179427df9cfe31313604a8b02ec7f7b664d28e72627f1308d2687d3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr21-s03",
+      "name": "D2K ジゴクシヴァク",
+      "faces": [
+        {
+          "name": "D2K ジゴクシヴァク",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体、破壊してもよい。そうしたら、カードを２枚引く。\nこのクリーチャーまたは自分の他のクリーチャーが破壊された時、バトルゾーンに自分のD２フィールドがあれば、相手のクリーチャーを１体、破壊する。",
+          "race": "デーモン・コマンド/マスター・イニシャルズ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-s03",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 2
+              }
+            ]
+          }
+        ],
+        "g303DeathWatch": {
+          "self": true,
+          "g891LookBackSelf": true,
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g580D2Field": true
+              },
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-s03.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "b6c424b85c8ec0362d45406f9f70ff6ea1f01efbeff7d7eaa294f4d43b877f7a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx23-023",
+      "canonicalId": "dmr20-012",
+      "name": "未来の玉 ダンテ",
+      "faces": [
+        {
+          "name": "未来の玉 ダンテ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、呪文を１枚、自分のマナゾーンまたは墓地から手札に戻してもよい。\nこのクリーチャーが破壊される時、かわりに自分の山札の上に置く。",
+          "race": "ジャスティス・オーブ/エンジェル・コマンド・ドラゴン/革命軍",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx23-023",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx23-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "1da91e44084226fd2c30e62751b9cb8ae17dece7f3162112bc89decd68bc40ae",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr20-006": 4,
+      "dmr20-012": 4,
+      "dmr21-s03": 4,
+      "dmx23-023": 4
+    }
+  }
+}
