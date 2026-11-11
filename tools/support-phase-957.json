@@ -1,0 +1,216 @@
+{
+  "phase": 957,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6754,
+  "description": "2種族のL・ゲートと、ムシャ・ルピアの任意軽減・指定名の攻撃時能力に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37617/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37618/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37619/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37620/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37621/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37622/",
+    "https://dm.takaratomy.co.jp/rule/qa/42962/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35655/"
+  ],
+  "cards": [
+    {
+      "id": "dm23-008",
+      "name": "迎撃武装ブライト",
+      "faces": [
+        {
+          "name": "迎撃武装ブライト",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "L・ゲート：グレートメカオーとキカイヒーロー(このクリーチャーが破壊される時、墓地に置くかわりに、グレートメカオーかキカイヒーローを１体、または両方１体ずつを、自分の墓地から手札に戻してもよい。そうした場合、このクリーチャーを山札の一番下に置く)",
+          "race": "グレートメカオー",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-008",
+      "spec": {
+        "g955LGate": [
+          "グレートメカオー",
+          "キカイヒーロー"
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "6c9ef0169f6afc92e494672b901029afe4b860ec5efd26e598056176768e7c59",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23-017",
+      "name": "三途渡しのユーリン",
+      "faces": [
+        {
+          "name": "三途渡しのユーリン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "L・ゲート：ドリームメイトとビークル・ビー(このクリーチャーが破壊される時、墓地に置くかわりに、ドリームメイトかビークル・ビーを１体、または両方１体ずつを、自分の墓地から手札に戻してもよい。そうした場合、このクリーチャーを自分の山札の一番下に置く)",
+          "race": "ドリームメイト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-017",
+      "spec": {
+        "g955LGate": [
+          "ドリームメイト",
+          "ビークル・ビー"
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "488707295c78edeb9c3c3c64a0f756cab8338064514cb0868f4eba130dc61133",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm27-014",
+      "name": "ムシャ・ルピア",
+      "faces": [
+        {
+          "name": "ムシャ・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分のドラゴンを召喚するコストを１少なくしてもよい。ただし、コストは１より少なくならない。\n自分の《ボルメテウス・武者・ドラゴン》が攻撃する時、自分の山札の上から１枚目を裏向きのままシールドに加えてもよい。",
+          "race": "ファイアー・バード",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-014",
+      "spec": {
+        "g349SummonAuras": [
+          {
+            "race": "ドラゴン",
+            "amount": 1,
+            "g560Optional": true
+          }
+        ],
+        "g252AttackWatch": {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "g201ExactName": "ボルメテウス・武者・ドラゴン"
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "山札の上1枚をシールドに加える？",
+              "defs": [
+                {
+                  "op": "ShieldTop",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm27-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "1de8698b61d60c6125dcafbc35ccb75164aee9e471700198d6200aaaf073a9c2",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc53-020",
+      "canonicalId": "dm27-014",
+      "name": "ムシャ・ルピア",
+      "faces": [
+        {
+          "name": "ムシャ・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分のドラゴンを召喚するコストを１少なくしてもよい。ただし、コストは１より少なくならない。\n自分の《ボルメテウス・武者・ドラゴン》が攻撃する時、自分の山札の上から１枚目を裏向きのままシールドに加えてもよい。",
+          "race": "ファイアー・バード",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc53-020",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc53-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "417cad0ee6f9f32f34523e30d129101f6760e60119676d9bfa8ea886c89297a4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc43-029",
+      "canonicalId": "dm27-014",
+      "name": "ムシャ・ルピア",
+      "faces": [
+        {
+          "name": "ムシャ・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分のドラゴンを召喚するコストを１少なくしてもよい。ただし、コストは１より少なくならない。\n自分の《ボルメテウス・武者・ドラゴン》が攻撃する時、自分の山札の上から１枚目を裏向きのままシールドに加えてもよい。",
+          "race": "ファイアー・バード",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc43-029",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc43-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "16dafe04bf4ca6730f8a115d24c28a66ebd6a7cef7e05dfe4daa9e70c57aa047",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23-008": 4,
+      "dm23-017": 4,
+      "dm27-014": 4,
+      "dmc53-020": 4,
+      "dmc43-029": 4
+    }
+  }
+}

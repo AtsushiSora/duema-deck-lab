@@ -611,12 +611,20 @@ function leaveDiscardEligible(row,x){
  if(row.g846SpellDiscard)return playFaces(card(x)).some(face=>face.type==='spell');
  return !row.g831Sunshine||playFaces(card(x)).every(face=>face.type!=='creature');
 }
-function lGateOptions955(s,row){
+const lGateSelected955=plan=>plan.recoveries??[plan.recovery];
+function lGateOptions955(s,row,firstUid){
  if(!row.g955LGate||!canMoveZone(s,row.player,'grave'))return [];
  const reserved=new Set(s.leaving.rows.filter(r=>r.player===row.player&&r.plan?.kind==='lGate955')
-  .map(r=>r.plan.recovery));
- return s.players[row.player].grave.filter(x=>!x.faceDown&&!reserved.has(x.uid)&&
-  extra.six.matches(s,row.player,x,{g228Face:{type:'creature',raceAll:[row.g955LGate]}}));
+  .flatMap(r=>lGateSelected955(r.plan)));
+ const races=[row.g955LGate].flat(),grave=s.players[row.player].grave;
+ const matches=(x,race)=>extra.six.matches(s,row.player,x,{g228Face:{type:'creature',raceAll:[race]}});
+ const available=x=>!x.faceDown&&!reserved.has(x.uid);
+ if(firstUid===undefined)return grave.filter(x=>available(x)&&races.some(race=>matches(x,race)));
+ if(races.length!==2)return [];
+ const first=grave.find(x=>x.uid===firstUid&&available(x));
+ if(!first)return [];
+ return grave.filter(x=>x!==first&&available(x)&&
+  races.some((race,i)=>matches(first,race)&&matches(x,races[1-i])));
 }
 function leaveOptions(s,row){
  const own=s.players[row.player],batch=s.leaving,usedShields=new Set(batch.rows.flatMap(r=>r.plan?.shield?[r.plan.shield]:r.plan?.kind==='ever'?r.plan.shields:[])),usedMana=new Set(batch.rows.flatMap(r=>r.plan?.mana||[]));
@@ -672,10 +680,10 @@ function advanceLeaving(s){if(s.lossEvent)return;
  }));
  const moveToBottom=row=>{row.to='deck';row.destroy=false;row.death=null;row.plan={kind:'leave'};};
  const lGateRecoveries=lGateRows.map(row=>{
-  const recovery=row.plan.recovery,top=ownCardForRow(s,row);
+  const recoveries=lGateSelected955(row.plan),top=ownCardForRow(s,row);
   lGateBottom[row.player].push(...bottomCards(row,top));
   moveToBottom(row);
-  return {player:row.player,recovery,source:top.cardId};
+  return {player:row.player,recoveries,source:top.cardId};
  });
  for(const row of batch.rows)if(row.plan.kind==='hawk'){
   const top=ownCardForRow(s,row);
@@ -724,11 +732,11 @@ function advanceLeaving(s){if(s.lossEvent)return;
  }
  // Preserve LKI for every card before applying any of the simultaneous moves.
  if(batch.after?.kind!=='shieldSaverBreak401')for(const row of batch.rows){const c=s.players[row.player].battle.find(x=>x.uid===row.uid);if(!c)continue;if(['leave','star'].includes(row.plan.kind))recordLastPower(s,row.player,c,row.cardOnly||row.plan.kind==='star'?[c]:layers(c));else if(row.plan.kind==='gneo')recordLastPower(s,row.player,c,(c.under||[]).flatMap(layers));}
- for(const {player,recovery,source} of lGateRecoveries){
-  const x=remove(s.players[player].grave,recovery);
-  clearBattleState(x,'hand');
-  addZone(s,player,'hand',x);
-  log(s,player,'lGate','L・ゲートで'+card(x).name+'を墓地から手札へ戻す',{cardId:source});
+ for(const {player,recoveries,source} of lGateRecoveries){
+  const cards=recoveries.map(uid=>remove(s.players[player].grave,uid));
+  for(const x of cards)clearBattleState(x,'hand');
+  addZone(s,player,'hand',...cards);
+  log(s,player,'lGate','L・ゲートで'+cards.map(x=>card(x).name).join('と')+'を墓地から手札へ戻す',{cardId:source});
  }
  for(const row of batch.rows.filter(r=>r.plan.kind==='ater')){const own=s.players[row.player],victim=own.battle.find(x=>x.uid===row.plan.uid),kaku=!!(victim&&effectiveCard(victim,s).kakuLeave),other=remove(own.battle,row.plan.uid);if(other){const cards=layers(other);rememberEvolutionGraveSources(other,cards);recordLastPower(s,row.player,other,cards);extra.leaving(s,row.player,other,kaku,batch.snapshot,'grave');for(const x of cards)clearBattleState(x);addZone(s,own,'grave',...cards);log(s,row.player,'aterGuard',`${card(other).name}をかわりに破壊する`,{cardId:other.cardId});}}
  for(const p of[s.active,1-s.active]){const ids=batch.rows.filter(r=>r.player===p&&r.plan.kind==='oni').flatMap(r=>r.plan.cards);if(ids.length)destroyReplacementCards(s,p,ids,batch.snapshot);}
@@ -1967,6 +1975,13 @@ export function getLegalActions(s){
   }
   if(d.type==='everShields'){const row=s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p),v=leaveOptions(s,row);out=v.ever.filter(x=>!d.chosen.includes(x.uid)).map(x=>option('everShield','手札に加えるシールド '+(own.shields.indexOf(x)+1)+'（'+(d.chosen.length+1)+'/2）',{shield:x.uid}));out.push(option('cancelEverShields','シールドを選び直す'));}
   if(d.type==='leaveHand'){const row=s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p),v=leaveOptions(s,row);out=v.jashin.filter(x=>!d.chosen.includes(x.uid)).map(x=>option('leaveHand',`${card(x).name}を捨てるカード${d.chosen.length+1}/${leaveDiscardCount(row)}枚目に選ぶ`,{uid:x.uid,cardId:x.cardId}));out.push(option('cancelLeaveHand','手札の選択をやり直す'));}
+  if(d.type==='leaveLGate957'){
+   const row=s.leaving.rows.find(r=>r.uid===d.uid&&r.player===p);
+   out=lGateOptions955(s,row,d.recovery).map(x=>option('replaceLGateSecond957',card(x).name+'も手札に戻す',{uid:x.uid,cardId:x.cardId}));
+   const first=own.grave.find(x=>x.uid===d.recovery);
+   out.push(option('finishLGate957',card(first).name+'だけ手札に戻す',{cardId:first.cardId}),
+    option('cancelLGate957','L・ゲートの選択をやり直す'));
+  }
   if(d.type==='leaveMana'){const row=s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p),v=leaveOptions(s,row);out=v.mana.filter(x=>!d.chosen.includes(x.uid)).map(x=>option('leaveMana',`${card(x).name}を保護コスト${d.chosen.length+1}/3枚目に選ぶ`,{uid:x.uid,cardId:x.cardId}));out.push(option('cancelLeaveMana','マナの選択をやり直す'));}
   if(d.type==='deploy'){out=deployCandidates(s,p).map(({origin,inst})=>option('deploy',`${origin==='hand'?'手札':'マナ'}の${card(inst).name}を出す`,{uid:inst.uid,cardId:inst.cardId,origin}));out.push(option('skipDeploy','クリーチャーを出さない'));}
   if(d.type==='deployEvolution'){const c=card(d.source);out=evolutionBases(s,p,c).map(x=>option('deployEvolve',`${card(x).name}の上に${c.name}を重ねて出す`,{uid:d.uid,cardId:c.id,origin:d.origin,baseUid:x.uid}));if(c.neoEvolution)out.unshift(option('deployEvolve',`${c.name}を進化させず出す`,{uid:d.uid,cardId:c.id,origin:d.origin}));out.push(option('cancelDeploy','出すカードを選び直す'));}
@@ -2111,9 +2126,22 @@ function stepCore(s,action){
  if(a.kind==='replaceShieldFace'){s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p).plan={kind:'g33',uid:a.shieldCard};s.decision=null;}
  if(a.kind==='replaceSavak'){s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p).plan={kind:'savak',uid:a.shieldCard,owner:a.owner};s.decision=null;}
  if(a.kind==='replaceLGate955'){
-  s.leaving.rows.find(r=>r.uid===d.uid&&r.player===p).plan={kind:'lGate955',recovery:a.uid};
+  const row=s.leaving.rows.find(r=>r.uid===d.uid&&r.player===p);
+  if(lGateOptions955(s,row,a.uid).length){
+   s.decision={type:'leaveLGate957',player:p,uid:d.uid,mandatory:d.mandatory,recovery:a.uid,
+    title:'L・ゲートでもう1体戻すか選ぶ'};
+  }else{
+   row.plan={kind:'lGate955',recovery:a.uid};
+   s.decision=null;
+  }
+ }
+ if(a.kind==='replaceLGateSecond957'||a.kind==='finishLGate957'){
+  const row=s.leaving.rows.find(r=>r.uid===d.uid&&r.player===p);
+  row.plan=a.kind==='replaceLGateSecond957'?{kind:'lGate955',recoveries:[d.recovery,a.uid]}:
+   {kind:'lGate955',recovery:d.recovery};
   s.decision=null;
  }
+ if(a.kind==='cancelLGate957')s.decision={type:'leaveReplace',player:p,uid:d.uid,mandatory:d.mandatory};
  if(a.kind==='replaceDeckTop846'){
   s.leaving.rows.find(r=>r.uid===d.uid&&r.player===p).plan={kind:'deckTop846'};
   s.decision=null;
@@ -3040,10 +3068,10 @@ export function rankHeuristicActions(s){
   if(a.kind==='leaveHand')return aiCost(c)+(c.abyssRush?12:0);
   if(a.kind==='cancelLeaveHand')return -100;
   if(a.kind==='replaceMana')return 20;
-  if(a.kind==='replaceDeckTop846'||a.kind==='replaceLGate955')return 20;
-  if(a.kind==='allowLeave')return 0;
+  if(['replaceDeckTop846','replaceLGate955','replaceLGateSecond957'].includes(a.kind))return 20;
+  if(a.kind==='allowLeave'||a.kind==='finishLGate957')return 0;
   if(a.kind==='leaveMana'){const x=me.mana.find(x=>x.uid===a.uid);return(x.tapped?15:0)-aiCost(c);}
-  if(a.kind==='cancelLeaveMana'||a.kind==='cancelMugen'||a.kind==='cancelDeploy')return -100;
+  if(a.kind==='cancelLeaveMana'||a.kind==='cancelMugen'||a.kind==='cancelDeploy'||a.kind==='cancelLGate957')return -100;
   if(a.kind==='declareGaia')return 10;
   if(a.kind==='summonGaia')return me.deckCount>2?80:-10;
   if(a.kind==='skipGaiaDeclare'||a.kind==='skipGaiaSummon')return 0;

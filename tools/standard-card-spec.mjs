@@ -3391,6 +3391,26 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=957&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const races={
+   'dm23-008':['グレートメカオー','キカイヒーロー'],
+   'dm23-017':['ドリームメイト','ビークル・ビー']
+  }[d.id];
+  if(races){
+   const [a,b]=races,deck=d.id==='dm23-017'?'自分の山札':'山札';
+   if(text==='L・ゲート:'+a+'と'+b+'(このクリーチャーが破壊される時墓地に置くかわりに'+
+    a+'か'+b+'を1体または両方1体ずつを自分の墓地から手札に戻してもよい。そうした場合このクリーチャーを'+deck+'の一番下に置く)')
+    return {g955LGate:races};
+  }
+  const musha='ボルメテウス・武者・ドラゴン';
+  if(['dm27-014','dmc53-020','dmc43-029'].includes(d.id)&&text===
+   'マナゾーンに置く時このカードはタップして置く。自分のドラゴンを召喚するコストを1少なくしてもよい。ただしコストは1より少なくならない。'+
+   '自分の《'+musha+'》が攻撃する時自分の山札の上から1枚目を裏向きのままシールドに加えてもよい。')
+   return {g349SummonAuras:[{race:'ドラゴン',amount:1,g560Optional:true}],
+    g252AttackWatch:{who:'self',filter:{creature:true,g201ExactName:musha},
+     defs:[{op:'Offer',title:'山札の上1枚をシールドに加える？',defs:[{op:'ShieldTop',n:1}]}]}};
+ }
  if(phase>=956&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dm23-036'&&text==='ブロッカーこのクリーチャーは相手プレイヤーを攻撃できない。'+singleLGateText('ガーディアン'))

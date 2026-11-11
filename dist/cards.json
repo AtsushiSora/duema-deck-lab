@@ -198073,29 +198073,115 @@
       "breaker": 2,
       "supportBatch": "phase-956",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23-008",
+      "name": "迎撃武装ブライト",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3500,
+      "race": "グレートメカオー",
+      "text": "L・ゲート：グレートメカオーとキカイヒーロー(このクリーチャーが破壊される時、墓地に置くかわりに、グレートメカオーかキカイヒーローを１体、または両方１体ずつを、自分の墓地から手札に戻してもよい。そうした場合、このクリーチャーを山札の一番下に置く)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-008",
+      "limit": 4,
+      "g955LGate": [
+        "グレートメカオー",
+        "キカイヒーロー"
+      ],
+      "supportBatch": "phase-957",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23-017",
+      "name": "三途渡しのユーリン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2000,
+      "race": "ドリームメイト",
+      "text": "L・ゲート：ドリームメイトとビークル・ビー(このクリーチャーが破壊される時、墓地に置くかわりに、ドリームメイトかビークル・ビーを１体、または両方１体ずつを、自分の墓地から手札に戻してもよい。そうした場合、このクリーチャーを自分の山札の一番下に置く)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-017",
+      "limit": 4,
+      "g955LGate": [
+        "ドリームメイト",
+        "ビークル・ビー"
+      ],
+      "supportBatch": "phase-957",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm27-014",
+      "name": "ムシャ・ルピア",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ファイアー・バード",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n自分のドラゴンを召喚するコストを１少なくしてもよい。ただし、コストは１より少なくならない。\n自分の《ボルメテウス・武者・ドラゴン》が攻撃する時、自分の山札の上から１枚目を裏向きのままシールドに加えてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-014",
+      "limit": 4,
+      "g349SummonAuras": [
+        {
+          "race": "ドラゴン",
+          "amount": 1,
+          "g560Optional": true
+        }
+      ],
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "creature": true,
+          "g201ExactName": "ボルメテウス・武者・ドラゴン"
+        },
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "山札の上1枚をシールドに加える？",
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-957",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 956,
+    "phase": 957,
     "checkedAt": "2026-11-11",
-    "baseCount": 6750,
-    "newEffectCards": 4,
+    "baseCount": 6754,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6754,
+    "totalCount": 6757,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31618/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37617/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37618/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37619/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37620/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37621/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37622/",
       "https://dm.takaratomy.co.jp/rule/qa/42962/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35510/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31650/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316640/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35655/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -215240,6 +215326,32 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37620/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37621/",
           "https://dm.takaratomy.co.jp/rule/qa/42962/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 956,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6750,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6754,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31618/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37617/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37618/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37619/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37620/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37621/",
+          "https://dm.takaratomy.co.jp/rule/qa/42962/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35510/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31650/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316640/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
