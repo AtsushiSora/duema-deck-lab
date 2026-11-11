@@ -3388,6 +3388,22 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=953&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText),bioT=(race,effect)=>
+   'バイオ・T-自分の'+race+'が攻撃してバトルが始まった時このカードを自分の手札から捨ててもよい。そうした場合そのターンの終わりまで攻撃している自分のクリーチャー'+effect;
+  if(d.id==='dm23-046'&&text===bioT('ティラノ・ドレイク',
+   'は「スレイヤー」を得る。(「スレイヤー」を得たクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)'))
+   return {g952BioT:{race:'ティラノ・ドレイク',slayer:true}};
+  if(d.id==='dm23-054'&&text===bioT('アーク・セラフィム','のパワーは+2000される。'))
+   return {g952BioT:{race:'アーク・セラフィム',power:2000}};
+  if(['dm23-039','promoy5-063'].includes(d.id)&&text===bioT('グレートメカオー',
+   'のパワーは+1500されターンの終わりにアンタップされる。'))
+   return {g952BioT:{race:'グレートメカオー',power:1500,untapAtEnd:true}};
+  if(d.id==='dm23-037'&&text===
+   'バイオ・K-自分のアーク・セラフィムが相手プレイヤーを攻撃してブロックされなかった時このカードを自分の手札から捨ててもよい。そうした場合光の呪文を2枚まで自分の墓地から手札に戻す。')
+   return {g953BioK:{race:'アーク・セラフィム',recovery:{op:'Select',origin:'grave',to:'hand',n:2,
+    optional:true,g583Group:true,filter:{g228Face:{type:'spell',color:'光'}}}}};
+ }
  if(phase>=952&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(['dm23-011','promoy5-066'].includes(d.id)&&text===

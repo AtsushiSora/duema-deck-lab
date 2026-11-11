@@ -190,12 +190,17 @@ export function createSixPhotoRules(api){
  // Smash Burst follows the same physical card through its first zone change (QA48746).
  function smashSource320(s,t){for(const origin of['battle','hand','grave','mana','deck','extra']){const xs=origin==='battle'?s.players[t.p].battle.flatMap(api.allLayers):s.players[t.p][origin],x=xs.find(x=>x.uid===t.uid);if(x&&(origin==='battle'?(x.incarnation||0)===(t.incarnation||0):(x.zoneSerial||0)===(t.serial||0)+1))return{origin,x};}return null;}
  const send=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g34_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
+ function bioKScore(s,p,source){
+  const recovery=card(source).g953BioK?.recovery;
+  const own=s.players[p];
+  return (recovery?own.grave.some(x=>matches(s,p,x,recovery.filter)):own.deck.length>2)?6:-5;
+ }
  function declareHandBio(s,t){
   const rows=s.players[t.p].hand.filter(x=>t.ids.includes(x.uid)),remaining=rows.filter(x=>!t.selected.includes(x.uid));
   const keyword=t.battle?'バイオ・T':'バイオ・K';
   if(remaining.length&&!t.done){
    choice(s,t,'使用を宣言する'+keyword+'を選ぶ',[
-    ...remaining.map(x=>opt(card(x).name,x.uid,t.battle||s.players[t.p].deck.length>2?6:-5,x.cardId)),
+    ...remaining.map(x=>opt(card(x).name,x.uid,t.battle?6:bioKScore(s,t.p,x),x.cardId)),
     opt('宣言を確定',null,0)
    ]);
    return;
@@ -2382,7 +2387,7 @@ export function createSixPhotoRules(api){
   const source=own.hand.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);
   if(!source||api.handAbilityIgnored(s,source))break;
   choice(s,t,'バイオ・Kでこのカードを捨てる？',[
-   opt('捨てる',true,own.deck.length>2?6:-5,t.source),skip()
+   opt('捨てる',true,bioKScore(s,t.p,source),t.source),skip()
   ]);
   break;
  }
@@ -2396,7 +2401,14 @@ export function createSixPhotoRules(api){
   const attacker=bioBattleUnit(s,t.attacker),rule=card(t.source).g952BioT;
   if(!attacker)break;
   if(rule.attackBonus)(attacker.g34Grants??=[]).push({turn:s.turn,attackBonus:rule.attackBonus});
-  else if(own.hand.length)buff(s,attacker,own.hand.length*1000);
+  else if(rule.slayer)(attacker.g34Grants??=[]).push({turn:s.turn,slayer:true});
+  else{
+   const power=rule.power??own.hand.length*1000;
+   if(power)buff(s,attacker,power);
+   if(rule.untapAtEnd)scheduleUntap562(s,{...t,uid:attacker.uid,incarnation:t.attacker.incarnation,creatureSource:true},[
+    {op:'AttackUntap408',g399Attacker:t.attacker,g764FollowControl:true,g562Creature:true}
+   ]);
+  }
   break;
  }
  case'g34_BioBattle952':{
@@ -3383,10 +3395,14 @@ export function createSixPhotoRules(api){
   if(v)put(s,{...t,selected:[...t.selected,v]});
   else if(t.selected.length)put(s,{...t,done:true});
   break;
- case'g34_BioK951':
-  if(v&&own.hand.some(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial))
-   api.discardSelected(s,t.p,[t.uid],t.source,t.p,task('g34_DrawUpTo',t.p,t.source,{n:2,g203Draw:true}));
+ case'g34_BioK951':{
+  const recovery=card(t.source).g953BioK?.recovery;
+  if(v&&own.hand.some(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial)){
+   const next=recovery?tasks(t.p,t.source,[recovery])[0]:task('g34_DrawUpTo',t.p,t.source,{n:2,g203Draw:true});
+   api.discardSelected(s,t.p,[t.uid],t.source,t.p,next);
+  }
   break;
+ }
  case'g34_BioKDeclare951':
   declareHandBio(s,v?{...t,selected:[...t.selected,v]}:{...t,done:true});
   break;
@@ -4597,8 +4613,11 @@ export function createSixPhotoRules(api){
   const attacker=effective(x,s),defs=playerAttack&&!api.selfStopped(s,p)&&attacker.g482Unblocked;
   if(defs)queue(s,p,x,defs);
   let triggered=!!defs;
-  if(playerAttack&&!s.attack.g484Blocked&&race(attacker,'グレートメカオー')){
-   const ids=s.players[p].hand.filter(y=>card(y).g951BioK&&!api.handAbilityIgnored(s,y)).map(y=>y.uid);
+  if(playerAttack&&!s.attack.g484Blocked){
+   const ids=s.players[p].hand.filter(y=>{
+    const c=card(y),requiredRace=c.g953BioK?.race??(c.g951BioK?'グレートメカオー':null);
+    return requiredRace&&race(attacker,requiredRace)&&!api.handAbilityIgnored(s,y);
+   }).map(y=>y.uid);
    if(ids.length){
     declareHandBio(s,task('g34_BioKDeclare951',p,x.cardId,{ids,selected:[]}));
     triggered=true;
