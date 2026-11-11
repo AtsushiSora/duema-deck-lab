@@ -3435,6 +3435,50 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=1007&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const manaTap='マナゾーンに置く時このカードはタップして置く。';
+  const entry='このクリーチャーがバトルゾーンに出た時';
+  const attack='このクリーチャーが攻撃する時';
+  const breaker='W・ブレイカー';
+  if(f.typeText==='クリーチャー'){
+   const dolText={
+    'dmr23-043':manaTap,
+    'dmex06-088':'',
+    'dmbd21-025':''
+   };
+   const speed='スピードアタッカー(このクリーチャーは召喚酔いしない)';
+   if(f.civilizations.length===2&&text===dolText[d.id]+speed+
+    'バトルゾーンに自分のフィールドがあればこのクリーチャーを自分の墓地から召喚してもよい。')
+    return {speedAttacker:true,g978SelfGraveSummon:{faceUp:true,g228Face:{type:'field'}}};
+   // The official database renders the minus sign as an underscore. The printed image shows −13000.
+   if(d.id==='dmr23-003'&&text===breaker+entry+
+    '自分の山札の上から6枚を墓地に置いてもよい。'+attack+
+    '自分の墓地にクリーチャーが13体以上あればそのターン相手のクリーチャーすべてのパワーを_13000する。')
+    return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'Mill',n:6,optional:true}],
+     g34Attack:[{op:'IfOwn',filter:{g273Grave:{n:13,filter:{g228Face:{type:'creature'}}}},
+      defs:[{op:'GroupPower',owner:'opponent',filter:{creature:true},power:-13000}]}]};
+   const katsuChange='革命チェンジ:光または火のコスト5以上のドラゴン';
+   const katsuText={
+    'dmr23-s06':manaTap+katsuChange,
+    'dmex12-s17':katsuChange+'(自分の光または火のコスト5以上のドラゴンが攻撃する時そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい)'
+   };
+   if(f.civilizations.length===2&&text===katsuText[d.id]+breaker+entry+'または攻撃する時'+
+    '自分の山札の上から1枚目を裏向きのまま新しいシールドとして自分のシールドゾーンに置く。'+
+    'その後このクリーチャーは相手のシールドを1つブレイクする。'){
+    const defs=[{op:'ShieldTop',n:1},{op:'Break497',n:1,g747CreatureBreak:true,g913DepartedBreaker:true}];
+    return {rev:{colors:['光','火'],min:5,g486Current:true},breaker:2,effect:'sixPhoto',g34Tasks:defs,g34Attack:defs};
+   }
+   if(d.id==='dmr22-046'&&f.civilizations.length===2&&text===manaTap+
+    '革命チェンジ:火または自然のクリーチャー(自分の火または自然のクリーチャーが攻撃する時そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい)'+
+    'このクリーチャーは多色ではないクリーチャーに攻撃されない。')
+    return {rev:{any:true,colors:['火','自然'],g486Current:true},g206AttackProtection:{nonMulticolor:true}};
+  }
+  if(d.id==='dmr23-065'&&f.typeText==='呪文'&&f.civilizations.length===2&&text===manaTap+
+   '自分のクリーチャー1体は次の自分のターンのはじめまでパワーを+5000されこのターンシールドをもう1つブレイクする。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',spell:true,power:5000,
+    g521UntilStart:true,g455ExtraBreak:1,g969FollowControl:true}]};
+ }
  if(phase>=1006&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const entry='このクリーチャーがバトルゾーンに出た時';

@@ -1553,6 +1553,8 @@ function attackTargetAllowed(s,attacker,target){
   const rule=effectiveCard(source,s).g691AttackProtection;
   if(rule?.races.some(r=>String(d.race||'').includes(r))&&allies.some(x=>!x.sealed&&(!rule.tapped||x.tapped)&&isCreature(s,x)&&String(effectiveCard(x,s).race||'').includes(rule.requires)))return false;
  }
+ if(f?.nonMulticolor&&civilizations(a).length<2&&
+    !s.players[s.active].battle.some(x=>effectiveCard(x,s).ignoreAttackLocks))return false;
  return !f||!(f.maxCost!==undefined&&costValue(a)<=f.maxCost||f.nonEvolution&&!isEvolution(attacker)||f.race&&String(a.race||'').includes(f.race)||f.exceptRace&&!String(a.race||'').includes(f.exceptRace));
 }
 // Check the current characteristics before declaring a blocker. Battle-only
@@ -1611,7 +1613,11 @@ function blockedBattle484(s,a){return s.attack?.g484Blocked&&(s.attack.g694SkipB
 function advanceAttack(s){if(s.lossEvent)return;
  if(s.attack){const a=s.players[s.active].battle.find(x=>x.uid===s.attack.attacker),b=s.attack.target!=='player'&&s.players[1-s.active].battle.find(x=>x.uid===s.attack.target);if(a?.sealed||b?.sealed)s.attack=null;}
  if(!s.attack||s.decision||s.winner!==null||s.pendingEffects?.length||s.extTasks?.length||s.triggers||s.g19Interrupt||s.battleResolution||s.judge||s.attackDeclarations||s.leaving)return;
- if(s.attack.stage==='effects'){if(extra.ninjaWindow(s,1-s.active))return;s.attack.stage='block';s.decision={type:'block',player:1-s.active};}
+ if(s.attack.stage==='effects'){
+  // An interrupted shield break can make defending attack declarations newly available.
+  if(extra.beforeNonActive(s)||extra.ninjaWindow(s,1-s.active))return;
+  s.attack.stage='block';s.decision={type:'block',player:1-s.active};
+ }
  else if(s.attack.stage.startsWith('redirecting')||s.attack.stage==='unblocked482')resolveAttack(s,null);
  else if(s.attack.stage==='blockedEffects'){const a=s.players[s.active].battle.find(x=>x.uid===s.attack.attacker),b=s.players[1-s.active].battle.find(x=>x.uid===s.attack.blockUid);if(a&&b&&!blockedBattle484(s,a))battle(s,s.active,a,1-s.active,b,a.uid,false,s.attack.g695BlockUntap,true);s.attack=null;}
 }

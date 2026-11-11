@@ -204933,24 +204933,222 @@
       ],
       "supportBatch": "phase-1006",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr23-043",
+      "name": "終断Δ ドルハカバ",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "ソニック・コマンド/イニシャルズX",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nバトルゾーンに自分のフィールドがあれば、このクリーチャーを自分の墓地から召喚してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-043",
+      "limit": 4,
+      "speedAttacker": true,
+      "g978SelfGraveSummon": {
+        "faceUp": true,
+        "g228Face": {
+          "type": "field"
+        }
+      },
+      "supportBatch": "phase-1007",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr23-003",
+      "name": "魔天斬 ドゥームズ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "デーモン・コマンド/革命軍",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から６枚を墓地に置いてもよい。\nこのクリーチャーが攻撃する時、自分の墓地にクリーチャーが13体以上あれば、そのターン、相手のクリーチャーすべてのパワーを−13000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-003",
+      "abilityErrata": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-003.jpg",
+        "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から６枚を墓地に置いてもよい。\nこのクリーチャーが攻撃する時、自分の墓地にクリーチャーが13体以上あれば、そのターン、相手のクリーチャーすべてのパワーを−13000する。"
+      },
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 6,
+          "optional": true
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g273Grave": {
+              "n": 13,
+              "filter": {
+                "g228Face": {
+                  "type": "creature"
+                }
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "GroupPower",
+              "owner": "opponent",
+              "filter": {
+                "creature": true
+              },
+              "power": -13000
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1007",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr23-s06",
+      "name": "武闘世代 カツキングJr.",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 10500,
+      "race": "アウトレイジMAX/レッド・コマンド・ドラゴン/ハムカツ団",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n革命チェンジ：光または火のコスト５以上のドラゴン\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。その後、このクリーチャーは相手のシールドを１つブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-s06",
+      "limit": 4,
+      "rev": {
+        "colors": [
+          "光",
+          "火"
+        ],
+        "min": 5,
+        "g486Current": true
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldTop",
+          "n": 1
+        },
+        {
+          "op": "Break497",
+          "n": 1,
+          "g747CreatureBreak": true,
+          "g913DepartedBreaker": true
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "ShieldTop",
+          "n": 1
+        },
+        {
+          "op": "Break497",
+          "n": 1,
+          "g747CreatureBreak": true,
+          "g913DepartedBreaker": true
+        }
+      ],
+      "supportBatch": "phase-1007",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr22-046",
+      "name": "ニつ星 エビカツ",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "メガ・ドラゴン/革命軍/ハムカツ団",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n革命チェンジ：火または自然のクリーチャー（自分の火または自然のクリーチャーが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nこのクリーチャーは多色ではないクリーチャーに攻撃されない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-046",
+      "limit": 4,
+      "rev": {
+        "any": true,
+        "colors": [
+          "火",
+          "自然"
+        ],
+        "g486Current": true
+      },
+      "g206AttackProtection": {
+        "nonMulticolor": true
+      },
+      "supportBatch": "phase-1007",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr23-065",
+      "name": "ピヨーズ・ブートキャンプ",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n自分のクリーチャー１体は、次の自分のターンのはじめまでパワーを+5000され、このターン、シールドをもう１つブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-065",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "spell": true,
+          "power": 5000,
+          "g521UntilStart": true,
+          "g455ExtraBreak": 1,
+          "g969FollowControl": true
+        }
+      ],
+      "supportBatch": "phase-1007",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1006,
+    "phase": 1007,
     "checkedAt": "2026-11-12",
-    "baseCount": 6946,
+    "baseCount": 6951,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 6951,
+    "totalCount": 6956,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37923/",
-      "https://dm.takaratomy.co.jp/rule/qa/34339/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36202/",
-      "https://dm.takaratomy.co.jp/rule/qa/47896/",
-      "https://dm.takaratomy.co.jp/rule/qa/31824/",
-      "https://dm.takaratomy.co.jp/coverage/dmnt16_f03_b/"
+      "https://dm.takaratomy.co.jp/rule/qa/32408/",
+      "https://dm.takaratomy.co.jp/rule/qa/33262/",
+      "https://dm.takaratomy.co.jp/rule/qa/33267/",
+      "https://dm.takaratomy.co.jp/rule/qa/33332/",
+      "https://dm.takaratomy.co.jp/rule/qa/34226/",
+      "https://dm.takaratomy.co.jp/rule/qa/47380/",
+      "https://dm.takaratomy.co.jp/coverage/dmgp06_f04/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35971/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -223116,6 +223314,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/31824/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37110/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31395/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1006,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6946,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 6951,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37923/",
+          "https://dm.takaratomy.co.jp/rule/qa/34339/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36202/",
+          "https://dm.takaratomy.co.jp/rule/qa/47896/",
+          "https://dm.takaratomy.co.jp/rule/qa/31824/",
+          "https://dm.takaratomy.co.jp/coverage/dmnt16_f03_b/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

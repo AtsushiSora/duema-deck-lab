@@ -2545,7 +2545,7 @@ export function createSixPhotoRules(api){
   const self=t.owner==='self',owner=self?t.p:1-t.p,shields=s.players[owner].shields,chooser=t.ownerChooses?owner:t.p;
   const candidate=t.g747CreatureBreak?sourceHost474(s,t)?.x:null;
   const host=candidate&&!candidate.sealed&&api.isCreature(s,candidate)?candidate:null;
-  const triggeredBreaker=t.g830BlockBreaker??t.g828BattleBreaker;
+  const triggeredBreaker=t.g830BlockBreaker??t.g828BattleBreaker??(t.g913DepartedBreaker?t.source:undefined);
   if(t.g747CreatureBreak&&!host&&!triggeredBreaker)break;
   const c=host&&effective(host,s);
   if(c?.g977CannotBreak)break;
