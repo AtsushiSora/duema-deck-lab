@@ -204435,24 +204435,164 @@
       ],
       "supportBatch": "phase-1003",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-057",
+      "name": "バスター・チャージャー",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのターン、自分のクリーチャー１体はパワーを+5000され、シールドをさらにひとつブレイクする。\nチャージャー（この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-057",
+      "limit": 4,
+      "normalCharger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "spell": true,
+          "power": 5000,
+          "g455ExtraBreak": 1,
+          "g969FollowControl": true
+        }
+      ],
+      "supportBatch": "phase-1004",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-014",
+      "name": "ワルスラナイトS",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "リキッド・ピープル閃",
+      "text": "バトルゾーンに自分のクリーチャーが３体以上あれば、このクリーチャーはブロックされず、このクリーチャーが攻撃する時カードを２枚引き、相手がバトルゾーンにあるクリーチャーを選ぶ時このクリーチャーは選べない。（ただし、このクリーチャーを攻撃またはブロックしてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-014",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "g370BattleCount": {
+            "filter": {
+              "creature": true
+            },
+            "min": 3
+          }
+        },
+        "grants": {
+          "unblockable": true,
+          "untargetable": true,
+          "g34Attack": [
+            {
+              "op": "Draw",
+              "n": 2
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-1004",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-001",
+      "name": "光器 パーフェクト・マリア",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "メカ・デル・ソル",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、光以外のクリーチャーをすべてタップする。\nこのクリーチャーがバトルゾーンを離れる時にアンタップしていたら、離れるかわりにとどまる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-001",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g577Stay": {
+        "untapped": true
+      },
+      "g34Attack": [
+        {
+          "op": "TapAll",
+          "both": true,
+          "g218Tap": true,
+          "filter": {
+            "creature": true,
+            "notColor": "光"
+          }
+        }
+      ],
+      "supportBatch": "phase-1004",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-s10",
+      "name": "激龍剛撃ドン・ドドフェル",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "メガ・コマンド・ドラゴン/ジャイアント",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー\n自分のターンの終わりに、自分の手札をすべてマナゾーンに置いてもよい。そうしたら、カードを３枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-s10",
+      "limit": 4,
+      "breaker": 2,
+      "g174End": [
+        {
+          "op": "Offer",
+          "title": "手札をすべてマナゾーンに置いて3枚引く？",
+          "defs": [
+            {
+              "op": "HandAllToMana",
+              "after": [
+                {
+                  "op": "Draw",
+                  "n": 3
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1004",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1003,
+    "phase": 1004,
     "checkedAt": "2026-11-12",
-    "baseCount": 6932,
-    "newEffectCards": 5,
+    "baseCount": 6937,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6937,
+    "totalCount": 6941,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/39393/",
-      "https://dm.takaratomy.co.jp/rule/qa/46507/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36581/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36082/",
-      "https://dm.takaratomy.co.jp/rule/qa/42657/",
-      "https://dm.takaratomy.co.jp/rule/qa/31929/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37845/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35844/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35637/",
+      "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-052",
+      "https://dm.takaratomy.co.jp/rule/qa/44318/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37975/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -222556,6 +222696,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/45802/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37452/",
           "https://dm.takaratomy.co.jp/rule/qa/39332/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1003,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6932,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 6937,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/39393/",
+          "https://dm.takaratomy.co.jp/rule/qa/46507/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36581/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36082/",
+          "https://dm.takaratomy.co.jp/rule/qa/42657/",
+          "https://dm.takaratomy.co.jp/rule/qa/31929/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

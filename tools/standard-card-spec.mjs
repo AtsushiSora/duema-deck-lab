@@ -3435,6 +3435,31 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=1004&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const manaTap='マナゾーンに置く時このカードはタップして置く。';
+  if(d.id==='dmr21-057'&&f.typeText==='呪文'&&f.civilizations.length===2&&text===manaTap+
+   'このターン自分のクリーチャー1体はパワーを+5000されシールドをさらにひとつブレイクする。'+
+   'チャージャー(この呪文を唱えた後墓地に置くかわりに自分のマナゾーンに置く)')
+   return {normalCharger:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Target',owner:'self',spell:true,power:5000,g455ExtraBreak:1,g969FollowControl:true}
+   ]};
+  if(d.id==='dmr21-014'&&f.typeText==='クリーチャー'&&text===
+   'バトルゾーンに自分のクリーチャーが3体以上あればこのクリーチャーはブロックされずこのクリーチャーが攻撃する時カードを2枚引き相手がバトルゾーンにあるクリーチャーを選ぶ時このクリーチャーは選べない。(ただしこのクリーチャーを攻撃またはブロックしてもよい)')
+   return {g260Self:{filter:{g370BattleCount:{filter:{creature:true},min:3}},
+    grants:{unblockable:true,untargetable:true,g34Attack:[{op:'Draw',n:2}]}}};
+  if(d.id==='dmr21-001'&&f.typeText==='クリーチャー'&&text===
+   'ブロッカーブロッカーW・ブレイカーこのクリーチャーが攻撃する時光以外のクリーチャーをすべてタップする。'+
+   'このクリーチャーがバトルゾーンを離れる時にアンタップしていたら離れるかわりにとどまる。')
+   return {blocker:true,breaker:2,g577Stay:{untapped:true},g34Attack:[
+    {op:'TapAll',both:true,g218Tap:true,filter:{creature:true,notColor:'光'}}
+   ]};
+  if(d.id==='dmr21-s10'&&f.typeText==='クリーチャー'&&f.civilizations.length===2&&text===manaTap+
+   'W・ブレイカー自分のターンの終わりに自分の手札をすべてマナゾーンに置いてもよい。そうしたらカードを3枚引く。')
+   return {breaker:2,g174End:[{op:'Offer',title:'手札をすべてマナゾーンに置いて3枚引く？',defs:[
+    {op:'HandAllToMana',after:[{op:'Draw',n:3}]}
+   ]}]};
+ }
  if(phase>=1003&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const double='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)';

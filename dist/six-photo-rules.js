@@ -381,6 +381,7 @@ export function createSixPhotoRules(api){
   const rule=effective(x,s).g577Stay;
   if(!rule||rule.opponentTurn&&s.active===p)return false;
   if(rule.onlyCreature)return ownCondition(s,p,{g479OnlyCreature:true},x.uid,x.incarnation||0);
+  if(rule.untapped)return !x.tapped;
   const attacking=x.uid===s.attack?.attacker||x.uid===s.attackLifecycle?.uid&&(x.incarnation||0)===(s.attackLifecycle.incarnation||0);
   if((battlePower??api.power(x,attacking,s))<=0)return false;
   return !rule.lightMana||s.players[p].mana.filter(y=>!y.faceDown&&api.manaColors(api.zoneCard(s,p,y,'mana'),s,p).includes('光')).length>=rule.lightMana;
@@ -2730,6 +2731,12 @@ export function createSixPhotoRules(api){
   choice(s,t,t.title,[opt('使う',true,score),skip()]);
   break;
  }if(t.g299ShieldHand&&!own.shields.some(x=>api.shieldCards(x).some(y=>!y.g37ShieldHeld)))break;const defs=t.defs||[],refill=t.g292Refill?defs[0]:null,exchange=defs.length===2&&defs[0].op==='Draw'&&defs[1].g183Return,drains=defs.length&&defs.every(d=>['Draw','Ramp','ShieldTop'].includes(d.op)),n=t.g409Namake?(api.deckLocked(s,t.p)?0:Math.min(own.deck.length,api.canAddShield(s,t.p)?2:1)):t.g359RevealAll?(api.deckLocked(s,t.p)?0:api.lookCount(s,t.p,defs[0].n)):t.g356RampReturn?defs[0].n:t.g294MillDraw?defs.reduce((n,d)=>n+(d.n||0),0):refill?(own.hand.length<=refill.max?Math.max(0,refill.n-own.hand.length):0):t.g186GraveMill?defs[0].n:exchange||t.g204DrawDiscard?defs[0].n:drains?defs.reduce((n,d)=>n+(d.n||0),0):0,last=n>0&&n>=own.deck.length,shako=last&&(t.g294MillDraw&&own.deck.length>defs[0].n||refill||exchange||t.g204DrawDiscard||defs.every(d=>d.op==='Draw'))&&creatures(s,t.p).some(y=>effective(y,s).shako);choice(s,t,t.title||'この能力を使う？',[opt('使う',true,last?(shako?1000:-1000):t.g299ShieldHand?(own.shields.length>1&&own.hand.length<4?8:-8):t.g298SelfMana?(own.mana.length<6?18:own.mana.length<9?4:-8)-(x&&api.isEvolution(x)?12:0):t.defs?.length===1&&t.defs[0].op==='MillRecover545'?modeScore(s,t,t.defs):t.defs?.length===1&&t.defs[0].op==='RecoverAll326'?recoveryScore326(s,{...t,...t.defs[0]}):t.score??10),skip()]);break;}
+ case'g34_HandAllToMana':{
+  moveZoneSelection583(s,{...t,origin:'hand',to:'mana'},own.hand.slice());
+  // The chosen move attempts every card, including an empty hand (rule 101.3a).
+  start(s,t,t.after);
+  break;
+ }
  case'g34_KeepOne604':{
   const p=1-t.p,hand=t.zone==='hand';
   const rows=hand?s.players[p].hand:creatures(s,p).filter(y=>!y.sealed);
