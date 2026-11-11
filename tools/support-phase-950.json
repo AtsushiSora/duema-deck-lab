@@ -1,0 +1,269 @@
+{
+  "phase": 950,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6727,
+  "description": "非ブロック攻撃後のシールド公開、種族指定の進化元と破壊時のドラゴン展開、山札のシノビの公開と手札への移動を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35151/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35152/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35620/",
+    "https://dm.takaratomy.co.jp/rule/qa/39511/",
+    "https://dm.takaratomy.co.jp/rule/qa/42896/"
+  ],
+  "cards": [
+    {
+      "id": "dm09-s02",
+      "name": "アクア・マスター",
+      "faces": [
+        {
+          "name": "アクア・マスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかったとき、相手のシールドを１枚選び、表向きにしてプレイする。",
+          "race": "リキッド・ピープル",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-s02",
+      "spec": {
+        "g482Unblocked": [
+          {
+            "op": "FlipShields949",
+            "who": "opponent",
+            "n": 1,
+            "mandatory": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-s02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "5b5bad67da9c346b55da78a3689277f62d083d76b7779248f9abfe13b91ba0af",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm27-017",
+      "name": "無頼剣兵ドラグイノセント",
+      "faces": [
+        {
+          "name": "無頼剣兵ドラグイノセント",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーの上に、どの種族の進化クリーチャーを置いてもよい。\nこのクリーチャーが破壊された時、ドラゴンを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "ドラゴノイド/ビーストフォーク",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-017",
+      "spec": {
+        "g293AnyEvolutionRace": true,
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "raceAll": [
+                  "ドラゴン"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm27-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "89cbbb89d54731bba724b42e4baff39c345ca187cb051ea6b41deeade3cc7c1d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm29-053",
+      "name": "土隠雲の超人",
+      "faces": [
+        {
+          "name": "土隠雲の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からシノビを３体まで選び、相手に見せてもよい。相手に見せた後、そのうちの１体を相手に見せずに手札に加え、残りを山札に戻してシャッフルする。",
+          "race": "ジャイアント/シノビ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-053",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShinobiSearch950"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm29-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "d22037e99525c850ab64713f378b7f25f00f375679b5f3d067d06e03e180ce5f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx12b-035",
+      "canonicalId": "dm09-s02",
+      "name": "アクア・マスター",
+      "faces": [
+        {
+          "name": "アクア・マスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、相手のシールドをひとつ選び、表向きにする。（シールドゾーンにある間、そのシールドは表向きのままプレイする）",
+          "race": "リキッド・ピープル",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12b-035",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx12b-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "ba8cf4f152d57a2a00764640bae30927f6bf5b0bd0e16778d61f496275818057",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc55-047",
+      "canonicalId": "dm27-017",
+      "name": "無頼剣兵ドラグイノセント",
+      "faces": [
+        {
+          "name": "無頼剣兵ドラグイノセント",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーの上に、どの種族の進化クリーチャーを置いてもよい。\nこのクリーチャーが破壊された時、ドラゴンを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "ドラゴノイド/ビーストフォーク",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc55-047",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc55-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "66e566fff60c5fcc06d8703d02a86e39db9c3da806628aaca26e9e71d13d0511",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex08-137",
+      "canonicalId": "dm27-017",
+      "name": "無頼剣兵ドラグイノセント",
+      "faces": [
+        {
+          "name": "無頼剣兵ドラグイノセント",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーの上に、どの種族の進化クリーチャーを置いてもよい。\nこのクリーチャーが破壊された時、ドラゴンを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "ドラゴノイド/ビーストフォーク",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-137",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-137.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "c0bb01542c3fda502c300b4f23a85160e497b21decad7c0981b384449d478fb9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex12-102",
+      "canonicalId": "dm29-053",
+      "name": "土隠雲の超人",
+      "faces": [
+        {
+          "name": "土隠雲の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札を見る。その中からシノビを３体まで選び、相手に見せる。相手に見せた後、そのうちの１体を手札に加え、残りを山札に戻してシャッフルする。",
+          "race": "ジャイアント/シノビ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-102",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex12-102.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "32ae1c8c72160b912efb69ca4a792ef1baf46cabce82862410c80114ca74a214",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm09-s02": 4,
+      "dm27-017": 4,
+      "dm29-053": 4,
+      "dmx12b-035": 4,
+      "dmc55-047": 4,
+      "dmex08-137": 4,
+      "dmex12-102": 4
+    }
+  }
+}

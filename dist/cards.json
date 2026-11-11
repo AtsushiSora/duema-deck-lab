@@ -197322,23 +197322,110 @@
       "g949OpponentDiscardDraw": true,
       "supportBatch": "phase-949",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm09-s02",
+      "name": "アクア・マスター",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "リキッド・ピープル",
+      "text": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかったとき、相手のシールドを１枚選び、表向きにしてプレイする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-s02",
+      "limit": 4,
+      "g482Unblocked": [
+        {
+          "op": "FlipShields949",
+          "who": "opponent",
+          "n": 1,
+          "mandatory": true
+        }
+      ],
+      "supportBatch": "phase-950",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm27-017",
+      "name": "無頼剣兵ドラグイノセント",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 2000,
+      "race": "ドラゴノイド/ビーストフォーク",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーの上に、どの種族の進化クリーチャーを置いてもよい。\nこのクリーチャーが破壊された時、ドラゴンを１体、自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-017",
+      "limit": 4,
+      "g293AnyEvolutionRace": true,
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "raceAll": [
+                "ドラゴン"
+              ]
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-950",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm29-053",
+      "name": "土隠雲の超人",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "ジャイアント/シノビ",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からシノビを３体まで選び、相手に見せてもよい。相手に見せた後、そのうちの１体を相手に見せずに手札に加え、残りを山札に戻してシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-053",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShinobiSearch950"
+        }
+      ],
+      "supportBatch": "phase-950",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 949,
+    "phase": 950,
     "checkedAt": "2026-11-11",
-    "baseCount": 6724,
+    "baseCount": 6727,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6727,
+    "totalCount": 6730,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35736/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35737/",
-      "https://dm.takaratomy.co.jp/rule/qa/33426/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37433/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35307/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35151/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35152/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35620/",
+      "https://dm.takaratomy.co.jp/rule/qa/39511/",
+      "https://dm.takaratomy.co.jp/rule/qa/42896/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -214336,6 +214423,26 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35176/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35730/",
           "https://dm.takaratomy.co.jp/rule/qa/43764/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 949,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6724,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6727,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35736/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35737/",
+          "https://dm.takaratomy.co.jp/rule/qa/33426/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37433/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35307/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

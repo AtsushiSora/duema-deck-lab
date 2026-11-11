@@ -3388,6 +3388,22 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=950&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(['dm09-s02','dmx12b-035'].includes(d.id)&&[
+   'このクリーチャーが相手プレイヤーを攻撃してブロックされなかったとき相手のシールドを1枚選び表向きにしてプレイする。',
+   'このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時相手のシールドをひとつ選び表向きにする。(シールドゾーンにある間そのシールドは表向きのままプレイする)'
+  ].includes(text))return {g482Unblocked:[{op:'FlipShields949',who:'opponent',n:1,mandatory:true}]};
+  if(['dm27-017','dmc55-047','dmex08-137'].includes(d.id)&&
+   text.replace(/^マナゾーンに置く時このカードはタップして置く。/,'')===
+   'このクリーチャーの上にどの種族の進化クリーチャーを置いてもよい。このクリーチャーが破壊された時ドラゴンを1体自分の手札からバトルゾーンに出してもよい。')
+   return {g293AnyEvolutionRace:true,g172Death:[{op:'Select',origin:'hand',n:1,deploy:true,optional:true,
+    filter:{g228Face:{type:'creature',raceAll:['ドラゴン']}}}]};
+  if(['dm29-053','dmex12-102'].includes(d.id)&&[
+   'このクリーチャーをバトルゾーンに出した時自分の山札を見る。その中からシノビを3体まで選び相手に見せてもよい。相手に見せた後そのうちの1体を相手に見せずに手札に加え残りを山札に戻してシャッフルする。',
+   'このクリーチャーがバトルゾーンに出た時自分の山札を見る。その中からシノビを3体まで選び相手に見せる。相手に見せた後そのうちの1体を手札に加え残りを山札に戻してシャッフルする。'
+  ].includes(text))return {effect:'sixPhoto',g34Tasks:[{op:'ShinobiSearch950'}]};
+ }
  if(phase>=949&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dm30-018'&&f.typeText==='クリーチャー'&&text===

@@ -2333,8 +2333,8 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_FlipShields949':{
-  const rows=peekRows585(s,{...t,who:'both'}),selected=t.selected||[];
-  const n=t.n??Math.min(creatures(s,t.p).length,rows.length);
+  const rows=peekRows585(s,{...t,who:t.who??'both'}),selected=t.selected||[];
+  const n=Math.min(t.n??creatures(s,t.p).length,rows.length);
   if(!n)break;
   if(t.done||selected.length>=n){
    for(const row of rows.filter(r=>selected.includes(r.x.uid))){
@@ -2346,9 +2346,32 @@ export function createSixPhotoRules(api){
    }
    break;
   }
-  choice(s,{...t,n,selected},'表向きにするシールドを'+n+'つまで選ぶ（'+selected.length+'つ選択済み）',[
+  const title=t.mandatory?'表向きにするシールドを選ぶ':
+   '表向きにするシールドを'+n+'つまで選ぶ（'+selected.length+'つ選択済み）';
+  choice(s,{...t,n,selected},title,[
    ...rows.filter(r=>!selected.includes(r.x.uid)).map(r=>opt(r.label,r.x.uid,r.seen.some(x=>!x.faceUp)?5:0)),
-   selected.length?opt('ここまでで確定',null,0):skip()
+   ...(t.mandatory?[]:[selected.length?opt('ここまでで確定',null,0):skip()])
+  ]);
+  break;
+ }
+ case'g34_ShinobiSearch950':{
+  const ids=t.ids??look(s,{...t,n:own.deck.length}),selected=t.selected??[];
+  const rows=own.deck.filter(x=>ids.includes(x.uid)&&matches(s,t.p,x,{g228Face:{type:'creature',raceAll:['シノビ']}}));
+  const shown=rows.filter(x=>selected.includes(x.uid));
+  if(t.g950Revealed){
+   choice(s,t,'公開したシノビから手札に加える1体を選ぶ',
+    shown.map(x=>opt(card(x).name,x.uid,own.deck.length>1?10+cost(card(x)):-1000,x.cardId)));
+   break;
+  }
+  const remaining=rows.filter(x=>!selected.includes(x.uid));
+  if(t.done||selected.length>=3||!remaining.length){
+   for(const x of shown)api.log(s,t.p,'reveal',card(t.source).name+'で公開：'+card(x).name,{cardId:x.cardId});
+   put(s,shown.length?{...t,ids,selected,g950Revealed:true}:{...t,op:'g34_Order',ids,rest:'shuffle'});
+   break;
+  }
+  choice(s,{...t,ids,selected},'相手に見せるシノビを3体まで選ぶ（'+selected.length+'体選択済み）',[
+   ...remaining.map(x=>opt(card(x).name,x.uid,own.deck.length>1?10+cost(card(x)):-1000,x.cardId)),
+   opt('ここまでで確定',null,0)
   ]);
   break;
  }
@@ -3309,6 +3332,12 @@ export function createSixPhotoRules(api){
  case'g34_FlipShields949':
   if(v)put(s,{...t,selected:[...t.selected,v]});
   else if(t.selected.length)put(s,{...t,done:true});
+  break;
+ case'g34_ShinobiSearch950':
+  if(t.g950Revealed){
+   if(t.selected.includes(v))zoneMove(s,t.p,'deck',v,'hand');
+   put(s,{...t,op:'g34_Order',rest:'shuffle'});
+  }else put(s,v?{...t,selected:[...t.selected,v]}:{...t,done:true});
   break;
  case'g34_Peek585':if(v){const row=peekRows585(s,t).find(r=>r.p===v.player&&r.x.uid===v.uid);if(row)showPeek585(s,{...t,viewed:[...(t.viewed||[]),v.uid]},[row]);}break;
  case'g34_PeekRead585':
