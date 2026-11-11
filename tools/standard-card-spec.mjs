@@ -3388,6 +3388,11 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=931&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クロスギア'&&
+  ['dm15-055','promoy4-013'].includes(d.id)&&normalize(f.abilityText)===
+  'クロスギア:このカードをバトルゾーンに置く。クリーチャーにクロスするにはこのカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れてもこのカードはバトルゾーンに残る。これをクロスしたクリーチャーが攻撃する時カードを1枚自分の墓地から自分のマナゾーンに置いてもよい。')
+  return {type:'gear',g931CrossAttack:[{op:'Select',origin:'grave',to:'mana',n:1,optional:true,
+   title:'マナに置く自分の墓地のカードを1枚選ぶ（任意）'}]};
  if(phase>=930&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クロスギア'&&d.id==='dm15-011'&&normalize(f.abilityText)===
   'これをクロスしたクリーチャーが攻撃する時自分の山札の上から4枚を見てもよい。そうした場合その中から1枚を自分の手札に加え他の3枚を好きな順番で自分の山札の一番下に戻す。')
   return {type:'gear',g930CrossAttack:[{op:'Look',n:4,rest:'bottom',stages:[{n:1,to:'hand'}]}]};
@@ -3455,6 +3460,19 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=931&&d.faces.length===1){
+  if(d.id==='dm22-012'&&f.typeText==='クリーチャー'&&compact363===
+   '相手のターンのはじめに相手はカードを1枚引く。このクリーチャーが攻撃する時相手の手札を見てその中から1枚選んでもよい。相手はそれを捨てる。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g179OpponentStart:[{op:'Draw',owner:'opponent',n:1}],
+    g34Attack:[{op:'Select',owner:'opponent',origin:'hand',n:1,optional:true,g829InspectDiscard:true,
+     title:'相手の手札を見て捨てさせるカードを1枚選ぶ（任意）'}]};
+  if(d.id==='dm15-051'&&f.typeText==='呪文'&&compact363===
+   'バトルゾーンにある相手のクロスギアを1枚選び持ち主の墓地に置く。メタモーフ(自分のマナゾーンに7枚以上カードがあればこの呪文は次の能力を得る)バトルゾーンにある相手のクロスギアを1枚のかわりに2枚まで選び持ち主の墓地に置く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'ScrewRocket931'}]};
+  if(d.id==='dm15-006'&&f.typeText==='クリーチャー'&&compact363===
+   'ブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)自分のクロスギアをジェネレートした時カードを1枚引いてもよい。このクリーチャーは相手プレイヤーを攻撃できない。')
+   return {blocker:true,noPlayerAttack:true,g931GenerateDraw:true};
+ }
  if(phase>=930&&d.faces.length===1){
   if(d.id==='dm15-017'&&f.typeText==='呪文'&&compact363===
    '自分の山札の上から1枚目を自分の墓地に置く。そのカードがクリーチャーであればパワーがそのクリーチャーより小さい相手のクリーチャーを1体破壊する。そのカードがクロスギアであればそれをバトルゾーンに出してもよい。')

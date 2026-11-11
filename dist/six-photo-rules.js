@@ -2584,6 +2584,13 @@ export function createSixPhotoRules(api){
  case'g34_ManaCountRamp529':{const n=own.mana.length;if(n)start(s,t,[{op:'Offer',title:'山札から'+n+'枚をまとめてタップしてマナに置く？',defs:[{op:'Ramp',n,tapped:true}]}]);break;}
  case'g34_ManaDeploy523':{const max=own.mana.length;start(s,t,[t.summon?{op:'Execute',origin:'hand',creatureOnly:true,max,optional:t.optional}:{op:'Select',origin:t.origin,n:1,deploy:true,optional:t.optional,filter:{...t.filter,max}}]);break;}
  case'g34_PowerSweep696':choice(s,t,t.max+'以下の数字を選ぶ',powerSweepOptions696(s,t));break;
+ case'g34_ScrewRocket931':{
+  const metamorph=own.mana.length>=7;
+  start(s,t,[{op:'Select',owner:'opponent',origin:'battle',to:'grave',n:metamorph?2:1,optional:metamorph,
+   filter:{g201Gear:true,faceUp:true},g173Targets:true,g193Select:true,
+   title:metamorph?'墓地に置く相手のクロスギアを2枚まで選ぶ':'墓地に置く相手のクロスギアを1枚選ぶ'}]);
+  break;
+ }
  case'g34_TreasureChance930':{
   const y=api.takeTop(s,t.p);
   if(y){

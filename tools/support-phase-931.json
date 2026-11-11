@@ -1,0 +1,220 @@
+{
+  "phase": 931,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6662,
+  "description": "クロス先の攻撃時の墓地からのマナ追加、相手のターン開始時のドローと攻撃時の手札選択、メタモーフでのクロスギア除去、ジェネレート時の任意ドローに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/39962/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35494/",
+    "https://dm.takaratomy.co.jp/rule/qa/44219/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34948/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36097/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31649/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm15-021",
+    "https://dm.takaratomy.co.jp/rule/qa/43462/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37785/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm15-055",
+      "name": "フェアリー・スコップ",
+      "faces": [
+        {
+          "name": "フェアリー・スコップ",
+          "typeText": "クロスギア",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "クロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーが攻撃する時、カードを１枚、自分の墓地から自分のマナゾーンに置いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-055",
+      "spec": {
+        "type": "gear",
+        "g931CrossAttack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "mana",
+            "n": 1,
+            "optional": true,
+            "title": "マナに置く自分の墓地のカードを1枚選ぶ（任意）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm15-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "90fa181dde7cfe27a868dc02e58da54d7e32110a6be60375a73eeaa8301f5a5e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22-012",
+      "name": "黒神龍ダフトヘッド",
+      "faces": [
+        {
+          "name": "黒神龍ダフトヘッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手のターンのはじめに、相手はカードを１枚引く。\nこのクリーチャーが攻撃する時、相手の手札を見てその中から１枚選んでもよい。相手はそれを捨てる。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ドラゴン・ゾンビ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-012",
+      "spec": {
+        "breaker": 2,
+        "g179OpponentStart": [
+          {
+            "op": "Draw",
+            "owner": "opponent",
+            "n": 1
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "hand",
+            "n": 1,
+            "optional": true,
+            "g829InspectDiscard": true,
+            "title": "相手の手札を見て捨てさせるカードを1枚選ぶ（任意）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "bd8104e7c4a6f04da362e56f6569591df1f786c0c971caa9f2a63476b4f23b4d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm15-051",
+      "name": "スクリュー・ロケット",
+      "faces": [
+        {
+          "name": "スクリュー・ロケット",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バトルゾーンにある相手のクロスギアを１枚選び、持ち主の墓地に置く。\nメタモーフ(自分のマナゾーンに７枚以上カードがあれば、この呪文は次の能力を得る)\nバトルゾーンにある相手のクロスギアを、１枚のかわりに２枚まで選び、持ち主の墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-051",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ScrewRocket931"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm15-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "6e1e7e660db66cbc132822738802c6a1ded70fce329c4dd6e98173cac3a741d8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm15-006",
+      "name": "巡霊者シリアス",
+      "faces": [
+        {
+          "name": "巡霊者シリアス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\n自分のクロスギアをジェネレートした時、カードを１枚引いてもよい。\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+          "race": "コスモ・ウォーカー",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-006",
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g931GenerateDraw": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm15-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "6ff8ba10a430b45dcc6e848a9939a2d8d1314c6647d03834c58ceba96784e905",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy4-013",
+      "canonicalId": "dm15-055",
+      "name": "フェアリー・スコップ",
+      "faces": [
+        {
+          "name": "フェアリー・スコップ",
+          "typeText": "クロスギア",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "クロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーが攻撃する時、カードを１枚、自分の墓地から自分のマナゾーンに置いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy4-013",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy4-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "1d9de4799e8a33317e1fccfeddeed33c414cf627eeeaa57885ab4a4721038e1a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm15-055": 4,
+      "dm22-012": 4,
+      "dm15-051": 4,
+      "dm15-006": 4,
+      "promoy4-013": 4
+    }
+  }
+}

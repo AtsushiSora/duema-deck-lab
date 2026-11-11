@@ -195258,25 +195258,136 @@
       ],
       "supportBatch": "phase-930",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm15-055",
+      "name": "フェアリー・スコップ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 1,
+      "power": 0,
+      "race": "",
+      "text": "クロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーが攻撃する時、カードを１枚、自分の墓地から自分のマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-055",
+      "limit": 4,
+      "g931CrossAttack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "mana",
+          "n": 1,
+          "optional": true,
+          "title": "マナに置く自分の墓地のカードを1枚選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-931",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22-012",
+      "name": "黒神龍ダフトヘッド",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 9000,
+      "race": "ドラゴン・ゾンビ",
+      "text": "相手のターンのはじめに、相手はカードを１枚引く。\nこのクリーチャーが攻撃する時、相手の手札を見てその中から１枚選んでもよい。相手はそれを捨てる。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-012",
+      "limit": 4,
+      "breaker": 2,
+      "g179OpponentStart": [
+        {
+          "op": "Draw",
+          "owner": "opponent",
+          "n": 1
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "hand",
+          "n": 1,
+          "optional": true,
+          "g829InspectDiscard": true,
+          "title": "相手の手札を見て捨てさせるカードを1枚選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-931",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm15-051",
+      "name": "スクリュー・ロケット",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある相手のクロスギアを１枚選び、持ち主の墓地に置く。\nメタモーフ(自分のマナゾーンに７枚以上カードがあれば、この呪文は次の能力を得る)\nバトルゾーンにある相手のクロスギアを、１枚のかわりに２枚まで選び、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-051",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ScrewRocket931"
+        }
+      ],
+      "supportBatch": "phase-931",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm15-006",
+      "name": "巡霊者シリアス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3500,
+      "race": "コスモ・ウォーカー",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\n自分のクロスギアをジェネレートした時、カードを１枚引いてもよい。\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-006",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g931GenerateDraw": true,
+      "supportBatch": "phase-931",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 930,
+    "phase": 931,
     "checkedAt": "2026-11-11",
-    "baseCount": 6659,
-    "newEffectCards": 3,
+    "baseCount": 6662,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6662,
+    "totalCount": 6666,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/39962/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35494/",
+      "https://dm.takaratomy.co.jp/rule/qa/44219/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/34948/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36097/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31649/",
+      "https://dm.takaratomy.co.jp/card/detail/?id=dm15-021",
       "https://dm.takaratomy.co.jp/rule/qa/43462/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31654/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35335/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
-      "https://dm.takaratomy.co.jp/rule/qa/45589/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36427/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37228/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31650/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37785/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -211883,6 +211994,29 @@
           "https://dm.takaratomy.co.jp/rule/qa/31786/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31654/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35103/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 930,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6659,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6662,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/43462/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31654/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35335/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+          "https://dm.takaratomy.co.jp/rule/qa/45589/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36427/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37228/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31650/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [

@@ -115,7 +115,17 @@ export function createSamuraiRules(api){
  },
  speed(s,p,x){const c=card(x);return c.type==='creature'&&(samurai(c)&&creatures(s,p).some(y=>!api.ignored(s,y)&&card(y).samuraiSpeed)||(dragon(c)||samurai(c))&&gears(s,p).some(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((q)=>dragon(q)||samurai(q))(card(live(s,p,g)))));},
  power(s,p,x,c){if(p<0||!api.isCreature(s,x))return 0;return (x.sealed?0:crossedRacePower(s,c))+attached(s,p,x).filter(g=>active(s,g)).reduce((n,g)=>n+(card(g).g123CrossPower||0),0)+attached(s,p,x).filter(g=>card(g).takion&&active(s,g)).length*1000+((dragon(card(x))||samurai(card(x)))?gears(s,p).filter(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((c)=>dragon(c)||samurai(c))(card(live(s,p,g)))).length*2000:0);},
- entry(s,p,x,options){const c=card(x);if(!options.selfMuted&&!api.selfStopped(s,p)&&!api.ignored(s,x)){if(c.samuraiGenerate)on(s,p,x,'g18_Generate');if(c.shiroLock&&options.revolution)on(s,p,x,'g18_ShiraLock');}},
+ entry(s,p,x,options){
+  const c=card(x);
+  if(!options.selfMuted&&!api.selfStopped(s,p)&&!api.ignored(s,x)){
+   if(c.samuraiGenerate)on(s,p,x,'g18_Generate');
+   if(c.shiroLock&&options.revolution)on(s,p,x,'g18_ShiraLock');
+  }
+  if(c.type==='gear'&&options.execution)
+   for(const watcher of creatures(s,p)){
+    if(effective(watcher,s).g931GenerateDraw)on(s,p,watcher,'g34_Draw',{n:1,optional:true});
+   }
+ },
  attack(s,p,x){
   if(!api.selfStopped(s,p)){
    const c=effective(x,s);
@@ -126,6 +136,7 @@ export function createSamuraiRules(api){
    if(!active(s,g))continue;
    const gear=card(g);
    if(gear.doss)on(s,p,g,'g18_Mekraid');
+   if(gear.g931CrossAttack)on(s,p,g,'g34_Sequence',{defs:gear.g931CrossAttack});
    if(gear.g930CrossAttack)on(s,p,g,'g34_Offer',{
     title:'山札の上から4枚を見る？',defs:gear.g930CrossAttack,score:s.players[p].deck.length>1?10:-1000
    });
