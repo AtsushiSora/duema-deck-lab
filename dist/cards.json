@@ -196535,19 +196535,168 @@
       ],
       "supportBatch": "phase-942",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm19-002",
+      "name": "霊騎アラク・カイ・バデス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3500,
+      "race": "アーク・セラフィム",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nバトルゾーンにある自分の他のアーク・セラフィムすべてのパワーは+2000される。\n自分のターンの終わりに、バトルゾーンにある自分の他のアーク・セラフィムをすべてアンタップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-002",
+      "limit": 4,
+      "blocker": true,
+      "g205Aura": {
+        "filter": {
+          "creature": true,
+          "race": "アーク・セラフィム"
+        },
+        "other": true,
+        "power": 2000
+      },
+      "g174End": [
+        {
+          "op": "Offer",
+          "g219Untap": true,
+          "title": "自分の他のアーク・セラフィムをすべてアンタップする？",
+          "defs": [
+            {
+              "op": "GroupUntap",
+              "g179Other": true,
+              "filter": {
+                "creature": true,
+                "race": "アーク・セラフィム"
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-943",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23-015",
+      "name": "闘竜凰ドラグフォース",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 9000,
+      "race": "ティラノ・ドレイク",
+      "text": "進化-自分のティラノ・ドレイク１体の上に置く。\nバトルゾーンにある自分のクリーチャーはすべて、「スピードアタッカー」を得る。\n自分のターンの終わりに、バトルゾーンにある自分の他のクリーチャーをすべて、自分の手札に戻す。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-015",
+      "limit": 4,
+      "evolution": {
+        "race": "ティラノ・ドレイク"
+      },
+      "breaker": 2,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "g174End": [
+        {
+          "op": "Sweep",
+          "owner": "self",
+          "g179Other": true,
+          "to": "hand",
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-943",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22-016",
+      "name": "熱闘勇士マデュカス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2000,
+      "race": "ヒューマノイド",
+      "text": "自分のクリーチャーはすべて「パワーアタッカー+4000」を得る。(攻撃中、「パワーアタッカー+4000」を得たクリーチャーのパワーは+4000される)\n自分のクリーチャーはすべて、可能であれば毎ターン攻撃する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-016",
+      "limit": 4,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "attackBonus": 4000,
+            "mustAttack": true
+          }
+        }
+      ],
+      "supportBatch": "phase-943",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm28-067",
+      "name": "青銅の鎖鎌",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ビーストフォーク",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目をマナゾーンに置く。\nシールド・プラス-このクリーチャーが破壊された時、自分の山札の上から１枚目を裏向きのまま、自分のシールドいずれかの下に置いてもよい。(こうして重ねたカードの束を１枚のシールドとみなす)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-067",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        }
+      ],
+      "g172Death": [
+        {
+          "op": "ShieldPlus414"
+        }
+      ],
+      "supportBatch": "phase-943",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 942,
+    "phase": 943,
     "checkedAt": "2026-11-11",
-    "baseCount": 6698,
-    "newEffectCards": 3,
+    "baseCount": 6701,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6701,
+    "totalCount": 6705,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37335/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35500/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37323/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37423/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37424/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -213403,6 +213552,22 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37352/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37354/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35001/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 942,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6698,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6701,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37335/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

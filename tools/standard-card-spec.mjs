@@ -3388,6 +3388,27 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=943&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm19-002'&&f.typeText==='クリーチャー'&&text===
+   'ブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)バトルゾーンにある自分の他のアーク・セラフィムすべてのパワーは+2000される。自分のターンの終わりにバトルゾーンにある自分の他のアーク・セラフィムをすべてアンタップしてもよい。'){
+   const filter={creature:true,race:'アーク・セラフィム'};
+   return {blocker:true,g205Aura:{filter,other:true,power:2000},
+    g174End:[{op:'Offer',g219Untap:true,title:'自分の他のアーク・セラフィムをすべてアンタップする？',
+     defs:[{op:'GroupUntap',g179Other:true,filter}]}]};
+  }
+  if(['dm23-015','promoy5-061'].includes(d.id)&&f.typeText==='進化クリーチャー'&&text===
+   '進化-自分のティラノ・ドレイク1体の上に置く。バトルゾーンにある自分のクリーチャーはすべて「スピードアタッカー」を得る。自分のターンの終わりにバトルゾーンにある自分の他のクリーチャーをすべて自分の手札に戻す。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {evolution:{race:'ティラノ・ドレイク'},breaker:2,
+    g208Auras:[{filter:{creature:true},grants:{speedAttacker:true}}],
+    g174End:[{op:'Sweep',owner:'self',g179Other:true,to:'hand',filter:{creature:true}}]};
+  if(d.id==='dm22-016'&&f.typeText==='クリーチャー'&&text===
+   '自分のクリーチャーはすべて「パワーアタッカー+4000」を得る。(攻撃中「パワーアタッカー+4000」を得たクリーチャーのパワーは+4000される)自分のクリーチャーはすべて可能であれば毎ターン攻撃する。')
+   return {g208Auras:[{filter:{creature:true},grants:{attackBonus:4000,mustAttack:true}}]};
+  if(d.id==='dm28-067'&&f.typeText==='クリーチャー'&&text===
+   'このクリーチャーをバトルゾーンに出した時自分の山札の上から1枚目をマナゾーンに置く。シールド・プラス-このクリーチャーが破壊された時自分の山札の上から1枚目を裏向きのまま自分のシールドいずれかの下に置いてもよい。(こうして重ねたカードの束を1枚のシールドとみなす)')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Ramp',n:1}],g172Death:[{op:'ShieldPlus414'}]};
+ }
  if(phase>=942&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const blocker='ブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)';
