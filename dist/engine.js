@@ -1261,6 +1261,7 @@ export function entryAbilities(s,p,original,reference){
   const {label,op,...args}=ordinaryJBig;
   extended(label,op,args);
  }else if(c.type!=='spell'&&c.effect)add('出た時の効果','entry');
+ if(c.g997SummonEntry)extended('召喚して出た時','g34_Sequence',{defs:c.g997SummonEntry});
  for(const ability of eligibleExtraEntry527(c,null))extended(ability.label,'g34_Sequence',{defs:ability.defs});
  if(c.justDiver)add('ジャストダイバー','justDiver');
  if(c.g414ShieldPlus)extended('シールド・プラス','g34_ShieldPlus414');
@@ -1352,7 +1353,7 @@ function completeExecution(s,p,inst,c,{ruleOrigin,origin,free,freeReason,alterna
  // creature stays in that zone and has no battlefield entry event.
  if(originBlocked402){delete inst.summonedTurn;s.players[p][origin].splice(originIndex402<0?s.players[p][origin].length:originIndex402,0,inst);const zone=origin==='grave'?'墓地':'マナゾーン';log(s,p,'entryPrevented',`${c.name}は${zone}から移動できず、${zone}に残る`,{cardId:c.id});return;}
  const checkDeckSpell=ruleOrigin==='deck'&&!s.players[p].deck.length&&
-  ['スーパー・スペル・グレートブルー','アクア・スペルブルー'].includes(freeReason);
+  ['スーパー・スペル・グレートブルー','アクア・スペルブルー','スペルサイケデリカ'].includes(freeReason);
  if(c.type==='spell')extra.spellCast(s,p,c,inst,ruleOrigin,face);
  if(c.type==='castle'){inst.faceUp=true;s.players[p].shields.push(inst);extra.shieldAdded(s,p,inst);extra.six.shieldAdded918(s,p);if(free)(s.noManaUse??=[false,false])[p]=true;}
  else if(['creature','seed','gear','field'].includes(c.type)){enterCreature(s,p,inst,baseUid,{origin:ruleOrigin,execution:true,committed:true,paidMana,costPaid:!free&&cost>0,effectController:free||alternativeCost!==null?p:null,plus:!!c.triggerPlus&&free&&freeReason==='S・トリガー'&&!!inst.triggerPlus,super:!!c.superTrigger&&free&&(freeReason==='S・トリガー'&&!!inst.superTrigger||grantedSuper),ddd:freeReason==='D・D・D',...(alternativeCost?.g777AltEntry?{g777AltEntry:true}:{}),...(c.mugenGate&&Array.isArray(baseUid)?{mugenBases:baseUid}:{})});if(ruleOrigin==='deck')deckCheck(s,p);}

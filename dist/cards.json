@@ -203425,22 +203425,128 @@
       ],
       "supportBatch": "phase-996",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr15-016",
+      "name": "龍秘陣 ジャックポット・エントリー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "自分のマナゾーンにあるドラゴン１体につき、自分の山札の上から１枚を見る。その中からコスト８以下の進化ではないドラゴンを１体、バトルゾーンに出してもよい。残りを好きな順序で自分の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-016",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "manaCountFilter": {
+            "faceUp": true,
+            "g228Face": {
+              "type": "creature",
+              "raceAll": [
+                "ドラゴン"
+              ]
+            }
+          },
+          "limit": 1,
+          "rest": "bottom",
+          "g841DeckPeek": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "race": "ドラゴン",
+            "max": 8
+          }
+        }
+      ],
+      "supportBatch": "phase-997",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr15-022",
+      "name": "龍秘陣 ヘブン・アンセム",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "自分のマナゾーンにあるドラゴン１体につき、自分の山札の上から１枚目を見る。その中からカードを１枚裏向きのまま、新しいシールドとして自分のシールドゾーンに加える。残りを好きな順序で自分の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-022",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "manaCountFilter": {
+            "faceUp": true,
+            "g228Face": {
+              "type": "creature",
+              "raceAll": [
+                "ドラゴン"
+              ]
+            }
+          },
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "shields"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-997",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr15-s02",
+      "name": "龍素記号Mm スペルサイケデリカ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "クリスタル・コマンド・ドラゴン",
+      "text": "このクリーチャーまたは自分の他のコマンド・ドラゴンを召喚してバトルゾーンに出した時、自分の山札の上から４枚をすべてのプレイヤーに見せる。その中から呪文を１枚相手に選ばせ、残りを自分が好きな順序で山札の一番下に置く。その後、その呪文をコストを支払わずに唱える。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-s02",
+      "limit": 4,
+      "breaker": 2,
+      "g997SummonEntry": [
+        {
+          "op": "Psychedelica997",
+          "n": 4,
+          "public": true
+        }
+      ],
+      "supportBatch": "phase-997",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 996,
+    "phase": 997,
     "checkedAt": "2026-11-12",
-    "baseCount": 6906,
+    "baseCount": 6909,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6909,
+    "totalCount": 6912,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37138/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37139/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37141/",
-      "https://dm.takaratomy.co.jp/rule/qa/48921/"
+      "https://dm.takaratomy.co.jp/rule/qa/32484/",
+      "https://dm.takaratomy.co.jp/rule/qa/43078/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -221408,6 +221514,25 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/34934/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37067/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37068/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 996,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6906,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6909,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37138/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37139/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37141/",
+          "https://dm.takaratomy.co.jp/rule/qa/48921/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

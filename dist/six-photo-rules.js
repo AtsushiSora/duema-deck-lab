@@ -650,7 +650,8 @@ export function createSixPhotoRules(api){
  function look(s,t,owner=t.p){
   if(api.deckLocked(s,t.p))return [];
   const own=s.players[owner],held=reserved(own),ownLibrary=owner===t.p;
-  const n=ownLibrary?api.lookCount(s,t.p,t.n??3):t.n??3;
+  const size=t.manaCountFilter?countDraw(s,t.p,{zone:'mana',filter:t.manaCountFilter}):t.n??3;
+  const n=ownLibrary?api.lookCount(s,t.p,size):size;
   const publicLook=t.public||ownLibrary&&api.lookPublic(s,t.p);
   const rows=own.deck.filter(x=>!held.has(x.uid)).slice(0,n);
   const ids=rows.map(x=>x.uid);
@@ -2924,6 +2925,21 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_RaidPick':return raid764.run(s,t);
+ case'g34_Psychedelica997':{
+  const ids=look(s,t),options=own.deck.filter(y=>ids.includes(y.uid)).flatMap(y=>
+   faces(card(y)).flatMap((face,i)=>face.type==='spell'?[opt(face.name,{uid:y.uid,face:i},-cost(face),y.cardId)]:[]));
+  if(options.length)choice(s,{...t,op:'g34_PsychedelicaPick997',p:1-t.p,deckOwner:t.p,ids},
+   '相手が唱える公開された呪文を1枚選ぶ',options);
+  else put(s,{...t,op:'g34_Order',ids,rest:'bottom',ordered:[]});
+  break;
+ }
+ case'g34_PsychedelicaCast997':{
+  const {uid,face}=t.selected,y=own.deck.find(x=>x.uid===uid),spell=y&&faces(card(y))[face];
+  release(s,t.p,uid);
+  if(spell?.type==='spell'&&api.canCast(s,t.p,spell,'deck'))
+   cast(s,t.p,uid,true,null,face,null,'deck','スペルサイケデリカ');
+  break;
+ }
  case'g34_Ryuo996':{
   const ids=look(s,t),eligible=own.deck.filter(y=>ids.includes(y.uid)&&matches(s,t.p,y,{g228Face:{type:'creature',color:'火'}}));
   if(eligible.length)choice(s,{...t,ids},'公開する火のクリーチャーを1体選ぶ',
@@ -4029,6 +4045,10 @@ export function createSixPhotoRules(api){
  }
  case'g34_LookAll424':{const chosen=v?t.g424Ids:[];put(s,{...t,op:'g34_LookPick',chosen,stages:t.stages.map((q,i)=>i===t.stage?{...q,n:chosen.length,optional:false,g424AllOrNone:false}:q)});break;}
  case'g34_ManaDown426':{const y=v&&own.mana.find(y=>y.uid===v.uid&&!y.faceDown&&(y.zoneSerial||0)===v.serial);if(y){const name=card(y).name;y.faceDown=true;api.log(s,t.p,'manaFaceDown',card(t.source).name+'：'+name+'をマナゾーンで裏向きにした',{cardId:y.cardId});}break;}
+ case'g34_PsychedelicaPick997':
+  put(s,{...t,op:'g34_Order',p:t.deckOwner,ids:t.ids.filter(uid=>uid!==v.uid),rest:'bottom',ordered:[],
+   after:[{op:'PsychedelicaCast997',selected:v}]});
+  break;
  case'g34_Ryuo996':{
   const y=own.deck.find(y=>y.uid===v&&t.ids.includes(v));
   put(s,{...t,op:'g34_RyuoFinish996',revealed:y?.uid});
@@ -4757,6 +4777,14 @@ export function createSixPhotoRules(api){
   }
  },
  entry(s,p,y,options){const c=card(y),creature=api.isCreature(s,y);
+  if(creature&&!y.sealed&&options.execution===true){
+   const commandDragon=race(effective(y,s,true),'コマンド・ドラゴン');
+   for(const watcher of creatures(s,p)){
+    if(watcher.sealed||!card(watcher).g997SummonEntry)continue;
+    const defs=effective(watcher,s).g997SummonEntry;
+    if(defs&&(watcher===y?!options.selfMuted&&!api.selfStopped(s,p):commandDragon))queue(s,p,watcher,defs);
+   }
+  }
   if(options.g785Group!==undefined){
    const delay=s.g537Delays?.[options.g785Group];
    if(delay?.turn===s.turn&&delay.defs[0]?.op==='ReturnGroup785')delay.defs[0].refs.push({uid:y.uid,incarnation:y.incarnation||0});

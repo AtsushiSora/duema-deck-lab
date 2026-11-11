@@ -3435,6 +3435,28 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=997&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const manaDragon='自分のマナゾーンにあるドラゴン1体につき自分の山札の上から';
+  const order='残りを好きな順序で';
+  const manaCountFilter={faceUp:true,g228Face:{type:'creature',raceAll:['ドラゴン']}};
+  if(f.typeText==='呪文'){
+   const jackpot='その中からコスト8以下の進化ではないドラゴン';
+   if((['dmr15-016','dmx26-043','promoy13-058'].includes(d.id)&&text===manaDragon+'1枚を見る。'+jackpot+'を1体バトルゾーンに出してもよい。'+order+'自分の山札の一番下に置く。')||
+    (['dm25sp1-011','dm26ex5-DP014'].includes(d.id)&&text==='自分の山札の上から自分のマナゾーンにあるドラゴン・クリーチャーの数と同じ枚数見る。'+jackpot+'・クリーチャーを1体出してもよい。'+order+'山札の下に置く。')||
+    (['dmex16-050','promoy21-063'].includes(d.id)&&text==='自分のマナゾーンにあるドラゴン・クリーチャーを数えその数だけ自分の山札の上から見る。'+jackpot+'を1体出してもよい。'+order+'山札の下に置く。')||
+    (d.id==='dmex12-039'&&text==='自分のマナゾーンにあるドラゴン・クリーチャーを数えその数だけ自分の山札の上からカードを見る。'+jackpot+'を1体バトルゾーンに出してもよい。'+order+'山札の一番下に置く。'))
+    return {effect:'sixPhoto',g34Tasks:[{op:'LookDeploy530',manaCountFilter,limit:1,rest:'bottom',g841DeckPeek:true,
+     filter:{creature:true,nonEvolution:true,race:'ドラゴン',max:8}}]};
+   if(d.id==='dmr15-022'&&text===manaDragon+'1枚目を見る。'+
+    'その中からカードを1枚裏向きのまま新しいシールドとして自分のシールドゾーンに加える。'+order+'自分の山札の一番下に置く。')
+    return {effect:'sixPhoto',g34Tasks:[{op:'Look',manaCountFilter,rest:'bottom',stages:[{n:1,to:'shields'}]}]};
+  }
+  if(d.id==='dmr15-s02'&&f.typeText==='クリーチャー'&&text===
+   'このクリーチャーまたは自分の他のコマンド・ドラゴンを召喚してバトルゾーンに出した時自分の山札の上から4枚をすべてのプレイヤーに見せる。'+
+   'その中から呪文を1枚相手に選ばせ残りを自分が好きな順序で山札の一番下に置く。その後その呪文をコストを支払わずに唱える。W・ブレイカー')
+   return {breaker:2,g997SummonEntry:[{op:'Psychedelica997',n:4,public:true}]};
+ }
  if(phase>=996&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText),blocker='ブロッカーブロッカー',double='W・ブレイカー';
   const roseShield='自分のドラゴンが攻撃またはブロックした時自分の山札の上から1枚目を裏向きのまま新しいシールドとして自分のシールドゾーンに加えてもよい。';

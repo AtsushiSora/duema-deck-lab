@@ -1,0 +1,372 @@
+{
+  "phase": 997,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6909,
+  "description": "龍秘陣 ジャックポット・エントリー、龍秘陣 ヘブン・アンセム、龍素記号Mm スペルサイケデリカの公式能力を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/32484/",
+    "https://dm.takaratomy.co.jp/rule/qa/43078/"
+  ],
+  "cards": [
+    {
+      "id": "dmr15-016",
+      "name": "龍秘陣 ジャックポット・エントリー",
+      "faces": [
+        {
+          "name": "龍秘陣 ジャックポット・エントリー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分のマナゾーンにあるドラゴン１体につき、自分の山札の上から１枚を見る。その中からコスト８以下の進化ではないドラゴンを１体、バトルゾーンに出してもよい。残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-016",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LookDeploy530",
+            "manaCountFilter": {
+              "faceUp": true,
+              "g228Face": {
+                "type": "creature",
+                "raceAll": [
+                  "ドラゴン"
+                ]
+              }
+            },
+            "limit": 1,
+            "rest": "bottom",
+            "g841DeckPeek": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "race": "ドラゴン",
+              "max": 8
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr15-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "a412026fde137f6a43bf951d911f48e6a053afa982a2857c927089699ee30150",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr15-022",
+      "name": "龍秘陣 ヘブン・アンセム",
+      "faces": [
+        {
+          "name": "龍秘陣 ヘブン・アンセム",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のマナゾーンにあるドラゴン１体につき、自分の山札の上から１枚目を見る。その中からカードを１枚裏向きのまま、新しいシールドとして自分のシールドゾーンに加える。残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-022",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "manaCountFilter": {
+              "faceUp": true,
+              "g228Face": {
+                "type": "creature",
+                "raceAll": [
+                  "ドラゴン"
+                ]
+              }
+            },
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "shields"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr15-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "923c1cf05b74fda6773093668864b5d0df9f7768b618d78b11353ac4e316cc51",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr15-s02",
+      "name": "龍素記号Mm スペルサイケデリカ",
+      "faces": [
+        {
+          "name": "龍素記号Mm スペルサイケデリカ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーまたは自分の他のコマンド・ドラゴンを召喚してバトルゾーンに出した時、自分の山札の上から４枚をすべてのプレイヤーに見せる。その中から呪文を１枚相手に選ばせ、残りを自分が好きな順序で山札の一番下に置く。その後、その呪文をコストを支払わずに唱える。\nW・ブレイカー",
+          "race": "クリスタル・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-s02",
+      "spec": {
+        "breaker": 2,
+        "g997SummonEntry": [
+          {
+            "op": "Psychedelica997",
+            "n": 4,
+            "public": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr15-s02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "73210c4de1465a9029e56d289f3031e727c8cf6f53b591ac47e72e1f6a90021c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx26-043",
+      "canonicalId": "dmr15-016",
+      "name": "龍秘陣 ジャックポット・エントリー",
+      "faces": [
+        {
+          "name": "龍秘陣 ジャックポット・エントリー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分のマナゾーンにあるドラゴン１体につき、自分の山札の上から１枚を見る。その中からコスト８以下の進化ではないドラゴンを１体、バトルゾーンに出してもよい。残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx26-043",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx26-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "490ff942d2b4ffb0bfaa70fe5dd024b8cc4134a8877b8de6c34e08418dc385a3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex12-039",
+      "canonicalId": "dmr15-016",
+      "name": "龍秘陣 ジャックポット・エントリー",
+      "faces": [
+        {
+          "name": "龍秘陣 ジャックポット・エントリー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分のマナゾーンにあるドラゴン・クリーチャーを数え、その数だけ、自分の山札の上からカードを見る。その中からコスト８以下の進化ではないドラゴンを１体、バトルゾーンに出してもよい。残りを好きな順序で山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-039",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex12-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "9bf3219d392f6094199c805edaa5919516f231d880c77ef6dfba46b9971818e9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex16-050",
+      "canonicalId": "dmr15-016",
+      "name": "龍秘陣 ジャックポット・エントリー",
+      "faces": [
+        {
+          "name": "龍秘陣 ジャックポット・エントリー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分のマナゾーンにあるドラゴン・クリーチャーを数え、その数だけ、自分の山札の上から見る。その中からコスト８以下の進化ではないドラゴンを１体出してもよい。残りを好きな順序で山札の下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex16-050",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex16-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "eb9648d87ded90c6f13a97844f854eebc7b276e9bbfb09d312795bee55fe7c5e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25sp1-011",
+      "canonicalId": "dmr15-016",
+      "name": "龍秘陣 ジャックポット・エントリー",
+      "faces": [
+        {
+          "name": "龍秘陣 ジャックポット・エントリー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分の山札の上から、自分のマナゾーンにあるドラゴン・クリーチャーの数と同じ枚数見る。その中からコスト８以下の進化ではないドラゴン・クリーチャーを１体出してもよい。残りを好きな順序で山札の下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25sp1-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25sp1-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "5a55fbc6e759a7b80e3c999b47dbe10cb232aa3ac8c4b0b0c56168ff7ca7f8e5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex5-DP014",
+      "canonicalId": "dmr15-016",
+      "name": "龍秘陣 ジャックポット・エントリー",
+      "faces": [
+        {
+          "name": "龍秘陣 ジャックポット・エントリー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分の山札の上から、自分のマナゾーンにあるドラゴン・クリーチャーの数と同じ枚数見る。その中からコスト８以下の、進化ではないドラゴン・クリーチャーを１体出してもよい。残りを好きな順序で山札の下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-DP014",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-DP014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "8e48c7f7a70fb0f151c1fa199649ff54f060e1e46fa085a39275b2027bfed4b3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy13-058",
+      "canonicalId": "dmr15-016",
+      "name": "龍秘陣 ジャックポット・エントリー",
+      "faces": [
+        {
+          "name": "龍秘陣 ジャックポット・エントリー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分のマナゾーンにあるドラゴン１体につき、自分の山札の上から１枚を見る。その中からコスト８以下の進化ではないドラゴンを１体、バトルゾーンに出してもよい。残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-058",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy13-058.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "203bf32848d236207dea8fff95db9bc696d760094fcb12b602a70cb1bf1077e3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy21-063",
+      "canonicalId": "dmr15-016",
+      "name": "龍秘陣 ジャックポット・エントリー",
+      "faces": [
+        {
+          "name": "龍秘陣 ジャックポット・エントリー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分のマナゾーンにあるドラゴン・クリーチャーを数え、その数だけ、自分の山札の上から見る。その中からコスト８以下の進化ではないドラゴンを１体出してもよい。残りを好きな順序で山札の下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy21-063",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy21-063.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "1206f7dbdf4a68ec6bcc7686f4293b54be1c2208e9b79bfb121f8b8b14228d8a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr15-016": 4,
+      "dmr15-022": 4,
+      "dmr15-s02": 4,
+      "dmx26-043": 4,
+      "dmex12-039": 4,
+      "dmex16-050": 4,
+      "dm25sp1-011": 4,
+      "dm26ex5-DP014": 4,
+      "promoy13-058": 4,
+      "promoy21-063": 4
+    }
+  }
+}
