@@ -1,0 +1,298 @@
+{
+  "phase": 982,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6842,
+  "description": "エイリアン進化と条件付き呪文禁止、山札からのエイリアン探索、マナのドラゴンを数えるパワー低下、攻撃と選択に制限のあるブロッカーに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/46854/",
+    "https://dm.takaratomy.co.jp/rule/qa/31579/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35412/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37184/",
+    "https://dm.takaratomy.co.jp/rule/qa/42143/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37322/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31636/"
+  ],
+  "cards": [
+    {
+      "id": "dmx05-s01",
+      "name": "聖隷王ガガ・アルカディアス",
+      "faces": [
+        {
+          "name": "聖隷王ガガ・アルカディアス",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化-自分のエイリアン１体の上に置く。\n相手は、バトルゾーンに自身のエイリアンが１体もなければ、呪文を唱えることはできない。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "エンジェル・コマンド/エイリアン",
+          "powerText": "12500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx05-s01",
+      "spec": {
+        "evolution": {
+          "race": "エイリアン"
+        },
+        "breaker": 3,
+        "g982SpellLockUnlessRace": "エイリアン"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx05-s01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "b1ed9903d1e6ee4e0a2075e086779d801961b5d07e8cafb0df70c11474fc977c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx05-014",
+      "name": "躍動するジオ・ホーン",
+      "faces": [
+        {
+          "name": "躍動するジオ・ホーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からエイリアンを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "ホーン・ビースト/エイリアン",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx05-014",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "reveal": true,
+                "optional": true,
+                "filter": {
+                  "g228Face": {
+                    "type": "creature",
+                    "raceAll": [
+                      "エイリアン"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx05-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "ff696bdff1a256f319a7cb921f5fa0eb0ca55cfd335f883567f726cacb0942b7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr15-014",
+      "name": "龍秘陣 滅殺の咆哮",
+      "faces": [
+        {
+          "name": "龍秘陣 滅殺の咆哮",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このターン、自分のマナゾーンにあるドラゴン１体につき、バトルゾーンにある相手のクリーチャー１体のパワーは-1000される。（パワー０以下のクリーチャーは破壊される）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-014",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountPower561",
+            "zone": "mana",
+            "amount": -1000,
+            "filter": {
+              "faceUp": true,
+              "g228Face": {
+                "type": "creature",
+                "raceAll": [
+                  "ドラゴン"
+                ]
+              }
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "power": 1,
+                "g561Scale": true,
+                "g242PowerMinus": true,
+                "spell": true,
+                "title": "パワーを下げる相手のクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr15-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "b9095d6a092cc439044ce7325d0200678429732ce3be6504881a05c57b3b6760",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx05-005",
+      "name": "我牙の精霊HEIKE・XX",
+      "faces": [
+        {
+          "name": "我牙の精霊HEIKE・XX",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nバトルゾーンにある自分のクリーチャーを相手が選ぶ時、このクリーチャーを選ぶことはできない。(ただし、このクリーチャーを攻撃またはブロックしてもよい)",
+          "race": "エンジェル・コマンド/エイリアン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx05-005",
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "untargetable": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx05-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "79971030e612d5efa3fe099773972915a2c038c42f7ef14dfaac0e382bd23beb",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx12a-035",
+      "canonicalId": "dmx05-014",
+      "name": "躍動するジオ・ホーン",
+      "faces": [
+        {
+          "name": "躍動するジオ・ホーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からエイリアンを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "ホーン・ビースト/エイリアン",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12a-035",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx12a-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "1599a2e3238c18cffa70d58d6ba38f21d49e47c506f7ded47db7199b3c13d404",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd06-010",
+      "canonicalId": "dmx05-005",
+      "name": "我牙の精霊HEIKE・XX",
+      "faces": [
+        {
+          "name": "我牙の精霊HEIKE・XX",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nバトルゾーンにある自分のクリーチャーを相手が選ぶ時、このクリーチャーを選ぶことはできない。(ただし、このクリーチャーを攻撃またはブロックしてもよい)",
+          "race": "エンジェル・コマンド/エイリアン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd06-010",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd06-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "74b491fe3be4ed9bb7497462dd3b8d1474e0b7d76e8e61d41206f595738b02c2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx20-035",
+      "canonicalId": "dmx05-005",
+      "name": "我牙の精霊HEIKE・XX",
+      "faces": [
+        {
+          "name": "我牙の精霊HEIKE・XX",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n自分のクリーチャーを相手が選ぶ時、このクリーチャーは選べない。（ただし、このクリーチャーを攻撃またはブロックしてもよい）",
+          "race": "エンジェル・コマンド/エイリアン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx20-035",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx20-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "d078d2c360382da9488022efb8fbe13ab5b9ad80024f85493db4cea69d249b8b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx05-s01": 4,
+      "dmx05-014": 4,
+      "dmr15-014": 4,
+      "dmx05-005": 4,
+      "dmx12a-035": 4,
+      "dmd06-010": 4,
+      "dmx20-035": 4
+    }
+  }
+}

@@ -1053,7 +1053,8 @@ export function createSixPhotoRules(api){
  function countedPowerDefs561(s,t,d){
   const rows=s.players[t.p][d.zone]||[],source=d.g179Other?sourceHost474(s,t)?.x:null;
   const n=d.zone==='hand'?rows.length:d.zone==='battle'?creatures(s,t.p).filter(y=>y!==source&&!y.sealed&&matches(s,t.p,y,d.filter)).length:
-   rows.filter(y=>!d.filter.color||api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,t.p).includes(d.filter.color)).length;
+   rows.filter(y=>d.filter.g228Face?matches(s,t.p,y,d.filter):
+    !d.filter.color||api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,t.p).includes(d.filter.color)).length;
   return (d.defs||[]).map(def=>def.g561Scale?{...def,power:n*d.amount}:def);
  }
  function lockSpells589(s,t,color){
@@ -4413,6 +4414,11 @@ export function createSixPhotoRules(api){
   });
  },
  allowedCast(s,p,c){
+  if(c.type==='spell'&&s.players[1-p].battle.some(x=>{
+   const requiredRace=!x.sealed&&card(x).g982SpellLockUnlessRace&&effective(x,s).g982SpellLockUnlessRace;
+   return requiredRace&&api.isCreature(s,x)&&!creatures(s,p).some(y=>
+    !y.sealed&&!y.faceDown&&race(effective(y,s),requiredRace));
+  }))return false;
   if(c.type==='field'&&creatures(s,1-p).some(x=>!x.sealed&&effective(x,s).g685OpponentFieldLock))return false;
   if(c.type==='spell'&&s.players.some(owner=>owner.battle.some(x=>x.tapped&&!x.sealed&&
    card(x).g924TappedSpellLock&&effective(x,s).g924TappedSpellLock)))return false;

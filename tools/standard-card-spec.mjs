@@ -3435,6 +3435,24 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=982&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmx05-s01'&&f.typeText==='進化クリーチャー'&&text==='進化-自分のエイリアン1体の上に置く。相手はバトルゾーンに自身のエイリアンが1体もなければ呪文を唱えることはできない。T・ブレイカー(このクリーチャーはシールドを3枚ブレイクする)')
+   return {evolution:{race:'エイリアン'},breaker:3,g982SpellLockUnlessRace:'エイリアン'};
+  if(['dmx05-014','dmx12a-035'].includes(d.id)&&f.typeText==='クリーチャー'&&text==='このクリーチャーをバトルゾーンに出した時自分の山札を見る。その中からエイリアンを1体選び相手に見せてから自分の手札に加えてもよい。その後山札をシャッフルする。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Look',g201Search:true,g200Search:true,n:'all',rest:'shuffle',
+    stages:[{n:1,to:'hand',reveal:true,optional:true,filter:{g228Face:{type:'creature',raceAll:['エイリアン']}}}]}]};
+  if(d.id==='dmr15-014'&&f.typeText==='呪文'&&text==='このターン自分のマナゾーンにあるドラゴン1体につきバトルゾーンにある相手のクリーチャー1体のパワーは-1000される。(パワー0以下のクリーチャーは破壊される)')
+   return {effect:'sixPhoto',g34Tasks:[{op:'CountPower561',zone:'mana',amount:-1000,
+    filter:{faceUp:true,g228Face:{type:'creature',raceAll:['ドラゴン']}},
+    defs:[{op:'Target',power:1,g561Scale:true,g242PowerMinus:true,spell:true,title:'パワーを下げる相手のクリーチャーを1体選ぶ'}]}]};
+  const restriction='このクリーチャーは相手プレイヤーを攻撃できない。';
+  const choose='(ただしこのクリーチャーを攻撃またはブロックしてもよい)';
+  if(f.typeText==='クリーチャー'&&(
+   ['dmx05-005','dmd06-010'].includes(d.id)&&text==='ブロッカー'+restriction+'バトルゾーンにある自分のクリーチャーを相手が選ぶ時このクリーチャーを選ぶことはできない。'+choose||
+   d.id==='dmx20-035'&&text==='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+restriction+'自分のクリーチャーを相手が選ぶ時このクリーチャーは選べない。'+choose
+  ))return {blocker:true,noPlayerAttack:true,untargetable:true};
+ }
  if(phase>=981&&d?.status==='complete'){
   const text=normalize(f.abilityText);
   if(d.faces.length===1&&f.typeText==='クリーチャー'){

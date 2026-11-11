@@ -200943,24 +200943,158 @@
       ],
       "supportBatch": "phase-981",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx05-s01",
+      "name": "聖隷王ガガ・アルカディアス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 12500,
+      "race": "エンジェル・コマンド/エイリアン",
+      "text": "進化-自分のエイリアン１体の上に置く。\n相手は、バトルゾーンに自身のエイリアンが１体もなければ、呪文を唱えることはできない。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx05-s01",
+      "limit": 4,
+      "evolution": {
+        "race": "エイリアン"
+      },
+      "breaker": 3,
+      "g982SpellLockUnlessRace": "エイリアン",
+      "supportBatch": "phase-982",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx05-014",
+      "name": "躍動するジオ・ホーン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "ホーン・ビースト/エイリアン",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からエイリアンを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx05-014",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g200Search": true,
+          "n": "all",
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "reveal": true,
+              "optional": true,
+              "filter": {
+                "g228Face": {
+                  "type": "creature",
+                  "raceAll": [
+                    "エイリアン"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-982",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr15-014",
+      "name": "龍秘陣 滅殺の咆哮",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "このターン、自分のマナゾーンにあるドラゴン１体につき、バトルゾーンにある相手のクリーチャー１体のパワーは-1000される。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-014",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountPower561",
+          "zone": "mana",
+          "amount": -1000,
+          "filter": {
+            "faceUp": true,
+            "g228Face": {
+              "type": "creature",
+              "raceAll": [
+                "ドラゴン"
+              ]
+            }
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "power": 1,
+              "g561Scale": true,
+              "g242PowerMinus": true,
+              "spell": true,
+              "title": "パワーを下げる相手のクリーチャーを1体選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-982",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx05-005",
+      "name": "我牙の精霊HEIKE・XX",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "エンジェル・コマンド/エイリアン",
+      "text": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nバトルゾーンにある自分のクリーチャーを相手が選ぶ時、このクリーチャーを選ぶことはできない。(ただし、このクリーチャーを攻撃またはブロックしてもよい)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx05-005",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "untargetable": true,
+      "supportBatch": "phase-982",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 981,
+    "phase": 982,
     "checkedAt": "2026-11-12",
-    "baseCount": 6837,
-    "newEffectCards": 5,
+    "baseCount": 6842,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6842,
+    "totalCount": 6846,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316689/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37055/",
-      "https://dm.takaratomy.co.jp/rule/qa/41284/",
-      "https://dm.takaratomy.co.jp/rule/qa/42947/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36416/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
+      "https://dm.takaratomy.co.jp/rule/qa/46854/",
+      "https://dm.takaratomy.co.jp/rule/qa/31579/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35412/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37184/",
+      "https://dm.takaratomy.co.jp/rule/qa/42143/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37322/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31636/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -218613,6 +218747,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/33266/",
           "https://dm.takaratomy.co.jp/rule/qa/42526/",
           "https://dm.takaratomy.co.jp/rule/qa_old/34944/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 981,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6837,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 6842,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316689/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37055/",
+          "https://dm.takaratomy.co.jp/rule/qa/41284/",
+          "https://dm.takaratomy.co.jp/rule/qa/42947/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36416/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
