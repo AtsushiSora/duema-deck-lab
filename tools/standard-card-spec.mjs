@@ -3445,6 +3445,20 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=922&&d.faces.length===1){
+  const stingerCurrent='このクリーチャーをバトルゾーンに出した時、自分のクリーチャーを１体破壊する。';
+  if(creature&&(d.id==='dm18-071'&&compact363===normalize(stingerCurrent)||d.id==='dm01-057'&&compact363===
+   'このクリーチャーがバトルゾーンに出たときバトルゾーンにある自分の他のクリーチャー1体を自分の墓地に置く。そうしなければこのクリーチャーを自分の墓地に置く。'))
+   return {text:stingerCurrent,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'battle',owner:'self',to:'grave',
+    n:1,filter:{creature:true},g187OwnPick:true,title:'破壊する自分のクリーチャーを1体選ぶ'}]};
+  if(f.typeText==='呪文'&&d.id==='dm14-084'&&compact363===
+   'バトルゾーンにあるクロスギアを1枚選び持ち主の手札に戻す。そのクロスギアをクロスしていたクリーチャーも持ち主の手札に戻す。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'WarpRifle922'}]};
+  if(creature&&d.id==='dm24-019'&&compact363===
+   '自分の多色クリーチャーを召喚する時このクリーチャーが自分の墓地にあればこのクリーチャーを墓地から手札に戻してもよい。'+
+   'W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g922GraveMultiSummon:true};
+ }
  if(phase>=921&&d.faces.length===1){
   const anyColor=(...colors)=>({any:colors.map(color=>({color}))});
   if(creature&&d.id==='dm24-071'&&compact363===

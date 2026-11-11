@@ -2094,6 +2094,12 @@ export function createSixPhotoRules(api){
   api.discardSelected(s,opponent,s.players[opponent].hand.map(x=>x.uid),t.source,t.p);
   break;
  }
+ case'g34_WarpRifle922':{
+  const gears=s.players.flatMap(player=>player.battle.filter(y=>!y.sealed&&!y.faceDown&&card(y).type==='gear'));
+  const options=targetOptions(s,t.p,gears);
+  if(options.length)choice(s,t,'手札に戻すクロスギアを1枚選ぶ',options);
+  break;
+ }
  case'g34_OpponentBury921':{
   const chooser=1-t.p,shields=s.players[chooser].shields;
   // The opponent chooses their own card, while the spell still causes the destruction.
@@ -3051,6 +3057,19 @@ export function createSixPhotoRules(api){
  }else if(t.elseDefs)start(s,t,t.elseDefs);
  break;
  case'g34_OwnShieldGraves697':put(s,{...t,picks:[...(t.picks||[]),{owner:t.chooser,uid:v}]});break;
+ case'g34_WarpRifle922':{
+  const player=s.players.findIndex(side=>side.battle.some(y=>y.uid===v));
+  if(player<0)break;
+  const gear=s.players[player].battle.find(y=>y.uid===v),ref=gear.crossedTo;
+  const rows=[{player,uid:gear.uid,to:'hand',destroy:false,controller:t.p}];
+  // Snapshot the cross before the gear leaves. The wearer is not chosen.
+  if(ref)for(const p of [0,1]){
+   const host=s.players[p].battle.find(y=>y.uid===ref.uid&&(y.incarnation||0)===ref.incarnation&&api.isCreature(s,y));
+   if(host){rows.push({player:p,uid:host.uid,to:'hand',destroy:false,controller:t.p});break;}
+  }
+  move(s,rows);
+  break;
+ }
  case'g34_OpponentBury921':{
   if(v.origin==='battle')move(s,[{player:t.chooser,uid:v.uid,to:'grave',destroy:true,controller:t.p}]);
   else if(v.origin==='shields'){
@@ -3808,6 +3827,8 @@ export function createSixPhotoRules(api){
    if(watch.g816Evolution&&!api.isEvolution(x)&&!((c.neoEvolution||c.g48HandEvolution)&&c.g27BaseUid))continue;
    queue(s,p,source,watch.defs);
   }
+  if(colors(c).length>1)for(const y of s.players[p].grave)
+   if(!y.faceDown&&card(y).g922GraveMultiSummon)send(s,p,y,'GraveReturn754',{serial:y.zoneSerial||0});
  }for(const y of selectedOnce464(s,p,c))y.g464UsedTurn=s.turn;recordSummon463(s,p,c);if(c.type==='creature')consumeReduction456(s,p,c);if(c.type==='creature'&&['mana','grave'].includes(origin)&&typeof permit==='string'&&permit.startsWith('g450:'))((s.g450ZoneUses??=[{},{}])[p]??={})[permit]=s.turn;if(c.type!=='spell')noncreatureUse448(s,p,c);if(c.type==='creature'){countExecution(s,p,c);if(colors(c).includes('自然')&&Number(c.power)>=12000)s.g34Discounts=(s.g34Discounts||[]).filter(y=>y.p!==p||y.turn!==s.turn);}},
  spellCast(s,p,c){
   useBlockers524(s,p);consumeReduction456(s,p,c);noncreatureUse448(s,p,c);countExecution(s,p,c);
