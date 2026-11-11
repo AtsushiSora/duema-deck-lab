@@ -1,0 +1,145 @@
+{
+  "phase": 898,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6559,
+  "description": "手札外からの相手のコスト4以下の登場の手札置換、自軍の現在パワー6000以上によるブロッカー付与、バトル勝利時のドローと高パワー手札展開に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31620/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36972/",
+    "https://dm.takaratomy.co.jp/rule/qa/34228/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp14-035",
+      "name": "ワナビーワラビー",
+      "faces": [
+        {
+          "name": "ワナビーワラビー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手のコスト４以下のクリーチャーが、手札以外のどこからでもバトルゾーンに出る時、相手はかわりにそのクリーチャーを手札に加える。",
+          "race": "トリックス/チームウェイブ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-035",
+      "spec": {
+        "g38Bell": true,
+        "g898BellMax": 4
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "ffe216404352fd07444a0a90253e57bbe952965ec676329710a575bdfec61c8f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp17-063",
+      "name": "Disビルパン",
+      "faces": [
+        {
+          "name": "Disビルパン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のパワー6000以上のクリーチャーがバトルゾーンにあれば、このクリーチャーに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+          "race": "グレートメカオー/オリジン/ディスタス",
+          "powerText": "1500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-063",
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "creature": true,
+            "minPower": 6000,
+            "g199Power": true
+          },
+          "grants": {
+            "blocker": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-063.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "ced0108694b89611089fb430b72c4a0ebb15cb971ea7cf5063efce4691512fa4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp09-s12",
+      "name": "ギガント・テキサリス",
+      "faces": [
+        {
+          "name": "ギガント・テキサリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nT・ブレイカー\nこのクリーチャーがバトルで勝った時、カードを１枚引く。その後、パワー12000以上のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "グランセクト",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-s12",
+      "spec": {
+        "machFighter": true,
+        "breaker": 3,
+        "g189BattleWin": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "minPower": 12000
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-s12.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "ec94d75ec848671b331fe19b0255696857bbf71b35d4f37a27c0c93792f9d86b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp14-035": 4,
+      "dmrp17-063": 4,
+      "dmrp09-s12": 4
+    }
+  }
+}

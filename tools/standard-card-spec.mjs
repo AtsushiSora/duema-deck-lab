@@ -3445,6 +3445,17 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=898&&creature&&d.faces.length===1){
+  if(d.id==='dmrp14-035'&&compact363==='相手のコスト4以下のクリーチャーが手札以外のどこからでもバトルゾーンに出る時相手はかわりにそのクリーチャーを手札に加える。')
+   return {g38Bell:true,g898BellMax:4};
+  if(d.id==='dmrp17-063'&&compact363===
+   '自分のパワー6000以上のクリーチャーがバトルゾーンにあればこのクリーチャーに「ブロッカー」を与える。(「ブロッカー」を持つクリーチャーをタップして相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい)')
+   return {g260Self:{filter:{creature:true,minPower:6000,g199Power:true},grants:{blocker:true}}};
+  if(d.id==='dmrp09-s12'&&compact363===
+   'マッハファイター(このクリーチャーはバトルゾーンに出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)T・ブレイカーこのクリーチャーがバトルで勝った時カードを1枚引く。その後パワー12000以上のクリーチャーを1体自分の手札からバトルゾーンに出してもよい。')
+   return {machFighter:true,breaker:3,g189BattleWin:[{op:'Draw',n:1},
+    {op:'Select',origin:'hand',deploy:true,n:1,optional:true,filter:{creature:true,minPower:12000}}]};
+ }
  if(phase>=897&&creature&&d.faces.length===1){
   if(d.id==='dmrp14-007'&&compact363===
    'ブロッカーブロッカースピードアタッカークリーチャーの攻撃の終わりにそれがこのターン最初の攻撃なら自分のクリーチャーを1体アンタップする。')

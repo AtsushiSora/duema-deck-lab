@@ -192178,20 +192178,105 @@
       },
       "supportBatch": "phase-897",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-035",
+      "name": "ワナビーワラビー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "トリックス/チームウェイブ",
+      "text": "相手のコスト４以下のクリーチャーが、手札以外のどこからでもバトルゾーンに出る時、相手はかわりにそのクリーチャーを手札に加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-035",
+      "limit": 4,
+      "g38Bell": true,
+      "g898BellMax": 4,
+      "supportBatch": "phase-898",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp17-063",
+      "name": "Disビルパン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1500,
+      "race": "グレートメカオー/オリジン/ディスタス",
+      "text": "自分のパワー6000以上のクリーチャーがバトルゾーンにあれば、このクリーチャーに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-063",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "creature": true,
+          "minPower": 6000,
+          "g199Power": true
+        },
+        "grants": {
+          "blocker": true
+        }
+      },
+      "supportBatch": "phase-898",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-s12",
+      "name": "ギガント・テキサリス",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 12000,
+      "race": "グランセクト",
+      "text": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nT・ブレイカー\nこのクリーチャーがバトルで勝った時、カードを１枚引く。その後、パワー12000以上のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-s12",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 3,
+      "g189BattleWin": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "minPower": 12000
+          }
+        }
+      ],
+      "supportBatch": "phase-898",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 897,
+    "phase": 898,
     "checkedAt": "2026-11-11",
-    "baseCount": 6556,
+    "baseCount": 6559,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6559,
+    "totalCount": 6562,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/33588/",
-      "https://dm.takaratomy.co.jp/rule/qa/49400/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36972/"
+      "https://dm.takaratomy.co.jp/rule/rulechange/31620/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36972/",
+      "https://dm.takaratomy.co.jp/rule/qa/34228/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -208167,6 +208252,23 @@
           "https://dm.takaratomy.co.jp/rule/qa/34237/",
           "https://dm.takaratomy.co.jp/rule/qa/39085/",
           "https://dm.takaratomy.co.jp/rule/qa/39086/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 897,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6556,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6559,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/33588/",
+          "https://dm.takaratomy.co.jp/rule/qa/49400/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36972/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
