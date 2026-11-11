@@ -3007,7 +3007,9 @@ export function standardCardSpec(d,{phase=165}={}){
    const effects={
     '相手の手札を見てその中から1枚選び捨てさせる。':{op:'InspectOne258'},
     '呪文を1枚自分の墓地から手札に戻す。':{op:'Select',origin:'grave',to:'hand',n:1,filter:{g228Face:{type:'spell'}}},
-    'カードを1枚マナゾーンから持ち主の手札に戻す。':{op:'Select',anyOwner:true,origin:'mana',to:'hand',n:1}
+    'カードを1枚マナゾーンから持ち主の手札に戻す。':{op:'Select',anyOwner:true,origin:'mana',to:'hand',n:1},
+    ...(phase>=923?{'バトルゾーンにある自分のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーは+6000され「W・ブレイカー」を得る。':
+     {op:'Target',owner:'self',power:6000,grant:{g313Breaker:2,g633DoubleBreaker:true}}}:{})
    };
    if(effects[body])return {...(blocker?{blocker:true}:{}),g736AttackInstead:true,g804ManaTapCost:8,g439Tap:[effects[body]]};
   }
@@ -3445,6 +3447,19 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=923&&d.faces.length===1){
+  if(creature&&d.id==='dm20-001'&&compact363===
+   '自分のキカイヒーローまたはグレートメカオーが破壊された時バトルゾーンにある自分のクリーチャーをすべてアンタップする。'+
+   'W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g303DeathWatch:{self:true,selfFilter:true,g891LookBackSelf:true,
+    raceAny:['キカイヒーロー','グレートメカオー'],defs:[{op:'GroupUntap',filter:{creature:true}}]}};
+  if(evolution&&d.id==='dm24-010'&&compact363===
+   'マナゾーンに置く時このカードはタップして置く。進化V-自分の火のクリーチャー1体と自然のクリーチャー1体を重ねた上に置く。'+
+   '自分のターンのはじめにコスト7以下の火または自然のクリーチャーを1体自分のマナゾーンからバトルゾーンに出してもよい。W・ブレイカー')
+   return {breaker:2,evolution:{g31:true},g31Evolution:{zone:'battle',conditions:[{civilization:'火'},{civilization:'自然'}]},
+    g174Start:[{op:'Select',origin:'mana',n:1,deploy:true,optional:true,
+     filter:{creature:true,faceUp:true,max:7,any:[{color:'火'},{color:'自然'}]}}]};
+ }
  if(phase>=922&&d.faces.length===1){
   const stingerCurrent='このクリーチャーをバトルゾーンに出した時、自分のクリーチャーを１体破壊する。';
   if(creature&&(d.id==='dm18-071'&&compact363===normalize(stingerCurrent)||d.id==='dm01-057'&&compact363===

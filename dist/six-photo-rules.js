@@ -4190,7 +4190,10 @@ export function createSixPhotoRules(api){
    if(watcher.g891OnlySelf&&!self)continue;
    const otherSoul=watcher.watch.g862OtherSoul;
    if(otherSoul&&!self&&(watcher.g862OnlySelf||!hasSoul(card(victim.cardId),otherSoul)))continue;
-   if((!self||watcher.watch.self)&&((self&&!watcher.watch.selfFilter)||!watcher.watch.race||String(victim.race||'').includes(watcher.watch.race))&&(!watcher.watch.name||String(victim.name||'').includes(watcher.watch.name))&&(!watcher.watch.colorsAny||watcher.watch.colorsAny.some(c=>(victim.colors||[]).includes(c)))&&(!watcher.watch.g860EvilSoul||victim.g860EvilSoul)&&(!watcher.watch.ownTurn||s.active===watcher.p)&&(!watcher.watch.opponentTurn||s.active!==watcher.p))queue(s,watcher.p,watcher,watcher.watch.defs);}if(prior?.g172Death){
+   const {race:requiredRace,raceAny}=watcher.watch;
+   const victimRace=String(victim.race||'');
+   const raceMatches=(!requiredRace||victimRace.includes(requiredRace))&&(!raceAny||victimRace.split('/').some(r=>raceAny.includes(r)));
+   if((!self||watcher.watch.self)&&((self&&!watcher.watch.selfFilter)||raceMatches)&&(!watcher.watch.name||String(victim.name||'').includes(watcher.watch.name))&&(!watcher.watch.colorsAny||watcher.watch.colorsAny.some(c=>(victim.colors||[]).includes(c)))&&(!watcher.watch.g860EvilSoul||victim.g860EvilSoul)&&(!watcher.watch.ownTurn||s.active===watcher.p)&&(!watcher.watch.opponentTurn||s.active!==watcher.p))queue(s,watcher.p,watcher,watcher.watch.defs);}if(prior?.g172Death){
    const defs=prior.g172Death
     .filter(d=>!d.g901Untapped||!(prior.g901WasTapped??x.tapped))
     .filter(d=>d.op!=='ScheduleGraveReturn644'||d.anyTurn||s.active===p)

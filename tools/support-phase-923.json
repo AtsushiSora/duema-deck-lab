@@ -1,0 +1,183 @@
+{
+  "phase": 923,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6636,
+  "description": "指定種族の破壊での全体アンタップ、攻撃に代わる8マナの強化、進化Vとターン開始時のマナ展開に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35459/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37349/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm20-001",
+      "name": "豪腕機兵ナックル・フィスト",
+      "faces": [
+        {
+          "name": "豪腕機兵ナックル・フィスト",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分のキカイヒーローまたはグレートメカオーが破壊された時、バトルゾーンにある自分のクリーチャーをすべてアンタップする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "グレートメカオー",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-001",
+      "spec": {
+        "breaker": 2,
+        "g303DeathWatch": {
+          "self": true,
+          "selfFilter": true,
+          "g891LookBackSelf": true,
+          "raceAny": [
+            "キカイヒーロー",
+            "グレートメカオー"
+          ],
+          "defs": [
+            {
+              "op": "GroupUntap",
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm20-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "3189453069e4b4f0d81120d9961c9a2a027b6aaca68981163b10b7fb8306e5cc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-056",
+      "name": "四風の練達ジャムール",
+      "faces": [
+        {
+          "name": "四風の練達ジャムール",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーで攻撃するかわりに、このクリーチャーと自分のマナゾーンのタップされていないカードを８枚タップして、次の能力を使ってもよい。\nバトルゾーンにある自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーは+6000され、「W・ブレイカー」を得る。",
+          "race": "フェザーノイド",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-056",
+      "spec": {
+        "g736AttackInstead": true,
+        "g804ManaTapCost": 8,
+        "g439Tap": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 6000,
+            "grant": {
+              "g313Breaker": 2,
+              "g633DoubleBreaker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-056.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "e2844ebc9959ce909c73c042163c5f69e401771ea4aa7efc089fe4a68b1ec8ea",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-010",
+      "name": "幻流星ミスター・イソップ",
+      "faces": [
+        {
+          "name": "幻流星ミスター・イソップ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化V-自分の火のクリーチャー１体と自然のクリーチャー１体を重ねた上に置く。\n自分のターンのはじめに、コスト７以下の火または自然のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出してもよい。\nW・ブレイカー",
+          "race": "フェニックス/ドリームメイト",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-010",
+      "spec": {
+        "breaker": 2,
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "g174Start": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "faceUp": true,
+              "max": 7,
+              "any": [
+                {
+                  "color": "火"
+                },
+                {
+                  "color": "自然"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "dd0146761dcfa280a9fa2b666e4263cf3ea241232990405aaec4bb4957265673",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm20-001": 4,
+      "dm24-056": 4,
+      "dm24-010": 4
+    }
+  }
+}

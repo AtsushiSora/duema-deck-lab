@@ -194503,20 +194503,142 @@
       "g922GraveMultiSummon": true,
       "supportBatch": "phase-922",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm20-001",
+      "name": "豪腕機兵ナックル・フィスト",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "グレートメカオー",
+      "text": "自分のキカイヒーローまたはグレートメカオーが破壊された時、バトルゾーンにある自分のクリーチャーをすべてアンタップする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-001",
+      "limit": 4,
+      "breaker": 2,
+      "g303DeathWatch": {
+        "self": true,
+        "selfFilter": true,
+        "g891LookBackSelf": true,
+        "raceAny": [
+          "キカイヒーロー",
+          "グレートメカオー"
+        ],
+        "defs": [
+          {
+            "op": "GroupUntap",
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-923",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24-056",
+      "name": "四風の練達ジャムール",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "フェザーノイド",
+      "text": "このクリーチャーで攻撃するかわりに、このクリーチャーと自分のマナゾーンのタップされていないカードを８枚タップして、次の能力を使ってもよい。\nバトルゾーンにある自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーは+6000され、「W・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-056",
+      "limit": 4,
+      "g736AttackInstead": true,
+      "g804ManaTapCost": 8,
+      "g439Tap": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "power": 6000,
+          "grant": {
+            "g313Breaker": 2,
+            "g633DoubleBreaker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-923",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24-010",
+      "name": "幻流星ミスター・イソップ",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 9000,
+      "race": "フェニックス/ドリームメイト",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n進化V-自分の火のクリーチャー１体と自然のクリーチャー１体を重ねた上に置く。\n自分のターンのはじめに、コスト７以下の火または自然のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出してもよい。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-010",
+      "limit": 4,
+      "breaker": 2,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "civilization": "火"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "g174Start": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "faceUp": true,
+            "max": 7,
+            "any": [
+              {
+                "color": "火"
+              },
+              {
+                "color": "自然"
+              }
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-923",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 922,
+    "phase": 923,
     "checkedAt": "2026-11-11",
-    "baseCount": 6633,
+    "baseCount": 6636,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6636,
+    "totalCount": 6639,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31412/",
-      "https://dm.takaratomy.co.jp/rule/qa/42981/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35526/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35459/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37349/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -210974,6 +211096,24 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/45909/",
           "https://dm.takaratomy.co.jp/rule/qa/39076/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 922,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6633,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6636,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31412/",
+          "https://dm.takaratomy.co.jp/rule/qa/42981/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35526/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [
