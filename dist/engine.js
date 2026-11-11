@@ -225,6 +225,10 @@ export function effectiveCard(inst,context,forPower=false){
     c={...c,power:numeric(c.power)+aura.power,extraBreak:(c.extraBreak||0)+aura.extraBreak};
   }
  }
+ if(!forPower&&c.g965OpponentCivilizationBreak){
+  const n=extra.six.countBattleCivilizations(context,context.players[1-owner].battle);
+  if(n)c={...c,extraBreak:(c.extraBreak||0)+n};
+ }
  const attackBreaker=context.attackLifecycle?.g807DoubleBreaker;
  const attackDouble=!forPower&&attackBreaker&&layers(inst).some(x=>x.uid===attackBreaker.uid&&(x.incarnation||0)===attackBreaker.incarnation);
  const grantedDouble=!forPower&&(attackDouble||c.g818DoubleBreaker);

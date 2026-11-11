@@ -3435,6 +3435,17 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=965&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmc34-025'&&text==='このクリーチャーはバトルゾーンにある相手の文明ひとつにつき1枚シールドを追加でブレイクする。')
+   return {g965OpponentCivilizationBreak:true};
+  if(d.id==='dmrp05-030'&&text==='自分のターン中に自分の他のクリーチャーがバトルゾーンを離れた時カードを1枚引いてもよい。')
+   return {g965OtherOwnLeave:true,g891OwnCreatureLeaves:[{op:'Draw',n:1,optional:true}]};
+  if(d.id==='dmrp07-067'&&text==='各ターン自分がはじめて呪文を唱えた時そのターンこのクリーチャーのパワーを+4000する。')
+   return {g204SpellWatch:{who:'self',g965FirstSpell:true,defs:[
+    {op:'SelfBoost313',power:4000,g536Source:true,g694ClearOnSeal:true}
+   ]}};
+ }
  if(phase>=964&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(['dmc57-007','dmx14-017','dmex15-b052'].includes(d.id)&&f.typeText==='呪文'&&[
