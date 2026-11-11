@@ -3445,6 +3445,23 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=921&&d.faces.length===1){
+  const anyColor=(...colors)=>({any:colors.map(color=>({color}))});
+  if(creature&&d.id==='dm24-071'&&compact363===
+   'ブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)'+
+   'バトルゾーンに自分の水闇火または自然のクリーチャーが1体もなければこのクリーチャーは相手プレイヤーを攻撃することができない。')
+   return {blocker:true,g840PlayerAttackRequires:{creature:true,...anyColor('水','闇','火','自然')}};
+  if(f.typeText==='呪文'&&['dm24-108','dmx22a-053','dmex15-b096'].includes(d.id)){
+   const trigger=(d.id==='dm24-108'?'':'S・トリガー')+'S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+   const deploy=d.id==='dmex15-b096'?'出す。':'バトルゾーンに出してもよい。';
+   if(compact363===trigger+'自分の山札を見る。その中から光水闇または火のコスト2以下のクリーチャーを1体'+deploy+'その後山札をシャッフルする。')
+    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'LookDeploy530',g201Search:true,g841DeckPeek:true,limit:1,rest:'shuffle',
+     filter:{creature:true,...anyColor('光','水','闇','火'),max:2}}]};
+  }
+  if(f.typeText==='呪文'&&d.id==='dm09-029'&&compact363===
+   '相手はバトルゾーンにある自分自身のクリーチャー1体か自分自身のシールドを1枚選びそれを持ち主の墓地に置く。ただしその「S・トリガー」は使えない。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'OpponentBury921'}]};
+ }
  if(phase>=920&&creature&&d.faces.length===1){
   const colorSpec={
    'dm24-043':['水','自然','光'],

@@ -1,0 +1,226 @@
+{
+  "phase": 921,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6630,
+  "description": "ブロッカーと文明に応じた対プレイヤー攻撃、S・トリガーと山札からの条件付き登場、相手が選ぶクリーチャー破壊またはシールド墓地送りに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/45909/",
+    "https://dm.takaratomy.co.jp/rule/qa/39076/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm24-071",
+      "name": "彩風の守護者オグリ・ホリークス",
+      "faces": [
+        {
+          "name": "彩風の守護者オグリ・ホリークス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nバトルゾーンに自分の水、闇、火、または自然のクリーチャーが１体もなければ、このクリーチャーは相手プレイヤーを攻撃することができない。",
+          "race": "ガーディアン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-071",
+      "spec": {
+        "blocker": true,
+        "g840PlayerAttackRequires": {
+          "creature": true,
+          "any": [
+            {
+              "color": "水"
+            },
+            {
+              "color": "闇"
+            },
+            {
+              "color": "火"
+            },
+            {
+              "color": "自然"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-071.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "be3ff808b0812033102d64a60a757a3ddae83dd9068bdb3a31ed566ff23af79c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-108",
+      "name": "ベイビー・バース",
+      "faces": [
+        {
+          "name": "ベイビー・バース",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n自分の山札を見る。その中から光、水、闇、または火の、コスト２以下のクリーチャーを１体、バトルゾーンに出してもよい。その後、山札をシャッフルする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-108",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LookDeploy530",
+            "g201Search": true,
+            "g841DeckPeek": true,
+            "limit": 1,
+            "rest": "shuffle",
+            "filter": {
+              "creature": true,
+              "any": [
+                {
+                  "color": "光"
+                },
+                {
+                  "color": "水"
+                },
+                {
+                  "color": "闇"
+                },
+                {
+                  "color": "火"
+                }
+              ],
+              "max": 2
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-108.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "2ab959709d2f4d33a3b70580e15cceb601834b85b88691db24b5f4977368414c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm09-029",
+      "name": "生命剥奪",
+      "faces": [
+        {
+          "name": "生命剥奪",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手は、バトルゾーンにある自分自身のクリーチャー１体か、自分自身のシールドを１枚選び、それを持ち主の墓地に置く。ただし、その「S・トリガー」は使えない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-029",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "OpponentBury921"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "1c701450dcaa33b5555edff354952d74978fc518ff5ad41991dc1a0ba63f4793",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx22a-053",
+      "canonicalId": "dm24-108",
+      "name": "ベイビー・バース",
+      "faces": [
+        {
+          "name": "ベイビー・バース",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札を見る。その中から光、水、闇、または火の、コスト２以下のクリーチャーを１体、バトルゾーンに出してもよい。その後、山札をシャッフルする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22a-053",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx22a-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "c136594691a3206e5c8e329b24656d26fba2144ab7d111eacc698f55cfd1b69f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex15-b096",
+      "canonicalId": "dm24-108",
+      "name": "ベイビー・バース",
+      "faces": [
+        {
+          "name": "ベイビー・バース",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札を見る。その中から光、水、闇、または火の、コスト２以下のクリーチャーを１体出す。その後、山札をシャッフルする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b096",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex15-b096.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "3d48c3846fa54ecb70a32c9e2fbbf6fd0da2ad7dbbfeaef0e1e00117415a468b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24-071": 4,
+      "dm24-108": 4,
+      "dm09-029": 4,
+      "dmx22a-053": 4,
+      "dmex15-b096": 4
+    }
+  }
+}

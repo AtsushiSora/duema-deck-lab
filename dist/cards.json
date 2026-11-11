@@ -194319,20 +194319,126 @@
       },
       "supportBatch": "phase-920",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24-071",
+      "name": "彩風の守護者オグリ・ホリークス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ガーディアン",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nバトルゾーンに自分の水、闇、火、または自然のクリーチャーが１体もなければ、このクリーチャーは相手プレイヤーを攻撃することができない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-071",
+      "limit": 4,
+      "blocker": true,
+      "g840PlayerAttackRequires": {
+        "creature": true,
+        "any": [
+          {
+            "color": "水"
+          },
+          {
+            "color": "闇"
+          },
+          {
+            "color": "火"
+          },
+          {
+            "color": "自然"
+          }
+        ]
+      },
+      "supportBatch": "phase-921",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24-108",
+      "name": "ベイビー・バース",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n自分の山札を見る。その中から光、水、闇、または火の、コスト２以下のクリーチャーを１体、バトルゾーンに出してもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-108",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "g201Search": true,
+          "g841DeckPeek": true,
+          "limit": 1,
+          "rest": "shuffle",
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "color": "光"
+              },
+              {
+                "color": "水"
+              },
+              {
+                "color": "闇"
+              },
+              {
+                "color": "火"
+              }
+            ],
+            "max": 2
+          }
+        }
+      ],
+      "supportBatch": "phase-921",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm09-029",
+      "name": "生命剥奪",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "相手は、バトルゾーンにある自分自身のクリーチャー１体か、自分自身のシールドを１枚選び、それを持ち主の墓地に置く。ただし、その「S・トリガー」は使えない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-029",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "OpponentBury921"
+        }
+      ],
+      "supportBatch": "phase-921",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 920,
+    "phase": 921,
     "checkedAt": "2026-11-11",
-    "baseCount": 6626,
-    "newEffectCards": 4,
+    "baseCount": 6630,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6630,
+    "totalCount": 6633,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/38600/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36173/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316671/",
+      "https://dm.takaratomy.co.jp/rule/qa/45909/",
+      "https://dm.takaratomy.co.jp/rule/qa/39076/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -210755,6 +210861,24 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37431/",
           "https://dm.takaratomy.co.jp/rule/qa/44100/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36210/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 920,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6626,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6630,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/38600/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36173/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316671/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [

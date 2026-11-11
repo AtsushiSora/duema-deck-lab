@@ -2094,6 +2094,16 @@ export function createSixPhotoRules(api){
   api.discardSelected(s,opponent,s.players[opponent].hand.map(x=>x.uid),t.source,t.p);
   break;
  }
+ case'g34_OpponentBury921':{
+  const chooser=1-t.p,shields=s.players[chooser].shields;
+  // The opponent chooses their own card, while the spell still causes the destruction.
+  const units=creatures(s,chooser).filter(y=>api.targetable(s,chooser,chooser,y))
+   .map(y=>opt('クリーチャー：'+card(y).name,{origin:'battle',uid:y.uid},-cost(effective(y,s)),y.cardId));
+  const options=[...units,...ownShieldGraveOptions(s,chooser).map(o=>({...o,
+   score:shields.length<=1?-25:0,value:{origin:'shields',uid:o.value}}))];
+  if(options.length)choice(s,{...t,chooser},'墓地に置く自分のクリーチャーかシールドを選ぶ',options,chooser);
+  break;
+ }
  case'g34_ShieldGrave':{
   const options=ownShieldGraveOptions(s,t.p);
   if(options.length)choice(s,t,'墓地に置く自分のシールドを1つ選ぶ',t.optional?[...options,skip()]:options);
@@ -3041,6 +3051,14 @@ export function createSixPhotoRules(api){
  }else if(t.elseDefs)start(s,t,t.elseDefs);
  break;
  case'g34_OwnShieldGraves697':put(s,{...t,picks:[...(t.picks||[]),{owner:t.chooser,uid:v}]});break;
+ case'g34_OpponentBury921':{
+  if(v.origin==='battle')move(s,[{player:t.chooser,uid:v.uid,to:'grave',destroy:true,controller:t.p}]);
+  else if(v.origin==='shields'){
+   const moved=api.moveShield(s,t.chooser,v.uid,'grave');
+   if(moved.length)api.log(s,t.chooser,'shieldGrave',card(t.source).name+'：シールド1つ（カード'+moved.length+'枚）を墓地に置いた',{cardId:t.source});
+  }
+  break;
+ }
  case'g34_ShieldGrave':if(v){
   const moved=api.moveShield(s,t.p,v,'grave');
   api.log(s,t.p,'shieldGrave',card(t.source).name+'：シールド1つ（カード'+moved.length+'枚）を墓地に置いた',{cardId:t.source});
