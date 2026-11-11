@@ -1980,7 +1980,7 @@ function advanceEnd(s){if(s.lossEvent)return;
 }
 
 function option(kind,label,extra={}){return {kind,label,...extra};}
-function effectOptions(entries,kind){return entries.map((e,i)=>option(kind,`${card(e.source).name} ${i+1}：${e.effect==='g166EndUntap'?'ターン終了時の強制アンタップ':e.effect==='endUntap'?'ターン終了時の任意アンタップ':e.effect==='justDiver'?'ジャストダイバー':e.effect==='dragonEntryTap'?'ドラゴン登場時の任意タップ':e.effect==='shieldEntryTapLock'?'シールド追加時のタップとアンタップ制限':e.effect==='ddd'?'宣言したD・D・D':e.effect==='attackDragonReveal'?'攻撃時の山札公開':e.effect==='attackJudge'?'攻撃時のガチンコ・ジャッジ':e.effect==='extended'?({g19Yobi:'ヨビニオン',g1_Copy:'オルゲイトの能力コピー',g1_Look:'2体目登場時の手札・マナ追加',g1_Skip:'ターンの残りを飛ばす'}[e.task?.op]||'カードの能力'):'出た時の効果'}を先に解決`,{uid:e.uid,cardId:e.source,effectId:e.effectId}));}
+function effectOptions(entries,kind){return entries.map((e,i)=>option(kind,`${card(e.source).name} ${i+1}：${e.label||(e.effect==='g166EndUntap'?'ターン終了時の強制アンタップ':e.effect==='endUntap'?'ターン終了時の任意アンタップ':e.effect==='justDiver'?'ジャストダイバー':e.effect==='dragonEntryTap'?'ドラゴン登場時の任意タップ':e.effect==='shieldEntryTapLock'?'シールド追加時のタップとアンタップ制限':e.effect==='ddd'?'宣言したD・D・D':e.effect==='attackDragonReveal'?'攻撃時の山札公開':e.effect==='attackJudge'?'攻撃時のガチンコ・ジャッジ':e.effect==='extended'?({g19Yobi:'ヨビニオン',g1_Copy:'オルゲイトの能力コピー',g1_Look:'2体目登場時の手札・マナ追加',g1_Skip:'ターンの残りを飛ばす'}[e.task?.op]||'カードの能力'):'出た時の効果')}を先に解決`,{uid:e.uid,cardId:e.source,effectId:e.effectId}));}
 export function getLegalActions(s){
  if(s.winner!==null)return [];
  let out=[];const d=s.decision,p=d?d.player:s.active,own=s.players[p],opp=s.players[1-p];

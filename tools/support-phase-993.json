@@ -1,0 +1,347 @@
+{
+  "phase": 993,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6894,
+  "description": "龍素力学の特異点、理英雄 デカルトQ、暴龍事変 ガイグレン、新聖綺神 クロスオーバー・ヨミの公式能力を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37153/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37066/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+    "https://dm.takaratomy.co.jp/rule/qa/43073/",
+    "https://dm.takaratomy.co.jp/rule/qa/48916/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35844/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36936/"
+  ],
+  "cards": [
+    {
+      "id": "dmr14-024",
+      "name": "龍素力学の特異点",
+      "faces": [
+        {
+          "name": "龍素力学の特異点",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "G・ゼロ - バトルゾーンに自分の水のドラグナーがあれば、この呪文をコストを支払わずに唱えてもよい。\nカードを２枚引く。その後、手札を１枚、自分の山札の一番上または下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-024",
+      "spec": {
+        "g261Free": {
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "color": "水",
+                "race": "ドラグナー"
+              },
+              "min": 1
+            }
+          },
+          "label": "G・ゼロ"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "to": "deckTop",
+            "g553Destinations": [
+              "deckTop",
+              "deck"
+            ],
+            "g183Return": true,
+            "title": "山札に戻す手札を1枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "496658c19b3e254d0a05db1aa914b670d4aff2430ddaa116e6c67f24f07a3603",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-003",
+      "name": "理英雄 デカルトQ",
+      "faces": [
+        {
+          "name": "理英雄 デカルトQ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー ブロッカー\nマナ武装 ７：このクリーチャーをバトルゾーンに出した時、自分のマナゾーンに水のカードが７枚以上あれば、カードを５枚まで引いてもよい。\nこのクリーチャーをバトルゾーンに出した時、手札を１枚、新しいシールドとして、自分のシールドゾーンに裏向きにして加えてもよい。そうした場合、自分のシールドをひとつ選び、手札に戻す。ただし、その「S・トリガー」は使えない。\nW・ブレイカー",
+          "race": "クリスタル・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-003",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g527ExtraEntry": [
+          {
+            "label": "マナ武装7でカードを5枚まで引く",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g267Mana": {
+                    "color": "水",
+                    "n": 7
+                  }
+                },
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 5,
+                    "optional": true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "label": "手札とシールドを入れ替える",
+            "defs": [
+              {
+                "op": "ShieldExchange446",
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "34d968155428cb45c38f2236be45c107a7f8abf3e768ae1f0a9c5483acb7265e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-v02",
+      "name": "暴龍事変 ガイグレン",
+      "faces": [
+        {
+          "name": "暴龍事変 ガイグレン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nマナ武装 ９：このクリーチャーが攻撃する時、自分のマナゾーンに火のカードが９枚以上あれば、そのターン、このクリーチャーをアンタップしてパワーを+3000する。\nW・ブレイカー\n相手がこのクリーチャーを選んだ時、このクリーチャーのパワー以下のパワーを持つ相手のクリーチャーをすべて破壊する。",
+          "race": "ガイアール・コマンド・ドラゴン/ヒューマノイド爆/ドラグナー",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-v02",
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g267Mana": {
+                "color": "火",
+                "n": 9
+              }
+            },
+            "defs": [
+              {
+                "op": "Untap",
+                "g191First": true
+              },
+              {
+                "op": "SelfBoost313",
+                "power": 3000,
+                "g536Source": true
+              }
+            ]
+          }
+        ],
+        "g447Selected": [
+          {
+            "op": "TargetBelowSource692",
+            "g993OpponentSweepInclusive": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-v02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "1348537c92ee14f1d27c4cc8150dc96b3b223b02def23abbe958517368ee6042",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr12-s01",
+      "name": "新聖綺神 クロスオーバー・ヨミ",
+      "faces": [
+        {
+          "name": "新聖綺神 クロスオーバー・ヨミ",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "ブロッカー ブロッカー\nT・ブレイカー\nバトルゾーンにある自分のクリーチャーがこのクリーチャーだけであれば、このクリーチャーはブロックされず、バトルゾーンを離れる時、離れるかわりにとどまる。\n自分のターンの終わりに、このクリーチャーをアンタップする。",
+          "race": "オラクリオン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-s01",
+      "spec": {
+        "blocker": true,
+        "breaker": 3,
+        "g260Self": {
+          "filter": {
+            "g479OnlyCreature": true
+          },
+          "grants": {
+            "unblockable": true
+          }
+        },
+        "g577Stay": {
+          "onlyCreature": true
+        },
+        "g166EndUntap": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr12-s01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "adba6844e8cbc670e2f9a4144a576f93a38ed819584fdc01bb587dc36efff7f6",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmr14-V2SEC1",
+      "canonicalId": "dmr14-v02",
+      "name": "暴龍事変 ガイグレン",
+      "faces": [
+        {
+          "name": "暴龍事変 ガイグレン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nマナ武装 9：このクリーチャーが攻撃する時、自分のマナゾーンに火のカードが９枚以上あれば、そのターン、このクリーチャーをアンタップしてパワーを+3000する。\nW・ブレイカー\n相手がこのクリーチャーを選んだ時、このクリーチャーのパワー以下のパワーを持つ相手のクリーチャーをすべて破壊する。",
+          "race": "ガイアール・コマンド・ドラゴン/ヒューマノイド爆/ドラグナー",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-V2SEC1",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-V2SEC1.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "65a3f6eb47a26c710f89461b457353a2a7eb5bef3db1d6ab3dfa44703f0d8482",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-V2SEC2",
+      "canonicalId": "dmr14-v02",
+      "name": "暴龍事変 ガイグレン",
+      "faces": [
+        {
+          "name": "暴龍事変 ガイグレン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nマナ武装 9：このクリーチャーが攻撃する時、自分のマナゾーンに火のカードが９枚以上あれば、そのターン、このクリーチャーをアンタップしてパワーを+3000する。\nW・ブレイカー\n相手がこのクリーチャーを選んだ時、このクリーチャーのパワー以下のパワーを持つ相手のクリーチャーをすべて破壊する。",
+          "race": "ガイアール・コマンド・ドラゴン/ヒューマノイド爆/ドラグナー",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-V2SEC2",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-V2SEC2.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "e50c19ed722e9a686b0a8dc65554de971c66781b659c218d4ca7206d27b98380",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmart13-005",
+      "canonicalId": "dmr14-v02",
+      "name": "暴龍事変 ガイグレン",
+      "faces": [
+        {
+          "name": "暴龍事変 ガイグレン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "スピードアタッカー\nW・ブレイカー\nマナ武装９：このクリーチャーが攻撃する時、自分のマナゾーンに火のカードが９枚以上あれば、このクリーチャーをアンタップし、このターン、そのパワーを+3000する。\n相手がこのクリーチャーを選んだ時、このクリーチャー以下のパワーを持つ相手のクリーチャーをすべて破壊する。",
+          "race": "ガイアール・コマンド・ドラゴン/ヒューマノイド爆/ドラグナー",
+          "powerText": "11000+",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmart13-005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmart13-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "fcae97a3ddeacb96e6a3239a28786a7977dcd6e9a5ae812f6f2f91734e840923",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr14-024": 4,
+      "dmr13-003": 4,
+      "dmr14-v02": 4,
+      "dmr12-s01": 4,
+      "dmr14-V2SEC1": 4,
+      "dmr14-V2SEC2": 4,
+      "dmart13-005": 4
+    }
+  }
+}

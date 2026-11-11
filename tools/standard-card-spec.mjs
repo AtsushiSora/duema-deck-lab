@@ -3435,6 +3435,44 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=993&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const entry='このクリーチャーをバトルゾーンに出した時';
+  const armed=(color,n,defs)=>({op:'IfOwn',filter:{g267Mana:{color,n}},defs});
+  if(f.typeText==='呪文'&&d.id==='dmr14-024'&&
+   text==='G・ゼロ-バトルゾーンに自分の水のドラグナーがあればこの呪文をコストを支払わずに唱えてもよい。'+
+    'カードを2枚引く。その後手札を1枚自分の山札の一番上または下に置く。')
+   return {g261Free:{filter:{g370BattleCount:{filter:{creature:true,color:'水',race:'ドラグナー'},min:1}},label:'G・ゼロ'},
+    effect:'sixPhoto',g34Tasks:[{op:'Draw',n:2},
+     {op:'Select',origin:'hand',n:1,to:'deckTop',g553Destinations:['deckTop','deck'],g183Return:true,
+      title:'山札に戻す手札を1枚選ぶ'}]};
+  if(f.typeText==='クリーチャー'){
+   if(d.id==='dmr13-003'&&text==='ブロッカーブロッカーマナ武装7:'+entry+
+    '自分のマナゾーンに水のカードが7枚以上あればカードを5枚まで引いてもよい。'+entry+
+    '手札を1枚新しいシールドとして自分のシールドゾーンに裏向きにして加えてもよい。そうした場合自分のシールドをひとつ選び手札に戻す。ただしその「S・トリガー」は使えない。W・ブレイカー')
+    return {blocker:true,breaker:2,g527ExtraEntry:[
+     {label:'マナ武装7でカードを5枚まで引く',defs:[armed('水',7,[{op:'Draw',n:5,optional:true}])]},
+     {label:'手札とシールドを入れ替える',defs:[{op:'ShieldExchange446',optional:true}]}
+    ]};
+   const attack='マナ武装9:このクリーチャーが攻撃する時自分のマナゾーンに火のカードが9枚以上あれば';
+   const chosen='相手がこのクリーチャーを選んだ時';
+   const destroy='相手のクリーチャーをすべて破壊する。';
+   if((['dmr14-v02','dmr14-V2SEC1','dmr14-V2SEC2'].includes(d.id)&&
+    text==='スピードアタッカー(このクリーチャーは召喚酔いしない)'+attack+
+     'そのターンこのクリーチャーをアンタップしてパワーを+3000する。W・ブレイカー'+chosen+
+     'このクリーチャーのパワー以下のパワーを持つ'+destroy)||
+    (d.id==='dmart13-005'&&text==='スピードアタッカーW・ブレイカー'+attack+
+     'このクリーチャーをアンタップしこのターンそのパワーを+3000する。'+chosen+'このクリーチャー以下のパワーを持つ'+destroy))
+    return {speedAttacker:true,breaker:2,
+     g34Attack:[armed('火',9,[{op:'Untap',g191First:true},{op:'SelfBoost313',power:3000,g536Source:true}])],
+     g447Selected:[{op:'TargetBelowSource692',g993OpponentSweepInclusive:true}]};
+   if(d.id==='dmr12-s01'&&text==='ブロッカーブロッカーT・ブレイカー'+
+    'バトルゾーンにある自分のクリーチャーがこのクリーチャーだけであればこのクリーチャーはブロックされずバトルゾーンを離れる時離れるかわりにとどまる。'+
+    '自分のターンの終わりにこのクリーチャーをアンタップする。')
+    return {blocker:true,breaker:3,g260Self:{filter:{g479OnlyCreature:true},grants:{unblockable:true}},
+     g577Stay:{onlyCreature:true},g166EndUntap:true};
+  }
+ }
  if(phase>=992&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='呪文'&&d.id==='dmr14-051'&&

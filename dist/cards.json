@@ -202795,21 +202795,205 @@
       ],
       "supportBatch": "phase-992",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-024",
+      "name": "龍素力学の特異点",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "G・ゼロ - バトルゾーンに自分の水のドラグナーがあれば、この呪文をコストを支払わずに唱えてもよい。\nカードを２枚引く。その後、手札を１枚、自分の山札の一番上または下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-024",
+      "limit": 4,
+      "g261Free": {
+        "filter": {
+          "g370BattleCount": {
+            "filter": {
+              "creature": true,
+              "color": "水",
+              "race": "ドラグナー"
+            },
+            "min": 1
+          }
+        },
+        "label": "G・ゼロ"
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "to": "deckTop",
+          "g553Destinations": [
+            "deckTop",
+            "deck"
+          ],
+          "g183Return": true,
+          "title": "山札に戻す手札を1枚選ぶ"
+        }
+      ],
+      "supportBatch": "phase-993",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-003",
+      "name": "理英雄 デカルトQ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "クリスタル・コマンド・ドラゴン",
+      "text": "ブロッカー ブロッカー\nマナ武装 ７：このクリーチャーをバトルゾーンに出した時、自分のマナゾーンに水のカードが７枚以上あれば、カードを５枚まで引いてもよい。\nこのクリーチャーをバトルゾーンに出した時、手札を１枚、新しいシールドとして、自分のシールドゾーンに裏向きにして加えてもよい。そうした場合、自分のシールドをひとつ選び、手札に戻す。ただし、その「S・トリガー」は使えない。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-003",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g527ExtraEntry": [
+        {
+          "label": "マナ武装7でカードを5枚まで引く",
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g267Mana": {
+                  "color": "水",
+                  "n": 7
+                }
+              },
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 5,
+                  "optional": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "手札とシールドを入れ替える",
+          "defs": [
+            {
+              "op": "ShieldExchange446",
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-993",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-v02",
+      "name": "暴龍事変 ガイグレン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 11000,
+      "race": "ガイアール・コマンド・ドラゴン/ヒューマノイド爆/ドラグナー",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nマナ武装 ９：このクリーチャーが攻撃する時、自分のマナゾーンに火のカードが９枚以上あれば、そのターン、このクリーチャーをアンタップしてパワーを+3000する。\nW・ブレイカー\n相手がこのクリーチャーを選んだ時、このクリーチャーのパワー以下のパワーを持つ相手のクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-v02",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g267Mana": {
+              "color": "火",
+              "n": 9
+            }
+          },
+          "defs": [
+            {
+              "op": "Untap",
+              "g191First": true
+            },
+            {
+              "op": "SelfBoost313",
+              "power": 3000,
+              "g536Source": true
+            }
+          ]
+        }
+      ],
+      "g447Selected": [
+        {
+          "op": "TargetBelowSource692",
+          "g993OpponentSweepInclusive": true
+        }
+      ],
+      "supportBatch": "phase-993",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-s01",
+      "name": "新聖綺神 クロスオーバー・ヨミ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 12000,
+      "race": "オラクリオン",
+      "text": "ブロッカー ブロッカー\nT・ブレイカー\nバトルゾーンにある自分のクリーチャーがこのクリーチャーだけであれば、このクリーチャーはブロックされず、バトルゾーンを離れる時、離れるかわりにとどまる。\n自分のターンの終わりに、このクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-s01",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 3,
+      "g260Self": {
+        "filter": {
+          "g479OnlyCreature": true
+        },
+        "grants": {
+          "unblockable": true
+        }
+      },
+      "g577Stay": {
+        "onlyCreature": true
+      },
+      "g166EndUntap": true,
+      "supportBatch": "phase-993",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 992,
+    "phase": 993,
     "checkedAt": "2026-11-12",
-    "baseCount": 6890,
+    "baseCount": 6894,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6894,
+    "totalCount": 6898,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/40535/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37164/",
-      "https://dm.takaratomy.co.jp/rule/qa/44602/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37153/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37066/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+      "https://dm.takaratomy.co.jp/rule/qa/43073/",
+      "https://dm.takaratomy.co.jp/rule/qa/48916/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35844/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36936/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -220696,6 +220880,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/46493/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37071/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37414/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 992,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6890,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6894,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/40535/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37164/",
+          "https://dm.takaratomy.co.jp/rule/qa/44602/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

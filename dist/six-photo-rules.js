@@ -370,6 +370,7 @@ export function createSixPhotoRules(api){
  function stay577(s,p,x,battlePower){
   const rule=effective(x,s).g577Stay;
   if(!rule||rule.opponentTurn&&s.active===p)return false;
+  if(rule.onlyCreature)return ownCondition(s,p,{g479OnlyCreature:true},x.uid,x.incarnation||0);
   const attacking=x.uid===s.attack?.attacker||x.uid===s.attackLifecycle?.uid&&(x.incarnation||0)===(s.attackLifecycle.incarnation||0);
   if((battlePower??api.power(x,attacking,s))<=0)return false;
   return !rule.lightMana||s.players[p].mana.filter(y=>!y.faceDown&&api.manaColors(api.zoneCard(s,p,y,'mana'),s,p).includes('光')).length>=rule.lightMana;
@@ -1015,7 +1016,7 @@ export function createSixPhotoRules(api){
    if(x&&zoneMove(s,r.p,r.origin,r.uid,t.to,t)&&matched)start(s,t,t.g583OnMove);
    return;
   }
-  if(t.g553Destinations&&t.rows?.length){put(s,{...t,op:'g34_Destination553',g553Destinations:false});return;}const rows=t.g183Return&&t.to==='deckTop'?[...(t.rows||[])].reverse():t.rows||[];if(t.g899RampTapped){
+  if(t.g553Destinations&&t.rows?.length){put(s,{...t,op:'g34_Destination553',destinations:t.g553Destinations,g553Destinations:false});return;}const rows=t.g183Return&&t.to==='deckTop'?[...(t.rows||[])].reverse():t.rows||[];if(t.g899RampTapped){
   let n=0;
   for(const r of rows){
    const x=s.players[r.p].battle.find(y=>y.uid===r.uid);
@@ -2114,7 +2115,13 @@ export function createSixPhotoRules(api){
  // Count once while resolving; later mana or battlefield changes do not rewrite the boost.
  case'g34_ManaColorBoost515':{const n=manaCivilizationCount(s,t.p);start(s,t,[{op:'Target',owner:'self',power:t.amount*n}]);break;}
  case'g34_CountCost553':{const n=s.players[t.p][t.zone].filter(y=>matches(s,t.p,y,t.filter)).length;start(s,t,[{...t.def,g513CostBudget:n,title:'合計コスト'+n+'以下になるよう2体まで選ぶ'}]);break;}
- case'g34_Destination553':{const xs=t.rows.flatMap(r=>{const y=s.players[r.p].battle.find(y=>y.uid===r.uid);return y?[y]:[];});choice(s,t,'選んだエレメントすべての移動先を選ぶ',[opt('すべてマナゾーンに置く','mana',xs.length*10),opt('すべて破壊する','grave',xs.reduce((n,y)=>n+(hooks.destroySafe409(s,y)?-5:30+cost(card(y))),0))]);break;}
+ case'g34_Destination553':{
+  if(Array.isArray(t.destinations)){
+   choice(s,t,'選んだカードの移動先を選ぶ',t.destinations.map(to=>opt(destinationName467[to],to,0)));
+   break;
+  }
+  const xs=t.rows.flatMap(r=>{const y=s.players[r.p].battle.find(y=>y.uid===r.uid);return y?[y]:[];});choice(s,t,'選んだエレメントすべての移動先を選ぶ',[opt('すべてマナゾーンに置く','mana',xs.length*10),opt('すべて破壊する','grave',xs.reduce((n,y)=>n+(hooks.destroySafe409(s,y)?-5:30+cost(card(y))),0))]);break;
+ }
  case'g34_CountOwn538':{const n=creatures(s,t.p).filter(y=>!y.sealed&&matches(s,t.p,y,t.filter)).length;if(!n)break;if(t.mode==='select')start(s,t,[{...t.def,n}]);else if(t.mode==='belowCost')start(s,t,[{...t.def,filter:{...t.def.filter,belowCost:n}}]);else if(t.mode==='repeat')start(s,t,Array.from({length:n},()=>structuredClone(t.def)));else throw Error('未対応のクリーチャー数効果');break;}
  case'g34_CountDraw':{const n=countDraw(s,t.p,t);if(n)start(s,t,[t.optional==='each'?{op:'DrawUpTo',n,g203Draw:true}:t.optional==='amount'?{op:'Draw',n,optional:true}:t.optional==='all'?{op:'Offer',title:'カードを'+n+'枚まとめて引く？',defs:[{op:'Draw',n}]}:{op:'Draw',n}]);break;}
  case'g34_CountBlindDiscard983':{
@@ -3149,10 +3156,10 @@ export function createSixPhotoRules(api){
   const host=sourceHost474(s,t.g828CompareAttacker?t.g399Attacker:t);
   const current=host&&!host.x.sealed&&api.isCreature(s,host.x)?currentPower506(s,host.x):t.g692LastPower;
   if(current===undefined||current===-Infinity||current==='-∞')break;
-  if(t.g745Sweep){
-   const threshold=current==='∞'?Infinity:current;
-   const rows=[t.p,1-t.p].flatMap(p=>creatures(s,p)
-    .filter(y=>!y.sealed&&currentPower506(s,y)<threshold)
+  if(t.g745Sweep||t.g993OpponentSweepInclusive){
+   const threshold=current==='∞'?Infinity:current,owners=t.g993OpponentSweepInclusive?[1-t.p]:[t.p,1-t.p];
+   const rows=owners.flatMap(p=>creatures(s,p)
+    .filter(y=>!y.sealed&&(t.g993OpponentSweepInclusive?currentPower506(s,y)<=threshold:currentPower506(s,y)<threshold))
     .map(y=>({player:p,uid:y.uid,to:'grave',destroy:true})));
    if(rows.length)move(s,rows);
   }else start(s,t,[{op:'Target',to:t.to,optional:t.optional,...(t.anyOwner?{anyOwner:true}:{}),...(t.g179Other?{g179Other:true}:{}),filter:{belowPower:current===Infinity?'∞':current,...(t.g199Power?{g199Power:true}:{})}}]);
