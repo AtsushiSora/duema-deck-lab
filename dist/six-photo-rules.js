@@ -1223,6 +1223,19 @@ export function createSixPhotoRules(api){
  case'g34_RevealPayment470':revealPayment470(s,t);break;
  case'g34_PayOnce464':payOnce464(s,t);break;
  case'g34_HandReveal462':handReveal462(s,t);break;
+ case'g34_DrawReveal911':{
+  const drawn=t.drawn||[];
+  if(t.n>0){
+   // Finish each draw, including replacements, before revealing the original draws.
+   put(s,{...t,n:t.n-1,drawn});
+   api.draw(s,t.p,1,{drawn});
+   break;
+  }
+  const shown=drawn.map(uid=>own.hand.find(y=>y.uid===uid)).filter(Boolean);
+  for(const y of shown)api.log(s,t.p,'reveal',card(t.source).name+'で手札公開：'+card(y).name,{cardId:y.cardId,source:t.source});
+  if(shown.some(y=>matches(s,t.p,y,{g223Multicolor:true})))api.draw(s,t.p,1);
+  break;
+ }
  case'g34_PlayersDraw461':{const ps=t.activeOnly?[s.active]:[s.active,1-s.active],controller=t.controller??t.p,group=t.discard?String(s.g461DrawSerial=(s.g461DrawSerial||0)+1):null;if(group)(s.g461DrawGroups??={})[group]={ps,controller,source:t.source,discard:t.discard,drawn:[]};put(s,...ps.map(p=>task('g34_PlayerDraw461',p,t.source,{n:t.n,optional:!!t.optional,upTo:!!t.upTo,discard:t.discard||0,group,controller})),...(group?[task('g34_FinishPlayersDraw461',t.p,t.source,{group,controller})]:[]));break;}
  case'g34_PlayersDiscardDraw461':{const ps=[s.active,1-s.active],by=t.controller??t.p;put(s,task('g34_PlayersDraw461',t.p,t.source,{n:t.n,upTo:true,controller:by}));for(const p of [...ps].reverse())api.discardSelected(s,p,s.players[p].hand.map(x=>x.uid),t.source,by);break;}
  case'g34_PlayerDraw461':{

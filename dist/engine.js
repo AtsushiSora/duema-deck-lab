@@ -85,8 +85,8 @@ export function effectiveCard(inst,context,forPower=false){
  if(owner==null||owner<0){if(context)for(const p of [0,1]){const c=zoneCard(context,p,inst);if(c!==base)return c;}return base;}
  base=zoneCard(context,owner,inst,'battle');
  if(abilitiesIgnored(context,inst)){const {id,name,type,civ,civilizations,manaValue,cost,power,race,limit,sMax,starEvolution}=base;return externalBlockState(context,owner,inst,extra.utilityNatureSupport.decorate(context,owner,inst,{id,name,type,civ,civilizations,manaValue,cost,...(inst.g40Reckless?.turn===context.turn||extra.six.forced546(context,owner,inst)?{mustAttack:true}:{}),...(sMax?{sMax:true}:{}),...(starEvolution?{starEvolution:true}:{}),power:base.hyper&&inst.hyperActive&&(base.hyperTap||inst.hyperResolved)?base.hyper.power:power,race,limit}));}
- // Track ordinary Blocker grants separately from the printed Dragon Blocker.
- const printed=base.g716DragonBlock?{...base,blocker:false}:base;
+ // Track ordinary Blocker grants separately from printed restricted Blockers.
+ const printed=base.g716DragonBlock||base.g911BlockColors?{...base,blocker:false}:base;
  let c=inheritSoul404(base.hyper&&inst.hyperActive?{...printed,...base.hyper}:printed,inst,card,layers);if(base.natureAce4&&!isCreature(context,inst))c={...c,type:'seed',power:0};
  if(c.g787AttackAfterShieldLeaves&&context.g787ShieldLeftTurns?.[owner]!==context.turn)c={...c,noAttack:true};
  if(c.type==='creature'&&c.g662ShieldGoStats){
@@ -190,6 +190,7 @@ export function effectiveCard(inst,context,forPower=false){
  if(context.attackLifecycle?.g814Blockers?.some(ref=>layers(inst).some(x=>x.uid===ref.uid&&(x.incarnation||0)===ref.incarnation)))
   c={...c,blocker:true};
  if(c.g716DragonBlock)c={...c,blocker:true,g716DragonBlockOnly:!c.blocker};
+ if(c.g911BlockColors)c={...c,blocker:true,g911ColorBlockOnly:!c.blocker};
  return c;
 }
 export const playFaces=c=>c.g393JWDFaces?c.g393JWDFaces.map(f=>({id:c.id,limit:c.limit,...f})):c.spellFace?[c,{id:c.id,limit:c.limit,...c.spellFace}]:[c];
@@ -304,7 +305,7 @@ function takeDrawCard(s,p){
  const uid=chooseHeroDraw(choices,{heroId:s.challenge.heroId,signature:s.challenge.signature,...(s.challenge.heroId&&!['shobu','katta','joe','win','hakuoh','basara','kira','kaiza'].includes(s.challenge.heroId)?{manaCards:own.mana.filter(x=>!x.faceDown).map(x=>({...card(x),civilizations:manaCivilizations(card(x))})),grave:own.grave.map(card)}:{}),mana:own.mana.length,colors:[...new Set(own.mana.flatMap(x=>manaCivilizations(card(x))))],hand:own.hand.map(describe),battle:own.battle.map(x=>publicCreature(x,p)),enemyBattle:s.players[1-p].battle.map(x=>publicCreature(x,1-p)),shields:own.shields.length,enemyShields:s.players[1-p].shields.length,active:s.active===p});
  const i=own.deck.findIndex(x=>x.uid===uid);return i<0?null:own.deck.splice(i,1)[0];
 }
-function draw(s,p,n,{unreplaceable=false}={}){let actual=0,replacementDraws=0;for(let i=0;i<n&&s.winner===null;i++){const replaced=unreplaceable?null:babyloniaDraw(s,p);if(replaced!==null){replacementDraws+=replaced;continue;}if(!unreplaceable&&!s.players[p].deck.length&&extra.deckSafe(s,p)&&s.players[p].battle.some(x=>effectiveCard(x,s).bigBang)){extra.put(s,extra.task("g10_Draws",p,s.players[p].battle.find(x=>effectiveCard(x,s).bigBang).cardId,{n:n-i}));break;}const last=s.players[p].deck.length===1&&!extra.deckSafe(s,p)&&!extra.seed.noLose(s,1-p,'replacementWin')&&s.players[p].battle.some(x=>effectiveCard(x,s).shako),c=takeDrawCard(s,p);if(c){clearBattleState(c,'hand');s.players[p].hand.push(c);actual++;if(!last&&c.g11FromSideways){checkSidewaysHand(s,p);if(s.winner!==null||s.lossEvent){if(n-i-1&&s.lossEvent)extra.put(s,extra.task('draw',p,c.cardId,{n:n-i-1}));break;}}}if(last&&c){finish(s,p,'シャコガイル：山札の最後の1枚を引いて勝利','replacementWin');if(s.winner===null)deckCheck(s,p);}else deckCheck(s,p);checkSidewaysHand(s,p);}extra.drawn(s,p,actual);log(s,p,'draw',`カードを${actual}枚引いた`);return actual+replacementDraws;}
+function draw(s,p,n,{unreplaceable=false,drawn}={}){let actual=0,replacementDraws=0;for(let i=0;i<n&&s.winner===null;i++){const replaced=unreplaceable?null:babyloniaDraw(s,p);if(replaced!==null){replacementDraws+=replaced;continue;}if(!unreplaceable&&!s.players[p].deck.length&&extra.deckSafe(s,p)&&s.players[p].battle.some(x=>effectiveCard(x,s).bigBang)){extra.put(s,extra.task("g10_Draws",p,s.players[p].battle.find(x=>effectiveCard(x,s).bigBang).cardId,{n:n-i}));break;}const last=s.players[p].deck.length===1&&!extra.deckSafe(s,p)&&!extra.seed.noLose(s,1-p,'replacementWin')&&s.players[p].battle.some(x=>effectiveCard(x,s).shako),c=takeDrawCard(s,p);if(c){clearBattleState(c,'hand');s.players[p].hand.push(c);drawn?.push(c.uid);actual++;if(!last&&c.g11FromSideways){checkSidewaysHand(s,p);if(s.winner!==null||s.lossEvent){if(n-i-1&&s.lossEvent)extra.put(s,extra.task('draw',p,c.cardId,{n:n-i-1}));break;}}}if(last&&c){finish(s,p,'シャコガイル：山札の最後の1枚を引いて勝利','replacementWin');if(s.winner===null)deckCheck(s,p);}else deckCheck(s,p);checkSidewaysHand(s,p);}extra.drawn(s,p,actual);log(s,p,'draw',`カードを${actual}枚引いた`);return actual+replacementDraws;}
 function mill(s,p,n){for(let i=0;i<n&&s.winner===null;i++){const x=takeDeckTop(s,p);if(x){clearBattleState(x);addZone(s,s.players[p],'grave',x);}deckCheck(s,p);}}
 
 // Only committed moves mark a card, and addZone consumes the mark synchronously.
@@ -1373,6 +1374,10 @@ function attackTargetAllowed(s,attacker,target){
 // Check the current characteristics before declaring a blocker. Battle-only
 // bonuses (including Hunting) have not started; attack and continuous bonuses have.
 function blockAttackerAllowed(s,attacker,blocker){
+ if(card(blocker).g911BlockColors){
+  const defender=effectiveCard(blocker,s);
+  if(defender.g911ColorBlockOnly&&!civilizations(effectiveCard(attacker,s)).some(color=>defender.g911BlockColors.includes(color)))return false;
+ }
  if(card(blocker).g716DragonBlock&&effectiveCard(blocker,s).g716DragonBlockOnly&&!isDragon(effectiveCard(attacker,s)))return false;
  if(unblockedNow(s,attacker)||(effectiveCard(attacker,s).g408LessPowerBlock||(attacker.g34Grants||[]).some(g=>g.turn===s.turn&&g.g408LessPowerBlock))&&power(blocker,false,s)<power(attacker,true,s))return false;
  if(extra.six.weakerBlock569(s,attacker,blocker))return false;

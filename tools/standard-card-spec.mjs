@@ -3445,6 +3445,18 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=911&&d.faces.length===1){
+  if(f.typeText==='呪文'&&d.id==='dm25-024'&&compact363===
+   'カードを2枚引きそのカードを見せる。その中に1枚でも多色カードがあればさらに1枚引く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'DrawReveal911',n:2}]};
+  if(creature&&d.id==='dm05-040'&&compact363===
+   '火・自然ブロッカー(相手の火または自然のクリーチャーが攻撃するときこのクリーチャーをタップしてその攻撃を阻止してよい。そのあとその相手クリーチャーとバトルする)')
+   return {blocker:true,g911BlockColors:['火','自然']};
+  if(creature&&d.id==='dmr13-042'&&compact363===
+   'ブロッカーブロッカーバトルゾーンに自分の他の「ブロッカー」を持つクリーチャーがなければこのクリーチャーは相手プレイヤーを攻撃できない。'+
+   'W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {blocker:true,breaker:2,g840PlayerAttackRequires:{creature:true,blocker:true,g334Other:true}};
+ }
  if(phase>=910&&d.faces.length===1){
   if(creature&&['dm03-050','dmc27-050'].includes(d.id)&&compact363===
    'バトルゾーンにある相手のクリーチャーの数が自分のクリーチャーの数より多いときこのクリーチャーは攻撃することができない。')
