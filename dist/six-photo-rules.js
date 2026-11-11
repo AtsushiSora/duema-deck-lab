@@ -2386,6 +2386,10 @@ export function createSixPhotoRules(api){
   if(n)put(s,{...t,op:'g34_TapManaColors698',p:attacker,controller:t.p,n,defs:[],elseDefs:[C('stopAttack')]});
   break;
  }
+ case'g34_TapToStopAttack979':
+  if(tapSource748(s,t))choice(s,t,'このクリーチャーをタップして攻撃を中止する？',
+   [opt('タップする',true,s.attack?40:-5,t.source),skip()]);
+  break;
  case'g34_TapManaColors698':{
   const selected=t.selected||[],n=t.n??t.colors.length;
   const pool=t.colors?null:own.mana.filter(x=>!x.tapped&&!selected.includes(x.uid));
@@ -3414,6 +3418,14 @@ export function createSixPhotoRules(api){
   }
   break;
  }
+ case'g34_TapToStopAttack979':{
+  const source=v&&tapSource748(s,t);
+  if(source){
+   api.tap(s,t.p,source);
+   start(s,t,[C('stopAttack')]);
+  }
+  break;
+ }
  case'g34_FightAttacker798':if(v){
   const ally=fightUnit240(s,t.p,t,true),attacker=fightUnit240(s,1-t.p,t.g399Attacker,true);
   if(ally&&attacker)api.battle(s,t.p,ally,1-t.p,attacker,s.attack?.attacker);
@@ -4347,6 +4359,7 @@ export function createSixPhotoRules(api){
    if(rule.g896LaterSameKind&&!(c.type==='creature'?s.g463Summons?.[p]?.turn===s.turn&&s.g463Summons[p].n>0:c.type==='spell'&&(s.players[p].spellsThisTurn||0)>0))continue;
    if(rule.race&&!race(c,rule.race))continue;
    if(rule.colorsAny&&!rule.colorsAny.some(color=>colors(c).includes(color)))continue;
+   if(rule.nameIncludes&&!exactName(creatureFaceName(c)).includes(rule.nameIncludes))continue;
    discount+=rule.amount;
   }
   return discount;

@@ -1,0 +1,215 @@
+{
+  "phase": 979,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6830,
+  "description": "自分の墓地の闇のクリーチャーを参照する登場時ドロー、漢を含むカード名の実行コスト軽減、自分への攻撃をタップで中止する能力に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/49416/",
+    "https://dm.takaratomy.co.jp/rule/qa/39980/",
+    "https://dm.takaratomy.co.jp/rule/qa/39328/",
+    "https://dm.takaratomy.co.jp/rule/qa/38732/",
+    "https://dm.takaratomy.co.jp/rule/qa/33428/"
+  ],
+  "cards": [
+    {
+      "id": "sp-030",
+      "name": "封魔アガシオン",
+      "faces": [
+        {
+          "name": "封魔アガシオン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の墓地に闇のクリーチャーが１体でもあれば、カードを１枚引いてもよい。",
+          "race": "グランド・デビル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=sp-030",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g273Grave": {
+                "n": 1,
+                "filter": {
+                  "faceUp": true,
+                  "g228Face": {
+                    "type": "creature",
+                    "color": "闇"
+                  }
+                }
+              }
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/sp-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "6eebd8ed3162160bfa0d953c8dd9f7d9d088a2fbfced38d2f38debe97dca0c3c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex08-102",
+      "name": "The フクロ漢",
+      "faces": [
+        {
+          "name": "The フクロ漢",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の《漢》と名前にあるカードを使うコストを１少なくする。ただし、コストは０以下にはならない。",
+          "race": "ジョーカーズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-102",
+      "spec": {
+        "g468UseReduction": {
+          "nameIncludes": "漢",
+          "amount": 1
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-102.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "21cba036c6056699e8433435a79bca82a4c23052b1bcd8cf5f12d006cc562591",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd01-010",
+      "name": "バッテン親父",
+      "faces": [
+        {
+          "name": "バッテン親父",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分がクリーチャーに攻撃された時、このクリーチャーをタップしてその攻撃を中止してもよい。",
+          "race": "ジョーカーズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd01-010",
+      "spec": {
+        "g252AttackWatch": {
+          "who": "opponent",
+          "playerAttack": true,
+          "defs": [
+            {
+              "op": "TapToStopAttack979"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd01-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "8f54318f4a1aca1905edc492200dc4c6e53956e19e5eb78693d190bf31ecbd74",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmrp01-030",
+      "canonicalId": "dmsd01-010",
+      "name": "バッテン親父",
+      "faces": [
+        {
+          "name": "バッテン親父",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分がクリーチャーに攻撃された時、このクリーチャーをタップしてその攻撃を中止してもよい。",
+          "race": "ジョーカーズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-030",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "cd1bdc409cb7c9f772255b48489fc90d0ca6cb2fc5bee57292c8b44324a20056",
+        "facesMatched": true
+      },
+      "printedAbilityText": "クリーチャーが自分を攻撃する時、このクリーチャーをタップしてその攻撃を中止してもよい。"
+    },
+    {
+      "id": "promoy16-088",
+      "canonicalId": "dmsd01-010",
+      "name": "バッテン親父",
+      "faces": [
+        {
+          "name": "バッテン親父",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "クリーチャーが自分を攻撃する時、このクリーチャーをタップしてその攻撃を中止してもよい。",
+          "race": "ジョーカーズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-088",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy16-088.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "2e69647ef8c1f7cbcb26c6e9fb12e3eb1d5cf169c3fa1b80e4a3b104801cce6c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "sp-030": 4,
+      "dmex08-102": 4,
+      "dmsd01-010": 4,
+      "dmrp01-030": 4,
+      "promoy16-088": 4
+    }
+  }
+}

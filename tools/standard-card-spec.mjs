@@ -3435,6 +3435,18 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=979&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='sp-030'&&text==='このクリーチャーをバトルゾーンに出した時自分の墓地に闇のクリーチャーが1体でもあればカードを1枚引いてもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'IfOwn',filter:{g273Grave:{n:1,filter:{faceUp:true,g228Face:{type:'creature',color:'闇'}}}},
+    defs:[{op:'Draw',n:1,optional:true}]}]};
+  if(d.id==='dmex08-102'&&text==='自分の《漢》と名前にあるカードを使うコストを1少なくする。ただしコストは0以下にはならない。')
+   return {g468UseReduction:{nameIncludes:'漢',amount:1}};
+  const stopAttack='このクリーチャーをタップしてその攻撃を中止してもよい。';
+  if(['dmsd01-010','dmrp01-030','promoy16-088'].includes(d.id)&&
+   ['自分がクリーチャーに攻撃された時','クリーチャーが自分を攻撃する時'].some(trigger=>text===trigger+stopAttack))
+   return {g252AttackWatch:{who:'opponent',playerAttack:true,defs:[{op:'TapToStopAttack979'}]}};
+ }
  if(phase>=978&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmr20-034'&&text==='自分のクリーチャーの数が自分のシールドの数以上ならこのクリーチャーを墓地から召喚してもよい。')

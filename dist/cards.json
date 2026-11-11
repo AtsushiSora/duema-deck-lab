@@ -200555,22 +200555,111 @@
       "g978GenerateDiscount": true,
       "supportBatch": "phase-978",
       "supportKind": "effect"
+    },
+    {
+      "id": "sp-030",
+      "name": "封魔アガシオン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "グランド・デビル",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の墓地に闇のクリーチャーが１体でもあれば、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=sp-030",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g273Grave": {
+              "n": 1,
+              "filter": {
+                "faceUp": true,
+                "g228Face": {
+                  "type": "creature",
+                  "color": "闇"
+                }
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-979",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex08-102",
+      "name": "The フクロ漢",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ジョーカーズ",
+      "text": "自分の《漢》と名前にあるカードを使うコストを１少なくする。ただし、コストは０以下にはならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-102",
+      "limit": 4,
+      "g468UseReduction": {
+        "nameIncludes": "漢",
+        "amount": 1
+      },
+      "supportBatch": "phase-979",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd01-010",
+      "name": "バッテン親父",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ジョーカーズ",
+      "text": "自分がクリーチャーに攻撃された時、このクリーチャーをタップしてその攻撃を中止してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd01-010",
+      "limit": 4,
+      "g252AttackWatch": {
+        "who": "opponent",
+        "playerAttack": true,
+        "defs": [
+          {
+            "op": "TapToStopAttack979"
+          }
+        ]
+      },
+      "supportBatch": "phase-979",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 978,
+    "phase": 979,
     "checkedAt": "2026-11-12",
-    "baseCount": 6827,
+    "baseCount": 6830,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6830,
+    "totalCount": 6833,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/41988/",
-      "https://dm.takaratomy.co.jp/rule/qa/48039/",
-      "https://dm.takaratomy.co.jp/rule/qa/40378/",
-      "https://dm.takaratomy.co.jp/rule/qa/43466/"
+      "https://dm.takaratomy.co.jp/rule/qa/49416/",
+      "https://dm.takaratomy.co.jp/rule/qa/39980/",
+      "https://dm.takaratomy.co.jp/rule/qa/39328/",
+      "https://dm.takaratomy.co.jp/rule/qa/38732/",
+      "https://dm.takaratomy.co.jp/rule/qa/33428/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -218165,6 +218254,25 @@
           "https://dm.takaratomy.co.jp/rule/rulechange/31433/",
           "https://dm.takaratomy.co.jp/rule/qa/40424/",
           "https://dm.takaratomy.co.jp/rule/qa/46609/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 978,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6827,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6830,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/41988/",
+          "https://dm.takaratomy.co.jp/rule/qa/48039/",
+          "https://dm.takaratomy.co.jp/rule/qa/40378/",
+          "https://dm.takaratomy.co.jp/rule/qa/43466/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
