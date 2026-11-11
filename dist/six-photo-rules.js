@@ -2066,6 +2066,10 @@ export function createSixPhotoRules(api){
  case'g34_Fight240':{const enemies=fightRows240(s,t.p,1-t.p,t.enemyFilter);if(!enemies.length)break;if(t.self){if(x&&api.isCreature(s,x)&&!x.sealed)put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:x.uid,incarnation:x.incarnation||0}});}else{const allies=fightRows240(s,t.p,t.p).filter(o=>!t.g419FightFilter||matches(s,t.p,own.battle.find(y=>y.uid===o.value),t.g419FightFilter));if(allies.length)choice(s,t,'バトルする自分のクリーチャーを1体選ぶ',[...allies.map(o=>{const a=own.battle.find(y=>y.uid===o.value);return{...o,value:{uid:a.uid,incarnation:a.incarnation||0},score:Math.max(...enemies.map(o=>fightScore240(s,a,s.players[1-t.p].battle.find(y=>y.uid===o.value))))};}),...(t.optional?[skip()]:[])]);}break;}
  case'g34_FightEnemy240':{const a=fightUnit240(s,t.fighterOwner??t.p,t.fighter,t.g745FollowFighter);if(a){const rows=fightRows240(s,t.p,1-t.p,t.enemyFilter).filter(o=>o.value!==a.uid);if(rows.length)choice(s,t,'バトルする相手のクリーチャーを1体選ぶ',[...rows.map(o=>{const b=s.players[1-t.p].battle.find(y=>y.uid===o.value);return{...o,value:{uid:b.uid,incarnation:b.incarnation||0},score:fightScore240(s,a,b)};}),...(t.optional?[skip()]:[])]);}break;}
  case'g34_ChooseCivilization805':{
+  if(t.g924DepthReveal){
+   choice(s,t,'水以外の文明を選ぶ',civilizations805.filter(color=>color!=='水').map(color=>opt(color,color,0)));
+   break;
+  }
   const rows=t.target?[]:creatureCivilizations805(s);
   choice(s,t,t.target?'追加する文明を選ぶ':'タップしない単色クリーチャーの文明を選ぶ',civilizations805.map(color=>opt(color,color,
    rows.reduce((score,{p,x,cs})=>!x.tapped&&cs.some(c=>c!==color)?score+(p===t.p?-8:8):score,0))));
@@ -3027,6 +3031,11 @@ export function createSixPhotoRules(api){
   break;
  case'g34_ShieldExchange446':{const y=v&&own.hand.find(y=>y.uid===v);if(y)zoneMove(s,t.p,'hand',y.uid,'shields',t);if(!t.optional||y)put(s,{...t,op:'g34_ShieldHand',g238ShieldHand:true});break;}
  case'g34_ChooseCivilization805':
+  if(t.g924DepthReveal){
+   start(s,t,[{op:'Look',n:2,public:true,rest:'bottom',
+    stages:[{n:'all',allMatches:true,to:'hand',filter:{anyFaceColor:v}}]}]);
+   break;
+  }
   if(t.target){
    const x=s.players[t.target.p].battle.find(y=>y.uid===t.target.uid&&(y.incarnation||0)===t.target.incarnation);
    if(x&&!x.sealed&&api.isCreature(s,x))(s.extLimits??=[]).push({
@@ -3377,6 +3386,12 @@ export function createSixPhotoRules(api){
  case'g34_ManaExchangeBase753':api.beginManaExchange753(s,t,v);break;
  case'g34_Target':
   if(used792(s,t,t))break;
+  if(t.g924AttackableUntapped){
+   const y=v&&s.players[v.p].battle.find(x=>x.uid===v.uid);
+   if(y)(s.extLimits??=[]).push({kind:'g924AttackableUntapped',refs:api.allLayers(y).map(key),
+    spellSource:t.source,spellCost:cost(card(t.source)),turn:s.turn,expires:'end',who:s.active});
+   break;
+  }
   if(t.g906AttackDraw){
    const y=v&&own.battle.find(x=>x.uid===v.uid);
    if(y)start(s,t,[{op:'TurnAttackDraw613',refs:api.allLayers(y).map(key),n:t.g906AttackDraw}]);
@@ -3725,6 +3740,8 @@ export function createSixPhotoRules(api){
  },
  allowedCast(s,p,c){
   if(c.type==='field'&&creatures(s,1-p).some(x=>!x.sealed&&effective(x,s).g685OpponentFieldLock))return false;
+  if(c.type==='spell'&&s.players.some(owner=>owner.battle.some(x=>x.tapped&&!x.sealed&&
+   card(x).g924TappedSpellLock&&effective(x,s).g924TappedSpellLock)))return false;
   if(c.type==='spell'&&(s.extLimits||[]).some(l=>l.kind==='g589SpellLock'&&l.player===p&&
    (!l.nextOnly||s.active===p&&s.players[p].turns>l.afterTurns)&&(!l.color||colors(c).includes(l.color))))return false;
   if(c.type==='spell'&&!colors(c).includes('光')&&(active(s,0,'alca').length||active(s,1,'alca').length))return false;if(c.type==='creature'||c.type==='spell'){if(active(s,1-p,'perfect').length&&s.g34Executions?.[p]?.turn===s.turn&&s.g34Executions[p].n>=3)return false;if(!colors(c).includes('光')&&(active(s,0,'alphadios').length||active(s,1,'alphadios').length))return false;}return c.type!=='spell'||!active(s,1-p,'hAlka').some(x=>x.hyperActive&&creatures(s,1-p).some(y=>y.tapped));},
@@ -3740,6 +3757,8 @@ export function createSixPhotoRules(api){
  stay577,
  zeroSafe:(s,x)=>!!effective(x,s).g34AlwaysWinAtZero&&api.power(x,false,s)<=0,
  // Resolved continuous effects are independent of the recipient's ignored abilities (QA34228).
+ attackableUntapped924:(s,x)=>(s.extLimits||[]).some(l=>l.kind==='g924AttackableUntapped'&&l.turn===s.turn&&
+  api.allLayers(x).some(y=>l.refs.includes(key(y)))&&!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})),
  attackEffect409:(s,x,kind)=>(s.extLimits||[]).some(l=>l.kind==='g409AttackEffect'&&l.effect===kind&&s.players[l.player].battle.includes(x)&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)),
  destroySafe409:(s,x)=>!!effective(x,s).g465DestroySafe||hooks.attackEffect409(s,x,'destroySafe'),
  extraBreak557:(s,p,x,c)=>s.players[p].battle.reduce((n,y)=>{

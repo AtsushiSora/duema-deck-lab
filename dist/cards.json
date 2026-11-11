@@ -194626,19 +194626,134 @@
       ],
       "supportBatch": "phase-923",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24-002",
+      "name": "デプス・ノーブル",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "サイバー・ウイルス",
+      "text": "このクリーチャーで攻撃するかわりに、このクリーチャーと自分のマナゾーンのタップされていないカードを８枚タップして、次の能力を使ってもよい。\n水以外の文明をひとつ選び、自分の山札の上から２枚を表向きにする。その中から、選んだ文明のカードを手札に加え、残りのカードを好きな順序で山札の一番下に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-002",
+      "limit": 4,
+      "g736AttackInstead": true,
+      "g804ManaTapCost": 8,
+      "g439Tap": [
+        {
+          "op": "ChooseCivilization805",
+          "g924DepthReveal": true
+        }
+      ],
+      "supportBatch": "phase-924",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm20-033",
+      "name": "ザッピング・ビーンズ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ワイルド・ベジーズ",
+      "text": "このクリーチャーをバトルゾーンに出した時、相手はバトルゾーンにある自分自身のクリーチャーを１体選び、持ち主のマナゾーンに置く。\nこのクリーチャーが破壊された時、相手は進化ではないクリーチャーを１体、自分自身のマナゾーンから選び、バトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-033",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "OpponentSelect",
+          "n": 1,
+          "to": "mana"
+        }
+      ],
+      "g172Death": [
+        {
+          "op": "OpponentSelect",
+          "origin": "mana",
+          "n": 1,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "faceUp": true,
+            "nonEvolution": true
+          },
+          "title": "自分のマナから進化ではないクリーチャーを1体出す"
+        }
+      ],
+      "supportBatch": "phase-924",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm20-031",
+      "name": "お騒がせチューザ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ドリームメイト",
+      "text": "このクリーチャーは、可能であれば毎ターン攻撃する。\nこのクリーチャーがタップされている時、誰も呪文を唱えることはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-031",
+      "limit": 4,
+      "mustAttack": true,
+      "g924TappedSpellLock": true,
+      "supportBatch": "phase-924",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm01-034",
+      "name": "カオス・ストライク",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある相手のクリーチャーを１体選ぶ。\nこのターン、選んだクリーチャーがタップされていなくても攻撃できる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm01-034",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "g924AttackableUntapped": true,
+          "spell": true,
+          "title": "アンタップ中でも攻撃できるようにする相手のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-924",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 923,
+    "phase": 924,
     "checkedAt": "2026-11-11",
-    "baseCount": 6636,
-    "newEffectCards": 3,
+    "baseCount": 6639,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6639,
+    "totalCount": 6643,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35459/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37349/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35444/",
+      "https://dm.takaratomy.co.jp/rule/qa/39396/",
+      "https://dm.takaratomy.co.jp/rule/qa/31530/",
+      "https://dm.takaratomy.co.jp/rule/qa/33609/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -211114,6 +211229,23 @@
           "https://dm.takaratomy.co.jp/rule/rulechange/31412/",
           "https://dm.takaratomy.co.jp/rule/qa/42981/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35526/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 923,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6636,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6639,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35459/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37349/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [

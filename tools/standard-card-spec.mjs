@@ -3009,7 +3009,9 @@ export function standardCardSpec(d,{phase=165}={}){
     '呪文を1枚自分の墓地から手札に戻す。':{op:'Select',origin:'grave',to:'hand',n:1,filter:{g228Face:{type:'spell'}}},
     'カードを1枚マナゾーンから持ち主の手札に戻す。':{op:'Select',anyOwner:true,origin:'mana',to:'hand',n:1},
     ...(phase>=923?{'バトルゾーンにある自分のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーは+6000され「W・ブレイカー」を得る。':
-     {op:'Target',owner:'self',power:6000,grant:{g313Breaker:2,g633DoubleBreaker:true}}}:{})
+     {op:'Target',owner:'self',power:6000,grant:{g313Breaker:2,g633DoubleBreaker:true}}}:{}),
+    ...(phase>=924?{'水以外の文明をひとつ選び自分の山札の上から2枚を表向きにする。その中から選んだ文明のカードを手札に加え残りのカードを好きな順序で山札の一番下に戻す。':
+     {op:'ChooseCivilization805',g924DepthReveal:true}}:{})
    };
    if(effects[body])return {...(blocker?{blocker:true}:{}),g736AttackInstead:true,g804ManaTapCost:8,g439Tap:[effects[body]]};
   }
@@ -3447,6 +3449,23 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=924&&d.faces.length===1){
+  if(creature&&d.id==='dm20-033'&&compact363===
+   'このクリーチャーをバトルゾーンに出した時相手はバトルゾーンにある自分自身のクリーチャーを1体選び持ち主のマナゾーンに置く。'+
+   'このクリーチャーが破壊された時相手は進化ではないクリーチャーを1体自分自身のマナゾーンから選びバトルゾーンに出す。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'OpponentSelect',n:1,to:'mana'}],g172Death:[
+    {op:'OpponentSelect',origin:'mana',n:1,deploy:true,filter:{creature:true,faceUp:true,nonEvolution:true},
+     title:'自分のマナから進化ではないクリーチャーを1体出す'}]};
+  if(creature&&['dm20-031','dmx12a-020','dmex12-066','dmex17-w05','dm24rp1-T07','dm24ex3-TF30'].includes(d.id)&&[
+   'このクリーチャーは可能であれば毎ターン攻撃する。このクリーチャーがタップされている時誰も呪文を唱えることはできない。',
+   'このクリーチャーは可能であれば毎ターン攻撃する。このクリーチャーがタップしている時誰も呪文を唱えられない。',
+   'このクリーチャーは可能なら毎ターン攻撃する。このクリーチャーがタップしていればすべてのプレイヤーは呪文を唱えられない。'
+  ].includes(compact363))return {mustAttack:true,g924TappedSpellLock:true};
+  if(f.typeText==='呪文'&&d.id==='dm01-034'&&compact363===
+   'バトルゾーンにある相手のクリーチャーを1体選ぶ。このターン選んだクリーチャーがタップされていなくても攻撃できる。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',g924AttackableUntapped:true,spell:true,
+    title:'アンタップ中でも攻撃できるようにする相手のクリーチャーを選ぶ'}]};
+ }
  if(phase>=923&&d.faces.length===1){
   if(creature&&d.id==='dm20-001'&&compact363===
    '自分のキカイヒーローまたはグレートメカオーが破壊された時バトルゾーンにある自分のクリーチャーをすべてアンタップする。'+
