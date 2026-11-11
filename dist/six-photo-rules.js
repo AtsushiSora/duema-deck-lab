@@ -588,9 +588,10 @@ export function createSixPhotoRules(api){
  }
  function finishShieldMove588(s,t){
   if(!t.selected?.length)return;
+  const owner=t.owner==='self'?t.p:1-t.p;
   const to=t.to==='mana'?'mana':'grave',zone=to==='mana'?'マナゾーン':'墓地';
-  const moved=api.moveShields(s,1-t.p,t.selected,to);
-  if(moved.length)api.log(s,t.p,to==='mana'?'shieldMana':'shieldGrave',card(t.source).name+'：相手のシールドからカード'+moved.length+'枚を'+zone+'に置いた',{cardId:t.source});
+  const moved=api.moveShields(s,owner,t.selected,to);
+  if(moved.length)api.log(s,t.p,to==='mana'?'shieldMana':'shieldGrave',card(t.source).name+'：'+(owner===t.p?'自分':'相手')+'のシールドからカード'+moved.length+'枚を'+zone+'に置いた',{cardId:t.source});
  }
  function winWatches252(s,p,w){const winner=s.players[p].battle.find(x=>x.uid===w?.uid);if(!winner)return[];return watchSources252(s,p).flatMap(x=>{const watch=effective(x,s).g252WinWatch;return watch&&(!watch.first||w.g587First)&&(!watch.other||x.uid!==winner.uid)&&matches(s,p,winner,watch.filter)?[{player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Sequence',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs:watch.defs,...(watch.winner?{g399Attacker:{uid:winner.uid,incarnation:winner.incarnation||0}}:{})})}]:[];});}
  // Use events come from actual summons and spell casts, not arbitrary battlefield entries.
@@ -1797,12 +1798,13 @@ export function createSixPhotoRules(api){
  case'g34_GraveReturn754':{
   const y=own.grave.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);
   if(!y||!api.canMoveZone(s,t.p,'grave')||t.condition&&!ownCondition(s,t.p,t.condition))break;
+  if(t.deploy&&!canPut(s,t.p,y,'grave'))break;
   if(t.colors?.length){
    const manaColors=new Set(own.mana.filter(x=>!x.faceDown).flatMap(x=>api.manaColors(api.zoneCard(s,t.p,x,'mana'),s,t.p)));
    if(!t.colors.every(c=>manaColors.has(c)))break;
   }
-  start(s,t,[{op:'Offer',title:card(y).name+'を墓地から手札に戻す？',
-   score:18,defs:[{op:'SelfGraveHand476',serial:t.serial}]}]);
+  start(s,t,[{op:'Offer',title:card(y).name+(t.deploy?'を墓地からバトルゾーンに出す？':'を墓地から手札に戻す？'),
+   score:18,defs:[{op:t.deploy?'SelfGraveRevive644':'SelfGraveHand476',serial:t.serial}]}]);
   break;
  }
  case'g34_SelfHand299':{const host=sourceHost474(s,t);if(host)move(s,[{player:host.p,uid:host.x.uid,to:'hand',controller:t.controller??t.p}]);break;}
@@ -2414,10 +2416,11 @@ export function createSixPhotoRules(api){
  }
  case'g34_ShieldMove685':
  case'g34_ShieldGrave588':{
-  const selected=t.selected||[],rows=opp.shields.filter(y=>!selected.includes(y.uid)&&api.shieldCards(y).some(x=>!x.g37ShieldHeld));
+  const target=t.owner==='self'?own:opp,side=t.owner==='self'?'自分':'相手';
+  const selected=t.selected||[],rows=target.shields.filter(y=>!selected.includes(y.uid)&&api.shieldCards(y).some(x=>!x.g37ShieldHeld));
   const zone=t.to==='mana'?'マナゾーン':'墓地';
-  if(selected.length<t.n&&rows.length)choice(s,t,t.required?zone+'に置く相手のシールドを1つ選ぶ':zone+'に置く相手のシールドを'+t.n+'つまで選ぶ（'+selected.length+'つ選択済み）',[
-   ...rows.map(y=>opt('シールド '+(opp.shields.indexOf(y)+1),y.uid,10)),...(t.required?[]:[opt('選択を完了',null,0)])
+  if(selected.length<t.n&&rows.length)choice(s,t,t.required?zone+'に置く'+side+'のシールドを1つ選ぶ':zone+'に置く'+side+'のシールドを'+t.n+'つまで選ぶ（'+selected.length+'つ選択済み）',[
+   ...rows.map(y=>opt('シールド '+(target.shields.indexOf(y)+1),y.uid,10)),...(t.required?[]:[opt('選択を完了',null,0)])
   ]);else finishShieldMove588(s,t);
   break;
  }
@@ -5264,9 +5267,11 @@ export function createSixPhotoRules(api){
  },
  end(s){if(s.extLimits)s.extLimits=s.extLimits.filter(l=>!(l.kind==='g546Force'&&l.when==='nextOpponent'&&s.active===1-l.controller&&s.turn>l.turn));const out=collect537(s,'turnEnd',s.active);
   for(const x of s.players[s.active].grave){
-   const condition=!x.faceDown&&card(x).g971GraveEnd;
+   const {g971GraveEnd,g971GraveDeployEnd}=card(x);
+   const condition=!x.faceDown&&(g971GraveDeployEnd||g971GraveEnd);
    if(condition)out.push({player:s.active,uid:x.uid,source:x.cardId,effect:'extended',
-    task:task('g34_GraveReturn754',s.active,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,serial:x.zoneSerial||0,condition})});
+    task:task('g34_GraveReturn754',s.active,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,serial:x.zoneSerial||0,condition,
+     ...(g971GraveDeployEnd?{deploy:true}:{})})});
   }
   const remaining501=[];for(const r of s.g501EndDelays||[])if(!r.ownEnd||r.p===s.active)out.push({player:r.p,source:r.source,effect:'extended',task:task('g34_ResolveEnd501',r.p,r.source,{...r})});else remaining501.push(r);s.g501EndDelays=remaining501;for(const t of s.g484BreakEnds||[])if(t.turn===s.turn)out.push({player:t.p,source:t.source,uid:t.uid,effect:'extended',task:task('g34_Sequence',t.p,t.source,{uid:t.uid,incarnation:t.incarnation,defs:[E('BreakReturn484')]})});s.g484BreakEnds=[];for(const t of s.g408EndUntaps||[])if(t.turn===s.turn)out.push({player:t.p,source:t.source,uid:t.g399Attacker.uid,effect:'extended',task:task('g34_AttackUntap408',t.p,t.source,{g399Attacker:t.g399Attacker})});s.g408EndUntaps=[];for(const p of[0,1]){const add=(x,defs,source=x.cardId)=>out.push({player:p,uid:x.uid,source,effect:'extended',task:task('g34_Sequence',p,source,{uid:x.uid,incarnation:x.incarnation||0,defs})});for(const x of s.players[p].battle){if(x.g34Delayed?.turn===s.turn){const d=x.g34Delayed,controller=d.controller??p,source=d.source||x.cardId;out.push({player:controller,uid:x.uid,source,effect:'extended',task:task('g34_DelayedMove532',controller,source,{uid:x.uid,incarnation:x.incarnation||0,to:d.to})});}if(api.ignored(s,x))continue;const r=card(x).g34Role;if(!x.sealed&&effective(x,s).g474AnyEnd)add(x,effective(x,s).g474AnyEnd);
   const manaLeftEnd=card(x).g811ManaLeftEnd;

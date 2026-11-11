@@ -1,0 +1,261 @@
+{
+  "phase": 1002,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6928,
+  "description": "復活の悪魔龍 グルグール、成長目 ギョウ、革命龍 ガビュート、雪精 エリカッチュの公式能力を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37281/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37287/",
+    "https://dm.takaratomy.co.jp/rule/qa/39785/",
+    "https://dm.takaratomy.co.jp/rule/qa/45802/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37452/",
+    "https://dm.takaratomy.co.jp/rule/qa/39332/"
+  ],
+  "cards": [
+    {
+      "id": "dmr18-018",
+      "name": "復活の悪魔龍 グルグール",
+      "faces": [
+        {
+          "name": "復活の悪魔龍 グルグール",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n革命２―自分のターンの終わりに、自分のシールドが２つ以下なら、このクリーチャーを墓地からバトルゾーンに出してもよい。",
+          "race": "デーモン・コマンド・ドラゴン/革命軍",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-018",
+      "spec": {
+        "breaker": 2,
+        "g971GraveDeployEnd": {
+          "g265ShieldsMax": 2
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "f52817606733c6c1b34ba8c51382d4bd21136dd0e6710319483fc32d16d891ef",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-048",
+      "name": "成長目 ギョウ",
+      "faces": [
+        {
+          "name": "成長目 ギョウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "シールド・セイバー（自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分のシールドをひとつ、マナゾーンに置く。",
+          "race": "ジュラシック・コマンド・ドラゴン/革命軍",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-048",
+      "spec": {
+        "g401ShieldSaver": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldMove685",
+            "owner": "self",
+            "n": 1,
+            "to": "mana",
+            "required": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "e37cba2736c984707752ee23b06cf5765903681a17a433af68c8ec07e21020eb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-006",
+      "name": "革命龍 ガビュート",
+      "faces": [
+        {
+          "name": "革命龍 ガビュート",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のシールドをひとつ選び、持ち主の墓地に置く。\n革命２―自分のシールドが２つ以下なら、自分の闇のクリーチャーすべてに「ブロッカー」と「スレイヤー」を与える。",
+          "race": "デーモン・コマンド・ドラゴン/革命軍",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-006",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldMove685",
+            "n": 1,
+            "to": "grave",
+            "required": true
+          }
+        ],
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "color": "闇"
+            },
+            "g557Condition": {
+              "g265ShieldsMax": 2
+            },
+            "grants": {
+              "blocker": true,
+              "slayer": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "eeee6606ec93af7cdd52523bde4b274567269e0f9e8a7104d659d09e17c61cec",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-041",
+      "name": "雪精 エリカッチュ",
+      "faces": [
+        {
+          "name": "雪精 エリカッチュ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、進化ではないコスト７以下のクリーチャーを１体選び、持ち主のマナゾーンに置く。\n革命２―自分のシールドが２つ以下なら、このクリーチャーに「S・トリガー」を与える。",
+          "race": "スノーフェアリー風/革命軍",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-041",
+      "spec": {
+        "rev2Trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "mana",
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "max": 7
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "238df3e6c8dbda9a988f08535ea05985db52ad9fc7986399aa18ae15320ae36a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy14-028",
+      "canonicalId": "dmr18-018",
+      "name": "復活の悪魔龍 グルグール",
+      "faces": [
+        {
+          "name": "復活の悪魔龍 グルグール",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n革命２―自分のターンの終わりに、自分のシールドが２つ以下なら、このクリーチャーを墓地からバトルゾーンに出してもよい。",
+          "race": "デーモン・コマンド・ドラゴン/革命軍",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-028",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy14-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "7c32896628af7c9747c993e98c4e54576e71b094cc53a7f4baaf6de121eb116b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx22b-149",
+      "canonicalId": "dmr18-041",
+      "name": "雪精 エリカッチュ",
+      "faces": [
+        {
+          "name": "雪精 エリカッチュ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、コスト７以下の進化ではないクリーチャーを１体選び、持ち主のマナゾーンに置く。\n革命２―自分のシールドが２つ以下なら、このクリーチャーに「S・トリガー」を与える。",
+          "race": "スノーフェアリー風/革命軍",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-149",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx22b-149.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "21e345af1a759b6615b134c224e568894ac3f8c6f7692f408fdae5e635f493f7",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr18-018": 4,
+      "dmr19-048": 4,
+      "dmr19-006": 4,
+      "dmr18-041": 4,
+      "promoy14-028": 4,
+      "dmx22b-149": 4
+    }
+  }
+}

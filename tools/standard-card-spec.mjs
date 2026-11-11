@@ -3435,6 +3435,29 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=1002&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const entry='このクリーチャーがバトルゾーンに出た時';
+  const revolution2={g265ShieldsMax:2};
+  if(['dmr18-018','promoy14-028'].includes(d.id)&&text===
+   'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+
+   '革命2―自分のターンの終わりに自分のシールドが2つ以下ならこのクリーチャーを墓地からバトルゾーンに出してもよい。')
+   return {breaker:2,g971GraveDeployEnd:revolution2};
+  if(d.id==='dmr19-048'&&text==='シールド・セイバー(自分のシールドがブレイクされる時かわりにこのクリーチャーを破壊してもよい)'+
+   entry+'自分のシールドをひとつマナゾーンに置く。')
+   return {g401ShieldSaver:true,effect:'sixPhoto',g34Tasks:[{op:'ShieldMove685',owner:'self',n:1,to:'mana',required:true}]};
+  if(d.id==='dmr19-006'&&text==='W・ブレイカー'+entry+'相手のシールドをひとつ選び持ち主の墓地に置く。'+
+   '革命2―自分のシールドが2つ以下なら自分の闇のクリーチャーすべてに「ブロッカー」と「スレイヤー」を与える。')
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'ShieldMove685',n:1,to:'grave',required:true}],
+    g208Auras:[{filter:{creature:true,color:'闇'},g557Condition:revolution2,grants:{blocker:true,slayer:true}}]};
+  if(['dmr18-041','dmx22b-149'].includes(d.id)&&
+   ['進化ではないコスト7以下の','コスト7以下の進化ではない'].some(filter=>text===entry+
+    filter+'クリーチャーを1体選び持ち主のマナゾーンに置く。'+
+    '革命2―自分のシールドが2つ以下ならこのクリーチャーに「S・トリガー」を与える。'))
+   return {rev2Trigger:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Target',anyOwner:true,to:'mana',filter:{creature:true,nonEvolution:true,max:7}}
+   ]};
+ }
  if(phase>=1001&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const entry='このクリーチャーがバトルゾーンに出た時';
