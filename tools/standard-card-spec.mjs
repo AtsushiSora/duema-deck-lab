@@ -3435,6 +3435,18 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=980&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmx15-009'&&f.typeText==='呪文'&&text==='バトルゾーンにある進化ではないクリーチャーを1体選び新しいシールドとして持ち主のシールドゾーンに裏向きにして加える。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',anyOwner:true,to:'shields',filter:{nonEvolution:true},
+    title:'シールド化する進化ではないクリーチャーを1体選ぶ'}]};
+  if(d.id==='dmr16g-002'&&f.typeText==='進化クリーチャー'&&text==='進化ー自分の闇のクリーチャー1体の上に置く。このクリーチャーが攻撃する時相手の手札を見て1枚選び捨てさせる。W・ブレイカー')
+   return {evolution:{civilization:'闇'},breaker:2,g34Attack:[{op:'InspectOne258'}]};
+  if(d.id==='dmex17-133'&&f.typeText==='クリーチャー'&&text==='このクリーチャーが出た時いずれかのプレイヤーの墓地からカードを3枚まで選ぶ。そのプレイヤーはそのカードを自身の山札に加えてシャッフルする。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'GravePick598',mode:'shuffle',n:3,upTo:true}]};
+  if(d.id==='dmex15-b033'&&f.typeText==='クリーチャー'&&text==='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)このクリーチャーが攻撃する時シールドを1つ選び持ち主のマナゾーンに置いてもよい。')
+   return {breaker:2,g34Attack:[{op:'ShieldToMana980'}]};
+ }
  if(phase>=979&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='sp-030'&&text==='このクリーチャーをバトルゾーンに出した時自分の墓地に闇のクリーチャーが1体でもあればカードを1枚引いてもよい。')

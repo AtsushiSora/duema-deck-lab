@@ -1075,7 +1075,7 @@ export function createSixPhotoRules(api){
   const moved=api.canMoveZone(s,owner,'grave')?selected.map(uid=>remove(grave,uid)):[];
   for(const x of moved)clear(x,'deck');
   if(t.mode==='shuffle'){
-   if(selected.length)api.shuffleLibrary(s,owner,moved,t.source);
+   if(t.upTo?moved.length:selected.length)api.shuffleLibrary(s,owner,moved,t.source);
    return;
   }
   if(t.mode==='shuffleBottom'){
@@ -2463,6 +2463,14 @@ export function createSixPhotoRules(api){
     ...(host?{incarnation:host.incarnation||0,...(c.g122NoST?{noST:true}:{}),reverse:!!c.reverseBurn,burn:!!c.shieldBurn,...(c.qqLock?{qqBreak:true}:{})}:{})});
   break;
  }
+ case'g34_ShieldToMana980':{
+  const options=[t.p,1-t.p].flatMap(owner=>ownShieldGraveOptions(s,owner).map(o=>({
+   ...o,label:(owner===t.p?'自分の':'相手の')+o.label,value:{owner,uid:o.value},
+   score:owner===t.p?(own.shields.length>=3&&own.mana.length<7?7:-10):(opp.shields.length===1?14:3)
+  })));
+  if(options.length)choice(s,t,'マナに置くシールドを1つ選ぶ（任意）',[...options,skip()]);
+  break;
+ }
  case'g34_ShieldMana557':if(opp.shields.length)choice(s,t,'マナに置く相手のシールドを1つ選ぶ',opp.shields.map((x,i)=>opt('シールド'+(i+1),x.uid,10)));break;
  case'g34_Break278':{
   const host=t.requiresCreature&&sourceHost474(s,t);
@@ -3162,7 +3170,8 @@ export function createSixPhotoRules(api){
  case'g34_ElementOrMana796':choice(s,t,'山札の下に置くエレメントかマナのカードを選ぶ',elementOrManaOptions796(s,t));break;
  case'g34_GravePick598':{
   if(t.owner===undefined){
-   const options=[t.p,1-t.p].filter(p=>s.players[p].grave.length).map(p=>opt(p===t.p?'自分の墓地':'相手の墓地',p,gravePickPlayerScore598(s,t,p)));
+   const options=[t.p,1-t.p].filter(p=>s.players[p].grave.length&&(!t.upTo||api.canMoveZone(s,p,'grave')))
+    .map(p=>opt(p===t.p?'自分の墓地':'相手の墓地',p,gravePickPlayerScore598(s,t,p)));
    if(options.length)choice(s,t,'山札に戻すカードを選ぶ墓地',t.mode==='destroy'?options:[...options,skip()]);
    else if(t.mode==='destroy')finishGravePick598(s,{...t,selected:[]});
    break;
@@ -3170,6 +3179,7 @@ export function createSixPhotoRules(api){
   const rows=s.players[t.owner].grave.filter(x=>!t.selected.includes(x.uid));
   if(!rows.length||t.n!==undefined&&t.selected.length>=t.n){finishGravePick598(s,t);break;}
   const options=rows.map(x=>opt(card(x).name,x.uid,10+(t.owner===t.p?-1:1)*Math.min(9,cost(card(x))),x.cardId));
+  if(t.upTo)options.push(opt('選んだ'+t.selected.length+'枚で進む',null,0));
   if(t.mode==='shuffleBottom')options.push(opt('選んだ'+t.selected.length+'枚で進む',null,t.owner===t.p?20:0));
   if(t.mode==='destroy'){
    const target=gravePickRemovalCost598(s,t,t.selected.length+rows.length);
@@ -3807,6 +3817,9 @@ export function createSixPhotoRules(api){
   start(s,t,t.defs);
  }break;
  case'g34_Break497':if(v)put(s,{...t,selected:[...(t.selected||[]),v]});break;
+ case'g34_ShieldToMana980':
+  if(v)api.moveShield(s,v.owner,v.uid,'mana');
+  break;
  case'g34_ShieldMana557':{
   const opp=s.players[1-t.p];
   if(!opp.shields.some(x=>x.uid===v))break;

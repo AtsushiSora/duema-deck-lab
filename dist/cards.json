@@ -200643,23 +200643,128 @@
       },
       "supportBatch": "phase-979",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx15-009",
+      "name": "邪眼と魔銃の盾",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある、進化ではないクリーチャーを１体選び、新しいシールドとして持ち主のシールドゾーンに裏向きにして加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-009",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "to": "shields",
+          "filter": {
+            "nonEvolution": true
+          },
+          "title": "シールド化する進化ではないクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-980",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr16g-002",
+      "name": "夢幻騎士 ヴィシャス・デスラー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "ダーク・ナイトメア",
+      "text": "進化ー自分の闇のクリーチャー１体の上に置く。\nこのクリーチャーが攻撃する時、相手の手札を見て１枚選び、捨てさせる。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-002",
+      "limit": 4,
+      "evolution": {
+        "civilization": "闇"
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "InspectOne258"
+        }
+      ],
+      "supportBatch": "phase-980",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex17-133",
+      "name": "神楽妖精パルティア",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "スノーフェアリー",
+      "text": "このクリーチャーが出た時、いずれかのプレイヤーの墓地からカードを３枚まで選ぶ。そのプレイヤーはそのカードを自身の山札に加えてシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-133",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GravePick598",
+          "mode": "shuffle",
+          "n": 3,
+          "upTo": true
+        }
+      ],
+      "supportBatch": "phase-980",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex15-b033",
+      "name": "緑神龍ダグラドルグランR",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アース・ドラゴン",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、シールドを１つ選び、持ち主のマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b033",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "ShieldToMana980"
+        }
+      ],
+      "supportBatch": "phase-980",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 979,
+    "phase": 980,
     "checkedAt": "2026-11-12",
-    "baseCount": 6830,
-    "newEffectCards": 3,
+    "baseCount": 6833,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6833,
+    "totalCount": 6837,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/49416/",
-      "https://dm.takaratomy.co.jp/rule/qa/39980/",
-      "https://dm.takaratomy.co.jp/rule/qa/39328/",
-      "https://dm.takaratomy.co.jp/rule/qa/38732/",
-      "https://dm.takaratomy.co.jp/rule/qa/33428/"
+      "https://dm.takaratomy.co.jp/rule/qa/46526/",
+      "https://dm.takaratomy.co.jp/rule/qa/33266/",
+      "https://dm.takaratomy.co.jp/rule/qa/42526/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/34944/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -218273,6 +218378,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/48039/",
           "https://dm.takaratomy.co.jp/rule/qa/40378/",
           "https://dm.takaratomy.co.jp/rule/qa/43466/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 979,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6830,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6833,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/49416/",
+          "https://dm.takaratomy.co.jp/rule/qa/39980/",
+          "https://dm.takaratomy.co.jp/rule/qa/39328/",
+          "https://dm.takaratomy.co.jp/rule/qa/38732/",
+          "https://dm.takaratomy.co.jp/rule/qa/33428/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
