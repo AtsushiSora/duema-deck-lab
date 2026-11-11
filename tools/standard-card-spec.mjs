@@ -3435,6 +3435,38 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=989&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='呪文'&&['dmr16g-015','dmr16s-015'].includes(d.id)&&
+   text==='G・ゼロ-バトルゾーンに自分のドラゴンが3体以上あればこの呪文をコストを支払わずに唱えてもよい。'+
+    'このターンバトルゾーンにある自分のクリーチャーすべてのパワーは+3000されシールドをさらに1枚ブレイクする。'+
+    'このターン自分のクリーチャーがブロックされた時そのクリーチャーをアンタップする。'){
+   const group={owner:'self',filter:{creature:true},spell:true};
+   return {g261Free:{filter:{g370BattleCount:{filter:{creature:true,race:'ドラゴン'},min:3}},label:'G・ゼロ'},
+    effect:'sixPhoto',g34Tasks:[
+     {op:'GroupPower',...group,power:3000},
+     {op:'GroupLasting412',...group,extraBreak:1,g969FollowControl:true},
+     {op:'BlockUntapTurn989'}
+    ]};
+  }
+  if(f.typeText==='クリーチャー'){
+   const trigger='S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)';
+   if(d.id==='dmr16s-024'&&text===trigger+
+    'このクリーチャーをバトルゾーンに出した時自分の手札を1枚新しいシールドとして自分のシールドゾーンに裏向きにして加えてもよい。そうした場合自分のシールドをひとつ選び手札に戻す。ただしその「S・トリガー」は使えない。')
+    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'ShieldExchange446',optional:true}]};
+   const strike=separator=>color=>'ストライク・バックS・バック'+separator+color+'('+color+
+    'のカードを自分のシールドゾーンから手札に加える時そのカードを捨ててもよい。そうした場合コストを支払わずにこのクリーチャーを召喚する)';
+   const basic=strike('-');
+   if(d.id==='dmr16s-026'&&text===basic('闇')||d.id==='promoy13-098'&&text===strike('—')('闇'))
+    return {strikeBack:true,strikeBackColor:'闇'};
+   if(['dmr16s-028','promoy13-089'].includes(d.id)&&text===basic('火'))
+    return {strikeBack:true,strikeBackColor:'火'};
+   if(d.id==='dmr16s-019'&&text===basic('光')+
+    'ブロッカーブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)'+
+    'このクリーチャーは相手プレイヤーを攻撃できない。')
+    return {strikeBack:true,strikeBackColor:'光',blocker:true,noPlayerAttack:true};
+  }
+ }
  if(phase>=988&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText),double='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';
   if(f.typeText==='呪文'){

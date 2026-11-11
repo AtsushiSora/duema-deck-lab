@@ -1,0 +1,320 @@
+{
+  "phase": 989,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6875,
+  "description": "任意のシールド交換、ドラゴンを条件とするG・ゼロ、全体強化とブロック時のアンタップ、光・闇・火のS・バックを実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/40275/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37417/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37418/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37419/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37420/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31637/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36076/"
+  ],
+  "cards": [
+    {
+      "id": "dmr16s-024",
+      "name": "Tプルルン",
+      "faces": [
+        {
+          "name": "Tプルルン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーをバトルゾーンに出した時、自分の手札を１枚、新しいシールドとして自分のシールドゾーンに裏向きにして加えてもよい。そうした場合、自分のシールドをひとつ選び、手札に戻す。ただし、その「S・トリガー」は使えない。",
+          "race": "サイバー・ウイルス海",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-024",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldExchange446",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "248f3d1e7ed62655e3dc2291420cec7b4255f52e5d5cac50e1ed748af917a83d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-015",
+      "name": "リンクウッドの魂燃焼！",
+      "faces": [
+        {
+          "name": "リンクウッドの魂燃焼！",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "G・ゼロ - バトルゾーンに自分のドラゴンが３体以上あれば、この呪文をコストを支払わずに唱えてもよい。\nこのターン、バトルゾーンにある自分のクリーチャーすべてのパワーは+3000され、シールドをさらに１枚ブレイクする。\nこのターン、自分のクリーチャーがブロックされた時、そのクリーチャーをアンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-015",
+      "spec": {
+        "g261Free": {
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "race": "ドラゴン"
+              },
+              "min": 3
+            }
+          },
+          "label": "G・ゼロ"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupPower",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "spell": true,
+            "power": 3000
+          },
+          {
+            "op": "GroupLasting412",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "spell": true,
+            "extraBreak": 1,
+            "g969FollowControl": true
+          },
+          {
+            "op": "BlockUntapTurn989"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "4f5909f348a05f3897d0486be1c7d066306f021b33adb5686aa6a4f802cf09c2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16s-026",
+      "name": "暗黒鎧 ディオデスター",
+      "faces": [
+        {
+          "name": "暗黒鎧 ディオデスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ストライク・バック S・バック-闇（闇のカードを自分のシールドゾーンから手札に加える時、そのカードを捨ててもよい。そうした場合、コストを支払わずにこのクリーチャーを召喚する）",
+          "race": "ダーク・ナイトメア",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-026",
+      "spec": {
+        "strikeBack": true,
+        "strikeBackColor": "闇"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "16dc13eb91786f4af356d7aa9ca5b1dbf6f42a1a3d903f6d2a30b082bffdd83c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16s-019",
+      "name": "瞬防の精霊龍 サドニアラス",
+      "faces": [
+        {
+          "name": "瞬防の精霊龍 サドニアラス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ストライク・バック S・バック-光（光のカードを自分のシールドゾーンから手札に加える時、そのカードを捨ててもよい。そうした場合、コストを支払わずにこのクリーチャーを召喚する）\nブロッカー ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-019",
+      "spec": {
+        "strikeBack": true,
+        "strikeBackColor": "光",
+        "blocker": true,
+        "noPlayerAttack": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "d0fed37991d5356848d1e3149c5bb5b23308ae9e3a8da474c3f5d9f3291f25a4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16s-028",
+      "name": "爆襲 アイラ・ホップ",
+      "faces": [
+        {
+          "name": "爆襲 アイラ・ホップ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ストライク・バック S・バック-火（火のカードを自分のシールドゾーンから手札に加える時、そのカードを捨ててもよい。そうした場合、コストを支払わずにこのクリーチャーを召喚する）",
+          "race": "ヒューマノイド爆",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-028",
+      "spec": {
+        "strikeBack": true,
+        "strikeBackColor": "火"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "565518d1bff117c8132491aa279d1621451948364d7dc6b5afc19120a4fb0277",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmr16s-015",
+      "canonicalId": "dmr16g-015",
+      "name": "リンクウッドの魂燃焼！",
+      "faces": [
+        {
+          "name": "リンクウッドの魂燃焼！",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "G・ゼロ - バトルゾーンに自分のドラゴンが３体以上あれば、この呪文をコストを支払わずに唱えてもよい。\nこのターン、バトルゾーンにある自分のクリーチャーすべてのパワーは+3000され、シールドをさらに１枚ブレイクする。\nこのターン、自分のクリーチャーがブロックされた時、そのクリーチャーをアンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-015",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "f3b0e2fdce56f603ce6dd50eab91e62f5f65d7c4cafd6a1f6d8ddd8c1f281f0c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy13-098",
+      "canonicalId": "dmr16s-026",
+      "name": "暗黒鎧 ディオデスター",
+      "faces": [
+        {
+          "name": "暗黒鎧 ディオデスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ストライク・バック S・バック—闇（闇のカードを自分のシールドゾーンから手札に加える時、そのカードを捨ててもよい。そうした場合、コストを支払わずにこのクリーチャーを召喚する）",
+          "race": "ダーク・ナイトメア",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-098",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy13-098.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "7b38d5b3b5b1cbb9675036b6636c3012bc66168f3055086b2e66ae01a5089ec4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy13-089",
+      "canonicalId": "dmr16s-028",
+      "name": "爆襲 アイラ・ホップ",
+      "faces": [
+        {
+          "name": "爆襲 アイラ・ホップ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ストライク・バック S・バック-火（火のカードを自分のシールドゾーンから手札に加える時、そのカードを捨ててもよい。そうした場合、コストを支払わずにこのクリーチャーを召喚する）",
+          "race": "ヒューマノイド爆",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-089",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy13-089.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "c3f2362eec64893b4c3ef07e1108001d526ebf533ca645848973416f391e27f5",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr16s-024": 4,
+      "dmr16g-015": 4,
+      "dmr16s-026": 4,
+      "dmr16s-019": 4,
+      "dmr16s-028": 4,
+      "dmr16s-015": 4,
+      "promoy13-098": 4,
+      "promoy13-089": 4
+    }
+  }
+}

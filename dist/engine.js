@@ -513,7 +513,10 @@ function moveShields535(s,p,uids,to,{cardOnly=false,handEffects=true,replacement
  if(to==='shields'&&!canAddShield(s,p))return [];
  const roots=[...new Set(uids)].map(uid=>cardOnly?removeShieldCard(s,p,uid):removeShield(s,p,uid)),all=roots.flatMap(shieldCards),hand=[];
  for(const x of all){const target=!replacement&&shieldLeavesToGrave(x)||to==='mana'&&extra.manaRedirect(s,p)?'grave':to;clearBattleState(x,target);addZone(s,s.players[p],target,x);if(target==='hand')hand.push(x);}
- if(handEffects)for(const x of hand)extra.shieldHand(s,p,x,false,{noST});
+ if(handEffects){
+  extra.beginSB(s,p,hand);
+  for(const x of hand)extra.shieldHand(s,p,x,false,{noST});
+ }
  return all;
 }
 function moveShield(s,p,uid,to,options={}){return moveShields535(s,p,[uid],to,options);}

@@ -202083,23 +202083,168 @@
       ],
       "supportBatch": "phase-988",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr16s-024",
+      "name": "Tプルルン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "サイバー・ウイルス海",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーをバトルゾーンに出した時、自分の手札を１枚、新しいシールドとして自分のシールドゾーンに裏向きにして加えてもよい。そうした場合、自分のシールドをひとつ選び、手札に戻す。ただし、その「S・トリガー」は使えない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-024",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldExchange446",
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-989",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr16g-015",
+      "name": "リンクウッドの魂燃焼！",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "G・ゼロ - バトルゾーンに自分のドラゴンが３体以上あれば、この呪文をコストを支払わずに唱えてもよい。\nこのターン、バトルゾーンにある自分のクリーチャーすべてのパワーは+3000され、シールドをさらに１枚ブレイクする。\nこのターン、自分のクリーチャーがブロックされた時、そのクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-015",
+      "limit": 4,
+      "g261Free": {
+        "filter": {
+          "g370BattleCount": {
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "min": 3
+          }
+        },
+        "label": "G・ゼロ"
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupPower",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "spell": true,
+          "power": 3000
+        },
+        {
+          "op": "GroupLasting412",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "spell": true,
+          "extraBreak": 1,
+          "g969FollowControl": true
+        },
+        {
+          "op": "BlockUntapTurn989"
+        }
+      ],
+      "supportBatch": "phase-989",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr16s-026",
+      "name": "暗黒鎧 ディオデスター",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ダーク・ナイトメア",
+      "text": "ストライク・バック S・バック-闇（闇のカードを自分のシールドゾーンから手札に加える時、そのカードを捨ててもよい。そうした場合、コストを支払わずにこのクリーチャーを召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-026",
+      "limit": 4,
+      "strikeBack": true,
+      "strikeBackColor": "闇",
+      "supportBatch": "phase-989",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr16s-019",
+      "name": "瞬防の精霊龍 サドニアラス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "ストライク・バック S・バック-光（光のカードを自分のシールドゾーンから手札に加える時、そのカードを捨ててもよい。そうした場合、コストを支払わずにこのクリーチャーを召喚する）\nブロッカー ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-019",
+      "limit": 4,
+      "strikeBack": true,
+      "strikeBackColor": "光",
+      "blocker": true,
+      "noPlayerAttack": true,
+      "supportBatch": "phase-989",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr16s-028",
+      "name": "爆襲 アイラ・ホップ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ヒューマノイド爆",
+      "text": "ストライク・バック S・バック-火（火のカードを自分のシールドゾーンから手札に加える時、そのカードを捨ててもよい。そうした場合、コストを支払わずにこのクリーチャーを召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-028",
+      "limit": 4,
+      "strikeBack": true,
+      "strikeBackColor": "火",
+      "supportBatch": "phase-989",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 988,
+    "phase": 989,
     "checkedAt": "2026-11-12",
-    "baseCount": 6870,
+    "baseCount": 6875,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 6875,
+    "totalCount": 6880,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37165/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37166/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36427/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37142/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37134/"
+      "https://dm.takaratomy.co.jp/rule/qa/40275/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37417/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37418/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37419/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37420/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31637/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36076/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -219904,6 +220049,26 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37232/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37233/",
           "https://dm.takaratomy.co.jp/rule/qa/43297/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 988,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6870,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 6875,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37165/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37166/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36427/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37142/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37134/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

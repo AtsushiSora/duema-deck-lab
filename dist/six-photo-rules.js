@@ -2030,7 +2030,10 @@ export function createSixPhotoRules(api){
  case'g34_DiscardAll244':{if(t.optional&&!t.accepted){const last=t.draw>=own.deck.length,shako=creatures(s,t.p).some(y=>effective(y,s).shako),value=last?(shako?1000:-1000):t.draw*10-own.hand.length*5-own.hand.reduce((n,x)=>n+cost(card(x)),0)/3;choice(s,t,'手札をすべて捨てて'+t.draw+'枚引く？',[opt('すべて捨てて引く',true,value),skip()]);}else put(s,task('discard',t.p,t.source,{causedBy:t.p,selfDiscard:true,n:own.hand.length,all:true}),...(t.draw?[task('draw',t.p,t.source,{n:t.draw})]:[]));break;}
  case'g34_DiscardDraw':{const rows=own.hand.filter(y=>!t.filter||matches(s,t.p,y,t.filter));if(rows.length){const last=t.n>=own.deck.length,win=last&&creatures(s,t.p).some(y=>effective(y,s).shako);choice(s,t,'手札を1枚捨てて'+t.n+'枚引く？',[...rows.map(y=>opt(card(y).name+'を捨てる',y.uid,last?(win?1000:-1000):12+t.n*5-cost(card(y)),y.cardId)),skip()]);}break;}
  case'g34_ResolveSpell207':api.resumeCastSpell(s,t.p,t.uid);break;
- case'g34_GroupLasting412':for(const {p,y}of groupPowerRows(s,t))(s.extLimits??=[]).push({kind:t.destroySafe?'g409AttackEffect':'g412ExtraBreak',player:p,ref:{uid:y.uid,incarnation:y.incarnation||0},source:t.source,...(t.destroySafe?{effect:'destroySafe',expires:t.untilEnd?'end':'start',who:t.untilEnd?s.active:t.p}:{amount:t.extraBreak,expires:'end',who:s.active,...(t.spell?{spellCost:cost(faces(card(t.source)).at(-1))}:{})})});break;
+ case'g34_BlockUntapTurn989':
+  (s.extLimits??=[]).push({kind:'g989BlockUntap',player:t.p,source:t.source,expires:'end',who:s.active});
+  break;
+ case'g34_GroupLasting412':for(const {p,y}of groupPowerRows(s,t))(s.extLimits??=[]).push({kind:t.destroySafe?'g409AttackEffect':'g412ExtraBreak',player:p,ref:{uid:y.uid,incarnation:y.incarnation||0},source:t.source,...(t.destroySafe?{effect:'destroySafe',expires:t.untilEnd?'end':'start',who:t.untilEnd?s.active:t.p}:{amount:t.extraBreak,expires:'end',who:s.active,...(t.g969FollowControl?{g969FollowControl:true}:{}),...(t.spell?{spellCost:cost(faces(card(t.source)).at(-1))}:{})})});break;
  case'g34_ChainDestroy838':{
   choice(s,t,'破壊する相手のクリーチャーを選ぶ',chainOptions838(s,t.p));
   break;
@@ -4353,6 +4356,10 @@ export function createSixPhotoRules(api){
   }
   const blocked=a&&!a.sealed&&effective(a,s).g559Blocked;
   if(blocked)queue(s,owner,a,blocked);
+  if(a&&!a.sealed)for(const rule of s.extLimits||[]){
+   if(rule.kind==='g989BlockUntap'&&rule.player===owner)
+    send(s,owner,{uid:a.uid,incarnation:a.incarnation||0,cardId:rule.source},'Untap',{g191First:true});
+  }
   if(a&&s.attack.g947PlayerTarget&&!api.ignored(s,a)){
    for(const grant of a.g34Grants||[]){
     if(grant.g947BlockBreak&&grant.turn===s.turn&&

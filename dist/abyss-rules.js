@@ -14,7 +14,8 @@ export function createAbyssRules(api){
  function grant(s,x,conditional){(x.g13Rush??=[]).push({turn:s.turn,conditional,attacked:false});}
  function sbPairs(s,t){
   const own=s.players[t.p];
-  const sources=own.hand.filter(x=>card(x).strikeBack&&api.canCast(s,t.p,card(x))&&!t.declared?.includes(x.uid));
+  const entering=new Set(t.entering??t.costs);
+  const sources=own.hand.filter(x=>!entering.has(x.uid)&&card(x).strikeBack&&api.canCast(s,t.p,card(x))&&!t.declared?.includes(x.uid));
   return sources.flatMap(x=>{
    const c=card(x),eligibleColors=c.strikeBackColors||[c.strikeBackColor||'闇'];
    const payments=t.costs.map(uid=>own.hand.find(y=>y.uid===uid)).filter(y=>y&&y.uid!==x.uid&&faces(card(y)).some(f=>
@@ -98,6 +99,9 @@ export function createAbyssRules(api){
  start(s,p){return creatures(s,1-p).filter(x=>effective(x,s).abyssTeresco).map(x=>({player:1-p,uid:x.uid,source:x.cardId,effect:'extended',task:task('discard',p,x.cardId,{n:1,causedBy:1-p,random:true})}));},
  end(s){const out=[];for(const p of[0,1])for(const x of s.players[p].battle){for(const y of api.allLayers(x))if(y.g13Rush?.some(r=>r.turn===s.turn&&(!r.conditional||r.attacked)))out.push({player:p,uid:y.uid,source:y.cardId,effect:'extended',task:task('g13_Return',p,y.cardId,{uid:y.uid,incarnation:y.incarnation||0})});if(p===s.active&&!x.sealed){if(effective(x,s).abyssLord)out.push({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g13_Lord',p,x.cardId)});if(effective(x,s).abyssFoot)out.push({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g13_Foot',p,x.cardId)});}}return out;},
  hasSB(s,p,all){return sbPairs(s,{p,costs:all.map(x=>x.uid)}).length>0;},
- beginSB(s,p,all,window=false){if(this.hasSB(s,p,all))put(s,task('g13_SB',p,all[0].cardId,{costs:all.map(x=>x.uid),declared:[],window}));},
+ beginSB(s,p,all,window=false){
+  const costs=all.map(x=>x.uid);
+  if(this.hasSB(s,p,all))put(s,task('g13_SB',p,all[0].cardId,{costs,entering:costs,declared:[],window}));
+ },
  };
 }
