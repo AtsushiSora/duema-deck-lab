@@ -205737,24 +205737,124 @@
       ],
       "supportBatch": "phase-1010",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-006",
+      "name": "D2Y ヨー・サーク",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 1000,
+      "race": "ミステリー・トーテム/マスター・イニシャルズ",
+      "text": "自分のマナゾーンにあるコスト１のクリーチャーを召喚してもよい。\n自分のD２フィールドがバトルゾーンにあれば、バトルゾーンにある自分の他の自然のクリーチャー１体につき、このクリーチャーはパワーを+6000され、シールドをさらにひとつブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-006",
+      "limit": 4,
+      "g297ManaAura": {
+        "exactCost": 1
+      },
+      "g260Self": {
+        "filter": {
+          "g580D2Field": true
+        },
+        "grants": {
+          "g207CountPower": {
+            "zone": "battle",
+            "other": true,
+            "g1011CountColor": "自然",
+            "amount": 6000
+          },
+          "g876BreakPerCount": true
+        }
+      },
+      "supportBatch": "phase-1011",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-024",
+      "name": "【問３】 ジーン",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "クリスタル・コマンド・ドラゴン/革命軍/テック団",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n革命チェンジ-水または闇のドラゴン（自分の水または闇のドラゴンが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、相手は、自分の墓地からクリーチャーを２体選んでもよい。相手がそうしたら、それらを自分の手札に戻す。相手がそうしなかったら、もしくはできなければ、カードを２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-024",
+      "limit": 4,
+      "rev": {
+        "colors": [
+          "水",
+          "闇"
+        ],
+        "g486Current": true
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GraveRecoverOffer1011"
+        }
+      ],
+      "supportBatch": "phase-1011",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr22-004",
+      "name": "メガ・カタストロフィ・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 12000,
+      "race": "メガ・コマンド・ドラゴン",
+      "text": "スピードアタッカー\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手の「ブロッカー」を持つクリーチャーをすべて、破壊する。その後、このクリーチャーは、こうして破壊したクリーチャー１体につき相手のシールドを１つブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-004",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "filter": {
+            "creature": true,
+            "blocker": true
+          },
+          "g1011BreakPerAttempt": true
+        }
+      ],
+      "supportBatch": "phase-1011",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1010,
+    "phase": 1011,
     "checkedAt": "2026-11-12",
-    "baseCount": 6966,
+    "baseCount": 6969,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6969,
+    "totalCount": 6972,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/48920/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31654/",
-      "https://dm.takaratomy.co.jp/rule/qa/31824/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37947/",
-      "https://dm.takaratomy.co.jp/rule/qa/40960/",
-      "https://dm.takaratomy.co.jp/rule/qa/49608/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37841/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36082/",
+      "https://dm.takaratomy.co.jp/rule/qa/46619/",
+      "https://dm.takaratomy.co.jp/rule/qa/43074/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31642/",
+      "https://dm.takaratomy.co.jp/rule/qa/45900/",
+      "https://dm.takaratomy.co.jp/rule/rulechange_info/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -224009,6 +224109,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/33591/",
           "https://dm.takaratomy.co.jp/rule/qa/45793/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36034/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1010,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6966,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6969,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/48920/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31654/",
+          "https://dm.takaratomy.co.jp/rule/qa/31824/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37947/",
+          "https://dm.takaratomy.co.jp/rule/qa/40960/",
+          "https://dm.takaratomy.co.jp/rule/qa/49608/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

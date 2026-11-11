@@ -3435,6 +3435,26 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=1011&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const manaTap='マナゾーンに置く時このカードはタップして置く。';
+  const entry='このクリーチャーがバトルゾーンに出た時';
+  if(d.id==='dmr21-006'&&text==='自分のマナゾーンにあるコスト1のクリーチャーを召喚してもよい。'+
+   '自分のD2フィールドがバトルゾーンにあればバトルゾーンにある自分の他の自然のクリーチャー1体につきこのクリーチャーはパワーを+6000されシールドをさらにひとつブレイクする。')
+   return {g297ManaAura:{exactCost:1},g260Self:{filter:{g580D2Field:true},grants:{
+    g207CountPower:{zone:'battle',other:true,g1011CountColor:'自然',amount:6000},g876BreakPerCount:true
+   }}};
+  if(d.id==='dmr21-024'&&text===manaTap+
+   '革命チェンジ-水または闇のドラゴン(自分の水または闇のドラゴンが攻撃する時そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい)'+
+   'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+entry+
+   '相手は自分の墓地からクリーチャーを2体選んでもよい。相手がそうしたらそれらを自分の手札に戻す。相手がそうしなかったらもしくはできなければカードを2枚引く。')
+   return {rev:{colors:['水','闇'],g486Current:true},breaker:2,effect:'sixPhoto',g34Tasks:[{op:'GraveRecoverOffer1011'}]};
+  if(d.id==='dmr22-004'&&text==='スピードアタッカーT・ブレイカー'+entry+
+   '相手の「ブロッカー」を持つクリーチャーをすべて破壊する。その後このクリーチャーはこうして破壊したクリーチャー1体につき相手のシールドを1つブレイクする。')
+   return {speedAttacker:true,breaker:3,effect:'sixPhoto',g34Tasks:[
+    {op:'Sweep',filter:{creature:true,blocker:true},g1011BreakPerAttempt:true}
+   ]};
+ }
  if(phase>=1010&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const manaTap='マナゾーンに置く時このカードはタップして置く。';

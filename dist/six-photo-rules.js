@@ -32,7 +32,7 @@ export function createSixPhotoRules(api){
  const manaPermits297=(s,p,x,c=card(x))=>s.active!==p||x.faceDown||!s.players[p].mana.includes(x)||c.type!=='creature'||!api.canMoveZone(s,p,'mana')?[]:[
   ...(c.g297SelfManaSummon&&ownCondition(s,p,c.g297SelfManaSummon)?['g297:self']:[]),
   ...((s.extLimits||[]).some(l=>l.kind==='g297ManaTurn'&&l.player===p&&l.turn===s.turn)?['g297:turn']:
-  creatures(s,p).filter(y=>{const rule=effective(y,s).g297ManaAura,cs=api.manaColors(card(x),s,p);return !y.sealed&&rule&&(rule.colorless?cs.length===0:cs.length>1);}).slice(0,1).map(y=>'g297:'+y.uid+'@'+(y.incarnation||0))),...zonePermits450(s,p,x,c,'mana'),...(c.g539SelfMana&&jokerCount539(s,p)>=c.g539SelfMana?['g539:self']:[])];
+  creatures(s,p).filter(y=>{const rule=effective(y,s).g297ManaAura,cs=api.manaColors(card(x),s,p);return !y.sealed&&rule&&(rule.exactCost!==undefined?cost(c)===rule.exactCost:rule.colorless?cs.length===0:cs.length>1);}).slice(0,1).map(y=>'g297:'+y.uid+'@'+(y.incarnation||0))),...zonePermits450(s,p,x,c,'mana'),...(c.g539SelfMana&&jokerCount539(s,p)>=c.g539SelfMana?['g539:self']:[])];
  const crossGears728=(s,p)=>s.players[p].battle.filter(x=>!x.sealed&&card(x).type==='gear');
  const crossedCount728=(s,x)=>s.players.reduce((n,_,p)=>n+crossGears728(s,p).filter(g=>g.crossedTo?.uid===x.uid&&g.crossedTo.incarnation===(x.incarnation||0)).length,0);
  const crossedGearRefs929=(s,p,host)=>crossGears728(s,p)
@@ -628,6 +628,7 @@ export function createSixPhotoRules(api){
   const {g876BattleName,noColor,...f}=t.filter||{};
   const fits=({p,y})=>{
    if(t.zone==='battle'&&(y.sealed||y.faceDown||!t.g561Elements&&!api.isCreature(s,y)))return false;
+   if(t.g1011CountColor&&!colors(api.zoneCard(s,p,y,t.zone)).includes(t.g1011CountColor))return false;
    if(g876BattleName&&!battleNames676(y).includes(exactName(g876BattleName)))return false;
    if(noColor&&colors(api.zoneCard(s,p,y,t.zone)).length)return false;
    if(f.g853Soul&&!hasSoul(card(y),f.g853Soul))return false;
@@ -717,7 +718,7 @@ export function createSixPhotoRules(api){
   const c=card(x);
   return !x.faceDown&&c.type==='creature'&&t.g960DeathNames.includes(exactName(creatureFaceName(c)));
  }
- function list(s,t){const p=t.owner==='self'?t.p:t.owner==='opponent'?1-t.p:t.owner??t.p,own=s.players[p];return(t.zones||[t.origin||'hand']).flatMap(origin=>((t.g210ManaUntap||t.g806MultiUntap||t.g803DeployForOwner||t.g837Reikon||t.g1009AfterMoveAttempt||api.canMoveZone(s,p,origin))?own[origin]||[]:[]).filter(x=>!(t.selected||[]).includes(x.uid)&&(!t.g187OwnPick||!x.sealed)&&(!t.g186Other||x.uid!==t.uid)&&(!t.g899RampTapped||!api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)))&&matches(s,p,x,t.filter)&&matchesDeathDeployment960(t,x)&&(!t.g806MultiUntap||multicolorUntap806(s,p,x,origin))).filter(x=>t.g409Budget===undefined||!x.faceDown&&(t.rows||[]).reduce((n,r)=>n+cost(card(s.players[r.p][r.origin].find(y=>y.uid===r.uid))),0)+cost(api.zoneCard(s,p,x))<(t.g409Budget==='∞'?Infinity:t.g409Budget)).filter(x=>(!t.g530Ids||t.g530Ids.includes(x.uid))&&fitsPower506(s,t,x)&&fitsCost513(s,t,x)&&fitsCost550(s,t,x,p,origin)).filter(x=>!t.deploy||canPut(deploymentState550(s,t),p,x,origin,!!t.execution)).filter(x=>origin!=='battle'||!api.targetable||api.targetable(s,t.p,p,x)).map(x=>({x,origin,p})));}
+ function list(s,t){const p=t.owner==='self'?t.p:t.owner==='opponent'?1-t.p:t.owner??t.p,own=s.players[p];return(t.zones||[t.origin||'hand']).flatMap(origin=>((t.g210ManaUntap||t.g806MultiUntap||t.g803DeployForOwner||t.g837Reikon||t.g1009AfterMoveAttempt||t.g1011ChooseBeforeMove||api.canMoveZone(s,p,origin))?own[origin]||[]:[]).filter(x=>!(t.selected||[]).includes(x.uid)&&(!t.g187OwnPick||!x.sealed)&&(!t.g186Other||x.uid!==t.uid)&&(!t.g899RampTapped||!api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)))&&matches(s,p,x,t.filter)&&matchesDeathDeployment960(t,x)&&(!t.g806MultiUntap||multicolorUntap806(s,p,x,origin))).filter(x=>t.g409Budget===undefined||!x.faceDown&&(t.rows||[]).reduce((n,r)=>n+cost(card(s.players[r.p][r.origin].find(y=>y.uid===r.uid))),0)+cost(api.zoneCard(s,p,x))<(t.g409Budget==='∞'?Infinity:t.g409Budget)).filter(x=>(!t.g530Ids||t.g530Ids.includes(x.uid))&&fitsPower506(s,t,x)&&fitsCost513(s,t,x)&&fitsCost550(s,t,x,p,origin)).filter(x=>!t.deploy||canPut(deploymentState550(s,t),p,x,origin,!!t.execution)).filter(x=>origin!=='battle'||!api.targetable||api.targetable(s,t.p,p,x)).map(x=>({x,origin,p})));}
  function scryScore323(s,t,x){const c=card(x),magi=card(t.source).g34Attack?.find(d=>d.op==='Magibomber321');return api.isCreature(s,x)&&cost(c)<=(magi?.n||0)||cost(c)<=s.players[t.p].mana.length+1?-5:5;}
  function selectedBattleScore(s,t,x,candidates,n){
   if(t.anyOwner&&t.to==='hand'&&(s.players[t.p].battle.includes(x)||!api.canLeave(s,1-t.p,x)))return -10;
@@ -2780,6 +2781,17 @@ export function createSixPhotoRules(api){
  case'g34_OpponentDeploy779':put(s,{...t,op:'g34_Select',p:1-t.p,controller:t.controller??t.p,
   origin:'hand',deploy:true,n:1,optional:true,filter:{creature:true,max:3}});break;
  case'g34_OpponentOffer777':put(s,{...t,op:'g34_Offer',p:1-t.p});break;
+ case'g34_GraveRecoverOffer1011':{
+  const recovery={op:'Select',origin:'grave',to:'hand',n:2,g583Group:true,g1011ChooseBeforeMove:true,
+   filter:{g228Face:{type:'creature'}},title:'墓地から手札に戻す自分のクリーチャーを2体選ぶ'};
+  // The condition counts the choices. A graveyard lock can prevent the later movement.
+  const available=list(s,{...recovery,p:1-t.p});
+  if(available.length<recovery.n)start(s,t,[{op:'Draw',n:2}]);
+  else choice(s,{...t,recovery},'自分の墓地のクリーチャー2体を選んで手札に戻す？',[
+   opt('2体選ぶ',true,10),opt('選ばない',null,0)
+  ],1-t.p);
+  break;
+ }
  case'g34_OfferBoth992':{
   const offer={...t,op:'g34_Offer',p:s.active};
   put(s,offer,{...offer,p:1-s.active});
@@ -3252,6 +3264,7 @@ export function createSixPhotoRules(api){
    }
    // The direct destruction attempts count even when replaced (QA34333/34334).
    if(t.g733DrawPerAttempt)start(s,t,[{op:'DrawUpTo',n:rows.length,g203Draw:true}]);
+   if(t.g1011BreakPerAttempt)start(s,t,[{op:'Break497',n:rows.length,g747CreatureBreak:true,g913DepartedBreaker:true}]);
    move(s,rows,t.g865DrawDestroyed?{kind:'g865DrawDestroyed',player:t.p,source:t.source}:null);
   }
   break;
@@ -4043,6 +4056,10 @@ export function createSixPhotoRules(api){
   }
   start(s,t,t.defs);
  }break;
+ case'g34_GraveRecoverOffer1011':
+  if(v)start(s,{...t,p:1-t.p},[t.recovery]);
+  else start(s,t,[{op:'Draw',n:2}]);
+  break;
  case'g34_Break497':if(v)put(s,{...t,selected:[...(t.selected||[]),v]});break;
  case'g34_ShieldToMana980':
   if(v)api.moveShield(s,v.owner,v.uid,'mana');

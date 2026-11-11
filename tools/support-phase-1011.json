@@ -1,0 +1,164 @@
+{
+  "phase": 1011,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6969,
+  "description": "D2Y ヨー・サーク、【問３】 ジーン、メガ・カタストロフィ・ドラゴンの公式能力を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37841/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36082/",
+    "https://dm.takaratomy.co.jp/rule/qa/46619/",
+    "https://dm.takaratomy.co.jp/rule/qa/43074/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31642/",
+    "https://dm.takaratomy.co.jp/rule/qa/45900/",
+    "https://dm.takaratomy.co.jp/rule/rulechange_info/"
+  ],
+  "cards": [
+    {
+      "id": "dmr21-006",
+      "name": "D2Y ヨー・サーク",
+      "faces": [
+        {
+          "name": "D2Y ヨー・サーク",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のマナゾーンにあるコスト１のクリーチャーを召喚してもよい。\n自分のD２フィールドがバトルゾーンにあれば、バトルゾーンにある自分の他の自然のクリーチャー１体につき、このクリーチャーはパワーを+6000され、シールドをさらにひとつブレイクする。",
+          "race": "ミステリー・トーテム/マスター・イニシャルズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-006",
+      "spec": {
+        "g297ManaAura": {
+          "exactCost": 1
+        },
+        "g260Self": {
+          "filter": {
+            "g580D2Field": true
+          },
+          "grants": {
+            "g207CountPower": {
+              "zone": "battle",
+              "other": true,
+              "g1011CountColor": "自然",
+              "amount": 6000
+            },
+            "g876BreakPerCount": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "4e6dd110935cddde5195b9615eac99c84ace604b26a736d0231b7d87a4364a54",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr21-024",
+      "name": "【問３】 ジーン",
+      "faces": [
+        {
+          "name": "【問３】 ジーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n革命チェンジ-水または闇のドラゴン（自分の水または闇のドラゴンが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、相手は、自分の墓地からクリーチャーを２体選んでもよい。相手がそうしたら、それらを自分の手札に戻す。相手がそうしなかったら、もしくはできなければ、カードを２枚引く。",
+          "race": "クリスタル・コマンド・ドラゴン/革命軍/テック団",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-024",
+      "spec": {
+        "rev": {
+          "colors": [
+            "水",
+            "闇"
+          ],
+          "g486Current": true
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GraveRecoverOffer1011"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "9320f64dda6649a7cd623b08116dd2a4fa5a4f62c64d57c670e03508420793ea",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr22-004",
+      "name": "メガ・カタストロフィ・ドラゴン",
+      "faces": [
+        {
+          "name": "メガ・カタストロフィ・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "スピードアタッカー\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手の「ブロッカー」を持つクリーチャーをすべて、破壊する。その後、このクリーチャーは、こうして破壊したクリーチャー１体につき相手のシールドを１つブレイクする。",
+          "race": "メガ・コマンド・ドラゴン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-004",
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "filter": {
+              "creature": true,
+              "blocker": true
+            },
+            "g1011BreakPerAttempt": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "311d5f039c38347b9bef5cbb6b40bea6a97ce30eb7600a0408921f3ad520c11e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr21-006": 4,
+      "dmr21-024": 4,
+      "dmr22-004": 4
+    }
+  }
+}
