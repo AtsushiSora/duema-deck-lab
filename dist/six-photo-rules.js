@@ -3845,6 +3845,10 @@ export function createSixPhotoRules(api){
  case'g34_ManaExchangeBase753':api.beginManaExchange753(s,t,v);break;
  case'g34_Target':
   if(used792(s,t,t))break;
+  if(t.g959MoveTop){
+   if(v)api.moveBattleCard(s,v.p,v.uid,t.to,{controller:t.controller??t.p});
+   break;
+  }
   if(t.g946BattleWinUntap&&v){
    const target=own.battle.find(y=>y.uid===v.uid);
    if(target)(s.extLimits??=[]).push({kind:'g946BattleWinUntap',source:t.source,controller:t.p,

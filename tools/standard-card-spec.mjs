@@ -3391,6 +3391,36 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=959&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
+  const text=normalize(f.abilityText);
+  const choose='次のうちいずれかひとつを選ぶ。';
+  const double='爆進ダブル(バトルゾーンに自分の進化クリーチャーがあればこの効果を両方とも選んでもよい)';
+  const blast=(first,second)=>({effect:'sixPhoto',g34Tasks:[{op:'Choose',g184Modes:true,modes:[
+   first,second,{label:'両方を使う',condition:{g370BattleCount:{min:1,filter:{creature:true,evolution:true}}},
+    defs:[...first.defs,...second.defs]}
+  ]}]});
+  const destroy=maxPower=>({label:'パワー'+maxPower+'以下の相手クリーチャーを1体破壊',
+   defs:[{op:'Target',to:'grave',filter:{maxPower,g199Power:true}}]});
+  if(d.id==='dm32-028'&&text===choose+
+   '相手は自分自身のクリーチャーを1体選び破壊する。相手は自分自身の手札を1枚選んで捨てる。'+double)
+   return blast({label:'相手が自分のクリーチャーを1体破壊',defs:[{op:'OpponentSelect',to:'grave',n:1}]},
+    {label:'相手が自分の手札を1枚捨てる',defs:[{op:'Discard',n:1}]});
+  if(d.id==='dm32-034'&&text===choose+
+   '相手のパワー6000以下のクリーチャーを1体破壊する。相手のパワー2000以下のクリーチャーを3体まで破壊する。'+double)
+   return blast(destroy(6000),{label:'パワー2000以下の相手クリーチャーを3体まで破壊',defs:[
+    {op:'Select',origin:'battle',owner:'opponent',n:3,to:'grave',optional:true,g173Targets:true,g193Select:true,
+     filter:{creature:true,maxPower:2000,g199Power:true},title:'破壊するパワー2000以下の相手クリーチャーを3体まで選ぶ'}
+   ]});
+  if(d.id==='dmc58-006'&&text==='マナゾーンに置く時このカードはタップして置く。'+choose+
+   '相手のパワー5000以下のクリーチャーを1体破壊する。コスト3以下のクリーチャーを1体自分の墓地からバトルゾーンに出す。'+double)
+   return blast(destroy(5000),{label:'墓地からコスト3以下のクリーチャーを1体出す',defs:[
+    {op:'Select',origin:'grave',n:1,deploy:true,filter:{creature:true,max:3}}
+   ]});
+  if(d.id==='dm06-070'&&text==='S(シールド)・トリガー(この呪文をシールドゾーンから手札に加えるときコストを支払わずにすぐ唱えてよい)'+
+   'バトルゾーンにある相手の進化クリーチャーを1体選び一番上のカードを持ち主のマナゾーンに置く。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
+    title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
+ }
  if(phase>=958&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(['dm10-061','promoy3-005'].includes(d.id)&&f.typeText==='クリーチャー'&&text===

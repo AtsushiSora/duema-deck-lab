@@ -1,0 +1,364 @@
+{
+  "phase": 959,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6761,
+  "description": "爆進ダブルの三つの呪文と、相手の進化クリーチャーの一番上をマナゾーンへ移す呪文に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37523/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37524/",
+    "https://dm.takaratomy.co.jp/rule/qa/34224/",
+    "https://dm.takaratomy.co.jp/rule/qa/31530/",
+    "https://dm.takaratomy.co.jp/rule/qa/46493/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35106/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31626/",
+    "https://dm.takaratomy.co.jp/rule/qa/49608/"
+  ],
+  "cards": [
+    {
+      "id": "dm32-028",
+      "name": "爆進ガブラ・ハンド",
+      "faces": [
+        {
+          "name": "爆進ガブラ・ハンド",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "次のうちいずれかひとつを選ぶ。\n相手は自分自身のクリーチャーを１体選び、破壊する。\n相手は自分自身の手札を１枚選んで捨てる。\n爆進ダブル(バトルゾーンに自分の進化クリーチャーがあれば、この効果を両方とも選んでもよい)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-028",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手が自分のクリーチャーを1体破壊",
+                "defs": [
+                  {
+                    "op": "OpponentSelect",
+                    "to": "grave",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "相手が自分の手札を1枚捨てる",
+                "defs": [
+                  {
+                    "op": "Discard",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "両方を使う",
+                "condition": {
+                  "g370BattleCount": {
+                    "min": 1,
+                    "filter": {
+                      "creature": true,
+                      "evolution": true
+                    }
+                  }
+                },
+                "defs": [
+                  {
+                    "op": "OpponentSelect",
+                    "to": "grave",
+                    "n": 1
+                  },
+                  {
+                    "op": "Discard",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "30d93b4f8ac352dbd1eceecaff2a034084cc47123e816cf7bfc5c07a7bef540a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm32-034",
+      "name": "爆進メガバースト",
+      "faces": [
+        {
+          "name": "爆進メガバースト",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "次のうちいずれかひとつを選ぶ。\n相手のパワー6000以下のクリーチャーを１体破壊する。\n相手のパワー2000以下のクリーチャーを３体まで破壊する。\n爆進ダブル(バトルゾーンに自分の進化クリーチャーがあれば、この効果を両方とも選んでもよい)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-034",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "パワー6000以下の相手クリーチャーを1体破壊",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 6000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "パワー2000以下の相手クリーチャーを3体まで破壊",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "battle",
+                    "owner": "opponent",
+                    "n": 3,
+                    "to": "grave",
+                    "optional": true,
+                    "g173Targets": true,
+                    "g193Select": true,
+                    "filter": {
+                      "creature": true,
+                      "maxPower": 2000,
+                      "g199Power": true
+                    },
+                    "title": "破壊するパワー2000以下の相手クリーチャーを3体まで選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "両方を使う",
+                "condition": {
+                  "g370BattleCount": {
+                    "min": 1,
+                    "filter": {
+                      "creature": true,
+                      "evolution": true
+                    }
+                  }
+                },
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 6000,
+                      "g199Power": true
+                    }
+                  },
+                  {
+                    "op": "Select",
+                    "origin": "battle",
+                    "owner": "opponent",
+                    "n": 3,
+                    "to": "grave",
+                    "optional": true,
+                    "g173Targets": true,
+                    "g193Select": true,
+                    "filter": {
+                      "creature": true,
+                      "maxPower": 2000,
+                      "g199Power": true
+                    },
+                    "title": "破壊するパワー2000以下の相手クリーチャーを3体まで選ぶ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "6f3d40e99c7d7b6fa3d8f7d8971e4522eb06c7d59e02e2298fbfd3b4f4bcb6ef",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc58-006",
+      "name": "爆進デス＆リバース",
+      "faces": [
+        {
+          "name": "爆進デス＆リバース",
+          "typeText": "呪文",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n次のうちいずれかひとつを選ぶ。 相手のパワー5000以下のクリーチャーを１体破壊する。 コスト３以下のクリーチャーを１体、自分の墓地からバトルゾーンに出す。\n爆進ダブル(バトルゾーンに自分の進化クリーチャーがあれば、この効果を両方とも選んでもよい)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc58-006",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "パワー5000以下の相手クリーチャーを1体破壊",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 5000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "墓地からコスト3以下のクリーチャーを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "grave",
+                    "n": 1,
+                    "deploy": true,
+                    "filter": {
+                      "creature": true,
+                      "max": 3
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "両方を使う",
+                "condition": {
+                  "g370BattleCount": {
+                    "min": 1,
+                    "filter": {
+                      "creature": true,
+                      "evolution": true
+                    }
+                  }
+                },
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 5000,
+                      "g199Power": true
+                    }
+                  },
+                  {
+                    "op": "Select",
+                    "origin": "grave",
+                    "n": 1,
+                    "deploy": true,
+                    "filter": {
+                      "creature": true,
+                      "max": 3
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc58-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "f0df0e484c26062c982f9ce97fdccff8eece5918052b4108ddd3b310c215e5ce",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-070",
+      "name": "大自然の意志",
+      "faces": [
+        {
+          "name": "大自然の意志",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S(シールド)・トリガー(この呪文をシールドゾーンから手札に加えるとき、コストを支払わずにすぐ唱えてよい)\nバトルゾーンにある、相手の進化クリーチャーを１体選び、一番上のカードを持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-070",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "mana",
+            "g959MoveTop": true,
+            "filter": {
+              "evolution": true
+            },
+            "title": "一番上をマナに置く相手の進化クリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-070.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "510ad63d286b61489dde6afa7bf1ababc451788b520551a54ebb7801b4784014",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm32-028": 4,
+      "dm32-034": 4,
+      "dmc58-006": 4,
+      "dm06-070": 4
+    }
+  }
+}

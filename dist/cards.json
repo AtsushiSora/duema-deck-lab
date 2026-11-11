@@ -198287,26 +198287,312 @@
       "g122NoST": true,
       "supportBatch": "phase-958",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm32-028",
+      "name": "爆進ガブラ・ハンド",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "次のうちいずれかひとつを選ぶ。\n相手は自分自身のクリーチャーを１体選び、破壊する。\n相手は自分自身の手札を１枚選んで捨てる。\n爆進ダブル(バトルゾーンに自分の進化クリーチャーがあれば、この効果を両方とも選んでもよい)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-028",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "相手が自分のクリーチャーを1体破壊",
+              "defs": [
+                {
+                  "op": "OpponentSelect",
+                  "to": "grave",
+                  "n": 1
+                }
+              ]
+            },
+            {
+              "label": "相手が自分の手札を1枚捨てる",
+              "defs": [
+                {
+                  "op": "Discard",
+                  "n": 1
+                }
+              ]
+            },
+            {
+              "label": "両方を使う",
+              "condition": {
+                "g370BattleCount": {
+                  "min": 1,
+                  "filter": {
+                    "creature": true,
+                    "evolution": true
+                  }
+                }
+              },
+              "defs": [
+                {
+                  "op": "OpponentSelect",
+                  "to": "grave",
+                  "n": 1
+                },
+                {
+                  "op": "Discard",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-959",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-034",
+      "name": "爆進メガバースト",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "次のうちいずれかひとつを選ぶ。\n相手のパワー6000以下のクリーチャーを１体破壊する。\n相手のパワー2000以下のクリーチャーを３体まで破壊する。\n爆進ダブル(バトルゾーンに自分の進化クリーチャーがあれば、この効果を両方とも選んでもよい)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-034",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "パワー6000以下の相手クリーチャーを1体破壊",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "maxPower": 6000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            },
+            {
+              "label": "パワー2000以下の相手クリーチャーを3体まで破壊",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "battle",
+                  "owner": "opponent",
+                  "n": 3,
+                  "to": "grave",
+                  "optional": true,
+                  "g173Targets": true,
+                  "g193Select": true,
+                  "filter": {
+                    "creature": true,
+                    "maxPower": 2000,
+                    "g199Power": true
+                  },
+                  "title": "破壊するパワー2000以下の相手クリーチャーを3体まで選ぶ"
+                }
+              ]
+            },
+            {
+              "label": "両方を使う",
+              "condition": {
+                "g370BattleCount": {
+                  "min": 1,
+                  "filter": {
+                    "creature": true,
+                    "evolution": true
+                  }
+                }
+              },
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "maxPower": 6000,
+                    "g199Power": true
+                  }
+                },
+                {
+                  "op": "Select",
+                  "origin": "battle",
+                  "owner": "opponent",
+                  "n": 3,
+                  "to": "grave",
+                  "optional": true,
+                  "g173Targets": true,
+                  "g193Select": true,
+                  "filter": {
+                    "creature": true,
+                    "maxPower": 2000,
+                    "g199Power": true
+                  },
+                  "title": "破壊するパワー2000以下の相手クリーチャーを3体まで選ぶ"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-959",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmc58-006",
+      "name": "爆進デス＆リバース",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n次のうちいずれかひとつを選ぶ。 相手のパワー5000以下のクリーチャーを１体破壊する。 コスト３以下のクリーチャーを１体、自分の墓地からバトルゾーンに出す。\n爆進ダブル(バトルゾーンに自分の進化クリーチャーがあれば、この効果を両方とも選んでもよい)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc58-006",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "パワー5000以下の相手クリーチャーを1体破壊",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "maxPower": 5000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            },
+            {
+              "label": "墓地からコスト3以下のクリーチャーを1体出す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "n": 1,
+                  "deploy": true,
+                  "filter": {
+                    "creature": true,
+                    "max": 3
+                  }
+                }
+              ]
+            },
+            {
+              "label": "両方を使う",
+              "condition": {
+                "g370BattleCount": {
+                  "min": 1,
+                  "filter": {
+                    "creature": true,
+                    "evolution": true
+                  }
+                }
+              },
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "maxPower": 5000,
+                    "g199Power": true
+                  }
+                },
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "n": 1,
+                  "deploy": true,
+                  "filter": {
+                    "creature": true,
+                    "max": 3
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-959",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm06-070",
+      "name": "大自然の意志",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S(シールド)・トリガー(この呪文をシールドゾーンから手札に加えるとき、コストを支払わずにすぐ唱えてよい)\nバトルゾーンにある、相手の進化クリーチャーを１体選び、一番上のカードを持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-070",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "mana",
+          "g959MoveTop": true,
+          "filter": {
+            "evolution": true
+          },
+          "title": "一番上をマナに置く相手の進化クリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-959",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 958,
+    "phase": 959,
     "checkedAt": "2026-11-11",
-    "baseCount": 6757,
+    "baseCount": 6761,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6761,
+    "totalCount": 6765,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35186/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37424/",
-      "https://dm.takaratomy.co.jp/rule/qa/46493/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37523/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37524/",
+      "https://dm.takaratomy.co.jp/rule/qa/34224/",
       "https://dm.takaratomy.co.jp/rule/qa/31530/",
-      "https://dm.takaratomy.co.jp/rule/qa/42533/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31650/",
-      "https://dm.takaratomy.co.jp/rule/qa/40689/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37421/",
-      "https://dm.takaratomy.co.jp/rule/qa/40693/"
+      "https://dm.takaratomy.co.jp/rule/qa/46493/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35106/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31626/",
+      "https://dm.takaratomy.co.jp/rule/qa/49608/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -215500,6 +215786,29 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37622/",
           "https://dm.takaratomy.co.jp/rule/qa/42962/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35655/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 958,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6757,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6761,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35186/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37424/",
+          "https://dm.takaratomy.co.jp/rule/qa/46493/",
+          "https://dm.takaratomy.co.jp/rule/qa/31530/",
+          "https://dm.takaratomy.co.jp/rule/qa/42533/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31650/",
+          "https://dm.takaratomy.co.jp/rule/qa/40689/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37421/",
+          "https://dm.takaratomy.co.jp/rule/qa/40693/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
