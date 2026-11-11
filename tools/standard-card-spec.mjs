@@ -3435,6 +3435,29 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=1015&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='クリーチャー'&&['dmr18-020','dmx24-018'].includes(d.id)&&
+   text==='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   'このクリーチャーは攻撃できない。'+
+   '自分のターンの終わりに自分の山札の上から1枚目を墓地に置いてもよい。それがクリーチャーならカードを1枚引く。')
+   return {blocker:true,noAttack:true,g174End:[{op:'Offer',title:'山札の上から1枚を墓地に置く？',g186GraveMill:true,defs:[
+    {op:'MillMatch520',n:1,filter:{g228Face:{type:'creature'}},defs:[{op:'Draw',n:1}]}
+   ]}]};
+  if(f.typeText==='進化クリーチャー'&&d.id==='dmr20-020'&&
+   text==='進化―自分の火のクリーチャー1体の上に置く。侵略―火のコスト5以上のクリーチャーW・ブレイカー'+
+   'このクリーチャーがバトルゾーンに出た時相手のパワー5000以下のクリーチャーを1体破壊する。'+
+   'このクリーチャーの下にカードが3枚以上重ねてあればかわりに相手のクリーチャーをパワーの合計が8000以下になるよう好きな数選び破壊する。')
+   return {evolution:{civilization:'火'},invasion:{colors:['火'],origins:['hand'],anyCreature:true,min:5},
+    breaker:2,effect:'sixPhoto',g34Tasks:[{op:'IfOwn',filter:{g650SourceCards:4},defs:[
+     {op:'Select',owner:'opponent',origin:'battle',n:'all',optional:true,to:'grave',filter:{creature:true},
+      g173Targets:true,g193Select:true,g506PowerBudget:8000,title:'パワーの合計が8000以下になるよう破壊するクリーチャーを選ぶ'}
+    ],elseDefs:[{op:'Target',to:'grave',filter:{maxPower:5000,g199Power:true}}]}]};
+  if(f.typeText==='クリーチャー'&&d.id==='dmr20-002'&&
+   text==='ブロッカーブロッカーW・ブレイカー相手のクリーチャーが攻撃する時自分のシールドをひとつ手札に加えてもよい。'+
+   'そうしたらこのクリーチャーをアンタップする。(その「S・トリガー」を使ってもよい)')
+   return {blocker:true,breaker:2,g252AttackWatch:{who:'opponent',defs:[{op:'ShieldTriggerUntap1015'}]}};
+ }
  if(phase>=1014&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const entry='このクリーチャーがバトルゾーンに出た時';

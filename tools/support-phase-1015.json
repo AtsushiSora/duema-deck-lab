@@ -1,0 +1,234 @@
+{
+  "phase": 1015,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6981,
+  "description": "暗黒鎧 ヴェイダー、超音速 ライディーン、八極 ハリルヤの公式能力を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37806/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37807/",
+    "https://dm.takaratomy.co.jp/rule/qa/40962/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316661/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31639/",
+    "https://dm.takaratomy.co.jp/rule/qa/45798/"
+  ],
+  "cards": [
+    {
+      "id": "dmr18-020",
+      "name": "暗黒鎧 ヴェイダー",
+      "faces": [
+        {
+          "name": "暗黒鎧 ヴェイダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n自分のターンの終わりに、自分の山札の上から１枚目を墓地に置いてもよい。それがクリーチャーなら、カードを１枚引く。",
+          "race": "ダーク・ナイトメア",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-020",
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g174End": [
+          {
+            "op": "Offer",
+            "title": "山札の上から1枚を墓地に置く？",
+            "g186GraveMill": true,
+            "defs": [
+              {
+                "op": "MillMatch520",
+                "n": 1,
+                "filter": {
+                  "g228Face": {
+                    "type": "creature"
+                  }
+                },
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "97d1307f21606f2063a51fbf3b3a9af5e8122d9e158a4bcd702f1063f22c4e11",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr20-020",
+      "name": "超音速 ライディーン",
+      "faces": [
+        {
+          "name": "超音速 ライディーン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化―自分の火のクリーチャー１体の上に置く。\n侵略―火のコスト５以上のクリーチャー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のパワー5000以下のクリーチャーを１体、破壊する。このクリーチャーの下にカードが３枚以上重ねてあれば、かわりに相手のクリーチャーをパワーの合計が8000以下になるよう好きな数選び、破壊する。",
+          "race": "ソニック・コマンド/侵略者",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-020",
+      "spec": {
+        "evolution": {
+          "civilization": "火"
+        },
+        "invasion": {
+          "colors": [
+            "火"
+          ],
+          "origins": [
+            "hand"
+          ],
+          "anyCreature": true,
+          "min": 5
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g650SourceCards": 4
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "owner": "opponent",
+                "origin": "battle",
+                "n": "all",
+                "optional": true,
+                "to": "grave",
+                "filter": {
+                  "creature": true
+                },
+                "g173Targets": true,
+                "g193Select": true,
+                "g506PowerBudget": 8000,
+                "title": "パワーの合計が8000以下になるよう破壊するクリーチャーを選ぶ"
+              }
+            ],
+            "elseDefs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 5000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr20-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "44ac38bd390ba22c2296f7d302a6fcfc6c964ef4578c7b3413a408d39aa48ca7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr20-002",
+      "name": "八極 ハリルヤ",
+      "faces": [
+        {
+          "name": "八極 ハリルヤ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\n相手のクリーチャーが攻撃する時、自分のシールドをひとつ、手札に加えてもよい。そうしたら、このクリーチャーをアンタップする。（その「S・トリガー」を使ってもよい）",
+          "race": "エンジェル・コマンド/革命軍/侵略者",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-002",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g252AttackWatch": {
+          "who": "opponent",
+          "defs": [
+            {
+              "op": "ShieldTriggerUntap1015"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr20-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "b17b39dfdffcb48bf0424401b3f13b56a797bbd96f049fd5aec87992cb6cea4b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx24-018",
+      "canonicalId": "dmr18-020",
+      "name": "暗黒鎧 ヴェイダー",
+      "faces": [
+        {
+          "name": "暗黒鎧 ヴェイダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n自分のターンの終わりに、自分の山札の上から１枚目を墓地に置いてもよい。それがクリーチャーなら、カードを１枚引く。",
+          "race": "ダーク・ナイトメア",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx24-018",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx24-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "81b9c9e8175492e2798b1d11fe13381980db95036d794348032edeb977bf938f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr18-020": 4,
+      "dmr20-020": 4,
+      "dmr20-002": 4,
+      "dmx24-018": 4
+    }
+  }
+}

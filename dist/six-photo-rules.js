@@ -2946,6 +2946,13 @@ export function createSixPhotoRules(api){
   if(n)put(s,{...t,op:'g34_TappedShieldPick842',n,picked:[]});
   break;
  }
+ case'g34_ShieldTriggerUntap1015':{
+  const options=own.shields.flatMap((shield,i)=>api.shieldCards(shield).some(y=>!y.g37ShieldHeld)
+   ?[opt('シールド '+(i+1)+(shield.faceUp?'：'+card(shield).name:''),shield.uid,
+    x?.tapped&&api.canUntap(x)&&own.shields.length>1?12:-2,shield.faceUp?shield.cardId:undefined)]:[]);
+  if(options.length)choice(s,t,'手札に加える自分のシールドを選ぶ',[...options,skip()]);
+  break;
+ }
  case'g34_TappedShieldPick842':{
   const defender=t.owner==='self'?t.p:1-t.p,shields=s.players[defender].shields;
   const options=shields.flatMap((x,i)=>api.shieldCards(x).some(y=>!y.g37ShieldHeld)
@@ -3574,6 +3581,10 @@ export function createSixPhotoRules(api){
   }
   break;
  }
+ case'g34_ShieldTriggerUntap1015':
+  if(v)api.interruptBreak(s,t.p,[v],{...t,op:'g34_Untap',g191First:true},
+   {g842Hand:true,controller:t.p,source:t.source});
+  break;
  case'g34_TappedShieldPick842':
   put(s,{...t,picked:[...t.picked,v]});
   break;

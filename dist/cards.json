@@ -206198,26 +206198,164 @@
       },
       "supportBatch": "phase-1014",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr18-020",
+      "name": "暗黒鎧 ヴェイダー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ダーク・ナイトメア",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n自分のターンの終わりに、自分の山札の上から１枚目を墓地に置いてもよい。それがクリーチャーなら、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-020",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g174End": [
+        {
+          "op": "Offer",
+          "title": "山札の上から1枚を墓地に置く？",
+          "g186GraveMill": true,
+          "defs": [
+            {
+              "op": "MillMatch520",
+              "n": 1,
+              "filter": {
+                "g228Face": {
+                  "type": "creature"
+                }
+              },
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1015",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr20-020",
+      "name": "超音速 ライディーン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "ソニック・コマンド/侵略者",
+      "text": "進化―自分の火のクリーチャー１体の上に置く。\n侵略―火のコスト５以上のクリーチャー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のパワー5000以下のクリーチャーを１体、破壊する。このクリーチャーの下にカードが３枚以上重ねてあれば、かわりに相手のクリーチャーをパワーの合計が8000以下になるよう好きな数選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-020",
+      "limit": 4,
+      "evolution": {
+        "civilization": "火"
+      },
+      "invasion": {
+        "colors": [
+          "火"
+        ],
+        "origins": [
+          "hand"
+        ],
+        "anyCreature": true,
+        "min": 5
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g650SourceCards": 4
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "owner": "opponent",
+              "origin": "battle",
+              "n": "all",
+              "optional": true,
+              "to": "grave",
+              "filter": {
+                "creature": true
+              },
+              "g173Targets": true,
+              "g193Select": true,
+              "g506PowerBudget": 8000,
+              "title": "パワーの合計が8000以下になるよう破壊するクリーチャーを選ぶ"
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "maxPower": 5000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1015",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr20-002",
+      "name": "八極 ハリルヤ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 11000,
+      "race": "エンジェル・コマンド/革命軍/侵略者",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\n相手のクリーチャーが攻撃する時、自分のシールドをひとつ、手札に加えてもよい。そうしたら、このクリーチャーをアンタップする。（その「S・トリガー」を使ってもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-002",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g252AttackWatch": {
+        "who": "opponent",
+        "defs": [
+          {
+            "op": "ShieldTriggerUntap1015"
+          }
+        ]
+      },
+      "supportBatch": "phase-1015",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1014,
+    "phase": 1015,
     "checkedAt": "2026-11-12",
-    "baseCount": 6978,
+    "baseCount": 6981,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6981,
+    "totalCount": 6984,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/rule/rulechange/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37804/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31654/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37806/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37807/",
+      "https://dm.takaratomy.co.jp/rule/qa/40962/",
       "https://dm.takaratomy.co.jp/rule/rulechange/316661/",
-      "https://dm.takaratomy.co.jp/rule/qa/42955/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316669/",
-      "https://dm.takaratomy.co.jp/rule/qa/46605/",
-      "https://dm.takaratomy.co.jp/rule/qa/47896/",
-      "https://dm.takaratomy.co.jp/rule/qa/31824/"
+      "https://dm.takaratomy.co.jp/rule/rulechange/31639/",
+      "https://dm.takaratomy.co.jp/rule/qa/45798/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -224561,6 +224699,29 @@
           "https://dm.takaratomy.co.jp/rule/qa/31825/",
           "https://dm.takaratomy.co.jp/rule/qa/47495/",
           "https://dm.takaratomy.co.jp/rule/qa/39993/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1014,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6978,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6981,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37804/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31654/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316661/",
+          "https://dm.takaratomy.co.jp/rule/qa/42955/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316669/",
+          "https://dm.takaratomy.co.jp/rule/qa/46605/",
+          "https://dm.takaratomy.co.jp/rule/qa/47896/",
+          "https://dm.takaratomy.co.jp/rule/qa/31824/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
