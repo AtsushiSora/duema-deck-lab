@@ -3388,6 +3388,9 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=928&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クロスギア'&&d.id==='dm14-078'&&normalize(f.abilityText)===
+  'クロスギア:このカードをバトルゾーンに置く。クリーチャーにクロスするにはこのカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れてもこのカードはバトルゾーンに残る。自分のターンの終わりにこれをクロスしたクリーャーをアンタップしてもよい。')
+  return {type:'gear',g928CrossEndUntap:true};
  if(phase>=727&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クロスギア'&&normalize(f.abilityText)==='クロスギアバトルゾーンにあるこれをクロスしたクリーチャーと同じ種族のクリーチャーすべてのパワーは+1000される。これをクロスしたクリーチャーと同じ種族のクリーチャーが攻撃する時カードを1枚引いてもよい。'){
   return {type:'gear',g726CrossRacePower:1000,g727CrossRaceDraw:true};
  }
@@ -3449,6 +3452,16 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=928&&d.faces.length===1){
+  if(f.typeText==='呪文'&&({
+   'dm01-033':'バトルゾーンにある自分のクリーチャーを1体選ぶ。このターンそのクリーチャーは「パワーアタッカー+4000」と「W(ダブル)・ブレイカー」を得る。(攻撃中そのクリーチャーのパワーは+4000されシールドを攻撃したときシールドを2枚ブレイクする。)',
+   'dm18-043':'このターンの終わりまでバトルゾーンにある自分のクリーチャー1体は「パワーアタッカー+4000」と「W・ブレイカー」を得る。(攻撃中そのクリーチャーのパワーは+4000されシールドを2枚ブレイクする)'
+  })[d.id]===compact363)
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',spell:true,grant:{attackBonus:4000,g818DoubleBreaker:true}}]};
+  if(f.typeText==='呪文'&&d.id==='dm17-017'&&compact363===
+   '自分の山札の上から1枚目を自分の墓地に置く。そのカードよりコストの低いクロスギアをすべてバトルゾーンから持ち主の墓地に置く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'LionessMill928'}]};
+ }
  if(phase>=927&&d.faces.length===1){
   if(f.typeText==='呪文'&&d.id==='dm22-014'&&compact363===
    '相手のクリーチャーを1体破壊する。その後バトルゾーンにある自分のドラゴンまたはフェニックス1体につき相手のクリーチャーを1体追加で破壊する。')

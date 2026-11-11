@@ -979,6 +979,15 @@ export function createSixPhotoRules(api){
    return opt(String(n),n,score);
   });
  }
+ function gearSweepRows928(s,threshold){
+  return s.players.flatMap(({battle},player)=>battle
+   .filter(x=>!x.sealed&&!x.faceDown&&card(x).type==='gear'&&cost(effective(x,s))<(threshold==='∞'?Infinity:threshold))
+   .map(x=>({player,uid:x.uid,to:'grave',destroy:false})));
+ }
+ function sweepGears928(s,t,threshold){
+  const rows=gearSweepRows928(s,threshold);
+  if(rows.length)move(s,rows.map(row=>({...row,controller:t.controller??t.p})));
+ }
  function powerSweepOptions696(s,t){
   const scores=new Map();
   for(const p of [0,1])for(const x of creatures(s,p)){
@@ -2550,6 +2559,24 @@ export function createSixPhotoRules(api){
  case'g34_ManaCountRamp529':{const n=own.mana.length;if(n)start(s,t,[{op:'Offer',title:'山札から'+n+'枚をまとめてタップしてマナに置く？',defs:[{op:'Ramp',n,tapped:true}]}]);break;}
  case'g34_ManaDeploy523':{const max=own.mana.length;start(s,t,[t.summon?{op:'Execute',origin:'hand',creatureOnly:true,max,optional:t.optional}:{op:'Select',origin:t.origin,n:1,deploy:true,optional:t.optional,filter:{...t.filter,max}}]);break;}
  case'g34_PowerSweep696':choice(s,t,t.max+'以下の数字を選ぶ',powerSweepOptions696(s,t));break;
+ case'g34_LionessMill928':{
+  const y=api.takeTop(s,t.p);
+  if(y){
+   clear(y,'grave');
+   api.addZone(s,t.p,'grave',y);
+   const costs=[...new Set(faces(api.zoneCard(s,t.p,y,'grave')).map(cost))].map(n=>n===Infinity?'∞':n);
+   start(s,t,[{op:'LionessSweep928',costs}]);
+  }
+  api.deckCheck(s,t.p);
+  break;
+ }
+ case'g34_LionessSweep928':{
+  if(t.costs.length===1)sweepGears928(s,t,t.costs[0]);
+  else choice(s,t,'墓地に置いたカードのどちらのコストを参照する？',t.costs.map(n=>
+   opt('コスト'+n,n,gearSweepRows928(s,n).reduce((score,{player,uid})=>
+    score+(player===t.p?-1:1)*(5+cost(card(s.players[player].battle.find(x=>x.uid===uid)))),0))));
+  break;
+ }
  case'g34_CostSweep596':choice(s,t,'一掃する相手クリーチャーのコストを選ぶ',costSweepOptions(s,t));break;
  case'g34_Sweep':{
   const players=t.owner==='self'?[t.p]:t.both?[0,1]:[1-t.p];
@@ -3206,6 +3233,7 @@ export function createSixPhotoRules(api){
   }
   break;
  case'g34_GraveArmy':if(v)put(s,{...t,op:'g34_Put',origin:'grave',owner:t.p,target:v.uid,execution:false},{...t,selected:[...t.selected,v.uid]});else put(s,task('g34_Custom',t.p,t.source,{name:'finishBatch'}));break;
+ case'g34_LionessSweep928':sweepGears928(s,t,v);break;
  case'g34_RampCost411':start(s,t,[{op:'Sweep',both:true,to:'mana',filter:{creature:true,...(v==='∞'?{}:{max:v})}}]);break;
  case'g34_AttackOtherMana409':if(v){const y=own.battle.find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation);if(y&&y!==attackHost408(s,t)){move(s,[{player:t.p,uid:y.uid,to:'mana'}]);start(s,t,[{op:'OpponentSelect',n:1,to:'mana'}]);}}break;
  case'g34_MarshalTouch558':{

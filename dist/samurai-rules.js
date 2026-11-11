@@ -5,6 +5,11 @@ export function createSamuraiRules(api){
  const samurai=c=>String(c.race).includes('サムライ'),armored=c=>String(c.race).includes('アーマード'),dragon=c=>String(c.race).includes('ドラゴン');
  const gears=(s,p)=>s.players[p].battle.filter(x=>card(x).type==='gear');
  const live=(s,p,g)=>g.crossedTo&&s.players[p].battle.find(x=>x.uid===g.crossedTo.uid&&(x.incarnation||0)===g.crossedTo.incarnation&&(x.sealed||api.isCreature(s,x)));
+ const reverseHost928=(s,p,t)=>{
+  const g=gears(s,p).find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation);
+  const x=g&&live(s,p,g);
+  return x?.tapped&&api.canUntap(x)?x:null;
+ };
  const attached=(s,p,x)=>gears(s,p).filter(g=>g.crossedTo?.uid===x.uid&&g.crossedTo.incarnation===(x.incarnation||0));
  const active=(s,g)=>!api.ignored(s,g);
  const optionalReducers=(s,p,c)=>c.type==='creature'&&(dragon(c)||samurai(c))?gears(s,p).filter(g=>card(g).zangeki&&active(s,g)&&!live(s,p,g)).length:0;
@@ -49,6 +54,11 @@ export function createSamuraiRules(api){
  case'g18_AfterMekUse':{const g=own.battle.find(x=>x.uid===t.gear&&(x.zoneSerial||0)===t.serial&&card(x).type==='gear');if(g)put(s,{...t,op:'g18_FreeCross',gearInc:g.incarnation||0});break;}
  case'g18_Flash':put(s,task('g19Yobi',t.p,t.source,{max:6}),task('g18_FlashGrant',t.p,t.source));break;
  case'g18_FlashGrant':for(const x of creatures(s,t.p)){api.untap(s,t.p,x);(x.g18Blocker??=[]).push({who:t.p,cost:6,spellSource:t.source});}break;
+ case'g18_ReverseUntap928':{
+  const x=reverseHost928(s,t.p,t);
+  if(x)choice(s,t,card(x).name+'をアンタップする？',[opt('アンタップする',true,15,x.cardId),skip()]);
+  break;
+ }
  case'g18_EndUntap':{const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation);if(x)api.untap(s,t.p,x);break;}
  case'g18_ShiraLock':api.lock(s,t.p,{kind:'spellCostLock',player:1-t.p,max:5});break;
  default:throw Error('未実装のサムライ効果：'+t.op);
@@ -62,6 +72,7 @@ export function createSamuraiRules(api){
  case'g18_Mekraid':{release(own,v?[v.uid]:[]);const x=v&&own.deck.find(x=>x.uid===v.uid),c=x&&faces(card(x))[v.face||0];put(s,...(v?[task('g18_Use',t.p,t.source,{origin:'deck',...v,reason:'サムライ・メクレイド'})]:[]),...(t.maroku&&c?.type==='gear'?[task('g18_AfterMekUse',t.p,t.source,{gear:x.uid,serial:x.zoneSerial||0})]:[]),task('g18_Order',t.p,t.source,{remaining:t.uids.filter(uid=>uid!==v?.uid),protected:t.uids}));break;}
  case'g18_Use':cast(s,t.p,t.uid,true,v||null,t.face||0,null,t.origin,t.reason||'サムライの能力');break;
  case'g18_Order':{const x=remove(own.deck,v);if(x)own.deck.push(x);put(s,{...t,remaining:t.remaining.filter(uid=>uid!==v)});break;}
+ case'g18_ReverseUntap928':if(v)api.untap(s,t.p,reverseHost928(s,t.p,t));break;
  case'g18_ChooseFreeCross927':if(v)put(s,{...t,op:'g18_FreeCross',gear:v.uid,gearInc:v.incarnation,required927:true});break;
  case'g18_FreeCross':if(v){
   const g=own.battle.find(x=>x.uid===t.gear&&(x.incarnation||0)===t.gearInc),x=own.battle.find(x=>x.uid===v);
@@ -117,7 +128,11 @@ export function createSamuraiRules(api){
    on(s,owner,gear,'g34_Offer',{title:'カードを1枚引く？',defs:[{op:'Draw',n:1}]});
   }
  },
- end(s,p){return creatures(s,p).filter(x=>effective(x,s).samuraiEndUntap).map(x=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g18_EndUntap',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})}));},
+ end(s,p){
+  const own=(x,op)=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task(op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})});
+  return [...creatures(s,p).filter(x=>effective(x,s).samuraiEndUntap).map(x=>own(x,'g18_EndUntap')),
+   ...gears(s,p).filter(g=>!g.sealed&&!g.faceDown&&card(g).g928CrossEndUntap&&active(s,g)).map(g=>own(g,'g18_ReverseUntap928'))];
+ },
  start(s,p){return creatures(s,p).filter(x=>effective(x,s).maroku&&attached(s,p,x).length).map(x=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g18_Maroku',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})}));},
  mainActions(s,p){const out=[];for(const g of gears(s,p))for(const x of creatures(s,p)){if(live(s,p,g)?.uid===x.uid)continue;const free=active(s,g)&&freeCross(card(g),card(x)),c={...card(g),crossing:true},n=free?0:api.summonCost(s,p,c);if(!free&&!api.canPay(s,p,c))continue;const existing=!!live(s,p,g),score=card(g).g125CrossUnblock?(existing?-30:attached(s,p,x).some(y=>card(y).g125CrossUnblock&&active(s,y))?5:35)+(x.tapped?-10:0):card(g).g119Petro?(existing||attached(s,p,x).some(y=>card(y).g119Petro&&active(s,y))?-30:40+Math.min(cost(card(x)),12)*3):existing?-30:card(g).zangeki&&(dragon(card(x))||samurai(card(x)))?70:card(g).doss?30:10;out.push({kind:'crossGear',uid:g.uid,cardId:g.cardId,target:x.uid,cost:n,free,score:score+(!existing&&x.entered<s.turn&&!x.tapped?4:0),label:card(g).name+' → '+card(x).name+'にクロス（'+(free?'無料':n+'マナ')+'）'});}return out;},
  crossOnEntry(s,p,x,ids){for(const g of gears(s,p))if(!g.sealed&&ids.includes(g.uid))cross(s,p,g,x);},
