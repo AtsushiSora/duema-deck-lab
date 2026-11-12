@@ -2467,6 +2467,26 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1027&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
+  const text=normalize(f.abilityText);
+  const trigger='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+  if(f.name==='獣面の銃弾'&&f.cost===4&&f.civilizationText==='闇'&&text===trigger+
+   '相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを_4000する。(パワー0以下のクリーチャーは破壊される)')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',power:-4000,g242PowerMinus:true,spell:true}]};
+  if(f.name==='命翼ノ裁キ'&&f.cost===4&&f.civilizationText==='光'&&f.race==='裁きの紋章'&&text===
+   '自分の山札の上から1枚目を裏向きのまま新しいシールドとしてシールドゾーンに置く。'+
+   'この呪文を自分の手札から唱えた後墓地に置くかわりに自分のシールド1つの上に表向きにして置く。(そのシールドの束は1つと数える)')
+   return {effect:'sixPhoto',g34Tasks:[{op:'ShieldTop',n:1}],g1027Crest:true};
+  if(f.name==='サークル・レガード'&&f.cost===1&&f.civilizationText==='光'&&text===trigger+
+   '次の自分のターンのはじめまで自分のクリーチャーすべてに「ブロッカー」を与える。(「ブロッカー」を持つクリーチャーをタップして相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい)')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'GroupGrant364',owner:'self',filter:{creature:true},grant:{blocker:true},g521UntilStart:true,spell:true}]};
+  if(f.name==='暗闇の裏闇市'&&f.cost===4&&f.civilizationText==='闇'&&text===
+   'コストを支払うかわりに自分の闇のクリーチャーを4体タップしてこの呪文を唱えてもよい。'+
+   '自分のクリーチャーを好きな数破壊する。その後こうして破壊したクリーチャー1体につき2枚カードを引く。')
+   return {effect:'sixPhoto',g976TapCast:{color:'闇',type:'creature',count:4},
+    g34Tasks:[{op:'Select',origin:'battle',owner:'self',to:'grave',n:'all',optional:true,
+     g173Targets:true,g193Select:true,g995DrawPerDestroyAttempt:2,filter:{creature:true},title:'破壊する自分のクリーチャーを選ぶ'}]};
+ }
  if(phase>=1026&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
   const spell={
    'エメスレム・ルミナリエ':{color:'光',cost:7,count:4,

@@ -207670,20 +207670,153 @@
       ],
       "supportBatch": "phase-1026",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-076",
+      "name": "獣面の銃弾",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを_4000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-076",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -4000,
+          "g242PowerMinus": true,
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1027",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-033",
+      "name": "命翼ノ裁キ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "裁きの紋章",
+      "text": "自分の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置く。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに自分のシールド１つの上に表向きにして置く。（そのシールドの束は１つと数える）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-033",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldTop",
+          "n": 1
+        }
+      ],
+      "g1027Crest": true,
+      "supportBatch": "phase-1027",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-064",
+      "name": "サークル・レガード",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次の自分のターンのはじめまで、自分のクリーチャーすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-064",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "grant": {
+            "blocker": true
+          },
+          "g521UntilStart": true,
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1027",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04m-015",
+      "name": "暗闇の裏闇市",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "コストを支払うかわりに、自分の闇のクリーチャーを４体タップして、この呪文を唱えてもよい。\n自分のクリーチャーを好きな数破壊する。その後、こうして破壊したクリーチャー１体につき２枚、カードを引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-015",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g976TapCast": {
+        "color": "闇",
+        "type": "creature",
+        "count": 4
+      },
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "self",
+          "to": "grave",
+          "n": "all",
+          "optional": true,
+          "g173Targets": true,
+          "g193Select": true,
+          "g995DrawPerDestroyAttempt": 2,
+          "filter": {
+            "creature": true
+          },
+          "title": "破壊する自分のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1027",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1026,
+    "phase": 1027,
     "checkedAt": "2026-11-12",
-    "baseCount": 7014,
+    "baseCount": 7018,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7018,
+    "totalCount": 7022,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/31659/",
+      "https://dm.takaratomy.co.jp/rule/qa/31686/",
+      "https://dm.takaratomy.co.jp/rule/qa/44186/",
       "https://dm.takaratomy.co.jp/rule/rulechange/31640/",
-      "https://dm.takaratomy.co.jp/rule/qa/39309/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31624/"
+      "https://dm.takaratomy.co.jp/rule/rulechange/31642/",
+      "https://dm.takaratomy.co.jp/rule/qa/43958/",
+      "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -226261,6 +226394,23 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31640/",
           "https://dm.takaratomy.co.jp/rule/qa/42521/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1026,
+        "checkedAt": "2026-11-12",
+        "baseCount": 7014,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7018,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31640/",
+          "https://dm.takaratomy.co.jp/rule/qa/39309/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31624/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

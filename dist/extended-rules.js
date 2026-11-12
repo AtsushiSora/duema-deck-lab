@@ -368,7 +368,27 @@ export function createExtendedRules(api){
    case 'darkFight':{const x=nowCreature(s,t.p,t.uid);if(x&&(t.incarnation===undefined||t.incarnation===(x.incarnation||0)))choice(s,t,'ドギラゴン悪でバトルする相手を選ぶ',[...targetOptions(s,t.p,creatures(s,1-t.p)),skip()]);break;}
    case 'ninjaBottom':{const x=own.battle.find(x=>layers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===t.incarnation));if(x&&card(x).race?.includes('シノビ'))move(s,[{player:t.p,uid:x.uid,to:'deck'}]);break;}
    case 'mirageCast':{const x=own.hand.find(x=>x.uid===t.uid);if(x&&(s.creaturesEntered||0)>=3&&canCast(s,t.p,card(x)))cast(s,t.p,x.uid,true,null,0,null,'hand','ターン終了時の能力');break;}
-   case 'finishSpell':{const i=(s.extSpells||[]).findIndex(x=>x.inst.uid===t.uid);if(i>=0){const f=s.extSpells[i];if(f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.to='hand';f.g416SelfFinish=true;}if(f.shieldCast){s.extSpells.splice(i,1);api.finishShieldSpell(s,f,f.g416SelfFinish?f.to:null);six.afterSpell566(s,f);break;}const selfFinish=f.g416SelfFinish||f.inst.normalFinish||f.inst.crystalFinish||f.spell?.graveCast&&f.to==='deck';if(!selfFinish&&!f.g159FinishResolved&&mado.finishSpell(s,t,f))break;
+   case 'finishSpell':{const i=(s.extSpells||[]).findIndex(x=>x.inst.uid===t.uid);if(i>=0){const f=s.extSpells[i];if(f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.to='hand';f.g416SelfFinish=true;}if(f.shieldCast){s.extSpells.splice(i,1);api.finishShieldSpell(s,f,f.g416SelfFinish?f.to:null);six.afterSpell566(s,f);break;}
+    // A spell's own destination replacement precedes an external one (609.8a).
+    if(!f.virtual&&f.spell?.g1027Crest&&f.spell.summonOrigin==='hand'&&
+       !api.spellIgnored(s,f.spell)&&api.canAddShield(s,f.caster)){
+     const own=s.players[f.caster],shields=own.shields;
+     if(shields.length){
+      if(!api.findShield(own,t.g1027Shield)){
+       choice(s,{...t,op:'g1027CrestShield'},'呪文を表向きで重ねるシールドを選ぶ',
+        shields.map((root,n)=>opt('シールド'+(n+1),api.shieldGroup(root))),f.caster);
+       break;
+      }
+      s.extSpells.splice(i,1);
+      delete f.inst.finishTo;
+      clear(f.inst,'shields');
+      api.addShieldCard(s,f.caster,t.g1027Shield,f.inst);
+      f.to='shields';
+      six.afterSpell566(s,f);
+      break;
+     }
+    }
+    const selfFinish=f.g416SelfFinish||f.inst.normalFinish||f.inst.crystalFinish||f.spell?.graveCast&&f.to==='deck';if(!selfFinish&&!f.g159FinishResolved&&mado.finishSpell(s,t,f))break;
     if(!selfFinish&&!f.spell?.g393PAfterExtra&&f.inst.g795CycleFinish&&f.to==='extra'){
      choice(s,{...t,op:'g795SpellDestination'},'唱え終えた呪文の移動先を選ぶ',[
       opt('インターステラで超次元ゾーンに置く','extra',20),opt('サイクルペディアで山札の下に置く','deck',15)]);
@@ -504,6 +524,7 @@ export function createExtendedRules(api){
    break;
   }
   case 'photo159FinishSpell':{const f=s.extSpells?.find(f=>f.inst.uid===t.uid);if(f){f.g159FinishResolved=true;f.to=value;put(s,task('finishSpell',t.p,t.source,{uid:t.uid}));}break;}
+  case 'g1027CrestShield':put(s,{...t,op:'finishSpell',g1027Shield:value});break;
   case 'destroyCost':case 'destroyPower':if(value)move(s,[{player:1-t.p,uid:value,to:'grave'}]);break;
   case 'attackBlock':{const x=nowCreature(s,1-t.p,value);if(x)for(const kind of ['attack','block'])lock(s,t.p,{kind,player:1-t.p,uid:x.uid,incarnation:x.incarnation||0,...(t.spellCost===undefined?{}:{spellCost:t.spellCost,spellSource:t.spellSource||t.source})});break;}
   case 'shieldCreature':{const owner=s.players.findIndex(p=>p.battle.some(x=>x.uid===value));move(s,[{player:owner,uid:value,to:'shields'}]);break;}
