@@ -2467,6 +2467,34 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1033&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText),untap=[{op:'Untap',g191First:true}];
+  const takeShield={op:'ShieldHand',g238ShieldHand:true,optional:true,g535Count:1};
+  if(f.name==='真空の求道者マオ'&&f.civilizationText==='光'&&f.cost===5&&f.race==='メカサンダー'&&text===
+   'ブロッカーブロッカーW・ブレイカーカードが自分のシールドゾーンに置かれた時または離れた時このクリーチャーをアンタップする。')
+   return {blocker:true,breaker:2,g918ShieldAdded:untap,g536ShieldLeft:untap};
+  if(f.name==='煌世の剣 メシアカリバー'&&f.civilizationText==='光'&&f.cost===7&&f.race==='メタリカ/サバキスト'&&text===
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+
+   '自分のシールドゾーンにカードが置かれた時次の自分のターンのはじめまでこのクリーチャーはバトルゾーンを離れない。'+
+   '自分のシールドゾーンからカードが離れた時このクリーチャーをアンタップする。')
+   return {blocker:true,breaker:2,g918ShieldAdded:[{op:'Stay627'}],g536ShieldLeft:untap};
+  if(f.name==='宝珠の精霊龍 ロゼッタ'&&f.civilizationText==='光'&&f.cost===4&&f.race==='エンジェル・コマンド・ドラゴン/ジャスティス・オーブ/革命軍'&&text===
+   'このクリーチャーがバトルゾーンに出た時自分のシールドをひとつ手札に加えてもよい。ただしその「S・トリガー」は使えない。'+
+   '革命2―自分のターンのはじめに自分のシールドが2つ以下なら自分の山札の上から1枚目を裏向きのまま新しいシールドとして自分のシールドゾーンに置いてもよい。')
+   return {effect:'sixPhoto',g34Tasks:[takeShield],g174Start:[{op:'IfOwn',filter:{g265ShieldsMax:2},defs:[
+    {op:'Offer',title:'山札の上から1枚を新しいシールドに置く？',defs:[{op:'ShieldTop',n:1}]}
+   ]}]};
+  if(f.name==='燃えるボルッチ'&&f.civilizationText==='火'&&f.cost===3&&f.race==='ファイアー・バード炎/革命軍'&&text===
+   'このクリーチャーがバトルゾーンに出た時自分のシールドをひとつ手札に加えてもよい。(ただしその「S・トリガー」は使えない)'+
+   '革命2―このクリーチャーがバトルゾーンに出た時自分のシールドが2つ以下ならこのターン自分のクリーチャーすべてのパワーをバトル中+4000する。')
+   return {g527ExtraEntry:[
+    {label:'シールド1つを手札に加える',defs:[takeShield]},
+    {label:'革命2',defs:[{op:'IfOwn',filter:{g265ShieldsMax:2},defs:[
+     {op:'GroupPower',owner:'self',filter:{creature:true},power:4000,g446BattleOnly:true}
+    ]}]}
+   ]};
+ }
  if(phase>=1032&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'&&f.civilizationText==='光'){
   const text=normalize(f.abilityText),placed='自分のシールドゾーンにカードが置かれた時';
   const blocker='ブロッカーブロッカー';

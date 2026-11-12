@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7040,
-  "pendingNames": 4787,
-  "phase": 1032,
+  "supportedNames": 7044,
+  "pendingNames": 4783,
+  "phase": 1033,
   "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2753,
+    "クリーチャー": 2749,
     "NEOクリーチャー": 152,
     "呪文": 624,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1212,
-    "未対応の能力文": 3339,
+    "未対応の能力文": 3335,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -204142,32 +204142,121 @@
           "reason": "手元の詳細データでクリーチャー側にシールド追加ごとのGR召喚を確認。両面を通常の対戦経路で検証するには超GRの編成・GR召喚・離脱先が必要なため保留。"
         }
       ]
+    },
+    {
+      "phase": 1033,
+      "baseCommit": "e6ca0539",
+      "cards": [
+        {
+          "id": "dm24rp1-013",
+          "name": "真空の求道者マオ"
+        },
+        {
+          "id": "dmsd07-001",
+          "name": "煌世の剣 メシアカリバー"
+        },
+        {
+          "id": "dmd28-009",
+          "name": "宝珠の精霊龍 ロゼッタ"
+        },
+        {
+          "id": "promoy14-062",
+          "name": "燃えるボルッチ"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm24ex3-004",
+          "canonicalId": "dm24rp1-013",
+          "name": "真空の求道者マオ"
+        },
+        {
+          "id": "dmr19-044",
+          "canonicalId": "promoy14-062",
+          "name": "燃えるボルッチ"
+        }
+      ],
+      "supportedNames": 7044,
+      "pendingNames": 4783,
+      "verification": {
+        "focusedPassed": 11,
+        "regressionPassed": 331,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 6,
+        "scope": "公式の能力全文・基本情報・マナ数・画像・現行殿堂制限を4種類と別収録2版で照合。ボルッチは既存カタログのプロモIDを正規IDとし、DMR-19版を紐づけた。マオは自分のシールドへの追加と離脱でアンタップし、メシアカリバーは実際の追加後から次の自ターン開始まで離れず、離脱時は別途アンタップする。ロゼッタは盾束全体を任意で手札に加えS・トリガーを抑止し、自ターンの開始時に盾が2つ以下なら任意で1つシールド化する。ボルッチは登場時2能力の解決順を選べ、革命2は解決時の盾の数を参照し、自軍だけをバトル中に強化する。盾追加の禁止、戻す・破壊からの保護と期限、保存復元、再録IDを確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/39978/",
+          "https://dm.takaratomy.co.jp/rule/qa/40465/"
+        ],
+        "regressionFiles": [
+          "tests/standard1032-effects.test.mjs",
+          "tests/standard1031-effects.test.mjs",
+          "tests/standard527-effects.test.mjs",
+          "tests/standard536-effects.test.mjs",
+          "tests/standard627-effects.test.mjs",
+          "tests/standard902-effects.test.mjs",
+          "tests/standard446-effects.test.mjs",
+          "tests/standard918-effects.test.mjs"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。各対象名と中断理由は元の履歴に記録。これ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。",
+        "logs": {
+          "official": "/tmp/duema-phase-1033.n1sVEkIV/official.log",
+          "focused": "/tmp/duema-phase-1033.n1sVEkIV/focused.log",
+          "regression": "/tmp/duema-phase-1033.n1sVEkIV/regression.log",
+          "check": "/tmp/duema-phase-1033.n1sVEkIV/check.log",
+          "audit": "/tmp/duema-phase-1033.n1sVEkIV/audit.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dmrp08-s01",
+          "name": "龍蒼者 ゼブルエ/ローゼス・ブルーム",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-s01",
+          "reason": "公式の呪文面詳細で文明欄が空欄。公式画像との照合に加え、スマッシュ・バーストで本体を場に残す経路と通常の呪文面の実行を両方検証するまで保留。"
+        },
+        {
+          "id": "dmrp05-s03",
+          "name": "超運命 アミダナスカ",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-s03",
+          "reason": "公式QA 31712により、盾の束を1つと数えたコスト上限を使う。非公開の山札上から、光の呪文とメタリカの条件を満たす面だけを選んで実行し、辞退・使用禁止・不適格なら山札上に残す経路を検証するまで保留。"
+        },
+        {
+          "id": "dmrp06-s03",
+          "name": "煌メク聖戦 絶十",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-s03",
+          "reason": "公式QA 31747・31748・39309で、複数回の軽減、次に使う光のカードでの失効、代替コスト使用時の扱いを確認。再録の全文・画像とサバキZの宣言から召喚までを、消費順とあわせて検証するまで保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1032,
-    "nextPhase": 1033,
+    "lastVerifiedPhase": 1033,
+    "nextPhase": 1034,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dmrp08-s01",
-        "name": "龍蒼者 ゼブルエ / ローゼス・ブルーム",
-        "reason": "ツインパクトの両面を照合し、スマッシュ・バーストとシールド追加ごとのフリーズを検証する。"
+        "id": "dmex11-006",
+        "name": "「剛力の火砲」",
+        "reason": "登場時のシールド化とシールド追加誘発による、相手1体の攻撃・ブロック禁止を照合する。"
       },
       {
-        "id": "dmsd07-001",
-        "name": "煌世の剣 メシアカリバー",
-        "reason": "シールド追加時の期限つき離脱禁止と、シールドのカードが離れた時のアンタップを検証する。"
+        "id": "dmrp14-015",
+        "name": "「策略のエメラル」",
+        "reason": "手札を表向きか裏向きで新しい盾にする選択と、成功後だけ盾を手札に加える処理を検証する。"
       },
       {
-        "id": "dmrp05-s03",
-        "name": "超運命 アミダナスカ",
-        "reason": "新しいシールドの追加と、山札上のカードの文明・種族・カード種別・コストを満たす面の任意使用を検証する。"
+        "id": "dmr11-030",
+        "name": "斬撃と防衛の矛盾",
+        "reason": "シールド2つ以下のシールド化モードとパワー3000以下の破壊、条件を満たさない場合のモード選択、S・トリガーを照合する。"
       },
       {
-        "id": "dmrp06-s03",
-        "name": "煌メク聖戦 絶十",
-        "reason": "サバキZの宣言とシールド追加で発生する任意コスト軽減を、公式裁定と照合する。"
+        "id": "dmex11-017",
+        "name": "「戒律の大弓」",
+        "reason": "相手の手札以外からの登場を区別し、盾追加と火とのバトル時の破壊防止を検証する。"
       }
     ],
     "steps": [

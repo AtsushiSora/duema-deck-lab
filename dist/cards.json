@@ -208370,15 +208370,178 @@
       ],
       "supportBatch": "phase-1032",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp1-013",
+      "name": "真空の求道者マオ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6500,
+      "race": "メカサンダー",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\nカードが自分のシールドゾーンに置かれた時または離れた時、このクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-013",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g918ShieldAdded": [
+        {
+          "op": "Untap",
+          "g191First": true
+        }
+      ],
+      "g536ShieldLeft": [
+        {
+          "op": "Untap",
+          "g191First": true
+        }
+      ],
+      "supportBatch": "phase-1033",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd07-001",
+      "name": "煌世の剣 メシアカリバー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "メタリカ/サバキスト",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のシールドゾーンにカードが置かれた時、次の自分のターンのはじめまで、このクリーチャーはバトルゾーンを離れない。\n自分のシールドゾーンからカードが離れた時、このクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd07-001",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g918ShieldAdded": [
+        {
+          "op": "Stay627"
+        }
+      ],
+      "g536ShieldLeft": [
+        {
+          "op": "Untap",
+          "g191First": true
+        }
+      ],
+      "supportBatch": "phase-1033",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd28-009",
+      "name": "宝珠の精霊龍 ロゼッタ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "エンジェル・コマンド・ドラゴン/ジャスティス・オーブ/革命軍",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分のシールドをひとつ手札に加えてもよい。ただし、その「S・トリガー」は使えない。\n革命２―自分のターンのはじめに、自分のシールドが２つ以下なら、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd28-009",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldHand",
+          "g238ShieldHand": true,
+          "optional": true,
+          "g535Count": 1
+        }
+      ],
+      "g174Start": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g265ShieldsMax": 2
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "山札の上から1枚を新しいシールドに置く？",
+              "defs": [
+                {
+                  "op": "ShieldTop",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1033",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy14-062",
+      "name": "燃えるボルッチ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "ファイアー・バード炎/革命軍",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分のシールドをひとつ、手札に加えてもよい。（ただし、その「S・トリガー」は使えない）\n革命２―このクリーチャーがバトルゾーンに出た時、自分のシールドが２つ以下なら、このターン、自分のクリーチャーすべてのパワーをバトル中+4000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-062",
+      "limit": 4,
+      "g527ExtraEntry": [
+        {
+          "label": "シールド1つを手札に加える",
+          "defs": [
+            {
+              "op": "ShieldHand",
+              "g238ShieldHand": true,
+              "optional": true,
+              "g535Count": 1
+            }
+          ]
+        },
+        {
+          "label": "革命2",
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g265ShieldsMax": 2
+              },
+              "defs": [
+                {
+                  "op": "GroupPower",
+                  "owner": "self",
+                  "filter": {
+                    "creature": true
+                  },
+                  "power": 4000,
+                  "g446BattleOnly": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1033",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1032,
+    "phase": 1033,
     "checkedAt": "2026-11-12",
-    "baseCount": 7036,
+    "baseCount": 7040,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7040,
+    "totalCount": 7044,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -227051,6 +227214,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7036,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1032,
+        "checkedAt": "2026-11-12",
+        "baseCount": 7036,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7040,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

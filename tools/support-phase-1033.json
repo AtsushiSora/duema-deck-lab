@@ -1,0 +1,289 @@
+{
+  "phase": 1033,
+  "checkedAt": "2026-11-12",
+  "baseCount": 7040,
+  "description": "シールドの追加・離脱と革命2に関わる4種類と別収録2版を公式情報で照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "cards": [
+    {
+      "id": "dm24rp1-013",
+      "name": "真空の求道者マオ",
+      "faces": [
+        {
+          "name": "真空の求道者マオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nカードが自分のシールドゾーンに置かれた時または離れた時、このクリーチャーをアンタップする。",
+          "race": "メカサンダー",
+          "powerText": "6500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-013",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g918ShieldAdded": [
+          {
+            "op": "Untap",
+            "g191First": true
+          }
+        ],
+        "g536ShieldLeft": [
+          {
+            "op": "Untap",
+            "g191First": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "0c0fd9889cc78f4688cf12b3ddb43813d2fc850d4143451a016f657ffb295287",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd07-001",
+      "name": "煌世の剣 メシアカリバー",
+      "faces": [
+        {
+          "name": "煌世の剣 メシアカリバー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のシールドゾーンにカードが置かれた時、次の自分のターンのはじめまで、このクリーチャーはバトルゾーンを離れない。\n自分のシールドゾーンからカードが離れた時、このクリーチャーをアンタップする。",
+          "race": "メタリカ/サバキスト",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd07-001",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g918ShieldAdded": [
+          {
+            "op": "Stay627"
+          }
+        ],
+        "g536ShieldLeft": [
+          {
+            "op": "Untap",
+            "g191First": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd07-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "62a4e06f5233a8701b1a0a7694ad4575b10cc3acf3a64f14281d89a01f1701b6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd28-009",
+      "name": "宝珠の精霊龍 ロゼッタ",
+      "faces": [
+        {
+          "name": "宝珠の精霊龍 ロゼッタ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分のシールドをひとつ手札に加えてもよい。ただし、その「S・トリガー」は使えない。\n革命２―自分のターンのはじめに、自分のシールドが２つ以下なら、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置いてもよい。",
+          "race": "エンジェル・コマンド・ドラゴン/ジャスティス・オーブ/革命軍",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd28-009",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true,
+            "optional": true,
+            "g535Count": 1
+          }
+        ],
+        "g174Start": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g265ShieldsMax": 2
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "title": "山札の上から1枚を新しいシールドに置く？",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd28-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "cf50b4ea97842ae32ee497cb9b373df87e238962576abf7395a991ce78c54c56",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy14-062",
+      "name": "燃えるボルッチ",
+      "faces": [
+        {
+          "name": "燃えるボルッチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分のシールドをひとつ、手札に加えてもよい。（ただし、その「S・トリガー」は使えない）\n革命２―このクリーチャーがバトルゾーンに出た時、自分のシールドが２つ以下なら、このターン、自分のクリーチャーすべてのパワーをバトル中+4000する。",
+          "race": "ファイアー・バード炎/革命軍",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-062",
+      "spec": {
+        "g527ExtraEntry": [
+          {
+            "label": "シールド1つを手札に加える",
+            "defs": [
+              {
+                "op": "ShieldHand",
+                "g238ShieldHand": true,
+                "optional": true,
+                "g535Count": 1
+              }
+            ]
+          },
+          {
+            "label": "革命2",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g265ShieldsMax": 2
+                },
+                "defs": [
+                  {
+                    "op": "GroupPower",
+                    "owner": "self",
+                    "filter": {
+                      "creature": true
+                    },
+                    "power": 4000,
+                    "g446BattleOnly": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy14-062.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "3a75a061646d15a2912cc14c4136668aa31b6679b2f40c85a5401e1a186d082d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex3-004",
+      "canonicalId": "dm24rp1-013",
+      "name": "真空の求道者マオ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-004",
+      "faces": [
+        {
+          "name": "真空の求道者マオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー ブロッカー\nW・ブレイカー\nカードが自分のシールドゾーンに置かれた時または離れた時、このクリーチャーをアンタップする。",
+          "race": "メカサンダー",
+          "powerText": "6500",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "997607a76a4f37a63903abde42c258f3f7e67a3d18b10e1b7c1c129d701c808f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-044",
+      "canonicalId": "promoy14-062",
+      "name": "燃えるボルッチ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-044",
+      "faces": [
+        {
+          "name": "燃えるボルッチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分のシールドをひとつ、手札に加えてもよい。（ただし、その「S・トリガー」は使えない）\n革命２―このクリーチャーがバトルゾーンに出た時、自分のシールドが２つ以下なら、このターン、自分のクリーチャーすべてのパワーをバトル中+4000する。",
+          "race": "ファイアー・バード炎/革命軍",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "83da976301746f3fd7eeef04d84b693b0cf008cae151be918815b168f5d80576",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp1-013": 4,
+      "dmsd07-001": 4,
+      "dmd28-009": 4,
+      "promoy14-062": 4,
+      "dm24ex3-004": 4,
+      "dmr19-044": 4
+    }
+  }
+}
