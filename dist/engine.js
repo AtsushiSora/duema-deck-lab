@@ -469,7 +469,7 @@ function rememberBattleInformation(s,owner,host,leaving){
  });
  if(host.sealed)return;
  for(const task of all){
-  if(departs(task)&&(task.g1059NonEvolution||task.defs?.some(def=>def.g1059NonEvolution)))
+  if(departs(task)&&(task.g1059NonEvolution||task.g1071Evolution||task.defs?.some(def=>def.g1059NonEvolution||def.g1071Evolution)))
    task.g1059LastEvolution=isEvolution(host);
   if(departs(task)&&(task.g1064Tapped||task.defs?.some(def=>def.g1064Tapped)))
    task.g1064LastTapped=!!host.tapped;

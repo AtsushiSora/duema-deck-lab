@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7175,
-  "pendingNames": 4652,
-  "phase": 1070,
-  "added": 4,
+  "supportedNames": 7178,
+  "pendingNames": 4649,
+  "phase": 1071,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -155,7 +155,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 2700,
-    "NEOクリーチャー": 93,
+    "NEOクリーチャー": 90,
     "呪文": 605,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3215,
+    "未対応の能力文": 3212,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -207930,63 +207930,171 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1071,
+      "baseCommit": "3629eeb8",
+      "cards": [
+        {
+          "id": "dm25rp1-009",
+          "name": "KENJI-番練羅999"
+        },
+        {
+          "id": "dm25rp1-S03",
+          "name": "大崩壊炉 マーダン=ダイロウ"
+        },
+        {
+          "id": "dmrp11-040",
+          "name": "トアミ入道"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm25ex3-rp1009",
+          "canonicalId": "dm25rp1-009"
+        },
+        {
+          "id": "dm25rp1-Sec04",
+          "canonicalId": "dm25rp1-S03"
+        },
+        {
+          "id": "dm25ex3-rp1S03",
+          "canonicalId": "dm25rp1-S03"
+        },
+        {
+          "id": "dm25ex3-rp1Sec04",
+          "canonicalId": "dm25rp1-S03"
+        }
+      ],
+      "supportedNames": 7178,
+      "pendingNames": 4649,
+      "verification": {
+        "focusedPassed": 9,
+        "regressionPassed": 232,
+        "regressionFailed": 0,
+        "check": "成功",
+        "officialPrints": 7,
+        "scope": "3種類7版の公式能力全文、基本情報、画像、印刷マナ数、使用制限、収録と既存IDを照合。再録4版は既存の正規IDへ紐づけた。KENJIはNEO進化召喚時だけの2軽減、マッハファイター、タップ中や効果バトルでの任意の肩代わりを確認。マーダンの2つの登場時能力は独立し、進化時の山札下の順序は相手が選ぶことを確認。トアミ入道はJトルネードの辞退と置換、次のターンだけの対戦相手の攻撃制限、追加ターンを確認。既存7,175件の対戦定義とIDが一致。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/40676/",
+          "https://dm.takaratomy.co.jp/rule/qa/41071/",
+          "https://dm.takaratomy.co.jp/rule/qa/32320/",
+          "https://dm.takaratomy.co.jp/rule/qa/32321/"
+        ],
+        "regressionFiles": [
+          "tests/neo-ddd.test.mjs",
+          "tests/requested393-superguard.test.mjs",
+          "tests/standard527-effects.test.mjs",
+          "tests/standard627-effects.test.mjs",
+          "tests/standard762-effects.test.mjs",
+          "tests/standard994-effects.test.mjs",
+          "tests/standard1041-effects.test.mjs",
+          "tests/standard1059-effects.test.mjs",
+          "tests/standard1067-effects.test.mjs",
+          "tests/standard1070-effects.test.mjs"
+        ],
+        "regressionFilter": "--test-skip-pattern=mixed NEO/DDD games|production worker|random manual|new-card games against every|simulation worker|legal forty CPU|randomized",
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。 トットロの公式QA 48925の組み合わせは関連2枚が未対応のため未実行。NEO/DDDの100試合と再現性は過去に分割検証済みで、今回の回帰では合否未確認。 ゴルギー31相手の再現性と本番Worker62試合は今回も対象外で未実行。前回の広範囲回帰に含まれる1,796件固定の既存テストの結果はPhase 1060を参照。 PhoenixのCPU連戦と本番Worker試験は、今回の個別回帰の対象外。 Phase 1064ではNEO/DDD 100試合とBandeの全対戦・ランダム操作・Workerの長時間ケースを個別回帰から除外。以前の長時間実行を繰り返さず、今回の合否は未確認。 Phase 1065の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1066の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1067の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1068の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1069の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1070の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1071の個別回帰でも長時間のNEO/DDD 100試合は対象外。",
+        "pendingInteractions": [
+          {
+            "cardIds": [
+              "dm25rp3-039",
+              "dm26rp2-006",
+              "dm25rp2-OR1"
+            ],
+            "test": "デンジャラス=トットロの上にメモッタで封印付きのジャシン＝ヴリドガルドが出る場合の墓地展開",
+            "status": "未実行",
+            "reason": "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/48925/"
+          }
+        ],
+        "logs": {
+          "official": "/tmp/duema-phase-1071.nNGwz86o/manifest.log",
+          "officialImages": "/tmp/duema-phase-1071.nNGwz86o/sources.log",
+          "reprints": "/tmp/duema-phase-1071.nNGwz86o/prints.log",
+          "imageIndex": "/tmp/duema-phase-1071.nNGwz86o/images.log",
+          "focused": "/tmp/duema-phase-1071.nNGwz86o/specific-final.log",
+          "regression": "/tmp/duema-phase-1071.nNGwz86o/related.log",
+          "check": "/tmp/duema-phase-1071.nNGwz86o/check.log",
+          "audit": "/tmp/duema-phase-1071.nNGwz86o/audit.log",
+          "count": "/tmp/duema-phase-1071.nNGwz86o/count.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dm25rp2-025",
+          "name": "無頼BEN-K1000",
+          "reason": "初版の公式能力全文・基本情報・画像とプロモ版、DM25-RP2のシークレット版を確認。山札上3枚の分配では山札を見ることの禁止、シールド化や山札移動の置換、残りが1枚の時と発生源が離れた時の処理を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-025",
+            "https://dm.takaratomy.co.jp/card/detail/?id=promoy24-048",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-Sec18"
+          ]
+        },
+        {
+          "id": "dmrp06-052",
+          "name": "バニャーニャ・タンク",
+          "reason": "公式能力全文・基本情報・画像と単一収録を照合。表向きシールドの選択に加え、両者のクリーチャーのシールド移動禁止が、置換効果や進化元だけの移動にどう適用されるか検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-052"
+          ]
+        },
+        {
+          "id": "dmrp03-006",
+          "name": "ジャババ・ハット",
+          "reason": "公式能力全文・基本情報・画像と単一収録を照合。攻撃終了時の自壊と、墓地に置かれる直前の進化状態を物理カード単位で追跡する必要があるため保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-006"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1070,
-    "nextPhase": 1071,
+    "lastVerifiedPhase": 1071,
+    "nextPhase": 1072,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm25rp2-025",
-        "name": "無頼BEN-K1000",
-        "reason": "登場時の山札上3枚をシールド・マナ・自身の下に割り当てる処理を照合する。"
-      },
-      {
-        "id": "dm25rp1-009",
-        "name": "KENJI-番練羅999",
-        "reason": "NEO進化召喚の軽減と、自分の他のクリーチャーが行うバトルの任意置換を照合する。"
-      },
-      {
-        "id": "dmrp06-052",
-        "name": "バニャーニャ・タンク",
-        "reason": "タップ時の両者の表向きシールド選択と、クリーチャーのシールド移動を禁じる範囲を照合する。"
-      },
-      {
-        "id": "dmrp11-040",
-        "name": "トアミ入道",
-        "reason": "公式全文・基本情報・画像・単一収録を確認。Jトルネードは手札への移動が置換されても後続が解決される。既存の攻撃回数制限は次の相手ターンに開始するため、追加ターンが挟まるときの「次のターン」の範囲を含めて検証するまで保留。",
-        "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-040",
-          "https://dm.takaratomy.co.jp/rule/qa/32320/",
-          "https://dm.takaratomy.co.jp/rule/qa/32321/"
-        ]
-      },
-      {
         "id": "dm25rp2-019",
         "name": "魔誕盗掘男",
-        "reason": "初版の公式全文・基本情報・画像とDM25-EX3の収録を確認。召喚元のカードを自分の手札枚数から除く条件と、複数ブレイクの直前に各1回の任意ドローを待機させる処理の検証が残る。",
-        "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-019",
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-018"
-        ]
+        "reason": "手札枚数を参照する召喚軽減と、各シールドのブレイク前の任意ドローを照合する。"
       },
       {
         "id": "dm25rp2-001",
         "name": "Celeb k’Reine",
-        "reason": "初版の公式全文・基本情報・画像とDM25-EX3の収録を確認。本人が出る前の相手のタップ、複数体の同時タップ、進化登場時の任意タップが作る誘発の順序を検証するまで保留。",
-        "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-001",
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp2001"
-        ]
+        "reason": "複数の相手クリーチャーのタップと進化登場時の誘発順序を照合する。"
       },
       {
         "id": "dmrp02-010",
         "name": "ベジタバッタ・パンツァー",
-        "reason": "公式全文・基本情報・画像・単一収録を確認。攻撃可能な場合に自身を攻撃先として優先させる処理と、効果で発生したバトルも含む任意置換で両者を持ち主のマナに同時に置く経路の検証が残る。",
+        "reason": "攻撃可能な相手の優先と、効果バトルを含むマナ送りへの置換を照合する。"
+      },
+      {
+        "id": "dm25rp2-025",
+        "name": "無頼BEN-K1000",
+        "reason": "初版の公式能力全文・基本情報・画像とプロモ版、DM25-RP2のシークレット版を確認。山札上3枚の分配では山札を見ることの禁止、シールド化や山札移動の置換、残りが1枚の時と発生源が離れた時の処理を検証するまで保留。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-010",
-          "https://dm.takaratomy.co.jp/coverage/dmscs01_f03/"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-025",
+          "https://dm.takaratomy.co.jp/card/detail/?id=promoy24-048",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-Sec18"
+        ]
+      },
+      {
+        "id": "dmrp06-052",
+        "name": "バニャーニャ・タンク",
+        "reason": "公式能力全文・基本情報・画像と単一収録を照合。表向きシールドの選択に加え、両者のクリーチャーのシールド移動禁止が、置換効果や進化元だけの移動にどう適用されるか検証するまで保留。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-052"
+        ]
+      },
+      {
+        "id": "dmrp03-006",
+        "name": "ジャババ・ハット",
+        "reason": "公式能力全文・基本情報・画像と単一収録を照合。攻撃終了時の自壊と、墓地に置かれる直前の進化状態を物理カード単位で追跡する必要があるため保留。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-006"
         ]
       },
       {
@@ -208027,14 +208135,6 @@
         "sources": [
           "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-015",
           "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-Sec16"
-        ]
-      },
-      {
-        "id": "dmrp03-006",
-        "name": "ジャババ・ハット",
-        "reason": "公式本文・基本情報・画像・単一収録を確認。攻撃時に登録した自壊と、破壊以外でも墓地に置かれた時の再登場を、直前の進化状態と同じ物理カードの墓地滞在で判定する処理が残る。",
-        "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-006"
         ]
       },
       {
@@ -208268,7 +208368,7 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
-      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。山札から進化元への割り当て、バトルするクリーチャーの置換、表向きシールドの移動を既存処理と照合する。",
+      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。召喚軽減での手札の枚数、同時タップ時の誘発、バトルをマナ送りに置換する処理を既存実装と照合する。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で登録再開。自動化 duema-deck-lab は10分間隔で稼働中。",

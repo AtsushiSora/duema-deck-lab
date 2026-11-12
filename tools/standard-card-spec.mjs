@@ -9721,6 +9721,27 @@ export function standardCardSpec(d,{phase=165}={}){
     continue;
    }
   }
+  if(phase>=1071&&f.typeText==='NEOクリーチャー'){
+   if(line==='自分の他のクリーチャーがバトルする時かわりにこのクリーチャーにバトルさせてもよい。'){
+    spec.g1071BattleProxy=true;
+    continue;
+   }
+   if(line==='このクリーチャーが出た時それが進化クリーチャーなら相手は自身の進化ではないクリーチャーをすべて好きな順序で山札の下に置く。'){
+    (spec.g527ExtraEntry??=[]).push({label:'進化なら相手の進化ではないクリーチャーを山札の下へ',
+     defs:[{op:'IfSource541',g1071Evolution:true,defs:[{op:'Sweep',to:'deck',toOwnerDeck:true,g994OrderBottom:true,filter:{creature:true,nonEvolution:true}}]}]});
+    continue;
+   }
+   if(line==='このクリーチャーが出た時相手の進化ではないクリーチャーをすべて破壊する。'){
+    entry.push({op:'Sweep',filter:{creature:true,nonEvolution:true}});
+    continue;
+   }
+   if(line==='このクリーチャーが攻撃する時Jトルネードしてもよい。そうしたら次のターン相手は1度しかクリーチャーで攻撃できない。(Jトルネード:自分の他のジョーカーズを1体手札に戻す)'){
+    (spec.g34Attack??=[]).push({op:'Select',origin:'battle',to:'hand',n:1,optional:true,g179Other:true,g187OwnPick:true,
+     filter:{creature:true,race:'ジョーカーズ'},title:'Jトルネードする自分の他のジョーカーズを選ぶ',
+     afterBattleSelect:[{op:'AttackCap627',g1071NextTurn:true}]});
+    continue;
+   }
+  }
   if(phase>=1059&&f.typeText==='NEOクリーチャー'){
    const discount=line.match(/^NEO進化クリーチャーとして召喚する(?:なら|場合)このクリーチャーの召喚コストを([12])少なくする。$/);
    if(discount){

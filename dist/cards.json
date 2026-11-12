@@ -214202,15 +214202,163 @@
       ],
       "supportBatch": "phase-1070",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp1-009",
+      "name": "KENJI-番練羅999",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 11000,
+      "race": "ドリームメイト/テクノ・サムライ",
+      "text": "NEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。\nNEO進化クリーチャーとして召喚するなら、このクリーチャーの召喚コストを２少なくする。\nマッハファイター\nW・ブレイカー\n自分の他のクリーチャーがバトルする時、かわりにこのクリーチャーにバトルさせてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-009",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "火"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "g1059NeoSummonDiscount": 2,
+      "machFighter": true,
+      "breaker": 2,
+      "g1071BattleProxy": true,
+      "supportBatch": "phase-1071",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp1-S03",
+      "name": "大崩壊炉 マーダン=ダイロウ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "アビスロイヤル",
+      "text": "NEO進化：水、闇、または火のクリーチャー１体の上に置いてもよい。\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、それが進化クリーチャーなら、相手は自身の進化ではないクリーチャーをすべて、好きな順序で山札の下に置く。\nこのクリーチャーが出た時、相手の進化ではないクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-S03",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "闇"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "blocker": true,
+      "breaker": 2,
+      "g527ExtraEntry": [
+        {
+          "label": "進化なら相手の進化ではないクリーチャーを山札の下へ",
+          "defs": [
+            {
+              "op": "IfSource541",
+              "g1071Evolution": true,
+              "defs": [
+                {
+                  "op": "Sweep",
+                  "to": "deck",
+                  "toOwnerDeck": true,
+                  "g994OrderBottom": true,
+                  "filter": {
+                    "creature": true,
+                    "nonEvolution": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "filter": {
+            "creature": true,
+            "nonEvolution": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1071",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-040",
+      "name": "トアミ入道",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ジョーカーズ",
+      "text": "NEO進化：自分のジョーカーズ１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが攻撃する時、Jトルネードしてもよい。そうしたら、次のターン、相手は１度しかクリーチャーで攻撃できない。（Jトルネード：自分の他のジョーカーズを１体、手札に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-040",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "race": "ジョーカーズ"
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "g179Other": true,
+          "g187OwnPick": true,
+          "filter": {
+            "creature": true,
+            "race": "ジョーカーズ"
+          },
+          "title": "Jトルネードする自分の他のジョーカーズを選ぶ",
+          "afterBattleSelect": [
+            {
+              "op": "AttackCap627",
+              "g1071NextTurn": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1071",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1070,
+    "phase": 1071,
     "checkedAt": "2026-11-13",
-    "baseCount": 7171,
-    "newEffectCards": 4,
+    "baseCount": 7175,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7175,
+    "totalCount": 7178,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -233339,6 +233487,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7171,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1070,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7171,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7175,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -1,0 +1,327 @@
+{
+  "phase": 1071,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7175,
+  "description": "NEO進化召喚の軽減とバトルの任意置換、独立した登場時の一掃、Jトルネードによる次のターンの攻撃制限を照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/40676/",
+    "https://dm.takaratomy.co.jp/rule/qa/41071/",
+    "https://dm.takaratomy.co.jp/rule/qa/32320/",
+    "https://dm.takaratomy.co.jp/rule/qa/32321/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp1-009",
+      "name": "KENJI-番練羅999",
+      "faces": [
+        {
+          "name": "KENJI-番練羅999",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。\nNEO進化クリーチャーとして召喚するなら、このクリーチャーの召喚コストを２少なくする。\nマッハファイター\nW・ブレイカー\n自分の他のクリーチャーがバトルする時、かわりにこのクリーチャーにバトルさせてもよい。",
+          "race": "ドリームメイト/テクノ・サムライ",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-009.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "g1059NeoSummonDiscount": 2,
+        "machFighter": true,
+        "breaker": 2,
+        "g1071BattleProxy": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "590d57d37c2f180fbb4a7d38f9763bdae77916add32775e1ba021f20df9e068d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp1-S03",
+      "name": "大崩壊炉 マーダン=ダイロウ",
+      "faces": [
+        {
+          "name": "大崩壊炉 マーダン=ダイロウ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "NEO進化：水、闇、または火のクリーチャー１体の上に置いてもよい。\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、それが進化クリーチャーなら、相手は自身の進化ではないクリーチャーをすべて、好きな順序で山札の下に置く。\nこのクリーチャーが出た時、相手の進化ではないクリーチャーをすべて破壊する。",
+          "race": "アビスロイヤル",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-S03",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-S03.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "blocker": true,
+        "breaker": 2,
+        "g527ExtraEntry": [
+          {
+            "label": "進化なら相手の進化ではないクリーチャーを山札の下へ",
+            "defs": [
+              {
+                "op": "IfSource541",
+                "g1071Evolution": true,
+                "defs": [
+                  {
+                    "op": "Sweep",
+                    "to": "deck",
+                    "toOwnerDeck": true,
+                    "g994OrderBottom": true,
+                    "filter": {
+                      "creature": true,
+                      "nonEvolution": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "filter": {
+              "creature": true,
+              "nonEvolution": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "903f95fd60f6ba429986d652be3437906dd4d30dd55cdf064875e4d776a0670f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp11-040",
+      "name": "トアミ入道",
+      "faces": [
+        {
+          "name": "トアミ入道",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "NEO進化：自分のジョーカーズ１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが攻撃する時、Jトルネードしてもよい。そうしたら、次のターン、相手は１度しかクリーチャーで攻撃できない。（Jトルネード：自分の他のジョーカーズを１体、手札に戻す）",
+          "race": "ジョーカーズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-040",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-040.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "race": "ジョーカーズ"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "g179Other": true,
+            "g187OwnPick": true,
+            "filter": {
+              "creature": true,
+              "race": "ジョーカーズ"
+            },
+            "title": "Jトルネードする自分の他のジョーカーズを選ぶ",
+            "afterBattleSelect": [
+              {
+                "op": "AttackCap627",
+                "g1071NextTurn": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "22638d10350c5083f7dcd0cbb944883ba178964ccc96481de6e8679625692378",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25ex3-rp1009",
+      "name": "KENJI-番練羅999",
+      "faces": [
+        {
+          "name": "KENJI-番練羅999",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。\nNEO進化クリーチャーとして召喚するなら、このクリーチャーの召喚コストを２少なくする。\nマッハファイター\nW・ブレイカー\n自分の他のクリーチャーがバトルする時、かわりにこのクリーチャーにバトルさせてもよい。",
+          "race": "ドリームメイト/テクノ・サムライ",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp1009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-rp1009.jpg",
+      "canonicalId": "dm25rp1-009",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "d3e2c61c373006892a0bf59f268c335d370123b73133d937f299c10487777ed0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp1-Sec04",
+      "name": "大崩壊炉 マーダン=ダイロウ",
+      "faces": [
+        {
+          "name": "大崩壊炉 マーダン=ダイロウ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "NEO進化：水、闇、または火のクリーチャー１体の上に置いてもよい。\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、それが進化クリーチャーなら、相手は自身の進化ではないクリーチャーをすべて、好きな順序で山札の下に置く。\nこのクリーチャーが出た時、相手の進化ではないクリーチャーをすべて破壊する。",
+          "race": "アビスロイヤル",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-Sec04",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-Sec04.jpg",
+      "canonicalId": "dm25rp1-S03",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "06562bc40d3f563e366657b42abff72b35deab5da8fd9b1b70b4eb1bdf61484d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex3-rp1S03",
+      "name": "大崩壊炉 マーダン=ダイロウ",
+      "faces": [
+        {
+          "name": "大崩壊炉 マーダン=ダイロウ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "NEO進化：水、闇、または火のクリーチャー１体の上に置いてもよい。\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、それが進化クリーチャーなら、相手は自身の進化ではないクリーチャーをすべて、好きな順序で山札の下に置く。\nこのクリーチャーが出た時、相手の進化ではないクリーチャーをすべて破壊する。",
+          "race": "アビスロイヤル",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp1S03",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-rp1S03.jpg",
+      "canonicalId": "dm25rp1-S03",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "b9b2db5e396e275f28a1542aaa51b1a0d819e3be29cd6e7e8a60092b824d63d6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex3-rp1Sec04",
+      "name": "大崩壊炉 マーダン=ダイロウ",
+      "faces": [
+        {
+          "name": "大崩壊炉 マーダン=ダイロウ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "NEO進化：水、闇、または火のクリーチャー１体の上に置いてもよい。\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、それが進化クリーチャーなら、相手は自身の進化ではないクリーチャーをすべて、好きな順序で山札の下に置く。\nこのクリーチャーが出た時、相手の進化ではないクリーチャーをすべて破壊する。",
+          "race": "アビスロイヤル",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp1Sec04",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-rp1Sec04.jpg",
+      "canonicalId": "dm25rp1-S03",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "0ee36588bba16e8d074191137d465b68a3d67db73cc2e9064ba8a96fabd92f9f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp1-009": 4,
+      "dm25rp1-S03": 4,
+      "dmrp11-040": 4,
+      "dm25ex3-rp1009": 4,
+      "dm25rp1-Sec04": 4,
+      "dm25ex3-rp1S03": 4,
+      "dm25ex3-rp1Sec04": 4
+    }
+  }
+}
