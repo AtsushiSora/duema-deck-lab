@@ -129,6 +129,31 @@ test('Cromwell does not see a shield depart when only one card leaves its stack'
  assert.equal(s.decision,null);
 });
 
+test('Z Rush waits for the last card of a shield to leave (QA48472)',()=>{
+ for(const takeRoot of [false,true]){
+  const s=setup(),root=s.players[0].shields[0],leaf=inst(N);
+  const chakra=add(s,0,'battle','dm26rp1-S002');
+  const opposingChakra=add(s,1,'battle','dm26rp1-S002');
+  root.shieldStack=[leaf];
+  const [first,last]=takeRoot?[root,leaf]:[leaf,root];
+  const spoons=[add(s,0,'hand',SPOON),add(s,0,'hand',SPOON)],all=physical(s);
+  cast(s,spoons[0]);
+  choose(s,first.uid);
+  assert.ok(zoneHas(s,0,'hand',first)&&zoneHas(s,0,'shields',last));
+  assert.equal(e.power(chakra,false,s),4000);
+  assert.equal(e.power(opposingChakra,false,s),4000);
+  assert.equal(s.log.filter(x=>x.type==='hyper').length,0);
+  cast(s,spoons[1]);
+  choose(s,last.uid);
+  assert.ok(zoneHas(s,0,'hand',last));
+  assert.equal(s.players[0].shields.length,4);
+  assert.equal(e.power(chakra,false,s),7500);
+  assert.equal(e.power(opposingChakra,false,s),7500);
+  assert.equal(s.log.filter(x=>x.type==='hyper').length,2);
+  assert.deepEqual(physical(s),all);
+ }
+});
+
 test('Clap grants one chosen allied creature speed for this turn only',()=>{
  const s=setup(),clap=add(s,0,'battle',CLAP);
  const ally=add(s,0,'battle',N,{entered:s.turn}),other=add(s,0,'battle',N,{entered:s.turn}),enemy=add(s,1,'battle',N);

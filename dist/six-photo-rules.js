@@ -5941,12 +5941,10 @@ export function createSixPhotoRules(api){
  selected447(s,p,a,d){if(a.kind==='attack')return;const v=a.kind==='extended'?d?.choices?.[a.choice]?.value:null,ids=new Set([...(a.targets||[]).map(x=>x.uid),...(['effect','fight','dragonTap'].includes(a.kind)?[a.target||a.uid]:[]),...(typeof v==='string'?[v]:v?.uid?[v.uid]:[])]);for(const x of s.players[1-p].battle)if(ids.has(x.uid)){const defs=effective(x,s).g447Selected;if(defs)queue(s,1-p,x,defs);}},
  // This trigger originates outside the battlefield, so battlefield-only ability suppression does not apply.
  gsRevealed545(s,p,source,uid){const defs=card(source)?.g545GS;if(defs)api.enqueue(s,p,{source,effect:'extended',task:task('g34_ResolveDelay537',p,source,{uid,defs:structuredClone(defs)})});},
- evolutionBase397(s,p,x,existingHost){
+ evolutionBase397(s,p,x){
   if(x.sealed||!s.players[p].battle.includes(x)||api.ignored(s,x))return;
   const c=effective(x,s),defs=c.g397Shinka;
   if(!defs)return;
-  // QA47363–47364: placing a card below an existing unit only creates an evolution base under an evolution or NEO creature.
-  if(c.evolvedEntryOnly&&existingHost&&!api.isEvolution(existingHost)&&!card(existingHost).neoEvolution)return;
   if(defs.some(d=>d.op==='ShinkaHost544'&&d.mode==='belowCost'))send(s,p,x,'Sequence',{defs,g399Attacker:{uid:x.uid,incarnation:x.incarnation||0,cost:null}});
   else queue(s,p,x,defs);
  },

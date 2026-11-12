@@ -547,7 +547,8 @@ function shieldLeft(s,p,x,group=null){
  // Removing one card from a shield bundle is not a shield departure (QA48472).
  if(group!==null)(s.g1036ShieldGroupLeftTurns??=[null,null])[p]=s.turn;
  extra.shieldLeft(s,p,x,group);delete x.g19ShieldST;
- if(group!==null)for(const top of s.players[p].battle)for(const c of layers(top)){if(c.exLifeShieldUid===group)delete c.exLifeShieldUid;if(c.exLifeShieldUids)c.exLifeShieldUids=c.exLifeShieldUids.filter(x=>x!==group);}
+ if(group===null)return;
+ for(const top of s.players[p].battle)for(const c of layers(top)){if(c.exLifeShieldUid===group)delete c.exLifeShieldUid;if(c.exLifeShieldUids)c.exLifeShieldUids=c.exLifeShieldUids.filter(x=>x!==group);}
  for(const who of [0,1])for(const c of s.players[who].battle)if(card(c).zRush){if(!c.hyperActive)log(s,who,'hyper',`${card(c).name}のZラッシュでハイパーモードを解放`,{cardId:c.cardId});c.hyperActive=true;}
 }
 function removeShield(s,p,uid){const own=s.players[p],root=findShield(own,uid);if(!root)return null;if(shieldCards(root).some(x=>x.g37ShieldHeld)){const moved=shieldCards(root).filter(x=>!x.g37ShieldHeld).map(x=>removeShieldCard(s,p,x.uid)).filter(Boolean);if(!moved.length)return null;const first=moved.shift();if(moved.length)first.shieldStack=moved;return first;}remove(own.shields,root.uid);for(const [i,x] of shieldCards(root).entries())shieldLeft(s,p,x,i===0?shieldGroup(root):null);return root;}

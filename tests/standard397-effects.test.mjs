@@ -28,8 +28,29 @@ test('Momo King discard is optional, draws only after an actual discard and draw
 test('Monkid still has Mach Fighter and attack ramp when used without evolving',()=>{const s=setup(),x=put(s,0,'dmrp18-006'),enemy=put(s,1,N);x.entered=s.turn;assert.equal(e.effectiveCard(x,s).machFighter,true);s.phase='attack';act(s,'attack',a=>a.uid===x.uid&&a.target===enemy.uid);drain(s);assert.equal(s.players[0].mana.length,51);});
 test('Muryu is summonable from grave and its two-card reduction excludes its own card after the summon',()=>{const s=setup(),x=inst('dmrp19-004');s.players[0].grave.push(x,inst(N));assert.equal(e.summonCost(s,0,{...e.card(x),summonOrigin:'grave'}),Math.max(1,e.card(x).cost-3));act(s,'play',a=>a.uid===x.uid&&a.origin==='grave');drain(s);assert.ok(s.players[0].battle.some(y=>y.uid===x.uid));assert.equal(s.players[0].grave.length,1);});
 test('CPU analysis stays immutable and independent of opposing hidden identities',()=>{const s=setup();put(s,0,'dmrp17-070');give(s,0,'hand',[EVO]);const saved=JSON.stringify(s),rank=e.rankHeuristicActions(s);e.chooseAI(s);e.analyzeAI(s);assert.equal(JSON.stringify(s),saved);for(const z of ['hand','deck','shields'])s.players[1][z].forEach(x=>x.cardId=GEN);assert.deepEqual(e.rankHeuristicActions(s),rank);});
-for(const p of [0,1])test('Sixfall placing an existing creature under another triggers Shinka once for its owner '+p,()=>{let s=setup();const source=put(s,p,'dmrp17-070'),host=put(s,p,N),six=data.cards.find(c=>c.g35Role==='sixfall');assert.ok(six);s.extTasks=[{op:'g35_Custom',p:1-p,source:six.id,name:'sixfall',owner:p}];act(s,'toAttack');pick(s,host);s=JSON.parse(JSON.stringify(s));pick(s,source);drain(s);assert.equal(s.players[p].hand.length,1);assert.equal(s.players[1-p].hand.length,0);assert.ok(s.players[p].battle.find(x=>x.uid===host.uid).under.some(x=>x.uid===source.uid));});
-test('an existing ignored creature placed under another has no Shinka trigger',()=>{const s=setup(),source=put(s,0,'dmrp17-070'),host=put(s,0,N),six=data.cards.find(c=>c.g35Role==='sixfall');source.g35Ignored=s.turn;s.extTasks=[{op:'g35_Custom',p:0,source:six.id,name:'sixfall',owner:0}];act(s,'toAttack');pick(s,host);pick(s,source);drain(s);assert.equal(s.players[0].hand.length,0);});
+for(const p of [0,1])test('Sixfall triggers Shinka for its owner only under an evolution or NEO creature (QA47363–47364), player '+p,()=>{
+ for(const [hostId,draws] of [[N,0],[EVO,1],['dm25rp2-058',1]]){
+  let s=setup();
+  const source=put(s,p,'dmrp17-070'),host=put(s,p,hostId),six=data.cards.find(c=>c.g35Role==='sixfall');
+  if(hostId===EVO)host.under=[inst(N)];
+  s.extTasks=[{op:'g35_Custom',p:1-p,source:six.id,name:'sixfall',owner:p}];
+  act(s,'toAttack');pick(s,host);s=JSON.parse(JSON.stringify(s));pick(s,source);drain(s);
+  assert.equal(s.players[p].hand.length,draws,hostId);
+  assert.equal(s.players[1-p].hand.length,0);
+  assert.ok(s.players[p].battle.find(x=>x.uid===host.uid).under.some(x=>x.uid===source.uid));
+ }
+});
+test('an ignored creature placed under a NEO creature has no Shinka trigger',()=>{const s=setup(),source=put(s,0,'dmrp17-070'),host=put(s,0,'dm25rp2-058'),six=data.cards.find(c=>c.g35Role==='sixfall');source.g35Ignored=s.turn;s.extTasks=[{op:'g35_Custom',p:0,source:six.id,name:'sixfall',owner:0}];act(s,'toAttack');pick(s,host);pick(s,source);drain(s);assert.equal(s.players[0].hand.length,0);});
+test('Sixfall applies the same evolution-base condition to Momoking RX (QA47363)',()=>{
+ for(const [hostId,triggers] of [[N,false],['dm25rp2-058',true]]){
+  const s=setup(),source=put(s,0,'dmrp17-km3'),host=put(s,0,hostId);
+  const six=data.cards.find(c=>c.g35Role==='sixfall');
+  s.extTasks=[{op:'g35_Custom',p:1,source:six.id,name:'sixfall',owner:0}];
+  act(s,'toAttack');pick(s,host);pick(s,source);drain(s);
+  assert.ok(host.under.some(x=>x.uid===source.uid));
+  assert.equal(source.g50Rx?.n??0,triggers?1:0,hostId);
+ }
+});
 for(const first of [0,1])test('new Shinka forties complete a real CPU match with 80 identities and saved continuation '+first,()=>{let s=e.createGame(STANDARD397_DECKS,{seed:39701+first,first}),restored=false;const before=physical(s);while(s.winner===null&&s.actions<1800&&s.turn<160){const a=e.chooseAI(s);assert.ok(a);e.step(s,a);assert.deepEqual(physical(s),before);assert.equal(new Set(physical(s)).size,80);if(!restored&&s.actions>20){s=JSON.parse(JSON.stringify(s));restored=true;}}assert.ok(restored);assert.notEqual(s.winner,null);});
 for(const id of ['dmrp22-056','dmrp22-064','dmrp22-076'])test('Drache attaches '+id+' from the battlefield and applies its grant to the actual host',()=>{const s=setup(),host=put(s,0,'dm25rp4-S07'),x=inst(id);s.players[0].hand.push(x);act(s,'play',a=>a.uid===x.uid&&!a.alternative);assert.equal(s.decision.task.op,'g47_Attach');pick(s,host);drain(s);assert.ok(host.under.some(y=>y.uid===x.uid));const property=Object.keys(e.card(id).g397Shinka[0].grant)[0];assert.equal(e.effectiveCard(host,s)[property],true);});
 test('M-deck evolution does not trigger Shinka on a card that was only in the library',()=>{const s=setup();give(s,0,'deck',['dmrp17-070',N,N,N,N,N]);give(s,0,'hand',['dmc58-003']);act(s,'play',a=>a.cardId==='dmc58-003');const option=s.decision.choices.find(c=>c.cardId==='dmrp17-070');assert.ok(option);pick(s,option.value);drain(s);assert.equal(s.players[0].hand.length,0);assert.ok(s.players[0].battle.some(x=>x.cardId==='dmc58-003'&&x.under.some(y=>y.cardId==='dmrp17-070')));});

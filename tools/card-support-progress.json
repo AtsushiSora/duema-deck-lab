@@ -253018,6 +253018,717 @@
           "failed": 0
         }
       ]
+    },
+    "latestAudit": {
+      "checkedAt": "2026-11-12T21:58:00.428Z",
+      "baseCommit": "0810d48f",
+      "phasesReviewed": [
+        634,
+        1081
+      ],
+      "deltaPhasesReviewed": [
+        1021,
+        1081
+      ],
+      "state": "inProgress",
+      "automation": "duema-deck-lab PAUSED",
+      "added": 0,
+      "supportedNames": 7210,
+      "catalogueNames": 11827,
+      "pendingNames": 4617,
+      "fullSuiteStatus": "中断・合否未確認",
+      "priorAudit": "Phase 1020までの個別検証270件は既存の followUp を保持。以後61バッチの未完了記録とログを照合した。",
+      "fixes": [
+        {
+          "phase": 1036,
+          "cardIds": [
+            "dm26rp1-S002",
+            "dm22rp1-062"
+          ],
+          "path": "tests/standard1036-effects.test.mjs",
+          "test": "Z Rush waits for the last card of a shield to leave (QA48472)",
+          "before": "/tmp/duema-review-1081.B5Oo9a/z-rush-before.log",
+          "after": "/tmp/duema-review-1081.B5Oo9a/final-focused.log",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/48472/"
+        },
+        {
+          "phase": 1055,
+          "cardIds": [
+            "dmrp17-070",
+            "dmrp17-km3",
+            "dm25rp2-S02",
+            "dm25rp2-058",
+            "dmrp17-084",
+            "dmsd17-002",
+            "dmrp17-006"
+          ],
+          "path": "tests/standard397-effects.test.mjs",
+          "test": "Sixfall triggers Shinka for its owner only under an evolution or NEO creature (QA47363–47364), player 0 / 1; Sixfall applies the same evolution-base condition to Momoking RX (QA47363)",
+          "before": [
+            "/tmp/duema-review-1081.B5Oo9a/shinka-before.log",
+            "/tmp/duema-review-1081.B5Oo9a/rx-before.log"
+          ],
+          "after": "/tmp/duema-review-1081.B5Oo9a/final-focused.log",
+          "sources": [
+            "https://dm.takaratomy.co.jp/rule/qa/47363/",
+            "https://dm.takaratomy.co.jp/rule/qa/47364/"
+          ]
+        },
+        {
+          "phase": 1060,
+          "cardIds": [
+            "dmrp19-044",
+            "dm25rp2-013",
+            "dm25rp2-012",
+            "dm25rp4-050",
+            "dm25rp4-030",
+            "dm25rp2-S01",
+            "dm25rp2-024",
+            "dm23rp4-014",
+            "dm25rp1-S02",
+            "dm23ex1-003",
+            "dm25rp2-S07",
+            "dmsd20-015",
+            "dm25rp1-047"
+          ],
+          "path": "tests/golgy-effects.test.mjs",
+          "test": "Golgy registers ten verified effects and a legal official forty-card deck",
+          "reason": "対戦定義1,796件とWorkerの相手31件を固定していた。公式40枚と現行相手の件数を照合する。",
+          "after": "/tmp/duema-review-1081.B5Oo9a/final-focused.log"
+        }
+      ],
+      "checks": {
+        "finalFocused": {
+          "tests": 88,
+          "passed": 88,
+          "failed": 0,
+          "log": "/tmp/duema-review-1081.B5Oo9a/final-focused.log"
+        },
+        "initialBroader": {
+          "tests": 516,
+          "passed": 515,
+          "failed": 1,
+          "log": "/tmp/duema-review-1081.B5Oo9a/effects-regression.log"
+        },
+        "broaderFailureResolution": {
+          "test": "opponent-turn Shinka follows the actual turn expiry and the source owner through Sixfall",
+          "reason": "旧回帰の通常クリーチャーを公式裁定に沿うNEOの実カードに差し替え、元の相手ターン中の継続効果と失効を再検証。",
+          "log": "/tmp/duema-review-1081.B5Oo9a/final-focused.log"
+        },
+        "earlierSelectedCpu": {
+          "tests": 19,
+          "passed": 19,
+          "failed": 0,
+          "log": "/tmp/duema-review-1081.B5Oo9a/cpu.log"
+        },
+        "additionalSelectedCpu": {
+          "tests": 8,
+          "passed": 8,
+          "failed": 0,
+          "log": "/tmp/duema-review-1081.B5Oo9a/extra-cpu.log"
+        },
+        "shortMatrix": {
+          "tests": 9,
+          "passed": 9,
+          "failed": 0,
+          "log": "/tmp/duema-review-1081.B5Oo9a/focused-matrix.log"
+        },
+        "photo167AndShinka": {
+          "tests": 4,
+          "passed": 4,
+          "failed": 0,
+          "log": "/tmp/duema-review-1081.B5Oo9a/photo167-shinka.log"
+        },
+        "staticCheck": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "/tmp/duema-review-1081.B5Oo9a/check-shared-rule.log"
+        },
+        "count": {
+          "status": "passed",
+          "command": "node tools/audit-card-support.mjs",
+          "log": "/tmp/duema-review-1081.B5Oo9a/count.log"
+        }
+      },
+      "excludedRegressionInventory": {
+        "cases": 56,
+        "log": "/tmp/duema-review-1081.B5Oo9a/skip-inventory.json",
+        "method": "除外正規表現を現在のテスト名と照合し、過去の合格ログまたは今回の個別実行に紐づけた。"
+      },
+      "historicalPasses": [
+        {
+          "path": "tests/neo-ddd.test.mjs",
+          "title": "mixed NEO/DDD games conserve all eighty unique cards through every action and finish with reproducible seeds",
+          "phases": [
+            1064,
+            1065,
+            1066,
+            1067,
+            1068,
+            1069,
+            1070,
+            1071,
+            1072,
+            1073,
+            1074,
+            1075,
+            1076,
+            1077,
+            1078
+          ],
+          "prior": "passedInParts",
+          "previous": {
+            "status": "passedInParts",
+            "log": "/tmp/duema-verify-all/neo-ddd.jsonl",
+            "baseCommit": "4375c935"
+          }
+        },
+        {
+          "path": "tests/samurai-effects.test.mjs",
+          "title": "No18 completes138 AI games with80 unique physical cards and deterministic full-state replay",
+          "phases": [
+            1080
+          ],
+          "prior": "passedInParts",
+          "previous": {
+            "status": "passedInParts",
+            "log": "/tmp/duema-verify-all/matrix-wide.jsonl",
+            "baseCommit": "4375c935"
+          }
+        },
+        {
+          "path": "tests/samurai-effects.test.mjs",
+          "title": "No18 random legal choices retain80 cards and equivalent legal actions and AI through JSON roundtrips",
+          "phases": [
+            1080
+          ],
+          "prior": "passedInParts",
+          "previous": {
+            "status": "passedInParts",
+            "log": "/tmp/duema-verify-all/matrix-legacy.jsonl",
+            "baseCommit": "4375c935"
+          }
+        },
+        {
+          "path": "tests/samurai-effects.test.mjs",
+          "title": "production worker completes460 No18 games against all ready starters and tournament decks",
+          "phases": [
+            1080
+          ],
+          "prior": "passedInParts",
+          "previous": {
+            "status": "passedInParts",
+            "log": "/tmp/duema-verify-all/workers-samurai.jsonl",
+            "baseCommit": "4375c935"
+          }
+        }
+      ],
+      "matrix": [
+        {
+          "path": "tests/golgy-effects.test.mjs",
+          "title": "Golgy AI games complete against all31 configured opponents with deterministic replay",
+          "cardIds": [
+            "dmrp19-044",
+            "dm25rp2-013",
+            "dm25rp2-012",
+            "dm25rp4-050",
+            "dm25rp4-030",
+            "dm25rp2-S01",
+            "dm25rp2-024",
+            "dm23rp4-014",
+            "dm25rp1-S02",
+            "dm23ex1-003",
+            "dm25rp2-S07",
+            "dmsd20-015",
+            "dm25rp1-047"
+          ],
+          "status": "passed",
+          "verifiedShards": 17,
+          "totalShards": 17,
+          "verifiedGames": 49,
+          "expectedGames": 49,
+          "failures": [],
+          "log": "/tmp/duema-review-1081.B5Oo9a/primary.jsonl"
+        },
+        {
+          "path": "tests/shield-photo.test.mjs",
+          "title": "all31 configured opponents finish against the new screenshot deck, conserving physical cards",
+          "cardIds": [
+            "dm01-108",
+            "dm01-s08",
+            "dm23rp1-042",
+            "dm23rp4-OR2",
+            "dm24ex4-032",
+            "dm26ex2-013",
+            "dm26ex2-014",
+            "dm26ex2-017",
+            "dm26ex2-024",
+            "dm26ex2-031",
+            "dm26ex2-038",
+            "dm26ex2-047",
+            "dm26ex2-SPR002",
+            "dm26ex4-014",
+            "dm26rp1-072",
+            "dmr22-l03"
+          ],
+          "status": "passed",
+          "verifiedShards": 17,
+          "totalShards": 17,
+          "verifiedGames": 49,
+          "expectedGames": 49,
+          "failures": [],
+          "prior": {
+            "status": "passedInParts",
+            "log": "/tmp/duema-verify-all/matrix-wide.jsonl",
+            "baseCommit": "4375c935"
+          },
+          "log": "/tmp/duema-review-1081.B5Oo9a/primary.jsonl"
+        },
+        {
+          "path": "tests/phoenix-photo.test.mjs",
+          "title": "photo plays every configured ready opponent without deadlocks or physical-card loss",
+          "cardIds": [
+            "dm01-108",
+            "dm01-s08",
+            "dm12-s04",
+            "dm22-017",
+            "dm22ex2-S06",
+            "dm25ex1-008",
+            "dm25ex1-044",
+            "dm25ex1-060",
+            "dm25rp2-072",
+            "dm26ex3-058",
+            "dm26ex4-037",
+            "dm27-s03",
+            "dmc34-s05",
+            "dmex10-012",
+            "dmex16-056",
+            "dmex17-033",
+            "dmex17-059",
+            "dmrp12-s08",
+            "dmx21-027",
+            "promoy15-055"
+          ],
+          "status": "passed",
+          "verifiedShards": 17,
+          "totalShards": 17,
+          "verifiedGames": 49,
+          "expectedGames": 49,
+          "failures": [],
+          "prior": {
+            "status": "passedInParts",
+            "log": "/tmp/duema-verify-all/matrix-phoenix.jsonl",
+            "baseCommit": "4375c935"
+          },
+          "log": "/tmp/duema-review-1081.B5Oo9a/primary.jsonl"
+        },
+        {
+          "path": "tests/bande-effects.test.mjs",
+          "title": "new-card games against every configured opponent conserve eighty identities and serialize every continuation",
+          "cardIds": [
+            "dm22ex1-037",
+            "dm24ex1-051",
+            "dm25rp3-S08",
+            "dm26rp1-S009",
+            "dm25rp3-S07",
+            "dmr19-029",
+            "dm25rp3-049",
+            "dm25rp4-014",
+            "dm26ex3-033",
+            "dm26ex3-057"
+          ],
+          "status": "incomplete",
+          "verifiedShards": 4,
+          "totalShards": 17,
+          "verifiedGames": 12,
+          "expectedGames": 50,
+          "aggregate": {
+            "played": [
+              "dm01-108",
+              "dm22ex1-037",
+              "dm24ex1-051",
+              "dm25rp3-049",
+              "dm25rp3-S08",
+              "dm25rp4-014",
+              "dm26ex3-033",
+              "dm26ex3-057",
+              "dm26rp1-S009",
+              "dmr19-029"
+            ],
+            "seen": [
+              "attackBlock",
+              "bottomOrder",
+              "destroyCost",
+              "destroyPower",
+              "discard",
+              "discardSelect",
+              "execute",
+              "g10_Fight",
+              "g10_Next",
+              "g11_Search",
+              "g11_Shibire",
+              "g12Dragon",
+              "g15_NonBreakST",
+              "g19Yobi",
+              "g1_Kiinary",
+              "g1_KiinaryBounce",
+              "g1_Look",
+              "g20Bottom",
+              "g20ReturnMana",
+              "g20Sharappu",
+              "g20Shuffle",
+              "g28_Balance",
+              "g28_Dagra",
+              "g28_Deploy",
+              "g28_ElementMana",
+              "g28_Execute",
+              "g28_ExecuteBase",
+              "g28_Gyai",
+              "g28_GyaiRecover",
+              "g28_ManaDeploy",
+              "g28_Modes",
+              "g28_Order",
+              "g28_PizzaPick",
+              "g28_RadioPick",
+              "g28_TakaPick",
+              "g28_TapPick",
+              "g2_ChooseHand",
+              "g2_ChooseMana",
+              "g2_Declare",
+              "g2_End",
+              "g2_Invade",
+              "g2_Sign",
+              "g2_Zard",
+              "g3_AttackSpell",
+              "g3_Bounce",
+              "g3_Declare",
+              "g3_Fight",
+              "g3_FinalSelect",
+              "g3_JaouDeploy",
+              "g3_Jaouga",
+              "g3_Katsu",
+              "g3_Order",
+              "g4_Airvo",
+              "g4_Declare",
+              "g4_Gon",
+              "g4_Store",
+              "g4_World",
+              "g5Courage",
+              "g5DestroyElement",
+              "g5Dolsuzaku",
+              "g7Energy",
+              "g7Next",
+              "g7Select",
+              "g7ValMode",
+              "g7ValSelect",
+              "g7VolShield",
+              "g8_ArshuReturn",
+              "g8_FinalNext",
+              "g8_FinalPick",
+              "g9Bounce",
+              "g9Hime",
+              "g9Karaku",
+              "gsDeclare",
+              "gsTarget",
+              "modes",
+              "optionalLoot",
+              "revDeclare",
+              "revResolve",
+              "revive",
+              "s6Bounce",
+              "s6FumiDraw",
+              "s6Modes",
+              "s6Slash"
+            ],
+            "missingCards": [
+              "dm25rp3-S07"
+            ],
+            "missingOperations": []
+          },
+          "failures": [],
+          "log": "/tmp/duema-review-1081.B5Oo9a/primary.jsonl",
+          "remainingShards": "55,56,57,58,59,60,61,62,63,64,65,66,67"
+        },
+        {
+          "path": "tests/soul-shield.test.mjs",
+          "title": "mixed soul/evolution/dragon games finish, preserve 80 unique physical cards at every choice, and reproduce their seeds",
+          "cardIds": [
+            "dm25rp3-012",
+            "sp-020",
+            "dm24ex2-019",
+            "dm23ex2-016",
+            "dm26rp1-S002",
+            "dmx11-012",
+            "dm23bd4-008",
+            "dm25sp2-014",
+            "dm23ex3-S07",
+            "dm01-027"
+          ],
+          "status": "incomplete",
+          "verifiedShards": 0,
+          "totalShards": 21,
+          "verifiedGames": 0,
+          "expectedGames": 100,
+          "failures": [],
+          "log": "/tmp/duema-review-1081.B5Oo9a/primary.jsonl",
+          "remainingShards": "68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88"
+        },
+        {
+          "path": "tests/phoenix-photo.test.mjs",
+          "title": "photo games finish and conserve eighty unique physical cards through every JSON-safe decision",
+          "cardIds": [
+            "dm01-108",
+            "dm01-s08",
+            "dm12-s04",
+            "dm22-017",
+            "dm22ex2-S06",
+            "dm25ex1-008",
+            "dm25ex1-044",
+            "dm25ex1-060",
+            "dm25rp2-072",
+            "dm26ex3-058",
+            "dm26ex4-037",
+            "dm27-s03",
+            "dmc34-s05",
+            "dmex10-012",
+            "dmex16-056",
+            "dmex17-033",
+            "dmex17-059",
+            "dmrp12-s08",
+            "dmx21-027",
+            "promoy15-055"
+          ],
+          "status": "passed",
+          "verifiedShards": 1,
+          "totalShards": 1,
+          "failures": [],
+          "prior": {
+            "status": "passed",
+            "log": "/tmp/duema-verify-all/named-229.log",
+            "baseCommit": "4375c935"
+          },
+          "log": "/tmp/duema-review-1081.B5Oo9a/primary.jsonl"
+        },
+        {
+          "path": "tests/travel-effects.test.mjs",
+          "title": "No14 random legal choices preserve80 unique cards and equivalent legal and AI actions through JSON roundtrips",
+          "cardIds": [
+            "dmex12-s03",
+            "dm23ex2-017",
+            "dm24ex2-079",
+            "dm24rp2-S01",
+            "dm24bd1-001",
+            "dmrp05-007",
+            "dmex12-010",
+            "promoy17-057",
+            "dm24bd2-010",
+            "dm24ex2-071",
+            "promoy19-014",
+            "dmrp04s-079"
+          ],
+          "status": "incomplete",
+          "verifiedShards": 9,
+          "totalShards": 10,
+          "verifiedGames": 36,
+          "expectedGames": 40,
+          "failures": [],
+          "log": "/tmp/duema-review-1081.B5Oo9a/travel-ai.jsonl",
+          "remainingShards": "9"
+        },
+        {
+          "path": "tests/travel-effects.test.mjs",
+          "title": "No14 completes138 AI games against all ready decks with80 cards and deterministic replay",
+          "cardIds": [
+            "dmex12-s03",
+            "dm23ex2-017",
+            "dm24ex2-079",
+            "dm24rp2-S01",
+            "dm24bd1-001",
+            "dmrp05-007",
+            "dmex12-010",
+            "promoy17-057",
+            "dm24bd2-010",
+            "dm24ex2-071",
+            "promoy19-014",
+            "dmrp04s-079"
+          ],
+          "status": "incomplete",
+          "verifiedShards": 1,
+          "totalShards": 98,
+          "verifiedGames": 3,
+          "expectedGames": 294,
+          "failures": [],
+          "log": "/tmp/duema-review-1081.B5Oo9a/travel-ai.jsonl",
+          "remainingShards": "11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107"
+        },
+        {
+          "path": "tests/golgy-effects.test.mjs",
+          "title": "Golgy production worker completes62 games without unresolved matches",
+          "cardIds": [
+            "dmrp19-044",
+            "dm25rp2-013",
+            "dm25rp2-012",
+            "dm25rp4-050",
+            "dm25rp4-030",
+            "dm25rp2-S01",
+            "dm25rp2-024",
+            "dm23rp4-014",
+            "dm25rp1-S02",
+            "dm23ex1-003",
+            "dm25rp2-S07",
+            "dmsd20-015",
+            "dm25rp1-047"
+          ],
+          "status": "incomplete",
+          "verifiedGames": 42,
+          "expectedGames": 98,
+          "opponents": 49,
+          "seedsPerOpponent": 2,
+          "failures": [],
+          "log": "/tmp/duema-review-1081.B5Oo9a/golgy-worker-parts.jsonl"
+        },
+        {
+          "path": "tests/travel-effects.test.mjs",
+          "title": "production worker completes460 No14 games with no unresolved battles",
+          "cardIds": [
+            "dmex12-s03",
+            "dm23ex2-017",
+            "dm24ex2-079",
+            "dm24rp2-S01",
+            "dm24bd1-001",
+            "dmrp05-007",
+            "dmex12-010",
+            "promoy17-057",
+            "dm24bd2-010",
+            "dm24ex2-071",
+            "promoy19-014",
+            "dmrp04s-079"
+          ],
+          "status": "incomplete",
+          "verifiedGames": 0,
+          "expectedGames": 980,
+          "opponents": 49,
+          "seedsPerOpponent": 20,
+          "failures": [],
+          "log": "/tmp/duema-review-1081.B5Oo9a/travel-worker-parts.jsonl"
+        }
+      ],
+      "officialInteractionsBlocked": [
+        {
+          "phase": 944,
+          "cardIds": [
+            "dm36-027"
+          ],
+          "dependency": "解除を持つサイキック・クリーチャー",
+          "sources": [
+            "https://dm.takaratomy.co.jp/rule/qa_old/36037/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36039/"
+          ],
+          "test": "特攻秘宝カースガイ1体・2体と「解除」の置換後の攻撃",
+          "path": "tests/standard944-effects.test.mjs",
+          "status": "blockedByUnsupportedCard",
+          "reason": "対戦用実データに相手側のカードまたは必要な能力の実装がない。登録済み側の既存固有テストは実行済み。"
+        },
+        {
+          "phase": 945,
+          "cardIds": [
+            "dm31-019",
+            "dm32-s07"
+          ],
+          "dependencyIds": [
+            "dmrp22-040",
+            "dm28-008"
+          ],
+          "sources": [
+            "https://dm.takaratomy.co.jp/rule/qa/41414/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/35576/"
+          ],
+          "test": "至宝 オール・イエスと焔流トレーニング、神羅ドラグ・ムーンと竜装 ムシャ・レジェンド",
+          "path": "tests/standard945-effects.test.mjs",
+          "status": "blockedByUnsupportedCard",
+          "reason": "対戦用実データに相手側のカードまたは必要な能力の実装がない。登録済み側の既存固有テストは実行済み。"
+        },
+        {
+          "phase": 947,
+          "cardIds": [
+            "dm13-025"
+          ],
+          "dependencyIds": [
+            "dm08-019"
+          ],
+          "sources": [
+            "https://dm.takaratomy.co.jp/rule/qa_old/35279/"
+          ],
+          "test": "獣達の挽歌とカーボナイト・ビートルによる独立した連続ブレイク",
+          "path": "tests/standard947-effects.test.mjs",
+          "status": "blockedByUnsupportedCard",
+          "reason": "対戦用実データに相手側のカードまたは必要な能力の実装がない。登録済み側の既存固有テストは実行済み。"
+        },
+        {
+          "phase": 1046,
+          "cardIds": [
+            "dm24ex1-040"
+          ],
+          "dependencyIds": [
+            "dm24ex1-009"
+          ],
+          "sources": [
+            "https://dm.takaratomy.co.jp/rule/qa/45224/"
+          ],
+          "test": "ヤップップの破壊2段とマーシャル・プリンセスの選択保護",
+          "path": "tests/standard1046-effects.test.mjs",
+          "status": "blockedByUnsupportedCard",
+          "reason": "対戦用実データに相手側のカードまたは必要な能力の実装がない。登録済み側の既存固有テストは実行済み。"
+        },
+        {
+          "phase": 1057,
+          "cardIds": [
+            "dm25rp3-039"
+          ],
+          "dependencyIds": [
+            "dm26rp2-006",
+            "dm25rp2-OR1"
+          ],
+          "sources": [
+            "https://dm.takaratomy.co.jp/rule/qa/48925/"
+          ],
+          "test": "トットロの上にメモッタで封印付きのジャシン＝ヴリドガルドを置く",
+          "path": "tests/standard1057-effects.test.mjs",
+          "status": "blockedByUnsupportedCard",
+          "reason": "対戦用実データに相手側のカードまたは必要な能力の実装がない。登録済み側の既存固有テストは実行済み。"
+        },
+        {
+          "phase": 1081,
+          "cardIds": [
+            "dm24-003",
+            "dm24-004"
+          ],
+          "dependencyIds": [
+            "dm08-005"
+          ],
+          "sources": [
+            "https://dm.takaratomy.co.jp/rule/qa_old/35538/"
+          ],
+          "test": "カチュア2体が出したゲキ・メツのG・リンクとターン終了時の破壊",
+          "path": "tests/standard1081-effects.test.mjs",
+          "status": "blockedByUnsupportedCard",
+          "reason": "対戦用実データに相手側のカードまたは必要な能力の実装がない。登録済み側の既存固有テストは実行済み。"
+        }
+      ],
+      "remaining": {
+        "matrices": 6,
+        "officialInteractionGroups": 6
+      },
+      "notes": [
+        "Workerは本番のdist/worker.jsを使用。対戦相手の元の並びと各ゲームのシード・先後を復元して分割し、未解決件数も照合した。元のテスト名に古い件数が含まれる場合は、実行件数をmatrixに記載した。",
+        "長時間テストは元のテストを一括再実行せず、元の対戦相手とシードで分割した。対戦全体に対する発生回数と使用カードの条件は、全分割の結果を合算して確認する。",
+        "各テストプロセスは580秒で終了要求を出し、必要時は5秒後に強制終了する。全体のnpm testは実行していない。"
+      ],
+      "resume": {
+        "baseCommit": "0810d48f",
+        "temporaryLogDirectory": "/tmp/duema-review-1081.B5Oo9a",
+        "steps": "同じテストの実行有無を先に確認。未完の行はmatrixにあるファイル名・対戦相手・シード範囲を照合し、未確認分だけ個別実行する。対戦追加の自動化は手動再開指示まで一時停止。"
+      }
     }
   }
 }
