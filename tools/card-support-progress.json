@@ -203177,12 +203177,12 @@
       "DMR-20版の本文・基本情報・画像を確認。破壊置換で手札の同名カードを出せる条件と登場制限を確認するまで保留。"
     ],
     "restartSteps": [
-      "実データを正規名で再集計し、HEAD、作業ツリー、AGENTS.md、実行中プロセスと自動化の停止状態を確認する。",
-      "registeredCardVerificationの結果・未完了項目を起点に、登録済みカードの裁定差と未確認のテストを個別に確認する。テストは各回10分以内で、全体のnpm testは中断・合否未確認を維持する。",
-      "カード追加はユーザーの明示的な再開指示まで停止する。"
+      "正規カード名7,001種類、最新コミット、作業ツリー、実行中の検証と自動化の一時停止を確認する。",
+      "registeredCardVerification.followUpのcasesとgroupsを照合し、実行結果と時間切れを区別する。分割対戦はshardProgressにある既存のログと一致するシード・対戦相手の残りだけを実行する。",
+      "テストの実行上限は強制終了込み10分。全体のnpm testは中断・合否未確認を維持し、登録は明示的な再開指示まで終了する。"
     ],
     "registrationStatus": "ユーザーの明示的な再開指示まで登録終了",
-    "verificationMode": "登録済みカードの検証を継続"
+    "verificationMode": "登録済みカードの個別・分割検証を継続"
   },
   "registeredCardVerification": {
     "checkedAt": "2026-11-12",
@@ -203317,9 +203317,9 @@
       "rawNamedEntries": 692,
       "preRegistrationHoldIdsExcluded": 279,
       "counts": {
-        "unconfirmed": 50,
+        "unconfirmed": 21,
         "historicalPass": 18,
-        "passed": 254,
+        "passed": 283,
         "passedInParts": 2
       },
       "cases": [
@@ -204122,10 +204122,11 @@
             "dmsd20-016"
           ],
           "reason": "登録時の回帰から長時間実行等を除外。テスト名から対象ファイルを一意に照合できない",
-          "status": "unconfirmed",
+          "status": "passed",
           "resolvedPaths": [
             "tests/standard565-effects.test.mjs"
-          ]
+          ],
+          "resultLog": "/tmp/duema-verify-all/named-223.log"
         },
         {
           "path": "tests/standard565-effects.test.mjs",
@@ -204168,10 +204169,11 @@
             "dmsd20-016"
           ],
           "reason": "登録時の回帰から長時間実行等を除外。テスト名から対象ファイルを一意に照合できない",
-          "status": "unconfirmed",
+          "status": "passed",
           "resolvedPaths": [
             "tests/standard565-effects.test.mjs"
-          ]
+          ],
+          "resultLog": "/tmp/duema-verify-all/named-224.log"
         },
         {
           "path": "tests/standard431-effects.test.mjs",
@@ -204608,7 +204610,8 @@
             "dm29-048"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-231.log"
         },
         {
           "path": "tests/samurai-effects.test.mjs",
@@ -212648,7 +212651,8 @@
             "dmx22b-007"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-199.log"
         },
         {
           "path": "tests/standard470-effects.test.mjs",
@@ -212765,7 +212769,8 @@
             "dmx14-011"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-202.log"
         },
         {
           "path": "tests/standard218-effects.test.mjs",
@@ -212813,7 +212818,8 @@
             "dmsd03-005"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-204.log"
         },
         {
           "path": "tests/standard244-effects.test.mjs",
@@ -212869,7 +212875,8 @@
             "dmr03-018"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-206.log"
         },
         {
           "path": "tests/standard455-effects.test.mjs",
@@ -212902,7 +212909,8 @@
             "dmr03-018"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-207.log"
         },
         {
           "path": "tests/standard344-effects.test.mjs",
@@ -212923,7 +212931,8 @@
             "dmx25-003"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-208.log"
         },
         {
           "path": "tests/standard344-effects.test.mjs",
@@ -212944,7 +212953,8 @@
             "dmx25-003"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-209.log"
         },
         {
           "path": "tests/shield-photo.test.mjs",
@@ -213046,7 +213056,8 @@
             "promoy19-spd711"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-210.log"
         },
         {
           "path": "tests/standard402-effects.test.mjs",
@@ -213096,7 +213107,8 @@
             "promoy19-spd711"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-211.log"
         },
         {
           "path": "tests/standard402-effects.test.mjs",
@@ -213146,7 +213158,8 @@
             "promoy19-spd711"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-212.log"
         },
         {
           "path": "tests/standard402-effects.test.mjs",
@@ -213196,7 +213209,8 @@
             "promoy19-spd711"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-213.log"
         },
         {
           "path": "tests/standard486-effects.test.mjs",
@@ -213238,7 +213252,8 @@
             "promoy22-054"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-214.log"
         },
         {
           "path": "tests/standard486-effects.test.mjs",
@@ -213280,7 +213295,8 @@
             "promoy22-054"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-215.log"
         },
         {
           "path": "tests/standard486-effects.test.mjs",
@@ -213322,7 +213338,8 @@
             "promoy22-054"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-216.log"
         },
         {
           "path": "tests/jaou-effects.test.mjs",
@@ -213421,7 +213438,8 @@
             "dmr16g-042"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-217.log"
         },
         {
           "path": "tests/standard242-effects.test.mjs",
@@ -213448,7 +213466,8 @@
             "dmr16g-042"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-218.log"
         },
         {
           "path": "tests/standard251-effects.test.mjs",
@@ -213477,7 +213496,8 @@
             "dmrp21-029"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-219.log"
         },
         {
           "path": "tests/standard251-effects.test.mjs",
@@ -213506,7 +213526,8 @@
             "dmrp21-029"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-220.log"
         },
         {
           "path": "tests/standard364-effects.test.mjs",
@@ -213527,7 +213548,8 @@
             "dmr10-033"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-221.log"
         },
         {
           "path": "tests/standard364-effects.test.mjs",
@@ -213548,7 +213570,8 @@
             "dmr10-033"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-222.log"
         },
         {
           "path": "tests/standard565-effects.test.mjs",
@@ -213572,7 +213595,8 @@
             "dmsd20-016"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-223.log"
         },
         {
           "path": "tests/standard565-effects.test.mjs",
@@ -213596,7 +213620,8 @@
             "dmsd20-016"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-224.log"
         },
         {
           "path": "tests/standard460-effects.test.mjs",
@@ -213620,7 +213645,8 @@
             "dmrp20-053"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-225.log"
         },
         {
           "path": "tests/standard460-effects.test.mjs",
@@ -213644,7 +213670,8 @@
             "dmrp20-053"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-226.log"
         },
         {
           "path": "tests/standard514-effects.test.mjs",
@@ -213742,7 +213769,8 @@
             "dmx11-029"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-227.log"
         },
         {
           "path": "tests/standard476-effects.test.mjs",
@@ -213770,7 +213798,8 @@
             "dmx11-029"
           ],
           "reason": "登録時の回帰から長時間実行等を除外",
-          "status": "unconfirmed"
+          "status": "passed",
+          "resultLog": "/tmp/duema-verify-all/named-228.log"
         },
         {
           "path": "tests/standard295-effects.test.mjs",
@@ -218259,7 +218288,7 @@
       "登録済みカードの裁定差は、エスケープとS・バック、旧マジボンバーのEXライフ、旧ウルトラ・セイバーの自己置換を優先して確認する。未登録の保留カードは従来の履歴で管理する。"
     ],
     "followUp": {
-      "checkedAt": "2026-11-12T04:16:40.173Z",
+      "checkedAt": "2026-11-12T04:23:29.862Z",
       "baseCommit": "4375c935",
       "state": "running",
       "dataCheck": {
@@ -218290,15 +218319,15 @@
       "scope": "前回の未確認テストと失敗の全件を対象とし、同名テストを当時の回帰範囲で特定。テスト名の記録が欠ける回は、当時のログと回帰対象ファイルのテスト宣言を照合し、候補を個別に実行した。元の件数と候補数が一致しない場合は、当時の対象を確定せず記録する。",
       "caps": "個別テストは580秒、終了猶予5秒。全体のnpm testは実行しない。",
       "counts": {
-        "unconfirmed": 115,
-        "passed": 290,
+        "unconfirmed": 71,
+        "passed": 332,
         "passedInParts": 2,
         "historicalPass": 14,
-        "timedOut": 7
+        "timedOut": 9
       },
       "groupsByStatus": {
-        "passed": 32,
-        "unconfirmed": 49
+        "passed": 50,
+        "unconfirmed": 31
       },
       "cases": [
         {
@@ -219009,7 +219038,10 @@
             "dm28-033",
             "dm29-048"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 2,
+          "log": "/tmp/duema-verify-all/named-231.log",
+          "failures": []
         },
         {
           "path": "tests/samurai-effects.test.mjs",
@@ -224451,7 +224483,10 @@
             "dmsd01-012",
             "dmx22b-007"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 129,
+          "log": "/tmp/duema-verify-all/named-199.log",
+          "failures": []
         },
         {
           "path": "tests/standard470-effects.test.mjs",
@@ -224530,7 +224565,10 @@
             "dmsd20-016",
             "dmx14-011"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 87,
+          "log": "/tmp/duema-verify-all/named-202.log",
+          "failures": []
         },
         {
           "path": "tests/standard218-effects.test.mjs",
@@ -224572,7 +224610,10 @@
             "dmrp21-006",
             "dmsd03-005"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 61,
+          "log": "/tmp/duema-verify-all/named-204.log",
+          "failures": []
         },
         {
           "path": "tests/standard244-effects.test.mjs",
@@ -224622,7 +224663,10 @@
             "dmr03-017",
             "dmr03-018"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 53,
+          "log": "/tmp/duema-verify-all/named-206.log",
+          "failures": []
         },
         {
           "path": "tests/standard455-effects.test.mjs",
@@ -224651,7 +224695,10 @@
             "dmr03-017",
             "dmr03-018"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 82,
+          "log": "/tmp/duema-verify-all/named-207.log",
+          "failures": []
         },
         {
           "path": "tests/standard344-effects.test.mjs",
@@ -224668,7 +224715,10 @@
             "dmr23-072",
             "dmx25-003"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 22,
+          "log": "/tmp/duema-verify-all/named-208.log",
+          "failures": []
         },
         {
           "path": "tests/standard344-effects.test.mjs",
@@ -224685,7 +224735,10 @@
             "dmr23-072",
             "dmx25-003"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 64,
+          "log": "/tmp/duema-verify-all/named-209.log",
+          "failures": []
         },
         {
           "path": "tests/shield-photo.test.mjs",
@@ -224775,7 +224828,10 @@
             "promoy19-spd701",
             "promoy19-spd711"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 50,
+          "log": "/tmp/duema-verify-all/named-210.log",
+          "failures": []
         },
         {
           "path": "tests/standard402-effects.test.mjs",
@@ -224821,7 +224877,10 @@
             "promoy19-spd701",
             "promoy19-spd711"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 43,
+          "log": "/tmp/duema-verify-all/named-211.log",
+          "failures": []
         },
         {
           "path": "tests/standard402-effects.test.mjs",
@@ -224867,7 +224926,10 @@
             "promoy19-spd701",
             "promoy19-spd711"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 35,
+          "log": "/tmp/duema-verify-all/named-212.log",
+          "failures": []
         },
         {
           "path": "tests/standard402-effects.test.mjs",
@@ -224913,7 +224975,10 @@
             "promoy19-spd701",
             "promoy19-spd711"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 25,
+          "log": "/tmp/duema-verify-all/named-213.log",
+          "failures": []
         },
         {
           "path": "tests/standard486-effects.test.mjs",
@@ -224948,7 +225013,10 @@
             "dmrp11-074",
             "promoy22-054"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 51,
+          "log": "/tmp/duema-verify-all/named-214.log",
+          "failures": []
         },
         {
           "path": "tests/standard486-effects.test.mjs",
@@ -224983,7 +225051,10 @@
             "dmrp11-074",
             "promoy22-054"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 39,
+          "log": "/tmp/duema-verify-all/named-215.log",
+          "failures": []
         },
         {
           "path": "tests/standard486-effects.test.mjs",
@@ -225018,7 +225089,10 @@
             "dmrp11-074",
             "promoy22-054"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 30,
+          "log": "/tmp/duema-verify-all/named-216.log",
+          "failures": []
         },
         {
           "path": "tests/jaou-effects.test.mjs",
@@ -225100,7 +225174,10 @@
             "dmr15-046",
             "dmr16g-042"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 45,
+          "log": "/tmp/duema-verify-all/named-217.log",
+          "failures": []
         },
         {
           "path": "tests/standard242-effects.test.mjs",
@@ -225122,7 +225199,10 @@
             "dmr15-046",
             "dmr16g-042"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 51,
+          "log": "/tmp/duema-verify-all/named-218.log",
+          "failures": []
         },
         {
           "path": "tests/standard251-effects.test.mjs",
@@ -225147,7 +225227,10 @@
             "dmr18-028",
             "dmrp21-029"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 35,
+          "log": "/tmp/duema-verify-all/named-219.log",
+          "failures": []
         },
         {
           "path": "tests/standard251-effects.test.mjs",
@@ -225172,7 +225255,10 @@
             "dmr18-028",
             "dmrp21-029"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 41,
+          "log": "/tmp/duema-verify-all/named-220.log",
+          "failures": []
         },
         {
           "path": "tests/standard364-effects.test.mjs",
@@ -225189,7 +225275,10 @@
             "dmr06-051",
             "dmr10-033"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 47,
+          "log": "/tmp/duema-verify-all/named-221.log",
+          "failures": []
         },
         {
           "path": "tests/standard364-effects.test.mjs",
@@ -225206,7 +225295,10 @@
             "dmr06-051",
             "dmr10-033"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 77,
+          "log": "/tmp/duema-verify-all/named-222.log",
+          "failures": []
         },
         {
           "path": "tests/standard565-effects.test.mjs",
@@ -225232,7 +225324,10 @@
             "dmrp18-058",
             "dmsd20-016"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 50,
+          "log": "/tmp/duema-verify-all/named-223.log",
+          "failures": []
         },
         {
           "path": "tests/standard565-effects.test.mjs",
@@ -225258,7 +225353,10 @@
             "dmrp18-058",
             "dmsd20-016"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 26,
+          "log": "/tmp/duema-verify-all/named-224.log",
+          "failures": []
         },
         {
           "path": "tests/standard460-effects.test.mjs",
@@ -225278,7 +225376,10 @@
             "dmrp15-055",
             "dmrp20-053"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 79,
+          "log": "/tmp/duema-verify-all/named-225.log",
+          "failures": []
         },
         {
           "path": "tests/standard460-effects.test.mjs",
@@ -225298,7 +225399,10 @@
             "dmrp15-055",
             "dmrp20-053"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 114,
+          "log": "/tmp/duema-verify-all/named-226.log",
+          "failures": []
         },
         {
           "path": "tests/standard476-effects.test.mjs",
@@ -225322,7 +225426,10 @@
             "dmrp22-042",
             "dmx11-029"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 49,
+          "log": "/tmp/duema-verify-all/named-227.log",
+          "failures": []
         },
         {
           "path": "tests/standard476-effects.test.mjs",
@@ -225346,7 +225453,10 @@
             "dmrp22-042",
             "dmx11-029"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 59,
+          "log": "/tmp/duema-verify-all/named-228.log",
+          "failures": []
         },
         {
           "path": "tests/standard397-effects.test.mjs",
@@ -227724,7 +227834,10 @@
             "dmrp18-058",
             "dmsd20-016"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 108,
+          "log": "/tmp/duema-verify-all/supplement-58.log",
+          "failures": []
         },
         {
           "path": "tests/standard567-effects.test.mjs",
@@ -227753,7 +227866,10 @@
             "dmrp18-058",
             "dmsd20-016"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 155,
+          "log": "/tmp/duema-verify-all/supplement-59.log",
+          "failures": []
         },
         {
           "path": "tests/standard570-effects.test.mjs",
@@ -227774,7 +227890,10 @@
             "dmr19-060",
             "dmrp18-058"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 50,
+          "log": "/tmp/duema-verify-all/supplement-60.log",
+          "failures": []
         },
         {
           "path": "tests/standard570-effects.test.mjs",
@@ -227795,7 +227914,10 @@
             "dmr19-060",
             "dmrp18-058"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 97,
+          "log": "/tmp/duema-verify-all/supplement-61.log",
+          "failures": []
         },
         {
           "path": "tests/gate-effects.test.mjs",
@@ -227911,7 +228033,10 @@
             "dmrp19-074",
             "dmrp19-095"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 81,
+          "log": "/tmp/duema-verify-all/supplement-62.log",
+          "failures": []
         },
         {
           "path": "tests/standard474-effects.test.mjs",
@@ -227934,7 +228059,10 @@
             "dmrp19-074",
             "dmrp19-095"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 60,
+          "log": "/tmp/duema-verify-all/supplement-63.log",
+          "failures": []
         },
         {
           "path": "tests/standard537-effects.test.mjs",
@@ -228008,7 +228136,10 @@
             "dmrp19-036",
             "dmsd20-016"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 47,
+          "log": "/tmp/duema-verify-all/supplement-64.log",
+          "failures": []
         },
         {
           "path": "tests/standard522-effects.test.mjs",
@@ -228032,7 +228163,10 @@
             "dmrp19-036",
             "dmsd20-016"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 74,
+          "log": "/tmp/duema-verify-all/supplement-65.log",
+          "failures": []
         },
         {
           "path": "tests/standard536-effects.test.mjs",
@@ -228060,7 +228194,10 @@
             "dmrp19-036",
             "dmsd20-016"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 68,
+          "log": "/tmp/duema-verify-all/supplement-66.log",
+          "failures": []
         },
         {
           "path": "tests/standard536-effects.test.mjs",
@@ -228088,7 +228225,10 @@
             "dmrp19-036",
             "dmsd20-016"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 43,
+          "log": "/tmp/duema-verify-all/supplement-67.log",
+          "failures": []
         },
         {
           "path": "tests/hunter-effects.test.mjs",
@@ -228154,7 +228294,10 @@
             "dmr09-s07",
             "promoy11-009"
           ],
-          "status": "unconfirmed"
+          "status": "timedOut",
+          "seconds": 580,
+          "log": "/tmp/duema-verify-all/extra-3.log",
+          "failures": []
         },
         {
           "path": "tests/twinpact-judge.test.mjs",
@@ -228215,7 +228358,10 @@
             "dmr02-s04",
             "dmr03-018"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 27,
+          "log": "/tmp/duema-verify-all/supplement-68.log",
+          "failures": []
         },
         {
           "path": "tests/standard454-effects.test.mjs",
@@ -228248,7 +228394,10 @@
             "dmr02-s04",
             "dmr03-018"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 30,
+          "log": "/tmp/duema-verify-all/supplement-69.log",
+          "failures": []
         },
         {
           "path": "tests/standard413-effects.test.mjs",
@@ -228373,7 +228522,10 @@
             "dmsd21-004",
             "dmx13-011"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 42,
+          "log": "/tmp/duema-verify-all/supplement-70.log",
+          "failures": []
         },
         {
           "path": "tests/standard433-effects.test.mjs",
@@ -228399,7 +228551,10 @@
             "dmsd21-004",
             "dmx13-011"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 31,
+          "log": "/tmp/duema-verify-all/supplement-71.log",
+          "failures": []
         },
         {
           "path": "tests/standard463-effects.test.mjs",
@@ -229176,7 +229331,10 @@
             "dmrp19-044",
             "dmrp22-027"
           ],
-          "status": "unconfirmed"
+          "status": "timedOut",
+          "seconds": 580,
+          "log": "/tmp/duema-verify-all/exact-2.log",
+          "failures": []
         },
         {
           "path": "tests/galaxy-effects.test.mjs",
@@ -229744,7 +229902,10 @@
             "dmsd16-014",
             "dmx22b-012"
           ],
-          "status": "unconfirmed"
+          "status": "passed",
+          "seconds": 211,
+          "log": "/tmp/duema-verify-all/exact-3.log",
+          "failures": []
         },
         {
           "path": "tests/standard183-effects.test.mjs",
@@ -230646,12 +230807,12 @@
             {
               "path": "tests/standard242-effects.test.mjs",
               "title": "CPU forty-card match finishes with eighty identities and saved continuation 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard242-effects.test.mjs",
               "title": "CPU forty-card match finishes with eighty identities and saved continuation 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard583-effects.test.mjs",
@@ -230672,10 +230833,9 @@
           "logs": [
             "/tmp/duema-phase-840-regression.log"
           ],
-          "status": "unconfirmed",
+          "status": "passed",
           "counts": {
-            "passed": 3,
-            "unconfirmed": 2
+            "passed": 5
           }
         },
         {
@@ -230784,12 +230944,12 @@
             {
               "path": "tests/standard242-effects.test.mjs",
               "title": "CPU forty-card match finishes with eighty identities and saved continuation 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard242-effects.test.mjs",
               "title": "CPU forty-card match finishes with eighty identities and saved continuation 1",
-              "status": "unconfirmed"
+              "status": "passed"
             }
           ],
           "files": [
@@ -230806,10 +230966,9 @@
             "/tmp/duema-phase-843-regression.log",
             "/tmp/duema-phase-843-regression-final.log"
           ],
-          "status": "unconfirmed",
+          "status": "passed",
           "counts": {
-            "passed": 4,
-            "unconfirmed": 2
+            "passed": 6
           }
         },
         {
@@ -231364,12 +231523,12 @@
             {
               "path": "tests/standard460-effects.test.mjs",
               "title": "legal forty CPU game with JSON continuation and 80 conserved cards 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard460-effects.test.mjs",
               "title": "legal forty CPU game with JSON continuation and 80 conserved cards 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard461-effects.test.mjs",
@@ -231422,10 +231581,9 @@
             "pattern": "legal forty CPU|CPU forty-card game",
             "log": "/tmp/duema-phase-853-regression-targeted.log"
           },
-          "status": "unconfirmed",
+          "status": "passed",
           "counts": {
-            "passed": 11,
-            "unconfirmed": 2
+            "passed": 13
           }
         },
         {
@@ -231877,12 +232035,12 @@
             {
               "path": "tests/standard364-effects.test.mjs",
               "title": "legal forty-card CPU match finishes preserving eighty unique identities 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard364-effects.test.mjs",
               "title": "legal forty-card CPU match finishes preserving eighty unique identities 1",
-              "status": "unconfirmed"
+              "status": "passed"
             }
           ],
           "files": [
@@ -231899,10 +232057,9 @@
           "logs": [
             "/tmp/duema-phase-862-regression.log"
           ],
-          "status": "unconfirmed",
+          "status": "passed",
           "counts": {
-            "passed": 2,
-            "unconfirmed": 2
+            "passed": 4
           }
         },
         {
@@ -232093,12 +232250,12 @@
             {
               "path": "tests/standard242-effects.test.mjs",
               "title": "CPU forty-card match finishes with eighty identities and saved continuation 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard242-effects.test.mjs",
               "title": "CPU forty-card match finishes with eighty identities and saved continuation 1",
-              "status": "unconfirmed"
+              "status": "passed"
             }
           ],
           "files": [
@@ -232114,9 +232271,9 @@
           "logs": [
             "/tmp/duema-phase-866-regression.log"
           ],
-          "status": "unconfirmed",
+          "status": "passed",
           "counts": {
-            "unconfirmed": 2
+            "passed": 2
           }
         },
         {
@@ -232238,12 +232395,12 @@
             {
               "path": "tests/standard242-effects.test.mjs",
               "title": "CPU forty-card match finishes with eighty identities and saved continuation 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard242-effects.test.mjs",
               "title": "CPU forty-card match finishes with eighty identities and saved continuation 1",
-              "status": "unconfirmed"
+              "status": "passed"
             }
           ],
           "files": [
@@ -232258,10 +232415,9 @@
           "logs": [
             "/tmp/duema-phase-868-regression.log"
           ],
-          "status": "unconfirmed",
+          "status": "passed",
           "counts": {
-            "passed": 3,
-            "unconfirmed": 2
+            "passed": 5
           }
         },
         {
@@ -232320,12 +232476,12 @@
             {
               "path": "tests/standard567-effects.test.mjs",
               "title": "legal forty CPU game finishes after JSON continuation conserving eighty identities 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard567-effects.test.mjs",
               "title": "legal forty CPU game finishes after JSON continuation conserving eighty identities 1",
-              "status": "unconfirmed"
+              "status": "passed"
             }
           ],
           "files": [
@@ -232342,10 +232498,9 @@
           "logs": [
             "/tmp/duema-phase-869-regression.log"
           ],
-          "status": "unconfirmed",
+          "status": "passed",
           "counts": {
-            "passed": 8,
-            "unconfirmed": 2
+            "passed": 10
           }
         },
         {
@@ -232374,12 +232529,12 @@
             {
               "path": "tests/standard570-effects.test.mjs",
               "title": "legal forty CPU game finishes after JSON continuation conserving eighty identities 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard570-effects.test.mjs",
               "title": "legal forty CPU game finishes after JSON continuation conserving eighty identities 1",
-              "status": "unconfirmed"
+              "status": "passed"
             }
           ],
           "files": [
@@ -232395,10 +232550,9 @@
           "logs": [
             "/tmp/duema-phase-870-regression.log"
           ],
-          "status": "unconfirmed",
+          "status": "passed",
           "counts": {
-            "passed": 2,
-            "unconfirmed": 2
+            "passed": 4
           }
         },
         {
@@ -232427,12 +232581,12 @@
             {
               "path": "tests/standard570-effects.test.mjs",
               "title": "legal forty CPU game finishes after JSON continuation conserving eighty identities 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard570-effects.test.mjs",
               "title": "legal forty CPU game finishes after JSON continuation conserving eighty identities 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/gate-effects.test.mjs",
@@ -232462,12 +232616,12 @@
             {
               "path": "tests/standard474-effects.test.mjs",
               "title": "legal forty CPU game with saved continuation and 80 conserved cards 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard474-effects.test.mjs",
               "title": "legal forty CPU game with saved continuation and 80 conserved cards 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard537-effects.test.mjs",
@@ -232505,8 +232659,7 @@
           },
           "status": "unconfirmed",
           "counts": {
-            "passed": 6,
-            "unconfirmed": 4,
+            "passed": 10,
             "timedOut": 3
           }
         },
@@ -232541,22 +232694,22 @@
             {
               "path": "tests/standard522-effects.test.mjs",
               "title": "legal forty CPU game finishes after JSON continuation while preserving eighty unique physical cards 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard522-effects.test.mjs",
               "title": "legal forty CPU game finishes after JSON continuation while preserving eighty unique physical cards 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard536-effects.test.mjs",
               "title": "legal forty CPU game finishes through JSON continuation with eighty unique physical cards 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard536-effects.test.mjs",
               "title": "legal forty CPU game finishes through JSON continuation with eighty unique physical cards 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard579-effects.test.mjs",
@@ -232578,10 +232731,9 @@
           "logs": [
             "/tmp/duema-phase-872-regression.log"
           ],
-          "status": "unconfirmed",
+          "status": "passed",
           "counts": {
-            "passed": 4,
-            "unconfirmed": 4
+            "passed": 8
           }
         },
         {
@@ -232610,7 +232762,7 @@
             {
               "path": "tests/hunter-effects.test.mjs",
               "title": "production worker completes280 No12 games with no unresolved matches",
-              "status": "unconfirmed"
+              "status": "timedOut"
             },
             {
               "path": "tests/standard206-effects.test.mjs",
@@ -232678,9 +232830,9 @@
           ],
           "status": "unconfirmed",
           "counts": {
-            "timedOut": 2,
-            "unconfirmed": 2,
-            "passed": 9
+            "timedOut": 3,
+            "passed": 9,
+            "unconfirmed": 1
           }
         },
         {
@@ -232699,22 +232851,22 @@
             {
               "path": "tests/standard454-effects.test.mjs",
               "title": "legal forty CPU game with JSON continuation and 80 conserved cards 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard454-effects.test.mjs",
               "title": "legal forty CPU game with JSON continuation and 80 conserved cards 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard455-effects.test.mjs",
               "title": "legal forty CPU game with JSON continuation and 80 conserved cards 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard455-effects.test.mjs",
               "title": "legal forty CPU game with JSON continuation and 80 conserved cards 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard467-effects.test.mjs",
@@ -232749,10 +232901,9 @@
           "logs": [
             "/tmp/duema-phase-874-regression.log"
           ],
-          "status": "unconfirmed",
+          "status": "passed",
           "counts": {
-            "unconfirmed": 4,
-            "passed": 4
+            "passed": 8
           }
         },
         {
@@ -232771,12 +232922,12 @@
             {
               "path": "tests/standard251-effects.test.mjs",
               "title": "CPU forty-card match keeps eighty physical cards through a saved continuation 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard251-effects.test.mjs",
               "title": "CPU forty-card match keeps eighty physical cards through a saved continuation 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard407-effects.test.mjs",
@@ -232828,10 +232979,9 @@
           "logs": [
             "/tmp/duema-phase-875-regression.log"
           ],
-          "status": "unconfirmed",
+          "status": "passed",
           "counts": {
-            "unconfirmed": 2,
-            "passed": 7
+            "passed": 9
           }
         },
         {
@@ -232876,12 +233026,12 @@
             {
               "path": "tests/standard433-effects.test.mjs",
               "title": "legal forty CPU matchup with JSON continuation and 80 conserved physical cards 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard433-effects.test.mjs",
               "title": "legal forty CPU matchup with JSON continuation and 80 conserved physical cards 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard463-effects.test.mjs",
@@ -232929,8 +233079,8 @@
           ],
           "status": "unconfirmed",
           "counts": {
-            "passed": 9,
-            "unconfirmed": 4
+            "passed": 11,
+            "unconfirmed": 2
           }
         },
         {
@@ -233285,7 +233435,7 @@
             {
               "path": "tests/standard218-effects.test.mjs",
               "title": "CPU forty-card match finishes with eighty identities and JSON continuation 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard218-effects.test.mjs",
@@ -233324,8 +233474,8 @@
           ],
           "status": "unconfirmed",
           "counts": {
-            "unconfirmed": 6,
-            "passed": 1
+            "unconfirmed": 5,
+            "passed": 2
           }
         },
         {
@@ -233450,22 +233600,22 @@
             {
               "path": "tests/standard242-effects.test.mjs",
               "title": "CPU forty-card match finishes with eighty identities and saved continuation 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard242-effects.test.mjs",
               "title": "CPU forty-card match finishes with eighty identities and saved continuation 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard536-effects.test.mjs",
               "title": "legal forty CPU game finishes through JSON continuation with eighty unique physical cards 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard536-effects.test.mjs",
               "title": "legal forty CPU game finishes through JSON continuation with eighty unique physical cards 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard543-effects.test.mjs",
@@ -233500,10 +233650,9 @@
           "logs": [
             "/tmp/duema-phase-885-regression.log"
           ],
-          "status": "unconfirmed",
+          "status": "passed",
           "counts": {
-            "passed": 5,
-            "unconfirmed": 4
+            "passed": 9
           }
         },
         {
@@ -233522,12 +233671,12 @@
             {
               "path": "tests/standard536-effects.test.mjs",
               "title": "legal forty CPU game finishes through JSON continuation with eighty unique physical cards 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard536-effects.test.mjs",
               "title": "legal forty CPU game finishes through JSON continuation with eighty unique physical cards 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard545-effects.test.mjs",
@@ -233561,10 +233710,9 @@
           "logs": [
             "/tmp/duema-phase-886-regression.log"
           ],
-          "status": "unconfirmed",
+          "status": "passed",
           "counts": {
-            "unconfirmed": 2,
-            "passed": 4
+            "passed": 6
           }
         },
         {
@@ -233598,12 +233746,12 @@
             {
               "path": "tests/standard536-effects.test.mjs",
               "title": "legal forty CPU game finishes through JSON continuation with eighty unique physical cards 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard536-effects.test.mjs",
               "title": "legal forty CPU game finishes through JSON continuation with eighty unique physical cards 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard554-effects.test.mjs",
@@ -233628,8 +233776,8 @@
           ],
           "status": "unconfirmed",
           "counts": {
-            "passed": 3,
-            "unconfirmed": 4
+            "passed": 5,
+            "unconfirmed": 2
           }
         },
         {
@@ -233688,22 +233836,22 @@
             {
               "path": "tests/standard242-effects.test.mjs",
               "title": "CPU forty-card match finishes with eighty identities and saved continuation 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard242-effects.test.mjs",
               "title": "CPU forty-card match finishes with eighty identities and saved continuation 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard536-effects.test.mjs",
               "title": "legal forty CPU game finishes through JSON continuation with eighty unique physical cards 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard536-effects.test.mjs",
               "title": "legal forty CPU game finishes through JSON continuation with eighty unique physical cards 1",
-              "status": "unconfirmed"
+              "status": "passed"
             }
           ],
           "files": [
@@ -233728,8 +233876,8 @@
           },
           "status": "unconfirmed",
           "counts": {
-            "passed": 6,
-            "unconfirmed": 6
+            "passed": 10,
+            "unconfirmed": 2
           }
         },
         {
@@ -233758,12 +233906,12 @@
             {
               "path": "tests/standard536-effects.test.mjs",
               "title": "legal forty CPU game finishes through JSON continuation with eighty unique physical cards 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard536-effects.test.mjs",
               "title": "legal forty CPU game finishes through JSON continuation with eighty unique physical cards 1",
-              "status": "unconfirmed"
+              "status": "passed"
             }
           ],
           "files": [
@@ -233778,10 +233926,9 @@
           "logs": [
             "/tmp/duema-phase-889-regression.log"
           ],
-          "status": "unconfirmed",
+          "status": "passed",
           "counts": {
-            "passed": 2,
-            "unconfirmed": 2
+            "passed": 4
           }
         },
         {
@@ -233835,12 +233982,12 @@
             {
               "path": "tests/standard536-effects.test.mjs",
               "title": "legal forty CPU game finishes through JSON continuation with eighty unique physical cards 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard536-effects.test.mjs",
               "title": "legal forty CPU game finishes through JSON continuation with eighty unique physical cards 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard542-effects.test.mjs",
@@ -233868,8 +234015,8 @@
           "status": "unconfirmed",
           "counts": {
             "historicalPass": 1,
-            "passed": 6,
-            "unconfirmed": 4
+            "passed": 8,
+            "unconfirmed": 2
           }
         },
         {
@@ -234035,12 +234182,12 @@
             {
               "path": "tests/standard474-effects.test.mjs",
               "title": "legal forty CPU game with saved continuation and 80 conserved cards 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard474-effects.test.mjs",
               "title": "legal forty CPU game with saved continuation and 80 conserved cards 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard535-effects.test.mjs",
@@ -234069,10 +234216,9 @@
             "pattern": "CPU.*forty|forty.*CPU|legal forty CPU|CPU deck finishes",
             "log": "/tmp/duema-phase-893-regression.log"
           },
-          "status": "unconfirmed",
+          "status": "passed",
           "counts": {
-            "passed": 6,
-            "unconfirmed": 2
+            "passed": 8
           }
         },
         {
@@ -234121,12 +234267,12 @@
             {
               "path": "tests/standard242-effects.test.mjs",
               "title": "CPU forty-card match finishes with eighty identities and saved continuation 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard242-effects.test.mjs",
               "title": "CPU forty-card match finishes with eighty identities and saved continuation 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard257-effects.test.mjs",
@@ -234141,22 +234287,22 @@
             {
               "path": "tests/standard402-effects.test.mjs",
               "title": "new legal forty CPU matchup preserves 80 physical cards and JSON continuation 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard402-effects.test.mjs",
               "title": "new legal forty CPU matchup preserves 80 physical cards and JSON continuation 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard402-effects.test.mjs",
               "title": "new legal forty CPU matchup preserves 80 physical cards and JSON continuation 2",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard402-effects.test.mjs",
               "title": "new legal forty CPU matchup preserves 80 physical cards and JSON continuation 3",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard542-effects.test.mjs",
@@ -234187,8 +234333,8 @@
           },
           "status": "unconfirmed",
           "counts": {
-            "passed": 8,
-            "unconfirmed": 8
+            "passed": 14,
+            "unconfirmed": 2
           }
         },
         {
@@ -234207,12 +234353,12 @@
             {
               "path": "tests/standard251-effects.test.mjs",
               "title": "CPU forty-card match keeps eighty physical cards through a saved continuation 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard251-effects.test.mjs",
               "title": "CPU forty-card match keeps eighty physical cards through a saved continuation 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard313-effects.test.mjs",
@@ -234247,12 +234393,12 @@
             {
               "path": "tests/standard536-effects.test.mjs",
               "title": "legal forty CPU game finishes through JSON continuation with eighty unique physical cards 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard536-effects.test.mjs",
               "title": "legal forty CPU game finishes through JSON continuation with eighty unique physical cards 1",
-              "status": "unconfirmed"
+              "status": "passed"
             }
           ],
           "files": [
@@ -234275,8 +234421,8 @@
           },
           "status": "unconfirmed",
           "counts": {
-            "unconfirmed": 6,
-            "passed": 4
+            "passed": 8,
+            "unconfirmed": 2
           }
         },
         {
@@ -234456,7 +234602,7 @@
             {
               "path": "tests/galaxy-effects.test.mjs",
               "title": "No22 random legal actions conserve all cards and preserve decisions and AI scores after JSON restoration",
-              "status": "unconfirmed"
+              "status": "timedOut"
             },
             {
               "path": "tests/galaxy-effects.test.mjs",
@@ -234503,8 +234649,8 @@
           },
           "status": "unconfirmed",
           "counts": {
-            "unconfirmed": 3,
-            "timedOut": 1,
+            "unconfirmed": 2,
+            "timedOut": 2,
             "passed": 3,
             "historicalPass": 1
           }
@@ -234650,12 +234796,12 @@
             {
               "path": "tests/standard476-effects.test.mjs",
               "title": "legal forty CPU game with saved continuation and 80 conserved cards 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard476-effects.test.mjs",
               "title": "legal forty CPU game with saved continuation and 80 conserved cards 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard575-effects.test.mjs",
@@ -234679,10 +234825,9 @@
             "pattern": "legal forty.*CPU|CPU.*forty",
             "log": "/tmp/duema-phase-901-regression.log"
           },
-          "status": "unconfirmed",
+          "status": "passed",
           "counts": {
-            "unconfirmed": 2,
-            "passed": 1
+            "passed": 3
           }
         },
         {
@@ -234759,12 +234904,12 @@
             {
               "path": "tests/standard242-effects.test.mjs",
               "title": "CPU forty-card match finishes with eighty identities and saved continuation 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard242-effects.test.mjs",
               "title": "CPU forty-card match finishes with eighty identities and saved continuation 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard303-effects.test.mjs",
@@ -234790,7 +234935,8 @@
           ],
           "status": "unconfirmed",
           "counts": {
-            "unconfirmed": 3,
+            "unconfirmed": 1,
+            "passed": 2,
             "historicalPass": 2
           }
         },
@@ -234820,17 +234966,17 @@
             {
               "path": "tests/standard486-effects.test.mjs",
               "title": "legal forty CPU game with saved continuation and 80 conserved cards 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard486-effects.test.mjs",
               "title": "legal forty CPU game with saved continuation and 80 conserved cards 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard486-effects.test.mjs",
               "title": "legal forty CPU game with saved continuation and 80 conserved cards 2",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard543-effects.test.mjs",
@@ -234858,8 +235004,8 @@
           ],
           "status": "unconfirmed",
           "counts": {
-            "unconfirmed": 5,
-            "passed": 2
+            "unconfirmed": 2,
+            "passed": 5
           }
         },
         {
@@ -234963,7 +235109,7 @@
             {
               "path": "tests/standard337-effects.test.mjs",
               "title": "legal forty-card CPU game finishes with eighty unique physical cards through saved continuation 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard514-effects.test.mjs",
@@ -234997,8 +235143,8 @@
           "status": "unconfirmed",
           "counts": {
             "historicalPass": 2,
-            "unconfirmed": 3,
-            "passed": 4
+            "unconfirmed": 2,
+            "passed": 5
           }
         },
         {
@@ -235032,12 +235178,12 @@
             {
               "path": "tests/standard251-effects.test.mjs",
               "title": "CPU forty-card match keeps eighty physical cards through a saved continuation 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard251-effects.test.mjs",
               "title": "CPU forty-card match keeps eighty physical cards through a saved continuation 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard401-effects.test.mjs",
@@ -235080,8 +235226,8 @@
           ],
           "status": "unconfirmed",
           "counts": {
-            "unconfirmed": 5,
-            "passed": 5
+            "unconfirmed": 3,
+            "passed": 7
           }
         },
         {
@@ -235163,7 +235309,7 @@
             {
               "path": "tests/standard181-effects.test.mjs",
               "title": "three CPU games finish with JSON continuation and eighty conserved physical cards",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard183-effects.test.mjs",
@@ -235200,8 +235346,9 @@
           },
           "status": "unconfirmed",
           "counts": {
-            "unconfirmed": 3,
-            "historicalPass": 1
+            "passed": 1,
+            "historicalPass": 1,
+            "unconfirmed": 2
           }
         },
         {
@@ -235372,12 +235519,12 @@
             {
               "path": "tests/standard364-effects.test.mjs",
               "title": "legal forty-card CPU match finishes preserving eighty unique identities 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard364-effects.test.mjs",
               "title": "legal forty-card CPU match finishes preserving eighty unique identities 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard521-effects.test.mjs",
@@ -235434,10 +235581,9 @@
             "pattern": "CPU (game|match)(up)? (with|finishes|preserves|preserving)|CPU matchup|CPU legal forty|three CPU games",
             "log": "/tmp/duema-phase-914-regression.log"
           },
-          "status": "unconfirmed",
+          "status": "passed",
           "counts": {
-            "unconfirmed": 2,
-            "passed": 7
+            "passed": 9
           }
         },
         {
@@ -235456,12 +235602,12 @@
             {
               "path": "tests/standard364-effects.test.mjs",
               "title": "legal forty-card CPU match finishes preserving eighty unique identities 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard364-effects.test.mjs",
               "title": "legal forty-card CPU match finishes preserving eighty unique identities 1",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard459-effects.test.mjs",
@@ -235541,8 +235687,8 @@
           },
           "status": "unconfirmed",
           "counts": {
-            "unconfirmed": 4,
-            "passed": 9
+            "passed": 11,
+            "unconfirmed": 2
           }
         },
         {
@@ -235591,12 +235737,12 @@
             {
               "path": "tests/standard565-effects.test.mjs",
               "title": "legal forty CPU game finishes after JSON continuation conserving eighty identities 0",
-              "status": "unconfirmed"
+              "status": "passed"
             },
             {
               "path": "tests/standard565-effects.test.mjs",
               "title": "legal forty CPU game finishes after JSON continuation conserving eighty identities 1",
-              "status": "unconfirmed"
+              "status": "passed"
             }
           ],
           "files": [
@@ -235615,10 +235761,9 @@
           "logs": [
             "/tmp/duema-phase-916-regression.log"
           ],
-          "status": "unconfirmed",
+          "status": "passed",
           "counts": {
-            "passed": 6,
-            "unconfirmed": 2
+            "passed": 8
           }
         },
         {
@@ -236278,24 +236423,75 @@
           "path": "tests/gate-effects.test.mjs",
           "title": "No20 finishes against itself, three ready starters and4 tournament decks with80 unique cards after every action",
           "expected": 48,
-          "checked": 11,
-          "attempted": 11,
-          "log": "/tmp/duema-verify-all/matrix.jsonl"
+          "checked": 16,
+          "attempted": 16,
+          "timedOut": 0,
+          "failed": 0,
+          "logs": [
+            "/tmp/duema-verify-all/matrix.jsonl"
+          ]
         },
         {
           "path": "tests/magic-effects.test.mjs",
           "title": "No09 random actions conserve cards, finite AI values and JSON continuations at every decision",
           "expected": 45,
+          "checked": 1,
+          "attempted": 1,
+          "timedOut": 0,
+          "failed": 0,
+          "logs": [
+            "/tmp/duema-verify-all/matrix.jsonl"
+          ]
+        },
+        {
+          "path": "tests/hunter-effects.test.mjs",
+          "title": "No12 completes84 seeded AI games, conserves80 unique cards and replays every state deterministically",
+          "expected": 84,
+          "checked": 6,
+          "attempted": 6,
+          "timedOut": 0,
+          "failed": 0,
+          "logs": [
+            "/tmp/duema-verify-all/matrix-extra.jsonl"
+          ]
+        },
+        {
+          "path": "tests/galaxy-effects.test.mjs",
+          "title": "No22 versus itself, two ready starter decks and4 tournament decks finishes and conserves80 physical cards",
+          "expected": 42,
           "checked": 0,
           "attempted": 0,
-          "log": "/tmp/duema-verify-all/matrix.jsonl"
+          "timedOut": 0,
+          "failed": 0,
+          "logs": []
+        },
+        {
+          "path": "tests/hunter-effects.test.mjs",
+          "title": "No12 random legal choices conserve cards and serialize pending judges, selections and loss replacements",
+          "expected": 45,
+          "checked": 0,
+          "attempted": 0,
+          "timedOut": 0,
+          "failed": 0,
+          "logs": []
+        },
+        {
+          "path": "tests/galaxy-effects.test.mjs",
+          "title": "No22 random legal actions conserve all cards and preserve decisions and AI scores after JSON restoration",
+          "expected": 35,
+          "checked": 0,
+          "attempted": 0,
+          "timedOut": 0,
+          "failed": 0,
+          "logs": []
         },
         {
           "path": "tests/gate-effects.test.mjs",
           "title": "No20 random legal choices conserve cards and serialize/replay legal actions and AI exactly",
           "expected": 35,
-          "checked": 6,
-          "attempted": 7,
+          "checked": 10,
+          "attempted": 11,
+          "timedOut": 1,
           "log": "/tmp/duema-verify-all/gate-random-parts.jsonl"
         },
         {
@@ -236313,7 +236509,7 @@
           ],
           "games": 160,
           "expected": 160,
-          "checked": 12,
+          "checked": 20,
           "log": "/tmp/duema-verify-all/gate-worker-input-parts.jsonl"
         }
       ],
@@ -236452,6 +236648,9 @@
       "officialInteractionLimits": [
         {
           "phase": 944,
+          "cardIds": [
+            "dm36-027"
+          ],
           "tests": "tests/standard944-effects.test.mjs",
           "rulings": [
             "https://dm.takaratomy.co.jp/rule/qa_old/36037/",
@@ -236461,6 +236660,10 @@
         },
         {
           "phase": 945,
+          "cardIds": [
+            "dm31-019",
+            "dm32-s07"
+          ],
           "tests": "tests/standard945-effects.test.mjs",
           "rulings": [
             "https://dm.takaratomy.co.jp/rule/qa/41414/",
@@ -236470,6 +236673,9 @@
         },
         {
           "phase": 947,
+          "cardIds": [
+            "dm13-025"
+          ],
           "tests": "tests/standard947-effects.test.mjs",
           "rulings": [
             "https://dm.takaratomy.co.jp/rule/qa_old/35279/"
