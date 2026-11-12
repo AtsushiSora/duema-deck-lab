@@ -208657,15 +208657,116 @@
       ],
       "supportBatch": "phase-1034",
       "supportKind": "effect"
+    },
+    {
+      "id": "promoy19-003",
+      "name": "「光魔の鎧」",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 2000,
+      "race": "メタリカ/チーム銀河",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分の手札を１枚、表向きにし、新しいシールドとしてシールドゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy19-003",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "shields",
+          "n": 1,
+          "optional": true,
+          "g657FaceUp": true
+        }
+      ],
+      "supportBatch": "phase-1035",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex2-086",
+      "name": "「これ以上、蓄積された魔力を増やしてどうするのです？」",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nカードを１枚引く。\n自分のマナゾーンにあるカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-086",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "ManaDown426"
+        }
+      ],
+      "supportBatch": "phase-1035",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex14-046",
+      "name": "【今すぐ】うわっ…相手の攻撃止めすぎ…？【クリック】",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "チームウェイブ",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次の自分のターンのはじめまで、相手のコスト５以下のクリーチャーは、攻撃もブロックもできない。\nこの呪文がどこからでも自分の墓地に置かれた時、自分の墓地をシャッフルし、山札の下に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-046",
+      "limit": 0,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupFreeze",
+          "filter": {
+            "max": 5
+          },
+          "g190Freeze": "self",
+          "spell": true
+        }
+      ],
+      "g675GraveEntry": [
+        {
+          "op": "Offer",
+          "title": "自分の墓地をシャッフルして山札の下に置く？",
+          "defs": [
+            {
+              "op": "GraveBottom589",
+              "self": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1035",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1034,
+    "phase": 1035,
     "checkedAt": "2026-11-12",
-    "baseCount": 7044,
+    "baseCount": 7047,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7047,
+    "totalCount": 7050,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -227362,6 +227463,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7044,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1034,
+        "checkedAt": "2026-11-12",
+        "baseCount": 7044,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7047,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

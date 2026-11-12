@@ -2467,6 +2467,34 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1035&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const trigger='S・トリガーS・トリガー';
+  const creatureTrigger='(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)';
+  const spellTrigger='(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+  const executeTrigger='(このカードをシールドゾーンから手札に加える時コストを支払わずにすぐ実行してもよい)';
+  const blocker='ブロッカーブロッカー';
+  const blockerReminder='(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+  if(f.name==='「光魔の鎧」'&&f.typeText==='クリーチャー'&&f.civilizationText==='光/水'&&f.cost===7&&f.race==='メタリカ/チーム銀河'){
+   const withReminders=trigger+creatureTrigger+blocker+blockerReminder;
+   const revised='このクリーチャーが出た時自分の手札を1枚表向きにシールド化してもよい。';
+   if([withReminders+'このクリーチャーがバトルゾーンに出た時自分の手札を1枚表向きにし新しいシールドとしてシールドゾーンに置いてもよい。',
+    withReminders+revised,trigger+blocker+revised].includes(text))
+    return {trigger:true,blocker:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'hand',to:'shields',n:1,optional:true,g657FaceUp:true}]};
+  }
+  if(f.name==='「これ以上、蓄積された魔力を増やしてどうするのです？」'&&f.typeText==='呪文'&&f.civilizationText==='ゼロ'&&f.cost===2&&text===trigger+executeTrigger+
+   'カードを1枚引く。自分のマナゾーンにあるカードを1枚裏向きにしてもよい。(マナゾーンにある裏向きのカードはマナの数字が1の無色カードとして扱う。その持ち主はそれをいつでも見てもよい)')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Draw',n:1},{op:'ManaDown426'}]};
+  if(f.name==='【今すぐ】うわっ…相手の攻撃止めすぎ…？【クリック】'&&f.typeText==='呪文'&&f.civilizationText==='水'&&f.cost===7&&f.race==='チームウェイブ'){
+   const restrict='次の自分のターンのはじめまで相手のコスト5以下のクリーチャーは攻撃もブロックもできない。';
+   const bottom='墓地に置かれた時自分の墓地をシャッフルし山札の下に置いてもよい。';
+   if([trigger+spellTrigger+restrict+'この呪文がどこからでも自分の'+bottom,
+    trigger+spellTrigger+restrict+'この呪文がどこからでも'+bottom,
+    trigger+executeTrigger+restrict+'この呪文がどこからでも'+bottom].includes(text))
+    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'GroupFreeze',filter:{max:5},g190Freeze:'self',spell:true}],
+     g675GraveEntry:[{op:'Offer',title:'自分の墓地をシャッフルして山札の下に置く？',defs:[{op:'GraveBottom589',self:true}]}]};
+  }
+ }
  if(phase>=1034&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText),blocker='ブロッカーブロッカー';
   const reminder='(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';

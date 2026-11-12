@@ -1,0 +1,456 @@
+{
+  "phase": 1035,
+  "checkedAt": "2026-11-12",
+  "baseCount": 7047,
+  "description": "シールドと墓地の誘発、水晶マナに関わる3種類と再録10版を公式情報で照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "cards": [
+    {
+      "id": "promoy19-003",
+      "name": "「光魔の鎧」",
+      "faces": [
+        {
+          "name": "「光魔の鎧」",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分の手札を１枚、表向きにし、新しいシールドとしてシールドゾーンに置いてもよい。",
+          "race": "メタリカ/チーム銀河",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy19-003",
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "shields",
+            "n": 1,
+            "optional": true,
+            "g657FaceUp": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy19-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "13f3c691d07670c2b2d68327f56b58ae25c7cf9b9dae6722c94f02db3e2dc320",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex2-086",
+      "name": "「これ以上、蓄積された魔力を増やしてどうするのです？」",
+      "faces": [
+        {
+          "name": "「これ以上、蓄積された魔力を増やしてどうするのです？」",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nカードを１枚引く。\n自分のマナゾーンにあるカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-086",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "ManaDown426"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-086.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "c469ef07d74759ed4b1e9ae7b94e19dda7612eddca8281e98ae12dd660e0592d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-046",
+      "name": "【今すぐ】うわっ…相手の攻撃止めすぎ…？【クリック】",
+      "faces": [
+        {
+          "name": "【今すぐ】うわっ…相手の攻撃止めすぎ…？【クリック】",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次の自分のターンのはじめまで、相手のコスト５以下のクリーチャーは、攻撃もブロックもできない。\nこの呪文がどこからでも自分の墓地に置かれた時、自分の墓地をシャッフルし、山札の下に置いてもよい。",
+          "race": "チームウェイブ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-046",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupFreeze",
+            "filter": {
+              "max": 5
+            },
+            "g190Freeze": "self",
+            "spell": true
+          }
+        ],
+        "g675GraveEntry": [
+          {
+            "op": "Offer",
+            "title": "自分の墓地をシャッフルして山札の下に置く？",
+            "defs": [
+              {
+                "op": "GraveBottom589",
+                "self": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "6df27e4f8c0ae88474b1f0a49186146c433f2e5588a4cda438d8ea40525aecff",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmrp13-024",
+      "canonicalId": "promoy19-003",
+      "name": "「光魔の鎧」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-024",
+      "faces": [
+        {
+          "name": "「光魔の鎧」",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分の手札を１枚、表向きにし、新しいシールドとしてシールドゾーンに置いてもよい。",
+          "race": "メタリカ/チーム銀河",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp13-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "f9447092bdf1609cf38eb0baa61a7c5e1c1cf75c42451b80723038997da5506a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex19-034",
+      "canonicalId": "promoy19-003",
+      "name": "「光魔の鎧」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-034",
+      "faces": [
+        {
+          "name": "「光魔の鎧」",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、自分の手札を１枚、表向きにシールド化してもよい。",
+          "race": "メタリカ/チーム銀河",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "d91bccdb1bafc52d62880c546038cba9fcdd68818ac2b37bd080a0b8cacd7c41",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23bd7-040",
+      "canonicalId": "promoy19-003",
+      "name": "「光魔の鎧」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd7-040",
+      "faces": [
+        {
+          "name": "「光魔の鎧」",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\nブロッカーブロッカー\nこのクリーチャーが出た時、自分の手札を１枚、表向きにシールド化してもよい。",
+          "race": "メタリカ/チーム銀河",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd7-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "091221e3044f272ff7336c6e1e134dbac89c5934b95bad728180006fb9589585",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp2-T05",
+      "canonicalId": "promoy19-003",
+      "name": "「光魔の鎧」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-T05",
+      "faces": [
+        {
+          "name": "「光魔の鎧」",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、自分の手札を１枚、表向きにシールド化してもよい。",
+          "race": "メタリカ/チーム銀河",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-T05.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "ffb39cc3da1d0aed419ca277f204b5d63c832a9d10b66028168d8e2a2a9cf1e4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp2-TF05",
+      "canonicalId": "promoy19-003",
+      "name": "「光魔の鎧」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-TF05",
+      "faces": [
+        {
+          "name": "「光魔の鎧」",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、自分の手札を１枚、表向きにシールド化してもよい。",
+          "race": "メタリカ/チーム銀河",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-TF05.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "e4c94ddedaccc791425637536526e4382d02d0b4edae0213f65c19b865646397",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp2x-TF05",
+      "canonicalId": "promoy19-003",
+      "name": "「光魔の鎧」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-TF05",
+      "faces": [
+        {
+          "name": "「光魔の鎧」",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、自分の手札を１枚、表向きにシールド化してもよい。",
+          "race": "メタリカ/チーム銀河",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-TF05.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "0ce073210391ac0bf4590d6a0e2026cb9d7cb9ae9d03f1ce560f30c202ca8c40",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-SP4",
+      "canonicalId": "promoy19-003",
+      "name": "「光魔の鎧」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-SP4",
+      "faces": [
+        {
+          "name": "「光魔の鎧」",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\nブロッカーブロッカー\nこのクリーチャーが出た時、自分の手札を１枚、表向きにシールド化してもよい。",
+          "race": "メタリカ/チーム銀河",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-SP4.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "97e780ecb074bdbe7898157967572193d8dcca96fef788294d19d7306a14840e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex19-045",
+      "canonicalId": "dmex14-046",
+      "name": "【今すぐ】うわっ…相手の攻撃止めすぎ…？【クリック】",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-045",
+      "faces": [
+        {
+          "name": "【今すぐ】うわっ…相手の攻撃止めすぎ…？【クリック】",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次の自分のターンのはじめまで、相手のコスト５以下のクリーチャーは、攻撃もブロックもできない。\nこの呪文がどこからでも墓地に置かれた時、自分の墓地をシャッフルし、山札の下に置いてもよい。",
+          "race": "チームウェイブ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "a15ade04447dbec378a578dd6826adce8650dd0aba7e6b656d8d7283859ae44a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24bd5-037",
+      "canonicalId": "dmex14-046",
+      "name": "【今すぐ】うわっ…相手の攻撃止めすぎ…？【クリック】",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd5-037",
+      "faces": [
+        {
+          "name": "【今すぐ】うわっ…相手の攻撃止めすぎ…？【クリック】",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次の自分のターンのはじめまで、相手のコスト５以下のクリーチャーは、攻撃もブロックもできない。\nこの呪文がどこからでも墓地に置かれた時、自分の墓地をシャッフルし、山札の下に置いてもよい。",
+          "race": "チームウェイブ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd5-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "bfdb761060b4790d27c9cadbfcc8d969e4cc0670d5b64b659d8ed1ecc94b7a0a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy24-054",
+      "canonicalId": "dmex14-046",
+      "name": "【今すぐ】うわっ…相手の攻撃止めすぎ…？【クリック】",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy24-054",
+      "faces": [
+        {
+          "name": "【今すぐ】うわっ…相手の攻撃止めすぎ…？【クリック】",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\n次の自分のターンのはじめまで、相手のコスト５以下のクリーチャーは、攻撃もブロックもできない。\nこの呪文がどこからでも墓地に置かれた時、自分の墓地をシャッフルし、山札の下に置いてもよい。",
+          "race": "チームウェイブ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy24-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "aeaa976d90122ebe6f42aaf6dfca20139499922982a118c5e0bf7d94b4f5469d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "promoy19-003": 4,
+      "dm25ex2-086": 4,
+      "dmex14-046": 0,
+      "dmrp13-024": 4,
+      "dmex19-034": 4,
+      "dm23bd7-040": 4,
+      "dm23rp2-T05": 4,
+      "dm23rp2-TF05": 4,
+      "dm23rp2x-TF05": 4,
+      "dm24rp2-SP4": 4,
+      "dmex19-045": 0,
+      "dm24bd5-037": 0,
+      "promoy24-054": 0
+    }
+  }
+}
