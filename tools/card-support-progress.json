@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7036,
-  "pendingNames": 4791,
-  "phase": 1031,
+  "supportedNames": 7040,
+  "pendingNames": 4787,
+  "phase": 1032,
   "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2757,
+    "クリーチャー": 2753,
     "NEOクリーチャー": 152,
     "呪文": 624,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1212,
-    "未対応の能力文": 3343,
+    "未対応の能力文": 3339,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -204057,32 +204057,117 @@
           "reason": "GRクリーチャーの共通処理と、光の呪文の強制コスト軽減を検証する必要があるため保留。"
         }
       ]
+    },
+    {
+      "phase": 1032,
+      "baseCommit": "3e1ea877",
+      "cards": [
+        {
+          "id": "dmrp07-031",
+          "name": "青守銀 アドマニ"
+        },
+        {
+          "id": "dmx19-s05",
+          "name": "封印の精霊龍 ヴァルハラ・パラディン"
+        },
+        {
+          "id": "dm23ex3-032",
+          "name": "驚異的終斗 アレキサンドライト"
+        },
+        {
+          "id": "dmex16-021",
+          "name": "白騎士の精霊ホワイト・ウィズダム"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dmx19-s05h",
+          "canonicalId": "dmx19-s05",
+          "name": "封印の精霊龍 ヴァルハラ・パラディン"
+        },
+        {
+          "id": "dm24bd6-047",
+          "canonicalId": "dm23ex3-032",
+          "name": "驚異的終斗 アレキサンドライト"
+        },
+        {
+          "id": "dm24sd2-002",
+          "canonicalId": "dmex16-021",
+          "name": "白騎士の精霊ホワイト・ウィズダム"
+        }
+      ],
+      "supportedNames": 7040,
+      "pendingNames": 4787,
+      "verification": {
+        "focusedPassed": 11,
+        "regressionPassed": 287,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 7,
+        "scope": "公式本文・基本情報・マナ数・画像・殿堂制限を4種類と再録3版で照合。ヴァルハラ・パラディンのS5h版は公式詳細がS5版と同じ画像URLを参照する。アドマニのシールド追加による手札からの任意登場、ブロッカー、対プレイヤー攻撃不可を検証。パラディンは新規シールド化とフリーズをそれぞれ辞退でき、盾への表向き追加にも誘発する。アレキサンドライトはシールド化からドローの順序と、自分・相手ターンの終了時に実際のシールド追加があった所有者のマナだけを任意で裏向きにする。ホワイト・ウィズダムは1つの盾束を裏向き2枚で作り、カードごとに誘発する。同じタップ済みの相手を繰り返し選んでもフリーズは次の相手ターンのはじめ1回で終わる。置換・辞退、保存復元、物理カードの総数、再録IDを検証。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/qa/31797/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37205/",
+          "https://dm.takaratomy.co.jp/rule/qa/39977/",
+          "https://dm.takaratomy.co.jp/rule/qa/39978/",
+          "https://dm.takaratomy.co.jp/rule/qa/39979/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "regressionFiles": [
+          "tests/standard1031-effects.test.mjs",
+          "tests/standard1030-effects.test.mjs",
+          "tests/standard918-effects.test.mjs",
+          "tests/photo159-shield-effects.test.mjs",
+          "tests/standard426-effects.test.mjs",
+          "tests/standard418-effects.test.mjs",
+          "tests/standard427-effects.test.mjs",
+          "tests/standard1029-effects.test.mjs"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。各対象名と中断理由は元の履歴に記録。",
+        "logs": {
+          "official": "/tmp/duema-phase-1032.zrbKGc81/official.log",
+          "focused": "/tmp/duema-phase-1032.zrbKGc81/focused.log",
+          "regression": "/tmp/duema-phase-1032.zrbKGc81/regression.log",
+          "check": "/tmp/duema-phase-1032.zrbKGc81/check.log",
+          "audit": "/tmp/duema-phase-1032.zrbKGc81/audit.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dmrp09-001",
+          "name": "音奏 ハイオリーダ / 音奏曲第3番「幻惑」",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-001",
+          "reason": "手元の詳細データでクリーチャー側にシールド追加ごとのGR召喚を確認。両面を通常の対戦経路で検証するには超GRの編成・GR召喚・離脱先が必要なため保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1031,
-    "nextPhase": 1032,
+    "lastVerifiedPhase": 1032,
+    "nextPhase": 1033,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dmrp07-031",
-        "name": "青守銀 アドマニ",
-        "reason": "手札から出す共通処理に、印刷されたブロッカーとプレイヤー攻撃不可を組み合わせる。"
+        "id": "dmrp08-s01",
+        "name": "龍蒼者 ゼブルエ / ローゼス・ブルーム",
+        "reason": "ツインパクトの両面を照合し、スマッシュ・バーストとシールド追加ごとのフリーズを検証する。"
       },
       {
-        "id": "dmx19-s05",
-        "name": "封印の精霊龍 ヴァルハラ・パラディン",
-        "reason": "任意の新規シールド化と、各シールド追加時の任意タップと次の相手ターンのアンタップ制限を確認する。"
+        "id": "dmsd07-001",
+        "name": "煌世の剣 メシアカリバー",
+        "reason": "シールド追加時の期限つき離脱禁止と、シールドのカードが離れた時のアンタップを検証する。"
       },
       {
-        "id": "dm23ex3-032",
-        "name": "驚異的終斗 アレキサンドライト",
-        "reason": "登場時のシールド化とドロー、各ターン終了時のシールド追加履歴とマナの裏向き処理を確認する。"
+        "id": "dmrp05-s03",
+        "name": "超運命 アミダナスカ",
+        "reason": "新しいシールドの追加と、山札上のカードの文明・種族・カード種別・コストを満たす面の任意使用を検証する。"
       },
       {
-        "id": "dmex16-021",
-        "name": "白騎士の精霊ホワイト・ウィズダム",
-        "reason": "任意の新規シールド化と同じシールドへの裏向き追加、各追加の誘発を確認する。"
+        "id": "dmrp06-s03",
+        "name": "煌メク聖戦 絶十",
+        "reason": "サバキZの宣言とシールド追加で発生する任意コスト軽減を、公式裁定と照合する。"
       }
     ],
     "steps": [

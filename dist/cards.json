@@ -208233,15 +208233,152 @@
       "g1031PlayerAttackRequiresShield": true,
       "supportBatch": "phase-1031",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-031",
+      "name": "青守銀 アドマニ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4500,
+      "race": "メタリカ",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n自分のシールドゾーンにカードが置かれた時、このクリーチャーを自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-031",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g1031ShieldHandEntry": true,
+      "supportBatch": "phase-1032",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx19-s05",
+      "name": "封印の精霊龍 ヴァルハラ・パラディン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 11500,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "ブロッカー ブロッカー\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加えてもよい。\n自分のシールドゾーンにカードが置かれた時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。そのクリーチャーは、次の相手のターンのはじめにアンタップされない。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx19-s05",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "山札の上から1枚を新しいシールドに置く？",
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "g918ShieldAdded": [
+        {
+          "op": "Target",
+          "optional": true,
+          "tap": true,
+          "lock": true
+        }
+      ],
+      "supportBatch": "phase-1032",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-032",
+      "name": "驚異的終斗 アレキサンドライト",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "オラクル・セレス/エンジェル・コマンド",
+      "text": "このクリーチャーが出た時、自分の山札の上から１枚目をシールド化し、その後、カードを１枚引く。\n各ターンの終わりに、このターン、自分のシールドゾーンにカードが置かれていれば、自分のマナゾーンのカードを１枚裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-032",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldTop",
+          "n": 1
+        },
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "g1032ShieldAddedEnd": [
+        {
+          "op": "ManaDown426"
+        }
+      ],
+      "supportBatch": "phase-1032",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex16-021",
+      "name": "白騎士の精霊ホワイト・ウィズダム",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 11,
+      "power": 14500,
+      "race": "エンジェル・コマンド",
+      "text": "ブロッカー ブロッカー\nT・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から１枚目をシールド化してもよい。そうしたら、自分の山札の上から１枚目をそのシールドの上に裏向きで置く。（そのシールドの束は１つと数える）\n自分のシールドゾーンにカードが置かれた時、相手のクリーチャーを１体選びタップする。そのクリーチャーは、次の相手のターンのはじめにアンタップしない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex16-021",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "山札の上から2枚を1つのシールドに置く？",
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 1,
+              "stackNext": true
+            }
+          ]
+        }
+      ],
+      "g918ShieldAdded": [
+        {
+          "op": "Target",
+          "tap": true,
+          "lock": true
+        }
+      ],
+      "supportBatch": "phase-1032",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1031,
+    "phase": 1032,
     "checkedAt": "2026-11-12",
-    "baseCount": 7032,
+    "baseCount": 7036,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7036,
+    "totalCount": 7040,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -226902,6 +227039,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7032,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1031,
+        "checkedAt": "2026-11-12",
+        "baseCount": 7032,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7036,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

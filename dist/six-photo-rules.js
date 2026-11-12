@@ -2815,7 +2815,7 @@ export function createSixPhotoRules(api){
  }
  case'g34_ShieldTop':
   if(t.faceUp)put(s,{...t,op:'g33_FaceTop'});
-  else api.shieldTop(s,t.p,card(t.source),null,t.g779Simultaneous?{count:t.n}:undefined);
+  else api.shieldTop(s,t.p,card(t.source),null,t.g779Simultaneous?{count:t.n}:t.stackNext?{stackNext:true}:undefined);
   break;
  case'g34_Ragnarok':{
   const moved=api.moveShields(s,t.p,own.shields.map(api.shieldGroup),'grave');
@@ -5531,6 +5531,10 @@ export function createSixPhotoRules(api){
   const remaining501=[];for(const r of s.g501EndDelays||[])if(!r.ownEnd||r.p===s.active)out.push({player:r.p,source:r.source,effect:'extended',task:task('g34_ResolveEnd501',r.p,r.source,{...r})});else remaining501.push(r);s.g501EndDelays=remaining501;for(const t of s.g484BreakEnds||[])if(t.turn===s.turn)out.push({player:t.p,source:t.source,uid:t.uid,effect:'extended',task:task('g34_Sequence',t.p,t.source,{uid:t.uid,incarnation:t.incarnation,defs:[E('BreakReturn484')]})});s.g484BreakEnds=[];for(const t of s.g408EndUntaps||[])if(t.turn===s.turn)out.push({player:t.p,source:t.source,uid:t.g399Attacker.uid,effect:'extended',task:task('g34_AttackUntap408',t.p,t.source,{g399Attacker:t.g399Attacker})});s.g408EndUntaps=[];for(const p of[0,1]){const add=(x,defs,source=x.cardId)=>out.push({player:p,uid:x.uid,source,effect:'extended',task:task('g34_Sequence',p,source,{uid:x.uid,incarnation:x.incarnation||0,defs})});for(const x of s.players[p].battle){if(x.g34Delayed?.turn===s.turn){const d=x.g34Delayed,controller=d.controller??p,source=d.source||x.cardId;out.push({player:controller,uid:x.uid,source,effect:'extended',task:task('g34_DelayedMove532',controller,source,{uid:x.uid,incarnation:x.incarnation||0,to:d.to})});}if(api.ignored(s,x))continue;const r=card(x).g34Role;if(!x.sealed&&effective(x,s).g474AnyEnd)add(x,effective(x,s).g474AnyEnd);
   const manaLeftEnd=card(x).g811ManaLeftEnd;
   if(manaLeftEnd&&s.g47ManaLeft?.[p]===s.turn)add(x,manaLeftEnd);
+  if(card(x).g1032ShieldAddedEnd&&!x.sealed&&s.g159ShieldAddedTurns?.[p]===s.turn){
+   const defs=effective(x,s).g1032ShieldAddedEnd;
+   if(defs)add(x,defs);
+  }
   const ownShieldBreakEnd=card(x).g861OwnShieldBreakEnd;
   if(ownShieldBreakEnd&&!x.sealed&&!x.faceDown&&api.isCreature(s,x)&&(s.players[p].brokenThisTurn||0)>=ownShieldBreakEnd)
    add(x,[E('ShieldTop',{n:1})]);

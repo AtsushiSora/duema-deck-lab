@@ -563,7 +563,7 @@ function sendBattleCardToShield(s,p,uid,shield){if(!canAddShield(s,p))return;if(
 
 function deckRedirect(s,p=null){return (p!==null&&extra.manaRedirect(s,p))|| s.players.some(p=>p.battle.some(x=>effectiveCard(x,s).deckRedirect));}
 export function canAddShield(s,p){return s.active!==p||!s.players[1-p].battle.some(x=>effectiveCard(x,s).g39Fuujin);}
-function shieldTop(s,p,source,exLifeSource=null,{uid=null,faceUp=false,count=1}={}){
+function shieldTop(s,p,source,exLifeSource=null,{uid=null,faceUp=false,count=1,stackNext=false}={}){
  if(!canAddShield(s,p))return null;
  const own=s.players[p];
  const available=x=>![...(own.g39Protected||[]),...(own.g38Protected||[]),...(own.g36Protected||[]),...(own.g34Protected||[]),...(own.g33Protected||[]),...(own.g29Protected||[]),...(own.g28Protected||[]),...(own.g27Protected||[]),...(own.g13Protected||[]),...(own.g4Protected||[]),...(own.g8Protected||[]),...(own.g14Protected||[]),...(own.g25Protected||[]),...(own.g18Protected||[]),...(own.g10Protected||[]),...(own.g17Protected||[]),...(own.g3Protected||[]),...(own.g2Protected||[]),...(own.g21Protected||[]),...(own.g19Reveals||[]),...(own.g7Reveals||[]),...(own.g12Reveals||[])].includes(x.uid);
@@ -589,7 +589,18 @@ function shieldTop(s,p,source,exLifeSource=null,{uid=null,faceUp=false,count=1}=
   extra.shieldAdded(s,p,shield);
   for(const c of own.battle)if(effectiveCard(c,s).shieldEntryTapLock)enqueueEffect(s,p,{uid:c.uid,source:c.cardId,effect:'shieldEntryTapLock'});
  }
- deckCheck(s,p);return shields[0]??null;
+ deckCheck(s,p);
+ const first=shields[0];
+ if(stackNext&&first&&s.winner===null){
+  const next=takeDeckTop(s,p);
+  if(next){
+   clearBattleState(next,'shields');
+   addShieldCard(s,p,first.uid,next,{faceUp:false});
+   log(s,p,'shieldAdd',`${source.name}で山札の上から1枚を新しいシールドに重ねる（内容は非公開）`,{cardId:source.id});
+  }
+  deckCheck(s,p);
+ }
+ return first??null;
 }
 function creatureCapReached616(s,p,c,pendingEntries=0){
  if((s.players[p].enteredThisTurn||0)+pendingEntries<2)return false;

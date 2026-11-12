@@ -2467,6 +2467,32 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1032&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'&&f.civilizationText==='光'){
+  const text=normalize(f.abilityText),placed='自分のシールドゾーンにカードが置かれた時';
+  const blocker='ブロッカーブロッカー';
+  const blockerReminder='(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+  if(f.name==='青守銀 アドマニ'&&f.cost===5&&f.race==='メタリカ'&&text===blocker+blockerReminder+
+   'このクリーチャーは相手プレイヤーを攻撃できない。'+placed+'このクリーチャーを自分の手札からバトルゾーンに出してもよい。')
+   return {blocker:true,noPlayerAttack:true,g1031ShieldHandEntry:true};
+  if(f.name==='封印の精霊龍 ヴァルハラ・パラディン'&&f.cost===9&&f.race==='エンジェル・コマンド・ドラゴン'&&text===blocker+
+   'このクリーチャーをバトルゾーンに出した時自分の山札の上から1枚目を裏向きのまま新しいシールドとして自分のシールドゾーンに加えてもよい。'+
+   placed+'バトルゾーンにある相手のクリーチャーを1体選びタップしてもよい。そのクリーチャーは次の相手のターンのはじめにアンタップされない。W・ブレイカー')
+   return {blocker:true,breaker:2,effect:'sixPhoto',
+    g34Tasks:[{op:'Offer',title:'山札の上から1枚を新しいシールドに置く？',defs:[{op:'ShieldTop',n:1}]}],
+    g918ShieldAdded:[{op:'Target',optional:true,tap:true,lock:true}]};
+  if(f.name==='驚異的終斗 アレキサンドライト'&&f.cost===4&&f.race==='オラクル・セレス/エンジェル・コマンド'&&
+   ['の','にある'].some(mana=>text==='このクリーチャーが出た時自分の山札の上から1枚目をシールド化しその後カードを1枚引く。'+
+    '各ターンの終わりにこのターン自分のシールドゾーンにカードが置かれていれば自分のマナゾーン'+mana+
+    'カードを1枚裏向きにしてもよい。(マナゾーンにある裏向きのカードはマナの数字が1の無色カードとして扱う。その持ち主はそれをいつでも見てもよい)'))
+   return {effect:'sixPhoto',g34Tasks:[{op:'ShieldTop',n:1},{op:'Draw',n:1}],g1032ShieldAddedEnd:[{op:'ManaDown426'}]};
+  if(f.name==='白騎士の精霊ホワイト・ウィズダム'&&f.cost===11&&f.race==='エンジェル・コマンド'&&
+   ['','(このクリーチャーはシールドを3つブレイクする)'].some((breakerReminder,i)=>text===blocker+(i?blockerReminder:'')+'T・ブレイカー'+breakerReminder+
+    'このクリーチャーが出た時自分の山札の上から1枚目をシールド化してもよい。そうしたら自分の山札の上から1枚目をそのシールドの上に裏向きで置く。(そのシールドの束は1つと数える)'+
+    placed+'相手のクリーチャーを1体選びタップする。そのクリーチャーは次の相手のターンのはじめにアンタップしない。'))
+   return {blocker:true,breaker:3,effect:'sixPhoto',
+    g34Tasks:[{op:'Offer',title:'山札の上から2枚を1つのシールドに置く？',defs:[{op:'ShieldTop',n:1,stackNext:true}]}],
+    g918ShieldAdded:[{op:'Target',tap:true,lock:true}]};
+ }
  if(phase>=1031&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'&&
   f.civilizationText==='光'&&f.race==='メタリカ'){
   const text=normalize(f.abilityText),placed='自分のシールドゾーンにカードが置かれた時';
