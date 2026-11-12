@@ -1,0 +1,298 @@
+{
+  "phase": 1054,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7113,
+  "description": "文明ごとのマナ選択とアンタップ制限、条件付きS・トリガー、スーパー・S・トリガーを照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/45268/",
+    "https://dm.takaratomy.co.jp/rule/qa/45129/",
+    "https://dm.takaratomy.co.jp/rule/qa/44618/",
+    "https://dm.takaratomy.co.jp/rule/qa/44603/",
+    "https://dm.takaratomy.co.jp/rule/qa/44214/",
+    "https://dm.takaratomy.co.jp/rule/qa/31533/",
+    "https://dm.takaratomy.co.jp/rule/qa/33524/"
+  ],
+  "cards": [
+    {
+      "id": "dmr17-s08",
+      "name": "メガ・マナロック・ドラゴン",
+      "faces": [
+        {
+          "name": "メガ・マナロック・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、相手のマナゾーンから光、水、闇、火、自然のカードをそれぞれ１枚ずつ選び、タップする。次の相手のターンのはじめに、それらのカードはアンタップしない。",
+          "race": "メガ・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-s08",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-s08.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "breaker": 2,
+        "g34Tasks": [
+          {
+            "op": "ManaColorsLock1054"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "ManaColorsLock1054"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "cce548c0be9092fc6ebbb3e4774ba8bc9636feec3f9330041b7484f65d3527f0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx11-020",
+      "name": "プリズン・スパーク",
+      "faces": [
+        {
+          "name": "プリズン・スパーク",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "バトルゾーンに自分の光のデーモン・コマンドがあれば、この呪文は「S・トリガー」を得る。\nバトルゾーンにある相手のクリーチャーをすべてタップする。\n自分のターン中にこの呪文を唱えた場合、バトルゾーンにある相手のクリーチャーはすべて、次の相手のターンのはじめにアンタップされない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-020",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx11-020.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g876ShieldTriggerCondition": {
+          "creature": true,
+          "color": "光",
+          "race": "デーモン・コマンド"
+        },
+        "g34Tasks": [
+          {
+            "op": "LockUntap606",
+            "g1019Tap": true,
+            "g1054OwnTurnLock": true,
+            "spell": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "14915d817441e9d4dfa2d6959a66cc0d4c627f2c0b94e350d97482815f0f934f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp03-014",
+      "name": "オヴィデンス・メーザー",
+      "faces": [
+        {
+          "name": "オヴィデンス・メーザー",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スーパー・S・トリガー スーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB 能力を与える）\n相手のクリーチャーを３体選び、タップする。\nxB 相手のクリーチャーは、次の相手のターンのはじめにアンタップしない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-014",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-014.jpg",
+      "spec": {
+        "superTrigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": 3,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "title": "タップする相手のクリーチャーを3体選ぶ"
+          }
+        ],
+        "g437Super": [
+          {
+            "op": "LockUntap606",
+            "spell": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "42e03f1038df9a41b624ae33cc072cec530a6abffc1101e8f33694aa6efa0cd7",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24bd1-007",
+      "name": "メガ・マナロック・ドラゴン",
+      "faces": [
+        {
+          "name": "メガ・マナロック・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが出た時または攻撃する時、相手のマナゾーンからカードを各文明１枚ずつ選び、タップする。次の相手のターンのはじめに、それらのカードはアンタップしない。",
+          "race": "メガ・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd1-007",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd1-007.jpg",
+      "canonicalId": "dmr17-s08",
+      "spec": {
+        "effect": "sixPhoto",
+        "breaker": 2,
+        "g34Tasks": [
+          {
+            "op": "ManaColorsLock1054"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "ManaColorsLock1054"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "e6f72172fabd142b352c9110131de354038d8030385d4ae705c09aae53a01150",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex2-ChoG006",
+      "name": "メガ・マナロック・ドラゴン",
+      "faces": [
+        {
+          "name": "メガ・マナロック・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが出た時または攻撃する時、相手のマナゾーンからカードを各文明１枚ずつ選び、タップする。次の相手のターンのはじめに、それらのカードはアンタップしない。",
+          "race": "メガ・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-ChoG006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex2-ChoG006.jpg",
+      "canonicalId": "dmr17-s08",
+      "spec": {
+        "effect": "sixPhoto",
+        "breaker": 2,
+        "g34Tasks": [
+          {
+            "op": "ManaColorsLock1054"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "ManaColorsLock1054"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "5536f943f9dc9c835248998ab134b41893b7b4e20c59106fcb68a5d4b94799ab",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmart06-004",
+      "name": "メガ・マナロック・ドラゴン",
+      "faces": [
+        {
+          "name": "メガ・マナロック・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが出た時または攻撃する時、相手のマナゾーンから光、水、闇、火、自然のカードをそれぞれ１枚ずつ選び、タップする。次の相手のターンのはじめに、それらのカードはアンタップしない。",
+          "race": "メガ・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmart06-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmart06-004.jpg",
+      "canonicalId": "dmr17-s08",
+      "spec": {
+        "effect": "sixPhoto",
+        "breaker": 2,
+        "g34Tasks": [
+          {
+            "op": "ManaColorsLock1054"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "ManaColorsLock1054"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "dd394b74a76cb8ad9d1630d7772318f786a64d72bf6b04a312e0c3e2e8702289",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr17-s08": 1,
+      "dmx11-020": 4,
+      "dmrp03-014": 4,
+      "dm24bd1-007": 1,
+      "dm23ex2-ChoG006": 1,
+      "dmart06-004": 1
+    }
+  }
+}

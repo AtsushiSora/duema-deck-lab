@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7113,
-  "pendingNames": 4714,
-  "phase": 1053,
+  "supportedNames": 7116,
+  "pendingNames": 4711,
+  "phase": 1054,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2701,
+    "クリーチャー": 2700,
     "NEOクリーチャー": 152,
-    "呪文": 607,
+    "呪文": 605,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 57,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3275,
+    "未対応の能力文": 3273,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -235,7 +235,7 @@
     "未対応のD2フィールド能力": 43,
     "複雑な進化条件": 13,
     "未対応のスリリング・スリー効果": 2,
-    "未対応のスーパー・S・トリガー能力": 15,
+    "未対応のスーパー・S・トリガー能力": 14,
     "再録サバイバーの共有処理が未対応": 5,
     "未対応の選択能力": 16,
     "コスト・文明の個別処理が必要": 3,
@@ -396,12 +396,12 @@
         "name": "ウラNICE"
       },
       {
-        "id": "dmrp03-014",
-        "name": "オヴィデンス・メーザー"
-      },
-      {
         "id": "dmrp03-023",
         "name": "ジバボン３兄弟"
+      },
+      {
+        "id": "dmrp06-051",
+        "name": "スクラッパー×スクラッパー"
       }
     ],
     "再録サバイバーの共有処理が未対応": [
@@ -205991,17 +205991,102 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1054,
+      "baseCommit": "2835582c",
+      "cards": [
+        {
+          "id": "dmr17-s08",
+          "name": "メガ・マナロック・ドラゴン"
+        },
+        {
+          "id": "dmx11-020",
+          "name": "プリズン・スパーク"
+        },
+        {
+          "id": "dmrp03-014",
+          "name": "オヴィデンス・メーザー"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm24bd1-007",
+          "canonicalId": "dmr17-s08"
+        },
+        {
+          "id": "dm23ex2-ChoG006",
+          "canonicalId": "dmr17-s08"
+        },
+        {
+          "id": "dmart06-004",
+          "canonicalId": "dmr17-s08"
+        }
+      ],
+      "supportedNames": 7116,
+      "pendingNames": 4711,
+      "verification": {
+        "focusedPassed": 10,
+        "regressionPassed": 125,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 6,
+        "scope": "公式3種類と再録3版の能力全文・基本情報・マナ数・画像・現行殿堂レギュレーションを照合。メガ・マナロック・ドラゴンは再録IDを正規IDに集約して1枚制限を維持し、登場時と攻撃時の文明別選択、1枚の多色を重複選択しないこと、選択可能な最大数、タップ済みマナ、裏向きカードと文明変更、次の相手ターン開始時だけの制限、W・ブレイカー、選択中の保存復元を確認。プリズン・スパークは光のデーモン・コマンドを条件とするS・トリガー、相手全体のタップ、自ターンに唱えた場合だけのアンタップ制限を確認。オヴィデンス・メーザーは3体の必須選択と不足時の処理、スーパー・S・トリガーでの相手全体のアンタップ制限、通常のトリガーと手札からの使用での処理を確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/45268/",
+          "https://dm.takaratomy.co.jp/rule/qa/45129/",
+          "https://dm.takaratomy.co.jp/rule/qa/44618/",
+          "https://dm.takaratomy.co.jp/rule/qa/44603/",
+          "https://dm.takaratomy.co.jp/rule/qa/44214/",
+          "https://dm.takaratomy.co.jp/rule/qa/31533/",
+          "https://dm.takaratomy.co.jp/rule/qa/33524/"
+        ],
+        "regressionFiles": [
+          "tests/standard437-effects.test.mjs",
+          "tests/standard606-effects.test.mjs",
+          "tests/standard773-effects.test.mjs",
+          "tests/standard876-effects.test.mjs",
+          "tests/standard1051-effects.test.mjs",
+          "tests/standard1053-effects.test.mjs"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。",
+        "logs": {
+          "official": "/tmp/duema-phase-1054.u5xQVBBP/official.log",
+          "officialImages": "/tmp/duema-phase-1054.u5xQVBBP/sources.log",
+          "focused": "/tmp/duema-phase-1054.u5xQVBBP/focused.log",
+          "regression": "/tmp/duema-phase-1054.u5xQVBBP/regression.log",
+          "check": "/tmp/duema-phase-1054.u5xQVBBP/check.log",
+          "audit": "/tmp/duema-phase-1054.u5xQVBBP/audit.log",
+          "imageIndex": "/tmp/duema-phase-1054.u5xQVBBP/images.log",
+          "count": "/tmp/duema-phase-1054.u5xQVBBP/count.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dm25rp2-053",
+          "name": "楽園樹",
+          "reason": "公式能力全文・基本情報・画像・単一収録を照合。NEO進化で出た時と場で進化元になる直前の誘発を検証し、進化ではなくカードの下に置かれた場合を除外する処理を確認するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-053",
+            "https://dm.takaratomy.co.jp/rule/qa/47363/",
+            "https://dm.takaratomy.co.jp/rule/qa/48925/"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1053,
-    "nextPhase": 1054,
+    "lastVerifiedPhase": 1054,
+    "nextPhase": 1055,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dmr17-s08",
-        "name": "メガ・マナロック・ドラゴン",
-        "reason": "次回候補。公式本文・画像・使用制限・再録を照合し、登場時と攻撃時のマナ選択で、複数文明を持つカードとタップ済みのカードの扱いを確認する。"
+        "id": "dm25rp2-053",
+        "name": "楽園樹",
+        "reason": "公式能力全文・基本情報・画像・単一収録を照合。NEO進化で出た時と場で進化元になる直前の誘発を検証し、進化ではなくカードの下に置かれた場合を除外する処理を確認するまで保留。"
       },
       {
         "id": "dmrp03-011",
@@ -206154,7 +206239,8 @@
       "DMR-20版の本文・基本情報・画像を確認。破壊置換で手札の同名カードを出せる条件と登場制限を確認するまで保留。",
       "Phase 1036で、盾束の一部だけを移動しても世界のY チャクラ・デル・フィンのZラッシュが発動する既存不具合を変更前と今回の両方で再現。QA 48472と回帰範囲は同バッチのexistingIssuesを参照。",
       "公式能力全文・基本情報・画像・単一収録を照合。既存の手札破棄処理を利用できるが、オレガ・オーラの使用に伴う既存GRへの装着、新規GR召喚後の装着、GR召喚が置換された場合の装着不成立を一通り検証する必要があるため保留。",
-      "公式能力全文・基本情報・画像・単一収録を照合。バトルでの破壊をタップに置換する際、EXライフなど同じイベントに適用できる置換との競合や、効果によるバトルでも次のアンタップを止めることを確認するまで保留。"
+      "公式能力全文・基本情報・画像・単一収録を照合。バトルでの破壊をタップに置換する際、EXライフなど同じイベントに適用できる置換との競合や、効果によるバトルでも次のアンタップを止めることを確認するまで保留。",
+      "公式能力全文・基本情報・画像・単一収録を照合。NEO進化で出た時と場で進化元になる直前の誘発を検証し、進化ではなくカードの下に置かれた場合を除外する処理を確認するまで保留。"
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",

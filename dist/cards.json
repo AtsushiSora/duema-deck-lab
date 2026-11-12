@@ -211450,15 +211450,118 @@
       },
       "supportBatch": "phase-1053",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-s08",
+      "name": "メガ・マナロック・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "メガ・コマンド・ドラゴン",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、相手のマナゾーンから光、水、闇、火、自然のカードをそれぞれ１枚ずつ選び、タップする。次の相手のターンのはじめに、それらのカードはアンタップしない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-s08",
+      "limit": 1,
+      "effect": "sixPhoto",
+      "breaker": 2,
+      "g34Tasks": [
+        {
+          "op": "ManaColorsLock1054"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "ManaColorsLock1054"
+        }
+      ],
+      "supportBatch": "phase-1054",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx11-020",
+      "name": "プリズン・スパーク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンに自分の光のデーモン・コマンドがあれば、この呪文は「S・トリガー」を得る。\nバトルゾーンにある相手のクリーチャーをすべてタップする。\n自分のターン中にこの呪文を唱えた場合、バトルゾーンにある相手のクリーチャーはすべて、次の相手のターンのはじめにアンタップされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-020",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g876ShieldTriggerCondition": {
+        "creature": true,
+        "color": "光",
+        "race": "デーモン・コマンド"
+      },
+      "g34Tasks": [
+        {
+          "op": "LockUntap606",
+          "g1019Tap": true,
+          "g1054OwnTurnLock": true,
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1054",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-014",
+      "name": "オヴィデンス・メーザー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "スーパー・S・トリガー スーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB 能力を与える）\n相手のクリーチャーを３体選び、タップする。\nxB 相手のクリーチャーは、次の相手のターンのはじめにアンタップしない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-014",
+      "limit": 4,
+      "superTrigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "opponent",
+          "n": 3,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g193Tap": true,
+          "title": "タップする相手のクリーチャーを3体選ぶ"
+        }
+      ],
+      "g437Super": [
+        {
+          "op": "LockUntap606",
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1054",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1053,
+    "phase": 1054,
     "checkedAt": "2026-11-13",
-    "baseCount": 7110,
+    "baseCount": 7113,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7113,
+    "totalCount": 7116,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -230383,6 +230486,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7110,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1053,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7110,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7113,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

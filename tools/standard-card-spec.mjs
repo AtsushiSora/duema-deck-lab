@@ -2467,6 +2467,29 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1054&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const manaLock='次の相手のターンのはじめにそれらのカードはアンタップしない。';
+  if(f.name==='メガ・マナロック・ドラゴン'&&f.typeText==='クリーチャー'&&f.civilizationText==='火'&&f.cost===6&&[
+   'W・ブレイカーこのクリーチャーがバトルゾーンに出た時または攻撃する時相手のマナゾーンから光水闇火自然のカードをそれぞれ1枚ずつ選びタップする。',
+   'W・ブレイカーこのクリーチャーが出た時または攻撃する時相手のマナゾーンから光水闇火自然のカードをそれぞれ1枚ずつ選びタップする。',
+   'W・ブレイカーこのクリーチャーが出た時または攻撃する時相手のマナゾーンからカードを各文明1枚ずつ選びタップする。'
+  ].some(body=>text===body+manaLock)){
+   const lock={op:'ManaColorsLock1054'};
+   return {effect:'sixPhoto',breaker:2,g34Tasks:[lock],g34Attack:[lock]};
+  }
+  if(f.name==='プリズン・スパーク'&&f.typeText==='呪文'&&f.civilizationText==='光'&&f.cost===7&&text===
+   'バトルゾーンに自分の光のデーモン・コマンドがあればこの呪文は「S・トリガー」を得る。'+
+   'バトルゾーンにある相手のクリーチャーをすべてタップする。自分のターン中にこの呪文を唱えた場合バトルゾーンにある相手のクリーチャーはすべて次の相手のターンのはじめにアンタップされない。')
+   return {effect:'sixPhoto',g876ShieldTriggerCondition:{creature:true,color:'光',race:'デーモン・コマンド'},
+    g34Tasks:[{op:'LockUntap606',g1019Tap:true,g1054OwnTurnLock:true,spell:true}]};
+  if(f.name==='オヴィデンス・メーザー'&&f.typeText==='呪文'&&f.civilizationText==='光'&&f.cost===4&&text===
+   'スーパー・S・トリガースーパー・S・トリガー(この呪文を自分のシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい。その時自分のシールドが1つもなければこの呪文にxB能力を与える)'+
+   '相手のクリーチャーを3体選びタップする。xB相手のクリーチャーは次の相手のターンのはじめにアンタップしない。')
+   return {superTrigger:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'battle',owner:'opponent',n:3,
+    filter:{creature:true},g173Targets:true,g193Select:true,g193Tap:true,title:'タップする相手のクリーチャーを3体選ぶ'}],
+    g437Super:[{op:'LockUntap606',spell:true}]};
+ }
  if(phase>=1053&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText),freeze={op:'LockUntap606',g1019Tap:true};
   if(f.name==='空間の守護者ジル・ハイク'&&f.typeText==='クリーチャー'&&f.civilizationText==='光'&&f.cost===3&&text===

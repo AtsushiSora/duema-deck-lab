@@ -11,6 +11,19 @@ export function createSixPhotoRules(api){
  const attackConditionReading481=new WeakSet(),playerStopReading567=new WeakSet();
  const shieldAdds918=new WeakMap();
  const civilizations805=['光','水','闇','火','自然'];
+ function manaColorMatchCount1054(rows,colors){
+  const assigned=new Map();
+  function assign(color,seen){
+   return rows.some(({x,civilizations})=>{
+    if(!civilizations.includes(color)||seen.has(x.uid))return false;
+    seen.add(x.uid);
+    if(assigned.has(x.uid)&&!assign(assigned.get(x.uid),seen))return false;
+    assigned.set(x.uid,color);
+    return true;
+   });
+  }
+  return colors.filter(color=>assign(color,new Set())).length;
+ }
  function creatureCivilizations805(s){
   return [0,1].flatMap(p=>creatures(s,p).filter(x=>!x.sealed).map(x=>({
    p,x,cs:colors(effective(x,s,true)).filter(c=>civilizations805.includes(c))
@@ -1974,6 +1987,28 @@ export function createSixPhotoRules(api){
   choice(s,t,'次のターン開始時にアンタップさせない相手のマナを1枚選ぶ',opp.mana.map((y,i)=>
    opt(y.faceDown?'裏向きのマナ '+(i+1):card(y).name,y.uid,y.tapped?10:0,y.faceDown?null:y.cardId)));
   break;
+ case'g34_ManaColorsLock1054':{
+  const p=1-t.p,selected=t.selected||[],pending=t.remainingColors||civilizations805;
+  const rows=opp.mana.flatMap((x,i)=>selected.includes(x.uid)?[]:[{x,i,civilizations:
+   api.manaColors(x.faceDown?{civilizations:[],civ:'ゼロ'}:api.zoneCard(s,p,x,'mana'),s,p)}]);
+  const first=pending.findIndex(color=>rows.some(row=>row.civilizations.includes(color)));
+  if(first<0){
+   for(const x of opp.mana)if(selected.includes(x.uid)){
+    x.tapped=true;
+    startUntapLock210(t,x);
+   }
+   break;
+  }
+  const [color,...rest]=pending.slice(first);
+  // Each physical card can fill one slot. Keep choices that allow the full number of assignments.
+  const needed=manaColorMatchCount1054(rows,[color,...rest])-1;
+  const eligible=rows.filter(row=>row.civilizations.includes(color)&&
+   manaColorMatchCount1054(rows.filter(other=>other!==row),rest)===needed);
+  choice(s,{...t,remainingColors:rest},'タップする相手の'+color+'のマナを1枚選ぶ',
+   eligible.map(({x,i})=>opt(x.faceDown?'裏向きのマナ '+(i+1):card(x).name,x.uid,
+    x.skipUntap?0:x.tapped?8:16,x.faceDown?null:x.cardId)));
+  break;
+ }
  case'g34_Nocturne732':{
   const names=new Map();
   for(const c of api.allCards().filter(c=>c.type!=='seal'&&c.type!=='unknown'))for(const face of faces(c)){
@@ -3547,7 +3582,7 @@ export function createSixPhotoRules(api){
     if(t.zone==='mana')y.tapped=true;
     else api.tap(s,1-t.p,y);
    }
-   startUntapLock210(t,y);
+   if(!t.g1054OwnTurnLock||s.active===t.p)startUntapLock210(t,y);
   }
   break;
  }
@@ -4168,6 +4203,7 @@ export function createSixPhotoRules(api){
   if(y)y.skipUntap=true;
   break;
  }
+ case'g34_ManaColorsLock1054':put(s,{...t,selected:[...(t.selected||[]),v]});break;
  case'g34_BlindHandMana675':{
   const y=s.players[1-t.p].hand[v];
   if(y&&zoneMove(s,1-t.p,'hand',y.uid,'mana',{g182HandMana:true})){
