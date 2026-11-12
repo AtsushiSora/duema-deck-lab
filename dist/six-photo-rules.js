@@ -1647,6 +1647,12 @@ export function createSixPhotoRules(api){
    applyGrant(s,t,y);
   }
   break;
+ case'g34_CreatureAttackTarget1021':{
+  const player=1-t.p;
+  (s.extLimits??=[]).push({kind:'g1021CreatureAttackTarget',player,startsPlayer:player,active:false,
+   expires:'end',who:player,spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});
+  break;
+ }
  case'g34_CountPower561':start(s,t,countedPowerDefs561(s,t,t));break;
  case'g34_BattleBreak828':
   (s.extLimits??=[]).push({kind:'g828BattleBreak',player:t.p,source:t.source,turn:s.turn,expires:'end',who:s.active});
@@ -3291,8 +3297,9 @@ export function createSixPhotoRules(api){
   if(!counts||counts.length<2)return false;
   const shields=s.players[1-p].shields.length;
   choice(s,task('g34_GrantedBreaker633',p,x.cardId,{uid:x.uid}),'この攻撃で使うブレイカーを選ぶ',
-   counts.map(n=>opt(n===2?'W・ブレイカー':n==='∞'?(c.worldBreaker?'ワールド・ブレイカー':'∞ ブレイカー'):n+'枚をブレイクする',
-    n,Math.min(n==='∞'?Infinity:n,shields))));
+   counts.map(n=>opt(n==='world'?'ワールド・ブレイカー':n==='g'?'G・ブレイカー（攻撃の後、自分も全ブレイク）':
+    n===2?'W・ブレイカー':n==='∞'?(c.worldBreaker?'ワールド・ブレイカー':'∞ ブレイカー'):n+'枚をブレイクする',
+    n,n==='g'?shields-1:Math.min(n==='∞'||n==='world'?Infinity:n,shields))));
   return true;
  },
  noUntap(s,x){const p=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));return p>=0&&api.isCreature(s,x)&&!mecha(effective(x,s))&&(active(s,0,'shinGod').length||active(s,1,'shinGod').length)>0;},
