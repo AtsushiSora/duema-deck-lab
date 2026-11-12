@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7072,
-  "pendingNames": 4755,
-  "phase": 1040,
-  "added": 4,
+  "supportedNames": 7075,
+  "pendingNames": 4752,
+  "phase": 1041,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2726,
+    "クリーチャー": 2725,
     "NEOクリーチャー": 152,
-    "呪文": 619,
+    "呪文": 617,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 57,
@@ -225,8 +225,8 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 1208,
-    "未対応の能力文": 3312,
+    "複数面・特殊カードタイプまたは情報不足": 1207,
+    "未対応の能力文": 3310,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -204917,37 +204917,134 @@
           "reason": "公式カード本文・基本情報・画像を確認。相手の複数のクリーチャーがそのターン最初に同時登場した際のタップ対象を公式裁定で確認できず、既存の1体ずつの登場履歴では同時登場の扱いを検証できないため保留。"
         }
       ]
+    },
+    {
+      "phase": 1041,
+      "baseCommit": "7ba89ecb",
+      "cards": [
+        {
+          "id": "dm23ex3-058",
+          "name": "埋没のシダン オリーブオイル / 記憶喪失魔法 アブラカタブーラ"
+        },
+        {
+          "id": "dm23ex3-002",
+          "name": "黙示録の水晶"
+        },
+        {
+          "id": "dm24bd6-010",
+          "name": "「師よ、これが私の感謝の結晶だ！」"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm24bd6-017",
+          "name": "黙示録の水晶",
+          "canonicalId": "dm23ex3-002"
+        }
+      ],
+      "supportedNames": 7075,
+      "pendingNames": 4752,
+      "verification": {
+        "focusedPassed": 13,
+        "regressionPassed": 426,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 4,
+        "scope": "公式能力全文、基本情報、マナ数、画像、発売済み再録、現行殿堂レギュレーションを照合。オリーブオイルの無色マナ参照、任意の逐次ドロー、実行後の捨て札、呪文面の必須の裏向き化を検証。黙示録の水晶の呪文支払い時のみ適用する水晶ソウル3、無色を除いたコスト5以下のエレメントの一括移動と相手による順序指定、3ドローを検証。感謝の結晶のS・トリガー、エレメントを持ち主の山札の下に置く処理、両者のマナ選択と唱えた側による一括の裏向き化を検証。選択途中の保存復元を確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/42049/",
+          "https://dm.takaratomy.co.jp/rule/qa/45912/"
+        ],
+        "regressionFiles": [
+          "tests/standard203-effects.test.mjs",
+          "tests/standard426-effects.test.mjs",
+          "tests/standard434-effects.test.mjs",
+          "tests/standard545-effects.test.mjs",
+          "tests/standard582-effects.test.mjs",
+          "tests/standard584-effects.test.mjs",
+          "tests/standard590-effects.test.mjs",
+          "tests/standard994-effects.test.mjs",
+          "tests/standard1037-effects.test.mjs",
+          "tests/standard1038-effects.test.mjs",
+          "tests/standard1039-effects.test.mjs",
+          "tests/standard1040-effects.test.mjs"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。",
+        "logs": {
+          "official": "/tmp/duema-phase-1041.gpy3miq7/official.log",
+          "focused": "/tmp/duema-phase-1041.gpy3miq7/focused.log",
+          "regression": "/tmp/duema-phase-1041.gpy3miq7/regression.log",
+          "check": "/tmp/duema-phase-1041.gpy3miq7/check.log",
+          "audit": "/tmp/duema-phase-1041.gpy3miq7/audit.log",
+          "officialImages": "/tmp/duema-phase-1041.gpy3miq7/sources.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dm23ex3-018",
+          "name": "禁術のカルマ カレイル / フォビッド・水晶チャージャー",
+          "reason": "公式本文・基本情報・画像を照合し、DM24-BD6再録を確認。手札チャージ・効果による手札からの移動・山札や墓地・チャージャーからの移動を区別し、複数枚が同時に置かれた時の捨て札の誘発を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-018",
+            "https://dm.takaratomy.co.jp/rule/qa/42521/"
+          ]
+        },
+        {
+          "id": "dm23ex3-059",
+          "name": "終斗の親衛隊ペッパー",
+          "reason": "公式本文・基本情報・画像を照合。QA 44594に従い、水の呪文の解決前に手札から宣言し、解決後に水晶2枚の条件を確認して召喚する経路を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-059",
+            "https://dm.takaratomy.co.jp/rule/qa/44594/"
+          ]
+        }
+      ],
+      "pendingPrints": [
+        {
+          "canonicalId": "dm23ex3-002",
+          "name": "黙示録の水晶",
+          "edition": "DMART絆-02",
+          "sources": [
+            "https://dm.takaratomy.co.jp/product/kamiart18/",
+            "https://takaratomymall.jp/shop/g/g4904810070900/"
+          ],
+          "reason": "商品ページで再録画像を確認。発売予定は2027年1月下旬で、個別の公式カード検索IDは未確認。発売済みのDM24-BD6版は正規IDに紐づけ済み。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1040,
-    "nextPhase": 1041,
+    "lastVerifiedPhase": 1041,
+    "nextPhase": 1042,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm23ex3-058",
-        "name": "埋没のシダン オリーブオイル / 記憶喪失魔法 アブラカタブーラ",
-        "reason": "無色マナの枚数に応じた任意ドローと、実行した場合の捨て札を照合する。呪文面は裏向き化が任意ではないため既存の選択処理を確認する。"
-      },
-      {
-        "id": "dm23ex3-002",
-        "name": "黙示録の水晶",
-        "reason": "呪文の水晶ソウル3と、相手自身が条件に合うエレメントをすべて好きな順序で山札の下へ置く処理を照合する。"
+        "id": "dm23ex3-059",
+        "name": "終斗の親衛隊ペッパー",
+        "reason": "QA 44594に従う呪文解決前の手札からの使用宣言と、解決後の水晶2枚の判定を照合する。"
       },
       {
         "id": "dm23ex3-018",
         "name": "禁術のカルマ カレイル / フォビッド・水晶チャージャー",
-        "reason": "手札以外からのマナ配置の誘発範囲と、呪文面で選んだプレイヤーの山札の確認・任意の墓地移動・水晶チャージャーを照合する。"
+        "reason": "マナ配置元の識別、複数枚の同時移動、呪文面で選んだプレイヤーの非公開の山札確認、DM24-BD6再録の版番号を照合する。"
       },
       {
-        "id": "dm24bd6-010",
-        "name": "「師よ、これが私の感謝の結晶だ！」",
-        "reason": "山札下へのエレメント移動、各プレイヤーによる自分のマナの選択、まとめて裏向きにする任意処理を照合する。"
+        "id": "dm23ex3-010",
+        "name": "先導のクリス アジャリ",
+        "reason": "公式QA 44601に従うバトル勝利・シールドブレイクの置換と、スレイヤーの順序を照合する。"
       },
       {
-        "id": "dm24bd6-006",
-        "name": "偽りの希望 修羅丸「終斗」",
-        "reason": "各ターン最初の相手クリーチャーの同時登場に関する裁定と登場履歴の処理を確認できた場合に再検討する。"
+        "id": "dm23ex3-017",
+        "name": "Dの文殿 アルケミスト・ヒルズ",
+        "reason": "召喚・呪文詠唱の両方を監視するD2フィールドの任意ドローと、Dスイッチ後の手札・墓地の同時シャッフルを照合する。"
+      },
+      {
+        "id": "dm23ex3-011",
+        "name": "水晶転生",
+        "reason": "公式QA 45061に従い、選べない時と離脱置換、所有者の山札公開、登場制限を照合する。"
       }
     ],
     "steps": [

@@ -2467,6 +2467,27 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1041&&d?.status==='complete'){
+  const front=normalize(f.abilityText),twin=d.faces[1];
+  if(d.faces.length===2&&f.name==='埋没のシダン オリーブオイル'&&f.typeText==='クリーチャー'&&f.civilizationText==='水'&&f.cost===4&&f.race==='オラクル・セレス/グレートメカオー'&&front===
+   'このクリーチャーが出た時自分のマナゾーンにある無色カード1枚につきカードを1枚引いてもよい。そうしたら自分の手札を1枚捨てる。'&&
+   twin.name==='記憶喪失魔法 アブラカタブーラ'&&twin.typeText==='呪文'&&twin.civilizationText==='水'&&twin.cost===1&&normalize(twin.abilityText)===
+   '自分のマナゾーンのカードを1枚裏向きにする。(マナゾーンにある裏向きのカードはマナの数字が1の無色カードとして扱う。その持ち主はそれをいつでも見てもよい)')
+   return {effect:'sixPhoto',g34Tasks:[{op:'CountDraw',g1041ColorlessMana:true,optional:'each',after:[{op:'Discard',owner:'self',n:1}]}],
+    spellFace:{type:'spell',name:twin.name,cost:twin.cost,civ:twin.civilizationText,civilizations:twin.civilizations,race:twin.race,
+     effect:'sixPhoto',g34Tasks:[{op:'ManaDown426',required:true}]}};
+  if(d.faces.length===1&&f.name==='黙示録の水晶'&&f.typeText==='呪文'&&f.civilizationText==='ゼロ'&&f.cost===10&&f.race==='ゼニス'&&front===
+   '水晶ソウル3(この呪文を唱える時自分のマナゾーンにある裏向きのカードのマナの数字は3になる)'+
+   '相手は自身のコスト5以下の無色ではないエレメントをすべて好きな順序で山札の下に置く。カードを3枚引く。')
+   return {effect:'sixPhoto',g434CrystalSoul:3,g34Tasks:[
+    {op:'Sweep',to:'deck',toOwnerDeck:true,filter:{element:true,max:5},g1041Colored:true,g994OrderBottom:true},{op:'Draw',n:3}]};
+  if(d.faces.length===1&&f.name==='「師よ、これが私の感謝の結晶だ！」'&&f.typeText==='呪文'&&f.civilizationText==='闇'&&f.cost===7&&front===
+   'S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)'+
+   '相手プレイヤー1人につきその相手のエレメントを1つ選び持ち主の山札の下に置く。'+
+   '各プレイヤーは自身のマナゾーンにあるカードを1枚ずつ選ぶ。自分はそれらすべてを裏向きにしてもよい。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',element:true,spell:true,to:'deck',toOwnerDeck:true,filter:{element:true,faceUp:true},
+    g1041AfterNoTarget:true,after:[{op:'ManaDownEach1041'}],title:'山札の下に置く相手のエレメントを選ぶ'}]};
+ }
  if(phase>=1040&&d?.status==='complete'){
   const front=normalize(f.abilityText),trigger='S・トリガーS・トリガー';
   const twin=d.faces[1],crystalFour={g286FaceDownMana:4};

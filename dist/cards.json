@@ -209689,15 +209689,140 @@
       ],
       "supportBatch": "phase-1040",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-058",
+      "name": "埋没のシダン オリーブオイル / 記憶喪失魔法 アブラカタブーラ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "オラクル・セレス/グレートメカオー",
+      "text": "このクリーチャーが出た時、自分のマナゾーンにある無色カード１枚につき、カードを１枚引いてもよい。そうしたら、自分の手札を１枚捨てる。\n【呪文面】\n自分のマナゾーンのカードを１枚、裏向きにする。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-058",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "g1041ColorlessMana": true,
+          "optional": "each",
+          "after": [
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "記憶喪失魔法 アブラカタブーラ",
+        "cost": 1,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ManaDown426",
+            "required": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1041",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-002",
+      "name": "黙示録の水晶",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 10,
+      "power": 0,
+      "race": "ゼニス",
+      "text": "水晶ソウル３（この呪文を唱える時、自分のマナゾーンにある裏向きのカードのマナの数字は３になる）\n相手は、自身のコスト５以下の無色ではないエレメントをすべて、好きな順序で山札の下に置く。\nカードを３枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-002",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g434CrystalSoul": 3,
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "to": "deck",
+          "toOwnerDeck": true,
+          "filter": {
+            "element": true,
+            "max": 5
+          },
+          "g1041Colored": true,
+          "g994OrderBottom": true
+        },
+        {
+          "op": "Draw",
+          "n": 3
+        }
+      ],
+      "supportBatch": "phase-1041",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24bd6-010",
+      "name": "「師よ、これが私の感謝の結晶だ！」",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手プレイヤー１人につき、その相手のエレメントを１つ選び、持ち主の山札の下に置く。\n各プレイヤーは自身のマナゾーンにあるカードを１枚ずつ選ぶ。自分はそれらすべてを裏向きにしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd6-010",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "element": true,
+          "spell": true,
+          "to": "deck",
+          "toOwnerDeck": true,
+          "filter": {
+            "element": true,
+            "faceUp": true
+          },
+          "g1041AfterNoTarget": true,
+          "after": [
+            {
+              "op": "ManaDownEach1041"
+            }
+          ],
+          "title": "山札の下に置く相手のエレメントを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1041",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1040,
+    "phase": 1041,
     "checkedAt": "2026-11-12",
-    "baseCount": 7068,
-    "newEffectCards": 4,
+    "baseCount": 7072,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7072,
+    "totalCount": 7075,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -228466,6 +228591,18 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 7068,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1040,
+        "checkedAt": "2026-11-12",
+        "baseCount": 7068,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7072,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
