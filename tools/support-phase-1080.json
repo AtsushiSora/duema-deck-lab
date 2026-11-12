@@ -1,0 +1,243 @@
+{
+  "phase": 1080,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7204,
+  "description": "非ブロック時のクロスギアのシールド化と手札戻し、火のマナ進化とタップ中のクリーチャー破壊を照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/43461/",
+    "https://dm.takaratomy.co.jp/rule/qa/43464/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37400/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37393/",
+    "https://dm.takaratomy.co.jp/coverage/dmscs06b_jklapup/",
+    "https://dm.takaratomy.co.jp/rule/qa/48740/",
+    "https://dm.takaratomy.co.jp/rule/qa/45561/"
+  ],
+  "cards": [
+    {
+      "id": "dm14-s02",
+      "name": "グロリアス・ヘブンズアーム",
+      "faces": [
+        {
+          "name": "グロリアス・ヘブンズアーム",
+          "typeText": "クロスギア",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "クロスギア:このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーのパワーは+3000される。\nこれをクロスしたクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、自分の山札の上から１枚目を裏向きのまま自分のシールドに加える。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-s02",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-s02.jpg",
+      "spec": {
+        "type": "gear",
+        "g123CrossPower": 3000,
+        "g1080CrossUnblocked": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "384e77d7faf8cf395311cddb7653c8662c5f4c691981a932477b6073ec311f83",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-022",
+      "name": "タイフーン・バズーカ",
+      "faces": [
+        {
+          "name": "タイフーン・バズーカ",
+          "typeText": "クロスギア",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "クロスギア:このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、クリーチャーを１体、バトルゾーンから持ち主の手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-022",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-022.jpg",
+      "spec": {
+        "type": "gear",
+        "g1080CrossUnblocked": [
+          {
+            "op": "Target",
+            "to": "hand",
+            "optional": true,
+            "anyOwner": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "cbc95b3e75cb3f9646498718915b431b7270cc43b7e341b00489789bad2690d0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm28-007",
+      "name": "ブレードグレンオー・マックス",
+      "faces": [
+        {
+          "name": "ブレードグレンオー・マックス",
+          "typeText": "進化クリーチャー(マナ進化)",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナ進化-火のクリーチャーを１体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、相手のタップされているパワー3000以下のクリーチャーを１体、破壊する。",
+          "race": "フレイム・モンスター",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-007",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-007.jpg",
+      "spec": {
+        "manaEvolution": true,
+        "evolution": {
+          "civilization": "火"
+        },
+        "g1076UnblockedWatch": {
+          "self": true,
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "destroy": true,
+              "filter": {
+                "tapped": true,
+                "maxPower": 3000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "4d57278c786c7ef99c283f28d24a667e6c890830416104dc57fab7320721a0ce",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx14-032",
+      "name": "ブレードグレンオー・マックス",
+      "faces": [
+        {
+          "name": "ブレードグレンオー・マックス",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナ進化-火のクリーチャーを１体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、相手のタップされているパワー3000以下のクリーチャーを１体、破壊する。",
+          "race": "フレイム・モンスター",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-032",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx14-032.jpg",
+      "canonicalId": "dm28-007",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "25e69e14db0c25e8ac8431250b6e66249c13ddfa4ba47737bf34449961e01d96",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp3-TR08",
+      "name": "ブレードグレンオー・マックス",
+      "faces": [
+        {
+          "name": "ブレードグレンオー・マックス",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナ進化：火のクリーチャーを１体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつに出す。\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、相手のタップしているパワー3000以下のクリーチャーを１体選び、破壊する。",
+          "race": "フレイム・モンスター",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-TR08",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-TR08.jpg",
+      "canonicalId": "dm28-007",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "3de15cdc5e8e002e2ba3350d10f6d4909573ccf9f06e978cbee6f4826dba8f4d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-rp3TR8",
+      "name": "ブレードグレンオー・マックス",
+      "faces": [
+        {
+          "name": "ブレードグレンオー・マックス",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナ進化：火のクリーチャーを１体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつに出す。\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、相手のタップしているパワー3000以下のクリーチャーを１体選び、破壊する。",
+          "race": "フレイム・モンスター",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp3TR8",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp3TR8.jpg",
+      "canonicalId": "dm28-007",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "a08aed1f97e63ad96068dc7a85e361e6f4b8fb94227af32d50fc57ba3acb4cdf",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm14-s02": 4,
+      "dm14-022": 4,
+      "dm28-007": 4,
+      "dmx14-032": 4,
+      "dm24rp3-TR08": 4,
+      "dm24ex3-rp3TR8": 4
+    }
+  }
+}

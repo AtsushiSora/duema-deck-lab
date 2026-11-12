@@ -1901,7 +1901,7 @@ function resolveAttack(s,blockUid){
   extra.ninjaWindow(s,s.active);return;
  }
  if(!s.attack.g482Unblocked){
-  const triggered=extra.six.unblocked482(s,s.active,a);
+  const triggered=extra.unblockedAttack(s,s.active,a);
   if(s.attack.target==='player'||triggered)s.attack.g482Unblocked=true;
   if(triggered){s.attack.stage='unblocked482';return;}
  }

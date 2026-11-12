@@ -215163,15 +215163,103 @@
       "breaker": 2,
       "supportBatch": "phase-1079",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm14-s02",
+      "name": "グロリアス・ヘブンズアーム",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "クロスギア:このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーのパワーは+3000される。\nこれをクロスしたクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、自分の山札の上から１枚目を裏向きのまま自分のシールドに加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-s02",
+      "limit": 4,
+      "g123CrossPower": 3000,
+      "g1080CrossUnblocked": [
+        {
+          "op": "ShieldTop",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1080",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm14-022",
+      "name": "タイフーン・バズーカ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "クロスギア:このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、クリーチャーを１体、バトルゾーンから持ち主の手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-022",
+      "limit": 4,
+      "g1080CrossUnblocked": [
+        {
+          "op": "Target",
+          "to": "hand",
+          "optional": true,
+          "anyOwner": true
+        }
+      ],
+      "supportBatch": "phase-1080",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm28-007",
+      "name": "ブレードグレンオー・マックス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "フレイム・モンスター",
+      "text": "マナ進化-火のクリーチャーを１体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、相手のタップされているパワー3000以下のクリーチャーを１体、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-007",
+      "limit": 4,
+      "manaEvolution": true,
+      "evolution": {
+        "civilization": "火"
+      },
+      "g1076UnblockedWatch": {
+        "self": true,
+        "defs": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "destroy": true,
+            "filter": {
+              "tapped": true,
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1080",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1079,
+    "phase": 1080,
     "checkedAt": "2026-11-13",
-    "baseCount": 7201,
+    "baseCount": 7204,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7204,
+    "totalCount": 7207,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -234408,6 +234496,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7201,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1079,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7201,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7204,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

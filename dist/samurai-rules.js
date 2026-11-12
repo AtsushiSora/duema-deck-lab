@@ -110,6 +110,17 @@ export function createSamuraiRules(api){
    on(s,w.p,w,'g34_Draw',{n:1,optional:true});
  },
  unblocked(s,p,x,c=card(x)){if(p<0||x.sealed||c.type!=='creature'||!api.isCreature(s,x))return false;if(attached(s,p,x).some(g=>card(g).g125CrossUnblock&&active(s,g)))return true;const vs=colors(c);return s.players[p].battle.some(y=>!y.sealed&&(card(y).g128WaterAura||card(y).g128LightDarkAura)&&api.isCreature(s,y)&&active(s,y)&&(card(y).g128WaterAura&&y.uid!==x.uid&&vs.includes('水')||card(y).g128LightDarkAura&&vs.some(v=>v==='光'||v==='闇')));},
+ unblockedAttack(s,p,x){
+  if(s.attack.target!=='player'||s.attack.g484Blocked||x.sealed)return false;
+  let triggered=false;
+  for(const gear of attached(s,p,x)){
+   const defs=card(gear).g1080CrossUnblocked;
+   if(!defs||gear.faceDown||!active(s,gear))continue;
+   on(s,p,gear,'g34_Sequence',{defs});
+   triggered=true;
+  }
+  return triggered;
+ },
  protected(s,p,x){
   if(x.crossedTo&&card(x).type==='gear'){
    const host=live(s,p,x);

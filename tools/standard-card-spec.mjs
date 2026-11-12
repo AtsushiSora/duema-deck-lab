@@ -6160,6 +6160,27 @@ export function standardCardSpec(d,{phase=165}={}){
    'このクリーチャーが攻撃する時バトルゾーンにあるクロスギアを1枚選び持ち主の墓地に置く。クロスギアがバトルゾーンから墓地に置かれた時カードを1枚引いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
    return {breaker:2,g34Attack:[{op:'Target',element:true,anyOwner:true,filter:{g201Gear:true},to:'grave',title:'墓地に置くクロスギアを1枚選ぶ'}],g933GearGraveDraw:true};
  }
+ if(phase>=1080&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='クロスギア'){
+   const cross='クロスギア:このカードをバトルゾーンに置く。クリーチャーにクロスするにはこのカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れてもこのカードはバトルゾーンに残る。';
+   const unblocked='これをクロスしたクリーチャーが相手プレイヤーを攻撃してブロックされなかった時';
+   if(text===cross+'これをクロスしたクリーチャーのパワーは+3000される。'+unblocked+'自分の山札の上から1枚目を裏向きのまま自分のシールドに加える。')
+    return {type:'gear',g123CrossPower:3000,g1080CrossUnblocked:[{op:'ShieldTop',n:1}]};
+   if(text===cross+unblocked+'クリーチャーを1体バトルゾーンから持ち主の手札に戻してもよい。')
+    return {type:'gear',g1080CrossUnblocked:[{op:'Target',to:'hand',optional:true,anyOwner:true}]};
+  }
+  if(['進化クリーチャー(マナ進化)','進化クリーチャー'].includes(f.typeText)){
+   const oldBase='マナ進化-火のクリーチャーを1体自分のマナゾーンから選びこのクリーチャーをその上に重ねつつバトルゾーンに出す。';
+   const newBase='マナ進化:火のクリーチャーを1体自分のマナゾーンから選びこのクリーチャーをその上に重ねつつに出す。';
+   const unblocked='このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時相手のタップ';
+   if(text===oldBase+unblocked+'されているパワー3000以下のクリーチャーを1体破壊する。'||
+      text===newBase+unblocked+'しているパワー3000以下のクリーチャーを1体選び破壊する。')
+    return {manaEvolution:true,evolution:{civilization:'火'},g1076UnblockedWatch:{self:true,defs:[
+     {op:'Target',to:'grave',destroy:true,filter:{tapped:true,maxPower:3000,g199Power:true}}
+    ]}};
+  }
+ }
  if(phase>=932&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クロスギア'){
   const cross='クロスギア:このカードをバトルゾーンに置く。クリーチャーにクロスするにはこのカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れてもこのカードはバトルゾーンに残る。';
   const text=normalize(f.abilityText);
