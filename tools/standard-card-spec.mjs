@@ -2467,6 +2467,40 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1039&&d?.status==='complete'&&f.typeText==='クリーチャー'){
+  const front=normalize(f.abilityText),manaDown={op:'ManaDown426'};
+  const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+  const breaker='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)';
+  if(d.faces.length===1&&f.name==='偽りの名 トバル'&&f.civilizationText==='火'&&f.cost===7&&f.race==='アーマード・ワイバーン/アンノウン'&&front===
+   'S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)'+
+   '水晶ソウル2(このクリーチャーを召喚する時自分のマナゾーンにある裏向きのカードのマナの数字は2になる)'+
+   'このクリーチャーが出た時クリーチャーを2体選んでもよい。その2体をバトルさせる。')
+   return {trigger:true,g434CrystalSoul:2,effect:'sixPhoto',g34Tasks:[{op:'FightPair586',who:'both',optional:true}]};
+  if(d.faces.length===1&&f.name==='教化のクリス ハラ＆ミッタ'&&f.civilizationText==='ゼロ'&&f.cost===2&&f.race==='オラクル・セレス'&&front===
+   'このクリーチャーのコストを支払う時自分のマナゾーンにある無色カードのみタップできる。'+breaker)
+   return {breaker:2,g1039ColorlessPayment:true};
+  if(d.faces.length===2&&d.faces[1].typeText==='呪文'){
+   const spell=d.faces[1],back=normalize(spell.abilityText);
+   const spellFace={type:'spell',name:spell.name,cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,effect:'sixPhoto'};
+   if(f.name==='救済のカルマ ミルク'&&f.civilizationText==='水'&&f.cost===2&&f.race==='オラクル・セレス/ヒューマノイド'&&front===
+    '相手のクリーチャーが出た時それが相手のマナゾーンにあるカードの枚数よりコストが大きいクリーチャーなら持ち主の手札に戻してもよい。'&&
+    spell.name==='リリーフ・水晶チャージャー'&&spell.civilizationText==='水'&&spell.cost===3&&back===
+    '相手のコスト2以下のエレメントを1つ選び持ち主の手札に戻す。水晶チャージャー(この呪文を唱えた後墓地に置くかわりに裏向きにしてマナゾーンに置く)')
+    return {g600OverManaEntry:true,spellFace:{...spellFace,crystalCharger:true,
+     g34Tasks:[{op:'Target',element:true,to:'hand',filter:{max:2},spell:true}]}};
+   if(f.name==='戦攻のシダン アカダシ'&&f.civilizationText==='水'&&f.cost===1&&f.race==='オラクル・セレス/アースイーター'&&front===
+    blocker+'このクリーチャーは攻撃できない。'&&spell.name==='「いいダシがとれそうだ」'&&spell.civilizationText==='水'&&spell.cost===2&&back===
+    'カードを2枚引き自分の手札を1枚捨てる。自分のマナゾーンのカードを1枚裏向きにしてもよい。'+
+    '(マナゾーンにある裏向きのカードはマナの数字が1の無色カードとして扱う。その持ち主はそれをいつでも見てもよい)')
+    return {blocker:true,noAttack:true,spellFace:{...spellFace,g34Tasks:[{op:'Draw',n:2},{op:'Discard',owner:'self',n:1},manaDown]}};
+   if(f.name==='邪鎧 デ=アムド'&&f.civilizationText==='自然'&&f.cost===7&&f.race==='ヴェールアビス'&&front===
+    'マッハファイター(このクリーチャーは出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)'+breaker&&
+    spell.name==='「我が力となれ!!」'&&spell.civilizationText==='闇'&&spell.cost===3&&spell.race==='アビスへの誘い'&&back===
+    '自分の山札の上から3枚を墓地に置く。その後クリーチャーを1体自分の墓地から手札に戻す。')
+    return {machFighter:true,breaker:2,spellFace:{...spellFace,g34Tasks:[{op:'Mill',n:3},
+     {op:'Select',origin:'grave',to:'hand',n:1,filter:{creature:true}}]}};
+  }
+ }
  if(phase>=1038&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText),crystal4={g286FaceDownMana:4},manaDown={op:'ManaDown426'};
   if(f.name==='偽りの名 ルカニド'&&f.civilizationText==='火'&&f.cost===7&&f.race==='ボルケーノ・ドラゴン/アンノウン'&&[

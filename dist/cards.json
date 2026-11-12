@@ -209319,15 +209319,194 @@
       },
       "supportBatch": "phase-1038",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-043",
+      "name": "偽りの名 トバル",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "アーマード・ワイバーン/アンノウン",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\n水晶ソウル２（このクリーチャーを召喚する時、自分のマナゾーンにある裏向きのカードのマナの数字は２になる）\nこのクリーチャーが出た時、クリーチャーを２体選んでもよい。その２体をバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-043",
+      "limit": 4,
+      "trigger": true,
+      "g434CrystalSoul": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "FightPair586",
+          "who": "both",
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1039",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-015",
+      "name": "救済のカルマ ミルク / リリーフ・水晶チャージャー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "オラクル・セレス/ヒューマノイド",
+      "text": "相手のクリーチャーが出た時、それが相手のマナゾーンにあるカードの枚数よりコストが大きいクリーチャーなら、持ち主の手札に戻してもよい。\n【呪文面】\n相手の、コスト２以下のエレメントを１つ選び、持ち主の手札に戻す。\n水晶チャージャー（この呪文を唱えた後、墓地に置くかわりに、裏向きにしてマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-015",
+      "limit": 4,
+      "g600OverManaEntry": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "リリーフ・水晶チャージャー",
+        "cost": 3,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "crystalCharger": true,
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "to": "hand",
+            "filter": {
+              "max": 2
+            },
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1039",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-052",
+      "name": "教化のクリス ハラ＆ミッタ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 6000,
+      "race": "オラクル・セレス",
+      "text": "このクリーチャーのコストを支払う時、自分のマナゾーンにある無色カードのみタップできる。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-052",
+      "limit": 4,
+      "breaker": 2,
+      "g1039ColorlessPayment": true,
+      "supportBatch": "phase-1039",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-035",
+      "name": "戦攻のシダン アカダシ / 「いいダシがとれそうだ」",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 3000,
+      "race": "オラクル・セレス/アースイーター",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n【呪文面】\nカードを２枚引き、自分の手札を１枚捨てる。\n自分のマナゾーンのカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-035",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "「いいダシがとれそうだ」",
+        "cost": 2,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          },
+          {
+            "op": "ManaDown426"
+          }
+        ]
+      },
+      "supportBatch": "phase-1039",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-074",
+      "name": "邪鎧 デ=アムド / 「我が力となれ!!」",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 11000,
+      "race": "ヴェールアビス",
+      "text": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n【呪文面】\n自分の山札の上から３枚を墓地に置く。その後、クリーチャーを１体、自分の墓地から手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-074",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 2,
+      "spellFace": {
+        "type": "spell",
+        "name": "「我が力となれ!!」",
+        "cost": 3,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "アビスへの誘い",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 3
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1039",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1038,
+    "phase": 1039,
     "checkedAt": "2026-11-12",
-    "baseCount": 7059,
-    "newEffectCards": 4,
+    "baseCount": 7063,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 7063,
+    "totalCount": 7068,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -228072,6 +228251,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7059,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1038,
+        "checkedAt": "2026-11-12",
+        "baseCount": 7059,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7063,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

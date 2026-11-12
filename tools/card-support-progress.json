@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7063,
-  "pendingNames": 4764,
-  "phase": 1038,
-  "added": 4,
+  "supportedNames": 7068,
+  "pendingNames": 4759,
+  "phase": 1039,
+  "added": 5,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2734,
+    "クリーチャー": 2729,
     "NEOクリーチャー": 152,
     "呪文": 620,
     "GRクリーチャー": 159,
@@ -225,8 +225,8 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 1212,
-    "未対応の能力文": 3317,
+    "複数面・特殊カードタイプまたは情報不足": 1209,
+    "未対応の能力文": 3315,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -204721,37 +204721,137 @@
           "reason": "公式の全文・基本情報・画像と単一収録を確認。公式QA 44606では片面がコスト5以下なら捨てられ、捨てた後はもう片面の高コスト呪文も唱えられる。裁定で例示される水晶の祈り / クリスタル・ドゥームが対戦未対応で、今回捨てて実際に墓地に置かれたカードだけを保持する処理とともに検証するまで保留。"
         }
       ]
+    },
+    {
+      "phase": 1039,
+      "baseCommit": "a0acac83",
+      "cards": [
+        {
+          "id": "dm23ex3-043",
+          "name": "偽りの名 トバル"
+        },
+        {
+          "id": "dm23ex3-015",
+          "name": "救済のカルマ ミルク / リリーフ・水晶チャージャー"
+        },
+        {
+          "id": "dm23ex3-052",
+          "name": "教化のクリス ハラ＆ミッタ"
+        },
+        {
+          "id": "dm23ex3-035",
+          "name": "戦攻のシダン アカダシ / 「いいダシがとれそうだ」"
+        },
+        {
+          "id": "dm23ex3-074",
+          "name": "邪鎧 デ=アムド / 「我が力となれ!!」"
+        }
+      ],
+      "printAliases": [],
+      "supportedNames": 7068,
+      "pendingNames": 4759,
+      "verification": {
+        "focusedPassed": 14,
+        "regressionPassed": 354,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 5,
+        "scope": "公式の能力全文・基本情報・マナ数・画像・同名収録欄・現行殿堂レギュレーションを5種類で照合。トバルの火マナと水晶ソウル2による召喚、S・トリガーの無料召喚、所有者を問わない任意の2体バトル。ミルクの解決時の相手マナ枚数判定、選ばずに戻す処理、呪文面のコスト2以下のエレメントのバウンスと水晶チャージャー。ハラ＆ミッタの裏向き・表向き無色マナの通常・手動支払い、文明付与中とマナ・バードの除外。アカダシのブロッカーと攻撃不可、呪文面のドロー・手札破棄・任意の裏向き化の順序。デ=アムドのマッハファイターとW・ブレイカー、呪文面の墓地肥やしと回収を検証。対戦途中の保存復元も確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/45912/",
+          "https://dm.takaratomy.co.jp/rule/qa/46815/",
+          "https://dm.takaratomy.co.jp/rule/qa/44594/",
+          "https://dm.takaratomy.co.jp/rule/qa/46233/",
+          "https://dm.takaratomy.co.jp/rule/qa/44596/",
+          "https://dm.takaratomy.co.jp/rule/qa/45568/"
+        ],
+        "regressionFiles": [
+          "tests/standard434-effects.test.mjs",
+          "tests/standard586-effects.test.mjs",
+          "tests/standard600-effects.test.mjs",
+          "tests/standard593-effects.test.mjs",
+          "tests/standard1038-effects.test.mjs",
+          "tests/standard1037-effects.test.mjs",
+          "tests/standard1036-effects.test.mjs",
+          "tests/standard426-effects.test.mjs",
+          "tests/standard972-effects.test.mjs",
+          "tests/standard254-effects.test.mjs",
+          "tests/standard518-effects.test.mjs"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。",
+        "logs": {
+          "official": "/tmp/duema-phase-1039.kVipn8Jn/official.log",
+          "officialImages": "/tmp/duema-phase-1039.kVipn8Jn/sources.log",
+          "focused": "/tmp/duema-phase-1039.kVipn8Jn/focused.log",
+          "regression": "/tmp/duema-phase-1039.kVipn8Jn/regression.log",
+          "check": "/tmp/duema-phase-1039.kVipn8Jn/check.log",
+          "audit": "/tmp/duema-phase-1039.kVipn8Jn/audit.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dm23ex3-008",
+          "name": "偽りの名 ワスプメリサ",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-008",
+            "https://dm.takaratomy.co.jp/rule/qa/44658/",
+            "https://dm.takaratomy.co.jp/rule/qa/45055/"
+          ],
+          "reason": "公式の全文・基本情報・画像・単一収録を照合。水晶武装4は「このクリーチャーが出た時」で始まる能力を抑止するため、同じ文で定義されるターン開始時も止める一方、「各ターンに一度、クリーチャーが出た時」は止めない。能力文単位の分類と両タイミングの回帰を検証するまで保留。"
+        },
+        {
+          "id": "dm23ex3-011",
+          "name": "水晶転生",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-011",
+            "https://dm.takaratomy.co.jp/rule/qa/45061/"
+          ],
+          "reason": "公式の全文・基本情報・画像・単一収録を照合。エレメントを選べなければ公開するプレイヤーもいない。選んだ後はコントローラーと持ち主が異なる場合、離脱置換、エレメントの登場可否、非エレメントの山札下移動を一連で検証するまで保留。"
+        },
+        {
+          "id": "dm24bd6-009",
+          "name": "「あれが水晶の頂天に君臨する者の玉座だ！」",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd6-009",
+            "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+          ],
+          "reason": "公式の全文・基本情報・画像・単一収録を照合。水晶武装4は支払いに限らず、裏向きマナの文明そのものを変更する。表向きのマナとの区別を保ち、支払い、文明参照効果、マナ表示で同じ特性を扱えることを確認するまで保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1038,
-    "nextPhase": 1039,
+    "lastVerifiedPhase": 1039,
+    "nextPhase": 1040,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm23ex3-043",
-        "name": "偽りの名 トバル",
-        "reason": "水晶ソウル2のマナ支払いとS・トリガー、所有者を問わない任意の2体バトルを照合する。"
+        "id": "dm24bd6-006",
+        "name": "偽りの希望 修羅丸「終斗」",
+        "reason": "各ターン最初に出る相手クリーチャーのタップと、すでに出たクリーチャーの履歴、同時登場を照合する。"
       },
       {
-        "id": "dm23ex3-008",
-        "name": "偽りの名 ワスプメリサ",
-        "reason": "種族強化とマッハファイター、公式QA 44658の出た時とターン開始時の区別を照合する。"
+        "id": "dm23ex3-049",
+        "name": "聖域の終斗 ベルセルク",
+        "reason": "水晶武装による攻撃制限と、両ターン終了時の最大パワー条件で同値をどう扱うか照合する。"
       },
       {
-        "id": "dm23ex3-011",
-        "name": "水晶転生",
-        "reason": "エレメントを戻してシャッフルした後、その持ち主が自身の山札上を公開する。山札に戻せなかった場合を含めて公式裁定を照合する。"
+        "id": "dm24bd6-005",
+        "name": "シダン教皇 バラモン / 「我が言葉のみを信じるのだ！」",
+        "reason": "両面の手札・マナ枚数比較と、呪文面のS・トリガー、裏向きマナ加速を照合する。"
       },
       {
-        "id": "dm23ex3-015",
-        "name": "救済のカルマ ミルク / リリーフ・水晶チャージャー",
-        "reason": "登場した相手とマナの比較、エレメントのコスト上限、水晶チャージャー、再録を照合する。"
+        "id": "dm23ex3-020",
+        "name": "サスペンス・ザイン",
+        "reason": "S・トリガーと、水晶武装4で最初に選んだ相手だけを全体パワー低下から除外する処理を照合する。"
       },
       {
-        "id": "dm24bd6-009",
-        "name": "「あれが水晶の頂天に君臨する者の玉座だ！」",
-        "reason": "タマシードの継続効果として裏向きマナに文明を与える裁定を照合する。"
+        "id": "dm24bd6-008",
+        "name": "策士のシダン ニャハン",
+        "reason": "手札から裏向きのマナ配置と、離脱時に表向きの対象種族をマナから回収する範囲を照合する。"
       }
     ],
     "steps": [
@@ -204831,7 +204931,7 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
-      "公式本文、基本情報、画像、使用制限、再録、裁定を照合する。水晶武装・水晶ソウルは誘発と解決の条件、裏向きマナの文明・マナ数、選択と移動の順序、保存復元を確認する。",
+      "公式本文、基本情報、画像、使用制限、再録、裁定を照合する。水晶マナの条件は裏向きの物理カード、文明とマナ数、各ターンの誘発と選択・移動の順序を確認する。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で登録再開。自動化 duema-deck-lab は10分間隔で稼働中。",

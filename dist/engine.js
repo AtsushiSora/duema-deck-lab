@@ -1065,8 +1065,9 @@ export function paymentPool(s,p,exclude=[],c=null){
  const zero=(s.g35ZeroMana||[]).some(l=>l.p===p),origin=c?.type==='creature'&&c.g423OriginMana||c?.type==='spell'&&c.g826OriginSpellMana,crystal=c?.type==='creature'&&c.g434CrystalSoul,all=s.players[p].battle.some(x=>effectiveCard(x,s).casablanca||effectiveCard(x,s).g51Courtney||String(c?.race).includes('生徒会組')&&effectiveCard(x,s).g28Gyai);
  // Printed mana stays unchanged. Crystal Soul applies only to face-down mana
  // for this summon, and overrides a prior zero-mana effect (official Q&A 45912).
- const twins=twinManaColors(s,p);
- return [...s.players[p].mana.map(x=>{
+ const twins=twinManaColors(s,p),colorlessOnly=c?.type==='creature'&&c.g1039ColorlessPayment;
+ const mana=s.players[p].mana.filter(x=>!colorlessOnly||!manaColors(card(x),s,p).length);
+ return [...mana.map(x=>{
   const c=card(x),value=zero?0:manaValue(c),boost=crystal&&x.faceDown;
   const double=origin&&value===1&&String(c.race||'').split('/').includes('オリジン');
   const anyColor=all||twins&&c.spellFace;
@@ -1076,6 +1077,7 @@ export function paymentPool(s,p,exclude=[],c=null){
    ...(anyColor?{paymentAllColors:true}:{})
   }:x;
  }),...s.players[p].battle.flatMap(x=>{
+  if(colorlessOnly)return [];
   const data=effectiveCard(x,s);
   if(!data.manaBird)return [];
   return [{...x,paymentBird:true,...(data.manaBird==='ownColors'?{paymentColors:civilizations(data)}:{}),
