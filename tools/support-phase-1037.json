@@ -1,0 +1,267 @@
+{
+  "phase": 1037,
+  "checkedAt": "2026-11-12",
+  "baseCount": 7055,
+  "description": "水晶武装、捨て札、呪文詠唱に関わる4種類と再録1版を公式情報で照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "cards": [
+    {
+      "id": "dm23ex3-033",
+      "name": "聖邪のサトリ バジル",
+      "faces": [
+        {
+          "name": "聖邪のサトリ バジル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分の他のオラクル、アンノウン、またはゼニスが出た時、カードを１枚引いてもよい。\n水晶武装２：自分のマナゾーンに裏向きのカードが２枚以上あれば、このクリーチャーに「エスケープ」を与える。（「エスケープ」を持つクリーチャーが破壊される時、墓地に置くかわりに自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない）",
+          "race": "オラクル・セレス/ヒューマノイド",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-033",
+      "spec": {
+        "blocker": true,
+        "g314OtherEntry": {
+          "who": "self",
+          "g765Element": true,
+          "filter": {
+            "raceAny": [
+              "オラクル",
+              "アンノウン",
+              "ゼニス"
+            ]
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        },
+        "g260Self": {
+          "filter": {
+            "g286FaceDownMana": 2
+          },
+          "grants": {
+            "escape": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "7058db41bc74e4538db6ebcd54b63c737236a8700a4bdf33d40208935889b5fa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-019",
+      "name": "聖邪のサトリ ミント",
+      "faces": [
+        {
+          "name": "聖邪のサトリ ミント",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、相手の手札を１枚見ないで選び、捨てさせる。\n各ターン、はじめて相手が自身の手札を捨てた時、自分はカードを１枚引いてもよい。\n水晶武装２：このクリーチャーが攻撃する時、自分のマナゾーンに裏向きのカードが２枚以上あれば、相手は自身のクリーチャーを１体選び、破壊する。",
+          "race": "オラクル・セレス/ヒューマノイド",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-019",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 1,
+            "random": true
+          }
+        ],
+        "g1037FirstOpponentDiscard": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g286FaceDownMana": 2
+            },
+            "defs": [
+              {
+                "op": "OpponentSelect",
+                "n": 1,
+                "to": "grave"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "f3280d664d64e37ef5c0bd400c7a3173ead9c5d34b3633c5ffc6b0e9954fee1e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-040",
+      "name": "終斗なる牙 パラノーマル",
+      "faces": [
+        {
+          "name": "終斗なる牙 パラノーマル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、相手の手札を１枚見ないで選び、捨てさせる。\n各ターンの終わりに、このターン、相手が自身の手札を捨てていれば、自分のマナゾーンのカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+          "race": "オラクル・セレス/ヒューマノイド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-040",
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 1,
+            "random": true
+          }
+        ],
+        "g1037ConditionalAnyEnd": {
+          "filter": {
+            "g1037OpponentDiscarded": true
+          },
+          "defs": [
+            {
+              "op": "ManaDown426"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "a02411dd1eb2b2e827881ebe92202aa5b7ed76a9c80584249394e13a0b0641ab",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-037",
+      "name": "終斗の閃き マトリクス",
+      "faces": [
+        {
+          "name": "終斗の閃き マトリクス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、コスト３以下の呪文を１枚、自分の手札または墓地からコストを支払わずに唱えてもよい。\n各ターンの終わりに、このターン、自分が呪文を唱えていたら、自分のマナゾーンのカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+          "race": "オラクル・セレス/マジック・コマンド",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-037",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Execute",
+            "zones": [
+              "hand",
+              "grave"
+            ],
+            "spellOnly": true,
+            "max": 3
+          }
+        ],
+        "g1037ConditionalAnyEnd": {
+          "filter": {
+            "g1037SpellCast": true
+          },
+          "defs": [
+            {
+              "op": "ManaDown426"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "b1abb709b93ed028f9288763ffac40ec7ccbf93a1dc15edfff4677b97d250f1f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24bd6-048",
+      "canonicalId": "dm23ex3-033",
+      "name": "聖邪のサトリ バジル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd6-048",
+      "faces": [
+        {
+          "name": "聖邪のサトリ バジル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分の他のオラクル、アンノウン、またはゼニスが出た時、カードを１枚引いてもよい。\n水晶武装２：自分のマナゾーンに裏向きのカードが２枚以上あれば、このクリーチャーに「エスケープ」を与える。（「エスケープ」を持つクリーチャーが破壊される時、墓地に置くかわりに自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない）",
+          "race": "オラクル・セレス/ヒューマノイド",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd6-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "c0e5de01aed25e91ba10fe7ade41812ca1b92488c67344d17ed443f6e6f8f8cf",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23ex3-033": 4,
+      "dm23ex3-019": 4,
+      "dm23ex3-040": 4,
+      "dm23ex3-037": 4,
+      "dm24bd6-048": 4
+    }
+  }
+}

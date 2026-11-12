@@ -463,6 +463,8 @@ export function createSixPhotoRules(api){
    return powers[p].filter(n=>n===highest).length===1&&!powers[1-p].includes(highest);
   }
   if(f.g837NoManaAdded)return s.g837ManaAddedTurn?.[p]!==s.turn;
+  if(f.g1037OpponentDiscarded)return !!s.players[1-p].discardedThisTurn;
+  if(f.g1037SpellCast)return (s.players[p].spellsThisTurn||0)>0;
   if(f.g936NoDreamOrVehicleEntry)return s.g936DreamOrVehicleEntryTurn!==s.turn;
   if(f.g834AnyEmptyHand)return s.players.some(player=>player.hand.length===0);
   if(f.g811ManaLeft)return s.g47ManaLeft?.[p]===s.turn;
@@ -4819,6 +4821,13 @@ export function createSixPhotoRules(api){
  },
  untapDiscount472:(s,p,c)=>c.type==='creature'&&!c.crossing&&s.g472Untapped?.turn===s.turn?(c.g472UntapReduction||0)*s.g472Untapped.groups.length:0,
  discarded472(s,p){for(const x of creatures(s,1-p)){const defs=!x.sealed&&effective(x,s).g472OpponentDiscard;if(defs)queue(s,1-p,x,defs);}},
+ firstOpponentDiscard1037(s,p){
+  for(const x of creatures(s,1-p)){
+   if(x.sealed||!card(x).g1037FirstOpponentDiscard)continue;
+   const defs=effective(x,s).g1037FirstOpponentDiscard;
+   if(defs)queue(s,1-p,x,defs);
+  }
+ },
  firstSummonDiscount463,onceDiscount464,spellDiscount467:(s,p,c)=>c.type==='spell'?creatures(s,p).filter(x=>!x.sealed).reduce((n,x)=>n+(effective(x,s).g467SpellReduction||0),0)+spellReduction485(s,p,c):0,
  selectNullBreaker471(s,p,x){const c=effective(x,s);if(!c.g471NullBreaker||s.attack.g471Breaker||!s.players[1-p].shields.length||!c.gBreaker&&c.breaker!=='∞'&&!(c.breaker>0))return false;const n=c.extraBreak||0;choice(s,task('g34_NullBreaker471',p,x.cardId,{uid:x.uid}), 'この攻撃で使うブレイカーを選ぶ',[opt('ヌル・ブレイカー（'+n+'枚ブレイク）','null',0),opt('ほかのブレイカーを使う','normal',20)]);return true;},
  beginPayment560(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g560Handled||!summonAuras560(s,p,c).optional||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PayAura560',p,c.id,{c:payment,args}));return true;},
@@ -5541,6 +5550,11 @@ export function createSixPhotoRules(api){
   if(card(x).g1036ShieldLeftEnd&&!x.sealed&&s.g1036ShieldGroupLeftTurns?.[p]===s.turn){
    const defs=effective(x,s).g1036ShieldLeftEnd;
    if(defs)add(x,defs);
+  }
+  const conditionalEnd=card(x).g1037ConditionalAnyEnd;
+  if(conditionalEnd&&!x.sealed&&ownCondition(s,p,conditionalEnd.filter,x.uid)){
+   const end=effective(x,s).g1037ConditionalAnyEnd;
+   if(end)add(x,end.defs);
   }
   const ownShieldBreakEnd=card(x).g861OwnShieldBreakEnd;
   if(ownShieldBreakEnd&&!x.sealed&&!x.faceDown&&api.isCreature(s,x)&&(s.players[p].brokenThisTurn||0)>=ownShieldBreakEnd)

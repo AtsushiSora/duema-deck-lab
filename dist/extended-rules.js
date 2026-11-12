@@ -478,10 +478,16 @@ export function createExtendedRules(api){
    if(t.costLock)put(s,task('tensaiCost',t.p,t.source,{discardId:x.cardId}));
    if(t.g869ReturnUid&&faces(card(x)).some(c=>c.type==='spell'))
     put(s,task('g34_SpellFinish416',t.causedBy,t.source,{uid:t.g869ReturnUid,to:'hand'}));
-   if(!s.players[t.p].discardedThisTurn){s.players[t.p].discardedThisTurn=true;for(const castle of s.players[t.p].shields.flatMap(api.shieldCards))if(castle.faceUp&&card(castle).id==='dm26rp1-043')enqueue(s,t.p,{uid:castle.uid,source:castle.cardId,effect:'extended',task:task('optionalDrawOne',t.p,castle.cardId)});}
+   if(recordFirstDiscard1037(s,t.p))for(const castle of s.players[t.p].shields.flatMap(api.shieldCards))if(castle.faceUp&&card(castle).id==='dm26rp1-043')enqueue(s,t.p,{uid:castle.uid,source:castle.cardId,effect:'extended',task:task('optionalDrawOne',t.p,castle.cardId)});
    for(const y of creatures(s,1-t.p))if(effective(y,s).stealDiscardedSpell&&faces(card(x)).some(c=>c.type==='spell'))enqueue(s,1-t.p,{uid:y.uid,source:y.cardId,effect:'extended',task:task('stealSpell',1-t.p,y.cardId,{owner:t.p,uid:x.uid})});
   }
   if(t.batchId)put(s,{...t,op:'discardBatch'});else if(t.n>1)put(s,{...t,op:'discard',n:t.n-1,discarded:count});else if(t.randomDiscardAfter&&count)put(s,task('discard',1-t.p,t.source,{causedBy:t.p,n:count,random:true}));
+ }
+ function recordFirstDiscard1037(s,p){
+  if(s.players[p].discardedThisTurn)return false;
+  s.players[p].discardedThisTurn=true;
+  six.firstOpponentDiscard1037(s,p);
+  return true;
  }
  function chooseHyperCost(s,p,uid,selected=[]){
   const x=nowCreature(s,p,uid),n=x&&Number(effective(x,s).hyperTap);if(!x||!n||x.hyperActive)return;
@@ -537,7 +543,7 @@ export function createExtendedRules(api){
  return {
   entryWouldReplace753:(s,p,c)=>galaxy.entryWouldReplace(s,p,c,'mana',false),swapped753:magic.swapped,
   requested393C,requested393D,requested393J,requested393P,photo160,photo159,utilityLightControl,utilityTwinSupport,utilityRaid,utilityGraveKnights,utilityRomano,utilityNatureSupport,utilityGuard,utilityDragon,utilityTide,utilityTop,utilityControl,spellTax:utilityControl.spellTax,utilityExpansion,utilityWater,utilityNature,utilityDark,saga,control,seed,cyber,firebird,combat,junior,history,revisions,continuation,original,environment,recommended,six,photo,golgy,viride,originAllowed:viride.originAllowed,everSaver:viride.everSaver,virideDiscount:viride.discount,
-  notifyHandDiscard848(s,p){notifyDiscard848(s,p,discardWatchers848(s,p),1);},
+  notifyHandDiscard848(s,p){recordFirstDiscard1037(s,p);notifyDiscard848(s,p,discardWatchers848(s,p),1);},
   abyss,abyssDiscount:abyss.discount,abyssPlayer:abyss.playerPermission,hasSB:(s,p,a)=>abyss.hasSB(s,p,a),beginSB:(s,p,a,w,escape)=>abyss.beginSB(s,p,a,w,escape),forcedDiscard(s,p,uids,source,{allowTurnReplacement=false}={}){
    const event={p,source,n:1,causedBy:p,g848Grouped:true},watchers=discardWatchers848(s,p);
    let actual=0;

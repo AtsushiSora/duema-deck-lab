@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7055,
-  "pendingNames": 4772,
-  "phase": 1036,
-  "added": 5,
+  "supportedNames": 7059,
+  "pendingNames": 4768,
+  "phase": 1037,
+  "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2742,
+    "クリーチャー": 2738,
     "NEOクリーチャー": 152,
     "呪文": 620,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1212,
-    "未対応の能力文": 3325,
+    "未対応の能力文": 3321,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -204545,37 +204545,121 @@
         }
       },
       "deferred": []
+    },
+    {
+      "phase": 1037,
+      "baseCommit": "a3d8e943",
+      "cards": [
+        {
+          "id": "dm23ex3-033",
+          "name": "聖邪のサトリ バジル"
+        },
+        {
+          "id": "dm23ex3-019",
+          "name": "聖邪のサトリ ミント"
+        },
+        {
+          "id": "dm23ex3-040",
+          "name": "終斗なる牙 パラノーマル"
+        },
+        {
+          "id": "dm23ex3-037",
+          "name": "終斗の閃き マトリクス"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm24bd6-048",
+          "canonicalId": "dm23ex3-033",
+          "name": "聖邪のサトリ バジル"
+        }
+      ],
+      "supportedNames": 7059,
+      "pendingNames": 4768,
+      "verification": {
+        "focusedPassed": 15,
+        "regressionPassed": 750,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 5,
+        "scope": "公式の能力全文、基本情報、マナ数、画像、収録、現行殿堂レギュレーションを4種類・再録1版で照合。バジルの他の味方の種族登場（タマシードを含む）、任意ドロー、ブロッカー、水晶武装2のエスケープとS・バックの宣言順。ミントの見ないで捨てさせる登場時能力、各ターン初の実際の捨て札と任意ドロー、攻撃時の水晶武装2と相手の破壊選択。パラノーマルのブロッカー、登場時の捨て札、両ターン終了時の裏向きマナ。マトリクスの手札・墓地からの任意のコスト3以下の詠唱と両ターン終了時の自分の詠唱判定を検証。バイケンによる置換、S・トリガーによる詠唱、選択途中の保存復元、再録IDも確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/41159/",
+          "https://dm.takaratomy.co.jp/rule/qa/42523/",
+          "https://dm.takaratomy.co.jp/rule/qa/31586/",
+          "https://dm.takaratomy.co.jp/rule/qa/45267/"
+        ],
+        "regressionFiles": [
+          "tests/standard1036-effects.test.mjs",
+          "tests/standard1035-effects.test.mjs",
+          "tests/standard472-effects.test.mjs",
+          "tests/standard480-effects.test.mjs",
+          "tests/standard848-effects.test.mjs",
+          "tests/standard949-effects.test.mjs",
+          "tests/standard314-effects.test.mjs",
+          "tests/standard426-effects.test.mjs",
+          "tests/standard555-effects.test.mjs",
+          "tests/utility71-effects.test.mjs",
+          "tests/standard978-effects.test.mjs",
+          "tests/standard527-effects.test.mjs",
+          "tests/standard536-effects.test.mjs",
+          "tests/standard989-effects.test.mjs"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。",
+        "logs": {
+          "official": "/tmp/duema-phase-1037.CAcKDY0F/official.log",
+          "focused": "/tmp/duema-phase-1037.CAcKDY0F/focused.log",
+          "regression": "/tmp/duema-phase-1037.CAcKDY0F/regression.log",
+          "escapeRegression": "/tmp/duema-phase-1037.CAcKDY0F/escape-regression.log",
+          "check": "/tmp/duema-phase-1037.CAcKDY0F/check.log",
+          "audit": "/tmp/duema-phase-1037.CAcKDY0F/audit.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dm23ex3-059",
+          "name": "終斗の親衛隊ペッパー",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-059",
+            "https://dm.takaratomy.co.jp/rule/qa/44594/"
+          ],
+          "reason": "公式QA 44594では裏向きマナが1枚でも、水の呪文を唱えた時に手札で能力の使用を先に宣言でき、呪文解決後に水晶武装2を確認する。既存の呪文監視はバトルゾーンの発生源を扱うため、手札の非公開状態での宣言、複数宣言の順序、解決時の無料召喚を検証できるまで保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1036,
-    "nextPhase": 1037,
+    "lastVerifiedPhase": 1037,
+    "nextPhase": 1038,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm23ex3-033",
-        "name": "聖邪のサトリ バジル",
-        "reason": "3種族の他のクリーチャー登場時の任意ドローと、水晶武装2によるエスケープを照合する。"
+        "id": "dm23ex3-022",
+        "name": "偽りの名 ルカニド",
+        "reason": "DM24-BD6の再録IDと、攻撃時のブロッカー破壊・水晶武装4の盾ブレイク置換を照合する。"
       },
       {
-        "id": "dm23ex3-019",
-        "name": "聖邪のサトリ ミント",
-        "reason": "登場時の非公開ハンデス、各ターン最初の相手の捨て札、攻撃時の水晶武装を確認する。"
+        "id": "dm23ex3-025",
+        "name": "呪華のサトリ カナザー",
+        "reason": "山札上4枚から3種族を各最大1枚回収し、残りを並べる処理と水晶武装2の攻撃時の展開を確認する。"
       },
       {
-        "id": "dm23ex3-040",
-        "name": "終斗なる牙 パラノーマル",
-        "reason": "相手の手札を捨てさせる登場時能力と、両ターンの終了時に実際の捨て札を参照する能力を検証する。"
+        "id": "dm24bd6-003",
+        "name": "偽りのコード シャーロック",
+        "reason": "両プレイヤーが残す自軍1体を選ぶ一括破壊と、水晶武装4による継続付与を照合する。"
       },
       {
-        "id": "dm23ex3-059",
-        "name": "終斗の親衛隊ペッパー",
-        "reason": "水の呪文を唱えた時の手札からの誘発宣言、解決時の水晶武装2、無料召喚とブロッカーを照合する。"
+        "id": "dm23ex3-007",
+        "name": "偽りの名 スカラベオ",
+        "reason": "登場時とターン開始時のマナの裏向き化、召喚コスト軽減、バトルに負けた時以外の離脱禁止を照合する。"
       },
       {
-        "id": "dm23ex3-037",
-        "name": "終斗の閃き マトリクス",
-        "reason": "手札・墓地からの任意の呪文実行と、そのターンの実際の呪文詠唱を参照する終了時能力を検証する。"
+        "id": "dm23ex3-016",
+        "name": "ローゼス・イノベーション",
+        "reason": "任意の複数バウンスと、捨てた適格な呪文だけを墓地から唱える処理を照合する。"
       }
     ],
     "steps": [
@@ -204655,7 +204739,7 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
-      "公式本文、画像、使用制限、再録、裁定を照合する。シールド追加に反応するカードは表裏、束への追加、実際の配置と置換、誘発が待機する順序を確認する。",
+      "公式本文、基本情報、画像、使用制限、再録、裁定を照合する。水晶武装の候補は誘発時と解決時の条件、置換で実際に移動したゾーン、複数の任意選択と保存復元を確認する。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で登録再開。自動化 duema-deck-lab は10分間隔で稼働中。",

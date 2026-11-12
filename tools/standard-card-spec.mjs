@@ -2467,6 +2467,32 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1037&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText),crystal2={g286FaceDownMana:2};
+  const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+  const discardText='このクリーチャーが出た時相手の手札を1枚見ないで選び捨てさせる。';
+  const discard={op:'Discard',n:1,random:true};
+  const manaDown='裏向きにしてもよい。(マナゾーンにある裏向きのカードはマナの数字が1の無色カードとして扱う。その持ち主はそれをいつでも見てもよい)';
+  const end=filter=>({filter,defs:[{op:'ManaDown426'}]});
+  if(f.name==='聖邪のサトリ バジル'&&f.civilizationText==='光'&&f.cost===3&&f.race==='オラクル・セレス/ヒューマノイド'&&text===blocker+
+   '自分の他のオラクルアンノウンまたはゼニスが出た時カードを1枚引いてもよい。'+
+   '水晶武装2:自分のマナゾーンに裏向きのカードが2枚以上あればこのクリーチャーに「エスケープ」を与える。(「エスケープ」を持つクリーチャーが破壊される時墓地に置くかわりに自分のシールドを1つ手札に加えてもよい。ただしその「S・トリガー」は使えない)')
+   return {blocker:true,g314OtherEntry:{who:'self',g765Element:true,filter:{raceAny:['オラクル','アンノウン','ゼニス']},defs:[{op:'Draw',n:1,optional:true}]},
+    g260Self:{filter:crystal2,grants:{escape:true}}};
+  if(f.name==='聖邪のサトリ ミント'&&f.civilizationText==='闇'&&f.cost===4&&f.race==='オラクル・セレス/ヒューマノイド'&&text===discardText+
+   '各ターンはじめて相手が自身の手札を捨てた時自分はカードを1枚引いてもよい。'+
+   '水晶武装2:このクリーチャーが攻撃する時自分のマナゾーンに裏向きのカードが2枚以上あれば相手は自身のクリーチャーを1体選び破壊する。')
+   return {effect:'sixPhoto',g34Tasks:[discard],g1037FirstOpponentDiscard:[{op:'Draw',n:1,optional:true}],
+    g34Attack:[{op:'IfOwn',filter:crystal2,defs:[{op:'OpponentSelect',n:1,to:'grave'}]}]};
+  if(f.name==='終斗なる牙 パラノーマル'&&f.civilizationText==='闇'&&f.cost===3&&f.race==='オラクル・セレス/ヒューマノイド'&&text===blocker+discardText+
+   '各ターンの終わりにこのターン相手が自身の手札を捨てていれば自分のマナゾーンのカードを1枚'+manaDown)
+   return {blocker:true,effect:'sixPhoto',g34Tasks:[discard],g1037ConditionalAnyEnd:end({g1037OpponentDiscarded:true})};
+  if(f.name==='終斗の閃き マトリクス'&&f.civilizationText==='水'&&f.cost===4&&f.race==='オラクル・セレス/マジック・コマンド'&&text===
+   'このクリーチャーが出た時コスト3以下の呪文を1枚自分の手札または墓地からコストを支払わずに唱えてもよい。'+
+   '各ターンの終わりにこのターン自分が呪文を唱えていたら自分のマナゾーンのカードを1枚'+manaDown)
+   return {effect:'sixPhoto',g34Tasks:[{op:'Execute',zones:['hand','grave'],spellOnly:true,max:3}],
+    g1037ConditionalAnyEnd:end({g1037SpellCast:true})};
+ }
  if(phase>=1036&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText),crystal2={g286FaceDownMana:2};
   const manaDown={op:'ManaDown426'};

@@ -208940,15 +208940,185 @@
       ],
       "supportBatch": "phase-1036",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-033",
+      "name": "聖邪のサトリ バジル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2500,
+      "race": "オラクル・セレス/ヒューマノイド",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分の他のオラクル、アンノウン、またはゼニスが出た時、カードを１枚引いてもよい。\n水晶武装２：自分のマナゾーンに裏向きのカードが２枚以上あれば、このクリーチャーに「エスケープ」を与える。（「エスケープ」を持つクリーチャーが破壊される時、墓地に置くかわりに自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-033",
+      "limit": 4,
+      "blocker": true,
+      "g314OtherEntry": {
+        "who": "self",
+        "g765Element": true,
+        "filter": {
+          "raceAny": [
+            "オラクル",
+            "アンノウン",
+            "ゼニス"
+          ]
+        },
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "g260Self": {
+        "filter": {
+          "g286FaceDownMana": 2
+        },
+        "grants": {
+          "escape": true
+        }
+      },
+      "supportBatch": "phase-1037",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-019",
+      "name": "聖邪のサトリ ミント",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "オラクル・セレス/ヒューマノイド",
+      "text": "このクリーチャーが出た時、相手の手札を１枚見ないで選び、捨てさせる。\n各ターン、はじめて相手が自身の手札を捨てた時、自分はカードを１枚引いてもよい。\n水晶武装２：このクリーチャーが攻撃する時、自分のマナゾーンに裏向きのカードが２枚以上あれば、相手は自身のクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-019",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "n": 1,
+          "random": true
+        }
+      ],
+      "g1037FirstOpponentDiscard": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g286FaceDownMana": 2
+          },
+          "defs": [
+            {
+              "op": "OpponentSelect",
+              "n": 1,
+              "to": "grave"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1037",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-040",
+      "name": "終斗なる牙 パラノーマル",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "オラクル・セレス/ヒューマノイド",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、相手の手札を１枚見ないで選び、捨てさせる。\n各ターンの終わりに、このターン、相手が自身の手札を捨てていれば、自分のマナゾーンのカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-040",
+      "limit": 4,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "n": 1,
+          "random": true
+        }
+      ],
+      "g1037ConditionalAnyEnd": {
+        "filter": {
+          "g1037OpponentDiscarded": true
+        },
+        "defs": [
+          {
+            "op": "ManaDown426"
+          }
+        ]
+      },
+      "supportBatch": "phase-1037",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-037",
+      "name": "終斗の閃き マトリクス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "オラクル・セレス/マジック・コマンド",
+      "text": "このクリーチャーが出た時、コスト３以下の呪文を１枚、自分の手札または墓地からコストを支払わずに唱えてもよい。\n各ターンの終わりに、このターン、自分が呪文を唱えていたら、自分のマナゾーンのカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-037",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Execute",
+          "zones": [
+            "hand",
+            "grave"
+          ],
+          "spellOnly": true,
+          "max": 3
+        }
+      ],
+      "g1037ConditionalAnyEnd": {
+        "filter": {
+          "g1037SpellCast": true
+        },
+        "defs": [
+          {
+            "op": "ManaDown426"
+          }
+        ]
+      },
+      "supportBatch": "phase-1037",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1036,
+    "phase": 1037,
     "checkedAt": "2026-11-12",
-    "baseCount": 7050,
-    "newEffectCards": 5,
+    "baseCount": 7055,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7055,
+    "totalCount": 7059,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -227669,6 +227839,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7050,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1036,
+        "checkedAt": "2026-11-12",
+        "baseCount": 7050,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 7055,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
