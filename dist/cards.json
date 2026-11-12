@@ -208533,15 +208533,139 @@
       ],
       "supportBatch": "phase-1033",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex11-006",
+      "name": "「剛力の火砲」",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4500,
+      "race": "メタリカ/チーム銀河",
+      "text": "ブロッカー ブロッカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を裏向きにして、新しいシールドとしてシールドゾーンに置く。\n自分のカードをシールドゾーンに置いた時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex11-006",
+      "limit": 4,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldTop",
+          "n": 1
+        }
+      ],
+      "g918ShieldAdded": [
+        {
+          "op": "Target",
+          "g190Freeze": "self",
+          "title": "攻撃とブロックを止める相手クリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1034",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-015",
+      "name": "「策略のエメラル」",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "サイバーロード/チーム銀河",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分の手札を１枚、表向きまたは裏向きにして、新しいシールドとしてシールドゾーンに置いてもよい。そうしたら、自分のシールドを１つ選び、手札に加える。ただし、その「S・トリガー」は使えない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-015",
+      "limit": 4,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "HandShield657",
+          "afterAttempt": [
+            {
+              "op": "ShieldHand",
+              "g238ShieldHand": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1034",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr11-030",
+      "name": "斬撃と防衛の矛盾",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれかひとつを選ぶ。 　▼自分のシールドがふたつ以下であれば、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加える。 　▼相手のパワー3000以下のクリーチャーを１体、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-030",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "シールドが2つ以下なら山札の上から1枚をシールド化",
+              "defs": [
+                {
+                  "op": "IfOwn",
+                  "filter": {
+                    "g265ShieldsMax": 2
+                  },
+                  "defs": [
+                    {
+                      "op": "ShieldTop",
+                      "n": 1
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "パワー3000以下の相手クリーチャーを1体破壊",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "maxPower": 3000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1034",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1033,
+    "phase": 1034,
     "checkedAt": "2026-11-12",
-    "baseCount": 7040,
-    "newEffectCards": 4,
+    "baseCount": 7044,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7044,
+    "totalCount": 7047,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -227226,6 +227350,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7040,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1033,
+        "checkedAt": "2026-11-12",
+        "baseCount": 7040,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7044,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

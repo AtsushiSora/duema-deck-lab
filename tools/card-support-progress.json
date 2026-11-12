@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7044,
-  "pendingNames": 4783,
-  "phase": 1033,
-  "added": 4,
+  "supportedNames": 7047,
+  "pendingNames": 4780,
+  "phase": 1034,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2749,
+    "クリーチャー": 2747,
     "NEOクリーチャー": 152,
-    "呪文": 624,
+    "呪文": 623,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 57,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1212,
-    "未対応の能力文": 3335,
+    "未対応の能力文": 3333,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -237,7 +237,7 @@
     "未対応のスリリング・スリー効果": 2,
     "未対応のスーパー・S・トリガー能力": 15,
     "再録サバイバーの共有処理が未対応": 5,
-    "未対応の選択能力": 17,
+    "未対応の選択能力": 16,
     "未対応のアンタップ能力": 3,
     "コスト・文明の個別処理が必要": 3,
     "未対応の革命誘発効果": 4,
@@ -204231,32 +204231,107 @@
           "reason": "公式QA 31747・31748・39309で、複数回の軽減、次に使う光のカードでの失効、代替コスト使用時の扱いを確認。再録の全文・画像とサバキZの宣言から召喚までを、消費順とあわせて検証するまで保留。"
         }
       ]
+    },
+    {
+      "phase": 1034,
+      "baseCommit": "3bc10e5b",
+      "cards": [
+        {
+          "id": "dmex11-006",
+          "name": "「剛力の火砲」"
+        },
+        {
+          "id": "dmrp14-015",
+          "name": "「策略のエメラル」"
+        },
+        {
+          "id": "dmr11-030",
+          "name": "斬撃と防衛の矛盾"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dmex16-089",
+          "canonicalId": "dmrp14-015",
+          "name": "「策略のエメラル」"
+        },
+        {
+          "id": "dm26rp1-T002",
+          "canonicalId": "dmrp14-015",
+          "name": "「策略のエメラル」"
+        }
+      ],
+      "supportedNames": 7047,
+      "pendingNames": 4780,
+      "verification": {
+        "focusedPassed": 10,
+        "regressionPassed": 191,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 5,
+        "scope": "公式能力全文・基本情報・画像・マナ数・現行殿堂制限を3種類と再録2版で照合。剛力の火砲はブロッカー、登場時の裏向きシールド化、既存の盾束への追加でも相手1体を次の自ターン開始まで攻撃・ブロック不可とし、同一対象への重複でも延長しない。策略のエメラルはブロッカー、手札からの表裏選択、盾束全体の回収とS・トリガー抑止を確認。QA 40275と総合ルール101.3aの類例に沿い、配置を試みて禁止された場合は回収し、辞退時は回収しない。斬撃と防衛の矛盾はマナのタップイン、S・トリガー、解決時に盾束2つ以下を判定するシールド化モードと、パワー3000以下の相手1体の破壊を確認。保存復元・物理カードID・再録の共通化も確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/qa/33516/",
+          "https://dm.takaratomy.co.jp/rule/qa/33517/",
+          "https://dm.takaratomy.co.jp/rule/qa/33525/",
+          "https://dm.takaratomy.co.jp/rule/qa/40275/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf"
+        ],
+        "regressionFiles": [
+          "tests/standard1033-effects.test.mjs",
+          "tests/standard1032-effects.test.mjs",
+          "tests/standard1031-effects.test.mjs",
+          "tests/standard657-effects.test.mjs",
+          "tests/standard918-effects.test.mjs",
+          "tests/standard190-effects.test.mjs",
+          "tests/standard536-effects.test.mjs",
+          "tests/standard627-effects.test.mjs"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象名と中断理由は元の履歴に記録。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。",
+        "logs": {
+          "official": "/tmp/duema-phase-1034.8UgZ7i38/official.log",
+          "focused": "/tmp/duema-phase-1034.8UgZ7i38/focused-first.log",
+          "regression": "/tmp/duema-phase-1034.8UgZ7i38/regression.log",
+          "check": "/tmp/duema-phase-1034.8UgZ7i38/check.log",
+          "audit": "/tmp/duema-phase-1034.8UgZ7i38/audit.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dmex11-017",
+          "name": "「戒律の大弓」",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex11-017",
+          "reason": "公式の全能力・基本情報・収録を確認。QA 33523により、効果の発生源ではなく実際のバトル相手の文明で破壊耐性を判定する。既存の登場監視に手札以外の登場元を指定する条件がないため、進化や効果バトルを含む破壊耐性とともに全能力を検証するまで保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1033,
-    "nextPhase": 1034,
+    "lastVerifiedPhase": 1034,
+    "nextPhase": 1035,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dmex11-006",
-        "name": "「剛力の火砲」",
-        "reason": "登場時のシールド化とシールド追加誘発による、相手1体の攻撃・ブロック禁止を照合する。"
+        "id": "promoy19-003",
+        "name": "「光魔の鎧」",
+        "reason": "S・トリガー、ブロッカーと、手札からの任意の表向きシールド化を照合する。"
       },
       {
-        "id": "dmrp14-015",
-        "name": "「策略のエメラル」",
-        "reason": "手札を表向きか裏向きで新しい盾にする選択と、成功後だけ盾を手札に加える処理を検証する。"
+        "id": "dmex14-001",
+        "name": "「超感覚の聖狗」",
+        "reason": "登場時の表向きシールド化と、相手ターン中の多色条件つきS・トリガー付与を検証する。"
       },
       {
-        "id": "dmr11-030",
-        "name": "斬撃と防衛の矛盾",
-        "reason": "シールド2つ以下のシールド化モードとパワー3000以下の破壊、条件を満たさない場合のモード選択、S・トリガーを照合する。"
+        "id": "dm25ex2-086",
+        "name": "「これ以上、蓄積された魔力を増やしてどうするのです？」",
+        "reason": "S・トリガー、1枚ドロー後の任意のマナ裏向き化を既存の水晶マナ処理で検証する。"
       },
       {
-        "id": "dmex11-017",
-        "name": "「戒律の大弓」",
-        "reason": "相手の手札以外からの登場を区別し、盾追加と火とのバトル時の破壊防止を検証する。"
+        "id": "dmex14-046",
+        "name": "【今すぐ】うわっ…相手の攻撃止めすぎ…？【クリック】",
+        "reason": "S・トリガーによる相手クリーチャーの攻撃・ブロック禁止、どこからでも墓地に置かれた場合の任意の山札回収を確認する。"
       }
     ],
     "steps": [

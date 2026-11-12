@@ -2791,13 +2791,13 @@ export function createSixPhotoRules(api){
  }
  case'g34_ShieldHand':put(s,{...t,op:'g55_ShieldHand'});break;
  case'g34_HandShield657':
-  if(own.hand.length&&api.canAddShield(s,t.p))choice(s,t,'シールド化する手札を1枚選ぶ（任意）',[
+  if(own.hand.length&&(t.afterAttempt||api.canAddShield(s,t.p)))choice(s,t,'シールド化する手札を1枚選ぶ（任意）',[
    ...own.hand.map(y=>opt(card(y).name,y.uid,card(y).gCastle||faces(card(y)).some(c=>c.trigger)?12:2,y.cardId)),skip()
   ]);
   break;
  case'g34_ShieldSide657':{
   const y=own.hand.find(y=>y.uid===t.target&&(y.zoneSerial||0)===t.serial);
-  if(y&&api.canAddShield(s,t.p))choice(s,t,'シールドを置く向きを選ぶ',[
+  if(y&&(t.afterAttempt||api.canAddShield(s,t.p)))choice(s,t,'シールドを置く向きを選ぶ',[
    opt('表向きで置く',true,card(y).gCastle?10:-2,y.cardId),opt('裏向きで置く',false,1,y.cardId)
   ]);
   break;
@@ -3858,7 +3858,10 @@ export function createSixPhotoRules(api){
  }break;
  case'g34_ShieldSide657':{
   const y=own.hand.find(y=>y.uid===t.target&&(y.zoneSerial||0)===t.serial);
-  if(y)zoneMove(s,t.p,'hand',y.uid,'shields',{...t,g657FaceUp:v===true});
+  if(y){
+   zoneMove(s,t.p,'hand',y.uid,'shields',{...t,g657FaceUp:v===true});
+   if(t.afterAttempt)start(s,t,t.afterAttempt);
+  }
   break;
  }
  case'g34_ShieldMove685':

@@ -1,0 +1,238 @@
+{
+  "phase": 1034,
+  "checkedAt": "2026-11-12",
+  "baseCount": 7044,
+  "description": "シールド化、回収、攻撃・ブロック制限に関わる3種類と再録2版を公式情報で照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "cards": [
+    {
+      "id": "dmex11-006",
+      "name": "「剛力の火砲」",
+      "faces": [
+        {
+          "name": "「剛力の火砲」",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を裏向きにして、新しいシールドとしてシールドゾーンに置く。\n自分のカードをシールドゾーンに置いた時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "メタリカ/チーム銀河",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex11-006",
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          }
+        ],
+        "g918ShieldAdded": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止める相手クリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex11-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "f5540e0e81358dd5c85e5dee64e9d867953b0f1e23c3c5c544ef85f795e07dec",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp14-015",
+      "name": "「策略のエメラル」",
+      "faces": [
+        {
+          "name": "「策略のエメラル」",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分の手札を１枚、表向きまたは裏向きにして、新しいシールドとしてシールドゾーンに置いてもよい。そうしたら、自分のシールドを１つ選び、手札に加える。ただし、その「S・トリガー」は使えない。",
+          "race": "サイバーロード/チーム銀河",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-015",
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandShield657",
+            "afterAttempt": [
+              {
+                "op": "ShieldHand",
+                "g238ShieldHand": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "c062a4edb715bc6bbc62b9be84dd441ae1031d9be0c88937e9f2b3afe7d61f9d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr11-030",
+      "name": "斬撃と防衛の矛盾",
+      "faces": [
+        {
+          "name": "斬撃と防衛の矛盾",
+          "typeText": "呪文",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれかひとつを選ぶ。 　▼自分のシールドがふたつ以下であれば、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加える。 　▼相手のパワー3000以下のクリーチャーを１体、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-030",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "シールドが2つ以下なら山札の上から1枚をシールド化",
+                "defs": [
+                  {
+                    "op": "IfOwn",
+                    "filter": {
+                      "g265ShieldsMax": 2
+                    },
+                    "defs": [
+                      {
+                        "op": "ShieldTop",
+                        "n": 1
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "パワー3000以下の相手クリーチャーを1体破壊",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 3000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr11-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "47ab0e9ddf90b35955d518f93dd77dede16a27332f34a459d7452800e4c15ee3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex16-089",
+      "canonicalId": "dmrp14-015",
+      "name": "「策略のエメラル」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex16-089",
+      "faces": [
+        {
+          "name": "「策略のエメラル」",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、自分の手札を１枚、表向きまたは裏向きにして、シールド化してもよい。そうしたら、自分のシールドを１つ手札に加える。ただし、その「S・トリガー」は使えない。",
+          "race": "サイバーロード/チーム銀河",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex16-089.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "beb54b3998a32234e7baa81c488d93357037af2760e19d194088480a46123868",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp1-T002",
+      "canonicalId": "dmrp14-015",
+      "name": "「策略のエメラル」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-T002",
+      "faces": [
+        {
+          "name": "「策略のエメラル」",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー\nこのクリーチャーが出た時、自分の手札を１枚、表向きまたは裏向きでシールド化してもよい。そうしたら、自分のシールドを１つ手札に加える。その「S・トリガー」は使えない。",
+          "race": "サイバーロード/チーム銀河",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-T002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "57c561e574dd1fbf38f8e35783b9b6563bd0adcb1ae960c96302d21dc53f4879",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex11-006": 4,
+      "dmrp14-015": 4,
+      "dmr11-030": 4,
+      "dmex16-089": 4,
+      "dm26rp1-T002": 4
+    }
+  }
+}

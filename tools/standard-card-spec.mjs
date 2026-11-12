@@ -2467,6 +2467,29 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1034&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText),blocker='ブロッカーブロッカー';
+  const reminder='(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+  if(f.name==='「剛力の火砲」'&&f.typeText==='クリーチャー'&&f.civilizationText==='光/水'&&f.cost===4&&f.race==='メタリカ/チーム銀河'&&text===blocker+
+   'このクリーチャーがバトルゾーンに出た時自分の山札の上から1枚目を裏向きにして新しいシールドとしてシールドゾーンに置く。'+
+   '自分のカードをシールドゾーンに置いた時相手のクリーチャーを1体選ぶ。次の自分のターンのはじめまでそのクリーチャーは攻撃もブロックもできない。')
+   return {blocker:true,effect:'sixPhoto',g34Tasks:[{op:'ShieldTop',n:1}],
+    g918ShieldAdded:[{op:'Target',g190Freeze:'self',title:'攻撃とブロックを止める相手クリーチャーを選ぶ'}]};
+  if(f.name==='「策略のエメラル」'&&f.typeText==='クリーチャー'&&f.civilizationText==='水'&&f.cost===4&&f.race==='サイバーロード/チーム銀河'&&[
+   blocker+reminder+'このクリーチャーがバトルゾーンに出た時自分の手札を1枚表向きまたは裏向きにして新しいシールドとしてシールドゾーンに置いてもよい。そうしたら自分のシールドを1つ選び手札に加える。ただしその「S・トリガー」は使えない。',
+   blocker+reminder+'このクリーチャーが出た時自分の手札を1枚表向きまたは裏向きにしてシールド化してもよい。そうしたら自分のシールドを1つ手札に加える。ただしその「S・トリガー」は使えない。',
+   blocker+'このクリーチャーが出た時自分の手札を1枚表向きまたは裏向きでシールド化してもよい。そうしたら自分のシールドを1つ手札に加える。その「S・トリガー」は使えない。'
+  ].includes(text))
+   return {blocker:true,effect:'sixPhoto',g34Tasks:[{op:'HandShield657',afterAttempt:[{op:'ShieldHand',g238ShieldHand:true}]}]};
+  if(f.name==='斬撃と防衛の矛盾'&&f.typeText==='呪文'&&f.civilizationText==='光/火'&&f.cost===4&&text===
+   'マナゾーンに置く時このカードはタップして置く。S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)'+
+   '次のうちいずれかひとつを選ぶ。▼自分のシールドがふたつ以下であれば自分の山札の上から1枚目を裏向きのまま新しいシールドとして自分のシールドゾーンに加える。'+
+   '▼相手のパワー3000以下のクリーチャーを1体破壊する。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Choose',g184Modes:true,modes:[
+    {label:'シールドが2つ以下なら山札の上から1枚をシールド化',defs:[{op:'IfOwn',filter:{g265ShieldsMax:2},defs:[{op:'ShieldTop',n:1}]}]},
+    {label:'パワー3000以下の相手クリーチャーを1体破壊',defs:[{op:'Target',to:'grave',filter:{maxPower:3000,g199Power:true}}]}
+   ]}]};
+ }
  if(phase>=1033&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText),untap=[{op:'Untap',g191First:true}];
   const takeShield={op:'ShieldHand',g238ShieldHand:true,optional:true,g535Count:1};
