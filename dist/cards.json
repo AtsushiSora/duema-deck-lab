@@ -215615,15 +215615,136 @@
       "g1084UnderLeave": true,
       "supportBatch": "phase-1084",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm36-s07",
+      "name": "時空の火焔ボルシャック・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "アーマード・ドラゴン",
+      "text": "攻撃中、このクリーチャーのパワーは、自分の墓地にある火のカード１枚につき+1000される。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n覚醒-このクリーチャーがバトルに勝った時、このクリーチャーをコストの大きいほうに裏返す。\n【呪文面】\nこのクリーチャーが攻撃する時、自分のシールドを１枚墓地に置いてもよい。そうした場合、相手のパワー6000以下のクリーチャーを１体破壊する。\nこのクリーチャーが各ターンはじめてタップされた時、アンタップする。\n攻撃中、このクリーチャーのパワーは、自分の墓地にある火のカード１枚につき+1000される。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)\n解除(このクリーチャーがバトルゾーンを離れる時、バトルゾーンを離れるかわりに、コストの小さいほうに裏返す)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-s07",
+      "limit": 4,
+      "psychic": true,
+      "breaker": 2,
+      "g207CountPower": {
+        "zone": "grave",
+        "attackOnly": true,
+        "g1011CountColor": "火",
+        "amount": 1000
+      },
+      "g1085AwakenOnWin": true,
+      "g1085Back": {
+        "name": "勝利の覚醒者ボルシャック・メビウス",
+        "cost": 14,
+        "power": 12000,
+        "race": "アーマード・ドラゴン",
+        "breaker": 3,
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-s07b.jpg",
+        "g1085Release": true,
+        "g1085UntapOnTap": true,
+        "g34Attack": [
+          {
+            "op": "ShieldGrave",
+            "optional": true,
+            "then": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 6000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1085",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm36-101",
+      "name": "超次元ボルシャック・ホール",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "相手のパワー3000以下のクリーチャーを１体破壊する。\n次のうちいずれかひとつを選ぶ。\n自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。\nコスト７以下の火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\n(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-101",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 3000,
+            "g199Power": true
+          },
+          "spell": true
+        },
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "合計コスト5以下のサイキックを好きな数出す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "extra",
+                  "deploy": true,
+                  "filter": {
+                    "g1085Psychic": true
+                  },
+                  "n": "all",
+                  "optional": true,
+                  "g550CostBudget": 5
+                }
+              ]
+            },
+            {
+              "label": "コスト7以下の火のサイキックを1体出す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "extra",
+                  "deploy": true,
+                  "filter": {
+                    "g1085Psychic": true,
+                    "max": 7,
+                    "color": "火"
+                  },
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1085",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1084,
+    "phase": 1085,
     "checkedAt": "2026-11-13",
-    "baseCount": 7216,
+    "baseCount": 7218,
     "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 7218,
+    "totalCount": 7220,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -234920,6 +235041,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7216,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1084,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7216,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 7218,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

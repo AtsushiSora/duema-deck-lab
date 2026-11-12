@@ -1,5 +1,6 @@
 import {normalizeDeckTags} from './deck-tags.js?v=0.721.0';
-const signature=deck=>JSON.stringify([deck.name,deck.format||'original',...(deck.cards||[]).map(r=>[r.id,r.count]).sort((a,b)=>a[0].localeCompare(b[0])),deck.description||'',deck.historicalId||'',deck.tournament||'',deck.templateId||'',deck.sourceTitle||'',deck.source||'',deck.product||null,!!deck.favorite,normalizeDeckTags(deck.tags).sort()]);
+const rowsSignature=rows=>(rows||[]).map(r=>[r.id,r.count]).sort((a,b)=>a[0].localeCompare(b[0]));
+const signature=deck=>JSON.stringify([deck.name,deck.format||'original',rowsSignature(deck.cards),rowsSignature(deck.extraCards),deck.description||'',deck.historicalId||'',deck.tournament||'',deck.templateId||'',deck.sourceTitle||'',deck.source||'',deck.product||null,!!deck.favorite,normalizeDeckTags(deck.tags).sort()]);
 export function deckAccountStatus(deck,role,state,{localOK=true}={}){
  if(!localOK)return {kind:'warning',text:'端末への保存に失敗',note:'編集を閉じずに、デッキを書き出して保管してください。'};
  if(!state.user)return {kind:'local',text:'この端末に保存済み',note:'アカウントへ保存すると、別の端末でも取り込めます。'};

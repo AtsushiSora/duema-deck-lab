@@ -6160,6 +6160,46 @@ export function standardCardSpec(d,{phase=165}={}){
    'このクリーチャーが攻撃する時バトルゾーンにあるクロスギアを1枚選び持ち主の墓地に置く。クロスギアがバトルゾーンから墓地に置かれた時カードを1枚引いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
    return {breaker:2,g34Attack:[{op:'Target',element:true,anyOwner:true,filter:{g201Gear:true},to:'grave',title:'墓地に置くクロスギアを1枚選ぶ'}],g933GearGraveDraw:true};
  }
+ if(phase>=1085&&d?.status==='complete'){
+  const powerText='攻撃中このクリーチャーのパワーは自分の墓地にある火のカード1枚につき+1000される。';
+  const power={zone:'grave',attackOnly:true,g1011CountColor:'火',amount:1000};
+  const awake='このクリーチャーがバトルに勝った時このクリーチャーをコストの大きいほうに裏返す。';
+  const shield='このクリーチャーが攻撃する時自分のシールドを1枚墓地に置いてもよい。そうした場合相手のパワー6000以下のクリーチャーを1体破壊する。';
+  const untap='このクリーチャーが各ターンはじめてタップされた時アンタップする。';
+  const release='解除(このクリーチャーがバトルゾーンを離れる時バトルゾーンを離れるかわりにコストの小さいほうに裏返す)';
+  const [front,back]=d.faces;
+  const w='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';
+  const t='T・ブレイカー(このクリーチャーはシールドを3枚ブレイクする)';
+  const frontText=normalize(front.abilityText);
+  const alternatePower='攻撃中このクリーチャーのパワーを自分の墓地にある火のカード1枚につき+1000する。';
+  const alternateUntap='各ターンこのクリーチャーがはじめてタップした時アンタップする。';
+  const frontRules=frontText.replace(alternatePower,powerText).replace('覚醒:','覚醒-').replace('W・ブレイカー覚醒','W・ブレイカー'+w.slice('W・ブレイカー'.length)+'覚醒');
+  if(d.faces.length===2&&d.faces.every(face=>face.typeText==='サイキック・クリーチャー')){
+   const backRules=normalize(back.abilityText).replace(alternatePower,powerText).replace(alternateUntap,untap)
+    .replace('シールドを1つ墓地に置いてもよい。そうしたら','シールドを1枚墓地に置いてもよい。そうした場合')
+    .replace('シールドを3つブレイクする','シールドを3枚ブレイクする')
+    .replace('解除(このクリーチャーが離れる時離れるかわりにコストの小さいほうに裏返す)',release);
+   if(frontRules===powerText+w+'覚醒-'+awake&&backRules===shield+untap+powerText+t+release){
+    return {psychic:true,manaValue:0,breaker:2,g207CountPower:power,g1085AwakenOnWin:true,
+    g1085Back:{name:back.name,cost:back.cost,power:Number(back.powerText),race:'アーマード・ドラゴン',breaker:3,
+     image:'https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-s07b.jpg',g1085Release:true,g1085UntapOnTap:true,g34Attack:[{op:'ShieldGrave',optional:true,then:[{
+      op:'Target',to:'grave',filter:{maxPower:6000,g199Power:true}
+     }]}]}};
+   }
+  }
+  const hole='相手のパワー3000以下のクリーチャーを1体破壊する。次のうちいずれかひとつを選ぶ。';
+  const five='自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が5以下になるように選びバトルゾーンに出す。';
+  const seven='コスト7以下の火のサイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。';
+  const reminder='(ゲーム開始時サイキック・クリーチャーは山札には含めず自分の超次元ゾーンに置きバトルゾーン以外のゾーンに行った場合そこに戻す)';
+  if(d.faces.length===1&&f.typeText==='呪文'&&frontText.replaceAll('▼','')===hole+five+seven+reminder){
+   const put={op:'Select',origin:'extra',deploy:true,filter:{g1085Psychic:true}};
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',to:'grave',filter:{maxPower:3000,g199Power:true},spell:true},
+    {op:'Choose',g184Modes:true,modes:[
+     {label:'合計コスト5以下のサイキックを好きな数出す',defs:[{...put,n:'all',optional:true,g550CostBudget:5}]},
+     {label:'コスト7以下の火のサイキックを1体出す',defs:[{...put,n:1,filter:{...put.filter,max:7,color:'火'}}]}
+    ]}]};
+  }
+ }
  if(phase>=1084&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const memotta='このクリーチャーが召喚によって出た時自分の山札の上から3枚を墓地に置く。その後コストの合計が5以下になるように進化ではないクリーチャーを2体まで封印を1つずつ付けて自分の墓地から出す。';

@@ -1,3 +1,4 @@
+import {sameDeckFormat} from './deck-format.js';
 import {deckContentSnapshot} from './deck-history.js?v=0.721.0';
 export function lastMatchSetup({deck,opponent,mode='manual',first='random',count=1000,practice=true,allOpp=false}){
  if(!deck?.id||!['manual','spectate','auto'].includes(mode))return null;
@@ -6,7 +7,7 @@ export function lastMatchSetup({deck,opponent,mode='manual',first='random',count
 export function resolveLastMatch(saved,validate){
  const setup=saved.lastMatch;if(setup?.version!==1||!['manual','spectate','auto'].includes(setup.mode)||!['first','second','random'].includes(setup.first)||!Number.isSafeInteger(setup.count)||setup.count<1||setup.count>100000)return null;
  const deck=saved.decks.find(d=>d.id===setup.deckId);if(!deck)return null;
- const opponent=(saved.friends||[]).find(d=>d.id===setup.opponent?.id)||setup.opponent,opponents=setup.allOpp?(saved.friends||[]):opponent?[opponent]:[];
- const error=validate(deck)[0]||(!opponents.length?'相手デッキを選んでください':opponents.flatMap(d=>validate(d))[0]);
+ const opponent=(saved.friends||[]).find(d=>d.id===setup.opponent?.id)||setup.opponent,opponents=setup.allOpp?(saved.friends||[]).filter(d=>sameDeckFormat(deck,d)):opponent?[opponent]:[];
+ const error=validate(deck)[0]||(!opponents.length?'相手デッキを選んでください':opponents.some(d=>!sameDeckFormat(deck,d))?'同じフォーマットのデッキを選んでください':opponents.flatMap(d=>validate(d))[0]);
  return {setup,deck,opponent,error:error||null};
 }

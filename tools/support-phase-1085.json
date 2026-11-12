@@ -1,0 +1,693 @@
+{
+  "phase": 1085,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7218,
+  "description": "登録済みカードの公式裁定を実カードで再現するため、必要なカードの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/cls/creatorsletter40/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31408/",
+    "https://dm.takaratomy.co.jp/rule/qa/41648/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36037/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36039/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36075/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36076/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36077/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36078/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34920/"
+  ],
+  "cards": [
+    {
+      "id": "dm36-s07",
+      "name": "時空の火焔ボルシャック・ドラゴン",
+      "faces": [
+        {
+          "name": "時空の火焔ボルシャック・ドラゴン",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "攻撃中、このクリーチャーのパワーは、自分の墓地にある火のカード１枚につき+1000される。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n覚醒-このクリーチャーがバトルに勝った時、このクリーチャーをコストの大きいほうに裏返す。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "勝利の覚醒者ボルシャック・メビウス",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 14,
+          "costText": "14",
+          "abilityText": "このクリーチャーが攻撃する時、自分のシールドを１枚墓地に置いてもよい。そうした場合、相手のパワー6000以下のクリーチャーを１体破壊する。\nこのクリーチャーが各ターンはじめてタップされた時、アンタップする。\n攻撃中、このクリーチャーのパワーは、自分の墓地にある火のカード１枚につき+1000される。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)\n解除(このクリーチャーがバトルゾーンを離れる時、バトルゾーンを離れるかわりに、コストの小さいほうに裏返す)",
+          "race": "",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-s07",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-s07a.jpg",
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "breaker": 2,
+        "g207CountPower": {
+          "zone": "grave",
+          "attackOnly": true,
+          "g1011CountColor": "火",
+          "amount": 1000
+        },
+        "g1085AwakenOnWin": true,
+        "g1085Back": {
+          "name": "勝利の覚醒者ボルシャック・メビウス",
+          "cost": 14,
+          "power": 12000,
+          "race": "アーマード・ドラゴン",
+          "breaker": 3,
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-s07b.jpg",
+          "g1085Release": true,
+          "g1085UntapOnTap": true,
+          "g34Attack": [
+            {
+              "op": "ShieldGrave",
+              "optional": true,
+              "then": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "maxPower": 6000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "d3590f6d22cb514e996f868ff50785e15bfa07dfdff41a0ac65ee55e39d568e5",
+        "facesMatched": true
+      },
+      "reprintRaceReference": {
+        "id": "dmc67-s01",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc67-s01",
+        "race": "アーマード・ドラゴン",
+        "verification": {
+          "checkedAt": "2026-11-13",
+          "sha256": "6743ed1a1fba66dbeb216ccd9d33fe9e94b60c0c3fc789218d892f1a20306f25",
+          "facesMatched": true
+        }
+      },
+      "imageBack": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-s07b.jpg"
+    },
+    {
+      "id": "dm36-101",
+      "name": "超次元ボルシャック・ホール",
+      "faces": [
+        {
+          "name": "超次元ボルシャック・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手のパワー3000以下のクリーチャーを１体破壊する。\n次のうちいずれかひとつを選ぶ。\n自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。\nコスト７以下の火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\n(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-101",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-101.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 3000,
+              "g199Power": true
+            },
+            "spell": true
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "n": "all",
+                    "optional": true,
+                    "g550CostBudget": 5
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の火のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "火"
+                    },
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "74381b523565e26d72c7340769e3094beea0dd9312d1b802f00ade01a13013b4",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc67-s01",
+      "name": "時空の火焔ボルシャック・ドラゴン",
+      "faces": [
+        {
+          "name": "時空の火焔ボルシャック・ドラゴン",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "攻撃中、このクリーチャーのパワーは、自分の墓地にある火のカード１枚につき+1000される。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n覚醒 - このクリーチャーがバトルに勝った時、このクリーチャーをコストの大きいほうに裏返す。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "勝利の覚醒者ボルシャック・メビウス",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 14,
+          "costText": "14",
+          "abilityText": "このクリーチャーが攻撃する時、自分のシールドを１枚墓地に置いてもよい。そうした場合、相手のパワー6000以下のクリーチャーを１体破壊する。\nこのクリーチャーが各ターンはじめてタップされた時、アンタップする。\n攻撃中、このクリーチャーのパワーは、自分の墓地にある火のカード１枚につき+1000される。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)\n解除(このクリーチャーがバトルゾーンを離れる時、バトルゾーンを離れるかわりに、コストの小さいほうに裏返す)",
+          "race": "アーマード・ドラゴン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc67-s01",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc67-s01a.jpg",
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "breaker": 2,
+        "g207CountPower": {
+          "zone": "grave",
+          "attackOnly": true,
+          "g1011CountColor": "火",
+          "amount": 1000
+        },
+        "g1085AwakenOnWin": true,
+        "g1085Back": {
+          "name": "勝利の覚醒者ボルシャック・メビウス",
+          "cost": 14,
+          "power": 12000,
+          "race": "アーマード・ドラゴン",
+          "breaker": 3,
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-s07b.jpg",
+          "g1085Release": true,
+          "g1085UntapOnTap": true,
+          "g34Attack": [
+            {
+              "op": "ShieldGrave",
+              "optional": true,
+              "then": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "maxPower": 6000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "6743ed1a1fba66dbeb216ccd9d33fe9e94b60c0c3fc789218d892f1a20306f25",
+        "facesMatched": true
+      },
+      "canonicalId": "dm36-s07",
+      "imageBack": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc67-s01b.jpg"
+    },
+    {
+      "id": "dmd18-011",
+      "name": "時空の火焔ボルシャック・ドラゴン",
+      "faces": [
+        {
+          "name": "時空の火焔ボルシャック・ドラゴン",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "攻撃中、このクリーチャーのパワーは、自分の墓地にある火のカード１枚につき+1000される。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\n覚醒 - このクリーチャーがバトルに勝った時、このクリーチャーをコストの大きいほうに裏返す。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "勝利の覚醒者ボルシャック・メビウス",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 14,
+          "costText": "14",
+          "abilityText": "このクリーチャーが攻撃する時、自分のシールドを１枚墓地に置いてもよい。そうした場合、相手のパワー6000以下のクリーチャーを１体破壊する。\n各ターン、このクリーチャーがはじめてタップした時、アンタップする。\n攻撃中、このクリーチャーのパワーは、自分の墓地にある火のカード１枚につき+1000される。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）\n解除（このクリーチャーがバトルゾーンを離れる時、バトルゾーンを離れるかわりに、コストの小さいほうに裏返す）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd18-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd18-011a.jpg",
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "breaker": 2,
+        "g207CountPower": {
+          "zone": "grave",
+          "attackOnly": true,
+          "g1011CountColor": "火",
+          "amount": 1000
+        },
+        "g1085AwakenOnWin": true,
+        "g1085Back": {
+          "name": "勝利の覚醒者ボルシャック・メビウス",
+          "cost": 14,
+          "power": 12000,
+          "race": "アーマード・ドラゴン",
+          "breaker": 3,
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-s07b.jpg",
+          "g1085Release": true,
+          "g1085UntapOnTap": true,
+          "g34Attack": [
+            {
+              "op": "ShieldGrave",
+              "optional": true,
+              "then": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "maxPower": 6000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "3b69e8c4edaecb9768b22953dfd9102f4449a4d355102694ce87cf8f07521606",
+        "facesMatched": true
+      },
+      "canonicalId": "dm36-s07",
+      "imageBack": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd18-011b.jpg"
+    },
+    {
+      "id": "dmx08-s03",
+      "name": "時空の火焔ボルシャック・ドラゴン",
+      "faces": [
+        {
+          "name": "時空の火焔ボルシャック・ドラゴン",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "攻撃中、このクリーチャーのパワーは、自分の墓地にある火のカード１枚につき+1000される。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n覚醒-このクリーチャーがバトルに勝った時、このクリーチャーをコストの大きいほうに裏返す。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "勝利の覚醒者ボルシャック・メビウス",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 14,
+          "costText": "14",
+          "abilityText": "このクリーチャーが攻撃する時、自分のシールドを１枚墓地に置いてもよい。そうした場合、相手のパワー6000以下のクリーチャーを１体破壊する。\nこのクリーチャーが各ターンはじめてタップされた時、アンタップする。\n攻撃中、このクリーチャーのパワーは、自分の墓地にある火のカード１枚につき+1000される。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)\n解除(このクリーチャーがバトルゾーンを離れる時、バトルゾーンを離れるかわりに、コストの小さいほうに裏返す)",
+          "race": "アーマード・ドラゴン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx08-s03",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx08-s03a.jpg",
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "breaker": 2,
+        "g207CountPower": {
+          "zone": "grave",
+          "attackOnly": true,
+          "g1011CountColor": "火",
+          "amount": 1000
+        },
+        "g1085AwakenOnWin": true,
+        "g1085Back": {
+          "name": "勝利の覚醒者ボルシャック・メビウス",
+          "cost": 14,
+          "power": 12000,
+          "race": "アーマード・ドラゴン",
+          "breaker": 3,
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-s07b.jpg",
+          "g1085Release": true,
+          "g1085UntapOnTap": true,
+          "g34Attack": [
+            {
+              "op": "ShieldGrave",
+              "optional": true,
+              "then": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "maxPower": 6000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "c5b7f9f24d349f2619bb5472ed7db0c37216bd19a38e76052abc42a04be29798",
+        "facesMatched": true
+      },
+      "canonicalId": "dm36-s07",
+      "imageBack": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx08-s03b.jpg"
+    },
+    {
+      "id": "dmpcd03-a04",
+      "name": "時空の火焔ボルシャック・ドラゴン",
+      "faces": [
+        {
+          "name": "時空の火焔ボルシャック・ドラゴン",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "攻撃中、このクリーチャーのパワーを、自分の墓地にある火のカード１枚につき+1000する。\nW・ブレイカー\n覚醒 ：このクリーチャーがバトルに勝った時、このクリーチャーをコストの大きいほうに裏返す。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "勝利の覚醒者ボルシャック・メビウス",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 14,
+          "costText": "14",
+          "abilityText": "このクリーチャーが攻撃する時、自分のシールドを１つ墓地に置いてもよい。そうしたら、相手のパワー6000以下のクリーチャーを１体破壊する。\n各ターン、このクリーチャーがはじめてタップした時、アンタップする。\n攻撃中、このクリーチャーのパワーを、自分の墓地にある火のカード１枚につき+1000する。\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）\n解除（このクリーチャーが離れる時、離れるかわりに、コストの小さいほうに裏返す）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd03-a04",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmpcd03-a04a.jpg",
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "breaker": 2,
+        "g207CountPower": {
+          "zone": "grave",
+          "attackOnly": true,
+          "g1011CountColor": "火",
+          "amount": 1000
+        },
+        "g1085AwakenOnWin": true,
+        "g1085Back": {
+          "name": "勝利の覚醒者ボルシャック・メビウス",
+          "cost": 14,
+          "power": 12000,
+          "race": "アーマード・ドラゴン",
+          "breaker": 3,
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-s07b.jpg",
+          "g1085Release": true,
+          "g1085UntapOnTap": true,
+          "g34Attack": [
+            {
+              "op": "ShieldGrave",
+              "optional": true,
+              "then": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "maxPower": 6000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "1bf845d055f4235a054df81318b67626ae5ed1eaa417e7fc771f465337b558ac",
+        "facesMatched": true
+      },
+      "canonicalId": "dm36-s07",
+      "imageBack": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmpcd03-a04b.jpg"
+    },
+    {
+      "id": "dm36-101VC",
+      "name": "超次元ボルシャック・ホール",
+      "faces": [
+        {
+          "name": "超次元ボルシャック・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手のパワー3000以下のクリーチャーを１体破壊する。\n次のうちいずれかひとつを選ぶ。 　自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。 　コスト７以下の火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 （ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-101VC",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-101VC.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 3000,
+              "g199Power": true
+            },
+            "spell": true
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "n": "all",
+                    "optional": true,
+                    "g550CostBudget": 5
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の火のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "火"
+                    },
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "1882fe7feee7787fdb5e133053d54ebd29216504edfb032b43c025e66b42198b",
+        "facesMatched": true
+      },
+      "canonicalId": "dm36-101"
+    },
+    {
+      "id": "dmx08-033",
+      "name": "超次元ボルシャック・ホール",
+      "faces": [
+        {
+          "name": "超次元ボルシャック・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手のパワー3000以下のクリーチャーを１体破壊する。\n次のうちいずれかひとつを選ぶ。\n▼自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。\n▼コスト７以下の火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx08-033",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx08-033.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 3000,
+              "g199Power": true
+            },
+            "spell": true
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "n": "all",
+                    "optional": true,
+                    "g550CostBudget": 5
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の火のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "火"
+                    },
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "5f8abb42ac90214470099e43a3abb033144438c699455abb791ea9475b73897f",
+        "facesMatched": true
+      },
+      "canonicalId": "dm36-101"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm36-s07": 4,
+      "dm36-101": 4,
+      "dmc67-s01": 4,
+      "dmd18-011": 4,
+      "dmx08-s03": 4,
+      "dmpcd03-a04": 4,
+      "dm36-101VC": 4,
+      "dmx08-033": 4
+    }
+  }
+}

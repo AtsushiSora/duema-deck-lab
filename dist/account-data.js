@@ -8,6 +8,7 @@ function cleanDeck(input,registry,category){
  if(!input||!validId(input.id)||typeof input.name!=='string'||!Array.isArray(input.cards)||input.cards.length>40)throw Error('保存デッキの形式が正しくありません');
  const errors=registry.validate(input);if(errors.length)throw Error(text(input.name,80)+'：'+errors[0]);
  const deck={id:input.id,name:text(input.name,120),format:input.format||'original',cards:registry.resolveRows(input.cards).map(r=>({id:r.id,count:r.count})),...historicalMetadata(input,registry.resolveRows(input.cards)),category};
+ if(input.extraCards?.length)deck.extraCards=registry.resolveRows(input.extraCards);
  if(typeof input.favorite==='boolean')deck.favorite=input.favorite;if(input.tags!==undefined)deck.tags=normalizeDeckTags(input.tags);
  for(const k of['created','updated'])if(typeof input[k]==='string'&&Number.isFinite(Date.parse(input[k])))deck[k]=input[k];
  for(const k of['description','templateId','sourceTitle'])if(typeof input[k]==='string')deck[k]=text(input[k],k==='description'?2000:200);
@@ -24,7 +25,7 @@ export function validateAccountSnapshot(value,registry){
 export function makeAccountSnapshot(saved,registry){return validateAccountSnapshot({schemaVersion:ACCOUNT_SCHEMA,decks:saved.decks,friends:saved.friends||[],selected:saved.selected},registry);}
 export function encodeAccountSnapshot(value){const payload=JSON.stringify(value);if(payload.length>MAX_ACCOUNT_CHARS||new TextEncoder().encode(payload).length>MAX_ACCOUNT_BYTES)throw Error('保存するデッキが多すぎます。デッキを書き出して整理してください');return payload;}
 export function decodeAccountSnapshot(payload,registry){if(typeof payload!=='string'||payload.length>MAX_ACCOUNT_CHARS||new TextEncoder().encode(payload).length>MAX_ACCOUNT_BYTES)throw Error('アカウント保存のサイズが正しくありません');let value;try{value=JSON.parse(payload);}catch{throw Error('アカウントの保存内容を読み取れません');}return validateAccountSnapshot(value,registry);}
-const signature=d=>JSON.stringify([d.name,d.format||'original',[...d.cards].sort((a,b)=>a.id.localeCompare(b.id))]);
+const signature=d=>JSON.stringify([d.name,d.format||'original',[...d.cards].sort((a,b)=>a.id.localeCompare(b.id)),[...(d.extraCards||[])].sort((a,b)=>a.id.localeCompare(b.id))]);
 export function mergeAccountSnapshot(local,remote,registry,{newId=()=>crypto.randomUUID()}={}){
  const snapshot=validateAccountSnapshot(remote,registry),saved=structuredClone(local),used=new Set([...(saved.decks||[]),...(saved.friends||[])].map(d=>d.id)),report={decks:0,friends:0,duplicates:0,renamed:0};saved.decks??=[];saved.friends??=[];const selectedMap=new Map();
  for(const zone of['decks','friends'])for(const d of snapshot[zone]){

@@ -92,3 +92,17 @@ test('historical original forty survives server validation and encrypted room st
 test('HTTP server rejects mismatched client rules before accessing any room or applying a move',async()=>{
  let calls=0;const handler=createDuelHandler({service:{resume:async()=>{calls++;return null;},move:async()=>{calls++;return null;}},verifyToken:async()=>({uid:'one',firebase:{sign_in_provider:'google.com'}})});for(const rules of [null,'old']){const r=await handler(new Request('https://duema-deck-lab.netlify.app/api/duel',{method:'POST',headers:{Authorization:'Bearer valid','Content-Type':'application/json',...(rules?{'X-Duema-Rules':rules}:{})},body:JSON.stringify({schemaVersion:1,op:'move'})}));assert.equal(r.status,409);assert.equal((await r.json()).error,'room/version');assert.equal(r.headers.get('x-duema-rules'),ONLINE_COMPATIBILITY.rulesHash);}assert.equal(calls,0);
 });
+
+test('Advance rooms reject Original guests and preserve initial public Psychic cards across reconnect',async()=>{
+ const h=setup(),deck={...PRESETS[0],format:'advance',extraCards:[{id:'dm36-s07',count:1}]};
+ const waiting=await h.service.create({deck,requestId:requestId(31)},host,host.uid);
+ assert.equal(waiting.format,'advance');
+ await assert.rejects(h.service.join({code:waiting.code,deck:PRESETS[1],requestId:requestId(32)},guest,guest.uid),e=>e.code==='deck/format');
+ assert.equal(h.raw(waiting.code).phase,'waiting');
+ const joined=await h.service.join({code:waiting.code,deck,requestId:requestId(33)},guest,guest.uid);
+ assert.equal(joined.format,'advance');
+ assert.deepEqual(joined.game.players.map(p=>p.extra.map(x=>x.id)),[['dm36-s07'],['dm36-s07']]);
+ assert.notEqual(joined.game.players[0].extra[0].uid,joined.game.players[1].extra[0].uid);
+ const after=await h.service.get(waiting.code,host,host.uid);
+ assert.deepEqual(after.game.players.map(p=>p.extra),joined.game.players.map(p=>p.extra));
+});

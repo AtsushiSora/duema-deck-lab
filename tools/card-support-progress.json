@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7218,
-  "pendingNames": 4609,
-  "phase": 1084,
+  "supportedNames": 7220,
+  "pendingNames": 4607,
+  "phase": 1085,
   "added": 2,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -118,7 +118,7 @@
     },
     {
       "ability": "覚醒",
-      "pendingNames": 109,
+      "pendingNames": 108,
       "examples": [
         {
           "id": "dmx07-v01",
@@ -156,7 +156,7 @@
   "pendingByType": {
     "クリーチャー": 2682,
     "NEOクリーチャー": 89,
-    "呪文": 604,
+    "呪文": 603,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 31,
     "タマシード": 57,
@@ -177,7 +177,7 @@
     "クロスギア": 62,
     "進化クリーチャー(進化GV)": 13,
     "土地": 1,
-    "サイキック・クリーチャー": 131,
+    "サイキック・クリーチャー": 130,
     "進化クロスギア": 6,
     "進化クリーチャー(手札進化)": 2,
     "ドラグハート・タマシード": 1,
@@ -225,7 +225,7 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 1203,
+    "複数面・特殊カードタイプまたは情報不足": 1202,
     "未対応の能力文": 3181,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 21,
@@ -253,7 +253,7 @@
     "未対応のアバレチェーン": 3,
     "未対応のG城能力": 10,
     "未対応のS・トリガー・プラス能力": 2,
-    "独立した誘発能力の順序対応が必要": 9,
+    "独立した誘発能力の順序対応が必要": 8,
     "未対応の非ブロック時能力": 1,
     "選択能力の不足": 1,
     "特殊なパワー": 1,
@@ -209601,6 +209601,78 @@
         }
       ],
       "resume": "対戦追加の自動化は一時停止。残るphase 944は、デッキの保存項目・初期超次元ゾーンを追加する範囲の確認後、サイキックの両面、解除、帰還と超次元呪文を実装し、カースガイ1体・2体で攻撃継続と終了を個別に再現する。"
+    },
+    {
+      "phase": 1085,
+      "baseCommit": "46661303",
+      "scope": "オリジナルとアドバンスの分離、初期超次元ゾーン、覚醒・解除とカースガイの公式裁定確認",
+      "cards": [
+        {
+          "id": "dm36-s07",
+          "name": "時空の火焔ボルシャック・ドラゴン",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-s07"
+        },
+        {
+          "id": "dm36-101",
+          "name": "超次元ボルシャック・ホール",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-101"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dmc67-s01",
+          "canonicalId": "dm36-s07"
+        },
+        {
+          "id": "dmd18-011",
+          "canonicalId": "dm36-s07"
+        },
+        {
+          "id": "dmx08-s03",
+          "canonicalId": "dm36-s07"
+        },
+        {
+          "id": "dmpcd03-a04",
+          "canonicalId": "dm36-s07"
+        },
+        {
+          "id": "dm36-101VC",
+          "canonicalId": "dm36-101"
+        },
+        {
+          "id": "dmx08-033",
+          "canonicalId": "dm36-101"
+        }
+      ],
+      "supportedNames": 7220,
+      "pendingNames": 4607,
+      "verification": {
+        "focused": "tests/standard1085-effects.test.mjs",
+        "relatedRegressions": "アプリと対戦の回帰255件、オンラインの関連回帰8件、保存表示の追加確認7件に合格。CPU同士のアドバンス1戦で81枚のUIDと決着を確認。",
+        "check": "成功",
+        "officialPrints": 8,
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/cls/creatorsletter40/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31408/",
+          "https://dm.takaratomy.co.jp/rule/qa/41648/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36037/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36039/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36075/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36076/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36077/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36078/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34920/"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。超GRと対戦開始時のバトルゾーンへの配置は今回の対応範囲外。",
+        "regressionLogs": [
+          "/tmp/duema-advance/regression-verified.log",
+          "/tmp/duema-advance/online-verified.log",
+          "/tmp/duema-advance/save-status-regression.log",
+          "/tmp/duema-advance/check-final.log"
+        ]
+      },
+      "deferred": [],
+      "resume": "登録済みカードで保留していた公式裁定6グループをすべて検証済み。カード追加の自動化は一時停止。アドバンスの超GRおよび対戦開始時のバトルゾーンへの配置は未対応。"
     }
   ],
   "resume": {
@@ -253242,14 +253314,15 @@
         1081,
         1082,
         1083,
-        1084
+        1084,
+        1085
       ],
-      "state": "completeWithBlockedInteractions",
+      "state": "complete",
       "automation": "duema-deck-lab PAUSED",
-      "added": 8,
-      "supportedNames": 7218,
+      "added": 10,
+      "supportedNames": 7220,
       "catalogueNames": 11827,
-      "pendingNames": 4609,
+      "pendingNames": 4607,
       "fullSuiteStatus": "中断・合否未確認",
       "priorAudit": "Phase 1020までの個別検証270件は既存の followUp を保持。以後61バッチの未完了記録とログを照合した。",
       "fixes": [
@@ -253786,21 +253859,20 @@
           ],
           "test": "特攻秘宝カースガイ1体・2体と「解除」の置換後の攻撃",
           "path": "tests/standard944-effects.test.mjs",
-          "status": "blockedByUnsupportedCard",
-          "reason": "現行の通常対戦はオリジナル専用で、デッキの初期超次元ゾーンを設定できない。公式裁定のサイキック・クリーチャーには、超次元からの登場、覚醒、解除、超次元への帰還が必要。既存のカースガイ固有テストとEXライフ置換による攻撃継続の回帰テストは合格。",
-          "candidates": [
-            {
-              "id": "dm36-s07",
-              "name": "時空の火焔ボルシャック・ドラゴン / 勝利の覚醒者ボルシャック・メビウス",
-              "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-s07"
-            },
-            {
-              "id": "dm36-101VC",
-              "name": "超次元ボルシャック・ホール",
-              "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-101VC"
-            }
-          ],
-          "formatSource": "https://dm.takaratomy.co.jp/cls/creatorsletter40/"
+          "status": "passed",
+          "formatSource": "https://dm.takaratomy.co.jp/cls/creatorsletter40/",
+          "resolution": {
+            "phase": 1085,
+            "testFile": "tests/standard1085-effects.test.mjs",
+            "dependencyIds": [
+              "dm36-s07",
+              "dm36-101"
+            ],
+            "cases": [
+              "カースガイ1体：覚醒したボルシャックは解除して同じカードのまま攻撃を続ける",
+              "カースガイ2体：2体目で小さい面が破壊され超次元に戻り、攻撃が終わる"
+            ]
+          }
         },
         {
           "phase": 945,
@@ -253929,7 +254001,7 @@
       ],
       "remaining": {
         "matrices": 0,
-        "officialInteractionGroups": 1
+        "officialInteractionGroups": 0
       },
       "notes": [
         "Workerは本番のdist/worker.jsを使用。対戦相手の元の並びと各ゲームのシード・先後を復元して分割し、未解決件数も照合した。元のテスト名に古い件数が含まれる場合は、実行件数をmatrixに記載した。",
@@ -253940,7 +254012,7 @@
       "resume": {
         "baseCommit": "0810d48f",
         "temporaryLogDirectory": "/tmp/duema-review-1081.B5Oo9a",
-        "steps": "対戦追加の自動化は一時停止。残るphase 944は、デッキの保存項目・初期超次元ゾーンを追加する範囲の確認後、サイキックの両面、解除、帰還と超次元呪文を実装し、カースガイ1体・2体で攻撃継続と終了を個別に再現する。"
+        "steps": "登録済みカードで保留していた公式裁定6グループをすべて検証済み。カード追加の自動化は一時停止。アドバンスの超GRおよび対戦開始時のバトルゾーンへの配置は未対応。"
       }
     }
   }

@@ -1,4 +1,5 @@
 import {canonicalCardName,hasVerifiedCardNameAlias} from './card-name-aliases.js?v=0.721.0';
+import {extraDeckErrors} from './deck-format.js';
 import {deckCopyLimit,editingCopyLimit} from './historical-regulations.js';
 // Registration is deliberately separate from the battle engine's supported cards.
 export const nameKey=canonicalCardName;
@@ -10,7 +11,7 @@ export function createCatalogue(snapshot,supported,details={cards:[]}){
  for(const c of supported)if(!byName.has(nameKey(c.name))){const value={...c,supported:true};byId.set(c.id,value);byName.set(nameKey(c.name),value);}
  const get=value=>{const id=typeof value==='string'?value:value?.cardId;return byId.get(aliases.get(id)||id);};
  const resolveRows=rows=>{if(!Array.isArray(rows))throw Error('カード一覧が正しくありません');const counts=new Map();for(const row of rows){const c=get(row?.id)||byName.get(nameKey(row?.name||''));if(!c)throw Error('未登録のカードです：'+String(row?.id||row?.name||''));if(!Number.isSafeInteger(row.count)||row.count<1||row.count>40)throw Error('枚数は1〜40の整数で指定してください');counts.set(c.id,(counts.get(c.id)||0)+row.count);}return [...counts].map(([id,count])=>({id,count}));};
- const validate=deck=>{const errors=[];let rows;try{rows=resolveRows(deck?.cards);}catch(e){return[e.message];}const total=rows.reduce((n,r)=>n+r.count,0);if(total!==40)errors.push(`40枚必要です（現在${total}枚）`);for(const row of rows){const c=get(row.id);if(row.count>40)errors.push(`${c.name}の枚数が多すぎます`);if(c.supported&&row.count>deckCopyLimit(c,deck,rows))errors.push(`${c.name}は${deckCopyLimit(c,deck,rows)}枚までです`);}return errors;};
+ const validate=deck=>{const errors=[];let rows;try{rows=resolveRows(deck?.cards);}catch(e){return[e.message];}const total=rows.reduce((n,r)=>n+r.count,0);if(total!==40)errors.push(`40枚必要です（現在${total}枚）`);for(const row of rows){const c=get(row.id);if(c.psychic)errors.push(c.name+'は超次元ゾーンに設定してください');if(row.count>40)errors.push(`${c.name}の枚数が多すぎます`);if(c.supported&&row.count>deckCopyLimit(c,deck,rows))errors.push(`${c.name}は${deckCopyLimit(c,deck,rows)}枚までです`);}return [...errors,...extraDeckErrors(deck,get)];};
  const coverage=deck=>{let rows;try{rows=resolveRows(deck?.cards);}catch{return {supported:0,unsupported:0,unknown:true};}return rows.reduce((a,r)=>{a[get(r.id).supported?'supported':'unsupported']+=r.count;return a;},{supported:0,unsupported:0,unknown:false});};
  const hydrate=data=>{const next=createCatalogue(snapshot,supported,data);for(const c of next.cards){const current=get(c.id);if(current)Object.assign(current,c);}};
  return {cards:[...byId.values()],get,byName,resolveRows,validate,coverage,hydrate,maxCopies:(c,deck)=>c.supported?editingCopyLimit(c,deck):40};

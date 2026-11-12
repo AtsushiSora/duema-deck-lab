@@ -5,7 +5,10 @@ export function opponentProgressKey(deck,registry){
  try{
   const rows=registry.resolveRows(deck.cards).sort((a,b)=>a.id.localeCompare(b.id));
   if(rows.reduce((n,r)=>n+r.count,0)!==40)return null;
-  return 'deck-v1:'+JSON.stringify([deck.format||'original',rows.map(r=>[r.id,r.count])]);
+  const signature=[deck.format||'original',rows.map(r=>[r.id,r.count])];
+  if(deck.format==='advance'&&deck.extraCards?.length)
+   signature.push(registry.resolveRows(deck.extraCards).sort((a,b)=>a.id.localeCompare(b.id)).map(r=>[r.id,r.count]));
+  return 'deck-v1:'+JSON.stringify(signature);
  }catch{return null;}
 }
 export function recordManualVictory(progress,battle,registry){
