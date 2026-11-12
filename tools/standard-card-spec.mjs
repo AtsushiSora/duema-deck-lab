@@ -2467,6 +2467,30 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1051&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText).replace(/[\uFE0E\uFE0F]/g,'');
+  if(f.name==='黒神龍デヴォリューション'&&f.typeText==='クリーチャー'&&f.civilizationText==='闇'&&f.cost===6&&(
+   text==='このクリーチャーをバトルゾーンに出した時相手は自身のクリーチャーを1体選んで破壊する。その後自分のクリーチャーを1体破壊する。相手は自身の手札を1枚選んで捨てる。その後自分の手札を1枚捨てる。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)'||
+   text==='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)このクリーチャーがバトルゾーンに出た時相手は自身のクリーチャーを1体選んで破壊しその後自分のクリーチャーを1体破壊する。相手は自身の手札を1枚選んで捨てその後自分の手札を1枚捨てる。'))
+   return {effect:'sixPhoto',breaker:2,g34Tasks:[
+    {op:'OpponentSelect',n:1,to:'grave'},
+    {op:'Select',origin:'battle',to:'grave',n:1,g187OwnPick:true,g1046NoChoiceProtection:true,
+     filter:{creature:true},title:'破壊する自分のクリーチャーを1体指定する'},
+    {op:'Discard',n:1},{op:'Discard',owner:'self',n:1}
+   ]};
+  if(f.name==='オニオン・リング'&&f.typeText==='クリーチャー'&&f.civilizationText==='自然'&&f.cost===8&&text===
+   'T・ブレイカー(このクリーチャーはシールドを3つブレイクする)このクリーチャーがバトルゾーンに出た時自分のクリーチャーを1体選び残りのクリーチャーを自分のマナゾーンに置く。その後相手は自身のクリーチャーを1体選び残りのクリーチャーを自身のマナゾーンに置く。')
+   return {effect:'sixPhoto',breaker:3,g34Tasks:[
+    {op:'KeepOne604',zone:'battle',owner:'self',to:'mana'},{op:'KeepOne604',zone:'battle',to:'mana'}
+   ]};
+  if(f.name==='邪王極限怒号掌'&&f.typeText==='呪文'&&f.civilizationText==='闇'&&f.cost===5&&text===
+   '相手は次のうちいずれか1つを選ぶ。▶相手は自身のマナゾーンにあるカードをすべてタップする。次の相手のターンのはじめにそれらはアンタップしない。▶相手は自身のクリーチャーをすべて破壊する。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Choose',opponentChooses:true,g184Modes:true,modes:[
+    {label:'自分のマナをすべてタップし、次のターンのはじめにアンタップしない',
+     defs:[{op:'LockUntap606',zone:'mana',g1019Tap:true,spell:true}]},
+    {label:'自分のクリーチャーをすべて破壊する',defs:[{op:'Sweep',to:'grave',filter:{creature:true}}]}
+   ]}]};
+ }
  if(phase>=1050&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const double='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)';

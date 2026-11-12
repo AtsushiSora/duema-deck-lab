@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7104,
-  "pendingNames": 4723,
-  "phase": 1050,
+  "supportedNames": 7107,
+  "pendingNames": 4720,
+  "phase": 1051,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2706,
+    "クリーチャー": 2704,
     "NEOクリーチャー": 152,
-    "呪文": 609,
+    "呪文": 608,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 57,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3283,
+    "未対応の能力文": 3280,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -205761,17 +205761,100 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1051,
+      "baseCommit": "a278ff69",
+      "cards": [
+        {
+          "id": "dmx16-024",
+          "name": "黒神龍デヴォリューション"
+        },
+        {
+          "id": "dmrp04s-026",
+          "name": "オニオン・リング"
+        },
+        {
+          "id": "dmrp22-018",
+          "name": "邪王極限怒号掌"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "promoy17-052",
+          "canonicalId": "dmx16-024"
+        },
+        {
+          "id": "promoy11-042",
+          "canonicalId": "dmx16-024"
+        }
+      ],
+      "supportedNames": 7107,
+      "pendingNames": 4720,
+      "verification": {
+        "focusedPassed": 8,
+        "regressionPassed": 218,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 5,
+        "scope": "3種類とプロモ再録2版について公式の能力全文・基本情報・マナ数・画像・現行殿堂レギュレーションを照合。黒神龍デヴォリューションは、相手・自分の順に破壊してから相手・自分の順に捨てる処理と、相手側が空の場合の継続を確認。オニオン・リングは各プレイヤーの選択順、残りのマナ移動、タマシードの除外、T・ブレイカーを確認。邪王極限怒号掌は相手によるモード選択、タップ済み・裏向きのマナも含む全タップ、次のターン開始時だけのアンタップ制限、後から置いたマナの除外、全体破壊とEXライフの置換を確認。効果選択中の保存復元と既存カード定義の一致も確認。初回の固有テストで再録IDの解決が不足していたため、公式照合済みの2版を元のIDに紐付けて再検証した。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+          "https://dm.takaratomy.co.jp/rule/qa/31685/",
+          "https://dm.takaratomy.co.jp/rule/qa/45224/",
+          "https://dm.takaratomy.co.jp/rule/qa/43215/",
+          "https://dm.takaratomy.co.jp/rule/qa/45268/"
+        ],
+        "regressionFiles": [
+          "tests/standard184-effects.test.mjs",
+          "tests/standard239-effects.test.mjs",
+          "tests/standard459-effects.test.mjs",
+          "tests/standard604-effects.test.mjs",
+          "tests/standard773-effects.test.mjs",
+          "tests/standard1050-effects.test.mjs",
+          "tests/standard606-effects.test.mjs",
+          "tests/standard1046-effects.test.mjs",
+          "tests/standard1048-effects.test.mjs"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。",
+        "logs": {
+          "official": "/tmp/duema-phase-1051.s5SRiuDK/official.log",
+          "officialImages": "/tmp/duema-phase-1051.s5SRiuDK/sources.log",
+          "officialPromoImages": "/tmp/duema-phase-1051.s5SRiuDK/promos.log",
+          "focusedInitial": "/tmp/duema-phase-1051.s5SRiuDK/focused.log",
+          "focused": "/tmp/duema-phase-1051.s5SRiuDK/focused-fixed.log",
+          "regression": "/tmp/duema-phase-1051.s5SRiuDK/regression.log",
+          "additionalRegression": "/tmp/duema-phase-1051.s5SRiuDK/regression-extra.log",
+          "check": "/tmp/duema-phase-1051.s5SRiuDK/check.log",
+          "audit": "/tmp/duema-phase-1051.s5SRiuDK/audit-final.log",
+          "imageIndex": "/tmp/duema-phase-1051.s5SRiuDK/images.log",
+          "count": "/tmp/duema-phase-1051.s5SRiuDK/count.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dmr17-s06",
+          "name": "復讐 チェーンソー",
+          "reason": "公式能力全文・基本情報・画像・単一収録を照合。置換が起きた場合に手札を実際に捨てた枚数を判定し、相手が1体ずつ選んで破壊する途中の置換と選択肢の更新を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-s06"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1050,
-    "nextPhase": 1051,
+    "lastVerifiedPhase": 1051,
+    "nextPhase": 1052,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dmx16-024",
-        "name": "黒神龍デヴォリューション",
-        "reason": "次回候補。公式全文・画像・再録と、相手・自分の順に行うクリーチャー破壊と手札破棄の一連の処理を照合する。"
+        "id": "dmr17-s06",
+        "name": "復讐 チェーンソー",
+        "reason": "公式能力全文・基本情報・画像・単一収録を照合。置換が起きた場合に手札を実際に捨てた枚数を判定し、相手が1体ずつ選んで破壊する途中の置換と選択肢の更新を検証するまで保留。"
       },
       {
         "id": "dmex12-024",
@@ -205912,7 +205995,8 @@
       "DMR-20版の本文・基本情報・画像を確認。DMEX-12・DM25-EX2の個別照合と、相手ターンの破壊置換の5枚ドローおよびパワー修整と敗北の優先順が未確認。",
       "DMR-19版の本文・基本情報・画像とQA 37793を確認。バトルの置換で本人を含む自軍1体を戻し、複数のバトル置換が競合する場合も処理できるまで保留。",
       "DMR-20版の本文・基本情報・画像を確認。破壊置換で手札の同名カードを出せる条件と登場制限を確認するまで保留。",
-      "Phase 1036で、盾束の一部だけを移動しても世界のY チャクラ・デル・フィンのZラッシュが発動する既存不具合を変更前と今回の両方で再現。QA 48472と回帰範囲は同バッチのexistingIssuesを参照。"
+      "Phase 1036で、盾束の一部だけを移動しても世界のY チャクラ・デル・フィンのZラッシュが発動する既存不具合を変更前と今回の両方で再現。QA 48472と回帰範囲は同バッチのexistingIssuesを参照。",
+      "公式能力全文・基本情報・画像・単一収録を照合。置換が起きた場合に手札を実際に捨てた枚数を判定し、相手が1体ずつ選んで破壊する途中の置換と選択肢の更新を検証するまで保留。"
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",

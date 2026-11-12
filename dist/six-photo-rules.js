@@ -1405,6 +1405,7 @@ export function createSixPhotoRules(api){
    score+=groupPowerScore(s,{...group,power});
   }
   else if(d.op==='Sweep')score+=creatures(s,1-t.p).filter(y=>matches(s,1-t.p,y,d.filter)).reduce((n,y)=>n+12+cost(effective(y,s))*2+api.power(y,false,s)/3000,0);
+  else if(d.op==='LockUntap606'&&d.zone==='mana')score+=opp.mana.length*5;
   else if(d.op==='Discard')score+=d.owner==='self'?-Math.min(d.n||1,own.hand.length)*5:Math.min(d.n||1,opp.hand.length)*9;
   else if(d.op==='HandCycle460'&&d.to==='grave'&&d.mode==='all'){const n=d.fixedDraw??own.hand.length+(d.extra||0);score+=n>=deckCount&&n>0?(creatures(s,t.p).some(y=>effective(y,s).shako)?1000:-1000):own.hand.length?10+(d.extra||0)*10:0;}
   else if(d.op==='Select'&&d.g510Untap){score+=list(s,{...t,...d,selected:[]}).filter(r=>r.x.tapped&&api.canUntap(r.x)).map(r=>selectedBattleScore(s,{...t,...d},r.x,[],d.n)).sort((a,b)=>b-a).slice(0,d.n).reduce((a,b)=>a+b,0);}
@@ -2879,10 +2880,11 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_KeepOne604':{
-  const p=1-t.p,hand=t.zone==='hand';
+  const p=t.owner==='self'?t.p:1-t.p,hand=t.zone==='hand';
   const rows=hand?s.players[p].hand:creatures(s,p).filter(y=>!y.sealed);
-  if(rows.length)choice(s,{...t,p,controller:t.controller??t.p},hand?'残す手札を1枚選ぶ':'残すクリーチャーを1体選ぶ',
-   rows.map(y=>opt(card(y).name,y.uid,hand?20-Math.min(20,cost(card(y))):cost(effective(y,s))*2+api.power(y,false,s)/2000,y.cardId)));
+  const eligible=t.to==='mana'?rows.filter(y=>api.targetable(s,p,p,y)):rows;
+  choice(s,{...t,p,controller:t.controller??t.p},hand?'残す手札を1枚選ぶ':'残すクリーチャーを1体選ぶ',
+   eligible.map(y=>opt(card(y).name,y.uid,hand?20-Math.min(20,cost(card(y))):cost(effective(y,s))*2+api.power(y,false,s)/2000,y.cardId)));
   break;
  }
  case'g34_ReleaseSelfHyper783':{
@@ -3527,10 +3529,13 @@ export function createSixPhotoRules(api){
   if(!options.length&&t.elseDefs){start(s,t,t.elseDefs);break;}
   choice(s,t,t.title||'対象を選ぶ',[...options.map(o=>({...o,score:t.g987AfterNewTap?tapForUntapScore987(s,t,rows.find(y=>y.uid===o.value)):t.g503Stack?Math.min(api.allLayers(rows.find(y=>y.uid===o.value)).length,Math.max(0,s.players[t.p].deck.length-1))*8:t.g419Boost||t.g465DestroySafe||t.g521UntilStart||t.g797Stay?(s.players[t.p].battle.some(y=>y.uid===o.value)?15+cost(effective(rows.find(y=>y.uid===o.value),s)):-20):t.g242PowerMinus?powerMinusScore242(s,t,rows.find(x=>x.uid===o.value)):t.g235TapOrUntap?(()=>{const y=rows.find(x=>x.uid===o.value),p=s.players.findIndex(p=>p.battle.some(x=>x.uid===o.value));return Math.max(tapStateScore235(s,t,p,y,true),tapStateScore235(s,t,p,y,false));})():t.untap?(()=>{const y=rows.find(x=>x.uid===o.value),own=s.players[t.p].battle.includes(y);return y?.tapped&&api.canUntap(y)?(own?10+Math.abs(o.score):-10-Math.abs(o.score)):0;})():t.g301Grant?((()=>{const y=rows.find(y=>y.uid===o.value);return s.active===t.p&&y.entered===s.turn&&!y.tapped&&!effective(y,s).speedAttacker?25+cost(card(y)):1;})()):t.g927HasteScore?hasteScore927(s,rows.find(y=>y.uid===o.value)):t.g177SelfMana||t.g179Return||t.anyOwner&&s.players[t.p].battle.some(x=>x.uid===o.value)?-Math.abs(o.score)-5:o.score,value:{uid:o.value,p:s.players.findIndex(p=>p.battle.some(x=>x.uid===o.value))}})),...(t.optional?[skip()]:[])]);break;}
  case'g34_LockUntap606':{
-  const rows=t.g869Refs?opp.battle.filter(y=>api.allLayers(y).some(x=>t.g869Refs.includes(key(x)))):
+  const rows=t.zone==='mana'?opp.mana:t.g869Refs?opp.battle.filter(y=>api.allLayers(y).some(x=>t.g869Refs.includes(key(x)))):
    creatures(s,1-t.p).filter(y=>!y.sealed&&matches(s,1-t.p,y,t.filter));
   for(const y of rows){
-   if(t.g1019Tap)api.tap(s,1-t.p,y);
+   if(t.g1019Tap){
+    if(t.zone==='mana')y.tapped=true;
+    else api.tap(s,1-t.p,y);
+   }
    startUntapLock210(t,y);
   }
   break;
@@ -3673,8 +3678,9 @@ export function createSixPhotoRules(api){
  case'g34_Execute':{const origins=t.zones||[t.origin||'hand'],rows=origins.flatMap(origin=>(!t.g555FinishTo||api.canMoveZone(s,t.p,origin)?own[origin]:[]).flatMap(y=>faces(card(y)).flatMap((c,face)=>matches(s,t.p,{...y,cardId:y.cardId},t.filter)&&(!t.spellOnly||c.type==='spell')&&(!t.g985FaceNameIncludes||c.name.includes(t.g985FaceNameIncludes))&&(!t.g556SpellColor||colors(c).includes(t.g556SpellColor))&&(!t.spellColorsAny||colors(c).some(color=>t.spellColorsAny.includes(color)))&&(!t.creatureOnly||c.type==='creature')&&(!t.nonCreature||c.type!=='creature')&&(t.max===undefined||cost(c)<=t.max)&&(!t.trigger||c.trigger||c.triggerPlus||c.superTrigger)&&api.canCast(s,t.p,c,origin)&&(c.type!=='creature'||api.canEnter(s,t.p,c,{origin,execution:true})&&(!c.evolution||api.evolutionBases(s,t.p,c).length))?[opt((t.zones?.length>1?(origin==='hand'?'手札：':'墓地：'):'')+c.name,{uid:y.uid,face,origin,...(t.g555FinishTo?{serial555:y.zoneSerial||0}:{})},t.g555FinishTo?spellScore555(s,t,c):20+cost(c),y.cardId)]:[])));choice(s,t,t.title||'コストを支払わず実行するカードを選ぶ',[...rows,...(t.optional===false?[]:[t.g408Decline?{...skip(),score:modeScore(s,t,t.g408Decline)}:skip()])]);break;}
  case'g34_Choose':{
   const title=t.g1045Preselect?'効果を選ぶ（'+((t.modeSelections?.length||0)+1)+'/'+t.g1045Preselect+'）':'効果を選ぶ';
+  const chooser=t.opponentChooses?1-t.p:t.p,sign=t.opponentChooses?-1:1;
   choice(s,t,t.title||title,t.modes.flatMap((m,i)=>m.condition&&!ownCondition(s,t.p,m.condition,t.uid,t.incarnation)
-   ?[]:[opt(m.label||'効果'+(i+1),i,t.g184Modes?modeScore(s,t,m.defs):m.score??10)]));
+   ?[]:[opt(m.label||'効果'+(i+1),i,t.g184Modes?sign*modeScore(s,t,m.defs):m.score??10)]),chooser);
   break;
  }
  case'g34_Custom':custom(s,t);break;
@@ -3796,12 +3802,12 @@ export function createSixPhotoRules(api){
   else put(s,{...t,selected:[...t.selected,v]});
   break;
  case'g34_KeepOne604':{
-  const hand=t.zone==='hand',rows=hand?own.hand:creatures(s,t.p).filter(y=>!y.sealed);
+  const hand=t.zone==='hand',to=t.to||'grave',rows=hand?own.hand:creatures(s,t.p).filter(y=>!y.sealed);
   if(!rows.some(y=>y.uid===v))break;
   const rest=rows.filter(y=>y.uid!==v);
   if(!rest.length)break;
   if(hand)api.discardSelected(s,t.p,rest.map(y=>y.uid),t.source,t.controller);
-  else move(s,rest.map(y=>({player:t.p,uid:y.uid,to:'grave',destroy:true,controller:t.controller})));
+  else move(s,rest.map(y=>({player:t.p,uid:y.uid,to,destroy:to==='grave',controller:t.controller})));
   break;
  }
  case'g34_GraveDeckEnd837':{

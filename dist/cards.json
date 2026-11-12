@@ -211102,15 +211102,147 @@
       },
       "supportBatch": "phase-1050",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx16-024",
+      "name": "黒神龍デヴォリューション",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ドラゴン・ゾンビ/ハンター",
+      "text": "このクリーチャーをバトルゾーンに出した時、相手は自身のクリーチャーを１体選んで破壊する。その後、自分のクリーチャーを１体破壊する。相手は自身の手札を１枚選んで捨てる。その後、自分の手札を１枚捨てる。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-024",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "breaker": 2,
+      "g34Tasks": [
+        {
+          "op": "OpponentSelect",
+          "n": 1,
+          "to": "grave"
+        },
+        {
+          "op": "Select",
+          "origin": "battle",
+          "to": "grave",
+          "n": 1,
+          "g187OwnPick": true,
+          "g1046NoChoiceProtection": true,
+          "filter": {
+            "creature": true
+          },
+          "title": "破壊する自分のクリーチャーを1体指定する"
+        },
+        {
+          "op": "Discard",
+          "n": 1
+        },
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1051",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-026",
+      "name": "オニオン・リング",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 15000,
+      "race": "グランセクト",
+      "text": "T・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体選び、残りのクリーチャーを自分のマナゾーンに置く。その後、相手は自身のクリーチャーを１体選び、残りのクリーチャーを自身のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-026",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "breaker": 3,
+      "g34Tasks": [
+        {
+          "op": "KeepOne604",
+          "zone": "battle",
+          "owner": "self",
+          "to": "mana"
+        },
+        {
+          "op": "KeepOne604",
+          "zone": "battle",
+          "to": "mana"
+        }
+      ],
+      "supportBatch": "phase-1051",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-018",
+      "name": "邪王極限怒号掌",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "相手は、次のうちいずれか１つを選ぶ。\n▶︎相手は自身のマナゾーンにあるカードをすべてタップする。次の相手のターンのはじめに、それらはアンタップしない。\n▶相手は自身のクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-018",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "opponentChooses": true,
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "自分のマナをすべてタップし、次のターンのはじめにアンタップしない",
+              "defs": [
+                {
+                  "op": "LockUntap606",
+                  "zone": "mana",
+                  "g1019Tap": true,
+                  "spell": true
+                }
+              ]
+            },
+            {
+              "label": "自分のクリーチャーをすべて破壊する",
+              "defs": [
+                {
+                  "op": "Sweep",
+                  "to": "grave",
+                  "filter": {
+                    "creature": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1051",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1050,
+    "phase": 1051,
     "checkedAt": "2026-11-13",
-    "baseCount": 7101,
+    "baseCount": 7104,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7104,
+    "totalCount": 7107,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -229999,6 +230131,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7101,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1050,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7101,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7104,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

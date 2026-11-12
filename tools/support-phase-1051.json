@@ -1,0 +1,318 @@
+{
+  "phase": 1051,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7104,
+  "description": "相手と自分が順番に選ぶ破壊・手札破棄・マナ送り、および相手が選ぶマナ拘束と一斉破壊を照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+    "https://dm.takaratomy.co.jp/rule/qa/31685/",
+    "https://dm.takaratomy.co.jp/rule/qa/45224/",
+    "https://dm.takaratomy.co.jp/rule/qa/43215/",
+    "https://dm.takaratomy.co.jp/rule/qa/45268/"
+  ],
+  "cards": [
+    {
+      "id": "dmx16-024",
+      "name": "黒神龍デヴォリューション",
+      "faces": [
+        {
+          "name": "黒神龍デヴォリューション",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、相手は自身のクリーチャーを１体選んで破壊する。その後、自分のクリーチャーを１体破壊する。相手は自身の手札を１枚選んで捨てる。その後、自分の手札を１枚捨てる。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "ドラゴン・ゾンビ/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-024",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx16-024.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "breaker": 2,
+        "g34Tasks": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave"
+          },
+          {
+            "op": "Select",
+            "origin": "battle",
+            "to": "grave",
+            "n": 1,
+            "g187OwnPick": true,
+            "g1046NoChoiceProtection": true,
+            "filter": {
+              "creature": true
+            },
+            "title": "破壊する自分のクリーチャーを1体指定する"
+          },
+          {
+            "op": "Discard",
+            "n": 1
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "015187c7163646ba0fa7b53a3fdbf46b9c6897cb9c6848de8fd4d8ba6bb7bff4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-026",
+      "name": "オニオン・リング",
+      "faces": [
+        {
+          "name": "オニオン・リング",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "T・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体選び、残りのクリーチャーを自分のマナゾーンに置く。その後、相手は自身のクリーチャーを１体選び、残りのクリーチャーを自身のマナゾーンに置く。",
+          "race": "グランセクト",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-026",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-026.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "breaker": 3,
+        "g34Tasks": [
+          {
+            "op": "KeepOne604",
+            "zone": "battle",
+            "owner": "self",
+            "to": "mana"
+          },
+          {
+            "op": "KeepOne604",
+            "zone": "battle",
+            "to": "mana"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "05084f603ebc604734f7b8ca2e08a1f7d7479baa4d0059a48aa68304721d547d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp22-018",
+      "name": "邪王極限怒号掌",
+      "faces": [
+        {
+          "name": "邪王極限怒号掌",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手は、次のうちいずれか１つを選ぶ。\n▶︎相手は自身のマナゾーンにあるカードをすべてタップする。次の相手のターンのはじめに、それらはアンタップしない。\n▶相手は自身のクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-018",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-018.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "opponentChooses": true,
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "自分のマナをすべてタップし、次のターンのはじめにアンタップしない",
+                "defs": [
+                  {
+                    "op": "LockUntap606",
+                    "zone": "mana",
+                    "g1019Tap": true,
+                    "spell": true
+                  }
+                ]
+              },
+              {
+                "label": "自分のクリーチャーをすべて破壊する",
+                "defs": [
+                  {
+                    "op": "Sweep",
+                    "to": "grave",
+                    "filter": {
+                      "creature": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "767d7f65f2fc259290a5ef3e0279406f248f72914ddab921768cb90cf73ef798",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy17-052",
+      "name": "黒神龍デヴォリューション",
+      "faces": [
+        {
+          "name": "黒神龍デヴォリューション",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、相手は自身のクリーチャーを１体選んで破壊し、その後、自分のクリーチャーを１体破壊する。相手は自身の手札を１枚選んで捨て、その後、自分の手札を１枚捨てる。",
+          "race": "ドラゴン・ゾンビ/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy17-052",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy17-052.jpg",
+      "canonicalId": "dmx16-024",
+      "spec": {
+        "effect": "sixPhoto",
+        "breaker": 2,
+        "g34Tasks": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave"
+          },
+          {
+            "op": "Select",
+            "origin": "battle",
+            "to": "grave",
+            "n": 1,
+            "g187OwnPick": true,
+            "g1046NoChoiceProtection": true,
+            "filter": {
+              "creature": true
+            },
+            "title": "破壊する自分のクリーチャーを1体指定する"
+          },
+          {
+            "op": "Discard",
+            "n": 1
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "4dca8f6349c8c659bdea2971a70ada906bfb59a423a8126f1af015329cd450b2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy11-042",
+      "name": "黒神龍デヴォリューション",
+      "faces": [
+        {
+          "name": "黒神龍デヴォリューション",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、相手は自身のクリーチャーを１体選んで破壊する。その後、自分のクリーチャーを１体破壊する。相手は自身の手札を１枚選んで捨てる。その後、自分の手札を１枚捨てる。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "ドラゴン・ゾンビ/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy11-042",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy11-042.jpg",
+      "canonicalId": "dmx16-024",
+      "spec": {
+        "effect": "sixPhoto",
+        "breaker": 2,
+        "g34Tasks": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave"
+          },
+          {
+            "op": "Select",
+            "origin": "battle",
+            "to": "grave",
+            "n": 1,
+            "g187OwnPick": true,
+            "g1046NoChoiceProtection": true,
+            "filter": {
+              "creature": true
+            },
+            "title": "破壊する自分のクリーチャーを1体指定する"
+          },
+          {
+            "op": "Discard",
+            "n": 1
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "e6826c1f16b70e056f1ade4350d9a37227be532da1a936b507e5dead2e775eae",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx16-024": 4,
+      "dmrp04s-026": 4,
+      "dmrp22-018": 4,
+      "promoy17-052": 4,
+      "promoy11-042": 4
+    }
+  }
+}
