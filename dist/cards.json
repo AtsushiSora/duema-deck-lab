@@ -210703,15 +210703,158 @@
       },
       "supportBatch": "phase-1047",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp21-052",
+      "name": "パラディソ ＜サイクリカ.Star＞",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 5000,
+      "race": "トリックス/クリスタル・コマンド・ドラゴン/レクスターズ",
+      "text": "スター進化：レクスターズまたは水のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがタップした時、タマシードまたは呪文を１枚、自分の墓地から手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-052",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "水"
+          }
+        ]
+      },
+      "starEvolution": true,
+      "blocker": true,
+      "g188Tapped": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "any": [
+              {
+                "g295Tamaseed": true
+              },
+              {
+                "spell": true
+              }
+            ]
+          },
+          "title": "墓地から手札に戻すタマシードか呪文を選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1048",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex13-009",
+      "name": "限りなく透明に近いワルツ",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "エンジェル・コマンド/デーモン・コマンド/月光王国",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\n自分のターンのはじめに、自分のシールドを１つ墓地に置いてもよい。そうしたら、光または闇の「ブロッカー」を持つクリーチャーを１体、自分の墓地からバトルゾーンに出す。\nこのクリーチャーがタップした時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-009",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g174Start": [
+        {
+          "op": "ShieldGrave",
+          "g239ShieldGrave": true,
+          "optional": true,
+          "then": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "n": 1,
+              "deploy": true,
+              "g236GraveDeploy": true,
+              "filter": {
+                "creature": true,
+                "blocker": true,
+                "any": [
+                  {
+                    "color": "光"
+                  },
+                  {
+                    "color": "闇"
+                  }
+                ]
+              },
+              "title": "墓地から出す光か闇のブロッカーを選ぶ"
+            }
+          ]
+        }
+      ],
+      "g188Tapped": [
+        {
+          "op": "ShieldTop",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1048",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-022",
+      "name": "ケンスケのツールボックス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "ゼノパーツ",
+      "text": "このクリーチャーが出た時、自分のシールドを１つ手札に加える。ただし、その「S・トリガー」は使えない。\nこのクリーチャーがアンタップした時、自分の手札を１枚捨ててもよい。そうしたら、その捨てたカードよりコストが小さい相手のクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-022",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldHand",
+          "g238ShieldHand": true
+        }
+      ],
+      "g299Untapped": [
+        {
+          "op": "DiscardFor248",
+          "defs": [
+            {
+              "op": "DiscardCost655",
+              "g835Creature": true,
+              "g1048AnyDiscardedFace": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1048",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1047,
+    "phase": 1048,
     "checkedAt": "2026-11-13",
-    "baseCount": 7092,
+    "baseCount": 7095,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7095,
+    "totalCount": 7098,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -229564,6 +229707,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7092,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1047,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7092,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7095,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

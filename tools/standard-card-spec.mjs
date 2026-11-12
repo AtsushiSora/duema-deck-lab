@@ -2467,6 +2467,32 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1048&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.name==='パラディソ ＜サイクリカ.Star＞'&&f.typeText==='スター進化クリーチャー'&&f.civilizationText==='水'&&f.cost===3&&text===
+   'スター進化:レクスターズまたは水のクリーチャー1体の上に置く。(このクリーチャーが離れる時かわりに一番上のカードが離れる)'+
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   'このクリーチャーがタップした時タマシードまたは呪文を1枚自分の墓地から手札に戻してもよい。')
+   return {evolution:{any:[{race:'レクスターズ'},{civilization:'水'}]},starEvolution:true,blocker:true,
+    g188Tapped:[{op:'Select',origin:'grave',to:'hand',n:1,optional:true,filter:{any:[{g295Tamaseed:true},{spell:true}]},
+     title:'墓地から手札に戻すタマシードか呪文を選ぶ'}]};
+  if(f.name==='限りなく透明に近いワルツ'&&f.typeText==='クリーチャー'&&f.civilizationText==='光/闇'&&f.cost===7&&text===
+   'ブロッカーブロッカーW・ブレイカー自分のターンのはじめに自分のシールドを1つ墓地に置いてもよい。'+
+   'そうしたら光または闇の「ブロッカー」を持つクリーチャーを1体自分の墓地からバトルゾーンに出す。'+
+   'このクリーチャーがタップした時自分の山札の上から1枚目を裏向きのまま新しいシールドとしてシールドゾーンに置く。')
+   return {blocker:true,breaker:2,g174Start:[{op:'ShieldGrave',g239ShieldGrave:true,optional:true,then:[
+    {op:'Select',origin:'grave',n:1,deploy:true,g236GraveDeploy:true,
+     filter:{creature:true,blocker:true,any:[{color:'光'},{color:'闇'}]},title:'墓地から出す光か闇のブロッカーを選ぶ'}
+   ]}],g188Tapped:[{op:'ShieldTop',n:1}]};
+  if(f.name==='ケンスケのツールボックス'&&f.typeText==='クリーチャー'&&f.civilizationText==='火'&&f.cost===2&&[
+   'このクリーチャーが出た時自分のシールドを1つ手札に加える。ただしその「S・トリガー」は使えない。'+
+   'このクリーチャーがアンタップした時自分の手札を1枚捨ててもよい。そうしたらその捨てたカードよりコストが小さい相手のクリーチャーを1体選び破壊する。',
+   'このクリーチャーが出た時自分のシールドを1つ手札に加える。ただしその「S・トリガー」は使えない。'+
+   'このクリーチャーがアンタップした時自分の手札を1枚捨ててもよい。そうしたらその捨てた手札よりコストが小さい相手のクリーチャーを1体選び破壊する。'
+  ].includes(text))
+   return {effect:'sixPhoto',g34Tasks:[{op:'ShieldHand',g238ShieldHand:true}],
+    g299Untapped:[{op:'DiscardFor248',defs:[{op:'DiscardCost655',g835Creature:true,g1048AnyDiscardedFace:true}]}]};
+ }
  if(phase>=1047&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const double='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)';

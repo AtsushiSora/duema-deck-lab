@@ -1,0 +1,257 @@
+{
+  "phase": 1048,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7095,
+  "description": "タップ・アンタップ誘発を持つ3種類とケンスケの再録版を照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/41160/",
+    "https://dm.takaratomy.co.jp/rule/qa/34322/",
+    "https://dm.takaratomy.co.jp/rule/qa/34323/",
+    "https://dm.takaratomy.co.jp/rule/qa/47366/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp21-052",
+      "name": "パラディソ ＜サイクリカ.Star＞",
+      "faces": [
+        {
+          "name": "パラディソ ＜サイクリカ.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スター進化：レクスターズまたは水のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがタップした時、タマシードまたは呪文を１枚、自分の墓地から手札に戻してもよい。",
+          "race": "トリックス/クリスタル・コマンド・ドラゴン/レクスターズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-052",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-052.jpg",
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "水"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "blocker": true,
+        "g188Tapped": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "any": [
+                {
+                  "g295Tamaseed": true
+                },
+                {
+                  "spell": true
+                }
+              ]
+            },
+            "title": "墓地から手札に戻すタマシードか呪文を選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "423c2868d16fff3506a383b2f8e85107a327be2b7b48b467afaf06fdc40c7f62",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex13-009",
+      "name": "限りなく透明に近いワルツ",
+      "faces": [
+        {
+          "name": "限りなく透明に近いワルツ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\n自分のターンのはじめに、自分のシールドを１つ墓地に置いてもよい。そうしたら、光または闇の「ブロッカー」を持つクリーチャーを１体、自分の墓地からバトルゾーンに出す。\nこのクリーチャーがタップした時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置く。",
+          "race": "エンジェル・コマンド/デーモン・コマンド/月光王国",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex13-009.jpg",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g174Start": [
+          {
+            "op": "ShieldGrave",
+            "g239ShieldGrave": true,
+            "optional": true,
+            "then": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "n": 1,
+                "deploy": true,
+                "g236GraveDeploy": true,
+                "filter": {
+                  "creature": true,
+                  "blocker": true,
+                  "any": [
+                    {
+                      "color": "光"
+                    },
+                    {
+                      "color": "闇"
+                    }
+                  ]
+                },
+                "title": "墓地から出す光か闇のブロッカーを選ぶ"
+              }
+            ]
+          }
+        ],
+        "g188Tapped": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "9a6413fcfffa4e2249501af37e19bfffdb8621a21bc5a583a9f392b62c1d1737",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-022",
+      "name": "ケンスケのツールボックス",
+      "faces": [
+        {
+          "name": "ケンスケのツールボックス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分のシールドを１つ手札に加える。ただし、その「S・トリガー」は使えない。\nこのクリーチャーがアンタップした時、自分の手札を１枚捨ててもよい。そうしたら、その捨てたカードよりコストが小さい相手のクリーチャーを１体選び、破壊する。",
+          "race": "ゼノパーツ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-022",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-022.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true
+          }
+        ],
+        "g299Untapped": [
+          {
+            "op": "DiscardFor248",
+            "defs": [
+              {
+                "op": "DiscardCost655",
+                "g835Creature": true,
+                "g1048AnyDiscardedFace": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "fca9366542d23ff1c72c0b893c7a2d761f4bc88021761ce9e10894ce07630a00",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex3-029",
+      "name": "ケンスケのツールボックス",
+      "faces": [
+        {
+          "name": "ケンスケのツールボックス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分のシールドを１つ手札に加える。ただし、その「S・トリガー」は使えない。\nこのクリーチャーがアンタップした時、自分の手札を１枚捨ててもよい。そうしたら、その捨てた手札よりコストが小さい相手のクリーチャーを１体選び、破壊する。",
+          "race": "ゼノパーツ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-029",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-029.jpg",
+      "canonicalId": "dm24rp2-022",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true
+          }
+        ],
+        "g299Untapped": [
+          {
+            "op": "DiscardFor248",
+            "defs": [
+              {
+                "op": "DiscardCost655",
+                "g835Creature": true,
+                "g1048AnyDiscardedFace": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "2e8b274bbf7649fdbcc0105f5fcc37323c5272677d160d848c37ba592872153a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp21-052": 4,
+      "dmex13-009": 4,
+      "dm24rp2-022": 4,
+      "dm24ex3-029": 4
+    }
+  }
+}
