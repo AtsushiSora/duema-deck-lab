@@ -211341,15 +211341,124 @@
       ],
       "supportBatch": "phase-1052",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-034",
+      "name": "空間の守護者ジル・ハイク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2500,
+      "race": "ガーディアン",
+      "text": "このクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選び、タップする。\n自分のターン中に、コスト８以上のクリーチャーを召喚した時またはコスト８以上の呪文を唱えた時、相手のクリーチャーをすべてタップする。次の相手のターンのはじめに、それらはアンタップしない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-034",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true
+        }
+      ],
+      "g1053LargeUse": [
+        {
+          "op": "LockUntap606",
+          "g1019Tap": true
+        }
+      ],
+      "supportBatch": "phase-1053",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex14-043",
+      "name": "ストリート・スパーク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "チームボンバー",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを３体まで選び、タップする。\nレインボーナス：バトルゾーンに自分の多色クリーチャーがあれば、選んだクリーチャーは次の相手のターンのはじめにアンタップしない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-043",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "opponent",
+          "n": 3,
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g193Tap": true,
+          "spell": true,
+          "g210TapLockIf": {
+            "creature": true,
+            "multi": true
+          },
+          "title": "タップする相手のクリーチャーを3体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1053",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex01-068",
+      "name": "奇跡の革命 ミラダンテf",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 13500,
+      "race": "エンジェル・コマンド・ドラゴン/革命軍",
+      "text": "進化：自分のドラゴン１体の上に置く。\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーをすべてタップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。\n革命０：自分のシールドが０枚なら、相手はクリーチャーを召喚できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex01-068",
+      "limit": 4,
+      "evolution": {
+        "race": "ドラゴン"
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LockUntap606",
+          "g1019Tap": true
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g265ShieldsMax": 0
+        },
+        "grants": {
+          "g1019SummonLock": true
+        }
+      },
+      "supportBatch": "phase-1053",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1052,
+    "phase": 1053,
     "checkedAt": "2026-11-13",
-    "baseCount": 7107,
+    "baseCount": 7110,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7110,
+    "totalCount": 7113,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -230262,6 +230371,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7107,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1052,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7107,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7110,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

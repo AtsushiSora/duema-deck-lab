@@ -1,0 +1,173 @@
+{
+  "phase": 1053,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7110,
+  "description": "召喚と呪文を監視するタップ、レインボーナスのアンタップ制限、革命0の召喚禁止を照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/31728/",
+    "https://dm.takaratomy.co.jp/rule/qa/33437/",
+    "https://dm.takaratomy.co.jp/rule/qa/47894/",
+    "https://dm.takaratomy.co.jp/rule/qa/33524/",
+    "https://dm.takaratomy.co.jp/rule/qa/33477/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37265/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp05-034",
+      "name": "空間の守護者ジル・ハイク",
+      "faces": [
+        {
+          "name": "空間の守護者ジル・ハイク",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選び、タップする。\n自分のターン中に、コスト８以上のクリーチャーを召喚した時またはコスト８以上の呪文を唱えた時、相手のクリーチャーをすべてタップする。次の相手のターンのはじめに、それらはアンタップしない。",
+          "race": "ガーディアン",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-034",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-034.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true
+          }
+        ],
+        "g1053LargeUse": [
+          {
+            "op": "LockUntap606",
+            "g1019Tap": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "c946e157b842ae7fe3cbf5e70f861b92303f0732a85bc9f47ba2eaeeb55ce653",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-043",
+      "name": "ストリート・スパーク",
+      "faces": [
+        {
+          "name": "ストリート・スパーク",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを３体まで選び、タップする。\nレインボーナス：バトルゾーンに自分の多色クリーチャーがあれば、選んだクリーチャーは次の相手のターンのはじめにアンタップしない。",
+          "race": "チームボンバー",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-043",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-043.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": 3,
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "spell": true,
+            "g210TapLockIf": {
+              "creature": true,
+              "multi": true
+            },
+            "title": "タップする相手のクリーチャーを3体まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "e93ec5b7c240669b1be250f2710daecb5d95b3e7dcec6e2d6d7292ff0bb8d991",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex01-068",
+      "name": "奇跡の革命 ミラダンテf",
+      "faces": [
+        {
+          "name": "奇跡の革命 ミラダンテf",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化：自分のドラゴン１体の上に置く。\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーをすべてタップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。\n革命０：自分のシールドが０枚なら、相手はクリーチャーを召喚できない。",
+          "race": "エンジェル・コマンド・ドラゴン/革命軍",
+          "powerText": "13500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex01-068",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex01-068.jpg",
+      "spec": {
+        "evolution": {
+          "race": "ドラゴン"
+        },
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LockUntap606",
+            "g1019Tap": true
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g265ShieldsMax": 0
+          },
+          "grants": {
+            "g1019SummonLock": true
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "0a07a9710e2964040d249f015babb56f8c9121b9b76ac42349a2a92744520a81",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp05-034": 4,
+      "dmex14-043": 4,
+      "dmex01-068": 4
+    }
+  }
+}

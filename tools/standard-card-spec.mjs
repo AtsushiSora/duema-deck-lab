@@ -2467,6 +2467,25 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1053&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText),freeze={op:'LockUntap606',g1019Tap:true};
+  if(f.name==='空間の守護者ジル・ハイク'&&f.typeText==='クリーチャー'&&f.civilizationText==='光'&&f.cost===3&&text===
+   'このクリーチャーがバトルゾーンに出た時相手のクリーチャーを1体選びタップする。'+
+   '自分のターン中にコスト8以上のクリーチャーを召喚した時またはコスト8以上の呪文を唱えた時相手のクリーチャーをすべてタップする。次の相手のターンのはじめにそれらはアンタップしない。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',tap:true}],g1053LargeUse:[freeze]};
+  if(f.name==='ストリート・スパーク'&&f.typeText==='呪文'&&f.civilizationText==='光'&&f.cost===5&&text===
+   'S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)'+
+   '相手のクリーチャーを3体まで選びタップする。レインボーナス:バトルゾーンに自分の多色クリーチャーがあれば選んだクリーチャーは次の相手のターンのはじめにアンタップしない。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'battle',owner:'opponent',n:3,optional:true,
+    filter:{creature:true},g173Targets:true,g193Select:true,g193Tap:true,spell:true,
+    g210TapLockIf:{creature:true,multi:true},title:'タップする相手のクリーチャーを3体まで選ぶ'}]};
+  if(f.name==='奇跡の革命 ミラダンテf'&&f.typeText==='進化クリーチャー'&&f.civilizationText==='光'&&f.cost===8&&text===
+   '進化:自分のドラゴン1体の上に置く。T・ブレイカー'+
+   'このクリーチャーがバトルゾーンに出た時相手のクリーチャーをすべてタップする。次の相手のターンのはじめにそのクリーチャーはアンタップしない。'+
+   '革命0:自分のシールドが0枚なら相手はクリーチャーを召喚できない。')
+   return {evolution:{race:'ドラゴン'},breaker:3,effect:'sixPhoto',g34Tasks:[freeze],
+    g260Self:{filter:{g265ShieldsMax:0},grants:{g1019SummonLock:true}}};
+ }
  if(phase>=1052&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.name==='復讐 チェーンソー'&&f.typeText==='クリーチャー'&&f.civilizationText==='闇'&&f.cost===6&&text===

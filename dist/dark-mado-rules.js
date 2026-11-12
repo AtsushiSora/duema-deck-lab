@@ -25,7 +25,15 @@ export function createDarkMadoRules(api){
  }
  function watchLarge(s,c){
   if(cost(c)<8)return;
-  for(const x of s.players[s.active].battle)if(card(x).g4Lab&&effective(x,s).g4Lab)on(s,s.active,x,'discard',{p:1-s.active,causedBy:s.active,n:1,all:true});
+  const p=s.active;
+  for(const x of s.players[p].battle){
+   const printed=card(x);
+   if(printed.g4Lab&&effective(x,s).g4Lab)on(s,p,x,'discard',{p:1-p,causedBy:p,n:1,all:true});
+   if(printed.g1053LargeUse&&!x.sealed&&!x.faceDown){
+    const defs=effective(x,s).g1053LargeUse;
+    if(defs)on(s,p,x,'g34_Sequence',{defs});
+   }
+  }
  }
  function run(s,t){if(!t.op.startsWith('g30_'))return false;
   const own=s.players[t.p];

@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7110,
-  "pendingNames": 4717,
-  "phase": 1052,
+  "supportedNames": 7113,
+  "pendingNames": 4714,
+  "phase": 1053,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,15 +154,15 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2702,
+    "クリーチャー": 2701,
     "NEOクリーチャー": 152,
-    "呪文": 608,
+    "呪文": 607,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 57,
     "デュエルメイト呪文": 10,
     "S-MAX進化クリーチャー": 10,
-    "進化クリーチャー": 280,
+    "進化クリーチャー": 279,
     "スター進化クリーチャー": 68,
     "進化クリーチャー(超無限進化・Ω)": 1,
     "ギガ・オレガ・オーラ": 2,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3277,
+    "未対応の能力文": 3275,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -241,11 +241,11 @@
     "コスト・文明の個別処理が必要": 3,
     "未対応の革命誘発効果": 4,
     "未対応の非ブロック時能力": 4,
-    "未対応のレインボーナス効果": 2,
     "未対応のスペース・チャージ条件": 6,
     "未対応の攻撃時能力": 1,
     "未対応のアンタップ能力": 2,
     "未対応の被攻撃・被選択能力": 2,
+    "未対応のレインボーナス効果": 1,
     "未対応のシビルカウント種別": 4,
     "未対応のスペース・チャージ効果": 5,
     "未対応の進化V能力": 15,
@@ -474,16 +474,6 @@
         "name": "神滅海王グラン・ベルゼ"
       }
     ],
-    "未対応のレインボーナス効果": [
-      {
-        "id": "dmex14-043",
-        "name": "ストリート・スパーク"
-      },
-      {
-        "id": "dmex14-058",
-        "name": "フェイバリット・ムーブ"
-      }
-    ],
     "未対応のスペース・チャージ条件": [
       {
         "id": "dmr03-008",
@@ -522,6 +512,12 @@
       {
         "id": "dm28-029",
         "name": "朱雀神ガリョウ"
+      }
+    ],
+    "未対応のレインボーナス効果": [
+      {
+        "id": "dmex14-058",
+        "name": "フェイバリット・ムーブ"
       }
     ],
     "未対応のシビルカウント種別": [
@@ -205918,17 +205914,99 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1053,
+      "baseCommit": "eb06b70b",
+      "cards": [
+        {
+          "id": "dmrp05-034",
+          "name": "空間の守護者ジル・ハイク"
+        },
+        {
+          "id": "dmex14-043",
+          "name": "ストリート・スパーク"
+        },
+        {
+          "id": "dmex01-068",
+          "name": "奇跡の革命 ミラダンテf"
+        }
+      ],
+      "printAliases": [],
+      "supportedNames": 7113,
+      "pendingNames": 4714,
+      "verification": {
+        "focusedPassed": 10,
+        "regressionPassed": 148,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 3,
+        "scope": "3種類の公式能力全文・基本情報・マナ数・画像・単一収録・現行殿堂レギュレーションを照合。ジル・ハイクは登場時の単体タップ、軽減前コスト8以上の召喚と自分のターン中の相手による呪文使用、発生源が離れた後の全体タップ・次ターン開始時の制限を確認。ストリート・スパークはS・トリガー、0～3体の選択、既にタップした対象、自分の多色クリーチャーがいる場合だけ選んだ対象に適用するアンタップ制限と保存復元を確認。ミラダンテfは光以外のドラゴンからの進化、全体タップ、T・ブレイカー、革命0での通常召喚とS・トリガー召喚の禁止、呪文による非召喚の登場、シールド追加による解除を確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/31728/",
+          "https://dm.takaratomy.co.jp/rule/qa/33437/",
+          "https://dm.takaratomy.co.jp/rule/qa/47894/",
+          "https://dm.takaratomy.co.jp/rule/qa/33524/",
+          "https://dm.takaratomy.co.jp/rule/qa/33477/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37265/"
+        ],
+        "regressionFiles": [
+          "tests/standard193-effects.test.mjs",
+          "tests/standard210-effects.test.mjs",
+          "tests/standard606-effects.test.mjs",
+          "tests/standard743-effects.test.mjs",
+          "tests/standard869-effects.test.mjs",
+          "tests/standard1019-effects.test.mjs",
+          "tests/standard1051-effects.test.mjs",
+          "tests/standard1052-effects.test.mjs",
+          "tests/dark-mado-photo.test.mjs"
+        ],
+        "regressionFilters": {
+          "tests/dark-mado-photo.test.mjs": "^Lab "
+        },
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。",
+        "logs": {
+          "official": "/tmp/duema-phase-1053.0YijoHHL/official.log",
+          "officialImages": "/tmp/duema-phase-1053.0YijoHHL/sources.log",
+          "focused": "/tmp/duema-phase-1053.0YijoHHL/focused-final.log",
+          "regression": "/tmp/duema-phase-1053.0YijoHHL/regression.log",
+          "additionalRegression": "/tmp/duema-phase-1053.0YijoHHL/lab.log",
+          "check": "/tmp/duema-phase-1053.0YijoHHL/check.log",
+          "audit": "/tmp/duema-phase-1053.0YijoHHL/audit.log",
+          "imageIndex": "/tmp/duema-phase-1053.0YijoHHL/images.log",
+          "count": "/tmp/duema-phase-1053.0YijoHHL/count.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dmrp03-011",
+          "name": "コーディネイ人",
+          "reason": "公式能力全文・基本情報・画像・単一収録を照合。バトルでの破壊をタップに置換する際、EXライフなど同じイベントに適用できる置換との競合や、効果によるバトルでも次のアンタップを止めることを確認するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-011",
+            "https://dm.takaratomy.co.jp/rule/qa/43348/"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1052,
-    "nextPhase": 1053,
+    "lastVerifiedPhase": 1053,
+    "nextPhase": 1054,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dmrp05-034",
-        "name": "空間の守護者ジル・ハイク",
-        "reason": "公式能力全文・基本情報・画像・単一収録を確認。登場時の単体タップと、自分のターンのコスト8以上の召喚・呪文使用を区別し、全タップから次のターン開始時のアンタップ制限につなぐ経路を照合する。"
+        "id": "dmr17-s08",
+        "name": "メガ・マナロック・ドラゴン",
+        "reason": "次回候補。公式本文・画像・使用制限・再録を照合し、登場時と攻撃時のマナ選択で、複数文明を持つカードとタップ済みのカードの扱いを確認する。"
+      },
+      {
+        "id": "dmrp03-011",
+        "name": "コーディネイ人",
+        "reason": "公式能力全文・基本情報・画像・単一収録を照合。バトルでの破壊をタップに置換する際、EXライフなど同じイベントに適用できる置換との競合や、効果によるバトルでも次のアンタップを止めることを確認するまで保留。"
       },
       {
         "id": "dmrp12-048",
@@ -206075,7 +206153,8 @@
       "DMR-19版の本文・基本情報・画像とQA 37793を確認。バトルの置換で本人を含む自軍1体を戻し、複数のバトル置換が競合する場合も処理できるまで保留。",
       "DMR-20版の本文・基本情報・画像を確認。破壊置換で手札の同名カードを出せる条件と登場制限を確認するまで保留。",
       "Phase 1036で、盾束の一部だけを移動しても世界のY チャクラ・デル・フィンのZラッシュが発動する既存不具合を変更前と今回の両方で再現。QA 48472と回帰範囲は同バッチのexistingIssuesを参照。",
-      "公式能力全文・基本情報・画像・単一収録を照合。既存の手札破棄処理を利用できるが、オレガ・オーラの使用に伴う既存GRへの装着、新規GR召喚後の装着、GR召喚が置換された場合の装着不成立を一通り検証する必要があるため保留。"
+      "公式能力全文・基本情報・画像・単一収録を照合。既存の手札破棄処理を利用できるが、オレガ・オーラの使用に伴う既存GRへの装着、新規GR召喚後の装着、GR召喚が置換された場合の装着不成立を一通り検証する必要があるため保留。",
+      "公式能力全文・基本情報・画像・単一収録を照合。バトルでの破壊をタップに置換する際、EXライフなど同じイベントに適用できる置換との競合や、効果によるバトルでも次のアンタップを止めることを確認するまで保留。"
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
