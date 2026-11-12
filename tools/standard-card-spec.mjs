@@ -9468,6 +9468,11 @@ export function standardCardSpec(d,{phase=165}={}){
    '相手は自身のクリーチャーを1体選び破壊する。':{op:'OpponentSelect',n:1,to:'grave'},
    '自分の山札の上から1枚をマナゾーンに置いてもよい。':{op:'Ramp',n:1,optional:true},
    '相手の手札を1枚見ないで選び捨てさせる。':{op:'BlindDiscard773',n:1}
+  }[neoText]:null)??(phase>=1057?{
+   '呪文を1枚自分の墓地から手札に戻してもよい。':{op:'Select',origin:'grave',to:'hand',n:1,optional:true,filter:{g228Face:{type:'spell'}},title:'墓地から手札に戻す呪文を1枚まで選ぶ'},
+   'コスト3以下のクリーチャーを1体自分の墓地から出してもよい。':{op:'Select',origin:'grave',n:1,deploy:true,g236GraveDeploy:true,optional:true,filter:{creature:true,max:3},title:'墓地から出すコスト3以下のクリーチャーを1体まで選ぶ'},
+   '相手の「ブロッカー」を持つクリーチャーを1体選び破壊してもよい。':{op:'Target',to:'grave',optional:true,filter:{blocker:true},title:'破壊する相手のブロッカーを1体まで選ぶ'},
+   'このターンこのクリーチャーはアンタップしているクリーチャーを攻撃できる。':{op:'ShinkaGrant397',grant:{attackUntapped:true}}
   }[neoText]:null)):null;
   if(creature&&(evolvingBlockerRemoval||evolvingElementRemoval||neoTrigger)){
    if(entry.length||nativeEntry||spec.g397Shinka)throw Error('重複する進化誘発能力');

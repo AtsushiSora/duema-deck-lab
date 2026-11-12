@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7124,
-  "pendingNames": 4703,
-  "phase": 1056,
+  "supportedNames": 7128,
+  "pendingNames": 4699,
+  "phase": 1057,
   "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -155,7 +155,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 2700,
-    "NEOクリーチャー": 144,
+    "NEOクリーチャー": 140,
     "呪文": 605,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3265,
+    "未対応の能力文": 3261,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -206245,27 +206245,140 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1057,
+      "baseCommit": "7d6c2fe4",
+      "cards": [
+        {
+          "id": "dm25rp3-033",
+          "name": "～魔弾貪り伯～"
+        },
+        {
+          "id": "dm25rp3-039",
+          "name": "デンジャラス=トットロ"
+        },
+        {
+          "id": "promoy24-063",
+          "name": "轟速 ジャ・ターボ3"
+        },
+        {
+          "id": "dm25rp2-073",
+          "name": "BAZAGA-善鐘42"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm25ex3-041",
+          "canonicalId": "dm25rp3-039"
+        },
+        {
+          "id": "dm25rp3-044",
+          "canonicalId": "promoy24-063"
+        }
+      ],
+      "supportedNames": 7128,
+      "pendingNames": 4699,
+      "verification": {
+        "focusedPassed": 12,
+        "regressionPassed": 279,
+        "regressionFailed": 0,
+        "regressionExcluded": 1,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 6,
+        "scope": "4種類・6版の公式能力全文、基本情報、マナ数、画像、収録、殿堂レギュレーションを照合。トットロとジャ・ターボ3の別版を既存正規IDに集約し、別版と正規IDを混ぜたデッキの枚数を集約する。D・D・Dの文明・支払い時点・辞退・非進化・攻撃中のNEO進化と攻撃継続を確認。魔弾貪り伯のツインパクトを含む呪文回収、トットロのコスト3以下の任意墓地展開と墓地制限、ジャ・ターボ3の任意のブロッカー破壊とシックスフォールの2裁定、BAZAGAのW・ブレイカーと進化後もターン終了まで続くアンタップ攻撃を確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/46499/",
+          "https://dm.takaratomy.co.jp/rule/qa/46526/",
+          "https://dm.takaratomy.co.jp/rule/qa/46847/",
+          "https://dm.takaratomy.co.jp/rule/qa/47363/",
+          "https://dm.takaratomy.co.jp/rule/qa/47364/",
+          "https://dm.takaratomy.co.jp/rule/qa/48036/",
+          "https://dm.takaratomy.co.jp/rule/qa/48151/",
+          "https://dm.takaratomy.co.jp/rule/qa/48925/",
+          "https://dm.takaratomy.co.jp/rule/qa/45589/",
+          "https://dm.takaratomy.co.jp/rule/qa/31531/"
+        ],
+        "regressionFiles": [
+          "tests/neo-ddd.test.mjs",
+          "tests/standard397-effects.test.mjs",
+          "tests/standard495-effects.test.mjs",
+          "tests/standard629-effects.test.mjs",
+          "tests/standard1055-effects.test.mjs",
+          "tests/standard1056-effects.test.mjs"
+        ],
+        "regressionExclusions": [
+          {
+            "path": "tests/neo-ddd.test.mjs",
+            "title": "mixed NEO/DDD games conserve all eighty unique cards through every action and finish with reproducible seeds",
+            "status": "今回の合否未確認",
+            "reason": "100試合と再現性の検証は過去に分割して完了。初回の回帰起動に含まれたため約1分で中断し、そのテスト1件を除外して回帰を実行。",
+            "priorEvidence": "/tmp/duema-verify-all/neo-ddd.jsonl"
+          }
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。 トットロの公式QA 48925の組み合わせは関連2枚が未対応のため未実行。NEO/DDDの100試合と再現性は過去に分割検証済みで、今回の回帰では合否未確認。",
+        "pendingInteractions": [
+          {
+            "cardIds": [
+              "dm25rp3-039",
+              "dm26rp2-006",
+              "dm25rp2-OR1"
+            ],
+            "test": "デンジャラス=トットロの上にメモッタで封印付きのジャシン＝ヴリドガルドが出る場合の墓地展開",
+            "status": "未実行",
+            "reason": "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/48925/"
+          }
+        ],
+        "logs": {
+          "official": "/tmp/duema-phase-1057.6y4jwlmu/official.log",
+          "officialImages": "/tmp/duema-phase-1057.6y4jwlmu/sources.log",
+          "turboRegularPrint": "/tmp/duema-phase-1057.6y4jwlmu/turbo.log",
+          "focused": "/tmp/duema-phase-1057.6y4jwlmu/focused.log",
+          "regression": "/tmp/duema-phase-1057.6y4jwlmu/regression.log",
+          "interruptedRegression": "/tmp/duema-phase-1057.6y4jwlmu/regression-interrupted.log",
+          "check": "/tmp/duema-phase-1057.6y4jwlmu/check.log",
+          "audit": "/tmp/duema-phase-1057.6y4jwlmu/audit.log",
+          "imageIndex": "/tmp/duema-phase-1057.6y4jwlmu/images.log",
+          "count": "/tmp/duema-phase-1057.6y4jwlmu/count.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dm25rp2-049",
+          "name": "選舞音愛 タテロール",
+          "reason": "公式本文・基本情報・画像・単一収録を照合。既存の対象選択と移動先選択を使えるが、複数枚で構成されたクリーチャーをシールド化する場合の各カードの配置順と持ち主の扱いを既存処理で再現できるか確認が残る。発生源のコストでシックスフォールの選択制限を判定する公式QA 47068も固有テストで確認する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-049",
+            "https://dm.takaratomy.co.jp/rule/qa/46506/",
+            "https://dm.takaratomy.co.jp/rule/qa/46847/",
+            "https://dm.takaratomy.co.jp/rule/qa/47068/"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1056,
-    "nextPhase": 1057,
+    "lastVerifiedPhase": 1057,
+    "nextPhase": 1058,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm25rp3-033",
-        "name": "～魔弾貪り伯～",
-        "reason": "D・D・D、NEO進化の選択、墓地の呪文回収を確認し、ツインパクトの呪文面を含めて照合する。"
+        "id": "dm25rp3-049",
+        "name": "TAKASUGI-死合乱闘3000",
+        "reason": "D・D・DとNEO進化に加え、山札上4枚からの非公開選択と残りの処理、再録を照合する。"
       },
       {
-        "id": "dm25rp3-039",
-        "name": "デンジャラス=トットロ",
-        "reason": "DM25-EX3再録 dm25ex3-041 を照合し、D・D・Dと墓地からの登場、公式QA 48925の封印付き進化を確認する。"
+        "id": "promoy24-064",
+        "name": "VivaKl’a Tune",
+        "reason": "DM25-RP3版 dm25rp3-028 と既存IDを照合。進化先へのバトル勝利の付与と次の自分のターン開始時の終了を確認する。"
       },
       {
-        "id": "promoy24-063",
-        "name": "轟速 ジャ・ターボ3",
-        "reason": "公式能力・画像と再録を照合し、D・D・D、任意のブロッカー破壊、シックスフォールに関する公式QA 47363・47364を確認する。"
+        "id": "dm25rp4-022",
+        "name": "ZINRAI-灰俺守810",
+        "reason": "S・トリガー、進化元を含む枚数で決まるバトル中のパワー、進化先を使う任意バトルを照合する。"
       },
       {
         "id": "dm25rp2-049",
@@ -206425,7 +206538,8 @@
       "公式能力全文・基本情報・画像・単一収録を照合。既存の手札破棄処理を利用できるが、オレガ・オーラの使用に伴う既存GRへの装着、新規GR召喚後の装着、GR召喚が置換された場合の装着不成立を一通り検証する必要があるため保留。",
       "公式能力全文・基本情報・画像・単一収録を照合。バトルでの破壊をタップに置換する際、EXライフなど同じイベントに適用できる置換との競合や、効果によるバトルでも次のアンタップを止めることを確認するまで保留。",
       "Phase 397のシンカパワーの一部はシックスフォールで通常クリーチャーの下へ置いても発動する既存挙動が回帰テストに固定されている。公式QA 47363を踏まえた既存シンカパワーの整理は別途行う。今回の4種類と同じ進化誘発を持つ既存カードにはNEO・進化の条件を適用した。",
-      "公式本文・基本情報・画像・単一収録を照合。既存の対象選択と移動先選択を使えるが、複数枚で構成されたクリーチャーをシールド化する場合の各カードの配置順と持ち主の扱いを既存処理で再現できるか確認が残る。発生源のコストでシックスフォールの選択制限を判定する公式QA 47068も固有テストで確認する。"
+      "公式本文・基本情報・画像・単一収録を照合。既存の対象選択と移動先選択を使えるが、複数枚で構成されたクリーチャーをシールド化する場合の各カードの配置順と持ち主の扱いを既存処理で再現できるか確認が残る。発生源のコストでシックスフォールの選択制限を判定する公式QA 47068も固有テストで確認する。",
+      "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。"
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",

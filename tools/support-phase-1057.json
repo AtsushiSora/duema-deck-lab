@@ -1,0 +1,486 @@
+{
+  "phase": 1057,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7124,
+  "description": "NEO進化の両方の誘発、D・D・D、墓地利用、ブロッカー破壊、アンタップ状態への攻撃を照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/46499/",
+    "https://dm.takaratomy.co.jp/rule/qa/46526/",
+    "https://dm.takaratomy.co.jp/rule/qa/46847/",
+    "https://dm.takaratomy.co.jp/rule/qa/47363/",
+    "https://dm.takaratomy.co.jp/rule/qa/47364/",
+    "https://dm.takaratomy.co.jp/rule/qa/48036/",
+    "https://dm.takaratomy.co.jp/rule/qa/48151/",
+    "https://dm.takaratomy.co.jp/rule/qa/48925/",
+    "https://dm.takaratomy.co.jp/rule/qa/45589/",
+    "https://dm.takaratomy.co.jp/rule/qa/31531/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp3-033",
+      "name": "～魔弾貪り伯～",
+      "faces": [
+        {
+          "name": "～魔弾貪り伯～",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "D・D・D [ww02]（自分のクリーチャーが攻撃する時、このカードを [ww02]支払って自分の手札から実行してもよい）\nNEO進化：光、水、または闇のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが、進化して出た時、または進化元になる時、呪文を１枚、自分の墓地から手札に戻してもよい。",
+          "race": "グレートメカオー/スチーム・ナイト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-033",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-033.jpg",
+      "spec": {
+        "ddd": {
+          "cost": 2,
+          "civilizations": [
+            "水"
+          ]
+        },
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "evolvedEntryOnly": true,
+        "g397Shinka": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "g228Face": {
+                "type": "spell"
+              }
+            },
+            "title": "墓地から手札に戻す呪文を1枚まで選ぶ"
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "g228Face": {
+                "type": "spell"
+              }
+            },
+            "title": "墓地から手札に戻す呪文を1枚まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "e97e09a202eb6cdf0e57422fd1d3a8dfa659dec8e801b4ea003fdab98ca71dcd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp3-039",
+      "name": "デンジャラス=トットロ",
+      "faces": [
+        {
+          "name": "デンジャラス=トットロ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "D・D・D [dd03]（自分のクリーチャーが攻撃する時、このカードを [dd03]支払って自分の手札から実行してもよい）\nNEO進化：水、闇、または火のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが、進化して出た時、または進化元になる時、コスト３以下のクリーチャーを１体、自分の墓地から出してもよい。",
+          "race": "アビスロイヤル",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-039",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-039.jpg",
+      "spec": {
+        "ddd": {
+          "cost": 3,
+          "civilizations": [
+            "闇"
+          ]
+        },
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "evolvedEntryOnly": true,
+        "g397Shinka": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            },
+            "title": "墓地から出すコスト3以下のクリーチャーを1体まで選ぶ"
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            },
+            "title": "墓地から出すコスト3以下のクリーチャーを1体まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "64e0636afc169d20545d1aafb6f963a54a40da8e6ba780d901768c3a835f8a55",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy24-063",
+      "name": "轟速 ジャ・ターボ3",
+      "faces": [
+        {
+          "name": "轟速 ジャ・ターボ3",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "D・D・D [ff01]（自分のクリーチャーが攻撃する時、このカードを [ff01]支払って自分の手札から実行してもよい）\nNEO進化：闇、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが、進化して出た時、または進化元になる時、相手の「ブロッカー」を持つクリーチャーを１体選び、破壊してもよい。",
+          "race": "ソニック・コマンド/侵略者",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy24-063",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy24-063.jpg",
+      "spec": {
+        "ddd": {
+          "cost": 1,
+          "civilizations": [
+            "火"
+          ]
+        },
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "evolvedEntryOnly": true,
+        "g397Shinka": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "optional": true,
+            "filter": {
+              "blocker": true
+            },
+            "title": "破壊する相手のブロッカーを1体まで選ぶ"
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "optional": true,
+            "filter": {
+              "blocker": true
+            },
+            "title": "破壊する相手のブロッカーを1体まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "214fb3e7a6a9cc2ee61bc2d2f1eb8e0ee6e6f3d66a707752b73fbe99a120d7fb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-073",
+      "name": "BAZAGA-善鐘42",
+      "faces": [
+        {
+          "name": "BAZAGA-善鐘42",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "NEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが、進化して出た時、または進化元になる時、このターン、このクリーチャーはアンタップしているクリーチャーを攻撃できる。",
+          "race": "アーマード・ドラゴン/テクノ・サムライ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-073",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-073.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "breaker": 2,
+        "evolvedEntryOnly": true,
+        "g397Shinka": [
+          {
+            "op": "ShinkaGrant397",
+            "grant": {
+              "attackUntapped": true
+            }
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShinkaGrant397",
+            "grant": {
+              "attackUntapped": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "03e25b32f5e2f45ce1fe8301817a9b2420d9eed692ad9d7e9d7a3b1bb747da22",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25ex3-041",
+      "name": "デンジャラス=トットロ",
+      "faces": [
+        {
+          "name": "デンジャラス=トットロ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "D・D・D [dd03]（自分のクリーチャーが攻撃する時、このカードを [dd03]支払って自分の手札から実行してもよい）\nNEO進化：水、闇、または火のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが、進化して出た時、または進化元になる時、コスト３以下のクリーチャーを１体、自分の墓地から出してもよい。",
+          "race": "アビスロイヤル",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-041",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-041.jpg",
+      "canonicalId": "dm25rp3-039",
+      "spec": {
+        "ddd": {
+          "cost": 3,
+          "civilizations": [
+            "闇"
+          ]
+        },
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "evolvedEntryOnly": true,
+        "g397Shinka": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            },
+            "title": "墓地から出すコスト3以下のクリーチャーを1体まで選ぶ"
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            },
+            "title": "墓地から出すコスト3以下のクリーチャーを1体まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "2156f974fbb0e13fed74ab4958c7e370f28991287af8fc97837a8752b8e2ca81",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp3-044",
+      "name": "轟速 ジャ・ターボ3",
+      "faces": [
+        {
+          "name": "轟速 ジャ・ターボ3",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "D・D・D [ff01]（自分のクリーチャーが攻撃する時、このカードを [ff01]支払って自分の手札から実行してもよい）\nNEO進化：闇、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが、進化して出た時、または進化元になる時、相手の「ブロッカー」を持つクリーチャーを１体選び、破壊してもよい。",
+          "race": "ソニック・コマンド/侵略者",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-044",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-044.jpg",
+      "canonicalId": "promoy24-063",
+      "spec": {
+        "ddd": {
+          "cost": 1,
+          "civilizations": [
+            "火"
+          ]
+        },
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "evolvedEntryOnly": true,
+        "g397Shinka": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "optional": true,
+            "filter": {
+              "blocker": true
+            },
+            "title": "破壊する相手のブロッカーを1体まで選ぶ"
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "optional": true,
+            "filter": {
+              "blocker": true
+            },
+            "title": "破壊する相手のブロッカーを1体まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "43c61e5fbd21a7c681171e5905940d7e4d15f2bbb93003d5226238775d4edef4",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp3-033": 4,
+      "dm25rp3-039": 4,
+      "promoy24-063": 4,
+      "dm25rp2-073": 4,
+      "dm25ex3-041": 4,
+      "dm25rp3-044": 4
+    }
+  }
+}
