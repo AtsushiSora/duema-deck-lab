@@ -405,7 +405,10 @@ function rememberEvolutionGraveSources(host,cards){
  const under=[host,...(host.godLinks||[])].flatMap(x=>(x.under||[]).flatMap(layers));
  for(const x of watchers)if(under.includes(x))evolutionGraveSources.add(x);
 }
-function addZone(s,player,zone,...cards){if(!cards.length)return;for(const x of cards){if(zone==='grave'&&card(x.cardId)?.g39Verde)x.g39GraveColors=true;else delete x.g39GraveColors;}const p=typeof player==='number'?player:s.players.indexOf(player);if(p<0)throw Error('移動先のプレイヤーを確認できません');if(zone==='mana'&&(extra.manaTap(s,p)||s.players[1-p].battle.some(x=>effectiveCard(x,s).g35Venom)))for(const x of cards)x.tapped=true;if(zone==='deckFourth'){for(const x of cards)x.g11Sideways=true;s.players[p].deck.splice(Math.min(3,s.players[p].deck.length),0,...cards);return;}if(zone!=='deck')for(const x of cards){if(x.g11Sideways&&zone==='hand')x.g11FromSideways=true;delete x.g11Sideways;}const list=s.players[p][zone];list.push(...cards);
+function opponentTapsPlacement1038(s,p){
+ return s.players[1-p].battle.some(x=>card(x).g260Self?.grants.g1038OpponentTap&&effectiveCard(x,s).g1038OpponentTap);
+}
+function addZone(s,player,zone,...cards){if(!cards.length)return;for(const x of cards){if(zone==='grave'&&card(x.cardId)?.g39Verde)x.g39GraveColors=true;else delete x.g39GraveColors;}const p=typeof player==='number'?player:s.players.indexOf(player);if(p<0)throw Error('移動先のプレイヤーを確認できません');if(zone==='mana'&&(opponentTapsPlacement1038(s,p)||extra.manaTap(s,p)||s.players[1-p].battle.some(x=>effectiveCard(x,s).g35Venom)))for(const x of cards)x.tapped=true;if(zone==='deckFourth'){for(const x of cards)x.g11Sideways=true;s.players[p].deck.splice(Math.min(3,s.players[p].deck.length),0,...cards);return;}if(zone!=='deck')for(const x of cards){if(x.g11Sideways&&zone==='hand')x.g11FromSideways=true;delete x.g11Sideways;}const list=s.players[p][zone];list.push(...cards);
  if(zone==='shields'){
   if(s.active===p){
    const turn=s.players[p].turns,history=(s.g618ShieldTurns??=[[],[]])[p];
@@ -1254,7 +1257,8 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  const baseWasCreature=!!baseUid&&s.players[p].battle.some(x=>x.uid===baseUid&&isCreature(s,x)),baseWasEvolution=!!baseUid&&s.players[p].battle.some(x=>x.uid===baseUid&&isEvolution(x));
  const c=card(inst);if(c.triggerPlus)inst.triggerPlus=!!entryOptions.plus;delete inst.g11Sideways;if(!entryOptions.g753Swap&&extra.replaceEntry(s,p,inst,baseUid,entryOptions))return;
  if(c.g728CrossOnEntry&&extra.six.crossEntry728(s,p,inst,baseUid,entryOptions))return;
- const typedTap=typedTapOnEntry720(s,p,c)||c.type==='creature'&&c.speedAttacker&&
+ const placementTapped=opponentTapsPlacement1038(s,p);
+ const typedTap=placementTapped||typedTapOnEntry720(s,p,c)||c.type==='creature'&&c.speedAttacker&&
   s.players.some(owner=>owner.battle.some(x=>card(x).g847SpeedTap&&isCreature(s,x)&&!abilitiesIgnored(s,x)));
  const baseIds=Array.isArray(baseUid)?baseUid:[baseUid];
  const baseRaces=baseUid?new Map(s.players[p].battle
@@ -1279,7 +1283,7 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
   if(s.attack?.target===baseUid)s.attack.target=inst.uid;
   log(s,p,'evolve',`${card(base).name}から${c.name}へ進化`,{cardId:c.id});
  }
- if(!inst.tapped&&speedTapOnEntry(s,p,c,isEvolution(inst)))inst.tapped=true;
+ if(placementTapped||!inst.tapped&&speedTapOnEntry(s,p,c,isEvolution(inst)))inst.tapped=true;
  if(c.natureAce4&&genmuActive(s))inst.aceIgnored=true;s.players[p].battle.push(inst);if(entryOptions.g728CrossIds?.length)extra.crossOnEntry(s,p,inst,entryOptions.g728CrossIds);extra.history.d2Entry(s,p,inst);inst=extra.phoenix.link(s,p,inst,entryOptions);inst=extra.saga.linkM(s,p,inst,entryOptions);if(c.balchuris)(s.g23BalEntered??=[null,null])[p]=s.turn;if(c.g790AttackDeclare)(s.g790CTEntered??=[null,null])[p]=s.turn;if(c.type==='creature')(s.g7Entries??=[0,0])[p]++;refreshDynamicTypes(s);if(isCreature(s,inst)&&s.metrics[p].firstCreature===null)s.metrics[p].firstCreature=s.players[p].turns;
  if(entryOptions.g791Grant&&!inst.sealed&&isCreature(s,inst))extra.six.deploymentGrant791(s,p,inst,entryOptions.g791Grant,entryOptions.g791Spell,entryOptions.g793FightOnEntry);
  if(entryOptions.g771SpeedSpell&&!inst.sealed&&isCreature(s,inst))extra.six.deploymentSpeed771(s,p,inst,entryOptions.g771SpeedSpell,entryOptions.g774Banky);

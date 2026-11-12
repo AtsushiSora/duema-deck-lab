@@ -2467,6 +2467,35 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1038&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText),crystal4={g286FaceDownMana:4},manaDown={op:'ManaDown426'};
+  if(f.name==='偽りの名 ルカニド'&&f.civilizationText==='火'&&f.cost===7&&f.race==='ボルケーノ・ドラゴン/アンノウン'&&[
+   '相手はそのシールドをかわりに墓地に置く。',
+   '相手はそのシールドを手札に加えるかわりに墓地に置く。'
+  ].some(end=>text==='スピードアタッカーW・ブレイカーこのクリーチャーが攻撃する時相手のパワー11000以下の「ブロッカー」を持つクリーチャーを1体選び破壊する。'+
+   '水晶武装4:このクリーチャーがシールドをブレイクする時自分のマナゾーンに裏向きのカードが4枚以上あれば'+end))
+   return {speedAttacker:true,breaker:2,g34Attack:[{op:'Target',filter:{blocker:true,maxPower:11000,g199Power:true},to:'grave'}],
+    g260Self:{filter:crystal4,grants:{shieldBurn:true}}};
+  if(f.name==='呪華のサトリ カナザー'&&f.civilizationText==='自然'&&f.cost===3&&f.race==='オラクル・セレス/スノーフェアリー'&&text===
+   'このクリーチャーが出た時自分の山札の上から4枚を見る。その中からオラクルアンノウンまたはゼニスを最大1枚ずつ表向きにし手札に加えてもよい。残りを好きな順序で山札の下に置く。その後自分のマナゾーンにあるカードを1枚裏向きにしてもよい。'+
+   '水晶武装2:このクリーチャーが攻撃する時自分のマナゾーンに裏向きのカードが2枚以上あれば自分のマナゾーンにあるカードの枚数以下のコストを持つクリーチャーを1体自分の手札から出してもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Look',n:4,rest:'bottom',g841DeckPeek:true,g255Distribute:true,g791OrderRest:true,
+    stages:['オラクル','アンノウン','ゼニス'].map(race=>({n:1,to:'hand',optional:true,reveal:true,filter:{anyFaceRace:race},title:race+'を最大1枚選ぶ'}))},manaDown],
+    g34Attack:[{op:'IfOwn',filter:{g286FaceDownMana:2},defs:[
+     {op:'Select',origin:'hand',n:1,deploy:true,g746OwnManaCost:true,filter:{creature:true},optional:true}
+    ]}]};
+  if(f.name==='偽りのコード シャーロック'&&f.civilizationText==='光/闇/火'&&f.cost===9&&f.race==='アンノウン・セレス'&&text===
+   'Q・ブレイカーこのクリーチャーが出た時各プレイヤーは自身のクリーチャーを1体ずつ選ぶ。こうして選ばれなかったクリーチャーをすべて破壊する。'+
+   '水晶武装4:自分のマナゾーンに裏向きのカードが4枚以上あれば自分のクリーチャーすべてに「ブロッカー」と「スピードアタッカー」と「スレイヤー」を与える。')
+   return {breaker:4,effect:'sixPhoto',g34Tasks:[{op:'EachPlayer459',origin:'battle',to:'grave',keep:true}],
+    g208Auras:[{filter:{creature:true},g557Condition:crystal4,grants:{blocker:true,speedAttacker:true,slayer:true}}]};
+  if(f.name==='偽りの名 スコーピオ'&&f.civilizationText==='闇'&&f.cost===6&&f.race==='ドラゴン・ゾンビ/アンノウン'&&text===
+   'このクリーチャーを自分の墓地から召喚してもよい。ブロッカーブロッカーW・ブレイカー'+
+   'このクリーチャーが出た時または自分のターンのはじめに自分のマナゾーンにあるカードを1枚裏向きにしてもよい。'+
+   '水晶武装4:自分のマナゾーンに裏向きのカードが4枚以上あれば相手のカードはマナゾーンとバトルゾーンにタップして置かれる。')
+   return {blocker:true,breaker:2,effect:'sixPhoto',g34Tasks:[manaDown],g174Start:[manaDown],g978SelfGraveSummon:true,
+    g260Self:{filter:crystal4,grants:{g1038OpponentTap:true}}};
+ }
  if(phase>=1037&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText),crystal2={g286FaceDownMana:2};
   const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';

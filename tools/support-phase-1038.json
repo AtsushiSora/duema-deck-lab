@@ -1,0 +1,306 @@
+{
+  "phase": 1038,
+  "checkedAt": "2026-11-12",
+  "baseCount": 7059,
+  "description": "水晶武装を持つクリーチャー4種類と再録1版を公式情報で照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "cards": [
+    {
+      "id": "dm23ex3-022",
+      "name": "偽りの名 ルカニド",
+      "faces": [
+        {
+          "name": "偽りの名 ルカニド",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、相手の、パワー11000以下の「ブロッカー」を持つクリーチャーを１体選び、破壊する。\n水晶武装４：このクリーチャーがシールドをブレイクする時、自分のマナゾーンに裏向きのカードが４枚以上あれば、相手はそのシールドをかわりに墓地に置く。",
+          "race": "ボルケーノ・ドラゴン/アンノウン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-022",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-022.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Target",
+            "filter": {
+              "blocker": true,
+              "maxPower": 11000,
+              "g199Power": true
+            },
+            "to": "grave"
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g286FaceDownMana": 4
+          },
+          "grants": {
+            "shieldBurn": true
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "b61fc013149fb98191f54d12673eada7f9b09652787f7a5a421432b434bd372d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-025",
+      "name": "呪華のサトリ カナザー",
+      "faces": [
+        {
+          "name": "呪華のサトリ カナザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から４枚を見る。その中からオラクル、アンノウン、またはゼニスを最大１枚ずつ表向きにし、手札に加えてもよい。残りを好きな順序で山札の下に置く。その後、自分のマナゾーンにあるカードを１枚、裏向きにしてもよい。\n水晶武装２：このクリーチャーが攻撃する時、自分のマナゾーンに裏向きのカードが２枚以上あれば、自分のマナゾーンにあるカードの枚数以下のコストを持つクリーチャーを１体、自分の手札から出してもよい。",
+          "race": "オラクル・セレス/スノーフェアリー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-025",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-025.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 4,
+            "rest": "bottom",
+            "g841DeckPeek": true,
+            "g255Distribute": true,
+            "g791OrderRest": true,
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "anyFaceRace": "オラクル"
+                },
+                "title": "オラクルを最大1枚選ぶ"
+              },
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "anyFaceRace": "アンノウン"
+                },
+                "title": "アンノウンを最大1枚選ぶ"
+              },
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "anyFaceRace": "ゼニス"
+                },
+                "title": "ゼニスを最大1枚選ぶ"
+              }
+            ]
+          },
+          {
+            "op": "ManaDown426"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g286FaceDownMana": 2
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "hand",
+                "n": 1,
+                "deploy": true,
+                "g746OwnManaCost": true,
+                "filter": {
+                  "creature": true
+                },
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "9aeeda3cc9a7415a81d2d1fadff2c7d96382c9c6dee5cb64888a2e444bac40d4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24bd6-003",
+      "name": "偽りのコード シャーロック",
+      "faces": [
+        {
+          "name": "偽りのコード シャーロック",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇/火",
+          "civilizations": [
+            "光",
+            "闇",
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "Q・ブレイカー\nこのクリーチャーが出た時、各プレイヤーは自身のクリーチャーを１体ずつ選ぶ。こうして選ばれなかったクリーチャーをすべて破壊する。\n水晶武装４：自分のマナゾーンに裏向きのカードが４枚以上あれば、自分のクリーチャーすべてに「ブロッカー」と「スピードアタッカー」と「スレイヤー」を与える。",
+          "race": "アンノウン・セレス",
+          "powerText": "23000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd6-003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd6-003.jpg",
+      "spec": {
+        "breaker": 4,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "EachPlayer459",
+            "origin": "battle",
+            "to": "grave",
+            "keep": true
+          }
+        ],
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "g557Condition": {
+              "g286FaceDownMana": 4
+            },
+            "grants": {
+              "blocker": true,
+              "speedAttacker": true,
+              "slayer": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "b0ca1a1c19895242b21972054d5c477a79ae06dc9efd79d823bc15b66e3769ea",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-006",
+      "name": "偽りの名 スコーピオ",
+      "faces": [
+        {
+          "name": "偽りの名 スコーピオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーを自分の墓地から召喚してもよい。\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、または自分のターンのはじめに、自分のマナゾーンにあるカードを１枚、裏向きにしてもよい。\n水晶武装４：自分のマナゾーンに裏向きのカードが４枚以上あれば、相手のカードはマナゾーンとバトルゾーンにタップして置かれる。",
+          "race": "ドラゴン・ゾンビ/アンノウン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-006.jpg",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ManaDown426"
+          }
+        ],
+        "g174Start": [
+          {
+            "op": "ManaDown426"
+          }
+        ],
+        "g978SelfGraveSummon": true,
+        "g260Self": {
+          "filter": {
+            "g286FaceDownMana": 4
+          },
+          "grants": {
+            "g1038OpponentTap": true
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "3b28db9ff2559707affdf89b2a12bb1d0a26e4d196e4f80ca60ad37dac9e4383",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24bd6-037",
+      "name": "偽りの名 ルカニド",
+      "faces": [
+        {
+          "name": "偽りの名 ルカニド",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、相手の、パワー11000以下の「ブロッカー」を持つクリーチャーを１体選び、破壊する。\n水晶武装４：このクリーチャーがシールドをブレイクする時、自分のマナゾーンに裏向きのカードが４枚以上あれば、相手はそのシールドを手札に加えるかわりに墓地に置く。",
+          "race": "ボルケーノ・ドラゴン/アンノウン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd6-037",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd6-037.jpg",
+      "canonicalId": "dm23ex3-022",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "d3ea272c9b7963b9bd301a0d5301f903038bb085c277998f676afa55aabfb1bc",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23ex3-022": 4,
+      "dm23ex3-025": 4,
+      "dm24bd6-003": 4,
+      "dm23ex3-006": 4,
+      "dm24bd6-037": 4
+    }
+  }
+}

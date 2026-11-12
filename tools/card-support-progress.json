@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7059,
-  "pendingNames": 4768,
-  "phase": 1037,
+  "supportedNames": 7063,
+  "pendingNames": 4764,
+  "phase": 1038,
   "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2738,
+    "クリーチャー": 2734,
     "NEOクリーチャー": 152,
     "呪文": 620,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1212,
-    "未対応の能力文": 3321,
+    "未対応の能力文": 3317,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -204629,37 +204629,129 @@
           "reason": "公式QA 44594では裏向きマナが1枚でも、水の呪文を唱えた時に手札で能力の使用を先に宣言でき、呪文解決後に水晶武装2を確認する。既存の呪文監視はバトルゾーンの発生源を扱うため、手札の非公開状態での宣言、複数宣言の順序、解決時の無料召喚を検証できるまで保留。"
         }
       ]
+    },
+    {
+      "phase": 1038,
+      "baseCommit": "d39930e3",
+      "cards": [
+        {
+          "id": "dm23ex3-022",
+          "name": "偽りの名 ルカニド"
+        },
+        {
+          "id": "dm23ex3-025",
+          "name": "呪華のサトリ カナザー"
+        },
+        {
+          "id": "dm24bd6-003",
+          "name": "偽りのコード シャーロック"
+        },
+        {
+          "id": "dm23ex3-006",
+          "name": "偽りの名 スコーピオ"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm24bd6-037",
+          "canonicalId": "dm23ex3-022",
+          "name": "偽りの名 ルカニド"
+        }
+      ],
+      "supportedNames": 7063,
+      "pendingNames": 4764,
+      "verification": {
+        "focusedPassed": 12,
+        "regressionPassed": 369,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 5,
+        "scope": "公式の能力全文・基本情報・マナ数・画像・収録・現行殿堂レギュレーションを4種類と再録1版で照合。ルカニドの再録で「手札に加えるかわりに」と補われる置換、スピードアタッカー、パワー11000以下のブロッカー選択、水晶武装4の盾束の墓地移動とS・トリガー。カナザーの非公開の山札確認、3種族を各最大1枚だけ公開して回収、残りの山札下順序、続く任意のマナ裏向き化、攻撃時の物理マナ枚数上限。シャーロックの両プレイヤーの選択、同時破壊、3能力の継続付与。スコーピオの闇の通常コストによる墓地召喚、登場時と自ターン開始時の任意のマナ裏向き化、相手のマナ・クリーチャー・タマシードのタップ状態での配置を検証。選択途中の保存復元と再録IDも確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/40538/",
+          "https://dm.takaratomy.co.jp/rule/qa/43587/",
+          "https://dm.takaratomy.co.jp/rule/qa/44621/"
+        ],
+        "regressionFiles": [
+          "tests/standard604-effects.test.mjs",
+          "tests/standard720-effects.test.mjs",
+          "tests/standard791-effects.test.mjs",
+          "tests/standard978-effects.test.mjs",
+          "tests/standard484-effects.test.mjs",
+          "tests/standard295-effects.test.mjs",
+          "tests/standard1036-effects.test.mjs",
+          "tests/standard1037-effects.test.mjs",
+          "tests/standard607-effects.test.mjs",
+          "tests/standard255-effects.test.mjs",
+          "tests/standard523-effects.test.mjs",
+          "tests/standard989-effects.test.mjs",
+          "tests/standard459-effects.test.mjs"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。",
+        "logs": {
+          "official": "/tmp/duema-phase-1038.xOQ6BdQO/official.log",
+          "officialImages": "/tmp/duema-phase-1038.xOQ6BdQO/sources.log",
+          "focused": "/tmp/duema-phase-1038.xOQ6BdQO/focused.log",
+          "regression": "/tmp/duema-phase-1038.xOQ6BdQO/regression-final.log",
+          "check": "/tmp/duema-phase-1038.xOQ6BdQO/check-final.log",
+          "audit": "/tmp/duema-phase-1038.xOQ6BdQO/audit.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dm23ex3-007",
+          "name": "偽りの名 スカラベオ",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-007",
+            "https://dm.takaratomy.co.jp/rule/qa/40380/",
+            "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+          ],
+          "reason": "公式の全文・基本情報・画像と単一収録を確認。水晶武装4の離脱禁止では、実際のバトル敗北、同パワーによる破壊、バトル後のスレイヤー、パワー0以下の状況起因処理を区別し、同時離脱も検証する必要がある。汎用のバトル処理フラグでは各クリーチャーの実際の勝敗を区別できないため保留。"
+        },
+        {
+          "id": "dm23ex3-016",
+          "name": "ローゼス・イノベーション",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-016",
+            "https://dm.takaratomy.co.jp/rule/qa/44606/"
+          ],
+          "reason": "公式の全文・基本情報・画像と単一収録を確認。公式QA 44606では片面がコスト5以下なら捨てられ、捨てた後はもう片面の高コスト呪文も唱えられる。裁定で例示される水晶の祈り / クリスタル・ドゥームが対戦未対応で、今回捨てて実際に墓地に置かれたカードだけを保持する処理とともに検証するまで保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1037,
-    "nextPhase": 1038,
+    "lastVerifiedPhase": 1038,
+    "nextPhase": 1039,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm23ex3-022",
-        "name": "偽りの名 ルカニド",
-        "reason": "DM24-BD6の再録IDと、攻撃時のブロッカー破壊・水晶武装4の盾ブレイク置換を照合する。"
+        "id": "dm23ex3-043",
+        "name": "偽りの名 トバル",
+        "reason": "水晶ソウル2のマナ支払いとS・トリガー、所有者を問わない任意の2体バトルを照合する。"
       },
       {
-        "id": "dm23ex3-025",
-        "name": "呪華のサトリ カナザー",
-        "reason": "山札上4枚から3種族を各最大1枚回収し、残りを並べる処理と水晶武装2の攻撃時の展開を確認する。"
+        "id": "dm23ex3-008",
+        "name": "偽りの名 ワスプメリサ",
+        "reason": "種族強化とマッハファイター、公式QA 44658の出た時とターン開始時の区別を照合する。"
       },
       {
-        "id": "dm24bd6-003",
-        "name": "偽りのコード シャーロック",
-        "reason": "両プレイヤーが残す自軍1体を選ぶ一括破壊と、水晶武装4による継続付与を照合する。"
+        "id": "dm23ex3-011",
+        "name": "水晶転生",
+        "reason": "エレメントを戻してシャッフルした後、その持ち主が自身の山札上を公開する。山札に戻せなかった場合を含めて公式裁定を照合する。"
       },
       {
-        "id": "dm23ex3-007",
-        "name": "偽りの名 スカラベオ",
-        "reason": "登場時とターン開始時のマナの裏向き化、召喚コスト軽減、バトルに負けた時以外の離脱禁止を照合する。"
+        "id": "dm23ex3-015",
+        "name": "救済のカルマ ミルク / リリーフ・水晶チャージャー",
+        "reason": "登場した相手とマナの比較、エレメントのコスト上限、水晶チャージャー、再録を照合する。"
       },
       {
-        "id": "dm23ex3-016",
-        "name": "ローゼス・イノベーション",
-        "reason": "任意の複数バウンスと、捨てた適格な呪文だけを墓地から唱える処理を照合する。"
+        "id": "dm24bd6-009",
+        "name": "「あれが水晶の頂天に君臨する者の玉座だ！」",
+        "reason": "タマシードの継続効果として裏向きマナに文明を与える裁定を照合する。"
       }
     ],
     "steps": [
@@ -204739,7 +204831,7 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
-      "公式本文、基本情報、画像、使用制限、再録、裁定を照合する。水晶武装の候補は誘発時と解決時の条件、置換で実際に移動したゾーン、複数の任意選択と保存復元を確認する。",
+      "公式本文、基本情報、画像、使用制限、再録、裁定を照合する。水晶武装・水晶ソウルは誘発と解決の条件、裏向きマナの文明・マナ数、選択と移動の順序、保存復元を確認する。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で登録再開。自動化 duema-deck-lab は10分間隔で稼働中。",

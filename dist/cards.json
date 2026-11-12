@@ -209110,15 +209110,224 @@
       },
       "supportBatch": "phase-1037",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-022",
+      "name": "偽りの名 ルカニド",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ボルケーノ・ドラゴン/アンノウン",
+      "text": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、相手の、パワー11000以下の「ブロッカー」を持つクリーチャーを１体選び、破壊する。\n水晶武装４：このクリーチャーがシールドをブレイクする時、自分のマナゾーンに裏向きのカードが４枚以上あれば、相手はそのシールドをかわりに墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-022",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "filter": {
+            "blocker": true,
+            "maxPower": 11000,
+            "g199Power": true
+          },
+          "to": "grave"
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g286FaceDownMana": 4
+        },
+        "grants": {
+          "shieldBurn": true
+        }
+      },
+      "supportBatch": "phase-1038",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-025",
+      "name": "呪華のサトリ カナザー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "オラクル・セレス/スノーフェアリー",
+      "text": "このクリーチャーが出た時、自分の山札の上から４枚を見る。その中からオラクル、アンノウン、またはゼニスを最大１枚ずつ表向きにし、手札に加えてもよい。残りを好きな順序で山札の下に置く。その後、自分のマナゾーンにあるカードを１枚、裏向きにしてもよい。\n水晶武装２：このクリーチャーが攻撃する時、自分のマナゾーンに裏向きのカードが２枚以上あれば、自分のマナゾーンにあるカードの枚数以下のコストを持つクリーチャーを１体、自分の手札から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-025",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 4,
+          "rest": "bottom",
+          "g841DeckPeek": true,
+          "g255Distribute": true,
+          "g791OrderRest": true,
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "anyFaceRace": "オラクル"
+              },
+              "title": "オラクルを最大1枚選ぶ"
+            },
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "anyFaceRace": "アンノウン"
+              },
+              "title": "アンノウンを最大1枚選ぶ"
+            },
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "anyFaceRace": "ゼニス"
+              },
+              "title": "ゼニスを最大1枚選ぶ"
+            }
+          ]
+        },
+        {
+          "op": "ManaDown426"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g286FaceDownMana": 2
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 1,
+              "deploy": true,
+              "g746OwnManaCost": true,
+              "filter": {
+                "creature": true
+              },
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1038",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24bd6-003",
+      "name": "偽りのコード シャーロック",
+      "civ": "光/闇/火",
+      "civilizations": [
+        "光",
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 23000,
+      "race": "アンノウン・セレス",
+      "text": "Q・ブレイカー\nこのクリーチャーが出た時、各プレイヤーは自身のクリーチャーを１体ずつ選ぶ。こうして選ばれなかったクリーチャーをすべて破壊する。\n水晶武装４：自分のマナゾーンに裏向きのカードが４枚以上あれば、自分のクリーチャーすべてに「ブロッカー」と「スピードアタッカー」と「スレイヤー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd6-003",
+      "limit": 4,
+      "breaker": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "EachPlayer459",
+          "origin": "battle",
+          "to": "grave",
+          "keep": true
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "g286FaceDownMana": 4
+          },
+          "grants": {
+            "blocker": true,
+            "speedAttacker": true,
+            "slayer": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1038",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-006",
+      "name": "偽りの名 スコーピオ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ドラゴン・ゾンビ/アンノウン",
+      "text": "このクリーチャーを自分の墓地から召喚してもよい。\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、または自分のターンのはじめに、自分のマナゾーンにあるカードを１枚、裏向きにしてもよい。\n水晶武装４：自分のマナゾーンに裏向きのカードが４枚以上あれば、相手のカードはマナゾーンとバトルゾーンにタップして置かれる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-006",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ManaDown426"
+        }
+      ],
+      "g174Start": [
+        {
+          "op": "ManaDown426"
+        }
+      ],
+      "g978SelfGraveSummon": true,
+      "g260Self": {
+        "filter": {
+          "g286FaceDownMana": 4
+        },
+        "grants": {
+          "g1038OpponentTap": true
+        }
+      },
+      "supportBatch": "phase-1038",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1037,
+    "phase": 1038,
     "checkedAt": "2026-11-12",
-    "baseCount": 7055,
+    "baseCount": 7059,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7059,
+    "totalCount": 7063,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -227851,6 +228060,18 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 7055,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1037,
+        "checkedAt": "2026-11-12",
+        "baseCount": 7055,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7059,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
