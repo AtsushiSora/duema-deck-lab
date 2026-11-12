@@ -9485,6 +9485,38 @@ export function standardCardSpec(d,{phase=165}={}){
    spec.g397Shinka=defs;
    continue;
   }
+  if(phase>=1068&&f.typeText==='NEOクリーチャー'){
+   if(line==='各ターンこのクリーチャーの最初の攻撃の終わりにこのクリーチャーをアンタップしてもよい。'){
+    spec.g1020FirstOwnAttack=true;
+    spec.g474AttackEnd=[{op:'Offer',title:'このクリーチャーをアンタップする？',defs:[{op:'Untap',g191First:true}]}];
+    continue;
+   }
+   if(line==='このクリーチャーが攻撃する時バトルゾーンにある自分のクリーチャーの数以下のコストを持つ呪文を1枚自分の手札からコストを支払わずに唱えてもよい。'){
+    attack.push({op:'CountOwn538',mode:'maxCost',filter:{creature:true},
+     def:{op:'Execute',origin:'hand',spellOnly:true,title:'コストを支払わず唱える呪文を1枚まで選ぶ'}});
+    continue;
+   }
+   if(line==='このクリーチャーがバトルゾーンに出た時自分の水のクリーチャーを2体手札に戻す。'){
+    entry.push({op:'Select',origin:'battle',owner:'self',n:2,to:'hand',filter:{creature:true,color:'水'},
+     g187OwnPick:true,g173Targets:true,g193Select:true,title:'手札に戻す自分の水のクリーチャーを2体選ぶ'});
+    continue;
+   }
+   if(line==='このクリーチャーが攻撃する時カードを3枚引いてもよい。そうしたら手札を1枚捨てる。'){
+    attack.push({op:'Offer',title:'カードを3枚引き、手札を1枚捨てる？',g204DrawDiscard:true,
+     defs:[{op:'Draw',n:3},{op:'Discard',owner:'self',n:1}]});
+    continue;
+   }
+   if(d.id==='dmrp03-046'&&line==='自分のターンの終わりに進化ではないクリーチャーを1体自分の手札に戻す。'){
+    // Takara Tomy errata 31423 adds 「自分の」 to the eligible creatures.
+    turnEnd.push({op:'Select',origin:'battle',owner:'self',n:1,to:'hand',filter:{creature:true,nonEvolution:true},
+     g187OwnPick:true,g173Targets:true,g193Select:true,title:'手札に戻す自分の進化ではないクリーチャーを1体選ぶ'});
+    continue;
+   }
+   if(line==='このクリーチャーはこのターン自分がクリーチャーではないカードを実行していなければ召喚できない。'){
+    spec.g1068NeedsNoncreatureUse=true;
+    continue;
+   }
+  }
   if(phase>=1067&&f.typeText==='NEOクリーチャー'){
    if(line==='このクリーチャーが攻撃する時自分の山札の上から3枚を見る。その中からパワー12000以上の進化ではないクリーチャーを好きな数選びバトルゾーンに出す。その後残りを手札に加える。'){
     (spec.g34Attack??=[]).push({op:'LookDeploy530',n:3,limit:'all',rest:'hand',g841DeckPeek:true,

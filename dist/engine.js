@@ -649,6 +649,7 @@ export function canEnterCreature(s,p,c=null,{origin='hand',execution=true,commit
  if(execution&&c?.type==='creature'&&c.g475NoSummon)return false;
  if(execution&&!committed&&c?.g755SummonHandMax!==undefined&&s.players[p].hand.length>c.g755SummonHandMax)return false;
  if(execution&&c?.type==='creature'&&c.g280NeedsSpell&&!(s.players[p].spellsThisTurn||0))return false;
+ if(execution&&c?.type==='creature'&&c.g1068NeedsNoncreatureUse&&!extra.six.ownCondition(s,p,{g448NoncreatureUses:1}))return false;
  if(execution&&(!c||c.type==='creature')&&summonLocked1019(s,p))return false;
  if(execution&&(!c||c.type==='creature')&&s.active===1-p&&s.players[1-p].battle.some(x=>effectiveCard(x,s).g277OwnTurnSummonLock))return false;
  if(origin!=='hand'&&c?.type!=='spell'&&s.players[1-p].battle.some(x=>!x.sealed&&effectiveCard(x,s).g607HandOnly))return false;

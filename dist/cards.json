@@ -213621,15 +213621,253 @@
       "g1067NonEvolutionBattleDeath": true,
       "supportBatch": "phase-1067",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp3-043",
+      "name": "魔誕戦鬼デュランザメス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "デーモン・コマンド",
+      "text": "D・D・D [ff02]（自分のクリーチャーが攻撃する時、このカードを [ff02]支払って自分の手札から実行してもよい）\nNEO進化：闇、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\n各ターン、このクリーチャーの最初の攻撃の終わりに、このクリーチャーをアンタップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-043",
+      "limit": 4,
+      "ddd": {
+        "cost": 2,
+        "civilizations": [
+          "火"
+        ]
+      },
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "闇"
+          },
+          {
+            "civilization": "火"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "g1020FirstOwnAttack": true,
+      "g474AttackEnd": [
+        {
+          "op": "Offer",
+          "title": "このクリーチャーをアンタップする？",
+          "defs": [
+            {
+              "op": "Untap",
+              "g191First": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1068",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-016",
+      "name": "魔法前線 ハリンセン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ムートピア",
+      "text": "NEO進化：自分の水のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが攻撃する時、バトルゾーンにある自分のクリーチャーの数以下のコストを持つ呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-016",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "水"
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "CountOwn538",
+          "mode": "maxCost",
+          "filter": {
+            "creature": true
+          },
+          "def": {
+            "op": "Execute",
+            "origin": "hand",
+            "spellOnly": true,
+            "title": "コストを支払わず唱える呪文を1枚まで選ぶ"
+          }
+        }
+      ],
+      "supportBatch": "phase-1068",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-s04",
+      "name": "パラディソ・シエル",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 13000,
+      "race": "トリックス/ワンダフォース",
+      "text": "NEO進化：自分の水のクリーチャー１体の上に置いてもよい。\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の水のクリーチャーを２体、手札に戻す。\nこのクリーチャーが攻撃する時、カードを３枚引いてもよい。そうしたら、手札を１枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-s04",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "水"
+          }
+        ]
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "self",
+          "n": 2,
+          "to": "hand",
+          "filter": {
+            "creature": true,
+            "color": "水"
+          },
+          "g187OwnPick": true,
+          "g173Targets": true,
+          "g193Select": true,
+          "title": "手札に戻す自分の水のクリーチャーを2体選ぶ"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "title": "カードを3枚引き、手札を1枚捨てる？",
+          "g204DrawDiscard": true,
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 3
+            },
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1068",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-046",
+      "name": "龍装車 バザジープ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "ドラゴンギルド/ビートジョッキー",
+      "text": "NEO進化：自分の火のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のターンの終わりに、自分の進化ではないクリーチャーを１体、自分の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-046",
+      "abilityErrata": {
+        "source": "https://dm.takaratomy.co.jp/rule/rulechange/31423/",
+        "abilityText": "NEO進化：自分の火のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のターンの終わりに、自分の進化ではないクリーチャーを１体、自分の手札に戻す。"
+      },
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g174End": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "self",
+          "n": 1,
+          "to": "hand",
+          "filter": {
+            "creature": true,
+            "nonEvolution": true
+          },
+          "g187OwnPick": true,
+          "g173Targets": true,
+          "g193Select": true,
+          "title": "手札に戻す自分の進化ではないクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1068",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp3-034",
+      "name": "～卿騒の蒸気大作戦～",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 6000,
+      "race": "イニシエート/ゴースト/スチーム・ナイト",
+      "text": "このクリーチャーは、このターン自分がクリーチャーではないカードを実行していなければ召喚できない。\nD・D・D [ww01]（自分のクリーチャーが攻撃する時、このカードを [ww01]支払って自分の手札から実行してもよい）\nNEO進化：光、水、または闇のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-034",
+      "limit": 4,
+      "g1068NeedsNoncreatureUse": true,
+      "ddd": {
+        "cost": 1,
+        "civilizations": [
+          "水"
+        ]
+      },
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "breaker": 2,
+      "supportBatch": "phase-1068",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1067,
+    "phase": 1068,
     "checkedAt": "2026-11-13",
-    "baseCount": 7159,
-    "newEffectCards": 3,
+    "baseCount": 7162,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 7162,
+    "totalCount": 7167,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -232722,6 +232960,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7159,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1067,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7159,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7162,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

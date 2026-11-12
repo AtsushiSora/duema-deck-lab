@@ -2348,7 +2348,16 @@ export function createSixPhotoRules(api){
   }
   const xs=t.rows.flatMap(r=>{const y=s.players[r.p].battle.find(y=>y.uid===r.uid);return y?[y]:[];});choice(s,t,'選んだエレメントすべての移動先を選ぶ',[opt('すべてマナゾーンに置く','mana',xs.length*10),opt('すべて破壊する','grave',xs.reduce((n,y)=>n+(hooks.destroySafe409(s,y)?-5:30+cost(card(y))),0))]);break;
  }
- case'g34_CountOwn538':{const n=creatures(s,t.p).filter(y=>!y.sealed&&matches(s,t.p,y,t.filter)).length;if(!n)break;if(t.mode==='select')start(s,t,[{...t.def,n}]);else if(t.mode==='belowCost')start(s,t,[{...t.def,filter:{...t.def.filter,belowCost:n}}]);else if(t.mode==='repeat')start(s,t,Array.from({length:n},()=>structuredClone(t.def)));else throw Error('未対応のクリーチャー数効果');break;}
+ case'g34_CountOwn538':{
+  const n=creatures(s,t.p).filter(y=>!y.sealed&&matches(s,t.p,y,t.filter)).length;
+  if(t.mode==='maxCost')start(s,t,[{...t.def,max:n}]);
+  else if(!n)break;
+  else if(t.mode==='select')start(s,t,[{...t.def,n}]);
+  else if(t.mode==='belowCost')start(s,t,[{...t.def,filter:{...t.def.filter,belowCost:n}}]);
+  else if(t.mode==='repeat')start(s,t,Array.from({length:n},()=>structuredClone(t.def)));
+  else throw Error('未対応のクリーチャー数効果');
+  break;
+ }
  case'g34_CountDraw':{const n=countDraw(s,t.p,t);if(n)start(s,t,[t.optional==='each'?{op:'DrawUpTo',n,g203Draw:true,...(t.after?{after:t.after}:{})}:t.optional==='amount'?{op:'Draw',n,optional:true}:t.optional==='all'?{op:'Offer',title:'カードを'+n+'枚まとめて引く？',defs:[{op:'Draw',n}]}:{op:'Draw',n}]);break;}
  case'g34_CountBlindDiscard983':{
   const n=countDraw(s,t.p,t);

@@ -1,0 +1,327 @@
+{
+  "phase": 1068,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7162,
+  "description": "NEOクリーチャーの最初の攻撃終了、呪文の無償詠唱、任意ドローと手札破棄、訂正後の手札戻し、実行履歴による召喚制限を照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31423/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316670/",
+    "https://dm.takaratomy.co.jp/rule/qa/47355/",
+    "https://dm.takaratomy.co.jp/rule/qa/47374/",
+    "https://dm.takaratomy.co.jp/rule/qa/48151/",
+    "https://dm.takaratomy.co.jp/rule/qa/38660/",
+    "https://dm.takaratomy.co.jp/rule/qa/48740/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp3-043",
+      "name": "魔誕戦鬼デュランザメス",
+      "faces": [
+        {
+          "name": "魔誕戦鬼デュランザメス",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "D・D・D [ff02]（自分のクリーチャーが攻撃する時、このカードを [ff02]支払って自分の手札から実行してもよい）\nNEO進化：闇、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\n各ターン、このクリーチャーの最初の攻撃の終わりに、このクリーチャーをアンタップしてもよい。",
+          "race": "デーモン・コマンド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-043",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-043.jpg",
+      "spec": {
+        "ddd": {
+          "cost": 2,
+          "civilizations": [
+            "火"
+          ]
+        },
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "g1020FirstOwnAttack": true,
+        "g474AttackEnd": [
+          {
+            "op": "Offer",
+            "title": "このクリーチャーをアンタップする？",
+            "defs": [
+              {
+                "op": "Untap",
+                "g191First": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "a618844c5578432edb0108a155211e0e5887cd0dd6a87559f2a7af7027659cb1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp05-016",
+      "name": "魔法前線 ハリンセン",
+      "faces": [
+        {
+          "name": "魔法前線 ハリンセン",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "NEO進化：自分の水のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが攻撃する時、バトルゾーンにある自分のクリーチャーの数以下のコストを持つ呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。",
+          "race": "ムートピア",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-016",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-016.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "水"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "CountOwn538",
+            "mode": "maxCost",
+            "filter": {
+              "creature": true
+            },
+            "def": {
+              "op": "Execute",
+              "origin": "hand",
+              "spellOnly": true,
+              "title": "コストを支払わず唱える呪文を1枚まで選ぶ"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "c66611924362a674358f82f81314f704569bfeaf75b703f371bd2ad93cdc462a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp09-s04",
+      "name": "パラディソ・シエル",
+      "faces": [
+        {
+          "name": "パラディソ・シエル",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "NEO進化：自分の水のクリーチャー１体の上に置いてもよい。\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の水のクリーチャーを２体、手札に戻す。\nこのクリーチャーが攻撃する時、カードを３枚引いてもよい。そうしたら、手札を１枚捨てる。",
+          "race": "トリックス/ワンダフォース",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-s04",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-s04.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "水"
+            }
+          ]
+        },
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "self",
+            "n": 2,
+            "to": "hand",
+            "filter": {
+              "creature": true,
+              "color": "水"
+            },
+            "g187OwnPick": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "title": "手札に戻す自分の水のクリーチャーを2体選ぶ"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "title": "カードを3枚引き、手札を1枚捨てる？",
+            "g204DrawDiscard": true,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 3
+              },
+              {
+                "op": "Discard",
+                "owner": "self",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "5568fdcba4fbe2590a68b840063ed2935e37592b3165299f360fcd1774a520b1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp03-046",
+      "name": "龍装車 バザジープ",
+      "faces": [
+        {
+          "name": "龍装車 バザジープ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "NEO進化：自分の火のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のターンの終わりに、進化ではないクリーチャーを１体、自分の手札に戻す。",
+          "race": "ドラゴンギルド/ビートジョッキー",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-046",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-046.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g174End": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "self",
+            "n": 1,
+            "to": "hand",
+            "filter": {
+              "creature": true,
+              "nonEvolution": true
+            },
+            "g187OwnPick": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "title": "手札に戻す自分の進化ではないクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "9b7f498227fe64ea64aa58d8060e139da7ec5b1473c679e232bf886193cb112f",
+        "facesMatched": true
+      },
+      "errata": {
+        "source": "https://dm.takaratomy.co.jp/rule/rulechange/31423/",
+        "abilityText": "NEO進化：自分の火のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のターンの終わりに、自分の進化ではないクリーチャーを１体、自分の手札に戻す。"
+      }
+    },
+    {
+      "id": "dm25rp3-034",
+      "name": "～卿騒の蒸気大作戦～",
+      "faces": [
+        {
+          "name": "～卿騒の蒸気大作戦～",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーは、このターン自分がクリーチャーではないカードを実行していなければ召喚できない。\nD・D・D [ww01]（自分のクリーチャーが攻撃する時、このカードを [ww01]支払って自分の手札から実行してもよい）\nNEO進化：光、水、または闇のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+          "race": "イニシエート/ゴースト/スチーム・ナイト",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-034",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-034.jpg",
+      "spec": {
+        "g1068NeedsNoncreatureUse": true,
+        "ddd": {
+          "cost": 1,
+          "civilizations": [
+            "水"
+          ]
+        },
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "breaker": 2
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "f1b81a56cf0e214c4b720fd5ab0f7d9ccb040a2e57daac9d66285c49736dd0cc",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp3-043": 4,
+      "dmrp05-016": 4,
+      "dmrp09-s04": 4,
+      "dmrp03-046": 4,
+      "dm25rp3-034": 4
+    }
+  }
+}

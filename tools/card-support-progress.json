@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7162,
-  "pendingNames": 4665,
-  "phase": 1067,
-  "added": 3,
+  "supportedNames": 7167,
+  "pendingNames": 4660,
+  "phase": 1068,
+  "added": 5,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -155,7 +155,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 2700,
-    "NEOクリーチャー": 106,
+    "NEOクリーチャー": 101,
     "呪文": 605,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3228,
+    "未対応の能力文": 3223,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -207527,22 +207527,154 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1068,
+      "baseCommit": "daf9887f",
+      "cards": [
+        {
+          "id": "dm25rp3-043",
+          "name": "魔誕戦鬼デュランザメス"
+        },
+        {
+          "id": "dmrp05-016",
+          "name": "魔法前線 ハリンセン"
+        },
+        {
+          "id": "dmrp09-s04",
+          "name": "パラディソ・シエル"
+        },
+        {
+          "id": "dmrp03-046",
+          "name": "龍装車 バザジープ"
+        },
+        {
+          "id": "dm25rp3-034",
+          "name": "～卿騒の蒸気大作戦～"
+        }
+      ],
+      "printAliases": [],
+      "supportedNames": 7167,
+      "pendingNames": 4660,
+      "verification": {
+        "focusedPassed": 13,
+        "regressionPassed": 242,
+        "regressionFailed": 0,
+        "check": "成功",
+        "officialPrints": 5,
+        "scope": "5種類5版の公式能力全文、基本情報、画像、マナ数、現行の使用制限、単一収録と既存IDを照合。デュランザメスはD・D・Dで攻撃中のクリーチャーに重ねた場合を含む最初の攻撃の終わりの任意アンタップと、進化した「GG」-001との裁定を確認。ハリンセンは自分のクリーチャー数を上限とした手札の呪文面の無償詠唱と辞退を確認。パラディソ・シエルは登場時に自身を含む自分の水を可能なら2体、1体しかいなければその1体を戻すことと、攻撃時の任意3枚ドロー後の1枚破棄を確認。バザジープは公式訂正後の表示と自分の非進化限定の終了時手札戻しを確認。～卿騒の蒸気大作戦～は当ターンの非クリーチャー実行を通常召喚とD・D・D解決時に確認し、召喚を伴わない登場は可能。既存7,162件の対戦定義とIDが一致。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31423/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316670/",
+          "https://dm.takaratomy.co.jp/rule/qa/47355/",
+          "https://dm.takaratomy.co.jp/rule/qa/47374/",
+          "https://dm.takaratomy.co.jp/rule/qa/48151/",
+          "https://dm.takaratomy.co.jp/rule/qa/38660/",
+          "https://dm.takaratomy.co.jp/rule/qa/48740/"
+        ],
+        "regressionFiles": [
+          "tests/neo-ddd.test.mjs",
+          "tests/standard204-effects.test.mjs",
+          "tests/standard448-effects.test.mjs",
+          "tests/standard538-effects.test.mjs",
+          "tests/standard750-effects.test.mjs",
+          "tests/standard1020-effects.test.mjs",
+          "tests/standard1057-effects.test.mjs",
+          "tests/standard1067-effects.test.mjs"
+        ],
+        "regressionFilter": "--test-skip-pattern=mixed NEO/DDD games|production worker|random manual|new-card games against every|simulation worker|legal forty CPU|randomized",
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。 トットロの公式QA 48925の組み合わせは関連2枚が未対応のため未実行。NEO/DDDの100試合と再現性は過去に分割検証済みで、今回の回帰では合否未確認。 ゴルギー31相手の再現性と本番Worker62試合は今回も対象外で未実行。前回の広範囲回帰に含まれる1,796件固定の既存テストの結果はPhase 1060を参照。 PhoenixのCPU連戦と本番Worker試験は、今回の個別回帰の対象外。 Phase 1064ではNEO/DDD 100試合とBandeの全対戦・ランダム操作・Workerの長時間ケースを個別回帰から除外。以前の長時間実行を繰り返さず、今回の合否は未確認。 Phase 1065の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1066の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1067の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1068の個別回帰でもNEO/DDD 100試合は対象外。",
+        "pendingInteractions": [
+          {
+            "cardIds": [
+              "dm25rp3-039",
+              "dm26rp2-006",
+              "dm25rp2-OR1"
+            ],
+            "test": "デンジャラス=トットロの上にメモッタで封印付きのジャシン＝ヴリドガルドが出る場合の墓地展開",
+            "status": "未実行",
+            "reason": "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/48925/"
+          }
+        ],
+        "logs": {
+          "official": "/tmp/duema-phase-1068.hruxF1rN/manifest.log",
+          "officialImages": "/tmp/duema-phase-1068.hruxF1rN/sources.log",
+          "imageIndex": "/tmp/duema-phase-1068.hruxF1rN/images.log",
+          "focused": "/tmp/duema-phase-1068.hruxF1rN/specific-final.log",
+          "regression": "/tmp/duema-phase-1068.hruxF1rN/related.log",
+          "check": "/tmp/duema-phase-1068.hruxF1rN/check-final.log",
+          "audit": "/tmp/duema-phase-1068.hruxF1rN/audit.log",
+          "count": "/tmp/duema-phase-1068.hruxF1rN/count.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dm25rp3-029",
+          "name": "試算の妖精",
+          "reason": "公式全文・基本情報・画像・単一収録を照合。QA 47359では山札の呪文を唱えることができ、解決後に元の位置に裏向きで残る。山札からの直接登場・マナ・シールド・進化元への移動の禁止と、呪文の実行や手札への移動の許可を別々に扱う共通処理と回帰テストが必要。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-029",
+            "https://dm.takaratomy.co.jp/rule/qa/47359/"
+          ]
+        },
+        {
+          "id": "dm25rp3-015",
+          "name": "～禁じられた蒸熱～",
+          "reason": "通常版とシークレット版の公式全文・画像・収録を確認。既存の山札ロックは見る・表向きにする処理に加えて並べ替えやシャッフルも抑えるため、このカードの禁止範囲に合わせた分離と回帰テストが必要。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-015",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-Sec16"
+          ]
+        },
+        {
+          "id": "dmrp03-006",
+          "name": "ジャババ・ハット",
+          "reason": "公式本文・基本情報・画像・単一収録を確認。攻撃時に登録した自壊と、破壊以外でも墓地に置かれた時の再登場を、直前の進化状態と同じ物理カードの墓地滞在で判定する処理が残る。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-006"
+          ]
+        },
+        {
+          "id": "dmrp07-034",
+          "name": "頑固水産 ガンパチ",
+          "reason": "公式本文・基本情報・画像・単一収録を確認。ブロックされなくなる能力は既存処理で再現できるが、その攻撃中に自身が実際にブレイクしたかを、ブレイク置換や別のクリーチャーによるブレイクから区別する経路の確認が残る。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-034"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1067,
-    "nextPhase": 1068,
+    "lastVerifiedPhase": 1068,
+    "nextPhase": 1069,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm25rp3-034",
-        "name": "～卿騒の蒸気大作戦～",
-        "reason": "このターンに使った非クリーチャーの記録と、DDDを含む召喚コストの適用範囲を公式資料で確認する。"
+        "id": "dm25rp3-S02",
+        "name": "～神帝、完成せり～",
+        "reason": "D・D・D、ジャストダイバー、攻撃終了時のドロー後に行う非クリーチャーの実行を既存処理と照合する。"
+      },
+      {
+        "id": "dm25rp2-052",
+        "name": "魔誕亡者ボーン・アミーゴ",
+        "reason": "自身の登場と自分のカードの破壊を起点とした墓地からのタップ置きを照合する。"
+      },
+      {
+        "id": "dmrp02-016",
+        "name": "第４新都市 ウツボイド",
+        "reason": "登場時の手札戻しと、NEO進化時の召喚禁止が参照するコストと有効期間を確認する。"
       },
       {
         "id": "dm25rp3-029",
         "name": "試算の妖精",
-        "reason": "山札から手札以外への移動を制限する範囲と置換効果の順序を公式資料で確認する。"
+        "reason": "公式全文・基本情報・画像・単一収録を照合。QA 47359では山札の呪文を唱えることができ、解決後に元の位置に裏向きで残る。山札からの直接登場・マナ・シールド・進化元への移動の禁止と、呪文の実行や手札への移動の許可を別々に扱う共通処理と回帰テストが必要。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-029",
+          "https://dm.takaratomy.co.jp/rule/qa/47359/"
+        ]
       },
       {
         "id": "dm25rp3-015",
@@ -207792,7 +207924,7 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
-      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。非クリーチャーを使ったターンの召喚軽減と、山札移動の禁止範囲を確認する。",
+      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。攻撃終了時の非クリーチャー実行、破壊を起点としたタップ置き、手札に戻したクリーチャーのコスト参照を既存処理と照合する。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で登録再開。自動化 duema-deck-lab は10分間隔で稼働中。",
