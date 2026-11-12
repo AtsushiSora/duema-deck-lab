@@ -9485,6 +9485,39 @@ export function standardCardSpec(d,{phase=165}={}){
    spec.g397Shinka=defs;
    continue;
   }
+  if(phase>=1070&&f.typeText==='NEOクリーチャー'){
+   if(line==='これをNEO進化クリーチャーとして召喚することを選んだならコストを3少なくする。'){
+    spec.g1059NeoSummonDiscount=3;
+    continue;
+   }
+   if(line==='自分のNEOクリーチャーが攻撃する時相手のパワー3000以下のクリーチャーを1体破壊する。'){
+    spec.g253AttackWatches=[{who:'self',filter:{creature:true,g556Neo:true},
+     defs:[{op:'Target',to:'grave',filter:{maxPower:3000,g199Power:true}}]}];
+    continue;
+   }
+   if(line==='このクリーチャーがタップしている時相手のクリーチャーは相手のターンのはじめにアンタップしない。'){
+    spec.g988StartUntapLock=true;
+    continue;
+   }
+   if(line==='このクリーチャーがアンタップする時相手は自身のクリーチャーを1体選びアンタップする。'){
+    spec.g299Untapped=[{op:'OpponentSelect',n:1,g510Untap:true,g173Targets:true,
+     title:'アンタップする自分のクリーチャーを1体選ぶ'}];
+    continue;
+   }
+   if(/^このクリーチャーが攻撃する時自分の山札の上から3枚を見てもよい。そうしたら(?:そのうちの|その中から)1枚をマナゾーンに置き1枚を手札に加え残りの1枚をシールド化する。$/.test(line)){
+    attack.push({op:'Offer',g1042LookFirst:true,title:'山札の上から3枚を見る？',defs:[
+     {op:'Look',n:3,g841DeckPeek:true,stages:[
+      {n:1,to:'mana',tapMulticolor:true},{n:1,to:'hand'},{n:1,to:'shields'}
+     ],rest:'top'}
+    ]});
+    continue;
+   }
+   if(line==='このクリーチャーが攻撃する時自分の手札からジョーカーズを2枚捨ててもよい。そうしたらこのクリーチャーをアンタップする。'){
+    attack.push({op:'DiscardFor248',n:2,g488DiscardFilter:{g539JokerCard:true},g770DiscardAttempt:true,
+     title:'捨てるジョーカーズ・カードを2枚選ぶ（任意）',defs:[{op:'Untap',g191First:true}]});
+    continue;
+   }
+  }
   if(phase>=1069&&f.typeText==='NEOクリーチャー'){
    if(line==='このクリーチャーの攻撃の終わりにカードを1枚引く。その後コスト5以下のクリーチャーではないカードを1枚自分の手札からコストを支払わずに実行してもよい。'){
     spec.g474AttackEnd=[{op:'Draw',n:1},{op:'Execute',origin:'hand',max:5,nonCreature:true,

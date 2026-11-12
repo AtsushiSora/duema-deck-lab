@@ -1,0 +1,325 @@
+{
+  "phase": 1070,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7171,
+  "description": "NEO召喚の軽減と攻撃時の監視、アンタップ制限、山札の3か所への配分とジョーカーズの手札破棄を照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/31570/",
+    "https://dm.takaratomy.co.jp/rule/qa/41070/",
+    "https://dm.takaratomy.co.jp/rule/qa/39142/",
+    "https://dm.takaratomy.co.jp/rule/qa/46526/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35598/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35305/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp02-s08",
+      "name": "ランド覇車 ガンブルマン",
+      "faces": [
+        {
+          "name": "ランド覇車 ガンブルマン",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：自分の火のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこれをNEO進化クリーチャーとして召喚することを選んだなら、コストを３少なくする。\nW・ブレイカー\n自分のNEOクリーチャーが攻撃する時、相手のパワー3000以下のクリーチャーを１体破壊する。",
+          "race": "ビートジョッキー",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-s08",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-s08.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "g1059NeoSummonDiscount": 3,
+        "breaker": 2,
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "filter": {
+              "creature": true,
+              "g556Neo": true
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 3000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "c634658b1c01684d04df61cba008cb5af8338a96bc942f337bc7a376fb006282",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-003",
+      "name": "アーク・ビエジェル",
+      "faces": [
+        {
+          "name": "アーク・ビエジェル",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "NEO進化：自分の光のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー\nこのクリーチャーがタップしている時、相手のクリーチャーは相手のターンのはじめにアンタップしない。\nこのクリーチャーがアンタップする時、相手は自身のクリーチャーを１体選び、アンタップする。",
+          "race": "メタリカ/スペシャルズ",
+          "powerText": "9500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-003.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g988StartUntapLock": true,
+        "g299Untapped": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "g510Untap": true,
+            "g173Targets": true,
+            "title": "アンタップする自分のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "a9ef5395d844cda83974d19b5a73bf8d8a99506ceaf7b7077573b496d13fbf89",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp1-024",
+      "name": "名俳句楽 Drache der’Zen",
+      "faces": [
+        {
+          "name": "名俳句楽 Drache der’Zen",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光/水/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "NEO進化：光、水、または自然のクリーチャー１体の上に置いてもよい。\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を見てもよい。そうしたら、そのうちの１枚をマナゾーンに置き、１枚を手札に加え、残りの１枚をシールド化する。",
+          "race": "マジック・コマンド・ドラゴン",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-024",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-024.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "g1042LookFirst": true,
+            "title": "山札の上から3枚を見る？",
+            "defs": [
+              {
+                "op": "Look",
+                "n": 3,
+                "g841DeckPeek": true,
+                "stages": [
+                  {
+                    "n": 1,
+                    "to": "mana",
+                    "tapMulticolor": true
+                  },
+                  {
+                    "n": 1,
+                    "to": "hand"
+                  },
+                  {
+                    "n": 1,
+                    "to": "shields"
+                  }
+                ],
+                "rest": "top"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "e09dd1ac74e441b607637f7c3e78d625d219a437d52dabf7815ac093150e64d4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy16-031",
+      "name": "超ド級 テンクウオー",
+      "faces": [
+        {
+          "name": "超ド級 テンクウオー",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：自分のジョーカーズ・クリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の手札からジョーカーズを２枚、捨ててもよい。そうしたら、このクリーチャーをアンタップする。",
+          "race": "ジョーカーズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-031",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy16-031.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "race": "ジョーカーズ"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "DiscardFor248",
+            "n": 2,
+            "g488DiscardFilter": {
+              "g539JokerCard": true
+            },
+            "g770DiscardAttempt": true,
+            "title": "捨てるジョーカーズ・カードを2枚選ぶ（任意）",
+            "defs": [
+              {
+                "op": "Untap",
+                "g191First": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "0146c0e987589974187314fce978b17a5ab62f4e1ecd78e2b9c45a1a81f7bf32",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25ex3-030",
+      "name": "名俳句楽 Drache der’Zen",
+      "faces": [
+        {
+          "name": "名俳句楽 Drache der’Zen",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光/水/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "NEO進化：光、水、または自然のクリーチャー１体の上に置いてもよい。\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を見てもよい。そうしたら、その中から１枚をマナゾーンに置き、１枚を手札に加え、残りの１枚をシールド化する。",
+          "race": "マジック・コマンド・ドラゴン",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-030",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-030.jpg",
+      "canonicalId": "dm25rp1-024",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "70e8585cd87185f780feb7fe273aa4e4622efbf253018c7abe9d319df561f9df",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsp01-001",
+      "name": "超ド級 テンクウオー",
+      "faces": [
+        {
+          "name": "超ド級 テンクウオー",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：自分のジョーカーズ・クリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の手札からジョーカーズを２枚、捨ててもよい。そうしたら、このクリーチャーをアンタップする。",
+          "race": "ジョーカーズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp01-001",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsp01-001.jpg",
+      "canonicalId": "promoy16-031",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "a311aa905c8f84dff48ee6c8dafb7d0d99b0e138dc1fb72e6cc5fe3bf18c0aae",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp02-s08": 4,
+      "dmrp02-003": 4,
+      "dm25rp1-024": 4,
+      "promoy16-031": 4,
+      "dm25ex3-030": 4,
+      "dmsp01-001": 4
+    }
+  }
+}

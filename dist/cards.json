@@ -214016,15 +214016,201 @@
       ],
       "supportBatch": "phase-1069",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp02-s08",
+      "name": "ランド覇車 ガンブルマン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "ビートジョッキー",
+      "text": "NEO進化：自分の火のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこれをNEO進化クリーチャーとして召喚することを選んだなら、コストを３少なくする。\nW・ブレイカー\n自分のNEOクリーチャーが攻撃する時、相手のパワー3000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-s08",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "g1059NeoSummonDiscount": 3,
+      "breaker": 2,
+      "g253AttackWatches": [
+        {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "g556Neo": true
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "maxPower": 3000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1070",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp02-003",
+      "name": "アーク・ビエジェル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9500,
+      "race": "メタリカ/スペシャルズ",
+      "text": "NEO進化：自分の光のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー\nこのクリーチャーがタップしている時、相手のクリーチャーは相手のターンのはじめにアンタップしない。\nこのクリーチャーがアンタップする時、相手は自身のクリーチャーを１体選び、アンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-003",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g988StartUntapLock": true,
+      "g299Untapped": [
+        {
+          "op": "OpponentSelect",
+          "n": 1,
+          "g510Untap": true,
+          "g173Targets": true,
+          "title": "アンタップする自分のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1070",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp1-024",
+      "name": "名俳句楽 Drache der’Zen",
+      "civ": "光/水/自然",
+      "civilizations": [
+        "光",
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3500,
+      "race": "マジック・コマンド・ドラゴン",
+      "text": "NEO進化：光、水、または自然のクリーチャー１体の上に置いてもよい。\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を見てもよい。そうしたら、そのうちの１枚をマナゾーンに置き、１枚を手札に加え、残りの１枚をシールド化する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-024",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "g1042LookFirst": true,
+          "title": "山札の上から3枚を見る？",
+          "defs": [
+            {
+              "op": "Look",
+              "n": 3,
+              "g841DeckPeek": true,
+              "stages": [
+                {
+                  "n": 1,
+                  "to": "mana",
+                  "tapMulticolor": true
+                },
+                {
+                  "n": 1,
+                  "to": "hand"
+                },
+                {
+                  "n": 1,
+                  "to": "shields"
+                }
+              ],
+              "rest": "top"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1070",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy16-031",
+      "name": "超ド級 テンクウオー",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ジョーカーズ",
+      "text": "NEO進化：自分のジョーカーズ・クリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の手札からジョーカーズを２枚、捨ててもよい。そうしたら、このクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-031",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "race": "ジョーカーズ"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "DiscardFor248",
+          "n": 2,
+          "g488DiscardFilter": {
+            "g539JokerCard": true
+          },
+          "g770DiscardAttempt": true,
+          "title": "捨てるジョーカーズ・カードを2枚選ぶ（任意）",
+          "defs": [
+            {
+              "op": "Untap",
+              "g191First": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1070",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1069,
+    "phase": 1070,
     "checkedAt": "2026-11-13",
-    "baseCount": 7167,
+    "baseCount": 7171,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7171,
+    "totalCount": 7175,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -233141,6 +233327,18 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 7167,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1069,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7167,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7171,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

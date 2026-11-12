@@ -2166,7 +2166,13 @@ export function createSixPhotoRules(api){
  case'g34_DrawUnlessDiscarded1012':
   if(!t.discarded)start(s,t,[{op:'Offer',title:'カードを2枚引く？',defs:[{op:'Draw',n:2}]}]);
   break;
- case'g34_DiscardFor248':{const rows=own.hand.filter(y=>matches(s,t.p,y,t.g488DiscardFilter));if(rows.length)choice(s,t,t.title||(t.g488DiscardFilter?'手札のクリーチャーを1体捨てて能力を使う？':'手札を1枚捨てて能力を使う？'),[...rows.map(y=>opt(card(y).name+'を捨てる',y.uid,discardScore248(s,t,y),y.cardId)),skip()]);break;}
+ case'g34_DiscardFor248':{
+  const selected=t.selected??[],remaining=(t.n??1)-selected.length;
+  const rows=own.hand.filter(y=>!selected.includes(y.uid)&&matches(s,t.p,y,t.g488DiscardFilter));
+  if(rows.length>=remaining)choice(s,t,t.title||(t.g488DiscardFilter?'手札のクリーチャーを1体捨てて能力を使う？':'手札を1枚捨てて能力を使う？'),
+   [...rows.map(y=>opt(card(y).name+'を捨てる',y.uid,discardScore248(s,t,y),y.cardId)),skip()]);
+  break;
+ }
  case'g34_IfHand246':if(own.hand.length<=t.max)start(s,t,t.defs);else if(t.elseDefs)start(s,t,t.elseDefs);break;
  case'g34_IfOwn':if(ownCondition(s,t.p,t.filter,t.uid,t.incarnation??null,t.lastKnownCount))start(s,t,t.defs);else if(t.elseDefs)start(s,t,t.elseDefs);break;
  case'g34_HandCost262':{const n=own.hand.length;start(s,t,t.defs.map(d=>({...d,filter:{...d.filter,...(t.below?{belowCost:n}:{max:n})},...(d.g262Other?{excludeUid:t.uid}:{})})));break;}
@@ -4354,9 +4360,14 @@ export function createSixPhotoRules(api){
  case'g34_DiscardFor248':{
   const y=own.hand.find(y=>y.uid===v);
   if(y&&matches(s,t.p,y,t.g488DiscardFilter)){
+   const selected=[...(t.selected??[]),y.uid];
+   if(selected.length<(t.n??1)){
+    put(s,{...t,selected});
+    break;
+   }
    const after={...t,op:'g34_Sequence',defs:discardDefs248(s,t,y)};
    // Rule 101.3a: this continuation also follows an attempted discard that was replaced.
-   api.discardSelected(s,t.p,[y.uid],t.source,t.p,t.g770DiscardAttempt?null:after,t.g770DiscardAttempt?after:null);
+   api.discardSelected(s,t.p,selected,t.source,t.p,t.g770DiscardAttempt?null:after,t.g770DiscardAttempt?after:null);
   }
   break;
  }
