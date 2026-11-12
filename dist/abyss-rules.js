@@ -15,7 +15,10 @@ export function createAbyssRules(api){
  function sbPairs(s,t){
   const own=s.players[t.p];
   const entering=new Set(t.entering??t.costs);
-  const sources=own.hand.filter(x=>!entering.has(x.uid)&&card(x).strikeBack&&api.canCast(s,t.p,card(x))&&!t.declared?.includes(x.uid));
+  const declared=new Set(t.declared??[]);
+  if(t.escapeSBDeclaration)for(const pending of s.extTasks??[])
+   if(pending.escapeSBResolution&&pending.p===t.p)declared.add(pending.uid);
+  const sources=own.hand.filter(x=>!entering.has(x.uid)&&card(x).strikeBack&&api.canCast(s,t.p,card(x))&&!declared.has(x.uid));
   return sources.flatMap(x=>{
    const c=card(x),eligibleColors=c.strikeBackColors||[c.strikeBackColor||'闇'];
    const payments=t.costs.map(uid=>own.hand.find(y=>y.uid===uid)).filter(y=>y&&y.uid!==x.uid&&faces(card(y)).some(f=>
@@ -23,6 +26,14 @@ export function createAbyssRules(api){
    ));
    return payments.map(y=>opt(c.name+'：'+card(y).name+'を捨ててS・バック',{uid:x.uid,cost:y.uid},35,x.cardId));
   });
+ }
+ function finishSB(s,t){
+  if(t.window)return;
+  put(s,...(t.declared??[]).map(uid=>{
+   if(!t.escapeSBDeclaration)return task('g13_SBCast',t.p,t.source,{uid});
+   const source=s.players[t.p].hand.find(x=>x.uid===uid);
+   return source&&task('g13_SBCast',t.p,source.cardId,{uid,serial:source.zoneSerial||0,escapeSBResolution:true});
+  }));
  }
  function run(s,t){if(!t.op.startsWith('g13_'))return false;const own=s.players[t.p];switch(t.op){
  case'g13_Noradi':if(own.grave.length>=4)choice(s,t,'墓地4枚を戻してアビス・メクレイド8する？',[opt('墓地4枚を選び、山札の下に戻してメクレイド8',true,30),opt('戻さず、山札の上から4枚まで墓地に置く',null,own.deck.length>4?10:-10)]);else put(s,{...t,op:'g13_NoradiMill'});break;
@@ -55,8 +66,8 @@ export function createAbyssRules(api){
  case'g13_Seal':choice(s,t,'封印する相手クリーチャーを選ぶ',targetOptions(s,t.p,creatures(s,1-t.p)));break;
  case'g13_Bella':{const x=live(s,t);if(x&&api.canLeave(s,t.p,x))choice(s,t,'ベラドンナを破壊して効果を使う？',[opt('破壊して使う',true,25,t.source),skip()]);break;}
  case'g13_BellaMode':choice(s,t,'ベラドンナ：効果を選ぶ',[opt('相手の手札を見ないで1枚捨てさせる','discard',s.players[1-t.p].hand.length?15:-10),opt('山札の上1枚をマナへ','ramp',own.mana.length<6?25:5)]);break;
- case'g13_SB':{const list=sbPairs(s,t);if(list.length)choice(s,t,'S・バック：条件に合うシールドのカードを捨てて使う？',[...list,opt('S・バックを使わない',null,0)]);else if(!t.window)put(s,...(t.declared||[]).map(uid=>task('g13_SBCast',t.p,t.source,{uid})));break;}
- case'g13_SBCast':{const x=own.hand.find(x=>x.uid===t.uid);if(x&&api.canCast(s,t.p,card(x))){if(card(x).evolution)put(s,task('g32_SBBase',t.p,x.cardId,{target:x.uid}));else cast(s,t.p,x.uid,true,null,0,null,'hand','S・バック');}break;}
+ case'g13_SB':{const list=sbPairs(s,t);if(list.length)choice(s,t,'S・バック：条件に合うシールドのカードを捨てて使う？',[...list,opt('S・バックを使わない',null,0)]);else finishSB(s,t);break;}
+ case'g13_SBCast':{const x=own.hand.find(x=>x.uid===t.uid&&(t.serial===undefined||(x.zoneSerial||0)===t.serial));if(x&&api.canCast(s,t.p,card(x))){if(card(x).evolution)put(s,task('g32_SBBase',t.p,x.cardId,{target:x.uid}));else cast(s,t.p,x.uid,true,null,0,null,'hand','S・バック');}break;}
  default:throw Error('未実装のアビス効果：'+t.op);
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g13_'))return false;const own=s.players[t.p];switch(t.op){
@@ -82,7 +93,7 @@ export function createAbyssRules(api){
  case'g13_Seal':if(v)api.seal(s,1-t.p,[v]);break;
  case'g13_Bella':if(v){put(s,task('g13_BellaMode',t.p,t.source));move(s,[{player:t.p,uid:t.uid,to:'grave'}]);}break;
  case'g13_BellaMode':put(s,v==='discard'?task('discard',1-t.p,t.source,{n:1,random:true,causedBy:t.p}):task('g13_BellaRamp',t.p,t.source));break;
- case'g13_SB':if(v){const x=own.hand.find(x=>x.uid===v.uid);if(t.window&&s.triggers){s.triggers.undeclared=s.triggers.undeclared.filter(uid=>uid!==v.cost);s.triggers.gsUndeclared=s.triggers.gsUndeclared.filter(uid=>uid!==v.cost);s.triggers.declared.push(v.uid);(s.triggers.sbDeclared??=[]).push(v.uid);(s.triggers.sbSerials??={})[v.uid]=x.zoneSerial||0;s.triggers.faceByUid[v.uid]=0;}put(s,{...t,costs:t.costs.filter(uid=>uid!==v.cost),declared:[...(t.declared||[]),x.uid]});api.discardSelected(s,task('discard',t.p,x.cardId,{n:1,causedBy:t.p}),[v.cost]);}else if(!t.window)put(s,...(t.declared||[]).map(uid=>task('g13_SBCast',t.p,t.source,{uid})));break;
+ case'g13_SB':if(v){const x=own.hand.find(x=>x.uid===v.uid);if(t.window&&s.triggers){s.triggers.undeclared=s.triggers.undeclared.filter(uid=>uid!==v.cost);s.triggers.gsUndeclared=s.triggers.gsUndeclared.filter(uid=>uid!==v.cost);s.triggers.declared.push(v.uid);(s.triggers.sbDeclared??=[]).push(v.uid);(s.triggers.sbSerials??={})[v.uid]=x.zoneSerial||0;s.triggers.faceByUid[v.uid]=0;}put(s,{...t,costs:t.costs.filter(uid=>uid!==v.cost),declared:[...(t.declared||[]),x.uid]});api.discardSelected(s,task('discard',t.p,x.cardId,{n:1,causedBy:t.p,...(t.escapeSBDeclaration?{escapeSBDeclaration:true}:{})}),[v.cost]);}else finishSB(s,t);break;
  default:throw Error('未実装のアビス選択：'+t.op);
  }return true;}
  return {run(s,t){if(t.op==='g13_BellaRamp'){api.resolveEffect(s,t.p,{...card(t.source),effect:'ramp1'});return true;}return run(s,t);},chosen,
@@ -99,9 +110,9 @@ export function createAbyssRules(api){
  start(s,p){return creatures(s,1-p).filter(x=>effective(x,s).abyssTeresco).map(x=>({player:1-p,uid:x.uid,source:x.cardId,effect:'extended',task:task('discard',p,x.cardId,{n:1,causedBy:1-p,random:true})}));},
  end(s){const out=[];for(const p of[0,1])for(const x of s.players[p].battle){for(const y of api.allLayers(x))if(y.g13Rush?.some(r=>r.turn===s.turn&&(!r.conditional||r.attacked)))out.push({player:p,uid:y.uid,source:y.cardId,effect:'extended',task:task('g13_Return',p,y.cardId,{uid:y.uid,incarnation:y.incarnation||0})});if(p===s.active&&!x.sealed){if(effective(x,s).abyssLord)out.push({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g13_Lord',p,x.cardId)});if(effective(x,s).abyssFoot)out.push({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g13_Foot',p,x.cardId)});}}return out;},
  hasSB(s,p,all){return sbPairs(s,{p,costs:all.map(x=>x.uid)}).length>0;},
- beginSB(s,p,all,window=false){
+ beginSB(s,p,all,window=false,escapeSBDeclaration=false){
   const costs=all.map(x=>x.uid);
-  if(this.hasSB(s,p,all))put(s,task('g13_SB',p,all[0].cardId,{costs,entering:costs,declared:[],window}));
+  if(this.hasSB(s,p,all))put(s,task('g13_SB',p,all[0].cardId,{costs,entering:costs,declared:[],window,...(escapeSBDeclaration?{escapeSBDeclaration:true}:{})}));
  },
  };
 }

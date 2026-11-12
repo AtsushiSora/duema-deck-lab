@@ -3732,7 +3732,7 @@ export function createSixPhotoRules(api){
  case'g34_Magibomber321':{
   const deploy=v&&{...t,op:'g34_Put',origin:v.origin,target:v.uid,execution:false,g745Magibomber:true};
   // QA41150: the looked-at card remains unavailable while a creature enters from hand.
-  if(t.g743HoldTop&&v?.origin==='hand')put(s,deploy,task('g34_RevealRelease514',t.p,t.source,{ids:t.ids}));
+  if(t.ids.length&&v?.origin==='hand')put(s,deploy,task('g34_RevealRelease514',t.p,t.source,{ids:t.ids}));
   else{
    for(const uid of t.ids)release(s,t.p,uid);
    if(deploy)put(s,deploy);

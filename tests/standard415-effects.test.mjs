@@ -20,7 +20,22 @@ for(const p of[0,1]){
 }
 for(const id of[BIKA,TURBO,UNI,GR])test(id+' cancellation never spends or taps a partly selected cost',()=>{const{s,source,bodies}=ready(0,id);act(s,'mugenStart',a=>a.uid===source.uid);if(e.card(id).mugenCrime>1)act(s,'mugenTap',a=>a.uid===bodies[0].uid);const before=physical(s);act(s,'cancelMugen');assert.ok(bodies.every(y=>!y.tapped));assert.ok(s.players[0].mana.every(y=>!y.tapped));assert.ok(s.players[0].hand.some(y=>y.uid===source.uid));assert.deepEqual(physical(s),before);});
 test('Crime requires the printed colors, enough ready bodies, and unsealed true creatures',()=>{for(const id of[BIKA,TURBO,'dmrp15-090',UNI,GR]){for(const invalid of['wrongColor','tooFew','tapped','sealed','seed']){const{s,bodies}=ready(0,id),n=e.card(id).mugenCrime;if(invalid==='wrongColor')give(s,0,'mana',Array(n).fill(L));if(invalid==='tooFew')s.players[0].battle.pop();if(invalid==='tapped')bodies[0].tapped=true;if(invalid==='sealed'){bodies[0].sealed=true;s.players[0].seals=[{...inst(N),sealOf:bodies[0].uid}];}if(invalid==='seed')bodies[0].cardId=data.cards.find(c=>c.type==='seed'&&!c.seedCreature).id;assert.ok(!e.getLegalActions(s).some(a=>a.kind==='mugenStart'&&a.cardId===id),id+' '+invalid);}}});
-test('grave locks and entry prohibitions prevent Crime, while hand Crime remains legal through a grave lock',()=>{const s=ready(0,BIKA,'grave').s;put(s,1,'dmrp22-042');assert.ok(!e.getLegalActions(s).some(a=>a.kind==='mugenStart'));const t=ready(0,BIKA).s;put(t,1,'dmrp22-042');assert.ok(e.getLegalActions(t).some(a=>a.kind==='mugenStart'));t.players[0].entryLimitThisTurn=true;t.players[0].enteredThisTurn=1;assert.ok(!e.getLegalActions(t).some(a=>a.kind==='mugenStart'));});
+test('Crime can be declared through a grave lock but the card stays in the grave (QA34243)',()=>{
+ const {s,source,bodies}=ready(0,BIKA,'grave');
+ put(s,1,'dmrp22-042');
+ crime(s,0,source,'grave');
+ drain(s);
+ assert.ok(s.players[0].grave.some(x=>x.uid===source.uid));
+ assert.ok(!s.players[0].battle.some(x=>x.uid===source.uid));
+ assert.ok(bodies.every(x=>x.tapped));
+ assert.equal(s.players[0].mana.filter(x=>x.tapped).length,e.card(source).mugenCrime);
+ const t=ready(0,BIKA).s;
+ put(t,1,'dmrp22-042');
+ assert.ok(e.getLegalActions(t).some(a=>a.kind==='mugenStart'));
+ t.players[0].entryLimitThisTurn=true;
+ t.players[0].enteredThisTurn=1;
+ assert.ok(!e.getLegalActions(t).some(a=>a.kind==='mugenStart'));
+});
 test('Crime1 and Crime3 reductions preserve civilization minimums and never reduce tap counts',()=>{for(const id of[BIKA,ORI]){const s=setup();put(s,0,'dm12-054');put(s,0,'dm12-054');give(s,0,'hand',[id]);const n=e.card(id).mugenCrime;while(s.players[0].battle.length<n)put(s,0,N);give(s,0,'mana',id===BIKA?[W]:[W,D]);const source=s.players[0].hand[0],a=e.getLegalActions(s).find(a=>a.kind==='mugenStart'&&a.uid===source.uid);assert.ok(a);assert.equal(a.cost,id===BIKA?1:2);crime(s,0,source);drain(s);assert.equal(s.players[0].battle.filter(y=>y.tapped).length,n);assert.equal(s.players[0].mana.filter(y=>y.tapped).length,id===BIKA?1:2);}});
 test('Bird mana and Crime1 reserve different physical creatures for the two payments',()=>{for(const enough of[false,true]){const s=setup();give(s,0,'mana',[]);give(s,0,'battle',Array(enough?2:1).fill('dmex18-029'));give(s,0,'hand',[BIKA]);if(!enough){assert.ok(!e.getLegalActions(s).some(a=>a.kind==='mugenStart'));continue;}const source=s.players[0].hand[0];crime(s,0,source,'hand',[s.players[0].battle[0].uid]);drain(s);assert.equal(s.players[0].battle.filter(y=>y.tapped).length,2);assert.equal(s.players[0].mana.length,0);assert.ok(s.players[0].battle.some(y=>y.uid===source.uid));}});
 for(const id of[ZAM,DUPA,DUME])test(id+' Crime-specific tap ability triggers once, after the payment commits',()=>{const{s,source,bodies}=ready(0,WODA,'hand',[id,N]),enemy=put(s,1,N);give(s,0,'grave',[SPELL]);const deck=s.players[0].deck.length,first=s.players[0].deck[0];act(s,'mugenStart',a=>a.uid===source.uid);act(s,'mugenTap',a=>a.uid===bodies[0].uid);assert.equal(s.players[0].deck.length,deck);assert.equal(s.pendingEffects?.length||0,0);act(s,'mugenTap',a=>a.uid===bodies[1].uid);drain(s);assert.equal(s.players[0].deck.length,deck-(id===DUME?2:3));if(id===DUME)assert.ok(s.players[1].grave.some(y=>y.uid===enemy.uid));if(id===DUPA)assert.ok(s.players[0].hand.some(y=>y.uid===first.uid)||s.players[0].hand.some(y=>y.cardId===SPELL));});

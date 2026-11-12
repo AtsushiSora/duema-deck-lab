@@ -276,3 +276,59 @@ test('Linkwood delayed untap survives JSON and an ignored attacker while a late 
  assert.equal(s.players[1].shields.length,4);
  assert.ok(has(s,0,'battle',unbuffed));
 });
+
+test('Escape declares S-Back before repeated destruction and resolves it afterwards (QA42523)',()=>{
+ const s=field(),escape=put(s,0,'battle','dmr16s-043',{powerModifiers:[{amount:-3000}]});
+ const back=put(s,0,'hand','dmex12-035');
+ const first=put(s,0,'shields',DARK),second=put(s,0,'shields',DARK);
+ const enemy=put(s,1,'battle',NATURE);
+ const before=physical(s);
+
+ act(s,'toAttack');
+ act(s,'replaceEscape',a=>a.shield===first.uid);
+ useBack(s,back,first);
+ assert.ok(has(s,0,'grave',first));
+ assert.ok(has(s,0,'battle',escape));
+ assert.ok(has(s,0,'hand',back));
+ assert.ok(!enemy.sealed);
+ assert.equal(s.decision.type,'leaveReplace');
+
+ act(s,'replaceEscape',a=>a.shield===second.uid);
+ assert.equal(s.decision.type,'leaveReplace');
+ assert.ok(has(s,0,'hand',second));
+ act(s,'allowLeave');
+ assert.ok(has(s,0,'grave',escape));
+ drain(s);
+ assert.ok(has(s,0,'grave',back));
+ assert.ok(enemy.sealed);
+ assert.deepEqual(physical(s),before);
+});
+
+test('multiple S-Backs declared during Escape can resolve in chosen order after JSON continuation (QA42523)',()=>{
+ let s=field();
+ const escape=put(s,0,'battle','dmr16s-043',{powerModifiers:[{amount:-3000}]});
+ const firstBack=put(s,0,'hand','dmex12-035'),secondBack=put(s,0,'hand','dmex12-035');
+ const first=put(s,0,'shields',DARK),second=put(s,0,'shields',DARK);
+ put(s,1,'battle',NATURE);
+ put(s,1,'battle',NATURE);
+ const before=physical(s);
+
+ act(s,'toAttack');
+ act(s,'replaceEscape',a=>a.shield===first.uid);
+ useBack(s,firstBack,first);
+ act(s,'replaceEscape',a=>a.shield===second.uid);
+ useBack(s,secondBack,second);
+ s=restore(s);
+ assert.ok(has(s,0,'battle',escape));
+ assert.ok(has(s,0,'hand',firstBack)&&has(s,0,'hand',secondBack));
+ act(s,'allowLeave');
+ assert.ok(has(s,0,'grave',escape));
+ assert.equal(s.decision.type,'effectOrder');
+ const secondEffect=s.pendingEffects.find(x=>x.task?.uid===secondBack.uid);
+ assert.ok(secondEffect);
+ act(s,'orderEffect',a=>a.effectId===secondEffect.effectId);
+ drain(s);
+ assert.ok(has(s,0,'grave',firstBack)&&has(s,0,'grave',secondBack));
+ assert.ok(s.players[1].battle.every(x=>x.sealed));
+ assert.deepEqual(physical(s),before);
+});
