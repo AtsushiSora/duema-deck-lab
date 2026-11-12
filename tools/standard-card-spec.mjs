@@ -9456,9 +9456,16 @@ export function standardCardSpec(d,{phase=165}={}){
   }
   const evolvingBlockerRemoval=phase>=613&&line==='このクリーチャーが進化して出た時または進化元になる時相手の「ブロッカー」を持つクリーチャーを1体選び破壊する。';
   const evolvingElementRemoval=phase>=617&&line==='このクリーチャーが進化して出た時または進化元になる時相手のコスト3以下のエレメントを1つ選び破壊する。';
-  if(creature&&(evolvingBlockerRemoval||evolvingElementRemoval)){
+  const evolutionTrigger='このクリーチャーが進化して出た時または進化元になる時';
+  const neoTrigger=phase>=1055&&f.typeText==='NEOクリーチャー'&&line.startsWith(evolutionTrigger)?{
+   '相手のクリーチャーを1体選びタップする。次の相手のターンのはじめにそのクリーチャーはアンタップしない。':{op:'Target',tap:true,lock:true,g210TapLock:true},
+   'カードを1枚引いてもよい。':{op:'Draw',n:1,optional:true},
+   '自分の山札の上から2枚を墓地に置いてもよい。':{op:'Offer',title:'山札の上から2枚を墓地に置く？',defs:[{op:'Mill',n:2,g1042Together:true}]},
+   '自分の山札の上から1枚をシールド化してもよい。':{op:'Offer',title:'山札の上から1枚をシールド化する？',defs:[{op:'ShieldTop',n:1}]}
+  }[line.slice(evolutionTrigger.length)]:null;
+  if(creature&&(evolvingBlockerRemoval||evolvingElementRemoval||neoTrigger)){
    if(entry.length||nativeEntry||spec.g397Shinka)throw Error('重複する進化誘発能力');
-   const defs=[evolvingElementRemoval?{op:'Target',to:'grave',element:true,filter:{max:3}}:{op:'Target',to:'grave',filter:{blocker:true}}];
+   const defs=[neoTrigger??(evolvingElementRemoval?{op:'Target',to:'grave',element:true,filter:{max:3}}:{op:'Target',to:'grave',filter:{blocker:true}})];
    entry.push(...defs);
    spec.evolvedEntryOnly=true;
    spec.g397Shinka=defs;

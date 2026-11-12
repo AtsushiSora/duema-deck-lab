@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7116,
-  "pendingNames": 4711,
-  "phase": 1054,
-  "added": 3,
+  "supportedNames": 7120,
+  "pendingNames": 4707,
+  "phase": 1055,
+  "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -155,7 +155,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 2700,
-    "NEOクリーチャー": 152,
+    "NEOクリーチャー": 148,
     "呪文": 605,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3273,
+    "未対応の能力文": 3269,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -206076,17 +206076,102 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1055,
+      "baseCommit": "c3c3e0f1",
+      "cards": [
+        {
+          "id": "dm25rp2-053",
+          "name": "楽園樹"
+        },
+        {
+          "id": "dm25rp2-058",
+          "name": "～淡き舵取りの唄～"
+        },
+        {
+          "id": "dm25rp2-063",
+          "name": "シーク＝ユーロシーク"
+        },
+        {
+          "id": "dm25rp1-029",
+          "name": "笑栄の妖精"
+        }
+      ],
+      "printAliases": [],
+      "supportedNames": 7120,
+      "pendingNames": 4707,
+      "verification": {
+        "focusedPassed": 13,
+        "regressionPassed": 162,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 4,
+        "scope": "4種類の公式能力全文・基本情報・マナ数・画像・単一収録・現行殿堂レギュレーションを照合。通常召喚とNEO進化の選択、進化して出た時と進化元になる時の解決順、対象選択中の保存復元を確認。楽園樹のタップと次の相手ターン開始時だけの制限、淡き舵取りの唄の任意ドロー、シークの攻撃禁止と任意の2枚墓地送り、笑栄の妖精のS・トリガーと任意のシールド化を確認。登場置換では進化元にならず、既存の通常クリーチャーの下へ移す場合も誘発しない。既存NEOの下に置く場合は下に置いたカードだけが誘発し、複数の進化元を使う進化でも該当する進化元の能力が誘発する。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/46498/",
+          "https://dm.takaratomy.co.jp/rule/qa/46499/",
+          "https://dm.takaratomy.co.jp/rule/qa/46526/",
+          "https://dm.takaratomy.co.jp/rule/qa/47363/",
+          "https://dm.takaratomy.co.jp/rule/qa/47364/",
+          "https://dm.takaratomy.co.jp/rule/qa/48925/",
+          "https://dm.takaratomy.co.jp/rule/qa/33524/"
+        ],
+        "regressionFiles": [
+          "tests/standard397-effects.test.mjs",
+          "tests/standard605-effects.test.mjs",
+          "tests/standard606-effects.test.mjs",
+          "tests/standard613-effects.test.mjs",
+          "tests/standard617-effects.test.mjs",
+          "tests/standard1052-effects.test.mjs",
+          "tests/standard1054-effects.test.mjs"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。",
+        "logs": {
+          "official": "/tmp/duema-phase-1055.e4PDpBBZ/official.log",
+          "officialImages": "/tmp/duema-phase-1055.e4PDpBBZ/sources.log",
+          "focused": "/tmp/duema-phase-1055.e4PDpBBZ/focused.log",
+          "regression": "/tmp/duema-phase-1055.e4PDpBBZ/regression.log",
+          "check": "/tmp/duema-phase-1055.e4PDpBBZ/check.log",
+          "audit": "/tmp/duema-phase-1055.e4PDpBBZ/audit.log",
+          "imageIndex": "/tmp/duema-phase-1055.e4PDpBBZ/images.log",
+          "count": "/tmp/duema-phase-1055.e4PDpBBZ/count.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dm25rp2-049",
+          "name": "選舞音愛 タテロール",
+          "reason": "公式能力全文・基本情報・画像・単一収録を照合。対象を任意で1体選び、その1体の移動先として持ち主の手札・マナ・シールドのいずれかを選ぶ処理と、離脱置換の競合を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-049",
+            "https://dm.takaratomy.co.jp/rule/qa/46499/",
+            "https://dm.takaratomy.co.jp/rule/qa/47364/"
+          ]
+        }
+      ],
+      "existingIssues": [
+        {
+          "id": "dmrp17-070",
+          "test": "Sixfall placing an existing creature under another triggers Shinka once for its owner",
+          "reason": "Phase 397のシンカパワーの一部はシックスフォールで通常クリーチャーの下へ置いても発動する既存挙動が回帰テストに固定されている。公式QA 47363を踏まえた既存シンカパワーの整理は別途行う。今回の4種類と同じ進化誘発を持つ既存カードにはNEO・進化の条件を適用した。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/47363/"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1054,
-    "nextPhase": 1055,
+    "lastVerifiedPhase": 1055,
+    "nextPhase": 1056,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm25rp2-053",
-        "name": "楽園樹",
-        "reason": "公式能力全文・基本情報・画像・単一収録を照合。NEO進化で出た時と場で進化元になる直前の誘発を検証し、進化ではなくカードの下に置かれた場合を除外する処理を確認するまで保留。"
+        "id": "dm25rp2-049",
+        "name": "選舞音愛 タテロール",
+        "reason": "公式能力全文・基本情報・画像・単一収録を照合。対象を任意で1体選び、その1体の移動先として持ち主の手札・マナ・シールドのいずれかを選ぶ処理と、離脱置換の競合を検証するまで保留。"
       },
       {
         "id": "dmrp03-011",
@@ -206240,7 +206325,7 @@
       "Phase 1036で、盾束の一部だけを移動しても世界のY チャクラ・デル・フィンのZラッシュが発動する既存不具合を変更前と今回の両方で再現。QA 48472と回帰範囲は同バッチのexistingIssuesを参照。",
       "公式能力全文・基本情報・画像・単一収録を照合。既存の手札破棄処理を利用できるが、オレガ・オーラの使用に伴う既存GRへの装着、新規GR召喚後の装着、GR召喚が置換された場合の装着不成立を一通り検証する必要があるため保留。",
       "公式能力全文・基本情報・画像・単一収録を照合。バトルでの破壊をタップに置換する際、EXライフなど同じイベントに適用できる置換との競合や、効果によるバトルでも次のアンタップを止めることを確認するまで保留。",
-      "公式能力全文・基本情報・画像・単一収録を照合。NEO進化で出た時と場で進化元になる直前の誘発を検証し、進化ではなくカードの下に置かれた場合を除外する処理を確認するまで保留。"
+      "Phase 397のシンカパワーの一部はシックスフォールで通常クリーチャーの下へ置いても発動する既存挙動が回帰テストに固定されている。公式QA 47363を踏まえた既存シンカパワーの整理は別途行う。今回の4種類と同じ進化誘発を持つ既存カードにはNEO・進化の条件を適用した。"
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
