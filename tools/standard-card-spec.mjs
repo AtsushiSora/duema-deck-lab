@@ -2467,6 +2467,24 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1031&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'&&
+  f.civilizationText==='光'&&f.race==='メタリカ'){
+  const text=normalize(f.abilityText),placed='自分のシールドゾーンにカードが置かれた時';
+  const blocker='(「ブロッカー」を持つクリーチャーをタップして相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい)';
+  if(f.name==='赤攻銀 イザヤック'&&f.cost===4&&text===placed+'このクリーチャーを自分の手札からバトルゾーンに出してもよい。')
+   return {g1031ShieldHandEntry:true};
+  if(f.name==='戦の傾き 護法'&&f.cost===5&&text===
+   'このクリーチャーがバトルゾーンに出た時自分の山札の上から1枚目を裏向きのまま新しいシールドとして自分のシールドゾーンに置く。'+
+   placed+'相手のクリーチャーを1体選びタップする。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'ShieldTop',n:1}],g918ShieldAdded:[{op:'Target',tap:true}]};
+  if(f.name==='安息の喜び 慈拓'&&f.cost===5&&text===
+   placed+'次の自分のターンのはじめまでこのクリーチャーに「ブロッカー」を与える。'+blocker)
+   return {g918ShieldAdded:[{op:'SelfGrant754',g770LiveCreature:true,g521UntilStart:true,grant:{blocker:true}}]};
+  if(f.name==='青守銀 ノチェス'&&f.cost===3&&text===
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   'このターン中に自分のシールドゾーンにカードが置かれていなければこのクリーチャーは相手プレイヤーを攻撃できない。')
+   return {blocker:true,g1031PlayerAttackRequiresShield:true};
+ }
  if(phase>=1030&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'&&
   f.civilizationText==='光'&&f.race==='裁きの紋章'){
   const base={effect:'sixPhoto',g1027Crest:true},text=normalize(f.abilityText);

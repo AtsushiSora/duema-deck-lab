@@ -2783,6 +2783,12 @@ export function createSixPhotoRules(api){
   if((placed?.incarnation||0)===t.beforeEntry)api.draw(s,t.p,1);
   break;
  }
+ case'g34_ShieldHandEntry1031':{
+  const source=own.hand.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);
+  if(source&&!api.handAbilityIgnored(s,source)&&canPut(s,t.p,source,'hand'))
+   choice(s,t,card(source).name+'を手札から出す？',[opt('出す',true,20,source.cardId),skip()]);
+  break;
+ }
  case'g34_ShieldHand':put(s,{...t,op:'g55_ShieldHand'});break;
  case'g34_HandShield657':
   if(own.hand.length&&api.canAddShield(s,t.p))choice(s,t,'シールド化する手札を1枚選ぶ（任意）',[
@@ -4266,6 +4272,9 @@ export function createSixPhotoRules(api){
    {...t,op:'g34_CrestDeployResult1030',target:target.uid,beforeEntry:target.incarnation||0});
   break;
  }
+ case'g34_ShieldHandEntry1031':
+  if(v)put(s,{...t,op:'g34_Put',origin:'hand',target:t.uid});
+  break;
  case'g34_Put':doPut(s,t,v);break;
  case'g34_Marianna728':put(s,{...t,op:'g34_Order',rest:'shuffle',after:v?[{op:'MariannaCast728',selected:v}]:null});break;
  case'g34_MariannaCast728':if(v)cast(s,t.p,t.selected.uid,true,null,t.selected.face,null,'deck','光器マリアンナの能力');break;
@@ -4589,6 +4598,10 @@ export function createSixPhotoRules(api){
  }
  function triggerShieldAdded918(s,p,count){
   if(!count)return;
+  for(const x of s.players[p].hand){
+   if(card(x).g1031ShieldHandEntry&&!api.handAbilityIgnored(s,x))
+    for(let i=0;i<count;i++)send(s,p,x,'ShieldHandEntry1031',{serial:x.zoneSerial||0});
+  }
   for(const x of s.players[p].battle){
    if(x.sealed||!card(x).g918ShieldAdded)continue;
    const defs=effective(x,s).g918ShieldAdded;

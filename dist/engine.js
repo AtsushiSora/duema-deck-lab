@@ -163,6 +163,7 @@ export function effectiveCard(inst,context,forPower=false){
  const printed=base.g716DragonBlock||base.g911BlockColors?{...base,blocker:false}:base;
  let c=inheritSoul404(base.hyper&&inst.hyperActive?{...printed,...base.hyper}:printed,inst,card,layers);if(base.natureAce4&&!isCreature(context,inst))c={...c,type:'seed',power:0};
  if(c.g787AttackAfterShieldLeaves&&context.g787ShieldLeftTurns?.[owner]!==context.turn)c={...c,noAttack:true};
+ if(c.g1031PlayerAttackRequiresShield&&context.g159ShieldAddedTurns?.[owner]!==context.turn)c={...c,noPlayerAttack:true};
  if(c.type==='creature'&&c.g662ShieldGoStats){
   const count=extra.shieldPhoto.shieldGoCount(context,owner);
   if(count)c={...c,power:numeric(c.power)+count*c.g662ShieldGoStats,extraBreak:(c.extraBreak||0)+count};

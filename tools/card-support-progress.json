@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7032,
-  "pendingNames": 4795,
-  "phase": 1030,
-  "added": 3,
+  "supportedNames": 7036,
+  "pendingNames": 4791,
+  "phase": 1031,
+  "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2761,
+    "クリーチャー": 2757,
     "NEOクリーチャー": 152,
     "呪文": 624,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1212,
-    "未対応の能力文": 3347,
+    "未対応の能力文": 3343,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -203979,32 +203979,110 @@
           "reason": "サバキZの宣言と解決、発生源および捨てるカードの条件をまとめて検証するため保留。"
         }
       ]
+    },
+    {
+      "phase": 1031,
+      "baseCommit": "fdfdd9ff",
+      "cards": [
+        {
+          "id": "dmrp07-059",
+          "name": "赤攻銀 イザヤック"
+        },
+        {
+          "id": "dmrp03-031",
+          "name": "戦の傾き 護法"
+        },
+        {
+          "id": "dmrp06-059",
+          "name": "安息の喜び 慈拓"
+        },
+        {
+          "id": "dmrp06-062",
+          "name": "青守銀 ノチェス"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dmbd04-013",
+          "canonicalId": "dmrp03-031",
+          "name": "戦の傾き 護法"
+        }
+      ],
+      "supportedNames": 7036,
+      "pendingNames": 4791,
+      "verification": {
+        "focusedPassed": 10,
+        "regressionPassed": 203,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 5,
+        "scope": "公式本文・基本情報・画像・殿堂制限を4種類と再録1版で照合。イザヤックは自分のシールドへの実際の追加後に同じ手札カードを任意で出し、相手ターンのS・トリガー再配置とゲンムエンペラー下の手札誘発も確認。護法は登場時の裏向きシールド化、任意でない相手1体のタップ、同時に置かれたカードごとの誘発、置換で追加されなかった場合を確認。慈拓は次の自ターン開始時までのブロッカー付与、ノチェスは恒常的なブロッカーと当ターンのシールド追加によるプレイヤー攻撃制限を検証。対戦の保存復元と再録IDも確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/qa/40465/",
+          "https://dm.takaratomy.co.jp/rule/qa/43298/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "regressionFiles": [
+          "tests/standard918-effects.test.mjs",
+          "tests/standard1023-effects.test.mjs",
+          "tests/standard1027-effects.test.mjs",
+          "tests/standard1028-effects.test.mjs",
+          "tests/standard1029-effects.test.mjs",
+          "tests/standard1030-effects.test.mjs",
+          "tests/standard521-effects.test.mjs",
+          "tests/photo159-shield-effects.test.mjs"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件およびPhase 1030の表向きシールドの長時間回帰2件は引き続き未確認。",
+        "logs": {
+          "official": "/tmp/duema-phase-1031.7KDrdezy/official.log",
+          "focused": "/tmp/duema-phase-1031.7KDrdezy/focused-final.log",
+          "regression": "/tmp/duema-phase-1031.7KDrdezy/regression.log",
+          "check": "/tmp/duema-phase-1031.7KDrdezy/check.log",
+          "audit": "/tmp/duema-phase-1031.7KDrdezy/audit.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dmsd10-002",
+          "name": "催眠の意志 レンブラ",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd10-002",
+          "reason": "公式ページでGRクリーチャーであることを確認。超GRへの編成、GR召喚、離脱時の超GRへの移動に対応した段階で、タップ誘発とあわせて検証する。"
+        },
+        {
+          "id": "dmex05-s03",
+          "name": "白皇角の意志 ルーベライノ",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex05-s03",
+          "reason": "GRクリーチャーの共通処理と、光の呪文の強制コスト軽減を検証する必要があるため保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1030,
-    "nextPhase": 1031,
+    "lastVerifiedPhase": 1031,
+    "nextPhase": 1032,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dmex19-025",
-        "name": "正義ノ裁キ",
-        "reason": "呪文禁止を無視する条件と、シールドが同時に離れる際にS・トリガーとサバキZで異なる判定を整理してから対応する。"
+        "id": "dmrp07-031",
+        "name": "青守銀 アドマニ",
+        "reason": "手札から出す共通処理に、印刷されたブロッカーとプレイヤー攻撃不可を組み合わせる。"
       },
       {
-        "id": "dm25ex2-070",
-        "name": "聖霊王ノ裁キ",
-        "reason": "進化元を含む一括シールド化と離脱置換後に実際に置かれたカード枚数の参照を検証するため保留。"
+        "id": "dmx19-s05",
+        "name": "封印の精霊龍 ヴァルハラ・パラディン",
+        "reason": "任意の新規シールド化と、各シールド追加時の任意タップと次の相手ターンのアンタップ制限を確認する。"
       },
       {
-        "id": "dmrp07-064",
-        "name": "天樹ノ正裁Z",
-        "reason": "サバキZの宣言と解決、発生源および捨てるカードの条件をまとめて検証するため保留。"
+        "id": "dm23ex3-032",
+        "name": "驚異的終斗 アレキサンドライト",
+        "reason": "登場時のシールド化とドロー、各ターン終了時のシールド追加履歴とマナの裏向き処理を確認する。"
       },
       {
-        "id": "dmrp04s-002",
-        "name": "断罪スル雷面ノ裁キ",
-        "reason": "初版とプロモ版を確認。対象2体までとそれぞれの置き先を確定し、同じシールドを指定できること、進化元を含む同時移動、離脱置換が競合する場合を検証するため保留。既存の単一カードをシールドに重ねる処理は進化クリーチャー全体の移動に使えない。"
+        "id": "dmex16-021",
+        "name": "白騎士の精霊ホワイト・ウィズダム",
+        "reason": "任意の新規シールド化と同じシールドへの裏向き追加、各追加の誘発を確認する。"
       }
     ],
     "steps": [
@@ -204083,7 +204161,7 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
-      "公式本文、画像、使用制限、再録、裁定を照合する。裁きの紋章は既存の手札由来の自己置換を再利用し、シールドの束とその構成カードの違いを確認する。",
+      "公式本文、画像、使用制限、再録、裁定を照合する。シールド追加に反応するカードは表裏、束への追加、実際の配置と置換、誘発が待機する順序を確認する。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で登録再開。自動化 duema-deck-lab は10分間隔で稼働中。",
