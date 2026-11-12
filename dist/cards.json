@@ -207183,20 +207183,144 @@
       ],
       "supportBatch": "phase-1022",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex4-045",
+      "name": "ペダンティック・アート",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "この呪文を[ww02]支払って唱えてもよい。そうしたら、相手はカードを１枚引いてもよい。\nカードを２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-045",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g568Alt": {
+        "cost": 2,
+        "paymentColors": [
+          "水"
+        ],
+        "spell": [
+          {
+            "op": "OpponentOffer777",
+            "title": "カードを1枚引く？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        }
+      ],
+      "supportBatch": "phase-1023",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex4-043",
+      "name": "ペダンティック・ガード",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "この呪文を[ll04]支払って唱えてもよい。そうしたら、相手は自身の山札の上から１枚をシールド化してもよい。\n自分の山札の上から２枚をシールド化する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-043",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g568Alt": {
+        "cost": 4,
+        "paymentColors": [
+          "光"
+        ],
+        "spell": [
+          {
+            "op": "OpponentOffer777",
+            "title": "山札の上から1枚をシールド化する？",
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "g34Tasks": [
+        {
+          "op": "ShieldTop",
+          "n": 2,
+          "g779Simultaneous": true
+        }
+      ],
+      "supportBatch": "phase-1023",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex4-048",
+      "name": "ペダンティック・ニール",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "この呪文を[dd04]支払って唱えてもよい。そうしたら、自分の手札を１枚捨てる。\n相手の手札を２枚見ないで選び、捨てさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-048",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g568Alt": {
+        "cost": 4,
+        "paymentColors": [
+          "闇"
+        ],
+        "spell": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ]
+      },
+      "g34Tasks": [
+        {
+          "op": "BlindDiscard773",
+          "n": 2
+        }
+      ],
+      "supportBatch": "phase-1023",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1022,
+    "phase": 1023,
     "checkedAt": "2026-11-12",
-    "baseCount": 7002,
+    "baseCount": 7005,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7005,
+    "totalCount": 7008,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/45593/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36502/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36503/"
+      "https://dm.takaratomy.co.jp/rule/rulechange/31640/",
+      "https://dm.takaratomy.co.jp/rule/qa/49556/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -225707,6 +225831,23 @@
           "https://dm.takaratomy.co.jp/rule/qa/40934/",
           "https://dm.takaratomy.co.jp/rule/qa/31830/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1022,
+        "checkedAt": "2026-11-12",
+        "baseCount": 7002,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7005,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/45593/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36502/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36503/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

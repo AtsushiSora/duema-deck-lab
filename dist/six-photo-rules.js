@@ -5546,7 +5546,7 @@ export function createSixPhotoRules(api){
   for(const origin of['hand','mana','grave'])for(const x of own[origin]){
    const c=api.zoneCard(s,p,x,origin),r=c.g568Alt;if(x.faceDown||!hasAltPayment568(s,p,origin,r)||!api.canMoveZone(s,p,origin)||!api.canCast(s,p,c,origin)||c.type==='creature'&&!api.canEnter(s,p,c,{origin,execution:true}))continue;
    for(const permit of new Set(api.costAltPermits568(s,p,x,c,origin)))for(const base of[c.neoEvolution?null:undefined,...(c.neoEvolution?api.evolutionBases(s,p,c):[])])for(const snowReducers of[undefined,...api.snowVariants(s,p,c)]){
-    const payment={...c,...(origin==='mana'?{civilizations:api.manaColors(c,s,p)}:{}),cost:r.cost,printedCost:c.cost,g568PaymentColors:r.paymentColors,g27BaseUid:base?.uid??null,summonOrigin:origin,executionUid:x.uid,...(snowReducers?{snowReducers}:{})};
+    const payment={...c,...(origin==='mana'?{civilizations:api.manaColors(c,s,p)}:{}),cost:r.cost,printedCost:c.cost,g568PaymentColors:r.paymentColors,...(r.spell?{g40PayNormally:true}:{}),g27BaseUid:base?.uid??null,summonOrigin:origin,executionUid:x.uid,...(snowReducers?{snowReducers}:{})};
     if(api.canPay(s,p,payment))out.push({kind:'play',alternative:'sixPhoto',role:'paidAlt568',uid:x.uid,cardId:x.cardId,origin,manaPermit:permit,baseUid:base?.uid??null,...(snowReducers?{snowReducers}:{}),cost:api.summonCost(s,p,payment),label:c.name+(r.condition||r.handOnly?'を条件付きの別コストで':'を別コストで')+(origin==='hand'?'':origin==='mana'?'マナから':'墓地から')+(c.type==='spell'?'唱える':'召喚')+(base?'・'+card(base).name+'の上にNEO進化':c.neoEvolution?'・進化させず':'')});
    }
   }
@@ -5570,7 +5570,17 @@ for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand
    put(s,task('g34_TapCast976',p,a.cardId,{uid:a.uid,origin:a.origin,permit:a.manaPermit??null,selected:[]}));
    return;
   }
-  if(a.role==='paidAlt568'){const origin=a.origin||'hand',x=s.players[p][origin].find(x=>x.uid===a.uid),c=x&&api.zoneCard(s,p,x,origin),r=c?.g568Alt;if(!hasAltPayment568(s,p,origin,r)||!api.costAltPermits568(s,p,x,c,origin).includes(a.manaPermit))throw Error('別コストの使用条件を満たしていません');cast(s,p,a.uid,false,a.baseUid??null,0,{cost:r.cost,g568PaymentColors:r.paymentColors,...(r.entry?{g777AltEntry:true}:{}),...(origin==='mana'?{civilizations:api.manaColors(c,s,p)}:{})},origin,'条件付き別コスト',false,a.manaPermit,a.snowReducers??null);return;}if(a.role==='recycle416'){const c=card(a.cardId);if(c.g416RecycleCost)cast(s,p,a.uid,false,null,a.face||0,{cost:c.g416RecycleCost,g40PayNormally:true},'grave','リサイクル',true);return;}if(a.role==='manaBirth296'){cast(s,p,a.uid,false,null,0,{cost:card(a.cardId).g296ManaBirth},'mana','マナ爆誕',false,null,a.snowReducers??null);return;}put(s,task('g34_Custom',p,a.cardId,{name:'alternative',uid:a.uid,role:a.role,selected:[]}));},
+  if(a.role==='paidAlt568'){
+   const origin=a.origin||'hand',x=s.players[p][origin].find(x=>x.uid===a.uid),c=x&&api.zoneCard(s,p,x,origin),r=c?.g568Alt;
+   if(!hasAltPayment568(s,p,origin,r)||!api.costAltPermits568(s,p,x,c,origin).includes(a.manaPermit))
+    throw Error('別コストの使用条件を満たしていません');
+   const payment={cost:r.cost,g568PaymentColors:r.paymentColors,
+    ...(r.entry?{g777AltEntry:true}:{}),...(r.spell?{g1023PaidAltSpell:true,g40PayNormally:true}:{}),
+    ...(origin==='mana'?{civilizations:api.manaColors(c,s,p)}:{})};
+   cast(s,p,a.uid,false,a.baseUid??null,0,payment,origin,'条件付き別コスト',false,a.manaPermit,a.snowReducers??null);
+   return;
+  }
+  if(a.role==='recycle416'){const c=card(a.cardId);if(c.g416RecycleCost)cast(s,p,a.uid,false,null,a.face||0,{cost:c.g416RecycleCost,g40PayNormally:true},'grave','リサイクル',true);return;}if(a.role==='manaBirth296'){cast(s,p,a.uid,false,null,0,{cost:card(a.cardId).g296ManaBirth},'mana','マナ爆誕',false,null,a.snowReducers??null);return;}put(s,task('g34_Custom',p,a.cardId,{name:'alternative',uid:a.uid,role:a.role,selected:[]}));},
  };
  function tapCastCreatures976(s,p,color){
   return creatures(s,p).filter(x=>!x.sealed&&!x.tapped&&colors(effective(x,s,true)).includes(color));

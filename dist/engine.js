@@ -1420,7 +1420,11 @@ function completeExecution(s,p,inst,c,{ruleOrigin,origin,free,freeReason,alterna
  if(originBlocked402){delete inst.summonedTurn;s.players[p][origin].splice(originIndex402<0?s.players[p][origin].length:originIndex402,0,inst);const zone=origin==='grave'?'墓地':'マナゾーン';log(s,p,'entryPrevented',`${c.name}は${zone}から移動できず、${zone}に残る`,{cardId:c.id});return;}
  const checkDeckSpell=ruleOrigin==='deck'&&!s.players[p].deck.length&&
   ['スーパー・スペル・グレートブルー','アクア・スペルブルー','スペルサイケデリカ'].includes(freeReason);
- if(c.type==='spell')extra.spellCast(s,p,c,inst,ruleOrigin,face);
+ if(c.type==='spell'){
+  if(!free&&alternativeCost?.g1023PaidAltSpell&&c.g568Alt?.spell)
+   c={...c,g34Tasks:[...c.g568Alt.spell,...c.g34Tasks]};
+  extra.spellCast(s,p,c,inst,ruleOrigin,face);
+ }
  if(c.type==='castle'){inst.faceUp=true;s.players[p].shields.push(inst);extra.shieldAdded(s,p,inst);extra.six.shieldAdded918(s,p);if(free)(s.noManaUse??=[false,false])[p]=true;}
  else if(['creature','seed','gear','field'].includes(c.type)){enterCreature(s,p,inst,baseUid,{origin:ruleOrigin,execution:true,committed:true,paidMana,costPaid:!free&&cost>0,effectController:free||alternativeCost!==null?p:null,plus:!!c.triggerPlus&&free&&freeReason==='S・トリガー'&&!!inst.triggerPlus,super:!!c.superTrigger&&free&&(freeReason==='S・トリガー'&&!!inst.superTrigger||grantedSuper),ddd:freeReason==='D・D・D',...(alternativeCost?.g777AltEntry?{g777AltEntry:true}:{}),...(c.mugenGate&&Array.isArray(baseUid)?{mugenBases:baseUid}:{})});if(ruleOrigin==='deck')deckCheck(s,p);}
  else if(c.charger&&!spellIgnored(s,c)){s.resolvingSpell={player:p,inst,source:c.id,face,origin:ruleOrigin};if(checkDeckSpell&&checkDeckSpell841(s,p,c,inst))return;powerCleanup(s);if(s.decision||s.leaving||s.lossEvent)(s.extTasks??=[]).unshift(extra.task('g34_ResolveSpell207',p,c.id,{uid:inst.uid}));else startJudge(s,p,c.id,inst.uid,'spell');}

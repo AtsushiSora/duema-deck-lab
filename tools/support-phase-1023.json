@@ -1,0 +1,183 @@
+{
+  "phase": 1023,
+  "checkedAt": "2026-11-12",
+  "baseCount": 7005,
+  "description": "ペダンティック・アート、ガード、ニールの代替支払いと呪文効果を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31640/",
+    "https://dm.takaratomy.co.jp/rule/qa/49556/"
+  ],
+  "cards": [
+    {
+      "id": "dm26ex4-045",
+      "name": "ペダンティック・アート",
+      "faces": [
+        {
+          "name": "ペダンティック・アート",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "この呪文を[ww02]支払って唱えてもよい。そうしたら、相手はカードを１枚引いてもよい。\nカードを２枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-045",
+      "spec": {
+        "effect": "sixPhoto",
+        "g568Alt": {
+          "cost": 2,
+          "paymentColors": [
+            "水"
+          ],
+          "spell": [
+            {
+              "op": "OpponentOffer777",
+              "title": "カードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        },
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "71b9d7d5d8ccb904edcc6e00bcd09bab44c4c21feb9a74395525a9f9282b57d4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex4-043",
+      "name": "ペダンティック・ガード",
+      "faces": [
+        {
+          "name": "ペダンティック・ガード",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "この呪文を[ll04]支払って唱えてもよい。そうしたら、相手は自身の山札の上から１枚をシールド化してもよい。\n自分の山札の上から２枚をシールド化する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-043",
+      "spec": {
+        "effect": "sixPhoto",
+        "g568Alt": {
+          "cost": 4,
+          "paymentColors": [
+            "光"
+          ],
+          "spell": [
+            {
+              "op": "OpponentOffer777",
+              "title": "山札の上から1枚をシールド化する？",
+              "defs": [
+                {
+                  "op": "ShieldTop",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        },
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 2,
+            "g779Simultaneous": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "8a6d76ca3dfe3449e498af9e391cbe3a166f576d4b02634257393a787bb07b91",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex4-048",
+      "name": "ペダンティック・ニール",
+      "faces": [
+        {
+          "name": "ペダンティック・ニール",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "この呪文を[dd04]支払って唱えてもよい。そうしたら、自分の手札を１枚捨てる。\n相手の手札を２枚見ないで選び、捨てさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-048",
+      "spec": {
+        "effect": "sixPhoto",
+        "g568Alt": {
+          "cost": 4,
+          "paymentColors": [
+            "闇"
+          ],
+          "spell": [
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 1
+            }
+          ]
+        },
+        "g34Tasks": [
+          {
+            "op": "BlindDiscard773",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "eea985bb0df3a3d15c3d26ba0ea0bdf460de2d4f782b92760d3577c4abffd604",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26ex4-045": 4,
+      "dm26ex4-043": 4,
+      "dm26ex4-048": 4
+    }
+  }
+}

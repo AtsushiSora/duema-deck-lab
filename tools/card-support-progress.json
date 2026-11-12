@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7005,
-  "pendingNames": 4822,
-  "phase": 1022,
+  "supportedNames": 7008,
+  "pendingNames": 4819,
+  "phase": 1023,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -156,7 +156,7 @@
   "pendingByType": {
     "クリーチャー": 2761,
     "NEOクリーチャー": 152,
-    "呪文": 651,
+    "呪文": 648,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 57,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1212,
-    "未対応の能力文": 3374,
+    "未対応の能力文": 3371,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -203387,27 +203387,81 @@
         }
       },
       "deferred": []
+    },
+    {
+      "phase": 1023,
+      "baseCommit": "650a6d4d",
+      "cards": [
+        {
+          "id": "dm26ex4-045",
+          "name": "ペダンティック・アート"
+        },
+        {
+          "id": "dm26ex4-043",
+          "name": "ペダンティック・ガード"
+        },
+        {
+          "id": "dm26ex4-048",
+          "name": "ペダンティック・ニール"
+        }
+      ],
+      "printAliases": [],
+      "supportedNames": 7008,
+      "pendingNames": 4819,
+      "verification": {
+        "focusedPassed": 17,
+        "regressionPassed": 260,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 3,
+        "scope": "3種類の公式全文、基本情報、画像、使用制限と同名収録欄を照合。通常・代替の色と支払い、無料詠唱と代替選択の区別、手動支払い・保存復元、相手の任意ドローと任意シールド化、ニールの自分の手札を捨ててから相手の手札を非公開で選ぶ順序を検証。QA49556の手札がニールのみの場合も確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/rulechange/31640/",
+          "https://dm.takaratomy.co.jp/rule/qa/49556/"
+        ],
+        "regressionFiles": [
+          "tests/standard461-effects.test.mjs",
+          "tests/standard568-effects.test.mjs",
+          "tests/standard773-effects.test.mjs",
+          "tests/standard777-effects.test.mjs",
+          "tests/standard779-effects.test.mjs",
+          "tests/standard1022-effects.test.mjs",
+          "tests/photo167-effects.test.mjs",
+          "tests/hand-ui.test.mjs"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件は引き続き未確認。",
+        "logs": {
+          "focused": "/tmp/duema-phase-1023.ynwDJALf/focused-final.log",
+          "regression": "/tmp/duema-phase-1023.ynwDJALf/regression-final.log",
+          "craftDecks": "/tmp/duema-phase-1023.ynwDJALf/craft-decks.log",
+          "check": "/tmp/duema-phase-1023.ynwDJALf/check-final.log",
+          "audit": "/tmp/duema-phase-1023.ynwDJALf/audit.log"
+        }
+      },
+      "deferred": []
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1022,
-    "nextPhase": 1023,
+    "lastVerifiedPhase": 1023,
+    "nextPhase": 1024,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm26ex4-045",
-        "name": "ペダンティック・アート",
-        "reason": "代替の支払いと相手の任意ドローを照合する。"
+        "id": "dm26ex4-053",
+        "name": "ペダンティック・ライフ",
+        "reason": "代替詠唱と相手の任意のタップマナ追加、自分のタップマナ追加・回収を照合する。"
       },
       {
-        "id": "dm26ex4-043",
-        "name": "ペダンティック・ガード",
-        "reason": "代替の支払いと相手の任意シールド化を照合する。"
+        "id": "dmrp03-056",
+        "name": "シンクロ・マニューバ",
+        "reason": "自然のクリーチャーをタップする代替詠唱を既存処理と照合する。"
       },
       {
-        "id": "dm26ex4-048",
-        "name": "ペダンティック・ニール",
-        "reason": "代替の支払いと自己・相手の手札処理の順序を照合する。"
+        "id": "dmrp22-057",
+        "name": "ウチカタハジメ",
+        "reason": "水のタマシードをタップする代替詠唱を既存処理と照合する。"
       }
     ],
     "steps": [
@@ -203486,7 +203540,7 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。",
-      "候補の代替コストと続く能力を公式本文と裁定で照合する。実装に追加の共通処理が必要な場合は、他の候補も検討する。",
+      "候補の公式本文、画像、使用制限、再録、裁定を確認する。ペダンティック・ライフは既存の代替マナ支払いと任意処理、タップ代替は文明とエレメント種別を照合する。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と件数再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で登録再開。自動化 duema-deck-lab は10分間隔で稼働中。",

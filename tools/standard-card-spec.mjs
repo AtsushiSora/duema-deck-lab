@@ -2467,6 +2467,32 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1023&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
+  const text=normalize(f.abilityText);
+  const alternative={
+   'ペダンティック・アート':{
+    color:'水',cost:3,alternative:2,symbol:'ww02',
+    condition:'相手はカードを1枚引いてもよい。',body:'カードを2枚引く。',
+    first:{op:'OpponentOffer777',title:'カードを1枚引く？',defs:[{op:'Draw',n:1}]},
+    rest:{op:'Draw',n:2}
+   },
+   'ペダンティック・ガード':{
+    color:'光',cost:5,alternative:4,symbol:'ll04',
+    condition:'相手は自身の山札の上から1枚をシールド化してもよい。',body:'自分の山札の上から2枚をシールド化する。',
+    first:{op:'OpponentOffer777',title:'山札の上から1枚をシールド化する？',defs:[{op:'ShieldTop',n:1}]},
+    rest:{op:'ShieldTop',n:2,g779Simultaneous:true}
+   },
+   'ペダンティック・ニール':{
+    color:'闇',cost:5,alternative:4,symbol:'dd04',
+    condition:'自分の手札を1枚捨てる。',body:'相手の手札を2枚見ないで選び捨てさせる。',
+    first:{op:'Discard',owner:'self',n:1},rest:{op:'BlindDiscard773',n:2}
+   }
+  }[f.name];
+  if(alternative&&f.cost===alternative.cost&&f.civilizationText===alternative.color&&
+   text==='この呪文を['+alternative.symbol+']支払って唱えてもよい。そうしたら'+alternative.condition+alternative.body)
+   return {effect:'sixPhoto',g568Alt:{cost:alternative.alternative,paymentColors:[alternative.color],spell:[alternative.first]},
+    g34Tasks:[alternative.rest]};
+ }
  if(phase>=1022&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
   const text=normalize(f.abilityText);
   const whiteDragon='ボルメテウス・ホワイト・ドラゴン';
