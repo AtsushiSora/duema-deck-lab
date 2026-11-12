@@ -1737,8 +1737,12 @@ function battle(s,pa,a,pd,b,attackingUid=null,replaced=false,blockUntap,attackBa
  const ap=matchupPower(a,b,a.uid===attackingUid,s,b.uid===attackingUid)+bonus(a,pa),bp=matchupPower(b,a,b.uid===attackingUid,s,a.uid===attackingUid)+bonus(b,pd),late=[],forced=extra.beforeBattle(s,pa,a,pd,b);
  for(let n=0,count=slayerCount534(s,a,b);n<count;n++)late.push({controller:pa,player:pd,uid:b.uid,source:a.cardId});
  for(let n=0,count=slayerCount534(s,b,a);n<count;n++)late.push({controller:pd,player:pa,uid:a.uid,source:b.cardId});
- if(effectiveCard(a,s).afterBattleDie)late.push({controller:pa,player:pa,uid:a.uid,source:a.cardId,selfRefs:layers(a).map(y=>({uid:y.uid,incarnation:y.incarnation||0}))});
- if(effectiveCard(b,s).afterBattleDie)late.push({controller:pd,player:pd,uid:b.uid,source:b.cardId,selfRefs:layers(b).map(y=>({uid:y.uid,incarnation:y.incarnation||0}))});
+ for(const [player,unit] of [[pa,a],[pd,b]]){
+  const c=effectiveCard(unit,s);
+  if(c.afterBattleDie&&(!c.g1067NonEvolutionBattleDeath||!isEvolution(unit)))
+   late.push({controller:player,player,uid:unit.uid,source:unit.cardId,
+    selfRefs:layers(unit).map(y=>({uid:y.uid,incarnation:y.incarnation||0}))});
+ }
  for(const effect of (Array.isArray(blockUntap)?blockUntap:blockUntap?[blockUntap]:[])){
   const ref=effect.g715BlockerRef;
   // If a replacement changes the defender, only effects for a creature that actually battled resolve.

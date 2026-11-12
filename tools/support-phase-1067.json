@@ -1,0 +1,213 @@
+{
+  "phase": 1067,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7159,
+  "description": "山札の確認と複数体の登場、パワーによる攻撃制限、進化元の追加と回収、バトル後の条件付き破壊を公式4版で照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/31529/",
+    "https://dm.takaratomy.co.jp/rule/qa/31530/",
+    "https://dm.takaratomy.co.jp/rule/qa/33217/",
+    "https://dm.takaratomy.co.jp/rule/qa/40545/",
+    "https://dm.takaratomy.co.jp/rule/qa/46847/",
+    "https://dm.takaratomy.co.jp/rule/qa/48920/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp01-s09",
+      "name": "ハイパー・マスティン",
+      "faces": [
+        {
+          "name": "ハイパー・マスティン",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "NEO進化：自分の自然のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nT・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を見る。その中から、パワー12000以上の進化ではないクリーチャーを好きな数選び、バトルゾーンに出す。その後、残りを手札に加える。\n相手のパワー3000以下のクリーチャーは攻撃できない。",
+          "race": "グランセクト",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-s09",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-s09.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "LookDeploy530",
+            "n": 3,
+            "limit": "all",
+            "rest": "hand",
+            "g841DeckPeek": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "minPower": 12000
+            }
+          }
+        ],
+        "g1067OpponentAttackPowerMax": 3000
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "9cdaafdda6063600b43bfaa562f14b1cf7d7544eaf0ec0618155a74f78fbc746",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-033",
+      "name": "～時空の工兵～",
+      "faces": [
+        {
+          "name": "～時空の工兵～",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nNEO進化：光、水、または闇のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\n自分のターンの終わりに、自分の山札の上から１枚を表向きにしてこのクリーチャーの下に置いてもよい。\nこのクリーチャーが破壊された時、下にあったカードをすべて墓地から手札に戻す。",
+          "race": "グレートメカオー/スチーム・ナイト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-033",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-033.jpg",
+      "spec": {
+        "gStrike": true,
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "g172Death": [
+          {
+            "op": "RecoverAll326",
+            "origin": "grave",
+            "g960FormerBases": true
+          }
+        ],
+        "g174End": [
+          {
+            "op": "Offer",
+            "title": "山札の上から1枚を表向きにしてこのクリーチャーの下に置く？",
+            "g1067DeckBase": true,
+            "defs": [
+              {
+                "op": "DeckBase1067"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "2b9053f4804696dcce64662ac506ab874e2ca1086047c01c47bf1b8ecb33bae9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-073",
+      "name": "凶鬼64号 ジョキル",
+      "faces": [
+        {
+          "name": "凶鬼64号 ジョキル",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "NEO進化：自分の闇のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーがバトルする時、これが進化クリーチャーでなければ、バトルの後、このクリーチャーを破壊する。",
+          "race": "マフィ・ギャング",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-073",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-073.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "afterBattleDie": true,
+        "g1067NonEvolutionBattleDeath": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "a65f98597e0d3a1bfc48a2963199be841b76cf7e9b5e0bac6cc854088301c288",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25rp2-Sec19",
+      "name": "～時空の工兵～",
+      "faces": [
+        {
+          "name": "～時空の工兵～",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{GS} G・ストライク\nNEO進化：光、水、または闇のクリーチャー１体の上に置いてもよい。\n自分のターンの終わりに、自分の山札の上から１枚を表向きにしてこのクリーチャーの下に置いてもよい。\nこのクリーチャーが破壊された時、下にあったカードをすべて墓地から手札に戻す。",
+          "race": "グレートメカオー/スチーム・ナイト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-Sec19",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-Sec19.jpg",
+      "canonicalId": "dm25rp2-033",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "0bca7f98e62ee06ebb9f88293907f67182a3553a16077915380c42037f2d0d2a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp01-s09": 4,
+      "dm25rp2-033": 4,
+      "dmrp02-073": 4,
+      "dm25rp2-Sec19": 4
+    }
+  }
+}

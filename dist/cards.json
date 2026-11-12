@@ -213502,15 +213502,134 @@
       ],
       "supportBatch": "phase-1066",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp01-s09",
+      "name": "ハイパー・マスティン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 15000,
+      "race": "グランセクト",
+      "text": "NEO進化：自分の自然のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nT・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を見る。その中から、パワー12000以上の進化ではないクリーチャーを好きな数選び、バトルゾーンに出す。その後、残りを手札に加える。\n相手のパワー3000以下のクリーチャーは攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-s09",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "LookDeploy530",
+          "n": 3,
+          "limit": "all",
+          "rest": "hand",
+          "g841DeckPeek": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "minPower": 12000
+          }
+        }
+      ],
+      "g1067OpponentAttackPowerMax": 3000,
+      "supportBatch": "phase-1067",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-033",
+      "name": "～時空の工兵～",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "グレートメカオー/スチーム・ナイト",
+      "text": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nNEO進化：光、水、または闇のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\n自分のターンの終わりに、自分の山札の上から１枚を表向きにしてこのクリーチャーの下に置いてもよい。\nこのクリーチャーが破壊された時、下にあったカードをすべて墓地から手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-033",
+      "limit": 4,
+      "gStrike": true,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "g172Death": [
+        {
+          "op": "RecoverAll326",
+          "origin": "grave",
+          "g960FormerBases": true
+        }
+      ],
+      "g174End": [
+        {
+          "op": "Offer",
+          "title": "山札の上から1枚を表向きにしてこのクリーチャーの下に置く？",
+          "g1067DeckBase": true,
+          "defs": [
+            {
+              "op": "DeckBase1067"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1067",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp02-073",
+      "name": "凶鬼64号 ジョキル",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 5000,
+      "race": "マフィ・ギャング",
+      "text": "NEO進化：自分の闇のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーがバトルする時、これが進化クリーチャーでなければ、バトルの後、このクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-073",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "afterBattleDie": true,
+      "g1067NonEvolutionBattleDeath": true,
+      "supportBatch": "phase-1067",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1066,
+    "phase": 1067,
     "checkedAt": "2026-11-13",
-    "baseCount": 7155,
-    "newEffectCards": 4,
+    "baseCount": 7159,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7159,
+    "totalCount": 7162,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -232591,6 +232710,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7155,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1066,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7155,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7159,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

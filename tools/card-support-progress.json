@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7159,
-  "pendingNames": 4668,
-  "phase": 1066,
-  "added": 4,
+  "supportedNames": 7162,
+  "pendingNames": 4665,
+  "phase": 1067,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -155,7 +155,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 2700,
-    "NEOクリーチャー": 109,
+    "NEOクリーチャー": 106,
     "呪文": 605,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3231,
+    "未対応の能力文": 3228,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -207420,22 +207420,138 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1067,
+      "baseCommit": "0da09d43",
+      "cards": [
+        {
+          "id": "dmrp01-s09",
+          "name": "ハイパー・マスティン"
+        },
+        {
+          "id": "dm25rp2-033",
+          "name": "～時空の工兵～"
+        },
+        {
+          "id": "dmrp02-073",
+          "name": "凶鬼64号 ジョキル"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm25rp2-Sec19",
+          "canonicalId": "dm25rp2-033"
+        }
+      ],
+      "supportedNames": 7162,
+      "pendingNames": 4665,
+      "verification": {
+        "focusedPassed": 7,
+        "regressionPassed": 279,
+        "regressionFailed": 0,
+        "check": "成功",
+        "officialPrints": 4,
+        "scope": "3種類4版の公式能力全文、基本情報、画像、現行の使用制限と収録商品を照合。～時空の工兵～のシークレット版は既存の正規IDに統合。ハイパー・マスティンは非公開の山札上3枚、パワー12000以上の非進化の複数登場、残りの手札移動、T・ブレイカー、相手の現在パワー3000以下に対する攻撃制限を確認。工兵は任意の終了時能力、公開禁止、山札の移動先を変更する置換効果、破壊直前に下にあった物理カードだけの回収、G・ストライクを確認。ジョキルはバトルした場合に限る非進化時の自壊を確認。既存7,159件の対戦定義とIDが一致。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/31529/",
+          "https://dm.takaratomy.co.jp/rule/qa/31530/",
+          "https://dm.takaratomy.co.jp/rule/qa/33217/",
+          "https://dm.takaratomy.co.jp/rule/qa/40545/",
+          "https://dm.takaratomy.co.jp/rule/qa/46847/",
+          "https://dm.takaratomy.co.jp/rule/qa/48920/"
+        ],
+        "regressionFiles": [
+          "tests/neo-ddd.test.mjs",
+          "tests/standard525-effects.test.mjs",
+          "tests/standard530-effects.test.mjs",
+          "tests/standard593-effects.test.mjs",
+          "tests/standard749-effects.test.mjs",
+          "tests/standard841-effects.test.mjs",
+          "tests/standard871-effects.test.mjs",
+          "tests/standard960-effects.test.mjs",
+          "tests/standard1063-effects.test.mjs",
+          "tests/standard1066-effects.test.mjs"
+        ],
+        "regressionFilter": "--test-skip-pattern=mixed NEO/DDD games|production worker|random manual|new-card games against every|simulation worker|legal forty CPU|randomized",
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。 トットロの公式QA 48925の組み合わせは関連2枚が未対応のため未実行。NEO/DDDの100試合と再現性は過去に分割検証済みで、今回の回帰では合否未確認。 ゴルギー31相手の再現性と本番Worker62試合は今回も対象外で未実行。前回の広範囲回帰に含まれる1,796件固定の既存テストの結果はPhase 1060を参照。 PhoenixのCPU連戦と本番Worker試験は、今回の個別回帰の対象外。 Phase 1064ではNEO/DDD 100試合とBandeの全対戦・ランダム操作・Workerの長時間ケースを個別回帰から除外。以前の長時間実行を繰り返さず、今回の合否は未確認。 Phase 1065の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1066の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1067の個別回帰でもNEO/DDD 100試合は対象外。",
+        "pendingInteractions": [
+          {
+            "cardIds": [
+              "dm25rp3-039",
+              "dm26rp2-006",
+              "dm25rp2-OR1"
+            ],
+            "test": "デンジャラス=トットロの上にメモッタで封印付きのジャシン＝ヴリドガルドが出る場合の墓地展開",
+            "status": "未実行",
+            "reason": "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/48925/"
+          }
+        ],
+        "logs": {
+          "official": "/tmp/duema-phase-1067.TPFRQp18/manifest.log",
+          "officialImages": "/tmp/duema-phase-1067.TPFRQp18/sources-final.log",
+          "deferredSources": "/tmp/duema-phase-1067.TPFRQp18/steam.log",
+          "focused": "/tmp/duema-phase-1067.TPFRQp18/specific-final.log",
+          "regression": "/tmp/duema-phase-1067.TPFRQp18/related-final.log",
+          "check": "/tmp/duema-phase-1067.TPFRQp18/check-final.log",
+          "audit": "/tmp/duema-phase-1067.TPFRQp18/audit.log",
+          "count": "/tmp/duema-phase-1067.TPFRQp18/count.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dm25rp3-015",
+          "name": "～禁じられた蒸熱～",
+          "reason": "通常版とシークレット版の公式全文・画像・収録を確認。既存の山札ロックは見る・表向きにする処理に加えて並べ替えやシャッフルも抑えるため、このカードの禁止範囲に合わせた分離と回帰テストが必要。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-015",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-Sec16"
+          ]
+        },
+        {
+          "id": "dmrp03-006",
+          "name": "ジャババ・ハット",
+          "reason": "公式本文・基本情報・画像・単一収録を確認。攻撃時に登録した自壊と、破壊以外でも墓地に置かれた時の再登場を、直前の進化状態と同じ物理カードの墓地滞在で判定する処理が残る。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-006"
+          ]
+        },
+        {
+          "id": "dmrp07-034",
+          "name": "頑固水産 ガンパチ",
+          "reason": "公式本文・基本情報・画像・単一収録を確認。ブロックされなくなる能力は既存処理で再現できるが、その攻撃中に自身が実際にブレイクしたかを、ブレイク置換や別のクリーチャーによるブレイクから区別する経路の確認が残る。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-034"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1066,
-    "nextPhase": 1067,
+    "lastVerifiedPhase": 1067,
+    "nextPhase": 1068,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dmrp01-s09",
-        "name": "ハイパー・マスティン",
-        "reason": "公式本文と再録を確認し、山札上の複数体登場とパワー3000以下の相手クリーチャーへの攻撃制限を照合する。"
+        "id": "dm25rp3-034",
+        "name": "～卿騒の蒸気大作戦～",
+        "reason": "このターンに使った非クリーチャーの記録と、DDDを含む召喚コストの適用範囲を公式資料で確認する。"
       },
       {
-        "id": "dm25rp2-033",
-        "name": "～時空の工兵～",
-        "reason": "ターン終了時の公開カードの追加と、破壊直前に下にあった物理カードすべての回収を確認する。"
+        "id": "dm25rp3-029",
+        "name": "試算の妖精",
+        "reason": "山札から手札以外への移動を制限する範囲と置換効果の順序を公式資料で確認する。"
+      },
+      {
+        "id": "dm25rp3-015",
+        "name": "～禁じられた蒸熱～",
+        "reason": "通常版とシークレット版の公式全文・画像・収録を確認。既存の山札ロックは見る・表向きにする処理に加えて並べ替えやシャッフルも抑えるため、このカードの禁止範囲に合わせた分離と回帰テストが必要。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-015",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-Sec16"
+        ]
       },
       {
         "id": "dmrp03-006",
@@ -207676,7 +207792,7 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
-      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。攻撃時の任意登場と攻撃制限、進化元にあったカードの墓地回収、攻撃中の実際のブレイクを確認する。",
+      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。非クリーチャーを使ったターンの召喚軽減と、山札移動の禁止範囲を確認する。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で登録再開。自動化 duema-deck-lab は10分間隔で稼働中。",

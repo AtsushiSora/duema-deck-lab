@@ -2602,6 +2602,24 @@ export function createSixPhotoRules(api){
  case'g34_ReturnBases939':returnBases939(s,t);break;
  case'g34_Lose975':api.finish(s,1-t.p,card(t.source).name+'：自分のクリーチャーがこのクリーチャーだけなので敗北','loss');break;
  case'g34_Win871':api.finish(s,t.p,card(t.source).name+'：'+(t.reason||'自分の同名クリーチャーが4体揃って勝利'));break;
+ case'g34_DeckBase1067':{
+  const host=sourceHost474(s,t);
+  if(!host||host.x.sealed||!api.isCreature(s,host.x))break;
+  const top=api.takeTop(s,t.p);
+  if(!top)break;
+  // Rule 101.3: the known top position still identifies the card if revealing is prohibited.
+  if(!api.deckLocked(s,t.p))
+   api.log(s,t.p,'reveal',card(t.source).name+'：山札の上を公開：'+card(top).name,{cardId:top.cardId});
+  if(api.deckRedirect(s)){
+   clear(top,'grave');
+   api.addZone(s,t.p,'grave',top);
+  }else{
+   clear(top,'under');
+   (host.x.under??=[]).push(top);
+  }
+  api.deckCheck(s,t.p);
+  break;
+ }
  case'g34_MeteorReload871':{
   const host=sourceHost474(s,t);
   if(host&&!host.x.sealed&&api.isCreature(s,host.x)){
@@ -2968,6 +2986,12 @@ export function createSixPhotoRules(api){
  }
  case'g34_AfterAttackDestroy':if(s.attackLifecycle)(s.attackLifecycle.g176Deaths??=[]).push({p:t.p,uid:t.uid,incarnation:t.incarnation||0,source:t.source});break;
  case'g34_Offer':{
+  if(t.g1067DeckBase){
+   const host=sourceHost474(s,t);
+   if(!host||host.x.sealed||!api.isCreature(s,host.x)||!own.deck.length)break;
+   choice(s,t,t.title,[opt('下に置く',true,own.deck.length>1&&!api.deckRedirect(s)?10:-1000),skip()]);
+   break;
+  }
   if(t.g1042LookFirst&&(!own.deck.length||api.deckLocked(s,t.p)))break;
   if(t.g792Once&&(used792(s,t,t)||!own.deck.length))break;
   if(t.g790CreatureBreak){
@@ -5921,8 +5945,10 @@ weakerBlock569(s,a,b){const p=s.players.findIndex(own=>own.battle.includes(a));i
 attackPower593(s,p,x,playerOnly){
  const locks=(s.extLimits||[]).filter(l=>l.kind==='g593AttackPower'&&l.playerOnly===playerOnly&&
   (l.player===null||l.player===p)&&(l.ref||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})));
- if(!locks.length||creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks))return false;
+ const sources=playerOnly?[]:s.players[1-p].battle.filter(y=>!y.sealed&&card(y).g1067OpponentAttackPowerMax!==undefined&&api.isCreature(s,y));
+ if(!locks.length&&!sources.length||creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks))return false;
  const attackerPower=api.power(x,false,s);
+ if(sources.some(y=>attackerPower<=effective(y,s).g1067OpponentAttackPowerMax))return true;
  return locks.some(l=>{
   if(!l.ref)return attackerPower<=l.max;
   const host=sourceHost474(s,l.ref)?.x;

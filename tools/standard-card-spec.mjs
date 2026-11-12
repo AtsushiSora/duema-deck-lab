@@ -9485,6 +9485,31 @@ export function standardCardSpec(d,{phase=165}={}){
    spec.g397Shinka=defs;
    continue;
   }
+  if(phase>=1067&&f.typeText==='NEOクリーチャー'){
+   if(line==='このクリーチャーが攻撃する時自分の山札の上から3枚を見る。その中からパワー12000以上の進化ではないクリーチャーを好きな数選びバトルゾーンに出す。その後残りを手札に加える。'){
+    (spec.g34Attack??=[]).push({op:'LookDeploy530',n:3,limit:'all',rest:'hand',g841DeckPeek:true,
+     filter:{creature:true,nonEvolution:true,minPower:12000}});
+    continue;
+   }
+   if(line==='相手のパワー3000以下のクリーチャーは攻撃できない。'){
+    spec.g1067OpponentAttackPowerMax=3000;
+    continue;
+   }
+   if(line==='自分のターンの終わりに自分の山札の上から1枚を表向きにしてこのクリーチャーの下に置いてもよい。'){
+    turnEnd.push({op:'Offer',title:'山札の上から1枚を表向きにしてこのクリーチャーの下に置く？',
+     g1067DeckBase:true,defs:[{op:'DeckBase1067'}]});
+    continue;
+   }
+   if(line==='このクリーチャーが破壊された時下にあったカードをすべて墓地から手札に戻す。'){
+    death.push({op:'RecoverAll326',origin:'grave',g960FormerBases:true});
+    continue;
+   }
+   if(line==='このクリーチャーがバトルする時これが進化クリーチャーでなければバトルの後このクリーチャーを破壊する。'){
+    spec.afterBattleDie=true;
+    spec.g1067NonEvolutionBattleDeath=true;
+    continue;
+   }
+  }
   if(phase>=1066&&f.typeText==='NEOクリーチャー'){
    if(line==='NEO進化:クリーチャー1体の上に置いてもよい。'){
     if(spec.neoEvolution)throw Error('NEO進化条件の重複');
