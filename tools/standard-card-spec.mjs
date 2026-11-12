@@ -9725,6 +9725,29 @@ export function standardCardSpec(d,{phase=165}={}){
     continue;
    }
   }
+  if(phase>=1078&&creature){
+   const defs={
+    'このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時文明をひとつ選ぶ。相手は手札を見せ選ばれた文明のカードをすべて捨てる。その後相手が捨てた手札の枚数だけ自分のシールドを見てもよい。':[
+     {op:'ChooseCivilization805',g1078Discard:true}
+    ],
+    'このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時カードを3枚引き相手の手札を3枚見ないで選び捨てさせ相手のパワー6000以下のクリーチャーを1体破壊してもよい。':[
+     {op:'Offer',title:'3枚引き、相手の手札を3枚捨てさせ、パワー6000以下の相手クリーチャーを1体破壊する？',
+      defs:[{op:'Draw',n:3},{op:'Discard',n:3,random:true},{op:'Target',filter:{maxPower:6000},to:'grave',destroy:true}]}
+    ]
+   }[line];
+   if(defs){
+    if(spec.g1076UnblockedWatch)throw Error('重複する非ブロック時能力');
+    spec.g1076UnblockedWatch={self:true,defs};
+    continue;
+   }
+   if(evolution&&line==='アクセル(このクリーチャーにクロスギアがクロスされている時このクリーチャーは次のa能力を得る)aこのクリーチャーが相手プレイヤーを攻撃してブロックされなかった時そのターンの終わりまでバトルゾーンにある自分のクリーチャーはすべて「スピードアタッカー」を得る。'){
+    if(spec.g260Self)throw Error('重複するアクセル能力');
+    spec.g260Self={filter:{g436Crossed:true},grants:{g1076UnblockedWatch:{self:true,defs:[
+     {op:'GroupGrant364',owner:'self',filter:{creature:true},grant:{speedAttacker:true}}
+    ]}}};
+    continue;
+   }
+  }
   if(phase>=1077&&creature){
    if([
     'このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時ドラゴンを1体自分の手札からバトルゾーンに出してもよい。',

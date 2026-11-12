@@ -2710,6 +2710,10 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_ChooseCivilization805':{
+  if(t.g1078Discard){
+   choice(s,t,'捨てさせる手札の文明を選ぶ',civilizations805.map(color=>opt(color,color,0)));
+   break;
+  }
   if(t.g924DepthReveal){
    choice(s,t,'水以外の文明を選ぶ',civilizations805.filter(color=>color!=='水').map(color=>opt(color,color,0)));
    break;
@@ -2941,6 +2945,16 @@ export function createSixPhotoRules(api){
   const rows=peekRows585(s,t);
   if(t.all){showPeek585(s,t,rows);break;}
   if(!rows.length)break;
+  if(t.g1078Exact){
+   const selected=t.selected||[],count=Math.min(t.n,rows.length);
+   if(selected.length===count){showPeek585(s,t,rows.filter(({x})=>selected.includes(x.uid)));break;}
+   choice(s,t,'確認するシールドを'+count+'つ選ぶ（'+selected.length+'つ選択済み）',[
+    ...rows.filter(({x})=>!selected.includes(x.uid)).map(({x,label})=>
+     opt(label+(x.faceUp?'：'+card(x).name:''),x.uid,x.faceUp?1:5,x.faceUp?x.cardId:undefined)),
+    ...(!selected.length?[opt('見ない',null,0)]:[])
+   ]);
+   break;
+  }
   choice(s,t,t.cardOnly?'確認するシールドカードを1枚選ぶ':'確認するシールドを1つ選ぶ',[
    ...rows.map(({x,p,label,seen})=>opt(label+(x.faceUp?'：'+card(x).name:''),{uid:x.uid,player:p,origin:'shields'},t.viewed?.includes(x.uid)?-5:seen.some(y=>!y.faceUp)?5:1,x.faceUp?x.cardId:undefined)),
    ...(t.viewed?.length?[opt('これ以上選ばない',null,0)]:t.optional?[opt('見ない',null,0)]:[])
@@ -4166,7 +4180,10 @@ export function createSixPhotoRules(api){
    put(s,{...t,op:'g34_Order',rest:'shuffle'});
   }else put(s,v?{...t,selected:[...t.selected,v]}:{...t,done:true});
   break;
- case'g34_Peek585':if(v){const row=peekRows585(s,t).find(r=>r.p===v.player&&r.x.uid===v.uid);if(row)showPeek585(s,{...t,viewed:[...(t.viewed||[]),v.uid]},[row]);}break;
+ case'g34_Peek585':
+  if(v&&t.g1078Exact)put(s,{...t,selected:[...(t.selected||[]),v]});
+  else if(v){const row=peekRows585(s,t).find(r=>r.p===v.player&&r.x.uid===v.uid);if(row)showPeek585(s,{...t,viewed:[...(t.viewed||[]),v.uid]},[row]);}
+  break;
  case'g34_PeekRead585':
   if(v&&api.swapShield585(s,t.p,t.shieldUid))api.log(s,t.p,'shieldSwap',card(t.source).name+'：確認したカードと山札の上を入れ替えた',{cardId:t.source});
   if(t.remaining>1){const {g585Peek,shieldUid,...next}=t;put(s,{...next,op:'g34_Peek585',remaining:t.remaining-1});}
@@ -4219,6 +4236,14 @@ export function createSixPhotoRules(api){
   break;
  case'g34_ShieldExchange446':{const y=v&&own.hand.find(y=>y.uid===v);if(y)zoneMove(s,t.p,'hand',y.uid,'shields',t);if(!t.optional||y)put(s,{...t,op:'g34_ShieldHand',g238ShieldHand:true});break;}
  case'g34_ChooseCivilization805':
+  if(t.g1078Discard){
+   const owner=1-t.p,hand=s.players[owner].hand;
+   api.log(s,owner,'reveal','手札を公開：'+(hand.map(y=>card(y).name).join('・')||'なし'),{cardId:t.source});
+   const ids=hand.filter(y=>faces(api.zoneCard(s,owner,y,'hand')).some(face=>colors(face).includes(v))).map(y=>y.uid);
+   if(ids.length)api.discardSelected(s,owner,ids,t.source,t.p,null,null,
+    task('g34_Peek585',t.p,t.source,{who:'self',g1078Exact:true}));
+   break;
+  }
   if(t.g924DepthReveal){
    start(s,t,[{op:'Look',n:2,public:true,rest:'bottom',
     stages:[{n:'all',allMatches:true,to:'hand',filter:{anyFaceColor:v}}]}]);

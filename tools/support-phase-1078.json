@@ -1,0 +1,280 @@
+{
+  "phase": 1078,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7198,
+  "description": "非ブロック時の手札破棄、シールド確認、アクセルによるスピードアタッカー付与を照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35564/",
+    "https://dm.takaratomy.co.jp/rule/qa/44385/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37504/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36047/"
+  ],
+  "cards": [
+    {
+      "id": "dm24-035",
+      "name": "神滅海王グラン・ベルゼ",
+      "faces": [
+        {
+          "name": "神滅海王グラン・ベルゼ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、文明をひとつ選ぶ。相手は手札を見せ、選ばれた文明のカードをすべて捨てる。その後、相手が捨てた手札の枚数だけ、自分のシールドを見てもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ポセイディア・ドラゴン/ドラゴン・ゾンビ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-035",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-035.jpg",
+      "spec": {
+        "g1076UnblockedWatch": {
+          "self": true,
+          "defs": [
+            {
+              "op": "ChooseCivilization805",
+              "g1078Discard": true
+            }
+          ]
+        },
+        "breaker": 2
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "bffedf9d9ff567d4a619d6f45058a1ce6ff5188045bd9eea8a7c2aae3c0f47a5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25-s05",
+      "name": "極仙龍バイオレンス・サンダー",
+      "faces": [
+        {
+          "name": "極仙龍バイオレンス・サンダー",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水/闇/火",
+          "civilizations": [
+            "水",
+            "闇",
+            "火"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分の多色クリーチャー１体の上に置く。\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、カードを３枚引き、相手の手札を３枚見ないで選び捨てさせ、相手のパワー6000以下のクリーチャーを１体破壊してもよい。\nT・ブレイカー",
+          "race": "ポセイディア・ドラゴン/ドラゴン・ゾンビ/アーマード・ドラゴン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-s05",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25-s05.jpg",
+      "spec": {
+        "evolution": {
+          "multicolor": true
+        },
+        "g1076UnblockedWatch": {
+          "self": true,
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "3枚引き、相手の手札を3枚捨てさせ、パワー6000以下の相手クリーチャーを1体破壊する？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 3
+                },
+                {
+                  "op": "Discard",
+                  "n": 3,
+                  "random": true
+                },
+                {
+                  "op": "Target",
+                  "filter": {
+                    "maxPower": 6000
+                  },
+                  "to": "grave",
+                  "destroy": true
+                }
+              ]
+            }
+          ]
+        },
+        "breaker": 3
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "9a42ec5d87096afb0eaf2c6def18552d7296ab63589aafce7e8539f6ec0dcd11",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy4-011",
+      "name": "神風ゼファー",
+      "faces": [
+        {
+          "name": "神風ゼファー",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "進化-自分のフェザーノイド１体の上に置く。\nW・ブレイカー\nアクセル（このクリーチャーにクロスギアがクロスされている時、このクリーチャーは次の a 能力を得る） a このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、そのターンの終わりまで、バトルゾーンにある自分のクリーチャーはすべて「スピードアタッカー」を得る。",
+          "race": "フェザーノイド",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy4-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy4-011.jpg",
+      "spec": {
+        "evolution": {
+          "race": "フェザーノイド"
+        },
+        "breaker": 2,
+        "g260Self": {
+          "filter": {
+            "g436Crossed": true
+          },
+          "grants": {
+            "g1076UnblockedWatch": {
+              "self": true,
+              "defs": [
+                {
+                  "op": "GroupGrant364",
+                  "owner": "self",
+                  "filter": {
+                    "creature": true
+                  },
+                  "grant": {
+                    "speedAttacker": true
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "12ef38825920095f793884a15003eaaa459666068563ca6e28b685af5ed98579",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc44-030",
+      "name": "神滅海王グラン・ベルゼ",
+      "faces": [
+        {
+          "name": "神滅海王グラン・ベルゼ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、文明をひとつ選ぶ。相手は手札を見せ、選ばれた文明のカードをすべて捨てる。その後、相手が捨てた手札の枚数だけ、自分のシールドを見てもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ポセイディア・ドラゴン/ドラゴン・ゾンビ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc44-030",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc44-030.jpg",
+      "canonicalId": "dm24-035",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "4ffcc0a5790eabfd427ce4bf0ad73d262d238401588d04e6f8fab31818b82e45",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc55-026",
+      "name": "極仙龍バイオレンス・サンダー",
+      "faces": [
+        {
+          "name": "極仙龍バイオレンス・サンダー",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水/闇/火",
+          "civilizations": [
+            "水",
+            "闇",
+            "火"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分の多色クリーチャー１体の上に置く。\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、カードを３枚引き、相手の手札を３枚見ないで選び捨てさせ、相手のパワー6000以下のクリーチャーを１体破壊してもよい。\nT・ブレイカー",
+          "race": "ポセイディア・ドラゴン/ドラゴン・ゾンビ/アーマード・ドラゴン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc55-026",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc55-026.jpg",
+      "canonicalId": "dm25-s05",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "2e9bbd734906f155267389d33008eb4f5916968043cb15b60079fba003b1b5cc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc66-023",
+      "name": "極仙龍バイオレンス・サンダー",
+      "faces": [
+        {
+          "name": "極仙龍バイオレンス・サンダー",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水/闇/火",
+          "civilizations": [
+            "水",
+            "闇",
+            "火"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分の多色クリーチャー１体の上に置く。\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、カードを３枚引き、相手の手札を３枚見ないで選び捨てさせ、相手のパワー6000以下のクリーチャーを１体破壊してもよい。\nT・ブレイカー",
+          "race": "ポセイディア・ドラゴン/ドラゴン・ゾンビ/アーマード・ドラゴン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc66-023",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc66-023.jpg",
+      "canonicalId": "dm25-s05",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "5faf8e28c6d1ea86b67fab4fe304c69e0948bc5431d631bd8a776bf8889e1c9d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24-035": 4,
+      "dm25-s05": 4,
+      "promoy4-011": 4,
+      "dmc44-030": 4,
+      "dmc55-026": 4,
+      "dmc66-023": 4
+    }
+  }
+}

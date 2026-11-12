@@ -214949,15 +214949,140 @@
       ],
       "supportBatch": "phase-1077",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24-035",
+      "name": "神滅海王グラン・ベルゼ",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "ポセイディア・ドラゴン/ドラゴン・ゾンビ",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、文明をひとつ選ぶ。相手は手札を見せ、選ばれた文明のカードをすべて捨てる。その後、相手が捨てた手札の枚数だけ、自分のシールドを見てもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-035",
+      "limit": 4,
+      "g1076UnblockedWatch": {
+        "self": true,
+        "defs": [
+          {
+            "op": "ChooseCivilization805",
+            "g1078Discard": true
+          }
+        ]
+      },
+      "breaker": 2,
+      "supportBatch": "phase-1078",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25-s05",
+      "name": "極仙龍バイオレンス・サンダー",
+      "civ": "水/闇/火",
+      "civilizations": [
+        "水",
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 12000,
+      "race": "ポセイディア・ドラゴン/ドラゴン・ゾンビ/アーマード・ドラゴン",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分の多色クリーチャー１体の上に置く。\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、カードを３枚引き、相手の手札を３枚見ないで選び捨てさせ、相手のパワー6000以下のクリーチャーを１体破壊してもよい。\nT・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-s05",
+      "limit": 4,
+      "evolution": {
+        "multicolor": true
+      },
+      "g1076UnblockedWatch": {
+        "self": true,
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "3枚引き、相手の手札を3枚捨てさせ、パワー6000以下の相手クリーチャーを1体破壊する？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 3
+              },
+              {
+                "op": "Discard",
+                "n": 3,
+                "random": true
+              },
+              {
+                "op": "Target",
+                "filter": {
+                  "maxPower": 6000
+                },
+                "to": "grave",
+                "destroy": true
+              }
+            ]
+          }
+        ]
+      },
+      "breaker": 3,
+      "supportBatch": "phase-1078",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy4-011",
+      "name": "神風ゼファー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 7000,
+      "race": "フェザーノイド",
+      "text": "進化-自分のフェザーノイド１体の上に置く。\nW・ブレイカー\nアクセル（このクリーチャーにクロスギアがクロスされている時、このクリーチャーは次の a 能力を得る） a このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、そのターンの終わりまで、バトルゾーンにある自分のクリーチャーはすべて「スピードアタッカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy4-011",
+      "limit": 4,
+      "evolution": {
+        "race": "フェザーノイド"
+      },
+      "breaker": 2,
+      "g260Self": {
+        "filter": {
+          "g436Crossed": true
+        },
+        "grants": {
+          "g1076UnblockedWatch": {
+            "self": true,
+            "defs": [
+              {
+                "op": "GroupGrant364",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                },
+                "grant": {
+                  "speedAttacker": true
+                }
+              }
+            ]
+          }
+        }
+      },
+      "supportBatch": "phase-1078",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1077,
+    "phase": 1078,
     "checkedAt": "2026-11-13",
-    "baseCount": 7195,
+    "baseCount": 7198,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7198,
+    "totalCount": 7201,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -234170,6 +234295,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7195,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1077,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7195,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7198,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

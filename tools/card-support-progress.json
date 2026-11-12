@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7198,
-  "pendingNames": 4629,
-  "phase": 1077,
+  "supportedNames": 7201,
+  "pendingNames": 4626,
+  "phase": 1078,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2694,
+    "クリーチャー": 2693,
     "NEOクリーチャー": 89,
     "呪文": 605,
     "GRクリーチャー": 159,
@@ -162,7 +162,7 @@
     "タマシード": 57,
     "デュエルメイト呪文": 10,
     "S-MAX進化クリーチャー": 10,
-    "進化クリーチャー": 266,
+    "進化クリーチャー": 264,
     "スター進化クリーチャー": 68,
     "進化クリーチャー(超無限進化・Ω)": 1,
     "ギガ・オレガ・オーラ": 2,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3194,
+    "未対応の能力文": 3193,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -253,8 +253,8 @@
     "未対応のアバレチェーン": 3,
     "未対応のG城能力": 10,
     "未対応のS・トリガー・プラス能力": 2,
-    "未対応の非ブロック時能力": 3,
     "独立した誘発能力の順序対応が必要": 9,
+    "未対応の非ブロック時能力": 1,
     "選択能力の不足": 1,
     "特殊なパワー": 1,
     "未対応のアンタップ能力": 1,
@@ -602,20 +602,6 @@
         "name": "極凰呪文「バドフレア」"
       }
     ],
-    "未対応の非ブロック時能力": [
-      {
-        "id": "dm25-s05",
-        "name": "極仙龍バイオレンス・サンダー"
-      },
-      {
-        "id": "dm24-035",
-        "name": "神滅海王グラン・ベルゼ"
-      },
-      {
-        "id": "dm09-004",
-        "name": "聖剣炎獣バーレスク"
-      }
-    ],
     "独立した誘発能力の順序対応が必要": [
       {
         "id": "dmbd14-014",
@@ -628,6 +614,12 @@
       {
         "id": "dmex17-032",
         "name": "超罪龍覇 ボロフHELL"
+      }
+    ],
+    "未対応の非ブロック時能力": [
+      {
+        "id": "dm09-004",
+        "name": "聖剣炎獣バーレスク"
       }
     ],
     "選択能力の不足": [
@@ -208828,35 +208820,164 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1078,
+      "baseCommit": "46fbab49",
+      "cards": [
+        {
+          "id": "dm24-035",
+          "name": "神滅海王グラン・ベルゼ"
+        },
+        {
+          "id": "dm25-s05",
+          "name": "極仙龍バイオレンス・サンダー"
+        },
+        {
+          "id": "promoy4-011",
+          "name": "神風ゼファー"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dmc44-030",
+          "canonicalId": "dm24-035"
+        },
+        {
+          "id": "dmc55-026",
+          "canonicalId": "dm25-s05"
+        },
+        {
+          "id": "dmc66-023",
+          "canonicalId": "dm25-s05"
+        }
+      ],
+      "supportedNames": 7201,
+      "pendingNames": 4626,
+      "verification": {
+        "focusedPassed": 6,
+        "regressionPassed": 301,
+        "regressionFailed": 0,
+        "check": "成功",
+        "officialPrints": 6,
+        "scope": "3種類6版の公式能力全文・基本情報・画像・収録・使用制限を照合。グラン・ベルゼは文明を指定してから相手の手札を公開し、該当するカードを捨てさせ、置換後の実枚数分だけ自分の盾束を非公開で確認できる。バイオレンス・サンダーは多色から進化し、非ブロック時のドロー、非公開の手札破棄、パワー6000以下の破壊を一括で任意選択し、ブレイク前に順に解決。手札が少ない場合と破壊先がない場合を検証。神風ゼファーはフェザーノイドから進化し、アクセルが有効なら非ブロック時にその時点の自軍にターン終了までスピードアタッカーを付与。再録3版は元の対戦IDに紐づけ、既存7,198件の対戦定義と既存の別名対応を照合。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35564/",
+          "https://dm.takaratomy.co.jp/rule/qa/44385/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37504/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36047/"
+        ],
+        "regressionFiles": [
+          "tests/neo-ddd.test.mjs",
+          "tests/standard364-effects.test.mjs",
+          "tests/standard436-effects.test.mjs",
+          "tests/standard482-effects.test.mjs",
+          "tests/standard585-effects.test.mjs",
+          "tests/standard805-effects.test.mjs",
+          "tests/standard848-effects.test.mjs",
+          "tests/standard1076-effects.test.mjs",
+          "tests/standard1077-effects.test.mjs"
+        ],
+        "regressionFilter": "--test-skip-pattern=mixed NEO/DDD games|legal forty CPU game",
+        "incompleteRegression": [
+          {
+            "file": "tests/neo-ddd.test.mjs",
+            "test": "mixed NEO/DDD games conserve all eighty unique cards through every action and finish with reproducible seeds",
+            "status": "今回未実行",
+            "reason": "以前に分割検証した100対戦。長時間実行の繰り返しを避けるため今回の個別回帰から除外。"
+          },
+          {
+            "file": "tests/standard482-effects.test.mjs",
+            "test": "legal forty CPU game with saved continuation and 80 conserved cards（2件）",
+            "status": "今回未実行",
+            "reason": "CPU対戦完走を伴うケースを除外し、非ブロック時能力の個別回帰を実行。"
+          }
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。 トットロの公式QA 48925の組み合わせは関連2枚が未対応のため未実行。NEO/DDDの100試合と再現性は過去に分割検証済みで、今回の回帰では合否未確認。 ゴルギー31相手の再現性と本番Worker62試合は今回も対象外で未実行。前回の広範囲回帰に含まれる1,796件固定の既存テストの結果はPhase 1060を参照。 PhoenixのCPU連戦と本番Worker試験は、今回の個別回帰の対象外。 Phase 1064ではNEO/DDD 100試合とBandeの全対戦・ランダム操作・Workerの長時間ケースを個別回帰から除外。以前の長時間実行を繰り返さず、今回の合否は未確認。 Phase 1065の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1066の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1067の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1068の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1069の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1070の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1071の個別回帰でも長時間のNEO/DDD 100試合は対象外。 Phase 1072の個別回帰でも長時間のNEO/DDD 100試合は対象外。 Phase 1073の個別回帰でも長時間のNEO/DDD 100試合は対象外。 Phase 1074で今回未実行または中断した長時間回帰は同履歴のincompleteRegressionを参照。 Phase 1075の回帰でもNEO/DDD 100対戦は対象外。前回のソウル・進化・ドラゴン100対戦の中断記録を引き継ぐ。 Phase 1076で対象外の長時間回帰は同履歴のincompleteRegressionを参照。 Phase 1077で対象外の長時間回帰は同履歴のincompleteRegressionを参照。 Phase 1078で対象外の長時間回帰は同履歴のincompleteRegressionを参照。",
+        "pendingInteractions": [
+          {
+            "cardIds": [
+              "dm25rp3-039",
+              "dm26rp2-006",
+              "dm25rp2-OR1"
+            ],
+            "test": "デンジャラス=トットロの上にメモッタで封印付きのジャシン＝ヴリドガルドが出る場合の墓地展開",
+            "status": "未実行",
+            "reason": "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/48925/"
+          }
+        ],
+        "logs": {
+          "official": "/tmp/duema-phase-1078.5aSTYD/manifest.log",
+          "officialImages": "/tmp/duema-phase-1078.5aSTYD/sources.log",
+          "reprints": "/tmp/duema-phase-1078.5aSTYD/reprints.log",
+          "imageIndex": "/tmp/duema-phase-1078.5aSTYD/images.log",
+          "focused": "/tmp/duema-phase-1078.5aSTYD/specific-final.log",
+          "regression": "/tmp/duema-phase-1078.5aSTYD/related.log",
+          "check": "/tmp/duema-phase-1078.5aSTYD/check-final.log",
+          "audit": "/tmp/duema-phase-1078.5aSTYD/audit.log",
+          "count": "/tmp/duema-phase-1078.5aSTYD/count.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dm25rp2-001",
+          "name": "Celeb k’Reine",
+          "reason": "複数体の同時タップと、本人が出る前に相手がタップしていた場合の各ターン最初の誘発を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-001",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp2001"
+          ]
+        },
+        {
+          "id": "dmrp02-010",
+          "name": "ベジタバッタ・パンツァー",
+          "reason": "攻撃できる対象の優先と、効果によるバトルも含めて両方のクリーチャーをマナに置く任意置換を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-010",
+            "https://dm.takaratomy.co.jp/coverage/dmscs01_f03/"
+          ]
+        },
+        {
+          "id": "dm25rp2-019",
+          "name": "魔誕盗掘男",
+          "reason": "手札以外からの召喚コストの加算対象と、総合ルール509.3で選んだシールドごとの任意ドローの誘発順を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-019",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-018"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1077,
-    "nextPhase": 1078,
+    "lastVerifiedPhase": 1078,
+    "nextPhase": 1079,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm24-035",
-        "name": "神滅海王グラン・ベルゼ",
-        "reason": "非ブロック時に選んだ文明を含む手札の同時破棄と、実際に捨てた枚数を参照するシールド確認を照合する。",
+        "id": "dmx26-005",
+        "name": "神曲の法皇 ミラダンテ",
+        "reason": "相手の攻撃がブロックされない場合に、その攻撃の終了処理と待機中の効果を済ませてターンを終える裁定と、光のクリーチャーの数を参照する離脱置換を確認する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm24-035"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmx26-005"
         ]
       },
       {
-        "id": "dm25-s05",
-        "name": "極仙龍バイオレンス・サンダー",
-        "reason": "多色進化と、ドロー、非公開の手札破棄、破壊の各処理の順序と任意範囲を確認する。",
+        "id": "dm25-018",
+        "name": "闘神タウロス",
+        "reason": "リンク中の種族と、同じ種族を持つ他の攻撃クリーチャーへのターン中の追加ブレイクを確認する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm25-s05"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25-018"
         ]
       },
       {
-        "id": "promoy4-011",
-        "name": "神風ゼファー",
-        "reason": "クロスギアの有無を非ブロック時に参照し、その時点の自軍へのスピードアタッカー付与を既存処理で照合する。",
+        "id": "promoy7-022",
+        "name": "武装竜鬼バルガゼニガタ",
+        "reason": "アクセルが有効な非ブロック時に手札から進化以外のサムライを出す処理と、再録を確認する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=promoy4-011"
+          "https://dm.takaratomy.co.jp/card/detail/?id=promoy7-022"
         ]
       },
       {
@@ -209185,7 +209306,7 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
-      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。非ブロック時の手札破棄とシールド確認、複数効果の任意範囲、アクセルの有効条件を既存処理と照合する。",
+      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。非ブロック時のターン終了予約、G・リンク時の種族とブレイク増加、アクセルによる手札展開を既存処理と照合する。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で登録再開。自動化 duema-deck-lab は10分間隔で稼働中。",
