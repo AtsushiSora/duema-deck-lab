@@ -3533,6 +3533,10 @@ export function standardCardSpec(d,{phase=165}={}){
   if(['進化クリーチャー(究極進化)','進化クリーチャー'].includes(f.typeText)&&text.replace('W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)','W・ブレイカー')==='究極進化-自分の光の進化クリーチャー1体の上に置く。W・ブレイカーこのクリーチャーがタップされていて自分のシールドが1枚もない時自分はクリーチャーの攻撃を受けない。')
    return {ultimateEvolution:true,evolution:{evolution:true,civilization:'光'},breaker:2,g830MoonGuard:true};
  }
+ if(phase>=1073&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='進化クリーチャー'&&
+  normalize(f.abilityText)==='手札進化:水のクリーチャーを1体自分の手札から選びこのクリーチャーをその上に重ねつつバトルゾーンに出す。T・ブレイカー(このクリーチャーはシールドを3つブレイクする)このクリーチャーはブロックされない。'){
+  return {g48HandEvolution:true,g827HandWaterEvolution:true,unblockable:true,breaker:3};
+ }
  if(phase>=829&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const handEvolution='手札進化-水のクリーチャーを1体自分の手札から選びこのクリーチャーをその上に重ねつつバトルゾーンに出す。';
@@ -9721,6 +9725,21 @@ export function standardCardSpec(d,{phase=165}={}){
     continue;
    }
   }
+  if(phase>=1073&&evolution){
+   if(line==='誰も光以外の呪文を唱えられない。'){
+    spec.g34Role='alca';
+    continue;
+   }
+   if(line==='光以外のクリーチャーはバトルゾーンにタップして置く。'){
+    spec.g720TapEntry={both:true,exceptColor:'光'};
+    continue;
+   }
+   if(line==='進化:デーモン・コマンド・クリーチャー1体の上に置く。'){
+    if(spec.evolution)throw Error('重複進化条件');
+    spec.evolution={race:'デーモン・コマンド'};
+    continue;
+   }
+  }
   if(phase>=1072&&evolution){
    if(line==='誰も光以外の呪文を唱えることはできない。'){
     spec.g34Role='alca';
@@ -12010,6 +12029,8 @@ export function standardCardSpec(d,{phase=165}={}){
  if(opponentEnd.length)spec.g565OpponentEnd=opponentEnd;
  if(tapped.length)spec.g188Tapped=tapped;
  if(battleWin.length)spec.g189BattleWin=battleWin;
- if(f.civilizations.length===5&&!(phase>=583&&d.id==='dm26ex3-040'))spec.manaValue=0;
+ // Both Warbalom promo prints show 1 in the mana symbol.
+ const oneManaWarbalom=phase>=1073&&['promoy23-082','promoy23-Sec082'].includes(d.id);
+ if(f.civilizations.length===5&&!(phase>=583&&d.id==='dm26ex3-040')&&!oneManaWarbalom)spec.manaValue=0;
  return spec;
 }

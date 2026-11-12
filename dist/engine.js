@@ -1253,7 +1253,10 @@ function typedTapOnEntry720(s,p,c){
  return s.players.some((owner,who)=>owner.battle.some(source=>{
   const rule=!source.sealed&&isCreature(s,source)&&effectiveCard(source,s).g720TapEntry;
   if(rule?.silentOwn)return who===p&&!!c.g496Silent;
-  return rule&&(who!==p||rule.both)&&(rule.all||rule.colors.some(color=>colors.includes(color)));
+  if(!rule||who===p&&!rule.both)return false;
+  if(rule.all)return true;
+  if(rule.exceptColor)return !colors.includes(rule.exceptColor);
+  return rule.colors.some(color=>colors.includes(color));
  }));
 }
 function evolutionPlaced849(s,p,entrant){
