@@ -13,7 +13,24 @@ export function createArmoredRules(api){
  const payCard=(c,payment)=>({...c,g7Payment:payment});
  const energyPool=(s,p,chosen,c)=>creatures(s,p).filter(x=>!x.tapped&&(c.type!=='spell'||!x.sealed&&!x.faceDown)&&!chosen.includes(x.uid)&&!chosen.some(uid=>cost(card(s.players[p].battle.find(y=>y.uid===uid)))===cost(card(x))));
  function canPayEnergy(s,p,c,payment){const chosen=payment.energy||[],copy={...s,players:s.players.map((x,i)=>i===p?{...x,battle:x.battle.map(y=>chosen.includes(y.uid)?{...y,tapped:true}:y)}:x)};return api.canPay(copy,p,payCard(c,payment));}
- function feasibleEnergy(s,p,c,payment,chosen=[]){if(canPayEnergy(s,p,c,{...payment,energy:chosen}))return true;if(chosen.length>=Math.ceil(cost(c)/2)||noReduce(s,p))return false;return energyPool(s,p,chosen,c).some(x=>feasibleEnergy(s,p,c,payment,[...chosen,x.uid]));}
+ function feasibleEnergy(s,p,c,payment,chosen=[]){
+  if(canPayEnergy(s,p,c,{...payment,energy:chosen}))return true;
+  const limit=Math.ceil(cost(c)/2);
+  if(chosen.length>=limit||noReduce(s,p))return false;
+  const candidates=energyPool(s,p,chosen,c).map(x=>({uid:x.uid,cost:cost(card(x))}));
+  // Payability depends on which creatures are tapped, so check each set once.
+  function search(start,selected,costs){
+   for(let i=start;i<candidates.length;i++){
+    const {uid,cost}=candidates[i];
+    if(costs.has(cost))continue;
+    const next=[...selected,uid];
+    if(canPayEnergy(s,p,c,{...payment,energy:next}))return true;
+    if(next.length<limit&&search(i+1,next,new Set([...costs,cost])))return true;
+   }
+   return false;
+  }
+  return search(0,chosen,new Set());
+ }
  function virtualEntry(s,p,x,base=null){const own=s.players[p],battle=own.battle.filter(y=>y.uid!==base?.uid);battle.push({...x,...(base?{under:[base]}:{})});return {...s,players:s.players.map((y,i)=>i===p?{...y,battle}:y)};}
  function arrange(s,p,rows){if(!rows.length)return true;return rows.some((x,i)=>{const c=card(x),rest=rows.filter((_,j)=>j!==i);if(!api.canEnter(s,p,c,{origin:'deck',execution:false}))return false;if(c.evolution)return api.evolutionBases(s,p,c).some(b=>arrange(virtualEntry(s,p,x,b),p,rest));return arrange(virtualEntry(s,p,x),p,rest);});}
  function canPut(s,p,x,origin){return card(x).type!=='spell'&&api.canEnter(s,p,card(x),{origin,execution:false})&&(!card(x).evolution||api.evolutionBases(s,p,card(x)).length);}

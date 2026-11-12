@@ -107,6 +107,16 @@ export function createPhoto159ShieldRules(api){
   }
   s.g159ShieldDepartures=pending.filter(r=>!xs.some(x=>x.uid===r.target));
  },
- decorate(s,p,x,c){const own=s.players[p],sources=own.battle.filter(w=>!w.sealed&&!api.ignored(s,w)),zao=sources.some(w=>card(w).g159ShieldRole==='zao');if(c.type==='creature'&&zao){if(colors(c).includes('光')&&String(c.race).includes('エンジェル・コマンド'))c={...c,escape:true};if(colors(c).includes('闇')&&String(c.race).includes('デーモン・コマンド'))c={...c,slayer:true};}if(c.type==='creature'&&zagaanSources(s,p,x).length)c={...c,yobinion:true};if(c.type==='creature'&&sources.some(w=>w.uid!==x.uid&&card(w).g159ShieldRole==='perfect'))c={...c,sasage:Math.max(c.sasage||0,2)};return c;}
+ decorate(s,p,x,c){
+  if(c.type!=='creature')return c;
+  const sources=s.players[p].battle.filter(w=>!w.sealed&&['zao','perfect'].includes(card(w).g159ShieldRole)&&!api.ignored(s,w));
+  if(sources.some(w=>card(w).g159ShieldRole==='zao')){
+   if(colors(c).includes('光')&&String(c.race).includes('エンジェル・コマンド'))c={...c,escape:true};
+   if(colors(c).includes('闇')&&String(c.race).includes('デーモン・コマンド'))c={...c,slayer:true};
+  }
+  if(zagaanSources(s,p,x).length)c={...c,yobinion:true};
+  if(sources.some(w=>w.uid!==x.uid&&card(w).g159ShieldRole==='perfect'))c={...c,sasage:Math.max(c.sasage||0,2)};
+  return c;
+ }
  };
 }

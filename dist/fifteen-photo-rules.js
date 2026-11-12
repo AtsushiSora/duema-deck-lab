@@ -7,7 +7,11 @@ export function createFifteenPhotoRules(api){
  const key=x=>baseKey(x)+(x.g393JAbilityInstance===undefined?'':':ability:'+x.g393JAbilityInstance),roles=c=>copiedRoles393(c,'g35Role'),hasRole=(c,r)=>hasCopiedRole393(c,'g35Role',r);
  const E=(op,x={})=>({op,...x}),C=(name,x={})=>E('g35_Custom',{...x,name}),S=(origin,to,n,filter={},x={})=>E('Select',{origin,to,n,filter,...x});
  const race=(c,q)=>String(c.race).includes(q),j=c=>race(c,'ジョーカーズ'),angel=c=>race(c,'エンジェル・コマンド'),demon=c=>race(c,'デーモン・コマンド');
- const active=(s,p,r)=>s.players[p].battle.flatMap(x=>api.ignored(s,x)?[]:roles(card(x)).flatMap((role,i)=>role===r?[x.g393JCopies?.length?{...x,g393JAbilityInstance:i}:x]:[]));
+ const active=(s,p,r)=>s.players[p].battle.flatMap(x=>{
+  const cardRoles=roles(card(x));
+  if(!cardRoles.includes(r)||api.ignored(s,x))return [];
+  return cardRoles.flatMap((role,i)=>role===r?[x.g393JCopies?.length?{...x,g393JAbilityInstance:i}:x]:[]);
+ });
  const jokerCount=(s,p)=>s.players[p].battle.filter(x=>j(card(x))).length+s.players[p].mana.filter(x=>j(card(x))).length;
  const on=(s,p,x,name,more={})=>api.send(s,p,x,'Sequence',{defs:[C(name,more)]});
  const give=(s,t,defs)=>start(s,t,defs),data=(s,t)=>s.players[t.p],unit=(s,t)=>s.players[t.p].battle.find(x=>x.uid===t.uid&&(t.incarnation===undefined||(x.incarnation||0)===t.incarnation));
