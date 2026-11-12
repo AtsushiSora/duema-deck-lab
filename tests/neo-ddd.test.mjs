@@ -96,10 +96,44 @@ test('an already triggered RS attack judge still resolves after DDD evolves its 
 test('AI declaration, ordering and NEO choices are pure and independent of opponent hidden information',()=>{
  const s=setup();give(s,0,'battle',[DREAM]);give(s,0,'hand',[GG]);give(s,0,'deck',[ROD,'dm01-108','dm01-108']);attack(s);for(let n=0;n<30&&s.decision;n++){const before=structuredClone(s),choice=chooseAI(s);assert.deepEqual(s,before);s.players[1].deck.reverse();s.players[1].hand.forEach(x=>x.cardId=GG);s.players[1].shields.forEach(x=>x.cardId=KIRA);assert.deepEqual(chooseAI(s),choice);assert.ok(observation(s,0).players[1].hand.every(x=>x.hidden));step(s,choice);if(s.decision?.type==='block')break;}
 });
+const validationDeck={name:'NEO / DDD validation',format:'original',cards:[GG,DREAM,ROD,Y,KIRA,ONI,'dmx11-012','dm23bd4-008',RS,'dm01-075'].map(id=>({id,count:4}))};
 test('mixed NEO/DDD games conserve all eighty unique cards through every action and finish with reproducible seeds',()=>{
- const deck={name:'NEO / DDD validation',format:'original',cards:[GG,DREAM,ROD,Y,KIRA,ONI,'dmx11-012','dm23bd4-008',RS,'dm01-075'].map(id=>({id,count:4}))};assert.deepEqual(validateDeck(deck),[]);let declarations=0,summons=0,suppressed=0;
- for(let seed=1;seed<=100;seed++){const s=createGame([deck,seed%2?PRESETS[1]:deck],{seed:seed*127,first:seed%2});while(s.winner===null&&s.actions<2500&&s.turn<160){assert.ok(getLegalActions(s).length);const before=structuredClone(s),a=chooseAI(s);assert.deepEqual(s,before);step(s,a);const all=physicalCards(s);assert.equal(all.length,80);assert.equal(new Set(all.map(x=>x.uid)).size,80);}assert.notEqual(s.winner,null);declarations+=s.log.filter(e=>e.type==='dddDeclare').length;summons+=s.log.filter(e=>e.type==='dddSummon').length;suppressed+=s.log.filter(e=>e.type==='triggerPrevented').length;}
- assert.ok(declarations>0&&summons>0&&suppressed>0,JSON.stringify({declarations,summons,suppressed}));assert.deepEqual(runGame([deck,deck],{seed:1212}),runGame([deck,deck],{seed:1212}));
+ const deck=validationDeck;assert.deepEqual(validateDeck(deck),[]);let declarations=0;
+ for(let seed=1;seed<=100;seed++){const s=createGame([deck,seed%2?PRESETS[1]:deck],{seed:seed*127,first:seed%2});while(s.winner===null&&s.actions<2500&&s.turn<160){assert.ok(getLegalActions(s).length);const before=structuredClone(s),a=chooseAI(s);assert.deepEqual(s,before);step(s,a);const all=physicalCards(s);assert.equal(all.length,80);assert.equal(new Set(all.map(x=>x.uid)).size,80);}assert.notEqual(s.winner,null);declarations+=s.log.filter(e=>e.type==='dddDeclare').length;}
+ assert.ok(declarations>0,JSON.stringify({declarations}));assert.deepEqual(runGame([deck,deck],{seed:1212}),runGame([deck,deck],{seed:1212}));
+});
+
+test('CPU pays for DDD when mana is available and the evolved GG stops the opposing entry trigger',()=>{
+ const s=createGame([validationDeck,validationDeck],{seed:1212,first:0});
+ const ids=state=>physicalCards(state).map(x=>x.uid).sort();
+ const before=ids(s);
+ const move=(p,id,to)=>{
+  const owner=s.players[p],from=['hand','deck','shields'].find(z=>owner[z].some(x=>x.cardId===id));
+  assert.ok(from,id);
+  const [inst]=owner[from].splice(owner[from].findIndex(x=>x.cardId===id),1);
+  owner[to].push(inst);
+  return inst;
+ };
+ const attacker=move(0,'dm01-075','battle');
+ move(0,GG,'hand');
+ for(const id of [DREAM,DREAM,DREAM,ROD,ROD,ONI,ONI])move(0,id,'mana');
+ const trigger=move(1,KIRA,'shields');
+ s.players[1].deck.push(...s.players[1].shields.filter(x=>x!==trigger));
+ s.players[1].shields=[trigger];
+ s.phase='attack';
+ act(s,'attack',a=>a.uid===attacker.uid&&a.target==='player');
+ assert.equal(s.decision.type,'dddDeclare');
+ const saved=JSON.parse(JSON.stringify(s));
+ drain(s);
+ drain(saved);
+ assert.deepEqual(s,saved);
+ assert.ok(s.log.some(x=>x.type==='dddDeclare'&&x.cardId===GG));
+ assert.ok(s.log.some(x=>x.type==='dddSummon'&&x.cardId===GG));
+ assert.ok(s.log.some(x=>x.type==='triggerPrevented'&&x.cardId===KIRA));
+ assert.equal(s.players[0].mana.filter(x=>x.tapped).length,7);
+ assert.ok(s.players[0].battle.some(x=>x.cardId===GG&&x.under?.some(base=>base.uid===attacker.uid)));
+ assert.equal(before.length,80);
+ assert.deepEqual(ids(s),before);
 });
 
 test('quadruple breaker caps at the shields left, never wins from excess breaks and can still be blocked',()=>{
