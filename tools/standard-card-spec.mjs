@@ -6160,6 +6160,25 @@ export function standardCardSpec(d,{phase=165}={}){
    'このクリーチャーが攻撃する時バトルゾーンにあるクロスギアを1枚選び持ち主の墓地に置く。クロスギアがバトルゾーンから墓地に置かれた時カードを1枚引いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
    return {breaker:2,g34Attack:[{op:'Target',element:true,anyOwner:true,filter:{g201Gear:true},to:'grave',title:'墓地に置くクロスギアを1枚選ぶ'}],g933GearGraveDraw:true};
  }
+ if(phase>=1084&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const memotta='このクリーチャーが召喚によって出た時自分の山札の上から3枚を墓地に置く。その後コストの合計が5以下になるように進化ではないクリーチャーを2体まで封印を1つずつ付けて自分の墓地から出す。';
+  const sealReminder='(カードを封印するには自分の山札の上から1枚を裏向きでそのカードの上に置く。コマンドが出た時その持ち主はそのコマンドと同じ文明を持つ自身のカードから封印を1つ墓地に置く。封印されているクリーチャーは無視される)';
+  if(f.typeText==='クリーチャー'&&['W・ブレイカー'+memotta+sealReminder,'W・ブレイカー'+memotta].includes(text))
+   return {breaker:2,summonedEntryOnly:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Mill',n:3,g1042Together:true},
+    {op:'Select',origin:'grave',deploy:true,n:2,optional:true,g550CostBudget:5,
+     filter:{creature:true,nonEvolution:true},g1084SealedEntry:true,title:'封印付きで出す、合計コスト5以下のクリーチャーを選ぶ'}
+   ]};
+  const neo='G-NEO進化:闇火または自然のクリーチャー1体の上に置いてもよい。(カードが下にあればNEO進化クリーチャーとして扱い離れる時かわりに下のカードすべてが離れる)';
+  const raid='超魂レイド(このクリーチャーが出た時山札の上から3枚を表向きにする。その中からこのクリーチャーの進化元になれるカードを1枚この下に置いてもよい。残りを好きな順序で山札の下に置く)';
+  const under='カードが自分のクリーチャーの下を離れた時相手は自身の手札を1枚選んで捨てる。その後このクリーチャーはシールドを1つブレイクしてもよい。';
+  const keywords='マッハファイタースレイヤーW・ブレイカー';
+  const shorterPrint=neo.slice(0,neo.indexOf('('))+'超魂レイド';
+  if(f.typeText==='G-NEOクリーチャー'&&[neo+raid+keywords+under,shorterPrint+keywords+under].includes(text))
+   return {neoEvolution:{any:['闇','火','自然'].map(civilization=>({civilization}))},
+    gNeo:true,g27Raid:true,machFighter:true,slayer:true,breaker:2,g1084UnderLeave:true};
+ }
  if(phase>=1083&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='呪文'&&text==='自分のクリーチャーを1体選ぶ。このターンそのクリーチャーが攻撃することによってそのクリーチャーの能力がトリガーする時その能力は1度のかわりに2度トリガーする。')

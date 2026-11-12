@@ -215534,15 +215534,96 @@
       "g1083Yamato": true,
       "supportBatch": "phase-1083",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-006",
+      "name": "不明な不透明 メモッタ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "???",
+      "text": "W・ブレイカー\nこのクリーチャーが召喚によって出た時、自分の山札の上から３枚を墓地に置く。その後、コストの合計が５以下になるように、進化ではないクリーチャーを２体まで、封印を１つずつ付けて自分の墓地から出す。（カードを封印するには、自分の山札の上から１枚を裏向きでそのカードの上に置く。コマンドが出た時、その持ち主はそのコマンドと同じ文明を持つ自身のカードから封印を１つ、墓地に置く。封印されているクリーチャーは無視される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-006",
+      "limit": 4,
+      "breaker": 2,
+      "summonedEntryOnly": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 3,
+          "g1042Together": true
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "deploy": true,
+          "n": 2,
+          "optional": true,
+          "g550CostBudget": 5,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true
+          },
+          "g1084SealedEntry": true,
+          "title": "封印付きで出す、合計コスト5以下のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1084",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-OR1",
+      "name": "究極の虚 ジャシン＝ヴリドガルド",
+      "civ": "闇/火/自然",
+      "civilizations": [
+        "闇",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "デーモン・コマンド/アビスロイヤル",
+      "text": "G-NEO進化：闇、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、NEO進化クリーチャーとして扱い、離れる時、かわりに下のカードすべてが離れる）\n超魂レイド（このクリーチャーが出た時、山札の上から３枚を表向きにする。その中からこのクリーチャーの進化元になれるカードを１枚、この下に置いてもよい。残りを好きな順序で山札の下に置く）\nマッハファイター\nスレイヤー\nW・ブレイカー\nカードが自分のクリーチャーの下を離れた時、相手は自身の手札を１枚選んで捨てる。その後、このクリーチャーはシールドを１つブレイクしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-OR1",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "闇"
+          },
+          {
+            "civilization": "火"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "gNeo": true,
+      "g27Raid": true,
+      "machFighter": true,
+      "slayer": true,
+      "breaker": 2,
+      "g1084UnderLeave": true,
+      "supportBatch": "phase-1084",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1083,
+    "phase": 1084,
     "checkedAt": "2026-11-13",
-    "baseCount": 7213,
-    "newEffectCards": 3,
+    "baseCount": 7216,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 7216,
+    "totalCount": 7218,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -234827,6 +234908,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7213,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1083,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7213,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7216,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

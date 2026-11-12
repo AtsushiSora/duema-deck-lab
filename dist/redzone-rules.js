@@ -12,7 +12,7 @@ export function createRedzoneRules(api){
  }
  function inherit(s,a,b){for(const k of['tapped','entered','buff','unblocked','tapLocks','buffSources','unblockSpellCost','powerModifiers','skipUntap','gospelSpeed','g19Protected','g19Blocker','justDiverActive'])if(a[k]!==undefined)b[k]=structuredClone(a[k]);api.inherit(s,a,b);}
  function invade(s,t){const own=s.players[t.p],x=own[t.origin].find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial),a=own.battle.find(x=>x.uid===s.attack?.attacker&&!x.sealed);if(!x||!a||x===a||!matches(s,a,card(x))||!api.evolutionBases(s,t.p,card(x)).some(x=>x.uid===a.uid))return;if(t.origin==='battle'){
-  const index=own.battle.indexOf(x),[base,...rest]=x.under||[];if(base){if(rest.length)(base.under??=[]).push(...rest);inherit(s,x,base);own.battle[index]=base;}else own.battle.splice(index,1);delete x.under;remove(own.battle,a.uid);x.under=[a];inherit(s,a,x);own.battle.push(x);s.attack.attacker=x.uid;api.gearCleanup(s);api.evolutionPlaced849(s,t.p,x);
+  const index=own.battle.indexOf(x),[base,...rest]=x.under||[];if(base){api.underCardsLeft(s,t.p,x,1);if(rest.length)(base.under??=[]).push(...rest);inherit(s,x,base);own.battle[index]=base;}else own.battle.splice(index,1);delete x.under;remove(own.battle,a.uid);x.under=[a];inherit(s,a,x);own.battle.push(x);s.attack.attacker=x.uid;api.gearCleanup(s);api.evolutionPlaced849(s,t.p,x);
  }else if(api.canEnter(s,t.p,card(x),{origin:t.origin,execution:false})){remove(own[t.origin],x.uid);api.enter(s,t.p,x,a.uid,{origin:t.origin,execution:false});}log(s,t.p,'invasion',card(x).name+'を侵略で重ねる',{cardId:x.cardId});}
  function run(s,t){if(!t.op.startsWith('g23_'))return false;const own=s.players[t.p];switch(t.op){
  case'g23_Declare':{

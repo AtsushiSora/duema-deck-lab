@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7216,
-  "pendingNames": 4611,
-  "phase": 1083,
-  "added": 3,
+  "supportedNames": 7218,
+  "pendingNames": 4609,
+  "phase": 1084,
+  "added": 2,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -100,7 +100,7 @@
     },
     {
       "ability": "超魂",
-      "pendingNames": 45,
+      "pendingNames": 44,
       "examples": [
         {
           "id": "dm25rp2-014",
@@ -154,11 +154,11 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2683,
+    "クリーチャー": 2682,
     "NEOクリーチャー": 89,
     "呪文": 604,
     "GRクリーチャー": 159,
-    "G-NEOクリーチャー": 32,
+    "G-NEOクリーチャー": 31,
     "タマシード": 57,
     "デュエルメイト呪文": 10,
     "S-MAX進化クリーチャー": 10,
@@ -226,9 +226,9 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1203,
-    "未対応の能力文": 3182,
+    "未対応の能力文": 3181,
     "未対応のG・ゼロ条件": 22,
-    "未対応の召喚時能力": 22,
+    "未対応の召喚時能力": 21,
     "未対応のシンカパワー": 2,
     "既存名の別表記": 8,
     "未対応のシビルカウント効果": 2,
@@ -209533,6 +209533,74 @@
           "reason": "対戦用実データに相手側のカードまたは必要な能力の実装がない。登録済み側の既存固有テストは実行済み。"
         }
       ]
+    },
+    {
+      "phase": 1084,
+      "baseCommit": "36108316",
+      "scope": "公式裁定に必要なカードを追加",
+      "cards": [
+        {
+          "id": "dm26rp2-006",
+          "name": "不明な不透明 メモッタ",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-006"
+        },
+        {
+          "id": "dm25rp2-OR1",
+          "name": "究極の虚 ジャシン＝ヴリドガルド",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-OR1"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm26rp2-SEC013",
+          "canonicalId": "dm26rp2-006"
+        },
+        {
+          "id": "dm25ex3-OR4",
+          "canonicalId": "dm25rp2-OR1"
+        },
+        {
+          "id": "dm25rp4-ChoSec06",
+          "canonicalId": "dm25rp2-OR1"
+        }
+      ],
+      "supportedNames": 7218,
+      "pendingNames": 4609,
+      "verification": {
+        "focused": "tests/standard1084-effects.test.mjs",
+        "relatedRegressions": "68件合格（固有7件、登録済みカード34件、登場置換・封印・進化元の回帰27件）",
+        "check": "成功",
+        "officialPrints": 5,
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/qa/46861/",
+          "https://dm.takaratomy.co.jp/rule/qa/46868/",
+          "https://dm.takaratomy.co.jp/rule/qa/46869/",
+          "https://dm.takaratomy.co.jp/rule/qa/46870/",
+          "https://dm.takaratomy.co.jp/rule/qa/48922/",
+          "https://dm.takaratomy.co.jp/rule/qa/48923/",
+          "https://dm.takaratomy.co.jp/rule/qa/48924/",
+          "https://dm.takaratomy.co.jp/rule/qa/48925/",
+          "https://dm.takaratomy.co.jp/rule/qa/48926/",
+          "https://dm.takaratomy.co.jp/rule/qa/48927/",
+          "https://dm.takaratomy.co.jp/rule/qa/48928/"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。長時間シミュレーションを含む回帰実行は途中終了し、関連する個別テストを分割して合格。",
+        "regressionLogs": [
+          "/tmp/duema-needed.iWD8kT/phase1084-cards-regression.log",
+          "/tmp/duema-needed.iWD8kT/phase1084-engine-regression.log",
+          "/tmp/duema-needed.iWD8kT/phase1084-layer-regression.log"
+        ]
+      },
+      "deferred": [
+        {
+          "cardIds": [
+            "dm36-027"
+          ],
+          "test": "特攻秘宝カースガイ1体・2体と「解除」の置換後の攻撃",
+          "reason": "現行の通常対戦はオリジナル専用で、デッキの初期超次元ゾーンを設定できない。公式裁定のサイキック・クリーチャーには、超次元からの登場、覚醒、解除、超次元への帰還が必要。既存のカースガイ固有テストとEXライフ置換による攻撃継続の回帰テストは合格。"
+        }
+      ],
+      "resume": "対戦追加の自動化は一時停止。残るphase 944は、デッキの保存項目・初期超次元ゾーンを追加する範囲の確認後、サイキックの両面、解除、帰還と超次元呪文を実装し、カースガイ1体・2体で攻撃継続と終了を個別に再現する。"
     }
   ],
   "resume": {
@@ -253171,14 +253239,17 @@
       ],
       "deltaPhasesReviewed": [
         1021,
-        1081
+        1081,
+        1082,
+        1083,
+        1084
       ],
       "state": "completeWithBlockedInteractions",
       "automation": "duema-deck-lab PAUSED",
-      "added": 0,
-      "supportedNames": 7216,
+      "added": 8,
+      "supportedNames": 7218,
       "catalogueNames": 11827,
-      "pendingNames": 4611,
+      "pendingNames": 4609,
       "fullSuiteStatus": "中断・合否未確認",
       "priorAudit": "Phase 1020までの個別検証270件は既存の followUp を保持。以後61バッチの未完了記録とログを照合した。",
       "fixes": [
@@ -253716,7 +253787,20 @@
           "test": "特攻秘宝カースガイ1体・2体と「解除」の置換後の攻撃",
           "path": "tests/standard944-effects.test.mjs",
           "status": "blockedByUnsupportedCard",
-          "reason": "対戦用実データに相手側のカードまたは必要な能力の実装がない。登録済み側の既存固有テストは実行済み。"
+          "reason": "現行の通常対戦はオリジナル専用で、デッキの初期超次元ゾーンを設定できない。公式裁定のサイキック・クリーチャーには、超次元からの登場、覚醒、解除、超次元への帰還が必要。既存のカースガイ固有テストとEXライフ置換による攻撃継続の回帰テストは合格。",
+          "candidates": [
+            {
+              "id": "dm36-s07",
+              "name": "時空の火焔ボルシャック・ドラゴン / 勝利の覚醒者ボルシャック・メビウス",
+              "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-s07"
+            },
+            {
+              "id": "dm36-101VC",
+              "name": "超次元ボルシャック・ホール",
+              "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-101VC"
+            }
+          ],
+          "formatSource": "https://dm.takaratomy.co.jp/cls/creatorsletter40/"
         },
         {
           "phase": 945,
@@ -253807,8 +253891,15 @@
           ],
           "test": "トットロの上にメモッタで封印付きのジャシン＝ヴリドガルドを置く",
           "path": "tests/standard1057-effects.test.mjs",
-          "status": "blockedByUnsupportedCard",
-          "reason": "対戦用実データに相手側のカードまたは必要な能力の実装がない。登録済み側の既存固有テストは実行済み。"
+          "status": "passed",
+          "resolution": {
+            "phase": 1084,
+            "testFile": "tests/standard1084-effects.test.mjs",
+            "dependencyIds": [
+              "dm26rp2-006",
+              "dm25rp2-OR1"
+            ]
+          }
         },
         {
           "phase": 1081,
@@ -253838,7 +253929,7 @@
       ],
       "remaining": {
         "matrices": 0,
-        "officialInteractionGroups": 2
+        "officialInteractionGroups": 1
       },
       "notes": [
         "Workerは本番のdist/worker.jsを使用。対戦相手の元の並びと各ゲームのシード・先後を復元して分割し、未解決件数も照合した。元のテスト名に古い件数が含まれる場合は、実行件数をmatrixに記載した。",
@@ -253849,7 +253940,7 @@
       "resume": {
         "baseCommit": "0810d48f",
         "temporaryLogDirectory": "/tmp/duema-review-1081.B5Oo9a",
-        "steps": "同じテストの実行有無を先に確認。未完の行はmatrixにあるファイル名・対戦相手・シード範囲を照合し、未確認分だけ個別実行する。対戦追加の自動化は手動再開指示まで一時停止。"
+        "steps": "対戦追加の自動化は一時停止。残るphase 944は、デッキの保存項目・初期超次元ゾーンを追加する範囲の確認後、サイキックの両面、解除、帰還と超次元呪文を実装し、カースガイ1体・2体で攻撃継続と終了を個別に再現する。"
       }
     }
   }

@@ -40,7 +40,9 @@ export function createGalaxyRules(api){
  }return true;}
  // QA45461: a conditional consequence of alternative payment does not start with an entry trigger.
  function gaiaEntryText(c){
-  const trigger=/このクリーチャー(?:が|を)(?:バトルゾーンに)?(?:召喚によって)?出(?:た|した)(?:時|とき)/;
+  // QA46861: the printed reminder for Super Soul Raid starts with a creature entry.
+  if(c.g27Raid)return true;
+  const trigger=/このクリーチャー(?:が|を)(?:バトルゾーンに)?出(?:た|した)(?:時|とき)/;
   const text=c.text||'';
   return c.g568Alt?.entry?text.split('\n').some(line=>trigger.exec(line)?.index===0):trigger.test(text);
  }
