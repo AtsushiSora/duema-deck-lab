@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7075,
-  "pendingNames": 4752,
-  "phase": 1041,
-  "added": 3,
+  "supportedNames": 7079,
+  "pendingNames": 4748,
+  "phase": 1042,
+  "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2725,
+    "クリーチャー": 2723,
     "NEOクリーチャー": 152,
-    "呪文": 617,
+    "呪文": 615,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 57,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3310,
+    "未対応の能力文": 3306,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -205014,37 +205014,140 @@
           "reason": "商品ページで再録画像を確認。発売予定は2027年1月下旬で、個別の公式カード検索IDは未確認。発売済みのDM24-BD6版は正規IDに紐づけ済み。"
         }
       ]
+    },
+    {
+      "phase": 1042,
+      "baseCommit": "2ca9a7bf",
+      "cards": [
+        {
+          "id": "dm23rp1-074",
+          "name": "バイン・トラップ"
+        },
+        {
+          "id": "dm23bd7-007",
+          "name": "記憶の霧消"
+        },
+        {
+          "id": "dm23ex1-027",
+          "name": "鬼羅王女プリン"
+        },
+        {
+          "id": "dm23rp1-039",
+          "name": "ヴァイナル＝ヴィランド"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm24bd5-017",
+          "name": "鬼羅王女プリン",
+          "canonicalId": "dm23ex1-027"
+        },
+        {
+          "id": "dm26ex1-045",
+          "name": "鬼羅王女プリン",
+          "canonicalId": "dm23ex1-027"
+        }
+      ],
+      "supportedNames": 7079,
+      "pendingNames": 4748,
+      "verification": {
+        "focusedPassed": 13,
+        "regressionPassed": 279,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 6,
+        "scope": "公式能力全文、基本情報、マナ数、画像、再録、現行殿堂レギュレーションを照合。バイン・トラップのS・トリガー、両者のコスト5以下のエレメント、構成カードの持ち主への移動と置換を確認。記憶の霧消の物理マナ枚数比較、タップ配置、S・トリガーと移動置換を確認。鬼羅王女プリンの登場時・相手ターン開始時の任意の非公開確認、手札かタップしたマナへの移動、QQXによる確認禁止を検証。ヴァイナル＝ヴィランドの登場時の4枚同時移動、山札・手札・バトルゾーンから墓地に置かれた場合のアビス条件と任意の追加移動を検証。選択途中の保存復元を確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/43457/"
+        ],
+        "regressionFiles": [
+          "tests/standard179-effects.test.mjs",
+          "tests/standard203-effects.test.mjs",
+          "tests/standard334-effects.test.mjs",
+          "tests/standard467-effects.test.mjs",
+          "tests/standard600-effects.test.mjs",
+          "tests/standard675-effects.test.mjs",
+          "tests/standard838-effects.test.mjs",
+          "tests/standard994-effects.test.mjs",
+          "tests/standard1039-effects.test.mjs",
+          "tests/standard1040-effects.test.mjs",
+          "tests/standard1041-effects.test.mjs"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。",
+        "logs": {
+          "official": "/tmp/duema-phase-1042.57iCMV0c/official.log",
+          "focused": "/tmp/duema-phase-1042.57iCMV0c/focused.log",
+          "regression": "/tmp/duema-phase-1042.57iCMV0c/regression.log",
+          "check": "/tmp/duema-phase-1042.57iCMV0c/check.log",
+          "audit": "/tmp/duema-phase-1042.57iCMV0c/audit.log",
+          "officialImages": "/tmp/duema-phase-1042.57iCMV0c/sources.log",
+          "additionalOfficialImages": "/tmp/duema-phase-1042.57iCMV0c/additional-sources.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dm24ex2-031",
+          "name": "ボルシャック・ドラゴン GR",
+          "reason": "公式本文・基本情報・画像・単一収録を確認。通常の召喚を許さず、超GRゾーンからのGR召喚と離脱後の超GRへの帰還を扱う必要がある。現行の対戦定義では検証できないため保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-031",
+            "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+            "https://dm.takaratomy.co.jp/rule/qa/31901/"
+          ]
+        },
+        {
+          "id": "dm23ex3-010",
+          "name": "先導のクリス アジャリ",
+          "reason": "QA 44601・44602を確認。バトルに勝つ結果を墓地送りに置換して相手を残す一方、相手のスレイヤーは処理する。選んだシールドごとのブレイク置換も含め、両方を共通の戦闘処理に接続する検証が残る。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-010",
+            "https://dm.takaratomy.co.jp/rule/qa/44601/",
+            "https://dm.takaratomy.co.jp/rule/qa/44602/"
+          ]
+        },
+        {
+          "id": "dm23ex3-017",
+          "name": "Dの文殿 アルケミスト・ヒルズ",
+          "reason": "公式本文を確認。D2フィールドを発生源とする召喚・詠唱の監視、実行者への任意ドロー、Dスイッチの使用状態と再登場後の扱いを一連で検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-017"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1041,
-    "nextPhase": 1042,
+    "lastVerifiedPhase": 1042,
+    "nextPhase": 1043,
     "workInProgress": [],
     "nextCandidates": [
       {
+        "id": "dm24rp4-065",
+        "name": "カンテ＝ランタン",
+        "reason": "実際にバトルする相手への一時的なパワー低下、パワー0の処理、バトル終了での解除を確認する。"
+      },
+      {
+        "id": "dm24ex1-054",
+        "name": "ブルー・ハワイ",
+        "reason": "S・トリガー、3枚引いた後に2枚を選び、山札の上か下の同じ側に好きな順序で置く処理を確認する。"
+      },
+      {
+        "id": "dm23rp1-018",
+        "name": "グ:ルナグーシ",
+        "reason": "登場時・自分のターン開始時の任意の墓地補充と、自分のターン最初の墓地離脱の数え方を確認する。"
+      },
+      {
         "id": "dm23ex3-059",
         "name": "終斗の親衛隊ペッパー",
-        "reason": "QA 44594に従う呪文解決前の手札からの使用宣言と、解決後の水晶2枚の判定を照合する。"
+        "reason": "QA 44594に従い、解決前の手札からの使用宣言と解決後の水晶条件を照合する。"
       },
       {
         "id": "dm23ex3-018",
         "name": "禁術のカルマ カレイル / フォビッド・水晶チャージャー",
-        "reason": "マナ配置元の識別、複数枚の同時移動、呪文面で選んだプレイヤーの非公開の山札確認、DM24-BD6再録の版番号を照合する。"
-      },
-      {
-        "id": "dm23ex3-010",
-        "name": "先導のクリス アジャリ",
-        "reason": "公式QA 44601に従うバトル勝利・シールドブレイクの置換と、スレイヤーの順序を照合する。"
-      },
-      {
-        "id": "dm23ex3-017",
-        "name": "Dの文殿 アルケミスト・ヒルズ",
-        "reason": "召喚・呪文詠唱の両方を監視するD2フィールドの任意ドローと、Dスイッチ後の手札・墓地の同時シャッフルを照合する。"
-      },
-      {
-        "id": "dm23ex3-011",
-        "name": "水晶転生",
-        "reason": "公式QA 45061に従い、選べない時と離脱置換、所有者の山札公開、登場制限を照合する。"
+        "reason": "マナ配置元の識別、複数枚同時移動、呪文面の非公開確認とDM24-BD6再録を照合する。"
       }
     ],
     "steps": [

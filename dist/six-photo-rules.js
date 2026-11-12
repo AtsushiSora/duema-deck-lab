@@ -2855,6 +2855,7 @@ export function createSixPhotoRules(api){
  }
  case'g34_AfterAttackDestroy':if(s.attackLifecycle)(s.attackLifecycle.g176Deaths??=[]).push({p:t.p,uid:t.uid,incarnation:t.incarnation||0,source:t.source});break;
  case'g34_Offer':{
+  if(t.g1042LookFirst&&(!own.deck.length||api.deckLocked(s,t.p)))break;
   if(t.g792Once&&(used792(s,t,t)||!own.deck.length))break;
   if(t.g790CreatureBreak){
    const host=sourceHost474(s,t)?.x;
@@ -3314,7 +3315,7 @@ export function createSixPhotoRules(api){
  case'g34_Mill':{
   const p=t.owner??t.p,n=t.n==='∞'?s.players[p].deck.length:t.n;
   if(t.optional)choice(s,t,t.n==='∞'?'山札をすべて墓地に置く？':'山札の上'+n+'枚を墓地に置く？',[opt('置く',true,own.deck.length>n?10:-100),skip()]);
-  else api.mill(s,p,n);
+  else api.mill(s,p,n,{together:t.g1042Together});
   break;
  }
  // Count physical mana cards once on resolution, independently of their mana numbers or tapped state.

@@ -1,0 +1,317 @@
+{
+  "phase": 1042,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7075,
+  "description": "マナ配置と墓地誘発の4種類、鬼羅王女プリンの再録2版を照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/43457/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp1-074",
+      "name": "バイン・トラップ",
+      "faces": [
+        {
+          "name": "バイン・トラップ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nコスト５以下のエレメントを１つ選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-074",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-074.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "anyOwner": true,
+            "spell": true,
+            "to": "mana",
+            "toOwnerMana": true,
+            "filter": {
+              "element": true,
+              "faceUp": true,
+              "max": 5
+            },
+            "title": "持ち主のマナに置くコスト5以下のエレメントを選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "d6f52ea5e27b643d28de5f8c3dbf5575924e2c6aee8a2eca1906d75e966f85ba",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23bd7-007",
+      "name": "記憶の霧消",
+      "faces": [
+        {
+          "name": "記憶の霧消",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nマナゾーンのカードが自分のより多い相手１人につき１枚、自分の山札の上から１枚目をタップしてマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd7-007",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd7-007.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "mana",
+                "lessThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1,
+                "tapped": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "7a65191b27c675170e5a83c630021a183283c5eb6bdba767f9a848adc9cb000a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex1-027",
+      "name": "鬼羅王女プリン",
+      "faces": [
+        {
+          "name": "鬼羅王女プリン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが出た時、または、相手のターンのはじめに、自分の山札の上から１枚目を見てもよい。そうしたら、それを手札に加えるか、タップしてマナゾーンに置く。",
+          "race": "ジャイアント・ハンター/エイリアン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-027",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex1-027.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g1042LookFirst": true,
+            "title": "山札の上から1枚目を見る？",
+            "defs": [
+              {
+                "op": "Look",
+                "n": 1,
+                "stages": [
+                  {
+                    "n": 1,
+                    "g467Destinations": [
+                      "hand",
+                      "mana"
+                    ],
+                    "tapped": true
+                  }
+                ],
+                "rest": "top"
+              }
+            ]
+          }
+        ],
+        "g179OpponentStart": [
+          {
+            "op": "Offer",
+            "g1042LookFirst": true,
+            "title": "山札の上から1枚目を見る？",
+            "defs": [
+              {
+                "op": "Look",
+                "n": 1,
+                "stages": [
+                  {
+                    "n": 1,
+                    "g467Destinations": [
+                      "hand",
+                      "mana"
+                    ],
+                    "tapped": true
+                  }
+                ],
+                "rest": "top"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "c69d07b10ee295a131e5ccfcd7bc097dcce63cba1a62c53a313785e5c79d9356",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-039",
+      "name": "ヴァイナル＝ヴィランド",
+      "faces": [
+        {
+          "name": "ヴァイナル＝ヴィランド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から４枚を墓地に置く。\nこのカードがどこからでも墓地に置かれた時、自分のアビスがあれば、自分の山札の上から１枚目を墓地に置いてもよい。",
+          "race": "アビスロイヤル",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-039",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-039.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 4,
+            "g1042Together": true
+          }
+        ],
+        "g675GraveEntry": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "element": true,
+              "faceUp": true,
+              "race": "アビス"
+            },
+            "defs": [
+              {
+                "op": "Mill",
+                "n": 1,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "d9ccf1352e9eb91a73ce5581666f4b0c0a34c163d46fe8928bdf90fef3014e0b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24bd5-017",
+      "name": "鬼羅王女プリン",
+      "faces": [
+        {
+          "name": "鬼羅王女プリン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが出た時、または、相手のターンのはじめに、自分の山札の上から１枚目を見てもよい。そうしたら、それを手札に加えるか、タップしてマナゾーンに置く。",
+          "race": "ジャイアント・ハンター/エイリアン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd5-017",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd5-017.jpg",
+      "canonicalId": "dm23ex1-027",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "7fd7d6d1ae9858d01791516882e2a7351b73a0a873d2d398aadf8709f7abda4a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex1-045",
+      "name": "鬼羅王女プリン",
+      "faces": [
+        {
+          "name": "鬼羅王女プリン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが出た時、または相手のターンのはじめに、自分の山札の上から１枚を見てもよい。そうしたら、それを手札に加えるか、タップしてマナゾーンに置く。",
+          "race": "ジャイアント・ハンター/エイリアン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-045",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex1-045.jpg",
+      "canonicalId": "dm23ex1-027",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "39bcefae52698c491eb9d8d68b85aee60317fa1eeb6cfedcd8f790535f373831",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp1-074": 4,
+      "dm23bd7-007": 4,
+      "dm23ex1-027": 4,
+      "dm23rp1-039": 4,
+      "dm24bd5-017": 4,
+      "dm26ex1-045": 4
+    }
+  }
+}

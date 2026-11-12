@@ -2467,6 +2467,31 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1042&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const trigger='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+  if(f.name==='バイン・トラップ'&&f.typeText==='呪文'&&f.civilizationText==='自然'&&f.cost===3&&text===
+   trigger+'コスト5以下のエレメントを1つ選び持ち主のマナゾーンに置く。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',element:true,anyOwner:true,spell:true,to:'mana',toOwnerMana:true,
+    filter:{element:true,faceUp:true,max:5},title:'持ち主のマナに置くコスト5以下のエレメントを選ぶ'}]};
+  if(f.name==='記憶の霧消'&&f.typeText==='呪文'&&f.civilizationText==='光'&&f.cost===3&&text===
+   trigger+'マナゾーンのカードが自分のより多い相手1人につき1枚自分の山札の上から1枚目をタップしてマナゾーンに置く。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'IfOwn',filter:{g334ZoneCount:{zone:'mana',lessThanOpponent:true}},
+    defs:[{op:'Ramp',n:1,tapped:true}]}]};
+  const prinLook='このクリーチャーが出た時または相手のターンのはじめに自分の山札の上から1枚';
+  const prinMove='を見てもよい。そうしたらそれを手札に加えるかタップしてマナゾーンに置く。';
+  if(f.name==='鬼羅王女プリン'&&f.typeText==='クリーチャー'&&f.civilizationText==='水/自然'&&f.cost===5&&
+   [prinLook+'目'+prinMove,prinLook+prinMove].includes(text)){
+   const defs=[{op:'Offer',g1042LookFirst:true,title:'山札の上から1枚目を見る？',
+    defs:[{op:'Look',n:1,stages:[{n:1,g467Destinations:['hand','mana'],tapped:true}],rest:'top'}]}];
+   return {effect:'sixPhoto',g34Tasks:defs,g179OpponentStart:defs};
+  }
+  if(f.name==='ヴァイナル＝ヴィランド'&&f.typeText==='クリーチャー'&&f.civilizationText==='闇'&&f.cost===4&&text===
+   'このクリーチャーが出た時自分の山札の上から4枚を墓地に置く。'+
+   'このカードがどこからでも墓地に置かれた時自分のアビスがあれば自分の山札の上から1枚目を墓地に置いてもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Mill',n:4,g1042Together:true}],
+    g675GraveEntry:[{op:'IfOwn',filter:{element:true,faceUp:true,race:'アビス'},defs:[{op:'Mill',n:1,optional:true}]}]};
+ }
  if(phase>=1041&&d?.status==='complete'){
   const front=normalize(f.abilityText),twin=d.faces[1];
   if(d.faces.length===2&&f.name==='埋没のシダン オリーブオイル'&&f.typeText==='クリーチャー'&&f.civilizationText==='水'&&f.cost===4&&f.race==='オラクル・セレス/グレートメカオー'&&front===

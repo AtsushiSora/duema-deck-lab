@@ -395,7 +395,21 @@ function takeDrawCard(s,p){
 function draw(s,p,n,{unreplaceable=false,drawn,turnDraw=false}={}){let actual=0,replacementDraws=0;for(let i=0;i<n&&s.winner===null;i++){const replaced=unreplaceable?null:babyloniaDraw(s,p);if(replaced!==null){replacementDraws+=replaced;continue;}if(!unreplaceable&&!s.players[p].deck.length&&extra.deckSafe(s,p)&&s.players[p].battle.some(x=>effectiveCard(x,s).bigBang)){extra.put(s,extra.task("g10_Draws",p,s.players[p].battle.find(x=>effectiveCard(x,s).bigBang).cardId,{n:n-i}));break;}const last=s.players[p].deck.length===1&&!extra.deckSafe(s,p)&&!extra.seed.noLose(s,1-p,'replacementWin')&&s.players[p].battle.some(x=>effectiveCard(x,s).shako),c=takeDrawCard(s,p);if(c){clearBattleState(c,'hand');s.players[p].hand.push(c);drawn?.push(c.uid);actual++;if(!last&&c.g11FromSideways){checkSidewaysHand(s,p);if(s.winner!==null||s.lossEvent){if(n-i-1&&s.lossEvent)extra.put(s,extra.task('draw',p,c.cardId,{n:n-i-1}));break;}}}if(last&&c){finish(s,p,'シャコガイル：山札の最後の1枚を引いて勝利','replacementWin');if(s.winner===null)deckCheck(s,p);}else deckCheck(s,p);checkSidewaysHand(s,p);}
  if(turnDraw&&actual&&s.winner===null)extra.six.turnDrawn947(s,p,actual);
  extra.drawn(s,p,actual);log(s,p,'draw',`カードを${actual}枚引いた`);return actual+replacementDraws;}
-function mill(s,p,n){for(let i=0;i<n&&s.winner===null;i++){const x=takeDeckTop(s,p);if(x){clearBattleState(x);addZone(s,s.players[p],'grave',x);}deckCheck(s,p);}}
+function mill(s,p,n,{together=false}={}){
+ if(together&&s.winner===null){
+  const moved=[];
+  for(let i=0;i<n;i++){
+   const x=takeDeckTop(s,p);
+   if(!x)break;
+   clearBattleState(x);
+   moved.push(x);
+  }
+  addZone(s,p,'grave',...moved);
+  deckCheck(s,p);
+  return;
+ }
+ for(let i=0;i<n&&s.winner===null;i++){const x=takeDeckTop(s,p);if(x){clearBattleState(x);addZone(s,s.players[p],'grave',x);}deckCheck(s,p);}
+}
 
 // Only committed moves mark a card, and addZone consumes the mark synchronously.
 const evolutionGraveSources=new WeakSet();

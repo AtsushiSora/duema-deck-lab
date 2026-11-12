@@ -209814,15 +209814,200 @@
       ],
       "supportBatch": "phase-1041",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-074",
+      "name": "バイン・トラップ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nコスト５以下のエレメントを１つ選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-074",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "element": true,
+          "anyOwner": true,
+          "spell": true,
+          "to": "mana",
+          "toOwnerMana": true,
+          "filter": {
+            "element": true,
+            "faceUp": true,
+            "max": 5
+          },
+          "title": "持ち主のマナに置くコスト5以下のエレメントを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1042",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23bd7-007",
+      "name": "記憶の霧消",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nマナゾーンのカードが自分のより多い相手１人につき１枚、自分の山札の上から１枚目をタップしてマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd7-007",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "mana",
+              "lessThanOpponent": true
+            }
+          },
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1,
+              "tapped": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1042",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex1-027",
+      "name": "鬼羅王女プリン",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ジャイアント・ハンター/エイリアン",
+      "text": "このクリーチャーが出た時、または、相手のターンのはじめに、自分の山札の上から１枚目を見てもよい。そうしたら、それを手札に加えるか、タップしてマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-027",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "g1042LookFirst": true,
+          "title": "山札の上から1枚目を見る？",
+          "defs": [
+            {
+              "op": "Look",
+              "n": 1,
+              "stages": [
+                {
+                  "n": 1,
+                  "g467Destinations": [
+                    "hand",
+                    "mana"
+                  ],
+                  "tapped": true
+                }
+              ],
+              "rest": "top"
+            }
+          ]
+        }
+      ],
+      "g179OpponentStart": [
+        {
+          "op": "Offer",
+          "g1042LookFirst": true,
+          "title": "山札の上から1枚目を見る？",
+          "defs": [
+            {
+              "op": "Look",
+              "n": 1,
+              "stages": [
+                {
+                  "n": 1,
+                  "g467Destinations": [
+                    "hand",
+                    "mana"
+                  ],
+                  "tapped": true
+                }
+              ],
+              "rest": "top"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1042",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-039",
+      "name": "ヴァイナル＝ヴィランド",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "アビスロイヤル",
+      "text": "このクリーチャーが出た時、自分の山札の上から４枚を墓地に置く。\nこのカードがどこからでも墓地に置かれた時、自分のアビスがあれば、自分の山札の上から１枚目を墓地に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-039",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 4,
+          "g1042Together": true
+        }
+      ],
+      "g675GraveEntry": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "element": true,
+            "faceUp": true,
+            "race": "アビス"
+          },
+          "defs": [
+            {
+              "op": "Mill",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1042",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1041,
-    "checkedAt": "2026-11-12",
-    "baseCount": 7072,
-    "newEffectCards": 3,
+    "phase": 1042,
+    "checkedAt": "2026-11-13",
+    "baseCount": 7075,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7075,
+    "totalCount": 7079,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -228603,6 +228788,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7072,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1041,
+        "checkedAt": "2026-11-12",
+        "baseCount": 7072,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7075,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
