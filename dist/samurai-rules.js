@@ -147,7 +147,7 @@ export function createSamuraiRules(api){
   return gearReducers+all.filter(x=>card(x).takion&&(c.type==='gear'||c.type==='creature'&&samurai(c))).length+
    Math.min(optionalReducers(s,p,c),c.g18Reducers??Infinity);
  },
- speed(s,p,x){const c=card(x);return c.type==='creature'&&(samurai(c)&&creatures(s,p).some(y=>!api.ignored(s,y)&&card(y).samuraiSpeed)||(dragon(c)||samurai(c))&&gears(s,p).some(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((q)=>dragon(q)||samurai(q))(card(live(s,p,g)))));},
+ speed(s,p,x){const c=card(x);return c.type==='creature'&&(samurai(c)&&creatures(s,p).some(y=>card(y).samuraiSpeed&&!api.ignored(s,y))||(dragon(c)||samurai(c))&&gears(s,p).some(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((q)=>dragon(q)||samurai(q))(card(live(s,p,g)))));},
  power(s,p,x,c){if(p<0||!api.isCreature(s,x))return 0;return (x.sealed?0:crossedRacePower(s,c))+attached(s,p,x).filter(g=>!g.faceDown&&active(s,g)).reduce((n,g)=>n+(card(g).g123CrossPower||0),0)+attached(s,p,x).filter(g=>card(g).takion&&active(s,g)).length*1000+((dragon(card(x))||samurai(card(x)))?gears(s,p).filter(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((c)=>dragon(c)||samurai(c))(card(live(s,p,g)))).length*2000:0);},
  entry(s,p,x,options){
   const c=card(x);

@@ -233,8 +233,8 @@ export function createStrategicAI(api){
    Math.min(mana,7)*(hero(s,p)?18:11)+Math.max(0,Math.min(mana-7,5))*3+colors*2+safety+
    pressure(s,p)-(own.shields.length<danger?18:0)-(own.deck.length<=3?(4-own.deck.length)*16:0);
  }
- function candidates(s){
-  const rows=rank(s).filter(r=>!r.a.cardId||card(r.a.cardId)?.type!=='unknown');
+ function candidates(s,ranked=rank(s)){
+  const rows=ranked.filter(r=>!r.a.cardId||card(r.a.cardId)?.type!=='unknown');
   if(s.phase==='charge')return rows;
   const out=[],seen=new Set();
   const add=r=>{if(r&&!seen.has(key(r.a))){out.push(r);seen.add(key(r.a));}};
@@ -316,19 +316,21 @@ export function createStrategicAI(api){
   // Bound planning by position size as well as node count, without wall-clock
   // cutoffs that would make seeded replays depend on the device's speed.
   if(s.players[p].mana.length>9||s.players[p].hand.length>12||s.players[p].battle.length>5||s.players.some(x=>x.battle.length>10))return {action:baseline,nodes:0,fallbacks:0};
-  const root=projection(s,p),base=value(root,p),results=[];let nodes=0,fallbacks=0;
+  const root=projection(s,p),base=value(root,p),results=[];let nodes=0,fallbacks=0,rootActions;
   const complexity=1+s.players[p].mana.length+s.players[p].hand.length+s.players.reduce((n,x)=>n+x.battle.length*3,0);
   const budget=Math.max(4,Math.min(hero(s,p)?80:64,Math.floor((hero(s,p)?1500:900)/complexity**1.4)));
   const expand=(state,row,origin,prior)=>{
    if(nodes>=budget)return null;nodes++;
    const next=clone(state);
    try{
-    const a=legal(next).find(a=>key(a)===key(row.a));
+    // Every root candidate starts from the same unmodified projection.
+    const options=state===root?(rootActions??=legal(next)):legal(next);
+    const actionKey=key(row.a),a=options.find(a=>key(a)===actionKey);
     if(!a||!advance(next,a)){fallbacks++;return null;}
     return {state:next,action:origin||row.a,score:value(next,p)+prior,prior};
    }catch{fallbacks++;return null;}
   };
-  for(const row of candidates(s)){
+  for(const row of candidates(s,rows)){
    // Unknown reveals cannot be evaluated faithfully; retain a small policy prior.
    const prior=s.phase==='main'?Math.max(-4,Math.min(4,(row.value-5)*.05)):hero(s,p)?Math.max(-6,Math.min(6,(row.value-50)*.15)):0;
    const node=expand(root,row,null,prior);

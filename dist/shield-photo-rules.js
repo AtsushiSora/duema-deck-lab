@@ -101,7 +101,7 @@ export function createShieldPhotoRules(api){
  decorate(s,p,x,c){
   if(c.type!=='creature')return c;
   if(armored(c)&&castles(s,p,'g33Mai').length)c={...c,blocker:true,speedAttacker:true};
-  if(colors(c).length>1&&s.players[p].battle.some(y=>!api.ignored(s,y)&&card(y).g33Dogi))c={...c,speedAttacker:true};
+  if(colors(c).length>1&&s.players[p].battle.some(y=>card(y).g33Dogi&&!api.ignored(s,y)))c={...c,speedAttacker:true};
   const faceUpShields=up(s,p);
   if(!c.g401ShieldSaver&&faceUpShields.some(y=>card(y).g663ShieldSaver))c={...c,g401ShieldSaver:true};
   if(c.g663ShieldGoAttackUntapped&&shieldGoCount(s,p))c={...c,attackUntapped:true};

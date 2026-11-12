@@ -26,7 +26,11 @@ export function card(id){
  if(typeof id!=='string'&&id?.faceDown)return FACE_DOWN;
  if(typeof id!=='string'&&id?.sealed){const c=card(id.cardId);return {id:c.id,name:c.name,type:'ignored',cost:Infinity,power:0,civ:'',civilizations:[],race:'',limit:c.limit};}
  if(typeof id!=='string'&&id?.godLinks?.length){const parts=[id,...id.godLinks],defs=parts.map(x=>card(x.cardId)),base={...defs[0]},union=key=>[...new Set(defs.flatMap(c=>key==='civilizations'?civilizations(c):String(c[key]||'').split('/')))];for(const c of defs)for(const[k,v]of Object.entries(c))if(v===true)base[k]=true;return {...base,name:defs.map(c=>c.name).join('＋'),cost:defs.reduce((n,c)=>n+costValue(c),0),power:defs.reduce((n,c)=>n+numeric(c.power),0),civilizations:union('civilizations'),civ:union('civilizations').join('/'),race:union('race').join('/'),g31GodHeavy:defs.some(c=>c.g31God==='left'),breaker:Math.max(...defs.map(c=>Number(c.breaker)||(c.breaker===0?0:1)))===1?undefined:Math.max(...defs.map(c=>Number(c.breaker)||(c.breaker===0?0:1)))};}
- const key=typeof id==='string'?id:id?.cardId,base=catalogue.get(key);if(base?.g39Verde&&typeof id!=='string'&&id.g39GraveColors)return {...base,civilizations:['光','水','闇','火','自然'],civ:'光/水/闇/火/自然',g39InGrave:true};if(base)return typeof id==='string'?base:copiedDefinition393(id,wdDefinition393(id,base),key=>card(key));if(!key?.startsWith('ability-copy:')||key.length>4096)return base;
+ const key=typeof id==='string'?id:id?.cardId,base=catalogue.get(key);if(base?.g39Verde&&typeof id!=='string'&&id.g39GraveColors)return {...base,civilizations:['光','水','闇','火','自然'],civ:'光/水/闇/火/自然',g39InGrave:true};if(base){
+  if(typeof id==='string')return base;
+  const definition=base.g393JWDFaces?wdDefinition393(id,base):base;
+  return id.g393JCopies?.length?copiedDefinition393(id,definition,card):definition;
+ }if(!key?.startsWith('ability-copy:')||key.length>4096)return base;
  const parts=key.split(':');if(parts.length!==3)return undefined;
  try{const source=card(decodeURIComponent(parts[1])),reference=card(decodeURIComponent(parts[2]));if(!source||!reference)return undefined;return {...source,...Object.fromEntries(['name','cost','printedCost','civ','civilizations','power','race','type'].map(k=>[k,reference[k]])),id:key,copyOf:source.id,referenceId:reference.id};}catch{return undefined;}
 }
@@ -37,8 +41,20 @@ function rawTravelIgnored(s,x){return !!s&&(s.extLimits||[]).some(l=>l.kind==='t
 function travelIgnored(s,x){return rawTravelIgnored(s,x)&&!genmuActive(s);}
 function rawNumberIgnored(s,x){return !!s&&(s.extLimits||[]).some(l=>l.kind==='numberIgnore'&&x.g9IgnoreScopes?.includes(l.scope)&&costValue(card(x))===(l.cost==='∞'?Infinity:l.cost));}
 function rawSixCreature(s,x){const c=card(x);if(c.type!=='creature')return false;if(!c.natureAce4)return true;const p=s?.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));return p>=0&&(!!x.aceIgnored||natureElements(s,p)>=4);}
-function rawSixMute(s,x){if(!rawSixCreature(s,x))return false;if(!(s?.extLimits||[]).some(l=>l.kind==='g34Mute'))return false;const p=s?.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));return p>=0&&(s.extLimits||[]).some(l=>l.kind==='g34Mute'&&l.player===p);}
-function rawSixNamed(s,x){if(!s||!rawSixCreature(s,x))return false;const monoMasked=s.players.some(p=>p.battle.some(y=>card(y).g32Momo&&!rawNumberIgnored(s,y)&&!rawTravelIgnored(s,y)&&!rawSixMute(s,y)));return s.players.some(p=>p.battle.some(y=>!y.sealed&&card(y).g34Role==='emotional'&&y.g34ChosenName===card(x).name&&!rawSixMute(s,y)&&!rawNumberIgnored(s,y)&&!rawTravelIgnored(s,y)&&!(monoMasked&&civilizations(card(y)).length<=1)));}
+function rawSixMute(s,x){
+ const limits=s?.extLimits||[];
+ if(!limits.some(l=>l.kind==='g34Mute')||!rawSixCreature(s,x))return false;
+ const p=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));
+ return p>=0&&limits.some(l=>l.kind==='g34Mute'&&l.player===p);
+}
+function rawSixNamed(s,x){
+ if(!s)return false;
+ const name=card(x).name;
+ const sourceMatches=y=>!y.sealed&&y.g34ChosenName===name&&card(y).g34Role==='emotional';
+ if(!s.players.some(p=>p.battle.some(sourceMatches))||!rawSixCreature(s,x))return false;
+ const monoMasked=s.players.some(p=>p.battle.some(y=>card(y).g32Momo&&!rawNumberIgnored(s,y)&&!rawTravelIgnored(s,y)&&!rawSixMute(s,y)));
+ return s.players.some(p=>p.battle.some(y=>sourceMatches(y)&&!rawSixMute(s,y)&&!rawNumberIgnored(s,y)&&!rawTravelIgnored(s,y)&&!(monoMasked&&civilizations(card(y)).length<=1)));
+}
 export function momoActive(s){return !!s?.players.some(p=>p.battle.some(x=>card(x).g32Momo&&!rawNumberIgnored(s,x)&&!rawTravelIgnored(s,x)&&!rawSixMute(s,x)&&!rawSixNamed(s,x)));}
 export function genmuActive(s){return !!s?.players.some(p=>p.battle.some(x=>card(x).ignoreSmall&&!rawNumberIgnored(s,x)&&!rawTravelIgnored(s,x)));}
 export function numberIgnored(s,x){return rawNumberIgnored(s,x)&&!genmuActive(s);}
