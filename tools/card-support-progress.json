@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7143,
-  "pendingNames": 4684,
-  "phase": 1061,
+  "supportedNames": 7146,
+  "pendingNames": 4681,
+  "phase": 1062,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -100,7 +100,7 @@
     },
     {
       "ability": "超魂",
-      "pendingNames": 51,
+      "pendingNames": 48,
       "examples": [
         {
           "id": "dm25rp2-014",
@@ -155,7 +155,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 2700,
-    "NEOクリーチャー": 125,
+    "NEOクリーチャー": 122,
     "呪文": 605,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3247,
+    "未対応の能力文": 3244,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -206817,32 +206817,202 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1062,
+      "baseCommit": "29e9e471",
+      "cards": [
+        {
+          "id": "dm25rp2-029",
+          "name": "ゴールドハム・サックス"
+        },
+        {
+          "id": "dm25bd1-005",
+          "name": "ボルシャック・ネオウルフェウス"
+        },
+        {
+          "id": "dm25rp2-S04",
+          "name": "魔誕の邪蹄ベル・ヘル・デ・ガウル"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "promoy24-043",
+          "canonicalId": "dm25rp2-029"
+        },
+        {
+          "id": "dm25bd1-SP3",
+          "canonicalId": "dm25bd1-005"
+        },
+        {
+          "id": "dm25rp2-Sec05",
+          "canonicalId": "dm25rp2-S04"
+        },
+        {
+          "id": "dm25ex3-rp2S04",
+          "canonicalId": "dm25rp2-S04"
+        },
+        {
+          "id": "dm25ex3-rp2Sec05",
+          "canonicalId": "dm25rp2-S04"
+        }
+      ],
+      "supportedNames": 7146,
+      "pendingNames": 4681,
+      "verification": {
+        "focusedPassed": 15,
+        "regressionPassed": 92,
+        "regressionFailed": 0,
+        "check": "成功",
+        "officialPrints": 8,
+        "scope": "3種類8版の公式能力全文、基本情報、マナ数、画像、商品リスト、現行使用制限を照合。プロモ、同一商品のシークレット、デュエナマイト再録の合計5版を元の対戦IDへ紐づけ、省略注釈と光か火の表記が同じ効果になることを確認。ゴールドハムは登場時の全体タップと次の相手ターン開始時のアンタップ停止、既タップ・選択耐性・後から出たクリーチャーを確認。ネオウルフェウスはドラゴン進化元、手札から光・火の呪文面の選択、辞退、持ち主の墓地、ストラトバッグでの移動先置換後の詠唱、攻撃継続と無支払いを確認。デ・ガウルは超魂レイドとの独立順序、コスト3以下の必須破壊、公開したコスト7以下のNEO・G-NEO・デーモン・コマンドの登場、対象外の墓地移動、進化元不在の公開カードが山札に残ることを確認。既存7,143件の対戦定義と別版IDを照合。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/31531/",
+          "https://dm.takaratomy.co.jp/rule/qa/38742/",
+          "https://dm.takaratomy.co.jp/rule/qa/39645/",
+          "https://dm.takaratomy.co.jp/rule/qa/40372/",
+          "https://dm.takaratomy.co.jp/rule/qa/42937/",
+          "https://dm.takaratomy.co.jp/rule/qa/46847/",
+          "https://dm.takaratomy.co.jp/rule/qa/46850/",
+          "https://dm.takaratomy.co.jp/rule/qa/46861/",
+          "https://dm.takaratomy.co.jp/rule/qa/46946/",
+          "https://dm.takaratomy.co.jp/rule/qa/47933/"
+        ],
+        "regressionFiles": [
+          "tests/golgy-effects.test.mjs",
+          "tests/phoenix-photo.test.mjs",
+          "tests/standard514-effects.test.mjs",
+          "tests/standard825-effects.test.mjs",
+          "tests/standard1053-effects.test.mjs",
+          "tests/standard1060-effects.test.mjs",
+          "tests/standard1061-effects.test.mjs"
+        ],
+        "regressionFilter": "超魂レイド、メテオバーン、ストラトバッグ、アンタップ、山札公開・移動の固有ケースに限定。",
+        "additionalRegression": {
+          "passed": 90,
+          "failed": 0,
+          "scope": "初回の名前フィルターにはゴルギーのランダム操作試験が含まれ、約58秒で成功。最終回帰は同試験を除外し、正しいPhoenixファイルの関連ケースを含めた。"
+        },
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。 トットロの公式QA 48925の組み合わせは関連2枚が未対応のため未実行。NEO/DDDの100試合と再現性は過去に分割検証済みで、今回の回帰では合否未確認。 ゴルギー31相手の再現性と本番Worker62試合は今回も対象外で未実行。前回の広範囲回帰に含まれる1,796件固定の既存テストの結果はPhase 1060を参照。 PhoenixのCPU連戦と本番Worker試験は、今回の個別回帰の対象外。",
+        "pendingInteractions": [
+          {
+            "cardIds": [
+              "dm25rp3-039",
+              "dm26rp2-006",
+              "dm25rp2-OR1"
+            ],
+            "test": "デンジャラス=トットロの上にメモッタで封印付きのジャシン＝ヴリドガルドが出る場合の墓地展開",
+            "status": "未実行",
+            "reason": "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/48925/"
+          }
+        ],
+        "logs": {
+          "official": "/tmp/duema-phase-1062.wDWdc0H8/manifest.log",
+          "officialImages": "/tmp/duema-phase-1062.wDWdc0H8/sources.log",
+          "reprints": "/tmp/duema-phase-1062.wDWdc0H8/reprints.log",
+          "secretPrints": "/tmp/duema-phase-1062.wDWdc0H8/secret.log",
+          "variants": "/tmp/duema-phase-1062.wDWdc0H8/variants.log",
+          "focused": "/tmp/duema-phase-1062.wDWdc0H8/focused-final.log",
+          "regression": "/tmp/duema-phase-1062.wDWdc0H8/regression-final.log",
+          "additionalRegression": "/tmp/duema-phase-1062.wDWdc0H8/regression.log",
+          "check": "/tmp/duema-phase-1062.wDWdc0H8/check.log",
+          "audit": "/tmp/duema-phase-1062.wDWdc0H8/audit.log",
+          "count": "/tmp/duema-phase-1062.wDWdc0H8/count.log",
+          "imageIndex": "/tmp/duema-phase-1062.wDWdc0H8/images.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dm25rp2-OR1",
+          "name": "究極の虚 ジャシン＝ヴリドガルド",
+          "reason": "元の版の能力全文・基本情報・画像と別収録商品を確認。進化元とクリーチャーが一緒に離れた場合は誘発せず、G-NEOの置換などで下のカードだけが離れる場合はカード単位の誘発と任意ブレイクを処理する必要がある。再録の個別版とこの差を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-OR1",
+            "https://dm.takaratomy.co.jp/rule/qa/46870/",
+            "https://dm.takaratomy.co.jp/rule/qa/48925/"
+          ]
+        },
+        {
+          "id": "dm25rp4-064",
+          "name": "ギャラップ＝ギャロップ",
+          "reason": "公式能力全文・基本情報・画像・単一収録を確認。破壊直前に進化していた状態と、墓地に入った同一カードを照合し、離脱置換や墓地からの登場制限も確認するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-064",
+            "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+          ]
+        },
+        {
+          "id": "dmex02-079",
+          "name": "インパラスカス",
+          "reason": "公式全文・基本情報・画像・単一収録を確認。進化元条件のうち文明だけを無視し、種族等の条件と召喚・効果登場の両経路を維持できるか検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-079"
+          ]
+        },
+        {
+          "id": "dm25rp4-077",
+          "name": "スマッシュ・ホーンの地版",
+          "reason": "公式の能力全文・基本情報・画像・単一収録を確認。超魂Xで進化先が得た能力が、その進化先をさらに進化元にした時に新しい進化先へマッハファイターを与える経路を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-077",
+            "https://dm.takaratomy.co.jp/rule/qa/46533/",
+            "https://dm.takaratomy.co.jp/rule/qa/46530/"
+          ]
+        },
+        {
+          "id": "dm25rp2-049",
+          "name": "選舞音愛 タテロール",
+          "reason": "公式本文・基本情報・画像・単一収録を照合。既存の対象選択と移動先選択を使えるが、複数枚で構成されたクリーチャーをシールド化する場合の各カードの配置順と持ち主の扱いを既存処理で再現できるか確認が残る。発生源のコストでシックスフォールの選択制限を判定する公式QA 47068も固有テストで確認する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-049",
+            "https://dm.takaratomy.co.jp/rule/qa/46506/",
+            "https://dm.takaratomy.co.jp/rule/qa/46847/",
+            "https://dm.takaratomy.co.jp/rule/qa/47068/"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1061,
-    "nextPhase": 1062,
+    "lastVerifiedPhase": 1062,
+    "nextPhase": 1063,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm25rp2-029",
-        "name": "ゴールドハム・サックス",
-        "reason": "超魂レイドと、対象を選ばない全体タップおよび次の相手ターン開始時のアンタップ停止を照合する。"
+        "id": "dm25rp2-014",
+        "name": "～海獣戦車～",
+        "reason": "攻撃終了時に選んだ下のカードを別のクリーチャーへ移動し、移動後のNEO進化状態とカード順を照合する。"
       },
       {
-        "id": "dm25bd1-005",
-        "name": "ボルシャック・ネオウルフェウス",
-        "reason": "ドラゴンを進化元にする超魂レイド、メテオバーンの支払いと光または火の呪文の任意詠唱を照合する。"
+        "id": "dm25rp2-003",
+        "name": "深淵の侵鈴 リリン＝リリンカーン",
+        "reason": "超魂レイド、破壊直前の進化元、墓地から出すカードの合計コストと残りの任意回収を照合する。"
       },
       {
-        "id": "dm25rp2-S04",
-        "name": "魔誕の邪蹄ベル・ヘル・デ・ガウル",
-        "reason": "超魂レイドと、攻撃時に公開するカードのコスト、NEOまたはデーモン・コマンドの判定および進化元選択を照合する。"
+        "id": "dm26rp2-006",
+        "name": "不明な不透明 メモッタ",
+        "reason": "召喚時の進化と封印の順序を公式QA 48925と照合し、トットロとの組み合わせを検証する。"
       },
       {
         "id": "dm25rp2-OR1",
         "name": "究極の虚 ジャシン＝ヴリドガルド",
-        "reason": "G-NEOの離脱置換、超魂レイド、進化元カードが離れた時の誘発を検討する。メモッタ対応後に公式QA 48925の組み合わせを検証する。"
+        "reason": "元の版の能力全文・基本情報・画像と別収録商品を確認。進化元とクリーチャーが一緒に離れた場合は誘発せず、G-NEOの置換などで下のカードだけが離れる場合はカード単位の誘発と任意ブレイクを処理する必要がある。再録の個別版とこの差を検証するまで保留。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-OR1",
+          "https://dm.takaratomy.co.jp/rule/qa/46870/",
+          "https://dm.takaratomy.co.jp/rule/qa/48925/"
+        ]
+      },
+      {
+        "id": "dm25rp4-064",
+        "name": "ギャラップ＝ギャロップ",
+        "reason": "公式能力全文・基本情報・画像・単一収録を確認。破壊直前に進化していた状態と、墓地に入った同一カードを照合し、離脱置換や墓地からの登場制限も確認するまで保留。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-064",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ]
       },
       {
         "id": "dmex02-079",

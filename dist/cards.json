@@ -212824,15 +212824,146 @@
       "g27Raid": true,
       "supportBatch": "phase-1061",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-029",
+      "name": "ゴールドハム・サックス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8500,
+      "race": "ジャイアント・ドリームメイト",
+      "text": "NEO進化：光、水、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\n超魂レイド（このクリーチャーが出た時、山札の上から３枚を表向きにする。その中からこのクリーチャーの進化元になれるカードを１枚、この下に置いてもよい。残りを好きな順序で山札の下に置く）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手のクリーチャーをすべてタップする。次の相手のターンのはじめに、それらはアンタップしない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-029",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "g27Raid": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LockUntap606",
+          "g1019Tap": true
+        }
+      ],
+      "supportBatch": "phase-1062",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25bd1-005",
+      "name": "ボルシャック・ネオウルフェウス",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "アーマード・ドラゴン/エンジェル・コマンド/ハンター",
+      "text": "NEO進化：ドラゴン・クリーチャー１体の上に置いてもよい。\nW・ブレイカー\n超魂レイド（このクリーチャーが出た時、山札の上から３枚を表向きにする。その中からこのクリーチャーの進化元になれるカードを１枚、この下に置いてもよい。残りを好きな順序で山札の下に置く）\nメテオバーン：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚墓地に置いてもよい。そうしたら、光または火の呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25bd1-005",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "category": "ドラゴン"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g27Raid": true,
+      "g825Meteor": "castLightFire",
+      "supportBatch": "phase-1062",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-S04",
+      "name": "魔誕の邪蹄ベル・ヘル・デ・ガウル",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "デーモン・コマンド",
+      "text": "NEO進化：闇、火、または自然のクリーチャー１体の上に置いてもよい。\n超魂レイド（このクリーチャーが出た時、山札の上から３枚を表向きにする。その中からこのクリーチャーの進化元になれるカードを１枚、この下に置いてもよい。残りを好きな順序で山札の下に置く）\nW・ブレイカー\nこのクリーチャーが出た時、相手のコスト３以下のクリーチャーを１体選び、破壊する。\nこのクリーチャーが攻撃する時、自分の山札の上から１枚を表向きにする。それがコスト７以下の、NEOクリーチャーまたはデーモン・コマンドなら出す。それ以外なら墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-S04",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "闇"
+          },
+          {
+            "civilization": "火"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "g27Raid": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "RevealTop514",
+          "filter": {
+            "creature": true,
+            "max": 7,
+            "any": [
+              {
+                "g556Neo": true
+              },
+              {
+                "race": "デーモン・コマンド"
+              }
+            ]
+          },
+          "to": "battle",
+          "elseTo": "grave"
+        }
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "max": 3
+          }
+        }
+      ],
+      "supportBatch": "phase-1062",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1061,
+    "phase": 1062,
     "checkedAt": "2026-11-13",
-    "baseCount": 7140,
+    "baseCount": 7143,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7143,
+    "totalCount": 7146,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -231853,6 +231984,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7140,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1061,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7140,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7143,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -9485,6 +9485,30 @@ export function standardCardSpec(d,{phase=165}={}){
    spec.g397Shinka=defs;
    continue;
   }
+  if(phase>=1062&&f.typeText==='NEOクリーチャー'){
+   if(line==='超魂レイド'){
+    spec.g27Raid=true;
+    continue;
+   }
+   if(line==='NEO進化:ドラゴン・クリーチャー1体の上に置いてもよい。'){
+    if(spec.neoEvolution)throw Error('NEO進化条件の重複');
+    spec.neoEvolution={any:[{category:'ドラゴン'}]};
+    continue;
+   }
+   if(line==='このクリーチャーが出た時相手のクリーチャーをすべてタップする。次の相手のターンのはじめにそれらはアンタップしない。'){
+    entry.push({op:'LockUntap606',g1019Tap:true});
+    continue;
+   }
+   if(/^メテオバーン:このクリーチャーが攻撃する時このクリーチャーの下にあるカードを1枚墓地に置いてもよい。そうしたら光(?:または|か)火の呪文を1枚自分の手札からコストを支払わずに唱えてもよい。$/.test(line)){
+    spec.g825Meteor='castLightFire';
+    continue;
+   }
+   if(line==='このクリーチャーが攻撃する時自分の山札の上から1枚を表向きにする。それがコスト7以下のNEOクリーチャーまたはデーモン・コマンドなら出す。それ以外なら墓地に置く。'){
+    (spec.g34Attack??=[]).push({op:'RevealTop514',filter:{creature:true,max:7,
+     any:[{g556Neo:true},{race:'デーモン・コマンド'}]},to:'battle',elseTo:'grave'});
+    continue;
+   }
+  }
   if(phase>=1060&&f.typeText==='NEOクリーチャー'){
    if(line==='このクリーチャーが出た時自分の山札の上から3枚を墓地に置いてもよい。'){
     entry.push({op:'Offer',title:'山札の上から3枚を墓地に置く？',defs:[{op:'Mill',n:3,g1042Together:true}]});
