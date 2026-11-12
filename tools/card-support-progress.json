@@ -218326,7 +218326,7 @@
       "登録済みカードの裁定差は、エスケープとS・バック、旧マジボンバーのEXライフ、旧ウルトラ・セイバーの自己置換を優先して確認する。未登録の保留カードは従来の履歴で管理する。"
     ],
     "followUp": {
-      "checkedAt": "2026-11-12T05:57:37.647Z",
+      "checkedAt": "2026-11-12T06:04:54.449Z",
       "baseCommit": "4375c935",
       "originalUnconfirmedCount": 270,
       "originalNowPassed": 253,
@@ -218769,13 +218769,13 @@
       "caps": "個別テストは580秒、終了猶予5秒。全体のnpm testは実行しない。",
       "counts": {
         "passed": 376,
-        "passedInParts": 7,
-        "timedOut": 31,
+        "passedInParts": 10,
+        "timedOut": 28,
         "historicalPass": 14
       },
       "groupsByStatus": {
-        "passed": 71,
-        "unconfirmed": 10
+        "passed": 73,
+        "unconfirmed": 8
       },
       "cases": [
         {
@@ -228518,10 +228518,8 @@
             "dmrp20-km2",
             "dmrp22-027"
           ],
-          "status": "timedOut",
-          "seconds": 580,
-          "log": "/tmp/duema-verify-all/extra-1.log",
-          "failures": []
+          "status": "passedInParts",
+          "log": "/tmp/duema-verify-all/gate-worker-input-parts.jsonl"
         },
         {
           "path": "tests/standard474-effects.test.mjs",
@@ -228759,10 +228757,11 @@
             "dmr09-s07",
             "promoy11-009"
           ],
-          "status": "timedOut",
-          "seconds": 580,
-          "log": "/tmp/duema-verify-all/extra-2.log",
-          "failures": []
+          "status": "passedInParts",
+          "log": "/tmp/duema-verify-all/matrix-extra.jsonl",
+          "logs": [
+            "/tmp/duema-verify-all/matrix-extra.jsonl"
+          ]
         },
         {
           "path": "tests/hunter-effects.test.mjs",
@@ -228838,10 +228837,8 @@
             "dmx11-012",
             "sp-020"
           ],
-          "status": "timedOut",
-          "seconds": 580,
-          "log": "/tmp/duema-verify-all/extra-4.log",
-          "failures": []
+          "status": "passedInParts",
+          "log": "/tmp/duema-verify-all/twinpact.jsonl"
         },
         {
           "path": "tests/standard454-effects.test.mjs",
@@ -233258,7 +233255,7 @@
             {
               "path": "tests/gate-effects.test.mjs",
               "title": "production worker completes160 No20 games with no unresolved matches",
-              "status": "timedOut"
+              "status": "passedInParts"
             },
             {
               "path": "tests/standard390-effects.test.mjs",
@@ -233314,11 +233311,10 @@
             "pattern": "legal forty(-card)? CPU|^No20 (finishes|random legal)|^production worker completes160",
             "log": "/tmp/duema-phase-871-regression.log"
           },
-          "status": "unconfirmed",
+          "status": "passed",
           "counts": {
             "passed": 10,
-            "passedInParts": 2,
-            "timedOut": 1
+            "passedInParts": 3
           }
         },
         {
@@ -233410,7 +233406,7 @@
             {
               "path": "tests/hunter-effects.test.mjs",
               "title": "No12 completes84 seeded AI games, conserves80 unique cards and replays every state deterministically",
-              "status": "timedOut"
+              "status": "passedInParts"
             },
             {
               "path": "tests/hunter-effects.test.mjs",
@@ -233470,7 +233466,7 @@
             {
               "path": "tests/twinpact-judge.test.mjs",
               "title": "mixed twinpact/dragon games finish, preserve all 80 physical cards including a pending spell, and replay deterministically",
-              "status": "timedOut"
+              "status": "passedInParts"
             }
           ],
           "files": [
@@ -233488,7 +233484,8 @@
           ],
           "status": "unconfirmed",
           "counts": {
-            "timedOut": 4,
+            "passedInParts": 2,
+            "timedOut": 2,
             "passed": 9
           }
         },
@@ -233858,7 +233855,7 @@
             {
               "path": "tests/twinpact-judge.test.mjs",
               "title": "mixed twinpact/dragon games finish, preserve all 80 physical cards including a pending spell, and replay deterministically",
-              "status": "timedOut"
+              "status": "passedInParts"
             },
             {
               "path": "tests/standard318-effects.test.mjs",
@@ -233916,8 +233913,9 @@
           },
           "status": "unconfirmed",
           "counts": {
-            "timedOut": 4,
-            "passed": 4
+            "passedInParts": 1,
+            "passed": 4,
+            "timedOut": 3
           }
         },
         {
@@ -233961,7 +233959,7 @@
             {
               "path": "tests/twinpact-judge.test.mjs",
               "title": "mixed twinpact/dragon games finish, preserve all 80 physical cards including a pending spell, and replay deterministically",
-              "status": "timedOut"
+              "status": "passedInParts"
             }
           ],
           "files": [
@@ -233981,10 +233979,10 @@
             "pattern": "legal forty-card CPU game|legal forty CPU game|mixed twinpact|both CPU decks finish",
             "log": "/tmp/duema-phase-880-regression.log"
           },
-          "status": "unconfirmed",
+          "status": "passed",
           "counts": {
             "passed": 5,
-            "timedOut": 1
+            "passedInParts": 1
           }
         },
         {
@@ -237064,9 +237062,9 @@
           "path": "tests/hunter-effects.test.mjs",
           "title": "No12 completes84 seeded AI games, conserves80 unique cards and replays every state deterministically",
           "expected": 84,
-          "checked": 81,
+          "checked": 84,
           "attempted": 84,
-          "timedOut": 3,
+          "timedOut": 0,
           "failed": 0,
           "verifiedIndices": [
             0,
@@ -237097,6 +237095,7 @@
             25,
             26,
             27,
+            28,
             29,
             30,
             31,
@@ -237118,6 +237117,7 @@
             47,
             48,
             49,
+            50,
             51,
             52,
             53,
@@ -237141,6 +237141,7 @@
             71,
             72,
             73,
+            74,
             75,
             76,
             77,
@@ -237151,31 +237152,7 @@
             82,
             83
           ],
-          "incomplete": [
-            {
-              "index": 28,
-              "seed": 3,
-              "opponentIndex": 0,
-              "status": "timedOut",
-              "seconds": 580,
-              "log": "/tmp/duema-verify-all/matrix-extra-28.log"
-            },
-            {
-              "index": 50,
-              "seed": 4,
-              "opponentIndex": 8,
-              "status": "timedOut",
-              "log": "/tmp/duema-verify-all/hunterAI-hunter-4-8-part5.log"
-            },
-            {
-              "index": 74,
-              "seed": 6,
-              "opponentIndex": 4,
-              "status": "timedOut",
-              "seconds": 776,
-              "log": "/tmp/duema-verify-all/matrix-extra-74.log"
-            }
-          ],
+          "incomplete": [],
           "log": "/tmp/duema-verify-all/matrix-extra.jsonl",
           "logs": [
             "/tmp/duema-verify-all/matrix-extra.jsonl"
@@ -237185,8 +237162,8 @@
           "path": "tests/galaxy-effects.test.mjs",
           "title": "No22 versus itself, two ready starter decks and4 tournament decks finishes and conserves80 physical cards",
           "expected": 42,
-          "checked": 18,
-          "attempted": 18,
+          "checked": 34,
+          "attempted": 34,
           "timedOut": 0,
           "failed": 0,
           "verifiedIndices": [
@@ -237207,7 +237184,23 @@
             98,
             99,
             100,
-            101
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117
           ],
           "incomplete": [],
           "log": "/tmp/duema-verify-all/matrix-extra.jsonl",
@@ -237325,8 +237318,8 @@
           "path": "tests/armored-effects.test.mjs",
           "title": "No07 random legal choices conserve cards and serialize all pending deployments, payments and AI choices",
           "expected": 45,
-          "checked": 12,
-          "attempted": 12,
+          "checked": 16,
+          "attempted": 16,
           "timedOut": 0,
           "failed": 0,
           "verifiedIndices": [
@@ -237341,7 +237334,11 @@
             47,
             51,
             55,
-            59
+            59,
+            63,
+            67,
+            71,
+            75
           ],
           "incomplete": [],
           "log": "/tmp/duema-verify-all/matrix-legacy.jsonl",
@@ -237353,8 +237350,8 @@
           "path": "tests/giant-effects.test.mjs",
           "title": "No17 random legal choices preserve80 unique cards through JSON continuation roundtrips",
           "expected": 40,
-          "checked": 12,
-          "attempted": 12,
+          "checked": 16,
+          "attempted": 16,
           "timedOut": 0,
           "failed": 0,
           "verifiedIndices": [
@@ -237369,7 +237366,11 @@
             48,
             52,
             56,
-            60
+            60,
+            64,
+            68,
+            72,
+            76
           ],
           "incomplete": [],
           "log": "/tmp/duema-verify-all/matrix-legacy.jsonl",
@@ -237381,8 +237382,8 @@
           "path": "tests/redzone-effects.test.mjs",
           "title": "No23 random choices preserve80 unique cards and legal decisions through JSON",
           "expected": 27,
-          "checked": 12,
-          "attempted": 12,
+          "checked": 16,
+          "attempted": 16,
           "timedOut": 0,
           "failed": 0,
           "verifiedIndices": [
@@ -237397,7 +237398,11 @@
             49,
             53,
             57,
-            61
+            61,
+            65,
+            69,
+            73,
+            77
           ],
           "incomplete": [],
           "log": "/tmp/duema-verify-all/matrix-legacy.jsonl",
@@ -237409,8 +237414,8 @@
           "path": "tests/samurai-effects.test.mjs",
           "title": "No18 random legal choices retain80 cards and equivalent legal actions and AI through JSON roundtrips",
           "expected": 40,
-          "checked": 11,
-          "attempted": 11,
+          "checked": 16,
+          "attempted": 16,
           "timedOut": 0,
           "failed": 0,
           "verifiedIndices": [
@@ -237424,7 +237429,12 @@
             46,
             50,
             54,
-            58
+            58,
+            62,
+            66,
+            70,
+            74,
+            78
           ],
           "incomplete": [],
           "log": "/tmp/duema-verify-all/matrix-legacy.jsonl",
@@ -237861,7 +237871,7 @@
           ],
           "games": 160,
           "expected": 160,
-          "checked": 148,
+          "checked": 160,
           "aggregateVerified": true,
           "verifiedGames": [
             "0:0",
@@ -238011,7 +238021,19 @@
             "7:4",
             "7:5",
             "7:6",
-            "7:7"
+            "7:7",
+            "7:8",
+            "7:9",
+            "7:10",
+            "7:11",
+            "7:12",
+            "7:13",
+            "7:14",
+            "7:15",
+            "7:16",
+            "7:17",
+            "7:18",
+            "7:19"
           ],
           "log": "/tmp/duema-verify-all/gate-worker-input-parts.jsonl"
         },
@@ -238019,14 +238041,14 @@
           "path": "tests/twinpact-judge.test.mjs",
           "title": "mixed twinpact/dragon games finish, preserve all 80 physical cards including a pending spell, and replay deterministically",
           "expected": 101,
-          "checked": 82,
-          "attempted": 82,
+          "checked": 101,
+          "attempted": 101,
           "timedOut": 0,
           "failed": 0,
           "tallies": {
-            "chargers": 38,
-            "judges": 49,
-            "pending": 1
+            "chargers": 50,
+            "judges": 61,
+            "pending": 3
           },
           "verifiedIndices": [
             0,
@@ -238110,7 +238132,26 @@
             78,
             79,
             80,
-            81
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100
           ],
           "aggregateVerified": true,
           "log": "/tmp/duema-verify-all/twinpact.jsonl"
@@ -238119,12 +238160,12 @@
           "path": "tests/neo-ddd.test.mjs",
           "title": "mixed NEO/DDD games conserve all eighty unique cards through every action and finish with reproducible seeds",
           "expected": 101,
-          "checked": 35,
-          "attempted": 35,
+          "checked": 96,
+          "attempted": 96,
           "timedOut": 0,
           "failed": 0,
           "tallies": {
-            "declarations": 77,
+            "declarations": 227,
             "summons": 0,
             "suppressed": 0
           },
@@ -238162,8 +238203,69 @@
             30,
             31,
             32,
+            33,
             34,
-            35
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            96
           ],
           "aggregateVerified": false,
           "log": "/tmp/duema-verify-all/neo-ddd.jsonl"
@@ -238213,7 +238315,7 @@
           "path": "tests/galaxy-effects.test.mjs",
           "title": "production worker completes No22 against itself and every ready starter and environment list",
           "expected": 140,
-          "checked": 2,
+          "checked": 18,
           "opponentIds": [
             "starter25-22",
             "starter25-05",
@@ -238225,7 +238327,23 @@
           ],
           "verifiedGames": [
             "0:0",
-            "0:1"
+            "0:1",
+            "1:0",
+            "1:1",
+            "1:2",
+            "1:3",
+            "2:0",
+            "2:1",
+            "2:2",
+            "2:3",
+            "3:0",
+            "3:1",
+            "3:2",
+            "3:3",
+            "4:0",
+            "4:1",
+            "4:2",
+            "4:3"
           ],
           "incomplete": [
             {
@@ -239729,7 +239847,9 @@
         "focusedRegressions": 8,
         "focusedLog": "/tmp/duema-verify-all/hunter-perf-strategic-focused.log",
         "otherRegressions": 164,
-        "otherLog": "/tmp/duema-verify-all/hunter-perf-regression.log"
+        "otherLog": "/tmp/duema-verify-all/hunter-perf-regression.log",
+        "additionalRegressions": 58,
+        "additionalLog": "/tmp/duema-verify-all/hunter-perf-direct.jsonl"
       },
       "kingCellCostVerification": {
         "cardIds": [
@@ -239792,7 +239912,7 @@
       "latestRepositoryCheck": {
         "status": "passed",
         "command": "npm run check",
-        "log": "/tmp/duema-verify-all/latest-check.log",
+        "log": "/tmp/duema-verify-all/latest-perf-check.log",
         "supportedNames": 7001,
         "pendingNames": 4826
       },
@@ -239805,8 +239925,7 @@
           "node /tmp/duema-verify-all/run.mjs /tmp/duema-verify-all/matrix-jaou-plan.json matrix-jaou 1",
           "node /tmp/duema-verify-all/worker-matrix.mjs mado jaou",
           "node /tmp/duema-verify-all/run.mjs /tmp/duema-verify-all/matrix-magic-plan.json matrix-magic 2",
-          "node /tmp/duema-verify-all/worker-matrix.mjs magic",
-          "node /tmp/duema-verify-all/worker-matrix.mjs galaxy"
+          "node /tmp/duema-verify-all/worker-matrix.mjs magic"
         ]
       },
       "checks": [
