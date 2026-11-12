@@ -9457,12 +9457,18 @@ export function standardCardSpec(d,{phase=165}={}){
   const evolvingBlockerRemoval=phase>=613&&line==='このクリーチャーが進化して出た時または進化元になる時相手の「ブロッカー」を持つクリーチャーを1体選び破壊する。';
   const evolvingElementRemoval=phase>=617&&line==='このクリーチャーが進化して出た時または進化元になる時相手のコスト3以下のエレメントを1つ選び破壊する。';
   const evolutionTrigger='このクリーチャーが進化して出た時または進化元になる時';
-  const neoTrigger=phase>=1055&&f.typeText==='NEOクリーチャー'&&line.startsWith(evolutionTrigger)?{
+  const neoText=phase>=1055&&f.typeText==='NEOクリーチャー'&&line.startsWith(evolutionTrigger)?line.slice(evolutionTrigger.length):'';
+  const neoTrigger=neoText?({
    '相手のクリーチャーを1体選びタップする。次の相手のターンのはじめにそのクリーチャーはアンタップしない。':{op:'Target',tap:true,lock:true,g210TapLock:true},
    'カードを1枚引いてもよい。':{op:'Draw',n:1,optional:true},
    '自分の山札の上から2枚を墓地に置いてもよい。':{op:'Offer',title:'山札の上から2枚を墓地に置く？',defs:[{op:'Mill',n:2,g1042Together:true}]},
    '自分の山札の上から1枚をシールド化してもよい。':{op:'Offer',title:'山札の上から1枚をシールド化する？',defs:[{op:'ShieldTop',n:1}]}
-  }[line.slice(evolutionTrigger.length)]:null;
+  }[neoText]??(phase>=1056?{
+   '相手のクリーチャーを1体選び持ち主の手札に戻してもよい。':{op:'Target',to:'hand',toOwnerHand:true,optional:true,title:'持ち主の手札に戻す相手のクリーチャーを1体まで選ぶ'},
+   '相手は自身のクリーチャーを1体選び破壊する。':{op:'OpponentSelect',n:1,to:'grave'},
+   '自分の山札の上から1枚をマナゾーンに置いてもよい。':{op:'Ramp',n:1,optional:true},
+   '相手の手札を1枚見ないで選び捨てさせる。':{op:'BlindDiscard773',n:1}
+  }[neoText]:null)):null;
   if(creature&&(evolvingBlockerRemoval||evolvingElementRemoval||neoTrigger)){
    if(entry.length||nativeEntry||spec.g397Shinka)throw Error('重複する進化誘発能力');
    const defs=[neoTrigger??(evolvingElementRemoval?{op:'Target',to:'grave',element:true,filter:{max:3}}:{op:'Target',to:'grave',filter:{blocker:true}})];
