@@ -168,6 +168,10 @@ export function effectiveCard(inst,context,forPower=false){
   const count=extra.shieldPhoto.shieldGoCount(context,owner);
   if(count)c={...c,power:numeric(c.power)+count*c.g662ShieldGoStats,extraBreak:(c.extraBreak||0)+count};
  }
+ if(c.type==='creature'&&c.g1063PowerPerBase){
+  const count=(inst.under||[]).flatMap(layers).length;
+  c={...c,power:numeric(c.power)+count*c.g1063PowerPerBase};
+ }
  if(c.type==='creature'&&c.g607StackPower&&layers(inst).length>=3)c={...c,power:numeric(c.power)+c.g607StackPower,poweredBreaker:true};
  for(const rule of [...(c.g260Self?[c.g260Self]:[]),...(c.g268ManaGrants||[])])if(!conditional260Reading.has(context)&&(!rule.turn||rule.turn==='opponent'&&context.active!==owner)){
   let ready=false;conditional260Reading.add(context);try{ready=extra.six.ownCondition(context,owner,rule.filter,inst.uid);}finally{conditional260Reading.delete(context);}

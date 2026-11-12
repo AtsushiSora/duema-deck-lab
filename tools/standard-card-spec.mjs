@@ -9485,6 +9485,27 @@ export function standardCardSpec(d,{phase=165}={}){
    spec.g397Shinka=defs;
    continue;
   }
+  if(phase>=1063&&f.typeText==='NEOクリーチャー'){
+   if(line==='このクリーチャーが破壊された時これが進化クリーチャーならこのクリーチャーを自分の墓地から出す。'){
+    death.push({op:'SelfGraveRevive644',g1063Evolved:true});
+    continue;
+   }
+   if(line==='このクリーチャーが破壊された時コストの合計が5以下になるように下にあったクリーチャーを好きな数自分の墓地から出す。その後下にあった残りのカードを好きな数自分の墓地から手札に戻す。'){
+    death.push({op:'Select',origin:'grave',n:'all',deploy:true,optional:true,
+     filter:{creature:true},g550CostBudget:5,g960FormerBases:true,g1063RecoverRemaining:true,
+     title:'墓地にある元の進化元から、合計コスト5以下で出すクリーチャーを選ぶ'});
+    continue;
+   }
+   if(line==='このクリーチャーの下にあるカード1枚につきこのクリーチャーのパワーを+8000する。'){
+    spec.g1063PowerPerBase=8000;
+    powerBonus=true;
+    continue;
+   }
+   if(line==='このクリーチャーが出た時次の自分のターンのはじめまで自分はこのクリーチャーよりパワーが小さいクリーチャーに攻撃されない。'){
+    entry.push({op:'PowerAttack593',playerOnly:true,g1063SourcePower:true});
+    continue;
+   }
+  }
   if(phase>=1062&&f.typeText==='NEOクリーチャー'){
    if(line==='超魂レイド'){
     spec.g27Raid=true;

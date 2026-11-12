@@ -748,7 +748,7 @@ export function createSixPhotoRules(api){
  // Restrict deployment to the recorded grave visit or the matching creature face in mana.
  function matchesDeathDeployment960(t,x){
   if(t.g960FormerBases){
-   return !card(x).gCastle&&t.g960FormerBases.some(ref=>ref.uid===x.uid&&ref.serial===(x.zoneSerial||0));
+   return (!t.deploy||!card(x).gCastle)&&t.g960FormerBases.some(ref=>ref.uid===x.uid&&ref.serial===(x.zoneSerial||0));
   }
   if(!t.g960DeathNames)return true;
   const c=card(x);
@@ -1039,7 +1039,13 @@ export function createSixPhotoRules(api){
    move(s,targets.map(({uid})=>({player:t.p,uid,to:'grave',destroy:true,controller:t.controller??t.p})));
    return;
   }
-  if(t.g583Group){moveZoneSelection583(s,t,t.rows||[],t.owner==='opponent'?1-t.p:t.p);return;}
+  if(t.g583Group){
+   const owner=t.owner==='opponent'?1-t.p:t.p;
+   const rows=(t.rows||[]).filter(r=>!t.g960FormerBases||
+    s.players[owner][t.origin].some(x=>x.uid===r.uid&&matchesDeathDeployment960(t,x)));
+   moveZoneSelection583(s,t,rows,owner);
+   return;
+  }
  if(t.g995DrawPerDestroyAttempt){
   const targets=(t.rows||[]).filter(r=>creatures(s,r.p).some(x=>x.uid===r.uid&&!x.sealed));
   if(targets.length){
@@ -1116,6 +1122,12 @@ export function createSixPhotoRules(api){
   if(n)start(s,t,[{op:'Ramp',n}]);
   return;
  }if(t.deploy){
+  if(t.g1063RecoverRemaining){
+   const selected=new Set(rows.map(row=>row.uid));
+   t.after=[{op:'Select',origin:'grave',to:'hand',n:'all',optional:true,g583Group:true,
+    g960FormerBases:t.g960FormerBases.filter(ref=>!selected.has(ref.uid)),
+    title:'墓地にある残りの進化元から、手札に戻すカードを選ぶ'}];
+  }
   let returnGroup;
   if(t.g785ReturnGroup&&rows.length){
    const delays=s.g537Delays??=[];
@@ -1571,7 +1583,17 @@ export function createSixPhotoRules(api){
   choice(s,t,'攻撃できる自分のクリーチャーを1体選ぶ',options,player);
   break;
  }
- case'g34_PowerAttack593':(s.extLimits??=[]).push({kind:'g593AttackPower',player:t.both?null:1-t.p,max:t.max,playerOnly:!!t.playerOnly,expires:'start',who:t.p,spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});break;
+ case'g34_PowerAttack593':{
+  const lock={kind:'g593AttackPower',player:t.both?null:1-t.p,max:t.max,playerOnly:!!t.playerOnly,expires:'start',who:t.p};
+  if(t.g1063SourcePower){
+   lock.ref={uid:t.uid,incarnation:t.incarnation};
+  }else{
+   lock.spellSource=t.source;
+   lock.spellCost=cost(faces(card(t.source)).at(-1));
+  }
+  (s.extLimits??=[]).push(lock);
+  break;
+ }
  case'g34_EntryStop593':(s.extLimits??=[]).push({kind:'attack',player:1-t.p,...t.subject,controller:t.p,expires:'end',who:s.active});break;
  case'g34_PlayerGuard750':
   if(s.active===t.p)(s.extLimits??=[]).push({kind:'g750CannotAttackPlayer',player:t.p,turn:s.turn+1,expires:'end',who:1-t.p});
@@ -5668,6 +5690,7 @@ export function createSixPhotoRules(api){
     .filter(d=>!d.g934OpponentTurn||s.active!==p)
     .filter(d=>!d.g901Untapped||!(prior.g901WasTapped??x.tapped))
     .filter(d=>!d.g1012Tapped||(prior.g901WasTapped??x.tapped))
+    .filter(d=>!d.g1063Evolved||api.isEvolution(x))
     .filter(d=>d.op!=='ScheduleGraveReturn644'||d.anyTurn||s.active===p)
     .flatMap(d=>{
      if(d.g960FormerBases){
@@ -5682,7 +5705,7 @@ export function createSixPhotoRules(api){
       const n=prior.crossedCount728;
       return n?[{op:'Offer',title:'カードを'+n+'枚引く？',defs:[{op:'Draw',n}]}]:[];
      }
-     return [['SelfGraveHand476','ScheduleGraveReturn644','SelfGraveShield659','SelfGraveBottom839'].includes(d.op)||d.g901Untapped?{...d,serial:(x.zoneSerial||0)+1}:d];
+     return [['SelfGraveHand476','ScheduleGraveReturn644','SelfGraveShield659','SelfGraveBottom839'].includes(d.op)||d.g901Untapped||d.g1063Evolved?{...d,serial:(x.zoneSerial||0)+1}:d];
     });
    if(defs.length)queue(s,p,x,defs);
   }if(effective(x,s).g34Role==='dragonOrb')queue(s,p,x,[C('orbDeploy')]);if(ninja(effective(x,s)))for(const y of(snapshot?.dororon?.[p]||active(s,p,'dororon')))queue(s,p,y,[E('Draw',{n:1,optional:true})]);}},
@@ -5891,8 +5914,16 @@ for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand
  }, afterSpell566(s,f){if(f.spell?.g566EvoCharger&&!api.spellIgnored(s,f.spell))put(s,task('g34_EvoCharge566',f.caster??f.owner,f.spell.id,{}));},
 weakerBlock569(s,a,b){const p=s.players.findIndex(own=>own.battle.includes(a));if(p<0)return false;const fromSpell=(s.extLimits||[]).some(l=>l.kind==='g569WeakerBlock'&&api.allLayers(a).some(y=>key(y)===key(l.ref))&&!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})),fromAura=creatures(s,p).some(x=>{if(x.sealed||api.ignored(s,x))return false;const r=effective(x,s).g569Aura;return r&&matches(s,p,a,r.filter)&&(!r.mana||s.players[p].mana.filter(y=>api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,p).includes(r.mana.color)).length>=r.mana.n);});return (fromSpell||fromAura)&&api.power(b,false,s)<api.power(a,true,s);},
 attackPower593(s,p,x,playerOnly){
- const locks=(s.extLimits||[]).filter(l=>l.kind==='g593AttackPower'&&l.playerOnly===playerOnly&&(l.player===null||l.player===p)&&!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}));
- return locks.length>0&&!creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks)&&api.power(x,false,s)<=Math.max(...locks.map(l=>l.max));
+ const locks=(s.extLimits||[]).filter(l=>l.kind==='g593AttackPower'&&l.playerOnly===playerOnly&&
+  (l.player===null||l.player===p)&&(l.ref||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})));
+ if(!locks.length||creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks))return false;
+ const attackerPower=api.power(x,false,s);
+ return locks.some(l=>{
+  if(!l.ref)return attackerPower<=l.max;
+  const host=sourceHost474(s,l.ref)?.x;
+  // This resolved restriction requires a live power to compare (QA43081).
+  return !!host&&!host.sealed&&api.isCreature(s,host)&&attackerPower<api.power(host,false,s);
+ });
 },
 playerStop567(s,p,x){if(playerStopReading567.has(s))return false;const locks=(s.extLimits||[]).filter(l=>l.kind==='g567PlayerStop'&&(l.ref?api.allLayers(x).some(y=>key(y)===key(l.ref)):l.player===p)&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})));if(!locks.length)return false;playerStopReading567.add(s);try{return locks.some(l=>l.controller===p||!creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks));}finally{playerStopReading567.delete(s);}},
 externalProtection565(s,x){

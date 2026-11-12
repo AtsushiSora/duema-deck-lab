@@ -212955,15 +212955,145 @@
       ],
       "supportBatch": "phase-1062",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp4-064",
+      "name": "ギャラップ＝ギャロップ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "アビスロイヤル",
+      "text": "NEO進化：水、闇、または火のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーが破壊された時、これが進化クリーチャーなら、このクリーチャーを自分の墓地から出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-064",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "闇"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "slayer": true,
+      "g172Death": [
+        {
+          "op": "SelfGraveRevive644",
+          "g1063Evolved": true
+        }
+      ],
+      "supportBatch": "phase-1063",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-003",
+      "name": "深淵の侵鈴 リリン＝リリンカーン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "アビスロイヤル",
+      "text": "NEO進化：水、闇、または火のクリーチャー１体の上に置いてもよい。\n超魂レイド（このクリーチャーが出た時、山札の上から３枚を表向きにする。その中からこのクリーチャーの進化元になれるカードを１枚、この下に置いてもよい。残りを好きな順序で山札の下に置く）\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが破壊された時、コストの合計が５以下になるように、下にあったクリーチャーを好きな数、自分の墓地から出す。その後、下にあった残りのカードを好きな数、自分の墓地から手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-003",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "闇"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "g27Raid": true,
+      "blocker": true,
+      "breaker": 2,
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": "all",
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "g550CostBudget": 5,
+          "g960FormerBases": true,
+          "g1063RecoverRemaining": true,
+          "title": "墓地にある元の進化元から、合計コスト5以下で出すクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1063",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-005",
+      "name": "BARUGA-雷増88",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "アース・ドラゴン/テクノ・サムライ",
+      "text": "NEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。\n超魂レイド（このクリーチャーが出た時、山札の上から３枚を表向きにする。その中からこのクリーチャーの進化元になれるカードを１枚、この下に置いてもよい。残りを好きな順序で山札の下に置く）\nパワード・ブレイカー\nこのクリーチャーの下にあるカード１枚につき、このクリーチャーのパワーを+8000する。\nこのクリーチャーが出た時、次の自分のターンのはじめまで、自分はこのクリーチャーよりパワーが小さいクリーチャーに攻撃されない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-005",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "火"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "g27Raid": true,
+      "poweredBreaker": true,
+      "g1063PowerPerBase": 8000,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "PowerAttack593",
+          "playerOnly": true,
+          "g1063SourcePower": true
+        }
+      ],
+      "supportBatch": "phase-1063",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1062,
+    "phase": 1063,
     "checkedAt": "2026-11-13",
-    "baseCount": 7143,
+    "baseCount": 7146,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7146,
+    "totalCount": 7149,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -231996,6 +232126,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7143,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1062,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7143,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7146,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

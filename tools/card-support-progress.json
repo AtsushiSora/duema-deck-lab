@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7146,
-  "pendingNames": 4681,
-  "phase": 1062,
+  "supportedNames": 7149,
+  "pendingNames": 4678,
+  "phase": 1063,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -100,7 +100,7 @@
     },
     {
       "ability": "超魂",
-      "pendingNames": 48,
+      "pendingNames": 46,
       "examples": [
         {
           "id": "dm25rp2-014",
@@ -155,7 +155,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 2700,
-    "NEOクリーチャー": 122,
+    "NEOクリーチャー": 119,
     "呪文": 605,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3244,
+    "未対応の能力文": 3241,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -206973,27 +206973,142 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1063,
+      "baseCommit": "a3cafd23",
+      "cards": [
+        {
+          "id": "dm25rp4-064",
+          "name": "ギャラップ＝ギャロップ"
+        },
+        {
+          "id": "dm25rp2-003",
+          "name": "深淵の侵鈴 リリン＝リリンカーン"
+        },
+        {
+          "id": "dm25rp2-005",
+          "name": "BARUGA-雷増88"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm25ex3-rp2003",
+          "canonicalId": "dm25rp2-003"
+        },
+        {
+          "id": "dm25ex3-rp2005",
+          "canonicalId": "dm25rp2-005"
+        }
+      ],
+      "supportedNames": 7149,
+      "pendingNames": 4678,
+      "verification": {
+        "focusedPassed": 7,
+        "regressionPassed": 64,
+        "regressionFailed": 0,
+        "check": "成功",
+        "officialPrints": 5,
+        "scope": "3種類5版の公式能力全文、基本情報、マナ数、JPEG、使用制限を照合。DM25-EX3再録2版を元の対戦IDに紐づけた。ギャロップは進化状態での破壊とスレイヤー、同じカードの再登場、未進化、手札戻し、破壊置換、能力無視、墓地封鎖を確認。リリンカーンは超魂レイド、ブロッカー、元の進化元の合計コスト5以下の登場と残りの任意回収、同名別カード、墓地滞在の変化、保存復帰を確認。BARUGAは下にあるカードによるパワー増加、パワード・ブレイカー、等しいパワーからの攻撃、クリーチャーへの攻撃、能力無視、場を離れた場合の解除を確認。既存7,146件のカード定義とIDが一致。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/43079/",
+          "https://dm.takaratomy.co.jp/rule/qa/43081/",
+          "https://dm.takaratomy.co.jp/rule/qa/43082/",
+          "https://dm.takaratomy.co.jp/rule/qa/43083/",
+          "https://dm.takaratomy.co.jp/rule/qa/46847/",
+          "https://dm.takaratomy.co.jp/rule/qa/46861/"
+        ],
+        "regressionFiles": [
+          "tests/standard593-effects.test.mjs",
+          "tests/standard644-effects.test.mjs",
+          "tests/standard960-effects.test.mjs",
+          "tests/standard1060-effects.test.mjs",
+          "tests/standard1062-effects.test.mjs"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。 トットロの公式QA 48925の組み合わせは関連2枚が未対応のため未実行。NEO/DDDの100試合と再現性は過去に分割検証済みで、今回の回帰では合否未確認。 ゴルギー31相手の再現性と本番Worker62試合は今回も対象外で未実行。前回の広範囲回帰に含まれる1,796件固定の既存テストの結果はPhase 1060を参照。 PhoenixのCPU連戦と本番Worker試験は、今回の個別回帰の対象外。",
+        "pendingInteractions": [
+          {
+            "cardIds": [
+              "dm25rp3-039",
+              "dm26rp2-006",
+              "dm25rp2-OR1"
+            ],
+            "test": "デンジャラス=トットロの上にメモッタで封印付きのジャシン＝ヴリドガルドが出る場合の墓地展開",
+            "status": "未実行",
+            "reason": "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/48925/"
+          }
+        ],
+        "logs": {
+          "official": "/tmp/duema-phase-1063.lO5fFtMP/manifest.log",
+          "officialImages": "/tmp/duema-phase-1063.lO5fFtMP/sources.log",
+          "reprints": "/tmp/duema-phase-1063.lO5fFtMP/prints.log",
+          "focused": "/tmp/duema-phase-1063.lO5fFtMP/specific-final.log",
+          "regression": "/tmp/duema-phase-1063.lO5fFtMP/related-final.log",
+          "check": "/tmp/duema-phase-1063.lO5fFtMP/check.log",
+          "audit": "/tmp/duema-phase-1063.lO5fFtMP/audit.log",
+          "count": "/tmp/duema-phase-1063.lO5fFtMP/count.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dm25rp2-014",
+          "name": "～海獣戦車～",
+          "reason": "公式の能力全文・基本情報・画像とDM25-EX3再録商品を確認。攻撃終了時に下のカードの一部を別のNEOまたは進化クリーチャーに移し、物理カードと進化状態、カード順を保持する処理と再録版の照合が残る。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-014",
+            "https://dm.takaratomy.co.jp/rule/qa/33330/"
+          ]
+        },
+        {
+          "id": "dm26rp2-006",
+          "name": "不明な不透明 メモッタ",
+          "reason": "公式の能力全文・基本情報・画像とシークレット版を確認。登場と同時に封印を付ける必要があり、封印による登場時能力・コマンドの無視と、進化元の事前誘発が成立する順序の確認が残る。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-006",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-SEC013",
+            "https://dm.takaratomy.co.jp/rule/qa/48923/",
+            "https://dm.takaratomy.co.jp/rule/qa/48925/"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1062,
-    "nextPhase": 1063,
+    "lastVerifiedPhase": 1063,
+    "nextPhase": 1064,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm25rp2-014",
-        "name": "～海獣戦車～",
-        "reason": "攻撃終了時に選んだ下のカードを別のクリーチャーへ移動し、移動後のNEO進化状態とカード順を照合する。"
+        "id": "dm25rp4-051",
+        "name": "HIMEGYA-流予見618",
+        "reason": "公式本文と再録を確認し、色を指定する代替召喚とD・D・Dのコスト軽減を既存の支払い処理で検証する。"
       },
       {
-        "id": "dm25rp2-003",
-        "name": "深淵の侵鈴 リリン＝リリンカーン",
-        "reason": "超魂レイド、破壊直前の進化元、墓地から出すカードの合計コストと残りの任意回収を照合する。"
+        "id": "dmsp01-004",
+        "name": "ショーペン・ハウアー",
+        "reason": "公式の登場・再録情報を照合し、自分のターン終了時のタップ条件と墓地からの登場を検証する。"
+      },
+      {
+        "id": "dm25rp2-014",
+        "name": "～海獣戦車～",
+        "reason": "公式の能力全文・基本情報・画像とDM25-EX3再録商品を確認。攻撃終了時に下のカードの一部を別のNEOまたは進化クリーチャーに移し、物理カードと進化状態、カード順を保持する処理と再録版の照合が残る。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-014",
+          "https://dm.takaratomy.co.jp/rule/qa/33330/"
+        ]
       },
       {
         "id": "dm26rp2-006",
         "name": "不明な不透明 メモッタ",
-        "reason": "召喚時の進化と封印の順序を公式QA 48925と照合し、トットロとの組み合わせを検証する。"
+        "reason": "公式の能力全文・基本情報・画像とシークレット版を確認。登場と同時に封印を付ける必要があり、封印による登場時能力・コマンドの無視と、進化元の事前誘発が成立する順序の確認が残る。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-006",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-SEC013",
+          "https://dm.takaratomy.co.jp/rule/qa/48923/",
+          "https://dm.takaratomy.co.jp/rule/qa/48925/"
+        ]
       },
       {
         "id": "dm25rp2-OR1",
@@ -207003,15 +207118,6 @@
           "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-OR1",
           "https://dm.takaratomy.co.jp/rule/qa/46870/",
           "https://dm.takaratomy.co.jp/rule/qa/48925/"
-        ]
-      },
-      {
-        "id": "dm25rp4-064",
-        "name": "ギャラップ＝ギャロップ",
-        "reason": "公式能力全文・基本情報・画像・単一収録を確認。破壊直前に進化していた状態と、墓地に入った同一カードを照合し、離脱置換や墓地からの登場制限も確認するまで保留。",
-        "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-064",
-          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ]
       },
       {
@@ -207195,7 +207301,7 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
-      "公式本文、基本情報、画像、使用制限、再録、裁定を照合する。水晶マナの条件は裏向きの物理カード、文明とマナ数、各ターンの誘発と選択・移動の順序を確認する。",
+      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。海獣戦車はカード単位の移動、メモッタは封印された状態での登場と進化元の事前誘発を確認する。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で登録再開。自動化 duema-deck-lab は10分間隔で稼働中。",
