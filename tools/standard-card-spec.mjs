@@ -2467,6 +2467,31 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1043&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const trigger='S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)';
+  if(f.name==='ブルー・ハワイ'&&f.typeText==='クリーチャー'&&f.civilizationText==='水'&&f.cost===5&&text===
+   trigger+'このクリーチャーが出た時カードを3枚引く。その後自分の手札を2枚好きな順序で山札の上か下に置く。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Draw',n:3},
+    {op:'Select',origin:'hand',n:2,to:'deckTop',g553Destinations:['deckTop','deck'],g183Return:true,
+     title:'山札に戻す手札を順に2枚選ぶ'}]};
+  if(f.name==='邪眼の始祖 ロマノフ・アルファ'&&f.typeText==='進化クリーチャー'&&f.civilizationText==='闇'&&f.cost===3&&text===
+   '墓地進化:闇のクリーチャーを1体自分の墓地から選びこのクリーチャーをその上に重ねつつ出す。'+
+   'このクリーチャーが出た時自分の山札の上から4枚を墓地に置く。その後闇のカードを1枚自分の墓地から手札に戻す。')
+   return {evolution:{g31:true},g31Evolution:{zone:'grave',conditions:[{civilization:'闇'}]},
+    effect:'sixPhoto',g34Tasks:[{op:'Mill',n:4,g1042Together:true},
+     {op:'Select',origin:'grave',to:'hand',n:1,filter:{anyFaceColor:'闇'},title:'墓地から手札に戻す闇のカードを選ぶ'}]};
+  if(f.name==='轟血鬼 ザ・ヴァンプ'&&f.typeText==='クリーチャー'&&f.civilizationText==='闇/火'&&f.cost===4&&text===
+   'スピードアタッカーW・ブレイカーこのクリーチャーが出た時自分のシールドを1つ手札に加えてもよい。'+
+   'ただしその「S・トリガー」は使えない。そうしたら相手のアンタップしているクリーチャーを1体選び破壊する。')
+   return {speedAttacker:true,breaker:2,effect:'sixPhoto',g34Tasks:[
+    {op:'Offer',g299ShieldHand:true,title:'シールド1つを手札に加える？（S・トリガーは使えない）',defs:[
+     {op:'ShieldHandFollow1017',noST:true,defs:[
+      {op:'Target',to:'grave',filter:{untapped:true},title:'破壊する相手のアンタップ中のクリーチャーを選ぶ'}
+     ]}
+    ]}
+   ]};
+ }
  if(phase>=1042&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const trigger='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';

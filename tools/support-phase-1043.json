@@ -1,0 +1,221 @@
+{
+  "phase": 1043,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7079,
+  "description": "山札への順序指定、闇の墓地進化、シールド回収後の破壊を持つ3種類と墓地進化の再録1版を照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/39123/",
+    "https://dm.takaratomy.co.jp/rule/qa/39638/",
+    "https://dm.takaratomy.co.jp/rule/qa/40268/"
+  ],
+  "cards": [
+    {
+      "id": "dm24ex1-054",
+      "name": "ブルー・ハワイ",
+      "faces": [
+        {
+          "name": "ブルー・ハワイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、カードを３枚引く。その後、自分の手札を２枚、好きな順序で山札の上か下に置く。",
+          "race": "スプラッシュ・クイーン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-054",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex1-054.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 2,
+            "to": "deckTop",
+            "g553Destinations": [
+              "deckTop",
+              "deck"
+            ],
+            "g183Return": true,
+            "title": "山札に戻す手札を順に2枚選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "8da0fb026f7267128f13b68a999c639a56329adcd6003bd4f079873ff92e1447",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex2-072",
+      "name": "邪眼の始祖 ロマノフ・アルファ",
+      "faces": [
+        {
+          "name": "邪眼の始祖 ロマノフ・アルファ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "墓地進化：闇のクリーチャーを１体自分の墓地から選び、このクリーチャーをその上に重ねつつ出す。\nこのクリーチャーが出た時、自分の山札の上から４枚を墓地に置く。その後、闇のカードを１枚、自分の墓地から手札に戻す。",
+          "race": "ダークロード/ナイト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-072",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex2-072.jpg",
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "grave",
+          "conditions": [
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 4,
+            "g1042Together": true
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "anyFaceColor": "闇"
+            },
+            "title": "墓地から手札に戻す闇のカードを選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "26107f0506b9058af6540b5ec1bbfb6b9fe65a7329f05f79ef6e040d524bb48a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-038",
+      "name": "轟血鬼 ザ・ヴァンプ",
+      "faces": [
+        {
+          "name": "轟血鬼 ザ・ヴァンプ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーが出た時、自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない。そうしたら、相手のアンタップしているクリーチャーを１体選び、破壊する。",
+          "race": "ソニック・コマンド/ヴァンパイア",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-038",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-038.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g299ShieldHand": true,
+            "title": "シールド1つを手札に加える？（S・トリガーは使えない）",
+            "defs": [
+              {
+                "op": "ShieldHandFollow1017",
+                "noST": true,
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "untapped": true
+                    },
+                    "title": "破壊する相手のアンタップ中のクリーチャーを選ぶ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "cfe9ad8c682206a9e3349348b2bda8445fd1bf18c3f52509ea1a65b36b5f7b48",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25ex2-Cho041",
+      "name": "邪眼の始祖 ロマノフ・アルファ",
+      "faces": [
+        {
+          "name": "邪眼の始祖 ロマノフ・アルファ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "墓地進化：闇のクリーチャーを１体自分の墓地から選び、このクリーチャーをその上に重ねつつ出す。\nこのクリーチャーが出た時、自分の山札の上から４枚を墓地に置く。その後、闇のカードを１枚、自分の墓地から手札に戻す。",
+          "race": "ダークロード/ナイト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-Cho041",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-Cho041.jpg",
+      "canonicalId": "dm23ex2-072",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "dac775cff55a9c7238db3e7ac6c6996559c4e5568aa4106d3f4b7233d535f20c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24ex1-054": 4,
+      "dm23ex2-072": 4,
+      "dm24ex4-038": 4,
+      "dm25ex2-Cho041": 4
+    }
+  }
+}

@@ -209999,15 +209999,145 @@
       ],
       "supportBatch": "phase-1042",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex1-054",
+      "name": "ブルー・ハワイ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2000,
+      "race": "スプラッシュ・クイーン",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、カードを３枚引く。その後、自分の手札を２枚、好きな順序で山札の上か下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-054",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 3
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 2,
+          "to": "deckTop",
+          "g553Destinations": [
+            "deckTop",
+            "deck"
+          ],
+          "g183Return": true,
+          "title": "山札に戻す手札を順に2枚選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1043",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex2-072",
+      "name": "邪眼の始祖 ロマノフ・アルファ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ダークロード/ナイト",
+      "text": "墓地進化：闇のクリーチャーを１体自分の墓地から選び、このクリーチャーをその上に重ねつつ出す。\nこのクリーチャーが出た時、自分の山札の上から４枚を墓地に置く。その後、闇のカードを１枚、自分の墓地から手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-072",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "grave",
+        "conditions": [
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 4,
+          "g1042Together": true
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "filter": {
+            "anyFaceColor": "闇"
+          },
+          "title": "墓地から手札に戻す闇のカードを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1043",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-038",
+      "name": "轟血鬼 ザ・ヴァンプ",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "ソニック・コマンド/ヴァンパイア",
+      "text": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーが出た時、自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない。そうしたら、相手のアンタップしているクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-038",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "g299ShieldHand": true,
+          "title": "シールド1つを手札に加える？（S・トリガーは使えない）",
+          "defs": [
+            {
+              "op": "ShieldHandFollow1017",
+              "noST": true,
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "untapped": true
+                  },
+                  "title": "破壊する相手のアンタップ中のクリーチャーを選ぶ"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1043",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1042,
+    "phase": 1043,
     "checkedAt": "2026-11-13",
-    "baseCount": 7075,
-    "newEffectCards": 4,
+    "baseCount": 7079,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7079,
+    "totalCount": 7082,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -228800,6 +228930,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7075,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1042,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7075,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7079,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

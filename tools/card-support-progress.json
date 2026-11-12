@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7079,
-  "pendingNames": 4748,
-  "phase": 1042,
-  "added": 4,
+  "supportedNames": 7082,
+  "pendingNames": 4745,
+  "phase": 1043,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2723,
+    "クリーチャー": 2721,
     "NEOクリーチャー": 152,
     "呪文": 615,
     "GRクリーチャー": 159,
@@ -162,7 +162,7 @@
     "タマシード": 57,
     "デュエルメイト呪文": 10,
     "S-MAX進化クリーチャー": 10,
-    "進化クリーチャー": 281,
+    "進化クリーチャー": 280,
     "スター進化クリーチャー": 70,
     "進化クリーチャー(超無限進化・Ω)": 1,
     "ギガ・オレガ・オーラ": 2,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3306,
+    "未対応の能力文": 3303,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -205117,27 +205117,104 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1043,
+      "baseCommit": "aea4aa02",
+      "cards": [
+        {
+          "id": "dm24ex1-054",
+          "name": "ブルー・ハワイ"
+        },
+        {
+          "id": "dm23ex2-072",
+          "name": "邪眼の始祖 ロマノフ・アルファ"
+        },
+        {
+          "id": "dm24ex4-038",
+          "name": "轟血鬼 ザ・ヴァンプ"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm25ex2-Cho041",
+          "name": "邪眼の始祖 ロマノフ・アルファ",
+          "canonicalId": "dm23ex2-072"
+        }
+      ],
+      "supportedNames": 7082,
+      "pendingNames": 4745,
+      "verification": {
+        "focusedPassed": 11,
+        "regressionPassed": 83,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 4,
+        "scope": "公式能力全文、基本情報、マナ数、画像、再録、現行殿堂レギュレーションを照合。ブルー・ハワイのS・トリガー、3枚引いた後の2枚の選択と山札上下での順番、ロマノフ・アルファの闇の墓地進化元とマナ支払い、4枚同時の墓地送り、闇の呪文面を持つカードを含めた回収対象、ギャイアの登場置換を確認。ザ・ヴァンプの任意の盾束回収、S・トリガー禁止中のG・ストライク、アンタップ中で選べる相手の破壊、即時攻撃とW・ブレイカーを確認。選択途中の保存復元を検証。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/39123/",
+          "https://dm.takaratomy.co.jp/rule/qa/39638/",
+          "https://dm.takaratomy.co.jp/rule/qa/40268/"
+        ],
+        "regressionFiles": [
+          "tests/standard675-effects.test.mjs",
+          "tests/standard721-effects.test.mjs",
+          "tests/standard773-effects.test.mjs",
+          "tests/standard993-effects.test.mjs",
+          "tests/standard1017-effects.test.mjs",
+          "tests/standard1042-effects.test.mjs"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。",
+        "logs": {
+          "official": "/tmp/duema-phase-1043.LSxFq3od/official.log",
+          "focused": "/tmp/duema-phase-1043.LSxFq3od/focus.log",
+          "regression": "/tmp/duema-phase-1043.LSxFq3od/regression.log",
+          "check": "/tmp/duema-phase-1043.LSxFq3od/check.log",
+          "audit": "/tmp/duema-phase-1043.LSxFq3od/audit.log",
+          "officialImages": "/tmp/duema-phase-1043.LSxFq3od/sources.log",
+          "officialRules": "/tmp/duema-phase-1043.LSxFq3od/official-rule.pdf"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dm24rp4-065",
+          "name": "カンテ＝ランタン",
+          "reason": "公式能力全文・基本情報・画像・単一収録を確認。バトル相手へのパワー低下をバトルの終了まで適用し、パワー0以下の処理やスレイヤーと組み合わせる必要がある。既存の勝敗比較だけでは効果全体を再現できないため保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-065",
+            "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+          ]
+        },
+        {
+          "id": "dm23rp1-018",
+          "name": "グ:ルナグーシ",
+          "reason": "公式能力全文・基本情報・画像・プロモ再録の存在を確認。QA 43059ではターン最初の墓地離脱時点に場にいた発生源のみが引けるため、現在の移動後の墓地差分と発生源別の回数管理では再現できない。QA 43060の墓地補充の置換とプロモ版の個別照合も次回確認する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-018",
+            "https://dm.takaratomy.co.jp/rule/qa/43059/",
+            "https://dm.takaratomy.co.jp/rule/qa/43060/"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1042,
-    "nextPhase": 1043,
+    "lastVerifiedPhase": 1043,
+    "nextPhase": 1044,
     "workInProgress": [],
     "nextCandidates": [
       {
         "id": "dm24rp4-065",
         "name": "カンテ＝ランタン",
-        "reason": "実際にバトルする相手への一時的なパワー低下、パワー0の処理、バトル終了での解除を確認する。"
-      },
-      {
-        "id": "dm24ex1-054",
-        "name": "ブルー・ハワイ",
-        "reason": "S・トリガー、3枚引いた後に2枚を選び、山札の上か下の同じ側に好きな順序で置く処理を確認する。"
+        "reason": "公式能力全文・基本情報・画像・単一収録を確認。バトル相手へのパワー低下をバトルの終了まで適用し、パワー0以下の処理やスレイヤーと組み合わせる必要がある。既存の勝敗比較だけでは効果全体を再現できないため保留。"
       },
       {
         "id": "dm23rp1-018",
         "name": "グ:ルナグーシ",
-        "reason": "登場時・自分のターン開始時の任意の墓地補充と、自分のターン最初の墓地離脱の数え方を確認する。"
+        "reason": "公式能力全文・基本情報・画像・プロモ再録の存在を確認。QA 43059ではターン最初の墓地離脱時点に場にいた発生源のみが引けるため、現在の移動後の墓地差分と発生源別の回数管理では再現できない。QA 43060の墓地補充の置換とプロモ版の個別照合も次回確認する。"
       },
       {
         "id": "dm23ex3-059",
@@ -205148,6 +205225,11 @@
         "id": "dm23ex3-018",
         "name": "禁術のカルマ カレイル / フォビッド・水晶チャージャー",
         "reason": "マナ配置元の識別、複数枚同時移動、呪文面の非公開確認とDM24-BD6再録を照合する。"
+      },
+      {
+        "id": "dm23ex2-066",
+        "name": "テレポート・チャージャー",
+        "reason": "山札の上から5枚を非公開で確認し、選んだカードを超次元ゾーンに置く処理とチャージャーを照合する。"
       }
     ],
     "steps": [
