@@ -253020,7 +253020,7 @@
       ]
     },
     "latestAudit": {
-      "checkedAt": "2026-11-12T22:15:52.167Z",
+      "checkedAt": "2026-11-12T22:48:21.661Z",
       "baseCommit": "0810d48f",
       "phasesReviewed": [
         634,
@@ -253030,7 +253030,7 @@
         1021,
         1081
       ],
-      "state": "inProgress",
+      "state": "completeWithBlockedInteractions",
       "automation": "duema-deck-lab PAUSED",
       "added": 0,
       "supportedNames": 7210,
@@ -253474,7 +253474,7 @@
           "verifiedGames": 40,
           "expectedGames": 40,
           "failures": [],
-          "log": "/tmp/duema-review-1081.B5Oo9a/travel-ai.jsonl"
+          "log": "/tmp/duema-review-1081.B5Oo9a/travel-ai-reassigned.jsonl"
         },
         {
           "path": "tests/travel-effects.test.mjs",
@@ -253493,14 +253493,13 @@
             "promoy19-014",
             "dmrp04s-079"
           ],
-          "status": "incomplete",
-          "verifiedShards": 27,
+          "status": "passed",
+          "verifiedShards": 98,
           "totalShards": 98,
-          "verifiedGames": 81,
+          "verifiedGames": 294,
           "expectedGames": 294,
           "failures": [],
-          "log": "/tmp/duema-review-1081.B5Oo9a/travel-ai.jsonl",
-          "remainingShards": "37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107"
+          "log": "/tmp/duema-review-1081.B5Oo9a/travel-ai-reassigned.jsonl"
         },
         {
           "path": "tests/golgy-effects.test.mjs",
@@ -253547,15 +253546,15 @@
             "promoy19-014",
             "dmrp04s-079"
           ],
-          "status": "incomplete",
-          "verifiedGames": 284,
+          "status": "passed",
+          "verifiedGames": 980,
           "expectedGames": 980,
           "opponents": 49,
           "seedsPerOpponent": 20,
           "failures": [],
           "logs": [
             "/tmp/duema-review-1081.B5Oo9a/travel-worker-parts.jsonl",
-            "/tmp/duema-review-1081.B5Oo9a/travel-worker-early-parts.jsonl",
+            "/tmp/duema-review-1081.B5Oo9a/travel-worker-early-reassigned-parts.jsonl",
             "/tmp/duema-review-1081.B5Oo9a/travel-worker-middle-parts.jsonl"
           ]
         }
@@ -253663,12 +253662,13 @@
         }
       ],
       "remaining": {
-        "matrices": 2,
+        "matrices": 0,
         "officialInteractionGroups": 6
       },
       "notes": [
         "Workerは本番のdist/worker.jsを使用。対戦相手の元の並びと各ゲームのシード・先後を復元して分割し、未解決件数も照合した。元のテスト名に古い件数が含まれる場合は、実行件数をmatrixに記載した。",
         "長時間テストは元のテストを一括再実行せず、元の対戦相手とシードで分割した。対戦全体に対する発生回数と使用カードの条件は、全分割の結果を合算して確認する。",
+        "No14のAI分割の途中からは、同一状態の重複したAI評価を1回にし、状態を変更しないことを各手で追加確認した。勝者・80枚の一意性・本番runGameとの全状態一致は元の条件のまま確認した。",
         "各テストプロセスは580秒で終了要求を出し、必要時は5秒後に強制終了する。全体のnpm testは実行していない。"
       ],
       "resume": {
