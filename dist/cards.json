@@ -213223,15 +213223,139 @@
       "g27Raid": true,
       "supportBatch": "phase-1064",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp02-019",
+      "name": "アルチュ・セール",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "マフィ・ギャング",
+      "text": "NEO進化：自分の闇のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこれがNEO進化クリーチャーなら、そのパワーを+5000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-019",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "blocker": true,
+      "slayer": true,
+      "g260Self": {
+        "filter": {
+          "g563Neo": true
+        },
+        "grants": {
+          "power": 5000,
+          "breaker": 2
+        }
+      },
+      "supportBatch": "phase-1065",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex2-078",
+      "name": "我ら、ハムカツ三人衆!!!",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "メガ・コマンド・ドラゴン/革命軍/ハムカツ団",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nNEO進化：火または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\nこれがNEO進化クリーチャーなら、このクリーチャーのパワーを+5000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-078",
+      "limit": 4,
+      "trigger": true,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "火"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "g260Self": {
+        "filter": {
+          "g563Neo": true
+        },
+        "grants": {
+          "power": 5000,
+          "breaker": 2
+        }
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "FightEnemy240",
+          "optional": true,
+          "g998EntryFight": true
+        }
+      ],
+      "supportBatch": "phase-1065",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp4-074",
+      "name": "罰来KIRIN-28",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ドリームメイト/テクノ・サムライ",
+      "text": "NEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nマッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nこれが進化クリーチャーなら、このクリーチャーのパワーを+4000し、「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-074",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "火"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "machFighter": true,
+      "g260Self": {
+        "filter": {
+          "g563Neo": true
+        },
+        "grants": {
+          "power": 4000,
+          "poweredBreaker": true
+        }
+      },
+      "supportBatch": "phase-1065",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1064,
+    "phase": 1065,
     "checkedAt": "2026-11-13",
-    "baseCount": 7149,
+    "baseCount": 7152,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7152,
+    "totalCount": 7155,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -232288,6 +232412,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7149,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1064,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7149,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7152,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

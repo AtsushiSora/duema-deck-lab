@@ -9485,6 +9485,11 @@ export function standardCardSpec(d,{phase=165}={}){
    spec.g397Shinka=defs;
    continue;
   }
+  if(phase>=1065&&f.typeText==='NEOクリーチャー'&&line==='このクリーチャーが出た時相手のクリーチャーを1体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。'){
+   if(entry.length||nativeEntry)throw Error('独立した誘発能力の順序対応が必要');
+   entry.push({op:'FightEnemy240',optional:true,g998EntryFight:true});
+   continue;
+  }
   if(phase>=1064&&f.typeText==='NEOクリーチャー'){
    if(line==='自分のマナゾーンに光、火、自然の各文明があればこのクリーチャーを[cc02]支払って召喚してもよい。'||
       line==='自分のマナゾーンに光火自然の各文明があればこのクリーチャーを[cc02]支払って召喚してもよい。'){
@@ -10538,7 +10543,12 @@ export function standardCardSpec(d,{phase=165}={}){
    const boosts={
     'これがNEO進化クリーチャーなら「パワーアタッカー+7000」と「T・ブレイカー」を与える。(攻撃中このクリーチャーのパワーは+7000されシールドを3つブレイクする)':{attackBonus:7000,breaker:3},
     'これがNEO進化クリーチャーならこのクリーチャーに「パワーアタッカー+3000」と「W・ブレイカー」を与える。(攻撃中このクリーチャーのパワーは+3000されシールドをさらに1つブレイクする)':{attackBonus:3000,breaker:2},
-    'このクリーチャーが進化クリーチャーの時そのパワーを+3000し「W・ブレイカー」を与える。':{power:3000,breaker:2}
+    'このクリーチャーが進化クリーチャーの時そのパワーを+3000し「W・ブレイカー」を与える。':{power:3000,breaker:2},
+    ...(phase>=1065&&f.typeText==='NEOクリーチャー'?{
+     'これがNEO進化クリーチャーならそのパワーを+5000し「W・ブレイカー」を与える。(「W・ブレイカー」を持つクリーチャーはシールドを2つブレイクする)':{power:5000,breaker:2},
+     'これがNEO進化クリーチャーならこのクリーチャーのパワーを+5000し「W・ブレイカー」を与える。(「W・ブレイカー」を持つクリーチャーはシールドを2つブレイクする)':{power:5000,breaker:2},
+     'これが進化クリーチャーならこのクリーチャーのパワーを+4000し「パワード・ブレイカー」を与える。(「パワード・ブレイカー」を持つクリーチャーはそのパワー6000ごとにシールドをさらに1つブレイクする)':{power:4000,poweredBreaker:true}
+    }:{})
    }[line];
    if(boosts){if(spec.g260Self)throw Error('重複する進化条件');spec.g260Self={filter:{g563Neo:true},grants:boosts};powerBonus=true;continue;}
   }
