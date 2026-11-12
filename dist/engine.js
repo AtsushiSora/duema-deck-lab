@@ -31,7 +31,8 @@ export function card(id){
  try{const source=card(decodeURIComponent(parts[1])),reference=card(decodeURIComponent(parts[2]));if(!source||!reference)return undefined;return {...source,...Object.fromEntries(['name','cost','printedCost','civ','civilizations','power','race','type'].map(k=>[k,reference[k]])),id:key,copyOf:source.id,referenceId:reference.id};}catch{return undefined;}
 }
 export const numeric=value=>value==='∞'?Infinity:Number(value);
-export const costValue=c=>numeric(c.cost);
+const rulesCost=c=>c.type==='cell'?0:c.cost;
+export const costValue=c=>numeric(rulesCost(c));
 function rawTravelIgnored(s,x){return !!s&&(s.extLimits||[]).some(l=>l.kind==='travelIgnore'&&x.g14IgnoreScopes?.includes(l.scope));}
 function travelIgnored(s,x){return rawTravelIgnored(s,x)&&!genmuActive(s);}
 function rawNumberIgnored(s,x){return !!s&&(s.extLimits||[]).some(l=>l.kind==='numberIgnore'&&x.g9IgnoreScopes?.includes(l.scope)&&costValue(card(x))===(l.cost==='∞'?Infinity:l.cost));}
@@ -1480,7 +1481,7 @@ function startJudge(s,p,source,uid,mode,onWin=null){s.judge={player:p,source,uid
 function judgeRound(s){
  const j=s.judge;j.round++;j.stage='compare';delete j.mana878;j.prohibited=[0,1].map(p=>deckLocked(s,p));j.revealed=s.players.map((p,i)=>!deckLocked(s,i)&&p.deck[0]?{uid:p.deck[0].uid,cardId:p.deck[0].cardId}:null);
  for(const who of [s.active,1-s.active])if(!j.revealed[who]&&!s.players[who].deck.length){deckCheck(s,who);if(s.winner!==null||s.lossEvent)return;}
- j.costs=j.revealed.map(x=>{if(!x)return 'no-card';const costs=[...new Set(playFaces(card(x)).map(c=>c.cost))];return costs.length===1?costs[0]:null;});
+ j.costs=j.revealed.map(x=>{if(!x)return 'no-card';const costs=[...new Set(playFaces(card(x)).map(rulesCost))];return costs.length===1?costs[0]:null;});
  log(s,j.player,'judgeReveal',`ガチンコ・ジャッジ${j.round}回目：${j.revealed.map((x,i)=>`${s.players[i].name}は${x?card(x).name:'公開できるカードなし'}`).join(' / ')}を公開`,{cardId:j.source});
  for(const p of[s.active,1-s.active])if(j.revealed[p])extra.requested393J.judgeRevealed(s,p,j.revealed[p]);
  advanceJudgeCosts(s);
@@ -1511,6 +1512,8 @@ function advanceJudgeCosts(s){
  // Deck-out and any loss replacement resolve before the judge result.
  j.stage='compare';
  const compared=j.costs.map((printed,p)=>{
+  // An older pending judge may contain the King Cell's display value.
+  if(printed==='∞'&&card(j.revealed[p])?.type==='cell')printed=0;
   if(printed==='no-card'||printed==='∞')return printed;
   const bonus=s.players[p].battle.reduce((sum,x)=>sum+(!x.sealed&&isCreature(s,x)?effectiveCard(x,s).g873JudgeBonus||0:0),0);
   return bonus?numeric(printed)+bonus:printed;
@@ -2129,7 +2132,7 @@ export function getLegalActions(s){
   if(d.type==='triggerEvolution'){const c=playFaces(card(d.source))[d.face];out=evolutionBases(s,p,c).map(base=>option('triggerEvolve',card(base).name+'の上にS・トリガーで召喚',{uid:d.uid,cardId:d.source,baseUid:base.uid}));if(c.neoEvolution)out.unshift(option('triggerEvolve','進化させずにS・トリガーで召喚',{uid:d.uid,cardId:d.source}));}
   if(d.type==='evolution'){const c={...card(d.source),...Object.fromEntries(['g464Reducers','g463Reduction','g456Reduction'].filter(k=>d.playAction?.[k]!==undefined).map(k=>[k,d.playAction[k]]))},origin=d.playAction?.origin||'hand',free=!!d.playAction?.freeSummon;out=evolutionBases(s,p,c).filter(base=>base.uid!==d.uid&&(!c.neoEvolution||free||validMana(s,p,{...c,summonOrigin:origin,g27BaseUid:base.uid}))).map(base=>option('evolve',`${card(base).name}の上に${c.name}を重ねる`,{uid:d.uid,baseUid:base.uid,cardId:c.id,...(c.neoEvolution?{cost:free?0:summonCost(s,p,{...c,summonOrigin:origin,g27BaseUid:base.uid})}:{})}));if(c.neoEvolution&&(free||validMana(s,p,{...c,summonOrigin:origin,g27BaseUid:null})))out.unshift(option('evolve',`${c.name}を進化させず召喚`,{uid:d.uid,cardId:c.id,cost:free?0:summonCost(s,p,{...c,summonOrigin:origin,g27BaseUid:null})}));out.push(option('cancelEvolution','召喚をやめる'));}
   if(d.type==='revealEvolution'){const c=card(d.source);out=evolutionBases(s,p,c).map(base=>option('revealEvolve',`${card(base).name}の上に公開した${c.name}を重ねる`,{uid:d.uid,baseUid:base.uid,cardId:c.id}));if(c.neoEvolution)out.unshift(option('revealEvolve',`公開した${c.name}を進化させず出す`,{uid:d.uid,cardId:c.id}));}
-  if(d.type==='judgeCost')out=playFaces(card(d.source)).map((c,face)=>option('judgeCost',`${c.name}のコスト${c.cost}を参照`,{face,cost:c.cost,cardId:d.source}));
+  if(d.type==='judgeCost')out=playFaces(card(d.source)).map((c,face)=>{const cost=rulesCost(c);return option('judgeCost',`${c.name}のコスト${cost}を参照`,{face,cost,cardId:d.source});});
   if(d.type==='judgeMana878')out=[
    option('judgeMana878',card(d.cardId).name+'をかわりにマナに置く',{toMana:true,cardId:d.cardId}),
    option('judgeMana878','山札の一番下に置く',{toMana:false})

@@ -37,6 +37,25 @@ test('winning spell judge rotates actual top cards, then obligatorily draws the 
 test('losing spell judge draws nothing but still completes charger; equal cost wins for the judge user',()=>{
  for(const won of [false,true]){const s=setup();judgeDecks(s,won?[KIRA,'dm01-108','dm01-108']:['dm01-108','dm01-108'],won?[KIRA,'dm01-108','dm01-108']:[TERRA,'dm01-108']);const hand=s.players[0].hand.length;cast(s,RS,1);assert.equal(s.players[0].hand.length,hand+(won?1:0));assert.equal(s.players[0].mana.at(-1).cardId,RS);assert.equal(s.players[0].mana.at(-1).tapped,false);assert.ok(s.log.some(e=>e.type==='judgeResult'&&e.text.includes(won?'勝ち':'負け')));}
 });
+test('King Cells count as zero for judging, including a saved judge waiting for a twinpact face (QA40588)',()=>{
+ for(const cell of ['dmrp20-km5','dmex18-012']){
+  const s=setup();
+  judgeDecks(s,[cell,'dm01-108'],['dm01-108','dm01-108']);
+  cast(s,RS,1);
+  assert.ok(s.log.some(x=>x.type==='judgeResult'&&x.text.includes('0 対 2、負け')));
+  assert.equal(s.players[0].deck.at(-1).cardId,cell);
+
+  const t=setup();
+  judgeDecks(t,[cell,'dm01-108'],[RS,'dm01-108']);
+  cast(t,RS,1);
+  assert.equal(t.decision.type,'judgeCost');
+  assert.equal(t.judge.costs[0],0);
+  t.judge.costs[0]='∞'; // A saved position made before the ruling was corrected.
+  const saved=JSON.parse(JSON.stringify(t));
+  act(saved,'judgeCost',a=>a.cost===3);
+  assert.ok(saved.log.some(x=>x.type==='judgeResult'&&x.text.includes('0 対 3、負け')));
+ }
+});
 test('revealing and rotating a one-card deck does not lose, but the following mandatory winning draw loses before charger',()=>{
  const s=setup();judgeDecks(s,[TERRA],['dm01-108']);cast(s,RS,1);assert.equal(s.winner,1);assert.equal(s.players[0].deck.length,0);assert.equal(s.players[0].hand.at(-1).cardId,TERRA);assert.equal(s.resolvingSpell.inst.cardId,RS);assert.ok(!s.players[0].mana.some(x=>x.cardId===RS));assert.ok(!s.log.some(e=>e.type==='charger'));assert.deepEqual(getLegalActions(s),[]);
  const t=setup();give(t,0,'battle',[RS]);judgeDecks(t,[TERRA],['dm01-108']);attack(t);assert.equal(t.winner,null);assert.equal(t.players[0].deck.length,1);assert.equal(t.decision.type,'judgeContinue');act(t,'stopJudge');assert.equal(t.decision.type,'judgeBreak');
