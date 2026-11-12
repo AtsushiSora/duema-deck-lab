@@ -9725,6 +9725,20 @@ export function standardCardSpec(d,{phase=165}={}){
     continue;
    }
   }
+  if(phase>=1076&&creature){
+   const watch={
+    'バトルゾーンにあるパワー5000以上の自分の他のクリーチャーが相手プレイヤーを攻撃しブロックされなかった時さらにもう1枚ブレイクする。':{other:true,minPower:5000,defs:[{op:'UnblockedExtraBreak1076',amount:1}]},
+    'パワー5000以上の自分の他のクリーチャーが相手プレイヤーを攻撃してブロックされなかった時シールドをさらにもう1枚ブレイクする。':{other:true,minPower:5000,defs:[{op:'UnblockedExtraBreak1076',amount:1}]},
+    '自分のコマンドが相手プレイヤーを攻撃してブロックされなかった時自分の山札の上から1枚目を裏向きのまま新しいシールドとして自分のシールドゾーンに加えてもよい。':{race:'コマンド',defs:[{op:'Offer',title:'山札の上から1枚をシールド化する？',defs:[{op:'ShieldTop',n:1}]}]},
+    '自分のコマンドが相手プレイヤーを攻撃してブロックされなかった時自分の山札の上から1枚目を裏向きのまま新しいシールドとしてシールドゾーンに加えてもよい。':{race:'コマンド',defs:[{op:'Offer',title:'山札の上から1枚をシールド化する？',defs:[{op:'ShieldTop',n:1}]}]},
+    '自分の他のデーモン・コマンドが相手プレイヤーを攻撃してブロックされなかった時相手の闇以外のクリーチャーを1体破壊する。':{race:'デーモン・コマンド',other:true,defs:[{op:'Target',to:'grave',destroy:true,filter:{notColor:'闇'}}]}
+   }[line];
+   if(watch){
+    if(spec.g1076UnblockedWatch)throw Error('重複する非ブロック時能力');
+    spec.g1076UnblockedWatch=watch;
+    continue;
+   }
+  }
   if(phase>=1075&&creature){
    const baham=evolution&&['promoy2-014','promoy3-034'].includes(d.id);
    if(baham&&line==='進化ー自分のアーマード・ドラゴン1体の上に置く。'){

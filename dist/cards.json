@@ -214744,15 +214744,114 @@
       "g1075ExtraBreakRace": "ドラゴノイド",
       "supportBatch": "phase-1075",
       "supportKind": "effect"
+    },
+    {
+      "id": "promoy2-023",
+      "name": "大昆虫ジェネラルマンティス",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "ジャイアント・インセクト",
+      "text": "進化-自分のジャイアント・インセクト１体の上に置く。\nW・ブレイカー\nパワー5000以上の自分の他のクリーチャーが、相手プレイヤーを攻撃してブロックされなかった時、シールドをさらにもう1枚ブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy2-023",
+      "limit": 4,
+      "evolution": {
+        "race": "ジャイアント・インセクト"
+      },
+      "breaker": 2,
+      "g1076UnblockedWatch": {
+        "other": true,
+        "minPower": 5000,
+        "defs": [
+          {
+            "op": "UnblockedExtraBreak1076",
+            "amount": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1076",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr06-001",
+      "name": "偽りの羅刹 ミスディレクション",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 9000,
+      "race": "デーモン・コマンド/アンノウン",
+      "text": "W・ブレイカー\n自分のコマンドが相手プレイヤーを攻撃してブロックされなかった時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに加えてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-001",
+      "limit": 4,
+      "g1076UnblockedWatch": {
+        "race": "コマンド",
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "山札の上から1枚をシールド化する？",
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "breaker": 2,
+      "supportBatch": "phase-1076",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy6-022",
+      "name": "魔城の覇者オルギアス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 7000,
+      "race": "デーモン・コマンド",
+      "text": "Ｗ・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\n自分の他のデーモン・コマンドが相手プレイヤーを攻撃してブロックされなかった時、相手の闇以外のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy6-022",
+      "limit": 4,
+      "breaker": 2,
+      "g1076UnblockedWatch": {
+        "race": "デーモン・コマンド",
+        "other": true,
+        "defs": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "destroy": true,
+            "filter": {
+              "notColor": "闇"
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1076",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1075,
+    "phase": 1076,
     "checkedAt": "2026-11-13",
-    "baseCount": 7189,
+    "baseCount": 7192,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7192,
+    "totalCount": 7195,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -233941,6 +234040,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7189,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1075,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7189,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7192,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

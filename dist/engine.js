@@ -1914,7 +1914,8 @@ function resolveAttack(s,blockUid){
   s.breakContext={player:s.active,sourceUid:a.uid,incarnation:a.incarnation||0,source:a.cardId,...(c.g122NoST?{noST:true}:{}),reverse:!!c.reverseBurn,burn:!!c.shieldBurn,...(c.qqLock?{qqBreak:true}:{})};
   const capped=oneAttackBreak814(s,s.active);
   const count=breaker==='world'?shields.length:numeric(breaker);
-  const n=Math.min(gMode?shields.length:(s.attack.g471Breaker==='null'?0:count)+(c.extraBreak||0),capped?1:shields.length);
+  const extraBreaks=(c.extraBreak||0)+(s.attack.g1076ExtraBreaks||0);
+  const n=Math.min(gMode?shields.length:(s.attack.g471Breaker==='null'?0:count)+extraBreaks,capped?1:shields.length);
   if(n===0)breakShields(s,other,[]);
   else if(s.attack.g471Breaker!=='null'&&!gMode&&breaker==='∞'&&!worldBreaker)
    s.decision={type:'infinityCount',player:s.active,defender:other,...(capped?{max:1}:{})};

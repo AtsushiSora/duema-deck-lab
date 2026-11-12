@@ -1800,6 +1800,9 @@ export function createSixPhotoRules(api){
  }
  case'g34_AttackFight408':{if(t.g747Once&&parottaUsed747(s,t))break;const y=attackHost408(s,t);if(y&&api.isCreature(s,y)&&!y.sealed)put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:y.uid,incarnation:y.incarnation||0},optional:true});break;}
  case'g34_AttackExtraBreak511':{const ref=t.g399Attacker;if(ref)start(s,{...t,uid:ref.uid,incarnation:ref.incarnation},[{op:'SelfExtraBreak444',amount:t.amount}]);break;}
+ case'g34_UnblockedExtraBreak1076':
+  if(s.attack?.stage==='unblocked482')s.attack.g1076ExtraBreaks=(s.attack.g1076ExtraBreaks||0)+t.amount;
+  break;
  case'g34_GuardVision834':
   choice(s,t,'どちらの山札を確認しますか？',[opt('自分の山札',t.p,10),opt('相手の山札',1-t.p,8)]);
   break;
@@ -5084,7 +5087,7 @@ export function createSixPhotoRules(api){
   }
  },
  firstSummonDiscount463,onceDiscount464,spellDiscount467:(s,p,c)=>c.type==='spell'?creatures(s,p).filter(x=>!x.sealed).reduce((n,x)=>n+(effective(x,s).g467SpellReduction||0),0)+spellReduction485(s,p,c):0,
- selectNullBreaker471(s,p,x){const c=effective(x,s);if(!c.g471NullBreaker||s.attack.g471Breaker||!s.players[1-p].shields.length||!c.gBreaker&&c.breaker!=='∞'&&!(c.breaker>0))return false;const n=c.extraBreak||0;choice(s,task('g34_NullBreaker471',p,x.cardId,{uid:x.uid}), 'この攻撃で使うブレイカーを選ぶ',[opt('ヌル・ブレイカー（'+n+'枚ブレイク）','null',0),opt('ほかのブレイカーを使う','normal',20)]);return true;},
+ selectNullBreaker471(s,p,x){const c=effective(x,s);if(!c.g471NullBreaker||s.attack.g471Breaker||!s.players[1-p].shields.length||!c.gBreaker&&c.breaker!=='∞'&&!(c.breaker>0))return false;const n=(c.extraBreak||0)+(s.attack.g1076ExtraBreaks||0);choice(s,task('g34_NullBreaker471',p,x.cardId,{uid:x.uid}), 'この攻撃で使うブレイカーを選ぶ',[opt('ヌル・ブレイカー（'+n+'枚ブレイク）','null',0),opt('ほかのブレイカーを使う','normal',20)]);return true;},
  beginPayment560(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g560Handled||!summonAuras560(s,p,c).optional||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PayAura560',p,c.id,{c:payment,args}));return true;},
  beginPayment500(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g500Handled||!floorOptions500(s,p,c)[0]||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PayFloor500',p,c.id,{c:payment,args}));return true;},
  floorCost500(s,p,c,base){if(c.type!=='creature'||c.crossing)return base;const amounts=floorOptions500(s,p,c),aura=c.g500Amount===undefined?amounts[0]:amounts.includes(c.g500Amount)?c.g500Amount:0,n=aura+(c.g212CountDiscount?.minimum===2?countDiscountMax499(s,p,c):0)+(c.g211Sympathy?.minimum===2?sympathyAmount500(s,p,c):0);return n?Math.min(base,Math.max(2,base-n)):base;},
@@ -5607,7 +5610,12 @@ export function createSixPhotoRules(api){
   }
   if(!s.attack.g484Blocked)for(const source of creatures(s,p)){
    if(source.sealed)continue;
-   const {g701UnblockedMana,g852UnblockedDiscard}=effective(source,s);
+   const {g701UnblockedMana,g852UnblockedDiscard,g1076UnblockedWatch:watch}=effective(source,s);
+   if(playerAttack&&watch&&(!watch.other||source.uid!==x.uid)&&(!watch.race||race(attacker,watch.race))&&
+    (watch.minPower===undefined||api.power(x,true,s)>=watch.minPower)){
+    queue(s,p,source,watch.defs);
+    triggered=true;
+   }
    if(playerAttack&&g701UnblockedMana?.some(name=>race(attacker,name))){
     queue(s,p,source,[{op:'OpponentManaLoss478'}]);
     triggered=true;

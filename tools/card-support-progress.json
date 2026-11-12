@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7192,
-  "pendingNames": 4635,
-  "phase": 1075,
+  "supportedNames": 7195,
+  "pendingNames": 4632,
+  "phase": 1076,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2699,
+    "クリーチャー": 2697,
     "NEOクリーチャー": 89,
     "呪文": 605,
     "GRクリーチャー": 159,
@@ -162,7 +162,7 @@
     "タマシード": 57,
     "デュエルメイト呪文": 10,
     "S-MAX進化クリーチャー": 10,
-    "進化クリーチャー": 267,
+    "進化クリーチャー": 266,
     "スター進化クリーチャー": 68,
     "進化クリーチャー(超無限進化・Ω)": 1,
     "ギガ・オレガ・オーラ": 2,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3199,
+    "未対応の能力文": 3196,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -208539,22 +208539,167 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1076,
+      "baseCommit": "527bedb8",
+      "cards": [
+        {
+          "id": "promoy2-023",
+          "name": "大昆虫ジェネラルマンティス"
+        },
+        {
+          "id": "dmr06-001",
+          "name": "偽りの羅刹 ミスディレクション"
+        },
+        {
+          "id": "promoy6-022",
+          "name": "魔城の覇者オルギアス"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "promoy3-035",
+          "canonicalId": "promoy2-023"
+        },
+        {
+          "id": "dmex08-068",
+          "canonicalId": "dmr06-001"
+        },
+        {
+          "id": "promoy6-024",
+          "canonicalId": "promoy6-022"
+        }
+      ],
+      "supportedNames": 7195,
+      "pendingNames": 4632,
+      "verification": {
+        "focusedPassed": 7,
+        "regressionPassed": 272,
+        "regressionFailed": 0,
+        "check": "成功",
+        "officialPrints": 6,
+        "scope": "3種類6版の公式能力全文・基本情報・画像・収録・使用制限を照合。大昆虫ジェネラルマンティスはジャイアント・インセクトから進化し、他の自軍の非ブロック攻撃でその時点のパワーが5000以上ならその攻撃のブレイクを1つ増やす。重複・ヌル・ブレイカー・保存からの再開を確認。偽りの羅刹 ミスディレクションは自軍のコマンドによる非ブロック攻撃で山札上1枚の裏向きシールド化を任意で処理し、自身の攻撃や進化したGGがいる場合も検証。魔城の覇者オルギアスは自身以外のデーモン・コマンドの非ブロック攻撃で、闇を含まない相手クリーチャーを破壊する。再録3版を元の対戦IDに紐づけ、既存7,192件の対戦定義と既存の別名対応が一致。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35733/",
+          "https://dm.takaratomy.co.jp/rule/qa/48740/"
+        ],
+        "regressionFiles": [
+          "tests/neo-ddd.test.mjs",
+          "tests/standard482-effects.test.mjs",
+          "tests/standard471-effects.test.mjs",
+          "tests/standard701-effects.test.mjs",
+          "tests/standard852-effects.test.mjs",
+          "tests/standard951-effects.test.mjs",
+          "tests/standard953-effects.test.mjs",
+          "tests/standard1074-effects.test.mjs",
+          "tests/standard1075-effects.test.mjs"
+        ],
+        "regressionFilter": "--test-skip-pattern=mixed NEO/DDD games|legal forty CPU game",
+        "incompleteRegression": [
+          {
+            "file": "tests/neo-ddd.test.mjs",
+            "test": "mixed NEO/DDD games conserve all eighty unique cards through every action and finish with reproducible seeds",
+            "status": "今回未実行",
+            "reason": "以前に分割検証した100対戦。長時間実行の繰り返しを避けるため今回の個別回帰から除外。"
+          },
+          {
+            "file": "tests/standard482-effects.test.mjs",
+            "test": "legal forty CPU game with saved continuation and 80 conserved cards（各2件）",
+            "status": "今回未実行",
+            "reason": "CPUの対戦完走を伴うケースを除外し、非ブロック時とブレイカー選択の個別回帰を実行。"
+          },
+          {
+            "file": "tests/standard471-effects.test.mjs",
+            "test": "legal forty CPU game with saved continuation and 80 conserved cards（各2件）",
+            "status": "今回未実行",
+            "reason": "CPUの対戦完走を伴うケースを除外し、非ブロック時とブレイカー選択の個別回帰を実行。"
+          }
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。 トットロの公式QA 48925の組み合わせは関連2枚が未対応のため未実行。NEO/DDDの100試合と再現性は過去に分割検証済みで、今回の回帰では合否未確認。 ゴルギー31相手の再現性と本番Worker62試合は今回も対象外で未実行。前回の広範囲回帰に含まれる1,796件固定の既存テストの結果はPhase 1060を参照。 PhoenixのCPU連戦と本番Worker試験は、今回の個別回帰の対象外。 Phase 1064ではNEO/DDD 100試合とBandeの全対戦・ランダム操作・Workerの長時間ケースを個別回帰から除外。以前の長時間実行を繰り返さず、今回の合否は未確認。 Phase 1065の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1066の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1067の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1068の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1069の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1070の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1071の個別回帰でも長時間のNEO/DDD 100試合は対象外。 Phase 1072の個別回帰でも長時間のNEO/DDD 100試合は対象外。 Phase 1073の個別回帰でも長時間のNEO/DDD 100試合は対象外。 Phase 1074で今回未実行または中断した長時間回帰は同履歴のincompleteRegressionを参照。 Phase 1075の回帰でもNEO/DDD 100対戦は対象外。前回のソウル・進化・ドラゴン100対戦の中断記録を引き継ぐ。 Phase 1076で対象外の長時間回帰は同履歴のincompleteRegressionを参照。",
+        "pendingInteractions": [
+          {
+            "cardIds": [
+              "dm25rp3-039",
+              "dm26rp2-006",
+              "dm25rp2-OR1"
+            ],
+            "test": "デンジャラス=トットロの上にメモッタで封印付きのジャシン＝ヴリドガルドが出る場合の墓地展開",
+            "status": "未実行",
+            "reason": "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/48925/"
+          }
+        ],
+        "logs": {
+          "official": "/tmp/duema-phase-1076.mzAFma/manifest.log",
+          "officialImages": "/tmp/duema-phase-1076.mzAFma/sources.log",
+          "reprints": "/tmp/duema-phase-1076.mzAFma/reprints.log",
+          "imageIndex": "/tmp/duema-phase-1076.mzAFma/images.log",
+          "focused": "/tmp/duema-phase-1076.mzAFma/specific-final.log",
+          "regression": "/tmp/duema-phase-1076.mzAFma/related.log",
+          "check": "/tmp/duema-phase-1076.mzAFma/check.log",
+          "audit": "/tmp/duema-phase-1076.mzAFma/audit.log",
+          "count": "/tmp/duema-phase-1076.mzAFma/count.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dmc49-004",
+          "name": "ジオメテウス・無限・ドラゴン",
+          "reason": "DMC-49版とP09/Y6の公式能力全文・画像を確認。公式ページが示す5商品と絵柄違いの各版の照合を続け、手札から出すドラゴンの進化元の処理を確認するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmc49-004",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmc53-003",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmx12a-008",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd4-026",
+            "https://dm.takaratomy.co.jp/card/detail/?id=promoy6-008",
+            "https://dm.takaratomy.co.jp/card/detail/?id=promoy6-009",
+            "https://dm.takaratomy.co.jp/card/detail/?id=promoy6-011",
+            "https://dm.takaratomy.co.jp/card/detail/?id=promoy6-013",
+            "https://dm.takaratomy.co.jp/card/detail/?id=promoy6-027"
+          ]
+        },
+        {
+          "id": "dm25rp2-001",
+          "name": "Celeb k’Reine",
+          "reason": "複数体の同時タップと、本人が出る前に相手がタップしていた場合の各ターン最初の誘発を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-001",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp2001"
+          ]
+        },
+        {
+          "id": "dmrp02-010",
+          "name": "ベジタバッタ・パンツァー",
+          "reason": "攻撃できる対象の優先と、効果によるバトルも含めて両方のクリーチャーをマナに置く任意置換を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-010",
+            "https://dm.takaratomy.co.jp/coverage/dmscs01_f03/"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1075,
-    "nextPhase": 1076,
+    "lastVerifiedPhase": 1076,
+    "nextPhase": 1077,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "promoy2-023",
-        "name": "大昆虫ジェネラルマンティス",
-        "reason": "プロモ2期・3期の公式能力全文、基本情報、画像を照合済み。後発版の表記で、非ブロック時に参照する攻撃クリーチャーのパワーと追加ブレイクの主体を確認するまで保留。",
+        "id": "dmc49-004",
+        "name": "ジオメテウス・無限・ドラゴン",
+        "reason": "DMC-49版とP09/Y6の公式能力全文・画像を確認。公式ページが示す5商品と絵柄違いの各版の照合を続け、手札から出すドラゴンの進化元の処理を確認するまで保留。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=promoy2-023",
-          "https://dm.takaratomy.co.jp/card/detail/?id=promoy3-035",
-          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-          "https://dm.takaratomy.co.jp/rule/qa_old/35733/"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmc49-004",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmc53-003",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmx12a-008",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd4-026",
+          "https://dm.takaratomy.co.jp/card/detail/?id=promoy6-008",
+          "https://dm.takaratomy.co.jp/card/detail/?id=promoy6-009",
+          "https://dm.takaratomy.co.jp/card/detail/?id=promoy6-011",
+          "https://dm.takaratomy.co.jp/card/detail/?id=promoy6-013",
+          "https://dm.takaratomy.co.jp/card/detail/?id=promoy6-027"
         ]
       },
       {
@@ -208883,7 +209028,7 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
-      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。非ブロック時とシールドを選んだ後の誘発、相手の各ターン最初のタップ、効果によるバトルの置換を既存処理と照合する。",
+      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。手札から出すドラゴンの進化条件、相手の最初のタップ、効果によるバトルの置換を既存処理と照合する。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で登録再開。自動化 duema-deck-lab は10分間隔で稼働中。",
