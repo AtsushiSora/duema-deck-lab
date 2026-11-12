@@ -1,15 +1,11 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7140,
-  "pendingNames": 4687,
-  "phase": 1060,
-  "added": 4,
-  "readyForOfficialVerification": [
-    "dm25rp2-036",
-    "dm25rp2-045",
-    "dm25rp2-042"
-  ],
+  "supportedNames": 7143,
+  "pendingNames": 4684,
+  "phase": 1061,
+  "added": 3,
+  "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
     {
@@ -104,7 +100,7 @@
     },
     {
       "ability": "超魂",
-      "pendingNames": 54,
+      "pendingNames": 51,
       "examples": [
         {
           "id": "dm25rp2-014",
@@ -159,7 +155,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 2700,
-    "NEOクリーチャー": 128,
+    "NEOクリーチャー": 125,
     "呪文": 605,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
@@ -206702,27 +206698,151 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1061,
+      "baseCommit": "5aa9524a",
+      "cards": [
+        {
+          "id": "dm25rp2-036",
+          "name": "トレイン＝ドレイジャー"
+        },
+        {
+          "id": "dm25rp2-045",
+          "name": "死罪非1-DA"
+        },
+        {
+          "id": "dm25rp2-042",
+          "name": "魔誕竜凰ドルゲドス"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "promoy24-031",
+          "canonicalId": "dm25rp2-036"
+        },
+        {
+          "id": "dm25ex3-046",
+          "canonicalId": "dm25rp2-042"
+        }
+      ],
+      "supportedNames": 7143,
+      "pendingNames": 4684,
+      "verification": {
+        "focusedPassed": 12,
+        "regressionPassed": 67,
+        "regressionFailed": 0,
+        "check": "成功",
+        "officialPrints": 5,
+        "scope": "3種類5版の公式能力全文、基本情報、マナ数、公式画像、収録、使用制限を照合。トレインのプロモ版とドルゲドスのデュエナマイトパック版を元の対戦IDに紐づけ、いずれも上限4枚。既存のNEO進化・超魂レイド・墓地召喚処理を使用。3種類それぞれの進化元文明、超魂レイドの選択と辞退、残りの山札順、攻撃可否とブレイク数、シンカライズと進化元カードの能力、ギャイアの登場置換を確認。トレインは墓地から通常と進化の両方を5マナで召喚でき、支払い不足・文明不足・墓地移動制限では不可。途中状態からの再開、既存7,140件の対戦定義と別版IDを照合。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/product/dm25rp2/",
+          "https://dm.takaratomy.co.jp/rule/qa/31531/",
+          "https://dm.takaratomy.co.jp/rule/qa/41075/",
+          "https://dm.takaratomy.co.jp/rule/qa/46526/",
+          "https://dm.takaratomy.co.jp/rule/qa/46847/",
+          "https://dm.takaratomy.co.jp/rule/qa/46861/",
+          "https://dm.takaratomy.co.jp/rule/qa/46862/",
+          "https://dm.takaratomy.co.jp/rule/qa/46946/"
+        ],
+        "regressionFiles": [
+          "tests/neo-ddd.test.mjs",
+          "tests/golgy-effects.test.mjs",
+          "tests/photo167-effects.test.mjs",
+          "tests/standard1007-effects.test.mjs",
+          "tests/standard1036-effects.test.mjs",
+          "tests/standard1038-effects.test.mjs",
+          "tests/standard1057-effects.test.mjs",
+          "tests/standard1058-effects.test.mjs",
+          "tests/standard1059-effects.test.mjs",
+          "tests/standard1060-effects.test.mjs"
+        ],
+        "regressionFilter": "[Rr]aid|[Bb]lueprint|contained count|shinkalize|[Gg]rave|NEO|DDD|Docrus。NEO/DDDの100試合、photo167のCPU連戦、40枚CPU戦を除外。",
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。 トットロの公式QA 48925の組み合わせは関連2枚が未対応のため未実行。NEO/DDDの100試合と再現性は過去に分割検証済みで、今回の回帰では合否未確認。 ゴルギー31相手の再現性と本番Worker62試合は今回も対象外で未実行。前回の広範囲回帰に含まれる1,796件固定の既存テストの結果はPhase 1060を参照。",
+        "pendingInteractions": [
+          {
+            "cardIds": [
+              "dm25rp3-039",
+              "dm26rp2-006",
+              "dm25rp2-OR1"
+            ],
+            "test": "デンジャラス=トットロの上にメモッタで封印付きのジャシン＝ヴリドガルドが出る場合の墓地展開",
+            "status": "未実行",
+            "reason": "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/48925/"
+          }
+        ],
+        "logs": {
+          "official": "/tmp/duema-phase-1061.rzFNsxMW/manifest.log",
+          "officialImages": "/tmp/duema-phase-1061.rzFNsxMW/sources.log",
+          "reprintIndex": "/tmp/duema-phase-1061.rzFNsxMW/find-reprint-later.log",
+          "reprints": "/tmp/duema-phase-1061.rzFNsxMW/reprints.log",
+          "focused": "/tmp/duema-phase-1061.rzFNsxMW/focused.log",
+          "regression": "/tmp/duema-phase-1061.rzFNsxMW/regression.log",
+          "check": "/tmp/duema-phase-1061.rzFNsxMW/check.log",
+          "audit": "/tmp/duema-phase-1061.rzFNsxMW/audit.log",
+          "count": "/tmp/duema-phase-1061.rzFNsxMW/count.log",
+          "imageIndex": "/tmp/duema-phase-1061.rzFNsxMW/images.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dmex02-079",
+          "name": "インパラスカス",
+          "reason": "公式全文・基本情報・画像・単一収録を確認。進化元条件のうち文明だけを無視し、種族等の条件と召喚・効果登場の両経路を維持できるか検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-079"
+          ]
+        },
+        {
+          "id": "dm25rp4-077",
+          "name": "スマッシュ・ホーンの地版",
+          "reason": "公式の能力全文・基本情報・画像・単一収録を確認。超魂Xで進化先が得た能力が、その進化先をさらに進化元にした時に新しい進化先へマッハファイターを与える経路を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-077",
+            "https://dm.takaratomy.co.jp/rule/qa/46533/",
+            "https://dm.takaratomy.co.jp/rule/qa/46530/"
+          ]
+        },
+        {
+          "id": "dm25rp2-049",
+          "name": "選舞音愛 タテロール",
+          "reason": "公式本文・基本情報・画像・単一収録を照合。既存の対象選択と移動先選択を使えるが、複数枚で構成されたクリーチャーをシールド化する場合の各カードの配置順と持ち主の扱いを既存処理で再現できるか確認が残る。発生源のコストでシックスフォールの選択制限を判定する公式QA 47068も固有テストで確認する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-049",
+            "https://dm.takaratomy.co.jp/rule/qa/46506/",
+            "https://dm.takaratomy.co.jp/rule/qa/46847/",
+            "https://dm.takaratomy.co.jp/rule/qa/47068/"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1060,
-    "nextPhase": 1061,
+    "lastVerifiedPhase": 1061,
+    "nextPhase": 1062,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm25rp2-036",
-        "name": "トレイン＝ドレイジャー",
-        "reason": "超魂レイドの処理を再利用し、公式本文・再録・使用制限および固有テストを確認する。"
+        "id": "dm25rp2-029",
+        "name": "ゴールドハム・サックス",
+        "reason": "超魂レイドと、対象を選ばない全体タップおよび次の相手ターン開始時のアンタップ停止を照合する。"
       },
       {
-        "id": "dm25rp2-045",
-        "name": "死罪非1-DA",
-        "reason": "超魂レイドの処理を再利用し、公式本文・再録・使用制限および固有テストを確認する。"
+        "id": "dm25bd1-005",
+        "name": "ボルシャック・ネオウルフェウス",
+        "reason": "ドラゴンを進化元にする超魂レイド、メテオバーンの支払いと光または火の呪文の任意詠唱を照合する。"
       },
       {
-        "id": "dm25rp2-042",
-        "name": "魔誕竜凰ドルゲドス",
-        "reason": "超魂レイドの処理を再利用し、公式本文・再録・使用制限および固有テストを確認する。"
+        "id": "dm25rp2-S04",
+        "name": "魔誕の邪蹄ベル・ヘル・デ・ガウル",
+        "reason": "超魂レイドと、攻撃時に公開するカードのコスト、NEOまたはデーモン・コマンドの判定および進化元選択を照合する。"
+      },
+      {
+        "id": "dm25rp2-OR1",
+        "name": "究極の虚 ジャシン＝ヴリドガルド",
+        "reason": "G-NEOの離脱置換、超魂レイド、進化元カードが離れた時の誘発を検討する。メモッタ対応後に公式QA 48925の組み合わせを検証する。"
       },
       {
         "id": "dmex02-079",
