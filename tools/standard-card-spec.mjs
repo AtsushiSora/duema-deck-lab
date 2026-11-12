@@ -9485,6 +9485,28 @@ export function standardCardSpec(d,{phase=165}={}){
    spec.g397Shinka=defs;
    continue;
   }
+  if(phase>=1060&&f.typeText==='NEOクリーチャー'){
+   if(line==='このクリーチャーが出た時自分の山札の上から3枚を墓地に置いてもよい。'){
+    entry.push({op:'Offer',title:'山札の上から3枚を墓地に置く？',defs:[{op:'Mill',n:3,g1042Together:true}]});
+    continue;
+   }
+   if(line==='このクリーチャーが出た時自分の山札の上から1枚を表向きにする。それがNEOクリーチャーなら手札に加える。それ以外なら山札の下に置いてもよい。'){
+    entry.push({op:'RevealTop514',filter:{g556Neo:true},to:'hand',elseTo:'deck',g768OptionalBottom:true});
+    continue;
+   }
+   if(line==='超魂レイド(このクリーチャーが出た時山札の上から3枚を表向きにする。その中からこのクリーチャーの進化元になれるカードを1枚この下に置いてもよい。残りを好きな順序で山札の下に置く)'){
+    spec.g27Raid=true;
+    continue;
+   }
+   if(line==='このクリーチャーが出た時このクリーチャーに含まれるカード1枚につき相手のクリーチャーを1体選び持ち主の手札に戻す。'){
+    entry.push({op:'BouncePerSourceCard1060'});
+    continue;
+   }
+   if(line==='このクリーチャーが攻撃する時クリーチャーかタマシードを1つ自分の墓地からこのクリーチャーの下に置いてもよい。'){
+    (spec.g34Attack??=[]).push({op:'GraveBase1060'});
+    continue;
+   }
+  }
   if(phase>=1059&&f.typeText==='NEOクリーチャー'){
    const discount=line.match(/^NEO進化クリーチャーとして召喚する(?:なら|場合)このクリーチャーの召喚コストを([12])少なくする。$/);
    if(discount){

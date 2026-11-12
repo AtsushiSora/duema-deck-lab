@@ -1,11 +1,15 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7136,
-  "pendingNames": 4691,
-  "phase": 1059,
+  "supportedNames": 7140,
+  "pendingNames": 4687,
+  "phase": 1060,
   "added": 4,
-  "readyForOfficialVerification": [],
+  "readyForOfficialVerification": [
+    "dm25rp2-036",
+    "dm25rp2-045",
+    "dm25rp2-042"
+  ],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
     {
@@ -100,7 +104,7 @@
     },
     {
       "ability": "超魂",
-      "pendingNames": 55,
+      "pendingNames": 54,
       "examples": [
         {
           "id": "dm25rp2-014",
@@ -111,8 +115,8 @@
           "name": "～啓示ある天騎士～"
         },
         {
-          "id": "dm25rp2-032",
-          "name": "～防壁を破り続けて幾星霜～"
+          "id": "dm25rp1-004",
+          "name": "～歴史ある王騎士～"
         }
       ]
     },
@@ -155,7 +159,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 2700,
-    "NEOクリーチャー": 132,
+    "NEOクリーチャー": 128,
     "呪文": 605,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
@@ -226,7 +230,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3254,
+    "未対応の能力文": 3247,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -206576,32 +206580,157 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1060,
+      "baseCommit": "6a5c441d",
+      "cards": [
+        {
+          "id": "dm25rp2-054",
+          "name": "ハイクリッド-A4"
+        },
+        {
+          "id": "dm25rp2-032",
+          "name": "～防壁を破り続けて幾星霜～"
+        },
+        {
+          "id": "dm25rp4-034",
+          "name": "～魔弾の発射、準備よし～"
+        },
+        {
+          "id": "dm25rp4-017",
+          "name": "ドクラス＝ドウダクラス"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "promoy24-103",
+          "canonicalId": "dm25rp4-034"
+        },
+        {
+          "id": "dm25ex3-012",
+          "canonicalId": "dm25rp4-017"
+        }
+      ],
+      "supportedNames": 7140,
+      "pendingNames": 4687,
+      "verification": {
+        "focusedPassed": 14,
+        "regressionPassed": 259,
+        "regressionFailed": 0,
+        "check": "成功",
+        "officialPrints": 6,
+        "scope": "公式能力全文・基本情報・画像・再録・使用制限を照合。NEO・G-NEOの公開と山札下への任意移動、超魂レイドの進化元選択と山札順・ジャストダイバー、S・トリガー2体で4体を手札に戻す裁定47901と離脱直前の枚数、カードごとの持ち主、墓地3枚の一括移動と任意の進化元追加を確認。既存7,136件の対戦定義と既存の別版IDを保持。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/31531/",
+          "https://dm.takaratomy.co.jp/rule/qa/46522/",
+          "https://dm.takaratomy.co.jp/rule/qa/46526/",
+          "https://dm.takaratomy.co.jp/rule/qa/46847/",
+          "https://dm.takaratomy.co.jp/rule/qa/46945/",
+          "https://dm.takaratomy.co.jp/rule/qa/47901/",
+          "https://dm.takaratomy.co.jp/rule/qa/46570/",
+          "https://dm.takaratomy.co.jp/rule/qa/41471/",
+          "https://dm.takaratomy.co.jp/rule/qa/42642/",
+          "https://dm.takaratomy.co.jp/rule/qa/46862/"
+        ],
+        "existingIssues": [
+          "tests/golgy-effects.test.mjs の「Golgy adds ten complete effect cards and a legal official40 with31 configured opponents」は総数1,796件を固定している。基点6a5c441dの同一テストの期待値と対戦定義7,136件を確認。今回7,140対1,796で失敗。"
+        ],
+        "broaderRegression": {
+          "passed": 293,
+          "failed": 1,
+          "reason": "tests/golgy-effects.test.mjs の「Golgy adds ten complete effect cards and a legal official40 with31 configured opponents」は総数1,796件を固定している。基点6a5c441dの同一テストの期待値と対戦定義7,136件を確認。今回7,140対1,796で失敗。"
+        },
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。 トットロの公式QA 48925の組み合わせは関連2枚が未対応のため未実行。NEO/DDDの100試合と再現性は過去に分割検証済みで、今回の回帰では合否未確認。 ゴルギー31相手の再現性・本番Worker62試合は未実行。初回の広範囲回帰は長時間試験を除外するため中断し、除外後の回帰と個別検証を実施。",
+        "pendingInteractions": [
+          {
+            "cardIds": [
+              "dm25rp3-039",
+              "dm26rp2-006",
+              "dm25rp2-OR1"
+            ],
+            "test": "デンジャラス=トットロの上にメモッタで封印付きのジャシン＝ヴリドガルドが出る場合の墓地展開",
+            "status": "未実行",
+            "reason": "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/48925/"
+          }
+        ],
+        "logs": {
+          "official": "/tmp/duema-phase-1060.3v2pYizU/manifest.log",
+          "officialImages": "/tmp/duema-phase-1060.3v2pYizU/sources.log",
+          "reprints": "/tmp/duema-phase-1060.3v2pYizU/reprints.log",
+          "focused": "/tmp/duema-phase-1060.3v2pYizU/focused-final.log",
+          "raidRegression": "/tmp/duema-phase-1060.3v2pYizU/raid-regression.log",
+          "relatedRegression": "/tmp/duema-phase-1060.3v2pYizU/related-regression.log",
+          "broaderRegression": "/tmp/duema-phase-1060.3v2pYizU/regression-final.log",
+          "interruptedRegression": "/tmp/duema-phase-1060.3v2pYizU/regression.log",
+          "check": "/tmp/duema-phase-1060.3v2pYizU/check-final.log",
+          "audit": "/tmp/duema-phase-1060.3v2pYizU/audit.log",
+          "count": "/tmp/duema-phase-1060.3v2pYizU/count.log",
+          "imageIndex": "/tmp/duema-phase-1060.3v2pYizU/images.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dmex02-079",
+          "name": "インパラスカス",
+          "reason": "公式全文・基本情報・画像・単一収録を確認。進化元条件のうち文明だけを無視し、種族等の条件と召喚・効果登場の両経路を維持できるか検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-079"
+          ]
+        },
+        {
+          "id": "dm25rp4-077",
+          "name": "スマッシュ・ホーンの地版",
+          "reason": "公式の能力全文・基本情報・画像・単一収録を確認。超魂Xで進化先が得た能力が、その進化先をさらに進化元にした時に新しい進化先へマッハファイターを与える経路を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-077",
+            "https://dm.takaratomy.co.jp/rule/qa/46533/",
+            "https://dm.takaratomy.co.jp/rule/qa/46530/"
+          ]
+        },
+        {
+          "id": "dm25rp2-049",
+          "name": "選舞音愛 タテロール",
+          "reason": "公式本文・基本情報・画像・単一収録を照合。既存の対象選択と移動先選択を使えるが、複数枚で構成されたクリーチャーをシールド化する場合の各カードの配置順と持ち主の扱いを既存処理で再現できるか確認が残る。発生源のコストでシックスフォールの選択制限を判定する公式QA 47068も固有テストで確認する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-049",
+            "https://dm.takaratomy.co.jp/rule/qa/46506/",
+            "https://dm.takaratomy.co.jp/rule/qa/46847/",
+            "https://dm.takaratomy.co.jp/rule/qa/47068/"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1059,
-    "nextPhase": 1060,
+    "lastVerifiedPhase": 1060,
+    "nextPhase": 1061,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm25rp2-054",
-        "name": "ハイクリッド-A4",
-        "reason": "山札上1枚の公開、NEOクリーチャーの判定、該当外を任意で山札の下に置く処理を照合する。"
+        "id": "dm25rp2-036",
+        "name": "トレイン＝ドレイジャー",
+        "reason": "超魂レイドの処理を再利用し、公式本文・再録・使用制限および固有テストを確認する。"
       },
       {
-        "id": "dm25rp2-032",
-        "name": "～防壁を破り続けて幾星霜～",
-        "reason": "NEO進化と超魂レイドの両方で進化元を選べる条件およびジャストダイバーの継続を照合する。"
+        "id": "dm25rp2-045",
+        "name": "死罪非1-DA",
+        "reason": "超魂レイドの処理を再利用し、公式本文・再録・使用制限および固有テストを確認する。"
       },
       {
-        "id": "dm25rp4-034",
-        "name": "～魔弾の発射、準備よし～",
-        "reason": "S・トリガーと進化元選択、束の枚数と対象の所有者、対象数が足りない場合の処理を照合する。"
+        "id": "dm25rp2-042",
+        "name": "魔誕竜凰ドルゲドス",
+        "reason": "超魂レイドの処理を再利用し、公式本文・再録・使用制限および固有テストを確認する。"
       },
       {
-        "id": "dm25rp4-017",
-        "name": "ドクラス＝ドウダクラス",
-        "reason": "任意の墓地肥やしと、攻撃中に墓地のクリーチャーかタマシードを下に置いた場合のNEO進化状態を照合する。"
+        "id": "dmex02-079",
+        "name": "インパラスカス",
+        "reason": "公式全文・基本情報・画像・単一収録を確認。進化元条件のうち文明だけを無視し、種族等の条件と召喚・効果登場の両経路を維持できるか検証するまで保留。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-079"
+        ]
       },
       {
         "id": "dm25rp4-077",

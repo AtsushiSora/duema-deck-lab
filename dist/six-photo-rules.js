@@ -1071,6 +1071,13 @@ export function createSixPhotoRules(api){
    put(s,task('g34_ShuffleOnMove673',t.p,t.source,{opponent,uids}));
    return;
   }
+  if(t.g1060AttachBase){
+   const host=sourceHost474(s,t),row=t.rows?.[0];
+   if(!row||!host||host.x.sealed||!api.isCreature(s,host.x)||!api.canMoveZone(s,t.p,'grave'))return;
+   const base=remove(s.players[t.p].grave,row.uid);
+   if(base){clear(base,'under');(host.x.under??=[]).push(base);}
+   return;
+  }
   if(t.g837DeckEnds){
    if(t.rows?.length)put(s,{...t,op:'g34_GraveDeckEnd837'});
    return;
@@ -1131,7 +1138,8 @@ export function createSixPhotoRules(api){
   }
   if(t.g210TapLockIf&&ownCondition(s,t.p,t.g210TapLockIf))
    for(const {x} of targets)startUntapLock210(t,x);
- }if(t.g510Untap)for(const r of rows){const x=s.players[r.p].battle.find(x=>x.uid===r.uid);if(x?.tapped&&api.canUntap(x)){x.tapped=false;combined.untapped(s,r.p,x);}}if(t.g335Grant)for(const r of rows){const x=s.players[r.p].battle.find(x=>x.uid===r.uid);if(x)(x.g34Grants??=[]).push(timedGrant335(s,t,t.g335Grant));}if(t.g210ManaUntap){let n=0;for(const r of rows){const x=s.players[r.p].mana.find(x=>x.uid===r.uid);if(x&&api.canUntap(x)){if(x.tapped)n++;x.tapped=false;}}api.log(s,t.p,'untapMana',card(t.source).name+'：マナを'+n+'枚アンタップ',{cardId:t.source});}const b=rows.filter(r=>r.origin==='battle');for(const r of rows.filter(r=>r.origin!=='battle'))if(t.to)zoneMove(s,r.p,r.origin,r.uid,t.to,t);if(b.length&&t.to)move(s,b.map(r=>({player:r.p,uid:r.uid,to:t.to,destroy:t.to==='grave',controller:t.controller??t.p})));if(t.after)start(s,t,t.after);}}
+ }if(t.g510Untap)for(const r of rows){const x=s.players[r.p].battle.find(x=>x.uid===r.uid);if(x?.tapped&&api.canUntap(x)){x.tapped=false;combined.untapped(s,r.p,x);}}if(t.g335Grant)for(const r of rows){const x=s.players[r.p].battle.find(x=>x.uid===r.uid);if(x)(x.g34Grants??=[]).push(timedGrant335(s,t,t.g335Grant));}if(t.g210ManaUntap){let n=0;for(const r of rows){const x=s.players[r.p].mana.find(x=>x.uid===r.uid);if(x&&api.canUntap(x)){if(x.tapped)n++;x.tapped=false;}}api.log(s,t.p,'untapMana',card(t.source).name+'：マナを'+n+'枚アンタップ',{cardId:t.source});}const b=rows.filter(r=>r.origin==='battle');for(const r of rows.filter(r=>r.origin!=='battle'))if(t.to)zoneMove(s,r.p,r.origin,r.uid,t.to,t);if(b.length&&t.to)move(s,b.map(r=>({player:r.p,uid:r.uid,to:t.to,destroy:t.to==='grave',
+  controller:t.controller??t.p,...(t.toOwnerHand?{toOwnerHand:true}:{})})));if(t.after)start(s,t,t.after);}}
  // A resolved group effect is a snapshot, not an aura. Match the source creature through its layers for "other".
  function groupPowerRows(s,t){
   const ps=t.owner==='both'?[0,1]:[t.owner==='self'?t.p:1-t.p];
@@ -2423,6 +2431,21 @@ export function createSixPhotoRules(api){
   const n=creatures(s,t.p).filter(x=>!x.sealed&&matches(s,t.p,x,{raceAny:t.raceAny})).length;
   if(n)start(s,t,[{op:'Select',origin:'battle',owner:'opponent',to:'grave',n,
    filter:{creature:true},g173Targets:true,g193Select:true,title:'追加で破壊する相手クリーチャーを'+n+'体選ぶ'}]);
+  break;
+ }
+ case'g34_BouncePerSourceCard1060':{
+  // The first trigger can refer to the stack created by the second trigger (QA 47901).
+  const host=sourceHost474(s,t)?.x;
+  const n=host&&!host.sealed?api.allLayers(host).length:t.lastKnownCount??1;
+  start(s,t,[{op:'Select',origin:'battle',owner:'opponent',to:'hand',toOwnerHand:true,n,
+   filter:{creature:true},g173Targets:true,g193Select:true,title:'持ち主の手札に戻す相手のクリーチャーを'+n+'体選ぶ'}]);
+  break;
+ }
+ case'g34_GraveBase1060':{
+  const host=sourceHost474(s,t);
+  if(host&&!host.x.sealed&&api.isCreature(s,host.x))start(s,t,[{op:'Select',origin:'grave',
+   n:1,optional:true,filter:{creatureOrSeed:true,faceUp:true},g1060AttachBase:true,
+   title:'このクリーチャーの下に置く墓地のクリーチャーかタマシードを選ぶ'}]);
   break;
  }
  case'g34_BounceMatch917':{
@@ -5892,6 +5915,14 @@ externalProtection565(s,x){
   put(s,task('g34_EntryTap432',p,x.cardId,{target:x.uid,baseUid,entryOptions:structuredClone(entryOptions)}));
   return true;
  },
- effect(s,p,c,uid,entry){if(c.effect!=='sixPhoto')return false;start(s,{p,source:c.id,uid,incarnation:entry?.incarnation??(s.players[p].battle.find(x=>x.uid===uid)?.incarnation||0)},c.g437Super?[...(c.g34Tasks||[]),...(entry?.super?c.g437Super:[])]:entry?.plus&&c.g34Plus?(c.g451PlusAfter?[...(c.g34Tasks||[]),...c.g34Plus]:[...c.g34Plus,...(c.g34Tasks||[])]):c.g34Tasks);return true;},
+ effect(s,p,c,uid,entry){
+  if(c.effect!=='sixPhoto')return false;
+  const incarnation=entry?.incarnation??(s.players[p].battle.find(x=>x.uid===uid)?.incarnation||0);
+  const defs=c.g437Super?[...(c.g34Tasks||[]),...(entry?.super?c.g437Super:[])]:entry?.plus&&c.g34Plus?
+   (c.g451PlusAfter?[...(c.g34Tasks||[]),...c.g34Plus]:[...c.g34Plus,...(c.g34Tasks||[])]):c.g34Tasks;
+  start(s,{p,source:c.id,uid,incarnation},defs?.map(def=>def.op==='BouncePerSourceCard1060'?
+   {...def,lastKnownCount:entry?.lastKnownCount}:def));
+  return true;
+ },
  };
 }

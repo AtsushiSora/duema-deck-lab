@@ -212561,15 +212561,179 @@
       ],
       "supportBatch": "phase-1059",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-054",
+      "name": "ハイクリッド-A4",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "メカ・デル・ディネロ",
+      "text": "NEO進化：光、水、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが出た時、自分の山札の上から１枚を表向きにする。それがNEOクリーチャーなら手札に加える。それ以外なら、山札の下に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-054",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "RevealTop514",
+          "filter": {
+            "g556Neo": true
+          },
+          "to": "hand",
+          "elseTo": "deck",
+          "g768OptionalBottom": true
+        }
+      ],
+      "supportBatch": "phase-1060",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-032",
+      "name": "～防壁を破り続けて幾星霜～",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ポセイディア・ドラゴン/スチーム・ナイト",
+      "text": "NEO進化：光、水、または闇のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\n超魂レイド（このクリーチャーが出た時、山札の上から３枚を表向きにする。その中からこのクリーチャーの進化元になれるカードを１枚、この下に置いてもよい。残りを好きな順序で山札の下に置く）\nジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-032",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "g27Raid": true,
+      "justDiver": true,
+      "supportBatch": "phase-1060",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp4-034",
+      "name": "～魔弾の発射、準備よし～",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "アーク・セラフィム/スチーム・ナイト",
+      "text": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nNEO進化：光、水、または闇のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが出た時、このクリーチャーに含まれるカード１枚につき、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-034",
+      "limit": 4,
+      "trigger": true,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BouncePerSourceCard1060"
+        }
+      ],
+      "supportBatch": "phase-1060",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp4-017",
+      "name": "ドクラス＝ドウダクラス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "アビスロイヤル",
+      "text": "NEO進化：水、闇、または火のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが出た時、自分の山札の上から３枚を墓地に置いてもよい。\nこのクリーチャーが攻撃する時、クリーチャーかタマシードを１つ、自分の墓地からこのクリーチャーの下に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-017",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "闇"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "GraveBase1060"
+        }
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "山札の上から3枚を墓地に置く？",
+          "defs": [
+            {
+              "op": "Mill",
+              "n": 3,
+              "g1042Together": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1060",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1059,
+    "phase": 1060,
     "checkedAt": "2026-11-13",
-    "baseCount": 7132,
+    "baseCount": 7136,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7136,
+    "totalCount": 7140,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -231566,6 +231730,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7132,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1059,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7132,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7136,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
