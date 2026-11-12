@@ -1,0 +1,229 @@
+{
+  "phase": 1029,
+  "checkedAt": "2026-11-12",
+  "baseCount": 7026,
+  "description": "裁きの紋章3種類と再録の公式情報を照合し、手札から唱えた後の自己置換と各効果に対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "cards": [
+    {
+      "id": "dmrp04s-015",
+      "name": "暴輪ノ裁キ",
+      "faces": [
+        {
+          "name": "暴輪ノ裁キ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーはすべてのバトルに勝ち、 呪文の効果やクリーチャーの能力によって相手がクリーチャーを選ぶ時、選ばれない。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに自分のシールド１つの上に表向きにして置く。（そのシールドの束は１つと数える）",
+          "race": "裁きの紋章",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-015",
+      "spec": {
+        "effect": "sixPhoto",
+        "g1027Crest": true,
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "spell": true,
+            "g521UntilStart": true,
+            "grant": {
+              "g34AlwaysWin": true,
+              "g1029TargetProtection": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "900642834607a694b026b0029f409510a5dd866d01cb6e9877520a0d227db17b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp05-047",
+      "name": "巡ル運命ノ裁キ",
+      "faces": [
+        {
+          "name": "巡ル運命ノ裁キ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のクリーチャーを１体選び、タップする。\n次の自分のターンのはじめに、カードを１枚、自分のシールドゾーンから手札に加えてもよい。（このようにして手札に加えたシールドカードの「S・トリガー」を使ってもよい）\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに自分のシールド１つの上に表向きにして置く。（そのシールドの束は１つと数える）",
+          "race": "裁きの紋章",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-047",
+      "spec": {
+        "effect": "sixPhoto",
+        "g1027Crest": true,
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "spell": true
+          },
+          {
+            "op": "Schedule537",
+            "when": "nextOwnStart",
+            "spell": true,
+            "defs": [
+              {
+                "op": "ShieldHandFollow1017",
+                "cardOnly": true,
+                "optional": true,
+                "defs": []
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "b485bef678ec00e73fe5248c34b07f2f1c8716a9238fd7be403a5e01c155d347",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04m-s02",
+      "name": "天ニ煌メク龍終ノ裁キ",
+      "faces": [
+        {
+          "name": "天ニ煌メク龍終ノ裁キ",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "アタック・チャンス：マスター・ドラゴン（自分のマスター・ドラゴンが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n相手のクリーチャーをすべてタップする。それらは、次の相手のターンのはじめにアンタップしない。\n自分のマスター・ドラゴンをすべてアンタップしてもよい。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに、表向きのまま自分のシールド１つの上に置く。",
+          "race": "裁きの紋章",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-s02",
+      "spec": {
+        "effect": "sixPhoto",
+        "g1027Crest": true,
+        "g417Chance": {
+          "race": "マスター・ドラゴン"
+        },
+        "g34Tasks": [
+          {
+            "op": "LockUntap606",
+            "spell": true,
+            "g1019Tap": true
+          },
+          {
+            "op": "Offer",
+            "title": "自分のマスター・ドラゴンをすべてアンタップする？",
+            "defs": [
+              {
+                "op": "GroupUntap",
+                "filter": {
+                  "creature": true,
+                  "race": "マスター・ドラゴン"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04m-s02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "c82434aa611f3acdec9c63422ab87825074f0f524915718cbea0f7959f78d5d8",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex17-005",
+      "canonicalId": "dmrp04m-s02",
+      "name": "天ニ煌メク龍終ノ裁キ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-005",
+      "faces": [
+        {
+          "name": "天ニ煌メク龍終ノ裁キ",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "アタック・チャンス：マスター・ドラゴン（自分のマスター・ドラゴンが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n相手のクリーチャーをすべてタップする。それらは、次の相手のターンのはじめにアンタップしない。\n自分のマスター・ドラゴンをすべてアンタップしてもよい。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに、表向きのまま自分のシールド１つの上に置く。",
+          "race": "裁きの紋章",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "8313819492b46a6ff69d241e4fb2aafbec1031b0b28da19308a50fb90a22bb64",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-TD02",
+      "canonicalId": "dmrp04m-s02",
+      "name": "天ニ煌メク龍終ノ裁キ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-TD02",
+      "faces": [
+        {
+          "name": "天ニ煌メク龍終ノ裁キ",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "アタック・チャンス：マスター・ドラゴン（自分のマスター・ドラゴンが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n相手のクリーチャーをすべてタップする。それらは、次の相手のターンのはじめにアンタップしない。\n自分のマスター・ドラゴンをすべてアンタップしてもよい。\nこの呪文を自分の手札から唱えた後、墓地のかわりに、表向きのまま自分のシールド１つの上に置く。",
+          "race": "裁きの紋章",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-TD02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "4f289af397c3a45e57aae493b6299c10a61ddc26aadb3832a57518a4fa76750a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp04s-015": 4,
+      "dmrp05-047": 4,
+      "dmrp04m-s02": 4,
+      "dmex17-005": 4,
+      "dm24ex3-TD02": 4
+    }
+  }
+}

@@ -2467,6 +2467,26 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1029&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'&&f.race==='裁きの紋章'){
+  const text=normalize(f.abilityText),base={effect:'sixPhoto',g1027Crest:true};
+  const finish='この呪文を自分の手札から唱えた後墓地に置くかわりに自分のシールド1つの上に表向きにして置く。(そのシールドの束は1つと数える)';
+  if(f.civilizationText==='光'){
+   if(f.name==='暴輪ノ裁キ'&&f.cost===5&&text===
+    '自分のクリーチャーを1体選ぶ。次の自分のターンのはじめまでそのクリーチャーはすべてのバトルに勝ち呪文の効果やクリーチャーの能力によって相手がクリーチャーを選ぶ時選ばれない。'+finish)
+    return {...base,g34Tasks:[{op:'Target',owner:'self',spell:true,g521UntilStart:true,grant:{g34AlwaysWin:true,g1029TargetProtection:true}}]};
+   if(f.name==='巡ル運命ノ裁キ'&&f.cost===3&&text===
+    '相手のクリーチャーを1体選びタップする。次の自分のターンのはじめにカードを1枚自分のシールドゾーンから手札に加えてもよい。(このようにして手札に加えたシールドカードの「S・トリガー」を使ってもよい)'+finish)
+    return {...base,g34Tasks:[{op:'Target',tap:true,spell:true},{op:'Schedule537',when:'nextOwnStart',spell:true,
+     defs:[{op:'ShieldHandFollow1017',cardOnly:true,optional:true,defs:[]}]}]};
+  }
+  const dragon='マスター・ドラゴン';
+  const dragonEffect='アタック・チャンス:'+dragon+'(自分の'+dragon+'が攻撃する時この呪文をコストを支払わずに唱えてもよい)'+
+   '相手のクリーチャーをすべてタップする。それらは次の相手のターンのはじめにアンタップしない。自分の'+dragon+'をすべてアンタップしてもよい。';
+  if(f.name==='天ニ煌メク龍終ノ裁キ'&&f.civilizationText==='ゼロ'&&f.cost===7&&['墓地に置くかわりに','墓地のかわりに'].some(phrase=>
+   text===dragonEffect+'この呪文を自分の手札から唱えた後'+phrase+'表向きのまま自分のシールド1つの上に置く。'))
+   return {...base,g417Chance:{race:dragon},g34Tasks:[{op:'LockUntap606',spell:true,g1019Tap:true},
+    {op:'Offer',title:'自分のマスター・ドラゴンをすべてアンタップする？',defs:[{op:'GroupUntap',filter:{creature:true,race:dragon}}]}]};
+ }
  if(phase>=1028&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'&&
   f.civilizationText==='光'&&f.race==='裁きの紋章'){
   const [finish,compactFinish]=[

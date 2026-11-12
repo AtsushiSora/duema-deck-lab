@@ -207944,25 +207944,129 @@
       ],
       "supportBatch": "phase-1028",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-015",
+      "name": "暴輪ノ裁キ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "裁きの紋章",
+      "text": "自分のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーはすべてのバトルに勝ち、 呪文の効果やクリーチャーの能力によって相手がクリーチャーを選ぶ時、選ばれない。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに自分のシールド１つの上に表向きにして置く。（そのシールドの束は１つと数える）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-015",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g1027Crest": true,
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "spell": true,
+          "g521UntilStart": true,
+          "grant": {
+            "g34AlwaysWin": true,
+            "g1029TargetProtection": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1029",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-047",
+      "name": "巡ル運命ノ裁キ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "裁きの紋章",
+      "text": "相手のクリーチャーを１体選び、タップする。\n次の自分のターンのはじめに、カードを１枚、自分のシールドゾーンから手札に加えてもよい。（このようにして手札に加えたシールドカードの「S・トリガー」を使ってもよい）\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに自分のシールド１つの上に表向きにして置く。（そのシールドの束は１つと数える）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-047",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g1027Crest": true,
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true,
+          "spell": true
+        },
+        {
+          "op": "Schedule537",
+          "when": "nextOwnStart",
+          "spell": true,
+          "defs": [
+            {
+              "op": "ShieldHandFollow1017",
+              "cardOnly": true,
+              "optional": true,
+              "defs": []
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1029",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04m-s02",
+      "name": "天ニ煌メク龍終ノ裁キ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "裁きの紋章",
+      "text": "アタック・チャンス：マスター・ドラゴン（自分のマスター・ドラゴンが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n相手のクリーチャーをすべてタップする。それらは、次の相手のターンのはじめにアンタップしない。\n自分のマスター・ドラゴンをすべてアンタップしてもよい。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに、表向きのまま自分のシールド１つの上に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-s02",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g1027Crest": true,
+      "g417Chance": {
+        "race": "マスター・ドラゴン"
+      },
+      "g34Tasks": [
+        {
+          "op": "LockUntap606",
+          "spell": true,
+          "g1019Tap": true
+        },
+        {
+          "op": "Offer",
+          "title": "自分のマスター・ドラゴンをすべてアンタップする？",
+          "defs": [
+            {
+              "op": "GroupUntap",
+              "filter": {
+                "creature": true,
+                "race": "マスター・ドラゴン"
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1029",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1028,
+    "phase": 1029,
     "checkedAt": "2026-11-12",
-    "baseCount": 7022,
-    "newEffectCards": 4,
+    "baseCount": 7026,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7026,
-    "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/44099/",
-      "https://dm.takaratomy.co.jp/rule/qa/31632/",
-      "https://dm.takaratomy.co.jp/rule/qa/31633/",
-      "https://dm.takaratomy.co.jp/rule/qa/31634/",
-      "https://dm.takaratomy.co.jp/rule/qa/44186/",
-      "https://dm.takaratomy.co.jp/rule/qa/44661/",
-      "https://dm.takaratomy.co.jp/archive/dmex02/"
-    ],
+    "totalCount": 7029,
+    "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
     ],
@@ -226577,6 +226681,27 @@
           "https://dm.takaratomy.co.jp/rule/rulechange/31642/",
           "https://dm.takaratomy.co.jp/rule/qa/43958/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1028,
+        "checkedAt": "2026-11-12",
+        "baseCount": 7022,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7026,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/44099/",
+          "https://dm.takaratomy.co.jp/rule/qa/31632/",
+          "https://dm.takaratomy.co.jp/rule/qa/31633/",
+          "https://dm.takaratomy.co.jp/rule/qa/31634/",
+          "https://dm.takaratomy.co.jp/rule/qa/44186/",
+          "https://dm.takaratomy.co.jp/rule/qa/44661/",
+          "https://dm.takaratomy.co.jp/archive/dmex02/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

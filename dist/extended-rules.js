@@ -140,7 +140,7 @@ export function createExtendedRules(api){
  };
  const shieldTo=(s,p,uid,to)=>api.moveShield(s,p,uid,to)[0];
  const gsAllowed=(s,p)=>{const x=s.attack&&s.players[s.active].battle.find(x=>x.uid===s.attack.attacker);return !(x&&p!==s.active&&effective(x,s).attackNoGS);};
- const targetable=(s,p,owner,x)=>!x||utilityDispectorSeeds.targetable(s,p,owner,x)&&continuation.targetable(s,p,owner,x)&&six.fifteen.targetable(s,p,owner,x)&&!x.sealed&&(p===owner||!(samurai.protected(s,owner,x)||six.protects608(s,owner,x)||effective(x,s).untargetable||effective(x,s).justDiver&&x.justDiverActive||effective(x,s).spellUntargetable&&api.isSpellResolution(s)||
+ const targetable=(s,p,owner,x)=>!x||utilityDispectorSeeds.targetable(s,p,owner,x)&&continuation.targetable(s,p,owner,x)&&six.fifteen.targetable(s,p,owner,x)&&!x.sealed&&(p===owner||!(samurai.protected(s,owner,x)||six.protects608(s,owner,x)||effective(x,s).untargetable||effective(x,s).g1029TargetProtection&&(api.isSpellChoice(s)||card(s.g35ChoosingSource)?.type==='creature')||effective(x,s).justDiver&&x.justDiverActive||effective(x,s).spellUntargetable&&api.isSpellResolution(s)||
   effective(x,s).g996NonLightSpellUntargetable&&api.isNonLightSpellChoice(s)));
  const environment=createEnvironmentRules({...api,creatures,put,task,choice,opt,skip,targetOptions,targetable,lock,discardSelected:(s,t,ids)=>beginDiscardBatch(s,t,ids)});
  const shared={...api,creatures,put,task,choice,opt,skip,targetOptions};

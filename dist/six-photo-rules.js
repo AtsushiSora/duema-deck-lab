@@ -2987,9 +2987,13 @@ export function createSixPhotoRules(api){
  case'g34_ShieldHandFollow1017':{
   const untap=t.op==='g34_ShieldTriggerUntap1015';
   const score=untap?(x?.tapped&&api.canUntap(x)&&own.shields.length>1?12:-2):own.shields.length>1?10:-2;
-  const options=own.shields.flatMap((shield,i)=>api.shieldCards(shield).some(y=>!y.g37ShieldHeld)
-   ?[opt('シールド '+(i+1)+(shield.faceUp?'：'+card(shield).name:''),shield.uid,score,shield.faceUp?shield.cardId:undefined)]:[]);
-  if(options.length)choice(s,t,'手札に加える自分のシールドを選ぶ'+(t.noST?'（S・トリガーは使えません）':''),
+  const options=own.shields.flatMap((shield,i)=>{
+   const rows=api.shieldCards(shield).filter(y=>!y.g37ShieldHeld);
+   if(t.cardOnly)return rows.map((y,j)=>opt('シールド '+(i+1)+' のカード '+(j+1)+(y.faceUp?'：'+card(y).name:''),y.uid,score,y.faceUp?y.cardId:undefined));
+   return rows.length?[opt('シールド '+(i+1)+(shield.faceUp?'：'+card(shield).name:''),shield.uid,score,shield.faceUp?shield.cardId:undefined)]:[];
+  });
+  const title=t.cardOnly?'手札に加える自分のシールドゾーンのカードを1枚選ぶ（任意）':'手札に加える自分のシールドを選ぶ';
+  if(options.length)choice(s,t,title+(t.noST?'（S・トリガーは使えません）':''),
    untap||t.optional?[...options,skip()]:options);
   else if(t.optional)start(s,t,t.defs);
   break;
@@ -3633,7 +3637,7 @@ export function createSixPhotoRules(api){
  case'g34_ShieldHandFollow1017':{
   if(!v){if(t.optional)start(s,t,t.defs);break;}
   const follow={...t,op:'g34_Sequence'};
-  const moved=api.interruptBreak(s,t.p,[v],follow,{g842Hand:true,controller:t.p,source:t.source,noST:t.noST});
+  const moved=api.interruptBreak(s,t.p,[v],follow,{g842Hand:true,controller:t.p,source:t.source,noST:t.noST,cardOnly:t.cardOnly});
   if(t.requireHand&&!moved)follow.defs=[];
   break;
  }
