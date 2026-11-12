@@ -3435,6 +3435,25 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=1020&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='進化クリーチャー'&&['dmr19-008','dmex12-005'].includes(d.id)&&
+   /^進化[-:―]自分の火のクリーチャー1体の上に置く。侵略[-:―]コスト3以上の火のクリーチャー\(自分のコスト3以上の火のクリーチャーが攻撃する時自分の手札にあるこのクリーチャーをその上に重ねてもよい\)このクリーチャーの各ターン最初の攻撃の終わりにこのクリーチャーをアンタップする。$/.test(text))
+   return {evolution:{civilization:'火'},invasion:{colors:['火'],origins:['hand'],anyCreature:true,min:3},
+    g474AttackEnd:[{op:'Untap',g191First:true}],g1020FirstOwnAttack:true};
+  if(f.typeText==='進化クリーチャー'&&['dmr18-s08','dmex08-284'].includes(d.id)&&
+   /^進化[-:―]自分の自然のクリーチャー1体の上に置く。侵略[-:―]自然の進化コマンドQ・ブレイカーこのクリーチャーまたは自分の他の自然のクリーチャーが破壊される時墓地に置くかわりにマナゾーンに置く。$/.test(text))
+   return {evolution:{civilization:'自然'},invasion:{colors:['自然'],origins:['hand'],categories:['コマンド'],evolution:true},
+    breaker:4,g575ManaAura:{self:true,filter:{creature:true,color:'自然'}}};
+  if(f.typeText==='クリーチャー'&&d.id==='dmr17-009'&&text===
+   'W・ブレイカーこのクリーチャーがバトルゾーンに出た時または攻撃する時自分の山札の上から1枚目を見せる。'+
+   'それがファイアー・バードであればバトルゾーンに出す。それ以外であれば山札の一番下に置く。'+
+   '自分のファイアー・バードはすべて「スピードアタッカー」を得る。'){
+   const defs=[{op:'RevealTop514',filter:{g228Face:{type:'creature',raceAll:['ファイアー・バード']}},to:'battle',elseTo:'deck'}];
+   return {breaker:2,effect:'sixPhoto',g34Tasks:defs,g34Attack:defs,
+    g208Auras:[{filter:{race:'ファイアー・バード'},grants:{speedAttacker:true}}]};
+  }
+ }
  if(phase>=1019&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const entry='このクリーチャーがバトルゾーンに出た時';

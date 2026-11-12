@@ -1,0 +1,258 @@
+{
+  "phase": 1020,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6998,
+  "description": "超音速 レッドゾーンNeo、超獣軍隊 ベアフガン、爆竜 NEXの公式能力を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/38660/",
+    "https://dm.takaratomy.co.jp/rule/qa/40414/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31641/"
+  ],
+  "cards": [
+    {
+      "id": "dmr19-008",
+      "name": "超音速 レッドゾーンNeo",
+      "faces": [
+        {
+          "name": "超音速 レッドゾーンNeo",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "進化-自分の火のクリーチャー１体の上に置く。\n侵略―コスト３以上の火のクリーチャー（自分のコスト３以上の火のクリーチャーが攻撃する時、自分の手札にあるこのクリーチャーをその上に重ねてもよい）\nこのクリーチャーの、各ターン最初の攻撃の終わりに、このクリーチャーをアンタップする。",
+          "race": "ソニック・コマンド/侵略者",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-008",
+      "spec": {
+        "evolution": {
+          "civilization": "火"
+        },
+        "invasion": {
+          "colors": [
+            "火"
+          ],
+          "origins": [
+            "hand"
+          ],
+          "anyCreature": true,
+          "min": 3
+        },
+        "g474AttackEnd": [
+          {
+            "op": "Untap",
+            "g191First": true
+          }
+        ],
+        "g1020FirstOwnAttack": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "5408fccd4388640638057378b8539224e9234ac71267bf07b54c5873926eb142",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-s08",
+      "name": "超獣軍隊 ベアフガン",
+      "faces": [
+        {
+          "name": "超獣軍隊 ベアフガン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化―自分の自然のクリーチャー１体の上に置く。\n侵略―自然の進化コマンド\nQ・ブレイカー\nこのクリーチャーまたは自分の他の自然のクリーチャーが破壊される時、墓地に置くかわりにマナゾーンに置く。",
+          "race": "ゲリラ・コマンド/侵略者",
+          "powerText": "21000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-s08",
+      "spec": {
+        "evolution": {
+          "civilization": "自然"
+        },
+        "invasion": {
+          "colors": [
+            "自然"
+          ],
+          "origins": [
+            "hand"
+          ],
+          "categories": [
+            "コマンド"
+          ],
+          "evolution": true
+        },
+        "breaker": 4,
+        "g575ManaAura": {
+          "self": true,
+          "filter": {
+            "creature": true,
+            "color": "自然"
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-s08.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "fb8e238d2a7cca3ca79e3339219d1980bb9817a2e270014e352d285d0a344595",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr17-009",
+      "name": "爆竜 NEX",
+      "faces": [
+        {
+          "name": "爆竜 NEX",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、自分の山札の上から１枚目を見せる。それがファイアー・バードであれば、バトルゾーンに出す。それ以外であれば、山札の一番下に置く。\n自分のファイアー・バードはすべて「スピードアタッカー」を得る。",
+          "race": "アーマード・ドラゴン/フレイム・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-009",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "raceAll": [
+                  "ファイアー・バード"
+                ]
+              }
+            },
+            "to": "battle",
+            "elseTo": "deck"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "raceAll": [
+                  "ファイアー・バード"
+                ]
+              }
+            },
+            "to": "battle",
+            "elseTo": "deck"
+          }
+        ],
+        "g208Auras": [
+          {
+            "filter": {
+              "race": "ファイアー・バード"
+            },
+            "grants": {
+              "speedAttacker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "ff153fac3034e1da4896ee460b1ffd1520af827052d886349b777eba2722801d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex12-005",
+      "canonicalId": "dmr19-008",
+      "name": "超音速 レッドゾーンNeo",
+      "faces": [
+        {
+          "name": "超音速 レッドゾーンNeo",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "進化：自分の火のクリーチャー１体の上に置く。\n侵略：コスト３以上の火のクリーチャー（自分のコスト３以上の火のクリーチャーが攻撃する時、自分の手札にあるこのクリーチャーをその上に重ねてもよい）\nこのクリーチャーの、各ターン最初の攻撃の終わりに、このクリーチャーをアンタップする。",
+          "race": "ソニック・コマンド/侵略者",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex12-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "39338d866c93f7711c2661fe03d273bb30e6b8c0a9463aa142e76a9133785398",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex08-284",
+      "canonicalId": "dmr18-s08",
+      "name": "超獣軍隊 ベアフガン",
+      "faces": [
+        {
+          "name": "超獣軍隊 ベアフガン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化：自分の自然のクリーチャー１体の上に置く。\n侵略：自然の進化コマンド\nQ・ブレイカー\nこのクリーチャーまたは自分の他の自然のクリーチャーが破壊される時、墓地に置くかわりにマナゾーンに置く。",
+          "race": "ゲリラ・コマンド/侵略者",
+          "powerText": "21000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-284",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-284.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "0f06d13b43953ac42dcfaf1b0fa7e1304d640e0a37b2d66ddfb2b2d42fb17c5d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr19-008": 4,
+      "dmr18-s08": 4,
+      "dmr17-009": 4,
+      "dmex12-005": 4,
+      "dmex08-284": 4
+    }
+  }
+}

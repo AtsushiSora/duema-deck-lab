@@ -206886,25 +206886,159 @@
       ],
       "supportBatch": "phase-1019",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr19-008",
+      "name": "超音速 レッドゾーンNeo",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ソニック・コマンド/侵略者",
+      "text": "進化-自分の火のクリーチャー１体の上に置く。\n侵略―コスト３以上の火のクリーチャー（自分のコスト３以上の火のクリーチャーが攻撃する時、自分の手札にあるこのクリーチャーをその上に重ねてもよい）\nこのクリーチャーの、各ターン最初の攻撃の終わりに、このクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-008",
+      "limit": 4,
+      "evolution": {
+        "civilization": "火"
+      },
+      "invasion": {
+        "colors": [
+          "火"
+        ],
+        "origins": [
+          "hand"
+        ],
+        "anyCreature": true,
+        "min": 3
+      },
+      "g474AttackEnd": [
+        {
+          "op": "Untap",
+          "g191First": true
+        }
+      ],
+      "g1020FirstOwnAttack": true,
+      "supportBatch": "phase-1020",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr18-s08",
+      "name": "超獣軍隊 ベアフガン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 21000,
+      "race": "ゲリラ・コマンド/侵略者",
+      "text": "進化―自分の自然のクリーチャー１体の上に置く。\n侵略―自然の進化コマンド\nQ・ブレイカー\nこのクリーチャーまたは自分の他の自然のクリーチャーが破壊される時、墓地に置くかわりにマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-s08",
+      "limit": 4,
+      "evolution": {
+        "civilization": "自然"
+      },
+      "invasion": {
+        "colors": [
+          "自然"
+        ],
+        "origins": [
+          "hand"
+        ],
+        "categories": [
+          "コマンド"
+        ],
+        "evolution": true
+      },
+      "breaker": 4,
+      "g575ManaAura": {
+        "self": true,
+        "filter": {
+          "creature": true,
+          "color": "自然"
+        }
+      },
+      "supportBatch": "phase-1020",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-009",
+      "name": "爆竜 NEX",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アーマード・ドラゴン/フレイム・コマンド",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、自分の山札の上から１枚目を見せる。それがファイアー・バードであれば、バトルゾーンに出す。それ以外であれば、山札の一番下に置く。\n自分のファイアー・バードはすべて「スピードアタッカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-009",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "RevealTop514",
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "raceAll": [
+                "ファイアー・バード"
+              ]
+            }
+          },
+          "to": "battle",
+          "elseTo": "deck"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "RevealTop514",
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "raceAll": [
+                "ファイアー・バード"
+              ]
+            }
+          },
+          "to": "battle",
+          "elseTo": "deck"
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "race": "ファイアー・バード"
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1020",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1019,
+    "phase": 1020,
     "checkedAt": "2026-11-12",
-    "baseCount": 6994,
-    "newEffectCards": 4,
+    "baseCount": 6998,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6998,
+    "totalCount": 7001,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316661/",
-      "https://dm.takaratomy.co.jp/rule/qa/44344/",
-      "https://dm.takaratomy.co.jp/rule/qa/39785/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37265/",
-      "https://dm.takaratomy.co.jp/rule/qa/33477/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37266/",
-      "https://dm.takaratomy.co.jp/rule/qa/45073/",
-      "https://dm.takaratomy.co.jp/rule/qa/45591/"
+      "https://dm.takaratomy.co.jp/rule/qa/38660/",
+      "https://dm.takaratomy.co.jp/rule/qa/40414/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31641/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -225358,6 +225492,28 @@
           "https://dm.takaratomy.co.jp/rule/qa/31783/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37532/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316661/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1019,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6994,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6998,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316661/",
+          "https://dm.takaratomy.co.jp/rule/qa/44344/",
+          "https://dm.takaratomy.co.jp/rule/qa/39785/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37265/",
+          "https://dm.takaratomy.co.jp/rule/qa/33477/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37266/",
+          "https://dm.takaratomy.co.jp/rule/qa/45073/",
+          "https://dm.takaratomy.co.jp/rule/qa/45591/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
