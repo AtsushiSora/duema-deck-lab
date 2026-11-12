@@ -9725,6 +9725,27 @@ export function standardCardSpec(d,{phase=165}={}){
     continue;
    }
   }
+  if(phase>=1077&&creature){
+   if([
+    'このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時ドラゴンを1体自分の手札からバトルゾーンに出してもよい。',
+    'このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時ドラゴン・クリーチャーを1体自分の手札から出してもよい。'
+   ].includes(line)){
+    if(spec.g1076UnblockedWatch)throw Error('重複する非ブロック時能力');
+    spec.g1076UnblockedWatch={self:true,defs:[{op:'Select',origin:'hand',n:1,deploy:true,g195HandDeploy:true,
+     filter:{creature:true,race:'ドラゴン'},optional:true,title:'手札から出すドラゴン・クリーチャーを1体選ぶ'}]};
+    continue;
+   }
+   if(line==='自分のクリーチャーが相手プレイヤーを攻撃してブロックされなかった時自分の山札の上から1枚目を裏向きのまま新しいシールドとして自分のシールドゾーンに置いてもよい。'){
+    if(spec.g1076UnblockedWatch)throw Error('重複する非ブロック時能力');
+    spec.g1076UnblockedWatch={defs:[{op:'Offer',title:'山札の上から1枚をシールド化する？',defs:[{op:'ShieldTop',n:1}]}]};
+    continue;
+   }
+   if(line==='相手のクリーチャーが攻撃してブロックされなかった時このクリーチャーを破壊する。その後攻撃しているクリーチャーを破壊する。'){
+    if(spec.g870DefenderUnblocked)throw Error('重複する非ブロック時能力');
+    spec.g870DefenderUnblocked=[{op:'SelfDestroy'},{op:'ExactMove',to:'grave',g877Attacker:true}];
+    continue;
+   }
+  }
   if(phase>=1076&&creature){
    const watch={
     'バトルゾーンにあるパワー5000以上の自分の他のクリーチャーが相手プレイヤーを攻撃しブロックされなかった時さらにもう1枚ブレイクする。':{other:true,minPower:5000,defs:[{op:'UnblockedExtraBreak1076',amount:1}]},

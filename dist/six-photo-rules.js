@@ -5611,7 +5611,8 @@ export function createSixPhotoRules(api){
   if(!s.attack.g484Blocked)for(const source of creatures(s,p)){
    if(source.sealed)continue;
    const {g701UnblockedMana,g852UnblockedDiscard,g1076UnblockedWatch:watch}=effective(source,s);
-   if(playerAttack&&watch&&(!watch.other||source.uid!==x.uid)&&(!watch.race||race(attacker,watch.race))&&
+   if(playerAttack&&watch&&(!watch.self||source.uid===x.uid)&&(!watch.other||source.uid!==x.uid)&&
+    (!watch.race||race(attacker,watch.race))&&
     (watch.minPower===undefined||api.power(x,true,s)>=watch.minPower)){
     queue(s,p,source,watch.defs);
     triggered=true;

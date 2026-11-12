@@ -1,0 +1,485 @@
+{
+  "phase": 1077,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7195,
+  "description": "攻撃がブロックされなかった時の手札からの登場、シールド化、連続する破壊を照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/48740/"
+  ],
+  "cards": [
+    {
+      "id": "dmc49-004",
+      "name": "ジオメテウス・無限・ドラゴン",
+      "faces": [
+        {
+          "name": "ジオメテウス・無限・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、ドラゴンを１体、自分の手札からバトルゾーンに出してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc49-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc49-004.jpg",
+      "spec": {
+        "g1076UnblockedWatch": {
+          "self": true,
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 1,
+              "deploy": true,
+              "g195HandDeploy": true,
+              "filter": {
+                "creature": true,
+                "race": "ドラゴン"
+              },
+              "optional": true,
+              "title": "手札から出すドラゴン・クリーチャーを1体選ぶ"
+            }
+          ]
+        },
+        "breaker": 2
+      },
+      "currentPrint": {
+        "id": "dm23bd4-026",
+        "name": "ジオメテウス・無限・ドラゴン",
+        "faces": [
+          {
+            "name": "ジオメテウス・無限・ドラゴン",
+            "typeText": "クリーチャー",
+            "civilizationText": "火",
+            "civilizations": [
+              "火"
+            ],
+            "cost": 8,
+            "costText": "8",
+            "abilityText": "W・ブレイカー\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、ドラゴン・クリーチャーを１体、自分の手札から出してもよい。",
+            "race": "アーマード・ドラゴン",
+            "powerText": "7000",
+            "missingFields": []
+          }
+        ],
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd4-026",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd4-026.jpg",
+        "useRulesText": true,
+        "verification": {
+          "checkedAt": "2026-11-13",
+          "sha256": "6ab81d81e7d71541d1c550cb231f44c9d592ed20a5ae1f44cdddcd40a542c988",
+          "facesMatched": true
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "37be02d0f75040f2d9265237b81ada643bd49d54cc7d3fe1b46e36dd24308704",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp09-s02",
+      "name": "人工化学兵器 ナノクローン",
+      "faces": [
+        {
+          "name": "人工化学兵器 ナノクローン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 11,
+          "costText": "11",
+          "abilityText": "シンパシー：クリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nブロッカーブロッカー\nT・ブレイカー\n自分のクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置いてもよい。",
+          "race": "メタリカ/スペシャルズ",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-s02",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-s02.jpg",
+      "spec": {
+        "g211Sympathy": {
+          "amount": 1,
+          "filter": {
+            "creature": true
+          }
+        },
+        "blocker": true,
+        "breaker": 3,
+        "g1076UnblockedWatch": {
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "山札の上から1枚をシールド化する？",
+              "defs": [
+                {
+                  "op": "ShieldTop",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "e080609dd3060daf92a9b35b621954ce6070aa3dcc9fa04e80afb45509ec0b57",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd35-007",
+      "name": "禁断X ナーグル",
+      "faces": [
+        {
+          "name": "禁断X ナーグル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n相手のクリーチャーが攻撃してブロックされなかった時、このクリーチャーを破壊する。その後、攻撃しているクリーチャーを破壊する。",
+          "race": "イニシャルズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd35-007",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd35-007.jpg",
+      "spec": {
+        "g870DefenderUnblocked": [
+          {
+            "op": "SelfDestroy"
+          },
+          {
+            "op": "ExactMove",
+            "to": "grave",
+            "g877Attacker": true
+          }
+        ]
+      },
+      "currentPrint": {
+        "id": "dmex10-041",
+        "name": "禁断X ナーグル",
+        "faces": [
+          {
+            "name": "禁断X ナーグル",
+            "typeText": "クリーチャー",
+            "civilizationText": "闇/火",
+            "civilizations": [
+              "闇",
+              "火"
+            ],
+            "cost": 2,
+            "costText": "2",
+            "abilityText": "相手のクリーチャーが攻撃してブロックされなかった時、このクリーチャーを破壊する。その後、攻撃しているクリーチャーを破壊する。",
+            "race": "イニシャルズ",
+            "powerText": "1000",
+            "missingFields": []
+          }
+        ],
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex10-041",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex10-041.jpg",
+        "useRulesText": true,
+        "verification": {
+          "checkedAt": "2026-11-13",
+          "sha256": "ec8062c0a54d504a0566a74cd6f43d6ba8cfa3fe1a8fb1acb54bdb1d7cca6773",
+          "facesMatched": true
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "1f7c5d450cffafb1463176e44d2129b9a4043c1878e891d89ca37281d786554a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc53-003",
+      "name": "ジオメテウス・無限・ドラゴン",
+      "faces": [
+        {
+          "name": "ジオメテウス・無限・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、ドラゴンを１体、自分の手札からバトルゾーンに出してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc53-003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc53-003.jpg",
+      "canonicalId": "dmc49-004",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "62138db075955ebabc4db032480696b2b7b2b95bc89cd15dd8aff92192be2fca",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx12a-008",
+      "name": "ジオメテウス・無限・ドラゴン",
+      "faces": [
+        {
+          "name": "ジオメテウス・無限・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、ドラゴンを１体、自分の手札からバトルゾーンに出してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12a-008",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx12a-008.jpg",
+      "canonicalId": "dmc49-004",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "820aa82112945a359a96d28ad6c22c2bb25229b80f6cacba63c70c8376a162d2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23bd4-026",
+      "name": "ジオメテウス・無限・ドラゴン",
+      "faces": [
+        {
+          "name": "ジオメテウス・無限・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、ドラゴン・クリーチャーを１体、自分の手札から出してもよい。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd4-026",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd4-026.jpg",
+      "canonicalId": "dmc49-004",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "6ab81d81e7d71541d1c550cb231f44c9d592ed20a5ae1f44cdddcd40a542c988",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy6-008",
+      "name": "ジオメテウス・無限・ドラゴン",
+      "faces": [
+        {
+          "name": "ジオメテウス・無限・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、ドラゴンを１体、自分の手札からバトルゾーンに出してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy6-008",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy6-008.jpg",
+      "canonicalId": "dmc49-004",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "b4ce9a5994fd4394634eef7ea4fe2fe2d0bfbcab1d74dd91395e607924a6029e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy6-009",
+      "name": "ジオメテウス・無限・ドラゴン",
+      "faces": [
+        {
+          "name": "ジオメテウス・無限・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、ドラゴンを１体、自分の手札からバトルゾーンに出してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy6-009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy6-009.jpg",
+      "canonicalId": "dmc49-004",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "b78c3712ca51f94edfaa21eb1e1e09ac15d18c9c03867d12a79f5662432e7f53",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy6-011",
+      "name": "ジオメテウス・無限・ドラゴン",
+      "faces": [
+        {
+          "name": "ジオメテウス・無限・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、ドラゴンを１体、自分の手札からバトルゾーンに出してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy6-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy6-011.jpg",
+      "canonicalId": "dmc49-004",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "3977d07cea26335f8bd4c79777938a69ae79505f4a4f4530eb1bd82c1f194534",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy6-013",
+      "name": "ジオメテウス・無限・ドラゴン",
+      "faces": [
+        {
+          "name": "ジオメテウス・無限・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、ドラゴンを１体、自分の手札からバトルゾーンに出してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy6-013",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy6-013.jpg",
+      "canonicalId": "dmc49-004",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "d0baa5041b4651200be18380a8f3c90bf88e2c9e3241ea4fd257251ece0747a0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy6-027",
+      "name": "ジオメテウス・無限・ドラゴン",
+      "faces": [
+        {
+          "name": "ジオメテウス・無限・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、ドラゴンを１体、自分の手札からバトルゾーンに出してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy6-027",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy6-027.jpg",
+      "canonicalId": "dmc49-004",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "58cb9d052751651498a22e31dc88951bee2c3e02fc72188800fb50b4c9ee4bcb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex10-041",
+      "name": "禁断X ナーグル",
+      "faces": [
+        {
+          "name": "禁断X ナーグル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手のクリーチャーが攻撃してブロックされなかった時、このクリーチャーを破壊する。その後、攻撃しているクリーチャーを破壊する。",
+          "race": "イニシャルズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex10-041",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex10-041.jpg",
+      "canonicalId": "dmd35-007",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "ec8062c0a54d504a0566a74cd6f43d6ba8cfa3fe1a8fb1acb54bdb1d7cca6773",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmc49-004": 4,
+      "dmrp09-s02": 4,
+      "dmd35-007": 4,
+      "dmc53-003": 4,
+      "dmx12a-008": 4,
+      "dm23bd4-026": 4,
+      "promoy6-008": 4,
+      "promoy6-009": 4,
+      "promoy6-011": 4,
+      "promoy6-013": 4,
+      "promoy6-027": 4,
+      "dmex10-041": 4
+    }
+  }
+}

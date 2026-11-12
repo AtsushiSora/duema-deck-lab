@@ -214843,15 +214843,121 @@
       },
       "supportBatch": "phase-1076",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmc49-004",
+      "name": "ジオメテウス・無限・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 7000,
+      "race": "アーマード・ドラゴン",
+      "text": "W・ブレイカー\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、ドラゴン・クリーチャーを１体、自分の手札から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc49-004",
+      "limit": 4,
+      "g1076UnblockedWatch": {
+        "self": true,
+        "defs": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "optional": true,
+            "title": "手札から出すドラゴン・クリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "breaker": 2,
+      "supportBatch": "phase-1077",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-s02",
+      "name": "人工化学兵器 ナノクローン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 11,
+      "power": 15000,
+      "race": "メタリカ/スペシャルズ",
+      "text": "シンパシー：クリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nブロッカーブロッカー\nT・ブレイカー\n自分のクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-s02",
+      "limit": 4,
+      "g211Sympathy": {
+        "amount": 1,
+        "filter": {
+          "creature": true
+        }
+      },
+      "blocker": true,
+      "breaker": 3,
+      "g1076UnblockedWatch": {
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "山札の上から1枚をシールド化する？",
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1077",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd35-007",
+      "name": "禁断X ナーグル",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "イニシャルズ",
+      "text": "相手のクリーチャーが攻撃してブロックされなかった時、このクリーチャーを破壊する。その後、攻撃しているクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd35-007",
+      "limit": 4,
+      "g870DefenderUnblocked": [
+        {
+          "op": "SelfDestroy"
+        },
+        {
+          "op": "ExactMove",
+          "to": "grave",
+          "g877Attacker": true
+        }
+      ],
+      "supportBatch": "phase-1077",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1076,
+    "phase": 1077,
     "checkedAt": "2026-11-13",
-    "baseCount": 7192,
+    "baseCount": 7195,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7195,
+    "totalCount": 7198,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -234052,6 +234158,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7192,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1076,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7192,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7195,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
