@@ -1,0 +1,368 @@
+{
+  "phase": 1040,
+  "checkedAt": "2026-11-12",
+  "baseCount": 7068,
+  "description": "水晶マナを使う4種類と再録3版を公式情報で照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/40661/",
+    "https://dm.takaratomy.co.jp/rule/qa/46233/",
+    "https://dm.takaratomy.co.jp/rule/qa/46234/"
+  ],
+  "cards": [
+    {
+      "id": "dm23ex3-049",
+      "name": "聖域の終斗 ベルセルク",
+      "faces": [
+        {
+          "name": "聖域の終斗 ベルセルク",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のマナゾーンに裏向きのカードが２枚以上なければ、このクリーチャーは攻撃できない。\n各ターンの終わりに、すべてのクリーチャーの中で自分のクリーチャーのパワーが一番大きければ、自分のマナゾーンのカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+          "race": "オラクル・セレス/ガイア・コマンド",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-049",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-049.jpg",
+      "spec": {
+        "guardman": true,
+        "breaker": 2,
+        "g260Self": {
+          "filter": {
+            "g1040FaceDownManaBelow": 2
+          },
+          "grants": {
+            "noAttack": true
+          }
+        },
+        "g1037ConditionalAnyEnd": {
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g881HighestPower": true,
+                "g1040Ties": true
+              },
+              "defs": [
+                {
+                  "op": "ManaDown426"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "006b4ff3fe374c49f8a5466501fb3a306b60df7f977173ab3366eb934a7c6372",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24bd6-005",
+      "name": "シダン教皇 バラモン / 「我が言葉のみを信じるのだ！」",
+      "faces": [
+        {
+          "name": "シダン教皇 バラモン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカー ブロッカー\nこのクリーチャーが出た時、相手の手札が自分のより多ければ、同じ枚数になるまでカードを引く。",
+          "race": "オラクル・セレス",
+          "powerText": "5500",
+          "missingFields": []
+        },
+        {
+          "name": "「我が言葉のみを信じるのだ！」",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー\n相手のマナゾーンにあるカードが自分のより多ければ、自分の山札の上から２枚を裏向きのままマナゾーンに置く。",
+          "race": "",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd6-005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd6-005a.jpg",
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "g1040EqualizeHands": true
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "「我が言葉のみを信じるのだ！」",
+          "cost": 4,
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "lessThanOpponent": true
+                }
+              },
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 2,
+                  "faceDown": true,
+                  "g809Together": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "20ce52bc2c520a73cfbcd9fa6373dec9a0462a87cf347d3d7ca0c14bb738c463",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-020",
+      "name": "サスペンス・ザイン",
+      "faces": [
+        {
+          "name": "サスペンス・ザイン",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－15000する。\n水晶武装４：自分のマナゾーンに裏向きのカードが４枚以上あれば、このターン、この呪文の効果によって選ばなかった相手のクリーチャーすべてのパワーを－6000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-020",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-020.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -15000,
+            "spell": true,
+            "g242PowerMinus": true,
+            "g1040OtherPower": {
+              "filter": {
+                "g286FaceDownMana": 4
+              },
+              "power": -6000
+            },
+            "title": "パワーを下げる相手のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "98fbb52f8645cd8ad037286958bcdf6179a9b34787f92cfd6b1d88c2747ab328",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24bd6-008",
+      "name": "策士のシダン ニャハン",
+      "faces": [
+        {
+          "name": "策士のシダン ニャハン",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nこのクリーチャーが出た時、自分の手札を１枚裏向きにしてマナゾーンに置いてもよい。\nこのクリーチャーが離れた時、オラクル、アンノウン、またはゼニスを１枚、自分のマナゾーンから手札に戻してもよい。",
+          "race": "オラクル・セレス",
+          "powerText": "2222",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd6-008",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd6-008.jpg",
+      "spec": {
+        "gStrike": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "mana",
+            "n": 1,
+            "optional": true,
+            "g182HandMana": true,
+            "faceDown": true,
+            "title": "裏向きにしてマナに置く手札を1枚選ぶ（任意）"
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "g232ManaReturn": true,
+            "filter": {
+              "faceUp": true,
+              "any": [
+                {
+                  "anyFaceRace": "オラクル"
+                },
+                {
+                  "anyFaceRace": "アンノウン"
+                },
+                {
+                  "anyFaceRace": "ゼニス"
+                }
+              ]
+            },
+            "title": "手札に戻す表向きのマナを1枚選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "05273cb5312bfece701227c430e0ed56657169214af8e671f6900619c7be9b3e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24bd6-035",
+      "name": "サスペンス・ザイン",
+      "faces": [
+        {
+          "name": "サスペンス・ザイン",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－15000する。\n水晶武装４：自分のマナゾーンに裏向きのカードが４枚以上あれば、このターン、この呪文の効果によって選ばなかった相手のクリーチャーすべてのパワーを－6000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd6-035",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd6-035.jpg",
+      "canonicalId": "dm23ex3-020",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "81e8d401f0cf22a473a22d3691c4c0135aead7325d2a1d6fc0934dc238d1ade8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy24-086",
+      "name": "策士のシダン ニャハン",
+      "faces": [
+        {
+          "name": "策士のシダン ニャハン",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nこのクリーチャーが出た時、自分の手札を１枚裏向きにしてマナゾーンに置いてもよい。\nこのクリーチャーが離れた時、種族にオラクル、アンノウン、またはゼニスを持つカードを１枚、自分のマナゾーンから手札に戻してもよい。",
+          "race": "オラクル・セレス",
+          "powerText": "2222",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy24-086",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy24-086.jpg",
+      "canonicalId": "dm24bd6-008",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "2d8cc63621cea326ed10a4b57e3084183916009edabe8ecb9f594082038e55b4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex2-PR009",
+      "name": "策士のシダン ニャハン",
+      "faces": [
+        {
+          "name": "策士のシダン ニャハン",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{GS} G・ストライク\nこのクリーチャーが出た時、自分の手札を１枚裏向きにしてマナゾーンに置いてもよい。\nこのクリーチャーが離れた時、種族にオラクル、アンノウン、またはゼニスを持つカードを１枚、自分のマナゾーンから手札に戻してもよい。",
+          "race": "オラクル・セレス",
+          "powerText": "2222",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-PR009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-PR009.jpg",
+      "canonicalId": "dm24bd6-008",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "370e35e62761b5a65ef51a21e148f661ae0e3f418f1cf53d31ffaeb65c683814",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23ex3-049": 4,
+      "dm24bd6-005": 4,
+      "dm23ex3-020": 4,
+      "dm24bd6-008": 4,
+      "dm24bd6-035": 4,
+      "promoy24-086": 4,
+      "dm26ex2-PR009": 4
+    }
+  }
+}

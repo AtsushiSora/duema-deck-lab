@@ -2467,6 +2467,42 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1040&&d?.status==='complete'){
+  const front=normalize(f.abilityText),trigger='S・トリガーS・トリガー';
+  const twin=d.faces[1],crystalFour={g286FaceDownMana:4};
+  if(d.faces.length===1&&f.name==='聖域の終斗 ベルセルク'&&f.typeText==='クリーチャー'&&f.civilizationText==='自然'&&f.cost===3&&f.race==='オラクル・セレス/ガイア・コマンド'&&front===
+   'ガードマン(このクリーチャーをタップして相手クリーチャーの攻撃先を自分の他のクリーチャーからこのクリーチャーに変更してもよい)'+
+   'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+
+   '自分のマナゾーンに裏向きのカードが2枚以上なければこのクリーチャーは攻撃できない。'+
+   '各ターンの終わりにすべてのクリーチャーの中で自分のクリーチャーのパワーが一番大きければ自分のマナゾーンのカードを1枚裏向きにしてもよい。'+
+   '(マナゾーンにある裏向きのカードはマナの数字が1の無色カードとして扱う。その持ち主はそれをいつでも見てもよい)')
+   return {guardman:true,breaker:2,g260Self:{filter:{g1040FaceDownManaBelow:2},grants:{noAttack:true}},
+    g1037ConditionalAnyEnd:{defs:[{op:'IfOwn',filter:{g881HighestPower:true,g1040Ties:true},defs:[{op:'ManaDown426'}]}]}};
+  if(d.faces.length===2&&f.name==='シダン教皇 バラモン'&&f.typeText==='クリーチャー'&&f.civilizationText==='光'&&f.cost===6&&f.race==='オラクル・セレス'&&front===
+   'ブロッカーブロッカーこのクリーチャーが出た時相手の手札が自分のより多ければ同じ枚数になるまでカードを引く。'&&
+   twin.name==='「我が言葉のみを信じるのだ！」'&&twin.typeText==='呪文'&&twin.civilizationText==='光'&&twin.cost===4&&normalize(twin.abilityText)===
+   trigger+'相手のマナゾーンにあるカードが自分のより多ければ自分の山札の上から2枚を裏向きのままマナゾーンに置く。')
+   return {blocker:true,effect:'sixPhoto',g34Tasks:[{op:'CountDraw',g1040EqualizeHands:true}],
+    spellFace:{type:'spell',name:twin.name,cost:twin.cost,civ:twin.civilizationText,civilizations:twin.civilizations,race:twin.race,
+     trigger:true,effect:'sixPhoto',g34Tasks:[{op:'IfOwn',filter:{g334ZoneCount:{zone:'mana',lessThanOpponent:true}},
+      defs:[{op:'Ramp',n:2,faceDown:true,g809Together:true}]}]}};
+  if(d.faces.length===1&&f.name==='サスペンス・ザイン'&&f.typeText==='呪文'&&f.civilizationText==='闇'&&f.cost===6&&front===
+   trigger+'相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを-15000する。'+
+   '水晶武装4:自分のマナゾーンに裏向きのカードが4枚以上あればこのターンこの呪文の効果によって選ばなかった相手のクリーチャーすべてのパワーを-6000する。'+
+   '(パワー0以下のクリーチャーは破壊される)')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',power:-15000,spell:true,g242PowerMinus:true,
+    g1040OtherPower:{filter:crystalFour,power:-6000},title:'パワーを下げる相手のクリーチャーを選ぶ'}]};
+  if(d.faces.length===1&&f.name==='策士のシダン ニャハン'&&f.typeText==='クリーチャー'&&f.civilizationText==='ゼロ'&&f.cost===2&&f.race==='オラクル・セレス'){
+   const gStrike='{GS}G・ストライク',enter='このクリーチャーが出た時自分の手札を1枚裏向きにしてマナゾーンに置いてもよい。';
+   const gStrikeReminder=subject=>'(この'+subject+'を自分のシールドゾーンから手札に加える時表向きにし相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)';
+   const leave=races=>'このクリーチャーが離れた時'+races+'を1枚自分のマナゾーンから手札に戻してもよい。';
+   const races='オラクルアンノウンまたはゼニス',latest=leave('種族に'+races+'を持つカード');
+   if([gStrike+gStrikeReminder('クリーチャー')+enter+leave(races),gStrike+gStrikeReminder('カード')+enter+latest,gStrike+enter+latest].includes(front))
+    return {gStrike:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'hand',to:'mana',n:1,optional:true,g182HandMana:true,faceDown:true,
+     title:'裏向きにしてマナに置く手札を1枚選ぶ（任意）'}],g172Leave:[{op:'Select',origin:'mana',to:'hand',n:1,optional:true,g232ManaReturn:true,
+      filter:{faceUp:true,any:['オラクル','アンノウン','ゼニス'].map(anyFaceRace=>({anyFaceRace}))},title:'手札に戻す表向きのマナを1枚選ぶ（任意）'}]};
+  }
+ }
  if(phase>=1039&&d?.status==='complete'&&f.typeText==='クリーチャー'){
   const front=normalize(f.abilityText),manaDown={op:'ManaDown426'};
   const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';

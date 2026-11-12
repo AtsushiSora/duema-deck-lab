@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7068,
-  "pendingNames": 4759,
-  "phase": 1039,
-  "added": 5,
+  "supportedNames": 7072,
+  "pendingNames": 4755,
+  "phase": 1040,
+  "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2729,
+    "クリーチャー": 2726,
     "NEOクリーチャー": 152,
-    "呪文": 620,
+    "呪文": 619,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 57,
@@ -225,8 +225,8 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 1209,
-    "未対応の能力文": 3315,
+    "複数面・特殊カードタイプまたは情報不足": 1208,
+    "未対応の能力文": 3312,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -204821,37 +204821,133 @@
           "reason": "公式の全文・基本情報・画像・単一収録を照合。水晶武装4は支払いに限らず、裏向きマナの文明そのものを変更する。表向きのマナとの区別を保ち、支払い、文明参照効果、マナ表示で同じ特性を扱えることを確認するまで保留。"
         }
       ]
+    },
+    {
+      "phase": 1040,
+      "baseCommit": "d4324f7b",
+      "cards": [
+        {
+          "id": "dm23ex3-049",
+          "name": "聖域の終斗 ベルセルク"
+        },
+        {
+          "id": "dm24bd6-005",
+          "name": "シダン教皇 バラモン / 「我が言葉のみを信じるのだ！」"
+        },
+        {
+          "id": "dm23ex3-020",
+          "name": "サスペンス・ザイン"
+        },
+        {
+          "id": "dm24bd6-008",
+          "name": "策士のシダン ニャハン"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm24bd6-035",
+          "name": "サスペンス・ザイン",
+          "canonicalId": "dm23ex3-020"
+        },
+        {
+          "id": "promoy24-086",
+          "name": "策士のシダン ニャハン",
+          "canonicalId": "dm24bd6-008"
+        },
+        {
+          "id": "dm26ex2-PR009",
+          "name": "策士のシダン ニャハン",
+          "canonicalId": "dm24bd6-008"
+        }
+      ],
+      "supportedNames": 7072,
+      "pendingNames": 4755,
+      "verification": {
+        "focusedPassed": 15,
+        "regressionPassed": 631,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 7,
+        "scope": "公式能力全文、基本情報、マナ数、画像、再録、現行殿堂レギュレーションを確認。ベルセルクの攻撃制限・ガードマン・W・ブレイカーと両ターン終了時の同率首位、バラモンの手札枚数差と呪文面だけのS・トリガー・裏向きマナ2枚の同時配置、サスペンス・ザインの選択対象の除外と選べないクリーチャーへの水晶武装4の適用、ニャハンのG・ストライク・手札からの裏向きマナ配置・離脱時に回収できる表向きマナの種族を検証。対戦途中の保存と復元も確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/40661/",
+          "https://dm.takaratomy.co.jp/rule/qa/46233/",
+          "https://dm.takaratomy.co.jp/rule/qa/46234/"
+        ],
+        "regressionFiles": [
+          "tests/standard1036-effects.test.mjs",
+          "tests/standard1037-effects.test.mjs",
+          "tests/standard1038-effects.test.mjs",
+          "tests/standard1039-effects.test.mjs",
+          "tests/standard172-effects.test.mjs",
+          "tests/standard182-effects.test.mjs",
+          "tests/standard188-effects.test.mjs",
+          "tests/standard214-effects.test.mjs",
+          "tests/standard232-effects.test.mjs",
+          "tests/standard242-effects.test.mjs",
+          "tests/standard260-effects.test.mjs",
+          "tests/standard286-effects.test.mjs",
+          "tests/standard418-effects.test.mjs",
+          "tests/standard426-effects.test.mjs",
+          "tests/standard545-effects.test.mjs",
+          "tests/standard809-effects.test.mjs",
+          "tests/standard881-effects.test.mjs"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。",
+        "logs": {
+          "official": "/tmp/duema-phase-1040.1Le0cPIZ/official.log",
+          "focused": "/tmp/duema-phase-1040.1Le0cPIZ/focused.log",
+          "regression": "/tmp/duema-phase-1040.1Le0cPIZ/regression.log",
+          "check": "/tmp/duema-phase-1040.1Le0cPIZ/check.log",
+          "audit": "/tmp/duema-phase-1040.1Le0cPIZ/audit.log",
+          "officialImages": "/tmp/duema-phase-1040.1Le0cPIZ/sources.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dm24bd6-006",
+          "name": "偽りの希望 修羅丸「終斗」",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd6-006",
+            "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+          ],
+          "reason": "公式カード本文・基本情報・画像を確認。相手の複数のクリーチャーがそのターン最初に同時登場した際のタップ対象を公式裁定で確認できず、既存の1体ずつの登場履歴では同時登場の扱いを検証できないため保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1039,
-    "nextPhase": 1040,
+    "lastVerifiedPhase": 1040,
+    "nextPhase": 1041,
     "workInProgress": [],
     "nextCandidates": [
       {
+        "id": "dm23ex3-058",
+        "name": "埋没のシダン オリーブオイル / 記憶喪失魔法 アブラカタブーラ",
+        "reason": "無色マナの枚数に応じた任意ドローと、実行した場合の捨て札を照合する。呪文面は裏向き化が任意ではないため既存の選択処理を確認する。"
+      },
+      {
+        "id": "dm23ex3-002",
+        "name": "黙示録の水晶",
+        "reason": "呪文の水晶ソウル3と、相手自身が条件に合うエレメントをすべて好きな順序で山札の下へ置く処理を照合する。"
+      },
+      {
+        "id": "dm23ex3-018",
+        "name": "禁術のカルマ カレイル / フォビッド・水晶チャージャー",
+        "reason": "手札以外からのマナ配置の誘発範囲と、呪文面で選んだプレイヤーの山札の確認・任意の墓地移動・水晶チャージャーを照合する。"
+      },
+      {
+        "id": "dm24bd6-010",
+        "name": "「師よ、これが私の感謝の結晶だ！」",
+        "reason": "山札下へのエレメント移動、各プレイヤーによる自分のマナの選択、まとめて裏向きにする任意処理を照合する。"
+      },
+      {
         "id": "dm24bd6-006",
         "name": "偽りの希望 修羅丸「終斗」",
-        "reason": "各ターン最初に出る相手クリーチャーのタップと、すでに出たクリーチャーの履歴、同時登場を照合する。"
-      },
-      {
-        "id": "dm23ex3-049",
-        "name": "聖域の終斗 ベルセルク",
-        "reason": "水晶武装による攻撃制限と、両ターン終了時の最大パワー条件で同値をどう扱うか照合する。"
-      },
-      {
-        "id": "dm24bd6-005",
-        "name": "シダン教皇 バラモン / 「我が言葉のみを信じるのだ！」",
-        "reason": "両面の手札・マナ枚数比較と、呪文面のS・トリガー、裏向きマナ加速を照合する。"
-      },
-      {
-        "id": "dm23ex3-020",
-        "name": "サスペンス・ザイン",
-        "reason": "S・トリガーと、水晶武装4で最初に選んだ相手だけを全体パワー低下から除外する処理を照合する。"
-      },
-      {
-        "id": "dm24bd6-008",
-        "name": "策士のシダン ニャハン",
-        "reason": "手札から裏向きのマナ配置と、離脱時に表向きの対象種族をマナから回収する範囲を照合する。"
+        "reason": "各ターン最初の相手クリーチャーの同時登場に関する裁定と登場履歴の処理を確認できた場合に再検討する。"
       }
     ],
     "steps": [

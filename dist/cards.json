@@ -209498,15 +209498,206 @@
       },
       "supportBatch": "phase-1039",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-049",
+      "name": "聖域の終斗 ベルセルク",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 8000,
+      "race": "オラクル・セレス/ガイア・コマンド",
+      "text": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のマナゾーンに裏向きのカードが２枚以上なければ、このクリーチャーは攻撃できない。\n各ターンの終わりに、すべてのクリーチャーの中で自分のクリーチャーのパワーが一番大きければ、自分のマナゾーンのカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-049",
+      "limit": 4,
+      "guardman": true,
+      "breaker": 2,
+      "g260Self": {
+        "filter": {
+          "g1040FaceDownManaBelow": 2
+        },
+        "grants": {
+          "noAttack": true
+        }
+      },
+      "g1037ConditionalAnyEnd": {
+        "defs": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g881HighestPower": true,
+              "g1040Ties": true
+            },
+            "defs": [
+              {
+                "op": "ManaDown426"
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1040",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24bd6-005",
+      "name": "シダン教皇 バラモン / 「我が言葉のみを信じるのだ！」",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5500,
+      "race": "オラクル・セレス",
+      "text": "ブロッカー ブロッカー\nこのクリーチャーが出た時、相手の手札が自分のより多ければ、同じ枚数になるまでカードを引く。\n【呪文面】\nS・トリガー S・トリガー\n相手のマナゾーンにあるカードが自分のより多ければ、自分の山札の上から２枚を裏向きのままマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd6-005",
+      "limit": 4,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "g1040EqualizeHands": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "「我が言葉のみを信じるのだ！」",
+        "cost": 4,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "mana",
+                "lessThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 2,
+                "faceDown": true,
+                "g809Together": true
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1040",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-020",
+      "name": "サスペンス・ザイン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－15000する。\n水晶武装４：自分のマナゾーンに裏向きのカードが４枚以上あれば、このターン、この呪文の効果によって選ばなかった相手のクリーチャーすべてのパワーを－6000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-020",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -15000,
+          "spell": true,
+          "g242PowerMinus": true,
+          "g1040OtherPower": {
+            "filter": {
+              "g286FaceDownMana": 4
+            },
+            "power": -6000
+          },
+          "title": "パワーを下げる相手のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1040",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24bd6-008",
+      "name": "策士のシダン ニャハン",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2222,
+      "race": "オラクル・セレス",
+      "text": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nこのクリーチャーが出た時、自分の手札を１枚裏向きにしてマナゾーンに置いてもよい。\nこのクリーチャーが離れた時、オラクル、アンノウン、またはゼニスを１枚、自分のマナゾーンから手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd6-008",
+      "limit": 4,
+      "gStrike": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "mana",
+          "n": 1,
+          "optional": true,
+          "g182HandMana": true,
+          "faceDown": true,
+          "title": "裏向きにしてマナに置く手札を1枚選ぶ（任意）"
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "g232ManaReturn": true,
+          "filter": {
+            "faceUp": true,
+            "any": [
+              {
+                "anyFaceRace": "オラクル"
+              },
+              {
+                "anyFaceRace": "アンノウン"
+              },
+              {
+                "anyFaceRace": "ゼニス"
+              }
+            ]
+          },
+          "title": "手札に戻す表向きのマナを1枚選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-1040",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1039,
+    "phase": 1040,
     "checkedAt": "2026-11-12",
-    "baseCount": 7063,
-    "newEffectCards": 5,
+    "baseCount": 7068,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7068,
+    "totalCount": 7072,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -228263,6 +228454,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7063,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1039,
+        "checkedAt": "2026-11-12",
+        "baseCount": 7063,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 7068,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
