@@ -1,0 +1,370 @@
+{
+  "phase": 1022,
+  "checkedAt": "2026-11-12",
+  "baseCount": 7002,
+  "description": "登録再開。希望と勝利の伝説、水晶のセレナーデ、炎獄デス・サンライズを対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/45593/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36502/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36503/"
+  ],
+  "cards": [
+    {
+      "id": "dmd24-013",
+      "name": "希望と勝利の伝説",
+      "faces": [
+        {
+          "name": "希望と勝利の伝説",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nカードを２枚引く。その後、《ボルメテウス・ホワイト・ドラゴン》を１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd24-013",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "g819CreatureNameIncludes": "ボルメテウス・ホワイト・ドラゴン",
+              "g228Face": {
+                "type": "creature"
+              }
+            }
+          }
+        ]
+      },
+      "currentPrint": {
+        "id": "dm25ex2-Cho048",
+        "canonicalId": "dmd24-013",
+        "name": "希望と勝利の伝説",
+        "faces": [
+          {
+            "name": "希望と勝利の伝説",
+            "typeText": "呪文",
+            "civilizationText": "水/火",
+            "civilizations": [
+              "水",
+              "火"
+            ],
+            "cost": 5,
+            "costText": "5",
+            "abilityText": "カードを２枚引く。その後、名前に《ボルメテウス・ホワイト・ドラゴン》とあるクリーチャーを１体、自分の手札から出してもよい。",
+            "race": "",
+            "powerText": "",
+            "missingFields": []
+          }
+        ],
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-Cho048",
+        "useRulesText": true,
+        "verification": {
+          "checkedAt": "2026-11-12",
+          "sha256": "dd1272458e0918dad3e1e7b1187bead0c2e147c19f88cef5919e73bac0442c7d",
+          "facesMatched": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd24-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "9369a90066cb014df20b62217e0117444602b5907b3788ffb1e9797f067c6319",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex2-062",
+      "name": "水晶のセレナーデ",
+      "faces": [
+        {
+          "name": "水晶のセレナーデ",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このターン、次に召喚する自分のゼニス・クリーチャーのコストを４少なくする。\n自分のマナゾーンのカードを１枚、裏向きにしてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-062",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "NextReduction456",
+            "type": "creature",
+            "amount": 4,
+            "filter": {
+              "race": "ゼニス"
+            }
+          },
+          {
+            "op": "ManaDown426"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex2-062.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "6d67c144665f647fea6f6d6d21af679bc5b9c43d3fd8ca68b885a5772657abd0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx07-004",
+      "name": "炎獄デス・サンライズ",
+      "faces": [
+        {
+          "name": "炎獄デス・サンライズ",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このターン、バトルゾーンにあるクリーチャーすべてのパワーは、自分のマナゾーンにある闇のカード１枚につき-1000される。(パワー０以下のクリーチャーは破壊される)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx07-004",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupPower",
+            "owner": "both",
+            "filter": {
+              "creature": true
+            },
+            "power": -1000,
+            "perManaColor": "闇",
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx07-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "3fa7ea88ab69050aaaa5e1313c1e15066ee87d465d23650f1e958414b562b6a0",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex04-004",
+      "canonicalId": "dmd24-013",
+      "name": "希望と勝利の伝説",
+      "faces": [
+        {
+          "name": "希望と勝利の伝説",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "カードを２枚引く。その後、《ボルメテウス・ホワイト・ドラゴン》を１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "0dfbf53a6c5cf5362505390765421ef33a2f0971bfc39f393f3c4382e3a3dc60",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex2-075",
+      "canonicalId": "dmd24-013",
+      "name": "希望と勝利の伝説",
+      "faces": [
+        {
+          "name": "希望と勝利の伝説",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "カードを２枚引く。その後、名前に《ボルメテウス・ホワイト・ドラゴン》とあるクリーチャーを１体、自分の手札から出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-075",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex2-075.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "109fb3e71521ad8fe8712cf4fe2d4d70867305204ce7d4b14e26a854c01aba9b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex2-Cho048",
+      "canonicalId": "dmd24-013",
+      "name": "希望と勝利の伝説",
+      "faces": [
+        {
+          "name": "希望と勝利の伝説",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "カードを２枚引く。その後、名前に《ボルメテウス・ホワイト・ドラゴン》とあるクリーチャーを１体、自分の手札から出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-Cho048",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-Cho048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "dd1272458e0918dad3e1e7b1187bead0c2e147c19f88cef5919e73bac0442c7d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy24-075",
+      "canonicalId": "dmd24-013",
+      "name": "希望と勝利の伝説",
+      "faces": [
+        {
+          "name": "希望と勝利の伝説",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "カードを２枚引く。その後、名前に《ボルメテウス・ホワイト・ドラゴン》とあるクリーチャーを１体、自分の手札から出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy24-075",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy24-075.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "85e1b991f7491ab96c5fd4834263303c438ee3e3c103d4e788e0ef6b4b566c03",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx16-020",
+      "canonicalId": "dmx07-004",
+      "name": "炎獄デス・サンライズ",
+      "faces": [
+        {
+          "name": "炎獄デス・サンライズ",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このターン、バトルゾーンにあるクリーチャーすべてのパワーは、自分のマナゾーンにある闇のカード１枚につき-1000される。（パワー０以下のクリーチャーは破壊される）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-020",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx16-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "f54e48b1a9e0275d4c2cb2e283a0eab3695d818785e2ce076357b268c52c7491",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx12a-007",
+      "canonicalId": "dmx07-004",
+      "name": "炎獄デス・サンライズ",
+      "faces": [
+        {
+          "name": "炎獄デス・サンライズ",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このターン、バトルゾーンにあるクリーチャーすべてのパワーは、自分のマナゾーンにある闇のカード１枚につき-1000される。（パワー０以下のクリーチャーは破壊される）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12a-007",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx12a-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "fedc524d90ca61c74a6200687301208c8a844d0631802126eff1fadf2098eafc",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmd24-013": 4,
+      "dm24ex2-062": 4,
+      "dmx07-004": 4,
+      "dmex04-004": 4,
+      "dm24ex2-075": 4,
+      "dm25ex2-Cho048": 4,
+      "promoy24-075": 4,
+      "dmx16-020": 4,
+      "dmx12a-007": 4
+    }
+  }
+}

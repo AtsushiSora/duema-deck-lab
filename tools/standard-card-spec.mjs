@@ -2467,6 +2467,28 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1022&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
+  const text=normalize(f.abilityText);
+  const whiteDragon='ボルメテウス・ホワイト・ドラゴン';
+  if(f.name==='希望と勝利の伝説'&&f.cost===5&&f.civilizationText==='水/火'&&[
+   'マナゾーンに置く時このカードはタップして置く。カードを2枚引く。その後《'+whiteDragon+'》を1体自分の手札からバトルゾーンに出してもよい。',
+   'カードを2枚引く。その後《'+whiteDragon+'》を1体自分の手札からバトルゾーンに出してもよい。',
+   'カードを2枚引く。その後名前に《'+whiteDragon+'》とあるクリーチャーを1体自分の手札から出してもよい。'
+  ].includes(text))return {effect:'sixPhoto',g34Tasks:[
+   {op:'Draw',n:2},{op:'Select',origin:'hand',deploy:true,n:1,optional:true,
+    filter:{g819CreatureNameIncludes:whiteDragon,g228Face:{type:'creature'}}}
+  ]};
+  if(f.name==='水晶のセレナーデ'&&f.cost===2&&f.civilizationText==='ゼロ'&&
+   text==='このターン次に召喚する自分のゼニス・クリーチャーのコストを4少なくする。自分のマナゾーンのカードを1枚裏向きにしてもよい。')
+   return {effect:'sixPhoto',g34Tasks:[
+    {op:'NextReduction456',type:'creature',amount:4,filter:{race:'ゼニス'}},{op:'ManaDown426'}
+   ]};
+  if(f.name==='炎獄デス・サンライズ'&&f.cost===6&&f.civilizationText==='闇'&&
+   text==='このターンバトルゾーンにあるクリーチャーすべてのパワーは自分のマナゾーンにある闇のカード1枚につき-1000される。(パワー0以下のクリーチャーは破壊される)')
+   return {effect:'sixPhoto',g34Tasks:[
+    {op:'GroupPower',owner:'both',filter:{creature:true},power:-1000,perManaColor:'闇',spell:true}
+   ]};
+ }
  if(phase>=1021&&d?.id==='dmrp08-mh05'&&d.status==='complete'&&d.faces.length===2){
   const [creature,spell]=d.faces;
   const rinne='このクリーチャーが召喚によってバトルゾーンに出た時自分のマナゾーンにあるカードをすべてアンタップする。'+

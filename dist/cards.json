@@ -207083,21 +207083,120 @@
       },
       "supportBatch": "phase-1021",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmd24-013",
+      "name": "希望と勝利の伝説",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "カードを２枚引く。その後、名前に《ボルメテウス・ホワイト・ドラゴン》とあるクリーチャーを１体、自分の手札から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd24-013",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "g819CreatureNameIncludes": "ボルメテウス・ホワイト・ドラゴン",
+            "g228Face": {
+              "type": "creature"
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-1022",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex2-062",
+      "name": "水晶のセレナーデ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "このターン、次に召喚する自分のゼニス・クリーチャーのコストを４少なくする。\n自分のマナゾーンのカードを１枚、裏向きにしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-062",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "NextReduction456",
+          "type": "creature",
+          "amount": 4,
+          "filter": {
+            "race": "ゼニス"
+          }
+        },
+        {
+          "op": "ManaDown426"
+        }
+      ],
+      "supportBatch": "phase-1022",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx07-004",
+      "name": "炎獄デス・サンライズ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "このターン、バトルゾーンにあるクリーチャーすべてのパワーは、自分のマナゾーンにある闇のカード１枚につき-1000される。(パワー０以下のクリーチャーは破壊される)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx07-004",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupPower",
+          "owner": "both",
+          "filter": {
+            "creature": true
+          },
+          "power": -1000,
+          "perManaColor": "闇",
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1022",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1021,
+    "phase": 1022,
     "checkedAt": "2026-11-12",
-    "baseCount": 7001,
-    "newEffectCards": 1,
+    "baseCount": 7002,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7002,
+    "totalCount": 7005,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37985/",
-      "https://dm.takaratomy.co.jp/rule/qa/40934/",
-      "https://dm.takaratomy.co.jp/rule/qa/31830/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
+      "https://dm.takaratomy.co.jp/rule/qa/45593/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36502/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36503/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -225590,6 +225689,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/38660/",
           "https://dm.takaratomy.co.jp/rule/qa/40414/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31641/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1021,
+        "checkedAt": "2026-11-12",
+        "baseCount": 7001,
+        "newEffectCards": 1,
+        "newVanillaCards": 0,
+        "totalCount": 7002,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37985/",
+          "https://dm.takaratomy.co.jp/rule/qa/40934/",
+          "https://dm.takaratomy.co.jp/rule/qa/31830/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

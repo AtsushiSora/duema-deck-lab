@@ -1093,6 +1093,11 @@ export function createSixPhotoRules(api){
    &&(!t.other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))
     ||t.otherUnlessRace&&race(effective(y,s),t.otherUnlessRace))).map(y=>({p,y})));
  }
+ function groupPowerAmount(s,t){
+  if(!t.perManaColor)return t.power;
+  const count=s.players[t.p].mana.filter(x=>!x.faceDown&&api.manaColors(card(x),s,t.p).includes(t.perManaColor)).length;
+  return t.power*count;
+ }
  function groupPowerScore(s,t){return groupPowerRows(s,t).reduce((n,{p,y})=>{const before=api.power(y,y.uid===s.attack?.attacker,s),gain=t.power>0?Math.min(10,t.power/1000):before+t.power<=0?18+cost(effective(y,s))*3+Math.max(0,before)/2000:Math.min(8,-t.power/1000);return n+(p===t.p?1:-1)*(t.power>0?gain:-gain);},0);}
  // Only the new modal definitions use this evaluation; existing card-specific mode scores stay intact.
  // Score a selected creature from public characteristics; the tap/untap direction is chosen afterwards.
@@ -1371,7 +1376,11 @@ export function createSixPhotoRules(api){
    }
   }
   else if(d.op==='GroupGrant364'){for(const {y}of groupPowerRows(s,{...t,...d})){const c=effective(y,s);if(d.grant.speedAttacker&&s.active===t.p&&y.entered===s.turn&&!y.tapped&&!c.speedAttacker&&!c.noAttack&&!c.noPlayerAttack)score+=14+cost(c);if(d.grant.slayer&&!c.slayer&&creatures(s,1-t.p).some(z=>!z.sealed))score+=8;if(s.active===t.p&&!y.tapped&&!c.noAttack&&(y.entered<s.turn||c.speedAttacker||c.evolution)){if(d.grant.unblockable&&!c.unblockable&&!c.noPlayerAttack&&creatures(s,1-t.p).some(z=>!z.sealed&&!z.tapped&&effective(z,s).blocker))score+=12+cost(c);if(d.grant.attackUntapped&&!c.attackUntapped&&!c.noCreatureAttack&&creatures(s,1-t.p).some(z=>!z.sealed&&!z.tapped&&!effective(z,s).cannotBeAttacked&&(!effective(z,s).justDiver||!z.justDiverActive)&&(!effective(z,s).flying||c.flying)&&(api.power(y,true,s)>=api.power(z,false,s)||c.slayer)))score+=12+cost(c);}}}
-  else if(d.op==='GroupPower')score+=groupPowerScore(s,{...t,...d,...(d.g561DarkMana?{power:s.players[t.p].mana.filter(y=>!y.faceDown&&api.manaColors(card(y),s,t.p).includes('闇')).length*1000}:{})});
+  else if(d.op==='GroupPower'){
+   const group={...t,...d};
+   const power=d.g561DarkMana?groupPowerAmount(s,{...group,power:1000,perManaColor:'闇'}):groupPowerAmount(s,group);
+   score+=groupPowerScore(s,{...group,power});
+  }
   else if(d.op==='Sweep')score+=creatures(s,1-t.p).filter(y=>matches(s,1-t.p,y,d.filter)).reduce((n,y)=>n+12+cost(effective(y,s))*2+api.power(y,false,s)/3000,0);
   else if(d.op==='Discard')score+=d.owner==='self'?-Math.min(d.n||1,own.hand.length)*5:Math.min(d.n||1,opp.hand.length)*9;
   else if(d.op==='HandCycle460'&&d.to==='grave'&&d.mode==='all'){const n=d.fixedDraw??own.hand.length+(d.extra||0);score+=n>=deckCount&&n>0?(creatures(s,t.p).some(y=>effective(y,s).shako)?1000:-1000):own.hand.length?10+(d.extra||0)*10:0;}
@@ -2154,8 +2163,9 @@ export function createSixPhotoRules(api){
  case'g34_GroupPower':{
   const duration={expires:t.g521UntilStart?'start':'end',who:t.g521UntilStart?t.p:s.active};
   const spell=t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{};
+  const power=groupPowerAmount(s,t);
   for(const {p,y} of groupPowerRows(s,t)){
-   const amount=t.g561DarkMana?0:p===t.p&&t.ownPower!==undefined?t.ownPower:t.power;
+   const amount=t.g561DarkMana?0:p===t.p&&t.ownPower!==undefined?t.ownPower:power;
    if(t.g446BattleOnly){
     (s.extLimits??=[]).push({kind:'g446BattlePower',ref:{uid:y.uid,incarnation:y.incarnation||0},amount,...duration,...spell});
    }else{
