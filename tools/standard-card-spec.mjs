@@ -6160,6 +6160,23 @@ export function standardCardSpec(d,{phase=165}={}){
    'このクリーチャーが攻撃する時バトルゾーンにあるクロスギアを1枚選び持ち主の墓地に置く。クロスギアがバトルゾーンから墓地に置かれた時カードを1枚引いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
    return {breaker:2,g34Attack:[{op:'Target',element:true,anyOwner:true,filter:{g201Gear:true},to:'grave',title:'墓地に置くクロスギアを1枚選ぶ'}],g933GearGraveDraw:true};
  }
+ if(phase>=1081&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const link=(name,side)=>'G・リンク《'+name+'》の'+side+'横(バトルゾーンに自分の指定ゴッドがあればこのカードをリンクしてもよい。リンクしたゴッドは各ゴッドの特性(パワーや能力)を持つ1体のクリーチャーとなる。バトルゾーンを離れる時はどちらか1枚を選ぶ)';
+  const godText=text.replace('〔パワーや能力〕','(パワーや能力)');
+  if(godText==='このクリーチャーがブロックされた時相手は手札をすべて捨てる。W・ブレイカー'+link('竜極神メツ','左')+
+   'このクリーチャーはリンクしている時「Q・ブレイカー」を得る。(「Q・ブレイカー」を得たクリーチャーはシールドを4枚ブレイクする)')
+   return {breaker:2,g31God:'left',g1079GodPartner:'dm24-004',g1081LinkedQuadBreaker:true,
+    g1081GodCombat:{blocked:[{op:'Discard',g756All:true}]}};
+  if(godText==='このクリーチャーが相手を攻撃してブロックされなかった時相手のパワー3000以下のクリーチャーを1体破壊してもよい。W・ブレイカー'+link('竜極神ゲキ','右')+
+   'このクリーチャーがリンクしていて攻撃する時相手のマナゾーンからカードを2枚まで選び持ち主の墓地に置いてもよい。')
+   return {breaker:2,g31God:'right',g1079GodPartner:'dm24-003',g1081GodCombat:{
+    linkedAttack:[{op:'Select',owner:'opponent',origin:'mana',n:2,to:'grave',optional:true}],
+    unblocked:[{op:'Target',to:'grave',destroy:true,optional:true,filter:{maxPower:3000,g199Power:true}}]
+   }};
+  if(text==='バイオ・K-自分のドリームメイトが相手プレイヤーを攻撃してブロックされなかった時このカードを自分の手札から捨ててもよい。そうした場合自分の山札を見る。その中から攻撃している自分のクリーチャーと同じ名前のクリーチャーを1体選び相手に見せてから手札に加える。その後山札をシャッフルする。')
+   return {g953BioK:{race:'ドリームメイト',effect:{op:'BioKAttackerSearch1081'}}};
+ }
  if(phase>=1080&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='クロスギア'){

@@ -1,0 +1,279 @@
+{
+  "phase": 1081,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7207,
+  "description": "バイオ・Kで攻撃中のクリーチャーと同名を探す処理と、竜極神ゲキ・メツのG・リンクおよびブロック・非ブロック・攻撃時の誘発を照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35564/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35538/",
+    "https://dm.takaratomy.co.jp/rule/qa/49019/",
+    "https://dm.takaratomy.co.jp/rule/qa/41559/",
+    "https://dm.takaratomy.co.jp/rule/qa/48740/"
+  ],
+  "cards": [
+    {
+      "id": "dm23-005",
+      "name": "とんがり頭のブレモ",
+      "faces": [
+        {
+          "name": "とんがり頭のブレモ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バイオ・K-自分のドリームメイトが相手プレイヤーを攻撃してブロックされなかった時、このカードを自分の手札から捨ててもよい。そうした場合、自分の山札を見る。その中から、攻撃している自分のクリーチャーと同じ名前のクリーチャーを１体選び、相手に見せてから手札に加える。その後、山札をシャッフルする。",
+          "race": "ドリームメイト",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-005.jpg",
+      "spec": {
+        "g953BioK": {
+          "race": "ドリームメイト",
+          "effect": {
+            "op": "BioKAttackerSearch1081"
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "0c0399f1cc7cc955f4e9f2a3c228609de03ab8808000889b00e95e2ec80814a7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-003",
+      "name": "竜極神ゲキ",
+      "faces": [
+        {
+          "name": "竜極神ゲキ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーがブロックされた時、相手は手札をすべて捨てる。\nW・ブレイカー\nG・リンク《竜極神メツ》の左横(バトルゾーンに自分の指定ゴッドがあれば、このカードをリンクしてもよい。リンクしたゴッドは、各ゴッドの特性(パワーや能力)を持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、どちらか１枚を選ぶ)\nこのクリーチャーは、リンクしている時「Q・ブレイカー」を得る。(「Q・ブレイカー」を得たクリーチャーはシールドを４枚ブレイクする)",
+          "race": "ゴッド/ドラゴン・ゾンビ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-003.jpg",
+      "spec": {
+        "breaker": 2,
+        "g31God": "left",
+        "g1079GodPartner": "dm24-004",
+        "g1081LinkedQuadBreaker": true,
+        "g1081GodCombat": {
+          "blocked": [
+            {
+              "op": "Discard",
+              "g756All": true
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "004224b6da9edf88d16a20b8c5a33d8c52d7a2c64c8d493cbac331cc927a64eb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-004",
+      "name": "竜極神メツ",
+      "faces": [
+        {
+          "name": "竜極神メツ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーが相手を攻撃してブロックされなかった時、相手のパワー3000以下のクリーチャーを１体破壊してもよい。\nW・ブレイカー\nG・リンク《竜極神ゲキ》の右横(バトルゾーンに自分の指定ゴッドがあれば、このカードをリンクしてもよい。リンクしたゴッドは、各ゴッドの特性(パワーや能力)を持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、どちらか１枚を選ぶ)\nこのクリーチャーがリンクしていて攻撃する時、相手のマナゾーンからカードを２枚まで選び、持ち主の墓地に置いてもよい。",
+          "race": "ゴッド/アーマード・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-004.jpg",
+      "spec": {
+        "breaker": 2,
+        "g31God": "right",
+        "g1079GodPartner": "dm24-003",
+        "g1081GodCombat": {
+          "linkedAttack": [
+            {
+              "op": "Select",
+              "owner": "opponent",
+              "origin": "mana",
+              "n": 2,
+              "to": "grave",
+              "optional": true
+            }
+          ],
+          "unblocked": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "destroy": true,
+              "optional": true,
+              "filter": {
+                "maxPower": 3000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "ce907af9a4d1c8eed509ad069c2289ba2a568c21a1317dc86eb4174bc2ad3cde",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc44-015",
+      "name": "竜極神ゲキ",
+      "faces": [
+        {
+          "name": "竜極神ゲキ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーがブロックされた時、相手は手札をすべて捨てる。\nW・ブレイカー\nG・リンク《竜極神メツ》の左横(バトルゾーンに自分の指定ゴッドがあれば、このカードをリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕を持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、どちらか１枚を選ぶ)\nこのクリーチャーは、リンクしている時「Q・ブレイカー」を得る。(「Q・ブレイカー」を得たクリーチャーはシールドを４枚ブレイクする)",
+          "race": "ゴッド/ドラゴン・ゾンビ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc44-015",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc44-015.jpg",
+      "canonicalId": "dm24-003",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "83768b06485503f65295f0c096bce49d4988df2ccb56a3175e19e211d7f201f3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc66-030",
+      "name": "竜極神ゲキ",
+      "faces": [
+        {
+          "name": "竜極神ゲキ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーがブロックされた時、相手は手札をすべて捨てる。\nW・ブレイカー\nG・リンク《竜極神メツ》の左横（バトルゾーンに自分の指定ゴッドがあれば、このカードをリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕を持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、どちらか１枚を選ぶ）\nこのクリーチャーは、リンクしている時「Q・ブレイカー」を得る。（「Q・ブレイカー」を得たクリーチャーはシールドを４枚ブレイクする）",
+          "race": "ゴッド/ドラゴン・ゾンビ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc66-030",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc66-030.jpg",
+      "canonicalId": "dm24-003",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "e3880ebc3d78bb6421f356352d9c45cd8b130e0f899d32dfa0b52e0883c2e081",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc44-018",
+      "name": "竜極神メツ",
+      "faces": [
+        {
+          "name": "竜極神メツ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーが相手を攻撃してブロックされなかった時、相手のパワー3000以下のクリーチャーを１体破壊してもよい。\nW・ブレイカー\nG・リンク《竜極神ゲキ》の右横(バトルゾーンに自分の指定ゴッドがあれば、このカードをリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕を持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、どちらか１枚を選ぶ)\nこのクリーチャーがリンクしていて攻撃する時、相手のマナゾーンからカードを２枚まで選び、持ち主の墓地に置いてもよい。",
+          "race": "ゴッド/アーマード・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc44-018",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc44-018.jpg",
+      "canonicalId": "dm24-004",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "fffe203244b061ac41365e482416c7186a79e6164079b3affabf03a9a3071856",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc66-031",
+      "name": "竜極神メツ",
+      "faces": [
+        {
+          "name": "竜極神メツ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーが相手を攻撃してブロックされなかった時、相手のパワー3000以下のクリーチャーを１体破壊してもよい。\nW・ブレイカー\nG・リンク《竜極神ゲキ》の右横（バトルゾーンに自分の指定ゴッドがあれば、このカードをリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕を持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、どちらか１枚を選ぶ）\nこのクリーチャーがリンクしていて攻撃する時、相手のマナゾーンからカードを２枚まで選び、持ち主の墓地に置いてもよい。",
+          "race": "ゴッド/アーマード・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc66-031",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc66-031.jpg",
+      "canonicalId": "dm24-004",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "c14fb3e54080bf475156377be6765520aa7cb6d851280b9640ab3c475f3d5f50",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23-005": 4,
+      "dm24-003": 4,
+      "dm24-004": 4,
+      "dmc44-015": 4,
+      "dmc66-030": 4,
+      "dmc44-018": 4,
+      "dmc66-031": 4
+    }
+  }
+}

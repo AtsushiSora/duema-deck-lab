@@ -170,21 +170,30 @@ export function createPhoenixRules(api){
  case'g31_Link':{const x=remove(own.g31Holding,t.uid);if(x)enter(s,t.p,x,t.base,{...t.options,g31Linked:true,g31Partner:v});break;}
  default:throw Error('未実装のフェニックス選択：'+t.op);
  }return true;}
+ function godCombat(s,p,x,kind){
+  if(kind==='linkedAttack'&&!x.godLinks?.length)return false;
+  const part=[x,...(x.godLinks||[])].find(y=>card(y.cardId).g1081GodCombat?.[kind]);
+  if(!part||api.ignored(s,x))return false;
+  const source=part.cardId,defs=card(source).g1081GodCombat[kind];
+  api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source,effect:'extended',
+   task:task('g34_Sequence',p,source,{uid:x.uid,incarnation:x.incarnation||0,defs})});
+  return true;
+ }
  function linkCandidates(s,p,c){
   const side=c.g31God==='left'?'right':'left';
   return creatures(s,p).filter(x=>{
    const partner=card(x);
-   return !x.godLinks?.length&&partner.g31God===side&&
+   return !x.godLinks?.length&&!api.ignored(s,x)&&partner.g31God===side&&
     (!c.g1079GodPartner||c.g1079GodPartner===partner.id)&&
     (!partner.g1079GodPartner||partner.g1079GodPartner===c.id);
   });
  }
- return{run,chosen,complex,bases,beginCast,beginPut,attach,
+ return{run,chosen,complex,bases,beginCast,beginPut,attach,godCombat,
  beginPayment(s,p,args){const x=s.players[p][args[5]].find(x=>x.uid===args[0]),c=x&&faces(card(x))[args[3]];if(args[1]||args[4]!==null||c?.type!=='creature'||!colors(c).some(x=>['闇','火'].includes(x))||!(s.g31Discounts||[]).some(x=>x.p===p&&x.turn===s.turn)||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;put(s,task('g31_Reduce',p,c.id,{args}));return true;},
  beginLink(s,p,x,base,options){if(!card(x).g31God||options.g31Linked||!linkCandidates(s,p,card(x)).length)return false;(s.players[p].g31Holding??=[]).push(x);put(s,task('g31_Link',p,x.cardId,{uid:x.uid,base,options}));return true;},
  link(s,p,x,options){if(!options.g31Partner)return x;const own=s.players[p],base=own.battle.find(y=>y.uid===options.g31Partner);if(!base||base.godLinks?.length)return x;remove(own.battle,x.uid);base.godLinks=[x];api.log(s,p,'godLink',card(base.cardId).name+'と'+card(x).name+'をG・リンク',{cardId:x.cardId});return base;},
  effect(s,p,c,uid,entry){if(!c.effect?.startsWith('phoenix'))return false;put(s,task('g31_'+c.effect.slice(7),p,c.id,{uid,incarnation:entry?.incarnation||0}));return true;},
- attack(s,p,x){if(api.selfStopped(s,p))return;const c=effective(x,s);if(c.g213Mars)on(s,p,x,'MarsOffer');if(c.g31Apollo)on(s,p,x,'Meteor',{kind:'apollo',count:0});if(c.g31Pluto)on(s,p,x,'Meteor',{kind:'pluto'});if(c.g31Destroy)on(s,p,x,'Meteor',{kind:'destroy'});if(c.g825Meteor)on(s,p,x,'Meteor',{follow825:c.g825Meteor});},
+ attack(s,p,x){if(api.selfStopped(s,p))return;godCombat(s,p,x,'linkedAttack');const c=effective(x,s);if(c.g213Mars)on(s,p,x,'MarsOffer');if(c.g31Apollo)on(s,p,x,'Meteor',{kind:'apollo',count:0});if(c.g31Pluto)on(s,p,x,'Meteor',{kind:'pluto'});if(c.g31Destroy)on(s,p,x,'Meteor',{kind:'destroy'});if(c.g825Meteor)on(s,p,x,'Meteor',{follow825:c.g825Meteor});},
  snapshot(s,rows){return rows.map(r=>{const x=s.players[r.player].battle.find(x=>x.uid===r.uid);return{p:r.player,uid:r.uid,c:x&&effective(x,s)};});},
  leaving(s,p,x,snapshot,to,destroy){const c=snapshot?.find(r=>r.p===p&&r.uid===x.uid)?.c||effective(x,s);if(c.g31King)api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('discard',1-p,x.cardId,{n:1,all:true,causedBy:p})});if(c.g31Zero)api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g31_ZeroLeave',p,x.cardId)});if(c.g31Fel&&to==='grave'&&destroy&&!s.g31ExtraTurn)api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g5ExtraTurn',p,x.cardId)});},
  start(s,p){return s.players[p].grave.filter(x=>card(x).g31Xeno||card(x).g31ZeroRise).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task(card(x).g31ZeroRise?'g31_ZeroRise':'g31_XenoReturn',p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0})}));},

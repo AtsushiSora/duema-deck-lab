@@ -29,7 +29,7 @@ export function card(id){
   const defs=[id,...id.godLinks].map(x=>card(x.cardId)),base={...defs[0]};
   const union=key=>[...new Set(defs.flatMap(c=>key==='civilizations'?civilizations(c):String(c[key]||'').split('/')))];
   for(const c of defs)for(const [k,v] of Object.entries(c))if(v===true)base[k]=true;
-  const breaker=Math.max(...defs.map(c=>c.g1079LinkedDoubleBreaker?2:Number(c.breaker)||(c.breaker===0?0:1)));
+  const breaker=Math.max(...defs.map(c=>c.g1081LinkedQuadBreaker?4:c.g1079LinkedDoubleBreaker?2:Number(c.breaker)||(c.breaker===0?0:1)));
   return {...base,name:defs.map(c=>c.name).join('＋'),cost:defs.reduce((n,c)=>n+costValue(c),0),
    power:defs.reduce((n,c)=>n+numeric(c.power),0),civilizations:union('civilizations'),civ:union('civilizations').join('/'),
    race:union('race').join('/'),g31GodHeavy:defs.some(c=>c.g31God==='left'&&!c.g1079GodPartner),
@@ -482,6 +482,8 @@ function rememberBattleInformation(s,owner,host,leaving){
  });
  if(host.sealed)return;
  for(const task of all){
+  if(task.g399Attacker?.g1081Names&&departs(task.g399Attacker))
+   task.g399Attacker.g1081Names=extra.six.attackNames1081(s,host);
   if(departs(task)&&(task.g1059NonEvolution||task.g1071Evolution||task.defs?.some(def=>def.g1059NonEvolution||def.g1071Evolution)))
    task.g1059LastEvolution=isEvolution(host);
   if(departs(task)&&(task.g1064Tapped||task.defs?.some(def=>def.g1064Tapped)))
@@ -1896,6 +1898,7 @@ function resolveAttack(s,blockUid){
     selfRefs:layers(b).map(x=>({uid:x.uid,incarnation:x.incarnation||0}))
    }];
   }
+  extra.phoenix.godCombat(s,s.active,a,'blocked');
   tapCard(s,other,b);extra.block(s,other,b);
   log(s,other,'block',`${card(b).name}でブロック`,{cardId:b.cardId});
   extra.ninjaWindow(s,s.active);return;

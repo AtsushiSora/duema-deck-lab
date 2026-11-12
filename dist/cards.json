@@ -215251,15 +215251,114 @@
       },
       "supportBatch": "phase-1080",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23-005",
+      "name": "とんがり頭のブレモ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ドリームメイト",
+      "text": "バイオ・K-自分のドリームメイトが相手プレイヤーを攻撃してブロックされなかった時、このカードを自分の手札から捨ててもよい。そうした場合、自分の山札を見る。その中から、攻撃している自分のクリーチャーと同じ名前のクリーチャーを１体選び、相手に見せてから手札に加える。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-005",
+      "limit": 4,
+      "g953BioK": {
+        "race": "ドリームメイト",
+        "effect": {
+          "op": "BioKAttackerSearch1081"
+        }
+      },
+      "supportBatch": "phase-1081",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24-003",
+      "name": "竜極神ゲキ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ゴッド/ドラゴン・ゾンビ",
+      "text": "このクリーチャーがブロックされた時、相手は手札をすべて捨てる。\nW・ブレイカー\nG・リンク《竜極神メツ》の左横(バトルゾーンに自分の指定ゴッドがあれば、このカードをリンクしてもよい。リンクしたゴッドは、各ゴッドの特性(パワーや能力)を持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、どちらか１枚を選ぶ)\nこのクリーチャーは、リンクしている時「Q・ブレイカー」を得る。(「Q・ブレイカー」を得たクリーチャーはシールドを４枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-003",
+      "limit": 4,
+      "breaker": 2,
+      "g31God": "left",
+      "g1079GodPartner": "dm24-004",
+      "g1081LinkedQuadBreaker": true,
+      "g1081GodCombat": {
+        "blocked": [
+          {
+            "op": "Discard",
+            "g756All": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1081",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24-004",
+      "name": "竜極神メツ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ゴッド/アーマード・ドラゴン",
+      "text": "このクリーチャーが相手を攻撃してブロックされなかった時、相手のパワー3000以下のクリーチャーを１体破壊してもよい。\nW・ブレイカー\nG・リンク《竜極神ゲキ》の右横(バトルゾーンに自分の指定ゴッドがあれば、このカードをリンクしてもよい。リンクしたゴッドは、各ゴッドの特性(パワーや能力)を持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、どちらか１枚を選ぶ)\nこのクリーチャーがリンクしていて攻撃する時、相手のマナゾーンからカードを２枚まで選び、持ち主の墓地に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-004",
+      "limit": 4,
+      "breaker": 2,
+      "g31God": "right",
+      "g1079GodPartner": "dm24-003",
+      "g1081GodCombat": {
+        "linkedAttack": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "mana",
+            "n": 2,
+            "to": "grave",
+            "optional": true
+          }
+        ],
+        "unblocked": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "destroy": true,
+            "optional": true,
+            "filter": {
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1081",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1080,
+    "phase": 1081,
     "checkedAt": "2026-11-13",
-    "baseCount": 7204,
+    "baseCount": 7207,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7207,
+    "totalCount": 7210,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -234508,6 +234607,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7204,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1080,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7204,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7207,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

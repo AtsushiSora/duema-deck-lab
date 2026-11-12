@@ -188,6 +188,7 @@ export function createSixPhotoRules(api){
  }
  // A linked God has each component's name, while an evolution uses its top card.
  const battleNames676=x=>x.godLinks?.length?[x,...x.godLinks].map(y=>exactName(creatureFaceName(card(y.cardId)))):[exactName(creatureFaceName(card(x)))];
+ const attackNames1081=(s,x)=>x.godLinks?.length?battleNames676(x):[exactName(creatureFaceName(effective(x,s)))];
  function chainMatches838(rows,chosen){
   const names=new Set(battleNames676(chosen));
   return [chosen,...rows.filter(y=>y!==chosen&&battleNames676(y).some(name=>names.has(name)))];
@@ -251,7 +252,8 @@ export function createSixPhotoRules(api){
    rows.filter(x=>t.selected.includes(x.uid));
   for(const source of declared){
    api.log(s,t.p,'reveal',card(source).name+'の'+keyword+'を宣言',{cardId:source.cardId});
-   if(!t.battle)send(s,t.p,source,'BioK951',{serial:source.zoneSerial||0});
+   if(!t.battle)send(s,t.p,source,'BioK951',{serial:source.zoneSerial||0,
+    ...(card(source).g953BioK?.effect?.op==='BioKAttackerSearch1081'?{g399Attacker:t.g399Attacker}:{})});
   }
   if(t.battle)put(s,...declared.map(x=>task('g34_BioT952',t.p,x.cardId,{
    uid:x.uid,serial:x.zoneSerial||0,attacker:t.battle.attacker
@@ -3401,6 +3403,14 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
   break;
  }
+ case'g34_BioKAttackerSearch1081':{
+  const attacker=own.battle.find(y=>y.uid===s.attack?.attacker&&!y.sealed);
+  const names=attacker?attackNames1081(s,attacker):t.g399Attacker?.g1081Names||[];
+  start(s,t,[{op:'Look',g201Search:true,g841DeckPeek:true,rest:'shuffle',stages:[
+   {n:1,to:'hand',reveal:true,filter:{creature:true,any:names.map(name=>({g201ExactName:name}))},g1081ConfirmEmpty:true}
+  ]}]);
+  break;
+ }
  case'g34_Look':{if(t.g201Search)t={...t,n:own.deck.length};let ids;if(t.stages?.some(q=>q.g467Destinations&&!q.filter)&&api.deckLocked(s,t.p)){t={...t,g467Blind:true};const skip=reserved(own);ids=own.deck.filter(x=>!skip.has(x.uid)).slice(0,t.n).map(x=>x.uid);(own.g34Protected??=[]).push(...ids);}else ids=look(s,t);
   const inspection=t.g841DeckPeek?deckPeek841(own,ids):{};
   put(s,{...t,...inspection,op:'g34_LookPick',ids,stage:0,chosen:[]});
@@ -3428,6 +3438,10 @@ export function createSixPhotoRules(api){
    const creatureCost=y=>cost(faces(card(y)).find(face=>face.type==='creature'));
    const selectedCosts=new Set(xs.filter(y=>selected.includes(y.uid)).map(creatureCost));
    rows=rows.filter(y=>!selectedCosts.has(creatureCost(y)));
+  }
+  if(stage.g1081ConfirmEmpty&&stage.n!==0&&!rows.length&&!selected.length&&t.g585Peek?.length){
+   choice(s,t,'確認した山札をシャッフルする',[opt('確認を終える',null,0)]);
+   break;
   }
   if(stage.optional&&stage.n!==0&&!rows.length&&!selected.length&&xs.length===1&&t.g585Peek?.length){
    choice(s,t,'確認したカード',[opt('確認を終える',null,0)]);
@@ -4184,7 +4198,8 @@ export function createSixPhotoRules(api){
   if(v&&own.hand.some(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial)){
    const effect=rule?.effect??rule?.recovery??{op:'DrawUpTo',n:2,g203Draw:true};
    const attacker=effect.op==='AttackGrant399'&&own.battle.find(x=>x.uid===s.attack?.attacker);
-   const context=attacker?{g399Attacker:{uid:attacker.uid,incarnation:attacker.incarnation||0}}:{};
+   const context=attacker?{g399Attacker:{uid:attacker.uid,incarnation:attacker.incarnation||0}}:
+    t.g399Attacker?{g399Attacker:t.g399Attacker}:{};
    api.discardSelected(s,t.p,[t.uid],t.source,t.p,tasks(t.p,t.source,[effect],context)[0]);
   }
   break;
@@ -5639,6 +5654,7 @@ export function createSixPhotoRules(api){
   if(c.g484BreakEndReturn)queue(s,p,x,[E('BreakDelay484')]);
   if(c.g915AfterSelfBreak&&context.g756Breaker?.length&&!s.endStep)queue(s,p,x,c.g915AfterSelfBreak);
  },
+ attackNames1081,
  unblocked482(s,p,x){
   if(x.sealed)return false;
   const playerAttack=s.attack.target==='player';
@@ -5651,7 +5667,10 @@ export function createSixPhotoRules(api){
     return requiredRace&&race(attacker,requiredRace)&&!api.handAbilityIgnored(s,y);
    }).map(y=>y.uid);
    if(ids.length){
-    declareHandBio(s,task('g34_BioKDeclare951',p,x.cardId,{ids,selected:[]}));
+    const readsName=s.players[p].hand.some(y=>ids.includes(y.uid)&&card(y).g953BioK?.effect?.op==='BioKAttackerSearch1081');
+    declareHandBio(s,task('g34_BioKDeclare951',p,x.cardId,{ids,selected:[],...(readsName?{
+     g399Attacker:{uid:x.uid,incarnation:x.incarnation||0,g1081Names:attackNames1081(s,x)}
+    }:{})}));
     triggered=true;
    }
   }
