@@ -2467,6 +2467,31 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1028&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'&&
+  f.civilizationText==='光'&&f.race==='裁きの紋章'){
+  const [finish,compactFinish]=[
+   'この呪文を自分の手札から唱えた後墓地に置くかわりに自分のシールド1つの上に表向きにして置く。(そのシールドの束は1つと数える)',
+   'この呪文を自分の手札から唱えた後墓地に置くかわりに表向きのまま自分のシールド1つの上に置く。'
+  ];
+  const base={effect:'sixPhoto',g1027Crest:true},text=normalize(f.abilityText);
+  const draw='カードを1枚引く。';
+  if(f.name==='剣参ノ裁キ'&&f.cost===3&&text===
+   '自分の山札の上から3枚を見る。その中から呪文を1枚またはメタリカを1体手札に加えてもよい。残りを好きな順序で山札の一番下に置く。'+compactFinish)
+   return {...base,g34Tasks:[{op:'Look',n:3,rest:'bottom',g841DeckPeek:true,stages:[{n:1,to:'hand',reveal:true,optional:true,
+    filter:{any:[{g228Face:{type:'spell'}},{g228Face:{type:'creature',raceAll:['メタリカ']}}]}}]}]};
+  const trigger='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+  const freeze='相手のクリーチャーを1体選びタップする。次の相手のターンのはじめにそのクリーチャーはアンタップしない。';
+  if(f.name==='隻眼ノ裁キ'&&f.cost===4&&[
+   trigger+freeze+'この呪文を自分の手札から唱えた後自分のシールド1つの上に表向きにして置く。(そのシールドの束は1つと数える)',
+   'S・トリガーS・トリガー'+freeze+finish.replace('自分のシールド','シールド')
+  ].includes(text))
+   return {...base,trigger:true,g34Tasks:[{op:'Target',tap:true,lock:true,spell:true}]};
+  if(f.name==='天門ノ裁キ'&&f.cost===6&&['バトルゾーンに',''].some(zone=>
+   text===draw+'その後「ブロッカー」を持つクリーチャーを1体自分の手札から'+zone+'出してもよい。'+finish))
+   return {...base,g34Tasks:[{op:'Draw',n:1},{op:'Select',origin:'hand',deploy:true,optional:true,n:1,filter:{creature:true,blocker:true}}]};
+  if(f.name==='憤怒スル破面ノ裁キ'&&f.cost===2&&text===draw+finish)
+   return {...base,g34Tasks:[{op:'Draw',n:1}]};
+ }
  if(phase>=1027&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
   const text=normalize(f.abilityText);
   const trigger='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';

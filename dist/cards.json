@@ -207799,24 +207799,169 @@
       ],
       "supportBatch": "phase-1027",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04m-026",
+      "name": "剣参ノ裁キ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "裁きの紋章",
+      "text": "自分の山札の上から３枚を見る。その中から、呪文を１枚またはメタリカを１体手札に加えてもよい。残りを好きな順序で山札の一番下に置く。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに、表向きのまま自分のシールド１つの上に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-026",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g1027Crest": true,
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "rest": "bottom",
+          "g841DeckPeek": true,
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "reveal": true,
+              "optional": true,
+              "filter": {
+                "any": [
+                  {
+                    "g228Face": {
+                      "type": "spell"
+                    }
+                  },
+                  {
+                    "g228Face": {
+                      "type": "creature",
+                      "raceAll": [
+                        "メタリカ"
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1028",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd04-008",
+      "name": "隻眼ノ裁キ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "裁きの紋章",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。\nこの呪文を自分の手札から唱えた後、自分のシールド１つの上に、表向きにして置く。（そのシールドの束は１つと数える）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd04-008",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g1027Crest": true,
+      "trigger": true,
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true,
+          "lock": true,
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1028",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd07-b-004",
+      "name": "天門ノ裁キ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "裁きの紋章",
+      "text": "カードを１枚引く。その後、「ブロッカー」を持つクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに自分のシールド１つの上に表向きにして置く。（そのシールドの束は１つと数える）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd07-b-004",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g1027Crest": true,
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "optional": true,
+          "n": 1,
+          "filter": {
+            "creature": true,
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1028",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-065",
+      "name": "憤怒スル破面ノ裁キ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "裁きの紋章",
+      "text": "カードを１枚引く。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに自分のシールド１つの上に表向きにして置く。（そのシールドの束は１つと数える）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-065",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g1027Crest": true,
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1028",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1027,
+    "phase": 1028,
     "checkedAt": "2026-11-12",
-    "baseCount": 7018,
+    "baseCount": 7022,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7022,
+    "totalCount": 7026,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/31659/",
-      "https://dm.takaratomy.co.jp/rule/qa/31686/",
+      "https://dm.takaratomy.co.jp/rule/qa/44099/",
+      "https://dm.takaratomy.co.jp/rule/qa/31632/",
+      "https://dm.takaratomy.co.jp/rule/qa/31633/",
+      "https://dm.takaratomy.co.jp/rule/qa/31634/",
       "https://dm.takaratomy.co.jp/rule/qa/44186/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31640/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31642/",
-      "https://dm.takaratomy.co.jp/rule/qa/43958/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf"
+      "https://dm.takaratomy.co.jp/rule/qa/44661/",
+      "https://dm.takaratomy.co.jp/archive/dmex02/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -226411,6 +226556,27 @@
           "https://dm.takaratomy.co.jp/rule/rulechange/31640/",
           "https://dm.takaratomy.co.jp/rule/qa/39309/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31624/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1027,
+        "checkedAt": "2026-11-12",
+        "baseCount": 7018,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7022,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/31659/",
+          "https://dm.takaratomy.co.jp/rule/qa/31686/",
+          "https://dm.takaratomy.co.jp/rule/qa/44186/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31640/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31642/",
+          "https://dm.takaratomy.co.jp/rule/qa/43958/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

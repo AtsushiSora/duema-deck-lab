@@ -1,0 +1,425 @@
+{
+  "phase": 1028,
+  "checkedAt": "2026-11-12",
+  "baseCount": 7022,
+  "description": "裁きの紋章4種類と再録を照合し、手札から唱えた後の自己置換と各効果に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/44099/",
+    "https://dm.takaratomy.co.jp/rule/qa/31632/",
+    "https://dm.takaratomy.co.jp/rule/qa/31633/",
+    "https://dm.takaratomy.co.jp/rule/qa/31634/",
+    "https://dm.takaratomy.co.jp/rule/qa/44186/",
+    "https://dm.takaratomy.co.jp/rule/qa/44661/",
+    "https://dm.takaratomy.co.jp/archive/dmex02/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp04m-026",
+      "name": "剣参ノ裁キ",
+      "faces": [
+        {
+          "name": "剣参ノ裁キ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の山札の上から３枚を見る。その中から、呪文を１枚またはメタリカを１体手札に加えてもよい。残りを好きな順序で山札の一番下に置く。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに、表向きのまま自分のシールド１つの上に置く。",
+          "race": "裁きの紋章",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-026",
+      "spec": {
+        "effect": "sixPhoto",
+        "g1027Crest": true,
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "rest": "bottom",
+            "g841DeckPeek": true,
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "reveal": true,
+                "optional": true,
+                "filter": {
+                  "any": [
+                    {
+                      "g228Face": {
+                        "type": "spell"
+                      }
+                    },
+                    {
+                      "g228Face": {
+                        "type": "creature",
+                        "raceAll": [
+                          "メタリカ"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04m-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "5043e10ad28952b4bd311f664d23a46702ce0b4387c3fd174378b65c22b1c71e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmbd04-008",
+      "name": "隻眼ノ裁キ",
+      "faces": [
+        {
+          "name": "隻眼ノ裁キ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。\nこの呪文を自分の手札から唱えた後、自分のシールド１つの上に、表向きにして置く。（そのシールドの束は１つと数える）",
+          "race": "裁きの紋章",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd04-008",
+      "spec": {
+        "effect": "sixPhoto",
+        "g1027Crest": true,
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "lock": true,
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd04-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "a52b70c74c305409104ef947caa86b0b786e05c51a7af98e26ff634888a9dbc8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmbd07-b-004",
+      "name": "天門ノ裁キ",
+      "faces": [
+        {
+          "name": "天門ノ裁キ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "カードを１枚引く。その後、「ブロッカー」を持つクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに自分のシールド１つの上に表向きにして置く。（そのシールドの束は１つと数える）",
+          "race": "裁きの紋章",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd07-b-004",
+      "spec": {
+        "effect": "sixPhoto",
+        "g1027Crest": true,
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "optional": true,
+            "n": 1,
+            "filter": {
+              "creature": true,
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd07-b-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "392b9fad74cdb9ac1df173f69a492d8cd140e0867975608f6160a20df9c82053",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp06-065",
+      "name": "憤怒スル破面ノ裁キ",
+      "faces": [
+        {
+          "name": "憤怒スル破面ノ裁キ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "カードを１枚引く。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに自分のシールド１つの上に表向きにして置く。（そのシールドの束は１つと数える）",
+          "race": "裁きの紋章",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-065",
+      "spec": {
+        "effect": "sixPhoto",
+        "g1027Crest": true,
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-065.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "2b1910ae127d30c8665b2edea6f420dfaa7998a8a849718bea381a99419a81b9",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmsd07-010",
+      "canonicalId": "dmrp04m-026",
+      "name": "剣参ノ裁キ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd07-010",
+      "faces": [
+        {
+          "name": "剣参ノ裁キ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の山札の上から３枚を見る。その中から、呪文を１枚またはメタリカを１体手札に加えてもよい。残りを好きな順序で山札の一番下に置く。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに、表向きのまま自分のシールド１つの上に置く。",
+          "race": "裁きの紋章",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd07-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "03432329e2833782b3a19afbd1239dd0062fc9db6ccab1e7d7dee13fcd7a0a1c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy16-112",
+      "canonicalId": "dmrp04m-026",
+      "name": "剣参ノ裁キ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-112",
+      "faces": [
+        {
+          "name": "剣参ノ裁キ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の山札の上から３枚を見る。その中から、呪文を１枚またはメタリカを１体手札に加えてもよい。残りを好きな順序で山札の一番下に置く。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに、表向きのまま自分のシールド１つの上に置く。",
+          "race": "裁きの紋章",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy16-112.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "3d900c9acf91bf587f078a2ba95b8a37ea28a76463fdac1c79d22f88e9fbf91e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex02-026",
+      "canonicalId": "dmbd04-008",
+      "name": "隻眼ノ裁キ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-026",
+      "faces": [
+        {
+          "name": "隻眼ノ裁キ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。\nこの呪文を自分の手札から唱えた後、自分のシールド１つの上に、表向きにして置く。（そのシールドの束は１つと数える）",
+          "race": "裁きの紋章",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex02-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "8661171fb8e79abaeeba6b2a62d567b782b3dc748a34d6e0725684c384588334",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmbd07-b-009",
+      "canonicalId": "dmbd04-008",
+      "name": "隻眼ノ裁キ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd07-b-009",
+      "faces": [
+        {
+          "name": "隻眼ノ裁キ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。\nこの呪文を自分の手札から唱えた後、自分のシールド１つの上に、表向きにして置く。（そのシールドの束は１つと数える）",
+          "race": "裁きの紋章",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd07-b-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "8d0755c40c3e7ca008da07f12fd38556382ea64d591f747baff0b1ac766aa9ab",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex2-068",
+      "canonicalId": "dmbd04-008",
+      "name": "隻眼ノ裁キ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-068",
+      "faces": [
+        {
+          "name": "隻眼ノ裁キ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりにシールド１つの上に表向きにして置く。（そのシールドの束は１つと数える）",
+          "race": "裁きの紋章",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex2-068.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "6f4a75354a0453c01f7cd0a352b222a5fc34e93200b72268be7e64f4d53cdc3e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex19-024",
+      "canonicalId": "dmbd07-b-004",
+      "name": "天門ノ裁キ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-024",
+      "faces": [
+        {
+          "name": "天門ノ裁キ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "カードを１枚引く。その後、「ブロッカー」を持つクリーチャーを１体、自分の手札から出してもよい。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに自分のシールド１つの上に表向きにして置く。（そのシールドの束は１つと数える）",
+          "race": "裁きの紋章",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "a6c98d3565b0159c854c9f3a0d641dff01e2c41f3412b41b0553b290ae1ff8fa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd07-011",
+      "canonicalId": "dmrp06-065",
+      "name": "憤怒スル破面ノ裁キ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd07-011",
+      "faces": [
+        {
+          "name": "憤怒スル破面ノ裁キ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "カードを１枚引く。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに自分のシールド１つの上に表向きにして置く。（そのシールドの束は１つと数える）",
+          "race": "裁きの紋章",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd07-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "8376bf31aa4a5f19caac58f25e677fa4ac7459bf49929ee11b4e2d24052ead65",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp04m-026": 4,
+      "dmbd04-008": 4,
+      "dmbd07-b-004": 4,
+      "dmrp06-065": 4,
+      "dmsd07-010": 4,
+      "promoy16-112": 4,
+      "dmex02-026": 4,
+      "dmbd07-b-009": 4,
+      "dm23ex2-068": 4,
+      "dmex19-024": 4,
+      "dmsd07-011": 4
+    }
+  }
+}
