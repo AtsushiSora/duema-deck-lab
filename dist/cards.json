@@ -210600,15 +210600,118 @@
       ],
       "supportBatch": "phase-1046",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr20-040",
+      "name": "巨鯨目 クジゴジラ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "ジュラシック・コマンド・ドラゴン",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーまたは、自分の他のパワー6000以上のクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-040",
+      "limit": 4,
+      "breaker": 2,
+      "g251EntryDraw": {
+        "selfAlways": true,
+        "filter": {
+          "creature": true,
+          "minPower": 6000,
+          "g199Power": true
+        },
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "山札の上から1枚をマナに置く？",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1047",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd28-015",
+      "name": "六極 サルーエル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 9500,
+      "race": "エンジェル・コマンド/侵略者",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーまたは自分の他のコスト９以下のクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd28-015",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g251EntryDraw": {
+        "selfAlways": true,
+        "filter": {
+          "creature": true,
+          "max": 9
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "tap": true,
+            "title": "タップする相手のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-1047",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm17-016",
+      "name": "轟撃兵フレンディオス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 1000,
+      "race": "アーマロイド",
+      "text": "バトルゾーンに他のクリーチャーが出た時、そのターンの終わりまで、このクリーチャーのパワーは+5000され、「W・ブレイカー」を得る。(「W・ブレイカー」を得たクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-016",
+      "limit": 4,
+      "g314OtherEntry": {
+        "who": "both",
+        "defs": [
+          {
+            "op": "SelfBoost313",
+            "power": 5000,
+            "breaker": 2,
+            "g536Source": true,
+            "g633DoubleBreaker": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1047",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1046,
+    "phase": 1047,
     "checkedAt": "2026-11-13",
-    "baseCount": 7088,
-    "newEffectCards": 4,
+    "baseCount": 7092,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7092,
+    "totalCount": 7095,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -229449,6 +229552,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7088,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1046,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7088,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7092,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

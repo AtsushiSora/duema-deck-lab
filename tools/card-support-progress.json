@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7092,
-  "pendingNames": 4735,
-  "phase": 1046,
-  "added": 4,
+  "supportedNames": 7095,
+  "pendingNames": 4732,
+  "phase": 1047,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2716,
+    "クリーチャー": 2713,
     "NEOクリーチャー": 152,
     "呪文": 610,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3294,
+    "未対応の能力文": 3291,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -205470,13 +205470,95 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1047,
+      "baseCommit": "aa8c4f6a",
+      "cards": [
+        {
+          "id": "dmr20-040",
+          "name": "巨鯨目 クジゴジラ"
+        },
+        {
+          "id": "dmd28-015",
+          "name": "六極 サルーエル"
+        },
+        {
+          "id": "dm17-016",
+          "name": "轟撃兵フレンディオス"
+        }
+      ],
+      "printAliases": [],
+      "supportedNames": 7095,
+      "pendingNames": 4732,
+      "verification": {
+        "focusedPassed": 8,
+        "regressionPassed": 207,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 3,
+        "scope": "能力全文、基本情報、マナ数、画像、単一収録、現行殿堂レギュレーションを公式資料で照合。クジゴジラは自身の登場と自軍のパワー6000以上の登場、継続効果の適用後のパワー、任意選択とマナ追加の置換を確認。サルーエルは自身とコスト9以下の自軍の登場、コスト10の除外、相手の選択保護、タップ済みの選択、ブロッカー、相手ターンの自軍S・トリガー登場、選択途中の保存復元を確認。フレンディオスは自身と非クリーチャーの除外、自軍と相手の登場による累積、W・ブレイカーの重複時も2つのブレイク、ターン終了時の失効を確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/41988/",
+          "https://dm.takaratomy.co.jp/rule/qa/33524/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37162/",
+          "https://dm.takaratomy.co.jp/rule/qa/44825/"
+        ],
+        "regressionFiles": [
+          "tests/standard218-effects.test.mjs",
+          "tests/standard251-effects.test.mjs",
+          "tests/standard314-effects.test.mjs",
+          "tests/standard633-effects.test.mjs",
+          "tests/standard1046-effects.test.mjs"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。",
+        "logs": {
+          "official": "/tmp/duema-phase-1047.e2Ci4DaV/official.log",
+          "focused": "/tmp/duema-phase-1047.e2Ci4DaV/focus.log",
+          "regression": "/tmp/duema-phase-1047.e2Ci4DaV/regression.log",
+          "check": "/tmp/duema-phase-1047.e2Ci4DaV/check.log",
+          "audit": "/tmp/duema-phase-1047.e2Ci4DaV/audit.log",
+          "officialImages": "/tmp/duema-phase-1047.e2Ci4DaV/sources.log",
+          "imageIndex": "/tmp/duema-phase-1047.e2Ci4DaV/images.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dmex05-004",
+          "name": "音奏 リコピン",
+          "reason": "公式能力全文・基本情報・画像・単一収録を確認。現行の対戦では超GRを扱えないため、登場時にGR召喚し、そのクリーチャーの登場でドローが誘発する処理を実装・検証できるまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmex05-004",
+            "https://dm.takaratomy.co.jp/rule/qa/31902/",
+            "https://dm.takaratomy.co.jp/rule/qa/31914/"
+          ]
+        },
+        {
+          "id": "dmrp09-033",
+          "name": "音奏 スチルパ",
+          "reason": "DMRP-09の公式能力全文・基本情報・画像とDMEX-05再録の存在を確認。超GRからの召喚と、それによる追加のタップ誘発を検証できるまで保留。再録版の個別ID・画像の照合も残る。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-033",
+            "https://dm.takaratomy.co.jp/product/dmex05/",
+            "https://dm.takaratomy.co.jp/rule/qa/31902/"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1046,
-    "nextPhase": 1047,
+    "lastVerifiedPhase": 1047,
+    "nextPhase": 1048,
     "workInProgress": [],
     "nextCandidates": [
+      {
+        "id": "dmex12-024",
+        "name": "錦糸王子 テンセル",
+        "reason": "次回候補。公式本文・画像・再録と、各ターン最初の自軍の他のクリーチャーの登場、タップとアンタップの選択を照合する。"
+      },
       {
         "id": "dm24rp4-065",
         "name": "カンテ＝ランタン",
@@ -205516,6 +205598,16 @@
         "id": "dmr18-008",
         "name": "メガ・タイマン・ドラゴン",
         "reason": "公式能力全文・基本情報・画像・単一収録を確認。バトル中の強化に加え、攻撃開始から終了まで、S・トリガー召喚と効果による登場を含む相手のクリーチャー登場を止める必要があり、既存の攻撃中の宣言禁止と登場制限を照合するまで保留。"
+      },
+      {
+        "id": "dmex05-004",
+        "name": "音奏 リコピン",
+        "reason": "公式能力全文・基本情報・画像・単一収録を確認。現行の対戦では超GRを扱えないため、登場時にGR召喚し、そのクリーチャーの登場でドローが誘発する処理を実装・検証できるまで保留。"
+      },
+      {
+        "id": "dmrp09-033",
+        "name": "音奏 スチルパ",
+        "reason": "DMRP-09の公式能力全文・基本情報・画像とDMEX-05再録の存在を確認。超GRからの召喚と、それによる追加のタップ誘発を検証できるまで保留。再録版の個別ID・画像の照合も残る。"
       }
     ],
     "steps": [

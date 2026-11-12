@@ -2467,6 +2467,23 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1047&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const double='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)';
+  const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+  if(f.name==='巨鯨目 クジゴジラ'&&f.civilizationText==='自然'&&f.cost===6&&text===double+
+   'このクリーチャーまたは自分の他のパワー6000以上のクリーチャーがバトルゾーンに出た時自分の山札の上から1枚目をマナゾーンに置いてもよい。')
+   return {breaker:2,g251EntryDraw:{selfAlways:true,filter:{creature:true,minPower:6000,g199Power:true},
+    defs:[{op:'Offer',title:'山札の上から1枚をマナに置く？',defs:[{op:'Ramp',n:1}]}]}};
+  if(f.name==='六極 サルーエル'&&f.civilizationText==='光'&&f.cost===9&&text===blocker+double+
+   'このクリーチャーまたは自分の他のコスト9以下のクリーチャーがバトルゾーンに出た時相手のクリーチャーを1体選びタップする。')
+   return {blocker:true,breaker:2,g251EntryDraw:{selfAlways:true,filter:{creature:true,max:9},
+    defs:[{op:'Target',tap:true,title:'タップする相手のクリーチャーを選ぶ'}]}};
+  if(f.name==='轟撃兵フレンディオス'&&f.civilizationText==='火'&&f.cost===5&&text===
+   'バトルゾーンに他のクリーチャーが出た時そのターンの終わりまでこのクリーチャーのパワーは+5000され「W・ブレイカー」を得る。'+
+   '(「W・ブレイカー」を得たクリーチャーはシールドを2枚ブレイクする)')
+   return {g314OtherEntry:{who:'both',defs:[{op:'SelfBoost313',power:5000,breaker:2,g536Source:true,g633DoubleBreaker:true}]}};
+ }
  if(phase>=1046&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const boost=power=>({op:'SelfBoost313',power,g536Source:true});
