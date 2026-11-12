@@ -2768,6 +2768,21 @@ export function createSixPhotoRules(api){
   ]);
   break;
  }
+ case'g34_CrestDeploy1030':{
+  const candidates=list(s,{...t,origin:'hand',deploy:true,filter:{creature:true,color:'光',max:5}});
+  if(!candidates.length){api.draw(s,t.p,1);break;}
+  choice(s,t,'光のコスト5以下のクリーチャーを出すか、1枚引く',[
+   ...candidates.map(({x})=>opt(card(x).name+'を出す',x.uid,12+cost(card(x)),x.cardId)),
+   opt('カードを1枚引く',null,8)
+  ]);
+  break;
+ }
+ case'g34_CrestDeployResult1030':{
+  // An entry replacement leaves the physical card's battlefield incarnation unchanged.
+  const placed=api.physicalCards(s).find(x=>x.uid===t.target);
+  if((placed?.incarnation||0)===t.beforeEntry)api.draw(s,t.p,1);
+  break;
+ }
  case'g34_ShieldHand':put(s,{...t,op:'g55_ShieldHand'});break;
  case'g34_HandShield657':
   if(own.hand.length&&api.canAddShield(s,t.p))choice(s,t,'シールド化する手札を1枚選ぶ（任意）',[
@@ -4244,6 +4259,13 @@ export function createSixPhotoRules(api){
    put(s,{...t,selected:[...(t.selected||[]),v.uid],rows:[...(t.rows||[]),v]});
   }else finishSelect(s,t);
   break;
+ case'g34_CrestDeploy1030':{
+  const target=own.hand.find(x=>x.uid===v);
+  if(!target){api.draw(s,t.p,1);break;}
+  put(s,{...t,op:'g34_Put',origin:'hand',target:target.uid},
+   {...t,op:'g34_CrestDeployResult1030',target:target.uid,beforeEntry:target.incarnation||0});
+  break;
+ }
  case'g34_Put':doPut(s,t,v);break;
  case'g34_Marianna728':put(s,{...t,op:'g34_Order',rest:'shuffle',after:v?[{op:'MariannaCast728',selected:v}]:null});break;
  case'g34_MariannaCast728':if(v)cast(s,t.p,t.selected.uid,true,null,t.selected.face,null,'deck','光器マリアンナの能力');break;

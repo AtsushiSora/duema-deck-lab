@@ -7,6 +7,9 @@ export function createShieldPhotoRules(api){
  const shieldGoCount=(s,p)=>up(s,p).filter(x=>card(x).shieldGo).length;
  const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g33_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
  const shieldEffect=(p,x,defs)=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Sequence',p,x.cardId,{defs})});
+ const crestEffect=(p,x,defs)=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',
+  task:task('g33_Crest1030',p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0,defs})});
+ const activeCrest=(s,c)=>!api.spellIgnored(s,c);
  const momoKey=x=>x.uid+'@'+(x.incarnation||0),momos=(s,p)=>s.players[p].battle.filter(x=>card(x).g41Momo&&!api.ignored(s,x)&&api.isCreature(s,x)&&s.g41MomoUsed?.[momoKey(x)]!==s.turn);
  const replaceable=(s,pending,to)=>!pending.options.virtualArgs||api.canReplaceExecution(s,pending.p,pending.options.virtualArgs[0],to);
  const pool=(s,t)=>(t.ids||[]).map(uid=>s.players[t.p].deck.find(x=>x.uid===uid)).filter(Boolean);
@@ -33,6 +36,12 @@ export function createShieldPhotoRules(api){
  }
  function take(s,t,uid,to){if(to==='shields'&&!api.canAddShield(s,t.p)){release(s,t.p,uid);return null;}const x=remove(s.players[t.p].deck,uid);release(s,t.p,uid);if(x){if(to==='shields')addFace(s,t.p,x,true);else{clear(x,to);api.addZone(s,t.p,to,x);}}return x;}
  function run(s,t){if(!t.op.startsWith('g33_'))return false;const own=s.players[t.p],opp=s.players[1-t.p];switch(t.op){
+ case'g33_Crest1030':{
+  // The face-up condition is checked when the pending ability resolves (rule 603.4).
+  const source=up(s,t.p).find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);
+  if(source&&activeCrest(s,card(source)))put(s,{...t,op:'g34_Sequence'});
+  break;
+ }
  case'g33_FaceTop':{
   const placed=faceTop(s,t.p);
   if(placed&&t.g654MovedFilter)put(s,{...t,op:'g34_OnShieldMove654',placed:placed.uid});
@@ -92,9 +101,14 @@ export function createShieldPhotoRules(api){
  execution(s,p){
   for(const shield of up(s,p))if(card(shield).g668ShieldExecutionDraw)api.enqueue(s,p,shieldEffect(p,shield,[{op:'Draw',n:1,optional:true}]));
  },
- enemyPower(s,x){
+ powerModifier(s,x){
   const p=s.players.findIndex(owner=>owner.battle.some(y=>y.uid===x.uid));
-  return p<0?0:up(s,1-p).reduce((power,shield)=>power+(card(shield).g668ShieldEnemyPower||0),0);
+  if(p<0)return 0;
+  const allyPower=up(s,p).reduce((power,shield)=>{
+   const c=card(shield);
+   return power+(c.g1030ShieldAllyPower&&activeCrest(s,c)?c.g1030ShieldAllyPower:0);
+  },0);
+  return allyPower+up(s,1-p).reduce((power,shield)=>power+(card(shield).g668ShieldEnemyPower||0),0);
  },
  effect(s,p,c,uid){const effects={shieldFaceTop:'FaceTop',shieldDogi:'Dogi',shieldResolve:'Resolve',shieldBounce:'Bounce',shieldMirror:'Mirror',shieldMirrorSpell:'Mirror',shieldD4:'D4',shieldParfe:'Parfe',shieldDeka:'Deka'};if(!effects[c.effect])return false;put(s,task('g33_'+effects[c.effect],p,c.id,{uid,optional:c.effect==='shieldMirror'}));return true;},
  discount(s,p,c){return c.type==='creature'&&up(s,p).length?c.g33FaceDiscount||0:0;},
@@ -132,6 +146,8 @@ export function createShieldPhotoRules(api){
   for(const shield of up(s,p)){
    const defs=card(shield).g662ShieldAttack;
    if(defs)api.enqueue(s,p,shieldEffect(p,shield,defs));
+   const crest=card(shield);
+   if(crest.g1030ShieldAttack&&activeCrest(s,crest))api.enqueue(s,p,crestEffect(p,shield,crest.g1030ShieldAttack));
   }
   if(api.selfStopped(s,p))return;const c=effective(x,s);if(c.g33Hikari)on(s,p,x,'Hikari');if(c.g33Golgini)on(s,p,x,'Draw2');},
  snapshot(s){return[0,1].flatMap(p=>creatures(s,p).filter(x=>effective(x,s).g33Deka).map(x=>({p,uid:x.uid,source:x.cardId})));},
@@ -144,6 +160,15 @@ export function createShieldPhotoRules(api){
   return defs?[shieldEffect(p,x,defs)]:[];
  });},
  handMana(s,p,x){if(card(x).g33ChargeReveal)on(s,p,x,'Charge',{serial:x.zoneSerial||0});},
- end(s){return[0,1].flatMap(p=>castles(s,p,'g33Mai').map(x=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g33_UntapArmored',p,x.cardId)})));},
+ end(s){
+  const out=[0,1].flatMap(p=>castles(s,p,'g33Mai').map(x=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g33_UntapArmored',p,x.cardId)})));
+  if(s.g481Attackers?.turn===s.turn&&s.g481Attackers.events.length)return out;
+  const p=1-s.active;
+  for(const shield of up(s,p)){
+   const crest=card(shield);
+   if(crest.g1030ShieldQuietEnd&&activeCrest(s,crest))out.push(crestEffect(p,shield,crest.g1030ShieldQuietEnd));
+  }
+  return out;
+ },
  };
 }

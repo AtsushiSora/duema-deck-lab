@@ -2467,6 +2467,20 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1030&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'&&
+  f.civilizationText==='光'&&f.race==='裁きの紋章'){
+  const base={effect:'sixPhoto',g1027Crest:true},text=normalize(f.abilityText);
+  const finish='この呪文を自分の手札から唱えた後墓地に置くかわりに自分のシールド1つの上に表向きにして置く。(そのシールドの束は1つと数える)';
+  if(f.name==='裁キノ聖堂 ラ・ファミリエ'&&f.cost===5&&['バトルゾーンに',''].some(zone=>
+   text===finish+'自分のクリーチャーが攻撃する時このカードが自分のシールドゾーンで表向きなら光のコスト5以下のクリーチャーを1体自分の手札から'+zone+'出してもよい。そうしなければカードを1枚引く。'))
+   return {...base,g1030ShieldAttack:[{op:'CrestDeploy1030'}]};
+  if(f.name==='裁キノ聖堂 ル・キャッソー'&&f.cost===3&&text===finish+
+   '相手のターンの終わりにこのカードが自分のシールドゾーンに表向きでありこのターンクリーチャーが攻撃していなければ自分の山札の上から1枚目を裏向きにして新しいシールドとして自分のシールドゾーンに置いてもよい。')
+   return {...base,g1030ShieldQuietEnd:[{op:'Offer',title:'山札の上から1枚を新しいシールドに置く？',defs:[{op:'ShieldTop',n:1}]}]};
+  if(f.name==='裁キノ聖堂 レ・リョーカク'&&f.cost===2&&text===finish+
+   'このカードが自分のシールドゾーンに表向きであれば自分のクリーチャーすべてのパワーを+3000する。')
+   return {...base,g1030ShieldAllyPower:3000};
+ }
  if(phase>=1029&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'&&f.race==='裁きの紋章'){
   const text=normalize(f.abilityText),base={effect:'sixPhoto',g1027Crest:true};
   const finish='この呪文を自分の手札から唱えた後墓地に置くかわりに自分のシールド1つの上に表向きにして置く。(そのシールドの束は1つと数える)';

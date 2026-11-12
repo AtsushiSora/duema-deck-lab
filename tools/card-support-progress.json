@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7029,
-  "pendingNames": 4798,
-  "phase": 1029,
+  "supportedNames": 7032,
+  "pendingNames": 4795,
+  "phase": 1030,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -156,7 +156,7 @@
   "pendingByType": {
     "クリーチャー": 2761,
     "NEOクリーチャー": 152,
-    "呪文": 627,
+    "呪文": 624,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 57,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1212,
-    "未対応の能力文": 3350,
+    "未対応の能力文": 3347,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -203875,27 +203875,131 @@
           "reason": "初版とプロモ版を確認。対象2体までとそれぞれの置き先を確定し、同じシールドを指定できること、進化元を含む同時移動、離脱置換が競合する場合を検証するため保留。既存の単一カードをシールドに重ねる処理は進化クリーチャー全体の移動に使えない。"
         }
       ]
+    },
+    {
+      "phase": 1030,
+      "baseCommit": "b0a2373f",
+      "cards": [
+        {
+          "id": "dmrp08-015",
+          "name": "裁キノ聖堂 ラ・ファミリエ"
+        },
+        {
+          "id": "dmrp08-033",
+          "name": "裁キノ聖堂 ル・キャッソー"
+        },
+        {
+          "id": "dmrp08-065",
+          "name": "裁キノ聖堂 レ・リョーカク"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm22rp1-TF8",
+          "canonicalId": "dmrp08-015",
+          "name": "裁キノ聖堂 ラ・ファミリエ"
+        },
+        {
+          "id": "dm22rp2-T5",
+          "canonicalId": "dmrp08-015",
+          "name": "裁キノ聖堂 ラ・ファミリエ"
+        },
+        {
+          "id": "dm22rp2x-TF5",
+          "canonicalId": "dmrp08-015",
+          "name": "裁キノ聖堂 ラ・ファミリエ"
+        }
+      ],
+      "supportedNames": 7032,
+      "pendingNames": 4795,
+      "verification": {
+        "focusedPassed": 14,
+        "regressionPassed": 102,
+        "regressionFailed": 0,
+        "regressionExcluded": 2,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 6,
+        "scope": "公式本文・基本情報・画像・殿堂制限を3種類と再録3版で照合。手札から唱えた際の自己置換、ラ・ファミリエの攻撃誘発と光コスト5以下の任意登場、登場を選ばない場合と着地置換時のドロー、解決時の表向き条件、ル・キャッソーの攻撃がなかった相手ターン終了時の任意シールド追加、レ・リョーカクの重複する継続パワー修整と表裏・能力無視による解除を確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/44186/"
+        ],
+        "regressionFiles": [
+          "tests/standard1027-effects.test.mjs",
+          "tests/standard1028-effects.test.mjs",
+          "tests/standard1029-effects.test.mjs",
+          "tests/standard662-effects.test.mjs",
+          "tests/standard668-effects.test.mjs",
+          "tests/standard669-effects.test.mjs",
+          "tests/standard841-effects.test.mjs",
+          "tests/shield-photo.test.mjs（対戦シミュレーション以外の28件）"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件は引き続き未確認。関連回帰のファイル全体は75秒で中断し、長時間対戦2件を除く28件を個別実行して通過。以下の対戦2件は今回の合否未確認。",
+        "unfinishedTests": [
+          {
+            "path": "tests/shield-photo.test.mjs",
+            "title": "screenshot simulations conserve80 unique cards and complete with serializable decisions",
+            "reason": "ファイル全体が75秒で中断し、個別の完了結果なし。",
+            "log": "/tmp/duema-phase-1030.XOgFh2RV/shield-regression.log"
+          },
+          {
+            "path": "tests/shield-photo.test.mjs",
+            "title": "all31 configured opponents finish against the new screenshot deck, conserving physical cards",
+            "reason": "ファイル全体が75秒で中断し、個別の完了結果なし。",
+            "log": "/tmp/duema-phase-1030.XOgFh2RV/shield-regression.log"
+          }
+        ],
+        "logs": {
+          "official": "/tmp/duema-phase-1030.XOgFh2RV/official.log",
+          "focused": "/tmp/duema-phase-1030.XOgFh2RV/focused-final.log",
+          "regression": "/tmp/duema-phase-1030.XOgFh2RV/regression.log",
+          "shield": "/tmp/duema-phase-1030.XOgFh2RV/shield-targeted.log",
+          "check": "/tmp/duema-phase-1030.XOgFh2RV/check.log",
+          "audit": "/tmp/duema-phase-1030.XOgFh2RV/audit.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dmex19-025",
+          "name": "正義ノ裁キ",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-025",
+          "reason": "呪文禁止を無視する条件と、シールドが同時に離れる際にS・トリガーとサバキZで異なる判定を整理してから対応する。"
+        },
+        {
+          "id": "dm25ex2-070",
+          "name": "聖霊王ノ裁キ",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-070",
+          "reason": "進化元を含む一括シールド化と離脱置換後に実際に置かれたカード枚数の参照を検証するため保留。"
+        },
+        {
+          "id": "dmrp07-064",
+          "name": "天樹ノ正裁Z",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-064",
+          "reason": "サバキZの宣言と解決、発生源および捨てるカードの条件をまとめて検証するため保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1029,
-    "nextPhase": 1030,
+    "lastVerifiedPhase": 1030,
+    "nextPhase": 1031,
     "workInProgress": [],
     "nextCandidates": [
       {
         "id": "dmex19-025",
         "name": "正義ノ裁キ",
-        "reason": "表向きのシールドにある間の紋章への呪文ロック無視と離脱時の判定を公式QAで照合する。"
+        "reason": "呪文禁止を無視する条件と、シールドが同時に離れる際にS・トリガーとサバキZで異なる判定を整理してから対応する。"
       },
       {
         "id": "dm25ex2-070",
         "name": "聖霊王ノ裁キ",
-        "reason": "一括シールド化と実際に置かれた物理カード枚数の参照を検証する。"
+        "reason": "進化元を含む一括シールド化と離脱置換後に実際に置かれたカード枚数の参照を検証するため保留。"
       },
       {
         "id": "dmrp07-064",
         "name": "天樹ノ正裁Z",
-        "reason": "サバキZの宣言順・発生源と捨てるカードの条件を公式裁定で確認する。"
+        "reason": "サバキZの宣言と解決、発生源および捨てるカードの条件をまとめて検証するため保留。"
       },
       {
         "id": "dmrp04s-002",
