@@ -1,0 +1,351 @@
+{
+  "phase": 1066,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7155,
+  "description": "攻撃時の山札確認と任意登場、非進化クリーチャーの破壊、登場ターンのパワー修整とブレイカー選択を公式6版で照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/31529/",
+    "https://dm.takaratomy.co.jp/rule/qa/31530/",
+    "https://dm.takaratomy.co.jp/rule/qa/43486/",
+    "https://dm.takaratomy.co.jp/rule/qa/44837/",
+    "https://dm.takaratomy.co.jp/rule/qa/45070/",
+    "https://dm.takaratomy.co.jp/rule/qa/33217/",
+    "https://dm.takaratomy.co.jp/rule/qa/40928/",
+    "https://dm.takaratomy.co.jp/rule/qa/40929/",
+    "https://dm.takaratomy.co.jp/rule/qa/41077/",
+    "https://dm.takaratomy.co.jp/rule/qa/46522/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp06-012",
+      "name": "奇石 シダース",
+      "faces": [
+        {
+          "name": "奇石 シダース",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：自分の光のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を見る。その中からコスト４以下のクリーチャーを１体、バトルゾーンに出してもよい。残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "メタリカ",
+          "powerText": "6500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-012",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-012.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "LookDeploy530",
+            "n": 3,
+            "limit": 1,
+            "rest": "bottom",
+            "g841DeckPeek": true,
+            "filter": {
+              "creature": true,
+              "max": 4
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "8cad18d508fcd98a6e739fa2c9ef3f40c2662d58ffb604dfc1e2ecf70a94d766",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-020",
+      "name": "凶鬼63号 ジュトク",
+      "faces": [
+        {
+          "name": "凶鬼63号 ジュトク",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "NEO進化：自分の闇のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、自分の進化ではないクリーチャーを１体破壊する。",
+          "race": "マフィ・ギャング",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-020",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-020.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "to": "grave",
+            "filter": {
+              "nonEvolution": true
+            },
+            "title": "破壊する自分の進化ではないクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "fb39e4fc18cc4bbe6007cdf70091315ee42ae36991a0525821d39ac3bc9fd5a4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp07-049",
+      "name": "大神秘の超人",
+      "faces": [
+        {
+          "name": "大神秘の超人",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：自分の自然のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、そのターン、このクリーチャーのパワーを+12000し、「Q・ブレイカー」を与える。（「Q・ブレイカー」を持つクリーチャーはシールドを４つブレイクする）",
+          "race": "ジャイアント/サムライ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-049",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-049.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SelfBoost313",
+            "power": 12000,
+            "breaker": 4,
+            "g536Source": true,
+            "g633DoubleBreaker": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "a1dd6669d91e6b62c6feea9d5d625a6f766e3cbcad963c868b65d3ebf4d7d83d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex08-115",
+      "name": "ギガントウサギロボ・フューチャーX",
+      "faces": [
+        {
+          "name": "ギガントウサギロボ・フューチャーX",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光/水/闇/火/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "闇",
+            "火",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "NEO進化：自分のクリーチャー１体の上に置いてもよい。\nT・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を見る。その中から、好きな枚数のNEOクリーチャーをバトルゾーンに出し、残りを好きな順序で山札の一番下に置く。",
+          "race": "トリニティ・コマンド",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-115",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-115.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "creature": true
+            }
+          ]
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "LookDeploy530",
+            "n": 3,
+            "limit": "all",
+            "rest": "bottom",
+            "g841DeckPeek": true,
+            "filter": {
+              "creature": true,
+              "g556Neo": true
+            }
+          }
+        ],
+        "manaValue": 0
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "0f7d8a1152157c531786f8246d9ce04f9420650594e2e27e296a772879c2fec2",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex18-015",
+      "name": "ギガントウサギロボ・フューチャーX",
+      "faces": [
+        {
+          "name": "ギガントウサギロボ・フューチャーX",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光/水/闇/火/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "闇",
+            "火",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "NEO進化：自分のクリーチャー１体の上に置いてもよい。\nT・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を見る。その中から、好きな枚数のNEOクリーチャーを出し、残りを好きな順序で山札の下に置く。",
+          "race": "トリニティ・コマンド",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-015",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-015.jpg",
+      "canonicalId": "dmex08-115",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "creature": true
+            }
+          ]
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "LookDeploy530",
+            "n": 3,
+            "limit": "all",
+            "rest": "bottom",
+            "g841DeckPeek": true,
+            "filter": {
+              "creature": true,
+              "g556Neo": true
+            }
+          }
+        ],
+        "manaValue": 0
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "85d1b7757f5f9b51637acea453f6117a7606404e41570706264712c6a48cb1fd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex1-035",
+      "name": "ギガントウサギロボ・フューチャーX",
+      "faces": [
+        {
+          "name": "ギガントウサギロボ・フューチャーX",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光/水/闇/火/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "闇",
+            "火",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "NEO進化：クリーチャー１体の上に置いてもよい。\nT・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を見る。その中から、好きな数のNEOクリーチャーを出し、残りを好きな順序で山札の下に置く。",
+          "race": "トリニティ・コマンド",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-035",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex1-035.jpg",
+      "canonicalId": "dmex08-115",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "creature": true
+            }
+          ]
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "LookDeploy530",
+            "n": 3,
+            "limit": "all",
+            "rest": "bottom",
+            "g841DeckPeek": true,
+            "filter": {
+              "creature": true,
+              "g556Neo": true
+            }
+          }
+        ],
+        "manaValue": 0
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "7f354c4d55ccdafdaa24559f1f4e751296072118e972133073c1cdb1565f6c73",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp06-012": 4,
+      "dmrp02-020": 4,
+      "dmrp07-049": 4,
+      "dmex08-115": 4,
+      "dmex18-015": 4,
+      "dm25ex1-035": 4
+    }
+  }
+}

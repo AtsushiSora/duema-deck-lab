@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7155,
-  "pendingNames": 4672,
-  "phase": 1065,
-  "added": 3,
+  "supportedNames": 7159,
+  "pendingNames": 4668,
+  "phase": 1066,
+  "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -155,7 +155,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 2700,
-    "NEOクリーチャー": 113,
+    "NEOクリーチャー": 109,
     "呪文": 605,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3235,
+    "未対応の能力文": 3231,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -207305,27 +207305,153 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1066,
+      "baseCommit": "63628780",
+      "cards": [
+        {
+          "id": "dmrp06-012",
+          "name": "奇石 シダース"
+        },
+        {
+          "id": "dmrp02-020",
+          "name": "凶鬼63号 ジュトク"
+        },
+        {
+          "id": "dmrp07-049",
+          "name": "大神秘の超人"
+        },
+        {
+          "id": "dmex08-115",
+          "name": "ギガントウサギロボ・フューチャーX"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dmex18-015",
+          "canonicalId": "dmex08-115"
+        },
+        {
+          "id": "dm25ex1-035",
+          "canonicalId": "dmex08-115"
+        }
+      ],
+      "supportedNames": 7159,
+      "pendingNames": 4668,
+      "verification": {
+        "focusedPassed": 10,
+        "regressionPassed": 235,
+        "regressionFailed": 0,
+        "check": "成功",
+        "officialPrints": 6,
+        "scope": "4種類6版の公式能力全文、基本情報、画像、マナ数、現行の使用制限と収録商品を照合。ギガントウサギロボの再録2版は元の対戦IDに紐づけた。シダースは山札上3枚の非公開確認、任意登場とコスト上限、残りの順序、攻撃継続、保存復帰を確認。ジュトクは自身を含む非進化の自軍に限る必須破壊と、対象不在時の攻撃継続を確認。大神秘の超人は登場時のパワー修整、W・Qの選択、ターン終了時の解除を確認。ギガントウサギロボは普通のクリーチャーを除外し、QA 33217どおり先に出したグラスパーに次を重ねられることとG-NEOのタップ登場を確認。既存7,155件の対戦定義とIDが一致。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/31529/",
+          "https://dm.takaratomy.co.jp/rule/qa/31530/",
+          "https://dm.takaratomy.co.jp/rule/qa/43486/",
+          "https://dm.takaratomy.co.jp/rule/qa/44837/",
+          "https://dm.takaratomy.co.jp/rule/qa/45070/",
+          "https://dm.takaratomy.co.jp/rule/qa/33217/",
+          "https://dm.takaratomy.co.jp/rule/qa/40928/",
+          "https://dm.takaratomy.co.jp/rule/qa/40929/",
+          "https://dm.takaratomy.co.jp/rule/qa/41077/",
+          "https://dm.takaratomy.co.jp/rule/qa/46522/"
+        ],
+        "regressionFiles": [
+          "tests/neo-ddd.test.mjs",
+          "tests/standard633-effects.test.mjs",
+          "tests/standard841-effects.test.mjs",
+          "tests/standard939-effects.test.mjs",
+          "tests/standard1058-effects.test.mjs",
+          "tests/standard1062-effects.test.mjs",
+          "tests/standard1063-effects.test.mjs",
+          "tests/standard1064-effects.test.mjs",
+          "tests/standard1065-effects.test.mjs",
+          "tests/standard530-effects.test.mjs",
+          "tests/standard749-effects.test.mjs",
+          "tests/standard798-effects.test.mjs"
+        ],
+        "regressionFilter": "主回帰 --test-skip-pattern=mixed NEO/DDD games|production worker|random manual|new-card games against every|simulation worker|legal forty CPU、山札処理 --test-skip-pattern=production worker|random manual|new-card games against every|simulation worker|legal forty CPU|randomized",
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。 トットロの公式QA 48925の組み合わせは関連2枚が未対応のため未実行。NEO/DDDの100試合と再現性は過去に分割検証済みで、今回の回帰では合否未確認。 ゴルギー31相手の再現性と本番Worker62試合は今回も対象外で未実行。前回の広範囲回帰に含まれる1,796件固定の既存テストの結果はPhase 1060を参照。 PhoenixのCPU連戦と本番Worker試験は、今回の個別回帰の対象外。 Phase 1064ではNEO/DDD 100試合とBandeの全対戦・ランダム操作・Workerの長時間ケースを個別回帰から除外。以前の長時間実行を繰り返さず、今回の合否は未確認。 Phase 1065の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1066の個別回帰でもNEO/DDD 100試合は対象外。",
+        "pendingInteractions": [
+          {
+            "cardIds": [
+              "dm25rp3-039",
+              "dm26rp2-006",
+              "dm25rp2-OR1"
+            ],
+            "test": "デンジャラス=トットロの上にメモッタで封印付きのジャシン＝ヴリドガルドが出る場合の墓地展開",
+            "status": "未実行",
+            "reason": "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/48925/"
+          }
+        ],
+        "logs": {
+          "official": "/tmp/duema-phase-1066.u2uFT0aA/manifest-final.log",
+          "officialImages": "/tmp/duema-phase-1066.u2uFT0aA/sources.log",
+          "rabbitSource": "/tmp/duema-phase-1066.u2uFT0aA/rabbit.log",
+          "reprints": "/tmp/duema-phase-1066.u2uFT0aA/prints.log",
+          "focused": "/tmp/duema-phase-1066.u2uFT0aA/specific-final.log",
+          "regression": "/tmp/duema-phase-1066.u2uFT0aA/related.log",
+          "lookRegression": "/tmp/duema-phase-1066.u2uFT0aA/related-look.log",
+          "check": "/tmp/duema-phase-1066.u2uFT0aA/check.log",
+          "audit": "/tmp/duema-phase-1066.u2uFT0aA/audit.log",
+          "count": "/tmp/duema-phase-1066.u2uFT0aA/count.log",
+          "imageIndex": "/tmp/duema-phase-1066.u2uFT0aA/images.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dmrp03-006",
+          "name": "ジャババ・ハット",
+          "reason": "公式本文・基本情報・画像・単一収録を確認。攻撃時に登録した自壊と、破壊以外でも墓地に置かれた時の再登場を、直前の進化状態と同じ物理カードの墓地滞在で判定する処理が残る。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-006"
+          ]
+        },
+        {
+          "id": "dmrp07-034",
+          "name": "頑固水産 ガンパチ",
+          "reason": "公式本文・基本情報・画像・単一収録を確認。ブロックされなくなる能力は既存処理で再現できるが、その攻撃中に自身が実際にブレイクしたかを、ブレイク置換や別のクリーチャーによるブレイクから区別する経路の確認が残る。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-034"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1065,
-    "nextPhase": 1066,
+    "lastVerifiedPhase": 1066,
+    "nextPhase": 1067,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dmrp06-012",
-        "name": "奇石 シダース",
-        "reason": "山札上3枚の非公開確認、コスト4以下の任意登場、残りの山札下順序を既存処理と照合する。"
+        "id": "dmrp01-s09",
+        "name": "ハイパー・マスティン",
+        "reason": "公式本文と再録を確認し、山札上の複数体登場とパワー3000以下の相手クリーチャーへの攻撃制限を照合する。"
       },
       {
-        "id": "dmrp02-020",
-        "name": "凶鬼63号 ジュトク",
-        "reason": "攻撃時の自軍の非進化クリーチャー破壊と、通常のNEOが対象になることを確認する。"
+        "id": "dm25rp2-033",
+        "name": "～時空の工兵～",
+        "reason": "ターン終了時の公開カードの追加と、破壊直前に下にあった物理カードすべての回収を確認する。"
       },
       {
-        "id": "dmrp07-049",
-        "name": "大神秘の超人",
-        "reason": "登場ターンのパワー修整と複数のブレイカーの選択を公式本文・再録と照合する。"
+        "id": "dmrp03-006",
+        "name": "ジャババ・ハット",
+        "reason": "公式本文・基本情報・画像・単一収録を確認。攻撃時に登録した自壊と、破壊以外でも墓地に置かれた時の再登場を、直前の進化状態と同じ物理カードの墓地滞在で判定する処理が残る。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-006"
+        ]
+      },
+      {
+        "id": "dmrp07-034",
+        "name": "頑固水産 ガンパチ",
+        "reason": "公式本文・基本情報・画像・単一収録を確認。ブロックされなくなる能力は既存処理で再現できるが、その攻撃中に自身が実際にブレイクしたかを、ブレイク置換や別のクリーチャーによるブレイクから区別する経路の確認が残る。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-034"
+        ]
       },
       {
         "id": "dm25rp2-014",
@@ -207550,7 +207676,7 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
-      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。山札を見て出す能力、攻撃時の非進化の判定、複数ブレイカーの扱いを既存処理と照合し、保留候補の確認事項は履歴を参照する。",
+      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。攻撃時の任意登場と攻撃制限、進化元にあったカードの墓地回収、攻撃中の実際のブレイクを確認する。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で登録再開。自動化 duema-deck-lab は10分間隔で稼働中。",

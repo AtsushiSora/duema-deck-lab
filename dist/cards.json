@@ -213347,15 +213347,170 @@
       },
       "supportBatch": "phase-1065",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-012",
+      "name": "奇石 シダース",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6500,
+      "race": "メタリカ",
+      "text": "NEO進化：自分の光のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を見る。その中からコスト４以下のクリーチャーを１体、バトルゾーンに出してもよい。残りを好きな順序で自分の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-012",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "LookDeploy530",
+          "n": 3,
+          "limit": 1,
+          "rest": "bottom",
+          "g841DeckPeek": true,
+          "filter": {
+            "creature": true,
+            "max": 4
+          }
+        }
+      ],
+      "supportBatch": "phase-1066",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp02-020",
+      "name": "凶鬼63号 ジュトク",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 6000,
+      "race": "マフィ・ギャング",
+      "text": "NEO進化：自分の闇のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、自分の進化ではないクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-020",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "to": "grave",
+          "filter": {
+            "nonEvolution": true
+          },
+          "title": "破壊する自分の進化ではないクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1066",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-049",
+      "name": "大神秘の超人",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ジャイアント/サムライ",
+      "text": "NEO進化：自分の自然のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、そのターン、このクリーチャーのパワーを+12000し、「Q・ブレイカー」を与える。（「Q・ブレイカー」を持つクリーチャーはシールドを４つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-049",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SelfBoost313",
+          "power": 12000,
+          "breaker": 4,
+          "g536Source": true,
+          "g633DoubleBreaker": true
+        }
+      ],
+      "supportBatch": "phase-1066",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex08-115",
+      "name": "ギガントウサギロボ・フューチャーX",
+      "civ": "光/水/闇/火/自然",
+      "civilizations": [
+        "光",
+        "水",
+        "闇",
+        "火",
+        "自然"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 5,
+      "power": 12000,
+      "race": "トリニティ・コマンド",
+      "text": "NEO進化：自分のクリーチャー１体の上に置いてもよい。\nT・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を見る。その中から、好きな枚数のNEOクリーチャーをバトルゾーンに出し、残りを好きな順序で山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-115",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "creature": true
+          }
+        ]
+      },
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "LookDeploy530",
+          "n": 3,
+          "limit": "all",
+          "rest": "bottom",
+          "g841DeckPeek": true,
+          "filter": {
+            "creature": true,
+            "g556Neo": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1066",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1065,
+    "phase": 1066,
     "checkedAt": "2026-11-13",
-    "baseCount": 7152,
-    "newEffectCards": 3,
+    "baseCount": 7155,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7155,
+    "totalCount": 7159,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -232424,6 +232579,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7152,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1065,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7152,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7155,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

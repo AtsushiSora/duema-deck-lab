@@ -9485,6 +9485,35 @@ export function standardCardSpec(d,{phase=165}={}){
    spec.g397Shinka=defs;
    continue;
   }
+  if(phase>=1066&&f.typeText==='NEOクリーチャー'){
+   if(line==='NEO進化:クリーチャー1体の上に置いてもよい。'){
+    if(spec.neoEvolution)throw Error('NEO進化条件の重複');
+    spec.neoEvolution={any:[{creature:true}]};
+    continue;
+   }
+
+   if(/^このクリーチャーが攻撃する時自分の山札の上から3枚を見る。その中から好きな(?:枚数|数)のNEOクリーチャーを(?:バトルゾーンに)?出し残りを好きな順序で山札の(?:一番)?下に置く。$/.test(line)){
+    (spec.g34Attack??=[]).push({op:'LookDeploy530',n:3,limit:'all',rest:'bottom',g841DeckPeek:true,
+     filter:{creature:true,g556Neo:true}});
+    continue;
+   }
+
+   if(line==='このクリーチャーが攻撃する時自分の山札の上から3枚を見る。その中からコスト4以下のクリーチャーを1体バトルゾーンに出してもよい。残りを好きな順序で自分の山札の一番下に置く。'){
+    (spec.g34Attack??=[]).push({op:'LookDeploy530',n:3,limit:1,rest:'bottom',g841DeckPeek:true,
+     filter:{creature:true,max:4}});
+    continue;
+   }
+   if(line==='このクリーチャーが攻撃する時自分の進化ではないクリーチャーを1体破壊する。'){
+    (spec.g34Attack??=[]).push({op:'Target',owner:'self',to:'grave',filter:{nonEvolution:true},
+     title:'破壊する自分の進化ではないクリーチャーを1体選ぶ'});
+    continue;
+   }
+   if(line==='このクリーチャーがバトルゾーンに出た時そのターンこのクリーチャーのパワーを+12000し「Q・ブレイカー」を与える。(「Q・ブレイカー」を持つクリーチャーはシールドを4つブレイクする)'){
+    if(entry.length||nativeEntry)throw Error('独立した誘発能力の順序対応が必要');
+    entry.push({op:'SelfBoost313',power:12000,breaker:4,g536Source:true,g633DoubleBreaker:true});
+    continue;
+   }
+  }
   if(phase>=1065&&f.typeText==='NEOクリーチャー'&&line==='このクリーチャーが出た時相手のクリーチャーを1体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。'){
    if(entry.length||nativeEntry)throw Error('独立した誘発能力の順序対応が必要');
    entry.push({op:'FightEnemy240',optional:true,g998EntryFight:true});
