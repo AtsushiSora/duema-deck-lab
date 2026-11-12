@@ -215350,15 +215350,107 @@
       },
       "supportBatch": "phase-1081",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm08-019",
+      "name": "カーボナイト・ビートル",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ジャイアント・インセクト",
+      "text": "ターボラッシュ(自分の他のクリーチャーがシールドをブレイクしたあと、そのターンが終わるまで、このクリーチャーは次の能力を得る)\nこのクリーチャーが相手プレイヤーを攻撃してブロックされたとき、相手のシールドが１枚でもあれば、そのうちの１枚をブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-019",
+      "limit": 4,
+      "g756TurboRush": "blockedBreak",
+      "supportBatch": "phase-1082",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex1-009",
+      "name": "龍后麗姫マーシャル・プリンセス",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "マジック・スプラッシュ・クイーン/ドラゴンの花嫁",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚をシールド化し、その後、自分のシールドを１つブレイクする。\n自分のスプラッシュ・クイーン・クリーチャーが出た時、次の自分のターンのはじめまで、そのクリーチャーは選ばれない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-009",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldTop",
+          "n": 2,
+          "g779Simultaneous": true
+        },
+        {
+          "op": "Break497",
+          "owner": "self",
+          "n": 1
+        }
+      ],
+      "g468EntryWatch": {
+        "mode": "protectAll",
+        "filter": {
+          "race": "スプラッシュ・クイーン"
+        }
+      },
+      "supportBatch": "phase-1082",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm08-005",
+      "name": "幻想妖精カチュア",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 3000,
+      "race": "スノーフェアリー",
+      "text": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n自分の山札を見る。その中からドラゴンを１体選び、バトルゾーンに出してもよい。その後、山札をシャッフルする。そのドラゴンは「スピードアタッカー」を得る。このターンが終わるとき、そのドラゴンを自分の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-005",
+      "limit": 4,
+      "g736AttackInstead": true,
+      "g439Tap": [
+        {
+          "op": "LookDeploy530",
+          "g201Search": true,
+          "g841DeckPeek": true,
+          "limit": 1,
+          "rest": "shuffle",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "g1082Dragon": true
+        }
+      ],
+      "supportBatch": "phase-1082",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1081,
+    "phase": 1082,
     "checkedAt": "2026-11-13",
-    "baseCount": 7207,
+    "baseCount": 7210,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7210,
+    "totalCount": 7213,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -234619,6 +234711,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7207,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1081,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7207,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7210,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

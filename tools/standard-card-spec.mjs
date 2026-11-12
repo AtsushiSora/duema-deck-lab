@@ -6160,6 +6160,22 @@ export function standardCardSpec(d,{phase=165}={}){
    'このクリーチャーが攻撃する時バトルゾーンにあるクロスギアを1枚選び持ち主の墓地に置く。クロスギアがバトルゾーンから墓地に置かれた時カードを1枚引いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
    return {breaker:2,g34Attack:[{op:'Target',element:true,anyOwner:true,filter:{g201Gear:true},to:'grave',title:'墓地に置くクロスギアを1枚選ぶ'}],g933GearGraveDraw:true};
  }
+ if(phase>=1082&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(text==='ターボラッシュ(自分の他のクリーチャーがシールドをブレイクしたあとそのターンが終わるまでこのクリーチャーは次の能力を得る)このクリーチャーが相手プレイヤーを攻撃してブロックされたとき相手のシールドが1枚でもあればそのうちの1枚をブレイクする。')
+   return {g756TurboRush:'blockedBreak'};
+  const original='このクリーチャーで攻撃するかわりにタップして次の能力を使ってもよい。自分の山札を見る。その中からドラゴンを1体選びバトルゾーンに出してもよい。その後山札をシャッフルする。そのドラゴンは「スピードアタッカー」を得る。このターンが終わるときそのドラゴンを自分の墓地に置く。';
+  const reprint='このクリーチャーで攻撃するかわりにタップしてその{t}能力を使ってもよい。{t}自分の山札を見る。その中からドラゴン・クリーチャーを1体出してもよい。その後自分の山札をシャッフルする。そのドラゴンに「スピードアタッカー」を与える。このターンの終わりにそのドラゴンを破壊する。';
+  const olderReprint='このクリーチャーで攻撃するかわりにタップして次のt能力を使ってもよい。t自分の山札を見る。その中からドラゴンを1体出してもよい。その後山札をシャッフルする。そのドラゴンに「スピードアタッカー」を与える。このターンの終わりにそのドラゴンを破壊する。';
+  const dmc64='このクリーチャーで攻撃するかわりにタップして次の能力を使ってもよい。自分の山札を見る。その中からドラゴンを1体選びバトルゾーンに出してもよい。その後山札をシャッフルする。そのクリーチャーは「スピードアタッカー」を得る。このターンの終わりにそのクリーチャーを破壊する。';
+  if([original,reprint,olderReprint,dmc64].includes(text))
+   return {g736AttackInstead:true,g439Tap:[{op:'LookDeploy530',g201Search:true,g841DeckPeek:true,
+    limit:1,rest:'shuffle',filter:{creature:true,race:'ドラゴン'},g1082Dragon:true}]};
+  if(text==='ブロッカーブロッカーW・ブレイカーこのクリーチャーが出た時自分の山札の上から2枚をシールド化しその後自分のシールドを1つブレイクする。自分のスプラッシュ・クイーン・クリーチャーが出た時次の自分のターンのはじめまでそのクリーチャーは選ばれない。')
+   return {blocker:true,breaker:2,effect:'sixPhoto',g34Tasks:[
+    {op:'ShieldTop',n:2,g779Simultaneous:true},{op:'Break497',owner:'self',n:1}
+   ],g468EntryWatch:{mode:'protectAll',filter:{race:'スプラッシュ・クイーン'}}};
+ }
  if(phase>=1081&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const link=(name,side)=>'G・リンク《'+name+'》の'+side+'横(バトルゾーンに自分の指定ゴッドがあればこのカードをリンクしてもよい。リンクしたゴッドは各ゴッドの特性(パワーや能力)を持つ1体のクリーチャーとなる。バトルゾーンを離れる時はどちらか1枚を選ぶ)';

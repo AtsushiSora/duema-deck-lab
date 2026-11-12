@@ -1,0 +1,345 @@
+{
+  "phase": 1082,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7210,
+  "description": "登録済みカードの公式裁定を実カードで再現するため、必要なカードの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/35279/",
+    "https://dm.takaratomy.co.jp/rule/qa/45224/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35538/",
+    "https://dm.takaratomy.co.jp/rule/qa/42373/"
+  ],
+  "cards": [
+    {
+      "id": "dm08-019",
+      "name": "カーボナイト・ビートル",
+      "faces": [
+        {
+          "name": "カーボナイト・ビートル",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ターボラッシュ(自分の他のクリーチャーがシールドをブレイクしたあと、そのターンが終わるまで、このクリーチャーは次の能力を得る)\nこのクリーチャーが相手プレイヤーを攻撃してブロックされたとき、相手のシールドが１枚でもあれば、そのうちの１枚をブレイクする。",
+          "race": "ジャイアント・インセクト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-019",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm08-019.jpg",
+      "spec": {
+        "g756TurboRush": "blockedBreak"
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "a6c652647e44324b90e3bb6b175d827a1b9e6e2b64ba49426cabe19e3e8755db",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex1-009",
+      "name": "龍后麗姫マーシャル・プリンセス",
+      "faces": [
+        {
+          "name": "龍后麗姫マーシャル・プリンセス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚をシールド化し、その後、自分のシールドを１つブレイクする。\n自分のスプラッシュ・クイーン・クリーチャーが出た時、次の自分のターンのはじめまで、そのクリーチャーは選ばれない。",
+          "race": "マジック・スプラッシュ・クイーン/ドラゴンの花嫁",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex1-009.jpg",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 2,
+            "g779Simultaneous": true
+          },
+          {
+            "op": "Break497",
+            "owner": "self",
+            "n": 1
+          }
+        ],
+        "g468EntryWatch": {
+          "mode": "protectAll",
+          "filter": {
+            "race": "スプラッシュ・クイーン"
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "4c58f83480dbf843dc3ca82236fc3d051fcfc9c758f42fe9dd5e73afa64f2dc5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm08-005",
+      "name": "幻想妖精カチュア",
+      "faces": [
+        {
+          "name": "幻想妖精カチュア",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n自分の山札を見る。その中からドラゴンを１体選び、バトルゾーンに出してもよい。その後、山札をシャッフルする。そのドラゴンは「スピードアタッカー」を得る。このターンが終わるとき、そのドラゴンを自分の墓地に置く。",
+          "race": "スノーフェアリー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm08-005.jpg",
+      "spec": {
+        "g736AttackInstead": true,
+        "g439Tap": [
+          {
+            "op": "LookDeploy530",
+            "g201Search": true,
+            "g841DeckPeek": true,
+            "limit": 1,
+            "rest": "shuffle",
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "g1082Dragon": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "b135cd8369bc3b1938284bd7bf6a669bd586de43a3fb96d581c73f0c0d67610e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex1-Sec01",
+      "name": "龍后麗姫マーシャル・プリンセス",
+      "faces": [
+        {
+          "name": "龍后麗姫マーシャル・プリンセス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚をシールド化し、その後、自分のシールドを１つブレイクする。\n自分のスプラッシュ・クイーン・クリーチャーが出た時、次の自分のターンのはじめまで、そのクリーチャーは選ばれない。",
+          "race": "マジック・スプラッシュ・クイーン/ドラゴンの花嫁",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-Sec01",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex1-Sec01.jpg",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 2,
+            "g779Simultaneous": true
+          },
+          {
+            "op": "Break497",
+            "owner": "self",
+            "n": 1
+          }
+        ],
+        "g468EntryWatch": {
+          "mode": "protectAll",
+          "filter": {
+            "race": "スプラッシュ・クイーン"
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "35e01014c9f097bfeae04e6c18f22f7063faf2b44dfce435e7906f4ee5831084",
+        "facesMatched": true
+      },
+      "canonicalId": "dm24ex1-009"
+    },
+    {
+      "id": "dm26ex5-008",
+      "name": "幻想妖精カチュア",
+      "faces": [
+        {
+          "name": "幻想妖精カチュア",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップしてその{t} 能力を使ってもよい。\n{t} 自分の山札を見る。その中からドラゴン・クリーチャーを１体出してもよい。その後、自分の山札をシャッフルする。そのドラゴンに「スピードアタッカー」を与える。このターンの終わりに、そのドラゴンを破壊する。",
+          "race": "スノーフェアリー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-008",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-008.jpg",
+      "spec": {
+        "g736AttackInstead": true,
+        "g439Tap": [
+          {
+            "op": "LookDeploy530",
+            "g201Search": true,
+            "g841DeckPeek": true,
+            "limit": 1,
+            "rest": "shuffle",
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "g1082Dragon": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "9b36f0dbef04e7aff84e0740ea194814d01d52e001371368970ccb58dfeb139f",
+        "facesMatched": true
+      },
+      "canonicalId": "dm08-005"
+    },
+    {
+      "id": "dm22ex1-035",
+      "name": "幻想妖精カチュア",
+      "faces": [
+        {
+          "name": "幻想妖精カチュア",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の t 能力を使ってもよい。\nt 自分の山札を見る。その中からドラゴンを１体出してもよい。その後、山札をシャッフルする。そのドラゴンに「スピードアタッカー」を与える。このターンの終わりに、そのドラゴンを破壊する。",
+          "race": "スノーフェアリー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-035",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-035.jpg",
+      "spec": {
+        "g736AttackInstead": true,
+        "g439Tap": [
+          {
+            "op": "LookDeploy530",
+            "g201Search": true,
+            "g841DeckPeek": true,
+            "limit": 1,
+            "rest": "shuffle",
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "g1082Dragon": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "39e35a8bb0b13c3d727964cc757e1291a4b23c8c29f15fdba4eb1e76417b276b",
+        "facesMatched": true
+      },
+      "canonicalId": "dm08-005"
+    },
+    {
+      "id": "dmc64-015",
+      "name": "幻想妖精カチュア",
+      "faces": [
+        {
+          "name": "幻想妖精カチュア",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の 能力を使ってもよい。\n自分の山札を見る。その中からドラゴンを１体選び、バトルゾーンに出してもよい。その後、山札をシャッフルする。そのクリーチャーは「スピードアタッカー」を得る。このターンの終わりに、そのクリーチャーを破壊する。",
+          "race": "スノーフェアリー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc64-015",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc64-015.jpg",
+      "spec": {
+        "g736AttackInstead": true,
+        "g439Tap": [
+          {
+            "op": "LookDeploy530",
+            "g201Search": true,
+            "g841DeckPeek": true,
+            "limit": 1,
+            "rest": "shuffle",
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "g1082Dragon": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "408f7667b29266b25750d1bd1ac02dcd550716c429ea0c034dbdd603ec6d85bc",
+        "facesMatched": true
+      },
+      "canonicalId": "dm08-005"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm08-019": 4,
+      "dm24ex1-009": 4,
+      "dm08-005": 4,
+      "dm24ex1-Sec01": 4,
+      "dm26ex5-008": 4,
+      "dm22ex1-035": 4,
+      "dmc64-015": 4
+    }
+  }
+}

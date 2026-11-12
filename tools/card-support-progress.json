@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7210,
-  "pendingNames": 4617,
-  "phase": 1081,
+  "supportedNames": 7213,
+  "pendingNames": 4614,
+  "phase": 1082,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2687,
+    "クリーチャー": 2684,
     "NEOクリーチャー": 89,
     "呪文": 605,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1204,
-    "未対応の能力文": 3187,
+    "未対応の能力文": 3184,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -209390,6 +209390,75 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1082,
+      "baseCommit": "9ef9290a",
+      "scope": "公式裁定に必要なカードを追加",
+      "cards": [
+        {
+          "id": "dm08-019",
+          "name": "カーボナイト・ビートル",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-019"
+        },
+        {
+          "id": "dm24ex1-009",
+          "name": "龍后麗姫マーシャル・プリンセス",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-009"
+        },
+        {
+          "id": "dm08-005",
+          "name": "幻想妖精カチュア",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-005"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm24ex1-Sec01",
+          "canonicalId": "dm24ex1-009"
+        },
+        {
+          "id": "dm26ex5-008",
+          "canonicalId": "dm08-005"
+        },
+        {
+          "id": "dm22ex1-035",
+          "canonicalId": "dm08-005"
+        },
+        {
+          "id": "dmc64-015",
+          "canonicalId": "dm08-005"
+        }
+      ],
+      "supportedNames": 7213,
+      "pendingNames": 4614,
+      "verification": {
+        "focused": "tests/standard1082-effects.test.mjs",
+        "relatedRegressions": "88件合格",
+        "check": "成功",
+        "officialPrints": 7,
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/qa_old/35279/",
+          "https://dm.takaratomy.co.jp/rule/qa/45224/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35538/",
+          "https://dm.takaratomy.co.jp/rule/qa/42373/"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。未完了の公式裁定は検証記録に記載。"
+      },
+      "deferred": [
+        {
+          "test": "特攻秘宝カースガイ1体・2体と「解除」の置換後の攻撃",
+          "reason": "対戦用実データに相手側のカードまたは必要な能力の実装がない。登録済み側の既存固有テストは実行済み。"
+        },
+        {
+          "test": "至宝 オール・イエスと焔流トレーニング、神羅ドラグ・ムーンと竜装 ムシャ・レジェンド",
+          "reason": "対戦用実データに相手側のカードまたは必要な能力の実装がない。登録済み側の既存固有テストは実行済み。"
+        },
+        {
+          "test": "トットロの上にメモッタで封印付きのジャシン＝ヴリドガルドを置く",
+          "reason": "対戦用実データに相手側のカードまたは必要な能力の実装がない。登録済み側の既存固有テストは実行済み。"
+        }
+      ]
     }
   ],
   "resume": {
@@ -253033,9 +253102,9 @@
       "state": "completeWithBlockedInteractions",
       "automation": "duema-deck-lab PAUSED",
       "added": 0,
-      "supportedNames": 7210,
+      "supportedNames": 7213,
       "catalogueNames": 11827,
-      "pendingNames": 4617,
+      "pendingNames": 4614,
       "fullSuiteStatus": "中断・合否未確認",
       "priorAudit": "Phase 1020までの個別検証270件は既存の followUp を保持。以後61バッチの未完了記録とログを照合した。",
       "fixes": [
@@ -253607,8 +253676,16 @@
           ],
           "test": "獣達の挽歌とカーボナイト・ビートルによる独立した連続ブレイク",
           "path": "tests/standard947-effects.test.mjs",
-          "status": "blockedByUnsupportedCard",
-          "reason": "対戦用実データに相手側のカードまたは必要な能力の実装がない。登録済み側の既存固有テストは実行済み。"
+          "status": "passed",
+          "resolution": {
+            "phase": 1082,
+            "testFile": "tests/standard1082-effects.test.mjs",
+            "dependencyIds": [
+              "dm08-019",
+              "dm24ex1-009",
+              "dm08-005"
+            ]
+          }
         },
         {
           "phase": 1046,
@@ -253623,8 +253700,16 @@
           ],
           "test": "ヤップップの破壊2段とマーシャル・プリンセスの選択保護",
           "path": "tests/standard1046-effects.test.mjs",
-          "status": "blockedByUnsupportedCard",
-          "reason": "対戦用実データに相手側のカードまたは必要な能力の実装がない。登録済み側の既存固有テストは実行済み。"
+          "status": "passed",
+          "resolution": {
+            "phase": 1082,
+            "testFile": "tests/standard1082-effects.test.mjs",
+            "dependencyIds": [
+              "dm08-019",
+              "dm24ex1-009",
+              "dm08-005"
+            ]
+          }
         },
         {
           "phase": 1057,
@@ -253657,13 +253742,21 @@
           ],
           "test": "カチュア2体が出したゲキ・メツのG・リンクとターン終了時の破壊",
           "path": "tests/standard1081-effects.test.mjs",
-          "status": "blockedByUnsupportedCard",
-          "reason": "対戦用実データに相手側のカードまたは必要な能力の実装がない。登録済み側の既存固有テストは実行済み。"
+          "status": "passed",
+          "resolution": {
+            "phase": 1082,
+            "testFile": "tests/standard1082-effects.test.mjs",
+            "dependencyIds": [
+              "dm08-019",
+              "dm24ex1-009",
+              "dm08-005"
+            ]
+          }
         }
       ],
       "remaining": {
         "matrices": 0,
-        "officialInteractionGroups": 6
+        "officialInteractionGroups": 3
       },
       "notes": [
         "Workerは本番のdist/worker.jsを使用。対戦相手の元の並びと各ゲームのシード・先後を復元して分割し、未解決件数も照合した。元のテスト名に古い件数が含まれる場合は、実行件数をmatrixに記載した。",
