@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7178,
-  "pendingNames": 4649,
-  "phase": 1071,
-  "added": 3,
+  "supportedNames": 7183,
+  "pendingNames": 4644,
+  "phase": 1072,
+  "added": 5,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -162,7 +162,7 @@
     "タマシード": 57,
     "デュエルメイト呪文": 10,
     "S-MAX進化クリーチャー": 10,
-    "進化クリーチャー": 279,
+    "進化クリーチャー": 274,
     "スター進化クリーチャー": 68,
     "進化クリーチャー(超無限進化・Ω)": 1,
     "ギガ・オレガ・オーラ": 2,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3212,
+    "未対応の能力文": 3207,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -208049,27 +208049,193 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1072,
+      "baseCommit": "bfdb9e33",
+      "cards": [
+        {
+          "id": "dmx17-001",
+          "name": "聖霊龍王 アルカディアスD"
+        },
+        {
+          "id": "dmx24-002",
+          "name": "バジュラ・ザ・スター"
+        },
+        {
+          "id": "dmx04-s01",
+          "name": "悪魔神バロム・ハンター"
+        },
+        {
+          "id": "dm22ex1-121",
+          "name": "ドリドリ・コドリアン"
+        },
+        {
+          "id": "dmbd10-007",
+          "name": "不死 デッド55"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dmx24-Sec2",
+          "canonicalId": "dmx24-002"
+        }
+      ],
+      "supportedNames": 7183,
+      "pendingNames": 4644,
+      "verification": {
+        "focusedPassed": 8,
+        "regressionPassed": 253,
+        "regressionFailed": 0,
+        "check": "成功",
+        "officialPrints": 6,
+        "scope": "進化クリーチャー5種類6版の公式能力全文、基本情報、画像、印刷マナ数、使用制限、収録と既存IDを照合。バジュラの別版は同じ対戦IDに紐づけた。アルカディアスDは光のドラゴンを進化元とし、両者の光以外の呪文とS・トリガーを制限。バジュラは攻撃時に相手のマナを選ぶか辞退でき、裏向きのカードの情報を保護する。バロムは両陣営の非ハンターを破壊し、複数種族のハンターを残す。コドリアンはマナ進化し、破壊時に進化元ごとマナに置く。デッド55は墓地から闇の進化元を取り、登場時に山札の上2枚を墓地に置く。既存7,178件の対戦定義とIDが一致。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35047/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36674/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36397/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37368/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37394/",
+          "https://dm.takaratomy.co.jp/rule/qa/39675/",
+          "https://dm.takaratomy.co.jp/rule/qa/46848/"
+        ],
+        "regressionFiles": [
+          "tests/neo-ddd.test.mjs",
+          "tests/mana-payment.test.mjs",
+          "tests/printed-mana.test.mjs",
+          "tests/standard400-effects.test.mjs",
+          "tests/standard587-effects.test.mjs",
+          "tests/standard820-effects.test.mjs",
+          "tests/standard822-effects.test.mjs",
+          "tests/standard1042-effects.test.mjs",
+          "tests/standard1043-effects.test.mjs",
+          "tests/standard1071-effects.test.mjs"
+        ],
+        "regressionFilter": "--test-skip-pattern=mixed NEO/DDD games|production worker|random manual|new-card games against every|simulation worker|legal forty CPU|randomized",
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。 トットロの公式QA 48925の組み合わせは関連2枚が未対応のため未実行。NEO/DDDの100試合と再現性は過去に分割検証済みで、今回の回帰では合否未確認。 ゴルギー31相手の再現性と本番Worker62試合は今回も対象外で未実行。前回の広範囲回帰に含まれる1,796件固定の既存テストの結果はPhase 1060を参照。 PhoenixのCPU連戦と本番Worker試験は、今回の個別回帰の対象外。 Phase 1064ではNEO/DDD 100試合とBandeの全対戦・ランダム操作・Workerの長時間ケースを個別回帰から除外。以前の長時間実行を繰り返さず、今回の合否は未確認。 Phase 1065の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1066の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1067の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1068の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1069の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1070の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1071の個別回帰でも長時間のNEO/DDD 100試合は対象外。 Phase 1072の個別回帰でも長時間のNEO/DDD 100試合は対象外。",
+        "pendingInteractions": [
+          {
+            "cardIds": [
+              "dm25rp3-039",
+              "dm26rp2-006",
+              "dm25rp2-OR1"
+            ],
+            "test": "デンジャラス=トットロの上にメモッタで封印付きのジャシン＝ヴリドガルドが出る場合の墓地展開",
+            "status": "未実行",
+            "reason": "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/48925/"
+          }
+        ],
+        "logs": {
+          "official": "/tmp/duema-phase-1072.I3JMa4/manifest.log",
+          "officialImages": "/tmp/duema-phase-1072.I3JMa4/sources.log",
+          "reprints": "/tmp/duema-phase-1072.I3JMa4/prints.log",
+          "imageIndex": "/tmp/duema-phase-1072.I3JMa4/images.log",
+          "focused": "/tmp/duema-phase-1072.I3JMa4/specific-final.log",
+          "regression": "/tmp/duema-phase-1072.I3JMa4/related.log",
+          "check": "/tmp/duema-phase-1072.I3JMa4/check.log",
+          "audit": "/tmp/duema-phase-1072.I3JMa4/audit.log",
+          "count": "/tmp/duema-phase-1072.I3JMa4/count.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dm25rp2-019",
+          "name": "魔誕盗掘男",
+          "reason": "再録を確認済み。手札以外から召喚する時の手札枚数と、同じ攻撃で複数のシールドをブレイクする前の任意ドローを正しい順序で処理できるか検証が残る。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-019",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-018"
+          ]
+        },
+        {
+          "id": "dm25rp2-001",
+          "name": "Celeb k’Reine",
+          "reason": "同時に複数体がタップした場合と、本人が出る前に相手がタップした場合の各ターン最初の誘発を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-001",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp2001"
+          ]
+        },
+        {
+          "id": "dmrp02-010",
+          "name": "ベジタバッタ・パンツァー",
+          "reason": "攻撃可能な相手の優先と、効果で発生するバトルも対象にした両者のマナへの移動を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-010",
+            "https://dm.takaratomy.co.jp/coverage/dmscs01_f03/"
+          ]
+        },
+        {
+          "id": "dmrp09-068",
+          "name": "♪響け慟哭 奏でよ旋律",
+          "reason": "初版とDMEX-05再録の公式本文を確認。対戦はオリジナル形式で、超GRのゾーンとGR召喚に対応していない。既存形式のままで処理できないため保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-068",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmex05-066",
+            "https://dm.takaratomy.co.jp/rule/qa/46625/"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1071,
-    "nextPhase": 1072,
+    "lastVerifiedPhase": 1072,
+    "nextPhase": 1073,
     "workInProgress": [],
     "nextCandidates": [
       {
+        "id": "dmx21-029",
+        "name": "聖霊王アルカフェウス",
+        "reason": "公式の能力全文・基本情報・画像・単一収録を確認。両者の光以外の呪文禁止と、光を含まないクリーチャーのタップ登場を照合する。"
+      },
+      {
+        "id": "promoy23-082",
+        "name": "悪魔界ワルバロム",
+        "reason": "通常版とシークレット版の公式ページを確認。五文明の支払いとデーモン・コマンドの進化条件を照合する。"
+      },
+      {
+        "id": "dmex03-006",
+        "name": "賀二流忍者ザリガニンゾウ",
+        "reason": "公式の能力全文・基本情報・画像・単一収録を確認。水の手札進化とブロック不可を照合する。"
+      },
+      {
         "id": "dm25rp2-019",
         "name": "魔誕盗掘男",
-        "reason": "手札枚数を参照する召喚軽減と、各シールドのブレイク前の任意ドローを照合する。"
+        "reason": "再録を確認済み。手札以外から召喚する時の手札枚数と、同じ攻撃で複数のシールドをブレイクする前の任意ドローを正しい順序で処理できるか検証が残る。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-019",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-018"
+        ]
       },
       {
         "id": "dm25rp2-001",
         "name": "Celeb k’Reine",
-        "reason": "複数の相手クリーチャーのタップと進化登場時の誘発順序を照合する。"
+        "reason": "同時に複数体がタップした場合と、本人が出る前に相手がタップした場合の各ターン最初の誘発を検証するまで保留。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-001",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp2001"
+        ]
       },
       {
         "id": "dmrp02-010",
         "name": "ベジタバッタ・パンツァー",
-        "reason": "攻撃可能な相手の優先と、効果バトルを含むマナ送りへの置換を照合する。"
+        "reason": "攻撃可能な相手の優先と、効果で発生するバトルも対象にした両者のマナへの移動を検証するまで保留。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-010",
+          "https://dm.takaratomy.co.jp/coverage/dmscs01_f03/"
+        ]
+      },
+      {
+        "id": "dmrp09-068",
+        "name": "♪響け慟哭 奏でよ旋律",
+        "reason": "初版とDMEX-05再録の公式本文を確認。対戦はオリジナル形式で、超GRのゾーンとGR召喚に対応していない。既存形式のままで処理できないため保留。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-068",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmex05-066",
+          "https://dm.takaratomy.co.jp/rule/qa/46625/"
+        ]
       },
       {
         "id": "dm25rp2-025",
@@ -208368,7 +208534,7 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
-      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。召喚軽減での手札の枚数、同時タップ時の誘発、バトルをマナ送りに置換する処理を既存実装と照合する。",
+      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。タップ登場の文明条件と五文明の進化召喚、手札進化を既存実装と照合する。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で登録再開。自動化 duema-deck-lab は10分間隔で稼働中。",

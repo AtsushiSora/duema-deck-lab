@@ -1,0 +1,269 @@
+{
+  "phase": 1072,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7178,
+  "description": "進化条件、両者の呪文制限と非ハンターの一掃、攻撃時のマナ除去、マナ進化・墓地進化と登場時・破壊時の効果を照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35047/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36674/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36397/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37368/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37394/",
+    "https://dm.takaratomy.co.jp/rule/qa/39675/",
+    "https://dm.takaratomy.co.jp/rule/qa/46848/"
+  ],
+  "cards": [
+    {
+      "id": "dmx17-001",
+      "name": "聖霊龍王 アルカディアスD",
+      "faces": [
+        {
+          "name": "聖霊龍王 アルカディアスD",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化-自分の光のドラゴン１体の上に置く。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）\n誰も光以外の呪文を唱えることはできない。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "12500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx17-001",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx17-001.jpg",
+      "spec": {
+        "evolution": {
+          "category": "ドラゴン",
+          "civilization": "光"
+        },
+        "breaker": 3,
+        "g34Role": "alca"
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "f97f93c3feec2132f7f9371790fa370692db95c3c425f591ea4c218db7bf62e0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx24-002",
+      "name": "バジュラ・ザ・スター",
+      "faces": [
+        {
+          "name": "バジュラ・ザ・スター",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化：自分のドラゴン１体の上に置く。\nT・ブレイカー\nこのクリーチャーが攻撃する時、相手のマナゾーンからカードを１枚選んでもよい。相手はそのカードを自身の墓地に置く。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx24-002",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx24-002.jpg",
+      "spec": {
+        "evolution": {
+          "race": "ドラゴン"
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "owner": "opponent",
+            "to": "grave",
+            "n": 1,
+            "optional": true,
+            "title": "墓地に置く相手のマナを1枚まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "8e1921489c13675cb4e93ba875a20f935e542774901adbdff51c3303a5e1d38f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx04-s01",
+      "name": "悪魔神バロム・ハンター",
+      "faces": [
+        {
+          "name": "悪魔神バロム・ハンター",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "進化-自分のハンター・クリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、ハンター以外のクリーチャーをすべて破壊する。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "デーモン・コマンド/ハンター",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx04-s01",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx04-s01.jpg",
+      "spec": {
+        "evolution": {
+          "race": "ハンター"
+        },
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "filter": {
+              "creature": true,
+              "notRace": "ハンター"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "f8fc370be8ce17aec8c797aac9020bde5f5e0105a7e72e8aea1305a4980962d2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22ex1-121",
+      "name": "ドリドリ・コドリアン",
+      "faces": [
+        {
+          "name": "ドリドリ・コドリアン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナ進化：自然のクリーチャーを１体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつ出す。\nこのクリーチャーが破壊される時、墓地に置くかわりにマナゾーンに置く。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-121",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-121.jpg",
+      "spec": {
+        "evolution": {
+          "civilization": "自然"
+        },
+        "manaEvolution": true,
+        "destroyToMana": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "e73abd4ce983d4aefba136b171069df6ea495b0d0a12fb37491d8ea381568688",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmbd10-007",
+      "name": "不死 デッド55",
+      "faces": [
+        {
+          "name": "不死 デッド55",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "墓地進化：闇のクリーチャーを１体自分の墓地から選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から２枚を墓地に置く。",
+          "race": "ソニック・コマンド/侵略者",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd10-007",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd10-007.jpg",
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "grave",
+          "conditions": [
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 2,
+            "g1042Together": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "87d5008d68af11a0ab1a986a618179f0a7f2e3b1c5829890d7120619051b18ff",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx24-Sec2",
+      "name": "バジュラ・ザ・スター",
+      "faces": [
+        {
+          "name": "バジュラ・ザ・スター",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化：自分のドラゴン１体の上に置く。\nT・ブレイカー\nこのクリーチャーが攻撃する時、相手のマナゾーンからカードを１枚選んでもよい。相手はそのカードを自身の墓地に置く。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx24-Sec2",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx24-Sec2.jpg",
+      "canonicalId": "dmx24-002",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "6eb085fe98556e99e260d221761fe44d562f6264012fe358bbc3ef8b5b19b0ed",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx17-001": 4,
+      "dmx24-002": 4,
+      "dmx04-s01": 4,
+      "dm22ex1-121": 4,
+      "dmbd10-007": 4,
+      "dmx24-Sec2": 4
+    }
+  }
+}

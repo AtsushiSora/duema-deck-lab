@@ -214350,15 +214350,165 @@
       ],
       "supportBatch": "phase-1071",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx17-001",
+      "name": "聖霊龍王 アルカディアスD",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 12500,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "進化-自分の光のドラゴン１体の上に置く。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）\n誰も光以外の呪文を唱えることはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx17-001",
+      "limit": 4,
+      "evolution": {
+        "category": "ドラゴン",
+        "civilization": "光"
+      },
+      "breaker": 3,
+      "g34Role": "alca",
+      "supportBatch": "phase-1072",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx24-002",
+      "name": "バジュラ・ザ・スター",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 13000,
+      "race": "アーマード・ドラゴン",
+      "text": "進化：自分のドラゴン１体の上に置く。\nT・ブレイカー\nこのクリーチャーが攻撃する時、相手のマナゾーンからカードを１枚選んでもよい。相手はそのカードを自身の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx24-002",
+      "limit": 4,
+      "evolution": {
+        "race": "ドラゴン"
+      },
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "owner": "opponent",
+          "to": "grave",
+          "n": 1,
+          "optional": true,
+          "title": "墓地に置く相手のマナを1枚まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1072",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx04-s01",
+      "name": "悪魔神バロム・ハンター",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 12000,
+      "race": "デーモン・コマンド/ハンター",
+      "text": "進化-自分のハンター・クリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、ハンター以外のクリーチャーをすべて破壊する。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx04-s01",
+      "limit": 4,
+      "evolution": {
+        "race": "ハンター"
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "filter": {
+            "creature": true,
+            "notRace": "ハンター"
+          }
+        }
+      ],
+      "supportBatch": "phase-1072",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-121",
+      "name": "ドリドリ・コドリアン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ワイルド・ベジーズ",
+      "text": "マナ進化：自然のクリーチャーを１体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつ出す。\nこのクリーチャーが破壊される時、墓地に置くかわりにマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-121",
+      "limit": 4,
+      "evolution": {
+        "civilization": "自然"
+      },
+      "manaEvolution": true,
+      "destroyToMana": true,
+      "supportBatch": "phase-1072",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd10-007",
+      "name": "不死 デッド55",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ソニック・コマンド/侵略者",
+      "text": "墓地進化：闇のクリーチャーを１体自分の墓地から選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から２枚を墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd10-007",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "grave",
+        "conditions": [
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 2,
+          "g1042Together": true
+        }
+      ],
+      "supportBatch": "phase-1072",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1071,
+    "phase": 1072,
     "checkedAt": "2026-11-13",
-    "baseCount": 7175,
-    "newEffectCards": 3,
+    "baseCount": 7178,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 7178,
+    "totalCount": 7183,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -233499,6 +233649,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7175,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1071,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7175,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7178,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

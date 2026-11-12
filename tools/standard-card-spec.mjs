@@ -9721,6 +9721,37 @@ export function standardCardSpec(d,{phase=165}={}){
     continue;
    }
   }
+  if(phase>=1072&&evolution){
+   if(line==='誰も光以外の呪文を唱えることはできない。'){
+    spec.g34Role='alca';
+    continue;
+   }
+   if(line==='このクリーチャーが攻撃する時相手のマナゾーンからカードを1枚選んでもよい。相手はそのカードを自身の墓地に置く。'){
+    (spec.g34Attack??=[]).push({op:'Select',origin:'mana',owner:'opponent',to:'grave',n:1,optional:true,
+     title:'墓地に置く相手のマナを1枚まで選ぶ'});
+    continue;
+   }
+   if(line==='このクリーチャーをバトルゾーンに出した時ハンター以外のクリーチャーをすべて破壊する。'){
+    entry.push({op:'Sweep',both:true,filter:{creature:true,notRace:'ハンター'}});
+    continue;
+   }
+   if(line==='マナ進化:自然のクリーチャーを1体自分のマナゾーンから選びこのクリーチャーをその上に重ねつつ出す。'){
+    if(spec.evolution)throw Error('重複進化条件');
+    spec.evolution={civilization:'自然'};
+    spec.manaEvolution=true;
+    continue;
+   }
+   if(line==='墓地進化:闇のクリーチャーを1体自分の墓地から選びこのクリーチャーをその上に重ねつつバトルゾーンに出す。'){
+    if(spec.evolution)throw Error('重複進化条件');
+    spec.evolution={g31:true};
+    spec.g31Evolution={zone:'grave',conditions:[{civilization:'闇'}]};
+    continue;
+   }
+   if(line==='このクリーチャーがバトルゾーンに出た時自分の山札の上から2枚を墓地に置く。'){
+    entry.push({op:'Mill',n:2,g1042Together:true});
+    continue;
+   }
+  }
   if(phase>=1071&&f.typeText==='NEOクリーチャー'){
    if(line==='自分の他のクリーチャーがバトルする時かわりにこのクリーチャーにバトルさせてもよい。'){
     spec.g1071BattleProxy=true;
