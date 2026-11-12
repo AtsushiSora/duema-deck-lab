@@ -207417,21 +207417,128 @@
       ],
       "supportBatch": "phase-1024",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-056",
+      "name": "ヨギー・ベジタリバー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "コストを支払うかわりに、自分の自然のクリーチャーを４体タップして、この呪文を唱えてもよい。\n自分の山札の上から３枚を、タップしてマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-056",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g976TapCast": {
+        "color": "自然",
+        "type": "creature",
+        "count": 4
+      },
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 3,
+          "tapped": true,
+          "g809Together": true
+        }
+      ],
+      "supportBatch": "phase-1025",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-039",
+      "name": "覇王海賊船 キングシャーク",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "コストを支払うかわりに、自分の水のクリーチャーを４体タップして、この呪文を唱えてもよい。\n相手のタップしているクリーチャーをすべて、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-039",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g976TapCast": {
+        "color": "水",
+        "type": "creature",
+        "count": 4
+      },
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "to": "hand",
+          "toOwnerHand": true,
+          "filter": {
+            "creature": true,
+            "tapped": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1025",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-021",
+      "name": "七王の円卓",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "コストを支払うかわりに、自分の闇のクリーチャーを４体タップして、この呪文を唱えてもよい。\nコスト８以下のマフィ・ギャングを１体、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-021",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g976TapCast": {
+        "color": "闇",
+        "type": "creature",
+        "count": 4
+      },
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "g236GraveDeploy": true,
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "max": 8,
+              "raceAll": [
+                "マフィ・ギャング"
+              ]
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-1025",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1024,
+    "phase": 1025,
     "checkedAt": "2026-11-12",
-    "baseCount": 7008,
+    "baseCount": 7011,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7011,
+    "totalCount": 7014,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/rule/rulechange/31640/",
-      "https://dm.takaratomy.co.jp/rule/qa/42521/",
-      "https://dm.takaratomy.co.jp/rule/qa/41076/",
-      "https://dm.takaratomy.co.jp/rule/qa/41988/"
+      "https://dm.takaratomy.co.jp/rule/qa/42521/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -225975,6 +226082,24 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31640/",
           "https://dm.takaratomy.co.jp/rule/qa/49556/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1024,
+        "checkedAt": "2026-11-12",
+        "baseCount": 7008,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7011,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31640/",
+          "https://dm.takaratomy.co.jp/rule/qa/42521/",
+          "https://dm.takaratomy.co.jp/rule/qa/41076/",
+          "https://dm.takaratomy.co.jp/rule/qa/41988/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

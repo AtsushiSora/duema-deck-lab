@@ -1,0 +1,167 @@
+{
+  "phase": 1025,
+  "checkedAt": "2026-11-12",
+  "baseCount": 7011,
+  "description": "クリーチャー4体のタップによる代替詠唱と、マナ追加・一括手札戻し・墓地からの登場に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31640/",
+    "https://dm.takaratomy.co.jp/rule/qa/42521/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp04s-056",
+      "name": "ヨギー・ベジタリバー",
+      "faces": [
+        {
+          "name": "ヨギー・ベジタリバー",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "コストを支払うかわりに、自分の自然のクリーチャーを４体タップして、この呪文を唱えてもよい。\n自分の山札の上から３枚を、タップしてマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-056",
+      "spec": {
+        "effect": "sixPhoto",
+        "g976TapCast": {
+          "color": "自然",
+          "type": "creature",
+          "count": 4
+        },
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 3,
+            "tapped": true,
+            "g809Together": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-056.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "7886ec8e201ecb81df72b9ddb1461a2c085e60745c7d550bffc5bfa407c9a601",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-039",
+      "name": "覇王海賊船 キングシャーク",
+      "faces": [
+        {
+          "name": "覇王海賊船 キングシャーク",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "コストを支払うかわりに、自分の水のクリーチャーを４体タップして、この呪文を唱えてもよい。\n相手のタップしているクリーチャーをすべて、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-039",
+      "spec": {
+        "effect": "sixPhoto",
+        "g976TapCast": {
+          "color": "水",
+          "type": "creature",
+          "count": 4
+        },
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "to": "hand",
+            "toOwnerHand": true,
+            "filter": {
+              "creature": true,
+              "tapped": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "969a1f444f8e54195e8d07b1602e81d74c041cc3a05902bacfff0ba152d44305",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-021",
+      "name": "七王の円卓",
+      "faces": [
+        {
+          "name": "七王の円卓",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "コストを支払うかわりに、自分の闇のクリーチャーを４体タップして、この呪文を唱えてもよい。\nコスト８以下のマフィ・ギャングを１体、自分の墓地からバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-021",
+      "spec": {
+        "effect": "sixPhoto",
+        "g976TapCast": {
+          "color": "闇",
+          "type": "creature",
+          "count": 4
+        },
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "max": 8,
+                "raceAll": [
+                  "マフィ・ギャング"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "d2c4a1259cdc2a2da8196e56b38c62f03481479f6e34bacbf0b8e92deb887ec9",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp04s-056": 4,
+      "dmrp04s-039": 4,
+      "dmrp04s-021": 4
+    }
+  }
+}

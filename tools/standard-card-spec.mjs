@@ -2467,6 +2467,20 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1025&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
+  const spell={
+   'ヨギー・ベジタリバー':{color:'自然',cost:7,text:'自分の山札の上から3枚をタップしてマナゾーンに置く。',
+    task:{op:'Ramp',n:3,tapped:true,g809Together:true}},
+   '覇王海賊船 キングシャーク':{color:'水',cost:6,text:'相手のタップしているクリーチャーをすべて持ち主の手札に戻す。',
+    task:{op:'Sweep',to:'hand',toOwnerHand:true,filter:{creature:true,tapped:true}}},
+   '七王の円卓':{color:'闇',cost:7,text:'コスト8以下のマフィ・ギャングを1体自分の墓地からバトルゾーンに出す。',
+    task:{op:'Select',origin:'grave',n:1,deploy:true,g236GraveDeploy:true,
+     filter:{g228Face:{type:'creature',max:8,raceAll:['マフィ・ギャング']}}}}
+  }[f.name];
+  if(spell&&f.cost===spell.cost&&f.civilizationText===spell.color&&
+   normalize(f.abilityText)==='コストを支払うかわりに自分の'+spell.color+'のクリーチャーを4体タップしてこの呪文を唱えてもよい。'+spell.text)
+   return {effect:'sixPhoto',g976TapCast:{color:spell.color,type:'creature',count:4},g34Tasks:[spell.task]};
+ }
  if(phase>=1024&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
   const text=normalize(f.abilityText);
   if(f.name==='ペダンティック・ライフ'&&f.cost===4&&f.civilizationText==='自然'&&

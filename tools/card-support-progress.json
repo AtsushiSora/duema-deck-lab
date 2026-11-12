@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7011,
-  "pendingNames": 4816,
-  "phase": 1024,
+  "supportedNames": 7014,
+  "pendingNames": 4813,
+  "phase": 1025,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -156,7 +156,7 @@
   "pendingByType": {
     "クリーチャー": 2761,
     "NEOクリーチャー": 152,
-    "呪文": 645,
+    "呪文": 642,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 57,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1212,
-    "未対応の能力文": 3368,
+    "未対応の能力文": 3365,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -203494,27 +203494,84 @@
         }
       },
       "deferred": []
+    },
+    {
+      "phase": 1025,
+      "baseCommit": "65f1e3eb",
+      "cards": [
+        {
+          "id": "dmrp04s-056",
+          "name": "ヨギー・ベジタリバー"
+        },
+        {
+          "id": "dmrp04s-039",
+          "name": "覇王海賊船 キングシャーク"
+        },
+        {
+          "id": "dmrp04s-021",
+          "name": "七王の円卓"
+        }
+      ],
+      "printAliases": [],
+      "supportedNames": 7014,
+      "pendingNames": 4813,
+      "verification": {
+        "focusedPassed": 15,
+        "regressionPassed": 89,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 3,
+        "scope": "3種類の公式全文、基本情報、画像、使用制限と同名収録欄を照合。通常詠唱と同文明のアンタップ状態のクリーチャー4体による代替詠唱、支払い選択の取消と保存復元、上3枚の同時タップマナ、相手のタップ済みクリーチャーの持ち主への一括手札戻し、墓地のコスト8以下のマフィ・ギャングの登場を確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/rulechange/31640/",
+          "https://dm.takaratomy.co.jp/rule/qa/42521/"
+        ],
+        "regressionFiles": [
+          "tests/standard1024-effects.test.mjs",
+          "tests/standard976-effects.test.mjs",
+          "tests/standard809-effects.test.mjs",
+          "tests/standard1010-effects.test.mjs",
+          "tests/hand-ui.test.mjs",
+          "tests/standard236-effects.test.mjs（テスト名 grave|Grave|revival|revive で墓地展開の19件を抽出）"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件は引き続き未確認。",
+        "logs": {
+          "focused": "/tmp/duema-phase-1025.13k9gjwa/focused.log",
+          "regression": "/tmp/duema-phase-1025.13k9gjwa/regression.log",
+          "grave": "/tmp/duema-phase-1025.13k9gjwa/grave.log",
+          "check": "/tmp/duema-phase-1025.13k9gjwa/check.log",
+          "audit": "/tmp/duema-phase-1025.13k9gjwa/audit.log"
+        }
+      },
+      "deferred": []
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1024,
-    "nextPhase": 1025,
+    "lastVerifiedPhase": 1025,
+    "nextPhase": 1026,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dmrp04s-056",
-        "name": "ヨギー・ベジタリバー",
-        "reason": "自然クリーチャー4体の代替詠唱とタップマナ追加を確認する。"
+        "id": "dmbd04-007",
+        "name": "エメスレム・ルミナリエ",
+        "reason": "光クリーチャー4体の代替詠唱、手札のコスト8以下のメタリカの登場、その後の任意タップと再録を確認する。"
       },
       {
-        "id": "dmrp04s-039",
-        "name": "覇王海賊船 キングシャーク",
-        "reason": "水クリーチャー4体の代替詠唱と相手のタップ済みクリーチャーの一括手札戻しを確認する。"
+        "id": "dmrp03-033",
+        "name": "シンクロ・シールド",
+        "reason": "光クリーチャー2体の代替詠唱と山札の上からのシールド追加を確認する。"
       },
       {
-        "id": "dmrp04s-021",
-        "name": "七王の円卓",
-        "reason": "闇クリーチャー4体の代替詠唱と墓地のマフィ・ギャングの登場条件を確認する。"
+        "id": "dmrp03-044",
+        "name": "シンクロ・デスサイズ",
+        "reason": "闇クリーチャー2体の代替詠唱と、公式画像でパワー修整の符号を確認する。"
+      },
+      {
+        "id": "dmrp04m-019",
+        "name": "デッドヒート・メガマックス",
+        "reason": "火クリーチャー4体の代替詠唱、山札の上4枚からの火クリーチャーの任意登場と残りを好きな順で山札下に置く処理を確認する。"
       }
     ],
     "steps": [
@@ -203593,7 +203650,7 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。",
-      "候補の公式本文、画像、使用制限、再録、裁定を確認する。タップ代替は既存の2体・2枚の挙動を保ちながら、必要な文明と支払い枚数を照合する。",
+      "候補の公式本文、画像、使用制限、再録、裁定を照合する。タップ代替の既存処理を使い、登場に失敗した場合の後続処理とパワー修整の表記を確認する。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と件数再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で登録再開。自動化 duema-deck-lab は10分間隔で稼働中。",

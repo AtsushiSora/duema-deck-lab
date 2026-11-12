@@ -1518,13 +1518,13 @@ export function createSixPhotoRules(api){
      !api.canCast(s,t.p,c,t.origin,source.cardOwner??t.p)||
      !api.costAltPermits568(s,t.p,source,c,t.origin).includes(t.permit))break;
   const payment=tapCastCost976(c),eligible=tapCastElements976(s,t.p,payment),selected=t.selected;
-  if(eligible.length<2||selected.some(uid=>!eligible.some(x=>x.uid===uid)))break;
-  if(selected.length===2){
+  if(eligible.length<payment.count||selected.some(uid=>!eligible.some(x=>x.uid===uid)))break;
+  if(selected.length===payment.count){
    cast(s,t.p,t.uid,false,null,0,{cost:0,g568PaymentColors:[],fixedPayment:true,g40PayNormally:true,g976TapPayment:selected},
     t.origin,'代替コスト',false,t.permit);
    break;
   }
-  choice(s,t,payment.label+'タップする（'+selected.length+'/2）',
+  choice(s,t,payment.label+'タップする（'+selected.length+'/'+payment.count+'）',
    [...eligible.filter(x=>!selected.includes(x.uid)).map(x=>opt(card(x).name,x.uid,14-cost(card(x)),x.cardId)),skip()]);
   break;
  }
@@ -3325,7 +3325,8 @@ export function createSixPhotoRules(api){
    .filter(y=>(!t.g733DrawPerAttempt||!y.sealed&&api.isCreature(s,y))&&matches(s,p,y,t.filter)&&y.uid!==t.excludeUid
     &&(!t.g179Other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))
     &&(!t.g994ExcludeRaces||!y.sealed&&!t.g994ExcludeRaces.some(r=>race(effective(y,s),r))))
-   .map(y=>({player:p,uid:y.uid,to,destroy:to==='grave'&&!t.g815PutInGrave})));
+   .map(y=>({player:p,uid:y.uid,to,destroy:to==='grave'&&!t.g815PutInGrave,
+    ...(t.toOwnerHand?{toOwnerHand:true}:{})})));
   if(rows.length){
    if(t.g994OrderBottom){
     const orders=[s.active,1-s.active].flatMap(p=>{
@@ -5538,7 +5539,7 @@ export function createSixPhotoRules(api){
   for(const origin of['hand','mana','grave'])for(const x of own[origin]){
    const c=api.zoneCard(s,p,x,origin),payment=tapCastCost976(c);
    if(!x.faceDown&&payment&&!api.spellIgnored(s,c)&&api.canMoveZone(s,p,origin)&&
-      api.canCast(s,p,c,origin,x.cardOwner??p)&&tapCastElements976(s,p,payment).length>=2)
+      api.canCast(s,p,c,origin,x.cardOwner??p)&&tapCastElements976(s,p,payment).length>=payment.count)
     for(const permit of new Set(api.costAltPermits568(s,p,x,c,origin)))
      out.push({kind:'play',alternative:'sixPhoto',role:'tapCast976',uid:x.uid,cardId:x.cardId,origin,manaPermit:permit,cost:0,
       label:c.name+'：'+payment.label+'タップして唱える'});
@@ -5585,8 +5586,9 @@ for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand
  function tapCastCost976(c){
   const rule=c.g976TapCast;
   if(!rule)return null;
-  const {color,type}=typeof rule==='string'?{color:rule,type:'creature'}:rule;
-  return {color,type,label:color+(type==='seed'?'のタマシードを2枚':'のクリーチャーを2体')};
+  const {color,type,count=2}=typeof rule==='string'?{color:rule,type:'creature'}:rule;
+  const label=color+(type==='seed'?'のタマシードを'+count+'枚':'のクリーチャーを'+count+'体');
+  return {color,type,count,label};
  }
  function tapCastElements976(s,p,{color,type}){
   const eligible=type==='seed'?s.players[p].battle.filter(x=>{
