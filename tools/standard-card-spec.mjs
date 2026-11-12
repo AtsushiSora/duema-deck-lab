@@ -2467,6 +2467,37 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1036&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText),crystal2={g286FaceDownMana:2};
+  const manaDown={op:'ManaDown426'};
+  const reminder='裏向きにしてもよい。(マナゾーンにある裏向きのカードはマナの数字が1の無色カードとして扱う。その持ち主はそれをいつでも見てもよい)';
+  const flip='自分のマナゾーンにあるカードを1枚'+reminder;
+  const speed='スピードアタッカー(このクリーチャーは召喚酔いしない)';
+  if(f.name==='悟りのクリス アラヤシキ'&&f.typeText==='クリーチャー'&&f.civilizationText==='ゼロ'&&f.cost===3&&f.race==='オラクル・セレス'&&text===
+   'このクリーチャーが出た時'+flip+'水晶武装2:このクリーチャーが出た時自分のマナゾーンに裏向きのカードが2枚以上あればカードを2枚引く。')
+   return {g527ExtraEntry:[
+    {label:'自分のマナを1枚裏向きにする',defs:[manaDown]},
+    {label:'水晶武装2',defs:[{op:'IfOwn',filter:crystal2,defs:[{op:'Draw',n:2}]}]}
+   ]};
+  if(f.name==='終斗する巨砲 クロムウェル'&&f.typeText==='クリーチャー'&&f.civilizationText==='火'&&f.cost===3&&f.race==='オラクル・セレス/アーマロイド'&&text===speed+
+   'このクリーチャーが攻撃する時自分のシールドを1つ手札に加えてもよい。ただしその「S・トリガー」は使えない。'+
+   '各ターンの終わりにこのターン自分のシールドがシールドゾーンを離れていれば自分のマナゾーンのカードを1枚'+reminder)
+   return {speedAttacker:true,g34Attack:[shieldHand585],g1036ShieldLeftEnd:[manaDown]};
+  if(f.name==='終斗の親衛隊クラップ'&&f.typeText==='クリーチャー'&&f.civilizationText==='火'&&f.cost===2&&f.race==='オラクル・セレス/ファイアー・バード'&&text===
+   'このクリーチャーが攻撃する時このターン自分のクリーチャー1体に「スピードアタッカー」を与える。(「スピードアタッカー」を持つクリーチャーは召喚酔いしない)'+
+   '水晶武装2:自分のマナゾーンに裏向きのカードが2枚以上あれば自分のクリーチャーすべてに「スピードアタッカー」を与える。')
+   return {g34Attack:[{op:'Target',owner:'self',grant:{speedAttacker:true}}],
+    g208Auras:[{filter:{creature:true},g557Condition:crystal2,grants:{speedAttacker:true}}]};
+  if(f.name==='終斗の親衛隊ファンク'&&f.typeText==='クリーチャー'&&f.civilizationText==='闇'&&f.cost===3&&f.race==='オラクル・セレス/ダークロード'&&text===
+   '水晶武装2:自分のマナゾーンに裏向きのカードが2枚以上あればこのクリーチャーを自分の墓地から召喚してもよい。(コストは支払う)'+
+   'スレイヤー(このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)')
+   return {slayer:true,g978SelfGraveSummon:crystal2};
+  if(f.name==='水晶設計図'&&f.typeText==='呪文'&&f.civilizationText==='ゼロ'&&f.cost===2&&text===
+   '自分の山札の上から4枚を見る。その中からゼニスまたは無色カードを1枚表向きにし手札に加えてもよい。残りを好きな順序で山札の下に置く。その後'+flip)
+   return {effect:'sixPhoto',g34Tasks:[{op:'Look',n:4,rest:'bottom',stages:[
+    {n:1,to:'hand',optional:true,reveal:true,filter:{any:[{anyFaceRace:'ゼニス'},{g200Colorless:true}]}}
+   ]},manaDown]};
+ }
  if(phase>=1035&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const trigger='S・トリガーS・トリガー';

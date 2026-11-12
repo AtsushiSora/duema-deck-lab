@@ -1,0 +1,440 @@
+{
+  "phase": 1036,
+  "checkedAt": "2026-11-12",
+  "baseCount": 7050,
+  "description": "水晶マナとシールドの離脱に関わる5種類と再録6版を公式情報で照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "cards": [
+    {
+      "id": "dm24sp2-006",
+      "name": "悟りのクリス アラヤシキ",
+      "faces": [
+        {
+          "name": "悟りのクリス アラヤシキ",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分のマナゾーンにあるカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）\n水晶武装２:このクリーチャーが出た時、自分のマナゾーンに裏向きのカードが２枚以上あれば、カードを２枚引く。",
+          "race": "オラクル・セレス",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24sp2-006",
+      "spec": {
+        "g527ExtraEntry": [
+          {
+            "label": "自分のマナを1枚裏向きにする",
+            "defs": [
+              {
+                "op": "ManaDown426"
+              }
+            ]
+          },
+          {
+            "label": "水晶武装2",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g286FaceDownMana": 2
+                },
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 2
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24sp2-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "d6fb2c7332dfed291ef29709615b9ab7c9cae2abba3d7419aabc8695bd6a2746",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-044",
+      "name": "終斗する巨砲 クロムウェル",
+      "faces": [
+        {
+          "name": "終斗する巨砲 クロムウェル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーが攻撃する時、自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない。\n各ターンの終わりに、このターン、自分のシールドがシールドゾーンを離れていれば、自分のマナゾーンのカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+          "race": "オラクル・セレス/アーマロイド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-044",
+      "spec": {
+        "speedAttacker": true,
+        "g34Attack": [
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true,
+            "optional": true,
+            "g535Count": 1
+          }
+        ],
+        "g1036ShieldLeftEnd": [
+          {
+            "op": "ManaDown426"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "97c064bab04e36c66990ec956089f2f0550048ccf7914e7e2dd7508cdaf0f501",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-045",
+      "name": "終斗の親衛隊クラップ",
+      "faces": [
+        {
+          "name": "終斗の親衛隊クラップ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃する時、このターン、自分のクリーチャー１体に「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）\n水晶武装２：自分のマナゾーンに裏向きのカードが２枚以上あれば、自分のクリーチャーすべてに「スピードアタッカー」を与える。",
+          "race": "オラクル・セレス/ファイアー・バード",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-045",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "speedAttacker": true
+            }
+          }
+        ],
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "g557Condition": {
+              "g286FaceDownMana": 2
+            },
+            "grants": {
+              "speedAttacker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "ee621dcc8d2c0a3d795af4c1c0f7ddcc497578325e43484f364d1a2351b65e82",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-063",
+      "name": "終斗の親衛隊ファンク",
+      "faces": [
+        {
+          "name": "終斗の親衛隊ファンク",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "水晶武装２：自分のマナゾーンに裏向きのカードが２枚以上あれば、このクリーチャーを自分の墓地から召喚してもよい。（コストは支払う）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+          "race": "オラクル・セレス/ダークロード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-063",
+      "spec": {
+        "slayer": true,
+        "g978SelfGraveSummon": {
+          "g286FaceDownMana": 2
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-063.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "7ad103180625a883e0e59c32def0e5279f1f614f4b8f65a6116f5eb419bbd947",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24sp2-010",
+      "name": "水晶設計図",
+      "faces": [
+        {
+          "name": "水晶設計図",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の山札の上から４枚を見る。その中からゼニスまたは無色カードを１枚、表向きにし、手札に加えてもよい。残りを好きな順序で山札の下に置く。その後、自分のマナゾーンにあるカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24sp2-010",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 4,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "any": [
+                    {
+                      "anyFaceRace": "ゼニス"
+                    },
+                    {
+                      "g200Colorless": true
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "op": "ManaDown426"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24sp2-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "1febd140e3e83fcd9c7d2dc5c138932a7f60bf11d0d7ed4bedd0bba4e9075b8a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24sp2-TD03",
+      "canonicalId": "dm24sp2-006",
+      "name": "悟りのクリス アラヤシキ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24sp2-TD03",
+      "faces": [
+        {
+          "name": "悟りのクリス アラヤシキ",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分のマナゾーンにあるカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）\n水晶武装２:このクリーチャーが出た時、自分のマナゾーンに裏向きのカードが２枚以上あれば、カードを２枚引く。",
+          "race": "オラクル・セレス",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24sp2-TD03.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "e32d738efb17f8346e74aa94c59fdb794ef571bc33c9eaca00d2b73a7a788f73",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24bd6-041",
+      "canonicalId": "dm24sp2-006",
+      "name": "悟りのクリス アラヤシキ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd6-041",
+      "faces": [
+        {
+          "name": "悟りのクリス アラヤシキ",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分のマナゾーンにあるカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）\n水晶武装２：このクリーチャーが出た時、自分のマナゾーンに裏向きのカードが２枚以上あれば、カードを２枚引く。",
+          "race": "オラクル・セレス",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd6-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "507a076e445de35290ff5e2b669f5210f5f98d55f913b091f902f03c72624eea",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24sp2-TD05",
+      "canonicalId": "dm24sp2-010",
+      "name": "水晶設計図",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24sp2-TD05",
+      "faces": [
+        {
+          "name": "水晶設計図",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の山札の上から４枚を見る。その中からゼニスまたは無色カードを１枚、表向きにし、手札に加えてもよい。残りを好きな順序で山札の下に置く。その後、自分のマナゾーンにあるカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24sp2-TD05.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "936ee0351017c2f1ba4a71c4b4a4e9a3b09e8c7ede9b80004feb3f993c85899f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24bd6-052",
+      "canonicalId": "dm24sp2-010",
+      "name": "水晶設計図",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd6-052",
+      "faces": [
+        {
+          "name": "水晶設計図",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の山札の上から４枚を見る。その中からゼニスまたは無色カードを１枚、表向きにし、手札に加えてもよい。残りを好きな順序で山札の下に置く。その後、自分のマナゾーンにあるカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd6-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "4d567e0b14fae88ca76ac5fa97bc1b6d775ca47bfb00368b5cf2ac0c9cedad61",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy23-051",
+      "canonicalId": "dm24sp2-010",
+      "name": "水晶設計図",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy23-051",
+      "faces": [
+        {
+          "name": "水晶設計図",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の山札の上から４枚を見る。その中からゼニスまたは無色カードを１枚、表向きにし、手札に加えてもよい。残りを好きな順序で山札の下に置く。その後、自分のマナゾーンにあるカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy23-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "b2953e59f41748687f36df2da0edc75ceecfdee0bdbb55eb66ac46a42798898f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy23-054",
+      "canonicalId": "dm24sp2-010",
+      "name": "水晶設計図",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy23-054",
+      "faces": [
+        {
+          "name": "水晶設計図",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の山札の上から４枚を見る。その中からゼニスまたは無色カードを１枚、表向きにし、手札に加えてもよい。残りを好きな順序で山札の下に置く。その後、自分のマナゾーンにあるカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy23-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "0801d3d62b3a2bca60a6b084de11c35a900bd3d237434ac819be14d4f61bf143",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24sp2-006": 4,
+      "dm23ex3-044": 4,
+      "dm23ex3-045": 4,
+      "dm23ex3-063": 4,
+      "dm24sp2-010": 4,
+      "dm24sp2-TD03": 4,
+      "dm24bd6-041": 4,
+      "dm24sp2-TD05": 4,
+      "dm24bd6-052": 4,
+      "promoy23-051": 4,
+      "promoy23-054": 4
+    }
+  }
+}

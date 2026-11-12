@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7050,
-  "pendingNames": 4777,
-  "phase": 1035,
-  "added": 3,
+  "supportedNames": 7055,
+  "pendingNames": 4772,
+  "phase": 1036,
+  "added": 5,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2746,
+    "クリーチャー": 2742,
     "NEOクリーチャー": 152,
-    "呪文": 621,
+    "呪文": 620,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 57,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1212,
-    "未対応の能力文": 3330,
+    "未対応の能力文": 3325,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -204431,37 +204431,151 @@
           "reason": "公式能力全文・基本情報を確認。水晶武装4で裏向きマナだけに全文明を持たせる条件を、支払い、文明参照、裏向き枚数が減った時の失効、能力を無視される場合まで検証する必要があるため保留。"
         }
       ]
+    },
+    {
+      "phase": 1036,
+      "baseCommit": "d56f8111",
+      "cards": [
+        {
+          "id": "dm24sp2-006",
+          "name": "悟りのクリス アラヤシキ"
+        },
+        {
+          "id": "dm23ex3-044",
+          "name": "終斗する巨砲 クロムウェル"
+        },
+        {
+          "id": "dm23ex3-045",
+          "name": "終斗の親衛隊クラップ"
+        },
+        {
+          "id": "dm23ex3-063",
+          "name": "終斗の親衛隊ファンク"
+        },
+        {
+          "id": "dm24sp2-010",
+          "name": "水晶設計図"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm24sp2-TD03",
+          "canonicalId": "dm24sp2-006",
+          "name": "悟りのクリス アラヤシキ"
+        },
+        {
+          "id": "dm24bd6-041",
+          "canonicalId": "dm24sp2-006",
+          "name": "悟りのクリス アラヤシキ"
+        },
+        {
+          "id": "dm24sp2-TD05",
+          "canonicalId": "dm24sp2-010",
+          "name": "水晶設計図"
+        },
+        {
+          "id": "dm24bd6-052",
+          "canonicalId": "dm24sp2-010",
+          "name": "水晶設計図"
+        },
+        {
+          "id": "promoy23-051",
+          "canonicalId": "dm24sp2-010",
+          "name": "水晶設計図"
+        },
+        {
+          "id": "promoy23-054",
+          "canonicalId": "dm24sp2-010",
+          "name": "水晶設計図"
+        }
+      ],
+      "supportedNames": 7055,
+      "pendingNames": 4772,
+      "verification": {
+        "focusedPassed": 13,
+        "regressionPassed": 348,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 11,
+        "scope": "公式の能力全文・基本情報・マナ数・画像・現行殿堂制限を5種類と再録6版で照合。アラヤシキの別々の登場時能力と解決順、水晶武装2でのドロー。クロムウェルのスピードアタッカー、S・トリガーを使わない任意の盾回収、両ターン終了時の盾束全体の離脱とマナの裏向き化。クラップの1体へのターン内付与と、自身も含む水晶武装2の継続付与。ファンクの水晶武装2と闇文明の正規コストを要求する墓地召喚、スレイヤー。水晶設計図の山札上4枚の確認、ゼニスか無色1枚の公開と回収、残りの順序、続く任意マナ裏向き化を検証。保存復元と再録IDも確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/qa/48472/",
+          "https://dm.takaratomy.co.jp/rule/qa/39549/",
+          "https://dm.takaratomy.co.jp/rule/qa/44601/",
+          "https://dm.takaratomy.co.jp/rule/qa/45512/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf"
+        ],
+        "regressionFiles": [
+          "tests/standard1035-effects.test.mjs",
+          "tests/standard1033-effects.test.mjs",
+          "tests/standard978-effects.test.mjs",
+          "tests/standard787-effects.test.mjs",
+          "tests/standard426-effects.test.mjs",
+          "tests/standard200-effects.test.mjs",
+          "tests/standard527-effects.test.mjs",
+          "tests/standard536-effects.test.mjs"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象名と中断理由は元の履歴に記録。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。",
+        "existingIssues": [
+          {
+            "cardIds": [
+              "dm26rp1-S002",
+              "dm22rp1-062"
+            ],
+            "baseCommit": "d56f8111",
+            "title": "盾束の一部を手札に加えた時のZラッシュ",
+            "expected": "公式QA 48472では盾束の一部だけが離れた場合はZラッシュが発動しない。",
+            "observed": "世界のY チャクラ・デル・フィンがいる状態でスプーン＝ンプスを出し、盾束2枚のうち1枚を回収すると、束が残ったままZラッシュが発動した。変更前コミットの独立したコピーと今回の作業ツリーで同じ結果を再現した。",
+            "reason": "既存のZラッシュはシールドカード単位の離脱処理から呼ばれている。対象カードの範囲、盾束・置換・同時移動と既存回帰を切り分けて検証する。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/48472/",
+            "logs": [
+              "/tmp/duema-phase-1036.pJjHHcsx/baseline-z-rush.log",
+              "/tmp/duema-phase-1036.pJjHHcsx/existing-z-rush.log"
+            ]
+          }
+        ],
+        "logs": {
+          "official": "/tmp/duema-phase-1036.pJjHHcsx/official.log",
+          "focused": "/tmp/duema-phase-1036.pJjHHcsx/focused-first.log",
+          "regression": "/tmp/duema-phase-1036.pJjHHcsx/regression.log",
+          "check": "/tmp/duema-phase-1036.pJjHHcsx/check.log",
+          "audit": "/tmp/duema-phase-1036.pJjHHcsx/audit.log"
+        }
+      },
+      "deferred": []
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1035,
-    "nextPhase": 1036,
+    "lastVerifiedPhase": 1036,
+    "nextPhase": 1037,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm24sp2-006",
-        "name": "悟りのクリス アラヤシキ",
-        "reason": "登場時の任意マナ裏向き化と水晶武装2のドローを、別の誘発として解決順を含めて照合する。"
+        "id": "dm23ex3-033",
+        "name": "聖邪のサトリ バジル",
+        "reason": "3種族の他のクリーチャー登場時の任意ドローと、水晶武装2によるエスケープを照合する。"
       },
       {
-        "id": "dm23ex3-044",
-        "name": "終斗する巨砲 クロムウェル",
-        "reason": "攻撃時の盾回収と、双方のターン終了時に参照する実際の盾の離脱条件を照合する。"
+        "id": "dm23ex3-019",
+        "name": "聖邪のサトリ ミント",
+        "reason": "登場時の非公開ハンデス、各ターン最初の相手の捨て札、攻撃時の水晶武装を確認する。"
       },
       {
-        "id": "dm23ex3-045",
-        "name": "終斗の親衛隊クラップ",
-        "reason": "攻撃時の1体へのスピードアタッカー付与と、水晶武装2による継続付与を検証する。"
+        "id": "dm23ex3-040",
+        "name": "終斗なる牙 パラノーマル",
+        "reason": "相手の手札を捨てさせる登場時能力と、両ターンの終了時に実際の捨て札を参照する能力を検証する。"
       },
       {
-        "id": "dm23ex3-063",
-        "name": "終斗の親衛隊ファンク",
-        "reason": "水晶武装2による有料の墓地召喚とスレイヤーを検証する。"
+        "id": "dm23ex3-059",
+        "name": "終斗の親衛隊ペッパー",
+        "reason": "水の呪文を唱えた時の手札からの誘発宣言、解決時の水晶武装2、無料召喚とブロッカーを照合する。"
       },
       {
-        "id": "dm24sp2-010",
-        "name": "水晶設計図",
-        "reason": "山札上からゼニスか無色のカードを選ぶ処理、残りの順序、任意の裏向きマナ化と再録を照合する。"
+        "id": "dm23ex3-037",
+        "name": "終斗の閃き マトリクス",
+        "reason": "手札・墓地からの任意の呪文実行と、そのターンの実際の呪文詠唱を参照する終了時能力を検証する。"
       }
     ],
     "steps": [
@@ -204536,7 +204650,8 @@
       "DMR-20版の本文・基本情報・画像とQA 37808を確認。2体条件を満たすと全体バウンスが置換効果になり、離脱置換を重ねられない。この分岐を通常の一括移動と別に検証するまで保留。",
       "DMR-20版の本文・基本情報・画像を確認。DMEX-12・DM25-EX2の個別照合と、相手ターンの破壊置換の5枚ドローおよびパワー修整と敗北の優先順が未確認。",
       "DMR-19版の本文・基本情報・画像とQA 37793を確認。バトルの置換で本人を含む自軍1体を戻し、複数のバトル置換が競合する場合も処理できるまで保留。",
-      "DMR-20版の本文・基本情報・画像を確認。破壊置換で手札の同名カードを出せる条件と登場制限を確認するまで保留。"
+      "DMR-20版の本文・基本情報・画像を確認。破壊置換で手札の同名カードを出せる条件と登場制限を確認するまで保留。",
+      "Phase 1036で、盾束の一部だけを移動しても世界のY チャクラ・デル・フィンのZラッシュが発動する既存不具合を変更前と今回の両方で再現。QA 48472と回帰範囲は同バッチのexistingIssuesを参照。"
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",

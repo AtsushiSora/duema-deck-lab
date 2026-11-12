@@ -5538,6 +5538,10 @@ export function createSixPhotoRules(api){
    const defs=effective(x,s).g1032ShieldAddedEnd;
    if(defs)add(x,defs);
   }
+  if(card(x).g1036ShieldLeftEnd&&!x.sealed&&s.g1036ShieldGroupLeftTurns?.[p]===s.turn){
+   const defs=effective(x,s).g1036ShieldLeftEnd;
+   if(defs)add(x,defs);
+  }
   const ownShieldBreakEnd=card(x).g861OwnShieldBreakEnd;
   if(ownShieldBreakEnd&&!x.sealed&&!x.faceDown&&api.isCreature(s,x)&&(s.players[p].brokenThisTurn||0)>=ownShieldBreakEnd)
    add(x,[E('ShieldTop',{n:1})]);

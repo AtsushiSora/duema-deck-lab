@@ -208758,15 +208758,197 @@
       ],
       "supportBatch": "phase-1035",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24sp2-006",
+      "name": "悟りのクリス アラヤシキ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "オラクル・セレス",
+      "text": "このクリーチャーが出た時、自分のマナゾーンにあるカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）\n水晶武装２:このクリーチャーが出た時、自分のマナゾーンに裏向きのカードが２枚以上あれば、カードを２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24sp2-006",
+      "limit": 4,
+      "g527ExtraEntry": [
+        {
+          "label": "自分のマナを1枚裏向きにする",
+          "defs": [
+            {
+              "op": "ManaDown426"
+            }
+          ]
+        },
+        {
+          "label": "水晶武装2",
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g286FaceDownMana": 2
+              },
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 2
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1036",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-044",
+      "name": "終斗する巨砲 クロムウェル",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "オラクル・セレス/アーマロイド",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーが攻撃する時、自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない。\n各ターンの終わりに、このターン、自分のシールドがシールドゾーンを離れていれば、自分のマナゾーンのカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-044",
+      "limit": 4,
+      "speedAttacker": true,
+      "g34Attack": [
+        {
+          "op": "ShieldHand",
+          "g238ShieldHand": true,
+          "optional": true,
+          "g535Count": 1
+        }
+      ],
+      "g1036ShieldLeftEnd": [
+        {
+          "op": "ManaDown426"
+        }
+      ],
+      "supportBatch": "phase-1036",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-045",
+      "name": "終斗の親衛隊クラップ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "オラクル・セレス/ファイアー・バード",
+      "text": "このクリーチャーが攻撃する時、このターン、自分のクリーチャー１体に「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）\n水晶武装２：自分のマナゾーンに裏向きのカードが２枚以上あれば、自分のクリーチャーすべてに「スピードアタッカー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-045",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "grant": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "g286FaceDownMana": 2
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1036",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-063",
+      "name": "終斗の親衛隊ファンク",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "オラクル・セレス/ダークロード",
+      "text": "水晶武装２：自分のマナゾーンに裏向きのカードが２枚以上あれば、このクリーチャーを自分の墓地から召喚してもよい。（コストは支払う）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-063",
+      "limit": 4,
+      "slayer": true,
+      "g978SelfGraveSummon": {
+        "g286FaceDownMana": 2
+      },
+      "supportBatch": "phase-1036",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24sp2-010",
+      "name": "水晶設計図",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "自分の山札の上から４枚を見る。その中からゼニスまたは無色カードを１枚、表向きにし、手札に加えてもよい。残りを好きな順序で山札の下に置く。その後、自分のマナゾーンにあるカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24sp2-010",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 4,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "any": [
+                  {
+                    "anyFaceRace": "ゼニス"
+                  },
+                  {
+                    "g200Colorless": true
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "op": "ManaDown426"
+        }
+      ],
+      "supportBatch": "phase-1036",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1035,
+    "phase": 1036,
     "checkedAt": "2026-11-12",
-    "baseCount": 7047,
-    "newEffectCards": 3,
+    "baseCount": 7050,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 7050,
+    "totalCount": 7055,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -227475,6 +227657,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7047,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1035,
+        "checkedAt": "2026-11-12",
+        "baseCount": 7047,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7050,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

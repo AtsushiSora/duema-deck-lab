@@ -502,6 +502,8 @@ export function exLifeShieldInfo(s,p,uid){
 }
 function shieldLeft(s,p,x,group=null){
  (s.g787ShieldLeftTurns??=[null,null])[p]=s.turn;
+ // Removing one card from a shield bundle is not a shield departure (QA48472).
+ if(group!==null)(s.g1036ShieldGroupLeftTurns??=[null,null])[p]=s.turn;
  extra.shieldLeft(s,p,x,group);delete x.g19ShieldST;
  if(group!==null)for(const top of s.players[p].battle)for(const c of layers(top)){if(c.exLifeShieldUid===group)delete c.exLifeShieldUid;if(c.exLifeShieldUids)c.exLifeShieldUids=c.exLifeShieldUids.filter(x=>x!==group);}
  for(const who of [0,1])for(const c of s.players[who].battle)if(card(c).zRush){if(!c.hyperActive)log(s,who,'hyper',`${card(c).name}のZラッシュでハイパーモードを解放`,{cardId:c.cardId});c.hyperActive=true;}
