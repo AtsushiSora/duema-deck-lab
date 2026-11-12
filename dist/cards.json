@@ -210129,15 +210129,112 @@
       ],
       "supportBatch": "phase-1043",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex2-066",
+      "name": "テレポート・チャージャー",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "自分の山札の上から５枚を見る。その中からカードを１枚自分の超次元ゾーンに置き、残りを好きな順序で山札の下に置く。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-066",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "normalCharger": true,
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 5,
+          "rest": "bottom",
+          "g841DeckPeek": true,
+          "stages": [
+            {
+              "n": 1,
+              "to": "extra",
+              "title": "超次元ゾーンに置くカードを1枚選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1044",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-055",
+      "name": "聖沌忍法 b4ckd00r",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "メカ・デル・テック/シノビ",
+      "text": "自分のメカを１つタップしてもよい。そうしたら、メカ・メクレイド５する。（メカ・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のメカを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-055",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "element": true,
+          "spell": true,
+          "tap": true,
+          "optional": true,
+          "g1044ImplicitTap": true,
+          "filter": {
+            "race": "メカ",
+            "creatureOrSeed": true,
+            "faceUp": true
+          },
+          "title": "タップする自分のメカを選ぶ（任意）",
+          "g587AfterSelection": true,
+          "after": [
+            {
+              "op": "Raid767",
+              "race": "メカ",
+              "max": 5
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1044",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-033",
+      "name": "ワールプール・クロウラー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "アースイーター",
+      "text": "相手が自分のクリーチャーを選ぶ時、可能ならこのクリーチャーを選ぶ。\n相手のクリーチャーが自分のクリーチャーを攻撃する時、可能ならこのクリーチャーを攻撃する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-033",
+      "limit": 4,
+      "forceTarget": true,
+      "forceCreatureAttackTarget": true,
+      "supportBatch": "phase-1044",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1043,
+    "phase": 1044,
     "checkedAt": "2026-11-13",
-    "baseCount": 7079,
+    "baseCount": 7082,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7082,
+    "totalCount": 7085,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -228942,6 +229039,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7079,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1043,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7079,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7082,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

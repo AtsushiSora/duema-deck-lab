@@ -1,0 +1,252 @@
+{
+  "phase": 1044,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7082,
+  "description": "超次元ゾーンへの配置、メカ・メクレイドと攻撃先の指定を持つ3種類および再録3版を照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/46250/",
+    "https://dm.takaratomy.co.jp/rule/qa/46248/",
+    "https://dm.takaratomy.co.jp/rule/qa/31782/",
+    "https://dm.takaratomy.co.jp/rule/qa/48142/",
+    "https://dm.takaratomy.co.jp/rule/qa/42975/",
+    "https://dm.takaratomy.co.jp/rule/qa/45224/",
+    "https://dm.takaratomy.co.jp/rule/qa/43873/"
+  ],
+  "cards": [
+    {
+      "id": "dm23ex2-066",
+      "name": "テレポート・チャージャー",
+      "faces": [
+        {
+          "name": "テレポート・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の山札の上から５枚を見る。その中からカードを１枚自分の超次元ゾーンに置き、残りを好きな順序で山札の下に置く。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-066",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex2-066.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "normalCharger": true,
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 5,
+            "rest": "bottom",
+            "g841DeckPeek": true,
+            "stages": [
+              {
+                "n": 1,
+                "to": "extra",
+                "title": "超次元ゾーンに置くカードを1枚選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "b19e013d3de838466563da42054e1687b3f9026d2e40b145499e9e976ad733a0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-055",
+      "name": "聖沌忍法 b4ckd00r",
+      "faces": [
+        {
+          "name": "聖沌忍法 b4ckd00r",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のメカを１つタップしてもよい。そうしたら、メカ・メクレイド５する。（メカ・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のメカを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "メカ・デル・テック/シノビ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-055",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-055.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "element": true,
+            "spell": true,
+            "tap": true,
+            "optional": true,
+            "g1044ImplicitTap": true,
+            "filter": {
+              "race": "メカ",
+              "creatureOrSeed": true,
+              "faceUp": true
+            },
+            "title": "タップする自分のメカを選ぶ（任意）",
+            "g587AfterSelection": true,
+            "after": [
+              {
+                "op": "Raid767",
+                "race": "メカ",
+                "max": 5
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "691828a3ee1f5534aa2e3ddc1c1adf6441c096278406562f72cb8228af0edaa2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-033",
+      "name": "ワールプール・クロウラー",
+      "faces": [
+        {
+          "name": "ワールプール・クロウラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手が自分のクリーチャーを選ぶ時、可能ならこのクリーチャーを選ぶ。\n相手のクリーチャーが自分のクリーチャーを攻撃する時、可能ならこのクリーチャーを攻撃する。",
+          "race": "アースイーター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-033",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-033.jpg",
+      "spec": {
+        "forceTarget": true,
+        "forceCreatureAttackTarget": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "c3fb67703ef3117ec218b50406dc134551682e843b0143a90ddf27e37cdc3e78",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex4-081",
+      "name": "テレポート・チャージャー",
+      "faces": [
+        {
+          "name": "テレポート・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の山札の上から５枚を見る。その中からカードを１枚自分の超次元ゾーンに置き、残りを好きな順序で山札の下に置く。\nチャージャー（この呪文を唱えた後、墓地のかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-081",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-081.jpg",
+      "canonicalId": "dm23ex2-066",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "ae9b2fad0feecf7bf35078d1951b6ff85e942f296cb1290d32109340fadf5910",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-PR041",
+      "name": "テレポート・チャージャー",
+      "faces": [
+        {
+          "name": "テレポート・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の山札の上から５枚を見る。その中からカードを１枚自分の超次元ゾーンに置き、残りを好きな順序で山札の下に置く。\nチャージャー（この呪文を唱えた後、墓地のかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-PR041",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-PR041.jpg",
+      "canonicalId": "dm23ex2-066",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "41b1f449446487615ca6c3e08ba7bb0e4d1772f955b28cbc3cf8bc7033da80a2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex1-076",
+      "name": "聖沌忍法 b4ckd00r",
+      "faces": [
+        {
+          "name": "聖沌忍法 b4ckd00r",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のメカを１つタップしてもよい。そうしたら、メカ・メクレイド５する。（メカ・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のメカ・カードを１枚、コストを支払わずに実行してもよい。残りを好きな順序で山札の下に置く）",
+          "race": "メカ・デル・テック/シノビ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-076",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex1-076.jpg",
+      "canonicalId": "dm23rp1-055",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "d8bd0341d35d42ecc13ea1cae112394d1b22e8480a18f6bc52dd361a32c9c27c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23ex2-066": 4,
+      "dm23rp1-055": 4,
+      "dm24rp2-033": 4,
+      "dm24ex4-081": 4,
+      "dm24ex4-PR041": 4,
+      "dm25ex1-076": 4
+    }
+  }
+}

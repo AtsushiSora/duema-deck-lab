@@ -2467,6 +2467,30 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1044&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const teleport='自分の山札の上から5枚を見る。その中からカードを1枚自分の超次元ゾーンに置き残りを好きな順序で山札の下に置く。';
+  const charger='チャージャー(この呪文を唱えた後';
+  if(f.name==='テレポート・チャージャー'&&f.typeText==='呪文'&&f.civilizationText==='ゼロ'&&f.cost===3&&
+   ['墓地に置くかわりに','墓地のかわりに'].some(replacement=>text===teleport+charger+replacement+'マナゾーンに置く)'))
+   return {effect:'sixPhoto',normalCharger:true,g34Tasks:[
+    {op:'Look',n:5,rest:'bottom',g841DeckPeek:true,stages:[{n:1,to:'extra',title:'超次元ゾーンに置くカードを1枚選ぶ'}]}
+   ]};
+  const tapMecha='自分のメカを1つタップしてもよい。そうしたらメカ・メクレイド5する。';
+  const raid='(メカ・メクレイド5:自分の山札の上から3枚を見る。その中からコスト5以下の';
+  if(f.name==='聖沌忍法 b4ckd00r'&&f.typeText==='呪文'&&f.civilizationText==='光'&&f.cost===3&&
+   ['メカを1枚コストを支払わずに使ってもよい。','メカ・カードを1枚コストを支払わずに実行してもよい。']
+    .some(action=>text===tapMecha+raid+action+'残りを好きな順序で山札の下に置く)'))
+   return {effect:'sixPhoto',g34Tasks:[
+    {op:'Target',owner:'self',element:true,spell:true,tap:true,optional:true,g1044ImplicitTap:true,
+     filter:{race:'メカ',creatureOrSeed:true,faceUp:true},title:'タップする自分のメカを選ぶ（任意）',
+     g587AfterSelection:true,after:[{op:'Raid767',race:'メカ',max:5}]}
+   ]};
+  if(f.name==='ワールプール・クロウラー'&&f.typeText==='クリーチャー'&&f.civilizationText==='水'&&f.cost===3&&text===
+   '相手が自分のクリーチャーを選ぶ時可能ならこのクリーチャーを選ぶ。'+
+   '相手のクリーチャーが自分のクリーチャーを攻撃する時可能ならこのクリーチャーを攻撃する。')
+   return {forceTarget:true,forceCreatureAttackTarget:true};
+ }
  if(phase>=1043&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const trigger='S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)';
