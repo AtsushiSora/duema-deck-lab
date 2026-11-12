@@ -207526,19 +207526,164 @@
       ],
       "supportBatch": "phase-1025",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmbd04-007",
+      "name": "エメスレム・ルミナリエ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "コストを支払うかわりに、自分の光のクリーチャーを４体タップして、この呪文を唱えてもよい。\nコスト８以下のメタリカを１体、自分の手札からバトルゾーンに出してもよい。その後、それをタップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd04-007",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g976TapCast": {
+        "color": "光",
+        "type": "creature",
+        "count": 4
+      },
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "tapAfterEntry": true,
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "max": 8,
+              "raceAll": [
+                "メタリカ"
+              ]
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-1026",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-033",
+      "name": "シンクロ・シールド",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "コストを支払うかわりに、自分の光のクリーチャーを２体タップして、この呪文を唱えてもよい。\n自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-033",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g976TapCast": {
+        "color": "光",
+        "type": "creature",
+        "count": 2
+      },
+      "g34Tasks": [
+        {
+          "op": "ShieldTop",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1026",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-044",
+      "name": "シンクロ・デスサイズ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "コストを支払うかわりに、自分の闇のクリーチャーを２体タップして、この呪文を唱えてもよい。\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを _6000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-044",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g976TapCast": {
+        "color": "闇",
+        "type": "creature",
+        "count": 2
+      },
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -6000,
+          "g242PowerMinus": true,
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1026",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04m-019",
+      "name": "デッドヒート・メガマックス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 8,
+      "power": 0,
+      "race": "",
+      "text": "コストを支払うかわりに、自分の火のクリーチャーを４体タップして、この呪文を唱えてもよい。\n自分の山札の上から４枚を見る。その中から火のクリーチャーを１体、バトルゾーンに出してもよい。残りを好きな順序で自分の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-019",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g976TapCast": {
+        "color": "火",
+        "type": "creature",
+        "count": 4
+      },
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 4,
+          "limit": 1,
+          "rest": "bottom",
+          "g841DeckPeek": true,
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "color": "火"
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-1026",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1025,
+    "phase": 1026,
     "checkedAt": "2026-11-12",
-    "baseCount": 7011,
-    "newEffectCards": 3,
+    "baseCount": 7014,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7014,
+    "totalCount": 7018,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/rule/rulechange/31640/",
-      "https://dm.takaratomy.co.jp/rule/qa/42521/"
+      "https://dm.takaratomy.co.jp/rule/qa/39309/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31624/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -226100,6 +226245,22 @@
           "https://dm.takaratomy.co.jp/rule/qa/42521/",
           "https://dm.takaratomy.co.jp/rule/qa/41076/",
           "https://dm.takaratomy.co.jp/rule/qa/41988/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1025,
+        "checkedAt": "2026-11-12",
+        "baseCount": 7011,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7014,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31640/",
+          "https://dm.takaratomy.co.jp/rule/qa/42521/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

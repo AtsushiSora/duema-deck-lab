@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7014,
-  "pendingNames": 4813,
-  "phase": 1025,
-  "added": 3,
+  "supportedNames": 7018,
+  "pendingNames": 4809,
+  "phase": 1026,
+  "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -156,7 +156,7 @@
   "pendingByType": {
     "クリーチャー": 2761,
     "NEOクリーチャー": 152,
-    "呪文": 642,
+    "呪文": 638,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 57,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1212,
-    "未対応の能力文": 3365,
+    "未対応の能力文": 3361,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -203546,32 +203546,102 @@
         }
       },
       "deferred": []
+    },
+    {
+      "phase": 1026,
+      "baseCommit": "c3e7e45a",
+      "cards": [
+        {
+          "id": "dmbd04-007",
+          "name": "エメスレム・ルミナリエ"
+        },
+        {
+          "id": "dmrp03-033",
+          "name": "シンクロ・シールド"
+        },
+        {
+          "id": "dmrp03-044",
+          "name": "シンクロ・デスサイズ"
+        },
+        {
+          "id": "dmrp04m-019",
+          "name": "デッドヒート・メガマックス"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dmex04-063",
+          "canonicalId": "dmbd04-007",
+          "name": "エメスレム・ルミナリエ"
+        }
+      ],
+      "supportedNames": 7018,
+      "pendingNames": 4809,
+      "verification": {
+        "focusedPassed": 17,
+        "regressionPassed": 174,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 5,
+        "scope": "4種類とエメスレム・ルミナリエの再録1版を、公式全文、基本情報、画像、使用制限、同名収録欄で照合。通常詠唱、代替詠唱の対象と取消、手札から登場したメタリカの任意タップと進化、裏向きの新しいシールドとQA 39309の次回軽減消費、印刷画像の−6000とパワー0での破壊・ターン終了、山札の上4枚からの任意登場と残りの順序、選択中の保存復元を確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/rulechange/31640/",
+          "https://dm.takaratomy.co.jp/rule/qa/39309/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31624/"
+        ],
+        "regressionFiles": [
+          "tests/standard1025-effects.test.mjs",
+          "tests/standard1024-effects.test.mjs",
+          "tests/standard976-effects.test.mjs",
+          "tests/standard841-effects.test.mjs",
+          "tests/standard242-effects.test.mjs",
+          "tests/hand-ui.test.mjs",
+          "tests/standard530-effects.test.mjs・tests/standard456-effects.test.mjs（Shin|reduction|discount を対象に60件）"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件は引き続き未確認。",
+        "logs": {
+          "official": "/tmp/duema-phase-1026.tHtGZeJ0/official.log",
+          "focused": "/tmp/duema-phase-1026.tHtGZeJ0/focused.log",
+          "regression": "/tmp/duema-phase-1026.tHtGZeJ0/regression.log",
+          "deploy": "/tmp/duema-phase-1026.tHtGZeJ0/deploy.log",
+          "check": "/tmp/duema-phase-1026.tHtGZeJ0/check.log",
+          "audit": "/tmp/duema-phase-1026.tHtGZeJ0/audit.log"
+        }
+      },
+      "deferred": []
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1025,
-    "nextPhase": 1026,
+    "lastVerifiedPhase": 1026,
+    "nextPhase": 1027,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dmbd04-007",
-        "name": "エメスレム・ルミナリエ",
-        "reason": "光クリーチャー4体の代替詠唱、手札のコスト8以下のメタリカの登場、その後の任意タップと再録を確認する。"
+        "id": "dmrp03-076",
+        "name": "獣面の銃弾",
+        "reason": "S・トリガーと、印刷画像でパワー修整の負号を確認する。"
       },
       {
-        "id": "dmrp03-033",
-        "name": "シンクロ・シールド",
-        "reason": "光クリーチャー2体の代替詠唱と山札の上からのシールド追加を確認する。"
+        "id": "dmrp04s-033",
+        "name": "命翼ノ裁キ",
+        "reason": "新しい裏向きシールドの追加と、詠唱後に表向きでシールドの上に置く処理の順序を確認する。"
       },
       {
-        "id": "dmrp03-044",
-        "name": "シンクロ・デスサイズ",
-        "reason": "闇クリーチャー2体の代替詠唱と、公式画像でパワー修整の符号を確認する。"
+        "id": "dmrp03-064",
+        "name": "サークル・レガード",
+        "reason": "S・トリガー、解決時点の自軍へのブロッカー付与と有効期限を確認する。"
       },
       {
-        "id": "dmrp04m-019",
-        "name": "デッドヒート・メガマックス",
-        "reason": "火クリーチャー4体の代替詠唱、山札の上4枚からの火クリーチャーの任意登場と残りを好きな順で山札下に置く処理を確認する。"
+        "id": "dmrp04m-015",
+        "name": "暗闇の裏闇市",
+        "reason": "闇クリーチャー4体の代替詠唱と、実際に破壊した自軍の数に応じるドローを確認する。"
+      },
+      {
+        "id": "dmrp04m-022",
+        "name": "夢のジョー星",
+        "reason": "ジョーカーズのタップ支払いと、山札が4枚未満の場合を含めた4か所への配分を確認する。"
       }
     ],
     "steps": [
@@ -203650,7 +203720,7 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。",
-      "候補の公式本文、画像、使用制限、再録、裁定を照合する。タップ代替の既存処理を使い、登場に失敗した場合の後続処理とパワー修整の表記を確認する。",
+      "候補の公式本文、画像、使用制限、再録、裁定を照合する。裁きの紋章の置換と、任意の同時破壊の実績数を既存処理で確認する。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と件数再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で登録再開。自動化 duema-deck-lab は10分間隔で稼働中。",

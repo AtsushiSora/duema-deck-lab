@@ -2467,6 +2467,28 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1026&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
+  const spell={
+   'エメスレム・ルミナリエ':{color:'光',cost:7,count:4,
+    text:'コスト8以下のメタリカを1体自分の手札からバトルゾーンに出してもよい。その後それをタップしてもよい。',
+    task:{op:'Select',origin:'hand',n:1,deploy:true,optional:true,tapAfterEntry:true,
+     filter:{g228Face:{type:'creature',max:8,raceAll:['メタリカ']}}}},
+   'シンクロ・シールド':{color:'光',cost:5,count:2,
+    text:'自分の山札の上から1枚目を裏向きのまま新しいシールドとして自分のシールドゾーンに置く。',
+    task:{op:'ShieldTop',n:1}},
+   'シンクロ・デスサイズ':{color:'闇',cost:5,count:2,
+    // The official page has an underscore where the printed card has a minus.
+    text:'相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを_6000する。(パワー0以下のクリーチャーは破壊される)',
+    task:{op:'Target',power:-6000,g242PowerMinus:true,spell:true}},
+   'デッドヒート・メガマックス':{color:'火',cost:8,count:4,
+    text:'自分の山札の上から4枚を見る。その中から火のクリーチャーを1体バトルゾーンに出してもよい。残りを好きな順序で自分の山札の一番下に置く。',
+    task:{op:'LookDeploy530',n:4,limit:1,rest:'bottom',g841DeckPeek:true,
+     filter:{g228Face:{type:'creature',color:'火'}}}}
+  }[f.name];
+  if(spell&&f.cost===spell.cost&&f.civilizationText===spell.color&&
+   normalize(f.abilityText)==='コストを支払うかわりに自分の'+spell.color+'のクリーチャーを'+spell.count+'体タップしてこの呪文を唱えてもよい。'+spell.text)
+   return {effect:'sixPhoto',g976TapCast:{color:spell.color,type:'creature',count:spell.count},g34Tasks:[spell.task]};
+ }
  if(phase>=1025&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
   const spell={
    'ヨギー・ベジタリバー':{color:'自然',cost:7,text:'自分の山札の上から3枚をタップしてマナゾーンに置く。',
