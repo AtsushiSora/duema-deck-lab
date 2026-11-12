@@ -1,0 +1,172 @@
+{
+  "phase": 1052,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7107,
+  "description": "実際に捨てた枚数に応じた破壊、登場時と攻撃時の手札破棄、およびタマシードからの進化を照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/45440/",
+    "https://dm.takaratomy.co.jp/rule/qa/45267/",
+    "https://dm.takaratomy.co.jp/rule/qa/47367/",
+    "https://dm.takaratomy.co.jp/rule/qa/39553/",
+    "https://dm.takaratomy.co.jp/rule/qa/41075/",
+    "https://dm.takaratomy.co.jp/rule/qa/41412/",
+    "https://dm.takaratomy.co.jp/rule/qa/41172/"
+  ],
+  "cards": [
+    {
+      "id": "dmr17-s06",
+      "name": "復讐 チェーンソー",
+      "faces": [
+        {
+          "name": "復讐 チェーンソー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の手札をすべて捨てる。こうして捨てた手札１枚につき、相手は自身のクリーチャーを１体選んで破壊する。",
+          "race": "デーモン・コマンド/侵略者",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-s06",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-s06.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "breaker": 2,
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "g756All": true,
+            "afterDiscardCount": {
+              "op": "g34_Repeat1052",
+              "def": {
+                "op": "OpponentSelect",
+                "n": 1,
+                "to": "grave"
+              }
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "e6e198e1595a2fbe3a3d5085dc6dcbebbc7b54e54d6e380df522b6006948f059",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23bd5-003",
+      "name": "邪天魔縛 へロマノフ=VENⅡ世",
+      "faces": [
+        {
+          "name": "邪天魔縛 へロマノフ=VENⅡ世",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nブロッカーブロッカー\nT・ブレイカー\nこのクリーチャーが出た時または攻撃する時、各相手は自身の手札を２枚選んで捨てる。",
+          "race": "ディスペクター/ダークロード/エンジェル・コマンド/ナイト",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd5-003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd5-003.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "exLife": true,
+        "blocker": true,
+        "breaker": 3,
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 2
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Discard",
+            "n": 2
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "5776e82a4563f68d961c3deb22e8640372ab4a986dd621ce4e4d1e5113795a5c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp22-059",
+      "name": "クサリ変怪 ＜バジュラ.鬼＞",
+      "faces": [
+        {
+          "name": "クサリ変怪 ＜バジュラ.鬼＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スター進化：レクスターズまたは闇のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nこのクリーチャーが出た時、タマシードから進化していれば、相手は自身の手札を２枚選んで捨てる。",
+          "race": "デモニオ/鬼レクスターズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-059",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-059.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "g1052TamaseedEntry": true,
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 2
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "66ff58cb31b325491f0c72a347f0ee6f5d55a2362b32d7c19ba4231c0a4ef599",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr17-s06": 4,
+      "dm23bd5-003": 4,
+      "dmrp22-059": 4
+    }
+  }
+}

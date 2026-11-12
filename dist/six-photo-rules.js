@@ -3545,9 +3545,11 @@ export function createSixPhotoRules(api){
   const owner=t.owner==='self'?t.p:t.owner??1-t.p;
   const n=t.g584Count==='faceUpShieldGo'?api.shieldGoCount(s,t.p):
    t.g585ShieldDeficit?Math.max(0,5-own.shields.length):t.g584Count==='ownShields'?own.shields.length:t.g584Count==='opponentShields'?opp.shields.length:t.g756All?s.players[owner].hand.length:t.n??1;
-  if(n)put(s,task('discard',owner,t.source,{causedBy:t.p,n,random:!!t.random,optional:!!t.optional,selfDiscard:t.owner==='self',...(t.g756All?{all:true}:{}),...(t.g869ReturnOnSpell?{g869ReturnUid:t.uid}:{})}));
+  const after=t.afterDiscardCount&&{...t.afterDiscardCount,p:t.p,source:t.source,controller:t.controller??t.p};
+  if(n)put(s,task('discard',owner,t.source,{causedBy:t.p,n,random:!!t.random,optional:!!t.optional,selfDiscard:t.owner==='self',...(t.g756All?{all:true}:{}),...(t.g869ReturnOnSpell?{g869ReturnUid:t.uid}:{}),...(after?{afterDiscardCount:after}:{})}));
   break;
  }
+ case'g34_Repeat1052':start(s,t,Array.from({length:t.n},()=>t.def));break;
  case'g34_Scorpion614':scorpion614(s,t);break;
  case'g34_OverManaBottom590':{
   const owner=1-t.p;

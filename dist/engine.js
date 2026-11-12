@@ -1277,6 +1277,8 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  const typedTap=placementTapped||typedTapOnEntry720(s,p,c)||c.type==='creature'&&c.speedAttacker&&
   s.players.some(owner=>owner.battle.some(x=>card(x).g847SpeedTap&&isCreature(s,x)&&!abilitiesIgnored(s,x)));
  const baseIds=Array.isArray(baseUid)?baseUid:[baseUid];
+ const baseWasTamaseed=c.g1052TamaseedEntry&&s.players[p].battle.some(x=>
+  baseIds.includes(x.uid)&&extra.six.matches(s,p,x,{g295Tamaseed:true}));
  const baseRaces=baseUid?new Map(s.players[p].battle
   .filter(x=>baseIds.includes(x.uid)&&isCreature(s,x))
   .map(x=>[x.uid,String(effectiveCard(x,s,true).race||'')])):null;
@@ -1336,7 +1338,7 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  if(c.g493SuperEntry&&entryOptions.super&&!stopped)enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,source:c.id,effect:'extended',task:extra.task('g34_Sequence',p,c.id,{uid:inst.uid,incarnation:inst.incarnation,defs:c.g493SuperEntry})});
  if(c.triggerPlus&&inst.triggerPlus&&!stopped&&c.g34Plus)enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,source:c.id,effect:'extended',task:extra.task('g34_Sequence',p,c.id,{uid:inst.uid,incarnation:inst.incarnation,defs:c.g34Plus})});
  if(c.triggerPlus&&inst.triggerPlus&&!stopped&&!c.g34Plus)enqueueEffect(s,p,{uid:inst.uid,source:c.id,effect:'extended',task:extra.task('muteAttackLock',p,c.id)});
- if(c.effect&&!(c.effect==='sixPhoto'&&!c.g34Tasks?.length)&&!stopped&&(!c.evolvedEntryOnly||isEvolution(inst))&&(!c.stackOnlyEntry||baseWasCreature)&&(!c.nonEvolutionBase||baseWasCreature&&!baseWasEvolution)&&(!c.summonedEntryOnly||entryOptions.execution!==false))enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,lastKnownPower:power(inst,false,s),lastKnownCost:effectiveCard(inst,s).cost,source:c.id,lastKnownCount:layers(inst).length,super:!!entryOptions.super,effect:'entry'});
+ if(c.effect&&!(c.effect==='sixPhoto'&&!c.g34Tasks?.length)&&!stopped&&(!c.evolvedEntryOnly||isEvolution(inst))&&(!c.stackOnlyEntry||baseWasCreature)&&(!c.nonEvolutionBase||baseWasCreature&&!baseWasEvolution)&&(!c.summonedEntryOnly||entryOptions.execution!==false)&&(!c.g1052TamaseedEntry||baseWasTamaseed))enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,lastKnownPower:power(inst,false,s),lastKnownCost:effectiveCard(inst,s).cost,source:c.id,lastKnownCount:layers(inst).length,super:!!entryOptions.super,effect:'entry'});
  if(!stopped&&entryBreakShort770(s,p,c))enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,source:c.id,
   label:'シールド条件による自壊',effect:'extended',task:extra.task('g34_SelfDestroy',p,c.id,{uid:inst.uid,incarnation:inst.incarnation})});
  if(!stopped)for(const ability of eligibleExtraEntry527(c,entryOptions.origin??'hand'))enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,source:c.id,label:ability.label,effect:'extended',task:extra.task('g34_Sequence',p,c.id,{uid:inst.uid,incarnation:inst.incarnation,defs:ability.defs})});

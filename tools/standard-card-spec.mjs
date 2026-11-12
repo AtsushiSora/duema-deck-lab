@@ -2467,6 +2467,24 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1052&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.name==='復讐 チェーンソー'&&f.typeText==='クリーチャー'&&f.civilizationText==='闇'&&f.cost===6&&text===
+   'W・ブレイカーこのクリーチャーがバトルゾーンに出た時自分の手札をすべて捨てる。こうして捨てた手札1枚につき相手は自身のクリーチャーを1体選んで破壊する。')
+   return {effect:'sixPhoto',breaker:2,g34Tasks:[{op:'Discard',owner:'self',g756All:true,
+    afterDiscardCount:{op:'g34_Repeat1052',def:{op:'OpponentSelect',n:1,to:'grave'}}}]};
+  if(f.name==='邪天魔縛 へロマノフ=VENⅡ世'&&f.typeText==='クリーチャー'&&f.civilizationText==='光/闇'&&f.cost===8&&text===
+   'EXライフ(このクリーチャーを出す時自分の山札の上から1枚目をシールド化する。このクリーチャーが離れる時かわりにそのシールドを墓地に置く)'+
+   'ブロッカーブロッカーT・ブレイカーこのクリーチャーが出た時または攻撃する時各相手は自身の手札を2枚選んで捨てる。'){
+   const discard={op:'Discard',n:2};
+   return {effect:'sixPhoto',exLife:true,blocker:true,breaker:3,g34Tasks:[discard],g34Attack:[discard]};
+  }
+  if(f.name==='クサリ変怪 ＜バジュラ.鬼＞'&&f.typeText==='スター進化クリーチャー'&&f.civilizationText==='闇'&&f.cost===5&&text===
+   'スター進化:レクスターズまたは闇のクリーチャー1体の上に置く。(このクリーチャーが離れる時かわりに一番上のカードが離れる)'+
+   'このクリーチャーが出た時タマシードから進化していれば相手は自身の手札を2枚選んで捨てる。')
+   return {effect:'sixPhoto',evolution:{any:[{race:'レクスターズ'},{civilization:'闇'}]},starEvolution:true,
+    g1052TamaseedEntry:true,g34Tasks:[{op:'Discard',n:2}]};
+ }
  if(phase>=1051&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText).replace(/[\uFE0E\uFE0F]/g,'');
   if(f.name==='黒神龍デヴォリューション'&&f.typeText==='クリーチャー'&&f.civilizationText==='闇'&&f.cost===6&&(

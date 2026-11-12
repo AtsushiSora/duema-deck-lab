@@ -211234,15 +211234,122 @@
       ],
       "supportBatch": "phase-1051",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-s06",
+      "name": "復讐 チェーンソー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 9000,
+      "race": "デーモン・コマンド/侵略者",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の手札をすべて捨てる。こうして捨てた手札１枚につき、相手は自身のクリーチャーを１体選んで破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-s06",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "breaker": 2,
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "owner": "self",
+          "g756All": true,
+          "afterDiscardCount": {
+            "op": "g34_Repeat1052",
+            "def": {
+              "op": "OpponentSelect",
+              "n": 1,
+              "to": "grave"
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-1052",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23bd5-003",
+      "name": "邪天魔縛 へロマノフ=VENⅡ世",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 13000,
+      "race": "ディスペクター/ダークロード/エンジェル・コマンド/ナイト",
+      "text": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nブロッカーブロッカー\nT・ブレイカー\nこのクリーチャーが出た時または攻撃する時、各相手は自身の手札を２枚選んで捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd5-003",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "exLife": true,
+      "blocker": true,
+      "breaker": 3,
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "n": 2
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Discard",
+          "n": 2
+        }
+      ],
+      "supportBatch": "phase-1052",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-059",
+      "name": "クサリ変怪 ＜バジュラ.鬼＞",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "デモニオ/鬼レクスターズ",
+      "text": "スター進化：レクスターズまたは闇のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nこのクリーチャーが出た時、タマシードから進化していれば、相手は自身の手札を２枚選んで捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-059",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "starEvolution": true,
+      "g1052TamaseedEntry": true,
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "n": 2
+        }
+      ],
+      "supportBatch": "phase-1052",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1051,
+    "phase": 1052,
     "checkedAt": "2026-11-13",
-    "baseCount": 7104,
+    "baseCount": 7107,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7107,
+    "totalCount": 7110,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -230143,6 +230250,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7104,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1051,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7104,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7107,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
