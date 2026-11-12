@@ -1,0 +1,342 @@
+{
+  "phase": 1045,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7085,
+  "description": "S・トリガーを持つ呪文3種類と禁呪と聖句の決断の別イラスト2版を照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316650/",
+    "https://dm.takaratomy.co.jp/rule/qa/34224/",
+    "https://dm.takaratomy.co.jp/rule/qa/43058/",
+    "https://dm.takaratomy.co.jp/rule/qa/43057/",
+    "https://dm.takaratomy.co.jp/rule/qa/43790/",
+    "https://dm.takaratomy.co.jp/rule/qa/40186/",
+    "https://dm.takaratomy.co.jp/rule/qa/31782/"
+  ],
+  "cards": [
+    {
+      "id": "dm24ex1-034",
+      "name": "グランメゾン・ドゥ・メイ様の日常",
+      "faces": [
+        {
+          "name": "グランメゾン・ドゥ・メイ様の日常",
+          "typeText": "呪文",
+          "civilizationText": "光/火/自然",
+          "civilizations": [
+            "光",
+            "火",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\n次のうちいずれか１つを選ぶ。自分のドリームメイトがあれば、両方を選んでもよい。\n▶相手のクリーチャーをすべてタップする。\n▶自分の山札の上から１枚目をマナゾーンに置く。その後、自分のマナゾーンにあるカードの枚数以下のコストを持つ相手のクリーチャーを１体選び、破壊する。",
+          "race": "ドリームメイトの集い",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-034",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex1-034.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のクリーチャーをすべてタップする",
+                "defs": [
+                  {
+                    "op": "TapAll"
+                  }
+                ]
+              },
+              {
+                "label": "マナを増やし、マナの枚数以下のコストを持つ相手クリーチャーを破壊する",
+                "defs": [
+                  {
+                    "op": "Ramp",
+                    "n": 1
+                  },
+                  {
+                    "op": "Select",
+                    "origin": "battle",
+                    "owner": "opponent",
+                    "n": 1,
+                    "to": "grave",
+                    "g746OwnManaCost": true,
+                    "g173Targets": true,
+                    "g193Select": true,
+                    "filter": {
+                      "creature": true
+                    },
+                    "title": "自分のマナの枚数以下のコストを持つ相手クリーチャーを破壊する"
+                  }
+                ]
+              },
+              {
+                "label": "両方を選ぶ",
+                "condition": {
+                  "element": true,
+                  "faceUp": true,
+                  "race": "ドリームメイト"
+                },
+                "defs": [
+                  {
+                    "op": "TapAll"
+                  },
+                  {
+                    "op": "Ramp",
+                    "n": 1
+                  },
+                  {
+                    "op": "Select",
+                    "origin": "battle",
+                    "owner": "opponent",
+                    "n": 1,
+                    "to": "grave",
+                    "g746OwnManaCost": true,
+                    "g173Targets": true,
+                    "g193Select": true,
+                    "filter": {
+                      "creature": true
+                    },
+                    "title": "自分のマナの枚数以下のコストを持つ相手クリーチャーを破壊する"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "33cc39cfa613d75f104da9a193dff87be603c224a6490b13833130d513e345cd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-012",
+      "name": "極閃呪文「バリスパーク」",
+      "faces": [
+        {
+          "name": "極閃呪文「バリスパーク」",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "{STP} S・トリガー・プラス（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、この呪文に{x+}能力を与える）\n相手のクリーチャーをすべてタップする。\n{x+}相手のエレメントを１つ選び、シールド化してもよい。そうしなければ、自分の山札の上から１枚目をシールド化する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-012",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-012.jpg",
+      "spec": {
+        "triggerPlus": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll"
+          }
+        ],
+        "g451PlusAfter": true,
+        "g34Plus": [
+          {
+            "op": "Target",
+            "spell": true,
+            "element": true,
+            "to": "shields",
+            "filter": {
+              "element": true,
+              "faceUp": true
+            },
+            "optional": true,
+            "title": "シールド化する相手のエレメントを選ぶ（選ばない場合は自分の山札の上をシールド化）",
+            "elseDefs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "139eb2ff821e187143717794682a948793811e209cf9c96cfa9fe6c096f5039b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp3-004",
+      "name": "禁呪と聖句の決断",
+      "faces": [
+        {
+          "name": "禁呪と聖句の決断",
+          "typeText": "呪文",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このターン中に自分のクリーチャーが出ていれば、自分のシールドゾーンにあるこの呪文に「S・トリガー」を与える。\n次の中から２回選ぶ。（同じものを選んでもよい）\n▶相手のクリーチャーを１体選び、破壊する。\n▶「ブロッカー」を持つクリーチャーを１体、自分の手札から出す。\n▶自分の山札の上から２枚を見る。そのうちの１枚をシールド化し、もう１枚を墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-004.jpg",
+      "spec": {
+        "g876ShieldTriggerCondition": {
+          "g334ZoneCount": {
+            "zone": "enteredThisTurn",
+            "min": 1
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "g1045Preselect": 2,
+            "modes": [
+              {
+                "label": "相手のクリーチャーを1体破壊する",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "spell": true,
+                    "to": "grave"
+                  }
+                ]
+              },
+              {
+                "label": "手札からブロッカーを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "hand",
+                    "n": 1,
+                    "deploy": true,
+                    "g195HandDeploy": true,
+                    "filter": {
+                      "creature": true,
+                      "blocker": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "山札の上2枚から1枚をシールド化し、もう1枚を墓地に置く",
+                "defs": [
+                  {
+                    "op": "Look",
+                    "n": 2,
+                    "g841DeckPeek": true,
+                    "stages": [
+                      {
+                        "n": 1,
+                        "to": "shields"
+                      }
+                    ],
+                    "rest": "grave"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "89dfd596ba5729263db2e93f10b1326dda4fb0347ad5cc1397c14c08a424a2c4",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23rp3-12B",
+      "name": "禁呪と聖句の決断",
+      "faces": [
+        {
+          "name": "禁呪と聖句の決断",
+          "typeText": "呪文",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このターン中に自分のクリーチャーが出ていれば、自分のシールドゾーンにあるこの呪文に「S・トリガー」を与える。\n次の中から２回選ぶ。（同じものを選んでもよい）\n▶相手のクリーチャーを１体選び、破壊する。\n▶「ブロッカー」を持つクリーチャーを１体、自分の手札から出す。\n▶自分の山札の上から２枚を見る。そのうちの１枚をシールド化し、もう１枚を墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-12B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-12B.jpg",
+      "canonicalId": "dm23rp3-004",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "f91c2d4dd8ecdbd2180eb5acc0f0b2f84dce9b08871096dd400121ac7aaec721",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmart21-003",
+      "name": "禁呪と聖句の決断",
+      "faces": [
+        {
+          "name": "禁呪と聖句の決断",
+          "typeText": "呪文",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このターン中に自分のクリーチャーが出ていれば、自分のシールドゾーンにあるこの呪文に「S・トリガー」を与える。\n次の中から２回選ぶ。（同じものを選んでもよい）\n▶相手のクリーチャーを１体選び、破壊する。\n▶「ブロッカー」を持つクリーチャーを１体、自分の手札から出す。\n▶自分の山札の上から２枚を見る。そのうちの１枚をシールド化し、もう１枚を墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmart21-003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmart21-003.jpg",
+      "canonicalId": "dm23rp3-004",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "465b9dbc27803f77fc4c8b511d52558a1bcda2c4a86b59c78678a41df9b29b4a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24ex1-034": 4,
+      "dm23rp1-012": 4,
+      "dm23rp3-004": 4,
+      "dm23rp3-12B": 4,
+      "dmart21-003": 4
+    }
+  }
+}

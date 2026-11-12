@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7085,
-  "pendingNames": 4742,
-  "phase": 1044,
+  "supportedNames": 7088,
+  "pendingNames": 4739,
+  "phase": 1045,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -156,7 +156,7 @@
   "pendingByType": {
     "クリーチャー": 2720,
     "NEOクリーチャー": 152,
-    "呪文": 613,
+    "呪文": 610,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 57,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3300,
+    "未対応の能力文": 3298,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -254,7 +254,7 @@
     "未対応のサバイバー構成": 1,
     "未対応のアバレチェーン": 3,
     "未対応のG城能力": 10,
-    "未対応のS・トリガー・プラス能力": 3,
+    "未対応のS・トリガー・プラス能力": 2,
     "独立した誘発能力の順序対応が必要": 9,
     "選択能力の不足": 1,
     "特殊なパワー": 1,
@@ -628,10 +628,6 @@
       {
         "id": "dm23rp1-025",
         "name": "極拳呪文「デカアース」"
-      },
-      {
-        "id": "dm23rp1-012",
-        "name": "極閃呪文「バリスパーク」"
       },
       {
         "id": "dm23rp1-022",
@@ -205297,11 +205293,108 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1045,
+      "baseCommit": "daa372ce",
+      "cards": [
+        {
+          "id": "dm24ex1-034",
+          "name": "グランメゾン・ドゥ・メイ様の日常"
+        },
+        {
+          "id": "dm23rp1-012",
+          "name": "極閃呪文「バリスパーク」"
+        },
+        {
+          "id": "dm23rp3-004",
+          "name": "禁呪と聖句の決断"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm23rp3-12B",
+          "name": "禁呪と聖句の決断",
+          "canonicalId": "dm23rp3-004"
+        },
+        {
+          "id": "dmart21-003",
+          "name": "禁呪と聖句の決断",
+          "canonicalId": "dm23rp3-004"
+        }
+      ],
+      "supportedNames": 7088,
+      "pendingNames": 4739,
+      "verification": {
+        "focusedPassed": 12,
+        "regressionPassed": 147,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 5,
+        "scope": "能力全文、基本情報、マナ数、画像、再録、現行殿堂レギュレーションを公式資料で照合。グランメゾンのS・トリガー、ドリームメイトによる両方の選択、全タップと追加後のマナ枚数を参照する破壊を確認。バリスパークは通常詠唱、S・トリガー・プラスのブレイク数、エレメントと自分の山札からのシールド化を確認。禁呪と聖句の決断は自分のクリーチャーが出たターンだけのS・トリガー、2回の効果選択、印刷順、同じ効果の再選択、破壊・ブロッカー配置・非公開のシールド化と墓地送り、選択途中の保存復元を確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316650/",
+          "https://dm.takaratomy.co.jp/rule/qa/34224/",
+          "https://dm.takaratomy.co.jp/rule/qa/43058/",
+          "https://dm.takaratomy.co.jp/rule/qa/43057/",
+          "https://dm.takaratomy.co.jp/rule/qa/43790/",
+          "https://dm.takaratomy.co.jp/rule/qa/40186/",
+          "https://dm.takaratomy.co.jp/rule/qa/31782/"
+        ],
+        "regressionFiles": [
+          "tests/standard451-effects.test.mjs",
+          "tests/standard602-effects.test.mjs",
+          "tests/standard625-effects.test.mjs",
+          "tests/standard788-effects.test.mjs",
+          "tests/standard841-effects.test.mjs",
+          "tests/standard868-effects.test.mjs",
+          "tests/standard1041-effects.test.mjs",
+          "tests/standard1044-effects.test.mjs"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。",
+        "logs": {
+          "official": "/tmp/duema-phase-1045.bKwajhMZ/official.log",
+          "focused": "/tmp/duema-phase-1045.bKwajhMZ/focus.log",
+          "regression": "/tmp/duema-phase-1045.bKwajhMZ/regression.log",
+          "check": "/tmp/duema-phase-1045.bKwajhMZ/check.log",
+          "audit": "/tmp/duema-phase-1045.bKwajhMZ/audit.log",
+          "officialImages": "/tmp/duema-phase-1045.bKwajhMZ/sources.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dm25rp2-056",
+          "name": "A・フェックス",
+          "reason": "公式能力全文・基本情報・画像・単一収録を確認。墓地で発生する能力のため、破壊された本体のほか、進化元や封印として場から墓地に移った場合も対象となる。墓地追加に直前のゾーンを渡す経路を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-056",
+            "https://dm.takaratomy.co.jp/rule/qa/46838/",
+            "https://dm.takaratomy.co.jp/rule/qa/46839/",
+            "https://dm.takaratomy.co.jp/rule/qa/46840/",
+            "https://dm.takaratomy.co.jp/rule/qa/46841/"
+          ]
+        },
+        {
+          "id": "dm25rp2-060",
+          "name": "～戦え！歯車のために～",
+          "reason": "公式能力全文・基本情報・画像・単一収録を確認。墓地で発生する能力のため、破壊された本体のほか、進化元や封印として場から墓地に移った場合も対象となる。墓地追加に直前のゾーンを渡す経路を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-060",
+            "https://dm.takaratomy.co.jp/rule/qa/46838/",
+            "https://dm.takaratomy.co.jp/rule/qa/46839/",
+            "https://dm.takaratomy.co.jp/rule/qa/46840/",
+            "https://dm.takaratomy.co.jp/rule/qa/46841/"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1044,
-    "nextPhase": 1045,
+    "lastVerifiedPhase": 1045,
+    "nextPhase": 1046,
     "workInProgress": [],
     "nextCandidates": [
       {
@@ -205333,6 +205426,16 @@
         "id": "dm24ex1-040",
         "name": "冥土人形アカイブ・ヤップップ",
         "reason": "公式能力全文・基本情報・画像・単一収録を確認。最初の自軍破壊と、後段の両者の選択を区別し、後段では選択保護を適用したうえで両者の破壊を同時に解決する経路を検証するまで保留。"
+      },
+      {
+        "id": "dm25rp2-056",
+        "name": "A・フェックス",
+        "reason": "公式能力全文・基本情報・画像・単一収録を確認。墓地で発生する能力のため、破壊された本体のほか、進化元や封印として場から墓地に移った場合も対象となる。墓地追加に直前のゾーンを渡す経路を検証するまで保留。"
+      },
+      {
+        "id": "dm25rp2-060",
+        "name": "～戦え！歯車のために～",
+        "reason": "公式能力全文・基本情報・画像・単一収録を確認。墓地で発生する能力のため、破壊された本体のほか、進化元や封印として場から墓地に移った場合も対象となる。墓地追加に直前のゾーンを渡す経路を検証するまで保留。"
       }
     ],
     "steps": [

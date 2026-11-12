@@ -2467,6 +2467,46 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1045&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
+  const text=normalize(f.abilityText);
+  const tap={op:'TapAll'},destroy={op:'Target',spell:true,to:'grave'};
+  if(f.name==='グランメゾン・ドゥ・メイ様の日常'&&f.civilizationText==='光/火/自然'&&f.cost===5&&text===
+   'S・トリガーS・トリガー次のうちいずれか1つを選ぶ。自分のドリームメイトがあれば両方を選んでもよい。'+
+   '▶相手のクリーチャーをすべてタップする。'+
+   '▶自分の山札の上から1枚目をマナゾーンに置く。その後自分のマナゾーンにあるカードの枚数以下のコストを持つ相手のクリーチャーを1体選び破壊する。'){
+   const ramp=[{op:'Ramp',n:1},{op:'Select',origin:'battle',owner:'opponent',n:1,to:'grave',
+    g746OwnManaCost:true,g173Targets:true,g193Select:true,filter:{creature:true},
+    title:'自分のマナの枚数以下のコストを持つ相手クリーチャーを破壊する'}];
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Choose',g184Modes:true,modes:[
+    {label:'相手のクリーチャーをすべてタップする',defs:[tap]},
+    {label:'マナを増やし、マナの枚数以下のコストを持つ相手クリーチャーを破壊する',defs:ramp},
+    {label:'両方を選ぶ',condition:{element:true,faceUp:true,race:'ドリームメイト'},defs:[tap,...ramp]}
+   ]}]};
+  }
+  if(f.name==='極閃呪文「バリスパーク」'&&f.civilizationText==='光'&&f.cost===5&&text===
+   '{STP}S・トリガー・プラス(この呪文を自分のシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい。'+
+   'それが相手のターンでそのターン中に自分のシールドが2つ以上ブレイクされていればこの呪文に{x+}能力を与える)'+
+   '相手のクリーチャーをすべてタップする。'+
+   '{x+}相手のエレメントを1つ選びシールド化してもよい。そうしなければ自分の山札の上から1枚目をシールド化する。')
+   return {triggerPlus:true,effect:'sixPhoto',g34Tasks:[tap],g451PlusAfter:true,g34Plus:[
+    {op:'Target',spell:true,element:true,to:'shields',filter:{element:true,faceUp:true},optional:true,
+     title:'シールド化する相手のエレメントを選ぶ（選ばない場合は自分の山札の上をシールド化）',
+     elseDefs:[{op:'ShieldTop',n:1}]}
+   ]};
+  if(f.name==='禁呪と聖句の決断'&&f.civilizationText==='光/闇'&&f.cost===6&&text===
+   'このターン中に自分のクリーチャーが出ていれば自分のシールドゾーンにあるこの呪文に「S・トリガー」を与える。'+
+   '次の中から2回選ぶ。(同じものを選んでもよい)▶相手のクリーチャーを1体選び破壊する。'+
+   '▶「ブロッカー」を持つクリーチャーを1体自分の手札から出す。'+
+   '▶自分の山札の上から2枚を見る。そのうちの1枚をシールド化しもう1枚を墓地に置く。')
+   return {g876ShieldTriggerCondition:{g334ZoneCount:{zone:'enteredThisTurn',min:1}},effect:'sixPhoto',
+    g34Tasks:[{op:'Choose',g184Modes:true,g1045Preselect:2,modes:[
+     {label:'相手のクリーチャーを1体破壊する',defs:[destroy]},
+     {label:'手札からブロッカーを1体出す',defs:[
+      {op:'Select',origin:'hand',n:1,deploy:true,g195HandDeploy:true,filter:{creature:true,blocker:true}}]},
+     {label:'山札の上2枚から1枚をシールド化し、もう1枚を墓地に置く',defs:[
+      {op:'Look',n:2,g841DeckPeek:true,stages:[{n:1,to:'shields'}],rest:'grave'}]}
+    ]}]};
+ }
  if(phase>=1044&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const teleport='自分の山札の上から5枚を見る。その中からカードを1枚自分の超次元ゾーンに置き残りを好きな順序で山札の下に置く。';
