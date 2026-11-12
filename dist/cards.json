@@ -214660,15 +214660,99 @@
       },
       "supportBatch": "phase-1074",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx11-018",
+      "name": "怪盗パクルパン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "デーモン・コマンド/アンノイズ",
+      "text": "自分のターンの終わりに、そのターン、このクリーチャーがシールドをブレイクしていた場合、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-018",
+      "limit": 4,
+      "g1075SelfBreakEnd": true,
+      "supportBatch": "phase-1075",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-034",
+      "name": "頑固水産 ガンパチ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ムートピア",
+      "text": "NEO進化：自分の水のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーがバトルゾーンに出た時、そのターン、自分のクリーチャー１体はブロックされない。\nこのクリーチャーの攻撃の終わりに、その攻撃中にこのクリーチャーがシールドをブレイクしていたら、カードを２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-034",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "水"
+          }
+        ]
+      },
+      "g474AttackEnd": [
+        {
+          "op": "Draw",
+          "n": 2
+        }
+      ],
+      "g1075AttackEndRequiresBreak": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "grant": {
+            "unblockable": true
+          },
+          "title": "このターン、ブロックされなくする自分のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1075",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy2-014",
+      "name": "超竜バハム",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 11000,
+      "race": "アーマード・ドラゴン",
+      "text": "進化ー自分のアーマード・ドラゴン1体の上に置く。\nこのクリーチャーは、バトルゾーンにある自分のドラゴノイド1体につき、シールドをさらにもう1枚ブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy2-014",
+      "limit": 4,
+      "evolution": {
+        "race": "アーマード・ドラゴン"
+      },
+      "g1075ExtraBreakRace": "ドラゴノイド",
+      "supportBatch": "phase-1075",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1074,
+    "phase": 1075,
     "checkedAt": "2026-11-13",
-    "baseCount": 7186,
+    "baseCount": 7189,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7189,
+    "totalCount": 7192,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -233845,6 +233929,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7186,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1074,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7186,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7189,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

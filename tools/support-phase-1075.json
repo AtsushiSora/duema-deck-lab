@@ -1,0 +1,204 @@
+{
+  "phase": 1075,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7189,
+  "description": "ブレイクした主体を参照する終了時能力と、ドラゴノイドの数に応じる追加ブレイクを照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35733/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36660/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36661/",
+    "https://dm.takaratomy.co.jp/rule/qa/43587/"
+  ],
+  "cards": [
+    {
+      "id": "dmx11-018",
+      "name": "怪盗パクルパン",
+      "faces": [
+        {
+          "name": "怪盗パクルパン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のターンの終わりに、そのターン、このクリーチャーがシールドをブレイクしていた場合、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加える。",
+          "race": "デーモン・コマンド/アンノイズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-018",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx11-018.jpg",
+      "spec": {
+        "g1075SelfBreakEnd": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "dc43025a58fb93f80d14eb50e84af51725156fb318fb9723ae9b13ec26c31064",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp07-034",
+      "name": "頑固水産 ガンパチ",
+      "faces": [
+        {
+          "name": "頑固水産 ガンパチ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "NEO進化：自分の水のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーがバトルゾーンに出た時、そのターン、自分のクリーチャー１体はブロックされない。\nこのクリーチャーの攻撃の終わりに、その攻撃中にこのクリーチャーがシールドをブレイクしていたら、カードを２枚引く。",
+          "race": "ムートピア",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-034",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-034.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "水"
+            }
+          ]
+        },
+        "g474AttackEnd": [
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ],
+        "g1075AttackEndRequiresBreak": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "unblockable": true
+            },
+            "title": "このターン、ブロックされなくする自分のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "7739f54d6783cdeae7ba750b40835843a6cc72a44cc508a3205ed13c65fd41aa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy2-014",
+      "name": "超竜バハム",
+      "faces": [
+        {
+          "name": "超竜バハム",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "進化ー自分のアーマード・ドラゴン１体の上に置く。\nシールドを攻撃したとき、バトルゾーンにある自分のドラゴノイド１体につき、シールドをさらにもう１枚ブレイクする。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy2-014",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy2-014.jpg",
+      "spec": {
+        "evolution": {
+          "race": "アーマード・ドラゴン"
+        },
+        "g1075ExtraBreakRace": "ドラゴノイド"
+      },
+      "currentPrint": {
+        "id": "promoy3-034",
+        "name": "超竜バハム",
+        "faces": [
+          {
+            "name": "超竜バハム",
+            "typeText": "進化クリーチャー",
+            "civilizationText": "火",
+            "civilizations": [
+              "火"
+            ],
+            "cost": 4,
+            "costText": "4",
+            "abilityText": "進化ー自分のアーマード・ドラゴン1体の上に置く。\nこのクリーチャーは、バトルゾーンにある自分のドラゴノイド1体につき、シールドをさらにもう1枚ブレイクする。",
+            "race": "アーマード・ドラゴン",
+            "powerText": "11000",
+            "missingFields": []
+          }
+        ],
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy3-034",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy3-034.jpg",
+        "useRulesText": true,
+        "verification": {
+          "checkedAt": "2026-11-13",
+          "sha256": "2c03874ffc826d22dc0cf501f6d8dc72e49fe01c34932210fc13428d408d16a0",
+          "facesMatched": true
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "75f9eaf95d2810222ab646c5021ead6fdbc06f039dc4c93e454898ed8f106445",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy3-034",
+      "name": "超竜バハム",
+      "faces": [
+        {
+          "name": "超竜バハム",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "進化ー自分のアーマード・ドラゴン1体の上に置く。\nこのクリーチャーは、バトルゾーンにある自分のドラゴノイド1体につき、シールドをさらにもう1枚ブレイクする。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy3-034",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy3-034.jpg",
+      "canonicalId": "promoy2-014",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "2c03874ffc826d22dc0cf501f6d8dc72e49fe01c34932210fc13428d408d16a0",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx11-018": 4,
+      "dmrp07-034": 4,
+      "promoy2-014": 4,
+      "promoy3-034": 4
+    }
+  }
+}

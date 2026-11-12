@@ -9725,6 +9725,31 @@ export function standardCardSpec(d,{phase=165}={}){
     continue;
    }
   }
+  if(phase>=1075&&creature){
+   const baham=evolution&&['promoy2-014','promoy3-034'].includes(d.id);
+   if(baham&&line==='進化ー自分のアーマード・ドラゴン1体の上に置く。'){
+    if(spec.evolution)throw Error('重複進化条件');
+    spec.evolution={race:'アーマード・ドラゴン'};
+    continue;
+   }
+   if(line==='自分のターンの終わりにそのターンこのクリーチャーがシールドをブレイクしていた場合自分の山札の上から1枚目を裏向きのまま新しいシールドとして自分のシールドゾーンに加える。'){
+    spec.g1075SelfBreakEnd=true;
+    continue;
+   }
+   if(line==='このクリーチャーの攻撃の終わりにその攻撃中にこのクリーチャーがシールドをブレイクしていたらカードを2枚引く。'){
+    if(spec.g474AttackEnd)throw Error('重複する攻撃終了時能力');
+    spec.g474AttackEnd=[{op:'Draw',n:2}];
+    spec.g1075AttackEndRequiresBreak=true;
+    continue;
+   }
+   if(baham&&[
+    'シールドを攻撃したときバトルゾーンにある自分のドラゴノイド1体につきシールドをさらにもう1枚ブレイクする。',
+    'このクリーチャーはバトルゾーンにある自分のドラゴノイド1体につきシールドをさらにもう1枚ブレイクする。'
+   ].includes(line)){
+    spec.g1075ExtraBreakRace='ドラゴノイド';
+    continue;
+   }
+  }
   if(phase>=1074&&evolution){
    const aura={
     '革命2―自分のシールドが2つ以下なら自分の他のクリーチャーはシールドをさらに2つブレイクする。':{shieldsMax:2,amount:2},

@@ -5562,6 +5562,8 @@ export function createSixPhotoRules(api){
  recordBreak756(s,context,count){
   const refs=context?.g756Breaker;
   if(!count||!refs)return;
+  const attack=s.attackLifecycle;
+  if(attack?.player===context.player&&refs.includes(key(attack)))attack.g1075BrokeShield=true;
   if(s.g756Breaks?.turn!==s.turn)s.g756Breaks={turn:s.turn,players:[[],[]]};
   const breaks=s.g756Breaks.players[context.player];
   if(!breaks.some(prior=>prior.length===refs.length&&prior.every((r,i)=>r===refs[i])))breaks.push(refs);
@@ -5824,6 +5826,9 @@ export function createSixPhotoRules(api){
   const ownShieldBreakEnd=card(x).g861OwnShieldBreakEnd;
   if(ownShieldBreakEnd&&!x.sealed&&!x.faceDown&&api.isCreature(s,x)&&(s.players[p].brokenThisTurn||0)>=ownShieldBreakEnd)
    add(x,[E('ShieldTop',{n:1})]);
+  if(p===s.active&&!x.sealed&&card(x).g1075SelfBreakEnd&&effective(x,s).g1075SelfBreakEnd&&
+   s.g756Breaks?.turn===s.turn&&s.g756Breaks.players.some(breaks=>breaks.some(refs=>refs.includes(key(x)))))
+   add(x,[E('ShieldTop',{n:1})]);
   const breakThreshold=card(x).g769ShieldBreakRaid;
   if(s.active===p&&!x.sealed&&breakThreshold&&effective(x,s).g769ShieldBreakRaid&&
    s.players.reduce((n,who)=>n+(who.brokenThisTurn||0),0)>=breakThreshold)
@@ -5845,7 +5850,8 @@ export function createSixPhotoRules(api){
   }
   const endRefs=[...(a.g543Refs||[]),...(x?api.allLayers(x).map(key):[])];if(a.g543First)for(const r of s.extLimits||[])if(r.kind==='g543Shinka'&&r.when==='firstAttackEnd'&&endRefs.includes(key(r)))api.enqueue(s,r.p,{source:r.source,effect:'extended',task:task('g34_ResolveDelay537',r.p,r.source,{uid:r.uid,incarnation:r.incarnation,defs:[{op:'Untap',g191First:true}]})});for(const r of a.g542After||[])api.enqueue(s,r.p,{source:r.source,effect:'extended',task:task('g34_ResolveDelay537',r.p,r.source,{uid:r.uid,incarnation:r.incarnation,defs:r.defs})});for(const t of a.g176Deaths||[]){const y=s.players[t.p].battle.find(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===t.incarnation));if(y)api.enqueue(s,t.p,{uid:y.uid,source:t.source,effect:'extended',task:task('g34_ExactMove',t.p,t.source,{owner:t.p,target:y.uid,targetIncarnation:y.incarnation||0,to:'grave'})});}if(!x)return;
   const endCard=effective(x,s);
-  if(!x.sealed&&endCard.g474AttackEnd&&(!endCard.g1020FirstOwnAttack||a.g543First))
+  if(!x.sealed&&endCard.g474AttackEnd&&(!endCard.g1020FirstOwnAttack||a.g543First)&&
+   (!endCard.g1075AttackEndRequiresBreak||a.g1075BrokeShield))
    queue(s,a.player,x,endCard.g474AttackEnd);
   if(endCard.g34Role==='revvo'&&x.entered===s.turn&&s.players[a.player].shields.length<=2)queue(s,a.player,x,[E('Lock',{limit:{kind:'g34NoLose',player:a.player,expires:'start',who:a.player}})]);if(!colors(effective(x,s)).includes('闇')&&(active(s,0,'baromreizu').length||active(s,1,'baromreizu').length)){for(const p of[0,1])for(const watcher of active(s,p,'baromreizu'))queue(s,p,watcher,[E('ExactMove',{owner:a.player,to:'grave',target:x.uid,targetIncarnation:x.incarnation||0})]);}},
  expire(s,when,p){if(when==='start')for(const own of s.players)for(const x of [...own.mana,...own.battle])if(x.tapLocks)x.tapLocks=x.tapLocks.filter(l=>typeof l!=='object'||l.who!==p||s.players[p].turns<l.afterTurns);if(when==='end'){s.g34Discounts=(s.g34Discounts||[]).filter(x=>x.turn!==s.turn);s.g484BreakEnds=(s.g484BreakEnds||[]).filter(x=>x.turn!==s.turn);}},
