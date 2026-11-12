@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7001,
-  "pendingNames": 4826,
-  "phase": 1020,
-  "added": 3,
+  "supportedNames": 7002,
+  "pendingNames": 4825,
+  "phase": 1021,
+  "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2762,
+    "クリーチャー": 2761,
     "NEOクリーチャー": 152,
     "呪文": 654,
     "GRクリーチャー": 159,
@@ -225,7 +225,7 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 1213,
+    "複数面・特殊カードタイプまたは情報不足": 1212,
     "未対応の能力文": 3377,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
@@ -203095,10 +203095,77 @@
           "reason": "DMR-20版の本文・基本情報・画像を確認。破壊置換で手札の同名カードを出せる条件と登場制限を確認するまで保留。"
         }
       ]
+    },
+    {
+      "phase": 1021,
+      "baseCommit": "3ef9d1f0",
+      "scope": "ユーザーが指定したカード1種類を手動で追加。定期登録の状態は一時停止。",
+      "cards": [
+        {
+          "id": "dmrp08-mh05",
+          "name": "天地命動 バラギアラ / 天上天下輪廻独尊"
+        }
+      ],
+      "printAliases": [],
+      "supportedNames": 7002,
+      "pendingNames": 4825,
+      "verification": {
+        "focusedPassed": 14,
+        "regressionPassed": 315,
+        "regressionFailed": 0,
+        "regressionExcluded": 3,
+        "excludedTests": [
+          {
+            "path": "tests/travel-effects.test.mjs",
+            "title": "No14 completes138 AI games against all ready decks with80 cards and deterministic replay",
+            "reason": "最初の回帰実行で長時間のため中断。"
+          },
+          {
+            "path": "tests/travel-effects.test.mjs",
+            "title": "No14 random legal choices preserve80 unique cards and equivalent legal and AI actions through JSON roundtrips",
+            "reason": "初回を中断後、効果に絞った回帰では対象外。"
+          },
+          {
+            "path": "tests/travel-effects.test.mjs",
+            "title": "production worker completes460 No14 games with no unresolved battles",
+            "reason": "460対戦の実行を含むため中断。効果に絞った回帰では対象外。"
+          }
+        ],
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 1,
+        "scope": "公式の両面・基本情報・画像・使用制限を照合。召喚時だけのマナアンタップ、両版を数える輪廻∞、手札からの呪文、味方の+8000とワールド・ブレイカー、他のブレイカーとの選択、相手の次のターンの攻撃先と保存復元を確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/qa_old/37985/",
+          "https://dm.takaratomy.co.jp/rule/qa/40934/",
+          "https://dm.takaratomy.co.jp/rule/qa/31830/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
+        ],
+        "regressionFiles": [
+          "tests/original-champion-effects.test.mjs",
+          "tests/champion-2025-effects.test.mjs",
+          "tests/standard540-effects.test.mjs",
+          "tests/standard633-effects.test.mjs",
+          "tests/standard669-effects.test.mjs",
+          "tests/standard847-effects.test.mjs",
+          "tests/standard471-effects.test.mjs",
+          "tests/travel-effects.test.mjs",
+          "tests/travel-interactions.test.mjs"
+        ],
+        "unverified": "既存のNo14長時間対戦3件は今回の合否未確認。全体のnpm testは中断・合否未確認。",
+        "logs": {
+          "focused": "/tmp/duema-phase-1021.ZV4968OF/focused.log",
+          "regression": "/tmp/duema-phase-1021.ZV4968OF/regression-effects.log",
+          "breakerDecks": "/tmp/duema-phase-1021.ZV4968OF/breaker-decks.log",
+          "check": "/tmp/duema-phase-1021.ZV4968OF/check.log",
+          "audit": "/tmp/duema-phase-1021.ZV4968OF/audit.log"
+        }
+      },
+      "deferred": []
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1020,
+    "lastVerifiedPhase": 1021,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],

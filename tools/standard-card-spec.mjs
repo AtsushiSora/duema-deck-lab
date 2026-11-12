@@ -2467,6 +2467,24 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1021&&d?.id==='dmrp08-mh05'&&d.status==='complete'&&d.faces.length===2){
+  const [creature,spell]=d.faces;
+  const rinne='このクリーチャーが召喚によってバトルゾーンに出た時自分のマナゾーンにあるカードをすべてアンタップする。'+
+   '輪廻∞:このカードの呪文側をバトルゾーンに置いたまま唱えてもよい(コストは支払う)。'+
+   'そうした時バトルゾーンにある自分の《天地命動バラギアラ》1体につき自分の山札の上から1枚をマナゾーンに置く。T・ブレイカー';
+  const effect='このターン自分のクリーチャーすべてのパワーを+8000し「ワールド・ブレイカー」を与える。'+
+   '次の相手のターン中相手のクリーチャーが攻撃する時可能ならクリーチャーを攻撃する。';
+  if(creature.name==='天地命動 バラギアラ'&&spell.name==='天上天下輪廻独尊'&&
+   creature.typeText==='クリーチャー'&&creature.cost===9&&creature.powerText==='17000'&&
+   spell.typeText==='呪文'&&spell.cost===8&&d.faces.every(face=>face.civilizationText==='自然')&&
+   normalize(creature.abilityText)===rinne&&normalize(spell.abilityText)===effect)
+   return {summonedEntryOnly:true,effect:'champion',g39Effect:'UntapMana',g39Rinne:true,breaker:3,
+    spellFace:{name:spell.name,type:'spell',civ:'自然',civilizations:['自然'],cost:spell.cost,effect:'sixPhoto',g34Tasks:[
+     {op:'GroupPower',owner:'self',filter:{creature:true},power:8000,spell:true},
+     {op:'GroupGrant364',owner:'self',filter:{creature:true},grant:{g1021WorldBreaker:true},spell:true},
+     {op:'CreatureAttackTarget1021'}
+    ]}};
+ }
  if(aliasNames.has(d?.name)||phase>=250&&d?.name==='アイドルマスターレオ')throw Error('既存名の別表記');
  if(phase>=782&&d?.status==='complete'&&d.faces.length===2&&d.faces.every(face=>face.typeText==='クリーチャー')){
   const front=normalize(f.abilityText),active=d.faces[1],back=normalize(active.abilityText);

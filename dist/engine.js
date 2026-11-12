@@ -266,6 +266,13 @@ export function effectiveCard(inst,context,forPower=false){
   c={...c,breaker:count==='∞'||c.breaker==='∞'?'∞':Math.max(Number(c.breaker)||1,count)};
  }
  if(breakerChoices)c={...c,g633BreakerChoices:[...new Set([2,...breakerChoices])]};
+ if(!forPower&&c.g1021WorldBreaker){
+  // Rule 509.2b: retain the other breaker abilities without adding a normal one-shield option.
+  const existing=c.g633BreakerChoices??(c.breaker===undefined?[]:[c.breaker]);
+  const choices=existing.filter(n=>n==='∞'?!c.worldBreaker:n>0);
+  if(c.gBreaker)choices.push('g');
+  c={...c,breaker:'∞',g633BreakerChoices:[...new Set([...choices,'world'])]};
+ }
  if(context.attackLifecycle?.g814Blockers?.some(ref=>layers(inst).some(x=>x.uid===ref.uid&&(x.incarnation||0)===ref.incarnation)))
   c={...c,blocker:true};
  if(c.g716DragonBlock)c={...c,blocker:true,g716DragonBlockOnly:!c.blocker};
@@ -1819,18 +1826,22 @@ function resolveAttack(s,blockUid){
   return;
  }
  if(s.attack.target==='player'&&extra.six.selectNullBreaker471(s,s.active,a))return;
- if(s.attack.target==='player'&&s.attack.g471Breaker!=='null'&&extra.selectBreaker(s,s.active,a))return;
- const gMode=s.attack.g471Breaker!=='null'&&(s.attack.g14Breaker==='g'||!s.attack.g14Breaker&&effectiveCard(a,s).gBreaker);if(s.attack.target==='player'&&gMode&&s.attackLifecycle)s.attackLifecycle.g14G={p:s.active,uid:a.uid,source:a.cardId};
+ const attackCard=effectiveCard(a,s);
+ if(s.attack.target==='player'&&s.attack.g471Breaker!=='null'&&!attackCard.g1021WorldBreaker&&extra.selectBreaker(s,s.active,a))return;
+ const gMode=s.attack.g471Breaker!=='null'&&(s.attack.g633Breaker==='g'||s.attack.g14Breaker==='g'||!s.attack.g14Breaker&&attackCard.gBreaker&&!attackCard.g1021WorldBreaker);
+ if(s.attack.target==='player'&&gMode&&s.attackLifecycle)s.attackLifecycle.g14G={p:s.active,uid:a.uid,source:a.cardId};
  if(s.attack.target==='player'&&!gMode&&s.attack.g471Breaker!=='null'&&extra.six.selectGrantedBreaker633(s,s.active,a))return;
  if(s.attack.target!=='player'){const b=s.players[other].battle.find(x=>x.uid===s.attack.target);if(b&&!blockedBattle484(s,a))battle(s,s.active,a,other,b,a.uid,false,undefined,true);}
  else if(!s.players[other].shields.length)finish(s,s.active,'ダイレクトアタックが成立','loss','directAttack');
  else{
-  const shields=s.players[other].shields,c=effectiveCard(a,s),breaker=s.attack.g633Breaker??c.breaker??1;
+  const shields=s.players[other].shields,c=attackCard,breaker=s.attack.g633Breaker??c.breaker??1;
+  const worldBreaker=breaker==='world'||c.worldBreaker||c.g1021WorldBreaker&&s.attack.g633Breaker===undefined;
   s.breakContext={player:s.active,sourceUid:a.uid,incarnation:a.incarnation||0,source:a.cardId,...(c.g122NoST?{noST:true}:{}),reverse:!!c.reverseBurn,burn:!!c.shieldBurn,...(c.qqLock?{qqBreak:true}:{})};
   const capped=oneAttackBreak814(s,s.active);
-  const n=Math.min(gMode?shields.length:(s.attack.g471Breaker==='null'?0:numeric(breaker))+(c.extraBreak||0),capped?1:shields.length);
+  const count=breaker==='world'?shields.length:numeric(breaker);
+  const n=Math.min(gMode?shields.length:(s.attack.g471Breaker==='null'?0:count)+(c.extraBreak||0),capped?1:shields.length);
   if(n===0)breakShields(s,other,[]);
-  else if(s.attack.g471Breaker!=='null'&&!gMode&&breaker==='∞'&&!c.worldBreaker)
+  else if(s.attack.g471Breaker!=='null'&&!gMode&&breaker==='∞'&&!worldBreaker)
    s.decision={type:'infinityCount',player:s.active,defender:other,...(capped?{max:1}:{})};
   else if(n===shields.length)breakShields(s,other,shields.map(c=>c.uid));
   else if(n===1&&shields.some(x=>x.uid===s.attack.shield))breakShields(s,other,[s.attack.shield]);
@@ -2203,7 +2214,7 @@ export function getLegalActions(s){
    const rule=effectiveCard(c,s),attackTargets=extra.six.attackTargets971(s,p,c);
    if(!canAttack(s,p,c,rule.g838FreshUntapped||attackTargets.length>0,rule))continue;
    const canAttackCreaturesNormally=c.entered<s.turn||rule.speedAttacker||isEvolution(c)||rule.machFighter;
-   if(!rule.noPlayerAttack&&canAttackPlayer(s,c,rule)){if(opp.shields.length&&rule.noShieldBreak){}else if(capped&&opp.shields.length&&(rule.gBreaker||rule.breaker!==undefined||rule.extraBreak))out.push(option('attack',`${card(c).name} → 相手（最大1枚ブレイク）`,{uid:c.uid,target:'player'}));else if(rule.gBreaker)out.push(option('attack',`${card(c).name} → 相手（G・ブレイカー）`,{uid:c.uid,target:'player'}));else if(opp.shields.length&&(rule.breaker!==undefined||rule.extraBreak))out.push(option('attack',`${card(c).name} → 相手（${rule.worldBreaker?'ワールド・ブレイカー':rule.breaker==='∞'?'∞ブレイカー':Math.min(numeric(rule.breaker??1)+(rule.extraBreak||0),opp.shields.length)+'枚ブレイク'}）`,{uid:c.uid,target:'player'}));else if(opp.shields.length)for(let i=0;i<opp.shields.length;i++){const ex=!!exLifeShieldInfo(s,1-p,opp.shields[i].uid)?.active;out.push(option('attack',`${card(c).name} → シールド${i+1}${ex?'（EXライフ）':''}`,{uid:c.uid,target:'player',shield:opp.shields[i].uid,exLifeHit:ex}));}else out.push(option('attack',`${card(c).name}でダイレクトアタック`,{uid:c.uid,target:'player'}));}
+   if(!rule.noPlayerAttack&&canAttackPlayer(s,c,rule)){if(opp.shields.length&&rule.noShieldBreak){}else if(capped&&opp.shields.length&&(rule.gBreaker||rule.breaker!==undefined||rule.extraBreak))out.push(option('attack',`${card(c).name} → 相手（最大1枚ブレイク）`,{uid:c.uid,target:'player'}));else if(rule.gBreaker&&!rule.g1021WorldBreaker)out.push(option('attack',`${card(c).name} → 相手（G・ブレイカー）`,{uid:c.uid,target:'player'}));else if(opp.shields.length&&(rule.breaker!==undefined||rule.extraBreak))out.push(option('attack',`${card(c).name} → 相手（${rule.worldBreaker||rule.g1021WorldBreaker?'ワールド・ブレイカー':rule.breaker==='∞'?'∞ブレイカー':Math.min(numeric(rule.breaker??1)+(rule.extraBreak||0),opp.shields.length)+'枚ブレイク'}）`,{uid:c.uid,target:'player'}));else if(opp.shields.length)for(let i=0;i<opp.shields.length;i++){const ex=!!exLifeShieldInfo(s,1-p,opp.shields[i].uid)?.active;out.push(option('attack',`${card(c).name} → シールド${i+1}${ex?'（EXライフ）':''}`,{uid:c.uid,target:'player',shield:opp.shields[i].uid,exLifeHit:ex}));}else out.push(option('attack',`${card(c).name}でダイレクトアタック`,{uid:c.uid,target:'player'}));}
    const attackUntapped=rule.attackUntapped||extra.six.dragonAttackUntapped967(s,p,c,rule);
    if(!creatureAttackLocked&&!rule.noCreatureAttack&&(canAttackCreaturesNormally||rule.g838FreshUntapped||attackTargets.length))for(const target of opp.battle.filter(x=>isCreature(s,x)&&(canAttackCreaturesNormally||rule.g838FreshUntapped&&!x.tapped||attackTargets.includes(x.uid))&&!effectiveCard(x,s).cannotBeAttacked&&(!rule.g692AttackOnlyBlockers||effectiveCard(x,s).blocker)&&attackTargetAllowed(s,c,x)&&extra.six.fifteen.canAttackTarget(s,c,x)&&(!effectiveCard(x,s).flying||rule.flying)&&(x.tapped||attackUntapped||attackTargets.includes(x.uid)||extra.six.attackableUntapped(s,x,rule)||rule.g483AttackUntappedColors?.some(color=>civilizations(effectiveCard(x,s)).includes(color))||(c.entered===s.turn&&rule.machFighter))&&(!effectiveCard(x,s).justDiver||!x.justDiverActive||extra.creatures(s,p).some(y=>effectiveCard(y,s).ignoreAttackLocks))))out.push(option('attack',`${card(c).name} → ${card(target).name}`,{uid:c.uid,target:target.uid}));
   }
@@ -2221,12 +2232,15 @@ export function getLegalActions(s){
  out=out.filter(a=>(!['fight','dragonTap'].includes(a.kind)||extra.targetable(s,p,1-p,s.players[1-p].battle.find(x=>x.uid===(a.target||a.uid))))&&(!a.targets||a.targets.every(t=>extra.targetable(s,p,t.player,s.players[t.player].battle.find(x=>layers(x).some(y=>y.uid===t.uid))))));
  out=extra.six.variants463(s,p,extra.six.variants456(s,p,extra.utilityWater.variants(s,p,extra.history.variants(s,p,extra.viride.variants(s,p,extra.variants(s,p,extra.forceActions(s,p,out))))))).filter(a=>!['play','mugenStart'].includes(a.kind)||extra.originAllowed(s,p,a.origin||'hand'));
  const forceSmallCreatureAttack=s.phase==='attack'&&extra.shieldPhoto.forcesCreatureAttack(s,p);
- if(s.phase==='attack'&&(forceSmallCreatureAttack||own.battle.some(x=>card(x).g847MustAttackCreature))){
+ const creatureTargetsRequired=s.phase==='attack'&&s.extLimits?.some(l=>l.kind==='g1021CreatureAttackTarget'&&
+  l.player===p&&l.active&&!spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}));
+ if(s.phase==='attack'&&(creatureTargetsRequired||forceSmallCreatureAttack||own.battle.some(x=>card(x).g847MustAttackCreature))){
   // Check the available creature targets after all other attack restrictions.
   const attackers=new Set(out.filter(a=>a.kind==='attack'&&a.target!=='player').map(a=>a.uid));
   const forced=new Set(own.battle.filter(x=>attackers.has(x.uid)&&
    (forceSmallCreatureAttack&&power(x,false,s)<=6000||effectiveCard(x,s).g847MustAttackCreature)).map(x=>x.uid));
   if(forced.size)out=out.filter(a=>a.kind!=='endTurn'&&(!forced.has(a.uid)||!a.requiresUnforcedAttack&&(a.kind!=='attack'||a.target!=='player')));
+  if(creatureTargetsRequired)out=out.filter(a=>a.kind!=='attack'||a.target!=='player'||!attackers.has(a.uid));
  }
  return out.map((a,i)=>({...a,...(a.kind==='play'&&typeof a.manaPermit==='string'&&a.manaPermit.startsWith('g450:')?{label:a.label+extra.six.permitLabel450(s,p,a.manaPermit)}:{}),id:i,player:p}));
 }
