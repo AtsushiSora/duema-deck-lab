@@ -2467,6 +2467,24 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1024&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
+  const text=normalize(f.abilityText);
+  if(f.name==='ペダンティック・ライフ'&&f.cost===4&&f.civilizationText==='自然'&&
+   text==='この呪文を[nn03]支払って唱えてもよい。そうしたら相手は自身の山札の上から1枚をタップしてマナゾーンに置いてもよい。'+
+    '自分の山札の上から2枚をタップしてマナゾーンに置く。その後カードを1枚自分のマナゾーンから手札に戻してもよい。')
+   return {effect:'sixPhoto',g568Alt:{cost:3,paymentColors:['自然'],spell:[
+    {op:'OpponentOffer777',title:'山札の上から1枚をタップしてマナに置く？',defs:[{op:'Ramp',n:1,tapped:true}]}
+   ]},g34Tasks:[
+    {op:'Ramp',n:2,tapped:true,g809Together:true},
+    {op:'Select',origin:'mana',to:'hand',n:1,optional:true,title:'手札に戻すマナを1枚選ぶ（任意）'}
+   ]};
+  if(f.name==='シンクロ・マニューバ'&&f.cost===5&&f.civilizationText==='自然'&&
+   text==='コストを支払うかわりに自分の自然のクリーチャーを2体タップしてこの呪文を唱えてもよい。相手のクリーチャーを1体選び持ち主のマナゾーンに置く。')
+   return {effect:'sixPhoto',g976TapCast:'自然',g34Tasks:[{op:'Target',to:'mana'}]};
+  if(f.name==='ウチカタハジメ'&&f.cost===3&&f.civilizationText==='水'&&
+   text==='コストを支払うかわりに自分の水のタマシードを2枚タップしてこの呪文を唱えてもよい。相手のクリーチャーを1体選び持ち主の手札に戻す。')
+   return {effect:'sixPhoto',g976TapCast:{color:'水',type:'seed'},g34Tasks:[{op:'Target',to:'hand'}]};
+ }
  if(phase>=1023&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
   const text=normalize(f.abilityText);
   const alternative={

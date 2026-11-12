@@ -207308,19 +207308,130 @@
       ],
       "supportBatch": "phase-1023",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex4-053",
+      "name": "ペダンティック・ライフ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "この呪文を[nn03]支払って唱えてもよい。そうしたら、相手は自身の山札の上から１枚をタップしてマナゾーンに置いてもよい。\n自分の山札の上から２枚をタップしてマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-053",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g568Alt": {
+        "cost": 3,
+        "paymentColors": [
+          "自然"
+        ],
+        "spell": [
+          {
+            "op": "OpponentOffer777",
+            "title": "山札の上から1枚をタップしてマナに置く？",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1,
+                "tapped": true
+              }
+            ]
+          }
+        ]
+      },
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 2,
+          "tapped": true,
+          "g809Together": true
+        },
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "title": "手札に戻すマナを1枚選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-1024",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-056",
+      "name": "シンクロ・マニューバ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "コストを支払うかわりに、自分の自然のクリーチャーを２体タップして、この呪文を唱えてもよい。\n相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-056",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g976TapCast": "自然",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "mana"
+        }
+      ],
+      "supportBatch": "phase-1024",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-057",
+      "name": "ウチカタハジメ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "コストを支払うかわりに、自分の水のタマシードを２枚タップして、この呪文を唱えてもよい。\n相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-057",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g976TapCast": {
+        "color": "水",
+        "type": "seed"
+      },
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "hand"
+        }
+      ],
+      "supportBatch": "phase-1024",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1023,
+    "phase": 1024,
     "checkedAt": "2026-11-12",
-    "baseCount": 7005,
+    "baseCount": 7008,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7008,
+    "totalCount": 7011,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/rule/rulechange/31640/",
-      "https://dm.takaratomy.co.jp/rule/qa/49556/"
+      "https://dm.takaratomy.co.jp/rule/qa/42521/",
+      "https://dm.takaratomy.co.jp/rule/qa/41076/",
+      "https://dm.takaratomy.co.jp/rule/qa/41988/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -225848,6 +225959,22 @@
           "https://dm.takaratomy.co.jp/rule/qa/45593/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36502/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36503/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1023,
+        "checkedAt": "2026-11-12",
+        "baseCount": 7005,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7008,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31640/",
+          "https://dm.takaratomy.co.jp/rule/qa/49556/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

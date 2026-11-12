@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7008,
-  "pendingNames": 4819,
-  "phase": 1023,
+  "supportedNames": 7011,
+  "pendingNames": 4816,
+  "phase": 1024,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -156,7 +156,7 @@
   "pendingByType": {
     "クリーチャー": 2761,
     "NEOクリーチャー": 152,
-    "呪文": 648,
+    "呪文": 645,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 57,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1212,
-    "未対応の能力文": 3371,
+    "未対応の能力文": 3368,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -203441,27 +203441,80 @@
         }
       },
       "deferred": []
+    },
+    {
+      "phase": 1024,
+      "baseCommit": "e195298d",
+      "cards": [
+        {
+          "id": "dm26ex4-053",
+          "name": "ペダンティック・ライフ"
+        },
+        {
+          "id": "dmrp03-056",
+          "name": "シンクロ・マニューバ"
+        },
+        {
+          "id": "dmrp22-057",
+          "name": "ウチカタハジメ"
+        }
+      ],
+      "printAliases": [],
+      "supportedNames": 7011,
+      "pendingNames": 4816,
+      "verification": {
+        "focusedPassed": 14,
+        "regressionPassed": 115,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 3,
+        "scope": "3種類の公式全文、基本情報、画像、使用制限と同名収録欄を照合。ライフの相手の任意タップマナ、自分の同時タップマナと任意回収。マニューバとウチカタハジメの通常詠唱・同文明の対象だけをタップする代替詠唱・選択の取消・保存復元・持ち主のゾーンへの移動を検証。クリーチャーでもあるタマシードの支払いと画面表示も確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/rulechange/31640/",
+          "https://dm.takaratomy.co.jp/rule/qa/42521/",
+          "https://dm.takaratomy.co.jp/rule/qa/41076/",
+          "https://dm.takaratomy.co.jp/rule/qa/41988/"
+        ],
+        "regressionFiles": [
+          "tests/standard583-effects.test.mjs",
+          "tests/standard805-effects.test.mjs",
+          "tests/standard809-effects.test.mjs",
+          "tests/standard976-effects.test.mjs",
+          "tests/standard1023-effects.test.mjs",
+          "tests/hand-ui.test.mjs"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件は引き続き未確認。",
+        "logs": {
+          "focused": "/tmp/duema-phase-1024.Vou7m9DO/focused.log",
+          "regression": "/tmp/duema-phase-1024.Vou7m9DO/regression.log",
+          "check": "/tmp/duema-phase-1024.Vou7m9DO/check.log",
+          "audit": "/tmp/duema-phase-1024.Vou7m9DO/audit.log"
+        }
+      },
+      "deferred": []
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1023,
-    "nextPhase": 1024,
+    "lastVerifiedPhase": 1024,
+    "nextPhase": 1025,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm26ex4-053",
-        "name": "ペダンティック・ライフ",
-        "reason": "代替詠唱と相手の任意のタップマナ追加、自分のタップマナ追加・回収を照合する。"
+        "id": "dmrp04s-056",
+        "name": "ヨギー・ベジタリバー",
+        "reason": "自然クリーチャー4体の代替詠唱とタップマナ追加を確認する。"
       },
       {
-        "id": "dmrp03-056",
-        "name": "シンクロ・マニューバ",
-        "reason": "自然のクリーチャーをタップする代替詠唱を既存処理と照合する。"
+        "id": "dmrp04s-039",
+        "name": "覇王海賊船 キングシャーク",
+        "reason": "水クリーチャー4体の代替詠唱と相手のタップ済みクリーチャーの一括手札戻しを確認する。"
       },
       {
-        "id": "dmrp22-057",
-        "name": "ウチカタハジメ",
-        "reason": "水のタマシードをタップする代替詠唱を既存処理と照合する。"
+        "id": "dmrp04s-021",
+        "name": "七王の円卓",
+        "reason": "闇クリーチャー4体の代替詠唱と墓地のマフィ・ギャングの登場条件を確認する。"
       }
     ],
     "steps": [
@@ -203540,7 +203593,7 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。",
-      "候補の公式本文、画像、使用制限、再録、裁定を確認する。ペダンティック・ライフは既存の代替マナ支払いと任意処理、タップ代替は文明とエレメント種別を照合する。",
+      "候補の公式本文、画像、使用制限、再録、裁定を確認する。タップ代替は既存の2体・2枚の挙動を保ちながら、必要な文明と支払い枚数を照合する。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と件数再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で登録再開。自動化 duema-deck-lab は10分間隔で稼働中。",

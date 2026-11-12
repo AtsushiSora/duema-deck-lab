@@ -1,0 +1,169 @@
+{
+  "phase": 1024,
+  "checkedAt": "2026-11-12",
+  "baseCount": 7008,
+  "description": "代替のマナ支払いとクリーチャー・タマシードのタップによる呪文の実行に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31640/",
+    "https://dm.takaratomy.co.jp/rule/qa/42521/",
+    "https://dm.takaratomy.co.jp/rule/qa/41076/",
+    "https://dm.takaratomy.co.jp/rule/qa/41988/"
+  ],
+  "cards": [
+    {
+      "id": "dm26ex4-053",
+      "name": "ペダンティック・ライフ",
+      "faces": [
+        {
+          "name": "ペダンティック・ライフ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "この呪文を[nn03]支払って唱えてもよい。そうしたら、相手は自身の山札の上から１枚をタップしてマナゾーンに置いてもよい。\n自分の山札の上から２枚をタップしてマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-053",
+      "spec": {
+        "effect": "sixPhoto",
+        "g568Alt": {
+          "cost": 3,
+          "paymentColors": [
+            "自然"
+          ],
+          "spell": [
+            {
+              "op": "OpponentOffer777",
+              "title": "山札の上から1枚をタップしてマナに置く？",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1,
+                  "tapped": true
+                }
+              ]
+            }
+          ]
+        },
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 2,
+            "tapped": true,
+            "g809Together": true
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "title": "手札に戻すマナを1枚選ぶ（任意）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "e6f8f8ac79548ea0a67c87bd202aa97ecb91701f8b00629ffdd5bac8ee9a1e54",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp03-056",
+      "name": "シンクロ・マニューバ",
+      "faces": [
+        {
+          "name": "シンクロ・マニューバ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "コストを支払うかわりに、自分の自然のクリーチャーを２体タップして、この呪文を唱えてもよい。\n相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-056",
+      "spec": {
+        "effect": "sixPhoto",
+        "g976TapCast": "自然",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "mana"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-056.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "7df6e7722e3ac0123e5806561dcab5f172f471ad79a74df10eb1377e39c27581",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp22-057",
+      "name": "ウチカタハジメ",
+      "faces": [
+        {
+          "name": "ウチカタハジメ",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "コストを支払うかわりに、自分の水のタマシードを２枚タップして、この呪文を唱えてもよい。\n相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-057",
+      "spec": {
+        "effect": "sixPhoto",
+        "g976TapCast": {
+          "color": "水",
+          "type": "seed"
+        },
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "hand"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-057.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "ac85243d0b1d32fdcaee660ecae6bb03cb435b2f58bd10041404e0cf472f59aa",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26ex4-053": 4,
+      "dmrp03-056": 4,
+      "dmrp22-057": 4
+    }
+  }
+}

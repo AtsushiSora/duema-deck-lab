@@ -1517,14 +1517,14 @@ export function createSixPhotoRules(api){
   if(!c?.g976TapCast||api.spellIgnored(s,c)||!api.canMoveZone(s,t.p,t.origin)||
      !api.canCast(s,t.p,c,t.origin,source.cardOwner??t.p)||
      !api.costAltPermits568(s,t.p,source,c,t.origin).includes(t.permit))break;
-  const eligible=tapCastCreatures976(s,t.p,c.g976TapCast),selected=t.selected;
+  const payment=tapCastCost976(c),eligible=tapCastElements976(s,t.p,payment),selected=t.selected;
   if(eligible.length<2||selected.some(uid=>!eligible.some(x=>x.uid===uid)))break;
   if(selected.length===2){
    cast(s,t.p,t.uid,false,null,0,{cost:0,g568PaymentColors:[],fixedPayment:true,g40PayNormally:true,g976TapPayment:selected},
     t.origin,'代替コスト',false,t.permit);
    break;
   }
-  choice(s,t,c.g976TapCast+'のクリーチャーを2体タップする（'+selected.length+'/2）',
+  choice(s,t,payment.label+'タップする（'+selected.length+'/2）',
    [...eligible.filter(x=>!selected.includes(x.uid)).map(x=>opt(card(x).name,x.uid,14-cost(card(x)),x.cardId)),skip()]);
   break;
  }
@@ -5536,12 +5536,12 @@ export function createSixPhotoRules(api){
  mainActions(s,p){const own=s.players[p],out=[];
   // Alternative payment changes neither printed civilizations nor zone permissions.
   for(const origin of['hand','mana','grave'])for(const x of own[origin]){
-   const c=api.zoneCard(s,p,x,origin),color=c.g976TapCast;
-   if(!x.faceDown&&color&&!api.spellIgnored(s,c)&&api.canMoveZone(s,p,origin)&&
-      api.canCast(s,p,c,origin,x.cardOwner??p)&&tapCastCreatures976(s,p,color).length>=2)
+   const c=api.zoneCard(s,p,x,origin),payment=tapCastCost976(c);
+   if(!x.faceDown&&payment&&!api.spellIgnored(s,c)&&api.canMoveZone(s,p,origin)&&
+      api.canCast(s,p,c,origin,x.cardOwner??p)&&tapCastElements976(s,p,payment).length>=2)
     for(const permit of new Set(api.costAltPermits568(s,p,x,c,origin)))
      out.push({kind:'play',alternative:'sixPhoto',role:'tapCast976',uid:x.uid,cardId:x.cardId,origin,manaPermit:permit,cost:0,
-      label:c.name+'を'+color+'のクリーチャー2体をタップして唱える'});
+      label:c.name+'：'+payment.label+'タップして唱える'});
   }
   for(const origin of['hand','mana','grave'])for(const x of own[origin]){
    const c=api.zoneCard(s,p,x,origin),r=c.g568Alt;if(x.faceDown||!hasAltPayment568(s,p,origin,r)||!api.canMoveZone(s,p,origin)||!api.canCast(s,p,c,origin)||c.type==='creature'&&!api.canEnter(s,p,c,{origin,execution:true}))continue;
@@ -5582,8 +5582,18 @@ for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand
   }
   if(a.role==='recycle416'){const c=card(a.cardId);if(c.g416RecycleCost)cast(s,p,a.uid,false,null,a.face||0,{cost:c.g416RecycleCost,g40PayNormally:true},'grave','リサイクル',true);return;}if(a.role==='manaBirth296'){cast(s,p,a.uid,false,null,0,{cost:card(a.cardId).g296ManaBirth},'mana','マナ爆誕',false,null,a.snowReducers??null);return;}put(s,task('g34_Custom',p,a.cardId,{name:'alternative',uid:a.uid,role:a.role,selected:[]}));},
  };
- function tapCastCreatures976(s,p,color){
-  return creatures(s,p).filter(x=>!x.sealed&&!x.tapped&&colors(effective(x,s,true)).includes(color));
+ function tapCastCost976(c){
+  const rule=c.g976TapCast;
+  if(!rule)return null;
+  const {color,type}=typeof rule==='string'?{color:rule,type:'creature'}:rule;
+  return {color,type,label:color+(type==='seed'?'のタマシードを2枚':'のクリーチャーを2体')};
+ }
+ function tapCastElements976(s,p,{color,type}){
+  const eligible=type==='seed'?s.players[p].battle.filter(x=>{
+   const raw=api.zoneCard(s,p,x,'battle');
+   return raw.type==='seed'||raw.seedCreature||raw.natureAce4;
+  }):creatures(s,p);
+  return eligible.filter(x=>!x.sealed&&!x.faceDown&&!x.tapped&&colors(effective(x,s,true)).includes(color));
  }
  function hasAltPayment568(s,p,origin,r){
   return !!r&&(!r.handOnly||origin==='hand'&&s.players[p].hand.length===1)&&(!r.condition||ownCondition(s,p,r.condition));
