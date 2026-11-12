@@ -6160,6 +6160,21 @@ export function standardCardSpec(d,{phase=165}={}){
    'このクリーチャーが攻撃する時バトルゾーンにあるクロスギアを1枚選び持ち主の墓地に置く。クロスギアがバトルゾーンから墓地に置かれた時カードを1枚引いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
    return {breaker:2,g34Attack:[{op:'Target',element:true,anyOwner:true,filter:{g201Gear:true},to:'grave',title:'墓地に置くクロスギアを1枚選ぶ'}],g933GearGraveDraw:true};
  }
+ if(phase>=1083&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='呪文'&&text==='自分のクリーチャーを1体選ぶ。このターンそのクリーチャーが攻撃することによってそのクリーチャーの能力がトリガーする時その能力は1度のかわりに2度トリガーする。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',spell:true,grant:{g1083Training:true}}]};
+  if(f.typeText==='クロスギア'&&text==='クロスギアこれをクロスしたクリーチャーは種族にアーマード・ドラゴンとサムライを追加しパワーが+2000され名前に《ボルメテウス・武者・ドラゴン》を追加する。これをクロスしたクリーチャーが攻撃する時自分のシールドを1枚墓地に置いてもよい。そうした場合相手のパワー6000以下のクリーチャーを1体破壊する。')
+   return {type:'gear',g123CrossPower:2000,g1083MushaLegend:true,g931CrossAttack:[{
+    op:'ShieldGrave',optional:true,then:[{op:'Target',to:'grave',filter:{maxPower:6000,g199Power:true}}]
+   }]};
+  const yamato='《ボルメテウス・武者・ドラゴン》の能力によって相手のパワー6000以下のクリーチャーを1体破壊する時かわりに相手のパワー12000以下のクリーチャーを1体破壊する。';
+  const speed='スピードアタッカー(このクリーチャーは召喚酔いしない)';
+  const yamatoPower='攻撃中このクリーチャーのパワーは自分の墓地にある火のカード1枚につき+1000される。';
+  if(f.typeText==='クリーチャー'&&[speed+yamatoPower+'W・ブレイカー'+yamato,speed+yamatoPower+yamato+'W・ブレイカー',
+   'スピードアタッカーW・ブレイカー攻撃中自分の墓地にある火のカード1枚につきこのクリーチャーのパワーを+1000する。'+yamato].includes(text))
+   return {speedAttacker:true,breaker:2,g207CountPower:{zone:'grave',attackOnly:true,g1011CountColor:'火',amount:1000},g1083Yamato:true};
+ }
  if(phase>=1082&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(text==='ターボラッシュ(自分の他のクリーチャーがシールドをブレイクしたあとそのターンが終わるまでこのクリーチャーは次の能力を得る)このクリーチャーが相手プレイヤーを攻撃してブロックされたとき相手のシールドが1枚でもあればそのうちの1枚をブレイクする。')

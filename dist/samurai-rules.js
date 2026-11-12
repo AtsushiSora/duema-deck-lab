@@ -13,6 +13,12 @@ export function createSamuraiRules(api){
  const attached=(s,p,x)=>gears(s,p).filter(g=>g.crossedTo?.uid===x.uid&&g.crossedTo.incarnation===(x.incarnation||0));
  const active=(s,g)=>!api.ignored(s,g);
  const optionalReducers=(s,p,c)=>c.type==='creature'&&(dragon(c)||samurai(c))?gears(s,p).filter(g=>card(g).zangeki&&active(s,g)&&!live(s,p,g)).length:0;
+ const mushaName='ボルメテウス・武者・ドラゴン';
+ function identity(s,p,x,c){
+  if(c.type!=='creature'||x.sealed||!s.players[p].battle.some(g=>g.crossedTo?.uid===x.uid&&g.crossedTo.incarnation===(x.incarnation||0)&&card(g).g1083MushaLegend&&!g.faceDown&&!g.sealed&&active(s,g)))return c;
+  return {...c,additionalNames:c.name===mushaName?[]:[mushaName],
+   race:[...new Set([...String(c.race||'').split('/').filter(Boolean),'アーマード・ドラゴン','サムライ'])].join('/')};
+ }
  const noReduce=(s,p)=>creatures(s,1-p).some(x=>effective(x,s).noCostReduction);
  const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task(op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
  const canUse=(s,p,c,origin)=>api.canCast(s,p,c,origin)&&(c.type==='spell'||api.canEnter(s,p,c,{origin,execution:true})&&(!c.evolution||api.evolutionBases(s,p,c).length));
@@ -22,7 +28,7 @@ export function createSamuraiRules(api){
   if(effective(x,s).g721CrossRamp)on(s,p,x,'g34_Ramp',{n:1,tapped:true});
  }
  const crossPayment=(g,reduction=0)=>({...card(g),crossing:true,...(reduction?{g933CrossReduction:reduction}:{})});
- function freeCross(g,c){return c.type==='creature'&&(g.doss&&samurai(c)||g.zangeki&&c.name==='ボルメテウス・武者・ドラゴン');}
+ function freeCross(g,c){return c.type==='creature'&&(g.doss&&samurai(c)||g.zangeki&&(c.name===mushaName||c.additionalNames?.includes(mushaName)));}
  const protect=(s,p,n)=>{const own=s.players[p];const uids=policyLook(s,p,n,own.deck,api).map(x=>x.uid);(own.g18Protected??=[]).push(...uids);return uids;};
  const release=(own,uids)=>own.g18Protected=(own.g18Protected||[]).filter(uid=>!uids.includes(uid));
  function run(s,t){if(!t.op.startsWith('g18_'))return false;const own=s.players[t.p];switch(t.op){
@@ -121,6 +127,7 @@ export function createSamuraiRules(api){
   }
   return triggered;
  },
+ identity,
  protected(s,p,x){
   if(x.crossedTo&&card(x).type==='gear'){
    const host=live(s,p,x);
@@ -201,7 +208,7 @@ export function createSamuraiRules(api){
   const out=[];
   for(const g of gears(s,p))for(const x of creatures(s,p)){
    if(live(s,p,g)?.uid===x.uid)continue;
-   const gear=card(g),host=card(x),existing=!!live(s,p,g),free=active(s,g)&&freeCross(gear,host);
+   const gear=card(g),host=identity(s,p,x,card(x)),existing=!!live(s,p,g),free=active(s,g)&&freeCross(gear,host);
    const hostFree=host.g946FreeCross&&!x.sealed&&active(s,x)&&!g.sealed&&!g.faceDown;
    const base=free?0:api.summonCost(s,p,crossPayment(g));
    const max=free||!host.g933CrossDiscount||!active(s,x)||noReduce(s,p)?0:Math.min(host.g933CrossDiscount,base-1);

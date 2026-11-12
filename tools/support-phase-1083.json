@@ -1,0 +1,396 @@
+{
+  "phase": 1083,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7213,
+  "description": "登録済みカードの公式裁定を実カードで再現するため、必要なカードの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/41414/",
+    "https://dm.takaratomy.co.jp/rule/qa/41415/",
+    "https://dm.takaratomy.co.jp/rule/qa/41641/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35576/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35655/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp22-040",
+      "name": "焔流トレーニング",
+      "faces": [
+        {
+          "name": "焔流トレーニング",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーが攻撃することによって、そのクリーチャーの能力がトリガーする時、その能力は１度のかわりに２度トリガーする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-040",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-040.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "spell": true,
+            "grant": {
+              "g1083Training": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "05b8750f87910db28aca04fcc47ca3f1676917f0829e0866f679674c1ba813bb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm28-008",
+      "name": "竜装 ムシャ・レジェンド",
+      "faces": [
+        {
+          "name": "竜装 ムシャ・レジェンド",
+          "typeText": "クロスギア",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "クロスギア\nこれをクロスしたクリーチャーは、種族にアーマード・ドラゴンとサムライを追加し、パワーが+2000され、名前に《ボルメテウス・武者・ドラゴン》を追加する。\nこれをクロスしたクリーチャーが攻撃する時、自分のシールドを１枚墓地に置いてもよい。そうした場合、相手のパワー6000以下のクリーチャーを１体破壊する。",
+          "race": "サムライ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-008",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-008.jpg",
+      "spec": {
+        "type": "gear",
+        "g123CrossPower": 2000,
+        "g1083MushaLegend": true,
+        "g931CrossAttack": [
+          {
+            "op": "ShieldGrave",
+            "optional": true,
+            "then": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 6000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "2e615553634e47b664cb56b7887da34d9bdf83a7555110503191e0849cd90361",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26-s02",
+      "name": "ボルシャック・大和・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルシャック・大和・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない)\n攻撃中、このクリーチャーのパワーは、自分の墓地にある火のカード１枚につき+1000される。\nW・ブレイカー\n《ボルメテウス・武者・ドラゴン》の能力によって、相手のパワー6000以下のクリーチャーを１体破壊する時、かわりに相手のパワー12000以下のクリーチャーを１体破壊する。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-s02",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26-s02.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g207CountPower": {
+          "zone": "grave",
+          "attackOnly": true,
+          "g1011CountColor": "火",
+          "amount": 1000
+        },
+        "g1083Yamato": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "21e348b703fce3e69119f93246d8a25accb781bcee4dd84a3fefbfb34003225c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "26-S002",
+      "name": "ボルシャック・大和・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルシャック・大和・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\n攻撃中、このクリーチャーのパワーは、自分の墓地にある火のカード１枚につき+1000される。\nＷ・ブレイカー\n《ボルメテウス・武者・ドラゴン》の能力によって、相手のパワー6000以下のクリーチャーを１体破壊する時、かわりに相手のパワー12000以下のクリーチャーを１体破壊する。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000+",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=26-S002",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/26-S002.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g207CountPower": {
+          "zone": "grave",
+          "attackOnly": true,
+          "g1011CountColor": "火",
+          "amount": 1000
+        },
+        "g1083Yamato": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "fd3cf7e5013140d5ce804aba2043b17d2af7416ecd343c6b7ed69d56578254dd",
+        "facesMatched": true
+      },
+      "canonicalId": "dm26-s02"
+    },
+    {
+      "id": "dmx21-010",
+      "name": "ボルシャック・大和・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルシャック・大和・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー\nＷ・ブレイカー\n攻撃中、自分の墓地にある火のカード１枚につき、このクリーチャーのパワーを+1000する。\n《ボルメテウス・武者・ドラゴン》の能力によって、相手のパワー6000以下のクリーチャーを１体破壊する時、かわりに相手のパワー12000以下のクリーチャーを１体破壊する。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-010",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx21-010.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g207CountPower": {
+          "zone": "grave",
+          "attackOnly": true,
+          "g1011CountColor": "火",
+          "amount": 1000
+        },
+        "g1083Yamato": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "9c4f5bb6dad119b28067694f0ea74678d324a696b696866ef4f4d3c211dc747f",
+        "facesMatched": true
+      },
+      "canonicalId": "dm26-s02"
+    },
+    {
+      "id": "dmx19-s36",
+      "name": "ボルシャック・大和・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルシャック・大和・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\n攻撃中、このクリーチャーのパワーは、自分の墓地にある火のカード１枚につき+1000される。\n《ボルメテウス・武者・ドラゴン》の能力によって、相手のパワー6000以下のクリーチャーを１体破壊する時、かわりに相手のパワー12000以下のクリーチャーを１体破壊する。\nＷ・ブレイカー",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx19-s36",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx19-s36.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g207CountPower": {
+          "zone": "grave",
+          "attackOnly": true,
+          "g1011CountColor": "火",
+          "amount": 1000
+        },
+        "g1083Yamato": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "99ae7c5e68e22e635368a7e051ed7faa355252c9b49f1015ef62bbef4c52be3d",
+        "facesMatched": true
+      },
+      "canonicalId": "dm26-s02"
+    },
+    {
+      "id": "dmc45-019",
+      "name": "ボルシャック・大和・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルシャック・大和・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない)\n攻撃中、このクリーチャーのパワーは、自分の墓地にある火のカード１枚につき+1000される。\nW・ブレイカー\n《ボルメテウス・武者・ドラゴン》の能力によって、相手のパワー6000以下のクリーチャーを１体破壊する時、かわりに相手のパワー12000以下のクリーチャーを１体破壊する。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc45-019",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc45-019.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g207CountPower": {
+          "zone": "grave",
+          "attackOnly": true,
+          "g1011CountColor": "火",
+          "amount": 1000
+        },
+        "g1083Yamato": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "7253ad511dea38913cea5ee6031a99e39f3241e889916d3980ec894933a01fac",
+        "facesMatched": true
+      },
+      "canonicalId": "dm26-s02"
+    },
+    {
+      "id": "dmc61-s04",
+      "name": "ボルシャック・大和・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルシャック・大和・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない)\n攻撃中、このクリーチャーのパワーは、自分の墓地にある火のカード１枚につき+1000される。\n《ボルメテウス・武者・ドラゴン》の能力によって、相手のパワー6000以下のクリーチャーを１体破壊する時、かわりに相手のパワー12000以下のクリーチャーを１体破壊する。\nW・ブレイカー",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc61-s04",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc61-s04.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g207CountPower": {
+          "zone": "grave",
+          "attackOnly": true,
+          "g1011CountColor": "火",
+          "amount": 1000
+        },
+        "g1083Yamato": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "20b938afbc513c744421353aa6e4e8a97d859cd2fc02e77c81cd84ec696c4cc8",
+        "facesMatched": true
+      },
+      "canonicalId": "dm26-s02"
+    },
+    {
+      "id": "dmc55-022",
+      "name": "ボルシャック・大和・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルシャック・大和・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない)\n攻撃中、このクリーチャーのパワーは、自分の墓地にある火のカード１枚につき+1000される。\nW・ブレイカー\n《ボルメテウス・武者・ドラゴン》の能力によって、相手のパワー6000以下のクリーチャーを１体破壊する時、かわりに相手のパワー12000以下のクリーチャーを１体破壊する。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc55-022",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc55-022.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g207CountPower": {
+          "zone": "grave",
+          "attackOnly": true,
+          "g1011CountColor": "火",
+          "amount": 1000
+        },
+        "g1083Yamato": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "d8d5ff40c031f75ac2d35716fce1dafc866771cf871a1d3434c2e8d6290766b4",
+        "facesMatched": true
+      },
+      "canonicalId": "dm26-s02"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp22-040": 4,
+      "dm28-008": 4,
+      "dm26-s02": 4,
+      "26-S002": 4,
+      "dmx21-010": 4,
+      "dmx19-s36": 4,
+      "dmc45-019": 4,
+      "dmc61-s04": 4,
+      "dmc55-022": 4
+    }
+  }
+}

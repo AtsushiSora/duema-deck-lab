@@ -58,9 +58,12 @@ function rawSixMute(s,x){
 }
 function rawSixNamed(s,x){
  if(!s)return false;
- const name=card(x).name;
- const sourceMatches=y=>!y.sealed&&y.g34ChosenName===name&&card(y).g34Role==='emotional';
- if(!s.players.some(p=>p.battle.some(sourceMatches))||!rawSixCreature(s,x))return false;
+ if(!s.players.some(p=>p.battle.some(y=>y.g34ChosenName))||!rawSixCreature(s,x))return false;
+ const p=s.players.findIndex(owner=>owner.battle.includes(x));
+ const identity=p>=0?extra.gearIdentity(s,p,x,card(x)):card(x);
+ const names=[identity.name,...(identity.additionalNames||[])];
+ const sourceMatches=y=>!y.sealed&&names.includes(y.g34ChosenName)&&card(y).g34Role==='emotional';
+ if(!s.players.some(p=>p.battle.some(sourceMatches)))return false;
  const monoMasked=s.players.some(p=>p.battle.some(y=>card(y).g32Momo&&!rawNumberIgnored(s,y)&&!rawTravelIgnored(s,y)&&!rawSixMute(s,y)));
  return s.players.some(p=>p.battle.some(y=>sourceMatches(y)&&!rawSixMute(s,y)&&!rawNumberIgnored(s,y)&&!rawTravelIgnored(s,y)&&!(monoMasked&&civilizations(card(y)).length<=1)));
 }
@@ -137,6 +140,7 @@ export function zoneCard(s,p,inst,zone=null,definition=card(inst)){
  let c=definition;if(!c||!s?.players?.[p]||typeof inst==='string'||inst.faceDown||inst.sealed)return c;
  const own=s.players[p];
  if(zone==='battle'||!zone&&own.battle.includes(inst)){
+  c=extra.gearIdentity(s,p,inst,c);
   const cs=own.battle.includes(inst)?battleCivilizations920(s,inst,c,own):battleCivilizations805(s,inst,c);
   if(cs.join('/')!==civilizations(c).join('/'))c={...c,civilizations:cs,civ:cs.join('/')};
  }
@@ -167,7 +171,7 @@ export function effectiveCard(inst,context,forPower=false){
  const races=inst.g34Grants?.flatMap(g=>g.raceAdd&&activeTurnGrant(context,g)?g.raceAdd:[]);
  if(races?.length&&!inst.sealed&&isCreature(context,inst))
   base={...base,race:[...new Set([...String(base.race||'').split('/').filter(Boolean),...races])].join('/')};
- if(abilitiesIgnored(context,inst)){const {id,name,type,civ,civilizations,manaValue,cost,power,race,limit,sMax,starEvolution}=extra.six.grantAuras(context,owner,inst,base,true);return externalBlockState(context,owner,inst,extra.utilityNatureSupport.decorate(context,owner,inst,{id,name,type,civ,civilizations,manaValue,cost,...(inst.g40Reckless?.turn===context.turn||extra.six.forced546(context,owner,inst)?{mustAttack:true}:{}),...(sMax?{sMax:true}:{}),...(starEvolution?{starEvolution:true}:{}),power:base.hyper&&inst.hyperActive&&(base.hyperTap||inst.hyperResolved)?base.hyper.power:power,race,limit}));}
+ if(abilitiesIgnored(context,inst)){const {id,name,additionalNames,type,civ,civilizations,manaValue,cost,power,race,limit,sMax,starEvolution}=extra.six.grantAuras(context,owner,inst,base,true);return externalBlockState(context,owner,inst,extra.utilityNatureSupport.decorate(context,owner,inst,{id,name,...(additionalNames?.length?{additionalNames}:{}),type,civ,civilizations,manaValue,cost,...(inst.g40Reckless?.turn===context.turn||extra.six.forced546(context,owner,inst)?{mustAttack:true}:{}),...(sMax?{sMax:true}:{}),...(starEvolution?{starEvolution:true}:{}),power:base.hyper&&inst.hyperActive&&(base.hyperTap||inst.hyperResolved)?base.hyper.power:power,race,limit}));}
  // Track ordinary Blocker grants separately from printed restricted Blockers.
  const printed=base.g716DragonBlock||base.g911BlockColors?{...base,blocker:false}:base;
  let c=inheritSoul404(base.hyper&&inst.hyperActive?{...printed,...base.hyper}:printed,inst,card,layers);if(base.natureAce4&&!isCreature(context,inst))c={...c,type:'seed',power:0};
@@ -2471,9 +2475,17 @@ function stepCore(s,action){
   }
  }
  if(a.kind==='attack'){
-  recordCombat(s,p);const c=s.players[p].battle.find(x=>x.uid===a.uid),data=effectiveCard(c,s),stopped=selfTriggersStopped(s,p);s.attack={attacker:a.uid,target:a.target,shield:a.shield,stage:'effects'};if(power(c,true,s)>=12000)(s.g16BigAttack??={})[p]=s.turn;tapCard(s,p,c);extra.attackStart(s,p,c);extra.attackTriggers(s,p,c);log(s,p,'attack',a.label,{cardId:c.cardId});
+  recordCombat(s,p);const c=s.players[p].battle.find(x=>x.uid===a.uid),data=effectiveCard(c,s),stopped=selfTriggersStopped(s,p);s.attack={attacker:a.uid,target:a.target,shield:a.shield,stage:'effects'};if(power(c,true,s)>=12000)(s.g16BigAttack??={})[p]=s.turn;tapCard(s,p,c);
+  const startOfAttackEffects=s.pendingEffects?.length??0;
+  extra.attackStart(s,p,c);extra.attackTriggers(s,p,c);log(s,p,'attack',a.label,{cardId:c.cardId});
   s.attackDeclarations=[...s.players[p].hand,...s.players[p].mana.filter(x=>card(x).ddd?.fromMana),...s.players[p].grave.filter(x=>card(x).ddd?.fromGrave&&canMoveZone(s,p,'grave'))].filter(x=>dddPayment(s,p,card(x))).map(x=>x.uid);
   for(const effect of ['attackDragonReveal','attackJudge','deployMulticolor7','attackExecuteHand'])if(data[effect]||(effect==='deployMulticolor7'&&data.effect===effect)){if(stopped)log(s,p,'triggerPrevented',`${data.name}自身の攻撃時能力はGGによりトリガーしない`,{cardId:data.id});else enqueueEffect(s,p,{uid:c.uid,source:data.id,effect:effect==='deployMulticolor7'?'deploy':effect,...(effect==='attackJudge'&&data.attackJudge==='draw'?{judgeDraw880:true}:{})});}
+  if(c.g34Grants?.some(grant=>grant.g1083Training&&activeTurnGrant(s,grant))){
+   const sources=[c.cardId,...(c.godLinks||[]).map(part=>part.cardId)];
+   const triggered=(s.pendingEffects||[]).slice(startOfAttackEffects);
+   for(const effect of triggered)if(effect.player===p&&effect.uid===c.uid&&sources.includes(effect.source))
+    enqueueEffect(s,p,structuredClone(effect));
+  }
  }
  if(a.kind==='declareDDD'||a.kind==='skipDDD'){s.decision=null;s.attackDeclarations.shift();if(a.kind==='declareDDD'){enqueueEffect(s,p,{uid:a.uid,source:a.cardId,effect:'ddd',origin:d.origin||'hand',serial:d.serial});log(s,p,'dddDeclare',`${card(a.cardId).name}のD・D・Dを宣言`,{cardId:a.cardId});}}
  if(a.kind==='summonDDD'){s.decision=null;log(s,p,'dddSummon',`${card(a.cardId).name}のD・D・Dを解決（${a.cost}マナ）`,{cardId:a.cardId});playCard(s,p,a.uid,false,a.baseUid||null,0,dddPayment(s,p,card(a.cardId)),a.origin||'hand','D・D・D');}

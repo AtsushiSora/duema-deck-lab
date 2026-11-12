@@ -215442,15 +215442,107 @@
       ],
       "supportBatch": "phase-1082",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-040",
+      "name": "焔流トレーニング",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーが攻撃することによって、そのクリーチャーの能力がトリガーする時、その能力は１度のかわりに２度トリガーする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-040",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "spell": true,
+          "grant": {
+            "g1083Training": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1083",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm28-008",
+      "name": "竜装 ムシャ・レジェンド",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 3,
+      "power": 0,
+      "race": "サムライ",
+      "text": "クロスギア\nこれをクロスしたクリーチャーは、種族にアーマード・ドラゴンとサムライを追加し、パワーが+2000され、名前に《ボルメテウス・武者・ドラゴン》を追加する。\nこれをクロスしたクリーチャーが攻撃する時、自分のシールドを１枚墓地に置いてもよい。そうした場合、相手のパワー6000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-008",
+      "limit": 4,
+      "g123CrossPower": 2000,
+      "g1083MushaLegend": true,
+      "g931CrossAttack": [
+        {
+          "op": "ShieldGrave",
+          "optional": true,
+          "then": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "maxPower": 6000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1083",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26-s02",
+      "name": "ボルシャック・大和・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アーマード・ドラゴン",
+      "text": "スピードアタッカー(このクリーチャーは召喚酔いしない)\n攻撃中、このクリーチャーのパワーは、自分の墓地にある火のカード１枚につき+1000される。\nW・ブレイカー\n《ボルメテウス・武者・ドラゴン》の能力によって、相手のパワー6000以下のクリーチャーを１体破壊する時、かわりに相手のパワー12000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-s02",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g207CountPower": {
+        "zone": "grave",
+        "attackOnly": true,
+        "g1011CountColor": "火",
+        "amount": 1000
+      },
+      "g1083Yamato": true,
+      "supportBatch": "phase-1083",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1082,
+    "phase": 1083,
     "checkedAt": "2026-11-13",
-    "baseCount": 7210,
+    "baseCount": 7213,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7213,
+    "totalCount": 7216,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -234723,6 +234815,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7210,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1082,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7210,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7213,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
