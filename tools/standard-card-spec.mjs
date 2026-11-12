@@ -9725,6 +9725,33 @@ export function standardCardSpec(d,{phase=165}={}){
     continue;
    }
   }
+  if(phase>=1079&&creature){
+   if(d.id==='dm25-018'){
+    if(line==='G・リンク《封神ゴート》の右横。'){spec.g31God='right';spec.g1079GodPartner='dm25-011';continue;}
+    if(line==='このクリーチャーと同じ種族を持つ自分の他のクリーチャーが相手プレイヤーを攻撃してブロックされなかった時そのターンそのクリーチャーはシールドをさらに1枚ブレイクする。'){
+     spec.g1079Tauros=true;
+     continue;
+    }
+    if(line==='このクリーチャーはリンクしている時「パワーアタッカー+4000」を得る。'){spec.g1079LinkedAttackBonus=true;continue;}
+   }
+   if(d.id==='dm25-011'){
+    if(line==='このクリーチャーと同じ種族を持つ自分のクリーチャーは「スレイヤー」を得る。'){spec.g1079Goat=true;continue;}
+    if(line==='G・リンク《闘神タウロス》の左横(バトルゾーンに自分の指定ゴッドがあればこのカードをリンクしてもよい。リンクしたゴッドは各ゴッドの特性〔パワーや能力〕を持つ1体のクリーチャーとなる。バトルゾーンを離れる時はどちらか1枚を選ぶ)'){
+     spec.g31God='left';
+     spec.g1079GodPartner='dm25-018';
+     continue;
+    }
+    if(line==='このクリーチャーはリンクしている時「W・ブレイカー」を得る。'){spec.g1079LinkedDoubleBreaker=true;continue;}
+   }
+   if(line==='アクセル(このクリーチャーにクロスギアがクロスされている時このクリーチャーは次のa能力を得る)aこのクリーチャーが相手プレイヤーを攻撃してブロックされなかった時進化以外のサムライを1枚自分の手札からバトルゾーンに出してもよい。'){
+    if(spec.g260Self)throw Error('重複するアクセル能力');
+    spec.g260Self={filter:{g436Crossed:true},grants:{g1076UnblockedWatch:{self:true,defs:[
+     {op:'Select',origin:'hand',n:1,deploy:true,optional:true,filter:{race:'サムライ',nonEvolution:true},
+      title:'手札から出す進化以外のサムライを1枚選ぶ'}
+    ]}}};
+    continue;
+   }
+  }
   if(phase>=1078&&creature){
    const defs={
     'このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時文明をひとつ選ぶ。相手は手札を見せ選ばれた文明のカードをすべて捨てる。その後相手が捨てた手札の枚数だけ自分のシールドを見てもよい。':[

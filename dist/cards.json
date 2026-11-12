@@ -215074,15 +215074,104 @@
       },
       "supportBatch": "phase-1078",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25-011",
+      "name": "封神ゴート",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "グランド・デビル/ゴッド",
+      "text": "このクリーチャーと同じ種族を持つ自分のクリーチャーは「スレイヤー」を得る。\nG・リンク《闘神タウロス》の左横(バトルゾーンに自分の指定ゴッドがあれば、このカードをリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕を持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、どちらか１枚を選ぶ)\nこのクリーチャーは、リンクしている時「W・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-011",
+      "limit": 4,
+      "g1079Goat": true,
+      "g31God": "left",
+      "g1079GodPartner": "dm25-018",
+      "g1079LinkedDoubleBreaker": true,
+      "supportBatch": "phase-1079",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25-018",
+      "name": "闘神タウロス",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "ゴッド/リキッド・ピープル/ティラノ・ドレイク",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーと同じ種族を持つ自分の他のクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、そのターン、そのクリーチャーはシールドをさらに１枚ブレイクする。\nG・リンク《封神ゴート》の右横。\nこのクリーチャーは、リンクしている時「パワーアタッカー+4000」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-018",
+      "limit": 4,
+      "g1079Tauros": true,
+      "g31God": "right",
+      "g1079GodPartner": "dm25-011",
+      "g1079LinkedAttackBonus": true,
+      "supportBatch": "phase-1079",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy7-022",
+      "name": "武装竜鬼バルガゼニガタ",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "アーマード・ドラゴン/アース・ドラゴン/サムライ",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nアクセル（このクリーチャーにクロスギアがクロスされている時、このクリーチャーは次の a 能力を得る） a このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、進化以外のサムライを１枚、自分の手札からバトルゾーンに出してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy7-022",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "g436Crossed": true
+        },
+        "grants": {
+          "g1076UnblockedWatch": {
+            "self": true,
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "hand",
+                "n": 1,
+                "deploy": true,
+                "optional": true,
+                "filter": {
+                  "race": "サムライ",
+                  "nonEvolution": true
+                },
+                "title": "手札から出す進化以外のサムライを1枚選ぶ"
+              }
+            ]
+          }
+        }
+      },
+      "breaker": 2,
+      "supportBatch": "phase-1079",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1078,
+    "phase": 1079,
     "checkedAt": "2026-11-13",
-    "baseCount": 7198,
+    "baseCount": 7201,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7201,
+    "totalCount": 7204,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -234307,6 +234396,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7198,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1078,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7198,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7201,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

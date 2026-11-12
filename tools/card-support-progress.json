@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7201,
-  "pendingNames": 4626,
-  "phase": 1078,
+  "supportedNames": 7204,
+  "pendingNames": 4623,
+  "phase": 1079,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2693,
+    "クリーチャー": 2690,
     "NEOクリーチャー": 89,
     "呪文": 605,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3193,
+    "未対応の能力文": 3190,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -208949,35 +208949,156 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1079,
+      "baseCommit": "feeede67",
+      "cards": [
+        {
+          "id": "dm25-011",
+          "name": "封神ゴート"
+        },
+        {
+          "id": "dm25-018",
+          "name": "闘神タウロス"
+        },
+        {
+          "id": "promoy7-022",
+          "name": "武装竜鬼バルガゼニガタ"
+        }
+      ],
+      "printAliases": [],
+      "supportedNames": 7204,
+      "pendingNames": 4623,
+      "verification": {
+        "focusedPassed": 5,
+        "regressionPassed": 309,
+        "regressionFailed": 0,
+        "check": "成功",
+        "officialPrints": 3,
+        "scope": "3種類3版の公式能力全文・基本情報・画像・収録・使用制限を照合。封神ゴートと闘神タウロスのG・リンクは両順序で任意に実行でき、指定相手のみ候補となる。リンク中は種族とパワーを合成し、W・ブレイカーとパワーアタッカー+4000を得る。離脱する側を選び、物理カードが保存されることを確認。封神ゴートは同じ種族を持つ自軍にスレイヤーを付与し、闘神タウロスは同じ種族を持つ他の自軍クリーチャーの非ブロック時にターン終了まで追加ブレイクを付与。武装竜鬼バルガゼニガタのアクセルは進化を除くサムライのクリーチャーとクロスギアを任意に出せる。総合ルール203.2に従いアーマード・サムライも対象。既存7,201件の対戦定義を照合。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37706/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35733/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37504/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37505/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37506/"
+        ],
+        "regressionFiles": [
+          "tests/phoenix-photo.test.mjs",
+          "tests/standard412-effects.test.mjs",
+          "tests/standard436-effects.test.mjs",
+          "tests/standard511-effects.test.mjs",
+          "tests/standard724-effects.test.mjs",
+          "tests/standard969-effects.test.mjs",
+          "tests/standard1076-effects.test.mjs",
+          "tests/standard1077-effects.test.mjs",
+          "tests/standard1078-effects.test.mjs"
+        ],
+        "regressionFilter": "--test-skip-pattern=photo games finish|photo plays every|random manual photo|production worker completes|legal forty CPU",
+        "incompleteRegression": [
+          {
+            "file": "tests/phoenix-photo.test.mjs",
+            "test": "photo games finish / photo plays every / random manual photo / production worker completes（4件）",
+            "status": "今回未実行",
+            "reason": "複数回の対戦完走とワーカーのシミュレーションを伴うケースを除外し、G・リンクの離脱などの個別回帰を実行。"
+          },
+          {
+            "file": "tests/standard412-effects.test.mjs",
+            "test": "legal forty CPUで始まる対戦完走ケース",
+            "status": "今回未実行",
+            "reason": "CPU対戦完走の繰り返しを避け、継続効果、追加ブレイク、クロスギアの個別回帰を実行。"
+          },
+          {
+            "file": "tests/standard436-effects.test.mjs",
+            "test": "legal forty CPUで始まる対戦完走ケース",
+            "status": "今回未実行",
+            "reason": "CPU対戦完走の繰り返しを避け、継続効果、追加ブレイク、クロスギアの個別回帰を実行。"
+          },
+          {
+            "file": "tests/standard511-effects.test.mjs",
+            "test": "legal forty CPUで始まる対戦完走ケース",
+            "status": "今回未実行",
+            "reason": "CPU対戦完走の繰り返しを避け、継続効果、追加ブレイク、クロスギアの個別回帰を実行。"
+          }
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。 トットロの公式QA 48925の組み合わせは関連2枚が未対応のため未実行。NEO/DDDの100試合と再現性は過去に分割検証済みで、今回の回帰では合否未確認。 ゴルギー31相手の再現性と本番Worker62試合は今回も対象外で未実行。前回の広範囲回帰に含まれる1,796件固定の既存テストの結果はPhase 1060を参照。 PhoenixのCPU連戦と本番Worker試験は、今回の個別回帰の対象外。 Phase 1064ではNEO/DDD 100試合とBandeの全対戦・ランダム操作・Workerの長時間ケースを個別回帰から除外。以前の長時間実行を繰り返さず、今回の合否は未確認。 Phase 1065の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1066の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1067の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1068の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1069の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1070の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1071の個別回帰でも長時間のNEO/DDD 100試合は対象外。 Phase 1072の個別回帰でも長時間のNEO/DDD 100試合は対象外。 Phase 1073の個別回帰でも長時間のNEO/DDD 100試合は対象外。 Phase 1074で今回未実行または中断した長時間回帰は同履歴のincompleteRegressionを参照。 Phase 1075の回帰でもNEO/DDD 100対戦は対象外。前回のソウル・進化・ドラゴン100対戦の中断記録を引き継ぐ。 Phase 1076で対象外の長時間回帰は同履歴のincompleteRegressionを参照。 Phase 1077で対象外の長時間回帰は同履歴のincompleteRegressionを参照。 Phase 1078で対象外の長時間回帰は同履歴のincompleteRegressionを参照。 Phase 1079で対象外の長時間回帰は同履歴のincompleteRegressionを参照。",
+        "pendingInteractions": [
+          {
+            "cardIds": [
+              "dm25rp3-039",
+              "dm26rp2-006",
+              "dm25rp2-OR1"
+            ],
+            "test": "デンジャラス=トットロの上にメモッタで封印付きのジャシン＝ヴリドガルドが出る場合の墓地展開",
+            "status": "未実行",
+            "reason": "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/48925/"
+          }
+        ],
+        "logs": {
+          "official": "/tmp/duema-phase-1079.WbxNlB/manifest.log",
+          "officialImages": "/tmp/duema-phase-1079.WbxNlB/sources.log",
+          "partnerImage": "/tmp/duema-phase-1079.WbxNlB/partner.log",
+          "imageIndex": "/tmp/duema-phase-1079.WbxNlB/images.log",
+          "focused": "/tmp/duema-phase-1079.WbxNlB/specific-fixed.log",
+          "regression": "/tmp/duema-phase-1079.WbxNlB/related.log",
+          "check": "/tmp/duema-phase-1079.WbxNlB/check-final.log",
+          "audit": "/tmp/duema-phase-1079.WbxNlB/audit.log",
+          "count": "/tmp/duema-phase-1079.WbxNlB/count.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dmx26-005",
+          "name": "神曲の法皇 ミラダンテ",
+          "reason": "公式全文・基本情報・画像・単一収録を照合。既存のターン強制終了処理は待機中の効果も破棄する。相手の非ブロック攻撃の終了時効果との順序、光のクリーチャー5体とパワーが正であることを確認する離脱置換の検証が残る。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmx26-005"
+          ]
+        },
+        {
+          "id": "dm25rp2-001",
+          "name": "Celeb k’Reine",
+          "reason": "複数体の同時タップと、本人が出る前に相手がタップしていた場合の各ターン最初の誘発を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-001",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp2001"
+          ]
+        },
+        {
+          "id": "dmrp02-010",
+          "name": "ベジタバッタ・パンツァー",
+          "reason": "攻撃できる対象の優先と、効果によるバトルも含めて両方のクリーチャーをマナに置く任意置換を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-010",
+            "https://dm.takaratomy.co.jp/coverage/dmscs01_f03/"
+          ]
+        },
+        {
+          "id": "dm25rp2-019",
+          "name": "魔誕盗掘男",
+          "reason": "手札以外からの召喚コストの加算対象と、総合ルール509.3で選んだシールドごとの任意ドローの誘発順を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-019",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-018"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1078,
-    "nextPhase": 1079,
+    "lastVerifiedPhase": 1079,
+    "nextPhase": 1080,
     "workInProgress": [],
     "nextCandidates": [
       {
         "id": "dmx26-005",
         "name": "神曲の法皇 ミラダンテ",
-        "reason": "相手の攻撃がブロックされない場合に、その攻撃の終了処理と待機中の効果を済ませてターンを終える裁定と、光のクリーチャーの数を参照する離脱置換を確認する。",
+        "reason": "公式全文・基本情報・画像・単一収録を照合。既存のターン強制終了処理は待機中の効果も破棄する。相手の非ブロック攻撃の終了時効果との順序、光のクリーチャー5体とパワーが正であることを確認する離脱置換の検証が残る。",
         "sources": [
           "https://dm.takaratomy.co.jp/card/detail/?id=dmx26-005"
-        ]
-      },
-      {
-        "id": "dm25-018",
-        "name": "闘神タウロス",
-        "reason": "リンク中の種族と、同じ種族を持つ他の攻撃クリーチャーへのターン中の追加ブレイクを確認する。",
-        "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm25-018"
-        ]
-      },
-      {
-        "id": "promoy7-022",
-        "name": "武装竜鬼バルガゼニガタ",
-        "reason": "アクセルが有効な非ブロック時に手札から進化以外のサムライを出す処理と、再録を確認する。",
-        "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=promoy7-022"
         ]
       },
       {
@@ -209306,7 +209427,7 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
-      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。非ブロック時のターン終了予約、G・リンク時の種族とブレイク増加、アクセルによる手札展開を既存処理と照合する。",
+      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。非ブロック時のターン終了予約、複数体の同時タップ、バトル後のマナ移動、ブレイクごとのドローを既存処理と照合し、保留が続く場合は公式確認可能な別候補へ進む。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で登録再開。自動化 duema-deck-lab は10分間隔で稼働中。",

@@ -25,7 +25,16 @@ export function card(id){
  if(typeof id!=='string'&&id?.sealOf)return SEAL_CARD;
  if(typeof id!=='string'&&id?.faceDown)return FACE_DOWN;
  if(typeof id!=='string'&&id?.sealed){const c=card(id.cardId);return {id:c.id,name:c.name,type:'ignored',cost:Infinity,power:0,civ:'',civilizations:[],race:'',limit:c.limit};}
- if(typeof id!=='string'&&id?.godLinks?.length){const parts=[id,...id.godLinks],defs=parts.map(x=>card(x.cardId)),base={...defs[0]},union=key=>[...new Set(defs.flatMap(c=>key==='civilizations'?civilizations(c):String(c[key]||'').split('/')))];for(const c of defs)for(const[k,v]of Object.entries(c))if(v===true)base[k]=true;return {...base,name:defs.map(c=>c.name).join('＋'),cost:defs.reduce((n,c)=>n+costValue(c),0),power:defs.reduce((n,c)=>n+numeric(c.power),0),civilizations:union('civilizations'),civ:union('civilizations').join('/'),race:union('race').join('/'),g31GodHeavy:defs.some(c=>c.g31God==='left'),breaker:Math.max(...defs.map(c=>Number(c.breaker)||(c.breaker===0?0:1)))===1?undefined:Math.max(...defs.map(c=>Number(c.breaker)||(c.breaker===0?0:1)))};}
+ if(typeof id!=='string'&&id?.godLinks?.length){
+  const defs=[id,...id.godLinks].map(x=>card(x.cardId)),base={...defs[0]};
+  const union=key=>[...new Set(defs.flatMap(c=>key==='civilizations'?civilizations(c):String(c[key]||'').split('/')))];
+  for(const c of defs)for(const [k,v] of Object.entries(c))if(v===true)base[k]=true;
+  const breaker=Math.max(...defs.map(c=>c.g1079LinkedDoubleBreaker?2:Number(c.breaker)||(c.breaker===0?0:1)));
+  return {...base,name:defs.map(c=>c.name).join('＋'),cost:defs.reduce((n,c)=>n+costValue(c),0),
+   power:defs.reduce((n,c)=>n+numeric(c.power),0),civilizations:union('civilizations'),civ:union('civilizations').join('/'),
+   race:union('race').join('/'),g31GodHeavy:defs.some(c=>c.g31God==='left'&&!c.g1079GodPartner),
+   breaker:breaker===1?undefined:breaker,...(base.g1079LinkedAttackBonus?{attackBonus:(base.attackBonus||0)+4000}:{})};
+ }
  const key=typeof id==='string'?id:id?.cardId,base=catalogue.get(key);if(base?.g39Verde&&typeof id!=='string'&&id.g39GraveColors)return {...base,civilizations:['光','水','闇','火','自然'],civ:'光/水/闇/火/自然',g39InGrave:true};if(base){
   if(typeof id==='string')return base;
   const definition=base.g393JWDFaces?wdDefinition393(id,base):base;

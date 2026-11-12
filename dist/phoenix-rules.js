@@ -170,7 +170,15 @@ export function createPhoenixRules(api){
  case'g31_Link':{const x=remove(own.g31Holding,t.uid);if(x)enter(s,t.p,x,t.base,{...t.options,g31Linked:true,g31Partner:v});break;}
  default:throw Error('未実装のフェニックス選択：'+t.op);
  }return true;}
- function linkCandidates(s,p,c){return creatures(s,p).filter(x=>!x.godLinks?.length&&((c.g31God==='left'&&card(x).g31God==='right')||(c.g31God==='right'&&card(x).g31God==='left')));}
+ function linkCandidates(s,p,c){
+  const side=c.g31God==='left'?'right':'left';
+  return creatures(s,p).filter(x=>{
+   const partner=card(x);
+   return !x.godLinks?.length&&partner.g31God===side&&
+    (!c.g1079GodPartner||c.g1079GodPartner===partner.id)&&
+    (!partner.g1079GodPartner||partner.g1079GodPartner===c.id);
+  });
+ }
  return{run,chosen,complex,bases,beginCast,beginPut,attach,
  beginPayment(s,p,args){const x=s.players[p][args[5]].find(x=>x.uid===args[0]),c=x&&faces(card(x))[args[3]];if(args[1]||args[4]!==null||c?.type!=='creature'||!colors(c).some(x=>['闇','火'].includes(x))||!(s.g31Discounts||[]).some(x=>x.p===p&&x.turn===s.turn)||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;put(s,task('g31_Reduce',p,c.id,{args}));return true;},
  beginLink(s,p,x,base,options){if(!card(x).g31God||options.g31Linked||!linkCandidates(s,p,card(x)).length)return false;(s.players[p].g31Holding??=[]).push(x);put(s,task('g31_Link',p,x.cardId,{uid:x.uid,base,options}));return true;},

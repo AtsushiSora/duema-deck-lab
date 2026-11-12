@@ -30,6 +30,8 @@ export function createSixPhotoRules(api){
   })));
  }
  const exactRaces=c=>String(c.race||'').split('/').filter(Boolean);
+ const sharesRace=(a,b)=>exactRaces(a).some(name=>exactRaces(b).includes(name));
+ const goatRaceReading=new WeakSet();
  // Soul marks are printed characteristics and remain when abilities are ignored.
  const hasSoul=(c,soul)=>c.g558Souls?.includes(soul)||c.text?.includes('【'+soul+'・ソウル】');
  const race=(c,q)=>String(c.race).includes(q),mecha=c=>race(c,'メカ'),ninja=c=>race(c,'シノビ'),demon=c=>race(c,'デーモン・コマンド'),angel=c=>race(c,'エンジェル・コマンド');
@@ -677,6 +679,20 @@ export function createSixPhotoRules(api){
    if(!api.isCreature(s,source)&&!(sourceCard.type==='field'&&sourceCard.d2Field))continue;
    for(const aura of auras){if(aura.opponentTurn&&s.active===p)continue;if(aura.g557Condition&&!ownCondition(s,p,aura.g557Condition,source.uid))continue;if(!aura.both&&owner!==p||aura.other&&source.uid===x.uid||!fits(aura.filter))continue;
     for(const [key,value]of Object.entries(aura.grants)){if(racesOnly&&key!=='raceAdd')continue;if(out===c)out={...c};if(key==='slayer'){out.slayer=true;slayers++;}else if(key==='breaker')out.breaker=out.breaker==='∞'||value==='∞'?'∞':Math.max(Number(out.breaker)||1,value);else if(key==='attackBonus')out.attackBonus=(out.attackBonus||0)+value;else if(key==='raceAdd')out.race=[...new Set([...String(out.race||'').split('/').filter(Boolean),...value])].join('/');else out[key]=value;}
+   }
+  }
+  if(!racesOnly&&!goatRaceReading.has(s)){
+   const goats=s.players[owner].battle.filter(y=>card(y).g1079Goat&&!y.sealed&&api.isCreature(s,y)&&!api.ignored(s,y));
+   if(goats.length){
+    // The aura changes Slayer only. Read the sources' current races without reapplying it.
+    goatRaceReading.add(s);
+    try{
+     for(const y of goats)if(sharesRace(out,y.uid===x.uid?out:effective(y,s,true))){
+      if(out===c)out={...c};
+      out.slayer=true;
+      slayers++;
+     }
+    }finally{goatRaceReading.delete(s);}
    }
   }
   if(slayers>1)out={...out,g208SlayerCount:slayers};
@@ -1799,7 +1815,13 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_AttackFight408':{if(t.g747Once&&parottaUsed747(s,t))break;const y=attackHost408(s,t);if(y&&api.isCreature(s,y)&&!y.sealed)put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:y.uid,incarnation:y.incarnation||0},optional:true});break;}
- case'g34_AttackExtraBreak511':{const ref=t.g399Attacker;if(ref)start(s,{...t,uid:ref.uid,incarnation:ref.incarnation},[{op:'SelfExtraBreak444',amount:t.amount}]);break;}
+ case'g34_AttackExtraBreak511':{
+  const ref=t.g399Attacker;
+  if(ref)start(s,{...t,uid:ref.uid,incarnation:ref.incarnation},[
+   {op:'SelfExtraBreak444',amount:t.amount,...(t.g969FollowControl?{g969FollowControl:true}:{})}
+  ]);
+  break;
+ }
  case'g34_UnblockedExtraBreak1076':
   if(s.attack?.stage==='unblocked482')s.attack.g1076ExtraBreaks=(s.attack.g1076ExtraBreaks||0)+t.amount;
   break;
@@ -5635,7 +5657,14 @@ export function createSixPhotoRules(api){
   }
   if(!s.attack.g484Blocked)for(const source of creatures(s,p)){
    if(source.sealed)continue;
-   const {g701UnblockedMana,g852UnblockedDiscard,g1076UnblockedWatch:watch}=effective(source,s);
+   const current=effective(source,s);
+   const {g701UnblockedMana,g852UnblockedDiscard,g1076UnblockedWatch:watch}=current;
+   if(playerAttack&&current.g1079Tauros&&source.uid!==x.uid&&sharesRace(attacker,current)){
+    const part=[source,...(source.godLinks||[])].find(y=>card(y.cardId).g1079Tauros);
+    queue(s,p,source,[{op:'AttackExtraBreak511',amount:1,g969FollowControl:true,
+     g399Attacker:{uid:x.uid,incarnation:x.incarnation||0}}],part?.cardId??source.cardId);
+    triggered=true;
+   }
    if(playerAttack&&watch&&(!watch.self||source.uid===x.uid)&&(!watch.other||source.uid!==x.uid)&&
     (!watch.race||race(attacker,watch.race))&&
     (watch.minPower===undefined||api.power(x,true,s)>=watch.minPower)){
