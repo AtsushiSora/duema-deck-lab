@@ -9485,6 +9485,23 @@ export function standardCardSpec(d,{phase=165}={}){
    spec.g397Shinka=defs;
    continue;
   }
+  if(phase>=1059&&f.typeText==='NEOクリーチャー'){
+   const discount=line.match(/^NEO進化クリーチャーとして召喚する(?:なら|場合)このクリーチャーの召喚コストを([12])少なくする。$/);
+   if(discount){
+    spec.g1059NeoSummonDiscount=Number(discount[1]);
+    // The official DMEX-17 image identifies this XX as ダブルクロス.
+    if(d.id==='dmex17-036')spec.g1059DoubleCross=true;
+    continue;
+   }
+   if(line==='このクリーチャーがアンタップした時これが進化クリーチャーでなければ自分の手札を1枚捨てる。'){
+    spec.g299Untapped=[{op:'IfSource541',g1059NonEvolution:true,defs:[{op:'Discard',owner:'self',n:1}]}];
+    continue;
+   }
+   if(line==='このクリーチャーが攻撃する時それがNEO進化クリーチャーでなければ自分の手札を1枚捨てる。'){
+    (spec.g34Attack??=[]).push({op:'IfNeo563',g1059Negate:true,defs:[{op:'Discard',owner:'self',n:1}]});
+    continue;
+   }
+  }
   if(phase>=1058&&f.typeText==='NEOクリーチャー'){
    if(line==='バトル中このクリーチャーに含まれるカード1枚につきこのクリーチャーのパワーを+2000する。'){
     if(spec.g209BattlePower)throw Error('重複するバトル強化');

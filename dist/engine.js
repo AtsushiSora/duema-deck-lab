@@ -464,6 +464,10 @@ function rememberBattleInformation(s,owner,host,leaving){
   return readsDepartingPower(task);
  });
  if(host.sealed)return;
+ for(const task of all){
+  if(departs(task)&&(task.g1059NonEvolution||task.defs?.some(def=>def.g1059NonEvolution)))
+   task.g1059LastEvolution=isEvolution(host);
+ }
  const resultEffects=[
   ...(s.leaving?.after?.losses||[]),...(s.battleResolution?.wins||[]),
   ...(s.battleStack||[]).flatMap(result=>result.wins||[])

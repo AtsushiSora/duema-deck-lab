@@ -66,7 +66,7 @@ export function createGolgyRules(api){
  }return true;}
  return {run,chosen,
   effect(s,p,c,uid,entry){const op={golgyEntry:'g27_Golgy',golgyKohaku:'g27_Kohaku',golgyBig:'g27_Big',golgyShield:'g27_Shield',golgyHerc:'g27_Herc',golgyWest:'g27_WestEntry',golgyGin:'g27_Gin',golgyBlueprint:'g27_Blueprint',golgyJasmine:'g27_Jasmine'}[c.effect];if(!op)return false;put(s,task(op,p,c.id,{uid,incarnation:entry?.incarnation||0,lastKnownCount:entry?.lastKnownCount??1}));return true;},
-  baseCost(s,p,c){const x=c.g27BaseUid&&api.evolutionBases(s,p,c).find(x=>x.uid===c.g27BaseUid);return c.g27Golgy&&x?Math.max(3,cost(c)-2*api.allLayers(x).length):c.g27West&&x?cost(c)-3:cost(c);},
+  baseCost(s,p,c){const x=c.g27BaseUid&&api.evolutionBases(s,p,c).find(x=>x.uid===c.g27BaseUid);return c.g27Golgy&&x?Math.max(3,cost(c)-2*api.allLayers(x).length):c.g27West&&x?cost(c)-3:cost(c)-(x?(c.g1059NeoSummonDiscount||0):0);},
   discount(s,p,c){return c.type==='creature'&&c.neoEvolution?creatures(s,p).reduce((n,x)=>n+(effective(x,s).g27KohakuCount||0),0):0;},
   attack(s,p,x){if(s.attack?.target==='player')for(const y of creatures(s,1-p))if(effective(y,s).g27West&&(s.g27WestUsed||{})[key(y)]!==s.turn)on(s,1-p,y,'g27_West',{useKey:key(y)});if(effective(x,s).g27Golgy&&!api.selfStopped(s,p))on(s,p,x,'g27_Win');},
   entry(s,p,x,options){if(options.selfMuted||api.selfStopped(s,p)||api.ignored(s,x))return;if(card(x).g27Raid)on(s,p,x,'g27_Raid');if(card(x).g27Aophe&&options.revolution)on(s,p,x,'draw',{n:2});},

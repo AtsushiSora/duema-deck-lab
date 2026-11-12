@@ -114,7 +114,7 @@ export function createSixPhotoRules(api){
  function nextReduction456(s,p,c){const r=reductionRange456(s,p,c);return c.g456Reduction===undefined?r.max:Math.min(r.max,Math.max(r.min,c.g456Reduction));}
  function consumeReduction456(s,p,c){if(!s.extLimits?.some(r=>r.kind==='g456NextReduction'))return;s.extLimits=(s.extLimits||[]).filter(r=>!(r.kind==='g456NextReduction'&&r.player===p&&r.turn===s.turn&&reductionMatches456(c,r)));}
  // New optional auras choose their combined reduction independently for each summon.
- function summonAuras560(s,p,c){const out={mandatory:0,optional:0,zeroOptional:0};if(c.type!=='creature'||c.crossing)return out;const fits=f=>(!f.g836NameIds||f.g836NameIds.includes(c.id))&&(!f.g832NameIncludes||exactName(creatureFaceName(c)).includes(f.g832NameIncludes))&&(!f.g756Colorless||colors(c).length===0)&&(!f.any||f.any.some(fits))&&(!f.race||race(c,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(c,q)))&&(!f.color||colors(c).includes(f.color))&&(!f.evolution||api.isEvolution({cardId:c.id})||!!c.neoEvolution&&!!c.g27BaseUid)&&(f.minPower===undefined||c.power==='∞'||Number(c.power)>=f.minPower)&&(f.min===undefined||cost({...c,cost:c.printedCost??c.cost})>=f.min)&&(f.max===undefined||cost({...c,cost:c.printedCost??c.cost})<=f.max);
+ function summonAuras560(s,p,c){const out={mandatory:0,optional:0,zeroOptional:0};if(c.type!=='creature'||c.crossing)return out;const fits=f=>(!f.g836NameIds||f.g836NameIds.includes(c.id)||c.g1059DoubleCross)&&(!f.g832NameIncludes||exactName(creatureFaceName(c)).includes(f.g832NameIncludes))&&(!f.g756Colorless||colors(c).length===0)&&(!f.any||f.any.some(fits))&&(!f.race||race(c,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(c,q)))&&(!f.color||colors(c).includes(f.color))&&(!f.evolution||api.isEvolution({cardId:c.id})||!!c.neoEvolution&&!!c.g27BaseUid)&&(f.minPower===undefined||c.power==='∞'||Number(c.power)>=f.minPower)&&(f.min===undefined||cost({...c,cost:c.printedCost??c.cost})>=f.min)&&(f.max===undefined||cost({...c,cost:c.printedCost??c.cost})<=f.max);
   for(const who of[p,1-p])for(const x of s.players[who].battle){if(x.sealed)continue;const d=effective(x,s);for(const r of[...(d.g290SummonAura?[d.g290SummonAura]:[]),...(d.g349SummonAuras||[])]){if(!api.isCreature(s,x)&&!(r.g560Element&&d.type==='seed')||who!==p&&!r.both)continue;const match=r.filter?fits(r.filter):r.neo?!!c.neoEvolution:r.color?colors(c).includes(r.color):race(c,r.race);if(!match)continue;let state=s;if(r.g560InUse&&who===p&&(c.summonOrigin||'hand')==='hand'){const uid=c.executionUid??s.players[p].hand.find(y=>y.cardId===c.id)?.uid;state={...s,players:s.players.map((v,q)=>q===p?{...v,hand:v.hand.filter(y=>y.uid!==uid)}:v)};}if(r.condition&&!ownCondition(state,who,r.condition))continue;
    const count=r.g912CountRace?creatures(s,who).filter(y=>!y.sealed&&race(effective(y,s),r.g912CountRace)).length:1;
    const amount=r.amount*count;
@@ -258,7 +258,7 @@ export function createSixPhotoRules(api){
  const bioBattleUnit=(s,ref)=>s.players[ref.p].battle.find(x=>
   x.uid===ref.uid&&(x.incarnation||0)===ref.incarnation&&!x.sealed&&api.isCreature(s,x));
  const tasks=(p,source,defs,more={})=>(defs||[]).map(d=>task(/^(?:g35_|g393[CDJP]_)/.test(d.op)?d.op:'g34_'+d.op,p,source,{...more,...d,op:/^(?:g35_|g393[CDJP]_)/.test(d.op)?d.op:'g34_'+d.op,p:d.p??p,source}));
- const start=(s,t,defs)=>put(s,...tasks(t.p,t.source,defs,{uid:t.uid,incarnation:t.incarnation||0,controller:t.controller??t.p,moved:t.moved||0,...(t.lastKnownCount!==undefined?{lastKnownCount:t.lastKnownCount}:{}),...(t.g692LastPower!==undefined?{g692LastPower:t.g692LastPower}:{}),...(t.g694Defender?{g694Defender:t.g694Defender}:{}),...(t.g399Attacker?{g399Attacker:t.g399Attacker}:{})}));
+ const start=(s,t,defs)=>put(s,...tasks(t.p,t.source,defs,{uid:t.uid,incarnation:t.incarnation||0,controller:t.controller??t.p,moved:t.moved||0,...(t.lastKnownCount!==undefined?{lastKnownCount:t.lastKnownCount}:{}),...(t.g692LastPower!==undefined?{g692LastPower:t.g692LastPower}:{}),...(t.g1059LastEvolution!==undefined?{g1059LastEvolution:t.g1059LastEvolution}:{}),...(t.g694Defender?{g694Defender:t.g694Defender}:{}),...(t.g399Attacker?{g399Attacker:t.g399Attacker}:{})}));
  // Delayed effects retain the attacking creature, independently of the watcher.
  const attackHost408=(s,t)=>t.g399Attacker&&s.players[t.p].battle.find(y=>api.allLayers(y).some(z=>z.uid===t.g399Attacker.uid&&(z.incarnation||0)===t.g399Attacker.incarnation));
  function tapSource748(s,t){
@@ -1379,7 +1379,7 @@ export function createSixPhotoRules(api){
   }
   if(d.op==='PowerSweep696'){score+=Math.max(...powerSweepOptions696(s,{...t,...d}).map(o=>o.score));continue;}
   if(d.op==='CostSweep596'){score+=Math.max(0,...costSweepOptions(s,{...t,...d}).map(o=>o.score));continue;}
-  if(d.op==='IfNeo563'){if(sourceNeo563(s,t))score+=modeScore(s,t,d.defs);continue;}
+  if(d.op==='IfNeo563'){if(sourceNeo563(s,t)!==!!d.g1059Negate)score+=modeScore(s,t,d.defs);continue;}
   if(d.op==='EndUntap562'){score+=modeScore(s,t,d.defs);continue;}
   if(d.op==='ChooseUntap562'){score+=creatures(s,t.p).filter(y=>!y.sealed&&y.tapped&&api.canUntap(y)).map(y=>5+Number(!!effective(y,s).blocker)*6).sort((a,b)=>b-a).slice(0,d.n).reduce((a,b)=>a+b,0);continue;}
   if(d.op==='CountPower561'){score+=modeScore(s,t,countedPowerDefs561(s,t,d));continue;}
@@ -1872,8 +1872,15 @@ export function createSixPhotoRules(api){
  // QA40275: choosing to shield a hand card satisfies 'if you do' even if addition is prohibited.
  case'g34_ShieldExchange446':if(own.hand.length)choice(s,t,'シールドに置く手札を1枚選ぶ'+(t.optional?'（任意）':''),[...own.hand.map(y=>opt(card(y).name,y.uid,faces(card(y)).some(c=>c.trigger)?25:5,y.cardId)),...(t.optional?[skip()]:[])]);else if(!t.optional)put(s,{...t,op:'g34_ShieldHand',g238ShieldHand:true});break;
  case'g34_UseBlocker524':{const host=sourceHost474(s,t);if(host)(host.x.g34Grants??=[]).push({turn:s.turn,blocker:true});break;}
- case'g34_IfNeo563':if(sourceNeo563(s,t))start(s,t,t.defs);break;
- case'g34_IfSource541':{const host=sourceHost474(s,t);if(host&&!host.x.sealed&&(!t.evolution||api.isEvolution(host.x)))start(s,t,t.defs);break;}
+ case'g34_IfNeo563':if(sourceNeo563(s,t)!==!!t.g1059Negate)start(s,t,t.defs);break;
+ case'g34_IfSource541':{
+  const host=sourceHost474(s,t);
+  if(t.g1059NonEvolution){
+   const evolved=host&&!host.x.sealed?api.isEvolution(host.x):t.g1059LastEvolution;
+   if(evolved===false)start(s,t,t.defs);
+  }else if(host&&!host.x.sealed&&(!t.evolution||api.isEvolution(host.x)))start(s,t,t.defs);
+  break;
+ }
  // Shinka creates delayed triggers tied to the physical base, rather than abilities of the current top.
  // Resolve Shinka against the evolved unit currently containing the physical base.
  case'g34_ShinkaHost544':{const host=sourceHost474(s,t);if(t.mode==='belowCost'){const n=host?cost(effective(host.x,s)):t.g399Attacker?.cost;if(n!==null&&n!==undefined)start(s,t,[{op:'Target',to:'grave',filter:{belowCost:n===Infinity?'∞':n}}]);}else if(t.mode==='fight'&&host&&!host.x.sealed&&api.isCreature(s,host.x))put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:host.x.uid,incarnation:host.x.incarnation||0},fighterOwner:host.p,optional:true});break;}

@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7132,
-  "pendingNames": 4695,
-  "phase": 1058,
+  "supportedNames": 7136,
+  "pendingNames": 4691,
+  "phase": 1059,
   "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -155,7 +155,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 2700,
-    "NEOクリーチャー": 136,
+    "NEOクリーチャー": 132,
     "呪文": 605,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3257,
+    "未対応の能力文": 3254,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -243,7 +243,6 @@
     "未対応の非ブロック時能力": 4,
     "未対応のスペース・チャージ条件": 6,
     "未対応の攻撃時能力": 1,
-    "未対応のアンタップ能力": 2,
     "未対応の被攻撃・被選択能力": 2,
     "未対応のレインボーナス効果": 1,
     "未対応のシビルカウント種別": 4,
@@ -258,6 +257,7 @@
     "独立した誘発能力の順序対応が必要": 9,
     "選択能力の不足": 1,
     "特殊なパワー": 1,
+    "未対応のアンタップ能力": 1,
     "未対応のアクセル能力": 2,
     "重複パワー修整": 1
   },
@@ -494,16 +494,6 @@
         "name": "スリーアイズ・ドラゴンフライ"
       }
     ],
-    "未対応のアンタップ能力": [
-      {
-        "id": "dm25rp4-038",
-        "name": "ゾー＝ジョッソ"
-      },
-      {
-        "id": "dm26rp1-005",
-        "name": "二重のA ボルバルザーク・紫電"
-      }
-    ],
     "未対応の被攻撃・被選択能力": [
       {
         "id": "dm13-040",
@@ -650,6 +640,12 @@
       {
         "id": "dm26ex3-054",
         "name": "帝王坂∞＜…………！＞"
+      }
+    ],
+    "未対応のアンタップ能力": [
+      {
+        "id": "dm26rp1-005",
+        "name": "二重のA ボルバルザーク・紫電"
       }
     ],
     "未対応のアクセル能力": [
@@ -206470,22 +206466,152 @@
           "reason": "対戦対応済みの正規IDをPhase 44で確認したため、今回の候補および新規件数から除外。"
         }
       ]
+    },
+    {
+      "phase": 1059,
+      "baseCommit": "98304fc8",
+      "cards": [
+        {
+          "id": "dm25rp4-069",
+          "name": "魔誕音像サーペント・ギター"
+        },
+        {
+          "id": "dmex17-036",
+          "name": "新爆竜 GENJI・XX"
+        },
+        {
+          "id": "dm25rp4-038",
+          "name": "ゾー＝ジョッソ"
+        },
+        {
+          "id": "dmrp07-039",
+          "name": "凶鬼24号 ババンク"
+        }
+      ],
+      "supportedNames": 7136,
+      "pendingNames": 4691,
+      "verification": {
+        "focusedPassed": 12,
+        "regressionPassed": 465,
+        "regressionFailed": 0,
+        "regressionExcluded": 1,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 4,
+        "scope": "4種類の公式能力全文、カード種別、文明、種族、コスト、パワー、マナ数、公式画像、収録、殿堂レギュレーションを照合。いずれも単一収録、通常の上限4枚。サーペント・ギターと新爆竜 GENJIはNEO進化を選んだ時の宣言コストとマナ支払い、進化元の文明と所有者、通常召喚、軽減無効を確認。GENJIの「XX」は公式画像のダブルクロスのルビを確認し、爆翔イーグル・アイニーとの軽減重複、攻撃時の必須破壊と選択保護を検証。ゾー＝ジョッソとババンクの条件は総合ルール603.4に従い解決時に判定し、ゾー＝ジョッソの実際のアンタップと離脱直前情報、ババンクが攻撃中にD・D・Dで進化した場合の破棄省略を確認。既存7,132件の対戦定義が全件一致。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/41070/",
+          "https://dm.takaratomy.co.jp/rule/qa/41657/",
+          "https://dm.takaratomy.co.jp/rule/qa/31531/",
+          "https://dm.takaratomy.co.jp/rule/qa/46526/",
+          "https://dm.takaratomy.co.jp/rule/qa/46945/",
+          "https://dm.takaratomy.co.jp/rule/qa/42363/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316640/"
+        ],
+        "regressionFiles": [
+          "tests/neo-ddd.test.mjs",
+          "tests/standard299-effects.test.mjs",
+          "tests/standard384-effects.test.mjs",
+          "tests/standard472-effects.test.mjs",
+          "tests/standard563-effects.test.mjs",
+          "tests/standard836-effects.test.mjs",
+          "tests/standard1055-effects.test.mjs",
+          "tests/standard1056-effects.test.mjs",
+          "tests/standard1057-effects.test.mjs",
+          "tests/standard1058-effects.test.mjs"
+        ],
+        "excludedTests": [
+          {
+            "file": "tests/neo-ddd.test.mjs",
+            "test": "mixed NEO/DDD games conserve all eighty unique cards through every action and finish with reproducible seeds",
+            "reason": "同じ100試合の長時間実行は繰り返さない。過去の分割検証はPhase 1057の履歴を参照。今回の差分では未実行。"
+          }
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。 トットロの公式QA 48925の組み合わせは関連2枚が未対応のため未実行。NEO/DDDの100試合と再現性は過去に分割検証済みで、今回の回帰では合否未確認。",
+        "pendingInteractions": [
+          {
+            "cardIds": [
+              "dm25rp3-039",
+              "dm26rp2-006",
+              "dm25rp2-OR1"
+            ],
+            "test": "デンジャラス=トットロの上にメモッタで封印付きのジャシン＝ヴリドガルドが出る場合の墓地展開",
+            "status": "未実行",
+            "reason": "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/48925/"
+          }
+        ],
+        "logs": {
+          "official": "/tmp/duema-phase-1059.B70cNNLo/manifest.log",
+          "officialImages": "/tmp/duema-phase-1059.B70cNNLo/sources.log",
+          "focused": "/tmp/duema-phase-1059.B70cNNLo/focused-final.log",
+          "regression": "/tmp/duema-phase-1059.B70cNNLo/regression.log",
+          "check": "/tmp/duema-phase-1059.B70cNNLo/check.log",
+          "audit": "/tmp/duema-phase-1059.B70cNNLo/audit.log",
+          "imageIndex": "/tmp/duema-phase-1059.B70cNNLo/images.log",
+          "count": "/tmp/duema-phase-1059.B70cNNLo/count.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dm25rp4-077",
+          "name": "スマッシュ・ホーンの地版",
+          "reason": "公式の能力全文・基本情報・画像・単一収録を確認。超魂Xで進化先が得た能力が、その進化先をさらに進化元にした時に新しい進化先へマッハファイターを与える経路を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-077",
+            "https://dm.takaratomy.co.jp/rule/qa/46533/",
+            "https://dm.takaratomy.co.jp/rule/qa/46530/"
+          ]
+        },
+        {
+          "id": "dm25rp2-049",
+          "name": "選舞音愛 タテロール",
+          "reason": "公式本文・基本情報・画像・単一収録を照合。既存の対象選択と移動先選択を使えるが、複数枚で構成されたクリーチャーをシールド化する場合の各カードの配置順と持ち主の扱いを既存処理で再現できるか確認が残る。発生源のコストでシックスフォールの選択制限を判定する公式QA 47068も固有テストで確認する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-049",
+            "https://dm.takaratomy.co.jp/rule/qa/46506/",
+            "https://dm.takaratomy.co.jp/rule/qa/46847/",
+            "https://dm.takaratomy.co.jp/rule/qa/47068/"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1058,
-    "nextPhase": 1059,
+    "lastVerifiedPhase": 1059,
+    "nextPhase": 1060,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm25rp4-077",
-        "name": "スマッシュ・ホーンの地版",
-        "reason": "S・トリガー、登場時のマナ送り、シンカライズ、超魂Xで進化元として発動する能力の付与を公式裁定と照合する。"
+        "id": "dm25rp2-054",
+        "name": "ハイクリッド-A4",
+        "reason": "山札上1枚の公開、NEOクリーチャーの判定、該当外を任意で山札の下に置く処理を照合する。"
       },
       {
-        "id": "dm25rp4-069",
-        "name": "魔誕音像サーペント・ギター",
-        "reason": "NEO進化を選んだ場合だけの召喚軽減を、宣言・支払い・進化元の選択で照合する。"
+        "id": "dm25rp2-032",
+        "name": "～防壁を破り続けて幾星霜～",
+        "reason": "NEO進化と超魂レイドの両方で進化元を選べる条件およびジャストダイバーの継続を照合する。"
+      },
+      {
+        "id": "dm25rp4-034",
+        "name": "～魔弾の発射、準備よし～",
+        "reason": "S・トリガーと進化元選択、束の枚数と対象の所有者、対象数が足りない場合の処理を照合する。"
+      },
+      {
+        "id": "dm25rp4-017",
+        "name": "ドクラス＝ドウダクラス",
+        "reason": "任意の墓地肥やしと、攻撃中に墓地のクリーチャーかタマシードを下に置いた場合のNEO進化状態を照合する。"
+      },
+      {
+        "id": "dm25rp4-077",
+        "name": "スマッシュ・ホーンの地版",
+        "reason": "公式の能力全文・基本情報・画像・単一収録を確認。超魂Xで進化先が得た能力が、その進化先をさらに進化元にした時に新しい進化先へマッハファイターを与える経路を検証するまで保留。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-077",
+          "https://dm.takaratomy.co.jp/rule/qa/46533/",
+          "https://dm.takaratomy.co.jp/rule/qa/46530/"
+        ]
       },
       {
         "id": "dm25rp2-049",

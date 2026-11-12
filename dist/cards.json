@@ -212406,15 +212406,170 @@
       },
       "supportBatch": "phase-1058",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp4-069",
+      "name": "魔誕音像サーペント・ギター",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "ガーゴイル",
+      "text": "NEO進化：闇、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nNEO進化クリーチャーとして召喚するなら、このクリーチャーの召喚コストを２少なくする。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-069",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "闇"
+          },
+          {
+            "civilization": "火"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "g1059NeoSummonDiscount": 2,
+      "breaker": 2,
+      "supportBatch": "phase-1059",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex17-036",
+      "name": "新爆竜 GENJI・XX",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 7000,
+      "race": "アーマード・ドラゴン/フレイム・コマンド/ビートジョッキー",
+      "text": "NEO進化：火のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nNEO進化クリーチャーとして召喚する場合、このクリーチャーの召喚コストを１少なくする。\nW・ブレイカー\nこのクリーチャーが攻撃する時、相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-036",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "g1059NeoSummonDiscount": 1,
+      "g1059DoubleCross": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "optional": false,
+          "filter": {
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1059",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp4-038",
+      "name": "ゾー＝ジョッソ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 6000,
+      "race": "アビスロイヤル",
+      "text": "NEO進化：水、闇、または火のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがアンタップした時、これが進化クリーチャーでなければ、自分の手札を１枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-038",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "闇"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g299Untapped": [
+        {
+          "op": "IfSource541",
+          "g1059NonEvolution": true,
+          "defs": [
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1059",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-039",
+      "name": "凶鬼24号 ババンク",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 7000,
+      "race": "マフィ・ギャング",
+      "text": "NEO進化：自分の闇のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、それがNEO進化クリーチャーでなければ、自分の手札を１枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-039",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "IfNeo563",
+          "g1059Negate": true,
+          "defs": [
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1059",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1058,
+    "phase": 1059,
     "checkedAt": "2026-11-13",
-    "baseCount": 7128,
+    "baseCount": 7132,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7132,
+    "totalCount": 7136,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -231399,6 +231554,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7128,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1058,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7128,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7132,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
