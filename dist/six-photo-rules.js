@@ -3316,7 +3316,7 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_Mill':{
-  const p=t.owner??t.p,n=t.n==='∞'?s.players[p].deck.length:t.n;
+  const p=t.opponent?1-t.p:t.owner??t.p,n=t.n==='∞'?s.players[p].deck.length:t.n;
   if(t.optional)choice(s,t,t.n==='∞'?'山札をすべて墓地に置く？':'山札の上'+n+'枚を墓地に置く？',[opt('置く',true,own.deck.length>n?10:-100),skip()]);
   else api.mill(s,p,n,{together:t.g1042Together});
   break;
@@ -4441,7 +4441,7 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
   break;
  }
- case'g34_Mill':if(v)api.mill(s,t.owner??t.p,t.n==='∞'?s.players[t.owner??t.p].deck.length:t.n);break;
+ case'g34_Mill':if(v){const p=t.opponent?1-t.p:t.owner??t.p;api.mill(s,p,t.n==='∞'?s.players[p].deck.length:t.n);}break;
  case'g34_ChooseUntap562':if(v){const y=own.battle.find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation);put(s,{...t,refs:[...(t.refs||[]),...(y?[v]:[])]});}else finishUntap562(s,t);break;
  case'g34_ChooseEndUntap501':if(v){
   const y=own.battle.find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation);
@@ -5301,6 +5301,11 @@ export function createSixPhotoRules(api){
    if(abilities&&!watcher.sealed)send(s,1-p,watcher,'Sequence',{defs:abilities,g694Defender:ref});
   }
  }const c=effective(x,s),own=s.players[p];
+ // Each live grant triggers independently. Revolution 0 checks shields on resolution (rule 603.4).
+ if(c.g1049RevolutionUntap&&!api.selfStopped(s,p))for(const g of x.g34Grants||[]){
+  if(g.g1049RevolutionUntap&&g.turn===s.turn)
+   queue(s,p,x,[{op:'IfOwn',filter:{g265ShieldsMax:0},defs:[{op:'Untap',g191First:true}]}]);
+ }
  if(c.g781ReleaseAll&&!api.selfStopped(s,p))queue(s,p,x,[E('ReleaseAllHyper781')]);
  if(first&&c.g540FirstAttack&&!api.selfStopped(s,p))queue(s,p,x,c.g540FirstAttack);if(c.g320Jave&&!api.selfStopped(s,p))queue(s,p,x,[{op:'Smash320',serial:x.zoneSerial||0}]);if(c.g34Attack&&!api.selfStopped(s,p)){const defs=c.g34Attack.filter(d=>!d.g764PlayerAttack||s.attack?.target==='player');if(defs.length)queue(s,p,x,defs);}if(c.g756TurboRush==='discard'&&!api.selfStopped(s,p)&&turboReady756(s,p,x))queue(s,p,x,[{op:'Discard',g756All:true}]);if(defender&&c.g691AttackCreature&&!api.selfStopped(s,p)&&(c.g714AttackMinPower===undefined||currentPower506(s,defender)>=c.g714AttackMinPower)&&(!c.g801DefenderFilter||matches(s,1-p,defender,c.g801DefenderFilter)))queue(s,p,x,c.g691AttackCreature);if(!api.selfStopped(s,p))for(const {source,grants:g}of c.g404Inherited||[])if(g.g34Attack)queue(s,p,x,g.g34Attack,source);if(!api.selfStopped(s,p))for(const {source,grants:g}of c.g406Inherited||[])if(g.g34Attack)queue(s,p,x,g.g34Attack,source);if(c.g34Role==='emrakul')queue(s,p,x,[C('emrakulSix')]);if(c.g34Role==='minogami')queue(s,p,x,[E('Offer',{defs:[E('Look',{n:3,public:true,stages:[{to:'mana',n:'all',filter:{twin:true}}],after:[C('minogamiBuff')]})]})]);if(card(x).neoEvolution)for(const y of active(s,p,'grasper'))queue(s,p,y,[select('mana',null,1,{creature:true,belowPower:api.power(x,false,s)},{deploy:true,optional:true})]);if(!api.ignored(s,x))for(const layer of api.layers(x))if(card(layer).g34SoulDiscard)queue(s,p,x,[E('Discard',{n:1,random:true})]);if(ninja(c))for(const y of active(s,p,'happou')){if(s.attack?.target==='player')queue(s,p,y,[E('Discard',{n:1,random:true})]);else(x.g34Grants??=[]).push({turn:s.turn,slayer:true,g34BattleSafe:true});}if(api.isEvolution(x)&&cost(c)>=2)for(const y of own.hand.filter(y=>card(y).g34Role==='baromreizu'))queue(s,p,y,[C('reizuCast')]);},
  attackStart(s,p,x){

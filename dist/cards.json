@@ -210846,15 +210846,131 @@
       ],
       "supportBatch": "phase-1048",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex15-b029",
+      "name": "無限攻撃革命",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "このターン、自分のクリーチャー１体のパワーを+6000し、「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n革命０：このターン、そのクリーチャーが攻撃する時、自分のシールドが１つもなければ、そのクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b029",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "power": 6000,
+          "spell": true,
+          "grant": {
+            "poweredBreaker": true,
+            "g1049RevolutionUntap": true
+          },
+          "title": "このターン強化する自分のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1049",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex1-027",
+      "name": "冥土人形アズレア・デビルモモ",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "デスパペット",
+      "text": "このクリーチャーを、自分の墓地から召喚してもよい。\nパワード・ブレイカー\nすべての墓地にあるカード１枚につき、このクリーチャーのパワーを+1000する。\nこのクリーチャーが攻撃する時、相手は自身の山札の上から２枚を墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-027",
+      "limit": 4,
+      "g978SelfGraveSummon": true,
+      "poweredBreaker": true,
+      "g207CountPower": {
+        "zone": "grave",
+        "both": true,
+        "amount": 1000
+      },
+      "g34Attack": [
+        {
+          "op": "Mill",
+          "n": 2,
+          "opponent": true,
+          "g1042Together": true
+        }
+      ],
+      "supportBatch": "phase-1049",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp19-s08",
+      "name": "滅印連結 ヴァルハルザーク",
+      "civ": "光/闇/火",
+      "civilizations": [
+        "光",
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7500,
+      "race": "ディスペクター/エンジェル・コマンド・ドラゴン/アーマード・ドラゴン/ドラゴン・ゾンビ",
+      "text": "EXライフ\nスピードアタッカー\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n自分のクリーチャーが出た時、相手のクリーチャーを１体選びタップする。\n相手のクリーチャーが破壊された時、自分の山札の上から１枚目をシールド化し、このターン、このクリーチャーのパワーを+6000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-s08",
+      "limit": 4,
+      "exLife": true,
+      "speedAttacker": true,
+      "poweredBreaker": true,
+      "g251EntryDraw": {
+        "selfAlways": true,
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "tap": true
+          }
+        ]
+      },
+      "g303DeathWatch": {
+        "opponent": true,
+        "g891LookBackSelf": true,
+        "defs": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          },
+          {
+            "op": "SelfBoost313",
+            "power": 6000,
+            "g536Source": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1049",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1048,
+    "phase": 1049,
     "checkedAt": "2026-11-13",
-    "baseCount": 7095,
+    "baseCount": 7098,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7098,
+    "totalCount": 7101,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -229719,6 +229835,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7095,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1048,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7095,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7098,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

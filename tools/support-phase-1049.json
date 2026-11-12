@@ -1,0 +1,176 @@
+{
+  "phase": 1049,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7098,
+  "description": "パワード・ブレイカーの付与、墓地からの召喚と墓地枚数に応じた強化、破壊に反応するシールド化を持つ3種類を照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/43944/",
+    "https://dm.takaratomy.co.jp/rule/qa/39429/"
+  ],
+  "cards": [
+    {
+      "id": "dmex15-b029",
+      "name": "無限攻撃革命",
+      "faces": [
+        {
+          "name": "無限攻撃革命",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このターン、自分のクリーチャー１体のパワーを+6000し、「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n革命０：このターン、そのクリーチャーが攻撃する時、自分のシールドが１つもなければ、そのクリーチャーをアンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b029",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex15-b029.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 6000,
+            "spell": true,
+            "grant": {
+              "poweredBreaker": true,
+              "g1049RevolutionUntap": true
+            },
+            "title": "このターン強化する自分のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "d6b1c1a4e71e1d393d704f7eb8c56fcc123db57361ad0404c2ff1644c37bdd6a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex1-027",
+      "name": "冥土人形アズレア・デビルモモ",
+      "faces": [
+        {
+          "name": "冥土人形アズレア・デビルモモ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーを、自分の墓地から召喚してもよい。\nパワード・ブレイカー\nすべての墓地にあるカード１枚につき、このクリーチャーのパワーを+1000する。\nこのクリーチャーが攻撃する時、相手は自身の山札の上から２枚を墓地に置く。",
+          "race": "デスパペット",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-027",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex1-027.jpg",
+      "spec": {
+        "g978SelfGraveSummon": true,
+        "poweredBreaker": true,
+        "g207CountPower": {
+          "zone": "grave",
+          "both": true,
+          "amount": 1000
+        },
+        "g34Attack": [
+          {
+            "op": "Mill",
+            "n": 2,
+            "opponent": true,
+            "g1042Together": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "a40d64a1ee536abdaacfcb3cd866feba0598e9faa0f615be841ebf29e4b841a4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp19-s08",
+      "name": "滅印連結 ヴァルハルザーク",
+      "faces": [
+        {
+          "name": "滅印連結 ヴァルハルザーク",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇/火",
+          "civilizations": [
+            "光",
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "EXライフ\nスピードアタッカー\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n自分のクリーチャーが出た時、相手のクリーチャーを１体選びタップする。\n相手のクリーチャーが破壊された時、自分の山札の上から１枚目をシールド化し、このターン、このクリーチャーのパワーを+6000する。",
+          "race": "ディスペクター/エンジェル・コマンド・ドラゴン/アーマード・ドラゴン/ドラゴン・ゾンビ",
+          "powerText": "7500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-s08",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-s08.jpg",
+      "spec": {
+        "exLife": true,
+        "speedAttacker": true,
+        "poweredBreaker": true,
+        "g251EntryDraw": {
+          "selfAlways": true,
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "tap": true
+            }
+          ]
+        },
+        "g303DeathWatch": {
+          "opponent": true,
+          "g891LookBackSelf": true,
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            },
+            {
+              "op": "SelfBoost313",
+              "power": 6000,
+              "g536Source": true
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "5865ef0233a0dd3bfe71c1fd749d03b24c8d81de0ad97836cf8ef00b918aeb2c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex15-b029": 4,
+      "dm24ex1-027": 4,
+      "dmrp19-s08": 4
+    }
+  }
+}

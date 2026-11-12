@@ -2467,6 +2467,28 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1049&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const powered='パワード・ブレイカー(このクリーチャーはそのパワー6000ごとにシールドをさらに1つブレイクする)';
+  if(f.name==='無限攻撃革命'&&f.typeText==='呪文'&&f.civilizationText==='火'&&f.cost===6&&text===
+   'このターン自分のクリーチャー1体のパワーを+6000し「パワード・ブレイカー」を与える。'+
+   '(「パワード・ブレイカー」を持つクリーチャーはそのパワー6000ごとにシールドをさらに1つブレイクする)'+
+   '革命0:このターンそのクリーチャーが攻撃する時自分のシールドが1つもなければそのクリーチャーをアンタップする。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',power:6000,spell:true,
+    grant:{poweredBreaker:true,g1049RevolutionUntap:true},title:'このターン強化する自分のクリーチャーを選ぶ'}]};
+  if(f.name==='冥土人形アズレア・デビルモモ'&&f.typeText==='クリーチャー'&&f.civilizationText==='水/闇'&&f.cost===4&&text===
+   'このクリーチャーを自分の墓地から召喚してもよい。パワード・ブレイカー'+
+   'すべての墓地にあるカード1枚につきこのクリーチャーのパワーを+1000する。'+
+   'このクリーチャーが攻撃する時相手は自身の山札の上から2枚を墓地に置く。')
+   return {g978SelfGraveSummon:true,poweredBreaker:true,g207CountPower:{zone:'grave',both:true,amount:1000},
+    g34Attack:[{op:'Mill',n:2,opponent:true,g1042Together:true}]};
+  if(f.name==='滅印連結 ヴァルハルザーク'&&f.typeText==='クリーチャー'&&f.civilizationText==='光/闇/火'&&f.cost===7&&text===
+   'EXライフスピードアタッカー'+powered+'自分のクリーチャーが出た時相手のクリーチャーを1体選びタップする。'+
+   '相手のクリーチャーが破壊された時自分の山札の上から1枚目をシールド化しこのターンこのクリーチャーのパワーを+6000する。')
+   return {exLife:true,speedAttacker:true,poweredBreaker:true,
+    g251EntryDraw:{selfAlways:true,filter:{creature:true},defs:[{op:'Target',tap:true}]},
+    g303DeathWatch:{opponent:true,g891LookBackSelf:true,defs:[{op:'ShieldTop',n:1},{op:'SelfBoost313',power:6000,g536Source:true}]}};
+ }
  if(phase>=1048&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.name==='パラディソ ＜サイクリカ.Star＞'&&f.typeText==='スター進化クリーチャー'&&f.civilizationText==='水'&&f.cost===3&&text===
