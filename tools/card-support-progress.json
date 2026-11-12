@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7101,
-  "pendingNames": 4726,
-  "phase": 1049,
+  "supportedNames": 7104,
+  "pendingNames": 4723,
+  "phase": 1050,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2709,
+    "クリーチャー": 2706,
     "NEOクリーチャー": 152,
     "呪文": 609,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3286,
+    "未対応の能力文": 3283,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -205689,17 +205689,89 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1050,
+      "baseCommit": "e0bde9ce",
+      "cards": [
+        {
+          "id": "dmrp06-005",
+          "name": "デミブラム・ストーカー"
+        },
+        {
+          "id": "dmrp08-020",
+          "name": "キルケ・ゴール"
+        },
+        {
+          "id": "dmx13-009",
+          "name": "偽りの羅刹 ゼキア・エクス・マキナ"
+        }
+      ],
+      "printAliases": [],
+      "supportedNames": 7104,
+      "pendingNames": 4723,
+      "verification": {
+        "focusedPassed": 10,
+        "regressionPassed": 251,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 3,
+        "scope": "公式の能力全文、基本情報、マナ数、画像、単一収録、現行殿堂レギュレーションを照合。デミブラムは攻撃時の相手によるアンタップ状態の自軍破壊とW・ブレイカー、自分のターン終了時に相手側の実破壊が2体以上で行う必須の墓地回収、スター進化とEXライフの扱い、破壊数の保存復元を確認。キルケは手札枚数とクリーチャー数を独立に比較し、どちらの能力からでも解決できること、相手が選んだ2枚の破棄と2体の破壊、選択途中の保存復元を確認。ゼキアはブロック前の自軍破壊、相手の有色クリーチャー破壊時のみ任意で新しい裏向きのシールドを作ること、W・ブレイカーを確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/40196/",
+          "https://dm.takaratomy.co.jp/rule/qa/40197/",
+          "https://dm.takaratomy.co.jp/rule/qa/40198/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36767/",
+          "https://dm.takaratomy.co.jp/rule/qa/45224/",
+          "https://dm.takaratomy.co.jp/rule/qa/39429/"
+        ],
+        "regressionFiles": [
+          "tests/requested393-dispector.test.mjs",
+          "tests/standard303-effects.test.mjs",
+          "tests/standard527-effects.test.mjs",
+          "tests/standard971-effects.test.mjs",
+          "tests/standard1046-effects.test.mjs",
+          "tests/standard1049-effects.test.mjs"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。",
+        "logs": {
+          "official": "/tmp/duema-phase-1050.hO06vfHJ/official.log",
+          "focused": "/tmp/duema-phase-1050.hO06vfHJ/focus.log",
+          "regression": "/tmp/duema-phase-1050.hO06vfHJ/regression.log",
+          "check": "/tmp/duema-phase-1050.hO06vfHJ/check.log",
+          "audit": "/tmp/duema-phase-1050.hO06vfHJ/audit.log",
+          "officialImages": "/tmp/duema-phase-1050.hO06vfHJ/sources.log",
+          "imageIndex": "/tmp/duema-phase-1050.hO06vfHJ/images.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dmrp15-s10",
+          "name": "「迅雷」の鬼 ライジン天",
+          "reason": "公式能力全文・基本情報・画像・単一収録を確認。鬼タイムで選ぶプレイヤーだけを置換する処理が必要。選択保護、選択強制、任意の辞退、後続の破壊置換を含む経路の検証まで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-s10",
+            "https://dm.takaratomy.co.jp/rule/qa/39545/",
+            "https://dm.takaratomy.co.jp/rule/qa/40641/",
+            "https://dm.takaratomy.co.jp/rule/qa/34254/",
+            "https://dm.takaratomy.co.jp/rule/qa/39139/"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1049,
-    "nextPhase": 1050,
+    "lastVerifiedPhase": 1050,
+    "nextPhase": 1051,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dmrp06-005",
-        "name": "デミブラム・ストーカー",
-        "reason": "次回候補。公式全文・画像・再録に加え、攻撃時の相手の自軍破壊と、実際に破壊された相手クリーチャーが2体以上の時に墓地から戻る処理を照合する。"
+        "id": "dmx16-024",
+        "name": "黒神龍デヴォリューション",
+        "reason": "次回候補。公式全文・画像・再録と、相手・自分の順に行うクリーチャー破壊と手札破棄の一連の処理を照合する。"
       },
       {
         "id": "dmex12-024",
@@ -205760,6 +205832,11 @@
         "id": "dmrp21-054",
         "name": "ティアシャキ・ハーミィ",
         "reason": "公式能力全文・基本情報・画像・単一収録を確認。QA 42046に従い、タマシードの使用はコスト支払い・S・トリガー等の使用経路で誘発し、効果で単に出した場合には誘発しない。呪文の詠唱と独立してタマシードの使用を通知する経路の確認まで保留。"
+      },
+      {
+        "id": "dmrp15-s10",
+        "name": "「迅雷」の鬼 ライジン天",
+        "reason": "公式能力全文・基本情報・画像・単一収録を確認。鬼タイムで選ぶプレイヤーだけを置換する処理が必要。選択保護、選択強制、任意の辞退、後続の破壊置換を含む経路の検証まで保留。"
       }
     ],
     "steps": [

@@ -1,0 +1,206 @@
+{
+  "phase": 1050,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7101,
+  "description": "相手に自身のクリーチャーを破壊させる3種類と、破壊後の墓地回収およびシールド化を照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/40196/",
+    "https://dm.takaratomy.co.jp/rule/qa/40197/",
+    "https://dm.takaratomy.co.jp/rule/qa/40198/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36767/",
+    "https://dm.takaratomy.co.jp/rule/qa/45224/",
+    "https://dm.takaratomy.co.jp/rule/qa/39429/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp06-005",
+      "name": "デミブラム・ストーカー",
+      "faces": [
+        {
+          "name": "デミブラム・ストーカー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが攻撃する時、相手は自身のアンタップしているクリーチャーを１体破壊する。\n自分のターンの終わりに、そのターン中に相手のクリーチャーが２体以上破壊されていたら、このクリーチャーを自分の墓地から手札に戻す。",
+          "race": "マフィ・ギャング",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-005.jpg",
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave",
+            "filter": {
+              "untapped": true
+            },
+            "g1046NoChoiceProtection": true
+          }
+        ],
+        "g971GraveEnd": {
+          "g1050OpponentDestroyed": 2,
+          "g1050MandatoryGraveReturn": true
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "2cf1e11f6469aa5534d7309a75dfd155bf04f5fa1139156ca3c6eedb5305de13",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp08-020",
+      "name": "キルケ・ゴール",
+      "faces": [
+        {
+          "name": "キルケ・ゴール",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、相手の手札の枚数が自分より多ければ、相手は自身の手札を２枚選び、捨てる。\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある相手のクリーチャーの数が自分より多ければ、相手は自身のクリーチャーを２体選び、破壊する。",
+          "race": "マフィ・ギャング",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-020",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-020.jpg",
+      "spec": {
+        "breaker": 2,
+        "g527ExtraEntry": [
+          {
+            "label": "手札枚数を比べて相手の手札を捨てさせる",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g334ZoneCount": {
+                    "zone": "hand",
+                    "lessThanOpponent": true
+                  }
+                },
+                "defs": [
+                  {
+                    "op": "Discard",
+                    "n": 2
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "label": "クリーチャー数を比べて相手のクリーチャーを破壊する",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g413MoreCreatures": "opponent"
+                },
+                "defs": [
+                  {
+                    "op": "OpponentSelect",
+                    "n": 2,
+                    "to": "grave"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "39d16e8eaa0843bb3321e55e8942119febd5b2de6c760a9c922be3ce57ff8f69",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx13-009",
+      "name": "偽りの羅刹 ゼキア・エクス・マキナ",
+      "faces": [
+        {
+          "name": "偽りの羅刹 ゼキア・エクス・マキナ",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーが攻撃する時、相手は自身のクリーチャーを１体選び、破壊する。\n相手の、無色ではないクリーチャーが破壊された時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加えてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "デーモン・コマンド/アンノウン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx13-009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx13-009.jpg",
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave"
+          }
+        ],
+        "g303DeathWatch": {
+          "opponent": true,
+          "g891LookBackSelf": true,
+          "colorsAny": [
+            "光",
+            "水",
+            "闇",
+            "火",
+            "自然"
+          ],
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "山札の上から1枚をシールド化する？",
+              "defs": [
+                {
+                  "op": "ShieldTop",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "84c6bfaa4f9b6db38dd9ee2951c6d031d174c01f0a746267381d2ff243d386b0",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp06-005": 4,
+      "dmrp08-020": 4,
+      "dmx13-009": 4
+    }
+  }
+}

@@ -489,6 +489,8 @@ export function createSixPhotoRules(api){
    return allies.some(x=>colors(effective(x,s)).includes(second)&&candidates.some(y=>y.uid!==x.uid));
   }
   if(f.g985NoUntappedOpponent)return !creatures(s,1-p).some(x=>!x.sealed&&!x.tapped);
+  if(f.g1050OpponentDestroyed!==undefined)return s.g393DDestroyed?.turn===s.turn&&
+   (s.g393DDestroyed.byPlayer?.[1-p]||0)>=f.g1050OpponentDestroyed;
   if(f.g687CreatureCountAtLeastShields){
    const shields=s.players[p].shields;
    return creatures(s,p).filter(x=>!x.sealed).length>=(typeof shields==='number'?shields:shields.length);
@@ -1866,6 +1868,7 @@ export function createSixPhotoRules(api){
  case'g34_GraveReturn754':{
   const y=own.grave.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);
   if(!y||!api.canMoveZone(s,t.p,'grave')||t.condition&&!ownCondition(s,t.p,t.condition))break;
+  if(t.condition?.g1050MandatoryGraveReturn){zoneMove(s,t.p,'grave',y.uid,'hand',t);break;}
   if(t.deploy&&!canPut(s,t.p,y,'grave'))break;
   if(t.colors?.length){
    const manaColors=new Set(own.mana.filter(x=>!x.faceDown).flatMap(x=>api.manaColors(api.zoneCard(s,t.p,x,'mana'),s,t.p)));

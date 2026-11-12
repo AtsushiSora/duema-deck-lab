@@ -2467,6 +2467,31 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1050&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const double='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)';
+  if(f.name==='デミブラム・ストーカー'&&f.civilizationText==='闇'&&f.cost===7&&text===
+   'W・ブレイカーこのクリーチャーが攻撃する時相手は自身のアンタップしているクリーチャーを1体破壊する。'+
+   '自分のターンの終わりにそのターン中に相手のクリーチャーが2体以上破壊されていたらこのクリーチャーを自分の墓地から手札に戻す。')
+   return {breaker:2,g34Attack:[{op:'OpponentSelect',n:1,to:'grave',filter:{untapped:true},g1046NoChoiceProtection:true}],
+    g971GraveEnd:{g1050OpponentDestroyed:2,g1050MandatoryGraveReturn:true}};
+  if(f.name==='キルケ・ゴール'&&f.civilizationText==='闇'&&f.cost===7&&text===double+
+   'このクリーチャーがバトルゾーンに出た時相手の手札の枚数が自分より多ければ相手は自身の手札を2枚選び捨てる。'+
+   'このクリーチャーがバトルゾーンに出た時バトルゾーンにある相手のクリーチャーの数が自分より多ければ相手は自身のクリーチャーを2体選び破壊する。')
+   return {breaker:2,g527ExtraEntry:[
+    {label:'手札枚数を比べて相手の手札を捨てさせる',defs:[{op:'IfOwn',
+     filter:{g334ZoneCount:{zone:'hand',lessThanOpponent:true}},defs:[{op:'Discard',n:2}]}]},
+    {label:'クリーチャー数を比べて相手のクリーチャーを破壊する',defs:[{op:'IfOwn',
+     filter:{g413MoreCreatures:'opponent'},defs:[{op:'OpponentSelect',n:2,to:'grave'}]}]}
+   ]};
+  if(f.name==='偽りの羅刹 ゼキア・エクス・マキナ'&&f.civilizationText==='ゼロ'&&f.cost===8&&text===
+   'このクリーチャーが攻撃する時相手は自身のクリーチャーを1体選び破壊する。'+
+   '相手の無色ではないクリーチャーが破壊された時自分の山札の上から1枚目を裏向きのまま新しいシールドとして自分のシールドゾーンに加えてもよい。'+
+   'W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g34Attack:[{op:'OpponentSelect',n:1,to:'grave'}],
+    g303DeathWatch:{opponent:true,g891LookBackSelf:true,colorsAny:colors,
+     defs:[{op:'Offer',title:'山札の上から1枚をシールド化する？',defs:[{op:'ShieldTop',n:1}]}]}};
+ }
  if(phase>=1049&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const powered='パワード・ブレイカー(このクリーチャーはそのパワー6000ごとにシールドをさらに1つブレイクする)';

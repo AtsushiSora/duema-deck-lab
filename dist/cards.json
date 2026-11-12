@@ -210962,15 +210962,155 @@
       },
       "supportBatch": "phase-1049",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-005",
+      "name": "デミブラム・ストーカー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "マフィ・ギャング",
+      "text": "W・ブレイカー\nこのクリーチャーが攻撃する時、相手は自身のアンタップしているクリーチャーを１体破壊する。\n自分のターンの終わりに、そのターン中に相手のクリーチャーが２体以上破壊されていたら、このクリーチャーを自分の墓地から手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-005",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "OpponentSelect",
+          "n": 1,
+          "to": "grave",
+          "filter": {
+            "untapped": true
+          },
+          "g1046NoChoiceProtection": true
+        }
+      ],
+      "g971GraveEnd": {
+        "g1050OpponentDestroyed": 2,
+        "g1050MandatoryGraveReturn": true
+      },
+      "supportBatch": "phase-1050",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-020",
+      "name": "キルケ・ゴール",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "マフィ・ギャング",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、相手の手札の枚数が自分より多ければ、相手は自身の手札を２枚選び、捨てる。\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある相手のクリーチャーの数が自分より多ければ、相手は自身のクリーチャーを２体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-020",
+      "limit": 4,
+      "breaker": 2,
+      "g527ExtraEntry": [
+        {
+          "label": "手札枚数を比べて相手の手札を捨てさせる",
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g334ZoneCount": {
+                  "zone": "hand",
+                  "lessThanOpponent": true
+                }
+              },
+              "defs": [
+                {
+                  "op": "Discard",
+                  "n": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "クリーチャー数を比べて相手のクリーチャーを破壊する",
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g413MoreCreatures": "opponent"
+              },
+              "defs": [
+                {
+                  "op": "OpponentSelect",
+                  "n": 2,
+                  "to": "grave"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1050",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx13-009",
+      "name": "偽りの羅刹 ゼキア・エクス・マキナ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "デーモン・コマンド/アンノウン",
+      "text": "このクリーチャーが攻撃する時、相手は自身のクリーチャーを１体選び、破壊する。\n相手の、無色ではないクリーチャーが破壊された時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加えてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx13-009",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "OpponentSelect",
+          "n": 1,
+          "to": "grave"
+        }
+      ],
+      "g303DeathWatch": {
+        "opponent": true,
+        "g891LookBackSelf": true,
+        "colorsAny": [
+          "光",
+          "水",
+          "闇",
+          "火",
+          "自然"
+        ],
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "山札の上から1枚をシールド化する？",
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1050",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1049,
+    "phase": 1050,
     "checkedAt": "2026-11-13",
-    "baseCount": 7098,
+    "baseCount": 7101,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7101,
+    "totalCount": 7104,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -229847,6 +229987,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7098,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1049,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7098,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7101,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
