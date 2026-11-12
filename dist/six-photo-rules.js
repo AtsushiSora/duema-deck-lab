@@ -258,7 +258,7 @@ export function createSixPhotoRules(api){
  const bioBattleUnit=(s,ref)=>s.players[ref.p].battle.find(x=>
   x.uid===ref.uid&&(x.incarnation||0)===ref.incarnation&&!x.sealed&&api.isCreature(s,x));
  const tasks=(p,source,defs,more={})=>(defs||[]).map(d=>task(/^(?:g35_|g393[CDJP]_)/.test(d.op)?d.op:'g34_'+d.op,p,source,{...more,...d,op:/^(?:g35_|g393[CDJP]_)/.test(d.op)?d.op:'g34_'+d.op,p:d.p??p,source}));
- const start=(s,t,defs)=>put(s,...tasks(t.p,t.source,defs,{uid:t.uid,incarnation:t.incarnation||0,controller:t.controller??t.p,moved:t.moved||0,...(t.lastKnownCount!==undefined?{lastKnownCount:t.lastKnownCount}:{}),...(t.g692LastPower!==undefined?{g692LastPower:t.g692LastPower}:{}),...(t.g1059LastEvolution!==undefined?{g1059LastEvolution:t.g1059LastEvolution}:{}),...(t.g694Defender?{g694Defender:t.g694Defender}:{}),...(t.g399Attacker?{g399Attacker:t.g399Attacker}:{})}));
+ const start=(s,t,defs)=>put(s,...tasks(t.p,t.source,defs,{uid:t.uid,incarnation:t.incarnation||0,controller:t.controller??t.p,moved:t.moved||0,...(t.lastKnownCount!==undefined?{lastKnownCount:t.lastKnownCount}:{}),...(t.g692LastPower!==undefined?{g692LastPower:t.g692LastPower}:{}),...(t.g1059LastEvolution!==undefined?{g1059LastEvolution:t.g1059LastEvolution}:{}),...(t.g1064LastTapped!==undefined?{g1064LastTapped:t.g1064LastTapped}:{}),...(t.g694Defender?{g694Defender:t.g694Defender}:{}),...(t.g399Attacker?{g399Attacker:t.g399Attacker}:{})}));
  // Delayed effects retain the attacking creature, independently of the watcher.
  const attackHost408=(s,t)=>t.g399Attacker&&s.players[t.p].battle.find(y=>api.allLayers(y).some(z=>z.uid===t.g399Attacker.uid&&(z.incarnation||0)===t.g399Attacker.incarnation));
  function tapSource748(s,t){
@@ -465,6 +465,8 @@ export function createSixPhotoRules(api){
    const source=s.players[p].battle.find(x=>x.uid===sourceUid&&!x.sealed);
    return !!source&&turboReady756(s,p,source);
   }
+  if(f.g1064ManaColors)return f.g1064ManaColors.every(color=>manaCondition267(s,p,{color,n:1}));
+  if(f.g1064NoElements)return !s.players[p].battle.some(x=>!x.sealed&&!x.faceDown);
   if(f.g951AnyHandMin!==undefined)return s.players.some(player=>player.hand.length>=f.g951AnyHandMin);
   if(f.g876SummonNumber!==undefined){
    const history=s.g463Summons?.[p];
@@ -1908,6 +1910,9 @@ export function createSixPhotoRules(api){
   if(t.g1059NonEvolution){
    const evolved=host&&!host.x.sealed?api.isEvolution(host.x):t.g1059LastEvolution;
    if(evolved===false)start(s,t,t.defs);
+  }else if(t.g1064Tapped){
+   const tapped=host&&!host.x.sealed?host.x.tapped:t.g1064LastTapped;
+   if(tapped)start(s,t,t.defs);
   }else if(host&&!host.x.sealed&&(!t.evolution||api.isEvolution(host.x)))start(s,t,t.defs);
   break;
  }
@@ -5879,7 +5884,7 @@ for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand
   return eligible.filter(x=>!x.sealed&&!x.faceDown&&!x.tapped&&colors(effective(x,s,true)).includes(color));
  }
  function hasAltPayment568(s,p,origin,r){
-  return !!r&&(!r.handOnly||origin==='hand'&&s.players[p].hand.length===1)&&(!r.condition||ownCondition(s,p,r.condition));
+  return !!r&&(!r.origin||origin===r.origin)&&(!r.handOnly||origin==='hand'&&s.players[p].hand.length===1)&&(!r.condition||ownCondition(s,p,r.condition));
  }
  function magicToolUse976(s,p){
   for(const x of s.players[p].grave)

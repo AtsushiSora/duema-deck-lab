@@ -471,6 +471,8 @@ function rememberBattleInformation(s,owner,host,leaving){
  for(const task of all){
   if(departs(task)&&(task.g1059NonEvolution||task.defs?.some(def=>def.g1059NonEvolution)))
    task.g1059LastEvolution=isEvolution(host);
+  if(departs(task)&&(task.g1064Tapped||task.defs?.some(def=>def.g1064Tapped)))
+   task.g1064LastTapped=!!host.tapped;
  }
  const resultEffects=[
   ...(s.leaving?.after?.losses||[]),...(s.battleResolution?.wins||[]),
@@ -1066,14 +1068,16 @@ function baseSummonCost297(s,p,c){
  const beforeMinimum=extra.six.floorCost500(s,p,c,base)-2*rupias-(c.g40Reduction||0)-(c.g39Reduction||0)-extra.six.discount(s,p,c)-extra.shieldPhoto.discount(s,p,c)-extra.phoenix.discount(s,p,c)-extra.mado.discount(s,p,c)-(c.g29Arc&&s.players[p].battle.some(x=>isCreature(s,x)&&String(effectiveCard(x,s).race).includes('アーマード'))?1:0)-(c.type==='creature'&&String(c.race).includes('ドラゴン')?s.players[p].battle.filter(x=>effectiveCard(x,s).g29Bird).length:0)-extra.golgy.discount(s,p,c)-extra.virideDiscount(s,p,c)-graveReduction-creatureSympathy-(c.madoMomo&&s.players[p].grave.filter(x=>card(x).type!=='creature').length>=4?90:0)-(c.type==='spell'?s.players[p].battle.filter(x=>effectiveCard(x,s).kurokami).length:0)-(c.opponentCreatureReduction?s.players[1-p].battle.filter(x=>isCreature(s,x)).length:0)-(c.manaSympathy?s.players[p].mana.length:0)-extra.abyssDiscount(s,p,c)-extra.samuraiDiscount(s,p,c)-extra.giantDiscount(s,p,c)-extra.hunterDiscount(s,p,c)-extra.armoredDiscount(s,p,c)-extra.magicDiscount(s,p,c)-extra.mechaDiscount(s,p,c)-extra.granDiscount(s,p,c)-(c.gio?c.gioRevealCount||0:0)-(c.gggReduction&&s.players[p].hand.length<=1?c.gggReduction:0)-extra.raceDiscount(s,p,c)-(c.type==='creature'?extra.nextDiscount(s,p):0)-(reduce?3:0)-gaia-(c.costReduction==='allCreatures'?s.players.reduce((n,p)=>n+p.battle.filter(x=>isCreature(s,x)).length,0):0);
  const gearDiscount=extra.samuraiSummonDiscount932(s,p,c);
  const aura=extra.six.summonAuraDiscount290(s,p,c);
- const laterReduction=extra.six.sympathyDiscount211(s,p,c)+extra.six.countDiscount212(s,p,c)+extra.six.conditionalDiscount261(s,p,c)+extra.utilityControl.firstSpellDiscount(s,p,c)+aura.amount+extra.six.firstSummonDiscount463(s,p,c)+extra.six.onceDiscount464(s,p,c)+extra.six.spellDiscount467(s,p,c)+extra.six.useDiscount468(s,p,c)+extra.six.revealDiscount470(s,p,c)+extra.six.untapDiscount472(s,p,c);
+ const dddReduction=c.g28DDD?s.players[p].battle.reduce((n,x)=>n+
+  (x.sealed?0:effectiveCard(x,s).g1064DDDDiscount||0),0):0;
+ const laterReduction=dddReduction+extra.six.sympathyDiscount211(s,p,c)+extra.six.countDiscount212(s,p,c)+extra.six.conditionalDiscount261(s,p,c)+extra.utilityControl.firstSpellDiscount(s,p,c)+aura.amount+extra.six.firstSummonDiscount463(s,p,c)+extra.six.onceDiscount464(s,p,c)+extra.six.spellDiscount467(s,p,c)+extra.six.useDiscount468(s,p,c)+extra.six.revealDiscount470(s,p,c)+extra.six.untapDiscount472(s,p,c);
  // A printed zero costs nothing until a reduction with a positive minimum applies (QA40378).
  if(costValue(c)===0&&base===0&&beforeMinimum===0&&laterReduction===0&&!gearDiscount)return 0;
  // A minimum from another applied reduction still applies (QA39980).
  if(aura.zeroAmount>0&&beforeMinimum===base&&laterReduction===aura.zeroAmount&&!gearDiscount)
   return Math.max(0,base-aura.zeroAmount);
  const reduced=Math.max(rupias||c.graveSpellReduction?2:1,beforeMinimum-gearDiscount);
- return Math.max(c.g212CountDiscount?.minimum===0&&!gearDiscount?0:1,reduced-laterReduction);
+ return Math.max(c.g212CountDiscount?.minimum===0&&!gearDiscount&&!dddReduction?0:1,reduced-laterReduction);
 }
 // These printed color-granting abilities do not depend on creature power or stealth.
 // Reading them without decorating the whole board avoids a cycle through stealth.
@@ -2226,7 +2230,7 @@ export function getLegalActions(s){
   if(d.type==='silent496')out=[option('silent496','アンタップせず能力を使う',{uid:d.uid,cardId:d.source,yes:true}),option('silent496','アンタップする',{uid:d.uid,cardId:d.source,yes:false})];
   if(d.type==='dddDeclare')out=[option('declareDDD',`${card(d.source).name}のD・D・Dを宣言（支払いは解決時）`,{uid:d.uid,cardId:d.source}),option('skipDDD','このカードは宣言しない')];
   if(d.type==='dddSummon'){
-   const c=card(d.source),origin=d.origin||'hand',inst=own[origin].find(x=>x.uid===d.uid&&(d.serial===undefined||(x.zoneSerial||0)===d.serial)),payment=dddPayment(s,p,c),actual=payment&&summonCost(s,p,{...c,...payment,summonOrigin:origin});
+   const c=card(d.source),origin=d.origin||'hand',inst=own[origin].find(x=>x.uid===d.uid&&(d.serial===undefined||(x.zoneSerial||0)===d.serial)),payment=dddPayment(s,p,c),actual=payment&&summonCost(s,p,{...c,...payment,g28DDD:true,summonOrigin:origin});
    if(inst&&payment&&canMoveZone(s,p,origin)&&canCastSpell(s,p,c,origin)&&(c.type==='spell'||canEnterCreature(s,p,c,{origin,execution:true}))&&manaPayment(paymentPool(s,p,[],c),{...c,...payment,cost:actual})){out=[option('summonDDD',actual+'マナで'+c.name+(c.type==='spell'?'を唱える':'を進化させず召喚'),{uid:d.uid,cardId:c.id,cost:actual,...(origin!=='hand'?{origin}:{})}),...(c.type==='creature'?evolutionBases(s,p,c).map(base=>option('summonDDD',actual+'マナで'+card(base).name+'の上に'+c.name+'を重ねる',{uid:d.uid,baseUid:base.uid,cardId:c.id,cost:actual,...(origin!=='hand'?{origin}:{})})):[])];}
    out.push(option('skipDDDSummon','実行せず元のゾーンに残す'));
   }

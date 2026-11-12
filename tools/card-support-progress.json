@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7149,
-  "pendingNames": 4678,
-  "phase": 1063,
+  "supportedNames": 7152,
+  "pendingNames": 4675,
+  "phase": 1064,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -100,7 +100,7 @@
     },
     {
       "ability": "超魂",
-      "pendingNames": 46,
+      "pendingNames": 45,
       "examples": [
         {
           "id": "dm25rp2-014",
@@ -155,7 +155,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 2700,
-    "NEOクリーチャー": 119,
+    "NEOクリーチャー": 116,
     "呪文": 605,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3241,
+    "未対応の能力文": 3238,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -207073,30 +207073,138 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1064,
+      "baseCommit": "a23297ff",
+      "cards": [
+        {
+          "id": "dm25rp4-051",
+          "name": "HIMEGYA-流予見618"
+        },
+        {
+          "id": "dmsp01-004",
+          "name": "ショーペン・ハウアー"
+        },
+        {
+          "id": "dm25rp2-050",
+          "name": "我流TENSAY-G01&T02"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm25ex3-059",
+          "canonicalId": "dm25rp4-051"
+        },
+        {
+          "id": "promoy24-055",
+          "canonicalId": "dm25rp2-050"
+        }
+      ],
+      "supportedNames": 7152,
+      "pendingNames": 4675,
+      "verification": {
+        "focusedPassed": 10,
+        "regressionPassed": 374,
+        "regressionFailed": 0,
+        "check": "成功",
+        "officialPrints": 5,
+        "scope": "3種類5版の公式能力全文、基本情報、マナ数、JPEG、使用制限を照合し、再録とプロモを元の対戦IDに紐づけた。HIMEGYAはマナゾーンの3文明の確認と無色2支払い、NEO進化、通常コストの維持、D・D・Dの重複軽減と下限、封印・能力無視・相手側・軽減禁止を確認。ショーペン・ハウアーはT・ブレイカー、自分のターン終了時のタップ条件、他の誘発と処理順、離脱・封印直前の状態、墓地対象のコスト・種類とNEO進化、墓地封鎖を確認。我流TENSAYは相手だけに場のカードがある場合と自分のエレメントがある場合、召喚元、必要な文明、自身をタップしてマナから召喚すること、超魂レイドを確認。既存7,149件の対戦定義とIDは一致。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316639/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316675/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37476/",
+          "https://dm.takaratomy.co.jp/rule/qa/31530/",
+          "https://dm.takaratomy.co.jp/rule/qa/40442/",
+          "https://dm.takaratomy.co.jp/rule/qa/46847/",
+          "https://dm.takaratomy.co.jp/rule/qa/47898/"
+        ],
+        "regressionFiles": [
+          "tests/neo-ddd.test.mjs",
+          "tests/bande-effects.test.mjs",
+          "tests/standard495-effects.test.mjs",
+          "tests/standard568-effects.test.mjs",
+          "tests/standard777-effects.test.mjs",
+          "tests/standard1023-effects.test.mjs",
+          "tests/standard1058-effects.test.mjs",
+          "tests/standard1059-effects.test.mjs",
+          "tests/standard1062-effects.test.mjs",
+          "tests/standard1063-effects.test.mjs"
+        ],
+        "regressionFilter": "--test-skip-pattern=mixed NEO/DDD games|production worker|random manual|new-card games against every|simulation worker|legal forty CPU",
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。 トットロの公式QA 48925の組み合わせは関連2枚が未対応のため未実行。NEO/DDDの100試合と再現性は過去に分割検証済みで、今回の回帰では合否未確認。 ゴルギー31相手の再現性と本番Worker62試合は今回も対象外で未実行。前回の広範囲回帰に含まれる1,796件固定の既存テストの結果はPhase 1060を参照。 PhoenixのCPU連戦と本番Worker試験は、今回の個別回帰の対象外。 Phase 1064ではNEO/DDD 100試合とBandeの全対戦・ランダム操作・Workerの長時間ケースを個別回帰から除外。以前の長時間実行を繰り返さず、今回の合否は未確認。",
+        "pendingInteractions": [
+          {
+            "cardIds": [
+              "dm25rp3-039",
+              "dm26rp2-006",
+              "dm25rp2-OR1"
+            ],
+            "test": "デンジャラス=トットロの上にメモッタで封印付きのジャシン＝ヴリドガルドが出る場合の墓地展開",
+            "status": "未実行",
+            "reason": "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/48925/"
+          }
+        ],
+        "logs": {
+          "official": "/tmp/duema-phase-1064.TqOsN5eY/manifest.log",
+          "officialImages": "/tmp/duema-phase-1064.TqOsN5eY/sources.log",
+          "reprints": "/tmp/duema-phase-1064.TqOsN5eY/prints.log",
+          "deferredPrint": "/tmp/duema-phase-1064.TqOsN5eY/deferred-print.log",
+          "focused": "/tmp/duema-phase-1064.TqOsN5eY/specific-final.log",
+          "regression": "/tmp/duema-phase-1064.TqOsN5eY/related-final.log",
+          "check": "/tmp/duema-phase-1064.TqOsN5eY/check-final.log",
+          "audit": "/tmp/duema-phase-1064.TqOsN5eY/audit.log",
+          "count": "/tmp/duema-phase-1064.TqOsN5eY/count.log",
+          "imageIndex": "/tmp/duema-phase-1064.TqOsN5eY/images.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dm25rp2-014",
+          "name": "～海獣戦車～",
+          "reason": "DM25-RP2初版とDM25-EX3 6/80の本文・基本情報・画像を確認。攻撃終了時に下のカードの一部を別のNEOまたは進化クリーチャーに移し、物理カードと双方の進化状態、重ねる順序を維持する処理が残る。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-014",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-006",
+            "https://dm.takaratomy.co.jp/rule/qa/33330/"
+          ]
+        },
+        {
+          "id": "dmrp03-001",
+          "name": "ソー爺さん",
+          "reason": "公式の能力全文・基本情報・画像・単一収録を確認。双方のシールドを置く処理と、複数カードで構成された相手シールドを山札の下に置く際の持ち主による順序選択を確認するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-001",
+            "https://dm.takaratomy.co.jp/rule/qa/31651/"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1063,
-    "nextPhase": 1064,
+    "lastVerifiedPhase": 1064,
+    "nextPhase": 1065,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm25rp4-051",
-        "name": "HIMEGYA-流予見618",
-        "reason": "公式本文と再録を確認し、色を指定する代替召喚とD・D・Dのコスト軽減を既存の支払い処理で検証する。"
-      },
-      {
-        "id": "dmsp01-004",
-        "name": "ショーペン・ハウアー",
-        "reason": "公式の登場・再録情報を照合し、自分のターン終了時のタップ条件と墓地からの登場を検証する。"
-      },
-      {
         "id": "dm25rp2-014",
         "name": "～海獣戦車～",
-        "reason": "公式の能力全文・基本情報・画像とDM25-EX3再録商品を確認。攻撃終了時に下のカードの一部を別のNEOまたは進化クリーチャーに移し、物理カードと進化状態、カード順を保持する処理と再録版の照合が残る。",
+        "reason": "DM25-RP2初版とDM25-EX3 6/80の本文・基本情報・画像を確認。攻撃終了時に下のカードの一部を別のNEOまたは進化クリーチャーに移し、物理カードと双方の進化状態、重ねる順序を維持する処理が残る。",
         "sources": [
           "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-014",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-006",
           "https://dm.takaratomy.co.jp/rule/qa/33330/"
+        ]
+      },
+      {
+        "id": "dmrp03-001",
+        "name": "ソー爺さん",
+        "reason": "公式の能力全文・基本情報・画像・単一収録を確認。双方のシールドを置く処理と、複数カードで構成された相手シールドを山札の下に置く際の持ち主による順序選択を確認するまで保留。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-001",
+          "https://dm.takaratomy.co.jp/rule/qa/31651/"
         ]
       },
       {
@@ -207301,7 +207409,7 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
-      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。海獣戦車はカード単位の移動、メモッタは封印された状態での登場と進化元の事前誘発を確認する。",
+      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。海獣戦車の物理カード移動と進化状態、ソー爺さんの両者のシールド追加と盾束の移動順を確認し、難しい場合は次の候補へ進む。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で登録再開。自動化 duema-deck-lab は10分間隔で稼働中。",

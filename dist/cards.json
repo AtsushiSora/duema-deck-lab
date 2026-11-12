@@ -213085,15 +213085,153 @@
       ],
       "supportBatch": "phase-1063",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp4-051",
+      "name": "HIMEGYA-流予見618",
+      "civ": "光/火/自然",
+      "civilizations": [
+        "光",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ファイアー・バード/テクノ・サムライ",
+      "text": "自分のマナゾーンに光、火、自然の各文明があれば、このクリーチャーを[cc02]支払って召喚してもよい。\nNEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\n自分の「D・D・D」コストを２少なくする。ただし、コストは０以下にはならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-051",
+      "limit": 4,
+      "g568Alt": {
+        "cost": 2,
+        "paymentColors": [],
+        "condition": {
+          "g1064ManaColors": [
+            "光",
+            "火",
+            "自然"
+          ]
+        }
+      },
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "火"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "g1064DDDDiscount": 2,
+      "supportBatch": "phase-1064",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsp01-004",
+      "name": "ショーペン・ハウアー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 12000,
+      "race": "マフィ・ギャング",
+      "text": "NEO進化：自分の闇のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nT・ブレイカー\n自分のターンの終わりに、このクリーチャーがタップしていれば、コスト８以下の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp01-004",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "breaker": 3,
+      "g174End": [
+        {
+          "op": "IfSource541",
+          "g1064Tapped": true,
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "n": 1,
+              "deploy": true,
+              "g236GraveDeploy": true,
+              "filter": {
+                "creature": true,
+                "nonEvolution": true,
+                "max": 8
+              },
+              "title": "墓地からコスト8以下の進化ではないクリーチャーを1体出す"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1064",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-050",
+      "name": "我流TENSAY-G01&T02",
+      "civ": "光/火/自然",
+      "civilizations": [
+        "光",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5500,
+      "race": "アーマード・ドラゴン/アース・ドラゴン/テクノ・サムライ",
+      "text": "自分のエレメントが１つもなければ、このクリーチャーを[lfn03]支払って自分のマナゾーンから召喚してもよい。\nNEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。\n超魂レイド（このクリーチャーが出た時、山札の上から３枚を表向きにする。その中からこのクリーチャーの進化元になれるカードを１枚、この下に置いてもよい。残りを好きな順序で山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-050",
+      "limit": 4,
+      "g568Alt": {
+        "cost": 3,
+        "paymentColors": [
+          "光",
+          "火",
+          "自然"
+        ],
+        "origin": "mana",
+        "condition": {
+          "g1064NoElements": true
+        }
+      },
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "火"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "g27Raid": true,
+      "supportBatch": "phase-1064",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1063,
+    "phase": 1064,
     "checkedAt": "2026-11-13",
-    "baseCount": 7146,
+    "baseCount": 7149,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7149,
+    "totalCount": 7152,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -232138,6 +232276,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7146,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1063,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7146,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7149,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

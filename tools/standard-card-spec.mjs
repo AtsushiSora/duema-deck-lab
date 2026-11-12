@@ -9485,6 +9485,28 @@ export function standardCardSpec(d,{phase=165}={}){
    spec.g397Shinka=defs;
    continue;
   }
+  if(phase>=1064&&f.typeText==='NEOクリーチャー'){
+   if(line==='自分のマナゾーンに光、火、自然の各文明があればこのクリーチャーを[cc02]支払って召喚してもよい。'||
+      line==='自分のマナゾーンに光火自然の各文明があればこのクリーチャーを[cc02]支払って召喚してもよい。'){
+    spec.g568Alt={cost:2,paymentColors:[],condition:{g1064ManaColors:['光','火','自然']}};
+    continue;
+   }
+   if(line==='自分の「D・D・D」コストを2少なくする。ただしコストは0以下にはならない。'){
+    spec.g1064DDDDiscount=2;
+    continue;
+   }
+   if(line==='自分のエレメントが1つもなければこのクリーチャーを[lfn03]支払って自分のマナゾーンから召喚してもよい。'){
+    spec.g568Alt={cost:3,paymentColors:['光','火','自然'],origin:'mana',condition:{g1064NoElements:true}};
+    continue;
+   }
+   if(line==='自分のターンの終わりにこのクリーチャーがタップしていればコスト8以下の進化ではないクリーチャーを1体自分の墓地からバトルゾーンに出す。'){
+    turnEnd.push({op:'IfSource541',g1064Tapped:true,defs:[
+     {op:'Select',origin:'grave',n:1,deploy:true,g236GraveDeploy:true,
+      filter:{creature:true,nonEvolution:true,max:8},title:'墓地からコスト8以下の進化ではないクリーチャーを1体出す'}
+    ]});
+    continue;
+   }
+  }
   if(phase>=1063&&f.typeText==='NEOクリーチャー'){
    if(line==='このクリーチャーが破壊された時これが進化クリーチャーならこのクリーチャーを自分の墓地から出す。'){
     death.push({op:'SelfGraveRevive644',g1063Evolved:true});

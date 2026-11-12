@@ -1,0 +1,266 @@
+{
+  "phase": 1064,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7149,
+  "description": "マナ文明による別コストとD・D・D軽減、ターン終了時の墓地展開、エレメント不在時のマナ召喚と超魂レイドを公式5版で照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316639/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316675/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37476/",
+    "https://dm.takaratomy.co.jp/rule/qa/31530/",
+    "https://dm.takaratomy.co.jp/rule/qa/40442/",
+    "https://dm.takaratomy.co.jp/rule/qa/46847/",
+    "https://dm.takaratomy.co.jp/rule/qa/47898/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp4-051",
+      "name": "HIMEGYA-流予見618",
+      "faces": [
+        {
+          "name": "HIMEGYA-流予見618",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光/火/自然",
+          "civilizations": [
+            "光",
+            "火",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のマナゾーンに光、火、自然の各文明があれば、このクリーチャーを[cc02]支払って召喚してもよい。\nNEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\n自分の「D・D・D」コストを２少なくする。ただし、コストは０以下にはならない。",
+          "race": "ファイアー・バード/テクノ・サムライ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-051",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp4-051.jpg",
+      "spec": {
+        "g568Alt": {
+          "cost": 2,
+          "paymentColors": [],
+          "condition": {
+            "g1064ManaColors": [
+              "光",
+              "火",
+              "自然"
+            ]
+          }
+        },
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "g1064DDDDiscount": 2
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "9a2337b70f54708f554c82895c95b9e342c114563b7f0c94be71dc9505471b25",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsp01-004",
+      "name": "ショーペン・ハウアー",
+      "faces": [
+        {
+          "name": "ショーペン・ハウアー",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "NEO進化：自分の闇のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nT・ブレイカー\n自分のターンの終わりに、このクリーチャーがタップしていれば、コスト８以下の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+          "race": "マフィ・ギャング",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp01-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsp01-004.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "breaker": 3,
+        "g174End": [
+          {
+            "op": "IfSource541",
+            "g1064Tapped": true,
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "n": 1,
+                "deploy": true,
+                "g236GraveDeploy": true,
+                "filter": {
+                  "creature": true,
+                  "nonEvolution": true,
+                  "max": 8
+                },
+                "title": "墓地からコスト8以下の進化ではないクリーチャーを1体出す"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "f90c96e5c901c3f2b7d2911b91c188a58b4399bffefc54e705e3494a040731a5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-050",
+      "name": "我流TENSAY-G01&T02",
+      "faces": [
+        {
+          "name": "我流TENSAY-G01&T02",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光/火/自然",
+          "civilizations": [
+            "光",
+            "火",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のエレメントが１つもなければ、このクリーチャーを[lfn03]支払って自分のマナゾーンから召喚してもよい。\nNEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。\n超魂レイド（このクリーチャーが出た時、山札の上から３枚を表向きにする。その中からこのクリーチャーの進化元になれるカードを１枚、この下に置いてもよい。残りを好きな順序で山札の下に置く）",
+          "race": "アーマード・ドラゴン/アース・ドラゴン/テクノ・サムライ",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-050",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-050.jpg",
+      "spec": {
+        "g568Alt": {
+          "cost": 3,
+          "paymentColors": [
+            "光",
+            "火",
+            "自然"
+          ],
+          "origin": "mana",
+          "condition": {
+            "g1064NoElements": true
+          }
+        },
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "g27Raid": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "cdafc8a6f7191946d865c29daa903809d274f8cda67bd27504b89c7c71b05d65",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25ex3-059",
+      "name": "HIMEGYA-流予見618",
+      "faces": [
+        {
+          "name": "HIMEGYA-流予見618",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光/火/自然",
+          "civilizations": [
+            "光",
+            "火",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のマナゾーンに光、火、自然の各文明があれば、このクリーチャーを[cc02]支払って召喚してもよい。\nNEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\n自分の「D・D・D」コストを２少なくする。ただし、コストは０以下にはならない。",
+          "race": "ファイアー・バード/テクノ・サムライ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-059",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-059.jpg",
+      "canonicalId": "dm25rp4-051",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "3998893384dd3ea8d3f7d1dd912649d92b737457fa987ea5d8fbc4debf026d53",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy24-055",
+      "name": "我流TENSAY-G01&T02",
+      "faces": [
+        {
+          "name": "我流TENSAY-G01&T02",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光/火/自然",
+          "civilizations": [
+            "光",
+            "火",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のエレメントが１つもなければ、このクリーチャーを[lfn03]支払って自分のマナゾーンから召喚してもよい。\nNEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。\n超魂レイド（このクリーチャーが出た時、山札の上から３枚を表向きにする。その中からこのクリーチャーの進化元になれるカードを１枚、この下に置いてもよい。残りを好きな順序で山札の下に置く）",
+          "race": "アーマード・ドラゴン/アース・ドラゴン/テクノ・サムライ",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy24-055",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy24-055.jpg",
+      "canonicalId": "dm25rp2-050",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "0bee38ba9196393b78a1c16e4b5a519937bae38b783f7718cd062e8b633397de",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp4-051": 4,
+      "dmsp01-004": 4,
+      "dm25rp2-050": 4,
+      "dm25ex3-059": 4,
+      "promoy24-055": 4
+    }
+  }
+}
