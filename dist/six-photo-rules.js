@@ -5152,7 +5152,11 @@ export function createSixPhotoRules(api){
  extraBreak557:(s,p,x,c)=>s.players[p].battle.reduce((n,y)=>{
   const r=card(y).g557BreakAura;
   if(!r||y.sealed||r.other&&x.uid===y.uid||r.min!==undefined&&cost(c)<r.min||!api.isCreature(s,y)||api.ignored(s,y))return n;
-  return n+((r.multi?colors(c).length>1:race(c,r.race))?r.amount:0);
+  if(r.tapped&&!y.tapped||r.shieldsMax!==undefined&&!ownCondition(s,p,{g265ShieldsMax:r.shieldsMax}))return n;
+  if(r.multi&&colors(c).length<=1||r.race&&!race(c,r.race))return n;
+  // A printed Soul icon remains even when the creature's abilities are ignored.
+  if(r.soul&&!hasSoul(c,r.soul)&&!hasSoul(card(x),r.soul))return n;
+  return n+r.amount;
  },c.g876BreakPerCount?countPower(s,x,c,false,{...c.g207CountPower,amount:1}):0),
  countBattleCivilizations,
  extraBreak412:(s,p,x)=>(s.extLimits||[]).filter(l=>l.kind==='g412ExtraBreak'&&(l.g969FollowControl||l.player===p)&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.source}))&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)).reduce((n,l)=>n+l.amount,0),

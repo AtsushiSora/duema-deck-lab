@@ -9725,6 +9725,25 @@ export function standardCardSpec(d,{phase=165}={}){
     continue;
    }
   }
+  if(phase>=1074&&evolution){
+   const aura={
+    '革命2―自分のシールドが2つ以下なら自分の他のクリーチャーはシールドをさらに2つブレイクする。':{shieldsMax:2,amount:2},
+    'このクリーチャーがタップされている時自分の他のヒューマノイドはすべてシールドをさらに1枚ブレイクする。':{tapped:true,race:'ヒューマノイド',amount:1},
+    '自分の他の(W・ソウル)クリーチャーはシールドをさらに1枚ブレイクする。':{soul:'W',amount:1}
+   }[line];
+   if(aura){
+    if(spec.g557BreakAura)throw Error('重複する追加ブレイク');
+    spec.g557BreakAura={...aura,other:true};
+    continue;
+   }
+   if(d.id==='dm36-035'&&line==='進化-自分の(W・ソウル)クリーチャー1体の上に置く。'){
+    if(spec.evolution)throw Error('重複進化条件');
+    // The W Soul icon is printed on the card and omitted from the site's ability text.
+    spec.g558Souls=['W'];
+    spec.evolution={g853Soul:'W'};
+    continue;
+   }
+  }
   if(phase>=1073&&evolution){
    if(line==='誰も光以外の呪文を唱えられない。'){
     spec.g34Role='alca';

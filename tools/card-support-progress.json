@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7186,
-  "pendingNames": 4641,
-  "phase": 1073,
+  "supportedNames": 7189,
+  "pendingNames": 4638,
+  "phase": 1074,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -162,7 +162,7 @@
     "タマシード": 57,
     "デュエルメイト呪文": 10,
     "S-MAX進化クリーチャー": 10,
-    "進化クリーチャー": 271,
+    "進化クリーチャー": 268,
     "スター進化クリーチャー": 68,
     "進化クリーチャー(超無限進化・Ω)": 1,
     "ギガ・オレガ・オーラ": 2,
@@ -226,14 +226,14 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3204,
+    "未対応の能力文": 3202,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
     "既存名の別表記": 8,
     "未対応のシビルカウント効果": 2,
     "未対応のD2フィールド能力": 43,
-    "複雑な進化条件": 13,
+    "複雑な進化条件": 12,
     "未対応のスリリング・スリー効果": 2,
     "未対応のスーパー・S・トリガー能力": 14,
     "再録サバイバーの共有処理が未対応": 5,
@@ -208289,35 +208289,161 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1074,
+      "baseCommit": "651ed1cb",
+      "cards": [
+        {
+          "id": "promoy14-013",
+          "name": "革命龍 ドカン"
+        },
+        {
+          "id": "dmx11-030",
+          "name": "鬼ドリル 爆マサムネ"
+        },
+        {
+          "id": "dm36-035",
+          "name": "超神龍ジャヤナギ"
+        }
+      ],
+      "printAliases": [],
+      "supportedNames": 7189,
+      "pendingNames": 4638,
+      "verification": {
+        "focusedPassed": 6,
+        "regressionPassed": 422,
+        "regressionFailed": 0,
+        "check": "成功",
+        "officialPrints": 3,
+        "scope": "進化クリーチャー3種類の公式能力全文、基本情報、画像、使用制限、収録と既存IDを照合。革命龍 ドカンは自分のシールドが2つ以下なら他の自軍が2つ追加でブレイクする。鬼ドリル 爆マサムネは自身がタップ中のとき他の自軍のヒューマノイドに追加1ブレイク。超神龍ジャヤナギはW・ソウルから進化し、他の自軍のW・ソウルに追加1ブレイク。ジャヤナギ自身の印刷されたW・ソウルは公式画像で確認。攻撃と効果のブレイク、能力無視、盾束と対象条件、追加ブレイクの重複を検証。既存7,186件の対戦定義とカタログが一致。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35733/",
+          "https://dm.takaratomy.co.jp/rule/qa/47934/"
+        ],
+        "regressionFiles": [
+          "tests/neo-ddd.test.mjs",
+          "tests/soul-shield.test.mjs",
+          "tests/standard455-effects.test.mjs",
+          "tests/standard497-effects.test.mjs",
+          "tests/standard557-effects.test.mjs",
+          "tests/standard558-effects.test.mjs",
+          "tests/standard853-effects.test.mjs",
+          "tests/standard948-effects.test.mjs",
+          "tests/standard969-effects.test.mjs",
+          "tests/standard1073-effects.test.mjs"
+        ],
+        "regressionFilter": "--test-skip-pattern=mixed NEO/DDD games|mixed soul/evolution/dragon games|production worker|random manual|new-card games against every|simulation worker|legal forty CPU|randomized",
+        "incompleteRegression": [
+          {
+            "file": "tests/soul-shield.test.mjs",
+            "test": "mixed soul/evolution/dragon games finish, preserve 80 unique physical cards at every choice, and reproduce their seeds",
+            "status": "中断・合否未確認",
+            "reason": "初回の回帰実行を100対戦の途中で終了。絞り込んだ回帰では対象外。"
+          },
+          {
+            "file": "tests/neo-ddd.test.mjs",
+            "test": "mixed NEO/DDD games conserve all eighty unique cards through every action and finish with reproducible seeds",
+            "status": "今回未実行",
+            "reason": "過去に分割検証した100対戦。長時間実行の再試行を避けるため今回の回帰から除外。"
+          },
+          {
+            "file": "tests/standard455-effects.test.mjs",
+            "test": "legal forty CPU game（2件）",
+            "status": "今回未実行",
+            "reason": "CPU対戦完走のケースを今回の回帰から除外。"
+          },
+          {
+            "file": "tests/standard497-effects.test.mjs",
+            "test": "legal forty CPU game（2件）",
+            "status": "今回未実行",
+            "reason": "CPU対戦完走のケースを今回の回帰から除外。"
+          },
+          {
+            "file": "tests/standard557-effects.test.mjs",
+            "test": "legal forty CPU game（2件）",
+            "status": "今回未実行",
+            "reason": "CPU対戦完走のケースを今回の回帰から除外。"
+          },
+          {
+            "file": "tests/standard558-effects.test.mjs",
+            "test": "legal forty CPU game（2件）",
+            "status": "今回未実行",
+            "reason": "CPU対戦完走のケースを今回の回帰から除外。"
+          }
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。 トットロの公式QA 48925の組み合わせは関連2枚が未対応のため未実行。NEO/DDDの100試合と再現性は過去に分割検証済みで、今回の回帰では合否未確認。 ゴルギー31相手の再現性と本番Worker62試合は今回も対象外で未実行。前回の広範囲回帰に含まれる1,796件固定の既存テストの結果はPhase 1060を参照。 PhoenixのCPU連戦と本番Worker試験は、今回の個別回帰の対象外。 Phase 1064ではNEO/DDD 100試合とBandeの全対戦・ランダム操作・Workerの長時間ケースを個別回帰から除外。以前の長時間実行を繰り返さず、今回の合否は未確認。 Phase 1065の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1066の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1067の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1068の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1069の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1070の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1071の個別回帰でも長時間のNEO/DDD 100試合は対象外。 Phase 1072の個別回帰でも長時間のNEO/DDD 100試合は対象外。 Phase 1073の個別回帰でも長時間のNEO/DDD 100試合は対象外。 Phase 1074で今回未実行または中断した長時間回帰は同履歴のincompleteRegressionを参照。",
+        "pendingInteractions": [
+          {
+            "cardIds": [
+              "dm25rp3-039",
+              "dm26rp2-006",
+              "dm25rp2-OR1"
+            ],
+            "test": "デンジャラス=トットロの上にメモッタで封印付きのジャシン＝ヴリドガルドが出る場合の墓地展開",
+            "status": "未実行",
+            "reason": "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/48925/"
+          }
+        ],
+        "logs": {
+          "official": "/tmp/duema-phase-1074.YgCGUD/manifest.log",
+          "officialImages": "/tmp/duema-phase-1074.YgCGUD/sources.log",
+          "imageIndex": "/tmp/duema-phase-1074.YgCGUD/images.log",
+          "focused": "/tmp/duema-phase-1074.YgCGUD/specific-final.log",
+          "regression": "/tmp/duema-phase-1074.YgCGUD/related.log",
+          "regressionInterrupted": "/tmp/duema-phase-1074.YgCGUD/related-interrupted.log",
+          "check": "/tmp/duema-phase-1074.YgCGUD/check.log",
+          "audit": "/tmp/duema-phase-1074.YgCGUD/audit.log",
+          "count": "/tmp/duema-phase-1074.YgCGUD/count.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "promoy2-023",
+          "name": "大昆虫ジェネラルマンティス",
+          "reason": "プロモ2期と3期の公式能力文・基本情報を確認済み。ブロックされなかった他の攻撃クリーチャーのパワー判定の時点と追加ブレイクの主体を確かめるまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=promoy2-023",
+            "https://dm.takaratomy.co.jp/card/detail/?id=promoy3-035",
+            "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+            "https://dm.takaratomy.co.jp/rule/qa_old/35733/"
+          ]
+        },
+        {
+          "id": "promoy2-014",
+          "name": "超竜バハム",
+          "reason": "プロモ2期と3期で追加ブレイクの文言が異なる。新しい版の表記に沿う処理と、攻撃以外のブレイクへの適用を照合するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=promoy2-014",
+            "https://dm.takaratomy.co.jp/card/detail/?id=promoy3-034",
+            "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+          ]
+        },
+        {
+          "id": "dmrp07-034",
+          "name": "頑固水産 ガンパチ",
+          "reason": "公式の能力文・基本情報を確認済み。その攻撃で自身が実際にブレイクした場合の条件を、別のカードがブレイクした場合や置換された場合と照合するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-034",
+            "https://dm.takaratomy.co.jp/rule/qa/43587/"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1073,
-    "nextPhase": 1074,
+    "lastVerifiedPhase": 1074,
+    "nextPhase": 1075,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "promoy14-013",
-        "name": "革命龍 ドカン",
-        "reason": "革命2の間に自身を除く自軍のブレイク数を2増やす常在能力を照合する。",
+        "id": "dmx11-018",
+        "name": "怪盗パクルパン",
+        "reason": "自身がそのターン中にブレイクした事実と、ターン終了時の条件を照合する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-013"
-        ]
-      },
-      {
-        "id": "dmx11-030",
-        "name": "鬼ドリル 爆マサムネ",
-        "reason": "本人のタップ状態と他のヒューマノイドの追加ブレイクを照合する。",
-        "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-030"
-        ]
-      },
-      {
-        "id": "dm36-035",
-        "name": "超神龍ジャヤナギ",
-        "reason": "W・ソウルの進化条件と他のW・ソウルへの追加ブレイクを照合する。",
-        "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm36-035"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-018"
         ]
       },
       {
@@ -208327,6 +208453,36 @@
         "sources": [
           "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-019",
           "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-018"
+        ]
+      },
+      {
+        "id": "promoy2-023",
+        "name": "大昆虫ジェネラルマンティス",
+        "reason": "プロモ2期と3期の公式能力文・基本情報を確認済み。ブロックされなかった他の攻撃クリーチャーのパワー判定の時点と追加ブレイクの主体を確かめるまで保留。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=promoy2-023",
+          "https://dm.takaratomy.co.jp/card/detail/?id=promoy3-035",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35733/"
+        ]
+      },
+      {
+        "id": "promoy2-014",
+        "name": "超竜バハム",
+        "reason": "プロモ2期と3期で追加ブレイクの文言が異なる。新しい版の表記に沿う処理と、攻撃以外のブレイクへの適用を照合するまで保留。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=promoy2-014",
+          "https://dm.takaratomy.co.jp/card/detail/?id=promoy3-034",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ]
+      },
+      {
+        "id": "dmrp07-034",
+        "name": "頑固水産 ガンパチ",
+        "reason": "公式の能力文・基本情報を確認済み。その攻撃で自身が実際にブレイクした場合の条件を、別のカードがブレイクした場合や置換された場合と照合するまで保留。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-034",
+          "https://dm.takaratomy.co.jp/rule/qa/43587/"
         ]
       },
       {
@@ -208421,14 +208577,6 @@
         "sources": [
           "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-015",
           "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-Sec16"
-        ]
-      },
-      {
-        "id": "dmrp07-034",
-        "name": "頑固水産 ガンパチ",
-        "reason": "公式本文・基本情報・画像・単一収録を確認。ブロックされなくなる能力は既存処理で再現できるが、その攻撃中に自身が実際にブレイクしたかを、ブレイク置換や別のクリーチャーによるブレイクから区別する経路の確認が残る。",
-        "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-034"
         ]
       },
       {
@@ -208654,7 +208802,7 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
-      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。追加ブレイクの適用時点と革命、タップ、種族・ソウルによる対象の絞り込みを既存実装と照合する。",
+      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。攻撃でブレイクした主体とタイミング、ブロック後の追加ブレイク、版による能力文の違いを既存処理と照合する。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で登録再開。自動化 duema-deck-lab は10分間隔で稼働中。",
