@@ -9473,6 +9473,9 @@ export function standardCardSpec(d,{phase=165}={}){
    'コスト3以下のクリーチャーを1体自分の墓地から出してもよい。':{op:'Select',origin:'grave',n:1,deploy:true,g236GraveDeploy:true,optional:true,filter:{creature:true,max:3},title:'墓地から出すコスト3以下のクリーチャーを1体まで選ぶ'},
    '相手の「ブロッカー」を持つクリーチャーを1体選び破壊してもよい。':{op:'Target',to:'grave',optional:true,filter:{blocker:true},title:'破壊する相手のブロッカーを1体まで選ぶ'},
    'このターンこのクリーチャーはアンタップしているクリーチャーを攻撃できる。':{op:'ShinkaGrant397',grant:{attackUntapped:true}}
+  }[neoText]:null)??(phase>=1058?{
+   '次の自分のターンのはじめまでこのクリーチャーはすべてのバトルに勝つ。':{op:'ShinkaGrant397',untilStart:true,g1058FollowUnit:true,grant:{g34AlwaysWin:true}},
+   '相手のクリーチャーを1体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。':{op:'FightEnemy240',optional:true,g998EntryFight:true}
   }[neoText]:null)):null;
   if(creature&&(evolvingBlockerRemoval||evolvingElementRemoval||neoTrigger)){
    if(entry.length||nativeEntry||spec.g397Shinka)throw Error('重複する進化誘発能力');
@@ -9481,6 +9484,23 @@ export function standardCardSpec(d,{phase=165}={}){
    spec.evolvedEntryOnly=true;
    spec.g397Shinka=defs;
    continue;
+  }
+  if(phase>=1058&&f.typeText==='NEOクリーチャー'){
+   if(line==='バトル中このクリーチャーに含まれるカード1枚につきこのクリーチャーのパワーを+2000する。'){
+    if(spec.g209BattlePower)throw Error('重複するバトル強化');
+    spec.g209BattlePower={amount:2000,perCard:true};
+    powerBonus=true;
+    continue;
+   }
+   if(line==='このクリーチャーが出た時コスト3以下のエレメントを1つ選び持ち主のマナゾーンに置いてもよい。'){
+    entry.push({op:'Target',element:true,anyOwner:true,to:'mana',toOwnerMana:true,optional:true,filter:{max:3},title:'マナゾーンに置くコスト3以下のエレメントを1つまで選ぶ'});
+    continue;
+   }
+   if(line==='このクリーチャーはカードが3枚以上含まれていなければ攻撃できない。'){
+    if(spec.g225AttackRequires)throw Error('重複する攻撃条件');
+    spec.g225AttackRequires={kind:'stackCards',min:3};
+    continue;
+   }
   }
   if(phase>=612&&creature){
    if(line==='自分のパワー6000以上のクリーチャーを召喚するコストは1少なくなる。ただしコストは0以下にならない。'){

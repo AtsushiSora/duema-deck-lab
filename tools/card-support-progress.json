@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7128,
-  "pendingNames": 4699,
-  "phase": 1057,
+  "supportedNames": 7132,
+  "pendingNames": 4695,
+  "phase": 1058,
   "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -155,7 +155,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 2700,
-    "NEOクリーチャー": 140,
+    "NEOクリーチャー": 136,
     "呪文": 605,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3261,
+    "未対応の能力文": 3257,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -206358,27 +206358,134 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1058,
+      "baseCommit": "de482c7f",
+      "cards": [
+        {
+          "id": "promoy24-064",
+          "name": "VivaKl’a Tune"
+        },
+        {
+          "id": "dm25rp4-022",
+          "name": "ZINRAI-灰俺守810"
+        },
+        {
+          "id": "dm25rp2-046",
+          "name": "USHI和歌轟-8"
+        },
+        {
+          "id": "dm25rp2-074",
+          "name": "怒留流-GUN33"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm25rp3-028",
+          "canonicalId": "promoy24-064"
+        },
+        {
+          "id": "dm25ex3-052",
+          "canonicalId": "dm25rp2-046"
+        }
+      ],
+      "supportedNames": 7132,
+      "pendingNames": 4695,
+      "verification": {
+        "focusedPassed": 14,
+        "regressionPassed": 244,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 6,
+        "scope": "4種類・6版の公式能力全文、基本情報、マナ数、画像、収録、殿堂レギュレーションを照合。VivaとUSHIの別版を既存正規IDに集約。VivaのD・D・Dによる攻撃継続、両者の勝利能力、進化元としての付与、進化元が外れた後の再進化、複数進化元と次の自分のターン開始時の終了を確認。ZINRAIはS・トリガー、任意バトル、複数枚を含む場合のバトル中だけの強化、進化先とのバトルと発生源が離れた時の選択を確認。USHIはS・トリガー、進化の有無に関わらず任意のコスト3以下エレメントを選ぶ処理、マナへの所有者別移動とスター進化・G-NEOの置換を確認。怒留流は1枚・2枚の攻撃禁止、3枚でのT・ブレイカー、効果バトルを確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20231117.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/31531/",
+          "https://dm.takaratomy.co.jp/rule/qa/31825/",
+          "https://dm.takaratomy.co.jp/rule/qa/46499/",
+          "https://dm.takaratomy.co.jp/rule/qa/46526/",
+          "https://dm.takaratomy.co.jp/rule/qa/47363/",
+          "https://dm.takaratomy.co.jp/rule/qa/47364/",
+          "https://dm.takaratomy.co.jp/rule/qa/48151/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31395/"
+        ],
+        "regressionFiles": [
+          "tests/standard209-effects.test.mjs",
+          "tests/standard544-effects.test.mjs",
+          "tests/standard587-effects.test.mjs",
+          "tests/standard1008-effects.test.mjs",
+          "tests/standard1042-effects.test.mjs",
+          "tests/standard1056-effects.test.mjs",
+          "tests/standard1057-effects.test.mjs",
+          "tests/standard605-effects.test.mjs"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。 トットロの公式QA 48925の組み合わせは関連2枚が未対応のため未実行。NEO/DDDの100試合と再現性は過去に分割検証済みで、今回の回帰では合否未確認。",
+        "pendingInteractions": [
+          {
+            "cardIds": [
+              "dm25rp3-039",
+              "dm26rp2-006",
+              "dm25rp2-OR1"
+            ],
+            "test": "デンジャラス=トットロの上にメモッタで封印付きのジャシン＝ヴリドガルドが出る場合の墓地展開",
+            "status": "未実行",
+            "reason": "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/48925/"
+          }
+        ],
+        "logs": {
+          "official": "/tmp/duema-phase-1058.dKQaAQ4u/official.log",
+          "officialImages": "/tmp/duema-phase-1058.dKQaAQ4u/sources.log",
+          "extraOfficialImages": "/tmp/duema-phase-1058.dKQaAQ4u/extra.log",
+          "ushiAlternatePrint": "/tmp/duema-phase-1058.dKQaAQ4u/ushi.log",
+          "focused": "/tmp/duema-phase-1058.dKQaAQ4u/focused-final.log",
+          "regression": "/tmp/duema-phase-1058.dKQaAQ4u/regression-final.log",
+          "check": "/tmp/duema-phase-1058.dKQaAQ4u/check-final.log",
+          "audit": "/tmp/duema-phase-1058.dKQaAQ4u/audit.log",
+          "imageIndex": "/tmp/duema-phase-1058.dKQaAQ4u/images.log",
+          "count": "/tmp/duema-phase-1058.dKQaAQ4u/count.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dm25rp2-049",
+          "name": "選舞音愛 タテロール",
+          "reason": "公式本文・基本情報・画像・単一収録を照合。既存の対象選択と移動先選択を使えるが、複数枚で構成されたクリーチャーをシールド化する場合の各カードの配置順と持ち主の扱いを既存処理で再現できるか確認が残る。発生源のコストでシックスフォールの選択制限を判定する公式QA 47068も固有テストで確認する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-049",
+            "https://dm.takaratomy.co.jp/rule/qa/46506/",
+            "https://dm.takaratomy.co.jp/rule/qa/46847/",
+            "https://dm.takaratomy.co.jp/rule/qa/47068/"
+          ]
+        }
+      ],
+      "alreadySupportedCandidates": [
+        {
+          "id": "dm25rp3-049",
+          "name": "TAKASUGI-死合乱闘3000",
+          "reason": "対戦対応済みの正規IDをPhase 44で確認したため、今回の候補および新規件数から除外。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1057,
-    "nextPhase": 1058,
+    "lastVerifiedPhase": 1058,
+    "nextPhase": 1059,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm25rp3-049",
-        "name": "TAKASUGI-死合乱闘3000",
-        "reason": "D・D・DとNEO進化に加え、山札上4枚からの非公開選択と残りの処理、再録を照合する。"
+        "id": "dm25rp4-077",
+        "name": "スマッシュ・ホーンの地版",
+        "reason": "S・トリガー、登場時のマナ送り、シンカライズ、超魂Xで進化元として発動する能力の付与を公式裁定と照合する。"
       },
       {
-        "id": "promoy24-064",
-        "name": "VivaKl’a Tune",
-        "reason": "DM25-RP3版 dm25rp3-028 と既存IDを照合。進化先へのバトル勝利の付与と次の自分のターン開始時の終了を確認する。"
-      },
-      {
-        "id": "dm25rp4-022",
-        "name": "ZINRAI-灰俺守810",
-        "reason": "S・トリガー、進化元を含む枚数で決まるバトル中のパワー、進化先を使う任意バトルを照合する。"
+        "id": "dm25rp4-069",
+        "name": "魔誕音像サーペント・ギター",
+        "reason": "NEO進化を選んだ場合だけの召喚軽減を、宣言・支払い・進化元の選択で照合する。"
       },
       {
         "id": "dm25rp2-049",

@@ -176,7 +176,13 @@ export function createExtendedRules(api){
   if(effective(x,s).evolvedEntryOnly)six.evolutionBase397(s,p,x);
   bande.evolutionBase(s,p,x);
  },inherit:(s,b,x)=>{thisInherit(s,b,x);viride.inherit(s,b,x);hachi.inherit(s,b,x);travel.inherit(s,b,x);lionel.inherit(s,b,x);samurai.inherit(s,b,x);zard.inherit(s,b,x);armored.inherit(s,b,x);magic.inherit(s,b,x);}});
- function thisInherit(s,b,x){if(b.g170StartFreeze)x.g170StartFreeze=[...new Map([...(x.g170StartFreeze||[]),...b.g170StartFreeze].map(e=>[JSON.stringify(e),structuredClone(e)])).values()];if(b.g31EndDeath)(x.g31EndDeath??=[]).push(...structuredClone(b.g31EndDeath));}
+ function thisInherit(s,b,x){
+  if(b.g170StartFreeze)x.g170StartFreeze=[...new Map([...(x.g170StartFreeze||[]),...b.g170StartFreeze].map(e=>[JSON.stringify(e),structuredClone(e)])).values()];
+  if(b.g31EndDeath)(x.g31EndDeath??=[]).push(...structuredClone(b.g31EndDeath));
+  // Lasting effects on a creature survive evolution and reconstruction of that creature.
+  for(const effect of s.extLimits||[])if(effect.g1058FollowUnit&&effect.ref.uid===b.uid&&effect.ref.incarnation===(b.incarnation||0))
+   effect.ref={uid:x.uid,incarnation:x.incarnation||0};
+ }
  const starter=createStarterRules({...api,creatures,put,task,choice,opt,skip,targetOptions,nowCreature,shieldTo});
  const gospel=createGospelRules({...api,creatures,put,task,choice,opt,skip,targetOptions,nowCreature,shieldTo,targetable,lock});
  const galaxy=createGalaxyRules({...api,attachMarsDeck:(s,p,x)=>phoenix.attach(s,p,x,[],{}),attachHandEvolution:cyber.attachHandEvolution,fifteen:six.fifteen,creatures,put,task,choice,opt,skip,targetOptions,nowCreature,shieldTo,targetable,lock});

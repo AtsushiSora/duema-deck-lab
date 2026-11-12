@@ -687,6 +687,7 @@ export function createSixPhotoRules(api){
   if(t.opponentDragon&&(!y||!race(effective(y,s),'ドラゴン')))return 0;
   if(t.opponentColors&&(!y||!t.opponentColors.some(q=>colors(effective(y,s)).includes(q))))return 0;
   if(t.vsBlocker&&(!y||!effective(y,s).blocker)||t.opponentMaxCost!=null&&(!y||cost(effective(y,s))>t.opponentMaxCost)||t.handMax!=null&&s.players[p].hand.length>t.handMax||t.opponentTurn&&s.active===p)return 0;
+  if(t.perCard)return t.amount*api.allLayers(x).length;
   return t.amount*(t.graveFire?s.players[p].grave.filter(z=>faces(card(z)).some(f=>colors(f).includes('火'))).length:1);
  }
  // Source-owned battle effects are read only for the actual battle or its public preview.
@@ -773,6 +774,7 @@ export function createSixPhotoRules(api){
    case'noncreatureUses':return(s.g448NoncreatureUses?.[p]?.turn===s.turn?s.g448NoncreatureUses[p].n:0)>=rule.min;
    case'opponentCreatures':return creatures(s,1-p).filter(y=>!y.sealed).length>=rule.min;
    case'selfEvolution':return !!x&&api.isEvolution(x);
+   case'stackCards':return !!x&&api.allLayers(x).length>=rule.min;
    case'ally':return bodies().some(y=>(!rule.other||y.uid!==x?.uid)&&matches(s,p,y,rule.filter));
    case'otherAttack':{const refs=new Set(x?api.allLayers(x).map(y=>y.uid+'@'+(y.incarnation||0)):[]);return s.g481Attackers?.turn===s.turn&&s.g481Attackers.events.some(event=>(!rule.own||event.p===p)&&!event.refs.some(ref=>refs.has(ref)));}
    case'handCount':return own.hand.length<=rule.max;
@@ -925,6 +927,7 @@ export function createSixPhotoRules(api){
   if(t.g521UntilStart)(s.extLimits??=[]).push({
    kind:'g521Grant',ref:{uid:y.uid,incarnation:y.incarnation||0},grant:t.grant,expires:'start',who:t.p,
    ...(t.g565External?{g565External:true}:{}),
+   ...(t.g1058FollowUnit?{g1058FollowUnit:true}:{}),
    ...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})
   });
   else(y.g34Grants??=[]).push(timedGrant335(s,t,t.grant));
@@ -1879,7 +1882,7 @@ export function createSixPhotoRules(api){
  case'g34_MillRecover545':{const y=api.takeTop(s,t.p);if(!y){api.deckCheck(s,t.p);break;}clear(y);api.addZone(s,t.p,'grave',y);const matched=matches(s,t.p,y,t.filter);api.deckCheck(s,t.p);if(s.winner!==null)break;if(matched)zoneMove(s,t.p,'grave',y.uid,'hand',t);else start(s,t,t.elseDefs);break;}
  case'g34_CountTarget544':start(s,t,[{...t.def,power:(own[t.zone]?.length||0)*t.amount}]);break;
  case'g34_ShinkaDelay543':if(sourceHost474(s,t)){const r={p:t.p,source:t.source,uid:t.uid,incarnation:t.incarnation||0};if(t.when==='end')(s.g537Delays??=[]).push({...r,when:'turnEnd',turn:s.turn,defs:[{op:'Untap',g191First:true}]});else(s.extLimits??=[]).push({kind:'g543Shinka',...r,when:t.when,expires:'end',who:s.active});}break;
- case'g34_ShinkaGrant397':{const host=t.untilStart?sourceHost474(s,t)?.x:own.battle.find(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)));if(host){if(t.battlePower)(s.extLimits??=[]).push({kind:'g446BattlePower',player:t.p,ref:{uid:t.uid,incarnation:t.incarnation||0},amount:t.battlePower,expires:'end',who:s.active});if(t.power)(host.powerModifiers??=[]).push({amount:t.power,expires:'end',who:s.active});if(t.grant){if(t.untilStart)(s.extLimits??=[]).push({kind:'g521Grant',ref:{uid:t.uid,incarnation:t.incarnation||0},grant:t.grant,expires:'start',who:t.p});else(host.g34Grants??=[]).push({turn:s.turn,...t.grant});}}break;}
+ case'g34_ShinkaGrant397':{const host=t.untilStart?sourceHost474(s,t)?.x:own.battle.find(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)));if(host){if(t.battlePower)(s.extLimits??=[]).push({kind:'g446BattlePower',player:t.p,ref:{uid:t.uid,incarnation:t.incarnation||0},amount:t.battlePower,expires:'end',who:s.active});if(t.power)(host.powerModifiers??=[]).push({amount:t.power,expires:'end',who:s.active});if(t.grant){if(t.g1058FollowUnit)applyGrant(s,{...t,g521UntilStart:true},host);else if(t.untilStart)(s.extLimits??=[]).push({kind:'g521Grant',ref:{uid:t.uid,incarnation:t.incarnation||0},grant:t.grant,expires:'start',who:t.p});else(host.g34Grants??=[]).push({turn:s.turn,...t.grant});}}break;}
  case'g34_RecoverAll326':{const rows=list(s,{...t,selected:[]}),before=new Set(own.hand.map(y=>y.uid));for(const r of rows)zoneMove(s,r.p,r.origin,r.x.uid,'hand',t);const n=rows.filter(r=>own.hand.some(y=>y.uid===r.x.uid)&&!before.has(r.x.uid)).length;api.log(s,t.p,'recover',card(t.source).name+'：条件に合うカード'+n+'枚を手札に戻した',{cardId:t.source});if(t.after)start(s,t,t.after);break;}
  case'g34_BreakDelay484':(s.g484BreakEnds??=[]).push({p:t.p,uid:t.uid,incarnation:t.incarnation||0,source:t.source,turn:s.turn});break;
  case'g34_BreakReturn484':{const host=sourceHost474(s,t);if(host&&!host.x.sealed)start(s,t,[E('SelfHand299')]);break;}

@@ -1,0 +1,408 @@
+{
+  "phase": 1058,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7128,
+  "description": "NEO進化とD・D・D、S・トリガー、バトルの勝敗・パワー、エレメントのマナ移動とカード枚数の攻撃条件を照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20231117.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/31531/",
+    "https://dm.takaratomy.co.jp/rule/qa/31825/",
+    "https://dm.takaratomy.co.jp/rule/qa/46499/",
+    "https://dm.takaratomy.co.jp/rule/qa/46526/",
+    "https://dm.takaratomy.co.jp/rule/qa/47363/",
+    "https://dm.takaratomy.co.jp/rule/qa/47364/",
+    "https://dm.takaratomy.co.jp/rule/qa/48151/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31395/"
+  ],
+  "cards": [
+    {
+      "id": "promoy24-064",
+      "name": "VivaKl’a Tune",
+      "faces": [
+        {
+          "name": "VivaKl’a Tune",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "D・D・D [ll04]（自分のクリーチャーが攻撃する時、このカードを [ll04]支払って自分の手札から実行してもよい）\nNEO進化：光、水、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが、進化して出た時、または進化元になる時、次の自分のターンのはじめまで、このクリーチャーはすべてのバトルに勝つ。",
+          "race": "マジック・コマンド・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy24-064",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy24-064.jpg",
+      "spec": {
+        "ddd": {
+          "cost": 4,
+          "civilizations": [
+            "光"
+          ]
+        },
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "breaker": 2,
+        "evolvedEntryOnly": true,
+        "g397Shinka": [
+          {
+            "op": "ShinkaGrant397",
+            "untilStart": true,
+            "g1058FollowUnit": true,
+            "grant": {
+              "g34AlwaysWin": true
+            }
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShinkaGrant397",
+            "untilStart": true,
+            "g1058FollowUnit": true,
+            "grant": {
+              "g34AlwaysWin": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "0dcc32ff2822e627e5cc37bc2654c7a68fbd37c5c5944fb6e856205cc30e2014",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp4-022",
+      "name": "ZINRAI-灰俺守810",
+      "faces": [
+        {
+          "name": "ZINRAI-灰俺守810",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー\nNEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nバトル中、このクリーチャーに含まれるカード１枚につき、このクリーチャーのパワーを+2000する。\nこのクリーチャーが、進化して出た時、または進化元になる時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。",
+          "race": "アーマード・ドラゴン/テクノ・サムライ",
+          "powerText": "5000+",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-022",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp4-022.jpg",
+      "spec": {
+        "trigger": true,
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "g209BattlePower": {
+          "amount": 2000,
+          "perCard": true
+        },
+        "evolvedEntryOnly": true,
+        "g397Shinka": [
+          {
+            "op": "FightEnemy240",
+            "optional": true,
+            "g998EntryFight": true
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightEnemy240",
+            "optional": true,
+            "g998EntryFight": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "a704be1f88a888d15eec5ab98dd6df5343fa4ce0459730c3028e78245919c0c9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-046",
+      "name": "USHI和歌轟-8",
+      "faces": [
+        {
+          "name": "USHI和歌轟-8",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nNEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが出た時、コスト３以下のエレメントを１つ選び、持ち主のマナゾーンに置いてもよい。",
+          "race": "ヒューマノイド/テクノ・サムライ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-046",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-046.jpg",
+      "spec": {
+        "trigger": true,
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "anyOwner": true,
+            "to": "mana",
+            "toOwnerMana": true,
+            "optional": true,
+            "filter": {
+              "max": 3
+            },
+            "title": "マナゾーンに置くコスト3以下のエレメントを1つまで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "b2db743ef0754cc0f32f7c7984587f2f585ccf848bfa05f8c259ebdeb2abc765",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-074",
+      "name": "怒留流-GUN33",
+      "faces": [
+        {
+          "name": "怒留流-GUN33",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "NEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーは、カードが３枚以上含まれていなければ攻撃できない。",
+          "race": "アース・ドラゴン/テクノ・サムライ",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-074",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-074.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "breaker": 3,
+        "g225AttackRequires": {
+          "kind": "stackCards",
+          "min": 3
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "e7a0d0340a2cf7e23e4fc3a1f110a65b6ffca8c1233dbeb7834e8a3523cb0d6f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25rp3-028",
+      "name": "VivaKl’a Tune",
+      "faces": [
+        {
+          "name": "VivaKl’a Tune",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "D・D・D [ll04]（自分のクリーチャーが攻撃する時、このカードを [ll04]支払って自分の手札から実行してもよい）\nNEO進化：光、水、または自然のクリーチャー１体の上に置いてもよい。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが、進化して出た時、または進化元になる時、次の自分のターンのはじめまで、このクリーチャーはすべてのバトルに勝つ。",
+          "race": "マジック・コマンド・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-028",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-028.jpg",
+      "canonicalId": "promoy24-064",
+      "spec": {
+        "ddd": {
+          "cost": 4,
+          "civilizations": [
+            "光"
+          ]
+        },
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "breaker": 2,
+        "evolvedEntryOnly": true,
+        "g397Shinka": [
+          {
+            "op": "ShinkaGrant397",
+            "untilStart": true,
+            "g1058FollowUnit": true,
+            "grant": {
+              "g34AlwaysWin": true
+            }
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShinkaGrant397",
+            "untilStart": true,
+            "g1058FollowUnit": true,
+            "grant": {
+              "g34AlwaysWin": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "e9f20230e7b88994816b2b8208c9c45a39b483e9edb001b0959859526d2fa88b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex3-052",
+      "name": "USHI和歌轟-8",
+      "faces": [
+        {
+          "name": "USHI和歌轟-8",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nNEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが出た時、コスト３以下のエレメントを１つ選び、持ち主のマナゾーンに置いてもよい。",
+          "race": "ヒューマノイド/テクノ・サムライ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-052",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-052.jpg",
+      "canonicalId": "dm25rp2-046",
+      "spec": {
+        "trigger": true,
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "anyOwner": true,
+            "to": "mana",
+            "toOwnerMana": true,
+            "optional": true,
+            "filter": {
+              "max": 3
+            },
+            "title": "マナゾーンに置くコスト3以下のエレメントを1つまで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "09ababaa11dbd267a8fa10cc62dd315526e9ca8fc1eb99a5804972888b9dbc64",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "promoy24-064": 4,
+      "dm25rp4-022": 4,
+      "dm25rp2-046": 4,
+      "dm25rp2-074": 4,
+      "dm25rp3-028": 4,
+      "dm25ex3-052": 4
+    }
+  }
+}
