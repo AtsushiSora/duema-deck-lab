@@ -3030,7 +3030,9 @@ export function rankHeuristicActions(s){
   }
   if(c?.type==='spell'&&(c.normalCharger||c.crystalCharger)&&c.g34Tasks?.length===1&&c.g34Tasks[0].op==='Target'&&c.g34Tasks[0].filter?.blocker&&a.kind==='play'){
    if(spellIgnored(v,c))return -20;
-   return (me.mana.length<6?22:12)+extra.six.modeScore(v,{p,source:c.id},c.g34Tasks);
+   const removal=extra.six.modeScore(v,{p,source:c.id},c.g34Tasks);
+   if(c.g66Role==='meteor')return removal+(me.mana.length<7&&!extra.manaRedirect(v,p)?23:0);
+   return (me.mana.length<6?22:12)+removal;
   }
   if(c?.type==='spell'&&c.g34Tasks?.some(d=>d.op==='GroupGrant364')&&['play','useTrigger'].includes(a.kind)){
    if(spellIgnored(v,c))return -20;let value=extra.six.modeScore(v,{p,source:c.id},c.g34Tasks);if(c.normalCharger)value+=me.mana.length<6?14:8;if(c.g34Tasks.some(d=>d.op==='ShieldHand'))value+=me.shields>1?5:me.shields?-12:0;return value>0?value:(a.kind==='useTrigger'?-1:-20);
@@ -3757,11 +3759,6 @@ export function rankHeuristicActions(s){
     if(c.g67Effect==='Mobius')return me.mana.length<7?23:0;
     if(c.g67Effect==='SuperHand'){const forced=enemies.filter(x=>effectiveCard(x,v).forceTarget),list=forced.length?forced:enemies;return list.some(x=>costValue(effectiveCard(x,v))<me.deckCount)?32:0;}
     if(c.g67Effect==='Castle')return enemies.some(x=>power(x,x.uid===v.attack?.attacker,v)<=3000)?30:enemies.some(x=>!x.tapped)&&me.battle.some(x=>isCreature(v,x)&&!x.tapped&&!effectiveCard(x,v).noAttack&&(x.entered<v.turn||effectiveCard(x,v).speedAttacker||isEvolution(x)))?18:0;
-   }
-   if(c.type==='spell'&&c.g66Role==='meteor'){
-    if(spellIgnored(v,c))return 0;
-    const blocker=them.battle.some(x=>isCreature(v,x)&&!x.sealed&&effectiveCard(x,v).blocker&&extra.targetable(v,p,1-p,x));
-    return blocker?32:me.mana.length<7?23:0;
    }
    if(c.type==='spell'&&c.g66Role==='spark'){
     if(spellIgnored(v,c))return 0;
