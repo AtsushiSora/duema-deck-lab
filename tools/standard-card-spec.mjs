@@ -2467,6 +2467,34 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1046&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const boost=power=>({op:'SelfBoost313',power,g536Source:true});
+  if(f.name==='ファッション・ナスオ'&&f.civilizationText==='自然'&&f.cost===4&&text===
+   'このクリーチャーまたは自分の闇のクリーチャーがバトルゾーンに出た時自分の山札の上から1枚目をマナゾーンに置く。'+
+   'その後カードを1枚自分のマナゾーンから墓地に置く。')
+   return {g251EntryDraw:{selfAlways:true,filter:{creature:true,color:'闇'},defs:[
+    {op:'Ramp',n:1},{op:'Select',origin:'mana',to:'grave',n:1,g184ManaLoss:true,
+     title:'墓地に置く自分のマナを1枚選ぶ'}
+   ]}};
+  if(f.name==='花見田どん'&&f.civilizationText==='自然'&&f.cost===5&&text===
+   '自分の他のクリーチャーがバトルゾーンに出た時そのターンこのクリーチャーはパワーを+4000されシールドをさらに1つブレイクする。')
+   return {g314OtherEntry:{who:'self',defs:[boost(4000),{op:'SelfExtraBreak444',amount:1,g969FollowControl:true}]}};
+  if(f.name==='音速 ニトロエアー'&&f.civilizationText==='火'&&f.cost===3&&text===
+   '自分の他の火のクリーチャーがバトルゾーンに出た時そのターンこのクリーチャーのパワーを+2000し種族にソニック・コマンドを追加する。')
+   return {g314OtherEntry:{who:'self',filter:{creature:true,color:'火'},defs:[
+    boost(2000),{op:'SelfGrant754',grant:{raceAdd:['ソニック・コマンド']}}
+   ]}};
+  if(f.name==='冥土人形アカイブ・ヤップップ'&&f.civilizationText==='闇'&&f.cost===2&&text===
+   'W・ブレイカーこのクリーチャーが出た時自分のエレメントを1つ破壊する。'+
+   'その後各プレイヤーは自身のエレメントを1つ選び破壊する。')
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[
+    // Only the second instruction explicitly chooses an element (QA 45224).
+    {op:'Select',origin:'battle',owner:'self',n:1,to:'grave',g187OwnPick:true,g1046NoChoiceProtection:true,
+     filter:{element:true,faceUp:true},title:'破壊する自分のエレメントを1つ指定する'},
+    {op:'EachPlayer459',origin:'battle',to:'grave',element:true,filter:{element:true,faceUp:true}}
+   ]};
+ }
  if(phase>=1045&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
   const text=normalize(f.abilityText);
   const tap={op:'TapAll'},destroy={op:'Target',spell:true,to:'grave'};

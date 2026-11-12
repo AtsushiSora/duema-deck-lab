@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7088,
-  "pendingNames": 4739,
-  "phase": 1045,
-  "added": 3,
+  "supportedNames": 7092,
+  "pendingNames": 4735,
+  "phase": 1046,
+  "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2720,
+    "クリーチャー": 2716,
     "NEOクリーチャー": 152,
     "呪文": 610,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3298,
+    "未対応の能力文": 3294,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -205390,11 +205390,91 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1046,
+      "baseCommit": "43363a5a",
+      "cards": [
+        {
+          "id": "dmrp13-080",
+          "name": "ファッション・ナスオ"
+        },
+        {
+          "id": "dmrp09-056",
+          "name": "花見田どん"
+        },
+        {
+          "id": "dmr17-049",
+          "name": "音速 ニトロエアー"
+        },
+        {
+          "id": "dm24ex1-040",
+          "name": "冥土人形アカイブ・ヤップップ"
+        }
+      ],
+      "printAliases": [],
+      "supportedNames": 7092,
+      "pendingNames": 4735,
+      "verification": {
+        "focusedPassed": 9,
+        "regressionPassed": 380,
+        "regressionFailed": 0,
+        "regressionExcluded": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 4,
+        "scope": "能力全文、基本情報、マナ数、画像、単一収録、現行殿堂レギュレーションを公式資料で照合。ファッション・ナスオの自身・自軍の闇クリーチャー登場時のマナ追加と必須の墓地送り、追加が置換された場合の継続を確認。花見田どんのパワーと追加ブレイクの累積、ニトロエアーの多色の火のクリーチャーへの反応、パワーの累積と種族付与、両者の相手ターン中の誘発とターン終了時の失効を確認。ヤップップはエレメントの個別破壊と後段の同時破壊、破壊されないエレメントの再指定、自身を破壊した場合の継続、W・ブレイカー、選択途中の保存復元を確認。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+          "https://dm.takaratomy.co.jp/rule/qa/31814/",
+          "https://dm.takaratomy.co.jp/rule/qa/45213/",
+          "https://dm.takaratomy.co.jp/rule/qa/45224/"
+        ],
+        "regressionFiles": [
+          "tests/standard184-effects.test.mjs",
+          "tests/standard251-effects.test.mjs",
+          "tests/standard314-effects.test.mjs",
+          "tests/standard444-effects.test.mjs",
+          "tests/standard459-effects.test.mjs",
+          "tests/standard608-effects.test.mjs",
+          "tests/standard773-effects.test.mjs",
+          "tests/standard1045-effects.test.mjs"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。",
+        "pendingInteractions": [
+          {
+            "cardId": "dm24ex1-040",
+            "otherCardId": "dm24ex1-009",
+            "test": "QA 45224の選択保護とヤップップの前段・後段を実カード同士で比較",
+            "reason": "龍后麗姫マーシャル・プリンセスは対戦未対応。同カードの対応時に両段の対象候補を検証する。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/45224/"
+          }
+        ],
+        "logs": {
+          "official": "/tmp/duema-phase-1046.NifNTmIy/official.log",
+          "focused": "/tmp/duema-phase-1046.NifNTmIy/focus.log",
+          "regression": "/tmp/duema-phase-1046.NifNTmIy/regression.log",
+          "check": "/tmp/duema-phase-1046.NifNTmIy/check.log",
+          "audit": "/tmp/duema-phase-1046.NifNTmIy/audit.log",
+          "officialImages": "/tmp/duema-phase-1046.NifNTmIy/sources.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dmr18-008",
+          "name": "メガ・タイマン・ドラゴン",
+          "reason": "公式能力全文・基本情報・画像・単一収録を確認。バトル中の強化に加え、攻撃開始から終了まで、S・トリガー召喚と効果による登場を含む相手のクリーチャー登場を止める必要があり、既存の攻撃中の宣言禁止と登場制限を照合するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-008"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1045,
-    "nextPhase": 1046,
+    "lastVerifiedPhase": 1046,
+    "nextPhase": 1047,
     "workInProgress": [],
     "nextCandidates": [
       {
@@ -205423,11 +205503,6 @@
         "reason": "通常版とシークレット版の公式能力全文・基本情報・画像を確認。エスケープでシールドを回収する同時破壊におけるG・ストライクの付与と消失をQA 45548に従って検証するまで保留。"
       },
       {
-        "id": "dm24ex1-040",
-        "name": "冥土人形アカイブ・ヤップップ",
-        "reason": "公式能力全文・基本情報・画像・単一収録を確認。最初の自軍破壊と、後段の両者の選択を区別し、後段では選択保護を適用したうえで両者の破壊を同時に解決する経路を検証するまで保留。"
-      },
-      {
         "id": "dm25rp2-056",
         "name": "A・フェックス",
         "reason": "公式能力全文・基本情報・画像・単一収録を確認。墓地で発生する能力のため、破壊された本体のほか、進化元や封印として場から墓地に移った場合も対象となる。墓地追加に直前のゾーンを渡す経路を検証するまで保留。"
@@ -205436,6 +205511,11 @@
         "id": "dm25rp2-060",
         "name": "～戦え！歯車のために～",
         "reason": "公式能力全文・基本情報・画像・単一収録を確認。墓地で発生する能力のため、破壊された本体のほか、進化元や封印として場から墓地に移った場合も対象となる。墓地追加に直前のゾーンを渡す経路を検証するまで保留。"
+      },
+      {
+        "id": "dmr18-008",
+        "name": "メガ・タイマン・ドラゴン",
+        "reason": "公式能力全文・基本情報・画像・単一収録を確認。バトル中の強化に加え、攻撃開始から終了まで、S・トリガー召喚と効果による登場を含む相手のクリーチャー登場を止める必要があり、既存の攻撃中の宣言禁止と登場制限を照合するまで保留。"
       }
     ],
     "steps": [

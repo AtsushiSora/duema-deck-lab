@@ -210442,15 +210442,173 @@
       ],
       "supportBatch": "phase-1045",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-080",
+      "name": "ファッション・ナスオ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ワイルド・ベジーズ/不死樹王国",
+      "text": "このクリーチャーまたは自分の闇のクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-080",
+      "limit": 4,
+      "g251EntryDraw": {
+        "selfAlways": true,
+        "filter": {
+          "creature": true,
+          "color": "闇"
+        },
+        "defs": [
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "grave",
+            "n": 1,
+            "g184ManaLoss": true,
+            "title": "墓地に置く自分のマナを1枚選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-1046",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-056",
+      "name": "花見田どん",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ジョーカーズ",
+      "text": "自分の他のクリーチャーがバトルゾーンに出た時、そのターン、このクリーチャーはパワーを+4000され、シールドをさらに１つブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-056",
+      "limit": 4,
+      "g314OtherEntry": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "SelfBoost313",
+            "power": 4000,
+            "g536Source": true
+          },
+          {
+            "op": "SelfExtraBreak444",
+            "amount": 1,
+            "g969FollowControl": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1046",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-049",
+      "name": "音速 ニトロエアー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ヒューマノイド爆/侵略者",
+      "text": "自分の他の火のクリーチャーがバトルゾーンに出た時、そのターン、このクリーチャーのパワーを+2000し、種族にソニック・コマンドを追加する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-049",
+      "limit": 4,
+      "g314OtherEntry": {
+        "who": "self",
+        "filter": {
+          "creature": true,
+          "color": "火"
+        },
+        "defs": [
+          {
+            "op": "SelfBoost313",
+            "power": 2000,
+            "g536Source": true
+          },
+          {
+            "op": "SelfGrant754",
+            "grant": {
+              "raceAdd": [
+                "ソニック・コマンド"
+              ]
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1046",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex1-040",
+      "name": "冥土人形アカイブ・ヤップップ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 8000,
+      "race": "デスパペット",
+      "text": "W・ブレイカー\nこのクリーチャーが出た時、自分のエレメントを１つ破壊する。その後、各プレイヤーは自身のエレメントを１つ選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-040",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "self",
+          "n": 1,
+          "to": "grave",
+          "g187OwnPick": true,
+          "g1046NoChoiceProtection": true,
+          "filter": {
+            "element": true,
+            "faceUp": true
+          },
+          "title": "破壊する自分のエレメントを1つ指定する"
+        },
+        {
+          "op": "EachPlayer459",
+          "origin": "battle",
+          "to": "grave",
+          "element": true,
+          "filter": {
+            "element": true,
+            "faceUp": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1046",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1045,
+    "phase": 1046,
     "checkedAt": "2026-11-13",
-    "baseCount": 7085,
-    "newEffectCards": 3,
+    "baseCount": 7088,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7088,
+    "totalCount": 7092,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -229279,6 +229437,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7085,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1045,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7085,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7088,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
