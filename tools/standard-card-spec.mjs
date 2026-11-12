@@ -9485,6 +9485,29 @@ export function standardCardSpec(d,{phase=165}={}){
    spec.g397Shinka=defs;
    continue;
   }
+  if(phase>=1069&&f.typeText==='NEOクリーチャー'){
+   if(line==='このクリーチャーの攻撃の終わりにカードを1枚引く。その後コスト5以下のクリーチャーではないカードを1枚自分の手札からコストを支払わずに実行してもよい。'){
+    spec.g474AttackEnd=[{op:'Draw',n:1},{op:'Execute',origin:'hand',max:5,nonCreature:true,
+     title:'コストを支払わず実行するコスト5以下の非クリーチャーを1枚まで選ぶ'}];
+    continue;
+   }
+   if(line==='このクリーチャーが攻撃する時自分の手札を1枚裏向きにし新しいシールドとして自分のシールドゾーンに置いてもよい。そうしたら自分のシールドを1つ手札に加える。ただしその「S・トリガー」は使えない。'){
+    attack.push({op:'ShieldExchange446',optional:true});
+    continue;
+   }
+   if(line==='このクリーチャーが破壊される時墓地に置くかわりにこのクリーチャーとその下にあるカードをすべて裏向きにして新しい1つのシールドにまとめて自分のシールドゾーンに置く。'){
+    spec.g1069DestroyShieldStack=true;
+    continue;
+   }
+   if(line==='メテオバーン:このクリーチャーが攻撃する時このクリーチャーの下にあるカードを1枚墓地に置いてもよい。そうしたら相手は自身の手札をすべて捨てる。'){
+    spec.g825Meteor='discardOpponentHand';
+    continue;
+   }
+   if(line==='このクリーチャーが破壊された時相手の手札が1枚もなければこのクリーチャーを自分の墓地から出してもよい。'){
+    death.push({op:'GraveReturn754',deploy:true,condition:{g334ZoneCount:{zone:'hand',opponent:true,max:0}},g1069AllowEvolution:true});
+    continue;
+   }
+  }
   if(phase>=1068&&f.typeText==='NEOクリーチャー'){
    if(line==='各ターンこのクリーチャーの最初の攻撃の終わりにこのクリーチャーをアンタップしてもよい。'){
     spec.g1020FirstOwnAttack=true;

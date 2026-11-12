@@ -1,0 +1,381 @@
+{
+  "phase": 1069,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7167,
+  "description": "NEOクリーチャーの攻撃終了時の実行、シールド交換、進化元を含む破壊置換、メテオバーンと墓地からの復帰を照合する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/47417/",
+    "https://dm.takaratomy.co.jp/rule/qa/40275/",
+    "https://dm.takaratomy.co.jp/rule/qa/39638/",
+    "https://dm.takaratomy.co.jp/rule/qa/42937/",
+    "https://dm.takaratomy.co.jp/rule/qa/46840/",
+    "https://dm.takaratomy.co.jp/rule/qa/46844/",
+    "https://dm.takaratomy.co.jp/rule/qa/46526/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35728/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp3-S02",
+      "name": "～神帝、完成せり～",
+      "faces": [
+        {
+          "name": "～神帝、完成せり～",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "D・D・D [ww04]\nNEO進化：光、水、または闇のクリーチャー１体の上に置いてもよい。\nジャストダイバー\nW・ブレイカー\nこのクリーチャーの攻撃の終わりに、カードを１枚引く。その後、コスト５以下の、クリーチャーではないカードを１枚、自分の手札からコストを支払わずに実行してもよい。",
+          "race": "ゴッド/スチーム・ナイト",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-S02",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-S02.jpg",
+      "spec": {
+        "ddd": {
+          "cost": 4,
+          "civilizations": [
+            "水"
+          ]
+        },
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "justDiver": true,
+        "breaker": 2,
+        "g474AttackEnd": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "max": 5,
+            "nonCreature": true,
+            "title": "コストを支払わず実行するコスト5以下の非クリーチャーを1枚まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "53015f2f94058faa9d44984d9566872c9a6f043a51764966846bf447dc0fc41b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-005",
+      "name": "青い稲妻 マンタレーザ",
+      "faces": [
+        {
+          "name": "青い稲妻 マンタレーザ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "NEO進化：自分の水のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の手札を１枚裏向きにし、新しいシールドとして、自分のシールドゾーンに置いてもよい。そうしたら、自分のシールドを１つ、手札に加える。ただし、その「S・トリガー」は使えない。",
+          "race": "ムートピア",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-005.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "水"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "ShieldExchange446",
+            "optional": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "3044eddb0b99406c2d2ac3e1beb2e40074e7a398bde91ee193e5afd9ed89326e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-032",
+      "name": "奇石 コントロ",
+      "faces": [
+        {
+          "name": "奇石 コントロ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "NEO進化：自分の光のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが破壊される時、墓地に置くかわりに、このクリーチャーとその下にあるカードをすべて裏向きにして、新しい１つのシールドにまとめて自分のシールドゾーンに置く。",
+          "race": "メタリカ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-032",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-032.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            }
+          ]
+        },
+        "g1069DestroyShieldStack": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "9115c9036984b45f128c0850749a64ec713bef79ce99154f3ab9a1454f6760ef",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-016",
+      "name": "テレス＝テレジア",
+      "faces": [
+        {
+          "name": "テレス＝テレジア",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：水、闇、または火のクリーチャー１体の上に置いてもよい。\nW・ブレイカー\nメテオバーン：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚墓地に置いてもよい。そうしたら、相手は自身の手札をすべて捨てる。\nこのクリーチャーが破壊された時、相手の手札が１枚もなければ、このクリーチャーを自分の墓地から出してもよい。",
+          "race": "アビスロイヤル",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-016",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-016.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g825Meteor": "discardOpponentHand",
+        "g172Death": [
+          {
+            "op": "GraveReturn754",
+            "deploy": true,
+            "condition": {
+              "g334ZoneCount": {
+                "zone": "hand",
+                "opponent": true,
+                "max": 0
+              }
+            },
+            "g1069AllowEvolution": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "32316969d6fc666ca7209e1f819808bab2fcde0ca51a9407f3a6ec72b97823a9",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25rp3-Sec03",
+      "name": "～神帝、完成せり～",
+      "faces": [
+        {
+          "name": "～神帝、完成せり～",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "D・D・D [ww04]\nNEO進化：光、水、または闇のクリーチャー１体の上に置いてもよい。\nジャストダイバー\nW・ブレイカー\nこのクリーチャーの攻撃の終わりに、カードを１枚引く。その後、コスト５以下の、クリーチャーではないカードを１枚、自分の手札からコストを支払わずに実行してもよい。",
+          "race": "ゴッド/スチーム・ナイト",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-Sec03",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-Sec03.jpg",
+      "canonicalId": "dm25rp3-S02",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "63ef41b136606c5c94286ea3ec1290e9771fb3cdd4efb34f3a31916348eac175",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex3-rp3S02",
+      "name": "～神帝、完成せり～",
+      "faces": [
+        {
+          "name": "～神帝、完成せり～",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "D・D・D [ww04]\nNEO進化：光、水、または闇のクリーチャー１体の上に置いてもよい。\nジャストダイバー\nW・ブレイカー\nこのクリーチャーの攻撃の終わりに、カードを１枚引く。その後、コスト５以下の、クリーチャーではないカードを１枚、自分の手札からコストを支払わずに実行してもよい。",
+          "race": "ゴッド/スチーム・ナイト",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp3S02",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-rp3S02.jpg",
+      "canonicalId": "dm25rp3-S02",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "91c1311c6ea34bbb24417a6408210657417f2633bab38398f18c8b5867c8ab63",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex3-rp3Sec03",
+      "name": "～神帝、完成せり～",
+      "faces": [
+        {
+          "name": "～神帝、完成せり～",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "D・D・D [ww04]\nNEO進化：光、水、または闇のクリーチャー１体の上に置いてもよい。\nジャストダイバー\nW・ブレイカー\nこのクリーチャーの攻撃の終わりに、カードを１枚引く。その後、コスト５以下の、クリーチャーではないカードを１枚、自分の手札からコストを支払わずに実行してもよい。",
+          "race": "ゴッド/スチーム・ナイト",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp3Sec03",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-rp3Sec03.jpg",
+      "canonicalId": "dm25rp3-S02",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "021a06e5097730ab502e49c69c5aa99990facea65db3bfcf6018a470e29aa800",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-Sec17",
+      "name": "テレス＝テレジア",
+      "faces": [
+        {
+          "name": "テレス＝テレジア",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：水、闇、または火のクリーチャー１体の上に置いてもよい。\nW・ブレイカー\nメテオバーン：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚墓地に置いてもよい。そうしたら、相手は自身の手札をすべて捨てる。\nこのクリーチャーが破壊された時、相手の手札が１枚もなければ、このクリーチャーを自分の墓地から出してもよい。",
+          "race": "アビスロイヤル",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-Sec17",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-Sec17.jpg",
+      "canonicalId": "dm25rp2-016",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "25bcd8b660832ab535216d8e964a7914a307c480b0fd65407ffc56a57719d4f3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy24-040",
+      "name": "テレス＝テレジア",
+      "faces": [
+        {
+          "name": "テレス＝テレジア",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：水、闇、または火のクリーチャー１体の上に置いてもよい。\nW・ブレイカー\nメテオバーン：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚墓地に置いてもよい。そうしたら、相手は自身の手札をすべて捨てる。\nこのクリーチャーが破壊された時、相手の手札が１枚もなければ、このクリーチャーを自分の墓地から出してもよい。",
+          "race": "アビスロイヤル",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy24-040",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy24-040.jpg",
+      "canonicalId": "dm25rp2-016",
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "fcdff83f2d6e21710223f9720d58078cd78ae7e00487e936bf54e6a942eaa6fa",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp3-S02": 4,
+      "dmrp02-005": 4,
+      "dmrp02-032": 4,
+      "dm25rp2-016": 4,
+      "dm25rp3-Sec03": 4,
+      "dm25ex3-rp3S02": 4,
+      "dm25ex3-rp3Sec03": 4,
+      "dm25rp2-Sec17": 4,
+      "promoy24-040": 4
+    }
+  }
+}

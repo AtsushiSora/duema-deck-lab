@@ -760,12 +760,13 @@ function moveCreatures(s,moves,after=null){
  const lGate=isDestruction&&!m.replacement&&c.g955LGate&&isCreature(s,top)&&!shevaProtection(s,m.player);
  const graveShield916=c.g916GraveShield&&!m.replacement&&(m.to||'grave')==='grave';
  const soloDiscard=c.g994SoloCreatureDiscard&&extra.six.ownCondition(s,m.player,{g479OnlyCreature:true},top.uid,top.incarnation||0);
- const destroyShield=isDestruction&&(c.g842DestroyShield||!m.replacement&&extra.six.destroyToShield877(s,m.player,top));
+ const destroyShield=isDestruction&&(c.g842DestroyShield||!m.replacement&&
+  (c.g1069DestroyShieldStack||extra.six.destroyToShield877(s,m.player,top)));
  const mandatoryShield=graveShield916||destroyShield;
  const optionalShield=isDestruction&&!m.replacement&&!mandatoryShield&&c.g842OptionalDestroyShield&&
   extra.six.ownCondition(s,m.player,c.g842OptionalDestroyShield);
  const shieldReplacement=(mandatoryShield||optionalShield)&&canAddShield(s,m.player)?
-  {g842DestroyShield:true,...(optionalShield?{g842ShieldOptional:true}:{})}:{};
+  {g842DestroyShield:true,...(c.g1069DestroyShieldStack?{g1069DestroyShieldStack:true}:{}),...(optionalShield?{g842ShieldOptional:true}:{})}:{};
  // Decide against the board before any member of this movement batch leaves (QA35145).
  const sameName=c.g738GraveToHandWithName;
  const sameNameReturn=(m.to||'grave')==='grave'&&sameName&&s.players.some(p=>p.battle.some(y=>
@@ -793,7 +794,10 @@ function advanceLeaving(s){if(s.lossEvent)return;
  if(s.leaving.rows.some(row=>row.exchange&&row.plan.kind!=='leave')){s.leaving=null;return;}
  const batch=s.leaving,fourth=[0,1].map(p=>({p,uids:batchRows(s,p)}));
  for(const row of batch.rows)if(row.plan.kind==='yamata'){row.to='mana';row.destroy=false;row.death=null;if(row.plan.faceDown)row.faceDown=true;else if(row.plan.tapped)row.tapped=true;row.plan={kind:'leave'};}
- for(const row of batch.rows)if(row.plan.kind==='shield842'){row.to='shields';row.destroy=false;row.death=null;row.plan={kind:'leave'};}
+ for(const row of batch.rows)if(row.plan.kind==='shield842'){
+  row.to='shields';row.destroy=false;row.death=null;row.plan={kind:'leave'};
+  if(row.g1069DestroyShieldStack)row.cardOnly=false;
+ }
  for(const row of batch.rows)if(row.plan.kind==='omega'){row.to='hand';row.destroy=false;row.death=null;row.plan={kind:'leave'};}
  const lGateRows=batch.rows.filter(row=>row.plan.kind==='lGate955');
  const lGateBottom=[[],[]];
@@ -889,7 +893,10 @@ function advanceLeaving(s){if(s.lossEvent)return;
    if(s.attack?.attacker===top.uid)s.attack.attacker=base.uid;if(s.attack?.target===top.uid)s.attack.target=base.uid;
    extra.inherit(s,top,base);extra.leaving(s,row.player,top,row.leaveKaku,batch.snapshot,row.to,row.to==='grave'&&row.destroy!==false);clearBattleState(top,row.to);if(row.faceDown){top.faceDown=true;top.tapped=false;}else if(row.tapped&&row.to==='mana')top.tapped=true;if(row.to==='deckTop')own.deck.unshift(top);else if(row.shieldAttach)addShieldCard(s,row.player,row.shieldAttach,top);else if(row.g731Shuffling)returnAndShuffle(row.player,[top],top.cardId);else addDepartingCards(s,row,row.to,[top]);log(s,row.player,'reconstruct',`${card(top).name}だけが${({hand:'手札',mana:'マナ',grave:'墓地',deck:row.g731Shuffling?'山札':'山札の下',deckTop:'山札の上',shields:'シールド',extra:'超次元ゾーン'})[row.to]||row.to}へ移動し、下の${card(base).name}が残る`,{cardId:top.cardId});
   }
-  else{remove(own.battle,top.uid);if(s.attack&&(s.attack.attacker===top.uid||s.attack.target===top.uid))s.attack=null;const to=row.to==='grave'&&row.death?row.death:row.to,cards=layers(top);if(to==='grave'||row.cardOnly)rememberEvolutionGraveSources(top,cards);if(row.orderDeckTop&&to==='deckTop'&&!row.cardOnly)orderTop(row.player,cards);if(row.cardOnly){const rest=cards.splice(1);for(const x of rest)clearBattleState(x,'grave');addZone(s,own,'grave',...rest);}extra.leaving(s,row.player,top,row.leaveKaku,batch.snapshot,to,row.destroy!==false&&to==='grave');for(const x of cards){clearBattleState(x,to);if(row.faceDown){x.faceDown=true;x.tapped=false;}else if(row.tapped&&to==='mana')x.tapped=true;if(row.faceUp&&to==='shields')x.faceUp=true;}if(to==='deckTop')own.deck.unshift(...cards);else if(row.shieldAttach)for(const x of cards)addShieldCard(s,row.player,row.shieldAttach,x);else if(row.g731Shuffling)returnAndShuffle(row.player,cards,top.cardId);else addDepartingCards(s,row,to,cards);if(to==='shields'&&!row.shieldAttach)for(const x of cards)extra.shieldAdded(s,row.player,x);log(s,row.player,'leave',`${card(top).name}${cards.length>1?`と進化元${cards.length-1}枚`:''}が${{grave:'墓地',hand:'手札',mana:'マナ',deck:row.g731Shuffling?'山札':'山札の下',deckTop:'山札の上',deckFourth:'山札の4枚目（横向き）',shields:'シールド',extra:'超次元ゾーン'}[to]}へ移動`,{cardId:top.cardId});}
+  else{remove(own.battle,top.uid);if(s.attack&&(s.attack.attacker===top.uid||s.attack.target===top.uid))s.attack=null;const to=row.to==='grave'&&row.death?row.death:row.to,cards=layers(top);if(to==='grave'||row.cardOnly)rememberEvolutionGraveSources(top,cards);if(row.orderDeckTop&&to==='deckTop'&&!row.cardOnly)orderTop(row.player,cards);if(row.cardOnly){const rest=cards.splice(1);for(const x of rest)clearBattleState(x,'grave');addZone(s,own,'grave',...rest);}extra.leaving(s,row.player,top,row.leaveKaku,batch.snapshot,to,row.destroy!==false&&to==='grave');for(const x of cards){clearBattleState(x,to);if(row.faceDown){x.faceDown=true;x.tapped=false;}else if(row.tapped&&to==='mana')x.tapped=true;if(row.faceUp&&to==='shields')x.faceUp=true;}if(to==='deckTop')own.deck.unshift(...cards);else if(row.shieldAttach)for(const x of cards)addShieldCard(s,row.player,row.shieldAttach,x);else if(row.g731Shuffling)returnAndShuffle(row.player,cards,top.cardId);else if(to==='shields'&&row.g1069DestroyShieldStack&&cards.length>1){
+   cards[0].shieldStack=cards.slice(1);
+   addZone(s,own,to,cards[0]);
+  }else addDepartingCards(s,row,to,cards);if(to==='shields'&&!row.shieldAttach)for(const x of cards)extra.shieldAdded(s,row.player,x);log(s,row.player,'leave',`${card(top).name}${cards.length>1?`と進化元${cards.length-1}枚`:''}が${{grave:'墓地',hand:'手札',mana:'マナ',deck:row.g731Shuffling?'山札':'山札の下',deckTop:'山札の上',deckFourth:'山札の4枚目（横向き）',shields:'シールド',extra:'超次元ゾーン'}[to]}へ移動`,{cardId:top.cardId});}
  }
  for(const row of batch.rows)if(row.plan.kind==='jashin')extra.forcedDiscard(s,row.player,row.plan.cards,card(ownCardForRow(s,row)).id);
  const orders=[...(batch.bottomOrders||[])];

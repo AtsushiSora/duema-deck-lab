@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-12",
   "catalogueNames": 11827,
-  "supportedNames": 7167,
-  "pendingNames": 4660,
-  "phase": 1068,
-  "added": 5,
+  "supportedNames": 7171,
+  "pendingNames": 4656,
+  "phase": 1069,
+  "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -155,7 +155,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 2700,
-    "NEOクリーチャー": 101,
+    "NEOクリーチャー": 97,
     "呪文": 605,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1207,
-    "未対応の能力文": 3223,
+    "未対応の能力文": 3219,
     "未対応のG・ゼロ条件": 22,
     "未対応の召喚時能力": 22,
     "未対応のシンカパワー": 2,
@@ -207645,27 +207645,208 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1069,
+      "baseCommit": "cd66d190",
+      "cards": [
+        {
+          "id": "dm25rp3-S02",
+          "name": "～神帝、完成せり～"
+        },
+        {
+          "id": "dmrp02-005",
+          "name": "青い稲妻 マンタレーザ"
+        },
+        {
+          "id": "dmrp02-032",
+          "name": "奇石 コントロ"
+        },
+        {
+          "id": "dm25rp2-016",
+          "name": "テレス＝テレジア"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm25rp3-Sec03",
+          "canonicalId": "dm25rp3-S02"
+        },
+        {
+          "id": "dm25ex3-rp3S02",
+          "canonicalId": "dm25rp3-S02"
+        },
+        {
+          "id": "dm25ex3-rp3Sec03",
+          "canonicalId": "dm25rp3-S02"
+        },
+        {
+          "id": "dm25rp2-Sec17",
+          "canonicalId": "dm25rp2-016"
+        },
+        {
+          "id": "promoy24-040",
+          "canonicalId": "dm25rp2-016"
+        }
+      ],
+      "supportedNames": 7171,
+      "pendingNames": 4656,
+      "verification": {
+        "focusedPassed": 12,
+        "regressionPassed": 171,
+        "regressionFailed": 0,
+        "check": "成功",
+        "officialPrints": 9,
+        "scope": "4種類9版の公式能力全文、基本情報、画像、印刷マナ数、現行の使用制限と収録を照合。神帝3版、テレジア2版の再録は正規対戦IDに紐づけた。神帝はD・D・Dから攻撃を継続し、ジャストダイバー、攻撃終了時のドロー、ツインパクトの呪文面を含む非クリーチャーの実行を確認。マンタレーザは任意の裏向きシールド化、追加禁止時の後続処理、シールド束の回収とS・トリガーの抑止を確認。コントロは進化元を含む物理カードが1つの裏向きシールドになり、シールド追加禁止時には破壊されることを確認。テレジアはメテオバーンの選択、進化元の移動先が置換された場合も手札を捨てさせること、相手の手札が空なら同じ物理カードを墓地から任意に出せることを確認。既存7,167件の対戦定義とIDが一致。",
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/47417/",
+          "https://dm.takaratomy.co.jp/rule/qa/40275/",
+          "https://dm.takaratomy.co.jp/rule/qa/39638/",
+          "https://dm.takaratomy.co.jp/rule/qa/42937/",
+          "https://dm.takaratomy.co.jp/rule/qa/46840/",
+          "https://dm.takaratomy.co.jp/rule/qa/46844/",
+          "https://dm.takaratomy.co.jp/rule/qa/46526/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35728/"
+        ],
+        "regressionFiles": [
+          "tests/neo-ddd.test.mjs",
+          "tests/standard446-effects.test.mjs",
+          "tests/standard825-effects.test.mjs",
+          "tests/standard842-effects.test.mjs",
+          "tests/standard960-effects.test.mjs",
+          "tests/standard1020-effects.test.mjs",
+          "tests/standard1067-effects.test.mjs",
+          "tests/standard1068-effects.test.mjs"
+        ],
+        "regressionFilter": "--test-skip-pattern=mixed NEO/DDD games|production worker|random manual|new-card games against every|simulation worker|legal forty CPU|randomized",
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1021のNo14長時間対戦3件とPhase 1030の表向きシールドの長時間対戦2件は、以前の長時間実行を繰り返さず今回も合否未確認。対象と理由は各履歴を参照。それ以前の登録済みカードの未完了項目はregisteredCardVerificationに保持。Phase 1036で再現した盾束の一部の移動によるZラッシュの既存不具合も同履歴の対象・原因を引き継ぐ。 Phase 1046のヤップップと龍后麗姫マーシャル・プリンセスの組み合わせは、後者が対戦未対応のため未実行。 トットロの公式QA 48925の組み合わせは関連2枚が未対応のため未実行。NEO/DDDの100試合と再現性は過去に分割検証済みで、今回の回帰では合否未確認。 ゴルギー31相手の再現性と本番Worker62試合は今回も対象外で未実行。前回の広範囲回帰に含まれる1,796件固定の既存テストの結果はPhase 1060を参照。 PhoenixのCPU連戦と本番Worker試験は、今回の個別回帰の対象外。 Phase 1064ではNEO/DDD 100試合とBandeの全対戦・ランダム操作・Workerの長時間ケースを個別回帰から除外。以前の長時間実行を繰り返さず、今回の合否は未確認。 Phase 1065の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1066の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1067の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1068の個別回帰でもNEO/DDD 100試合は対象外。 Phase 1069の個別回帰でもNEO/DDD 100試合は対象外。",
+        "pendingInteractions": [
+          {
+            "cardIds": [
+              "dm25rp3-039",
+              "dm26rp2-006",
+              "dm25rp2-OR1"
+            ],
+            "test": "デンジャラス=トットロの上にメモッタで封印付きのジャシン＝ヴリドガルドが出る場合の墓地展開",
+            "status": "未実行",
+            "reason": "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/48925/"
+          }
+        ],
+        "logs": {
+          "official": "/tmp/duema-phase-1069.k7oyOaWp/manifest.log",
+          "officialImages": "/tmp/duema-phase-1069.k7oyOaWp/sources.log",
+          "reprints": "/tmp/duema-phase-1069.k7oyOaWp/prints.log",
+          "imageIndex": "/tmp/duema-phase-1069.k7oyOaWp/images.log",
+          "focused": "/tmp/duema-phase-1069.k7oyOaWp/specific-final.log",
+          "regression": "/tmp/duema-phase-1069.k7oyOaWp/related-final.log",
+          "check": "/tmp/duema-phase-1069.k7oyOaWp/check-final.log",
+          "audit": "/tmp/duema-phase-1069.k7oyOaWp/audit.log",
+          "count": "/tmp/duema-phase-1069.k7oyOaWp/count.log"
+        }
+      },
+      "deferred": [
+        {
+          "id": "dm25rp2-052",
+          "name": "魔誕亡者ボーン・アミーゴ",
+          "reason": "公式全文・基本情報・画像・単一収録を確認。破壊時の誘発はクリーチャー単位ではなく物理カード単位で数え、メテオバーンの進化元と他のカードの封印も含む。本人が封印されていた場合を含めて、破壊直前の状態と移動実績を共通処理で検証する必要がある。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-052",
+            "https://dm.takaratomy.co.jp/rule/qa/46843/",
+            "https://dm.takaratomy.co.jp/rule/qa/46844/",
+            "https://dm.takaratomy.co.jp/rule/qa/46845/",
+            "https://dm.takaratomy.co.jp/rule/qa/46846/"
+          ]
+        },
+        {
+          "id": "dmrp02-016",
+          "name": "第４新都市 ウツボイド",
+          "reason": "初版とDMEX-02再録の公式全文・基本情報・画像を確認。QA 31567は回答冒頭と後続の理由で後から進化した場合の扱いが整合しない。手札戻しの置換、解決時のNEO進化判定、戻したコストを参照する次の相手ターンの召喚禁止を一通り確認するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-016",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-080",
+            "https://dm.takaratomy.co.jp/rule/qa/31567/"
+          ]
+        },
+        {
+          "id": "dm25rp3-029",
+          "name": "試算の妖精",
+          "reason": "公式全文・基本情報・画像・単一収録を照合。QA 47359では山札の呪文を唱えることができ、解決後に元の位置に裏向きで残る。山札からの直接登場・マナ・シールド・進化元への移動の禁止と、呪文の実行や手札への移動の許可を別々に扱う共通処理と回帰テストが必要。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-029",
+            "https://dm.takaratomy.co.jp/rule/qa/47359/"
+          ]
+        },
+        {
+          "id": "dm25rp3-015",
+          "name": "～禁じられた蒸熱～",
+          "reason": "通常版とシークレット版の公式全文・画像・収録を確認。既存の山札ロックは見る・表向きにする処理に加えて並べ替えやシャッフルも抑えるため、このカードの禁止範囲に合わせた分離と回帰テストが必要。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-015",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-Sec16"
+          ]
+        },
+        {
+          "id": "dmrp03-006",
+          "name": "ジャババ・ハット",
+          "reason": "公式本文・基本情報・画像・単一収録を確認。攻撃時に登録した自壊と、破壊以外でも墓地に置かれた時の再登場を、直前の進化状態と同じ物理カードの墓地滞在で判定する処理が残る。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-006"
+          ]
+        },
+        {
+          "id": "dmrp07-034",
+          "name": "頑固水産 ガンパチ",
+          "reason": "公式本文・基本情報・画像・単一収録を確認。ブロックされなくなる能力は既存処理で再現できるが、その攻撃中に自身が実際にブレイクしたかを、ブレイク置換や別のクリーチャーによるブレイクから区別する経路の確認が残る。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-034"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1068,
-    "nextPhase": 1069,
+    "lastVerifiedPhase": 1069,
+    "nextPhase": 1070,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm25rp3-S02",
-        "name": "～神帝、完成せり～",
-        "reason": "D・D・D、ジャストダイバー、攻撃終了時のドロー後に行う非クリーチャーの実行を既存処理と照合する。"
+        "id": "dm25rp2-019",
+        "name": "魔誕盗掘男",
+        "reason": "手札枚数による召喚コストの加算と、ブレイクごとに実行する任意のドローを公式資料で照合する。"
+      },
+      {
+        "id": "dm25rp2-001",
+        "name": "Celeb k’Reine",
+        "reason": "進化登場・タップ時の任意タップと各ターン最初の相手タップの監視を既存処理と照合する。"
+      },
+      {
+        "id": "dmrp02-010",
+        "name": "ベジタバッタ・パンツァー",
+        "reason": "攻撃先の制限と進化時のバトル置換で両者が持ち主のマナへ移動する処理を照合する。"
       },
       {
         "id": "dm25rp2-052",
         "name": "魔誕亡者ボーン・アミーゴ",
-        "reason": "自身の登場と自分のカードの破壊を起点とした墓地からのタップ置きを照合する。"
+        "reason": "公式全文・基本情報・画像・単一収録を確認。破壊時の誘発はクリーチャー単位ではなく物理カード単位で数え、メテオバーンの進化元と他のカードの封印も含む。本人が封印されていた場合を含めて、破壊直前の状態と移動実績を共通処理で検証する必要がある。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-052",
+          "https://dm.takaratomy.co.jp/rule/qa/46843/",
+          "https://dm.takaratomy.co.jp/rule/qa/46844/",
+          "https://dm.takaratomy.co.jp/rule/qa/46845/",
+          "https://dm.takaratomy.co.jp/rule/qa/46846/"
+        ]
       },
       {
         "id": "dmrp02-016",
         "name": "第４新都市 ウツボイド",
-        "reason": "登場時の手札戻しと、NEO進化時の召喚禁止が参照するコストと有効期間を確認する。"
+        "reason": "初版とDMEX-02再録の公式全文・基本情報・画像を確認。QA 31567は回答冒頭と後続の理由で後から進化した場合の扱いが整合しない。手札戻しの置換、解決時のNEO進化判定、戻したコストを参照する次の相手ターンの召喚禁止を一通り確認するまで保留。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-016",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-080",
+          "https://dm.takaratomy.co.jp/rule/qa/31567/"
+        ]
       },
       {
         "id": "dm25rp3-029",
@@ -207924,7 +208105,7 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
-      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。攻撃終了時の非クリーチャー実行、破壊を起点としたタップ置き、手札に戻したクリーチャーのコスト参照を既存処理と照合する。",
+      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。ブレイク単位の誘発、登場・タップの監視、バトルの置換を既存処理と照合する。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で登録再開。自動化 duema-deck-lab は10分間隔で稼働中。",

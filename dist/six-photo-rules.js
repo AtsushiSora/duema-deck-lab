@@ -1945,7 +1945,8 @@ export function createSixPhotoRules(api){
    if(!t.colors.every(c=>manaColors.has(c)))break;
   }
   start(s,t,[{op:'Offer',title:card(y).name+(t.deploy?'を墓地からバトルゾーンに出す？':'を墓地から手札に戻す？'),
-   score:18,defs:[{op:t.deploy?'SelfGraveRevive644':'SelfGraveHand476',serial:t.serial}]}]);
+   score:18,defs:[{op:t.deploy?'SelfGraveRevive644':'SelfGraveHand476',serial:t.serial,
+    ...(t.g1069AllowEvolution?{g1069AllowEvolution:true}:{})}]}]);
   break;
  }
  case'g34_SelfHand299':{const host=sourceHost474(s,t);if(host)move(s,[{player:host.p,uid:host.x.uid,to:'hand',controller:t.controller??t.p}]);break;}
@@ -1969,7 +1970,11 @@ export function createSixPhotoRules(api){
  case'g34_SelfGraveRevive644':{
   const origin=t.op==='g34_SelfManaDeploy975'?'mana':'grave';
   const y=own[origin].find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);
-  if(y&&api.canMoveZone(s,t.p,origin)&&canPut(s,t.p,y,origin))doPut(s,{...t,owner:t.p,origin,target:y.uid});
+  if(y&&api.canMoveZone(s,t.p,origin)&&canPut(s,t.p,y,origin)){
+   const deployment={...t,owner:t.p,origin,target:y.uid};
+   if(t.g1069AllowEvolution)put(s,{...deployment,op:'g34_Put'});
+   else doPut(s,deployment);
+  }
   break;
  }
  case'g34_SelfGraveBottom839':{
@@ -5743,7 +5748,7 @@ export function createSixPhotoRules(api){
       const n=prior.crossedCount728;
       return n?[{op:'Offer',title:'カードを'+n+'枚引く？',defs:[{op:'Draw',n}]}]:[];
      }
-     return [['SelfGraveHand476','ScheduleGraveReturn644','SelfGraveShield659','SelfGraveBottom839'].includes(d.op)||d.g901Untapped||d.g1063Evolved?{...d,serial:(x.zoneSerial||0)+1}:d];
+     return [['SelfGraveHand476','ScheduleGraveReturn644','SelfGraveShield659','SelfGraveBottom839','GraveReturn754'].includes(d.op)||d.g901Untapped||d.g1063Evolved?{...d,serial:(x.zoneSerial||0)+1}:d];
     });
    if(defs.length)queue(s,p,x,defs);
   }if(effective(x,s).g34Role==='dragonOrb')queue(s,p,x,[C('orbDeploy')]);if(ninja(effective(x,s)))for(const y of(snapshot?.dororon?.[p]||active(s,p,'dororon')))queue(s,p,y,[E('Draw',{n:1,optional:true})]);}},
