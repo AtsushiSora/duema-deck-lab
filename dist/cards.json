@@ -221659,15 +221659,118 @@
       ],
       "supportBatch": "phase-1120",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-057",
+      "name": "不滅閃光",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\n自分のクリーチャー１体につき、相手のクリーチャーを１体選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-057",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountOwn538",
+          "mode": "select",
+          "filter": {
+            "creature": true
+          },
+          "def": {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Tap": true,
+            "g193Select": true,
+            "g1121RepeatTarget": true,
+            "title": "タップする相手のクリーチャーを選ぶ"
+          }
+        }
+      ],
+      "supportBatch": "phase-1121",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-061",
+      "name": "ワンダフルな腕韻 リローデッド",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 1000,
+      "race": "マジック・アウトレイジ",
+      "text": "このクリーチャーが出た時、自分の超次元ゾーンに火のクリーチャーがなければ、このクリーチャーを超次元ゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-061",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g1121ExtraHasNoFireCreature": true
+          },
+          "defs": [
+            {
+              "op": "SelfExtra1121"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1121",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-055",
+      "name": "由緒正しき独弾 パルサー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "マジック・アウトレイジ",
+      "text": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nこのクリーチャーが出た時、クリーチャーを１体選び、持ち主の超次元ゾーンに置いてもよい。その持ち主は、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-055",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "optional": true,
+          "g1121ExtraOwnerDraw": true,
+          "title": "持ち主の超次元ゾーンに置くクリーチャーを選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-1121",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1120,
+    "phase": 1121,
     "checkedAt": "2026-11-13",
-    "baseCount": 7343,
+    "baseCount": 7346,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7346,
+    "totalCount": 7349,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -241396,6 +241499,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7343,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1120,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7343,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7346,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

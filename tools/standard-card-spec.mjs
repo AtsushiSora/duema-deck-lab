@@ -6184,6 +6184,25 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1121&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText),trigger='S・トリガーS・トリガー';
+  if(d.id==='dm25rp2-057'&&f.typeText==='呪文'&&text===trigger+
+   '(このカードをシールドゾーンから手札に加える時コストを支払わずにすぐ実行してもよい)'+
+   '自分のクリーチャー1体につき相手のクリーチャーを1体選びタップする。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'CountOwn538',mode:'select',filter:{creature:true},
+    def:{op:'Select',origin:'battle',owner:'opponent',filter:{creature:true},g173Targets:true,
+     g193Tap:true,g193Select:true,g1121RepeatTarget:true,title:'タップする相手のクリーチャーを選ぶ'}}]};
+  if(d.id==='dm25ex4-061'&&f.typeText==='クリーチャー'&&text===
+   'このクリーチャーが出た時自分の超次元ゾーンに火のクリーチャーがなければこのクリーチャーを超次元ゾーンに置く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'IfOwn',filter:{g1121ExtraHasNoFireCreature:true},
+    defs:[{op:'SelfExtra1121'}]}]};
+  if(d.id==='dm25ex4-055'&&f.typeText==='クリーチャー'&&text===trigger+
+   '(このカードをシールドゾーンから手札に加える時コストを支払わずにすぐ実行してもよい)'+
+   'このクリーチャーが出た時クリーチャーを1体選び持ち主の超次元ゾーンに置いてもよい。'+
+   'その持ち主はカードを1枚引く。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',anyOwner:true,optional:true,g1121ExtraOwnerDraw:true,
+    title:'持ち主の超次元ゾーンに置くクリーチャーを選ぶ（任意）'}]};
+ }
  if(phase>=1120&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(['dm30-027','dmc64-032'].includes(d.id)&&f.typeText==='クリーチャー'&&text===

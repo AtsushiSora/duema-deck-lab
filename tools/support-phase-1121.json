@@ -1,0 +1,161 @@
+{
+  "phase": 1121,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7346,
+  "description": "不滅閃光、ワンダフルな腕韻 リローデッド、由緒正しき独弾 パルサーの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp2-057",
+      "name": "不滅閃光",
+      "faces": [
+        {
+          "name": "不滅閃光",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\n自分のクリーチャー１体につき、相手のクリーチャーを１体選び、タップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-057",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-057.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountOwn538",
+            "mode": "select",
+            "filter": {
+              "creature": true
+            },
+            "def": {
+              "op": "Select",
+              "origin": "battle",
+              "owner": "opponent",
+              "filter": {
+                "creature": true
+              },
+              "g173Targets": true,
+              "g193Tap": true,
+              "g193Select": true,
+              "g1121RepeatTarget": true,
+              "title": "タップする相手のクリーチャーを選ぶ"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "78fed41d76ac3f8c34c94e3ed5b8ddb05bbc5e9a70c487d42a3af4a6288564b8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex4-061",
+      "name": "ワンダフルな腕韻 リローデッド",
+      "faces": [
+        {
+          "name": "ワンダフルな腕韻 リローデッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーが出た時、自分の超次元ゾーンに火のクリーチャーがなければ、このクリーチャーを超次元ゾーンに置く。",
+          "race": "マジック・アウトレイジ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-061",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-061.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g1121ExtraHasNoFireCreature": true
+            },
+            "defs": [
+              {
+                "op": "SelfExtra1121"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "c086d25421c75bd980d42d60b0f1605aa7b74153e6d0cee274e53f2d668fe377",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex4-055",
+      "name": "由緒正しき独弾 パルサー",
+      "faces": [
+        {
+          "name": "由緒正しき独弾 パルサー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nこのクリーチャーが出た時、クリーチャーを１体選び、持ち主の超次元ゾーンに置いてもよい。その持ち主は、カードを１枚引く。",
+          "race": "マジック・アウトレイジ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-055",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-055.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "optional": true,
+            "g1121ExtraOwnerDraw": true,
+            "title": "持ち主の超次元ゾーンに置くクリーチャーを選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "863ad20f410c0761f27f3ba0a3fa1a03d3bc7291daf0eee9c956f42c4f746427",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp2-057": 4,
+      "dm25ex4-061": 4,
+      "dm25ex4-055": 4
+    }
+  }
+}

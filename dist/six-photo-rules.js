@@ -550,6 +550,8 @@ export function createSixPhotoRules(api){
   if(f.g834AnyEmptyHand)return s.players.some(player=>player.hand.length===0);
   if(f.g811ManaLeft)return s.g47ManaLeft?.[p]===s.turn;
   if(f.g792AbsentAlly)return !s.players[p].battle.some(x=>!x.sealed&&!x.faceDown&&api.isCreature(s,x)&&effective(x,s).name===f.g792AbsentAlly);
+  if(f.g1121ExtraHasNoFireCreature)return !(s.players[p].extra||[]).some(x=>
+   !x.faceDown&&faces(api.zoneCard(s,p,x,'extra')).some(c=>c.type==='creature'&&colors(c).includes('火')));
   if(f.g791ExtraSpell)return (s.players[p].extra||[]).some(x=>!x.faceDown&&faces(card(x)).some(c=>c.type==='spell'));
   if(f.g790MinDraws!==undefined)return (s.players[p].drawsThisTurn||0)>=f.g790MinDraws;
   if(f.g857LightSoulEntered)return s.g857LightSoulEnteredTurn?.[p]===s.turn;
@@ -909,9 +911,10 @@ export function createSixPhotoRules(api){
   const c=card(x);
   return !x.faceDown&&c.type==='creature'&&t.g960DeathNames.includes(exactName(creatureFaceName(c)));
  }
- function list(s,t){const p=t.owner==='self'?t.p:t.owner==='opponent'?1-t.p:t.owner??t.p,own=s.players[p];return(t.zones||[t.origin||'hand']).flatMap(origin=>((t.g210ManaUntap||t.g806MultiUntap||t.g803DeployForOwner||t.g837Reikon||t.g1009AfterMoveAttempt||t.g1011ChooseBeforeMove||api.canMoveZone(s,p,origin))?own[origin]||[]:[]).flatMap(x=>extraFaces1104(x,t,origin)).filter(x=>!(t.selected||[]).includes(x.uid)&&(!t.g187OwnPick||!x.sealed)&&(!t.g186Other||x.uid!==t.uid)&&(!t.g179Other||!api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)))&&(!t.g899RampTapped||!api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)))&&matches(s,p,x,t.filter)&&matchesDeathDeployment960(t,x)&&(!t.g806MultiUntap||multicolorUntap806(s,p,x,origin))).filter(x=>t.g409Budget===undefined||!x.faceDown&&(t.rows||[]).reduce((n,r)=>n+cost(card(s.players[r.p][r.origin].find(y=>y.uid===r.uid))),0)+cost(api.zoneCard(s,p,x))<(t.g409Budget==='∞'?Infinity:t.g409Budget)).filter(x=>(!t.g530Ids||t.g1114HandAndDeck&&origin==='hand'||t.g530Ids.includes(x.uid))&&fitsPower506(s,t,x)&&fitsCost513(s,t,x)&&fitsCost550(s,t,x,p,origin)).filter(x=>!t.deploy||canPut(deploymentState550(s,t),p,x,origin,!!t.execution)).filter(x=>origin!=='battle'||t.g1046NoChoiceProtection&&!externalProtection565(s,x).g1082ChoiceProtected||!api.targetable||api.targetable(s,t.p,p,x)).map(x=>({x,origin,p})));}
+ function list(s,t){const p=t.owner==='self'?t.p:t.owner==='opponent'?1-t.p:t.owner??t.p,own=s.players[p];return(t.zones||[t.origin||'hand']).flatMap(origin=>((t.g210ManaUntap||t.g806MultiUntap||t.g803DeployForOwner||t.g837Reikon||t.g1009AfterMoveAttempt||t.g1011ChooseBeforeMove||api.canMoveZone(s,p,origin))?own[origin]||[]:[]).flatMap(x=>extraFaces1104(x,t,origin)).filter(x=>(t.g1121RepeatTarget||!(t.selected||[]).includes(x.uid))&&(!t.g187OwnPick||!x.sealed)&&(!t.g186Other||x.uid!==t.uid)&&(!t.g179Other||!api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)))&&(!t.g899RampTapped||!api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)))&&matches(s,p,x,t.filter)&&matchesDeathDeployment960(t,x)&&(!t.g806MultiUntap||multicolorUntap806(s,p,x,origin))).filter(x=>t.g409Budget===undefined||!x.faceDown&&(t.rows||[]).reduce((n,r)=>n+cost(card(s.players[r.p][r.origin].find(y=>y.uid===r.uid))),0)+cost(api.zoneCard(s,p,x))<(t.g409Budget==='∞'?Infinity:t.g409Budget)).filter(x=>(!t.g530Ids||t.g1114HandAndDeck&&origin==='hand'||t.g530Ids.includes(x.uid))&&fitsPower506(s,t,x)&&fitsCost513(s,t,x)&&fitsCost550(s,t,x,p,origin)).filter(x=>!t.deploy||canPut(deploymentState550(s,t),p,x,origin,!!t.execution)).filter(x=>origin!=='battle'||t.g1046NoChoiceProtection&&!externalProtection565(s,x).g1082ChoiceProtected||!api.targetable||api.targetable(s,t.p,p,x)).map(x=>({x,origin,p})));}
  function scryScore323(s,t,x){const c=card(x),magi=card(t.source).g34Attack?.find(d=>d.op==='Magibomber321');return api.isCreature(s,x)&&cost(c)<=(magi?.n||0)||cost(c)<=s.players[t.p].mana.length+1?-5:5;}
  function selectedBattleScore(s,t,x,candidates,n){
+  if(t.g1121RepeatTarget&&t.selected.includes(x.uid))return -20;
   if(t.anyOwner&&t.to==='hand'&&(s.players[t.p].battle.includes(x)||!api.canLeave(s,1-t.p,x)))return -10;
   if(t.g190Freeze==='end'&&(x.tapped||s.active===t.p&&!effective(x,s).blocker))return -1;if(t.g510Untap)return x.tapped&&api.canUntap(x)?15+Math.min(20,cost(effective(x,s)))*2:-10;if(t.g506PowerBudget!==undefined)return 15+Math.min(20,cost(effective(x,s)))*2+Math.min(20,Math.max(0,currentPower506(s,x)/3000));if(t.g193Tap&&!t.g210TapLock&&!(t.g743NeoLock&&sourceNeo563(s,t))&&x.tapped){const forced=candidates.filter(r=>effective(r.x,s).forceTarget).length;return effective(x,s).forceTarget&&n-(t.selected?.length||0)>forced&&candidates.some(r=>!r.x.tapped)?1:-10;}return 15+cost(effective(x,s))*2+api.power(x,false,s)/3000-(t.to==='mana'?3:0);}
  function attackCondition225(s,p,rule,x){
@@ -2188,6 +2191,11 @@ export function createSixPhotoRules(api){
   start(s,t,[{op:'Offer',title:card(y).name+(t.deploy?'を墓地からバトルゾーンに出す？':'を墓地から手札に戻す？'),
    score:18,defs:[{op:t.deploy?'SelfGraveRevive644':'SelfGraveHand476',serial:t.serial,
     ...(t.g1069AllowEvolution?{g1069AllowEvolution:true}:{})}]}]);
+  break;
+ }
+ case'g34_SelfExtra1121':{
+  const host=sourceHost474(s,t);
+  if(host)move(s,[{player:host.p,uid:host.x.uid,to:'extra',destroy:false,toOwnerExtra:true,controller:t.p}]);
   break;
  }
  case'g34_SelfHand299':{const host=sourceHost474(s,t);if(host)move(s,[{player:host.p,uid:host.x.uid,to:'hand',controller:t.controller??t.p}]);break;}
@@ -5315,6 +5323,15 @@ export function createSixPhotoRules(api){
    move(s,[{player:v.p,uid:y.uid,to:'grave',destroy:true,controller:t.controller??t.p}]);
    if(another)start(s,t,[{op:'Target',to:'grave',spell:t.spell,optional:true,g810Excluded,
     title:'破壊する別の相手クリーチャーを選ぶ'}]);
+   break;
+  }
+  if(t.g1121ExtraOwnerDraw){
+   const y=v&&s.players[v.p].battle.find(x=>x.uid===v.uid);
+   if(y){
+    const owner=y.cardOwner??v.p;
+    move(s,[{player:v.p,uid:y.uid,to:'extra',destroy:false,toOwnerExtra:true,controller:t.p}]);
+    start(s,{...t,p:owner},[{op:'Draw',n:1}]);
+   }
    break;
   }
   if(t.g810AnotherWith||t.g810AnotherIfOwn){
