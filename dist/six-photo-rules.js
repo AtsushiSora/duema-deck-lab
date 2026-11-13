@@ -3499,6 +3499,19 @@ export function createSixPhotoRules(api){
    cards.map((x,i)=>opt('シールドのカード '+(i+1),x.uid,0)),1-t.p);
   break;
  }
+ case'g34_ExposeTrigger1162':{
+  const rows=peekRows585(s,{...t,who:'opponent',cardOnly:true}).filter(r=>!r.x.g37ShieldHeld);
+  if(rows.length)choice(s,t,'表向きにする相手のシールドカードを1枚選ぶ',rows.map(({x,label})=>
+   opt(label,x.uid,x.faceUp?0:5,x.faceUp?x.cardId:undefined)));
+  break;
+ }
+ case'g34_RecycleMana1162':
+  if(api.canMoveZone(s,t.p,'mana')&&own.mana.length)
+   choice(s,t,'墓地に置いてからマナに戻すカードを1枚選ぶ（任意）',[
+    ...own.mana.map((y,i)=>opt(y.faceDown?'裏向きのマナ '+(i+1):card(y).name,y.uid,y.tapped?10:-2,
+     y.faceDown?undefined:y.cardId)),skip()
+   ]);
+  break;
  case'g34_FlipShields949':{
   const rows=peekRows585(s,{...t,who:t.who??'both'}),selected=t.selected||[];
   const n=Math.min(t.n??creatures(s,t.p).length,rows.length);
@@ -5051,6 +5064,22 @@ export function createSixPhotoRules(api){
   if(entrant){clear(entrant,'battle');enter(s,t.p,entrant,null,options);}
   break;
  }
+ case'g34_ExposeTrigger1162':{
+  const p=1-t.p,selected=s.players[p].shields.flatMap(api.shieldCards).find(y=>y.uid===v&&!y.g37ShieldHeld);
+  if(!selected)break;
+  selected.faceUp=true;
+  api.log(s,t.p,'reveal',card(t.source).name+'：'+card(selected).name+'を表向きにした',{cardId:selected.cardId});
+  if(api.shieldHasTrigger1162(s,p,selected))api.moveShield(s,p,selected.uid,'grave',{cardOnly:true,toOwnerGrave:true});
+  break;
+ }
+ case'g34_RecycleMana1162':{
+  const mana=own.mana.find(y=>y.uid===v);
+  if(!mana)break;
+  const serial=(mana.zoneSerial||0)+1;
+  if(zoneMove(s,t.p,'mana',v,'grave',t)&&own.grave.some(y=>y.uid===v&&(y.zoneSerial||0)===serial))
+   zoneMove(s,t.p,'grave',v,'mana',t);
+  break;
+ }
  case'g34_FlipShields949':
   if(v)put(s,{...t,selected:[...t.selected,v]});
   else if(t.selected.length)put(s,{...t,done:true});
@@ -6290,13 +6319,14 @@ export function createSixPhotoRules(api){
   if(root&&c.type==='creature'&&c.g433SeedTrigger&&s.players[p].battle.some(y=>!y.sealed&&matches(s,p,y,{g295Tamaseed:true})))return true;return active(s,p,'fourJustice').length>0&&s.players[p].battle.some(y=>api.layers(y).some(z=>(z.exLifeShieldUids||[z.exLifeShieldUid]).includes(group)));},
  // Mana entry is independent of casting or battlefield entry (QA39403/39404).
  manaAdded449(s,p,cards){
+  const firstOwnPlacement=s.active===p&&s.g837ManaAddedTurn?.[p]!==s.turn;
   if(s.active===p)(s.g837ManaAddedTurn??=[null,null])[p]=s.turn;
   const firstMulti=s.g1160FirstMultiManaTurn?.[p]!==s.turn;
   const sources=creatures(s,p).flatMap(x=>{
    if(x.sealed)return [];
    const {g454Space:rules,g763MultiManaUntap:untap,g807ManaEntry:defs,g857ManaEntryRace:entryRace,
-    g1160FirstMultiManaDraw:firstMultiDraw}=effective(x,s);
-   return rules||untap||defs||firstMultiDraw?[{x,rules:rules||[],untap,defs,entryRace,firstMultiDraw}]:[];
+    g1160FirstMultiManaDraw:firstMultiDraw,g1162FirstManaRecycle:recycle}=effective(x,s);
+   return rules||untap||defs||firstMultiDraw||recycle?[{x,rules:rules||[],untap,defs,entryRace,firstMultiDraw,recycle}]:[];
   });
   for(const x of cards){
    if(!x.faceDown&&api.zoneCard(s,p,x).g449ManaReveal)send(s,p,x,'ManaReveal449',{serial:x.zoneSerial||0});
@@ -6307,6 +6337,7 @@ export function createSixPhotoRules(api){
    for(const source of sources){
     if(firstMulti&&source.firstMultiDraw&&actual.length>1)
      send(s,p,source.x,'FirstMultiManaDraw1160',{target:x.uid,serial:x.zoneSerial||0});
+    if(firstOwnPlacement&&source.recycle)send(s,p,source.x,'RecycleMana1162');
     if(source.defs&&(!source.entryRace||faces(manaCard).some(c=>race(c,source.entryRace))))queue(s,p,source.x,source.defs);
     const rules=source.rules.filter(r=>(r.color==='多色'?actual.length>1:actual.includes(r.color))&&
      (!r.g792Once||!used792(s,source.x,r)));

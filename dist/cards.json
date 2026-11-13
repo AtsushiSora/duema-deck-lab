@@ -226592,15 +226592,100 @@
       ],
       "supportBatch": "phase-1161",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx01-021",
+      "name": "プロキオン・ドラグーン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ティラノ・ドレイク/エイリアン",
+      "text": "自分のターン中、そのターンはじめて自分のマナゾーンにカードを置いた時、カードを１枚自分のマナゾーンから墓地に置いてもよい。そうした場合、その後、そのカードを自分の墓地からマナゾーンに戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx01-021",
+      "limit": 4,
+      "g1162FirstManaRecycle": true,
+      "supportBatch": "phase-1162",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-097",
+      "name": "パラボラ・ボラッピ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2000,
+      "race": "ファイアー・バード/オリジン",
+      "text": "自分の進化クリーチャーを召喚した時、相手のシールドからカードを１枚選び、表向きにする。そのカードが「S・トリガー」付きであれば、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-097",
+      "limit": 4,
+      "g808SummonWatch": {
+        "g816Evolution": true,
+        "defs": [
+          {
+            "op": "ExposeTrigger1162"
+          }
+        ]
+      },
+      "supportBatch": "phase-1162",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx22b-158",
+      "name": "バニラ・ゾーン",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n自分の山札の上から２枚を表向きにする。その中から、能力が書かれていないカードをすべてマナゾーンに置き、その後、残りを墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-158",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "public": true,
+          "g255Distribute": true,
+          "rest": "grave",
+          "stages": [
+            {
+              "n": "all",
+              "allMatches": true,
+              "to": "mana",
+              "filter": {
+                "g990PrintedNoAbilities": true,
+                "g1113LegacyManaText": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1162",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1161,
+    "phase": 1162,
     "checkedAt": "2026-11-14",
-    "baseCount": 7472,
+    "baseCount": 7475,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7475,
+    "totalCount": 7478,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -246821,6 +246906,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7472,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1161,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7472,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7475,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

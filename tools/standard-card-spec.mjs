@@ -6184,6 +6184,20 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1162&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='クリーチャー'){
+   if(['dmx01-021','dmx03-019'].includes(d.id)&&
+    text==='自分のターン中そのターンはじめて自分のマナゾーンにカードを置いた時カードを1枚自分のマナゾーンから墓地に置いてもよい。そうした場合その後そのカードを自分の墓地からマナゾーンに戻す。')
+    return {g1162FirstManaRecycle:true};
+   if(d.id==='dm32-097'&&text==='自分の進化クリーチャーを召喚した時相手のシールドからカードを1枚選び表向きにする。そのカードが「S・トリガー」付きであれば持ち主の墓地に置く。')
+    return {g808SummonWatch:{g816Evolution:true,defs:[{op:'ExposeTrigger1162'}]}};
+  }
+  if(f.typeText==='呪文'&&d.id==='dmx22b-158'&&text==='マナゾーンに置く時このカードはタップして置く。'+
+   '自分の山札の上から2枚を表向きにする。その中から能力が書かれていないカードをすべてマナゾーンに置きその後残りを墓地に置く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Look',n:2,public:true,g255Distribute:true,rest:'grave',
+    stages:[{n:'all',allMatches:true,to:'mana',filter:{g990PrintedNoAbilities:true,g1113LegacyManaText:true}}]}]};
+ }
  if(phase>=1161&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dm24rp4-070'&&text==='バトル中このクリーチャーが破壊された時相手のシールドを1つブレイクしてもよい。')
