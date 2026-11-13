@@ -6534,21 +6534,23 @@ export function createSixPhotoRules(api){
   // Retain all linked parts so removing one God does not lose the watched unit (QA43748).
   if(creature)for(const watcher of creatures(s,1-p)){
    if(watcher.sealed)continue;
-   const {g403Bloom,g600OverManaEntry,g601UnpaidDestroy,g601OffHandMana,g621NonSummon,g624EntryResponse,g1112UnpaidBounce}=effective(watcher,s);
+   const {g403Bloom,g600OverManaEntry,g601UnpaidDestroy,g601OffHandMana,g621NonSummon,g624EntryResponse,g1112UnpaidBounce,g1161OffHandDestroy}=effective(watcher,s);
    const bloomDestroys=options.execution===false&&g403Bloom&&(s.active===p||g403Bloom==='eitherTurn');
    const unpaidDestroys=g601UnpaidDestroy&&(g601UnpaidDestroy!=='opponentTurn'||s.active===p)&&
     !options.costPaid&&!options.paidMana;
-   const offHand=g601OffHandMana&&options.origin!==undefined&&options.origin!=='hand';
+   const offHand=options.origin!==undefined&&options.origin!=='hand';
+   const offHandMana=g601OffHandMana&&offHand,offHandDestroy=g1161OffHandDestroy&&offHand;
    const nonSummon=options.execution===false?g621NonSummon:null;
    const shieldWithoutMana=g624EntryResponse==='untappedManaShield'&&!options.paidMana&&!y.sealed;
    const unpaidBounce=g1112UnpaidBounce&&s.active===p&&!y.sealed&&!options.costPaid&&!options.paidMana;
    if(!y.sealed&&(g624EntryResponse==='multicolorFight'&&colors(effective(y,s)).length>1||
       g624EntryResponse==='outsideHandFight'&&options.origin!==undefined&&options.origin!=='hand'))
     queue(s,1-p,watcher,[{op:'EntryFight624',enemy:{uid:y.uid,incarnation:y.incarnation||0}}]);
-   if(!bloomDestroys&&!unpaidDestroys&&!offHand&&!g600OverManaEntry&&!nonSummon&&!shieldWithoutMana&&!unpaidBounce)continue;
+   if(!bloomDestroys&&!unpaidDestroys&&!offHandMana&&!offHandDestroy&&!g600OverManaEntry&&!nonSummon&&!shieldWithoutMana&&!unpaidBounce)continue;
    const exact={op:'ExactMove',owner:p,g403Refs:[y,...(y.godLinks||[])].map(x=>({uid:x.uid,incarnation:x.incarnation||0}))};
    if(bloomDestroys||unpaidDestroys)queue(s,1-p,watcher,[{...exact,to:'grave',target:y.uid,targetIncarnation:y.incarnation||0}]);
-   if(offHand)queue(s,1-p,watcher,[{...exact,to:'mana'}]);
+   if(offHandMana)queue(s,1-p,watcher,[{...exact,to:'mana'}]);
+   if(offHandDestroy)queue(s,1-p,watcher,[{...exact,to:'grave',followEvolution:'evolutionOnly',filter:{creature:true}}]);
    if(shieldWithoutMana)queue(s,1-p,watcher,[{...exact,to:'shields',optional:true,followEvolution:true}]);
    if(nonSummon==='bottom')queue(s,1-p,watcher,[{...exact,to:'deck'}]);
    if(nonSummon==='bounce')queue(s,1-p,watcher,[{...exact,to:'hand',optional:true,followEvolution:'evolutionOnly',filter:{creature:true}}]);
@@ -6972,6 +6974,7 @@ export function createSixPhotoRules(api){
     .filter(d=>!d.g901Untapped||!(prior.g901WasTapped??x.tapped))
     .filter(d=>!d.g1012Tapped||(prior.g901WasTapped??x.tapped))
     .filter(d=>!d.g1063Evolved||api.isEvolution(x))
+    .filter(d=>!d.g1161DuringBattle||s.leaving?.after?.kind==='battleResult')
     .filter(d=>d.op!=='ScheduleGraveReturn644'||d.anyTurn||s.active===p)
     .flatMap(d=>{
      if(d.name==='startPowerJudge')return [{...d,defs:d.defs.map(def=>def.op==='SelfGraveRevive644'?

@@ -6184,6 +6184,20 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1161&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm24rp4-070'&&text==='バトル中このクリーチャーが破壊された時相手のシールドを1つブレイクしてもよい。')
+   return {g172Death:[{op:'Break278',optional:true,g1161DuringBattle:true}]};
+  if(d.id==='dmex12-034'&&text==='自分のファンキー・ナイトメアの召喚コストを1少なくする。ただしコストは0以下にはならない。'+
+   '相手のクリーチャーが手札以外のどこからでもバトルゾーンに出た時そのクリーチャーを破壊する。')
+   return {g290SummonAura:{race:'ファンキー・ナイトメア',amount:1},g1161OffHandDestroy:true};
+  if(d.id==='dmx16-071'&&text==='このクリーチャーをバトルゾーンに出した時そのターンバトルゾーンにある自分のカードに能力が書かれていないクリーチャーすべてのパワーは+5000されシールドをさらに1枚ブレイクする。'){
+   const group={owner:'self',filter:{creature:true,g990PrintedNoAbilities:true,g1113LegacyManaText:true}};
+   return {effect:'sixPhoto',g34Tasks:[
+    {op:'GroupPower',...group,power:5000},{op:'GroupLasting412',...group,extraBreak:1,g969FollowControl:true}
+   ]};
+  }
+ }
  if(phase>=1160&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(['dmex14-033','dm24bd5-033'].includes(d.id)&&

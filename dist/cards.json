@@ -226502,15 +226502,105 @@
       },
       "supportBatch": "phase-1160",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-070",
+      "name": "ライラ・理・アイニー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "アーマード・ファイアー・バード",
+      "text": "バトル中、このクリーチャーが破壊された時、相手のシールドを１つブレイクしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-070",
+      "limit": 4,
+      "g172Death": [
+        {
+          "op": "Break278",
+          "optional": true,
+          "g1161DuringBattle": true
+        }
+      ],
+      "supportBatch": "phase-1161",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex12-034",
+      "name": "ダルピ・ルッピー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ファンキー・ナイトメア",
+      "text": "自分のファンキー・ナイトメアの召喚コストを１少なくする。ただしコストは０以下にはならない。\n相手のクリーチャーが手札以外のどこからでもバトルゾーンに出た時、そのクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-034",
+      "limit": 4,
+      "g290SummonAura": {
+        "race": "ファンキー・ナイトメア",
+        "amount": 1
+      },
+      "g1161OffHandDestroy": true,
+      "supportBatch": "phase-1161",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx16-071",
+      "name": "ナメナメ・ナメコー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ワイルド・ベジーズ",
+      "text": "このクリーチャーをバトルゾーンに出した時、そのターン、バトルゾーンにある自分の、カードに能力が書かれていないクリーチャーすべてのパワーは+5000され、シールドをさらに１枚ブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-071",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupPower",
+          "owner": "self",
+          "filter": {
+            "creature": true,
+            "g990PrintedNoAbilities": true,
+            "g1113LegacyManaText": true
+          },
+          "power": 5000
+        },
+        {
+          "op": "GroupLasting412",
+          "owner": "self",
+          "filter": {
+            "creature": true,
+            "g990PrintedNoAbilities": true,
+            "g1113LegacyManaText": true
+          },
+          "extraBreak": 1,
+          "g969FollowControl": true
+        }
+      ],
+      "supportBatch": "phase-1161",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1160,
+    "phase": 1161,
     "checkedAt": "2026-11-14",
-    "baseCount": 7469,
+    "baseCount": 7472,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7472,
+    "totalCount": 7475,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -246719,6 +246809,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7469,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1160,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7469,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7472,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
