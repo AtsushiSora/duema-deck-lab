@@ -589,7 +589,7 @@ function tapCard(s,p,x){
  extra.tapped(s,p,x);
 }
 function clearBattleState(x,to='grave'){
- if(to!=='battle'&&card(x.cardId)?.psychic){delete x.g1085Awakened;delete x.g1085AwakenedTurn;delete x.g1085TappedTurn;}
+ if(to!=='battle'&&card(x.cardId)?.psychic){delete x.g1085Awakened;delete x.g1085AwakenedTurn;delete x.g1085TappedTurn;delete x.g1096CountedEntryTurn;}
  delete x.originalEntryTurn;for(const k of['g393JWDBack','g393JCopies','g393JZero'])delete x[k];for(const k of['g170StartFreeze','g167CraftAlt','g159Sasage','g159ZagaanUsed','g159YobiTurn','g159SYes','g159SpellShield','finishFaceUp'])delete x[k];for(const k of ['g47ElementRefs','g50KingFace','g50KingDefinition','g50KingdomCount','g50Jo','g50Rx','g50OrderGrant','g50PolecoBroke','g45LemmingBreaker'])delete x[k];if(to==='grave'&&card(x.cardId)?.g39Verde)x.g39GraveColors=true;else delete x.g39GraveColors;delete x.g464UsedTurn;delete x.g89Race;delete x.g85RomanoCast;delete x.finishTo;delete x.normalFinish;delete x.crystalFinish;for(const k of['g35Ignored','g35NoAttack','g35ShieldForce','g35Maximum','g35DrawOnBottom'])delete x[k];delete x.g34ChosenName;delete x.g34Delayed;delete x.g34Grants;delete x.g34NoUntap;delete x.g40Reckless;if(x.g11Sideways&&to==='hand')x.g11FromSideways=true;delete x.g11Sideways;delete x.g11Triple;delete x.g26Stay;delete x.g13Rush;delete x.summonedTurn;x.zoneSerial=(x.zoneSerial||0)+1;delete x.sealOf;delete x.sealed;delete x.g14IgnoreScopes;delete x.g14G;delete x.g14Joe;delete x.crossedTo;delete x.g15Blocker;delete x.g18Blocker;delete x.g2Blocker;delete x.g7Para;delete x.g9IgnoreScopes;delete x.g9LockScopes;delete x.g9Speed;delete x.g9Untap;delete x.g9AttackTurn;delete x.g9AttackCount;delete x.g19Blocker;delete x.g19Protected;delete x.g19ShieldST;delete x.under;delete x.godLinks;delete x.g31EndDeath;delete x.g32NoUntap;delete x.g32MomoAttack;delete x.shieldStack;delete x.shieldGroup;delete x.shieldCardOnly;delete x.faceDown;delete x.g22ManaAllowed;delete x.g29Origin;delete x.g5Origin;delete x.g20Origin;delete x.aceIgnored;delete x.gospelSpeed;delete x.skipUntap;delete x.exLifeShieldUid;delete x.exLifeShieldUids;delete x.g29Origin;delete x.hyperActive;delete x.tapLocks;delete x.buffSources;delete x.unblockSpellCost;delete x.powerModifiers;delete x.triggerPlus;delete x.superTrigger;delete x.hyperResolved;delete x.faceUp;delete x.uraNinja;delete x.justDiverActive;delete x.g4WorldUsed;delete x.g30SuperFace;x.tapped=to==='mana'&&manaCivilizations(card(x)).length>1;x.buff=0;x.unblocked=false;x.entered=0;}
 function finishShieldGuards(s){
  const b=s.shieldBreak,p=b.player,protectedShields=new Set(b.protections.map(x=>x.shield));
@@ -1459,7 +1459,11 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  if(entryOptions.g1082Dragon||entryOptions.g31Partner)extra.six.kachuaDragon(s,p,inst,entryOptions);
  if(entryOptions.g791Grant&&!inst.sealed&&isCreature(s,inst))extra.six.deploymentGrant791(s,p,inst,entryOptions.g791Grant,entryOptions.g791Spell,entryOptions.g793FightOnEntry);
  if(entryOptions.g771SpeedSpell&&!inst.sealed&&isCreature(s,inst))extra.six.deploymentSpeed771(s,p,inst,entryOptions.g771SpeedSpell,entryOptions.g774Banky);
- if(isCreature(s,inst)){s.players[p].enteredThisTurn=(s.players[p].enteredThisTurn||0)+1;s.creaturesEntered=(s.creaturesEntered||0)+1;}
+ if(isCreature(s,inst)){
+  s.players[p].enteredThisTurn=(s.players[p].enteredThisTurn||0)+1;
+  s.creaturesEntered=(s.creaturesEntered||0)+1;
+  if(c.g174End?.some(d=>d.g1096OtherEntries!==undefined))inst.g1096CountedEntryTurn=s.turn;
+ }
  if(entryOptions.g753Swap){
   const swap=entryOptions.g753Swap;
   if(card(inst).type==='seed'&&swap.tapped)inst.tapped=true;

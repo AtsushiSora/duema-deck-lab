@@ -6160,6 +6160,32 @@ export function standardCardSpec(d,{phase=165}={}){
    'このクリーチャーが攻撃する時バトルゾーンにあるクロスギアを1枚選び持ち主の墓地に置く。クロスギアがバトルゾーンから墓地に置かれた時カードを1枚引いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
    return {breaker:2,g34Attack:[{op:'Target',element:true,anyOwner:true,filter:{g201Gear:true},to:'grave',title:'墓地に置くクロスギアを1枚選ぶ'}],g933GearGraveDraw:true};
  }
+ if(phase>=1096&&d?.status==='complete'){
+  const text=normalize(f.abilityText);
+  const reminder='(ゲーム開始時サイキック・クリーチャーは山札には含めず自身の超次元ゾーンに置きバトルゾーン以外のゾーンに行った場合そこに戻す)';
+  if(['dm37-033','dmx03-023'].includes(d.id)&&d.faces.length===2&&
+   d.faces.every(face=>face.typeText==='サイキック・クリーチャー')){
+   const back=d.faces[1];
+   const awakening='覚醒-自分のターンの終わりにそのターン自分の他のクリーチャーを2体以上バトルゾーンに出していた場合このクリーチャーをコストの大きいほうに裏返す。';
+   if(text===awakening+reminder.replace('自身の','自分の')&&normalize(back.abilityText)===
+    '自分のクリーチャーが攻撃する時そのターン3度目の攻撃であればこのクリーチャーをアンタップする。')
+    return {psychic:true,manaValue:0,g174End:[{op:'Awaken1095',g1096OtherEntries:2}],
+     g1085Back:{name:back.name,cost:back.cost,power:Number(back.powerText),race:back.race,
+      civ:back.civilizationText,civilizations:back.civilizations,image:'https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-033b.jpg',
+      g174End:null,g252AttackWatch:{who:'self',g768AttackNumber:3,filter:{creature:true},defs:[{op:'Untap'}]}}};
+  }
+  if(d.id==='dmd19-004'&&d.faces.length===1&&f.typeText==='クリーチャー'&&text===
+   'ブロッカーブロッカーこのクリーチャーは攻撃することができない。このクリーチャーをバトルゾーンに出した時自分の山札の上から2枚を墓地に置いてもよい。バトルゾーンにある相手のサイキック・クリーチャーすべてのパワーはー5000される。(パワー0以下のクリーチャーは破壊される)')
+   return {blocker:true,noAttack:true,effect:'sixPhoto',g34Tasks:[{op:'Mill',n:2,optional:true}],
+    g205Aura:[{opponent:true,power:-5000,filter:{creature:true,g1085Psychic:true}}]};
+  if(['dm38-051','dm38-051VC','dmex01-044'].includes(d.id)&&d.faces.length===1&&f.typeText==='呪文'&&text===
+   '相手のパワー5000以下のクリーチャーを1体破壊する。コスト10以下の火のサイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。'+reminder)
+   return {effect:'sixPhoto',g34Tasks:[
+    {op:'Target',to:'grave',filter:{maxPower:5000,g199Power:true},spell:true},
+    {op:'Select',origin:'extra',deploy:true,n:1,filter:{g1085Psychic:true,color:'火',max:10},
+     title:'超次元ゾーンからコスト10以下の火のサイキックを1体出す'}
+   ]};
+ }
  if(phase>=1095&&d?.status==='complete'){
   const reminder='(ゲーム開始時サイキック・クリーチャーは山札には含めず自分の超次元ゾーンに置きバトルゾーン以外のゾーンに行った場合そこに戻す)';
   const text=normalize(f.abilityText);

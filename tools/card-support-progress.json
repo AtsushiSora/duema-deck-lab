@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-13",
   "catalogueNames": 11827,
-  "supportedNames": 7256,
-  "pendingNames": 4571,
-  "phase": 1095,
-  "added": 4,
+  "supportedNames": 7259,
+  "pendingNames": 4568,
+  "phase": 1096,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -118,7 +118,7 @@
     },
     {
       "ability": "覚醒",
-      "pendingNames": 107,
+      "pendingNames": 106,
       "examples": [
         {
           "id": "dmx07-v01",
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2656,
+    "クリーチャー": 2655,
     "NEOクリーチャー": 87,
-    "呪文": 598,
+    "呪文": 597,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 31,
     "タマシード": 56,
@@ -177,7 +177,7 @@
     "クロスギア": 62,
     "進化クリーチャー(進化GV)": 13,
     "土地": 1,
-    "サイキック・クリーチャー": 129,
+    "サイキック・クリーチャー": 128,
     "進化クロスギア": 6,
     "進化クリーチャー(手札進化)": 2,
     "ドラグハート・タマシード": 1,
@@ -225,8 +225,8 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 1201,
-    "未対応の能力文": 3149,
+    "複数面・特殊カードタイプまたは情報不足": 1200,
+    "未対応の能力文": 3147,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 21,
     "未対応のシンカパワー": 2,
@@ -210592,27 +210592,187 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1096,
+      "baseCommit": "555c7a04",
+      "scope": "ターン終了時の覚醒、サイキックのパワー低下、除去に続く超次元展開を持つ3種類を対戦対応する。",
+      "cards": [
+        {
+          "id": "dm37-033",
+          "name": "時空の探検家ジョン",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-033"
+        },
+        {
+          "id": "dmd19-004",
+          "name": "墓標の悪魔龍 グレイブモット",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd19-004"
+        },
+        {
+          "id": "dm38-051",
+          "name": "超次元ストーム・ホール",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-051"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dmx03-023",
+          "canonicalId": "dm37-033",
+          "name": "時空の探検家ジョン",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx03-023"
+        },
+        {
+          "id": "dm38-051VC",
+          "canonicalId": "dm38-051",
+          "name": "超次元ストーム・ホール",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-051VC"
+        },
+        {
+          "id": "dmex01-044",
+          "canonicalId": "dm38-051",
+          "name": "超次元ストーム・ホール",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex01-044"
+        }
+      ],
+      "supportedNames": 7259,
+      "pendingNames": 4568,
+      "verification": {
+        "focused": "tests/standard1096-effects.test.mjs 8件成功",
+        "relatedRegressions": "190件成功（超次元・常在パワー・離脱・画像・カタログ等177件、エンジン13件）。",
+        "check": "npm run check 成功",
+        "officialPrints": 6,
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/qa_old/36124/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36125/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36129/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36130/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36616/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1090のアモデゴラスの実カード組み合わせ3件、Phase 1094のサイキック・イーターとグレンオー、dottoの長時間CPU対戦とWorkerの2件は引き続き未確認。",
+        "regressionLogs": [
+          "/tmp/duema-phase-1096/focused.log",
+          "/tmp/duema-phase-1096/regression.log",
+          "/tmp/duema-phase-1096/mechanics.log",
+          "/tmp/duema-phase-1096/check.log",
+          "/tmp/duema-phase-1096/audit.log"
+        ]
+      },
+      "resolvedVerification": [
+        {
+          "cardId": "dm37-021",
+          "dependencyIds": [
+            "dm37-033"
+          ],
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-021",
+          "testFile": "tests/standard1096-effects.test.mjs",
+          "testName": "John awakens after two earlier creature entries, including a departed creature, then Untouchable can awaken that end step",
+          "status": "passed",
+          "resolution": "同じターンの終わりにジョンから解決した場合と、アンタッチャブルを先に解決した場合を実カードで確認。"
+        }
+      ],
+      "registeredUnverified": [
+        {
+          "cardId": "dmr03-024",
+          "dependencyIds": [
+            "dmd03-002"
+          ],
+          "test": "相手が自身の破壊されないサイキックを選べて、選んだクリーチャーが残る（QA 36427と同型）",
+          "reason": "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
+        }
+      ],
+      "deferred": [
+        {
+          "id": "dm39-051",
+          "name": "メビウス・トルネード",
+          "reason": "公式能力全文・基本情報・画像を確認。最初の破壊が置換された場合にも「もう1体」を正しく扱う対象記録と、解決時に自分のサイキックがいるかの判定を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm39-051"
+          ]
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "双方のパワー6000以下のサイキックを一斉に破壊し、複数の離脱置換・解除を処理するテストと、自身が攻撃されないことの検証が必要。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-062"
+          ]
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "保留継続。選んだアンタップ中の相手クリーチャーを攻撃できる範囲と、召喚酔い・攻撃制限・対象の離脱後の扱いを個別に確認する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-102"
+          ]
+        },
+        {
+          "id": "dmd03-002",
+          "name": "不死身のブーストグレンオー",
+          "reason": "Phase 1094の相手自身による破壊対象選択の検証に必要。覚醒リンクに必要なカードと合体面を照合し、能力全体を実装できる段階まで保留する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmd03-002"
+          ]
+        },
+        {
+          "id": "dm37-030",
+          "name": "時空の喧嘩屋キル",
+          "reason": "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030VC",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmx02-023",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-089",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd03-a06",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36119/",
+            "https://dm.takaratomy.co.jp/rule/qa/45084/"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1095,
-    "nextPhase": 1096,
+    "lastVerifiedPhase": 1096,
+    "nextPhase": 1097,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm37-033",
-        "name": "時空の探検家ジョン",
-        "reason": "同じターン終了時の覚醒順を実カードで再現するため、両面・再録・攻撃履歴と進化クリーチャーに対する裏面能力を確認する。",
+        "id": "dmr01-095",
+        "name": "激流アパッチ・リザード",
+        "reason": "登場時の火または自然のコスト8以下のサイキック展開を、ジョンも含めて確認する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm37-033"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-095"
+        ]
+      },
+      {
+        "id": "dmr01-072",
+        "name": "光流の精霊ガガ・カリーナ",
+        "reason": "光または水のコスト5以下のサイキック展開を、両面の現在の文明・コストと照合する。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-072"
+        ]
+      },
+      {
+        "id": "dmr01-104",
+        "name": "次元流の豪力",
+        "reason": "3文明の展開条件、再録、現行の殿堂レギュレーションを照合する。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-104"
         ]
       },
       {
         "id": "dm37-030",
         "name": "時空の喧嘩屋キル",
-        "reason": "ターン開始時の覚醒、選択によるバウンスの防止、裏面の保護対象を照合する。",
+        "reason": "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030VC",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmx02-023",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-089",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd03-a06",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36119/",
+          "https://dm.takaratomy.co.jp/rule/qa/45084/"
         ]
       },
       {
@@ -210621,14 +210781,6 @@
         "reason": "Phase 1094の相手自身による破壊対象選択の検証に必要。覚醒リンクに必要なカードと合体面を照合し、能力全体を実装できる段階まで保留する。",
         "sources": [
           "https://dm.takaratomy.co.jp/card/detail/?id=dmd03-002"
-        ]
-      },
-      {
-        "id": "dmd19-004",
-        "name": "墓標の悪魔龍 グレイブモット",
-        "reason": "破壊時誘発と常在パワー低下を公式カードと関連裁定で照合する。",
-        "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmd19-004"
         ]
       },
       {
@@ -210934,10 +211086,10 @@
         ]
       }
     ],
-    "steps": "次回はPhase 1096。最新コミット、差分、実行中の作業、前回ログと正規カード名の件数を確認し、次回候補の公式照合から再開する。全体のnpm testは中断・合否未確認を維持する。",
+    "steps": "次回はPhase 1097。最新コミット、作業ツリーとステージ済み差分、前回のテストログ、実行中の作業、実データの正規カード名件数を確認し、候補の公式照合から再開する。",
     "knownIssues": [
+      "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
-      "時空の探検家ジョンが未対応。アンタッチャブルの解決時に、そのターンの他のサイキックの覚醒履歴を参照する処理は実装し、バトルによる他のサイキックの覚醒と離脱後の履歴を検証済み。",
       "Phase 322の旧スキャナーテストは、Phase 419で対応した真実の名 ワクワク・チャップルン（dmr07-001）を依然として未対応一覧に期待する。Phase 742基点とPhase 743作業ツリーで候補11件・対象はブロック一覧にいないことを再現。今回の変更とは分けて扱う。",
       "Phase 321・322の既存マジボンバーは、手札からEXライフ持ちを出す際に公式QA 41150と異なり、先に閲覧中のカードを解放する。既存の対戦挙動を維持するため、このバッチの裁定対応はHOODに限定。既存カードへの適用は再開データと回帰テストを別途検証する。",
       "Phase 749の偽爆電融 ゾルネードシヴァの任意ブレイクは現行定義で1つ固定。総合ルール701.14dと類似QA 39660に沿う追加ブレイクへの切り替え、発生源が離れた後の挙動、保存途中の既存選択肢との互換性を別途確認する。",
@@ -211011,11 +211163,11 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
-      "次回候補の公式全文・基本情報・画像・使用制限・再録と裁定を照合する。同じターン終了時に覚醒するジョンの確認を優先し、覚醒リンクの全体実装が必要な候補は保留して別候補へ進む。",
+      "次回候補の公式全文・基本情報・画像・使用制限・再録と裁定を照合する。既存の超次元からの登場処理を優先し、置換または覚醒リンクの未確認項目が残る場合は別候補へ進む。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で10分間隔のカード登録を再開。",
-    "verificationMode": "Phase 1094のQA 36374を実カードで検証済み。Phase 1090・1094・1095の残る裁定再現に必要なカードを順次照合する。",
+    "verificationMode": "ジョンとアンタッチャブルの同じターン終了時の覚醒は検証済み。Phase 1090・1094の残る実カードの組み合わせは、依存カードの対戦対応後に確認する。",
     "nextRequestedCards": []
   },
   "registeredCardVerification": {
