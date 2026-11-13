@@ -39,7 +39,7 @@ import {attackRoute,previewAttackAction,updateBoardFeedback,bindAttackArrow} fro
 import {setCards,card as battleCard,validateDeck,createGame,getLegalActions,attackLocked,chooseAI,step,runGame,runSummary,aggregate,power,manaValue,manaValueAt,playFaces,canCastSpell,effectiveCard,canUntap,shieldGuardSources,exLifeShields,exLifeShieldInfo,evolutionBases,isEvolution,selfTriggersStopped,abilitiesIgnored,genmuActive,peekDeckTop,RULE_VERSION,ENGINE_VERSION,AI_VERSION} from './engine.js';
 import {ORIGINAL,ADVANCE,deckFormat,formatLabel,sameDeckFormat} from './deck-format.js';
 import {PRESETS} from './decks.js';
-import {newManualUI,hyperModeModel,manualModel,manualScreenHTML,manualLogHTML,MANUAL_LOG_FILTERS,boardChoice,confirmEndTurn,manualPrimaryAction,manualShieldModel,manaZoneHTML,manaSummonHTML,graveZoneHTML,graveSummonStatusHTML,choiceSelectionModel,choiceDetailCard} from './manual-ui.js?v=0.721.0';
+import {newManualUI,hyperModeModel,manualModel,manualScreenHTML,manualLogHTML,MANUAL_LOG_FILTERS,boardChoice,confirmEndTurn,manualPrimaryAction,manualShieldModel,manaZoneHTML,manaSummonHTML,graveZoneHTML,graveSummonStatusHTML,choiceSelectionModel,choiceDetailCard,rinneActionHTML} from './manual-ui.js?v=0.721.0-rinne';
 import {resolveEnvironmentDecks,environmentSupport,groupEnvironmentDecks,ENVIRONMENT_TARGET} from './environment.js';
 import {resolveStarter25Decks,starter25Matches} from './starter25.js';
 import {prepareDeckCopy} from './deck-copy.js';
@@ -598,9 +598,10 @@ function showSpectatorZone(owner,zone){
 }
 function showManualStatus(player,uid){
  if(!battle)return;const s=battle.state,m=creatureStatusModel(s,player,uid);if(!m)return;
- const hyper=hyperModeModel(s,player,uid);
- const choice=!battle.spectator&&boardChoice(s,manualUI,player,'battle',uid),attack=!battle.spectator&&!player&&getLegalActions(s).some(a=>a.player===0&&a.kind==='attack'&&a.uid===uid);
- showDialog('カードの状態',creatureStatusHTML(s,player,uid,{art})+graveSummonStatusHTML(s,player,uid)+(hyper?`<p class="small mt16">${esc(hyper.reason)}</p>`:''),`${!battle.spectator&&player===0&&hyper?.action?`<button class="btn primary" data-action="battle-step" data-index="${hyper.action.id}">${hyper.need===2?'OVERハイパー化する':'ハイパー化する'}</button>`:''}${choice||attack?`<button class="btn primary" data-action="manual-creature" data-player="${player}" data-uid="${esc(uid)}">${choice?'このカードを選ぶ':'攻撃先を選ぶ'}</button>`:''}${m.id?`<button class="btn" data-action="card-detail" data-id="${esc(m.id)}">能力を見る</button><button class="btn" data-action="battle-report-card" data-id="${esc(m.id)}">不具合を記録</button>`:''}<button class="btn" data-action="close-dialog">盤面に戻る</button>`);
+ const hyper=hyperModeModel(s,player,uid),controls=manualModel(s,manualUI);
+ const rinne=player===0?controls.rinne.find(a=>a.uid===uid):null;
+ const choice=!battle.spectator&&boardChoice(s,manualUI,player,'battle',uid),attack=!battle.spectator&&!player&&controls.actions.some(a=>a.player===0&&a.kind==='attack'&&a.uid===uid);
+ showDialog('カードの状態',creatureStatusHTML(s,player,uid,{art})+graveSummonStatusHTML(s,player,uid)+(hyper?`<p class="small mt16">${esc(hyper.reason)}</p>`:''),`${rinne?rinneActionHTML(rinne,controls.context):''}${!battle.spectator&&player===0&&hyper?.action?`<button class="btn primary" data-action="battle-step" data-index="${hyper.action.id}">${hyper.need===2?'OVERハイパー化する':'ハイパー化する'}</button>`:''}${choice||attack?`<button class="btn primary" data-action="manual-creature" data-player="${player}" data-uid="${esc(uid)}">${choice?'このカードを選ぶ':'攻撃先を選ぶ'}</button>`:''}${m.id?`<button class="btn" data-action="card-detail" data-id="${esc(m.id)}">能力を見る</button><button class="btn" data-action="battle-report-card" data-id="${esc(m.id)}">不具合を記録</button>`:''}<button class="btn" data-action="close-dialog">盤面に戻る</button>`);
 }
 function showBattleReport(){
  if(!battle)return;const s=battle.state,last=battle.recentActions?.at(-1);

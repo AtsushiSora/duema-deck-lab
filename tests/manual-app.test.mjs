@@ -156,6 +156,64 @@ test('an inspected hand card stays readable while the opponent acts, then closes
  s.players[0].grave.push(...s.players[0].hand.splice(s.players[0].hand.findIndex(x=>x.uid===uid),1));s.actions++;h.read('render()');assert.equal(h.read('selectedHand'),null);assert.equal(h.read('manualUI.mobilePanel'),'closed');
 });
 test('mobile extra methods exposes a legal PerfectDarkness grave cast and begins its actual modal effect',async()=>{const s=setup();give(s,0,'grave',['dmrp12-s08']);const h=harness(s,{mobile:true});await h.click('manual-extra-methods');assert.ok(h.read('dialog.open'));assert.match(h.read('dialog.innerHTML'),/墓地から絶望と反魂と滅殺の決断を唱える/);const a=e.getLegalActions(s).find(a=>a.kind==='play'&&a.origin==='grave');await h.click('battle-step',{index:String(a.id)});assert.equal(s.decision.task.op,'s6Modes');assert.equal(s.players[0].grave.length,0);assert.ok(h.root.innerHTML.includes('同じ効果も選べます'));});
+test('Baraghiara can use Rinne from the main controls after a Sympathy summon with eight mana',async()=>{
+ const id='dmrp08-mh05',nature='dm01-108';
+ for(const layout of [{landscape:true},{mobile:true},{}]){
+  const s=setup(),own=s.players[0];
+  s.turn=11;s.round=6;
+  give(s,0,'mana',Array(8).fill(nature));
+  give(s,0,'hand',[id]);
+  give(s,0,'battle',['dmrp03-s09','dmrp04m-060']);
+  own.mana[0].tapped=true;
+  const source=own.hand[0],originalMana=own.mana.slice(),h=harness(s,{...layout,autoPay:false});
+  const finishPayment=async()=>{
+   while(s.decision?.type==='manaPayment'){
+    const actions=e.getLegalActions(s),next=actions.find(a=>a.kind==='confirmMana')??
+     actions.find(a=>a.kind==='selectMana'&&!s.decision.selected.includes(a.uid));
+    assert.ok(next);
+    await h.click('battle-step',{index:String(next.id)});
+   }
+  };
+  await h.click('hand-card',{uid:source.uid});
+  const summon=e.getLegalActions(s).find(a=>a.kind==='play'&&a.uid===source.uid&&a.face===0);
+  assert.equal(summon.cost,5);
+  await h.click('battle-step',{index:String(summon.id)});
+  assert.equal(s.decision.type,'manaPayment');
+  await finishPayment();
+  assert.ok(own.battle.includes(source));
+  assert.equal(own.hand.length,0);
+  assert.ok(originalMana.every(x=>!x.tapped));
+  assert.equal(own.mana.length,8);
+  assert.doesNotMatch(h.root.innerHTML,/<details class="manual-extra">/);
+
+  const expected='天上天下輪廻独尊を輪廻∞で唱える · 8マナ';
+  const controls=layout.mobile?h.root.innerHTML.split('class="manual-mobile-dock"')[1]:h.root.innerHTML;
+  const rinneButton=/<button[^>]*data-action="manual-zone-choice" data-context="([^"]+)" data-index="(\d+)"[^>]*>([^<]+)<\/button>/;
+  const direct=controls.match(rinneButton);
+  assert.ok(direct?.[0].includes(expected));
+  await h.click('manual-creature',{player:'0',uid:source.uid});
+  assert.ok(h.read('dialog.open'));
+  const status=h.read('dialog.innerHTML').match(rinneButton);
+  assert.ok(status?.[0].includes(expected));
+
+  const useStatus=!layout.mobile&&!layout.landscape;
+  if(!useStatus)await h.click('close-dialog');
+  const [,context,index]=useStatus?status:direct;
+  const top=own.deck[0];
+  await h.click('manual-zone-choice',{context,index});
+  assert.equal(h.read('dialog.open'),false);
+  assert.equal(s.decision.type,'manaPayment');
+  assert.equal(s.decision.cost,8);
+  assert.ok(originalMana.every(x=>!x.tapped));
+  await finishPayment();
+  assert.ok(originalMana.every(x=>x.tapped));
+  assert.ok(own.battle.includes(source));
+  assert.ok(own.mana.includes(top));
+  assert.equal(e.power(source,false,s),25000);
+  assert.ok(!h.root.innerHTML.includes(expected));
+ }
+});
+
 test('mobile extra methods exposes Vamiria hyper activation, including its actual tap-cost choice',async()=>{const s=setup();give(s,0,'battle',['dm24ex1-028','dmr01-056']);const h=harness(s,{mobile:true});await h.click('manual-extra-methods');assert.match(h.read('dialog.innerHTML'),/ハイパー化する/);const a=e.getLegalActions(s).find(a=>a.kind==='hyper');await h.click('battle-step',{index:String(a.id)});assert.equal(s.decision.task.op,'hyperCost');});
 test('Surfer/Boil face tabs, target details and physical charger completion work on each manual layout',async()=>{
  for(const layout of[{mobile:true},{landscape:true},{}]){
