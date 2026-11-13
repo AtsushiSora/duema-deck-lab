@@ -228640,15 +228640,107 @@
       ],
       "supportBatch": "phase-1179",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-089",
+      "name": "鎧亜 メフィスト-１",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ロスト・クルセイダー/ディスタス",
+      "text": "このクリーチャーが出た時、自分の山札の上から１枚目を表向きにする。それが多色カードなら、マナゾーンに置く。\nササゲール１（ディスペクターを召喚する時、コストを１少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-089",
+      "limit": 4,
+      "sasage": 1,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "RevealTop514",
+          "filter": {
+            "g223Multicolor": true
+          },
+          "to": "mana"
+        }
+      ],
+      "supportBatch": "phase-1180",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp21-035",
+      "name": "ジョルジュくん",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 1000,
+      "race": "マフィ・ギャング/ファンキー・ナイトメア/レクスターズ",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n自分のタマシードが出た時、自分の山札の上から２枚を墓地に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-035",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g548SeedEntry": {
+        "filter": {
+          "g295Tamaseed": true
+        },
+        "defs": [
+          {
+            "op": "Mill",
+            "n": 2,
+            "optional": true,
+            "g1042Together": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1180",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex11-013",
+      "name": "U・S・A・BINTA",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "ビートジョッキー/チームボンバー",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分のクリーチャーの数以下のコストを持つ、相手のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex11-013",
+      "abilityErrata": {
+        "source": "https://dm.takaratomy.co.jp/rule/rulechange/31600/",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分のクリーチャーの数以下のコストを持つ、相手のクリーチャーを１体破壊する。"
+      },
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "TargetByOwnCount655",
+          "to": "grave"
+        }
+      ],
+      "supportBatch": "phase-1180",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1179,
+    "phase": 1180,
     "checkedAt": "2026-11-14",
-    "baseCount": 7527,
+    "baseCount": 7530,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7530,
+    "totalCount": 7533,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -249085,6 +249177,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7527,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1179,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7527,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7530,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -2467,6 +2467,22 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1180&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(f.name==='鎧亜 メフィスト-１'&&f.civilizationText==='自然'&&f.cost===2&&text===
+   'このクリーチャーが出た時自分の山札の上から1枚目を表向きにする。それが多色カードならマナゾーンに置く。'+
+   'ササゲール1(ディスペクターを召喚する時コストを1少なくしてもよい。そうしたらこのクリーチャーを破壊する。そのディスペクターのコストは0以下にはならない)')
+   return {sasage:1,effect:'sixPhoto',g34Tasks:[{op:'RevealTop514',filter:{g223Multicolor:true},to:'mana'}]};
+  if(f.name==='ジョルジュくん'&&f.civilizationText==='闇'&&f.cost===1&&text===
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   'このクリーチャーは攻撃できない。自分のタマシードが出た時自分の山札の上から2枚を墓地に置いてもよい。')
+   return {blocker:true,noAttack:true,g548SeedEntry:{filter:{g295Tamaseed:true},defs:[{op:'Mill',n:2,optional:true,g1042Together:true}]}};
+  if(d.id==='dmex11-013'&&f.name==='U・S・A・BINTA'&&f.civilizationText==='火'&&f.cost===3&&text===
+   'S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)'+
+   'バトルゾーンにある自分のクリーチャーの数以下のコストを持つ相手のクリーチャーを1体破壊する。')
+   // Official erratum 31600 supplies the missing entry timing.
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'TargetByOwnCount655',to:'grave'}]};
+ }
  if(phase>=1179&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const sasage='ササゲール1(ディスペクターを召喚する時コストを1少なくしてもよい。そうしたらこのクリーチャーを破壊する。そのディスペクターのコストは0以下にはならない)';
