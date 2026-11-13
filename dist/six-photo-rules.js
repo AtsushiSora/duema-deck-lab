@@ -647,7 +647,34 @@ export function createSixPhotoRules(api){
     (!watch.g766Once||!used(s,'g766SpellUse',x))?[{owner,x,watch}]:[];
   }));
  // Use the already decorated target stats and suppress breaker calculation on sources to avoid power recursion.
- function auraPower(s,x,c){const owner=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));if(owner<0||x.sealed||c.type!=='creature')return 0;const fits=f=>(!f.g856Souls||f.g856Souls.some(soul=>hasSoul(card(x),soul)))&&(!f.creature||c.type==='creature')&&(!f.color||colors(c).includes(f.color))&&(!f.race||race(c,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(c,q)))&&(!f.g220NameAny||f.g220NameAny.some(q=>String(c.name).normalize('NFKC').includes(q.normalize('NFKC'))))&&(!f.any||f.any.some(fits))&&(!f.evolution||api.isEvolution(x))&&(f.min===undefined||cost(c)>=f.min)&&(!f.tapped||x.tapped)&&(!f.g436Crossed||ownCondition(s,owner,{g436Crossed:true},x.uid));let bonus=0;for(const sourceOwner of[0,1])for(const source of s.players[sourceOwner].battle){const raw=api.zoneCard(s,sourceOwner,source);if(source.sealed||(!raw.g205Aura&&!raw.g260Self?.grants?.g205Aura&&!raw.g268ManaGrants?.some(r=>r.grants?.g205Aura))||!api.isCreature(s,source)&&!(raw.type==='field'&&raw.d2Field))continue;const aura=effective(source,s,true).g205Aura;if(!aura||aura.sourceTapped!==undefined&&aura.sourceTapped!==!!source.tapped||!aura.both&&owner!==(aura.opponent?1-sourceOwner:sourceOwner)||aura.other&&source.uid===x.uid||aura.turn==='own'&&s.active!==sourceOwner||aura.turn==='opponent'&&s.active===sourceOwner||!fits(aura.filter))continue;bonus+=aura.power;}return bonus;}
+ function auraPower(s,x,c){
+  const owner=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));
+  if(owner<0||x.sealed||c.type!=='creature')return 0;
+  const fits=f=>(!f.g856Souls||f.g856Souls.some(soul=>hasSoul(card(x),soul)))&&
+   (!f.creature||c.type==='creature')&&(f.g1085Psychic===undefined||!!c.psychic===f.g1085Psychic)&&
+   (!f.color||colors(c).includes(f.color))&&(!f.race||race(c,f.race))&&
+   (!f.raceAny||f.raceAny.some(q=>race(c,q)))&&
+   (!f.g220NameAny||f.g220NameAny.some(q=>String(c.name).normalize('NFKC').includes(q.normalize('NFKC'))))&&
+   (!f.any||f.any.some(fits))&&(!f.evolution||api.isEvolution(x))&&(f.min===undefined||cost(c)>=f.min)&&
+   (!f.tapped||x.tapped)&&(!f.g436Crossed||ownCondition(s,owner,{g436Crossed:true},x.uid));
+  let bonus=0;
+  for(const sourceOwner of [0,1])for(const source of s.players[sourceOwner].battle){
+   const raw=api.zoneCard(s,sourceOwner,source);
+   if(source.sealed||(!raw.g205Aura&&!raw.g260Self?.grants?.g205Aura&&
+    !raw.g268ManaGrants?.some(r=>r.grants?.g205Aura))||
+    !api.isCreature(s,source)&&!(raw.type==='field'&&raw.d2Field))continue;
+   const auras=effective(source,s,true).g205Aura;
+   if(!auras)continue;
+   for(const aura of Array.isArray(auras)?auras:[auras]){
+    if(aura.sourceTapped!==undefined&&aura.sourceTapped!==!!source.tapped||
+     !aura.both&&owner!==(aura.opponent?1-sourceOwner:sourceOwner)||aura.other&&source.uid===x.uid||
+     aura.turn==='own'&&s.active!==sourceOwner||aura.turn==='opponent'&&s.active===sourceOwner||
+     !fits(aura.filter))continue;
+    bonus+=aura.power;
+   }
+  }
+  return bonus;
+ }
  // Counting characteristics must not calculate power/breakers on the counted cards.
  function countPower(s,x,c,attacking=false,t=c.g207CountPower){if(!t)return 0;const owner=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));
   if(!t||owner<0||x.sealed||c.type!=='creature'||t.evolution&&!api.isEvolution(x)||t.attackOnly&&!attacking||t.turn==='own'&&s.active!==owner||t.turn==='opponent'&&s.active===owner)return 0;

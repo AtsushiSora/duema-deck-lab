@@ -6160,6 +6160,29 @@ export function standardCardSpec(d,{phase=165}={}){
    'このクリーチャーが攻撃する時バトルゾーンにあるクロスギアを1枚選び持ち主の墓地に置く。クロスギアがバトルゾーンから墓地に置かれた時カードを1枚引いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
    return {breaker:2,g34Attack:[{op:'Target',element:true,anyOwner:true,filter:{g201Gear:true},to:'grave',title:'墓地に置くクロスギアを1枚選ぶ'}],g933GearGraveDraw:true};
  }
+ if(phase>=1094&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmr03-024'&&text===
+   'S・トリガーブロッカーこのクリーチャーは攻撃することができない。このクリーチャーがバトルゾーンを離れた時相手は自身のサイキック・クリーチャーを1体選び破壊する。')
+   return {trigger:true,blocker:true,noAttack:true,g172Leave:[
+    {op:'OpponentSelect',n:1,to:'grave',filter:{g1085Psychic:true}}
+   ]};
+  if(d.id==='dmr05-054'&&text===
+   'バトルゾーンにある相手のサイキック・クリーチャーすべてのパワーは-5000される。(パワー0以下のクリーチャーは破壊される)バトルゾーンにある相手のサイキック以外のクリーチャーすべてのパワーは-1000される。')
+   return {g205Aura:[
+    {opponent:true,power:-5000,filter:{creature:true,g1085Psychic:true}},
+    {opponent:true,power:-1000,filter:{creature:true,g1085Psychic:false}}
+   ]};
+  const heroSweep='パワー3000以下のサイキックではないクリーチャーをすべて破壊する。その後パワー5000以下のサイキック・クリーチャーをすべて破壊する。';
+  if(['dmr02-011','dmex04-029','dmx18-004','promoy11-026','promoy12-011','promoy13-007'].includes(d.id)&&[
+   'このクリーチャーをバトルゾーンに出した時'+heroSweep+'W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)',
+   'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)このクリーチャーがバトルゾーンに出た時'+heroSweep
+  ].includes(text))
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[
+    {op:'Sweep',both:true,filter:{creature:true,g1085Psychic:false,maxPower:3000,g199Power:true}},
+    {op:'Sweep',both:true,filter:{creature:true,g1085Psychic:true,maxPower:5000,g199Power:true}}
+   ]};
+ }
  if(phase>=1093&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const breaker='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';

@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-13",
   "catalogueNames": 11827,
-  "supportedNames": 7249,
-  "pendingNames": 4578,
-  "phase": 1093,
+  "supportedNames": 7252,
+  "pendingNames": 4575,
+  "phase": 1094,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2662,
+    "クリーチャー": 2659,
     "NEOクリーチャー": 87,
     "呪文": 598,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1202,
-    "未対応の能力文": 3155,
+    "未対応の能力文": 3152,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 21,
     "未対応のシンカパワー": 2,
@@ -210308,35 +210308,180 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1094,
+      "baseCommit": "9259685f",
+      "scope": "相手が選ぶ離脱能力、パワーによる順次一掃、サイキックかどうかで分かれる常在効果を持つ3種類を対戦対応する。",
+      "cards": [
+        {
+          "id": "dmr03-024",
+          "name": "ザ・美食秘宝サイキック・イーター",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-024"
+        },
+        {
+          "id": "dmr02-011",
+          "name": "ボルシャック・スーパーヒーロー",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-011"
+        },
+        {
+          "id": "dmr05-054",
+          "name": "希望の親衛隊ファンク",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-054"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dmex04-029",
+          "canonicalId": "dmr02-011",
+          "name": "ボルシャック・スーパーヒーロー",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-029"
+        },
+        {
+          "id": "dmx18-004",
+          "canonicalId": "dmr02-011",
+          "name": "ボルシャック・スーパーヒーロー",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx18-004"
+        },
+        {
+          "id": "promoy11-026",
+          "canonicalId": "dmr02-011",
+          "name": "ボルシャック・スーパーヒーロー",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy11-026"
+        },
+        {
+          "id": "promoy12-011",
+          "canonicalId": "dmr02-011",
+          "name": "ボルシャック・スーパーヒーロー",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy12-011"
+        },
+        {
+          "id": "promoy13-007",
+          "canonicalId": "dmr02-011",
+          "name": "ボルシャック・スーパーヒーロー",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-007"
+        }
+      ],
+      "supportedNames": 7252,
+      "pendingNames": 4575,
+      "verification": {
+        "focused": "tests/standard1094-effects.test.mjs 11件成功",
+        "relatedRegressions": "最終差分で173件成功（超次元・常在パワー・離脱・画像・カタログ等154件、エンジン13件、ツインパクト6件）。最終差分前にツインパクトの長時間CPU対戦・Workerを含む170件が成功。長時間2件は最終差分で再実行していない。",
+        "check": "npm run check 成功",
+        "officialPrints": 8,
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/qa_old/36374/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36427/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36616/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1090の実カード組み合わせ3件と今回の実カード組み合わせ2件を継続。最終差分で未実行の長時間2件は tests/dotto-deck.test.mjs の seeded games と production worker。",
+        "regressionLogs": [
+          "/tmp/duema-phase-1094/focused.log",
+          "/tmp/duema-phase-1094/final-regression.log",
+          "/tmp/duema-phase-1094/final-mechanics.log",
+          "/tmp/duema-phase-1094/final-twinpact.log",
+          "/tmp/duema-phase-1094/final-check.log",
+          "/tmp/duema-phase-1094/regression.log",
+          "/tmp/duema-phase-1094/audit.log"
+        ]
+      },
+      "registeredUnverified": [
+        {
+          "cardId": "dmr02-011",
+          "dependencyIds": [
+            "dm38-046",
+            "dm37-021"
+          ],
+          "test": "最初の一斉破壊でシュバル・フルートが破壊され、その能力で出たサイキックが後半の破壊を受けない（QA 36374）",
+          "reason": "次元院のシュバル・フルートと登場対象のサイキックが未対応。破壊時ドローを持つ既存カードで、破壊時能力の解決が両段階の一掃より後になることを確認。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36374/"
+        },
+        {
+          "cardId": "dmr03-024",
+          "dependencyIds": [
+            "dmd03-002"
+          ],
+          "test": "相手が自身の破壊されないサイキックを選べて、選んだクリーチャーが残る（QA 36427と同型）",
+          "reason": "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
+        }
+      ],
+      "existingIssues": [
+        {
+          "cardId": "dmbd16-009",
+          "test": "ツインパクト版のクリーチャー面によるサイキックの二段目破壊",
+          "reason": "Phase 14の既存実装はパワー3000以下の一斉破壊のみ。単体版の登録ではツインパクトの定義を変更していない。既存のカードIDと呪文面を維持し、クリーチャー面のサイキック対応を別途検証する。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd16-009"
+        }
+      ],
+      "deferred": [
+        {
+          "id": "dm39-051",
+          "name": "メビウス・トルネード",
+          "reason": "公式能力全文・基本情報・画像を確認。最初の破壊が置換された場合にも「もう1体」を正しく扱う対象記録と、解決時に自分のサイキックがいるかの判定を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm39-051"
+          ]
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "双方のパワー6000以下のサイキックを一斉に破壊し、複数の離脱置換・解除を処理するテストと、自身が攻撃されないことの検証が必要。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-062"
+          ]
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "保留継続。選んだアンタップ中の相手クリーチャーを攻撃できる範囲と、召喚酔い・攻撃制限・対象の離脱後の扱いを個別に確認する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-102"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1093,
-    "nextPhase": 1094,
+    "lastVerifiedPhase": 1094,
+    "nextPhase": 1095,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dmr03-024",
-        "name": "ザ・美食秘宝サイキック・イーター",
-        "reason": "離れた時に相手自身が破壊対象を選ぶ処理と、ブロッカー・S・トリガー・攻撃不可を公式照合する。",
+        "id": "dm38-046",
+        "name": "次元院のシュバル・フルート",
+        "reason": "QA 36374の実カード再現に必要。コスト5以下の光または闇のサイキックと、破壊時の超次元からの登場を照合する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-024"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm38-046",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36374/"
         ]
       },
       {
-        "id": "dmr02-011",
-        "name": "ボルシャック・スーパーヒーロー",
-        "reason": "サイキックとそれ以外でパワー上限が異なる二段階の一斉破壊を照合する。",
+        "id": "dm37-021",
+        "name": "時空の英雄アンタッチャブル",
+        "reason": "シュバル・フルートの対象候補。初版と再録の両面、他のサイキックの覚醒を条件とするターン終了時の処理を照合する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-011"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm37-021",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-021"
         ]
       },
       {
-        "id": "dmr05-054",
-        "name": "希望の親衛隊ファンク",
-        "reason": "相手の種別に応じた常在パワー低下と状況起因の破壊、能力無視時を照合する。",
+        "id": "dmx05-s05",
+        "name": "ボルシャック・ギルクロス・NEX",
+        "reason": "双方のサイキック登場を制限する。QA 36414に沿って、すでにいるサイキックの解除との関係を確認する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-054"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmx05-s05",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36414/"
+        ]
+      },
+      {
+        "id": "promoy13-023",
+        "name": "熱血龍 ボルシャック・クロス",
+        "reason": "双方のサイキック登場制限と攻撃能力を確認する。プロモとDMX22版の再録を照合する。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-023",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmx22a-004"
         ]
       },
       {
@@ -210642,8 +210787,11 @@
         ]
       }
     ],
-    "steps": "次回はPhase 1094。最新コミット・作業ツリー・前回の未完了検証と実データの正規カード名数を確認し、候補の公式照合から再開する。検証済み差分をローカルコミットする。全体のnpm testは再実行しない。",
+    "steps": "次回はPhase 1095。最新コミット、差分、実行中の作業、前回ログと正規カード名の件数を確認し、次回候補の公式照合から再開する。全体のnpm testは中断・合否未確認を維持する。",
     "knownIssues": [
+      "次元院のシュバル・フルートと登場対象のサイキックが未対応。破壊時ドローを持つ既存カードで、破壊時能力の解決が両段階の一掃より後になることを確認。",
+      "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
+      "Phase 14の既存実装はパワー3000以下の一斉破壊のみ。単体版の登録ではツインパクトの定義を変更していない。既存のカードIDと呪文面を維持し、クリーチャー面のサイキック対応を別途検証する。",
       "Phase 322の旧スキャナーテストは、Phase 419で対応した真実の名 ワクワク・チャップルン（dmr07-001）を依然として未対応一覧に期待する。Phase 742基点とPhase 743作業ツリーで候補11件・対象はブロック一覧にいないことを再現。今回の変更とは分けて扱う。",
       "Phase 321・322の既存マジボンバーは、手札からEXライフ持ちを出す際に公式QA 41150と異なり、先に閲覧中のカードを解放する。既存の対戦挙動を維持するため、このバッチの裁定対応はHOODに限定。既存カードへの適用は再開データと回帰テストを別途検証する。",
       "Phase 749の偽爆電融 ゾルネードシヴァの任意ブレイクは現行定義で1つ固定。総合ルール701.14dと類似QA 39660に沿う追加ブレイクへの切り替え、発生源が離れた後の挙動、保存途中の既存選択肢との互換性を別途確認する。",
@@ -210685,7 +210833,6 @@
       "公式本文・画像・単一収録を確認。総合ルール603.5aに従い、本人と別の多色カードが同時に出た場合に誘発する。現行の順次登場処理では本人より先に処理したカードを拾えないため、同時登場とエレメントの種類ごとの判定を検証するまで保留。",
       "公式同名欄に3商品を確認。DM26-EX5版のIDと本文・画像の照合、相手の効果による手札破棄の誘発と、ツインパクトの呪文面を含む異なるコストの複数回収を検証するまで保留。",
       "公式本文・画像・単一収録を確認。「1枚目のカードを引く時」の任意マナタップを、ドローステップ以前に効果で引く場合、ドローの置換、同じタイミングで複数体がいる場合でも処理できる共通経路の確認が必要。",
-      "公式本文・画像・単一収録を確認。「1枚目のカードを引く時」の任意マナタップを、ドローステップ以前に効果で引く場合、ドローの置換、同じタイミングで複数体がいる場合でも処理できる共通経路の確認が必要。",
       "公式本文・画像・単一収録を確認。侵略ZEROはコストを支払わずに出た履歴を登場元や効果の無視に関係なく判定し、ターン終了時に複数枚の宣言を済ませてから1枚ずつ出す必要がある。",
       "初版とDMEX-15再録の公式本文・画像を照合。非公開手札の最高コストを判定する際のツインパクト両面の扱いと、捨てる処理が置換された場合に後続の回収で参照するコストについて、直接適用できる裁定を確認できていない。",
       "公式本文・画像・単一収録を照合。コスト1クリーチャーの攻撃制限を両プレイヤーの現在パワーで判定する経路と、各ターン最初のドロー時に任意のDスイッチを処理する順序の確認が必要。",
@@ -210718,11 +210865,11 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
-      "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。最初の攻撃を求める条件とS・トリガー付きカードの手札からの実行、山札から出したクリーチャーのターン終了時処理を既存処理と照合する。保留が続く場合は公式確認可能な別候補へ進む。",
+      "次回候補の公式全文・基本情報・画像・使用制限・再録と裁定を照合する。シュバル・フルートと対象となる光または闇のサイキック、および双方のサイキック登場制限を優先し、保留が続く場合は別の候補へ進む。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
-    "registrationStatus": "10分間隔の自動化 duema-deck-lab は一時停止。ユーザー指定による今回の追加のみ実施。",
-    "verificationMode": "前回保留の公式裁定2件は実カードで検証済み。別の依存カードが必要な裁定はPhase 1090のdeferredに記録。",
+    "registrationStatus": "ユーザーの指示で10分間隔のカード登録を再開。",
+    "verificationMode": "Phase 1090と1094の登録済みカードの裁定再現に必要なカードを順次照合する。",
     "nextRequestedCards": []
   },
   "registeredCardVerification": {

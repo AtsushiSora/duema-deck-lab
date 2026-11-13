@@ -216749,15 +216749,124 @@
       },
       "supportBatch": "phase-1093",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr03-024",
+      "name": "ザ・美食秘宝サイキック・イーター",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "パンドラボックス/エイリアン",
+      "text": "S・トリガー\nブロッカー\nこのクリーチャーは攻撃することができない。\nこのクリーチャーがバトルゾーンを離れた時、相手は自身のサイキック・クリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-024",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "noAttack": true,
+      "g172Leave": [
+        {
+          "op": "OpponentSelect",
+          "n": 1,
+          "to": "grave",
+          "filter": {
+            "g1085Psychic": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1094",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr02-011",
+      "name": "ボルシャック・スーパーヒーロー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アーマード・ドラゴン/ハンター",
+      "text": "このクリーチャーをバトルゾーンに出した時、パワー3000以下のサイキックではないクリーチャーをすべて破壊する。その後、パワー5000以下のサイキック・クリーチャーをすべて破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-011",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "filter": {
+            "creature": true,
+            "g1085Psychic": false,
+            "maxPower": 3000,
+            "g199Power": true
+          }
+        },
+        {
+          "op": "Sweep",
+          "both": true,
+          "filter": {
+            "creature": true,
+            "g1085Psychic": true,
+            "maxPower": 5000,
+            "g199Power": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1094",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-054",
+      "name": "希望の親衛隊ファンク",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ダークロード/ハンター/エイリアン",
+      "text": "バトルゾーンにある相手のサイキック・クリーチャーすべてのパワーは-5000される。(パワー０以下のクリーチャーは破壊される)\nバトルゾーンにある相手のサイキック以外のクリーチャーすべてのパワーは-1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-054",
+      "limit": 4,
+      "g205Aura": [
+        {
+          "opponent": true,
+          "power": -5000,
+          "filter": {
+            "creature": true,
+            "g1085Psychic": true
+          }
+        },
+        {
+          "opponent": true,
+          "power": -1000,
+          "filter": {
+            "creature": true,
+            "g1085Psychic": false
+          }
+        }
+      ],
+      "supportBatch": "phase-1094",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1093,
+    "phase": 1094,
     "checkedAt": "2026-11-13",
-    "baseCount": 7246,
+    "baseCount": 7249,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7249,
+    "totalCount": 7252,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -236162,6 +236271,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7246,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1093,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7246,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7249,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

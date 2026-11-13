@@ -2186,6 +2186,10 @@ function advanceTriggers(s){if(s.lossEvent)return;
    else log(s,p,'spellPrevented',`${c.name}は実行条件を満たさないため使用できず手札に残る`,{cardId:c.id});
   }t.declared=[];
   if(t.interrupt){s.pendingEffects=[...(s.pendingEffects||[]),...t.entries];s.triggers=s.triggerStack?.pop()||null;finishInterrupt(s);return;}
+  if(t.entries.length){
+   checkContinuousPowerBeforeTriggers(s);
+   if(s.decision||s.leaving||s.lossEvent||s.winner!==null)return;
+  }
   if(s.pendingEffects?.length)t.entries.push(...s.pendingEffects.splice(0));
   t.entries=availableEffects(s,t.entries);
   if(!t.entries.some(x=>x.player===s.active)&&extra.beforeNonActive(s))return;
@@ -2716,7 +2720,10 @@ function stepCore(s,action){
  manaDeparted(s,manaBefore);let manaPrevious=manaSnapshot(s);extra.six.fifteen.graveDeparted(s,graveBefore);let gravePrevious=s.players.map(p=>p.grave.map(x=>x.uid));for(let n=0;n<1000;n++){manaDeparted(s,manaPrevious);manaPrevious=manaSnapshot(s);extra.six.fifteen.graveDeparted(s,gravePrevious);gravePrevious=s.players.map(p=>p.grave.map(x=>x.uid));
   for(const p of[s.active,1-s.active])checkSidewaysHand(s,p);
   if(advanceLoss(s)){if(s.decision||s.winner!==null)break;continue;}
-  refreshDynamicTypes(s);if(extra.lionelState(s)){if(s.decision)break;continue;}advanceLeaving(s);if(extra.lionelState(s)){if(s.decision)break;continue;}if(!s.leaving&&!s.decision)for(const p of[s.active,1-s.active]){deckCheck(s,p);if(s.winner!==null||s.lossEvent)break;}if(s.winner!==null)break;if(s.lossEvent)continue;if(!s.decision&&s.judge?.stage==='destinations878')advanceJudgeCosts(s);resumeInterrupt(s);advanceDeclarations(s);advanceBattle(s);extra.finishSwap(s);if(extra.pendingEscapeSB(s))powerCleanup(s);if(!s.attackDeclarations&&!s.leaving)advanceEffects(s);if(!s.leaving)advanceTriggers(s);advanceJudgeBreaks(s);
+  refreshDynamicTypes(s);if(extra.lionelState(s)){if(s.decision)break;continue;}advanceLeaving(s);if(extra.lionelState(s)){if(s.decision)break;continue;}if(!s.leaving&&!s.decision)for(const p of[s.active,1-s.active]){deckCheck(s,p);if(s.winner!==null||s.lossEvent)break;}if(s.winner!==null)break;if(s.lossEvent)continue;if(!s.decision&&s.judge?.stage==='destinations878')advanceJudgeCosts(s);resumeInterrupt(s);advanceDeclarations(s);advanceBattle(s);extra.finishSwap(s);
+  if(extra.pendingEscapeSB(s))powerCleanup(s);
+  else if(s.pendingEffects?.length)checkContinuousPowerBeforeTriggers(s);
+  if(!s.attackDeclarations&&!s.leaving)advanceEffects(s);if(!s.leaving)advanceTriggers(s);advanceJudgeBreaks(s);
   // Native effects and extended tasks can each move mana before power is checked.
   manaDeparted(s,manaPrevious);manaPrevious=manaSnapshot(s);
   powerCleanup(s);if(!s.pendingEffects?.length&&!s.triggers)extra.beforeNonActive(s);extra.advance(s);
@@ -4245,6 +4252,14 @@ export function aggregate(games){
  return {total,wins,losses,unresolved,completed,rate,interval:completed?[Math.max(0,center-half),Math.min(1,center+half)]:null,groups,averageTurns:completed?games.filter(g=>g.winner!==null).reduce((n,g)=>n+g.turns,0)/completed:0,earlyCreatures:games.filter(g=>g.metrics[0].firstCreature!==null&&g.metrics[0].firstCreature<=3).length,cards};
 }
 
+// A continuous power reduction can destroy an entrant before its queued entry ability resolves (QA36616).
+function checkContinuousPowerBeforeTriggers(s){
+ if(s.decision||s.leaving)return;
+ if(s.players.some(p=>p.battle.some(x=>{
+  const auras=card(x).g205Aura;
+  return Array.isArray(auras)&&auras.some(aura=>aura.power<0)&&isCreature(s,x)&&!abilitiesIgnored(s,x);
+ })))powerCleanup(s);
+}
 function powerCleanup(s){
  if(s.g25DeployBatch||s.g32DeployBatch||s.g34DeployBatch||s.lossEvent)return;
  if(s.winner===null)extra.utilityTop.flush(s);

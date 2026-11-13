@@ -1,0 +1,446 @@
+{
+  "phase": 1094,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7249,
+  "description": "相手が選ぶ離脱能力、パワーによる順次一掃、サイキックかどうかで分かれる常在効果を持つ3種類を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/36374/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36427/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36616/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmr03-024",
+      "name": "ザ・美食秘宝サイキック・イーター",
+      "faces": [
+        {
+          "name": "ザ・美食秘宝サイキック・イーター",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー\nブロッカー\nこのクリーチャーは攻撃することができない。\nこのクリーチャーがバトルゾーンを離れた時、相手は自身のサイキック・クリーチャーを１体選び、破壊する。",
+          "race": "パンドラボックス/エイリアン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-024",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-024.jpg",
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "noAttack": true,
+        "g172Leave": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave",
+            "filter": {
+              "g1085Psychic": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "4321c7909f7b3c540c2f94f31a8784e2f44c3d7a6abad5f43336cfe9e66d3172",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr02-011",
+      "name": "ボルシャック・スーパーヒーロー",
+      "faces": [
+        {
+          "name": "ボルシャック・スーパーヒーロー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、パワー3000以下のサイキックではないクリーチャーをすべて破壊する。その後、パワー5000以下のサイキック・クリーチャーをすべて破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr02-011.jpg",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "filter": {
+              "creature": true,
+              "g1085Psychic": false,
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "Sweep",
+            "both": true,
+            "filter": {
+              "creature": true,
+              "g1085Psychic": true,
+              "maxPower": 5000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "c90c6d9ed0f620c6113c50cee120ba94fbfda126696a2b6758cff6e5dd379718",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-054",
+      "name": "希望の親衛隊ファンク",
+      "faces": [
+        {
+          "name": "希望の親衛隊ファンク",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンにある相手のサイキック・クリーチャーすべてのパワーは-5000される。(パワー０以下のクリーチャーは破壊される)\nバトルゾーンにある相手のサイキック以外のクリーチャーすべてのパワーは-1000される。",
+          "race": "ダークロード/ハンター/エイリアン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-054",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-054.jpg",
+      "spec": {
+        "g205Aura": [
+          {
+            "opponent": true,
+            "power": -5000,
+            "filter": {
+              "creature": true,
+              "g1085Psychic": true
+            }
+          },
+          {
+            "opponent": true,
+            "power": -1000,
+            "filter": {
+              "creature": true,
+              "g1085Psychic": false
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "0ecdffec468f3c6d4278b71b5b61a0e6e0b68b93bca5843fcbbfc6510e65e120",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex04-029",
+      "name": "ボルシャック・スーパーヒーロー",
+      "faces": [
+        {
+          "name": "ボルシャック・スーパーヒーロー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、パワー3000以下のサイキックではないクリーチャーをすべて破壊する。その後、パワー5000以下のサイキック・クリーチャーをすべて破壊する。",
+          "race": "アーマード・ドラゴン/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-029",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-029.jpg",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "filter": {
+              "creature": true,
+              "g1085Psychic": false,
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "Sweep",
+            "both": true,
+            "filter": {
+              "creature": true,
+              "g1085Psychic": true,
+              "maxPower": 5000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "7b63e933fcf7763009224ff9f93e2a0237ad9a89b289a731abf6b235a74f6070",
+        "facesMatched": true
+      },
+      "canonicalId": "dmr02-011"
+    },
+    {
+      "id": "dmx18-004",
+      "name": "ボルシャック・スーパーヒーロー",
+      "faces": [
+        {
+          "name": "ボルシャック・スーパーヒーロー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、パワー3000以下のサイキックではないクリーチャーをすべて破壊する。その後、パワー5000以下のサイキック・クリーチャーをすべて破壊する。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アーマード・ドラゴン/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx18-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx18-004.jpg",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "filter": {
+              "creature": true,
+              "g1085Psychic": false,
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "Sweep",
+            "both": true,
+            "filter": {
+              "creature": true,
+              "g1085Psychic": true,
+              "maxPower": 5000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "eb654d0ee2b49fe8140b6417e997deae7a4c379bda3649ff19a16313bc98c4d2",
+        "facesMatched": true
+      },
+      "canonicalId": "dmr02-011"
+    },
+    {
+      "id": "promoy11-026",
+      "name": "ボルシャック・スーパーヒーロー",
+      "faces": [
+        {
+          "name": "ボルシャック・スーパーヒーロー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、パワー3000以下のサイキックではないクリーチャーをすべて破壊する。その後、パワー5000以下のサイキック・クリーチャーをすべて破壊する。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アーマード・ドラゴン/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy11-026",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy11-026.jpg",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "filter": {
+              "creature": true,
+              "g1085Psychic": false,
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "Sweep",
+            "both": true,
+            "filter": {
+              "creature": true,
+              "g1085Psychic": true,
+              "maxPower": 5000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "50aa1915b531acbe874046aa241b9893338f156f84eb9e85230d8553a9241d7f",
+        "facesMatched": true
+      },
+      "canonicalId": "dmr02-011"
+    },
+    {
+      "id": "promoy12-011",
+      "name": "ボルシャック・スーパーヒーロー",
+      "faces": [
+        {
+          "name": "ボルシャック・スーパーヒーロー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、パワー3000以下のサイキックではないクリーチャーをすべて破壊する。その後、パワー5000以下のサイキック・クリーチャーをすべて破壊する。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アーマード・ドラゴン/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy12-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy12-011.jpg",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "filter": {
+              "creature": true,
+              "g1085Psychic": false,
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "Sweep",
+            "both": true,
+            "filter": {
+              "creature": true,
+              "g1085Psychic": true,
+              "maxPower": 5000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "4b75cc43e378377d96b203cd889ca238bed96c2a90ecc29f661098c4eeeb23ec",
+        "facesMatched": true
+      },
+      "canonicalId": "dmr02-011"
+    },
+    {
+      "id": "promoy13-007",
+      "name": "ボルシャック・スーパーヒーロー",
+      "faces": [
+        {
+          "name": "ボルシャック・スーパーヒーロー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、パワー3000以下のサイキックではないクリーチャーをすべて破壊する。その後、パワー5000以下のサイキック・クリーチャーをすべて破壊する。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アーマード・ドラゴン/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-007",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy13-007.jpg",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "filter": {
+              "creature": true,
+              "g1085Psychic": false,
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "Sweep",
+            "both": true,
+            "filter": {
+              "creature": true,
+              "g1085Psychic": true,
+              "maxPower": 5000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "e6fd41b866742ce53ff83ed7284c0d3ac0fb3bd8b512d64d50b8c0e7150e1691",
+        "facesMatched": true
+      },
+      "canonicalId": "dmr02-011"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr03-024": 4,
+      "dmr02-011": 4,
+      "dmr05-054": 4,
+      "dmex04-029": 4,
+      "dmx18-004": 4,
+      "promoy11-026": 4,
+      "promoy12-011": 4,
+      "promoy13-007": 4
+    }
+  }
+}
