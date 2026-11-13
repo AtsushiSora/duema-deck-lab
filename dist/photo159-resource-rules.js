@@ -11,11 +11,19 @@ export function createPhoto159ResourceRules(api){
  case'g159R_Grant':choice(s,t,'このターン、ササゲール2を与える自分のエレメントを1つ選ぶ',api.targetOptions(s,t.p,s.players[t.p].battle.filter(x=>!x.sealed&&['creature','seed','field','gear'].includes(api.effective(x,s).type))).map(o=>({...o,score:20-cost(card(o.cardId))})));break;
  default:throw Error('未対応の写真カード資源処理：'+t.op);
  }return true;}
- function chosen(s,t,v){if(t.op!=='g159R_Grant')return false;const x=s.players[t.p].battle.find(x=>x.uid===v);if(x)x.g159Sasage={turn:s.turn,amount:2};return true;}
+ function chosen(s,t,v){
+  if(t.op!=='g159R_Grant')return false;
+  const x=s.players[t.p].battle.find(x=>x.uid===v);
+  if(x){
+   const previous=x.g159Sasage?.turn===s.turn?x.g159Sasage:null;
+   x.g159Sasage={turn:s.turn,amount:2,count:previous?(previous.count??1)+1:1};
+  }
+  return true;
+ }
  return{run,chosen,
  effect(s,p,c,uid){if(c.g159Role!=='stone')return false;put(s,task('g159R_Stone',p,c.id,{uid}));return true;},
  manaAdded(s,p,cards){for(const w of living(s,p).filter(x=>card(x).g159Role==='condama'&&!api.ignored(s,x)))for(const x of cards)if(!x.faceDown&&faces(card(x)).some(dista))api.enqueue(s,p,on(p,w,'g159R_ManaUntap',{target:x.uid,serial:x.zoneSerial||0}));},
  start(s,p){return living(s,p).filter(x=>card(x).g159Role==='condama'&&!api.ignored(s,x)&&!api.selfStopped(s,p)).map(x=>on(p,x,'g159R_Grant'));},
- decorate(s,p,x,c){return x.g159Sasage?.turn===s.turn?{...c,sasage:Math.max(c.sasage||0,x.g159Sasage.amount)}:c;}
+ decorate(s,p,x,c){const grant=x.g159Sasage;return grant?.turn===s.turn?api.grantSasage(c,grant.amount,grant.count??1):c;}
  };
 }

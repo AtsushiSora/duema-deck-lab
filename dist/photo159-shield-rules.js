@@ -115,7 +115,8 @@ export function createPhoto159ShieldRules(api){
    if(colors(c).includes('闇')&&String(c.race).includes('デーモン・コマンド'))c={...c,slayer:true};
   }
   if(zagaanSources(s,p,x).length)c={...c,yobinion:true};
-  if(sources.some(w=>w.uid!==x.uid&&card(w).g159ShieldRole==='perfect'))c={...c,sasage:Math.max(c.sasage||0,2)};
+  const perfectCount=sources.filter(w=>w.uid!==x.uid&&card(w).g159ShieldRole==='perfect').length;
+  if(perfectCount)c=api.grantSasage(c,2,perfectCount);
   return c;
  }
  };

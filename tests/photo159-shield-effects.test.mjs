@@ -2,6 +2,40 @@ import test from'node:test';import assert from'node:assert/strict';
 import{e,data,details,setup,give,inst,act,cast,drain,GEN,GG}from'./target-fixture.mjs';
 import{PHOTO159_SHIELD_SPECS}from'../tools/photo159-shield-specs.mjs';
 const AG='dmx11-015',YE='dm22ex2-S11',MO='dmrp15-km3',ZA='dm24ex4-031',ZG='dm24rp4-S01',EL='dm24rp2-006',CG='dmx11-021',PW='dm22ex2-011',N='dm01-108',W='dm01-083',F='dm01-097',B='dm01-076',SP='dm06-085',ST='dm01-086',AP='dmrp22-042',CO='dm26rp3-020',J='dm11-007',JD='dm22ex1-018',EVO='dm10-017',PC='dm13-050',IF='dm06-008';
+const BEN='dmrp18-s09', HYAKUME='dmrp19-028', GAUSS='dmrp19-030';
+
+test('Hyakume can use printed and granted Sasage separately or together (QA 42648)',()=>{
+ const s=setup();
+ give(s,0,'battle',[PW,HYAKUME]);
+ give(s,0,'hand',[GAUSS]);
+ const own=s.players[0],donor=own.battle[1],recipient=own.hand[0];
+ const actions=e.getLegalActions(s).filter(a=>a.uid===recipient.uid&&a.alternative==='sasage');
+ assert.deepEqual(actions.map(a=>[a.sasage.length,a.cost]).sort(),[[1,3],[1,5],[2,1]]);
+ e.step(s,actions.find(a=>a.sasage.length===1&&a.cost===5));
+ drain(s);
+ assert.deepEqual(own.grave.filter(x=>x.uid===donor.uid),[donor]);
+ assert.ok(own.battle.includes(recipient));
+ assert.equal(own.mana.filter(x=>x.tapped).length,5);
+});
+
+test('Two Sasage abilities on Ben use its EX Life and then destroy Ben (QA 42647)',()=>{
+ for(const count of [1,2]){
+  const s=setup();
+  give(s,0,'battle',[PW,PW,BEN]);
+  give(s,0,'hand',[GAUSS]);
+  const own=s.players[0],ben=own.battle[2],shield=own.shields[0],recipient=own.hand[0];
+  ben.exLifeShieldUid=shield.uid;
+  const action=e.getLegalActions(s).find(a=>a.uid===recipient.uid&&a.alternative==='sasage'&&
+   a.sasage.length===count&&a.sasage.every(uid=>uid===ben.uid));
+  assert.equal(action?.cost,7-count*2);
+  e.step(s,action);
+  assert.ok(own.grave.includes(shield));
+  assert.equal(own.battle.includes(ben),count===1);
+  assert.equal(own.grave.includes(ben),count===2);
+  assert.ok(own.battle.includes(recipient));
+  drain(s);
+ }
+});
 const physical=s=>e.physicalCards(s).map(x=>x.uid).sort();
 const options=s=>e.getLegalActions(s).map(a=>({...a,...(a.kind==='extended'?s.decision.choices[a.choice]:{})}));
 function pick(s,v){const a=options(s).find(a=>a.value===v||a.value?.uid===v||a.uid===v||a.target===v||a.targets?.some(x=>x.uid===v));assert.ok(a,JSON.stringify(s.decision));e.step(s,e.getLegalActions(s).find(x=>x.id===a.id));}

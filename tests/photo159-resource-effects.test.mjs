@@ -23,6 +23,65 @@ test('Condama grants Sasage2 to a chosen element for just its owners current tur
 
 test('Condamas beginning-of-turn ability really creates a choice and survives a saved game',()=>{let s=setup();give(s,0,'battle',[CO,N]);act(s,'toAttack');act(s,'endTurn');drain(s);if(s.phase==='charge')act(s,'skipCharge');act(s,'toAttack');act(s,'endTurn');assert.equal(s.active,0);assert.equal(s.decision?.task?.op,'g159R_Grant');const uid=s.players[0].battle[1].uid;s=JSON.parse(JSON.stringify(s));pick(s,uid);assert.equal(e.effectiveCard(s.players[0].battle[1],s).sasage,2);});
 
+function startNextOwnTurn(s){
+ act(s,'toAttack');act(s,'endTurn');drain(s);
+ if(s.phase==='charge')act(s,'skipCharge');
+ act(s,'toAttack');act(s,'endTurn');
+}
+
+test('Condama can grant itself a second Sasage 2 and pay four fewer mana after restoring the match',async()=>{
+ let s=setup();
+ give(s,0,'battle',[CO]);
+ const uid=s.players[0].battle[0].uid,recipient='dmrp19-027';
+ startNextOwnTurn(s);
+ assert.equal(s.decision.task.op,'g159R_Grant');
+ pick(s,uid);
+ if(s.phase==='charge')act(s,'skipCharge');
+ give(s,0,'mana',[F,N]);
+ give(s,0,'hand',[recipient]);
+ const before=physical(s);
+ s=JSON.parse(JSON.stringify(s));
+ const condama=s.players[0].battle[0];
+ assert.equal(e.effectiveCard(condama,s).sasage,4);
+ const action=e.getLegalActions(s).find(a=>a.cardId===recipient&&a.alternative==='sasage');
+ assert.deepEqual(action?.sasage,[uid,uid]);
+ assert.equal(action.cost,2);
+ const {handInspectorHTML}=await import('../dist/hand-ui.js');
+ const ui={hand:s.players[0].hand[0].uid};
+ assert.match(handInspectorHTML(s,ui,{art:()=>'',icon:()=>''}),/コンダマ-2 2回・4軽減[^<]+2マナ/);
+ e.step(s,action,{manualMana:true});
+ assert.equal(s.decision.type,'manaPayment');
+ assert.equal(s.decision.cost,2);
+ assert.ok(s.players[0].battle.includes(condama));
+ s=JSON.parse(JSON.stringify(s));
+ for(let n=0;s.decision?.type==='manaPayment';n++){
+  assert.ok(n<5);
+  e.step(s,e.chooseAI(s),{manualMana:true});
+ }
+ drain(s);
+ assert.equal(s.players[0].grave.filter(x=>x.uid===uid).length,1);
+ assert.ok(s.players[0].battle.some(x=>x.cardId===recipient));
+ assert.equal(s.players[0].mana.filter(x=>x.tapped).length,2);
+ assert.deepEqual(physical(s),before);
+});
+
+test('Both Condama start abilities accumulate on one element, then expire together',()=>{
+ const s=setup();
+ give(s,0,'battle',[CO,CO]);
+ const target=s.players[0].battle[0];
+ startNextOwnTurn(s);
+ for(let n=0;n<2;n++){
+  if(s.decision?.type==='effectOrder')act(s,'orderEffect');
+  assert.equal(s.decision.task.op,'g159R_Grant');
+  pick(s,target.uid);
+ }
+ assert.equal(e.effectiveCard(target,s).sasage,6);
+ assert.equal(e.effectiveCard(s.players[0].battle[1],s).sasage,2);
+ if(s.phase==='charge')act(s,'skipCharge');
+ act(s,'toAttack');act(s,'endTurn');drain(s);
+ assert.equal(e.effectiveCard(target,s).sasage,2);
+});
+
 test('CPU avoids Stones forced library loss and MomoDMs forced mana-ramp loss',()=>{for(const id of[STONE,'dm24ex2-DM03']){const s=setup();give(s,0,'deck',[N,W]);give(s,0,'hand',[id,N]);assert.equal(e.chooseAI(s).cardId,N);}});
 
 test('CPU avoids a fatal Pucho attack-end reveal but takes an unobstructed direct win',()=>{for(const direct of[false,true]){const s=setup();give(s,0,'battle',['dm26rp2-S008']);give(s,0,'deck',[N,W,F]);give(s,1,'battle',[]);if(direct)give(s,1,'shields',[]);s.phase='attack';assert.equal(e.chooseAI(s).kind,direct?'attack':'endTurn');}});

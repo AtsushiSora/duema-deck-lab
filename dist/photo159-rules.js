@@ -4,7 +4,11 @@ import{createPhoto159CombatRules}from'./photo159-combat-rules.js?v=0.721.0';
 import{createPhoto159DispectorRules}from'./photo159-dispector-rules.js?v=0.227.0';
 // Keep the photographed-card families independent while using normal engine hooks.
 export function createPhoto159Rules(api){
- const modules=[createPhoto159ResourceRules(api),createPhoto159ShieldRules(api),createPhoto159CombatRules(api),createPhoto159DispectorRules(api)];
+ function grantSasage(c,amount,count){
+  const amounts=[...(c.sasageAmounts??(c.sasage?[c.sasage]:[])),...Array(count).fill(amount)];
+  return {...c,sasage:(c.sasage||0)+amount*count,sasageAmounts:amounts};
+ }
+ const modules=[createPhoto159ResourceRules({...api,grantSasage}),createPhoto159ShieldRules({...api,grantSasage}),createPhoto159CombatRules(api),createPhoto159DispectorRules(api)];
  const call=(name,...args)=>{for(const m of modules)m[name]?.(...args);};
  const collect=(name,...args)=>modules.flatMap(m=>m[name]?.(...args)||[]);
  const consume=(name,...args)=>modules.some(m=>m[name]?.(...args));
