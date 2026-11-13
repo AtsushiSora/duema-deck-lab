@@ -222107,15 +222107,103 @@
       ],
       "supportBatch": "phase-1124",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm37-003",
+      "name": "爆竜ハリケーントプス XX",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "アーマード・ドラゴン/フレイム・コマンド",
+      "text": "このクリーチャーが攻撃してブロックされなかった時、コスト５以下の火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-003",
+      "limit": 4,
+      "breaker": 2,
+      "g482AnyUnblocked": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "g1104PsychicFaces": true,
+          "filter": {
+            "creature": true,
+            "g1085Psychic": true,
+            "color": "火",
+            "max": 5
+          },
+          "title": "出すコスト5以下の火のサイキック・クリーチャーを選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-1125",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm37-026",
+      "name": "ジェスター・ブレイン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "カードを３枚引く。その後、相手は自身のシールドを３枚まで選び、持ち主の手札に加えてもよい。こうして相手が手札に加えたシールド１枚につき、自分の手札を１枚、山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-026",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 3
+        },
+        {
+          "op": "JesterShields1125",
+          "picked": []
+        }
+      ],
+      "supportBatch": "phase-1125",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm39-022",
+      "name": "滅炎の精霊イロハス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2500,
+      "race": "エンジェル・コマンド",
+      "text": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーは、火のクリーチャーに攻撃されない。\n火の呪文の効果によって、相手がバトルゾーンにあるクリーチャーを選ぶ時、このクリーチャーを選ぶことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-022",
+      "limit": 4,
+      "trigger": true,
+      "cannotBeAttackedByCivs": [
+        "火"
+      ],
+      "g1125FireSpellUntargetable": true,
+      "supportBatch": "phase-1125",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1124,
+    "phase": 1125,
     "checkedAt": "2026-11-13",
-    "baseCount": 7357,
+    "baseCount": 7360,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7360,
+    "totalCount": 7363,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -241892,6 +241980,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7357,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1124,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7357,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7360,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

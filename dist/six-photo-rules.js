@@ -3648,6 +3648,24 @@ export function createSixPhotoRules(api){
   else if(t.optional)start(s,t,t.defs);
   break;
  }
+ case'g34_JesterShields1125':{
+  const defender=1-t.p;
+  const options=opp.shields.flatMap((y,i)=>!t.picked.includes(y.uid)&&api.shieldCards(y).some(x=>!x.g37ShieldHeld)?
+   [opt('シールド '+(i+1)+(y.faceUp?'：'+card(y).name:''),y.uid,opp.shields.length-t.picked.length>1?10:-10,
+    y.faceUp?y.cardId:undefined)]:[]);
+  if(!t.done&&t.picked.length<3&&options.length)
+   choice(s,t,'手札に加える自分のシールドを3つまで選ぶ',[...options,
+    opt(t.picked.length?'選んだシールドをまとめて手札に加える':'シールドを加えない',null,0)],defender);
+  else if(t.picked.length){
+   const follow=task('g34_JesterBottom1125',t.p,t.source,{n:0});
+   follow.n=api.interruptBreak(s,defender,t.picked,follow,
+    {g842Hand:true,g1125CountShields:true,controller:t.p,source:t.source});
+  }
+  break;
+ }
+ case'g34_JesterBottom1125':
+  if(t.n)start(s,t,[{op:'Select',origin:'hand',to:'deck',n:t.n,title:'山札の一番下に置く自分の手札を選ぶ'}]);
+  break;
  case'g34_TappedShieldPick842':{
   const defender=t.owner==='self'?t.p:1-t.p,shields=s.players[defender].shields;
   const options=shields.flatMap((x,i)=>api.shieldCards(x).some(y=>!y.g37ShieldHeld)
@@ -4387,6 +4405,9 @@ export function createSixPhotoRules(api){
   }
   break;
  }
+ case'g34_JesterShields1125':
+  put(s,{...t,picked:v?[...t.picked,v]:t.picked,done:!v});
+  break;
  case'g34_ShieldTriggerUntap1015':
   if(v)api.interruptBreak(s,t.p,[v],{...t,op:'g34_Untap',g191First:true},
    {g842Hand:true,controller:t.p,source:t.source});
@@ -6257,7 +6278,8 @@ export function createSixPhotoRules(api){
  unblocked482(s,p,x){
   if(x.sealed)return false;
   const playerAttack=s.attack.target==='player';
-  const attacker=effective(x,s),defs=playerAttack&&!api.selfStopped(s,p)&&attacker.g482Unblocked;
+  const attacker=effective(x,s),defs=!api.selfStopped(s,p)&&
+   ((!s.attack.g484Blocked&&attacker.g482AnyUnblocked)||(playerAttack&&attacker.g482Unblocked));
   if(defs)queue(s,p,x,defs);
   let triggered=!!defs;
   if(playerAttack&&!s.attack.g484Blocked){

@@ -6184,6 +6184,28 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1125&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm37-003'&&f.typeText==='クリーチャー'&&text===
+   'このクリーチャーが攻撃してブロックされなかった時コスト5以下の火のサイキック・クリーチャーを1体'+
+   '自分の超次元ゾーンからバトルゾーンに出してもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g482AnyUnblocked:[{op:'Select',origin:'extra',deploy:true,n:1,optional:true,
+    g1104PsychicFaces:true,filter:{creature:true,g1085Psychic:true,color:'火',max:5},
+    title:'出すコスト5以下の火のサイキック・クリーチャーを選ぶ（任意）'}]};
+  const jester=[
+   'その後相手は自身のシールドを3枚まで選び持ち主の手札に加えてもよい。こうして相手が手札に加えたシールド1枚につき',
+   'その後相手は自身のシールドを3つまで選び手札に加えてもよい。こうして相手が手札に加えたシールドひとつにつき'
+  ];
+  if(['dm37-026','dmx22b-059'].includes(d.id)&&f.typeText==='呪文'&&jester.some(clause=>
+   text.replace(/\(相手はこうして手札に加えたシールドカードの「S・トリガー」を使える\)$/,'')===
+   'カードを3枚引く。'+clause+'自分の手札を1枚山札の一番下に置く。'))
+   return {effect:'sixPhoto',g34Tasks:[{op:'Draw',n:3},{op:'JesterShields1125',picked:[]}]};
+  if(d.id==='dm39-022'&&f.typeText==='クリーチャー'&&text===
+   'S・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)'+
+   'このクリーチャーは火のクリーチャーに攻撃されない。'+
+   '火の呪文の効果によって相手がバトルゾーンにあるクリーチャーを選ぶ時このクリーチャーを選ぶことはできない。')
+   return {trigger:true,cannotBeAttackedByCivs:['火'],g1125FireSpellUntargetable:true};
+ }
  if(phase>=1124&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText),birth='マナ爆誕0(このクリーチャーを自分のマナゾーンからコストを支払わずに召喚してもよい)';
   const fromMana=[
