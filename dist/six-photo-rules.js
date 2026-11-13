@@ -2506,6 +2506,20 @@ export function createSixPhotoRules(api){
    filter:{race:'ロスト・クルセイダー',color:'水'},title:'手札の枚数以下の水のロスト・クルセイダーを1つ出す？'}]}]);
   break;
  }
+ case'g34_GraveBase1126':{
+  const host=sourceHost474(s,t.entrant);
+  const base=own.grave.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);
+  if(host&&host.p===t.p&&!host.x.sealed&&api.isCreature(s,host.x)&&base&&api.canMoveZone(s,t.p,'grave'))
+   choice(s,t,'～脅威の盾～を登場したクリーチャーの下に置く？',
+    [opt('下に置く',true,12,base.cardId),skip()]);
+  break;
+ }
+ case'g34_DrawThenDestroy1126':{
+  const host=sourceHost474(s,t)?.x;
+  const n=host&&!host.sealed?api.allLayers(host).length:t.lastKnownCount??1;
+  start(s,t,[{op:'Draw',n},{op:'SelfDestroy'}]);
+  break;
+ }
  case'g34_TwinInPlace1088':{
   const host=sourceHost474(s,t.subject);
   if(host&&host.p===t.p)api.castBattleSpell(s,t.p,t.subject.uid,t.subject.incarnation,t.subject.source,{label:'SC龍飛→SC風流'});
@@ -4980,6 +4994,15 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_SacrificeAlly413':if(v){const y=own.battle.find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation&&!y.sealed&&(t.g547Seed?matches(s,t.p,y,{g295Tamaseed:true}):api.isCreature(s,y))&&(!t.filter||matches(s,t.p,y,t.filter)));if(y&&(!t.other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))){move(s,[{player:t.p,uid:y.uid,to:'grave',destroy:true,controller:t.controller??t.p}]);start(s,t,t.defs);}}break;
+ case'g34_GraveBase1126':if(v){
+  const host=sourceHost474(s,t.entrant);
+  const base=own.grave.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);
+  if(host&&host.p===t.p&&!host.x.sealed&&api.isCreature(s,host.x)&&base&&api.canMoveZone(s,t.p,'grave')){
+   remove(own.grave,base.uid);
+   clear(base,'under');
+   (host.x.under??=[]).push(base);
+  }
+ }break;
  case'g34_SelfSacrifice407':if(v){const present=s.players.some(p=>p.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))));if(present)start(s,t,[{op:'SelfDestroy'},...(t.defs||[])]);}break;
  case'g34_RevengeDeclare795':if(v){
   const y=revengeCard795(s,t);
@@ -5967,6 +5990,11 @@ export function createSixPhotoRules(api){
  twinFinish1088(s,p){return creatures(s,p).some(x=>card(x).g1088Twin&&!api.ignored(s,x));},
  observedEntry(s,p,y,options){
   const c=card(y),eventType=c.type;
+  if(!y.sealed&&!y.faceDown&&(c.neoEvolution||api.isEvolution(y))&&api.isCreature(s,y)){
+   const entrant={uid:y.uid,incarnation:y.incarnation||0};
+   for(const x of s.players[p].grave)if(!x.faceDown&&card(x).g1126GraveBase)
+    send(s,p,x,'GraveBase1126',{serial:x.zoneSerial||0,entrant});
+  }
   if(options.execution&&options.origin==='hand'&&eventType==='creature'&&c.spellFace&&cost(c)>=cost(c.spellFace)){
    for(const x of creatures(s,p))if(card(x).g1088Twin&&!api.ignored(s,x))
     send(s,p,x,'TwinInPlace1088',{subject:{uid:y.uid,incarnation:y.incarnation||0,source:y.cardId}});
@@ -6391,6 +6419,7 @@ export function createSixPhotoRules(api){
    if(g678LaterOppDraw&&s.active===p)for(let i=before===0?1:0;i<n;i++)queue(s,1-p,y,g678LaterOppDraw);
   }
  },
+ battleCardDestroyed1126(s,p,x,defs){queue(s,p,x,defs);},
  battleGrave1122(s,p,x){queue(s,p,x,card(x.cardId).g1122BattleGrave);},
  graveAdded(s,p,all){
   if(s.g767GraveEntries?.turn!==s.turn)s.g767GraveEntries={turn:s.turn,counts:[0,0]};
@@ -6561,6 +6590,8 @@ export function createSixPhotoRules(api){
   if(!x.sealed&&endCard.g474AttackEnd&&(!endCard.g1020FirstOwnAttack||a.g543First)&&
    (!endCard.g1075AttackEndRequiresBreak||a.g1075BrokeShield))
    queue(s,a.player,x,endCard.g474AttackEnd);
+  for(const {source,grants}of endCard.g404Inherited||[])
+   if(grants.g474AttackEnd)queue(s,a.player,x,grants.g474AttackEnd,source);
   if(endCard.g34Role==='revvo'&&x.entered===s.turn&&s.players[a.player].shields.length<=2)queue(s,a.player,x,[E('Lock',{limit:{kind:'g34NoLose',player:a.player,expires:'start',who:a.player}})]);if(!colors(effective(x,s)).includes('闇')&&(active(s,0,'baromreizu').length||active(s,1,'baromreizu').length)){for(const p of[0,1])for(const watcher of active(s,p,'baromreizu'))queue(s,p,watcher,[E('ExactMove',{owner:a.player,to:'grave',target:x.uid,targetIncarnation:x.incarnation||0})]);}},
  expire(s,when,p){if(when==='start')for(const own of s.players)for(const x of [...own.mana,...own.battle])if(x.tapLocks)x.tapLocks=x.tapLocks.filter(l=>typeof l!=='object'||l.who!==p||s.players[p].turns<l.afterTurns);if(when==='end'){s.g34Discounts=(s.g34Discounts||[]).filter(x=>x.turn!==s.turn);s.g484BreakEnds=(s.g484BreakEnds||[]).filter(x=>x.turn!==s.turn);}},
  inherit(s,base,x){if(used(s,'g191Tapped',base))mark(s,'g191Tapped',x);if(base.g34Grants)(x.g34Grants??=[]).push(...structuredClone(base.g34Grants));if(base.g34Delayed)x.g34Delayed=structuredClone(base.g34Delayed);},

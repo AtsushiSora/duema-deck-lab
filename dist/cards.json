@@ -222195,15 +222195,121 @@
       "g1125FireSpellUntargetable": true,
       "supportBatch": "phase-1125",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-064",
+      "name": "～脅威の盾～",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "デーモン・コマンド/スチーム・ナイト",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分の、NEOクリーチャーまたは進化クリーチャーが出た時、このクリーチャーを、自分の墓地からそのクリーチャーの下に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-064",
+      "limit": 4,
+      "blocker": true,
+      "g1126GraveBase": true,
+      "supportBatch": "phase-1126",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-066",
+      "name": "コースター＝コーデキター",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 1000,
+      "race": "アビスロイヤル/フュージョナー",
+      "text": "超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーの攻撃の終わりに、 このクリーチャーに含まれるカードと同じ枚数のカードを引く。その後、このクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-066",
+      "limit": 4,
+      "g474AttackEnd": [
+        {
+          "op": "DrawThenDestroy1126"
+        }
+      ],
+      "g404Soul": {
+        "g474AttackEnd": [
+          {
+            "op": "DrawThenDestroy1126"
+          }
+        ]
+      },
+      "supportBatch": "phase-1126",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-052",
+      "name": "魔誕亡者ボーン・アミーゴ",
+      "civ": "闇/火/自然",
+      "civilizations": [
+        "闇",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 5000,
+      "race": "リビング・デッド",
+      "text": "NEO進化：闇、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが出た時、または自分のカードが破壊された時、カードを１枚、自分の墓地からマナゾーンにタップして置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-052",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "闇"
+          },
+          {
+            "civilization": "火"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "mana",
+          "n": 1,
+          "optional": true,
+          "tapped": true,
+          "title": "タップしてマナに置く墓地のカードを選ぶ（任意）"
+        }
+      ],
+      "g1126OwnBattleCardGrave": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "mana",
+          "n": 1,
+          "optional": true,
+          "tapped": true,
+          "title": "タップしてマナに置く墓地のカードを選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-1126",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1125,
+    "phase": 1126,
     "checkedAt": "2026-11-13",
-    "baseCount": 7360,
+    "baseCount": 7363,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7363,
+    "totalCount": 7366,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -241992,6 +242098,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7360,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1125,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7360,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7363,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -1,0 +1,214 @@
+{
+  "phase": 1126,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7363,
+  "description": "～脅威の盾～、コースター＝コーデキター、魔誕亡者ボーン・アミーゴの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/46530/",
+    "https://dm.takaratomy.co.jp/rule/qa/46533/",
+    "https://dm.takaratomy.co.jp/rule/qa/46843/",
+    "https://dm.takaratomy.co.jp/rule/qa/46844/",
+    "https://dm.takaratomy.co.jp/rule/qa/46845/",
+    "https://dm.takaratomy.co.jp/rule/qa/46846/",
+    "https://dm.takaratomy.co.jp/rule/qa/47053/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp2-064",
+      "name": "～脅威の盾～",
+      "faces": [
+        {
+          "name": "～脅威の盾～",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分の、NEOクリーチャーまたは進化クリーチャーが出た時、このクリーチャーを、自分の墓地からそのクリーチャーの下に置いてもよい。",
+          "race": "デーモン・コマンド/スチーム・ナイト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-064",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-064.jpg",
+      "spec": {
+        "blocker": true,
+        "g1126GraveBase": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "a0542b058f4a92de5d27fbad99068ca119dfa8709d45f6fa65044758077fca28",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-066",
+      "name": "コースター＝コーデキター",
+      "faces": [
+        {
+          "name": "コースター＝コーデキター",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーの攻撃の終わりに、 このクリーチャーに含まれるカードと同じ枚数のカードを引く。その後、このクリーチャーを破壊する。",
+          "race": "アビスロイヤル/フュージョナー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-066",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-066.jpg",
+      "spec": {
+        "g474AttackEnd": [
+          {
+            "op": "DrawThenDestroy1126"
+          }
+        ],
+        "g404Soul": {
+          "g474AttackEnd": [
+            {
+              "op": "DrawThenDestroy1126"
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "a44fd278826568b7cea10fc8921228f2b63008f2013d6a2aa159843908ec4c37",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-052",
+      "name": "魔誕亡者ボーン・アミーゴ",
+      "faces": [
+        {
+          "name": "魔誕亡者ボーン・アミーゴ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇/火/自然",
+          "civilizations": [
+            "闇",
+            "火",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "NEO進化：闇、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが出た時、または自分のカードが破壊された時、カードを１枚、自分の墓地からマナゾーンにタップして置いてもよい。",
+          "race": "リビング・デッド",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-052",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-052.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "mana",
+            "n": 1,
+            "optional": true,
+            "tapped": true,
+            "title": "タップしてマナに置く墓地のカードを選ぶ（任意）"
+          }
+        ],
+        "g1126OwnBattleCardGrave": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "mana",
+            "n": 1,
+            "optional": true,
+            "tapped": true,
+            "title": "タップしてマナに置く墓地のカードを選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "c310eaf2b1c7b026fd688e7b778c7ee74b027bbf7dd3878986852162e5b33311",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25ex3-070",
+      "name": "コースター＝コーデキター",
+      "faces": [
+        {
+          "name": "コースター＝コーデキター",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーの攻撃の終わりに、このクリーチャーに含まれるカードと同じ枚数のカードを引く。その後、このクリーチャーを破壊する。",
+          "race": "アビスロイヤル/フュージョナー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-070",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-070.jpg",
+      "spec": {
+        "g474AttackEnd": [
+          {
+            "op": "DrawThenDestroy1126"
+          }
+        ],
+        "g404Soul": {
+          "g474AttackEnd": [
+            {
+              "op": "DrawThenDestroy1126"
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "1e3334a96a03192ec3c44a9da84d2991423855a2e2b36137a6a6a4608feedb1b",
+        "facesMatched": true
+      },
+      "canonicalId": "dm25rp2-066"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp2-064": 4,
+      "dm25rp2-066": 4,
+      "dm25rp2-052": 4,
+      "dm25ex3-070": 4
+    }
+  }
+}

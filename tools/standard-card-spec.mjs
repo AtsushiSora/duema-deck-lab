@@ -6184,6 +6184,27 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1126&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm25rp2-064'&&f.typeText==='クリーチャー'&&text===
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   '自分のNEOクリーチャーまたは進化クリーチャーが出た時このクリーチャーを自分の墓地からそのクリーチャーの下に置いてもよい。')
+   return {blocker:true,g1126GraveBase:true};
+  if(['dm25rp2-066','dm25ex3-070'].includes(d.id)&&f.typeText==='クリーチャー'&&text===
+   '超魂X(これがクリーチャーの下にあればそのクリーチャーにも以下の能力を与える)'+
+   'このクリーチャーの攻撃の終わりにこのクリーチャーに含まれるカードと同じ枚数のカードを引く。その後このクリーチャーを破壊する。'){
+   const defs=[{op:'DrawThenDestroy1126'}];
+   return {g474AttackEnd:defs,g404Soul:{g474AttackEnd:defs}};
+  }
+  if(d.id==='dm25rp2-052'&&f.typeText==='NEOクリーチャー'&&text===
+   'NEO進化:闇火または自然のクリーチャー1体の上に置いてもよい。(カードが下にあればこれをNEO進化クリーチャーとして扱う)'+
+   'このクリーチャーが出た時または自分のカードが破壊された時カードを1枚自分の墓地からマナゾーンにタップして置いてもよい。'){
+   const defs=[{op:'Select',origin:'grave',to:'mana',n:1,optional:true,tapped:true,
+    title:'タップしてマナに置く墓地のカードを選ぶ（任意）'}];
+   return {neoEvolution:{any:['闇','火','自然'].map(civilization=>({civilization}))},
+    effect:'sixPhoto',g34Tasks:defs,g1126OwnBattleCardGrave:defs};
+  }
+ }
  if(phase>=1125&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dm37-003'&&f.typeText==='クリーチャー'&&text===
