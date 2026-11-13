@@ -6184,6 +6184,40 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1133&&d?.status==='complete'){
+  const text=normalize(f.abilityText),spell=d.faces[1];
+  const prints=n=>['dm26ex1-N'+n,'dm26ex1-SECN'+n].includes(d.id);
+  const spellFace=spell&&{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,
+   civilizations:spell.civilizations,race:spell.race,effect:'sixPhoto'};
+  if(f.typeText==='クリーチャー'&&d.faces.length===2&&spell.typeText==='呪文'){
+   const back=normalize(spell.abilityText),trigger='S・トリガーS・トリガー';
+   if(prints('009')&&text==='ブロッカーブロッカースレイヤーW・ブレイカーこのクリーチャーが破壊された時コスト5以下のクリーチャーを1体自分の墓地から出してもよい。'&&
+    back===trigger+'コスト7以下の多色コマンド・クリーチャーを1体自分の手札から出す。')
+    return {blocker:true,slayer:true,breaker:2,g172Death:[{op:'Select',origin:'grave',n:1,deploy:true,g236GraveDeploy:true,optional:true,filter:{g228Face:{type:'creature',max:5}}}],
+     spellFace:{...spellFace,trigger:true,g34Tasks:[{op:'Select',origin:'hand',n:1,deploy:true,optional:true,
+      filter:{g228Face:{type:'creature',multicolor:true,raceAll:['コマンド'],max:7}}}]}};
+   if(prints('010')&&text.replace('(コストが異なる自分のエレメントが3つ以上あればこのクリーチャーにこの能力を与える)','')===
+    '{GS}G・ストライクブロッカーブロッカーW・ブレイカーバラバラエティ3:自分のクリーチャーすべてに「スピードアタッカー」を与える。'&&
+    back==='相手のパワー3000以下のクリーチャーを1体選び破壊する。自分のマナゾーンにツインパクトカードがあればかわりに相手のパワー5000以下のクリーチャーを1体選び破壊する。'){
+    const destroy=maxPower=>({op:'Target',to:'grave',spell:true,filter:{creature:true,maxPower,g199Power:true}});
+    return {gStrike:true,blocker:true,breaker:2,g208Auras:[{filter:{creature:true},g557Condition:{g466DistinctCosts:3},grants:{speedAttacker:true}}],
+     spellFace:{...spellFace,g34Tasks:[{op:'IfOwn',filter:{g1133ManaTwin:true},
+      defs:[{...destroy(5000),g1133AlreadyReplaced:true}],elseDefs:[destroy(3000)]}]}};
+   }
+   if(prints('021')&&text.replace('(このクリーチャーをタップして相手クリーチャーの攻撃先を自分の他のクリーチャーからこのクリーチャーに変更してもよい)','')===
+    '{GS}G・ストライクガードマンこのクリーチャーが破壊される時墓地のかわりにマナゾーンに置く。'&&
+    back==='ジャイアントではないクリーチャーをすべて持ち主のマナゾーンに置く。')
+    return {gStrike:true,guardman:true,destroyToMana:true,spellFace:{...spellFace,g34Tasks:[
+     {op:'Sweep',both:true,to:'mana',toOwnerMana:true,filter:{creature:true,notRace:'ジャイアント'}}
+    ]}};
+  }
+  if(d.faces.length===1&&prints('014')&&f.typeText==='クリーチャー'&&
+   text.replace('(このクリーチャーを出す時自分の山札の上から1枚をシールド化する。このクリーチャーが離れる時かわりにそのシールドを墓地に置く)','')===
+   'EXライフブロッカーブロッカーQ・ブレイカーこのクリーチャーがタップした時またはこのクリーチャーの「EXライフ」シールドが離れた時カードを1枚自分のマナゾーンまたは墓地から手札に戻してもよい。その後相手は自身の手札を1枚選んで捨てる。'){
+   const defs=[{op:'Select',zones:['mana','grave'],to:'hand',n:1,optional:true},{op:'Discard',n:1}];
+   return {exLife:true,blocker:true,breaker:4,g188Tapped:defs,g1133ExLifeLeft:defs};
+  }
+ }
  if(phase>=1132&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const neoEvolution=(...colors)=>({any:colors.map(civilization=>({civilization}))});

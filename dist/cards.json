@@ -223361,15 +223361,263 @@
       },
       "supportBatch": "phase-1132",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex1-N009",
+      "name": "龍素記号Si サインサイクリカ / ザーディアン・サイン",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6500,
+      "race": "クリスタル・コマンド・ドラゴン",
+      "text": "ブロッカー ブロッカー\nスレイヤー\nW・ブレイカー\nこのクリーチャーが破壊された時、コスト５以下のクリーチャーを１体、自分の墓地から出してもよい。\n【呪文面】\nS・トリガー S・トリガー\nコスト７以下の多色コマンド・クリーチャーを１体、自分の手札から出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-N009",
+      "limit": 4,
+      "blocker": true,
+      "slayer": true,
+      "breaker": 2,
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "g236GraveDeploy": true,
+          "optional": true,
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "max": 5
+            }
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "ザーディアン・サイン",
+        "type": "spell",
+        "cost": 5,
+        "civ": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "multicolor": true,
+                "raceAll": [
+                  "コマンド"
+                ],
+                "max": 7
+              }
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1133",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex1-N010",
+      "name": "五輪の従者 呼勇気 / 「名誉ある勝利を！」",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "ドリームメイト/サムライ",
+      "text": "{GS} G・ストライク\nブロッカー ブロッカー\nW・ブレイカー\nバラバラエティ３：自分のクリーチャーすべてに「スピードアタッカー」を与える。（コストが異なる自分のエレメントが３つ以上あれば、このクリーチャーにこの能力を与える）\n【呪文面】\n相手のパワー3000以下のクリーチャーを１体選び、破壊する。自分のマナゾーンにツインパクトカードがあれば、かわりに相手のパワー5000以下のクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-N010",
+      "limit": 4,
+      "gStrike": true,
+      "blocker": true,
+      "breaker": 2,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "g466DistinctCosts": 3
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "「名誉ある勝利を！」",
+        "type": "spell",
+        "cost": 1,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g1133ManaTwin": true
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "spell": true,
+                "filter": {
+                  "creature": true,
+                  "maxPower": 5000,
+                  "g199Power": true
+                },
+                "g1133AlreadyReplaced": true
+              }
+            ],
+            "elseDefs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "spell": true,
+                "filter": {
+                  "creature": true,
+                  "maxPower": 3000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1133",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex1-N014",
+      "name": "邪闘魔縛 ウェロマノフ=ルキウスB",
+      "civ": "光/闇/自然",
+      "civilizations": [
+        "光",
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 12,
+      "power": 19500,
+      "race": "ディスペクター/エンジェル・コマンド/ドラゴン・ゾンビ/ナイト",
+      "text": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nブロッカー ブロッカー\nQ・ブレイカー\nこのクリーチャーがタップした時またはこのクリーチャーの「EXライフ」シールドが離れた時、カードを１枚、自分のマナゾーンまたは墓地から手札に戻してもよい。その後、相手は自身の手札を１枚選んで捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-N014",
+      "limit": 4,
+      "exLife": true,
+      "blocker": true,
+      "breaker": 4,
+      "g188Tapped": [
+        {
+          "op": "Select",
+          "zones": [
+            "mana",
+            "grave"
+          ],
+          "to": "hand",
+          "n": 1,
+          "optional": true
+        },
+        {
+          "op": "Discard",
+          "n": 1
+        }
+      ],
+      "g1133ExLifeLeft": [
+        {
+          "op": "Select",
+          "zones": [
+            "mana",
+            "grave"
+          ],
+          "to": "hand",
+          "n": 1,
+          "optional": true
+        },
+        {
+          "op": "Discard",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1133",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex1-N021",
+      "name": "チアスイート アカネ / 「ファーーー！甘い甘い!!」",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ジャイアント・スノーフェアリー",
+      "text": "{GS} G・ストライク\nガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nこのクリーチャーが破壊される時、墓地のかわりにマナゾーンに置く。\n【呪文面】\nジャイアントではないクリーチャーをすべて、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-N021",
+      "limit": 4,
+      "gStrike": true,
+      "guardman": true,
+      "destroyToMana": true,
+      "spellFace": {
+        "name": "「ファーーー！甘い甘い!!」",
+        "type": "spell",
+        "cost": 8,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "ジャイアント・スキル",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "mana",
+            "toOwnerMana": true,
+            "filter": {
+              "creature": true,
+              "notRace": "ジャイアント"
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1133",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1132,
+    "phase": 1133,
     "checkedAt": "2026-11-13",
-    "baseCount": 7381,
-    "newEffectCards": 3,
+    "baseCount": 7384,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7384,
+    "totalCount": 7388,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -243242,6 +243490,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7381,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1132,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7381,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7384,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
