@@ -6475,6 +6475,33 @@ export function standardCardSpec(d,{phase=165}={}){
    image:'https://dm.takaratomy.co.jp/wp-content/card/cardimage/'+id+'b.jpg'});
   const blockReminder='(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)';
   const backText=normalize(back.abilityText).replace(blockReminder,'');
+  if(phase>=1110){
+   const deckSplit=(to,tapped=false)=>[{op:'Look',n:2,g841DeckPeek:true,stages:[{n:1,to,...(tapped?{tapped}:{})}],rest:'grave'}];
+   const rows={
+    'dm25ex4-037':['光','光または闇','自分の山札の上から2枚を見る。その中から1枚をシールド化しもう1枚を墓地に置く。',deckSplit('shields')],
+    'dm25ex4-040':['水','水または火','自分の手札を1枚捨てカードを2枚引く。',[{op:'Discard',owner:'self',n:1},{op:'Draw',n:2}]],
+    'dm25ex4-043':['闇','闇または自然','自分の山札の上から2枚を見る。その中から1枚をタップしてマナゾーンにもう1枚を墓地に置く。',deckSplit('mana',true)],
+    'dm25ex4-046':['火','光または火','このクリーチャーは相手のシールドを1つブレイクしてもよい。',[{op:'Break497',n:1,optional:true,g747CreatureBreak:true}]],
+    'dm25ex4-049':['自然','水または自然','自分の山札の上から1枚を見る。それを手札に加えるかマナゾーンに置いてもよい。',[
+     {op:'Look',n:1,g841DeckPeek:true,g467RequireLook:true,stages:[{n:1,optional:true,g467Destinations:['hand','mana']}],rest:'top'}
+    ]]
+   };
+   const row=rows[d.id];
+   if(row){
+    const [frontColors,backColors,entry,entryTasks]=row;
+    const reduce=colors=>'各ターンに1度自分の'+colors+'のカードを実行するコストを1少なくしてもよい。ただしコストは0以下にならない。';
+    const ownReminder=reminder.replace('自分の超次元ゾーン','自身の超次元ゾーン');
+    const release='解除(このクリーチャーが離れる時かわりにコストが小さいほうに裏返す)';
+    if(text===reduce(frontColors)+ownReminder&&
+     backText==='このクリーチャーが出た時'+entry+reduce(backColors)+release+(d.id==='dm25ex4-049'?'':ownReminder)){
+     const discount=colors=>({amount:1,colors,execution:true});
+     return {psychic:true,manaValue:0,g464OnceSummon:discount(f.civilizations),g1085Back:{
+      ...backFace(d.id),g1085Release:true,g527ExtraEntry:[{label:'登場時能力',defs:entryTasks}],
+      g464OnceSummon:discount(back.civilizations)
+     }};
+    }
+   }
+  }
   if(phase>=1105&&d.id==='dmx05-004'){
    const loopReminder=reminder.replace('自分の超次元ゾーン','自身の超次元ゾーン');
    const loopText=name=>'ループ覚醒-自分のターンのはじめにこのクリーチャーを《'+name+'》のほうに裏返してもよい。'+loopReminder;

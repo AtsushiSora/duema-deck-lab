@@ -39,3 +39,18 @@ test('Bolshack Hero Story allows an evolution to follow a newly deployed base an
 test('Hadouk super trigger deploys one fire non-evolution, forces a battle and bottoms the rest',()=>{const s=fresh();s.active=1;give(s,1,'battle',[F]);give(s,0,'shields',[HAD]);give(s,0,'deck',[F,N,N,N,N,...Array(20).fill(N)]);attack(s,s.players[1].battle[0]);act(s,'noBlock');act(s,'useTrigger');advance(s,s=>s.decision?.task?.op==='g50_HadoukPick');pick(s,null);assert.equal(s.decision?.task?.op,'g50_HadoukSuper');pick(s,a=>a.cardId===F);advance(s,s=>s.decision?.task?.op==='g50_Battle');pick(s,s.players[1].battle[0].uid);drain(s);assert.equal(s.players[1].battle.length,0);assert.equal(s.players[0].battle.length,0);assert.ok(s.players[0].grave.some(x=>x.cardId===F));});
 test('Three King cells combine from hand and mana, pay nine and preserve all cards under extra EX-life',()=>{const s=fresh();s.players[0].mana.push(inst('test-authority'));give(s,0,'hand',['test-thought',CELL]);const before=physical(s);act(s,'play',a=>a.alternative==='combatKing');drain(s);const king=s.players[0].battle[0];assert.equal(e.card(king).name,'Volzeos-Balamord');assert.equal(king.under.length,2);assert.equal(s.players[0].shields.length,7);assert.equal(e.effectiveCard(king,s).unblockable,true);assert.equal(s.players[0].mana.filter(x=>x.tapped).length,9);assert.deepEqual(physical(s),before);});
 test('New World Order bounces non-dragons and deploys grave dragons with temporary speed and blocker',()=>{const s=fresh();give(s,0,'hand',['test-creation',ORDER]);give(s,0,'battle',[N]);give(s,1,'battle',[N]);give(s,0,'grave',[VARGA]);const before=physical(s);act(s,'play',a=>a.alternative==='combatKing');assert.equal(s.decision?.task?.op,'g50_OrderPut');pick(s,a=>a.cardId===VARGA);advance(s,s=>s.decision?.task?.op==='g50_OrderPut');pick(s,null);drain(s);assert.equal(s.players[0].battle[0].cardId,VARGA);assert.equal(e.effectiveCard(s.players[0].battle[0],s).blocker,true);assert.equal(s.players[1].battle.length,0);assert.ok(s.players[0].grave.some(x=>x.cardId===ORDER));assert.ok(s.players[0].grave.some(x=>x.cardId==='test-creation'));assert.deepEqual(physical(s),before);});
+
+test('Volzeos can spend a Psychic execution reduction on combining King Cells',()=>{
+ const s=fresh(),own=s.players[0];
+ const seb=inst('dm25ex4-040');
+ own.battle.push(seb);
+ give(s,0,'hand',['test-thought',CELL,'test-authority']);
+ act(s,'play',a=>a.alternative==='combatKing'&&a.cost===8);
+ assert.equal(s.decision.task.op,'g34_PayOnce464');
+ pick(s,seb.uid+'@0');
+ pick(s,null);
+ drain(s);
+ assert.equal(seb.g464UsedTurn,s.turn);
+ assert.equal(own.mana.filter(x=>x.tapped).length,8);
+ assert.equal(e.card(own.battle[1]).name,'Volzeos-Balamord');
+});

@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-13",
   "catalogueNames": 11827,
-  "supportedNames": 7308,
-  "pendingNames": 4519,
-  "phase": 1109,
-  "added": 3,
+  "supportedNames": 7313,
+  "pendingNames": 4514,
+  "phase": 1110,
+  "added": 5,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -177,7 +177,7 @@
     "クロスギア": 62,
     "進化クリーチャー(進化GV)": 13,
     "土地": 1,
-    "サイキック・クリーチャー": 119,
+    "サイキック・クリーチャー": 114,
     "進化クロスギア": 6,
     "進化クリーチャー(手札進化)": 2,
     "ドラグハート・タマシード": 1,
@@ -225,7 +225,7 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 1189,
+    "複数面・特殊カードタイプまたは情報不足": 1184,
     "未対応の能力文": 3114,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 21,
@@ -213440,37 +213440,239 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1110,
+      "baseCommit": "7f0b2863",
+      "scope": "DM25-EX4の両面サイキック5種類について、各ターンの実行コスト軽減、登場時能力と解除を対戦対応する。",
+      "cards": [
+        {
+          "id": "dm25ex4-037",
+          "name": "ガガ・アクロアイト",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-037"
+        },
+        {
+          "id": "dm25ex4-040",
+          "name": "セブ・マイパッド",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-040"
+        },
+        {
+          "id": "dm25ex4-043",
+          "name": "ザビ・ブラッドレイン",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-043"
+        },
+        {
+          "id": "dm25ex4-046",
+          "name": "ギル・トップギア",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-046"
+        },
+        {
+          "id": "dm25ex4-049",
+          "name": "ジオ・ケラサス",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-049"
+        }
+      ],
+      "printAliases": [],
+      "supportedNames": 7313,
+      "pendingNames": 4514,
+      "verification": {
+        "focused": "tests/standard1110-effects.test.mjs 16件成功。",
+        "relatedRegressions": "関連回帰478件成功。その後、今回追加した両面を既存の超次元展開でも選べるようにした差分で22件を再実行し成功。",
+        "check": "最終差分の npm run check 成功。",
+        "officialPrints": 5,
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/qa/31782/",
+          "https://dm.takaratomy.co.jp/rule/qa/49527/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37744/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37748/",
+          "https://dm.takaratomy.co.jp/rule/qa/48160/",
+          "https://dm.takaratomy.co.jp/coverage/dmnt25_round4/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。登録済みカードの未完了項目はregisteredUnverifiedに記録。",
+        "notes": "正規名は7,308→7,313種類。5種類の両面の公式全文・基本情報・画像10点・単一収録・現行使用制限を照合。総合ルール601.1と805.2に従い、実行の種類をまたいで同じ面の使用回数を共有し、表裏の能力は独立に扱った。公式大会記事のサプライズ・ホールからGQ 笑沙-4を出す手順、解除後の状態維持、輪廻∞・ササゲール・キング・セル合体と任意軽減の併用を検証。",
+        "regressionLogs": [
+          "/tmp/duema-phase-1110/focused-final.log",
+          "/tmp/duema-phase-1110/regression.log",
+          "/tmp/duema-phase-1110/extra-regression.log",
+          "/tmp/duema-phase-1110/parser.log",
+          "/tmp/duema-phase-1110/check-final.log",
+          "/tmp/duema-phase-1110/audit.log"
+        ]
+      },
+      "registeredVerified": [
+        {
+          "cardId": "dmr01-034",
+          "dependencyIds": [
+            "dm25ex4-046",
+            "dm25ex4-040"
+          ],
+          "test": "Gaial Hole deploys two real fire Psychic backs at exactly eight total cost",
+          "path": "tests/standard1110-effects.test.mjs",
+          "log": "/tmp/duema-phase-1110/focused-final.log",
+          "result": "GQ 突風-890とGQ 舞覇-10をコスト4ずつで選択し、合計8で同時に出せることを確認。1体目を選択した後にコスト5の時空の魔陣オーフレイムが候補外になることも確認。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-034"
+        },
+        {
+          "cardId": "dm22ex1-127",
+          "dependencyIds": [
+            "dm25ex4-049"
+          ],
+          "test": "Surprise Hole can use the water side of Geo exactly as in the official match report",
+          "path": "tests/standard1110-effects.test.mjs",
+          "log": "/tmp/duema-phase-1110/focused-final.log",
+          "result": "コスト4の水面を選んで出し、山札上のカードをマナに置く公式対戦例を確認。",
+          "source": "https://dm.takaratomy.co.jp/coverage/dmnt25_round4/"
+        }
+      ],
+      "registeredUnverified": [
+        {
+          "cardId": "dmr03-024",
+          "dependencyIds": [
+            "dmd03-002"
+          ],
+          "test": "相手が自身の破壊されないサイキックを選べて、選んだクリーチャーが残る（QA 36427と同型）",
+          "reason": "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
+        },
+        {
+          "cardId": "dm22ex1-030",
+          "test": "mixed twinpact/dragon games finish, preserve all 80 physical cards including a pending spell, and replay deterministically",
+          "path": "tests/twinpact-judge.test.mjs",
+          "reason": "今バッチの一括回帰は長時間の100戦検証を含むファイルで中断。関連する固有回帰6件を分けて実行し成功。以前の対戦分割検証の合格記録は保持。現時点の再検証はシードを分割して行う。",
+          "log": "/tmp/duema-phase-1101/regression.log"
+        },
+        {
+          "cardId": "dm36-077",
+          "relatedCardIds": [
+            "dm36-101",
+            "dm38-046",
+            "dm38-051",
+            "dmr01-095",
+            "dmr01-072",
+            "dmr01-104",
+            "dmex17-134",
+            "dmc62-006",
+            "dmr01-034",
+            "dm36-109",
+            "dm36-093",
+            "dm37-039",
+            "dm36-085",
+            "dm37-049",
+            "dm37-053",
+            "dm22ex1-127",
+            "dm22ex1-112",
+            "dmpcd03-a12"
+          ],
+          "test": "超次元の各面をコスト・文明・種族で判定し、条件を満たす覚醒後の面を直接出せる",
+          "reason": "Phase 1104は今回追加した4種類の展開で両面選択を検証。登録済みの他の展開効果への適用と、選択肢の順序が保存済み対戦の再現に与える影響は未検証。展開元ごとに条件と表示をテストする。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/37744/"
+        },
+        {
+          "cardId": "dmbd13-015",
+          "dependencyIds": [
+            "dmr04-v03"
+          ],
+          "test": "奇石 ミクセルの登場監視とリュウセイ・ホールのマナ追加の順序を勝利のガイアール・カイザーで再現する（QA 38717）",
+          "reason": "勝利のガイアール・カイザーはV覚醒リンクを含む能力全体が未対応。同じコスト7の登録済みサイキック、時空の火焔ボルシャック・ドラゴンでは、6マナで登場してからマナを追加する順序を確認済み。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/38717/",
+          "path": "tests/standard1105-effects.test.mjs",
+          "log": "/tmp/duema-phase-1105/focused.log"
+        },
+        {
+          "cardId": "dm38-011",
+          "dependencyIds": [
+            "dmr01-053"
+          ],
+          "test": "ロマノフ・ホールで相手が自身のエイリアンを選び破壊した場合、ザビ・リゲルが呪文による破壊を参照する（QA 36348）",
+          "path": "tests/standard1107-effects.test.mjs",
+          "reason": "竜骨なる者ザビ・リゲルが覚醒リンクを含め対戦未対応。相手本人による選択・破壊と、その後に唱えた側が闇のサイキックを出すことは固有テストで確認済み。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36348/"
+        }
+      ],
+      "deferred": [
+        {
+          "id": "dmr02-020",
+          "name": "超次元ごっつぁん・ホール",
+          "reason": "手札から捨てる能力に必要な横綱 義留の富士（dmr02-002）が覚醒リンクを含め未対応。攻撃側の誘発を解決する順番と、複数枚の宣言・攻撃中止後のバトルを確認するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-020",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-002",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36380/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36381/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36382/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36383/"
+          ]
+        },
+        {
+          "id": "dm39-020",
+          "name": "超次元ガード・ホール",
+          "reason": "初版と再録の能力文を照合。非進化で複数カードから成るクリーチャーをシールド化する場合の配置と持ち主の扱い、サイキックが超次元へ戻る場合を固有テストで確認するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm39-020",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm39-020VC",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-017",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-Cho18",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-T08"
+          ]
+        },
+        {
+          "id": "dm22ex1-077",
+          "name": "超次元パンドラ・ホール",
+          "reason": "装備先がいない場合でもウエポンは出て、出た時の能力が待機してから超次元へ戻る。ドラグハート・ウエポンの展開・装備・状況起因処理を検証できるまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-077",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-T12",
+            "https://dm.takaratomy.co.jp/rule/qa/48121/"
+          ]
+        },
+        {
+          "id": "dmr04-v03",
+          "name": "勝利のガイアール・カイザー",
+          "reason": "リュウセイ・ホールのQA 38717の指定カード。V覚醒リンクに必要なカードと合体面の能力を照合する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-v03",
+            "https://dm.takaratomy.co.jp/rule/qa/38717/"
+          ]
+        },
+        {
+          "id": "dm37-030",
+          "name": "時空の喧嘩屋キル",
+          "reason": "低コストの火のサイキック候補。既存の保留理由と関連裁定に沿って離脱置換を検証する。 初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030VC",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmx02-023",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-089",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd03-a06",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36119/",
+            "https://dm.takaratomy.co.jp/rule/qa/45084/"
+          ]
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "双方のパワー6000以下のサイキックを一斉に破壊し、複数の離脱置換・解除を処理するテストと、自身が攻撃されないことの検証が必要。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-062"
+          ]
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "保留継続。選んだアンタップ中の相手クリーチャーを攻撃できる範囲と、召喚酔い・攻撃制限・対象の離脱後の扱いを個別に確認する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-102"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1109,
-    "nextPhase": 1110,
+    "lastVerifiedPhase": 1110,
+    "nextPhase": 1111,
     "workInProgress": [],
     "nextCandidates": [
-      {
-        "id": "dm25ex4-037",
-        "name": "ガガ・アクロアイト",
-        "reason": "コスト2以下と光の展開候補。覚醒条件、表裏の能力、版を照合する。",
-        "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-037"
-        ]
-      },
-      {
-        "id": "dm25ex4-043",
-        "name": "ザビ・ブラッドレイン",
-        "reason": "コスト2の展開候補。表裏の能力と覚醒条件を照合する。",
-        "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-043"
-        ]
-      },
-      {
-        "id": "dm25ex4-049",
-        "name": "ジオ・ケラサス",
-        "reason": "コスト2の展開候補。表裏の能力と覚醒条件を照合する。",
-        "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-049"
-        ]
-      },
       {
         "id": "dm39-020",
         "name": "超次元ガード・ホール",
@@ -213484,15 +213686,52 @@
         ]
       },
       {
-        "id": "dm25ex4-046",
-        "name": "ギル・トップギア",
-        "reason": "表裏の使用コスト軽減、各ターン1度の判定、G・覚醒と解除の処理を通しで検証するまで保留。",
+        "id": "dm37-030",
+        "name": "時空の喧嘩屋キル",
+        "reason": "低コストの火のサイキック候補。既存の保留理由と関連裁定に沿って離脱置換を検証する。 初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-046"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030VC",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmx02-023",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-089",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd03-a06",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36119/",
+          "https://dm.takaratomy.co.jp/rule/qa/45084/"
+        ]
+      },
+      {
+        "id": "dmd03-002",
+        "name": "不死身のブーストグレンオー",
+        "reason": "破壊されないサイキックを相手自身が選ぶ公式裁定の再現候補。両面の公式情報と解除を確認する。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmd03-002",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
+        ]
+      },
+      {
+        "id": "dmr02-020",
+        "name": "超次元ごっつぁん・ホール",
+        "reason": "手札から捨てる能力に必要な横綱 義留の富士（dmr02-002）が覚醒リンクを含め未対応。攻撃側の誘発を解決する順番と、複数枚の宣言・攻撃中止後のバトルを確認するまで保留。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-020",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-002",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36380/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36381/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36382/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36383/"
+        ]
+      },
+      {
+        "id": "dmr04-v03",
+        "name": "勝利のガイアール・カイザー",
+        "reason": "リュウセイ・ホールのQA 38717の指定カード。V覚醒リンクに必要なカードと合体面の能力を照合する。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-v03",
+          "https://dm.takaratomy.co.jp/rule/qa/38717/"
         ]
       }
     ],
-    "steps": "次回はPhase 1110。最新コミット、作業ツリーとステージ済み差分、前回のテストログ、実行中の作業、実データの正規カード名件数を確認し、候補の公式照合から再開する。",
+    "steps": "次回はPhase 1111。最新コミット、作業ツリーとステージ済み差分、前回のテストログ、実行中の作業、実データの正規カード名件数を確認し、候補の公式照合から再開する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -213573,7 +213812,7 @@
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で10分間隔のカード登録を再開。",
-    "verificationMode": "シャチホコ・ホールのエイリアン展開は実カードの両面で確認済み。ガイアール・ホールの合計8、解除の対象選択、QA 38717の指定カードは依存カードの対応後に確認。既存の他の超次元展開に対する両面選択は、選択肢の順序と旧対戦の再現を展開元ごとに検証する。ツインパクト混成100戦の再検証はシードを分割して行う。 ロマノフ・ホールとザビ・リゲルのQA 36348は、ザビ・リゲルの対応後に実カードで再現する。",
+    "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦の再検証はシードを分割して行う。",
     "nextRequestedCards": []
   },
   "registeredCardVerification": {

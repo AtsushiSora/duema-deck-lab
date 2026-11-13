@@ -36,7 +36,19 @@ export function createRedzoneRules(api){
  case'g23_FEnd':{const x=live(s,t);if(x){api.untap(s,t.p,x);move(s,[{player:t.p,uid:x.uid,to:'grave',destroy:true,cardOnly:true}]);}break;}
  case'g23_Purin':{const x=live(s,t);if(x&&api.canLeave(s,t.p,x))choice(s,t,'プリンを超次元ゾーンに置き、別のエイリアンを出しますか？',[opt('超次元ゾーンへ置く',true,(own.extra||[]).some(y=>String(card(y).race).includes('エイリアン')&&!card(y).redPurin)?30:-10),skip()]);break;}
  case'g23_PurinAfter':if((own.extra||[]).some(x=>x.uid===t.uid&&(x.zoneSerial||0)===(t.serial||0)+1))put(s,task('g23_Alien',t.p,t.source));break;
- case'g23_Alien':{const list=(own.extra||[]).filter(x=>card(x).type==='creature'&&String(card(x).race).includes('エイリアン')&&!card(x).redPurin&&api.canEnter(s,t.p,card(x),{origin:'extra',execution:false})&&(!card(x).evolution||api.evolutionBases(s,t.p,card(x)).length));choice(s,t,'超次元から出すエイリアンを選ぶ',list.map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)));break;}
+ case'g23_Alien':{
+  const list=(own.extra||[]).flatMap(x=>card(x).g1085Back?.g464OnceSummon?.execution?[x,{...x,g1085Awakened:true}]:[x]);
+  const eligible=list.filter(x=>{
+   const c=card(x);
+   return c.type==='creature'&&String(c.race).includes('エイリアン')&&!c.redPurin&&
+    api.canEnter(s,t.p,c,{origin:'extra',execution:false})&&(!c.evolution||api.evolutionBases(s,t.p,c).length);
+  });
+  choice(s,t,'超次元から出すエイリアンを選ぶ',eligible.map(x=>{
+   const c=card(x);
+   return opt(c.name,x.g1085Awakened?{uid:x.uid,g1104Back:true}:x.uid,20+cost(c),x.cardId);
+  }));
+  break;
+ }
  case'g23_Circle':put(s,task('discard',t.p,t.source,{n:1,causedBy:t.p}),task('g23_DrawUpTo',t.p,t.source),task('discard',t.p,t.source,{n:1,causedBy:t.p}));break;
  case'g23_DrawUpTo':choice(s,t,'引く枚数を選ぶ（3枚まで）',[0,1,2,3].map(n=>opt(n+'枚引く',n,own.deck.length>n?n*10:-100)));break;
  case'g23_Royal':put(s,task('draw',t.p,t.source,{n:2}),task('discard',t.p,t.source,{n:1,causedBy:t.p}));break;
@@ -53,7 +65,10 @@ export function createRedzoneRules(api){
  case'g23_Invade':if(v)invade(s,t);break;
  case'g23_Unseal':api.moveSeal(s,t.p,v,'grave');break;
  case'g23_Purin':if(v){const x=live(s,t),serial=x.zoneSerial||0;put(s,task('g23_PurinAfter',t.p,t.source,{uid:x.uid,serial}));move(s,[{player:t.p,uid:x.uid,to:'extra',destroy:false}]);}break;
- case'g23_Alien':put(s,task('putCreature',t.p,t.source,{origin:'extra',uid:v}));break;
+ case'g23_Alien':
+  if(v.g1104Back)put(s,task('g34_Put',t.p,t.source,{origin:'extra',target:v.uid,g1104Back:true}));
+  else put(s,task('putCreature',t.p,t.source,{origin:'extra',uid:v}));
+  break;
  case'g23_DrawUpTo':draw(s,t.p,v);break;
  case'g23_Gareck':put(s,...(v==='minus'?[task('g23_Minus',t.p,t.source)]:v==='mill'?[task('mill',t.p,t.source,{n:3})]:[task('revive',t.p,t.source,{max:3,optional:false})]),{...t,n:t.n-1});break;
  case'g23_Minus':{const x=s.players[1-t.p].battle.find(x=>x.uid===v);if(x)(x.powerModifiers??=[]).push({amount:-3000,expires:'end',who:s.active});break;}

@@ -150,13 +150,17 @@ export function createExtendedRules(api){
  const utilityNature=createUtilityNatureRules(shared),utilityDark=createUtilityDarkRules(shared);
  const saga=createSagaChampionRules(shared);
  const control=createControlChampionRules(shared);
- const seed=createSeedChampionRules(shared),cyber=createChampionCyberRules(shared),firebird=createChampionFirebirdRules({...shared,discardSelected:(s,t,ids)=>beginDiscardBatch(s,t,ids)}),combat=createCombatChampionRules(shared);
+ const optionalExecution={
+  offerExecution464:(...args)=>six.offerExecution464(...args),
+  consumeExecution464:(...args)=>six.consumeExecution464(...args)
+ };
+ const seed=createSeedChampionRules(shared),cyber=createChampionCyberRules(shared),firebird=createChampionFirebirdRules({...shared,discardSelected:(s,t,ids)=>beginDiscardBatch(s,t,ids)}),combat=createCombatChampionRules({...shared,...optionalExecution});
  const junior=createJuniorChampionRules({...api,creatures,put,task,choice,opt,skip,targetOptions});
  const history=createChampion2025Rules({...api,creatures,put,task,choice,opt,skip,targetOptions});
  const canLeave=(s,p,x,context={})=>x.g26Stay===undefined&&mecha.canLeave(s,p,x)&&photo.canLeave(s,p,x)&&six.canLeave(s,p,x,context)&&requested393J.canLeave(s,p,x)&&history.canLeave(s,p,x,context);
  const revisions=createPhotoRevisionRules({...api,creatures,put,task,choice,opt,skip,targetOptions});
  const continuation=createChampionContinuationRules({...api,creatures,put,task,choice,opt,skip,targetOptions,conditionalFreeSpell261:(s,p,c)=>!!c.g261Free&&six.ownCondition(s,p,c.g261Free.filter)});
- const original=createOriginalChampionRules({...api,gravePermits:(s,p,x,c)=>[...utilityDispectorSeeds.gravePermits(s,p,x,c),...six.gravePermits294(s,p,x,c)],creatures,put,task,choice,opt,skip,targetOptions,manaPermits:(s,p,x)=>[...(card(x).manaSummon?[null]:[]),...galaxy.manaPermits(s,p,x),...kenji.manaPermits(s,p,x),...gran.manaPermits(s,p,x),...girls.manaPermits(s,p,x),...six.manaPermits297(s,p,x)]});
+ const original=createOriginalChampionRules({...shared,...optionalExecution,gravePermits:(s,p,x,c)=>[...utilityDispectorSeeds.gravePermits(s,p,x,c),...six.gravePermits294(s,p,x,c)],manaPermits:(s,p,x)=>[...(card(x).manaSummon?[null]:[]),...galaxy.manaPermits(s,p,x),...kenji.manaPermits(s,p,x),...gran.manaPermits(s,p,x),...girls.manaPermits(s,p,x),...six.manaPermits297(s,p,x)]});
  const champion=createChampionRules({...api,creatures,put,task,choice,opt,skip,targetOptions,discardSelected:(s,t,ids)=>beginDiscardBatch(s,t,ids)});
  const recommended=createRecommendedRules({...api,creatures,put,task,choice,opt,skip,targetOptions,targetable,lock});
  const six=createSixPhotoRules({...api,stratoReplacements:seed.stratoReplacements,crossGearGroup:(...args)=>samurai.crossOnEntry(...args),shieldGoCount:(s,p)=>shieldPhoto.shieldGoCount(s,p),costAltPermits568:(...args)=>costAltPermits568(...args),snowVariants:(s,p,c)=>galaxy.reductionVariants(s,p,c),creatures,put,task,choice,opt,skip,targetOptions,targetable,canLeave,snapshot:(s,rows)=>({six:six.snapshot(s,rows)}),handProtected:(s,t)=>handProtected(s,t),

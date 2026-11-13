@@ -39,9 +39,12 @@ export function createOriginalChampionRules(api){
  case'g39_PointerReveal':{if(!t.owners.length)break;const owner=t.owners[0],rows=[],player=s.players[owner];if(!api.deckLocked(s,owner))for(const x of policyLook(s,owner,player.deck.length,player.deck,api)){rows.push(x);if(card(x).type==='creature')break;}const found=rows.at(-1),x=found&&card(found).type==='creature'?found:null,ids=rows.map(x=>x.uid);(player.g39Protected??=[]).push(...ids);if(rows.length)api.log(s,t.p,'reveal',card(t.source).name+'：'+rows.map(x=>card(x).name).join('・'),{cardId:t.source});queue(s,t,'PointerShuffle',{owner,ids,owners:t.owners.slice(1)});if(x){release(s,owner,[x.uid]);put(s,task('g34_Put',owner,t.source,{controller:t.p,owner,origin:'deck',target:x.uid,execution:false}));}break;}
  case'g39_PointerShuffle':release(s,t.owner,t.ids);api.shuffleLibrary(s,t.owner,[],t.source);queue(s,t,'PointerReveal');break;
  case'g39_Sasage':{
-  const c=faces(card(t.targetCard))[t.face||0],payment={...c,summonOrigin:t.origin,g39Reduction:t.reduction,...(c.neoEvolution?{g27BaseUid:t.base||null}:{})};
+  const c=faces(card(t.targetCard))[t.face||0],payment={...c,summonOrigin:t.origin,g39Reduction:t.reduction,
+   ...(c.neoEvolution?{g27BaseUid:t.base||null}:{}),...(t.g464Reducers===undefined?{}:{g464Reducers:t.g464Reducers})};
   if(!api.canPay(s,t.p,payment))break;
+  if(api.offerExecution464(s,t.p,payment,t))break;
   const cast={...t,op:'g39_SasageCast',amount:api.summonCost(s,t.p,payment)};
+  if(t.g464Reducers)api.consumeExecution464(s,t.p,payment);
   if(new Set(t.sasage).size===t.sasage.length){
    put(s,cast);
    destroySasage(s,t.p,t.sasage);
@@ -59,7 +62,17 @@ export function createOriginalChampionRules(api){
   if(own.battle.some(x=>x.uid===t.target&&(x.incarnation||0)===t.incarnation))destroySasage(s,t.p,[t.target]);
   break;
  case'g39_SasageCast':{const x=own[t.origin].find(x=>x.uid===t.target);if(x)api.cast(s,t.p,x.uid,false,t.base||null,t.face||0,{cost:t.amount,fixedPayment:true},t.origin,'ササゲール',false,t.permit);break;}
- case'g39_Rinne':{const x=own.battle.find(x=>x.uid===t.target&&(x.incarnation||0)===t.incarnation),c=x&&faces(card(x))[1];if(!x||!effective(x,s).g39Rinne||!api.canCast(s,t.p,c,'battle')||!api.canPay(s,t.p,c))break;api.pay(s,t.p,c);api.castBattleSpell(s,t.p,x.uid,x.incarnation||0,x.cardId,{label:'輪廻∞',paid:true,rinne:true});break;}
+ case'g39_Rinne':{
+  const x=own.battle.find(x=>x.uid===t.target&&(x.incarnation||0)===t.incarnation);
+  if(!x||!effective(x,s).g39Rinne)break;
+  const c=faces(card(x))[1];
+  const payment=t.g464Reducers===undefined?c:{...c,g464Reducers:t.g464Reducers};
+  if(!api.canCast(s,t.p,c,'battle')||!api.canPay(s,t.p,payment)||api.offerExecution464(s,t.p,payment,t))break;
+  api.pay(s,t.p,payment);
+  if(t.g464Reducers)api.consumeExecution464(s,t.p,payment);
+  api.castBattleSpell(s,t.p,x.uid,x.incarnation||0,x.cardId,{label:'輪廻∞',paid:true,rinne:true});
+  break;
+ }
  default:throw Error('未実装のオリジナル優勝デッキ効果：'+t.op);
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g39_'))return false;switch(t.op){

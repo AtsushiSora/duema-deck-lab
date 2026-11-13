@@ -169,11 +169,47 @@ export function createSixPhotoRules(api){
  // The card being summoned is in use, so a different physical hand card must be revealed.
  function revealCards470(s,p,c){const rule=c.g470RevealReduction;if(!rule)return[];const source=c.executionUid??((c.summonOrigin||'hand')==='hand'?s.players[p].hand.find(x=>x.cardId===c.id)?.uid:null);return s.players[p].hand.filter(x=>x.uid!==source&&(rule.evolution?api.isEvolution(x)||faces(card(x)).some(f=>f.evolution||f.g48HandEvolution||f.sMax):faces(card(x)).some(f=>cost(f)>=rule.min)));}
  function revealPayment470(s,t){const payment={...t.c,...(typeof t.args[4]==='object'?t.args[4]:t.args[4]!==null?{cost:t.args[4]}:{}),printedCost:t.c.cost},rows=revealCards470(s,t.p,payment),selected=rows.find(x=>x.uid===t.revealed);if(selected){const rule=payment.g470RevealReduction,n=creatures(s,1-t.p).some(x=>effective(x,s).noCostReduction)?0:rule.amount,amounts=rule.exact?[n]:Array.from({length:n+1},(_,i)=>n-i);choice(s,t,rule.exact?'手札を見せて召喚する？':'軽減する量を選ぶ',amounts.filter(amount=>api.canPay(s,t.p,{...payment,g470Handled:true,g470Revealed:selected.uid,g470Amount:amount})).map(amount=>{const c={...payment,g470Handled:true,g470Revealed:selected.uid,g470Amount:amount};return opt(amount+'軽減して召喚（'+api.summonCost(s,t.p,c)+'マナ）',amount,amount*10+5,selected.cardId);}).concat([opt('召喚をやめる',false,-1000)]));return;}const plain={...payment,g470Handled:true,g470Amount:0};choice(s,{...t,revealed:null},payment.g470RevealReduction.evolution?'進化クリーチャーを手札から1体見せる？':'コスト7以上の手札を1枚見せる？',[...rows.map(x=>opt(card(x).name,x.uid,20,x.cardId)),...(api.canPay(s,t.p,plain)?[opt('見せずに召喚する（'+api.summonCost(s,t.p,plain)+'マナ）',null,0)]:[]),opt('召喚をやめる',false,-1000)]);}
- // Unlike first-summon auras, these may be saved for any later matching summon.
- function onceProviders464(s,p,c){if(c.type!=='creature'||c.crossing||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return[];return creatures(s,p).filter(x=>{const r=!x.sealed&&effective(x,s).g464OnceSummon;return r&&x.g464UsedTurn!==s.turn&&(!r.race||race(c,r.race))&&(!r.colors||r.colors.some(q=>colors(c).includes(q)));});}
+ // Optional reductions can be saved for a later execution. Each psychic face has its own ability.
+ const onceTurnField464=(x,r)=>r.execution&&x.g1085Awakened?'g464BackUsedTurn':'g464UsedTurn';
+ function onceProviders464(s,p,c){
+  if(c.crossing||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return[];
+  return creatures(s,p).filter(x=>{
+   const r=!x.sealed&&effective(x,s).g464OnceSummon;
+   return r&&(r.execution||c.type==='creature')&&x[onceTurnField464(x,r)]!==s.turn&&
+    (!r.race||race(c,r.race))&&(!r.colors||r.colors.some(q=>colors(c).includes(q)));
+  });
+ }
  function selectedOnce464(s,p,c){return onceProviders464(s,p,c).filter(x=>c.g464Reducers===undefined||c.g464Reducers.includes(key(x)));}
- function onceDiscount464(s,p,c){return selectedOnce464(s,p,c).reduce((n,x)=>n+effective(x,s).g464OnceSummon.amount,0);}
- function payOnce464(s,t){const rows=onceProviders464(s,t.p,t.c),selected=t.selected.filter(k=>rows.some(x=>key(x)===k)),remaining=rows.filter(x=>!selected.includes(key(x))),payment={...t.c,g464Reducers:selected},payable=api.canPay(s,t.p,payment),n=api.summonCost(s,t.p,payment);choice(s,{...t,selected},'今回使う軽減を選ぶ（支払うコスト：'+n+'）',[...remaining.map(x=>opt(card(x).name+'の軽減を使う',key(x),api.summonCost(s,t.p,{...t.c,g464Reducers:[...selected,key(x)]})<n?20:-5,x.cardId)),...(payable?[opt('この軽減で召喚する',null,5)]:[]),opt('召喚をやめる',false,-1000)]);}
+ function onceDiscount464(s,p,c){
+  let summon=0,execution=0;
+  for(const x of selectedOnce464(s,p,c)){
+   const rule=effective(x,s).g464OnceSummon;
+   if(rule.execution)execution+=rule.amount;
+   else summon+=rule.amount;
+  }
+  return {summon,execution};
+ }
+ function consumeOnce464(s,p,c,execution){
+  if(execution&&c.g464Reducers===undefined)return;
+  for(const x of selectedOnce464(s,p,c)){
+   const rule=effective(x,s).g464OnceSummon;
+   if(!!rule.execution===execution)x[onceTurnField464(x,rule)]=s.turn;
+  }
+ }
+ function payOnce464(s,t){
+  const rows=onceProviders464(s,t.p,t.c),selected=t.selected.filter(k=>rows.some(x=>key(x)===k));
+  const payment={...t.c,g464Reducers:selected},n=api.summonCost(s,t.p,payment),options=[];
+  for(const x of rows){
+   if(selected.includes(key(x)))continue;
+   const cheaper=api.summonCost(s,t.p,{...payment,g464Reducers:[...selected,key(x)]})<n;
+   if(cheaper||!effective(x,s).g464OnceSummon.execution)options.push(opt(card(x).name+'の軽減を使う',key(x),cheaper?20:-5,x.cardId));
+  }
+  const action={creature:'召喚する',spell:'唱える',gear:'ジェネレートする'}[t.c.type]||'実行する';
+  const cancel={creature:'召喚を',spell:'唱えるのを',gear:'ジェネレートを'}[t.c.type]||'実行を';
+  if(api.canPay(s,t.p,payment))options.push(opt('この軽減で'+action,null,5));
+  options.push(opt(cancel+'やめる',false,-1000));
+  choice(s,{...t,selected},'今回使う軽減を選ぶ（支払うコスト：'+n+'）',options);
+ }
  // Resolved Hyper activation persists through ignored abilities; continuous Z Rush does not (QA44820 / QA48760).
  const hyperMode418=(s,x)=>!!x.hyperActive&&(!!card(x).hyperTap||x.hyperResolved||!api.ignored(s,x));
  // The spell half of a twinpact is not the name of the attacking creature.
@@ -792,6 +828,10 @@ export function createSixPhotoRules(api){
  // An extra-zone choice may use either eligible face of the same physical card.
  // Setting the visible face on entry does not mark the creature as having awakened this turn.
  const psychicBack1104=x=>({...x,g1085Awakened:true});
+ function extraFaces1104(x,t,origin){
+  const back=origin==='extra'&&card(x.cardId).g1085Back;
+  return back&&(t.g1104PsychicFaces||t.deploy&&back.g464OnceSummon?.execution)?[x,psychicBack1104(x)]:[x];
+ }
  const selectionKey1104=x=>key(x)+(x.g1085Awakened?':back':':front');
  const spent550=t=>(t.rows||[]).reduce((n,r)=>n+(r.cost550||0),0);
  function fitsCost550(s,t,x,p,origin){return t.g550CostBudget===undefined||spent550(t)+cost(api.zoneCard(s,p,x,origin))<=t.g550CostBudget;}
@@ -842,7 +882,7 @@ export function createSixPhotoRules(api){
   const c=card(x);
   return !x.faceDown&&c.type==='creature'&&t.g960DeathNames.includes(exactName(creatureFaceName(c)));
  }
- function list(s,t){const p=t.owner==='self'?t.p:t.owner==='opponent'?1-t.p:t.owner??t.p,own=s.players[p];return(t.zones||[t.origin||'hand']).flatMap(origin=>((t.g210ManaUntap||t.g806MultiUntap||t.g803DeployForOwner||t.g837Reikon||t.g1009AfterMoveAttempt||t.g1011ChooseBeforeMove||api.canMoveZone(s,p,origin))?own[origin]||[]:[]).flatMap(x=>t.g1104PsychicFaces&&origin==='extra'&&card(x.cardId).g1085Back?[x,psychicBack1104(x)]:[x]).filter(x=>!(t.selected||[]).includes(x.uid)&&(!t.g187OwnPick||!x.sealed)&&(!t.g186Other||x.uid!==t.uid)&&(!t.g179Other||!api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)))&&(!t.g899RampTapped||!api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)))&&matches(s,p,x,t.filter)&&matchesDeathDeployment960(t,x)&&(!t.g806MultiUntap||multicolorUntap806(s,p,x,origin))).filter(x=>t.g409Budget===undefined||!x.faceDown&&(t.rows||[]).reduce((n,r)=>n+cost(card(s.players[r.p][r.origin].find(y=>y.uid===r.uid))),0)+cost(api.zoneCard(s,p,x))<(t.g409Budget==='∞'?Infinity:t.g409Budget)).filter(x=>(!t.g530Ids||t.g530Ids.includes(x.uid))&&fitsPower506(s,t,x)&&fitsCost513(s,t,x)&&fitsCost550(s,t,x,p,origin)).filter(x=>!t.deploy||canPut(deploymentState550(s,t),p,x,origin,!!t.execution)).filter(x=>origin!=='battle'||t.g1046NoChoiceProtection&&!externalProtection565(s,x).g1082ChoiceProtected||!api.targetable||api.targetable(s,t.p,p,x)).map(x=>({x,origin,p})));}
+ function list(s,t){const p=t.owner==='self'?t.p:t.owner==='opponent'?1-t.p:t.owner??t.p,own=s.players[p];return(t.zones||[t.origin||'hand']).flatMap(origin=>((t.g210ManaUntap||t.g806MultiUntap||t.g803DeployForOwner||t.g837Reikon||t.g1009AfterMoveAttempt||t.g1011ChooseBeforeMove||api.canMoveZone(s,p,origin))?own[origin]||[]:[]).flatMap(x=>extraFaces1104(x,t,origin)).filter(x=>!(t.selected||[]).includes(x.uid)&&(!t.g187OwnPick||!x.sealed)&&(!t.g186Other||x.uid!==t.uid)&&(!t.g179Other||!api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)))&&(!t.g899RampTapped||!api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)))&&matches(s,p,x,t.filter)&&matchesDeathDeployment960(t,x)&&(!t.g806MultiUntap||multicolorUntap806(s,p,x,origin))).filter(x=>t.g409Budget===undefined||!x.faceDown&&(t.rows||[]).reduce((n,r)=>n+cost(card(s.players[r.p][r.origin].find(y=>y.uid===r.uid))),0)+cost(api.zoneCard(s,p,x))<(t.g409Budget==='∞'?Infinity:t.g409Budget)).filter(x=>(!t.g530Ids||t.g530Ids.includes(x.uid))&&fitsPower506(s,t,x)&&fitsCost513(s,t,x)&&fitsCost550(s,t,x,p,origin)).filter(x=>!t.deploy||canPut(deploymentState550(s,t),p,x,origin,!!t.execution)).filter(x=>origin!=='battle'||t.g1046NoChoiceProtection&&!externalProtection565(s,x).g1082ChoiceProtected||!api.targetable||api.targetable(s,t.p,p,x)).map(x=>({x,origin,p})));}
  function scryScore323(s,t,x){const c=card(x),magi=card(t.source).g34Attack?.find(d=>d.op==='Magibomber321');return api.isCreature(s,x)&&cost(c)<=(magi?.n||0)||cost(c)<=s.players[t.p].mana.length+1?-5:5;}
  function selectedBattleScore(s,t,x,candidates,n){
   if(t.anyOwner&&t.to==='hand'&&(s.players[t.p].battle.includes(x)||!api.canLeave(s,1-t.p,x)))return -10;
@@ -1002,7 +1042,7 @@ export function createSixPhotoRules(api){
    choice(s,t,'確認したカード',[opt('確認を終える',null,0)]);
    return;
   }
-  if((t.selected?.length||0)>=n||!rows.length){if(t.selected?.length||t.g891BouncePair&&!t.g891OwnStage)finishSelect(s,t);else if(t.after)start(s,t,t.after);return;}const scores550=t.g550CostBudget===undefined?null:budgetScores550(s,t,rows,n);choice(s,t,t.title||('カードを'+n+'枚'+(t.optional?'まで':'')+'選ぶ'),[...rows.map(({x,origin,p})=>opt((t.anyOwner?(p===t.p?'自分：':'相手：'):'')+(t.zones?.length>1?({mana:'マナ：',grave:'墓地：',hand:'手札：'}[origin]||''):'')+(x.faceDown?'裏向きのカード':card(x).name)+((t.g210ManaUntap||t.g806MultiUntap)?(x.tapped?(api.canUntap(x)?'（タップ中）':'（タップ中・アンタップ不可）'):'（アンタップ）'):''),{uid:x.uid,origin,p,...(t.g1104PsychicFaces&&x.g1085Awakened?{g1104Back:true}:{}),...(scores550?{cost550:cost(api.zoneCard(s,p,x,origin)),serial550:x.zoneSerial||0}:{})},scores550?scores550.get(selectionKey1104(x)):t.g583DrawMoved?contractScore583(s.players[p],x,t.selected.length):t.g405Search&&origin==='deck'&&s.players[t.p].deck.length<=1?-1000:(t.g210ManaUntap||t.g806MultiUntap)?(x.tapped&&api.canUntap(x)?25:-1):x.faceDown?15:t.g530Ids&&origin==='deck'&&(t.selected?.length||0)+1>=s.players[t.p].deck.length?-1000:t.score??(t.g899RampTapped?(s.players[t.p].deck.length>t.selected.length+1?12:-1000):t.g193Select?selectedBattleScore(s,t,x,candidates,n):t.g187OwnPick?-cost(card(x))-api.power(x,false,s)/10000:t.g182HandMana||t.g183Return||t.g184ManaLoss?15-cost(card(x)):t.to==='grave'?-cost(card(x)):15+cost(card(x))),x.faceDown?null:x.cardId)),...(t.optional&&t.selected.length>=(t.minimum??0)&&(!t.g626DistinctEvolution||!t.selected.length)?[opt(t.g837Reikon&&n>1?'返霊を使わない':t.g626DistinctEvolution?'戻さない':'ここまでで確定',null,0)]:[])]);}
+  if((t.selected?.length||0)>=n||!rows.length){if(t.selected?.length||t.g891BouncePair&&!t.g891OwnStage)finishSelect(s,t);else if(t.after)start(s,t,t.after);return;}const scores550=t.g550CostBudget===undefined?null:budgetScores550(s,t,rows,n);choice(s,t,t.title||('カードを'+n+'枚'+(t.optional?'まで':'')+'選ぶ'),[...rows.map(({x,origin,p})=>opt((t.anyOwner?(p===t.p?'自分：':'相手：'):'')+(t.zones?.length>1?({mana:'マナ：',grave:'墓地：',hand:'手札：'}[origin]||''):'')+(x.faceDown?'裏向きのカード':card(x).name)+((t.g210ManaUntap||t.g806MultiUntap)?(x.tapped?(api.canUntap(x)?'（タップ中）':'（タップ中・アンタップ不可）'):'（アンタップ）'):''),{uid:x.uid,origin,p,...(origin==='extra'&&x.g1085Awakened?{g1104Back:true}:{}),...(scores550?{cost550:cost(api.zoneCard(s,p,x,origin)),serial550:x.zoneSerial||0}:{})},scores550?scores550.get(selectionKey1104(x)):t.g583DrawMoved?contractScore583(s.players[p],x,t.selected.length):t.g405Search&&origin==='deck'&&s.players[t.p].deck.length<=1?-1000:(t.g210ManaUntap||t.g806MultiUntap)?(x.tapped&&api.canUntap(x)?25:-1):x.faceDown?15:t.g530Ids&&origin==='deck'&&(t.selected?.length||0)+1>=s.players[t.p].deck.length?-1000:t.score??(t.g899RampTapped?(s.players[t.p].deck.length>t.selected.length+1?12:-1000):t.g193Select?selectedBattleScore(s,t,x,candidates,n):t.g187OwnPick?-cost(card(x))-api.power(x,false,s)/10000:t.g182HandMana||t.g183Return||t.g184ManaLoss?15-cost(card(x)):t.to==='grave'?-cost(card(x)):15+cost(card(x))),x.faceDown?null:x.cardId)),...(t.optional&&t.selected.length>=(t.minimum??0)&&(!t.g626DistinctEvolution||!t.selected.length)?[opt(t.g837Reikon&&n>1?'返霊を使わない':t.g626DistinctEvolution?'戻さない':'ここまでで確定',null,0)]:[])]);}
  function freeze(s,t,p,y){if(!y||y.sealed)return;for(const kind of ['attack','block'])(s.extLimits??=[]).push({kind,g190Freeze:true,player:p,uid:y.uid,incarnation:y.incarnation||0,controller:t.controller??t.p,expires:t.g190Freeze==='end'?'end':'start',who:t.g190Freeze==='end'?s.active:t.g190Freeze==='opponent'?1-t.p:t.p,...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});}
  function stopPlayerAttack567(s,t,y){
   (s.extLimits??=[]).push({kind:'g567PlayerStop',ref:{uid:y.uid,incarnation:y.incarnation||0},controller:t.p,expires:t.g567PlayerStop,who:t.g567PlayerStop==='start'?t.p:s.active,...(t.spell===false?{}:{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))})});
@@ -3634,7 +3674,7 @@ export function createSixPhotoRules(api){
   ]}]);
   break;
  }
- case'g34_Look':{if(t.g201Search)t={...t,n:own.deck.length};let ids;if(t.stages?.some(q=>q.g467Destinations&&!q.filter)&&api.deckLocked(s,t.p)){t={...t,g467Blind:true};const skip=reserved(own);ids=own.deck.filter(x=>!skip.has(x.uid)).slice(0,t.n).map(x=>x.uid);(own.g34Protected??=[]).push(...ids);}else ids=look(s,t);
+ case'g34_Look':{if(t.g201Search)t={...t,n:own.deck.length};let ids;if(!t.g467RequireLook&&t.stages?.some(q=>q.g467Destinations&&!q.filter)&&api.deckLocked(s,t.p)){t={...t,g467Blind:true};const skip=reserved(own);ids=own.deck.filter(x=>!skip.has(x.uid)).slice(0,t.n).map(x=>x.uid);(own.g34Protected??=[]).push(...ids);}else ids=look(s,t);
   const inspection=t.g841DeckPeek?deckPeek841(own,ids):{};
   put(s,{...t,...inspection,op:'g34_LookPick',ids,stage:0,chosen:[]});
   break;
@@ -4291,7 +4331,10 @@ export function createSixPhotoRules(api){
  case'g34_TapCast976':if(v)put(s,{...t,selected:[...t.selected,v]});break;
  case'g34_PaySpell485':if(typeof v==='number'){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),g485Handled:true,g485Amount:v};api.cast(s,t.p,...args);}break;
  case'g34_RevealPayment470':if(typeof v==='string')put(s,{...t,revealed:v});else if(v!==false){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),g470Handled:true,g470Amount:v??0,...(t.revealed?{g470Revealed:t.revealed}:{})};api.cast(s,t.p,...args);}break;
- case'g34_PayOnce464':if(typeof v==='string')put(s,{...t,selected:[...t.selected,v]});else if(v===null){const args=[...t.args];args[18]=t.selected;api.cast(s,t.p,...args);}break;
+ case'g34_PayOnce464':if(typeof v==='string')put(s,{...t,selected:[...t.selected,v]});else if(v===null){
+  if(t.after)put(s,{...t.after,g464Reducers:t.selected});
+  else{const args=[...t.args];args[18]=t.selected;api.cast(s,t.p,...args);}
+ }break;
  case'g34_HandReveal462':if(v!==null)put(s,{...t,selected:[...t.selected,v]});else finishReveal462(s,t,own.hand.filter(x=>t.selected.includes(x.uid)));break;
  case'g34_PlayerDraw461':if(t.upTo)put(s,{...t,chosen:v});else if(v)put(s,{...t,accepted:true});break;
  case'g34_HandCycle460':
@@ -5422,7 +5465,15 @@ export function createSixPhotoRules(api){
    if(defs)queue(s,1-p,x,defs);
   }
  },
- firstSummonDiscount463,onceDiscount464,spellDiscount467:(s,p,c)=>c.type==='spell'?creatures(s,p).filter(x=>!x.sealed).reduce((n,x)=>n+(effective(x,s).g467SpellReduction||0),0)+spellReduction485(s,p,c):0,
+ firstSummonDiscount463,onceDiscount464,
+ consumeExecution464:(s,p,c)=>consumeOnce464(s,p,c,true),
+ offerExecution464(s,p,c,after){
+  if(c.g464Reducers!==undefined||!onceProviders464(s,p,c).some(x=>effective(x,s).g464OnceSummon.execution))return false;
+  if(api.summonCost(s,p,c)===api.summonCost(s,p,{...c,g464Reducers:[]}))return false;
+  put(s,task('g34_PayOnce464',p,c.id,{c,after,selected:[]}));
+  return true;
+ },
+ spellDiscount467:(s,p,c)=>c.type==='spell'?creatures(s,p).filter(x=>!x.sealed).reduce((n,x)=>n+(effective(x,s).g467SpellReduction||0),0)+spellReduction485(s,p,c):0,
  selectNullBreaker471(s,p,x){const c=effective(x,s);if(!c.g471NullBreaker||s.attack.g471Breaker||!s.players[1-p].shields.length||!c.gBreaker&&c.breaker!=='∞'&&!(c.breaker>0))return false;const n=(c.extraBreak||0)+(s.attack.g1076ExtraBreaks||0);choice(s,task('g34_NullBreaker471',p,x.cardId,{uid:x.uid}), 'この攻撃で使うブレイカーを選ぶ',[opt('ヌル・ブレイカー（'+n+'枚ブレイク）','null',0),opt('ほかのブレイカーを使う','normal',20)]);return true;},
  beginPayment560(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g560Handled||!summonAuras560(s,p,c).optional||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PayAura560',p,c.id,{c:payment,args}));return true;},
  beginPayment500(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g500Handled||!floorOptions500(s,p,c)[0]||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PayFloor500',p,c.id,{c:payment,args}));return true;},
@@ -5432,7 +5483,16 @@ export function createSixPhotoRules(api){
  beginPayment470(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g470Handled||!c.g470RevealReduction||!revealCards470(s,p,c).length)return false;put(s,task('g34_RevealPayment470',p,c.id,{c,args,revealed:null}));return true;},
  revealDiscount470(s,p,c){if(c.type!=='creature'||c.crossing||!c.g470RevealReduction)return 0;const rows=revealCards470(s,p,c);return c.g470Handled?rows.some(x=>x.uid===c.g470Revealed)?Math.max(0,Math.min(c.g470RevealReduction.amount,c.g470Amount||0)):0:rows.length?c.g470RevealReduction.amount:0;},
  revealCommitted470(s,p,c,payment){if(payment?.g470Revealed){const x=s.players[p].hand.find(x=>x.uid===payment.g470Revealed);if(x)api.log(s,p,'reveal',c.name+'の召喚のため手札を公開：'+card(x).name,{cardId:x.cardId,source:c.id});}},
- beginPayment464(s,p,c,args){if(args[1]||args[4]?.fixedPayment||c.g464Reducers!==undefined||!onceProviders464(s,p,c).length)return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PayOnce464',p,c.id,{c:payment,args,selected:[]}));return true;},
+ beginPayment464(s,p,c,args){
+  if(args[1]||args[4]?.fixedPayment||c.g464Reducers!==undefined)return false;
+  const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};
+  const rows=onceProviders464(s,p,payment);
+  if(!rows.length)return false;
+  if(rows.every(x=>effective(x,s).g464OnceSummon.execution)&&
+   api.summonCost(s,p,payment)===api.summonCost(s,p,{...payment,g464Reducers:[]}))return false;
+  put(s,task('g34_PayOnce464',p,c.id,{c:payment,args,selected:[]}));
+  return true;
+ },
  conditionalDiscount261(s,p,c){return c.g261Discount&&ownCondition(s,p,c.g261Discount.filter)?c.g261Discount.amount:0;},
  sympathyDiscount211:(s,p,c)=>c.g211Sympathy?.minimum>=2?0:sympathyAmount500(s,p,c),
  discount(s,p,c){return nextReduction456(s,p,c)+(c.g34Role==='shinGod'?s.players[p].battle.filter(x=>!x.sealed&&mecha(effective(x,s))).length:0)+(c.type==='creature'&&colors(c).includes('自然')&&Number(c.power)>=12000?(s.g34Discounts||[]).filter(x=>x.p===p&&x.turn===s.turn).reduce((n,x)=>n+x.amount,0):0);},
@@ -5592,7 +5652,7 @@ export function createSixPhotoRules(api){
   }
   if(colors(c).length>1)for(const y of s.players[p].grave)
    if(!y.faceDown&&card(y).g922GraveMultiSummon)send(s,p,y,'GraveReturn754',{serial:y.zoneSerial||0});
- }for(const y of selectedOnce464(s,p,c))y.g464UsedTurn=s.turn;recordSummon463(s,p,c);if(c.type==='creature')consumeReduction456(s,p,c);if(c.type==='creature'&&['mana','grave'].includes(origin)&&typeof permit==='string'&&permit.startsWith('g450:'))((s.g450ZoneUses??=[{},{}])[p]??={})[permit]=s.turn;if(c.type!=='spell')noncreatureUse448(s,p,c);if(c.type==='creature'){countExecution(s,p,c);if(colors(c).includes('自然')&&Number(c.power)>=12000)s.g34Discounts=(s.g34Discounts||[]).filter(y=>y.p!==p||y.turn!==s.turn);}},
+ }consumeOnce464(s,p,c,false);recordSummon463(s,p,c);if(c.type==='creature')consumeReduction456(s,p,c);if(c.type==='creature'&&['mana','grave'].includes(origin)&&typeof permit==='string'&&permit.startsWith('g450:'))((s.g450ZoneUses??=[{},{}])[p]??={})[permit]=s.turn;if(c.type!=='spell')noncreatureUse448(s,p,c);if(c.type==='creature'){countExecution(s,p,c);if(colors(c).includes('自然')&&Number(c.power)>=12000)s.g34Discounts=(s.g34Discounts||[]).filter(y=>y.p!==p||y.turn!==s.turn);}},
  judgeWon969(s,p,deferred){
   const wins=s.g969FirstJudgeWins??=[null,null];
   if(wins[p]===s.turn)return;
