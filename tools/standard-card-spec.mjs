@@ -6160,6 +6160,35 @@ export function standardCardSpec(d,{phase=165}={}){
    'このクリーチャーが攻撃する時バトルゾーンにあるクロスギアを1枚選び持ち主の墓地に置く。クロスギアがバトルゾーンから墓地に置かれた時カードを1枚引いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
    return {breaker:2,g34Attack:[{op:'Target',element:true,anyOwner:true,filter:{g201Gear:true},to:'grave',title:'墓地に置くクロスギアを1枚選ぶ'}],g933GearGraveDraw:true};
  }
+ if(phase>=1092&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const psychic={creature:true,g1085Psychic:true};
+  if(['dmx07-s01','promoy13-034'].includes(d.id)&&text===
+   'このクリーチャーをバトルゾーンに出した時コスト3以下のサイキック以外のクリーチャーをすべて破壊する。その後コスト9以下のサイキック・クリーチャーをすべて破壊する。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[
+    {op:'Sweep',both:true,filter:{creature:true,g1085Psychic:false,max:3}},
+    {op:'Sweep',both:true,filter:{...psychic,max:9}}
+   ]};
+  const trigger='S・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)';
+  const entry='このクリーチャーをバトルゾーンに出した時相手のサイキック・クリーチャーを';
+  if(['dmr04-024','promoy10-048','promoy11-028'].includes(d.id)&&[
+   trigger+entry+'パワーの合計が8000以下になるように好きな数選び破壊する。',
+   'S・トリガー'+trigger+entry+'好きな数パワーの合計が8000以下になるように選び破壊する。',
+   'S・トリガー'+trigger+entry+'パワーの合計が8000以下になるように好きな数選び破壊する。'
+  ].includes(text))
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{
+    op:'Select',owner:'opponent',origin:'battle',n:'all',optional:true,to:'grave',filter:psychic,
+    g173Targets:true,g193Select:true,g506PowerBudget:8000,
+    title:'パワーの合計が8000以下になるよう相手のサイキックを選ぶ'
+   }]};
+  if(d.id==='dmr04-026'&&text===
+   'マナゾーンに置く時このカードはタップして置く。S・トリガーブロッカーこのクリーチャーは相手プレイヤーを攻撃できない。このクリーチャーをバトルゾーンに出した時バトルゾーンにある相手のサイキック・クリーチャーを1体選び持ち主の超次元ゾーンに戻す。')
+   return {trigger:true,blocker:true,noPlayerAttack:true,effect:'sixPhoto',
+    g34Tasks:[{op:'Target',to:'extra',toOwnerExtra:true,filter:psychic}]};
+  if(d.id==='dmr02-022'&&text===
+   'ブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)バトルゾーンに自分のサイキック・クリーチャーがなければこのクリーチャーは相手プレイヤーを攻撃できない。')
+   return {blocker:true,noPlayerAttack:true,g260Self:{filter:psychic,grants:{noPlayerAttack:false}}};
+ }
  if(phase>=1091&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const destroyPsychic={op:'Target',to:'grave',filter:{g1085Psychic:true}};

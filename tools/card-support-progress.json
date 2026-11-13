@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-13",
   "catalogueNames": 11827,
-  "supportedNames": 7242,
-  "pendingNames": 4585,
-  "phase": 1091,
-  "added": 3,
+  "supportedNames": 7246,
+  "pendingNames": 4581,
+  "phase": 1092,
+  "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2669,
+    "クリーチャー": 2665,
     "NEOクリーチャー": 87,
     "呪文": 598,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1202,
-    "未対応の能力文": 3162,
+    "未対応の能力文": 3158,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 21,
     "未対応のシンカパワー": 2,
@@ -210147,13 +210147,125 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1092,
+      "baseCommit": "103e5c5e",
+      "scope": "サイキックの種別による破壊・超次元への移動・プレイヤーへの攻撃条件を既存処理で再現する。",
+      "cards": [
+        {
+          "id": "dmx07-s01",
+          "name": "猛虎ライガー・ブレード",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx07-s01"
+        },
+        {
+          "id": "dmr04-024",
+          "name": "問答無用だ！鬼丸ボーイ",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-024"
+        },
+        {
+          "id": "dmr04-026",
+          "name": "ミスター・アクア",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-026"
+        },
+        {
+          "id": "dmr02-022",
+          "name": "予言者ガガ・クルトン",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-022"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "promoy13-034",
+          "canonicalId": "dmx07-s01"
+        },
+        {
+          "id": "promoy10-048",
+          "canonicalId": "dmr04-024"
+        },
+        {
+          "id": "promoy11-028",
+          "canonicalId": "dmr04-024"
+        }
+      ],
+      "supportedNames": 7246,
+      "pendingNames": 4581,
+      "verification": {
+        "focused": "tests/standard1092-effects.test.mjs 7件成功",
+        "relatedRegressions": "162件成功（超次元・前回追加分・カタログ・画像・デッキ編集56件、合計パワー選択・CPU対戦106件）",
+        "check": "npm run check 成功",
+        "officialPrints": 7,
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/qa_old/34920/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37748/",
+          "https://dm.takaratomy.co.jp/rule/qa/40829/"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1090のアモデゴラスと未対応カード3種の実カード組み合わせは引き続き未確認。",
+        "regressionLogs": [
+          "/tmp/duema-phase-1092/focused.log",
+          "/tmp/duema-phase-1092/regression.log",
+          "/tmp/duema-phase-1092/budget.log",
+          "/tmp/duema-phase-1092/check.log",
+          "/tmp/duema-phase-1092/audit.log"
+        ]
+      },
+      "deferred": [
+        {
+          "id": "dm39-051",
+          "name": "メビウス・トルネード",
+          "reason": "公式能力全文・基本情報・画像を確認。最初の破壊が置換された場合にも「もう1体」を正しく扱う対象記録と、解決時に自分のサイキックがいるかの判定を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm39-051"
+          ]
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "双方のパワー6000以下のサイキックを一斉に破壊し、複数の離脱置換・解除を処理するテストと、自身が攻撃されないことの検証が必要。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-062"
+          ]
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "保留継続。選んだアンタップ中の相手クリーチャーを攻撃できる範囲と、召喚酔い・攻撃制限・対象の離脱後の扱いを個別に確認する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-102"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1091,
-    "nextPhase": 1092,
+    "lastVerifiedPhase": 1092,
+    "nextPhase": 1093,
     "workInProgress": [],
     "nextCandidates": [
+      {
+        "id": "dmr05-018",
+        "name": "蒼神龍アイロニー・スパイラル",
+        "reason": "登場時と攻撃時の二択を既存の選択処理で検証する。再録・公式画像も照合する。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-018"
+        ]
+      },
+      {
+        "id": "dmr08-011",
+        "name": "絆の戦士ペッパー",
+        "reason": "任意の手札戻しと、後続の任意の超次元戻しを公式能力全文と照合する。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-011"
+        ]
+      },
+      {
+        "id": "dmr03-035",
+        "name": "霊騎ガガ・キャンサール",
+        "reason": "タップ中の自分のサイキックへの選択保護と攻撃・ブロックの許可を検証する。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-035"
+        ]
+      },
       {
         "id": "dm39-051",
         "name": "メビウス・トルネード",
@@ -210165,25 +210277,17 @@
       {
         "id": "dmr05-062",
         "name": "鬼姫モエル",
-        "reason": "今回は保留。双方のパワー6000以下のサイキックを一斉に破壊し、複数の離脱置換・解除を処理するテストと、自身が攻撃されないことの検証が必要。",
+        "reason": "双方のパワー6000以下のサイキックを一斉に破壊し、複数の離脱置換・解除を処理するテストと、自身が攻撃されないことの検証が必要。",
         "sources": [
           "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-062"
         ]
       },
       {
-        "id": "dmx07-s01",
-        "name": "猛虎ライガー・ブレード",
-        "reason": "サイキック以外とサイキックを別々のコスト条件で順番に破壊する。公式能力全文・再録と、破壊置換後に次へ進む順序を照合する。",
+        "id": "dmr09-102",
+        "name": "戦場のロックンロール",
+        "reason": "保留継続。選んだアンタップ中の相手クリーチャーを攻撃できる範囲と、召喚酔い・攻撃制限・対象の離脱後の扱いを個別に確認する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmx07-s01"
-        ]
-      },
-      {
-        "id": "dmr04-024",
-        "name": "問答無用だ！鬼丸ボーイ",
-        "reason": "既存の合計パワー選択とサイキック絞り込みを組み合わせられるか、公式全文・再録と実カードで確認する。",
-        "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-024"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-102"
         ]
       },
       {
@@ -210465,7 +210569,7 @@
         ]
       }
     ],
-    "steps": "次回はPhase 1092。最新のローカルコミット・未完了の検証・実データの正規名数を確認し、次の候補を公式照合する。検証済みの差分をローカルコミットする。10分間隔の自動追加は再開済み。全体のnpm testは再実行しない。",
+    "steps": "次回はPhase 1093。最新コミット・作業ツリー・前回の未完了検証を確認し、実データの正規カード名数を再集計して次の候補を公式照合する。検証済み差分をローカルコミットする。全体のnpm testは再実行しない。",
     "knownIssues": [
       "Phase 322の旧スキャナーテストは、Phase 419で対応した真実の名 ワクワク・チャップルン（dmr07-001）を依然として未対応一覧に期待する。Phase 742基点とPhase 743作業ツリーで候補11件・対象はブロック一覧にいないことを再現。今回の変更とは分けて扱う。",
       "Phase 321・322の既存マジボンバーは、手札からEXライフ持ちを出す際に公式QA 41150と異なり、先に閲覧中のカードを解放する。既存の対戦挙動を維持するため、このバッチの裁定対応はHOODに限定。既存カードへの適用は再開データと回帰テストを別途検証する。",

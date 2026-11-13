@@ -216455,15 +216455,156 @@
       },
       "supportBatch": "phase-1091",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx07-s01",
+      "name": "猛虎ライガー・ブレード",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "デーモン・コマンド/ハンター",
+      "text": "このクリーチャーをバトルゾーンに出した時、コスト３以下の、サイキック以外のクリーチャーをすべて破壊する。その後、コスト９以下のサイキック・クリーチャーをすべて破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx07-s01",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "filter": {
+            "creature": true,
+            "g1085Psychic": false,
+            "max": 3
+          }
+        },
+        {
+          "op": "Sweep",
+          "both": true,
+          "filter": {
+            "creature": true,
+            "g1085Psychic": true,
+            "max": 9
+          }
+        }
+      ],
+      "supportBatch": "phase-1092",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr04-024",
+      "name": "問答無用だ！鬼丸ボーイ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ヒューマノイド/ハンター",
+      "text": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、相手のサイキック・クリーチャーを、パワーの合計が8000以下になるように好きな数選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-024",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": "all",
+          "optional": true,
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "g1085Psychic": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g506PowerBudget": 8000,
+          "title": "パワーの合計が8000以下になるよう相手のサイキックを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1092",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr04-026",
+      "name": "ミスター・アクア",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 3500,
+      "race": "リキッド・ピープル/ハンター",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー\nブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のサイキック・クリーチャーを１体選び、持ち主の超次元ゾーンに戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-026",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "extra",
+          "toOwnerExtra": true,
+          "filter": {
+            "creature": true,
+            "g1085Psychic": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1092",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr02-022",
+      "name": "予言者ガガ・クルトン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2500,
+      "race": "ライトブリンガー/エイリアン",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nバトルゾーンに自分のサイキック・クリーチャーがなければ、このクリーチャーは相手プレイヤーを攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-022",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g260Self": {
+        "filter": {
+          "creature": true,
+          "g1085Psychic": true
+        },
+        "grants": {
+          "noPlayerAttack": false
+        }
+      },
+      "supportBatch": "phase-1092",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1091,
+    "phase": 1092,
     "checkedAt": "2026-11-13",
-    "baseCount": 7239,
-    "newEffectCards": 3,
+    "baseCount": 7242,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7242,
+    "totalCount": 7246,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -235844,6 +235985,18 @@
         "newEffectCards": 1,
         "newVanillaCards": 0,
         "totalCount": 7239,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1091,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7239,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7242,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
