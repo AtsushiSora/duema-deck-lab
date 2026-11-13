@@ -223897,15 +223897,181 @@
       "g1135DragonWorld": true,
       "supportBatch": "phase-1135",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-006",
+      "name": "王座の精霊 ファディオアル",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3500,
+      "race": "エンジェル・コマンド/フュージョナー",
+      "text": "ブロッカー ブロッカー\nこのクリーチャーが出た時、自分の山札の上から４枚を表向きにする。その中からNEOクリーチャーまたはエンジェル・コマンド・カードを１枚手札に加え、残りを好きな順序で山札の下に置く。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\n各ターンに一度、このクリーチャーが離れる時、かわりに自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-006",
+      "limit": 4,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 4,
+          "public": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "any": [
+                  {
+                    "g556Neo": true
+                  },
+                  {
+                    "anyFaceRace": "エンジェル・コマンド"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "g1136ShieldSaver": true,
+      "g404Soul": {
+        "g1136ShieldSaver": true
+      },
+      "supportBatch": "phase-1136",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-007",
+      "name": "アルジェン・ゴルギーニ",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5500,
+      "race": "メカ・デル・ディネロ/スーパーカー・ドラゴン/フュージョナー",
+      "text": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のエレメントを２つまで選ぶ。そのうちの１つを持ち主のマナゾーンに置き、もう１つをシールド化する。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーの各ブレイクの前に、自分の山札の上から１枚を見る。それをマナゾーンに置くか、シールド化してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-007",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "opponent",
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "element": true,
+            "faceUp": true
+          },
+          "g173Targets": true,
+          "g1136Split": true,
+          "title": "移動させる相手のエレメントを2つまで選ぶ"
+        }
+      ],
+      "g1136BeforeBreak": [
+        {
+          "op": "Look",
+          "n": 1,
+          "g841DeckPeek": true,
+          "g467RequireLook": true,
+          "rest": "top",
+          "stages": [
+            {
+              "n": 1,
+              "optional": true,
+              "g467Destinations": [
+                "mana",
+                "shields"
+              ]
+            }
+          ]
+        }
+      ],
+      "g404Soul": {
+        "g1136BeforeBreak": [
+          {
+            "op": "Look",
+            "n": 1,
+            "g841DeckPeek": true,
+            "g467RequireLook": true,
+            "rest": "top",
+            "stages": [
+              {
+                "n": 1,
+                "optional": true,
+                "g467Destinations": [
+                  "mana",
+                  "shields"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1136",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-019",
+      "name": "魔誕盗掘男",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 9000,
+      "race": "ヘドリアン",
+      "text": "自分の他の手札１枚につき、このクリーチャーの召喚コストを１多くする。\nNEO進化：闇、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー\nこのクリーチャーの各ブレイクの前に、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-019",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "闇"
+          },
+          {
+            "civilization": "火"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g1136HandTax": true,
+      "g1136BeforeBreak": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1136",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1135,
+    "phase": 1136,
     "checkedAt": "2026-11-13",
-    "baseCount": 7391,
+    "baseCount": 7394,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7394,
+    "totalCount": 7397,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -243814,6 +243980,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7391,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1135,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7391,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7394,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

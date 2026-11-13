@@ -6184,6 +6184,32 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1136&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const soul='超魂X(これがクリーチャーの下にあればそのクリーチャーにも以下の能力を与える)';
+  if(['dm25rp2-006','dm25ex3-rp2006'].includes(d.id)&&f.typeText==='クリーチャー'&&text===
+   'ブロッカーブロッカーこのクリーチャーが出た時自分の山札の上から4枚を表向きにする。'+
+   'その中からNEOクリーチャーまたはエンジェル・コマンド・カードを1枚手札に加え残りを好きな順序で山札の下に置く。'+soul+
+   '各ターンに一度このクリーチャーが離れる時かわりに自分のシールドを1つ手札に加えてもよい。ただしその「S・トリガー」は使えない。')
+   return {blocker:true,effect:'sixPhoto',g34Tasks:[{op:'Look',n:4,public:true,rest:'bottom',
+    stages:[{n:1,to:'hand',filter:{any:[{g556Neo:true},{anyFaceRace:'エンジェル・コマンド'}]}}]}],
+    g1136ShieldSaver:true,g404Soul:{g1136ShieldSaver:true}};
+  if(['dm25rp2-007','dm25ex3-rp2007'].includes(d.id)&&f.typeText==='クリーチャー'&&text===
+   'S・トリガーS・トリガーこのクリーチャーが出た時相手のエレメントを2つまで選ぶ。そのうちの1つを持ち主のマナゾーンに置きもう1つをシールド化する。'+soul+
+   'このクリーチャーの各ブレイクの前に自分の山札の上から1枚を見る。それをマナゾーンに置くかシールド化してもよい。'){
+   const before=[{op:'Look',n:1,g841DeckPeek:true,g467RequireLook:true,rest:'top',
+    stages:[{n:1,optional:true,g467Destinations:['mana','shields']}]}];
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'battle',owner:'opponent',
+    n:2,optional:true,filter:{element:true,faceUp:true},g173Targets:true,g1136Split:true,title:'移動させる相手のエレメントを2つまで選ぶ'}],
+    g1136BeforeBreak:before,g404Soul:{g1136BeforeBreak:before}};
+  }
+  if(['dm25rp2-019','dm25ex3-018'].includes(d.id)&&f.typeText==='NEOクリーチャー'&&text===
+   '自分の他の手札1枚につきこのクリーチャーの召喚コストを1多くする。'+
+   'NEO進化:闇火または自然のクリーチャー1体の上に置いてもよい。(カードが下にあればこれをNEO進化クリーチャーとして扱う)'+
+   'W・ブレイカーこのクリーチャーの各ブレイクの前にカードを1枚引いてもよい。')
+   return {neoEvolution:{any:['闇','火','自然'].map(civilization=>({civilization}))},breaker:2,g1136HandTax:true,
+    g1136BeforeBreak:[{op:'Draw',n:1,optional:true}]};
+ }
  if(phase>=1135&&d?.status==='complete'&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText),back=d.faces[1];
   const prints=n=>['dm26ex1-N'+n,'dm26ex1-SECN'+n,'dm26ex1-SECN'+n+'CHO'].includes(d.id);

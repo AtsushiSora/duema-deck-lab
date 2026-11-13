@@ -1186,6 +1186,14 @@ export function createSixPhotoRules(api){
   });
  }
  function finishSelect(s,{g585Peek,...t}){
+  if(t.g1136Split){
+   const rows=t.rows||[];
+   if(rows.length===2){
+    choice(s,{...t,op:'g34_Assign1136'},'マナゾーンに置くエレメントを選ぶ',
+     rows.map(r=>{const y=s.players[r.p].battle.find(y=>y.uid===r.uid);return opt(card(y).name,r.uid,-cost(card(y)),y.cardId);}));
+   }else if(rows.length)start(s,t,[{op:'SplitMove1136',target:rows[0],to:'mana'}]);
+   return;
+  }
   if(t.g1120Romano){
    const moved=moveZoneSelection583(s,t,t.rows);
    if(!moved.length)return;
@@ -2834,6 +2842,12 @@ export function createSixPhotoRules(api){
    move(s,[{player:winner.p,uid:winner.x.uid,to:'mana',controller:t.p}]);
   break;
  }
+ case'g34_SplitMove1136':{
+  const {p,uid}=t.target;
+  move(s,[{player:p,uid,to:t.to,destroy:false,controller:t.controller??t.p,
+   ...(t.to==='mana'?{toOwnerMana:true}:{toOwnerShields:true})}]);
+  break;
+ }
  case'g34_ExactMove':{
   const owner=t.owner??1-t.p;
   const y=s.players[owner].battle.find(y=>{
@@ -2989,6 +3003,14 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_ResolveDelay537':if(t.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:t.spellCost,spellSource:t.source}))start(s,t,t.defs);break;
+ case'g34_BreakOrder1136':{
+  if(t.sources.length===1){
+   const [r]=t.sources;
+   put(s,...Array.from({length:r.count},()=>tasks(t.p,r.source,r.defs)).flat(),t.after);
+  }else choice(s,t,'ブレイク前に解決する能力を選ぶ',
+   t.sources.map((r,i)=>opt(card(r.source).name+'（残り'+r.count+'回）',i,10,r.source)));
+  break;
+ }
  case'g34_Sequence':start(s,t,t.defs);break;
  case'g34_Awaken1095':{
   const x=own.battle.find(y=>y.uid===t.uid&&(y.incarnation||0)===t.incarnation&&!y.sealed);
@@ -4576,6 +4598,16 @@ export function createSixPhotoRules(api){
  case'g34_ReturnBases939':
   put(s,v?{...t,selected:[...(t.selected||[]),v]}:{...t,confirmed:true});
   break;
+ case'g34_BreakOrder1136':{
+  const r=t.sources[v],sources=t.sources.map((x,i)=>i===v?{...x,count:x.count-1}:x).filter(x=>x.count);
+  put(s,...tasks(t.p,r.source,r.defs),{...t,sources});
+  break;
+ }
+ case'g34_Assign1136':{
+  const mana=t.rows.find(r=>r.uid===v),shield=t.rows.find(r=>r.uid!==v);
+  start(s,t,[{op:'SplitMove1136',target:mana,to:'mana'},{op:'SplitMove1136',target:shield,to:'shields'}]);
+  break;
+ }
  case'g34_LookDestination467':put(s,{...t,op:'g34_LookPick',stages:t.stages.map((q,i)=>i===t.stage?{...q,to:v,g467Chosen:true}:q)});break;
  case'g34_PowerSweep696':start(s,t,[{op:'Sweep',both:true,to:'grave',filter:{creature:true,...(v>0?{minPower:v}:{}),maxPower:v,g199Power:true}}]);break;
  case'g34_CostSweep596':start(s,t,[{op:'Sweep',to:'grave',filter:{creature:true,min:v,max:v}}]);break;
@@ -6421,6 +6453,22 @@ export function createSixPhotoRules(api){
    });
   }
   const c=effective(x,s),first=!used(s,'g191Tapped',x);mark(s,'g191Tapped',x);if(first&&c.g219FirstTap)queue(s,p,x,c.g219FirstTap);if(first&&c.g191FirstTapUntap)queue(s,p,x,[E('Untap',{g191First:true})]);if(c.g188Tapped)queue(s,p,x,c.g188Tapped);if(c.g34Role==='fourJustice')queue(s,p,x,[C('justiceBreak')]);if(ninja(effective(x,s)))for(const y of active(s,p,'mukade'))if(!used(s,'g34FirstTap',y)){mark(s,'g34FirstTap',y);queue(s,p,y,[E('Draw',{n:1,optional:true})]);}},
+ beforeBreak1136(s,defender,uids){
+  const context=s.breakContext;
+  if(!context||context.g1136Prepared)return false;
+  const p=context.player,x=s.players[p].battle.find(y=>y.uid===context.sourceUid&&
+   (context.incarnation===undefined||(y.incarnation||0)===context.incarnation));
+  if(!x||x.sealed)return false;
+  const c=effective(x,s);
+  const sources=[...(c.g1136BeforeBreak?[{source:x.cardId,defs:c.g1136BeforeBreak}]:[]),
+   ...(c.g404Inherited||[]).filter(r=>r.grants.g1136BeforeBreak)
+    .map(r=>({source:r.source,defs:r.grants.g1136BeforeBreak}))];
+  if(!sources.length)return false;
+  context.g1136Prepared=true;
+  const after=task('g19BeforeCommit',p,x.cardId,{defender,uids:[...uids],context:structuredClone(context)});
+  put(s,task('g34_BreakOrder1136',p,x.cardId,{sources:sources.map(r=>({...r,count:uids.length})),after}));
+  return true;
+ },
  // Capture the creature before shield replacement windows can move it.
  breakerRefs756(s,context){
   if(!context.sourceUid)return null;

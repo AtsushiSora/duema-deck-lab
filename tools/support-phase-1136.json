@@ -1,0 +1,437 @@
+{
+  "phase": 1136,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7394,
+  "description": "王座の精霊 ファディオアル、アルジェン・ゴルギーニ、魔誕盗掘男の能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/45447/",
+    "https://dm.takaratomy.co.jp/rule/qa/46533/",
+    "https://dm.takaratomy.co.jp/rule/qa/46528/",
+    "https://dm.takaratomy.co.jp/rule/qa/43802/",
+    "https://dm.takaratomy.co.jp/rule/qa/43799/",
+    "https://dm.takaratomy.co.jp/rule/qa/43805/",
+    "https://dm.takaratomy.co.jp/rule/qa/47357/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp2-006",
+      "name": "王座の精霊 ファディオアル",
+      "faces": [
+        {
+          "name": "王座の精霊 ファディオアル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー\nこのクリーチャーが出た時、自分の山札の上から４枚を表向きにする。その中からNEOクリーチャーまたはエンジェル・コマンド・カードを１枚手札に加え、残りを好きな順序で山札の下に置く。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\n各ターンに一度、このクリーチャーが離れる時、かわりに自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない。",
+          "race": "エンジェル・コマンド/フュージョナー",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-006.jpg",
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 4,
+            "public": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "any": [
+                    {
+                      "g556Neo": true
+                    },
+                    {
+                      "anyFaceRace": "エンジェル・コマンド"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "g1136ShieldSaver": true,
+        "g404Soul": {
+          "g1136ShieldSaver": true
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "ce298fa28ee87de3cb04692bc615466ddeafad999e914733baea6600c81f08fd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-007",
+      "name": "アルジェン・ゴルギーニ",
+      "faces": [
+        {
+          "name": "アルジェン・ゴルギーニ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のエレメントを２つまで選ぶ。そのうちの１つを持ち主のマナゾーンに置き、もう１つをシールド化する。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーの各ブレイクの前に、自分の山札の上から１枚を見る。それをマナゾーンに置くか、シールド化してもよい。",
+          "race": "メカ・デル・ディネロ/スーパーカー・ドラゴン/フュージョナー",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-007",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-007.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "element": true,
+              "faceUp": true
+            },
+            "g173Targets": true,
+            "g1136Split": true,
+            "title": "移動させる相手のエレメントを2つまで選ぶ"
+          }
+        ],
+        "g1136BeforeBreak": [
+          {
+            "op": "Look",
+            "n": 1,
+            "g841DeckPeek": true,
+            "g467RequireLook": true,
+            "rest": "top",
+            "stages": [
+              {
+                "n": 1,
+                "optional": true,
+                "g467Destinations": [
+                  "mana",
+                  "shields"
+                ]
+              }
+            ]
+          }
+        ],
+        "g404Soul": {
+          "g1136BeforeBreak": [
+            {
+              "op": "Look",
+              "n": 1,
+              "g841DeckPeek": true,
+              "g467RequireLook": true,
+              "rest": "top",
+              "stages": [
+                {
+                  "n": 1,
+                  "optional": true,
+                  "g467Destinations": [
+                    "mana",
+                    "shields"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "5afdc9c8cd68317c91648a539ba132703724c9ec31f3abea6a9fddecf8d21dda",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-019",
+      "name": "魔誕盗掘男",
+      "faces": [
+        {
+          "name": "魔誕盗掘男",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "自分の他の手札１枚につき、このクリーチャーの召喚コストを１多くする。\nNEO進化：闇、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー\nこのクリーチャーの各ブレイクの前に、カードを１枚引いてもよい。",
+          "race": "ヘドリアン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-019",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-019.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g1136HandTax": true,
+        "g1136BeforeBreak": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "771d7244cfbbf35eded58c0dc2116934f87f14bd4f2a1ed56eee3ffc640333d1",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25ex3-rp2006",
+      "name": "王座の精霊 ファディオアル",
+      "faces": [
+        {
+          "name": "王座の精霊 ファディオアル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー\nこのクリーチャーが出た時、自分の山札の上から４枚を表向きにする。その中からNEOクリーチャーまたはエンジェル・コマンド・カードを１枚手札に加え、残りを好きな順序で山札の下に置く。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\n各ターンに一度、このクリーチャーが離れる時、かわりに自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない。",
+          "race": "エンジェル・コマンド/フュージョナー",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp2006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-rp2006.jpg",
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 4,
+            "public": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "any": [
+                    {
+                      "g556Neo": true
+                    },
+                    {
+                      "anyFaceRace": "エンジェル・コマンド"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "g1136ShieldSaver": true,
+        "g404Soul": {
+          "g1136ShieldSaver": true
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "2e993a6a17dc3909b1d22963b31a340ccc980f8ab7c8a1fe14cfc51d0a9d4451",
+        "facesMatched": true
+      },
+      "canonicalId": "dm25rp2-006"
+    },
+    {
+      "id": "dm25ex3-rp2007",
+      "name": "アルジェン・ゴルギーニ",
+      "faces": [
+        {
+          "name": "アルジェン・ゴルギーニ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のエレメントを２つまで選ぶ。そのうちの１つを持ち主のマナゾーンに置き、もう１つをシールド化する。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーの各ブレイクの前に、自分の山札の上から１枚を見る。それをマナゾーンに置くか、シールド化してもよい。",
+          "race": "メカ・デル・ディネロ/スーパーカー・ドラゴン/フュージョナー",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp2007",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-rp2007.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "element": true,
+              "faceUp": true
+            },
+            "g173Targets": true,
+            "g1136Split": true,
+            "title": "移動させる相手のエレメントを2つまで選ぶ"
+          }
+        ],
+        "g1136BeforeBreak": [
+          {
+            "op": "Look",
+            "n": 1,
+            "g841DeckPeek": true,
+            "g467RequireLook": true,
+            "rest": "top",
+            "stages": [
+              {
+                "n": 1,
+                "optional": true,
+                "g467Destinations": [
+                  "mana",
+                  "shields"
+                ]
+              }
+            ]
+          }
+        ],
+        "g404Soul": {
+          "g1136BeforeBreak": [
+            {
+              "op": "Look",
+              "n": 1,
+              "g841DeckPeek": true,
+              "g467RequireLook": true,
+              "rest": "top",
+              "stages": [
+                {
+                  "n": 1,
+                  "optional": true,
+                  "g467Destinations": [
+                    "mana",
+                    "shields"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "11eeb313276501831ec092591c8ff0e868140fa55e27463506eec41cc8caabbd",
+        "facesMatched": true
+      },
+      "canonicalId": "dm25rp2-007"
+    },
+    {
+      "id": "dm25ex3-018",
+      "name": "魔誕盗掘男",
+      "faces": [
+        {
+          "name": "魔誕盗掘男",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "自分の他の手札１枚につき、このクリーチャーの召喚コストを１多くする。\nNEO進化：闇、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー\nこのクリーチャーの各ブレイクの前に、カードを１枚引いてもよい。",
+          "race": "ヘドリアン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-018",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-018.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g1136HandTax": true,
+        "g1136BeforeBreak": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "757fc352e888d22bcc7d621d29a5630c2f704d3da646709956fde92d14a3674e",
+        "facesMatched": true
+      },
+      "canonicalId": "dm25rp2-019"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp2-006": 4,
+      "dm25rp2-007": 4,
+      "dm25rp2-019": 4,
+      "dm25ex3-rp2006": 4,
+      "dm25ex3-rp2007": 4,
+      "dm25ex3-018": 4
+    }
+  }
+}
