@@ -1,9 +1,9 @@
-import {createFifteenPhotoRules} from './fifteen-photo-rules.js?v=0.721.0';
+import {createFifteenPhotoRules} from './fifteen-photo-rules.js?v=0.721.1';
 import {createChampionRaid} from './champion-raid-helpers.js';
 import {policyTake} from './champion-zone-policy.js';
 import {RECOVERY_RACES} from './utility-recovery-races.js?v=0.119.0';
-import {hasCopiedRole393} from './requested393-joker-rules.js?v=0.721.0';
-import {afterEntry} from './entry-followup.js?v=0.721.0';
+import {hasCopiedRole393} from './requested393-joker-rules.js?v=0.721.1';
+import {afterEntry} from './entry-followup.js?v=0.721.1';
 // Six photographed deck lists: serializable effects, physical cards and explicit choices.
 export function createSixPhotoRules(api){
  const{card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,enter,cast,move,targetOptions}=api;
