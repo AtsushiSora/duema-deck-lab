@@ -1,0 +1,346 @@
+{
+  "phase": 1166,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7488,
+  "description": "D2P ヘビーポップ、「諜報の名人」、D2B バブールの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/33516/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316683/",
+    "https://dm.takaratomy.co.jp/rule/qa/48488/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35855/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
+    "https://dm.takaratomy.co.jp/rule/rulechange_info/"
+  ],
+  "cards": [
+    {
+      "id": "dmr21-s01",
+      "name": "D2P ヘビーポップ",
+      "faces": [
+        {
+          "name": "D2P ヘビーポップ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\n自分のターンの終わりに、カードを１枚引いてもよい。その後、光のコスト３以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分のターンのはじめに、バトルゾーンに自分のD２フィールドと、自分の同じ名前のクリーチャーが４体以上あれば、自分はゲームに勝つ。",
+          "race": "エンジェル・コマンド/マスター・イニシャルズ",
+          "powerText": "6500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-s01",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-s01.jpg",
+      "spec": {
+        "breaker": 2,
+        "g174End": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "color": "光",
+                "max": 3
+              }
+            }
+          }
+        ],
+        "g174Start": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "all": [
+                {
+                  "g580D2Field": true
+                },
+                {
+                  "g1166SameCreatureNames": 4
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "Win871",
+                "reason": "自分のD2フィールドと同名クリーチャー4体以上で勝利"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "aa85e33801b517801e834dc333936f945c06fe7736547eee045a89bb7f3fc3d0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-045",
+      "name": "「諜報の名人」",
+      "faces": [
+        {
+          "name": "「諜報の名人」",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分のターンの終わりに、自分のシールドを１つ見る。そのシールドカードをすべて表向きにしてもよい。",
+          "race": "リキッド・ピープル/チーム銀河",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-045",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-045.jpg",
+      "spec": {
+        "blocker": true,
+        "g174End": [
+          {
+            "op": "Peek585",
+            "who": "self",
+            "g1166RevealShield": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "d2f80234e90da26d40ee9f94e46010a94a49efffc5b348bfbaa1e58a7d1e91d8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr22-s03",
+      "name": "D2B バブール",
+      "faces": [
+        {
+          "name": "D2B バブール",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、タップする。\nバトルゾーンに自分のD２フィールドがなければ、自分のターンのはじめにこのクリーチャーはアンタップしない。\nこのクリーチャーがアンタップした時、そのターン、自分のクリーチャーはすべて、パワーを+5000され、シールドをさらに１枚ブレイクする。",
+          "race": "ミルクボーイ/マスター・イニシャルズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-s03",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-s03.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SelfTap314",
+            "g536Source": true
+          }
+        ],
+        "g1166StartUntapRequiresD2": true,
+        "g299Untapped": [
+          {
+            "op": "GroupPower",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "power": 5000
+          },
+          {
+            "op": "GroupLasting412",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "extraBreak": 1,
+            "g969FollowControl": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "270791cb0df1ffc2ba3c701e6f0993be98d5918e7f3ed7df6d03205906fab26b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex08-105",
+      "name": "D2P ヘビーポップ",
+      "faces": [
+        {
+          "name": "D2P ヘビーポップ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\n自分のターンの終わりに、カードを１枚引いてもよい。その後、光のコスト３以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分のターンのはじめに、バトルゾーンに自分のD２フィールドと、自分の同じ名前のクリーチャーが４体以上あれば、自分はゲームに勝つ。",
+          "race": "エンジェル・コマンド/マスター・イニシャルズ",
+          "powerText": "6500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-105",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-105.jpg",
+      "spec": {
+        "breaker": 2,
+        "g174End": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "color": "光",
+                "max": 3
+              }
+            }
+          }
+        ],
+        "g174Start": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "all": [
+                {
+                  "g580D2Field": true
+                },
+                {
+                  "g1166SameCreatureNames": 4
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "Win871",
+                "reason": "自分のD2フィールドと同名クリーチャー4体以上で勝利"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "b6c2cb5dc7ba35212b0d750fab002e76c07ca5c13fa75fad9d73e4951db32ca0",
+        "facesMatched": true
+      },
+      "canonicalId": "dmr21-s01"
+    },
+    {
+      "id": "dm25ex2-Cho003",
+      "name": "D2P ヘビーポップ",
+      "faces": [
+        {
+          "name": "D2P ヘビーポップ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\n自分のターンの終わりに、カードを１枚引いてもよい。その後、光のコスト３以下のクリーチャーを１体、自分の手札から出してもよい。\n自分のターンのはじめに、自分のD２フィールドと、自分の同じ名前のクリーチャーが４体以上あれば、自分はゲームに勝つ。",
+          "race": "エンジェル・コマンド/マスター・イニシャルズ",
+          "powerText": "6500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-Cho003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-Cho003.jpg",
+      "spec": {
+        "breaker": 2,
+        "g174End": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "color": "光",
+                "max": 3
+              }
+            }
+          }
+        ],
+        "g174Start": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "all": [
+                {
+                  "g580D2Field": true
+                },
+                {
+                  "g1166SameCreatureNames": 4
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "Win871",
+                "reason": "自分のD2フィールドと同名クリーチャー4体以上で勝利"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "d739f23eb2b0aa06cefe3101a7028d5f06c25bfaf4f4a71b1eaea8fb6daba4b0",
+        "facesMatched": true
+      },
+      "canonicalId": "dmr21-s01"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr21-s01": 4,
+      "dmex14-045": 4,
+      "dmr22-s03": 4,
+      "dmex08-105": 4,
+      "dm25ex2-Cho003": 4
+    }
+  }
+}

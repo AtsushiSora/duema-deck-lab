@@ -227080,15 +227080,147 @@
       ],
       "supportBatch": "phase-1165",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-s01",
+      "name": "D2P ヘビーポップ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6500,
+      "race": "エンジェル・コマンド/マスター・イニシャルズ",
+      "text": "W・ブレイカー\n自分のターンの終わりに、カードを１枚引いてもよい。その後、光のコスト３以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分のターンのはじめに、バトルゾーンに自分のD２フィールドと、自分の同じ名前のクリーチャーが４体以上あれば、自分はゲームに勝つ。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-s01",
+      "limit": 4,
+      "breaker": 2,
+      "g174End": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "color": "光",
+              "max": 3
+            }
+          }
+        }
+      ],
+      "g174Start": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g580D2Field": true
+              },
+              {
+                "g1166SameCreatureNames": 4
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Win871",
+              "reason": "自分のD2フィールドと同名クリーチャー4体以上で勝利"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1166",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex14-045",
+      "name": "「諜報の名人」",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "リキッド・ピープル/チーム銀河",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分のターンの終わりに、自分のシールドを１つ見る。そのシールドカードをすべて表向きにしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-045",
+      "limit": 4,
+      "blocker": true,
+      "g174End": [
+        {
+          "op": "Peek585",
+          "who": "self",
+          "g1166RevealShield": true
+        }
+      ],
+      "supportBatch": "phase-1166",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr22-s03",
+      "name": "D2B バブール",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 5000,
+      "race": "ミルクボーイ/マスター・イニシャルズ",
+      "text": "このクリーチャーがバトルゾーンに出た時、タップする。\nバトルゾーンに自分のD２フィールドがなければ、自分のターンのはじめにこのクリーチャーはアンタップしない。\nこのクリーチャーがアンタップした時、そのターン、自分のクリーチャーはすべて、パワーを+5000され、シールドをさらに１枚ブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-s03",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SelfTap314",
+          "g536Source": true
+        }
+      ],
+      "g1166StartUntapRequiresD2": true,
+      "g299Untapped": [
+        {
+          "op": "GroupPower",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "power": 5000
+        },
+        {
+          "op": "GroupLasting412",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "extraBreak": 1,
+          "g969FollowControl": true
+        }
+      ],
+      "supportBatch": "phase-1166",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1165,
+    "phase": 1166,
     "checkedAt": "2026-11-14",
-    "baseCount": 7485,
+    "baseCount": 7488,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7488,
+    "totalCount": 7491,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -247357,6 +247489,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7485,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1165,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7485,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7488,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

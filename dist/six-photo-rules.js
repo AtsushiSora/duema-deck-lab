@@ -526,6 +526,15 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g1166SameCreatureNames){
+   const counts=new Map();
+   for(const x of creatures(s,p).filter(x=>!x.sealed&&!x.faceDown))for(const name of new Set(battleNames676(s,x))){
+    const n=(counts.get(name)||0)+1;
+    if(n>=f.g1166SameCreatureNames)return true;
+    counts.set(name,n);
+   }
+   return false;
+  }
   if(f.g962TurboRush){
    const source=s.players[p].battle.find(x=>x.uid===sourceUid&&!x.sealed);
    return !!source&&turboReady756(s,p,source);
@@ -1032,7 +1041,10 @@ export function createSixPhotoRules(api){
  function peekRows585(s,t){
   const owners=t.who==='both'?[t.p,1-t.p]:[t.who==='self'?t.p:1-t.p];
   return owners.flatMap(p=>s.players[p].shields.flatMap((root,i)=>{
-   const group=api.shieldCards(root).filter(x=>!t.g962ShieldContents||!x.faceUp||!card(x).gCastle);
+   const group=api.shieldCards(root).filter(x=>{
+    if(t.g1166RevealShield)return !x.faceUp||card(x).type!=='castle'||card(x).gCastle;
+    return !t.g962ShieldContents||!x.faceUp||!card(x).gCastle;
+   });
    const label=(p===t.p?'自分':'相手')+'のシールド '+(i+1);
    if(t.cardOnly)return group.map((x,j)=>({x,p,seen:[x],label:label+' のカード '+(j+1)}));
    return [{x:root,p,seen:group,label}];
@@ -1045,6 +1057,13 @@ export function createSixPhotoRules(api){
   const uid=t.swap?rows[0]?.x.uid:null,swap=uid&&api.canSwapShield585(s,t.p,uid);
   const zone=t.opponentDeckTop?(t.hand?'相手の山札の上と手札':'相手の山札の上'):t.hand?'手札とシールド':'シールド';
   api.log(s,t.p,'look',card(t.source).name+'で'+zone+'を確認（内容は非公開）',{cardId:t.source});
+  if(t.g1166RevealShield){
+   const cards=rows[0].seen;
+   choice(s,{...t,op:'g34_PeekRead585',g585Peek:seen,g1166ShieldCards:cards.map(x=>x.uid)},
+    '確認したシールドカードをすべて表向きにしますか？',
+    [opt('すべて表向きにする',true,0),opt('確認を終える',null,1)]);
+   return;
+  }
   choice(s,{...t,op:'g34_PeekRead585',g585Peek:seen,shieldUid:uid},swap?'確認したカードを山札の上のカードと入れ替えますか？':'確認したカード',[
    ...(swap?[opt('入れ替える',true,seen.some(r=>faces(card(r.id)).some(c=>c.trigger))?-10:6)]:[]),
    opt(swap?'入れ替えずに確認を終える':'確認を終える',null,0)
@@ -5173,6 +5192,14 @@ export function createSixPhotoRules(api){
   else if(v){const row=peekRows585(s,t).find(r=>r.p===v.player&&r.x.uid===v.uid);if(row)showPeek585(s,{...t,viewed:[...(t.viewed||[]),v.uid]},[row]);}
   break;
  case'g34_PeekRead585':
+  if(t.g1166RevealShield){
+   if(v){
+    const cards=own.shields.flatMap(api.shieldCards).filter(x=>t.g1166ShieldCards.includes(x.uid));
+    for(const x of cards)x.faceUp=true;
+    if(cards.length)api.log(s,t.p,'reveal',card(t.source).name+'でシールドを公開：'+cards.map(x=>card(x).name).join('、'),{cardId:t.source});
+   }
+   break;
+  }
   if(v&&api.swapShield585(s,t.p,t.shieldUid))api.log(s,t.p,'shieldSwap',card(t.source).name+'：確認したカードと山札の上を入れ替えた',{cardId:t.source});
   if(t.remaining>1){const {g585Peek,shieldUid,...next}=t;put(s,{...next,op:'g34_Peek585',remaining:t.remaining-1});}
   break;

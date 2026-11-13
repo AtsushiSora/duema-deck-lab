@@ -6184,6 +6184,29 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1166&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const heavyPopText={
+   'dmr21-s01':'バトルゾーンに','dmex08-105':'バトルゾーンに','dm25ex2-Cho003':''
+  }[d.id];
+  if(heavyPopText!==undefined&&text==='W・ブレイカー自分のターンの終わりにカードを1枚引いてもよい。'+
+   'その後光のコスト3以下のクリーチャーを1体自分の手札から'+heavyPopText+'出してもよい。'+
+   '自分のターンのはじめに'+heavyPopText+'自分のD2フィールドと自分の同じ名前のクリーチャーが4体以上あれば自分はゲームに勝つ。')
+   return {breaker:2,g174End:[
+    {op:'Draw',n:1,optional:true},{op:'Select',origin:'hand',deploy:true,n:1,optional:true,filter:{g228Face:{type:'creature',color:'光',max:3}}}
+   ],g174Start:[{op:'IfOwn',filter:{all:[{g580D2Field:true},{g1166SameCreatureNames:4}]},
+    defs:[{op:'Win871',reason:'自分のD2フィールドと同名クリーチャー4体以上で勝利'}]}]};
+  if(d.id==='dmex14-045'&&text==='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   '自分のターンの終わりに自分のシールドを1つ見る。そのシールドカードをすべて表向きにしてもよい。')
+   return {blocker:true,g174End:[{op:'Peek585',who:'self',g1166RevealShield:true}]};
+  if(d.id==='dmr22-s03'&&text==='このクリーチャーがバトルゾーンに出た時タップする。'+
+   'バトルゾーンに自分のD2フィールドがなければ自分のターンのはじめにこのクリーチャーはアンタップしない。'+
+   'このクリーチャーがアンタップした時そのターン自分のクリーチャーはすべてパワーを+5000されシールドをさらに1枚ブレイクする。'){
+   const group={owner:'self',filter:{creature:true}};
+   return {effect:'sixPhoto',g34Tasks:[{op:'SelfTap314',g536Source:true}],g1166StartUntapRequiresD2:true,
+    g299Untapped:[{op:'GroupPower',...group,power:5000},{op:'GroupLasting412',...group,extraBreak:1,g969FollowControl:true}]};
+  }
+ }
  if(phase>=1165&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
   const text=normalize(f.abilityText);
   if(d.id==='dmx22b-057'&&text===
