@@ -4099,7 +4099,27 @@ export function createSixPhotoRules(api){
   ]}]);
   break;
  }
+ case'g34_PaidTop1164':{
+  const ids=look(s,{...t,n:1});
+  const top=own.deck.find(y=>y.uid===ids[0]);
+  if(!top)break;
+  const options=faces(card(top)).flatMap((face,i)=>{
+   if(!['spell','creature'].includes(face.type)||!api.canCast(s,t.p,face,'deck'))return [];
+   const creature=face.type==='creature';
+   if(creature&&!api.canEnter(s,t.p,face,{origin:'deck',execution:true}))return [];
+   const bases=creature&&(face.evolution||face.neoEvolution)
+    ?api.evolutionBases(s,t.p,face,{origin:'deck',execution:true,exclude:top.uid}):[];
+   const targets=!creature||!face.evolution||face.neoEvolution?[null,...bases]:bases;
+   return targets.filter(base=>api.canPay(s,t.p,{...face,executionUid:top.uid,summonOrigin:'deck',g27BaseUid:base?.uid??null}))
+    .map(base=>opt(face.name+(base?'を'+card(base).name+'に重ねる':creature?'を召喚する':'を唱える'),
+     {face:i,baseUid:base?.uid??null},own.deck.length<=1?-100:10,top.cardId));
+  });
+  choice(s,{...t,...deckPeek841(own,ids),target:top.uid},'山札の上のカードをコストを支払って使う？',[...options,skip()]);
+  break;
+ }
  case'g34_Look':{if(t.g201Search)t={...t,n:own.deck.length};let ids;if(!t.g467RequireLook&&t.stages?.some(q=>q.g467Destinations&&!q.filter)&&api.deckLocked(s,t.p)){t={...t,g467Blind:true};const skip=reserved(own);ids=own.deck.filter(x=>!skip.has(x.uid)).slice(0,t.n).map(x=>x.uid);(own.g34Protected??=[]).push(...ids);}else ids=look(s,t);
+  if(t.g1164Miss&&ids.length&&!own.deck.some(y=>ids.includes(y.uid)&&matches(s,t.p,y,t.stages[0].filter)))
+   t={...t,after:t.g1164Miss};
   const inspection=t.g841DeckPeek?deckPeek841(own,ids):{};
   put(s,{...t,...inspection,op:'g34_LookPick',ids,stage:0,chosen:[]});
   break;
@@ -4667,6 +4687,10 @@ export function createSixPhotoRules(api){
   }
   const owner=t.g191First?s.players.findIndex(p=>p.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))):t.p,y=t.g191First&&owner>=0?s.players[owner].battle.find(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))):t.g404Carrier?own.battle.find(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)):x;if(y&&api.canUntap(y)){const was=y.tapped;y.tapped=false;if(was)combined.untapped(s,owner,y);}break;}
  case'g34_Execute':{
+  if(t.g1164Opponent){
+   put(s,{...t,p:1-t.p,g1164Opponent:false,g1164MustDeclineWhenUnavailable:true});
+   break;
+  }
   const max=t.g1139HandSizeMax?own.hand.length:t.max,origins=t.zones||[t.origin||'hand'];
   const rows=origins.flatMap(origin=>{
    if(t.g555FinishTo&&!api.canMoveZone(s,t.p,origin))return [];
@@ -4688,6 +4712,7 @@ export function createSixPhotoRules(api){
     });
    });
   });
+  if(!rows.length&&t.g1164MustDeclineWhenUnavailable){start(s,t,t.g408Decline);break;}
   if(t.optional!==false)rows.push(t.g408Decline?{...skip(),score:modeScore(s,t,t.g408Decline)}:skip());
   choice(s,t,t.title||'コストを支払わず実行するカードを選ぶ',rows);
   break;
@@ -4817,6 +4842,12 @@ export function createSixPhotoRules(api){
  case'g34_Assign1136':{
   const mana=t.rows.find(r=>r.uid===v),shield=t.rows.find(r=>r.uid!==v);
   start(s,t,[{op:'SplitMove1136',target:mana,to:'mana'},{op:'SplitMove1136',target:shield,to:'shields'}]);
+  break;
+ }
+ case'g34_PaidTop1164':{
+  release(s,t.p,t.target);
+  if(v&&own.deck.some(y=>y.uid===t.target))
+   cast(s,t.p,t.target,false,v.baseUid,v.face,null,'deck','ハタモチ・チュリス');
   break;
  }
  case'g34_LookDestination467':put(s,{...t,op:'g34_LookPick',stages:t.stages.map((q,i)=>i===t.stage?{...q,to:v,g467Chosen:true}:q)});break;

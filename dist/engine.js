@@ -1867,7 +1867,7 @@ function completeExecution(s,p,inst,c,{ruleOrigin,origin,free,freeReason,alterna
  // creature stays in that zone and has no battlefield entry event.
  if(originBlocked402){delete inst.summonedTurn;s.players[p][origin].splice(originIndex402<0?s.players[p][origin].length:originIndex402,0,inst);const zone=origin==='grave'?'墓地':'マナゾーン';log(s,p,'entryPrevented',`${c.name}は${zone}から移動できず、${zone}に残る`,{cardId:c.id});return;}
  const checkDeckSpell=ruleOrigin==='deck'&&!s.players[p].deck.length&&
-  ['スーパー・スペル・グレートブルー','アクア・スペルブルー','スペルサイケデリカ'].includes(freeReason);
+  ['スーパー・スペル・グレートブルー','アクア・スペルブルー','スペルサイケデリカ','ハタモチ・チュリス'].includes(freeReason);
  if(c.type==='spell'){
   if(!free&&alternativeCost?.g1023PaidAltSpell&&c.g568Alt?.spell)
    c={...c,g34Tasks:[...c.g568Alt.spell,...c.g34Tasks]};

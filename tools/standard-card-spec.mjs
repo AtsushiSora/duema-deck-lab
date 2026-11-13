@@ -6184,6 +6184,25 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1164&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='クリーチャー'&&d.id==='dmrp08-024'&&text===
+   'このクリーチャーがバトルゾーンに出た時自分の山札の上から1枚目を見る。それがクリーチャーなら召喚してもよい。それが呪文なら唱えてもよい。(コストは支払う)')
+   return {effect:'sixPhoto',g34Tasks:[{op:'PaidTop1164'}]};
+  if(f.typeText==='呪文'&&d.id==='dmex18-038'&&text==='カードを3枚引く。'+
+   '相手はコスト3以下の呪文を1枚自身の手札からコストを支払わずに唱えてもよい。そうしなければ相手はカードを1枚引く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Draw',n:3},
+    {op:'Execute',origin:'hand',spellOnly:true,max:3,g1164Opponent:true,g408Decline:[{op:'Draw',n:1}]}]};
+  const labText={
+   'dm22-026':'自分の山札の上から3枚を表向きにする。その中にドラゴンがあれば1体手札に加え',
+   'dmx17-020':'自分の山札の上から3枚をすべてのプレイヤーに見せる。その中からドラゴンを1体手札に加え'
+  }[d.id];
+  if(f.typeText==='呪文'&&labText&&text===labText+
+   '残りを好きな順序で自分の山札の一番下に戻す。3枚ともドラゴンでない場合この呪文を唱えた後墓地に置くかわりに自分の手札に戻す。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Look',n:3,public:true,rest:'bottom',stages:[
+    {n:1,to:'hand',filter:{g228Face:{type:'creature',raceAll:['ドラゴン']}}}
+   ],g1164Miss:[{op:'SpellFinish416',to:'hand'}]}]};
+ }
  if(phase>=1163&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText),hasField={g580D2Field:true};
   const destroy={op:'Target',to:'grave'};

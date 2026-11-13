@@ -226824,15 +226824,124 @@
       ],
       "supportBatch": "phase-1163",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-024",
+      "name": "ハタモチ・チュリス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ビートジョッキー",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を見る。それがクリーチャーなら召喚してもよい。それが呪文なら唱えてもよい。（コストは支払う）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-024",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "PaidTop1164"
+        }
+      ],
+      "supportBatch": "phase-1164",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22-026",
+      "name": "ドラゴン・ラボ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "自分の山札の上から３枚を表向きにする。その中にドラゴンがあれば１体手札に加え、残りを好きな順序で自分の山札の一番下に戻す。３枚ともドラゴンでない場合、この呪文を唱えた後、墓地に置くかわりに自分の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-026",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "public": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "g228Face": {
+                  "type": "creature",
+                  "raceAll": [
+                    "ドラゴン"
+                  ]
+                }
+              }
+            }
+          ],
+          "g1164Miss": [
+            {
+              "op": "SpellFinish416",
+              "to": "hand"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1164",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex18-038",
+      "name": "フューチャー・ブレイン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "カードを３枚引く。\n相手はコスト３以下の呪文を１枚、自身の手札からコストを支払わずに唱えてもよい。そうしなければ、相手はカードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-038",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 3
+        },
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "spellOnly": true,
+          "max": 3,
+          "g1164Opponent": true,
+          "g408Decline": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1164",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1163,
+    "phase": 1164,
     "checkedAt": "2026-11-14",
-    "baseCount": 7478,
-    "newEffectCards": 4,
+    "baseCount": 7482,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7482,
+    "totalCount": 7485,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -247077,6 +247186,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7478,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1163,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7478,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7482,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

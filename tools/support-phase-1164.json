@@ -1,0 +1,233 @@
+{
+  "phase": 1164,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7482,
+  "description": "ハタモチ・チュリス、ドラゴン・ラボ、フューチャー・ブレインの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/40859/",
+    "https://dm.takaratomy.co.jp/rule/qa/39791/",
+    "https://dm.takaratomy.co.jp/rule/qa/41471/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37335/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31641/",
+    "https://dm.takaratomy.co.jp/rule/qa/43078/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp08-024",
+      "name": "ハタモチ・チュリス",
+      "faces": [
+        {
+          "name": "ハタモチ・チュリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を見る。それがクリーチャーなら召喚してもよい。それが呪文なら唱えてもよい。（コストは支払う）",
+          "race": "ビートジョッキー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-024",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-024.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "PaidTop1164"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "b4cbaa9f130c7e1c36bb9d4eba7599c570717b6ff76acf3ff246746f645388ae",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22-026",
+      "name": "ドラゴン・ラボ",
+      "faces": [
+        {
+          "name": "ドラゴン・ラボ",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の山札の上から３枚を表向きにする。その中にドラゴンがあれば１体手札に加え、残りを好きな順序で自分の山札の一番下に戻す。３枚ともドラゴンでない場合、この呪文を唱えた後、墓地に置くかわりに自分の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-026",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22-026.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "g228Face": {
+                    "type": "creature",
+                    "raceAll": [
+                      "ドラゴン"
+                    ]
+                  }
+                }
+              }
+            ],
+            "g1164Miss": [
+              {
+                "op": "SpellFinish416",
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "d1a0e0f3b45a66a7690b37b5f22c290b6fd78e23100d4f36734cdde9ae1f49fe",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex18-038",
+      "name": "フューチャー・ブレイン",
+      "faces": [
+        {
+          "name": "フューチャー・ブレイン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "カードを３枚引く。\n相手はコスト３以下の呪文を１枚、自身の手札からコストを支払わずに唱えてもよい。そうしなければ、相手はカードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-038",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-038.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "spellOnly": true,
+            "max": 3,
+            "g1164Opponent": true,
+            "g408Decline": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "386406e1fff4178ba6fcf6bcbb96e2824010dfc1cc8bec796ef8728cb4c01dd7",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx17-020",
+      "name": "ドラゴン・ラボ",
+      "faces": [
+        {
+          "name": "ドラゴン・ラボ",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の山札の上から３枚をすべてのプレイヤーに見せる。その中からドラゴンを１体手札に加え、残りを好きな順序で自分の山札の一番下に戻す。３枚ともドラゴンでない場合、この呪文を唱えた後、墓地に置くかわりに自分の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx17-020",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx17-020.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "g228Face": {
+                    "type": "creature",
+                    "raceAll": [
+                      "ドラゴン"
+                    ]
+                  }
+                }
+              }
+            ],
+            "g1164Miss": [
+              {
+                "op": "SpellFinish416",
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "8a53b2893838ad162de1c5bdb9ea62416258052511ccece8a8d04b68c7ade8a2",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22-026"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp08-024": 4,
+      "dm22-026": 4,
+      "dmx17-020": 4,
+      "dmex18-038": 4
+    }
+  }
+}
