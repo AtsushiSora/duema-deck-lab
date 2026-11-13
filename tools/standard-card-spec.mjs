@@ -6160,6 +6160,49 @@ export function standardCardSpec(d,{phase=165}={}){
    'このクリーチャーが攻撃する時バトルゾーンにあるクロスギアを1枚選び持ち主の墓地に置く。クロスギアがバトルゾーンから墓地に置かれた時カードを1枚引いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
    return {breaker:2,g34Attack:[{op:'Target',element:true,anyOwner:true,filter:{g201Gear:true},to:'grave',title:'墓地に置くクロスギアを1枚選ぶ'}],g933GearGraveDraw:true};
  }
+ if(phase>=1112&&d?.status==='complete'&&d.faces.length===2&&f.typeText==='クリーチャー'&&d.faces[1].typeText==='呪文'){
+  const back=d.faces[1],trigger='S・トリガーS・トリガー';
+  const frontText=normalize(f.abilityText);
+  const spellText=normalize(back.abilityText).replace('からバトルゾーンに出す。','から出す。');
+  const psychic=color=>({op:'Select',origin:'extra',deploy:true,n:1,g1104PsychicFaces:true,
+   filter:{g1085Psychic:true,max:7,color}});
+  const spellFace={name:back.name,type:'spell',cost:back.cost,civ:back.civilizationText,
+   civilizations:back.civilizations,race:back.race,effect:'sixPhoto'};
+  if(['dmbd13-013','dmex17-092'].includes(d.id)&&
+   frontText.replace('がバトルゾーンに出た時','が出た時')===trigger+'このクリーチャーが出た時バトルゾーンにある相手のコスト4以下のカードを1枚選び持ち主の墓地に置く。'&&
+   spellText==='相手のパワー2000以下のクリーチャーをすべて破壊する。火のコスト7以下のサイキック・クリーチャーを1体自分の超次元ゾーンから出す。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'BattleCardMove579',to:'grave',max:4,toOwnerGrave:true}],
+    spellFace:{...spellFace,g34Tasks:[{op:'Sweep',filter:{creature:true,maxPower:2000,g199Power:true}},psychic('火')]}};
+  if(['dmbd13-012','dmex17-055','dm25ex4-T01'].includes(d.id)&&[
+   '相手が自身のターン中にコストを支払わずにクリーチャーをバトルゾーンに出した時自分はそのクリーチャーを持ち主の手札に戻してもよい。',
+   '相手のターン中に相手がコストを支払わずにクリーチャーを出した時自分はそのクリーチャーを持ち主の手札に戻してもよい。',
+   '相手のターンに相手のクリーチャーがコストを支払わずに出た時そのクリーチャーを持ち主の手札に戻してもよい。'
+  ].includes(frontText)&&
+   spellText.replace('引きその後','引き').replace('山札の一番下','山札の下')===trigger+
+   'カードを2枚引き自分の手札を1枚山札の下に置く。水のコスト7以下のサイキック・クリーチャーを1体自分の超次元ゾーンから出す。')
+   return {g1112UnpaidBounce:true,spellFace:{...spellFace,trigger:true,g34Tasks:[
+    {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
+   ]}};
+ }
+ if(phase>=1112&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
+  const row={
+   'dm25ex2-075':{
+    text:'相手のコスト5以下のクリーチャーを1体選び持ち主の手札に戻す。',
+    effect:{op:'Target',to:'hand',toOwnerHand:true,filter:{max:5},spell:true}
+   },
+   'dm25ex2-078':{
+    text:'このターン自分のクリーチャー1体に「スピードアタッカー」を与える。',
+    effect:{op:'Target',owner:'self',g301Grant:true,grant:{speedAttacker:true},g927HasteScore:true,spell:true,
+     title:'スピードアタッカーを与える自分のクリーチャーを1体選ぶ'}
+   }
+  }[d.id];
+  const repeat='自分の手札を1枚超次元ゾーンに置いてもよい。そうしたら真上の▪️能力をもう1度使う。';
+  if(row&&normalize(f.abilityText)===row.text+repeat)
+   return {effect:'sixPhoto',g34Tasks:[row.effect,{
+    op:'Select',origin:'hand',to:'extra',n:1,optional:true,g1009AfterMoveAttempt:[row.effect],
+    title:'能力をもう一度使うため、超次元ゾーンに置く手札を1枚選ぶ（任意）'
+   }]};
+ }
  if(phase>=1101&&d?.status==='complete'&&d.faces.length===2&&['dm22ex1-112','dm22ex1-127','dm25ex4-T23','dm25ex4-T28'].includes(d.id)){
   const back=d.faces[1];
   const front=standardCardSpec({...d,faces:[f]},{phase});

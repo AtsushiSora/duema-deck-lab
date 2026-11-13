@@ -398,7 +398,8 @@ export function createSixPhotoRules(api){
  }
  function moveSelectedCard581(s,t,row,to){
   const {p,x,origin}=row;
-  if(origin==='battle')api.moveBattleCard(s,p,x.uid,to,{destroy:to==='grave',controller:t.controller??t.p});
+  if(origin==='battle')api.moveBattleCard(s,p,x.uid,to,{destroy:to==='grave',controller:t.controller??t.p,
+   ...(t.toOwnerGrave?{destinationOwner:x.cardOwner??p,toOwnerGrave:true}:{})});
   else if(origin==='hand'&&to==='grave')api.discardSelected(s,p,[x.uid],t.source,t.controller??t.p);
   else zoneMove(s,p,origin,x.uid,to,{...t,g183Return:to==='deckTop'});
  }
@@ -2715,7 +2716,8 @@ export function createSixPhotoRules(api){
     t.to==='shields'&&!api.canAddShield(s,owner)?-10:20;
    choice(s,{...t,op:'g34_Offer',defs:[{...t,op:'ExactMove',optional:false}]},card(y).name+'を'+label+'？',[opt('実行する',true,score,y.cardId),skip()]);
   }else{
-   move(s,[{player:owner,uid:y.uid,to:t.to,destroy:t.to==='grave',controller:t.g1088OwnerMoves?owner:t.controller??t.p,...(t.g1088OwnerMoves?{toOwnerDeck:true,g1089OrderDeck:true}:{})}]);
+   move(s,[{player:owner,uid:y.uid,to:t.to,destroy:t.to==='grave',controller:t.g1088OwnerMoves?owner:t.controller??t.p,
+    ...(t.toOwnerHand?{toOwnerHand:true}:{}),...(t.g1088OwnerMoves?{toOwnerDeck:true,g1089OrderDeck:true}:{})}]);
    if(t.afterAttempt)start(s,t,t.afterAttempt);
   }
   break;
@@ -5874,21 +5876,23 @@ export function createSixPhotoRules(api){
   // Retain all linked parts so removing one God does not lose the watched unit (QA43748).
   if(creature)for(const watcher of creatures(s,1-p)){
    if(watcher.sealed)continue;
-   const {g403Bloom,g600OverManaEntry,g601UnpaidDestroy,g601OffHandMana,g621NonSummon,g624EntryResponse}=effective(watcher,s);
+   const {g403Bloom,g600OverManaEntry,g601UnpaidDestroy,g601OffHandMana,g621NonSummon,g624EntryResponse,g1112UnpaidBounce}=effective(watcher,s);
    const bloomDestroys=options.execution===false&&g403Bloom&&(s.active===p||g403Bloom==='eitherTurn');
    const unpaidDestroys=g601UnpaidDestroy&&!options.costPaid&&!options.paidMana;
    const offHand=g601OffHandMana&&options.origin!==undefined&&options.origin!=='hand';
    const nonSummon=options.execution===false?g621NonSummon:null;
    const shieldWithoutMana=g624EntryResponse==='untappedManaShield'&&!options.paidMana&&!y.sealed;
+   const unpaidBounce=g1112UnpaidBounce&&s.active===p&&!y.sealed&&!options.costPaid&&!options.paidMana;
    if(g624EntryResponse==='multicolorFight'&&!y.sealed&&colors(effective(y,s)).length>1)
     queue(s,1-p,watcher,[{op:'EntryFight624',enemy:{uid:y.uid,incarnation:y.incarnation||0}}]);
-   if(!bloomDestroys&&!unpaidDestroys&&!offHand&&!g600OverManaEntry&&!nonSummon&&!shieldWithoutMana)continue;
+   if(!bloomDestroys&&!unpaidDestroys&&!offHand&&!g600OverManaEntry&&!nonSummon&&!shieldWithoutMana&&!unpaidBounce)continue;
    const exact={op:'ExactMove',owner:p,g403Refs:[y,...(y.godLinks||[])].map(x=>({uid:x.uid,incarnation:x.incarnation||0}))};
    if(bloomDestroys||unpaidDestroys)queue(s,1-p,watcher,[{...exact,to:'grave',target:y.uid,targetIncarnation:y.incarnation||0}]);
    if(offHand)queue(s,1-p,watcher,[{...exact,to:'mana'}]);
    if(shieldWithoutMana)queue(s,1-p,watcher,[{...exact,to:'shields',optional:true,followEvolution:true}]);
    if(nonSummon==='bottom')queue(s,1-p,watcher,[{...exact,to:'deck'}]);
    if(nonSummon==='bounce')queue(s,1-p,watcher,[{...exact,to:'hand',optional:true,followEvolution:'evolutionOnly',filter:{creature:true}}]);
+   if(unpaidBounce)queue(s,1-p,watcher,[{...exact,to:'hand',toOwnerHand:true,optional:true,followEvolution:'evolutionOnly',filter:{creature:true}}]);
    if(nonSummon==='skip')queue(s,1-p,watcher,[{
     op:'Offer',title:'今のターンの残りを飛ばしますか？',score:s.active===p?50:-10,
     defs:[{op:'Custom',name:'endTurn'}]

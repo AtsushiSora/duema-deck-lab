@@ -17204,7 +17204,8 @@
           "水",
           "火",
           "自然"
-        ]
+        ],
+        "g486Current": true
       },
       "giraCommands": true,
       "finalRev": "gira",
@@ -220465,15 +220466,234 @@
       ],
       "supportBatch": "phase-1111",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmbd13-012",
+      "name": "全員集合！アクア・三兄弟 / 超次元ジェイシーエイ・ホール",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "リキッド・ピープル/ハンター",
+      "text": "相手が、自身のターン中にコストを支払わずにクリーチャーをバトルゾーンに出した時、自分はそのクリーチャーを持ち主の手札に戻してもよい。\n【呪文面】\nS・トリガー S・トリガー\nカードを２枚引き、その後、自分の手札を１枚山札の一番下に置く。\n水のコスト７以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd13-012",
+      "limit": 4,
+      "g1112UnpaidBounce": true,
+      "spellFace": {
+        "name": "超次元ジェイシーエイ・ホール",
+        "type": "spell",
+        "cost": 7,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "deck",
+            "n": 1,
+            "title": "山札の下に置く手札を1枚選ぶ"
+          },
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "g1104PsychicFaces": true,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 7,
+              "color": "水"
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1112",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd13-013",
+      "name": "最終決戦だ！鬼丸ボーイ / 超次元オニシュラ・ホール",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2000,
+      "race": "ヒューマノイド/ハンター/エイリアン",
+      "text": "S・トリガー S・トリガー\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある相手のコスト４以下のカードを１枚選び、持ち主の墓地に置く。\n【呪文面】\n相手のパワー2000以下のクリーチャーをすべて破壊する。\n火のコスト７以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd13-013",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BattleCardMove579",
+          "to": "grave",
+          "max": 4,
+          "toOwnerGrave": true
+        }
+      ],
+      "spellFace": {
+        "name": "超次元オニシュラ・ホール",
+        "type": "spell",
+        "cost": 6,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "filter": {
+              "creature": true,
+              "maxPower": 2000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "g1104PsychicFaces": true,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 7,
+              "color": "火"
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1112",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex2-075",
+      "name": "姫と修羅の盾",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "相手のコスト５以下のクリーチャーを１体選び、持ち主の手札に戻す。\n自分の手札を１枚超次元ゾーンに置いてもよい。そうしたら、真上の▪️能力をもう１度使う。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-075",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "hand",
+          "toOwnerHand": true,
+          "filter": {
+            "max": 5
+          },
+          "spell": true
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "extra",
+          "n": 1,
+          "optional": true,
+          "g1009AfterMoveAttempt": [
+            {
+              "op": "Target",
+              "to": "hand",
+              "toOwnerHand": true,
+              "filter": {
+                "max": 5
+              },
+              "spell": true
+            }
+          ],
+          "title": "能力をもう一度使うため、超次元ゾーンに置く手札を1枚選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-1112",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex2-078",
+      "name": "姫と王牙の剣",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "race": "",
+      "text": "このターン、自分のクリーチャー１体に「スピードアタッカー」を与える。\n自分の手札を１枚超次元ゾーンに置いてもよい。そうしたら、真上の▪️能力をもう１度使う。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-078",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g301Grant": true,
+          "grant": {
+            "speedAttacker": true
+          },
+          "g927HasteScore": true,
+          "spell": true,
+          "title": "スピードアタッカーを与える自分のクリーチャーを1体選ぶ"
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "extra",
+          "n": 1,
+          "optional": true,
+          "g1009AfterMoveAttempt": [
+            {
+              "op": "Target",
+              "owner": "self",
+              "g301Grant": true,
+              "grant": {
+                "speedAttacker": true
+              },
+              "g927HasteScore": true,
+              "spell": true,
+              "title": "スピードアタッカーを与える自分のクリーチャーを1体選ぶ"
+            }
+          ],
+          "title": "能力をもう一度使うため、超次元ゾーンに置く手札を1枚選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-1112",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1111,
+    "phase": 1112,
     "checkedAt": "2026-11-13",
-    "baseCount": 7313,
+    "baseCount": 7317,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7317,
+    "totalCount": 7321,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -240094,6 +240314,18 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 7313,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1111,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7313,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7317,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

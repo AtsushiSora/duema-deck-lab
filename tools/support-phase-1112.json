@@ -1,0 +1,579 @@
+{
+  "phase": 1112,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7317,
+  "description": "アクア・三兄弟、鬼丸ボーイの両面と、姫と修羅の盾、姫と王牙の剣を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/38714/",
+    "https://dm.takaratomy.co.jp/rule/qa/38715/",
+    "https://dm.takaratomy.co.jp/rule/qa/38716/",
+    "https://dm.takaratomy.co.jp/rule/qa/45574/",
+    "https://dm.takaratomy.co.jp/rule/qa/46250/",
+    "https://dm.takaratomy.co.jp/rule/qa/48125/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36775/"
+  ],
+  "cards": [
+    {
+      "id": "dmbd13-012",
+      "name": "全員集合！アクア・三兄弟 / 超次元ジェイシーエイ・ホール",
+      "faces": [
+        {
+          "name": "全員集合！アクア・三兄弟",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手が、自身のターン中にコストを支払わずにクリーチャーをバトルゾーンに出した時、自分はそのクリーチャーを持ち主の手札に戻してもよい。",
+          "race": "リキッド・ピープル/ハンター",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "超次元ジェイシーエイ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\nカードを２枚引き、その後、自分の手札を１枚山札の一番下に置く。\n水のコスト７以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd13-012",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd13-012a.jpg",
+      "spec": {
+        "g1112UnpaidBounce": true,
+        "spellFace": {
+          "name": "超次元ジェイシーエイ・ホール",
+          "type": "spell",
+          "cost": 7,
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "trigger": true,
+          "g34Tasks": [
+            {
+              "op": "Draw",
+              "n": 2
+            },
+            {
+              "op": "Select",
+              "origin": "hand",
+              "to": "deck",
+              "n": 1,
+              "title": "山札の下に置く手札を1枚選ぶ"
+            },
+            {
+              "op": "Select",
+              "origin": "extra",
+              "deploy": true,
+              "n": 1,
+              "g1104PsychicFaces": true,
+              "filter": {
+                "g1085Psychic": true,
+                "max": 7,
+                "color": "水"
+              }
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "86108659a12f1ab7d9e8160d08fe4e765d97fca37088e4aea7824c21b01c1577",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmbd13-013",
+      "name": "最終決戦だ！鬼丸ボーイ / 超次元オニシュラ・ホール",
+      "faces": [
+        {
+          "name": "最終決戦だ！鬼丸ボーイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある相手のコスト４以下のカードを１枚選び、持ち主の墓地に置く。",
+          "race": "ヒューマノイド/ハンター/エイリアン",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "超次元オニシュラ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "相手のパワー2000以下のクリーチャーをすべて破壊する。\n火のコスト７以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd13-013",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd13-013a.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "to": "grave",
+            "max": 4,
+            "toOwnerGrave": true
+          }
+        ],
+        "spellFace": {
+          "name": "超次元オニシュラ・ホール",
+          "type": "spell",
+          "cost": 6,
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Sweep",
+              "filter": {
+                "creature": true,
+                "maxPower": 2000,
+                "g199Power": true
+              }
+            },
+            {
+              "op": "Select",
+              "origin": "extra",
+              "deploy": true,
+              "n": 1,
+              "g1104PsychicFaces": true,
+              "filter": {
+                "g1085Psychic": true,
+                "max": 7,
+                "color": "火"
+              }
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "5a3798a2beead8657d2573bf570ee3bb140b1fa8931e1faefd3daba57e430bbf",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex2-075",
+      "name": "姫と修羅の盾",
+      "faces": [
+        {
+          "name": "姫と修羅の盾",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手のコスト５以下のクリーチャーを１体選び、持ち主の手札に戻す。\n自分の手札を１枚超次元ゾーンに置いてもよい。そうしたら、真上の▪️能力をもう１度使う。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-075",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-075.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "hand",
+            "toOwnerHand": true,
+            "filter": {
+              "max": 5
+            },
+            "spell": true
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "extra",
+            "n": 1,
+            "optional": true,
+            "g1009AfterMoveAttempt": [
+              {
+                "op": "Target",
+                "to": "hand",
+                "toOwnerHand": true,
+                "filter": {
+                  "max": 5
+                },
+                "spell": true
+              }
+            ],
+            "title": "能力をもう一度使うため、超次元ゾーンに置く手札を1枚選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "0bab6b08e544989fade5b54a9fdb6bee9dbefd575494666ceb98891244f72750",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex2-078",
+      "name": "姫と王牙の剣",
+      "faces": [
+        {
+          "name": "姫と王牙の剣",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このターン、自分のクリーチャー１体に「スピードアタッカー」を与える。\n自分の手札を１枚超次元ゾーンに置いてもよい。そうしたら、真上の▪️能力をもう１度使う。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-078",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-078.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g301Grant": true,
+            "grant": {
+              "speedAttacker": true
+            },
+            "g927HasteScore": true,
+            "spell": true,
+            "title": "スピードアタッカーを与える自分のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "extra",
+            "n": 1,
+            "optional": true,
+            "g1009AfterMoveAttempt": [
+              {
+                "op": "Target",
+                "owner": "self",
+                "g301Grant": true,
+                "grant": {
+                  "speedAttacker": true
+                },
+                "g927HasteScore": true,
+                "spell": true,
+                "title": "スピードアタッカーを与える自分のクリーチャーを1体選ぶ"
+              }
+            ],
+            "title": "能力をもう一度使うため、超次元ゾーンに置く手札を1枚選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "aec837aa7eeef2fb274564219ae200519a017e4729d771f0ab3b6aa19d556cc0",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex17-055",
+      "name": "全員集合！アクア・三兄弟 / 超次元ジェイシーエイ・ホール",
+      "faces": [
+        {
+          "name": "全員集合！アクア・三兄弟",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のターン中に、相手がコストを支払わずにクリーチャーを出した時、自分はそのクリーチャーを持ち主の手札に戻してもよい。",
+          "race": "リキッド・ピープル/ハンター",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "超次元ジェイシーエイ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\nカードを２枚引き、その後、自分の手札を１枚山札の下に置く。\n水のコスト７以下のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-055",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-055a.jpg",
+      "spec": {
+        "g1112UnpaidBounce": true,
+        "spellFace": {
+          "name": "超次元ジェイシーエイ・ホール",
+          "type": "spell",
+          "cost": 7,
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "trigger": true,
+          "g34Tasks": [
+            {
+              "op": "Draw",
+              "n": 2
+            },
+            {
+              "op": "Select",
+              "origin": "hand",
+              "to": "deck",
+              "n": 1,
+              "title": "山札の下に置く手札を1枚選ぶ"
+            },
+            {
+              "op": "Select",
+              "origin": "extra",
+              "deploy": true,
+              "n": 1,
+              "g1104PsychicFaces": true,
+              "filter": {
+                "g1085Psychic": true,
+                "max": 7,
+                "color": "水"
+              }
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "55548247b2813e091b4da4760309f1c327b8984dd24b240d17e02ef434992ee2",
+        "facesMatched": true
+      },
+      "canonicalId": "dmbd13-012"
+    },
+    {
+      "id": "dmex17-092",
+      "name": "最終決戦だ！鬼丸ボーイ / 超次元オニシュラ・ホール",
+      "faces": [
+        {
+          "name": "最終決戦だ！鬼丸ボーイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、バトルゾーンにある相手のコスト４以下のカードを１枚選び、持ち主の墓地に置く。",
+          "race": "ヒューマノイド/ハンター/エイリアン",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "超次元オニシュラ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "相手のパワー2000以下のクリーチャーをすべて破壊する。\n火のコスト７以下のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-092",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-092a.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "to": "grave",
+            "max": 4,
+            "toOwnerGrave": true
+          }
+        ],
+        "spellFace": {
+          "name": "超次元オニシュラ・ホール",
+          "type": "spell",
+          "cost": 6,
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Sweep",
+              "filter": {
+                "creature": true,
+                "maxPower": 2000,
+                "g199Power": true
+              }
+            },
+            {
+              "op": "Select",
+              "origin": "extra",
+              "deploy": true,
+              "n": 1,
+              "g1104PsychicFaces": true,
+              "filter": {
+                "g1085Psychic": true,
+                "max": 7,
+                "color": "火"
+              }
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "f7b7e7c8f47a925be63700415ca9393fc4150d5f752133139e301c9ba44e5e47",
+        "facesMatched": true
+      },
+      "canonicalId": "dmbd13-013"
+    },
+    {
+      "id": "dm25ex4-T01",
+      "name": "全員集合！アクア・三兄弟 / 超次元ジェイシーエイ・ホール",
+      "faces": [
+        {
+          "name": "全員集合！アクア・三兄弟",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のターンに、相手のクリーチャーがコストを支払わずに出た時、そのクリーチャーを持ち主の手札に戻してもよい。",
+          "race": "リキッド・ピープル/ハンター",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "超次元ジェイシーエイ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\nカードを２枚引き、自分の手札を１枚山札の下に置く。\n水のコスト７以下のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-T01",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-T01a.jpg",
+      "spec": {
+        "g1112UnpaidBounce": true,
+        "spellFace": {
+          "name": "超次元ジェイシーエイ・ホール",
+          "type": "spell",
+          "cost": 7,
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "trigger": true,
+          "g34Tasks": [
+            {
+              "op": "Draw",
+              "n": 2
+            },
+            {
+              "op": "Select",
+              "origin": "hand",
+              "to": "deck",
+              "n": 1,
+              "title": "山札の下に置く手札を1枚選ぶ"
+            },
+            {
+              "op": "Select",
+              "origin": "extra",
+              "deploy": true,
+              "n": 1,
+              "g1104PsychicFaces": true,
+              "filter": {
+                "g1085Psychic": true,
+                "max": 7,
+                "color": "水"
+              }
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "884683208c98dd56d488f049b551c7ec32050f0e281d0680eb3fee1352e593ad",
+        "facesMatched": true
+      },
+      "canonicalId": "dmbd13-012"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmbd13-012": 4,
+      "dmbd13-013": 4,
+      "dm25ex2-075": 4,
+      "dm25ex2-078": 4,
+      "dmex17-055": 4,
+      "dmex17-092": 4,
+      "dm25ex4-T01": 4
+    }
+  }
+}
