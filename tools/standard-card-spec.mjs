@@ -6184,6 +6184,28 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1163&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText),hasField={g580D2Field:true};
+  const destroy={op:'Target',to:'grave'};
+  if(d.id==='promoy15-027'&&text==='マナゾーンに置く時このカードはタップして置く。W・ブレイカー'+
+   'このクリーチャーが攻撃する時相手のクリーチャーを1体破壊する。その後バトルゾーンに自分のD2フィールドがあれば相手のクリーチャーをもう1体破壊する。')
+   return {breaker:2,g34Attack:[{...destroy,g1163SecondDestroy:hasField}]};
+  if(d.id==='dmd31-001'&&text==='マナゾーンに置く時このカードはタップして置く。'+
+   'スピードアタッカー(このクリーチャーは召喚酔いしない)W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+
+   'このクリーチャーが攻撃する時バトルゾーンに自分のD2フィールドがあれば相手のクリーチャーを1体選ぶ。そのターンそのクリーチャーのパワーを-99999する。(パワー0以下のクリーチャーは破壊される)')
+   return {speedAttacker:true,breaker:2,g34Attack:[{op:'IfOwn',filter:hasField,defs:[{op:'Target',power:-99999,g242PowerMinus:true}]}]};
+  if(d.id==='dmx23-049'&&text==='ブロッカーブロッカーW・ブレイカーこのクリーチャーがバトルゾーンに出た時'+
+   '自分のD2フィールドがバトルゾーンにあれば自分の墓地にあるクリーチャーをすべて山札に加えてシャッフルする。その後それと同じ枚数カードを引く。')
+   return {blocker:true,breaker:2,effect:'sixPhoto',g34Tasks:[{op:'IfOwn',filter:hasField,
+    defs:[{op:'GraveShuffle545',owner:'self',creaturesThenDraw:true}]}]};
+  const pappi='このクリーチャーが出た時自分の山札を見る。その中から';
+  // Use the latest print wording for the shared card, including when the reveal is declined.
+  if((d.id==='dmex18-066'&&text===pappi+'フェニックスを1体相手に見せてもよい。そうしたら山札をシャッフルしそのカードを山札の上に置く。')||
+   (['dm25ex1-082','promoy24-027'].includes(d.id)&&text===pappi+'フェニックス・クリーチャーを1体表向きにしてもよい。その後山札をシャッフルしそのカードを山札の上に置く。'))
+   return {effect:'sixPhoto',g34Tasks:[{op:'Look',g201Search:true,g841DeckPeek:true,rest:'shuffle',
+    g1163TopAfterShuffle:true,stages:[{n:1,to:'deckTop',optional:true,reveal:true,g1081ConfirmEmpty:true,
+     title:'山札の上に置くフェニックスを1体選ぶ（任意）',filter:{g228Face:{type:'creature',raceAll:['フェニックス']}}}]}]};
+ }
  if(phase>=1162&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='クリーチャー'){

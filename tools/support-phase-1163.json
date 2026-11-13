@@ -1,0 +1,341 @@
+{
+  "phase": 1163,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7478,
+  "description": "D2V ヴァインズ、D2-V禁断のボルトロン、D2W ワンダーワープ、パッピ・ラッピーの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+    "https://dm.takaratomy.co.jp/rule/qa/39965/",
+    "https://dm.takaratomy.co.jp/rule/qa/33276/",
+    "https://dm.takaratomy.co.jp/rule/qa/31783/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37327/",
+    "https://dm.takaratomy.co.jp/rule/qa/44747/"
+  ],
+  "cards": [
+    {
+      "id": "promoy15-027",
+      "name": "D2V ヴァインズ",
+      "faces": [
+        {
+          "name": "D2V ヴァインズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体破壊する。その後、バトルゾーンに自分のD２フィールドがあれば、相手のクリーチャーをもう１体破壊する。",
+          "race": "ソニック・コマンド/マスター・イニシャルズ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy15-027",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy15-027.jpg",
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "g1163SecondDestroy": {
+              "g580D2Field": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "3a05eeec64e4042b070641d846b5fb4b76660adf432c05ecde78ac6e83aa459c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd31-001",
+      "name": "D2-V禁断のボルトロン",
+      "faces": [
+        {
+          "name": "D2-V禁断のボルトロン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、バトルゾーンに自分のD２フィールドがあれば、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを-99999する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "ソニック・コマンド/マスター・イニシャルズ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd31-001",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd31-001.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g580D2Field": true
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "power": -99999,
+                "g242PowerMinus": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "223389ccf0c60488183f8051b02b2b95e37e7a8ecfb8384724f4188169e099cd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx23-049",
+      "name": "D2W ワンダーワープ",
+      "faces": [
+        {
+          "name": "D2W ワンダーワープ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分のD２フィールドがバトルゾーンにあれば、自分の墓地にあるクリーチャーをすべて山札に加えてシャッフルする。その後、それと同じ枚数、カードを引く。",
+          "race": "マジック・コマンド/マスター・イニシャルズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx23-049",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx23-049.jpg",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g580D2Field": true
+            },
+            "defs": [
+              {
+                "op": "GraveShuffle545",
+                "owner": "self",
+                "creaturesThenDraw": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "e1bc1a78bce9a2b550365e433c0e27a044633e154688bbdd77afed03411454cf",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex18-066",
+      "name": "パッピ・ラッピー",
+      "faces": [
+        {
+          "name": "パッピ・ラッピー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分の山札を見る。その中からフェニックスを１体、相手に見せてもよい。そうしたら、山札をシャッフルし、そのカードを山札の上に置く。",
+          "race": "ファイアー・バード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-066",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-066.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g841DeckPeek": true,
+            "rest": "shuffle",
+            "g1163TopAfterShuffle": true,
+            "stages": [
+              {
+                "n": 1,
+                "to": "deckTop",
+                "optional": true,
+                "reveal": true,
+                "g1081ConfirmEmpty": true,
+                "title": "山札の上に置くフェニックスを1体選ぶ（任意）",
+                "filter": {
+                  "g228Face": {
+                    "type": "creature",
+                    "raceAll": [
+                      "フェニックス"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "23144558add2b4ce31811f0f598c3c8652141ea410e0a5469d909d471ccc1f8b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25ex1-082",
+      "name": "パッピ・ラッピー",
+      "faces": [
+        {
+          "name": "パッピ・ラッピー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分の山札を見る。その中からフェニックス・クリーチャーを１体、表向きにしてもよい。その後、山札をシャッフルし、そのカードを山札の上に置く。",
+          "race": "ファイアー・バード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-082",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex1-082.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g841DeckPeek": true,
+            "rest": "shuffle",
+            "g1163TopAfterShuffle": true,
+            "stages": [
+              {
+                "n": 1,
+                "to": "deckTop",
+                "optional": true,
+                "reveal": true,
+                "g1081ConfirmEmpty": true,
+                "title": "山札の上に置くフェニックスを1体選ぶ（任意）",
+                "filter": {
+                  "g228Face": {
+                    "type": "creature",
+                    "raceAll": [
+                      "フェニックス"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "9b63e8694f792a339a5a077e21aea134ca561d9901fbd2b140fe856cf35032f1",
+        "facesMatched": true
+      },
+      "canonicalId": "dmex18-066"
+    },
+    {
+      "id": "promoy24-027",
+      "name": "パッピ・ラッピー",
+      "faces": [
+        {
+          "name": "パッピ・ラッピー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分の山札を見る。その中からフェニックス・クリーチャーを１体、表向きにしてもよい。その後、山札をシャッフルし、そのカードを山札の上に置く。",
+          "race": "ファイアー・バード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy24-027",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy24-027.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g841DeckPeek": true,
+            "rest": "shuffle",
+            "g1163TopAfterShuffle": true,
+            "stages": [
+              {
+                "n": 1,
+                "to": "deckTop",
+                "optional": true,
+                "reveal": true,
+                "g1081ConfirmEmpty": true,
+                "title": "山札の上に置くフェニックスを1体選ぶ（任意）",
+                "filter": {
+                  "g228Face": {
+                    "type": "creature",
+                    "raceAll": [
+                      "フェニックス"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "e74ca6d18be530f6aeed0a794bad9c56764e7615e80a7c43de0734f0fa2f2055",
+        "facesMatched": true
+      },
+      "canonicalId": "dmex18-066"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "promoy15-027": 4,
+      "dmd31-001": 4,
+      "dmx23-049": 4,
+      "dmex18-066": 4,
+      "dm25ex1-082": 4,
+      "promoy24-027": 4
+    }
+  }
+}

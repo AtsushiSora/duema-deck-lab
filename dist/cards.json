@@ -226677,15 +226677,162 @@
       ],
       "supportBatch": "phase-1162",
       "supportKind": "effect"
+    },
+    {
+      "id": "promoy15-027",
+      "name": "D2V ヴァインズ",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "ソニック・コマンド/マスター・イニシャルズ",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体破壊する。その後、バトルゾーンに自分のD２フィールドがあれば、相手のクリーチャーをもう１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy15-027",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "g1163SecondDestroy": {
+            "g580D2Field": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1163",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd31-001",
+      "name": "D2-V禁断のボルトロン",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ソニック・コマンド/マスター・イニシャルズ",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、バトルゾーンに自分のD２フィールドがあれば、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを-99999する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd31-001",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g580D2Field": true
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "power": -99999,
+              "g242PowerMinus": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1163",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx23-049",
+      "name": "D2W ワンダーワープ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "マジック・コマンド/マスター・イニシャルズ",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分のD２フィールドがバトルゾーンにあれば、自分の墓地にあるクリーチャーをすべて山札に加えてシャッフルする。その後、それと同じ枚数、カードを引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx23-049",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g580D2Field": true
+          },
+          "defs": [
+            {
+              "op": "GraveShuffle545",
+              "owner": "self",
+              "creaturesThenDraw": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1163",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex18-066",
+      "name": "パッピ・ラッピー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ファイアー・バード",
+      "text": "このクリーチャーが出た時、自分の山札を見る。その中からフェニックスを１体、相手に見せてもよい。そうしたら、山札をシャッフルし、そのカードを山札の上に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-066",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g841DeckPeek": true,
+          "rest": "shuffle",
+          "g1163TopAfterShuffle": true,
+          "stages": [
+            {
+              "n": 1,
+              "to": "deckTop",
+              "optional": true,
+              "reveal": true,
+              "g1081ConfirmEmpty": true,
+              "title": "山札の上に置くフェニックスを1体選ぶ（任意）",
+              "filter": {
+                "g228Face": {
+                  "type": "creature",
+                  "raceAll": [
+                    "フェニックス"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1163",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1162,
+    "phase": 1163,
     "checkedAt": "2026-11-14",
-    "baseCount": 7475,
-    "newEffectCards": 3,
+    "baseCount": 7478,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7478,
+    "totalCount": 7482,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -246918,6 +247065,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7475,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1162,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7475,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7478,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

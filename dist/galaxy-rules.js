@@ -1,4 +1,4 @@
-import {policyTake} from './champion-zone-policy.js';
+import {policyRemove,policyTake} from './champion-zone-policy.js';
 // No.22: serializable continuations and permissions for the Galaxy list.
 export function createGalaxyRules(api){
  const {card,faces,cost,colors,effective,power,creatures,put,task,choice,opt,skip,remove,clear,move,cast,draw,log,targetOptions}=api;
@@ -10,10 +10,14 @@ export function createGalaxyRules(api){
  const effect=(s,p,source,op,more={})=>api.enqueue(s,p,{source,effect:'extended',task:task(op,p,source,more)});
  const discardSequence=(s,t,n,follow,optional=false)=>{const id=String(s.g22Serial=(s.g22Serial||0)+1);(s.g22Discards??={})[id]=[];put(s,task('discard',t.p,t.source,{causedBy:t.p,n,optional,galaxyKey:id}),task(follow,t.p,t.source,{key:id}));};
  function shuffleGrave(s,t,owner){
-  const all=policyTake(s,owner,'grave',api);
+  const eligible=t.creaturesThenDraw?s.players[owner].grave.filter(x=>faces(api.zoneCard(s,owner,x,'grave')).some(c=>c.type==='creature')):null;
+  if(eligible&&!eligible.length)return;
+  const all=eligible?eligible.map(x=>policyRemove(s,owner,'grave',x.uid,api)).filter(Boolean):policyTake(s,owner,'grave',api);
   for(const x of all)clear(x,'deck');
+  if(t.creaturesThenDraw&&all.length)put(s,task('draw',owner,t.source,{n:all.length}));
   api.shuffleLibrary(s,owner,all,t.source);
-  log(s,t.p,'shuffleGrave',(t.owner==='self'?'自分':'選んだプレイヤー')+'の墓地を山札に戻してシャッフルする',{cardId:t.source});
+  log(s,t.p,'shuffleGrave',(t.owner==='self'?'自分':'選んだプレイヤー')+
+   (eligible?'の墓地のクリーチャーを':'の墓地を')+'山札に戻してシャッフルする',{cardId:t.source});
  }
  function run(s,t){if(!t.op.startsWith('g22'))return false;const own=s.players[t.p],opp=s.players[1-t.p];switch(t.op){
   case'g22Blaze':put(s,task('discard',t.p,t.source,{causedBy:t.p,n:1}),task('draw',t.p,t.source,{n:1}));break;
