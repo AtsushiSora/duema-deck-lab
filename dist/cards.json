@@ -225953,15 +225953,146 @@
       },
       "supportBatch": "phase-1153",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm30-050",
+      "name": "幻獣炎舞",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "このターン、自分のクリーチャーがブロックされた時、このターンの終わりまでそのクリーチャーのパワーは+4000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-050",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BlockPowerTurn1154",
+          "power": 4000
+        }
+      ],
+      "supportBatch": "phase-1154",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-038",
+      "name": "奇天烈 ディーラー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "リキッド・ピープル閃/侵略者",
+      "text": "ターン最初のドロー以外で自分がカードを引いた時、そのターン、このクリーチャーのパワーを+2000し、種族にマジック・コマンドを追加する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-038",
+      "limit": 4,
+      "g1154EffectDraw": [
+        {
+          "op": "SelfBoost313",
+          "power": 2000,
+          "g536Source": true
+        },
+        {
+          "op": "SelfGrant754",
+          "grant": {
+            "raceAdd": [
+              "マジック・コマンド"
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-1154",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx20-010",
+      "name": "奇天烈 サイコロン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "マジック・コマンド/侵略者",
+      "text": "このクリーチャーがバトルゾーンに出た時、カードを２枚引く。その後、自分の手札を相手に２枚見ないで選ばせ、好きな順序で山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx20-010",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        },
+        {
+          "op": "BlindHandBottom1154",
+          "n": 2
+        }
+      ],
+      "supportBatch": "phase-1154",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx20-002",
+      "name": "超奇天烈 ダイスダイス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "マジック・コマンド/侵略者",
+      "text": "進化―自分の水のクリーチャー１体の上に置く。\n侵略―水のコマンド（自分の水のコマンドが攻撃する時、自分の手札にあるこのクリーチャーをその上に重ねてもよい）\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、カードを４枚引く。その後、自分の手札を相手に２枚見ないで選ばせ、好きな順序で山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx20-002",
+      "limit": 4,
+      "evolution": {
+        "civilization": "水"
+      },
+      "invasion": {
+        "colors": [
+          "水"
+        ],
+        "categories": [
+          "コマンド"
+        ],
+        "origins": [
+          "hand"
+        ]
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 4
+        },
+        {
+          "op": "BlindHandBottom1154",
+          "n": 2
+        }
+      ],
+      "supportBatch": "phase-1154",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1153,
+    "phase": 1154,
     "checkedAt": "2026-11-14",
-    "baseCount": 7446,
-    "newEffectCards": 3,
+    "baseCount": 7449,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7449,
+    "totalCount": 7453,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -246086,6 +246217,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7446,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1153,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7446,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7449,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

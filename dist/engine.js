@@ -454,7 +454,7 @@ function draw(s,p,n,{unreplaceable=false,drawn,turnDraw=false}={}){
   }
   if(!unreplaceable&&!s.players[p].deck.length&&extra.deckSafe(s,p)&&s.players[p].battle.some(x=>effectiveCard(x,s).bigBang)){extra.put(s,extra.task("g10_Draws",p,s.players[p].battle.find(x=>effectiveCard(x,s).bigBang).cardId,{n:infinite?n:n-i}));break;}const last=s.players[p].deck.length===1&&!extra.deckSafe(s,p)&&!extra.seed.noLose(s,1-p,'replacementWin')&&s.players[p].battle.some(x=>effectiveCard(x,s).shako),c=takeDrawCard(s,p);if(c){clearBattleState(c,'hand');s.players[p].hand.push(c);drawn?.push(c.uid);actual++;if(!last&&c.g11FromSideways){checkSidewaysHand(s,p);if(s.winner!==null||s.lossEvent){if((infinite||n-i-1)&&s.lossEvent)extra.put(s,extra.task('draw',p,c.cardId,{n:infinite?n:n-i-1}));break;}}}if(last&&c){finish(s,p,'シャコガイル：山札の最後の1枚を引いて勝利','replacementWin');if(s.winner===null)deckCheck(s,p);}else deckCheck(s,p);checkSidewaysHand(s,p);if(infinite&&!c)break;}
  if(turnDraw&&actual&&s.winner===null)extra.six.turnDrawn947(s,p,actual);
- extra.drawn(s,p,actual);log(s,p,'draw',`カードを${actual}枚引いた`);return actual+replacementDraws;}
+ extra.drawn(s,p,actual,turnDraw);log(s,p,'draw',`カードを${actual}枚引いた`);return actual+replacementDraws;}
 function mill(s,p,n,{together=false}={}){
  if(together&&s.winner===null){
   const moved=[];

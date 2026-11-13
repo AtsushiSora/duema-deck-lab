@@ -6184,6 +6184,29 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1154&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const blindBottom='その後自分の手札を相手に2枚見ないで選ばせ好きな順序で山札の一番下に置く。';
+  const drawThenBottom=n=>[{op:'Draw',n},{op:'BlindHandBottom1154',n:2}];
+  if(d.id==='dm30-050'&&f.typeText==='呪文'&&
+   text==='このターン自分のクリーチャーがブロックされた時このターンの終わりまでそのクリーチャーのパワーは+4000される。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'BlockPowerTurn1154',power:4000}]};
+  if(d.id==='dmr17-038'&&f.typeText==='クリーチャー'&&
+   text==='ターン最初のドロー以外で自分がカードを引いた時そのターンこのクリーチャーのパワーを+2000し種族にマジック・コマンドを追加する。')
+   return {g1154EffectDraw:[
+    {op:'SelfBoost313',power:2000,g536Source:true},
+    {op:'SelfGrant754',grant:{raceAdd:['マジック・コマンド']}}
+   ]};
+  if(d.id==='dmx20-010'&&f.typeText==='クリーチャー'&&
+   text==='このクリーチャーがバトルゾーンに出た時カードを2枚引く。'+blindBottom)
+   return {effect:'sixPhoto',g34Tasks:drawThenBottom(2)};
+  if(['dmx20-002','dmx22b-117'].includes(d.id)&&f.typeText==='進化クリーチャー'&&
+   text==='進化―自分の水のクリーチャー1体の上に置く。'+
+    '侵略―水のコマンド(自分の水のコマンドが攻撃する時自分の手札にあるこのクリーチャーをその上に重ねてもよい)'+
+    'W・ブレイカーこのクリーチャーがバトルゾーンに出た時カードを4枚引く。'+blindBottom)
+   return {evolution:{civilization:'水'},invasion:{colors:['水'],categories:['コマンド'],origins:['hand']},
+    breaker:2,effect:'sixPhoto',g34Tasks:drawThenBottom(4)};
+ }
  if(phase>=1153&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(['dmd31-003','dmex01-074'].includes(d.id)&&f.typeText==='D2フィールド'&&

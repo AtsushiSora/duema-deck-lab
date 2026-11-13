@@ -2356,6 +2356,29 @@ export function createSixPhotoRules(api){
    hand.map((_,i)=>opt('裏向きの手札 '+(i+1),i,0)),1-owner);
   break;
  }
+ case'g34_BlindHandBottom1154':{
+  if(!own.hand.length||!api.canMoveZone(s,t.p,'hand'))break;
+  const slots=t.slots??api.shuffled(own.hand.map(x=>x.uid),Math.floor(api.random(s)*4294967296));
+  const selected=t.selected??[],count=Math.min(t.n,slots.length);
+  const remaining=slots.filter(uid=>!selected.includes(uid));
+  const needed=count-selected.length;
+  if(needed===0||remaining.length===needed){
+   put(s,{...t,op:'g34_HandBottomOrder1154',remaining:[...selected,...remaining.slice(0,needed)],ordered:[]});
+   break;
+  }
+  choice(s,{...t,slots,selected},'山札の下に置く相手の手札を裏向きのまま'+count+'枚選ぶ',
+   slots.flatMap((uid,i)=>selected.includes(uid)?[]:[opt('裏向きの手札 '+(i+1),i,0)]),1-t.p);
+  break;
+ }
+ case'g34_HandBottomOrder1154':{
+  const rows=t.remaining.map(uid=>own.hand.find(x=>x.uid===uid)).filter(Boolean);
+  if(rows.length>1){
+   choice(s,t,'山札の下に置く順序を選ぶ',rows.map(y=>opt(card(y).name,y.uid,0,y.cardId)));
+   break;
+  }
+  for(const uid of [...t.ordered,...rows.map(y=>y.uid)])zoneMove(s,t.p,'hand',uid,'deck',t);
+  break;
+ }
  case'g34_ManaTriggerCast803':{
   const rows=manaTriggerSpells803(s,t.p);
   if(!t.selected){
@@ -2711,6 +2734,9 @@ export function createSixPhotoRules(api){
  case'g34_ResolveSpell207':api.resumeCastSpell(s,t.p,t.uid);break;
  case'g34_BlockUntapTurn989':
   (s.extLimits??=[]).push({kind:'g989BlockUntap',player:t.p,source:t.source,expires:'end',who:s.active});
+  break;
+ case'g34_BlockPowerTurn1154':
+  (s.extLimits??=[]).push({kind:'g1154BlockPower',player:t.p,source:t.source,power:t.power,expires:'end',who:s.active});
   break;
  case'g34_GroupLasting412':for(const {p,y}of groupPowerRows(s,t))(s.extLimits??=[]).push({kind:t.destroySafe?'g409AttackEffect':'g412ExtraBreak',player:p,ref:{uid:y.uid,incarnation:y.incarnation||0},source:t.source,...(t.destroySafe?{effect:'destroySafe',expires:t.untilEnd?'end':'start',who:t.untilEnd?s.active:t.p}:{amount:t.extraBreak,expires:'end',who:s.active,...(t.g969FollowControl?{g969FollowControl:true}:{}),...(t.spell?{spellCost:cost(faces(card(t.source)).at(-1))}:{})})});break;
  case'g34_ChainDestroy838':{
@@ -5186,6 +5212,12 @@ export function createSixPhotoRules(api){
   }
   break;
  }
+ case'g34_BlindHandBottom1154':
+  put(s,{...t,selected:[...t.selected,t.slots[v]]});
+  break;
+ case'g34_HandBottomOrder1154':
+  put(s,{...t,remaining:t.remaining.filter(uid=>uid!==v),ordered:[...t.ordered,v]});
+  break;
  case'g34_StartManaLock773':{
   const y=s.players[1-t.p].mana.find(y=>y.uid===v);
   if(y)y.skipUntap=true;
@@ -5942,6 +5974,8 @@ export function createSixPhotoRules(api){
   if(a&&!a.sealed)for(const rule of s.extLimits||[]){
    if(rule.kind==='g989BlockUntap'&&rule.player===owner)
     send(s,owner,{uid:a.uid,incarnation:a.incarnation||0,cardId:rule.source},'Untap',{g191First:true});
+   if(rule.kind==='g1154BlockPower'&&rule.player===owner)
+    send(s,owner,{uid:a.uid,incarnation:a.incarnation||0,cardId:rule.source},'SelfBoost313',{power:rule.power,g536Source:true});
   }
   if(a&&s.attack.g947PlayerTarget&&!api.ignored(s,a)){
    for(const grant of a.g34Grants||[]){
@@ -6771,8 +6805,12 @@ export function createSixPhotoRules(api){
    if(defs)for(let i=0;i<count;i++)queue(s,p,x,defs);
   }
  },
- drawn676(s,p,n,before){
+ drawn676(s,p,n,before,turnDraw){
   if(!n)return;
+  if(n>Number(turnDraw))for(const source of creatures(s,p)){
+   if(!card(source).g1154EffectDraw||api.ignored(s,source))continue;
+   for(let i=Number(turnDraw);i<n;i++)queue(s,p,source,card(source).g1154EffectDraw);
+  }
   if(before===0&&s.active===p)for(const source of creatures(s,p)){
    if(!source.sealed&&effective(source,s).g951FirstOwnDraw)queue(s,p,source,[E('Draw',{n:1,optional:true})]);
   }
