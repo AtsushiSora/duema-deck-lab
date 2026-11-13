@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-13",
   "catalogueNames": 11827,
-  "supportedNames": 7246,
-  "pendingNames": 4581,
-  "phase": 1092,
-  "added": 4,
+  "supportedNames": 7249,
+  "pendingNames": 4578,
+  "phase": 1093,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2665,
+    "クリーチャー": 2662,
     "NEOクリーチャー": 87,
     "呪文": 598,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1202,
-    "未対応の能力文": 3158,
+    "未対応の能力文": 3155,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 21,
     "未対応のシンカパワー": 2,
@@ -210235,35 +210235,108 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1093,
+      "baseCommit": "a3b4b57e",
+      "scope": "既存のモード選択・ターン終了時の順次処理・味方への選択保護を使い、超次元に関連する3種類を対戦対応する。",
+      "cards": [
+        {
+          "id": "dmr05-018",
+          "name": "蒼神龍アイロニー・スパイラル",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-018"
+        },
+        {
+          "id": "dmr08-011",
+          "name": "絆の戦士ペッパー",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-011"
+        },
+        {
+          "id": "dmr03-035",
+          "name": "霊騎ガガ・キャンサール",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-035"
+        }
+      ],
+      "printAliases": [],
+      "supportedNames": 7249,
+      "pendingNames": 4578,
+      "verification": {
+        "focused": "tests/standard1093-effects.test.mjs 6件成功",
+        "relatedRegressions": "148件成功（アドバンス・前回追加分・カタログ・画像・デッキ編集57件、モード選択・ターン誘発・選択保護84件、分割したCPU判断等7件）",
+        "check": "npm run check 成功",
+        "officialPrints": 3,
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/qa_old/36595/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37748/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34957/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1090のアモデゴラスと未対応カード3種の実カード組み合わせは引き続き未確認。",
+        "regressionLogs": [
+          "/tmp/duema-phase-1093/focused.log",
+          "/tmp/duema-phase-1093/regression.log",
+          "/tmp/duema-phase-1093/mechanics.log",
+          "/tmp/duema-phase-1093/short-ai.log",
+          "/tmp/duema-phase-1093/complete-ai.log",
+          "/tmp/duema-phase-1093/check.log",
+          "/tmp/duema-phase-1093/audit.log"
+        ]
+      },
+      "deferred": [
+        {
+          "id": "dm39-051",
+          "name": "メビウス・トルネード",
+          "reason": "公式能力全文・基本情報・画像を確認。最初の破壊が置換された場合にも「もう1体」を正しく扱う対象記録と、解決時に自分のサイキックがいるかの判定を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm39-051"
+          ]
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "双方のパワー6000以下のサイキックを一斉に破壊し、複数の離脱置換・解除を処理するテストと、自身が攻撃されないことの検証が必要。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-062"
+          ]
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "保留継続。選んだアンタップ中の相手クリーチャーを攻撃できる範囲と、召喚酔い・攻撃制限・対象の離脱後の扱いを個別に確認する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-102"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1092,
-    "nextPhase": 1093,
+    "lastVerifiedPhase": 1093,
+    "nextPhase": 1094,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dmr05-018",
-        "name": "蒼神龍アイロニー・スパイラル",
-        "reason": "登場時と攻撃時の二択を既存の選択処理で検証する。再録・公式画像も照合する。",
+        "id": "dmr03-024",
+        "name": "ザ・美食秘宝サイキック・イーター",
+        "reason": "離れた時に相手自身が破壊対象を選ぶ処理と、ブロッカー・S・トリガー・攻撃不可を公式照合する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-018"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-024"
         ]
       },
       {
-        "id": "dmr08-011",
-        "name": "絆の戦士ペッパー",
-        "reason": "任意の手札戻しと、後続の任意の超次元戻しを公式能力全文と照合する。",
+        "id": "dmr02-011",
+        "name": "ボルシャック・スーパーヒーロー",
+        "reason": "サイキックとそれ以外でパワー上限が異なる二段階の一斉破壊を照合する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-011"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-011"
         ]
       },
       {
-        "id": "dmr03-035",
-        "name": "霊騎ガガ・キャンサール",
-        "reason": "タップ中の自分のサイキックへの選択保護と攻撃・ブロックの許可を検証する。",
+        "id": "dmr05-054",
+        "name": "希望の親衛隊ファンク",
+        "reason": "相手の種別に応じた常在パワー低下と状況起因の破壊、能力無視時を照合する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-035"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-054"
         ]
       },
       {
@@ -210569,7 +210642,7 @@
         ]
       }
     ],
-    "steps": "次回はPhase 1093。最新コミット・作業ツリー・前回の未完了検証を確認し、実データの正規カード名数を再集計して次の候補を公式照合する。検証済み差分をローカルコミットする。全体のnpm testは再実行しない。",
+    "steps": "次回はPhase 1094。最新コミット・作業ツリー・前回の未完了検証と実データの正規カード名数を確認し、候補の公式照合から再開する。検証済み差分をローカルコミットする。全体のnpm testは再実行しない。",
     "knownIssues": [
       "Phase 322の旧スキャナーテストは、Phase 419で対応した真実の名 ワクワク・チャップルン（dmr07-001）を依然として未対応一覧に期待する。Phase 742基点とPhase 743作業ツリーで候補11件・対象はブロック一覧にいないことを再現。今回の変更とは分けて扱う。",
       "Phase 321・322の既存マジボンバーは、手札からEXライフ持ちを出す際に公式QA 41150と異なり、先に閲覧中のカードを解放する。既存の対戦挙動を維持するため、このバッチの裁定対応はHOODに限定。既存カードへの適用は再開データと回帰テストを別途検証する。",

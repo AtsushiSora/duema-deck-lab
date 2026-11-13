@@ -6160,6 +6160,30 @@ export function standardCardSpec(d,{phase=165}={}){
    'このクリーチャーが攻撃する時バトルゾーンにあるクロスギアを1枚選び持ち主の墓地に置く。クロスギアがバトルゾーンから墓地に置かれた時カードを1枚引いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
    return {breaker:2,g34Attack:[{op:'Target',element:true,anyOwner:true,filter:{g201Gear:true},to:'grave',title:'墓地に置くクロスギアを1枚選ぶ'}],g933GearGraveDraw:true};
  }
+ if(phase>=1093&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const breaker='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';
+  const bouncePsychic={op:'Target',to:'extra',filter:{g1085Psychic:true}};
+  if(d.id==='dmr05-018'&&text===
+   'このクリーチャーをバトルゾーンに出した時またはこのクリーチャーが攻撃する時次のうちいずれかひとつを選ぶ。▼バトルゾーンにあるパワー3000以下のクリーチャーを1体選び持ち主の手札に戻す。▼バトルゾーンにある相手のサイキック・クリーチャーを1体選び持ち主の超次元ゾーンに戻す。'+breaker){
+   const defs=[{op:'Choose',g184Modes:true,modes:[
+    {label:'パワー3000以下のクリーチャーを手札に戻す',defs:[
+     {op:'Target',anyOwner:true,to:'hand',toOwnerHand:true,filter:{maxPower:3000,g199Power:true}}
+    ]},
+    {label:'相手のサイキック・クリーチャーを超次元ゾーンに戻す',defs:[{...bouncePsychic,toOwnerExtra:true}]}
+   ]}];
+   return {breaker:2,effect:'sixPhoto',g34Tasks:defs,g34Attack:defs};
+  }
+  if(d.id==='dmr08-011'&&text===
+   '自分のターンの終わりにバトルゾーンにある相手のコスト6以下のクリーチャーを1体選び持ち主の手札に戻してもよい。その後バトルゾーンにある相手のサイキック・クリーチャーを1体選び相手の超次元ゾーンに戻してもよい。'+breaker)
+   return {breaker:2,g174End:[
+    {op:'Target',to:'hand',toOwnerHand:true,optional:true,filter:{max:6}},
+    {...bouncePsychic,optional:true}
+   ]};
+  if(d.id==='dmr03-035'&&text===
+   '相手がバトルゾーンにあるクリーチャーを選ぶ時自分のタップされているサイキック・クリーチャーを選ぶことはできない。(ただしそのクリーチャーを攻撃またはブロックしてもよい)')
+   return {g608Protect:{creature:true,g1085Psychic:true,tapped:true}};
+ }
  if(phase>=1092&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const psychic={creature:true,g1085Psychic:true};

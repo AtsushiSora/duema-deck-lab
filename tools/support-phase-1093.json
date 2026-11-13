@@ -1,0 +1,214 @@
+{
+  "phase": 1093,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7246,
+  "description": "既存のモード選択・ターン終了時の順次処理・味方への選択保護を使い、超次元に関連する3種類を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/36595/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37748/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34957/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmr05-018",
+      "name": "蒼神龍アイロニー・スパイラル",
+      "faces": [
+        {
+          "name": "蒼神龍アイロニー・スパイラル",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、次のうちいずれかひとつを選ぶ。 ▼バトルゾーンにあるパワー3000以下のクリーチャーを１体選び、持ち主の手札に戻す。 ▼バトルゾーンにある相手のサイキック・クリーチャーを１体選び、持ち主の超次元ゾーンに戻す。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ポセイディア・ドラゴン/エイリアン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-018",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-018.jpg",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "パワー3000以下のクリーチャーを手札に戻す",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "anyOwner": true,
+                    "to": "hand",
+                    "toOwnerHand": true,
+                    "filter": {
+                      "maxPower": 3000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "相手のサイキック・クリーチャーを超次元ゾーンに戻す",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "extra",
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "toOwnerExtra": true
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "パワー3000以下のクリーチャーを手札に戻す",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "anyOwner": true,
+                    "to": "hand",
+                    "toOwnerHand": true,
+                    "filter": {
+                      "maxPower": 3000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "相手のサイキック・クリーチャーを超次元ゾーンに戻す",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "extra",
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "toOwnerExtra": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "cbf53c4a7ff8afa1b3ee4eabaa9dbcc901a755464a9ffd68336b61347b27e172",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr08-011",
+      "name": "絆の戦士ペッパー",
+      "faces": [
+        {
+          "name": "絆の戦士ペッパー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分のターンの終わりに、バトルゾーンにある相手の、コスト６以下のクリーチャーを１体選び、持ち主の手札に戻してもよい。その後、バトルゾーンにある相手のサイキック・クリーチャーを１体選び、相手の超次元ゾーンに戻してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "サイバー・コマンド/ハンター/エイリアン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-011.jpg",
+      "spec": {
+        "breaker": 2,
+        "g174End": [
+          {
+            "op": "Target",
+            "to": "hand",
+            "toOwnerHand": true,
+            "optional": true,
+            "filter": {
+              "max": 6
+            }
+          },
+          {
+            "op": "Target",
+            "to": "extra",
+            "filter": {
+              "g1085Psychic": true
+            },
+            "optional": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "6b75aa13fa8730afc43aa72a0a1b3ffad79f2b691fd70d27113d5b1984c958a7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr03-035",
+      "name": "霊騎ガガ・キャンサール",
+      "faces": [
+        {
+          "name": "霊騎ガガ・キャンサール",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手がバトルゾーンにあるクリーチャーを選ぶ時、自分のタップされているサイキック・クリーチャーを選ぶことはできない。（ただし、そのクリーチャーを攻撃またはブロックしてもよい）",
+          "race": "アーク・セラフィム/エイリアン",
+          "powerText": "1500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-035",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-035.jpg",
+      "spec": {
+        "g608Protect": {
+          "creature": true,
+          "g1085Psychic": true,
+          "tapped": true
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "10bed9aa40692192a631436ff44a6c1db5ace4c58a040cb30042ac6bceb8d5d3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr05-018": 4,
+      "dmr08-011": 4,
+      "dmr03-035": 4
+    }
+  }
+}

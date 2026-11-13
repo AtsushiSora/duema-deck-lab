@@ -216596,15 +216596,168 @@
       },
       "supportBatch": "phase-1092",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-018",
+      "name": "蒼神龍アイロニー・スパイラル",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ポセイディア・ドラゴン/エイリアン",
+      "text": "このクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、次のうちいずれかひとつを選ぶ。 ▼バトルゾーンにあるパワー3000以下のクリーチャーを１体選び、持ち主の手札に戻す。 ▼バトルゾーンにある相手のサイキック・クリーチャーを１体選び、持ち主の超次元ゾーンに戻す。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-018",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "パワー3000以下のクリーチャーを手札に戻す",
+              "defs": [
+                {
+                  "op": "Target",
+                  "anyOwner": true,
+                  "to": "hand",
+                  "toOwnerHand": true,
+                  "filter": {
+                    "maxPower": 3000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            },
+            {
+              "label": "相手のサイキック・クリーチャーを超次元ゾーンに戻す",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "extra",
+                  "filter": {
+                    "g1085Psychic": true
+                  },
+                  "toOwnerExtra": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "パワー3000以下のクリーチャーを手札に戻す",
+              "defs": [
+                {
+                  "op": "Target",
+                  "anyOwner": true,
+                  "to": "hand",
+                  "toOwnerHand": true,
+                  "filter": {
+                    "maxPower": 3000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            },
+            {
+              "label": "相手のサイキック・クリーチャーを超次元ゾーンに戻す",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "extra",
+                  "filter": {
+                    "g1085Psychic": true
+                  },
+                  "toOwnerExtra": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1093",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr08-011",
+      "name": "絆の戦士ペッパー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "サイバー・コマンド/ハンター/エイリアン",
+      "text": "自分のターンの終わりに、バトルゾーンにある相手の、コスト６以下のクリーチャーを１体選び、持ち主の手札に戻してもよい。その後、バトルゾーンにある相手のサイキック・クリーチャーを１体選び、相手の超次元ゾーンに戻してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-011",
+      "limit": 4,
+      "breaker": 2,
+      "g174End": [
+        {
+          "op": "Target",
+          "to": "hand",
+          "toOwnerHand": true,
+          "optional": true,
+          "filter": {
+            "max": 6
+          }
+        },
+        {
+          "op": "Target",
+          "to": "extra",
+          "filter": {
+            "g1085Psychic": true
+          },
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1093",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr03-035",
+      "name": "霊騎ガガ・キャンサール",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1500,
+      "race": "アーク・セラフィム/エイリアン",
+      "text": "相手がバトルゾーンにあるクリーチャーを選ぶ時、自分のタップされているサイキック・クリーチャーを選ぶことはできない。（ただし、そのクリーチャーを攻撃またはブロックしてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-035",
+      "limit": 4,
+      "g608Protect": {
+        "creature": true,
+        "g1085Psychic": true,
+        "tapped": true
+      },
+      "supportBatch": "phase-1093",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1092,
+    "phase": 1093,
     "checkedAt": "2026-11-13",
-    "baseCount": 7242,
-    "newEffectCards": 4,
+    "baseCount": 7246,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7246,
+    "totalCount": 7249,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -235997,6 +236150,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7242,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1092,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7242,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7246,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
