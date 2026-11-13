@@ -228922,15 +228922,110 @@
       "breaker": 2,
       "supportBatch": "phase-1182",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm08-015",
+      "name": "爆竜兵ドラグストライク",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 1000,
+      "race": "ドラゴノイド",
+      "text": "このクリーチャーが破壊された時、ドラゴンを１体、自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-015",
+      "limit": 4,
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "g195HandDeploy": true,
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "optional": true,
+          "title": "手札から出すドラゴンを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1183",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm15-046",
+      "name": "衰弱の影ダーク・メア",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ゴースト",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の墓地に《衰弱の影ダーク・メア》が１枚でもあれば、バトルゾーンにある相手のタップされているクリーチャーを１体選ぶ。このターンの終わりまで、そのクリーチャーのパワーは-2000される。(パワー０以下のクリーチャーは破壊される)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-046",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g273Grave": {
+              "n": 1,
+              "filter": {
+                "g201ExactName": "衰弱の影ダーク・メア"
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "filter": {
+                "tapped": true
+              },
+              "power": -2000,
+              "g242PowerMinus": true,
+              "title": "パワーを-2000するタップ済みの相手のクリーチャーを選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1183",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm30-007",
+      "name": "天雷龍姫エリザベス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "アポロニア・ドラゴン/メカ・デル・ソル/ナイト",
+      "text": "シールドゾーンから自分の手札に加えられる呪文はすべて、「S・トリガー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-007",
+      "limit": 4,
+      "g1183SpellShieldToHand": true,
+      "supportBatch": "phase-1183",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1182,
+    "phase": 1183,
     "checkedAt": "2026-11-14",
-    "baseCount": 7536,
+    "baseCount": 7539,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7539,
+    "totalCount": 7542,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -249403,6 +249498,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7536,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1182,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7536,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7539,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -56,7 +56,10 @@ export function createKiyonagaRules(api){
   entry(s,p,x){if(api.isCreature(s,x))for(const y of creatures(s,1-p))if(effective(y,s).cobalt)on(s,1-p,y.cardId,'g21CobaltLock');},
   spellCast(s,p,c){for(const x of creatures(s,1-p))if(effective(x,s).cobalt)on(s,1-p,x.cardId,'g21CobaltDraw');},
   handMana(s,p,x){for(const c of creatures(s,p))if(effective(c,s).casablanca)on(s,p,c.cardId,'g21CasaUntap',{uid:x.uid,zoneSerial:x.zoneSerial||0});},
-  spellShieldTrigger:(s,p)=>creatures(s,p).some(x=>effective(x,s).elizabeth),
+  spellShieldTrigger:(s,p,toHand=false)=>creatures(s,p).some(x=>{
+   const c=effective(x,s);
+   return c.elizabeth||toHand&&c.g1183SpellShieldToHand;
+  }),
   leaveSnapshot(s,rows){return Object.fromEntries(rows.flatMap(({player,uid})=>{const x=s.players[player].battle.find(x=>x.uid===uid);return x&&effective(x,s).megaLastBurst?[[uid,true]]:[];}));},
   leaving(s,p,x,snapshot,to){if(snapshot?.[x.uid]&&['hand','mana','grave'].includes(to))on(s,p,x.cardId,'g21Mega',{uid:x.uid,origin:to,zoneSerial:(x.zoneSerial||0)+1});},
   forceActions(s,p,actions){const entries=a=>a.targets||(['fight','dragonTap'].includes(a.kind)?[{player:1-p,uid:a.target||a.uid}]:[]),forced=t=>{const x=s.players[t.player]?.battle.find(x=>x.uid===t.uid);return t.player!==p&&x&&api.isCreature(s,x)&&effective(x,s).forceTarget;},possible=new Map();for(const a of actions)for(const t of entries(a))if(forced(t)){const set=possible.get(a.kind)||new Set();set.add(t.uid);possible.set(a.kind,set);}return actions.filter(a=>{const ts=entries(a),need=Math.min(ts.length,possible.get(a.kind)?.size||0);return ts.filter(forced).length>=need;});},

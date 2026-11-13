@@ -2467,6 +2467,23 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1183&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(f.name==='爆竜兵ドラグストライク'&&[
+   'このクリーチャーがバトルゾーンから自分の墓地に置かれたとき自分の手札からドラゴンを1体選びバトルゾーンに置いてもよい。',
+   'このクリーチャーが破壊された時ドラゴンを1体自分の手札からバトルゾーンに出してもよい。'
+  ].includes(text)){
+   return {g172Death:[{op:'Select',origin:'hand',n:1,deploy:true,g195HandDeploy:true,
+    filter:{creature:true,race:'ドラゴン'},optional:true,title:'手札から出すドラゴンを1体選ぶ'}]};
+  }
+  if(d.id==='dm15-046'&&text===
+   'このクリーチャーをバトルゾーンに出した時自分の墓地に《衰弱の影ダーク・メア》が1枚でもあればバトルゾーンにある相手のタップされているクリーチャーを1体選ぶ。'+
+   'このターンの終わりまでそのクリーチャーのパワーは-2000される。(パワー0以下のクリーチャーは破壊される)')
+   return {effect:'sixPhoto',g34Tasks:[{op:'IfOwn',filter:{g273Grave:{n:1,filter:{g201ExactName:f.name}}},
+    defs:[{op:'Target',filter:{tapped:true},power:-2000,g242PowerMinus:true,title:'パワーを-2000するタップ済みの相手のクリーチャーを選ぶ'}]}]};
+  if(d.id==='dm30-007'&&text==='シールドゾーンから自分の手札に加えられる呪文はすべて「S・トリガー」を得る。')
+   return {g1183SpellShieldToHand:true};
+ }
  if(phase>=1182&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText).replace(
    'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)',
