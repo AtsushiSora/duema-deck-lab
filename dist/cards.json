@@ -219476,15 +219476,171 @@
       ],
       "supportBatch": "phase-1106",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-045",
+      "name": "超次元マザー・ホール",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "進化ではない光の、「ブロッカー」を持つクリーチャーを１体、自分の手札からバトルゾーンに出す。\nコスト６以下の光、水または自然のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-045",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "blocker": true,
+            "color": "光"
+          },
+          "title": "手札から出す進化ではない光のブロッカーを1体選ぶ"
+        },
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 6,
+            "any": [
+              {
+                "color": "光"
+              },
+              {
+                "color": "水"
+              },
+              {
+                "color": "自然"
+              }
+            ]
+          },
+          "g1104PsychicFaces": true
+        }
+      ],
+      "supportBatch": "phase-1107",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm38-011",
+      "name": "超次元ロマノフ・ホール",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "相手は自身のクリーチャーを１体選び、破壊する。\nコスト10以下の闇のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-011",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "OpponentSelect",
+          "n": 1,
+          "to": "grave"
+        },
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 10,
+            "any": [
+              {
+                "color": "闇"
+              }
+            ]
+          },
+          "g1104PsychicFaces": true
+        }
+      ],
+      "supportBatch": "phase-1107",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd21-016",
+      "name": "超次元バサラ・ホール",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "自分の闇または火のコマンドがあり、この呪文が自分のシールドゾーンにあれば、この呪文に「S・トリガー」を与える」\n相手のクリーチャーを１体選ぶ。相手はそれに封印を１つ付ける。（カードを封印するには、自分の山札の上から１枚目を裏向きのままそのカードの上に置く。コマンドがバトルゾーンに出た時、その持ち主はそのコマンドと同じ文明を持つ自身のカードから封印を１つ、墓地に置く。クリーチャーが封印されている間、両プレイヤーはそのクリーチャーを無視する）\n闇または火の、コスト９以下のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd21-016",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g876ShieldTriggerCondition": {
+        "race": "コマンド",
+        "any": [
+          {
+            "color": "闇"
+          },
+          {
+            "color": "火"
+          }
+        ]
+      },
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "seal": true,
+          "spell": true,
+          "title": "相手が封印を付けるクリーチャーを1体選ぶ"
+        },
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 9,
+            "any": [
+              {
+                "color": "闇"
+              },
+              {
+                "color": "火"
+              }
+            ]
+          },
+          "g1104PsychicFaces": true
+        }
+      ],
+      "supportBatch": "phase-1107",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1106,
+    "phase": 1107,
     "checkedAt": "2026-11-13",
-    "baseCount": 7292,
-    "newEffectCards": 5,
+    "baseCount": 7297,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7297,
+    "totalCount": 7300,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -239045,6 +239201,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7292,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1106,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7292,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 7297,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

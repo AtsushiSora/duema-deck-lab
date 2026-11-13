@@ -1,0 +1,483 @@
+{
+  "phase": 1107,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7297,
+  "description": "超次元マザー・ホール、超次元ロマノフ・ホール、超次元バサラ・ホールの能力を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/36348/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37743/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37744/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37759/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmr01-045",
+      "name": "超次元マザー・ホール",
+      "faces": [
+        {
+          "name": "超次元マザー・ホール",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化ではない光の、「ブロッカー」を持つクリーチャーを１体、自分の手札からバトルゾーンに出す。\nコスト６以下の光、水または自然のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-045",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-045.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "blocker": true,
+              "color": "光"
+            },
+            "title": "手札から出す進化ではない光のブロッカーを1体選ぶ"
+          },
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 6,
+              "any": [
+                {
+                  "color": "光"
+                },
+                {
+                  "color": "水"
+                },
+                {
+                  "color": "自然"
+                }
+              ]
+            },
+            "g1104PsychicFaces": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "82c5b397624d0a6572a654d24b22be93693ae0bf9ce0b2f41ebb367cb2d72410",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm38-011",
+      "name": "超次元ロマノフ・ホール",
+      "faces": [
+        {
+          "name": "超次元ロマノフ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "相手は自身のクリーチャーを１体選び、破壊する。\nコスト10以下の闇のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-011.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave"
+          },
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 10,
+              "any": [
+                {
+                  "color": "闇"
+                }
+              ]
+            },
+            "g1104PsychicFaces": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "1b1aad554a54baae56d2329a49498581060d1cb54c5b79cee2583d4b1f7207a2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmbd21-016",
+      "name": "超次元バサラ・ホール",
+      "faces": [
+        {
+          "name": "超次元バサラ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分の闇または火のコマンドがあり、この呪文が自分のシールドゾーンにあれば、この呪文に「S・トリガー」を与える」\n相手のクリーチャーを１体選ぶ。相手はそれに封印を１つ付ける。（カードを封印するには、自分の山札の上から１枚目を裏向きのままそのカードの上に置く。コマンドがバトルゾーンに出た時、その持ち主はそのコマンドと同じ文明を持つ自身のカードから封印を１つ、墓地に置く。クリーチャーが封印されている間、両プレイヤーはそのクリーチャーを無視する）\n闇または火の、コスト９以下のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd21-016",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd21-016.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g876ShieldTriggerCondition": {
+          "race": "コマンド",
+          "any": [
+            {
+              "color": "闇"
+            },
+            {
+              "color": "火"
+            }
+          ]
+        },
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "seal": true,
+            "spell": true,
+            "title": "相手が封印を付けるクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 9,
+              "any": [
+                {
+                  "color": "闇"
+                },
+                {
+                  "color": "火"
+                }
+              ]
+            },
+            "g1104PsychicFaces": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "9888e8784226ab5feebb227eea9a06d0d78ab1bed9b09a170e3e8c68e291f45a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmr01-045M",
+      "name": "超次元マザー・ホール",
+      "faces": [
+        {
+          "name": "超次元マザー・ホール",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化ではない光の、「ブロッカー」を持つクリーチャーを１体、自分の手札からバトルゾーンに出す。\nコスト６以下の光、水または自然のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 （ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-045M",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-045M.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "blocker": true,
+              "color": "光"
+            },
+            "title": "手札から出す進化ではない光のブロッカーを1体選ぶ"
+          },
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 6,
+              "any": [
+                {
+                  "color": "光"
+                },
+                {
+                  "color": "水"
+                },
+                {
+                  "color": "自然"
+                }
+              ]
+            },
+            "g1104PsychicFaces": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "840cefe0b8a950a209c4b27f59aeb4ae118abb8ac0fa54727f6d7a5e7079b0ec",
+        "facesMatched": true
+      },
+      "canonicalId": "dmr01-045"
+    },
+    {
+      "id": "dmex15-b082",
+      "name": "超次元マザー・ホール",
+      "faces": [
+        {
+          "name": "超次元マザー・ホール",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "光の、「ブロッカー」を持つ進化ではないクリーチャーを１体、自分の手札から出す。\nコスト６以下の光、水、自然いずれかのサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。\n（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b082",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex15-b082.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "blocker": true,
+              "color": "光"
+            },
+            "title": "手札から出す進化ではない光のブロッカーを1体選ぶ"
+          },
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 6,
+              "any": [
+                {
+                  "color": "光"
+                },
+                {
+                  "color": "水"
+                },
+                {
+                  "color": "自然"
+                }
+              ]
+            },
+            "g1104PsychicFaces": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "9debfe9d9ddae36198a83dce9fc46b58d253cf0b746f9086884c178c3d975c7c",
+        "facesMatched": true
+      },
+      "canonicalId": "dmr01-045"
+    },
+    {
+      "id": "dmd19-017",
+      "name": "超次元ロマノフ・ホール",
+      "faces": [
+        {
+          "name": "超次元ロマノフ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "相手は自身のクリーチャーを１体選び、破壊する。\nコスト10以下の闇のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 （ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd19-017",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd19-017.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave"
+          },
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 10,
+              "any": [
+                {
+                  "color": "闇"
+                }
+              ]
+            },
+            "g1104PsychicFaces": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "21b24d91528c7e1bb9c0643c1519d74e24cff0eb72f1b10d47d8f8b9e089eebd",
+        "facesMatched": true
+      },
+      "canonicalId": "dm38-011"
+    },
+    {
+      "id": "dm25ex4-T18",
+      "name": "超次元バサラ・ホール",
+      "faces": [
+        {
+          "name": "超次元バサラ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分の闇または火のコマンドがあり、この呪文が自分のシールドゾーンにあれば、この呪文に「S・トリガー」を与える。\n相手のクリーチャーを１体選ぶ。相手はそれに封印を１つ付ける。（カードを封印するには、自分の山札の上から１枚を裏向きのままそのカードの上に置く。コマンドが出た時、その持ち主はそのコマンドと同じ文明を持つ自身のカードから封印を１つ、墓地に置く。封印されているクリーチャーは無視される）\n闇または火の、コスト９以下のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-T18",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-T18.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g876ShieldTriggerCondition": {
+          "race": "コマンド",
+          "any": [
+            {
+              "color": "闇"
+            },
+            {
+              "color": "火"
+            }
+          ]
+        },
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "seal": true,
+            "spell": true,
+            "title": "相手が封印を付けるクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 9,
+              "any": [
+                {
+                  "color": "闇"
+                },
+                {
+                  "color": "火"
+                }
+              ]
+            },
+            "g1104PsychicFaces": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "3f3e57f530c2609155257a3a1a9cfc83e15717c8f62e20f43237fe6fcd54c319",
+        "facesMatched": true
+      },
+      "canonicalId": "dmbd21-016"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr01-045": 4,
+      "dmr01-045M": 4,
+      "dmex15-b082": 4,
+      "dm38-011": 4,
+      "dmd19-017": 4,
+      "dmbd21-016": 4,
+      "dm25ex4-T18": 4
+    }
+  }
+}

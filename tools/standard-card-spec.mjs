@@ -6176,6 +6176,30 @@ export function standardCardSpec(d,{phase=165}={}){
   const deploy=(filter,settings={})=>({op:'Select',origin:'extra',deploy:true,n:1,filter:{g1085Psychic:true,...filter},...settings});
   const modes=(first,second)=>({op:'Choose',g184Modes:true,modes:[first,second]});
   const solo=(color,settings)=>({label:'コスト7以下の'+color+'のサイキックを1体出す',defs:[deploy({max:7,color},settings)]});
+  if(phase>=1107){
+   const printed=text
+    .replaceAll('バトルゾーンに出す。','出す。')
+    .replace('光の「ブロッカー」を持つ進化ではないクリーチャー','進化ではない光の「ブロッカー」を持つクリーチャー')
+    .replace('光水自然いずれかの','光水または自然の')
+    .replace('「S・トリガー」を与える」','「S・トリガー」を与える。')
+    .replace(/\(カードを封印するには[^()]+\)/,'');
+   const psychic=(max,...colors)=>deploy({max,any:colors.map(color=>({color}))},{g1104PsychicFaces:true});
+   if(['dmr01-045','dmr01-045M','dmex15-b082'].includes(d.id)&&
+    printed==='進化ではない光の「ブロッカー」を持つクリーチャーを1体自分の手札から出す。コスト6以下の光水または自然のサイキック・クリーチャーを1体自分の超次元ゾーンから出す。')
+    return {effect:'sixPhoto',g34Tasks:[
+     {op:'Select',origin:'hand',deploy:true,n:1,filter:{creature:true,nonEvolution:true,blocker:true,color:'光'},
+      title:'手札から出す進化ではない光のブロッカーを1体選ぶ'},
+     psychic(6,'光','水','自然')
+    ]};
+   if(['dm38-011','dmd19-017'].includes(d.id)&&
+    printed==='相手は自身のクリーチャーを1体選び破壊する。コスト10以下の闇のサイキック・クリーチャーを1体自分の超次元ゾーンから出す。')
+    return {effect:'sixPhoto',g34Tasks:[{op:'OpponentSelect',n:1,to:'grave'},psychic(10,'闇')]};
+   if(['dmbd21-016','dm25ex4-T18'].includes(d.id)&&
+    printed==='自分の闇または火のコマンドがありこの呪文が自分のシールドゾーンにあればこの呪文に「S・トリガー」を与える。相手のクリーチャーを1体選ぶ。相手はそれに封印を1つ付ける。闇または火のコスト9以下のサイキック・クリーチャーを1体自分の超次元ゾーンから出す。')
+    return {effect:'sixPhoto',g876ShieldTriggerCondition:{race:'コマンド',any:[{color:'闇'},{color:'火'}]},g34Tasks:[
+     {op:'Target',seal:true,spell:true,title:'相手が封印を付けるクリーチャーを1体選ぶ'},psychic(9,'闇','火')
+    ]};
+  }
   const common=text.replace('いずれか1つ','いずれかひとつ')
    .replace('上から1枚目をマナゾーン','上から1枚目を自分のマナゾーン')
    .replace('サイキック・クリーチャーをコストの合計が5以下になるように好きな数選び','好きな数のサイキック・クリーチャーをコストの合計が5以下になるように選び')
