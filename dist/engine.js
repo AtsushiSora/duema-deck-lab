@@ -670,6 +670,16 @@ function rememberBattleInformation(s,owner,host,leaving){
   return readsDepartingPower(task);
  });
  if(host.sealed)return;
+ const latestRaces=()=>String(effectiveCard(host,s).race||'').split('/').filter(Boolean);
+ for(const entry of pending){
+  const defs=entry.effect==='entry'?card(entry.source).g34Tasks:entry.task?.defs;
+  if(entry.player===owner&&departs(entry)&&defs?.some(def=>def.op==='SearchSharedRaceEvolution1184'))
+   (entry.task??entry).g1184LastRaces=latestRaces();
+ }
+ for(const task of s.extTasks||[]){
+  if(task.p===owner&&departs(task)&&(task.op==='g34_SearchSharedRaceEvolution1184'||
+   task.defs?.some(def=>def.op==='SearchSharedRaceEvolution1184')))task.g1184LastRaces=latestRaces();
+ }
  const powerEntries=pending.filter(e=>e.effect==='entry'&&e.player===owner&&departs(e)&&
   card(e.source).g34Tasks?.some(def=>def.op==='TargetBelowSource692'&&def.g1144Total));
  const readsLayerCount=def=>def.op==='DrawThenDestroy1126'||def.op==='g34_DrawThenDestroy1126'||

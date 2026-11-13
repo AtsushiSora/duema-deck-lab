@@ -2442,6 +2442,9 @@ const shobuChargerTasks=()=>[
 const singleLGateText=race=>'L・ゲート:'+race+'(このクリーチャーが破壊される時墓地に置くかわりに'+race+
  'を1体自分の墓地から手札に戻してもよい。そうした場合このクリーチャーを山札の一番下に置く)';
 
+const dragStrikeDeath=()=>[{op:'Select',origin:'hand',n:1,deploy:true,g195HandDeploy:true,
+ filter:{creature:true,race:'ドラゴン'},optional:true,title:'手札から出すドラゴンを1体選ぶ'}];
+
 export function standardCardSpec(d,{phase=165}={}){
  // Repair only the complete formatting variants pinned to these official prints.
  if(phase>=533&&d?.faces?.length===1){
@@ -2467,14 +2470,37 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1184&&d?.status==='complete'&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText),spell=d.faces[1];
+  if(d.id==='dm24ex2-060'&&d.faces.length===2&&
+   text==='このクリーチャーが破壊された時ドラゴン・クリーチャーを1体自分の手札から出してもよい。'&&
+   spell.name==='天使と悪魔の憤怒'&&spell.typeText==='呪文'&&spell.cost===3&&spell.civilizationText==='光/闇'&&
+   normalize(spell.abilityText)==='S・トリガーS・トリガーバトルゾーンに同じ名前のクリーチャーが2体以上あればそれらをすべて破壊する。'){
+   return {g172Death:dragStrikeDeath(),spellFace:{type:'spell',name:spell.name,cost:spell.cost,civ:spell.civilizationText,
+    civilizations:spell.civilizations,race:spell.race,trigger:true,effect:'sixPhoto',g34Tasks:[{op:'DestroyDuplicateNames1184'}]}};
+  }
+  if(d.faces.length===1){
+   if(f.name==='闘龍鬼ジャック・ライドウ'&&text.replace('手札に加える。','手札に加えてもよい。')===
+    'このクリーチャーをバトルゾーンに出した時自分の山札を見る。その中からこのクリーチャーと同じ種族をひとつでも持つ進化クリーチャーを1体選び相手に見せてから手札に加えてもよい。その後山札をシャッフルする。')
+    return {effect:'sixPhoto',g34Tasks:[{op:'SearchSharedRaceEvolution1184'}]};
+   if(d.id==='dmx07-001'&&text===
+    '自分のターンのはじめにエイリアンを1体自分の墓地からバトルゾーンに出してもよい。'+
+    'W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+    return {breaker:2,g174Start:[{op:'Select',origin:'grave',n:1,deploy:true,g236GraveDeploy:true,
+     filter:{creature:true,race:'エイリアン'},optional:true}]};
+   if(d.id==='dmx08-002'&&text===
+    'このクリーチャーをバトルゾーンに出した時コスト6以下のクリーチャーをすべて破壊する。'+
+    'W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+    return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'Sweep',both:true,filter:{creature:true,max:6}}]};
+  }
+ }
  if(phase>=1183&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(f.name==='爆竜兵ドラグストライク'&&[
    'このクリーチャーがバトルゾーンから自分の墓地に置かれたとき自分の手札からドラゴンを1体選びバトルゾーンに置いてもよい。',
    'このクリーチャーが破壊された時ドラゴンを1体自分の手札からバトルゾーンに出してもよい。'
   ].includes(text)){
-   return {g172Death:[{op:'Select',origin:'hand',n:1,deploy:true,g195HandDeploy:true,
-    filter:{creature:true,race:'ドラゴン'},optional:true,title:'手札から出すドラゴンを1体選ぶ'}]};
+   return {g172Death:dragStrikeDeath()};
   }
   if(d.id==='dm15-046'&&text===
    'このクリーチャーをバトルゾーンに出した時自分の墓地に《衰弱の影ダーク・メア》が1枚でもあればバトルゾーンにある相手のタップされているクリーチャーを1体選ぶ。'+

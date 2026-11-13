@@ -323,7 +323,7 @@ export function createSixPhotoRules(api){
  const bioBattleUnit=(s,ref)=>s.players[ref.p].battle.find(x=>
   x.uid===ref.uid&&(x.incarnation||0)===ref.incarnation&&!x.sealed&&api.isCreature(s,x));
  const tasks=(p,source,defs,more={})=>(defs||[]).map(d=>task(/^(?:g35_|g393[CDJP]_)/.test(d.op)?d.op:'g34_'+d.op,p,source,{...more,...d,op:/^(?:g35_|g393[CDJP]_)/.test(d.op)?d.op:'g34_'+d.op,p:d.p??p,source}));
- const start=(s,t,defs)=>put(s,...tasks(t.p,t.source,defs,{uid:t.uid,incarnation:t.incarnation||0,controller:t.controller??t.p,moved:t.moved||0,...(t.lastKnownCount!==undefined?{lastKnownCount:t.lastKnownCount}:{}),...(t.g692LastPower!==undefined?{g692LastPower:t.g692LastPower}:{}),...(t.g1059LastEvolution!==undefined?{g1059LastEvolution:t.g1059LastEvolution}:{}),...(t.g1064LastTapped!==undefined?{g1064LastTapped:t.g1064LastTapped}:{}),...(t.g694Defender?{g694Defender:t.g694Defender}:{}),...(t.g399Attacker?{g399Attacker:t.g399Attacker}:{})}));
+ const start=(s,t,defs)=>put(s,...tasks(t.p,t.source,defs,{uid:t.uid,incarnation:t.incarnation||0,controller:t.controller??t.p,moved:t.moved||0,...(t.lastKnownCount!==undefined?{lastKnownCount:t.lastKnownCount}:{}),...(t.g692LastPower!==undefined?{g692LastPower:t.g692LastPower}:{}),...(t.g1184LastRaces!==undefined?{g1184LastRaces:t.g1184LastRaces}:{}),...(t.g1059LastEvolution!==undefined?{g1059LastEvolution:t.g1059LastEvolution}:{}),...(t.g1064LastTapped!==undefined?{g1064LastTapped:t.g1064LastTapped}:{}),...(t.g694Defender?{g694Defender:t.g694Defender}:{}),...(t.g399Attacker?{g399Attacker:t.g399Attacker}:{})}));
  // Delayed effects retain the attacking creature, independently of the watcher.
  const attackHost408=(s,t)=>t.g399Attacker&&s.players[t.p].battle.find(y=>api.allLayers(y).some(z=>z.uid===t.g399Attacker.uid&&(z.incarnation||0)===t.g399Attacker.incarnation));
  function tapSource748(s,t){
@@ -4187,6 +4187,15 @@ export function createSixPhotoRules(api){
   choice(s,{...t,...deckPeek841(own,ids),target:top.uid},'山札の上のカードをコストを支払って使う？',[...options,skip()]);
   break;
  }
+ case'g34_SearchSharedRaceEvolution1184':{
+  const host=sourceHost474(s,t);
+  const races=host&&!host.x.sealed?exactRaces(effective(host.x,s)):t.g1184LastRaces??exactRaces(card(t.source));
+  start(s,t,[{op:'Look',g201Search:true,g841DeckPeek:true,rest:'shuffle',stages:[
+   {n:1,to:'hand',reveal:true,optional:true,g1081ConfirmEmpty:true,
+    filter:{creature:true,evolution:true,any:races.map(g724ExactRace=>({g724ExactRace}))}}
+  ]}]);
+  break;
+ }
  case'g34_Look':{if(t.g201Search)t={...t,n:own.deck.length};let ids;if(!t.g467RequireLook&&t.stages?.some(q=>q.g467Destinations&&!q.filter)&&api.deckLocked(s,t.p)){t={...t,g467Blind:true};const skip=reserved(own);ids=own.deck.filter(x=>!skip.has(x.uid)).slice(0,t.n).map(x=>x.uid);(own.g34Protected??=[]).push(...ids);}else ids=look(s,t);
   if(t.g1164Miss&&ids.length&&!own.deck.some(y=>ids.includes(y.uid)&&matches(s,t.p,y,t.stages[0].filter)))
    t={...t,after:t.g1164Miss};
@@ -4407,6 +4416,17 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_CostSweep596':choice(s,t,'一掃する相手クリーチャーのコストを選ぶ',costSweepOptions(s,t));break;
+ case'g34_DestroyDuplicateNames1184':{
+  const rows=[0,1].flatMap(player=>creatures(s,player)
+   .filter(x=>!x.sealed&&!x.faceDown)
+   .map(x=>({player,uid:x.uid,names:[...new Set(battleNames676(s,x))]})));
+  const counts=new Map();
+  for(const {names} of rows)for(const name of names)counts.set(name,(counts.get(name)||0)+1);
+  const moves=rows.filter(({names})=>names.some(name=>counts.get(name)>1))
+   .map(({player,uid})=>({player,uid,to:'grave',destroy:true}));
+  if(moves.length)move(s,moves);
+  break;
+ }
  case'g34_Sweep':{
   const players=t.owner==='self'?[t.p]:t.both?[0,1]:[1-t.p];
   const to=t.to||'grave';
@@ -7552,7 +7572,7 @@ externalProtection565,
   const defs=c.g437Super?[...(c.g34Tasks||[]),...(entry?.super?c.g437Super:[])]:entry?.plus&&c.g34Plus?
    (c.g451PlusAfter?[...(c.g34Tasks||[]),...c.g34Plus]:[...c.g34Plus,...(c.g34Tasks||[])]):c.g34Tasks;
   const body=entry?.g1118KnightBodyOnly?defs?.filter(d=>d.op!=='KnightMagic1118'&&d.op!=='KingKnightMagic1115'):defs;
-  start(s,{p,source:c.id,uid,incarnation,g692LastPower:entry?.g692LastPower},body?.map(def=>def.op==='BouncePerSourceCard1060'?
+  start(s,{p,source:c.id,uid,incarnation,g692LastPower:entry?.g692LastPower,g1184LastRaces:entry?.g1184LastRaces},body?.map(def=>def.op==='BouncePerSourceCard1060'?
    {...def,lastKnownCount:entry?.lastKnownCount}:def));
   return true;
  },
