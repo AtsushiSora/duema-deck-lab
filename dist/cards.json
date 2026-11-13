@@ -221762,15 +221762,162 @@
       ],
       "supportBatch": "phase-1121",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-056",
+      "name": "A・フェックス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ライトブリンガー/グレートメカオー",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのカードが墓地に置かれた時、その直前にバトルゾーンにあれば、自分の山札の上から１枚をシールド化してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-056",
+      "limit": 4,
+      "blocker": true,
+      "g1122BattleGrave": [
+        {
+          "op": "Offer",
+          "title": "山札の上から1枚をシールド化する？",
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1122",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-060",
+      "name": "～戦え！歯車のために～",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "サイバーロード/グランド・デビル/スチーム・ナイト",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのカードが墓地に置かれた時、その直前にバトルゾーンにあれば、相手のクリーチャーを１体選び、持ち主の手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-060",
+      "limit": 4,
+      "blocker": true,
+      "g1122BattleGrave": [
+        {
+          "op": "Target",
+          "to": "hand",
+          "toOwnerHand": true,
+          "optional": true,
+          "title": "持ち主の手札に戻す相手のクリーチャーを選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-1122",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-065",
+      "name": "ホース＝サモハース",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "アビスロイヤル",
+      "text": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nこのカードが墓地に置かれた時、その直前にバトルゾーンにあれば、相手の手札を１枚見ないで選び、捨てさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-065",
+      "limit": 4,
+      "gStrike": true,
+      "g1122BattleGrave": [
+        {
+          "op": "BlindDiscard773",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1122",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-071",
+      "name": "魔誕幻獣レイヴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "デビルマスク/ガーゴイル",
+      "text": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nこのカードが墓地に置かれた時、その直前にバトルゾーンにあれば、相手のパワー4000以下のクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-071",
+      "limit": 4,
+      "gStrike": true,
+      "g1122BattleGrave": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "toOwnerGrave": true,
+          "filter": {
+            "maxPower": 4000,
+            "g199Power": true
+          },
+          "title": "破壊するパワー4000以下の相手クリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1122",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-075",
+      "name": "孤雷-ON5",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 5000,
+      "race": "アーク・セラフィム/ドリームメイト/テクノ・サムライ",
+      "text": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nこのカードが墓地に置かれた時、その直前にバトルゾーンにあれば、相手のコスト５以下のエレメントを１つ選び、持ち主のマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-075",
+      "limit": 4,
+      "guardman": true,
+      "g1122BattleGrave": [
+        {
+          "op": "Target",
+          "element": true,
+          "to": "mana",
+          "toOwnerMana": true,
+          "optional": true,
+          "filter": {
+            "max": 5
+          },
+          "title": "持ち主のマナに置くコスト5以下の相手のエレメントを選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-1122",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1121,
+    "phase": 1122,
     "checkedAt": "2026-11-13",
-    "baseCount": 7346,
-    "newEffectCards": 3,
+    "baseCount": 7349,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 7349,
+    "totalCount": 7354,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -241511,6 +241658,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7346,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1121,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7346,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7349,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

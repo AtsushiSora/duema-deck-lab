@@ -6184,6 +6184,26 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1122&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+  const strike='{GS}G・ストライク(このカードを自分のシールドゾーンから手札に加える時表向きにし相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)';
+  const guard='ガードマン(このクリーチャーをタップして相手クリーチャーの攻撃先を自分の他のクリーチャーからこのクリーチャーに変更してもよい)';
+  const grave='このカードが墓地に置かれた時その直前にバトルゾーンにあれば';
+  const text=normalize(f.abilityText);
+  if(d.id==='dm25rp2-056'&&text===blocker+grave+'自分の山札の上から1枚をシールド化してもよい。')
+   return {blocker:true,g1122BattleGrave:[{op:'Offer',title:'山札の上から1枚をシールド化する？',defs:[{op:'ShieldTop',n:1}]}]};
+  if(d.id==='dm25rp2-060'&&text===blocker+grave+'相手のクリーチャーを1体選び持ち主の手札に戻してもよい。')
+   return {blocker:true,g1122BattleGrave:[{op:'Target',to:'hand',toOwnerHand:true,optional:true,
+    title:'持ち主の手札に戻す相手のクリーチャーを選ぶ（任意）'}]};
+  if(d.id==='dm25rp2-065'&&text===strike+grave+'相手の手札を1枚見ないで選び捨てさせる。')
+   return {gStrike:true,g1122BattleGrave:[{op:'BlindDiscard773',n:1}]};
+  if(d.id==='dm25rp2-071'&&text===strike+grave+'相手のパワー4000以下のクリーチャーを1体選び破壊する。')
+   return {gStrike:true,g1122BattleGrave:[{op:'Target',to:'grave',toOwnerGrave:true,filter:{maxPower:4000,g199Power:true},
+    title:'破壊するパワー4000以下の相手クリーチャーを選ぶ'}]};
+  if(d.id==='dm25rp2-075'&&text===guard+grave+'相手のコスト5以下のエレメントを1つ選び持ち主のマナゾーンに置いてもよい。')
+   return {guardman:true,g1122BattleGrave:[{op:'Target',element:true,to:'mana',toOwnerMana:true,optional:true,filter:{max:5},
+    title:'持ち主のマナに置くコスト5以下の相手のエレメントを選ぶ（任意）'}]};
+ }
  if(phase>=1121&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText),trigger='S・トリガーS・トリガー';
   if(d.id==='dm25rp2-057'&&f.typeText==='呪文'&&text===trigger+
