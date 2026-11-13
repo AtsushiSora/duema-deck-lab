@@ -644,11 +644,12 @@ export function createSixPhotoRules(api){
    api.enqueue(s,l.player,{source:l.source,effect:'extended',task:effect});
   }
   for(const l of s.extLimits||[]){
-   if(l.kind!=='g1123TurnNamedAttack'||l.player!==p||l.turn!==s.turn||
-    api.spellIgnored(s,{type:'spell',spellSource:l.source,cost:l.spellCost})||
-    !battleNames676(s,attacker).some(name=>name.includes(l.name)))continue;
+   if(!['g1123TurnNamedAttack','turnAttackWatch'].includes(l.kind)||l.player!==p||l.turn!==s.turn||
+    api.spellIgnored(s,{type:'spell',spellSource:l.source,cost:l.spellCost}))continue;
+   if(l.name!==undefined&&!battleNames676(s,attacker).some(name=>name.includes(l.name))||
+    l.filter&&!matches(s,p,attacker,l.filter))continue;
    api.enqueue(s,p,{source:l.source,effect:'extended',task:task('g34_ResolveDelay537',p,l.source,
-    {spellCost:l.spellCost,defs:l.defs})});
+    {spellCost:l.spellCost,defs:l.defs,...(l.filter?{g399Attacker:{uid:attacker.uid,incarnation:attacker.incarnation||0}}:{})})});
   }
   if(s.attack?.target==='player')for(const l of s.extLimits||[]){
    if(l.kind!=='g741PlayerAttackResponse'||l.who===p)continue;
@@ -4680,6 +4681,10 @@ export function createSixPhotoRules(api){
  case'g34_TurnNamedAttack1123':
   (s.extLimits??=[]).push({kind:'g1123TurnNamedAttack',player:t.p,source:t.source,spellCost:cost(card(t.source)),
    turn:s.turn,expires:'end',who:s.active,name:exactName(t.name),defs:t.defs});
+  break;
+ case'g34_TurnAttackWatch':
+  (s.extLimits??=[]).push({kind:'turnAttackWatch',player:t.p,source:t.source,spellCost:cost(card(t.source)),
+   turn:s.turn,expires:'end',who:s.active,filter:t.filter,defs:t.defs});
   break;
  case'g34_TurnAttackDraw613':
   (s.extLimits??=[]).push({kind:'g613AttackDraw',player:t.p,source:t.source,turn:s.turn,expires:'end',who:s.active,

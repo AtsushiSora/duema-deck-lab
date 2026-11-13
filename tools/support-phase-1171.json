@@ -1,0 +1,237 @@
+{
+  "phase": 1171,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7503,
+  "description": "未来の玉 ダンテ / 未来設計図、礼装の堕天チュラロリエス、完全攻撃革命の能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/45573/"
+  ],
+  "cards": [
+    {
+      "id": "dm26ex4-073",
+      "name": "未来の玉 ダンテ / 未来設計図",
+      "faces": [
+        {
+          "name": "未来の玉 ダンテ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが出た時、呪文を１枚、自分のマナゾーンまたは墓地から手札に戻してもよい。\nこのクリーチャーが破壊される時、かわりに自分の山札の上に置く。",
+          "race": "ジャスティス・オーブ/エンジェル・コマンド・ドラゴン/革命軍",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "未来設計図",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\n自分の山札の上から６枚を見る。その中からクリーチャーを１体表向きにして手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-073",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-073a.jpg",
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g846DestroyToTop": "mandatory",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "zones": [
+              "mana",
+              "grave"
+            ],
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "g228Face": {
+                "type": "spell"
+              },
+              "faceUp": true
+            }
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "未来設計図",
+          "cost": 2,
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "race": "",
+          "trigger": true,
+          "effect": "champion",
+          "g47Effect": "Blueprint"
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "287bf2df19b784f1791e259e0d5a5d7d26b9d46e79289b185f7da458c2d35e7a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd08-021",
+      "name": "礼装の堕天チュラロリエス",
+      "faces": [
+        {
+          "name": "礼装の堕天チュラロリエス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが攻撃する時、自分のシールドをひとつ墓地に置いてもよい。そうした場合、カードを２枚まで引く。",
+          "race": "エンジェル・コマンド/アンノイズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd08-021",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd08-021.jpg",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "ShieldGrave",
+            "optional": true,
+            "then": [
+              {
+                "op": "DrawUpTo",
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "acd61764d9e2157b9b09938c14b96b984bb7381e0dca09d934e5df7530eac565",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy14-074",
+      "name": "完全攻撃革命",
+      "faces": [
+        {
+          "name": "完全攻撃革命",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このターン、自分のドラゴンが攻撃する時、そのクリーチャーはパワー+10000を得、バトル中破壊されない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-074",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy14-074.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TurnAttackWatch",
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "defs": [
+              {
+                "op": "AttackGrant399",
+                "power": 10000,
+                "grant": {
+                  "g34BattleSafe": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "d54f0d202c20aaa5f580fc5c88ee44cefd37035bac08621113ac4e457023fd50",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx22a-028",
+      "name": "礼装の堕天チュラロリエス",
+      "faces": [
+        {
+          "name": "礼装の堕天チュラロリエス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが攻撃する時、自分のシールドをひとつ墓地に置いてもよい。そうしたら、カードを２枚まで引く。",
+          "race": "エンジェル・コマンド/アンノイズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22a-028",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx22a-028.jpg",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "ShieldGrave",
+            "optional": true,
+            "then": [
+              {
+                "op": "DrawUpTo",
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "fa2cc83040e2eb9d7cefd20ae262779ce3cc8f4f0042249fc49771034719eeaa",
+        "facesMatched": true
+      },
+      "canonicalId": "dmd08-021"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26ex4-073": 4,
+      "dmd08-021": 4,
+      "promoy14-074": 4,
+      "dmx22a-028": 4
+    }
+  }
+}

@@ -2467,6 +2467,28 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1171&&d?.status==='complete'){
+  if(d.id==='dm26ex4-073'&&d.faces.length===2){
+   const spell=d.faces[1],front=normalize(f.abilityText);
+   if(f.name==='未来の玉 ダンテ'&&f.typeText==='クリーチャー'&&f.civilizationText==='光'&&f.cost===5&&
+    spell.name==='未来設計図'&&spell.typeText==='呪文'&&spell.civilizationText==='自然'&&spell.cost===2&&normalize(spell.abilityText)===
+    'S・トリガーS・トリガー(このカードを自分のシールドゾーンから手札に加える時コストを支払わずにすぐ実行してもよい)'+
+    '自分の山札の上から6枚を見る。その中からクリーチャーを1体表向きにして手札に加えてもよい。残りを好きな順序で山札の下に置く。'){
+    const creature=standardCardSpec({...d,id:'dmr20-012',faces:[{...f,abilityText:front.replace('このクリーチャーが出た時','このクリーチャーがバトルゾーンに出た時')}]},{phase:1014});
+    return {...creature,spellFace:{type:'spell',name:spell.name,cost:spell.cost,civ:spell.civilizationText,
+     civilizations:spell.civilizations,race:spell.race,trigger:true,effect:'champion',g47Effect:'Blueprint'}};
+   }
+  }
+  if(d.faces.length===1&&f.name==='礼装の堕天チュラロリエス'&&f.typeText==='クリーチャー'&&f.civilizationText==='闇'&&f.cost===4&&
+   ['このクリーチャーが攻撃する時自分のシールドをひとつ墓地に置いてもよい。そうした場合カードを2枚まで引く。',
+    'このクリーチャーが攻撃する時自分のシールドをひとつ墓地に置いてもよい。そうしたらカードを2枚まで引く。'].includes(normalize(f.abilityText)))
+   return {g34Attack:[{op:'ShieldGrave',optional:true,then:[{op:'DrawUpTo',n:2}]}]};
+  if(d.faces.length===1&&f.name==='完全攻撃革命'&&f.typeText==='呪文'&&f.civilizationText==='火'&&f.cost===4&&
+   ['このターン自分のドラゴンが攻撃する時そのクリーチャーはパワー+10000を得バトル中破壊されない。',
+    'このターン自分のドラゴンが攻撃する時そのクリーチャーはパワーを+10000されバトル中破壊されない。'].includes(normalize(f.abilityText)))
+   return {effect:'sixPhoto',g34Tasks:[{op:'TurnAttackWatch',filter:{creature:true,race:'ドラゴン'},
+    defs:[{op:'AttackGrant399',power:10000,grant:{g34BattleSafe:true}}]}]};
+ }
  if(phase>=1170&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.name==='死を超えた森 ベランド'&&f.typeText==='ヒストリック・フィールド'&&f.civilizationText==='闇/自然'&&f.cost===2&&text===

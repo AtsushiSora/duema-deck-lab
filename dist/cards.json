@@ -227604,15 +227604,135 @@
         "abilityText": "ブロッカー\n自分の他のエンジェル・コマンドをバトルゾーンに出した時、カードを１枚引いてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）"
       },
       "breaker": 2
+    },
+    {
+      "id": "dm26ex4-073",
+      "name": "未来の玉 ダンテ / 未来設計図",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ジャスティス・オーブ/エンジェル・コマンド・ドラゴン/革命軍",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが出た時、呪文を１枚、自分のマナゾーンまたは墓地から手札に戻してもよい。\nこのクリーチャーが破壊される時、かわりに自分の山札の上に置く。\n【呪文面】\nS・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\n自分の山札の上から６枚を見る。その中からクリーチャーを１体表向きにして手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-073",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g846DestroyToTop": "mandatory",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "zones": [
+            "mana",
+            "grave"
+          ],
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "g228Face": {
+              "type": "spell"
+            },
+            "faceUp": true
+          }
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "未来設計図",
+        "cost": 2,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "champion",
+        "g47Effect": "Blueprint"
+      },
+      "supportBatch": "phase-1171",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd08-021",
+      "name": "礼装の堕天チュラロリエス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "エンジェル・コマンド/アンノイズ",
+      "text": "このクリーチャーが攻撃する時、自分のシールドをひとつ墓地に置いてもよい。そうした場合、カードを２枚まで引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd08-021",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "ShieldGrave",
+          "optional": true,
+          "then": [
+            {
+              "op": "DrawUpTo",
+              "n": 2
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1171",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy14-074",
+      "name": "完全攻撃革命",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "このターン、自分のドラゴンが攻撃する時、そのクリーチャーはパワー+10000を得、バトル中破壊されない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-074",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "TurnAttackWatch",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "defs": [
+            {
+              "op": "AttackGrant399",
+              "power": 10000,
+              "grant": {
+                "g34BattleSafe": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1171",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1170,
+    "phase": 1171,
     "checkedAt": "2026-11-14",
-    "baseCount": 7500,
+    "baseCount": 7503,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7503,
+    "totalCount": 7506,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -247941,6 +248061,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7500,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1170,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7500,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7503,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
