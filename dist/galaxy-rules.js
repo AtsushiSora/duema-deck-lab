@@ -65,8 +65,9 @@ export function createGalaxyRules(api){
     if(base)x.under=[base];
    }
   }
-  // Hand-evolution material moves with the creature when Gaia replaces entry (QA39125).
-  if(card(x).g827HandWaterEvolution&&card(r.source).gaiaEntry)api.attachHandEvolution(s,e.p,x,e.baseUid);
+  // Hand-evolution material moves with the creature under Gaia or Zoro (QA39125, QA48906).
+  if(card(x).g827HandWaterEvolution&&(card(r.source).gaiaEntry||r.g35Role==='zoro'))
+   api.attachHandEvolution(s,e.p,x,e.baseUid);
   // Grave evolution moves the selected material with the entrant under Zoro (QA48906).
   if(r.g35Role==='zoro'&&Array.isArray(e.baseUid)&&card(x).g31Evolution?.zone==='grave'){
    const bases=e.baseUid.map(uid=>remove(own.grave,uid));

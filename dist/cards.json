@@ -224368,15 +224368,124 @@
       ],
       "supportBatch": "phase-1138",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp1-S003",
+      "name": "偉形のX エクストリーム・キリコ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 12000,
+      "race": "サイバーロード/オリジン",
+      "text": "手札進化：自分の手札にある水のクリーチャー１体の上に重ねつつ出す。\nT・ブレイカー\nこのクリーチャーが出た時、カードを３枚引く。その後、自分の手札の枚数以下のコストを持つエレメントを１つ、自分の手札からコストを支払わずに実行してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-S003",
+      "limit": 4,
+      "g48HandEvolution": true,
+      "g827HandWaterEvolution": true,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 3
+        },
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "g1139HandSizeMax": true,
+          "element": true,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1139",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp1-017",
+      "name": "インフェルノ・ドラグーン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "ティラノ・ドレイク",
+      "text": "S・トリガー S・トリガー\nブロッカー ブロッカー\nこのクリーチャーが出た時、自分の山札の上から３枚を墓地に置く。\nこのクリーチャーが破壊された時、自分の墓地から山札の下に置いてもよい。そうしたら、コスト５以下の超化獣クリーチャーを１体、自分の墓地から出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-017",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 3,
+          "g1042Together": true
+        }
+      ],
+      "g172Death": [
+        {
+          "op": "SelfGraveBottom839",
+          "after": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "deploy": true,
+              "n": 1,
+              "filter": {
+                "creature": true,
+                "g724ExactRace": "超化獣",
+                "max": 5
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1139",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-050",
+      "name": "超熱血 ロビー",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "アウトレイジ・コマンドMAX/革命軍/ハムカツ団",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをもう１つブレイクする）\n他のクリーチャーが離れた時、そのターン、このクリーチャーのパワーを+2000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-050",
+      "limit": 4,
+      "blocker": true,
+      "poweredBreaker": true,
+      "g1139OtherCreatureLeaves": [
+        {
+          "op": "SelfBoost313",
+          "power": 2000,
+          "g536Source": true
+        }
+      ],
+      "supportBatch": "phase-1139",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1138,
+    "phase": 1139,
     "checkedAt": "2026-11-13",
-    "baseCount": 7400,
+    "baseCount": 7403,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7403,
+    "totalCount": 7406,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -244321,6 +244430,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7400,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1138,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7400,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7403,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

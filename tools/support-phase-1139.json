@@ -1,0 +1,280 @@
+{
+  "phase": 1139,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7403,
+  "description": "偉形のX エクストリーム・キリコ、インフェルノ・ドラグーン、超熱血 ロビーの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/48906/",
+    "https://dm.takaratomy.co.jp/rule/qa/42981/",
+    "https://dm.takaratomy.co.jp/rule/qa/44840/",
+    "https://dm.takaratomy.co.jp/rule/qa/44585/",
+    "https://dm.takaratomy.co.jp/rule/qa/45075/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316669/"
+  ],
+  "cards": [
+    {
+      "id": "dm26rp1-S003",
+      "name": "偉形のX エクストリーム・キリコ",
+      "faces": [
+        {
+          "name": "偉形のX エクストリーム・キリコ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "手札進化：自分の手札にある水のクリーチャー１体の上に重ねつつ出す。\nT・ブレイカー\nこのクリーチャーが出た時、カードを３枚引く。その後、自分の手札の枚数以下のコストを持つエレメントを１つ、自分の手札からコストを支払わずに実行してもよい。",
+          "race": "サイバーロード/オリジン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-S003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-S003.jpg",
+      "spec": {
+        "g48HandEvolution": true,
+        "g827HandWaterEvolution": true,
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "g1139HandSizeMax": true,
+            "element": true,
+            "optional": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "36e96d4c34997be4a61b545dc6b7c458f7719b00cba5dc5b552d679824a856b5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp1-017",
+      "name": "インフェルノ・ドラグーン",
+      "faces": [
+        {
+          "name": "インフェルノ・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー\nブロッカー ブロッカー\nこのクリーチャーが出た時、自分の山札の上から３枚を墓地に置く。\nこのクリーチャーが破壊された時、自分の墓地から山札の下に置いてもよい。そうしたら、コスト５以下の超化獣クリーチャーを１体、自分の墓地から出す。",
+          "race": "ティラノ・ドレイク",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-017",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-017.jpg",
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 3,
+            "g1042Together": true
+          }
+        ],
+        "g172Death": [
+          {
+            "op": "SelfGraveBottom839",
+            "after": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "deploy": true,
+                "n": 1,
+                "filter": {
+                  "creature": true,
+                  "g724ExactRace": "超化獣",
+                  "max": 5
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "258d0d2a9eb53a9a4527090e7a28bdfa1fc573836e704adc17c120f7f672d1a2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp2-050",
+      "name": "超熱血 ロビー",
+      "faces": [
+        {
+          "name": "超熱血 ロビー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをもう１つブレイクする）\n他のクリーチャーが離れた時、そのターン、このクリーチャーのパワーを+2000する。",
+          "race": "アウトレイジ・コマンドMAX/革命軍/ハムカツ団",
+          "powerText": "3000+",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-050",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-050.jpg",
+      "spec": {
+        "blocker": true,
+        "poweredBreaker": true,
+        "g1139OtherCreatureLeaves": [
+          {
+            "op": "SelfBoost313",
+            "power": 2000,
+            "g536Source": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "b7a1c6702815ed02115f96b641c7c1c0fda92ca8d5c4a18987d636744fe7760a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm26rp1-SEC004",
+      "name": "偉形のX エクストリーム・キリコ",
+      "faces": [
+        {
+          "name": "偉形のX エクストリーム・キリコ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "手札進化：自分の手札にある水のクリーチャー１体の上に重ねつつ出す。\nT・ブレイカー\nこのクリーチャーが出た時、カードを３枚引く。その後、自分の手札の枚数以下のコストを持つエレメントを１つ、自分の手札からコストを支払わずに実行してもよい。",
+          "race": "サイバーロード/オリジン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-SEC004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-SEC004.jpg",
+      "spec": {
+        "g48HandEvolution": true,
+        "g827HandWaterEvolution": true,
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "g1139HandSizeMax": true,
+            "element": true,
+            "optional": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "170509dccd7e6b42c3f24d616e280608da0dd9bad1dc57ba8d3a60fba1fa5515",
+        "facesMatched": true
+      },
+      "canonicalId": "dm26rp1-S003"
+    },
+    {
+      "id": "dm26rp1-SEC018",
+      "name": "インフェルノ・ドラグーン",
+      "faces": [
+        {
+          "name": "インフェルノ・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー\nブロッカー ブロッカー\nこのクリーチャーが出た時、自分の山札の上から３枚を墓地に置く。\nこのクリーチャーが破壊された時、自分の墓地から山札の下に置いてもよい。そうしたら、コスト５以下の超化獣クリーチャーを１体、自分の墓地から出す。",
+          "race": "ティラノ・ドレイク",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-SEC018",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-SEC018.jpg",
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 3,
+            "g1042Together": true
+          }
+        ],
+        "g172Death": [
+          {
+            "op": "SelfGraveBottom839",
+            "after": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "deploy": true,
+                "n": 1,
+                "filter": {
+                  "creature": true,
+                  "g724ExactRace": "超化獣",
+                  "max": 5
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "2b8eb0044f8f966b843736638433cdbbfaed18426d2b81e2f2159ec5682e1d00",
+        "facesMatched": true
+      },
+      "canonicalId": "dm26rp1-017"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26rp1-S003": 4,
+      "dm26rp1-SEC004": 4,
+      "dm26rp1-017": 4,
+      "dm26rp1-SEC018": 4,
+      "dm26rp2-050": 4
+    }
+  }
+}

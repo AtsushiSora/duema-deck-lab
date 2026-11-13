@@ -6184,6 +6184,27 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1139&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(['dm26rp1-S003','dm26rp1-SEC004'].includes(d.id)&&f.typeText==='進化クリーチャー'&&text===
+   '手札進化:自分の手札にある水のクリーチャー1体の上に重ねつつ出す。T・ブレイカー'+
+   'このクリーチャーが出た時カードを3枚引く。その後自分の手札の枚数以下のコストを持つエレメントを1つ自分の手札からコストを支払わずに実行してもよい。')
+   return {g48HandEvolution:true,g827HandWaterEvolution:true,breaker:3,effect:'sixPhoto',g34Tasks:[
+    {op:'Draw',n:3},{op:'Execute',origin:'hand',g1139HandSizeMax:true,element:true,optional:true}
+   ]};
+  if(['dm26rp1-017','dm26rp1-SEC018'].includes(d.id)&&f.typeText==='クリーチャー'&&text===
+   'S・トリガーS・トリガーブロッカーブロッカーこのクリーチャーが出た時自分の山札の上から3枚を墓地に置く。'+
+   'このクリーチャーが破壊された時自分の墓地から山札の下に置いてもよい。そうしたらコスト5以下の超化獣クリーチャーを1体自分の墓地から出す。')
+   return {trigger:true,blocker:true,effect:'sixPhoto',g34Tasks:[{op:'Mill',n:3,g1042Together:true}],
+    g172Death:[{op:'SelfGraveBottom839',after:[
+     {op:'Select',origin:'grave',deploy:true,n:1,filter:{creature:true,g724ExactRace:'超化獣',max:5}}
+    ]}]};
+  if(d.id==='dm26rp2-050'&&f.typeText==='クリーチャー'&&text===
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   'パワード・ブレイカー(このクリーチャーはそのパワー6000ごとにシールドをもう1つブレイクする)'+
+   '他のクリーチャーが離れた時そのターンこのクリーチャーのパワーを+2000する。')
+   return {blocker:true,poweredBreaker:true,g1139OtherCreatureLeaves:[{op:'SelfBoost313',power:2000,g536Source:true}]};
+ }
  if(phase>=1138&&d?.status==='complete'&&d.faces.length===1&&f.typeText.includes('クリーチャー')){
   const text=normalize(f.abilityText);
   if(['dm26ex1-N008','dm26ex1-SECN008'].includes(d.id)&&text===
