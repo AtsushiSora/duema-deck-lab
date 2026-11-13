@@ -1,0 +1,330 @@
+{
+  "phase": 1138,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7400,
+  "description": "愛羅特攻の忠剣ハチ公、マントラ・ルピア、魔V王 デスシラズの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/product/dm26ex1/",
+    "https://dm.takaratomy.co.jp/rule/qa/46825/",
+    "https://dm.takaratomy.co.jp/rule/qa/40629/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35980/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37378/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37379/",
+    "https://dm.takaratomy.co.jp/rule/qa/48906/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31641/"
+  ],
+  "cards": [
+    {
+      "id": "dm26ex1-N008",
+      "name": "愛羅特攻の忠剣ハチ公",
+      "faces": [
+        {
+          "name": "愛羅特攻の忠剣ハチ公",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "{GS} G・ストライク\nスピードアタッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分のハンター・クリーチャーが４体以上あれば、自分の他のクリーチャーをすべてアンタップする。\n各ターンに１度、自分のハンター・クリーチャーが離れる時、かわりに自分の他のクリーチャーを１体破壊してもよい。",
+          "race": "フレイム・コマンド/フレイム・モンスター/ハンター",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-N008",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex1-N008.jpg",
+      "spec": {
+        "gStrike": true,
+        "speedAttacker": true,
+        "breaker": 2,
+        "g1138HunterSaver": true,
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "filter": {
+                  "creature": true,
+                  "race": "ハンター"
+                },
+                "min": 4
+              }
+            },
+            "defs": [
+              {
+                "op": "UntapTeam934",
+                "g179Other": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "1c190766bbf6107e91a8973d3669a40e35ca8f0f5db3b960ee370a04c4aa1670",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex2-087",
+      "name": "マントラ・ルピア",
+      "faces": [
+        {
+          "name": "マントラ・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーが出た時、自分の山札の上から２枚を見る。その中からアーマード・カードを１枚表向きでシールド化してもよい。残りを好きな順序で山札の下に置く。",
+          "race": "アーマード・ドラゴン/ファイアー・バード/メカ・デル・ステラ/シノビ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-087",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-087.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 2,
+            "g841DeckPeek": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "shields",
+                "g657FaceUp": true,
+                "filter": {
+                  "anyFaceRace": "アーマード"
+                },
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "c3910ff66729aedf7b31d0618b7822f15be98d01ec36d5100cfdda5bf80960a8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp2-S004",
+      "name": "魔V王 デスシラズ",
+      "faces": [
+        {
+          "name": "魔V王 デスシラズ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "墓地進化：自分の墓地にある闇のクリーチャー１体の上に重ねつつ出す。\nW・ブレイカー\n自分のターンのはじめに、自分の山札の上から２枚を墓地に置いてもよい。\nこのクリーチャーが離れた時、自分の墓地にカードが13枚以上あれば、相手のクリーチャーをすべて破壊する。",
+          "race": "デーモン・コマンド・ドラゴン/革命軍/ハムカツ団",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-S004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-S004.jpg",
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "grave",
+          "conditions": [
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g174Start": [
+          {
+            "op": "Mill",
+            "n": 2,
+            "optional": true,
+            "g1042Together": true
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "grave",
+                "min": 13
+              }
+            },
+            "defs": [
+              {
+                "op": "Sweep",
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "634b663861a664664dc32cf8031918ae5033ff62a6f027d6597504fb724e2b17",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm26ex1-SECN008",
+      "name": "愛羅特攻の忠剣ハチ公",
+      "faces": [
+        {
+          "name": "愛羅特攻の忠剣ハチ公",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "{GS} G・ストライク\nスピードアタッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分のハンター・クリーチャーが４体以上あれば、自分の他のクリーチャーをすべてアンタップする。\n各ターンに１度、自分のハンター・クリーチャーが離れる時、かわりに自分の他のクリーチャーを１体破壊してもよい。",
+          "race": "フレイム・コマンド/フレイム・モンスター/ハンター",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-SECN008",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex1-SECN008.jpg",
+      "spec": {
+        "gStrike": true,
+        "speedAttacker": true,
+        "breaker": 2,
+        "g1138HunterSaver": true,
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "filter": {
+                  "creature": true,
+                  "race": "ハンター"
+                },
+                "min": 4
+              }
+            },
+            "defs": [
+              {
+                "op": "UntapTeam934",
+                "g179Other": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "b767039f20c0cd8d8ef4ebb846fcaee84a0f8b467920388c9ba162dcd652552b",
+        "facesMatched": true
+      },
+      "canonicalId": "dm26ex1-N008"
+    },
+    {
+      "id": "dm26rp2-Sec005",
+      "name": "魔V王 デスシラズ",
+      "faces": [
+        {
+          "name": "魔V王 デスシラズ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "墓地進化：自分の墓地にある闇のクリーチャー１体の上に重ねつつ出す。\nW・ブレイカー\n自分のターンのはじめに、自分の山札の上から２枚を墓地に置いてもよい。\nこのクリーチャーが離れた時、自分の墓地にカードが13枚以上あれば、相手のクリーチャーをすべて破壊する。",
+          "race": "デーモン・コマンド・ドラゴン/革命軍/ハムカツ団",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-Sec005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-SEC005.jpg",
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "grave",
+          "conditions": [
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g174Start": [
+          {
+            "op": "Mill",
+            "n": 2,
+            "optional": true,
+            "g1042Together": true
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "grave",
+                "min": 13
+              }
+            },
+            "defs": [
+              {
+                "op": "Sweep",
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "7cc32d3179b5e1cfca558475f5707e57bdc1854abd2d4d060a138696266a81c4",
+        "facesMatched": true
+      },
+      "canonicalId": "dm26rp2-S004"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26ex1-N008": 4,
+      "dm26ex1-SECN008": 4,
+      "dm26ex2-087": 4,
+      "dm26rp2-S004": 4,
+      "dm26rp2-Sec005": 4
+    }
+  }
+}

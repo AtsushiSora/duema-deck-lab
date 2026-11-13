@@ -224229,15 +224229,154 @@
       ],
       "supportBatch": "phase-1137",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex1-N008",
+      "name": "愛羅特攻の忠剣ハチ公",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 8000,
+      "race": "フレイム・コマンド/フレイム・モンスター/ハンター",
+      "text": "{GS} G・ストライク\nスピードアタッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分のハンター・クリーチャーが４体以上あれば、自分の他のクリーチャーをすべてアンタップする。\n各ターンに１度、自分のハンター・クリーチャーが離れる時、かわりに自分の他のクリーチャーを１体破壊してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-N008",
+      "limit": 4,
+      "gStrike": true,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g1138HunterSaver": true,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "race": "ハンター"
+              },
+              "min": 4
+            }
+          },
+          "defs": [
+            {
+              "op": "UntapTeam934",
+              "g179Other": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1138",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex2-087",
+      "name": "マントラ・ルピア",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "アーマード・ドラゴン/ファイアー・バード/メカ・デル・ステラ/シノビ",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーが出た時、自分の山札の上から２枚を見る。その中からアーマード・カードを１枚表向きでシールド化してもよい。残りを好きな順序で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-087",
+      "limit": 4,
+      "speedAttacker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g841DeckPeek": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "shields",
+              "g657FaceUp": true,
+              "filter": {
+                "anyFaceRace": "アーマード"
+              },
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1138",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-S004",
+      "name": "魔V王 デスシラズ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 8000,
+      "race": "デーモン・コマンド・ドラゴン/革命軍/ハムカツ団",
+      "text": "墓地進化：自分の墓地にある闇のクリーチャー１体の上に重ねつつ出す。\nW・ブレイカー\n自分のターンのはじめに、自分の山札の上から２枚を墓地に置いてもよい。\nこのクリーチャーが離れた時、自分の墓地にカードが13枚以上あれば、相手のクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-S004",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "grave",
+        "conditions": [
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g174Start": [
+        {
+          "op": "Mill",
+          "n": 2,
+          "optional": true,
+          "g1042Together": true
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "grave",
+              "min": 13
+            }
+          },
+          "defs": [
+            {
+              "op": "Sweep",
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1138",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1137,
+    "phase": 1138,
     "checkedAt": "2026-11-13",
-    "baseCount": 7397,
+    "baseCount": 7400,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7400,
+    "totalCount": 7403,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -244170,6 +244309,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7397,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1137,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7397,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7400,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

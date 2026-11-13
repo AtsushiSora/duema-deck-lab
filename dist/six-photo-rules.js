@@ -4480,9 +4480,11 @@ export function createSixPhotoRules(api){
   (s.extLimits??=[]).push({kind:'g741PlayerAttackResponse',who:t.p,source:t.source,defs:t.defs,expires:'start'});
   break;
  case'g34_Lock':(s.extLimits??=[]).push({...t.limit,player:t.limit.player??(t.g746Self?t.p:1-t.p),who:t.limit.who??t.p,expires:'start'});break;
- case'g34_UntapTeam934':
-  for(const ally of creatures(s,t.p))api.untap(s,t.p,ally);
+ case'g34_UntapTeam934':{
+  const source=t.g179Other?sourceHost474(s,t)?.x:null;
+  for(const ally of creatures(s,t.p))if(ally!==source)api.untap(s,t.p,ally);
   break;
+ }
  case'g34_Untap':{
   if(t.g904Refs){
    for(const p of [0,1]){

@@ -6184,6 +6184,27 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1138&&d?.status==='complete'&&d.faces.length===1&&f.typeText.includes('クリーチャー')){
+  const text=normalize(f.abilityText);
+  if(['dm26ex1-N008','dm26ex1-SECN008'].includes(d.id)&&text===
+   '{GS}G・ストライクスピードアタッカーW・ブレイカーこのクリーチャーが攻撃する時自分のハンター・クリーチャーが4体以上あれば自分の他のクリーチャーをすべてアンタップする。'+
+   '各ターンに1度自分のハンター・クリーチャーが離れる時かわりに自分の他のクリーチャーを1体破壊してもよい。')
+   return {gStrike:true,speedAttacker:true,breaker:2,g1138HunterSaver:true,
+    g34Attack:[{op:'IfOwn',filter:{g370BattleCount:{filter:{creature:true,race:'ハンター'},min:4}},
+     defs:[{op:'UntapTeam934',g179Other:true}]}]};
+  if(d.id==='dm26ex2-087'&&text===
+   'スピードアタッカー(このクリーチャーは召喚酔いしない)このクリーチャーが出た時自分の山札の上から2枚を見る。'+
+   'その中からアーマード・カードを1枚表向きでシールド化してもよい。残りを好きな順序で山札の下に置く。')
+   return {speedAttacker:true,effect:'sixPhoto',g34Tasks:[{op:'Look',n:2,g841DeckPeek:true,rest:'bottom',
+    stages:[{n:1,to:'shields',g657FaceUp:true,filter:{anyFaceRace:'アーマード'},optional:true}]}]};
+  if(['dm26rp2-S004','dm26rp2-Sec005'].includes(d.id)&&f.typeText==='進化クリーチャー'&&text===
+   '墓地進化:自分の墓地にある闇のクリーチャー1体の上に重ねつつ出す。W・ブレイカー'+
+   '自分のターンのはじめに自分の山札の上から2枚を墓地に置いてもよい。'+
+   'このクリーチャーが離れた時自分の墓地にカードが13枚以上あれば相手のクリーチャーをすべて破壊する。')
+   return {evolution:{g31:true},g31Evolution:{zone:'grave',conditions:[{civilization:'闇'}]},breaker:2,
+    g174Start:[{op:'Mill',n:2,optional:true,g1042Together:true}],
+    g172Leave:[{op:'IfOwn',filter:{g334ZoneCount:{zone:'grave',min:13}},defs:[{op:'Sweep',filter:{creature:true}}]}]};
+ }
  if(phase>=1137&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(['dm25rp2-004','dm25ex3-rp2004','dm26ex2-021'].includes(d.id)&&f.typeText==='クリーチャー'&&text===

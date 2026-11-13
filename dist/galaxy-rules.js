@@ -67,6 +67,11 @@ export function createGalaxyRules(api){
   }
   // Hand-evolution material moves with the creature when Gaia replaces entry (QA39125).
   if(card(x).g827HandWaterEvolution&&card(r.source).gaiaEntry)api.attachHandEvolution(s,e.p,x,e.baseUid);
+  // Grave evolution moves the selected material with the entrant under Zoro (QA48906).
+  if(r.g35Role==='zoro'&&Array.isArray(e.baseUid)&&card(x).g31Evolution?.zone==='grave'){
+   const bases=e.baseUid.map(uid=>remove(own.grave,uid));
+   x.under=bases;
+  }
   const all=api.layers(x),moved=[];for(const y of all){const old=origins.get(y.uid);clear(y,r.to);if(old?.zone===r.to){if(old.serial===undefined)delete y.zoneSerial;else y.zoneSerial=old.serial;y.tapped=old.tapped;own[r.to].push(y);}else moved.push(y);}
   if(moved.length)api.addZone(s,e.p,r.to,...moved);api.fifteen.replaced(s,e,r);
   log(s,e.p,'entryReplace',card(r.source).name+'でバトルゾーンのかわりに'+(r.to==='mana'?'マナ':r.to==='hand'?'手札':'墓地')+'へ',{cardId:x.cardId});

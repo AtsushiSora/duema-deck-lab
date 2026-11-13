@@ -878,11 +878,24 @@ function lGateOptions955(s,row,firstUid){
  return grave.filter(x=>x!==first&&available(x)&&
   races.some((race,i)=>matches(first,race)&&matches(x,races[1-i])));
 }
+function hunterSavers1138(s,row,host,sacrifices){
+ const p=row.player,own=s.players[p],batch=s.leaving;
+ if(row.replacement||!isCreature(s,host)||!String(effectiveCard(host,s).race).includes('ハンター'))return [];
+ const payments=own.battle.filter(x=>x!==host&&!sacrifices.has(x.uid)&&isCreature(s,x)&&
+  paneskoSacrifice785(s,p,x)&&!(effectiveCard(x,s).caddy&&shevaProtection(s,p)));
+ if(!payments.length)return [];
+ return own.battle.flatMap(source=>{
+  if(source.sealed||source.faceDown||!isCreature(s,source)||!effectiveCard(source,s).g1138HunterSaver)return [];
+  const key='g1138HunterSaver:'+source.uid+'@'+(source.incarnation||0);
+  if(s.once?.[key]===s.turn||batch.rows.some(r=>r.plan?.key===key))return [];
+  return payments.map(x=>({uid:x.uid,cardId:x.cardId,key,source:source.cardId}));
+ });
+}
 function leaveOptions(s,row){
  const own=s.players[row.player],batch=s.leaving,usedShields=new Set(batch.rows.flatMap(r=>r.plan?.shield?[r.plan.shield]:r.plan?.kind==='ever'?r.plan.shields:[])),usedMana=new Set(batch.rows.flatMap(r=>r.plan?.mana||[]));
  const sacrifices=replacementSacrifices(batch.rows);
  const snowSavers=own.battle.some(x=>card(x).g208Auras?.some(a=>a.grants.g793SnowSaver));
- if(row.selfDeath||sacrifices.has(row.uid))return {lGate:[],kent:[],g393J:[],g47:[],g49:[],ever:[],jashin:[],savak:[],ura:[],ex:null,exChoices:[],gneo:false,star:false,ningyo:false,oni:[],escape:[],mana:[],ultra:[],ater:[],g33:[],muku:[],omega:false,hawk:false,yamata:false};
+ if(row.selfDeath||sacrifices.has(row.uid))return {hachi:[],lGate:[],kent:[],g393J:[],g47:[],g49:[],ever:[],jashin:[],savak:[],ura:[],ex:null,exChoices:[],gneo:false,star:false,ningyo:false,oni:[],escape:[],mana:[],ultra:[],ater:[],g33:[],muku:[],omega:false,hawk:false,yamata:false};
  const usedSavak=new Set(batch.rows.filter(r=>['savak','g33'].includes(r.plan?.kind)).map(r=>r.plan.uid)),available=x=>!usedShields.has(shieldGroup(x))&&!shieldCards(x).some(c=>usedSavak.has(c.uid)),savak=row.savak?[0,1].flatMap(owner=>s.players[owner].shields.filter(x=>!usedShields.has(shieldGroup(x))).flatMap(shieldCards).filter(x=>x.faceUp&&!usedSavak.has(x.uid)).map(x=>({owner,uid:x.uid,cardId:x.cardId}))):[];
  const usedHand=new Set(batch.rows.flatMap(r=>r.plan?.kind==='jashin'?r.plan.cards:[])),exChoices=exLifeShields(s,row.player,own.battle.find(x=>x.uid===row.uid)).filter(available).map(x=>x.uid);
  const host=ownCardForRow(s,row),targetRace=String(card(host).race),current=effectiveCard(host,s);
@@ -897,7 +910,7 @@ function leaveOptions(s,row){
   return own.shields.filter(x=>available(x)&&!shieldCards(x).some(y=>y.g37ShieldHeld)).map(x=>({key,shield:shieldGroup(x),cardId:source.cardId}));
  });
  const usedFlip=new Set(batch.rows.filter(r=>r.plan?.kind==='g33').map(r=>r.plan.uid));
- return {psychicRelease:row.psychicRelease,lGate:lGateOptions955(s,row),g393J:extra.requested393J.leaveOptions(s,row,batch),g47:extra.seed.leaveOptions(s,row,batch),g49:extra.firebird.leaveOptions(s,row,batch,sacrifices),deathShield:!!row.g842DestroyShield,deathDeck:!!row.destroyToDeck,deathShuffle:!!row.g731DestroyShuffle,deathMana:!!(row.destroyToMana||row.g575TappedMana),crystalMana:!!row.crystalMana,tappedMana:row.g575TappedMana,yamata:row.yamata||row.destroyToMana||row.g575OptionalMana,omega:row.omega||row.destroyToHand,optionalHand:row.g708OptionalGraveToHand||row.g1088LeaveToHand,
+ return {hachi:hunterSavers1138(s,row,host,sacrifices),psychicRelease:row.psychicRelease,lGate:lGateOptions955(s,row),g393J:extra.requested393J.leaveOptions(s,row,batch),g47:extra.seed.leaveOptions(s,row,batch),g49:extra.firebird.leaveOptions(s,row,batch,sacrifices),deathShield:!!row.g842DestroyShield,deathDeck:!!row.destroyToDeck,deathShuffle:!!row.g731DestroyShuffle,deathMana:!!(row.destroyToMana||row.g575TappedMana),crystalMana:!!row.crystalMana,tappedMana:row.g575TappedMana,yamata:row.yamata||row.destroyToMana||row.g575OptionalMana,omega:row.omega||row.destroyToHand,optionalHand:row.g708OptionalGraveToHand||row.g1088LeaveToHand,
   kent:[...shieldSavers,...(!row.replacement&&String(effectiveCard(host,s).race).includes('ジョーカーズ')?
    own.battle.flatMap(x=>{
     const key=x.uid+'@'+(x.incarnation||0),id='g1088Kent:'+key;
@@ -950,7 +963,7 @@ function advanceLeaving(s){if(s.lossEvent)return;
   // Keep both choices when a replacement specifies tapped mana and another does not.
   const optionalManaChoice=opts.yamata&&(!opts.deathMana||opts.tappedMana);
   const optionalShield=opts.deathShield&&row.g842ShieldOptional;
-  const mandatory=!!(opts.deathShield&&!optionalShield||opts.deathMana||opts.crystalMana||opts.omega||opts.ex||opts.psychicRelease||opts.stay577||opts.gneo||opts.star||opts.ningyo||opts.hawk||opts.deathShuffle||opts.mandatoryTop||ownSeed.some(x=>x.mandatory)),optional=optionalShield||ownSeed.length||opts.lGate.length||opts.g393J.length||opts.g49.length||opts.kent.length||optionalManaChoice||opts.optionalHand||opts.optionalTop||opts.muku.length||opts.g33.length||(opts.hawk&&!opts.deathDeck)||opts.exChoices.length>1||opts.ever.length>=2||opts.jashin.length>=leaveDiscardCount(row)||opts.savak.length||opts.ura.length>=5||opts.oni.length>=3||opts.escape.length||opts.mana.length>=3||opts.ater.length||opts.ultra.length;
+  const mandatory=!!(opts.deathShield&&!optionalShield||opts.deathMana||opts.crystalMana||opts.omega||opts.ex||opts.psychicRelease||opts.stay577||opts.gneo||opts.star||opts.ningyo||opts.hawk||opts.deathShuffle||opts.mandatoryTop||ownSeed.some(x=>x.mandatory)),optional=optionalShield||ownSeed.length||opts.lGate.length||opts.g393J.length||opts.g49.length||opts.kent.length||opts.hachi.length||optionalManaChoice||opts.optionalHand||opts.optionalTop||opts.muku.length||opts.g33.length||(opts.hawk&&!opts.deathDeck)||opts.exChoices.length>1||opts.ever.length>=2||opts.jashin.length>=leaveDiscardCount(row)||opts.savak.length||opts.ura.length>=5||opts.oni.length>=3||opts.escape.length||opts.mana.length>=3||opts.ater.length||opts.ultra.length;
   if(!optional&&Number(!!opts.ex)+Number(!!opts.gneo)+Number(!!opts.psychicRelease)+Number(!!opts.stay577)+Number(!!opts.star)+Number(!!opts.ningyo)+Number(!!opts.omega)+Number(!!opts.deathMana)+Number(!!opts.deathDeck)+Number(!!opts.deathShuffle)+Number(!!opts.deathShield)+Number(!!opts.crystalMana)+Number(!!opts.mandatoryTop)<=1)row.plan=opts.mandatoryTop?{kind:'deckTop846'}:opts.deathShield?{kind:'shield842'}:opts.crystalMana?{kind:'yamata',faceDown:true}:opts.deathMana?{kind:'yamata',...(opts.tappedMana?{tapped:true}:{})}:opts.deathDeck?{kind:'hawk'}:opts.deathShuffle?{kind:'shuffle731'}:opts.omega?{kind:'omega'}:opts.ningyo?{kind:'ningyo'}:opts.ex?{kind:'ex',shield:opts.ex}:opts.stay577?{kind:'stay577'}:opts.psychicRelease?{kind:'psychicRelease'}:opts.gneo?{kind:'gneo'}:opts.star?{kind:'star'}:{kind:'leave'};
   else{s.decision={type:'leaveReplace',player:who,uid:row.uid,mandatory};return;}
   if(row.plan?.kind==='leave'&&foreign.length&&!row.g47StratoDeclined){delete row.plan;s.decision={type:'leaveReplace',player:1-who,owner:who,uid:row.uid,foreignOnly:true,ownerPassed:true};return;}
@@ -1012,6 +1025,7 @@ function advanceLeaving(s){if(s.lossEvent)return;
   const row=batch.rows.find(r=>r.plan.kind==='ultra'&&r.plan.uid===uid),own=s.players[row.player];
   const x=own.battle.find(x=>x.uid===uid);
   if(!x)continue;
+  if(row.plan.key)(s.once??={})[row.plan.key]=s.turn;
   const to=row.plan.to||'grave',all=layers(x);
   if(to==='grave')rememberEvolutionGraveSources(s,row.player,x,all,null,new Set([x.uid]));
   recordLastPower(s,row.player,x,all);
@@ -2525,6 +2539,8 @@ export function getLegalActions(s){
     const keyword=snowSaver||source.g40Saver||source.g571Saver&&!source.g571Saver.ultra?'セイバー':'ウルトラ・セイバー';
     out.push(option('replaceUltra',card(x).name+'を'+keyword+'でかわりに破壊する',{uid:x.uid,cardId:x.cardId}));
    }
+   for(const x of v.hachi)out.push(option('replaceHunter1138',card(x.source).name+'：'+name+'を残し、'+
+    card(x.cardId).name+'をかわりに破壊する',{uid:x.uid,key:x.key,cardId:x.cardId}));
    for(const x of v.ater)out.push(option('replaceAter',`${card(x).name}をかわりに破壊して残す`,{uid:x.uid,cardId:x.cardId}));
    if(v.mana.length>=3)out.push(option('replaceMana',`${name}を残すためマナ3枚を選ぶ`));
    if(!d.mandatory)out.push(option('allowLeave',`${name}をそのまま移動する`));
@@ -2760,6 +2776,9 @@ function stepCore(s,action){
  if(a.kind==='replaceOni')extra.beginOni(s,p,d.uid,'leave');
  if(a.kind==='replaceYamata'){s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p).plan={kind:'yamata',...(a.tapped?{tapped:true}:{}),...(a.faceDown?{faceDown:true}:{})};s.decision=null;}
  if(a.kind==='replaceUltra'){s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p).plan={kind:'ultra',uid:a.uid,...(a.to?{to:a.to}:{})};s.decision=null;}
+ if(a.kind==='replaceHunter1138'){
+  s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p).plan={kind:'ultra',uid:a.uid,key:a.key};s.decision=null;
+ }
  if(a.kind==='replaceAter'){s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p).plan={kind:'ater',uid:a.uid};s.decision=null;}
  if(a.kind==='replaceMana')s.decision={type:'leaveMana',player:p,uid:d.uid,chosen:[],mandatory:d.mandatory};
  if(a.kind==='leaveMana'){d.chosen.push(a.uid);if(d.chosen.length===3){s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p).plan={kind:'mana',mana:[...d.chosen]};s.decision=null;}}
@@ -3673,7 +3692,7 @@ export function rankHeuristicActions(s){
   if(a.kind==='replaceEver')return 32;
   if(a.kind==='everShield')return 5;
   if(a.kind==='cancelEverShields')return -100;
-  if(a.kind==='replaceAter'||a.kind==='replaceUltra')return 25-aiCost(c);
+  if(['replaceAter','replaceUltra','replaceHunter1138'].includes(a.kind))return 25-aiCost(c);
   if(a.kind==='replaceJashin')return me.hand.length>2?35:15;
   if(a.kind==='leaveHand')return aiCost(c)+(c.abyssRush?12:0);
   if(a.kind==='cancelLeaveHand')return -100;
