@@ -225435,15 +225435,110 @@
       },
       "supportBatch": "phase-1148",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex02-066",
+      "name": "卍月の流星群",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "自分のクリーチャーを１体破壊する。そうしたら、コスト４以下のマフィ・ギャングを２体まで、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-066",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SacrificeAlly413",
+          "mandatory": true,
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "n": 2,
+              "deploy": true,
+              "optional": true,
+              "filter": {
+                "g228Face": {
+                  "type": "creature",
+                  "raceAll": [
+                    "マフィ・ギャング"
+                  ],
+                  "max": 4
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1149",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24bd6-006",
+      "name": "偽りの希望 修羅丸「終斗」",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6500,
+      "race": "アンノウン・セレス",
+      "text": "ブロッカー ブロッカー\nスレイヤー\nW・ブレイカー\n各ターン、はじめて相手のクリーチャーが出る時、そのクリーチャーはタップして出る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd6-006",
+      "limit": 4,
+      "blocker": true,
+      "slayer": true,
+      "breaker": 2,
+      "g1149FirstOpponentEntryTapped": true,
+      "supportBatch": "phase-1149",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp02-038",
+      "name": "貝獣 アーヤコーヤ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ムートピア",
+      "text": "呪文の効果によって、相手がクリーチャーを選ぶ時、自分の他のムートピアは選べない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-038",
+      "limit": 4,
+      "g208Auras": [
+        {
+          "other": true,
+          "filter": {
+            "race": "ムートピア"
+          },
+          "grants": {
+            "spellUntargetable": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1149",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1148,
+    "phase": 1149,
     "checkedAt": "2026-11-14",
-    "baseCount": 7431,
+    "baseCount": 7434,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7434,
+    "totalCount": 7437,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -245508,6 +245603,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7431,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1148,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7431,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7434,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

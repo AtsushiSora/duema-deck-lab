@@ -6184,6 +6184,20 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1149&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmex02-066'&&f.typeText==='呪文'&&
+   text==='自分のクリーチャーを1体破壊する。そうしたらコスト4以下のマフィ・ギャングを2体まで自分の墓地からバトルゾーンに出す。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'SacrificeAlly413',mandatory:true,defs:[
+    {op:'Select',origin:'grave',n:2,deploy:true,optional:true,filter:{g228Face:{type:'creature',raceAll:['マフィ・ギャング'],max:4}}}
+   ]}]};
+  if(d.id==='dm24bd6-006'&&f.typeText==='クリーチャー'&&
+   text==='ブロッカーブロッカースレイヤーW・ブレイカー各ターンはじめて相手のクリーチャーが出る時そのクリーチャーはタップして出る。')
+   return {blocker:true,slayer:true,breaker:2,g1149FirstOpponentEntryTapped:true};
+  if(d.id==='dmrp02-038'&&f.typeText==='クリーチャー'&&
+   text==='呪文の効果によって相手がクリーチャーを選ぶ時自分の他のムートピアは選べない。')
+   return {g208Auras:[{other:true,filter:{race:'ムートピア'},grants:{spellUntargetable:true}}]};
+ }
  if(phase>=1148&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const lines=f.abilityText.split('\n').map(normalize);
   const [first]=lines;

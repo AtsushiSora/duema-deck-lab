@@ -1,0 +1,157 @@
+{
+  "phase": 1149,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7434,
+  "description": "卍月の流星群、偽りの希望 修羅丸「終斗」、貝獣 アーヤコーヤの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/42955/",
+    "https://dm.takaratomy.co.jp/rule/qa/39839/",
+    "https://dm.takaratomy.co.jp/rule/qa/42928/",
+    "https://dm.takaratomy.co.jp/rule/qa/41160/",
+    "https://dm.takaratomy.co.jp/coverage/dmscs02_f05a/"
+  ],
+  "cards": [
+    {
+      "id": "dmex02-066",
+      "name": "卍月の流星群",
+      "faces": [
+        {
+          "name": "卍月の流星群",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のクリーチャーを１体破壊する。そうしたら、コスト４以下のマフィ・ギャングを２体まで、自分の墓地からバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-066",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex02-066.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "mandatory": true,
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "n": 2,
+                "deploy": true,
+                "optional": true,
+                "filter": {
+                  "g228Face": {
+                    "type": "creature",
+                    "raceAll": [
+                      "マフィ・ギャング"
+                    ],
+                    "max": 4
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "e762554c440a4a8c2822204a96e5341f359c9d367e3e0f5c96aaef01dca07b22",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24bd6-006",
+      "name": "偽りの希望 修羅丸「終斗」",
+      "faces": [
+        {
+          "name": "偽りの希望 修羅丸「終斗」",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカー ブロッカー\nスレイヤー\nW・ブレイカー\n各ターン、はじめて相手のクリーチャーが出る時、そのクリーチャーはタップして出る。",
+          "race": "アンノウン・セレス",
+          "powerText": "6500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd6-006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd6-006.jpg",
+      "spec": {
+        "blocker": true,
+        "slayer": true,
+        "breaker": 2,
+        "g1149FirstOpponentEntryTapped": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "ff994342ae01cca4d55e0750eb2ce525b5ad2ae4d9b7cddcd0767280f204c164",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-038",
+      "name": "貝獣 アーヤコーヤ",
+      "faces": [
+        {
+          "name": "貝獣 アーヤコーヤ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "呪文の効果によって、相手がクリーチャーを選ぶ時、自分の他のムートピアは選べない。",
+          "race": "ムートピア",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-038",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-038.jpg",
+      "spec": {
+        "g208Auras": [
+          {
+            "other": true,
+            "filter": {
+              "race": "ムートピア"
+            },
+            "grants": {
+              "spellUntargetable": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "7f567e1ae2ef0dd985c95867ce4b8ef0c12dd16788c2a231376eb2589cf35b4f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex02-066": 4,
+      "dm24bd6-006": 4,
+      "dmrp02-038": 4
+    }
+  }
+}

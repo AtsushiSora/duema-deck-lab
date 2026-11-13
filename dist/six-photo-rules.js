@@ -2977,7 +2977,22 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_MarshalTouch558':{const rows=marshalRows558(s,t);if(rows.length)choice(s,t,t.title||'マーシャル・タッチ：戻す自分の他のクリーチャーを1体選ぶ（任意）',[...rows.map(y=>opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},marshalValue558(s,t,y),y.cardId)),skip()]);break;}
- case'g34_SacrificeAlly413':{const rows=(t.g547Seed?own.battle.filter(y=>matches(s,t.p,y,{g295Tamaseed:true})):creatures(s,t.p)).filter(y=>!y.sealed&&(!t.other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))&&(!t.filter||matches(s,t.p,y,t.filter))),legal=new Set(targetOptions(s,t.p,rows).map(o=>o.value)),payoff=sacrificeValue413(s,t,t.defs||[]);if(rows.some(y=>legal.has(y.uid)))choice(s,t,t.g547Seed?'破壊して効果を使う自分のタマシードを1枚選ぶ（任意）':'破壊して効果を使う自分のクリーチャーを1体選ぶ（任意）',[...rows.filter(y=>legal.has(y.uid)).map(y=>{const c=effective(y,s),canDie=api.canLeave(s,t.p,y)&&!hooks.destroySafe409(s,y),penalty=canDie?Math.min(30,6+cost(c)*2+api.power(y,false,s)/2000):0;return opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},Math.max(-1000,Math.min(1000,(t.g547Seed&&t.defs?.[0]?.deploy?seedReviveValue547(s,t,y,canDie):payoff)+(canDie?modeScore(s,t,c.g172Death||[]):0)-penalty)),y.cardId);}),skip()]);break;}
+ case'g34_SacrificeAlly413':{
+  const rows=(t.g547Seed?own.battle.filter(y=>matches(s,t.p,y,{g295Tamaseed:true})):creatures(s,t.p))
+   .filter(y=>!y.sealed&&(!t.other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))&&(!t.filter||matches(s,t.p,y,t.filter)));
+  const legal=new Set(targetOptions(s,t.p,rows).map(o=>o.value)),payoff=sacrificeValue413(s,t,t.defs||[]);
+  const options=rows.filter(y=>legal.has(y.uid)).map(y=>{
+   const c=effective(y,s),canDie=api.canLeave(s,t.p,y)&&!hooks.destroySafe409(s,y);
+   const penalty=canDie?Math.min(30,6+cost(c)*2+api.power(y,false,s)/2000):0;
+   const value=(t.g547Seed&&t.defs?.[0]?.deploy?seedReviveValue547(s,t,y,canDie):payoff)+(canDie?modeScore(s,t,c.g172Death||[]):0)-penalty;
+   return opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},Math.max(-1000,Math.min(1000,value)),y.cardId);
+  });
+  if(options.length){
+   const title=t.g547Seed?'破壊して効果を使う自分のタマシードを1枚選ぶ':'破壊して効果を使う自分のクリーチャーを1体選ぶ';
+   choice(s,t,title+(t.mandatory?'':'（任意）'),t.mandatory?options:[...options,skip()]);
+  }
+  break;
+ }
  case'g34_SelfSacrifice407':{const owner=s.players.findIndex(p=>p.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))),y=owner>=0?s.players[owner].battle.find(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))):null;if(!y)break;const c=effective(y,s),penalty=api.canLeave(s,owner,y)?Math.min(25,6+cost(c)*2+api.power(y,false,s)/2000):0,score=modeScore(s,t,t.defs||[])+(t.defs||[]).filter(d=>d.op==='Choose').reduce((n,d)=>n+Math.max(0,...d.modes.map(m=>modeScore(s,t,m.defs))),0)+modeScore(s,t,c.g172Death||[])-penalty;choice(s,t,'このクリーチャーを破壊して能力を使う？',[opt('破壊する',true,score,y.cardId),skip()]);break;}
  // Follow the original attacking creature through evolution, but never through
  // leaving and re-entering or a swap with a different creature (QA40660/33625).

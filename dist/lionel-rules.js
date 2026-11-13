@@ -65,7 +65,14 @@ export function createLionelRules(api){
  power(s,p,x){if(p<0||!api.isCreature(s,x))return 0;const c=card(x);return (rex(c)?creatures(s,p).filter(y=>y.uid!==x.uid&&!api.ignored(s,y)&&card(y).arcTeam).length*2000:0)+(!api.ignored(s,x)&&c.johnny? s.players[p].battle.filter(y=>y.uid!==x.uid&&(rex(card(y))||joker(card(y)))).length*2000:0);},
  decorate(s,p,x,c){if(c.aqCivil&&allTypes(s,p).filter(y=>colors(card(y)).includes('水')).length>=3)c={...c,blocker:true,death:'hand'};if(x.g15Blocker?.length)c={...c,blocker:true};return c;},
  allowedSpell(s,p,c){return colors(c).includes('光')||!creatures(s,1-p).some(x=>effective(x,s).arcTeam);},
- tapEntry(s,p){return !(s.players[p].enteredThisTurn||0)&&creatures(s,1-p).some(x=>effective(x,s).arcTeam);},
+ tapEntry(s,p){
+  const entered=s.players[p].enteredThisTurn||0;
+  if(entered)return false;
+  return creatures(s,1-p).some(x=>{
+   const c=effective(x,s);
+   return c.arcTeam||!s.g7Entries?.[p]&&c.g1149FirstOpponentEntryTapped;
+  });
+ },
  handMana(s,p,x){if(card(x).runeUntap)api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g15_ManaUntap',p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0})});},
  shieldHand(s,p,x,broken){if(!broken&&card(x).rev2Trigger&&!api.triggerLocked597(s,p,card(x)))api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g15_NonBreakST',p,x.cardId,{uid:x.uid})});},
  beforeBreak(s,defender,uids){const context=s.breakContext;if(!context||context.g19Prepared||defender===context.player&&!context.g14Self)return false;const x=s.players[context.player].battle.find(x=>x.uid===context.sourceUid);if(!x||!effective(x,s).johnny)return false;context.g19Prepared=true;put(s,...uids.map(()=>task('g15_Shield',context.player,x.cardId)),task('g19BeforeCommit',context.player,x.cardId,{defender,uids:[...uids],context:structuredClone(context)}));return true;},
