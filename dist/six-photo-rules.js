@@ -37,7 +37,7 @@ export function createSixPhotoRules(api){
  const hasSoul=(c,soul)=>c.g558Souls?.includes(soul)||c.text?.includes('【'+soul+'・ソウル】');
  const race=(c,q)=>String(c.race).includes(q),mecha=c=>race(c,'メカ'),ninja=c=>race(c,'シノビ'),demon=c=>race(c,'デーモン・コマンド'),angel=c=>race(c,'エンジェル・コマンド');
  // A restricted origin permission belongs to one incarnation of its provider.
- function zonePermits450(s,p,x,c,origin){if(s.active!==p||c.type!=='creature'||origin==='mana'&&x.faceDown||!api.canMoveZone(s,p,origin))return[];return creatures(s,p).flatMap(y=>{const r=!y.sealed&&effective(y,s).g450ZoneSummon,k='g450:'+y.uid+'@'+(y.incarnation||0);return r&&r.origin===origin&&s.g450ZoneUses?.[p]?.[k]!==s.turn&&(r.anyShieldsMax===undefined||s.players.some(w=>w.shields.length<=r.anyShieldsMax))&&(!r.filter.evolution||api.isEvolution(x)||!!c.g48HandEvolution)&&matches(s,p,x,r.filter.evolution?{...r.filter,evolution:false}:r.filter)?[k]:[];});}
+ function zonePermits450(s,p,x,c,origin){if(s.active!==p||c.type!=='creature'||origin==='mana'&&x.faceDown||!api.canMoveZone(s,p,origin))return[];return creatures(s,p).flatMap(y=>{const r=!y.sealed&&effective(y,s).g450ZoneSummon,k='g450:'+y.uid+'@'+(y.incarnation||0);return r&&r.origin===origin&&(!r.entryTurn||(y.originalEntryTurn??y.entered)===s.turn)&&s.g450ZoneUses?.[p]?.[k]!==s.turn&&(r.anyShieldsMax===undefined||s.players.some(w=>w.shields.length<=r.anyShieldsMax))&&(!r.filter.evolution||api.isEvolution(x)||!!c.g48HandEvolution)&&matches(s,p,x,r.filter.evolution?{...r.filter,evolution:false}:r.filter)?[k]:[];});}
  // Count visible Joker cards in both zones; a twinpact is one mana card.
  function jokerCount539(s,p){return s.players[p].battle.filter(y=>!y.sealed&&!y.faceDown&&race(effective(y,s),'ジョーカーズ')).length+s.players[p].mana.filter(y=>!y.faceDown&&faces(card(y)).some(c=>race(c,'ジョーカーズ'))).length;}
  const gravePermits294=(s,p,x,c=card(x))=>s.active!==p||c.type!=='creature'||!api.canMoveZone(s,p,'grave')?[]:[
@@ -5816,7 +5816,7 @@ export function createSixPhotoRules(api){
   if(!counts||counts.length<2)return false;
   const shields=s.players[1-p].shields.length;
   choice(s,task('g34_GrantedBreaker633',p,x.cardId,{uid:x.uid}),'この攻撃で使うブレイカーを選ぶ',
-   counts.map(n=>opt(n==='world'?'ワールド・ブレイカー':n==='g'?'G・ブレイカー（攻撃の後、自分も全ブレイク）':
+   counts.map(n=>opt(n==='world'?(c.g1135DragonWorld?'ドラゴン・ワールド・ブレイカー':'ワールド・ブレイカー'):n==='g'?'G・ブレイカー（攻撃の後、自分も全ブレイク）':
     n===2?'W・ブレイカー':n==='∞'?(c.worldBreaker?'ワールド・ブレイカー':'∞ ブレイカー'):n+'枚をブレイクする',
     n,n==='g'?shields-1:Math.min(n==='∞'||n==='world'?Infinity:n,shields))));
   return true;
@@ -5887,7 +5887,7 @@ export function createSixPhotoRules(api){
   return true;
  },
  beginPayment500(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g500Handled||!floorOptions500(s,p,c)[0]||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PayFloor500',p,c.id,{c:payment,args}));return true;},
- floorCost500(s,p,c,base){if(c.type!=='creature'||c.crossing)return base;if(c.g211Sympathy?.minimum===3)base=Math.min(base,Math.max(3,base-sympathyAmount500(s,p,c)));const amounts=floorOptions500(s,p,c),aura=c.g500Amount===undefined?amounts[0]:amounts.includes(c.g500Amount)?c.g500Amount:0,n=aura+(c.g212CountDiscount?.minimum===2?countDiscountMax499(s,p,c):0)+(c.g211Sympathy?.minimum===2?sympathyAmount500(s,p,c):0);return n?Math.min(base,Math.max(2,base-n)):base;},
+ floorCost500(s,p,c,base){if(c.type!=='creature'||c.crossing)return base;const minimum=c.g211Sympathy?.minimum;if(minimum>=3)base=Math.min(base,Math.max(minimum,base-sympathyAmount500(s,p,c)));const amounts=floorOptions500(s,p,c),aura=c.g500Amount===undefined?amounts[0]:amounts.includes(c.g500Amount)?c.g500Amount:0,n=aura+(c.g212CountDiscount?.minimum===2?countDiscountMax499(s,p,c):0)+(c.g211Sympathy?.minimum===2?sympathyAmount500(s,p,c):0);return n?Math.min(base,Math.max(2,base-n)):base;},
  beginPayment499(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g499Handled||c.type!=='creature'||!c.g212CountDiscount?.optional||!countDiscountMax499(s,p,c)||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PayCount499',p,c.id,{c:payment,args}));return true;},
  beginPayment485(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g485Handled||!spellReductionMax485(s,p,c)||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PaySpell485',p,c.id,{c:payment,args}));return true;},
  beginPayment470(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g470Handled||!c.g470RevealReduction||!revealCards470(s,p,c).length)return false;put(s,task('g34_RevealPayment470',p,c.id,{c,args,revealed:null}));return true;},
@@ -5939,6 +5939,7 @@ export function createSixPhotoRules(api){
   if(c.g34Role==='engels'&&s.g34ShieldLeftTurn!==s.turn)return false;
   if(c.g34Role==='perfect'&&api.power(x,false,s)>0)return false;
   if(c.g619Stay&&ownCondition(s,p,c.g619Stay,x.uid,x.incarnation||0))return false;
+  if(c.g1135CrossedStay&&crossedCount728(s,x)>=c.g1135CrossedStay)return false;
   if(!x.sealed&&c.neoEvolution&&api.isEvolution(x)&&api.allLayers(x).length>=3&&
    s.players[p].battle.some(y=>!y.sealed&&card(y).g1132NeoStay&&effective(y,s).g1132NeoStay)&&
    (context.battlePower??currentPower506(s,x))>0)return false;

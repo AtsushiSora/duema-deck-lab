@@ -223773,15 +223773,139 @@
       ],
       "supportBatch": "phase-1134",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex1-N013",
+      "name": "“絶闘乱襲”ブランド",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "ビートジョッキー/超化獣",
+      "text": "このクリーチャーが出た時、自分の手札を１枚マナゾーンに置いてもよい。\nこのクリーチャーが出たターンの間、クリーチャーを１体、自分のマナゾーンから召喚してもよい。\nZラッシュ（シールドが離れたら、次の自分のターンのはじめまで、このクリーチャーのハイパーモードを解放する）\n【ハイパーモード】\nこのクリーチャーが出た時、自分の手札を１枚マナゾーンに置いてもよい。\nこのクリーチャーが出たターンの間、クリーチャーを１体、自分のマナゾーンから召喚してもよい。\nZラッシュ（シールドが離れたら、次の自分のターンのはじめまで、このクリーチャーのハイパーモードを解放する）\nスピードアタッカー\nこのクリーチャーが攻撃する時、自分の手札がなければカードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-N013",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "mana",
+          "n": 1,
+          "optional": true,
+          "g182HandMana": true
+        }
+      ],
+      "g450ZoneSummon": {
+        "origin": "mana",
+        "filter": {
+          "creature": true
+        },
+        "entryTurn": true
+      },
+      "zRush": true,
+      "hyper": {
+        "power": 5000,
+        "speedAttacker": true,
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "hand",
+                "max": 0
+              }
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1135",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex1-N001",
+      "name": "バザガベルグ・閃光・ドラゴン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "アーマード・ドラゴン/サムライ",
+      "text": "ブロッカー ブロッカー\nW・ブレイカー\n侍流ジェネレート（このクリーチャーが出た時、クロスギアを１つ、自分の手札からコストを支払わずにジェネレートしてもよい）\nこのクリーチャーが出た時、自分のクロスギアを好きな数、コストを支払わずに自分のクリーチャーにクロスしてもよい。\nこのクリーチャーにクロスギアが４つ以上クロスされていれば、このクリーチャーは離れない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-N001",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "samuraiGenerate": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "FreeCross927",
+          "g1135Many": true
+        }
+      ],
+      "g1135CrossedStay": 4,
+      "supportBatch": "phase-1135",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex1-N005",
+      "name": "星龍ゴージャス・アース",
+      "civ": "光/水/闇/火/自然",
+      "civilizations": [
+        "光",
+        "水",
+        "闇",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 25,
+      "power": 25000,
+      "race": "ワールド・ドラゴン",
+      "text": "ゴージャス・シンパシー：自分のドラゴン・クリーチャー（このカードの実行コストを、自分のドラゴン・クリーチャー１体につき５少なくする。ただしコストは４以下にならない）\nスピードアタッカー\nマッハファイター\nジャストダイバー\nスレイヤー\nドラゴン・ワールド・ブレイカー（このクリーチャーは相手のシールドをすべてブレイクする。各ブレイクの前に、自分の山札の上から１枚をシールド化するか、表向きにしてから自分のシールド１つの上に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-N005",
+      "limit": 4,
+      "g211Sympathy": {
+        "amount": 5,
+        "minimum": 5,
+        "filter": {
+          "creature": true,
+          "race": "ドラゴン"
+        }
+      },
+      "speedAttacker": true,
+      "machFighter": true,
+      "justDiver": true,
+      "slayer": true,
+      "g1021WorldBreaker": true,
+      "g1135DragonWorld": true,
+      "supportBatch": "phase-1135",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1134,
+    "phase": 1135,
     "checkedAt": "2026-11-13",
-    "baseCount": 7388,
+    "baseCount": 7391,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7391,
+    "totalCount": 7394,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -243678,6 +243802,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7388,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1134,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7388,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7391,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

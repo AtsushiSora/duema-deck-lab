@@ -6184,6 +6184,36 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1135&&d?.status==='complete'&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText),back=d.faces[1];
+  const prints=n=>['dm26ex1-N'+n,'dm26ex1-SECN'+n,'dm26ex1-SECN'+n+'CHO'].includes(d.id);
+  if(prints('013')&&d.faces.length===2&&back.typeText==='クリーチャー'){
+   const reminder='(シールドが離れたら次の自分のターンのはじめまでこのクリーチャーのハイパーモードを解放する)';
+   const common='このクリーチャーが出た時自分の手札を1枚マナゾーンに置いてもよい。'+
+    'このクリーチャーが出たターンの間クリーチャーを1体自分のマナゾーンから召喚してもよい。Zラッシュ';
+   if(text.replace(reminder,'')===common&&normalize(back.abilityText).replace(reminder,'')===common+
+    'スピードアタッカーこのクリーチャーが攻撃する時自分の手札がなければカードを1枚引く。')
+    return {effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'hand',to:'mana',n:1,optional:true,g182HandMana:true}],
+     g450ZoneSummon:{origin:'mana',filter:{creature:true},entryTurn:true},zRush:true,
+     hyper:{power:Number(back.powerText),speedAttacker:true,g34Attack:[
+      {op:'IfOwn',filter:{g334ZoneCount:{zone:'hand',max:0}},defs:[{op:'Draw',n:1}]}
+     ]}};
+  }
+  if(prints('001')&&d.faces.length===1&&text.replace(
+   '(このクリーチャーが出た時クロスギアを1つ自分の手札からコストを支払わずにジェネレートしてもよい)','')===
+   'ブロッカーブロッカーW・ブレイカー侍流ジェネレート'+
+   'このクリーチャーが出た時自分のクロスギアを好きな数コストを支払わずに自分のクリーチャーにクロスしてもよい。'+
+   'このクリーチャーにクロスギアが4つ以上クロスされていればこのクリーチャーは離れない。')
+   return {blocker:true,breaker:2,samuraiGenerate:true,effect:'sixPhoto',
+    g34Tasks:[{op:'FreeCross927',g1135Many:true}],g1135CrossedStay:4};
+  if(prints('005')&&d.faces.length===1&&text.replace(
+   '(このカードの実行コストを自分のドラゴン・クリーチャー1体につき5少なくする。ただしコストは4以下にならない)','').replace(
+   '(このクリーチャーは相手のシールドをすべてブレイクする。各ブレイクの前に自分の山札の上から1枚をシールド化するか表向きにしてから自分のシールド1つの上に置く)','')===
+   'ゴージャス・シンパシー:自分のドラゴン・クリーチャー'+
+   'スピードアタッカーマッハファイタージャストダイバースレイヤードラゴン・ワールド・ブレイカー')
+   return {g211Sympathy:{amount:5,minimum:5,filter:{creature:true,race:'ドラゴン'}},
+    speedAttacker:true,machFighter:true,justDiver:true,slayer:true,g1021WorldBreaker:true,g1135DragonWorld:true};
+ }
  if(phase>=1134&&d?.status==='complete'){
   const text=normalize(f.abilityText),spell=d.faces[1];
   const prints=n=>['dm26ex1-N'+n,'dm26ex1-SECN'+n].includes(d.id);

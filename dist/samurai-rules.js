@@ -44,8 +44,12 @@ export function createSamuraiRules(api){
  case'g18_Maroku':{const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation);if(x&&api.isCreature(s,x)&&attached(s,t.p,x).length)put(s,{...t,op:'g18_Mekraid',maroku:true});break;}
  case'g18_ChooseFreeCross927':{
   const hosts=creatures(s,t.p);
-  const rows=gears(s,t.p).filter(g=>!g.sealed&&!g.faceDown&&hosts.some(x=>!x.sealed&&live(s,t.p,g)?.uid!==x.uid));
-  choice(s,t,'無料でクロスする自分のクロスギアを選ぶ',rows.map(g=>opt(card(g).name,{uid:g.uid,incarnation:g.incarnation||0},live(s,t.p,g)?5:15,g.cardId)));
+  const rows=gears(s,t.p).filter(g=>!g.sealed&&!g.faceDown&&!(t.crossed1135||[]).includes(g.uid)&&
+   hosts.some(x=>!x.sealed&&live(s,t.p,g)?.uid!==x.uid));
+  if(!rows.length)break;
+  const options=rows.map(g=>opt(card(g).name,{uid:g.uid,incarnation:g.incarnation||0},live(s,t.p,g)?5:15,g.cardId));
+  if(t.g1135Many)options.push(skip());
+  choice(s,t,'無料でクロスする自分のクロスギアを選ぶ',options);
   break;
  }
  case'g18_FreeCross':{
@@ -83,7 +87,10 @@ export function createSamuraiRules(api){
  case'g18_ChooseFreeCross927':if(v)put(s,{...t,op:'g18_FreeCross',gear:v.uid,gearInc:v.incarnation,required927:true});break;
  case'g18_FreeCross':if(v){
   const g=own.battle.find(x=>x.uid===t.gear&&(x.incarnation||0)===t.gearInc),x=own.battle.find(x=>x.uid===v);
-  if(g&&x&&api.isCreature(s,x)&&(!t.required927||!g.sealed&&!g.faceDown&&!x.sealed&&live(s,t.p,g)?.uid!==x.uid))cross(s,t.p,g,x);
+  if(g&&x&&api.isCreature(s,x)&&(!t.required927||!g.sealed&&!g.faceDown&&!x.sealed&&live(s,t.p,g)?.uid!==x.uid)){
+   cross(s,t.p,g,x);
+   if(t.g1135Many)put(s,{...t,op:'g18_ChooseFreeCross927',crossed1135:[...(t.crossed1135||[]),g.uid]});
+  }
  }break;
  default:throw Error('未実装のサムライ選択：'+t.op);
  }return true;}
