@@ -303,7 +303,7 @@ export function effectiveCard(inst,context,forPower=false){
  if(c.g911BlockColors)c={...c,blocker:true,g911ColorBlockOnly:!c.blocker};
  return c;
 }
-export const playFaces=c=>c.g393JWDFaces?c.g393JWDFaces.map(f=>({id:c.id,limit:c.limit,...f})):c.spellFace?[c,{id:c.id,limit:c.limit,...c.spellFace}]:[c];
+export const playFaces=c=>c.g393JWDFaces?c.g393JWDFaces.map(f=>({id:c.id,limit:c.limit,...f})):c.spellFace?[c.spellFrontName?{...c,name:c.spellFrontName}:c,{id:c.id,limit:c.limit,...c.spellFace}]:[c];
 const executionCard=c=>c.g39InGrave?{...c,civilizations:card(c.id).civilizations,civ:card(c.id).civ,g39InGrave:false}:c;
 const graveLockSpell614=c=>c.type==='spell'&&civilizations(c).some(color=>color==='光'||color==='自然');
 function graveNameSpellBlocked614(s,p,c){

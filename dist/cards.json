@@ -217825,15 +217825,303 @@
       ],
       "supportBatch": "phase-1100",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-127",
+      "name": "超次元エナジー・ホール / 超次元サプライズ・ホール",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "カードを１枚引く。\n水のコスト７以下のサイキック・クリーチャーを１体、または、コストの合計が５以下になるように好きな数のサイキック・クリーチャーを選び、自分の超次元ゾーンから出す。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）\n【呪文面】\nS・トリガー S・トリガー\nコスト２以下のサイキック・クリーチャー１体、または、コスト４以下の光または水のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-127",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "合計コスト5以下のサイキックを好きな数出す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "extra",
+                  "deploy": true,
+                  "n": "all",
+                  "filter": {
+                    "g1085Psychic": true
+                  },
+                  "optional": true,
+                  "g550CostBudget": 5,
+                  "title": "超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ"
+                }
+              ]
+            },
+            {
+              "label": "コスト7以下の水のサイキックを1体出す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "extra",
+                  "deploy": true,
+                  "n": 1,
+                  "filter": {
+                    "g1085Psychic": true,
+                    "max": 7,
+                    "color": "水"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "spellFrontName": "超次元エナジー・ホール",
+      "spellFace": {
+        "name": "超次元サプライズ・ホール",
+        "type": "spell",
+        "cost": 3,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "コスト2以下のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "コスト4以下の光・水のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 4,
+                      "any": [
+                        {
+                          "color": "光"
+                        },
+                        {
+                          "color": "水"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1101",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-112",
+      "name": "轟速 ザ・レッド / 超次元キル・ホール",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ソニック・コマンド/侵略者",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\n【呪文面】\n相手の、「ブロッカー」を持つパワー4000以下のクリーチャーを１体、破壊する。\nコスト２以下のサイキック・クリーチャー１体、または、コスト４以下の、火または自然のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-112",
+      "limit": 4,
+      "speedAttacker": true,
+      "spellFace": {
+        "name": "超次元キル・ホール",
+        "type": "spell",
+        "cost": 3,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "spell": true,
+            "filter": {
+              "blocker": true,
+              "maxPower": 4000,
+              "g199Power": true
+            },
+            "title": "破壊するパワー4000以下の相手ブロッカーを1体選ぶ"
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "コスト2以下のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "コスト4以下の火・自然のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 4,
+                      "any": [
+                        {
+                          "color": "火"
+                        },
+                        {
+                          "color": "自然"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1101",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmpcd03-a12",
+      "name": "超次元オーフレイム・ホール",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "火のコスト５以下のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd03-a12",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 5,
+            "color": "火"
+          }
+        }
+      ],
+      "supportBatch": "phase-1101",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx05-016",
+      "name": "超次元シャチホコ・ホール",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n次の相手のターン中、自分のエイリアンは攻撃されない。\nコスト７以下のエイリアン・サイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx05-016",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "race": "エイリアン"
+          },
+          "spell": true,
+          "g521NextOpponentTurn": true,
+          "g565External": true,
+          "grant": {
+            "cannotBeAttacked": true
+          }
+        },
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 7,
+            "race": "エイリアン"
+          }
+        }
+      ],
+      "supportBatch": "phase-1101",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1100,
+    "phase": 1101,
     "checkedAt": "2026-11-13",
-    "baseCount": 7269,
-    "newEffectCards": 3,
+    "baseCount": 7272,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7272,
+    "totalCount": 7276,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -237322,6 +237610,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7269,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1100,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7269,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7272,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

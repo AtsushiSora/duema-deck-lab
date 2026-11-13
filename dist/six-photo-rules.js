@@ -980,13 +980,16 @@ export function createSixPhotoRules(api){
  function externalProtection565(s,x){
   const protection={};
   for(const l of s.extLimits||[])
-   if(l.kind==='g521Grant'&&l.g565External&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation))
+   if(l.kind==='g521Grant'&&l.g565External&&l.active!==false&&
+      (l.startsPlayer===undefined||l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}))&&
+      api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation))
     Object.assign(protection,l.grant);
   return protection;
  }
  function applyGrant(s,t,y){
-  if(t.g521UntilStart)(s.extLimits??=[]).push({
-   kind:'g521Grant',ref:{uid:y.uid,incarnation:y.incarnation||0},grant:t.grant,expires:'start',who:t.p,
+  if(t.g521UntilStart||t.g521NextOpponentTurn)(s.extLimits??=[]).push({
+   kind:'g521Grant',ref:{uid:y.uid,incarnation:y.incarnation||0},grant:t.grant,
+   ...(t.g521NextOpponentTurn?{startsPlayer:1-t.p,active:false,expires:'end',who:1-t.p}:{expires:'start',who:t.p}),
    ...(t.g565External?{g565External:true}:{}),
    ...(t.g1058FollowUnit?{g1058FollowUnit:true}:{}),
    ...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})
@@ -5258,7 +5261,7 @@ export function createSixPhotoRules(api){
   })}];
  });return [...delayed537,...generic,...grave,...active(s,p,'engels').filter(()=>!s.g7TerminalUsed?.[p]).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Custom',p,x.cardId,{name:'engelsTerminal',uid:x.uid,incarnation:x.incarnation||0})}))];},
  active,
- decorate(s,p,x,c){if(!s||p<0||c.type!=='creature')return c;const d={},own=s.players[p];if(c.g756TurboRush==='unblockable'&&turboReady756(s,p,x))d.unblockable=true;for(const l of s.extLimits||[])if(l.kind==='g521Grant'&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}))&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation))Object.assign(d,l.grant);if(c.g225AttackRequires&&!attackConditionReading481.has(s)){let ready;attackConditionReading481.add(s);try{ready=attackCondition225(s,p,c.g225AttackRequires,x);}finally{attackConditionReading481.delete(s);}if(!ready)d.noAttack=true;}if(race(c,'コマンド')&&active(s,p,'scarlet').length)d.speedAttacker=true;if(ninja(c)&&active(s,p,'dororon').length)d.blocker=true;if(active(s,p,'fallenMantra').length)d.slayer=true;if(c.g899AttackSlayerMax!==undefined&&s.attack?.attacker===x.uid){
+ decorate(s,p,x,c){if(!s||p<0||c.type!=='creature')return c;const d={},own=s.players[p];if(c.g756TurboRush==='unblockable'&&turboReady756(s,p,x))d.unblockable=true;for(const l of s.extLimits||[])if(l.kind==='g521Grant'&&l.active!==false&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}))&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation))Object.assign(d,l.grant);if(c.g225AttackRequires&&!attackConditionReading481.has(s)){let ready;attackConditionReading481.add(s);try{ready=attackCondition225(s,p,c.g225AttackRequires,x);}finally{attackConditionReading481.delete(s);}if(!ready)d.noAttack=true;}if(race(c,'コマンド')&&active(s,p,'scarlet').length)d.speedAttacker=true;if(ninja(c)&&active(s,p,'dororon').length)d.blocker=true;if(active(s,p,'fallenMantra').length)d.slayer=true;if(c.g899AttackSlayerMax!==undefined&&s.attack?.attacker===x.uid){
   // QA39683: blocking replaces the creature being attacked for this continuous ability.
   const target=s.players[1-p].battle.find(y=>y.uid===(s.attack.blockUid||s.attack.target));
   if(target&&!target.sealed&&api.isCreature(s,target)&&cost(effective(target,s))<=c.g899AttackSlayerMax){d.g208SlayerCount=(c.g208SlayerCount||Number(!!(c.slayer||d.slayer)))+1;d.slayer=true;}

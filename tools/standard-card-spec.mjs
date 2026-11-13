@@ -6160,6 +6160,14 @@ export function standardCardSpec(d,{phase=165}={}){
    'このクリーチャーが攻撃する時バトルゾーンにあるクロスギアを1枚選び持ち主の墓地に置く。クロスギアがバトルゾーンから墓地に置かれた時カードを1枚引いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
    return {breaker:2,g34Attack:[{op:'Target',element:true,anyOwner:true,filter:{g201Gear:true},to:'grave',title:'墓地に置くクロスギアを1枚選ぶ'}],g933GearGraveDraw:true};
  }
+ if(phase>=1101&&d?.status==='complete'&&d.faces.length===2&&['dm22ex1-112','dm22ex1-127','dm25ex4-T23','dm25ex4-T28'].includes(d.id)){
+  const back=d.faces[1];
+  const front=standardCardSpec({...d,faces:[f]},{phase});
+  const spell=standardCardSpec({...d,faces:[back]},{phase});
+  return {...front,...(f.typeText==='呪文'?{spellFrontName:f.name}:{}),spellFace:{
+   name:back.name,type:'spell',cost:back.cost,civ:back.civilizationText,civilizations:back.civilizations,race:back.race,...spell
+  }};
+ }
  if(phase>=1099&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
   const text=normalize(f.abilityText).replace(/[▶▼︎]/gu,'')
    .replace(/\(ゲーム開始時サイキック・クリーチャーは山札には含めず自[分身]の超次元ゾーンに置きバトルゾーン以外のゾーンに行った場合そこに戻す\)$/,'');
@@ -6185,17 +6193,23 @@ export function standardCardSpec(d,{phase=165}={}){
    ...(phase>=1100?[{ids:['dm36-085','dmx03-031','dmx08-028','dmex08-298'],color:'水',
     printed:'カードを1枚引く。',task:{op:'Draw',n:1}}]:[])
   ];
-  const hole=holes.find(row=>row.ids.includes(d.id));
-  if(hole&&common===hole.printed+choose+group+
-   'コスト7以下の'+hole.color+'のサイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。')
+  const twinEnergy=phase>=1101&&(
+   d.id==='dm22ex1-127'&&text==='カードを1枚引く。水のコスト7以下のサイキック・クリーチャーを1体またはコストの合計が5以下になるように好きな数のサイキック・クリーチャーを選び自分の超次元ゾーンから出す。'||
+   d.id==='dm25ex4-T28'&&text==='カードを1枚引く。水のコスト7以下のサイキック・クリーチャーを1体またはコストの合計が5以下になるようにサイキック・クリーチャーを好きな数自分の超次元ゾーンから出す。'
+  );
+  const hole=holes.find(row=>row.ids.includes(d.id))||(twinEnergy?holes.at(-1):null);
+  if(hole&&(twinEnergy||common===hole.printed+choose+group+
+   'コスト7以下の'+hole.color+'のサイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。'))
    return {effect:'sixPhoto',g34Tasks:[hole.task,modes(
     {label:'合計コスト5以下のサイキックを好きな数出す',defs:[deploy({},{n:'all',optional:true,g550CostBudget:5,
      title:'超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ'})]},solo(hole.color))]};
-  if(['dm37-039','dmx02-032','dmex08-167','promoy25-125'].includes(d.id)){
+  if(['dm37-039','dmx02-032','dmex08-167','promoy25-125'].includes(d.id)||phase>=1101&&['dm22ex1-127','dm25ex4-T28'].includes(d.id)){
    const printed=text.replace(/^S・トリガー(?:S・トリガー)?(?:\(この(?:呪文|カード)を(?:自分の)?シールドゾーンから手札に加える時コストを支払わずにすぐ(?:唱えて|実行して)もよい\))?/,'');
    const old=/^次のうちいずれか(?:ひとつ|1つ)を選ぶ。コスト2以下のサイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。(?:コスト4以下の光または水|光または水のコスト4以下)のサイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。$/;
    const current='コスト2以下のサイキック・クリーチャー1体または光または水のコスト4以下のサイキック・クリーチャーを1体自分の超次元ゾーンから出す。';
-   if(printed!==text&&(old.test(printed)||printed===current))return {trigger:true,effect:'sixPhoto',g34Tasks:[modes(
+   const twin=phase>=1101&&d.id==='dm22ex1-127'&&printed===
+    'コスト2以下のサイキック・クリーチャー1体またはコスト4以下の光または水のサイキック・クリーチャーを1体自分の超次元ゾーンから出す。';
+   if(printed!==text&&(old.test(printed)||printed===current||twin))return {trigger:true,effect:'sixPhoto',g34Tasks:[modes(
     {label:'コスト2以下のサイキックを1体出す',defs:[deploy({max:2})]},
     {label:'コスト4以下の光・水のサイキックを1体出す',defs:[deploy({max:4,any:[{color:'光'},{color:'水'}]})]}
    )]};
@@ -6210,7 +6224,11 @@ export function standardCardSpec(d,{phase=165}={}){
     {label:'コスト4以下の火・自然のサイキックを1体出す',defs:[deploy({max:4,any:[{color:'火'},{color:'自然'}]})]}
    );
    const kill='相手の「ブロッカー」を持つパワー4000以下のクリーチャーを1体破壊する。';
-   if(['dm37-049','dmx03-042','dmex17-129','dmpcd03-a14'].includes(d.id)&&[kill+tail,kill+modernTail].includes(text))
+   const twinKill=phase>=1101&&(
+    d.id==='dm22ex1-112'&&text===kill+'コスト2以下のサイキック・クリーチャー1体またはコスト4以下の火または自然のサイキック・クリーチャーを1体自分の超次元ゾーンから出す。'||
+    d.id==='dm25ex4-T23'&&text==='相手のパワー4000以下の「ブロッカー」を持つクリーチャーを1体選び破壊する。コスト2以下のサイキック・クリーチャー1体または火または自然のコスト4以下のサイキック・クリーチャーを1体自分の超次元ゾーンから出す。'
+   );
+   if(twinKill||['dm37-049','dmx03-042','dmex17-129','dmpcd03-a14'].includes(d.id)&&[kill+tail,kill+modernTail].includes(text))
     return {effect:'sixPhoto',g34Tasks:[
      {op:'Target',to:'grave',spell:true,filter:{blocker:true,maxPower:4000,g199Power:true},
       title:'破壊するパワー4000以下の相手ブロッカーを1体選ぶ'},smallModes
@@ -6220,6 +6238,17 @@ export function standardCardSpec(d,{phase=165}={}){
     return {effect:'sixPhoto',g34Tasks:[
      {op:'GroupPower',owner:'self',spell:true,power:1000},
      {op:'GroupGrant364',owner:'self',spell:true,grant:{g725NoBlockMaxPower:3000}},smallModes
+    ]};
+  }
+  if(phase>=1101){
+   if(d.id==='dmpcd03-a12'&&text==='火のコスト5以下のサイキック・クリーチャーを1体自分の超次元ゾーンから出す。')
+    return {effect:'sixPhoto',g34Tasks:[deploy({max:5,color:'火'})]};
+   if(d.id==='dmx05-016'&&text==='マナゾーンに置く時このカードはタップして置く。'+
+    '次の相手のターン中自分のエイリアンは攻撃されない。'+
+    'コスト7以下のエイリアン・サイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。')
+    return {effect:'sixPhoto',g34Tasks:[
+     {op:'GroupGrant364',owner:'self',filter:{race:'エイリアン'},spell:true,g521NextOpponentTurn:true,g565External:true,grant:{cannotBeAttacked:true}},
+     deploy({max:7,race:'エイリアン'})
     ]};
   }
  }
