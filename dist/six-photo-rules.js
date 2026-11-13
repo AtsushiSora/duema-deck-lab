@@ -1896,6 +1896,28 @@ export function createSixPhotoRules(api){
  case'g34_TargetDestination467':targetDestination467(s,t);break;
  case'g34_NullBreaker471':break;
  case'g34_PayAura560':payAura560(s,t);break;
+ case'g34_DestroySummon1148':{
+  const origin=t.origin,p=t.p,cardInZone=own[origin].find(y=>y.uid===t.uid);
+  const c=cardInZone&&api.zoneCard(s,p,cardInZone,origin);
+  const rule=c?.g1148DestroySummon;
+  if(!rule)break;
+  if(t.payment){
+   cast(s,p,t.uid,false,null,0,t.payment,origin,'破壊を伴う召喚',false,t.permit);
+   break;
+  }
+  const plan=destroySummon1148(s,p,cardInZone,origin);
+  if(!plan||!plan.permits.includes(t.permit))break;
+  const remaining=plan.rows.filter(y=>!t.selected.includes(y.uid));
+  if(t.selected.length===rule.count){
+   put(s,{...t,payment:{...plan.payment,cost:plan.amount,fixedPayment:true}});
+   move(s,t.selected.map(uid=>({player:p,uid,to:'grave',destroy:true,toOwnerGrave:true,controller:p,
+    ...(!rule.reduction?{replacement:true}:{})})));
+  }else if(remaining.length>=rule.count-t.selected.length){
+   choice(s,t,'召喚のため破壊する自分のクリーチャーを選ぶ（'+t.selected.length+'/'+rule.count+'）',
+    [...remaining.map(y=>opt(card(y).name,y.uid,-cost(effective(y,s)),y.cardId)),opt('召喚をやめる',null,-1000)]);
+  }
+  break;
+ }
  case'g34_PayFloor500':payFloor500(s,t);break;
  case'g34_PayCount499':payCount499(s,t);break;
  case'g34_TapCast976':{
@@ -4739,6 +4761,7 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_PayAura560':if(typeof v==='number'){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),g560Handled:true,g560Amount:v};api.cast(s,t.p,...args);}break;
+ case'g34_DestroySummon1148':if(v)put(s,{...t,selected:[...t.selected,v]});break;
  case'g34_PayFloor500':if(typeof v==='number'){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),g500Handled:true,g500Amount:v};api.cast(s,t.p,...args);}break;
  case'g34_PayCount499':if(typeof v==='number'){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),g499Handled:true,g499Reduction:v};api.cast(s,t.p,...args);}break;
  case'g34_TapCast976':if(v)put(s,{...t,selected:[...t.selected,v]});break;
@@ -6967,6 +6990,16 @@ export function createSixPhotoRules(api){
      out.push({kind:'play',uid:x.uid,face,cardId:x.cardId,origin:'hand',cost:0,manaPermit:permit,
       freeSummon:'アルケミック・プラチナム',label:c.name+'をアルケミック・プラチナムで実行'});
   }
+  for(const origin of ['hand','mana','grave'])for(const x of own[origin]){
+   if(x.faceDown||!card(x).g1148DestroySummon)continue;
+   const plan=destroySummon1148(s,p,x,origin);
+   if(!plan)continue;
+   const {c,rule,amount,permits}=plan;
+   const zone=origin==='grave'?'墓地から':origin==='mana'?'マナから':'';
+   for(const permit of permits)out.push({kind:'play',alternative:'sixPhoto',role:'destroySummon1148',
+    uid:x.uid,cardId:x.cardId,origin,manaPermit:permit,cost:amount,
+    label:c.name+'を'+zone+'召喚（自分の'+rule.count+'体を破壊'+(amount?'・'+amount+'マナ':'')+'）'});
+  }
   // Alternative payment changes neither printed civilizations nor zone permissions.
   for(const origin of['hand','mana','grave'])for(const x of own[origin]){
    const c=api.zoneCard(s,p,x,origin),payment=tapCastCost976(c);
@@ -7005,6 +7038,10 @@ export function createSixPhotoRules(api){
   }
 for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand')||c.type==='creature'&&!api.canEnter(s,p,c,{origin:'hand',execution:true}))continue;let okay=false;if(r==='sirius')okay=creatures(s,p).filter(y=>angel(effective(y,s))&&!y.tapped&&api.canUntap(y)).length>=5;if(r==='zero')okay=own.hand.filter(y=>y!==x&&colors(card(y)).includes('闇')).length>=3&&creatures(s,p).filter(y=>colors(effective(y,s)).includes('闇')&&api.canLeave(s,p,y)).length>=3;if(r==='reiai')okay=own.battle.filter(y=>api.canLeave(s,p,y)).length>=2&&api.canPay(s,p,{cost:5,civilizations:['光','闇','自然'],fixedPayment:true});if(okay)out.push({kind:'play',alternative:'sixPhoto',uid:x.uid,cardId:x.cardId,role:r,label:c.name+'を代替コストで使う',cost:r==='reiai'?5:0});}return out;},
  alternative(s,p,a){
+  if(a.role==='destroySummon1148'){
+   put(s,task('g34_DestroySummon1148',p,a.cardId,{uid:a.uid,origin:a.origin,permit:a.manaPermit??null,selected:[]}));
+   return;
+  }
   if(a.role==='tapCast976'){
    put(s,task('g34_TapCast976',p,a.cardId,{uid:a.uid,origin:a.origin,permit:a.manaPermit??null,selected:[]}));
    return;
@@ -7039,6 +7076,22 @@ for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand
    return raw.type==='seed'||raw.seedCreature||raw.natureAce4;
   }):creatures(s,p);
   return eligible.filter(x=>!x.sealed&&!x.faceDown&&!x.tapped&&colors(effective(x,s,true)).includes(color));
+ }
+ function destroySummon1148(s,p,x,origin){
+  const c=api.zoneCard(s,p,x,origin),rule=c.g1148DestroySummon,own=s.players[p];
+  if(!rule||rule.origin&&rule.origin!==origin||own.shields.length<(rule.minShields??0)||
+   !api.canCast(s,p,c,origin)||!api.canEnter(s,p,c,{origin,execution:true}))return null;
+  const permits=rule.origin===origin?[null]:[...new Set(api.costAltPermits568(s,p,x,c,origin))];
+  if(!permits.length||rule.reduction&&creatures(s,1-p).some(y=>!y.sealed&&effective(y,s).noCostReduction))return null;
+  const rows=creatures(s,p).filter(y=>!y.sealed&&(rule.reduction||
+   api.canLeave(s,p,y,{destroy:true})&&!hooks.destroySafe409(s,y)&&!hooks.zeroSafe(s,y)&&
+   !(effective(y,s).caddy&&api.manaMoveForbidden(s,p))));
+  if(rows.length<rule.count)return null;
+  const payment=rule.reduction?{g39Reduction:rule.reduction}:rule.cost===0?
+   {cost:0,g568PaymentColors:[],fixedPayment:true}:{cost:rule.cost,g568PaymentColors:['闇']};
+  const quote={...c,...payment,printedCost:c.cost,summonOrigin:origin,executionUid:x.uid};
+  if(!api.canPay(s,p,quote))return null;
+  return {c,rule,rows,permits,payment,amount:api.summonCost(s,p,quote)};
  }
  function hasAltPayment568(s,p,origin,r){
   return !!r&&(!r.origin||origin===r.origin)&&(!r.handOnly||origin==='hand'&&s.players[p].hand.length===1)&&(!r.condition||ownCondition(s,p,r.condition));

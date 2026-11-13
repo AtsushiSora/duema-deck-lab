@@ -225329,15 +225329,121 @@
       },
       "supportBatch": "phase-1147",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-012",
+      "name": "煉獄の悪魔龍 フォーエバー・オカルト",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 9000,
+      "race": "デーモン・コマンド・ドラゴン",
+      "text": "コストを支払うかわりに自分のクリーチャーを３体破壊して、このクリーチャーを召喚してもよい。\nこのクリーチャーが攻撃する時、クリーチャーを１体、自分の墓地から手札に戻す。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-012",
+      "limit": 4,
+      "breaker": 2,
+      "g1148DestroySummon": {
+        "count": 3,
+        "cost": 0
+      },
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "filter": {
+            "g228Face": {
+              "type": "creature"
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-1148",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-036",
+      "name": "熱血の星夜 アバター・イン・ザ・ラブ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "エンジェル・コマンド/アンノウン",
+      "text": "このクリーチャーを召喚する時、自分のクリーチャーを１体破壊してもよい。そうしたら、このクリーチャーの召喚コストを４少なくする。\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-036",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g1148DestroySummon": {
+        "count": 1,
+        "reduction": 4
+      },
+      "supportBatch": "phase-1148",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp1-S005",
+      "name": "冥幽のU ブライゼジェネレイド",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 9000,
+      "race": "ドラゴン・ゾンビ",
+      "text": "自分のシールドが２つ以上あれば、自分のクリーチャーを１体破壊し、[dd03]支払って、このクリーチャーを自分の墓地から召喚してもよい。\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、このクリーチャーは自分のシールドを２つブレイクする。\n自分のクリーチャーが破壊された時、このクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-S005",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g1148DestroySummon": {
+        "count": 1,
+        "cost": 3,
+        "origin": "grave",
+        "minShields": 2
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Break497",
+          "owner": "self",
+          "n": 2,
+          "g747CreatureBreak": true,
+          "g913DepartedBreaker": true
+        }
+      ],
+      "g303DeathWatch": {
+        "self": true,
+        "g891LookBackSelf": true,
+        "defs": [
+          {
+            "op": "Untap",
+            "g191First": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1148",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1147,
+    "phase": 1148,
     "checkedAt": "2026-11-14",
-    "baseCount": 7428,
+    "baseCount": 7431,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7431,
+    "totalCount": 7434,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -245390,6 +245496,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7428,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1147,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7428,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7431,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

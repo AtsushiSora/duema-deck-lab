@@ -6184,6 +6184,30 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1148&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const lines=f.abilityText.split('\n').map(normalize);
+  const [first]=lines;
+  const wBreaker=line=>/^W・ブレイカー(?:\(このクリーチャーはシールドを2[枚つ]ブレイクする\))?$/.test(line);
+  if(['dmr14-012','dmex16-049','promoy13-049'].includes(d.id)&&lines.length===3&&[
+   'コストを支払うかわりに自分のクリーチャーを3体破壊してこのクリーチャーを召喚してもよい。',
+   '自分のクリーチャーを3体破壊してコストを支払わずにこのクリーチャーを召喚してもよい。'
+  ].includes(first)&&lines.some(wBreaker)&&
+   lines.includes('このクリーチャーが攻撃する時クリーチャーを1体自分の墓地から手札に戻す。'))
+   return {breaker:2,g1148DestroySummon:{count:3,cost:0},
+    g34Attack:[{op:'Select',origin:'grave',to:'hand',n:1,filter:{g228Face:{type:'creature'}}}]};
+  if(d.id==='dm26rp2-036'&&lines.length===3&&wBreaker(lines[2])&&
+   first==='このクリーチャーを召喚する時自分のクリーチャーを1体破壊してもよい。そうしたらこのクリーチャーの召喚コストを4少なくする。'&&
+   lines[1]==='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)')
+   return {blocker:true,breaker:2,g1148DestroySummon:{count:1,reduction:4}};
+  if(['dm26rp1-S005','dm26rp1-SEC006'].includes(d.id)&&lines.length===5&&
+   first==='自分のシールドが2つ以上あれば自分のクリーチャーを1体破壊し[dd03]支払ってこのクリーチャーを自分の墓地から召喚してもよい。'&&
+   lines[1]==='ブロッカーブロッカー'&&wBreaker(lines[2])&&
+   lines[3]==='このクリーチャーが出た時このクリーチャーは自分のシールドを2つブレイクする。'&&
+   lines[4]==='自分のクリーチャーが破壊された時このクリーチャーをアンタップする。')
+   return {blocker:true,breaker:2,g1148DestroySummon:{count:1,cost:3,origin:'grave',minShields:2},
+    effect:'sixPhoto',g34Tasks:[{op:'Break497',owner:'self',n:2,g747CreatureBreak:true,g913DepartedBreaker:true}],
+    g303DeathWatch:{self:true,g891LookBackSelf:true,defs:[{op:'Untap',g191First:true}]}};
+ }
  if(phase>=1147&&d?.status==='complete'&&f?.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dm26rp1-005'&&d.faces.length===1&&text===
