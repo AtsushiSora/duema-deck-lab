@@ -512,3 +512,20 @@ test('opening a public log card returns to the same filtered log and scroll posi
  for(const mobile of[true,false]){const s=setup();give(s,0,'battle',['dm01-108']);s.log.push({type:'play',player:0,turn:1,text:e.card('dm01-108').name+'が登場',cardId:'dm01-108'});const content={scrollTop:124},events={scrollTop:93},h=harness(s,{mobile,scrollers:{'#dialog .dialog-content':content,'.manual-side .manual-log-events':events}}),before=JSON.stringify(s);h.read("manualUI.logFilter='summon';manualUI.logLimit=40");await h.click('manual-log');await h.click('manual-log-card',{id:'dm01-108',logIndex:String(s.log.length-1)});assert.match(h.read('dialog.innerHTML'),/元のログに戻る/);await h.click('close-dialog');assert.equal(h.read('manualUI.logFilter'),'summon');assert.equal(h.read('manualUI.logLimit'),40);assert.equal(JSON.stringify(s),before);assert.equal(mobile?content.scrollTop:events.scrollTop,mobile?124:93);assert.equal(h.read('dialog.open'),mobile);
  }
 });
+
+test('mobile Gadget Charger rejects a number below six before accepting a custom number',async()=>{
+ const s=setup(),gadget='dm26ex1-N006';
+ give(s,0,'hand',[gadget]);
+ give(s,0,'deck',['dmex15-b032','dm01-108','dm01-097','dm01-108']);
+ const spell=e.getLegalActions(s).find(a=>a.kind==='play'&&a.face===1);
+ e.step(s,spell);
+ const input={value:'5'},h=harness(s,{mobile:true,scrollers:{'#manual-number':input}});
+ assert.match(h.root.innerHTML,/6以上の整数/);
+ const a=e.getLegalActions(s)[0];
+ await h.click('manual-number-submit',{index:String(a.id)});
+ assert.equal(s.decision.task.op,'g9Number');
+ input.value='13';
+ await h.click('manual-number-submit',{index:String(a.id)});
+ assert.equal(s.decision.task.op,'g34_LookPick');
+ assert.deepEqual(s.decision.choices.map(c=>c.cardId),['dmex15-b032']);
+});

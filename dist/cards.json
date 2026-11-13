@@ -223609,15 +223609,179 @@
       },
       "supportBatch": "phase-1133",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex1-N003",
+      "name": "大地無双 カイザー「勝」 / 勝利の大地",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ブルー・コマンド・ドラゴン/グリーン・コマンド・ドラゴン/ハンター",
+      "text": "ブロッカー ブロッカー\nこのクリーチャーが出た時、自分の山札の上から２枚をタップしてマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に戻す。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\nS・トリガー S・トリガー\nハンター・メクレイド10する。（自分の山札の上から３枚を見る。その中から、指定の種族で指定のコスト以下のカードを１枚、コストを支払わずに実行してもよい。残りを好きな順序で山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-N003",
+      "limit": 4,
+      "blocker": true,
+      "g40LastBurst": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 2,
+          "tapped": true,
+          "g809Together": true
+        },
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1
+        }
+      ],
+      "spellFace": {
+        "name": "勝利の大地",
+        "type": "spell",
+        "cost": 8,
+        "civ": "水/自然",
+        "civilizations": [
+          "水",
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "Raid767",
+            "race": "ハンター",
+            "max": 10
+          }
+        ]
+      },
+      "supportBatch": "phase-1134",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex1-N006",
+      "name": "ガチャンコ ガジェロボ / ガチャンコ・チャージャー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 9000,
+      "race": "グレートメカオー/侵略者",
+      "text": "{GS} G・ストライク\nW・ブレイカー\n相手のクリーチャーが出た時、自分のクリーチャーが３体以上あれば、そのターン、相手のクリーチャーは攻撃もブロックもできない。\n【呪文面】\n６以上の数字を１つ選ぶ。自分の山札の上から３枚を表向きにし、その中から、その選んだ数字と同じコストのカードを１枚手札に加える。残りを好きな順序で山札の下に置く。\nチャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-N006",
+      "limit": 4,
+      "gStrike": true,
+      "breaker": 2,
+      "g314OtherEntry": {
+        "who": "opponent",
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "min": 3,
+                "filter": {
+                  "creature": true
+                }
+              }
+            },
+            "defs": [
+              {
+                "op": "Freeze262",
+                "g190Freeze": "end",
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "spellFace": {
+        "name": "ガチャンコ・チャージャー",
+        "type": "spell",
+        "cost": 3,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "normalCharger": true,
+        "g34Tasks": [
+          {
+            "op": "DeclareSearchCost1134",
+            "min": 6
+          }
+        ]
+      },
+      "supportBatch": "phase-1134",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex1-N007",
+      "name": "ヨビニオン・コオニ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "デモニオ",
+      "text": "ヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）\n各ターン、自分の２体目のクリーチャーが出た時、自分の山札の上から３枚を墓地に置いてもよい。\nこのクリーチャーが離れた時、コスト５以上のクリーチャーを１体、自分の墓地から手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-N007",
+      "limit": 4,
+      "yobinion": true,
+      "g742SecondEntry": [
+        {
+          "op": "Mill",
+          "n": 3,
+          "optional": true,
+          "g1042Together": true
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "min": 5
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-1134",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1133,
+    "phase": 1134,
     "checkedAt": "2026-11-13",
-    "baseCount": 7384,
-    "newEffectCards": 4,
+    "baseCount": 7388,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7388,
+    "totalCount": 7391,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -243502,6 +243666,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7384,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1133,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7384,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7388,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

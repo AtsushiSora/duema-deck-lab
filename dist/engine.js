@@ -2672,7 +2672,7 @@ function declareAttack(s,p,a){
 function stepCore(s,action){
  const opts=getLegalActions(s);let a=typeof action==='number'?opts[action]:opts.find(x=>JSON.stringify(x)===JSON.stringify(action));
  // Only the declared number may differ from a legal template; all other fields stay validated.
- if(!a&&s.decision?.task?.op==='g9Number'&&(action?.number==='∞'||Number.isSafeInteger(action?.number)&&action.number>=0)){const template=opts.find(x=>JSON.stringify({...x,number:action.number})===JSON.stringify(action));if(template)a={...template,number:action.number};}
+ if(!a&&s.decision?.task?.op==='g9Number'&&(action?.number==='∞'||Number.isSafeInteger(action?.number)&&action.number>=(s.decision.task.minNumber??0))){const template=opts.find(x=>JSON.stringify({...x,number:action.number})===JSON.stringify(action));if(template)a={...template,number:action.number};}
  if(!a)throw Error('選択できない行動です');
  const manaBefore=manaSnapshot(s),graveBefore=s.players.map(p=>p.grave.map(x=>x.uid));const p=a.player,d=s.decision;s.actions++;extra.combat.selected(s,p,a,d);extra.original.selected(s,p,a,d);extra.phoenix.selected(s,p,a,d);extra.six.fifteen.selected(s,p,a,d);extra.six.selected447(s,p,a,d);extra.abyss.selected(s,p,a,d);
  if(a.kind==='silent496'){const x=s.players[p].battle.find(c=>c.uid===d.uid),state=s.startStep;if(!state||state.stage!=='silent496'||!x||!canSilent496(s,x))throw Error('サイレントスキルを使えない状態です');if(a.yes)state.chosen.push({uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,defs:structuredClone(effectiveCard(x,s).g496Silent)});state.remaining.shift();s.decision=null;log(s,p,'ability',card(x).name+(a.yes?'：アンタップせずサイレントスキルを使う':'：サイレントスキルを使わずアンタップする'),{cardId:x.cardId});}

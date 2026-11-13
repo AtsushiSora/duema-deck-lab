@@ -6184,6 +6184,35 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1134&&d?.status==='complete'){
+  const text=normalize(f.abilityText),spell=d.faces[1];
+  const prints=n=>['dm26ex1-N'+n,'dm26ex1-SECN'+n].includes(d.id);
+  if(d.faces.length===1&&prints('007')&&f.typeText==='クリーチャー'&&text.replace(
+   '(このクリーチャーが召喚によって出た時自分の山札の上からこれよりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし山札の下に置く)','')===
+   'ヨビニオン各ターン自分の2体目のクリーチャーが出た時自分の山札の上から3枚を墓地に置いてもよい。'+
+   'このクリーチャーが離れた時コスト5以上のクリーチャーを1体自分の墓地から手札に戻してもよい。')
+   return {yobinion:true,g742SecondEntry:[{op:'Mill',n:3,optional:true,g1042Together:true}],
+    g172Leave:[{op:'Select',origin:'grave',to:'hand',n:1,optional:true,filter:{g228Face:{type:'creature',min:5}}}]};
+  if(d.faces.length===2&&f.typeText==='クリーチャー'&&spell.typeText==='呪文'){
+   const back=normalize(spell.abilityText);
+   const spellFace={name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,
+    civilizations:spell.civilizations,race:spell.race,effect:'sixPhoto'};
+   if((prints('003')||d.id==='dm26ex1-SECN003CHO')&&
+    text.replace('(このクリーチャーが破壊された時このカードの呪文側をコストを支払わずに唱えてもよい)','')===
+    'ブロッカーブロッカーこのクリーチャーが出た時自分の山札の上から2枚をタップしてマナゾーンに置く。'+
+    'その後カードを1枚自分のマナゾーンから手札に戻す。ラスト・バースト'&&
+    back.replace('(自分の山札の上から3枚を見る。その中から指定の種族で指定のコスト以下のカードを1枚コストを支払わずに実行してもよい。残りを好きな順序で山札の下に置く)','')===
+    'S・トリガーS・トリガーハンター・メクレイド10する。')
+    return {blocker:true,g40LastBurst:true,effect:'sixPhoto',g34Tasks:[
+     {op:'Ramp',n:2,tapped:true,g809Together:true},{op:'Select',origin:'mana',to:'hand',n:1}
+    ],spellFace:{...spellFace,trigger:true,g34Tasks:[{op:'Raid767',race:'ハンター',max:10}]}};
+   if(prints('006')&&text==='{GS}G・ストライクW・ブレイカー相手のクリーチャーが出た時自分のクリーチャーが3体以上あればそのターン相手のクリーチャーは攻撃もブロックもできない。'&&
+    back==='6以上の数字を1つ選ぶ。自分の山札の上から3枚を表向きにしその中からその選んだ数字と同じコストのカードを1枚手札に加える。残りを好きな順序で山札の下に置く。チャージャー')
+    return {gStrike:true,breaker:2,g314OtherEntry:{who:'opponent',filter:{creature:true},defs:[
+     {op:'IfOwn',filter:{g370BattleCount:{min:3,filter:{creature:true}}},defs:[{op:'Freeze262',g190Freeze:'end',filter:{creature:true}}]}
+    ]},spellFace:{...spellFace,normalCharger:true,g34Tasks:[{op:'DeclareSearchCost1134',min:6}]}};
+  }
+ }
  if(phase>=1133&&d?.status==='complete'){
   const text=normalize(f.abilityText),spell=d.faces[1];
   const prints=n=>['dm26ex1-N'+n,'dm26ex1-SECN'+n].includes(d.id);

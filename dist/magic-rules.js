@@ -6,7 +6,7 @@ export function createMagicRules(api){
  const selected=(s,p,c)=>reducers(s,p,c).filter(x=>!c.magicReducers||c.magicReducers.includes(key(x)));
  const on=(s,p,source,op,more={})=>api.enqueue(s,p,{source,effect:'extended',task:task(op,p,source,more)});
  function grant(s,p,uid,source,speed=true){const x=creatures(s,p).find(x=>x.uid===uid);if(!x)return;if(speed)(x.g9Speed??=[]).push({turn:s.turn,cost:faces(card(source)).find(c=>c.type==='spell').cost,spellSource:source});(x.g9Untap??=[]).push({turn:s.turn,cost:faces(card(source)).find(c=>c.type==='spell').cost,source,spellSource:source});}
- function numberChoice(s,t){const publicCosts=s.players[1-t.p].battle.flatMap(x=>[cost(card(x))]),values=[...new Set([0,1,2,3,4,5,6,7,8,9,10,...publicCosts.map(x=>Number.isFinite(x)?x:'∞'),'∞'])];choice(s,t,'宣言する数字を選ぶ（数字の入力もできます）',values.map(value=>opt(String(value)+'を宣言',value,s.players[1-t.p].battle.reduce((n,x)=>n+(cost(card(x))===(value==='∞'?Infinity:value)?10:0),0))));}
+ function numberChoice(s,t){const publicCosts=s.players[1-t.p].battle.flatMap(x=>[cost(card(x))]),values=[...new Set([0,1,2,3,4,5,6,7,8,9,10,...publicCosts.map(x=>Number.isFinite(x)?x:'∞'),'∞'])].filter(value=>value==='∞'||value>=(t.minNumber??0));choice(s,t,'宣言する数字を選ぶ（数字の入力もできます）',values.map(value=>opt(String(value)+'を宣言',value,s.players[1-t.p].battle.reduce((n,x)=>n+(cost(card(x))===(value==='∞'?Infinity:value)?10:0),0))));}
  function run(s,t){if(!t.op.startsWith('g9'))return false;const own=s.players[t.p],opp=s.players[1-t.p];switch(t.op){
   case'g9Number':numberChoice(s,t);break;
   case'g9Napo':{const id=String(s.g9Serial=(s.g9Serial||0)+1);(s.g9Discards??={})[id]=0;put(s,task('discard',t.p,t.source,{causedBy:t.p,n:2,optional:true,magicKey:id}),task('g9NapoDraw',t.p,t.source,{key:id}));break;}
@@ -24,6 +24,11 @@ export function createMagicRules(api){
  }return true;}
  function chosen(s,t,value){if(!t.op.startsWith('g9'))return false;const own=s.players[t.p];switch(t.op){
   case'g9Number':{
+   if(t.family==='searchCost1134'){
+    api.log(s,t.p,'declare',String(value)+'を宣言',{cardId:t.source});
+    put(s,task('g34_SearchCost1134',t.p,t.source,{number:value}));
+    break;
+   }
    if(t.family==='handCost1109'){
     api.log(s,t.p,'declare',String(value)+'を宣言',{cardId:t.source});
     put(s,task('g34_InspectHandCost1109',t.p,t.source,{number:value}));

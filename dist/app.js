@@ -1130,7 +1130,11 @@ document.addEventListener('click',async event=>{
  else if(action==='manual-ai-detail'){const p=ensureAIPlayback()?.snapshot(),cue=p?.cue;if(cue)showDialog('直前の行動',`<p class="small">T${displayTurn(cue)} · ${esc(cue.label)}${p.total>1?' · '+p.position+'/'+p.total:''}</p><h3 class="mt16">${esc(cue.text)}</h3>${cue.cardId?`<button class="btn mt16" data-action="card-detail" data-id="${esc(cue.cardId)}">カードの能力を見る</button>`:''}`,`<button class="btn" data-action="manual-log">対戦ログ</button><button class="btn primary" data-action="close-dialog">盤面に戻る</button>`);}
 
  else if(action==='manual-clear-filter'){manualUI.filter='';manualUI.choicePage=0;render();}
- else if(action==='manual-number-submit'){const raw=String($('#manual-number')?.value||'').normalize('NFKC').trim();if(raw!=='∞'&&(!/^\d+$/.test(raw)||!Number.isSafeInteger(Number(raw))))toast('0以上の整数、または∞を入力してください');else humanAction(a,false,raw==='∞'?'∞':Number(raw));}
+ else if(action==='manual-number-submit'){
+  const raw=String($('#manual-number')?.value||'').normalize('NFKC').trim(),min=battle?.state.decision?.task?.minNumber??0;
+  if(raw!=='∞'&&(!/^\d+$/.test(raw)||!Number.isSafeInteger(Number(raw))||Number(raw)<min))toast(min+'以上の整数、または∞を入力してください');
+  else humanAction(a,false,raw==='∞'?'∞':Number(raw));
+ }
  else if(action==='manual-mana'){if(battle?.state.decision?.type==='manaPayment'&&el.dataset.context===manualModel(battle.state,manualUI).context)humanAction(a);}
  else if(action==='battle-step')humanAction(a);
  else if(action==='battle-hint'){if(battle?.spectator)return;const hint=chooseAI(battle.state);if(hint?.player===0)showDialog('次の一手のヒント',`<div class="notice"><span class="insight-icon">${icon('spark',20)}</span><div><strong>${esc(hint.label)}</strong><p class="small mt8">公開情報・自分の手札・自分のデッキ構成から、最大3手の行動を比べた候補です。相手の非公開情報は使わず、最善手を保証するものではありません。</p></div></div>`,`<button class="btn" data-action="close-dialog">自分で選ぶ</button><button class="btn primary" data-action="battle-step" data-index="${hint.id}">この行動を選ぶ</button>`);}
