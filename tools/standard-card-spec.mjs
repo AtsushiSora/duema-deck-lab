@@ -2467,6 +2467,22 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1179&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const sasage='ササゲール1(ディスペクターを召喚する時コストを1少なくしてもよい。そうしたらこのクリーチャーを破壊する。そのディスペクターのコストは0以下にはならない)';
+  if(f.name==='天雷 アヴァ-1'&&f.civilizationText==='光'&&f.cost===3&&text===
+   'このクリーチャーが出た時自分より手札が多い相手1人につきカードを1枚引く。'+sasage)
+   return {sasage:1,effect:'sixPhoto',g34Tasks:[{op:'IfOwn',filter:{g1179OpponentMoreHand:true},defs:[{op:'Draw',n:1}]}]};
+  if(f.name==='邪眼 レクセイ-1'&&f.civilizationText==='闇'&&f.cost===3&&text===
+   'このクリーチャーが出た時各相手の手札を1枚見ないで選び捨てさせる。'+sasage)
+   return {sasage:1,effect:'sixPhoto',g34Tasks:[{op:'BlindDiscard773',n:1}]};
+  if(f.name==='再誕の精霊 アルミウル'&&f.civilizationText==='光'&&f.cost===6&&
+   text.replace('進化ではない光のコスト3以下のクリーチャー','進化ではないコスト3以下の光のクリーチャー')===
+   'このクリーチャーが攻撃する時進化ではないコスト3以下の光のクリーチャーを1体自分の墓地からバトルゾーンに出してもよい。'+
+   'W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g34Attack:[{op:'Select',origin:'grave',deploy:true,n:1,optional:true,g236GraveDeploy:true,
+    filter:{creature:true,nonEvolution:true,color:'光',max:3},title:'墓地から出すコスト3以下の光の非進化クリーチャーを選ぶ（任意）'}]};
+ }
  if(phase>=1178&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(f.name==='ダーク・鎌・ルピア'&&f.civilizationText==='闇/火'&&f.cost===4&&text.replaceAll('ドラゴン・クリーチャー','ドラゴン')===

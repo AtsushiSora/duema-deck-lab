@@ -228544,15 +228544,111 @@
       ],
       "supportBatch": "phase-1178",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23bd5-006",
+      "name": "天雷 アヴァ-1",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "アーク・セラフィム/ナイト/ディスタス",
+      "text": "このクリーチャーが出た時、自分より手札が多い相手１人につき、カードを１枚引く。\nササゲール１（ディスペクターを召喚する時、コストを１少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd5-006",
+      "limit": 4,
+      "sasage": 1,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g1179OpponentMoreHand": true
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1179",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23bd5-007",
+      "name": "邪眼 レクセイ-1",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ダークロード/ナイト/ディスタス",
+      "text": "このクリーチャーが出た時、各相手の手札を１枚見ないで選び、捨てさせる。\nササゲール１（ディスペクターを召喚する時、コストを１少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd5-007",
+      "limit": 4,
+      "sasage": 1,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BlindDiscard773",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1179",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd16-003",
+      "name": "再誕の精霊 アルミウル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "エンジェル・コマンド",
+      "text": "このクリーチャーが攻撃する時、進化ではないコスト３以下の光のクリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd16-003",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "g236GraveDeploy": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "color": "光",
+            "max": 3
+          },
+          "title": "墓地から出すコスト3以下の光の非進化クリーチャーを選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-1179",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1178,
+    "phase": 1179,
     "checkedAt": "2026-11-14",
-    "baseCount": 7524,
+    "baseCount": 7527,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7527,
+    "totalCount": 7530,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -248977,6 +249073,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7524,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1178,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7524,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7527,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -530,6 +530,7 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g1179OpponentMoreHand)return s.players[1-p].hand.length>s.players[p].hand.length;
   if(f.g1176MoreCreatures)
    return creatures(s,p).filter(x=>!x.sealed).length>creatures(s,1-p).filter(x=>!x.sealed).length;
   if(f.g1166SameCreatureNames){

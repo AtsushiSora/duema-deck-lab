@@ -1,0 +1,209 @@
+{
+  "phase": 1179,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7527,
+  "description": "天雷 アヴァ-1、邪眼 レクセイ-1、再誕の精霊 アルミウルの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/39538/",
+    "https://dm.takaratomy.co.jp/rule/qa/39540/",
+    "https://dm.takaratomy.co.jp/rule/qa/40239/",
+    "https://dm.takaratomy.co.jp/rule/qa/31530/",
+    "https://dm.takaratomy.co.jp/rule/qa/46522/"
+  ],
+  "cards": [
+    {
+      "id": "dm23bd5-006",
+      "name": "天雷 アヴァ-1",
+      "faces": [
+        {
+          "name": "天雷 アヴァ-1",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分より手札が多い相手１人につき、カードを１枚引く。\nササゲール１（ディスペクターを召喚する時、コストを１少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "アーク・セラフィム/ナイト/ディスタス",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd5-006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd5-006.jpg",
+      "spec": {
+        "sasage": 1,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g1179OpponentMoreHand": true
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "fba038f6b504f390f13a3c2f101e1910487a61cfe8bea8926140711ed1ea34d2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23bd5-007",
+      "name": "邪眼 レクセイ-1",
+      "faces": [
+        {
+          "name": "邪眼 レクセイ-1",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、各相手の手札を１枚見ないで選び、捨てさせる。\nササゲール１（ディスペクターを召喚する時、コストを１少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "ダークロード/ナイト/ディスタス",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd5-007",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd5-007.jpg",
+      "spec": {
+        "sasage": 1,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BlindDiscard773",
+            "n": 1
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "ac89a10a7cef2bde0a207c39ba4c678fcb2f31814413bb152de8b6083fd54db8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd16-003",
+      "name": "再誕の精霊 アルミウル",
+      "faces": [
+        {
+          "name": "再誕の精霊 アルミウル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが攻撃する時、進化ではないコスト３以下の光のクリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "エンジェル・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd16-003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd16-003.jpg",
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "color": "光",
+              "max": 3
+            },
+            "title": "墓地から出すコスト3以下の光の非進化クリーチャーを選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "422fadb4e806369a4a52074772ad3e83c5579153db0f39db09c8eaa11928fa9e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy13-068",
+      "name": "再誕の精霊 アルミウル",
+      "faces": [
+        {
+          "name": "再誕の精霊 アルミウル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが攻撃する時、進化ではない光のコスト３以下のクリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "エンジェル・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-068",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy13-068.jpg",
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "color": "光",
+              "max": 3
+            },
+            "title": "墓地から出すコスト3以下の光の非進化クリーチャーを選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "d79347096b231062a207c6663f742d1350665749d32a61e86c96d660c62f66e0",
+        "facesMatched": true
+      },
+      "canonicalId": "dmd16-003"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23bd5-006": 4,
+      "dm23bd5-007": 4,
+      "dmd16-003": 4,
+      "promoy13-068": 4
+    }
+  }
+}
