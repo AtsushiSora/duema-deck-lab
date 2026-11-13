@@ -1,0 +1,196 @@
+{
+  "phase": 1116,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7331,
+  "description": "姫と女王の愛、電嶺樹アカシック・クラシック、ボルシャック・バザガジールの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/31924/",
+    "https://dm.takaratomy.co.jp/rule/qa/48124/",
+    "https://dm.takaratomy.co.jp/rule/qa/45548/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
+    "https://dm.takaratomy.co.jp/rule/qa/42081/"
+  ],
+  "cards": [
+    {
+      "id": "dm25ex2-071",
+      "name": "姫と女王の愛",
+      "faces": [
+        {
+          "name": "姫と女王の愛",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手のクリーチャーを１体選び、タップする。次の自分のターンのはじめまで、そのクリーチャーはアンタップしない。\n自分の手札を１枚超次元ゾーンに置いてもよい。そうしたら、真上の▪️能力をもう１度使う。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-071",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-071.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "g1116CreatureUntapLock": true,
+            "spell": true,
+            "title": "タップして次の自分のターンまでアンタップを止める相手のクリーチャーを選ぶ"
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "extra",
+            "n": 1,
+            "optional": true,
+            "g1009AfterMoveAttempt": [
+              {
+                "op": "Target",
+                "tap": true,
+                "g1116CreatureUntapLock": true,
+                "spell": true,
+                "title": "タップして次の自分のターンまでアンタップを止める相手のクリーチャーを選ぶ"
+              }
+            ],
+            "title": "能力をもう一度使うため、超次元ゾーンに置く手札を1枚選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "ccbf9ff00912d86a31c9e7854b8ac4f387147829121cb49323ebfa0402836b20",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex2-035",
+      "name": "電嶺樹アカシック・クラシック",
+      "faces": [
+        {
+          "name": "電嶺樹アカシック・クラシック",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 12,
+          "costText": "12",
+          "abilityText": "ブロッカー ブロッカー\nT・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーをすべて持ち主の手札に戻す。\n自分の他のクリーチャーすべてのパワーを+6000し、「パワード・ブレイカー」を与える。",
+          "race": "サイバーロード/リヴァイアサン/ミステリー・トーテム",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-035",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-035.jpg",
+      "spec": {
+        "blocker": true,
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "to": "hand",
+            "toOwnerHand": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "g205Aura": {
+          "filter": {
+            "creature": true
+          },
+          "other": true,
+          "power": 6000
+        },
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "other": true,
+            "grants": {
+              "poweredBreaker": true,
+              "g1116PoweredChoice": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "a12b17b1dc17e160af9a707d444c468f70d165ea6cb530f0dc8f2e9b930c038a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex2-063",
+      "name": "ボルシャック・バザガジール",
+      "faces": [
+        {
+          "name": "ボルシャック・バザガジール",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火/自然",
+          "civilizations": [
+            "光",
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スピードアタッカー\nガードマン\nパワード・ブレイカー\nエスケープ（このクリーチャーが破壊される時、墓地に置くかわりに自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない）\n自分の墓地にある、名前に《ボルシャック》とあるカード１枚につき、このクリーチャーのパワーを+3000する。\n相手のクリーチャーがタップした時、このクリーチャーをアンタップする。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "9500+",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-063",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-063.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "guardman": true,
+        "poweredBreaker": true,
+        "escape": true,
+        "g207CountPower": {
+          "zone": "grave",
+          "amount": 3000,
+          "filter": {
+            "g1116NameIncludes": "ボルシャック"
+          }
+        },
+        "g681OpponentTapAnyTurn": true,
+        "g678OpponentTap": [
+          {
+            "op": "Untap"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "6587d750672322a224bae26037b1a16c791533a08766466433e06979556139bb",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25ex2-071": 4,
+      "dm25ex2-035": 4,
+      "dm25ex2-063": 4
+    }
+  }
+}

@@ -278,7 +278,9 @@ export function effectiveCard(inst,context,forPower=false){
  const attackDouble=!forPower&&attackBreaker&&layers(inst).some(x=>x.uid===attackBreaker.uid&&(x.incarnation||0)===attackBreaker.incarnation);
  const grantedDouble=!forPower&&(attackDouble||c.g818DoubleBreaker);
  if(grantedDouble&&!(c.breaker>=2)&&c.breaker!=='∞')c={...c,breaker:2};
- const breakerChoices=(c.g633DoubleBreaker||grantedDouble)&&!forPower?[c.breaker]:null;
+ const doubleBreakerChoice=c.g633DoubleBreaker||grantedDouble;
+ const choosePowered=c.g1116PoweredChoice&&c.breaker!==undefined&&c.breaker!==0;
+ const breakerChoices=(doubleBreakerChoice||choosePowered)&&!forPower?[c.breaker]:null;
  if(c.g444Crew&&!forPower){
   const n=extra.six.crewBreak444(context,owner,inst,c);
   breakerChoices?.push(n);
@@ -289,7 +291,7 @@ export function effectiveCard(inst,context,forPower=false){
   breakerChoices?.push(count);
   c={...c,breaker:count==='∞'||c.breaker==='∞'?'∞':Math.max(Number(c.breaker)||1,count)};
  }
- if(breakerChoices)c={...c,g633BreakerChoices:[...new Set([2,...breakerChoices])]};
+ if(breakerChoices)c={...c,g633BreakerChoices:[...new Set(doubleBreakerChoice?[2,...breakerChoices]:breakerChoices)]};
  if(!forPower&&c.g1021WorldBreaker){
   // Rule 509.2b: retain the other breaker abilities without adding a normal one-shield option.
   const existing=c.g633BreakerChoices??(c.breaker===undefined?[]:[c.breaker]);

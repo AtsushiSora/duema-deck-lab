@@ -221087,15 +221087,148 @@
       ],
       "supportBatch": "phase-1115",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex2-071",
+      "name": "姫と女王の愛",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "相手のクリーチャーを１体選び、タップする。次の自分のターンのはじめまで、そのクリーチャーはアンタップしない。\n自分の手札を１枚超次元ゾーンに置いてもよい。そうしたら、真上の▪️能力をもう１度使う。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-071",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true,
+          "g1116CreatureUntapLock": true,
+          "spell": true,
+          "title": "タップして次の自分のターンまでアンタップを止める相手のクリーチャーを選ぶ"
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "extra",
+          "n": 1,
+          "optional": true,
+          "g1009AfterMoveAttempt": [
+            {
+              "op": "Target",
+              "tap": true,
+              "g1116CreatureUntapLock": true,
+              "spell": true,
+              "title": "タップして次の自分のターンまでアンタップを止める相手のクリーチャーを選ぶ"
+            }
+          ],
+          "title": "能力をもう一度使うため、超次元ゾーンに置く手札を1枚選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-1116",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex2-035",
+      "name": "電嶺樹アカシック・クラシック",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 12,
+      "power": 12000,
+      "race": "サイバーロード/リヴァイアサン/ミステリー・トーテム",
+      "text": "ブロッカー ブロッカー\nT・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーをすべて持ち主の手札に戻す。\n自分の他のクリーチャーすべてのパワーを+6000し、「パワード・ブレイカー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-035",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "to": "hand",
+          "toOwnerHand": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "g205Aura": {
+        "filter": {
+          "creature": true
+        },
+        "other": true,
+        "power": 6000
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "other": true,
+          "grants": {
+            "poweredBreaker": true,
+            "g1116PoweredChoice": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1116",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex2-063",
+      "name": "ボルシャック・バザガジール",
+      "civ": "光/火/自然",
+      "civilizations": [
+        "光",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9500,
+      "race": "アーマード・ドラゴン",
+      "text": "スピードアタッカー\nガードマン\nパワード・ブレイカー\nエスケープ（このクリーチャーが破壊される時、墓地に置くかわりに自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない）\n自分の墓地にある、名前に《ボルシャック》とあるカード１枚につき、このクリーチャーのパワーを+3000する。\n相手のクリーチャーがタップした時、このクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-063",
+      "limit": 4,
+      "speedAttacker": true,
+      "guardman": true,
+      "poweredBreaker": true,
+      "escape": true,
+      "g207CountPower": {
+        "zone": "grave",
+        "amount": 3000,
+        "filter": {
+          "g1116NameIncludes": "ボルシャック"
+        }
+      },
+      "g681OpponentTapAnyTurn": true,
+      "g678OpponentTap": [
+        {
+          "op": "Untap"
+        }
+      ],
+      "supportBatch": "phase-1116",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1115,
+    "phase": 1116,
     "checkedAt": "2026-11-13",
-    "baseCount": 7328,
+    "baseCount": 7331,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7331,
+    "totalCount": 7334,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -240764,6 +240897,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7328,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1115,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7328,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7331,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

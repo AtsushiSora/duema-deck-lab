@@ -6184,6 +6184,20 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1116&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm25ex2-035'&&text===
+   'ブロッカーブロッカーT・ブレイカーこのクリーチャーが出た時相手のクリーチャーをすべて持ち主の手札に戻す。自分の他のクリーチャーすべてのパワーを+6000し「パワード・ブレイカー」を与える。')
+   return {blocker:true,breaker:3,effect:'sixPhoto',
+    g34Tasks:[{op:'Sweep',to:'hand',toOwnerHand:true,filter:{creature:true}}],
+    g205Aura:{filter:{creature:true},other:true,power:6000},
+    g208Auras:[{filter:{creature:true},other:true,grants:{poweredBreaker:true,g1116PoweredChoice:true}}]};
+  if(d.id==='dm25ex2-063'&&text===
+   'スピードアタッカーガードマンパワード・ブレイカーエスケープ(このクリーチャーが破壊される時墓地に置くかわりに自分のシールドを1つ手札に加えてもよい。ただしその「S・トリガー」は使えない)自分の墓地にある名前に《ボルシャック》とあるカード1枚につきこのクリーチャーのパワーを+3000する。相手のクリーチャーがタップした時このクリーチャーをアンタップする。')
+   return {speedAttacker:true,guardman:true,poweredBreaker:true,escape:true,
+    g207CountPower:{zone:'grave',amount:3000,filter:{g1116NameIncludes:'ボルシャック'}},
+    g681OpponentTapAnyTurn:true,g678OpponentTap:[{op:'Untap'}]};
+ }
  if(phase>=1115&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dm25ex2-082'&&f.typeText==='呪文'&&text===
@@ -6270,7 +6284,12 @@ export function standardCardSpec(d,{phase=165}={}){
    effect:{op:'Target',power:-3000,g242PowerMinus:true,spell:true,title:'パワーを-3000する相手のクリーチャーを1体選ぶ'}
   }:null;
   const repeat='自分の手札を1枚超次元ゾーンに置いてもよい。そうしたら真上の▪️能力をもう1度使う。';
-  const ability=row??reduce;
+  const tap=phase>=1116&&d.id==='dm25ex2-071'?{
+   text:'相手のクリーチャーを1体選びタップする。次の自分のターンのはじめまでそのクリーチャーはアンタップしない。',
+   effect:{op:'Target',tap:true,g1116CreatureUntapLock:true,spell:true,
+    title:'タップして次の自分のターンまでアンタップを止める相手のクリーチャーを選ぶ'}
+  }:null;
+  const ability=row??reduce??tap;
   if(ability&&normalize(f.abilityText)===ability.text+repeat)
    return {effect:'sixPhoto',g34Tasks:[ability.effect,{
     op:'Select',origin:'hand',to:'extra',n:1,optional:true,g1009AfterMoveAttempt:[ability.effect],

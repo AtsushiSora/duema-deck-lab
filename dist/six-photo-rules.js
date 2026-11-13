@@ -741,12 +741,20 @@ export function createSixPhotoRules(api){
    if(t.g561Battle)return t.amount*countBattleCivilizations(s,rows.map(({y})=>y));
    return t.amount*new Set(rows.flatMap(({p,y})=>api.manaColors(card(y),s,p,true)).filter(q=>['光','水','闇','火','自然'].includes(q))).size;
   }
-  const {g876BattleName,noColor,...f}=t.filter||{};
+  const {g876BattleName,g1116NameIncludes,noColor,...f}=t.filter||{};
   const fits=({p,y})=>{
    if(t.zone==='battle'&&(y.sealed||y.faceDown||!t.g561Elements&&!api.isCreature(s,y)))return false;
    if(f.g1085Psychic&&!api.zoneCard(s,p,y,t.zone).psychic)return false;
    if(t.g1011CountColor&&!colors(api.zoneCard(s,p,y,t.zone)).includes(t.g1011CountColor))return false;
    if(g876BattleName&&!battleNames676(s,y).includes(exactName(g876BattleName)))return false;
+   if(g1116NameIncludes){
+    if(y.faceDown)return false;
+    const named=api.zoneCard(s,p,y,t.zone);
+    const names=faces(named).flatMap(face=>[face.name,...(face.additionalNames||[])]);
+    // QA 48124 includes the printed reading of BOLSHA9-銅鑼-5.
+    if(named.id==='dm25ex4-011')names.push('ボルシャック');
+    if(!names.some(name=>exactName(name).includes(exactName(g1116NameIncludes))))return false;
+   }
    if(noColor&&colors(api.zoneCard(s,p,y,t.zone)).length)return false;
    if(f.g853Soul&&!hasSoul(card(y),f.g853Soul))return false;
    if(!Object.keys(f).length)return true;
@@ -5260,6 +5268,10 @@ export function createSixPhotoRules(api){
   }
   if(v){const y=s.players[v.p].battle.find(y=>y.uid===v.uid);if(y){if(t.g792Once)(s.once??={})[onceKey792(t,t)]=s.turn;if(t.g805AddCivilization){put(s,{...t,op:'g34_ChooseCivilization805',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g503Stack){const n=api.allLayers(y).length;const effect=t.g503Stack==='opponentDestroy'?{op:'OpponentSelect',n,to:'grave'}:t.g503Stack==='opponentMinus'?{op:'Target',power:-2000*n,g242PowerMinus:true}:t.g503Stack==='shield'?{op:'ShieldTop',n,g779Simultaneous:true}:{op:t.g503Stack==='draw'?'DrawUpTo':'Ramp',n};start(s,t,[effect,...(t.after||[])]);break;}if(t.g467Destinations){put(s,{...t,op:'g34_TargetDestination467',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g235TapOrUntap){put(s,{...t,op:'g34_TapState235',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g565AttackLock)(y.g35NoAttack??=[]).push({turn:s.turn});if(t.g569WeakerBlock)(s.extLimits??=[]).push({kind:'g569WeakerBlock',ref:{uid:y.uid,incarnation:y.incarnation||0},spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1)),expires:'end',who:s.active});if(t.g567PlayerStop)stopPlayerAttack567(s,t,y);if(t.g190Freeze)freeze(s,t,v.p,y);if(t.g546Force)force546(s,t,v.p,y);if(t.g547OwnerShield)put(s,task('g34_ShieldTop',v.p,t.source,{n:1,controller:t.controller??t.p}));if(t.g631MillCost){const amount=cost(effective(y,s));start(s,t,[{op:'Mill',n:Number.isFinite(amount)?amount:'∞',...(t.g638OptionalMill?{optional:true}:{})}]);}if(t.to)move(s,[{player:v.p,uid:v.uid,to:t.to,destroy:t.to==='grave',tapped:!!t.tapped,...(t.toOwnerMana?{toOwnerMana:true}:{}),...(t.toOwnerHand?{toOwnerHand:true}:{}),...(t.toOwnerDeck?{toOwnerDeck:true}:{}),...(t.toOwnerExtra?{toOwnerExtra:true}:{}),...(t.to==='deckTop'?{orderDeckTop:true}:{}),...(t.faceUp?{faceUp:true}:{})}]);const wasTapped=y.tapped;if(t.tap)api.tap(s,v.p,y);const newlyTapped=!wasTapped&&y.tapped;
    if(t.g988Lure)(s.g42Lures??=[]).push({p:t.p,uid:y.uid,incarnation:y.incarnation||0,source:t.source,cost:cost(card(t.source))});
+   if(t.g1116CreatureUntapLock)(s.extLimits??=[]).push({
+    kind:'g1116CreatureUntapLock',ref:key(y),who:t.p,expires:'start',
+    spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))
+   });
    if(t.g676TapNames)tapNames676(s,y);if(t.g291UntapUntilSelf)(y.tapLocks??=[]).push(t.p);if(t.untap&&api.canUntap(y)){const was=y.tapped;y.tapped=false;if(was)combined.untapped(s,v.p,y);}if(t.lock){if(t.spell)(y.g170StartFreeze??=[]).push({spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});else y.skipUntap=true;}if(t.g1111PowerZero){
     (y.powerModifiers??=[]).push({fixedPower:0,expires:'end',who:s.active,spellSource:t.source,spellCost:cost(card(t.source))});
     api.powerCleanup(s);
@@ -5497,6 +5509,8 @@ export function createSixPhotoRules(api){
  noUntap(s,x){
   const p=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));
   if(p<0||!api.isCreature(s,x))return false;
+  if(s.extLimits?.some(l=>l.kind==='g1116CreatureUntapLock'&&api.allLayers(x).some(y=>key(y)===l.ref)&&
+   !api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})))return true;
   const c=effective(x,s);
   return s.players[p].grave.length<(c.g1016UntapMinGrave??0)||
    !mecha(c)&&(active(s,0,'shinGod').length||active(s,1,'shinGod').length)>0;
