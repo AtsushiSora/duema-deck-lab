@@ -6184,6 +6184,24 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1123&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText),psychics={zone:'battle',filter:{creature:true,g1085Psychic:true}};
+  if(d.id==='dm39-046'&&f.typeText==='クリーチャー'&&text===
+   'S・トリガーこのクリーチャーをバトルゾーンに出した時バトルゾーンにある相手のクリーチャーを1体選ぶ。'+
+   'そのターンそのクリーチャーのパワーは-1000される。バトルゾーンにある自分のサイキック・クリーチャー1体につき'+
+   '選んだクリーチャーのパワーはさらに-1000される。(パワー0以下のクリーチャーは破壊される)')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'CountPowerMinus1123',...psychics,base:1000,per:1000}]};
+  if(d.id==='dm39-010'&&f.typeText==='呪文'&&text===
+   'バトルゾーンにある自分のサイキック・クリーチャー1体につき1枚カードを引いてもよい。'+
+   'このターン名前に《覚醒者》とある自分のクリーチャーが攻撃する時バトルゾーンにあるクリーチャーを1体選び持ち主の手札に戻してもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'CountDraw',optional:'each',...psychics},
+    {op:'TurnNamedAttack1123',name:'覚醒者',defs:[{op:'Target',anyOwner:true,optional:true,to:'hand',toOwnerHand:true,
+     spell:true,title:'持ち主の手札に戻すクリーチャーを選ぶ（任意）'}]}]};
+  if(d.id==='dm39-018'&&f.typeText==='クリーチャー'&&text===
+   'マナゾーンにある自分の「マナ爆誕」を持つクリーチャーを召喚するコストを最大2少なくしてもよい。'+
+   'ただしコストは1より少なくならない。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g349SummonAuras:[{amount:2,g560Optional:true,filter:{g1123ManaBirthFromMana:true}}]};
+ }
  if(phase>=1122&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
   const strike='{GS}G・ストライク(このカードを自分のシールドゾーンから手札に加える時表向きにし相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)';

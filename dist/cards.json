@@ -221909,15 +221909,120 @@
       ],
       "supportBatch": "phase-1122",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm39-046",
+      "name": "ヤミノキルマジロ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ダーク・モンスター",
+      "text": "S・トリガー\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-1000される。バトルゾーンにある自分のサイキック・クリーチャー１体につき、選んだクリーチャーのパワーはさらに-1000される。(パワー０以下のクリーチャーは破壊される)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-046",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountPowerMinus1123",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "g1085Psychic": true
+          },
+          "base": 1000,
+          "per": 1000
+        }
+      ],
+      "supportBatch": "phase-1123",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm39-010",
+      "name": "彼方からの言霊",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある自分のサイキック・クリーチャー１体につき１枚、カードを引いてもよい。\nこのターン、名前に《覚醒者》とある自分のクリーチャーが攻撃する時、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-010",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "optional": "each",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "g1085Psychic": true
+          }
+        },
+        {
+          "op": "TurnNamedAttack1123",
+          "name": "覚醒者",
+          "defs": [
+            {
+              "op": "Target",
+              "anyOwner": true,
+              "optional": true,
+              "to": "hand",
+              "toOwnerHand": true,
+              "spell": true,
+              "title": "持ち主の手札に戻すクリーチャーを選ぶ（任意）"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1123",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm39-018",
+      "name": "大地幻獣ガガマル",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ガイア・コマンド/ドリームメイト",
+      "text": "マナゾーンにある自分の、「マナ爆誕」を持つクリーチャーを召喚するコストを最大２少なくしてもよい。ただし、コストは１より少なくならない。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-018",
+      "limit": 4,
+      "breaker": 2,
+      "g349SummonAuras": [
+        {
+          "amount": 2,
+          "g560Optional": true,
+          "filter": {
+            "g1123ManaBirthFromMana": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1123",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1122,
+    "phase": 1123,
     "checkedAt": "2026-11-13",
-    "baseCount": 7349,
-    "newEffectCards": 5,
+    "baseCount": 7354,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7354,
+    "totalCount": 7357,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -241670,6 +241775,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7349,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1122,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7349,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 7354,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
