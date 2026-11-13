@@ -1,0 +1,367 @@
+{
+  "phase": 1114,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7324,
+  "description": "透明妖精リリン、アシッド・テクノ、タイタニス、カーネルの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/40363/",
+    "https://dm.takaratomy.co.jp/rule/qa/38624/",
+    "https://dm.takaratomy.co.jp/rule/qa/38688/",
+    "https://dm.takaratomy.co.jp/rule/qa/38608/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31641/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35257/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31410/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmex12-052",
+      "name": "透明妖精リリン / 妖精のプレリュード",
+      "faces": [
+        {
+          "name": "透明妖精リリン",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の無色クリーチャーの召喚コストを１少なくする。ただしコストは０以下にはならない。\n自分のマナゾーンにあるスノーフェアリーはすべての文明を持つ。",
+          "race": "オラクル/スノーフェアリー",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "妖精のプレリュード",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このターン、次に召喚する自分の無色クリーチャーの召喚コストを最大５少なくしてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-052",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex12-052a.jpg",
+      "spec": {
+        "g290SummonAura": {
+          "filter": {
+            "g756Colorless": true
+          },
+          "amount": 1
+        },
+        "g1114ManaRace": "スノーフェアリー",
+        "spellFace": {
+          "name": "妖精のプレリュード",
+          "type": "spell",
+          "cost": 3,
+          "civ": "ゼロ",
+          "civilizations": [],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "NextReduction456",
+              "type": "creature",
+              "amount": 5,
+              "optional": true,
+              "filter": {
+                "g756Colorless": true
+              },
+              "g1113ZeroFloor": true
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "952847356dfc14946d9e9015d3379dc210dae11e457c582b8e937056d742a1af",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex17-004",
+      "name": "神聖斬鬼 アシッド・テクノ",
+      "faces": [
+        {
+          "name": "神聖斬鬼 アシッド・テクノ",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "シンパシー：無色クリーチャー（このクリーチャーの召喚コストを、バトルゾーンにある自分の無色クリーチャー１体につき１少なくする。ただしコストは０以下にはならない）\nW・ブレイカー\n自分のターンの終わりに、自分のクリーチャーを２体まで破壊してもよい。そうしたら、自分の山札を見る。こうして破壊したクリーチャー１体につき、コスト７以下の無色クリーチャーを１体、自分の手札または山札から出してもよい。その後、山札をシャッフルする。\n相手のターン中、相手が自分のクリーチャーを選ぶ時、このクリーチャーは選べない。（ただし、このクリーチャーを攻撃してもよい）",
+          "race": "オラクリオン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-004.jpg",
+      "spec": {
+        "breaker": 2,
+        "g211Sympathy": {
+          "amount": 1,
+          "minimum": 1,
+          "filter": {
+            "creature": true,
+            "noColor": true
+          }
+        },
+        "g260Self": {
+          "filter": {
+            "g1114OpponentTurn": true
+          },
+          "grants": {
+            "untargetable": true
+          }
+        },
+        "g174End": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "self",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g187OwnPick": true,
+            "g1114AcidDeploy": true,
+            "title": "破壊する自分のクリーチャーを2体まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "34a3fa7ce61eb123bb53431dacd783604ce7882e2b0248e9b98f68b9390aded9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex2-079",
+      "name": "剛撃霊樹 タイタニス",
+      "faces": [
+        {
+          "name": "剛撃霊樹 タイタニス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "相手の、エレメントの能力または呪文によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりに出してもよい。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、自分の山札の上から２枚をマナゾーンに置く。その後、クリーチャーを２体、自分のマナゾーンから手札に戻す。",
+          "race": "ジャイアント/ミステリー・トーテム",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-079",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-079.jpg",
+      "spec": {
+        "breaker": 2,
+        "g591Discard": "opponentElement1114",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 2,
+            "g809Together": true
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g583Group": true,
+            "title": "マナから手札に戻すクリーチャーを2体選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "422e35f7abbc9c8194192b8a1dba9de41098c1c0aca281e5d49efdd54aec4700",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex2-081",
+      "name": "青寂の精霊龍 カーネル / サイレント・ジェラシー",
+      "faces": [
+        {
+          "name": "青寂の精霊龍 カーネル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "エンジェル・ドラゴン/革命軍",
+          "powerText": "3500",
+          "missingFields": []
+        },
+        {
+          "name": "サイレント・ジェラシー",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手の手札を１枚見ないで選び、捨てさせる。\n自分のシールドを１つ手札に加える。ただし、その「S・トリガー」は使えない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-081",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-081a.jpg",
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "次の自分のターンまで攻撃とブロックを止める相手クリーチャーを選ぶ"
+          }
+        ],
+        "spellFace": {
+          "name": "サイレント・ジェラシー",
+          "type": "spell",
+          "cost": 2,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Discard",
+              "n": 1,
+              "random": true
+            },
+            {
+              "op": "ShieldHand",
+              "g238ShieldHand": true
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "8bb889efcd0fa569cb90653418694238d3b64d47ddae13a9437cdde9eaadd14a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23ex3-T11",
+      "name": "透明妖精リリン / 妖精のプレリュード",
+      "faces": [
+        {
+          "name": "透明妖精リリン",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の無色クリーチャーの召喚コストを１少なくする。ただしコストは０以下にはならない。\n自分のマナゾーンにあるスノーフェアリーはすべての文明を持つ。",
+          "race": "オラクル/スノーフェアリー",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "妖精のプレリュード",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このターン、次に召喚する自分の無色クリーチャーの召喚コストを最大５少なくする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-T11",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-T11a.jpg",
+      "spec": {
+        "g290SummonAura": {
+          "filter": {
+            "g756Colorless": true
+          },
+          "amount": 1
+        },
+        "g1114ManaRace": "スノーフェアリー",
+        "spellFace": {
+          "name": "妖精のプレリュード",
+          "type": "spell",
+          "cost": 3,
+          "civ": "ゼロ",
+          "civilizations": [],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "NextReduction456",
+              "type": "creature",
+              "amount": 5,
+              "optional": true,
+              "filter": {
+                "g756Colorless": true
+              },
+              "g1113ZeroFloor": true
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "0eb9275ef987195cfbdd03cccec51a67bd9f15341f2dffccfebf4d6c7fa12f24",
+        "facesMatched": true
+      },
+      "canonicalId": "dmex12-052"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex12-052": 4,
+      "dmex17-004": 4,
+      "dm25ex2-079": 4,
+      "dm25ex2-081": 4,
+      "dm23ex3-T11": 4
+    }
+  }
+}

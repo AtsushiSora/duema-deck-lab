@@ -258,9 +258,9 @@ export function createExtendedRules(api){
   const c=card(x),enemyTurn=t.p!==s.active;
   if(c.g977DiscardUnderNeo&&!api.handAbilityIgnored(s,x))return 'optional';
   if(c.g843DiscardToMana&&!api.handAbilityIgnored(s,x)&&enemyDiscardEffect(s,t))return 'optional';
-  if(c.g591Discard==='opponentEffect607'){
+  if(c.g591Discard==='opponentEffect607'||c.g591Discard==='opponentElement1114'){
    return !api.handAbilityIgnored(s,x)&&!t.selfDiscard&&(t.causedBy??t.controller??s.active)===1-t.p&&
-    ['spell','creature','seed','gear','field','aura','artifact','land'].includes(card(t.source)?.type)?'mandatory':null;
+    ['spell','creature','seed','gear','field','aura','artifact','land'].includes(card(t.source)?.type)?(c.g591Discard==='opponentEffect607'?'mandatory':'optional'):null;
   }
   if(c.g591Discard&&!api.handAbilityIgnored(s,x)){
    if(c.g591Discard==='opponentTurn'&&enemyTurn)return 'mandatory';

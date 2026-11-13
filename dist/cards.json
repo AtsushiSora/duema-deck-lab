@@ -220792,15 +220792,198 @@
       ],
       "supportBatch": "phase-1113",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex12-052",
+      "name": "透明妖精リリン / 妖精のプレリュード",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "オラクル/スノーフェアリー",
+      "text": "自分の無色クリーチャーの召喚コストを１少なくする。ただしコストは０以下にはならない。\n自分のマナゾーンにあるスノーフェアリーはすべての文明を持つ。\n【呪文面】\nこのターン、次に召喚する自分の無色クリーチャーの召喚コストを最大５少なくしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-052",
+      "limit": 4,
+      "g290SummonAura": {
+        "filter": {
+          "g756Colorless": true
+        },
+        "amount": 1
+      },
+      "g1114ManaRace": "スノーフェアリー",
+      "spellFace": {
+        "name": "妖精のプレリュード",
+        "type": "spell",
+        "cost": 3,
+        "civ": "ゼロ",
+        "civilizations": [],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "NextReduction456",
+            "type": "creature",
+            "amount": 5,
+            "optional": true,
+            "filter": {
+              "g756Colorless": true
+            },
+            "g1113ZeroFloor": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1114",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex17-004",
+      "name": "神聖斬鬼 アシッド・テクノ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "オラクリオン",
+      "text": "シンパシー：無色クリーチャー（このクリーチャーの召喚コストを、バトルゾーンにある自分の無色クリーチャー１体につき１少なくする。ただしコストは０以下にはならない）\nW・ブレイカー\n自分のターンの終わりに、自分のクリーチャーを２体まで破壊してもよい。そうしたら、自分の山札を見る。こうして破壊したクリーチャー１体につき、コスト７以下の無色クリーチャーを１体、自分の手札または山札から出してもよい。その後、山札をシャッフルする。\n相手のターン中、相手が自分のクリーチャーを選ぶ時、このクリーチャーは選べない。（ただし、このクリーチャーを攻撃してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-004",
+      "limit": 4,
+      "breaker": 2,
+      "g211Sympathy": {
+        "amount": 1,
+        "minimum": 1,
+        "filter": {
+          "creature": true,
+          "noColor": true
+        }
+      },
+      "g260Self": {
+        "filter": {
+          "g1114OpponentTurn": true
+        },
+        "grants": {
+          "untargetable": true
+        }
+      },
+      "g174End": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "self",
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g187OwnPick": true,
+          "g1114AcidDeploy": true,
+          "title": "破壊する自分のクリーチャーを2体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1114",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex2-079",
+      "name": "剛撃霊樹 タイタニス",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ジャイアント/ミステリー・トーテム",
+      "text": "相手の、エレメントの能力または呪文によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりに出してもよい。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、自分の山札の上から２枚をマナゾーンに置く。その後、クリーチャーを２体、自分のマナゾーンから手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-079",
+      "limit": 4,
+      "breaker": 2,
+      "g591Discard": "opponentElement1114",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 2,
+          "g809Together": true
+        },
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 2,
+          "filter": {
+            "creature": true
+          },
+          "g583Group": true,
+          "title": "マナから手札に戻すクリーチャーを2体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1114",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex2-081",
+      "name": "青寂の精霊龍 カーネル / サイレント・ジェラシー",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3500,
+      "race": "エンジェル・ドラゴン/革命軍",
+      "text": "S・トリガー S・トリガー\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\n【呪文面】\n相手の手札を１枚見ないで選び、捨てさせる。\n自分のシールドを１つ手札に加える。ただし、その「S・トリガー」は使えない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-081",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "g190Freeze": "self",
+          "title": "次の自分のターンまで攻撃とブロックを止める相手クリーチャーを選ぶ"
+        }
+      ],
+      "spellFace": {
+        "name": "サイレント・ジェラシー",
+        "type": "spell",
+        "cost": 2,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 1,
+            "random": true
+          },
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1114",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1113,
+    "phase": 1114,
     "checkedAt": "2026-11-13",
-    "baseCount": 7321,
-    "newEffectCards": 3,
+    "baseCount": 7324,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7324,
+    "totalCount": 7328,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -240445,6 +240628,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7321,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1113,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7321,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7324,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

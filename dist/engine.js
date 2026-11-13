@@ -1211,12 +1211,17 @@ function baseSummonCost297(s,p,c){
 function allManaColors(s,p){return s.players[p].battle.some(x=>!x.sealed&&(card(x).casablanca||card(x).g51Courtney)&&!abilitiesIgnored(s,x));}
 const fullManaColors=['光','水','闇','火','自然'];
 function twinManaColors(s,p){return s.players[p].battle.some(x=>card(x).g972TwinManaColors&&!abilitiesIgnored(s,x));}
+function raceManaColors(s,p,c){
+ const races=playFaces(c).flatMap(face=>String(face.race||'').split('/'));
+ return s.players[p].battle.some(x=>!x.sealed&&races.includes(card(x).g1114ManaRace)&&
+  effectiveCard(x,s).g1114ManaRace);
+}
 function manaExecutionAllColors(s,p,c){
  return c.summonOrigin==='mana'&&(c.type==='creature'&&allManaColors(s,p)||
-  !!c.id&&!!card(c.id)?.spellFace&&twinManaColors(s,p));
+  !!c.id&&!!card(c.id)?.spellFace&&twinManaColors(s,p)||raceManaColors(s,p,card(c.id)||c));
 }
 export function manaColors(c,s=null,p=null,forPower=false){
- return s&&p!==null&&(allManaColors(s,p)||c.spellFace&&twinManaColors(s,p))?[...fullManaColors]:manaCivilizations(c);
+ return s&&p!==null&&(allManaColors(s,p)||c.spellFace&&twinManaColors(s,p)||raceManaColors(s,p,c))?[...fullManaColors]:manaCivilizations(c);
 }
 export function paymentPool(s,p,exclude=[],c=null){
  const zero=(s.g35ZeroMana||[]).some(l=>l.p===p),origin=c?.type==='creature'&&c.g423OriginMana||c?.type==='spell'&&c.g826OriginSpellMana,crystal=c?.g434CrystalSoul,all=s.players[p].battle.some(x=>effectiveCard(x,s).casablanca||effectiveCard(x,s).g51Courtney||String(c?.race).includes('生徒会組')&&effectiveCard(x,s).g28Gyai);
@@ -1227,7 +1232,7 @@ export function paymentPool(s,p,exclude=[],c=null){
  return [...mana.map(x=>{
   const c=card(x),value=zero?0:manaValue(c),boost=crystal&&x.faceDown;
   const double=origin&&value===1&&String(c.race||'').split('/').includes('オリジン');
-  const anyColor=all||twins&&c.spellFace;
+  const anyColor=all||twins&&c.spellFace||!x.faceDown&&raceManaColors(s,p,c);
   return zero||origin||crystal||anyColor?{...x,
    ...(zero||double||boost?{paymentValue:boost?crystal:double?2:0}:{}),
    ...(origin?{paymentExact423:true}:{}),...(crystal?{paymentCrystal434:true}:{}),

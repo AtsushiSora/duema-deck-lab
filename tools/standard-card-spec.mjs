@@ -6184,6 +6184,42 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1114&&d?.status==='complete'){
+  const text=normalize(f.abilityText),back=d.faces[1];
+  if(d.faces.length===2&&f.typeText==='クリーチャー'&&back.typeText==='呪文'){
+   const spell=normalize(back.abilityText);
+   const face={name:back.name,type:'spell',cost:back.cost,civ:back.civilizationText,
+    civilizations:back.civilizations.filter(color=>color!=='無色'),
+    race:back.race,effect:'sixPhoto'};
+   if(['dmex12-052','dm23ex3-T11'].includes(d.id)&&
+    text==='自分の無色クリーチャーの召喚コストを1少なくする。ただしコストは0以下にはならない。自分のマナゾーンにあるスノーフェアリーはすべての文明を持つ。'&&
+    /^このターン次に召喚する自分の無色クリーチャーの召喚コストを最大5少なく(?:する|してもよい)。$/.test(spell))
+    return {g290SummonAura:{filter:{g756Colorless:true},amount:1},g1114ManaRace:'スノーフェアリー',
+     spellFace:{...face,g34Tasks:[{op:'NextReduction456',type:'creature',amount:5,optional:true,
+      filter:{g756Colorless:true},g1113ZeroFloor:true}]}};
+   if(d.id==='dm25ex2-081'&&text===
+    'S・トリガーS・トリガーブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)このクリーチャーが出た時相手のクリーチャーを1体選ぶ。次の自分のターンのはじめまでそのクリーチャーは攻撃もブロックもできない。'&&
+    spell==='相手の手札を1枚見ないで選び捨てさせる。自分のシールドを1つ手札に加える。ただしその「S・トリガー」は使えない。')
+    return {trigger:true,blocker:true,effect:'sixPhoto',g34Tasks:[{op:'Target',g190Freeze:'self',
+     title:'次の自分のターンまで攻撃とブロックを止める相手クリーチャーを選ぶ'}],
+     spellFace:{...face,g34Tasks:[{op:'Discard',n:1,random:true},{op:'ShieldHand',g238ShieldHand:true}]}};
+  }
+  if(d.faces.length===1&&f.typeText==='クリーチャー'){
+   if(d.id==='dmex17-004'&&text===
+    'シンパシー:無色クリーチャー(このクリーチャーの召喚コストをバトルゾーンにある自分の無色クリーチャー1体につき1少なくする。ただしコストは0以下にはならない)W・ブレイカー自分のターンの終わりに自分のクリーチャーを2体まで破壊してもよい。そうしたら自分の山札を見る。こうして破壊したクリーチャー1体につきコスト7以下の無色クリーチャーを1体自分の手札または山札から出してもよい。その後山札をシャッフルする。相手のターン中相手が自分のクリーチャーを選ぶ時このクリーチャーは選べない。(ただしこのクリーチャーを攻撃してもよい)')
+    return {breaker:2,g211Sympathy:{amount:1,minimum:1,filter:{creature:true,noColor:true}},
+     g260Self:{filter:{g1114OpponentTurn:true},grants:{untargetable:true}},g174End:[
+      {op:'Select',origin:'battle',owner:'self',n:2,optional:true,filter:{creature:true},g173Targets:true,g187OwnPick:true,
+       g1114AcidDeploy:true,title:'破壊する自分のクリーチャーを2体まで選ぶ'}
+     ]};
+   if(d.id==='dm25ex2-079'&&text===
+    '相手のエレメントの能力または呪文によってこのクリーチャーが自分の手札から捨てられる時墓地に置くかわりに出してもよい。W・ブレイカー(このクリーチャーはシールドを2つブレイクする)このクリーチャーが出た時自分の山札の上から2枚をマナゾーンに置く。その後クリーチャーを2体自分のマナゾーンから手札に戻す。')
+    return {breaker:2,g591Discard:'opponentElement1114',effect:'sixPhoto',g34Tasks:[
+     {op:'Ramp',n:2,g809Together:true},
+     {op:'Select',origin:'mana',to:'hand',n:2,filter:{creature:true},g583Group:true,title:'マナから手札に戻すクリーチャーを2体選ぶ'}
+    ]};
+  }
+ }
  if(phase>=1113&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const prelude='このターン次に召喚する自分の無色クリーチャーの召喚コストを最大5少なく';
