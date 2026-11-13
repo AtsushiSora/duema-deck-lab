@@ -1,0 +1,298 @@
+{
+  "phase": 1185,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7546,
+  "description": "桜舞う門出、地割呪文「ドゴル」、天翔と紋章の門の能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31530/",
+    "https://dm.takaratomy.co.jp/rule/qa/41094/",
+    "https://dm.takaratomy.co.jp/rule/qa/41983/",
+    "https://dm.takaratomy.co.jp/rule/qa/45224/",
+    "https://dm.takaratomy.co.jp/rule/qa/47048/",
+    "https://dm.takaratomy.co.jp/rule/qa/40455/",
+    "https://dm.takaratomy.co.jp/rule/qa/33609/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/%E5%A4%89%E6%9B%B4%E7%82%B92026-07-23/"
+  ],
+  "cards": [
+    {
+      "id": "dm22ex1-096",
+      "name": "桜舞う門出",
+      "faces": [
+        {
+          "name": "桜舞う門出",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自然の「ガードマン」を持つ進化ではないクリーチャーを２体まで、自分のマナゾーンから出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-096",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-096.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 2,
+            "optional": true,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "faceUp": true,
+              "color": "自然",
+              "nonEvolution": true,
+              "g670Guardman": true
+            },
+            "title": "マナから出す自然の進化ではないガードマンを2体まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "2dcf94fb3ec867605e945bd29e84e1273cce39bf0b6f6d23258920fd41b658b6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-050",
+      "name": "地割呪文「ドゴル」",
+      "faces": [
+        {
+          "name": "地割呪文「ドゴル」",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "シビルカウント２：この呪文が自分のシールドゾーンにあり、自分の自然のクリーチャーまたは自然のタマシードが合計２つ以上あれば、この呪文に「S・トリガー」を与える。\n相手のクリーチャーを１体選ぶ。相手はそれをマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-050",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-050.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g876ShieldTriggerCondition": {
+          "creatureOrSeed": true,
+          "color": "自然",
+          "faceUp": true,
+          "g258Civil": 2
+        },
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "mana",
+            "toOwnerMana": true,
+            "moveByTargetController": true,
+            "title": "相手がマナに置くクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "89f81ef3b6eef056bf0912bada0d446158fa7677bf72dd2a4a90960c4b5c3748",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25bd2-013",
+      "name": "天翔と紋章の門",
+      "faces": [
+        {
+          "name": "天翔と紋章の門",
+          "typeText": "呪文",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{GS} G・ストライク\n自分のクリーチャーを１体、タップしてマナゾーンに置く。その後、自分のマナゾーンにあるカードの枚数以下のコストのエンジェル・コマンド・クリーチャーを１体、自分のマナゾーンから出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25bd2-013",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25bd2-013.jpg",
+      "spec": {
+        "gStrike": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "to": "mana",
+            "toOwnerMana": true,
+            "tapped": true,
+            "implicitSelection": true,
+            "title": "タップしてマナに置く自分のクリーチャーを1体指定する"
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "g746OwnManaCost": true,
+            "filter": {
+              "creature": true,
+              "faceUp": true,
+              "race": "エンジェル・コマンド"
+            },
+            "title": "マナから出すエンジェル・コマンドを1体選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "ccea895f2caaa71f9872923d3822a9ba6a6bddf7701f51868c3a33e1c7466235",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25bd2-SP6",
+      "name": "天翔と紋章の門",
+      "faces": [
+        {
+          "name": "天翔と紋章の門",
+          "typeText": "呪文",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{GS} G・ストライク\n自分のクリーチャーを１体、タップしてマナゾーンに置く。その後、自分のマナゾーンにあるカードの枚数以下のコストのエンジェル・コマンド・クリーチャーを１体、自分のマナゾーンから出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25bd2-SP6",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25bd2-SP6.jpg",
+      "spec": {
+        "gStrike": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "to": "mana",
+            "toOwnerMana": true,
+            "tapped": true,
+            "implicitSelection": true,
+            "title": "タップしてマナに置く自分のクリーチャーを1体指定する"
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "g746OwnManaCost": true,
+            "filter": {
+              "creature": true,
+              "faceUp": true,
+              "race": "エンジェル・コマンド"
+            },
+            "title": "マナから出すエンジェル・コマンドを1体選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "7fa3429817ef09542ca90134c9d8a729c75944934102e7c53c622c7084380c83",
+        "facesMatched": true
+      },
+      "canonicalId": "dm25bd2-013"
+    },
+    {
+      "id": "promoy25-063",
+      "name": "天翔と紋章の門",
+      "faces": [
+        {
+          "name": "天翔と紋章の門",
+          "typeText": "呪文",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分のクリーチャーを１体、タップしてマナゾーンに置く。その後、自分のマナゾーンにあるカードの枚数以下のコストのエンジェル・コマンド・クリーチャーを１体、自分のマナゾーンから出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy25-063",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy25-063.jpg",
+      "spec": {
+        "gStrike": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "to": "mana",
+            "toOwnerMana": true,
+            "tapped": true,
+            "implicitSelection": true,
+            "title": "タップしてマナに置く自分のクリーチャーを1体指定する"
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "g746OwnManaCost": true,
+            "filter": {
+              "creature": true,
+              "faceUp": true,
+              "race": "エンジェル・コマンド"
+            },
+            "title": "マナから出すエンジェル・コマンドを1体選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "bcebc01291d51b21e2c486759ece364e227348a1f4e9d558410d5cb8598959f3",
+        "facesMatched": true
+      },
+      "canonicalId": "dm25bd2-013"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22ex1-096": 4,
+      "dm22rp1-050": 4,
+      "dm25bd2-013": 4,
+      "dm25bd2-SP6": 4,
+      "promoy25-063": 4
+    }
+  }
+}

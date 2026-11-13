@@ -2470,6 +2470,36 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1185&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
+  const lines=f.abilityText.split('\n').map(normalize);
+  if(d.id==='dm22ex1-096'&&lines.length===2&&
+   lines[0]==='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)'&&
+   lines[1]==='自然の「ガードマン」を持つ進化ではないクリーチャーを2体まで自分のマナゾーンから出す。'){
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'mana',n:2,optional:true,deploy:true,
+    filter:{creature:true,faceUp:true,color:'自然',nonEvolution:true,g670Guardman:true},
+    title:'マナから出す自然の進化ではないガードマンを2体まで選ぶ'}]};
+  }
+  if(d.id==='dm22rp1-050'&&lines.length===2&&
+   lines[0]==='シビルカウント2:この呪文が自分のシールドゾーンにあり自分の自然のクリーチャーまたは自然のタマシードが合計2つ以上あればこの呪文に「S・トリガー」を与える。'&&
+   lines[1]==='相手のクリーチャーを1体選ぶ。相手はそれをマナゾーンに置く。'){
+   return {effect:'sixPhoto',g876ShieldTriggerCondition:{creatureOrSeed:true,color:'自然',faceUp:true,g258Civil:2},
+    g34Tasks:[{op:'Target',to:'mana',toOwnerMana:true,moveByTargetController:true,
+     title:'相手がマナに置くクリーチャーを1体選ぶ'}]};
+  }
+  if(f.name==='天翔と紋章の門'&&lines.length===2&&
+   ['{GS}G・ストライク',
+    '{GS}G・ストライク(このカードを自分のシールドゾーンから手札に加える時表向きにし相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)'].includes(lines[0])&&
+   lines[1]==='自分のクリーチャーを1体タップしてマナゾーンに置く。その後自分のマナゾーンにあるカードの枚数以下のコストのエンジェル・コマンド・クリーチャーを1体自分のマナゾーンから出す。'){
+   // Resolve the second instruction even if the first could not move a card (QA 47048).
+   return {gStrike:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Target',owner:'self',to:'mana',toOwnerMana:true,tapped:true,implicitSelection:true,
+     title:'タップしてマナに置く自分のクリーチャーを1体指定する'},
+    {op:'Select',origin:'mana',n:1,deploy:true,g746OwnManaCost:true,
+     filter:{creature:true,faceUp:true,race:'エンジェル・コマンド'},
+     title:'マナから出すエンジェル・コマンドを1体選ぶ'}
+   ]};
+  }
+ }
  if(phase>=1184&&d?.status==='complete'&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText),spell=d.faces[1];
   if(d.id==='dm24ex2-060'&&d.faces.length===2&&

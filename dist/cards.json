@@ -229155,15 +229155,131 @@
       ],
       "supportBatch": "phase-1184",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-096",
+      "name": "桜舞う門出",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自然の「ガードマン」を持つ進化ではないクリーチャーを２体まで、自分のマナゾーンから出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-096",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 2,
+          "optional": true,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "faceUp": true,
+            "color": "自然",
+            "nonEvolution": true,
+            "g670Guardman": true
+          },
+          "title": "マナから出す自然の進化ではないガードマンを2体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1185",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-050",
+      "name": "地割呪文「ドゴル」",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "シビルカウント２：この呪文が自分のシールドゾーンにあり、自分の自然のクリーチャーまたは自然のタマシードが合計２つ以上あれば、この呪文に「S・トリガー」を与える。\n相手のクリーチャーを１体選ぶ。相手はそれをマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-050",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g876ShieldTriggerCondition": {
+        "creatureOrSeed": true,
+        "color": "自然",
+        "faceUp": true,
+        "g258Civil": 2
+      },
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "mana",
+          "toOwnerMana": true,
+          "moveByTargetController": true,
+          "title": "相手がマナに置くクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1185",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25bd2-013",
+      "name": "天翔と紋章の門",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "{GS} G・ストライク\n自分のクリーチャーを１体、タップしてマナゾーンに置く。その後、自分のマナゾーンにあるカードの枚数以下のコストのエンジェル・コマンド・クリーチャーを１体、自分のマナゾーンから出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25bd2-013",
+      "limit": 4,
+      "gStrike": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "to": "mana",
+          "toOwnerMana": true,
+          "tapped": true,
+          "implicitSelection": true,
+          "title": "タップしてマナに置く自分のクリーチャーを1体指定する"
+        },
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 1,
+          "deploy": true,
+          "g746OwnManaCost": true,
+          "filter": {
+            "creature": true,
+            "faceUp": true,
+            "race": "エンジェル・コマンド"
+          },
+          "title": "マナから出すエンジェル・コマンドを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1185",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1184,
+    "phase": 1185,
     "checkedAt": "2026-11-14",
-    "baseCount": 7542,
-    "newEffectCards": 4,
+    "baseCount": 7546,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7546,
+    "totalCount": 7549,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -249660,6 +249776,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7542,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1184,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7542,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7546,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
