@@ -225624,15 +225624,128 @@
       ],
       "supportBatch": "phase-1150",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmd31-002",
+      "name": "禁断V モードス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ソニック・コマンド/イニシャルズ",
+      "text": "このクリーチャーがバトルゾーンに出た時または攻撃する時、闇または火のコスト３以下のクリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd31-002",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "max": 3,
+            "any": [
+              {
+                "color": "闇"
+              },
+              {
+                "color": "火"
+              }
+            ]
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "max": 3,
+            "any": [
+              {
+                "color": "闇"
+              },
+              {
+                "color": "火"
+              }
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-1151",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx12a-018",
+      "name": "砂場男",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "ヘドリアン/ハンター",
+      "text": "このクリーチャーをバトルゾーンに出した時、カードに能力が書かれていないクリーチャーを２体まで、自分の墓地からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12a-018",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 2,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "g990PrintedNoAbilities": true,
+            "g1113LegacyManaText": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1151",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex06-025",
+      "name": "撃速 ザ・グナム",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ソニック・コマンド/侵略者",
+      "text": "相手が、自身のターン中にコストを支払わずにクリーチャーをバトルゾーンに出した時、そのクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex06-025",
+      "limit": 4,
+      "g601UnpaidDestroy": "opponentTurn",
+      "supportBatch": "phase-1151",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1150,
+    "phase": 1151,
     "checkedAt": "2026-11-14",
-    "baseCount": 7437,
+    "baseCount": 7440,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7440,
+    "totalCount": 7443,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -245721,6 +245834,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7437,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1150,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7437,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7440,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

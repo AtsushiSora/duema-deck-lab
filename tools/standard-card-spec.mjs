@@ -6184,6 +6184,19 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1151&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmd31-002'&&text==='このクリーチャーがバトルゾーンに出た時または攻撃する時闇または火のコスト3以下のクリーチャーを1体自分の墓地からバトルゾーンに出してもよい。'){
+   const defs=[{op:'Select',origin:'grave',n:1,deploy:true,optional:true,filter:{creature:true,max:3,any:[{color:'闇'},{color:'火'}]}}];
+   return {effect:'sixPhoto',g34Tasks:defs,g34Attack:defs};
+  }
+  if(d.id==='dmx12a-018'&&text==='このクリーチャーをバトルゾーンに出した時カードに能力が書かれていないクリーチャーを2体まで自分の墓地からバトルゾーンに出してもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'grave',n:2,deploy:true,optional:true,
+    filter:{creature:true,g990PrintedNoAbilities:true,g1113LegacyManaText:true}}]};
+  if(['dmex06-025','dmex13-012'].includes(d.id)&&
+   text==='相手が自身のターン中にコストを支払わずにクリーチャーをバトルゾーンに出した時そのクリーチャーを破壊する。')
+   return {g601UnpaidDestroy:'opponentTurn'};
+ }
  if(phase>=1150&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dm22rp1-010'&&text==='自分の他のクリーチャーは破壊以外の方法で離れない。')

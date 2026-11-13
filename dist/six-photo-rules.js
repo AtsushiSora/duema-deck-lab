@@ -6444,7 +6444,8 @@ export function createSixPhotoRules(api){
    if(watcher.sealed)continue;
    const {g403Bloom,g600OverManaEntry,g601UnpaidDestroy,g601OffHandMana,g621NonSummon,g624EntryResponse,g1112UnpaidBounce}=effective(watcher,s);
    const bloomDestroys=options.execution===false&&g403Bloom&&(s.active===p||g403Bloom==='eitherTurn');
-   const unpaidDestroys=g601UnpaidDestroy&&!options.costPaid&&!options.paidMana;
+   const unpaidDestroys=g601UnpaidDestroy&&(g601UnpaidDestroy!=='opponentTurn'||s.active===p)&&
+    !options.costPaid&&!options.paidMana;
    const offHand=g601OffHandMana&&options.origin!==undefined&&options.origin!=='hand';
    const nonSummon=options.execution===false?g621NonSummon:null;
    const shieldWithoutMana=g624EntryResponse==='untappedManaShield'&&!options.paidMana&&!y.sealed;
