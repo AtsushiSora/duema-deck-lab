@@ -2762,7 +2762,8 @@ export function createSixPhotoRules(api){
  case'g34_Sequence':start(s,t,t.defs);break;
  case'g34_Awaken1095':{
   const x=own.battle.find(y=>y.uid===t.uid&&(y.incarnation||0)===t.incarnation&&!y.sealed);
-  if(!x||x.g1085Awakened)break;
+  if(!x||x.g1085Awakened&&!t.loop)break;
+  if(t.loop){api.awakenPsychic(s,t.p,x,true);break;}
   if(t.g1102DirectAwaken){api.awakenPsychic(s,t.p,x);break;}
   if(t.g1096OtherEntries!==undefined){
    const selfEntered=x.g1096CountedEntryTurn===s.turn?1:0;

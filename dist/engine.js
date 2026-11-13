@@ -1965,9 +1965,11 @@ function finishBattleResult(s,winner,late,winning=null,both=null,losses=[]){
  }
  s.battleResolution={wins,late,...(declarations.length?{declarations}:{})};
 }
-function awakenPsychic(s,p,x){
- if(x.g1085Awakened||!card(x).g1085Back)return;
- x.g1085Awakened=true;x.g1085AwakenedTurn=s.turn;
+function awakenPsychic(s,p,x,loop=false){
+ if(!card(x).g1085Back||x.g1085Awakened&&!loop)return;
+ if(x.g1085Awakened)delete x.g1085Awakened;
+ else x.g1085Awakened=true;
+ x.g1085AwakenedTurn=s.turn;
  log(s,p,'awaken',card(x).name+'に覚醒',{cardId:x.cardId,uid:x.uid});
 }
 // Resolve battle-result triggers before Slayer and other "after the battle" effects (115.3d).

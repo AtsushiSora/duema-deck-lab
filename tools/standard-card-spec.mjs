@@ -6235,6 +6235,34 @@ export function standardCardSpec(d,{phase=165}={}){
      {op:'SacrificeAlly413',filter:{g1085Psychic:false},defs:[deploy({max:5,color:'闇'},{g1104PsychicFaces:true})]}
     ]};
   }
+  if(phase>=1105){
+   const printed=text.replace('バトルゾーンにあるサイキック・クリーチャー以外の','サイキックではない')
+    .replace('サイキック・クリーチャー以外のクリーチャーを1体選び持ち主の手札に戻す','サイキックではないクリーチャーを1体選び持ち主の手札に戻す')
+    .replace('コスト7以下の水または闇の','水または闇のコスト7以下の')
+    .replaceAll('超次元ゾーンからバトルゾーンに出す','超次元ゾーンから出す')
+    .replace('次の中から1回選ぶ。','次のうちいずれか1つを選ぶ。')
+    .replace('パワー3000以下のクリーチャーを1体選び破壊する','パワー3000以下のクリーチャーを1体破壊する')
+    .replace('山札の上から1枚目をマナゾーン','山札の上から1枚をマナゾーン');
+   const deployFaces=(max,...colors)=>deploy({max,any:colors.map(color=>({color}))},{g1104PsychicFaces:true});
+   if(['dmr01-050','dmx25-017','dmbd13-019','dmex17-079','dm22ex1-078'].includes(d.id)&&
+    printed==='サイキックではないクリーチャーを1体選び持ち主の手札に戻す。水または闇のコスト7以下のサイキック・クリーチャーを1体自分の超次元ゾーンから出す。')
+    return {effect:'sixPhoto',g34Tasks:[
+     {op:'Target',anyOwner:true,to:'hand',toOwnerHand:true,spell:true,filter:{g1085Psychic:false},title:'手札に戻すサイキックではないクリーチャーを1体選ぶ'},
+     deployFaces(7,'水','闇')
+    ]};
+   if(['dmc63-004','dmc68-013','dmd04-013','dmd19-009'].includes(d.id)&&
+    printed==='バトルゾーンにある相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーは-2000される。(パワー0以下のクリーチャーは破壊される)コスト9以下の闇のサイキック・クリーチャーを1体自分の超次元ゾーンから出す。')
+    return {effect:'sixPhoto',g34Tasks:[
+     {op:'Target',power:-2000,spell:true,title:'パワーを-2000する相手のクリーチャーを1体選ぶ'},deployFaces(9,'闇')
+    ]};
+   if(['dmbd13-015','dm22ex1-130','dm25ex4-T30'].includes(d.id)&&
+    printed==='水火または自然のコスト7以下のサイキック・クリーチャーを1体自分の超次元ゾーンから出す。次のうちいずれか1つを選ぶ。カードを1枚引く。相手のパワー3000以下のクリーチャーを1体破壊する。自分の山札の上から1枚をマナゾーンに置く。')
+    return {effect:'sixPhoto',g34Tasks:[deployFaces(7,'水','火','自然'),{op:'Choose',g184Modes:true,modes:[
+     {label:'カードを1枚引く',defs:[{op:'Draw',n:1}]},
+     {label:'相手のパワー3000以下のクリーチャーを1体破壊する',defs:[{op:'Target',to:'grave',spell:true,filter:{maxPower:3000,g199Power:true}}]},
+     {label:'山札の上から1枚をマナゾーンに置く',defs:[{op:'Ramp',n:1}]}
+    ]}]};
+  }
   if(['dm37-039','dmx02-032','dmex08-167','promoy25-125'].includes(d.id)||phase>=1101&&['dm22ex1-127','dm25ex4-T28'].includes(d.id)){
    const printed=text.replace(/^S・トリガー(?:S・トリガー)?(?:\(この(?:呪文|カード)を(?:自分の)?シールドゾーンから手札に加える時コストを支払わずにすぐ(?:唱えて|実行して)もよい\))?/,'');
    const old=/^次のうちいずれか(?:ひとつ|1つ)を選ぶ。コスト2以下のサイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。(?:コスト4以下の光または水|光または水のコスト4以下)のサイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。$/;
@@ -6280,7 +6308,7 @@ export function standardCardSpec(d,{phase=165}={}){
     'コスト7以下のエイリアン・サイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。')
     return {effect:'sixPhoto',g34Tasks:[
      {op:'GroupGrant364',owner:'self',filter:{race:'エイリアン'},spell:true,g521NextOpponentTurn:true,g565External:true,grant:{cannotBeAttacked:true}},
-     deploy({max:7,race:'エイリアン'})
+     deploy({max:7,race:'エイリアン'},phase>=1105?{g1104PsychicFaces:true}:{})
     ]};
   }
  }
@@ -6332,6 +6360,16 @@ export function standardCardSpec(d,{phase=165}={}){
    image:'https://dm.takaratomy.co.jp/wp-content/card/cardimage/'+id+'b.jpg'});
   const blockReminder='(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)';
   const backText=normalize(back.abilityText).replace(blockReminder,'');
+  if(phase>=1105&&d.id==='dmx05-004'){
+   const loopReminder=reminder.replace('自分の超次元ゾーン','自身の超次元ゾーン');
+   const loopText=name=>'ループ覚醒-自分のターンのはじめにこのクリーチャーを《'+name+'》のほうに裏返してもよい。'+loopReminder;
+   const sirius='時空のガガ・シリウス',lancer='時空のセブ・ランサー';
+   const loopStart=name=>[{op:'Offer',title:name+'にループ覚醒する？',defs:[{op:'Awaken1095',loop:true}]}];
+   if(text==='ブロッカーこのクリーチャーは相手プレイヤーを攻撃できない。'+loopText(lancer)&&
+    backText==='このクリーチャーは攻撃またはブロックされない。'+loopText(sirius))
+    return {psychic:true,manaValue:0,blocker:true,noPlayerAttack:true,g174Start:loopStart(lancer),
+     g1085Back:{...backFace(d.id),blocker:false,noPlayerAttack:false,cannotBeAttacked:true,unblockable:true,g174Start:loopStart(sirius)}};
+  }
   if(['dm37-024','dmx02-020'].includes(d.id)&&text===
    'ブロッカーこのクリーチャーは攻撃することができない。覚醒-自分の「ブロッカー」を持つコスト4以上のクリーチャーをバトルゾーンに出した時このクリーチャーをコストの大きいほうに裏返す。'+reminder&&
    backText==='ブロッカーこのクリーチャーがブロックした時自分の山札の上から1枚目を裏向きのまま新しいシールドとして自分のシールドゾーンに加えてもよい。')

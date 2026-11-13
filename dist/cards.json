@@ -218108,7 +218108,8 @@
             "g1085Psychic": true,
             "max": 7,
             "race": "エイリアン"
-          }
+          },
+          "g1104PsychicFaces": true
         }
       ],
       "supportBatch": "phase-1101",
@@ -218945,15 +218946,252 @@
       ],
       "supportBatch": "phase-1104",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx05-004",
+      "name": "時空のガガ・シリウス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 7,
+      "power": 12500,
+      "race": "エンジェル・コマンド/エイリアン",
+      "text": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nループ覚醒-自分のターンのはじめに、このクリーチャーを《時空のセブ・ランサー》のほうに裏返してもよい。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)\n【呪文面】\nこのクリーチャーは攻撃またはブロックされない。\nループ覚醒-自分のターンのはじめに、このクリーチャーを《時空のガガ・シリウス》のほうに裏返してもよい。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx05-004",
+      "limit": 4,
+      "psychic": true,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g174Start": [
+        {
+          "op": "Offer",
+          "title": "時空のセブ・ランサーにループ覚醒する？",
+          "defs": [
+            {
+              "op": "Awaken1095",
+              "loop": true
+            }
+          ]
+        }
+      ],
+      "g1085Back": {
+        "name": "時空のセブ・ランサー",
+        "cost": 7,
+        "power": 5000,
+        "race": "リキッド・ピープル/エイリアン",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx05-004b.jpg",
+        "blocker": false,
+        "noPlayerAttack": false,
+        "cannotBeAttacked": true,
+        "unblockable": true,
+        "g174Start": [
+          {
+            "op": "Offer",
+            "title": "時空のガガ・シリウスにループ覚醒する？",
+            "defs": [
+              {
+                "op": "Awaken1095",
+                "loop": true
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1105",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-050",
+      "name": "超次元ガロウズ・ホール",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある、サイキック・クリーチャー以外のクリーチャーを１体選び、持ち主の手札に戻す。\nコスト７以下の水または闇のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-050",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "to": "hand",
+          "toOwnerHand": true,
+          "spell": true,
+          "filter": {
+            "g1085Psychic": false
+          },
+          "title": "手札に戻すサイキックではないクリーチャーを1体選ぶ"
+        },
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 7,
+            "any": [
+              {
+                "color": "水"
+              },
+              {
+                "color": "闇"
+              }
+            ]
+          },
+          "g1104PsychicFaces": true
+        }
+      ],
+      "supportBatch": "phase-1105",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd13-015",
+      "name": "超次元リュウセイ・ホール",
+      "civ": "水/火/自然",
+      "civilizations": [
+        "水",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "水、火、または自然の、コスト７以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\n次のうちいずれか１つを選ぶ。\n▶︎カードを１枚引く。\n▶︎相手のパワー3000以下のクリーチャーを１体破壊する。\n▶︎自分の山札の上から１枚目をマナゾーンに置く。\n（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd13-015",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 7,
+            "any": [
+              {
+                "color": "水"
+              },
+              {
+                "color": "火"
+              },
+              {
+                "color": "自然"
+              }
+            ]
+          },
+          "g1104PsychicFaces": true
+        },
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "カードを1枚引く",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            },
+            {
+              "label": "相手のパワー3000以下のクリーチャーを1体破壊する",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "spell": true,
+                  "filter": {
+                    "maxPower": 3000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            },
+            {
+              "label": "山札の上から1枚をマナゾーンに置く",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1105",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmc63-004",
+      "name": "超次元ミカド・ホール",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーは-2000される。(パワー０以下のクリーチャーは破壊される)\nコスト９以下の闇のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc63-004",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -2000,
+          "spell": true,
+          "title": "パワーを-2000する相手のクリーチャーを1体選ぶ"
+        },
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 9,
+            "any": [
+              {
+                "color": "闇"
+              }
+            ]
+          },
+          "g1104PsychicFaces": true
+        }
+      ],
+      "supportBatch": "phase-1105",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1104,
+    "phase": 1105,
     "checkedAt": "2026-11-13",
-    "baseCount": 7284,
+    "baseCount": 7288,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7288,
+    "totalCount": 7292,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -238490,6 +238728,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7284,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1104,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7284,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7288,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
