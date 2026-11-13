@@ -1,0 +1,607 @@
+{
+  "phase": 1174,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7512,
+  "description": "ベートーベン・キューブ、灰燼と天門の儀式、グーゴル ＜XENOM.Star＞の能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/46872/",
+    "https://dm.takaratomy.co.jp/rule/qa/45092/",
+    "https://dm.takaratomy.co.jp/rule/qa/43594/",
+    "https://dm.takaratomy.co.jp/rule/qa/41993/",
+    "https://dm.takaratomy.co.jp/rule/qa/42379/",
+    "https://dm.takaratomy.co.jp/rule/qa/41196/",
+    "https://dm.takaratomy.co.jp/rule/qa/41451/"
+  ],
+  "cards": [
+    {
+      "id": "dm23ex3-026",
+      "name": "ベートーベン・キューブ",
+      "faces": [
+        {
+          "name": "ベートーベン・キューブ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\n自分の山札の上から２枚をマナゾーンに置く。\n次の自分のターンのはじめまで、相手のクリーチャーが攻撃する時、可能ならクリーチャーを攻撃する。\n水晶武装４：自分のマナゾーンに裏向きのカードが４枚以上あれば、自分の山札の上から３枚を見る。その中からアンノウンまたはゼニスを１枚出してもよい。それをタップしてもよい。残りを好きな順序で山札の下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-026",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-026.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 2
+          },
+          {
+            "op": "GroupGrant364",
+            "owner": "opponent",
+            "filter": {
+              "creature": true
+            },
+            "g521UntilStart": true,
+            "spell": true,
+            "grant": {
+              "g1173AttackCreatureIfAble": true
+            }
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g286FaceDownMana": 4
+            },
+            "defs": [
+              {
+                "op": "LookDeploy530",
+                "n": 3,
+                "limit": 1,
+                "rest": "bottom",
+                "g841DeckPeek": true,
+                "tapAfterEntry": true,
+                "filter": {
+                  "raceAny": [
+                    "アンノウン",
+                    "ゼニス"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "e91f253b93affdbd15e25ea773c11f401f65ca5d917e5319788fde1f7d151315",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp17-010",
+      "name": "灰燼と天門の儀式",
+      "faces": [
+        {
+          "name": "灰燼と天門の儀式",
+          "typeText": "呪文",
+          "civilizationText": "光/闇/火",
+          "civilizations": [
+            "光",
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガーS・トリガー\nコスト８以下のクリーチャーを１体、自分の墓地から出す。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。その後、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-010",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-010.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "max": 8
+            },
+            "g791Grant": {
+              "blocker": true
+            },
+            "g793FightOnEntry": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "dcc09596d4ce62ab20acdaeb181e5d5c57878e0de10f3e8a02a9fc093962cc75",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp21-5A",
+      "name": "グーゴル ＜XENOM.Star＞",
+      "faces": [
+        {
+          "name": "グーゴル ＜XENOM.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スター進化：レクスターズまたは闇のクリーチャー１体の上に置く。\nW・ブレイカー\n相手のカードはマナゾーンとバトルゾーンにタップして置かれる。\nこのクリーチャーが攻撃する時、相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "ゼロ・ドラゴン/デーモン・コマンド/レクスターズ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-5A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-5A.jpg",
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "breaker": 2,
+        "g1038OpponentTap": true,
+        "g34Attack": [
+          {
+            "op": "BlindDiscard773",
+            "n": 1
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "cd585d0819edfc6bc53faf17b36a0043c46d7a2d55ec773541ef70295dc9edb2",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex19-022",
+      "name": "灰燼と天門の儀式",
+      "faces": [
+        {
+          "name": "灰燼と天門の儀式",
+          "typeText": "呪文",
+          "civilizationText": "光/闇/火",
+          "civilizations": [
+            "光",
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガーS・トリガー\nコスト８以下のクリーチャーを１体、自分の墓地から出す。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。その後、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-022",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-022.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "max": 8
+            },
+            "g791Grant": {
+              "blocker": true
+            },
+            "g793FightOnEntry": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "d1007a447c79472fea17b8fe75b243b71c0b7fcf50293d90d68a13a1266002e4",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp17-010"
+    },
+    {
+      "id": "dmart09-005",
+      "name": "灰燼と天門の儀式",
+      "faces": [
+        {
+          "name": "灰燼と天門の儀式",
+          "typeText": "呪文",
+          "civilizationText": "光/闇/火",
+          "civilizations": [
+            "光",
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nコスト８以下のクリーチャーを１体、自分の墓地から出す。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。その後、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmart09-005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmart09-005.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "max": 8
+            },
+            "g791Grant": {
+              "blocker": true
+            },
+            "g793FightOnEntry": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "16191945f04a74955ff7026022d9bf46b8133a0c9bafefdcb47741c0ecfc9491",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp17-010"
+    },
+    {
+      "id": "dm24bd6-022",
+      "name": "灰燼と天門の儀式",
+      "faces": [
+        {
+          "name": "灰燼と天門の儀式",
+          "typeText": "呪文",
+          "civilizationText": "光/闇/火",
+          "civilizations": [
+            "光",
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nコスト８以下のクリーチャーを１体、自分の墓地から出す。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。その後、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd6-022",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd6-022.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "max": 8
+            },
+            "g791Grant": {
+              "blocker": true
+            },
+            "g793FightOnEntry": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "867a1f92913ca2e33283437de2bf93c1a59ba2f241c272349727f89b24f9b638",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp17-010"
+    },
+    {
+      "id": "dm23bd1-009",
+      "name": "灰燼と天門の儀式",
+      "faces": [
+        {
+          "name": "灰燼と天門の儀式",
+          "typeText": "呪文",
+          "civilizationText": "光/闇/火",
+          "civilizations": [
+            "光",
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガーS・トリガー\nコスト８以下のクリーチャーを１体、自分の墓地から出す。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。その後、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd1-009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd1-009.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "max": 8
+            },
+            "g791Grant": {
+              "blocker": true
+            },
+            "g793FightOnEntry": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "a637cd6c03924e13e5fa8756cc93c2c8f87b19b6df1d38b3b5a100f7732dbb9b",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp17-010"
+    },
+    {
+      "id": "dm22rp2-SP5",
+      "name": "灰燼と天門の儀式",
+      "faces": [
+        {
+          "name": "灰燼と天門の儀式",
+          "typeText": "呪文",
+          "civilizationText": "光/闇/火",
+          "civilizations": [
+            "光",
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガーS・トリガー\nコスト８以下のクリーチャーを１体、自分の墓地から出す。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。その後、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-SP5",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-SP5.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "max": 8
+            },
+            "g791Grant": {
+              "blocker": true
+            },
+            "g793FightOnEntry": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "dcaa131747125e60876d7a8c306025b5f616edb1dd89c8717cb45e919328dfd6",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp17-010"
+    },
+    {
+      "id": "dm22rp2x-SP5",
+      "name": "灰燼と天門の儀式",
+      "faces": [
+        {
+          "name": "灰燼と天門の儀式",
+          "typeText": "呪文",
+          "civilizationText": "光/闇/火",
+          "civilizations": [
+            "光",
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガーS・トリガー\nコスト８以下のクリーチャーを１体、自分の墓地から出す。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。その後、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-SP5",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-SP5.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "max": 8
+            },
+            "g791Grant": {
+              "blocker": true
+            },
+            "g793FightOnEntry": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "91aacac755354ff6c9fa0e9a7635e0a8bcbffb67ad5c5cad31cd5f31993f8d1a",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp17-010"
+    },
+    {
+      "id": "dmrp21-7B",
+      "name": "グーゴル ＜XENOM.Star＞",
+      "faces": [
+        {
+          "name": "グーゴル ＜XENOM.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スター進化：レクスターズまたは闇のクリーチャー１体の上に置く。\nW・ブレイカー\n相手のカードはマナゾーンとバトルゾーンにタップして置かれる。\nこのクリーチャーが攻撃する時、相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "ゼロ・ドラゴン/デーモン・コマンド/レクスターズ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-7B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-7B.jpg",
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "breaker": 2,
+        "g1038OpponentTap": true,
+        "g34Attack": [
+          {
+            "op": "BlindDiscard773",
+            "n": 1
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "8eae0e14afd70ea316e978728197d216183dc05ad783b9ad9a3cc8f5efb4b51c",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp21-5A"
+    },
+    {
+      "id": "dmrp21-S5",
+      "name": "グーゴル ＜XENOM.Star＞",
+      "faces": [
+        {
+          "name": "グーゴル ＜XENOM.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スター進化：レクスターズまたは闇のクリーチャー１体の上に置く。\nW・ブレイカー\n相手のカードはマナゾーンとバトルゾーンにタップして置かれる。\nこのクリーチャーが攻撃する時、相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "ゼロ・ドラゴン/デーモン・コマンド/レクスターズ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-S5",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-S5.jpg",
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "breaker": 2,
+        "g1038OpponentTap": true,
+        "g34Attack": [
+          {
+            "op": "BlindDiscard773",
+            "n": 1
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "f1418412d8eebe4077af507073808da4941a0cab169115fd9aeb92508535e44d",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp21-5A"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23ex3-026": 4,
+      "dmrp17-010": 4,
+      "dmrp21-5A": 4,
+      "dmex19-022": 4,
+      "dmart09-005": 4,
+      "dm24bd6-022": 4,
+      "dm23bd1-009": 4,
+      "dm22rp2-SP5": 4,
+      "dm22rp2x-SP5": 4,
+      "dmrp21-7B": 4,
+      "dmrp21-S5": 4
+    }
+  }
+}

@@ -227953,15 +227953,150 @@
       ],
       "supportBatch": "phase-1173",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-026",
+      "name": "ベートーベン・キューブ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー\n自分の山札の上から２枚をマナゾーンに置く。\n次の自分のターンのはじめまで、相手のクリーチャーが攻撃する時、可能ならクリーチャーを攻撃する。\n水晶武装４：自分のマナゾーンに裏向きのカードが４枚以上あれば、自分の山札の上から３枚を見る。その中からアンノウンまたはゼニスを１枚出してもよい。それをタップしてもよい。残りを好きな順序で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-026",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 2
+        },
+        {
+          "op": "GroupGrant364",
+          "owner": "opponent",
+          "filter": {
+            "creature": true
+          },
+          "g521UntilStart": true,
+          "spell": true,
+          "grant": {
+            "g1173AttackCreatureIfAble": true
+          }
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g286FaceDownMana": 4
+          },
+          "defs": [
+            {
+              "op": "LookDeploy530",
+              "n": 3,
+              "limit": 1,
+              "rest": "bottom",
+              "g841DeckPeek": true,
+              "tapAfterEntry": true,
+              "filter": {
+                "raceAny": [
+                  "アンノウン",
+                  "ゼニス"
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1174",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp17-010",
+      "name": "灰燼と天門の儀式",
+      "civ": "光/闇/火",
+      "civilizations": [
+        "光",
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガーS・トリガー\nコスト８以下のクリーチャーを１体、自分の墓地から出す。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。その後、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-010",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "max": 8
+          },
+          "g791Grant": {
+            "blocker": true
+          },
+          "g793FightOnEntry": true
+        }
+      ],
+      "supportBatch": "phase-1174",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp21-5A",
+      "name": "グーゴル ＜XENOM.Star＞",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 9000,
+      "race": "ゼロ・ドラゴン/デーモン・コマンド/レクスターズ",
+      "text": "スター進化：レクスターズまたは闇のクリーチャー１体の上に置く。\nW・ブレイカー\n相手のカードはマナゾーンとバトルゾーンにタップして置かれる。\nこのクリーチャーが攻撃する時、相手の手札を１枚見ないで選び、捨てさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-5A",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "starEvolution": true,
+      "breaker": 2,
+      "g1038OpponentTap": true,
+      "g34Attack": [
+        {
+          "op": "BlindDiscard773",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1174",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1173,
+    "phase": 1174,
     "checkedAt": "2026-11-14",
-    "baseCount": 7509,
+    "baseCount": 7512,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7512,
+    "totalCount": 7515,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -248326,6 +248461,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7509,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1173,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7509,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7512,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

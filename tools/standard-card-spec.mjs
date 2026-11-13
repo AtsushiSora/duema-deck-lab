@@ -2467,6 +2467,32 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1174&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.name==='ベートーベン・キューブ'&&f.typeText==='呪文'&&f.civilizationText==='自然'&&f.cost===6&&text===
+   'S・トリガーS・トリガー自分の山札の上から2枚をマナゾーンに置く。'+
+   '次の自分のターンのはじめまで相手のクリーチャーが攻撃する時可能ならクリーチャーを攻撃する。'+
+   '水晶武装4:自分のマナゾーンに裏向きのカードが4枚以上あれば自分の山札の上から3枚を見る。'+
+   'その中からアンノウンまたはゼニスを1枚出してもよい。それをタップしてもよい。残りを好きな順序で山札の下に置く。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Ramp',n:2},
+    {op:'GroupGrant364',owner:'opponent',filter:{creature:true},g521UntilStart:true,spell:true,grant:{g1173AttackCreatureIfAble:true}},
+    {op:'IfOwn',filter:{g286FaceDownMana:4},defs:[
+     {op:'LookDeploy530',n:3,limit:1,rest:'bottom',g841DeckPeek:true,tapAfterEntry:true,filter:{raceAny:['アンノウン','ゼニス']}}
+    ]}
+   ]};
+  if(f.name==='灰燼と天門の儀式'&&f.typeText==='呪文'&&f.civilizationText==='光/闇/火'&&f.cost===6&&text===
+   'S・トリガーS・トリガーコスト8以下のクリーチャーを1体自分の墓地から出す。'+
+   '次の自分のターンのはじめまでそのクリーチャーに「ブロッカー」を与える。'+
+   'その後相手のクリーチャーを1体選んでもよい。その2体をバトルさせる。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'grave',n:1,deploy:true,
+    filter:{creature:true,max:8},g791Grant:{blocker:true},g793FightOnEntry:true}]};
+  if(f.name==='グーゴル ＜XENOM.Star＞'&&f.typeText==='スター進化クリーチャー'&&f.civilizationText==='闇'&&f.cost===6&&text===
+   'スター進化:レクスターズまたは闇のクリーチャー1体の上に置く。W・ブレイカー'+
+   '相手のカードはマナゾーンとバトルゾーンにタップして置かれる。'+
+   'このクリーチャーが攻撃する時相手の手札を1枚見ないで選び捨てさせる。')
+   return {evolution:{any:[{race:'レクスターズ'},{civilization:'闇'}]},starEvolution:true,breaker:2,
+    g1038OpponentTap:true,g34Attack:[{op:'BlindDiscard773',n:1}]};
+ }
  if(phase>=1173&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
   const text=normalize(f.abilityText);
   const trigger='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';

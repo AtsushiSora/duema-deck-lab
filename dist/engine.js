@@ -501,7 +501,10 @@ function rememberEvolutionGraveSources(s,p,host,cards,batch=null,departures=null
  for(const x of watchers)if(under.includes(x))evolutionGraveSources.add(x);
 }
 function opponentTapsPlacement1038(s,p){
- return s.players[1-p].battle.some(x=>card(x).g260Self?.grants.g1038OpponentTap&&effectiveCard(x,s).g1038OpponentTap);
+ return s.players[1-p].battle.some(x=>{
+  const definition=card(x);
+  return (definition.g1038OpponentTap||definition.g260Self?.grants.g1038OpponentTap)&&effectiveCard(x,s).g1038OpponentTap;
+ });
 }
 function multicolorManaUntapped1157(s,p){
  return s.players[p].battle.some(x=>card(x).g1157UntappedMulticolor&&!x.faceDown&&!x.sealed&&
