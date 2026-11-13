@@ -6184,6 +6184,29 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1142&&d?.status==='complete'&&d.faces.length===1&&
+  ['dm26rp2-027','dm26rp2-025','promoy25-064','dm26rp2-009','dm26rp2-SEC014'].includes(d.id)){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm26rp2-027'&&text===
+   'スーパーガードマン(自分の他のクリーチャーがバトルする時かわりにこのクリーチャーをタップしてバトルさせてもよい)'+
+   '自分の「ガードマン」を持つクリーチャーすべてに「スピードアタッカー」と「パワード・ブレイカー」を与えそれらが持つ攻撃できない能力を無視する。'+
+   '(「パワード・ブレイカー」を持つクリーチャーはそのパワー6000ごとにシールドをもう1つブレイクする)')
+   return {superGuardman:true,g1142GuardAura:true};
+  if(['dm26rp2-025','promoy25-064'].includes(d.id)&&text===
+   '革命チェンジ:闇または火のパワー4000以上のクリーチャー(自分の指定のクリーチャーが攻撃する時そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい)'+
+   'スピードアタッカーW・ブレイカーこのクリーチャーが出た時相手のクリーチャーを1体選び相手はそれに封印を1つ付ける。'+
+   '(カードを封印するには自分の山札の上から1枚を裏向きでそのカードの上に置く。コマンドが出た時その持ち主はそのコマンドと同じ文明を持つ自身のカードから封印を1つ墓地に置く。封印されているクリーチャーは無視される)')
+   return {rev:{any:true,colors:['闇','火'],powerMin:4000},speedAttacker:true,breaker:2,effect:'sixPhoto',
+    g34Tasks:[{op:'Target',seal:true,title:'相手が封印を付けるクリーチャーを1体選ぶ'}]};
+  const judge='(パワー・ガチンコ・ジャッジ:自分と相手は自身の山札の上から1枚を表向きにしそれを下に置く。そのカードのパワーが相手以上なら自分が勝つ。パワーがないカードは0として扱う)';
+  if(['dm26rp2-009','dm26rp2-SEC014'].includes(d.id)&&text.replace(judge,'')===
+   'マッハファイターW・ブレイカーバトル中このクリーチャーのパワーを+5000する。'+
+   'このクリーチャーの攻撃の終わりに自分が負けるか中止するまで相手とパワー・ガチンコ・ジャッジする。その後こうして自分が勝った回数次の効果を使う。'+
+   '▶相手は自身のクリーチャーまたはシールドを1つ選び持ち主のマナゾーンに置く。')
+   return {machFighter:true,breaker:2,g38BattleBonus:5000,
+    g474AttackEnd:[{op:'g35_Custom',name:'repeatPowerJudge',wins:0}]};
+  throw Error('公式能力文が照合済みの内容と異なります：'+d.id);
+ }
  if(phase>=1141&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const judge='自分のターンのはじめに相手とパワー・ガチンコ・ジャッジしてもよい。自分が勝ったら自分の山札の上から1枚を';

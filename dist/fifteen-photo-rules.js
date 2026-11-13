@@ -28,7 +28,9 @@ export function createFifteenPhotoRules(api){
  function powerJudge(s,t){
   const first=reveal(s,t,1),second=reveal(s,t,1,1-t.p);
   const a=data(s,t).deck.find(x=>x.uid===first[0]),b=s.players[1-t.p].deck.find(x=>x.uid===second[0]);
-  return {first,second,a,won:!!a&&!!b&&api.revealedPower(a,s)>=api.revealedPower(b,s)};
+  // A revealed card beats an unavailable reveal, and the ability's user wins ties (QA43489, QA47365).
+  const power=x=>x?api.revealedPower(x,s):-Infinity;
+  return {first,second,a,won:power(a)>=power(b)};
  }
  function deploy(s,t,origin,uid,more={}){give(s,t,[E('Put',{origin,target:uid,...more})]);}
  function execute(s,t,origin,uid,face=0,more={}){give(s,t,[C('executeCard',{origin,target:uid,face,...more})]);}
@@ -95,8 +97,19 @@ export function createFifteenPhotoRules(api){
  case'hulcusEntry':{const y=own.battle.find(y=>y.uid===t.target);if(!y||creatures(s,t.p).some(z=>z.uid!==y.uid&&cost(card(z))===cost(card(y))))break;give(s,t,[C('hulcusLock'),E('Draw',{n:1})]);break;}
  case'hulcusLock':target(s,t,'次の自分のターンまで攻撃・ブロックを止める相手を選ぶ',creatures(s,1-t.p));break;
  case'shuramaru':offer(s,t,'パワー・ガチンコ・ジャッジする？');break;
- case'shuraJudge':{const {first,second,a,won}=powerJudge(s,t);order(s,t,second,1-t.p);if(won&&card(a).type==='creature')choice(s,{...t,target:a.uid},'勝ったクリーチャーを無料で召喚する？',[opt('召喚する',true,20,a.cardId),skip()]);else order(s,t,first);break;}
+ case'shuraJudge':{const {first,second,a,won}=powerJudge(s,t);order(s,t,second,1-t.p);if(won&&a&&card(a).type==='creature')choice(s,{...t,target:a.uid},'勝ったクリーチャーを無料で召喚する？',[opt('召喚する',true,20,a.cardId),skip()]);else order(s,t,first);break;}
  case'startPowerJudge':offer(s,t,'パワー・ガチンコ・ジャッジする？');break;
+ case'repeatPowerJudge':{
+  const {first,second,won}=powerJudge(s,t);
+  if(won)pending(s,t,'continuePowerJudge',{wins:t.wins+1});
+  else pending(s,t,'powerJudgeReward');
+  order(s,t,second,1-t.p);
+  order(s,t,first);
+  break;
+ }
+ case'continuePowerJudge':offer(s,t,'パワー・ガチンコ・ジャッジを続ける？（'+t.wins+'勝）',
+  {score:creatures(s,1-t.p).filter(y=>!y.sealed).length+opp.shields.length>t.wins?10:-5});break;
+ case'powerJudgeReward':give(s,t,Array.from({length:t.wins},()=>E('OpponentBury921',{to:'mana'})));break;
  case'majin':{const ids=reveal(s,t,3);choice(s,{...t,ids},'山札の上3枚から手札またはマナへ',own.deck.filter(y=>ids.includes(y.uid)).flatMap(y=>['hand','mana'].map(to=>opt(card(y).name+'を'+(to==='hand'?'手札':'マナ')+'へ',{uid:y.uid,to},to==='mana'?10:cost(card(y)),y.cardId))));break;}
  case'quasar':{const ids=reveal(s,t,5);pending(s,t,'quasarPick',{ids,step:0});break;}
  case'quasarPick':{const to=['shields','hand','mana','grave','under'][t.step],ys=own.deck.filter(y=>t.ids.includes(y.uid));if(to&&ys.length)choice(s,t,({shields:'シールド',hand:'手札',mana:'マナ',grave:'墓地',under:'このクリーチャーの下'}[to])+'に置く1枚を選ぶ',ys.map(y=>opt(card(y).name,y.uid,to==='hand'?cost(card(y)):5,y.cardId)));break;}
@@ -179,6 +192,7 @@ export function createFifteenPhotoRules(api){
  case'ppEnd':if(v)give(s,t,[E('Ramp',{n:2}),S('mana','hand',1)]);break;
  case'hulcusLock':if(v){(s.extLimits??=[]).push({kind:'attack',uid:v,player:1-t.p,who:t.p,expires:'start'},{kind:'block',uid:v,player:1-t.p,who:t.p,expires:'start'});}break;
  case'shuramaru':if(v)pending(s,t,'shuraJudge');break;
+ case'continuePowerJudge':pending(s,t,v?'repeatPowerJudge':'powerJudgeReward');break;
  case'startPowerJudge':if(v){
   const {first,second,won}=powerJudge(s,t);
   if(won)give(s,t,t.defs);

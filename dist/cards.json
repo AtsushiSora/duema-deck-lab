@@ -224709,15 +224709,101 @@
       ],
       "supportBatch": "phase-1141",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-027",
+      "name": "獣音類武士目 グローバル・ステージ",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 8000,
+      "race": "ジュラシック・コマンド・ドラゴン/スノーフェアリー風",
+      "text": "スーパーガードマン（自分の他のクリーチャーがバトルする時、かわりにこのクリーチャーをタップしてバトルさせてもよい）\n自分の「ガードマン」を持つクリーチャーすべてに「スピードアタッカー」と「パワード・ブレイカー」を与え、それらが持つ攻撃できない能力を無視する。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをもう１つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-027",
+      "limit": 4,
+      "superGuardman": true,
+      "g1142GuardAura": true,
+      "supportBatch": "phase-1142",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-025",
+      "name": "革命の轟速 レッドゾーンW",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 9000,
+      "race": "ソニック・コマンド/イニシャルズW",
+      "text": "革命チェンジ：闇または火の、パワー4000以上のクリーチャー（自分の指定のクリーチャーが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nスピードアタッカー\nW・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、相手はそれに封印を１つ付ける。（カードを封印するには、自分の山札の上から１枚を裏向きでそのカードの上に置く。コマンドが出た時、その持ち主はそのコマンドと同じ文明を持つ自身のカードから封印を１つ、墓地に置く。封印されているクリーチャーは無視される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-025",
+      "limit": 4,
+      "rev": {
+        "any": true,
+        "colors": [
+          "闇",
+          "火"
+        ],
+        "powerMin": 4000
+      },
+      "speedAttacker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "seal": true,
+          "title": "相手が封印を付けるクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1142",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-009",
+      "name": "勝利宣言 鬼丸「V」",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 9000,
+      "race": "ヒューマノイド/グリーン・コマンド・ドラゴン/ハンター/エイリアン",
+      "text": "マッハファイター\nW・ブレイカー\nバトル中、このクリーチャーのパワーを+5000する。\nこのクリーチャーの攻撃の終わりに、自分が負けるか中止するまで、相手とパワー・ガチンコ・ジャッジする。その後、こうして自分が勝った回数、次の効果を使う。（パワー・ガチンコ・ジャッジ：自分と相手は自身の山札の上から１枚を表向きにし、それを下に置く。そのカードのパワーが相手以上なら、自分が勝つ。パワーがないカードは０として扱う）\n▶相手は自身の、クリーチャーまたはシールドを１つ選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-009",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 2,
+      "g38BattleBonus": 5000,
+      "g474AttackEnd": [
+        {
+          "op": "g35_Custom",
+          "name": "repeatPowerJudge",
+          "wins": 0
+        }
+      ],
+      "supportBatch": "phase-1142",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1141,
+    "phase": 1142,
     "checkedAt": "2026-11-13",
-    "baseCount": 7409,
-    "newEffectCards": 4,
+    "baseCount": 7413,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7413,
+    "totalCount": 7416,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -244698,6 +244784,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7409,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1141,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7409,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7413,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

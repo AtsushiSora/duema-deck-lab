@@ -258,6 +258,12 @@ export function effectiveCard(inst,context,forPower=false){
  c=extra.six.grantAuras(context,owner,inst,externalBlockState(context,owner,inst,extra.utilityNatureSupport.decorate(context,owner,inst,extra.utilityGuard.decorate(context,owner,inst,extra.saga.decorate(context,owner,inst,extra.combat.decorate(context,owner,inst,extra.firebird.decorate(context,owner,inst,extra.history.decorate(context,owner,inst,extra.continuation.decorate(context,owner,inst,extra.six.decorate(context,owner,inst,extra.shieldPhoto.decorate(context,owner,inst,extra.photo.decorate(context,owner,inst,c))))))))))));
  c=decorateSurvivor406(context,owner,inst,c,{card,ignored:abilitiesIgnored,isCreature});
  c=extra.samuraiDecorate932(context,owner,inst,c);
+ // Super Guardman also counts as Guardman for this aura (QA48917).
+ if(c.type==='creature'&&(c.guardman||c.superGuardman)&&context.players[owner].battle.some(x=>
+  card(x).g1142GuardAura&&isCreature(context,x)&&!abilitiesIgnored(context,x))){
+  c={...c,speedAttacker:true,poweredBreaker:true,g1116PoweredChoice:true,noAttack:false,
+   noPlayerAttack:extra.six.playerStop567(context,owner,inst),noCreatureAttack:false};
+ }
  if(c.type==='creature'&&c.speedAttacker){
   // Evaluate after all speed-attacker grants, without decorating the aura sources.
   for(const source of context.players[owner].battle){
@@ -735,10 +741,16 @@ function lightShieldTrigger1019(s,p,c,remaining){
  });
 }
 // Select every shield first, move all physical cards, then enqueue hand-entry effects.
-function moveShields535(s,p,uids,to,{cardOnly=false,handEffects=true,replacement=false,noST=false,escapeSBDeclaration=false}={}){
+function moveShields535(s,p,uids,to,{cardOnly=false,handEffects=true,replacement=false,noST=false,escapeSBDeclaration=false,toOwnerMana=false}={}){
  if(to==='shields'&&!canAddShield(s,p))return [];
  const roots=[...new Set(uids)].map(uid=>cardOnly?removeShieldCard(s,p,uid):removeShield(s,p,uid)),all=roots.flatMap(shieldCards),hand=[];
- for(const x of all){const target=!replacement&&shieldLeavesToGrave(x)||to==='mana'&&extra.manaRedirect(s,p)?'grave':to;clearBattleState(x,target);addZone(s,s.players[p],target,x);if(target==='hand')hand.push(x);}
+ for(const x of all){
+  const owner=to==='mana'&&toOwnerMana?x.cardOwner??p:p;
+  const staysWithShieldOwner=!replacement&&shieldLeavesToGrave(x);
+  const target=staysWithShieldOwner||to==='mana'&&extra.manaRedirect(s,owner)?'grave':to;
+  clearBattleState(x,target);addZone(s,staysWithShieldOwner?p:owner,target,x);
+  if(target==='hand')hand.push(x);
+ }
  if(handEffects){
   extra.beginSB(s,p,hand,false,escapeSBDeclaration);
   for(const x of hand)extra.shieldHand(s,p,x,false,{noST});
