@@ -6184,6 +6184,29 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1128&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const gNeoTail='のクリーチャー1体の上に置いてもよい。(カードが下にあればNEO進化クリーチャーとして扱い離れる時かわりに下のカードすべてが離れる)';
+  const neoEvolution=(...colors)=>({any:colors.map(civilization=>({civilization}))});
+  if(['dm25rp2-040','dm25ex3-045'].includes(d.id)&&f.typeText==='G-NEOクリーチャー'&&text===
+   'G-NEO進化:闇火または自然'+gNeoTail+'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+
+   '自分のNEOクリーチャーまたは進化クリーチャーが攻撃する時自分の手札を1枚捨ててもよい。そうしたらカードを2枚引く。')
+   return {gNeo:true,neoEvolution:neoEvolution('闇','火','自然'),breaker:2,
+    g252AttackWatch:{who:'self',filter:{creature:true,any:[{g556Neo:true},{evolution:true}]},defs:[{op:'DiscardDraw',n:2}]}};
+  if(['dm25rp2-020','dm25ex3-022'].includes(d.id)&&f.typeText==='G-NEOクリーチャー'&&text===
+   'G-NEO進化:光火または自然'+gNeoTail+'マッハファイター'+
+   'このクリーチャーの攻撃の終わりに自分の山札の上から2枚をマナゾーンに置く。その後カードを1枚自分のマナゾーンからこのクリーチャーの下に置く。')
+   return {gNeo:true,neoEvolution:neoEvolution('光','火','自然'),machFighter:true,
+    g474AttackEnd:[{op:'Ramp',n:2,g809Together:true},{op:'ManaBase1128'}]};
+  if(d.id==='dm25rp2-044'&&f.typeText==='NEOクリーチャー'&&text===
+   'S・トリガーS・トリガー(このカードをシールドゾーンから手札に加える時コストを支払わずにすぐ実行してもよい)'+
+   'NEO進化:光火または自然のクリーチャー1体の上に置いてもよい。(カードが下にあればこれをNEO進化クリーチャーとして扱う)'+
+   'このクリーチャーをタップして出してもよい。相手のクリーチャーが攻撃する時可能ならクリーチャーを攻撃する。'+
+   'このクリーチャーにカードが3枚以上含まれていればこのクリーチャーのパワーを+10000し「T・ブレイカー」を与える。'+
+   '(「T・ブレイカー」を持つクリーチャーはシールドを3つブレイクする)')
+   return {trigger:true,neoEvolution:neoEvolution('光','火','自然'),g432EntryTap:true,g1128CreatureAttackTarget:true,
+    g260Self:{filter:{g650SourceCards:3},grants:{power:10000,breaker:3}}};
+ }
  if(phase>=1127&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const neo='NEO進化:闇火または自然のクリーチャー1体の上に置いてもよい。(カードが下にあればこれをNEO進化クリーチャーとして扱う)';

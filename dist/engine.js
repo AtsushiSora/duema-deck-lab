@@ -189,7 +189,7 @@ export function effectiveCard(inst,context,forPower=false){
  }
  if(c.type==='creature'&&c.g607StackPower&&layers(inst).length>=3)c={...c,power:numeric(c.power)+c.g607StackPower,poweredBreaker:true};
  for(const rule of [...(c.g260Self?[c.g260Self]:[]),...(c.g268ManaGrants||[])])if(!conditional260Reading.has(context)&&(!rule.turn||rule.turn==='opponent'&&context.active!==owner)){
-  let ready=false;conditional260Reading.add(context);try{ready=extra.six.ownCondition(context,owner,rule.filter,inst.uid);}finally{conditional260Reading.delete(context);}
+  let ready=false;conditional260Reading.add(context);try{ready=extra.six.ownCondition(context,owner,rule.filter,inst.uid,inst.incarnation||0);}finally{conditional260Reading.delete(context);}
   if(ready){const {raceAdd,...g}=rule.grants;c={...c,...g,...(raceAdd?{race:[...new Set([...String(c.race||'').split('/').filter(Boolean),...raceAdd])].join('/')} : {}),power:c.power+(g.power||0),...(g.attackBonus?{attackBonus:(c.attackBonus||0)+g.attackBonus}:{}),...(g.breaker?{breaker:c.breaker==='∞'?'∞':Math.max(Number(c.breaker)||1,g.breaker)}:{})};}
  }
  // G・G・G grants are continuous and disappear immediately when the hand grows.
@@ -2589,8 +2589,10 @@ export function getLegalActions(s){
  out=out.filter(a=>(!['fight','dragonTap'].includes(a.kind)||extra.targetable(s,p,1-p,s.players[1-p].battle.find(x=>x.uid===(a.target||a.uid))))&&(!a.targets||a.targets.every(t=>extra.targetable(s,p,t.player,s.players[t.player].battle.find(x=>layers(x).some(y=>y.uid===t.uid))))));
  out=extra.six.variants463(s,p,extra.six.variants456(s,p,extra.utilityWater.variants(s,p,extra.history.variants(s,p,extra.viride.variants(s,p,extra.variants(s,p,extra.forceActions(s,p,out))))))).filter(a=>!['play','mugenStart'].includes(a.kind)||extra.originAllowed(s,p,a.origin||'hand'));
  const forceSmallCreatureAttack=s.phase==='attack'&&extra.shieldPhoto.forcesCreatureAttack(s,p);
- const creatureTargetsRequired=s.phase==='attack'&&s.extLimits?.some(l=>l.kind==='g1021CreatureAttackTarget'&&
-  l.player===p&&l.active&&!spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}));
+ const creatureTargetsRequired=s.phase==='attack'&&(s.extLimits?.some(l=>l.kind==='g1021CreatureAttackTarget'&&
+  l.player===p&&l.active&&!spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}))||
+  s.players[1-p].battle.some(x=>!x.sealed&&!x.faceDown&&card(x).g1128CreatureAttackTarget&&
+   effectiveCard(x,s).g1128CreatureAttackTarget));
  if(s.phase==='attack'&&(creatureTargetsRequired||forceSmallCreatureAttack||own.battle.some(x=>card(x).g847MustAttackCreature))){
   // Check the available creature targets after all other attack restrictions.
   const attackers=new Set(out.filter(a=>a.kind==='attack'&&a.target!=='player').map(a=>a.uid));

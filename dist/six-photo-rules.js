@@ -1288,10 +1288,10 @@ export function createSixPhotoRules(api){
    put(s,task('g34_ShuffleOnMove673',t.p,t.source,{opponent,uids}));
    return;
   }
-  if(t.g1060AttachBase){
-   const host=sourceHost474(s,t),row=t.rows?.[0];
-   if(!row||!host||host.x.sealed||!api.isCreature(s,host.x)||!api.canMoveZone(s,t.p,'grave'))return;
-   const base=remove(s.players[t.p].grave,row.uid);
+  if(t.g1060AttachBase||t.g1128AttachMana){
+   const host=sourceHost474(s,t),row=t.rows?.[0],origin=t.g1128AttachMana?'mana':'grave';
+   if(!row||!host||host.x.sealed||!api.isCreature(s,host.x)||!api.canMoveZone(s,t.p,origin))return;
+   const base=remove(s.players[t.p][origin],row.uid);
    if(base){clear(base,'under');(host.x.under??=[]).push(base);}
    return;
   }
@@ -2856,6 +2856,12 @@ export function createSixPhotoRules(api){
   const n=host&&!host.sealed?api.allLayers(host).length:t.lastKnownCount??1;
   start(s,t,[{op:'Select',origin:'battle',owner:'opponent',to:'hand',toOwnerHand:true,n,
    filter:{creature:true},g173Targets:true,g193Select:true,title:'持ち主の手札に戻す相手のクリーチャーを'+n+'体選ぶ'}]);
+  break;
+ }
+ case'g34_ManaBase1128':{
+  const host=sourceHost474(s,t);
+  if(host&&!host.x.sealed&&api.isCreature(s,host.x))start(s,t,[{op:'Select',origin:'mana',
+   n:1,g1128AttachMana:true,title:'このクリーチャーの下に置くマナのカードを1枚選ぶ'}]);
   break;
  }
  case'g34_GraveBase1060':{
