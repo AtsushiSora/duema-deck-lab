@@ -6184,6 +6184,20 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1160&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(['dmex14-033','dm24bd5-033'].includes(d.id)&&
+   ['自分がはじめて多色カードをマナゾーン','はじめて多色カードを自分のマナゾーン']
+    .some(placement=>text==='各ターン'+placement+'に置いた時そのカードをアンタップしカードを1枚引く。'))
+   return {g1160FirstMultiManaDraw:true};
+  if(['dm27-052','dmx11-063','dmr19-083'].includes(d.id)&&[
+   'ターン中2番目に召喚する自分のクリーチャーのコストを最大2少なくしてもよい。ただしコストは1より少なくならない。',
+   '自分が各ターン2体目に召喚するクリーチャーのコストを最大2少なくしてもよい。ただしコストは0以下にはならない。'
+  ].includes(text))
+   return {g290SummonAura:{filter:{},condition:{g876SummonNumber:2},amount:2,g560Optional:true}};
+  if(d.id==='promoy11-059'&&text==='自分のゼニスの召喚コストを最大3少なくしてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g290SummonAura:{filter:{race:'ゼニス'},amount:3,g560Optional:true,g756ZeroFloor:true}};
+ }
  if(phase>=1159&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(['dm12-052','dmc34-052'].includes(d.id)&&text==='他のクリーチャーが進化した時このクリーチャーを破壊する。')

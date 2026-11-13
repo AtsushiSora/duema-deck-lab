@@ -2746,6 +2746,12 @@ export function createSixPhotoRules(api){
    combined.untapped(s,p,y);
   }
   break;
+ case'g34_FirstMultiManaDraw1160':{
+  const mana=own.mana.find(y=>y.uid===t.target&&(y.zoneSerial||0)===t.serial);
+  if(mana&&api.canUntap(mana))mana.tapped=false;
+  api.draw(s,t.p,1);
+  break;
+ }
  case'g34_UntapMana':{
   let n=0;
   for(const y of own.mana){
@@ -6285,16 +6291,22 @@ export function createSixPhotoRules(api){
  // Mana entry is independent of casting or battlefield entry (QA39403/39404).
  manaAdded449(s,p,cards){
   if(s.active===p)(s.g837ManaAddedTurn??=[null,null])[p]=s.turn;
+  const firstMulti=s.g1160FirstMultiManaTurn?.[p]!==s.turn;
   const sources=creatures(s,p).flatMap(x=>{
    if(x.sealed)return [];
-   const {g454Space:rules,g763MultiManaUntap:untap,g807ManaEntry:defs,g857ManaEntryRace:entryRace}=effective(x,s);
-   return rules||untap||defs?[{x,rules:rules||[],untap,defs,entryRace}]:[];
+   const {g454Space:rules,g763MultiManaUntap:untap,g807ManaEntry:defs,g857ManaEntryRace:entryRace,
+    g1160FirstMultiManaDraw:firstMultiDraw}=effective(x,s);
+   return rules||untap||defs||firstMultiDraw?[{x,rules:rules||[],untap,defs,entryRace,firstMultiDraw}]:[];
   });
   for(const x of cards){
    if(!x.faceDown&&api.zoneCard(s,p,x).g449ManaReveal)send(s,p,x,'ManaReveal449',{serial:x.zoneSerial||0});
    const manaCard=x.faceDown?{civilizations:[],civ:'ゼロ',manaValue:1}:api.zoneCard(s,p,x,'mana');
    const actual=api.manaColors(manaCard,s,p);
+   // Each qualifying card in a simultaneous first placement triggers (QA48286).
+   if(firstMulti&&actual.length>1)(s.g1160FirstMultiManaTurn??=[null,null])[p]=s.turn;
    for(const source of sources){
+    if(firstMulti&&source.firstMultiDraw&&actual.length>1)
+     send(s,p,source.x,'FirstMultiManaDraw1160',{target:x.uid,serial:x.zoneSerial||0});
     if(source.defs&&(!source.entryRace||faces(manaCard).some(c=>race(c,source.entryRace))))queue(s,p,source.x,source.defs);
     const rules=source.rules.filter(r=>(r.color==='多色'?actual.length>1:actual.includes(r.color))&&
      (!r.g792Once||!used792(s,source.x,r)));

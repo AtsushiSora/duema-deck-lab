@@ -73,7 +73,7 @@ for(const p of [0,1])test('Laricius can view both zones privately from either se
  assert.ok(!JSON.stringify(s.log).includes(SECRET));
  assert.ok(!JSON.stringify(e.observation(s,1-p)).includes(SECRET));
  const {projectRoom}=await import('../server/duel-core.mjs');
- const room={game:structuredClone(s),phase:'playing',hostUid:'a',guestUid:'b',profiles:[{name:'A'},{name:'B'}],events:[],expiresAt:10000};
+ const room={game:structuredClone(s),phase:'playing',hostUid:'a',guestUid:'b',decks:[{format:'original'},{format:'original'}],profiles:[{name:'A'},{name:'B'}],events:[],expiresAt:10000};
  const viewer={uid:p===0?'a':'b'},other={uid:p===0?'b':'a'};
  assert.deepEqual(projectRoom(room,viewer,1).game.inspectedCards.map(({id,label})=>({id,label})),expected);
  assert.equal(projectRoom(room,other,1).game.inspectedCards,undefined);
