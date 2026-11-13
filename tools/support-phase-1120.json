@@ -1,0 +1,223 @@
+{
+  "phase": 1120,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7343,
+  "description": "邪眼将デス・ロマノフV世、Dの隕石 デンジャラス・コメット、メビウス・トルネードの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/40695/",
+    "https://dm.takaratomy.co.jp/rule/qa/47896/",
+    "https://dm.takaratomy.co.jp/rule/qa/49424/"
+  ],
+  "cards": [
+    {
+      "id": "dm30-027",
+      "name": "邪眼将デス・ロマノフV世",
+      "faces": [
+        {
+          "name": "邪眼将デス・ロマノフV世",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、闇のクリーチャーを好きな数、自分の手札からマナゾーンに置いてもよい。その後、自分のマナゾーンにある呪文をその枚数まで選び、手札に戻す。戻した呪文の中から「ナイト・マジック」を持つ呪文を１枚、コストを支払わずに唱えてもよい。\nW・ブレイカー",
+          "race": "ドラゴン・ゾンビ/ダークロード/ナイト",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-027",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm30-027.jpg",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "mana",
+            "n": "all",
+            "optional": true,
+            "g1120Romano": "charge",
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "color": "闇"
+              }
+            },
+            "title": "マナに置く手札の闇のクリーチャーを選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "9aa9542df8bd93dffcbcf818d3b9bc748e87badce4e5ad81076c032f550bb5cb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex2-067",
+      "name": "Dの隕石 デンジャラス・コメット",
+      "faces": [
+        {
+          "name": "Dの隕石 デンジャラス・コメット",
+          "typeText": "D2フィールド",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分の、イニシャルズ・クリーチャーと名前に《禁断》とあるクリーチャーの召喚コストを２少なくする。\n（他のD２フィールドが出た時、このD２フィールドを破壊する）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-067",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-067.jpg",
+      "spec": {
+        "d2Field": true,
+        "gStrike": true,
+        "g290SummonAura": {
+          "g560D2Field": true,
+          "g756ZeroFloor": true,
+          "amount": 2,
+          "filter": {
+            "any": [
+              {
+                "race": "イニシャルズ"
+              },
+              {
+                "g832NameIncludes": "禁断"
+              }
+            ]
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "86ea0952d237d8ffdb813ea9e57422682b4acb3daea55e170e118e4b3c002e52",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm39-051",
+      "name": "メビウス・トルネード",
+      "faces": [
+        {
+          "name": "メビウス・トルネード",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手の、パワー5000以下のクリーチャーを１体破壊する。バトルゾーンに自分のサイキック・クリーチャーがあれば、相手の、パワー5000以下のクリーチャーをもう１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-051",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-051.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 5000,
+              "g199Power": true
+            },
+            "g810AnotherIfOwn": {
+              "g370BattleCount": {
+                "min": 1,
+                "filter": {
+                  "creature": true,
+                  "g1085Psychic": true
+                }
+              }
+            },
+            "title": "破壊するパワー5000以下の相手クリーチャーを選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "e4caecad1303c9512bce491f915f826cdcde7a3add455809e4a486547ebfbda3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc64-032",
+      "name": "邪眼将デス・ロマノフV世",
+      "faces": [
+        {
+          "name": "邪眼将デス・ロマノフV世",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、闇のクリーチャーを好きな数、自分の手札からマナゾーンに置いてもよい。その後、自分のマナゾーンにある呪文をその枚数まで選び、手札に戻す。戻した呪文の中から「ナイト・マジック」を持つ呪文を１枚、コストを支払わずに唱えてもよい。\nW・ブレイカー",
+          "race": "ドラゴン・ゾンビ/ダークロード/ナイト",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc64-032",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc64-032.jpg",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "mana",
+            "n": "all",
+            "optional": true,
+            "g1120Romano": "charge",
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "color": "闇"
+              }
+            },
+            "title": "マナに置く手札の闇のクリーチャーを選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "7c2b8bb499628bc408cd9d1b783eccea623df4f15189d1ab653300dcc062737e",
+        "facesMatched": true
+      },
+      "canonicalId": "dm30-027"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm30-027": 4,
+      "dmc64-032": 4,
+      "dm25ex2-067": 4,
+      "dm39-051": 4
+    }
+  }
+}

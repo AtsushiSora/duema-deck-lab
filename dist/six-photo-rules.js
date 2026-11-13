@@ -129,12 +129,12 @@ export function createSixPhotoRules(api){
  }
  function consumeReduction456(s,p,c){if(!s.extLimits?.some(r=>r.kind==='g456NextReduction'))return;s.extLimits=(s.extLimits||[]).filter(r=>!(r.kind==='g456NextReduction'&&r.player===p&&r.turn===s.turn&&reductionMatches456(c,r)));}
  // New optional auras choose their combined reduction independently for each summon.
- function summonAuras560(s,p,c){const out={mandatory:0,optional:0,zeroOptional:0};if(c.type!=='creature'||c.crossing)return out;const fits=f=>(!f.g836NameIds||f.g836NameIds.includes(c.id)||c.g1059DoubleCross)&&(!f.g832NameIncludes||exactName(creatureFaceName(c)).includes(f.g832NameIncludes))&&(!f.g756Colorless||colors(c).length===0)&&(!f.any||f.any.some(fits))&&(!f.race||race(c,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(c,q)))&&(!f.color||colors(c).includes(f.color))&&(!f.evolution||api.isEvolution({cardId:c.id})||!!c.neoEvolution&&!!c.g27BaseUid)&&(f.minPower===undefined||c.power==='∞'||Number(c.power)>=f.minPower)&&(f.min===undefined||cost({...c,cost:c.printedCost??c.cost})>=f.min)&&(f.max===undefined||cost({...c,cost:c.printedCost??c.cost})<=f.max);
-  for(const who of[p,1-p])for(const x of s.players[who].battle){if(x.sealed)continue;const d=effective(x,s);for(const r of[...(d.g290SummonAura?[d.g290SummonAura]:[]),...(d.g349SummonAuras||[])]){if(!api.isCreature(s,x)&&!(r.g560Element&&d.type==='seed')||who!==p&&!r.both)continue;const match=r.filter?fits(r.filter):r.neo?!!c.neoEvolution:r.color?colors(c).includes(r.color):race(c,r.race);if(!match)continue;let state=s;if(r.g560InUse&&who===p&&(c.summonOrigin||'hand')==='hand'){const uid=c.executionUid??s.players[p].hand.find(y=>y.cardId===c.id)?.uid;state={...s,players:s.players.map((v,q)=>q===p?{...v,hand:v.hand.filter(y=>y.uid!==uid)}:v)};}if(r.condition&&!ownCondition(state,who,r.condition))continue;
+ function summonAuras560(s,p,c){const out={mandatory:0,optional:0,zeroMandatory:0,zeroOptional:0};if(c.type!=='creature'||c.crossing)return out;const fits=f=>(!f.g836NameIds||f.g836NameIds.includes(c.id)||c.g1059DoubleCross)&&(!f.g832NameIncludes||exactName(creatureFaceName(c)).includes(f.g832NameIncludes))&&(!f.g756Colorless||colors(c).length===0)&&(!f.any||f.any.some(fits))&&(!f.race||race(c,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(c,q)))&&(!f.color||colors(c).includes(f.color))&&(!f.evolution||api.isEvolution({cardId:c.id})||!!c.neoEvolution&&!!c.g27BaseUid)&&(f.minPower===undefined||c.power==='∞'||Number(c.power)>=f.minPower)&&(f.min===undefined||cost({...c,cost:c.printedCost??c.cost})>=f.min)&&(f.max===undefined||cost({...c,cost:c.printedCost??c.cost})<=f.max);
+  for(const who of[p,1-p])for(const x of s.players[who].battle){if(x.sealed)continue;const d=effective(x,s);for(const r of[...(d.g290SummonAura?[d.g290SummonAura]:[]),...(d.g349SummonAuras||[])]){if(!api.isCreature(s,x)&&!(r.g560Element&&d.type==='seed')&&!(r.g560D2Field&&d.type==='field'&&d.d2Field)||who!==p&&!r.both)continue;const match=r.filter?fits(r.filter):r.neo?!!c.neoEvolution:r.color?colors(c).includes(r.color):race(c,r.race);if(!match)continue;let state=s;if(r.g560InUse&&who===p&&(c.summonOrigin||'hand')==='hand'){const uid=c.executionUid??s.players[p].hand.find(y=>y.cardId===c.id)?.uid;state={...s,players:s.players.map((v,q)=>q===p?{...v,hand:v.hand.filter(y=>y.uid!==uid)}:v)};}if(r.condition&&!ownCondition(state,who,r.condition))continue;
    const count=r.g912CountRace?creatures(s,who).filter(y=>!y.sealed&&race(effective(y,s),r.g912CountRace)).length:1;
    const amount=r.amount*count;
    out[r.g560Optional?'optional':'mandatory']+=amount;
-   if(r.g756ZeroFloor)out.zeroOptional+=amount;
+   if(r.g756ZeroFloor)out[r.g560Optional?'zeroOptional':'zeroMandatory']+=amount;
   }}
   return out;
  }
@@ -1108,14 +1108,15 @@ export function createSixPhotoRules(api){
  }
  // Publish the complete movement before its zone triggers or matching draw.
  function moveZoneSelection583(s,t,rows,owner=t.p){
-  if(!api.canMoveZone(s,owner,t.origin))return;
+  if(!api.canMoveZone(s,owner,t.origin))return [];
   const dest=t.to==='mana'&&t.origin!=='hand'&&api.manaRedirect(s,owner)?'grave':t.to;
-  if(dest===t.origin)return;
+  if(dest===t.origin)return [];
   const origin=s.players[owner][t.origin],moved=rows.map(r=>remove(origin,r.uid)).filter(Boolean);
   for(const x of moved)clear(x,dest);
   api.addZone(s,owner,dest,...moved);
   if(t.origin==='hand'&&dest==='mana')for(const x of moved)api.handMana(s,owner,x);
   if(t.g583DrawMoved&&moved.length)start(s,t,[{op:'Draw',n:moved.length}]);
+  return moved;
  }
  const graveHandManaOrigins771=['grave','hand'];
  function finishGraveHandMana771(s,t){
@@ -1146,7 +1147,23 @@ export function createSixPhotoRules(api){
   const rows=grave.filter(x=>name(x)===selectedName).map(({uid})=>({uid}));
   moveZoneSelection583(s,t,rows);
  }
+ function romanoSpells1120(s,t){
+  return t.recovered.flatMap(({uid,serial})=>{
+   const x=s.players[t.p].hand.find(y=>y.uid===uid&&(y.zoneSerial||0)===serial);
+   return x?faces(card(x)).flatMap((c,face)=>hasKnightMagic(c)&&api.canCast(s,t.p,c,'hand')?
+    [opt(c.name,{uid,face,serial},20+cost(c),x.cardId)]:[]):[];
+  });
+ }
  function finishSelect(s,{g585Peek,...t}){
+  if(t.g1120Romano){
+   const moved=moveZoneSelection583(s,t,t.rows);
+   if(!moved.length)return;
+   if(t.g1120Romano==='charge')start(s,t,[{op:'Select',origin:'mana',to:'hand',n:moved.length,optional:true,
+    g1120Romano:'recover',filter:{faceUp:true,g228Face:{type:'spell'}},
+    title:'手札に戻すマナゾーンの呪文を'+moved.length+'枚まで選ぶ'}]);
+   else start(s,t,[{op:'RomanoCast1120',recovered:moved.map(x=>({uid:x.uid,serial:x.zoneSerial||0}))}]);
+   return;
+  }
   if(t.g972DeployMatching){
    const [row]=t.rows;
    const x=row&&s.players[row.p].grave.find(y=>y.uid===row.uid);
@@ -1813,6 +1830,11 @@ export function createSixPhotoRules(api){
  case'g34_Entry468':{const mode=t.mode,host=['protect565','protectAll'].includes(mode)?sourceHost474(s,{uid:t.subject?.uid,incarnation:t.subject?.incarnation})?.x:attackHost408(s,{...t,g399Attacker:t.subject}),y=host&&!host.sealed&&api.isCreature(s,host)?host:null;if(mode==='draw')start(s,t,[{op:'Offer',title:'カードを1枚引く？',defs:[{op:'Draw',n:1}]}]);else if(mode==='freeze')start(s,t,[{op:'Target',tap:true,lock:true}]);else if(y){if(mode==='protectAll')applyGrant(s,{...t,g521UntilStart:true,g565External:true,grant:{g1082ChoiceProtected:true}},y);
  else if(mode==='fight')put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:y.uid,incarnation:y.incarnation||0},optional:true});else if(mode==='protect565')(s.extLimits??=[]).push({kind:'g521Grant',g565External:true,ref:{uid:y.uid,incarnation:y.incarnation||0},grant:{untargetable:true,cannotBeAttacked:true},expires:'start',who:t.p});else if(mode==='mach')(y.g34Grants??=[]).push(timedGrant335(s,t,{machFighter:true}));else if(mode==='rush')put(s,task('g13_JagaGrant',t.p,t.source,{target:y.uid,targetInc:y.incarnation||0}));}break;}
  case'g34_LookDestination467':lookDestination467(s,t);break;
+ case'g34_RomanoCast1120':{
+  const options=romanoSpells1120(s,t);
+  if(options.length)choice(s,t,'戻したナイト・マジック呪文を1枚、コストを支払わずに唱える（任意）',[...options,skip()]);
+  break;
+ }
  case'g34_TargetDestination467':targetDestination467(s,t);break;
  case'g34_NullBreaker471':break;
  case'g34_PayAura560':payAura560(s,t);break;
@@ -4433,6 +4455,10 @@ export function createSixPhotoRules(api){
   if(chosen)move(s,chainMatches838(rows,chosen).map(y=>({player:owner,uid:y.uid,to:'grave',destroy:true,controller:t.p})));
   break;
  }
+ case'g34_RomanoCast1120':
+  if(v&&romanoSpells1120(s,t).some(o=>o.value.uid===v.uid&&o.value.face===v.face&&o.value.serial===v.serial))
+   cast(s,t.p,v.uid,true,null,v.face,null,'hand',card(t.source).name);
+  break;
  case'g34_TargetDestination467':{const r=t.target,y=s.players[r.p].battle.find(x=>x.uid===r.uid&&(x.incarnation||0)===r.incarnation&&!x.sealed),controller=t.g1089OrderDeck?r.p:t.g472EffectPlayer??t.p;if(y)move(s,[{player:r.p,uid:r.uid,to:v,destroy:v==='grave',controller,...(t.g1089OrderDeck?{g1089OrderDeck:true,toOwnerDeck:true,orderDeckTop:true}:{})}]);if(t.after)start(s,{...t,p:controller},t.after);break;}
  case'g34_NullBreaker471':if(s.attack?.attacker===t.uid){s.attack.g471Breaker=v;api.resolveAttack(s,null);}break;
  case'g34_GrantedBreaker633':if(s.attack?.attacker===t.uid){s.attack.g633Breaker=v;api.resolveAttack(s,null);}break;
@@ -5291,13 +5317,15 @@ export function createSixPhotoRules(api){
     title:'破壊する別の相手クリーチャーを選ぶ'}]);
    break;
   }
-  if(t.g810AnotherWith){
+  if(t.g810AnotherWith||t.g810AnotherIfOwn){
    const y=v&&s.players[v.p].battle.find(x=>x.uid===v.uid);
    if(!y)break;
    const g810Excluded=api.allLayers(y).map(key);
    move(s,[{player:v.p,uid:y.uid,to:'grave',destroy:true,controller:t.controller??t.p}]);
-   start(s,t,[{op:'IfOwn',filter:{creature:true,g201ExactName:t.g810AnotherWith},
-    defs:[{op:'Target',to:'grave',filter:t.filter,g810Excluded}]}]);
+   const filter=t.g810AnotherIfOwn||{creature:true,g201ExactName:t.g810AnotherWith};
+   start(s,t,[{op:'IfOwn',filter,
+    defs:[{op:'Target',to:'grave',filter:t.filter,g810Excluded,
+     ...(t.g810AnotherIfOwn?{title:'破壊する別の相手クリーチャーを選ぶ'}:{})}]}]);
    break;
   }
   if(t.g809RampByCivilizations){
@@ -5570,7 +5598,7 @@ export function createSixPhotoRules(api){
  countDiscount212(s,p,c){if(c.g212CountDiscount?.minimum===2)return 0;const max=countDiscountMax499(s,p,c);return c.g212CountDiscount?.optional&&c.g499Reduction!==undefined?Math.min(max,Math.max(0,c.g499Reduction)):max;},
  summonAuraDiscount290(s,p,c){
   const r=summonAuras560(s,p,c),selected=c.g560Amount===undefined?r.optional:Math.min(r.optional,Math.max(0,c.g560Amount));
-  return {amount:r.mandatory+selected,zeroAmount:Math.min(selected,r.zeroOptional)};
+  return {amount:r.mandatory+selected,zeroAmount:r.zeroMandatory+Math.min(selected,r.zeroOptional)};
  },
  variants456(s,p,actions){if(!s.extLimits?.some(r=>r.kind==='g456NextReduction'&&r.player===p&&r.turn===s.turn)||creatures(s,1-p).some(y=>effective(y,s).noCostReduction))return actions;const out=[...actions];for(const a of actions){if(a.kind!=='play'||a.freeSummon||a.freeSpell||a.alternative||a.g456Reduction!==undefined)continue;const c=faces(card(a.cardId))[a.face||0],r=reductionRange456(s,p,c);for(let n=r.min;n<r.max;n++){const payment={...c,summonOrigin:a.origin||'hand',g456Reduction:n,...(a.g7Payment?{g7Payment:a.g7Payment}:{}),...(a.snowReducers?{snowReducers:a.snowReducers}:{}),...(a.magicReducers?{magicReducers:a.magicReducers}:{}),...(a.g18Reducers!==undefined?{g18Reducers:a.g18Reducers}:{}),...(a.g26Reducers?{g26Reducers:a.g26Reducers}:{}),...(a.g42Reduction!==undefined?{g42Reduction:a.g42Reduction}:{})};if(api.canPay(s,p,payment))out.push({...a,g456Reduction:n,requiresMethod:true,cost:api.summonCost(s,p,payment),label:c.name+'を次回の軽減'+n+'で使う'});}}return out;},
  variants463(s,p,actions){if(!creatures(s,p).some(y=>!y.sealed&&effective(y,s).g463FirstSummon)||creatures(s,1-p).some(y=>effective(y,s).noCostReduction))return actions;const out=[...actions];for(const a of actions){if(a.kind!=='play'||a.freeSummon||a.freeSpell||a.alternative||a.g463Reduction!==undefined)continue;const c=faces(card(a.cardId))[a.face||0],max=firstSummonMax463(s,p,c);for(let n=0;n<max;n++){const payment={...c,summonOrigin:a.origin||'hand',g463Reduction:n,...Object.fromEntries(['g7Payment','snowReducers','magicReducers','g18Reducers','g26Reducers','g42Reduction','g456Reduction'].filter(k=>a[k]!==undefined).map(k=>[k,a[k]]))};if(api.canPay(s,p,payment))out.push({...a,g463Reduction:n,requiresMethod:true,cost:api.summonCost(s,p,payment),label:c.name+'を最初の召喚の軽減'+n+'で使う'});}}return out;},

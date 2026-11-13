@@ -6184,6 +6184,27 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1120&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(['dm30-027','dmc64-032'].includes(d.id)&&f.typeText==='クリーチャー'&&text===
+   'このクリーチャーをバトルゾーンに出した時闇のクリーチャーを好きな数自分の手札からマナゾーンに置いてもよい。'+
+   'その後自分のマナゾーンにある呪文をその枚数まで選び手札に戻す。'+
+   '戻した呪文の中から「ナイト・マジック」を持つ呪文を1枚コストを支払わずに唱えてもよい。W・ブレイカー')
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'hand',to:'mana',n:'all',optional:true,
+    g1120Romano:'charge',filter:{g228Face:{type:'creature',color:'闇'}},
+    title:'マナに置く手札の闇のクリーチャーを選ぶ（任意）'}]};
+  if(d.id==='dm25ex2-067'&&f.typeText==='D2フィールド'&&text===
+   '{GS}G・ストライク(このカードを自分のシールドゾーンから手札に加える時表向きにし相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)'+
+   '自分のイニシャルズ・クリーチャーと名前に《禁断》とあるクリーチャーの召喚コストを2少なくする。'+
+   '(他のD2フィールドが出た時このD2フィールドを破壊する)')
+   return {d2Field:true,gStrike:true,g290SummonAura:{g560D2Field:true,g756ZeroFloor:true,amount:2,
+    filter:{any:[{race:'イニシャルズ'},{g832NameIncludes:'禁断'}]}}};
+  if(d.id==='dm39-051'&&f.typeText==='呪文'&&text===
+   '相手のパワー5000以下のクリーチャーを1体破壊する。'+
+   'バトルゾーンに自分のサイキック・クリーチャーがあれば相手のパワー5000以下のクリーチャーをもう1体破壊する。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',to:'grave',filter:{maxPower:5000,g199Power:true},
+    g810AnotherIfOwn:{g370BattleCount:{min:1,filter:{creature:true,g1085Psychic:true}}},title:'破壊するパワー5000以下の相手クリーチャーを選ぶ'}]};
+ }
  if(phase>=1119&&d?.status==='complete'&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText),back=d.faces[1];
   const trebol=text.startsWith('自分の「ナイト・マジック」を持つ呪文を唱えるコストを1少なくしてもよい。')&&[

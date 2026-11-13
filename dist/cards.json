@@ -221550,15 +221550,124 @@
       },
       "supportBatch": "phase-1119",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm30-027",
+      "name": "邪眼将デス・ロマノフV世",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ドラゴン・ゾンビ/ダークロード/ナイト",
+      "text": "このクリーチャーをバトルゾーンに出した時、闇のクリーチャーを好きな数、自分の手札からマナゾーンに置いてもよい。その後、自分のマナゾーンにある呪文をその枚数まで選び、手札に戻す。戻した呪文の中から「ナイト・マジック」を持つ呪文を１枚、コストを支払わずに唱えてもよい。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-027",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "mana",
+          "n": "all",
+          "optional": true,
+          "g1120Romano": "charge",
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "color": "闇"
+            }
+          },
+          "title": "マナに置く手札の闇のクリーチャーを選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-1120",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex2-067",
+      "name": "Dの隕石 デンジャラス・コメット",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分の、イニシャルズ・クリーチャーと名前に《禁断》とあるクリーチャーの召喚コストを２少なくする。\n（他のD２フィールドが出た時、このD２フィールドを破壊する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-067",
+      "limit": 4,
+      "d2Field": true,
+      "gStrike": true,
+      "g290SummonAura": {
+        "g560D2Field": true,
+        "g756ZeroFloor": true,
+        "amount": 2,
+        "filter": {
+          "any": [
+            {
+              "race": "イニシャルズ"
+            },
+            {
+              "g832NameIncludes": "禁断"
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-1120",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm39-051",
+      "name": "メビウス・トルネード",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "相手の、パワー5000以下のクリーチャーを１体破壊する。バトルゾーンに自分のサイキック・クリーチャーがあれば、相手の、パワー5000以下のクリーチャーをもう１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-051",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 5000,
+            "g199Power": true
+          },
+          "g810AnotherIfOwn": {
+            "g370BattleCount": {
+              "min": 1,
+              "filter": {
+                "creature": true,
+                "g1085Psychic": true
+              }
+            }
+          },
+          "title": "破壊するパワー5000以下の相手クリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1120",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1119,
+    "phase": 1120,
     "checkedAt": "2026-11-13",
-    "baseCount": 7340,
+    "baseCount": 7343,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7343,
+    "totalCount": 7346,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -241275,6 +241384,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7340,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1119,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7340,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7343,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
