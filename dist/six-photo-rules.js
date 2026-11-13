@@ -2130,6 +2130,12 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_AttackFight408':{if(t.g747Once&&parottaUsed747(s,t))break;const y=attackHost408(s,t);if(y&&api.isCreature(s,y)&&!y.sealed)put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:y.uid,incarnation:y.incarnation||0},optional:true});break;}
+ case'g34_FirstAttackBreak1158':{
+  const host=sourceHost474(s,t);
+  if(host)(s.extLimits??=[]).push({kind:'g412ExtraBreak',player:host.p,ref:{uid:t.uid,incarnation:t.incarnation},
+   source:t.source,amount:1,g969FollowControl:true,g1158FirstAttackBreak:true});
+  break;
+ }
  case'g34_AttackExtraBreak511':{
   const ref=t.g399Attacker;
   if(ref)start(s,{...t,uid:ref.uid,incarnation:ref.incarnation},[
@@ -6563,7 +6569,14 @@ export function createSixPhotoRules(api){
    else queue(s,owner,x,watch.defs);
   }
   if(creature&&!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g468EntryWatch;if(!x.sealed&&watch&&(!watch.g565Other||x.uid!==y.uid)&&(!(x.uid===y.uid)||!options.selfMuted&&!api.selfStopped(s,p))&&matches(s,p,y,watch.filter))send(s,p,x,'Entry468',{mode:watch.mode,subject:{uid:y.uid,incarnation:y.incarnation||0}});}if(!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g251EntryDraw,self=x.uid===y.uid;if(!x.sealed&&watch&&(!watch.g895SummonedHand||options.execution===true&&options.origin==='hand')&&(!self||!options.selfMuted&&!api.selfStopped(s,p))&&(self&&watch.selfAlways||matches(s,p,y,watch.filter)))queue(s,p,x,watch.defs);}if(!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g250EntryDraw,self=x.uid===y.uid;if(!x.sealed&&watch&&(self?watch.self&&!options.selfMuted&&!api.selfStopped(s,p):matches(s,p,y,watch.filter)))queue(s,p,x,watch.defs);}if(s.active===p&&!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g249OtherEntry;if(!x.sealed&&x.uid!==y.uid&&watch&&matches(s,p,y,watch.filter))queue(s,p,x,watch.defs);}if(creature){const stopped=options.selfMuted||api.selfStopped(s,p);for(const x of active(s,p,'cabbage'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[select('mana',null,1,{creature:true,color:'自然',minPower:12000,exactCost:cost(c)-1},{deploy:true,optional:true})]);if(ninja(effective(y,s)))for(const x of active(s,p,'mukujimmed'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[E('Draw',{n:1,optional:true})]);if(angel(effective(y,s)))for(const x of active(s,p,'everries'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[E('Draw',{n:1,optional:true})]);for(const x of active(s,1-p,'nameko'))if(!options.paidMana)queue(s,1-p,x,[C('nameko',{target:y.uid,targetIncarnation:y.incarnation||0})]);if(options.execution===false)for(const x of active(s,1-p,'oogumo'))queue(s,1-p,x,[E('ExactMove',{to:'grave',target:y.uid,targetIncarnation:y.incarnation||0})]);}if(options.origin!=='hand')for(const x of s.players[1-p].battle.filter(x=>!api.ignored(s,x)))for(const layer of api.layers(x))if(card(layer).g34SoulDock)queue(s,1-p,x,[E('ExactMove',{to:'grave',target:y.uid,targetIncarnation:y.incarnation||0})]);},
- attack(s,p,x){if(s.g481Attackers?.turn!==s.turn)s.g481Attackers={turn:s.turn,events:[]};const refs=api.allLayers(x).map(key),first=!s.g481Attackers.events.some(e=>e.refs.some(r=>refs.includes(r)));s.g481Attackers.events.push({p,refs,...(race(effective(x,s,true),'ティラノ・ドレイク')?{tyrannoDrake925:true}:{}),...(s.attack?.target==='player'?{playerTarget:true}:{})});if(s.attackLifecycle){s.attackLifecycle.g543First=first;s.attackLifecycle.g543Refs=refs;}if(first)for(const r of s.extLimits||[]){
+ attack(s,p,x){if(s.g481Attackers?.turn!==s.turn)s.g481Attackers={turn:s.turn,events:[]};const refs=api.allLayers(x).map(key),first=!s.g481Attackers.events.some(e=>e.refs.some(r=>refs.includes(r)));s.g481Attackers.events.push({p,refs,...(race(effective(x,s,true),'ティラノ・ドレイク')?{tyrannoDrake925:true}:{}),...(s.attack?.target==='player'?{playerTarget:true}:{})});if(s.g481Attackers.events.length===1){
+  const attacker={uid:x.uid,incarnation:x.incarnation||0};
+  for(const owner of [p,1-p])for(const watcher of s.players[owner].battle){
+   if(!watcher.sealed&&!watcher.faceDown&&card(watcher).g1158FirstAttackBreak&&
+      effective(watcher,s).g1158FirstAttackBreak&&api.isCreature(s,watcher)&&
+      (watcher.uid!==x.uid||!api.selfStopped(s,p)))send(s,owner,watcher,'FirstAttackBreak1158',attacker);
+  }
+ }if(s.attackLifecycle){s.attackLifecycle.g543First=first;s.attackLifecycle.g543Refs=refs;}if(first)for(const r of s.extLimits||[]){
   if(r.kind!=='g543Shinka')continue;
   if(r.when==='firstAttack'&&refs.includes(key(r)))api.enqueue(s,r.p,{source:r.source,effect:'extended',
    task:task('g34_ResolveDelay537',r.p,r.source,{uid:r.uid,incarnation:r.incarnation,defs:[{op:'AfterAttack542',defs:[{op:'Untap',g191First:true}]}]})});

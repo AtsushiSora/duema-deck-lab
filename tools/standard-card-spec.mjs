@@ -6184,6 +6184,19 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1158&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(['dmrp02-058','dmsp01-036'].includes(d.id)&&
+   text==='各ターンはじめてクリーチャーが攻撃する時そのクリーチャーはシールドをさらに1つブレイクする。')
+   return {g1158FirstAttackBreak:true};
+  if(['dm29-055','dmex12-105','dm23ex1-081'].includes(d.id)&&[
+   '自分の他のシノビがバトルゾーンを離れる時',
+   '自分の他のシノビ・クリーチャーが離れる時'
+  ].some(prefix=>text===prefix+'かわりにそのクリーチャーをマナゾーンに置いてもよい。'))
+   return {g1158NinjaToMana:true};
+  if(d.id==='dm33-054'&&text==='自分の進化クリーチャーが破壊される時かわりにこのクリーチャーを自分のマナゾーンに置く。')
+   return {g571Saver:{filter:{creature:true,evolution:true},other:true,to:'mana',mandatory:true}};
+ }
  if(phase>=1157&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmrp08-058'&&text==='このクリーチャーが攻撃する時可能ならパワー2222以下のクリーチャーを攻撃する。')
