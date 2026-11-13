@@ -22,8 +22,13 @@ test('both battle selectors expose25 ready lists and save separate copies with b
 test('number search and playable filter include No11 and preserve the opponent destination',async()=>{
  const h=harness();await h.click('choose-starter25',{role:'opponent'});h.search('No.11');assert.match(h.dialog.innerHTML,/data-id="starter25-11"/);assert.ok(!h.dialog.innerHTML.includes('data-id="starter25-12"'));await h.click('starter25-filter',{kind:'playable'});assert.ok(h.dialog.innerHTML.includes('data-action="pick-starter25"'));h.search('存在しないデッキ');assert.match(h.dialog.innerHTML,/該当するデッキがありません/);h.search('No.11');await h.click('starter25-filter',{kind:'all'});await h.click('pick-starter25',{id:'starter25-11',role:'opponent'});assert.equal(h.read('saved.friends.length'),1);assert.equal(h.read('saved.friends[0].product.number'),11);assert.equal(h.read('saved.decks.length'),1);
 });
-test('the new-deck editor offers25 lists, protects edits and creates the chosen40 without overwriting saved decks',async()=>{
- const h=harness();await h.click('nav',{view:'decks'});await h.click('new-deck');await h.click('editor-tab',{tab:'starter25'});assert.match(h.root.innerHTML,/25の王道デッキを選ぶ/);h.read("edit.name='書きかけ';edit.cards=[{id:'dm01-097',count:1}]");await h.click('create-starter25',{id:'starter25-25'});assert.match(h.dialog.innerHTML,/保存済みのデッキは上書きしません/);assert.equal(h.read('saved.decks.length'),1);await h.click('close-dialog');assert.equal(h.read('edit.name'),'書きかけ');await h.click('create-starter25',{id:'starter25-25'});await h.click('confirm-starter25',{id:'starter25-25'});assert.equal(h.read('myDeck().product.number'),25);assert.equal(h.read('sum(myDeck())'),40);assert.equal(h.read('saved.decks.length'),2);
+test('the new-deck editor omits starter selection and retains card editing',async()=>{
+ const h=harness();
+ await h.click('nav',{view:'decks'});
+ await h.click('new-deck');
+ assert.doesNotMatch(h.root.innerHTML,/25の王道デッキを選ぶ|data-tab="starter25"/);
+ assert.match(h.root.innerHTML,/id="card-search"/);
+ assert.match(h.root.innerHTML,/id="deck-name"/);
 });
 test('a user with no saved deck can select a25 starter from the empty battle screen',async()=>{const h=harness({empty:true});await h.click('choose-starter25',{role:'mine'});await h.click('pick-starter25',{id:'starter25-01',role:'mine'});assert.equal(h.read('myDeck().product.number'),1);assert.equal(h.read('view'),'decks');assert.equal(h.read('saved.decks.length'),1);});
 test('No06 selects for both players and all25 lists enable effect-based battles',async()=>{const h=harness();await h.click('choose-starter25',{role:'mine'});await h.click('starter25-filter',{kind:'playable'});assert.match(h.dialog.innerHTML,/data-id="starter25-06"/);assert.ok(h.dialog.innerHTML.includes('data-id="starter25-11"'));await h.click('pick-starter25',{id:'starter25-06',role:'mine'});await h.click('nav',{view:'battle'});await h.click('choose-starter25',{role:'opponent'});await h.click('pick-starter25',{id:'starter25-06',role:'opponent'});assert.equal(h.read('matchBlockReason(myDeck(),simulationOpponents(null))'),'');assert.ok(!/<button[^>]*data-action="start-match"[^>]*disabled/.test(h.root.innerHTML));});

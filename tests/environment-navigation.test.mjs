@@ -60,17 +60,15 @@ test('match preparation opens both deck-source pickers; each leads to playable d
  await h.click('choose-environment',{role:'opponent'});await h.click('pick-environment',{id:target.id,role:'opponent'});assert.equal(h.read('saved.friends.length'),1);
 });
 
-test('new-deck editor keeps environment entry, actionable supported list first, and explicit protection for unfinished edits',async()=>{
- const h=harness();await h.click('nav',{view:'decks'});
- assert.ok(!h.root.innerHTML.includes('data-action="choose-environment"'));
- await h.click('new-deck');await h.click('editor-tab',{tab:'environment'});
- assert.match(h.root.innerHTML,/バイケン（Grimoire）/);
- assert.ok(h.root.innerHTML.indexOf('data-action="create-environment"')<h.root.innerHTML.indexOf('40枚の構成・対応状況を見る'));
- h.read("edit.name='編集中のデッキ'");await h.click('create-environment',{id:target.id});
- assert.match(h.dialog.innerHTML,/作成中の内容を終了/);assert.equal(h.read('saved.decks.length'),1);
- await h.click('close-dialog');assert.equal(h.read('edit.name'),'編集中のデッキ');
- await h.click('create-environment',{id:target.id});await h.click('confirm-environment',{id:target.id});
- assert.equal(h.read('view'),'decks');assert.equal(h.read('myDeck().name'),target.name);assert.equal(h.read('sum(myDeck())'),40);
+test('new and saved deck editors omit environment deck selection',async()=>{
+ const h=harness();
+ await h.click('nav',{view:'decks'});
+ await h.click('new-deck');
+ assert.doesNotMatch(h.root.innerHTML,/環境デッキを選ぶ|環境・王道デッキから作り直す/);
+ assert.match(h.root.innerHTML,/id="deck-format"/);
+ h.read("edit=structuredClone(saved.decks[0]);render()");
+ assert.doesNotMatch(h.root.innerHTML,/環境デッキを選ぶ|環境・王道デッキから作り直す/);
+ assert.match(h.root.innerHTML,/data-action="deck-history"/);
 });
 
 test('environment navigation is available with no saved deck and all four lists enable battle',async()=>{
@@ -89,7 +87,17 @@ test('dotto tournament list is selectable for either side and enables battle wit
 test('year filters show newest groups first and select the filtered list for either role without writing on filtering',async()=>{for(const role of['mine','opponent']){const h=harness();await h.click('choose-environment',{role});const years=[...h.dialog.innerHTML.matchAll(/data-environment-year="(\d+)"/g)].map(x=>x[1]);assert.deepEqual(years,['2026','2025','2024','2023']);assert.equal((h.dialog.innerHTML.match(/class="panel environment-card/g)||[]).length,h.read('environmentDecks.length'));const writes=h.writes.length;
  await h.click('environment-year',{year:'2023'});assert.deepEqual([...h.dialog.innerHTML.matchAll(/data-environment-year="(\d+)"/g)].map(x=>x[1]),['2023']);assert.equal((h.dialog.innerHTML.match(/class="panel environment-card/g)||[]).length,h.read('environmentDecks.filter(d=>environmentYear(d)===2023).length'));assert.match(h.dialog.innerHTML,/data-year="2023" aria-pressed="true"/);assert.ok(!h.dialog.innerHTML.includes('data-id="env-gp2026-grimoire"'));assert.equal(h.writes.length,writes);assert.equal(h.read('environmentPickerRole'),role);
  await h.click('environment-year',{year:'all'});assert.equal((h.dialog.innerHTML.match(/class="panel environment-card/g)||[]).length,h.read('environmentDecks.length'));await h.click('environment-year',{year:'2023'});await h.click('pick-environment',{id:'env-lionel-practice',role});assert.equal(h.read(role==='mine'?'myDeck().templateId':'selectedOpponent().templateId'),'env-lionel-practice');assert.equal(h.read(role==='mine'?'sum(myDeck())':'sum(selectedOpponent())'),40);assert.equal(h.read('saved.decks[0].name'),'元のデッキ');await h.click('choose-environment',{role});assert.equal(h.read('environmentYearFilter'),'all');assert.equal((h.dialog.innerHTML.match(/class="panel environment-card/g)||[]).length,h.read('environmentDecks.length'));}});
-test('year filtering in the editor preserves the draft and creation safeguards',async()=>{const h=harness();await h.click('nav',{view:'decks'});await h.click('new-deck');h.read("edit.name='年代別から選ぶ途中';edit.cards=[{id:'dm01-108',count:1}]");await h.click('editor-tab',{tab:'environment'});const original=h.read('JSON.stringify(edit)'),writes=h.writes.length;await h.click('environment-year',{year:'2024'});assert.equal((h.root.innerHTML.match(/class="panel environment-card/g)||[]).length,h.read('environmentDecks.filter(d=>environmentYear(d)===2024).length'));assert.ok(!h.dialog.open);assert.equal(h.read('JSON.stringify(edit)'),original);assert.equal(h.writes.length,writes);await h.click('create-environment',{id:'env-kenji-gp2024-maiken'});assert.match(h.dialog.innerHTML,/作成中の内容を終了/);await h.click('close-dialog');assert.equal(h.read('JSON.stringify(edit)'),original);});
+test('an older draft on a removed template tab opens its deck contents with its edits intact',async()=>{
+ const h=harness();
+ for(const tab of ['environment','starter25']){
+  h.read(`localStorage.getItem=()=>JSON.stringify({version:1,role:'mine',tab:'${tab}',deck:{id:'draft',name:'編集中',format:'advance',cards:[{id:'dm01-108',count:1}]}});resumeEditorDraft()`);
+  assert.equal(h.read('editTab'),'deck');
+  assert.equal(h.read('edit.name'),'編集中');
+  assert.equal(h.read('edit.format'),'advance');
+  assert.equal(h.read('sum(edit)'),1);
+  assert.match(h.root.innerHTML,/いまのデッキ/);
+ }
+});
 
  test('historical environment selection, sharing and JSON imports preserve original limits in the actual app',async()=>{
  const h=harness();await h.click('choose-environment',{role:'mine'});assert.match(h.dialog.innerHTML,/当時の使用制限/);await h.click('pick-environment',{id:'env-abyss-practice',role:'mine'});
