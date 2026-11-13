@@ -227724,15 +227724,141 @@
       ],
       "supportBatch": "phase-1171",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx16-072",
+      "name": "純白設計図",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "自分の山札の上から５枚を、すべてのプレイヤーに見せる。その中からカードに能力が書かれていないクリーチャーをすべて自分の手札に加え、残りを好きな順序で山札の一番下に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-072",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 5,
+          "public": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": "all",
+              "allMatches": true,
+              "to": "hand",
+              "filter": {
+                "creature": true,
+                "g990PrintedNoAbilities": true,
+                "g1113LegacyManaText": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1172",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp02-072",
+      "name": "蓄積された魔力",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nカードを１枚引き、その後、自分の墓地にある《蓄積された魔力》１枚につき、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-072",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "CountDraw",
+          "zone": "grave",
+          "filter": {
+            "g201ExactName": "蓄積された魔力"
+          }
+        }
+      ],
+      "supportBatch": "phase-1172",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23sd2-014",
+      "name": "聖沌忍法 7r0y",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "メカ・デル・テック/シノビ",
+      "text": "自分のメカまたはシノビを１つ、手札に戻してもよい。そうしたら、コスト５以下でメカまたはシノビのクリーチャーを１体、自分の手札から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd2-014",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "element": true,
+          "filter": {
+            "raceAny": [
+              "メカ",
+              "シノビ"
+            ]
+          },
+          "to": "hand",
+          "toOwnerHand": true,
+          "title": "手札に戻す自分のメカかシノビを選ぶ（任意）",
+          "optional": true,
+          "g587AfterSelection": true,
+          "after": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 1,
+              "deploy": true,
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "raceAny": [
+                  "メカ",
+                  "シノビ"
+                ],
+                "max": 5
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1172",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1171,
+    "phase": 1172,
     "checkedAt": "2026-11-14",
-    "baseCount": 7503,
+    "baseCount": 7506,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7506,
+    "totalCount": 7509,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -248073,6 +248199,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7503,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1171,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7503,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7506,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -2467,6 +2467,25 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1172&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
+  const text=normalize(f.abilityText);
+  if(f.name==='純白設計図'&&f.civilizationText==='自然'&&f.cost===2&&text===
+   '自分の山札の上から5枚をすべてのプレイヤーに見せる。その中からカードに能力が書かれていないクリーチャーをすべて自分の手札に加え残りを好きな順序で山札の一番下に戻す。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Look',n:5,public:true,rest:'bottom',
+    stages:[{n:'all',allMatches:true,to:'hand',filter:{creature:true,g990PrintedNoAbilities:true,g1113LegacyManaText:true}}]}]};
+  if(f.name==='蓄積された魔力'&&f.civilizationText==='水'&&text===
+   'S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)'+
+   'カードを1枚引きその後自分の墓地にある《蓄積された魔力》1枚につきカードを1枚引く。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Draw',n:1},
+    {op:'CountDraw',zone:'grave',filter:{g201ExactName:f.name}}]};
+  if(f.name==='聖沌忍法 7r0y'&&f.civilizationText==='光'&&f.cost===4&&text===
+   '自分のメカまたはシノビを1つ手札に戻してもよい。そうしたらコスト5以下でメカまたはシノビのクリーチャーを1体自分の手札から出してもよい。'){
+   const raceAny=['メカ','シノビ'];
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',element:true,filter:{raceAny},to:'hand',toOwnerHand:true,
+    title:'手札に戻す自分のメカかシノビを選ぶ（任意）',optional:true,g587AfterSelection:true,
+    after:[{op:'Select',origin:'hand',n:1,deploy:true,optional:true,filter:{creature:true,raceAny,max:5}}]}]};
+  }
+ }
  if(phase>=1171&&d?.status==='complete'){
   if(d.id==='dm26ex4-073'&&d.faces.length===2){
    const spell=d.faces[1],front=normalize(f.abilityText);

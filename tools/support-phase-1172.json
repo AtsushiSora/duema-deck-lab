@@ -1,0 +1,321 @@
+{
+  "phase": 1172,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7506,
+  "description": "純白設計図、蓄積された魔力、聖沌忍法 7r0yの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/43296/",
+    "https://dm.takaratomy.co.jp/rule/qa/48142/"
+  ],
+  "cards": [
+    {
+      "id": "dmx16-072",
+      "name": "純白設計図",
+      "faces": [
+        {
+          "name": "純白設計図",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の山札の上から５枚を、すべてのプレイヤーに見せる。その中からカードに能力が書かれていないクリーチャーをすべて自分の手札に加え、残りを好きな順序で山札の一番下に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-072",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx16-072.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 5,
+            "public": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": "all",
+                "allMatches": true,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "g990PrintedNoAbilities": true,
+                  "g1113LegacyManaText": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "302fca82782b2254299d95a9e84b1521200f95ee32283d64792651008ffe47b7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-072",
+      "name": "蓄積された魔力",
+      "faces": [
+        {
+          "name": "蓄積された魔力",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nカードを１枚引き、その後、自分の墓地にある《蓄積された魔力》１枚につき、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-072",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-072.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "CountDraw",
+            "zone": "grave",
+            "filter": {
+              "g201ExactName": "蓄積された魔力"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "ef7ca4fa89e932a75bb203d98d079840d4e7bf3aa2945b622579639796b1c5ad",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23sd2-014",
+      "name": "聖沌忍法 7r0y",
+      "faces": [
+        {
+          "name": "聖沌忍法 7r0y",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のメカまたはシノビを１つ、手札に戻してもよい。そうしたら、コスト５以下でメカまたはシノビのクリーチャーを１体、自分の手札から出してもよい。",
+          "race": "メカ・デル・テック/シノビ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd2-014",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23sd2-014.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "element": true,
+            "filter": {
+              "raceAny": [
+                "メカ",
+                "シノビ"
+              ]
+            },
+            "to": "hand",
+            "toOwnerHand": true,
+            "title": "手札に戻す自分のメカかシノビを選ぶ（任意）",
+            "optional": true,
+            "g587AfterSelection": true,
+            "after": [
+              {
+                "op": "Select",
+                "origin": "hand",
+                "n": 1,
+                "deploy": true,
+                "optional": true,
+                "filter": {
+                  "creature": true,
+                  "raceAny": [
+                    "メカ",
+                    "シノビ"
+                  ],
+                  "max": 5
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "38da7ea546e9dad6cf954d844f71cf905101fea22edf659b04b4e0873a497173",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23rp2-055",
+      "name": "聖沌忍法 7r0y",
+      "faces": [
+        {
+          "name": "聖沌忍法 7r0y",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のメカまたはシノビを１つ、手札に戻してもよい。そうしたら、コスト５以下でメカまたはシノビのクリーチャーを１体、自分の手札から出してもよい。",
+          "race": "メカ・デル・テック/シノビ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-055",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-055.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "element": true,
+            "filter": {
+              "raceAny": [
+                "メカ",
+                "シノビ"
+              ]
+            },
+            "to": "hand",
+            "toOwnerHand": true,
+            "title": "手札に戻す自分のメカかシノビを選ぶ（任意）",
+            "optional": true,
+            "g587AfterSelection": true,
+            "after": [
+              {
+                "op": "Select",
+                "origin": "hand",
+                "n": 1,
+                "deploy": true,
+                "optional": true,
+                "filter": {
+                  "creature": true,
+                  "raceAny": [
+                    "メカ",
+                    "シノビ"
+                  ],
+                  "max": 5
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "83cdfd086d290a9b8fbdeedd788d7f05ab0510f4449d1e7e32fdaba46c08a93b",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23sd2-014"
+    },
+    {
+      "id": "dm23rp2x-055",
+      "name": "聖沌忍法 7r0y",
+      "faces": [
+        {
+          "name": "聖沌忍法 7r0y",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のメカまたはシノビを１つ、手札に戻してもよい。そうしたら、コスト５以下でメカまたはシノビのクリーチャーを１体、自分の手札から出してもよい。",
+          "race": "メカ・デル・テック/シノビ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-055",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-055.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "element": true,
+            "filter": {
+              "raceAny": [
+                "メカ",
+                "シノビ"
+              ]
+            },
+            "to": "hand",
+            "toOwnerHand": true,
+            "title": "手札に戻す自分のメカかシノビを選ぶ（任意）",
+            "optional": true,
+            "g587AfterSelection": true,
+            "after": [
+              {
+                "op": "Select",
+                "origin": "hand",
+                "n": 1,
+                "deploy": true,
+                "optional": true,
+                "filter": {
+                  "creature": true,
+                  "raceAny": [
+                    "メカ",
+                    "シノビ"
+                  ],
+                  "max": 5
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "3a9577c99c9f68fef7940655497c0c1c39efd1e91a39aab8c57c657e3c18ecd5",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23sd2-014"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx16-072": 4,
+      "dmrp02-072": 4,
+      "dm23sd2-014": 4,
+      "dm23rp2-055": 4,
+      "dm23rp2x-055": 4
+    }
+  }
+}
