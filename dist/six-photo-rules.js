@@ -4346,6 +4346,7 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_Target':{
+  if(t.g1150AttachGrave&&(!own.grave.length||!api.canMoveZone(s,t.p,'grave')))break;
   if(t.g1086BelowGrave)t={...t,filter:{...t.filter,belowCost:own.grave.length}};
   if(used792(s,t,t))break;
   if(t.to==='grave'&&t.filter?.maxPower===6000&&t.owner!=='self'&&!t.anyOwner&&
@@ -5557,6 +5558,13 @@ export function createSixPhotoRules(api){
  case'g34_Target':
   if(used792(s,t,t))break;
   if(!v&&t.elseDefs){start(s,t,t.elseDefs);break;}
+  if(t.g1150AttachGrave){
+   const host=v&&own.battle.find(y=>y.uid===v.uid&&!y.sealed&&matches(s,t.p,y,{creature:true,...t.filter}));
+   if(host)start(s,t,[{op:'Select',origin:'grave',n:1,g1060AttachBase:true,
+    g1132EntryTarget:{uid:host.uid,incarnation:host.incarnation||0},
+    title:'選んだクリーチャーの下に置く自分の墓地のカードを1枚選ぶ'}]);
+   break;
+  }
   if(t.g959MoveTop){
    if(v)api.moveBattleCard(s,v.p,v.uid,t.to,{controller:t.controller??t.p});
    break;
@@ -6086,8 +6094,10 @@ export function createSixPhotoRules(api){
   const c=effective(x,s);
   if((s.extLimits||[]).some(l=>l.kind==='g1087ElementsStay'&&l.player===p)&&!x.sealed)return false;
   if(context.destroy===false&&api.isCreature(s,x)&&s.players[p].battle.some(y=>{
-   const r=card(y).g1087RaceStay;
-   return r&&!api.ignored(s,y)&&api.isCreature(s,y)&&race(c,r);
+   const source=card(y);
+   const protects=source.g1087RaceStay&&race(c,source.g1087RaceStay)||
+    source.g1150OtherNonDestructionStay&&y.uid!==x.uid;
+   return protects&&!api.ignored(s,y)&&api.isCreature(s,y);
   }))return false;
   if(c.g34Role==='engels'&&s.g34ShieldLeftTurn!==s.turn)return false;
   if(c.g34Role==='perfect'&&api.power(x,false,s)>0)return false;

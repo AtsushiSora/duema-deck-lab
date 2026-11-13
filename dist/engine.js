@@ -658,8 +658,9 @@ function recordLastPower(s,p,c,leaving){extra.cyber.recordBattleCards(s,p,leavin
 }
 // Emit one battlefield event only when an existing tapped card really untaps.
 function untapCard(s,p,x){if(!x?.tapped||!canUntap(x))return false;x.tapped=false;if(s.players[p].battle.includes(x))extra.six.untapped(s,p,x);return true;}
-function tapCard(s,p,x){
+function tapCard(s,p,x,controller=effectActor(s)){
  if(!x||x.sealed||x.tapped)return;
+ if(controller===1-p&&card(x).g1150OpponentCannotTap&&effectiveCard(x,s).g1150OpponentCannotTap)return;
  x.tapped=true;
  if(card(x).psychic&&x.g1085TappedTurn!==s.turn){
   x.g1085TappedTurn=s.turn;
@@ -1802,7 +1803,7 @@ function completeExecution(s,p,inst,c,{ruleOrigin,origin,free,freeReason,alterna
  else{c.triggerPlusActive=!!c.triggerPlus&&free&&freeReason==='S・トリガー'&&!!inst.triggerPlus;c.superTriggerActive=!!c.superTrigger&&free&&(freeReason==='S・トリガー'&&!!inst.superTrigger||grantedSuper);if(c.crystalCharger&&!spellIgnored(s,c))inst.crystalFinish=true;if(c.normalCharger&&!spellIgnored(s,c))inst.normalFinish=true;extra.finishSpell(s,p,inst,c);if(checkDeckSpell&&checkDeckSpell841(s,p,c,inst))return;if(!extra.beforeSpell(s,p,c,inst))resolveSpell(s,p,inst.uid);}
 }
 // Executing the spell side may be replaced even when its physical card stays in battle (QA46947).
-function canReplaceExecution(s,p,uid,to='grave'){const top=s.players[p].battle.find(x=>layers(x).some(y=>y.uid===uid));return top?extra.canLeave(s,p,top)&&!s.g26Extreme?.[p]&&!(to==='mana'&&shevaProtection(s,p)):s.players[p].shields.flatMap(shieldCards).some(x=>x.uid===uid&&!x.g37ShieldHeld)||['hand','deck','mana','grave','extra'].some(z=>s.players[p][z].some(x=>x.uid===uid));}
+function canReplaceExecution(s,p,uid,to='grave'){const top=s.players[p].battle.find(x=>layers(x).some(y=>y.uid===uid));return top?extra.canLeave(s,p,top,top.uid===uid?{destroy:false}:{})&&!s.g26Extreme?.[p]&&!(to==='mana'&&shevaProtection(s,p)):s.players[p].shields.flatMap(shieldCards).some(x=>x.uid===uid&&!x.g37ShieldHeld)||['hand','deck','mana','grave','extra'].some(z=>s.players[p][z].some(x=>x.uid===uid));}
 function replaceExecutionCard(s,p,uid,to='grave'){const own=s.players[p],top=own.battle.find(x=>layers(x).some(y=>y.uid===uid));if(!canReplaceExecution(s,p,uid,to))return false;const shield=own.shields.flatMap(shieldCards).find(x=>x.uid===uid&&!x.g37ShieldHeld);if(shield){moveShield(s,p,uid,to,{cardOnly:true});return true;}if(top){if(top.uid===uid)moveCreatures(s,[{player:p,uid,to,destroy:false,cardOnly:true,replacement:true}]);else moveBattleCard(s,p,uid,to);return !own.battle.some(x=>layers(x).some(y=>y.uid===uid));}for(const zone of['hand','deck','mana','grave','extra']){const x=own[zone].find(x=>x.uid===uid);if(!x)continue;if(zone!==to){remove(own[zone],uid);clearBattleState(x,to);addZone(s,p,to,x);}return true;}return false;}
 // QA43078: the spell leaves the deck before it resolves.
 function checkDeckSpell841(s,p,c,inst){
@@ -2879,7 +2880,7 @@ function stepCore(s,action){
  if(a.kind==='orderTrigger'){s.decision=null;s.triggers.declared.splice(s.triggers.declared.indexOf(a.uid),1);executeTrigger(s,p,a.uid,s.triggers.faceByUid?.[a.uid]||0);}
  if(a.kind==='triggerEvolve'){s.decision=null;playCard(s,p,a.uid,true,a.baseUid||null,d.face);}
  if(a.kind==='orderEntry'||a.kind==='orderEffect'){s.decision=null;const queue=a.kind==='orderEntry'?s.triggers.entries:s.pendingEffects,i=queue.findIndex(e=>e.effectId===a.effectId),[entry]=queue.splice(i,1);resolveEntry(s,entry);}
- if(a.kind==='dragonTap'){s.decision=null;tapCard(s,1-p,s.players[1-p].battle.find(x=>x.uid===a.uid));(s.once??={})[d.key]=s.turn;log(s,p,'dragonTap',`${card(d.source).name}：${card(a.cardId).name}をタップ（このターンの1回を使用）`,{cardId:d.source});}
+ if(a.kind==='dragonTap'){s.decision=null;tapCard(s,1-p,s.players[1-p].battle.find(x=>x.uid===a.uid),p);(s.once??={})[d.key]=s.turn;log(s,p,'dragonTap',`${card(d.source).name}：${card(a.cardId).name}をタップ（このターンの1回を使用）`,{cardId:d.source});}
  if(a.kind==='skipDragonTap'){s.decision=null;log(s,p,'skip',`${card(d.source).name}の任意タップを見送る（このターンは未使用）`,{cardId:d.source});}
  if(a.kind==='fight'){s.decision=null;const source=s.players[p].battle.find(x=>x.uid===a.uid),target=s.players[1-p].battle.find(x=>x.uid===a.target);if(source&&target){log(s,p,'fight',`${card(source).name}の効果で${card(target).name}とバトル`,{cardId:source.cardId});battle(s,p,source,1-p,target,s.attack?.attacker);}}
  if(a.kind==='skipFight'){s.decision=null;log(s,p,'skip',`${card(d.source).name}の登場時バトルを使わない`,{cardId:d.source});}

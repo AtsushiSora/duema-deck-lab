@@ -6184,6 +6184,19 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1150&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm22rp1-010'&&text==='自分の他のクリーチャーは破壊以外の方法で離れない。')
+   return {g1150OtherNonDestructionStay:true};
+  if(d.id==='dm10-066'&&f.civilizations.length===2&&
+   text==='マナゾーンに置く時このカードはタップして置く。相手はこのクリーチャーをタップできない。')
+   return {g1150OpponentCannotTap:true};
+  if(d.id==='dm25rp3-040'&&text==='このクリーチャーが出た時または攻撃する時カードを1枚自分の墓地から自分のNEOクリーチャーまたは進化クリーチャーの下に置く。'){
+   const defs=[{op:'Target',owner:'self',filter:{any:[{g556Neo:true},{evolution:true}]},
+    g1150AttachGrave:true,title:'墓地のカードを下に置く自分のNEOまたは進化クリーチャーを選ぶ'}];
+   return {effect:'sixPhoto',g34Tasks:defs,g34Attack:defs};
+  }
+ }
  if(phase>=1149&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dmex02-066'&&f.typeText==='呪文'&&
