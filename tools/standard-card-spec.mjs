@@ -6176,6 +6176,34 @@ export function standardCardSpec(d,{phase=165}={}){
   const deploy=(filter,settings={})=>({op:'Select',origin:'extra',deploy:true,n:1,filter:{g1085Psychic:true,...filter},...settings});
   const modes=(first,second)=>({op:'Choose',g184Modes:true,modes:[first,second]});
   const solo=(color,settings)=>({label:'コスト7以下の'+color+'のサイキックを1体出す',defs:[deploy({max:7,color},settings)]});
+  if(phase>=1108){
+   const printed=text.replace(/^マナゾーンに置く時このカードはタップして置く。/,'');
+   const ending='サイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。';
+   if(d.id==='dmc65-005'&&printed==='相手のコスト4以下のクリーチャー1体を破壊する。コスト7以下の火の'+ending)
+    return {effect:'sixPhoto',g34Tasks:[
+     {op:'Target',spell:true,to:'grave',filter:{max:4},title:'破壊するコスト4以下の相手のクリーチャーを1体選ぶ'},
+     deploy({max:7,color:'火'},{g1104PsychicFaces:true})
+    ]};
+   const effects={
+    'dmr03-050':{printed:'バトルゾーンにある相手のパワー2000以下のクリーチャーをすべてタップする。',
+     tasks:[{op:'TapAll',g218Tap:true,g1108Snapshot:true,filter:{creature:true,maxPower:2000,g199Power:true}}]},
+    'dmr03-052':{printed:'このターンバトルゾーンにある自分のクリーチャーはすべて「パワーアタッカー+2000」を得ブロックされない。',
+     tasks:[
+      {op:'GroupGrant364',owner:'self',spell:true,grant:{attackBonus:2000}},
+      {op:'GroupGrant364',owner:'self',spell:true,g565External:true,g1106ExternalUntilEnd:true,grant:{unblockable:true}}
+     ]},
+    'dmr03-053':{printed:'このターンバトルゾーンにある自分のクリーチャー1体のパワーは自分の手札1枚につき+1000される。',
+     tasks:[{op:'CountPower561',zone:'hand',amount:1000,defs:[
+      {op:'Target',owner:'self',spell:true,g561Scale:true,title:'パワーを上げる自分のクリーチャーを1体選ぶ'}
+     ]}]},
+    'dmr03-054':{printed:'クリーチャーを1体自分の墓地からマナゾーンに置く。',
+     tasks:[{op:'Select',origin:'grave',to:'mana',n:1,filter:{g228Face:{type:'creature'}},
+      title:'墓地からマナに置くクリーチャーを1体選ぶ'}]}
+   };
+   const row=effects[d.id];
+   if(row&&printed===row.printed+'コスト5以下の'+ending)
+    return {effect:'sixPhoto',g34Tasks:[...row.tasks,deploy({max:5},{g1104PsychicFaces:true})]};
+  }
   if(phase>=1107){
    const printed=text
     .replaceAll('バトルゾーンに出す。','出す。')

@@ -219632,15 +219632,243 @@
       ],
       "supportBatch": "phase-1107",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmc65-005",
+      "name": "超次元ムシャ・ホール",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "相手のコスト４以下のクリーチャー１体を破壊する。\nコスト７以下の火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc65-005",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "spell": true,
+          "to": "grave",
+          "filter": {
+            "max": 4
+          },
+          "title": "破壊するコスト4以下の相手のクリーチャーを1体選ぶ"
+        },
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 7,
+            "color": "火"
+          },
+          "g1104PsychicFaces": true
+        }
+      ],
+      "supportBatch": "phase-1108",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr03-050",
+      "name": "超次元の手ホワイト・レッドホール",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nバトルゾーンにある相手の、パワー2000以下のクリーチャーをすべてタップする。\nコスト５以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-050",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "TapAll",
+          "g218Tap": true,
+          "g1108Snapshot": true,
+          "filter": {
+            "creature": true,
+            "maxPower": 2000,
+            "g199Power": true
+          }
+        },
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 5
+          },
+          "g1104PsychicFaces": true
+        }
+      ],
+      "supportBatch": "phase-1108",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr03-052",
+      "name": "超次元の手ブルー・レッドホール",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのターン、バトルゾーンにある自分のクリーチャーはすべて「パワーアタッカー+2000」を得、ブロックされない。\nコスト５以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-052",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "spell": true,
+          "grant": {
+            "attackBonus": 2000
+          }
+        },
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "spell": true,
+          "g565External": true,
+          "g1106ExternalUntilEnd": true,
+          "grant": {
+            "unblockable": true
+          }
+        },
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 5
+          },
+          "g1104PsychicFaces": true
+        }
+      ],
+      "supportBatch": "phase-1108",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr03-053",
+      "name": "超次元の手ブルー・グリーンホール",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのターン、バトルゾーンにある自分のクリーチャー１体のパワーは、自分の手札１枚につき+1000される。\nコスト５以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-053",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountPower561",
+          "zone": "hand",
+          "amount": 1000,
+          "defs": [
+            {
+              "op": "Target",
+              "owner": "self",
+              "spell": true,
+              "g561Scale": true,
+              "title": "パワーを上げる自分のクリーチャーを1体選ぶ"
+            }
+          ]
+        },
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 5
+          },
+          "g1104PsychicFaces": true
+        }
+      ],
+      "supportBatch": "phase-1108",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr03-054",
+      "name": "超次元の手ブラック・グリーンホール",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nクリーチャーを１体、自分の墓地からマナゾーンに置く。\nコスト５以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-054",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "mana",
+          "n": 1,
+          "filter": {
+            "g228Face": {
+              "type": "creature"
+            }
+          },
+          "title": "墓地からマナに置くクリーチャーを1体選ぶ"
+        },
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 5
+          },
+          "g1104PsychicFaces": true
+        }
+      ],
+      "supportBatch": "phase-1108",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1107,
+    "phase": 1108,
     "checkedAt": "2026-11-13",
-    "baseCount": 7297,
-    "newEffectCards": 3,
+    "baseCount": 7300,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 7300,
+    "totalCount": 7305,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -239213,6 +239441,18 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 7297,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1107,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7297,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7300,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

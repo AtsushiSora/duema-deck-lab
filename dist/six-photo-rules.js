@@ -3951,7 +3951,17 @@ export function createSixPhotoRules(api){
   }
   break;
  }
- case'g34_TapAll':for(const p of t.both?[0,1]:[1-t.p])for(const y of creatures(s,p))if(!t.g218Tap||matches(s,p,y,t.filter))api.tap(s,p,y);break;
+ case'g34_TapAll':{
+  for(const p of t.both?[0,1]:[1-t.p]){
+   const matchesTap=y=>!t.g218Tap||matches(s,p,y,t.filter);
+   const rows=creatures(s,p);
+   if(t.g1108Snapshot){
+    // Fix eligibility before tapping can change the power of other creatures.
+    for(const y of rows.filter(matchesTap))api.tap(s,p,y);
+   }else for(const y of rows)if(matchesTap(y))api.tap(s,p,y);
+  }
+  break;
+ }
  case'g34_Discard':{
   const owner=t.owner==='self'?t.p:t.owner??1-t.p;
   const n=t.g584Count==='faceUpShieldGo'?api.shieldGoCount(s,t.p):
