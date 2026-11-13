@@ -4758,9 +4758,11 @@ export function createSixPhotoRules(api){
   const chooser=t.opponentChooses?1-t.p:t.p,sign=t.opponentChooses?-1:1;
   const host=t.g1071Evolution?sourceHost474(s,t):null;
   const evolved=host&&!host.x.sealed?api.isEvolution(host.x):t.g1059LastEvolution;
-  choice(s,t,t.title||title,t.modes.flatMap((m,i)=>m.requiresEvolution&&!evolved||
-   m.condition&&!ownCondition(s,t.p,m.condition,t.uid,t.incarnation)
-   ?[]:[opt(m.label||'効果'+(i+1),i,t.g184Modes?sign*modeScore(s,t,m.defs):m.score??10)]),chooser);
+  const options=t.modes.flatMap((m,i)=>m.requiresEvolution&&!evolved||
+   m.condition&&!ownCondition(s,t.p,m.condition,t.uid,t.incarnation)||
+   t.modesOncePerTurn&&used792(s,t,modeUse1170(t,i))
+   ?[]:[opt(m.label||'効果'+(i+1),i,t.g184Modes?sign*modeScore(s,t,m.defs):m.score??10)]);
+  choice(s,t,t.title||title,options,chooser);
   break;
  }
  case'g34_Custom':custom(s,t);break;
@@ -5975,6 +5977,7 @@ export function createSixPhotoRules(api){
   break;
  case'g34_Execute':if(v){const y=own[v.origin].find(x=>x.uid===v.uid);if(t.g555FinishTo&&(!y||(y.zoneSerial||0)!==(v.serial555||0)||!api.canMoveZone(s,t.p,v.origin)))break;const c=faces(card(y))[v.face];if(t.g555FinishTo){if(!c||c.type!=='spell'||cost(c)>t.max||t.spellColorsAny&&!colors(c).some(color=>t.spellColorsAny.includes(color))||t.g556SpellColor&&!colors(c).includes(t.g556SpellColor)||!api.canCast(s,t.p,c,v.origin))break;y.finishTo=t.g555FinishTo;}if(c.evolution||c.neoEvolution)put(s,{...t,op:'g34_Put',target:v.uid,origin:v.origin,execution:true,face:v.face});else cast(s,t.p,v.uid,true,null,v.face,null,v.origin,'カードの能力');}else if(t.g408Decline)start(s,t,t.g408Decline);break;
  case'g34_Choose':{
+  if(t.modesOncePerTurn)(s.once??={})[onceKey792(t,modeUse1170(t,v))]=s.turn;
   if(t.g1045Preselect){
    // Choose all modes before resolution and apply them in printed order (QA 40186).
    const modeSelections=[...(t.modeSelections||[]),v];
@@ -6016,6 +6019,7 @@ export function createSixPhotoRules(api){
  const used=(s,slot,x)=>s[slot]?.[key(x)]===s.turn,mark=(s,slot,x)=>{(s[slot]??={})[key(x)]=s.turn;};
  const onceKey792=(x,d)=>'g792:'+d.g792Once+':'+key(x);
  const used792=(s,x,d)=>!!d?.g792Once&&s.once?.[onceKey792(x,d)]===s.turn;
+ const modeUse1170=(t,i)=>({g792Once:'mode:'+t.source+':'+i});
  const parottaKey747=x=>'parotta:'+key(x),parottaUsed747=(s,x)=>s.once?.[parottaKey747(x)]===s.turn;
  function custom(s,t){const own=s.players[t.p],opp=s.players[1-t.p],x=live(s,t);switch(t.name){
  case'finishBatch':delete s.g34DeployBatch;delete own.g34ManaHeld;break;

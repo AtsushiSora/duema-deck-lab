@@ -2467,6 +2467,24 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1170&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.name==='死を超えた森 ベランド'&&f.typeText==='ヒストリック・フィールド'&&f.civilizationText==='闇/自然'&&f.cost===2&&text===
+   '自分のクリーチャーが破壊された時次の中からこのターンにこのフィールドの効果で選んでいないものを1回選ぶ。'+
+   '▶自分の山札の上から1枚をマナゾーンに置く。▶相手の手札を1枚見ないで選び捨てさせる。')
+   return {g303DeathWatch:{g725RemainInBattle:true,defs:[{op:'Choose',g184Modes:true,modesOncePerTurn:true,modes:[
+    {label:'山札の上から1枚をマナゾーンに置く',defs:[{op:'Ramp',n:1}]},
+    {label:'相手の手札を見ないで1枚捨てさせる',defs:[{op:'BlindDiscard773',n:1}]}
+   ]}]}};
+  if(f.name==='漫遊の神官 マンボボ'&&f.typeText==='クリーチャー'&&f.civilizationText==='水'&&f.cost===5&&text===
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   '自分の手札を捨てた時そのターンこのクリーチャーはブロックされない。')
+   return {blocker:true,g1168DiscardWatch:[{op:'SelfGrant754',g770LiveCreature:true,grant:{unblockable:true}}]};
+  // The official page omits the W Breaker printed on the P58/Y11 card image.
+  if(d.id==='promoy11-058'&&f.name==='アイドルマスターレオ'&&f.typeText==='クリーチャー'&&f.civilizationText==='光'&&f.cost===8&&text===
+   'ブロッカー自分の他のエンジェル・コマンドをバトルゾーンに出した時カードを1枚引いてもよい。')
+   return {blocker:true,breaker:2,g314OtherEntry:{who:'self',filter:{creature:true,race:'エンジェル・コマンド'},defs:[{op:'Draw',n:1,optional:true}]}};
+ }
  if(phase>=1169&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.name==='美孔麗の伝説'&&f.typeText==='呪文'&&f.civilizationText==='水/火'&&f.cost===4&&text===

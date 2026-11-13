@@ -227489,15 +227489,130 @@
       ],
       "supportBatch": "phase-1169",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex4-076",
+      "name": "死を超えた森 ベランド",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "自分のクリーチャーが破壊された時、次の中から、このターンにこのフィールドの効果で選んでいないものを１回選ぶ。\n▶自分の山札の上から１枚をマナゾーンに置く。\n▶相手の手札を１枚見ないで選び、捨てさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-076",
+      "limit": 4,
+      "g303DeathWatch": {
+        "g725RemainInBattle": true,
+        "defs": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modesOncePerTurn": true,
+            "modes": [
+              {
+                "label": "山札の上から1枚をマナゾーンに置く",
+                "defs": [
+                  {
+                    "op": "Ramp",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "相手の手札を見ないで1枚捨てさせる",
+                "defs": [
+                  {
+                    "op": "BlindDiscard773",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1170",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-065",
+      "name": "漫遊の神官 マンボボ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ムートピア",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分の手札を捨てた時、そのターン、このクリーチャーはブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-065",
+      "limit": 4,
+      "blocker": true,
+      "g1168DiscardWatch": [
+        {
+          "op": "SelfGrant754",
+          "g770LiveCreature": true,
+          "grant": {
+            "unblockable": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1170",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy11-058",
+      "name": "アイドルマスターレオ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 6000,
+      "race": "エンジェル・コマンド/アイドル",
+      "text": "ブロッカー\n自分の他のエンジェル・コマンドをバトルゾーンに出した時、カードを１枚引いてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy11-058",
+      "limit": 4,
+      "blocker": true,
+      "g314OtherEntry": {
+        "who": "self",
+        "filter": {
+          "creature": true,
+          "race": "エンジェル・コマンド"
+        },
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1170",
+      "supportKind": "effect",
+      "abilityErrata": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy11-058.jpg",
+        "abilityText": "ブロッカー\n自分の他のエンジェル・コマンドをバトルゾーンに出した時、カードを１枚引いてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）"
+      },
+      "breaker": 2
     }
   ],
   "supportExpansion": {
-    "phase": 1169,
+    "phase": 1170,
     "checkedAt": "2026-11-14",
-    "baseCount": 7497,
+    "baseCount": 7500,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7500,
+    "totalCount": 7503,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -247814,6 +247929,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7497,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1169,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7497,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7500,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
