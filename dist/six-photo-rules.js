@@ -4,6 +4,7 @@ import {policyTake} from './champion-zone-policy.js';
 import {RECOVERY_RACES} from './utility-recovery-races.js?v=0.119.0';
 import {hasCopiedRole393} from './requested393-joker-rules.js?v=0.721.1';
 import {afterEntry} from './entry-followup.js?v=0.721.1';
+import {hasKnightMagic} from './utility-knight-rules.js?v=0.124.0';
 // Six photographed deck lists: serializable effects, physical cards and explicit choices.
 export function createSixPhotoRules(api){
  const{card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,enter,cast,move,targetOptions}=api;
@@ -173,7 +174,9 @@ export function createSixPhotoRules(api){
   const ownReduction=self&&ownCondition(s,p,self.filter)?self.amount:0;
   return creatures(s,p).filter(x=>!x.sealed).reduce((n,x)=>{
    const r=effective(x,s).g485SpellReduction;
-   return n+(typeof r==='number'?r:r&&(!r.color||colors(c).includes(r.color))?r.amount:0);
+   if(typeof r==='number')return n+r;
+   if(!r||r.color&&!colors(c).includes(r.color)||r.knightMagic&&!hasKnightMagic(c))return n;
+   return n+r.amount;
   },ownReduction);
  }
  function spellReduction485(s,p,c){const max=spellReductionMax485(s,p,c);return c.g485Amount===undefined?max:Math.max(0,Math.min(max,c.g485Amount));}

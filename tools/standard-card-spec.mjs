@@ -6184,6 +6184,25 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1119&&d?.status==='complete'&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText),back=d.faces[1];
+  const trebol=text.startsWith('自分の「ナイト・マジック」を持つ呪文を唱えるコストを1少なくしてもよい。')&&[
+   'ただしコストは1より少なくならない。','ただしコストは0以下にはならない。'
+  ].some(ending=>text==='自分の「ナイト・マジック」を持つ呪文を唱えるコストを1少なくしてもよい。'+ending);
+  const knightMagic='ナイト・マジック(バトルゾーンに自分のナイトがあればこの呪文のk能力をもう一度使ってもよい)';
+  if(trebol&&['dm30-047','dmpcd02-b15'].includes(d.id)&&!back)
+   return {g485SpellReduction:{amount:1,knightMagic:true}};
+  if(back?.typeText==='呪文'){
+   const spellText=normalize(back.abilityText).replace('(自分のナイトがあれば','(バトルゾーンに自分のナイトがあれば');
+   const spellFace={name:back.name,cost:back.cost,type:'spell',civilizations:back.civilizations,race:back.race,effect:'sixPhoto'};
+   if(d.id==='dmex17-083'&&trebol&&spellText==='相手は自身の手札を1枚選び捨てる。'+knightMagic)
+    return {g485SpellReduction:{amount:1,knightMagic:true},spellFace:{...spellFace,g70Effect:'Bullet'}};
+   if(['dmex17-112','dm23bd6-055'].includes(d.id)&&
+    text==='自分の呪文を唱えるコストを1少なくしてもよい。ただしコストは0以下にはならない。'&&
+    spellText==='S・トリガーS・トリガーkカードを2枚まで引く。'+knightMagic)
+    return {g485SpellReduction:1,spellFace:{...spellFace,trigger:true,g70Effect:'Open'}};
+  }
+ }
  if(phase>=1118&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dm28-004'&&f.typeText==='クリーチャー'&&text==='自分が唱えたナイト呪文の能力を追加でもう一度使ってもよい。')

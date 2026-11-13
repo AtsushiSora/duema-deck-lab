@@ -1,3 +1,12 @@
+const knightMagicModes=new Set([
+ 'Open','Bullet','Zanzibar','Soul','Glory','Panda','Stream','Chain','Critical','Bakuretsu','Plus'
+]);
+
+export function hasKnightMagic(c){
+ return c.type==='spell'&&(knightMagicModes.has(c.g70Effect)||
+  !!c.g34Tasks?.some(d=>d.op==='KnightMagic1118'));
+}
+
 // Knight Magic repeats the effect during the same spell resolution, without recasting.
 export function createUtilityKnightRules(api){
  const{card,cost,effective,power,creatures,put,task,choice,opt,targetOptions}=api;
