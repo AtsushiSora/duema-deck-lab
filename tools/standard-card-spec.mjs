@@ -2470,6 +2470,23 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1189&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm13-036'&&f.typeText==='クリーチャー'&&text==='自分のクリーチャーがブレイクしたシールドを相手は見せる。'){
+   return {g1189RevealAllyBreak:true};
+  }
+  if(d.id==='dm22rp1-036'&&f.typeText==='タマシード'&&text===
+   '自分の呪文または他のタマシードを使った時カードを1枚引いてもよい。そうしたら自分の手札を1枚捨てる。'){
+   const defs=[{op:'Offer',title:'カードを1枚引き、手札を1枚捨てる？',g204DrawDiscard:true,
+    defs:[{op:'Draw',n:1},{op:'Discard',owner:'self',n:1}]}];
+   return {g204SpellWatch:{who:'self',g1189Tamaseed:true,defs},g1177TamaseedUse:defs};
+  }
+  const galaxyBreaker={'dmx04-001':'G(ギャラクシー)','dmx17-014':'G'}[d.id];
+  if(galaxyBreaker&&f.typeText==='クリーチャー'&&text===galaxyBreaker+
+   '・ブレイカー(このクリーチャーは相手のシールドをすべてブレイクしその攻撃の後自分のシールドをすべてブレイクする)'){
+   return {gBreaker:true};
+  }
+ }
  if(phase>=1188&&d?.status==='complete'&&d.faces.length===1&&d.id==='dm27-010'&&f.typeText==='クリーチャー'&&
   normalize(f.abilityText)==='文明ブレイカー(このクリーチャーは自分のマナゾーンにある文明ひとつにつき1枚シールドをブレイクする)'){
   return {g1188CivilizationBreaker:true};

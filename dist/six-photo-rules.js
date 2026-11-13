@@ -731,7 +731,8 @@ export function createSixPhotoRules(api){
   (!watch.colorsAny||watch.colorsAny.some(color=>colors(c).includes(color)))&&
   (!watch.colorsAll||watch.colorsAll.every(color=>colors(c).includes(color)))&&(!watch.multicolor||colors(c).length>1);
  const spellWatches=(s,caster,c,origin='hand')=>[s.active,1-s.active].flatMap(owner=>
-  creatures(s,owner).filter(x=>!x.sealed).flatMap(x=>{
+  s.players[owner].battle.flatMap(x=>{
+   if(x.sealed||!card(x).g204SpellWatch?.g1189Tamaseed&&!api.isCreature(s,x))return [];
    const watch=effective(x,s).g204SpellWatch;
    if(!watch||(watch.who!=='both'&&owner!==(watch.who==='self'?caster:1-caster)))return [];
    return (!watch.opponentTurn||s.active!==owner)&&(!watch.origin||watch.origin===origin)&&
@@ -6588,8 +6589,11 @@ export function createSixPhotoRules(api){
   }
  },
  played(s,p,c,x,origin,permit){
-  if(c.type==='seed'||c.seedCreature)for(const source of creatures(s,p)){
-   const defs=card(source).g1177TamaseedUse&&!source.sealed&&effective(source,s).g1177TamaseedUse;
+  if(c.type==='seed'||c.seedCreature)for(const source of s.players[p].battle){
+   const printed=card(source);
+   if(source.sealed||source.uid===x.uid||!printed.g1177TamaseedUse||
+    !printed.g204SpellWatch?.g1189Tamaseed&&!api.isCreature(s,source))continue;
+   const defs=effective(source,s).g1177TamaseedUse;
    if(defs)queue(s,p,source,defs);
   }
   if(c.type==='creature'){

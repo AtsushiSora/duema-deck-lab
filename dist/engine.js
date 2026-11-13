@@ -2491,6 +2491,14 @@ function commitShieldBreak(s,defender,uids){
  // Pending broken shields are excluded from Duelangel's threshold at declaration.
  const pendingBreak={defender,remaining};
  const eligibleFaces=Object.fromEntries(all.flatMap(x=>{if(goesToGrave(x))return [];const faces=!breakContext?.noST&&extra.triggersAllowed(s,defender)?playFaces(card(x)).flatMap((c,face)=>(c.g26Viride&&s.players[1-defender].battle.filter(x=>isCreature(s,x)).length>=3||extra.six.shieldTrigger(s,defender,x,c)||lightShieldTrigger1019(s,defender,c,handRemaining)||extra.requested393J.shieldTrigger(s,defender,x,c)||c.trigger||c.triggerPlus||c.superTrigger||c.graveTotalTrigger&&s.players.reduce((n,p)=>n+p.grave.length,0)>=c.graveTotalTrigger||c.rev2Trigger&&s.players[defender].shields.length-count<=2||x.g19ShieldST!==undefined||c.type==='spell'&&extra.spellShieldTrigger(s,defender,true)||c.shieldConditionalTrigger&&s.players[defender].grave.filter(x=>playFaces(card(x)).some(c=>c.type==='spell')).length>=2)&&(!summonLocked||c.type!=='creature')&&extra.triggersAllowed(s,defender,c)&&!extra.triggerLocked597(s,defender,c,remaining,breaker)&&canCastSpell(s,defender,c)&&(extra.spellPermission(s,defender,c)||extra.six.allowsNonLightSpells687(s,c,pendingBreak))?[face]:[]):[];return faces.length?[[x.uid,faces]]:[];})),eligible=Object.keys(eligibleFaces);
+ // QA35246: reveal the cards in the actual break before they enter the hand.
+ if(!handOnly&&breakContext?.player===1-defender&&
+  (breakContext.g756Breaker?.length||breakContext.g913DepartedBreaker)){
+  const source=s.players[1-defender].battle.find(x=>card(x).g1189RevealAllyBreak&&
+   isCreature(s,x)&&effectiveCard(x,s).g1189RevealAllyBreak);
+  if(source)for(const x of all)if(!x.g37ShieldHeld&&!goesToGrave(x))
+   log(s,defender,'reveal',`${card(source).name}でブレイクしたシールドを公開：${card(x).name}`,{cardId:x.cardId});
+ }
  const broken=[];
  let shieldsToHand=0;
  for(const uid of uids){
