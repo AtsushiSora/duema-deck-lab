@@ -290,17 +290,81 @@ dialog[open]:has(.tournament-setup),dialog[open]:has(.tournament-deck-picker){di
 
 .tournament-selection{margin:12px 0;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.tournament-selection h3{font-size:12px;margin-bottom:10px}.tournament-selection-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.tournament-selection-buttons>.btn{min-width:0;min-height:48px;padding:8px;font-size:12px;white-space:normal;gap:5px}.tournament-selection-buttons>[aria-pressed=true]{border-color:var(--accent);background:var(--raised);box-shadow:inset 0 0 0 1px var(--accent)}.tournament-selection p{margin-top:10px;line-height:1.7}
 
-.format-control{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px}
-.format-control label{font-size:12px;font-weight:700}
-.format-control .field{width:auto;max-width:100%;min-height:40px}
+.format-control {
+ min-width:0;
+ margin:0;
+ padding:0;
+ border:0;
+}
+.match-prep > .format-control {
+ max-width:480px;
+ margin-bottom:16px;
+}
+.format-control legend {
+ padding:0;
+ margin-bottom:6px;
+ font-size:12px;
+ font-weight:700;
+}
+.format-options {
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:8px;
+}
+.format-option {
+ display:grid;
+ min-width:0;
+ width:100%;
+ padding:0;
+ overflow:hidden;
+ border:1px solid var(--line);
+ border-radius:8px;
+ background:var(--raised,var(--paper));
+ color:var(--ink);
+ font:inherit;
+ cursor:pointer;
+}
+.format-option[aria-pressed=true] {
+ background:color-mix(in srgb,var(--accent,var(--green)) 19%,var(--raised,var(--paper)));
+ border-color:var(--accent,var(--green));
+}
+.format-option:focus-visible {
+ outline:2px solid var(--accent,var(--green));
+ outline-offset:2px;
+}
+.format-option:disabled {cursor:default}
+.format-control:disabled .format-option[aria-pressed=false] {opacity:.55}
+.format-art {
+ display:block;
+ width:100%;
+ height:90px;
+ object-fit:cover;
+ object-position:center 31%;
+ border-bottom:1px solid var(--line);
+}
+.format-option[data-format=advance] .format-art {object-position:center 33%}
+.format-caption {
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ gap:4px;
+ min-height:44px;
+ padding:4px;
+ font-size:clamp(11px,3.5vw,14px);
+ font-weight:700;
+ overflow-wrap:anywhere;
+}
+.format-check {display:none}
+.format-option[aria-pressed=true] .format-check {display:inline}
+.format-note {display:block;margin-top:6px}
 
 .editor-toolbar {
  display:grid;
- grid-template-columns:minmax(0,2fr) minmax(0,1fr);
+ grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+ align-items:start;
  gap:10px 16px;
 }
-.editor-name-control,
-.editor-toolbar .format-control {
+.editor-name-control {
  display:grid;
  grid-template-rows:auto 1fr;
  align-items:stretch;
@@ -309,8 +373,7 @@ dialog[open]:has(.tournament-setup),dialog[open]:has(.tournament-deck-picker){di
  font-size:12px;
  font-weight:700;
 }
-.editor-toolbar .editor-name-control .field,
-.editor-toolbar .format-control .field {
+.editor-toolbar .editor-name-control .field {
  width:100%;
  height:44px;
  min-width:0;

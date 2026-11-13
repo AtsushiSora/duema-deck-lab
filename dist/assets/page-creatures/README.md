@@ -16,3 +16,10 @@
 | 主人公・ライバル | 悪魔神ドルバロム | https://dm.takaratomy.co.jp/card/detail/?id=dm14-s05 |
 
 取得日：2026-10-28。画像の出典：https://dm.takaratomy.co.jp/wp-content/card/cardimage/（各ID.jpg）。
+
+フォーマット選択ボタンの画像は、公式カード検索の画像を縮小して使用しています。
+
+| フォーマット | カード | 公式ページ |
+| --- | --- | --- |
+| オリジナル | 邪帝類五龍目 プラドックス | https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-028 |
+| アドバンス | 猛烈将龍 ガイバーン（将龍剣 ガイアールの龍解面） | https://dm.takaratomy.co.jp/card/detail/?id=dmd18-002 |
