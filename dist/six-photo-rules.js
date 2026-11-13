@@ -796,6 +796,7 @@ export function createSixPhotoRules(api){
     if(named.g1117NameReading)names.push(named.g1117NameReading);
     if(!names.some(name=>exactName(name).includes(exactName(g1116NameIncludes))))return false;
    }
+   if(f.g228Face&&(y.faceDown||!matches(s,p,y,{g228Face:f.g228Face})))return false;
    if(noColor&&colors(api.zoneCard(s,p,y,t.zone)).length)return false;
    if(f.g853Soul&&!hasSoul(card(y),f.g853Soul))return false;
    if(!Object.keys(f).length)return true;
@@ -6485,7 +6486,7 @@ export function createSixPhotoRules(api){
   // A printed Soul icon remains even when the creature's abilities are ignored.
   if(r.soul&&!hasSoul(c,r.soul)&&!hasSoul(card(x),r.soul))return n;
   return n+r.amount;
- },c.g876BreakPerCount?countPower(s,x,c,false,{...c.g207CountPower,amount:1}):0),
+ },c.g876BreakPerCount?countPower(s,x,c,false,{...c.g207CountPower,attackOnly:false,amount:1}):0),
  countBattleCivilizations,
  manaCivilizationCount,
  extraBreak412:(s,p,x)=>(s.extLimits||[]).filter(l=>l.kind==='g412ExtraBreak'&&(l.g969FollowControl||l.player===p)&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.source}))&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)).reduce((n,l)=>n+l.amount,0),
@@ -6517,7 +6518,18 @@ export function createSixPhotoRules(api){
   }
   return moves;
  },
- destroyToHand390(s,p,x){return !x.sealed&&creatures(s,p).some(y=>{const rule=!y.sealed&&effective(y,s).g390DestroyToHand;return rule&&matches(s,p,x,rule.filter);});},
+ destroyToHand390(s,p,x){
+  if(x.sealed||x.faceDown)return false;
+  let found=false;
+  for(const y of creatures(s,p)){
+   const rule=!y.sealed&&!y.faceDown&&effective(y,s).g390DestroyToHand;
+   if(!rule||rule.condition&&!ownCondition(s,p,rule.condition))continue;
+   if(!(rule.self&&y.uid===x.uid)&&!matches(s,p,x,rule.filter))continue;
+   if(rule.toOwner)return 'owner';
+   found=true;
+  }
+  return found;
+ },
  destroyToShield877(s,p,x){
   return creatures(s,p).some(source=>{
    if(source.uid===x.uid||source.sealed||!card(source).g877DestroyToShield)return false;

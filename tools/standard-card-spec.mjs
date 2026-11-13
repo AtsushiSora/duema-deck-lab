@@ -2470,6 +2470,22 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1190&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmr17-037'&&text===
+   'このクリーチャーまたは自分の他の水のクリーチャーが破壊される時相手のシールドが2つ以下ならそのクリーチャーを墓地に置くかわりに手札に戻す。'){
+   return {g390DestroyToHand:{self:true,toOwner:true,filter:{creature:true,color:'水'},condition:{g465OpponentShieldsMax:2}}};
+  }
+  if(d.id==='dmrp07-057'&&text===
+   '相手のクリーチャーがこのクリーチャーとバトルして破壊される時相手はそのクリーチャーを自身の墓地に置くかわりに山札の一番下に置く。'){
+   return {g1190OpponentBattleLossToBottom:true};
+  }
+  if(['dmx12b-016','dmx22b-027'].includes(d.id)&&text===
+   '自分の墓地にある火のドラゴン1体につきこのクリーチャーは「パワーアタッカー+5656」を得シールドをさらに1枚ブレイクする。'){
+   return {g207CountPower:{zone:'grave',attackOnly:true,amount:5656,
+    filter:{g228Face:{type:'creature',color:'火',raceAll:['ドラゴン']}}},g876BreakPerCount:true};
+  }
+ }
  if(phase>=1189&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dm13-036'&&f.typeText==='クリーチャー'&&text==='自分のクリーチャーがブレイクしたシールドを相手は見せる。'){

@@ -229750,15 +229750,94 @@
       "gBreaker": true,
       "supportBatch": "phase-1189",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-037",
+      "name": "侵略者 ジャッグラ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "マジック・コマンド/侵略者",
+      "text": "このクリーチャーまたは自分の他の水のクリーチャーが破壊される時、相手のシールドが２つ以下なら、そのクリーチャーを墓地に置くかわりに手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-037",
+      "limit": 4,
+      "g390DestroyToHand": {
+        "self": true,
+        "toOwner": true,
+        "filter": {
+          "creature": true,
+          "color": "水"
+        },
+        "condition": {
+          "g465OpponentShieldsMax": 2
+        }
+      },
+      "supportBatch": "phase-1190",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-057",
+      "name": "はねるのポりん",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ジョーカーズ",
+      "text": "相手のクリーチャーがこのクリーチャーとバトルして破壊される時、相手はそのクリーチャーを自身の墓地に置くかわりに山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-057",
+      "limit": 4,
+      "g1190OpponentBattleLossToBottom": true,
+      "supportBatch": "phase-1190",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx12b-016",
+      "name": "ボルシャック・コロドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5656,
+      "race": "アーマード・ドラゴン",
+      "text": "自分の墓地にある火のドラゴン１体につき、このクリーチャーは「パワーアタッカー+5656」を得、シールドをさらに１枚ブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12b-016",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "grave",
+        "attackOnly": true,
+        "amount": 5656,
+        "filter": {
+          "g228Face": {
+            "type": "creature",
+            "color": "火",
+            "raceAll": [
+              "ドラゴン"
+            ]
+          }
+        }
+      },
+      "g876BreakPerCount": true,
+      "supportBatch": "phase-1190",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1189,
+    "phase": 1190,
     "checkedAt": "2026-11-14",
-    "baseCount": 7558,
+    "baseCount": 7561,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7561,
+    "totalCount": 7564,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -250315,6 +250394,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7558,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1189,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7558,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7561,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
