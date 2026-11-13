@@ -217232,15 +217232,123 @@
       ],
       "supportBatch": "phase-1097",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex17-134",
+      "name": "超次元バリバリ・ホール",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "コスト３以下のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。\n（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-134",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 3
+          },
+          "title": "超次元ゾーンからコスト3以下のサイキックを1体出す"
+        }
+      ],
+      "supportBatch": "phase-1098",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmc62-006",
+      "name": "超次元シューティング・ホール",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "相手の「ブロッカー」を持つクリーチャーを１体破壊する。\nコスト９以下の火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc62-006",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "spell": true,
+          "filter": {
+            "blocker": true
+          },
+          "title": "破壊する相手のブロッカーを1体選ぶ"
+        },
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "color": "火",
+            "max": 9
+          },
+          "title": "超次元ゾーンからコスト9以下の火のサイキックを1体出す"
+        }
+      ],
+      "supportBatch": "phase-1098",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-034",
+      "name": "超次元ガイアール・ホール",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "自分の超次元ゾーンから火のサイキック・クリーチャーを、コストの合計が８以下になるように２体まで選び、バトルゾーンに出す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-034",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 2,
+          "filter": {
+            "g1085Psychic": true,
+            "color": "火"
+          },
+          "optional": true,
+          "g550CostBudget": 8,
+          "title": "超次元ゾーンから合計コスト8以下の火のサイキックを2体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1098",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1097,
+    "phase": 1098,
     "checkedAt": "2026-11-13",
-    "baseCount": 7259,
+    "baseCount": 7262,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7262,
+    "totalCount": 7265,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -236693,6 +236801,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7259,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1097,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7259,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7262,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

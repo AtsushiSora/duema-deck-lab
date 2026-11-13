@@ -1,0 +1,787 @@
+{
+  "phase": 1098,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7262,
+  "description": "超次元からサイキック・クリーチャーを出す呪文3種類を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/48160/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31662/"
+  ],
+  "cards": [
+    {
+      "id": "dmex17-134",
+      "name": "超次元バリバリ・ホール",
+      "faces": [
+        {
+          "name": "超次元バリバリ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "コスト３以下のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。\n（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-134",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-134.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 3
+            },
+            "title": "超次元ゾーンからコスト3以下のサイキックを1体出す"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "45e8f8b00c6d8379f8138534dcaa987ff86b623eac890d2117f865972d7ec39e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc62-006",
+      "name": "超次元シューティング・ホール",
+      "faces": [
+        {
+          "name": "超次元シューティング・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手の「ブロッカー」を持つクリーチャーを１体破壊する。\nコスト９以下の火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc62-006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc62-006.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "spell": true,
+            "filter": {
+              "blocker": true
+            },
+            "title": "破壊する相手のブロッカーを1体選ぶ"
+          },
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "color": "火",
+              "max": 9
+            },
+            "title": "超次元ゾーンからコスト9以下の火のサイキックを1体出す"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "5afa030905a6c0b9adb463d7d379ea654a133c34ac882dabf76a190242c577aa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr01-034",
+      "name": "超次元ガイアール・ホール",
+      "faces": [
+        {
+          "name": "超次元ガイアール・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分の超次元ゾーンから火のサイキック・クリーチャーを、コストの合計が８以下になるように２体まで選び、バトルゾーンに出す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-034",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-034.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 2,
+            "filter": {
+              "g1085Psychic": true,
+              "color": "火"
+            },
+            "optional": true,
+            "g550CostBudget": 8,
+            "title": "超次元ゾーンから合計コスト8以下の火のサイキックを2体まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "360ff9530b73265bb528fa72bb95f9d5376d7670c7667fb9bfaf787a6af74f48",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm22ex1-126",
+      "name": "超次元バリバリ・ホール",
+      "faces": [
+        {
+          "name": "超次元バリバリ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "コスト３以下のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。\n（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-126",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-126.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 3
+            },
+            "title": "超次元ゾーンからコスト3以下のサイキックを1体出す"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "0f42fc08149525d7c2439fe1a53cd6d291146f440a4f4fbeb15fe5522e6c9c65",
+        "facesMatched": true
+      },
+      "canonicalId": "dmex17-134"
+    },
+    {
+      "id": "dmc67-014",
+      "name": "超次元シューティング・ホール",
+      "faces": [
+        {
+          "name": "超次元シューティング・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手の「ブロッカー」を持つクリーチャーを１体破壊する。\nコスト９以下の火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc67-014",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc67-014.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "spell": true,
+            "filter": {
+              "blocker": true
+            },
+            "title": "破壊する相手のブロッカーを1体選ぶ"
+          },
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "color": "火",
+              "max": 9
+            },
+            "title": "超次元ゾーンからコスト9以下の火のサイキックを1体出す"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "5aa0858577aab7ac32342fd0e08c6f3401e9eded405125e4bcf554bddd5fd1fa",
+        "facesMatched": true
+      },
+      "canonicalId": "dmc62-006"
+    },
+    {
+      "id": "dmx02-025",
+      "name": "超次元シューティング・ホール",
+      "faces": [
+        {
+          "name": "超次元シューティング・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手の「ブロッカー」を持つクリーチャーを１体破壊する。\nコスト９以下の火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx02-025",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx02-025.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "spell": true,
+            "filter": {
+              "blocker": true
+            },
+            "title": "破壊する相手のブロッカーを1体選ぶ"
+          },
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "color": "火",
+              "max": 9
+            },
+            "title": "超次元ゾーンからコスト9以下の火のサイキックを1体出す"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "5c69d4540e54189894fac8c8918b8f36102650b65786f5cfc2aa20a15e920bdc",
+        "facesMatched": true
+      },
+      "canonicalId": "dmc62-006"
+    },
+    {
+      "id": "dmd03-011",
+      "name": "超次元シューティング・ホール",
+      "faces": [
+        {
+          "name": "超次元シューティング・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手の「ブロッカー」を持つクリーチャーを１体破壊する。\nコスト９以下の火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd03-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd03-011.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "spell": true,
+            "filter": {
+              "blocker": true
+            },
+            "title": "破壊する相手のブロッカーを1体選ぶ"
+          },
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "color": "火",
+              "max": 9
+            },
+            "title": "超次元ゾーンからコスト9以下の火のサイキックを1体出す"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "ea4a8a825cef901e6c2cdd1e3865ddaf6752d1b6d39e7886b89ee768d183edfa",
+        "facesMatched": true
+      },
+      "canonicalId": "dmc62-006"
+    },
+    {
+      "id": "dmd18-009",
+      "name": "超次元シューティング・ホール",
+      "faces": [
+        {
+          "name": "超次元シューティング・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手の「ブロッカー」を持つクリーチャーを１体破壊する。\nコスト９以下の火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd18-009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd18-009.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "spell": true,
+            "filter": {
+              "blocker": true
+            },
+            "title": "破壊する相手のブロッカーを1体選ぶ"
+          },
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "color": "火",
+              "max": 9
+            },
+            "title": "超次元ゾーンからコスト9以下の火のサイキックを1体出す"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "4d9a98304eff8422bd1771dcf20f92c69c9ec0ce6c83ca4a8fd91d289578efb1",
+        "facesMatched": true
+      },
+      "canonicalId": "dmc62-006"
+    },
+    {
+      "id": "dmx25-043",
+      "name": "超次元シューティング・ホール",
+      "faces": [
+        {
+          "name": "超次元シューティング・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手の「ブロッカー」を持つクリーチャーを１体破壊する。\n火のコスト９以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx25-043",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx25-043.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "spell": true,
+            "filter": {
+              "blocker": true
+            },
+            "title": "破壊する相手のブロッカーを1体選ぶ"
+          },
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "color": "火",
+              "max": 9
+            },
+            "title": "超次元ゾーンからコスト9以下の火のサイキックを1体出す"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "2996883a1ed7599cda96c80f6da0393919cde1168a3ef1ae4183eaf2b24dabfa",
+        "facesMatched": true
+      },
+      "canonicalId": "dmc62-006"
+    },
+    {
+      "id": "dmpcd03-a11",
+      "name": "超次元シューティング・ホール",
+      "faces": [
+        {
+          "name": "超次元シューティング・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手の「ブロッカー」を持つクリーチャーを１体破壊する。\nコスト９以下の火のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd03-a11",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmpcd03-a11.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "spell": true,
+            "filter": {
+              "blocker": true
+            },
+            "title": "破壊する相手のブロッカーを1体選ぶ"
+          },
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "color": "火",
+              "max": 9
+            },
+            "title": "超次元ゾーンからコスト9以下の火のサイキックを1体出す"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "5a8b1484eb41a88f19442b34340c55cd0d5ad2cea7ecb174e3a8939231450fa8",
+        "facesMatched": true
+      },
+      "canonicalId": "dmc62-006"
+    },
+    {
+      "id": "dm25ex4-T15",
+      "name": "超次元シューティング・ホール",
+      "faces": [
+        {
+          "name": "超次元シューティング・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手の「ブロッカー」を持つクリーチャーを１体選び、破壊する。\n火のコスト９以下のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-T15",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-T15.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "spell": true,
+            "filter": {
+              "blocker": true
+            },
+            "title": "破壊する相手のブロッカーを1体選ぶ"
+          },
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "color": "火",
+              "max": 9
+            },
+            "title": "超次元ゾーンからコスト9以下の火のサイキックを1体出す"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "c5204cb5923a57f12525ac3dc1b575ba91eeeffb92ecd3dea125e0b4866c36a1",
+        "facesMatched": true
+      },
+      "canonicalId": "dmc62-006"
+    },
+    {
+      "id": "dmr01-034M",
+      "name": "超次元ガイアール・ホール",
+      "faces": [
+        {
+          "name": "超次元ガイアール・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分の超次元ゾーンから火のサイキック・クリーチャーを、コストの合計が８以下になるように２体まで選び、バトルゾーンに出す。 （ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-034M",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-034M.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 2,
+            "filter": {
+              "g1085Psychic": true,
+              "color": "火"
+            },
+            "optional": true,
+            "g550CostBudget": 8,
+            "title": "超次元ゾーンから合計コスト8以下の火のサイキックを2体まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "cb8372cf2a6b99862b6f09abd93133809fa6db6492b282d0414440cfcb49ab5f",
+        "facesMatched": true
+      },
+      "canonicalId": "dmr01-034"
+    },
+    {
+      "id": "promoy10-012",
+      "name": "超次元ガイアール・ホール",
+      "faces": [
+        {
+          "name": "超次元ガイアール・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分の超次元ゾーンから火のサイキック・クリーチャーを、コストの合計が８以下になるように２体まで選び、バトルゾーンに出す。 （ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy10-012",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy10-012.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 2,
+            "filter": {
+              "g1085Psychic": true,
+              "color": "火"
+            },
+            "optional": true,
+            "g550CostBudget": 8,
+            "title": "超次元ゾーンから合計コスト8以下の火のサイキックを2体まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "745a3d33d8563ae7abc86cf5b083776813a2132f770a08f2723b9d9791a0c92c",
+        "facesMatched": true
+      },
+      "canonicalId": "dmr01-034"
+    },
+    {
+      "id": "dmx25-015",
+      "name": "超次元ガイアール・ホール",
+      "faces": [
+        {
+          "name": "超次元ガイアール・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分の超次元ゾーンから火のサイキック・クリーチャーを、コストの合計が８以下になるように２体まで選び、バトルゾーンに出す。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx25-015",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx25-015.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 2,
+            "filter": {
+              "g1085Psychic": true,
+              "color": "火"
+            },
+            "optional": true,
+            "g550CostBudget": 8,
+            "title": "超次元ゾーンから合計コスト8以下の火のサイキックを2体まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "97738280dc72df780cbc9cf564183547554ce93a54a02443d96c1d98f168219d",
+        "facesMatched": true
+      },
+      "canonicalId": "dmr01-034"
+    },
+    {
+      "id": "dmpcd03-a08",
+      "name": "超次元ガイアール・ホール",
+      "faces": [
+        {
+          "name": "超次元ガイアール・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分の超次元ゾーンから、火のサイキック・クリーチャーをコストの合計が８以下になるように２体まで選び、出す。\n（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd03-a08",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmpcd03-a08.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 2,
+            "filter": {
+              "g1085Psychic": true,
+              "color": "火"
+            },
+            "optional": true,
+            "g550CostBudget": 8,
+            "title": "超次元ゾーンから合計コスト8以下の火のサイキックを2体まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "bb7a3017804cde70a5b8d97a86dfc2346b08bbf05236d5d9cac585e40fe16ef9",
+        "facesMatched": true
+      },
+      "canonicalId": "dmr01-034"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex17-134": 4,
+      "dm22ex1-126": 4,
+      "dmc62-006": 4,
+      "dmc67-014": 4,
+      "dmx02-025": 4,
+      "dmd03-011": 4,
+      "dmd18-009": 4,
+      "dmx25-043": 4,
+      "dmpcd03-a11": 4,
+      "dm25ex4-T15": 4,
+      "dmr01-034": 4,
+      "dmr01-034M": 4,
+      "promoy10-012": 4,
+      "dmx25-015": 4,
+      "dmpcd03-a08": 4
+    }
+  }
+}

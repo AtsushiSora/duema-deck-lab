@@ -6160,6 +6160,25 @@ export function standardCardSpec(d,{phase=165}={}){
    'このクリーチャーが攻撃する時バトルゾーンにあるクロスギアを1枚選び持ち主の墓地に置く。クロスギアがバトルゾーンから墓地に置かれた時カードを1枚引いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
    return {breaker:2,g34Attack:[{op:'Target',element:true,anyOwner:true,filter:{g201Gear:true},to:'grave',title:'墓地に置くクロスギアを1枚選ぶ'}],g933GearGraveDraw:true};
  }
+ if(phase>=1098&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
+  const reminder=/\(ゲーム開始時サイキック・クリーチャーは山札には含めず自[身分]の超次元ゾーンに置きバトルゾーン以外のゾーンに行った場合そこに戻す\)$/;
+  const text=normalize(f.abilityText).replace(reminder,'');
+  const deploy={op:'Select',origin:'extra',deploy:true,n:1,filter:{g1085Psychic:true}};
+  if(['dmex17-134','dm22ex1-126'].includes(d.id)&&
+     text==='コスト3以下のサイキック・クリーチャーを1体自分の超次元ゾーンから出す。')
+   return {effect:'sixPhoto',g34Tasks:[{...deploy,filter:{...deploy.filter,max:3},
+    title:'超次元ゾーンからコスト3以下のサイキックを1体出す'}]};
+  if(['dmc62-006','dmc67-014','dmx02-025','dmd03-011','dmd18-009','dmx25-043','dmpcd03-a11','dm25ex4-T15'].includes(d.id)&&
+     /^相手の「ブロッカー」を持つクリーチャーを1体(?:選び)?破壊する。(?:コスト9以下の火|火のコスト9以下)のサイキック・クリーチャーを1体自分の超次元ゾーンから(?:バトルゾーンに)?出す。$/.test(text))
+   return {effect:'sixPhoto',g34Tasks:[
+    {op:'Target',to:'grave',spell:true,filter:{blocker:true},title:'破壊する相手のブロッカーを1体選ぶ'},
+    {...deploy,filter:{...deploy.filter,color:'火',max:9},title:'超次元ゾーンからコスト9以下の火のサイキックを1体出す'}
+   ]};
+  if(['dmr01-034','dmr01-034M','promoy10-012','dmx25-015','dmpcd03-a08'].includes(d.id)&&
+     /^自分の超次元ゾーンから火のサイキック・クリーチャーをコストの合計が8以下になるように2体まで選び(?:バトルゾーンに)?出す。$/.test(text))
+   return {effect:'sixPhoto',g34Tasks:[{...deploy,n:2,optional:true,g550CostBudget:8,
+    filter:{...deploy.filter,color:'火'},title:'超次元ゾーンから合計コスト8以下の火のサイキックを2体まで選ぶ'}]};
+ }
  if(phase>=1097&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const reminder='(ゲーム開始時サイキック・クリーチャーは山札には含めず自身の超次元ゾーンに置きバトルゾーン以外のゾーンに行った場合そこに戻す)';
   const entry='このクリーチャーをバトルゾーンに出した時';
