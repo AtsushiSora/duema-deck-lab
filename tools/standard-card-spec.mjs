@@ -6184,6 +6184,19 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1155&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmrp09-074'&&text==='このクリーチャーがバトルした時バトルの後勝ったクリーチャーを持ち主の手札に戻す。')
+   return {g1155BounceBattleWinners:true};
+  if(d.id==='dm13-040'&&text==='このクリーチャーが攻撃された時バトルの後攻撃クリーチャーを持ち主の手札に戻す。')
+   return {g1155BounceAfterAttacked:true};
+  if(d.id==='dmex08-057'&&text==='このクリーチャーがバトルゾーンに出た時バトルゾーンにある《漢》と名前にあるカード1枚につきカードを1枚引いてもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'CountDraw',zone:'battle',owner:'both',g262Elements:true,
+    filter:{g819CreatureNameIncludes:'漢',faceUp:true},optional:'each'}]};
+  if((['dm06-025','promoy2-001'].includes(d.id)&&text==='このクリーチャーがバトルゾーンから自分の墓地に置かれたとき各プレイヤーは自分自身の手札をすべてそれぞれの墓地に置く。')||
+     (d.id==='dmex08-196'&&text==='このクリーチャーが破壊された時各プレイヤーは自身の手札をすべてそれぞれの墓地に置く。'))
+   return {g172Death:[{op:'PlayersDiscardDraw461'}]};
+ }
  if(phase>=1154&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const blindBottom='その後自分の手札を相手に2枚見ないで選ばせ好きな順序で山札の一番下に置く。';

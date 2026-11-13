@@ -1975,7 +1975,12 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_PlayersDraw461':{const ps=t.activeOnly?[s.active]:[s.active,1-s.active],controller=t.controller??t.p,group=t.discard?String(s.g461DrawSerial=(s.g461DrawSerial||0)+1):null;if(group)(s.g461DrawGroups??={})[group]={ps,controller,source:t.source,discard:t.discard,drawn:[]};put(s,...ps.map(p=>task('g34_PlayerDraw461',p,t.source,{n:t.n,optional:!!t.optional,upTo:!!t.upTo,discard:t.discard||0,group,controller})),...(group?[task('g34_FinishPlayersDraw461',t.p,t.source,{group,controller})]:[]));break;}
- case'g34_PlayersDiscardDraw461':{const ps=[s.active,1-s.active],by=t.controller??t.p;put(s,task('g34_PlayersDraw461',t.p,t.source,{n:t.n,upTo:true,controller:by}));for(const p of [...ps].reverse())api.discardSelected(s,p,s.players[p].hand.map(x=>x.uid),t.source,by);break;}
+ case'g34_PlayersDiscardDraw461':{
+  const by=t.controller??t.p;
+  if(t.n)put(s,task('g34_PlayersDraw461',t.p,t.source,{n:t.n,upTo:true,controller:by}));
+  for(const p of [1-s.active,s.active])api.discardSelected(s,p,s.players[p].hand.map(x=>x.uid),t.source,by);
+  break;
+ }
  case'g34_PlayerDraw461':{
   if(t.upTo&&t.chosen===undefined){choice(s,t,'カードを'+t.n+'枚まで引く',Array.from({length:t.n+1},(_,n)=>opt(n+'枚引く',n,n+(s.startStep?.player===t.p?1:0)<own.deck.length?n*8:-1000)));break;}
   if(t.optional&&!t.accepted){choice(s,t,'カードを'+t.n+'枚引く？'+(t.discard&&Number.isInteger(t.discard)?'（引いたら手札を'+t.discard+'枚捨てる）':''),[opt('引く',true,own.deck.length>t.n+(s.startStep?.player===t.p?1:0)?10:-1000),skip()]);break;}

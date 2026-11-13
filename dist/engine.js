@@ -1146,7 +1146,7 @@ function advanceLeaving(s){if(s.lossEvent)return;
  if(batch.after?.kind==='shieldSaverBreak401'){log(s,batch.after.player,'shieldSaver',`シールド・セイバーでシールド${batch.rows.length}つを残す`);if(batch.after.uids.length)commitBreakReplacements401(s,batch.after.player,batch.after.uids);else s.breakContext=null;}
  if(destroyedForDraw)extra.put(s,extra.task('draw',batch.after.player,batch.after.source,{n:destroyedForDraw}));
  if(batch.after?.kind==='limit')limitNextTurn(s,batch.after.player,card(batch.after.source));
- if(batch.after?.kind==='battleResult')finishBattleResult(s,batch.after.winner,batch.after.late,batch.after.winning,batch.after.both,batch.after.losses);
+ if(batch.after?.kind==='battleResult')finishBattleResult(s,batch.after.winner,batch.after.late,batch.after.winning,batch.after.both,batch.after.losses,batch.after.g1155PriorEffect,batch.after.resumeTasks);
 }
 // Resolve the mana side only after the normal leave pipeline accepts the exchange (701.26b).
 function manaExchangeCards753(s,t){
@@ -1742,11 +1742,17 @@ function resolveEntryCore(s,entry){
  }else doEffect(s,p,card(entry.source),entry.uid,entry);
 }
 function availableEffects(s,queue){return queue.filter(e=>e.effect!=='dragonEntryTap'||s.once?.[e.key]!==s.turn);}
+function pendingBattleEffects1155(s){
+ const prior=s.battleResolution?.g1155PriorEffect;
+ const pending=s.pendingEffects||[];
+ return prior===undefined?pending:pending.filter(e=>e.effectId>prior);
+}
 function advanceEffects(s){if(s.lossEvent)return;
  while(!s.lossEvent&&s.pendingEffects?.length&&!s.triggers&&!s.extTasks?.length&&!s.decision&&s.winner===null&&(!s.judge||s.judge.stage==='breaks')){
-  s.pendingEffects=availableEffects(s,s.pendingEffects);if(!s.pendingEffects.length)return;
-  if(!s.pendingEffects.some(e=>e.player===s.active)&&extra.beforeNonActive(s))return;
-  const p=s.pendingEffects.some(e=>e.player===s.active)?s.active:1-s.active,entries=s.pendingEffects.filter(e=>e.player===p);
+  s.pendingEffects=availableEffects(s,s.pendingEffects);
+  const ready=pendingBattleEffects1155(s);if(!ready.length)return;
+  if(!ready.some(e=>e.player===s.active)&&extra.beforeNonActive(s))return;
+  const p=ready.some(e=>e.player===s.active)?s.active:1-s.active,entries=ready.filter(e=>e.player===p);
   if(entries.length>1){s.decision={type:'effectOrder',player:p};return;}
   s.pendingEffects.splice(s.pendingEffects.indexOf(entries[0]),1);resolveEntry(s,entries[0]);advanceBattle(s);
  }
@@ -2054,6 +2060,7 @@ function advanceAttack(s){if(s.lossEvent)return;
 }
 // Capture color-qualified Slayer at the start of the battle, alongside ordinary Slayer.
 function slayerCount534(s,x,y){const c=effectiveCard(x,s);return(c.slayer?(c.g208SlayerCount||1):0)+(c.g534SlayerColors?.some(color=>civilizations(effectiveCard(y,s)).includes(color))?1:0);}
+const battleRefs1155=x=>layers(x).map(y=>({uid:y.uid,incarnation:y.incarnation||0}));
 function battle(s,pa,a,pd,b,attackingUid=null,replaced=false,blockUntap,attackBattle=false){
  if(!replaced&&extra.replaceBattle(s,pa,a,pd,b,attackingUid,blockUntap,attackBattle))return;
  if(attackBattle&&a.uid===attackingUid&&extra.six.declareBioT952(s,pa,a,pd,b,blockUntap))return;
@@ -2075,6 +2082,13 @@ function battle(s,pa,a,pd,b,attackingUid=null,replaced=false,blockUntap,attackBa
  }
  log(s,pa,'battle',`${card(a).name}(${ap===Infinity?'∞':ap}) 対 ${card(b).name}(${bp===Infinity?'∞':bp})`);
  const aw=forced[0]||!forced[1]&&ap>bp,bw=forced[1]||!forced[0]&&bp>ap,winner=aw&&!bw?pa:bw&&!aw?pd:null,winning=aw&&!bw?a:bw&&!aw?b:null,moves=[];if(!aw&&!extra.firebird.battleSafe(s,a)&&!extra.six.battleSafe(s,a,b,bp))moves.push({player:pa,uid:a.uid,battlePower:ap});if(!bw&&!extra.firebird.battleSafe(s,b)&&!extra.six.battleSafe(s,b,a,ap))moves.push({player:pd,uid:b.uid,battlePower:bp});
+ if(attackBattle&&a.uid===attackingUid&&s.attack?.g1155AttackedSource){
+  late.push({...s.attack.g1155AttackedSource,g1155Bounce:[battleRefs1155(a)]});
+ }
+ for(const [controller,source] of [[pa,a],[pd,b]]){
+  if(!card(source).g1155BounceBattleWinners||!effectiveCard(source,s).g1155BounceBattleWinners||!aw&&!bw)continue;
+  late.push({controller,source:source.cardId,g1155Bounce:[...(aw?[battleRefs1155(a)]:[]),...(bw?[battleRefs1155(b)]:[])]});
+ }
  const result=(player,unit,ownPower,otherPower)=>{
   const c=effectiveCard(unit,s);
   const breaks=extra.six.battleBreaks828(s,player,unit,c,ownPower,otherPower);
@@ -2092,12 +2106,15 @@ function battle(s,pa,a,pd,b,attackingUid=null,replaced=false,blockUntap,attackBa
  queueLoss(pd,b,pa,a,bp,ap,bw);
  if(aw)losses.push(...extra.six.opponentBattleWins986(s,pa,a));
  if(bw)losses.push(...extra.six.opponentBattleWins986(s,pd,b));
+ const hasAfterBounce=late.some(x=>x.g1155Bounce);
+ const resumeTasks=hasAfterBounce?s.extTasks?.splice(0):null;
  moveCreatures(s,moves,{
   kind:'battleResult',winner,
   both:aw&&bw?[{player:pa,...result(pa,a,ap,bp)},{player:pd,...result(pd,b,bp,ap)}]:null,
   winning:winning?result(winner,winning,aw?ap:bp,aw?bp:ap):null,
   ...(losses.length?{losses}:{}),
-  late:late.sort((x,y)=>Number(y.controller===s.active)-Number(x.controller===s.active))
+  late:late.sort((x,y)=>Number(y.controller===s.active)-Number(x.controller===s.active)),
+  ...(hasAfterBounce?{g1155PriorEffect:s.effectSerial||0,...(resumeTasks?.length?{resumeTasks}:{})}:{})
  });
 }
 function markBattleWin587(s,p,w){
@@ -2111,7 +2128,7 @@ function markBattleWin587(s,p,w){
  s.g587BattleWins.refs=[...new Set([...previous,...refs])];
  return {...w,g587First:first,g588FirstForUnit:firstForUnit};
 }
-function finishBattleResult(s,winner,late,winning=null,both=null,losses=[]){
+function finishBattleResult(s,winner,late,winning=null,both=null,losses=[],g1155PriorEffect,resumeTasks){
  const wins=[...losses],declarations=[];
  const results=both??(winner===null?[]:[{...winning,player:winner}]);
  for(const p of [s.active,1-s.active])for(const w of results.filter(x=>x.player===p)){
@@ -2124,7 +2141,8 @@ function finishBattleResult(s,winner,late,winning=null,both=null,losses=[]){
   const cards=extra.six.handBattleWins588(s,p,w);
   if(cards.length)declarations.push({p,source:w.source,cards});
  }
- s.battleResolution={wins,late,...(declarations.length?{declarations}:{})};
+ s.battleResolution={wins,late,...(declarations.length?{declarations}:{}),
+  ...(g1155PriorEffect===undefined?{}:{g1155PriorEffect,...(resumeTasks?{resumeTasks}:{})})};
 }
 function awakenPsychic(s,p,x,loop=false){
  if(!card(x).g1085Back||x.g1085Awakened&&!loop)return;
@@ -2151,34 +2169,59 @@ function advanceBattle(s){
    extra.put(s,extra.task('g34_BattleDeclare588',p,source,{cards,controller:p}));
    return;
   }
-  if(r.gateWait){if(s.extTasks?.length||s.pendingEffects?.length||s.triggers)return;delete r.gateWait;}
+  if(r.gateWait){if(s.extTasks?.length||pendingBattleEffects1155(s).length||s.triggers)return;delete r.gateWait;}
   const who=r.wins.some(x=>x.player===s.active)?s.active:1-s.active,available=r.wins.filter(x=>x.player===who);
   if(available.length>1){s.decision={type:'battleWinOrder',player:who};return;}
   if(available.length){const e=available[0];r.wins.splice(r.wins.indexOf(e),1);resolveBattleWin(s,e);return;}
   // Pending self-effects follow the unit's layers and incarnation across evolution or control changes.
-  if(!r.late.length){s.battleResolution=s.battleStack?.pop()||null;continue;}
-  const e=r.late.shift();
-  const host=e.selfRefs?s.players.flatMap((pl,p)=>pl.battle.filter(x=>layers(x).some(y=>e.selfRefs.some(ref=>ref.uid===y.uid&&ref.incarnation===(y.incarnation||0)))).map(unit=>({p,unit})))[0]:null;
+  if(r.g1155PriorEffect!==undefined){
+   if(s.triggers||s.extTasks?.length||pendingBattleEffects1155(s).length){r.gateWait=true;return;}
+  }
+  if(!r.late.length){
+   s.battleResolution=s.battleStack?.pop()||null;
+   if(r.resumeTasks?.length)extra.put(s,...r.resumeTasks);
+   continue;
+  }
+  if(r.g1155PriorEffect!==undefined){
+   const controller=r.late[0].controller,choices=r.late.filter(e=>e.controller===controller);
+   if(choices.length>1){s.decision={type:'battleWinOrder',player:controller,g1155After:true};return;}
+  }
+  resolveAfterBattle(s,r.late.shift());
+ }
+}
+function afterBattleHost(s,refs){
+ return s.players.flatMap((pl,p)=>pl.battle.filter(x=>layers(x).some(y=>refs.some(ref=>ref.uid===y.uid&&ref.incarnation===(y.incarnation||0)))).map(unit=>({p,unit})))[0];
+}
+function resolveAfterBattle(s,e){
+  const host=e.selfRefs&&afterBattleHost(s,e.selfRefs);
+  if(e.g1155Bounce){
+   const moves=e.g1155Bounce.map(refs=>afterBattleHost(s,refs)).filter(h=>h&&!h.unit.sealed&&isCreature(s,h.unit))
+    .map(h=>({player:h.p,uid:h.unit.uid,to:'hand',toOwnerHand:true,controller:e.controller}));
+   if(moves.length){
+    log(s,e.controller,'afterBattle',`${card(e.source).name}のバトルの後の効果`,{cardId:e.source});
+    moveCreatures(s,moves);
+   }
+   return;
+  }
   if(e.g695Untap){
    if(host&&isCreature(s,host.unit)&&!host.unit.sealed){
     log(s,e.controller,'afterBattle',`${card(e.source).name}のバトルの後の効果`,{cardId:e.source});
     untapCard(s,host.p,host.unit);
    }
-   continue;
+   return;
   }
   if(e.g912Bounce){
    if(host&&isCreature(s,host.unit)&&!host.unit.sealed){
     log(s,e.controller,'afterBattle',`${card(e.source).name}のバトルの後の効果`,{cardId:e.source});
     moveCreatures(s,[{player:host.p,uid:host.unit.uid,to:'hand',controller:e.controller}]);
    }
-   continue;
+   return;
   }
   const target=e.selfRefs?(host&&{player:host.p,uid:host.unit.uid}):s.players[e.player].battle.some(x=>x.uid===e.uid)?{player:e.player,uid:e.uid}:null;
   if(target){
    log(s,e.controller,'afterBattle',`${card(e.source).name}のバトルの後の効果`,{cardId:e.source});
    moveCreatures(s,[{...e,...target}]);
   }
- }
 }
 function oneAttackBreak814(s,p){
  return s.players[1-p].battle.some(x=>card(x).g814OneAttackBreak&&isCreature(s,x)&&!abilitiesIgnored(s,x));
@@ -2634,11 +2677,14 @@ export function getLegalActions(s){
   if(d.type==='triggerOrder')out=s.triggers.declared.filter(uid=>canUseTrigger(s,p,playFaces(card(own.hand.find(c=>c.uid===uid)))[s.triggers.faceByUid?.[uid]||0],uid)).map(uid=>{const c=own.hand.find(c=>c.uid===uid);return option('orderTrigger',`${playFaces(card(c))[s.triggers.faceByUid?.[uid]||0].name}を先に使う`,{uid,cardId:c.cardId});});
   if(d.type==='triggerOrder')out.push(...(s.triggers.gsDeclared||[]).map(uid=>option('orderGS','G・ストライクを先に使う',{uid,cardId:own.hand.find(x=>x.uid===uid).cardId})));
   if(d.type==='entryOrder')out=effectOptions(s.triggers.entries.filter(e=>e.player===p),'orderEntry');
-  if(d.type==='effectOrder')out=effectOptions(s.pendingEffects.filter(e=>e.player===p),'orderEffect');
+  if(d.type==='effectOrder')out=effectOptions(pendingBattleEffects1155(s).filter(e=>e.player===p),'orderEffect');
   if(d.type==='dragonTap'){out=opp.battle.filter(x=>isCreature(s,x)).map(x=>option('dragonTap',`${card(x).name}をタップ${x.tapped?'（タップ中）':''}`,{uid:x.uid,cardId:x.cardId}));out.push(option('skipDragonTap','今回はタップせず、次の登場時に使えるようにする'));}
   if(d.type==='trigger')out=[...(s.triggers.eligibleFaces?.[d.uid]||[0]).map(face=>option('useTrigger',`${playFaces(card(d.source))[face].name}を使う`,{uid:d.uid,cardId:d.source,...(card(d.source).spellFace?{face}:{})})),option('skipTrigger','使わず手札に加える')];
   if(d.type==='fight'){out=own.battle.some(x=>x.uid===d.uid&&(d.sourceIncarnation===undefined||(x.incarnation||0)===d.sourceIncarnation))?opp.battle.filter(x=>isCreature(s,x)).map(x=>option('fight',`${card(x).name}とバトル（相手のパワー${power(x,x.uid===s.attack?.attacker,s)}）`,{uid:d.uid,target:x.uid,cardId:x.cardId})):[];out.push(option('skipFight','バトルさせない'));}
-  if(d.type==='battleWinOrder')out=s.battleResolution.wins.flatMap((e,index)=>e.player===p?[option('battleWinOrder',`${card(e.source).name}の${e.onOpponentWin?'相手の勝利':e.onLoss?'敗北':'勝利'}時能力を先に解決`,{uid:e.uid,cardId:e.source,winIndex:index})]:[]);
+  if(d.type==='battleWinOrder')out=d.g1155After?
+   s.battleResolution.late.flatMap((e,index)=>e.controller===p?[option('battleWinOrder',
+    `${card(e.source).name}のバトルの後の能力を先に解決`,{cardId:e.source,winIndex:index})]:[]):
+   s.battleResolution.wins.flatMap((e,index)=>e.player===p?[option('battleWinOrder',`${card(e.source).name}の${e.onOpponentWin?'相手の勝利':e.onLoss?'敗北':'勝利'}時能力を先に解決`,{uid:e.uid,cardId:e.source,winIndex:index})]:[]);
   if(d.type==='draw')out=Array.from({length:d.max+1},(_,n)=>option('draw',n?`${n}枚引く`:'引かない',{n}));
   if(d.type==='optionalRamp')out=[option('useRamp','4枚をマナに置き、2枚を山札に戻す'),option('skipRamp','マナに置かない')];
   if(d.type==='manaTop')out=own.mana.filter(x=>!d.chosen.includes(x.uid)).map(x=>option('manaTop',`山札の上から${d.chosen.length+1}枚目に${card(x).name}を置く（${x.tapped?'タップ中':'アンタップ'}）`,{uid:x.uid,cardId:x.cardId}));
@@ -2734,6 +2780,9 @@ export function step(s,action,{manualMana=false}={}){return withEffect(s,s.decis
  });}
 function declareAttack(s,p,a){
   recordCombat(s,p);const c=s.players[p].battle.find(x=>x.uid===a.uid),data=effectiveCard(c,s),stopped=selfTriggersStopped(s,p);s.attack={attacker:a.uid,target:a.target,shield:a.shield,stage:'effects'};if(power(c,true,s)>=12000)(s.g16BigAttack??={})[p]=s.turn;tapCard(s,p,c);
+  const defender=s.players[1-p].battle.find(x=>x.uid===a.target&&card(x).g1155BounceAfterAttacked);
+  if(defender&&effectiveCard(defender,s).g1155BounceAfterAttacked)
+   s.attack.g1155AttackedSource={controller:1-p,source:defender.cardId};
   const startOfAttackEffects=s.pendingEffects?.length??0;
   extra.attackStart(s,p,c);extra.attackTriggers(s,p,c);log(s,p,'attack',a.label,{cardId:c.cardId});
   s.attackDeclarations=[...s.players[p].hand,...s.players[p].mana.filter(x=>card(x).ddd?.fromMana),...s.players[p].grave.filter(x=>card(x).ddd?.fromGrave&&canMoveZone(s,p,'grave'))].filter(x=>dddPayment(s,p,card(x))).map(x=>x.uid);
@@ -2884,7 +2933,11 @@ function stepCore(s,action){
  if(a.kind==='skipDragonTap'){s.decision=null;log(s,p,'skip',`${card(d.source).name}の任意タップを見送る（このターンは未使用）`,{cardId:d.source});}
  if(a.kind==='fight'){s.decision=null;const source=s.players[p].battle.find(x=>x.uid===a.uid),target=s.players[1-p].battle.find(x=>x.uid===a.target);if(source&&target){log(s,p,'fight',`${card(source).name}の効果で${card(target).name}とバトル`,{cardId:source.cardId});battle(s,p,source,1-p,target,s.attack?.attacker);}}
  if(a.kind==='skipFight'){s.decision=null;log(s,p,'skip',`${card(d.source).name}の登場時バトルを使わない`,{cardId:d.source});}
- if(a.kind==='battleWinOrder'){const i=a.winIndex??s.battleResolution.wins.findIndex(e=>e.uid===a.uid),[e]=s.battleResolution.wins.splice(i,1);s.decision=null;resolveBattleWin(s,e);}
+ if(a.kind==='battleWinOrder'){
+  s.decision=null;
+  if(d.g1155After)resolveAfterBattle(s,s.battleResolution.late.splice(a.winIndex,1)[0]);
+  else{const i=a.winIndex??s.battleResolution.wins.findIndex(e=>e.uid===a.uid),[e]=s.battleResolution.wins.splice(i,1);resolveBattleWin(s,e);}
+ }
  if(a.kind==='draw'){s.decision=null;if(d.reason==='battleWin')log(s,p,'battleWin',`${card(d.source).name}：バトル勝利時のドローを${a.n?'使う':'使わない'}`,{cardId:d.source});if(a.n)draw(s,p,a.n);else log(s,p,'skip','任意のドローを省略');}
  if(a.kind==='useRamp'){s.decision=null;const source=card(d.source);rampTapped(s,p,source,4);chooseManaTop(s,p,source,2);}
  if(a.kind==='skipRamp'){s.decision=null;log(s,p,'skip',`${card(d.source).name}のマナ加速を使わない`,{cardId:d.source});}
