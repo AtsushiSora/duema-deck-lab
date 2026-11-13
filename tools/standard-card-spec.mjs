@@ -6176,6 +6176,25 @@ export function standardCardSpec(d,{phase=165}={}){
   const deploy=(filter,settings={})=>({op:'Select',origin:'extra',deploy:true,n:1,filter:{g1085Psychic:true,...filter},...settings});
   const modes=(first,second)=>({op:'Choose',g184Modes:true,modes:[first,second]});
   const solo=(color,settings)=>({label:'コスト7以下の'+color+'のサイキックを1体出す',defs:[deploy({max:7,color},settings)]});
+  if(phase>=1111){
+   const spells={
+    'dm25ex4-020':['名前が異なるコスト15以下のサイキック・クリーチャーを好きな数自分の超次元ゾーンから出す。',[
+     deploy({max:15},{n:'all',optional:true,g1104PsychicFaces:true,g1111DistinctNames:true,
+      title:'超次元ゾーンから名前の異なるコスト15以下のサイキックを選ぶ'})
+    ]],
+    'dmr05-021':['自分の手札を1枚見せる。そのカードのコストと同じ枚数のカードを引く。',[
+     {op:'HandReveal462',max:1,g1111CostDraw:true}
+    ]],
+    'dmx12b-006':['カードを1枚引く。プラチナ・ドライブ-バトルゾーンにある自分のクリーチャー1体のパワーはバトルゾーンを離れるまで+1000される。',[
+     {op:'Draw',n:1},{op:'Target',owner:'self',power:1000,spell:true,g1111PowerUntilLeave:true,title:'パワーを+1000する自分のクリーチャーを選ぶ'}
+    ]],
+    'dmex15-b025':['相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを0にする。(パワー0以下のクリーチャーは破壊される)',[
+     {op:'Target',spell:true,g1111PowerZero:true,title:'パワーを0にする相手のクリーチャーを選ぶ'}
+    ]]
+   };
+   const row=spells[d.id];
+   if(row&&text===row[0])return {effect:'sixPhoto',g34Tasks:row[1]};
+  }
   if(phase>=1109){
    const printed=text.replace(/^マナゾーンに置く時このカードはタップして置く。/,'')
     .replaceAll('バトルゾーンに出す。','出す。')

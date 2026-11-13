@@ -23,7 +23,15 @@ export function createGachiroboRules(api){
  case'g10_Nicol':put(s,task('discard',1-t.p,t.source,{causedBy:t.p,n:7}));break;
  case'g10_Destroy':choice(s,t,'破壊する相手のクリーチャーを選ぶ',targetOptions(s,t.p,creatures(s,1-t.p)));break;
  case'g10_BigBang':put(s,task('mill',t.p,t.source,{n:2}),task('draw',t.p,t.source,{n:2}));break;
- case'g10_Draws':if(t.n>0){if(own.deck.length||!deckSafe(s,t.p)){put(s,task('draw',t.p,t.source,{n:t.n}));break;}choice(s,t,'引くかわりに墓地のクリーチャーを出しますか？（残り'+t.n+'回）',[...own.grave.filter(x=>canPut(s,t.p,x,'grave')).map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)),skip()]);}break;
+ case'g10_Draws':{
+  const infinite=t.n==='∞';
+  if(!infinite&&t.n<=0)break;
+  if(own.deck.length||!deckSafe(s,t.p)){put(s,task('draw',t.p,t.source,{n:t.n}));break;}
+  const options=own.grave.filter(x=>canPut(s,t.p,x,'grave')).map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId));
+  if(infinite&&!options.length)break;
+  choice(s,t,'引くかわりに墓地のクリーチャーを出しますか？（残り'+t.n+'回）',[...options,skip()]);
+  break;
+ }
  case'g10_Bean':{const x=s.players[t.owner].battle.find(x=>x.uid===t.target&&(x.incarnation||0)===t.targetInc);if(x&&api.isCreature(s,x))move(s,[{player:t.owner,uid:x.uid,to:'mana'}]);break;}
  case'g10_Rice':put(s,task('g17_Ramp',t.p,t.source,{n:1}),task('g17_ReturnMana',t.p,t.source));break;
  case'g10_Guignol':choice(s,t,'グラン・ギニョールの効果を選ぶ',[opt('他のクリーチャーを1体手札に戻す','bounce',creatures(s,1-t.p).length?20:0),opt('上2枚を墓地に置き、その中から1枚まで手札に戻す','mill',10)]);break;
@@ -40,7 +48,7 @@ export function createGachiroboRules(api){
  case'g10_Shield':if(v)move(s,[{player:1-t.p,uid:v,to:'shields'}]);break;
  case'g10_Fight':if(v){const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation),y=s.players[1-t.p].battle.find(x=>x.uid===v);if(x&&y)api.battle(s,t.p,x,1-t.p,y,s.attack?.attacker);}break;
  case'g10_Cougar':{for(const uid of t.uids){const x=remove(own.deck,uid);if(!x)continue;const to=uid===v?'hand':api.deckRedirect(s,t.p)?'grave':'mana';clear(x,to);api.addZone(s,own,to,x);}release(own,t.uids);api.deckCheck(s,t.p);break;}
- case'g10_Draws':put(s,...(v?[task('putCreature',t.p,t.source,{origin:'grave',uid:v})]:[]),{...t,n:t.n-1});break;
+ case'g10_Draws':if(v||t.n!=='∞')put(s,...(v?[task('putCreature',t.p,t.source,{origin:'grave',uid:v})]:[]),{...t,n:t.n==='∞'?t.n:t.n-1});break;
  case'g10_Destroy':move(s,[{player:1-t.p,uid:v,to:'grave'}]);break;
  case'g10_Bounce':{const player=s.players.findIndex(p=>p.battle.some(x=>x.uid===v));if(player>=0)move(s,[{player,uid:v,to:'hand'}]);break;}
  case'g10_Guignol':put(s,{...t,op:v==='bounce'?'g10_Bounce':'g10_GuignolMill'});break;

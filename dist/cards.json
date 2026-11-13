@@ -220340,15 +220340,140 @@
       },
       "supportBatch": "phase-1110",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-020",
+      "name": "最高にして彩光なる再興",
+      "civ": "光/水/闇/火/自然",
+      "civilizations": [
+        "光",
+        "水",
+        "闇",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 12,
+      "power": 0,
+      "race": "",
+      "text": "名前が異なる、コスト15以下のサイキック・クリーチャーを好きな数、自分の超次元ゾーンから出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-020",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": "all",
+          "filter": {
+            "g1085Psychic": true,
+            "max": 15
+          },
+          "optional": true,
+          "g1104PsychicFaces": true,
+          "g1111DistinctNames": true,
+          "title": "超次元ゾーンから名前の異なるコスト15以下のサイキックを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1111",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-021",
+      "name": "知識の包囲網",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "自分の手札を１枚見せる。そのカードのコストと同じ枚数のカードを引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-021",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "HandReveal462",
+          "max": 1,
+          "g1111CostDraw": true
+        }
+      ],
+      "supportBatch": "phase-1111",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx12b-006",
+      "name": "シガーロス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "カードを１枚引く。\nプラチナ・ドライブ-バトルゾーンにある自分のクリーチャー１体のパワーは、バトルゾーンを離れるまで、+1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12b-006",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Target",
+          "owner": "self",
+          "power": 1000,
+          "spell": true,
+          "g1111PowerUntilLeave": true,
+          "title": "パワーを+1000する自分のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1111",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex15-b025",
+      "name": "永遠の無",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを０にする。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b025",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "spell": true,
+          "g1111PowerZero": true,
+          "title": "パワーを0にする相手のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1111",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1110,
+    "phase": 1111,
     "checkedAt": "2026-11-13",
-    "baseCount": 7308,
-    "newEffectCards": 5,
+    "baseCount": 7313,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7313,
+    "totalCount": 7317,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -239957,6 +240082,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7308,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1110,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7308,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 7313,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
