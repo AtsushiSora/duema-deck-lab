@@ -1,0 +1,154 @@
+{
+  "phase": 1192,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7567,
+  "description": "メガ・デューバー・ドラゴン、プ・プリッチュ・タンク、ディアブラ・リングの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/40413/",
+    "https://dm.takaratomy.co.jp/rule/qa/45925/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34845/",
+    "https://dm.takaratomy.co.jp/rule/qa/40380/"
+  ],
+  "cards": [
+    {
+      "id": "dmr23-004",
+      "name": "メガ・デューバー・ドラゴン",
+      "faces": [
+        {
+          "name": "メガ・デューバー・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "W・ブレイカー\nこのクリーチャーまたは他のクリーチャーが破壊された時、それよりパワーの小さい相手のクリーチャーを１体破壊してもよい。",
+          "race": "メガ・コマンド・ドラゴン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-004.jpg",
+      "spec": {
+        "breaker": 2,
+        "g303DeathWatch": {
+          "both": true,
+          "self": true,
+          "g891LookBackSelf": true,
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "optional": true,
+              "g1192VictimPower": true
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "7afc0381d399b5d4886383ac8c91eb9bed152ab5b6730d3cdef60cdb2c93e7dc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-047",
+      "name": "プ・プリッチュ・タンク",
+      "faces": [
+        {
+          "name": "プ・プリッチュ・タンク",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、相手の、コスト４以下のクリーチャー１体またはコスト４以下のタマシードを１枚選ぶ。相手はそれをマナゾーンに置く。",
+          "race": "グランセクト",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-047",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-047.jpg",
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Target",
+            "element": true,
+            "filter": {
+              "any": [
+                {
+                  "creature": true
+                },
+                {
+                  "g295Tamaseed": true
+                }
+              ],
+              "max": 4
+            },
+            "to": "mana",
+            "moveByTargetController": true,
+            "toOwnerMana": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "dfd76bf9e79b9fbc241ac0d25c791568e7cdcd600e54219a7f55731c85c311ec",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-043",
+      "name": "ディアブラ・リング",
+      "faces": [
+        {
+          "name": "ディアブラ・リング",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、可能ならブロックする。\nこのクリーチャーがバトルする時、バトルの後破壊する。",
+          "race": "ブレインジャッカー",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-043",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-043.jpg",
+      "spec": {
+        "blocker": true,
+        "mustBlock": true,
+        "afterBattleDie": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "f0210f72349bde44f14bf9fe7b6785b3d08533bba5e00a4c8f814e211f1cb901",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr23-004": 4,
+      "dm22rp1-047": 4,
+      "dmrp04s-043": 4
+    }
+  }
+}

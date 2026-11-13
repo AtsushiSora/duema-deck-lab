@@ -7205,7 +7205,8 @@ export function createSixPhotoRules(api){
   }
   const watchers=s.leaving?.snapshot?.six?.scarlet?.[p]||active(s,p,'scarlet').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0}));for(const x of watchers)if(!used(s,'g34Scarlet',x))for(const y of all)if(card(y).type==='creature'&&cost(card(y))<=5)queue(s,p,x,[C('scarletRevive',{target:y.uid,targetSerial:y.zoneSerial||0})]);},
  flushGrave838,
- snapshot(s,leaving=[]){return{
+ snapshot(s,leaving=[]){
+  const snapshot={
   g1145GraveWatch:s.players.map(own=>own.grave.flatMap(x=>{
    const minCost=card(x).g1145GraveDeathMinCost;
    return !x.faceDown&&minCost!==undefined?[{uid:x.uid,serial:x.zoneSerial||0,minCost}]:[];
@@ -7220,7 +7221,19 @@ export function createSixPhotoRules(api){
    ...(!x.sealed&&!x.faceDown&&c.g1124Jingi?{jingi:c.g1124Jingi}:{}),
    ...((c.g891OwnCreatureLeaves||c.g303DeathWatch?.g891LookBackSelf)&&leaving.some(row=>row.player===p&&row.uid===x.uid)?{g891OnlySelf:true}:{}),element:!x.sealed&&!x.faceDown,...(!x.sealed&&!x.faceDown&&c.g1139OtherCreatureLeaves?{g1139OtherCreatureLeaves:c.g1139OtherCreatureLeaves}:{}),elementDraw:!!c.g617OpponentElementLeaves&&!x.sealed&&!x.faceDown&&!api.ignored(s,x),...(c.g1009OpponentCreatureLeaves&&!x.sealed&&!x.faceDown?{opponentCreatureLeaves:c.g1009OpponentCreatureLeaves}:{}),...(c.g693OtherCreatureGraveDraw&&!x.sealed&&!x.faceDown&&!api.ignored(s,x)&&api.isCreature(s,x)?{graveDraw:true}:{}),watch:!x.sealed&&!api.ignored(s,x)&&(!c.g303DeathWatch?.g725RemainInBattle||!leaving.some(row=>row.player===p&&row.uid===x.uid))?c.g303DeathWatch:undefined};})),selfLeaves:s.players.flatMap((own,p)=>own.battle.flatMap(x=>{const c=effective(x,s);return c.g172Death||c.g172Leave?[{p,uid:x.uid,incarnation:x.incarnation||0,g172Death:c.g172Death,
    ...(c.g172Death?.some(d=>d.g960FormerBases)?{formerBases960:(x.under||[]).flatMap(api.allLayers)
-    .map(y=>({uid:y.uid,serial:(y.zoneSerial||0)+1}))}:{}),...(c.g172Death?.some(d=>d.g901Untapped||d.g1012Tapped)?{g901WasTapped:!!x.tapped}:{}),...(c.g172Death?.some(d=>d.op==='CrossedDeathDraw728')?{crossedCount728:crossedCount728(s,x)}:{}),...(c.g172Death?.some(d=>d.op==='MedusaCross929')?{crossedGearRefs929:crossedGearRefs929(s,p,x)}:{}),g172Leave:c.g172Leave,g601OpponentLeave:c.g601OpponentLeave}]:[];})),scarlet:[0,1].map(p=>active(s,p,'scarlet').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0}))),dororon:[0,1].map(p=>active(s,p,'dororon').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0})))};},
+    .map(y=>({uid:y.uid,serial:(y.zoneSerial||0)+1}))}:{}),...(c.g172Death?.some(d=>d.g901Untapped||d.g1012Tapped)?{g901WasTapped:!!x.tapped}:{}),...(c.g172Death?.some(d=>d.op==='CrossedDeathDraw728')?{crossedCount728:crossedCount728(s,x)}:{}),...(c.g172Death?.some(d=>d.op==='MedusaCross929')?{crossedGearRefs929:crossedGearRefs929(s,p,x)}:{}),g172Leave:c.g172Leave,g601OpponentLeave:c.g601OpponentLeave}]:[];})),scarlet:[0,1].map(p=>active(s,p,'scarlet').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0}))),dororon:[0,1].map(p=>active(s,p,'dororon').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0})))};
+  if(snapshot.death303.some(row=>row.watch?.defs.some(d=>d.g1192VictimPower))){
+   // Capture power before any of the simultaneous departures remove a continuous effect.
+   for(const victim of snapshot.death303){
+    if(!victim.creature||!victim.element)continue;
+    const x=s.players[victim.p].battle.find(x=>x.uid===victim.uid);
+    const battle=s.leaving?.rows.find(row=>row.player===victim.p&&row.uid===victim.uid&&row.plan?.kind==='leave');
+    const power=battle?.battlePower??currentPower506(s,x);
+    victim.g1192Power=power===Infinity?'∞':power===-Infinity?'-∞':power;
+   }
+  }
+  return snapshot;
+ },
  leaving(s,p,x,snapshot,to,destroy){
   // An ability that sees its own move to the graveyard looks back only for its own card.
   const graveDefs=card(x).g838AnyGrave;
@@ -7256,6 +7269,7 @@ export function createSixPhotoRules(api){
   const victim320=snapshot?.leave320?.find(y=>y.p===p&&key(y)===key(x));if(victim320?.creature&&String(victim320.race).includes('アビス'))for(const watcher of snapshot.leave320.filter(y=>y.p===p&&y.watch)){if(!used(s,'g320JaveUsed',watcher)){mark(s,'g320JaveUsed',watcher);queue(s,p,watcher,[{op:'Discard',n:1}]);}}const prior=snapshot?.selfLeaves?snapshot.selfLeaves.find(y=>y.p===p&&key(y)===key(x)):effective(x,s);if(prior?.g172Leave&&(!prior.g601OpponentLeave||s.active!==p))queue(s,p,x,prior.g172Leave);if(to==='grave'&&destroy){const death=snapshot?.death303,victim=death?.find(y=>y.p===p&&key(y)===key(x));const firstCreatureDeath=victim?.creature&&s.g612CreatureDeathTurn!==s.turn;if(firstCreatureDeath)s.g612CreatureDeathTurn=s.turn;if(victim?.creature)for(const watcher of death.filter(y=>y.watch&&(!y.watch.firstCreatureDeath||firstCreatureDeath)&&(y.watch.both||y.p===(y.watch.opponent?1-p:p)))){const self=key(watcher)===key(victim);
    // Rule 603.5d: a source that leaves in this batch can see only itself.
    if(watcher.g891OnlySelf&&!self)continue;
+   if(watcher.watch.defs.some(d=>d.g1192VictimPower)&&(victim.g1192Power===undefined||victim.g1192Power==='-∞'))continue;
    const otherSoul=watcher.watch.g862OtherSoul;
    if(otherSoul&&!self&&(watcher.g862OnlySelf||!hasSoul(card(victim.cardId),otherSoul)))continue;
    const {race:requiredRace,raceAny}=watcher.watch;
@@ -7264,6 +7278,7 @@ export function createSixPhotoRules(api){
    if((!self||watcher.watch.self)&&((self&&!watcher.watch.selfFilter)||raceMatches)&&(!watcher.watch.name||String(victim.name||'').includes(watcher.watch.name))&&(!watcher.watch.colorsAny||watcher.watch.colorsAny.some(c=>(victim.colors||[]).includes(c)))&&(!watcher.watch.g860EvilSoul||victim.g860EvilSoul)&&(!watcher.watch.ownTurn||s.active===watcher.p)&&(!watcher.watch.opponentTurn||s.active!==watcher.p)){
     const defs=watcher.watch.defs.map(d=>{
      if(d.g960DeathNames)return {...d,g960DeathNames:victim.deathNames960??[]};
+     if(d.g1192VictimPower)return {...d,filter:{belowPower:victim.g1192Power,g199Power:true}};
      if(d.op==='StackDestroyed1130')return {...d,victim:{uid:x.uid,serial:(x.zoneSerial||0)+1}};
      return d;
     });

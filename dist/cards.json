@@ -229916,15 +229916,107 @@
       ],
       "supportBatch": "phase-1191",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr23-004",
+      "name": "メガ・デューバー・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "メガ・コマンド・ドラゴン",
+      "text": "W・ブレイカー\nこのクリーチャーまたは他のクリーチャーが破壊された時、それよりパワーの小さい相手のクリーチャーを１体破壊してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-004",
+      "limit": 4,
+      "breaker": 2,
+      "g303DeathWatch": {
+        "both": true,
+        "self": true,
+        "g891LookBackSelf": true,
+        "defs": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "optional": true,
+            "g1192VictimPower": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1192",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-047",
+      "name": "プ・プリッチュ・タンク",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "グランセクト",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、相手の、コスト４以下のクリーチャー１体またはコスト４以下のタマシードを１枚選ぶ。相手はそれをマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-047",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "element": true,
+          "filter": {
+            "any": [
+              {
+                "creature": true
+              },
+              {
+                "g295Tamaseed": true
+              }
+            ],
+            "max": 4
+          },
+          "to": "mana",
+          "moveByTargetController": true,
+          "toOwnerMana": true
+        }
+      ],
+      "supportBatch": "phase-1192",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-043",
+      "name": "ディアブラ・リング",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 5000,
+      "race": "ブレインジャッカー",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、可能ならブロックする。\nこのクリーチャーがバトルする時、バトルの後破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-043",
+      "limit": 4,
+      "blocker": true,
+      "mustBlock": true,
+      "afterBattleDie": true,
+      "supportBatch": "phase-1192",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1191,
+    "phase": 1192,
     "checkedAt": "2026-11-14",
-    "baseCount": 7564,
+    "baseCount": 7567,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7567,
+    "totalCount": 7570,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -250505,6 +250597,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7564,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1191,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7564,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7567,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

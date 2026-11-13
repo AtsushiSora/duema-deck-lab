@@ -2470,6 +2470,24 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1192&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmr23-004'&&text==='W・ブレイカー'+
+   'このクリーチャーまたは他のクリーチャーが破壊された時それよりパワーの小さい相手のクリーチャーを1体破壊してもよい。'){
+   return {breaker:2,g303DeathWatch:{both:true,self:true,g891LookBackSelf:true,
+    defs:[{op:'Target',to:'grave',optional:true,g1192VictimPower:true}]}};
+  }
+  if(d.id==='dm22rp1-047'&&text==='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+
+   'このクリーチャーが攻撃する時相手のコスト4以下のクリーチャー1体またはコスト4以下のタマシードを1枚選ぶ。相手はそれをマナゾーンに置く。'){
+   return {breaker:2,g34Attack:[{op:'Target',element:true,filter:{any:[{creature:true},{g295Tamaseed:true}],max:4},
+    to:'mana',moveByTargetController:true,toOwnerMana:true}]};
+  }
+  if(d.id==='dmrp04s-043'&&text==='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   'このクリーチャーは可能ならブロックする。'+
+   'このクリーチャーがバトルする時バトルの後破壊する。'){
+   return {blocker:true,mustBlock:true,afterBattleDie:true};
+  }
+ }
  if(phase>=1191&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dm13-037'&&text==='ブロッカー'+
