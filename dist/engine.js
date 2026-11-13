@@ -1580,9 +1580,9 @@ function typedTapOnEntry720(s,p,c){
   return rule.colors.some(color=>colors.includes(color));
  }));
 }
-function evolutionPlaced849(s,p,entrant){
+function evolutionPlaced849(s,p,entrant,battleBase=true){
  if(!isEvolution(entrant)||!isCreature(s,entrant))return;
- for(const x of s.players[p].battle){
+ if(battleBase)for(const x of s.players[p].battle){
   if(x===entrant||x.sealed||x.faceDown||!card(x).g849EvolutionPlaced||!isCreature(s,x))continue;
   const mode=effectiveCard(x,s).g849EvolutionPlaced;
   if(!mode)continue;
@@ -1590,6 +1590,12 @@ function evolutionPlaced849(s,p,entrant){
   const effect=mode==='discard'?extra.task(op,1-p,x.cardId,{n:1,causedBy:p}):
    extra.task(op,p,x.cardId,mode==='destroyBlocker'?{to:'grave',filter:{blocker:true}}:{n:1});
   enqueueEffect(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:effect});
+ }
+ for(const owner of [s.active,1-s.active])for(const x of s.players[owner].battle){
+  if(x===entrant||x.sealed||x.faceDown||!card(x).g1159OtherEvolutionDestroy||!isCreature(s,x)||
+   !effectiveCard(x,s).g1159OtherEvolutionDestroy)continue;
+  const task=extra.task('g34_SelfDestroy',owner,x.cardId,{uid:x.uid,incarnation:x.incarnation||0});
+  enqueueEffect(s,owner,{uid:x.uid,source:x.cardId,effect:'extended',task});
  }
 }
 // Watchers stay face up after evolution, while each base supplies its pre-evolution race.
@@ -1681,10 +1687,8 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
   log(s,p,'manaExchange',card(swap.source).name+'で'+card(inst).name+'をマナから入れ替えた',{cardId:inst.cardId});
  }
  if(c.g831SingleDeckEvolution&&entryOptions.execution)extra.summoned(s,p,inst);
- if(baseRaces?.size){
-  evolutionWatch721(s,p,inst,baseRaces);
-  if(inst.under?.some(x=>baseRaces.has(x.uid)))evolutionPlaced849(s,p,inst);
- }
+ if(baseRaces?.size)evolutionWatch721(s,p,inst,baseRaces);
+ if(inst.under?.length)evolutionPlaced849(s,p,inst,inst.under.some(x=>baseRaces?.has(x.uid)));
  extra.viride.entry(s,p,inst,!!entryOptions.ignoreEntry);
  const graveMuted=isCreature(s,inst)&&s.players[1-p].battle.some(x=>effectiveCard(x,s).entrySilence);if(graveMuted)s.g24EntryMute=p;
  if(isCreature(s,inst))s.g1Entering={player:p,uid:inst.uid,cardId:inst.cardId};

@@ -6184,6 +6184,17 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1159&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(['dm12-052','dmc34-052'].includes(d.id)&&text==='他のクリーチャーが進化した時このクリーチャーを破壊する。')
+   return {g1159OtherEvolutionDestroy:true};
+  if(d.id==='dmr23-056'&&text==='自分の火と自然を両方持つクリーチャーがバトルゾーンに出た時相手のクリーチャーを1体選ぶ。その2体をバトルさせる。')
+   return {g468EntryWatch:{mode:'mandatoryFight',filter:{creature:true,colorsAll:['火','自然']}}};
+  if(['dmx04-015','promoy25-049'].includes(d.id)&&
+   ['そのターンこのクリーチャーがシールドをブレイクしていた場合','このターンこのクリーチャーがシールドをブレイクしていたら']
+    .some(condition=>text==='自分のターンの終わりに'+condition+'このクリーチャーを手札に戻す。'))
+   return {g1159SelfBreakEndReturn:true};
+ }
  if(phase>=1158&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(['dmrp02-058','dmsp01-036'].includes(d.id)&&

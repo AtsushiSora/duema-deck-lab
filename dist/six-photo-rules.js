@@ -1882,6 +1882,10 @@ export function createSixPhotoRules(api){
   break;
  case'g34_PlayerStop567':(s.extLimits??=[]).push({kind:'g567PlayerStop',player:t.owner==='self'?t.p:1-t.p,controller:t.p,expires:t.g567PlayerStop,who:t.g567PlayerStop==='start'?t.p:s.active,spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});break;
  case'g34_Entry468':{
+  if(t.mode==='mandatoryFight'){
+   put(s,{...t,op:'g34_FightEnemy240',fighter:t.subject,g998EntryFight:true});
+   break;
+  }
   if(t.mode==='ukonSakon1146'){
    const host=sourceHost474(s,t.subject);
    const once={g792Once:'ukonSakon1146'};
@@ -7029,9 +7033,12 @@ export function createSixPhotoRules(api){
   const ownShieldBreakEnd=card(x).g861OwnShieldBreakEnd;
   if(ownShieldBreakEnd&&!x.sealed&&!x.faceDown&&api.isCreature(s,x)&&(s.players[p].brokenThisTurn||0)>=ownShieldBreakEnd)
    add(x,[E('ShieldTop',{n:1})]);
-  if(p===s.active&&!x.sealed&&card(x).g1075SelfBreakEnd&&effective(x,s).g1075SelfBreakEnd&&
-   s.g756Breaks?.turn===s.turn&&s.g756Breaks.players.some(breaks=>breaks.some(refs=>refs.includes(key(x)))))
-   add(x,[E('ShieldTop',{n:1})]);
+  if(p===s.active&&!x.sealed&&(card(x).g1075SelfBreakEnd||card(x).g1159SelfBreakEndReturn)&&
+   s.g756Breaks?.turn===s.turn&&s.g756Breaks.players.some(breaks=>breaks.some(refs=>refs.includes(key(x))))){
+   const current=effective(x,s);
+   if(current.g1075SelfBreakEnd)add(x,[E('ShieldTop',{n:1})]);
+   if(current.g1159SelfBreakEndReturn)add(x,[E('SelfHand299')]);
+  }
   const breakThreshold=card(x).g769ShieldBreakRaid;
   if(s.active===p&&!x.sealed&&breakThreshold&&effective(x,s).g769ShieldBreakRaid&&
    s.players.reduce((n,who)=>n+(who.brokenThisTurn||0),0)>=breakThreshold)
