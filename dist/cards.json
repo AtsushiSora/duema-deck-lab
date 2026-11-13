@@ -229829,15 +229829,102 @@
       "g876BreakPerCount": true,
       "supportBatch": "phase-1190",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm13-037",
+      "name": "結界の守護者クレス・ドーベル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ガーディアン",
+      "text": "ブロッカー\nこのクリーチャーがブロックした時、バトルゾーンに相手の進化クリーチャーが１体でもあれば、このクリーチャーのパワーは+4000される。\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-037",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g570BlockPower": {
+        "amount": 4000,
+        "opponentHasEvolution": true
+      },
+      "supportBatch": "phase-1191",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx10-002",
+      "name": "ビビラ精霊オッソ・レオーネ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "エンジェル・コマンド/エイリアン",
+      "text": "ブロッカー\n相手のターン中、相手がバトルゾーンにあるクリーチャーを選ぶ時、このクリーチャーは選ばれない。(ただし、このクリーチャーを攻撃またはブロックしてもよい)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx10-002",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g260Self": {
+        "filter": {
+          "g1114OpponentTurn": true
+        },
+        "grants": {
+          "untargetable": true
+        }
+      },
+      "supportBatch": "phase-1191",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex08-202",
+      "name": "絡新婦",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 8000,
+      "race": "ダーク・モンスター",
+      "text": "ブロッカーブロッカー\nこのクリーチャーは攻撃できない。\nこのクリーチャーがブロックした時、攻撃クリーチャーを破壊し、カードを２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-202",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g178Block": [
+        {
+          "op": "ExactMove",
+          "to": "grave",
+          "g913BlockedAttacker": true,
+          "followEvolution": true,
+          "filter": {
+            "creature": true
+          }
+        },
+        {
+          "op": "Draw",
+          "n": 2
+        }
+      ],
+      "supportBatch": "phase-1191",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1190,
+    "phase": 1191,
     "checkedAt": "2026-11-14",
-    "baseCount": 7561,
+    "baseCount": 7564,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7564,
+    "totalCount": 7567,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -250406,6 +250493,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7561,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1190,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7561,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7564,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

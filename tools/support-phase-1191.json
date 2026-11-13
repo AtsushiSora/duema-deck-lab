@@ -1,0 +1,148 @@
+{
+  "phase": 1191,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7564,
+  "description": "結界の守護者クレス・ドーベル、ビビラ精霊オッソ・レオーネ、絡新婦の能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/46243/",
+    "https://dm.takaratomy.co.jp/rule/qa/40111/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35144/"
+  ],
+  "cards": [
+    {
+      "id": "dm13-037",
+      "name": "結界の守護者クレス・ドーベル",
+      "faces": [
+        {
+          "name": "結界の守護者クレス・ドーベル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー\nこのクリーチャーがブロックした時、バトルゾーンに相手の進化クリーチャーが１体でもあれば、このクリーチャーのパワーは+4000される。\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+          "race": "ガーディアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-037",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-037.jpg",
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g570BlockPower": {
+          "amount": 4000,
+          "opponentHasEvolution": true
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "a8edc394979b7b59520938c6b73fa1b812ad5828f50f1cdf3ef3da3915e52561",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx10-002",
+      "name": "ビビラ精霊オッソ・レオーネ",
+      "faces": [
+        {
+          "name": "ビビラ精霊オッソ・レオーネ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー\n相手のターン中、相手がバトルゾーンにあるクリーチャーを選ぶ時、このクリーチャーは選ばれない。(ただし、このクリーチャーを攻撃またはブロックしてもよい)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "エンジェル・コマンド/エイリアン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx10-002",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx10-002.jpg",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g260Self": {
+          "filter": {
+            "g1114OpponentTurn": true
+          },
+          "grants": {
+            "untargetable": true
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "95d61eb3763ddbacf7a1c4fb8f5318ec753f3fa4357a36c41fda715470f03ef3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex08-202",
+      "name": "絡新婦",
+      "faces": [
+        {
+          "name": "絡新婦",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカーブロッカー\nこのクリーチャーは攻撃できない。\nこのクリーチャーがブロックした時、攻撃クリーチャーを破壊し、カードを２枚引く。",
+          "race": "ダーク・モンスター",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-202",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-202.jpg",
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g178Block": [
+          {
+            "op": "ExactMove",
+            "to": "grave",
+            "g913BlockedAttacker": true,
+            "followEvolution": true,
+            "filter": {
+              "creature": true
+            }
+          },
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "4112b6c6d8d3a39437a463af33c9d133ee424fa450dafe7431313dc2d024e006",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm13-037": 4,
+      "dmx10-002": 4,
+      "dmex08-202": 4
+    }
+  }
+}

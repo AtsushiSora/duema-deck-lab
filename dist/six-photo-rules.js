@@ -6245,8 +6245,12 @@ export function createSixPhotoRules(api){
  block(s,p,x){
   const blocker=effective(x,s),defs=blocker.g178Block;
   const owner=1-p,a=s.players[owner].battle.find(y=>y.uid===s.attack?.attacker);
-  if(defs)queue(s,p,x,defs.flatMap(d=>d.g913BlockedAttacker?
-   a?[{...d,subject:{uid:a.uid,incarnation:a.incarnation||0}}]:[]:[d]));
+  if(defs)queue(s,p,x,defs.flatMap(d=>{
+   if(!d.g913BlockedAttacker)return [d];
+   if(!a)return [];
+   const ref={uid:a.uid,incarnation:a.incarnation||0};
+   return [d.op==='ExactMove'?{...d,owner,g403Refs:[ref]}:{...d,subject:ref}];
+  }));
   for(const source of creatures(s,p)){
    if(source.sealed)continue;
    const races=effective(source,s).g700BlockDraw;

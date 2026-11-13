@@ -2470,6 +2470,24 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1191&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm13-037'&&text==='ブロッカー'+
+   'このクリーチャーがブロックした時バトルゾーンに相手の進化クリーチャーが1体でもあればこのクリーチャーのパワーは+4000される。'+
+   'このクリーチャーは相手プレイヤーを攻撃できない。'){
+   return {blocker:true,noPlayerAttack:true,g570BlockPower:{amount:4000,opponentHasEvolution:true}};
+  }
+  if(d.id==='dmx10-002'&&text==='ブロッカー'+
+   '相手のターン中相手がバトルゾーンにあるクリーチャーを選ぶ時このクリーチャーは選ばれない。(ただしこのクリーチャーを攻撃またはブロックしてもよい)'+
+   'W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)'){
+   return {blocker:true,breaker:2,g260Self:{filter:{g1114OpponentTurn:true},grants:{untargetable:true}}};
+  }
+  if(d.id==='dmex08-202'&&text==='ブロッカーブロッカーこのクリーチャーは攻撃できない。'+
+   'このクリーチャーがブロックした時攻撃クリーチャーを破壊しカードを2枚引く。'){
+   return {blocker:true,noAttack:true,g178Block:[{op:'ExactMove',to:'grave',g913BlockedAttacker:true,followEvolution:true,filter:{creature:true}},
+    {op:'Draw',n:2}]};
+  }
+ }
  if(phase>=1190&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmr17-037'&&text===

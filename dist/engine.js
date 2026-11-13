@@ -1400,7 +1400,19 @@ export function revealedPower(x,s){return card(x).g321Katsu&&s.players.some(p=>p
 // Conditional power against a particular opponent does not affect power outside that battle.
 function huntingPower(x,s){if(!s||!effectiveCard(x,s).g166Hunting)return 0;const p=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));return p<0?0:s.players[p].battle.filter(y=>!y.sealed&&isCreature(s,y)&&String(effectiveCard(y,s).race).includes('ハンター')).length*1000;}
 // Conditional blocker bonuses apply after a block is declared, or in an explicit block preview.
-function blockPower570(s,x,c,y=null){const r=c.g570BlockPower;if(!s||!r||x.sealed)return 0;const p=s.players.findIndex(v=>v.battle.some(z=>z.uid===x.uid));if(p<0||r.shieldsMax!==undefined&&s.players[p].shields.length>r.shieldsMax||r.evolution&&!isEvolution(x))return 0;if(r.opponentNonEvolution){y??=s.players[1-p].battle.find(z=>z.uid===s.attack?.attacker);if(!y||!isCreature(s,y)||isEvolution(y))return 0;}return r.amount;}
+function blockPower570(s,x,c,y=null){
+ const r=c.g570BlockPower;
+ if(!s||!r||x.sealed)return 0;
+ const p=s.players.findIndex(v=>v.battle.some(z=>z.uid===x.uid));
+ if(p<0||r.shieldsMax!==undefined&&s.players[p].shields.length>r.shieldsMax||r.evolution&&!isEvolution(x))return 0;
+ const opposing=s.players[1-p].battle;
+ if(r.opponentHasEvolution&&!opposing.some(z=>!z.faceDown&&!z.sealed&&isCreature(s,z)&&isEvolution(z)))return 0;
+ if(r.opponentNonEvolution){
+  y??=opposing.find(z=>z.uid===s.attack?.attacker);
+  if(!y||!isCreature(s,y)||isEvolution(y))return 0;
+ }
+ return r.amount;
+}
 function poweredBlockerActive(s,x){return !!s?.attack&&s.attack.g209BlockingUid===x.uid&&(s.attack.target===x.uid||s.attack.stage==='blockedEffects'&&s.attack.blockUid===x.uid);}
 function battleBasePower(x,attacking,s,y=null,blocking=false){const c=effectiveCard(x,s);if(c.g321Katsu)return Infinity;return power(x,attacking,s)+powerMultiplier1147(x)*(huntingPower(x,s)+(c.g38BattleBonus||0)+extra.six.battlePower209(s,x,y,c)+extra.six.battlePower446(s,x)+extra.six.battleAuraPower466(s,x,c)+(blocking&&!poweredBlockerActive(s,x)?(c.g209PoweredBlocker||0)+blockPower570(s,x,c,y):0));}
 export function matchupPower(x,y,attacking=false,s=null,otherAttacking=y?.uid===s?.attack?.attacker,blocking=false){const fixed=fixedPower1111(x,s);if(fixed!==undefined)return fixed;const c=effectiveCard(x,s),other=y&&(c.g116FireBattleBonus||c.g118LargeBattleBonus)?effectiveCard(y,s):null,fire=c.g116FireBattleBonus&&other&&civilizations(other).includes('火')?c.g116FireBattleBonus*powerMultiplier1147(x):0,otherPower=c.g118LargeBattleBonus&&other?battleBasePower(y,otherAttacking,s,x)+(other.g116FireBattleBonus&&civilizations(c).includes('火')?other.g116FireBattleBonus*powerMultiplier1147(y):0)+(other.g118LargeBattleBonus&&battleBasePower(x,attacking,s,y,blocking)+fire>=12000?other.g118LargeBattleBonus*powerMultiplier1147(y):0):0;return battleBasePower(x,attacking,s,y,blocking)+fire+(c.g118LargeBattleBonus&&y&&otherPower>=12000?c.g118LargeBattleBonus*powerMultiplier1147(x):0);}
