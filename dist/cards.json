@@ -225218,15 +225218,126 @@
       ],
       "supportBatch": "phase-1146",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp1-005",
+      "name": "二重のA ボルバルザーク・紫電",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "アーマード・ドラゴン/サムライ",
+      "text": "パワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをもう１つブレイクする）\nこのクリーチャーをタップして出してもよい。\nこのクリーチャーがアンタップした時、そのターン、このクリーチャーのパワーを２倍にする。\n各ターン、このクリーチャーの最初の攻撃の終わりに、このクリーチャーをアンタップする。\nこのクリーチャーが離れた時、自分の手札をすべて捨ててもよい。そうしたら、カードを３枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-005",
+      "limit": 4,
+      "poweredBreaker": true,
+      "g432EntryTap": true,
+      "g299Untapped": [
+        {
+          "op": "MultiplyPower1147",
+          "multiplier": 2
+        }
+      ],
+      "g474AttackEnd": [
+        {
+          "op": "Untap",
+          "g191First": true
+        }
+      ],
+      "g1020FirstOwnAttack": true,
+      "g172Leave": [
+        {
+          "op": "DiscardAll244",
+          "draw": 3,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1147",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-038",
+      "name": "鎧亜寄生パラス・マジシャン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ロスト・クルセイダー/エイリアン",
+      "text": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nスペース・チャージ（自分のマナゾーンにカードが置かれた時、そのカードの文明に合うq能力を使ってもよい）\nq 自然：自分のシールドを１つマナゾーンに置いてもよい。この能力は、各ターン１度しか使えない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-038",
+      "limit": 4,
+      "gStrike": true,
+      "g454Space": [
+        {
+          "color": "自然",
+          "g792Once": "pallasMagician",
+          "defs": [
+            {
+              "op": "ShieldToMana980",
+              "ownOnly": true,
+              "g792Once": "pallasMagician"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1147",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex17-071",
+      "name": "ベイビー「刃鬼」 / 「俺たちも必ず勝つ!!」",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "レッド・コマンド・ドラゴン/ハンター",
+      "text": "相手がクリーチャーを出す時、このターン、相手が自身の他のクリーチャーを２体以上出していたら、そのクリーチャーを出すかわりに墓地に置く。\n【呪文面】\n自分の山札の上から３枚をタップしてマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-071",
+      "limit": 4,
+      "g1147ThirdEntryToGrave": true,
+      "spellFrontName": "ベイビー「刃鬼」",
+      "spellFace": {
+        "name": "「俺たちも必ず勝つ!!」",
+        "type": "spell",
+        "cost": 6,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 3,
+            "tapped": true,
+            "g809Together": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1147",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1146,
+    "phase": 1147,
     "checkedAt": "2026-11-14",
-    "baseCount": 7425,
+    "baseCount": 7428,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7428,
+    "totalCount": 7431,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -245267,6 +245378,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7425,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1146,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7425,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7428,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

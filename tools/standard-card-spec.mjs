@@ -6184,6 +6184,33 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1147&&d?.status==='complete'&&f?.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm26rp1-005'&&d.faces.length===1&&text===
+   'パワード・ブレイカー(このクリーチャーはそのパワー6000ごとにシールドをもう1つブレイクする)'+
+   'このクリーチャーをタップして出してもよい。このクリーチャーがアンタップした時そのターンこのクリーチャーのパワーを2倍にする。'+
+   '各ターンこのクリーチャーの最初の攻撃の終わりにこのクリーチャーをアンタップする。'+
+   'このクリーチャーが離れた時自分の手札をすべて捨ててもよい。そうしたらカードを3枚引く。')
+   return {poweredBreaker:true,g432EntryTap:true,g299Untapped:[{op:'MultiplyPower1147',multiplier:2}],
+    g474AttackEnd:[{op:'Untap',g191First:true}],g1020FirstOwnAttack:true,
+    g172Leave:[{op:'DiscardAll244',draw:3,optional:true}]};
+  if(d.id==='dm26rp2-038'&&d.faces.length===1&&text===
+   '{GS}G・ストライク(このカードを自分のシールドゾーンから手札に加える時表向きにし相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)'+
+   'スペース・チャージ(自分のマナゾーンにカードが置かれた時そのカードの文明に合うq能力を使ってもよい)'+
+   'q自然:自分のシールドを1つマナゾーンに置いてもよい。この能力は各ターン1度しか使えない。'){
+   const once='pallasMagician';
+   return {gStrike:true,g454Space:[{color:'自然',g792Once:once,defs:[{op:'ShieldToMana980',ownOnly:true,g792Once:once}]}]};
+  }
+  const back=d.faces[1];
+  if(['dmex17-071','dm23bd4-040','dm23bd6-040'].includes(d.id)&&d.faces.length===2&&
+   back.typeText==='呪文'&&normalize(back.abilityText)==='自分の山札の上から3枚をタップしてマナゾーンに置く。'&&[
+    '相手がクリーチャーを出す時このターン相手が自身の他のクリーチャーを2体以上出していたらそのクリーチャーを出すかわりに墓地に置く。',
+    '相手のこのターン3体目以降のクリーチャーが出る時そのクリーチャーはかわりに持ち主の墓地に置かれる。'
+   ].includes(text))
+   return {g1147ThirdEntryToGrave:true,spellFrontName:f.name,
+    spellFace:{name:back.name,type:'spell',cost:back.cost,civ:back.civilizationText,
+     civilizations:back.civilizations,race:back.race,effect:'sixPhoto',g34Tasks:[{op:'Ramp',n:3,tapped:true,g809Together:true}]}};
+ }
  if(phase>=1146&&d?.status==='complete'&&d.faces.length===1&&
   ['dm26rp2-018','dm26rp2-077','dm26rp2-008'].includes(d.id)){
   const text=normalize(f.abilityText);

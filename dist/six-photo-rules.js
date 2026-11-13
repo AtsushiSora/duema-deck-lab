@@ -1981,7 +1981,9 @@ export function createSixPhotoRules(api){
  case'g34_CycleDraw460':if(t.n+t.extra>0)api.draw(s,t.p,t.n+t.extra);break;
  case'g34_EachPlayer459':eachPlayer459(s,t);break;
  case'g34_NextReduction456':(s.extLimits??=[]).push({kind:'g456NextReduction',player:t.p,turn:s.turn,type:t.type,amount:t.amount,optional:!!t.optional,filter:t.filter||{},source:t.source,expires:'end',who:s.active,...(t.g1113ZeroFloor?{g1113ZeroFloor:true}:{})});break;
- case'g34_SpaceCharge454':{const choices=[];for(let mask=1;mask<2**t.rules.length;mask++){const selected=t.rules.flatMap((r,i)=>mask&(2**i)?[i]:[]);choices.push(opt(selected.map(i=>t.rules[i].color).join('・')+'の効果を使う',selected,selected.reduce((v,i)=>v+spaceScore455(s,t,t.rules[i].defs),0)));}choice(s,t,'スペース・チャージ：使う効果を選ぶ（記載順に解決）',[...choices,skip()]);break;}
+ case'g34_SpaceCharge454':{
+  if(t.rules.length===1&&t.rules[0].g792Once){start(s,t,t.rules[0].defs);break;}
+  const choices=[];for(let mask=1;mask<2**t.rules.length;mask++){const selected=t.rules.flatMap((r,i)=>mask&(2**i)?[i]:[]);choices.push(opt(selected.map(i=>t.rules[i].color).join('・')+'の効果を使う',selected,selected.reduce((v,i)=>v+spaceScore455(s,t,t.rules[i].defs),0)));}choice(s,t,'スペース・チャージ：使う効果を選ぶ（記載順に解決）',[...choices,skip()]);break;}
  case'g34_ManaReveal449':{const c=card(t.source);if(api.spellIgnored(s,c))break;const rows=own.hand.filter(y=>new Set(faces(card(y)).flatMap(colors)).size>1);if(rows.length)choice(s,t,'手札の多色カードを1枚見せて、マナに置いたカードをアンタップする？',[...rows.map(y=>opt(card(y).name,y.uid,10,y.cardId)),skip()]);break;}
  case'g34_EntryCross728':{
   const gears=crossGears728(s,t.p).filter(x=>!t.selected.includes(x.uid));
@@ -2742,6 +2744,11 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_SelfExtraBreak444':if(t.g969FollowControl?sourceHost474(s,t):own.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))))(s.extLimits??=[]).push({kind:'g412ExtraBreak',player:t.p,ref:{uid:t.uid,incarnation:t.incarnation||0},source:t.source,amount:t.amount,expires:'end',who:s.active,...(t.g969FollowControl?{g969FollowControl:true}:{})});break;
+ case'g34_MultiplyPower1147':{
+  const y=sourceHost474(s,t)?.x;
+  if(y&&!y.sealed)(y.powerModifiers??=[]).push({amount:0,multiplier:t.multiplier,expires:'end',who:s.active});
+  break;
+ }
  case'g34_SelfBoost313':{const y=t.g536Source?sourceHost474(s,t)?.x:x;if(y&&(!t.g694ClearOnSeal||!y.sealed&&api.isCreature(s,y))){(y.powerModifiers??=[]).push({amount:t.power,expires:'end',who:s.active,...(t.g694ClearOnSeal?{g694ClearOnSeal:true}:{}),...(t.g337PowerAttacker?{attackOnly:true,grantedAbility:true}:{})});if(t.breaker)(y.g34Grants??=[]).push({turn:s.turn,g313Breaker:t.breaker,...(t.g633DoubleBreaker?{g633DoubleBreaker:true}:{})});}break;}
  case'g34_SelfTap314':{
   const host=t.g536Source?sourceHost474(s,t):x?{p:t.p,x}:null;
@@ -3341,7 +3348,8 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_ShieldToMana980':{
-  const options=[t.p,1-t.p].flatMap(owner=>ownShieldGraveOptions(s,owner).map(o=>({
+  if(used792(s,t,t))break;
+  const options=(t.ownOnly?[t.p]:[t.p,1-t.p]).flatMap(owner=>ownShieldGraveOptions(s,owner).map(o=>({
    ...o,label:(owner===t.p?'自分の':'相手の')+o.label,value:{owner,uid:o.value},
    score:owner===t.p?(own.shields.length>=3&&own.mana.length<7?7:-10):(opp.shields.length===1?14:3)
   })));
@@ -5266,7 +5274,10 @@ export function createSixPhotoRules(api){
   break;
  case'g34_Break497':if(v)put(s,{...t,selected:[...(t.selected||[]),v]});break;
  case'g34_ShieldToMana980':
-  if(v)api.moveShield(s,v.owner,v.uid,'mana');
+  if(v&&!used792(s,t,t)){
+   if(t.g792Once)(s.once??={})[onceKey792(t,t)]=s.turn;
+   api.moveShield(s,v.owner,v.uid,'mana');
+  }
   break;
  case'g34_ShieldMana557':{
   const opp=s.players[1-t.p];
@@ -6157,7 +6168,8 @@ export function createSixPhotoRules(api){
    const actual=api.manaColors(manaCard,s,p);
    for(const source of sources){
     if(source.defs&&(!source.entryRace||faces(manaCard).some(c=>race(c,source.entryRace))))queue(s,p,source.x,source.defs);
-    const rules=source.rules.filter(r=>r.color==='多色'?actual.length>1:actual.includes(r.color));
+    const rules=source.rules.filter(r=>(r.color==='多色'?actual.length>1:actual.includes(r.color))&&
+     (!r.g792Once||!used792(s,source.x,r)));
     if(rules.length)send(s,p,source.x,'SpaceCharge454',{rules:structuredClone(rules)});
     if(source.untap&&actual.length>1)api.enqueue(s,p,{uid:source.x.uid,incarnation:source.x.incarnation||0,
      source:source.x.cardId,effect:'extended',task:task('g159R_ManaUntap',p,source.x.cardId,{target:x.uid,serial:x.zoneSerial||0})});

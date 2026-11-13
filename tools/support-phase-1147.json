@@ -1,0 +1,320 @@
+{
+  "phase": 1147,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7428,
+  "description": "二重のA ボルバルザーク・紫電、鎧亜寄生パラス・マジシャン、ベイビー「刃鬼」 / 「俺たちも必ず勝つ!!」の能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/48495/",
+    "https://dm.takaratomy.co.jp/rule/qa/44212/",
+    "https://dm.takaratomy.co.jp/rule/qa/40464/",
+    "https://dm.takaratomy.co.jp/rule/qa/40394/",
+    "https://dm.takaratomy.co.jp/rule/qa/44745/"
+  ],
+  "cards": [
+    {
+      "id": "dm26rp1-005",
+      "name": "二重のA ボルバルザーク・紫電",
+      "faces": [
+        {
+          "name": "二重のA ボルバルザーク・紫電",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "パワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをもう１つブレイクする）\nこのクリーチャーをタップして出してもよい。\nこのクリーチャーがアンタップした時、そのターン、このクリーチャーのパワーを２倍にする。\n各ターン、このクリーチャーの最初の攻撃の終わりに、このクリーチャーをアンタップする。\nこのクリーチャーが離れた時、自分の手札をすべて捨ててもよい。そうしたら、カードを３枚引く。",
+          "race": "アーマード・ドラゴン/サムライ",
+          "powerText": "4000+",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-005.jpg",
+      "spec": {
+        "poweredBreaker": true,
+        "g432EntryTap": true,
+        "g299Untapped": [
+          {
+            "op": "MultiplyPower1147",
+            "multiplier": 2
+          }
+        ],
+        "g474AttackEnd": [
+          {
+            "op": "Untap",
+            "g191First": true
+          }
+        ],
+        "g1020FirstOwnAttack": true,
+        "g172Leave": [
+          {
+            "op": "DiscardAll244",
+            "draw": 3,
+            "optional": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "a359f4f7ca6233b7851347c7992bf20443762586b2346417d537fd89916c4570",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp2-038",
+      "name": "鎧亜寄生パラス・マジシャン",
+      "faces": [
+        {
+          "name": "鎧亜寄生パラス・マジシャン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nスペース・チャージ（自分のマナゾーンにカードが置かれた時、そのカードの文明に合うq能力を使ってもよい）\nq 自然：自分のシールドを１つマナゾーンに置いてもよい。この能力は、各ターン１度しか使えない。",
+          "race": "ロスト・クルセイダー/エイリアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-038",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-038.jpg",
+      "spec": {
+        "gStrike": true,
+        "g454Space": [
+          {
+            "color": "自然",
+            "g792Once": "pallasMagician",
+            "defs": [
+              {
+                "op": "ShieldToMana980",
+                "ownOnly": true,
+                "g792Once": "pallasMagician"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "ad6c3cdf0592ec8f084db2c79dc459590c53958d9c32be5f9ddc0796b4c29f0e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex17-071",
+      "name": "ベイビー「刃鬼」 / 「俺たちも必ず勝つ!!」",
+      "faces": [
+        {
+          "name": "ベイビー「刃鬼」",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手がクリーチャーを出す時、このターン、相手が自身の他のクリーチャーを２体以上出していたら、そのクリーチャーを出すかわりに墓地に置く。",
+          "race": "レッド・コマンド・ドラゴン/ハンター",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "「俺たちも必ず勝つ!!」",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分の山札の上から３枚をタップしてマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-071",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-071a.jpg",
+      "spec": {
+        "g1147ThirdEntryToGrave": true,
+        "spellFrontName": "ベイビー「刃鬼」",
+        "spellFace": {
+          "name": "「俺たちも必ず勝つ!!」",
+          "type": "spell",
+          "cost": 6,
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Ramp",
+              "n": 3,
+              "tapped": true,
+              "g809Together": true
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "63a82e464caab8a685b2a96be3c20c4bdddcfc6d2a80bca43855856fb4449cb6",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23bd4-040",
+      "name": "ベイビー「刃鬼」 / 「俺たちも必ず勝つ!!」",
+      "faces": [
+        {
+          "name": "ベイビー「刃鬼」",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手の、このターン３体目以降のクリーチャーが出る時、そのクリーチャーはかわりに持ち主の墓地に置かれる。",
+          "race": "レッド・コマンド・ドラゴン/ハンター",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "「俺たちも必ず勝つ!!」",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分の山札の上から３枚をタップしてマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd4-040",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd4-040a.jpg",
+      "spec": {
+        "g1147ThirdEntryToGrave": true,
+        "spellFrontName": "ベイビー「刃鬼」",
+        "spellFace": {
+          "name": "「俺たちも必ず勝つ!!」",
+          "type": "spell",
+          "cost": 6,
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Ramp",
+              "n": 3,
+              "tapped": true,
+              "g809Together": true
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "150a0d385d2dc939edf38b687e1113b8a465b98e7ee2f8c0497d19a763bf3b08",
+        "facesMatched": true
+      },
+      "canonicalId": "dmex17-071"
+    },
+    {
+      "id": "dm23bd6-040",
+      "name": "ベイビー「刃鬼」 / 「俺たちも必ず勝つ!!」",
+      "faces": [
+        {
+          "name": "ベイビー「刃鬼」",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手の、このターン３体目以降のクリーチャーが出る時、そのクリーチャーはかわりに持ち主の墓地に置かれる。",
+          "race": "レッド・コマンド・ドラゴン/ハンター",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "「俺たちも必ず勝つ!!」",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分の山札の上から３枚をタップしてマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd6-040",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd6-040a.jpg",
+      "spec": {
+        "g1147ThirdEntryToGrave": true,
+        "spellFrontName": "ベイビー「刃鬼」",
+        "spellFace": {
+          "name": "「俺たちも必ず勝つ!!」",
+          "type": "spell",
+          "cost": 6,
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Ramp",
+              "n": 3,
+              "tapped": true,
+              "g809Together": true
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "02419a33d853de80cfbf7d2648230fc6078e03ac68772a42bb9f2ee74cecedb5",
+        "facesMatched": true
+      },
+      "canonicalId": "dmex17-071"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26rp1-005": 4,
+      "dm26rp2-038": 4,
+      "dmex17-071": 4,
+      "dm23bd4-040": 4,
+      "dm23bd6-040": 4
+    }
+  }
+}
