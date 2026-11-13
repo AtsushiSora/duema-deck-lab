@@ -1,0 +1,204 @@
+{
+  "phase": 1118,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7337,
+  "description": "氷牙の魔筆マクシミリアン王、イッツ・ショータイム、煉獄魔弾グレイテスト・ゲートの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/40362/",
+    "https://dm.takaratomy.co.jp/rule/qa/40400/",
+    "https://dm.takaratomy.co.jp/rule/qa/40162/",
+    "https://dm.takaratomy.co.jp/rule/qa/40393/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37522/",
+    "https://dm.takaratomy.co.jp/rule/qa/34331/",
+    "https://dm.takaratomy.co.jp/rule/qa/34332/"
+  ],
+  "cards": [
+    {
+      "id": "dm28-004",
+      "name": "氷牙の魔筆マクシミリアン王",
+      "faces": [
+        {
+          "name": "氷牙の魔筆マクシミリアン王",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分が唱えたナイト呪文の能力を、追加でもう一度使ってもよい。",
+          "race": "グランド・デビル/ナイト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-004.jpg",
+      "spec": {
+        "g1118Maximilian": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "a7895f34c7d295ac469d19c72c232c72820b34ac8149ada067563dee05a7758c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr20-015",
+      "name": "イッツ・ショータイム",
+      "faces": [
+        {
+          "name": "イッツ・ショータイム",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "相手は進化ではないクリーチャーを好きな数、自身の手札からバトルゾーンに出してもよい。その後、自分は、その中でコストが一番大きいクリーチャー以上のコストを持つクリーチャーを１体、手札からコストを支払わずに召喚してもよい。（相手がこのようにしてクリーチャーをバトルゾーンに出さなかった場合、自分の好きなクリーチャーを手札からコストを支払わずに召喚してもよい）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-015",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr20-015.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShowTime1117"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "9aa80d51c7951ef5cbbedf6e41ab9bf4eac930dcf6cd8e6829eb2a90a57949d4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex17-056",
+      "name": "煉獄魔弾グレイテスト・ゲート",
+      "faces": [
+        {
+          "name": "煉獄魔弾グレイテスト・ゲート",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "バトルゾーンに自分のクリーチャーがなければ、この呪文を唱えるコストを１少なくする。\nk 進化ではないクリーチャーを１体、自分の墓地から出す。\nナイト・マジック（バトルゾーンに自分のナイトがあれば、この呪文の k 能力をもう一度使ってもよい）",
+          "race": "ナイト",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-056",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-056.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g261Discount": {
+          "filter": {
+            "g370BattleCount": {
+              "max": 0,
+              "filter": {
+                "creature": true
+              }
+            }
+          },
+          "amount": 1
+        },
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true
+            },
+            "title": "墓地から出す進化ではないクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "KnightMagic1118",
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "deploy": true,
+                "n": 1,
+                "filter": {
+                  "creature": true,
+                  "nonEvolution": true
+                },
+                "title": "墓地から出す進化ではないクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "d6a5f580295f58c598ffba2277f46b99005171466b13799fb30d61a03932cb95",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex13-027",
+      "name": "イッツ・ショータイム",
+      "faces": [
+        {
+          "name": "イッツ・ショータイム",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "相手は進化ではないクリーチャーを好きな数、自身の手札からバトルゾーンに出してもよい。その後、自分は、その中でコストが一番大きいクリーチャー以上のコストを持つクリーチャーを１体、自分の手札からコストを支払わずに召喚してもよい。（相手がこのようにしてクリーチャーをバトルゾーンに出さなかった場合、自分の好きなクリーチャーを手札からコストを支払わずに召喚してもよい）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-027",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex13-027.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShowTime1117"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "4cc3e6e544b80b786c564746b84c5e2c35cc455d6a5ec9162b9ff1fed668f06c",
+        "facesMatched": true
+      },
+      "canonicalId": "dmr20-015"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm28-004": 4,
+      "dmr20-015": 4,
+      "dmex17-056": 4,
+      "dmex13-027": 4
+    }
+  }
+}

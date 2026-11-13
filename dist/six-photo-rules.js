@@ -4121,6 +4121,20 @@ export function createSixPhotoRules(api){
   if(n)put(s,task('discard',owner,t.source,{causedBy:t.p,n,random:!!t.random,optional:!!t.optional,selfDiscard:t.owner==='self',...(t.g756All?{all:true}:{}),...(t.g869ReturnOnSpell?{g869ReturnUid:t.uid}:{}),...(after?{afterDiscardCount:after}:{})}));
   break;
  }
+ case'g34_Maximilian1118':{
+  const sources=t.sources??creatures(s,t.p).filter(x=>!x.sealed&&effective(x,s).g1118Maximilian)
+   .map(x=>x.cardId);
+  if(!sources.length)break;
+  const [source,...remaining]=sources;
+  choice(s,{...t,sources:remaining},card(source).name+'：ナイト呪文の効果をもう一度使う？',
+   [opt('もう一度使う',true,t.spell.g70Effect==='Open'&&own.deck.length<=1?-10:10,source),skip()]);
+  break;
+ }
+ case'g34_KnightMagic1118':
+  if(countDraw(s,t.p,{zone:'battle',g262Elements:true,filter:{race:'ナイト',faceUp:true}}))
+   choice(s,t,'ナイト・マジック：効果をもう一度使う？',
+    [opt('もう一度使う',true,modeScore(s,t,t.defs)),skip()]);
+  break;
  case'g34_KingKnightMagic1115':{
   const count=countDraw(s,t.p,{zone:'battle',g262Elements:true,filter:{race:'ナイト',faceUp:true}});
   if(!count)break;
@@ -4750,6 +4764,13 @@ export function createSixPhotoRules(api){
    const row=manaTriggerSpells803(s,t.p).find(({y,face})=>y.uid===t.selected.uid&&face===t.selected.face&&(y.zoneSerial||0)===t.selected.serial);
    if(row&&api.canCast(s,t.p,row.c,'mana'))cast(s,t.p,row.y.uid,true,null,row.face,null,'mana','カードの能力');
   }
+  break;
+ case'g34_Maximilian1118':
+  if(t.sources.length)put(s,t);
+  if(v)api.resolveEffect(s,t.p,t.spell,t.uid,{...t.entry,g1118KnightBodyOnly:true});
+  break;
+ case'g34_KnightMagic1118':
+  if(v)start(s,t,t.defs);
   break;
  case'g34_KingKnightMagic1115':
   start(s,t,Array.from({length:v},()=>t.defs).flat());
@@ -6613,7 +6634,8 @@ externalProtection565,
   const incarnation=entry?.incarnation??(s.players[p].battle.find(x=>x.uid===uid)?.incarnation||0);
   const defs=c.g437Super?[...(c.g34Tasks||[]),...(entry?.super?c.g437Super:[])]:entry?.plus&&c.g34Plus?
    (c.g451PlusAfter?[...(c.g34Tasks||[]),...c.g34Plus]:[...c.g34Plus,...(c.g34Tasks||[])]):c.g34Tasks;
-  start(s,{p,source:c.id,uid,incarnation},defs?.map(def=>def.op==='BouncePerSourceCard1060'?
+  const body=entry?.g1118KnightBodyOnly?defs?.filter(d=>d.op!=='KnightMagic1118'&&d.op!=='KingKnightMagic1115'):defs;
+  start(s,{p,source:c.id,uid,incarnation},body?.map(def=>def.op==='BouncePerSourceCard1060'?
    {...def,lastKnownCount:entry?.lastKnownCount}:def));
   return true;
  },

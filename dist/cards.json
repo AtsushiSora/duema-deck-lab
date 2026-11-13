@@ -221362,15 +221362,117 @@
       ],
       "supportBatch": "phase-1117",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm28-004",
+      "name": "氷牙の魔筆マクシミリアン王",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "グランド・デビル/ナイト",
+      "text": "自分が唱えたナイト呪文の能力を、追加でもう一度使ってもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-004",
+      "limit": 4,
+      "g1118Maximilian": true,
+      "supportBatch": "phase-1118",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr20-015",
+      "name": "イッツ・ショータイム",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 8,
+      "power": 0,
+      "race": "",
+      "text": "相手は進化ではないクリーチャーを好きな数、自身の手札からバトルゾーンに出してもよい。その後、自分は、その中でコストが一番大きいクリーチャー以上のコストを持つクリーチャーを１体、手札からコストを支払わずに召喚してもよい。（相手がこのようにしてクリーチャーをバトルゾーンに出さなかった場合、自分の好きなクリーチャーを手札からコストを支払わずに召喚してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-015",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShowTime1117"
+        }
+      ],
+      "supportBatch": "phase-1118",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex17-056",
+      "name": "煉獄魔弾グレイテスト・ゲート",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 8,
+      "power": 0,
+      "race": "ナイト",
+      "text": "バトルゾーンに自分のクリーチャーがなければ、この呪文を唱えるコストを１少なくする。\nk 進化ではないクリーチャーを１体、自分の墓地から出す。\nナイト・マジック（バトルゾーンに自分のナイトがあれば、この呪文の k 能力をもう一度使ってもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-056",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g261Discount": {
+        "filter": {
+          "g370BattleCount": {
+            "max": 0,
+            "filter": {
+              "creature": true
+            }
+          }
+        },
+        "amount": 1
+      },
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true
+          },
+          "title": "墓地から出す進化ではないクリーチャーを1体選ぶ"
+        },
+        {
+          "op": "KnightMagic1118",
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "deploy": true,
+              "n": 1,
+              "filter": {
+                "creature": true,
+                "nonEvolution": true
+              },
+              "title": "墓地から出す進化ではないクリーチャーを1体選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1118",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1117,
+    "phase": 1118,
     "checkedAt": "2026-11-13",
-    "baseCount": 7334,
+    "baseCount": 7337,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7337,
+    "totalCount": 7340,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -241063,6 +241165,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7334,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1117,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7334,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7337,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

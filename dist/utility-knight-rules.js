@@ -38,9 +38,9 @@ export function createUtilityKnightRules(api){
  function run(s,t){if(!t.op.startsWith('g70_'))return false;const own=s.players[t.p];switch(t.op){
  case'g70_Phantom':choice(s,t,'このターン、パワーを2000下げる相手を1体選ぶ',targetOptions(s,t.p,living(s,1-t.p)).map(o=>{const x=s.players[1-t.p].battle.find(x=>x.uid===o.value);return{...o,score:o.score+(currentPower(s,x)<=2000?25:0)};}));break;
  case'g70_Mirage':if(hasRace(s,t.p,'サイバーロード'))choice(s,t,'ミラージュ・マーメイド：カードを3枚引く？',[opt('3枚引く',true,drawScore(s,t.p,3)),opt('引かない',false,0)]);break;
- case'g70_Open':put(s,follow(t,'Draw',{n:2}),follow(t,'Knight',{mode:'Open'}));break;
- case'g70_Bullet':put(s,task('discard',1-t.p,t.source,{causedBy:t.p,n:1}),follow(t,'Knight',{mode:'Bullet'}));break;
- case'g70_Zanzibar':case'g70_Soul':case'g70_Glory':case'g70_Panda':case'g70_Stream':case'g70_Chain':case'g70_Critical':case'g70_Bakuretsu':case'g70_Plus':{const mode=t.op.slice(4);put(s,...body(t,mode),follow(t,'Knight',{mode}));break;}
+ case'g70_Open':put(s,follow(t,'Draw',{n:2}),t.g1118KnightBodyOnly?null:follow(t,'Knight',{mode:'Open'}));break;
+ case'g70_Bullet':put(s,task('discard',1-t.p,t.source,{causedBy:t.p,n:1}),t.g1118KnightBodyOnly?null:follow(t,'Knight',{mode:'Bullet'}));break;
+ case'g70_Zanzibar':case'g70_Soul':case'g70_Glory':case'g70_Panda':case'g70_Stream':case'g70_Chain':case'g70_Critical':case'g70_Bakuretsu':case'g70_Plus':{const mode=t.op.slice(4);put(s,...body(t,mode),t.g1118KnightBodyOnly?null:follow(t,'Knight',{mode}));break;}
  case'g70_StreamPick':choice(s,t,'手札に戻すクリーチャーまたはクロスギアを1つ選ぶ',streamTargets(s,t.p).map(o=>{const own=s.players[t.p].battle.some(x=>x.uid===o.value);return{...o,label:(own?'自分':'相手')+' '+o.label,score:own?-5-o.score:10+o.score};}));break;
  case'g70_ChainPick':choice(s,t,'タップする相手のクリーチャーを1体選ぶ',targetOptions(s,t.p,living(s,1-t.p)).map(o=>{const x=s.players[1-t.p].battle.find(x=>x.uid===o.value);return{...o,label:o.label+'（'+(x.tapped?'タップ中':'アンタップ')+'）',score:x.tapped?-5:10+o.score};}));break;
  case'g70_Draw':choice(s,t,'魔弾オープン・ブレイン：カードを2枚まで引く',Array.from({length:t.n+1},(_,n)=>opt(n+'枚',n,drawScore(s,t.p,n))));break;
@@ -59,5 +59,5 @@ export function createUtilityKnightRules(api){
  case'g70_ClonePick':if(v){const owner=s.players.findIndex(p=>p.battle.some(x=>x.uid===v)),x=s.players[owner]?.battle.find(x=>x.uid===v);if(x)put(s,follow(t,'ClonePick',{selected:[...t.selected,{p:owner,uid:x.uid,incarnation:x.incarnation||0}]}));}else bounce(s,t);break;
  default:throw Error('未実装のナイト・対象選択：'+t.op);
  }return true;}
- return{run,chosen,effect(s,p,c,uid){if(!c.g70Effect)return false;put(s,task('g70_'+c.g70Effect,p,c.id,{uid}));return true;}};
+ return{run,chosen,effect(s,p,c,uid,entry){if(!c.g70Effect)return false;put(s,task('g70_'+c.g70Effect,p,c.id,{uid,...(entry?.g1118KnightBodyOnly?{g1118KnightBodyOnly:true}:{})}));return true;}};
 }

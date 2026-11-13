@@ -6184,6 +6184,26 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1118&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm28-004'&&f.typeText==='クリーチャー'&&text==='自分が唱えたナイト呪文の能力を追加でもう一度使ってもよい。')
+   return {g1118Maximilian:true};
+  if(['dmr20-015','dmex13-027'].includes(d.id)&&f.typeText==='呪文'&&
+   text.replace('1体手札から','1体自分の手札から')===
+   '相手は進化ではないクリーチャーを好きな数自身の手札からバトルゾーンに出してもよい。'+
+   'その後自分はその中でコストが一番大きいクリーチャー以上のコストを持つクリーチャーを1体自分の手札からコストを支払わずに召喚してもよい。'+
+   '(相手がこのようにしてクリーチャーをバトルゾーンに出さなかった場合自分の好きなクリーチャーを手札からコストを支払わずに召喚してもよい)')
+   return {effect:'sixPhoto',g34Tasks:[{op:'ShowTime1117'}]};
+  if(d.id==='dmex17-056'&&f.typeText==='呪文'&&text===
+   'バトルゾーンに自分のクリーチャーがなければこの呪文を唱えるコストを1少なくする。'+
+   'k進化ではないクリーチャーを1体自分の墓地から出す。'+
+   'ナイト・マジック(バトルゾーンに自分のナイトがあればこの呪文のk能力をもう一度使ってもよい)'){
+   const defs=[{op:'Select',origin:'grave',deploy:true,n:1,filter:{creature:true,nonEvolution:true},
+    title:'墓地から出す進化ではないクリーチャーを1体選ぶ'}];
+   return {effect:'sixPhoto',g261Discount:{filter:{g370BattleCount:{max:0,filter:{creature:true}}},amount:1},
+    g34Tasks:[...defs,{op:'KnightMagic1118',defs}]};
+  }
+ }
  if(phase>=1117&&d?.status==='complete'){
   const text=normalize(f.abilityText),back=d.faces[1];
   if(d.id==='dm25ex4-011'&&!back&&text===

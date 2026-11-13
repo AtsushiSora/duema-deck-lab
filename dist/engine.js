@@ -1326,6 +1326,13 @@ function choosingSpell996(s){
 }
 function withAbilitySource(s,source,fn){const previous=s.g35ChoosingSource;s.g35ChoosingSource=source;try{return fn();}finally{if(previous===undefined)delete s.g35ChoosingSource;else s.g35ChoosingSource=previous;}}
 function doEffect(s,p,c,sourceUid=null,entry=null){return withAbilitySource(s,c.id,()=>withEffect(s,p,()=>doEffectCore(s,p,c,sourceUid,entry)));}
+function castSpellAbilities1118(s,p,c,sourceUid,entry){
+ // Check Maximilian after the regular body and Knight Magic, since the spell
+ // can bring Maximilian into play during its own resolution (QA 40362).
+ if(String(c.race||'').split('/').includes('ナイト'))
+  extra.put(s,extra.task('g34_Maximilian1118',p,c.id,{uid:sourceUid,spell:c,entry}));
+ doEffect(s,p,c,sourceUid,entry);
+}
 function doEffectCore(s,p,c,sourceUid=null,entry=null){
  const e=c.effect;if(!e)return;
  if(extra.effect(s,p,c,sourceUid,entry))return;
@@ -1687,7 +1694,7 @@ function resolveSpell(s,p,uid){const f=s.extSpells?.find(x=>x.inst.uid===uid);if
  // A cast card is no longer counted in its original zone (rule 409.1c).
  // Keep the spell in its existing physical frame while zero-power replacements resolve.
  if(!f.g207PowerChecked&&s.players.some(own=>own.battle.some(x=>card(x).g207CountPower&&isCreature(s,x)&&power(x,x.uid===s.attack?.attacker,s)<=0))){f.g207PowerChecked=true;powerCleanup(s);if(s.decision||s.leaving||s.lossEvent){(s.extTasks??=[]).unshift(extra.task('g34_ResolveSpell207',p,f.spell.id,{uid}));return;}}
- const c=f.spell,inst=f.inst,before=s.extTasks?.length||0;if(spellIgnored(s,c))log(s,p,'spellIgnored',c.name+'の効果はバトルゾーンの能力により無視される',{cardId:c.id});else doEffect(s,p,c,uid,{plus:!!c.triggerPlusActive,super:!!c.superTriggerActive});(s.extTasks??=[]).splice(s.extTasks.length-before,0,extra.task('finishSpell',p,c.id,{uid}));}
+ const c=f.spell,inst=f.inst,before=s.extTasks?.length||0;if(spellIgnored(s,c))log(s,p,'spellIgnored',c.name+'の効果はバトルゾーンの能力により無視される',{cardId:c.id});else castSpellAbilities1118(s,p,c,uid,{plus:!!c.triggerPlusActive,super:!!c.superTriggerActive});(s.extTasks??=[]).splice(s.extTasks.length-before,0,extra.task('finishSpell',p,c.id,{uid}));}
 // Smash Burst executes a spell without moving or duplicating its physical battlefield card.
 // A spell cast by Lucky Darts remains in its shield until its resolution ends (QA48473).
 function castShieldSpell(s,p,uid,face,source,counterChecked=false){
@@ -1707,7 +1714,7 @@ function castBattleSpell(s,p,uid,incarnation,source,reason='スマッシュ・�
  const previous=s.resolvingSpell??null;
  s.resolvingSpell={player:p,inst:{uid,cardId:source},source,face:1,virtual:true,previous};
  startJudge(s,p,c.id,uid,'spell');return;
- }const before=s.extTasks?.length||0;const virtualUid=uid+':spell:'+String(s.virtualSerial=(s.virtualSerial||0)+1);(s.extSpells??=[]).push({inst:{uid:virtualUid,cardId:source},owner:p,caster:p,spell:c,virtual:true});doEffect(s,p,c,uid);s.extTasks.splice(s.extTasks.length-before,0,extra.task('finishSpell',p,c.id,{uid:virtualUid}));}
+ }const before=s.extTasks?.length||0;const virtualUid=uid+':spell:'+String(s.virtualSerial=(s.virtualSerial||0)+1);(s.extSpells??=[]).push({inst:{uid:virtualUid,cardId:source},owner:p,caster:p,spell:c,virtual:true});castSpellAbilities1118(s,p,c,uid,null);s.extTasks.splice(s.extTasks.length-before,0,extra.task('finishSpell',p,c.id,{uid:virtualUid}));}
 // The revealed card remains in its library until an actual move succeeds.
 function revealDragon(s,p,c){
  const own=s.players[p],top=own.deck[0];if(deckLocked(s,p))return;if(!top){deckCheck(s,p);return;}
