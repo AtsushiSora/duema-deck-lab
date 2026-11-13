@@ -6184,6 +6184,38 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1137&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(['dm25rp2-004','dm25ex3-rp2004','dm26ex2-021'].includes(d.id)&&f.typeText==='クリーチャー'&&text===
+   'S・トリガーS・トリガーこのクリーチャーが出た時コストの合計が9以下になるように相手のクリーチャーを2体まで選び破壊する。'+
+   '超魂X(これがクリーチャーの下にあればそのクリーチャーにも以下の能力を与える)'+
+   '自分がゲームに負ける時これが進化クリーチャーならかわりにこのクリーチャーの下にあるカードをすべて墓地に置いてもよい。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'battle',owner:'opponent',to:'grave',
+    n:2,optional:true,filter:{creature:true},g173Targets:true,g193Select:true,g513CostBudget:9,
+    title:'合計コスト9以下で破壊する相手のクリーチャーを2体まで選ぶ'}],
+    g1137StackLoss:true,g404Soul:{g1137StackLoss:true}};
+  if(['dm26ex1-N012','dm26ex1-SECN012'].includes(d.id)&&f.typeText==='クリーチャー'&&text===
+   '鬼エンド:クリーチャーが攻撃する時シールドが1つもないプレイヤーがいて自分のマナゾーンに闇と火文明があればこのクリーチャーを自分の手札からコストを支払わずに召喚してもよい。'+
+   'スピードアタッカースレイヤーW・ブレイカーこのクリーチャーが出た時プレイヤーを1人選ぶ。そのプレイヤーは自身の墓地にあるカードの枚数を数えシャッフルして山札の下に置く。'+
+   'その後こうして山札の下に置かれたカードの枚数以下のコストを持つ相手のクリーチャーを1体選び破壊してもよい。')
+   return {speedAttacker:true,slayer:true,breaker:2,g1137OniSummon:true,effect:'sixPhoto',
+    g34Tasks:[{op:'GraveBottom589',choosePlayer:true,g1137DestroyAfter:true}]};
+  if(['dm25rp2-S10','dm25rp2-Sec11','dm25ex3-rp2S10','dm25ex3-rp2Sec11','dm26ex1-SP002','dmart25-004'].includes(d.id)&&
+   f.typeText==='呪文'&&text.replace('。(同じものを選んでもよい)','。同じものを選んでもよい。')
+    .replace('相手の手札を1枚見ないで選び','相手の手札を見ないで1枚選び')===
+   '自分の墓地にカードが6枚以上あればこの呪文を[wdf04]支払って唱えてもよい。'+
+   '次の中から2回選ぶ。同じものを選んでもよい。▶自分の手札をすべて捨てその枚数より1枚多くカードを引く。'+
+   '▶相手のエレメントを1つ選び持ち主の手札に戻す。その後相手の手札を見ないで1枚選び捨てさせる。'+
+   '▶コスト5以下のクリーチャーを1体自分の墓地から出す。そのクリーチャーに「スピードアタッカー」を与えこのターンの終わりに破壊する。')
+   return {effect:'sixPhoto',g568Alt:{cost:4,paymentColors:['水','闇','火'],condition:{g334ZoneCount:{zone:'grave',min:6}}},
+    g34Tasks:[{op:'Choose',g184Modes:true,g1045Preselect:2,modes:[
+     {label:'手札をすべて捨て、その枚数より1枚多く引く',defs:[{op:'HandCycle460',to:'grave',mode:'all',extra:1}]},
+     {label:'相手のエレメントを手札へ戻し、手札を見ずに1枚捨てさせる',defs:[
+      {op:'Target',element:true,spell:true,to:'hand',toOwnerHand:true,filter:{element:true,faceUp:true}},{op:'BlindDiscard773'}]},
+     {label:'墓地からコスト5以下を出し、スピードアタッカーを与える',defs:[
+      {op:'Select',origin:'grave',n:1,deploy:true,filter:{creature:true,max:5},grant:{speedAttacker:true,g774Permanent:true},delayed:'grave'}]}
+    ]}]};
+ }
  if(phase>=1136&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const soul='超魂X(これがクリーチャーの下にあればそのクリーチャーにも以下の能力を与える)';

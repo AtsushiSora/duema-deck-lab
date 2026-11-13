@@ -8,7 +8,17 @@ export function createJaouRules(api){
  const mana=(s,p)=>['闇','火'].every(c=>s.players[p].mana.some(x=>!x.faceDown&&api.manaColors(card(x),s,p).includes(c)));
  const ready=(s,p,x,origin)=>card(x).type==='creature'&&api.canEnter(s,p,card(x),{origin,execution:false})&&(!card(x).evolution||api.evolutionBases(s,p,card(x)).length);
  const on=(s,p,x,op,more={})=>enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task(op,p,x.cardId,more)});
- function declarations(s,p,serial,target){const remaining=s.players[p].hand.flatMap(x=>faces(card(x)).flatMap((c,face)=>c.type==='spell'&&!api.spellIgnored(s,c)&&api.canCast(s,p,c)&&((c.oniCast&&oni(s)&&mana(s,p))||(c.reverseCast&&p!==s.active&&target==='player'))?[{uid:x.uid,source:x.cardId,face,zoneSerial:x.zoneSerial||0,reverse:!!c.reverseCast}]:[]));if(remaining.length){put(s,task('g3_Declare',p,remaining[0].source,{remaining,declared:[],serial}));return true;}return false;}
+ function declarations(s,p,serial,target){
+  const remaining=s.players[p].hand.flatMap(x=>faces(card(x)).flatMap((c,face)=>{
+   const spell=c.type==='spell'&&!api.spellIgnored(s,c)&&api.canCast(s,p,c)&&
+    ((c.oniCast&&oni(s)&&mana(s,p))||(c.reverseCast&&p!==s.active&&target==='player'));
+   return spell||c.g1137OniSummon?[{uid:x.uid,source:x.cardId,face,zoneSerial:x.zoneSerial||0,
+    reverse:!!c.reverseCast,...(c.g1137OniSummon?{summon:true}:{})}]:[];
+  }));
+  if(!remaining.length)return false;
+  put(s,task('g3_Declare',p,remaining[0].source,{remaining,declared:[],serial}));
+  return true;
+ }
  function ramp(s,p){const x=api.takeTop(s,p);if(x){const to=api.deckRedirect(s,p)?'grave':'mana';clear(x,to);api.addZone(s,s.players[p],to,x);}api.deckCheck(s,p);}
  function run(s,t){if(!t.op.startsWith('g3_'))return false;const own=s.players[t.p];switch(t.op){
  case'g3_Baba':if(oni(s)){const x=own.deck.pop();if(x){clear(x);api.addZone(s,own,'grave',x);api.log(s,t.p,'mill','山札の一番下を墓地へ：'+card(x).name,{cardId:x.cardId});put(s,task('g3_BabaDeploy',t.p,t.source,{uid:x.uid}));}api.deckCheck(s,t.p);}break;
@@ -27,7 +37,10 @@ export function createJaouRules(api){
  case'g3_Final':if(!s.finalUsed?.[t.p]){(s.finalUsed??=[false,false])[t.p]=true;(s.finalHistory??=[false,false])[t.p]=true;put(s,task('g3_FinalSelect',t.p,t.source,{selected:[],budget:6}));}break;
  case'g3_FinalSelect':{const used=t.selected.map(x=>x.uid),list=['hand','mana'].flatMap(origin=>own[origin].filter(x=>!used.includes(x.uid)&&!x.faceDown&&ready(s,t.p,x,origin)&&!card(x).evolution&&!card(x).sMax&&colors(card(x)).length>1&&cost(card(x))<=t.budget).map(x=>opt(card(x).name+'（'+(origin==='hand'?'手札':'マナ')+'）',{uid:x.uid,origin},10+cost(card(x)),x.cardId)));choice(s,t,'合計コスト6以下を選ぶ（残り'+t.budget+'）',[...list,opt('この選択で出す',null,t.selected.length?20:0)]);break;}
  case'g3_Declare':if(t.remaining.length){const row=t.remaining[0],x=own.hand.find(x=>x.uid===row.uid);if(x)choice(s,t,card(x).name+'の'+(row.reverse?'逆転撃':'鬼エンド')+'を宣言しますか？',[opt('宣言する',true,25,x.cardId),skip()]);else put(s,{...t,remaining:t.remaining.slice(1)});}else for(const row of t.declared)enqueue(s,t.p,{uid:row.uid,source:row.source,effect:'extended',task:task('g3_AttackSpell',t.p,row.source,{...row,serial:t.serial})});break;
- case'g3_AttackSpell':{const x=own.hand.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.zoneSerial),c=x&&faces(card(x))[t.face];if(!x||!api.canCast(s,t.p,c)||api.spellIgnored(s,c)||(t.reverse?s.g3ReverseUsed===t.serial:!(oni(s)&&mana(s,t.p))))break;choice(s,t,'宣言した'+c.name+'を唱えますか？'+(t.reverse?'（次の自分のターンに闇3マナ）':''),[opt('唱える',true,35,x.cardId),skip()]);break;}
+ case'g3_AttackSpell':{const x=own.hand.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.zoneSerial),c=x&&faces(card(x))[t.face];if(!x||!api.canCast(s,t.p,c)||api.spellIgnored(s,c)||(t.reverse?s.g3ReverseUsed===t.serial:!(oni(s)&&mana(s,t.p))))break;
+  if(t.summon&&!api.canEnter(s,t.p,c,{origin:'hand',execution:true}))break;
+  const verb=t.summon?'召喚する':'唱える';
+  choice(s,t,'宣言した'+c.name+'を'+(t.summon?'召喚しますか？':'唱えますか？')+(t.reverse?'（次の自分のターンに闇3マナ）':''),[opt(verb,true,35,x.cardId),skip()]);break;}
  case'g3_Debt':if(!api.spellIgnored(s,card(t.source))){if(!api.payDeferred(s,t.p,3,'闇'))api.finish(s,1-t.p,'逆転撃の闇3マナを支払えなかった','loss');else api.log(s,t.p,'payment','逆転撃の闇3マナを支払った',{cardId:t.source});}break;
  default:throw Error('未実装の邪王門効果：'+t.op);
  }return true;}

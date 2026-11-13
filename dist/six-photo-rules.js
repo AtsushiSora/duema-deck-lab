@@ -4422,16 +4422,19 @@ export function createSixPhotoRules(api){
    choice(s,t,'山札の下に戻す墓地を選ぶ',[
     opt('自分の墓地',t.p,size(t.p)&&own.deck.length<6?size(t.p)+15:-1),
     opt('相手の墓地',1-t.p,size(1-t.p)?size(1-t.p)*5:-1),
-    skip()
+    ...(!t.g1137DestroyAfter?[skip()]:[])
    ]);
    break;
   }
   const owner=t.self?t.p:1-t.p;
   const rows=policyTake(s,owner,'grave',api);
-  if(!rows.length)break;
-  for(const y of rows)clear(y,'deck');
-  api.addZone(s,owner,'deck',...api.shuffled(rows,Math.floor(api.random(s)*4294967296)));
-  api.log(s,t.p,'shuffleGrave',(t.self?'自分':'相手')+'の墓地'+rows.length+'枚をシャッフルして山札の下に置いた',{cardId:t.source});
+  if(rows.length){
+   for(const y of rows)clear(y,'deck');
+   api.addZone(s,owner,'deck',...api.shuffled(rows,Math.floor(api.random(s)*4294967296)));
+   api.log(s,t.p,'shuffleGrave',(t.self?'自分':'相手')+'の墓地'+rows.length+'枚をシャッフルして山札の下に置いた',{cardId:t.source});
+  }
+  if(t.g1137DestroyAfter)start(s,t,[{op:'Target',to:'grave',optional:true,
+   filter:{creature:true,max:rows.length},title:'山札の下に置いた枚数以下のコストを持つ相手クリーチャーを破壊する？'}]);
   break;
  }
  case'g34_SpellLock589':{
@@ -6056,6 +6059,13 @@ export function createSixPhotoRules(api){
   return (s.extLimits||[]).some(l=>l.kind==='g34NoLose'&&l.player===p)||
    active(s,p,'valhalla').some(()=>s.players[p].mana.filter(x=>api.manaColors(card(x),s,p).includes('光')).length>=9)||
    creatures(s,1-p).some(x=>!x.sealed&&effective(x,s).g995OpponentCannotLose);
+ },
+ stackLossSources1137(s,p){
+  return creatures(s,p).filter(x=>{
+   if(!api.isEvolution(x)||![x,...(x.godLinks||[])].some(y=>y.under?.length))return false;
+   const c=effective(x,s);
+   return c.g1137StackLoss||c.g404Inherited?.some(r=>r.grants.g1137StackLoss);
+  });
  },
  lossOptions(s,p){return s.players[p].mana.length>=8?active(s,p,'minogami').map(x=>opt(card(x).name+'：マナ8枚を山札の下に置く',{kind:'g34Mino',uid:x.uid},60,x.cardId)):[];},
  beginLoss(s,p,uid){const x=s.players[p].battle.find(x=>x.uid===uid);if(x)minoLoss(s,{op:'g34_Custom',name:'minoLoss',p,source:x.cardId,uid,selected:[]});},

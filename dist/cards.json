@@ -224063,15 +224063,181 @@
       ],
       "supportBatch": "phase-1136",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-S10",
+      "name": "炎氷渦と鎮魂禍の決断",
+      "civ": "水/闇/火",
+      "civilizations": [
+        "水",
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "自分の墓地にカードが６枚以上あれば、この呪文を[wdf04]支払って唱えてもよい。\n次の中から２回選ぶ。（同じものを選んでもよい）\n▶自分の手札をすべて捨て、その枚数より１枚多くカードを引く。\n▶相手のエレメントを１つ選び、持ち主の手札に戻す。その後、相手の手札を見ないで１枚選び、捨てさせる。\n▶コスト５以下のクリーチャーを１体、自分の墓地から出す。そのクリーチャーに「スピードアタッカー」を与え、このターンの終わりに破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-S10",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g568Alt": {
+        "cost": 4,
+        "paymentColors": [
+          "水",
+          "闇",
+          "火"
+        ],
+        "condition": {
+          "g334ZoneCount": {
+            "zone": "grave",
+            "min": 6
+          }
+        }
+      },
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "g1045Preselect": 2,
+          "modes": [
+            {
+              "label": "手札をすべて捨て、その枚数より1枚多く引く",
+              "defs": [
+                {
+                  "op": "HandCycle460",
+                  "to": "grave",
+                  "mode": "all",
+                  "extra": 1
+                }
+              ]
+            },
+            {
+              "label": "相手のエレメントを手札へ戻し、手札を見ずに1枚捨てさせる",
+              "defs": [
+                {
+                  "op": "Target",
+                  "element": true,
+                  "spell": true,
+                  "to": "hand",
+                  "toOwnerHand": true,
+                  "filter": {
+                    "element": true,
+                    "faceUp": true
+                  }
+                },
+                {
+                  "op": "BlindDiscard773"
+                }
+              ]
+            },
+            {
+              "label": "墓地からコスト5以下を出し、スピードアタッカーを与える",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "n": 1,
+                  "deploy": true,
+                  "filter": {
+                    "creature": true,
+                    "max": 5
+                  },
+                  "grant": {
+                    "speedAttacker": true,
+                    "g774Permanent": true
+                  },
+                  "delayed": "grave"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1137",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-004",
+      "name": "怒像アゲ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "デーモン・コマンド/デモンズ・レガシー/フュージョナー",
+      "text": "S・トリガー S・トリガー\nこのクリーチャーが出た時、コストの合計が９以下になるように、相手のクリーチャーを２体まで選び、破壊する。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\n自分がゲームに負ける時、これが進化クリーチャーなら、かわりにこのクリーチャーの下にあるカードをすべて墓地に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-004",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "opponent",
+          "to": "grave",
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g513CostBudget": 9,
+          "title": "合計コスト9以下で破壊する相手のクリーチャーを2体まで選ぶ"
+        }
+      ],
+      "g1137StackLoss": true,
+      "g404Soul": {
+        "g1137StackLoss": true
+      },
+      "supportBatch": "phase-1137",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex1-N012",
+      "name": "鬼ヶ魔槍 ジャオウガ",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "デモニオ",
+      "text": "鬼エンド：クリーチャーが攻撃する時、シールドが１つもないプレイヤーがいて、自分のマナゾーンに闇と火文明があれば、このクリーチャーを自分の手札からコストを支払わずに召喚してもよい。\nスピードアタッカー\nスレイヤー\nW・ブレイカー\nこのクリーチャーが出た時、プレイヤーを１人選ぶ。そのプレイヤーは自身の墓地にあるカードの枚数を数え、シャッフルして山札の下に置く。\nその後、こうして山札の下に置かれたカードの枚数以下のコストを持つ相手のクリーチャーを１体選び、破壊してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-N012",
+      "limit": 4,
+      "speedAttacker": true,
+      "slayer": true,
+      "breaker": 2,
+      "g1137OniSummon": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GraveBottom589",
+          "choosePlayer": true,
+          "g1137DestroyAfter": true
+        }
+      ],
+      "supportBatch": "phase-1137",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1136,
+    "phase": 1137,
     "checkedAt": "2026-11-13",
-    "baseCount": 7394,
+    "baseCount": 7397,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7397,
+    "totalCount": 7400,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -243992,6 +244158,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7394,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1136,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7394,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7397,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
