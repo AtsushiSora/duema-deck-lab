@@ -19,7 +19,10 @@
 
 フォーマット選択ボタンの画像は、公式カード検索の画像を縮小して使用しています。
 
-| フォーマット | カード | 公式ページ |
+| ページ | オリジナル | アドバンス |
 | --- | --- | --- |
-| オリジナル | 邪帝類五龍目 プラドックス | https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-028 |
-| アドバンス | 猛烈将龍 ガイバーン（将龍剣 ガイアールの龍解面） | https://dm.takaratomy.co.jp/card/detail/?id=dmd18-002 |
+| マイデッキの作成・編集 | [邪帝類五龍目 プラドックス](https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-028) | [猛烈将龍 ガイバーン（将龍剣 ガイアールの龍解面）](https://dm.takaratomy.co.jp/card/detail/?id=dmd18-002) |
+| 相手デッキの作成・編集 | [アビスベル＝ジャシン帝](https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-OR1) | [時空の雷龍チャクラ](https://dm.takaratomy.co.jp/card/detail/?id=dmx08-s01) |
+| CPUと手動で対戦 | [勝利龍装 クラッシュ“覇道”](https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-s07) | [勝利のガイアール・カイザー](https://dm.takaratomy.co.jp/card/detail/?id=dmr04-v03) |
+| CPU同士を観戦 | [∞龍 ゲンムエンペラー](https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-km1) | [アクア・アタック＜BAGOOON・パンツァー＞](https://dm.takaratomy.co.jp/card/detail/?id=dmx07-v01) |
+| 自動シミュレーション | [鬼ヶ大王 ジャオウガ](https://dm.takaratomy.co.jp/card/detail/?id=dmex13-km2) | [時空の不滅ギャラクシー](https://dm.takaratomy.co.jp/card/detail/?id=dmc68-001) |

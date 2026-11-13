@@ -60,3 +60,24 @@ test('the editor and match screens separate Advance from saved Original decks',a
  h.read("comparisonId=saved.history[0].id;saved.history[0].results=[];render();");
  assert.match(h.root.innerHTML,/<fieldset[^>]+id="match-format"[^>]+disabled>/);
 });
+
+test('format buttons show distinct creature art for each editor and match screen',async()=>{
+ const h=harness();
+ const expectArt=(original,advance)=>{
+  const formatArt=[...h.root.innerHTML.matchAll(/class="format-art" src="assets\/page-creatures\/([^"]+)\.jpg"/g)].map(match=>match[1]);
+  assert.deepEqual(formatArt,[original,advance]);
+ };
+ h.read("startEdit(saved.decks[0]);");
+ expectArt('dm25ex2-028','dmd18-002b');
+ h.read("startEdit(null,{target:'opponent'});");
+ expectArt('dm22rp1-OR1','dmx08-s01');
+ for(const [mode,original,advance] of [
+  ['manual','dmrp05-s07','dmr04-v03'],
+  ['spectate','dmrp15-km1','dmx07-v01'],
+  ['auto','dmex13-km2','dmc68-001']
+ ]){
+  h.read("view='duel';render();");
+  await h.click('prepare-match',{mode});
+  expectArt(original,advance);
+ }
+});
