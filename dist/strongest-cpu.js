@@ -1,5 +1,5 @@
 import {card,playFaces,civilizations,validateDeck,manaPayment,manaValue} from './engine.js';
-import {ONLINE_COMPATIBILITY} from './online-compatibility.js?v=0.721.1';
+import {ONLINE_COMPATIBILITY} from './online-compatibility.js?v=0.721.2';
 export const STRONGEST_BUILD_VERSION=1;
 const finite=n=>Number.isFinite(Number(n))?Number(n):30;
 const rowsSignature=rows=>{const counts=new Map();for(const r of rows||[])counts.set(r.id,(counts.get(r.id)||0)+r.count);return JSON.stringify([...counts].sort(([a],[b])=>a.localeCompare(b)));};

@@ -1,4 +1,4 @@
-import {normalizeDeckTags} from './deck-tags.js?v=0.721.1';
+import {normalizeDeckTags} from './deck-tags.js?v=0.721.2';
 import {historicalMetadata} from './historical-regulations.js';
 // Account backups contain deck lists only. Local match history stays on this device.
 export const ACCOUNT_SCHEMA=1,MAX_ACCOUNT_DECKS=1000,MAX_ACCOUNT_CHARS=200000,MAX_ACCOUNT_BYTES=700000;

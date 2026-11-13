@@ -1,15 +1,15 @@
-import {replacementSacrifices} from './kenji-rules.js?v=0.721.1';
-import {decorateSurvivor406} from './survivor-rules.js?v=0.721.1';
-import {inheritSoul404} from './super-soul.js?v=0.721.1';
-import {wdDefinition393,copiedDefinition393} from './requested393-joker-rules.js?v=0.721.1';
+import {replacementSacrifices} from './kenji-rules.js?v=0.721.2';
+import {decorateSurvivor406} from './survivor-rules.js?v=0.721.2';
+import {inheritSoul404} from './super-soul.js?v=0.721.2';
+import {wdDefinition393,copiedDefinition393} from './requested393-joker-rules.js?v=0.721.2';
 import {displayTurn,completeDisplayTurn} from './turn-count.js';
 export {displayTurn} from './turn-count.js';
 import {ADVANCE,deckFormat,sameDeckFormat,extraDeckErrors} from './deck-format.js';
 import {deckCopyLimit} from './historical-regulations.js?v=0.98.0';
-import {CHALLENGER_IDS,chooseHeroDraw,chooseHeroOpening} from './hero-draw.js?v=0.721.1';
+import {CHALLENGER_IDS,chooseHeroDraw,chooseHeroOpening} from './hero-draw.js?v=0.721.2';
 import {shieldCards,shieldGroup,findShield,attachShield,detachShieldCard} from './shield-state.js';
-import {createExtendedRules} from './extended-rules.js?v=0.721.1';
-import {createStrategicAI} from './strategic-ai.js?v=0.721.1';
+import {createExtendedRules} from './extended-rules.js?v=0.721.2';
+import {createStrategicAI} from './strategic-ai.js?v=0.721.2';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.227';
 export const ENGINE_VERSION='0.595.0';

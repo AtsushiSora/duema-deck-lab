@@ -1,5 +1,5 @@
 export {historicalProfile,historicalMetadata} from './historical-regulations.js';
-import {nameKey} from './catalogue.js?v=0.721.1';
+import {nameKey} from './catalogue.js?v=0.721.2';
 
 // Fixed tournament snapshots, not a live ranking or generated card combinations.
 const event='DMGP2026-1st Day2（オリジナル）';
