@@ -2470,6 +2470,38 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1186&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmex08-135'&&text===
+   '自分の山札の上から3枚を見る。その中から自分のマナゾーンにあるカードの枚数よりコストが1大きいカードを1枚選び相手に見せてから自分の手札に加えてもよい。残りを好きな順序で山札の一番下に置く。'){
+   return {effect:'sixPhoto',g34Tasks:[{op:'Look',n:3,g841DeckPeek:true,rest:'bottom',
+    stages:[{n:1,to:'hand',optional:true,reveal:true,filter:{manaCostOffset:1},
+     title:'マナの枚数よりコストが1大きいカードを1枚選ぶ（任意）'}]}]};
+  }
+  if(f.name==='夏だ！デュエル修業だ!!'&&text===
+   '自分の手札をすべて捨てカードを4枚引きその後自分の手札を1枚マナゾーンに置く。'+
+   'このターンが自分のターンならターンの残りをとばす。'){
+   return {effect:'sixPhoto',g34Tasks:[
+    {op:'DiscardAll244',draw:4},
+    {op:'Select',origin:'hand',to:'mana',n:1,g182HandMana:true,title:'マナに置く手札を1枚選ぶ'},
+    {op:'Custom',name:'endTurn',ownTurnOnly:true}
+   ]};
+  }
+  if(f.name==='魔弾 マッド・ゲンド・チェスター'&&text===
+   'S・トリガーS・トリガー次のうちいずれか1つを選ぶ。自分のディスペクターがあれば両方選んでもよい。'+
+   '▶相手のコスト8以下のクリーチャーを1体選び持ち主のマナゾーンに置く。'+
+   '▶コスト8以下のクリーチャーを1体自分の墓地から出す。'){
+   const remove={op:'Target',to:'mana',toOwnerMana:true,filter:{max:8},
+    title:'マナに置くコスト8以下の相手クリーチャーを1体選ぶ'};
+   const revive={op:'Select',origin:'grave',n:1,deploy:true,g236GraveDeploy:true,filter:{creature:true,max:8},
+    title:'墓地から出すコスト8以下のクリーチャーを1体選ぶ'};
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Choose',g184Modes:true,modes:[
+    {label:'相手のクリーチャーをマナに置く',defs:[remove]},
+    {label:'自分の墓地からクリーチャーを出す',defs:[revive]},
+    {label:'両方を選ぶ',condition:{element:true,faceUp:true,race:'ディスペクター'},defs:[remove,revive]}
+   ]}]};
+  }
+ }
  if(phase>=1185&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
   const lines=f.abilityText.split('\n').map(normalize);
   if(d.id==='dm22ex1-096'&&lines.length===2&&

@@ -229271,15 +229271,185 @@
       ],
       "supportBatch": "phase-1185",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex08-135",
+      "name": "お届け！スタートデッキ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "race": "",
+      "text": "自分の山札の上から３枚を見る。その中から、自分のマナゾーンにあるカードの枚数よりコストが１大きいカードを１枚選び、相手に見せてから自分の手札に加えてもよい。残りを好きな順序で山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-135",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "g841DeckPeek": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "manaCostOffset": 1
+              },
+              "title": "マナの枚数よりコストが1大きいカードを1枚選ぶ（任意）"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1186",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex15-b039",
+      "name": "夏だ！デュエル修業だ!!",
+      "civ": "水/火/自然",
+      "civilizations": [
+        "水",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "自分の手札をすべて捨て、カードを４枚引き、その後、自分の手札を１枚マナゾーンに置く。\nこのターンが自分のターンなら、ターンの残りをとばす。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b039",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DiscardAll244",
+          "draw": 4
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "mana",
+          "n": 1,
+          "g182HandMana": true,
+          "title": "マナに置く手札を1枚選ぶ"
+        },
+        {
+          "op": "Custom",
+          "name": "endTurn",
+          "ownTurnOnly": true
+        }
+      ],
+      "supportBatch": "phase-1186",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23bd5-004",
+      "name": "魔弾 マッド・ゲンド・チェスター",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "ナイト",
+      "text": "S・トリガー S・トリガー\n次のうちいずれか１つを選ぶ。自分のディスペクターがあれば、両方選んでもよい。\n▶相手のコスト８以下のクリーチャーを１体選び、持ち主のマナゾーンに置く。\n▶コスト８以下のクリーチャーを１体、自分の墓地から出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd5-004",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "相手のクリーチャーをマナに置く",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "mana",
+                  "toOwnerMana": true,
+                  "filter": {
+                    "max": 8
+                  },
+                  "title": "マナに置くコスト8以下の相手クリーチャーを1体選ぶ"
+                }
+              ]
+            },
+            {
+              "label": "自分の墓地からクリーチャーを出す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "n": 1,
+                  "deploy": true,
+                  "g236GraveDeploy": true,
+                  "filter": {
+                    "creature": true,
+                    "max": 8
+                  },
+                  "title": "墓地から出すコスト8以下のクリーチャーを1体選ぶ"
+                }
+              ]
+            },
+            {
+              "label": "両方を選ぶ",
+              "condition": {
+                "element": true,
+                "faceUp": true,
+                "race": "ディスペクター"
+              },
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "mana",
+                  "toOwnerMana": true,
+                  "filter": {
+                    "max": 8
+                  },
+                  "title": "マナに置くコスト8以下の相手クリーチャーを1体選ぶ"
+                },
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "n": 1,
+                  "deploy": true,
+                  "g236GraveDeploy": true,
+                  "filter": {
+                    "creature": true,
+                    "max": 8
+                  },
+                  "title": "墓地から出すコスト8以下のクリーチャーを1体選ぶ"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1186",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1185,
+    "phase": 1186,
     "checkedAt": "2026-11-14",
-    "baseCount": 7546,
+    "baseCount": 7549,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7549,
+    "totalCount": 7552,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -249788,6 +249958,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7546,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1185,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7546,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7549,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
