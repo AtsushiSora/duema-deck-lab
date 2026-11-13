@@ -227303,15 +227303,128 @@
       },
       "supportBatch": "phase-1167",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex14-003",
+      "name": "サイバー・V・チューブ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "サイバー・コマンド/チームウェイブ",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、カードを３枚引き、その後、自分の手札を１枚捨てる。\nレインボーナス：自分の手札を捨てた時、バトルゾーンに自分の多色クリーチャーがあれば、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-003",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 3
+        },
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 1
+        }
+      ],
+      "g1168DiscardWatch": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "multi": true
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "hand",
+              "toOwnerHand": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1168",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr22-007",
+      "name": "護聖古龍 ボンガボンガ",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ガーディアン/ジュラシック・コマンド・ドラゴン",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nブロッカーブロッカー\nW・ブレイカー\n自分の他の多色カードがバトルゾーンに出た時、カードを１枚引いてもよい。\n自分の多色カードをマナゾーンに置いた時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-007",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g314OtherEntry": {
+        "who": "self",
+        "g765Element": true,
+        "filter": {
+          "multi": true
+        },
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "g807ManaEntry": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "g1168ManaEntryMulti": true,
+      "supportBatch": "phase-1168",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex14-054",
+      "name": "捧程者 アコギエレキ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ムートピア/美孔麗王国",
+      "text": "このターンに自分が召喚したクリーチャー１体または唱えた呪文１枚につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない。\nスピードアタッカー（このクリーチャーは召喚酔いしない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-054",
+      "limit": 4,
+      "speedAttacker": true,
+      "g212CountDiscount": {
+        "zone": "summonsOrSpells",
+        "amount": 2
+      },
+      "supportBatch": "phase-1168",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1167,
+    "phase": 1168,
     "checkedAt": "2026-11-14",
-    "baseCount": 7491,
+    "baseCount": 7494,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7494,
+    "totalCount": 7497,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -247604,6 +247717,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7491,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1167,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7491,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7494,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

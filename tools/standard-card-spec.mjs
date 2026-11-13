@@ -6184,6 +6184,23 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1168&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmex14-003'&&text==='W・ブレイカーこのクリーチャーがバトルゾーンに出た時カードを3枚引きその後自分の手札を1枚捨てる。'+
+   'レインボーナス:自分の手札を捨てた時バトルゾーンに自分の多色クリーチャーがあれば相手のクリーチャーを1体選び持ち主の手札に戻す。')
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'Draw',n:3},{op:'Discard',owner:'self',n:1}],g1168DiscardWatch:[
+    {op:'IfOwn',filter:{creature:true,multi:true},defs:[{op:'Target',to:'hand',toOwnerHand:true}]}
+   ]};
+  if(d.id==='dmr22-007'&&text==='マナゾーンに置く時このカードはタップして置く。ブロッカーブロッカーW・ブレイカー'+
+   '自分の他の多色カードがバトルゾーンに出た時カードを1枚引いてもよい。自分の多色カードをマナゾーンに置いた時カードを1枚引いてもよい。'){
+   const defs=[{op:'Draw',n:1,optional:true}];
+   return {blocker:true,breaker:2,g314OtherEntry:{who:'self',g765Element:true,filter:{multi:true},defs},
+    g807ManaEntry:defs,g1168ManaEntryMulti:true};
+  }
+  if(d.id==='dmex14-054'&&text==='このターンに自分が召喚したクリーチャー1体または唱えた呪文1枚につきこのクリーチャーの召喚コストを2少なくする。'+
+   'ただしコストは0以下にはならない。スピードアタッカー(このクリーチャーは召喚酔いしない)')
+   return {speedAttacker:true,g212CountDiscount:{zone:'summonsOrSpells',amount:2}};
+ }
  if(phase>=1167&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmrp03-067'&&text==='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+

@@ -1,0 +1,176 @@
+{
+  "phase": 1168,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7494,
+  "description": "サイバー・V・チューブ、護聖古龍 ボンガボンガ、捧程者 アコギエレキの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/39440/",
+    "https://dm.takaratomy.co.jp/rule/qa/39442/",
+    "https://dm.takaratomy.co.jp/rule/qa/45463/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316636/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316671/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmex14-003",
+      "name": "サイバー・V・チューブ",
+      "faces": [
+        {
+          "name": "サイバー・V・チューブ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、カードを３枚引き、その後、自分の手札を１枚捨てる。\nレインボーナス：自分の手札を捨てた時、バトルゾーンに自分の多色クリーチャーがあれば、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "サイバー・コマンド/チームウェイブ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-003.jpg",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ],
+        "g1168DiscardWatch": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "multi": true
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "hand",
+                "toOwnerHand": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "81318b698c2c1aa96deb3d68a5327adeb6b45c2b5825da0116d91ee3be3e2f99",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr22-007",
+      "name": "護聖古龍 ボンガボンガ",
+      "faces": [
+        {
+          "name": "護聖古龍 ボンガボンガ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカーブロッカー\nW・ブレイカー\n自分の他の多色カードがバトルゾーンに出た時、カードを１枚引いてもよい。\n自分の多色カードをマナゾーンに置いた時、カードを１枚引いてもよい。",
+          "race": "ガーディアン/ジュラシック・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-007",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-007.jpg",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g314OtherEntry": {
+          "who": "self",
+          "g765Element": true,
+          "filter": {
+            "multi": true
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        },
+        "g807ManaEntry": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ],
+        "g1168ManaEntryMulti": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "9e8c36df7bfc9ab1ffeb807d825b25c97f060095969429771f075287fb22ac0b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-054",
+      "name": "捧程者 アコギエレキ",
+      "faces": [
+        {
+          "name": "捧程者 アコギエレキ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このターンに自分が召喚したクリーチャー１体または唱えた呪文１枚につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない。\nスピードアタッカー（このクリーチャーは召喚酔いしない）",
+          "race": "ムートピア/美孔麗王国",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-054",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-054.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "g212CountDiscount": {
+          "zone": "summonsOrSpells",
+          "amount": 2
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "d31bf7b76aaaaadf7053f42f43de3c5aebd758770cf35b72999ce13ee0509c4d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex14-003": 4,
+      "dmr22-007": 4,
+      "dmex14-054": 4
+    }
+  }
+}

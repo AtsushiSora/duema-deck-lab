@@ -486,8 +486,10 @@ export function createExtendedRules(api){
  function startSwap(s,t,uid,revolution){const own=s.players[t.p],incoming=revCard(s,t.p,t.uid),origin=incoming&&own.hand.includes(incoming)?'hand':'shields';if(incoming&&galaxy.entryWouldReplace(s,t.p,card(incoming),origin,false)){log(s,t.p,'swapFailed','登場の置き換えにより入れ替えは実行されない',{cardId:t.source});return;}const old=nowCreature(s,t.p,uid);if(!old||!incoming||!revOrigin486(own,incoming,t.g486Serial))return;if(card(old).starEvolution&&old.under?.length){log(s,t.p,'swapFailed','スター進化の構成カードすべては戻せないため入れ替えできない',{cardId:t.source});return;}const attack=s.attack&&[s.attack.attacker,s.attack.target,s.attack.blockUid].includes(uid)?structuredClone(s.attack):null;put(s,{...t,op:'swapFinish',old:uid,tapped:old.tapped,attack,revolution,origin});move(s,[{player:t.p,uid,exchange:true,to:origin==='hand'?'hand':'shields',...(origin==='shields'?{shieldAttach:api.shieldGroup(own.shields.find(root=>api.shieldCards(root).some(y=>y.uid===incoming.uid)))}:{}),destroy:false}]);}
  function discardWatchers848(s,p){
   const own=s.players[p].battle.flatMap(x=>{
-   if(!card(x).g848DiscardWatch||x.sealed||!api.isCreature(s,x))return [];
-   const mode=effective(x,s).g848DiscardWatch;
+   const printed=card(x);
+   if((!printed.g848DiscardWatch&&!printed.g1168DiscardWatch)||x.sealed||!api.isCreature(s,x))return [];
+   const {g848DiscardWatch:mode,g1168DiscardWatch:defs}=effective(x,s);
+   if(defs)return [{uid:x.uid,incarnation:x.incarnation||0,cardId:x.cardId,defs}];
    return mode==='opponentDiscard'||mode==='draw'&&s.active!==p?
     [{uid:x.uid,cardId:x.cardId,mode}]:[];
   });
@@ -498,7 +500,12 @@ export function createExtendedRules(api){
  }
  function notifyDiscard848(s,p,watchers,n){
   if(!n)return;
-  for(const {uid,cardId,mode} of watchers||[]){
+  for(const {uid,incarnation,cardId,mode,defs} of watchers||[]){
+   if(defs){
+    for(let i=0;i<n;i++)enqueue(s,p,{uid,incarnation,source:cardId,effect:'extended',
+     task:task('g34_Sequence',p,cardId,{uid,incarnation,defs})});
+    continue;
+   }
    if(mode==='opponentDraw949'){
     const player=1-p;
     enqueue(s,player,{uid,source:cardId,effect:'extended',task:task('g34_Offer',player,cardId,{

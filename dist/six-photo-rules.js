@@ -151,6 +151,10 @@ export function createSixPhotoRules(api){
   const owner=t.owner==='opponent'?1-p:p;
   if(t.g753AllMana)return s.players[owner].mana.length*t.amount;
   if(t.zone==='draws')return(s.players[owner].drawsThisTurn||0)*t.amount;
+  if(t.zone==='summonsOrSpells'){
+   const summon=s.g463Summons?.[owner],spell=s.g37Spells?.[owner];
+   return ((summon?.turn===s.turn?summon.n:0)+(spell?.turn===s.turn?spell.n:0))*t.amount;
+  }
   if(t.zone==='shields'){const shields=s.players[owner].shields;return(typeof shields==='number'?shields:shields.length)*t.amount;}
   const count=owner=>(t.zones??[t.zone]).reduce((total,zone)=>total+(s.players[owner][zone]||[]).filter(x=>
    !x.faceDown&&!((t.excludeExecutingCard||t.optional||t.minimum===2||t.minimum===0)&&owner===p&&c.summonOrigin===zone&&x.uid===c.executionUid)&&
@@ -6418,8 +6422,8 @@ export function createSixPhotoRules(api){
   const sources=creatures(s,p).flatMap(x=>{
    if(x.sealed)return [];
    const {g454Space:rules,g763MultiManaUntap:untap,g807ManaEntry:defs,g857ManaEntryRace:entryRace,
-    g1160FirstMultiManaDraw:firstMultiDraw,g1162FirstManaRecycle:recycle}=effective(x,s);
-   return rules||untap||defs||firstMultiDraw||recycle?[{x,rules:rules||[],untap,defs,entryRace,firstMultiDraw,recycle}]:[];
+    g1160FirstMultiManaDraw:firstMultiDraw,g1162FirstManaRecycle:recycle,g1168ManaEntryMulti:entryMulti}=effective(x,s);
+   return rules||untap||defs||firstMultiDraw||recycle?[{x,rules:rules||[],untap,defs,entryRace,firstMultiDraw,recycle,entryMulti}]:[];
   });
   for(const x of cards){
    if(!x.faceDown&&api.zoneCard(s,p,x).g449ManaReveal)send(s,p,x,'ManaReveal449',{serial:x.zoneSerial||0});
@@ -6431,7 +6435,8 @@ export function createSixPhotoRules(api){
     if(firstMulti&&source.firstMultiDraw&&actual.length>1)
      send(s,p,source.x,'FirstMultiManaDraw1160',{target:x.uid,serial:x.zoneSerial||0});
     if(firstOwnPlacement&&source.recycle)send(s,p,source.x,'RecycleMana1162');
-    if(source.defs&&(!source.entryRace||faces(manaCard).some(c=>race(c,source.entryRace))))queue(s,p,source.x,source.defs);
+    if(source.defs&&(!source.entryMulti||actual.length>1)&&(!source.entryRace||faces(manaCard).some(c=>race(c,source.entryRace))))
+     queue(s,p,source.x,source.defs);
     const rules=source.rules.filter(r=>(r.color==='多色'?actual.length>1:actual.includes(r.color))&&
      (!r.g792Once||!used792(s,source.x,r)));
     if(rules.length)send(s,p,source.x,'SpaceCharge454',{rules:structuredClone(rules)});
