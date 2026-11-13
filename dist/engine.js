@@ -464,7 +464,18 @@ function takeDrawCard(s,p){
  const uid=chooseHeroDraw(choices,{heroId:s.challenge.heroId,signature:s.challenge.signature,...(s.challenge.heroId&&!['shobu','katta','joe','win','hakuoh','basara','kira','kaiza'].includes(s.challenge.heroId)?{manaCards:own.mana.filter(x=>!x.faceDown).map(x=>({...card(x),civilizations:manaCivilizations(card(x))})),grave:own.grave.map(card)}:{}),mana:own.mana.length,colors:[...new Set(own.mana.flatMap(x=>manaCivilizations(card(x))))],hand:own.hand.map(describe),battle:own.battle.map(x=>publicCreature(x,p)),enemyBattle:s.players[1-p].battle.map(x=>publicCreature(x,1-p)),shields:own.shields.length,enemyShields:s.players[1-p].shields.length,active:s.active===p});
  const i=own.deck.findIndex(x=>x.uid===uid);return i<0?null:own.deck.splice(i,1)[0];
 }
-function draw(s,p,n,{unreplaceable=false,drawn,turnDraw=false}={}){
+function draw(s,p,n,{unreplaceable=false,drawn,turnDraw=false,g1178Resolved=false}={}){
+ if(n&&!g1178Resolved&&s.active===p&&(turnDraw||s.phase==='start'&&s.startStep)){
+  const sources=s.players[p].battle.filter(x=>card(x).g1178StartDrawCondition&&isCreature(s,x))
+   .filter(x=>{const condition=effectiveCard(x,s).g1178StartDrawCondition;
+    return condition&&s.once?.['g1178:'+x.uid+'@'+(x.incarnation||0)]!==s.turn&&extra.six.ownCondition(s,p,condition);
+   }).map(x=>({id:x.cardId,key:'g1178:'+x.uid+'@'+(x.incarnation||0)}));
+  if(sources.length){
+   extra.put(s,extra.task('g34_StartDraw729',p,sources[0].id,{sources:sources.map(x=>x.id),g1178Keys:sources.map(x=>x.key),n,
+    drawOptions:{unreplaceable,drawn,turnDraw,g1178Resolved:true}}));
+   return 0;
+  }
+ }
  const own=s.players[p],infinite=n==='∞';let actual=0,replacementDraws=0;
  for(let i=0;(infinite||i<n)&&s.winner===null;i++){
   const amo=!unreplaceable&&(actual+(own.drawsThisTurn||0)>0)&&s.players[1-p].battle.find(x=>card(x).g1090DrawToMana&&!abilitiesIgnored(s,x)&&isCreature(s,x));
@@ -2640,7 +2651,7 @@ function advanceStart(s){if(s.lossEvent)return;if(!s.startStep||s.decision||s.ex
   const printed=card(x);
   if(!(printed.g729ExtraStartDraw||printed.g948StartDrawMax)||!isCreature(s,x))return false;
   const live=effectiveCard(x,s);
-  return live.g729ExtraStartDraw||live.g948StartDrawMax;
+  return live.g948StartDrawMax||live.g729ExtraStartDraw;
  }).map(x=>x.cardId);
  if(sources.length)extra.put(s,extra.task('g34_StartDraw729',p,sources[0],{sources,n:1}));
  else draw(s,p,1,{turnDraw:true});

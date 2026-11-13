@@ -2467,6 +2467,18 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1178&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(f.name==='ダーク・鎌・ルピア'&&f.civilizationText==='闇/火'&&f.cost===4&&text.replaceAll('ドラゴン・クリーチャー','ドラゴン')===
+   '自分のドラゴンの召喚コストを2少なくする。ただしコストは0以下にはならない。各ターンに一度自分の墓地からドラゴンを1体召喚してもよい。')
+   return {g290SummonAura:{race:'ドラゴン',amount:2},g450ZoneSummon:{origin:'grave',filter:{creature:true,race:'ドラゴン'}}};
+  if(f.name==='ウイングアイ・モス'&&f.civilizationText==='自然'&&f.cost===5&&text===
+   '自分のターンのはじめにカードを1枚引く時バトルゾーンにある自分の一番パワーの大きいクリーチャーが相手のどのクリーチャーよりも大きければもう1枚余分に引いてもよい。')
+   return {g1178StartDrawCondition:{g881HighestPower:true,g1178OwnTies:true}};
+  if(f.name==='ダーツ=デラアーツ'&&f.civilizationText==='闇'&&f.cost===5&&text===
+   'このクリーチャーが出た時各プレイヤーは自身の手札を1枚選んで捨てる。こうして捨てられたカード1枚につき自分はカードを1枚引いてもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'PlayersDiscard1178'}]};
+ }
  if(phase>=1177&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(f.name==='聖なる混沌 クノイチマントラ'&&f.civilizationText==='光'&&f.cost===5&&text===

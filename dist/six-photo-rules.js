@@ -557,7 +557,8 @@ export function createSixPhotoRules(api){
    const powers=s.players.map((_,who)=>creatures(s,who).filter(x=>!x.sealed).map(x=>api.power(x,false,s)));
    const highest=Math.max(...powers.flat());
    if(f.g1040Ties)return powers[p].includes(highest);
-   return powers[p].filter(n=>n===highest).length===1&&!powers[1-p].includes(highest);
+   const ownHighest=powers[p].filter(n=>n===highest).length;
+   return (f.g1178OwnTies?ownHighest>0:ownHighest===1)&&!powers[1-p].includes(highest);
   }
   if(f.g1040FaceDownManaBelow!==undefined)return s.players[p].mana.filter(x=>x.faceDown).length<f.g1040FaceDownManaBelow;
   if(f.g837NoManaAdded)return s.g837ManaAddedTurn?.[p]!==s.turn;
@@ -4256,7 +4257,7 @@ export function createSixPhotoRules(api){
   break;
  case'g34_DrawUpTo':if(t.n>0)choice(s,t,'あと'+t.n+'枚まで引けます。1枚引く？',[opt('1枚引く',true,t.g203Draw&&own.deck.length<=1&&creatures(s,t.p).some(y=>effective(y,s).shako)?1000:own.deck.length>1?10:-100),skip()]);break;
  case'g34_StartDraw729':{
-  if(!t.sources.length){api.draw(s,t.p,t.n,{turnDraw:true});break;}
+  if(!t.sources.length){api.draw(s,t.p,t.n,t.drawOptions??{turnDraw:true});break;}
   const c=card(t.source);
   if(c.g948StartDrawMax){
    const options=Array.from({length:c.g948StartDrawMax+1},(_,n)=>
@@ -4578,6 +4579,22 @@ export function createSixPhotoRules(api){
     for(const y of rows.filter(matchesTap))api.tap(s,p,y);
    }else for(const y of rows)if(matchesTap(y))api.tap(s,p,y);
   }
+  break;
+ }
+ case'g34_PlayersDiscard1178':{
+  const picks=t.picks??[];
+  if(picks.length===2){put(s,{...t,op:'g34_PlayersDiscardResult1178',index:0,n:0});break;}
+  const p=picks.length===0?s.active:1-s.active;
+  const hand=api.handProtected(s,{p,causedBy:t.p,source:t.source})?[]:s.players[p].hand;
+  if(!hand.length){put(s,{...t,picks:[...picks,{p,uid:null}]});break;}
+  choice(s,t,'捨てる自分の手札を1枚選ぶ',hand.map(x=>opt(card(x).name,x.uid,-cost(card(x)),x.cardId)),p);
+  break;
+ }
+ case'g34_PlayersDiscardResult1178':{
+  const n=t.n+Number(!!t.discarded),pick=t.picks[t.index];
+  if(pick){
+   api.discardSelected(s,pick.p,pick.uid?[pick.uid]:[],t.source,t.p,null,{...t,index:t.index+1,n});
+  }else if(n)put(s,{...t,op:'g34_DrawUpTo',n,g853EachDraw:true});
   break;
  }
  case'g34_Discard':{
@@ -5752,7 +5769,10 @@ export function createSixPhotoRules(api){
  }break;
  case'g34_StartDraw729':{
   const sources=t.sources.slice(1);
-  put(s,{...t,source:sources[0]||t.source,sources,n:t.n+Number(v||0)});
+  const keys=t.g1178Keys;
+  if(v&&keys)(s.once??={})[keys[0]]=s.turn;
+  put(s,{...t,source:sources[0]||t.source,sources,n:t.n==='∞'?t.n:t.n+Number(v||0),
+   ...(keys?{g1178Keys:keys.slice(1)}:{})});
   break;
  }
  case'g34_Draw':
@@ -5761,6 +5781,11 @@ export function createSixPhotoRules(api){
   else api.draw(s,t.p,v);
   break;
  case'g34_HandFollow584':{const x=s.players[discardOwner584(t)].hand.find(y=>y.uid===v);if(x)discardFollow584(s,t,x);break;}
+ case'g34_PlayersDiscard1178':{
+  const picks=t.picks??[],p=picks.length===0?s.active:1-s.active;
+  put(s,{...t,picks:[...picks,{p,uid:v}]});
+  break;
+ }
  case'g34_DiscardMatch517':{const y=own.hand.find(y=>y.uid===v);if(y)api.discardSelected(s,t.p,[y.uid],t.source,t.p,null,{op:'g34_DrawAfterDiscard517',p:t.p,source:t.source,matches:matches(s,t.p,y,t.filter)});else api.draw(s,t.p,1);break;}
  case'g34_MillTapped782':{
   if(!v)break;
