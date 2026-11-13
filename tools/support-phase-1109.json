@@ -1,0 +1,531 @@
+{
+  "phase": 1109,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7305,
+  "description": "超次元エクストラ・ホール、超次元の手ホワイト・ブラックホール、超次元キラーメガネ・ホールを対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/36096/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36097/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36476/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36508/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37743/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37744/",
+    "https://dm.takaratomy.co.jp/rule/qa/31783/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm37-042",
+      "name": "超次元エクストラ・ホール",
+      "faces": [
+        {
+          "name": "超次元エクストラ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "プレイヤーをひとり選び、その墓地からカードを２枚まで選ぶ。そのプレイヤーは選ばれたカードを自身の山札の一番上に置き、山札をシャッフルする。\n次のうちいずれかひとつを選ぶ。\nコスト２以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\nコスト４以下の光または水のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-042",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-042.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GravePick598",
+            "mode": "shuffle",
+            "n": 2,
+            "upTo": true,
+            "g1109RequiredShuffle": true
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "コスト2以下のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 2
+                    },
+                    "g1104PsychicFaces": true
+                  }
+                ]
+              },
+              {
+                "label": "コスト4以下の光または水のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 4,
+                      "any": [
+                        {
+                          "color": "光"
+                        },
+                        {
+                          "color": "水"
+                        }
+                      ]
+                    },
+                    "g1104PsychicFaces": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "9768847fc6bcbf7ce8f1656d3d5b13fd4eb7eb4f4b77b2405c1e9e71bc4e9320",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr03-049",
+      "name": "超次元の手ホワイト・ブラックホール",
+      "faces": [
+        {
+          "name": "超次元の手ホワイト・ブラックホール",
+          "typeText": "呪文",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nいずれかのシールドゾーンからシールドをひとつ選んで見る。その後、いずれかのシールドゾーンからシールドをひとつ選んで持ち主の墓地に置く。その持ち主は、自身の山札の上から１枚目を新しいシールドとしてシールドゾーンに加える。\nコスト５以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-049",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-049.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Peek585",
+            "who": "both",
+            "g962ShieldContents": true
+          },
+          {
+            "op": "ShieldGraveReplace1109"
+          },
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 5
+            },
+            "g1104PsychicFaces": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "6ee91c9866b19812f8eaa54c81329cd0d897c92210363987c217d47f2a64c54f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx07-013",
+      "name": "超次元キラーメガネ・ホール",
+      "faces": [
+        {
+          "name": "超次元キラーメガネ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "数字をひとつ選ぶ。その後、相手の手札を見る。その中にある、選んだ数字と同じコストを持つカード１枚につき、カードを１枚引いてもよい。\nコストの合計が７以下になるよう、水のサイキック・クリーチャーを２体まで選び、自分の超次元ゾーンからバトルゾーンに出す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx07-013",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx07-013.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DeclareHandCost1109"
+          },
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 2,
+            "filter": {
+              "g1085Psychic": true,
+              "color": "水"
+            },
+            "g1104PsychicFaces": true,
+            "optional": true,
+            "g550CostBudget": 7,
+            "title": "合計コスト7以下の水のサイキックを2体まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "75755cbd4f7db931c0666e9bc6f9e20a580be68e26244e019afebfeba519e72a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx03-034",
+      "name": "超次元エクストラ・ホール",
+      "faces": [
+        {
+          "name": "超次元エクストラ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "プレイヤーをひとり選び、その墓地からカードを２枚まで選ぶ。そのプレイヤーは選ばれたカードを自身の山札の一番上に置き、山札をシャッフルする。\n次のうちいずれかひとつを選ぶ。\n▼コスト２以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\n▼コスト４以下の光または水のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx03-034",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx03-034.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GravePick598",
+            "mode": "shuffle",
+            "n": 2,
+            "upTo": true,
+            "g1109RequiredShuffle": true
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "コスト2以下のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 2
+                    },
+                    "g1104PsychicFaces": true
+                  }
+                ]
+              },
+              {
+                "label": "コスト4以下の光または水のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 4,
+                      "any": [
+                        {
+                          "color": "光"
+                        },
+                        {
+                          "color": "水"
+                        }
+                      ]
+                    },
+                    "g1104PsychicFaces": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "d41bfb177b6fa958ca98bf2177a67468c60bf10c7a8fdb196488c8a678be49be",
+        "facesMatched": true
+      },
+      "canonicalId": "dm37-042"
+    },
+    {
+      "id": "dmex08-299",
+      "name": "超次元エクストラ・ホール",
+      "faces": [
+        {
+          "name": "超次元エクストラ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "プレイヤーを一人選び、その墓地からカードを２枚まで選ぶ。そのプレイヤーは選ばれたカードを自身の山札の一番上に置き、山札をシャッフルする。\n次のうちいずれか１つを選ぶ。\n▼コスト２以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\n▼コスト４以下の光または水のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\n（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-299",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-299.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GravePick598",
+            "mode": "shuffle",
+            "n": 2,
+            "upTo": true,
+            "g1109RequiredShuffle": true
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "コスト2以下のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 2
+                    },
+                    "g1104PsychicFaces": true
+                  }
+                ]
+              },
+              {
+                "label": "コスト4以下の光または水のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 4,
+                      "any": [
+                        {
+                          "color": "光"
+                        },
+                        {
+                          "color": "水"
+                        }
+                      ]
+                    },
+                    "g1104PsychicFaces": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "53434d25c1e469940c56bbad431c9daf676cabb4275dea26eb2ad3797d0668de",
+        "facesMatched": true
+      },
+      "canonicalId": "dm37-042"
+    },
+    {
+      "id": "dmex17-116",
+      "name": "超次元エクストラ・ホール",
+      "faces": [
+        {
+          "name": "超次元エクストラ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "いずれかのプレイヤーの墓地からカードを２枚まで選ぶ。そのプレイヤーはそのカードを自身の山札に加えてシャッフルする。\n次のうちいずれか１つを選ぶ。\n▼コスト２以下のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。\n▼コスト４以下の光または水のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。\n（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-116",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-116.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GravePick598",
+            "mode": "shuffle",
+            "n": 2,
+            "upTo": true,
+            "g1109RequiredShuffle": true
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "コスト2以下のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 2
+                    },
+                    "g1104PsychicFaces": true
+                  }
+                ]
+              },
+              {
+                "label": "コスト4以下の光または水のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 4,
+                      "any": [
+                        {
+                          "color": "光"
+                        },
+                        {
+                          "color": "水"
+                        }
+                      ]
+                    },
+                    "g1104PsychicFaces": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "af440a79fe00d98c4001a967c2e7f71b198c5efbb22793332f7768d61cea1a42",
+        "facesMatched": true
+      },
+      "canonicalId": "dm37-042"
+    },
+    {
+      "id": "dmex08-282",
+      "name": "超次元キラーメガネ・ホール",
+      "faces": [
+        {
+          "name": "超次元キラーメガネ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "数字を１つ選ぶ。その後、相手の手札を見る。その中にある、選んだ数字と同じコストを持つカード１枚につき、カードを１枚引いてもよい。\nコストの合計が７以下になるよう、水のサイキック・クリーチャーを２体まで選び、自分の超次元ゾーンからバトルゾーンに出す。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-282",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-282.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DeclareHandCost1109"
+          },
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 2,
+            "filter": {
+              "g1085Psychic": true,
+              "color": "水"
+            },
+            "g1104PsychicFaces": true,
+            "optional": true,
+            "g550CostBudget": 7,
+            "title": "合計コスト7以下の水のサイキックを2体まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "75b2f1cd1300d92f86f5d7c1907835472540658aeed1fbee89edacfb0095ebc4",
+        "facesMatched": true
+      },
+      "canonicalId": "dmx07-013"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm37-042": 4,
+      "dmx03-034": 4,
+      "dmex08-299": 4,
+      "dmex17-116": 4,
+      "dmr03-049": 4,
+      "dmx07-013": 4,
+      "dmex08-282": 4
+    }
+  }
+}

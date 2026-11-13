@@ -6176,6 +6176,36 @@ export function standardCardSpec(d,{phase=165}={}){
   const deploy=(filter,settings={})=>({op:'Select',origin:'extra',deploy:true,n:1,filter:{g1085Psychic:true,...filter},...settings});
   const modes=(first,second)=>({op:'Choose',g184Modes:true,modes:[first,second]});
   const solo=(color,settings)=>({label:'コスト7以下の'+color+'のサイキックを1体出す',defs:[deploy({max:7,color},settings)]});
+  if(phase>=1109){
+   const printed=text.replace(/^マナゾーンに置く時このカードはタップして置く。/,'')
+    .replaceAll('バトルゾーンに出す。','出す。')
+    .replace('いずれか1つ','いずれかひとつ')
+    .replace('プレイヤーを一人','プレイヤーをひとり');
+   const deployFace=(filter,settings={})=>deploy(filter,{g1104PsychicFaces:true,...settings});
+   const extraGrave='プレイヤーをひとり選びその墓地からカードを2枚まで選ぶ。そのプレイヤーは選ばれたカードを自身の山札の一番上に置き山札をシャッフルする。';
+   const extraPrinted=printed.replace(
+    'いずれかのプレイヤーの墓地からカードを2枚まで選ぶ。そのプレイヤーはそのカードを自身の山札に加えてシャッフルする。',extraGrave);
+   if(['dm37-042','dmx03-034','dmex08-299','dmex17-116'].includes(d.id)&&
+    extraPrinted===extraGrave+choose+
+     'コスト2以下のサイキック・クリーチャーを1体自分の超次元ゾーンから出す。コスト4以下の光または水のサイキック・クリーチャーを1体自分の超次元ゾーンから出す。')
+    return {effect:'sixPhoto',g34Tasks:[
+     {op:'GravePick598',mode:'shuffle',n:2,upTo:true,g1109RequiredShuffle:true},
+     modes({label:'コスト2以下のサイキックを1体出す',defs:[deployFace({max:2})]},
+      {label:'コスト4以下の光または水のサイキックを1体出す',defs:[deployFace({max:4,any:[{color:'光'},{color:'水'}]})]})
+    ]};
+   if(d.id==='dmr03-049'&&printed==='いずれかのシールドゾーンからシールドをひとつ選んで見る。その後いずれかのシールドゾーンからシールドをひとつ選んで持ち主の墓地に置く。その持ち主は自身の山札の上から1枚目を新しいシールドとしてシールドゾーンに加える。コスト5以下のサイキック・クリーチャーを1体自分の超次元ゾーンから出す。')
+    return {effect:'sixPhoto',g34Tasks:[
+     {op:'Peek585',who:'both',g962ShieldContents:true},
+     {op:'ShieldGraveReplace1109'},
+     deployFace({max:5})
+    ]};
+   if(['dmx07-013','dmex08-282'].includes(d.id)&&
+    printed.replace('数字を1つ','数字をひとつ')==='数字をひとつ選ぶ。その後相手の手札を見る。その中にある選んだ数字と同じコストを持つカード1枚につきカードを1枚引いてもよい。コストの合計が7以下になるよう水のサイキック・クリーチャーを2体まで選び自分の超次元ゾーンから出す。')
+    return {effect:'sixPhoto',g34Tasks:[
+     {op:'DeclareHandCost1109'},
+     deployFace({color:'水'},{n:2,optional:true,g550CostBudget:7,title:'合計コスト7以下の水のサイキックを2体まで選ぶ'})
+    ]};
+  }
   if(phase>=1108){
    const printed=text.replace(/^マナゾーンに置く時このカードはタップして置く。/,'');
    const ending='サイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。';

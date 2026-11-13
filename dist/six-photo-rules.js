@@ -1349,7 +1349,8 @@ export function createSixPhotoRules(api){
   const moved=api.canMoveZone(s,owner,'grave')?selected.map(uid=>remove(grave,uid)):[];
   for(const x of moved)clear(x,'deck');
   if(t.mode==='shuffle'){
-   if(t.upTo?moved.length:selected.length)api.shuffleLibrary(s,owner,moved,t.source);
+   // QA 36097 requires the shuffle even when the selected player returns nothing.
+   if(t.g1109RequiredShuffle||(t.upTo?moved.length:selected.length))api.shuffleLibrary(s,owner,moved,t.source);
    return;
   }
   if(t.mode==='shuffleBottom'){
@@ -2193,6 +2194,23 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_Roulette732':put(s,task('g9Number',t.p,t.source,{family:'roulette732'}));break;
+ case'g34_DeclareHandCost1109':
+  put(s,task('g9Number',t.p,t.source,{family:'handCost1109'}));
+  break;
+ case'g34_InspectHandCost1109':{
+  if(!opp.hand.length)break;
+  const number=t.number==='∞'?Infinity:t.number;
+  const seen=opp.hand.map(x=>{
+   const matching=faces(card(x)).some(face=>cost(face)===number);
+   return {id:x.cardId,label:matching?'宣言したコストと一致':'宣言したコストと不一致',matching};
+  });
+  const count=seen.filter(row=>row.matching).length;
+  api.log(s,t.p,'look',card(t.source).name+'で相手の手札を確認（内容は非公開）',{cardId:t.source});
+  choice(s,{...t,count,g585Peek:seen.map(({id,label})=>({id,label}))},'相手の手札を確認',[
+   opt('確認を終える',true,0)
+  ]);
+  break;
+ }
  case'g34_RouletteReveal732':{
   const who=t.opponent?1-t.p:t.p,hand=s.players[who].hand;
   api.log(s,who,'reveal','手札を公開：'+(hand.map(y=>card(y).name).join('・')||'なし'),{cardId:t.source});
@@ -3051,6 +3069,13 @@ export function createSixPhotoRules(api){
    score:owner===t.p?1:10
   })));
   if(options.length)choice(s,t,'山札に戻すシールドを1つ選ぶ',options);
+  break;
+ }
+ case'g34_ShieldGraveReplace1109':{
+  const options=[t.p,1-t.p].flatMap(owner=>ownShieldGraveOptions(s,owner).map(o=>({
+   ...o,label:(owner===t.p?'自分の':'相手の')+o.label,value:{owner,uid:o.value},score:owner===t.p?0:10
+  })));
+  choice(s,t,'墓地に置くシールドを1つ選ぶ',options);
   break;
  }
  case'g34_ShieldMana557':if(opp.shields.length)choice(s,t,'マナに置く相手のシールドを1つ選ぶ',opp.shields.map((x,i)=>opt('シールド'+(i+1),x.uid,10)));break;
@@ -4008,13 +4033,14 @@ export function createSixPhotoRules(api){
  case'g34_ElementOrMana796':choice(s,t,'山札の下に置くエレメントかマナのカードを選ぶ',elementOrManaOptions796(s,t));break;
  case'g34_GravePick598':{
   if(t.owner===undefined){
-   const options=[t.p,1-t.p].filter(p=>s.players[p].grave.length&&(!t.upTo||api.canMoveZone(s,p,'grave')))
+   const options=[t.p,1-t.p].filter(p=>t.g1109RequiredShuffle||s.players[p].grave.length&&(!t.upTo||api.canMoveZone(s,p,'grave')))
     .map(p=>opt(p===t.p?'自分の墓地':'相手の墓地',p,gravePickPlayerScore598(s,t,p)));
-   if(options.length)choice(s,t,'山札に戻すカードを選ぶ墓地',t.mode==='destroy'?options:[...options,skip()]);
+   if(options.length)choice(s,t,'山札に戻すカードを選ぶ墓地',t.mode==='destroy'||t.g1109RequiredShuffle?options:[...options,skip()]);
    else if(t.mode==='destroy')finishGravePick598(s,{...t,selected:[]});
    break;
   }
-  const rows=s.players[t.owner].grave.filter(x=>!t.selected.includes(x.uid));
+  const rows=t.g1109RequiredShuffle&&!api.canMoveZone(s,t.owner,'grave')?[]:
+   s.players[t.owner].grave.filter(x=>!t.selected.includes(x.uid));
   if(!rows.length||t.n!==undefined&&t.selected.length>=t.n){finishGravePick598(s,t);break;}
   const options=rows.map(x=>opt(card(x).name,x.uid,10+(t.owner===t.p?-1:1)*Math.min(9,cost(card(x))),x.cardId));
   if(t.upTo)options.push(opt('選んだ'+t.selected.length+'枚で進む',null,0));
@@ -4174,6 +4200,12 @@ export function createSixPhotoRules(api){
   api.shuffleLibrary(s,owner,added,t.source);
   api.log(s,t.p,'shieldShuffle',card(t.source).name+'：シールド1つを持ち主の山札に戻した',{cardId:t.source});
   start(s,t,[{op:'Schedule537',when:'turnEnd',defs:[{op:'ShieldTop',p:owner,n:1}]}]);
+  break;
+ }
+ case'g34_ShieldGraveReplace1109':{
+  const {owner,uid}=v;
+  const moved=api.moveShield(s,owner,uid,'grave');
+  if(moved.length)start(s,t,[{op:'ShieldTop',p:owner,n:1}]);
   break;
  }
  case'g34_TappedShieldPick842':
@@ -4615,6 +4647,9 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_VegasCost851':if(v==='∞'||v>=5)start(s,t,[{op:'Draw',n:3}]);break;
+ case'g34_InspectHandCost1109':
+  if(t.count)start(s,t,[{op:'DrawUpTo',n:t.count,g203Draw:true,g853EachDraw:true}]);
+  break;
  case'g34_InspectHand':
   if(t.g904ToShield){
    const owner=1-t.p;

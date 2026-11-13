@@ -24,6 +24,11 @@ export function createMagicRules(api){
  }return true;}
  function chosen(s,t,value){if(!t.op.startsWith('g9'))return false;const own=s.players[t.p];switch(t.op){
   case'g9Number':{
+   if(t.family==='handCost1109'){
+    api.log(s,t.p,'declare',String(value)+'を宣言',{cardId:t.source});
+    put(s,task('g34_InspectHandCost1109',t.p,t.source,{number:value}));
+    break;
+   }
    if(t.family==='roulette732'){
     api.log(s,t.p,'declare',String(value)+'を宣言',{cardId:t.source});
     put(s,task('g34_RouletteReveal732',t.p,t.source,{number:value}));
