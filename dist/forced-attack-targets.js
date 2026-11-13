@@ -21,11 +21,27 @@ export function forceAttackTargets(s,p,actions,api){
  // Defender instructions constrain a declared attack without forcing an attack this turn.
  const defendPlayer=s.players[1-p].battle.some(x=>!x.sealed&&api.effective(x,s).g896AttackPlayer);
  const players=new Set([...requiredPlayers,...(defendPlayer?actions.filter(a=>a.kind==='attack'&&a.target==='player').map(a=>a.uid):[])]);
+ const powerLimits=new Map(s.players[p].battle.flatMap(x=>{
+  if(x.sealed||!api.card(x).g1157AttackMaxPower)return [];
+  const limit=api.effective(x,s).g1157AttackMaxPower;
+  return limit===undefined?[]:[[x.uid,limit]];
+ }));
+ const scores=new Map(),best=new Map();
+ for(const a of actions){
+  if(a.kind!=='attack'||!powerLimits.has(a.uid))continue;
+  const target=s.players[1-p].battle.find(x=>x.uid===a.target);
+  const score=Number(!!target&&api.power(target,false,s)<=powerLimits.get(a.uid))+
+   Number(a.target==='player'&&players.has(a.uid))+
+   Number(targets.has(a.target))+Number(creatureOnlyTargets.has(a.target));
+  scores.set(a,score);
+  best.set(a.uid,Math.max(best.get(a.uid)??0,score));
+ }
  return actions.filter(a=>{
   if(a.kind==='endTurn')return !requiredPlayers.size&&!requiredAttackers.size;
   if(a.kind==='tapAbility')return !requiredAttackers.has(a.uid)&&
    (!a.requiresUnforcedAttack||!attackers.has(a.uid)&&!players.has(a.uid));
   if(a.kind!=='attack')return true;
+  if(scores.has(a))return scores.get(a)===best.get(a.uid);
   if(a.target==='player')return !attackers.has(a.uid)||players.has(a.uid);
   const forced=attackers.has(a.uid)||creatureAttackers.has(a.uid);
   return forced?(targets.has(a.target)||creatureOnlyTargets.has(a.target)):!players.has(a.uid);

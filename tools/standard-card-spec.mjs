@@ -6184,6 +6184,15 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1157&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmrp08-058'&&text==='このクリーチャーが攻撃する時可能ならパワー2222以下のクリーチャーを攻撃する。')
+   return {g1157AttackMaxPower:2222};
+  if(d.id==='dmr20-050'&&text==='このクリーチャーが破壊される時かわりに《宇宙トーパス》を1体自分の手札からバトルゾーンに出してもよい。')
+   return {g1157HandSave:'宇宙 トーパス'};
+  if(['dm25-028','promoy6-018'].includes(d.id)&&text==='多色カードをタップして自分のマナゾーンに置く時かわりにアンタップして置く。')
+   return {g1157UntappedMulticolor:true};
+ }
  if(phase>=1156&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const attack='このクリーチャーが攻撃する時自分の封印を';
