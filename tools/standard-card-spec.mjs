@@ -6160,6 +6160,34 @@ export function standardCardSpec(d,{phase=165}={}){
    'このクリーチャーが攻撃する時バトルゾーンにあるクロスギアを1枚選び持ち主の墓地に置く。クロスギアがバトルゾーンから墓地に置かれた時カードを1枚引いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
    return {breaker:2,g34Attack:[{op:'Target',element:true,anyOwner:true,filter:{g201Gear:true},to:'grave',title:'墓地に置くクロスギアを1枚選ぶ'}],g933GearGraveDraw:true};
  }
+ if(phase>=1095&&d?.status==='complete'){
+  const reminder='(ゲーム開始時サイキック・クリーチャーは山札には含めず自分の超次元ゾーンに置きバトルゾーン以外のゾーンに行った場合そこに戻す)';
+  const text=normalize(f.abilityText);
+  if(d.id==='dm38-046'&&d.faces.length===1&&f.typeText==='クリーチャー'&&text===
+   'スレイヤー(このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)このクリーチャーが破壊された時コスト5以下の光または闇のサイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。'+reminder)
+   return {slayer:true,g172Death:[{op:'Select',origin:'extra',deploy:true,n:1,
+    filter:{g1085Psychic:true,max:5,any:[{color:'光'},{color:'闇'}]},
+    title:'超次元ゾーンからコスト5以下の光または闇のサイキックを1体出す'
+   }]};
+  if(['dmx05-s05','promoy13-023','dmx22a-004'].includes(d.id)&&d.faces.length===1&&f.typeText==='クリーチャー'&&[
+   'スピードアタッカー(このクリーチャーは召喚酔いしない)パワーアタッカー+5000(攻撃中このクリーチャーのパワーは+5000される)T・ブレイカー(このクリーチャーはシールドを3枚ブレイクする)誰もサイキック・クリーチャーをバトルゾーンに出すことはできない。',
+   'スピードアタッカーパワーアタッカー+5000T・ブレイカー誰もサイキック・クリーチャーをバトルゾーンに出せない。'
+  ].includes(text))return {speedAttacker:true,attackBonus:5000,breaker:3,g1095PsychicEntryLock:true};
+  if(['dm37-021','dmx03-014','dmex17-076','dmpcd03-a05'].includes(d.id)&&d.faces.length===2&&
+   d.faces.every(face=>face.typeText==='サイキック・クリーチャー')){
+   const back=d.faces[1],protect='バトルゾーンにある自分のクリーチャーを相手が選ぶ時このクリーチャーを選ぶことはできない。';
+   const awakening='覚醒-各ターンの終わりに自分の他のサイキック・クリーチャーがそのターン覚醒されていた場合このクリーチャーをコストの大きいほうに裏返す。';
+   const frontText=text.replace('自分のクリーチャーを相手が選ぶ時このクリーチャーは選べない。',protect)
+    .replace('覚醒:各ターンの終わりに自分の他のサイキック・クリーチャーがそのターン覚醒していたらこのクリーチャーをコストの大きいほうに裏返す。',awakening);
+   const backText=normalize(back.abilityText).replace(/^このクリーチャーはブロックされない。自分のクリーチャーを相手が選ぶ時このクリーチャー(?:を選ぶことはできない|は選べない)。/,'このクリーチャーはブロックされない。'+protect);
+   if(frontText===protect+'(ただしこのクリーチャーを攻撃またはブロックしてもよい)'+awakening+reminder&&
+    backText==='このクリーチャーはブロックされない。'+protect+'(ただしこのクリーチャーを攻撃してもよい)')
+    return {psychic:true,manaValue:0,untargetable:true,g474AnyEnd:[{op:'Awaken1095'}],
+     g1085Back:{name:back.name,cost:back.cost,power:Number(back.powerText),race:back.race,
+      civ:back.civilizationText,civilizations:back.civilizations,image:'https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-021b.jpg',
+      unblockable:true,g474AnyEnd:null}};
+  }
+ }
  if(phase>=1094&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmr03-024'&&text===

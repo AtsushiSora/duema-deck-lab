@@ -216858,15 +216858,137 @@
       ],
       "supportBatch": "phase-1094",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm38-046",
+      "name": "次元院のシュバル・フルート",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "ガーゴイル",
+      "text": "スレイヤー(このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する)\nこのクリーチャーが破壊された時、コスト５以下の光または闇のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-046",
+      "limit": 4,
+      "slayer": true,
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 5,
+            "any": [
+              {
+                "color": "光"
+              },
+              {
+                "color": "闇"
+              }
+            ]
+          },
+          "title": "超次元ゾーンからコスト5以下の光または闇のサイキックを1体出す"
+        }
+      ],
+      "supportBatch": "phase-1095",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm37-021",
+      "name": "時空の英雄アンタッチャブル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "キカイヒーロー",
+      "text": "バトルゾーンにある自分のクリーチャーを相手が選ぶ時、このクリーチャーを選ぶことはできない。(ただし、このクリーチャーを攻撃またはブロックしてもよい)\n覚醒-各ターンの終わりに、自分の他のサイキック・クリーチャーがそのターン覚醒されていた場合、このクリーチャーをコストの大きいほうに裏返す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)\n【呪文面】\nこのクリーチャーはブロックされない。\nバトルゾーンにある自分のクリーチャーを相手が選ぶ時、このクリーチャーを選ぶことはできない。(ただし、このクリーチャーを攻撃してもよい)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-021",
+      "limit": 4,
+      "psychic": true,
+      "untargetable": true,
+      "g474AnyEnd": [
+        {
+          "op": "Awaken1095"
+        }
+      ],
+      "g1085Back": {
+        "name": "変幻の覚醒者アンタッチャブル・パワード",
+        "cost": 7,
+        "power": 5000,
+        "race": "サイバー・コマンド",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-021b.jpg",
+        "unblockable": true,
+        "g474AnyEnd": null
+      },
+      "supportBatch": "phase-1095",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx05-s05",
+      "name": "ボルシャック・ギルクロス・NEX",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 9000,
+      "race": "アーマード・ドラゴン/エイリアン",
+      "text": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nパワーアタッカー+5000(攻撃中、このクリーチャーのパワーは+5000される)\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)\n誰もサイキック・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx05-s05",
+      "limit": 4,
+      "speedAttacker": true,
+      "attackBonus": 5000,
+      "breaker": 3,
+      "g1095PsychicEntryLock": true,
+      "supportBatch": "phase-1095",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy13-023",
+      "name": "熱血龍 ボルシャック・クロス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 9000,
+      "race": "ガイアール・コマンド・ドラゴン",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nパワーアタッカー+5000（攻撃中、このクリーチャーのパワーは+5000される）\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）\n誰もサイキック・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-023",
+      "limit": 4,
+      "speedAttacker": true,
+      "attackBonus": 5000,
+      "breaker": 3,
+      "g1095PsychicEntryLock": true,
+      "supportBatch": "phase-1095",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1094,
+    "phase": 1095,
     "checkedAt": "2026-11-13",
-    "baseCount": 7249,
-    "newEffectCards": 3,
+    "baseCount": 7252,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7252,
+    "totalCount": 7256,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -236283,6 +236405,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7249,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1094,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7249,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7252,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

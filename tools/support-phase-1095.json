@@ -1,0 +1,448 @@
+{
+  "phase": 1095,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7252,
+  "description": "破壊時の超次元展開、ターン終了時の覚醒、双方のサイキック登場制限を持つ4種類を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/36374/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36414/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37748/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm38-046",
+      "name": "次元院のシュバル・フルート",
+      "faces": [
+        {
+          "name": "次元院のシュバル・フルート",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スレイヤー(このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する)\nこのクリーチャーが破壊された時、コスト５以下の光または闇のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "ガーゴイル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-046",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-046.jpg",
+      "spec": {
+        "slayer": true,
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 5,
+              "any": [
+                {
+                  "color": "光"
+                },
+                {
+                  "color": "闇"
+                }
+              ]
+            },
+            "title": "超次元ゾーンからコスト5以下の光または闇のサイキックを1体出す"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "b42f7d0893789e8efde212f100626f66c9f7aa7ef4ac83b0c92d2cc4af1aebb8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm37-021",
+      "name": "時空の英雄アンタッチャブル",
+      "faces": [
+        {
+          "name": "時空の英雄アンタッチャブル",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "バトルゾーンにある自分のクリーチャーを相手が選ぶ時、このクリーチャーを選ぶことはできない。(ただし、このクリーチャーを攻撃またはブロックしてもよい)\n覚醒-各ターンの終わりに、自分の他のサイキック・クリーチャーがそのターン覚醒されていた場合、このクリーチャーをコストの大きいほうに裏返す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "キカイヒーロー",
+          "powerText": "1000",
+          "missingFields": []
+        },
+        {
+          "name": "変幻の覚醒者アンタッチャブル・パワード",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーはブロックされない。\nバトルゾーンにある自分のクリーチャーを相手が選ぶ時、このクリーチャーを選ぶことはできない。(ただし、このクリーチャーを攻撃してもよい)",
+          "race": "サイバー・コマンド",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-021",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-021a.jpg",
+      "imageBack": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-021b.jpg",
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "untargetable": true,
+        "g474AnyEnd": [
+          {
+            "op": "Awaken1095"
+          }
+        ],
+        "g1085Back": {
+          "name": "変幻の覚醒者アンタッチャブル・パワード",
+          "cost": 7,
+          "power": 5000,
+          "race": "サイバー・コマンド",
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-021b.jpg",
+          "unblockable": true,
+          "g474AnyEnd": null
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "aed78500bba239b27855408ac30547b658421c618255c27e81b6e38b41d738dc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx05-s05",
+      "name": "ボルシャック・ギルクロス・NEX",
+      "faces": [
+        {
+          "name": "ボルシャック・ギルクロス・NEX",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nパワーアタッカー+5000(攻撃中、このクリーチャーのパワーは+5000される)\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)\n誰もサイキック・クリーチャーをバトルゾーンに出すことはできない。",
+          "race": "アーマード・ドラゴン/エイリアン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx05-s05",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx05-s05.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "attackBonus": 5000,
+        "breaker": 3,
+        "g1095PsychicEntryLock": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "966f23457a82e8f8bb2fcbbd650f6abb0c0b8b0069436fd07a8040b49d753ddd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy13-023",
+      "name": "熱血龍 ボルシャック・クロス",
+      "faces": [
+        {
+          "name": "熱血龍 ボルシャック・クロス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nパワーアタッカー+5000（攻撃中、このクリーチャーのパワーは+5000される）\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）\n誰もサイキック・クリーチャーをバトルゾーンに出すことはできない。",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-023",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy13-023.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "attackBonus": 5000,
+        "breaker": 3,
+        "g1095PsychicEntryLock": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "eb3de5ab1a4bc455280d1d006c50a5fc21631b9dcf13503ba746237171d40b87",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx03-014",
+      "name": "時空の英雄アンタッチャブル",
+      "faces": [
+        {
+          "name": "時空の英雄アンタッチャブル",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "バトルゾーンにある自分のクリーチャーを相手が選ぶ時、このクリーチャーを選ぶことはできない。(ただし、このクリーチャーを攻撃またはブロックしてもよい)\n覚醒 - 各ターンの終わりに、自分の他のサイキック・クリーチャーがそのターン覚醒されていた場合、このクリーチャーをコストの大きいほうに裏返す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "キカイヒーロー",
+          "powerText": "1000",
+          "missingFields": []
+        },
+        {
+          "name": "変幻の覚醒者アンタッチャブル・パワード",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーはブロックされない。\nバトルゾーンにある自分のクリーチャーを相手が選ぶ時、このクリーチャーを選ぶことはできない。(ただし、このクリーチャーを攻撃してもよい)",
+          "race": "サイバー・コマンド",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx03-014",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx03-014a.jpg",
+      "imageBack": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx03-014b.jpg",
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "untargetable": true,
+        "g474AnyEnd": [
+          {
+            "op": "Awaken1095"
+          }
+        ],
+        "g1085Back": {
+          "name": "変幻の覚醒者アンタッチャブル・パワード",
+          "cost": 7,
+          "power": 5000,
+          "race": "サイバー・コマンド",
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-021b.jpg",
+          "unblockable": true,
+          "g474AnyEnd": null
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "51a381c28f6a66b5ab705ca332cc1ee10be61991ce1fc14b59df98a574b45411",
+        "facesMatched": true
+      },
+      "canonicalId": "dm37-021"
+    },
+    {
+      "id": "dmex17-076",
+      "name": "時空の英雄アンタッチャブル",
+      "faces": [
+        {
+          "name": "時空の英雄アンタッチャブル",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のクリーチャーを相手が選ぶ時、このクリーチャーは選べない。（ただし、このクリーチャーを攻撃またはブロックしてもよい）\n覚醒 ：各ターンの終わりに、自分の他のサイキック・クリーチャーがそのターン覚醒していたら、このクリーチャーをコストの大きいほうに裏返す。\n（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "キカイヒーロー",
+          "powerText": "1000",
+          "missingFields": []
+        },
+        {
+          "name": "変幻の覚醒者アンタッチャブル・パワード",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーはブロックされない。\n自分のクリーチャーを相手が選ぶ時、このクリーチャーを選ぶことはできない。（ただし、このクリーチャーを攻撃してもよい）",
+          "race": "サイバー・コマンド",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-076",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-076a.jpg",
+      "imageBack": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-076b.jpg",
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "untargetable": true,
+        "g474AnyEnd": [
+          {
+            "op": "Awaken1095"
+          }
+        ],
+        "g1085Back": {
+          "name": "変幻の覚醒者アンタッチャブル・パワード",
+          "cost": 7,
+          "power": 5000,
+          "race": "サイバー・コマンド",
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-021b.jpg",
+          "unblockable": true,
+          "g474AnyEnd": null
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "9182683c58e2456e322afd1a4c6eea69b28aac689f895ab6c8a8eb868b7db9d9",
+        "facesMatched": true
+      },
+      "canonicalId": "dm37-021"
+    },
+    {
+      "id": "dmpcd03-a05",
+      "name": "時空の英雄アンタッチャブル",
+      "faces": [
+        {
+          "name": "時空の英雄アンタッチャブル",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のクリーチャーを相手が選ぶ時、このクリーチャーは選べない。（ただし、このクリーチャーを攻撃またはブロックしてもよい）\n覚醒 ：各ターンの終わりに、自分の他のサイキック・クリーチャーがそのターン覚醒していたら、このクリーチャーをコストの大きいほうに裏返す。\n（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "キカイヒーロー",
+          "powerText": "1000",
+          "missingFields": []
+        },
+        {
+          "name": "変幻の覚醒者アンタッチャブル・パワード",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーはブロックされない。\n自分のクリーチャーを相手が選ぶ時、このクリーチャーは選べない。（ただし、このクリーチャーを攻撃してもよい）",
+          "race": "サイバー・コマンド",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd03-a05",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmpcd03-a05a.jpg",
+      "imageBack": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmpcd03-a05b.jpg",
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "untargetable": true,
+        "g474AnyEnd": [
+          {
+            "op": "Awaken1095"
+          }
+        ],
+        "g1085Back": {
+          "name": "変幻の覚醒者アンタッチャブル・パワード",
+          "cost": 7,
+          "power": 5000,
+          "race": "サイバー・コマンド",
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-021b.jpg",
+          "unblockable": true,
+          "g474AnyEnd": null
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "e9c77dabca0bbfbb8f6c4a59daeb5cf4820234910786da3273cac8ff14d71b02",
+        "facesMatched": true
+      },
+      "canonicalId": "dm37-021"
+    },
+    {
+      "id": "dmx22a-004",
+      "name": "熱血龍 ボルシャック・クロス",
+      "faces": [
+        {
+          "name": "熱血龍 ボルシャック・クロス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "スピードアタッカー\nパワーアタッカー+5000\nT・ブレイカー\n誰もサイキック・クリーチャーをバトルゾーンに出せない。",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22a-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx22a-004.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "attackBonus": 5000,
+        "breaker": 3,
+        "g1095PsychicEntryLock": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "cf43d8deca83398e2382bedb78d22bfb25cffc4c7d3d99a2e6238b353e8c8dab",
+        "facesMatched": true
+      },
+      "canonicalId": "promoy13-023"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm38-046": 4,
+      "dm37-021": 4,
+      "dmx05-s05": 4,
+      "promoy13-023": 4,
+      "dmx03-014": 4,
+      "dmex17-076": 4,
+      "dmpcd03-a05": 4,
+      "dmx22a-004": 4
+    }
+  }
+}

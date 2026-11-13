@@ -2723,6 +2723,20 @@ export function createSixPhotoRules(api){
  }
  case'g34_ResolveDelay537':if(t.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:t.spellCost,spellSource:t.source}))start(s,t,t.defs);break;
  case'g34_Sequence':start(s,t,t.defs);break;
+ case'g34_Awaken1095':{
+  const x=own.battle.find(y=>y.uid===t.uid&&(y.incarnation||0)===t.incarnation&&!y.sealed);
+  if(!x||x.g1085Awakened)break;
+  // The other Psychic may already have left the battle zone.
+  for(let i=s.log.length-1;i>=0&&s.log[i].turn===s.turn;i--){
+   const event=s.log[i];
+   if(event.type==='awaken'&&event.player===t.p&&event.uid!==x.uid){
+    api.awakenPsychic(s,t.p,x);
+    break;
+   }
+  }
+  break;
+ }
+
  case'g34_Magibomber321':{const ids=look(s,{...t,n:1}),rows=[...own.hand.map(y=>({y,origin:'hand'})),...own.deck.filter(y=>ids.includes(y.uid)).map(y=>({y,origin:'deck'}))].filter(({y,origin})=>card(y).type==='creature'&&cost(card(y))<=t.n&&canPut(s,t.p,y,origin));choice(s,{...t,ids},'マジボンバー：手札または山札の上から1体出す？',[...rows.map(({y,origin})=>opt((origin==='hand'?'手札：':'山札：')+card(y).name,{uid:y.uid,origin},own.deck.length<=1&&(origin==='deck'||card(y).exLife)?-1000:20+cost(card(y)),y.cardId)),skip()]);break;}
  case'g34_EntryFight624':{
   const pair=entryFight624(s,t);

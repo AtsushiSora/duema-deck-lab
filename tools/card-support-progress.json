@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-13",
   "catalogueNames": 11827,
-  "supportedNames": 7252,
-  "pendingNames": 4575,
-  "phase": 1094,
-  "added": 3,
+  "supportedNames": 7256,
+  "pendingNames": 4571,
+  "phase": 1095,
+  "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -118,7 +118,7 @@
     },
     {
       "ability": "覚醒",
-      "pendingNames": 108,
+      "pendingNames": 107,
       "examples": [
         {
           "id": "dmx07-v01",
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2659,
+    "クリーチャー": 2656,
     "NEOクリーチャー": 87,
     "呪文": 598,
     "GRクリーチャー": 159,
@@ -177,7 +177,7 @@
     "クロスギア": 62,
     "進化クリーチャー(進化GV)": 13,
     "土地": 1,
-    "サイキック・クリーチャー": 130,
+    "サイキック・クリーチャー": 129,
     "進化クロスギア": 6,
     "進化クリーチャー(手札進化)": 2,
     "ドラグハート・タマシード": 1,
@@ -225,8 +225,8 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 1202,
-    "未対応の能力文": 3152,
+    "複数面・特殊カードタイプまたは情報不足": 1201,
+    "未対応の能力文": 3149,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 21,
     "未対応のシンカパワー": 2,
@@ -210441,47 +210441,194 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1095,
+      "baseCommit": "f60abf26",
+      "scope": "破壊時の超次元展開、ターン終了時の覚醒、双方のサイキック登場制限を持つ4種類を対戦対応する。",
+      "cards": [
+        {
+          "id": "dm38-046",
+          "name": "次元院のシュバル・フルート",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-046"
+        },
+        {
+          "id": "dm37-021",
+          "name": "時空の英雄アンタッチャブル",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-021"
+        },
+        {
+          "id": "dmx05-s05",
+          "name": "ボルシャック・ギルクロス・NEX",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx05-s05"
+        },
+        {
+          "id": "promoy13-023",
+          "name": "熱血龍 ボルシャック・クロス",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-023"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dmx03-014",
+          "canonicalId": "dm37-021",
+          "name": "時空の英雄アンタッチャブル",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx03-014"
+        },
+        {
+          "id": "dmex17-076",
+          "canonicalId": "dm37-021",
+          "name": "時空の英雄アンタッチャブル",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-076"
+        },
+        {
+          "id": "dmpcd03-a05",
+          "canonicalId": "dm37-021",
+          "name": "時空の英雄アンタッチャブル",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd03-a05"
+        },
+        {
+          "id": "dmx22a-004",
+          "canonicalId": "promoy13-023",
+          "name": "熱血龍 ボルシャック・クロス",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22a-004"
+        }
+      ],
+      "supportedNames": 7256,
+      "pendingNames": 4571,
+      "verification": {
+        "focused": "tests/standard1095-effects.test.mjs 12件成功",
+        "relatedRegressions": "169件成功（超次元・常在パワー・離脱・画像・カタログ等150件、エンジン13件、ツインパクト6件）。",
+        "check": "npm run check 成功",
+        "officialPrints": 8,
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/qa_old/36374/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36414/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37748/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1090の実カード組み合わせ3件、Phase 1094のサイキック・イーターとグレンオー、今回の同一ターン終了時のジョンとの組み合わせは未確認。tests/dotto-deck.test.mjs の長時間の seeded games と production worker はこの差分で未実行。",
+        "regressionLogs": [
+          "/tmp/duema-phase-1095/focused.log",
+          "/tmp/duema-phase-1095/regression.log",
+          "/tmp/duema-phase-1095/mechanics.log",
+          "/tmp/duema-phase-1095/twinpact.log",
+          "/tmp/duema-phase-1095/check.log",
+          "/tmp/duema-phase-1095/audit.log"
+        ]
+      },
+      "resolvedVerification": [
+        {
+          "cardId": "dmr02-011",
+          "dependencyIds": [
+            "dm38-046",
+            "dm37-021"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36374/",
+          "testFile": "tests/standard1095-effects.test.mjs",
+          "testName": "dmr02-011 completes both sweeps before Cheval Flute puts Untouchable into battle (QA36374)",
+          "status": "passed"
+        },
+        {
+          "cardId": "dmbd16-009",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd16-009",
+          "testFile": "tests/standard1095-effects.test.mjs",
+          "testName": "dmbd16-009 completes both sweeps before Cheval Flute puts Untouchable into battle (QA36374)",
+          "status": "passed",
+          "resolution": "既存のクリーチャー面の効果処理にサイキックの二段目破壊を適用し、呪文面と既存IDを維持した。"
+        }
+      ],
+      "registeredUnverified": [
+        {
+          "cardId": "dmr03-024",
+          "dependencyIds": [
+            "dmd03-002"
+          ],
+          "test": "相手が自身の破壊されないサイキックを選べて、選んだクリーチャーが残る（QA 36427と同型）",
+          "reason": "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
+        },
+        {
+          "cardId": "dm37-021",
+          "dependencyIds": [
+            "dm37-033"
+          ],
+          "test": "同じターン終了時にジョンを先に覚醒させて、アンタッチャブルの覚醒条件を満たす",
+          "reason": "時空の探検家ジョンが未対応。アンタッチャブルの解決時に、そのターンの他のサイキックの覚醒履歴を参照する処理は実装し、バトルによる他のサイキックの覚醒と離脱後の履歴を検証済み。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-021"
+        }
+      ],
+      "deferred": [
+        {
+          "id": "dm39-051",
+          "name": "メビウス・トルネード",
+          "reason": "公式能力全文・基本情報・画像を確認。最初の破壊が置換された場合にも「もう1体」を正しく扱う対象記録と、解決時に自分のサイキックがいるかの判定を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm39-051"
+          ]
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "双方のパワー6000以下のサイキックを一斉に破壊し、複数の離脱置換・解除を処理するテストと、自身が攻撃されないことの検証が必要。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-062"
+          ]
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "保留継続。選んだアンタップ中の相手クリーチャーを攻撃できる範囲と、召喚酔い・攻撃制限・対象の離脱後の扱いを個別に確認する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-102"
+          ]
+        },
+        {
+          "id": "dmd03-002",
+          "name": "不死身のブーストグレンオー",
+          "reason": "Phase 1094の相手自身による破壊対象選択の検証に必要。覚醒リンクに必要なカードと合体面を照合し、能力全体を実装できる段階まで保留する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmd03-002"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1094,
-    "nextPhase": 1095,
+    "lastVerifiedPhase": 1095,
+    "nextPhase": 1096,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm38-046",
-        "name": "次元院のシュバル・フルート",
-        "reason": "QA 36374の実カード再現に必要。コスト5以下の光または闇のサイキックと、破壊時の超次元からの登場を照合する。",
+        "id": "dm37-033",
+        "name": "時空の探検家ジョン",
+        "reason": "同じターン終了時の覚醒順を実カードで再現するため、両面・再録・攻撃履歴と進化クリーチャーに対する裏面能力を確認する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm38-046",
-          "https://dm.takaratomy.co.jp/rule/qa_old/36374/"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm37-033"
         ]
       },
       {
-        "id": "dm37-021",
-        "name": "時空の英雄アンタッチャブル",
-        "reason": "シュバル・フルートの対象候補。初版と再録の両面、他のサイキックの覚醒を条件とするターン終了時の処理を照合する。",
+        "id": "dm37-030",
+        "name": "時空の喧嘩屋キル",
+        "reason": "ターン開始時の覚醒、選択によるバウンスの防止、裏面の保護対象を照合する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm37-021",
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-021"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030"
         ]
       },
       {
-        "id": "dmx05-s05",
-        "name": "ボルシャック・ギルクロス・NEX",
-        "reason": "双方のサイキック登場を制限する。QA 36414に沿って、すでにいるサイキックの解除との関係を確認する。",
+        "id": "dmd03-002",
+        "name": "不死身のブーストグレンオー",
+        "reason": "Phase 1094の相手自身による破壊対象選択の検証に必要。覚醒リンクに必要なカードと合体面を照合し、能力全体を実装できる段階まで保留する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmx05-s05",
-          "https://dm.takaratomy.co.jp/rule/qa_old/36414/"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmd03-002"
         ]
       },
       {
-        "id": "promoy13-023",
-        "name": "熱血龍 ボルシャック・クロス",
-        "reason": "双方のサイキック登場制限と攻撃能力を確認する。プロモとDMX22版の再録を照合する。",
+        "id": "dmd19-004",
+        "name": "墓標の悪魔龍 グレイブモット",
+        "reason": "破壊時誘発と常在パワー低下を公式カードと関連裁定で照合する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-023",
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmx22a-004"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmd19-004"
         ]
       },
       {
@@ -210787,11 +210934,10 @@
         ]
       }
     ],
-    "steps": "次回はPhase 1095。最新コミット、差分、実行中の作業、前回ログと正規カード名の件数を確認し、次回候補の公式照合から再開する。全体のnpm testは中断・合否未確認を維持する。",
+    "steps": "次回はPhase 1096。最新コミット、差分、実行中の作業、前回ログと正規カード名の件数を確認し、次回候補の公式照合から再開する。全体のnpm testは中断・合否未確認を維持する。",
     "knownIssues": [
-      "次元院のシュバル・フルートと登場対象のサイキックが未対応。破壊時ドローを持つ既存カードで、破壊時能力の解決が両段階の一掃より後になることを確認。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
-      "Phase 14の既存実装はパワー3000以下の一斉破壊のみ。単体版の登録ではツインパクトの定義を変更していない。既存のカードIDと呪文面を維持し、クリーチャー面のサイキック対応を別途検証する。",
+      "時空の探検家ジョンが未対応。アンタッチャブルの解決時に、そのターンの他のサイキックの覚醒履歴を参照する処理は実装し、バトルによる他のサイキックの覚醒と離脱後の履歴を検証済み。",
       "Phase 322の旧スキャナーテストは、Phase 419で対応した真実の名 ワクワク・チャップルン（dmr07-001）を依然として未対応一覧に期待する。Phase 742基点とPhase 743作業ツリーで候補11件・対象はブロック一覧にいないことを再現。今回の変更とは分けて扱う。",
       "Phase 321・322の既存マジボンバーは、手札からEXライフ持ちを出す際に公式QA 41150と異なり、先に閲覧中のカードを解放する。既存の対戦挙動を維持するため、このバッチの裁定対応はHOODに限定。既存カードへの適用は再開データと回帰テストを別途検証する。",
       "Phase 749の偽爆電融 ゾルネードシヴァの任意ブレイクは現行定義で1つ固定。総合ルール701.14dと類似QA 39660に沿う追加ブレイクへの切り替え、発生源が離れた後の挙動、保存途中の既存選択肢との互換性を別途確認する。",
@@ -210865,11 +211011,11 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
-      "次回候補の公式全文・基本情報・画像・使用制限・再録と裁定を照合する。シュバル・フルートと対象となる光または闇のサイキック、および双方のサイキック登場制限を優先し、保留が続く場合は別の候補へ進む。",
+      "次回候補の公式全文・基本情報・画像・使用制限・再録と裁定を照合する。同じターン終了時に覚醒するジョンの確認を優先し、覚醒リンクの全体実装が必要な候補は保留して別候補へ進む。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で10分間隔のカード登録を再開。",
-    "verificationMode": "Phase 1090と1094の登録済みカードの裁定再現に必要なカードを順次照合する。",
+    "verificationMode": "Phase 1094のQA 36374を実カードで検証済み。Phase 1090・1094・1095の残る裁定再現に必要なカードを順次照合する。",
     "nextRequestedCards": []
   },
   "registeredCardVerification": {
