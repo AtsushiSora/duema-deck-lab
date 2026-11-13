@@ -6291,6 +6291,43 @@ export function standardCardSpec(d,{phase=165}={}){
    }]};
   }
  }
+ if(phase>=1102&&d?.status==='complete'&&d.faces.length===2&&d.faces.every(face=>face.typeText==='サイキック・クリーチャー')){
+  const back=d.faces[1],text=normalize(f.abilityText);
+  const reminder='(ゲーム開始時サイキック・クリーチャーは山札には含めず自分の超次元ゾーンに置きバトルゾーン以外のゾーンに行った場合そこに戻す)';
+  const awaken={op:'Awaken1095',g1102DirectAwaken:true};
+  const backFace=(id,race=back.race)=>({name:back.name,cost:back.cost,power:Number(back.powerText),race,
+   civ:back.civilizationText,civilizations:back.civilizations,
+   image:'https://dm.takaratomy.co.jp/wp-content/card/cardimage/'+id+'b.jpg'});
+  const blockReminder='(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)';
+  const backText=normalize(back.abilityText).replace(blockReminder,'');
+  if(['dm37-024','dmx02-020'].includes(d.id)&&text===
+   'ブロッカーこのクリーチャーは攻撃することができない。覚醒-自分の「ブロッカー」を持つコスト4以上のクリーチャーをバトルゾーンに出した時このクリーチャーをコストの大きいほうに裏返す。'+reminder&&
+   backText==='ブロッカーこのクリーチャーがブロックした時自分の山札の上から1枚目を裏向きのまま新しいシールドとして自分のシールドゾーンに加えてもよい。')
+   return {psychic:true,manaValue:0,blocker:true,noAttack:true,
+    g314OtherEntry:{who:'self',filter:{creature:true,blocker:true,min:4},defs:[awaken]},
+    g1085Back:{...backFace('dm37-024'),noAttack:false,g314OtherEntry:null,
+     g178Block:[{op:'Offer',title:'山札の上から1枚を裏向きでシールド化する？',defs:[{op:'ShieldTop',n:1}]}]}};
+
+  // The official DM-36 HTML leaves these reverse-face races blank. Use the
+  // printed card images and preserve the race names confirmed on the reprints.
+  const otherSmallPsychics={owner:'self',other:true,filter:{creature:true,g1085Psychic:true,max:5}};
+  const oflameText='そのターンバトルゾーンにある自分の他のコスト5以下のサイキック・クリーチャーはすべて「パワーアタッカー+2000」を得シールドをさらに1枚ブレイクする。';
+  const oflameReminder='(攻撃中「パワーアタッカー+2000」を得たクリーチャーのパワーは+2000される)';
+  const entries=[
+   {ids:['dm36-047','dmx03-015'],race:'リキッド・ピープル',text:'カードを1枚引く。',defs:[{op:'Draw',n:1}]},
+   {ids:['dm36-053','dmx03-017'],race:'ダークロード',text:'相手は自身の手札を1枚選んで捨てる。',defs:[{op:'Discard',n:1}]},
+   {ids:['dm36-059'],race:'フレイム・コマンド',text:oflameText,reminder:oflameReminder,defs:[
+    {op:'GroupGrant364',...otherSmallPsychics,grant:{attackBonus:2000}},
+    {op:'GroupLasting412',...otherSmallPsychics,extraBreak:1,g969FollowControl:true}
+   ]}
+  ];
+  const row=entries.find(row=>row.ids.includes(d.id));
+  if(row&&text==='覚醒-このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時'+row.text+
+   'その攻撃の後このクリーチャーをコストの大きいほうに裏返す。'+(row.reminder??'')+reminder&&
+   backText==='このクリーチャーが攻撃する時'+row.text+'W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {psychic:true,manaValue:0,g482Unblocked:[...row.defs,{op:'AfterAttack542',defs:[awaken]}],
+    g1085Back:{...backFace(row.ids[0],row.race),breaker:2,g482Unblocked:null,g34Attack:row.defs}};
+ }
  if(phase>=1096&&d?.status==='complete'){
   const text=normalize(f.abilityText);
   const reminder='(ゲーム開始時サイキック・クリーチャーは山札には含めず自身の超次元ゾーンに置きバトルゾーン以外のゾーンに行った場合そこに戻す)';
