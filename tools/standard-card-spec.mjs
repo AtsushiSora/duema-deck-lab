@@ -2467,6 +2467,25 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1181&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.name==='コジロー'&&f.typeText==='クリーチャー'&&f.civilizationText==='闇'&&f.cost===4&&
+   text.replace('このクリーチャーがバトルゾーンに出た時','このクリーチャーが出た時')===
+   '革命2:このクリーチャーが出た時自分のシールドが2つ以下なら次の能力を10回行う。▶相手のクリーチャーを1体選ぶ。このターンそのパワーを-1000する。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'IfOwn',filter:{g334ZoneCount:{zone:'shields',max:2}},defs:[
+    {op:'Repeat1052',n:10,def:{op:'Target',power:-1000,g242PowerMinus:true,title:'パワーを-1000する相手のクリーチャーを選ぶ'}}
+   ]}]};
+  if(f.name==='マナゴリラ'&&f.typeText==='進化クリーチャー'&&f.civilizationText==='自然'&&f.cost===6&&text===
+   'マナ進化:自然のクリーチャーを1体自分のマナゾーンから選びこのクリーチャーをその上に重ねつつバトルゾーンに出す。'+
+   'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+
+   'このクリーチャーがバトルゾーンに出た時自分の山札の上から4枚をタップしてマナゾーンに置く。')
+   return {manaEvolution:true,evolution:{civilization:'自然'},breaker:2,effect:'sixPhoto',
+    g34Tasks:[{op:'Ramp',n:4,tapped:true,g809Together:true}]};
+  if(f.name==='No Data'&&f.typeText==='クリーチャー'&&f.civilizationText==='水'&&f.cost===5&&text===
+   '自分のターンのはじめにカードを1枚引く。自分のターンの終わりに自分の手札を1枚新しいシールドとしてシールドゾーンに裏向きにして置いてもよい。'+
+   'そうしたら自分のシールドをひとつ選び手札に加える。ただしその「S・トリガー」は使えない。')
+   return {g174Start:[{op:'Draw',n:1}],g174End:[{op:'ShieldExchange446',optional:true}]};
+ }
  if(phase>=1180&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(f.name==='鎧亜 メフィスト-１'&&f.civilizationText==='自然'&&f.cost===2&&text===

@@ -1,0 +1,267 @@
+{
+  "phase": 1181,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7533,
+  "description": "コジロー、マナゴリラ、No Dataの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37368/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37393/",
+    "https://dm.takaratomy.co.jp/rule/qa/42143/",
+    "https://dm.takaratomy.co.jp/rule/qa/40275/"
+  ],
+  "cards": [
+    {
+      "id": "dmex08-157",
+      "name": "コジロー",
+      "faces": [
+        {
+          "name": "コジロー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "革命２：このクリーチャーがバトルゾーンに出た時、自分のシールドが２つ以下なら、次の能力を10回行う。\n▶相手のクリーチャーを１体選ぶ。このターン、そのパワーを －1000する。",
+          "race": "",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-157",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-157.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "max": 2
+              }
+            },
+            "defs": [
+              {
+                "op": "Repeat1052",
+                "n": 10,
+                "def": {
+                  "op": "Target",
+                  "power": -1000,
+                  "g242PowerMinus": true,
+                  "title": "パワーを-1000する相手のクリーチャーを選ぶ"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "458511a64d18d4a3f915231bd233feee7e98e7726fb3f18347e9727a74dc01eb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex03-025",
+      "name": "マナゴリラ",
+      "faces": [
+        {
+          "name": "マナゴリラ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナ進化：自然のクリーチャーを１体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から４枚を、タップしてマナゾーンに置く。",
+          "race": "グランセクト/スペシャルズ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-025",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex03-025.jpg",
+      "spec": {
+        "manaEvolution": true,
+        "evolution": {
+          "civilization": "自然"
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 4,
+            "tapped": true,
+            "g809Together": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "b7e94c21c46179766853589b95afa34176d9f9e4a6ded08fccc4b89b231e8be6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx21-064",
+      "name": "No Data",
+      "faces": [
+        {
+          "name": "No Data",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のターンのはじめに、カードを１枚引く。\n自分のターンの終わりに、自分の手札を１枚、新しいシールドとしてシールドゾーンに裏向きにして置いてもよい。そうしたら、自分のシールドをひとつ選び、手札に加える。ただし、その「S・トリガー」は使えない。",
+          "race": "???",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-064",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx21-064.jpg",
+      "spec": {
+        "g174Start": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ],
+        "g174End": [
+          {
+            "op": "ShieldExchange446",
+            "optional": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "df9e65c5d56845183cbcd5bd38a9bc9f595f1fd81d3e4bfff8b5e18399fb3c2c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex15-b042",
+      "name": "コジロー",
+      "faces": [
+        {
+          "name": "コジロー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "革命２：このクリーチャーが出た時、自分のシールドが２つ以下なら、次の能力を10回行う。\n▶相手のクリーチャーを１体選ぶ。このターン、そのパワーを －1000する。",
+          "race": "",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b042",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex15-b042.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "max": 2
+              }
+            },
+            "defs": [
+              {
+                "op": "Repeat1052",
+                "n": 10,
+                "def": {
+                  "op": "Target",
+                  "power": -1000,
+                  "g242PowerMinus": true,
+                  "title": "パワーを-1000する相手のクリーチャーを選ぶ"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "62f98e51fbae85058e07404c77da8ccfbe9d6ef05eb41f1f9aabfce49f26bfc9",
+        "facesMatched": true
+      },
+      "canonicalId": "dmex08-157"
+    },
+    {
+      "id": "dmex08-177",
+      "name": "マナゴリラ",
+      "faces": [
+        {
+          "name": "マナゴリラ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナ進化：自然のクリーチャーを１体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から４枚を、タップしてマナゾーンに置く。",
+          "race": "グランセクト/スペシャルズ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-177",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-177.jpg",
+      "spec": {
+        "manaEvolution": true,
+        "evolution": {
+          "civilization": "自然"
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 4,
+            "tapped": true,
+            "g809Together": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "c5b6e2b9a87afa3c298ba3892eee0c6976d9de65bb05cd2f35793835e2de0542",
+        "facesMatched": true
+      },
+      "canonicalId": "dmex03-025"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex08-157": 4,
+      "dmex15-b042": 4,
+      "dmex03-025": 4,
+      "dmex08-177": 4,
+      "dmx21-064": 4
+    }
+  }
+}

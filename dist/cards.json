@@ -228732,15 +228732,119 @@
       ],
       "supportBatch": "phase-1180",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex08-157",
+      "name": "コジロー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "",
+      "text": "革命２：このクリーチャーがバトルゾーンに出た時、自分のシールドが２つ以下なら、次の能力を10回行う。\n▶相手のクリーチャーを１体選ぶ。このターン、そのパワーを －1000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-157",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "max": 2
+            }
+          },
+          "defs": [
+            {
+              "op": "Repeat1052",
+              "n": 10,
+              "def": {
+                "op": "Target",
+                "power": -1000,
+                "g242PowerMinus": true,
+                "title": "パワーを-1000する相手のクリーチャーを選ぶ"
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1181",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex03-025",
+      "name": "マナゴリラ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "グランセクト/スペシャルズ",
+      "text": "マナ進化：自然のクリーチャーを１体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から４枚を、タップしてマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-025",
+      "limit": 4,
+      "manaEvolution": true,
+      "evolution": {
+        "civilization": "自然"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 4,
+          "tapped": true,
+          "g809Together": true
+        }
+      ],
+      "supportBatch": "phase-1181",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx21-064",
+      "name": "No Data",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "???",
+      "text": "自分のターンのはじめに、カードを１枚引く。\n自分のターンの終わりに、自分の手札を１枚、新しいシールドとしてシールドゾーンに裏向きにして置いてもよい。そうしたら、自分のシールドをひとつ選び、手札に加える。ただし、その「S・トリガー」は使えない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-064",
+      "limit": 4,
+      "g174Start": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "g174End": [
+        {
+          "op": "ShieldExchange446",
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1181",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1180,
+    "phase": 1181,
     "checkedAt": "2026-11-14",
-    "baseCount": 7530,
+    "baseCount": 7533,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7533,
+    "totalCount": 7536,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -249189,6 +249293,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7530,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1180,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7530,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7533,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
