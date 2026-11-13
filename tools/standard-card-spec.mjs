@@ -6235,6 +6235,39 @@ export function standardCardSpec(d,{phase=165}={}){
      {op:'SacrificeAlly413',filter:{g1085Psychic:false},defs:[deploy({max:5,color:'闇'},{g1104PsychicFaces:true})]}
     ]};
   }
+  if(phase>=1106){
+   const header='コスト5以下のサイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。';
+   const printed=text.replace(/^マナゾーンに置く時このカードはタップして置く。/,'')
+    .replace('超次元ゾーンから出す。','超次元ゾーンからバトルゾーンに出す。')
+    .replace(/サイキック・クリーチャーを(?:バトルゾーンに)?出したら/g,'サイキック・クリーチャーをバトルゾーンに出した場合')
+    .replace('自分の手札を1枚シールド化してもよい。','自分の手札を1枚裏向きにして新しいシールドとして自分のシールドゾーンに加えてもよい。');
+   const bonuses={
+    光:{printed:'自分の手札を1枚裏向きにして新しいシールドとして自分のシールドゾーンに加えてもよい。',
+     def:{op:'Select',origin:'hand',to:'shields',n:1,optional:true,title:'裏向きでシールド化する手札を1枚選ぶ'}},
+    水:{printed:'このターンバトルゾーンにある自分のクリーチャーはブロックされない。',
+     def:{op:'GroupGrant364',owner:'self',spell:true,g565External:true,g1106ExternalUntilEnd:true,grant:{unblockable:true}}},
+    闇:{printed:'バトルゾーンにある相手のクリーチャーを1体選ぶ。そのクリーチャーは次の相手のターン可能であれば攻撃する。',
+     def:{op:'Target',g546Force:'nextOpponent',g1106NoTapInstead:true,spell:true,title:'次の相手のターンに攻撃させるクリーチャーを選ぶ'}},
+    火:{printed:'このターンバトルゾーンにある自分のクリーチャー1体はタップされていないクリーチャーを攻撃できる。',
+     def:{op:'Target',owner:'self',spell:true,g565External:true,g1106ExternalUntilEnd:true,grant:{attackUntapped:true},title:'アンタップしているクリーチャーを攻撃できるようにする自分のクリーチャーを選ぶ'}},
+    自然:{printed:'カードを1枚自分のマナゾーンから手札に戻してもよい。',
+     def:{op:'Select',origin:'mana',to:'hand',n:1,optional:true,title:'マナゾーンから手札に戻すカードを1枚選ぶ'}}
+   };
+   const pair=[
+    [['dmr02-030','dmx25-047'],['光','水']],
+    [['dmr02-031','dmx25-018','dmex17-Cho20'],['光','自然']],
+    [['dmr02-032'],['水','闇']],
+    [['dmr02-033'],['闇','火']],
+    [['dmr02-034'],['火','自然']]
+   ].find(([ids])=>ids.includes(d.id));
+   if(pair){
+    const [,colors]=pair;
+    const expected=header+colors.map(color=>'このようにして'+color+'のサイキック・クリーチャーをバトルゾーンに出した場合'+bonuses[color].printed).join('');
+    if(printed===expected)return {effect:'sixPhoto',g34Tasks:[deploy({max:5},{
+     g1104PsychicFaces:true,g1106OnDeploy:colors.map(color=>({color,def:bonuses[color].def}))
+    })]};
+   }
+  }
   if(phase>=1105){
    const printed=text.replace('バトルゾーンにあるサイキック・クリーチャー以外の','サイキックではない')
     .replace('サイキック・クリーチャー以外のクリーチャーを1体選び持ち主の手札に戻す','サイキックではないクリーチャーを1体選び持ち主の手札に戻す')

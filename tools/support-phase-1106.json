@@ -1,0 +1,597 @@
+{
+  "phase": 1106,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7292,
+  "description": "超次元ブルーホワイト・ホール、ホワイトグリーン・ホール、ブラックブルー・ホール、レッドブラック・ホール、グリーンレッド・ホールを対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/37593/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37594/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37595/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37596/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37744/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34978/",
+    "https://dm.takaratomy.co.jp/rule/qa/49422/",
+    "https://dm.takaratomy.co.jp/rule/qa/31678/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmr02-030",
+      "name": "超次元ブルーホワイト・ホール",
+      "faces": [
+        {
+          "name": "超次元ブルーホワイト・ホール",
+          "typeText": "呪文",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nコスト５以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\nこのようにして光のサイキック・クリーチャーをバトルゾーンに出した場合、自分の手札を１枚裏向きにして、新しいシールドとして自分のシールドゾーンに加えてもよい。\nこのようにして水のサイキック・クリーチャーをバトルゾーンに出した場合、このターン、バトルゾーンにある自分のクリーチャーはブロックされない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-030",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr02-030.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 5
+            },
+            "g1104PsychicFaces": true,
+            "g1106OnDeploy": [
+              {
+                "color": "光",
+                "def": {
+                  "op": "Select",
+                  "origin": "hand",
+                  "to": "shields",
+                  "n": 1,
+                  "optional": true,
+                  "title": "裏向きでシールド化する手札を1枚選ぶ"
+                }
+              },
+              {
+                "color": "水",
+                "def": {
+                  "op": "GroupGrant364",
+                  "owner": "self",
+                  "spell": true,
+                  "g565External": true,
+                  "g1106ExternalUntilEnd": true,
+                  "grant": {
+                    "unblockable": true
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "675581a83926d259c2bd83aa18e379fe7d0c6246e23df68f8e94aec4ecea1ca3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr02-031",
+      "name": "超次元ホワイトグリーン・ホール",
+      "faces": [
+        {
+          "name": "超次元ホワイトグリーン・ホール",
+          "typeText": "呪文",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nコスト５以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\nこのようにして光のサイキック・クリーチャーをバトルゾーンに出した場合、自分の手札を１枚裏向きにして、新しいシールドとして自分のシールドゾーンに加えてもよい。\nこのようにして自然のサイキック・クリーチャーをバトルゾーンに出した場合、カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-031",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr02-031.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 5
+            },
+            "g1104PsychicFaces": true,
+            "g1106OnDeploy": [
+              {
+                "color": "光",
+                "def": {
+                  "op": "Select",
+                  "origin": "hand",
+                  "to": "shields",
+                  "n": 1,
+                  "optional": true,
+                  "title": "裏向きでシールド化する手札を1枚選ぶ"
+                }
+              },
+              {
+                "color": "自然",
+                "def": {
+                  "op": "Select",
+                  "origin": "mana",
+                  "to": "hand",
+                  "n": 1,
+                  "optional": true,
+                  "title": "マナゾーンから手札に戻すカードを1枚選ぶ"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "f108aae2ded30d3b42bf6394f04ebf5a7d607cb681ad4f91d755c6049547ab27",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr02-032",
+      "name": "超次元ブラックブルー・ホール",
+      "faces": [
+        {
+          "name": "超次元ブラックブルー・ホール",
+          "typeText": "呪文",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nコスト５以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\nこのようにして水のサイキック・クリーチャーをバトルゾーンに出した場合、このターン、バトルゾーンにある自分のクリーチャーはブロックされない。\nこのようにして闇のサイキック・クリーチャーをバトルゾーンに出した場合、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのクリーチャーは、次の相手のターン、可能であれば攻撃する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-032",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr02-032.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 5
+            },
+            "g1104PsychicFaces": true,
+            "g1106OnDeploy": [
+              {
+                "color": "水",
+                "def": {
+                  "op": "GroupGrant364",
+                  "owner": "self",
+                  "spell": true,
+                  "g565External": true,
+                  "g1106ExternalUntilEnd": true,
+                  "grant": {
+                    "unblockable": true
+                  }
+                }
+              },
+              {
+                "color": "闇",
+                "def": {
+                  "op": "Target",
+                  "g546Force": "nextOpponent",
+                  "g1106NoTapInstead": true,
+                  "spell": true,
+                  "title": "次の相手のターンに攻撃させるクリーチャーを選ぶ"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "bd35f253af41d32e25076098e27dc8772e6dc494fe213b2a0c2112f35e32da5a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr02-033",
+      "name": "超次元レッドブラック・ホール",
+      "faces": [
+        {
+          "name": "超次元レッドブラック・ホール",
+          "typeText": "呪文",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nコスト５以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\nこのようにして闇のサイキック・クリーチャーをバトルゾーンに出した場合、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのクリーチャーは、次の相手のターン、可能であれば攻撃する。\nこのようにして火のサイキック・クリーチャーをバトルゾーンに出した場合、このターン、バトルゾーンにある自分のクリーチャー１体はタップされていないクリーチャーを攻撃できる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-033",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr02-033.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 5
+            },
+            "g1104PsychicFaces": true,
+            "g1106OnDeploy": [
+              {
+                "color": "闇",
+                "def": {
+                  "op": "Target",
+                  "g546Force": "nextOpponent",
+                  "g1106NoTapInstead": true,
+                  "spell": true,
+                  "title": "次の相手のターンに攻撃させるクリーチャーを選ぶ"
+                }
+              },
+              {
+                "color": "火",
+                "def": {
+                  "op": "Target",
+                  "owner": "self",
+                  "spell": true,
+                  "g565External": true,
+                  "g1106ExternalUntilEnd": true,
+                  "grant": {
+                    "attackUntapped": true
+                  },
+                  "title": "アンタップしているクリーチャーを攻撃できるようにする自分のクリーチャーを選ぶ"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "425acd177a1dc53986fa1eecd5b2ad996cea63bdba008e6d8ca21a62006878bd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr02-034",
+      "name": "超次元グリーンレッド・ホール",
+      "faces": [
+        {
+          "name": "超次元グリーンレッド・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nコスト５以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\nこのようにして火のサイキック・クリーチャーをバトルゾーンに出した場合、このターン、バトルゾーンにある自分のクリーチャー１体はタップされていないクリーチャーを攻撃できる。\nこのようにして自然のサイキック・クリーチャーをバトルゾーンに出した場合、カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-034",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr02-034.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 5
+            },
+            "g1104PsychicFaces": true,
+            "g1106OnDeploy": [
+              {
+                "color": "火",
+                "def": {
+                  "op": "Target",
+                  "owner": "self",
+                  "spell": true,
+                  "g565External": true,
+                  "g1106ExternalUntilEnd": true,
+                  "grant": {
+                    "attackUntapped": true
+                  },
+                  "title": "アンタップしているクリーチャーを攻撃できるようにする自分のクリーチャーを選ぶ"
+                }
+              },
+              {
+                "color": "自然",
+                "def": {
+                  "op": "Select",
+                  "origin": "mana",
+                  "to": "hand",
+                  "n": 1,
+                  "optional": true,
+                  "title": "マナゾーンから手札に戻すカードを1枚選ぶ"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "33d1eaeb43d1308ef0a77c9b1d22bfb5c6ea2c6cf18a8c2da89c86c092cbde25",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx25-047",
+      "name": "超次元ブルーホワイト・ホール",
+      "faces": [
+        {
+          "name": "超次元ブルーホワイト・ホール",
+          "typeText": "呪文",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nコスト５以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\nこのようにして光のサイキック・クリーチャーをバトルゾーンに出した場合、自分の手札を１枚裏向きにして、新しいシールドとして自分のシールドゾーンに加えてもよい。\nこのようにして水のサイキック・クリーチャーをバトルゾーンに出した場合、このターン、バトルゾーンにある自分のクリーチャーはブロックされない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx25-047",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx25-047.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 5
+            },
+            "g1104PsychicFaces": true,
+            "g1106OnDeploy": [
+              {
+                "color": "光",
+                "def": {
+                  "op": "Select",
+                  "origin": "hand",
+                  "to": "shields",
+                  "n": 1,
+                  "optional": true,
+                  "title": "裏向きでシールド化する手札を1枚選ぶ"
+                }
+              },
+              {
+                "color": "水",
+                "def": {
+                  "op": "GroupGrant364",
+                  "owner": "self",
+                  "spell": true,
+                  "g565External": true,
+                  "g1106ExternalUntilEnd": true,
+                  "grant": {
+                    "unblockable": true
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "0f5cd19da88a4293913bd23486eea8faa71cb779dc692c52fdbfc2fdd904c3ec",
+        "facesMatched": true
+      },
+      "canonicalId": "dmr02-030"
+    },
+    {
+      "id": "dmx25-018",
+      "name": "超次元ホワイトグリーン・ホール",
+      "faces": [
+        {
+          "name": "超次元ホワイトグリーン・ホール",
+          "typeText": "呪文",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nコスト５以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\nこのようにして光のサイキック・クリーチャーをバトルゾーンに出したら、自分の手札を１枚裏向きにして、新しいシールドとして自分のシールドゾーンに加えてもよい。\nこのようにして自然のサイキック・クリーチャーをバトルゾーンに出したら、カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx25-018",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx25-018.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 5
+            },
+            "g1104PsychicFaces": true,
+            "g1106OnDeploy": [
+              {
+                "color": "光",
+                "def": {
+                  "op": "Select",
+                  "origin": "hand",
+                  "to": "shields",
+                  "n": 1,
+                  "optional": true,
+                  "title": "裏向きでシールド化する手札を1枚選ぶ"
+                }
+              },
+              {
+                "color": "自然",
+                "def": {
+                  "op": "Select",
+                  "origin": "mana",
+                  "to": "hand",
+                  "n": 1,
+                  "optional": true,
+                  "title": "マナゾーンから手札に戻すカードを1枚選ぶ"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "c6a2ad10144e045c0056f96a5efa8197b5b1465d1d403f70343e5423101a240d",
+        "facesMatched": true
+      },
+      "canonicalId": "dmr02-031"
+    },
+    {
+      "id": "dmex17-Cho20",
+      "name": "超次元ホワイトグリーン・ホール",
+      "faces": [
+        {
+          "name": "超次元ホワイトグリーン・ホール",
+          "typeText": "呪文",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "コスト５以下のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。\nこのようにして光のサイキック・クリーチャーを出したら、自分の手札を１枚シールド化してもよい。\nこのようにして自然のサイキック・クリーチャーを出したら、カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-Cho20",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-Cho20.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 5
+            },
+            "g1104PsychicFaces": true,
+            "g1106OnDeploy": [
+              {
+                "color": "光",
+                "def": {
+                  "op": "Select",
+                  "origin": "hand",
+                  "to": "shields",
+                  "n": 1,
+                  "optional": true,
+                  "title": "裏向きでシールド化する手札を1枚選ぶ"
+                }
+              },
+              {
+                "color": "自然",
+                "def": {
+                  "op": "Select",
+                  "origin": "mana",
+                  "to": "hand",
+                  "n": 1,
+                  "optional": true,
+                  "title": "マナゾーンから手札に戻すカードを1枚選ぶ"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "96af8de5d242571a0e645540ff51bb7568f5ca4d07b856823707bf1294f8a98b",
+        "facesMatched": true
+      },
+      "canonicalId": "dmr02-031"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr02-030": 4,
+      "dmr02-031": 4,
+      "dmr02-032": 4,
+      "dmr02-033": 4,
+      "dmr02-034": 4,
+      "dmx25-047": 4,
+      "dmx25-018": 4,
+      "dmex17-Cho20": 4
+    }
+  }
+}

@@ -219183,15 +219183,308 @@
       ],
       "supportBatch": "phase-1105",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr02-030",
+      "name": "超次元ブルーホワイト・ホール",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nコスト５以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\nこのようにして光のサイキック・クリーチャーをバトルゾーンに出した場合、自分の手札を１枚裏向きにして、新しいシールドとして自分のシールドゾーンに加えてもよい。\nこのようにして水のサイキック・クリーチャーをバトルゾーンに出した場合、このターン、バトルゾーンにある自分のクリーチャーはブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-030",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 5
+          },
+          "g1104PsychicFaces": true,
+          "g1106OnDeploy": [
+            {
+              "color": "光",
+              "def": {
+                "op": "Select",
+                "origin": "hand",
+                "to": "shields",
+                "n": 1,
+                "optional": true,
+                "title": "裏向きでシールド化する手札を1枚選ぶ"
+              }
+            },
+            {
+              "color": "水",
+              "def": {
+                "op": "GroupGrant364",
+                "owner": "self",
+                "spell": true,
+                "g565External": true,
+                "g1106ExternalUntilEnd": true,
+                "grant": {
+                  "unblockable": true
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1106",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr02-031",
+      "name": "超次元ホワイトグリーン・ホール",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nコスト５以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\nこのようにして光のサイキック・クリーチャーをバトルゾーンに出した場合、自分の手札を１枚裏向きにして、新しいシールドとして自分のシールドゾーンに加えてもよい。\nこのようにして自然のサイキック・クリーチャーをバトルゾーンに出した場合、カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-031",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 5
+          },
+          "g1104PsychicFaces": true,
+          "g1106OnDeploy": [
+            {
+              "color": "光",
+              "def": {
+                "op": "Select",
+                "origin": "hand",
+                "to": "shields",
+                "n": 1,
+                "optional": true,
+                "title": "裏向きでシールド化する手札を1枚選ぶ"
+              }
+            },
+            {
+              "color": "自然",
+              "def": {
+                "op": "Select",
+                "origin": "mana",
+                "to": "hand",
+                "n": 1,
+                "optional": true,
+                "title": "マナゾーンから手札に戻すカードを1枚選ぶ"
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1106",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr02-032",
+      "name": "超次元ブラックブルー・ホール",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nコスト５以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\nこのようにして水のサイキック・クリーチャーをバトルゾーンに出した場合、このターン、バトルゾーンにある自分のクリーチャーはブロックされない。\nこのようにして闇のサイキック・クリーチャーをバトルゾーンに出した場合、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのクリーチャーは、次の相手のターン、可能であれば攻撃する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-032",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 5
+          },
+          "g1104PsychicFaces": true,
+          "g1106OnDeploy": [
+            {
+              "color": "水",
+              "def": {
+                "op": "GroupGrant364",
+                "owner": "self",
+                "spell": true,
+                "g565External": true,
+                "g1106ExternalUntilEnd": true,
+                "grant": {
+                  "unblockable": true
+                }
+              }
+            },
+            {
+              "color": "闇",
+              "def": {
+                "op": "Target",
+                "g546Force": "nextOpponent",
+                "g1106NoTapInstead": true,
+                "spell": true,
+                "title": "次の相手のターンに攻撃させるクリーチャーを選ぶ"
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1106",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr02-033",
+      "name": "超次元レッドブラック・ホール",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nコスト５以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\nこのようにして闇のサイキック・クリーチャーをバトルゾーンに出した場合、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのクリーチャーは、次の相手のターン、可能であれば攻撃する。\nこのようにして火のサイキック・クリーチャーをバトルゾーンに出した場合、このターン、バトルゾーンにある自分のクリーチャー１体はタップされていないクリーチャーを攻撃できる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-033",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 5
+          },
+          "g1104PsychicFaces": true,
+          "g1106OnDeploy": [
+            {
+              "color": "闇",
+              "def": {
+                "op": "Target",
+                "g546Force": "nextOpponent",
+                "g1106NoTapInstead": true,
+                "spell": true,
+                "title": "次の相手のターンに攻撃させるクリーチャーを選ぶ"
+              }
+            },
+            {
+              "color": "火",
+              "def": {
+                "op": "Target",
+                "owner": "self",
+                "spell": true,
+                "g565External": true,
+                "g1106ExternalUntilEnd": true,
+                "grant": {
+                  "attackUntapped": true
+                },
+                "title": "アンタップしているクリーチャーを攻撃できるようにする自分のクリーチャーを選ぶ"
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1106",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr02-034",
+      "name": "超次元グリーンレッド・ホール",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nコスト５以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\nこのようにして火のサイキック・クリーチャーをバトルゾーンに出した場合、このターン、バトルゾーンにある自分のクリーチャー１体はタップされていないクリーチャーを攻撃できる。\nこのようにして自然のサイキック・クリーチャーをバトルゾーンに出した場合、カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-034",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 5
+          },
+          "g1104PsychicFaces": true,
+          "g1106OnDeploy": [
+            {
+              "color": "火",
+              "def": {
+                "op": "Target",
+                "owner": "self",
+                "spell": true,
+                "g565External": true,
+                "g1106ExternalUntilEnd": true,
+                "grant": {
+                  "attackUntapped": true
+                },
+                "title": "アンタップしているクリーチャーを攻撃できるようにする自分のクリーチャーを選ぶ"
+              }
+            },
+            {
+              "color": "自然",
+              "def": {
+                "op": "Select",
+                "origin": "mana",
+                "to": "hand",
+                "n": 1,
+                "optional": true,
+                "title": "マナゾーンから手札に戻すカードを1枚選ぶ"
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1106",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1105,
+    "phase": 1106,
     "checkedAt": "2026-11-13",
-    "baseCount": 7288,
-    "newEffectCards": 4,
+    "baseCount": 7292,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 7292,
+    "totalCount": 7297,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -238740,6 +239033,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7288,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1105,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7288,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7292,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

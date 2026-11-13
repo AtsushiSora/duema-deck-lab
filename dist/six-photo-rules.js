@@ -879,8 +879,12 @@ export function createSixPhotoRules(api){
    default:return false;
   }
  }
- function force546(s,t,p,y=null){if(y?.sealed)return;const when=t.g546Force||t.when,refs=y?api.allLayers(y).map(z=>({uid:z.uid,incarnation:z.incarnation||0})):null;(s.extLimits??=[]).push({kind:'g546Force',controller:t.p,player:p,when,turn:s.turn,...(t.g996ForceOnce?{once:true}:{}),...(refs?{refs}:{}),expires:when==='nextOpponent'?'manual546':when==='untilOwnStart'?'start':'end',who:when==='untilOwnStart'?t.p:s.active,...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});}
- function forced546(s,p,x){if(x.sealed)return false;if(forceAttack224(s,p))return true;const refs=api.allLayers(x).map(key);if((s.extLimits||[]).some(l=>l.kind==='g546Force'&&(l.refs?l.refs.some(r=>refs.includes(key(r))):l.player===p)&&(!l.once||s.g481Attackers?.turn!==s.turn||!s.g481Attackers.events.some(e=>e.refs.some(r=>refs.includes(r))))&&(l.when!=='nextOpponent'||s.active===1-l.controller&&s.turn>l.turn)&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}))))return true;return s.g481Attackers?.turn===s.turn&&s.players[p].battle.some(y=>y.uid!==x.uid&&!y.sealed&&card(y).g546AttackForceOthers&&!api.ignored(s,y)&&s.g481Attackers.events.some(e=>api.allLayers(y).some(z=>e.refs.includes(key(z)))));}
+ function force546(s,t,p,y=null){if(y?.sealed)return;const when=t.g546Force||t.when,refs=y?api.allLayers(y).map(z=>({uid:z.uid,incarnation:z.incarnation||0})):null;(s.extLimits??=[]).push({kind:'g546Force',controller:t.p,player:p,when,turn:s.turn,...(t.g1106NoTapInstead?{g1106NoTapInstead:true}:{}),...(t.g996ForceOnce?{once:true}:{}),...(refs?{refs}:{}),expires:when==='nextOpponent'?'manual546':when==='untilOwnStart'?'start':'end',who:when==='untilOwnStart'?t.p:s.active,...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});}
+ function hasForce546(s,p,x,onlyTapRestriction=false){
+  const refs=api.allLayers(x).map(key);
+  return (s.extLimits||[]).some(l=>l.kind==='g546Force'&&(!onlyTapRestriction||l.g1106NoTapInstead)&&(l.refs?l.refs.some(r=>refs.includes(key(r))):l.player===p)&&(!l.once||s.g481Attackers?.turn!==s.turn||!s.g481Attackers.events.some(e=>e.refs.some(r=>refs.includes(r))))&&(l.when!=='nextOpponent'||s.active===1-l.controller&&s.turn>l.turn)&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})));
+ }
+ function forced546(s,p,x){if(x.sealed)return false;if(forceAttack224(s,p)||hasForce546(s,p,x))return true;return s.g481Attackers?.turn===s.turn&&s.players[p].battle.some(y=>y.uid!==x.uid&&!y.sealed&&card(y).g546AttackForceOthers&&!api.ignored(s,y)&&s.g481Attackers.events.some(e=>api.allLayers(y).some(z=>e.refs.includes(key(z)))));}
  function forceAttack224(s,p){return [0,1].some(owner=>s.players[owner].battle.some(y=>{const rule=card(y).g224ForceAttack;return rule&&!y.sealed&&api.isCreature(s,y)&&!api.ignored(s,y)&&(rule.owner==='both'||p!==owner)&&(!rule.tapped||y.tapped)&&(!rule.opponentTurn||s.active!==owner);}));}
  // All assignments are chosen before any card moves. Remove the inspected set
  // together, then publish every destination before queued zone triggers resolve.
@@ -1015,15 +1019,16 @@ export function createSixPhotoRules(api){
   const protection={};
   for(const l of s.extLimits||[])
    if(l.kind==='g521Grant'&&l.g565External&&l.active!==false&&
-      (l.startsPlayer===undefined||l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}))&&
+      (l.startsPlayer===undefined&&!l.g1106ExternalUntilEnd||l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}))&&
       api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation))
     Object.assign(protection,l.grant);
   return protection;
  }
  function applyGrant(s,t,y){
-  if(t.g521UntilStart||t.g521NextOpponentTurn)(s.extLimits??=[]).push({
+  if(t.g521UntilStart||t.g521NextOpponentTurn||t.g1106ExternalUntilEnd)(s.extLimits??=[]).push({
    kind:'g521Grant',ref:{uid:y.uid,incarnation:y.incarnation||0},grant:t.grant,
-   ...(t.g521NextOpponentTurn?{startsPlayer:1-t.p,active:false,expires:'end',who:1-t.p}:{expires:'start',who:t.p}),
+   ...(t.g521NextOpponentTurn?{startsPlayer:1-t.p,active:false,expires:'end',who:1-t.p}:
+    t.g1106ExternalUntilEnd?{g1106ExternalUntilEnd:true,expires:'end',who:s.active}:{expires:'start',who:t.p}),
    ...(t.g565External?{g565External:true}:{}),
    ...(t.g1058FollowUnit?{g1058FollowUnit:true}:{}),
    ...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})
@@ -1236,6 +1241,16 @@ export function createSixPhotoRules(api){
     ...(nextOpponentStart?{when:'nextOwnStart',who:1-t.p}:{when:'turnEnd'}),
     defs:[{op:'ReturnGroup785',refs:[],...(nextOpponentStart||t.g785ReturnGroup==='grave'?{to:'grave'}:{})}]
    });
+  }
+  if(t.g1106OnDeploy){
+   const [row]=rows;
+   if(!row)return;
+   const x=s.players[row.p][row.origin].find(y=>y.uid===row.uid);
+   if(!x)return;
+   const selected=row.g1104Back?psychicBack1104(x):x;
+   put(s,{...t,...row,owner:row.p,p:t.p,op:'g34_Put',target:row.uid},
+    {...t,op:'g34_DeployColors1106',target:row.uid,beforeEntry:x.incarnation||0,selectedColors:colors(card(selected))});
+   return;
   }
   if(rows.length>1){s.g34DeployBatch=true;s.players[t.p].g34ManaHeld=rows.filter(r=>r.origin==='mana').map(r=>r.uid);}put(s,...rows.map(r=>({...t,...r,owner:r.p,p:t.p,op:'g34_Put',origin:r.origin,target:r.uid,...(returnGroup===undefined?{}:{g785Group:returnGroup})})),...(t.after?tasks(t.p,t.source,t.after,{uid:t.uid,incarnation:t.incarnation}):[]),task('g34_Custom',t.p,t.source,{name:'finishBatch'}));}else{if(t.g190Freeze)for(const r of rows)freeze(s,t,r.p,s.players[r.p].battle.find(x=>x.uid===r.uid));if(t.g546Force)for(const r of rows){const y=s.players[r.p].battle.find(x=>x.uid===r.uid);if(y)force546(s,t,r.p,y);}if((t.g187OwnPick&&t.tap)||t.g193Tap){
   const targets=rows.flatMap(({p,uid})=>{
@@ -3166,6 +3181,15 @@ export function createSixPhotoRules(api){
    ...candidates.map(({x})=>opt(card(x).name+'を出す',x.uid,12+cost(card(x)),x.cardId)),
    opt('カードを1枚引く',null,8)
   ]);
+  break;
+ }
+ case'g34_DeployColors1106':{
+  // A destination replacement does not increment the selected card's battlefield incarnation.
+  const placed=api.physicalCards(s).find(x=>x.uid===t.target);
+  if(!placed||(placed.incarnation||0)<=t.beforeEntry)break;
+  const entered=own.battle.find(x=>x.uid===t.target);
+  const civilizations=entered?colors(effective(entered,s)):t.selectedColors;
+  start(s,t,t.g1106OnDeploy.flatMap(({color,def})=>civilizations.includes(color)?[def]:[]));
   break;
  }
  case'g34_CrestDeployResult1030':{
@@ -5302,7 +5326,7 @@ export function createSixPhotoRules(api){
   const target=s.players[1-p].battle.find(y=>y.uid===(s.attack.blockUid||s.attack.target));
   if(target&&!target.sealed&&api.isCreature(s,target)&&cost(effective(target,s))<=c.g899AttackSlayerMax){d.g208SlayerCount=(c.g208SlayerCount||Number(!!(c.slayer||d.slayer)))+1;d.slayer=true;}
  }if(angel(c)&&cost(c)<=8&&active(s,p,'sirius').length)Object.assign(d,{cannotBeAttacked:true,unblockable:true,spellUntargetable:true});if(c.g34Role==='emotional'&&own.battle.some(y=>y.uid!==x.uid&&race(card(y),'オラクル')&&!api.ignored(s,y)))d.untargetable=true;if(c.g34Role==='nightmare'&&x.tapped)d.opponentTapEntry=true;if((s.extLimits||[]).some(l=>l.kind==='g34ForceAttack'&&l.player===p)||active(s,0,'baromreizu').length||active(s,1,'baromreizu').length||forceAttack224(s,p)||forced546(s,p,x)||
-  c.g845RequiredAttacks&&(s.g481Attackers?.turn!==s.turn||s.g481Attackers.events.filter(e=>e.refs.includes(key(x))).length<c.g845RequiredAttacks))d.mustAttack=true;let slayers=d.g208SlayerCount??(c.g208SlayerCount||Number(!!(c.slayer||d.slayer)));for(const g of x.g34Grants||[])if((g.turn===s.turn||g.g774Permanent)&&(g.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:g.spellCost,spellSource:g.spellSource}))){if(g.slayer)slayers++;const attackBonus=g.attackBonus?(d.attackBonus??c.attackBonus??0)+g.attackBonus:null;Object.assign(d,g);if(attackBonus!==null)d.attackBonus=attackBonus;}if(slayers>1)d.g208SlayerCount=slayers;const boosts=(x.g34Grants||[]).filter(g=>g.turn===s.turn&&g.g313Breaker);if(boosts.length){const counts=[c.breaker,d.breaker,...boosts.map(g=>g.g313Breaker)].filter(Boolean);d.breaker=counts.includes('∞')?'∞':Math.max(...counts);}return Object.keys(d).length?{...c,...d}:c;},
+  c.g845RequiredAttacks&&(s.g481Attackers?.turn!==s.turn||s.g481Attackers.events.filter(e=>e.refs.includes(key(x))).length<c.g845RequiredAttacks))d.mustAttack=true;if(c.g736AttackInstead&&hasForce546(s,p,x,true))d.g736ForcedAttack=true;let slayers=d.g208SlayerCount??(c.g208SlayerCount||Number(!!(c.slayer||d.slayer)));for(const g of x.g34Grants||[])if((g.turn===s.turn||g.g774Permanent)&&(g.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:g.spellCost,spellSource:g.spellSource}))){if(g.slayer)slayers++;const attackBonus=g.attackBonus?(d.attackBonus??c.attackBonus??0)+g.attackBonus:null;Object.assign(d,g);if(attackBonus!==null)d.attackBonus=attackBonus;}if(slayers>1)d.g208SlayerCount=slayers;const boosts=(x.g34Grants||[]).filter(g=>g.turn===s.turn&&g.g313Breaker);if(boosts.length){const counts=[c.breaker,d.breaker,...boosts.map(g=>g.g313Breaker)].filter(Boolean);d.breaker=counts.includes('∞')?'∞':Math.max(...counts);}return Object.keys(d).length?{...c,...d}:c;},
  selectGrantedBreaker633(s,p,x){
   if(s.attack.g633Breaker!==undefined||!s.players[1-p].shields.length)return false;
   const c=effective(x,s),counts=c.g633BreakerChoices;

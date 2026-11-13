@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-13",
   "catalogueNames": 11827,
-  "supportedNames": 7292,
-  "pendingNames": 4535,
-  "phase": 1105,
-  "added": 4,
+  "supportedNames": 7297,
+  "pendingNames": 4530,
+  "phase": 1106,
+  "added": 5,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -156,7 +156,7 @@
   "pendingByType": {
     "クリーチャー": 2651,
     "NEOクリーチャー": 87,
-    "呪文": 577,
+    "呪文": 572,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 31,
     "タマシード": 56,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1189,
-    "未対応の能力文": 3130,
+    "未対応の能力文": 3125,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 21,
     "未対応のシンカパワー": 2,
@@ -212571,45 +212571,249 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1106,
+      "baseCommit": "3cd35422",
+      "scope": "超次元ブルーホワイト・ホール、ホワイトグリーン・ホール、ブラックブルー・ホール、レッドブラック・ホール、グリーンレッド・ホールを対戦対応する。",
+      "cards": [
+        {
+          "id": "dmr02-030",
+          "name": "超次元ブルーホワイト・ホール",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-030"
+        },
+        {
+          "id": "dmr02-031",
+          "name": "超次元ホワイトグリーン・ホール",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-031"
+        },
+        {
+          "id": "dmr02-032",
+          "name": "超次元ブラックブルー・ホール",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-032"
+        },
+        {
+          "id": "dmr02-033",
+          "name": "超次元レッドブラック・ホール",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-033"
+        },
+        {
+          "id": "dmr02-034",
+          "name": "超次元グリーンレッド・ホール",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-034"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dmx25-047",
+          "canonicalId": "dmr02-030",
+          "name": "超次元ブルーホワイト・ホール",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx25-047"
+        },
+        {
+          "id": "dmx25-018",
+          "canonicalId": "dmr02-031",
+          "name": "超次元ホワイトグリーン・ホール",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx25-018"
+        },
+        {
+          "id": "dmex17-Cho20",
+          "canonicalId": "dmr02-031",
+          "name": "超次元ホワイトグリーン・ホール",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-Cho20"
+        }
+      ],
+      "supportedNames": 7297,
+      "pendingNames": 4530,
+      "verification": {
+        "focused": "tests/standard1106-effects.test.mjs 14件成功。",
+        "relatedRegressions": "583件成功（継続効果、攻撃義務、出る時の置換、超次元展開、覚醒、カタログ）。",
+        "check": "npm run check 成功。CPUとオンラインのカード定義を照合。",
+        "officialPrints": 8,
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/qa_old/37593/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37594/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37595/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37596/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37744/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34978/",
+          "https://dm.takaratomy.co.jp/rule/qa/49422/",
+          "https://dm.takaratomy.co.jp/rule/qa/31678/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。前回中断したツインパクト混成100戦は再検証未実施。既存の超次元展開の両面対応など、登録済みカードの未完了項目は理由とともに継承。",
+        "notes": "実データの正規名は7,292→7,297種類。既存7,292件のカード定義を照合。公式8版の能力全文、基本情報、画像、現行使用制限を確認。実カードの光/闇のシュヴァルで光の処理、ジョンの火と自然の各面で別々の処理を確認。水/闇の両処理を同時に行うテストはテスト用の文明設定で確認。結果を参照する追加効果は、登場が禁止・置換された場合に実行しない。攻撃義務は攻撃が可能なときに代わりのタップ能力を止める。",
+        "regressionLogs": [
+          "/tmp/duema-phase-1106/focused.log",
+          "/tmp/duema-phase-1106/regression.log",
+          "/tmp/duema-phase-1106/check.log",
+          "/tmp/duema-phase-1106/audit.log"
+        ]
+      },
+      "registeredUnverified": [
+        {
+          "cardId": "dmr03-024",
+          "dependencyIds": [
+            "dmd03-002"
+          ],
+          "test": "相手が自身の破壊されないサイキックを選べて、選んだクリーチャーが残る（QA 36427と同型）",
+          "reason": "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
+        },
+        {
+          "cardId": "dmr01-034",
+          "test": "火のサイキック2体を合計コスト8で超次元ゾーンから出す実カードの組み合わせ",
+          "reason": "火の実カードはコスト7のボルシャックとコスト5のオーフレイム。合計8で2体を出すため、火のコスト3以下のサイキックが必要。境界と2体の上限はテスト用カードで検証済み。 依存IDは未対応の展開先候補。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-034",
+          "dependencyIds": [
+            "dm25ex4-046",
+            "dm37-030"
+          ]
+        },
+        {
+          "cardId": "dm22ex1-030",
+          "test": "mixed twinpact/dragon games finish, preserve all 80 physical cards including a pending spell, and replay deterministically",
+          "path": "tests/twinpact-judge.test.mjs",
+          "reason": "今バッチの一括回帰は長時間の100戦検証を含むファイルで中断。関連する固有回帰6件を分けて実行し成功。以前の対戦分割検証の合格記録は保持。現時点の再検証はシードを分割して行う。",
+          "log": "/tmp/duema-phase-1101/regression.log"
+        },
+        {
+          "cardId": "dm36-077",
+          "relatedCardIds": [
+            "dm36-101",
+            "dm38-046",
+            "dm38-051",
+            "dmr01-095",
+            "dmr01-072",
+            "dmr01-104",
+            "dmex17-134",
+            "dmc62-006",
+            "dmr01-034",
+            "dm36-109",
+            "dm36-093",
+            "dm37-039",
+            "dm36-085",
+            "dm37-049",
+            "dm37-053",
+            "dm22ex1-127",
+            "dm22ex1-112",
+            "dmpcd03-a12"
+          ],
+          "test": "超次元の各面をコスト・文明・種族で判定し、条件を満たす覚醒後の面を直接出せる",
+          "reason": "Phase 1104は今回追加した4種類の展開で両面選択を検証。登録済みの他の展開効果への適用と、選択肢の順序が保存済み対戦の再現に与える影響は未検証。展開元ごとに条件と表示をテストする。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/37744/"
+        },
+        {
+          "cardId": "dmbd13-015",
+          "dependencyIds": [
+            "dmr04-v03"
+          ],
+          "test": "奇石 ミクセルの登場監視とリュウセイ・ホールのマナ追加の順序を勝利のガイアール・カイザーで再現する（QA 38717）",
+          "reason": "勝利のガイアール・カイザーはV覚醒リンクを含む能力全体が未対応。同じコスト7の登録済みサイキック、時空の火焔ボルシャック・ドラゴンでは、6マナで登場してからマナを追加する順序を確認済み。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/38717/",
+          "path": "tests/standard1105-effects.test.mjs",
+          "log": "/tmp/duema-phase-1105/focused.log"
+        }
+      ],
+      "deferred": [
+        {
+          "id": "dmr04-v03",
+          "name": "勝利のガイアール・カイザー",
+          "reason": "リュウセイ・ホールのQA 38717の指定カード。V覚醒リンクに必要なカードと合体面の能力を照合する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-v03",
+            "https://dm.takaratomy.co.jp/rule/qa/38717/"
+          ]
+        },
+        {
+          "id": "dm37-030",
+          "name": "時空の喧嘩屋キル",
+          "reason": "低コストの火のサイキック候補。既存の保留理由と関連裁定に沿って離脱置換を検証する。 初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030VC",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmx02-023",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-089",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd03-a06",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36119/",
+            "https://dm.takaratomy.co.jp/rule/qa/45084/"
+          ]
+        },
+        {
+          "id": "dm25ex4-046",
+          "name": "ギル・トップギア",
+          "reason": "表裏の使用コスト軽減、各ターン1度の判定、G・覚醒と解除の処理を通しで検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-046"
+          ]
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "双方のパワー6000以下のサイキックを一斉に破壊し、複数の離脱置換・解除を処理するテストと、自身が攻撃されないことの検証が必要。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-062"
+          ]
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "保留継続。選んだアンタップ中の相手クリーチャーを攻撃できる範囲と、召喚酔い・攻撃制限・対象の離脱後の扱いを個別に確認する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-102"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1105,
-    "nextPhase": 1106,
+    "lastVerifiedPhase": 1106,
+    "nextPhase": 1107,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dmr02-030",
-        "name": "超次元ブルーホワイト・ホール",
-        "reason": "選んだカードの文明を参照する後続効果について、登場が禁止または置換された場合と、実際に出た場合を区別するテストまで保留。",
+        "id": "dmr01-045",
+        "name": "超次元マザー・ホール",
+        "reason": "手札からのブロッカー展開と超次元の両面選択、再録を照合する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-030"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-045",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b082"
         ]
       },
       {
-        "id": "dmr02-032",
-        "name": "超次元ブラックブルー・ホール",
-        "reason": "闇・水の後続効果を、サイキックが実際に出たかと出た面の文明から判定する必要がある。登場が禁止または置換される場合の検証まで保留。",
+        "id": "dm39-020",
+        "name": "超次元ガード・ホール",
+        "reason": "非進化クリーチャーの持ち主へのシールド化、複数枚で構成されたクリーチャーの扱い、コマンドの展開条件を照合する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-032"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm39-020"
         ]
       },
       {
-        "id": "dmr02-034",
-        "name": "超次元グリーンレッド・ホール",
-        "reason": "初版の公式能力全文・基本情報・画像と単一収録を確認。選んだカードを実際に出せたかの確認、火・自然両方の追加効果、召喚酔いの扱いを検証するまで保留。",
+        "id": "dm38-011",
+        "name": "超次元ロマノフ・ホール",
+        "reason": "双方の破壊対象の選択と超次元展開、再録を照合する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-034",
-          "https://dm.takaratomy.co.jp/rule/qa_old/34978/",
-          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm38-011"
         ]
       },
       {
-        "id": "dmr02-031",
-        "name": "超次元ホワイトグリーン・ホール",
-        "reason": "各文明の追加効果、出た面の参照、マナ・シールド移動と登場置換を公式裁定で照合する。",
+        "id": "dmbd21-016",
+        "name": "超次元バサラ・ホール",
+        "reason": "超次元から出せる条件と関連裁定、再録を照合する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-031"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmbd21-016",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-T18"
+        ]
+      },
+      {
+        "id": "dm22ex1-077",
+        "name": "超次元パンドラ・ホール",
+        "reason": "ウエポンを出せる条件と超次元展開、再録を照合する。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-077",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-T12",
+          "https://dm.takaratomy.co.jp/rule/qa/48121/"
         ]
       },
       {
@@ -213009,7 +213213,7 @@
         ]
       }
     ],
-    "steps": "次回はPhase 1106。最新コミット、作業ツリーとステージ済み差分、前回のテストログ、実行中の作業、実データの正規カード名件数を確認し、候補の公式照合から再開する。",
+    "steps": "次回はPhase 1107。最新コミット、作業ツリーとステージ済み差分、前回のテストログ、実行中の作業、実データの正規カード名件数を確認し、候補の公式照合から再開する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
