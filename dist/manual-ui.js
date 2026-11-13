@@ -401,8 +401,8 @@ export function manaSummonModel(s,owner=0){
  if(owner!==0)return [];
  const actions=getLegalActions(s).filter(a=>a.player===0&&a.kind==='play'&&a.origin==='mana');
  return s.players[owner].mana.flatMap(x=>{
-  const c=card(x),plays=actions.filter(a=>a.uid===x.uid);if(!c.manaSummon&&!c.g296ManaBirth&&!plays.length)return [];
-  const data={...c,...(c.g296ManaBirth?{cost:c.g296ManaBirth,printedCost:c.cost}:{}),summonOrigin:'mana'},cost=plays.length?Math.min(...plays.map(a=>a.cost??summonCost(s,owner,data))):summonCost(s,owner,data);let reason='';
+  const c=card(x),plays=actions.filter(a=>a.uid===x.uid);if(!c.manaSummon&&c.g296ManaBirth===undefined&&!plays.length)return [];
+  const data={...c,...(c.g296ManaBirth!==undefined?{cost:c.g296ManaBirth,printedCost:c.cost}:{}),summonOrigin:'mana'},cost=plays.length?Math.min(...plays.map(a=>a.cost??summonCost(s,owner,data))):c.g296ManaBirth===0?0:summonCost(s,owner,data);let reason='';
   if(!plays.length){
    if(s.winner!==null)reason='対戦は終了しています。';
    else if(s.active!==owner)reason='自分のターンのメインステップに召喚できます。';

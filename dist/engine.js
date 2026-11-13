@@ -1528,7 +1528,8 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  if(stopped&&(c.effect||c.dragonEntryTap))log(s,p,'triggerPrevented',`${c.name}自身の登場時能力は${abilitiesIgnored(s,inst)?'能力の無視':graveMuted?'ブラキオ龍樹':c.abakuOni&&s.players.reduce((n,p)=>n+p.shields.length,0)<=6?'鬼タイム':extra.muteEntry(s,p)?'マリニャンX':'GG'}によりトリガーしない`,{cardId:c.id});
  if(!stopped){
   const defs=firstNamedEntry&&entryOptions.execution?[{op:'Custom',name:'extraTurn'}]:
-   entryOptions.g1086FreeSummon?c.g1086FreeSummonEntry:entryOptions.execution?c.g1087SummonEntry:null;
+   entryOptions.g1086FreeSummon?c.g1086FreeSummonEntry:entryOptions.execution?
+    (entryOptions.origin==='mana'&&c.g1124ManaSummonEntry||c.g1087SummonEntry):null;
   if(defs)enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,source:c.id,effect:'extended',
    task:extra.task('g34_Sequence',p,c.id,{uid:inst.uid,incarnation:inst.incarnation,defs})});
  }
@@ -2279,25 +2280,31 @@ function skipTurn(s,p,source){
 }
 function manaSnapshot(s){
  return s.players.map(own=>{
-  const watchers=[],perCard=[];
+  const watchers=[],perCard=[],jingi=[];
   for(const x of own.battle){
    const c=card(x);
-   if(!(c?.g47Strato||c?.g811ManaDeparture)||abilitiesIgnored(s,x))continue;
+   if(!(c?.g47Strato||c?.g811ManaDeparture||c?.g1124Jingi)||abilitiesIgnored(s,x))continue;
    const ref={uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0};
    if(c.g47Strato)watchers.push(ref);
    if(c.g811ManaDeparture)perCard.push({...ref,defs:c.g811ManaDeparture});
+   if(c.g1124Jingi&&!x.sealed&&!x.faceDown&&isCreature(s,x))jingi.push({...ref,defs:c.g1124Jingi});
   }
-  return {uids:own.mana.map(x=>x.uid),watchers,perCard};
+  return {uids:own.mana.map(x=>x.uid),watchers,perCard,jingi,creatures:jingi.length?
+   own.mana.filter(x=>!x.faceDown&&playFaces(card(x)).some(face=>face.type==='creature')).map(x=>x.uid):[]};
  });
 }
 function manaDeparted(s,before){
  for(let p=0;p<2;p++){
-  const {uids,watchers,perCard}=before[p],mana=s.players[p].mana;
+  const {uids,watchers,perCard,jingi,creatures}=before[p],mana=s.players[p].mana;
   if(uids.length===mana.length&&uids.every((uid,i)=>uid===mana[i].uid))continue;
   const remaining=new Set(mana.map(x=>x.uid));
   const departed=uids.filter(uid=>!remaining.has(uid)).length;
   if(!departed)continue;
   extra.seed.manaLeft(s,p,watchers);
+  for(const {uid,cardId,incarnation,defs} of jingi)
+   for(const departedUid of creatures)
+    if(departedUid!==uid&&!remaining.has(departedUid))
+     enqueueEffect(s,p,{uid,incarnation,source:cardId,effect:'extended',task:extra.task('g34_Sequence',p,cardId,{uid,incarnation,defs})});
   for(const {uid,cardId,incarnation,defs} of perCard)
    for(let i=0;i<departed;i++)
     enqueueEffect(s,p,{uid,incarnation,source:cardId,effect:'extended',task:extra.task('g34_Sequence',p,cardId,{uid,incarnation,defs})});

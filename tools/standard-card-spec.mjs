@@ -6184,6 +6184,25 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1124&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText),birth='マナ爆誕0(このクリーチャーを自分のマナゾーンからコストを支払わずに召喚してもよい)';
+  const fromMana=[
+   'このクリーチャーをバトルゾーンに出した時自分のマナゾーンから召喚していた場合',
+   'このクリーチャーを自分のマナゾーンから召喚してバトルゾーンに出した時',
+   'このクリーチャーが自分のマナゾーンから召喚されてバトルゾーンに出た時',
+   'このクリーチャーがバトルゾーンに出た時自分のマナゾーンから召喚していたら'
+  ];
+  if(['dm39-034','dmx12a-021','dmx22b-122','dmex08-072'].includes(d.id)&&fromMana.some(clause=>
+   text.replace(/^【WSouls】/,'')===birth+clause+'自然のカードを1枚自分のマナゾーンから墓地に置く。置けない場合このクリーチャーを破壊する。'))
+   return {g296ManaBirth:0,g558Souls:['W'],g1124ManaSummonEntry:[{op:'HippoMana1124'}]};
+  const jingi='仁義(自分の他のクリーチャーがバトルゾーンまたはマナゾーンを離れた時このクリーチャーの能力を使ってもよい)'+
+   'このターンこのクリーチャーのパワーは+3000される。';
+  const breaker='仁義(自分の他のクリーチャーがバトルゾーンまたはマナゾーンを離れた時このクリーチャーの能力を使ってもよい)'+
+   'このターンこのクリーチャーのパワーは+3000され「W・ブレイカー」を得る。';
+  if(d.id==='dm37-048'&&text===jingi||d.id==='dm37-050'&&text===breaker)
+   return {g1124Jingi:[{op:'Offer',title:'仁義を使う？',defs:[{op:'SelfBoost313',power:3000,g536Source:true,
+    g694ClearOnSeal:true,...(d.id==='dm37-050'?{breaker:2,g633DoubleBreaker:true}:{})}]}]};
+ }
  if(phase>=1123&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText),psychics={zone:'battle',filter:{creature:true,g1085Psychic:true}};
   if(d.id==='dm39-046'&&f.typeText==='クリーチャー'&&text===

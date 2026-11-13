@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-13",
   "catalogueNames": 11827,
-  "supportedNames": 7357,
-  "pendingNames": 4470,
-  "phase": 1123,
+  "supportedNames": 7360,
+  "pendingNames": 4467,
+  "phase": 1124,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2624,
+    "クリーチャー": 2621,
     "NEOクリーチャー": 87,
     "呪文": 545,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1177,
-    "未対応の能力文": 3078,
+    "未対応の能力文": 3075,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 21,
     "未対応のシンカパワー": 2,
@@ -217412,38 +217412,365 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1124,
+      "baseCommit": "d8198e33",
+      "scope": "陰陽の舞、カンフー・ピッグ、心霊の化身の能力全体を対戦対応する。",
+      "cards": [
+        {
+          "id": "dm39-034",
+          "name": "陰陽の舞",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-034"
+        },
+        {
+          "id": "dm37-048",
+          "name": "カンフー・ピッグ",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-048"
+        },
+        {
+          "id": "dm37-050",
+          "name": "心霊の化身",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-050"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dmx12a-021",
+          "canonicalId": "dm39-034",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12a-021"
+        },
+        {
+          "id": "dmx22b-122",
+          "canonicalId": "dm39-034",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-122"
+        },
+        {
+          "id": "dmex08-072",
+          "canonicalId": "dm39-034",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-072"
+        }
+      ],
+      "supportedNames": 7360,
+      "pendingNames": 4467,
+      "verification": {
+        "focused": "tests/standard1124-effects.test.mjs 12件通過。公式6版・殿堂1枚制限、陰陽の舞の0マナ召喚、ゴエモンキー経由、コートニーの文明変更、ヤドックでの位相維持、仁義のバトル・マナ離脱、同時破壊、任意辞退とW・ブレイカーを確認。前回保留のガガマルとの公式QA 36277を実カードで再現。",
+        "relatedRegressions": "マナ爆誕、マナ召喚、パワーとブレイカー、マナ離脱、召喚時の処理、手動対戦UIの関連回帰261件通過。",
+        "check": "npm run check 成功。",
+        "officialPrints": 6,
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/qa_old/34963/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37640/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37643/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36274/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36275/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36276/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36277/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36278/",
+          "https://dm.takaratomy.co.jp/rule/qa/33279/",
+          "https://dm.takaratomy.co.jp/rule/qa/39622/"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。既存の11項目を継承し、バリバリ・ケドケドが必要な実カードの裁定を追加。写真デッキ、No11・No23の長時間回帰は前回記録を継承。",
+        "notes": "dist/cards.jsonをdist/catalogue.jsのnameKeyで再集計し、7,357→7,360種類。陰陽の舞の再録3版は初版IDに集約。本文欄の表記差は画像と照合し、全4版のW・ソウルを確認。既存のカード定義と登録順は一致。",
+        "regressionLogs": [
+          "/tmp/duema-phase-1124/focused.log",
+          "/tmp/duema-phase-1124/regression.log",
+          "/tmp/duema-phase-1124/check.log",
+          "/tmp/duema-phase-1124/audit.log"
+        ]
+      },
+      "registeredUnverified": [
+        {
+          "cardId": "dmr03-024",
+          "dependencyIds": [
+            "dmd03-002"
+          ],
+          "test": "相手が自身の破壊されないサイキックを選べて、選んだクリーチャーが残る（QA 36427と同型）",
+          "reason": "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
+        },
+        {
+          "cardId": "dm36-077",
+          "relatedCardIds": [
+            "dm36-101",
+            "dm38-046",
+            "dm38-051",
+            "dmr01-095",
+            "dmr01-072",
+            "dmr01-104",
+            "dmex17-134",
+            "dmc62-006",
+            "dmr01-034",
+            "dm36-109",
+            "dm36-093",
+            "dm37-039",
+            "dm36-085",
+            "dm37-049",
+            "dm37-053",
+            "dm22ex1-127",
+            "dm22ex1-112",
+            "dmpcd03-a12"
+          ],
+          "test": "超次元の各面をコスト・文明・種族で判定し、条件を満たす覚醒後の面を直接出せる",
+          "reason": "Phase 1104は今回追加した4種類の展開で両面選択を検証。登録済みの他の展開効果への適用と、選択肢の順序が保存済み対戦の再現に与える影響は未検証。展開元ごとに条件と表示をテストする。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/37744/"
+        },
+        {
+          "cardId": "dmbd13-015",
+          "dependencyIds": [
+            "dmr04-v03"
+          ],
+          "test": "奇石 ミクセルの登場監視とリュウセイ・ホールのマナ追加の順序を勝利のガイアール・カイザーで再現する（QA 38717）",
+          "reason": "勝利のガイアール・カイザーはV覚醒リンクを含む能力全体が未対応。同じコスト7の登録済みサイキック、時空の火焔ボルシャック・ドラゴンでは、6マナで登場してからマナを追加する順序を確認済み。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/38717/",
+          "path": "tests/standard1105-effects.test.mjs",
+          "log": "/tmp/duema-phase-1105/focused.log"
+        },
+        {
+          "cardId": "dm38-011",
+          "dependencyIds": [
+            "dmr01-053"
+          ],
+          "test": "ロマノフ・ホールで相手が自身のエイリアンを選び破壊した場合、ザビ・リゲルが呪文による破壊を参照する（QA 36348）",
+          "path": "tests/standard1107-effects.test.mjs",
+          "reason": "竜骨なる者ザビ・リゲルが覚醒リンクを含め対戦未対応。相手本人による選択・破壊と、その後に唱えた側が闇のサイキックを出すことは固有テストで確認済み。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36348/"
+        },
+        {
+          "cardId": "dmex12-052",
+          "dependencyIds": [
+            "dmex12-022"
+          ],
+          "test": "希望のジョー星と透明妖精リリンの登場順により、マナのスノーフェアリーの文明が変わる（QA 38608）",
+          "reason": "希望のジョー星はプレミアム殿堂かつ対戦未対応。依存カードに対応後、通常のデッキ制限を守ったままテスト用の盤面で両方の登場順を再現する。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/38608/",
+          "path": "tests/standard1114-effects.test.mjs"
+        },
+        {
+          "cardId": "dmex17-004",
+          "dependencyIds": [
+            "dmex12-022"
+          ],
+          "test": "希望のジョー星で無色になった山札のカードをアシッド・テクノが参照する（裁定変更のお知らせ31641）",
+          "reason": "希望のジョー星が対戦未対応のため、既に受けている文明変更が山札を見ている間も続く組み合わせを再現できない。依存カードへの対応後に確認する。",
+          "source": "https://dm.takaratomy.co.jp/rule/rulechange/31641/",
+          "path": "tests/standard1114-effects.test.mjs"
+        },
+        {
+          "cardId": "dm25ex2-082",
+          "test": "ドラム・トレボールが参照する「ナイト・マジック」にキング・ナイト・マジックが含まれるかを確認する",
+          "reason": "両版のドラム・トレボールは対戦対応済み。公式カード本文で異なる名称のキーワードを区別し、通常のナイト・マジックだけが軽減される実装と対戦テストを確認。キング・ナイト・マジックがナイト・マジックを兼ねるかを直接説明する公式裁定は未確認。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm30-047",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-083",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-082"
+          ],
+          "path": "tests/standard1119-effects.test.mjs",
+          "relatedCardIds": [
+            "dm30-047",
+            "dmex17-083"
+          ],
+          "log": "/tmp/duema-phase-1119/focused.log"
+        },
+        {
+          "cardId": "dm03-039",
+          "path": "tests/utility87-effects.test.mjs",
+          "test": "Holy Mail keeps the added shield UID private in both online projections",
+          "reason": "テスト用ルームにdecksがなく、projectRoomがroom.decks[0]の参照で例外を出す。変更前のエンジンでも同じエラーを再現。ルームを本番の生成経路か現行形式のフィクスチャで作成してから再検証する。",
+          "log": "/tmp/duema-phase-1117/regression-baseline.log"
+        },
+        {
+          "cardId": "dm14-013",
+          "path": "tests/utility87-effects.test.mjs",
+          "test": "Cavalt private inspection is sent only to its controller and never stored as a public hand-name log",
+          "reason": "テスト用ルームにdecksがなく、projectRoomがroom.decks[0]の参照で例外を出す。変更前のエンジンでも同じエラーを再現。ルームを本番の生成経路か現行形式のフィクスチャで作成してから再検証する。",
+          "log": "/tmp/duema-phase-1117/regression-baseline.log"
+        },
+        {
+          "cardId": "dm22-039",
+          "path": "tests/utility87-effects.test.mjs",
+          "test": "Arc hides the former public creature when it becomes a shield in online play",
+          "reason": "テスト用ルームにdecksがなく、projectRoomがroom.decks[0]の参照で例外を出す。変更前のエンジンでも同じエラーを再現。ルームを本番の生成経路か現行形式のフィクスチャで作成してから再検証する。",
+          "log": "/tmp/duema-phase-1117/regression-baseline.log"
+        },
+        {
+          "cardId": "dm24ex4-062",
+          "path": "tests/bolshack-photo.test.mjs",
+          "test": "a private Bolbady look never exposes deck identities or actions to the opposing account",
+          "reason": "テスト用ルームにdecksがなく、projectRoomがroom.decks[0]の参照で例外を出す。変更前のエンジンでも同じエラーを再現。ルームを本番の生成経路か現行形式のフィクスチャで作成してから再検証する。",
+          "log": "/tmp/duema-phase-1117/bolshack-baseline.log"
+        },
+        {
+          "cardId": "dm39-034",
+          "test": "バリバリ・ケドケドが陰陽の舞のマナ爆誕0の宣言を止める（QA 39622）",
+          "reason": "バリバリ・ケドケド（dmrp16-017）が未対応。若き大長老 アプルの既存マナ離脱禁止では0マナでも宣言できないことを確認済み。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-017",
+            "https://dm.takaratomy.co.jp/rule/qa/39622/"
+          ]
+        }
+      ],
+      "deferred": [
+        {
+          "id": "dmr02-020",
+          "name": "超次元ごっつぁん・ホール",
+          "reason": "手札から捨てる能力に必要な横綱 義留の富士（dmr02-002）が覚醒リンクを含め未対応。攻撃側の誘発を解決する順番と、複数枚の宣言・攻撃中止後のバトルを確認するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-020",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-002",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36380/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36381/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36382/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36383/"
+          ]
+        },
+        {
+          "id": "dm39-020",
+          "name": "超次元ガード・ホール",
+          "reason": "公式5版の本文・画像と現行表記を照合。非進化で複数カードから成るクリーチャーの構成カードをどの単位でシールドにするか、持ち主と離脱置換を含む裁定確認が残る。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm39-020",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm39-020VC",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-017",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-Cho18",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-T08"
+          ]
+        },
+        {
+          "id": "dm22ex1-077",
+          "name": "超次元パンドラ・ホール",
+          "reason": "装備先がいない場合でもウエポンは出て、出た時の能力が待機してから超次元へ戻る。ドラグハート・ウエポンの展開・装備・状況起因処理を検証できるまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-077",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-T12",
+            "https://dm.takaratomy.co.jp/rule/qa/48121/"
+          ]
+        },
+        {
+          "id": "dmr04-v03",
+          "name": "勝利のガイアール・カイザー",
+          "reason": "リュウセイ・ホールのQA 38717の指定カード。V覚醒リンクに必要なカードと合体面の能力を照合する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-v03",
+            "https://dm.takaratomy.co.jp/rule/qa/38717/"
+          ]
+        },
+        {
+          "id": "dm37-030",
+          "name": "時空の喧嘩屋キル",
+          "reason": "低コストの火のサイキック候補。既存の保留理由と関連裁定に沿って離脱置換を検証する。 初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030VC",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmx02-023",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-089",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd03-a06",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36119/",
+            "https://dm.takaratomy.co.jp/rule/qa/45084/"
+          ]
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "双方のパワー6000以下のサイキックを一斉に破壊し、複数の離脱置換・解除を処理するテストと、自身が攻撃されないことの検証が必要。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-062"
+          ]
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "保留継続。選んだアンタップ中の相手クリーチャーを攻撃できる範囲と、召喚酔い・攻撃制限・対象の離脱後の扱いを個別に確認する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-102"
+          ]
+        },
+        {
+          "id": "dmd03-002",
+          "name": "不死身のブーストグレンオー",
+          "reason": "裏面がサイキック・セル。単体の破壊耐性だけでは能力全体を再現できないため、剛腕の政とサイキック・スーパー・クリーチャーのリンク解除を含めて検証する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmd03-002",
+            "https://dm.takaratomy.co.jp/rule/qa_old/37755/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
+          ]
+        },
+        {
+          "id": "dm25ex4-050",
+          "name": "怒魂長の超人",
+          "reason": "公式本文・基本情報・画像と単一収録を照合。デュエルメイト・クリーチャーとリンク後のクリーチャーが現行の対戦に未対応で、両方の条件を実カードで確認できない。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-050",
+            "https://dm.takaratomy.co.jp/rule/qa/48146/",
+            "https://dm.takaratomy.co.jp/rule/qa/48145/"
+          ]
+        },
+        {
+          "id": "dm25ex4-064",
+          "name": "次元戴冠プリンプリン",
+          "reason": "公式本文・基本情報・画像と単一収録を照合。山札のカードタイプとして参照するデュエリストが対戦未対応のため保留。デュエリストに対応後、クリーチャー、デュエリスト、ホール名、その他の各条件を確認する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-064",
+            "https://dm.takaratomy.co.jp/rule/qa/48148/"
+          ]
+        },
+        {
+          "id": "dm39-031",
+          "name": "ライラ・アイニー",
+          "reason": "DM-39版の公式本文・基本情報・画像を照合。DMX-09の再録版照合と、ブロック・攻撃・効果によるバトルの開始時にシールドを回収し、そのS・トリガーを抑制する処理順の確認が残る。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm39-031",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36251/"
+          ]
+        },
+        {
+          "id": "dmrp16-017",
+          "name": "バリバリ・ケドケド",
+          "reason": "公式QA 39622の実カード。バトルゾーン・マナ・シールドの両方向の移動禁止と、通常の登場や召喚と置換効果の区別を確認するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-017",
+            "https://dm.takaratomy.co.jp/rule/qa/39622/"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1123,
-    "nextPhase": 1124,
+    "lastVerifiedPhase": 1124,
+    "nextPhase": 1125,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm39-034",
-        "name": "陰陽の舞",
-        "reason": "マナ爆誕0とマナからの召喚時の移動・破壊条件が未対応。ガガマルが0コストを増やさない処理は定義側で守っているが、実カードの組み合わせは公式QA 36277に沿って登録時に検証する。",
+        "id": "dm37-012",
+        "name": "終焉の凶兵ブラック・ガンヴィート",
+        "reason": "両者の一括手札破棄と手札0枚に応じた継続パワーを確認する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm39-034",
-          "https://dm.takaratomy.co.jp/rule/qa_old/36277/"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm37-012"
         ]
       },
       {
-        "id": "dm37-048",
-        "name": "カンフー・ピッグ",
-        "reason": "仁義の戦場・マナからの離脱と同時離脱を確認する。",
+        "id": "dm37-003",
+        "name": "爆竜ハリケーントプス XX",
+        "reason": "ブロックされなかった時のタイミングと火のサイキックの展開範囲を確認する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm37-048",
-          "https://dm.takaratomy.co.jp/rule/qa_old/34963/"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm37-003"
         ]
       },
       {
-        "id": "dm37-050",
-        "name": "心霊の化身",
-        "reason": "仁義でパワーとW・ブレイカーを与える効果を検証する。",
+        "id": "dm37-026",
+        "name": "ジェスター・ブレイン",
+        "reason": "相手が選ぶ任意のシールド回収、トリガーと戻す手札の実績枚数を確認する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm37-050",
-          "https://dm.takaratomy.co.jp/rule/qa_old/37640/"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm37-026"
+        ]
+      },
+      {
+        "id": "dmrp16-017",
+        "name": "バリバリ・ケドケド",
+        "reason": "公式QA 39622の実カード。バトルゾーン・マナ・シールドの両方向の移動禁止と、通常の登場や召喚と置換効果の区別を確認するまで保留。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-017",
+          "https://dm.takaratomy.co.jp/rule/qa/39622/"
         ]
       },
       {
@@ -217483,7 +217810,7 @@
         ]
       }
     ],
-    "steps": "次回はPhase 1124。最新コミット、作業ツリーとステージ済み差分、前回ログ、実行中の作業、実データの正規カード名件数を確認し、候補の公式照合から再開する。陰陽の舞を対応する場合は公式QA 36277を実カードで再現する。",
+    "steps": "次回はPhase 1125。最新コミット、作業ツリーとステージ済み差分、前回ログ、実行中の作業、実データの正規カード名件数を確認し、候補の公式照合から再開する。バリバリ・ケドケドを対応する場合は公式QA 39622を実カードで再現する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
