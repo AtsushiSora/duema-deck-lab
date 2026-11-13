@@ -228088,15 +228088,119 @@
       ],
       "supportBatch": "phase-1174",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-011",
+      "name": "星姫械 シリエス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "メカ・デル・ステラ",
+      "text": "各ターンに一度、自分のメカが出た時、カードを１枚引いてもよい。\nこのクリーチャーが離れる時、かわりに自分の他のメカを１つ破壊してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-011",
+      "limit": 4,
+      "aterGuard": "mecha",
+      "g251EntryDraw": {
+        "filter": {
+          "race": "メカ"
+        },
+        "defs": [
+          {
+            "op": "Offer",
+            "g792Once": "siriessDraw",
+            "title": "カードを1枚引く？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1175",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-030",
+      "name": "Dの寺院 タブラサ・チャンタラム",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 2,
+      "power": 0,
+      "race": "ゼニス",
+      "text": "各ターンに一度、自分のマナゾーンにカードを置いた時、それを裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）\n（他のD２フィールドが出た時、このD２フィールドを破壊する）**Dスイッチ：自分のゼニス・クリーチャーが出た時、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、自分のマナゾーンにある裏向きのカードをすべてアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-030",
+      "limit": 4,
+      "d2Field": true,
+      "g1175CrystalField": true,
+      "supportBatch": "phase-1175",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp3-021",
+      "name": "満韻炎霊 キャノンボール / ♪夏草や イフリートによる 夢の跡",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "マジック・アウトレイジ",
+      "text": "相手のクリーチャーが、相手の手札以外から出た時、自分のツインパクト・クリーチャー１体の呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい。\n【呪文面】\nS・トリガー S・トリガー\n相手のパワー12000以下のクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-021",
+      "limit": 4,
+      "g314OtherEntry": {
+        "who": "opponent",
+        "g1175OutsideHand": true,
+        "defs": [
+          {
+            "op": "CastBattleTwin1175"
+          }
+        ]
+      },
+      "spellFace": {
+        "type": "spell",
+        "name": "♪夏草や イフリートによる 夢の跡",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "race": "マジック・ソング",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 12000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1175",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1174,
+    "phase": 1175,
     "checkedAt": "2026-11-14",
-    "baseCount": 7512,
+    "baseCount": 7515,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7515,
+    "totalCount": 7518,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -248473,6 +248577,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7512,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1174,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7512,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7515,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

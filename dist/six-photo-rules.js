@@ -2708,6 +2708,27 @@ export function createSixPhotoRules(api){
   start(s,t,[{op:'Draw',n},{op:'SelfDestroy'}]);
   break;
  }
+ case'g34_CastBattleTwin1175':{
+  const rows=creatures(s,t.p).flatMap(y=>{
+   const spell=faces(card(y))[1];
+   return !y.sealed&&spell?.type==='spell'&&api.canCast(s,t.p,spell,'battle')?
+    [opt(spell.name+'を唱える',{uid:y.uid,incarnation:y.incarnation||0},spellScore555(s,t,spell),y.cardId)]:[];
+  });
+  if(rows.length)choice(s,t,'場に置いたまま唱えるツインパクトの呪文側を選ぶ（任意）',[...rows,skip()]);
+  break;
+ }
+ case'g34_CrystalManaDown1175':{
+  const mana=own.mana.find(y=>y.uid===t.target&&!y.faceDown&&(y.zoneSerial||0)===t.serial);
+  if(mana&&!used792(s,t,t))choice(s,t,card(mana).name+'をマナゾーンで裏向きにする？',
+   [opt('裏向きにする',true,manaDownScore426(s,t,mana),mana.cardId),skip()]);
+  break;
+ }
+ case'g34_CrystalSwitch1175':{
+  const field=live(s,t);
+  if(field&&!field.sealed&&!field.g1175DSwitched)choice(s,t,'Dスイッチ：裏向きのマナをすべてアンタップする？',
+   [opt('Dスイッチを使う',true,own.mana.filter(y=>y.faceDown&&y.tapped&&api.canUntap(y)).length*6),skip()]);
+  break;
+ }
  case'g34_TwinInPlace1088':{
   const host=sourceHost474(s,t.subject);
   if(host&&host.p===t.p)api.castBattleSpell(s,t.p,t.subject.uid,t.subject.incarnation,t.subject.source,{label:'SC龍飛→SC風流'});
@@ -2804,7 +2825,7 @@ export function createSixPhotoRules(api){
  case'g34_UntapMana':{
   let n=0;
   for(const y of own.mana){
-   if(!y.tapped||!api.canUntap(y)||!matches(s,t.p,y,t.filter))continue;
+   if(!y.tapped||!api.canUntap(y)||t.g1175FaceDownOnly&&!y.faceDown||!matches(s,t.p,y,t.filter))continue;
    if(t.manaColorsAny&&!api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,t.p).some(c=>t.manaColorsAny.includes(c)))continue;
    y.tapped=false;n++;
   }
@@ -4833,6 +4854,24 @@ export function createSixPhotoRules(api){
  case'g34_JesterShields1125':
   put(s,{...t,picked:v?[...t.picked,v]:t.picked,done:!v});
   break;
+ case'g34_CastBattleTwin1175':{
+  const unit=v&&live(s,{...t,...v});
+  if(unit&&!unit.sealed&&api.isCreature(s,unit))
+   api.castBattleSpell(s,t.p,v.uid,v.incarnation,unit.cardId,{label:card(t.source).name+'の能力'});
+  break;
+ }
+ case'g34_CrystalManaDown1175':if(v&&!used792(s,t,t)){
+  const mana=own.mana.find(y=>y.uid===t.target&&!y.faceDown&&(y.zoneSerial||0)===t.serial);
+  if(mana){
+   (s.once??={})[onceKey792(t,t)]=s.turn;
+   turnManaDown(s,t,{p:t.p,uid:mana.uid,serial:t.serial});
+  }
+ }break;
+ case'g34_CrystalSwitch1175':if(v&&x&&!x.sealed&&!x.g1175DSwitched){
+  x.g1175DSwitched=true;
+  api.log(s,t.p,'dSwitch',card(t.source).name+'のDスイッチを使う',{cardId:t.source});
+  start(s,t,[{op:'UntapMana',g1175FaceDownOnly:true}]);
+ }break;
  case'g34_ShieldTriggerUntap1015':
   if(v)api.interruptBreak(s,t.p,[v],{...t,op:'g34_Untap',g191First:true},
    {g842Hand:true,controller:t.p,source:t.source});
@@ -6446,7 +6485,12 @@ export function createSixPhotoRules(api){
     g1160FirstMultiManaDraw:firstMultiDraw,g1162FirstManaRecycle:recycle,g1168ManaEntryMulti:entryMulti}=effective(x,s);
    return rules||untap||defs||firstMultiDraw||recycle?[{x,rules:rules||[],untap,defs,entryRace,firstMultiDraw,recycle,entryMulti}]:[];
   });
+  const crystalSources=s.players[p].battle.filter(x=>!x.sealed&&card(x).g1175CrystalField&&effective(x,s).g1175CrystalField);
   for(const x of cards){
+   for(const field of crystalSources){
+    const g792Once='crystalMana';
+    if(!used792(s,field,{g792Once}))send(s,p,field,'CrystalManaDown1175',{g792Once,target:x.uid,serial:x.zoneSerial||0});
+   }
    if(!x.faceDown&&api.zoneCard(s,p,x).g449ManaReveal)send(s,p,x,'ManaReveal449',{serial:x.zoneSerial||0});
    const manaCard=x.faceDown?{civilizations:[],civ:'ゼロ',manaValue:1}:api.zoneCard(s,p,x,'mana');
    const actual=api.manaColors(manaCard,s,p);
@@ -6599,6 +6643,10 @@ export function createSixPhotoRules(api){
   }
  },
  entry(s,p,y,options){const c=card(y),creature=api.isCreature(s,y);
+  if(creature&&!y.sealed&&race(effective(y,s),'ゼニス'))for(const field of s.players[p].battle){
+   if(!field.sealed&&!field.g1175DSwitched&&card(field).g1175CrystalField&&effective(field,s).g1175CrystalField)
+    send(s,p,field,'CrystalSwitch1175');
+  }
   if(creature&&!y.sealed&&options.execution===true){
    const commandDragon=race(effective(y,s,true),'コマンド・ドラゴン');
    for(const watcher of creatures(s,p)){
@@ -6717,6 +6765,7 @@ export function createSixPhotoRules(api){
    if(!creature&&!card(x).g314OtherEntry?.g765Element)continue;
    const watch=effective(x,s).g314OtherEntry;
    if(!watch||!creature&&!watch.g765Element||x.sealed||x.uid===y.uid||watch.who!=='both'&&owner!==(watch.who==='opponent'?1-p:p))continue;
+   if(watch.g1175OutsideHand&&(!options.origin||options.origin==='hand'))continue;
    if(watch.entryCount!==undefined&&s.players[p].enteredThisTurn!==watch.entryCount)continue;
    if(watch.minEntryCount!==undefined&&(s.players[p].enteredThisTurn||0)<watch.minEntryCount)continue;
    if(watch.ownTurn&&owner!==s.active||used792(s,x,watch.defs?.[0])||watch.filter&&!matches(s,p,y,watch.filter))continue;

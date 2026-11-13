@@ -2467,6 +2467,30 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1175&&d?.status==='complete'){
+  const text=normalize(f.abilityText);
+  if(d.faces.length===1&&f.name==='星姫械 シリエス'&&f.typeText==='クリーチャー'&&
+   f.civilizationText==='光'&&f.cost===3&&text===
+   '各ターンに一度自分のメカが出た時カードを1枚引いてもよい。'+
+   'このクリーチャーが離れる時かわりに自分の他のメカを1つ破壊してもよい。'){
+   const draw={op:'Offer',g792Once:'siriessDraw',title:'カードを1枚引く？',defs:[{op:'Draw',n:1}]};
+   return {aterGuard:'mecha',g251EntryDraw:{filter:{race:'メカ'},defs:[draw]}};
+  }
+  if(d.faces.length===1&&f.name==='Dの寺院 タブラサ・チャンタラム'&&f.typeText==='D2フィールド'&&
+   f.civilizationText==='ゼロ'&&f.cost===2&&text===
+   '各ターンに一度自分のマナゾーンにカードを置いた時それを裏向きにしてもよい。(マナゾーンにある裏向きのカードはマナの数字が1の無色カードとして扱う。その持ち主はそれをいつでも見てもよい)'+
+   '(他のD2フィールドが出た時このD2フィールドを破壊する)**Dスイッチ:自分のゼニス・クリーチャーが出た時このD2フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら自分のマナゾーンにある裏向きのカードをすべてアンタップする。')
+   return {d2Field:true,g1175CrystalField:true};
+  const spell=d.faces[1];
+  if(d.faces.length===2&&f.name==='満韻炎霊 キャノンボール'&&f.typeText==='クリーチャー'&&
+   f.civilizationText==='火'&&f.cost===3&&text===
+   '相手のクリーチャーが相手の手札以外から出た時自分のツインパクト・クリーチャー1体の呪文側をバトルゾーンに置いたままコストを支払わずに唱えてもよい。'&&
+   spell.name==='♪夏草や イフリートによる 夢の跡'&&spell.typeText==='呪文'&&spell.civilizationText==='火'&&spell.cost===5&&
+   normalize(spell.abilityText)==='S・トリガーS・トリガー相手のパワー12000以下のクリーチャーを1体選び破壊する。')
+   return {g314OtherEntry:{who:'opponent',g1175OutsideHand:true,defs:[{op:'CastBattleTwin1175'}]},
+    spellFace:{type:'spell',name:spell.name,civ:spell.civilizationText,civilizations:spell.civilizations,cost:spell.cost,
+     race:spell.race,trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'grave',filter:{maxPower:12000,g199Power:true}}]}};
+ }
  if(phase>=1174&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.name==='ベートーベン・キューブ'&&f.typeText==='呪文'&&f.civilizationText==='自然'&&f.cost===6&&text===
