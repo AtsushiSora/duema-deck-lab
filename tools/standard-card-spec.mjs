@@ -6184,6 +6184,20 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1167&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmrp03-067'&&text==='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   'このクリーチャーが破壊された時相手のコスト4以下のクリーチャーを1体持ち主の手札に戻してもよい。')
+   return {blocker:true,g172Death:[{op:'Target',to:'hand',toOwnerHand:true,optional:true,filter:{max:4},
+    title:'持ち主の手札に戻すコスト4以下の相手クリーチャーを選ぶ（任意）'}]};
+  if(d.id==='dmex14-049'&&text==='スレイヤー(このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)'+
+   '自分のターンの終わりにこのクリーチャーが自分の墓地にあれば自分のシールドを1つ墓地に置いてもよい。そうしたらこのクリーチャーを手札に戻す。')
+   return {slayer:true,g971GraveEnd:{g1167ShieldForReturn:true}};
+  if(d.id==='dmrp03-091'&&text==='自分のパワー12000以上のクリーチャーがバトルゾーンに出た時そのターンこのクリーチャーのパワーを+4000し「W・ブレイカー」を与える。'+
+   '(「W・ブレイカー」を持つクリーチャーはシールドを2つブレイクする)')
+   return {g251EntryDraw:{filter:{creature:true,minPower:12000,g199Power:true},
+    defs:[{op:'IfSource541',defs:[{op:'SelfBoost313',g536Source:true,power:4000,breaker:2}]}]}};
+ }
  if(phase>=1166&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const heavyPopText={

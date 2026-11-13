@@ -2314,7 +2314,12 @@ export function createSixPhotoRules(api){
  case'g34_SelfGrant754':{const host=sourceHost474(s,t);if(host&&(!t.g770LiveCreature||!host.x.sealed&&api.isCreature(s,host.x)))applyGrant(s,t,host.x);break;}
  case'g34_GraveReturn754':{
   const y=own.grave.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);
-  if(!y||!api.canMoveZone(s,t.p,'grave')||t.condition&&!ownCondition(s,t.p,t.condition))break;
+  if(!y)break;
+  if(t.condition?.g1167ShieldForReturn){
+   start(s,t,[{op:'ShieldGrave',optional:true,then:[{op:'SelfGraveHand476',serial:t.serial}]}]);
+   break;
+  }
+  if(!api.canMoveZone(s,t.p,'grave')||t.condition&&!ownCondition(s,t.p,t.condition))break;
   if(t.condition?.g1050MandatoryGraveReturn){zoneMove(s,t.p,'grave',y.uid,'hand',t);break;}
   if(t.deploy&&!canPut(s,t.p,y,'grave'))break;
   if(t.colors?.length){

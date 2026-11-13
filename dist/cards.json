@@ -227212,15 +227212,106 @@
       ],
       "supportBatch": "phase-1166",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-067",
+      "name": "浅瀬の探索者 ランチュ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "ムートピア",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが破壊された時、相手のコスト４以下のクリーチャーを１体、持ち主の手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-067",
+      "limit": 4,
+      "blocker": true,
+      "g172Death": [
+        {
+          "op": "Target",
+          "to": "hand",
+          "toOwnerHand": true,
+          "optional": true,
+          "filter": {
+            "max": 4
+          },
+          "title": "持ち主の手札に戻すコスト4以下の相手クリーチャーを選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-1167",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex14-049",
+      "name": "言祝ぎし神王のコンヤク",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "エンジェル・コマンド/月光王国",
+      "text": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n自分のターンの終わりに、このクリーチャーが自分の墓地にあれば、自分のシールドを１つ墓地に置いてもよい。そうしたら、このクリーチャーを手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-049",
+      "limit": 4,
+      "slayer": true,
+      "g971GraveEnd": {
+        "g1167ShieldForReturn": true
+      },
+      "supportBatch": "phase-1167",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-091",
+      "name": "アップップ・タンク",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "グランセクト",
+      "text": "自分のパワー12000以上のクリーチャーがバトルゾーンに出た時、そのターン、このクリーチャーのパワーを+4000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーは、シールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-091",
+      "limit": 4,
+      "g251EntryDraw": {
+        "filter": {
+          "creature": true,
+          "minPower": 12000,
+          "g199Power": true
+        },
+        "defs": [
+          {
+            "op": "IfSource541",
+            "defs": [
+              {
+                "op": "SelfBoost313",
+                "g536Source": true,
+                "power": 4000,
+                "breaker": 2
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1167",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1166,
+    "phase": 1167,
     "checkedAt": "2026-11-14",
-    "baseCount": 7488,
+    "baseCount": 7491,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7491,
+    "totalCount": 7494,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -247501,6 +247592,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7488,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1166,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7488,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7491,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

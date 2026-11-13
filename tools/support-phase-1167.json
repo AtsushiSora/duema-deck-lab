@@ -1,0 +1,155 @@
+{
+  "phase": 1167,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7491,
+  "description": "浅瀬の探索者 ランチュ、言祝ぎし神王のコンヤク、アップップ・タンクの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/rulechange/31649/",
+    "https://dm.takaratomy.co.jp/rule/qa/31605/",
+    "https://dm.takaratomy.co.jp/rule/qa/45072/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31632/",
+    "https://dm.takaratomy.co.jp/rule/qa/42529/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmrp03-067",
+      "name": "浅瀬の探索者 ランチュ",
+      "faces": [
+        {
+          "name": "浅瀬の探索者 ランチュ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが破壊された時、相手のコスト４以下のクリーチャーを１体、持ち主の手札に戻してもよい。",
+          "race": "ムートピア",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-067",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-067.jpg",
+      "spec": {
+        "blocker": true,
+        "g172Death": [
+          {
+            "op": "Target",
+            "to": "hand",
+            "toOwnerHand": true,
+            "optional": true,
+            "filter": {
+              "max": 4
+            },
+            "title": "持ち主の手札に戻すコスト4以下の相手クリーチャーを選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "150b327c53759a86378dc23af4f4a475f6f8864f8735657b105c9a957e9b4a14",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-049",
+      "name": "言祝ぎし神王のコンヤク",
+      "faces": [
+        {
+          "name": "言祝ぎし神王のコンヤク",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n自分のターンの終わりに、このクリーチャーが自分の墓地にあれば、自分のシールドを１つ墓地に置いてもよい。そうしたら、このクリーチャーを手札に戻す。",
+          "race": "エンジェル・コマンド/月光王国",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-049",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-049.jpg",
+      "spec": {
+        "slayer": true,
+        "g971GraveEnd": {
+          "g1167ShieldForReturn": true
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "9ca6bda26707291891b60cd3f67ecaea271f4cf0ad3b4121a5fa15a8666e5bd7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp03-091",
+      "name": "アップップ・タンク",
+      "faces": [
+        {
+          "name": "アップップ・タンク",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のパワー12000以上のクリーチャーがバトルゾーンに出た時、そのターン、このクリーチャーのパワーを+4000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーは、シールドを２つブレイクする）",
+          "race": "グランセクト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-091",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-091.jpg",
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "minPower": 12000,
+            "g199Power": true
+          },
+          "defs": [
+            {
+              "op": "IfSource541",
+              "defs": [
+                {
+                  "op": "SelfBoost313",
+                  "g536Source": true,
+                  "power": 4000,
+                  "breaker": 2
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "f94e60856eae48bb19dc34df91834b95611e6f45b9c6c731dd823409a97f8a3b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp03-067": 4,
+      "dmex14-049": 4,
+      "dmrp03-091": 4
+    }
+  }
+}
