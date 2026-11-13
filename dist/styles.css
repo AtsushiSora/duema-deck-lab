@@ -293,3 +293,45 @@ dialog[open]:has(.tournament-setup),dialog[open]:has(.tournament-deck-picker){di
 .format-control{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px}
 .format-control label{font-size:12px;font-weight:700}
 .format-control .field{width:auto;max-width:100%;min-height:40px}
+
+.editor-toolbar {
+ display:grid;
+ grid-template-columns:minmax(0,2fr) minmax(0,1fr);
+ gap:10px 16px;
+}
+.editor-name-control,
+.editor-toolbar .format-control {
+ display:grid;
+ grid-template-rows:auto 1fr;
+ align-items:stretch;
+ gap:6px;
+ min-width:0;
+ font-size:12px;
+ font-weight:700;
+}
+.editor-toolbar .editor-name-control .field,
+.editor-toolbar .format-control .field {
+ width:100%;
+ height:44px;
+ min-width:0;
+ min-height:44px;
+ padding-block:0;
+ font-size:16px;
+ font-weight:400;
+}
+.editor-save-info {
+ grid-column:1/-1;
+ display:flex;
+ flex-wrap:wrap;
+ align-items:center;
+ gap:6px 12px;
+}
+.editor-save-info .badge {
+ max-width:100%;
+ white-space:normal;
+ overflow-wrap:anywhere;
+}
+@media(max-width:600px) {
+ .editor-toolbar {grid-template-columns:minmax(0,1fr)}
+ .editor-save-info .btn {min-height:44px}
+}
