@@ -968,7 +968,7 @@ export function createSixPhotoRules(api){
  // together, then publish every destination before queued zone triggers resolve.
  function distribute255(s,t){
   if(!api.canMoveZone(s,t.p,'deck')){for(const uid of[...(t.g255Plans||[]).map(r=>r.uid),...t.ids])release(s,t.p,uid);return;}
-  const own=s.players[t.p],rest=t.rest==='grave'?'grave':'deck';
+  const own=s.players[t.p],rest=['grave','mana'].includes(t.rest)?t.rest:'deck';
   const plans=[...(t.g255Plans||[]),...t.ids.map(uid=>({uid,to:rest}))];
   const host=plans.some(r=>r.to==='under')?sourceHost474(s,t):null;
   const rows=plans.flatMap(r=>{
@@ -3055,6 +3055,20 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
   break;
  }
+ case'g34_HandUnder1131':{
+  const host=sourceHost474(s,t);
+  if(host&&!host.x.sealed&&api.isCreature(s,host.x)&&own.hand.length)
+   choice(s,t,'このクリーチャーの下に表向きで置く手札を1枚選ぶ（任意）',[
+    ...own.hand.map(y=>opt(card(y).name,y.uid,15-cost(card(y)),y.cardId)),skip()
+   ]);
+  break;
+ }
+ case'g34_ManaStart1131':{
+  const y=own.mana.find(x=>x.uid===t.uid&&!x.faceDown&&(x.zoneSerial||0)===t.serial);
+  if(y&&own.mana.length>=card(y).g1131ManaStart&&api.canMoveZone(s,t.p,'mana')&&canPut(s,t.p,y,'mana'))
+   choice(s,t,card(y).name+'をマナゾーンから出す？',[opt('出す',true,20,y.cardId),skip()]);
+  break;
+ }
  case'g34_StackDestroyed1130':{
   const host=sourceHost474(s,t),victim=own.grave.find(y=>y.uid===t.victim.uid&&(y.zoneSerial||0)===t.victim.serial);
   if(host&&!host.x.sealed&&api.isCreature(s,host.x)&&victim&&api.canMoveZone(s,t.p,'grave'))
@@ -4652,6 +4666,18 @@ export function createSixPhotoRules(api){
   break;
  }else break;
  case'g34_Harpoon618':put(s,{...t,kept:[...(t.kept||[]),v]});break;
+ case'g34_HandUnder1131':if(v){
+  const host=sourceHost474(s,t);
+  if(!host||host.x.sealed||!api.isCreature(s,host.x))break;
+  const y=remove(own.hand,v);
+  if(y){
+   clear(y,'under');
+   (host.x.under??=[]).push(y);
+  }
+ }break;
+ case'g34_ManaStart1131':if(v&&own.mana.some(x=>x.uid===t.uid&&!x.faceDown&&(x.zoneSerial||0)===t.serial)&&api.canMoveZone(s,t.p,'mana'))
+  put(s,{...t,op:'g34_Put',origin:'mana',target:t.uid});
+  break;
  case'g34_StackDestroyed1130':if(v){
   const host=sourceHost474(s,t),victim=own.grave.find(y=>y.uid===t.victim.uid&&(y.zoneSerial||0)===t.victim.serial);
   if(host&&!host.x.sealed&&api.isCreature(s,host.x)&&victim&&api.canMoveZone(s,t.p,'grave')){
@@ -5701,7 +5727,12 @@ export function createSixPhotoRules(api){
   return [{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g34_GraveReturn754',p,x.cardId,{
    uid:x.uid,incarnation:x.incarnation||0,serial:x.zoneSerial||0,colors
   })}];
- });return [...delayed537,...generic,...grave,...active(s,p,'engels').filter(()=>!s.g7TerminalUsed?.[p]).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Custom',p,x.cardId,{name:'engelsTerminal',uid:x.uid,incarnation:x.incarnation||0})}))];},
+ });
+ const mana=s.players[p].mana.flatMap(x=>!x.faceDown&&card(x).g1131ManaStart?[{
+  uid:x.uid,source:x.cardId,effect:'extended',
+  task:task('g34_ManaStart1131',p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0})
+ }]:[]);
+ return [...delayed537,...generic,...grave,...mana,...active(s,p,'engels').filter(()=>!s.g7TerminalUsed?.[p]).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Custom',p,x.cardId,{name:'engelsTerminal',uid:x.uid,incarnation:x.incarnation||0})}))];},
  active,
  decorate(s,p,x,c){if(!s||p<0||c.type!=='creature')return c;const d={},own=s.players[p];if(c.g756TurboRush==='unblockable'&&turboReady756(s,p,x))d.unblockable=true;for(const l of s.extLimits||[])if(l.kind==='g521Grant'&&l.active!==false&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}))&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation))Object.assign(d,l.grant);if(c.g225AttackRequires&&!attackConditionReading481.has(s)){let ready;attackConditionReading481.add(s);try{ready=attackCondition225(s,p,c.g225AttackRequires,x);}finally{attackConditionReading481.delete(s);}if(!ready)d.noAttack=true;}if(race(c,'コマンド')&&active(s,p,'scarlet').length)d.speedAttacker=true;if(ninja(c)&&active(s,p,'dororon').length)d.blocker=true;if(active(s,p,'fallenMantra').length)d.slayer=true;if(c.g899AttackSlayerMax!==undefined&&s.attack?.attacker===x.uid){
   // QA39683: blocking replaces the creature being attacked for this continuous ability.
@@ -6289,9 +6320,17 @@ export function createSixPhotoRules(api){
      g403Refs:api.allLayers(x).map(z=>({uid:z.uid,incarnation:z.incarnation||0})),afterAttempt:[{op:'Draw',n:1}]});
    }
   }
-  if(api.isCreature(s,x))for(const y of s.players[1-p].battle){
-   const {g678OpponentTap,g681OpponentTapAnyTurn}=card(y);
-   if(g678OpponentTap&&(s.active===1-p||g681OpponentTapAnyTurn)&&!y.sealed&&!api.ignored(s,y)&&api.isCreature(s,y))queue(s,1-p,y,g678OpponentTap);
+  if(api.isCreature(s,x)){
+   const history=s.g1131CreatureTapTurns??=[null,null];
+   const actualCreatureTap=!x.sealed&&!x.faceDown&&s.players[p].battle.includes(x);
+   const first=actualCreatureTap&&history[p]!==s.turn;
+   if(actualCreatureTap)history[p]=s.turn;
+   for(const y of s.players[1-p].battle){
+    if(y.sealed||api.ignored(s,y)||!api.isCreature(s,y))continue;
+    const {g678OpponentTap,g681OpponentTapAnyTurn,g1131FirstOpponentTap}=card(y);
+    if(g678OpponentTap&&(s.active===1-p||g681OpponentTapAnyTurn))queue(s,1-p,y,g678OpponentTap);
+    if(first&&g1131FirstOpponentTap)queue(s,1-p,y,g1131FirstOpponentTap);
+   }
   }
   if(s.extLimits?.some(r=>r.kind==='g885FirstTap')){
    const refs=api.allLayers(x).map(key);

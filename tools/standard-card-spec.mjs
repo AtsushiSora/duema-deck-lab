@@ -6184,6 +6184,47 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1131&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const neoEvolution=(...colors)=>({any:colors.map(civilization=>({civilization}))});
+  if(['dm25rp2-S05','dm25rp2-Sec06','dm25ex3-rp2S05','dm25ex3-rp2Sec06'].includes(d.id)&&f.typeText==='NEOクリーチャー'&&text===
+   'NEO進化:光火または自然のクリーチャー1体の上に置いてもよい。マッハファイターT・ブレイカー'+
+   'このクリーチャーが出た時自分の山札の上から2枚を表向きにしてもよい。その中から好きな数のクリーチャーを手札に加え残りをマナゾーンに置く。'+
+   'このクリーチャーが破壊される時墓地のかわりにマナゾーンに置いてもよい。'+
+   '自分のターンのはじめに自分のマナゾーンにカードが8枚以上あればこのクリーチャーをマナゾーンから出してもよい。')
+   return {neoEvolution:neoEvolution('光','火','自然'),machFighter:true,breaker:3,g575OptionalMana:true,
+    g1131ManaStart:8,effect:'sixPhoto',g34Tasks:[
+     {op:'Offer',g359RevealAll:true,title:'山札の上から2枚を公開する？',defs:[
+      {op:'Look',n:2,public:true,g255Distribute:true,rest:'mana',stages:[
+       {n:'all',to:'hand',optional:true,filter:{g228Face:{type:'creature'}},title:'手札に加えるクリーチャーを好きな数選ぶ'}
+      ]}
+     ]}
+    ]};
+  if(['dm25rp2-001','dm25ex3-rp2001'].includes(d.id)&&f.typeText==='NEOクリーチャー'&&text===
+   'NEO進化:光水または自然のクリーチャー1体の上に置いてもよい。ブロッカーブロッカーT・ブレイカーエスケープ'+
+   'このクリーチャーが進化して出た時またはタップした時相手のクリーチャーを1体選びタップしてもよい。'+
+   '各ターンはじめて相手のクリーチャーがタップした時自分の山札の上から1枚をシールド化してもよい。'){
+   const tap=[{op:'Target',tap:true,optional:true,filter:{creature:true}}];
+   return {neoEvolution:neoEvolution('光','水','自然'),blocker:true,breaker:3,escape:true,effect:'sixPhoto',
+    evolvedEntryOnly:true,g34Tasks:tap,g188Tapped:tap,g1131FirstOpponentTap:[
+     {op:'Offer',title:'山札の上から1枚をシールド化する？',defs:[{op:'ShieldTop',n:1}]}
+    ]};
+  }
+  if(['dm25rp2-S06','dm25rp2-Sec07','dm25ex3-rp2S06','dm25ex3-rp2Sec07','dm26rp3-SP002','dm26ex5-G013'].includes(d.id)&&
+   f.typeText==='G-NEOクリーチャー'&&
+   text.replace('{2W}','').replace('表向きで','表向きにして').replace('次の中から1回選ぶ。','次のうちいずれか1つを選ぶ。')===
+   'G-NEO進化:光水または闇のクリーチャー1体の上に置いてもよい。ブロッカーブロッカーW・ブレイカー'+
+   'このクリーチャーが出た時または自分のターンの終わりにカードを1枚引いてもよい。その後自分の手札を1枚表向きにしてこのクリーチャーの下に置いてもよい。'+
+   'カードがこのクリーチャーの下を離れた時次のうちいずれか1つを選ぶ。'+
+   '▶自分の山札の上から1枚をシールド化する。▶相手のクリーチャーを1体選び破壊する。'){
+   const entry=[{op:'Draw',n:1,optional:true},{op:'HandUnder1131'}];
+   return {gNeo:true,neoEvolution:neoEvolution('光','水','闇'),blocker:true,breaker:2,effect:'sixPhoto',
+    g34Tasks:entry,g174End:entry,g1131OwnUnderLeave:[{op:'Choose',g184Modes:true,modes:[
+     {label:'山札の上から1枚をシールド化する',defs:[{op:'ShieldTop',n:1}]},
+     {label:'相手のクリーチャーを1体破壊する',defs:[{op:'Target',to:'grave',filter:{creature:true}}]}
+    ]}]};
+  }
+ }
  if(phase>=1130&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText).replaceAll('–','-');
   const neoEvolution=(...colors)=>({any:colors.map(civilization=>({civilization}))});

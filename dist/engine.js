@@ -517,12 +517,17 @@ function attachMugenBases(s,p,inst,refs){const all=[];for(const r of refs){const
 // QA46869–46870: each card moved out from under a creature triggers separately.
 function underCardsLeft(s,p,host,count){
  if(!count||host.sealed||!isCreature(s,host))return;
- const defs=[{op:'Discard',n:1},{op:'Break497',n:1,optional:true,g747CreatureBreak:true,g1084FixedBreak:true}];
  for(const source of s.players[p].battle){
-  if(!card(source).g1084UnderLeave||source.sealed||!effectiveCard(source,s).g1084UnderLeave)continue;
+  const printed=card(source);
+  if(source.sealed||!(printed.g1084UnderLeave||source===host&&printed.g1131OwnUnderLeave))continue;
+  const c=effectiveCard(source,s);
+  const defs=c.g1084UnderLeave?
+   [{op:'Discard',n:1},{op:'Break497',n:1,optional:true,g747CreatureBreak:true,g1084FixedBreak:true}]:
+   source===host?c.g1131OwnUnderLeave:null;
+  if(!defs)continue;
   const {uid,cardId}=source,incarnation=source.incarnation||0;
   for(let i=0;i<count;i++)enqueueEffect(s,p,{uid,incarnation,source:cardId,effect:'extended',
-   label:'カードが自分のクリーチャーの下を離れた時',
+   label:'カードが'+(c.g1084UnderLeave?'自分のクリーチャー':'このクリーチャー')+'の下を離れた時',
    task:extra.task('g34_Sequence',p,cardId,{uid,incarnation,defs})});
  }
 }

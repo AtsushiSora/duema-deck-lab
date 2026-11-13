@@ -222991,15 +222991,234 @@
       },
       "supportBatch": "phase-1130",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-S05",
+      "name": "RYOMA-死合乱闘103",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 17000,
+      "race": "ジャイアント/テクノ・サムライ",
+      "text": "NEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。\nマッハファイター\nT・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚を表向きにしてもよい。その中から好きな数のクリーチャーを手札に加え、残りをマナゾーンに置く。\nこのクリーチャーが破壊される時、墓地のかわりにマナゾーンに置いてもよい。\n自分のターンのはじめに、自分のマナゾーンにカードが８枚以上あれば、このクリーチャーをマナゾーンから出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-S05",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "火"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "machFighter": true,
+      "breaker": 3,
+      "g575OptionalMana": true,
+      "g1131ManaStart": 8,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "g359RevealAll": true,
+          "title": "山札の上から2枚を公開する？",
+          "defs": [
+            {
+              "op": "Look",
+              "n": 2,
+              "public": true,
+              "g255Distribute": true,
+              "rest": "mana",
+              "stages": [
+                {
+                  "n": "all",
+                  "to": "hand",
+                  "optional": true,
+                  "filter": {
+                    "g228Face": {
+                      "type": "creature"
+                    }
+                  },
+                  "title": "手札に加えるクリーチャーを好きな数選ぶ"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1131",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-001",
+      "name": "Celeb k’Reine",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 12000,
+      "race": "マジック・スプラッシュ・クイーン",
+      "text": "NEO進化：光、水、または自然のクリーチャー１体の上に置いてもよい。\nブロッカー ブロッカー\nT・ブレイカー\nエスケープ\nこのクリーチャーが、進化して出た時、またはタップした時、相手のクリーチャーを１体選び、タップしてもよい。\n各ターン、はじめて相手のクリーチャーがタップした時、自分の山札の上から１枚をシールド化してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-001",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "blocker": true,
+      "breaker": 3,
+      "escape": true,
+      "effect": "sixPhoto",
+      "evolvedEntryOnly": true,
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true,
+          "optional": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "g188Tapped": [
+        {
+          "op": "Target",
+          "tap": true,
+          "optional": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "g1131FirstOpponentTap": [
+        {
+          "op": "Offer",
+          "title": "山札の上から1枚をシールド化する？",
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1131",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-S06",
+      "name": "～邪眼帝 PARTⅡ～",
+      "civ": "光/水/闇",
+      "civilizations": [
+        "光",
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "ダークロード/ドラゴン・ゾンビ/スチーム・ナイト",
+      "text": "G-NEO進化：光、水、または闇のクリーチャー１体の上に置いてもよい。\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時または自分のターンの終わりに、カードを１枚引いてもよい。その後、自分の手札を１枚、表向きにしてこのクリーチャーの下に置いてもよい。\nカードがこのクリーチャーの下を離れた時、次のうちいずれか１つを選ぶ。\n▶自分の山札の上から１枚をシールド化する。\n▶相手のクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-S06",
+      "limit": 4,
+      "gNeo": true,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true
+        },
+        {
+          "op": "HandUnder1131"
+        }
+      ],
+      "g174End": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true
+        },
+        {
+          "op": "HandUnder1131"
+        }
+      ],
+      "g1131OwnUnderLeave": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "山札の上から1枚をシールド化する",
+              "defs": [
+                {
+                  "op": "ShieldTop",
+                  "n": 1
+                }
+              ]
+            },
+            {
+              "label": "相手のクリーチャーを1体破壊する",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "creature": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1131",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1130,
+    "phase": 1131,
     "checkedAt": "2026-11-13",
-    "baseCount": 7375,
+    "baseCount": 7378,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7378,
+    "totalCount": 7381,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -242848,6 +243067,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7375,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1130,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7375,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7378,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

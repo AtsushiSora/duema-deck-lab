@@ -1,0 +1,1098 @@
+{
+  "phase": 1131,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7378,
+  "description": "RYOMA-死合乱闘103、Celeb k’Reine、～邪眼帝 PARTⅡ～の能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/41651/",
+    "https://dm.takaratomy.co.jp/rule/qa/44210/",
+    "https://dm.takaratomy.co.jp/rule/qa/47057/",
+    "https://dm.takaratomy.co.jp/rule/qa/33524/",
+    "https://dm.takaratomy.co.jp/rule/qa/46868/",
+    "https://dm.takaratomy.co.jp/rule/qa/46869/",
+    "https://dm.takaratomy.co.jp/rule/qa/46870/",
+    "https://dm.takaratomy.co.jp/rule/qa/46523/",
+    "https://dm.takaratomy.co.jp/rule/qa/46525/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+    "https://dm.takaratomy.co.jp/rule/qa/31816/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp2-S05",
+      "name": "RYOMA-死合乱闘103",
+      "faces": [
+        {
+          "name": "RYOMA-死合乱闘103",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "NEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。\nマッハファイター\nT・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚を表向きにしてもよい。その中から好きな数のクリーチャーを手札に加え、残りをマナゾーンに置く。\nこのクリーチャーが破壊される時、墓地のかわりにマナゾーンに置いてもよい。\n自分のターンのはじめに、自分のマナゾーンにカードが８枚以上あれば、このクリーチャーをマナゾーンから出してもよい。",
+          "race": "ジャイアント/テクノ・サムライ",
+          "powerText": "17000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-S05",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-S05.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "machFighter": true,
+        "breaker": 3,
+        "g575OptionalMana": true,
+        "g1131ManaStart": 8,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g359RevealAll": true,
+            "title": "山札の上から2枚を公開する？",
+            "defs": [
+              {
+                "op": "Look",
+                "n": 2,
+                "public": true,
+                "g255Distribute": true,
+                "rest": "mana",
+                "stages": [
+                  {
+                    "n": "all",
+                    "to": "hand",
+                    "optional": true,
+                    "filter": {
+                      "g228Face": {
+                        "type": "creature"
+                      }
+                    },
+                    "title": "手札に加えるクリーチャーを好きな数選ぶ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "fd1af55660ddcc4d6b6887a54c1d83fd670b379c6b332c89e987169425f2f4af",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-001",
+      "name": "Celeb k’Reine",
+      "faces": [
+        {
+          "name": "Celeb k’Reine",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：光、水、または自然のクリーチャー１体の上に置いてもよい。\nブロッカー ブロッカー\nT・ブレイカー\nエスケープ\nこのクリーチャーが、進化して出た時、またはタップした時、相手のクリーチャーを１体選び、タップしてもよい。\n各ターン、はじめて相手のクリーチャーがタップした時、自分の山札の上から１枚をシールド化してもよい。",
+          "race": "マジック・スプラッシュ・クイーン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-001",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-001.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "blocker": true,
+        "breaker": 3,
+        "escape": true,
+        "effect": "sixPhoto",
+        "evolvedEntryOnly": true,
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "g188Tapped": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "g1131FirstOpponentTap": [
+          {
+            "op": "Offer",
+            "title": "山札の上から1枚をシールド化する？",
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "5f697383cc05c69c9a886b66fc68f1051fe698ab878c6cd9a7b033ffd3f4e7ec",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-S06",
+      "name": "～邪眼帝 PARTⅡ～",
+      "faces": [
+        {
+          "name": "～邪眼帝 PARTⅡ～",
+          "typeText": "G-NEOクリーチャー",
+          "civilizationText": "光/水/闇",
+          "civilizations": [
+            "光",
+            "水",
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "G-NEO進化：光、水、または闇のクリーチャー１体の上に置いてもよい。\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時または自分のターンの終わりに、カードを１枚引いてもよい。その後、自分の手札を１枚、表向きにしてこのクリーチャーの下に置いてもよい。\nカードがこのクリーチャーの下を離れた時、次のうちいずれか１つを選ぶ。\n▶自分の山札の上から１枚をシールド化する。\n▶相手のクリーチャーを１体選び、破壊する。",
+          "race": "ダークロード/ドラゴン・ゾンビ/スチーム・ナイト",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-S06",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-S06.jpg",
+      "spec": {
+        "gNeo": true,
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          },
+          {
+            "op": "HandUnder1131"
+          }
+        ],
+        "g174End": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          },
+          {
+            "op": "HandUnder1131"
+          }
+        ],
+        "g1131OwnUnderLeave": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "山札の上から1枚をシールド化する",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーを1体破壊する",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "creature": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "72f6f89f2d26cc859540d1c67816e40c166a4d9a4e6f5b51fed821475524fe9b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25rp2-Sec06",
+      "name": "RYOMA-死合乱闘103",
+      "faces": [
+        {
+          "name": "RYOMA-死合乱闘103",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "NEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。\nマッハファイター\nT・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚を表向きにしてもよい。その中から好きな数のクリーチャーを手札に加え、残りをマナゾーンに置く。\nこのクリーチャーが破壊される時、墓地のかわりにマナゾーンに置いてもよい。\n自分のターンのはじめに、自分のマナゾーンにカードが８枚以上あれば、このクリーチャーをマナゾーンから出してもよい。",
+          "race": "ジャイアント/テクノ・サムライ",
+          "powerText": "17000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-Sec06",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-Sec06.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "machFighter": true,
+        "breaker": 3,
+        "g575OptionalMana": true,
+        "g1131ManaStart": 8,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g359RevealAll": true,
+            "title": "山札の上から2枚を公開する？",
+            "defs": [
+              {
+                "op": "Look",
+                "n": 2,
+                "public": true,
+                "g255Distribute": true,
+                "rest": "mana",
+                "stages": [
+                  {
+                    "n": "all",
+                    "to": "hand",
+                    "optional": true,
+                    "filter": {
+                      "g228Face": {
+                        "type": "creature"
+                      }
+                    },
+                    "title": "手札に加えるクリーチャーを好きな数選ぶ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "efebeb8e750abfd4a1a5ede0c239f8df3b142cc6a61e9345ac274e2ea2f690cc",
+        "facesMatched": true
+      },
+      "canonicalId": "dm25rp2-S05"
+    },
+    {
+      "id": "dm25ex3-rp2S05",
+      "name": "RYOMA-死合乱闘103",
+      "faces": [
+        {
+          "name": "RYOMA-死合乱闘103",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "NEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。\nマッハファイター\nT・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚を表向きにしてもよい。その中から好きな数のクリーチャーを手札に加え、残りをマナゾーンに置く。\nこのクリーチャーが破壊される時、墓地のかわりにマナゾーンに置いてもよい。\n自分のターンのはじめに、自分のマナゾーンにカードが８枚以上あれば、このクリーチャーをマナゾーンから出してもよい。",
+          "race": "ジャイアント/テクノ・サムライ",
+          "powerText": "17000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp2S05",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-rp2S05.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "machFighter": true,
+        "breaker": 3,
+        "g575OptionalMana": true,
+        "g1131ManaStart": 8,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g359RevealAll": true,
+            "title": "山札の上から2枚を公開する？",
+            "defs": [
+              {
+                "op": "Look",
+                "n": 2,
+                "public": true,
+                "g255Distribute": true,
+                "rest": "mana",
+                "stages": [
+                  {
+                    "n": "all",
+                    "to": "hand",
+                    "optional": true,
+                    "filter": {
+                      "g228Face": {
+                        "type": "creature"
+                      }
+                    },
+                    "title": "手札に加えるクリーチャーを好きな数選ぶ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "c9547f52402e575f3e4a26af9d0938cb1692aa9616ef5f4cb313174b9b1982d8",
+        "facesMatched": true
+      },
+      "canonicalId": "dm25rp2-S05"
+    },
+    {
+      "id": "dm25ex3-rp2Sec06",
+      "name": "RYOMA-死合乱闘103",
+      "faces": [
+        {
+          "name": "RYOMA-死合乱闘103",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "NEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。\nマッハファイター\nT・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚を表向きにしてもよい。その中から好きな数のクリーチャーを手札に加え、残りをマナゾーンに置く。\nこのクリーチャーが破壊される時、墓地のかわりにマナゾーンに置いてもよい。\n自分のターンのはじめに、自分のマナゾーンにカードが８枚以上あれば、このクリーチャーをマナゾーンから出してもよい。",
+          "race": "ジャイアント/テクノ・サムライ",
+          "powerText": "17000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp2Sec06",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-rp2Sec06.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "machFighter": true,
+        "breaker": 3,
+        "g575OptionalMana": true,
+        "g1131ManaStart": 8,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g359RevealAll": true,
+            "title": "山札の上から2枚を公開する？",
+            "defs": [
+              {
+                "op": "Look",
+                "n": 2,
+                "public": true,
+                "g255Distribute": true,
+                "rest": "mana",
+                "stages": [
+                  {
+                    "n": "all",
+                    "to": "hand",
+                    "optional": true,
+                    "filter": {
+                      "g228Face": {
+                        "type": "creature"
+                      }
+                    },
+                    "title": "手札に加えるクリーチャーを好きな数選ぶ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "554c687ca1ed55d9dd4a7dde0489df34c6d608ce00c9d3567d1f0bb2df1fa284",
+        "facesMatched": true
+      },
+      "canonicalId": "dm25rp2-S05"
+    },
+    {
+      "id": "dm25ex3-rp2001",
+      "name": "Celeb k’Reine",
+      "faces": [
+        {
+          "name": "Celeb k’Reine",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：光、水、または自然のクリーチャー１体の上に置いてもよい。\nブロッカー ブロッカー\nT・ブレイカー\nエスケープ\nこのクリーチャーが、進化して出た時、またはタップした時、相手のクリーチャーを１体選び、タップしてもよい。\n各ターン、はじめて相手のクリーチャーがタップした時、自分の山札の上から１枚をシールド化してもよい。",
+          "race": "マジック・スプラッシュ・クイーン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp2001",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-rp2001.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "blocker": true,
+        "breaker": 3,
+        "escape": true,
+        "effect": "sixPhoto",
+        "evolvedEntryOnly": true,
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "g188Tapped": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "g1131FirstOpponentTap": [
+          {
+            "op": "Offer",
+            "title": "山札の上から1枚をシールド化する？",
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "b3de381b6bb07f9aafe3debc34a06178849967a839ff5b53c73cf0234cf6d6ad",
+        "facesMatched": true
+      },
+      "canonicalId": "dm25rp2-001"
+    },
+    {
+      "id": "dm25rp2-Sec07",
+      "name": "～邪眼帝 PARTⅡ～",
+      "faces": [
+        {
+          "name": "～邪眼帝 PARTⅡ～",
+          "typeText": "G-NEOクリーチャー",
+          "civilizationText": "光/水/闇",
+          "civilizations": [
+            "光",
+            "水",
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "G-NEO進化：光、水、または闇のクリーチャー１体の上に置いてもよい。\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時または自分のターンの終わりに、カードを１枚引いてもよい。その後、自分の手札を１枚、表向きにしてこのクリーチャーの下に置いてもよい。\nカードがこのクリーチャーの下を離れた時、次のうちいずれか１つを選ぶ。\n▶自分の山札の上から１枚をシールド化する。\n▶相手のクリーチャーを１体選び、破壊する。",
+          "race": "ダークロード/ドラゴン・ゾンビ/スチーム・ナイト",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-Sec07",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-Sec07.jpg",
+      "spec": {
+        "gNeo": true,
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          },
+          {
+            "op": "HandUnder1131"
+          }
+        ],
+        "g174End": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          },
+          {
+            "op": "HandUnder1131"
+          }
+        ],
+        "g1131OwnUnderLeave": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "山札の上から1枚をシールド化する",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーを1体破壊する",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "creature": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "eaeb455f8c20aa5d10054ab6082709ae657537e7c6a7c76bcbb9a6dc85874d4b",
+        "facesMatched": true
+      },
+      "canonicalId": "dm25rp2-S06"
+    },
+    {
+      "id": "dm25ex3-rp2S06",
+      "name": "～邪眼帝 PARTⅡ～",
+      "faces": [
+        {
+          "name": "～邪眼帝 PARTⅡ～",
+          "typeText": "G-NEOクリーチャー",
+          "civilizationText": "光/水/闇",
+          "civilizations": [
+            "光",
+            "水",
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "G-NEO進化：光、水、または闇のクリーチャー１体の上に置いてもよい。\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時または自分のターンの終わりに、カードを１枚引いてもよい。その後、自分の手札を１枚、表向きにしてこのクリーチャーの下に置いてもよい。\nカードがこのクリーチャーの下を離れた時、次のうちいずれか１つを選ぶ。\n▶自分の山札の上から１枚をシールド化する。\n▶相手のクリーチャーを１体選び、破壊する。",
+          "race": "ダークロード/ドラゴン・ゾンビ/スチーム・ナイト",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp2S06",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-rp2S06.jpg",
+      "spec": {
+        "gNeo": true,
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          },
+          {
+            "op": "HandUnder1131"
+          }
+        ],
+        "g174End": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          },
+          {
+            "op": "HandUnder1131"
+          }
+        ],
+        "g1131OwnUnderLeave": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "山札の上から1枚をシールド化する",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーを1体破壊する",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "creature": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "5f323fcc905c2bb5b6573dcc98e2475e0457b1e8710f95311976fb72233c1a0f",
+        "facesMatched": true
+      },
+      "canonicalId": "dm25rp2-S06"
+    },
+    {
+      "id": "dm25ex3-rp2Sec07",
+      "name": "～邪眼帝 PARTⅡ～",
+      "faces": [
+        {
+          "name": "～邪眼帝 PARTⅡ～",
+          "typeText": "G-NEOクリーチャー",
+          "civilizationText": "光/水/闇",
+          "civilizations": [
+            "光",
+            "水",
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "G-NEO進化：光、水、または闇のクリーチャー１体の上に置いてもよい。\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時または自分のターンの終わりに、カードを１枚引いてもよい。その後、自分の手札を１枚、表向きにしてこのクリーチャーの下に置いてもよい。\nカードがこのクリーチャーの下を離れた時、次のうちいずれか１つを選ぶ。\n▶自分の山札の上から１枚をシールド化する。\n▶相手のクリーチャーを１体選び、破壊する。",
+          "race": "ダークロード/ドラゴン・ゾンビ/スチーム・ナイト",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp2Sec07",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-rp2Sec07.jpg",
+      "spec": {
+        "gNeo": true,
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          },
+          {
+            "op": "HandUnder1131"
+          }
+        ],
+        "g174End": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          },
+          {
+            "op": "HandUnder1131"
+          }
+        ],
+        "g1131OwnUnderLeave": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "山札の上から1枚をシールド化する",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーを1体破壊する",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "creature": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "db1dadd5240fad9369935ebcba30af6e6bbfcffb120cff40c384ea2b0105b552",
+        "facesMatched": true
+      },
+      "canonicalId": "dm25rp2-S06"
+    },
+    {
+      "id": "dm26rp3-SP002",
+      "name": "～邪眼帝 PARTⅡ～",
+      "faces": [
+        {
+          "name": "～邪眼帝 PARTⅡ～",
+          "typeText": "G-NEOクリーチャー",
+          "civilizationText": "光/水/闇",
+          "civilizations": [
+            "光",
+            "水",
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "G-NEO進化：光、水、または闇のクリーチャー１体の上に置いてもよい。\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時または自分のターンの終わりに、カードを１枚引いてもよい。その後、自分の手札を１枚、表向きでこのクリーチャーの下に置いてもよい。\nカードがこのクリーチャーの下を離れた時、次の中から１回選ぶ。\n▶自分の山札の上から１枚をシールド化する。\n▶相手のクリーチャーを１体選び、破壊する。",
+          "race": "ダークロード/ドラゴン・ゾンビ/スチーム・ナイト",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-SP002",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp3-SP002.jpg",
+      "spec": {
+        "gNeo": true,
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          },
+          {
+            "op": "HandUnder1131"
+          }
+        ],
+        "g174End": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          },
+          {
+            "op": "HandUnder1131"
+          }
+        ],
+        "g1131OwnUnderLeave": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "山札の上から1枚をシールド化する",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーを1体破壊する",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "creature": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "ef07e1bc2aa7e496a01e7f347c4545cade2a3a7265f68183f9d4442ea05ce72d",
+        "facesMatched": true
+      },
+      "canonicalId": "dm25rp2-S06"
+    },
+    {
+      "id": "dm26ex5-G013",
+      "name": "～邪眼帝 PARTⅡ～",
+      "faces": [
+        {
+          "name": "～邪眼帝 PARTⅡ～",
+          "typeText": "G-NEOクリーチャー",
+          "civilizationText": "光/水/闇",
+          "civilizations": [
+            "光",
+            "水",
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "G-NEO進化：光、水、または闇のクリーチャー１体の上に置いてもよい。\nブロッカー ブロッカー\n{2W} W・ブレイカー\nこのクリーチャーが出た時または自分のターンの終わりに、カードを１枚引いてもよい。その後、自分の手札を１枚、表向きでこのクリーチャーの下に置いてもよい。\nカードがこのクリーチャーの下を離れた時、次の中から１回選ぶ。\n▶自分の山札の上から１枚をシールド化する。\n▶相手のクリーチャーを１体選び、破壊する。",
+          "race": "ダークロード/ドラゴン・ゾンビ/スチーム・ナイト",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-G013",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-G013.jpg",
+      "spec": {
+        "gNeo": true,
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          },
+          {
+            "op": "HandUnder1131"
+          }
+        ],
+        "g174End": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          },
+          {
+            "op": "HandUnder1131"
+          }
+        ],
+        "g1131OwnUnderLeave": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "山札の上から1枚をシールド化する",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーを1体破壊する",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "creature": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "f461e5cd8075b0efc7eb345e71e377e8c1b141c061377166deb9b3396cdfdd67",
+        "facesMatched": true
+      },
+      "canonicalId": "dm25rp2-S06"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp2-S05": 4,
+      "dm25rp2-001": 4,
+      "dm25rp2-S06": 4,
+      "dm25rp2-Sec06": 4,
+      "dm25ex3-rp2S05": 4,
+      "dm25ex3-rp2Sec06": 4,
+      "dm25ex3-rp2001": 4,
+      "dm25rp2-Sec07": 4,
+      "dm25ex3-rp2S06": 4,
+      "dm25ex3-rp2Sec07": 4,
+      "dm26rp3-SP002": 4,
+      "dm26ex5-G013": 4
+    }
+  }
+}
