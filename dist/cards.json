@@ -220685,15 +220685,122 @@
       ],
       "supportBatch": "phase-1112",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex2-076",
+      "name": "姫と王の不屈",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－3000する。（パワー０以下のクリーチャーは破壊される）\n自分の手札を１枚超次元ゾーンに置いてもよい。そうしたら、真上の▪️能力をもう１度使う。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-076",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -3000,
+          "g242PowerMinus": true,
+          "spell": true,
+          "title": "パワーを-3000する相手のクリーチャーを1体選ぶ"
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "extra",
+          "n": 1,
+          "optional": true,
+          "g1009AfterMoveAttempt": [
+            {
+              "op": "Target",
+              "power": -3000,
+              "g242PowerMinus": true,
+              "spell": true,
+              "title": "パワーを-3000する相手のクリーチャーを1体選ぶ"
+            }
+          ],
+          "title": "能力をもう一度使うため、超次元ゾーンに置く手札を1枚選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-1113",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx13-018",
+      "name": "戦慄のプレリュード",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "このターン、次に召喚する自分の無色クリーチャーの召喚コストを最大５少なくしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx13-018",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "NextReduction456",
+          "type": "creature",
+          "amount": 5,
+          "optional": true,
+          "filter": {
+            "g756Colorless": true
+          },
+          "g1113ZeroFloor": true
+        }
+      ],
+      "supportBatch": "phase-1113",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx15-019",
+      "name": "無記のイザナイ ウェンディゴ・アパッチ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "オラクル",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からコスト４以下でカードに能力が書かれていないクリーチャーを１体、バトルゾーンに出してもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-019",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "g201Search": true,
+          "g841DeckPeek": true,
+          "limit": 1,
+          "rest": "shuffle",
+          "filter": {
+            "creature": true,
+            "max": 4,
+            "g990PrintedNoAbilities": true,
+            "g1113LegacyManaText": true
+          },
+          "title": "山札から出す、能力が書かれていないコスト4以下のクリーチャーを選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-1113",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1112,
+    "phase": 1113,
     "checkedAt": "2026-11-13",
-    "baseCount": 7317,
-    "newEffectCards": 4,
+    "baseCount": 7321,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7321,
+    "totalCount": 7324,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -240326,6 +240433,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7317,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1112,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7317,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7321,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

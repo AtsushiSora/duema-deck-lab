@@ -1,0 +1,714 @@
+{
+  "phase": 1113,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7321,
+  "description": "姫と王の不屈、戦慄のプレリュード、無記のイザナイ ウェンディゴ・アパッチを対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/38714/",
+    "https://dm.takaratomy.co.jp/rule/qa/40363/",
+    "https://dm.takaratomy.co.jp/rule/qa/38624/",
+    "https://dm.takaratomy.co.jp/rule/qa/39980/",
+    "https://dm.takaratomy.co.jp/rule/qa/40776/",
+    "https://dm.takaratomy.co.jp/rule/qa/33218/",
+    "https://dm.takaratomy.co.jp/rule/qa/31825/",
+    "https://dm.takaratomy.co.jp/rule/qa/46250/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm25ex2-076",
+      "name": "姫と王の不屈",
+      "faces": [
+        {
+          "name": "姫と王の不屈",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－3000する。（パワー０以下のクリーチャーは破壊される）\n自分の手札を１枚超次元ゾーンに置いてもよい。そうしたら、真上の▪️能力をもう１度使う。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-076",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-076.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -3000,
+            "g242PowerMinus": true,
+            "spell": true,
+            "title": "パワーを-3000する相手のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "extra",
+            "n": 1,
+            "optional": true,
+            "g1009AfterMoveAttempt": [
+              {
+                "op": "Target",
+                "power": -3000,
+                "g242PowerMinus": true,
+                "spell": true,
+                "title": "パワーを-3000する相手のクリーチャーを1体選ぶ"
+              }
+            ],
+            "title": "能力をもう一度使うため、超次元ゾーンに置く手札を1枚選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "5d4b46af58c86e85be531d6e0c099777be786bc8ef7e96132bda6650ab930ce2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx13-018",
+      "name": "戦慄のプレリュード",
+      "faces": [
+        {
+          "name": "戦慄のプレリュード",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このターン、次に召喚する自分の無色クリーチャーの召喚コストを最大５少なくしてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx13-018",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx13-018.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "NextReduction456",
+            "type": "creature",
+            "amount": 5,
+            "optional": true,
+            "filter": {
+              "g756Colorless": true
+            },
+            "g1113ZeroFloor": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "e393938be3b3742f9ef50f2fcc4636a8d83161edd32176f9f3e09004687e892a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx15-019",
+      "name": "無記のイザナイ ウェンディゴ・アパッチ",
+      "faces": [
+        {
+          "name": "無記のイザナイ ウェンディゴ・アパッチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からコスト４以下でカードに能力が書かれていないクリーチャーを１体、バトルゾーンに出してもよい。その後、山札をシャッフルする。",
+          "race": "オラクル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-019",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx15-019.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LookDeploy530",
+            "g201Search": true,
+            "g841DeckPeek": true,
+            "limit": 1,
+            "rest": "shuffle",
+            "filter": {
+              "creature": true,
+              "max": 4,
+              "g990PrintedNoAbilities": true,
+              "g1113LegacyManaText": true
+            },
+            "title": "山札から出す、能力が書かれていないコスト4以下のクリーチャーを選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "4f1fe02d2865f0eeecb12dbdcb1c01d1e07c8742d3c3c1d7fc6f279b9848c45d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23ex3-T12",
+      "name": "戦慄のプレリュード",
+      "faces": [
+        {
+          "name": "戦慄のプレリュード",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このターン、次に召喚する自分の無色クリーチャーの召喚コストを最大５少なくする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-T12",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-T12.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "NextReduction456",
+            "type": "creature",
+            "amount": 5,
+            "optional": true,
+            "filter": {
+              "g756Colorless": true
+            },
+            "g1113ZeroFloor": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "384373860411be2571bf405c2261a00174c4e6df34675d9d58b3c6feb3fe2c2c",
+        "facesMatched": true
+      },
+      "canonicalId": "dmx13-018"
+    },
+    {
+      "id": "dmx14-012",
+      "name": "戦慄のプレリュード",
+      "faces": [
+        {
+          "name": "戦慄のプレリュード",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このターン、次に召喚する自分の無色クリーチャーの召喚コストを最大５少なくしてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-012",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx14-012.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "NextReduction456",
+            "type": "creature",
+            "amount": 5,
+            "optional": true,
+            "filter": {
+              "g756Colorless": true
+            },
+            "g1113ZeroFloor": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "e2c537646014cf7fa54e6e10ea0010ce37448db05aaddd2cdde3003f7804c194",
+        "facesMatched": true
+      },
+      "canonicalId": "dmx13-018"
+    },
+    {
+      "id": "dmd12-018",
+      "name": "戦慄のプレリュード",
+      "faces": [
+        {
+          "name": "戦慄のプレリュード",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このターン、次に召喚する自分の無色クリーチャーの召喚コストを最大５少なくしてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd12-018",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd12-018.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "NextReduction456",
+            "type": "creature",
+            "amount": 5,
+            "optional": true,
+            "filter": {
+              "g756Colorless": true
+            },
+            "g1113ZeroFloor": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "6cb697c2329b0f65b7e2aac8a67d4bcf5f2b911237695cdfc4bdb947040f606e",
+        "facesMatched": true
+      },
+      "canonicalId": "dmx13-018"
+    },
+    {
+      "id": "dmx25-037",
+      "name": "戦慄のプレリュード",
+      "faces": [
+        {
+          "name": "戦慄のプレリュード",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このターン、次に召喚する自分の無色クリーチャーの召喚コストを最大５少なくしてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx25-037",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx25-037.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "NextReduction456",
+            "type": "creature",
+            "amount": 5,
+            "optional": true,
+            "filter": {
+              "g756Colorless": true
+            },
+            "g1113ZeroFloor": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "d76c3a3fce8fe2908da2abcddc9d6402f0dbd9b6cdd5b90e303d6564023cc79a",
+        "facesMatched": true
+      },
+      "canonicalId": "dmx13-018"
+    },
+    {
+      "id": "dmex01-054",
+      "name": "戦慄のプレリュード",
+      "faces": [
+        {
+          "name": "戦慄のプレリュード",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このターン、次に召喚する自分の無色クリーチャーの召喚コストを最大５少なくしてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex01-054",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex01-054.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "NextReduction456",
+            "type": "creature",
+            "amount": 5,
+            "optional": true,
+            "filter": {
+              "g756Colorless": true
+            },
+            "g1113ZeroFloor": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "daea65c6ecc568f7b5c02f3a4bc06ba505c3d1d54fce9e0336e42b444936ce2a",
+        "facesMatched": true
+      },
+      "canonicalId": "dmx13-018"
+    },
+    {
+      "id": "dmex06-074",
+      "name": "戦慄のプレリュード",
+      "faces": [
+        {
+          "name": "戦慄のプレリュード",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このターン、次に召喚する自分の無色クリーチャーの召喚コストを最大５少なくしてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex06-074",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex06-074.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "NextReduction456",
+            "type": "creature",
+            "amount": 5,
+            "optional": true,
+            "filter": {
+              "g756Colorless": true
+            },
+            "g1113ZeroFloor": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "b7f6c30fd8bcb3c4beec04d5c5d678bfd496f960403820d858d3b53fafb04faf",
+        "facesMatched": true
+      },
+      "canonicalId": "dmx13-018"
+    },
+    {
+      "id": "promoy11-060",
+      "name": "戦慄のプレリュード",
+      "faces": [
+        {
+          "name": "戦慄のプレリュード",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このターン、次に召喚する自分の無色クリーチャーの召喚コストを最大５少なくしてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy11-060",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy11-060.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "NextReduction456",
+            "type": "creature",
+            "amount": 5,
+            "optional": true,
+            "filter": {
+              "g756Colorless": true
+            },
+            "g1113ZeroFloor": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "70e2f5bbf0fe219cae637c7105d8b7f14fa5cff90616fc08c74770eb702c8313",
+        "facesMatched": true
+      },
+      "canonicalId": "dmx13-018"
+    },
+    {
+      "id": "promoy16-057",
+      "name": "戦慄のプレリュード",
+      "faces": [
+        {
+          "name": "戦慄のプレリュード",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このターン、次に召喚する自分の無色クリーチャーの召喚コストを最大５少なくしてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-057",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy16-057.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "NextReduction456",
+            "type": "creature",
+            "amount": 5,
+            "optional": true,
+            "filter": {
+              "g756Colorless": true
+            },
+            "g1113ZeroFloor": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "6c3aa106845ef1d6b8d05a7415317bb7c311f8d8e67d99e20dd7285ba63e62b0",
+        "facesMatched": true
+      },
+      "canonicalId": "dmx13-018"
+    },
+    {
+      "id": "promoy16-060",
+      "name": "戦慄のプレリュード",
+      "faces": [
+        {
+          "name": "戦慄のプレリュード",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このターン、次に召喚する自分の無色クリーチャーの召喚コストを最大５少なくしてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-060",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy16-060.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "NextReduction456",
+            "type": "creature",
+            "amount": 5,
+            "optional": true,
+            "filter": {
+              "g756Colorless": true
+            },
+            "g1113ZeroFloor": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "afae4f9e085fba0d9e9b155d179f27fba92eedb76473344c0cbe1b0167aad3c3",
+        "facesMatched": true
+      },
+      "canonicalId": "dmx13-018"
+    },
+    {
+      "id": "promoy16-072",
+      "name": "戦慄のプレリュード",
+      "faces": [
+        {
+          "name": "戦慄のプレリュード",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このターン、次に召喚する自分の無色クリーチャーの召喚コストを最大５少なくしてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-072",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy16-072.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "NextReduction456",
+            "type": "creature",
+            "amount": 5,
+            "optional": true,
+            "filter": {
+              "g756Colorless": true
+            },
+            "g1113ZeroFloor": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "80509464c21f7317fef622bb7e5620c122ae3217753a342cd4fa7cb6e1e1ddcc",
+        "facesMatched": true
+      },
+      "canonicalId": "dmx13-018"
+    },
+    {
+      "id": "dmx16-075",
+      "name": "無記のイザナイ ウェンディゴ・アパッチ",
+      "faces": [
+        {
+          "name": "無記のイザナイ ウェンディゴ・アパッチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からコスト４以下でカードに能力が書かれていないクリーチャーを１体、バトルゾーンに出してもよい。その後、山札をシャッフルする。",
+          "race": "オラクル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-075",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx16-075.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LookDeploy530",
+            "g201Search": true,
+            "g841DeckPeek": true,
+            "limit": 1,
+            "rest": "shuffle",
+            "filter": {
+              "creature": true,
+              "max": 4,
+              "g990PrintedNoAbilities": true,
+              "g1113LegacyManaText": true
+            },
+            "title": "山札から出す、能力が書かれていないコスト4以下のクリーチャーを選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "713ebbe827569e93bd66072080aa5eb484ccf8a527c39063c4d68c9ef7b62872",
+        "facesMatched": true
+      },
+      "canonicalId": "dmx15-019"
+    },
+    {
+      "id": "dmex12-081",
+      "name": "無記のイザナイ ウェンディゴ・アパッチ",
+      "faces": [
+        {
+          "name": "無記のイザナイ ウェンディゴ・アパッチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札を見る。その中からコスト４以下でカードに能力が書かれていないクリーチャーを１体、バトルゾーンに出してもよい。その後、山札をシャッフルする。",
+          "race": "オラクル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-081",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex12-081.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LookDeploy530",
+            "g201Search": true,
+            "g841DeckPeek": true,
+            "limit": 1,
+            "rest": "shuffle",
+            "filter": {
+              "creature": true,
+              "max": 4,
+              "g990PrintedNoAbilities": true,
+              "g1113LegacyManaText": true
+            },
+            "title": "山札から出す、能力が書かれていないコスト4以下のクリーチャーを選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "8b8901b0ae4d50d23f916a12a71cb5270bbd0bccf58f0bf3500c6241f83b2c7d",
+        "facesMatched": true
+      },
+      "canonicalId": "dmx15-019"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25ex2-076": 4,
+      "dmx13-018": 4,
+      "dmx15-019": 4,
+      "dm23ex3-T12": 4,
+      "dmx14-012": 4,
+      "dmd12-018": 4,
+      "dmx25-037": 4,
+      "dmex01-054": 4,
+      "dmex06-074": 4,
+      "promoy11-060": 4,
+      "promoy16-057": 4,
+      "promoy16-060": 4,
+      "promoy16-072": 4,
+      "dmx16-075": 4,
+      "dmex12-081": 4
+    }
+  }
+}

@@ -6184,6 +6184,21 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1113&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const prelude='このターン次に召喚する自分の無色クリーチャーの召喚コストを最大5少なく';
+  if(f.typeText==='呪文'&&['dmx13-018','dmx14-012','dmd12-018','dmx25-037','dmex01-054','dmex06-074',
+   'dm23ex3-T12','promoy11-060','promoy16-057','promoy16-060','promoy16-072'].includes(d.id)&&
+   [prelude+'してもよい。',prelude+'する。'].includes(text))
+   return {effect:'sixPhoto',g34Tasks:[{op:'NextReduction456',type:'creature',amount:5,optional:true,
+    filter:{g756Colorless:true},g1113ZeroFloor:true}]};
+  if(f.typeText==='クリーチャー'&&['dmx15-019','dmx16-075','dmex12-081'].includes(d.id)&&
+   text.replace('このクリーチャーをバトルゾーンに出した時','このクリーチャーがバトルゾーンに出た時')===
+   'このクリーチャーがバトルゾーンに出た時自分の山札を見る。その中からコスト4以下でカードに能力が書かれていないクリーチャーを1体バトルゾーンに出してもよい。その後山札をシャッフルする。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'LookDeploy530',g201Search:true,g841DeckPeek:true,limit:1,rest:'shuffle',
+    filter:{creature:true,max:4,g990PrintedNoAbilities:true,g1113LegacyManaText:true},
+    title:'山札から出す、能力が書かれていないコスト4以下のクリーチャーを選ぶ（任意）'}]};
+ }
  if(phase>=1112&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
   const row={
    'dm25ex2-075':{
@@ -6196,10 +6211,15 @@ export function standardCardSpec(d,{phase=165}={}){
      title:'スピードアタッカーを与える自分のクリーチャーを1体選ぶ'}
    }
   }[d.id];
+  const reduce=phase>=1113&&d.id==='dm25ex2-076'?{
+   text:'相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを-3000する。(パワー0以下のクリーチャーは破壊される)',
+   effect:{op:'Target',power:-3000,g242PowerMinus:true,spell:true,title:'パワーを-3000する相手のクリーチャーを1体選ぶ'}
+  }:null;
   const repeat='自分の手札を1枚超次元ゾーンに置いてもよい。そうしたら真上の▪️能力をもう1度使う。';
-  if(row&&normalize(f.abilityText)===row.text+repeat)
-   return {effect:'sixPhoto',g34Tasks:[row.effect,{
-    op:'Select',origin:'hand',to:'extra',n:1,optional:true,g1009AfterMoveAttempt:[row.effect],
+  const ability=row??reduce;
+  if(ability&&normalize(f.abilityText)===ability.text+repeat)
+   return {effect:'sixPhoto',g34Tasks:[ability.effect,{
+    op:'Select',origin:'hand',to:'extra',n:1,optional:true,g1009AfterMoveAttempt:[ability.effect],
     title:'能力をもう一度使うため、超次元ゾーンに置く手札を1枚選ぶ（任意）'
    }]};
  }
