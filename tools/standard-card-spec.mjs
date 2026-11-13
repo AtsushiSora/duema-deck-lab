@@ -2467,6 +2467,31 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1176&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const ace=color=>'自分の'+color+'のクリーチャーまたは'+color+'のタマシードが合計4つ以上なければバトルゾーンにあるこのタマシードはクリーチャーとして扱わない。';
+  const tamaseed=f.typeText==='タマシード/クリーチャー'&&f.cost===4;
+  const revive=(origin,max)=>({op:'Select',origin,n:1,deploy:true,optional:true,filter:{creature:true,max}});
+  const wBreaker='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)';
+  if(tamaseed&&f.name==='深淵の支配者 ジャシン'&&f.civilizationText==='闇'&&text===
+   '自分のターンのはじめに自分の山札の上から1枚目を墓地に置いてもよい。その後コスト3以下のクリーチャーを1体自分の墓地から出してもよい。'+ace('闇')+wBreaker)
+   return {type:'creature',seedCreature:true,aceCivilization:'闇',breaker:2,g461TurnPlayer:true,
+    g174Start:[{op:'Mill',n:1,optional:true},revive('grave',3)]};
+  if(tamaseed&&f.name==='ドラン・ゴルギーニ'&&f.civilizationText==='光'&&text===
+   'このタマシードが出た時相手のクリーチャーを2体まで選んでタップする。次の相手のターンのはじめにそれらはアンタップしない。'+ace('光')+
+   'W・ブレイカーこのクリーチャーが攻撃する時コスト5以下のクリーチャーを1体自分の手札から出してもよい。その後自分のクリーチャーの数が相手のより多ければ次の自分のターンのはじめまで自分のクリーチャーは破壊されない。')
+   return {type:'creature',seedCreature:true,aceCivilization:'光',breaker:2,effect:'sixPhoto',
+    g34Tasks:[{op:'Select',origin:'battle',owner:'opponent',n:2,optional:true,filter:{creature:true},
+     g173Targets:true,g193Select:true,g193Tap:true,g210TapLock:true}],
+    g34Attack:[revive('hand',5),{op:'IfOwn',filter:{g1176MoreCreatures:true},defs:[
+     {op:'GroupGrant364',owner:'self',filter:{creature:true},g521UntilStart:true,g565External:true,grant:{g465DestroySafe:true}}
+    ]}]};
+  if(f.name==='モモキングｰMAX'&&f.typeText==='S-MAX進化クリーチャー'&&f.cost===6&&f.civilizationText==='光'&&text===
+   'S-MAX進化:自分がゲームに負ける時かわりにこのクリーチャーを破壊するか自分の手札から《モモキングーMAX》を1枚捨てる。(このクリーチャーは進化元を必要としない。自分のS-MAX進化クリーチャーが2体以上あればそのうちの1体を残し残りをすべて手札に戻す)'+wBreaker+
+   'このクリーチャーが攻撃する時カードを1枚引く。その後コスト6以下のタマシードを1枚自分の手札から出してもよい。')
+   return {sMax:true,g34SmaxLoss:true,breaker:2,g34Attack:[{op:'Draw',n:1},
+    {op:'Select',origin:'hand',n:1,deploy:true,optional:true,filter:{g295Tamaseed:true,max:6}}]};
+ }
  if(phase>=1175&&d?.status==='complete'){
   const text=normalize(f.abilityText);
   if(d.faces.length===1&&f.name==='星姫械 シリエス'&&f.typeText==='クリーチャー'&&

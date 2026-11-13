@@ -228192,15 +228192,164 @@
       },
       "supportBatch": "phase-1175",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22sd1-001",
+      "name": "深淵の支配者 ジャシン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 9000,
+      "race": "アビスロイヤル/ACE",
+      "text": "自分のターンのはじめに、自分の山札の上から１枚目を墓地に置いてもよい。その後、コスト３以下のクリーチャーを１体、自分の墓地から出してもよい。\n自分の闇のクリーチャーまたは闇のタマシードが合計４つ以上なければ、バトルゾーンにあるこのタマシードはクリーチャーとして扱わない。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22sd1-001",
+      "limit": 4,
+      "seedCreature": true,
+      "aceCivilization": "闇",
+      "breaker": 2,
+      "g461TurnPlayer": true,
+      "g174Start": [
+        {
+          "op": "Mill",
+          "n": 1,
+          "optional": true
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "max": 3
+          }
+        }
+      ],
+      "supportBatch": "phase-1176",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-2B",
+      "name": "ドラン・ゴルギーニ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 11500,
+      "race": "メカ・デル・ディネロ/スーパーカー・ドラゴン/ACE",
+      "text": "このタマシードが出た時、相手のクリーチャーを２体まで選んでタップする。次の相手のターンのはじめに、それらはアンタップしない。\n自分の光のクリーチャーまたは光のタマシードが合計４つ以上なければ、バトルゾーンにあるこのタマシードはクリーチャーとして扱わない。\nW・ブレイカー\nこのクリーチャーが攻撃する時、コスト５以下のクリーチャーを１体、自分の手札から出してもよい。その後、自分のクリーチャーの数が相手のより多ければ、次の自分のターンのはじめまで、自分のクリーチャーは破壊されない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-2B",
+      "limit": 4,
+      "seedCreature": true,
+      "aceCivilization": "光",
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "opponent",
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g193Tap": true,
+          "g210TapLock": true
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "max": 5
+          }
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g1176MoreCreatures": true
+          },
+          "defs": [
+            {
+              "op": "GroupGrant364",
+              "owner": "self",
+              "filter": {
+                "creature": true
+              },
+              "g521UntilStart": true,
+              "g565External": true,
+              "grant": {
+                "g465DestroySafe": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1176",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd20-001",
+      "name": "モモキングｰMAX",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 9000,
+      "race": "ジョーカーズ/ヒーロー・ドラゴン/レクスターズ",
+      "text": "S-MAX進化：自分がゲームに負ける時、かわりにこのクリーチャーを破壊するか、自分の手札から《モモキングｰMAX》を１枚捨てる。（このクリーチャーは進化元を必要としない。自分のS-MAX進化クリーチャーが２体以上あれば、そのうちの１体を残し、残りをすべて手札に戻す）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、カードを１枚引く。その後、コスト６以下のタマシードを１枚、自分の手札から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd20-001",
+      "limit": 4,
+      "sMax": true,
+      "g34SmaxLoss": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g295Tamaseed": true,
+            "max": 6
+          }
+        }
+      ],
+      "supportBatch": "phase-1176",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1175,
+    "phase": 1176,
     "checkedAt": "2026-11-14",
-    "baseCount": 7515,
+    "baseCount": 7518,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7518,
+    "totalCount": 7521,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -248589,6 +248738,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7515,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1175,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7515,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7518,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

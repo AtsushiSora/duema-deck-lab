@@ -530,6 +530,8 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g1176MoreCreatures)
+   return creatures(s,p).filter(x=>!x.sealed).length>creatures(s,1-p).filter(x=>!x.sealed).length;
   if(f.g1166SameCreatureNames){
    const counts=new Map();
    for(const x of creatures(s,p).filter(x=>!x.sealed&&!x.faceDown))for(const name of new Set(battleNames676(s,x))){
@@ -6401,7 +6403,7 @@ export function createSixPhotoRules(api){
   api.allLayers(x).some(y=>l.refs.includes(key(y)))&&!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})),
  // Resolved continuous effects are independent of the recipient's ignored abilities (QA34228).
  attackEffect409:(s,x,kind)=>(s.extLimits||[]).some(l=>l.kind==='g409AttackEffect'&&l.effect===kind&&s.players[l.player].battle.includes(x)&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)),
- destroySafe409:(s,x)=>!!effective(x,s).g465DestroySafe||hooks.attackEffect409(s,x,'destroySafe'),
+ destroySafe409:(s,x)=>!!effective(x,s).g465DestroySafe||api.isCreature(s,x)&&!!externalProtection565(s,x).g465DestroySafe||hooks.attackEffect409(s,x,'destroySafe'),
  extraBreak557:(s,p,x,c)=>s.players[p].battle.reduce((n,y)=>{
   const r=card(y).g557BreakAura;
   if(!r||y.sealed||r.other&&x.uid===y.uid||r.min!==undefined&&cost(c)<r.min||!api.isCreature(s,y)||api.ignored(s,y))return n;

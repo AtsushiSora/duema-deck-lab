@@ -60,7 +60,7 @@ export function createLionelRules(api){
  }return true;}
  return {run,chosen,
  effect(s,p,c,uid,entry){const op={lionelStar:'Star',lionelPeace:'Peace',lionelRune:'Rune',lionelHeart:'Heart',lionelSlotton:'Slotton',lionelAQ:'AQ',lionelKorail:'Korail',lionelGera:'Gera',lionelSong:'Song'}[c.effect];if(!op)return false;put(s,task('g15_'+op,p,c.id,{uid,incarnation:entry?.incarnation||0,...(op==='Peace'?{remaining:2}:{})}));return true;},
- entry(s,p,x){if(card(x).type==='seed'||card(x).natureAce4)for(const source of creatures(s,p))if(effective(source,s).lionelStar&&s.g15StarUsed?.[key(source)]!==s.turn)on(s,p,source,'g15_StarEvo',{key:key(source)});},
+ entry(s,p,x){if(card(x).type==='seed'||card(x).seedCreature||card(x).natureAce4)for(const source of creatures(s,p))if(effective(source,s).lionelStar&&s.g15StarUsed?.[key(source)]!==s.turn)on(s,p,source,'g15_StarEvo',{key:key(source)});},
  inherit(s,base,x){if(base.g15Blocker)x.g15Blocker=structuredClone(base.g15Blocker);},
  power(s,p,x){if(p<0||!api.isCreature(s,x))return 0;const c=card(x);return (rex(c)?creatures(s,p).filter(y=>y.uid!==x.uid&&!api.ignored(s,y)&&card(y).arcTeam).length*2000:0)+(!api.ignored(s,x)&&c.johnny? s.players[p].battle.filter(y=>y.uid!==x.uid&&(rex(card(y))||joker(card(y)))).length*2000:0);},
  decorate(s,p,x,c){if(c.aqCivil&&allTypes(s,p).filter(y=>colors(card(y)).includes('水')).length>=3)c={...c,blocker:true,death:'hand'};if(x.g15Blocker?.length)c={...c,blocker:true};return c;},

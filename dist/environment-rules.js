@@ -28,7 +28,7 @@ export function createEnvironmentRules(api){
  case'g37TapTarget':choice(s,t,'タップまたはアンタップするクリーチャーを選ぶ',targetOptions(s,t.p,[...creatures(s,t.p),...creatures(s,1-t.p)]));break;
  case'g37TapMode':{const p=s.players.findIndex(p=>p.battle.some(x=>x.uid===t.target)),x=s.players[p]?.battle.find(x=>x.uid===t.target);if(x)choice(s,t,card(x).name+'（'+(x.tapped?'タップ中':'アンタップ')+'）',[opt('タップする','tap',p===t.p?-5:15),opt('アンタップする','untap',p===t.p?15:-5)]);break;}
  case'g37Never':choice(s,t,'手札からコスト7以下の進化ではないクリーチャーを出す？',[...own.hand.filter(x=>card(x).type==='creature'&&!card(x).evolution&&!card(x).sMax&&cost(card(x))<=7&&usable(s,t.p,x,'hand')).map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)),skip()]);break;
- case'g37Return':{const x=own.battle.find(x=>x.uid===t.target&&(x.incarnation||0)===t.targetIncarnation);if(x)move(s,[{player:t.p,uid:x.uid,to:'hand',destroy:false}]);break;}
+ case'g37Return':{const x=own.battle.find(x=>x.uid===t.target&&(x.incarnation||0)===t.targetIncarnation);if(x&&api.isCreature(s,x))move(s,[{player:t.p,uid:x.uid,to:'hand',destroy:false}]);break;}
  case'g37Starfield':choice(s,t,'進化ではない自分のクリーチャーをマナに置く',targetOptions(s,t.p,creatures(s,t.p).filter(x=>!api.isEvolution(x))));break;
  case'g37StarfieldEvolve':if(own.mana.some(x=>t.moved.includes(x.uid)))put(s,task('g34_Select',t.p,t.source,{origin:'mana',n:1,filter:{creature:true,evolution:true,max:own.mana.length},deploy:true}));break;
  case'g37OwnDestroy':{const rows=creatures(s,t.p).filter(x=>!t.selected.includes(x.uid));if(t.selected.length>=2||!rows.length){put(s,follow(t,'EnemyDestroy',{owner:1-t.p}));finishTargets(s,t);break;}choice(s,t,'破壊する自分のクリーチャーを2体選ぶ（'+t.selected.length+'/2）',rows.map(x=>opt(card(x).name,x.uid,-cost(card(x)),x.cardId)));break;}

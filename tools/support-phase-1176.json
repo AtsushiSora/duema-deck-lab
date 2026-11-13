@@ -1,0 +1,409 @@
+{
+  "phase": 1176,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7518,
+  "description": "深淵の支配者 ジャシン、ドラン・ゴルギーニ、モモキングｰMAXの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/41993/",
+    "https://dm.takaratomy.co.jp/rule/qa/41994/",
+    "https://dm.takaratomy.co.jp/rule/qa/41997/",
+    "https://dm.takaratomy.co.jp/rule/qa/41998/",
+    "https://dm.takaratomy.co.jp/rule/qa/42137/",
+    "https://dm.takaratomy.co.jp/rule/qa/42138/",
+    "https://dm.takaratomy.co.jp/rule/qa/41090/",
+    "https://dm.takaratomy.co.jp/rule/qa/41093/",
+    "https://dm.takaratomy.co.jp/rule/qa/48115/"
+  ],
+  "cards": [
+    {
+      "id": "dm22sd1-001",
+      "name": "深淵の支配者 ジャシン",
+      "faces": [
+        {
+          "name": "深淵の支配者 ジャシン",
+          "typeText": "タマシード/クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のターンのはじめに、自分の山札の上から１枚目を墓地に置いてもよい。その後、コスト３以下のクリーチャーを１体、自分の墓地から出してもよい。\n自分の闇のクリーチャーまたは闇のタマシードが合計４つ以上なければ、バトルゾーンにあるこのタマシードはクリーチャーとして扱わない。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+          "race": "アビスロイヤル/ACE",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22sd1-001",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22sd1-001.jpg",
+      "spec": {
+        "type": "creature",
+        "seedCreature": true,
+        "aceCivilization": "闇",
+        "breaker": 2,
+        "g461TurnPlayer": true,
+        "g174Start": [
+          {
+            "op": "Mill",
+            "n": 1,
+            "optional": true
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "aa600038b8531b793f1de8e01ab8d3caad6b0b5438bf777848a5ac4527d54584",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-2B",
+      "name": "ドラン・ゴルギーニ",
+      "faces": [
+        {
+          "name": "ドラン・ゴルギーニ",
+          "typeText": "タマシード/クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このタマシードが出た時、相手のクリーチャーを２体まで選んでタップする。次の相手のターンのはじめに、それらはアンタップしない。\n自分の光のクリーチャーまたは光のタマシードが合計４つ以上なければ、バトルゾーンにあるこのタマシードはクリーチャーとして扱わない。\nW・ブレイカー\nこのクリーチャーが攻撃する時、コスト５以下のクリーチャーを１体、自分の手札から出してもよい。その後、自分のクリーチャーの数が相手のより多ければ、次の自分のターンのはじめまで、自分のクリーチャーは破壊されない。",
+          "race": "メカ・デル・ディネロ/スーパーカー・ドラゴン/ACE",
+          "powerText": "11500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-2B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-2B.jpg",
+      "spec": {
+        "type": "creature",
+        "seedCreature": true,
+        "aceCivilization": "光",
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "g210TapLock": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 5
+            }
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g1176MoreCreatures": true
+            },
+            "defs": [
+              {
+                "op": "GroupGrant364",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                },
+                "g521UntilStart": true,
+                "g565External": true,
+                "grant": {
+                  "g465DestroySafe": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "0d2e8c16cda9d49aba46933e6fcf5f7eea69332ff44ee64d54e5901c98609e2e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd20-001",
+      "name": "モモキングｰMAX",
+      "faces": [
+        {
+          "name": "モモキングｰMAX",
+          "typeText": "S-MAX進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S-MAX進化：自分がゲームに負ける時、かわりにこのクリーチャーを破壊するか、自分の手札から《モモキングｰMAX》を１枚捨てる。（このクリーチャーは進化元を必要としない。自分のS-MAX進化クリーチャーが２体以上あれば、そのうちの１体を残し、残りをすべて手札に戻す）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、カードを１枚引く。その後、コスト６以下のタマシードを１枚、自分の手札から出してもよい。",
+          "race": "ジョーカーズ/ヒーロー・ドラゴン/レクスターズ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd20-001",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd20-001.jpg",
+      "spec": {
+        "sMax": true,
+        "g34SmaxLoss": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "g295Tamaseed": true,
+              "max": 6
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "e5126a3d60071eea66ed78cc5686337a4dfd08697d47338bc5cf943cc3a053df",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy21-012",
+      "name": "深淵の支配者 ジャシン",
+      "faces": [
+        {
+          "name": "深淵の支配者 ジャシン",
+          "typeText": "タマシード/クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のターンのはじめに、自分の山札の上から１枚目を墓地に置いてもよい。その後、コスト３以下のクリーチャーを１体、自分の墓地から出してもよい。\n自分の闇のクリーチャーまたは闇のタマシードが合計４つ以上なければ、バトルゾーンにあるこのタマシードはクリーチャーとして扱わない。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+          "race": "アビスロイヤル/ACE",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy21-012",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy21-012.jpg",
+      "spec": {
+        "type": "creature",
+        "seedCreature": true,
+        "aceCivilization": "闇",
+        "breaker": 2,
+        "g461TurnPlayer": true,
+        "g174Start": [
+          {
+            "op": "Mill",
+            "n": 1,
+            "optional": true
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "bb78ca192a56da0fa9258f5bb9e777b0a9c6543c20b2192c73cbefdccf970e41",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22sd1-001"
+    },
+    {
+      "id": "dm22rp1-OR2",
+      "name": "ドラン・ゴルギーニ",
+      "faces": [
+        {
+          "name": "ドラン・ゴルギーニ",
+          "typeText": "タマシード/クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このタマシードが出た時、相手のクリーチャーを２体まで選んでタップする。次の相手のターンのはじめに、それらはアンタップしない。\n自分の光のクリーチャーまたは光のタマシードが合計４つ以上なければ、バトルゾーンにあるこのタマシードはクリーチャーとして扱わない。\nW・ブレイカー\nこのクリーチャーが攻撃する時、コスト５以下のクリーチャーを１体、自分の手札から出してもよい。その後、自分のクリーチャーの数が相手のより多ければ、次の自分のターンのはじめまで、自分のクリーチャーは破壊されない。",
+          "race": "メカ・デル・ディネロ/スーパーカー・ドラゴン/ACE",
+          "powerText": "11500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-OR2",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-OR2.jpg",
+      "spec": {
+        "type": "creature",
+        "seedCreature": true,
+        "aceCivilization": "光",
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "g210TapLock": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 5
+            }
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g1176MoreCreatures": true
+            },
+            "defs": [
+              {
+                "op": "GroupGrant364",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                },
+                "g521UntilStart": true,
+                "g565External": true,
+                "grant": {
+                  "g465DestroySafe": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "1de39748edf8aa9642931a19cefd603e331e4e5fbe9a234e048ca0dbc2f82c73",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp1-2B"
+    },
+    {
+      "id": "promoy21-010",
+      "name": "モモキングｰMAX",
+      "faces": [
+        {
+          "name": "モモキングｰMAX",
+          "typeText": "S-MAX進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S-MAX進化：自分がゲームに負ける時、かわりにこのクリーチャーを破壊するか、自分の手札から《モモキングｰMAX》を１枚捨てる。（このクリーチャーは進化元を必要としない。自分のS-MAX進化クリーチャーが２体以上あれば、そのうちの１体を残し、残りをすべて手札に戻す）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、カードを１枚引く。その後、コスト６以下のタマシードを１枚、自分の手札から出してもよい。",
+          "race": "ジョーカーズ/ヒーロー・ドラゴン/レクスターズ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy21-010",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy21-010.jpg",
+      "spec": {
+        "sMax": true,
+        "g34SmaxLoss": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "g295Tamaseed": true,
+              "max": 6
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "fc1f4574f5f15431a9bcf0fd9d4828347c64ab86f903aba14d09dcb8804da1b8",
+        "facesMatched": true
+      },
+      "canonicalId": "dmsd20-001"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22sd1-001": 4,
+      "dm22rp1-2B": 4,
+      "dmsd20-001": 4,
+      "promoy21-012": 4,
+      "dm22rp1-OR2": 4,
+      "promoy21-010": 4
+    }
+  }
+}
