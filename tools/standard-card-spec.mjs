@@ -6184,6 +6184,32 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1132&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const neoEvolution=(...colors)=>({any:colors.map(civilization=>({civilization}))});
+  const gNeoText='(カードが下にあればNEO進化クリーチャーとして扱い離れる時かわりに下のカードすべてが離れる)';
+  if(['dm25rp2-014','dm25ex3-006'].includes(d.id)&&f.typeText==='NEOクリーチャー'&&text===
+   'NEO進化:光水または闇のクリーチャー1体の上に置いてもよい。(カードが下にあればこれをNEO進化クリーチャーとして扱う)'+
+   '超魂レイド(このクリーチャーが出た時山札の上から3枚を表向きにする。その中からこのクリーチャーの進化元になれるカードを1枚この下に置いてもよい。残りを好きな順序で山札の下に置く)W・ブレイカー'+
+   'このクリーチャーの攻撃の終わりにこのクリーチャーの下にあるカードを好きな数自分の他のNEOクリーチャーまたは進化クリーチャー1体の下に置いてもよい。')
+   return {neoEvolution:neoEvolution('光','水','闇'),g27Raid:true,breaker:2,
+    g474AttackEnd:[{op:'TransferBases1132'}]};
+  if(['dm25rp2-S09','dm25rp2-Sec10','dm25ex3-rp2S09','dm25ex3-rp2Sec10'].includes(d.id)&&
+   f.typeText==='G-NEOクリーチャー'&&text.replace(gNeoText,'')===
+   'G-NEO進化:水闇または火のクリーチャー1体の上に置いてもよい。ブロッカーブロッカースレイヤー'+
+   '自分のNEOクリーチャーまたは進化クリーチャーが出た時自分の山札の上から2枚を墓地に置いてもよい。その後自分の墓地にあるクリーチャーを1体その下に置いてもよい。')
+   return {gNeo:true,neoEvolution:neoEvolution('水','闇','火'),blocker:true,slayer:true,
+    g468EntryWatch:{mode:'graveBase1132',filter:{creature:true,any:[{g556Neo:true},{evolution:true}]}}};
+  if(['dm25rp2-S08','dm25rp2-Sec09','dm25ex3-rp2S08','dm25ex3-rp2Sec09'].includes(d.id)&&
+   f.typeText==='G-NEOクリーチャー'&&text.replace(gNeoText,'')===
+   'G-NEO進化:光火または自然のクリーチャー1体の上に置いてもよい。ブロッカーブロッカーマッハファイターW・ブレイカー'+
+   '自分のNEO進化クリーチャーはカードが3枚以上含まれていてそのパワーが0より大きければ離れない。'+
+   '自分のNEOクリーチャーが攻撃する時自分の山札の上から1枚をマナゾーンに置いてもよい。そうしたら自分のマナゾーンにあるクリーチャーを1体そのNEOクリーチャーの下に置くか手札に加える。')
+   return {gNeo:true,neoEvolution:neoEvolution('光','火','自然'),blocker:true,machFighter:true,breaker:2,
+    g1132NeoStay:true,g252AttackWatch:{who:'self',filter:{creature:true,g556Neo:true},g399Attacker:true,defs:[
+     {op:'Offer',title:'山札の上から1枚をマナゾーンに置く？',defs:[{op:'Ramp',n:1,after:[{op:'ManaBaseOrHand1132'}]}]}
+    ]}};
+ }
  if(phase>=1131&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const neoEvolution=(...colors)=>({any:colors.map(civilization=>({civilization}))});

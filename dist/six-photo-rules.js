@@ -1307,7 +1307,7 @@ export function createSixPhotoRules(api){
    return;
   }
   if(t.g1060AttachBase||t.g1128AttachMana){
-   const host=sourceHost474(s,t),row=t.rows?.[0],origin=t.g1128AttachMana?'mana':'grave';
+   const host=sourceHost474(s,t.g1132EntryTarget??t),row=t.rows?.[0],origin=t.g1128AttachMana?'mana':'grave';
    if(!row||!host||host.x.sealed||!api.isCreature(s,host.x)||!api.canMoveZone(s,t.p,origin))return;
    const base=remove(s.players[t.p][origin],row.uid);
    if(base){clear(base,'under');(host.x.under??=[]).push(base);}
@@ -1856,7 +1856,15 @@ export function createSixPhotoRules(api){
   if(s.active===t.p)(s.extLimits??=[]).push({kind:'g750CannotAttackPlayer',player:t.p,turn:s.turn+1,expires:'end',who:1-t.p});
   break;
  case'g34_PlayerStop567':(s.extLimits??=[]).push({kind:'g567PlayerStop',player:t.owner==='self'?t.p:1-t.p,controller:t.p,expires:t.g567PlayerStop,who:t.g567PlayerStop==='start'?t.p:s.active,spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});break;
- case'g34_Entry468':{const mode=t.mode,host=['protect565','protectAll'].includes(mode)?sourceHost474(s,{uid:t.subject?.uid,incarnation:t.subject?.incarnation})?.x:attackHost408(s,{...t,g399Attacker:t.subject}),y=host&&!host.sealed&&api.isCreature(s,host)?host:null;if(mode==='draw')start(s,t,[{op:'Offer',title:'カードを1枚引く？',defs:[{op:'Draw',n:1}]}]);else if(mode==='freeze')start(s,t,[{op:'Target',tap:true,lock:true}]);else if(y){if(mode==='protectAll')applyGrant(s,{...t,g521UntilStart:true,g565External:true,grant:{g1082ChoiceProtected:true}},y);
+ case'g34_Entry468':{
+  if(t.mode==='graveBase1132'){
+   start(s,t,[{op:'Mill',n:2,optional:true,g1042Together:true},{
+    op:'Select',origin:'grave',n:1,optional:true,filter:{faceUp:true,g228Face:{type:'creature'}},
+    g1060AttachBase:true,g1132EntryTarget:t.subject,title:'出たクリーチャーの下に置く墓地のクリーチャーを選ぶ（任意）'
+   }]);
+   break;
+  }
+  const mode=t.mode,host=['protect565','protectAll'].includes(mode)?sourceHost474(s,{uid:t.subject?.uid,incarnation:t.subject?.incarnation})?.x:attackHost408(s,{...t,g399Attacker:t.subject}),y=host&&!host.sealed&&api.isCreature(s,host)?host:null;if(mode==='draw')start(s,t,[{op:'Offer',title:'カードを1枚引く？',defs:[{op:'Draw',n:1}]}]);else if(mode==='freeze')start(s,t,[{op:'Target',tap:true,lock:true}]);else if(y){if(mode==='protectAll')applyGrant(s,{...t,g521UntilStart:true,g565External:true,grant:{g1082ChoiceProtected:true}},y);
  else if(mode==='fight')put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:y.uid,incarnation:y.incarnation||0},optional:true});else if(mode==='protect565')(s.extLimits??=[]).push({kind:'g521Grant',g565External:true,ref:{uid:y.uid,incarnation:y.incarnation||0},grant:{untargetable:true,cannotBeAttacked:true},expires:'start',who:t.p});else if(mode==='mach')(y.g34Grants??=[]).push(timedGrant335(s,t,{machFighter:true}));else if(mode==='rush')put(s,task('g13_JagaGrant',t.p,t.source,{target:y.uid,targetInc:y.incarnation||0}));}break;}
  case'g34_LookDestination467':lookDestination467(s,t);break;
  case'g34_RomanoCast1120':{
@@ -3055,6 +3063,39 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
   break;
  }
+ case'g34_TransferBases1132':{
+  const source=sourceHost474(s,t);
+  const host=t.destination&&sourceHost474(s,t.destination);
+  if(!source||source.p!==t.p||source.x.sealed||!api.isCreature(s,source.x))break;
+  const bases=(source.x.under||[]).flatMap(api.allLayers);
+  if(!bases.length)break;
+  if(!t.destination){
+   const rows=creatures(s,t.p).filter(y=>!y.sealed&&y!==source.x&&(card(y).neoEvolution||api.isEvolution(y)));
+   if(rows.length)choice(s,t,'カードを重ねる他のNEOまたは進化クリーチャーを選ぶ（任意）',[
+    ...rows.map(y=>opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},10,y.cardId)),skip()
+   ]);
+   break;
+  }
+  if(!host||host.p!==t.p||host.x.sealed||host.x===source.x||!api.isCreature(s,host.x))break;
+  const selected=t.selected||[],rows=bases.filter(y=>!selected.includes(y.uid));
+  if(!rows.length){api.transferBattleBases(s,t.p,source.x,host.x,selected);break;}
+  choice(s,t,'移すカードを上から順に選ぶ（好きな数）',[
+   ...rows.map(y=>opt(y.faceDown?'裏向きのカード':card(y).name,y.uid,10,y.faceDown?undefined:y.cardId)),
+   opt(selected.length?'この順序で置く':'移さない',null,0)
+  ]);
+  break;
+ }
+ case'g34_ManaBaseOrHand1132':{
+  if(!api.canMoveZone(s,t.p,'mana'))break;
+  const host=sourceHost474(s,t.g399Attacker);
+  const under=host&&!host.x.sealed&&api.isCreature(s,host.x);
+  const rows=own.mana.filter(y=>!y.faceDown&&faces(api.zoneCard(s,t.p,y,'mana')).some(c=>c.type==='creature'));
+  if(rows.length)choice(s,t,'マナゾーンのクリーチャー1体と移動先を選ぶ',rows.flatMap(y=>[
+   ...(under?[opt(card(y).name+'を攻撃したクリーチャーの下に置く',{uid:y.uid,to:'under'},15,y.cardId)]:[]),
+   opt(card(y).name+'を手札に加える',{uid:y.uid,to:'hand'},12,y.cardId)
+  ]));
+  break;
+ }
  case'g34_HandUnder1131':{
   const host=sourceHost474(s,t);
   if(host&&!host.x.sealed&&api.isCreature(s,host.x)&&own.hand.length)
@@ -3558,6 +3599,10 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_Select':{
+  if(t.g1132EntryTarget){
+   const host=sourceHost474(s,t.g1132EntryTarget);
+   if(!host||host.x.sealed||!api.isCreature(s,host.x))break;
+  }
   if(t.g926OwnCreatureColor&&t.n===undefined){
    const n=creatures(s,t.p).filter(x=>!x.sealed&&!x.faceDown&&colors(effective(x,s)).includes(t.g926OwnCreatureColor)).length;
    if(!n)break;
@@ -4666,6 +4711,23 @@ export function createSixPhotoRules(api){
   break;
  }else break;
  case'g34_Harpoon618':put(s,{...t,kept:[...(t.kept||[]),v]});break;
+ case'g34_TransferBases1132':
+  if(v)put(s,t.destination?{...t,selected:[...(t.selected||[]),v]}:{...t,destination:v,selected:[]});
+  else if(t.selected?.length){
+   const source=sourceHost474(s,t),host=sourceHost474(s,t.destination);
+   if(source&&host)api.transferBattleBases(s,t.p,source.x,host.x,t.selected);
+  }
+  break;
+ case'g34_ManaBaseOrHand1132':if(v){
+  if(v.to==='hand'){zoneMove(s,t.p,'mana',v.uid,'hand',t);break;}
+  const host=sourceHost474(s,t.g399Attacker);
+  if(!host||host.x.sealed||!api.isCreature(s,host.x)||!api.canMoveZone(s,t.p,'mana'))break;
+  const y=remove(own.mana,v.uid);
+  if(y){
+   clear(y,'under');
+   (host.x.under??=[]).push(y);
+  }
+ }break;
  case'g34_HandUnder1131':if(v){
   const host=sourceHost474(s,t);
   if(!host||host.x.sealed||!api.isCreature(s,host.x))break;
@@ -5869,6 +5931,9 @@ export function createSixPhotoRules(api){
   if(c.g34Role==='engels'&&s.g34ShieldLeftTurn!==s.turn)return false;
   if(c.g34Role==='perfect'&&api.power(x,false,s)>0)return false;
   if(c.g619Stay&&ownCondition(s,p,c.g619Stay,x.uid,x.incarnation||0))return false;
+  if(!x.sealed&&c.neoEvolution&&api.isEvolution(x)&&api.allLayers(x).length>=3&&
+   s.players[p].battle.some(y=>!y.sealed&&card(y).g1132NeoStay&&effective(y,s).g1132NeoStay)&&
+   (context.battlePower??currentPower506(s,x))>0)return false;
   if((s.extLimits||[]).some(l=>l.kind==='g627Stay'&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)))return false;
   return context.skip577Stay||!c.g577Stay||!stay577(s,p,x,context.battlePower);
  },
