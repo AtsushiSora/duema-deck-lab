@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-13",
   "catalogueNames": 11827,
-  "supportedNames": 7259,
-  "pendingNames": 4568,
-  "phase": 1096,
+  "supportedNames": 7262,
+  "pendingNames": 4565,
+  "phase": 1097,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2655,
+    "クリーチャー": 2652,
     "NEOクリーチャー": 87,
     "呪文": 597,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1200,
-    "未対応の能力文": 3147,
+    "未対応の能力文": 3144,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 21,
     "未対応のシンカパワー": 2,
@@ -210730,35 +210730,181 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1097,
+      "baseCommit": "f8165712",
+      "scope": "登場時に文明とコストの条件を満たすサイキックを超次元ゾーンから出す3種類を対戦対応する。",
+      "cards": [
+        {
+          "id": "dmr01-095",
+          "name": "激流アパッチ・リザード",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-095"
+        },
+        {
+          "id": "dmr01-072",
+          "name": "光流の精霊ガガ・カリーナ",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-072"
+        },
+        {
+          "id": "dmr01-104",
+          "name": "次元流の豪力",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-104"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dmr01-095M",
+          "canonicalId": "dmr01-095",
+          "name": "激流アパッチ・リザード",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-095M"
+        },
+        {
+          "id": "dmx06-016",
+          "canonicalId": "dmr01-095",
+          "name": "激流アパッチ・リザード",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx06-016"
+        },
+        {
+          "id": "promoy10-004",
+          "canonicalId": "dmr01-095",
+          "name": "激流アパッチ・リザード",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy10-004"
+        },
+        {
+          "id": "dmx06-018",
+          "canonicalId": "dmr01-104",
+          "name": "次元流の豪力",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx06-018"
+        },
+        {
+          "id": "dm22ex1-123",
+          "canonicalId": "dmr01-104",
+          "name": "次元流の豪力",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-123"
+        },
+        {
+          "id": "dm25ex4-T27",
+          "canonicalId": "dmr01-104",
+          "name": "次元流の豪力",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-T27"
+        }
+      ],
+      "supportedNames": 7262,
+      "pendingNames": 4565,
+      "verification": {
+        "focused": "tests/standard1097-effects.test.mjs 6件成功",
+        "relatedRegressions": "82件成功（超次元と直近の追加カード、カタログ・画像・デッキの回帰）。",
+        "check": "npm run check 成功",
+        "officialPrints": 9,
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/qa/48160/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1090のアモデゴラスの実カード組み合わせ3件、Phase 1094のサイキック・イーターとグレンオー、dottoの長時間CPU対戦とWorkerの2件は引き続き未確認。",
+        "regressionLogs": [
+          "/tmp/duema-phase-1097/focused.log",
+          "/tmp/duema-phase-1097/regression.log",
+          "/tmp/duema-phase-1097/check.log",
+          "/tmp/duema-phase-1097/audit.log"
+        ]
+      },
+      "registeredUnverified": [
+        {
+          "cardId": "dmr03-024",
+          "dependencyIds": [
+            "dmd03-002"
+          ],
+          "test": "相手が自身の破壊されないサイキックを選べて、選んだクリーチャーが残る（QA 36427と同型）",
+          "reason": "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
+        }
+      ],
+      "deferred": [
+        {
+          "id": "dm39-051",
+          "name": "メビウス・トルネード",
+          "reason": "公式能力全文・基本情報・画像を確認。最初の破壊が置換された場合にも「もう1体」を正しく扱う対象記録と、解決時に自分のサイキックがいるかの判定を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm39-051"
+          ]
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "双方のパワー6000以下のサイキックを一斉に破壊し、複数の離脱置換・解除を処理するテストと、自身が攻撃されないことの検証が必要。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-062"
+          ]
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "保留継続。選んだアンタップ中の相手クリーチャーを攻撃できる範囲と、召喚酔い・攻撃制限・対象の離脱後の扱いを個別に確認する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-102"
+          ]
+        },
+        {
+          "id": "dmd03-002",
+          "name": "不死身のブーストグレンオー",
+          "reason": "Phase 1094の相手自身による破壊対象選択の検証に必要。覚醒リンクに必要なカードと合体面を照合し、能力全体を実装できる段階まで保留する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmd03-002"
+          ]
+        },
+        {
+          "id": "dm37-030",
+          "name": "時空の喧嘩屋キル",
+          "reason": "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030VC",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmx02-023",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-089",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd03-a06",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36119/",
+            "https://dm.takaratomy.co.jp/rule/qa/45084/"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1096,
-    "nextPhase": 1097,
+    "lastVerifiedPhase": 1097,
+    "nextPhase": 1098,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dmr01-095",
-        "name": "激流アパッチ・リザード",
-        "reason": "登場時の火または自然のコスト8以下のサイキック展開を、ジョンも含めて確認する。",
+        "id": "dmex17-134",
+        "name": "超次元バリバリ・ホール",
+        "reason": "コスト3以下のサイキックを出す効果をアンタッチャブルとジョンで確認する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-095"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-134"
         ]
       },
       {
-        "id": "dmr01-072",
-        "name": "光流の精霊ガガ・カリーナ",
-        "reason": "光または水のコスト5以下のサイキック展開を、両面の現在の文明・コストと照合する。",
+        "id": "dmc65-005",
+        "name": "超次元ムシャ・ホール",
+        "reason": "コスト4以下の破壊と、火のサイキック展開の順序・再録を照合する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-072"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmc65-005"
         ]
       },
       {
-        "id": "dmr01-104",
-        "name": "次元流の豪力",
-        "reason": "3文明の展開条件、再録、現行の殿堂レギュレーションを照合する。",
+        "id": "dmc62-006",
+        "name": "超次元シューティング・ホール",
+        "reason": "ブロッカーの破壊と、火のサイキック展開をそれぞれ検証する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-104"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmc62-006"
+        ]
+      },
+      {
+        "id": "dmr01-034",
+        "name": "超次元ガイアール・ホール",
+        "reason": "火のサイキックを合計コスト8以下かつ2体まで選ぶ処理と再録を照合する。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-034"
         ]
       },
       {
@@ -211086,7 +211232,7 @@
         ]
       }
     ],
-    "steps": "次回はPhase 1097。最新コミット、作業ツリーとステージ済み差分、前回のテストログ、実行中の作業、実データの正規カード名件数を確認し、候補の公式照合から再開する。",
+    "steps": "次回はPhase 1098。最新コミット、作業ツリーとステージ済み差分、前回のテストログ、実行中の作業、実データの正規カード名件数を確認し、候補の公式照合から再開する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -211163,7 +211309,7 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
-      "次回候補の公式全文・基本情報・画像・使用制限・再録と裁定を照合する。既存の超次元からの登場処理を優先し、置換または覚醒リンクの未確認項目が残る場合は別候補へ進む。",
+      "公式全文・基本情報・画像・使用制限・再録と裁定を照合する。超次元呪文の対象条件と、除去の対象がいない場合も後続の展開を解決することを確認する。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で10分間隔のカード登録を再開。",

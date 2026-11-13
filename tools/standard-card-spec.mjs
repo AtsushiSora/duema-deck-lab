@@ -6160,6 +6160,26 @@ export function standardCardSpec(d,{phase=165}={}){
    'このクリーチャーが攻撃する時バトルゾーンにあるクロスギアを1枚選び持ち主の墓地に置く。クロスギアがバトルゾーンから墓地に置かれた時カードを1枚引いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
    return {breaker:2,g34Attack:[{op:'Target',element:true,anyOwner:true,filter:{g201Gear:true},to:'grave',title:'墓地に置くクロスギアを1枚選ぶ'}],g933GearGraveDraw:true};
  }
+ if(phase>=1097&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const reminder='(ゲーム開始時サイキック・クリーチャーは山札には含めず自身の超次元ゾーンに置きバトルゾーン以外のゾーンに行った場合そこに戻す)';
+  const entry='このクリーチャーをバトルゾーンに出した時';
+  const summon='のサイキック・クリーチャーを1体自分の超次元ゾーンから';
+  const text=normalize(f.abilityText);
+  const definitions=[
+   {ids:['dmr01-095','dmr01-095M','dmx06-016','promoy10-004'],max:8,colors:['火','自然'],printed:'コスト8以下の火または自然'},
+   {ids:['dmr01-072'],max:5,colors:['光','水'],printed:'コスト5以下の光または水'},
+   {ids:['dmr01-104','dmx06-018','dm22ex1-123','dm25ex4-T27'],max:6,colors:['光','火','自然'],printed:'コスト6以下の光火自然いずれか'}
+  ];
+  const row=definitions.find(row=>row.ids.includes(d.id));
+  const current='このクリーチャーが出た時光火または自然のコスト6以下'+summon+'出す。';
+  if(row&&(text===entry+row.printed+summon+'バトルゾーンに出す。'+reminder||
+   d.id==='dm22ex1-123'&&text===current+reminder||d.id==='dm25ex4-T27'&&text===current)){
+   return {effect:'sixPhoto',g34Tasks:[{
+    op:'Select',origin:'extra',deploy:true,n:1,filter:{g1085Psychic:true,max:row.max,any:row.colors.map(color=>({color}))},
+    title:'超次元ゾーンからコスト'+row.max+'以下の'+row.colors.join('・')+'のサイキックを1体出す'
+   }]};
+  }
+ }
  if(phase>=1096&&d?.status==='complete'){
   const text=normalize(f.abilityText);
   const reminder='(ゲーム開始時サイキック・クリーチャーは山札には含めず自身の超次元ゾーンに置きバトルゾーン以外のゾーンに行った場合そこに戻す)';
