@@ -6184,6 +6184,23 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1153&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(['dmd31-003','dmex01-074'].includes(d.id)&&f.typeText==='D2フィールド'&&
+   text==='バトル中の自分のクリーチャーのパワーを+9999する。(他のD2フィールドがバトルゾーンに出た時このD2フィールドを自分の墓地に置く)')
+   return {d2Field:true,g466BattleAura:{filter:{creature:true},power:9999}};
+  if(f.typeText==='クリーチャー'){
+   if(['dmx12a-032','promoy11-004'].includes(d.id)&&
+    text==='このクリーチャーが破壊された時自分の山札を見る。その中からハンターを1体選び相手に見せてから自分の手札に加えてもよい。その後山札をシャッフルする。')
+    return {g172Death:[{op:'Look',g201Search:true,g200Search:true,g841DeckPeek:true,rest:'shuffle',stages:[
+     {n:1,to:'hand',filter:{creature:true,race:'ハンター'},optional:true,reveal:true,g1081ConfirmEmpty:true}
+    ]}]};
+   if(d.id==='dmx18-022'&&text==='マナ武装5:自分のコスト3以下のクリーチャーをバトルゾーンに出した時自分のマナゾーンに光のカードが5枚以上あればカードを1枚引いてもよい。')
+    return {g251EntryDraw:{filter:{creature:true,max:3},defs:[
+     {op:'IfOwn',filter:{g267Mana:{n:5,color:'光'}},defs:[{op:'Draw',n:1,optional:true}]}
+    ]}};
+  }
+ }
  if(phase>=1152&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmx20-021'&&text==='このクリーチャーがバトルゾーンに出た時そのターン自分のクリーチャーすべての種族にゲリラ・コマンドを追加する。')

@@ -225846,15 +225846,122 @@
       ],
       "supportBatch": "phase-1152",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmd31-003",
+      "name": "業火の禁断エリア",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "バトル中の自分のクリーチャーのパワーを+9999する。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd31-003",
+      "limit": 4,
+      "d2Field": true,
+      "g466BattleAura": {
+        "filter": {
+          "creature": true
+        },
+        "power": 9999
+      },
+      "supportBatch": "phase-1153",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx12a-032",
+      "name": "心機一転！云鬼バケル",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ヒューマノイド/ハンター/エイリアン",
+      "text": "このクリーチャーが破壊された時、自分の山札を見る。その中からハンターを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12a-032",
+      "limit": 4,
+      "g172Death": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g200Search": true,
+          "g841DeckPeek": true,
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "creature": true,
+                "race": "ハンター"
+              },
+              "optional": true,
+              "reveal": true,
+              "g1081ConfirmEmpty": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1153",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx18-022",
+      "name": "救援の翼 サスペーガ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ジャスティス・ウイング",
+      "text": "マナ武装 ５：自分のコスト３以下のクリーチャーをバトルゾーンに出した時、自分のマナゾーンに光のカードが５枚以上あれば、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx18-022",
+      "limit": 4,
+      "g251EntryDraw": {
+        "filter": {
+          "creature": true,
+          "max": 3
+        },
+        "defs": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g267Mana": {
+                "n": 5,
+                "color": "光"
+              }
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1153",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1152,
+    "phase": 1153,
     "checkedAt": "2026-11-14",
-    "baseCount": 7443,
+    "baseCount": 7446,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7446,
+    "totalCount": 7449,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -245967,6 +246074,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7443,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1152,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7443,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7446,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

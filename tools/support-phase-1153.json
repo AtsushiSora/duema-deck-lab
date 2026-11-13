@@ -1,0 +1,262 @@
+{
+  "phase": 1153,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7446,
+  "description": "業火の禁断エリア、心機一転！云鬼バケル、救援の翼 サスペーガの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/coverage/dmscs02_dt02/",
+    "https://dm.takaratomy.co.jp/rule/qa/47896/",
+    "https://dm.takaratomy.co.jp/rule/qa/31782/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36742/",
+    "https://dm.takaratomy.co.jp/rule/qa/45939/",
+    "https://dm.takaratomy.co.jp/rule/qa/40636/"
+  ],
+  "cards": [
+    {
+      "id": "dmd31-003",
+      "name": "業火の禁断エリア",
+      "faces": [
+        {
+          "name": "業火の禁断エリア",
+          "typeText": "D2フィールド",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バトル中の自分のクリーチャーのパワーを+9999する。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd31-003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd31-003.jpg",
+      "spec": {
+        "d2Field": true,
+        "g466BattleAura": {
+          "filter": {
+            "creature": true
+          },
+          "power": 9999
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "aff53c9d1bdf2a35ab73f2aa721c7daa0570a3e97d2fc32ae56957aa8adad46a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx12a-032",
+      "name": "心機一転！云鬼バケル",
+      "faces": [
+        {
+          "name": "心機一転！云鬼バケル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが破壊された時、自分の山札を見る。その中からハンターを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "ヒューマノイド/ハンター/エイリアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12a-032",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx12a-032.jpg",
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "g841DeckPeek": true,
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "race": "ハンター"
+                },
+                "optional": true,
+                "reveal": true,
+                "g1081ConfirmEmpty": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "f4ed7ac942cc1dd62bd8192a78cb58584519d4c09ca776e7386a14d82b126bc6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx18-022",
+      "name": "救援の翼 サスペーガ",
+      "faces": [
+        {
+          "name": "救援の翼 サスペーガ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナ武装 ５：自分のコスト３以下のクリーチャーをバトルゾーンに出した時、自分のマナゾーンに光のカードが５枚以上あれば、カードを１枚引いてもよい。",
+          "race": "ジャスティス・ウイング",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx18-022",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx18-022.jpg",
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "max": 3
+          },
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g267Mana": {
+                  "n": 5,
+                  "color": "光"
+                }
+              },
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "optional": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "a8a92012333b2958b94527d837d304339c67ef3bb3af109c39e0a2959977a5c0",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex01-074",
+      "name": "業火の禁断エリア",
+      "faces": [
+        {
+          "name": "業火の禁断エリア",
+          "typeText": "D2フィールド",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バトル中の自分のクリーチャーのパワーを+9999する。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex01-074",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex01-074.jpg",
+      "spec": {
+        "d2Field": true,
+        "g466BattleAura": {
+          "filter": {
+            "creature": true
+          },
+          "power": 9999
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "1779d9533e17f510960b0a196abd132decd47821c1f82b232ee668c45c8dbcc8",
+        "facesMatched": true
+      },
+      "canonicalId": "dmd31-003"
+    },
+    {
+      "id": "promoy11-004",
+      "name": "心機一転！云鬼バケル",
+      "faces": [
+        {
+          "name": "心機一転！云鬼バケル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが破壊された時、自分の山札を見る。その中からハンターを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "ヒューマノイド/ハンター/エイリアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy11-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy11-004.jpg",
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "g841DeckPeek": true,
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "race": "ハンター"
+                },
+                "optional": true,
+                "reveal": true,
+                "g1081ConfirmEmpty": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "fe6acfd543638d90ba8aca0cf07e7693ebd03a11916a02895e22215d60d2ed0c",
+        "facesMatched": true
+      },
+      "canonicalId": "dmx12a-032"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmd31-003": 4,
+      "dmx12a-032": 4,
+      "dmx18-022": 4,
+      "dmex01-074": 4,
+      "promoy11-004": 4
+    }
+  }
+}

@@ -822,7 +822,19 @@ export function createSixPhotoRules(api){
   return t.amount*(t.graveFire?s.players[p].grave.filter(z=>faces(card(z)).some(f=>colors(f).includes('火'))).length:1);
  }
  // Source-owned battle effects are read only for the actual battle or its public preview.
- function battleAuras466(s,x){if(!s)return[];const p=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));if(p<0)return[];return creatures(s,p).flatMap(source=>{const r=!source.sealed&&effective(source,s).g466BattleAura;return r&&(!r.other||source.uid!==x.uid)&&(!r.sourceTapped||source.tapped)&&(!r.condition||ownCondition(s,p,r.condition,source.uid))&&matches(s,p,x,r.filter)?[r]:[];});}
+ function battleAuras466(s,x){
+  if(!s)return[];
+  const p=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));
+  if(p<0)return[];
+  return s.players[p].battle.flatMap(source=>{
+   if(source.sealed)return[];
+   const printed=card(source);
+   if(!api.isCreature(s,source)&&!(printed.type==='field'&&printed.d2Field&&printed.g466BattleAura))return[];
+   const r=effective(source,s).g466BattleAura;
+   return r&&(!r.other||source.uid!==x.uid)&&(!r.sourceTapped||source.tapped)&&
+    (!r.condition||ownCondition(s,p,r.condition,source.uid))&&matches(s,p,x,r.filter)?[r]:[];
+  });
+ }
  function battleSafe466(s,x,y,opponentPower){const c=effective(x,s);return !!c.g34BattleSafe||hooks.destroySafe409(s,x)||!!(c.g466BattleSafe&&y&&opponentPower<=c.g466BattleSafe.maxOpponentPower)||!!(y&&effective(y,s).g466ProtectOpponent)||battleAuras466(s,x).some(r=>r.protect);}
  const reserved=own=>new Set(Object.entries(own).filter(([k,v])=>Array.isArray(v)&&/Protected$|Reveals$/.test(k)).flatMap(([,v])=>v));
  function look(s,t,owner=t.p){
