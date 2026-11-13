@@ -40,7 +40,10 @@ export function createBolshackRules(api){
  case'g29_EndMove':{const x=live(s,t);if(x)move(s,[{player:t.p,uid:x.uid,to:t.kind==='mana'?'mana':'grave',destroy:t.kind!=='mana'}]);break;}
  case'g29_Jura':choice(s,t,'ジュラ子：墓地に置く山札の枚数を選ぶ',Array.from({length:Math.min(3,own.deck.length)+1},(_,n)=>opt(n+'枚',n,n<own.deck.length?n*4:-100)));break;
  case'g29_JuraPick':{const list=['hand','grave'].flatMap(origin=>own[origin].filter(x=>cost(card(x))<=5&&dragon(card(x))&&canPut(s,t.p,x,origin)).map(x=>opt((origin==='hand'?'手札：':'墓地：')+card(x).name,{uid:x.uid,origin},30+cost(card(x)),x.cardId)));choice(s,t,'コスト5以下のドラゴンを出す？',[...list,skip()]);break;}
- case'g29_Duel':{const ids=reveal(s,t,3),selected=pool(s,{...t,ids}).filter(x=>card(x).name.includes('ボルシャック'));for(const x of selected){remove(own.deck,x.uid);release(s,t.p,[x.uid]);clear(x,'hand');api.addZone(s,t.p,'hand',x);}put(s,{...t,op:'g29_Order',ids:ids.filter(uid=>!selected.some(x=>x.uid===uid))});api.deckCheck(s,t.p);break;}
+ case'g29_Duel':{const ids=reveal(s,t,3),selected=pool(s,{...t,ids}).filter(x=>{
+  const c=card(x);
+  return c.name.includes('ボルシャック')||c.g1117NameReading?.includes('ボルシャック');
+ });for(const x of selected){remove(own.deck,x.uid);release(s,t.p,[x.uid]);clear(x,'hand');api.addZone(s,t.p,'hand',x);}put(s,{...t,op:'g29_Order',ids:ids.filter(uid=>!selected.some(x=>x.uid===uid))});api.deckCheck(s,t.p);break;}
  case'g29_Danger':choice(s,t,'タップまたはアンタップする他の1体を選ぶ',targetOptions(s,t.p,[...creatures(s,t.p),...creatures(s,1-t.p)].filter(x=>x.uid!==live(s,t)?.uid)));break;
  case'g29_DangerMode':{const p=s.players.findIndex(x=>x.battle.some(y=>y.uid===t.target)),x=p<0?null:s.players[p].battle.find(x=>x.uid===t.target);if(x)choice(s,t,card(x).name+'をどうする？',[opt('タップする',true,p===t.p?-1:15),opt('アンタップする',false,p===t.p?15:-1)]);break;}
  case'g29_Arc':choice(s,t,'手札のコスト5以下のアーマードを出す？',[...own.hand.filter(x=>cost(card(x))<=5&&armored(card(x))&&canPut(s,t.p,x,'hand')).map(x=>opt(card(x).name,x.uid,25+cost(card(x)),x.cardId)),skip()]);break;

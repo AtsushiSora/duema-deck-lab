@@ -752,7 +752,7 @@ export function createSixPhotoRules(api){
     const named=api.zoneCard(s,p,y,t.zone);
     const names=faces(named).flatMap(face=>[face.name,...(face.additionalNames||[])]);
     // QA 48124 includes the printed reading of BOLSHA9-銅鑼-5.
-    if(named.id==='dm25ex4-011')names.push('ボルシャック');
+    if(named.g1117NameReading)names.push(named.g1117NameReading);
     if(!names.some(name=>exactName(name).includes(exactName(g1116NameIncludes))))return false;
    }
    if(noColor&&colors(api.zoneCard(s,p,y,t.zone)).length)return false;
@@ -1302,6 +1302,11 @@ export function createSixPhotoRules(api){
   if(n)start(s,t,[{op:'Ramp',n}]);
   return;
  }if(t.deploy){
+  if(t.g1117ShowTime){
+   // A selected card counts even if its entry is replaced (QA 34332).
+   const highest=Math.max(0,...rows.map(({uid})=>cost(card(s.players[t.p].hand.find(x=>x.uid===uid)))));
+   t.after=[{...t.after[0],min:highest===Infinity?'∞':highest}];
+  }
   if(t.g1063RecoverRemaining){
    const selected=new Set(rows.map(row=>row.uid));
    t.after=[{op:'Select',origin:'grave',to:'hand',n:'all',optional:true,g583Group:true,
@@ -2749,7 +2754,7 @@ export function createSixPhotoRules(api){
    choice(s,{...t,op:'g34_Offer',defs:[{...t,op:'ExactMove',optional:false}]},card(y).name+'を'+label+'？',[opt('実行する',true,score,y.cardId),skip()]);
   }else{
    move(s,[{player:owner,uid:y.uid,to:t.to,destroy:t.to==='grave',controller:t.g1088OwnerMoves?owner:t.controller??t.p,
-    ...(t.toOwnerHand?{toOwnerHand:true}:{}),...(t.g1088OwnerMoves?{toOwnerDeck:true,g1089OrderDeck:true}:{})}]);
+    ...(t.toOwnerHand?{toOwnerHand:true}:{}),...(t.toOwnerExtra?{toOwnerExtra:true}:{}),...(t.g1088OwnerMoves?{toOwnerDeck:true,g1089OrderDeck:true}:{})}]);
    if(t.afterAttempt)start(s,t,t.afterAttempt);
   }
   break;
@@ -3398,6 +3403,17 @@ export function createSixPhotoRules(api){
  case'g34_ReleaseAllHyper781':
   for(const y of creatures(s,t.p))if(exactRaces(effective(y,s)).includes('超化獣'))releaseHyper781(s,t.p,y);
   break;
+ case'g34_ShowTime1117':
+  put(s,{...t,op:'g34_Select',p:1-t.p,controller:t.controller??t.p,
+   origin:'hand',deploy:true,n:'all',optional:true,g1117ShowTime:true,
+   filter:{creature:true,nonEvolution:true},title:'手札から出す進化ではないクリーチャーを選ぶ',
+   after:[{op:'ShowTimeSummon1117',p:t.p,min:0}]});
+  break;
+ case'g34_ShowTimeSummon1117':
+  start(s,t,[{op:'Execute',origin:'hand',creatureOnly:true,
+   filter:t.min==='∞'?{exactCost:'∞'}:{min:t.min},
+   title:'コストを支払わずに召喚する自分のクリーチャーを選ぶ'}]);
+  break;
  case'g34_OpponentDeploy779':put(s,{...t,op:'g34_Select',p:1-t.p,controller:t.controller??t.p,
   origin:'hand',deploy:true,n:1,optional:true,filter:{creature:true,max:3}});break;
  case'g34_OpponentOffer777':put(s,{...t,op:'g34_Offer',p:1-t.p});break;
@@ -3938,7 +3954,8 @@ export function createSixPhotoRules(api){
     &&(!t.g994ExcludeRaces||!y.sealed&&!t.g994ExcludeRaces.some(r=>race(effective(y,s),r)))
     &&(!t.g1041Colored||!y.sealed&&!y.faceDown&&colors(effective(y,s)).length>0))
    .map(y=>({player:p,uid:y.uid,to,destroy:to==='grave'&&!t.g815PutInGrave,
-    ...(t.toOwnerHand?{toOwnerHand:true}:{}),...(t.toOwnerDeck?{toOwnerDeck:true}:{})})));
+    ...(t.toOwnerHand?{toOwnerHand:true}:{}),...(t.toOwnerDeck?{toOwnerDeck:true}:{}),
+    ...(t.g1117ShieldDraw?{faceUp:true,toOwnerShields:true}:{})})));
   if(rows.length){
    if(t.g994OrderBottom){
     const orders=[s.active,1-s.active].flatMap(p=>{
@@ -3954,8 +3971,19 @@ export function createSixPhotoRules(api){
    // The direct destruction attempts count even when replaced (QA34333/34334).
    if(t.g733DrawPerAttempt)start(s,t,[{op:'DrawUpTo',n:rows.length,g203Draw:true}]);
    if(t.g1011BreakPerAttempt)start(s,t,[{op:'Break497',n:rows.length,g747CreatureBreak:true,g913DepartedBreaker:true}]);
+   if(t.g1117ShieldDraw){
+    const uids=rows.flatMap(({player,uid})=>
+     api.allLayers(s.players[player].battle.find(y=>y.uid===uid)).map(x=>x.uid));
+    put(s,{...t,op:'g34_DrawShielded1117',uids});
+   }
    move(s,rows,t.g865DrawDestroyed?{kind:'g865DrawDestroyed',player:t.p,source:t.source}:null);
   }
+  break;
+ }
+ case'g34_DrawShielded1117':{
+  const shielded=new Set(t.uids);
+  const n=s.players.flatMap(p=>p.shields.flatMap(api.shieldCards)).filter(x=>shielded.has(x.uid)).length;
+  if(n)api.draw(s,t.p,n);
   break;
  }
  case'g34_TapState235':{const y=s.players[t.target.p].battle.find(y=>y.uid===t.target.uid&&(y.incarnation||0)===t.target.incarnation);if(y)choice(s,t,'「'+card(y).name+'」をどうする？',[opt('タップする',true,tapStateScore235(s,t,t.target.p,y,true)),opt('アンタップする',false,tapStateScore235(s,t,t.target.p,y,false))]);break;}
@@ -5555,7 +5583,13 @@ export function createSixPhotoRules(api){
   put(s,task('g34_PayOnce464',p,c.id,{c,after,selected:[]}));
   return true;
  },
- spellDiscount467:(s,p,c)=>c.type==='spell'?creatures(s,p).filter(x=>!x.sealed).reduce((n,x)=>n+(effective(x,s).g467SpellReduction||0),0)+spellReduction485(s,p,c):0,
+ spellDiscount467(s,p,c){
+  if(c.type!=='spell')return 0;
+  return creatures(s,p).filter(x=>!x.sealed).reduce((n,x)=>{
+   const reduction=effective(x,s).g467SpellReduction;
+   return n+(typeof reduction==='number'?reduction:reduction&&colors(c).includes(reduction.color)?reduction.amount:0);
+  },spellReduction485(s,p,c));
+ },
  selectNullBreaker471(s,p,x){const c=effective(x,s);if(!c.g471NullBreaker||s.attack.g471Breaker||!s.players[1-p].shields.length||!c.gBreaker&&c.breaker!=='∞'&&!(c.breaker>0))return false;const n=(c.extraBreak||0)+(s.attack.g1076ExtraBreaks||0);choice(s,task('g34_NullBreaker471',p,x.cardId,{uid:x.uid}), 'この攻撃で使うブレイカーを選ぶ',[opt('ヌル・ブレイカー（'+n+'枚ブレイク）','null',0),opt('ほかのブレイカーを使う','normal',20)]);return true;},
  beginPayment560(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g560Handled||!summonAuras560(s,p,c).optional||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PayAura560',p,c.id,{c:payment,args}));return true;},
  beginPayment500(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g500Handled||!floorOptions500(s,p,c)[0]||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PayFloor500',p,c.id,{c:payment,args}));return true;},
@@ -6473,6 +6507,7 @@ for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand
    if(!hasAltPayment568(s,p,origin,r)||!api.costAltPermits568(s,p,x,c,origin).includes(a.manaPermit))
     throw Error('別コストの使用条件を満たしていません');
    const payment={cost:r.cost,g568PaymentColors:r.paymentColors,
+    ...(r.g1117MoveToExtra?{g1117MoveToExtra:true}:{}),
     ...(r.entry?{g777AltEntry:true}:{}),...(r.spell?{g1023PaidAltSpell:true,g40PayNormally:true}:{}),
     ...(origin==='mana'?{civilizations:api.manaColors(c,s,p)}:{})};
    cast(s,p,a.uid,false,a.baseUid??null,0,payment,origin,'条件付き別コスト',false,a.manaPermit,a.snowReducers??null);

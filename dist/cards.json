@@ -221220,15 +221220,157 @@
       ],
       "supportBatch": "phase-1116",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-011",
+      "name": "BOLSHA9-銅鑼-5",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アーマード・ドラゴン/テクノ・サムライ",
+      "text": "このクリーチャーを[ff04]支払って召喚してもよい。そうしたら、このクリーチャーをバトルゾーンから超次元ゾーンに置く。\nスピードアタッカー\nW・ブレイカー\nこのクリーチャーが出た時または攻撃する時、自分の山札の上から１枚を表向きにする。それがコスト５以下のクリーチャーなら出してもよい。こうして出さなければ、手札に加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-011",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "speedAttacker": true,
+      "breaker": 2,
+      "g1117NameReading": "ボルシャック",
+      "g568Alt": {
+        "cost": 4,
+        "paymentColors": [
+          "火"
+        ],
+        "g1117MoveToExtra": true
+      },
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 1,
+          "public": true,
+          "g841DeckPeek": true,
+          "limit": 1,
+          "rest": "hand",
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "max": 5
+            }
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "LookDeploy530",
+          "n": 1,
+          "public": true,
+          "g841DeckPeek": true,
+          "limit": 1,
+          "rest": "hand",
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "max": 5
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-1117",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex2-043",
+      "name": "夢の兵器 デュエロウ / イッツ・ショータイム",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "ジ・アンサー",
+      "text": "このクリーチャーが出た時、カードを２枚引く。その後、相手はカードを１枚引く。\n自分の水の呪文を唱えるコストを２少なくする。ただし、コストは０以下にならない。\n【呪文面】\n相手は進化ではないクリーチャーを好きな数、自身の手札から出してもよい。その後、自分は、その中でコストが一番大きいクリーチャー以上のコストを持つクリーチャーを１体、自分の手札からコストを支払わずに召喚してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-043",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        },
+        {
+          "op": "Draw",
+          "owner": "opponent",
+          "n": 1
+        }
+      ],
+      "g467SpellReduction": {
+        "color": "水",
+        "amount": 2
+      },
+      "spellFace": {
+        "name": "イッツ・ショータイム",
+        "cost": 8,
+        "type": "spell",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShowTime1117"
+          }
+        ]
+      },
+      "supportBatch": "phase-1117",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex2-070",
+      "name": "聖霊王ノ裁キ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "裁きの紋章",
+      "text": "相手のパワー3000以下のクリーチャーをすべて表向きにシールド化する。こうしてシールド化したカード１枚につき、自分はカードを１枚引く。\nこの呪文を自分の手札から唱えた後、墓地のかわりに、表向きのまま自分のシールド１つの上に置く。（そのシールドの束は１つと数える）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-070",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g1027Crest": true,
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "to": "shields",
+          "filter": {
+            "creature": true,
+            "maxPower": 3000,
+            "g199Power": true
+          },
+          "g1117ShieldDraw": true
+        }
+      ],
+      "supportBatch": "phase-1117",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1116,
+    "phase": 1117,
     "checkedAt": "2026-11-13",
-    "baseCount": 7331,
+    "baseCount": 7334,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7334,
+    "totalCount": 7337,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -240909,6 +241051,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7331,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1116,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7331,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7334,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

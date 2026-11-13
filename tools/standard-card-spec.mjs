@@ -6184,6 +6184,33 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1117&&d?.status==='complete'){
+  const text=normalize(f.abilityText),back=d.faces[1];
+  if(d.id==='dm25ex4-011'&&!back&&text===
+   'このクリーチャーを[ff04]支払って召喚してもよい。そうしたらこのクリーチャーをバトルゾーンから超次元ゾーンに置く。'+
+   'スピードアタッカーW・ブレイカーこのクリーチャーが出た時または攻撃する時自分の山札の上から1枚を表向きにする。'+
+   'それがコスト5以下のクリーチャーなら出してもよい。こうして出さなければ手札に加える。'){
+   const reveal={op:'LookDeploy530',n:1,public:true,g841DeckPeek:true,limit:1,rest:'hand',
+    filter:{g228Face:{type:'creature',max:5}}};
+   return {effect:'sixPhoto',speedAttacker:true,breaker:2,g1117NameReading:'ボルシャック',
+    g568Alt:{cost:4,paymentColors:['火'],g1117MoveToExtra:true},g34Tasks:[reveal],g34Attack:[reveal]};
+  }
+  if(d.id==='dm25ex2-043'&&back?.typeText==='呪文'&&text===
+   'このクリーチャーが出た時カードを2枚引く。その後相手はカードを1枚引く。'+
+   '自分の水の呪文を唱えるコストを2少なくする。ただしコストは0以下にならない。'&&normalize(back.abilityText)===
+   '相手は進化ではないクリーチャーを好きな数自身の手札から出してもよい。その後自分はその中でコストが一番大きいクリーチャー以上のコストを持つクリーチャーを1体自分の手札からコストを支払わずに召喚してもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Draw',n:2},{op:'Draw',owner:'opponent',n:1}],
+    g467SpellReduction:{color:'水',amount:2},spellFace:{
+     name:back.name,cost:back.cost,type:'spell',civilizations:back.civilizations,race:back.race,
+     effect:'sixPhoto',g34Tasks:[{op:'ShowTime1117'}]
+    }};
+  if(d.id==='dm25ex2-070'&&!back&&text===
+   '相手のパワー3000以下のクリーチャーをすべて表向きにシールド化する。こうしてシールド化したカード1枚につき自分はカードを1枚引く。'+
+   'この呪文を自分の手札から唱えた後墓地のかわりに表向きのまま自分のシールド1つの上に置く。(そのシールドの束は1つと数える)')
+   return {effect:'sixPhoto',g1027Crest:true,g34Tasks:[{
+    op:'Sweep',to:'shields',filter:{creature:true,maxPower:3000,g199Power:true},g1117ShieldDraw:true
+   }]};
+ }
  if(phase>=1116&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dm25ex2-035'&&text===
