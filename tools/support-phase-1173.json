@@ -1,0 +1,309 @@
+{
+  "phase": 1173,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7509,
+  "description": "デクロイド・デクノ、リベレーション・オブ・ジ・エンド、邪神vs邪神の能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/46872/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36489/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp04s-093",
+      "name": "デクロイド・デクノ",
+      "faces": [
+        {
+          "name": "デクロイド・デクノ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次の自分のターンのはじめまで、相手のクリーチャーが攻撃する時、可能ならクリーチャーを攻撃する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-093",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-093.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupGrant364",
+            "owner": "opponent",
+            "filter": {
+              "creature": true
+            },
+            "g521UntilStart": true,
+            "spell": true,
+            "grant": {
+              "g1173AttackCreatureIfAble": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "da1bbf9222ea6019c6a1cb58a5fee10a419e304fb100357bae0862a159ec122e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd27-017",
+      "name": "リベレーション・オブ・ジ・エンド",
+      "faces": [
+        {
+          "name": "リベレーション・オブ・ジ・エンド",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー9999以下のクリーチャーを１体破壊する。\n自分の封印をひとつ、墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd27-017",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd27-017.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 9999,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "OwnSealGrave1156",
+            "n": 1
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "282e3345ee6d984cb9c382a09f33e86bbc56ecc210612af17d146c5edc3dbdfd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy24-006",
+      "name": "邪神vs邪神",
+      "faces": [
+        {
+          "name": "邪神vs邪神",
+          "typeText": "呪文",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "コスト８以下のアビス・クリーチャーを１体、自分の墓地から出す。その後、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy24-006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy24-006.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "race": "アビス",
+              "max": 8
+            },
+            "g1173FightAfterDeploy": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "9901819b9eaa5f66bfbe0124135e015a496cfeba6d488140ad020c1b582613b8",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx23-045",
+      "name": "リベレーション・オブ・ジ・エンド",
+      "faces": [
+        {
+          "name": "リベレーション・オブ・ジ・エンド",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー9999以下のクリーチャーを１体、破壊する。\n自分の封印を１つ、墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx23-045",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx23-045.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 9999,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "OwnSealGrave1156",
+            "n": 1
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "4b80003edb61a2d5622aae8b0b8c658e2099d2411f582a5d4530c7753d10bd83",
+        "facesMatched": true
+      },
+      "canonicalId": "dmd27-017"
+    },
+    {
+      "id": "dmx22b-091",
+      "name": "リベレーション・オブ・ジ・エンド",
+      "faces": [
+        {
+          "name": "リベレーション・オブ・ジ・エンド",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー9999以下のクリーチャーを１体、破壊する。\n自分の封印をひとつ、墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-091",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx22b-091.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 9999,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "OwnSealGrave1156",
+            "n": 1
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "3d879601a5c420df071edb9b03d83c107da288e0d8caf69622038494bd93079c",
+        "facesMatched": true
+      },
+      "canonicalId": "dmd27-017"
+    },
+    {
+      "id": "promoy14-046",
+      "name": "リベレーション・オブ・ジ・エンド",
+      "faces": [
+        {
+          "name": "リベレーション・オブ・ジ・エンド",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー9999以下のクリーチャーを１体破壊する。\n自分の封印をひとつ、墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-046",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy14-046.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 9999,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "OwnSealGrave1156",
+            "n": 1
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "e458b848695343b05e6d98b0663fc4bb7944c13087d098fc77f77af4077eb14e",
+        "facesMatched": true
+      },
+      "canonicalId": "dmd27-017"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp04s-093": 4,
+      "dmd27-017": 4,
+      "promoy24-006": 4,
+      "dmx23-045": 4,
+      "dmx22b-091": 4,
+      "promoy14-046": 4
+    }
+  }
+}

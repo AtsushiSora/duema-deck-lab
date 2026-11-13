@@ -2467,6 +2467,25 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1173&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
+  const text=normalize(f.abilityText);
+  const trigger='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+  if(f.name==='デクロイド・デクノ'&&f.civilizationText==='自然'&&f.cost===2&&text===trigger+
+   '次の自分のターンのはじめまで相手のクリーチャーが攻撃する時可能ならクリーチャーを攻撃する。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'GroupGrant364',owner:'opponent',filter:{creature:true},
+    g521UntilStart:true,spell:true,grant:{g1173AttackCreatureIfAble:true}}]};
+  const revelation=trigger+'相手のパワー9999以下のクリーチャーを1体破壊する。自分の封印を';
+  if(f.name==='リベレーション・オブ・ジ・エンド'&&f.civilizationText==='火'&&f.cost===9&&
+   ['ひとつ','1つ'].some(one=>text===revelation+one+'墓地に置く。'))
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Target',to:'grave',filter:{creature:true,maxPower:9999,g199Power:true}},
+    {op:'OwnSealGrave1156',n:1}
+   ]};
+  if(d.id==='promoy24-006'&&f.civilizationText==='闇/火'&&f.cost===6&&text===
+   'コスト8以下のアビス・クリーチャーを1体自分の墓地から出す。その後相手のクリーチャーを1体選んでもよい。その2体をバトルさせる。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'grave',n:1,deploy:true,
+    filter:{creature:true,race:'アビス',max:8},g1173FightAfterDeploy:true}]};
+ }
  if(phase>=1172&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
   const text=normalize(f.abilityText);
   if(f.name==='純白設計図'&&f.civilizationText==='自然'&&f.cost===2&&text===

@@ -1429,6 +1429,14 @@ export function createSixPhotoRules(api){
     defs:[{op:'ReturnGroup785',refs:[],...(nextOpponentStart||t.g785ReturnGroup==='grave'?{to:'grave'}:{})}]
    });
   }
+  if(t.g1173FightAfterDeploy){
+   const [row]=rows;
+   if(!row)return;
+   const x=s.players[row.p][row.origin].find(y=>y.uid===row.uid);
+   if(x)put(s,{...t,...row,owner:row.p,p:t.p,op:'g34_Put',target:x.uid},
+    {...t,op:'g34_FightEnemy240',optional:true,fighter:{uid:x.uid,incarnation:(x.incarnation||0)+1}});
+   return;
+  }
   if(t.g1106OnDeploy){
    const [row]=rows;
    if(!row)return;

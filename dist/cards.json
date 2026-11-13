@@ -227850,15 +227850,118 @@
       ],
       "supportBatch": "phase-1172",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-093",
+      "name": "デクロイド・デクノ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次の自分のターンのはじめまで、相手のクリーチャーが攻撃する時、可能ならクリーチャーを攻撃する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-093",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupGrant364",
+          "owner": "opponent",
+          "filter": {
+            "creature": true
+          },
+          "g521UntilStart": true,
+          "spell": true,
+          "grant": {
+            "g1173AttackCreatureIfAble": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1173",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd27-017",
+      "name": "リベレーション・オブ・ジ・エンド",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 9,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー9999以下のクリーチャーを１体破壊する。\n自分の封印をひとつ、墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd27-017",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "maxPower": 9999,
+            "g199Power": true
+          }
+        },
+        {
+          "op": "OwnSealGrave1156",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1173",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy24-006",
+      "name": "邪神vs邪神",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "コスト８以下のアビス・クリーチャーを１体、自分の墓地から出す。その後、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy24-006",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "race": "アビス",
+            "max": 8
+          },
+          "g1173FightAfterDeploy": true
+        }
+      ],
+      "supportBatch": "phase-1173",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1172,
+    "phase": 1173,
     "checkedAt": "2026-11-14",
-    "baseCount": 7506,
+    "baseCount": 7509,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7509,
+    "totalCount": 7512,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -248211,6 +248314,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7506,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1172,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7506,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7509,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

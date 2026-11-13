@@ -2813,13 +2813,18 @@ export function getLegalActions(s){
   l.player===p&&l.active&&!spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}))||
   s.players[1-p].battle.some(x=>!x.sealed&&!x.faceDown&&card(x).g1128CreatureAttackTarget&&
    effectiveCard(x,s).g1128CreatureAttackTarget));
- if(s.phase==='attack'&&(creatureTargetsRequired||forceSmallCreatureAttack||own.battle.some(x=>card(x).g847MustAttackCreature))){
+ const creatureAttackGrants=s.phase==='attack'&&s.extLimits?.some(l=>l.kind==='g521Grant'&&l.grant.g1173AttackCreatureIfAble);
+ if(s.phase==='attack'&&(creatureTargetsRequired||creatureAttackGrants||forceSmallCreatureAttack||own.battle.some(x=>card(x).g847MustAttackCreature))){
   // Check the available creature targets after all other attack restrictions.
   const attackers=new Set(out.filter(a=>a.kind==='attack'&&a.target!=='player').map(a=>a.uid));
   const forced=new Set(own.battle.filter(x=>attackers.has(x.uid)&&
    (forceSmallCreatureAttack&&power(x,false,s)<=6000||effectiveCard(x,s).g847MustAttackCreature)).map(x=>x.uid));
   if(forced.size)out=out.filter(a=>a.kind!=='endTurn'&&(!forced.has(a.uid)||!a.requiresUnforcedAttack&&(a.kind!=='attack'||a.target!=='player')));
-  if(creatureTargetsRequired)out=out.filter(a=>a.kind!=='attack'||a.target!=='player'||!attackers.has(a.uid));
+  if(creatureTargetsRequired||creatureAttackGrants){
+   const restricted=creatureTargetsRequired?attackers:new Set(own.battle
+    .filter(x=>attackers.has(x.uid)&&effectiveCard(x,s).g1173AttackCreatureIfAble).map(x=>x.uid));
+   out=out.filter(a=>a.kind!=='attack'||a.target!=='player'||!restricted.has(a.uid));
+  }
  }
  const mizuhanome=s.phase==='attack'&&mizuhanomeSource1089(s,p);
  if(mizuhanome){
