@@ -225737,15 +225737,124 @@
       "g601UnpaidDestroy": "opponentTurn",
       "supportBatch": "phase-1151",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx20-021",
+      "name": "獣軍隊 フォック",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ゲリラ・コマンド/侵略者",
+      "text": "このクリーチャーがバトルゾーンに出た時、そのターン、自分のクリーチャーすべての種族にゲリラ・コマンドを追加する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx20-021",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "grant": {
+            "raceAdd": [
+              "ゲリラ・コマンド"
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-1152",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-053",
+      "name": "運搬の守護者 アル・ハコブ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 500,
+      "race": "ガーディアン",
+      "text": "このクリーチャーが出た時、自分の、アンタップしている光のクリーチャー１体またはアンタップしている光のタマシードを１枚、タップしてもよい。そうしたら、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-053",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "element": true,
+          "tap": true,
+          "optional": true,
+          "g1044ImplicitTap": true,
+          "filter": {
+            "untapped": true,
+            "color": "光",
+            "any": [
+              {
+                "creature": true
+              },
+              {
+                "g295Tamaseed": true
+              }
+            ]
+          },
+          "g587AfterSelection": true,
+          "after": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ],
+          "title": "タップする自分の光のクリーチャーかタマシードを選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-1152",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex16-033",
+      "name": "邪悪の面 ナム＝デッドマン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2000,
+      "race": "ビーストフォーク號",
+      "text": "このクリーチャーが出た時、自分のクリーチャーが持つ文明を数える。その後、それと同じ数のカードを自分の山札の上からタップしてマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex16-033",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "g1152CreatureCivilizations": true,
+          "tapped": true,
+          "g809Together": true
+        }
+      ],
+      "supportBatch": "phase-1152",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1151,
+    "phase": 1152,
     "checkedAt": "2026-11-14",
-    "baseCount": 7440,
+    "baseCount": 7443,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7443,
+    "totalCount": 7446,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -245846,6 +245955,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7440,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1151,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7440,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7443,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

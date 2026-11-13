@@ -4059,7 +4059,13 @@ export function createSixPhotoRules(api){
   else ramp(s,t,count);
   break;
  }
- case'g34_Ramp':if(t.optional)choice(s,t,'山札からマナに置く枚数を選ぶ',Array.from({length:Math.min(t.n,own.deck.length)+1},(_,n)=>opt(n+'枚',n,n<own.deck.length?n*5:-100)));else ramp(s,t,t.g935ManaCivilizations?manaCivilizationCount(s,t.p):t.n);break;
+ case'g34_Ramp':
+  if(t.optional)choice(s,t,'山札からマナに置く枚数を選ぶ',Array.from({length:Math.min(t.n,own.deck.length)+1},(_,n)=>opt(n+'枚',n,n<own.deck.length?n*5:-100)));
+  else if(t.g1152CreatureCivilizations){
+   const n=new Set(creatureCivilizations805(s).filter(row=>row.p===t.p).flatMap(row=>row.cs)).size;
+   if(n)ramp(s,t,n);
+  }else ramp(s,t,t.g935ManaCivilizations?manaCivilizationCount(s,t.p):t.n);
+  break;
  case'g34_DrawAfterGear816':
   if(own.grave.some(y=>y.uid===t.target))start(s,t,[{op:'DrawUpTo',n:2}]);
   break;

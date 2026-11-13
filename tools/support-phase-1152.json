@@ -1,0 +1,171 @@
+{
+  "phase": 1152,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7443,
+  "description": "獣軍隊 フォック、運搬の守護者 アル・ハコブ、邪悪の面 ナム＝デッドマンの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/37260/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37261/",
+    "https://dm.takaratomy.co.jp/rule/qa/45224/",
+    "https://dm.takaratomy.co.jp/rule/qa/39966/",
+    "https://dm.takaratomy.co.jp/rule/qa/40871/"
+  ],
+  "cards": [
+    {
+      "id": "dmx20-021",
+      "name": "獣軍隊 フォック",
+      "faces": [
+        {
+          "name": "獣軍隊 フォック",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、そのターン、自分のクリーチャーすべての種族にゲリラ・コマンドを追加する。",
+          "race": "ゲリラ・コマンド/侵略者",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx20-021",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx20-021.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "grant": {
+              "raceAdd": [
+                "ゲリラ・コマンド"
+              ]
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "bf9014f159fc9f393c7e8732428657adbe51f2811b27c13254ea545c987efa67",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-053",
+      "name": "運搬の守護者 アル・ハコブ",
+      "faces": [
+        {
+          "name": "運搬の守護者 アル・ハコブ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分の、アンタップしている光のクリーチャー１体またはアンタップしている光のタマシードを１枚、タップしてもよい。そうしたら、カードを１枚引く。",
+          "race": "ガーディアン",
+          "powerText": "500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-053",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-053.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "element": true,
+            "tap": true,
+            "optional": true,
+            "g1044ImplicitTap": true,
+            "filter": {
+              "untapped": true,
+              "color": "光",
+              "any": [
+                {
+                  "creature": true
+                },
+                {
+                  "g295Tamaseed": true
+                }
+              ]
+            },
+            "g587AfterSelection": true,
+            "after": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ],
+            "title": "タップする自分の光のクリーチャーかタマシードを選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "4551635836a1a79319d157ef3e1fd69ec5a6432ce18c27e4e5fa3b7e04051254",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex16-033",
+      "name": "邪悪の面 ナム＝デッドマン",
+      "faces": [
+        {
+          "name": "邪悪の面 ナム＝デッドマン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが出た時、自分のクリーチャーが持つ文明を数える。その後、それと同じ数のカードを自分の山札の上からタップしてマナゾーンに置く。",
+          "race": "ビーストフォーク號",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex16-033",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex16-033.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "g1152CreatureCivilizations": true,
+            "tapped": true,
+            "g809Together": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "cb7b6ab95aa0e45d080939aaca08a08c424ac17abc33e2abdfc1f2d14d28e98b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx20-021": 4,
+      "dm22rp1-053": 4,
+      "dmex16-033": 4
+    }
+  }
+}

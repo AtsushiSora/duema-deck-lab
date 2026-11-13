@@ -6184,6 +6184,17 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1152&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmx20-021'&&text==='このクリーチャーがバトルゾーンに出た時そのターン自分のクリーチャーすべての種族にゲリラ・コマンドを追加する。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'GroupGrant364',owner:'self',filter:{creature:true},grant:{raceAdd:['ゲリラ・コマンド']}}]};
+  if(d.id==='dm22rp1-053'&&text==='このクリーチャーが出た時自分のアンタップしている光のクリーチャー1体またはアンタップしている光のタマシードを1枚タップしてもよい。そうしたらカードを1枚引く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',element:true,tap:true,optional:true,g1044ImplicitTap:true,
+    filter:{untapped:true,color:'光',any:[{creature:true},{g295Tamaseed:true}]},
+    g587AfterSelection:true,after:[{op:'Draw',n:1}],title:'タップする自分の光のクリーチャーかタマシードを選ぶ（任意）'}]};
+  if(d.id==='dmex16-033'&&text==='このクリーチャーが出た時自分のクリーチャーが持つ文明を数える。その後それと同じ数のカードを自分の山札の上からタップしてマナゾーンに置く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Ramp',g1152CreatureCivilizations:true,tapped:true,g809Together:true}]};
+ }
  if(phase>=1151&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmd31-002'&&text==='このクリーチャーがバトルゾーンに出た時または攻撃する時闇または火のコスト3以下のクリーチャーを1体自分の墓地からバトルゾーンに出してもよい。'){
