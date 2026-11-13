@@ -418,7 +418,24 @@ function takeDrawCard(s,p){
  const uid=chooseHeroDraw(choices,{heroId:s.challenge.heroId,signature:s.challenge.signature,...(s.challenge.heroId&&!['shobu','katta','joe','win','hakuoh','basara','kira','kaiza'].includes(s.challenge.heroId)?{manaCards:own.mana.filter(x=>!x.faceDown).map(x=>({...card(x),civilizations:manaCivilizations(card(x))})),grave:own.grave.map(card)}:{}),mana:own.mana.length,colors:[...new Set(own.mana.flatMap(x=>manaCivilizations(card(x))))],hand:own.hand.map(describe),battle:own.battle.map(x=>publicCreature(x,p)),enemyBattle:s.players[1-p].battle.map(x=>publicCreature(x,1-p)),shields:own.shields.length,enemyShields:s.players[1-p].shields.length,active:s.active===p});
  const i=own.deck.findIndex(x=>x.uid===uid);return i<0?null:own.deck.splice(i,1)[0];
 }
-function draw(s,p,n,{unreplaceable=false,drawn,turnDraw=false}={}){let actual=0,replacementDraws=0;for(let i=0;i<n&&s.winner===null;i++){const replaced=unreplaceable?null:babyloniaDraw(s,p);if(replaced!==null){replacementDraws+=replaced;continue;}if(!unreplaceable&&!s.players[p].deck.length&&extra.deckSafe(s,p)&&s.players[p].battle.some(x=>effectiveCard(x,s).bigBang)){extra.put(s,extra.task("g10_Draws",p,s.players[p].battle.find(x=>effectiveCard(x,s).bigBang).cardId,{n:n-i}));break;}const last=s.players[p].deck.length===1&&!extra.deckSafe(s,p)&&!extra.seed.noLose(s,1-p,'replacementWin')&&s.players[p].battle.some(x=>effectiveCard(x,s).shako),c=takeDrawCard(s,p);if(c){clearBattleState(c,'hand');s.players[p].hand.push(c);drawn?.push(c.uid);actual++;if(!last&&c.g11FromSideways){checkSidewaysHand(s,p);if(s.winner!==null||s.lossEvent){if(n-i-1&&s.lossEvent)extra.put(s,extra.task('draw',p,c.cardId,{n:n-i-1}));break;}}}if(last&&c){finish(s,p,'シャコガイル：山札の最後の1枚を引いて勝利','replacementWin');if(s.winner===null)deckCheck(s,p);}else deckCheck(s,p);checkSidewaysHand(s,p);}
+function draw(s,p,n,{unreplaceable=false,drawn,turnDraw=false}={}){
+ const own=s.players[p];let actual=0,replacementDraws=0;
+ for(let i=0;i<n&&s.winner===null;i++){
+  const amo=!unreplaceable&&(actual+(own.drawsThisTurn||0)>0)&&s.players[1-p].battle.find(x=>card(x).g1090DrawToMana&&!abilitiesIgnored(s,x)&&isCreature(s,x));
+  // The turn player's replacement has priority; neither draw replacement chains onto the other.
+  const replaced=unreplaceable||amo&&p!==s.active?null:babyloniaDraw(s,p);
+  if(replaced!==null){replacementDraws+=replaced;continue;}
+  if(amo){
+   const top=takeDeckTop(s,p);
+   if(top){
+    clearBattleState(top,'mana');addZone(s,p,'mana',top);
+    log(s,p,'drawReplace','アモデゴラス：引くかわりに山札の上からマナゾーンへ置く',{cardId:amo.cardId});
+   }
+   deckCheck(s,p);
+   if(s.lossEvent)break;
+   continue;
+  }
+  if(!unreplaceable&&!s.players[p].deck.length&&extra.deckSafe(s,p)&&s.players[p].battle.some(x=>effectiveCard(x,s).bigBang)){extra.put(s,extra.task("g10_Draws",p,s.players[p].battle.find(x=>effectiveCard(x,s).bigBang).cardId,{n:n-i}));break;}const last=s.players[p].deck.length===1&&!extra.deckSafe(s,p)&&!extra.seed.noLose(s,1-p,'replacementWin')&&s.players[p].battle.some(x=>effectiveCard(x,s).shako),c=takeDrawCard(s,p);if(c){clearBattleState(c,'hand');s.players[p].hand.push(c);drawn?.push(c.uid);actual++;if(!last&&c.g11FromSideways){checkSidewaysHand(s,p);if(s.winner!==null||s.lossEvent){if(n-i-1&&s.lossEvent)extra.put(s,extra.task('draw',p,c.cardId,{n:n-i-1}));break;}}}if(last&&c){finish(s,p,'シャコガイル：山札の最後の1枚を引いて勝利','replacementWin');if(s.winner===null)deckCheck(s,p);}else deckCheck(s,p);checkSidewaysHand(s,p);}
  if(turnDraw&&actual&&s.winner===null)extra.six.turnDrawn947(s,p,actual);
  extra.drawn(s,p,actual);log(s,p,'draw',`カードを${actual}枚引いた`);return actual+replacementDraws;}
 function mill(s,p,n,{together=false}={}){
@@ -1263,9 +1280,9 @@ function babyloniaDraw(s,p){
  if(selected===undefined)throw new DrawSelectionRequired({player:p,source:source.cardId,drawIndex:index,stage:'replace'});
  if(!selected.replace)return null;
  const drawn=draw(s,p,2,{unreplaceable:true});if(s.winner!==null||!s.players[p].hand.length)return drawn;
- if(!selected.discard)throw new DrawSelectionRequired({player:p,source:source.cardId,drawIndex:index,stage:'discard',cards:s.players[p].hand.map(x=>({uid:x.uid,cardId:x.cardId}))});
+ if(!selected.discard)throw new DrawSelectionRequired({player:p,source:source.cardId,drawIndex:index,stage:'discard',manaSource:extra.discardManaSource(s,p)?.cardId,cards:s.players[p].hand.map(x=>({uid:x.uid,cardId:x.cardId}))});
  if(!s.players[p].hand.some(x=>x.uid===selected.discard))throw Error('捨てる手札を確認できません');
- extra.forcedDiscard(s,p,[selected.discard],source.cardId,{allowTurnReplacement:true});return drawn;
+ extra.forcedDiscard(s,p,[selected.discard],source.cardId,{allowTurnReplacement:true,replaceToMana:selected.discardMana});return drawn;
 }
 
 // Move the whole batch together (400.7). Looking/revealing alone does not empty the library.
@@ -2312,7 +2329,10 @@ export function getLegalActions(s){
  if(s.winner!==null)return [];
  let out=[];const d=s.decision,p=d?d.player:s.active,own=s.players[p],opp=s.players[1-p];
  if(d){
-  if(d.type==='drawReplacement')return (d.stage==='replace'?[option('replaceDraw','2枚引いて1枚捨てる',{replace:true,score:10}),option('replaceDraw','通常どおり1枚引く',{replace:false,score:0})]:d.cards.map(x=>option('discardDraw',card(x.cardId).name+'を捨てる',{uid:x.uid,cardId:x.cardId,score:-costValue(card(x.cardId))}))).map((a,id)=>({...a,id,player:p}));
+  if(d.type==='drawReplacement')return (d.stage==='replace'?[option('replaceDraw','2枚引いて1枚捨てる',{replace:true,score:10}),option('replaceDraw','通常どおり1枚引く',{replace:false,score:0})]:d.cards.flatMap(x=>[
+   option('discardDraw',card(x.cardId).name+'を捨てる',{uid:x.uid,cardId:x.cardId,score:-costValue(card(x.cardId))}),
+   ...(d.manaSource?[option('discardDraw',card(x.cardId).name+'を捨てるかわりにマナへ置く',{uid:x.uid,cardId:x.cardId,toMana:true,score:15})]:[])
+  ])).map((a,id)=>({...a,id,player:p}));
   if(d.type==='manaPayment'){
    out=d.pool.filter(x=>!x.tapped).map(x=>option('selectMana',(d.selected.includes(x.uid)?'選択を解除：':'選ぶ：')+card(x).name,{uid:x.uid,cardId:x.cardId}));
    if(manaSelectionStatus(d).valid)out.push(option('confirmMana','このマナで使う'));if(d.cancellable)out.push(option('cancelMana','キャンセル'));
@@ -2501,7 +2521,7 @@ const evolutionFace=a=>playFaces(card(a.cardId))[a.face||0];
 export function step(s,action,{manualMana=false}={}){return withEffect(s,s.decision?.type==='effect'?s.decision.player:null,()=>{
  if(s.decision?.type==='drawReplacement'){
   const d=s.decision,a=(typeof action==='number'?getLegalActions(s)[action]:getLegalActions(s).find(x=>JSON.stringify(x)===JSON.stringify(action)));if(!a)throw Error('選択できない行動です');
-  const choices=structuredClone(d.drawChoices);choices[d.drawIndex]=a.kind==='replaceDraw'?{replace:a.replace}:{...choices[d.drawIndex],discard:a.uid};
+  const choices=structuredClone(d.drawChoices);choices[d.drawIndex]=a.kind==='replaceDraw'?{replace:a.replace}:{...choices[d.drawIndex],discard:a.uid,...(a.toMana?{discardMana:true}:{})};
   return executeManaMove(s,d.action,d.baseDecision,d.payments,d.randomTape,choices,d.manualMana);
  }
  if(s.decision?.type==='manaPayment'){

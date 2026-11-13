@@ -18,9 +18,9 @@ export function createRequested394Rules(api){
   const rows=api.handProtected(s,event)?[]:own.hand.filter(x=>!t.kept.hand.includes(x.uid));
   const x=rows.find(x=>!Object.hasOwn(t.plans,x.uid)&&api.discardMode(s,event,x)==='optional'&&api.canReplaceDiscard(s,event,x));
   if(x){
-   if(card(x).g977DiscardUnderNeo){
-    const {title,options}=api.discardReplacementOptions(s,event,x);
-    choice(s,{...t,p:owner},card(x).name+'：'+title,[...options,opt('そのまま捨てる',null,0)]);
+   if(card(x).g977DiscardUnderNeo||api.discardManaSource(s,owner)){
+    const {title,options,mandatory}=api.discardReplacementOptions(s,event,x);
+    choice(s,{...t,p:owner},card(x).name+'：'+title,[...options,...(mandatory?[]:[opt('そのまま捨てる',null,0)])]);
    }else{
     const mana=card(x).g843DiscardToMana,label=mana?'マナゾーンに置く':'バトルゾーンに出す';
     choice(s,{...t,p:owner},card(x).name+'を捨てるかわりに'+(mana?'マナに置く？':'出す？'),[opt(label,x.uid,25,x.cardId),opt('そのまま捨てる',null,0)]);
@@ -47,7 +47,10 @@ export function createRequested394Rules(api){
    for(const uid of t.hand){
     const x=own.hand.find(x=>x.uid===uid);if(!x)continue;
     const event={p:t.p,causedBy:t.actor,controller:t.actor,source:t.source,n:1};
-    if((t.plans[uid]||api.discardMode(s,event,x)==='mandatory')&&api.canReplaceDiscard(s,event,x))api.replaceDiscard(s,event,x,t.plans[uid]||true);
+    const plan=t.plans[uid];
+    // The replacement was chosen before the simultaneous removal, even if its source left the field.
+    if(plan?.g1090Mana)api.replaceDiscard(s,{...event,g1090Simultaneous:true},x,plan);
+    else if((plan||api.discardMode(s,event,x)==='mandatory')&&api.canReplaceDiscard(s,event,x))api.replaceDiscard(s,event,x,plan||true);
     else api.discardCard(s,event,x);
    }
   }

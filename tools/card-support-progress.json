@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-13",
   "catalogueNames": 11827,
-  "supportedNames": 7238,
-  "pendingNames": 4589,
-  "phase": 1089,
-  "added": 3,
+  "supportedNames": 7239,
+  "pendingNames": 4588,
+  "phase": 1090,
+  "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2672,
+    "クリーチャー": 2671,
     "NEOクリーチャー": 87,
     "呪文": 599,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1202,
-    "未対応の能力文": 3166,
+    "未対応の能力文": 3165,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 21,
     "未対応のシンカパワー": 2,
@@ -209760,7 +209760,12 @@
           "dependencyId": "dmrp19-s10",
           "test": "メルニアの虹勲章のドローがアモデゴラスによって全てマナ置き場に置換される",
           "source": "https://dm.takaratomy.co.jp/rule/qa/47907/",
-          "reason": "アモデゴラスが対戦未対応。実際のドロー枚数を参照する処理はバビロニアとの公式QA 47908で検証済み。"
+          "reason": "アモデゴラスが対戦未対応。実際のドロー枚数を参照する処理はバビロニアとの公式QA 47908で検証済み。",
+          "status": "passed",
+          "resolvedPhase": 1090,
+          "resolution": "アモデゴラスを新規実装。5枚すべてがマナに置かれ、引いた枚数と捨てる枚数はともに0。",
+          "testFile": "tests/standard1090-effects.test.mjs",
+          "testName": "Melnias Medal discards nothing when Amodegoras replaces all five draws (QA47907)"
         }
       ]
     },
@@ -209902,7 +209907,12 @@
           "dependencyId": "dmbd17-009",
           "test": "呪文の解決中にSC龍飛→SC風流が墓地から出る場合のツインパクトの移動先",
           "source": "https://dm.takaratomy.co.jp/rule/qa/43075/",
-          "reason": "裁定の呪文面を持つブルースが対戦未対応。呪文の解決後に発生源の有無を判定する実装と、別の実カードでの移動先置換は検証済み。"
+          "reason": "裁定の呪文面を持つブルースが対戦未対応。呪文の解決後に発生源の有無を判定する実装と、別の実カードでの移動先置換は検証済み。",
+          "status": "passed",
+          "resolvedPhase": 1090,
+          "resolution": "ブルースはPhase 64から既存IDで対戦対応済み。墓地から出たSC龍飛→SC風流の置換で、唱え終えたブルースが墓地に行かず出ることを確認。",
+          "testFile": "tests/standard1090-effects.test.mjs",
+          "testName": "Blues spell revives SC, which puts the resolving twinpact into battle (QA43075)"
         }
       ]
     },
@@ -209960,11 +209970,117 @@
         ]
       },
       "deferred": []
+    },
+    {
+      "phase": 1090,
+      "baseCommit": "3734482d",
+      "scope": "前回の未検証2件に必要なカードを照合し、魔素縫合 アモデゴラスを対戦対応して公式裁定を実カードで検証",
+      "cards": [
+        {
+          "id": "dmrp19-s10",
+          "name": "魔素縫合 アモデゴラス",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-s10"
+        }
+      ],
+      "verifiedExistingCards": [
+        {
+          "id": "dmbd17-009",
+          "name": "冥界の不死帝 ブルース /「迷いはない。俺の成すことは決まった」",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd17-009",
+          "supportBatch": "phase-64"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm22rp1-T1",
+          "canonicalId": "dmbd17-009"
+        },
+        {
+          "id": "dm22rp2-T1",
+          "canonicalId": "dmbd17-009"
+        },
+        {
+          "id": "dm22rp2-TF1",
+          "canonicalId": "dmbd17-009"
+        },
+        {
+          "id": "dm22rp2x-TF1",
+          "canonicalId": "dmbd17-009"
+        }
+      ],
+      "supportedNames": 7239,
+      "pendingNames": 4588,
+      "verification": {
+        "focused": "tests/standard1090-effects.test.mjs（15件成功）",
+        "relatedRegressions": "458件成功（関連効果253件、新世壊11件、共有エンジン・盾・カタログ等188件、オンライン抜粋6件）",
+        "check": "npm run check 成功",
+        "officialPrints": 6,
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/qa/47907/",
+          "https://dm.takaratomy.co.jp/rule/qa/43075/",
+          "https://dm.takaratomy.co.jp/rule/qa/40212/",
+          "https://dm.takaratomy.co.jp/rule/qa/40213/",
+          "https://dm.takaratomy.co.jp/rule/qa/40214/",
+          "https://dm.takaratomy.co.jp/rule/qa/40217/",
+          "https://dm.takaratomy.co.jp/rule/qa/40219/",
+          "https://dm.takaratomy.co.jp/rule/qa/40636/",
+          "https://dm.takaratomy.co.jp/rule/qa/42954/",
+          "https://dm.takaratomy.co.jp/rule/qa/44089/",
+          "https://dm.takaratomy.co.jp/rule/qa/48470/"
+        ],
+        "resolvedInteractions": [
+          {
+            "cardId": "dm25rp4-024",
+            "dependencyId": "dmrp19-s10",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/47907/",
+            "testName": "Melnias Medal discards nothing when Amodegoras replaces all five draws (QA47907)"
+          },
+          {
+            "cardId": "dm23rp1-S4",
+            "dependencyId": "dmbd17-009",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/43075/",
+            "testName": "Blues spell revives SC, which puts the resolving twinpact into battle (QA43075)"
+          }
+        ],
+        "regressionLogs": [
+          "/tmp/duema-requested17/phase1090-focused.log",
+          "/tmp/duema-requested17/phase1090-effect-reg.log",
+          "/tmp/duema-requested17/phase1090-new-world.log",
+          "/tmp/duema-requested17/phase1090-shared.log",
+          "/tmp/duema-requested17/phase1090-online.log",
+          "/tmp/duema-requested17/phase1090-check.log",
+          "/tmp/duema-requested17/phase1090-audit.log"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。No04の長時間対戦・Workerとオンライン全試合の回帰はまとめ実行を中断し、直接関係する新世壊11件とオンライン6件を別に確認した。従来の未完了項目は既存履歴に保持。"
+      },
+      "deferred": [
+        {
+          "cardId": "dmrp19-s10",
+          "dependencyId": "dmrp05-s08",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40212/",
+          "reason": "アイアン・マンハッタン未対応。マナへの置換で捨てた扱いにならないことは汎用の手札破棄テストで検証済み。"
+        },
+        {
+          "cardId": "dmrp19-s10",
+          "dependencyId": "dmex07-m09",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40213/",
+          "reason": "“魔神轟怒”万軍投と超GRが未対応。マナへの置換をそのターンの破棄として記録しないことは固有テストで検証済み。"
+        },
+        {
+          "cardId": "dmrp19-s10",
+          "dependencyId": "promoy12-004",
+          "sources": [
+            "https://dm.takaratomy.co.jp/rule/qa/40218/",
+            "https://dm.takaratomy.co.jp/rule/qa/40219/"
+          ],
+          "reason": "日曜日よりの使者 メーテル未対応。同じ優先順をヴェール・バビロニアで両ターン検証済み。メーテル固有の破棄まで置換が連鎖しない裁定は実カード未検証。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1089,
-    "nextPhase": 1090,
+    "lastVerifiedPhase": 1090,
+    "nextPhase": 1091,
     "workInProgress": [],
     "nextCandidates": [
       {
@@ -210246,7 +210362,7 @@
         ]
       }
     ],
-    "steps": "指定17種類と裁定検証用1種類を追加済み。10分間隔の追加は一時停止。追加指示があれば既存のnextCandidatesと今回の公式裁定の依存カードを照合する。全体のnpm testは再実行しない。",
+    "steps": "次の追加指示があれば既存のnextCandidatesを参照。10分間隔の自動追加は一時停止を維持し、全体のnpm testは再実行しない。",
     "knownIssues": [
       "Phase 322の旧スキャナーテストは、Phase 419で対応した真実の名 ワクワク・チャップルン（dmr07-001）を依然として未対応一覧に期待する。Phase 742基点とPhase 743作業ツリーで候補11件・対象はブロック一覧にいないことを再現。今回の変更とは分けて扱う。",
       "Phase 321・322の既存マジボンバーは、手札からEXライフ持ちを出す際に公式QA 41150と異なり、先に閲覧中のカードを解放する。既存の対戦挙動を維持するため、このバッチの裁定対応はHOODに限定。既存カードへの適用は再開データと回帰テストを別途検証する。",
@@ -210325,8 +210441,8 @@
       "候補の公式全文・基本情報・画像・使用制限・再録・裁定を照合する。最初の攻撃を求める条件とS・トリガー付きカードの手札からの実行、山札から出したクリーチャーのターン終了時処理を既存処理と照合する。保留が続く場合は公式確認可能な別候補へ進む。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
-    "registrationStatus": "ユーザーの指示で登録再開。自動化 duema-deck-lab は10分間隔で稼働中。",
-    "verificationMode": "カード登録を継続し、固有・関連回帰テストの結果と未完了項目を記録する。",
+    "registrationStatus": "10分間隔の自動化 duema-deck-lab は一時停止。ユーザー指定による今回の追加のみ実施。",
+    "verificationMode": "前回保留の公式裁定2件は実カードで検証済み。別の依存カードが必要な裁定はPhase 1090のdeferredに記録。",
     "nextRequestedCards": []
   },
   "registeredCardVerification": {
@@ -254299,20 +254415,32 @@
     },
     "pendingFromUserRequestedBatch": {
       "phase": 1089,
-      "pending": [
+      "verifiedInPhase": 1090,
+      "pending": [],
+      "resolved": [
         {
           "cardId": "dm25rp4-024",
           "dependencyId": "dmrp19-s10",
           "test": "メルニアの虹勲章のドローがアモデゴラスによって全てマナ置き場に置換される",
           "source": "https://dm.takaratomy.co.jp/rule/qa/47907/",
-          "reason": "アモデゴラスが対戦未対応。実際のドロー枚数を参照する処理はバビロニアとの公式QA 47908で検証済み。"
+          "originalReason": "アモデゴラスが対戦未対応。実際のドロー枚数を参照する処理はバビロニアとの公式QA 47908で検証済み。",
+          "status": "passed",
+          "resolvedPhase": 1090,
+          "resolution": "アモデゴラスを新規実装。5枚すべてがマナに置かれ、引いた枚数と捨てる枚数はともに0。",
+          "testFile": "tests/standard1090-effects.test.mjs",
+          "testName": "Melnias Medal discards nothing when Amodegoras replaces all five draws (QA47907)"
         },
         {
           "cardId": "dm23rp1-S4",
           "dependencyId": "dmbd17-009",
           "test": "呪文の解決中にSC龍飛→SC風流が墓地から出る場合のツインパクトの移動先",
           "source": "https://dm.takaratomy.co.jp/rule/qa/43075/",
-          "reason": "裁定の呪文面を持つブルースが対戦未対応。呪文の解決後に発生源の有無を判定する実装と、別の実カードでの移動先置換は検証済み。"
+          "originalReason": "裁定の呪文面を持つブルースが対戦未対応。呪文の解決後に発生源の有無を判定する実装と、別の実カードでの移動先置換は検証済み。",
+          "status": "passed",
+          "resolvedPhase": 1090,
+          "resolution": "ブルースはPhase 64から既存IDで対戦対応済み。墓地から出たSC龍飛→SC風流の置換で、唱え終えたブルースが墓地に行かず出ることを確認。",
+          "testFile": "tests/standard1090-effects.test.mjs",
+          "testName": "Blues spell revives SC, which puts the resolving twinpact into battle (QA43075)"
         }
       ]
     }

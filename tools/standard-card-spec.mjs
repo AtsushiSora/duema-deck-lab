@@ -6160,6 +6160,13 @@ export function standardCardSpec(d,{phase=165}={}){
    'このクリーチャーが攻撃する時バトルゾーンにあるクロスギアを1枚選び持ち主の墓地に置く。クロスギアがバトルゾーンから墓地に置かれた時カードを1枚引いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
    return {breaker:2,g34Attack:[{op:'Target',element:true,anyOwner:true,filter:{g201Gear:true},to:'grave',title:'墓地に置くクロスギアを1枚選ぶ'}],g933GearGraveDraw:true};
  }
+ if(phase>=1090&&d?.status==='complete'&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmrp19-s10'&&d.faces.length===1&&text===
+   'EXライフブロッカーブロッカーW・ブレイカー相手がカードを引く時それがそのターンに相手が引く1枚目でなければ相手はそれを手札に加えるかわりにマナゾーンに置く。自分が手札を捨てる時墓地に置くかわりにマナゾーンに置いてもよい。')
+   return {exLife:true,blocker:true,breaker:2,g1090DrawToMana:true,g1090DiscardToMana:true};
+
+ }
  if(phase>=1089&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const revolt='革命0トリガー:クリーチャーが自分を攻撃する時自分のシールドが1つもなければこのクリーチャーを手札から表向きにしてもよい。そうしたら自分の山札の上から1枚を表向きにする。それが水の進化ではないクリーチャーなら出しこのクリーチャーをその上に置く。進化:水のクリーチャー1体の上に置く。W・ブレイカーこのクリーチャーが出た時または攻撃する時相手のクリーチャーを1体選ぶ。相手はそれを山札の上か下に置く。';
