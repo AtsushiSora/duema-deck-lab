@@ -6184,6 +6184,22 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1140&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm26rp2-073'&&f.typeText==='クリーチャー'&&text===
+   'シンパシー:自分のクリーチャー(このカードの実行コストを自分のクリーチャー1体につき1少なくする。ただしコストは0以下にならない)'+
+   'スーパーガードマン(自分の他のクリーチャーがバトルする時かわりにこのクリーチャーをタップしてバトルさせてもよい)'+
+   'T・ブレイカー(このクリーチャーはシールドを3つブレイクする)')
+   return {g211Sympathy:{amount:1,minimum:1,filter:{creature:true}},superGuardman:true,breaker:3};
+  if(d.id==='dm26rp2-064'&&f.typeText==='クリーチャー'&&text===
+   '自分の封印が墓地に置かれた時そのカードを自分の墓地から手札に戻してもよい。')
+   return {g1140SealGrave:true};
+  if(d.id==='dm26ex2-069'&&f.typeText==='進化クリーチャー'&&text===
+   'マナ進化:自分のマナゾーンにある火または自然のクリーチャー1体の上に重ねつつ出す。'+
+   'マッハファイター(このクリーチャーは出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)'+
+   'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)このクリーチャーが破壊される時墓地のかわりにマナゾーンに置く。')
+   return {manaEvolution:true,evolution:{any:[{civilization:'火'},{civilization:'自然'}]},machFighter:true,breaker:2,destroyToMana:true};
+ }
  if(phase>=1139&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(['dm26rp1-S003','dm26rp1-SEC004'].includes(d.id)&&f.typeText==='進化クリーチャー'&&text===

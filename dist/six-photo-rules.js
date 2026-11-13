@@ -6665,6 +6665,12 @@ export function createSixPhotoRules(api){
   }
  },
  battleCardDestroyed1126(s,p,x,defs){queue(s,p,x,defs);},
+ sealGrave1140(s,p,x){
+  for(const source of s.players[p].battle){
+   if(source.sealed||source.faceDown||!api.isCreature(s,source)||!effective(source,s).g1140SealGrave)continue;
+   send(s,p,source,'GraveReturn754',{uid:x.uid,incarnation:x.incarnation||0,serial:x.zoneSerial||0});
+  }
+ },
  battleGrave1122(s,p,x){queue(s,p,x,card(x.cardId).g1122BattleGrave);},
  graveAdded(s,p,all){
   if(s.g767GraveEntries?.turn!==s.turn)s.g767GraveEntries={turn:s.turn,counts:[0,0]};
