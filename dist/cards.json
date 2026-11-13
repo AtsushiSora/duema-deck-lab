@@ -225116,15 +225116,117 @@
       ],
       "supportBatch": "phase-1145",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-018",
+      "name": "流星の使者 ウコン＆サコン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ファイアー・バード/ハンター",
+      "text": "各ターンに１度、自分の他のクリーチャーが出た時、そのクリーチャーのパワーを+4000し、「スピードアタッカー」と「パワード・ブレイカー」を与えてもよい。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをもう１つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-018",
+      "limit": 4,
+      "g468EntryWatch": {
+        "filter": {
+          "creature": true
+        },
+        "g565Other": true,
+        "mode": "ukonSakon1146"
+      },
+      "supportBatch": "phase-1146",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-077",
+      "name": "完全熱血革命",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\n自分のクリーチャーを１体タップしてもよい。次の自分のターンのはじめまで、そのクリーチャーのパワーを+4000し、相手のクリーチャーが攻撃するなら、可能ならそのクリーチャーを攻撃する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-077",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "optional": true,
+          "spell": true,
+          "tap": true,
+          "power": 4000,
+          "g521UntilStart": true,
+          "g988Lure": true,
+          "title": "タップしてパワーを+4000する自分のクリーチャーを1体選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-1146",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-008",
+      "name": "ガチャンコ ガチロボ弐号機",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 5000,
+      "race": "グレートメカオー/侵略者",
+      "text": "自分のクリーチャーがなければ、このクリーチャーの召喚コストを３少なくする。\nスピードアタッカー\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を表向きにする。それがすべて同じコストのクリーチャーなら出す。そうでなければ、好きな順序で山札の下に置く。\n相手のシールドが２つ以下なら、自分のクリーチャーすべてに「スピードアタッカー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-008",
+      "limit": 4,
+      "speedAttacker": true,
+      "gachiAttack": "g10_Robo",
+      "g261Discount": {
+        "filter": {
+          "g370BattleCount": {
+            "max": 0,
+            "filter": {
+              "creature": true
+            }
+          }
+        },
+        "amount": 3
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "g465OpponentShieldsMax": 2
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1146",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1145,
+    "phase": 1146,
     "checkedAt": "2026-11-14",
-    "baseCount": 7422,
+    "baseCount": 7425,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7425,
+    "totalCount": 7428,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -245153,6 +245255,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7422,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1145,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7422,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7425,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

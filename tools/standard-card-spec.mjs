@@ -6184,6 +6184,29 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1146&&d?.status==='complete'&&d.faces.length===1&&
+  ['dm26rp2-018','dm26rp2-077','dm26rp2-008'].includes(d.id)){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm26rp2-018'&&f.typeText==='クリーチャー'&&text===
+   '各ターンに1度自分の他のクリーチャーが出た時そのクリーチャーのパワーを+4000し「スピードアタッカー」と「パワード・ブレイカー」を与えてもよい。'+
+   '(「パワード・ブレイカー」を持つクリーチャーはそのパワー6000ごとにシールドをもう1つブレイクする)')
+   return {g468EntryWatch:{filter:{creature:true},g565Other:true,mode:'ukonSakon1146'}};
+  if(d.id==='dm26rp2-077'&&f.typeText==='呪文'&&text===
+   'S・トリガーS・トリガー(このカードを自分のシールドゾーンから手札に加える時コストを支払わずにすぐ実行してもよい)'+
+   '自分のクリーチャーを1体タップしてもよい。次の自分のターンのはじめまでそのクリーチャーのパワーを+4000し相手のクリーチャーが攻撃するなら可能ならそのクリーチャーを攻撃する。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Target',owner:'self',optional:true,spell:true,tap:true,power:4000,g521UntilStart:true,g988Lure:true,
+     title:'タップしてパワーを+4000する自分のクリーチャーを1体選ぶ（任意）'}
+   ]};
+  if(d.id==='dm26rp2-008'&&f.typeText==='クリーチャー'&&text===
+   '自分のクリーチャーがなければこのクリーチャーの召喚コストを3少なくする。スピードアタッカー'+
+   'このクリーチャーが攻撃する時自分の山札の上から3枚を表向きにする。それがすべて同じコストのクリーチャーなら出す。そうでなければ好きな順序で山札の下に置く。'+
+   '相手のシールドが2つ以下なら自分のクリーチャーすべてに「スピードアタッカー」を与える。')
+   return {speedAttacker:true,gachiAttack:'g10_Robo',
+    g261Discount:{filter:{g370BattleCount:{max:0,filter:{creature:true}}},amount:3},
+    g208Auras:[{filter:{creature:true},g557Condition:{g465OpponentShieldsMax:2},grants:{speedAttacker:true}}]};
+  throw Error('公式能力文が照合済みの内容と異なります：'+d.id);
+ }
  if(phase>=1145&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'&&
   ['dm26rp1-036','dm26rp2-044','dm26rp2-016'].includes(d.id)){
   const text=normalize(f.abilityText);

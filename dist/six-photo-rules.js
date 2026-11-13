@@ -1129,10 +1129,11 @@ export function createSixPhotoRules(api){
   return protection;
  }
  function applyGrant(s,t,y){
-  if(t.g521UntilStart||t.g521NextOpponentTurn||t.g1106ExternalUntilEnd)(s.extLimits??=[]).push({
+  if(t.g521UntilStart||t.g521NextOpponentTurn||t.g1106ExternalUntilEnd||t.g1146UntilLeave)(s.extLimits??=[]).push({
    kind:'g521Grant',ref:{uid:y.uid,incarnation:y.incarnation||0},grant:t.grant,
    ...(t.g521NextOpponentTurn?{startsPlayer:1-t.p,active:false,expires:'end',who:1-t.p}:
-    t.g1106ExternalUntilEnd?{g1106ExternalUntilEnd:true,expires:'end',who:s.active}:{expires:'start',who:t.p}),
+    t.g1106ExternalUntilEnd?{g1106ExternalUntilEnd:true,expires:'end',who:s.active}:
+    t.g1146UntilLeave?{}:{expires:'start',who:t.p}),
    ...(t.g565External?{g565External:true}:{}),
    ...(t.g1058FollowUnit?{g1058FollowUnit:true}:{}),
    ...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})
@@ -1869,6 +1870,14 @@ export function createSixPhotoRules(api){
   break;
  case'g34_PlayerStop567':(s.extLimits??=[]).push({kind:'g567PlayerStop',player:t.owner==='self'?t.p:1-t.p,controller:t.p,expires:t.g567PlayerStop,who:t.g567PlayerStop==='start'?t.p:s.active,spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});break;
  case'g34_Entry468':{
+  if(t.mode==='ukonSakon1146'){
+   const host=sourceHost474(s,t.subject);
+   const once={g792Once:'ukonSakon1146'};
+   if(host&&!host.x.sealed&&api.isCreature(s,host.x)&&!used792(s,t,once))
+    choice(s,{...t,...once,op:'g34_UkonSakon1146'},card(host.x).name+'にパワー+4000、スピードアタッカー、パワード・ブレイカーを与える？',
+     [opt('与える',true,20,host.x.cardId),skip()]);
+   break;
+  }
   if(t.mode==='graveBase1132'){
    start(s,t,[{op:'Mill',n:2,optional:true,g1042Together:true},{
     op:'Select',origin:'grave',n:1,optional:true,filter:{faceUp:true,g228Face:{type:'creature'}},
@@ -4577,6 +4586,15 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
  }
  function chosen(s,t,v){if(fifteen.chosen(s,t,v))return true;if(!t.op.startsWith('g34_'))return false;const own=s.players[t.p],x=live(s,t);switch(t.op){
+ case'g34_UkonSakon1146':{
+  if(!v||used792(s,t,t))break;
+  const host=sourceHost474(s,t.subject);
+  if(!host||host.x.sealed||!api.isCreature(s,host.x))break;
+  (s.once??={})[onceKey792(t,t)]=s.turn;
+  (host.x.powerModifiers??=[]).push({amount:4000});
+  applyGrant(s,{...t,g1146UntilLeave:true,grant:{speedAttacker:true,poweredBreaker:true}},host.x);
+  break;
+ }
  case'g34_OpponentChooseAttacker916':{
   const player=1-t.p;
   const selected=v&&s.players[player].battle.find(y=>key(y)===key(v));
