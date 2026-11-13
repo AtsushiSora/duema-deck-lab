@@ -2467,6 +2467,25 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1182&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText).replace(
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)',
+   'ブロッカーブロッカー');
+  if(f.name==='Disメイデン'&&f.civilizationText==='水/自然'&&f.cost===3&&text
+   .replace('引きその後','引き').replace('各ターン自分がはじめて','各ターンはじめて自分が')===
+   'ブロッカーブロッカーこのクリーチャーが出た時カードを1枚引き自分の手札を1枚マナゾーンに置く。'+
+   '各ターンはじめて自分が多色カードを自分のマナゾーンに置いた時そのカードをアンタップする。')
+   return {blocker:true,g1182FirstMultiManaUntap:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Draw',n:1},{op:'Select',origin:'hand',to:'mana',n:1,g182HandMana:true,title:'マナゾーンに置く自分の手札を1枚選ぶ'}
+   ]};
+  if(f.name==='庵野しゅうら'&&f.civilizationText==='光'&&f.cost===8&&text===
+   'ブロッカーブロッカーT・ブレイカーこのクリーチャーが出た時次の自分のターンのはじめまで相手はコスト4以下のクリーチャーを召喚できない。')
+   return {blocker:true,breaker:3,effect:'sixPhoto',g34Tasks:[{op:'Lock',limit:{kind:'summon',max:4}}]};
+  if(f.name==='Tatsurion'&&f.civilizationText==='火'&&f.cost===6&&text===
+   'フュリー・チャージ:このクリーチャーはバトルゾーンに出たターンにタップしているクリーチャーを攻撃できる。'+
+   'W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {g1182FreshTappedAttack:true,breaker:2};
+ }
  if(phase>=1181&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.name==='コジロー'&&f.typeText==='クリーチャー'&&f.civilizationText==='闇'&&f.cost===4&&

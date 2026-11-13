@@ -6510,8 +6510,10 @@ export function createSixPhotoRules(api){
   const sources=creatures(s,p).flatMap(x=>{
    if(x.sealed)return [];
    const {g454Space:rules,g763MultiManaUntap:untap,g807ManaEntry:defs,g857ManaEntryRace:entryRace,
-    g1160FirstMultiManaDraw:firstMultiDraw,g1162FirstManaRecycle:recycle,g1168ManaEntryMulti:entryMulti}=effective(x,s);
-   return rules||untap||defs||firstMultiDraw||recycle?[{x,rules:rules||[],untap,defs,entryRace,firstMultiDraw,recycle,entryMulti}]:[];
+    g1160FirstMultiManaDraw:firstMultiDraw,g1162FirstManaRecycle:recycle,g1168ManaEntryMulti:entryMulti,
+    g1182FirstMultiManaUntap:firstMultiUntap}=effective(x,s);
+   return rules||untap||defs||firstMultiDraw||recycle||firstMultiUntap
+    ?[{x,rules:rules||[],untap,defs,entryRace,firstMultiDraw,recycle,entryMulti,firstMultiUntap}]:[];
   });
   const crystalSources=s.players[p].battle.filter(x=>!x.sealed&&card(x).g1175CrystalField&&effective(x,s).g1175CrystalField);
   for(const x of cards){
@@ -6533,7 +6535,7 @@ export function createSixPhotoRules(api){
     const rules=source.rules.filter(r=>(r.color==='多色'?actual.length>1:actual.includes(r.color))&&
      (!r.g792Once||!used792(s,source.x,r)));
     if(rules.length)send(s,p,source.x,'SpaceCharge454',{rules:structuredClone(rules)});
-    if(source.untap&&actual.length>1)api.enqueue(s,p,{uid:source.x.uid,incarnation:source.x.incarnation||0,
+    if((source.untap||firstMulti&&source.firstMultiUntap)&&actual.length>1)api.enqueue(s,p,{uid:source.x.uid,incarnation:source.x.incarnation||0,
      source:source.x.cardId,effect:'extended',task:task('g159R_ManaUntap',p,source.x.cardId,{target:x.uid,serial:x.zoneSerial||0})});
    }
   }
