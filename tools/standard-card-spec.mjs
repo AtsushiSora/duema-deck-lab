@@ -2467,6 +2467,24 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1169&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.name==='美孔麗の伝説'&&f.typeText==='呪文'&&f.civilizationText==='水/火'&&f.cost===4&&text===
+   'このカードを自分のマナゾーンに置いた時自分の手札にある多色カードを1枚相手に見せてもよい。そうしたらこのカードをアンタップする。'+
+   '自分の手札の枚数を数え好きな順序で山札の下に置く。その後その枚数に2を足した数カードを引く。')
+   return {effect:'sixPhoto',g449ManaReveal:true,g34Tasks:[{op:'HandBottomDraw1169'}]};
+  if(f.name==='ハクメイ童子'&&f.typeText==='クリーチャー'&&f.civilizationText==='火'&&f.cost===4&&text===
+   'ストライク・バックS・バック:火(火のカードを自分のシールドゾーンから手札に加える時そのカードを捨ててもよい。そうしたらコストを支払わずにこのクリーチャーを召喚する)'+
+   'スピードアタッカー(このクリーチャーは召喚酔いしない)')
+   return {strikeBack:true,strikeBackColor:'火',speedAttacker:true};
+  // The first printing's official page has a broken minus glyph, confirmed by both reprints.
+  const minus=d.id==='dmrp03-075'?'_':'-';
+  if(f.name==='爆撃男'&&f.typeText==='クリーチャー'&&f.civilizationText==='闇'&&f.cost===3&&text===
+   'このクリーチャーがどこからでも自分の墓地に置かれた時相手のクリーチャーを1体選ぶ。'+
+   'そのターンそのクリーチャーのパワーを'+minus+'2000する。(パワー0以下のクリーチャーは破壊される)')
+   return {g675GraveEntry:[{op:'Target',power:-2000,g242PowerMinus:true,
+    title:'パワーを-2000する相手のクリーチャーを選ぶ'}]};
+ }
  if(phase>=1054&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const manaLock='次の相手のターンのはじめにそれらのカードはアンタップしない。';

@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-13",
   "catalogueNames": 11827,
-  "supportedNames": 7497,
-  "pendingNames": 4330,
-  "phase": 1168,
+  "supportedNames": 7500,
+  "pendingNames": 4327,
+  "phase": 1169,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2518,
+    "クリーチャー": 2516,
     "NEOクリーチャー": 75,
-    "呪文": 533,
+    "呪文": 532,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 26,
     "タマシード": 56,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1170,
-    "未対応の能力文": 2949,
+    "未対応の能力文": 2946,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 21,
     "未対応のシンカパワー": 2,
@@ -237571,38 +237571,766 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1169,
+      "baseCommit": "3ea37ee1",
+      "scope": "美孔麗の伝説、ハクメイ童子、爆撃男の能力全体を対戦対応する。",
+      "cards": [
+        {
+          "id": "dmex14-072",
+          "name": "美孔麗の伝説",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-072"
+        },
+        {
+          "id": "dmex14-093",
+          "name": "ハクメイ童子",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-093"
+        },
+        {
+          "id": "dmrp03-075",
+          "name": "爆撃男",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-075"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dmex16-067",
+          "canonicalId": "dmex14-093",
+          "name": "ハクメイ童子",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex16-067"
+        },
+        {
+          "id": "dmex07-038",
+          "canonicalId": "dmrp03-075",
+          "name": "爆撃男",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex07-038"
+        },
+        {
+          "id": "dm23ex2-096",
+          "canonicalId": "dmrp03-075",
+          "name": "爆撃男",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-096"
+        }
+      ],
+      "supportedNames": 7500,
+      "pendingNames": 4327,
+      "verification": {
+        "focused": "tests/standard1169-effects.test.mjs 16件通過。マナの公開とアンタップ、手札の順序とドロー、S・バックとG・ストライクの両順（QA 40692）、鬼寄せの術の軽減（QA 39945）、山札からS・バック不可（QA 39650）、各ゾーンから墓地に置いた後のパワー減少を確認。",
+        "relatedRegressions": "マナ公開・手札順序、S・バックとG・ストライク、墓地移動とパワー減少、直近カードの回帰315件通過。",
+        "check": "npm run check 成功。",
+        "officialPrints": 6,
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/qa/39961/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+          "https://dm.takaratomy.co.jp/rule/qa/48484/",
+          "https://dm.takaratomy.co.jp/rule/qa/40692/",
+          "https://dm.takaratomy.co.jp/rule/qa/39945/",
+          "https://dm.takaratomy.co.jp/rule/qa/40689/",
+          "https://dm.takaratomy.co.jp/rule/qa/39650/",
+          "https://dm.takaratomy.co.jp/rule/qa/33064/",
+          "https://dm.takaratomy.co.jp/rule/qa/46841/",
+          "https://dm.takaratomy.co.jp/rule/qa/40909/"
+        ],
+        "notes": "dist/cards.jsonをdist/catalogue.jsのnameKeyで再集計し、7,497→7,500種類。未対応4,327種類。公式6版の全文・基本情報・画像・使用制限を照合。爆撃男の初出の符号は再録2版と照合。既存定義と順序、再録ID対応は一致。",
+        "unverified": "全体のnpm testは中断・合否未確認。アビスの長時間シミュレーションを含む回帰の2回の実行は停止し、対象を絞った回帰を完了。長時間AI対戦・ランダム対戦・本番Worker・全能力を走査する借用テスト、Phase 328旧スキャナーは未確認。登録済みカードの未完了18項目と旧件数固定テストの記録を継承し、未登録カードが必要な裁定QA 48484・33064の再現2項目を追加。",
+        "regressionLogs": [
+          "/tmp/duema-phase-1169/focused.log",
+          "/tmp/duema-phase-1169/related.log",
+          "/tmp/duema-phase-1169/shield-regression.log",
+          "/tmp/duema-phase-1169/check-final.log",
+          "/tmp/duema-phase-1169/audit.log",
+          "/tmp/duema-phase-1169/related-interrupted.log",
+          "/tmp/duema-phase-1169/related-interrupted-filtered.log"
+        ]
+      },
+      "resolvedRegisteredVerification": [],
+      "registeredUnverified": [
+        {
+          "cardId": "dmr03-024",
+          "dependencyIds": [
+            "dmd03-002"
+          ],
+          "test": "相手が自身の破壊されないサイキックを選べて、選んだクリーチャーが残る（QA 36427と同型）",
+          "reason": "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
+        },
+        {
+          "cardId": "dm36-077",
+          "relatedCardIds": [
+            "dm36-101",
+            "dm38-046",
+            "dm38-051",
+            "dmr01-095",
+            "dmr01-072",
+            "dmr01-104",
+            "dmex17-134",
+            "dmc62-006",
+            "dmr01-034",
+            "dm36-109",
+            "dm36-093",
+            "dm37-039",
+            "dm36-085",
+            "dm37-049",
+            "dm37-053",
+            "dm22ex1-127",
+            "dm22ex1-112",
+            "dmpcd03-a12"
+          ],
+          "test": "超次元の各面をコスト・文明・種族で判定し、条件を満たす覚醒後の面を直接出せる",
+          "reason": "Phase 1104は今回追加した4種類の展開で両面選択を検証。登録済みの他の展開効果への適用と、選択肢の順序が保存済み対戦の再現に与える影響は未検証。展開元ごとに条件と表示をテストする。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/37744/"
+        },
+        {
+          "cardId": "dmbd13-015",
+          "dependencyIds": [
+            "dmr04-v03"
+          ],
+          "test": "奇石 ミクセルの登場監視とリュウセイ・ホールのマナ追加の順序を勝利のガイアール・カイザーで再現する（QA 38717）",
+          "reason": "勝利のガイアール・カイザーはV覚醒リンクを含む能力全体が未対応。同じコスト7の登録済みサイキック、時空の火焔ボルシャック・ドラゴンでは、6マナで登場してからマナを追加する順序を確認済み。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/38717/",
+          "path": "tests/standard1105-effects.test.mjs",
+          "log": "/tmp/duema-phase-1105/focused.log"
+        },
+        {
+          "cardId": "dm38-011",
+          "dependencyIds": [
+            "dmr01-053"
+          ],
+          "test": "ロマノフ・ホールで相手が自身のエイリアンを選び破壊した場合、ザビ・リゲルが呪文による破壊を参照する（QA 36348）",
+          "path": "tests/standard1107-effects.test.mjs",
+          "reason": "竜骨なる者ザビ・リゲルが覚醒リンクを含め対戦未対応。相手本人による選択・破壊と、その後に唱えた側が闇のサイキックを出すことは固有テストで確認済み。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36348/"
+        },
+        {
+          "cardId": "dmex12-052",
+          "dependencyIds": [
+            "dmex12-022"
+          ],
+          "test": "希望のジョー星と透明妖精リリンの登場順により、マナのスノーフェアリーの文明が変わる（QA 38608）",
+          "reason": "希望のジョー星はプレミアム殿堂かつ対戦未対応。依存カードに対応後、通常のデッキ制限を守ったままテスト用の盤面で両方の登場順を再現する。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/38608/",
+          "path": "tests/standard1114-effects.test.mjs"
+        },
+        {
+          "cardId": "dmex17-004",
+          "dependencyIds": [
+            "dmex12-022"
+          ],
+          "test": "希望のジョー星で無色になった山札のカードをアシッド・テクノが参照する（裁定変更のお知らせ31641）",
+          "reason": "希望のジョー星が対戦未対応のため、既に受けている文明変更が山札を見ている間も続く組み合わせを再現できない。依存カードへの対応後に確認する。",
+          "source": "https://dm.takaratomy.co.jp/rule/rulechange/31641/",
+          "path": "tests/standard1114-effects.test.mjs"
+        },
+        {
+          "cardId": "dm25ex2-082",
+          "test": "ドラム・トレボールが参照する「ナイト・マジック」にキング・ナイト・マジックが含まれるかを確認する",
+          "reason": "両版のドラム・トレボールは対戦対応済み。公式カード本文で異なる名称のキーワードを区別し、通常のナイト・マジックだけが軽減される実装と対戦テストを確認。キング・ナイト・マジックがナイト・マジックを兼ねるかを直接説明する公式裁定は未確認。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm30-047",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-083",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-082"
+          ],
+          "path": "tests/standard1119-effects.test.mjs",
+          "relatedCardIds": [
+            "dm30-047",
+            "dmex17-083"
+          ],
+          "log": "/tmp/duema-phase-1119/focused.log"
+        },
+        {
+          "cardId": "dm03-039",
+          "path": "tests/utility87-effects.test.mjs",
+          "test": "Holy Mail keeps the added shield UID private in both online projections",
+          "reason": "テスト用ルームにdecksがなく、projectRoomがroom.decks[0]の参照で例外を出す。変更前のエンジンでも同じエラーを再現。ルームを本番の生成経路か現行形式のフィクスチャで作成してから再検証する。",
+          "log": "/tmp/duema-phase-1117/regression-baseline.log"
+        },
+        {
+          "cardId": "dm14-013",
+          "path": "tests/utility87-effects.test.mjs",
+          "test": "Cavalt private inspection is sent only to its controller and never stored as a public hand-name log",
+          "reason": "テスト用ルームにdecksがなく、projectRoomがroom.decks[0]の参照で例外を出す。変更前のエンジンでも同じエラーを再現。ルームを本番の生成経路か現行形式のフィクスチャで作成してから再検証する。",
+          "log": "/tmp/duema-phase-1117/regression-baseline.log"
+        },
+        {
+          "cardId": "dm22-039",
+          "path": "tests/utility87-effects.test.mjs",
+          "test": "Arc hides the former public creature when it becomes a shield in online play",
+          "reason": "テスト用ルームにdecksがなく、projectRoomがroom.decks[0]の参照で例外を出す。変更前のエンジンでも同じエラーを再現。ルームを本番の生成経路か現行形式のフィクスチャで作成してから再検証する。",
+          "log": "/tmp/duema-phase-1117/regression-baseline.log"
+        },
+        {
+          "cardId": "dm24ex4-062",
+          "path": "tests/bolshack-photo.test.mjs",
+          "test": "a private Bolbady look never exposes deck identities or actions to the opposing account",
+          "reason": "テスト用ルームにdecksがなく、projectRoomがroom.decks[0]の参照で例外を出す。変更前のエンジンでも同じエラーを再現。ルームを本番の生成経路か現行形式のフィクスチャで作成してから再検証する。",
+          "log": "/tmp/duema-phase-1117/bolshack-baseline.log"
+        },
+        {
+          "cardId": "dm39-034",
+          "test": "バリバリ・ケドケドが陰陽の舞のマナ爆誕0の宣言を止める（QA 39622）",
+          "reason": "バリバリ・ケドケド（dmrp16-017）が未対応。若き大長老 アプルの既存マナ離脱禁止では0マナでも宣言できないことを確認済み。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-017",
+            "https://dm.takaratomy.co.jp/rule/qa/39622/"
+          ]
+        },
+        {
+          "cardId": "dm25rp2-S08",
+          "dependencyIds": [
+            "dm25rp4-OR1"
+          ],
+          "test": "公式QA 47945の深淵送りで離脱防止を無視する処理",
+          "reason": "アビスラブ=ジャシン帝が未対応。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/47945/"
+        },
+        {
+          "cardId": "dm26rp2-S001",
+          "test": "ゾロ・ア・スタートの遅延誘発と複数カードの解決順",
+          "reason": "QA 48906は手札進化（キリコ＋デドダム）、墓地進化（デスシラズ）、マナ進化（レッドランチャー）の組み合わせを実カードで確認。超次元ゾーンを一度離れたカードの追跡と、複数の遅延誘発をゾロの持ち主が並べる裁定が残る。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/rule/qa/48912/",
+            "https://dm.takaratomy.co.jp/rule/qa/48915/"
+          ]
+        },
+        {
+          "cardId": "dmr14-012",
+          "dependencyIds": [
+            "dmrp08-s10"
+          ],
+          "test": "ラドン・ベップバーンの効果でマナなしの代替召喚のみ禁止（QA 39626）",
+          "reason": "公式本文と画像を照合。相手がマナをタップせずに出す宣言を支払い前に禁止し、各種の代替召喚・効果による登場およびバトルの置換を一貫して処理できるまで保留。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/39626/"
+        },
+        {
+          "cardId": "dmr14-012",
+          "dependencyIds": [
+            "dmrp11-039"
+          ],
+          "test": "ジェイ-SHOCKERの登場禁止下で破壊の代替コストを支払えない（QA 39624）",
+          "reason": "同等の登場制限を設定した固有テストは通過。公式本文と同名再録2版を照合。超GRとGR召喚に加え、Jトルネードによる登場禁止の処理が必要なため保留。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/39624/"
+        },
+        {
+          "cardId": "dm25-028",
+          "dependencyIds": [
+            "dmrp21-5A"
+          ],
+          "test": "幻獣妖精ユキゴンとグーゴル ＜XENOM.Star＞による多色マナの配置順を実カードで再現する（QA 41196）",
+          "reason": "グーゴル ＜XENOM.Star＞は対戦未対応。今回の固有試験では同じマナのタップ配置を持つ影速 ザ・トリッパーで確認済み。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/41196/",
+          "path": "tests/standard1157-effects.test.mjs",
+          "log": "/tmp/duema-phase-1157/focused.log"
+        },
+        {
+          "cardId": "dmex14-003",
+          "dependencyIds": [
+            "dmx14-031"
+          ],
+          "test": "《夜露死苦 キャロル》が手札に残る場合にサイバー・V・チューブのレインボーナスが誘発しない（QA 39440）",
+          "reason": "夜露死苦 キャロルの全ゾーンからの墓地移動を置換する能力が未対応。今回の固有テストでは、既存のエイリアン・ファーザーを使用し、捨てる処理がマナ移動に置換された場合に誘発しないことを確認済み。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/39440/",
+          "path": "tests/standard1168-effects.test.mjs",
+          "log": "/tmp/duema-phase-1168/focused.log"
+        },
+        {
+          "cardId": "dmex14-093",
+          "dependencyIds": [
+            "dm26rp1-S011"
+          ],
+          "test": "S・バックで捨てる斬隠将撃龍ニバイケンを、相手ターン中に自身の置換で出せる（QA 48484）",
+          "reason": "斬隠将撃龍ニバイケンと公式類似例の斬隠蒼頭龍バイケンが未登録。今回、通常の火のシールドを手札から捨てて召喚するケースと、G・ストライクを同時に宣言するケースを確認した。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/48484/",
+          "path": "tests/standard1169-effects.test.mjs",
+          "log": "/tmp/duema-phase-1169/focused.log"
+        },
+        {
+          "cardId": "dmrp03-075",
+          "dependencyIds": [
+            "dmrp12-008"
+          ],
+          "test": "帝神龍装 ティーゾリスで爆撃男のバトルゾーンでの破壊時だけ能力を2回使う（QA 33064）",
+          "reason": "帝神龍装 ティーゾリスの能力が未登録。今回、山札・手札・マナ・バトルゾーン・シールド・封印からの墓地移動で通常は1回誘発することを確認した。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/33064/",
+          "path": "tests/standard1169-effects.test.mjs",
+          "log": "/tmp/duema-phase-1169/focused.log"
+        }
+      ],
+      "printVerificationPending": [],
+      "deferred": [
+        {
+          "id": "dmrp03-011",
+          "name": "コーディネイ人",
+          "reason": "公式全文・画像を確認。相手クリーチャーのバトル破壊を置換する効果と、同じ破壊に対する別の置換効果の優先順、および次のターン開始時のアンタップ禁止を検証するため保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-011",
+            "https://dm.takaratomy.co.jp/rule/qa/42962/"
+          ]
+        },
+        {
+          "id": "dmx14-031",
+          "name": "夜露死苦 キャロル",
+          "reason": "公式全文と再録を確認。手札を含むすべてのゾーンからの墓地移動を同じ置換として処理する必要があるため保留。対応時にはサイバー・V・チューブとの裁定を再現する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-031",
+            "https://dm.takaratomy.co.jp/rule/qa/39440/",
+            "https://dm.takaratomy.co.jp/rule/rulechange/316675/"
+          ]
+        },
+        {
+          "id": "dmex14-021",
+          "name": "「快速のハッチャキ」",
+          "reason": "公式本文・画像・再録の掲載なしを確認。表向きのシールド束から選んだ1枚を進化元の選択とともに出す処理、およびシールド・ゴーの離脱置換を検証するため保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-021",
+            "https://dm.takaratomy.co.jp/rule/qa/40456/"
+          ]
+        },
+        {
+          "id": "dmr22-038",
+          "name": "ベイB ポレポレ",
+          "reason": "公式の全文・基本情報・画像を確認。自分のターンに最初の1枚を引く直前の任意のマナ2枚タップを、通常ドロー、複数枚ドロー、ドロー置換と同じ順で解決する共通処理が必要なため保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-038"
+          ]
+        },
+        {
+          "id": "dm26ex4-068",
+          "name": "トップギ・ラ・ヒツヤシ",
+          "reason": "公式の全文・基本情報・画像を確認。カードごとの任意軽減の使用回数と、手札を捨てた時に1回だけ発生する任意ブレイクを、各種召喚・捨てる処理と照合するため保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-068"
+          ]
+        },
+        {
+          "id": "dmrp13-013",
+          "name": "「古の守護者」",
+          "reason": "公式の全文・基本情報・画像を確認。通常ブレイク、ブレイクの置換、呪文で見るシールド選択に同じ選択者の置換を適用して検証する必要があるため保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-013",
+            "https://dm.takaratomy.co.jp/rule/qa/40539/",
+            "https://dm.takaratomy.co.jp/rule/qa/33417/"
+          ]
+        },
+        {
+          "id": "dmrp03-048",
+          "name": "“SNG”シンガー",
+          "reason": "“SNG”シンガーは、ブレイクと効果による直接移動の両方で、両プレイヤーのシールドが手札に加わった数を束単位で数える処理と、ターン終了時の手札からの使用宣言順を照合する必要があるため保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-048"
+          ]
+        },
+        {
+          "id": "dm23rp4-062",
+          "name": "タンクリオ-L8",
+          "reason": "通常版、超刺激パック版、P67/Y22の公式全文・基本情報・画像を照合。QA 44192に従い離れない場合でも軽減でき、同一召喚で1体につき1回に限る。メカ専用の軽減と破壊の支払いを既存の召喚経路に統合し、ササゲールとの併用を検証できるまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-062",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-062",
+            "https://dm.takaratomy.co.jp/card/detail/?id=promoy22-067",
+            "https://dm.takaratomy.co.jp/rule/qa/44192/"
+          ]
+        },
+        {
+          "id": "dmrp20-040",
+          "name": "バベル・アゲイン",
+          "reason": "公式の全文・基本情報・画像を確認。破壊を試みれば3枚引き、実際に破壊されて自分の墓地に置かれたディスタスだけを戻す。離脱置換と複数カードから成るクリーチャーの破壊結果を追跡するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-040",
+            "https://dm.takaratomy.co.jp/rule/qa/45451/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/37358/"
+          ]
+        },
+        {
+          "id": "dm39-015",
+          "name": "穿神兵ジェットドリル",
+          "reason": "公式の全文・基本情報・画像、使用制限と4件の関連裁定を確認。山札・墓地からマナへ置くすべての経路で移動元を保持し、同時配置1枚ごとの誘発とチャージャーの除外を検証できるまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm39-015",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36254/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36255/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36256/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36257/"
+          ]
+        },
+        {
+          "id": "dmr19-032",
+          "name": "宇宙 ロケットマン",
+          "reason": "公式の全文・基本情報・画像、使用制限とQA 37793を確認。バトルそのものを置換し、手札へ戻せる対象がいない場合と競合する置換を処理する必要があるため保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-032",
+            "https://dm.takaratomy.co.jp/rule/qa_old/37793/"
+          ]
+        },
+        {
+          "id": "dmx21-020",
+          "name": "デスメタ・ルピア",
+          "reason": "公式の単一収録版の全文・基本情報・画像を確認。G・リンク中はどちらの構成カードが墓地に置かれた場合でも、リンクしたゴッドの破壊として一度誘発する必要がある。現在の離脱監視は代表カード以外が選ばれた場合に破壊前の情報を拾えないため保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-020",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36872/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/35580/"
+          ]
+        },
+        {
+          "id": "dmx15-011",
+          "name": "害悪のカルマ スタバック",
+          "reason": "公式の単一収録版の全文・基本情報・画像を確認。ターン開始と各種の効果によるアンタップに同じ禁止を適用し、ツインパクトの呪文面も含めて検証する必要があるため保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-011"
+          ]
+        },
+        {
+          "id": "dmx09-011",
+          "name": "番傘の牡丹",
+          "reason": "公式の単一収録版の全文・基本情報・画像を確認。攻撃・ブロック・効果によるバトルのいずれでも、パワー比較の前に他のビーストフォークへの誘発を処理し、ターン終了までパワー修正が残ることを検証できるまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmx09-011"
+          ]
+        },
+        {
+          "id": "dmr14-039",
+          "name": "アクア戦士 ブルーマイティ",
+          "reason": "公式本文・基本情報・画像と単一収録を確認。武器・フォートレスを含むドラグハートの登場と、同じカードが龍解する処理の区別を対戦エンジンに実装する必要があるため保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-039",
+            "https://dm.takaratomy.co.jp/rule/qa_old/37108/"
+          ]
+        },
+        {
+          "id": "dmr14-033",
+          "name": "歌姫の面 エリカッチュ",
+          "reason": "公式本文・基本情報・画像と単一収録を確認。武器・フォートレスを含むドラグハートの登場と、同じカードが龍解する処理の区別を対戦エンジンに実装する必要があるため保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-033",
+            "https://dm.takaratomy.co.jp/rule/qa_old/37108/"
+          ]
+        },
+        {
+          "id": "dm17-013",
+          "name": "ギガデウス",
+          "reason": "公式本文・基本情報・画像を確認。相手の呪文による直接の離脱、バトルを発生させる呪文、能力によって別のプレイヤーのカードを唱えた場合の発生源を判定する処理が必要なため保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm17-013"
+          ]
+        },
+        {
+          "id": "dm17-028",
+          "name": "デンデン・パーカッション",
+          "reason": "公式の初版とDMX-22版を確認。相手が別のゾーンから唱えた呪文でも適用し、クリーチャーやクロスギアによる離脱では適用しない裁定の再現に加え、DMC-42版の照合が必要なため保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm17-028",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmx22a-029",
+            "https://dm.takaratomy.co.jp/rule/qa_old/35383/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/35384/"
+          ]
+        },
+        {
+          "id": "dm24-106",
+          "name": "聖火妖精パルック",
+          "reason": "公式本文・基本情報・画像と多色扱いの裁定を確認。マナの支払いだけでなくマナゾーンの文明と多色判定を共有する処理が必要なため保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm24-106",
+            "https://dm.takaratomy.co.jp/rule/qa_old/35532/"
+          ]
+        },
+        {
+          "id": "dm18-135",
+          "name": "無敵の咆哮(マイティ・シャウター)",
+          "reason": "公式本文・基本情報・画像を確認。同じ表記の対応済みdm01-105と本文が異なる。公式の同名・同一カード扱いと再録時の能力文の適用範囲を確認するまで別の正規名として数えない。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm18-135",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm01-105"
+          ]
+        },
+        {
+          "id": "dmrp12-083",
+          "name": "アロガント・アウェイン",
+          "reason": "公式本文・基本情報・画像と再録を確認。山札から墓地に置かれた場合に限って登場させるため、山札の上からの墓地送り、公開・探索中の墓地送り、移動の置換を通じて移動元と実際の移動先を判定できるまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-083",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-110",
+            "https://dm.takaratomy.co.jp/rule/qa/46597/"
+          ]
+        },
+        {
+          "id": "dmsd10-002",
+          "name": "催眠の意志 レンブラ",
+          "reason": "公式本文・基本情報・画像を確認。GRクリーチャーの正規の登場と超GRへの戻り、および攻撃・ブロック・効果で実際にタップした場合の誘発を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmsd10-002"
+          ]
+        },
+        {
+          "id": "dmsd11-002",
+          "name": "モック・ザメシュ",
+          "reason": "公式本文・基本情報・画像を確認。GRクリーチャーなので超GRからの正規の登場と超GRへの戻りを検証できるまで保留。相打ちで相手が場に残る場合の裁定も再現する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmsd11-002",
+            "https://dm.takaratomy.co.jp/rule/qa/32420/"
+          ]
+        },
+        {
+          "id": "dm24rp4-065",
+          "name": "カンテ＝ランタン",
+          "reason": "公式本文・画像を照合。バトルする時の能力をパワー比較前に解決し、パワー0以下の状況起因処理とバトル終了時の効果消滅を扱う必要があるため保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-065",
+            "https://dm.takaratomy.co.jp/rule/rulechange/変更点2026-07-23/"
+          ]
+        },
+        {
+          "id": "dmbd22-007",
+          "name": "凶鬼000号 ゼロヴォイド",
+          "reason": "公式本文・画像を照合。超GRとGR召喚が未対応で、墓地の枚数と同時破壊を扱う闇王ゼーロとの公式裁定を再現できるまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmbd22-007",
+            "https://dm.takaratomy.co.jp/rule/qa/42148/",
+            "https://dm.takaratomy.co.jp/rule/qa/46814/"
+          ]
+        },
+        {
+          "id": "dmr17-055",
+          "name": "獣軍隊 オンバ",
+          "reason": "公式本文・画像を照合。オンバ2体が外部の強化終了後も互いにパワー6000を維持する裁定があり、依存する常在強化を正しく処理できるまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-055",
+            "https://dm.takaratomy.co.jp/rule/qa_old/37257/"
+          ]
+        },
+        {
+          "id": "dmrp08-s10",
+          "name": "ラドン・ベップバーン",
+          "reason": "公式本文と画像を照合。相手がマナをタップせずに出す宣言を支払い前に禁止し、各種の代替召喚・効果による登場およびバトルの置換を一貫して処理できるまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-s10",
+            "https://dm.takaratomy.co.jp/rule/qa/39626/",
+            "https://dm.takaratomy.co.jp/rule/qa/39627/",
+            "https://dm.takaratomy.co.jp/rule/qa/39628/"
+          ]
+        },
+        {
+          "id": "dmrp11-039",
+          "name": "ジェイ-SHOCKER",
+          "reason": "公式本文と同名再録2版を照合。超GRとGR召喚に加え、Jトルネードによる登場禁止の処理が必要なため保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-039",
+            "https://dm.takaratomy.co.jp/rule/qa/39624/",
+            "https://dm.takaratomy.co.jp/rule/qa/33000/",
+            "https://dm.takaratomy.co.jp/rule/qa/42532/"
+          ]
+        },
+        {
+          "id": "dm22ex1-036",
+          "name": "特級チューシ・シャオ・ハン",
+          "reason": "公式本文と画像を照合。両者が山札2枚の時は同時に負ける裁定があり、対戦での引き分けの扱いを検証できるまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-036",
+            "https://dm.takaratomy.co.jp/rule/qa/42372/"
+          ]
+        },
+        {
+          "id": "dm26rp2-024",
+          "name": "絶超熱血 ロビンフッド",
+          "reason": "公式本文・基本情報・画像を照合。革命チェンジに加え、相手の山札から墓地・マナ・シールド・バトルゾーンへの移動すべてに働く置換と既存の置換の優先順を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-024",
+            "https://dm.takaratomy.co.jp/rule/qa/49214/"
+          ]
+        },
+        {
+          "id": "dmr02-020",
+          "name": "超次元ごっつぁん・ホール",
+          "reason": "手札から捨てる能力に必要な横綱 義留の富士（dmr02-002）が覚醒リンクを含め未対応。攻撃側の誘発を解決する順番と、複数枚の宣言・攻撃中止後のバトルを確認するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-020",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-002",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36380/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36381/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36382/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36383/"
+          ]
+        },
+        {
+          "id": "dm39-020",
+          "name": "超次元ガード・ホール",
+          "reason": "公式5版の本文・画像と現行表記を照合。非進化で複数カードから成るクリーチャーの構成カードをどの単位でシールドにするか、持ち主と離脱置換を含む裁定確認が残る。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm39-020",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm39-020VC",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-017",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-Cho18",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-T08"
+          ]
+        },
+        {
+          "id": "dm22ex1-077",
+          "name": "超次元パンドラ・ホール",
+          "reason": "装備先がいない場合でもウエポンは出て、出た時の能力が待機してから超次元へ戻る。ドラグハート・ウエポンの展開・装備・状況起因処理を検証できるまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-077",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-T12",
+            "https://dm.takaratomy.co.jp/rule/qa/48121/"
+          ]
+        },
+        {
+          "id": "dmr04-v03",
+          "name": "勝利のガイアール・カイザー",
+          "reason": "リュウセイ・ホールのQA 38717の指定カード。V覚醒リンクに必要なカードと合体面の能力を照合する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-v03",
+            "https://dm.takaratomy.co.jp/rule/qa/38717/"
+          ]
+        },
+        {
+          "id": "dm37-030",
+          "name": "時空の喧嘩屋キル",
+          "reason": "低コストの火のサイキック候補。既存の保留理由と関連裁定に沿って離脱置換を検証する。 初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030VC",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmx02-023",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-089",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd03-a06",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36119/",
+            "https://dm.takaratomy.co.jp/rule/qa/45084/"
+          ]
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "双方のパワー6000以下のサイキックを一斉に破壊し、複数の離脱置換・解除を処理するテストと、自身が攻撃されないことの検証が必要。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-062"
+          ]
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "保留継続。選んだアンタップ中の相手クリーチャーを攻撃できる範囲と、召喚酔い・攻撃制限・対象の離脱後の扱いを個別に確認する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-102"
+          ]
+        },
+        {
+          "id": "dmd03-002",
+          "name": "不死身のブーストグレンオー",
+          "reason": "裏面がサイキック・セル。単体の破壊耐性だけでは能力全体を再現できないため、剛腕の政とサイキック・スーパー・クリーチャーのリンク解除を含めて検証する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmd03-002",
+            "https://dm.takaratomy.co.jp/rule/qa_old/37755/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
+          ]
+        },
+        {
+          "id": "dm25ex4-050",
+          "name": "怒魂長の超人",
+          "reason": "公式本文・基本情報・画像と単一収録を照合。デュエルメイト・クリーチャーとリンク後のクリーチャーが現行の対戦に未対応で、両方の条件を実カードで確認できない。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-050",
+            "https://dm.takaratomy.co.jp/rule/qa/48146/",
+            "https://dm.takaratomy.co.jp/rule/qa/48145/"
+          ]
+        },
+        {
+          "id": "dm25ex4-064",
+          "name": "次元戴冠プリンプリン",
+          "reason": "公式本文・基本情報・画像と単一収録を照合。山札のカードタイプとして参照するデュエリストが対戦未対応のため保留。デュエリストに対応後、クリーチャー、デュエリスト、ホール名、その他の各条件を確認する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-064",
+            "https://dm.takaratomy.co.jp/rule/qa/48148/"
+          ]
+        },
+        {
+          "id": "dm39-031",
+          "name": "ライラ・アイニー",
+          "reason": "DM-39版の公式本文・基本情報・画像を照合。DMX-09の再録版照合と、ブロック・攻撃・効果によるバトルの開始時にシールドを回収し、そのS・トリガーを抑制する処理順の確認が残る。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm39-031",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36251/"
+          ]
+        },
+        {
+          "id": "dmrp16-017",
+          "name": "バリバリ・ケドケド",
+          "reason": "公式QA 39622の実カード。バトルゾーン・マナ・シールドの両方向の移動禁止と、通常の登場や召喚と置換効果の区別を確認するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-017",
+            "https://dm.takaratomy.co.jp/rule/qa/39622/"
+          ]
+        },
+        {
+          "id": "dm37-012",
+          "name": "終焉の凶兵ブラック・ガンヴィート",
+          "reason": "初版・DMC-68・DMX-03の公式本文と画像を取得。公式DM37別版にはP43/Y9への言及があるが、別版の画像とP43/Y9・P80/Y9・P88/Y9の公式画像・能力全文の照合が残る。B・ソウルと両者手札破棄時の置換順も検証する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm37-012",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm37-012VC",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmc68-008",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmx03-008"
+          ]
+        },
+        {
+          "id": "dm25rp2-S11",
+          "name": "魔誕導師ブラックルシファー",
+          "reason": "侵略後のメガメテオバーンと、相手ターンを含む登場破壊の順序・発生源が離れた後の処理を一体で検証するまで保留。再録と神アートを含む全版の照合も継続する。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/46830/"
+        },
+        {
+          "id": "dm26ex1-N016",
+          "name": "「正義の記念碑」",
+          "reason": "通常版とシークレット版の公式本文・基本情報・画像、個別使用制限なしを確認。公式QA 42981で、付いているオーラと装備中のウエポンも独立したエレメントと確認した。現行の対戦カタログに両カードタイプがなく、6つの集計と一斉破壊を検証できないため保留。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-N016",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-N016",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-SECN016",
+            "https://dm.takaratomy.co.jp/rule/qa/42981/"
+          ]
+        },
+        {
+          "id": "dm26ex2-045",
+          "name": "「オレたちのZEROの世界を造るまで」",
+          "reason": "公式本文・基本情報・画像と個別使用制限なしを確認。侵略ZEROの条件は相手ターン中にコストを支払わずにクリーチャーが出た履歴で、非ターン側の宣言時点までに手札にあるカードを確認する。ターンプレイヤー側の終了時処理、複数宣言、宣言後の手札移動を含む解決順の処理が必要なため保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-045",
+            "https://dm.takaratomy.co.jp/rule/qa/39891/",
+            "https://dm.takaratomy.co.jp/rule/qa/39893/",
+            "https://dm.takaratomy.co.jp/rule/qa/39741/",
+            "https://dm.takaratomy.co.jp/rule/qa/39742/",
+            "https://dm.takaratomy.co.jp/rule/qa/33304/"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1168,
-    "nextPhase": 1169,
+    "lastVerifiedPhase": 1169,
+    "nextPhase": 1170,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dmex14-072",
-        "name": "美孔麗の伝説",
-        "reason": "美孔麗の伝説の公式全文・画像を確認済み。多色カードの公開によるマナのアンタップと、元の手札枚数を記録して好きな順序で山札の下に置く処理を照合する。",
+        "id": "dm26ex4-076",
+        "name": "死を超えた森 ベランド",
+        "reason": "公式全文・画像を確認済み。同じ個体が同じターンに選んだモードを再選択できない点と、同時破壊時の誘発を検証する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-072",
-          "https://dm.takaratomy.co.jp/rule/qa/39961/"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-076"
         ]
       },
       {
-        "id": "dmrp03-011",
-        "name": "コーディネイ人",
-        "reason": "コーディネイ人の公式全文・画像を確認済み。バトルで相手が破壊される時のタップへの置換と、相手側の次のターン開始時のアンタップ制限を確認する。",
+        "id": "dmrp04s-006",
+        "name": "凶鬼04号 ビビム",
+        "reason": "公式全文・画像を確認済み。パワー減少の符号をカード画像・再録で照合し、破壊処理を検証する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-011"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-006"
         ]
       },
       {
-        "id": "dmx14-031",
-        "name": "夜露死苦 キャロル",
-        "reason": "夜露死苦 キャロルの公式全文と再録を確認し、手札・山札・バトルゾーン・マナ・シールドから墓地へ置く処理に共通の置換が適用できるかを照合する。対応後はサイバー・V・チューブとのQA 39440を再現する。",
+        "id": "dmrp12-008",
+        "name": "帝神龍装 ティーゾリス",
+        "reason": "バトルゾーンで破壊された時と他のゾーンから墓地へ置かれた時を区別し、爆撃男との公式裁定を再現する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-031",
-          "https://dm.takaratomy.co.jp/rule/qa/39440/",
-          "https://dm.takaratomy.co.jp/rule/rulechange/316675/"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-008",
+          "https://dm.takaratomy.co.jp/rule/qa/33064/"
         ]
       },
       {
@@ -237714,7 +238442,7 @@
         ]
       }
     ],
-    "steps": "次回はPhase 1169。最新コミット、AGENTS.md、作業ツリーとステージ済み差分、前回ログと実行中の作業を確認し、実データの正規カード名を再集計する。美孔麗の伝説、コーディネイ人、夜露死苦 キャロルの公式全文・再録・画像・制限・裁定を照合する。キャロルの対応時はチューブとのQA 39440を実カードで再現する。グーゴル登録時はユキゴンとのQA 41196を実カードで再現する。ラドンかジェイの前提処理が揃えばフォーエバー・オカルトとの組み合わせを再現する。",
+    "steps": "次回はPhase 1170。最新コミット、AGENTS.md、作業ツリーとステージ済み差分、前回ログと実行中の作業を確認し、実データの正規カード名を再集計する。ベランド、ビビム、ティーゾリスの公式全文・再録・画像・制限・裁定を照合する。ティーゾリス登録時は爆撃男とのQA 33064、ニバイケン登録時はハクメイ童子とのQA 48484、キャロル登録時はチューブとのQA 39440、グーゴル登録時はユキゴンとのQA 41196を実カードで再現する。ラドンかジェイの前提処理が揃えばフォーエバー・オカルトとの組み合わせを再現する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",

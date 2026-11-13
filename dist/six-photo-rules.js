@@ -2433,6 +2433,9 @@ export function createSixPhotoRules(api){
    slots.flatMap((uid,i)=>selected.includes(uid)?[]:[opt('裏向きの手札 '+(i+1),i,0)]),1-t.p);
   break;
  }
+ case'g34_HandBottomDraw1169':
+  put(s,{...t,op:'g34_HandBottomOrder1154',remaining:own.hand.map(x=>x.uid),ordered:[],drawAfterBottom:own.hand.length+2});
+  break;
  case'g34_HandBottomOrder1154':{
   const rows=t.remaining.map(uid=>own.hand.find(x=>x.uid===uid)).filter(Boolean);
   if(rows.length>1){
@@ -2440,6 +2443,7 @@ export function createSixPhotoRules(api){
    break;
   }
   for(const uid of [...t.ordered,...rows.map(y=>y.uid)])zoneMove(s,t.p,'hand',uid,'deck',t);
+  if(t.drawAfterBottom)api.draw(s,t.p,t.drawAfterBottom);
   break;
  }
  case'g34_ManaTriggerCast803':{

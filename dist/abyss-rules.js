@@ -66,7 +66,13 @@ export function createAbyssRules(api){
  case'g13_Seal':choice(s,t,'封印する相手クリーチャーを選ぶ',targetOptions(s,t.p,creatures(s,1-t.p)));break;
  case'g13_Bella':{const x=live(s,t);if(x&&api.canLeave(s,t.p,x))choice(s,t,'ベラドンナを破壊して効果を使う？',[opt('破壊して使う',true,25,t.source),skip()]);break;}
  case'g13_BellaMode':choice(s,t,'ベラドンナ：効果を選ぶ',[opt('相手の手札を見ないで1枚捨てさせる','discard',s.players[1-t.p].hand.length?15:-10),opt('山札の上1枚をマナへ','ramp',own.mana.length<6?25:5)]);break;
- case'g13_SB':{const list=sbPairs(s,t);if(list.length)choice(s,t,'S・バック：条件に合うシールドのカードを捨てて使う？',[...list,opt('S・バックを使わない',null,0)]);else finishSB(s,t);break;}
+ case'g13_SB':{
+  if(t.afterGS){const {afterGS,...next}=t;declareSB(s,next,afterGS);break;}
+  const list=sbPairs(s,t);
+  if(list.length)choice(s,t,'S・バック：条件に合うシールドのカードを捨てて使う？',[...list,opt('S・バックを使わない',null,0)]);
+  else finishSB(s,t);
+  break;
+ }
  case'g13_SBCast':{const x=own.hand.find(x=>x.uid===t.uid&&(t.serial===undefined||(x.zoneSerial||0)===t.serial));if(x&&api.canCast(s,t.p,card(x))){if(card(x).evolution)put(s,task('g32_SBBase',t.p,x.cardId,{target:x.uid}));else cast(s,t.p,x.uid,true,null,0,null,'hand','S・バック');}break;}
  default:throw Error('未実装のアビス効果：'+t.op);
  }return true;}
@@ -93,9 +99,29 @@ export function createAbyssRules(api){
  case'g13_Seal':if(v)api.seal(s,1-t.p,[v]);break;
  case'g13_Bella':if(v){put(s,task('g13_BellaMode',t.p,t.source));move(s,[{player:t.p,uid:t.uid,to:'grave'}]);}break;
  case'g13_BellaMode':put(s,v==='discard'?task('discard',1-t.p,t.source,{n:1,random:true,causedBy:t.p}):task('g13_BellaRamp',t.p,t.source));break;
- case'g13_SB':if(v){const x=own.hand.find(x=>x.uid===v.uid);if(t.window&&s.triggers){s.triggers.undeclared=s.triggers.undeclared.filter(uid=>uid!==v.cost);s.triggers.gsUndeclared=s.triggers.gsUndeclared.filter(uid=>uid!==v.cost);s.triggers.declared.push(v.uid);(s.triggers.sbDeclared??=[]).push(v.uid);(s.triggers.sbSerials??={})[v.uid]=x.zoneSerial||0;s.triggers.faceByUid[v.uid]=0;}put(s,{...t,costs:t.costs.filter(uid=>uid!==v.cost),declared:[...(t.declared||[]),x.uid]});api.discardSelected(s,task('discard',t.p,x.cardId,{n:1,causedBy:t.p,...(t.escapeSBDeclaration?{escapeSBDeclaration:true}:{})}),[v.cost]);}else finishSB(s,t);break;
+ case'g13_SB':if(v)declareSB(s,t,v);else finishSB(s,t);break;
  default:throw Error('未実装のアビス選択：'+t.op);
  }return true;}
+ function declareSB(s,t,v){
+  const own=s.players[t.p],source=own.hand.find(x=>x.uid===v.uid);
+  const window=t.window?s.triggers:null;
+  if(window?.gsUndeclared?.includes(v.cost)){
+   const payment=own.hand.find(x=>x.uid===v.cost);
+   put(s,{...t,afterGS:v});
+   choice(s,task('gsDeclare',t.p,payment.cardId,{uid:v.cost,sbPayment:true}),
+    'S・バックで捨てるカードのG・ストライクも使いますか？',[opt('使う',true,15),opt('使わない',false,0)]);
+   return;
+  }
+  if(window){
+   window.undeclared=window.undeclared.filter(uid=>uid!==v.cost);
+   window.declared.push(v.uid);
+   (window.sbDeclared??=[]).push(v.uid);
+   (window.sbSerials??={})[v.uid]=source.zoneSerial||0;
+   window.faceByUid[v.uid]=0;
+  }
+  put(s,{...t,costs:t.costs.filter(uid=>uid!==v.cost),declared:[...(t.declared||[]),source.uid]});
+  api.discardSelected(s,task('discard',t.p,source.cardId,{n:1,causedBy:t.p,...(t.escapeSBDeclaration?{escapeSBDeclaration:true}:{})}),[v.cost]);
+ }
  return {run(s,t){if(t.op==='g13_BellaRamp'){api.resolveEffect(s,t.p,{...card(t.source),effect:'ramp1'});return true;}return run(s,t);},chosen,
  selected(s,p,a,d){const value=a.kind==='extended'?d?.choices?.[a.choice]?.value:null,ids=new Set([...(a.targets||[]).map(t=>t.uid),...(['effect','fight','dragonTap'].includes(a.kind)?[a.target||a.uid]:[]),...(typeof value==='string'?[value]:value?.uid?[value.uid]:[])]);for(const x of creatures(s,1-p))if(ids.has(x.uid)&&!x.sealed&&effective(x,s).g338Noradi)on(s,1-p,x,'g13_NoradiDiscard');},
  effect(s,p,c,uid,entry){const op={abyssJaga:'Jaga',abyssSis:'Sis',abyssMurder:'Murder',abyssMakua:'Makua',abyssMill:'Mill',abyssMek:'Mek',abyssSeal:'Seal',abyssBella:'Bella'}[c.effect];if(!op)return false;put(s,task('g13_'+op,p,c.id,{uid,incarnation:entry?.incarnation||0}));return true;},

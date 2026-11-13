@@ -2464,6 +2464,10 @@ function interruptBreak(s,p,uids,follow,context=null){const parent=s.g19Interrup
 function resumeInterrupt(s){const w=s.g19Interrupt;if(!w||s.shieldBreak||s.decision||!w.breaking)return;finishInterrupt(s);}
 function finishInterrupt(s){const w=s.g19Interrupt;if(w.parent)s.g19Interrupt=w.parent;else delete s.g19Interrupt;s.extTasks=[...w.tasks,...(s.extTasks||[])];s.pendingEffects=[...w.effects,...(s.pendingEffects||[])];s.breakContext=w.context;}
 
+// QA40692 permits G Strike to resolve after its shield card paid for Strike Back.
+function declaredGStrikeSource(s,t,uid){
+ return t.gsSBSource?.[uid]??s.players[t.player].hand.find(x=>x.uid===uid)?.cardId;
+}
 // Rule 112.3a: spell triggers finish first; creature entry effects wait until all triggers finish.
 function advanceTriggers(s){if(s.lossEvent)return;
  while(!s.lossEvent&&s.triggers&&!s.extTasks?.length&&!s.decision&&s.winner===null){
@@ -2472,11 +2476,11 @@ function advanceTriggers(s){if(s.lossEvent)return;
   if(extra.shieldDeclarations(s))return;
   t.declared=t.declared.filter(uid=>{const x=s.players[p].hand.find(c=>c.uid===uid);if(!x||t.sbDeclared?.includes(uid)&&(x.zoneSerial||0)!==t.sbSerials?.[uid])return false;const c=playFaces(card(x))[t.faceByUid?.[uid]||0];if(c.type!=='creature'||canEnterCreature(s,p,c,{declare:true}))return true;log(s,p,'entryPrevented',`${card(x).name}は登場制限により召喚できず手札に残る`,{cardId:x.cardId});return false;});
   if(t.gsUndeclared?.length){const uid=t.gsUndeclared[0];extra.choice(s,extra.task('gsDeclare',p,s.players[p].hand.find(x=>x.uid===uid).cardId,{uid}),'G・ストライクを使いますか？',[{label:'使う',value:true,score:15},{label:'使わない',value:false,score:0}]);return;}
-  t.gsDeclared=(t.gsDeclared||[]).filter(uid=>s.players[p].hand.some(x=>x.uid===uid));
+  t.gsDeclared=(t.gsDeclared||[]).filter(uid=>declaredGStrikeSource(s,t,uid));
   const usable=t.declared.filter(uid=>canUseTrigger(s,p,playFaces(card(s.players[p].hand.find(x=>x.uid===uid)))[t.faceByUid?.[uid]||0],uid));
   if(usable.length+(t.gsDeclared?.length||0)>1){s.decision={type:'triggerOrder',player:p};return;}
   if(usable.length){const uid=usable[0];t.declared.splice(t.declared.indexOf(uid),1);executeTrigger(s,p,uid,t.faceByUid?.[uid]||0);continue;}
-  if(t.gsDeclared?.length){const uid=t.gsDeclared.shift();extra.put(s,extra.task('gsTarget',p,s.players[p].hand.find(x=>x.uid===uid).cardId,{g545Declared:true}));continue;}
+  if(t.gsDeclared?.length){const uid=t.gsDeclared.shift();extra.put(s,extra.task('gsTarget',p,declaredGStrikeSource(s,t,uid),{g545Declared:true}));continue;}
   for(const uid of t.declared){
    const c=playFaces(card(s.players[p].hand.find(x=>x.uid===uid)))[t.faceByUid?.[uid]||0];
    if(creatureCapReached616(s,p,c))log(s,p,'entryPrevented',`${c.name}は登場制限により召喚できず手札に残る`,{cardId:c.id});
@@ -2751,7 +2755,7 @@ export function getLegalActions(s){
   }
   if(d.type==='breakChoice')out=combinations(opp.shields.map((c,i)=>({uid:c.uid,index:i+1,ex:!!exLifeShieldInfo(s,1-p,c.uid)?.active})),d.count).map(rows=>option('breakShields',`シールド${rows.map(r=>r.index+(r.ex?'（EXライフ）':'')).join('・')}をブレイク`,{shields:rows.map(r=>r.uid),exLifeHits:rows.filter(r=>r.ex).length}));
   if(d.type==='triggerOrder')out=s.triggers.declared.filter(uid=>canUseTrigger(s,p,playFaces(card(own.hand.find(c=>c.uid===uid)))[s.triggers.faceByUid?.[uid]||0],uid)).map(uid=>{const c=own.hand.find(c=>c.uid===uid);return option('orderTrigger',`${playFaces(card(c))[s.triggers.faceByUid?.[uid]||0].name}を先に使う`,{uid,cardId:c.cardId});});
-  if(d.type==='triggerOrder')out.push(...(s.triggers.gsDeclared||[]).map(uid=>option('orderGS','G・ストライクを先に使う',{uid,cardId:own.hand.find(x=>x.uid===uid).cardId})));
+  if(d.type==='triggerOrder')out.push(...(s.triggers.gsDeclared||[]).map(uid=>option('orderGS','G・ストライクを先に使う',{uid,cardId:declaredGStrikeSource(s,s.triggers,uid)})));
   if(d.type==='entryOrder')out=effectOptions(s.triggers.entries.filter(e=>e.player===p),'orderEntry');
   if(d.type==='effectOrder')out=effectOptions(pendingBattleEffects1155(s).filter(e=>e.player===p),'orderEffect');
   if(d.type==='dragonTap'){out=opp.battle.filter(x=>isCreature(s,x)).map(x=>option('dragonTap',`${card(x).name}をタップ${x.tapped?'（タップ中）':''}`,{uid:x.uid,cardId:x.cardId}));out.push(option('skipDragonTap','今回はタップせず、次の登場時に使えるようにする'));}

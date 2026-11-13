@@ -151,7 +151,7 @@ export function createPhoenixRules(api){
  case'g31_Heavy':if(v){put(s,task('draw',t.p,t.source,{n:1}),task('g24_EnemySacrifice',1-t.p,t.source));move(s,[{player:t.p,uid:v,to:'grave'}]);}break;
  case'g31_Metal':if(v)put(s,task('g31_ManaTrash',t.p,t.source,{max:1}),task('g31_NonCreature',t.p,t.source));break;
  case'g31_ManaTrash':if(v)put(s,{...t,selected:[...t.selected,v]});else{for(const uid of t.selected){const x=policyRemove(s,1-t.p,'mana',uid,api);if(x){clear(x,'grave');api.addZone(s,s.players[1-t.p],'grave',x);}}}break;
- case'g31_Oni':api.moveShield(s,t.p,v,'hand',{replacement:true});put(s,task('g31_OniDiscount',t.p,t.source));break;
+ case'g31_Oni':put(s,task('g31_OniDiscount',t.p,t.source));api.moveShield(s,t.p,v,'hand',{replacement:true});break;
  case'g31_Meteor':{
   const x=live(s,t);
   if(!x)break;
