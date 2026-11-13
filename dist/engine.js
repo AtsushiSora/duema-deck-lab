@@ -612,6 +612,8 @@ function rememberBattleInformation(s,owner,host,leaving){
   return readsDepartingPower(task);
  });
  if(host.sealed)return;
+ const powerEntries=pending.filter(e=>e.effect==='entry'&&e.player===owner&&departs(e)&&
+  card(e.source).g34Tasks?.some(def=>def.op==='TargetBelowSource692'&&def.g1144Total));
  const readsLayerCount=def=>def.op==='DrawThenDestroy1126'||def.op==='g34_DrawThenDestroy1126'||
   def.filter?.g650SourceCards||def.defs?.some(readsLayerCount)||def.elseDefs?.some(readsLayerCount);
  for(const task of all){
@@ -635,13 +637,14 @@ function rememberBattleInformation(s,owner,host,leaving){
   task.g831LastCost=value===Infinity?'∞':value;
  }
  const copies=all.filter(task=>task.g765Subject&&departs(task.g765Subject));
- if(!tasks.length&&!copies.length)return;
+ if(!tasks.length&&!copies.length&&!powerEntries.length)return;
  const attack=s.attackLifecycle;
  const attacking=host.uid===s.attack?.attacker||host.uid===attack?.uid&&(host.incarnation||0)===(attack.incarnation||0);
  const current=power(host,attacking,s);
  const savedPower=current===Infinity?'∞':current===-Infinity?'-∞':current;
  for(const task of tasks)task.g692LastPower=savedPower;
  for(const task of copies)task.g765LastPower=savedPower;
+ for(const entry of powerEntries)entry.g692LastPower=savedPower;
 }
 function recordLastPower(s,p,c,leaving){extra.cyber.recordBattleCards(s,p,leaving);
  rememberBattleInformation(s,p,c,leaving);

@@ -863,7 +863,7 @@ export function createSixPhotoRules(api){
   const power=Math.min(...eligible.map(y=>currentPower506(s,y)));
   return eligible.filter(y=>currentPower506(s,y)===power);
  }
- function fitsPower506(s,t,x){if(t.g506PowerBudget===undefined)return true;const used=(t.rows||[]).reduce((n,r)=>{const y=s.players[r.p].battle.find(y=>y.uid===r.uid);return n+(y?currentPower506(s,y):0);},0);return used+currentPower506(s,x)<=t.g506PowerBudget;}
+ function fitsPower506(s,t,x){if(t.g506PowerBudget===undefined||t.g506PowerBudget==='∞')return true;const used=(t.rows||[]).reduce((n,r)=>{const y=s.players[r.p].battle.find(y=>y.uid===r.uid);return n+(y?currentPower506(s,y):0);},0);return used+currentPower506(s,x)<=t.g506PowerBudget;}
  // Use effective costs, snapshot all targets before moving them, and allow equality at the cap.
  function fitsCost513(s,t,x){if(t.g513CostBudget===undefined)return true;const used=(t.rows||[]).reduce((n,r)=>{const y=s.players[r.p][r.origin].find(y=>y.uid===r.uid);return n+(y?cost(effective(y,s)):0);},0);const p=s.players.findIndex(own=>own.battle.some(y=>y.uid===x.uid));return p>=0&&used+cost(effective(x,s))<=t.g513CostBudget;}
  // An extra-zone choice may use either eligible face of the same physical card.
@@ -4252,7 +4252,12 @@ export function createSixPhotoRules(api){
   const host=sourceHost474(s,t.g828CompareAttacker?t.g399Attacker:t);
   const current=host&&!host.x.sealed&&api.isCreature(s,host.x)?currentPower506(s,host.x):t.g692LastPower;
   if(current===undefined||current===-Infinity||current==='-∞')break;
-  if(t.g745Sweep||t.g993OpponentSweepInclusive){
+  if(t.g1144Total){
+   const budget=current===Infinity?'∞':current;
+   start(s,t,[{op:'Select',origin:'battle',owner:'opponent',n:'all',to:t.to,optional:true,
+    g173Targets:true,g193Select:true,filter:{creature:true},g506PowerBudget:budget,
+    title:'合計パワー'+budget+'以下になるよう相手のクリーチャーを選ぶ'}]);
+  }else if(t.g745Sweep||t.g993OpponentSweepInclusive){
    const threshold=current==='∞'?Infinity:current;
    const owners=t.g993OpponentSweepInclusive||t.g745Sweep==='opponent'?[1-t.p]:[t.p,1-t.p];
    const rows=owners.flatMap(p=>creatures(s,p)
@@ -7077,7 +7082,7 @@ externalProtection565,
   const defs=c.g437Super?[...(c.g34Tasks||[]),...(entry?.super?c.g437Super:[])]:entry?.plus&&c.g34Plus?
    (c.g451PlusAfter?[...(c.g34Tasks||[]),...c.g34Plus]:[...c.g34Plus,...(c.g34Tasks||[])]):c.g34Tasks;
   const body=entry?.g1118KnightBodyOnly?defs?.filter(d=>d.op!=='KnightMagic1118'&&d.op!=='KingKnightMagic1115'):defs;
-  start(s,{p,source:c.id,uid,incarnation},body?.map(def=>def.op==='BouncePerSourceCard1060'?
+  start(s,{p,source:c.id,uid,incarnation,g692LastPower:entry?.g692LastPower},body?.map(def=>def.op==='BouncePerSourceCard1060'?
    {...def,lastKnownCount:entry?.lastKnownCount}:def));
   return true;
  },

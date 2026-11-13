@@ -6184,6 +6184,33 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1144&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'&&
+  ['dm26rp2-074','dm26rp2-SEC024','dm26rp2-051','dm26rp2-040'].includes(d.id)){
+  const text=normalize(f.abilityText);
+  const changeReminder='(自分の指定のクリーチャーが攻撃する時そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい)';
+  const machReminder='(このクリーチャーは出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)';
+  const hamkatsu='革命チェンジ:自然のクリーチャー'+(d.id==='dm26rp2-074'?changeReminder:'')+
+   'マッハファイター'+(d.id==='dm26rp2-074'?machReminder:'')+
+   'このクリーチャーが出た時自分の山札の上から3枚を表向きにする。'+
+   'その中からパワー6000以上のクリーチャーを1体手札に加え残りを好きな順序で山札の下に置く。';
+  if(['dm26rp2-074','dm26rp2-SEC024'].includes(d.id)&&text===hamkatsu)
+   return {rev:{any:true,colors:['自然']},machFighter:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Look',n:3,public:true,rest:'bottom',stages:[
+     {n:1,to:'hand',filter:{g228Face:{type:'creature',minPower:6000}}}
+    ]}
+   ]};
+  if(d.id==='dm26rp2-051'&&text==='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+
+   '自分のターンの終わりに自分のクリーチャー1体に封印を1つ付ける。'+
+   '(カードを封印するには自分の山札の上から1枚を裏向きでそのカードの上に置く。コマンドが出た時その持ち主はそのコマンドと同じ文明を持つ自身のカードから封印を1つ墓地に置く。封印されているクリーチャーは無視される)')
+   return {breaker:2,g174End:[{op:'Target',owner:'self',seal:true,title:'封印を付ける自分のクリーチャーを1体選ぶ'}]};
+  if(d.id==='dm26rp2-040'&&text==='S・トリガーS・トリガー(このカードを自分のシールドゾーンから手札に加える時コストを支払わずにすぐ実行してもよい)'+
+   'このクリーチャーが出た時パワーの合計がこのクリーチャーのパワー以下になるように相手のクリーチャーを好きな数選び破壊する。'+
+   'マナ武装3:自分のマナゾーンに火のカードが3枚以上あればこのクリーチャーのパワーを+4000し「W・ブレイカー」を与える。'+
+   '(「W・ブレイカー」を持つクリーチャーはシールドを2つブレイクする)')
+   return {trigger:true,g260Self:{filter:{g267Mana:{n:3,color:'火'}},grants:{power:4000,breaker:2}},
+    effect:'sixPhoto',g34Tasks:[{op:'TargetBelowSource692',g1144Total:true,to:'grave'}]};
+  throw Error('公式能力文が照合済みの内容と異なります：'+d.id);
+ }
  if(phase>=1143&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'&&
   ['dm26rp2-022','promoy25-045','dm26rp2-023','dm26rp1-003'].includes(d.id)){
   const text=normalize(f.abilityText);
