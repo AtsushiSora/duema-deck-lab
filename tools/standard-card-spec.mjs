@@ -6184,6 +6184,32 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1141&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const judge='自分のターンのはじめに相手とパワー・ガチンコ・ジャッジしてもよい。自分が勝ったら自分の山札の上から1枚を';
+  const reminder='(パワー・ガチンコ・ジャッジ:自分と相手は自身の山札の上から1枚を表向きにしそれを下に置く。そのカードのパワーが相手以上なら自分が勝つ。パワーがないカードは0として扱う)';
+  const powerJudge=defs=>({op:'g35_Custom',name:'startPowerJudge',defs});
+  if(d.id==='dm26rp2-030'&&f.typeText==='クリーチャー'&&text===judge+'シールド化する。'+reminder)
+   return {g174Start:[powerJudge([{op:'ShieldTop',n:1}])]};
+  if(d.id==='dm26rp2-020'&&f.typeText==='クリーチャー'&&
+   text==='自分のマナゾーンにあるカードはすべての文明を持つ。'+judge+'マナゾーンに置く。'+reminder)
+   return {g51Courtney:true,g174Start:[powerJudge([{op:'Ramp',n:1}])]};
+  if(d.id==='dm26rp2-046'&&f.typeText==='クリーチャー'&&text===
+   'スーパーガードマン(自分の他のクリーチャーがバトルする時かわりにこのクリーチャーをタップしてバトルさせてもよい)'+
+   'このクリーチャーは攻撃できない。相手のクリーチャーが手札以外から出た時このクリーチャーとそのクリーチャーをバトルさせてもよい。')
+   return {superGuardman:true,noAttack:true,g624EntryResponse:'outsideHandFight'};
+  if(['dm26rp1-011','dm26rp1-SEC015'].includes(d.id)&&f.typeText==='呪文'&&text===
+   '自分のパワー5000以上のクリーチャーがあれば自分のシールドゾーンにあるこの呪文に「S・トリガー」を与える。'+
+   '次の中から2回選ぶ。同じものを選んでもよい。▶コスト3以下のクリーチャーを1体自分の手札または墓地から出す。'+
+   '▶クリーチャーを2体選ぶ。その2体をバトルさせる。▶相手のシールドを1つブレイクする。')
+   return {effect:'sixPhoto',g876ShieldTriggerCondition:{creature:true,minPower:5000,g199Power:true},
+    g34Tasks:[{op:'Choose',g184Modes:true,g1045Preselect:2,modes:[
+     {label:'手札または墓地からコスト3以下のクリーチャーを1体出す',
+      defs:[{op:'Select',zones:['hand','grave'],deploy:true,n:1,filter:{creature:true,max:3}}]},
+     {label:'クリーチャー2体をバトルさせる',defs:[{op:'FightPair586',who:'both'}]},
+     {label:'相手のシールドを1つブレイクする',defs:[{op:'Break497',n:1}]}
+    ]}]};
+ }
  if(phase>=1140&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dm26rp2-073'&&f.typeText==='クリーチャー'&&text===

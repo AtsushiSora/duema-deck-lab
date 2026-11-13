@@ -25,6 +25,11 @@ export function createFifteenPhotoRules(api){
  function zoneMove(s,p,origin,uid,to,t={}){if(!api.canMoveZone(s,p,origin))return;if(to==='shields'&&!api.canAddShield(s,p)){if(origin==='deck')s.players[p].g35Protected=(s.players[p].g35Protected||[]).filter(x=>x!==uid);return;}if(origin==='battle'){move(s,[{player:p,uid,to,destroy:to==='grave',controller:t.controller??t.p}]);return;}const own=s.players[p],x=remove(own[origin],uid);if(!x)return;own.g35Protected=(own.g35Protected||[]).filter(id=>id!==uid);const dest=origin==='deck'&&['mana','shields'].includes(to)&&api.deckRedirect(s,p)||to==='mana'&&api.manaRedirect(s,p)?'grave':to;clear(x,dest);if(t.tapped&&dest==='mana')x.tapped=true;if(dest==='under'){const u=unit(s,t);if(u)(u.under??=[]).push(x);else api.addZone(s,p,'grave',x);}else api.addZone(s,p,dest,x);if(dest==='shields')api.notifyShieldAdded(s,p,x);}
  function reveal(s,t,n,p=t.p){if(api.deckLocked(s,p))return[];const own=s.players[p],reserved=new Set(Object.entries(own).filter(([k,v])=>/Protected$|Reveals$/.test(k)&&Array.isArray(v)).flatMap(([,v])=>v)),ids=policyLook(s,p,n,own.deck.filter(x=>!reserved.has(x.uid)),api).map(x=>x.uid);(own.g35Protected??=[]).push(...ids);api.log(s,t.p,'reveal',card(t.source).name+'：'+ids.map(id=>card(own.deck.find(x=>x.uid===id)).name).join('・'),{cardId:t.source});return ids;}
  function order(s,t,ids,p=t.p,top=false){put(s,task('g35_Order',p,t.source,{ids,ordered:[],top}));}
+ function powerJudge(s,t){
+  const first=reveal(s,t,1),second=reveal(s,t,1,1-t.p);
+  const a=data(s,t).deck.find(x=>x.uid===first[0]),b=s.players[1-t.p].deck.find(x=>x.uid===second[0]);
+  return {first,second,a,won:!!a&&!!b&&api.revealedPower(a,s)>=api.revealedPower(b,s)};
+ }
  function deploy(s,t,origin,uid,more={}){give(s,t,[E('Put',{origin,target:uid,...more})]);}
  function execute(s,t,origin,uid,face=0,more={}){give(s,t,[C('executeCard',{origin,target:uid,face,...more})]);}
  function pickExecute(s,t,{origin='hand',ids,max=Infinity,colorsAny,filter={},optional=true,deployOnly=false,reason='カードの能力'}={}){const rows=data(s,t)[origin].filter(x=>!ids||ids.includes(x.uid));choice(s,{...t,exec:{origin,deployOnly,reason}},'実行するカードを選ぶ',[...rows.flatMap(x=>faces(card(x)).flatMap((c,face)=>(!deployOnly||face===0)&&cost(c)<=max&&(!colorsAny||colors(c).some(v=>colorsAny.includes(v)))&&api.matches(s,t.p,x,filter)&&api.canCast(s,t.p,c,origin)&&(c.type!=='creature'||api.canEnter(s,t.p,c,{origin,execution:!deployOnly}))&&(!deployOnly||canPut(s,t.p,x,origin,false))?[opt(c.name,{uid:x.uid,face},15+cost(c),x.cardId)]:[])),...(optional?[skip()]:[])]);}
@@ -90,7 +95,8 @@ export function createFifteenPhotoRules(api){
  case'hulcusEntry':{const y=own.battle.find(y=>y.uid===t.target);if(!y||creatures(s,t.p).some(z=>z.uid!==y.uid&&cost(card(z))===cost(card(y))))break;give(s,t,[C('hulcusLock'),E('Draw',{n:1})]);break;}
  case'hulcusLock':target(s,t,'次の自分のターンまで攻撃・ブロックを止める相手を選ぶ',creatures(s,1-t.p));break;
  case'shuramaru':offer(s,t,'パワー・ガチンコ・ジャッジする？');break;
- case'shuraJudge':{const ids=reveal(s,t,1),other=reveal(s,t,1,1-t.p),a=own.deck.find(y=>ids.includes(y.uid)),b=opp.deck.find(y=>other.includes(y.uid));order(s,t,other,1-t.p);if(a&&b&&api.revealedPower(a,s)>=api.revealedPower(b,s)&&card(a).type==='creature')choice(s,{...t,target:a.uid},'勝ったクリーチャーを無料で召喚する？',[opt('召喚する',true,20,a.cardId),skip()]);else order(s,t,ids);break;}
+ case'shuraJudge':{const {first,second,a,won}=powerJudge(s,t);order(s,t,second,1-t.p);if(won&&card(a).type==='creature')choice(s,{...t,target:a.uid},'勝ったクリーチャーを無料で召喚する？',[opt('召喚する',true,20,a.cardId),skip()]);else order(s,t,first);break;}
+ case'startPowerJudge':offer(s,t,'パワー・ガチンコ・ジャッジする？');break;
  case'majin':{const ids=reveal(s,t,3);choice(s,{...t,ids},'山札の上3枚から手札またはマナへ',own.deck.filter(y=>ids.includes(y.uid)).flatMap(y=>['hand','mana'].map(to=>opt(card(y).name+'を'+(to==='hand'?'手札':'マナ')+'へ',{uid:y.uid,to},to==='mana'?10:cost(card(y)),y.cardId))));break;}
  case'quasar':{const ids=reveal(s,t,5);pending(s,t,'quasarPick',{ids,step:0});break;}
  case'quasarPick':{const to=['shields','hand','mana','grave','under'][t.step],ys=own.deck.filter(y=>t.ids.includes(y.uid));if(to&&ys.length)choice(s,t,({shields:'シールド',hand:'手札',mana:'マナ',grave:'墓地',under:'このクリーチャーの下'}[to])+'に置く1枚を選ぶ',ys.map(y=>opt(card(y).name,y.uid,to==='hand'?cost(card(y)):5,y.cardId)));break;}
@@ -173,6 +179,12 @@ export function createFifteenPhotoRules(api){
  case'ppEnd':if(v)give(s,t,[E('Ramp',{n:2}),S('mana','hand',1)]);break;
  case'hulcusLock':if(v){(s.extLimits??=[]).push({kind:'attack',uid:v,player:1-t.p,who:t.p,expires:'start'},{kind:'block',uid:v,player:1-t.p,who:t.p,expires:'start'});}break;
  case'shuramaru':if(v)pending(s,t,'shuraJudge');break;
+ case'startPowerJudge':if(v){
+  const {first,second,won}=powerJudge(s,t);
+  if(won)give(s,t,t.defs);
+  order(s,t,second,1-t.p);
+  order(s,t,first);
+ }break;
  case'shuraJudge':if(v){give(s,t,[E('Put',{origin:'deck',target:t.target,execution:true}),E('ExactMove',{owner:t.p,target:t.uid,to:'hand'})]);}else order(s,t,[t.target]);break;
  case'majin':if(v){zoneMove(s,t.p,'deck',v.uid,v.to,t);order(s,t,t.ids.filter(uid=>uid!==v.uid));}break;
  case'quasarPick':{const to=['shields','hand','mana','grave','under'][t.step];zoneMove(s,t.p,'deck',v,to,t);pending(s,t,'quasarPick',{ids:t.ids.filter(id=>id!==v),step:t.step+1});break;}

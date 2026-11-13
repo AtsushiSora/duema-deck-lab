@@ -6347,7 +6347,8 @@ export function createSixPhotoRules(api){
    const nonSummon=options.execution===false?g621NonSummon:null;
    const shieldWithoutMana=g624EntryResponse==='untappedManaShield'&&!options.paidMana&&!y.sealed;
    const unpaidBounce=g1112UnpaidBounce&&s.active===p&&!y.sealed&&!options.costPaid&&!options.paidMana;
-   if(g624EntryResponse==='multicolorFight'&&!y.sealed&&colors(effective(y,s)).length>1)
+   if(!y.sealed&&(g624EntryResponse==='multicolorFight'&&colors(effective(y,s)).length>1||
+      g624EntryResponse==='outsideHandFight'&&options.origin!==undefined&&options.origin!=='hand'))
     queue(s,1-p,watcher,[{op:'EntryFight624',enemy:{uid:y.uid,incarnation:y.incarnation||0}}]);
    if(!bloomDestroys&&!unpaidDestroys&&!offHand&&!g600OverManaEntry&&!nonSummon&&!shieldWithoutMana&&!unpaidBounce)continue;
    const exact={op:'ExactMove',owner:p,g403Refs:[y,...(y.godLinks||[])].map(x=>({uid:x.uid,incarnation:x.incarnation||0}))};

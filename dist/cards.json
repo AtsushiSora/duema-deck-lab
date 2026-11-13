@@ -224556,15 +224556,168 @@
       "destroyToMana": true,
       "supportBatch": "phase-1140",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-046",
+      "name": "雪精 エリカッチュ。",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 8000,
+      "race": "スノーフェアリー風",
+      "text": "スーパーガードマン（自分の他のクリーチャーがバトルする時、かわりにこのクリーチャーをタップしてバトルさせてもよい）\nこのクリーチャーは攻撃できない。\n相手のクリーチャーが手札以外から出た時、このクリーチャーとそのクリーチャーをバトルさせてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-046",
+      "limit": 4,
+      "superGuardman": true,
+      "noAttack": true,
+      "g624EntryResponse": "outsideHandFight",
+      "supportBatch": "phase-1141",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-030",
+      "name": "光器セイント・ガチ・マリア",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2500,
+      "race": "メカ・デル・ソル/ハンター",
+      "text": "自分のターンのはじめに、相手とパワー・ガチンコ・ジャッジしてもよい。自分が勝ったら、自分の山札の上から１枚をシールド化する。（パワー・ガチンコ・ジャッジ：自分と相手は自身の山札の上から１枚を表向きにし、それを下に置く。そのカードのパワーが相手以上なら、自分が勝つ。パワーがないカードは０として扱う）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-030",
+      "limit": 4,
+      "g174Start": [
+        {
+          "op": "g35_Custom",
+          "name": "startPowerJudge",
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1141",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-020",
+      "name": "虹暴の面 ガチ=ザ＝デッドマン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "ビーストフォーク號/革命軍/ハムカツ団",
+      "text": "自分のマナゾーンにあるカードは、すべての文明を持つ。\n自分のターンのはじめに、相手とパワー・ガチンコ・ジャッジしてもよい。自分が勝ったら、自分の山札の上から１枚をマナゾーンに置く。（パワー・ガチンコ・ジャッジ：自分と相手は自身の山札の上から１枚を表向きにし、それを下に置く。そのカードのパワーが相手以上なら、自分が勝つ。パワーがないカードは０として扱う）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-020",
+      "limit": 4,
+      "g51Courtney": true,
+      "g174Start": [
+        {
+          "op": "g35_Custom",
+          "name": "startPowerJudge",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1141",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp1-011",
+      "name": "宝魂剣と獄門盾の決断",
+      "civ": "光/闇/火",
+      "civilizations": [
+        "光",
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "自分のパワー5000以上のクリーチャーがあれば、自分のシールドゾーンにあるこの呪文に「S・トリガー」を与える。\n次の中から２回選ぶ。同じものを選んでもよい。\n▶コスト３以下のクリーチャーを１体、自分の手札または墓地から出す。\n▶クリーチャーを２体選ぶ。その２体をバトルさせる。\n▶相手のシールドを１つブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-011",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g876ShieldTriggerCondition": {
+        "creature": true,
+        "minPower": 5000,
+        "g199Power": true
+      },
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "g1045Preselect": 2,
+          "modes": [
+            {
+              "label": "手札または墓地からコスト3以下のクリーチャーを1体出す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "zones": [
+                    "hand",
+                    "grave"
+                  ],
+                  "deploy": true,
+                  "n": 1,
+                  "filter": {
+                    "creature": true,
+                    "max": 3
+                  }
+                }
+              ]
+            },
+            {
+              "label": "クリーチャー2体をバトルさせる",
+              "defs": [
+                {
+                  "op": "FightPair586",
+                  "who": "both"
+                }
+              ]
+            },
+            {
+              "label": "相手のシールドを1つブレイクする",
+              "defs": [
+                {
+                  "op": "Break497",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1141",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1140,
+    "phase": 1141,
     "checkedAt": "2026-11-13",
-    "baseCount": 7406,
-    "newEffectCards": 3,
+    "baseCount": 7409,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7409,
+    "totalCount": 7413,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -244533,6 +244686,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7406,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1140,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7406,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7409,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
