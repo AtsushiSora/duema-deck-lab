@@ -702,6 +702,10 @@ export function createSixPhotoRules(api){
    ?[opt('シールド '+(i+1)+(x.faceUp?'：'+card(x).name:''),x.uid,10,x.faceUp?x.cardId:undefined)]
    :[]);
  }
+ function d2Locked1188(s,p){
+  return (s.extLimits||[]).some(l=>l.kind==='g1188D2Lock'&&l.player===p&&
+   !api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}));
+ }
  function manaColorOptions698(s,t){
   const selected=t.selected||[],[color,...rest]=t.colors.slice(selected.length);
   const pool=s.players[t.p].mana.filter(x=>!x.tapped&&!selected.includes(x.uid)).map(x=>({
@@ -2730,7 +2734,7 @@ export function createSixPhotoRules(api){
  }
  case'g34_CrystalSwitch1175':{
   const field=live(s,t);
-  if(field&&!field.sealed&&!field.g1175DSwitched)choice(s,t,'Dスイッチ：裏向きのマナをすべてアンタップする？',
+  if(field&&!field.sealed&&!field.g1175DSwitched&&!d2Locked1188(s,t.p))choice(s,t,'Dスイッチ：裏向きのマナをすべてアンタップする？',
    [opt('Dスイッチを使う',true,own.mana.filter(y=>y.faceDown&&y.tapped&&api.canUntap(y)).length*6),skip()]);
   break;
  }
@@ -4798,7 +4802,8 @@ export function createSixPhotoRules(api){
  case'g34_PlayerAttackResponse741':
   (s.extLimits??=[]).push({kind:'g741PlayerAttackResponse',who:t.p,source:t.source,defs:t.defs,expires:'start'});
   break;
- case'g34_Lock':(s.extLimits??=[]).push({...t.limit,player:t.limit.player??(t.g746Self?t.p:1-t.p),who:t.limit.who??t.p,expires:'start'});break;
+ case'g34_Lock':(s.extLimits??=[]).push({...t.limit,player:t.limit.player??(t.g746Self?t.p:1-t.p),who:t.limit.who??t.p,expires:'start',
+  ...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});break;
  case'g34_UntapTeam934':{
   const source=t.g179Other?sourceHost474(s,t)?.x:null;
   for(const ally of creatures(s,t.p))if(ally!==source)api.untap(s,t.p,ally);
@@ -4924,7 +4929,7 @@ export function createSixPhotoRules(api){
    turnManaDown(s,t,{p:t.p,uid:mana.uid,serial:t.serial});
   }
  }break;
- case'g34_CrystalSwitch1175':if(v&&x&&!x.sealed&&!x.g1175DSwitched){
+ case'g34_CrystalSwitch1175':if(v&&x&&!x.sealed&&!x.g1175DSwitched&&!d2Locked1188(s,t.p)){
   x.g1175DSwitched=true;
   api.log(s,t.p,'dSwitch',card(t.source).name+'のDスイッチを使う',{cardId:t.source});
   start(s,t,[{op:'UntapMana',g1175FaceDownOnly:true}]);
@@ -6417,6 +6422,7 @@ export function createSixPhotoRules(api){
   });
  },
  allowedCast(s,p,c){
+  if(c.type==='field'&&c.d2Field&&d2Locked1188(s,p))return false;
   if(c.type==='spell'&&s.players[1-p].battle.some(x=>{
    const requiredRace=!x.sealed&&card(x).g982SpellLockUnlessRace&&effective(x,s).g982SpellLockUnlessRace;
    return requiredRace&&api.isCreature(s,x)&&!creatures(s,p).some(y=>
@@ -6480,6 +6486,7 @@ export function createSixPhotoRules(api){
   return n+r.amount;
  },c.g876BreakPerCount?countPower(s,x,c,false,{...c.g207CountPower,amount:1}):0),
  countBattleCivilizations,
+ manaCivilizationCount,
  extraBreak412:(s,p,x)=>(s.extLimits||[]).filter(l=>l.kind==='g412ExtraBreak'&&(l.g969FollowControl||l.player===p)&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.source}))&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)).reduce((n,l)=>n+l.amount,0),
  winBattle(s,x){
   const c=effective(x,s);

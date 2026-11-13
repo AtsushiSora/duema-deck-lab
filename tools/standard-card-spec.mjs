@@ -2470,6 +2470,30 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1188&&d?.status==='complete'&&d.faces.length===1&&d.id==='dm27-010'&&f.typeText==='クリーチャー'&&
+  normalize(f.abilityText)==='文明ブレイカー(このクリーチャーは自分のマナゾーンにある文明ひとつにつき1枚シールドをブレイクする)'){
+  return {g1188CivilizationBreaker:true};
+ }
+ if(phase>=1188&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
+  const text=normalize(f.abilityText);
+  const shieldTrigger='S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+  if(d.id==='dmr23-040'&&f.civilizations.length===2&&text===
+   'マナゾーンに置く時このカードはタップして置く。'+
+   '次の自分のターンのはじめまで相手はDスイッチを使えずD2フィールドを展開できない。'){
+   return {effect:'sixPhoto',g34Tasks:[{op:'Lock',limit:{kind:'g1188D2Lock'},spell:true}]};
+  }
+  if((d.id==='dmx11-028'&&text===shieldTrigger+
+   '自分の山札の上から2枚を裏向きのまま新しいシールドとして自分のシールドゾーンに加える。'+
+   '次の自分のターンのはじめに自分のシールドをふたつ墓地に置く。')||
+   (d.id==='dmex13-022'&&text==='S・トリガー'+shieldTrigger+
+   '自分の山札の上から2枚を裏向きのままそれぞれ新しいシールドとしてシールドゾーンに置く。'+
+   '次の自分のターンのはじめに自分のシールドを2つ墓地に置く。')){
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[
+    {op:'ShieldTop',n:2,g779Simultaneous:true},
+    {op:'Schedule537',when:'nextOwnStart',spell:true,defs:[{op:'ShieldGrave588',owner:'self',n:2,required:true}]}
+   ]};
+  }
+ }
  if(phase>=1187&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
   const text=normalize(f.abilityText);
   const shieldTrigger='S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';

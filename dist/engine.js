@@ -311,7 +311,9 @@ export function effectiveCard(inst,context,forPower=false){
  if(grantedDouble&&!(c.breaker>=2)&&c.breaker!=='∞')c={...c,breaker:2};
  const doubleBreakerChoice=c.g633DoubleBreaker||grantedDouble;
  const choosePowered=c.g1116PoweredChoice&&c.breaker!==undefined&&c.breaker!==0;
- const breakerChoices=(doubleBreakerChoice||choosePowered)&&!forPower?[c.breaker]:null;
+ const civilizationBreaker=c.g1188CivilizationBreaker&&!forPower;
+ const breakerChoices=(doubleBreakerChoice||choosePowered||civilizationBreaker)&&!forPower?
+  (civilizationBreaker&&c.breaker===undefined?[]:[c.breaker]):null;
  if(c.g444Crew&&!forPower){
   const n=extra.six.crewBreak444(context,owner,inst,c);
   breakerChoices?.push(n);
@@ -321,6 +323,12 @@ export function effectiveCard(inst,context,forPower=false){
   const n=power(inst,inst.uid===context.attack?.attacker,context),count=n===Infinity?'∞':Math.max(1,1+Math.floor(n/6000));
   breakerChoices?.push(count);
   c={...c,breaker:count==='∞'||c.breaker==='∞'?'∞':Math.max(Number(c.breaker)||1,count)};
+ }
+ if(civilizationBreaker){
+  const n=context.attack?.attacker===inst.uid&&context.attack.g1188CivilizationCount!==undefined?
+   context.attack.g1188CivilizationCount:extra.six.manaCivilizationCount(context,owner);
+  breakerChoices.push(n);
+  c={...c,breaker:c.breaker==='∞'?'∞':Math.max(c.breaker??0,n)};
  }
  if(breakerChoices)c={...c,g633BreakerChoices:[...new Set(doubleBreakerChoice?[2,...breakerChoices]:breakerChoices)]};
  if(!forPower&&c.g1021WorldBreaker){
@@ -2394,6 +2402,9 @@ function resolveAttack(s,blockUid){
   extra.ninjaWindow(s,s.active);return;
  }
  if(!s.attack.g482Unblocked){
+  // QA35614: fix the civilization count before resolving unblocked triggers.
+  if(s.attack.target==='player'&&effectiveCard(a,s,true).g1188CivilizationBreaker)
+   s.attack.g1188CivilizationCount=extra.six.manaCivilizationCount(s,s.active);
   const triggered=extra.unblockedAttack(s,s.active,a);
   if(s.attack.target==='player'||triggered)s.attack.g482Unblocked=true;
   if(triggered){s.attack.stage='unblocked482';return;}
