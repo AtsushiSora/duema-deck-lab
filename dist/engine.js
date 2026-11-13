@@ -563,13 +563,14 @@ function rememberBattleInformation(s,owner,host,leaving){
   return readsDepartingPower(task);
  });
  if(host.sealed)return;
+ const readsLayerCount=def=>def.op==='DrawThenDestroy1126'||def.op==='g34_DrawThenDestroy1126'||
+  def.filter?.g650SourceCards||def.defs?.some(readsLayerCount)||def.elseDefs?.some(readsLayerCount);
  for(const task of all){
   if(task.g399Attacker?.g1081Names&&departs(task.g399Attacker))
    task.g399Attacker.g1081Names=extra.six.attackNames1081(s,host);
   if(departs(task)&&(task.g1059NonEvolution||task.g1071Evolution||task.defs?.some(def=>def.g1059NonEvolution||def.g1071Evolution)))
    task.g1059LastEvolution=isEvolution(host);
-  if(departs(task)&&(task.op==='g34_DrawThenDestroy1126'||task.defs?.some(def=>def.op==='DrawThenDestroy1126')))
-   task.lastKnownCount=layers(host).length;
+  if(departs(task)&&readsLayerCount(task))task.lastKnownCount=layers(host).length;
   if(departs(task)&&(task.g1064Tapped||task.defs?.some(def=>def.g1064Tapped)))
    task.g1064LastTapped=!!host.tapped;
  }
@@ -1229,7 +1230,7 @@ function baseSummonCost297(s,p,c){
  const base=c.g29BT?Math.max(3,costValue(c)+tax-s.players.reduce((n,p)=>n+p.battle.filter(x=>isCreature(s,x)).length,0)):c.graveSpellReduction?Math.max(2,costValue(c)+tax-s.players[p].grave.filter(x=>playFaces(card(x)).some(c=>c.type==='spell')).length):extra.golgy.baseCost(s,p,c)+tax;
  const rupias=extra.utilityTop.rupias(s,p,c);
  const discount=extra.six.discount(s,p,c);
- const beforeMinimum=extra.six.floorCost500(s,p,c,base)-2*rupias-(c.g40Reduction||0)-(c.g39Reduction||0)-discount.amount-extra.shieldPhoto.discount(s,p,c)-extra.phoenix.discount(s,p,c)-extra.mado.discount(s,p,c)-(c.g29Arc&&s.players[p].battle.some(x=>isCreature(s,x)&&String(effectiveCard(x,s).race).includes('アーマード'))?1:0)-(c.type==='creature'&&String(c.race).includes('ドラゴン')?s.players[p].battle.filter(x=>effectiveCard(x,s).g29Bird).length:0)-extra.golgy.discount(s,p,c)-extra.virideDiscount(s,p,c)-graveReduction-creatureSympathy-(c.madoMomo&&s.players[p].grave.filter(x=>card(x).type!=='creature').length>=4?90:0)-(c.type==='spell'?s.players[p].battle.filter(x=>effectiveCard(x,s).kurokami).length:0)-(c.opponentCreatureReduction?s.players[1-p].battle.filter(x=>isCreature(s,x)).length:0)-(c.manaSympathy?s.players[p].mana.length:0)-extra.abyssDiscount(s,p,c)-extra.samuraiDiscount(s,p,c)-extra.giantDiscount(s,p,c)-extra.hunterDiscount(s,p,c)-extra.armoredDiscount(s,p,c)-extra.magicDiscount(s,p,c)-extra.mechaDiscount(s,p,c)-extra.granDiscount(s,p,c)-(c.gio?c.gioRevealCount||0:0)-(c.gggReduction&&s.players[p].hand.length<=1?c.gggReduction:0)-extra.raceDiscount(s,p,c)-(c.type==='creature'?extra.nextDiscount(s,p):0)-(reduce?3:0)-gaia-(c.costReduction==='allCreatures'?s.players.reduce((n,p)=>n+p.battle.filter(x=>isCreature(s,x)).length,0):0);
+ const beforeMinimum=extra.six.floorCost500(s,p,c,base)-2*rupias-(c.g40Reduction||0)-(c.g39Reduction||0)-discount.amount-extra.shieldPhoto.discount(s,p,c)-extra.phoenix.discount(s,p,c)-extra.mado.discount(s,p,c)-(c.g29Arc&&s.players[p].battle.some(x=>isCreature(s,x)&&String(effectiveCard(x,s).race).includes('アーマード'))?1:0)-(c.type==='creature'&&String(c.race).includes('ドラゴン')?s.players[p].battle.filter(x=>effectiveCard(x,s).g29Bird).length:0)-extra.golgy.discount(s,p,c)-extra.virideDiscount(s,p,c)-graveReduction-creatureSympathy-(c.madoMomo&&s.players[p].grave.filter(x=>card(x).type!=='creature').length>=4?90:0)-(c.type==='spell'?s.players[p].battle.filter(x=>effectiveCard(x,s).kurokami).length:0)-(c.opponentCreatureReduction?s.players[1-p].battle.filter(x=>!x.sealed&&isCreature(s,x)).length:0)-(c.manaSympathy?s.players[p].mana.length:0)-extra.abyssDiscount(s,p,c)-extra.samuraiDiscount(s,p,c)-extra.giantDiscount(s,p,c)-extra.hunterDiscount(s,p,c)-extra.armoredDiscount(s,p,c)-extra.magicDiscount(s,p,c)-extra.mechaDiscount(s,p,c)-extra.granDiscount(s,p,c)-(c.gio?c.gioRevealCount||0:0)-(c.gggReduction&&s.players[p].hand.length<=1?c.gggReduction:0)-extra.raceDiscount(s,p,c)-(c.type==='creature'?extra.nextDiscount(s,p):0)-(reduce?3:0)-gaia-(c.costReduction==='allCreatures'?s.players.reduce((n,p)=>n+p.battle.filter(x=>isCreature(s,x)).length,0):0);
  const gearDiscount=extra.samuraiSummonDiscount932(s,p,c);
  const aura=extra.six.summonAuraDiscount290(s,p,c);
  const dddReduction=c.g28DDD?s.players[p].battle.reduce((n,x)=>n+
@@ -1576,7 +1577,11 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  if(c.effect&&!(c.effect==='sixPhoto'&&!c.g34Tasks?.length)&&!stopped&&(!c.evolvedEntryOnly||isEvolution(inst))&&(!c.stackOnlyEntry||baseWasCreature)&&(!c.nonEvolutionBase||baseWasCreature&&!baseWasEvolution)&&(!c.summonedEntryOnly||entryOptions.execution!==false)&&(!c.g1052TamaseedEntry||baseWasTamaseed))enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,lastKnownPower:power(inst,false,s),lastKnownCost:effectiveCard(inst,s).cost,source:c.id,lastKnownCount:layers(inst).length,super:!!entryOptions.super,effect:'entry'});
  if(!stopped&&entryBreakShort770(s,p,c))enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,source:c.id,
   label:'シールド条件による自壊',effect:'extended',task:extra.task('g34_SelfDestroy',p,c.id,{uid:inst.uid,incarnation:inst.incarnation})});
- if(!stopped)for(const ability of eligibleExtraEntry527(c,entryOptions.origin??'hand'))enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,source:c.id,label:ability.label,effect:'extended',task:extra.task('g34_Sequence',p,c.id,{uid:inst.uid,incarnation:inst.incarnation,defs:ability.defs})});
+ if(!stopped)for(const ability of eligibleExtraEntry527(c,entryOptions.origin??'hand')){
+  if(ability.opponentTurnOnly&&s.active===p)continue;
+  enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,source:c.id,label:ability.label,effect:'extended',
+   task:extra.task('g34_Sequence',p,c.id,{uid:inst.uid,incarnation:inst.incarnation,defs:ability.defs})});
+ }
  if(!entryOptions.ignoreEntry&&isDragon(c))for(const x of s.players[p].battle)if(effectiveCard(x,s).dragonEntryTap&&(!stopped||x.uid!==inst.uid)){const key=x.uid+'@'+(x.incarnation||0);if(s.once?.[key]!==s.turn)enqueueEffect(s,p,{uid:x.uid,source:x.cardId,effect:'dragonEntryTap',key});}
  if(!entryOptions.ignoreEntry&&!selfMuted&&isDragon(c))for(const x of s.players[p].battle)if(effectiveCard(x,s).g142Rip)enqueueEffect(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:extra.task('g34_Draw',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,n:1,optional:true})});
  if(entryOptions.g781HyperEntry&&!inst.sealed&&isCreature(s,inst))

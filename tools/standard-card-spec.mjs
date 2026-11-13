@@ -6184,6 +6184,32 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1127&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const neo='NEO進化:闇火または自然のクリーチャー1体の上に置いてもよい。(カードが下にあればこれをNEO進化クリーチャーとして扱う)';
+  const neoEvolution={any:['闇','火','自然'].map(civilization=>({civilization}))};
+  if(['dm25rp2-035','dm25ex3-039'].includes(d.id)&&f.typeText==='クリーチャー'&&text===
+   '{GS}G・ストライク(このカードを自分のシールドゾーンから手札に加える時表向きにし相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)'+
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   '超魂X(これがクリーチャーの下にあればそのクリーチャーにも以下の能力を与える)'+
+   '自分のターンの終わりにこのクリーチャーにカードが3枚以上含まれていればカードを2枚引いてもよい。'){
+   const defs=[{op:'IfOwn',filter:{g650SourceCards:3},defs:[{
+    op:'Offer',title:'カードを2枚引く？',defs:[{op:'Draw',n:2}]}]}];
+   return {gStrike:true,blocker:true,g174End:defs,g404Soul:{g174End:defs}};
+  }
+  if(d.id==='dm25rp2-041'&&f.typeText==='NEOクリーチャー'&&text===
+   '相手のクリーチャー1体につきこのクリーチャーの召喚コストを1少なくする。ただしコストは0以下にはならない。'+neo+
+   'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+
+   'メテオバーン:このクリーチャーが攻撃する時このクリーチャーの下にあるカードを1枚墓地に置いてもよい。そうしたら相手のパワー5000以下のクリーチャーをすべて破壊する。')
+   return {opponentCreatureReduction:true,neoEvolution,breaker:2,g825Meteor:'destroy5000'};
+  if(['dm25rp2-018','dm25ex3-016'].includes(d.id)&&f.typeText==='NEOクリーチャー'&&text===
+   'S・トリガーS・トリガー'+neo+'W・ブレイカー'+
+   'このクリーチャーが出た時相手のクリーチャーを1体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。'+
+   '相手のターン中にこのクリーチャーが出た時これが進化クリーチャーでなければこのクリーチャーを破壊する。')
+   return {trigger:true,neoEvolution,breaker:2,effect:'sixPhoto',g34Tasks:[{op:'Fight240',self:true,optional:true}],
+    g527ExtraEntry:[{label:'相手ターンに出た進化ではないこのクリーチャーを破壊する',opponentTurnOnly:true,defs:[{op:'IfOwn',
+     filter:{g1114OpponentTurn:true},defs:[{op:'IfSource541',g1059NonEvolution:true,defs:[{op:'SelfDestroy'}]}]}]}]};
+ }
  if(phase>=1126&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dm25rp2-064'&&f.typeText==='クリーチャー'&&text===

@@ -1,0 +1,383 @@
+{
+  "phase": 1127,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7366,
+  "description": "スコール＝シャコル、魔誕の凶獣ベル・ヘル・デ・ジャクソン、魔誕の魔龍虫ビャハの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/41070/",
+    "https://dm.takaratomy.co.jp/rule/qa/42366/",
+    "https://dm.takaratomy.co.jp/rule/qa/42937/",
+    "https://dm.takaratomy.co.jp/rule/qa/46530/",
+    "https://dm.takaratomy.co.jp/rule/qa/46533/",
+    "https://dm.takaratomy.co.jp/rule/qa/46844/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34870/",
+    "https://dm.takaratomy.co.jp/rule/qa/41173/",
+    "https://dm.takaratomy.co.jp/rule/qa/47053/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp2-035",
+      "name": "スコール＝シャコル",
+      "faces": [
+        {
+          "name": "スコール＝シャコル",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\n自分のターンの終わりに、このクリーチャーにカードが３枚以上含まれていれば、カードを２枚引いてもよい。",
+          "race": "アズールアビス/フュージョナー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-035",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-035.jpg",
+      "spec": {
+        "gStrike": true,
+        "blocker": true,
+        "g174End": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g650SourceCards": 3
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "title": "カードを2枚引く？",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 2
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "g404Soul": {
+          "g174End": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g650SourceCards": 3
+              },
+              "defs": [
+                {
+                  "op": "Offer",
+                  "title": "カードを2枚引く？",
+                  "defs": [
+                    {
+                      "op": "Draw",
+                      "n": 2
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "f34ee907f7393e651ef73972d85fc445651dc920164eb2553cea5669ff3b1758",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-041",
+      "name": "魔誕の凶獣ベル・ヘル・デ・ジャクソン",
+      "faces": [
+        {
+          "name": "魔誕の凶獣ベル・ヘル・デ・ジャクソン",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "相手のクリーチャー１体につき、このクリーチャーの召喚コストを１少なくする。ただし、コストは０以下にはならない。\nNEO進化：闇、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nメテオバーン：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚墓地に置いてもよい。そうしたら、相手のパワー5000以下のクリーチャーをすべて破壊する。",
+          "race": "デーモン・コマンド",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-041",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-041.jpg",
+      "spec": {
+        "opponentCreatureReduction": true,
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g825Meteor": "destroy5000"
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "e0d5fdd5ed75f15e6e3c8932169e782bcbed2af47dc9af5b8daa093d0b2690e0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-018",
+      "name": "魔誕の魔龍虫ビャハ",
+      "faces": [
+        {
+          "name": "魔誕の魔龍虫ビャハ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\nNEO進化：闇、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\n相手のターン中に、このクリーチャーが出た時、これが進化クリーチャーでなければ、このクリーチャーを破壊する。",
+          "race": "パラサイトワーム/ドラゴン・ゾンビ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-018",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-018.jpg",
+      "spec": {
+        "trigger": true,
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "self": true,
+            "optional": true
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "相手ターンに出た進化ではないこのクリーチャーを破壊する",
+            "opponentTurnOnly": true,
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g1114OpponentTurn": true
+                },
+                "defs": [
+                  {
+                    "op": "IfSource541",
+                    "g1059NonEvolution": true,
+                    "defs": [
+                      {
+                        "op": "SelfDestroy"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "3b26caed1db4ba36225b041c07211b329c33b46002383b1d1a3184394a38a724",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25ex3-039",
+      "name": "スコール＝シャコル",
+      "faces": [
+        {
+          "name": "スコール＝シャコル",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\n自分のターンの終わりに、このクリーチャーにカードが３枚以上含まれていれば、カードを２枚引いてもよい。",
+          "race": "アズールアビス/フュージョナー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-039",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-039.jpg",
+      "spec": {
+        "gStrike": true,
+        "blocker": true,
+        "g174End": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g650SourceCards": 3
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "title": "カードを2枚引く？",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 2
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "g404Soul": {
+          "g174End": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g650SourceCards": 3
+              },
+              "defs": [
+                {
+                  "op": "Offer",
+                  "title": "カードを2枚引く？",
+                  "defs": [
+                    {
+                      "op": "Draw",
+                      "n": 2
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "21a6907dea201426806bae8533efbe40e16afa347388c9d33c5b8f08a4441553",
+        "facesMatched": true
+      },
+      "canonicalId": "dm25rp2-035"
+    },
+    {
+      "id": "dm25ex3-016",
+      "name": "魔誕の魔龍虫ビャハ",
+      "faces": [
+        {
+          "name": "魔誕の魔龍虫ビャハ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\nNEO進化：闇、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\n相手のターン中に、このクリーチャーが出た時、これが進化クリーチャーでなければ、このクリーチャーを破壊する。",
+          "race": "パラサイトワーム/ドラゴン・ゾンビ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-016",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-016.jpg",
+      "spec": {
+        "trigger": true,
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "self": true,
+            "optional": true
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "相手ターンに出た進化ではないこのクリーチャーを破壊する",
+            "opponentTurnOnly": true,
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g1114OpponentTurn": true
+                },
+                "defs": [
+                  {
+                    "op": "IfSource541",
+                    "g1059NonEvolution": true,
+                    "defs": [
+                      {
+                        "op": "SelfDestroy"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "1a091f3673bf5c4f0a1c9a2974d2d85323aa31f88e338bcae89f9d8d7fc08f7f",
+        "facesMatched": true
+      },
+      "canonicalId": "dm25rp2-018"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp2-035": 4,
+      "dm25rp2-041": 4,
+      "dm25rp2-018": 4,
+      "dm25ex3-039": 4,
+      "dm25ex3-016": 4
+    }
+  }
+}

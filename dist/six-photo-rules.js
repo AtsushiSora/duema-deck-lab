@@ -561,7 +561,7 @@ export function createSixPhotoRules(api){
   if(f.g757FaceUpShield)return s.players[p].shields.some(group=>api.shieldCards(group).some(x=>x.faceUp));
   if(f.g650SourceCards){
    const host=sourceHost474(s,{uid:sourceUid,incarnation:sourceIncarnation});
-   const count=host?(!host.x.sealed&&api.isCreature(s,host.x)?api.allLayers(host.x).length:0):lastKnownCount;
+   const count=host&&!host.x.sealed?(api.isCreature(s,host.x)?api.allLayers(host.x).length:0):lastKnownCount;
    return count>=f.g650SourceCards;
   }
   if(f.g688DistinctCreaturePair){

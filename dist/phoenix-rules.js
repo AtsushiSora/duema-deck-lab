@@ -53,6 +53,8 @@ export function createPhoenixRules(api){
   api.moveBattleCard(s,t.p,uid,to,{controller:t.p});
   if(t.follow825==='untap')api.untap(s,t.p,x);
   else if(t.follow825==='ramp')put(s,task('g34_Ramp',t.p,t.source,{n:1}));
+  else if(t.follow825==='destroy5000')put(s,task('g34_Sweep',t.p,t.source,{to:'grave',
+   filter:{creature:true,maxPower:5000,g199Power:true}}));
   else if(t.follow825==='destroyBlocker')put(s,task('g34_Target',t.p,t.source,{to:'grave',filter:{blocker:true}}));
   else if(t.follow825==='destroy')put(s,task('g34_Target',t.p,t.source,{to:'grave'}));
   else put(s,task('g34_Target',t.p,t.source,{anyOwner:true,to:'hand'}));
