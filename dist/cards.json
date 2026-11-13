@@ -224795,15 +224795,130 @@
       ],
       "supportBatch": "phase-1142",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-022",
+      "name": "熱血美刃 ミケランジェロ",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 9500,
+      "race": "アウトレイジ・コマンドMAX/革命軍/ハムカツ団",
+      "text": "革命チェンジ：光または水の、パワー4000以上のクリーチャー（自分の指定のクリーチャーが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から１枚を表向きでシールド化してもよい。その後、自分の表向きのシールド１つにつき、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-022",
+      "limit": 4,
+      "rev": {
+        "any": true,
+        "colors": [
+          "光",
+          "水"
+        ],
+        "powerMin": 4000
+      },
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "山札の上から1枚を表向きでシールド化する？",
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 1,
+              "faceUp": true
+            }
+          ]
+        },
+        {
+          "op": "CountDraw",
+          "zone": "shields",
+          "g1143FaceUpShields": true,
+          "optional": "each"
+        }
+      ],
+      "supportBatch": "phase-1143",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-023",
+      "name": "漢の2号 ボスカツ逆",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8500,
+      "race": "メガ・コマンド・ドラゴン/革命軍/ハムカツ団",
+      "text": "{GS} G・ストライク\n革命チェンジ：光または自然の、パワー4000以上のクリーチャー（自分の指定のクリーチャーが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー\n自分のクリーチャーの召喚コストを２少なくする。ただしコストは０以下にならない。\nエスケープ（このクリーチャーが破壊される時、かわりに自分のシールドを１つ手札に加えてもよい。その「S・トリガー」は使えない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-023",
+      "limit": 4,
+      "gStrike": true,
+      "rev": {
+        "any": true,
+        "colors": [
+          "光",
+          "自然"
+        ],
+        "powerMin": 4000
+      },
+      "breaker": 2,
+      "g290SummonAura": {
+        "filter": {},
+        "amount": 2
+      },
+      "escape": true,
+      "supportBatch": "phase-1143",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp1-003",
+      "name": "傀儡秘宝ベンゾルス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "パンドラボックス/デスパペット",
+      "text": "S・トリガー S・トリガー\nこのクリーチャーが出た時、自分の山札の上から３枚まで墓地に置く。こうして墓地に置いた「S・トリガー」を持つカード１枚につき、相手のクリーチャーを１体選び、破壊してもよい。\n自分のターン中、クリーチャーを１体、自分の墓地から召喚してもよい。（コストは支払う）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-003",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "MillTrigger1143",
+          "n": 3
+        }
+      ],
+      "g450ZoneSummon": {
+        "origin": "grave",
+        "filter": {
+          "creature": true
+        }
+      },
+      "supportBatch": "phase-1143",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1142,
+    "phase": 1143,
     "checkedAt": "2026-11-13",
-    "baseCount": 7413,
+    "baseCount": 7416,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7416,
+    "totalCount": 7419,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -244796,6 +244911,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7413,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1142,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7413,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7416,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

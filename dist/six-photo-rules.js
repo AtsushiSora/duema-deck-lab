@@ -585,6 +585,8 @@ export function createSixPhotoRules(api){
  const countBattleCivilizations=(s,rows)=>new Set(rows.filter(y=>!y.sealed&&!y.faceDown)
   .flatMap(y=>colors(effective(y,s,true))).filter(q=>['光','水','闇','火','自然'].includes(q))).size;
  const countDraw=(s,p,t)=>{const owner=t.owner==='opponent'?1-p:p;
+  if(t.g1143FaceUpShields)
+   return s.players[owner].shields.filter(group=>api.shieldCards(group).some(x=>x.faceUp)).length;
   if(t.g1041ColorlessMana)return s.players[p].mana.filter(x=>{
    const mana=x.faceDown?{civilizations:[],civ:'ゼロ'}:api.zoneCard(s,p,x,'mana');
    return api.manaColors(mana,s,p).length===0;
@@ -4067,6 +4069,12 @@ export function createSixPhotoRules(api){
    Array.from({length:n+1},(_,count)=>opt(count+'枚',count,count===own.deck.length?-100:count)));
   break;
  }
+ case'g34_MillTrigger1143':{
+  const n=Math.min(own.deck.length,t.n);
+  if(n)choice(s,t,'山札の上から墓地に置く枚数を選ぶ',
+   Array.from({length:n+1},(_,count)=>opt(count+'枚',count,count===own.deck.length?-100:count)));
+  break;
+ }
  case'g34_Mill':{
   const p=t.opponent?1-t.p:t.owner??t.p,n=t.n==='∞'?s.players[p].deck.length:t.n;
   if(t.optional)choice(s,t,t.n==='∞'?'山札をすべて墓地に置く？':'山札の上'+n+'枚を墓地に置く？',[opt('置く',true,own.deck.length>n?10:-100),skip()]);
@@ -5424,6 +5432,15 @@ export function createSixPhotoRules(api){
   // QA 46570: commit the complete group before notifying graveyard watchers.
   api.addZone(s,t.p,'grave',...cards);
   api.deckCheck(s,t.p);
+  break;
+ }
+ case'g34_MillTrigger1143':{
+  if(!v)break;
+  const moved=api.mill(s,t.p,v,{together:true});
+  if(s.winner!==null)break;
+  const n=moved.filter(y=>own.grave.includes(y)&&faces(card(y)).some(f=>f.trigger||f.triggerPlus||f.superTrigger)).length;
+  if(n)start(s,t,[{op:'Select',origin:'battle',owner:'opponent',to:'grave',n,optional:true,
+   g173Targets:true,g193Select:true,filter:{creature:true},title:'破壊する相手のクリーチャーを'+n+'体まで選ぶ'}]);
   break;
  }
  case'g34_Mill':if(v){const p=t.opponent?1-t.p:t.owner??t.p;api.mill(s,p,t.n==='∞'?s.players[p].deck.length:t.n,{together:t.g1042Together});}break;

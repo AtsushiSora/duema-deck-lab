@@ -6184,6 +6184,30 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1143&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'&&
+  ['dm26rp2-022','promoy25-045','dm26rp2-023','dm26rp1-003'].includes(d.id)){
+  const text=normalize(f.abilityText);
+  const change=color=>'革命チェンジ:光または'+color+'のパワー4000以上のクリーチャー'+
+   '(自分の指定のクリーチャーが攻撃する時そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい)';
+  if(['dm26rp2-022','promoy25-045'].includes(d.id)&&text===change('水')+
+   'ブロッカーブロッカーW・ブレイカーこのクリーチャーが出た時自分の山札の上から1枚を表向きでシールド化してもよい。'+
+   'その後自分の表向きのシールド1つにつきカードを1枚引いてもよい。')
+   return {rev:{any:true,colors:['光','水'],powerMin:4000},blocker:true,breaker:2,effect:'sixPhoto',g34Tasks:[
+    {op:'Offer',title:'山札の上から1枚を表向きでシールド化する？',defs:[{op:'ShieldTop',n:1,faceUp:true}]},
+    {op:'CountDraw',zone:'shields',g1143FaceUpShields:true,optional:'each'}
+   ]};
+  if(d.id==='dm26rp2-023'&&text==='{GS}G・ストライク'+change('自然')+
+   'W・ブレイカー自分のクリーチャーの召喚コストを2少なくする。ただしコストは0以下にならない。'+
+   'エスケープ(このクリーチャーが破壊される時かわりに自分のシールドを1つ手札に加えてもよい。その「S・トリガー」は使えない)')
+   return {gStrike:true,rev:{any:true,colors:['光','自然'],powerMin:4000},breaker:2,
+    g290SummonAura:{filter:{},amount:2},escape:true};
+  if(d.id==='dm26rp1-003'&&text==='S・トリガーS・トリガーこのクリーチャーが出た時自分の山札の上から3枚まで墓地に置く。'+
+   'こうして墓地に置いた「S・トリガー」を持つカード1枚につき相手のクリーチャーを1体選び破壊してもよい。'+
+   '自分のターン中クリーチャーを1体自分の墓地から召喚してもよい。(コストは支払う)')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'MillTrigger1143',n:3}],
+    g450ZoneSummon:{origin:'grave',filter:{creature:true}}};
+  throw Error('公式能力文が照合済みの内容と異なります：'+d.id);
+ }
  if(phase>=1142&&d?.status==='complete'&&d.faces.length===1&&
   ['dm26rp2-027','dm26rp2-025','promoy25-064','dm26rp2-009','dm26rp2-SEC014'].includes(d.id)){
   const text=normalize(f.abilityText);

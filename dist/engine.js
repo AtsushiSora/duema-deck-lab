@@ -466,7 +466,7 @@ function mill(s,p,n,{together=false}={}){
   }
   addZone(s,p,'grave',...moved);
   deckCheck(s,p);
-  return;
+  return moved;
  }
  for(let i=0;i<n&&s.winner===null;i++){const x=takeDeckTop(s,p);if(x){clearBattleState(x);addZone(s,s.players[p],'grave',x);}deckCheck(s,p);}
 }
