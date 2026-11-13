@@ -2361,6 +2361,18 @@ export function createSixPhotoRules(api){
    hand.map((_,i)=>opt('裏向きの手札 '+(i+1),i,0)),1-owner);
   break;
  }
+ case'g34_OwnSealGrave1156':{
+  const seals=own.seals??[],selected=t.selected??[];
+  const remaining=seals.filter(y=>!selected.includes(y.uid));
+  const needed=Math.min(t.n,seals.length)-selected.length;
+  if(needed<=0||remaining.length===needed){
+   api.moveSealsToGrave1156(s,t.p,[...selected,...remaining.slice(0,Math.max(0,needed)).map(y=>y.uid)]);
+  }else choice(s,t,'墓地に置く自分の封印をあと'+needed+'つ選ぶ',remaining.map(y=>{
+   const host=own.battle.find(x=>x.uid===y.sealOf);
+   return opt((host?card(host).name+'の':'')+'封印 '+(seals.indexOf(y)+1),y.uid,host?cost(card(host)):0);
+  }));
+  break;
+ }
  case'g34_BlindHandBottom1154':{
   if(!own.hand.length||!api.canMoveZone(s,t.p,'hand'))break;
   const slots=t.slots??api.shuffled(own.hand.map(x=>x.uid),Math.floor(api.random(s)*4294967296));
@@ -5217,6 +5229,7 @@ export function createSixPhotoRules(api){
   }
   break;
  }
+ case'g34_OwnSealGrave1156':put(s,{...t,selected:[...(t.selected??[]),v]});break;
  case'g34_BlindHandBottom1154':
   put(s,{...t,selected:[...t.selected,t.slots[v]]});
   break;
@@ -6830,7 +6843,12 @@ export function createSixPhotoRules(api){
   }
  },
  battleCardDestroyed1126(s,p,x,defs){queue(s,p,x,defs);},
- sealGrave1140(s,p,x){
+ sealDrawWatchers1156(s,p){
+  return s.players[p].battle.filter(source=>!source.sealed&&!source.faceDown&&
+   card(source).g1156SealDraw&&effective(source,s).g1156SealDraw&&api.isCreature(s,source));
+ },
+ sealGrave1140(s,p,x,drawWatchers){
+  for(const source of drawWatchers)send(s,p,source,'Draw',{n:1,optional:true});
   for(const source of s.players[p].battle){
    if(source.sealed||source.faceDown||!api.isCreature(s,source)||!effective(source,s).g1140SealGrave)continue;
    send(s,p,source,'GraveReturn754',{uid:x.uid,incarnation:x.incarnation||0,serial:x.zoneSerial||0});

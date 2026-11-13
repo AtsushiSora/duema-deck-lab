@@ -6184,6 +6184,16 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1156&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const attack='このクリーチャーが攻撃する時自分の封印を';
+  if(['promoy14-047','dmr19-043','dmx23-046'].includes(d.id)&&['ひとつ','1つ'].some(n=>text===attack+n+'墓地に置く。'))
+   return {g34Attack:[{op:'OwnSealGrave1156',n:1}]};
+  if(d.id==='dmx23-044'&&text===attack+'2つ墓地に置く。自分の封印を墓地に置いた時カードを1枚引いてもよい。')
+   return {g34Attack:[{op:'OwnSealGrave1156',n:2}],g1156SealDraw:true};
+  if(d.id==='sp-035'&&text==='このクリーチャーが破壊される時墓地に置くかわりに手札に戻してもよい。そうした場合自分の手札を1枚捨てる。')
+   return {g1156ReturnDiscard:true};
+ }
  if(phase>=1155&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmrp09-074'&&text==='このクリーチャーがバトルした時バトルの後勝ったクリーチャーを持ち主の手札に戻す。')
