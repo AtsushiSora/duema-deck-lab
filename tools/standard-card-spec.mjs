@@ -2467,6 +2467,20 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1177&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(f.name==='聖なる混沌 クノイチマントラ'&&f.civilizationText==='光'&&f.cost===5&&text===
+   'ニンジャ・チェンジ3(相手のクリーチャーが攻撃またはブロックした時この攻撃中に自分が「ニンジャ」能力を使っていなければ手札にあるこのクリーチャーと自分のコスト3以上でメカまたはシノビのクリーチャー1体を入れ替えてもよい)'+
+   'ブロッカーブロッカーW・ブレイカーこのクリーチャーが出た時次の自分のターンのはじめまで自分の他のクリーチャーすべてのパワーを+3000する。')
+   return {ninjaChange:3,blocker:true,breaker:2,effect:'sixPhoto',g34Tasks:[
+    {op:'GroupPower',owner:'self',other:true,filter:{creature:true},power:3000,g521UntilStart:true}
+   ]};
+  if(f.name==='コバヤシ・ジアマリン'&&f.civilizationText==='水'&&f.cost===3&&text===
+   'このクリーチャーが出た時カードを1枚引く。自分のタマシードを使った時または呪文を唱えた時このクリーチャーを手札に戻してもよい。'){
+   const defs=[{op:'Offer',title:'このクリーチャーを手札に戻す？',defs:[{op:'SelfHand299'}]}];
+   return {effect:'sixPhoto',g34Tasks:[{op:'Draw',n:1}],g204SpellWatch:{who:'self',defs},g1177TamaseedUse:defs};
+  }
+ }
  if(phase>=1176&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const ace=color=>'自分の'+color+'のクリーチャーまたは'+color+'のタマシードが合計4つ以上なければバトルゾーンにあるこのタマシードはクリーチャーとして扱わない。';

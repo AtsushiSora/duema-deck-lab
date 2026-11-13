@@ -6512,7 +6512,12 @@ export function createSixPhotoRules(api){
    }
   }
  },
- played(s,p,c,x,origin,permit){if(c.type==='creature'){
+ played(s,p,c,x,origin,permit){
+  if(c.type==='seed'||c.seedCreature)for(const source of creatures(s,p)){
+   const defs=card(source).g1177TamaseedUse&&!source.sealed&&effective(source,s).g1177TamaseedUse;
+   if(defs)queue(s,p,source,defs);
+  }
+  if(c.type==='creature'){
   useBlockers524(s,p);
   for(const source of s.players[p].battle){
    const watch=card(source).g808SummonWatch&&!source.sealed&&api.isCreature(s,source)&&effective(source,s).g808SummonWatch;

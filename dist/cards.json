@@ -228341,15 +228341,142 @@
       ],
       "supportBatch": "phase-1176",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23sd2-001",
+      "name": "聖なる混沌 クノイチマントラ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "メカ・デル・ステラ/シノビ",
+      "text": "ニンジャ・チェンジ３（相手のクリーチャーが攻撃またはブロックした時、この攻撃中に自分が「ニンジャ」能力を使っていなければ、手札にあるこのクリーチャーと、自分のコスト３以上でメカまたはシノビのクリーチャー１体を入れ替えてもよい）\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、次の自分のターンのはじめまで、自分の他のクリーチャーすべてのパワーを+3000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd2-001",
+      "limit": 4,
+      "ninjaChange": 3,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupPower",
+          "owner": "self",
+          "other": true,
+          "filter": {
+            "creature": true
+          },
+          "power": 3000,
+          "g521UntilStart": true
+        }
+      ],
+      "supportBatch": "phase-1177",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd33-003",
+      "name": "無敵死神ヘックスペイン",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "デーモン・コマンド/ジャイアント",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を見る。そのうちの１枚を墓地に、１枚をマナゾーンに置き、最後の１枚を手札に加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd33-003",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g255Search": true,
+          "n": 3,
+          "stages": [
+            {
+              "n": 1,
+              "to": "grave"
+            },
+            {
+              "n": 1,
+              "to": "mana"
+            },
+            {
+              "n": 1,
+              "to": "hand"
+            }
+          ],
+          "rest": "top"
+        }
+      ],
+      "supportBatch": "phase-1177",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-056",
+      "name": "コバヤシ・ジアマリン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "マジック・マーフォーク",
+      "text": "このクリーチャーが出た時、カードを１枚引く。\n自分のタマシードを使った時または呪文を唱えた時、このクリーチャーを手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-056",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "このクリーチャーを手札に戻す？",
+            "defs": [
+              {
+                "op": "SelfHand299"
+              }
+            ]
+          }
+        ]
+      },
+      "g1177TamaseedUse": [
+        {
+          "op": "Offer",
+          "title": "このクリーチャーを手札に戻す？",
+          "defs": [
+            {
+              "op": "SelfHand299"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1177",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1176,
+    "phase": 1177,
     "checkedAt": "2026-11-14",
-    "baseCount": 7518,
+    "baseCount": 7521,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7521,
+    "totalCount": 7524,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -248750,6 +248877,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7518,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1176,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7518,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7521,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
