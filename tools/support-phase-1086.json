@@ -1,0 +1,613 @@
+{
+  "phase": 1086,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7220,
+  "description": "リクエストされた17枚のうち5枚を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31792/",
+    "https://dm.takaratomy.co.jp/rule/qa/47908/",
+    "https://dm.takaratomy.co.jp/rule/qa/47907/"
+  ],
+  "cards": [
+    {
+      "id": "dm22sd1-004",
+      "name": "ハンマ＝ダンマ",
+      "faces": [
+        {
+          "name": "ハンマ＝ダンマ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、自分の山札の上から３枚を墓地に置いてもよい。その後、自分の墓地にあるカードの枚数よりコストが小さい相手のクリーチャーを１体、破壊する。",
+          "race": "アビスロイヤル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22sd1-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22sd1-004.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 3,
+            "optional": true,
+            "g1042Together": true
+          },
+          {
+            "op": "Target",
+            "to": "grave",
+            "g1086BelowGrave": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "b9be08fe6c78045911b0610995e4b8758274e1603533abbe54fb854470a7cc4b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-014",
+      "name": "電脳呪文「ブレイン」",
+      "faces": [
+        {
+          "name": "電脳呪文「ブレイン」",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nシビルカウント４：自分の水のクリーチャーまたは水のタマシードが合計４つ以上あれば、この呪文をコストを支払わずに唱えてもよい。\nカードを３枚引く。\n自分のターン中にこの呪文を唱えたなら、このターン、自分は呪文を唱えられない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-014",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-014.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g261Free": {
+          "filter": {
+            "creatureOrSeed": true,
+            "color": "水",
+            "g258Civil": 4
+          },
+          "label": "シビルカウント4"
+        },
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "SpellLock489",
+            "owner": "self",
+            "ownTurn": true,
+            "expires": "end"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "881007eaa8f7cb5f4af8f38a0247ecdface92611881aee3d34f8e10c26781446",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp07-s03",
+      "name": "次元の嵐 スコーラー",
+      "faces": [
+        {
+          "name": "次元の嵐 スコーラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 11,
+          "costText": "11",
+          "abilityText": "G・ゼロ：このターン中に自分の呪文を５枚以上唱えていれば、このクリーチャーをコストを支払わずに召喚してもよい。\nW・ブレイカー\nこのクリーチャーが召喚によってバトルゾーンに出た時、それがこのゲーム中にバトルゾーンに出した最初の《次元の嵐 スコーラー》なら、このターンの後で自分のターンをもう一度行う。",
+          "race": "ムートピア/スペシャルズ",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-s03",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-s03.jpg",
+      "spec": {
+        "breaker": 2,
+        "g396Zero": {
+          "all": [
+            {
+              "g1086SpellsMin": 5
+            }
+          ]
+        },
+        "g1086FirstNamedEntry": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "1774a0a17c4a5ddd0d1f759f10b45fa0aa3702f9394f683590e9c3a5305d90b0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-s04",
+      "name": "I am",
+      "faces": [
+        {
+          "name": "I am",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "バトルゾーンに自分のムートピアが５体以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。そうしたら、自分の進化ではないクリーチャーをすべて手札に戻す。\nNEO進化：自分の水のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nT・ブレイカー\nこれがNEO進化クリーチャーなら、パワーを+10000し、「ワールド・ブレイカー」を与える。（「ワールド・ブレイカー」を持つクリーチャーはシールドをすべてブレイクする）",
+          "race": "ムートピア/スペシャルズ",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-s04",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-s04.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "水"
+            }
+          ]
+        },
+        "breaker": 3,
+        "g1086EvolvedWorld": true,
+        "g396Zero": {
+          "label": "ムートピア5体",
+          "all": [
+            {
+              "g370BattleCount": {
+                "filter": {
+                  "creature": true,
+                  "race": "ムートピア"
+                },
+                "min": 5
+              }
+            }
+          ]
+        },
+        "g1086FreeSummonEntry": [
+          {
+            "op": "Sweep",
+            "owner": "self",
+            "to": "hand",
+            "toOwnerHand": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "eb634f5ea27b245a059994febe9002db28344acf38984310b62a3733355dce88",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp4-024",
+      "name": "メルニアの虹勲章",
+      "faces": [
+        {
+          "name": "メルニアの虹勲章",
+          "typeText": "タマシード",
+          "civilizationText": "光/水/闇",
+          "civilizations": [
+            "光",
+            "水",
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "シンカライズ（このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい）\nこのタマシードが出た時、相手の手札にあるカード１枚につき、カードを１枚引く。その後、引いた枚数より１枚少ない枚数、自分の手札を捨てる。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nブロッカー ブロッカー\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+          "race": "リキッド・ピープル/ゴースト/フュージョナー",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-024",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp4-024.jpg",
+      "spec": {
+        "type": "seed",
+        "shinkalize": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DrawAgainstHand1086"
+          }
+        ],
+        "g404Soul": {
+          "blocker": true,
+          "slayer": true
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "32f9d968df762c7afb8fb28469fa528549b46a3159a86217ed7407d108650bf6",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23ex2-074",
+      "name": "ハンマ＝ダンマ",
+      "faces": [
+        {
+          "name": "ハンマ＝ダンマ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、自分の山札の上から３枚を墓地に置いてもよい。その後、自分の墓地にあるカードの枚数よりコストが小さい相手のクリーチャーを１体選び、破壊する。",
+          "race": "アビスロイヤル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-074",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex2-074.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 3,
+            "optional": true,
+            "g1042Together": true
+          },
+          {
+            "op": "Target",
+            "to": "grave",
+            "g1086BelowGrave": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "4d96a496e64e79c6118341f88fd517cf920bd0b56ca22ba549d670ea4a5698bf",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22sd1-004"
+    },
+    {
+      "id": "dm25sd1-011",
+      "name": "ハンマ＝ダンマ",
+      "faces": [
+        {
+          "name": "ハンマ＝ダンマ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nこのクリーチャーが出た時、自分の山札の上から３枚を墓地に置いてもよい。その後、自分の墓地にあるカードの枚数よりコストが小さい相手のクリーチャーを１体選び、破壊する。",
+          "race": "アビスロイヤル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25sd1-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25sd1-011.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 3,
+            "optional": true,
+            "g1042Together": true
+          },
+          {
+            "op": "Target",
+            "to": "grave",
+            "g1086BelowGrave": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "2be9792c558bf63d447871275eeb9ff3d06e1b00d28ecfdfddeefbe1744bbf19",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22sd1-004"
+    },
+    {
+      "id": "promoy24-spd1209",
+      "name": "ハンマ＝ダンマ",
+      "faces": [
+        {
+          "name": "ハンマ＝ダンマ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nこのクリーチャーが出た時、自分の山札の上から３枚を墓地に置いてもよい。その後、自分の墓地にあるカードの枚数よりコストが小さい相手のクリーチャーを１体選び、破壊する。",
+          "race": "アビスロイヤル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy24-spd1209",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy24-spd1209.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 3,
+            "optional": true,
+            "g1042Together": true
+          },
+          {
+            "op": "Target",
+            "to": "grave",
+            "g1086BelowGrave": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "e8223506e51f2f258df891483a5ede7d495f6ed7314ac8dd9248e56efd198759",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22sd1-004"
+    },
+    {
+      "id": "dm23sp1-014",
+      "name": "ハンマ＝ダンマ",
+      "faces": [
+        {
+          "name": "ハンマ＝ダンマ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、自分の山札の上から３枚を墓地に置いてもよい。その後、自分の墓地にあるカードの枚数よりコストが小さい相手のクリーチャーを１体選び、破壊する。",
+          "race": "アビスロイヤル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sp1-014",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23sp1-014.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 3,
+            "optional": true,
+            "g1042Together": true
+          },
+          {
+            "op": "Target",
+            "to": "grave",
+            "g1086BelowGrave": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "9cdbf3c1360c72f35d4bd07a524f5a68b021a9e7190d145ecc437650a346d1d3",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22sd1-004"
+    },
+    {
+      "id": "dm22rp1-TR3",
+      "name": "次元の嵐 スコーラー",
+      "faces": [
+        {
+          "name": "次元の嵐 スコーラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 11,
+          "costText": "11",
+          "abilityText": "G・ゼロ：このターン中に自分の呪文を５枚以上唱えていれば、このクリーチャーをコストを支払わずに召喚してもよい。\nW・ブレイカー\nこのクリーチャーが召喚によって出た時、それがこのゲーム中に出した最初の《次元の嵐 スコーラー》なら、このターンの後に自分のターンを追加する。",
+          "race": "ムートピア/スペシャルズ",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-TR3",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-TR3.jpg",
+      "spec": {
+        "breaker": 2,
+        "g396Zero": {
+          "all": [
+            {
+              "g1086SpellsMin": 5
+            }
+          ]
+        },
+        "g1086FirstNamedEntry": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "f3fd187de124d48ccdf59764765e12b445fd37bfe75eee5242efa8cdc3b01fc4",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp07-s03"
+    },
+    {
+      "id": "dm22rp2X-014",
+      "name": "電脳呪文「ブレイン」",
+      "faces": [
+        {
+          "name": "電脳呪文「ブレイン」",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nシビルカウント４：自分の水のクリーチャーまたは水のタマシードが合計４つ以上あれば、この呪文をコストを支払わずに唱えてもよい。\nカードを３枚引く。\n自分のターン中にこの呪文を唱えたなら、このターン、自分は呪文を唱えられない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2X-014",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-014.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g261Free": {
+          "filter": {
+            "creatureOrSeed": true,
+            "color": "水",
+            "g258Civil": 4
+          },
+          "label": "シビルカウント4"
+        },
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "SpellLock489",
+            "owner": "self",
+            "ownTurn": true,
+            "expires": "end"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "9f93ffe175a75e35e0fdbaf06c8af2849730b60f56e6ff6ac9e73dc794b6735d",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-014"
+    },
+    {
+      "id": "dmex19-s8",
+      "name": "I am",
+      "faces": [
+        {
+          "name": "I am",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "自分のムートピアが５体以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。そうしたら、自分の進化ではないクリーチャーをすべて手札に戻す。\nNEO進化：水のクリーチャー１体の上に置いてもよい。\nT・ブレイカー\nこれがNEO進化クリーチャーなら、パワーを+10000し、「ワールド・ブレイカー」を与える。（「ワールド・ブレイカー」を持つクリーチャーはシールドをすべてブレイクする）",
+          "race": "ムートピア/スペシャルズ",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-s8",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-s8.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "水"
+            }
+          ]
+        },
+        "breaker": 3,
+        "g1086EvolvedWorld": true,
+        "g396Zero": {
+          "label": "ムートピア5体",
+          "all": [
+            {
+              "g370BattleCount": {
+                "filter": {
+                  "creature": true,
+                  "race": "ムートピア"
+                },
+                "min": 5
+              }
+            }
+          ]
+        },
+        "g1086FreeSummonEntry": [
+          {
+            "op": "Sweep",
+            "owner": "self",
+            "to": "hand",
+            "toOwnerHand": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "d5dd3a8e9b5d553ec19603bc81b2dd20fa3e487b035de19a834105743145d163",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp02-s04"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22sd1-004": 4,
+      "dm22rp2-014": 4,
+      "dmrp07-s03": 4,
+      "dmrp02-s04": 4,
+      "dm25rp4-024": 4,
+      "dm23ex2-074": 4,
+      "dm25sd1-011": 4,
+      "promoy24-spd1209": 4,
+      "dm23sp1-014": 4,
+      "dm22rp1-TR3": 4,
+      "dm22rp2X-014": 4,
+      "dmex19-s8": 4
+    }
+  }
+}

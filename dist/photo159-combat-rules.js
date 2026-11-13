@@ -27,6 +27,16 @@ export function createPhoto159CombatRules(api){
  case'g159C_Nyani':choice(s,t,'にやにYAH：使う効果を1つ選ぶ',[opt('相手のクリーチャーをすべてタップする','tap',living(s,1-t.p).filter(x=>!x.tapped).length*15),opt('Jビッグ1：他のジョーカーズの登場時能力を1つ使う','jbig',jBigEntries(s,t).length?25:0)]);break;
  case'g159C_Benzaman':choice(s,t,'使う効果を1つ選ぶ',[opt('カードを1枚引く','draw',own.deck.length>1?12:-100),opt('Jビッグ1：他のジョーカーズの登場時能力を1つ使う','jbig',jBigEntries(s,t).length?20:0)]);break;
  case'g159C_HitoridachiMonkid':choice(s,t,'使う効果を1つ選ぶ',[opt('クリーチャーを1体選び、タップまたはアンタップする','tapState',10),opt('Jビッグ1：他のジョーカーズの登場時能力を1つ使う','jbig',jBigEntries(s,t).length?20:0)]);break;
+ case'g159C_HitoridachiCamp':case'g159C_HitoridachiKent':{
+  const camp=t.op==='g159C_HitoridachiCamp';
+  choice(s,t,'使う効果を1つ選ぶ',[
+   opt(camp?'自分のクリーチャー1体をバトル中の破壊から守る':'山札の上から1枚をシールド化する',camp?'battleSafe':'shield',10),
+   opt('Jビッグ1：他のジョーカーズの登場時能力を1つ使う','jbig',jBigEntries(s,t).length?20:0)
+  ]);
+  break;
+ }
+ case'g159C_BattleSafe1088':put(s,task('g34_Target',t.p,t.source,{owner:'self',g521UntilStart:true,g565External:true,
+  grant:{g34BattleSafe:true},title:'バトルで破壊されない自分のクリーチャーを選ぶ'}));break;
  case'g159C_TapOrUntap':put(s,task('g34_Target',t.p,t.source,{anyOwner:true,g235TapOrUntap:true,title:'タップまたはアンタップするクリーチャーを選ぶ'}));break;
  case'g159C_TapEnemies':for(const x of living(s,1-t.p))api.tap(s,1-t.p,x);break;
  case'g159C_JBig':{const entries=jBigEntries(s,t);if(entries.length)choice(s,{...t,entries},'使うジョーカーズの登場時能力を1つ選ぶ',entries.map((e,i)=>opt(card(e.borrowedFrom).name+'：'+e.label,i,20,e.borrowedFrom)));break;}
@@ -43,10 +53,12 @@ export function createPhoto159CombatRules(api){
  case'g159C_Fight':if(v){const x=live(s,t),y=living(s,1-t.p).find(y=>y.uid===v);if(x&&y)api.battle(s,t.p,x,1-t.p,y,s.attack?.attacker);}break;
  case'g159C_WinMana':if(v)queue(s,t,'Deploy',{origin:'mana',target:v});break;
  case'g159C_Deploy':deploy(s,t,v);break;
- case'g159C_Nyani':case'g159C_Benzaman':case'g159C_HitoridachiMonkid':
+ case'g159C_Nyani':case'g159C_Benzaman':case'g159C_HitoridachiMonkid':case'g159C_HitoridachiCamp':case'g159C_HitoridachiKent':
   if(v==='tap')queue(s,t,'TapEnemies');
   else if(v==='tapState')queue(s,t,'TapOrUntap');
   else if(v==='draw')put(s,task('g34_Draw',t.p,t.source,{n:1}));
+  else if(v==='battleSafe')queue(s,t,'BattleSafe1088');
+  else if(v==='shield')put(s,task('g34_ShieldTop',t.p,t.source,{n:1}));
   else if(v==='jbig')queue(s,t,'JBig');
   break;
  case'g159C_JBig':if(t.entries[v])api.resolveEntry(s,t.entries[v]);break;

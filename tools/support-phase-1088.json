@@ -1,0 +1,258 @@
+{
+  "phase": 1088,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7230,
+  "description": "リクエストされた17枚のうち5枚を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/43075/",
+    "https://dm.takaratomy.co.jp/rule/qa/43076/",
+    "https://dm.takaratomy.co.jp/rule/qa/46822/"
+  ],
+  "cards": [
+    {
+      "id": "dm26ex2-004",
+      "name": "水蜃 フカフチノカミ",
+      "faces": [
+        {
+          "name": "水蜃 フカフチノカミ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーを[ww03]支払って召喚してもよい。そうしたら、このクリーチャーが出た時、自分のクリーチャーを１体手札に戻す。\nW・ブレイカー\n自分のロスト・クルセイダーが出た時、カードを１枚引いてもよい。\n相手のターンに１度、相手がカードを実行した時、自分の手札の枚数以下のコストを持つ水のロスト・クルセイダーを１つ、自分の手札から出してもよい。",
+          "race": "ミズガミ/ロスト・クルセイダー",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-004.jpg",
+      "spec": {
+        "breaker": 2,
+        "g568Alt": {
+          "cost": 3,
+          "paymentColors": [
+            "水"
+          ],
+          "entry": [
+            {
+              "op": "Target",
+              "owner": "self",
+              "to": "hand",
+              "toOwnerHand": true
+            }
+          ]
+        },
+        "g250EntryDraw": {
+          "self": true,
+          "filter": {
+            "race": "ロスト・クルセイダー"
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        },
+        "g1088ExecuteWatch": "fukafuchi"
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "0fec480a93a3b0e26a01b46523882be5702e14a6838e1890b9b43b7d8ddfd30f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex4-022",
+      "name": "アルケミック・プラチナム",
+      "faces": [
+        {
+          "name": "アルケミック・プラチナム",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\n相手がカードを実行した時、自分はカードを１枚引いてもよい。\n自分の手札が13枚以上あれば、自分のターンに１度、水のカードを自分の手札からコストを支払わずに実行してもよい。",
+          "race": "サイバーロード/ジ・アンサー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-022",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-022.jpg",
+      "spec": {
+        "justDiver": true,
+        "g1088ExecuteWatch": "platinum",
+        "g1088Platinum": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "7b6f317fe1743d7f2b37d7981cc9d527a1be9f94a954e2173fc45f908b396d78",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp3-030",
+      "name": "ヒトリダチ キャンベロ",
+      "faces": [
+        {
+          "name": "ヒトリダチ キャンベロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、次の中から１回選ぶ。\n▶自分のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーはバトル中破壊されない。\n▶Jビッグ１する。（自分の他のジョーカーズの、Jビッグ１以外の、出た時にトリガーする能力を１つ使う）\n相手のマナゾーンにあるカードの枚数よりコストが大きい相手のクリーチャーが出た時、相手はそれを山札の下に置く。",
+          "race": "ジョーカーズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-030",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp3-030.jpg",
+      "spec": {
+        "effect": "champion",
+        "g159CEffect": "HitoridachiCamp",
+        "g314OtherEntry": {
+          "who": "opponent",
+          "g1088EntrantOverMana": true,
+          "filter": {
+            "creature": true
+          },
+          "g1088Bottom": true
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "55037610b25c56478704d89b5f50e4ca44d351a713fddf07e2726bd29443e11c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp3-001",
+      "name": "ヒトリダチ ケントナーク",
+      "faces": [
+        {
+          "name": "ヒトリダチ ケントナーク",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー\nこのクリーチャーが出た時、次の中から１回選ぶ。\n▶自分の山札の上から１枚をシールド化する。\n▶Jビッグ１する。（自分の他のジョーカーズの、Jビッグ１以外の、出た時にトリガーする能力を１つ使う）\n各ターンに１度、自分のジョーカーズが離れる時、かわりに自分のシールドを１つ手札に加えてもよい。その「S・トリガー」は使えない。",
+          "race": "ジョーカーズ",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-001",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp3-001.jpg",
+      "spec": {
+        "blocker": true,
+        "effect": "champion",
+        "g159CEffect": "HitoridachiKent",
+        "g1088Kent": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "f4e72825ab68b9cdb212df8e23606375aef7b3f950909fd26b660d5b6e9019a1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-S4",
+      "name": "SC龍飛→SC風流",
+      "faces": [
+        {
+          "name": "SC龍飛→SC風流",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーは攻撃できない。\n自分がツインパクトカードの呪文側を手札から唱えた時、そのコストがクリーチャー側のコスト以上なら、唱えた後、そのカードを墓地に置くかわりに出す。\n自分がツインパクトカードのクリーチャー側を手札から召喚して出した時、そのコストが呪文側のコスト以上なら、そのカードの呪文側を、バトルゾーンに置いたまま、コストを支払わずに唱える。\nこのクリーチャーが離れる時、かわりに手札に戻してもよい。",
+          "race": "マジック・コマンド・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-S4",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-S4.jpg",
+      "spec": {
+        "noAttack": true,
+        "g1088Twin": true,
+        "g1088LeaveToHand": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "b8a52e33897374e3d5f53673e1306943a5d25685d0a0c3bb202f6f1ef52e8c02",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23rp1-4A",
+      "name": "SC龍飛→SC風流",
+      "faces": [
+        {
+          "name": "SC龍飛→SC風流",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーは攻撃できない。\n自分がツインパクトカードの呪文側を手札から唱えた時、そのコストがクリーチャー側のコスト以上なら、唱えた後、そのカードを墓地に置くかわりに出す。\n自分がツインパクトカードのクリーチャー側を手札から召喚して出した時、そのコストが呪文側のコスト以上なら、そのカードの呪文側を、バトルゾーンに置いたまま、コストを支払わずに唱える。\nこのクリーチャーが離れる時、かわりに手札に戻してもよい。",
+          "race": "マジック・コマンド・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-4A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-4A.jpg",
+      "spec": {
+        "noAttack": true,
+        "g1088Twin": true,
+        "g1088LeaveToHand": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "24784682cf9e8ab58ea17749196ce9eb73b74fce568cf7b08dbab34e1f914759",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp1-S4"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26ex2-004": 4,
+      "dm26ex4-022": 4,
+      "dm26rp3-030": 4,
+      "dm26rp3-001": 4,
+      "dm23rp1-S4": 4,
+      "dm23rp1-4A": 4
+    }
+  }
+}

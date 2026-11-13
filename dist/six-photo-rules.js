@@ -474,6 +474,7 @@ export function createSixPhotoRules(api){
    const source=s.players[p].battle.find(x=>x.uid===sourceUid&&!x.sealed);
    return !!source&&turboReady756(s,p,source);
   }
+  if(f.g1086SpellsMin!==undefined)return (s.players[p].spellsThisTurn||0)>=f.g1086SpellsMin;
   if(f.g1064ManaColors)return f.g1064ManaColors.every(color=>manaCondition267(s,p,{color,n:1}));
   if(f.g1064NoElements)return !s.players[p].battle.some(x=>!x.sealed&&!x.faceDown);
   if(f.g951AnyHandMin!==undefined)return s.players.some(player=>player.hand.length>=f.g951AnyHandMin);
@@ -1499,7 +1500,7 @@ export function createSixPhotoRules(api){
  // Sacrifice is optional; use only public enemy information to value the payoff.
  function seedReviveValue547(s,t,v,canDie){const d=t.defs?.[0];if(!d||!api.canMoveZone(s,t.p,'grave'))return-1000;const rows=list(s,{...t,...d,selected:[]}).map(r=>r.x);if(canDie&&matches(s,t.p,v,d.filter)&&canPut(s,t.p,v,'grave'))rows.push(v);if(!rows.length)return-1000;return Math.max(...rows.map(y=>{const c=card(y),entry=modeScore(s,{...t,source:y.cardId},c.g34Tasks||[]);return entry<=-900?-1000:10+cost(c)*3+entry;}));}
  function sacrificeValue413(s,t,defs){let score=modeScore(s,t,defs);if(score<=-900)return score;for(const d of defs){if(d.op==='Untap'&&d.g191First)score+=selfUntapValue542(s,t);else if(d.op==='OpponentSelect'){const xs=creatures(s,1-t.p).filter(y=>!y.sealed&&matches(s,1-t.p,y,d.filter));if(xs.length)score+=Math.min(...xs.map(y=>12+cost(effective(y,s))*2+api.power(y,false,s)/3000));}else if(d.op==='Select'&&d.owner==='opponent'&&d.origin==='battle'&&d.to==='grave'&&d.n===1)score+=modeScore(s,t,[{...d,op:'Target'}])-modeScore(s,t,[d]);else if(d.op==='DrawUpTo')score+=Math.min(d.n,Math.max(0,s.players[t.p].deck.length-1))*(s.players[t.p].hand.length<3?12:8);else if(d.op==='Look'&&d.g201Search&&!api.deckLocked(s,t.p)&&s.players[t.p].deck.length>1){const xs=s.players[t.p].deck.filter(y=>matches(s,t.p,y,d.stages[0].filter));if(xs.length)score+=10+Math.min(10,Math.max(...xs.map(y=>cost(card(y)))));}}return score;}
- function doPut(s,t,base=null){const owner=t.owner??t.p,own=s.players[owner],x=own[t.origin]?.find(x=>x.uid===t.target);if(!x||!matchesDeathDeployment960(t,x)||t.g550CostBudget!==undefined&&(x.zoneSerial||0)!==(t.serial550||0))return;if(t.execution&&faces(card(x))[t.face||0]?.type==='spell'){release(s,owner,x.uid);if(!api.canCast(s,t.p,faces(card(x))[t.face||0],t.origin))return;cast(s,t.p,x.uid,!t.payment,base,t.face||0,t.payment||null,t.origin);return;}if(!canPut(s,t.p,x,t.origin,!!t.execution)||card(x).gCastle&&!api.canAddShield(s,t.p))return;own.g34ManaHeld=(own.g34ManaHeld||[]).filter(uid=>uid!==x.uid);if(t.origin==='deck')release(s,owner,x.uid);if(t.execution)cast(s,t.p,x.uid,!t.payment,base,t.face||0,t.payment||null,t.origin,t.reason||'カードの能力');else{remove(own[t.origin],x.uid);if(card(x).gCastle){clear(x,'shields');x.faceUp=true;s.players[t.p].shields.push(x);api.notifyShieldAdded(s,t.p,x);(s.noManaUse??=[false,false])[t.p]=true;return;}clear(x,'battle');enter(s,t.p,x,base,{origin:t.origin,execution:false,tapped:!!t.tapped,...(t.g745Magibomber?{g745Magibomber:true}:{}),...(t.g781HyperEntry?{g781HyperEntry:t.source}:{}),...(t.g785Group===undefined?{}:{g785Group:t.g785Group}),...(t.g1082Dragon?{g1082Dragon:t.source}:{}),...(t.g1084SealedEntry?{g1084SealedEntry:true}:{}),...(t.g771DeploySpeed||t.g774Banky?{g771SpeedSpell:t.source,g774Banky:t.g774Banky}:{}),...(t.g791Grant?{g791Grant:t.g791Grant,g791Spell:t.source,g793FightOnEntry:t.g793FightOnEntry}:{})});
+ function doPut(s,t,base=null){const owner=t.owner??t.p,own=s.players[owner],x=own[t.origin]?.find(x=>x.uid===t.target);if(!x||!matchesDeathDeployment960(t,x)||t.g550CostBudget!==undefined&&(x.zoneSerial||0)!==(t.serial550||0))return;if(t.execution&&faces(card(x))[t.face||0]?.type==='spell'){release(s,owner,x.uid);if(!api.canCast(s,t.p,faces(card(x))[t.face||0],t.origin))return;cast(s,t.p,x.uid,!t.payment,base,t.face||0,t.payment||null,t.origin);return;}if(!canPut(s,t.p,x,t.origin,!!t.execution)||card(x).gCastle&&!api.canAddShield(s,t.p))return;own.g34ManaHeld=(own.g34ManaHeld||[]).filter(uid=>uid!==x.uid);if(t.origin==='deck')release(s,owner,x.uid);if(t.execution)cast(s,t.p,x.uid,!t.payment,base,t.face||0,t.payment||null,t.origin,t.reason||'カードの能力',false,t.g1087Grant?'g1087Sign:'+t.source:null);else{remove(own[t.origin],x.uid);if(card(x).gCastle){clear(x,'shields');x.faceUp=true;s.players[t.p].shields.push(x);api.notifyShieldAdded(s,t.p,x);(s.noManaUse??=[false,false])[t.p]=true;return;}clear(x,'battle');enter(s,t.p,x,base,{origin:t.origin,execution:false,tapped:!!t.tapped,...(t.g745Magibomber?{g745Magibomber:true}:{}),...(t.g781HyperEntry?{g781HyperEntry:t.source}:{}),...(t.g785Group===undefined?{}:{g785Group:t.g785Group}),...(t.g1082Dragon?{g1082Dragon:t.source}:{}),...(t.g1084SealedEntry?{g1084SealedEntry:true}:{}),...(t.g771DeploySpeed||t.g774Banky?{g771SpeedSpell:t.source,g774Banky:t.g774Banky}:{}),...(t.g791Grant?{g791Grant:t.g791Grant,g791Spell:t.source,g793FightOnEntry:t.g793FightOnEntry}:{})});
   if(t.tapAfterEntry)afterEntry(s,t.p,x,task('g34_Offer',t.p,t.source,{
    uid:x.uid,incarnation:x.incarnation||0,controller:t.controller??t.p,
    title:card(x).name+'をタップする？',defs:[{op:'SelfTap314',g536Source:true}]
@@ -2216,6 +2217,74 @@ export function createSixPhotoRules(api){
  }
  case'g34_IfHand246':if(own.hand.length<=t.max)start(s,t,t.defs);else if(t.elseDefs)start(s,t,t.elseDefs);break;
  case'g34_IfOwn':if(ownCondition(s,t.p,t.filter,t.uid,t.incarnation??null,t.lastKnownCount))start(s,t,t.defs);else if(t.elseDefs)start(s,t,t.elseDefs);break;
+ case'g34_Pradox1089':{
+  const ids=look(s,{...t,n:5}),peek=deckPeek841(own,ids);
+  choice(s,{...t,ids,g585Peek:peek},'文明を1つ選ぶ',
+   civilizations805.map(c=>opt(c,c,own.deck.some(y=>ids.includes(y.uid)&&matches(s,t.p,y,{creature:true,color:c,max:10}))?10:0)));
+  break;
+ }
+ case'g34_PradoxRest1089':{
+  const host=sourceHost474(s,t),ids=t.ids.filter(uid=>own.deck.some(x=>x.uid===uid));
+  if(host&&api.allLayers(host.x).some(x=>key(x)===key(t)&&x.summonedTurn===s.turn))
+   put(s,{...t,ids,op:'g34_PradoxRemaining1089',remaining:civilizations805.filter(c=>c!==t.color)});
+  else put(s,{...t,ids,op:'g34_Order',rest:'bottom',ordered:[]});
+  break;
+ }
+ case'g34_PradoxRemaining1089':{
+  const ids=t.ids.filter(uid=>own.deck.some(x=>x.uid===uid)),rows=own.deck.flatMap(y=>ids.includes(y.uid)&&canPut(s,t.p,y,'deck')?
+   t.remaining.filter(c=>matches(s,t.p,y,{creature:true,color:c,max:10})).map(c=>opt(card(y).name+'（'+c+'）',{uid:y.uid,color:c},10+cost(card(y)),y.cardId)) : []);
+  if(rows.length)choice(s,{...t,ids},'残りの文明につき1体まで出す？',[...rows,skip()]);
+  else put(s,{...t,ids,op:'g34_Order',rest:'bottom',ordered:[]});
+  break;
+ }
+ case'g34_BorrowMizuhanome1089':{
+  const enemy=1-t.p,deck=s.players[enemy].deck;
+  let found;
+  for(const x of deck.filter(x=>!reserved(s.players[enemy]).has(x.uid)).slice(0,api.lookCount(s,enemy,deck.length))){
+   const c=faces(card(x)).find(face=>face.type==='creature');
+   api.log(s,enemy,'reveal',card(t.source).name+'：山札から'+card(x).name+'を公開',{cardId:x.cardId});
+   if(c){found={x,c};break;}
+  }
+  let entries=[];
+  if(found&&zoneMove(s,enemy,'deck',found.x.uid,'grave',t)){
+   const text=String(found.c.text||'').split(/【呪文(?:面|側)】/,1)[0];
+   const literal=text.split('\n').filter(line=>line.normalize('NFKC').replace(/^\s*■?\s*/,'').startsWith('このクリーチャーが出た時')).length;
+   if(literal)entries=api.entryAbilities(s,t.p,found.x.cardId,{uid:t.uid,incarnation:t.incarnation||0,source:t.source,literal});
+  }
+  api.shuffleLibrary(s,enemy);
+  api.deckCheck(s,enemy);
+  if(entries.length&&s.winner===null&&!s.lossEvent)choice(s,{...t,entries},'墓地に置いたクリーチャーの「出た時」の能力を使う？',[
+   opt(card(found.x).name+'の能力を使う',true,20,found.x.cardId),skip()
+  ]);
+  break;
+ }
+ case'g34_Fukafuchi1088':{
+  const id='g1088Fukafuchi:'+key(t);
+  if(s.once?.[id]===s.turn)break;
+  (s.once??={})[id]=s.turn;
+  start(s,t,[{op:'HandCost262',defs:[{op:'Select',origin:'hand',n:1,deploy:true,optional:true,
+   filter:{race:'ロスト・クルセイダー',color:'水'},title:'手札の枚数以下の水のロスト・クルセイダーを1つ出す？'}]}]);
+  break;
+ }
+ case'g34_TwinInPlace1088':{
+  const host=sourceHost474(s,t.subject);
+  if(host&&host.p===t.p)api.castBattleSpell(s,t.p,t.subject.uid,t.subject.incarnation,t.subject.source,{label:'SC龍飛→SC風流'});
+  break;
+ }
+ case'g34_ManaReveal1087':{
+  const x=own.mana.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);
+  const rows=own.hand.filter(y=>faces(card(y)).some(c=>race(c,t.race)));
+  if(x?.tapped&&rows.length)choice(s,t,'ロスト・クルセイダーを1枚見せ、このカードをアンタップする？',
+   [...rows.map(y=>opt(card(y).name,y.uid,10,y.cardId)),skip()]);
+  break;
+ }
+ case'g34_ExileBoardAndGrave1087':{
+  for(const p of [0,1])if(api.canMoveZone(s,p,'grave'))for(const x of [...s.players[p].grave])
+   zoneMove(s,p,'grave',x.uid,'extra',t);
+  move(s,[0,1].flatMap(player=>[...(s.players[player].seals||[]),...s.players[player].battle]
+   .map(x=>({player,uid:x.uid,to:'extra',destroy:false,toOwnerExtra:true}))));
+  break;
+ }
  case'g34_HandCost262':{const n=own.hand.length;start(s,t,t.defs.map(d=>({...d,filter:{...d.filter,...(t.below?{belowCost:n}:{max:n})},...(d.g262Other?{excludeUid:t.uid}:{})})));break;}
  case'g34_Freeze262':for(const y of creatures(s,1-t.p))if(!y.sealed&&matches(s,1-t.p,y,t.filter))freeze(s,t,1-t.p,y);break;
  case'g34_Refill261':if(own.hand.length<=t.max)api.draw(s,t.p,Math.max(0,t.n-own.hand.length));break;
@@ -2411,6 +2480,11 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_CountDraw':{const n=countDraw(s,t.p,t);if(n)start(s,t,[t.optional==='each'?{op:'DrawUpTo',n,g203Draw:true,...(t.after?{after:t.after}:{})}:t.optional==='amount'?{op:'Draw',n,optional:true}:t.optional==='all'?{op:'Offer',title:'カードを'+n+'枚まとめて引く？',defs:[{op:'Draw',n}]}:{op:'Draw',n}]);break;}
+ case'g34_DrawAgainstHand1086':{
+  const drawn=api.draw(s,t.p,opp.hand.length);
+  if(drawn>1&&s.winner===null)start(s,t,[{op:'Discard',owner:'self',n:drawn-1}]);
+  break;
+ }
  case'g34_CountBlindDiscard983':{
   const n=countDraw(s,t.p,t);
   if(n)start(s,t,[{op:'BlindDiscard773',n}]);
@@ -2488,7 +2562,7 @@ export function createSixPhotoRules(api){
     t.to==='shields'&&!api.canAddShield(s,owner)?-10:20;
    choice(s,{...t,op:'g34_Offer',defs:[{...t,op:'ExactMove',optional:false}]},card(y).name+'を'+label+'？',[opt('実行する',true,score,y.cardId),skip()]);
   }else{
-   move(s,[{player:owner,uid:y.uid,to:t.to,destroy:t.to==='grave',controller:t.controller??t.p}]);
+   move(s,[{player:owner,uid:y.uid,to:t.to,destroy:t.to==='grave',controller:t.g1088OwnerMoves?owner:t.controller??t.p,...(t.g1088OwnerMoves?{toOwnerDeck:true,g1089OrderDeck:true}:{})}]);
    if(t.afterAttempt)start(s,t,t.afterAttempt);
   }
   break;
@@ -3737,6 +3811,7 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_Target':{
+  if(t.g1086BelowGrave)t={...t,filter:{...t.filter,belowCost:own.grave.length}};
   if(used792(s,t,t))break;
   if(t.to==='grave'&&t.filter?.maxPower===6000&&t.owner!=='self'&&!t.anyOwner&&
      card(t.source).type==='creature'&&
@@ -3874,7 +3949,9 @@ export function createSixPhotoRules(api){
   (s.extLimits??=[]).push({kind:'g613AttackDraw',player:t.p,source:t.source,turn:s.turn,expires:'end',who:s.active,
    ...(t.spell===false?{spell:false}:{}),...(t.optional?{optional:true}:{}),...(t.refs?{refs:t.refs,n:t.n}:{})});
   break;
- case'g34_SpellLock489':(s.extLimits??=[]).push({kind:t.max===undefined?'cast':'spellCostLock',player:1-t.p,controller:t.p,expires:t.expires,who:t.expires==='end'?s.active:t.p,...(t.max===undefined?{}:{max:t.max})});break;
+ case'g34_SpellLock489':
+  if(t.ownTurn&&s.active!==t.p)break;
+  (s.extLimits??=[]).push({kind:t.max===undefined?'cast':'spellCostLock',player:t.owner==='self'?t.p:1-t.p,controller:t.p,expires:t.expires,who:t.expires==='end'?s.active:t.p,...(t.max===undefined?{}:{max:t.max})});break;
  case'g34_AttackCap627':{
   const player=1-t.p;
   if(t.g1071NextTurn){
@@ -4053,7 +4130,7 @@ export function createSixPhotoRules(api){
   if(chosen)move(s,chainMatches838(rows,chosen).map(y=>({player:owner,uid:y.uid,to:'grave',destroy:true,controller:t.p})));
   break;
  }
- case'g34_TargetDestination467':{const r=t.target,y=s.players[r.p].battle.find(x=>x.uid===r.uid&&(x.incarnation||0)===r.incarnation&&!x.sealed),controller=t.g472EffectPlayer??t.p;if(y)move(s,[{player:r.p,uid:r.uid,to:v,destroy:v==='grave',controller}]);if(t.after)start(s,{...t,p:controller},t.after);break;}
+ case'g34_TargetDestination467':{const r=t.target,y=s.players[r.p].battle.find(x=>x.uid===r.uid&&(x.incarnation||0)===r.incarnation&&!x.sealed),controller=t.g1089OrderDeck?r.p:t.g472EffectPlayer??t.p;if(y)move(s,[{player:r.p,uid:r.uid,to:v,destroy:v==='grave',controller,...(t.g1089OrderDeck?{g1089OrderDeck:true,toOwnerDeck:true,orderDeckTop:true}:{})}]);if(t.after)start(s,{...t,p:controller},t.after);break;}
  case'g34_NullBreaker471':if(s.attack?.attacker===t.uid){s.attack.g471Breaker=v;api.resolveAttack(s,null);}break;
  case'g34_GrantedBreaker633':if(s.attack?.attacker===t.uid){s.attack.g633Breaker=v;api.resolveAttack(s,null);}break;
  case'g34_PayAura560':if(typeof v==='number'){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),g560Handled:true,g560Amount:v};api.cast(s,t.p,...args);}break;
@@ -4661,6 +4738,22 @@ export function createSixPhotoRules(api){
  case'g34_GuardOrder834':
  case'g34_Order':put(s,{...t,ids:t.ids.filter(uid=>uid!==v),ordered:[...(t.ordered||[]),v]});break;
  case'g34_Ramp':ramp(s,t,v);break;
+ case'g34_Pradox1089':put(s,{...t,op:'g34_Select',origin:'deck',g530Ids:t.ids,deploy:true,n:1,optional:true,
+  filter:{creature:true,color:v,max:10},after:[{op:'PradoxRest1089',ids:t.ids,color:v}],
+  title:'選んだ文明のコスト10以下のクリーチャーを1体まで出す'});break;
+ case'g34_PradoxRemaining1089':
+  if(v)put(s,{...t,op:'g34_Put',origin:'deck',target:v.uid,execution:false},
+   {...t,ids:t.ids.filter(uid=>uid!==v.uid),remaining:t.remaining.filter(c=>c!==v.color)});
+  else put(s,{...t,op:'g34_Order',rest:'bottom',ordered:[]});
+  break;
+ case'g34_BorrowMizuhanome1089':if(v)for(const e of t.entries)api.enqueue(s,t.p,e);break;
+ case'g34_ManaReveal1087':if(v){
+  const x=own.mana.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial),y=own.hand.find(x=>x.uid===v);
+  if(x&&y&&faces(card(y)).some(c=>race(c,t.race))){
+   api.log(s,t.p,'reveal',card(t.source).name+'：手札から'+card(y).name+'を公開',{cardId:y.cardId});
+   api.untap(s,t.p,x);
+  }
+ }break;
  case'g34_DrawUpTo':if(t.after){
   if(v){
    if(t.n>1)put(s,{...t,n:t.n-1,drawStarted:true});
@@ -4700,7 +4793,7 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
   break;
  }
- case'g34_Mill':if(v){const p=t.opponent?1-t.p:t.owner??t.p;api.mill(s,p,t.n==='∞'?s.players[p].deck.length:t.n);}break;
+ case'g34_Mill':if(v){const p=t.opponent?1-t.p:t.owner??t.p;api.mill(s,p,t.n==='∞'?s.players[p].deck.length:t.n,{together:t.g1042Together});}break;
  case'g34_ChooseUntap562':if(v){const y=own.battle.find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation);put(s,{...t,refs:[...(t.refs||[]),...(y?[v]:[])]});}else finishUntap562(s,t);break;
  case'g34_ChooseEndUntap501':if(v){
   const y=own.battle.find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation);
@@ -5178,7 +5271,7 @@ export function createSixPhotoRules(api){
  selectNullBreaker471(s,p,x){const c=effective(x,s);if(!c.g471NullBreaker||s.attack.g471Breaker||!s.players[1-p].shields.length||!c.gBreaker&&c.breaker!=='∞'&&!(c.breaker>0))return false;const n=(c.extraBreak||0)+(s.attack.g1076ExtraBreaks||0);choice(s,task('g34_NullBreaker471',p,x.cardId,{uid:x.uid}), 'この攻撃で使うブレイカーを選ぶ',[opt('ヌル・ブレイカー（'+n+'枚ブレイク）','null',0),opt('ほかのブレイカーを使う','normal',20)]);return true;},
  beginPayment560(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g560Handled||!summonAuras560(s,p,c).optional||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PayAura560',p,c.id,{c:payment,args}));return true;},
  beginPayment500(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g500Handled||!floorOptions500(s,p,c)[0]||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PayFloor500',p,c.id,{c:payment,args}));return true;},
- floorCost500(s,p,c,base){if(c.type!=='creature'||c.crossing)return base;const amounts=floorOptions500(s,p,c),aura=c.g500Amount===undefined?amounts[0]:amounts.includes(c.g500Amount)?c.g500Amount:0,n=aura+(c.g212CountDiscount?.minimum===2?countDiscountMax499(s,p,c):0)+(c.g211Sympathy?.minimum===2?sympathyAmount500(s,p,c):0);return n?Math.min(base,Math.max(2,base-n)):base;},
+ floorCost500(s,p,c,base){if(c.type!=='creature'||c.crossing)return base;if(c.g211Sympathy?.minimum===3)base=Math.min(base,Math.max(3,base-sympathyAmount500(s,p,c)));const amounts=floorOptions500(s,p,c),aura=c.g500Amount===undefined?amounts[0]:amounts.includes(c.g500Amount)?c.g500Amount:0,n=aura+(c.g212CountDiscount?.minimum===2?countDiscountMax499(s,p,c):0)+(c.g211Sympathy?.minimum===2?sympathyAmount500(s,p,c):0);return n?Math.min(base,Math.max(2,base-n)):base;},
  beginPayment499(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g499Handled||c.type!=='creature'||!c.g212CountDiscount?.optional||!countDiscountMax499(s,p,c)||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PayCount499',p,c.id,{c:payment,args}));return true;},
  beginPayment485(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g485Handled||!spellReductionMax485(s,p,c)||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PaySpell485',p,c.id,{c:payment,args}));return true;},
  beginPayment470(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g470Handled||!c.g470RevealReduction||!revealCards470(s,p,c).length)return false;put(s,task('g34_RevealPayment470',p,c.id,{c,args,revealed:null}));return true;},
@@ -5186,7 +5279,7 @@ export function createSixPhotoRules(api){
  revealCommitted470(s,p,c,payment){if(payment?.g470Revealed){const x=s.players[p].hand.find(x=>x.uid===payment.g470Revealed);if(x)api.log(s,p,'reveal',c.name+'の召喚のため手札を公開：'+card(x).name,{cardId:x.cardId,source:c.id});}},
  beginPayment464(s,p,c,args){if(args[1]||args[4]?.fixedPayment||c.g464Reducers!==undefined||!onceProviders464(s,p,c).length)return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PayOnce464',p,c.id,{c:payment,args,selected:[]}));return true;},
  conditionalDiscount261(s,p,c){return c.g261Discount&&ownCondition(s,p,c.g261Discount.filter)?c.g261Discount.amount:0;},
- sympathyDiscount211:(s,p,c)=>c.g211Sympathy?.minimum===2?0:sympathyAmount500(s,p,c),
+ sympathyDiscount211:(s,p,c)=>c.g211Sympathy?.minimum>=2?0:sympathyAmount500(s,p,c),
  discount(s,p,c){return nextReduction456(s,p,c)+(c.g34Role==='shinGod'?s.players[p].battle.filter(x=>!x.sealed&&mecha(effective(x,s))).length:0)+(c.type==='creature'&&colors(c).includes('自然')&&Number(c.power)>=12000?(s.g34Discounts||[]).filter(x=>x.p===p&&x.turn===s.turn).reduce((n,x)=>n+x.amount,0):0);},
  allowsNonLightSpells687(s,c,pendingBreak){
   if(c.type!=='spell'||colors(c).includes('光'))return true;
@@ -5213,6 +5306,11 @@ export function createSixPhotoRules(api){
  allowedEntry(s,p,c,options){if(c.type==='creature'&&(s.players[p].enteredThisTurn||0)>=2&&creatures(s,1-p).some(x=>!x.sealed&&effective(x,s).g320Next))return false;if(c.g298NoHandSummon&&options.execution&&options.origin==='hand')return false;if(c.type==='creature'&&s.active===1-p&&colors(c).length===1&&active(s,1-p,'superRoma').length)return false;return !options.execution||c.type!=='creature'||colors(c).includes('光')||!(active(s,0,'alphadios').length||active(s,1,'alphadios').length);},
  canLeave(s,p,x,context={}){
   const c=effective(x,s);
+  if((s.extLimits||[]).some(l=>l.kind==='g1087ElementsStay'&&l.player===p)&&!x.sealed)return false;
+  if(context.destroy===false&&api.isCreature(s,x)&&s.players[p].battle.some(y=>{
+   const r=card(y).g1087RaceStay;
+   return r&&!api.ignored(s,y)&&api.isCreature(s,y)&&race(c,r);
+  }))return false;
   if(c.g34Role==='engels'&&s.g34ShieldLeftTurn!==s.turn)return false;
   if(c.g34Role==='perfect'&&api.power(x,false,s)>0)return false;
   if(c.g619Stay&&ownCondition(s,p,c.g619Stay,x.uid,x.incarnation||0))return false;
@@ -5382,7 +5480,40 @@ export function createSixPhotoRules(api){
    if(defs)queue(s,1-p,watcher,defs);
   }
  },
+ handMana1087(s,p,x){
+  const race=card(x).g1087ManaReveal;
+  if(race)send(s,p,x,'ManaReveal1087',{serial:x.zoneSerial||0,race});
+ },
+ lostSignGrant1087(s,p,x,source){
+  (x.g34Grants??=[]).push({turn:s.turn,blocker:true,spellCost:cost(card(source)),spellSource:source});
+  (s.g537Delays??=[]).push({p,source,uid:x.uid,incarnation:x.incarnation||0,turn:s.turn,when:'nextOwnStart',
+   defs:[{op:'DelayedMove532',to:'hand',g774Banky:true}]});
+ },
+ magnum1087(s,executor){
+  for(const p of [s.active,1-s.active])for(const x of s.players[p].battle){
+   if(card(x).g1087Magnum&&api.isCreature(s,x)&&!api.ignored(s,x))
+    api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',
+     task:task('g34_Target',executor,x.cardId,{owner:'self',to:'grave',controller:p,title:'百発人形マグナム：破壊する自分のクリーチャーを1体選ぶ'})});
+  }
+ },
+ execution1088(s,p){
+  const enemy=1-p;
+  for(const x of creatures(s,enemy)){
+   if(api.ignored(s,x))continue;
+   const kind=card(x).g1088ExecuteWatch;
+   if(kind==='platinum')queue(s,enemy,x,[{op:'Draw',n:1,optional:true}]);
+   if(kind==='fukafuchi'&&s.active===p&&s.once?.['g1088Fukafuchi:'+key(x)]!==s.turn)
+    send(s,enemy,x,'Fukafuchi1088');
+  }
+ },
+ twinFinish1088(s,p){return creatures(s,p).some(x=>card(x).g1088Twin&&!api.ignored(s,x));},
  observedEntry(s,p,y,options){
+  const c=card(y),eventType=c.type;
+  if(options.execution&&options.origin==='hand'&&eventType==='creature'&&c.spellFace&&cost(c)>=cost(c.spellFace)){
+   for(const x of creatures(s,p))if(card(x).g1088Twin&&!api.ignored(s,x))
+    send(s,p,x,'TwinInPlace1088',{subject:{uid:y.uid,incarnation:y.incarnation||0,source:y.cardId}});
+  }
+  if(!options.paidMana&&['creature','gear'].includes(eventType))hooks.magnum1087(s,p);
   if(p===s.active&&s.g936DreamOrVehicleEntryTurn!==s.turn&&!y.sealed&&api.isCreature(s,y)){
    const entered=effective(y,s,true);
    if(race(entered,'ドリームメイト')||race(entered,'ビークル・ビー'))s.g936DreamOrVehicleEntryTurn=s.turn;
@@ -5536,7 +5667,7 @@ export function createSixPhotoRules(api){
    if(watch.entryCount!==undefined&&s.players[p].enteredThisTurn!==watch.entryCount)continue;
    if(watch.minEntryCount!==undefined&&(s.players[p].enteredThisTurn||0)<watch.minEntryCount)continue;
    if(watch.ownTurn&&owner!==s.active||used792(s,x,watch.defs?.[0])||watch.filter&&!matches(s,p,y,watch.filter))continue;
-   if(watch.g778OverMana&&cost(effective(y,s))<=s.players[owner].mana.length)continue;
+   if(watch.g778OverMana&&cost(effective(y,s))<=s.players[owner].mana.length||watch.g1088EntrantOverMana&&cost(effective(y,s))<=s.players[p].mana.length)continue;
    if(watch.g910HigherPower&&currentPower506(s,y)<=currentPower506(s,x))continue;
    if(watch.g755EntrantPower)send(s,owner,x,'EntryBoost755',{
     subject:{uid:y.uid,incarnation:y.incarnation||0},power:watch.g755EntrantPower
@@ -5546,6 +5677,9 @@ export function createSixPhotoRules(api){
     const value=cost(effective(y,s));
     send(s,owner,x,'DeathRecovery831',{g831Subject:{uid:y.uid,incarnation:y.incarnation||0,cost:value===Infinity?'∞':value}});
    }
+   else if(watch.g1088Bottom)send(s,owner,x,'ExactMove',{
+    target:y.uid,targetIncarnation:y.incarnation||0,to:'deck',g1088OwnerMoves:true
+   });
    else if(watch.g765CopyPower)send(s,owner,x,'CopyPower765',{g765Subject:{uid:y.uid,incarnation:y.incarnation||0}});
    else queue(s,owner,x,watch.defs);
   }
@@ -5990,6 +6124,15 @@ export function createSixPhotoRules(api){
   return score;
  },
  mainActions(s,p){const own=s.players[p],out=[];
+  if(own.hand.length>=13)for(const source of creatures(s,p)){
+   const permit='g1088Platinum:'+key(source);
+   if(api.ignored(s,source)||!card(source).g1088Platinum||s.once?.[permit]===s.turn)continue;
+   for(const x of own.hand)for(const [face,c] of faces(card(x)).entries())
+    if(colors(c).includes('水')&&api.canCast(s,p,c,'hand')&&
+     (c.type==='spell'||api.canEnter(s,p,c,{origin:'hand',execution:true}))&&(!c.evolution||api.evolutionBases(s,p,c).length))
+     out.push({kind:'play',uid:x.uid,face,cardId:x.cardId,origin:'hand',cost:0,manaPermit:permit,
+      freeSummon:'アルケミック・プラチナム',label:c.name+'をアルケミック・プラチナムで実行'});
+  }
   // Alternative payment changes neither printed civilizations nor zone permissions.
   for(const origin of['hand','mana','grave'])for(const x of own[origin]){
    const c=api.zoneCard(s,p,x,origin),payment=tapCastCost976(c);

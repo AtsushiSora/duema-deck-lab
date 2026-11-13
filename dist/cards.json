@@ -215736,15 +215736,622 @@
       ],
       "supportBatch": "phase-1085",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22sd1-004",
+      "name": "ハンマ＝ダンマ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "アビスロイヤル",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、自分の山札の上から３枚を墓地に置いてもよい。その後、自分の墓地にあるカードの枚数よりコストが小さい相手のクリーチャーを１体、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22sd1-004",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 3,
+          "optional": true,
+          "g1042Together": true
+        },
+        {
+          "op": "Target",
+          "to": "grave",
+          "g1086BelowGrave": true
+        }
+      ],
+      "supportBatch": "phase-1086",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-014",
+      "name": "電脳呪文「ブレイン」",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nシビルカウント４：自分の水のクリーチャーまたは水のタマシードが合計４つ以上あれば、この呪文をコストを支払わずに唱えてもよい。\nカードを３枚引く。\n自分のターン中にこの呪文を唱えたなら、このターン、自分は呪文を唱えられない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-014",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g261Free": {
+        "filter": {
+          "creatureOrSeed": true,
+          "color": "水",
+          "g258Civil": 4
+        },
+        "label": "シビルカウント4"
+      },
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 3
+        },
+        {
+          "op": "SpellLock489",
+          "owner": "self",
+          "ownTurn": true,
+          "expires": "end"
+        }
+      ],
+      "supportBatch": "phase-1086",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-s03",
+      "name": "次元の嵐 スコーラー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 11,
+      "power": 11000,
+      "race": "ムートピア/スペシャルズ",
+      "text": "G・ゼロ：このターン中に自分の呪文を５枚以上唱えていれば、このクリーチャーをコストを支払わずに召喚してもよい。\nW・ブレイカー\nこのクリーチャーが召喚によってバトルゾーンに出た時、それがこのゲーム中にバトルゾーンに出した最初の《次元の嵐 スコーラー》なら、このターンの後で自分のターンをもう一度行う。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-s03",
+      "limit": 4,
+      "breaker": 2,
+      "g396Zero": {
+        "all": [
+          {
+            "g1086SpellsMin": 5
+          }
+        ]
+      },
+      "g1086FirstNamedEntry": true,
+      "supportBatch": "phase-1086",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp02-s04",
+      "name": "I am",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 15000,
+      "race": "ムートピア/スペシャルズ",
+      "text": "バトルゾーンに自分のムートピアが５体以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。そうしたら、自分の進化ではないクリーチャーをすべて手札に戻す。\nNEO進化：自分の水のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nT・ブレイカー\nこれがNEO進化クリーチャーなら、パワーを+10000し、「ワールド・ブレイカー」を与える。（「ワールド・ブレイカー」を持つクリーチャーはシールドをすべてブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-s04",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "水"
+          }
+        ]
+      },
+      "breaker": 3,
+      "g1086EvolvedWorld": true,
+      "g396Zero": {
+        "label": "ムートピア5体",
+        "all": [
+          {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "race": "ムートピア"
+              },
+              "min": 5
+            }
+          }
+        ]
+      },
+      "g1086FreeSummonEntry": [
+        {
+          "op": "Sweep",
+          "owner": "self",
+          "to": "hand",
+          "toOwnerHand": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1086",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp4-024",
+      "name": "メルニアの虹勲章",
+      "civ": "光/水/闇",
+      "civilizations": [
+        "光",
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 3,
+      "power": 0,
+      "race": "リキッド・ピープル/ゴースト/フュージョナー",
+      "text": "シンカライズ（このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい）\nこのタマシードが出た時、相手の手札にあるカード１枚につき、カードを１枚引く。その後、引いた枚数より１枚少ない枚数、自分の手札を捨てる。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nブロッカー ブロッカー\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-024",
+      "limit": 4,
+      "shinkalize": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DrawAgainstHand1086"
+        }
+      ],
+      "g404Soul": {
+        "blocker": true,
+        "slayer": true
+      },
+      "supportBatch": "phase-1086",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex2-030",
+      "name": "宿命の決闘",
+      "civ": "光/水/闇",
+      "civilizations": [
+        "光",
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "ロスト・クルセイダー・ワード",
+      "text": "S・トリガー S・トリガー\nカードを２枚引く。その後、自分の手札の枚数以下のコストを持つ相手のクリーチャーをすべて、持ち主の手札に戻す。\nこのカードを自分の手札からマナゾーンに置いた時、自分の手札にあるロスト・クルセイダー・カードを１枚、表向きにしてもよい。そうしたら、このカードをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-030",
+      "limit": 4,
+      "trigger": true,
+      "g1087ManaReveal": "ロスト・クルセイダー",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        },
+        {
+          "op": "HandCost262",
+          "defs": [
+            {
+              "op": "Sweep",
+              "filter": {
+                "creature": true
+              },
+              "to": "hand",
+              "toOwnerHand": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1087",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex1-N011",
+      "name": "インビンシブル・アポカリプス",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 13,
+      "power": 0,
+      "race": "",
+      "text": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n次の自分のターンのはじめまで、自分のエレメントは離れない。\nすべてのエレメントを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-N011",
+      "limit": 4,
+      "gStrike": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Lock",
+          "g746Self": true,
+          "limit": {
+            "kind": "g1087ElementsStay"
+          }
+        },
+        {
+          "op": "Sweep",
+          "both": true
+        }
+      ],
+      "supportBatch": "phase-1087",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex2-SPR001",
+      "name": "瀑水神 ミヅハノオオミカミ",
+      "civ": "光/水/闇",
+      "civilizations": [
+        "光",
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 12,
+      "power": 17500,
+      "race": "ミズガミ/ロスト・クルセイダー・ドラゴン",
+      "text": "シンパシー：自分のロスト・クルセイダー・クリーチャー（このカードの実行コストを、自分のロスト・クルセイダー・クリーチャー１体につき１少なくする。ただしコストは２以下にならない）\nブロッカー ブロッカー\nT・ブレイカー\n自分のロスト・クルセイダー・クリーチャーは、破壊以外の方法で離れない。\nこのクリーチャーが召喚によって出た時、各プレイヤーはバトルゾーンと墓地にある自身のカードをすべて超次元ゾーンに置く。その後、自分はカードを３枚まで引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-SPR001",
+      "limit": 4,
+      "breaker": 3,
+      "blocker": true,
+      "g211Sympathy": {
+        "amount": 1,
+        "minimum": 3,
+        "filter": {
+          "race": "ロスト・クルセイダー"
+        }
+      },
+      "g1087RaceStay": "ロスト・クルセイダー",
+      "g1087SummonEntry": [
+        {
+          "op": "ExileBoardAndGrave1087"
+        },
+        {
+          "op": "DrawUpTo",
+          "n": 3
+        }
+      ],
+      "supportBatch": "phase-1087",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex2-046",
+      "name": "断罪のロスト・サイン",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "ロスト・クルセイダー・ワード",
+      "text": "S・トリガー S・トリガー\n自分の山札をシャッフルし、上から４枚を見る。その中から、ロスト・クルセイダー・クリーチャーを１体、コストを支払わずに召喚してもよい。残りを好きな順序で山札の下に置く。このターン、そのクリーチャーに「ブロッカー」を与える。次の自分のターンのはじめに、そのクリーチャーを手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-046",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Shuffle405"
+        },
+        {
+          "op": "LookDeploy530",
+          "n": 4,
+          "limit": 1,
+          "rest": "bottom",
+          "filter": {
+            "creature": true,
+            "race": "ロスト・クルセイダー"
+          },
+          "execution": true,
+          "g1087Grant": true,
+          "title": "ロスト・クルセイダーを1体まで選び、コストを支払わずに召喚する"
+        }
+      ],
+      "supportBatch": "phase-1087",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm20-013",
+      "name": "百発人形マグナム",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "デスパペット",
+      "text": "マナゾーンのカードをタップせずに、誰かがクリーチャーまたはクロスギアをバトルゾーンに出した時または呪文を唱えた時、そのプレイヤーは自分自身のクリーチャーを１体選んで破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-013",
+      "limit": 4,
+      "g1087Magnum": true,
+      "supportBatch": "phase-1087",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex2-004",
+      "name": "水蜃 フカフチノカミ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "ミズガミ/ロスト・クルセイダー",
+      "text": "このクリーチャーを[ww03]支払って召喚してもよい。そうしたら、このクリーチャーが出た時、自分のクリーチャーを１体手札に戻す。\nW・ブレイカー\n自分のロスト・クルセイダーが出た時、カードを１枚引いてもよい。\n相手のターンに１度、相手がカードを実行した時、自分の手札の枚数以下のコストを持つ水のロスト・クルセイダーを１つ、自分の手札から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-004",
+      "limit": 4,
+      "breaker": 2,
+      "g568Alt": {
+        "cost": 3,
+        "paymentColors": [
+          "水"
+        ],
+        "entry": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "to": "hand",
+            "toOwnerHand": true
+          }
+        ]
+      },
+      "g250EntryDraw": {
+        "self": true,
+        "filter": {
+          "race": "ロスト・クルセイダー"
+        },
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "g1088ExecuteWatch": "fukafuchi",
+      "supportBatch": "phase-1088",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex4-022",
+      "name": "アルケミック・プラチナム",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "サイバーロード/ジ・アンサー",
+      "text": "ジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\n相手がカードを実行した時、自分はカードを１枚引いてもよい。\n自分の手札が13枚以上あれば、自分のターンに１度、水のカードを自分の手札からコストを支払わずに実行してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-022",
+      "limit": 4,
+      "justDiver": true,
+      "g1088ExecuteWatch": "platinum",
+      "g1088Platinum": true,
+      "supportBatch": "phase-1088",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp3-030",
+      "name": "ヒトリダチ キャンベロ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ジョーカーズ",
+      "text": "このクリーチャーが出た時、次の中から１回選ぶ。\n▶自分のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーはバトル中破壊されない。\n▶Jビッグ１する。（自分の他のジョーカーズの、Jビッグ１以外の、出た時にトリガーする能力を１つ使う）\n相手のマナゾーンにあるカードの枚数よりコストが大きい相手のクリーチャーが出た時、相手はそれを山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-030",
+      "limit": 4,
+      "effect": "champion",
+      "g159CEffect": "HitoridachiCamp",
+      "g314OtherEntry": {
+        "who": "opponent",
+        "g1088EntrantOverMana": true,
+        "filter": {
+          "creature": true
+        },
+        "g1088Bottom": true
+      },
+      "supportBatch": "phase-1088",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp3-001",
+      "name": "ヒトリダチ ケントナーク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4500,
+      "race": "ジョーカーズ",
+      "text": "ブロッカー ブロッカー\nこのクリーチャーが出た時、次の中から１回選ぶ。\n▶自分の山札の上から１枚をシールド化する。\n▶Jビッグ１する。（自分の他のジョーカーズの、Jビッグ１以外の、出た時にトリガーする能力を１つ使う）\n各ターンに１度、自分のジョーカーズが離れる時、かわりに自分のシールドを１つ手札に加えてもよい。その「S・トリガー」は使えない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-001",
+      "limit": 4,
+      "blocker": true,
+      "effect": "champion",
+      "g159CEffect": "HitoridachiKent",
+      "g1088Kent": true,
+      "supportBatch": "phase-1088",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-S4",
+      "name": "SC龍飛→SC風流",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 5000,
+      "race": "マジック・コマンド・ドラゴン",
+      "text": "このクリーチャーは攻撃できない。\n自分がツインパクトカードの呪文側を手札から唱えた時、そのコストがクリーチャー側のコスト以上なら、唱えた後、そのカードを墓地に置くかわりに出す。\n自分がツインパクトカードのクリーチャー側を手札から召喚して出した時、そのコストが呪文側のコスト以上なら、そのカードの呪文側を、バトルゾーンに置いたまま、コストを支払わずに唱える。\nこのクリーチャーが離れる時、かわりに手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-S4",
+      "limit": 4,
+      "noAttack": true,
+      "g1088Twin": true,
+      "g1088LeaveToHand": true,
+      "supportBatch": "phase-1088",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-003",
+      "name": "叛逆の絆",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 8000,
+      "race": "アウトレイジ・コマンドMAX",
+      "text": "革命０トリガー：クリーチャーが自分を攻撃する時、自分のシールドが１つもなければ、このクリーチャーを手札から表向きにしてもよい。そうしたら、自分の山札の上から１枚を表向きにする。それが水の、進化ではないクリーチャーなら出し、このクリーチャーをその上に置く。\n進化：水のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが出た時または攻撃する時、相手のクリーチャーを１体選ぶ。相手はそれを山札の上か下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-003",
+      "limit": 4,
+      "evolution": {
+        "civilization": "水"
+      },
+      "breaker": 2,
+      "g50RevolutionColor": "水",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "g467Destinations": [
+            "deckTop",
+            "deck"
+          ],
+          "g472OwnerDestination": true,
+          "g1089OrderDeck": true
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Target",
+          "g467Destinations": [
+            "deckTop",
+            "deck"
+          ],
+          "g472OwnerDestination": true,
+          "g1089OrderDeck": true
+        }
+      ],
+      "supportBatch": "phase-1089",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex2-004",
+      "name": "水神 ミヅハノメノカミ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 8000,
+      "race": "ミズガミ/ロスト・クルセイダー・ドラゴン",
+      "text": "ブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーは、呪文によって相手に選ばれない。\nこのクリーチャーが出た時または自分のターンのはじめに、相手は自身の山札の上からクリーチャーが出るまで表向きにし、そのクリーチャーを墓地に置き、山札をシャッフルする。自分はこうして墓地に置いたクリーチャーの「このクリーチャーが出た時」で始まる能力をすべて使ってもよい。\n相手のクリーチャーが攻撃するなら、その攻撃先は自分が選ぶ。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-004",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "spellUntargetable": true,
+      "g1089ChooseDefense": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BorrowMizuhanome1089"
+        }
+      ],
+      "g174Start": [
+        {
+          "op": "BorrowMizuhanome1089"
+        }
+      ],
+      "supportBatch": "phase-1089",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex2-028",
+      "name": "邪帝類五龍目 プラドックス",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 15,
+      "power": 21000,
+      "race": "ジュラシック・コマンド・ドラゴン",
+      "text": "NEO進化：自然のクリーチャー１体の上に置いてもよい。\nQ・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から５枚を見て、文明を１つ選ぶ。その中から、選んだ文明を持つコスト10以下のクリーチャーを１体出してもよい。その後、このクリーチャーが召喚によって出ていたら、残りの中から選ばなかった各文明を持つコスト10以下のクリーチャーを１体ずつ出してもよい。残りを好きな順序で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-028",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "breaker": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Pradox1089"
+        }
+      ],
+      "supportBatch": "phase-1089",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1085,
+    "phase": 1089,
     "checkedAt": "2026-11-13",
-    "baseCount": 7218,
-    "newEffectCards": 2,
+    "baseCount": 7235,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7220,
+    "totalCount": 7238,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -235053,6 +235660,54 @@
         "newEffectCards": 2,
         "newVanillaCards": 0,
         "totalCount": 7218,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1085,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7218,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 7220,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1086,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7220,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 7225,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1087,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7225,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 7230,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1088,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7230,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 7235,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

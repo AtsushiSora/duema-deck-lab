@@ -6160,6 +6160,88 @@ export function standardCardSpec(d,{phase=165}={}){
    'このクリーチャーが攻撃する時バトルゾーンにあるクロスギアを1枚選び持ち主の墓地に置く。クロスギアがバトルゾーンから墓地に置かれた時カードを1枚引いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
    return {breaker:2,g34Attack:[{op:'Target',element:true,anyOwner:true,filter:{g201Gear:true},to:'grave',title:'墓地に置くクロスギアを1枚選ぶ'}],g933GearGraveDraw:true};
  }
+ if(phase>=1089&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const revolt='革命0トリガー:クリーチャーが自分を攻撃する時自分のシールドが1つもなければこのクリーチャーを手札から表向きにしてもよい。そうしたら自分の山札の上から1枚を表向きにする。それが水の進化ではないクリーチャーなら出しこのクリーチャーをその上に置く。進化:水のクリーチャー1体の上に置く。W・ブレイカーこのクリーチャーが出た時または攻撃する時相手のクリーチャーを1体選ぶ。相手はそれを山札の上か下に置く。';
+  if(f.typeText==='進化クリーチャー'&&text===revolt){
+   const defs=[{op:'Target',g467Destinations:['deckTop','deck'],g472OwnerDestination:true,g1089OrderDeck:true}];
+   return {evolution:{civilization:'水'},breaker:2,g50RevolutionColor:'水',effect:'sixPhoto',g34Tasks:defs,g34Attack:defs};
+  }
+  const pradox='NEO進化:自然のクリーチャー1体の上に置いてもよい。Q・ブレイカーこのクリーチャーが出た時自分の山札の上から5枚を見て文明を1つ選ぶ。その中から選んだ文明を持つコスト10以下のクリーチャーを1体出してもよい。その後このクリーチャーが召喚によって出ていたら残りの中から選ばなかった各文明を持つコスト10以下のクリーチャーを1体ずつ出してもよい。残りを好きな順序で山札の下に置く。';
+  if(f.typeText==='NEOクリーチャー'&&text===pradox)
+   return {neoEvolution:{any:[{civilization:'自然'}]},breaker:4,effect:'sixPhoto',g34Tasks:[{op:'Pradox1089'}]};
+  const mizuhanome='ブロッカーブロッカーW・ブレイカーこのクリーチャーは呪文によって相手に選ばれない。このクリーチャーが出た時または自分のターンのはじめに相手は自身の山札の上からクリーチャーが出るまで表向きにしそのクリーチャーを墓地に置き山札をシャッフルする。自分はこうして墓地に置いたクリーチャーの「このクリーチャーが出た時」で始まる能力をすべて使ってもよい。相手のクリーチャーが攻撃するならその攻撃先は自分が選ぶ。';
+  if(f.typeText==='クリーチャー'&&text===mizuhanome){
+   const defs=[{op:'BorrowMizuhanome1089'}];
+   return {blocker:true,breaker:2,spellUntargetable:true,g1089ChooseDefense:true,effect:'sixPhoto',g34Tasks:defs,g174Start:defs};
+  }
+ }
+ if(phase>=1088&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText),lost='ロスト・クルセイダー';
+  const shinto='このクリーチャーを[ww03]支払って召喚してもよい。そうしたらこのクリーチャーが出た時自分のクリーチャーを1体手札に戻す。W・ブレイカー自分のロスト・クルセイダーが出た時カードを1枚引いてもよい。相手のターンに1度相手がカードを実行した時自分の手札の枚数以下のコストを持つ水のロスト・クルセイダーを1つ自分の手札から出してもよい。';
+  if(text===shinto)return {breaker:2,g568Alt:{cost:3,paymentColors:['水'],entry:[{op:'Target',owner:'self',to:'hand',toOwnerHand:true}]},
+   g250EntryDraw:{self:true,filter:{race:lost},defs:[{op:'Draw',n:1,optional:true}]},g1088ExecuteWatch:'fukafuchi'};
+  const platinum='ジャストダイバー(このクリーチャーが出た時次の自分のターンのはじめまでこのクリーチャーは相手に選ばれず攻撃されない)相手がカードを実行した時自分はカードを1枚引いてもよい。自分の手札が13枚以上あれば自分のターンに1度水のカードを自分の手札からコストを支払わずに実行してもよい。';
+  if(text===platinum)return {justDiver:true,g1088ExecuteWatch:'platinum',g1088Platinum:true};
+  const jbig='▶Jビッグ1する。(自分の他のジョーカーズのJビッグ1以外の出た時にトリガーする能力を1つ使う)';
+  const choose='このクリーチャーが出た時次の中から1回選ぶ。';
+  const camp='▶自分のクリーチャーを1体選ぶ。次の自分のターンのはじめまでそのクリーチャーはバトル中破壊されない。';
+  if(text===choose+camp+jbig+'相手のマナゾーンにあるカードの枚数よりコストが大きい相手のクリーチャーが出た時相手はそれを山札の下に置く。')
+   return {effect:'champion',g159CEffect:'HitoridachiCamp',g314OtherEntry:{who:'opponent',g1088EntrantOverMana:true,filter:{creature:true},g1088Bottom:true}};
+  if(text==='ブロッカーブロッカー'+choose+'▶自分の山札の上から1枚をシールド化する。'+jbig+'各ターンに1度自分のジョーカーズが離れる時かわりに自分のシールドを1つ手札に加えてもよい。その「S・トリガー」は使えない。')
+   return {blocker:true,effect:'champion',g159CEffect:'HitoridachiKent',g1088Kent:true};
+  const sc='このクリーチャーは攻撃できない。自分がツインパクトカードの呪文側を手札から唱えた時そのコストがクリーチャー側のコスト以上なら唱えた後そのカードを墓地に置くかわりに出す。自分がツインパクトカードのクリーチャー側を手札から召喚して出した時そのコストが呪文側のコスト以上ならそのカードの呪文側をバトルゾーンに置いたままコストを支払わずに唱える。このクリーチャーが離れる時かわりに手札に戻してもよい。';
+  if(text===sc)return {noAttack:true,g1088Twin:true,g1088LeaveToHand:true};
+ }
+ if(phase>=1087&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText),trigger='S・トリガーS・トリガー',lost='ロスト・クルセイダー';
+  const duel='カードを2枚引く。その後自分の手札の枚数以下のコストを持つ相手のクリーチャーをすべて持ち主の手札に戻す。このカードを自分の手札からマナゾーンに置いた時自分の手札にあるロスト・クルセイダー・カードを1枚表向きにしてもよい。そうしたらこのカードをアンタップする。';
+  if(f.typeText==='呪文'&&text===trigger+duel)
+   return {trigger:true,g1087ManaReveal:lost,effect:'sixPhoto',g34Tasks:[{op:'Draw',n:2},{op:'HandCost262',defs:[{op:'Sweep',filter:{creature:true},to:'hand',toOwnerHand:true}]}]};
+  const apocalypse='{GS}G・ストライク(このカードを自分のシールドゾーンから手札に加える時表向きにし相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)次の自分のターンのはじめまで自分のエレメントは離れない。すべてのエレメントを破壊する。';
+  if(f.typeText==='呪文'&&text===apocalypse)
+   return {gStrike:true,effect:'sixPhoto',g34Tasks:[{op:'Lock',g746Self:true,limit:{kind:'g1087ElementsStay'}},{op:'Sweep',both:true}]};
+  const omikami='シンパシー:自分のロスト・クルセイダー・クリーチャー(このカードの実行コストを自分のロスト・クルセイダー・クリーチャー1体につき1少なくする。ただしコストは2以下にならない)ブロッカーブロッカーT・ブレイカー自分のロスト・クルセイダー・クリーチャーは破壊以外の方法で離れない。このクリーチャーが召喚によって出た時各プレイヤーはバトルゾーンと墓地にある自身のカードをすべて超次元ゾーンに置く。その後自分はカードを3枚まで引く。';
+  if(f.typeText==='クリーチャー'&&text===omikami)
+   return {breaker:3,blocker:true,g211Sympathy:{amount:1,minimum:3,filter:{race:lost}},
+    g1087RaceStay:lost,g1087SummonEntry:[{op:'ExileBoardAndGrave1087'},{op:'DrawUpTo',n:3}]};
+  const sign='自分の山札をシャッフルし上から4枚を見る。その中からロスト・クルセイダー・クリーチャーを1体コストを支払わずに召喚してもよい。残りを好きな順序で山札の下に置く。このターンそのクリーチャーに「ブロッカー」を与える。次の自分のターンのはじめにそのクリーチャーを手札に戻す。';
+  if(f.typeText==='呪文'&&text===trigger+sign)
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Shuffle405'},{op:'LookDeploy530',n:4,limit:1,rest:'bottom',
+    filter:{creature:true,race:lost},execution:true,g1087Grant:true,title:'ロスト・クルセイダーを1体まで選び、コストを支払わずに召喚する'}]};
+  const magnum='マナゾーンのカードをタップせずに誰かがクリーチャーまたはクロスギアをバトルゾーンに出した時または呪文を唱えた時そのプレイヤーは自分自身のクリーチャーを1体選んで破壊する。';
+  const magnumReprint='いずれかのプレイヤーがマナゾーンのカードをタップせずにクリーチャーまたはクロスギアをバトルゾーンに出した時または呪文を唱えた時そのプレイヤーは自身のクリーチャーを1体選んで破壊する。';
+  const modernMagnum=magnumReprint.replace('をバトルゾーンに出した時','を出した時');
+  if(f.typeText==='クリーチャー'&&[magnum,magnumReprint,modernMagnum,modernMagnum.replace('いずれかのプレイヤーが','プレイヤーが自身の')].includes(text))
+   return {g1087Magnum:true};
+ }
+ if(phase>=1086&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const trigger='S・トリガーS・トリガー';
+  const mill='このクリーチャーが出た時自分の山札の上から3枚を墓地に置いてもよい。その後自分の墓地にあるカードの枚数よりコストが小さい相手のクリーチャーを1体破壊する。';
+  const creatureReminder='(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)';
+  if(f.typeText==='クリーチャー'&&[trigger+creatureReminder+mill,trigger+mill,'S・トリガー'+mill].includes(text.replace('(このカードをシールドゾーンから手札に加える時コストを支払わずにすぐ実行してもよい)',creatureReminder).replace('相手のクリーチャーを1体選び破壊する。','相手のクリーチャーを1体破壊する。')))
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Mill',n:3,optional:true,g1042Together:true},
+    {op:'Target',to:'grave',g1086BelowGrave:true}
+   ]};
+  const brain='シビルカウント4:自分の水のクリーチャーまたは水のタマシードが合計4つ以上あればこの呪文をコストを支払わずに唱えてもよい。カードを3枚引く。自分のターン中にこの呪文を唱えたならこのターン自分は呪文を唱えられない。';
+  const spellReminder='(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+  if(f.typeText==='呪文'&&[trigger+spellReminder+brain,trigger+brain].includes(text))
+   return {trigger:true,effect:'sixPhoto',g261Free:{filter:{creatureOrSeed:true,color:'水',g258Civil:4},label:'シビルカウント4'},
+    g34Tasks:[{op:'Draw',n:3},{op:'SpellLock489',owner:'self',ownTurn:true,expires:'end'}]};
+  const scorer='G・ゼロ:このターン中に自分の呪文を5枚以上唱えていればこのクリーチャーをコストを支払わずに召喚してもよい。W・ブレイカーこのクリーチャーが召喚によってバトルゾーンに出た時それがこのゲーム中にバトルゾーンに出した最初の《次元の嵐スコーラー》ならこのターンの後で自分のターンをもう一度行う。';
+  if(f.typeText==='クリーチャー'&&text.replace('が召喚によって出た時','が召喚によってバトルゾーンに出た時').replace('このゲーム中に出した最初','このゲーム中にバトルゾーンに出した最初').replace('このターンの後に自分のターンを追加する。','このターンの後で自分のターンをもう一度行う。')===scorer)
+   return {breaker:2,g396Zero:{all:[{g1086SpellsMin:5}]},g1086FirstNamedEntry:true};
+  const iAm='自分のムートピアが5体以上あればこのクリーチャーをコストを支払わずに召喚してもよい。そうしたら自分の進化ではないクリーチャーをすべて手札に戻す。NEO進化:水のクリーチャー1体の上に置いてもよい。T・ブレイカーこれがNEO進化クリーチャーならパワーを+10000し「ワールド・ブレイカー」を与える。';
+  if(f.typeText==='NEOクリーチャー'&&text.replace(/^バトルゾーンに/,'').replace('NEO進化:自分の','NEO進化:').replace('(クリーチャーが下にあればこれをNEO進化クリーチャーとして扱う)','').replace('(「ワールド・ブレイカー」を持つクリーチャーはシールドをすべてブレイクする)','')===iAm)
+   return {neoEvolution:{any:[{civilization:'水'}]},breaker:3,g1086EvolvedWorld:true,
+    g396Zero:{label:'ムートピア5体',all:[{g370BattleCount:{filter:{creature:true,race:'ムートピア'},min:5}}]},
+    g1086FreeSummonEntry:[{op:'Sweep',owner:'self',to:'hand',toOwnerHand:true,filter:{creature:true,nonEvolution:true}}]};
+  const mark='シンカライズ(このタマシードがクリーチャーであるかのようにこの上に進化クリーチャーを置いてもよい)このタマシードが出た時相手の手札にあるカード1枚につきカードを1枚引く。その後引いた枚数より1枚少ない枚数自分の手札を捨てる。超魂X(これがクリーチャーの下にあればそのクリーチャーにも以下の能力を与える)ブロッカーブロッカースレイヤー(このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)';
+  if(f.typeText==='タマシード'&&text===mark)
+   return {type:'seed',shinkalize:true,effect:'sixPhoto',g34Tasks:[{op:'DrawAgainstHand1086'}],g404Soul:{blocker:true,slayer:true}};
+ }
  if(phase>=1085&&d?.status==='complete'){
   const powerText='攻撃中このクリーチャーのパワーは自分の墓地にある火のカード1枚につき+1000される。';
   const power={zone:'grave',attackOnly:true,g1011CountColor:'火',amount:1000};

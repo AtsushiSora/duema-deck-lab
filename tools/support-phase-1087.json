@@ -1,0 +1,469 @@
+{
+  "phase": 1087,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7225,
+  "description": "リクエストされた17枚のうち5枚を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/40280/",
+    "https://dm.takaratomy.co.jp/rule/qa/40184/"
+  ],
+  "cards": [
+    {
+      "id": "dm26ex2-030",
+      "name": "宿命の決闘",
+      "faces": [
+        {
+          "name": "宿命の決闘",
+          "typeText": "呪文",
+          "civilizationText": "光/水/闇",
+          "civilizations": [
+            "光",
+            "水",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nカードを２枚引く。その後、自分の手札の枚数以下のコストを持つ相手のクリーチャーをすべて、持ち主の手札に戻す。\nこのカードを自分の手札からマナゾーンに置いた時、自分の手札にあるロスト・クルセイダー・カードを１枚、表向きにしてもよい。そうしたら、このカードをアンタップする。",
+          "race": "ロスト・クルセイダー・ワード",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-030",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-030.jpg",
+      "spec": {
+        "trigger": true,
+        "g1087ManaReveal": "ロスト・クルセイダー",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "HandCost262",
+            "defs": [
+              {
+                "op": "Sweep",
+                "filter": {
+                  "creature": true
+                },
+                "to": "hand",
+                "toOwnerHand": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "52bc1a1153e9e70cfcc04d3913008025823d6054960159c22be9536113cc4a4c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex1-N011",
+      "name": "インビンシブル・アポカリプス",
+      "faces": [
+        {
+          "name": "インビンシブル・アポカリプス",
+          "typeText": "呪文",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 13,
+          "costText": "13",
+          "abilityText": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n次の自分のターンのはじめまで、自分のエレメントは離れない。\nすべてのエレメントを破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-N011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex1-N011.jpg",
+      "spec": {
+        "gStrike": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Lock",
+            "g746Self": true,
+            "limit": {
+              "kind": "g1087ElementsStay"
+            }
+          },
+          {
+            "op": "Sweep",
+            "both": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "f82073e80474ae4ffce041d96f9affb1629b3a85c3842ba27ad4e59cb054b576",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex2-SPR001",
+      "name": "瀑水神 ミヅハノオオミカミ",
+      "faces": [
+        {
+          "name": "瀑水神 ミヅハノオオミカミ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水/闇",
+          "civilizations": [
+            "光",
+            "水",
+            "闇"
+          ],
+          "cost": 12,
+          "costText": "12",
+          "abilityText": "シンパシー：自分のロスト・クルセイダー・クリーチャー（このカードの実行コストを、自分のロスト・クルセイダー・クリーチャー１体につき１少なくする。ただしコストは２以下にならない）\nブロッカー ブロッカー\nT・ブレイカー\n自分のロスト・クルセイダー・クリーチャーは、破壊以外の方法で離れない。\nこのクリーチャーが召喚によって出た時、各プレイヤーはバトルゾーンと墓地にある自身のカードをすべて超次元ゾーンに置く。その後、自分はカードを３枚まで引く。",
+          "race": "ミズガミ/ロスト・クルセイダー・ドラゴン",
+          "powerText": "17500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-SPR001",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-SPR001.jpg",
+      "spec": {
+        "breaker": 3,
+        "blocker": true,
+        "g211Sympathy": {
+          "amount": 1,
+          "minimum": 3,
+          "filter": {
+            "race": "ロスト・クルセイダー"
+          }
+        },
+        "g1087RaceStay": "ロスト・クルセイダー",
+        "g1087SummonEntry": [
+          {
+            "op": "ExileBoardAndGrave1087"
+          },
+          {
+            "op": "DrawUpTo",
+            "n": 3
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "ddddb95a488cb5072efa9a9aa831473e810499ec2f8854f66da280882d1c530b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex2-046",
+      "name": "断罪のロスト・サイン",
+      "faces": [
+        {
+          "name": "断罪のロスト・サイン",
+          "typeText": "呪文",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\n自分の山札をシャッフルし、上から４枚を見る。その中から、ロスト・クルセイダー・クリーチャーを１体、コストを支払わずに召喚してもよい。残りを好きな順序で山札の下に置く。このターン、そのクリーチャーに「ブロッカー」を与える。次の自分のターンのはじめに、そのクリーチャーを手札に戻す。",
+          "race": "ロスト・クルセイダー・ワード",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-046",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-046.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Shuffle405"
+          },
+          {
+            "op": "LookDeploy530",
+            "n": 4,
+            "limit": 1,
+            "rest": "bottom",
+            "filter": {
+              "creature": true,
+              "race": "ロスト・クルセイダー"
+            },
+            "execution": true,
+            "g1087Grant": true,
+            "title": "ロスト・クルセイダーを1体まで選び、コストを支払わずに召喚する"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "ecc754fee575c5c475a33cb67db8c9f62a3d27d85189dca465b4d6a35c60df9f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm20-013",
+      "name": "百発人形マグナム",
+      "faces": [
+        {
+          "name": "百発人形マグナム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンのカードをタップせずに、誰かがクリーチャーまたはクロスギアをバトルゾーンに出した時または呪文を唱えた時、そのプレイヤーは自分自身のクリーチャーを１体選んで破壊する。",
+          "race": "デスパペット",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-013",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm20-013.jpg",
+      "spec": {
+        "g1087Magnum": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "75883bcbb3d04d53cae8557760d1dc61cfc1412f8e41bc1d00414fae8f3df1ec",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy25-123",
+      "name": "断罪のロスト・サイン",
+      "faces": [
+        {
+          "name": "断罪のロスト・サイン",
+          "typeText": "呪文",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\n自分の山札をシャッフルし、上から４枚を見る。その中から、ロスト・クルセイダー・クリーチャーを１体、コストを支払わずに召喚してもよい。残りを好きな順序で山札の下に置く。このターン、そのクリーチャーに「ブロッカー」を与える。次の自分のターンのはじめに、そのクリーチャーを手札に戻す。",
+          "race": "ロスト・クルセイダー・ワード",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy25-123",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy25-123.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Shuffle405"
+          },
+          {
+            "op": "LookDeploy530",
+            "n": 4,
+            "limit": 1,
+            "rest": "bottom",
+            "filter": {
+              "creature": true,
+              "race": "ロスト・クルセイダー"
+            },
+            "execution": true,
+            "g1087Grant": true,
+            "title": "ロスト・クルセイダーを1体まで選び、コストを支払わずに召喚する"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "703ed4791b3c0527103b5f4977e7c01930b81c2ae6759e4e220b2820e183454e",
+        "facesMatched": true
+      },
+      "canonicalId": "dm26ex2-046"
+    },
+    {
+      "id": "dmex01-025",
+      "name": "百発人形マグナム",
+      "faces": [
+        {
+          "name": "百発人形マグナム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "いずれかのプレイヤーが、マナゾーンのカードをタップせずに、クリーチャーまたはクロスギアをバトルゾーンに出した時または呪文を唱えた時、そのプレイヤーは自身のクリーチャーを１体選んで破壊する。",
+          "race": "デスパペット",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex01-025",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex01-025.jpg",
+      "spec": {
+        "g1087Magnum": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "fc31d8cdf1f0cc86f8ada86de580431051ef8e70540678584eac5b6ec08d1ffa",
+        "facesMatched": true
+      },
+      "canonicalId": "dm20-013"
+    },
+    {
+      "id": "dmc64-023",
+      "name": "百発人形マグナム",
+      "faces": [
+        {
+          "name": "百発人形マグナム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "いずれかのプレイヤーが、マナゾーンのカードをタップせずに、クリーチャーまたはクロスギアをバトルゾーンに出した時または呪文を唱えた時、そのプレイヤーは自身のクリーチャーを１体選んで破壊する。",
+          "race": "デスパペット",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc64-023",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc64-023.jpg",
+      "spec": {
+        "g1087Magnum": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "d0a2518999f359fdd7a9c4615e2ed5e984dc2e70374c7d4b39bea7597911f221",
+        "facesMatched": true
+      },
+      "canonicalId": "dm20-013"
+    },
+    {
+      "id": "dmx09-013",
+      "name": "百発人形マグナム",
+      "faces": [
+        {
+          "name": "百発人形マグナム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "いずれかのプレイヤーが、マナゾーンのカードをタップせずに、クリーチャーまたはクロスギアをバトルゾーンに出した時または呪文を唱えた時、そのプレイヤーは自身のクリーチャーを１体選んで破壊する。",
+          "race": "デスパペット",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx09-013",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx09-013.jpg",
+      "spec": {
+        "g1087Magnum": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "f31c047423c62dfe0ac8afb47cd673ea4d9c7d2349673868755dbdbc40c5b088",
+        "facesMatched": true
+      },
+      "canonicalId": "dm20-013"
+    },
+    {
+      "id": "dmex17-Cho10",
+      "name": "百発人形マグナム",
+      "faces": [
+        {
+          "name": "百発人形マグナム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "いずれかのプレイヤーが、マナゾーンのカードをタップせずに、クリーチャーまたはクロスギアを出した時または呪文を唱えた時、そのプレイヤーは自身のクリーチャーを１体選んで破壊する。",
+          "race": "デスパペット",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-Cho10",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-Cho10.jpg",
+      "spec": {
+        "g1087Magnum": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "0c57332965db1aacc05b45f13ad36754a92a4656741248455f41d0a890b6cc66",
+        "facesMatched": true
+      },
+      "canonicalId": "dm20-013"
+    },
+    {
+      "id": "promoy25-093",
+      "name": "百発人形マグナム",
+      "faces": [
+        {
+          "name": "百発人形マグナム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "プレイヤーが、自身のマナゾーンのカードをタップせずに、クリーチャーまたはクロスギアを出した時または呪文を唱えた時、そのプレイヤーは自身のクリーチャーを１体選んで破壊する。",
+          "race": "デスパペット",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy25-093",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy25-093.jpg",
+      "spec": {
+        "g1087Magnum": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "e5a0bec20707a22ed62c82ff315d599fe73f5fee7c29dc4c290f782fd2de3150",
+        "facesMatched": true
+      },
+      "canonicalId": "dm20-013"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26ex2-030": 4,
+      "dm26ex1-N011": 4,
+      "dm26ex2-SPR001": 4,
+      "dm26ex2-046": 4,
+      "dm20-013": 4,
+      "promoy25-123": 4,
+      "dmex01-025": 4,
+      "dmc64-023": 4,
+      "dmx09-013": 4,
+      "dmex17-Cho10": 4,
+      "promoy25-093": 4
+    }
+  }
+}
