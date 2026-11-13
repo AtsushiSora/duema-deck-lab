@@ -226933,15 +226933,162 @@
       ],
       "supportBatch": "phase-1164",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx22b-057",
+      "name": "デュエマ革命",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "革命２―自分のシールドが２つ以下なら、自分の山札の上から１枚目を見る。そのカードを山札の一番下に置いてもよい。\n自分の山札の上から３枚を表向きにする。その中からドラゴンをすべて手札に加え、その後、残りを墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-057",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g265ShieldsMax": 2
+          },
+          "defs": [
+            {
+              "op": "Look",
+              "n": 1,
+              "g323Scry": true,
+              "g841DeckPeek": true,
+              "rest": "top",
+              "stages": [
+                {
+                  "n": 1,
+                  "to": "deck",
+                  "optional": true,
+                  "title": "確認したカードを山札の一番下に置く？"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "op": "Look",
+          "n": 3,
+          "public": true,
+          "g255Distribute": true,
+          "rest": "grave",
+          "stages": [
+            {
+              "n": "all",
+              "to": "hand",
+              "allMatches": true,
+              "filter": {
+                "g228Face": {
+                  "type": "creature",
+                  "raceAll": [
+                    "ドラゴン"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1165",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr04-045",
+      "name": "フェアリーの火の子祭",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "自分の山札の上から２枚を見る。そのうちの１枚をタップして自分のマナゾーンに置き、もう１枚を山札の一番下に置く。こうしてマナゾーンに置いたのが火のカードであれば、この呪文を、唱えた後で墓地に置くかわりに手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-045",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g841DeckPeek": true,
+          "g255Distribute": true,
+          "rest": "bottom",
+          "g1165ManaFinishColor": "火",
+          "stages": [
+            {
+              "n": 1,
+              "to": "mana",
+              "tapped": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1165",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex1-022",
+      "name": "「正義と正義の盾」",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "{GS} G・ストライク\n相手のクリーチャーを１体選ぶ。相手はそれを手札に戻してもよい。そうしたら、自分はカードを２枚引く。そうしなければ、相手はそれをシールド化し、自分は自分の山札の上から１枚目をシールド化する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-022",
+      "limit": 4,
+      "gStrike": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "g467Destinations": [
+            "hand",
+            "shields"
+          ],
+          "g472OwnerDestination": true,
+          "g1165DestinationEffects": {
+            "hand": [
+              {
+                "op": "Draw",
+                "n": 2
+              }
+            ],
+            "shields": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-1165",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1164,
+    "phase": 1165,
     "checkedAt": "2026-11-14",
-    "baseCount": 7482,
+    "baseCount": 7485,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7485,
+    "totalCount": 7488,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -247198,6 +247345,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7482,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1164,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7482,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7485,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

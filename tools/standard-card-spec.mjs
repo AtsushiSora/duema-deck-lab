@@ -6184,6 +6184,33 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1165&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmx22b-057'&&text===
+   '革命2―自分のシールドが2つ以下なら自分の山札の上から1枚目を見る。そのカードを山札の一番下に置いてもよい。'+
+   '自分の山札の上から3枚を表向きにする。その中からドラゴンをすべて手札に加えその後残りを墓地に置く。')
+   return {effect:'sixPhoto',g34Tasks:[
+    {op:'IfOwn',filter:{g265ShieldsMax:2},defs:[{op:'Look',n:1,g323Scry:true,g841DeckPeek:true,rest:'top',
+     stages:[{n:1,to:'deck',optional:true,title:'確認したカードを山札の一番下に置く？'}]}]},
+    {op:'Look',n:3,public:true,g255Distribute:true,rest:'grave',stages:[
+     {n:'all',to:'hand',allMatches:true,filter:{g228Face:{type:'creature',raceAll:['ドラゴン']}}}
+    ]}
+   ]};
+  const festivalText={
+   'dmr04-045':0,'dmx14-081':0,'promoy16-012':0,'dmart03-004':1,'dm25ex2-103':2,'dm26ex5-DP038':2
+  }[d.id];
+  if(festivalText!==undefined&&text==='自分の山札の上から2枚を見る。'+[
+   'そのうちの1枚をタップして自分のマナゾーンに置きもう1枚を山札の一番下に置く。こうしてマナゾーンに置いたのが火のカードであればこの呪文を唱えた後で',
+   'そのうちの1枚をタップしてマナゾーンに置きもう1枚を山札の下に置く。こうしてマナゾーンに置いたのが火のカードならこの呪文を唱えた後で',
+   'その中から1枚をタップしてマナゾーンに置きもう1枚を山札の下に置く。こうして火のカードをマナゾーンに置いたらこの呪文を唱えた後'
+  ][festivalText]+'墓地に置くかわりに手札に戻す。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Look',n:2,g841DeckPeek:true,g255Distribute:true,rest:'bottom',
+    g1165ManaFinishColor:'火',stages:[{n:1,to:'mana',tapped:true}]}]};
+  if(d.id==='dm23ex1-022'&&text==='{GS}G・ストライク相手のクリーチャーを1体選ぶ。'+
+   '相手はそれを手札に戻してもよい。そうしたら自分はカードを2枚引く。そうしなければ相手はそれをシールド化し自分は自分の山札の上から1枚目をシールド化する。')
+   return {gStrike:true,effect:'sixPhoto',g34Tasks:[{op:'Target',g467Destinations:['hand','shields'],
+    g472OwnerDestination:true,g1165DestinationEffects:{hand:[{op:'Draw',n:2}],shields:[{op:'ShieldTop',n:1}]}}]};
+ }
  if(phase>=1164&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='クリーチャー'&&d.id==='dmrp08-024'&&text===
