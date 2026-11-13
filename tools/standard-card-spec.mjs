@@ -6184,6 +6184,27 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1145&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'&&
+  ['dm26rp1-036','dm26rp2-044','dm26rp2-016'].includes(d.id)){
+  const text=normalize(f.abilityText);
+  const trigger='S・トリガーS・トリガー(このカードを自分のシールドゾーンから手札に加える時コストを支払わずにすぐ実行してもよい)';
+  if(d.id==='dm26rp1-036'&&text===trigger+
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   '自分のコスト5以上のクリーチャーが破壊された時このクリーチャーを自分の墓地から出してもよい。')
+   return {trigger:true,blocker:true,g1145GraveDeathMinCost:5};
+  if(d.id==='dm26rp2-044'&&text===trigger+
+   'このクリーチャーをタップして出してもよい。相手のクリーチャーが攻撃するなら可能ならこのクリーチャーを攻撃する。'+
+   'マナ武装3:自分のマナゾーンに自然のカードが3枚以上あればこのクリーチャーのパワーを+4000し「W・ブレイカー」を与える。'+
+   '(「W・ブレイカー」を持つクリーチャーはシールドを2つブレイクする)')
+   return {trigger:true,g432EntryTap:true,g431AttackMe:true,g260Self:{filter:{g267Mana:{n:3,color:'自然'}},grants:{power:4000,breaker:2}}};
+  if(d.id==='dm26rp2-016'&&text==='ブロッカーブロッカーW・ブレイカー'+
+   'このクリーチャーが出た時相手は自身の手札を3枚選び捨てる。'+
+   'このクリーチャーが破壊された時相手とパワー・ガチンコ・ジャッジしてもよい。自分が勝ったらこのクリーチャーを自分の墓地からタップして出す。'+
+   '(パワー・ガチンコ・ジャッジ:自分と相手は自身の山札の上から1枚を表向きにしそれを下に置く。そのカードのパワーが相手以上なら自分が勝つ。パワーがないカードは0として扱う)')
+   return {blocker:true,breaker:2,effect:'sixPhoto',g34Tasks:[{op:'Discard',n:3}],
+    g172Death:[{op:'g35_Custom',name:'startPowerJudge',defs:[{op:'SelfGraveRevive644',tapped:true}]}]};
+  throw Error('公式能力文が照合済みの内容と異なります：'+d.id);
+ }
  if(phase>=1144&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'&&
   ['dm26rp2-074','dm26rp2-SEC024','dm26rp2-051','dm26rp2-040'].includes(d.id)){
   const text=normalize(f.abilityText);

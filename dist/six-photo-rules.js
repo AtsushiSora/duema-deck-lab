@@ -6715,12 +6715,18 @@ export function createSixPhotoRules(api){
   }
   const watchers=s.leaving?.snapshot?.six?.scarlet?.[p]||active(s,p,'scarlet').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0}));for(const x of watchers)if(!used(s,'g34Scarlet',x))for(const y of all)if(card(y).type==='creature'&&cost(card(y))<=5)queue(s,p,x,[C('scarletRevive',{target:y.uid,targetSerial:y.zoneSerial||0})]);},
  flushGrave838,
- snapshot(s,leaving=[]){return{g838SelfGrave:leaving.flatMap(({player,uid})=>{
+ snapshot(s,leaving=[]){return{
+  g1145GraveWatch:s.players.map(own=>own.grave.flatMap(x=>{
+   const minCost=card(x).g1145GraveDeathMinCost;
+   return !x.faceDown&&minCost!==undefined?[{uid:x.uid,serial:x.zoneSerial||0,minCost}]:[];
+  })),
+  g838SelfGrave:leaving.flatMap(({player,uid})=>{
   const x=s.players[player]?.battle.find(x=>x.uid===uid);
   return x&&!x.sealed&&card(x).g838AnyGrave&&!api.ignored(s,x)?[key(x)]:[];
  }),leave320:s.players.flatMap((own,p)=>own.battle.map(x=>({p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:!x.sealed&&api.isCreature(s,x),race:effective(x,s).race,watch:!x.sealed&&!!effective(x,s).g320Jave}))),death303:s.players.flatMap((own,p)=>own.battle.map(x=>{const c=effective(x,s);return{p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:api.isCreature(s,x),race:c.race,name:c.name,colors:colors(c),
    ...(race(c,'ドリームメイト')?{deathNames960:battleNames676(s,x)}:{}),...(hasSoul(card(x),'E')?{g860EvilSoul:true}:{}),...(c.g303DeathWatch?.g862OtherSoul&&leaving.some(row=>row.player===p&&row.uid===x.uid)?{g862OnlySelf:true}:{}),...(c.g891OwnCreatureLeaves&&!x.sealed&&!api.ignored(s,x)?{leaveDraw891:c.g891OwnCreatureLeaves}:{}),
    ...(c.g965OtherOwnLeave?{g965OtherOwnLeave:true}:{}),
+   ...(!x.sealed&&c.type==='creature'&&{g1145Cost:cost(c)===Infinity?'∞':cost(c)}),
    ...(!x.sealed&&!x.faceDown&&c.g1124Jingi?{jingi:c.g1124Jingi}:{}),
    ...((c.g891OwnCreatureLeaves||c.g303DeathWatch?.g891LookBackSelf)&&leaving.some(row=>row.player===p&&row.uid===x.uid)?{g891OnlySelf:true}:{}),element:!x.sealed&&!x.faceDown,...(!x.sealed&&!x.faceDown&&c.g1139OtherCreatureLeaves?{g1139OtherCreatureLeaves:c.g1139OtherCreatureLeaves}:{}),elementDraw:!!c.g617OpponentElementLeaves&&!x.sealed&&!x.faceDown&&!api.ignored(s,x),...(c.g1009OpponentCreatureLeaves&&!x.sealed&&!x.faceDown?{opponentCreatureLeaves:c.g1009OpponentCreatureLeaves}:{}),...(c.g693OtherCreatureGraveDraw&&!x.sealed&&!x.faceDown&&!api.ignored(s,x)&&api.isCreature(s,x)?{graveDraw:true}:{}),watch:!x.sealed&&!api.ignored(s,x)&&(!c.g303DeathWatch?.g725RemainInBattle||!leaving.some(row=>row.player===p&&row.uid===x.uid))?c.g303DeathWatch:undefined};})),selfLeaves:s.players.flatMap((own,p)=>own.battle.flatMap(x=>{const c=effective(x,s);return c.g172Death||c.g172Leave?[{p,uid:x.uid,incarnation:x.incarnation||0,g172Death:c.g172Death,
    ...(c.g172Death?.some(d=>d.g960FormerBases)?{formerBases960:(x.under||[]).flatMap(api.allLayers)
@@ -6732,6 +6738,11 @@ export function createSixPhotoRules(api){
   const before=snapshot?.death303;
   const victim=before?.find(y=>y.p===p&&y.element&&key(y)===key(x));
   if(victim){
+   if(to==='grave'&&destroy&&victim.creature)for(const {uid,serial,minCost} of snapshot.g1145GraveWatch?.[p]||[]){
+    if(victim.g1145Cost!=='∞'&&!(victim.g1145Cost>=minCost))continue;
+    const source=s.players[p].grave.find(y=>y.uid===uid&&(y.zoneSerial||0)===serial);
+    if(source)send(s,p,source,'GraveSummonWatch766',{serial});
+   }
    if(victim.creature)for(const watcher of before)
     if(watcher.p===p&&watcher.jingi&&key(watcher)!==key(victim))
      queue(s,p,watcher,watcher.jingi);
@@ -6776,6 +6787,8 @@ export function createSixPhotoRules(api){
     .filter(d=>!d.g1063Evolved||api.isEvolution(x))
     .filter(d=>d.op!=='ScheduleGraveReturn644'||d.anyTurn||s.active===p)
     .flatMap(d=>{
+     if(d.name==='startPowerJudge')return [{...d,defs:d.defs.map(def=>def.op==='SelfGraveRevive644'?
+      {...def,serial:(x.zoneSerial||0)+1}:def)}];
      if(d.g960FormerBases){
       const refs=prior.formerBases960??[];
       return refs.length?[{...d,g960FormerBases:refs}]:[];

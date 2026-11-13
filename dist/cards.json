@@ -225023,15 +225023,108 @@
       ],
       "supportBatch": "phase-1144",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp1-036",
+      "name": "黒神龍ネオ・ドボルザーク",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ドラゴン・ゾンビ",
+      "text": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分のコスト５以上のクリーチャーが破壊された時、このクリーチャーを自分の墓地から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-036",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "g1145GraveDeathMinCost": 5,
+      "supportBatch": "phase-1145",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-044",
+      "name": "牙英雄 アワザ＝カーン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ジュラシック・コマンド・ドラゴン",
+      "text": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nこのクリーチャーをタップして出してもよい。\n相手のクリーチャーが攻撃するなら、可能ならこのクリーチャーを攻撃する。\nマナ武装 ３：自分のマナゾーンに自然のカードが３枚以上あれば、このクリーチャーのパワーを+4000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-044",
+      "limit": 4,
+      "trigger": true,
+      "g432EntryTap": true,
+      "g431AttackMe": true,
+      "g260Self": {
+        "filter": {
+          "g267Mana": {
+            "n": 3,
+            "color": "自然"
+          }
+        },
+        "grants": {
+          "power": 4000,
+          "breaker": 2
+        }
+      },
+      "supportBatch": "phase-1145",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-016",
+      "name": "熱血の名 カチスギル・スキル",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 9000,
+      "race": "ドラゴン・ゾンビ/アンノウン",
+      "text": "ブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、相手は自身の手札を３枚選び、捨てる。\nこのクリーチャーが破壊された時、相手とパワー・ガチンコ・ジャッジしてもよい。自分が勝ったら、このクリーチャーを自分の墓地からタップして出す。（パワー・ガチンコ・ジャッジ：自分と相手は自身の山札の上から１枚を表向きにし、それを下に置く。そのカードのパワーが相手以上なら、自分が勝つ。パワーがないカードは０として扱う）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-016",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "n": 3
+        }
+      ],
+      "g172Death": [
+        {
+          "op": "g35_Custom",
+          "name": "startPowerJudge",
+          "defs": [
+            {
+              "op": "SelfGraveRevive644",
+              "tapped": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1145",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1144,
+    "phase": 1145,
     "checkedAt": "2026-11-14",
-    "baseCount": 7419,
+    "baseCount": 7422,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7422,
+    "totalCount": 7425,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -245048,6 +245141,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7419,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1144,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7419,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7422,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
