@@ -1,0 +1,1687 @@
+{
+  "phase": 1099,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7265,
+  "description": "マナ加速・墓地回収・タップ・S・トリガーから超次元展開につなぐ呪文4種類を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/48160/",
+    "https://dm.takaratomy.co.jp/rule/qa/38717/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31662/"
+  ],
+  "cards": [
+    {
+      "id": "dm36-109",
+      "name": "超次元フェアリー・ホール",
+      "faces": [
+        {
+          "name": "超次元フェアリー・ホール",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の山札の上から１枚目を自分のマナゾーンに置く。\n次のうちいずれかひとつを選ぶ。自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。\nコスト７以下の自然のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\n(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-109",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-109.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": "all",
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "optional": true,
+                    "g550CostBudget": 5,
+                    "title": "超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の自然のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "自然"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "1f7fa54435526f9a311162e68df52c1b688bd06861e95d5fca00d426715bdd44",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-093",
+      "name": "超次元リバイヴ・ホール",
+      "faces": [
+        {
+          "name": "超次元リバイヴ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "クリーチャーを１体、自分の墓地から手札に戻す。\n次のうちいずれかひとつを選ぶ。\n自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。\nコスト７以下の闇のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\n(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-093",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-093.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "title": "墓地から手札に戻すクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": "all",
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "optional": true,
+                    "g550CostBudget": 5,
+                    "title": "超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の闇のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "闇"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "6944666ed1cf5ddda49695cf439ec786da40a320b30a7478263a15da15b9c744",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-077",
+      "name": "超次元シャイニー・ホール",
+      "faces": [
+        {
+          "name": "超次元シャイニー・ホール",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンにある相手のクリーチャーを１体選び、タップする。\n次のうちいずれかひとつを選ぶ。\n自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。\nコスト７以下の光のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\n(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-077",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-077.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "spell": true,
+            "title": "タップする相手のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": "all",
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "optional": true,
+                    "g550CostBudget": 5,
+                    "title": "超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の光のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "光"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "20b4cf17a626295a5c4cf62659d038f763764b088772837a2ede9e1a3651e708",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm37-039",
+      "name": "超次元サプライズ・ホール",
+      "faces": [
+        {
+          "name": "超次元サプライズ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n次のうちいずれかひとつを選ぶ。\nコスト２以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\nコスト４以下の光または水のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-039",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-039.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "コスト2以下のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "コスト4以下の光・水のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 4,
+                      "any": [
+                        {
+                          "color": "光"
+                        },
+                        {
+                          "color": "水"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "58744d498afe67ef5610c4c2e2310cea5337c8fce00ca3e32cb03c07c1bf9072",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm36-109VC",
+      "name": "超次元フェアリー・ホール",
+      "faces": [
+        {
+          "name": "超次元フェアリー・ホール",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の山札の上から１枚目を自分のマナゾーンに置く。\n次のうちいずれかひとつを選ぶ。 　自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。 　コスト７以下の自然のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 （ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-109VC",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-109VC.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": "all",
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "optional": true,
+                    "g550CostBudget": 5,
+                    "title": "超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の自然のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "自然"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "ad1d6294d3d133a448bcad2c54094062957dda4a9c96e2a6dcdea8fdc0730df5",
+        "facesMatched": true
+      },
+      "canonicalId": "dm36-109"
+    },
+    {
+      "id": "dmx02-037",
+      "name": "超次元フェアリー・ホール",
+      "faces": [
+        {
+          "name": "超次元フェアリー・ホール",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の山札の上から１枚目を自分のマナゾーンに置く。\n次のうちいずれかひとつを選ぶ。\n▼自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。\n▼コスト７以下の自然のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx02-037",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx02-037.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": "all",
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "optional": true,
+                    "g550CostBudget": 5,
+                    "title": "超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の自然のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "自然"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "7937192ce7af3d21b2ca1948b0bde40d1bedc78a76b31cdd05dd8c50dac0f367",
+        "facesMatched": true
+      },
+      "canonicalId": "dm36-109"
+    },
+    {
+      "id": "dmx08-035",
+      "name": "超次元フェアリー・ホール",
+      "faces": [
+        {
+          "name": "超次元フェアリー・ホール",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の山札の上から１枚目を自分のマナゾーンに置く。\n次のうちいずれかひとつを選ぶ。\n▼自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。\n▼コスト７以下の自然のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx08-035",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx08-035.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": "all",
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "optional": true,
+                    "g550CostBudget": 5,
+                    "title": "超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の自然のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "自然"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "7676a926fa76393af35f4a1d26c54b2884daa20b2a7b784cd99e06aadbf8adbb",
+        "facesMatched": true
+      },
+      "canonicalId": "dm36-109"
+    },
+    {
+      "id": "dmx25-020",
+      "name": "超次元フェアリー・ホール",
+      "faces": [
+        {
+          "name": "超次元フェアリー・ホール",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の山札の上から１枚目をマナゾーンに置く。\n次のうちいずれか１つを選ぶ。 ▼自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。 ▼自然のコスト７以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx25-020",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx25-020.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": "all",
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "optional": true,
+                    "g550CostBudget": 5,
+                    "title": "超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の自然のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "自然"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "ab942b2f492a1db5029a2f8e28c72d4d50f986183397a59f77bf9c6f422e9f71",
+        "facesMatched": true
+      },
+      "canonicalId": "dm36-109"
+    },
+    {
+      "id": "dmbd13-022",
+      "name": "超次元フェアリー・ホール",
+      "faces": [
+        {
+          "name": "超次元フェアリー・ホール",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の山札の上から１枚目をマナゾーンに置く。\n次のうちいずれか１つを選ぶ。\n▶︎自分の超次元ゾーンからサイキック・クリーチャーをコストの合計が５以下になるように好きな数選び、バトルゾーンに出す。\n▶︎自然のコスト７以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\n（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd13-022",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd13-022.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": "all",
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "optional": true,
+                    "g550CostBudget": 5,
+                    "title": "超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の自然のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "自然"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "d24d8ff7e9494ba6919a005b657f9a3c91d9803b9332d8f57a331ebd54f7ca3f",
+        "facesMatched": true
+      },
+      "canonicalId": "dm36-109"
+    },
+    {
+      "id": "promoy17-014",
+      "name": "超次元フェアリー・ホール",
+      "faces": [
+        {
+          "name": "超次元フェアリー・ホール",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の山札の上から１枚目をマナゾーンに置く。\n次のうちいずれか１つを選ぶ。\n▼自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。\n▼自然のコスト７以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\n（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy17-014",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy17-014.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": "all",
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "optional": true,
+                    "g550CostBudget": 5,
+                    "title": "超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の自然のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "自然"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "c42381a75bacd87924df5d8d40b4c6f1820f438be0e3b34fcd11658122aec076",
+        "facesMatched": true
+      },
+      "canonicalId": "dm36-109"
+    },
+    {
+      "id": "dmx03-037",
+      "name": "超次元リバイヴ・ホール",
+      "faces": [
+        {
+          "name": "超次元リバイヴ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "クリーチャーを１体、自分の墓地から手札に戻す。\n次のうちいずれかひとつを選ぶ。\n▼自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。\n▼コスト７以下の闇のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx03-037",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx03-037.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "title": "墓地から手札に戻すクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": "all",
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "optional": true,
+                    "g550CostBudget": 5,
+                    "title": "超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の闇のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "闇"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "e6fe7bad14dcbfa437c93830061973ddf890af4d5342cdb5af2f88c2ce0015df",
+        "facesMatched": true
+      },
+      "canonicalId": "dm36-093"
+    },
+    {
+      "id": "dmx08-029",
+      "name": "超次元リバイヴ・ホール",
+      "faces": [
+        {
+          "name": "超次元リバイヴ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "クリーチャーを１体、自分の墓地から手札に戻す。\n次のうちいずれかひとつを選ぶ。\n▼自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。\n▼コスト７以下の闇のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx08-029",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx08-029.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "title": "墓地から手札に戻すクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": "all",
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "optional": true,
+                    "g550CostBudget": 5,
+                    "title": "超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の闇のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "闇"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "e2330d373df6bed8d4222eaad3a838682cd4e1ee2f7307a42a55f4ad9a25e946",
+        "facesMatched": true
+      },
+      "canonicalId": "dm36-093"
+    },
+    {
+      "id": "dmd04-014",
+      "name": "超次元リバイヴ・ホール",
+      "faces": [
+        {
+          "name": "超次元リバイヴ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "クリーチャーを１体、自分の墓地から手札に戻す。\n次のうちいずれかひとつを選ぶ。\n▼自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。\n▼コスト７以下の闇のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd04-014",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd04-014.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "title": "墓地から手札に戻すクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": "all",
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "optional": true,
+                    "g550CostBudget": 5,
+                    "title": "超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の闇のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "闇"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "b4412da151c9547a35c5c2d2b9706978fa0b28327aed7d5cb7485a39a3692f4d",
+        "facesMatched": true
+      },
+      "canonicalId": "dm36-093"
+    },
+    {
+      "id": "dmx22b-048",
+      "name": "超次元リバイヴ・ホール",
+      "faces": [
+        {
+          "name": "超次元リバイヴ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "クリーチャーを１体、自分の墓地から手札に戻す。\n次のうちいずれかひとつを選ぶ。 ▼自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。 ▼闇のコスト７以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-048",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx22b-048.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "title": "墓地から手札に戻すクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": "all",
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "optional": true,
+                    "g550CostBudget": 5,
+                    "title": "超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の闇のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "闇"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "4fec02d0e26b3421448a6f64192df03beb66f83b5d3030de35aa9d65c9e3500b",
+        "facesMatched": true
+      },
+      "canonicalId": "dm36-093"
+    },
+    {
+      "id": "dm36-077VC",
+      "name": "超次元シャイニー・ホール",
+      "faces": [
+        {
+          "name": "超次元シャイニー・ホール",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンにある相手のクリーチャーを１体選び、タップする。\n次のうちいずれかひとつを選ぶ。 　自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。 　コスト７以下の光のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 （ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-077VC",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-077VC.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "spell": true,
+            "title": "タップする相手のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": "all",
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "optional": true,
+                    "g550CostBudget": 5,
+                    "title": "超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の光のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "光"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "e5802aa39d3b7031c34607a1554643a951859f070ac0a7cfb082b5958ae2c6db",
+        "facesMatched": true
+      },
+      "canonicalId": "dm36-077"
+    },
+    {
+      "id": "dmx02-031",
+      "name": "超次元シャイニー・ホール",
+      "faces": [
+        {
+          "name": "超次元シャイニー・ホール",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンにある相手のクリーチャーを１体選び、タップする。\n次のうちいずれかひとつを選ぶ。\n▼自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。\n▼コスト７以下の光のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx02-031",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx02-031.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "spell": true,
+            "title": "タップする相手のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": "all",
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "optional": true,
+                    "g550CostBudget": 5,
+                    "title": "超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の光のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "光"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "9ee6e09e163933a499ea13914b0d0cd6192259f59fcd11b025e051fbae7f1795",
+        "facesMatched": true
+      },
+      "canonicalId": "dm36-077"
+    },
+    {
+      "id": "dmx08-026",
+      "name": "超次元シャイニー・ホール",
+      "faces": [
+        {
+          "name": "超次元シャイニー・ホール",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンにある相手のクリーチャーを１体選び、タップする。\n次のうちいずれかひとつを選ぶ。\n▼自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。\n▼コスト７以下の光のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx08-026",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx08-026.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "spell": true,
+            "title": "タップする相手のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": "all",
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "optional": true,
+                    "g550CostBudget": 5,
+                    "title": "超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の光のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "光"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "c2342f4e2b035d9ec4d90fd506a1d39d1ad017c3cde052a8d67129a672d378d4",
+        "facesMatched": true
+      },
+      "canonicalId": "dm36-077"
+    },
+    {
+      "id": "dmc68-019",
+      "name": "超次元シャイニー・ホール",
+      "faces": [
+        {
+          "name": "超次元シャイニー・ホール",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンにある相手のクリーチャーを１体選び、タップする。\n次のうちいずれかひとつを選ぶ。\n自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。\nコスト７以下の光のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc68-019",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc68-019.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "spell": true,
+            "title": "タップする相手のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": "all",
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "optional": true,
+                    "g550CostBudget": 5,
+                    "title": "超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の光のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "光"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "6cd7fa30abe664630089bc43b267a10878b45a6747db04e31f1ffbdeab06baff",
+        "facesMatched": true
+      },
+      "canonicalId": "dm36-077"
+    },
+    {
+      "id": "dmx02-032",
+      "name": "超次元サプライズ・ホール",
+      "faces": [
+        {
+          "name": "超次元サプライズ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー\n次のうちいずれかひとつを選ぶ。\n▼コスト２以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\n▼コスト４以下の光または水のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx02-032",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx02-032.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "コスト2以下のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "コスト4以下の光・水のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 4,
+                      "any": [
+                        {
+                          "color": "光"
+                        },
+                        {
+                          "color": "水"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "cf1a6883ba76b2b275e26e5eff14f16cd265a3890b1cbe24369a7dd2d33e5534",
+        "facesMatched": true
+      },
+      "canonicalId": "dm37-039"
+    },
+    {
+      "id": "dmex08-167",
+      "name": "超次元サプライズ・ホール",
+      "faces": [
+        {
+          "name": "超次元サプライズ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれか１つを選ぶ。\n▶コスト２以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\n▶光または水の、コスト４以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\n（ゲーム開始時、サイ キック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-167",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-167.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "コスト2以下のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "コスト4以下の光・水のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 4,
+                      "any": [
+                        {
+                          "color": "光"
+                        },
+                        {
+                          "color": "水"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "4a7a0edf3659993294fea975a96be0700ba1109d492048ab674af832521d0140",
+        "facesMatched": true
+      },
+      "canonicalId": "dm37-039"
+    },
+    {
+      "id": "promoy25-125",
+      "name": "超次元サプライズ・ホール",
+      "faces": [
+        {
+          "name": "超次元サプライズ・ホール",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nコスト２以下のサイキック・クリーチャー１体、または、光または水の、コスト４以下のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy25-125",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy25-125.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "コスト2以下のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "コスト4以下の光・水のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 4,
+                      "any": [
+                        {
+                          "color": "光"
+                        },
+                        {
+                          "color": "水"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "1d2874ee2ba81d336a56eff16f54ba08687f2041abde0ab0409879315a1a3832",
+        "facesMatched": true
+      },
+      "canonicalId": "dm37-039"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm36-109": 4,
+      "dm36-109VC": 4,
+      "dmx02-037": 4,
+      "dmx08-035": 4,
+      "dmx25-020": 4,
+      "dmbd13-022": 4,
+      "promoy17-014": 4,
+      "dm36-093": 4,
+      "dmx03-037": 4,
+      "dmx08-029": 4,
+      "dmd04-014": 4,
+      "dmx22b-048": 4,
+      "dm36-077": 4,
+      "dm36-077VC": 4,
+      "dmx02-031": 4,
+      "dmx08-026": 4,
+      "dmc68-019": 4,
+      "dm37-039": 4,
+      "dmx02-032": 4,
+      "dmex08-167": 4,
+      "promoy25-125": 4
+    }
+  }
+}

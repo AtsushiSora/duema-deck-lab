@@ -6160,6 +6160,44 @@ export function standardCardSpec(d,{phase=165}={}){
    'このクリーチャーが攻撃する時バトルゾーンにあるクロスギアを1枚選び持ち主の墓地に置く。クロスギアがバトルゾーンから墓地に置かれた時カードを1枚引いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
    return {breaker:2,g34Attack:[{op:'Target',element:true,anyOwner:true,filter:{g201Gear:true},to:'grave',title:'墓地に置くクロスギアを1枚選ぶ'}],g933GearGraveDraw:true};
  }
+ if(phase>=1099&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
+  const text=normalize(f.abilityText).replace(/[▶▼︎]/gu,'')
+   .replace(/\(ゲーム開始時サイキック・クリーチャーは山札には含めず自[分身]の超次元ゾーンに置きバトルゾーン以外のゾーンに行った場合そこに戻す\)$/,'');
+  const choose='次のうちいずれかひとつを選ぶ。';
+  const group='自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が5以下になるように選びバトルゾーンに出す。';
+  const deploy=(filter,settings={})=>({op:'Select',origin:'extra',deploy:true,n:1,filter:{g1085Psychic:true,...filter},...settings});
+  const modes=(first,second)=>({op:'Choose',g184Modes:true,modes:[first,second]});
+  const solo=color=>({label:'コスト7以下の'+color+'のサイキックを1体出す',defs:[deploy({max:7,color})]});
+  const common=text.replace('いずれか1つ','いずれかひとつ')
+   .replace('上から1枚目をマナゾーン','上から1枚目を自分のマナゾーン')
+   .replace('サイキック・クリーチャーをコストの合計が5以下になるように好きな数選び','好きな数のサイキック・クリーチャーをコストの合計が5以下になるように選び')
+   .replace(/(自然|闇|光)のコスト7以下のサイキック/,'コスト7以下の$1のサイキック');
+  const holes=[
+   {ids:['dm36-109','dm36-109VC','dmx02-037','dmx08-035','dmx25-020','dmbd13-022','promoy17-014'],color:'自然',
+    printed:'自分の山札の上から1枚目を自分のマナゾーンに置く。',task:{op:'Ramp',n:1}},
+   {ids:['dm36-093','dmx03-037','dmx08-029','dmd04-014','dmx22b-048'],color:'闇',
+    printed:'クリーチャーを1体自分の墓地から手札に戻す。',
+    task:{op:'Select',origin:'grave',to:'hand',n:1,filter:{creature:true},title:'墓地から手札に戻すクリーチャーを1体選ぶ'}},
+   {ids:['dm36-077','dm36-077VC','dmx02-031','dmx08-026','dmc68-019'],color:'光',
+    printed:'バトルゾーンにある相手のクリーチャーを1体選びタップする。',
+    task:{op:'Target',tap:true,spell:true,title:'タップする相手のクリーチャーを1体選ぶ'}}
+  ];
+  const hole=holes.find(row=>row.ids.includes(d.id));
+  if(hole&&common===hole.printed+choose+group+
+   'コスト7以下の'+hole.color+'のサイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。')
+   return {effect:'sixPhoto',g34Tasks:[hole.task,modes(
+    {label:'合計コスト5以下のサイキックを好きな数出す',defs:[deploy({},{n:'all',optional:true,g550CostBudget:5,
+     title:'超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ'})]},solo(hole.color))]};
+  if(['dm37-039','dmx02-032','dmex08-167','promoy25-125'].includes(d.id)){
+   const printed=text.replace(/^S・トリガー(?:S・トリガー)?(?:\(この(?:呪文|カード)を(?:自分の)?シールドゾーンから手札に加える時コストを支払わずにすぐ(?:唱えて|実行して)もよい\))?/,'');
+   const old=/^次のうちいずれか(?:ひとつ|1つ)を選ぶ。コスト2以下のサイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。(?:コスト4以下の光または水|光または水のコスト4以下)のサイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。$/;
+   const current='コスト2以下のサイキック・クリーチャー1体または光または水のコスト4以下のサイキック・クリーチャーを1体自分の超次元ゾーンから出す。';
+   if(printed!==text&&(old.test(printed)||printed===current))return {trigger:true,effect:'sixPhoto',g34Tasks:[modes(
+    {label:'コスト2以下のサイキックを1体出す',defs:[deploy({max:2})]},
+    {label:'コスト4以下の光・水のサイキックを1体出す',defs:[deploy({max:4,any:[{color:'光'},{color:'水'}]})]}
+   )]};
+  }
+ }
  if(phase>=1098&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
   const reminder=/\(ゲーム開始時サイキック・クリーチャーは山札には含めず自[身分]の超次元ゾーンに置きバトルゾーン以外のゾーンに行った場合そこに戻す\)$/;
   const text=normalize(f.abilityText).replace(reminder,'');
