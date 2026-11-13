@@ -229441,15 +229441,140 @@
       ],
       "supportBatch": "phase-1186",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25-038",
+      "name": "フォトン・クロック",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nバトルゾーンにある相手のクリーチャーを１体選び、タップする。その後、バトルゾーンまたはマナゾーンにある自分の多色カード１枚をアンタップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-038",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true,
+          "title": "タップする相手のクリーチャーを1体選ぶ"
+        },
+        {
+          "op": "Select",
+          "zones": [
+            "battle",
+            "mana"
+          ],
+          "n": 1,
+          "optional": true,
+          "g806MultiUntap": true,
+          "title": "アンタップする自分の多色カードを1枚まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1187",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-043",
+      "name": "メタルカオス・バースト",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から１枚目を墓地に置く。そのカード以下のコストを持つ相手のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-043",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "MillThenDestroyByCost",
+          "target": {
+            "op": "Target",
+            "to": "grave",
+            "title": "墓地に置こうとしたカード以下のコストの相手クリーチャーを1体破壊する"
+          }
+        }
+      ],
+      "supportBatch": "phase-1187",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex07-m08",
+      "name": "“閃忍勝”威斬斗",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "マスターG・G・G：自分の手札がこのカードだけなら、この呪文をコストを支払わずに唱えてもよい。\n相手のパワー3000以下のクリーチャーをすべて破壊する。\n自分のマナゾーンに火のカードがあれば、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex07-m08",
+      "limit": 4,
+      "g396Zero": {
+        "label": "マスターG・G・G",
+        "handOnly": true,
+        "all": [
+          {
+            "g334ZoneCount": {
+              "zone": "hand",
+              "min": 1,
+              "max": 1
+            }
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "filter": {
+            "creature": true,
+            "maxPower": 3000,
+            "g199Power": true
+          }
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g267Mana": {
+              "n": 1,
+              "color": "火"
+            }
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1187",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1186,
+    "phase": 1187,
     "checkedAt": "2026-11-14",
-    "baseCount": 7549,
+    "baseCount": 7552,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7552,
+    "totalCount": 7555,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -249970,6 +250095,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7549,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1186,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7549,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7552,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

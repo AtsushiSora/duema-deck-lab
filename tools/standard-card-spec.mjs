@@ -2470,6 +2470,33 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1187&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
+  const text=normalize(f.abilityText);
+  const shieldTrigger='S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+  if(d.id==='dm25-038'&&text===shieldTrigger+
+   'バトルゾーンにある相手のクリーチャーを1体選びタップする。その後バトルゾーンまたはマナゾーンにある自分の多色カード1枚をアンタップしてもよい。'){
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Target',tap:true,title:'タップする相手のクリーチャーを1体選ぶ'},
+    {op:'Select',zones:['battle','mana'],n:1,optional:true,g806MultiUntap:true,
+     title:'アンタップする自分の多色カードを1枚まで選ぶ'}
+   ]};
+  }
+  if(d.id==='dmrp20-043'&&text==='S・トリガー'+shieldTrigger+
+   '自分の山札の上から1枚目を墓地に置く。そのカード以下のコストを持つ相手のクリーチャーを1体破壊する。'){
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'MillThenDestroyByCost',
+    target:{op:'Target',to:'grave',title:'墓地に置こうとしたカード以下のコストの相手クリーチャーを1体破壊する'}}]};
+  }
+  if(d.id==='dmex07-m08'&&text===
+   'マスターG・G・G:自分の手札がこのカードだけならこの呪文をコストを支払わずに唱えてもよい。'+
+   '相手のパワー3000以下のクリーチャーをすべて破壊する。'+
+   '自分のマナゾーンに火のカードがあればカードを1枚引く。'){
+   return {g396Zero:{label:'マスターG・G・G',handOnly:true,all:[{g334ZoneCount:{zone:'hand',min:1,max:1}}]},
+    effect:'sixPhoto',g34Tasks:[
+     {op:'Sweep',filter:{creature:true,maxPower:3000,g199Power:true}},
+     {op:'IfOwn',filter:{g267Mana:{n:1,color:'火'}},defs:[{op:'Draw',n:1}]}
+    ]};
+  }
+ }
  if(phase>=1186&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
   const text=normalize(f.abilityText);
   if(d.id==='dmex08-135'&&text===

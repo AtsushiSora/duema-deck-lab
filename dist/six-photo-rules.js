@@ -4332,6 +4332,22 @@ export function createSixPhotoRules(api){
    Array.from({length:n+1},(_,count)=>opt(count+'枚',count,count===own.deck.length?-100:count)));
   break;
  }
+ case'g34_MillThenDestroyByCost':{
+  const top=api.takeTop(s,t.p);
+  if(top){
+   const costs=[...new Set(faces(card(top)).map(face=>cost(face)===Infinity?'∞':cost(face)))];
+   clear(top,'grave');
+   api.addZone(s,t.p,'grave',top);
+   put(s,{...t,op:'g34_MilledCost',costs});
+  }
+  api.deckCheck(s,t.p);
+  break;
+ }
+ case'g34_MilledCost':{
+  if(t.costs.length===1)start(s,t,[{...t.target,filter:t.costs[0]==='∞'?{}:{max:t.costs[0]}}]);
+  else choice(s,t,'墓地に置こうとしたカードのコストを選ぶ',t.costs.map(n=>opt('コスト'+n,n,n==='∞'?100:n)));
+  break;
+ }
  case'g34_Mill':{
   const p=t.opponent?1-t.p:t.owner??t.p,n=t.n==='∞'?s.players[p].deck.length:t.n;
   if(t.optional)choice(s,t,t.n==='∞'?'山札をすべて墓地に置く？':'山札の上'+n+'枚を墓地に置く？',[opt('置く',true,own.deck.length>n?10:-100),skip()]);
@@ -5832,6 +5848,9 @@ export function createSixPhotoRules(api){
    g173Targets:true,g193Select:true,filter:{creature:true},title:'破壊する相手のクリーチャーを'+n+'体まで選ぶ'}]);
   break;
  }
+ case'g34_MilledCost':
+  if(t.costs.includes(v))start(s,t,[{...t.target,filter:v==='∞'?{}:{max:v}}]);
+  break;
  case'g34_Mill':if(v){const p=t.opponent?1-t.p:t.owner??t.p;api.mill(s,p,t.n==='∞'?s.players[p].deck.length:t.n,{together:t.g1042Together});}break;
  case'g34_ChooseUntap562':if(v){const y=own.battle.find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation);put(s,{...t,refs:[...(t.refs||[]),...(y?[v]:[])]});}else finishUntap562(s,t);break;
  case'g34_ChooseEndUntap501':if(v){
