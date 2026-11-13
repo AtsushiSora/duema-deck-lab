@@ -1,0 +1,780 @@
+{
+  "phase": 1100,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7269,
+  "description": "ドロー・ブロッカー除去・味方の強化から超次元展開につなぐ呪文3種類を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/48160/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36128/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31654/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31662/"
+  ],
+  "cards": [
+    {
+      "id": "dm36-085",
+      "name": "超次元エナジー・ホール",
+      "faces": [
+        {
+          "name": "超次元エナジー・ホール",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "カードを１枚引く。\n次のうちいずれかひとつを選ぶ。\n自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。\nコスト７以下の水のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\n(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-085",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-085.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": "all",
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "optional": true,
+                    "g550CostBudget": 5,
+                    "title": "超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の水のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "水"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "fc1d2535e64fca471af1b8561bd1b6ebf508e0d3b4ed2316ec9cfc7e256f6dc8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm37-049",
+      "name": "超次元キル・ホール",
+      "faces": [
+        {
+          "name": "超次元キル・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手の「ブロッカー」を持つパワー4000以下のクリーチャーを１体破壊する。\n次のうちいずれかひとつを選ぶ。\nコスト２以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\nコスト４以下の火または自然のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-049",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-049.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "spell": true,
+            "filter": {
+              "blocker": true,
+              "maxPower": 4000,
+              "g199Power": true
+            },
+            "title": "破壊するパワー4000以下の相手ブロッカーを1体選ぶ"
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "コスト2以下のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "コスト4以下の火・自然のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 4,
+                      "any": [
+                        {
+                          "color": "火"
+                        },
+                        {
+                          "color": "自然"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "f91ec3a06b8f7936bda28baf4e036b45ca1910c12b3a3bf356a61e4e47bf7a7c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm37-053",
+      "name": "超次元パワード・ホール",
+      "faces": [
+        {
+          "name": "超次元パワード・ホール",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このターンの終わりまで、バトルゾーンにある自分のクリーチャーすべてのパワーは+1000され、パワー3000以下のクリーチャーにブロックされない。\n次のうちいずれかひとつを選ぶ。\nコスト２以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\nコスト４以下の火または自然のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-053",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-053.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupPower",
+            "owner": "self",
+            "spell": true,
+            "power": 1000
+          },
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "spell": true,
+            "grant": {
+              "g725NoBlockMaxPower": 3000
+            }
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "コスト2以下のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "コスト4以下の火・自然のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 4,
+                      "any": [
+                        {
+                          "color": "火"
+                        },
+                        {
+                          "color": "自然"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "4804fa1cbb88bfb210e9ffc1296a1159dc4ddb04df71f07470ed28692e086db4",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx03-031",
+      "name": "超次元エナジー・ホール",
+      "faces": [
+        {
+          "name": "超次元エナジー・ホール",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "カードを１枚引く。\n次のうちいずれかひとつを選ぶ。\n▼自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。\n▼コスト７以下の水のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx03-031",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx03-031.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": "all",
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "optional": true,
+                    "g550CostBudget": 5,
+                    "title": "超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の水のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "水"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "47b4820b331043fac7a17d85ad51a94f9bb8bc7ef5d7e1d38344f5ecfd60ca76",
+        "facesMatched": true
+      },
+      "canonicalId": "dm36-085"
+    },
+    {
+      "id": "dmx08-028",
+      "name": "超次元エナジー・ホール",
+      "faces": [
+        {
+          "name": "超次元エナジー・ホール",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "カードを１枚引く。\n次のうちいずれかひとつを選ぶ。\n▼自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。\n▼コスト７以下の水のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx08-028",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx08-028.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": "all",
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "optional": true,
+                    "g550CostBudget": 5,
+                    "title": "超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の水のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "水"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "05c9706791f41c4b106b594162b369f44ea487ab530ade29322977870540f387",
+        "facesMatched": true
+      },
+      "canonicalId": "dm36-085"
+    },
+    {
+      "id": "dmex08-298",
+      "name": "超次元エナジー・ホール",
+      "faces": [
+        {
+          "name": "超次元エナジー・ホール",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "カードを１枚引く。\n次のうちいずれか１つを選ぶ。\n▶自分の超次元ゾーンから好きな枚数のサイキック・クリーチャーをコストの合計が５以下になるように選び、バトルゾーンに出す。\n▶コスト７以下の水のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\n（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-298",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-298.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計コスト5以下のサイキックを好きな数出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": "all",
+                    "filter": {
+                      "g1085Psychic": true
+                    },
+                    "optional": true,
+                    "g550CostBudget": 5,
+                    "title": "超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "コスト7以下の水のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "color": "水"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "65471e6acd247736ae2b4f12ef9b59bfae60cbf74b7ab8395249c6f60d015cd3",
+        "facesMatched": true
+      },
+      "canonicalId": "dm36-085"
+    },
+    {
+      "id": "dmx03-042",
+      "name": "超次元キル・ホール",
+      "faces": [
+        {
+          "name": "超次元キル・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手の「ブロッカー」を持つパワー4000以下のクリーチャーを１体破壊する。\n次のうちいずれかひとつを選ぶ。\n▼コスト２以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\n▼コスト４以下の火または自然のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 (ゲーム開始時、サイ キック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx03-042",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx03-042.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "spell": true,
+            "filter": {
+              "blocker": true,
+              "maxPower": 4000,
+              "g199Power": true
+            },
+            "title": "破壊するパワー4000以下の相手ブロッカーを1体選ぶ"
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "コスト2以下のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "コスト4以下の火・自然のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 4,
+                      "any": [
+                        {
+                          "color": "火"
+                        },
+                        {
+                          "color": "自然"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "3b1c2b6565228e460b179f096d1cce56d28f30c38bbef9907240b7dc881e07d8",
+        "facesMatched": true
+      },
+      "canonicalId": "dm37-049"
+    },
+    {
+      "id": "dmex17-129",
+      "name": "超次元キル・ホール",
+      "faces": [
+        {
+          "name": "超次元キル・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手の「ブロッカー」を持つパワー4000以下のクリーチャーを１体破壊する。\n次のうちいずれか１つを選ぶ。\n▼コスト２以下のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。\n▼コスト４以下の火または自然のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。\n（ゲーム開始時、サイ キック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-129",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-129.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "spell": true,
+            "filter": {
+              "blocker": true,
+              "maxPower": 4000,
+              "g199Power": true
+            },
+            "title": "破壊するパワー4000以下の相手ブロッカーを1体選ぶ"
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "コスト2以下のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "コスト4以下の火・自然のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 4,
+                      "any": [
+                        {
+                          "color": "火"
+                        },
+                        {
+                          "color": "自然"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "84778c260900b01223e5306aaa6bcdbc37777211f18b5a1698742a5197d06d7d",
+        "facesMatched": true
+      },
+      "canonicalId": "dm37-049"
+    },
+    {
+      "id": "dmpcd03-a14",
+      "name": "超次元キル・ホール",
+      "faces": [
+        {
+          "name": "超次元キル・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手の「ブロッカー」を持つパワー4000以下のクリーチャーを１体破壊する。\n次のうちいずれか１つを選ぶ。\n▼コスト２以下のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。\n▼コスト４以下の火または自然のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。\n（ゲーム開始時、サイ キック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd03-a14",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmpcd03-a14.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "spell": true,
+            "filter": {
+              "blocker": true,
+              "maxPower": 4000,
+              "g199Power": true
+            },
+            "title": "破壊するパワー4000以下の相手ブロッカーを1体選ぶ"
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "コスト2以下のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "コスト4以下の火・自然のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "g1085Psychic": true,
+                      "max": 4,
+                      "any": [
+                        {
+                          "color": "火"
+                        },
+                        {
+                          "color": "自然"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "9f6734c640b3382df332af32d87c6671ae63ec4f02052ae1ab33828e392a6940",
+        "facesMatched": true
+      },
+      "canonicalId": "dm37-049"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm36-085": 4,
+      "dmx03-031": 4,
+      "dmx08-028": 4,
+      "dmex08-298": 4,
+      "dm37-049": 4,
+      "dmx03-042": 4,
+      "dmex17-129": 4,
+      "dmpcd03-a14": 4,
+      "dm37-053": 4
+    }
+  }
+}

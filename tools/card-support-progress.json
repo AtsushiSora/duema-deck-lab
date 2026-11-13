@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-13",
   "catalogueNames": 11827,
-  "supportedNames": 7269,
-  "pendingNames": 4558,
-  "phase": 1099,
-  "added": 4,
+  "supportedNames": 7272,
+  "pendingNames": 4555,
+  "phase": 1100,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -156,7 +156,7 @@
   "pendingByType": {
     "クリーチャー": 2652,
     "NEOクリーチャー": 87,
-    "呪文": 590,
+    "呪文": 587,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 31,
     "タマシード": 56,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1200,
-    "未対応の能力文": 3140,
+    "未対応の能力文": 3138,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 21,
     "未対応のシンカパワー": 2,
@@ -253,7 +253,7 @@
     "未対応のアバレチェーン": 3,
     "未対応のG城能力": 10,
     "未対応のS・トリガー・プラス能力": 2,
-    "独立した誘発能力の順序対応が必要": 6,
+    "独立した誘発能力の順序対応が必要": 5,
     "未対応の非ブロック時能力": 1,
     "特殊なパワー": 1,
     "未対応のアンタップ能力": 1,
@@ -211293,43 +211293,238 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1100,
+      "baseCommit": "5147f10c",
+      "scope": "ドロー、ブロッカーの破壊、全体強化から超次元展開につなぐ呪文3種類を対戦対応する。",
+      "cards": [
+        {
+          "id": "dm36-085",
+          "name": "超次元エナジー・ホール",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-085"
+        },
+        {
+          "id": "dm37-049",
+          "name": "超次元キル・ホール",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-049"
+        },
+        {
+          "id": "dm37-053",
+          "name": "超次元パワード・ホール",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-053"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dmx03-031",
+          "canonicalId": "dm36-085",
+          "name": "超次元エナジー・ホール",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx03-031"
+        },
+        {
+          "id": "dmx08-028",
+          "canonicalId": "dm36-085",
+          "name": "超次元エナジー・ホール",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx08-028"
+        },
+        {
+          "id": "dmex08-298",
+          "canonicalId": "dm36-085",
+          "name": "超次元エナジー・ホール",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-298"
+        },
+        {
+          "id": "dmx03-042",
+          "canonicalId": "dm37-049",
+          "name": "超次元キル・ホール",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx03-042"
+        },
+        {
+          "id": "dmex17-129",
+          "canonicalId": "dm37-049",
+          "name": "超次元キル・ホール",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-129"
+        },
+        {
+          "id": "dmpcd03-a14",
+          "canonicalId": "dm37-049",
+          "name": "超次元キル・ホール",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd03-a14"
+        }
+      ],
+      "supportedNames": 7272,
+      "pendingNames": 4555,
+      "verification": {
+        "focused": "tests/standard1100-effects.test.mjs 5件成功",
+        "relatedRegressions": "192件成功（超次元展開と合計コスト、直近のカード、カタログ・画像・デッキの回帰）。",
+        "check": "npm run check 成功",
+        "officialPrints": 9,
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/qa/48160/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36128/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31654/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31662/"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1090のアモデゴラスの実カード組み合わせ3件、Phase 1094のサイキック・イーターとグレンオー、dottoの長時間CPU対戦とWorkerの2件は引き続き未確認。",
+        "notes": "エナジー・ホールはアンタッチャブルとジョンで合計5の2体展開を確認。パワード・ホールは公式QA 36128に従い、解決後に出たジョンへの強化とブロック制限の付与がないことを確認。",
+        "regressionLogs": [
+          "/tmp/duema-phase-1100/focused.log",
+          "/tmp/duema-phase-1100/regression.log",
+          "/tmp/duema-phase-1100/check.log",
+          "/tmp/duema-phase-1100/audit.log"
+        ]
+      },
+      "registeredUnverified": [
+        {
+          "cardId": "dmr03-024",
+          "dependencyIds": [
+            "dmd03-002"
+          ],
+          "test": "相手が自身の破壊されないサイキックを選べて、選んだクリーチャーが残る（QA 36427と同型）",
+          "reason": "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
+        },
+        {
+          "cardId": "dmr01-034",
+          "test": "火のサイキック2体を合計コスト8で超次元ゾーンから出す実カードの組み合わせ",
+          "reason": "現状はコスト7のボルシャックだけが火のサイキックとして登録済み。合計8と2体の上限はテスト用カードで検証済み。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-034"
+        },
+        {
+          "cardId": "dm36-093",
+          "test": "コスト7以下の闇のサイキックを実カードで超次元から出す",
+          "reason": "対応済みの闇のサイキックがなく、文明・コストの境界と実際の移動はテスト用カードで検証した。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-093"
+        },
+        {
+          "cardId": "dm36-085",
+          "test": "コスト7以下の水のサイキックを実カードで超次元から出す",
+          "reason": "登録済みの水のサイキックがいない。文明とコストの境界および移動はテスト用カードで検証した。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-085"
+        }
+      ],
+      "deferred": [
+        {
+          "id": "dm37-042",
+          "name": "超次元エクストラ・ホール",
+          "reason": "初版と再録2種は選んだカードを山札の上に置くが、DMEX-17版は置く位置を指定せず山札に加えてシャッフルする。シャッフル禁止中の置き先と、0枚を選んだ場合のシャッフルを最新テキストと照合して検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm37-042",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmx03-034",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-299",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-116",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36097/",
+            "https://dm.takaratomy.co.jp/rule/qa/31783/"
+          ]
+        },
+        {
+          "id": "dmc65-005",
+          "name": "超次元ムシャ・ホール",
+          "reason": "DMC-65版の公式全文・基本情報・画像と使用制限を照合した。初出P10/Y9の公式詳細は取得できず、画像URLはカード裏面を返すため、初出版の能力全文と画像の照合が済むまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmc65-005",
+            "https://dm.takaratomy.co.jp/card/detail/?id=promoy9-010"
+          ]
+        },
+        {
+          "id": "dm39-051",
+          "name": "メビウス・トルネード",
+          "reason": "公式能力全文・基本情報・画像を確認。最初の破壊が置換された場合にも「もう1体」を正しく扱う対象記録と、解決時に自分のサイキックがいるかの判定を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm39-051"
+          ]
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "双方のパワー6000以下のサイキックを一斉に破壊し、複数の離脱置換・解除を処理するテストと、自身が攻撃されないことの検証が必要。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-062"
+          ]
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "保留継続。選んだアンタップ中の相手クリーチャーを攻撃できる範囲と、召喚酔い・攻撃制限・対象の離脱後の扱いを個別に確認する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-102"
+          ]
+        },
+        {
+          "id": "dmd03-002",
+          "name": "不死身のブーストグレンオー",
+          "reason": "Phase 1094の相手自身による破壊対象選択の検証に必要。覚醒リンクに必要なカードと合体面を照合し、能力全体を実装できる段階まで保留する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmd03-002"
+          ]
+        },
+        {
+          "id": "dm37-030",
+          "name": "時空の喧嘩屋キル",
+          "reason": "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030VC",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmx02-023",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-089",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd03-a06",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36119/",
+            "https://dm.takaratomy.co.jp/rule/qa/45084/"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1099,
-    "nextPhase": 1100,
+    "lastVerifiedPhase": 1100,
+    "nextPhase": 1101,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm36-085",
-        "name": "超次元エナジー・ホール",
-        "reason": "ドロー後に選ぶ合計コスト5以下の展開と水コスト7以下の展開、再録を照合する。",
+        "id": "dm22ex1-127",
+        "name": "超次元エナジー・ホール / 超次元サプライズ・ホール",
+        "reason": "同名の単面2種とは別のツインパクト。両面の能力、S・トリガーと既存IDを照合する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm36-085"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-127"
+        ]
+      },
+      {
+        "id": "dmpcd03-a12",
+        "name": "超次元オーフレイム・ホール",
+        "reason": "先行効果と超次元からの選択条件、初版・再録を照合する。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd03-a12"
+        ]
+      },
+      {
+        "id": "dmr02-034",
+        "name": "超次元グリーンレッド・ホール",
+        "reason": "先行効果と超次元からの選択条件、初版・再録を照合する。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-034"
+        ]
+      },
+      {
+        "id": "dmx05-016",
+        "name": "超次元シャチホコ・ホール",
+        "reason": "先行効果と超次元からの選択条件、初版・再録を照合する。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmx05-016"
         ]
       },
       {
         "id": "dm37-042",
         "name": "超次元エクストラ・ホール",
-        "reason": "選んだプレイヤーの墓地から2枚まで戻す処理と後続の展開を照合する。",
+        "reason": "初版と再録2種は選んだカードを山札の上に置くが、DMEX-17版は置く位置を指定せず山札に加えてシャッフルする。シャッフル禁止中の置き先と、0枚を選んだ場合のシャッフルを最新テキストと照合して検証するまで保留。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm37-042"
-        ]
-      },
-      {
-        "id": "dm37-049",
-        "name": "超次元キル・ホール",
-        "reason": "現在パワー4000以下のブロッカーの破壊と後続の展開を照合する。",
-        "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm37-049"
-        ]
-      },
-      {
-        "id": "dm37-053",
-        "name": "超次元パワード・ホール",
-        "reason": "強化とブロック制限の対象範囲を照合する。",
-        "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm37-053"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm37-042",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmx03-034",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-299",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-116",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36097/",
+          "https://dm.takaratomy.co.jp/rule/qa/31783/"
         ]
       },
       {
@@ -211339,28 +211534,6 @@
         "sources": [
           "https://dm.takaratomy.co.jp/card/detail/?id=dmc65-005",
           "https://dm.takaratomy.co.jp/card/detail/?id=promoy9-010"
-        ]
-      },
-      {
-        "id": "dm37-030",
-        "name": "時空の喧嘩屋キル",
-        "reason": "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
-        "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030",
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030VC",
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmx02-023",
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-089",
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd03-a06",
-          "https://dm.takaratomy.co.jp/rule/qa_old/36119/",
-          "https://dm.takaratomy.co.jp/rule/qa/45084/"
-        ]
-      },
-      {
-        "id": "dmd03-002",
-        "name": "不死身のブーストグレンオー",
-        "reason": "Phase 1094の相手自身による破壊対象選択の検証に必要。覚醒リンクに必要なカードと合体面を照合し、能力全体を実装できる段階まで保留する。",
-        "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dmd03-002"
         ]
       },
       {
@@ -211385,6 +211558,28 @@
         "reason": "保留継続。選んだアンタップ中の相手クリーチャーを攻撃できる範囲と、召喚酔い・攻撃制限・対象の離脱後の扱いを個別に確認する。",
         "sources": [
           "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-102"
+        ]
+      },
+      {
+        "id": "dmd03-002",
+        "name": "不死身のブーストグレンオー",
+        "reason": "Phase 1094の相手自身による破壊対象選択の検証に必要。覚醒リンクに必要なカードと合体面を照合し、能力全体を実装できる段階まで保留する。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmd03-002"
+        ]
+      },
+      {
+        "id": "dm37-030",
+        "name": "時空の喧嘩屋キル",
+        "reason": "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030VC",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmx02-023",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-089",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd03-a06",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36119/",
+          "https://dm.takaratomy.co.jp/rule/qa/45084/"
         ]
       },
       {
@@ -211666,7 +211861,7 @@
         ]
       }
     ],
-    "steps": "次回はPhase 1100。最新コミット、作業ツリーとステージ済み差分、前回のテストログ、実行中の作業、実データの正規カード名件数を確認し、候補の公式照合から再開する。",
+    "steps": "次回はPhase 1101。最新コミット、作業ツリーとステージ済み差分、前回のテストログ、実行中の作業、実データの正規カード名件数を確認し、候補の公式照合から再開する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -211743,11 +211938,11 @@
     ],
     "restartSteps": [
       "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
-      "超次元呪文の公式全文・基本情報・画像・使用制限・再録・関連裁定を照合する。先行効果から後続の選択への順序を確認する。",
+      "超次元呪文の公式全文・基本情報・画像・使用制限・再録・関連裁定を照合する。ツインパクト候補は両面を個別に照合し、先行効果と後続の選択の順序を確認する。",
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で10分間隔のカード登録を再開。",
-    "verificationMode": "ジョンとアンタッチャブルの同じターン終了時の覚醒は検証済み。Phase 1090・1094の残る実カードの組み合わせは、依存カードの対戦対応後に確認する。",
+    "verificationMode": "エナジー・ホールの水、リバイヴ・ホールの闇の実カード展開とPhase 1090・1094の残る実カードの組み合わせは、依存カードの対戦対応後に確認する。",
     "nextRequestedCards": []
   },
   "registeredCardVerification": {

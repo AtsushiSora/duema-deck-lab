@@ -6171,7 +6171,8 @@ export function standardCardSpec(d,{phase=165}={}){
   const common=text.replace('いずれか1つ','いずれかひとつ')
    .replace('上から1枚目をマナゾーン','上から1枚目を自分のマナゾーン')
    .replace('サイキック・クリーチャーをコストの合計が5以下になるように好きな数選び','好きな数のサイキック・クリーチャーをコストの合計が5以下になるように選び')
-   .replace(/(自然|闇|光)のコスト7以下のサイキック/,'コスト7以下の$1のサイキック');
+   .replace(/(自然|闇|光|水)のコスト7以下のサイキック/,'コスト7以下の$1のサイキック')
+   .replace('好きな枚数のサイキック','好きな数のサイキック');
   const holes=[
    {ids:['dm36-109','dm36-109VC','dmx02-037','dmx08-035','dmx25-020','dmbd13-022','promoy17-014'],color:'自然',
     printed:'自分の山札の上から1枚目を自分のマナゾーンに置く。',task:{op:'Ramp',n:1}},
@@ -6180,7 +6181,9 @@ export function standardCardSpec(d,{phase=165}={}){
     task:{op:'Select',origin:'grave',to:'hand',n:1,filter:{creature:true},title:'墓地から手札に戻すクリーチャーを1体選ぶ'}},
    {ids:['dm36-077','dm36-077VC','dmx02-031','dmx08-026','dmc68-019'],color:'光',
     printed:'バトルゾーンにある相手のクリーチャーを1体選びタップする。',
-    task:{op:'Target',tap:true,spell:true,title:'タップする相手のクリーチャーを1体選ぶ'}}
+    task:{op:'Target',tap:true,spell:true,title:'タップする相手のクリーチャーを1体選ぶ'}},
+   ...(phase>=1100?[{ids:['dm36-085','dmx03-031','dmx08-028','dmex08-298'],color:'水',
+    printed:'カードを1枚引く。',task:{op:'Draw',n:1}}]:[])
   ];
   const hole=holes.find(row=>row.ids.includes(d.id));
   if(hole&&common===hole.printed+choose+group+
@@ -6196,6 +6199,28 @@ export function standardCardSpec(d,{phase=165}={}){
     {label:'コスト2以下のサイキックを1体出す',defs:[deploy({max:2})]},
     {label:'コスト4以下の光・水のサイキックを1体出す',defs:[deploy({max:4,any:[{color:'光'},{color:'水'}]})]}
    )]};
+  }
+  if(phase>=1100){
+   const tail=choose+
+    'コスト2以下のサイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。'+
+    'コスト4以下の火または自然のサイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。';
+   const modernTail=tail.replace('いずれかひとつ','いずれか1つ').replaceAll('バトルゾーンに出す','出す');
+   const smallModes=modes(
+    {label:'コスト2以下のサイキックを1体出す',defs:[deploy({max:2})]},
+    {label:'コスト4以下の火・自然のサイキックを1体出す',defs:[deploy({max:4,any:[{color:'火'},{color:'自然'}]})]}
+   );
+   const kill='相手の「ブロッカー」を持つパワー4000以下のクリーチャーを1体破壊する。';
+   if(['dm37-049','dmx03-042','dmex17-129','dmpcd03-a14'].includes(d.id)&&[kill+tail,kill+modernTail].includes(text))
+    return {effect:'sixPhoto',g34Tasks:[
+     {op:'Target',to:'grave',spell:true,filter:{blocker:true,maxPower:4000,g199Power:true},
+      title:'破壊するパワー4000以下の相手ブロッカーを1体選ぶ'},smallModes
+    ]};
+   const powered='このターンの終わりまでバトルゾーンにある自分のクリーチャーすべてのパワーは+1000されパワー3000以下のクリーチャーにブロックされない。';
+   if(d.id==='dm37-053'&&text===powered+tail)
+    return {effect:'sixPhoto',g34Tasks:[
+     {op:'GroupPower',owner:'self',spell:true,power:1000},
+     {op:'GroupGrant364',owner:'self',spell:true,grant:{g725NoBlockMaxPower:3000}},smallModes
+    ]};
   }
  }
  if(phase>=1098&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
