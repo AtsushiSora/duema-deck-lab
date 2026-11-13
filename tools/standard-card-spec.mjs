@@ -6184,6 +6184,24 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1115&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm25ex2-082'&&f.typeText==='呪文'&&text===
+   '{k}相手のエレメントを1つ選び持ち主の手札に戻す。その後相手の手札を1枚見ないで選び捨てさせる。キング・ナイト・マジック(自分のナイト1つにつきこの呪文のk能力を追加で1回使ってもよい)'){
+   const defs=[
+    {op:'Target',element:true,to:'hand',toOwnerHand:true,spell:true,title:'持ち主の手札に戻す相手のエレメントを選ぶ'},
+    {op:'BlindDiscard773'}
+   ];
+   return {effect:'sixPhoto',g34Tasks:[...defs,{op:'KingKnightMagic1115',defs}]};
+  }
+  if(d.id==='dm25ex2-095'&&f.typeText==='クリーチャー'&&text===
+   'スピードアタッカー(このクリーチャーは召喚酔いしない)パワード・ブレイカー(このクリーチャーはそのパワー6000ごとにシールドをさらに1つブレイクする)相手の超次元ゾーンにあるカード1枚につきこのクリーチャーのパワーを+1000する。')
+   return {speedAttacker:true,poweredBreaker:true,g207CountPower:{zone:'extra',opponent:true,amount:1000}};
+  if(d.id==='dm25ex2-098'&&f.typeText==='クリーチャー'&&text===
+   '相手の超次元ゾーンにカードがあればこのクリーチャーを[ff01]支払って召喚してもよい。このクリーチャーが出た時自分のシールドを1つ手札に加える。ただしその「S・トリガー」は使えない。')
+   return {effect:'sixPhoto',g568Alt:{cost:1,paymentColors:['火'],condition:{g334ZoneCount:{zone:'extra',opponent:true,min:1}}},
+    g34Tasks:[{op:'ShieldHand',g238ShieldHand:true}]};
+ }
  if(phase>=1114&&d?.status==='complete'){
   const text=normalize(f.abilityText),back=d.faces[1];
   if(d.faces.length===2&&f.typeText==='クリーチャー'&&back.typeText==='呪文'){

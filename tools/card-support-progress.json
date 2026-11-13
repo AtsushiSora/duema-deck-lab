@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-13",
   "catalogueNames": 11827,
-  "supportedNames": 7328,
-  "pendingNames": 4499,
-  "phase": 1114,
-  "added": 4,
+  "supportedNames": 7331,
+  "pendingNames": 4496,
+  "phase": 1115,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2644,
+    "クリーチャー": 2642,
     "NEOクリーチャー": 87,
-    "呪文": 553,
+    "呪文": 552,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 31,
     "タマシード": 56,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1180,
-    "未対応の能力文": 3103,
+    "未対応の能力文": 3100,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 21,
     "未対応のシンカパワー": 2,
@@ -214717,35 +214717,313 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1115,
+      "baseCommit": "ed1095e3",
+      "scope": "煉獄魔弾エターナル・ソード、親愛なる友 テスタ・ロッサ、ストリエ雷鬼の能力全体を対戦対応する。",
+      "cards": [
+        {
+          "id": "dm25ex2-082",
+          "name": "煉獄魔弾エターナル・ソード",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-082"
+        },
+        {
+          "id": "dm25ex2-095",
+          "name": "親愛なる友 テスタ・ロッサ",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-095"
+        },
+        {
+          "id": "dm25ex2-098",
+          "name": "ストリエ雷鬼",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-098"
+        }
+      ],
+      "printAliases": [],
+      "supportedNames": 7331,
+      "pendingNames": 4496,
+      "verification": {
+        "focused": "tests/standard1115-effects.test.mjs 8件成功。カード定義・非公開手札選択・追加使用回数・オーナーの判定・超次元の枚数・通常召喚と火1マナの別コスト・手動支払いとJSON復元を確認。",
+        "relatedRegressions": "パワード・ブレイカー、シールド回収、別コスト召喚、手札破棄と置換、ナイト系・超次元の関連回帰330件成功。ツインパクト混成シード41〜50の10戦も成功。",
+        "check": "最終差分の npm run check 成功。",
+        "officialPrints": 3,
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/40400/",
+          "https://dm.takaratomy.co.jp/coverage/dmgp2025-2nda_bd/"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。ツインパクトの残りのシードと依存カードの裁定はregisteredUnverifiedに記録。No11・No23の長時間回帰は前回の中断記録を保持。",
+        "notes": "dist/cards.jsonをnameKeyで集計し、7,328→7,331種類。公式の能力文全体・基本情報・画像・収録・現行使用制限を3種類とも照合した。アドバンスでサイキックが超次元に戻った後、ストリエ雷鬼の火1マナ召喚が選べることを確認。テスタ・ロッサは相手の超次元7枚で2ブレイク、8枚で3ブレイクを確認した。",
+        "regressionLogs": [
+          "/tmp/duema-phase-1115/focused-verified.log",
+          "/tmp/duema-phase-1115/regression-final.log",
+          "/tmp/duema-phase-1115/check-final.log",
+          "/tmp/duema-phase-1115/audit.log",
+          "/tmp/duema-phase-1115/twinpact-41-50.log"
+        ]
+      },
+      "registeredUnverified": [
+        {
+          "cardId": "dmr03-024",
+          "dependencyIds": [
+            "dmd03-002"
+          ],
+          "test": "相手が自身の破壊されないサイキックを選べて、選んだクリーチャーが残る（QA 36427と同型）",
+          "reason": "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
+        },
+        {
+          "cardId": "dm22ex1-030",
+          "test": "mixed twinpact/dragon games finish, preserve all 80 physical cards including a pending spell, and replay deterministically",
+          "path": "tests/twinpact-judge.test.mjs",
+          "reason": "混成100戦の一括回帰は中断。Phase 1111〜1115でシード1〜50の物理カード保存・対戦完了と再現性を確認。残りは51〜100。呪文の保留状態は専用の固有テストで確認し、シード41〜50でも保留を1回観測した。",
+          "log": "/tmp/duema-phase-1101/regression.log",
+          "checkedSeedRanges": [
+            [
+              1,
+              10
+            ],
+            [
+              11,
+              20
+            ],
+            [
+              21,
+              30
+            ],
+            [
+              31,
+              40
+            ],
+            [
+              41,
+              50
+            ]
+          ],
+          "remainingSeedRanges": [
+            [
+              51,
+              100
+            ]
+          ],
+          "latestLog": "/tmp/duema-phase-1115/twinpact-41-50.log"
+        },
+        {
+          "cardId": "dm36-077",
+          "relatedCardIds": [
+            "dm36-101",
+            "dm38-046",
+            "dm38-051",
+            "dmr01-095",
+            "dmr01-072",
+            "dmr01-104",
+            "dmex17-134",
+            "dmc62-006",
+            "dmr01-034",
+            "dm36-109",
+            "dm36-093",
+            "dm37-039",
+            "dm36-085",
+            "dm37-049",
+            "dm37-053",
+            "dm22ex1-127",
+            "dm22ex1-112",
+            "dmpcd03-a12"
+          ],
+          "test": "超次元の各面をコスト・文明・種族で判定し、条件を満たす覚醒後の面を直接出せる",
+          "reason": "Phase 1104は今回追加した4種類の展開で両面選択を検証。登録済みの他の展開効果への適用と、選択肢の順序が保存済み対戦の再現に与える影響は未検証。展開元ごとに条件と表示をテストする。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/37744/"
+        },
+        {
+          "cardId": "dmbd13-015",
+          "dependencyIds": [
+            "dmr04-v03"
+          ],
+          "test": "奇石 ミクセルの登場監視とリュウセイ・ホールのマナ追加の順序を勝利のガイアール・カイザーで再現する（QA 38717）",
+          "reason": "勝利のガイアール・カイザーはV覚醒リンクを含む能力全体が未対応。同じコスト7の登録済みサイキック、時空の火焔ボルシャック・ドラゴンでは、6マナで登場してからマナを追加する順序を確認済み。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/38717/",
+          "path": "tests/standard1105-effects.test.mjs",
+          "log": "/tmp/duema-phase-1105/focused.log"
+        },
+        {
+          "cardId": "dm38-011",
+          "dependencyIds": [
+            "dmr01-053"
+          ],
+          "test": "ロマノフ・ホールで相手が自身のエイリアンを選び破壊した場合、ザビ・リゲルが呪文による破壊を参照する（QA 36348）",
+          "path": "tests/standard1107-effects.test.mjs",
+          "reason": "竜骨なる者ザビ・リゲルが覚醒リンクを含め対戦未対応。相手本人による選択・破壊と、その後に唱えた側が闇のサイキックを出すことは固有テストで確認済み。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36348/"
+        },
+        {
+          "cardId": "dmex12-052",
+          "dependencyIds": [
+            "dmex12-022"
+          ],
+          "test": "希望のジョー星と透明妖精リリンの登場順により、マナのスノーフェアリーの文明が変わる（QA 38608）",
+          "reason": "希望のジョー星はプレミアム殿堂かつ対戦未対応。依存カードに対応後、通常のデッキ制限を守ったままテスト用の盤面で両方の登場順を再現する。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/38608/",
+          "path": "tests/standard1114-effects.test.mjs"
+        },
+        {
+          "cardId": "dmex17-004",
+          "dependencyIds": [
+            "dmex12-022"
+          ],
+          "test": "希望のジョー星で無色になった山札のカードをアシッド・テクノが参照する（裁定変更のお知らせ31641）",
+          "reason": "希望のジョー星が対戦未対応のため、既に受けている文明変更が山札を見ている間も続く組み合わせを再現できない。依存カードへの対応後に確認する。",
+          "source": "https://dm.takaratomy.co.jp/rule/rulechange/31641/",
+          "path": "tests/standard1114-effects.test.mjs"
+        },
+        {
+          "cardId": "dm25ex2-082",
+          "dependencyIds": [
+            "dm28-004"
+          ],
+          "test": "ナイト呪文に対するマクシミリアン王の追加使用とキング・ナイト・マジックの追加回数が併用できることを確認する",
+          "reason": "氷牙の魔筆マクシミリアン王が対戦未対応。通常のナイト・マジックとマクシミリアン王の併用は公式QA 40362を参照。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40362/",
+          "path": "tests/standard1115-effects.test.mjs"
+        },
+        {
+          "cardId": "dm25ex2-082",
+          "dependencyIds": [
+            "dm30-047",
+            "dmex17-083"
+          ],
+          "test": "ドラム・トレボールが参照する「ナイト・マジック」にキング・ナイト・マジックが含まれるかを確認する",
+          "reason": "ドラム・トレボールの単体版・ツインパクト版が対戦未対応。キング・ナイト・マジックを指定した公式裁定を確認できていないため、依存カードへの対応時に適用範囲を照合する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm30-047",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-083"
+          ],
+          "path": "tests/standard1115-effects.test.mjs"
+        }
+      ],
+      "deferred": [
+        {
+          "id": "dmr02-020",
+          "name": "超次元ごっつぁん・ホール",
+          "reason": "手札から捨てる能力に必要な横綱 義留の富士（dmr02-002）が覚醒リンクを含め未対応。攻撃側の誘発を解決する順番と、複数枚の宣言・攻撃中止後のバトルを確認するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-020",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-002",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36380/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36381/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36382/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36383/"
+          ]
+        },
+        {
+          "id": "dm39-020",
+          "name": "超次元ガード・ホール",
+          "reason": "公式5版の本文・画像と現行表記を照合。非進化で複数カードから成るクリーチャーの構成カードをどの単位でシールドにするか、持ち主と離脱置換を含む裁定確認が残る。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm39-020",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm39-020VC",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-017",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-Cho18",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-T08"
+          ]
+        },
+        {
+          "id": "dm22ex1-077",
+          "name": "超次元パンドラ・ホール",
+          "reason": "装備先がいない場合でもウエポンは出て、出た時の能力が待機してから超次元へ戻る。ドラグハート・ウエポンの展開・装備・状況起因処理を検証できるまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-077",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-T12",
+            "https://dm.takaratomy.co.jp/rule/qa/48121/"
+          ]
+        },
+        {
+          "id": "dmr04-v03",
+          "name": "勝利のガイアール・カイザー",
+          "reason": "リュウセイ・ホールのQA 38717の指定カード。V覚醒リンクに必要なカードと合体面の能力を照合する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-v03",
+            "https://dm.takaratomy.co.jp/rule/qa/38717/"
+          ]
+        },
+        {
+          "id": "dm37-030",
+          "name": "時空の喧嘩屋キル",
+          "reason": "低コストの火のサイキック候補。既存の保留理由と関連裁定に沿って離脱置換を検証する。 初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm37-030VC",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmx02-023",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-089",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd03-a06",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36119/",
+            "https://dm.takaratomy.co.jp/rule/qa/45084/"
+          ]
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "双方のパワー6000以下のサイキックを一斉に破壊し、複数の離脱置換・解除を処理するテストと、自身が攻撃されないことの検証が必要。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-062"
+          ]
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "保留継続。選んだアンタップ中の相手クリーチャーを攻撃できる範囲と、召喚酔い・攻撃制限・対象の離脱後の扱いを個別に確認する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-102"
+          ]
+        },
+        {
+          "id": "dmd03-002",
+          "name": "不死身のブーストグレンオー",
+          "reason": "裏面がサイキック・セル。単体の破壊耐性だけでは能力全体を再現できないため、剛腕の政とサイキック・スーパー・クリーチャーのリンク解除を含めて検証する。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmd03-002",
+            "https://dm.takaratomy.co.jp/rule/qa_old/37755/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1114,
-    "nextPhase": 1115,
+    "lastVerifiedPhase": 1115,
+    "nextPhase": 1116,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm25ex2-082",
-        "name": "煉獄魔弾エターナル・ソード",
-        "reason": "キング・ナイト・マジックの回数と、各回のエレメント戻し・手札破棄の順序を確認する。",
+        "id": "dm25ex2-071",
+        "name": "姫と女王の愛",
+        "reason": "超次元へ置いた後に選び直す処理と、アンタップ禁止が切れるタイミングを確認する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-082"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-071"
         ]
       },
       {
-        "id": "dm25ex2-095",
-        "name": "親愛なる友 テスタ・ロッサ",
-        "reason": "相手の超次元ゾーンに応じた継続パワー修整と追加能力を確認する。",
+        "id": "dm25ex2-035",
+        "name": "電嶺樹アカシック・クラシック",
+        "reason": "全体手札戻しと、自分の他のクリーチャーへのパワー修整とブレイカー付与を確認する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-095"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-035"
         ]
       },
       {
-        "id": "dm25ex2-098",
-        "name": "ストリエ雷鬼",
-        "reason": "相手の超次元ゾーンに依存する代替コストと、S・トリガーを使わないシールド回収を確認する。",
+        "id": "dm25ex2-063",
+        "name": "ボルシャック・バザガジール",
+        "reason": "エスケープ、墓地の名前参照、相手のタップでのアンタップを確認する。",
         "sources": [
-          "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-098"
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-063"
+        ]
+      },
+      {
+        "id": "dm28-004",
+        "name": "氷牙の魔筆マクシミリアン王",
+        "reason": "ナイト呪文の追加使用が他のナイト能力と重なる場合の解決順序を確認する。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm28-004",
+          "https://dm.takaratomy.co.jp/rule/qa/40362/"
         ]
       },
       {
@@ -214785,7 +215063,7 @@
         ]
       }
     ],
-    "steps": "次回はPhase 1115。最新コミット、作業ツリーとステージ済み差分、前回ログ、実行中の作業、実データの正規カード名件数を確認し、候補の公式照合から再開する。",
+    "steps": "次回はPhase 1116。最新コミット、作業ツリーとステージ済み差分、前回ログ、実行中の作業、実データの正規カード名件数を確認し、候補の公式照合から再開する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -214866,7 +215144,7 @@
       "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
     ],
     "registrationStatus": "ユーザーの指示で10分間隔のカード登録を再開。",
-    "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦の再検証はシードを分割して行う。 ツインパクト混成100戦のシード1〜40を分割して確認。次回は41から再開する。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。",
+    "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦の再検証はシードを分割して行う。 ツインパクト混成100戦のシード1〜50を分割して確認。次回は51から再開する。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。",
     "nextRequestedCards": []
   },
   "registeredCardVerification": {

@@ -4085,6 +4085,14 @@ export function createSixPhotoRules(api){
   if(n)put(s,task('discard',owner,t.source,{causedBy:t.p,n,random:!!t.random,optional:!!t.optional,selfDiscard:t.owner==='self',...(t.g756All?{all:true}:{}),...(t.g869ReturnOnSpell?{g869ReturnUid:t.uid}:{}),...(after?{afterDiscardCount:after}:{})}));
   break;
  }
+ case'g34_KingKnightMagic1115':{
+  const count=countDraw(s,t.p,{zone:'battle',g262Elements:true,filter:{race:'ナイト',faceUp:true}});
+  if(!count)break;
+  const score=modeScore(s,t,t.defs);
+  choice(s,t,'キング・ナイト・マジック：効果を追加で使う回数',
+   Array.from({length:count+1},(_,n)=>opt(n+'回',n,Math.min(n,opp.battle.length+opp.hand.length)*score)));
+  break;
+ }
  case'g34_Repeat1052':start(s,t,Array.from({length:t.n},()=>t.def));break;
  case'g34_Scorpion614':scorpion614(s,t);break;
  case'g34_OverManaBottom590':{
@@ -4706,6 +4714,9 @@ export function createSixPhotoRules(api){
    const row=manaTriggerSpells803(s,t.p).find(({y,face})=>y.uid===t.selected.uid&&face===t.selected.face&&(y.zoneSerial||0)===t.selected.serial);
    if(row&&api.canCast(s,t.p,row.c,'mana'))cast(s,t.p,row.y.uid,true,null,row.face,null,'mana','カードの能力');
   }
+  break;
+ case'g34_KingKnightMagic1115':
+  start(s,t,Array.from({length:v},()=>t.defs).flat());
   break;
  case'g34_BlindDiscard773':{
   const hand=s.players[1-t.p].hand,selected=[...(t.selected??[]),v];

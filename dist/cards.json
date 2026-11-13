@@ -220975,15 +220975,127 @@
       },
       "supportBatch": "phase-1114",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex2-082",
+      "name": "煉獄魔弾エターナル・ソード",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "ナイト",
+      "text": "{k} 相手のエレメントを１つ選び、持ち主の手札に戻す。その後、相手の手札を１枚見ないで選び、捨てさせる。\nキング・ナイト・マジック（自分のナイト１つにつき、この呪文の k 能力を追加で１回使ってもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-082",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "element": true,
+          "to": "hand",
+          "toOwnerHand": true,
+          "spell": true,
+          "title": "持ち主の手札に戻す相手のエレメントを選ぶ"
+        },
+        {
+          "op": "BlindDiscard773"
+        },
+        {
+          "op": "KingKnightMagic1115",
+          "defs": [
+            {
+              "op": "Target",
+              "element": true,
+              "to": "hand",
+              "toOwnerHand": true,
+              "spell": true,
+              "title": "持ち主の手札に戻す相手のエレメントを選ぶ"
+            },
+            {
+              "op": "BlindDiscard773"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1115",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex2-095",
+      "name": "親愛なる友 テスタ・ロッサ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "マジック・アウトレイジMAX",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n相手の超次元ゾーンにあるカード１枚につき、このクリーチャーのパワーを+1000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-095",
+      "limit": 4,
+      "speedAttacker": true,
+      "poweredBreaker": true,
+      "g207CountPower": {
+        "zone": "extra",
+        "opponent": true,
+        "amount": 1000
+      },
+      "supportBatch": "phase-1115",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex2-098",
+      "name": "ストリエ雷鬼",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "デモニオ",
+      "text": "相手の超次元ゾーンにカードがあれば、このクリーチャーを[ff01]支払って召喚してもよい。\nこのクリーチャーが出た時、自分のシールドを１つ手札に加える。ただし、その「S・トリガー」は使えない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-098",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g568Alt": {
+        "cost": 1,
+        "paymentColors": [
+          "火"
+        ],
+        "condition": {
+          "g334ZoneCount": {
+            "zone": "extra",
+            "opponent": true,
+            "min": 1
+          }
+        }
+      },
+      "g34Tasks": [
+        {
+          "op": "ShieldHand",
+          "g238ShieldHand": true
+        }
+      ],
+      "supportBatch": "phase-1115",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1114,
+    "phase": 1115,
     "checkedAt": "2026-11-13",
-    "baseCount": 7324,
-    "newEffectCards": 4,
+    "baseCount": 7328,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7328,
+    "totalCount": 7331,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -240640,6 +240752,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7324,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1114,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7324,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7328,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
