@@ -3055,6 +3055,14 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
   break;
  }
+ case'g34_StackDestroyed1130':{
+  const host=sourceHost474(s,t),victim=own.grave.find(y=>y.uid===t.victim.uid&&(y.zoneSerial||0)===t.victim.serial);
+  if(host&&!host.x.sealed&&api.isCreature(s,host.x)&&victim&&api.canMoveZone(s,t.p,'grave'))
+   choice(s,t,card(victim).name+'をこのクリーチャーの下に置く？',[
+    opt('下に置く',true,15,victim.cardId),skip()
+   ]);
+  break;
+ }
  case'g34_MeteorReload871':{
   const host=sourceHost474(s,t);
   if(host&&!host.x.sealed&&api.isCreature(s,host.x)){
@@ -4396,7 +4404,10 @@ export function createSixPhotoRules(api){
  case'g34_Choose':{
   const title=t.g1045Preselect?'効果を選ぶ（'+((t.modeSelections?.length||0)+1)+'/'+t.g1045Preselect+'）':'効果を選ぶ';
   const chooser=t.opponentChooses?1-t.p:t.p,sign=t.opponentChooses?-1:1;
-  choice(s,t,t.title||title,t.modes.flatMap((m,i)=>m.condition&&!ownCondition(s,t.p,m.condition,t.uid,t.incarnation)
+  const host=t.g1071Evolution?sourceHost474(s,t):null;
+  const evolved=host&&!host.x.sealed?api.isEvolution(host.x):t.g1059LastEvolution;
+  choice(s,t,t.title||title,t.modes.flatMap((m,i)=>m.requiresEvolution&&!evolved||
+   m.condition&&!ownCondition(s,t.p,m.condition,t.uid,t.incarnation)
    ?[]:[opt(m.label||'効果'+(i+1),i,t.g184Modes?sign*modeScore(s,t,m.defs):m.score??10)]),chooser);
   break;
  }
@@ -4641,6 +4652,14 @@ export function createSixPhotoRules(api){
   break;
  }else break;
  case'g34_Harpoon618':put(s,{...t,kept:[...(t.kept||[]),v]});break;
+ case'g34_StackDestroyed1130':if(v){
+  const host=sourceHost474(s,t),victim=own.grave.find(y=>y.uid===t.victim.uid&&(y.zoneSerial||0)===t.victim.serial);
+  if(host&&!host.x.sealed&&api.isCreature(s,host.x)&&victim&&api.canMoveZone(s,t.p,'grave')){
+   remove(own.grave,victim.uid);
+   clear(victim,'under');
+   (host.x.under??=[]).push(victim);
+  }
+ }break;
  case'g34_MeteorReload871':{
   release(s,t.p,t.target);
   if(!v)break;
@@ -6507,7 +6526,11 @@ export function createSixPhotoRules(api){
    const victimRace=String(victim.race||'');
    const raceMatches=(!requiredRace||victimRace.includes(requiredRace))&&(!raceAny||victimRace.split('/').some(r=>raceAny.includes(r)));
    if((!self||watcher.watch.self)&&((self&&!watcher.watch.selfFilter)||raceMatches)&&(!watcher.watch.name||String(victim.name||'').includes(watcher.watch.name))&&(!watcher.watch.colorsAny||watcher.watch.colorsAny.some(c=>(victim.colors||[]).includes(c)))&&(!watcher.watch.g860EvilSoul||victim.g860EvilSoul)&&(!watcher.watch.ownTurn||s.active===watcher.p)&&(!watcher.watch.opponentTurn||s.active!==watcher.p)){
-    const defs=watcher.watch.defs.map(d=>d.g960DeathNames?{...d,g960DeathNames:victim.deathNames960??[]}:d);
+    const defs=watcher.watch.defs.map(d=>{
+     if(d.g960DeathNames)return {...d,g960DeathNames:victim.deathNames960??[]};
+     if(d.op==='StackDestroyed1130')return {...d,victim:{uid:x.uid,serial:(x.zoneSerial||0)+1}};
+     return d;
+    });
     queue(s,watcher.p,watcher,defs);
    }
   }if(prior?.g172Death){

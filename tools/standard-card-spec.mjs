@@ -6184,6 +6184,38 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1130&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText).replaceAll('–','-');
+  const neoEvolution=(...colors)=>({any:colors.map(civilization=>({civilization}))});
+  if(d.id==='dm25rp2-031'&&f.typeText==='クリーチャー'&&text===
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)このクリーチャーは相手プレイヤーを攻撃できない。'+
+   '超魂X(これがクリーチャーの下にあればそのクリーチャーにも以下の能力を与える)'+
+   'このクリーチャーが攻撃する時このクリーチャーにカードが3枚以上含まれていれば相手は自身のアンタップしているクリーチャーを2体選びタップする。次の相手のターンのはじめにそれらはアンタップしない。'){
+   const attack=[{op:'IfOwn',filter:{g650SourceCards:3},defs:[
+    {op:'OpponentSelect',n:2,tap:true,g210TapLock:true,filter:{untapped:true}}
+   ]}];
+   return {blocker:true,noPlayerAttack:true,g34Attack:attack,g404Soul:{g34Attack:attack}};
+  }
+  if(['dm25rp2-026','dm25ex3-033'].includes(d.id)&&f.typeText==='NEOクリーチャー'&&text===
+   'S・トリガーS・トリガーNEO進化:水闇または火のクリーチャー1体の上に置いてもよい。'+
+   'このクリーチャーが出た時次のうちいずれか1つを選ぶ。これが進化クリーチャーなら両方選んでもよい。'+
+   '▶カードを3枚引き自分の手札を2枚捨てる。▶相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを自分の墓地にあるカード1枚につき-1000する。'){
+   const draw=[{op:'Draw',n:3},{op:'Discard',owner:'self',n:2}];
+   const minus=[{op:'CountPowerMinus1123',zone:'grave',base:0,per:1000}];
+   return {trigger:true,neoEvolution:neoEvolution('水','闇','火'),effect:'sixPhoto',
+    g34Tasks:[{op:'Choose',g184Modes:true,g1071Evolution:true,modes:[
+     {label:'3枚引き、手札を2枚捨てる',defs:draw},
+     {label:'墓地の枚数に応じて相手1体のパワーを下げる',defs:minus},
+     {label:'両方選ぶ',requiresEvolution:true,defs:[...draw,...minus]}
+    ]}]};
+  }
+  if(d.id==='dm25rp2-027'&&f.typeText==='NEOクリーチャー'&&text===
+   'NEO進化:闇火または自然のクリーチャー1体の上に置いてもよい。(カードが下にあればこれをNEO進化クリーチャーとして扱う)W・ブレイカー'+
+   '自分の他のクリーチャーが破壊された時そのクリーチャーを自分の墓地からこのクリーチャーの下に置いてもよい。'+
+   'メテオバーン:このクリーチャーが攻撃する時このクリーチャーの下にあるカードを1枚墓地に置いてもよい。そうしたら相手のクリーチャーを1体選ぶ。その選んだクリーチャーとこのクリーチャーをバトルさせる。')
+   return {neoEvolution:neoEvolution('闇','火','自然'),breaker:2,g825Meteor:'fight',
+    g303DeathWatch:{g725RemainInBattle:true,defs:[{op:'StackDestroyed1130'}]}};
+ }
  if(phase>=1129&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const neoEvolution=(...colors)=>({any:colors.map(civilization=>({civilization}))});

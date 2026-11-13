@@ -1,0 +1,360 @@
+{
+  "phase": 1130,
+  "checkedAt": "2026-11-13",
+  "baseCount": 7375,
+  "description": "PURE1-不行地、ダンマ＝ダンマダン、魔誕の戦鬼ベル・ヘル・デ・バランの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/46533/",
+    "https://dm.takaratomy.co.jp/rule/qa/44661/",
+    "https://dm.takaratomy.co.jp/rule/qa/34224/",
+    "https://dm.takaratomy.co.jp/rule/qa/46849/",
+    "https://dm.takaratomy.co.jp/rule/qa/46850/",
+    "https://dm.takaratomy.co.jp/rule/qa/42937/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp2-031",
+      "name": "PURE1-不行地",
+      "faces": [
+        {
+          "name": "PURE1-不行地",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが攻撃する時、このクリーチャーにカードが３枚以上含まれていれば、相手は自身のアンタップしているクリーチャーを２体選び、タップする。次の相手のターンのはじめに、それらはアンタップしない。",
+          "race": "シャイン・モンスター/テクノ・サムライ/フュージョナー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-031",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-031.jpg",
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g650SourceCards": 3
+            },
+            "defs": [
+              {
+                "op": "OpponentSelect",
+                "n": 2,
+                "tap": true,
+                "g210TapLock": true,
+                "filter": {
+                  "untapped": true
+                }
+              }
+            ]
+          }
+        ],
+        "g404Soul": {
+          "g34Attack": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g650SourceCards": 3
+              },
+              "defs": [
+                {
+                  "op": "OpponentSelect",
+                  "n": 2,
+                  "tap": true,
+                  "g210TapLock": true,
+                  "filter": {
+                    "untapped": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "8181d5163e707942068cd4654453adf830eac6f23ec3454e9f98d5c93e1d4453",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-026",
+      "name": "ダンマ＝ダンマダン",
+      "faces": [
+        {
+          "name": "ダンマ＝ダンマダン",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水/闇/火",
+          "civilizations": [
+            "水",
+            "闇",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー\nNEO進化：水、闇、または火のクリーチャー１体の上に置いてもよい。\nこのクリーチャーが出た時、次のうちいずれか１つを選ぶ。これが進化クリーチャーなら、両方選んでもよい。\n▶カードを３枚引き、自分の手札を２枚捨てる。\n▶相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを自分の墓地にあるカード１枚につき－1000する。",
+          "race": "アビスロイヤル",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-026",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-026.jpg",
+      "spec": {
+        "trigger": true,
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "g1071Evolution": true,
+            "modes": [
+              {
+                "label": "3枚引き、手札を2枚捨てる",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 3
+                  },
+                  {
+                    "op": "Discard",
+                    "owner": "self",
+                    "n": 2
+                  }
+                ]
+              },
+              {
+                "label": "墓地の枚数に応じて相手1体のパワーを下げる",
+                "defs": [
+                  {
+                    "op": "CountPowerMinus1123",
+                    "zone": "grave",
+                    "base": 0,
+                    "per": 1000
+                  }
+                ]
+              },
+              {
+                "label": "両方選ぶ",
+                "requiresEvolution": true,
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 3
+                  },
+                  {
+                    "op": "Discard",
+                    "owner": "self",
+                    "n": 2
+                  },
+                  {
+                    "op": "CountPowerMinus1123",
+                    "zone": "grave",
+                    "base": 0,
+                    "per": 1000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "8fc9b802bff89de72859cc057be11f378f7ea8f75e475deb9ddf10ee5d16b430",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-027",
+      "name": "魔誕の戦鬼ベル・ヘル・デ・バラン",
+      "faces": [
+        {
+          "name": "魔誕の戦鬼ベル・ヘル・デ・バラン",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇/火/自然",
+          "civilizations": [
+            "闇",
+            "火",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "NEO進化：闇、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー\n自分の他のクリーチャーが破壊された時、そのクリーチャーを自分の墓地からこのクリーチャーの下に置いてもよい。\nメテオバーン：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚墓地に置いてもよい。そうしたら、相手のクリーチャーを１体選ぶ。その選んだクリーチャーとこのクリーチャーをバトルさせる。",
+          "race": "デーモン・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-027",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-027.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g825Meteor": "fight",
+        "g303DeathWatch": {
+          "g725RemainInBattle": true,
+          "defs": [
+            {
+              "op": "StackDestroyed1130"
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "139ba9af7b61a19a748586877d917eb3a0c46c60f94433d800d1bb7429ea5df1",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25ex3-033",
+      "name": "ダンマ＝ダンマダン",
+      "faces": [
+        {
+          "name": "ダンマ＝ダンマダン",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水/闇/火",
+          "civilizations": [
+            "水",
+            "闇",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー\nNEO進化：水、闇、または火のクリーチャー１体の上に置いてもよい。\nこのクリーチャーが出た時、次のうちいずれか１つを選ぶ。これが進化クリーチャーなら、両方選んでもよい。\n▶カードを３枚引き、自分の手札を２枚捨てる。\n▶相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを、自分の墓地にあるカード１枚につき–1000する。",
+          "race": "アビスロイヤル",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-033",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-033.jpg",
+      "spec": {
+        "trigger": true,
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "g1071Evolution": true,
+            "modes": [
+              {
+                "label": "3枚引き、手札を2枚捨てる",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 3
+                  },
+                  {
+                    "op": "Discard",
+                    "owner": "self",
+                    "n": 2
+                  }
+                ]
+              },
+              {
+                "label": "墓地の枚数に応じて相手1体のパワーを下げる",
+                "defs": [
+                  {
+                    "op": "CountPowerMinus1123",
+                    "zone": "grave",
+                    "base": 0,
+                    "per": 1000
+                  }
+                ]
+              },
+              {
+                "label": "両方選ぶ",
+                "requiresEvolution": true,
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 3
+                  },
+                  {
+                    "op": "Discard",
+                    "owner": "self",
+                    "n": 2
+                  },
+                  {
+                    "op": "CountPowerMinus1123",
+                    "zone": "grave",
+                    "base": 0,
+                    "per": 1000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-13",
+        "sha256": "01986ba54bcfd7fb895c95b17d17a0a35fe4ea6889745147a723411e17b4de11",
+        "facesMatched": true
+      },
+      "canonicalId": "dm25rp2-026"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-13",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp2-031": 4,
+      "dm25rp2-026": 4,
+      "dm25rp2-027": 4,
+      "dm25ex3-033": 4
+    }
+  }
+}
