@@ -218374,15 +218374,301 @@
       },
       "supportBatch": "phase-1102",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm36-041",
+      "name": "時空の勇躍ディアナ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "アーク・セラフィム",
+      "text": "覚醒-このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、バトルゾーンにある相手のクリーチャーを１体選び、タップする。その攻撃の後、このクリーチャーをコストの大きいほうに裏返す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)\n【呪文面】\nこのクリーチャーが攻撃する時、バトルゾーンにある相手のクリーチャーを１体選び、タップする。(まず何を攻撃するか選んでから、タップするクリーチャーを選ぶ)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-041",
+      "limit": 4,
+      "psychic": true,
+      "g482Unblocked": [
+        {
+          "op": "Target",
+          "tap": true,
+          "title": "タップする相手のクリーチャーを1体選ぶ"
+        },
+        {
+          "op": "AfterAttack542",
+          "defs": [
+            {
+              "op": "Awaken1095",
+              "g1102DirectAwaken": true
+            }
+          ]
+        }
+      ],
+      "g1085Back": {
+        "name": "閃光の覚醒者エル・ディアナ",
+        "cost": 10,
+        "power": 8000,
+        "race": "アーク・セラフィム",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-041b.jpg",
+        "breaker": 2,
+        "g482Unblocked": null,
+        "g34Attack": [
+          {
+            "op": "Target",
+            "tap": true,
+            "title": "タップする相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-1103",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm38-030",
+      "name": "時空の鬼若コーシロウ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "ビーストフォーク",
+      "text": "覚醒 - 自分のターンのはじめに、自分のマナゾーンにカードが８枚以上あれば、このクリーチャーをコストの大きいほうに裏返す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)\n【呪文面】\nこのクリーチャーが攻撃する時、コスト８以下の進化ではないクリーチャーを１体、自分のマナゾーンからバトルゾーンに出してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-030",
+      "limit": 4,
+      "psychic": true,
+      "g174Start": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "mana",
+              "min": 8
+            }
+          },
+          "defs": [
+            {
+              "op": "Awaken1095",
+              "g1102DirectAwaken": true
+            }
+          ]
+        }
+      ],
+      "g1085Back": {
+        "name": "戦鬼の覚醒者ダンジューロウ",
+        "cost": 12,
+        "power": 8000,
+        "race": "ガイア・コマンド",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-030b.jpg",
+        "breaker": 2,
+        "g174Start": null,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "max": 8
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1103",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm38-033",
+      "name": "時空の霊魔シュヴァル",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 5,
+      "power": 4500,
+      "race": "エンジェル・コマンド/デーモン・コマンド",
+      "text": "覚醒 - 各ターンのはじめに、バトルゾーンに自分のコスト６以上の、エンジェル・コマンドまたはデーモン・コマンドが２体以上あれば、このクリーチャーをコストの大きいほうに裏返す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)\n【呪文面】\n相手がクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を裏向きにし、新しいシールドとして自分のシールドゾーンに加えてもよい。\n相手が呪文を唱えた時、このクリーチャーは相手のシールドを１枚ブレイクする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-033",
+      "limit": 4,
+      "psychic": true,
+      "g174Start": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "min": 2,
+              "filter": {
+                "min": 6,
+                "raceAny": [
+                  "エンジェル・コマンド",
+                  "デーモン・コマンド"
+                ]
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Awaken1095",
+              "g1102DirectAwaken": true
+            }
+          ]
+        }
+      ],
+      "g179OpponentStart": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "min": 2,
+              "filter": {
+                "min": 6,
+                "raceAny": [
+                  "エンジェル・コマンド",
+                  "デーモン・コマンド"
+                ]
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Awaken1095",
+              "g1102DirectAwaken": true
+            }
+          ]
+        }
+      ],
+      "g1085Back": {
+        "name": "霊魔の覚醒者シューヴェルト",
+        "cost": 12,
+        "power": 6500,
+        "race": "エンジェル・コマンド/デーモン・コマンド",
+        "civ": "光/闇",
+        "civilizations": [
+          "光",
+          "闇"
+        ],
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-033b.jpg",
+        "breaker": 2,
+        "g174Start": null,
+        "g179OpponentStart": null,
+        "g314OtherEntry": {
+          "who": "opponent",
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "山札の上から1枚を裏向きでシールド化する？",
+              "defs": [
+                {
+                  "op": "ShieldTop",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        },
+        "g204SpellWatch": {
+          "who": "opponent",
+          "defs": [
+            {
+              "op": "Break497",
+              "n": 1,
+              "g747CreatureBreak": true
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-1103",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm39-001",
+      "name": "時空の幸運ファイブスター",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 6,
+      "power": 5500,
+      "race": "エンジェル・コマンド",
+      "text": "覚醒 - 自分のターンのはじめに、自分の、パワーの最後の三桁が「500」のクリーチャーが３体以上バトルゾーンにあれば、このクリーチャーをコストの大きいほうに裏返す。\nこのクリーチャーは、火のクリーチャーから攻撃されない。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)\n【呪文面】\n自分の他のクリーチャーは、すべてのバトルに勝つ。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-001",
+      "limit": 4,
+      "psychic": true,
+      "cannotBeAttackedByCivs": [
+        "火"
+      ],
+      "g174Start": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "min": 3,
+              "filter": {
+                "g587PowerEnding500": true
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Awaken1095",
+              "g1102DirectAwaken": true
+            }
+          ]
+        }
+      ],
+      "g1085Back": {
+        "name": "天運の覚醒者ライトニング・ファイブスター",
+        "cost": 9,
+        "power": 10500,
+        "race": "エンジェル・コマンド",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-001b.jpg",
+        "breaker": 2,
+        "g174Start": null,
+        "cannotBeAttackedByCivs": null,
+        "g466BattleAura": {
+          "other": true,
+          "filter": {
+            "creature": true
+          },
+          "win": true
+        }
+      },
+      "supportBatch": "phase-1103",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1102,
+    "phase": 1103,
     "checkedAt": "2026-11-13",
-    "baseCount": 7276,
+    "baseCount": 7280,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7280,
+    "totalCount": 7284,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -237895,6 +238181,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7276,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1102,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7276,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7280,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

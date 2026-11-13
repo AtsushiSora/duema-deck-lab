@@ -6308,12 +6308,50 @@ export function standardCardSpec(d,{phase=165}={}){
     g1085Back:{...backFace('dm37-024'),noAttack:false,g314OtherEntry:null,
      g178Block:[{op:'Offer',title:'山札の上から1枚を裏向きでシールド化する？',defs:[{op:'ShieldTop',n:1}]}]}};
 
+  if(phase>=1103){
+   const bigger='このクリーチャーをコストの大きいほうに裏返す。';
+   const doubleBreaker='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';
+   if(d.id==='dm38-030'&&text==='覚醒-自分のターンのはじめに自分のマナゾーンにカードが8枚以上あれば'+bigger+reminder&&
+    backText==='このクリーチャーが攻撃する時コスト8以下の進化ではないクリーチャーを1体自分のマナゾーンからバトルゾーンに出してもよい。'+doubleBreaker)
+    return {psychic:true,manaValue:0,g174Start:[{op:'IfOwn',filter:{g334ZoneCount:{zone:'mana',min:8}},defs:[awaken]}],
+     g1085Back:{...backFace(d.id),breaker:2,g174Start:null,g34Attack:[
+      {op:'Select',origin:'mana',deploy:true,n:1,optional:true,filter:{creature:true,nonEvolution:true,max:8}}
+     ]}};
+   if(d.id==='dm39-001'&&text==='覚醒-自分のターンのはじめに自分のパワーの最後の三桁が「500」のクリーチャーが3体以上バトルゾーンにあれば'+
+    bigger+'このクリーチャーは火のクリーチャーから攻撃されない。'+reminder&&
+    backText==='自分の他のクリーチャーはすべてのバトルに勝つ。'+doubleBreaker)
+    return {psychic:true,manaValue:0,cannotBeAttackedByCivs:['火'],
+     g174Start:[{op:'IfOwn',filter:{g370BattleCount:{min:3,filter:{g587PowerEnding500:true}}},defs:[awaken]}],
+     g1085Back:{...backFace(d.id),breaker:2,g174Start:null,cannotBeAttackedByCivs:null,
+      g466BattleAura:{other:true,filter:{creature:true},win:true}}};
+   if(['dm38-033','dmbd21-011'].includes(d.id)){
+    const condition='自分のコスト6以上のエンジェル・コマンドまたはデーモン・コマンドが2体以上あれば';
+    const printedBack=backText.replace('相手のクリーチャーが出た時','相手がクリーチャーをバトルゾーンに出した時')
+     .replace('1枚目をシールド化してもよい。','1枚目を裏向きにし新しいシールドとして自分のシールドゾーンに加えてもよい。')
+     .replace('シールドを1つブレイク','シールドを1枚ブレイク').replace('シールドを2つブレイク','シールドを2枚ブレイク');
+    if((text==='覚醒-各ターンのはじめにバトルゾーンに'+condition+bigger+reminder||
+      text==='覚醒:各ターンのはじめに'+condition+bigger+reminder)&&
+     printedBack==='相手がクリーチャーをバトルゾーンに出した時自分の山札の上から1枚目を裏向きにし新しいシールドとして自分のシールドゾーンに加えてもよい。'+
+      '相手が呪文を唱えた時このクリーチャーは相手のシールドを1枚ブレイクする。'+doubleBreaker){
+     const start=[{op:'IfOwn',filter:{g370BattleCount:{min:2,filter:{min:6,raceAny:['エンジェル・コマンド','デーモン・コマンド']}}},defs:[awaken]}];
+     return {psychic:true,manaValue:0,g174Start:start,g179OpponentStart:start,
+      g1085Back:{...backFace('dm38-033'),breaker:2,g174Start:null,g179OpponentStart:null,
+       g314OtherEntry:{who:'opponent',defs:[{op:'Offer',title:'山札の上から1枚を裏向きでシールド化する？',defs:[{op:'ShieldTop',n:1}]}]},
+       g204SpellWatch:{who:'opponent',defs:[{op:'Break497',n:1,g747CreatureBreak:true}]}}};
+    }
+   }
+  }
+
   // The official DM-36 HTML leaves these reverse-face races blank. Use the
   // printed card images and preserve the race names confirmed on the reprints.
   const otherSmallPsychics={owner:'self',other:true,filter:{creature:true,g1085Psychic:true,max:5}};
   const oflameText='そのターンバトルゾーンにある自分の他のコスト5以下のサイキック・クリーチャーはすべて「パワーアタッカー+2000」を得シールドをさらに1枚ブレイクする。';
   const oflameReminder='(攻撃中「パワーアタッカー+2000」を得たクリーチャーのパワーは+2000される)';
   const entries=[
+   ...(phase>=1103?[{ids:['dm36-041'],race:'アーク・セラフィム',
+    text:'バトルゾーンにある相手のクリーチャーを1体選びタップする。',
+    backReminder:'(まず何を攻撃するか選んでからタップするクリーチャーを選ぶ)',
+    defs:[{op:'Target',tap:true,title:'タップする相手のクリーチャーを1体選ぶ'}]}]:[]),
    {ids:['dm36-047','dmx03-015'],race:'リキッド・ピープル',text:'カードを1枚引く。',defs:[{op:'Draw',n:1}]},
    {ids:['dm36-053','dmx03-017'],race:'ダークロード',text:'相手は自身の手札を1枚選んで捨てる。',defs:[{op:'Discard',n:1}]},
    {ids:['dm36-059'],race:'フレイム・コマンド',text:oflameText,reminder:oflameReminder,defs:[
@@ -6324,7 +6362,7 @@ export function standardCardSpec(d,{phase=165}={}){
   const row=entries.find(row=>row.ids.includes(d.id));
   if(row&&text==='覚醒-このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時'+row.text+
    'その攻撃の後このクリーチャーをコストの大きいほうに裏返す。'+(row.reminder??'')+reminder&&
-   backText==='このクリーチャーが攻撃する時'+row.text+'W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   backText==='このクリーチャーが攻撃する時'+row.text+(row.backReminder??'')+'W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
    return {psychic:true,manaValue:0,g482Unblocked:[...row.defs,{op:'AfterAttack542',defs:[awaken]}],
     g1085Back:{...backFace(row.ids[0],row.race),breaker:2,g482Unblocked:null,g34Attack:row.defs}};
  }
