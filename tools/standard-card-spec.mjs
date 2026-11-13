@@ -6175,7 +6175,7 @@ export function standardCardSpec(d,{phase=165}={}){
   const group='自分の超次元ゾーンから好きな数のサイキック・クリーチャーをコストの合計が5以下になるように選びバトルゾーンに出す。';
   const deploy=(filter,settings={})=>({op:'Select',origin:'extra',deploy:true,n:1,filter:{g1085Psychic:true,...filter},...settings});
   const modes=(first,second)=>({op:'Choose',g184Modes:true,modes:[first,second]});
-  const solo=color=>({label:'コスト7以下の'+color+'のサイキックを1体出す',defs:[deploy({max:7,color})]});
+  const solo=(color,settings)=>({label:'コスト7以下の'+color+'のサイキックを1体出す',defs:[deploy({max:7,color},settings)]});
   const common=text.replace('いずれか1つ','いずれかひとつ')
    .replace('上から1枚目をマナゾーン','上から1枚目を自分のマナゾーン')
    .replace('サイキック・クリーチャーをコストの合計が5以下になるように好きな数選び','好きな数のサイキック・クリーチャーをコストの合計が5以下になるように選び')
@@ -6191,18 +6191,50 @@ export function standardCardSpec(d,{phase=165}={}){
     printed:'バトルゾーンにある相手のクリーチャーを1体選びタップする。',
     task:{op:'Target',tap:true,spell:true,title:'タップする相手のクリーチャーを1体選ぶ'}},
    ...(phase>=1100?[{ids:['dm36-085','dmx03-031','dmx08-028','dmex08-298'],color:'水',
-    printed:'カードを1枚引く。',task:{op:'Draw',n:1}}]:[])
+    printed:'カードを1枚引く。',task:{op:'Draw',n:1}}]:[]),
+   ...(phase>=1104?[{ids:['dm37-023'],color:'光',
+    printed:'コスト3以下の呪文を1枚自分の墓地から手札に戻す。',
+    task:{op:'Select',origin:'grave',to:'hand',n:1,filter:{g228Face:{type:'spell',max:3}},
+     title:'墓地から手札に戻すコスト3以下の呪文を1枚選ぶ'}}]:[])
   ];
   const twinEnergy=phase>=1101&&(
    d.id==='dm22ex1-127'&&text==='カードを1枚引く。水のコスト7以下のサイキック・クリーチャーを1体またはコストの合計が5以下になるように好きな数のサイキック・クリーチャーを選び自分の超次元ゾーンから出す。'||
    d.id==='dm25ex4-T28'&&text==='カードを1枚引く。水のコスト7以下のサイキック・クリーチャーを1体またはコストの合計が5以下になるようにサイキック・クリーチャーを好きな数自分の超次元ゾーンから出す。'
   );
   const hole=holes.find(row=>row.ids.includes(d.id))||(twinEnergy?holes.at(-1):null);
+  const psychicFace=d.id==='dm37-023'?{g1104PsychicFaces:true}:{};
   if(hole&&(twinEnergy||common===hole.printed+choose+group+
    'コスト7以下の'+hole.color+'のサイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。'))
    return {effect:'sixPhoto',g34Tasks:[hole.task,modes(
     {label:'合計コスト5以下のサイキックを好きな数出す',defs:[deploy({},{n:'all',optional:true,g550CostBudget:5,
-     title:'超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ'})]},solo(hole.color))]};
+     title:'超次元ゾーンから合計コスト5以下のサイキックを好きな数選ぶ',...psychicFace})]},solo(hole.color,psychicFace))]};
+  if(phase>=1104){
+   const vice='相手の手札を見てその中から呪文を1枚選び捨てさせる。'+choose+
+    '自分の超次元ゾーンにあるサイキック・クリーチャーを2体までコストの合計が6以下になるように選びバトルゾーンに出す。'+
+    'コスト10以下の闇のサイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。';
+   const jenny='相手は自身の手札を1枚選んで捨てる。そうしなければ自分はカードを2枚引く。次のうちいずれか1つを選ぶ。'+
+    '自分の超次元ゾーンからサイキック・クリーチャーをコストの合計が6以下になるように2体まで選び出す。'+
+    '自分の超次元ゾーンから闇のコスト10以下のサイキック・クリーチャーを1体出す。';
+   const isVice=['dm37-029','promoy10-019'].includes(d.id)&&text===vice;
+   const isJenny=d.id==='dmex17-086'&&text===jenny;
+   if(isVice||isJenny){
+    // QA 40390: the opponent must discard if they have any cards in hand.
+    const first=isVice?{op:'InspectHand',g223Inspect:true,chooseOne:true,discard:true,filter:{g228Face:{type:'spell'}}}:
+     {op:'IfOwn',filter:{g334ZoneCount:{zone:'hand',opponent:true,max:0}},defs:[{op:'Draw',n:2}],elseDefs:[{op:'Discard',n:1}]};
+    return {effect:'sixPhoto',g34Tasks:[first,modes(
+     {label:'合計コスト6以下のサイキックを2体まで出す',defs:[deploy({},{n:2,optional:true,g550CostBudget:6,g1104PsychicFaces:true,
+      title:'超次元ゾーンから合計コスト6以下のサイキックを2体まで選ぶ'})]},
+     {label:'コスト10以下の闇のサイキックを1体出す',defs:[deploy({max:10,color:'闇'},{g1104PsychicFaces:true})]}
+    )]};
+   }
+   const darkDeploy=max=>'コスト'+max+'以下の闇のサイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。';
+   if(['dmr02-043','promoy10-024'].includes(d.id)&&text===darkDeploy(6)+
+    '自分のサイキック・クリーチャー以外のクリーチャーを1体破壊してもよい。そうした場合'+darkDeploy(5))
+    return {effect:'sixPhoto',g34Tasks:[
+     deploy({max:6,color:'闇'},{g1104PsychicFaces:true}),
+     {op:'SacrificeAlly413',filter:{g1085Psychic:false},defs:[deploy({max:5,color:'闇'},{g1104PsychicFaces:true})]}
+    ]};
+  }
   if(['dm37-039','dmx02-032','dmex08-167','promoy25-125'].includes(d.id)||phase>=1101&&['dm22ex1-127','dm25ex4-T28'].includes(d.id)){
    const printed=text.replace(/^S・トリガー(?:S・トリガー)?(?:\(この(?:呪文|カード)を(?:自分の)?シールドゾーンから手札に加える時コストを支払わずにすぐ(?:唱えて|実行して)もよい\))?/,'');
    const old=/^次のうちいずれか(?:ひとつ|1つ)を選ぶ。コスト2以下のサイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。(?:コスト4以下の光または水|光または水のコスト4以下)のサイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。$/;
