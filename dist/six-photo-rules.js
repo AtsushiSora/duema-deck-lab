@@ -969,10 +969,28 @@ export function createSixPhotoRules(api){
  function distribute255(s,t){
   if(!api.canMoveZone(s,t.p,'deck')){for(const uid of[...(t.g255Plans||[]).map(r=>r.uid),...t.ids])release(s,t.p,uid);return;}
   const own=s.players[t.p],rest=t.rest==='grave'?'grave':'deck';
-  const plans=[...(t.g255Plans||[]),...t.ids.map(uid=>({uid,to:rest}))].map(r=>({...r,to:r.to==='mana'&&(api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p))?'grave':r.to})),rows=plans.flatMap(r=>{const x=remove(own.deck,r.uid);release(s,t.p,r.uid);if(!x)return[];clear(x,r.to);return[{...r,x}];});
+  const plans=[...(t.g255Plans||[]),...t.ids.map(uid=>({uid,to:rest}))];
+  const host=plans.some(r=>r.to==='under')?sourceHost474(s,t):null;
+  const rows=plans.flatMap(r=>{
+   release(s,t.p,r.uid);
+   if(r.to==='shields'&&!api.canAddShield(s,t.p))return [];
+   if(r.to==='under'&&(!host||host.x.sealed||!api.isCreature(s,host.x)))return [];
+   const x=remove(own.deck,r.uid);
+   if(!x)return [];
+   const redirect=r.to==='mana'&&(api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p))||
+    ['shields','under'].includes(r.to)&&api.deckRedirect(s);
+   const to=redirect?'grave':r.to;
+   clear(x,to);
+   return [{...r,to,x}];
+  });
   for(const r of rows.filter(r=>r.to==='deck'))own.deck.push(r.x);
   for(const {x,reveal} of rows)if(reveal)api.log(s,t.p,'reveal',card(t.source).name+'で公開：'+card(x).name,{cardId:x.cardId});
-  for(const zone of['hand','mana','grave']){const xs=rows.filter(r=>r.to===zone).map(r=>r.x);if(xs.length)api.addZone(s,t.p,zone,...xs);}
+  for(const {x,to} of rows)if(to==='under')(host.x.under??=[]).push(x);
+  for(const zone of['hand','mana','grave','shields']){
+   const xs=rows.filter(r=>r.to===zone).map(r=>r.x);
+   if(xs.length)api.addZone(s,t.p,zone,...xs);
+   if(zone==='shields')for(const x of xs)api.notifyShieldAdded(s,t.p,x);
+  }
   api.deckCheck(s,t.p);
  }
  function ponyShieldCards949(root){
@@ -4533,7 +4551,7 @@ export function createSixPhotoRules(api){
   if(v&&romanoSpells1120(s,t).some(o=>o.value.uid===v.uid&&o.value.face===v.face&&o.value.serial===v.serial))
    cast(s,t.p,v.uid,true,null,v.face,null,'hand',card(t.source).name);
   break;
- case'g34_TargetDestination467':{const r=t.target,y=s.players[r.p].battle.find(x=>x.uid===r.uid&&(x.incarnation||0)===r.incarnation&&!x.sealed),controller=t.g1089OrderDeck?r.p:t.g472EffectPlayer??t.p;if(y)move(s,[{player:r.p,uid:r.uid,to:v,destroy:v==='grave',controller,...(t.g1089OrderDeck?{g1089OrderDeck:true,toOwnerDeck:true,orderDeckTop:true}:{})}]);if(t.after)start(s,{...t,p:controller},t.after);break;}
+ case'g34_TargetDestination467':{const r=t.target,y=s.players[r.p].battle.find(x=>x.uid===r.uid&&(x.incarnation||0)===r.incarnation&&!x.sealed),controller=t.g1089OrderDeck?r.p:t.g472EffectPlayer??t.p;if(y)move(s,[{player:r.p,uid:r.uid,to:v,destroy:v==='grave',controller,...(t.g1089OrderDeck?{g1089OrderDeck:true,toOwnerDeck:true,orderDeckTop:true}:{}),...(t.g1129OwnerDestinations?{toOwnerHand:true,toOwnerMana:true,toOwnerShields:true}:{})}]);if(t.after)start(s,{...t,p:controller},t.after);break;}
  case'g34_NullBreaker471':if(s.attack?.attacker===t.uid){s.attack.g471Breaker=v;api.resolveAttack(s,null);}break;
  case'g34_GrantedBreaker633':if(s.attack?.attacker===t.uid){s.attack.g633Breaker=v;api.resolveAttack(s,null);}break;
  case'g34_HippoMana1124':{
@@ -6601,7 +6619,19 @@ export function createSixPhotoRules(api){
   if(endCard.g34Role==='revvo'&&x.entered===s.turn&&s.players[a.player].shields.length<=2)queue(s,a.player,x,[E('Lock',{limit:{kind:'g34NoLose',player:a.player,expires:'start',who:a.player}})]);if(!colors(effective(x,s)).includes('闇')&&(active(s,0,'baromreizu').length||active(s,1,'baromreizu').length)){for(const p of[0,1])for(const watcher of active(s,p,'baromreizu'))queue(s,p,watcher,[E('ExactMove',{owner:a.player,to:'grave',target:x.uid,targetIncarnation:x.incarnation||0})]);}},
  expire(s,when,p){if(when==='start')for(const own of s.players)for(const x of [...own.mana,...own.battle])if(x.tapLocks)x.tapLocks=x.tapLocks.filter(l=>typeof l!=='object'||l.who!==p||s.players[p].turns<l.afterTurns);if(when==='end'){s.g34Discounts=(s.g34Discounts||[]).filter(x=>x.turn!==s.turn);s.g484BreakEnds=(s.g484BreakEnds||[]).filter(x=>x.turn!==s.turn);}},
  inherit(s,base,x){if(used(s,'g191Tapped',base))mark(s,'g191Tapped',x);if(base.g34Grants)(x.g34Grants??=[]).push(...structuredClone(base.g34Grants));if(base.g34Delayed)x.g34Delayed=structuredClone(base.g34Delayed);},
- selected447(s,p,a,d){if(a.kind==='attack')return;const v=a.kind==='extended'?d?.choices?.[a.choice]?.value:null,ids=new Set([...(a.targets||[]).map(x=>x.uid),...(['effect','fight','dragonTap'].includes(a.kind)?[a.target||a.uid]:[]),...(typeof v==='string'?[v]:v?.uid?[v.uid]:[])]);for(const x of s.players[1-p].battle)if(ids.has(x.uid)){const defs=effective(x,s).g447Selected;if(defs)queue(s,1-p,x,defs);}},
+ selected447(s,p,a,d){
+  if(a.kind==='attack')return;
+  const v=a.kind==='extended'?d?.choices?.[a.choice]?.value:null;
+  const ids=new Set([...(a.targets||[]).map(x=>x.uid),
+   ...(['effect','fight','dragonTap'].includes(a.kind)?[a.target||a.uid]:[]),
+   ...(typeof v==='string'?[v]:v?.uid?[v.uid]:[])]);
+  for(const x of s.players[1-p].battle)if(ids.has(x.uid)&&!x.sealed){
+   const c=effective(x,s);
+   if(c.g447Selected)queue(s,1-p,x,c.g447Selected);
+   for(const {source,grants} of c.g404Inherited||[])
+    if(grants.g447Selected)queue(s,1-p,x,grants.g447Selected,source);
+  }
+ },
  // This trigger originates outside the battlefield, so battlefield-only ability suppression does not apply.
  gsRevealed545(s,p,source,uid){const defs=card(source)?.g545GS;if(defs)api.enqueue(s,p,{source,effect:'extended',task:task('g34_ResolveDelay537',p,source,{uid,defs:structuredClone(defs)})});},
  evolutionBase397(s,p,x){

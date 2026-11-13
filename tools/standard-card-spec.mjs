@@ -6184,6 +6184,37 @@ export function standardCardSpec(d,{phase=165}={}){
     {op:'Draw',n:2},{op:'Select',origin:'hand',to:'deck',n:1,title:'山札の下に置く手札を1枚選ぶ'},psychic('水')
    ]}};
  }
+ if(phase>=1129&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const neoEvolution=(...colors)=>({any:colors.map(civilization=>({civilization}))});
+  const neoReminder='(カードが下にあればこれをNEO進化クリーチャーとして扱う)';
+  if(['dm25rp2-010','dm25ex3-rp2010'].includes(d.id)&&f.typeText==='クリーチャー'&&text===
+   'スピードアタッカーW・ブレイカーこのクリーチャーが出た時または攻撃する時相手の「ブロッカー」を持つクリーチャーを1体選び破壊する。'+
+   '超魂X(これがクリーチャーの下にあればそのクリーチャーにも以下の能力を与える)相手がこのクリーチャーを選んだ時コスト3以下のクリーチャーを1体自分のマナゾーンから出してもよい。'){
+   const destroy=[{op:'Target',to:'grave',filter:{creature:true,blocker:true}}];
+   const deploy=[{op:'Select',origin:'mana',deploy:true,n:1,optional:true,filter:{creature:true,max:3}}];
+   return {speedAttacker:true,breaker:2,effect:'sixPhoto',g34Tasks:destroy,g34Attack:destroy,g447Selected:deploy,
+    g404Soul:{g447Selected:deploy}};
+  }
+  if(['dm25rp2-025','dm25rp2-Sec18','promoy24-048'].includes(d.id)&&f.typeText==='NEOクリーチャー'&&
+   text.replace(neoReminder,'')===
+   'NEO進化:光火または自然のクリーチャー1体の上に置いてもよい。'+
+   'このクリーチャーが出た時自分の山札の上から3枚を見る。そのうちの1枚をシールド化し残りを1枚ずつマナゾーンとこのクリーチャーの下に置く。')
+   return {neoEvolution:neoEvolution('光','火','自然'),effect:'sixPhoto',
+    g34Tasks:[{op:'Look',n:3,g841DeckPeek:true,g255Distribute:true,stages:[
+     {n:1,to:'shields',title:'シールド化するカードを1枚選ぶ'},
+     {n:1,to:'mana',title:'マナゾーンに置くカードを1枚選ぶ'},
+     {n:1,to:'under',title:'このクリーチャーの下に置くカード'}
+    ]}]};
+  if(d.id==='dm25rp2-049'&&f.typeText==='NEOクリーチャー'&&text===
+   'S・トリガーS・トリガー(このカードをシールドゾーンから手札に加える時コストを支払わずにすぐ実行してもよい)'+
+   'NEO進化:光水または自然のクリーチャー1体の上に置いてもよい。ブロッカーブロッカー'+
+   'このクリーチャーが進化して出た時または進化元になる時相手のクリーチャーを1体選んでもよい。そのクリーチャーを持ち主の手札に戻すかマナゾーンに置くかシールド化する。'){
+   const move=[{op:'Target',optional:true,filter:{creature:true},g467Destinations:['hand','mana','shields'],g1129OwnerDestinations:true}];
+   return {trigger:true,neoEvolution:neoEvolution('光','水','自然'),blocker:true,effect:'sixPhoto',
+    evolvedEntryOnly:true,g34Tasks:move,g397Shinka:move};
+  }
+ }
  if(phase>=1128&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const gNeoTail='のクリーチャー1体の上に置いてもよい。(カードが下にあればNEO進化クリーチャーとして扱い離れる時かわりに下のカードすべてが離れる)';
@@ -6211,7 +6242,7 @@ export function standardCardSpec(d,{phase=165}={}){
   const text=normalize(f.abilityText);
   const neo='NEO進化:闇火または自然のクリーチャー1体の上に置いてもよい。(カードが下にあればこれをNEO進化クリーチャーとして扱う)';
   const neoEvolution={any:['闇','火','自然'].map(civilization=>({civilization}))};
-  if(['dm25rp2-035','dm25ex3-039'].includes(d.id)&&f.typeText==='クリーチャー'&&text===
+  if(['dm25rp2-035','dm25ex3-039','promoy24-042'].includes(d.id)&&f.typeText==='クリーチャー'&&text===
    '{GS}G・ストライク(このカードを自分のシールドゾーンから手札に加える時表向きにし相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)'+
    'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
    '超魂X(これがクリーチャーの下にあればそのクリーチャーにも以下の能力を与える)'+

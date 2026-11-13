@@ -222602,15 +222602,211 @@
       },
       "supportBatch": "phase-1128",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-010",
+      "name": "BAKURYU-厳磁XX",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 8000,
+      "race": "アーマード・ドラゴン/フレイム・コマンド/テクノ・サムライ/フュージョナー",
+      "text": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーが出た時または攻撃する時、相手の「ブロッカー」を持つクリーチャーを１体選び、破壊する。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\n相手がこのクリーチャーを選んだ時、コスト３以下のクリーチャーを１体、自分のマナゾーンから出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-010",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "blocker": true
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "blocker": true
+          }
+        }
+      ],
+      "g447Selected": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "max": 3
+          }
+        }
+      ],
+      "g404Soul": {
+        "g447Selected": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1129",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-025",
+      "name": "無頼BEN-K1000",
+      "civ": "光/火/自然",
+      "civilizations": [
+        "光",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ドリームメイト/テクノ・サムライ",
+      "text": "NEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが出た時、自分の山札の上から３枚を見る。そのうちの１枚をシールド化し、残りを１枚ずつマナゾーンとこのクリーチャーの下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-025",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "火"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "g841DeckPeek": true,
+          "g255Distribute": true,
+          "stages": [
+            {
+              "n": 1,
+              "to": "shields",
+              "title": "シールド化するカードを1枚選ぶ"
+            },
+            {
+              "n": 1,
+              "to": "mana",
+              "title": "マナゾーンに置くカードを1枚選ぶ"
+            },
+            {
+              "n": 1,
+              "to": "under",
+              "title": "このクリーチャーの下に置くカード"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1129",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-049",
+      "name": "選舞音愛 タテロール",
+      "civ": "光/水/自然",
+      "civilizations": [
+        "光",
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 5000,
+      "race": "マジック・マーメイド",
+      "text": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nNEO進化：光、水、または自然のクリーチャー１体の上に置いてもよい。\nブロッカー ブロッカー\nこのクリーチャーが、進化して出た時、または進化元になる時、相手のクリーチャーを１体選んでもよい。そのクリーチャーを持ち主の手札に戻すか、マナゾーンに置くか、シールド化する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-049",
+      "limit": 4,
+      "trigger": true,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "blocker": true,
+      "effect": "sixPhoto",
+      "evolvedEntryOnly": true,
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "g467Destinations": [
+            "hand",
+            "mana",
+            "shields"
+          ],
+          "g1129OwnerDestinations": true
+        }
+      ],
+      "g397Shinka": [
+        {
+          "op": "Target",
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "g467Destinations": [
+            "hand",
+            "mana",
+            "shields"
+          ],
+          "g1129OwnerDestinations": true
+        }
+      ],
+      "supportBatch": "phase-1129",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1128,
+    "phase": 1129,
     "checkedAt": "2026-11-13",
-    "baseCount": 7369,
+    "baseCount": 7372,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7372,
+    "totalCount": 7375,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -242435,6 +242631,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7369,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1128,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7369,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7372,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

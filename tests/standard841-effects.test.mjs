@@ -199,7 +199,7 @@ test('Private library inspection is projected only for the viewer even without a
   if(id===BLUE)play(s,BLUE);
   else attack(s,put(s,0,'battle',FISTA).uid);
   assert.deepEqual(values(s),[null]);
-  const room={game:s,phase:'playing',hostUid:'a',guestUid:'b',profiles:[{name:'A'},{name:'B'}],events:[],expiresAt:10000};
+  const room={game:s,phase:'playing',hostUid:'a',guestUid:'b',decks:[],profiles:[{name:'A'},{name:'B'}],events:[],expiresAt:10000};
   assert.deepEqual(projectRoom(room,{uid:'a'},1).game.inspectedCards.map(x=>x.id),id===BLUE?[secret]:[secret,LAND]);
   const hidden=projectRoom(room,{uid:'b'},1);
   assert.equal(hidden.game.inspectedCards,undefined);
