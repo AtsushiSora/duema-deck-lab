@@ -216368,15 +216368,102 @@
       "g1090DiscardToMana": true,
       "supportBatch": "phase-1090",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx06-017",
+      "name": "ぶっとべ！サイキック",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)相手のパワー11000以下のサイキック・クリーチャーを１体、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx06-017",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "g1085Psychic": true,
+            "maxPower": 11000,
+            "g199Power": true
+          },
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1091",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx08-s04",
+      "name": "鬼カイザー 「滅」",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "レッド・コマンド・ドラゴン/ハンター/エイリアン",
+      "text": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nこのクリーチャーが攻撃する時、相手のサイキック・クリーチャーを１体破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx08-s04",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "g1085Psychic": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1091",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-106",
+      "name": "まどろみのレッサーくん",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ドリームメイト",
+      "text": "このクリーチャーのパワーは、バトルゾーンにある相手のサイキック・クリーチャー１体につき+5000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-106",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "opponent": true,
+        "filter": {
+          "g1085Psychic": true
+        },
+        "amount": 5000
+      },
+      "supportBatch": "phase-1091",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1090,
+    "phase": 1091,
     "checkedAt": "2026-11-13",
-    "baseCount": 7238,
-    "newEffectCards": 1,
+    "baseCount": 7239,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7239,
+    "totalCount": 7242,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -235745,6 +235832,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7238,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1090,
+        "checkedAt": "2026-11-13",
+        "baseCount": 7238,
+        "newEffectCards": 1,
+        "newVanillaCards": 0,
+        "totalCount": 7239,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

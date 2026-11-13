@@ -665,6 +665,7 @@ export function createSixPhotoRules(api){
   const {g876BattleName,noColor,...f}=t.filter||{};
   const fits=({p,y})=>{
    if(t.zone==='battle'&&(y.sealed||y.faceDown||!t.g561Elements&&!api.isCreature(s,y)))return false;
+   if(f.g1085Psychic&&!api.zoneCard(s,p,y,t.zone).psychic)return false;
    if(t.g1011CountColor&&!colors(api.zoneCard(s,p,y,t.zone)).includes(t.g1011CountColor))return false;
    if(g876BattleName&&!battleNames676(s,y).includes(exactName(g876BattleName)))return false;
    if(noColor&&colors(api.zoneCard(s,p,y,t.zone)).length)return false;

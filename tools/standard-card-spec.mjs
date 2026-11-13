@@ -6160,6 +6160,20 @@ export function standardCardSpec(d,{phase=165}={}){
    'このクリーチャーが攻撃する時バトルゾーンにあるクロスギアを1枚選び持ち主の墓地に置く。クロスギアがバトルゾーンから墓地に置かれた時カードを1枚引いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
    return {breaker:2,g34Attack:[{op:'Target',element:true,anyOwner:true,filter:{g201Gear:true},to:'grave',title:'墓地に置くクロスギアを1枚選ぶ'}],g933GearGraveDraw:true};
  }
+ if(phase>=1091&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const destroyPsychic={op:'Target',to:'grave',filter:{g1085Psychic:true}};
+  if(d.id==='dmx06-017'&&f.typeText==='呪文'&&text===
+   'S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)相手のパワー11000以下のサイキック・クリーチャーを1体破壊する。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{...destroyPsychic,spell:true,
+    filter:{...destroyPsychic.filter,maxPower:11000,g199Power:true}}]};
+  if(['dmx08-s04','dmx14-025','dmd18-013'].includes(d.id)&&f.typeText==='クリーチャー'&&text===
+   'スピードアタッカー(このクリーチャーは召喚酔いしない)このクリーチャーが攻撃する時相手のサイキック・クリーチャーを1体破壊する。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {speedAttacker:true,breaker:2,g34Attack:[destroyPsychic]};
+  if(d.id==='dmr05-106'&&f.typeText==='クリーチャー'&&text===
+   'このクリーチャーのパワーはバトルゾーンにある相手のサイキック・クリーチャー1体につき+5000される。')
+   return {g207CountPower:{zone:'battle',opponent:true,filter:{g1085Psychic:true},amount:5000}};
+ }
  if(phase>=1090&&d?.status==='complete'&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmrp19-s10'&&d.faces.length===1&&text===

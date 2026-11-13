@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-13",
   "catalogueNames": 11827,
-  "supportedNames": 7239,
-  "pendingNames": 4588,
-  "phase": 1090,
-  "added": 1,
+  "supportedNames": 7242,
+  "pendingNames": 4585,
+  "phase": 1091,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2671,
+    "クリーチャー": 2669,
     "NEOクリーチャー": 87,
-    "呪文": 599,
+    "呪文": 598,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 31,
     "タマシード": 56,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1202,
-    "未対応の能力文": 3165,
+    "未対応の能力文": 3162,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 21,
     "未対応のシンカパワー": 2,
@@ -210076,13 +210076,116 @@
           "reason": "日曜日よりの使者 メーテル未対応。同じ優先順をヴェール・バビロニアで両ターン検証済み。メーテル固有の破棄まで置換が連鎖しない裁定は実カード未検証。"
         }
       ]
+    },
+    {
+      "phase": 1091,
+      "baseCommit": "35a0971f",
+      "scope": "アドバンスでサイキックを参照するメインデッキのカード3種類を対戦対応",
+      "cards": [
+        {
+          "id": "dmx06-017",
+          "name": "ぶっとべ！サイキック",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx06-017"
+        },
+        {
+          "id": "dmx08-s04",
+          "name": "鬼カイザー 「滅」",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx08-s04"
+        },
+        {
+          "id": "dmr05-106",
+          "name": "まどろみのレッサーくん",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-106"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dmx14-025",
+          "canonicalId": "dmx08-s04"
+        },
+        {
+          "id": "dmd18-013",
+          "canonicalId": "dmx08-s04"
+        }
+      ],
+      "supportedNames": 7242,
+      "pendingNames": 4585,
+      "verification": {
+        "focused": "tests/standard1091-effects.test.mjs 5件成功",
+        "relatedRegressions": "140件成功（アドバンス・近接バッチ・カタログ・画像・デッキ編集66件、パワー計算とCPU対戦74件）",
+        "check": "npm run check 成功",
+        "officialPrints": 5,
+        "relatedRulings": [
+          "https://dm.takaratomy.co.jp/rule/qa_old/34920/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316640/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/"
+        ],
+        "unverified": "全体のnpm testは中断・合否未確認。Phase 1090に記録したアモデゴラスと未対応カード3種の組み合わせは引き続き未確認。",
+        "regressionLogs": [
+          "/tmp/duema-phase-1091/focused.log",
+          "/tmp/duema-phase-1091/regression.log",
+          "/tmp/duema-phase-1091/count-power.log",
+          "/tmp/duema-phase-1091/check.log",
+          "/tmp/duema-phase-1091/audit.log"
+        ]
+      },
+      "deferred": [
+        {
+          "id": "dm39-051",
+          "name": "メビウス・トルネード",
+          "reason": "公式能力全文・基本情報・画像を確認。最初の破壊が置換された場合にも「もう1体」を正しく扱う対象記録と、解決時に自分のサイキックがいるかの判定を検証するまで保留。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm39-051"
+          ]
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "今回は保留。双方のパワー6000以下のサイキックを一斉に破壊し、複数の離脱置換・解除を処理するテストと、自身が攻撃されないことの検証が必要。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-062"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1090,
-    "nextPhase": 1091,
+    "lastVerifiedPhase": 1091,
+    "nextPhase": 1092,
     "workInProgress": [],
     "nextCandidates": [
+      {
+        "id": "dm39-051",
+        "name": "メビウス・トルネード",
+        "reason": "公式能力全文・基本情報・画像を確認。最初の破壊が置換された場合にも「もう1体」を正しく扱う対象記録と、解決時に自分のサイキックがいるかの判定を検証するまで保留。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm39-051"
+        ]
+      },
+      {
+        "id": "dmr05-062",
+        "name": "鬼姫モエル",
+        "reason": "今回は保留。双方のパワー6000以下のサイキックを一斉に破壊し、複数の離脱置換・解除を処理するテストと、自身が攻撃されないことの検証が必要。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-062"
+        ]
+      },
+      {
+        "id": "dmx07-s01",
+        "name": "猛虎ライガー・ブレード",
+        "reason": "サイキック以外とサイキックを別々のコスト条件で順番に破壊する。公式能力全文・再録と、破壊置換後に次へ進む順序を照合する。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmx07-s01"
+        ]
+      },
+      {
+        "id": "dmr04-024",
+        "name": "問答無用だ！鬼丸ボーイ",
+        "reason": "既存の合計パワー選択とサイキック絞り込みを組み合わせられるか、公式全文・再録と実カードで確認する。",
+        "sources": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-024"
+        ]
+      },
       {
         "id": "dm37-s03",
         "name": "大河聖霊エル・ドラード",
@@ -210362,7 +210465,7 @@
         ]
       }
     ],
-    "steps": "次の追加指示があれば既存のnextCandidatesを参照。10分間隔の自動追加は一時停止を維持し、全体のnpm testは再実行しない。",
+    "steps": "次回はPhase 1092。最新のローカルコミット・未完了の検証・実データの正規名数を確認し、次の候補を公式照合する。検証済みの差分をローカルコミットする。10分間隔の自動追加は再開済み。全体のnpm testは再実行しない。",
     "knownIssues": [
       "Phase 322の旧スキャナーテストは、Phase 419で対応した真実の名 ワクワク・チャップルン（dmr07-001）を依然として未対応一覧に期待する。Phase 742基点とPhase 743作業ツリーで候補11件・対象はブロック一覧にいないことを再現。今回の変更とは分けて扱う。",
       "Phase 321・322の既存マジボンバーは、手札からEXライフ持ちを出す際に公式QA 41150と異なり、先に閲覧中のカードを解放する。既存の対戦挙動を維持するため、このバッチの裁定対応はHOODに限定。既存カードへの適用は再開データと回帰テストを別途検証する。",
