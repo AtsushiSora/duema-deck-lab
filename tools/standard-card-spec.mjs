@@ -2470,6 +2470,28 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1226&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm22rp1-001'&&f.typeText==='クリーチャー'&&
+   text==='ブロッカーブロッカーW・ブレイカー各ターンはじめてクリーチャーが攻撃する時カードを1枚引いてもよい。'+
+    'そうしたら相手のクリーチャーを1体タップする。シビルカウント3:自分の光のクリーチャーまたは光のタマシードが合計3つ以上あれば'+
+    '自分の「ブロッカー」を持つクリーチャーはそのクリーチャーが持つ相手プレイヤーを攻撃できない能力を無視する。'+
+    'またそれらのクリーチャーのパワーを+6000し「パワード・ブレイカー」を与える。')
+   return {blocker:true,breaker:2,
+    g252AttackWatch:{who:'both',first:true,filter:{creature:true},defs:[
+     {op:'Offer',title:'カードを1枚引いて相手のクリーチャーをタップする？',defs:[{op:'Draw',n:1},{op:'Target',tap:true}]}]},
+    g1226BlockerAura:{any:[{creature:true},{g295Tamaseed:true}],color:'光',faceUp:true,g258Civil:3}};
+  if(d.id==='dm22rp1-014'&&f.typeText==='呪文'&&
+   text==='呪文またはタマシードを1枚自分の墓地から選ぶ。このターン中そのカードを使ってもよい。(ただしそのコストは支払う)')
+   return {effect:'sixPhoto',g34Tasks:[{op:'GraveUse1226'}]};
+  if(['dmex18-s10','dm25sp2-002'].includes(d.id)&&f.typeText==='クリーチャー'&&
+   text==='スピードアタッカーT・ブレイカー自分のドラゴンが出た時'+
+    (d.id==='dmex18-s10'?'相手のクリーチャーをパワーの合計がそのドラゴンより少なくなるよう好きな数選び破壊する。':
+     'パワーの合計がそのドラゴンより少なくなるように相手のクリーチャーを好きな数選び破壊する。')+
+    '相手がこのクリーチャーを選んだ時相手のシールドを3つまで選び持ち主の墓地に置く。')
+   return {speedAttacker:true,breaker:3,g1226DragonEntryPower:true,
+    g447Selected:[{op:'ShieldGrave588',n:3,toOwnerGrave:true}]};
+ }
  if(phase>=1225&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(['dm22rp1-3A','dm22rp1-S3','dm22rp1-5B','dmart13-003'].includes(d.id)&&f.typeText==='タマシード/クリーチャー'&&

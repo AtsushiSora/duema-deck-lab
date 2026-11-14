@@ -741,7 +741,7 @@ export function createSixPhotoRules(api){
   if(!t.selected?.length||t.optionalExact&&t.selected.length!==t.n)return;
   const owner=t.owner==='self'?t.p:1-t.p;
   const to=t.to==='mana'?'mana':'grave',zone=to==='mana'?'マナゾーン':'墓地';
-  const moved=api.moveShields(s,owner,t.selected,to);
+  const moved=api.moveShields(s,owner,t.selected,to,t.toOwnerGrave?{toOwnerGrave:true}:undefined);
   if(moved.length)api.log(s,t.p,to==='mana'?'shieldMana':'shieldGrave',card(t.source).name+'：'+(owner===t.p?'自分':'相手')+'のシールドからカード'+moved.length+'枚を'+zone+'に置いた',{cardId:t.source});
   if(t.afterAttempt)start(s,t,t.afterAttempt);
  }
@@ -937,7 +937,16 @@ export function createSixPhotoRules(api){
   const power=Math.min(...eligible.map(y=>currentPower506(s,y)));
   return eligible.filter(y=>currentPower506(s,y)===power);
  }
- function fitsPower506(s,t,x){if(t.g506PowerBudget===undefined||t.g506PowerBudget==='∞')return true;const used=(t.rows||[]).reduce((n,r)=>{const y=s.players[r.p].battle.find(y=>y.uid===r.uid);return n+(y?currentPower506(s,y):0);},0);return used+currentPower506(s,x)<=t.g506PowerBudget;}
+ function fitsPower506(s,t,x){
+  if(t.g506PowerBudget===undefined||t.g506PowerBudget==='∞'&&!t.g1226StrictPower)return true;
+  const used=(t.rows||[]).reduce((n,r)=>{
+   const y=s.players[r.p].battle.find(y=>y.uid===r.uid);
+   return n+(y?currentPower506(s,y):0);
+  },0);
+  const total=used+currentPower506(s,x);
+  if(t.g1226StrictPower)return total<(t.g506PowerBudget==='∞'?Infinity:t.g506PowerBudget);
+  return total<=t.g506PowerBudget;
+ }
  // Use effective costs, snapshot all targets before moving them, and allow equality at the cap.
  function fitsCost513(s,t,x){if(t.g513CostBudget===undefined)return true;const used=(t.rows||[]).reduce((n,r)=>{const y=s.players[r.p][r.origin].find(y=>y.uid===r.uid);return n+(y?cost(effective(y,s)):0);},0);const p=s.players.findIndex(own=>own.battle.some(y=>y.uid===x.uid));return p>=0&&used+cost(effective(x,s))<=t.g513CostBudget;}
  // An extra-zone choice may use either eligible face of the same physical card.
@@ -3028,6 +3037,23 @@ export function createSixPhotoRules(api){
  case'g34_SelfTap314':{
   const host=t.g536Source?sourceHost474(s,t):x?{p:t.p,x}:null;
   if(host)api.tap(s,host.p,host.x);
+  break;
+ }
+ case'g34_GraveUse1226':{
+  const options=own.grave.flatMap(y=>y.faceDown?[]:faces(card(y)).flatMap((c,face)=>
+   graveFace1226(c)?[opt(c.name,{uid:y.uid,serial:y.zoneSerial||0,face},10,y.cardId)]:[]));
+  if(options.length)choice(s,t,'このターン墓地から使えるようにする呪文かタマシードを選ぶ',options);
+  break;
+ }
+ case'g34_DragonEntryPower1226':{
+  const host=sourceHost474(s,t.g1226Dragon);
+  const power=host?!host.x.sealed&&api.isCreature(s,host.x)&&race(effective(host.x,s,true),'ドラゴン')?
+   currentPower506(s,host.x):0:t.g1226LastDragonPower;
+  if(!(power>0)&&power!=='∞')break;
+  const budget=power===Infinity?'∞':power;
+  start(s,t,[{op:'Select',owner:'opponent',origin:'battle',n:'all',optional:true,to:'grave',
+   filter:{creature:true},g173Targets:true,g193Select:true,g506PowerBudget:budget,g1226StrictPower:true,
+   title:'合計パワーが'+budget+'未満になるよう相手のクリーチャーを選ぶ'}]);
   break;
  }
  case'g34_ChristoGrant1225':{
@@ -5835,6 +5861,14 @@ export function createSixPhotoRules(api){
   }
  }break;
  case'g34_SelfSacrifice407':if(v){const present=s.players.some(p=>p.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))));if(present)start(s,t,[{op:'SelfDestroy'},...(t.defs||[])]);}break;
+ case'g34_GraveUse1226':if(v){
+  const y=own.grave.find(x=>x.uid===v.uid&&(x.zoneSerial||0)===v.serial&&!x.faceDown);
+  if(y&&graveFace1226(faces(card(y))[v.face])){
+   if(s.g1226GraveUse?.turn!==s.turn)s.g1226GraveUse={turn:s.turn,permits:[[],[]]};
+   const permits=s.g1226GraveUse.permits[t.p];
+   if(!permits.some(r=>r.uid===v.uid&&r.serial===v.serial&&r.face===v.face))permits.push(v);
+  }
+ }break;
  case'g34_LacrimaDeclare1224':if(v){
   const y=lacrimaHand1224(s,t);
   if(y&&s.endStep){
@@ -6389,6 +6423,41 @@ export function createSixPhotoRules(api){
   }
  }
  const sourceDefs=(s,t,defs)=>start(s,t,defs),queue=(s,p,x,defs,source=x.cardId)=>send(s,p,source===x.cardId?x:{...x,cardId:source},'Sequence',{defs});
+ const graveFace1226=c=>c&&(c.type==='spell'||c.type==='seed'||c.seedCreature||c.natureAce4);
+ function graveActions1226(s,p){
+  if(s.g1226GraveUse?.turn!==s.turn||!api.canMoveZone(s,p,'grave'))return [];
+  return s.g1226GraveUse.permits[p].flatMap(({uid,serial,face})=>{
+   const x=s.players[p].grave.find(y=>y.uid===uid&&(y.zoneSerial||0)===serial&&!y.faceDown);
+   if(!x)return [];
+   const c=faces(card(x))[face],payment={...c,summonOrigin:'grave',executionUid:uid};
+   if(!graveFace1226(c)||!api.canCast(s,p,c,'grave',x.cardOwner??p)||!api.canPay(s,p,payment)||
+      c.type!=='spell'&&!canPut(s,p,x,'grave',true))return [];
+   return [{kind:'play',uid,cardId:x.cardId,face,origin:'grave',manaPermit:'g1226GraveUse',
+    cost:api.freeSpell(s,p,c)?0:api.summonCost(s,p,payment),label:c.name+'を墓地から使う'}];
+  });
+ }
+ function gravePermits1226(s,p,x,c){
+  if(x.faceDown||!graveFace1226(c)||s.g1226GraveUse?.turn!==s.turn)return [];
+  return s.g1226GraveUse.permits[p].some(({uid,serial,face})=>
+   uid===x.uid&&(x.zoneSerial||0)===serial&&faces(card(x))[face]?.name===c.name&&
+   faces(card(x))[face]?.type===c.type)?['g1226GraveUse']:[];
+ }
+ function consumeGraveUse1226(s,p,x){
+  if(s.g1226GraveUse?.turn===s.turn)
+   s.g1226GraveUse.permits[p]=s.g1226GraveUse.permits[p].filter(r=>r.uid!==x.uid);
+ }
+ function blockerAura1226(s,p){
+  let bonus=0;
+  for(const source of s.players[p].battle){
+   const condition=card(source).g1226BlockerAura;
+   if(!condition||source.sealed||source.faceDown||api.ignored(s,source)||!api.isCreature(s,source))continue;
+   // The aura changes power and attacks, never the condition's type or civilization.
+   if(civilAuraReading.has(s))continue;
+   civilAuraReading.add(s);
+   try{if(ownCondition(s,p,condition,source.uid))bonus+=6000;}finally{civilAuraReading.delete(s);}
+  }
+  return bonus;
+ }
  function qualifyingUse1224(s,p,c,seedUid=null,owner=p){
   const history=s.g1224Uses??=[null,null];
   for(const player of [p,owner])if(history[player]?.turn!==s.turn)
@@ -7136,6 +7205,10 @@ export function createSixPhotoRules(api){
   if(!y.sealed&&!y.faceDown&&race(effective(y,s,true),'ドラゴン')){
    const fighter={uid:y.uid,incarnation:y.incarnation||0};
    for(const watcher of creatures(s,p))
+    if(!watcher.sealed&&card(watcher).g1226DragonEntryPower&&effective(watcher,s).g1226DragonEntryPower&&
+       (watcher.uid!==y.uid||!options.selfMuted&&!api.selfStopped(s,p)))
+     send(s,p,watcher,'DragonEntryPower1226',{g1226Dragon:fighter});
+   for(const watcher of creatures(s,p))
     if(watcher.uid!==y.uid&&!watcher.sealed&&effective(watcher,s).g998DragonEntryFight)
      send(s,p,watcher,'FightEnemy240',{fighter,optional:true,g998EntryFight:true});
   }
@@ -7845,7 +7918,7 @@ export function createSixPhotoRules(api){
   if(defs.some(d=>d.op==='ShinkaHost544'&&d.mode==='belowCost'))send(s,p,x,'Sequence',{defs,g399Attacker:{uid:x.uid,incarnation:x.incarnation||0,cost:null}});
   else queue(s,p,x,defs);
  },
- forced546,jokerCount539,gravePermits294,manaPermits297,protects608,
+ forced546,jokerCount539,gravePermits294,manaPermits297,protects608,gravePermits1226,consumeGraveUse1226,blockerAura1226,
  permitLabel450(s,p,permit){if(typeof permit!=='string'||!permit.startsWith('g450:'))return'';const i=s.players[p].battle.findIndex(y=>permit==='g450:'+y.uid+'@'+(y.incarnation||0));return i<0?'':'（場'+(i+1)+' '+effective(s.players[p].battle[i],s).name+'の能力）';},
  crewBreak444(s,p,x,c){const rule=c.g444Crew,f=rule.filter;return 1+s.players[p].battle.filter(y=>!y.sealed&&api.isCreature(s,y)&&(!rule.other||y.uid!==x.uid)).filter(y=>{const d=effective(y,s,true);return(!f.race||race(d,f.race))&&(!f.multi||colors(d).length>1)&&(!f.blocker||d.blocker);}).length;},
  tapScore439(s,p,x,sourceDefs=null){
@@ -7860,7 +7933,7 @@ export function createSixPhotoRules(api){
   }
   return score;
  },
- mainActions(s,p){const own=s.players[p],out=[];
+ mainActions(s,p){const own=s.players[p],out=graveActions1226(s,p);
   if(own.hand.length>=13)for(const source of creatures(s,p)){
    const permit='g1088Platinum:'+key(source);
    if(api.ignored(s,source)||!card(source).g1088Platinum||s.once?.[permit]===s.turn)continue;

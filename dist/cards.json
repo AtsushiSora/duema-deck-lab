@@ -234456,15 +234456,123 @@
       ],
       "supportBatch": "phase-1225",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-001",
+      "name": "赤翼の精霊エルラ・ルージュ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6500,
+      "race": "エンジェル・コマンド",
+      "text": "ブロッカー ブロッカー\nW・ブレイカー\n各ターン、はじめてクリーチャーが攻撃する時、カードを１枚引いてもよい。そうしたら、相手のクリーチャーを１体タップする。\nシビルカウント３：自分の光のクリーチャーまたは光のタマシードが合計３つ以上あれば、自分の「ブロッカー」を持つクリーチャーは、そのクリーチャーが持つ相手プレイヤーを攻撃できない能力を無視する。また、それらのクリーチャーのパワーを+6000し、「パワード・ブレイカー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-001",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g252AttackWatch": {
+        "who": "both",
+        "first": true,
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "カードを1枚引いて相手のクリーチャーをタップする？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              },
+              {
+                "op": "Target",
+                "tap": true
+              }
+            ]
+          }
+        ]
+      },
+      "g1226BlockerAura": {
+        "any": [
+          {
+            "creature": true
+          },
+          {
+            "g295Tamaseed": true
+          }
+        ],
+        "color": "光",
+        "faceUp": true,
+        "g258Civil": 3
+      },
+      "supportBatch": "phase-1226",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-014",
+      "name": "♪面白き こともなき墓地を 面白く",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "マジック・ソング",
+      "text": "呪文またはタマシードを１枚、自分の墓地から選ぶ。このターン中、そのカードを使ってもよい。(ただし、そのコストは支払う)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-014",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GraveUse1226"
+        }
+      ],
+      "supportBatch": "phase-1226",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex18-s10",
+      "name": "炎龍神ヴォルジャアク",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 17000,
+      "race": "ファイブ・オリジン・ドラゴン",
+      "text": "スピードアタッカー\nT・ブレイカー\n自分のドラゴンが出た時、相手のクリーチャーを、パワーの合計がそのドラゴンより少なくなるよう好きな数選び、破壊する。\n相手がこのクリーチャーを選んだ時、相手のシールドを３つまで選び、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-s10",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 3,
+      "g1226DragonEntryPower": true,
+      "g447Selected": [
+        {
+          "op": "ShieldGrave588",
+          "n": 3,
+          "toOwnerGrave": true
+        }
+      ],
+      "supportBatch": "phase-1226",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1225,
+    "phase": 1226,
     "checkedAt": "2026-11-14",
-    "baseCount": 7670,
+    "baseCount": 7673,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7673,
+    "totalCount": 7676,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -255453,6 +255561,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7670,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1225,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7670,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7673,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

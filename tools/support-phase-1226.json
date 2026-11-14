@@ -1,0 +1,219 @@
+{
+  "phase": 1226,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7673,
+  "description": "赤翼の精霊エルラ・ルージュ、♪面白き こともなき墓地を 面白く、炎龍神ヴォルジャアクの全能力を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/42045/",
+    "https://dm.takaratomy.co.jp/rule/qa/42146/",
+    "https://dm.takaratomy.co.jp/rule/qa/42147/",
+    "https://dm.takaratomy.co.jp/rule/qa/43956/",
+    "https://dm.takaratomy.co.jp/rule/qa/43065/",
+    "https://dm.takaratomy.co.jp/rule/qa/42059/",
+    "https://dm.takaratomy.co.jp/rule/qa/40828/",
+    "https://dm.takaratomy.co.jp/rule/qa/40829/",
+    "https://dm.takaratomy.co.jp/rule/qa/40830/",
+    "https://dm.takaratomy.co.jp/rule/qa/47324/",
+    "https://dm.takaratomy.co.jp/rule/qa/47325/",
+    "https://dm.takaratomy.co.jp/rule/qa/47382/"
+  ],
+  "cards": [
+    {
+      "id": "dm22rp1-001",
+      "name": "赤翼の精霊エルラ・ルージュ",
+      "faces": [
+        {
+          "name": "赤翼の精霊エルラ・ルージュ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー ブロッカー\nW・ブレイカー\n各ターン、はじめてクリーチャーが攻撃する時、カードを１枚引いてもよい。そうしたら、相手のクリーチャーを１体タップする。\nシビルカウント３：自分の光のクリーチャーまたは光のタマシードが合計３つ以上あれば、自分の「ブロッカー」を持つクリーチャーは、そのクリーチャーが持つ相手プレイヤーを攻撃できない能力を無視する。また、それらのクリーチャーのパワーを+6000し、「パワード・ブレイカー」を与える。",
+          "race": "エンジェル・コマンド",
+          "powerText": "6500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-001",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-001.jpg",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g252AttackWatch": {
+          "who": "both",
+          "first": true,
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引いて相手のクリーチャーをタップする？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                },
+                {
+                  "op": "Target",
+                  "tap": true
+                }
+              ]
+            }
+          ]
+        },
+        "g1226BlockerAura": {
+          "any": [
+            {
+              "creature": true
+            },
+            {
+              "g295Tamaseed": true
+            }
+          ],
+          "color": "光",
+          "faceUp": true,
+          "g258Civil": 3
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "ca978c12e502045292b175dc8f971a41f446bc7f5c385af24106c9a6374e4cb6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-014",
+      "name": "♪面白き こともなき墓地を 面白く",
+      "faces": [
+        {
+          "name": "♪面白き こともなき墓地を 面白く",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "呪文またはタマシードを１枚、自分の墓地から選ぶ。このターン中、そのカードを使ってもよい。(ただし、そのコストは支払う)",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-014",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-014.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GraveUse1226"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "39f2de7261d4e1f0802b18112ae00da1f70eb0b0a58130452820eef8137ad9e9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex18-s10",
+      "name": "炎龍神ヴォルジャアク",
+      "faces": [
+        {
+          "name": "炎龍神ヴォルジャアク",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "スピードアタッカー\nT・ブレイカー\n自分のドラゴンが出た時、相手のクリーチャーを、パワーの合計がそのドラゴンより少なくなるよう好きな数選び、破壊する。\n相手がこのクリーチャーを選んだ時、相手のシールドを３つまで選び、持ち主の墓地に置く。",
+          "race": "ファイブ・オリジン・ドラゴン",
+          "powerText": "17000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-s10",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-s10.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 3,
+        "g1226DragonEntryPower": true,
+        "g447Selected": [
+          {
+            "op": "ShieldGrave588",
+            "n": 3,
+            "toOwnerGrave": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "0cd12af623892bebe99b4d3326388bdfba6d5d80a61245926cd3c671fda1596a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25sp2-002",
+      "name": "炎龍神ヴォルジャアク",
+      "faces": [
+        {
+          "name": "炎龍神ヴォルジャアク",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "スピードアタッカー\nT・ブレイカー\n自分のドラゴンが出た時、パワーの合計がそのドラゴンより少なくなるように相手のクリーチャーを好きな数選び、破壊する。\n相手がこのクリーチャーを選んだ時、相手のシールドを３つまで選び、持ち主の墓地に置く。",
+          "race": "ファイブ・オリジン・ドラゴン",
+          "powerText": "17000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25sp2-002",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25sp2-002.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 3,
+        "g1226DragonEntryPower": true,
+        "g447Selected": [
+          {
+            "op": "ShieldGrave588",
+            "n": 3,
+            "toOwnerGrave": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "3da6da3f867f91bdcd31fdb137936d80d1a90c6a1b7dc2769043627fda9492fd",
+        "facesMatched": true
+      },
+      "canonicalId": "dmex18-s10"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22rp1-001": 4,
+      "dm22rp1-014": 4,
+      "dmex18-s10": 4,
+      "dm25sp2-002": 4
+    }
+  }
+}

@@ -20,7 +20,7 @@ export function creatureStatusModel(s,player,uid){
  const allowed=creature&&canCreatureAttack(s,player,x),locked=creature&&attackLocked(s,player,x);
  if(creature){
   if(x.tapped)reasons.push('タップ中');
-  if(c.noAttack)reasons.push('このカードの能力で攻撃できない');
+  if(c.noAttack&&!c.g1226PlayerAttack)reasons.push('このカードの能力で攻撃できない');
   if(locked)reasons.push('カードの効果で攻撃できない');
   if(!allowed&&!reasons.length)reasons.push(x.entered===s.turn&&!isEvolution(x)&&!c.speedAttacker&&!c.machFighter?'出たターンの攻撃条件を満たしていない（召喚酔いなど）':'攻撃に必要な条件を満たしていない');
  }
@@ -29,7 +29,7 @@ export function creatureStatusModel(s,player,uid){
   const legal=s.active===player&&s.phase==='attack'&&!s.decision?getLegalActions(s).some(a=>a.kind==='attack'&&a.uid===uid):null;
   rows.push(['攻撃',s.winner!==null?'対戦終了':reasons.length?reasons.join(' / '):legal===false?'選べる攻撃先がない':s.active!==player?'現在は'+side(s.active)+'のターン（持ち主の攻撃ステップで判定）':s.decision?'能力・支払いの選択を解決中':s.phase!=='attack'?side(player)+'の攻撃ステップで攻撃可能':'攻撃可能']);
   if(c.g38BattleBonus)effects.push({name:'バトル中のパワー +'+number(c.g38BattleBonus),until:'この能力が有効な間（通常のパワーには含まない）'});
-  if(c.noCreatureAttack)effects.push({name:'クリーチャーには攻撃できない',until:'この能力が有効な間'});
+  if(c.noCreatureAttack||c.noAttack&&c.g1226PlayerAttack)effects.push({name:'クリーチャーには攻撃できない',until:'この能力が有効な間'});
   if(c.noPlayerAttack)effects.push({name:'相手プレイヤーには攻撃できない',until:'この能力が有効な間'});
   rows.push([isEvolution(x)?'進化元':'下のカード',sourceCardCount(x)+'枚']);
   const shields=exLifeShields(s,player,x),positions=shields.map(y=>own.shields.indexOf(y)+1);
