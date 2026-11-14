@@ -2470,6 +2470,48 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1227&&d?.status==='complete'){
+  const text=normalize(f.abilityText),spell=d.faces[1];
+  const raid=(race)=>({op:'Raid767',race,max:5});
+  const raidText=race=>race+'・メクレイド5する。('+race+'・メクレイド5:自分の山札の上から3枚を見る。'+
+   'その中からコスト5以下の'+race+'を1枚コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く)';
+  const base='次の中から2回選ぶ。(同じものを選んでもよい)';
+  if(d.faces.length===1&&['dm23rp1-008','dm23rp1-11A','dm23rp1-13B'].includes(d.id)&&f.typeText==='呪文'&&
+    text==='自分のマナゾーンと墓地に合計8枚以上カードがあればこの呪文を唱えるコストを2少なくする。'+base+
+    '▶自分の山札の上から2枚を墓地に置く。その後カードを1枚自分の墓地からマナゾーンに置いてもよい。'+
+    '▶このターン相手のクリーチャーすべてのパワーを-1000する。'+
+    '▶闇または自然のコスト3以下のクリーチャーを1体自分のマナゾーンから出す。')
+   return {effect:'sixPhoto',g261Discount:{filter:{g334ZoneCount:{zones:['mana','grave'],min:8}},amount:2},
+    g34Tasks:[{op:'Choose',g184Modes:true,g1045Preselect:2,modes:[
+     {label:'山札から2枚墓地に置き、墓地から1枚マナに置く（任意）',defs:[{op:'Mill',n:2,g1042Together:true},
+      {op:'Select',origin:'grave',n:1,to:'mana',optional:true,title:'墓地からマナに置くカードを1枚選ぶ（任意）'}]},
+     {label:'相手のクリーチャーすべてのパワーを-1000する',defs:[
+      {op:'GroupPower',owner:'opponent',filter:{creature:true},power:-1000,g214GroupPower:true,spell:true}]},
+     {label:'マナからコスト3以下の闇か自然のクリーチャーを1体出す',defs:[{op:'Select',origin:'mana',
+      n:1,deploy:true,filter:{creature:true,faceUp:true,max:3,any:[{color:'闇'},{color:'自然'}]}}]}
+    ]}]};
+  if(d.faces.length===1&&['dm23rp1-040','promoy22-003'].includes(d.id)&&f.typeText==='クリーチャー'&&
+    text==='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+    'このクリーチャーは攻撃できない。このクリーチャーがブロックした時その攻撃の後でこのクリーチャーを破壊する。'+
+    'このクリーチャーが破壊された時'+raidText('アビス'))
+   return {blocker:true,noAttack:true,g178Block:[{op:'AfterAttack542',defs:[{op:'SelfDestroy'}]}],
+    g172Death:[raid('アビス')]};
+  if(d.faces.length===1&&['dm23rp1-S7','dm23rp1-7A','dm23rp1-9B','dm24ex1-005'].includes(d.id)&&f.typeText==='クリーチャー'&&
+    text==='パワード・ブレイカー自分のファイアー・バード'+(d.id==='dm24ex1-005'?'1つ':'1枚')+
+    'につきこのクリーチャーのパワーを+3000する。このクリーチャーが出た時'+
+    (d.id==='dm24ex1-005'?'アーマード・メクレイド5する。':raidText('アーマード'))+
+    '各ターンに一度自分のファイアー・バードが出た時相手のクリーチャーを1体選んでもよい。'+
+    'その選んだクリーチャーとこのクリーチャーをバトルさせる。')
+   return {effect:'sixPhoto',poweredBreaker:true,
+    g207CountPower:{zone:'battle',filter:{race:'ファイアー・バード'},g561Elements:true,amount:3000},
+    g34Tasks:[raid('アーマード')],g251EntryDraw:{filter:{element:true,faceUp:true,race:'ファイアー・バード'},defs:[
+     {op:'FightEnemy240',optional:true,g998EntryFight:true,g792Once:'arczeosFight'}]}};
+  if(d.faces.length===2&&['dm23sd1-012','dm23rp1-21B','dm24ex1-078'].includes(d.id)&&f.typeText==='クリーチャー'&&
+    text==='スピードアタッカー(このクリーチャーは召喚酔いしない)'&&spell.typeText==='呪文'&&
+    normalize(spell.abilityText)===raidText('アーマード'))
+   return {speedAttacker:true,spellFace:{type:'spell',name:spell.name,cost:spell.cost,civ:spell.civilizationText,
+    civilizations:spell.civilizations,race:spell.race,effect:'sixPhoto',g34Tasks:[raid('アーマード')]}};
+ }
  if(phase>=1226&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dm22rp1-001'&&f.typeText==='クリーチャー'&&

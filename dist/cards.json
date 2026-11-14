@@ -234564,15 +234564,237 @@
       ],
       "supportBatch": "phase-1226",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-008",
+      "name": "荒廃と豊穣の決断",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "自分のマナゾーンと墓地に合計８枚以上カードがあれば、この呪文を唱えるコストを２少なくする。\n次の中から２回選ぶ。（同じものを選んでもよい）\n▶自分の山札の上から２枚を墓地に置く。その後、カードを１枚、自分の墓地からマナゾーンに置いてもよい。\n▶このターン、相手のクリーチャーすべてのパワーを－1000する。\n▶闇または自然の、コスト３以下のクリーチャーを１体、自分のマナゾーンから出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-008",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g261Discount": {
+        "filter": {
+          "g334ZoneCount": {
+            "zones": [
+              "mana",
+              "grave"
+            ],
+            "min": 8
+          }
+        },
+        "amount": 2
+      },
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "g1045Preselect": 2,
+          "modes": [
+            {
+              "label": "山札から2枚墓地に置き、墓地から1枚マナに置く（任意）",
+              "defs": [
+                {
+                  "op": "Mill",
+                  "n": 2,
+                  "g1042Together": true
+                },
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "n": 1,
+                  "to": "mana",
+                  "optional": true,
+                  "title": "墓地からマナに置くカードを1枚選ぶ（任意）"
+                }
+              ]
+            },
+            {
+              "label": "相手のクリーチャーすべてのパワーを-1000する",
+              "defs": [
+                {
+                  "op": "GroupPower",
+                  "owner": "opponent",
+                  "filter": {
+                    "creature": true
+                  },
+                  "power": -1000,
+                  "g214GroupPower": true,
+                  "spell": true
+                }
+              ]
+            },
+            {
+              "label": "マナからコスト3以下の闇か自然のクリーチャーを1体出す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "mana",
+                  "n": 1,
+                  "deploy": true,
+                  "filter": {
+                    "creature": true,
+                    "faceUp": true,
+                    "max": 3,
+                    "any": [
+                      {
+                        "color": "闇"
+                      },
+                      {
+                        "color": "自然"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1227",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-040",
+      "name": "グ:ムユキバ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 5000,
+      "race": "ノワールアビス",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーがブロックした時、その攻撃の後でこのクリーチャーを破壊する。\nこのクリーチャーが破壊された時、アビス・メクレイド５する。（アビス・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のアビスを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-040",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g178Block": [
+        {
+          "op": "AfterAttack542",
+          "defs": [
+            {
+              "op": "SelfDestroy"
+            }
+          ]
+        }
+      ],
+      "g172Death": [
+        {
+          "op": "Raid767",
+          "race": "アビス",
+          "max": 5
+        }
+      ],
+      "supportBatch": "phase-1227",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-S7",
+      "name": "ボルシャック・アークゼオス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "アーマード・ドラゴン",
+      "text": "パワード・ブレイカー\n自分のファイアー・バード１枚につき、このクリーチャーのパワーを+3000する。\nこのクリーチャーが出た時、アーマード・メクレイド５する。（アーマード・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のアーマードを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）\n各ターンに一度、自分のファイアー・バードが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-S7",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "poweredBreaker": true,
+      "g207CountPower": {
+        "zone": "battle",
+        "filter": {
+          "race": "ファイアー・バード"
+        },
+        "g561Elements": true,
+        "amount": 3000
+      },
+      "g34Tasks": [
+        {
+          "op": "Raid767",
+          "race": "アーマード",
+          "max": 5
+        }
+      ],
+      "g251EntryDraw": {
+        "filter": {
+          "element": true,
+          "faceUp": true,
+          "race": "ファイアー・バード"
+        },
+        "defs": [
+          {
+            "op": "FightEnemy240",
+            "optional": true,
+            "g998EntryFight": true,
+            "g792Once": "arczeosFight"
+          }
+        ]
+      },
+      "supportBatch": "phase-1227",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23sd1-012",
+      "name": "ファイン・撃・ピヨッチ / 「暴竜爵は不滅なり！」",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "アーマード・ファイアー・バード",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\n【呪文面】\nアーマード・メクレイド５する。（アーマード・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のアーマードを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd1-012",
+      "limit": 4,
+      "speedAttacker": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "「暴竜爵は不滅なり！」",
+        "cost": 4,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "アーマード・アーツ",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Raid767",
+            "race": "アーマード",
+            "max": 5
+          }
+        ]
+      },
+      "supportBatch": "phase-1227",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1226,
+    "phase": 1227,
     "checkedAt": "2026-11-14",
-    "baseCount": 7673,
-    "newEffectCards": 3,
+    "baseCount": 7676,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7676,
+    "totalCount": 7680,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -255573,6 +255795,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7673,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1226,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7673,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7676,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
