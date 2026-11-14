@@ -1,0 +1,323 @@
+{
+  "phase": 1234,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7700,
+  "description": "超侵入、シザー＝ゾー、深淵の憤髄 ファウン＝テインの全能力を対戦対応し、公式再録2件を正規IDに対応付ける。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/46073/",
+    "https://dm.takaratomy.co.jp/rule/qa/46074/",
+    "https://dm.takaratomy.co.jp/rule/qa/44840/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/変更点2026-07-23/"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp2-065",
+      "name": "超侵入",
+      "faces": [
+        {
+          "name": "超侵入",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手は自身のアンタップしているクリーチャーを１体選び、破壊する。\n次の自分のターンのはじめまで、自分の超化獣クリーチャー１体のハイパーモードを解放する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-065",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-065.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave",
+            "filter": {
+              "untapped": true
+            }
+          },
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "g724ExactRace": "超化獣"
+            },
+            "implicitSelection": true,
+            "g780ReleaseHyper": true,
+            "title": "ハイパーモードを解放する自分の超化獣を指定する"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "a8d0574a83a30ad25b45e3f2536a5662700a2a10d2b9c4e4dce50a03e64348c1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-037",
+      "name": "シザー＝ゾー",
+      "faces": [
+        {
+          "name": "シザー＝ゾー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、相手のクリーチャーを１体選ぶ。このターンの終わりまで、そのクリーチャーのパワーを－4000する。（パワー０以下のクリーチャーは破壊される）\n自分のハイパーモードを解放しているクリーチャーが攻撃する時、このクリーチャーを自分の墓地から出してもよい。",
+          "race": "アビスロイヤル",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-037",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-037.jpg",
+      "spec": {
+        "g1234HyperGraveAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -4000,
+            "g242PowerMinus": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "3222adf043e394c2ccfe5080ce6bc0514449ee1ee81f868406e33d408ed82d1e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-S06",
+      "name": "深淵の憤髄 ファウン＝テイン",
+      "faces": [
+        {
+          "name": "深淵の憤髄 ファウン＝テイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "自分の墓地にクリーチャーが６体以上あれば、このクリーチャーを[dd02]支払って召喚してもよい。\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、コスト３以下の闇のクリーチャーを２体まで、自分の墓地から出す。",
+          "race": "アビスロイヤル",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-S06",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-S06.jpg",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g568Alt": {
+          "cost": 2,
+          "paymentColors": [
+            "闇"
+          ],
+          "condition": {
+            "g273Grave": {
+              "n": 6,
+              "filter": {
+                "faceUp": true,
+                "g228Face": {
+                  "type": "creature"
+                }
+              }
+            }
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "deploy": true,
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "faceUp": true,
+              "g228Face": {
+                "type": "creature",
+                "color": "闇",
+                "max": 3
+              }
+            },
+            "title": "墓地から出すコスト3以下の闇のクリーチャーを2体まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "ab96edda469a8909a558e0ce6a1e1bf1c313877e347cad2174f737b062eabedb",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex3-rp1S06",
+      "name": "深淵の憤髄 ファウン＝テイン",
+      "faces": [
+        {
+          "name": "深淵の憤髄 ファウン＝テイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "自分の墓地にクリーチャーが６体以上あれば、このクリーチャーを[dd02]支払って召喚してもよい。\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、コスト３以下の闇のクリーチャーを２体まで、自分の墓地から出す。",
+          "race": "アビスロイヤル",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp1S06",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp1S06.jpg",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g568Alt": {
+          "cost": 2,
+          "paymentColors": [
+            "闇"
+          ],
+          "condition": {
+            "g273Grave": {
+              "n": 6,
+              "filter": {
+                "faceUp": true,
+                "g228Face": {
+                  "type": "creature"
+                }
+              }
+            }
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "deploy": true,
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "faceUp": true,
+              "g228Face": {
+                "type": "creature",
+                "color": "闇",
+                "max": 3
+              }
+            },
+            "title": "墓地から出すコスト3以下の闇のクリーチャーを2体まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "5be0d6e58a6ec3d34819488829745d090bce9ccfe84f621aa3a6ddf51e82edac",
+        "facesMatched": true
+      },
+      "canonicalId": "dm24rp1-S06"
+    },
+    {
+      "id": "dm24ex3-Sec04",
+      "name": "深淵の憤髄 ファウン＝テイン",
+      "faces": [
+        {
+          "name": "深淵の憤髄 ファウン＝テイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "自分の墓地にクリーチャーが６体以上あれば、このクリーチャーを[dd02]支払って召喚してもよい。\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、コスト３以下の闇のクリーチャーを２体まで、自分の墓地から出す。",
+          "race": "アビスロイヤル",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-Sec04",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-Sec04.jpg",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g568Alt": {
+          "cost": 2,
+          "paymentColors": [
+            "闇"
+          ],
+          "condition": {
+            "g273Grave": {
+              "n": 6,
+              "filter": {
+                "faceUp": true,
+                "g228Face": {
+                  "type": "creature"
+                }
+              }
+            }
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "deploy": true,
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "faceUp": true,
+              "g228Face": {
+                "type": "creature",
+                "color": "闇",
+                "max": 3
+              }
+            },
+            "title": "墓地から出すコスト3以下の闇のクリーチャーを2体まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "af00665bf9161510cc446db0a3ac68bf6efa5155ecd40bfc2a2b28dcfcd1cd59",
+        "facesMatched": true
+      },
+      "canonicalId": "dm24rp1-S06"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp2-065": 4,
+      "dm24rp2-037": 4,
+      "dm24rp1-S06": 4,
+      "dm24ex3-rp1S06": 4,
+      "dm24ex3-Sec04": 4
+    }
+  }
+}

@@ -7426,6 +7426,9 @@ export function createSixPhotoRules(api){
   }
   for(const y of s.players[1-p].hand)if(card(y).g1201SeedDefense&&!api.handAbilityIgnored(s,y))
    send(s,1-p,y,'SeedDefense1201',{serial:y.zoneSerial||0,selected:[]});
+  if(hyperMode418(s,x))for(const y of s.players[p].grave)
+   if(!y.faceDown&&card(y).g1234HyperGraveAttack)
+    send(s,p,y,'GraveSummonWatch766',{serial:y.zoneSerial||0});
   attackWatches252(s,p,x);for(const y of s.players[p].hand)for(const[c,face]of faces(card(y)).map((c,i)=>[c,i])){const w=c.g417Chance;if(w&&!api.spellIgnored(s,c)&&(!w.hyper||hyperMode418(s,x))&&chanceMatches419(s,p,x,w))send(s,p,y,'Chance417',{serial:y.zoneSerial||0,face});}for(const y of active(s,1-p,'souzan'))queue(s,1-p,y,[C('souzanStop')]);{for(const y of s.players[1-p].shields.flatMap(api.shieldCards).filter(y=>y.faceUp&&card(y).g34Role==='mantraCastle'))queue(s,1-p,y,[C('mantraDefend')]);if(s.attack?.target==='player'&&s.players.some(p=>!p.shields.length)&&!s.players[1-p].battle.some(y=>!y.sealed&&card(y).g34Role==='nightmare'))for(const y of s.players[1-p].hand.filter(y=>card(y).g34Role==='nightmare'))queue(s,1-p,y,[C('nightmare')]);}},
  handBattleWins588(s,p,w){
   const own=s.players[p],winner=own.battle.find(x=>x.uid===w.uid);

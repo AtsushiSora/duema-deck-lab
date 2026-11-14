@@ -235600,15 +235600,138 @@
       ],
       "supportBatch": "phase-1233",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-065",
+      "name": "超侵入",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手は自身のアンタップしているクリーチャーを１体選び、破壊する。\n次の自分のターンのはじめまで、自分の超化獣クリーチャー１体のハイパーモードを解放する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-065",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "OpponentSelect",
+          "n": 1,
+          "to": "grave",
+          "filter": {
+            "untapped": true
+          }
+        },
+        {
+          "op": "Target",
+          "owner": "self",
+          "filter": {
+            "g724ExactRace": "超化獣"
+          },
+          "implicitSelection": true,
+          "g780ReleaseHyper": true,
+          "title": "ハイパーモードを解放する自分の超化獣を指定する"
+        }
+      ],
+      "supportBatch": "phase-1234",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-037",
+      "name": "シザー＝ゾー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "アビスロイヤル",
+      "text": "このクリーチャーが出た時、相手のクリーチャーを１体選ぶ。このターンの終わりまで、そのクリーチャーのパワーを－4000する。（パワー０以下のクリーチャーは破壊される）\n自分のハイパーモードを解放しているクリーチャーが攻撃する時、このクリーチャーを自分の墓地から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-037",
+      "limit": 4,
+      "g1234HyperGraveAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -4000,
+          "g242PowerMinus": true
+        }
+      ],
+      "supportBatch": "phase-1234",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp1-S06",
+      "name": "深淵の憤髄 ファウン＝テイン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "アビスロイヤル",
+      "text": "自分の墓地にクリーチャーが６体以上あれば、このクリーチャーを[dd02]支払って召喚してもよい。\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、コスト３以下の闇のクリーチャーを２体まで、自分の墓地から出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-S06",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g568Alt": {
+        "cost": 2,
+        "paymentColors": [
+          "闇"
+        ],
+        "condition": {
+          "g273Grave": {
+            "n": 6,
+            "filter": {
+              "faceUp": true,
+              "g228Face": {
+                "type": "creature"
+              }
+            }
+          }
+        }
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "deploy": true,
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "faceUp": true,
+            "g228Face": {
+              "type": "creature",
+              "color": "闇",
+              "max": 3
+            }
+          },
+          "title": "墓地から出すコスト3以下の闇のクリーチャーを2体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1234",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1233,
+    "phase": 1234,
     "checkedAt": "2026-11-14",
-    "baseCount": 7697,
+    "baseCount": 7700,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7700,
+    "totalCount": 7703,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -256693,6 +256816,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7697,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1233,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7697,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7700,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

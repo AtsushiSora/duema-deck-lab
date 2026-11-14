@@ -2470,6 +2470,29 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1234&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm24rp2-065'&&f.typeText==='呪文'&&text===
+   'S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)'+
+   '相手は自身のアンタップしているクリーチャーを1体選び破壊する。'+
+   '次の自分のターンのはじめまで自分の超化獣クリーチャー1体のハイパーモードを解放する。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[
+    {op:'OpponentSelect',n:1,to:'grave',filter:{untapped:true}},
+    {op:'Target',owner:'self',filter:{g724ExactRace:'超化獣'},implicitSelection:true,g780ReleaseHyper:true,
+     title:'ハイパーモードを解放する自分の超化獣を指定する'}
+   ]};
+  if(d.id==='dm24rp2-037'&&f.typeText==='クリーチャー'&&text===
+   'このクリーチャーが出た時相手のクリーチャーを1体選ぶ。このターンの終わりまでそのクリーチャーのパワーを-4000する。'+
+   '(パワー0以下のクリーチャーは破壊される)自分のハイパーモードを解放しているクリーチャーが攻撃する時このクリーチャーを自分の墓地から出してもよい。')
+   return {g1234HyperGraveAttack:true,effect:'sixPhoto',g34Tasks:[{op:'Target',power:-4000,g242PowerMinus:true}]};
+  if(['dm24rp1-S06','dm24ex3-rp1S06','dm24ex3-Sec04'].includes(d.id)&&f.typeText==='クリーチャー'&&text===
+   '自分の墓地にクリーチャーが6体以上あればこのクリーチャーを[dd02]支払って召喚してもよい。'+
+   'ブロッカーブロッカーW・ブレイカーこのクリーチャーが出た時コスト3以下の闇のクリーチャーを2体まで自分の墓地から出す。')
+   return {blocker:true,breaker:2,g568Alt:{cost:2,paymentColors:['闇'],
+    condition:{g273Grave:{n:6,filter:{faceUp:true,g228Face:{type:'creature'}}}}},
+    effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'grave',deploy:true,n:2,optional:true,
+     filter:{faceUp:true,g228Face:{type:'creature',color:'闇',max:3}},title:'墓地から出すコスト3以下の闇のクリーチャーを2体まで選ぶ'}]};
+ }
  if(phase>=1233&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(['dm24rp1-002','dm24ex3-rp1002'].includes(d.id)&&f.typeText==='クリーチャー'&&text===
