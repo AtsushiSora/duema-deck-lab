@@ -231945,15 +231945,156 @@
       },
       "supportBatch": "phase-1208",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-040",
+      "name": "セルリアン・アックス・ドラゴン / ダブルアックス・チャージャー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "アーマード・ドラゴン",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\n【呪文面】\n自分の手札を２枚まで、好きな順序で山札の下に置き、その後、同じ枚数のカードを引く。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-040",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Fight240",
+          "self": true,
+          "optional": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "ダブルアックス・チャージャー",
+        "cost": 3,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "アーマード・アーツ",
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandCycle460",
+            "to": "deck",
+            "order": true,
+            "max": 2
+          }
+        ]
+      },
+      "supportBatch": "phase-1209",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-031",
+      "name": "音素記号Bm エネルジコ / ♪水面から 天掴まんと するチャージャー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "マジック・クリスタル・コマンド・ドラゴン",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、カードを２枚引く。\n【呪文面】\nカードを１枚引き、その後、自分の手札を１枚捨てる。\nチャージャー（この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-031",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "♪水面から 天掴まんと するチャージャー",
+        "cost": 3,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "マジック・ソング",
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1209",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-027",
+      "name": "聖沌忍者 シャーリーシー / シャーリー・チャージャー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8500,
+      "race": "メカ・デル・ソル/シノビ",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、自分の山札の上から２枚をシールド化する。\n【呪文面】\n自分の山札の上から１枚目をシールド化する。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-027",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldTop",
+          "n": 2,
+          "g779Simultaneous": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "シャーリー・チャージャー",
+        "cost": 3,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "メカ・デル・テック/シノビ",
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1209",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1208,
+    "phase": 1209,
     "checkedAt": "2026-11-14",
-    "baseCount": 7616,
+    "baseCount": 7619,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7619,
+    "totalCount": 7622,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -252738,6 +252879,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7616,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1208,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7616,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7619,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

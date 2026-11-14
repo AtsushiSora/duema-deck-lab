@@ -2470,6 +2470,29 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1209&&d?.status==='complete'&&d.faces.length===2&&f.typeText==='クリーチャー'&&d.faces[1].typeText==='呪文'){
+  const spell=d.faces[1],text=normalize(f.abilityText),back=normalize(spell.abilityText);
+  const breaker=d.id==='dm24ex2-Cho037'?'W・ブレイカー':'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)';
+  const charger=d.id==='dm24ex2-Cho037'?['チャージャー']:d.id==='dm24bd6-051'?
+   ['チャージャー(この呪文を唱えた後墓地のかわりにマナゾーンに置く)']:
+   ['チャージャー(この呪文を唱えた後墓地に置くかわりにマナゾーンに置く)',
+    'チャージャー(この呪文を唱えた後墓地に置くかわりに自分のマナゾーンに置く)'];
+  const twin=(entry,g34Tasks)=>({breaker:2,effect:'sixPhoto',g34Tasks:entry,
+   spellFace:{type:'spell',name:spell.name,cost:spell.cost,civ:spell.civilizationText,
+    civilizations:spell.civilizations,race:spell.race,normalCharger:true,effect:'sixPhoto',g34Tasks}});
+  if(['dm23rp2-040','dm23rp2x-040','dm23bd4-046','dm24ex2-Cho037','dm24bd6-051'].includes(d.id)&&
+     text===breaker+'このクリーチャーが出た時相手のクリーチャーを1体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。'&&
+     charger.some(c=>back==='自分の手札を2枚まで好きな順序で山札の下に置きその後同じ枚数のカードを引く。'+c))
+   return twin([{op:'Fight240',self:true,optional:true}],[{op:'HandCycle460',to:'deck',order:true,max:2}]);
+  if(['dm23rp2-031','dm23rp2x-031','dm23rp2-16A','dm23rp2x-16A','dm23rp2-18B','dm23rp2x-18B','dm23bd7-050'].includes(d.id)&&
+     text===breaker+'このクリーチャーが出た時カードを2枚引く。'&&
+     charger.some(c=>back==='カードを1枚引きその後自分の手札を1枚捨てる。'+c))
+   return twin([{op:'Draw',n:2}],[{op:'Draw',n:1},{op:'Discard',owner:'self',n:1}]);
+  if(['dm23rp2-027','dm23rp2x-027','dm23rp2-15A','dm23rp2x-15A','dm23rp2-17B','dm23rp2x-17B','dm23bd7-049'].includes(d.id)&&
+     text===breaker+'このクリーチャーが出た時自分の山札の上から2枚をシールド化する。'&&
+     charger.some(c=>back==='自分の山札の上から1枚目をシールド化する。'+c))
+   return twin([{op:'ShieldTop',n:2,g779Simultaneous:true}],[{op:'ShieldTop',n:1}]);
+ }
  if(phase>=1208&&d?.status==='complete'&&d.faces.length===2&&f.typeText==='クリーチャー'&&d.faces[1].typeText==='呪文'){
   const spell=d.faces[1],text=normalize(f.abilityText),back=normalize(spell.abilityText);
   const breaker='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)';
