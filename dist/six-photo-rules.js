@@ -4872,7 +4872,15 @@ export function createSixPhotoRules(api){
    title:t.title||'確認したカードから出すクリーチャーを選ぶ',after:[rest]});
   break;
  }
- case'g34_LookRest530':put(s,{...t,op:'g34_Order',rest:t.rest||'top',g259OrderTop:true,ordered:[]});break;
+ case'g34_LookRest530':
+  if(t.rest==='shields'){
+   // Only inspected cards still in the library can become shields (QA 47059).
+   for(const uid of t.ids){
+    release(s,t.p,uid);
+    if(own.deck.some(x=>x.uid===uid))api.shieldTop(s,t.p,card(t.source),null,{uid});
+   }
+  }else put(s,{...t,op:'g34_Order',rest:t.rest||'top',g259OrderTop:true,ordered:[]});
+  break;
  case'g34_Marianna728':{
   const ids=look(s,{...t,n:own.deck.length});
   const rows=own.deck.filter(x=>ids.includes(x.uid)).flatMap(x=>faces(card(x)).flatMap((c,face)=>

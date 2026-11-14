@@ -1,0 +1,308 @@
+{
+  "phase": 1306,
+  "checkedAt": "2026-11-15",
+  "baseCount": 7934,
+  "description": "連戦の精霊龍 カイザルルール、黒雲のリンバウシャ、無双龍聖ジオ・マスターチャを対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/47059/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35551/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35552/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37323/"
+  ],
+  "cards": [
+    {
+      "id": "dm25ex1-018",
+      "name": "連戦の精霊龍 カイザルルール",
+      "faces": [
+        {
+          "name": "連戦の精霊龍 カイザルルール",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー\nブロッカー ブロッカー\n自分のターンのはじめに、自分の山札の上から１枚を見てもよい。それがエンジェル・コマンドなら出してもよい。こうして出さなければ、それをシールド化する。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-018",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex1-018.jpg",
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "g174Start": [
+          {
+            "op": "Offer",
+            "title": "自分の山札の上から1枚を見る？",
+            "defs": [
+              {
+                "op": "LookDeploy530",
+                "n": 1,
+                "limit": 1,
+                "g841DeckPeek": true,
+                "filter": {
+                  "creature": true,
+                  "race": "エンジェル・コマンド"
+                },
+                "rest": "shields",
+                "title": "確認したエンジェル・コマンドを出す（出さなければシールド化）"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "35785c360fa1b9dc4d7876e25a0cee8ab20fe2b1d378798c06c64e63d7bb4566",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25-048",
+      "name": "黒雲のリンバウシャ",
+      "faces": [
+        {
+          "name": "黒雲のリンバウシャ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の闇または自然のクリーチャーをバトルゾーンに出した時、そのターン、このクリーチャーは「パワーアタッカー+5000」を得る。(攻撃中、「パワーアタッカー+5000」を得たクリーチャーのパワーは+5000される)",
+          "race": "ブレイブ・スピリット",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-048",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25-048.jpg",
+      "spec": {
+        "g251EntryDraw": {
+          "g1198EntryScope": true,
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "color": "闇"
+              },
+              {
+                "color": "自然"
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "SelfGrant754",
+              "grant": {
+                "attackBonus": 5000
+              }
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "805ebbf7cff6e6e250a04e818cbb007caf324bb7cacbef3ccd705a10e7215af5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-034",
+      "name": "無双龍聖ジオ・マスターチャ",
+      "faces": [
+        {
+          "name": "無双龍聖ジオ・マスターチャ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nバトルゾーンにある自分の、コスト４以上のクリーチャーすべてのパワーは+3000され、種族にアポロニア・ドラゴンとアース・ドラゴンを追加する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アポロニア・ドラゴン/アース・ドラゴン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-034",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-034.jpg",
+      "spec": {
+        "breaker": 2,
+        "g205Aura": {
+          "power": 3000,
+          "filter": {
+            "creature": true,
+            "min": 4
+          }
+        },
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "min": 4
+            },
+            "grants": {
+              "raceAdd": [
+                "アポロニア・ドラゴン",
+                "アース・ドラゴン"
+              ]
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "cf1e935e36f173ac4908cdb183feec0d19a6f52e932d13bc8ec18619314d0e2b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc47-019",
+      "name": "無双龍聖ジオ・マスターチャ",
+      "faces": [
+        {
+          "name": "無双龍聖ジオ・マスターチャ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nバトルゾーンにある自分の、コスト４以上のクリーチャーすべてのパワーは+3000され、種族にアポロニア・ドラゴンとアース・ドラゴンを追加する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アポロニア・ドラゴン/アース・ドラゴン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc47-019",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc47-019.jpg",
+      "spec": {
+        "breaker": 2,
+        "g205Aura": {
+          "power": 3000,
+          "filter": {
+            "creature": true,
+            "min": 4
+          }
+        },
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "min": 4
+            },
+            "grants": {
+              "raceAdd": [
+                "アポロニア・ドラゴン",
+                "アース・ドラゴン"
+              ]
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "bab846e5b878087f1638a8d1c940b241448856316151f91f61c0810c46b3bb7d",
+        "facesMatched": true
+      },
+      "canonicalId": "dm24-034"
+    },
+    {
+      "id": "dmc61-032",
+      "name": "無双龍聖ジオ・マスターチャ",
+      "faces": [
+        {
+          "name": "無双龍聖ジオ・マスターチャ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nバトルゾーンにある自分の、コスト４以上のクリーチャーすべてのパワーは+3000され、種族にアポロニア・ドラゴンとアース・ドラゴンを追加する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アポロニア・ドラゴン/アース・ドラゴン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc61-032",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc61-032.jpg",
+      "spec": {
+        "breaker": 2,
+        "g205Aura": {
+          "power": 3000,
+          "filter": {
+            "creature": true,
+            "min": 4
+          }
+        },
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "min": 4
+            },
+            "grants": {
+              "raceAdd": [
+                "アポロニア・ドラゴン",
+                "アース・ドラゴン"
+              ]
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "2dd1044c7f7fc07adadd869ce4f63e2d3939e9de797e4e3d85ba2b5bc40ca51f",
+        "facesMatched": true
+      },
+      "canonicalId": "dm24-034"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-15",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25ex1-018": 4,
+      "dm25-048": 4,
+      "dm24-034": 4,
+      "dmc47-019": 4,
+      "dmc61-032": 4
+    },
+    "currentList": "https://dm.takaratomy.co.jp/img/regulation/2608/202608regulation.pdf"
+  },
+  "sameNameProducts": {
+    "dm25ex1-018": [
+      "DM25-EX1 愛感謝祭 ヒロインBEST"
+    ],
+    "dm25-048": [
+      "DM-25 極神編 第2弾 人造神の創造(バイオレンス・クリエイター)"
+    ],
+    "dm24-034": [
+      "DMC-61 コロコロ・ドリーム・パック IV (エターナル・ヘヴン)",
+      "DMC-47 ヒーローズ・クロス・パック 勝舞編",
+      "DM-24 極神編(バイオレンス・ヘヴン) 第1弾"
+    ]
+  },
+  "printNotes": {
+    "dm24-034": "DM-24、DMC-47、DMC-61の3版を照合。DMC-47版のイラスト内の文字とフレーバーは能力外。"
+  }
+}

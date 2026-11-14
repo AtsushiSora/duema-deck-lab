@@ -2475,6 +2475,24 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1306&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.name==='連戦の精霊龍 カイザルルール'&&text===
+   'S・トリガーS・トリガーブロッカーブロッカー自分のターンのはじめに自分の山札の上から1枚を見てもよい。それがエンジェル・コマンドなら出してもよい。こうして出さなければそれをシールド化する。')
+   return {trigger:true,blocker:true,g174Start:[{op:'Offer',title:'自分の山札の上から1枚を見る？',defs:[
+    {op:'LookDeploy530',n:1,limit:1,g841DeckPeek:true,filter:{creature:true,race:'エンジェル・コマンド'},
+     rest:'shields',title:'確認したエンジェル・コマンドを出す（出さなければシールド化）'}
+   ]}]};
+  if(d.name==='黒雲のリンバウシャ'&&text===
+   '自分の闇または自然のクリーチャーをバトルゾーンに出した時そのターンこのクリーチャーは「パワーアタッカー+5000」を得る。(攻撃中「パワーアタッカー+5000」を得たクリーチャーのパワーは+5000される)')
+   return {g251EntryDraw:{g1198EntryScope:true,filter:{creature:true,any:[{color:'闇'},{color:'自然'}]},
+    defs:[{op:'SelfGrant754',grant:{attackBonus:5000}}]}};
+  if(d.name==='無双龍聖ジオ・マスターチャ'&&text===
+   'マナゾーンに置く時このカードはタップして置く。バトルゾーンにある自分のコスト4以上のクリーチャーすべてのパワーは+3000され種族にアポロニア・ドラゴンとアース・ドラゴンを追加する。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)'){
+   const filter={creature:true,min:4};
+   return {breaker:2,g205Aura:{power:3000,filter},g208Auras:[{filter,grants:{raceAdd:['アポロニア・ドラゴン','アース・ドラゴン']}}]};
+  }
+ }
  if(phase>=1305&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.name==='ライラ・アイニー'&&/^スピードアタッカー\(このクリーチャーは召喚酔いしない\)このクリーチャーがバトルする時自分のシールドを(?:1枚|ひとつ)手札に加える。ただしその「S・トリガー」は使えない。$/.test(text))

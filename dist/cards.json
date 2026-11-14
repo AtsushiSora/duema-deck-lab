@@ -243841,15 +243841,136 @@
       ],
       "supportBatch": "phase-1305",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex1-018",
+      "name": "連戦の精霊龍 カイザルルール",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "S・トリガー S・トリガー\nブロッカー ブロッカー\n自分のターンのはじめに、自分の山札の上から１枚を見てもよい。それがエンジェル・コマンドなら出してもよい。こうして出さなければ、それをシールド化する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-018",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "g174Start": [
+        {
+          "op": "Offer",
+          "title": "自分の山札の上から1枚を見る？",
+          "defs": [
+            {
+              "op": "LookDeploy530",
+              "n": 1,
+              "limit": 1,
+              "g841DeckPeek": true,
+              "filter": {
+                "creature": true,
+                "race": "エンジェル・コマンド"
+              },
+              "rest": "shields",
+              "title": "確認したエンジェル・コマンドを出す（出さなければシールド化）"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1306",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25-048",
+      "name": "黒雲のリンバウシャ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "ブレイブ・スピリット",
+      "text": "自分の闇または自然のクリーチャーをバトルゾーンに出した時、そのターン、このクリーチャーは「パワーアタッカー+5000」を得る。(攻撃中、「パワーアタッカー+5000」を得たクリーチャーのパワーは+5000される)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-048",
+      "limit": 4,
+      "g251EntryDraw": {
+        "g1198EntryScope": true,
+        "filter": {
+          "creature": true,
+          "any": [
+            {
+              "color": "闇"
+            },
+            {
+              "color": "自然"
+            }
+          ]
+        },
+        "defs": [
+          {
+            "op": "SelfGrant754",
+            "grant": {
+              "attackBonus": 5000
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1306",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24-034",
+      "name": "無双龍聖ジオ・マスターチャ",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "アポロニア・ドラゴン/アース・ドラゴン",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nバトルゾーンにある自分の、コスト４以上のクリーチャーすべてのパワーは+3000され、種族にアポロニア・ドラゴンとアース・ドラゴンを追加する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-034",
+      "limit": 4,
+      "breaker": 2,
+      "g205Aura": {
+        "power": 3000,
+        "filter": {
+          "creature": true,
+          "min": 4
+        }
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "min": 4
+          },
+          "grants": {
+            "raceAdd": [
+              "アポロニア・ドラゴン",
+              "アース・ドラゴン"
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-1306",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1305,
+    "phase": 1306,
     "checkedAt": "2026-11-15",
-    "baseCount": 7931,
+    "baseCount": 7934,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7934,
+    "totalCount": 7937,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -265798,6 +265919,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7931,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1305,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7931,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7934,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
