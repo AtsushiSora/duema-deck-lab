@@ -4491,7 +4491,12 @@ export function createSixPhotoRules(api){
  case'g34_Mill':{
   const p=t.opponent?1-t.p:t.owner??t.p,n=t.n==='∞'?s.players[p].deck.length:t.n;
   if(t.optional)choice(s,t,t.n==='∞'?'山札をすべて墓地に置く？':'山札の上'+n+'枚を墓地に置く？',[opt('置く',true,own.deck.length>n?10:-100),skip()]);
-  else api.mill(s,p,n,{together:t.g1042Together});
+  else{
+   const moved=api.mill(s,p,n,{together:t.g1042Together});
+   if(t.afterAllMoved&&s.winner===null&&moved?.length===n&&
+      moved.every(y=>s.players[p].grave.includes(y)&&matches(s,p,y,t.movedFilter)))
+    start(s,t,t.afterAllMoved);
+  }
   break;
  }
  // Count physical mana cards once on resolution, independently of their mana numbers or tapped state.

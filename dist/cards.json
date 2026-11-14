@@ -232688,15 +232688,162 @@
       ],
       "supportBatch": "phase-1213",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-037",
+      "name": "カーペット=ガペット / 「ふむ、君の希望を踏まえよう」",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "アビスロイヤル",
+      "text": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\n相手が呪文を唱えた時、相手は自身の手札を２枚選んで捨てる。\n【呪文面】\n自分の山札の上から２枚を墓地に置く。こうして置いたカードが２枚ともアビスなら、アビスを１枚、自分の墓地から手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-037",
+      "limit": 4,
+      "abyssRush": true,
+      "g204SpellWatch": {
+        "who": "opponent",
+        "defs": [
+          {
+            "op": "Discard",
+            "n": 2
+          }
+        ]
+      },
+      "spellFace": {
+        "type": "spell",
+        "name": "「ふむ、君の希望を踏まえよう」",
+        "cost": 2,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "アビスへの誘い",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 2,
+            "g1042Together": true,
+            "movedFilter": {
+              "anyFaceRace": "アビス"
+            },
+            "afterAllMoved": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "optional": true,
+                "filter": {
+                  "anyFaceRace": "アビス",
+                  "faceUp": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1214",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-S08",
+      "name": "十八番龍 エターナルグリーン ParLife",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 11000,
+      "race": "ジャイアント・ドラゴン",
+      "text": "ダブル・シンパシー：ジャイアント（このクリーチャーの召喚コストは、自分のジャイアント・クリーチャー１体につき２少なくなる。ただしコストは０以下にはならない）\nマッハファイター\nW・ブレイカー\n自分のジャイアントが攻撃する時、カードを１枚引いてもよい。\n自分のジャイアントを使うコストを２少なくする。ただし、コストは０以下にはならない。\n自分のターンのはじめに、自分のクリーチャーが18体以上あれば、自分はゲームに勝つ。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-S08",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 2,
+      "g211Sympathy": {
+        "amount": 2,
+        "minimum": 1,
+        "filter": {
+          "creature": true,
+          "race": "ジャイアント"
+        }
+      },
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "creature": true,
+          "race": "ジャイアント"
+        },
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "g468UseReduction": {
+        "race": "ジャイアント",
+        "amount": 2
+      },
+      "g174Start": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true
+              },
+              "min": 18
+            }
+          },
+          "defs": [
+            {
+              "op": "Win871",
+              "reason": "自分のクリーチャーが18体以上で勝利"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1214",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-012",
+      "name": "星姫械 エルナドンナ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2500,
+      "race": "メカ・デル・ステラ",
+      "text": "ブロッカーブロッカー\n各ターンに一度、自分の他のクリーチャーが離れる時、かわりに自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-012",
+      "limit": 4,
+      "blocker": true,
+      "g1214OtherShieldSaver": true,
+      "supportBatch": "phase-1214",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1213,
+    "phase": 1214,
     "checkedAt": "2026-11-14",
-    "baseCount": 7631,
+    "baseCount": 7634,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7634,
+    "totalCount": 7637,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -253541,6 +253688,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7631,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1213,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7631,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7634,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

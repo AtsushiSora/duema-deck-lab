@@ -1056,10 +1056,16 @@ function leaveOptions(s,row){
   ...(current.g404Inherited||[]).filter(r=>r.grants.g1136ShieldSaver)
    .map(r=>layers(host).find(x=>x.uid===r.uid))
  ]:[];
- const shieldSavers=selfShieldSources.flatMap(source=>{
-  const key='g1136ShieldSaver:'+host.uid+'@'+(host.incarnation||0)+':'+source.uid+'@'+(source.incarnation||0);
+ const otherShieldSources=!row.replacement&&isCreature(s,host)?own.battle.filter(x=>
+  x!==host&&!x.sealed&&!x.faceDown&&card(x).g1214OtherShieldSaver&&isCreature(s,x)&&
+  effectiveCard(x,s).g1214OtherShieldSaver):[];
+ const shieldSavers=[...selfShieldSources,...otherShieldSources].flatMap(source=>{
+  const savesOther=source!==host&&otherShieldSources.includes(source);
+  const sourceKey=source.uid+'@'+(source.incarnation||0);
+  const key=savesOther?'g1214OtherShieldSaver:'+sourceKey:
+   'g1136ShieldSaver:'+host.uid+'@'+(host.incarnation||0)+':'+sourceKey;
   if(s.once?.[key]===s.turn||batch.rows.some(r=>r.plan?.kind==='g1088Kent'&&r.plan.key===key))return [];
-  return own.shields.filter(x=>available(x)&&!shieldCards(x).some(y=>y.g37ShieldHeld)).map(x=>({key,shield:shieldGroup(x),cardId:source.cardId}));
+  return own.shields.filter(x=>available(x)&&!shieldCards(x).some(y=>y.g37ShieldHeld)).map(x=>({key,shield:shieldGroup(x),cardId:source.cardId,...(savesOther?{g1214OtherShieldSaver:true}:{})}));
  });
  const usedFlip=new Set(batch.rows.filter(r=>r.plan?.kind==='g33').map(r=>r.plan.uid));
  return {graveBottomStay:graveBottomPayment1202(s,row).length>=row.g1202GraveBottomStay,battleBottomSource:row.battleBottomSource,ninjaToMana,hachi:hunterSavers1138(s,row,host,sacrifices),psychicRelease:row.psychicRelease,lGate:lGateOptions955(s,row),g393J:extra.requested393J.leaveOptions(s,row,batch),g47:extra.seed.leaveOptions(s,row,batch),g49:extra.firebird.leaveOptions(s,row,batch,sacrifices),deathShield:!!row.g842DestroyShield,deathDeck:!!row.destroyToDeck,deathShuffle:!!row.g731DestroyShuffle,deathMana:!!(row.destroyToMana||row.g575TappedMana),crystalMana:!!row.crystalMana,tappedMana:row.g575TappedMana,yamata:row.yamata||row.destroyToMana||row.g575OptionalMana,omega:row.omega||row.destroyToHand,optionalHand:row.g708OptionalGraveToHand||row.g1088LeaveToHand,
@@ -1292,7 +1298,12 @@ function advanceLeaving(s){if(s.lossEvent)return;
    log(s,row.player,'stay',card(top).name+'を残すため、墓地から'+cards.length+'枚を山札の下へ置いた',{cardId:top.cardId});
    continue;
   }
-  if(plan.kind==='g1088Kent'){(s.once??={})[plan.key]=s.turn;moveShield(s,row.player,plan.shield,'hand',{noST:true,replacement:true});continue;}
+  if(plan.kind==='g1088Kent'){
+   (s.once??={})[plan.key]=s.turn;
+   moveShield(s,row.player,plan.shield,'hand',{noST:true,replacement:true,
+    ...(plan.g1214OtherShieldSaver&&row.stateBased?{escapeSBDeclaration:true}:{})});
+   continue;
+  }
   if(plan.kind==='g393JWD'&&extra.requested393J.applyLeaveReplacement(s,row,plan))continue;
   if(plan.kind==='g47'){extra.seed.replaceLeaving(s,row,plan);continue;}
   if(plan.kind==='handSave1157')continue;

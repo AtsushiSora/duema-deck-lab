@@ -2470,6 +2470,31 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1214&&d?.status==='complete'&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText),spell=d.faces[1];
+  if(d.faces.length===2&&spell.typeText==='呪文'&&['dm23rp2-037','dm23rp2x-037'].includes(d.id)&&
+     text==='アビスラッシュ:このクリーチャーを自分の墓地から召喚してもよい。そうしたらこのターンこのクリーチャーはプレイヤーを攻撃できターンの終わりに山札の下に置かれる。'+
+      '相手が呪文を唱えた時相手は自身の手札を2枚選んで捨てる。'&&
+     normalize(spell.abilityText)==='自分の山札の上から2枚を墓地に置く。こうして置いたカードが2枚ともアビスならアビスを1枚自分の墓地から手札に戻してもよい。')
+   return {abyssRush:true,g204SpellWatch:{who:'opponent',defs:[{op:'Discard',n:2}]},
+    spellFace:{type:'spell',name:spell.name,cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,
+     race:spell.race,effect:'sixPhoto',g34Tasks:[{op:'Mill',n:2,g1042Together:true,
+      movedFilter:{anyFaceRace:'アビス'},afterAllMoved:[{op:'Select',origin:'grave',to:'hand',n:1,
+       optional:true,filter:{anyFaceRace:'アビス',faceUp:true}}]}]}};
+  if(d.faces.length===1&&['dm23rp2-S08','dm23rp2x-S08','dm23rp2x-S08X','dm23rp2-08A','dm23rp2x-08A'].includes(d.id)&&
+     text==='ダブル・シンパシー:ジャイアント(このクリーチャーの召喚コストは自分のジャイアント・クリーチャー1体につき2少なくなる。ただしコストは0以下にはならない)'+
+      'マッハファイターW・ブレイカー自分のジャイアントが攻撃する時カードを1枚引いてもよい。'+
+      '自分のジャイアントを使うコストを2少なくする。ただしコストは0以下にはならない。自分のターンのはじめに自分のクリーチャーが18体以上あれば自分はゲームに勝つ。')
+   return {machFighter:true,breaker:2,g211Sympathy:{amount:2,minimum:1,filter:{creature:true,race:'ジャイアント'}},
+    g252AttackWatch:{who:'self',filter:{creature:true,race:'ジャイアント'},defs:[{op:'Draw',n:1,optional:true}]},
+    g468UseReduction:{race:'ジャイアント',amount:2},g174Start:[
+     {op:'IfOwn',filter:{g370BattleCount:{filter:{creature:true},min:18}},
+      defs:[{op:'Win871',reason:'自分のクリーチャーが18体以上で勝利'}]}
+    ]};
+  if(d.faces.length===1&&['dm23rp4-012','dm23rp4x-012','dm24ex4-042','dm24ex4-PR002'].includes(d.id)&&
+     text==='ブロッカーブロッカー各ターンに一度自分の他のクリーチャーが離れる時かわりに自分のシールドを1つ手札に加えてもよい。ただしその「S・トリガー」は使えない。')
+   return {blocker:true,g1214OtherShieldSaver:true};
+ }
  if(phase>=1213&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';

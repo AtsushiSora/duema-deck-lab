@@ -1,0 +1,724 @@
+{
+  "phase": 1214,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7634,
+  "description": "カーペット=ガペットの両面、十八番龍 エターナルグリーン ParLife、星姫械 エルナドンナの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31620/",
+    "https://dm.takaratomy.co.jp/rule/qa/48753/",
+    "https://dm.takaratomy.co.jp/rule/qa/42523/",
+    "https://dm.takaratomy.co.jp/rule/qa/41288/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp2-037",
+      "name": "カーペット=ガペット / 「ふむ、君の希望を踏まえよう」",
+      "faces": [
+        {
+          "name": "カーペット=ガペット",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\n相手が呪文を唱えた時、相手は自身の手札を２枚選んで捨てる。",
+          "race": "アビスロイヤル",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "「ふむ、君の希望を踏まえよう」",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の山札の上から２枚を墓地に置く。こうして置いたカードが２枚ともアビスなら、アビスを１枚、自分の墓地から手札に戻してもよい。",
+          "race": "アビスへの誘い",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-037",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-037a.jpg",
+      "spec": {
+        "abyssRush": true,
+        "g204SpellWatch": {
+          "who": "opponent",
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 2
+            }
+          ]
+        },
+        "spellFace": {
+          "type": "spell",
+          "name": "「ふむ、君の希望を踏まえよう」",
+          "cost": 2,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "アビスへの誘い",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Mill",
+              "n": 2,
+              "g1042Together": true,
+              "movedFilter": {
+                "anyFaceRace": "アビス"
+              },
+              "afterAllMoved": [
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "to": "hand",
+                  "n": 1,
+                  "optional": true,
+                  "filter": {
+                    "anyFaceRace": "アビス",
+                    "faceUp": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "8d6d5aafb43880c6ec19fba0ab2a9c5a321bde3eda46c082a44077a07601385e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp2-S08",
+      "name": "十八番龍 エターナルグリーン ParLife",
+      "faces": [
+        {
+          "name": "十八番龍 エターナルグリーン ParLife",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "ダブル・シンパシー：ジャイアント（このクリーチャーの召喚コストは、自分のジャイアント・クリーチャー１体につき２少なくなる。ただしコストは０以下にはならない）\nマッハファイター\nW・ブレイカー\n自分のジャイアントが攻撃する時、カードを１枚引いてもよい。\n自分のジャイアントを使うコストを２少なくする。ただし、コストは０以下にはならない。\n自分のターンのはじめに、自分のクリーチャーが18体以上あれば、自分はゲームに勝つ。",
+          "race": "ジャイアント・ドラゴン",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-S08",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-S08.jpg",
+      "spec": {
+        "machFighter": true,
+        "breaker": 2,
+        "g211Sympathy": {
+          "amount": 2,
+          "minimum": 1,
+          "filter": {
+            "creature": true,
+            "race": "ジャイアント"
+          }
+        },
+        "g252AttackWatch": {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "race": "ジャイアント"
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        },
+        "g468UseReduction": {
+          "race": "ジャイアント",
+          "amount": 2
+        },
+        "g174Start": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "filter": {
+                  "creature": true
+                },
+                "min": 18
+              }
+            },
+            "defs": [
+              {
+                "op": "Win871",
+                "reason": "自分のクリーチャーが18体以上で勝利"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "acc1f5d4f316ee6df06d58f9a5da0bb4e1fbbbe5231627be46c4c82431a31891",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-012",
+      "name": "星姫械 エルナドンナ",
+      "faces": [
+        {
+          "name": "星姫械 エルナドンナ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカーブロッカー\n各ターンに一度、自分の他のクリーチャーが離れる時、かわりに自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない。",
+          "race": "メカ・デル・ステラ",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-012",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-012.jpg",
+      "spec": {
+        "blocker": true,
+        "g1214OtherShieldSaver": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "0ff2bfcc3bc9888b40eb3623fb6a068c3efcfa12f6b58cba2b321f916867c89a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23rp2x-037",
+      "name": "カーペット=ガペット / 「ふむ、君の希望を踏まえよう」",
+      "faces": [
+        {
+          "name": "カーペット=ガペット",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\n相手が呪文を唱えた時、相手は自身の手札を２枚選んで捨てる。",
+          "race": "アビスロイヤル",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "「ふむ、君の希望を踏まえよう」",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の山札の上から２枚を墓地に置く。こうして置いたカードが２枚ともアビスなら、アビスを１枚、自分の墓地から手札に戻してもよい。",
+          "race": "アビスへの誘い",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-037",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-037a.jpg",
+      "spec": {
+        "abyssRush": true,
+        "g204SpellWatch": {
+          "who": "opponent",
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 2
+            }
+          ]
+        },
+        "spellFace": {
+          "type": "spell",
+          "name": "「ふむ、君の希望を踏まえよう」",
+          "cost": 2,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "アビスへの誘い",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Mill",
+              "n": 2,
+              "g1042Together": true,
+              "movedFilter": {
+                "anyFaceRace": "アビス"
+              },
+              "afterAllMoved": [
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "to": "hand",
+                  "n": 1,
+                  "optional": true,
+                  "filter": {
+                    "anyFaceRace": "アビス",
+                    "faceUp": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "36cac370f535365e3bbe3049f088bfbfe04902cb6f62eea57a32d5bd71a44413",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-037"
+    },
+    {
+      "id": "dm23rp2x-S08",
+      "name": "十八番龍 エターナルグリーン ParLife",
+      "faces": [
+        {
+          "name": "十八番龍 エターナルグリーン ParLife",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "ダブル・シンパシー：ジャイアント（このクリーチャーの召喚コストは、自分のジャイアント・クリーチャー１体につき２少なくなる。ただしコストは０以下にはならない）\nマッハファイター\nW・ブレイカー\n自分のジャイアントが攻撃する時、カードを１枚引いてもよい。\n自分のジャイアントを使うコストを２少なくする。ただし、コストは０以下にはならない。\n自分のターンのはじめに、自分のクリーチャーが18体以上あれば、自分はゲームに勝つ。",
+          "race": "ジャイアント・ドラゴン",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-S08",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-S08.jpg",
+      "spec": {
+        "machFighter": true,
+        "breaker": 2,
+        "g211Sympathy": {
+          "amount": 2,
+          "minimum": 1,
+          "filter": {
+            "creature": true,
+            "race": "ジャイアント"
+          }
+        },
+        "g252AttackWatch": {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "race": "ジャイアント"
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        },
+        "g468UseReduction": {
+          "race": "ジャイアント",
+          "amount": 2
+        },
+        "g174Start": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "filter": {
+                  "creature": true
+                },
+                "min": 18
+              }
+            },
+            "defs": [
+              {
+                "op": "Win871",
+                "reason": "自分のクリーチャーが18体以上で勝利"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "9196cd6020a6ab43a1ee31cd215d50262a81b7ab424813490fa779db0fdda338",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-S08"
+    },
+    {
+      "id": "dm23rp2x-S08X",
+      "name": "十八番龍 エターナルグリーン ParLife",
+      "faces": [
+        {
+          "name": "十八番龍 エターナルグリーン ParLife",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "ダブル・シンパシー：ジャイアント（このクリーチャーの召喚コストは、自分のジャイアント・クリーチャー１体につき２少なくなる。ただしコストは０以下にはならない）\nマッハファイター\nW・ブレイカー\n自分のジャイアントが攻撃する時、カードを１枚引いてもよい。\n自分のジャイアントを使うコストを２少なくする。ただし、コストは０以下にはならない。\n自分のターンのはじめに、自分のクリーチャーが18体以上あれば、自分はゲームに勝つ。",
+          "race": "ジャイアント・ドラゴン",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-S08X",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-S08X.jpg",
+      "spec": {
+        "machFighter": true,
+        "breaker": 2,
+        "g211Sympathy": {
+          "amount": 2,
+          "minimum": 1,
+          "filter": {
+            "creature": true,
+            "race": "ジャイアント"
+          }
+        },
+        "g252AttackWatch": {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "race": "ジャイアント"
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        },
+        "g468UseReduction": {
+          "race": "ジャイアント",
+          "amount": 2
+        },
+        "g174Start": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "filter": {
+                  "creature": true
+                },
+                "min": 18
+              }
+            },
+            "defs": [
+              {
+                "op": "Win871",
+                "reason": "自分のクリーチャーが18体以上で勝利"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "960d3f79323783047794ac28131a95ba32e5f28b4e1a02330f3a8c60dc91d2e4",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-S08"
+    },
+    {
+      "id": "dm23rp2-08A",
+      "name": "十八番龍 エターナルグリーン ParLife",
+      "faces": [
+        {
+          "name": "十八番龍 エターナルグリーン ParLife",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "ダブル・シンパシー：ジャイアント（このクリーチャーの召喚コストは、自分のジャイアント・クリーチャー１体につき２少なくなる。ただしコストは０以下にはならない）\nマッハファイター\nW・ブレイカー\n自分のジャイアントが攻撃する時、カードを１枚引いてもよい。\n自分のジャイアントを使うコストを２少なくする。ただし、コストは０以下にはならない。\n自分のターンのはじめに、自分のクリーチャーが18体以上あれば、自分はゲームに勝つ。",
+          "race": "ジャイアント・ドラゴン",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-08A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-08A.jpg",
+      "spec": {
+        "machFighter": true,
+        "breaker": 2,
+        "g211Sympathy": {
+          "amount": 2,
+          "minimum": 1,
+          "filter": {
+            "creature": true,
+            "race": "ジャイアント"
+          }
+        },
+        "g252AttackWatch": {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "race": "ジャイアント"
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        },
+        "g468UseReduction": {
+          "race": "ジャイアント",
+          "amount": 2
+        },
+        "g174Start": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "filter": {
+                  "creature": true
+                },
+                "min": 18
+              }
+            },
+            "defs": [
+              {
+                "op": "Win871",
+                "reason": "自分のクリーチャーが18体以上で勝利"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "7942642151680d80db886b93cecfa8d06bbecee8de3c09c60b6b5c2123553010",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-S08"
+    },
+    {
+      "id": "dm23rp2x-08A",
+      "name": "十八番龍 エターナルグリーン ParLife",
+      "faces": [
+        {
+          "name": "十八番龍 エターナルグリーン ParLife",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "ダブル・シンパシー：ジャイアント（このクリーチャーの召喚コストは、自分のジャイアント・クリーチャー１体につき２少なくなる。ただしコストは０以下にはならない）\nマッハファイター\nW・ブレイカー\n自分のジャイアントが攻撃する時、カードを１枚引いてもよい。\n自分のジャイアントを使うコストを２少なくする。ただし、コストは０以下にはならない。\n自分のターンのはじめに、自分のクリーチャーが18体以上あれば、自分はゲームに勝つ。",
+          "race": "ジャイアント・ドラゴン",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-08A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-08A.jpg",
+      "spec": {
+        "machFighter": true,
+        "breaker": 2,
+        "g211Sympathy": {
+          "amount": 2,
+          "minimum": 1,
+          "filter": {
+            "creature": true,
+            "race": "ジャイアント"
+          }
+        },
+        "g252AttackWatch": {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "race": "ジャイアント"
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        },
+        "g468UseReduction": {
+          "race": "ジャイアント",
+          "amount": 2
+        },
+        "g174Start": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "filter": {
+                  "creature": true
+                },
+                "min": 18
+              }
+            },
+            "defs": [
+              {
+                "op": "Win871",
+                "reason": "自分のクリーチャーが18体以上で勝利"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "f11875cc246a4decd8851cd7f2e139a9bc82407dce220fc5bdafba1706213fc9",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-S08"
+    },
+    {
+      "id": "dm23rp4x-012",
+      "name": "星姫械 エルナドンナ",
+      "faces": [
+        {
+          "name": "星姫械 エルナドンナ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカーブロッカー\n各ターンに一度、自分の他のクリーチャーが離れる時、かわりに自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない。",
+          "race": "メカ・デル・ステラ",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-012",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-012.jpg",
+      "spec": {
+        "blocker": true,
+        "g1214OtherShieldSaver": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "e7d90e1c2d52876972488a3eb0bac022ef77fba325c1dea602268f65f72b520e",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp4-012"
+    },
+    {
+      "id": "dm24ex4-042",
+      "name": "星姫械 エルナドンナ",
+      "faces": [
+        {
+          "name": "星姫械 エルナドンナ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー ブロッカー\n各ターンに一度、自分の他のクリーチャーが離れる時、かわりに自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない。",
+          "race": "メカ・デル・ステラ",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-042",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-042.jpg",
+      "spec": {
+        "blocker": true,
+        "g1214OtherShieldSaver": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "ea1b3cfbcf163dccf64eb6d7eda1b9814fe3af1914c2b6b5ea5ea97d1b72ef7c",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp4-012"
+    },
+    {
+      "id": "dm24ex4-PR002",
+      "name": "星姫械 エルナドンナ",
+      "faces": [
+        {
+          "name": "星姫械 エルナドンナ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー ブロッカー\n各ターンに一度、自分の他のクリーチャーが離れる時、かわりに自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない。",
+          "race": "メカ・デル・ステラ",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-PR002",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-PR002.jpg",
+      "spec": {
+        "blocker": true,
+        "g1214OtherShieldSaver": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "2639cbafa42273a8fcd7cbe1da1193adb127978e193e4a6996bfbc0787a74941",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp4-012"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp2-037": 4,
+      "dm23rp2-S08": 4,
+      "dm23rp4-012": 4,
+      "dm23rp2x-037": 4,
+      "dm23rp2x-S08": 4,
+      "dm23rp2x-S08X": 4,
+      "dm23rp2-08A": 4,
+      "dm23rp2x-08A": 4,
+      "dm23rp4x-012": 4,
+      "dm24ex4-042": 4,
+      "dm24ex4-PR002": 4
+    }
+  }
+}
