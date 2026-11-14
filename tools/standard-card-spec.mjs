@@ -2509,6 +2509,29 @@ export function standardCardSpec(d,{phase=165}={}){
     spellFace:{type:'spell',name:spell.name,cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,
      race:spell.race,text:spell.abilityText,effect:'sixPhoto',...spellRules}});
    const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+   if(phase>=1291){
+    if(/^dm23rp4x?-047$/.test(d.id)&&
+     text==='スピードアタッカー(このクリーチャーは召喚酔いしない)このクリーチャーが出た時自分の手札を1枚捨てカードを1枚引く。'&&
+     back==='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)相手のクリーチャーを1体選ぶ。相手はそれを山札の上か下に置く。')
+     return twin({speedAttacker:true,effect:'sixPhoto',g34Tasks:[{op:'Discard',owner:'self',n:1},{op:'Draw',n:1}]},
+      {trigger:true,g34Tasks:[{op:'Target',spell:true,g467Destinations:['deckTop','deck'],
+       g472OwnerDestination:true,g1089OrderDeck:true,g1221SpellMove:true}]});
+    if(/^dm23rp4x?-031$/.test(d.id)&&text==='クリーチャーが1体もないプレイヤーがいればこのクリーチャーの召喚コストを2少なくする。'+
+     'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)このクリーチャーが攻撃する時自分の山札の上から1枚目を墓地に置く。'+
+     'その後《タイピング=タップ》を1体自分の墓地から出してもよい。'&&
+     back==='相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを-3000する。(パワー0以下のクリーチャーは破壊される)')
+     return twin({breaker:2,g261Discount:{filter:{g1291AnyEmptyCreatureField:true},amount:2},
+      g34Attack:[{op:'Mill',n:1},{op:'Select',origin:'grave',n:1,optional:true,deploy:true,
+       g960DeathNames:['タイピング=タップ'],filter:{creature:true},title:'墓地の《タイピング＝タップ》を1体まで出す'}]},
+      {g34Tasks:[{op:'Target',spell:true,power:-3000,g242PowerMinus:true}]});
+    if(/^dm23rp4x?-050$/.test(d.id)&&
+     text==='ジャストダイバー(このクリーチャーが出た時次の自分のターンのはじめまでこのクリーチャーは相手に選ばれず攻撃されない)'+
+     'このクリーチャーが攻撃する時相手のクリーチャーを1体選ぶ。次の自分のターンのはじめまでそのクリーチャーは攻撃もブロックもできない。'&&
+     back==='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)相手のクリーチャーを1体選び持ち主のマナゾーンに置く。')
+     return twin({justDiver:true,g34Attack:[{op:'Target',g190Freeze:'self',g1058FollowUnit:true,
+      title:'攻撃もブロックもできなくする相手のクリーチャーを選ぶ'}]},
+      {trigger:true,g34Tasks:[{op:'Target',spell:true,to:'mana',toOwnerMana:true}]});
+   }
    if(phase>=1290){
     const powered={poweredBreaker:true,g1116PoweredChoice:true};
     if(/^dm23rp4x?-(?:004|10A|12B)$|^dm23rp4x-004X$/.test(d.id)&&text==='革命チェンジ:アビスマッハファイター'+

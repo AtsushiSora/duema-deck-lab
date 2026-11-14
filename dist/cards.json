@@ -242233,15 +242233,185 @@
       },
       "supportBatch": "phase-1290",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-047",
+      "name": "一期音愛 カーリー / ♪さようなら また会うかもね さようなら",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "マジック・マーメイド",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーが出た時、自分の手札を１枚捨て、カードを１枚引く。\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。相手はそれを山札の上か下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-047",
+      "limit": 4,
+      "speedAttacker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 1
+        },
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "♪さようなら また会うかもね さようなら",
+        "cost": 4,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "マジック・ソング",
+        "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。相手はそれを山札の上か下に置く。",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "spell": true,
+            "g467Destinations": [
+              "deckTop",
+              "deck"
+            ],
+            "g472OwnerDestination": true,
+            "g1089OrderDeck": true,
+            "g1221SpellMove": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1291",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-031",
+      "name": "タイピング＝タップ / 「キミの最期の言葉、読むか？」",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アビスロイヤル",
+      "text": "クリーチャーが１体もないプレイヤーがいれば、このクリーチャーの召喚コストを２少なくする。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目を墓地に置く。その後、《タイピング＝タップ》を１体、自分の墓地から出してもよい。\n【呪文面】\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－3000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-031",
+      "limit": 4,
+      "breaker": 2,
+      "g261Discount": {
+        "filter": {
+          "g1291AnyEmptyCreatureField": true
+        },
+        "amount": 2
+      },
+      "g34Attack": [
+        {
+          "op": "Mill",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "optional": true,
+          "deploy": true,
+          "g960DeathNames": [
+            "タイピング=タップ"
+          ],
+          "filter": {
+            "creature": true
+          },
+          "title": "墓地の《タイピング＝タップ》を1体まで出す"
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "「キミの最期の言葉、読むか？」",
+        "cost": 1,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "アビスへの誘い",
+        "text": "相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－3000する。（パワー０以下のクリーチャーは破壊される）",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "spell": true,
+            "power": -3000,
+            "g242PowerMinus": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1291",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-050",
+      "name": "孤迫の超人 / 旋回する鞍馬",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ジャイアント",
+      "text": "ジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-050",
+      "limit": 4,
+      "justDiver": true,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "g190Freeze": "self",
+          "g1058FollowUnit": true,
+          "title": "攻撃もブロックもできなくする相手のクリーチャーを選ぶ"
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "旋回する鞍馬",
+        "cost": 5,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "ジャイアント・スキル",
+        "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "spell": true,
+            "to": "mana",
+            "toOwnerMana": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1291",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1290,
+    "phase": 1291,
     "checkedAt": "2026-11-15",
-    "baseCount": 7882,
+    "baseCount": 7885,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7885,
+    "totalCount": 7888,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -264010,6 +264180,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7882,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1290,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7882,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7885,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

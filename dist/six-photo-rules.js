@@ -672,6 +672,7 @@ export function createSixPhotoRules(api){
    return allies.some(x=>colors(effective(x,s)).includes(second)&&candidates.some(y=>y.uid!==x.uid));
   }
   if(f.g1242NoEnemyCreatures)return !creatures(s,1-p).some(x=>!x.sealed);
+  if(f.g1291AnyEmptyCreatureField)return [p,1-p].some(owner=>!creatures(s,owner).some(x=>!x.sealed&&!x.faceDown));
   if(f.g985NoUntappedOpponent)return !creatures(s,1-p).some(x=>!x.sealed&&!x.tapped);
   if(f.g1050OpponentDestroyed!==undefined)return s.g393DDestroyed?.turn===s.turn&&
    (s.g393DDestroyed.byPlayer?.[1-p]||0)>=f.g1050OpponentDestroyed;
