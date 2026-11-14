@@ -2789,7 +2789,10 @@ export function createSixPhotoRules(api){
  }
  case'g34_BlindReveal803':{
   const owner=t.owner==='opponent'?1-t.p:t.p,hand=s.players[owner].hand;
-  if(hand.length)choice(s,t,'相手の手札を裏向きのまま1枚選ぶ',
+  if(!hand.length)break;
+  // Even an already revealed hand is chosen blind for Blue Mojito (QA 36354).
+  const slots=t.g1309BounceDeploy?api.shuffled(hand.map(x=>x.uid),Math.floor(api.random(s)*4294967296)):null;
+  choice(s,slots?{...t,slots}:t,'相手の手札を裏向きのまま1枚選ぶ',
    hand.map((_,i)=>opt('裏向きの手札 '+(i+1),i,0)),1-owner);
   break;
  }
@@ -4674,6 +4677,38 @@ export function createSixPhotoRules(api){
   else start(s,t,[...defs,release]);
   break;
  }
+ case'g34_MinogamiReveal1309':{
+  const ids=look(s,{...t,n:1,public:true}),top=own.deck.find(y=>y.uid===ids[0]);
+  if(!top){api.deckCheck(s,t.p);break;}
+  const releaseDef={op:'RevealRelease514',ids};
+  const eligible=!api.isEvolution(top)&&race(api.zoneCard(s,t.p,top,'deck'),'レクスターズ')&&canPut(s,t.p,top,'deck');
+  const deploy={op:'MinogamiDeploy1309',target:top.uid,revealed:t.uid,handSerial:t.handSerial};
+  start(s,t,eligible?[{op:'Offer',title:card(top).name+'をバトルゾーンに出す？',
+   score:own.deck.length<=1?-1000:20+cost(card(top)),defs:[deploy]},releaseDef]:[releaseDef]);
+  break;
+ }
+ case'g34_MinogamiDeploy1309':{
+  const base=own.deck.find(y=>y.uid===t.target);
+  if(!base||!canPut(s,t.p,base,'deck'))break;
+  doPut(s,{...t,origin:'deck'});
+  afterEntry(s,t.p,base,task('g34_MinogamiEvolve1309',t.p,t.source,{
+   target:base.uid,targetIncarnation:base.incarnation||0,revealed:t.revealed,handSerial:t.handSerial
+  }),put);
+  break;
+ }
+ case'g34_MinogamiEvolve1309':{
+  const base=own.battle.find(y=>y.uid===t.target&&(y.incarnation||0)===t.targetIncarnation&&!y.sealed);
+  const minogami=own.hand.find(y=>y.uid===t.revealed&&(y.zoneSerial||0)===t.handSerial);
+  if(base&&minogami&&canPut(s,t.p,minogami,'hand')&&api.evolutionBases(s,t.p,card(minogami)).includes(base))
+   doPut(s,{...t,target:minogami.uid,origin:'hand'},base.uid);
+  break;
+ }
+ case'g34_MojitoDeploy1309':{
+  const revealed=own.hand.find(y=>y.uid===t.revealed.uid&&(y.zoneSerial||0)===t.revealed.serial);
+  if(revealed&&s.players.some(player=>player.hand.some(y=>y.uid===t.returned.uid&&
+   (y.zoneSerial||0)!==t.returned.serial)))doPut(s,{...t,target:revealed.uid,origin:'hand',noEvolve:true});
+  break;
+ }
  case'g34_RevealMove514':if(t.to==='battle')put(s,{...t,op:'g34_Put',origin:'deck'});else zoneMove(s,t.p,'deck',t.target,t.to,t);break;
  case'g34_RevealRelease514':for(const uid of t.ids)release(s,t.p,uid);api.deckCheck(s,t.p);break;
  case'g34_DoubleYobi799':{
@@ -6478,14 +6513,20 @@ export function createSixPhotoRules(api){
   if(moved.length&&t.then)start(s,t,t.then);
  }break;
  case'g34_BlindReveal803':{
-  const owner=t.owner==='opponent'?1-t.p:t.p,y=s.players[owner].hand[v];
+  const owner=t.owner==='opponent'?1-t.p:t.p,hand=s.players[owner].hand;
+  const y=t.slots?hand.find(x=>x.uid===t.slots[v]):hand[v];
   if(y){
    if(t.g1267Execute){
     start(s,t,[{op:'Execute',origin:'hand',filter:{exactUid:y.uid},g1244NoEmptyOffer:true}]);
     break;
    }
    api.log(s,owner,'reveal',card(t.source).name+'で公開：'+card(y).name,{cardId:y.cardId});
-   if(t.g1010Deploy){
+   if(t.g1309BounceDeploy){
+    if(card(y).type==='creature'&&!api.isEvolution(y))
+     start(s,t,[{op:'Target',owner:'self',to:'hand',optional:true,
+      g1309Revealed:{uid:y.uid,serial:y.zoneSerial||0},
+      title:'手札に戻す自分のクリーチャーを1体選ぶ（任意）'}]);
+   }else if(t.g1010Deploy){
     if(card(y).type==='creature'&&canPut(s,t.p,y,'hand'))start(s,t,[{op:'Offer',
      title:card(y).name+'をバトルゾーンに出す？',score:deployValue550(s,t.p,y),
      defs:[{op:'Put',origin:'hand',target:y.uid}]}]);
@@ -7012,6 +7053,16 @@ export function createSixPhotoRules(api){
  case'g34_Target':
   if(used792(s,t,t))break;
   if(!v&&t.elseDefs){start(s,t,t.elseDefs);break;}
+  if(t.g1309Revealed){
+   const returned=v&&own.battle.find(y=>y.uid===v.uid);
+   if(returned){
+    put(s,task('g34_MojitoDeploy1309',t.p,t.source,{
+     revealed:t.g1309Revealed,returned:{uid:returned.uid,serial:returned.zoneSerial||0}
+    }));
+    move(s,[{player:t.p,uid:returned.uid,to:'hand',toOwnerHand:true,controller:t.p}]);
+   }
+   break;
+  }
   if(t.g1150AttachGrave){
    const host=v&&own.battle.find(y=>y.uid===v.uid&&!y.sealed&&matches(s,t.p,y,{creature:true,...t.filter}));
    if(host)start(s,t,[{op:'Select',origin:'grave',n:1,g1060AttachBase:true,
@@ -9017,7 +9068,13 @@ export function createSixPhotoRules(api){
   }
  },
  // This trigger originates outside the battlefield, so battlefield-only ability suppression does not apply.
- gsRevealed545(s,p,source,uid){const defs=card(source)?.g545GS;if(defs)api.enqueue(s,p,{source,effect:'extended',task:task('g34_ResolveDelay537',p,source,{uid,defs:structuredClone(defs)})});},
+ gsRevealed545(s,p,source,uid){
+  const defs=card(source)?.g545GS;
+  if(!defs)return;
+  const revealed=s.players[p].hand.find(y=>y.uid===uid);
+  const queued=defs.map(d=>d.op==='MinogamiReveal1309'?{...d,handSerial:revealed?(revealed.zoneSerial||0):null}:d);
+  api.enqueue(s,p,{source,effect:'extended',task:task('g34_ResolveDelay537',p,source,{uid,defs:structuredClone(queued)})});
+ },
  evolutionBase397(s,p,x){
   if(x.sealed||!s.players[p].battle.includes(x)||api.ignored(s,x))return;
   const c=effective(x,s),defs=c.g397Shinka;

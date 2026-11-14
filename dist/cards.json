@@ -244199,15 +244199,130 @@
       ],
       "supportBatch": "phase-1308",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-s07",
+      "name": "ミノガミ ＜サガ.Star＞",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 9000,
+      "race": "グランセクト/クリエイター/レクスターズ",
+      "text": "{GS} G・ストライク\nこのクリーチャーを「G・ストライク」で相手に見せた時、自分の山札の上から１枚目を表向きにする。それが進化ではないレクスターズなら出してもよい。そうしたら、このクリーチャーをその上に置く。\nスター進化：レクスターズ、水のクリーチャー、または自然のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\nこのクリーチャーがバトルに勝った時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-s07",
+      "limit": 4,
+      "gStrike": true,
+      "g545GS": [
+        {
+          "op": "MinogamiReveal1309"
+        }
+      ],
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "FightEnemy240",
+          "optional": true,
+          "g998EntryFight": true
+        }
+      ],
+      "g189BattleWin": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1309",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-004",
+      "name": "ブルー・モヒート",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "スプラッシュ・クイーン",
+      "text": "自分のターンのはじめに、自分の手札を裏向きにして相手に１枚選ばせ、それをすべてのプレイヤーに見せる。そのカードが進化ではないクリーチャーであれば、自分のクリーチャーを１体、バトルゾーンから手札に戻してもよい。そうした場合、手札から見せたクリーチャーをバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-004",
+      "limit": 4,
+      "g174Start": [
+        {
+          "op": "BlindReveal803",
+          "g1309BounceDeploy": true
+        }
+      ],
+      "supportBatch": "phase-1309",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex2-S03",
+      "name": "黒神龍アブライゼ・ドルバ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "ドラゴン・ゾンビ",
+      "text": "パワード・ブレイカー\nこのクリーチャーが出た時、自分のシールドを３つブレイクする。\n自分の墓地にあるクリーチャー１体につき、このクリーチャーのパワーを+2000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-S03",
+      "limit": 4,
+      "poweredBreaker": true,
+      "g207CountPower": {
+        "zone": "grave",
+        "filter": {
+          "g228Face": {
+            "type": "creature"
+          }
+        },
+        "amount": 2000
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Break497",
+          "owner": "self",
+          "n": 3
+        }
+      ],
+      "supportBatch": "phase-1309",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1308,
+    "phase": 1309,
     "checkedAt": "2026-11-15",
-    "baseCount": 7940,
+    "baseCount": 7943,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7943,
+    "totalCount": 7946,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -266192,6 +266307,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7940,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1308,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7940,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7943,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

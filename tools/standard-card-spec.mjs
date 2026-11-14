@@ -2475,6 +2475,24 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1309&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='スター進化クリーチャー'&&d.id==='dmrp20-s07'&&text===
+   '{GS}G・ストライクこのクリーチャーを「G・ストライク」で相手に見せた時自分の山札の上から1枚目を表向きにする。それが進化ではないレクスターズなら出してもよい。そうしたらこのクリーチャーをその上に置く。'+
+   'スター進化:レクスターズ水のクリーチャーまたは自然のクリーチャー1体の上に置く。W・ブレイカーこのクリーチャーが出た時相手のクリーチャーを1体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。'+
+   'このクリーチャーがバトルに勝った時カードを1枚引いてもよい。')
+   return {gStrike:true,g545GS:[{op:'MinogamiReveal1309'}],starEvolution:true,
+    evolution:{any:[{race:'レクスターズ'},{civilization:'水'},{civilization:'自然'}]},breaker:2,
+    effect:'sixPhoto',g34Tasks:[{op:'FightEnemy240',optional:true,g998EntryFight:true}],g189BattleWin:[{op:'Draw',n:1,optional:true}]};
+  if(f.typeText==='クリーチャー'&&d.id==='dmr01-004'&&text===
+   '自分のターンのはじめに自分の手札を裏向きにして相手に1枚選ばせそれをすべてのプレイヤーに見せる。'+
+   'そのカードが進化ではないクリーチャーであれば自分のクリーチャーを1体バトルゾーンから手札に戻してもよい。そうした場合手札から見せたクリーチャーをバトルゾーンに出す。')
+   return {g174Start:[{op:'BlindReveal803',g1309BounceDeploy:true}]};
+  if(f.typeText==='クリーチャー'&&d.name==='黒神龍アブライゼ・ドルバ'&&text===
+   'パワード・ブレイカーこのクリーチャーが出た時自分のシールドを3つブレイクする。自分の墓地にあるクリーチャー1体につきこのクリーチャーのパワーを+2000する。')
+   return {poweredBreaker:true,g207CountPower:{zone:'grave',filter:{g228Face:{type:'creature'}},amount:2000},
+    effect:'sixPhoto',g34Tasks:[{op:'Break497',owner:'self',n:3}]};
+ }
  if(phase>=1308&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.name==='暗獅連結 グレイテスト・ネルザ'&&f.typeText==='クリーチャー'&&
