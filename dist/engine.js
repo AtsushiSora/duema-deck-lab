@@ -1378,7 +1378,7 @@ function advanceLeaving(s){if(s.lossEvent)return;
  if(destroyedForDraw)extra.put(s,extra.task('draw',batch.after.player,batch.after.source,{n:destroyedForDraw}));
  if(batch.after?.kind==='limit')limitNextTurn(s,batch.after.player,card(batch.after.source));
  if(batch.after?.kind==='battleResult'){
-  finishBattleResult(s,batch.after.winner,batch.after.late,batch.after.winning,batch.after.both,batch.after.losses,batch.after.g1155PriorEffect,batch.after.resumeTasks);
+  finishBattleResult(s,batch.after.winner,batch.after.late,batch.after.winning,batch.after.both,batch.after.losses,batch.after.g1155PriorEffect,batch.after.resumeTasks,batch.after.g1237BattleToken,batch.after.g1237Blocker);
   if(discardTasks.length)s.battleResolution.gateWait=true;
  }
 }
@@ -1487,9 +1487,13 @@ function blockPower570(s,x,c,y=null){
  }
  return r.amount;
 }
-function poweredBlockerActive(s,x){return !!s?.attack&&s.attack.g209BlockingUid===x.uid&&(s.attack.target===x.uid||s.attack.stage==='blockedEffects'&&s.attack.blockUid===x.uid);}
+function poweredBlockerActive(s,x){
+ const paused=s?.battleResolution?.g1237Compare?.blocker??s?.battleResolution?.g1237Blocker;
+ return !!(paused?.uid===x.uid&&(x.incarnation||0)===paused.incarnation||
+  s?.attack&&s.attack.g209BlockingUid===x.uid&&(s.attack.target===x.uid||s.attack.stage==='blockedEffects'&&s.attack.blockUid===x.uid));
+}
 function battleBasePower(x,attacking,s,y=null,blocking=false){const c=effectiveCard(x,s);if(c.g321Katsu)return Infinity;return power(x,attacking,s)+powerMultiplier1147(x)*(huntingPower(x,s)+(c.g38BattleBonus||0)+extra.six.battlePower209(s,x,y,c)+extra.six.battlePower446(s,x)+extra.six.battleAuraPower466(s,x,c)+(blocking&&!poweredBlockerActive(s,x)?(c.g209PoweredBlocker||0)+blockPower570(s,x,c,y):0));}
-export function matchupPower(x,y,attacking=false,s=null,otherAttacking=y?.uid===s?.attack?.attacker,blocking=false){const fixed=fixedPower1111(x,s);if(fixed!==undefined)return fixed;const c=effectiveCard(x,s),other=y&&(c.g116FireBattleBonus||c.g118LargeBattleBonus)?effectiveCard(y,s):null,fire=c.g116FireBattleBonus&&other&&civilizations(other).includes('火')?c.g116FireBattleBonus*powerMultiplier1147(x):0,otherPower=c.g118LargeBattleBonus&&other?battleBasePower(y,otherAttacking,s,x)+(other.g116FireBattleBonus&&civilizations(c).includes('火')?other.g116FireBattleBonus*powerMultiplier1147(y):0)+(other.g118LargeBattleBonus&&battleBasePower(x,attacking,s,y,blocking)+fire>=12000?other.g118LargeBattleBonus*powerMultiplier1147(y):0):0;return battleBasePower(x,attacking,s,y,blocking)+fire+(c.g118LargeBattleBonus&&y&&otherPower>=12000?c.g118LargeBattleBonus*powerMultiplier1147(x):0);}
+export function matchupPower(x,y,attacking=false,s=null,otherAttacking=y?.uid===s?.attack?.attacker,blocking=false,battleReduced=false){const fixed=fixedPower1111(x,s);if(fixed!==undefined)return fixed;const c=effectiveCard(x,s),other=y&&(c.g116FireBattleBonus||c.g118LargeBattleBonus)?effectiveCard(y,s):null,fire=c.g116FireBattleBonus&&other&&civilizations(other).includes('火')?c.g116FireBattleBonus*powerMultiplier1147(x):0,otherPower=c.g118LargeBattleBonus&&other?battleBasePower(y,otherAttacking,s,x)+(other.g116FireBattleBonus&&civilizations(c).includes('火')?other.g116FireBattleBonus*powerMultiplier1147(y):0)+(other.g118LargeBattleBonus&&battleBasePower(x,attacking,s,y,blocking)+fire>=12000?other.g118LargeBattleBonus*powerMultiplier1147(y):0):0;return battleBasePower(x,attacking,s,y,blocking)+fire-(battleReduced?0:(y?effectiveCard(y,s).g1237BattleMinus||0:0))*powerMultiplier1147(x)+(c.g118LargeBattleBonus&&y&&otherPower>=12000?c.g118LargeBattleBonus*powerMultiplier1147(x):0);}
 function speedEntryAttackLocked(s,p,x,c){
  if(!c.speedAttacker||(x.originalEntryTurn??x.entered)!==s.turn)return false;
  const hasSource=player=>s.players[player].battle.some(y=>
@@ -1606,12 +1610,14 @@ export function paymentPool(s,p,exclude=[],c=null){
  const zero=(s.g35ZeroMana||[]).some(l=>l.p===p),origin=c?.type==='creature'&&c.g423OriginMana||c?.type==='spell'&&c.g826OriginSpellMana,crystal=c?.g434CrystalSoul,all=s.players[p].battle.some(x=>effectiveCard(x,s).casablanca||effectiveCard(x,s).g51Courtney||String(c?.race).includes('生徒会組')&&effectiveCard(x,s).g28Gyai);
  // Printed mana stays unchanged. Crystal Soul applies only to face-down mana
  // for this payment, and overrides a prior zero-mana effect (official Q&A 45912).
+ const summonColors=c?.type==='creature'&&!c.crossing&&s.players[p].battle.some(x=>
+  !x.sealed&&!x.faceDown&&card(x).g1237SummonManaColors&&isCreature(s,x)&&effectiveCard(x,s).g1237SummonManaColors);
  const twins=twinManaColors(s,p),colorlessOnly=c?.type==='creature'&&c.g1039ColorlessPayment;
  const mana=s.players[p].mana.filter(x=>!colorlessOnly||!manaColors(card(x),s,p).length);
  return [...mana.map(x=>{
   const c=card(x),value=zero?0:manaValue(c),boost=crystal&&x.faceDown;
   const double=origin&&value===1&&String(c.race||'').split('/').includes('オリジン');
-  const anyColor=all||twins&&c.spellFace||!x.faceDown&&raceManaColors(s,p,c);
+  const anyColor=all||summonColors||twins&&c.spellFace||!x.faceDown&&raceManaColors(s,p,c);
   return zero||origin||crystal||anyColor?{...x,
    ...(zero||double||boost?{paymentValue:boost?crystal:double?2:0}:{}),
    ...(origin?{paymentExact423:true}:{}),...(crystal?{paymentCrystal434:true}:{}),
@@ -2326,12 +2332,47 @@ function advanceAttack(s){if(s.lossEvent)return;
 // Capture color-qualified Slayer at the start of the battle, alongside ordinary Slayer.
 function slayerCount534(s,x,y){const c=effectiveCard(x,s);return(c.slayer?(c.g208SlayerCount||1):0)+(c.g534SlayerColors?.some(color=>civilizations(effectiveCard(y,s)).includes(color))?1:0);}
 const battleRefs1155=x=>layers(x).map(y=>({uid:y.uid,incarnation:y.incarnation||0}));
-function battle(s,pa,a,pd,b,attackingUid=null,replaced=false,blockUntap,attackBattle=false){
+// A before-battle reduction can remove a participant before scores are compared.
+function beginBattlePower1237(s,pa,a,pd,b,attackingUid,blockUntap,attackBattle){
+ const pairs=[[pa,a,pd,b],[pd,b,pa,a]].sort(([p],[q])=>Number(q===s.active)-Number(p===s.active));
+ const effects=pairs.flatMap(([controller,source,player,target])=>{
+  const amount=effectiveCard(source,s).g1237BattleMinus;
+  return amount?[{controller,source:source.cardId,player,ref:battleRefs1155(target)[0],amount:-amount}]:[];
+ });
+ if(!effects.length)return false;
+ const token=(s.g1237BattleSerial??0)+1;
+ s.g1237BattleSerial=token;
+ const late=pairs.flatMap(([controller,source,player,target])=>Array.from({length:slayerCount534(s,source,target)},()=>({
+  controller,player,uid:target.uid,source:source.cardId
+ })));
+ if(s.battleResolution)(s.battleStack??=[]).push(s.battleResolution);
+ s.battleResolution={wins:[],late,g1155PriorEffect:s.effectSerial||0,gateWait:true,resumeTasks:s.extTasks?.splice(0),
+  g1237Compare:{pa,a:battleRefs1155(a)[0],pd,b:battleRefs1155(b)[0],attackingUid:attackingUid??null,blockUntap,attackBattle,token,effects,
+   ...(poweredBlockerActive(s,b)?{blocker:battleRefs1155(b)[0]}:{})}};
+ applyBattlePower1237(s,s.battleResolution.g1237Compare);
+ return true;
+}
+function applyBattlePower1237(s,frame){
+ const {controller,source,player,ref,amount}=frame.effects.shift();
+ const target=afterBattleHost(s,[ref]);
+ if(target?.p===player&&!target.unit.sealed&&isCreature(s,target.unit)){
+  (target.unit.powerModifiers??=[]).push({amount,g1237BattleToken:frame.token});
+  log(s,controller,'battlePower',card(target.unit).name+'のパワーを'+amount+'する',{cardId:source});
+  powerCleanup(s);
+ }
+}
+function clearBattlePower1237(s,token){
+ for(const own of s.players)for(const x of own.battle)
+  if(x.powerModifiers?.some(m=>m.g1237BattleToken===token))
+   x.powerModifiers=x.powerModifiers.filter(m=>m.g1237BattleToken!==token);
+}
+function battle(s,pa,a,pd,b,attackingUid=null,replaced=false,blockUntap,attackBattle=false,powerFrame=null){
  if(!replaced&&extra.replaceBattle(s,pa,a,pd,b,attackingUid,blockUntap,attackBattle))return;
- if(attackBattle&&a.uid===attackingUid&&extra.six.declareBioT952(s,pa,a,pd,b,blockUntap))return;
+ if(!powerFrame&&attackBattle&&a.uid===attackingUid&&extra.six.declareBioT952(s,pa,a,pd,b,blockUntap))return;
+ if(!powerFrame&&beginBattlePower1237(s,pa,a,pd,b,attackingUid,blockUntap,attackBattle))return;
  if(s.battleResolution){(s.battleStack??=[]).push(s.battleResolution);s.battleResolution=null;}
  const bonus=(x,p)=>effectiveCard(x,s).revZero&&!s.players[p].shields.length?10000:0;
- const ap=matchupPower(a,b,a.uid===attackingUid,s,b.uid===attackingUid)+bonus(a,pa),bp=matchupPower(b,a,b.uid===attackingUid,s,a.uid===attackingUid)+bonus(b,pd),late=[],forced=extra.beforeBattle(s,pa,a,pd,b);
+ const ap=matchupPower(a,b,a.uid===attackingUid,s,b.uid===attackingUid,false,!!powerFrame)+bonus(a,pa),bp=matchupPower(b,a,b.uid===attackingUid,s,a.uid===attackingUid,!!powerFrame?.g1237Compare.blocker,!!powerFrame)+bonus(b,pd),late=[],forced=extra.beforeBattle(s,pa,a,pd,b);
  for(let n=0,count=slayerCount534(s,a,b);n<count;n++)late.push({controller:pa,player:pd,uid:b.uid,source:a.cardId});
  for(let n=0,count=slayerCount534(s,b,a);n<count;n++)late.push({controller:pd,player:pa,uid:a.uid,source:b.cardId});
  for(const [player,unit] of [[pa,a],[pd,b]]){
@@ -2379,14 +2420,15 @@ function battle(s,pa,a,pd,b,attackingUid=null,replaced=false,blockUntap,attackBa
  if(aw)losses.push(...extra.six.opponentBattleWins986(s,pa,a));
  if(bw)losses.push(...extra.six.opponentBattleWins986(s,pd,b));
  const hasAfterBounce=late.some(x=>x.g1155Bounce);
- const resumeTasks=hasAfterBounce?s.extTasks?.splice(0):null;
+ const resumeTasks=powerFrame?.resumeTasks??(hasAfterBounce?s.extTasks?.splice(0):null);
  moveCreatures(s,moves,{
   kind:'battleResult',winner,
   both:aw&&bw?[{player:pa,...result(pa,a,ap,bp)},{player:pd,...result(pd,b,bp,ap)}]:null,
   winning:winning?result(winner,winning,aw?ap:bp,aw?bp:ap):null,
   ...(losses.length?{losses}:{}),
   late:late.sort((x,y)=>Number(y.controller===s.active)-Number(x.controller===s.active)),
-  ...(hasAfterBounce?{g1155PriorEffect:s.effectSerial||0,...(resumeTasks?.length?{resumeTasks}:{})}:{})
+  ...(powerFrame?{g1237BattleToken:powerFrame.g1237Compare.token,g1237Blocker:powerFrame.g1237Compare.blocker}:{}),
+  ...(hasAfterBounce||powerFrame?{g1155PriorEffect:powerFrame?.g1155PriorEffect??s.effectSerial??0,...(resumeTasks?.length?{resumeTasks}:{})}:{})
  });
 }
 function markBattleWin587(s,p,w){
@@ -2400,7 +2442,7 @@ function markBattleWin587(s,p,w){
  s.g587BattleWins.refs=[...new Set([...previous,...refs])];
  return {...w,g587First:first,g588FirstForUnit:firstForUnit};
 }
-function finishBattleResult(s,winner,late,winning=null,both=null,losses=[],g1155PriorEffect,resumeTasks){
+function finishBattleResult(s,winner,late,winning=null,both=null,losses=[],g1155PriorEffect,resumeTasks,g1237BattleToken,g1237Blocker){
  const wins=[...losses],declarations=[];
  const results=both??(winner===null?[]:[{...winning,player:winner}]);
  for(const p of [s.active,1-s.active])for(const w of results.filter(x=>x.player===p)){
@@ -2414,6 +2456,7 @@ function finishBattleResult(s,winner,late,winning=null,both=null,losses=[],g1155
   if(cards.length)declarations.push({p,source:w.source,cards});
  }
  s.battleResolution={wins,late,...(declarations.length?{declarations}:{}),
+  ...(g1237BattleToken===undefined?{}:{g1237BattleToken,g1237Blocker}),
   ...(g1155PriorEffect===undefined?{}:{g1155PriorEffect,...(resumeTasks?{resumeTasks}:{})})};
 }
 function awakenPsychic(s,p,x,loop=false){
@@ -2442,6 +2485,23 @@ function advanceBattle(s){
    return;
   }
   if(r.gateWait){if(s.extTasks?.length||pendingBattleEffects1155(s).length||s.triggers)return;delete r.gateWait;}
+  if(r.g1237Compare){
+   if(r.g1237Compare.effects.length){
+    r.gateWait=true;
+    applyBattlePower1237(s,r.g1237Compare);
+    continue;
+   }
+   const {pa,pd,a:refA,b:refB,attackingUid,blockUntap,attackBattle,token}=r.g1237Compare;
+   const a=afterBattleHost(s,[refA])?.unit,b=afterBattleHost(s,[refB])?.unit;
+   if(a&&b&&s.players[pa].battle.includes(a)&&s.players[pd].battle.includes(b)&&
+    !a.sealed&&!b.sealed&&isCreature(s,a)&&isCreature(s,b)){
+    s.battleResolution=s.battleStack?.pop()||null;
+    battle(s,pa,a,pd,b,attackingUid,true,blockUntap,attackBattle,r);
+    continue;
+   }
+   delete r.g1237Compare;
+   clearBattlePower1237(s,token);
+  }
   const who=r.wins.some(x=>x.player===s.active)?s.active:1-s.active,available=r.wins.filter(x=>x.player===who);
   if(available.length>1){s.decision={type:'battleWinOrder',player:who};return;}
   if(available.length){const e=available[0];r.wins.splice(r.wins.indexOf(e),1);resolveBattleWin(s,e);return;}
@@ -2449,6 +2509,7 @@ function advanceBattle(s){
   if(r.g1155PriorEffect!==undefined){
    if(s.triggers||s.extTasks?.length||pendingBattleEffects1155(s).length){r.gateWait=true;return;}
   }
+  if(r.g1237BattleToken!==undefined){clearBattlePower1237(s,r.g1237BattleToken);delete r.g1237BattleToken;delete r.g1237Blocker;}
   if(!r.late.length){
    s.battleResolution=s.battleStack?.pop()||null;
    if(r.resumeTasks?.length)extra.put(s,...r.resumeTasks);
@@ -2759,6 +2820,11 @@ function skipTurn(s,p,source){
  }
  for(const spell of s.extSpells||[])if(spell.shieldCast)finishShieldSpell(s,spell);else if(!spell.virtual){clearBattleState(spell.inst,'grave');addZone(s,s.players[spell.owner],'grave',spell.inst);}s.extSpells=[];
  for(const r of heldJudgeSpells(s.resolvingSpell)){clearBattleState(r.inst,'grave');addZone(s,s.players[r.inst.cardOwner??r.player],'grave',r.inst);}s.resolvingSpell=null;
+ for(const frame of [s.battleResolution,...(s.battleStack||[])]){
+  const token=frame?.g1237Compare?.token??frame?.g1237BattleToken;
+  if(token!==undefined)clearBattlePower1237(s,token);
+ }
+ if(s.battleStack?.some(frame=>frame.g1237Compare||frame.g1237BattleToken!==undefined))s.battleStack=[];
  delete s.g1197AfterAttack;delete s.g23After;delete s.g25DeployBatch;delete s.g34DeployBatch;delete s.g15ResumeAfterMove;delete s.g15SmaxResume;
  for(const key of ['decision','attack','attackDeclarations','attackLifecycle','battleResolution','judge','endStep','startStep','leaving','triggers','g19BreakSequence','g19Interrupt','g14AfterAttack','g3Window','breakContext','shieldBreak'])s[key]=null;
  s.pendingEffects=[];s.triggerStack=[];s.extTasks=[];s.after=[];s.g10RevDeclarations=[];

@@ -235994,15 +235994,111 @@
       ],
       "supportBatch": "phase-1236",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm32-054",
+      "name": "死神術士デスマーチ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 1000,
+      "race": "デスパペット",
+      "text": "ブロッカー\n墓地進化-闇のクリーチャーを１体自分の墓地から選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nこのクリーチャーがバトルする時、そのバトルの終わりまで、バトルしている相手クリーチャーのパワーは-4000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-054",
+      "limit": 4,
+      "blocker": true,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "grave",
+        "conditions": [
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "g1237BattleMinus": 4000,
+      "supportBatch": "phase-1237",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp1-022",
+      "name": "鎧工兵ケンスケ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "アーマード・ヒューマノイド",
+      "text": "自分のタップしているクリーチャーすべてのパワーを+2000し、「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n相手のターン中に、このクリーチャーが離れた時、相手のシールドを１つブレイクしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-022",
+      "limit": 4,
+      "g205Aura": {
+        "filter": {
+          "tapped": true
+        },
+        "power": 2000
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "tapped": true
+          },
+          "grants": {
+            "poweredBreaker": true
+          }
+        }
+      ],
+      "g601OpponentLeave": true,
+      "g172Leave": [
+        {
+          "op": "Break497",
+          "n": 1,
+          "optional": true,
+          "g747CreatureBreak": true,
+          "g913DepartedBreaker": true
+        }
+      ],
+      "supportBatch": "phase-1237",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-074",
+      "name": "寒風妖精コトタロー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 1000,
+      "race": "スノーフェアリー",
+      "text": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n自分のクリーチャーを召喚する時、自分のマナゾーンにあるカードをすべての文明を持つかのようにタップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-074",
+      "limit": 4,
+      "guardman": true,
+      "noAttack": true,
+      "g1237SummonManaColors": true,
+      "supportBatch": "phase-1237",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1236,
+    "phase": 1237,
     "checkedAt": "2026-11-14",
-    "baseCount": 7706,
+    "baseCount": 7709,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7709,
+    "totalCount": 7712,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -257123,6 +257219,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7706,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1236,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7706,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7709,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

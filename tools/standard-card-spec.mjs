@@ -2470,6 +2470,21 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1237&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(['dm32-054','dmx20-042','dmex16-079','dm22rp1-SP4','promoy10-049'].includes(d.id)&&
+   /^進化クリーチャー(?:\(墓地進化\))?$/.test(f.typeText)&&
+   /^ブロッカー(?:ブロッカー)?(?:\(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい\))?墓地進化[-:]闇のクリーチャーを1体自分の墓地から選びこのクリーチャーをその上に重ねつつ(?:バトルゾーンに)?出す。このクリーチャーがバトルする時そのバトルの終わりまでバトルしている相手クリーチャーのパワー(?:は-4000される|を-4000する)。(?:\(パワー0以下のクリーチャーは破壊される\))?$/.test(text))
+   return {blocker:true,evolution:{g31:true},g31Evolution:{zone:'grave',conditions:[{civilization:'闇'}]},g1237BattleMinus:4000};
+  if(['dm24rp1-022','dm24ex3-028'].includes(d.id)&&f.typeText==='クリーチャー'&&
+   /^自分のタップしているクリーチャーすべてのパワーを\+2000し「パワード・ブレイカー」を与える。\(「パワード・ブレイカー」を持つクリーチャーはそのパワー6000ごとにシールドをさらに1つブレイクする\)相手のターン中にこのクリーチャーが離れた時(?:このクリーチャーは)?相手のシールドを1つブレイクしてもよい。$/.test(text))
+   return {g205Aura:{filter:{tapped:true},power:2000},g208Auras:[{filter:{tapped:true},grants:{poweredBreaker:true}}],
+    g601OpponentLeave:true,g172Leave:[{op:'Break497',n:1,optional:true,g747CreatureBreak:true,g913DepartedBreaker:true}]};
+  if(d.id==='dm24rp2-074'&&f.typeText==='クリーチャー'&&text===
+   'ガードマン(このクリーチャーをタップして相手クリーチャーの攻撃先を自分の他のクリーチャーからこのクリーチャーに変更してもよい)'+
+   'このクリーチャーは攻撃できない。自分のクリーチャーを召喚する時自分のマナゾーンにあるカードをすべての文明を持つかのようにタップしてもよい。')
+   return {guardman:true,noAttack:true,g1237SummonManaColors:true};
+ }
  if(phase>=1236&&d?.status==='complete'){
   const text=normalize(f.abilityText);
   if(['dm24rp2-S06','dm24rp2-Sec04','dm24ex3-rp2S06','dm24ex3-rp2Sec04','dm26ex1-018'].includes(d.id)&&
