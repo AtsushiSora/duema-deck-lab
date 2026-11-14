@@ -33,7 +33,7 @@ export function createUtilityControlRules(api){
  function chosen(s,t,v){if(!t.op.startsWith('g56_'))return false;const own=s.players[t.p];switch(t.op){
  case'g56_PointerPeek':{const root=api.findShield(s.players[1-t.p],v);if(root){api.log(s,t.p,'look',card(t.source).name+'で相手のシールドを確認',{cardId:t.source});choice(s,{...t,op:'g56_PointerSeen'},'確認したシールド：'+api.shieldCards(root).map(x=>card(x).name).join(' / '),[opt('確認した',true,0)]);}break;}
  case'g56_PointerSeen':break;
- case'g56_Emeral':{const x=v&&own.hand.find(x=>x.uid===v);if(x&&api.canAddShield(s,t.p)){api.remove(own.hand,x.uid);api.clear(x,'shields');api.addZone(s,t.p,'shields',x);api.notifyShieldAdded(s,t.p,x);put(s,task('g55_ShieldHand',t.p,t.source));}break;}
+ case'g56_Emeral':{const x=v&&own.hand.find(x=>x.uid===v);if(x&&api.canAddShield(s,t.p)){api.remove(own.hand,x.uid);api.clear(x,'shields');api.addZone(s,t.p,'shields',x);api.notifyShieldAdded(s,t.p,x);put(s,task('g55_ShieldHand',t.p,t.source,{g238ShieldHand:true}));}break;}
  case'g56_Order':queue(s,t,'Order',{ordered:[...t.ordered,v]});break;
  case'g56_Sev':if(v)put(s,task('g52_Tutor',t.p,t.source,{n:3,colors:['光','闇']}));break;
  case'g56_Sol':{const x=v&&own.mana.find(x=>x.uid===v);if(x&&api.canMoveZone(s,t.p,'mana')){api.remove(own.mana,x.uid);api.clear(x,'hand');api.addZone(s,t.p,'hand',x);put(s,task('g34_Select',t.p,t.source,{origin:'hand',to:'mana',n:1,optional:false,title:'マナゾーンへ置く手札を1枚選ぶ'}));}break;}

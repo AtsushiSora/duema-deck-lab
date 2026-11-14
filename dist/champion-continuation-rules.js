@@ -8,7 +8,7 @@ export function createChampionContinuationRules(api){
  const fire=c=>colors(c).includes('火'),beat=c=>String(c.race).includes('ビートジョッキー');
  const summons=(s,p)=>(s.g40Summons||[]).filter(x=>x.p===p&&x.turn===s.turn&&x.fire).length;
  const live=(s,p,ids)=>creatures(s,p).find(x=>api.layers(x).some(y=>ids.some(r=>r.uid===y.uid&&r.incarnation===(y.incarnation||0))));
- function shieldPick(s,t){const rows=s.players[t.p].shields.filter(x=>!t.selected.includes(x.uid));if(t.selected.length>=t.n||!rows.length){for(const uid of t.selected)api.moveShield(s,t.p,uid,'hand');return;}choice(s,t,t.optional?'手札に加えるシールドを好きな数選ぶ（S・トリガー不可）':'手札に加えるシールドを1つ選ぶ（S・トリガー不可）',[...rows.map(x=>opt('シールド'+(s.players[t.p].shields.indexOf(x)+1),x.uid,t.selected.length===0?8:-8)),...(t.optional?[opt('ここまでで確定',null,0)]:[])]);}
+ function shieldPick(s,t){const rows=s.players[t.p].shields.filter(x=>!t.selected.includes(x.uid));if(t.selected.length>=t.n||!rows.length){for(const uid of t.selected)api.moveShield(s,t.p,uid,'hand',{noST:true});return;}choice(s,t,t.optional?'手札に加えるシールドを好きな数選ぶ（S・トリガー不可）':'手札に加えるシールドを1つ選ぶ（S・トリガー不可）',[...rows.map(x=>opt('シールド'+(s.players[t.p].shields.indexOf(x)+1),x.uid,t.selected.length===0?8:-8)),...(t.optional?[opt('ここまでで確定',null,0)]:[])]);}
  function run(s,t){if(!t.op.startsWith('g40_'))return false;const own=s.players[t.p];switch(t.op){
  case'g40_ShieldOne':queue(s,t,'ShieldPick',{selected:[],n:1,optional:false});break;
  case'g40_Drain':queue(s,t,'ShieldPick',{selected:[],n:own.shields.length,optional:true});break;
@@ -35,7 +35,7 @@ export function createChampionContinuationRules(api){
  default:throw Error('未実装の優勝デッキ継続効果：'+t.op);
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g40_'))return false;const own=s.players[t.p];switch(t.op){
- case'g40_ShieldPick':if(v)queue(s,t,'ShieldPick',{selected:[...t.selected,v]});else for(const uid of t.selected)api.moveShield(s,t.p,uid,'hand');break;
+ case'g40_ShieldPick':if(v)queue(s,t,'ShieldPick',{selected:[...t.selected,v]});else for(const uid of t.selected)api.moveShield(s,t.p,uid,'hand',{noST:true});break;
  case'g40_Dachi':if(v)(s.g40Dachi??=[]).push({p:t.p,turn:s.turn,n:v});break;
  case'g40_Sonkun':queue(s,t,v===3?'Break':'SonkunTarget',{mode:v});break;
  case'g40_SonkunTarget':move(s,[{player:1-t.p,uid:v,to:'grave',destroy:true}]);break;
@@ -55,7 +55,7 @@ export function createChampionContinuationRules(api){
  effect(s,p,c,uid,entry){if(!c.g40Effect)return false;put(s,task('g40_'+c.g40Effect,p,c.id,{uid,incarnation:entry?.incarnation||0}));return true;},
  discount(s,p,c){return c.type==='creature'&&beat(c)?creatures(s,p).filter(x=>effective(x,s).g40Chuchu).length+(s.g40Dachi||[]).filter(x=>x.p===p&&x.turn===s.turn).reduce((n,x)=>n+x.n,0):0;},
  summoned(s,p,x){const c=card(x);(s.g40Summons??=[]).push({p,turn:s.turn,fire:fire(c)});if(beat(c))s.g40Dachi=(s.g40Dachi||[]).filter(x=>x.p!==p||x.turn!==s.turn);},
- decorate(s,p,x,c){if(c.g40Kotatsu&&s.players[p].mana.filter(x=>card(x).type==='creature'&&(faces(card(x)).some(c=>fire(c))||s.players[p].battle.some(y=>(card(y).casablanca||card(y).g51Courtney)&&!api.ignored(s,y)))).length>=4)c={...c,attackBonus:(c.attackBonus||0)+4000,breaker:2};if(c.g40Kangoku&&s.players.reduce((n,p)=>n+p.shields.length,0)<=6)c={...c,power:c.power+3000};if(c.type==='creature'&&fire(c)&&s.players[p].battle.some(y=>card(y).g40FireSpeed&&!api.ignored(s,y)))c={...c,speedAttacker:true};if(x.g40Reckless?.turn===s.turn)c={...c,mustAttack:true};return c;},
+ decorate(s,p,x,c){if(c.g40Kotatsu&&s.players[p].mana.filter(x=>card(x).type==='creature'&&(faces(card(x)).some(c=>fire(c))||s.players[p].battle.some(y=>(card(y).casablanca||card(y).g51Courtney)&&!api.ignored(s,y)))).length>=4)c={...c,attackBonus:(c.attackBonus||0)+4000,breaker:2};if(c.g40Kangoku&&api.oniTime1303(s,p))c={...c,power:c.power+3000};if(c.type==='creature'&&fire(c)&&s.players[p].battle.some(y=>card(y).g40FireSpeed&&!api.ignored(s,y)))c={...c,speedAttacker:true};if(x.g40Reckless?.turn===s.turn)c={...c,mustAttack:true};return c;},
  targetable(s,p,owner,x){
   if(p===owner)return true;
   const c=effective(x,s);

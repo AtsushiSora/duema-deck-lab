@@ -38,7 +38,7 @@ export function createChampionCyberRules(api){
  case'g48_Loot':if(v){api.draw(s,t.p,1);put(s,task('discard',t.p,t.source,{n:1,causedBy:t.p}));}break;
  case'g48_TopHand':queue(s,t,'TopHand',{selected:[...t.selected,v]});break;
  case'g48_Emeral':if(v){const x=api.remove(own.hand,v);if(x){api.clear(x,'shields');api.addZone(s,t.p,'shields',x);api.notifyShieldAdded(s,t.p,x);queue(s,t,'EmeralTake');}}break;
- case'g48_EmeralTake':if(v)api.moveShield(s,t.p,v,'hand');break;
+ case'g48_EmeralTake':if(v)api.moveShield(s,t.p,v,'hand',{noST:true});break;
  case'g48_Max':if(v){queue(s,t,'MaxRaid',{target:v});api.move(s,[{player:t.p,uid:v,to:'hand',destroy:false}]);}break;
  case'g48_ManaHand':if(canMove(s,t.p,'mana')){const x=api.remove(own.mana,v);if(x){api.clear(x,'hand');api.addZone(s,t.p,'hand',x);}}break;
  case'g48_Pakrio':if(v){const x=api.remove(s.players[1-t.p].hand,v);if(x){api.clear(x,'shields');api.addZone(s,1-t.p,'shields',x);api.notifyShieldAdded(s,1-t.p,x);}}break;

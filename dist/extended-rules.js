@@ -154,9 +154,10 @@ export function createExtendedRules(api){
    (l.g190Freeze&&l.ref?matchesRef(x,l.ref):!l.uid||layers(x).some(y=>y.uid===l.uid&&(y.incarnation||0)===(l.incarnation||0)))&&
    (l.cost===undefined||faces(card(x)).some(c=>cost(c)===(l.cost==='∞'?Infinity:Number(l.cost)))));
  };
- const shieldTo=(s,p,uid,to)=>api.moveShield(s,p,uid,to)[0];
+ const shieldTo=(s,p,uid,to,options)=>api.moveShield(s,p,uid,to,options)[0];
  const gsAllowed=(s,p)=>{const x=s.attack&&s.players[s.active].battle.find(x=>x.uid===s.attack.attacker);return !(x&&p!==s.active&&effective(x,s).attackNoGS);};
  const targetable=(s,p,owner,x)=>!x||utilityDispectorSeeds.targetable(s,p,owner,x)&&continuation.targetable(s,p,owner,x)&&six.fifteen.targetable(s,p,owner,x)&&!x.sealed&&(!s.extLimits?.length||!six.externalProtection565(s,x).g1082ChoiceProtected)&&!six.civilProtection1280(s,owner,x)&&!six.blockBreakSpellProtection1280(s,p,owner,x)&&(p===owner||!(six.decoyProtected1256(s,owner,x)||samurai.protected(s,owner,x)||six.protects608(s,owner,x)||effective(x,s).untargetable||effective(x,s).g1029TargetProtection&&(api.isSpellChoice(s)||card(s.g35ChoosingSource)?.type==='creature')||effective(x,s).justDiver&&x.justDiverActive||effective(x,s).spellUntargetable&&api.isSpellResolution(s)||
+  effective(x,s).g1303NonMulticolorSpellUntargetable&&api.isNonMulticolorSpellChoice1303(s)||
   effective(x,s).g996NonLightSpellUntargetable&&api.isNonLightSpellChoice(s)||
   effective(x,s).g1125FireSpellUntargetable&&api.isFireSpellChoice(s)));
  const environment=createEnvironmentRules({...api,creatures,put,task,choice,opt,skip,targetOptions,targetable,lock,discardSelected:(s,t,ids)=>beginDiscardBatch(s,t,ids)});

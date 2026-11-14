@@ -47,7 +47,7 @@ export function createChampionRules(api){
  case'g38_PartySend':{const owner=t.p,p=t.controller,to=['shields','mana','hand'][t.stage],next={...t,p,stage:t.stage+1,used:[...t.used,v]};queue(s,next,'PartySend');move(s,[{player:owner,uid:v,to,destroy:false,controller:p}]);break;}
  case'g38_Plaisir':if(v){const x=own[v.origin].find(x=>x.uid===v.uid);if(x){x.finishTo='deck';api.cast(s,t.p,x.uid,true,null,v.face,null,v.origin,'プレジール');}}break;
  case'g38_Esmer':if(v)api.moveShield(s,t.p,v,'mana');break;
- case'g38_TeaReturn':if(v)api.moveShield(s,t.p,v,'hand');break;
+ case'g38_TeaReturn':if(v)api.moveShield(s,t.p,v,'hand',{noST:true});break;
  case'g38_Yabadan':{const x=s.players[1-t.p].battle.find(x=>x.uid===v);if(x){const n=cost(effective(x,s));queue(s,t,'YabadanMill',{n:Number.isFinite(n)?n:s.players[t.p].deck.length});move(s,[{player:1-t.p,uid:v,to:'grave',destroy:true}]);}break;}
  case'g38_YabadanMill':if(v)api.mill(s,t.p,t.n);break;
  case'g38_TrialCost':trialCost(s,t,v);break;

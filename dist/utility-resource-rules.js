@@ -19,7 +19,7 @@ export function createUtilityResourceRules(api){
  case'g61_TwinTurbo':choice(s,t,'スピードアタッカーとパワーアタッカー+3000を与える自分の1体を選ぶ',api.targetOptions(s,t.p,creatures(s,t.p)).map(o=>{const x=creatures(s,t.p).find(x=>x.uid===o.value),c=api.effective(x,s);return{...o,score:x.tapped||c.noAttack?-20:20+cost(c)+(x.entered===s.turn&&!c.speedAttacker?20:0)};}));break;
  case'g61_InvFortress':queue(s,t,'FortressPick',{selected:[]});break;
  case'g61_FortressPick':{const rows=s.players[1-t.p].shields.filter(x=>!t.selected.includes(x.uid)&&api.shieldCards(x).some(y=>!y.g37ShieldHeld));if(t.selected.length>=3||!rows.length){for(const uid of t.selected)api.moveShield(s,1-t.p,uid,'grave');if(t.selected.length)api.log(s,t.p,'shieldGrave',card(t.source).name+'：相手のシールド'+t.selected.length+'つを墓地へ（S・トリガー不可）',{cardId:t.source});break;}choice(s,t,'墓地へ置く相手のシールドを3つまで選ぶ（'+t.selected.length+'/3）',[...rows.map(x=>opt('シールド '+(s.players[1-t.p].shields.indexOf(x)+1)+(x.faceUp?'：'+card(x).name:''),x.uid,10,x.faceUp?x.cardId:undefined)),opt('この内容で確定',null,0)]);break;}
- case'g61_Bubble':put(s,task('g55_ShieldHand',t.p,t.source),{...t,op:'g61_BubbleTarget'});break;
+ case'g61_Bubble':put(s,task('g55_ShieldHand',t.p,t.source,{g238ShieldHand:true}),{...t,op:'g61_BubbleTarget'});break;
  case'g61_BubbleTarget':choice(s,t,'破壊する相手の進化ではないクリーチャーを1体選ぶ',api.targetOptions(s,t.p,creatures(s,1-t.p).filter(x=>!api.isEvolution(x))));break;
  case'g61_Stomach':choice(s,t,'クロスされているギアごとマナに置く相手1体を選ぶ',api.targetOptions(s,t.p,creatures(s,1-t.p)));break;
  case'g61_Coliseum':queue(s,t,'ColiseumPick',{p:s.active,controller:t.p,owners:[s.active,1-s.active],selected:[]});break;
@@ -81,7 +81,7 @@ export function createUtilityResourceRules(api){
  case'g61_Zaar':put(s,task('g34_Select',t.p,t.source,{origin:'grave',to:'hand',n:1,optional:true,filter:{creature:true,minPower:6000},title:'墓地から手札に戻すパワー6000以上のクリーチャーを1体まで選ぶ'}));break;
  case'g61_Belo':if(own.shields.length>=5)api.shieldTop(s,t.p,card(t.source));break;
  case'g61_Bone':put(s,task('discard',t.p,t.source,{n:1,causedBy:t.p}));break;
- case'g61_SevenFifty':put(s,task('g55_ShieldHand',t.p,t.source));break;
+ case'g61_SevenFifty':put(s,task('g55_ShieldHand',t.p,t.source,{g238ShieldHand:true}));break;
  case'g61_Violet':for(const p of[0,1])for(const x of creatures(s,p))if(key(x)!==key(t))(x.powerModifiers??=[]).push({amount:-1000,expires:'end',who:s.active});break;
  case'g61_Hulk':put(s,task('g34_Draw',t.p,t.source,{n:1,optional:true}));break;
  case'g61_Casius':put(s,task('g34_Draw',t.p,t.source,{n:1}),{...t,op:'g52_TopHand',n:1,selected:[]});break;

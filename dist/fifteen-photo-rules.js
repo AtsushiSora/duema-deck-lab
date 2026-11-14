@@ -165,7 +165,7 @@ export function createFifteenPhotoRules(api){
  function chosen(s,t,v){if(t.op==='g35_Order'){pendingOrder(s,t,v);return true;}if(t.op==='g35_Fight'){const x=unit(s,t),y=s.players[1-t.p].battle.find(y=>y.uid===v);if(x&&y)api.battle(s,t.p,x,1-t.p,y);return true;}if(t.op!=='g35_Custom')return false;const own=data(s,t),opp=s.players[1-t.p],x=unit(s,t);switch(t.name){
  case'tapLock':{const y=opp.battle.find(y=>y.uid===v);if(y){api.tap(s,1-t.p,y);(y.tapLocks??=[]).push({who:1-t.p,afterTurns:opp.turns+1});}pending(s,t,'tapLock',{selected:[...t.selected,v]});break;}
  case'shieldForce':if(x&&v)x.g35ShieldForce=v;break;
- case'galaxyShield':if(v)api.moveShield(s,t.p,v,'hand');pending(s,t,'galaxyHand');break;
+ case'galaxyShield':if(v)api.moveShield(s,t.p,v,'hand',{noST:true});pending(s,t,'galaxyHand');break;
  case'galaxyHand':if(v)pending(s,t,'galaxyFace',{target:v});break;
  case'galaxyFace':{if(!api.canAddShield(s,t.p))break;const y=remove(own.hand,t.target);if(y){clear(y,'shields');y.faceUp=v;api.addZone(s,t.p,'shields',y);api.notifyShieldAdded(s,t.p,y);}break;}
  case'punisher':case'ulfeusCast':if(v)execute(s,t,t.exec.origin,v.uid,v.face);else if(t.name==='punisher')api.draw(s,t.p,1);break;

@@ -43,7 +43,7 @@ export function createChampionFirebirdRules(api){
  }return true;}
  function chosen(s,t,v){if(raid.chosen(s,t,v))return true;if(!t.op.startsWith('g49_'))return false;const own=s.players[t.p];switch(t.op){
  case'g49_Natheha':api.moveShield(s,t.p,v,'grave');api.draw(s,t.p,1);break;
- case'g49_Jaou':if(v)api.moveShield(s,t.p,v,'hand');break;
+ case'g49_Jaou':if(v)api.moveShield(s,t.p,v,'hand',{noST:true});break;
  case'g49_JaouReturn':if(v&&canMove(s,t.p,'grave')){const x=api.remove(own.grave,v);if(x){api.clear(x,'hand');api.addZone(s,t.p,'hand',x);}}queue(s,t,'JaouPut');break;
  case'g49_Kent':queue(s,t,'Kent',{selected:[...t.selected,v]});break;
  case'g49_MagicianDiscard':doDiscard(s,t,v,'MagicianDraw');break;
@@ -69,7 +69,7 @@ export function createChampionFirebirdRules(api){
  entry(s,p,x){if(!api.isCreature(s,x))return;for(const y of active(s,1-p,'g49Hatter'))if(cost(effective(x,s))>s.players[p].mana.length&&!api.selfStopped(s,1-p))send(s,1-p,y,'HatterDestroy',{owner:p,target:x.uid,targetIncarnation:x.incarnation||0});},
  shieldLeft(s,p,x,group){if(group===null)return;for(const y of active(s,1-p,'g49Red'))send(s,1-p,y,'Draw');},
  discount(s,p,c){return armored(c)?active(s,p,'g49Incoppi').length:0;},
- decorate(s,p,x,c){if(c.g49Hatter&&x.hyperActive)c={...c,speedAttacker:true};if(c.type==='creature'&&darkFire(c)&&s.players.reduce((n,p)=>n+p.shields.length,0)<=6&&active(s,p,'g49Jaou').length)return {...c,speedAttacker:true,slayer:true};return c;},
+ decorate(s,p,x,c){if(c.g49Hatter&&x.hyperActive)c={...c,speedAttacker:true};if(c.type==='creature'&&darkFire(c)&&api.oniTime1303(s,p)&&active(s,p,'g49Jaou').length)return {...c,speedAttacker:true,slayer:true};return c;},
  battleSafe(s,x){return !!(card(x).g49Balpia&&!api.ignored(s,x));},
  triggerAllowed(s,p,c){return !c||!colors(c).includes('光')||![0,1].some(p=>active(s,p,'g49Giga').length);},
  beforeEnter(s,p,inst,baseUid,options={}){

@@ -2475,6 +2475,33 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1303&&d?.status==='complete'&&d.faces.length===1){
+  const lines=f.abilityText.split('\n').map(normalize);
+  if(d.id==='dmex10-024'&&f.typeText==='呪文'&&lines.length===2&&
+   lines[0]==='このターン自分と相手のシールドの数が合計6つ以下であるかのように自分の「鬼タイム」能力を使う。'&&lines[1]==='カードを1枚引く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'OniClock1303'},{op:'Draw',n:1}]};
+  if(d.id==='dmsd18-001'&&f.typeText==='クリーチャー'&&lines.length===4&&
+   lines[0]==='EXライフ(このクリーチャーを出す時自分の山札の上から1枚目をシールド化する。このクリーチャーが離れる時かわりにそのシールドを墓地に置く)'&&
+   lines[1]==='T・ブレイカー'&&lines[2]==='多色ではない呪文の効果によって相手がクリーチャーを選ぶ時このクリーチャーは選ばれない。'&&
+   lines[3]==='このクリーチャーが出た時またはこのクリーチャーの「EXライフ」シールドが自分のシールドゾーンを離れた時相手のクリーチャーを1体破壊する。'){
+   const defs=[{op:'Target',to:'grave'}];
+   return {exLife:true,breaker:3,effect:'sixPhoto',g34Tasks:defs,g1133ExLifeLeft:defs,g1303NonMulticolorSpellUntargetable:true};
+  }
+  if(['dm27-s05','dmc55-027','dmc66-024','dmx19-s56','dmex01-028','dm23rp2-TR07','dm23rp2x-TR07','dm24ex3-TD09'].includes(d.id)&&
+   f.typeText==='クリーチャー'){
+   const printedTap=lines.includes('マナゾーンに置く時このカードはタップして置く。');
+   const abilities=lines.filter(l=>l!=='マナゾーンに置く時このカードはタップして置く。');
+   const grants=[
+    '自分の手札に加えられるシールドはすべて「S・トリガー」を得る。',
+    '自分の手札に加えられるシールドカードはすべて「S・トリガー」を得る。',
+    '自分の手札に加えるシールドカードすべてに「S・トリガー」を与える。',
+    '自分のシールドゾーンにあるカードすべてに「S・トリガー」を与える。'
+   ];
+   if(lines.length===(printedTap?3:2)&&abilities.some(l=>grants.includes(l))&&
+    abilities.some(l=>/^W・ブレイカー(?:\(このクリーチャーはシールドを2枚ブレイクする\))?$/.test(l)))
+    return {manaValue:0,breaker:2,g1303AllShieldTrigger:true};
+  }
+ }
  if(phase>=1302&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dmx21-021'&&f.typeText==='呪文'&&
