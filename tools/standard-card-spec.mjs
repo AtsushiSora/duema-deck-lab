@@ -2475,6 +2475,36 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1285&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(/^(?:dm22rp2x?-018|dm23bd7-037)$/i.test(d.id)&&f.typeText==='呪文'&&text===
+   '自分のクリーチャー1体とタマシードを1枚選ぶ。その後相手は自身のクリーチャー1体とタマシードを1枚選ぶ。こうして選ばれなかったクリーチャーとタマシードをすべて破壊する。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'KeepTypes1285'}]};
+  if(/^dm22rp2x?-(?:008|11a)$/i.test(d.id)&&f.typeText==='呪文'&&text===
+   '自分のターンのはじめにアンタップした自分のクリーチャー1体につきそのターン中この呪文を唱えるコストを1少なくする。ただしコストは1以下にはならない。'+
+   '次の中から2回選ぶ。(同じものを選んでもよい)'+
+   '▶相手のクリーチャーを2体選んでタップする。'+
+   '▶カードを1枚引く。その後光または火のコスト4以下のクリーチャーを1体自分の手札から出す。'+
+   '▶自分のクリーチャーを1体選ぶ。そのクリーチャーはこのターンバトル中パワーを+4000され「スピードアタッカー」を得る。')
+   return {effect:'sixPhoto',g1285StartUntapReduction:true,g34Tasks:[{op:'Choose',g1045Preselect:2,g184Modes:true,modes:[
+    {label:'相手のクリーチャーを2体タップする',defs:[{op:'Select',owner:'opponent',origin:'battle',n:2,
+     filter:{creature:true},g173Targets:true,g193Tap:true,g193Select:true,spell:true,
+     title:'タップする相手のクリーチャーを2体選ぶ'}]},
+    {label:'1枚引き、光か火のコスト4以下のクリーチャーを出す',defs:[{op:'Draw',n:1},
+     {op:'Select',origin:'hand',n:1,deploy:true,filter:{creature:true,max:4,any:[{color:'光'},{color:'火'}]}}]},
+    {label:'自分の1体にバトル中パワー+4000とスピードアタッカー',defs:[
+     {op:'Target',owner:'self',g927HasteScore:true,spell:true,g446BattleOnly:4000,grant:{speedAttacker:true},
+      g1106ExternalUntilEnd:true,g1058FollowUnit:true,
+      title:'バトル中パワー+4000とスピードアタッカーを与える自分のクリーチャーを選ぶ'}]}
+   ]}]};
+  if(/^dm22rp2x?-(?:s6x?|6a|8b)$/i.test(d.id)&&f.typeText==='タマシード/クリーチャー'&&text===
+   'スピードアタッカーW・ブレイカー'+
+   '自分の火のクリーチャーまたは火のタマシードが合計4つ以上なければバトルゾーンにあるこのタマシードはクリーチャーとして扱わない。'+
+   '自分の名前に《ボルシャック》とあるクリーチャーが攻撃する時自分の山札の上から1枚目を表向きにする。そのカードがコスト6以下の火のクリーチャーまたはコスト6以下の火のタマシードなら出す。それ以外なら墓地に置く。')
+   return {type:'creature',seedCreature:true,aceCivilization:'火',speedAttacker:true,breaker:2,
+    g252AttackWatch:{who:'self',filter:{creature:true,g819CreatureNameIncludes:'ボルシャック'},
+     defs:[{op:'RevealDeployOrGrave1285',filter:{color:'火',max:6,creatureOrSeed:true}}]}};
+ }
  if(phase>=1284&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const civil=(color,n)=>({creatureOrSeed:true,color,faceUp:true,g258Civil:n});

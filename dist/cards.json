@@ -241177,15 +241177,172 @@
       },
       "supportBatch": "phase-1284",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-018",
+      "name": "招龍邪技",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "自分のクリーチャー１体とタマシードを１枚選ぶ。その後、相手は自身のクリーチャー１体とタマシードを１枚選ぶ。こうして選ばれなかったクリーチャーとタマシードをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-018",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "KeepTypes1285"
+        }
+      ],
+      "supportBatch": "phase-1285",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-008",
+      "name": "熱線と照射の決断",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "自分のターンのはじめにアンタップした自分のクリーチャー１体につき、そのターン中、この呪文を唱えるコストを１少なくする。ただし、コストは１以下にはならない。\n次の中から２回選ぶ。（同じものを選んでもよい）\n▶相手のクリーチャーを２体選んでタップする。\n▶カードを１枚引く。その後、光または火のコスト４以下のクリーチャーを１体、自分の手札から出す。\n▶自分のクリーチャーを１体選ぶ。そのクリーチャーはこのターン、バトル中パワーを+4000され、「スピードアタッカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-008",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g1285StartUntapReduction": true,
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g1045Preselect": 2,
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "相手のクリーチャーを2体タップする",
+              "defs": [
+                {
+                  "op": "Select",
+                  "owner": "opponent",
+                  "origin": "battle",
+                  "n": 2,
+                  "filter": {
+                    "creature": true
+                  },
+                  "g173Targets": true,
+                  "g193Tap": true,
+                  "g193Select": true,
+                  "spell": true,
+                  "title": "タップする相手のクリーチャーを2体選ぶ"
+                }
+              ]
+            },
+            {
+              "label": "1枚引き、光か火のコスト4以下のクリーチャーを出す",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                },
+                {
+                  "op": "Select",
+                  "origin": "hand",
+                  "n": 1,
+                  "deploy": true,
+                  "filter": {
+                    "creature": true,
+                    "max": 4,
+                    "any": [
+                      {
+                        "color": "光"
+                      },
+                      {
+                        "color": "火"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "label": "自分の1体にバトル中パワー+4000とスピードアタッカー",
+              "defs": [
+                {
+                  "op": "Target",
+                  "owner": "self",
+                  "g927HasteScore": true,
+                  "spell": true,
+                  "g446BattleOnly": 4000,
+                  "grant": {
+                    "speedAttacker": true
+                  },
+                  "g1106ExternalUntilEnd": true,
+                  "g1058FollowUnit": true,
+                  "title": "バトル中パワー+4000とスピードアタッカーを与える自分のクリーチャーを選ぶ"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1285",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-S6",
+      "name": "ボルシャック・バラフィオル",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 9000,
+      "race": "アーマード・ドラゴン/ACE",
+      "text": "スピードアタッカー\nW・ブレイカー\n自分の火のクリーチャーまたは火のタマシードが合計４つ以上なければ、バトルゾーンにあるこのタマシードはクリーチャーとして扱わない。\n自分の、名前に《ボルシャック》とあるクリーチャーが攻撃する時、自分の山札の上から１枚目を表向きにする。そのカードがコスト６以下の火のクリーチャーまたはコスト６以下の火のタマシードなら出す。それ以外なら墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-S6",
+      "limit": 4,
+      "seedCreature": true,
+      "aceCivilization": "火",
+      "speedAttacker": true,
+      "breaker": 2,
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "creature": true,
+          "g819CreatureNameIncludes": "ボルシャック"
+        },
+        "defs": [
+          {
+            "op": "RevealDeployOrGrave1285",
+            "filter": {
+              "color": "火",
+              "max": 6,
+              "creatureOrSeed": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1285",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1284,
+    "phase": 1285,
     "checkedAt": "2026-11-14",
-    "baseCount": 7862,
+    "baseCount": 7865,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7865,
+    "totalCount": 7868,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -262882,6 +263039,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7862,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1284,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7862,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7865,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

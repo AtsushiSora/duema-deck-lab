@@ -1686,6 +1686,25 @@ export function createSixPhotoRules(api){
   const count=s.players[t.p].mana.filter(x=>!x.faceDown&&api.manaColors(card(x),s,t.p).includes(t.perManaColor)).length;
   return t.power*count;
  }
+ function grantBattlePower446(s,t,y,amount,duration={expires:'end',who:s.active}){
+  (s.extLimits??=[]).push({kind:'g446BattlePower',ref:{uid:y.uid,incarnation:y.incarnation||0},amount,...duration,
+   ...(t.g1058FollowUnit?{g1058FollowUnit:true}:{}),
+   ...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});
+ }
+ function keepTypes1285(s,t){
+  const picked=t.picked??[],step=t.step??0;
+  const creature={creature:true},seed={g295Tamaseed:true};
+  if(step===4){
+   start(s,t,[{op:'Sweep',both:true,to:'grave',filter:{any:[creature,seed]},excludeUids:picked}]);
+   return;
+  }
+  const p=step<2?t.p:1-t.p,isSeed=step%2===1,filter=isSeed?seed:creature;
+  const rows=s.players[p].battle.filter(y=>!y.sealed&&!y.faceDown&&!picked.includes(y.uid)&&
+   matches(s,p,y,filter)&&api.targetable(s,p,p,y));
+  if(rows.length)choice(s,{...t,picked,step},isSeed?'残す自分のタマシードを1枚選ぶ':'残す自分のクリーチャーを1体選ぶ',
+   rows.map(y=>opt(card(y).name,y.uid,10+cost(effective(y,s)),y.cardId)),p);
+  else put(s,{...t,step:step+1});
+ }
  function groupPowerScore(s,t){return groupPowerRows(s,t).reduce((n,{p,y})=>{const before=api.power(y,y.uid===s.attack?.attacker,s),gain=t.power>0?Math.min(10,t.power/1000):before+t.power<=0?18+cost(effective(y,s))*3+Math.max(0,before)/2000:Math.min(8,-t.power/1000);return n+(p===t.p?1:-1)*(t.power>0?gain:-gain);},0);}
  // Only the new modal definitions use this evaluation; existing card-specific mode scores stay intact.
  // Score a selected creature from public characteristics; the tap/untap direction is chosen afterwards.
@@ -3215,7 +3234,7 @@ export function createSixPhotoRules(api){
   for(const {p,y} of groupPowerRows(s,t)){
    const amount=t.g561DarkMana?0:p===t.p&&t.ownPower!==undefined?t.ownPower:power;
    if(t.g446BattleOnly){
-    (s.extLimits??=[]).push({kind:'g446BattlePower',ref:{uid:y.uid,incarnation:y.incarnation||0},amount,...duration,...spell});
+    grantBattlePower446(s,t,y,amount,duration);
    }else{
     (y.powerModifiers??=[]).push({amount,...duration,...spell,
      ...(t.g561DarkMana?{g561DarkMana:t.p}:{}),...(t.g561AttackOnly?{attackOnly:true}:{})});
@@ -4388,6 +4407,7 @@ export function createSixPhotoRules(api){
   start(s,t,t.after);
   break;
  }
+ case'g34_KeepTypes1285':keepTypes1285(s,t);break;
  case'g34_KeepOne604':{
   const p=t.owner==='self'?t.p:1-t.p,hand=t.zone==='hand';
   const rows=hand?s.players[p].hand:creatures(s,p).filter(y=>!y.sealed);
@@ -4714,6 +4734,15 @@ export function createSixPhotoRules(api){
    selected:[],rows:[],g530Ids:ids,g1114HandAndDeck:true,filter:{creature:true,max:7,noColor:true},
    title:'手札または山札から出す、コスト7以下の無色クリーチャーを選ぶ',
    after:[{op:'LookRest530',ids,rest:'shuffle'}]});
+  break;
+ }
+ case'g34_RevealDeployOrGrave1285':{
+  const [uid]=look(s,{...t,n:1,public:true});
+  const top=own.deck.find(x=>x.uid===uid);
+  if(!top)break;
+  release(s,t.p,uid);
+  if(matches(s,t.p,top,t.filter))put(s,{...t,op:'g34_Put',origin:'deck',target:uid});
+  else{zoneMove(s,t.p,'deck',uid,'grave',t);api.deckCheck(s,t.p);}
   break;
  }
  case'g34_LookDeploy530':{
@@ -5151,7 +5180,7 @@ export function createSixPhotoRules(api){
   const players=t.owner==='self'?[t.p]:t.both?[0,1]:[1-t.p];
   const to=t.to||'grave';
   const rows=players.flatMap(p=>s.players[p].battle
-   .filter(y=>(!t.g733DrawPerAttempt||!y.sealed&&api.isCreature(s,y))&&matches(s,p,y,t.filter)&&y.uid!==t.excludeUid
+   .filter(y=>(!t.g733DrawPerAttempt||!y.sealed&&api.isCreature(s,y))&&matches(s,p,y,t.filter)&&y.uid!==t.excludeUid&&!t.excludeUids?.includes(y.uid)
     &&(!t.g179Other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))
     &&(!t.g994ExcludeRaces||!y.sealed&&!t.g994ExcludeRaces.some(r=>race(effective(y,s),r)))
     &&(!t.g1041Colored||!y.sealed&&!y.faceDown&&colors(effective(y,s)).length>0))
@@ -5824,6 +5853,7 @@ export function createSixPhotoRules(api){
   else if(v===null)finishGravePick598(s,t);
   else put(s,{...t,selected:[...t.selected,v]});
   break;
+ case'g34_KeepTypes1285':put(s,{...t,step:t.step+1,picked:[...t.picked,v]});break;
  case'g34_KeepOne604':{
   const hand=t.zone==='hand',to=t.to||'grave',rows=hand?own.hand:creatures(s,t.p).filter(y=>!y.sealed);
   if(!rows.some(y=>y.uid===v))break;
@@ -7011,6 +7041,7 @@ export function createSixPhotoRules(api){
     spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))
    });
    if(t.g1198UntapLock)(s.extLimits??=[]).push({kind:'g1198CreatureUntapLock',ref:key(y),host:key(t)});
+   if(t.g446BattleOnly)grantBattlePower446(s,t,y,t.g446BattleOnly);
    if(t.powerMultiplier)(y.powerModifiers??=[]).push({amount:0,multiplier:t.powerMultiplier,expires:'end',who:s.active});
    if(t.g676TapNames)tapNames676(s,y);if(t.g291UntapUntilSelf)(y.tapLocks??=[]).push(t.p);if(t.untap&&api.canUntap(y)){const was=y.tapped;y.tapped=false;if(was)combined.untapped(s,v.p,y);}if(t.lock){if(t.spell)(y.g170StartFreeze??=[]).push({spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});else y.skipUntap=true;}if(t.g1111PowerZero){
     (y.powerModifiers??=[]).push({fixedPower:0,expires:'end',who:s.active,spellSource:t.source,spellCost:cost(card(t.source))});
@@ -8383,6 +8414,10 @@ export function createSixPhotoRules(api){
  },
  untapped(s,p,x,turnStart=false){
   recordUntap472(s,p,x);
+  if(turnStart&&!x.sealed&&!x.faceDown&&api.isCreature(s,x)){
+   if(s.g1285StartUntap?.turn!==s.turn)s.g1285StartUntap={turn:s.turn,player:p,count:0};
+   s.g1285StartUntap.count++;
+  }
   const defs=effective(x,s).g299Untapped;
   if(!x.sealed&&defs)queue(s,p,x,defs);
   if(turnStart&&effective(x,s).g34Role==='kusabi')queue(s,p,x,[E('Ramp',{n:2,optional:true}),C('kusabi12')]);
