@@ -1343,7 +1343,7 @@ function advanceLeaving(s){if(s.lossEvent)return;
  }
  for(const row of batch.rows)if(row.plan.kind==='ningyo'){row.to='grave';row.destroy=false;row.death=null;row.plan={kind:'leave'};}
  const savers=[...new Set(batch.rows.filter(r=>r.plan.kind==='ultra').map(r=>r.plan.uid))];
- batch.snapshot=batch.after?.snapshot401??extra.leaveSnapshot(s,batch.rows.flatMap(r=>r.plan.kind==='oni'?s.players[r.player].battle.filter(x=>r.plan.cards.includes(x.uid)).map(x=>({player:r.player,uid:x.uid})):r.plan.kind==='ultra'?[{player:r.player,uid:r.plan.uid}]:['leave','star','g47','g49'].includes(r.plan.kind)&&!savers.includes(r.uid)?[{player:r.player,uid:r.uid}]:r.plan.kind==='ater'?[{player:r.player,uid:r.plan.uid}]:[]));
+ batch.snapshot=batch.after?.snapshot401??extra.leaveSnapshot(s,batch.rows.flatMap(r=>r.plan.kind==='oni'?s.players[r.player].battle.filter(x=>r.plan.cards.includes(x.uid)).map(x=>({player:r.player,uid:x.uid})):r.plan.kind==='ultra'?[{player:r.player,uid:r.plan.uid}]:['leave','star','g47','g49'].includes(r.plan.kind)&&!savers.includes(r.uid)?[{player:r.player,uid:r.uid,godPart:r.godPart,linkCardOnly:!!r.godPart&&r.cardOnly}]:r.plan.kind==='ater'?[{player:r.player,uid:r.plan.uid}]:[]));
  if(s.players.some(p=>p.battle.some(x=>card(x).g1157UntappedMulticolor)))
   batch.g1157ManaUntapped=[0,1].map(p=>multicolorManaUntapped1157(s,p));
  s.g20LeavingUids=[...savers,...batch.rows.flatMap(r=>['leave','star','g47','g49'].includes(r.plan.kind)?[r.uid]:r.plan.kind==='ater'?[r.plan.uid]:[])];

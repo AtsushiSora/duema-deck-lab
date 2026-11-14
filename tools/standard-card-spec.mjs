@@ -2475,6 +2475,36 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1281&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText), creature={creature:true};
+  if(/^(dm22rp2x?-020|promoy21-076)$/i.test(d.id)&&f.typeText==='タマシード'&&text===
+   '相手のターン中相手のクリーチャーまたはタマシードがコストを支払わずに出た時このタマシードを破壊してもよい。'+
+   'そうしたらカードを1枚引き火のコスト5以下のクリーチャーを1体自分の手札から出してもよい。')
+   return {g1281UnpaidEntry:[
+    {op:'Draw',n:1},
+    {op:'Select',origin:'hand',n:1,deploy:true,optional:true,filter:{...creature,color:'火',max:5}}
+   ]};
+  if(['dm14-028','promoy4-001'].includes(d.id)&&f.typeText==='クロスギア'&&text===
+   'クロスギア:このカードをバトルゾーンに置く。クリーチャーにクロスするにはこのカードのコストをもう一度支払う。'+
+   'そのクリーチャーがバトルゾーンを離れてもこのカードはバトルゾーンに残る。'+
+   'これをクロスしたクリーチャーが破壊された時カードを1枚引いてもよい。')
+   return {type:'gear',g1281CrossDeathDraw:true};
+  if(/^dm22rp2x?-028$/i.test(d.id)&&f.typeText==='クリーチャー'&&text===
+   'S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)'+
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   'このクリーチャーは相手プレイヤーを攻撃できない。'+
+   'このクリーチャーが破壊された時《奇石エルバ》を1体自分の手札から出してもよい。')
+   return {trigger:true,blocker:true,noPlayerAttack:true,g172Death:[
+    {op:'Select',origin:'hand',n:1,deploy:true,optional:true,filter:{...creature,g201ExactName:f.name}}
+   ]};
+  if(/^dm22rp2x?-047$/i.test(d.id)&&f.typeText==='タマシード'&&text===
+   '{GS}G・ストライク(このクリーチャーを自分のシールドゾーンから手札に加える時相手に見せ相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)'+
+   '自分のクリーチャーすべてのパワーを+6000し「パワード・ブレイカー」を与える。'+
+   '(「パワード・ブレイカー」を持つクリーチャーはそのパワー6000ごとにシールドをさらに1つブレイクする)')
+   return {gStrike:true,g205Aura:{filter:creature,power:6000},g208Auras:[
+    {filter:creature,grants:{poweredBreaker:true,g1116PoweredChoice:true}}
+   ]};
+ }
  if(phase>=1280&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dm39-035'&&f.typeText==='呪文'&&text===

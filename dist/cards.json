@@ -240652,15 +240652,140 @@
       "g1280LeaveToMana": true,
       "supportBatch": "phase-1280",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-020",
+      "name": "チッタ・ペロルの冠",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "相手のターン中、相手のクリーチャーまたはタマシードがコストを支払わずに出た時、このタマシードを破壊してもよい。そうしたら、カードを１枚引き、火のコスト５以下のクリーチャーを１体、自分の手札から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-020",
+      "limit": 4,
+      "g1281UnpaidEntry": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "color": "火",
+            "max": 5
+          }
+        }
+      ],
+      "supportBatch": "phase-1281",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm14-028",
+      "name": "デモニック・プロテクター",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 1,
+      "power": 0,
+      "race": "",
+      "text": "クロスギア:このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーが\nバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーが破壊された時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-028",
+      "limit": 4,
+      "g1281CrossDeathDraw": true,
+      "supportBatch": "phase-1281",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-028",
+      "name": "奇石 エルバ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4500,
+      "race": "メタリカ",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが破壊された時、《奇石 エルバ》を１体、自分の手札から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-028",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "g201ExactName": "奇石 エルバ"
+          }
+        }
+      ],
+      "supportBatch": "phase-1281",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-047",
+      "name": "推進型無重力ジャイロボール",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分のクリーチャーすべてのパワーを+6000し、「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-047",
+      "limit": 4,
+      "gStrike": true,
+      "g205Aura": {
+        "filter": {
+          "creature": true
+        },
+        "power": 6000
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "poweredBreaker": true,
+            "g1116PoweredChoice": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1281",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1280,
+    "phase": 1281,
     "checkedAt": "2026-11-14",
-    "baseCount": 7848,
-    "newEffectCards": 3,
+    "baseCount": 7851,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7851,
+    "totalCount": 7855,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -262309,6 +262434,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7848,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1280,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7848,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7851,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

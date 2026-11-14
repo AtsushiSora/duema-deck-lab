@@ -845,9 +845,9 @@ export function createSixPhotoRules(api){
   let bonus=0;
   for(const sourceOwner of [0,1])for(const source of s.players[sourceOwner].battle){
    const raw=api.zoneCard(s,sourceOwner,source);
-   if(source.sealed||(!raw.g205Aura&&!raw.g260Self?.grants?.g205Aura&&
+   if(source.sealed||source.faceDown||(!raw.g205Aura&&!raw.g260Self?.grants?.g205Aura&&
     !raw.g268ManaGrants?.some(r=>r.grants?.g205Aura))||
-    !api.isCreature(s,source)&&!(raw.type==='field'&&raw.d2Field))continue;
+    !api.isCreature(s,source)&&raw.type!=='seed'&&!(raw.type==='field'&&raw.d2Field))continue;
    const auras=effective(source,s,true).g205Aura;
    if(!auras)continue;
    for(const aura of Array.isArray(auras)?auras:[auras]){
@@ -905,8 +905,8 @@ export function createSixPhotoRules(api){
   let out=c,slayers=c.g208SlayerCount||Number(!!c.slayer);
   for(const p of [0,1])for(const source of s.players[p].battle){
    const sourceCard=card(source),auras=sourceCard.g208Auras;
-   if(!auras||source.sealed||api.ignored(s,source))continue;
-   if(!api.isCreature(s,source)&&!(sourceCard.type==='field'&&sourceCard.d2Field))continue;
+   if(!auras||source.sealed||source.faceDown||api.ignored(s,source))continue;
+   if(!api.isCreature(s,source)&&sourceCard.type!=='seed'&&!(sourceCard.type==='field'&&sourceCard.d2Field))continue;
    for(const aura of auras){
     if(aura.opponentTurn&&s.active===p||(!aura.both&&(aura.opponentsOnly?owner===p:owner!==p))||aura.other&&source.uid===x.uid||!fits(aura.filter))continue;
     const condition=aura.g557Condition;
@@ -3513,7 +3513,14 @@ export function createSixPhotoRules(api){
   }
   break;
  }
- case'g34_SelfSacrifice407':{const owner=s.players.findIndex(p=>p.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))),y=owner>=0?s.players[owner].battle.find(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))):null;if(!y)break;const c=effective(y,s),penalty=api.canLeave(s,owner,y)?Math.min(25,6+cost(c)*2+api.power(y,false,s)/2000):0,score=modeScore(s,t,t.defs||[])+(t.defs||[]).filter(d=>d.op==='Choose').reduce((n,d)=>n+Math.max(0,...d.modes.map(m=>modeScore(s,t,m.defs))),0)+modeScore(s,t,c.g172Death||[])-penalty;choice(s,t,'このクリーチャーを破壊して能力を使う？',[opt('破壊する',true,score,y.cardId),skip()]);break;}
+ case'g34_SelfSacrifice407':{
+  const host=t.g1281SelfSeed?sourceHost474(s,t):null;
+  if(t.g1281SelfSeed){
+   if(host?.x.uid===t.uid&&!host.x.sealed&&!host.x.faceDown&&matches(s,host.p,host.x,{g295Tamaseed:true}))
+    choice(s,t,'このタマシードを破壊して能力を使う？',[opt('破壊する',true,10,host.x.cardId),skip()]);
+   break;
+  }
+  const owner=s.players.findIndex(p=>p.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))),y=owner>=0?s.players[owner].battle.find(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))):null;if(!y)break;const c=effective(y,s),penalty=api.canLeave(s,owner,y)?Math.min(25,6+cost(c)*2+api.power(y,false,s)/2000):0,score=modeScore(s,t,t.defs||[])+(t.defs||[]).filter(d=>d.op==='Choose').reduce((n,d)=>n+Math.max(0,...d.modes.map(m=>modeScore(s,t,m.defs))),0)+modeScore(s,t,c.g172Death||[])-penalty;choice(s,t,'このクリーチャーを破壊して能力を使う？',[opt('破壊する',true,score,y.cardId),skip()]);break;}
  // Follow the original attacking creature through evolution, but never through
  // leaving and re-entering or a swap with a different creature (QA40660/33625).
  case'g34_MutualDestroy430':{
@@ -7842,6 +7849,14 @@ export function createSixPhotoRules(api){
   if(options.execution&&options.origin==='hand'&&eventType==='creature'&&c.spellFace&&cost(c)>=cost(c.spellFace)){
    for(const x of creatures(s,p))if(card(x).g1088Twin&&!api.ignored(s,x))
     send(s,p,x,'TwinInPlace1088',{subject:{uid:y.uid,incarnation:y.incarnation||0,source:y.cardId}});
+  }
+  if(s.active===p&&!options.ignoreEntry&&!options.costPaid&&!options.paidMana&&!y.sealed&&!y.faceDown&&
+     (eventType==='creature'||eventType==='seed'||c.seedCreature||c.natureAce4||api.isCreature(s,y))){
+   for(const watcher of s.players[1-p].battle){
+    const defs=card(watcher).g1281UnpaidEntry;
+    if(defs&&!watcher.sealed&&!watcher.faceDown&&!api.ignored(s,watcher))
+     send(s,1-p,watcher,'SelfSacrifice407',{g1281SelfSeed:true,defs});
+   }
   }
   if(!options.paidMana&&['creature','gear'].includes(eventType))hooks.magnum1087(s,p);
   const trackRace=s.g936DreamOrVehicleEntryTurn!==s.turn;

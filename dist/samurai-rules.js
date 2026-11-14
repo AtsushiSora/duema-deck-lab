@@ -122,6 +122,21 @@ export function createSamuraiRules(api){
   if(to==='grave'&&card(x).type==='gear')for(const w of watchers||[])
    on(s,w.p,w,'g34_Draw',{n:1,optional:true});
  },
+ snapshotCrossDeath(s,rows){
+  const leaving=new Set(rows.map(r=>r.uid)),watchers={};
+  for(const p of [0,1])for(const gear of gears(s,p)){
+   if(!gear.crossedTo||!card(gear).g1281CrossDeathDraw||gear.faceDown||leaving.has(gear.uid)||!active(s,gear))continue;
+   const victim=rows.find(r=>r.uid===gear.crossedTo.uid);
+   const host=victim&&live(s,victim.player,gear);
+   if(!host||host.sealed||victim.linkCardOnly)continue;
+   const uid=victim.godPart||host.uid;
+   (watchers[uid]??=[]).push({p,uid:gear.uid,incarnation:gear.incarnation||0,cardId:gear.cardId});
+  }
+  return watchers;
+ },
+ crossedCreatureDestroyed(s,x,watchers){
+  for(const gear of watchers?.[x.uid]||[])on(s,gear.p,gear,'g34_Draw',{n:1,optional:true});
+ },
  unblocked(s,p,x,c=card(x)){if(p<0||x.sealed||c.type!=='creature'||!api.isCreature(s,x))return false;if(attached(s,p,x).some(g=>card(g).g125CrossUnblock&&active(s,g)))return true;const vs=colors(c);return s.players[p].battle.some(y=>!y.sealed&&(card(y).g128WaterAura||card(y).g128LightDarkAura)&&api.isCreature(s,y)&&active(s,y)&&(card(y).g128WaterAura&&y.uid!==x.uid&&vs.includes('水')||card(y).g128LightDarkAura&&vs.some(v=>v==='光'||v==='闇')));},
  unblockedAttack(s,p,x){
   if(s.attack.target!=='player'||s.attack.g484Blocked||x.sealed)return false;
