@@ -2475,6 +2475,36 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1268&&d?.status==='complete'&&d.faces.length===1){
+  const lines=f.abilityText.split('\n').map(normalize);
+  const exLife=lines[0]==='EXライフ'||lines[0]==='EXライフ(このクリーチャーを出す時自分の山札の上から1枚目をシールド化する。このクリーチャーが離れる時かわりにそのシールドを墓地に置く)';
+  if(f.typeText==='クリーチャー'&&exLife){
+   if(['dmrp20-025','dm23bd5-035'].includes(d.id)&&lines.length===4&&keyword(lines[1],'ブロッカー')&&keyword(lines[2],'W・ブレイカー')&&
+    lines[3]==='各ターン自分がはじめてコスト8以上のクリーチャーを召喚した時コスト8以下のクリーチャーを1体自分のマナゾーンから出してもよい。')
+    return {exLife:true,blocker:true,breaker:2,g808SummonWatch:{g1268FirstEight:true,defs:[
+     {op:'Select',origin:'mana',deploy:true,n:1,optional:true,filter:{g228Face:{type:'creature',max:8}}}
+    ]}};
+   if(d.id==='dmrp20-005'&&lines.length===4&&keyword(lines[1],'W・ブレイカー')&&
+    lines[2]==='自分の他のクリーチャーが相手クリーチャーとバトルする時かわりにこのクリーチャーにバトルさせてもよい。'&&
+    lines[3]==='このクリーチャーがバトルに勝った時クリーチャーを1体自分のマナゾーンから手札に戻してもよい。そうしたら自分の山札の上から1枚目をマナゾーンに置く。')
+    return {exLife:true,breaker:2,g1195BattleProxy:true,g189BattleWin:[
+     {op:'Select',origin:'mana',to:'hand',n:1,optional:true,filter:{g228Face:{type:'creature'}},g583OnMove:[{op:'Ramp',n:1}]}
+    ]};
+   if(d.id==='dmrp20-008'&&lines.length===7&&keyword(lines[1],'スピードアタッカー')&&keyword(lines[2],'W・ブレイカー')&&
+    lines[3]==='このクリーチャーが攻撃する時カードを1枚引き自分の手札を1枚捨てる。'&&
+    lines[4]==='各ターンはじめて自分の手札を捨てた時次のうちいずれか1つを選ぶ。'&&
+    lines[5]==='▶それがコスト5以下の呪文ならコストを支払わずに唱える。'&&
+    lines[6]==='▶それがコスト5以下のクリーチャーなら出す。')
+    return {exLife:true,speedAttacker:true,breaker:2,g1268FirstDiscardUse:true,
+     g34Attack:[{op:'Draw',n:1},{op:'Discard',owner:'self',n:1}]};
+  }
+  if(d.id==='dmrp20-s06'&&f.typeText==='スター進化クリーチャー'&&lines.length===4&&
+   lines[0]==='スター進化:レクスターズまたは自然のクリーチャー1体の上に置く。(このクリーチャーが離れる時かわりに一番上のカードが離れる)'&&
+   keyword(lines[1],'T・ブレイカー')&&lines[2]==='相手のクリーチャーが出た時そのクリーチャー以下のコストを持つ自然のクリーチャーを1体自分のマナゾーンから出してもよい。'&&
+   lines[3]==='このクリーチャーがタップしていれば自分は攻撃されない。')
+   return {evolution:{any:[{race:'レクスターズ'},{civilization:'自然'}]},starEvolution:true,breaker:3,
+    g1268TappedPlayerGuard:true,g314OtherEntry:{who:'opponent',g1268ManaDeploy:true}};
+ }
  if(phase>=1267&&d?.status==='complete'&&d.faces.length===1){
   const lines=f.abilityText.split('\n').map(normalize);
   const exLife=keyword(lines[0],'EXライフ')&&

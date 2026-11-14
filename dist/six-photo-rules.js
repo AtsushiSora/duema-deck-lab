@@ -142,10 +142,33 @@ export function createSixPhotoRules(api){
  }
  function payAura560(s,t){const max=summonAuras560(s,t.p,t.c).optional,choices=[];for(let amount=max;amount>=0;amount--){const c={...t.c,g560Handled:true,g560Amount:amount};if(api.canPay(s,t.p,c)){const n=api.summonCost(s,t.p,c);choices.push(opt((amount?amount+'軽減する':'軽減しない')+'（'+n+'マナ）',amount,100-n*5,t.source));}}choice(s,t,'召喚コストの軽減量を選ぶ',[...choices,opt('召喚をやめる',false,-1000)]);}
  // Count all summons, including ones before an aura entered, using the executed face's colors.
- function recordSummon463(s,p,c){if(c.type!=='creature')return;const prev=s.g463Summons?.[p],r=prev?.turn===s.turn?prev:{turn:s.turn,n:0,colors:{}};r.n++;for(const q of new Set(colors(c)))r.colors[q]=(r.colors[q]||0)+1;(s.g463Summons??=[null,null])[p]=r;}
+ function recordSummon463(s,p,c){
+  if(c.type!=='creature')return;
+  const prev=s.g463Summons?.[p],r=prev?.turn===s.turn?prev:{turn:s.turn,n:0,colors:{}};
+  r.n++;
+  if(cost(c)>=8)r.costEightOrMore=true;
+  for(const color of new Set(colors(c)))r.colors[color]=(r.colors[color]||0)+1;
+  (s.g463Summons??=[null,null])[p]=r;
+ }
  function firstSummonMax463(s,p,c){if(c.type!=='creature'||c.crossing)return 0;const history=s.g463Summons?.[p],seen=history?.turn===s.turn?history:null;return creatures(s,p).filter(x=>!x.sealed).reduce((n,x)=>{const r=effective(x,s).g463FirstSummon;return n+(r&&(!r.colors.length?!seen?.n:r.colors.some(q=>colors(c).includes(q))&&!r.colors.some(q=>seen?.colors[q]))?r.amount:0);},0);}
  function firstSummonDiscount463(s,p,c){const max=firstSummonMax463(s,p,c);return c.g463Reduction===undefined?max:Math.min(max,Math.max(0,c.g463Reduction));}
  const discardCount1235=(s,p)=>s.g1235Discards?.[p]?.turn===s.turn?s.g1235Discards[p].n:0;
+ function firstDiscardOptions1268(s,t){
+  const grave=s.players[t.p].grave;
+  if(!api.canMoveZone(s,t.p,'grave'))return [];
+  return t.refs.flatMap(ref=>{
+   const x=grave.find(y=>y.uid===ref.uid&&(y.zoneSerial||0)===ref.serial&&!y.faceDown);
+   if(!x)return [];
+   return faces(card(x)).flatMap((face,index)=>{
+    if(cost(face)>5)return [];
+    if(face.type==='spell'&&api.canCast(s,t.p,face,'grave'))
+     return [opt(face.name+'を唱える',{uid:x.uid,face:index,type:'spell'},20+cost(face),x.cardId)];
+    if(face.type==='creature'&&canPut(s,t.p,x,'grave'))
+     return [opt(face.name+'を出す',{uid:x.uid,face:index,type:'creature'},20+cost(face),x.cardId)];
+    return [];
+   });
+  });
+ }
  // A card being used from its counted zone is held aside before computing its cost.
  function countDiscountMax499(s,p,c){
   const t=c.g212CountDiscount;
@@ -2438,16 +2461,21 @@ export function createSixPhotoRules(api){
   else release(s,t.p,t.target);
   break;
  }
+ case'g34_ManaEntryResponse1268':
  case'g34_HandEntryResponse1261':
  case'g34_GhostRecovery878':
  case'g34_DeathRecovery831':{
   const ref=t.g831Subject;
-  const denebia=t.op==='g34_HandEntryResponse1261';
-  const subject=(denebia?s.players[1-t.p]:own).battle.find(x=>x.uid===ref.uid&&(x.incarnation||0)===ref.incarnation&&!x.sealed);
-  const value=subject?cost(effective(subject,s)):t.g831LastCost??ref.cost;
+  const denebia=t.op==='g34_HandEntryResponse1261',manaResponse=t.op==='g34_ManaEntryResponse1268';
+  const subject=manaResponse?sourceHost474(s,ref)?.x:
+   (denebia?s.players[1-t.p]:own).battle.find(x=>x.uid===ref.uid&&(x.incarnation||0)===ref.incarnation&&!x.sealed);
+  const value=subject&&!subject.sealed&&(!manaResponse||api.isCreature(s,subject))?cost(effective(subject,s)):t.g831LastCost??ref.cost;
   const limit=value===Infinity?'∞':value;
   if(denebia)start(s,t,[{op:'Select',origin:'hand',n:1,deploy:true,optional:true,filter:{
    color:'光',...(limit==='∞'?{}:{max:limit}),any:[{creature:true},{g295Tamaseed:true}]
+  }}]);
+  else if(manaResponse)start(s,t,[{op:'Select',origin:'mana',n:1,deploy:true,optional:true,filter:{
+   g228Face:{type:'creature',color:'自然',...(limit==='∞'?{}:{max:limit})}
   }}]);
   else if(t.op==='g34_GhostRecovery878')
    start(s,t,[{op:'Select',origin:'grave',n:1,deploy:true,optional:true,filter:{creature:true,race:'ゴースト',exactCost:limit}}]);
@@ -5390,6 +5418,14 @@ export function createSixPhotoRules(api){
    break;
   }
   const owner=t.g191First?s.players.findIndex(p=>p.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))):t.p,y=t.g191First&&owner>=0?s.players[owner].battle.find(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))):t.g404Carrier?own.battle.find(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)):x;if(y&&api.canUntap(y)){const was=y.tapped;y.tapped=false;if(was)combined.untapped(s,owner,y);}break;}
+ case'g34_FirstDiscardUse1268':{
+  const rows=firstDiscardOptions1268(s,t);
+  if(!rows.length)break;
+  if(!rows.some(r=>r.value.type==='spell'))rows.push(opt('呪文を唱える効果を選ぶ',null,0));
+  if(!rows.some(r=>r.value?.type==='creature'))rows.push(opt('クリーチャーを出す効果を選ぶ',null,0));
+  choice(s,t,'このターン最初に捨てたカードを使う効果を選ぶ',rows);
+  break;
+ }
  case'g34_Execute':{
   if(t.g1164Opponent){
    put(s,{...t,p:1-t.p,g1164Opponent:false,g1164MustDeclineWhenUnavailable:true});
@@ -6832,6 +6868,12 @@ export function createSixPhotoRules(api){
   }
   break;
  case'g34_Execute':if(v){const y=own[v.origin].find(x=>x.uid===v.uid);if(t.g555FinishTo&&(!y||(y.zoneSerial||0)!==(v.serial555||0)||!api.canMoveZone(s,t.p,v.origin)))break;const c=faces(card(y))[v.face];if(t.g555FinishTo){if(!c||c.type!=='spell'||cost(c)>t.max||t.spellColorsAny&&!colors(c).some(color=>t.spellColorsAny.includes(color))||t.g556SpellColor&&!colors(c).includes(t.g556SpellColor)||!api.canCast(s,t.p,c,v.origin))break;y.finishTo=t.g555FinishTo;}if(c.evolution||c.neoEvolution)put(s,{...t,op:'g34_Put',target:v.uid,origin:v.origin,execution:true,face:v.face});else cast(s,t.p,v.uid,true,null,v.face,null,v.origin,'カードの能力');}else if(t.g408Decline)start(s,t,t.g408Decline);break;
+ case'g34_FirstDiscardUse1268':
+  if(v&&firstDiscardOptions1268(s,t).some(o=>o.value.uid===v.uid&&o.value.face===v.face)){
+   if(v.type==='spell')cast(s,t.p,v.uid,true,null,v.face,null,'grave','カードの能力');
+   else put(s,{...t,op:'g34_Put',target:v.uid,origin:'grave',face:v.face});
+  }
+  break;
  case'g34_Choose':{
   if(t.modesOncePerTurn)(s.once??={})[onceKey792(t,modeUse1170(t,v))]=s.turn;
   if(t.g1045Preselect){
@@ -7530,6 +7572,7 @@ export function createSixPhotoRules(api){
    if(!watch||!useColorsMatch(watch,c))continue;
    // The summon is observed before entry and before incrementing the shared turn counter.
    if(watch.g895FirstSummon&&s.g463Summons?.[p]?.turn===s.turn&&s.g463Summons[p].n>0)continue;
+   if(watch.g1268FirstEight&&(cost(c)<8||s.g463Summons?.[p]?.turn===s.turn&&s.g463Summons[p].costEightOrMore))continue;
    // A NEO summon counts only when it was declared with an evolution base.
    if(watch.g816Evolution&&!api.isEvolution(x)&&!((c.neoEvolution||c.g48HandEvolution)&&c.g27BaseUid))continue;
    queue(s,p,source,watch.defs);
@@ -7866,9 +7909,11 @@ export function createSixPhotoRules(api){
     subject:{uid:y.uid,incarnation:y.incarnation||0},power:watch.g755EntrantPower
    });
    else if(watch.g762EntrantMach)send(s,owner,x,'EntryMach762',{subject:{uid:y.uid,incarnation:y.incarnation||0}});
-   else if(watch.g831DeathRecovery){
+   else if(watch.g831DeathRecovery||watch.g1268ManaDeploy){
     const value=cost(effective(y,s));
-    send(s,owner,x,'DeathRecovery831',{g831Subject:{uid:y.uid,incarnation:y.incarnation||0,cost:value===Infinity?'∞':value}});
+    send(s,owner,x,watch.g1268ManaDeploy?'ManaEntryResponse1268':'DeathRecovery831',{
+     g831Subject:{uid:y.uid,incarnation:y.incarnation||0,cost:value===Infinity?'∞':value}
+    });
    }
    else if(watch.g1088Bottom)send(s,owner,x,'ExactMove',{
     target:y.uid,targetIncarnation:y.incarnation||0,to:'deck',g1088OwnerMoves:true

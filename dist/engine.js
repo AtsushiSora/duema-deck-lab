@@ -1599,7 +1599,8 @@ function canAttackPlayer(s,c,rule=effectiveCard(c,s)){
    defenders.filter(y=>y.tapped&&!y.sealed&&isCreature(s,y)).length>=min;
  });
  const moonGuard=!s.players[1-p].shields.length&&defenders.some(x=>x.tapped&&!x.sealed&&effectiveCard(x,s).g830MoonGuard);
- const guarded=tappedGuard||moonGuard||s.extLimits?.some(l=>l.kind==='g750CannotAttackPlayer'&&l.player===1-p&&l.turn===s.turn);
+ const selfTappedGuard=defenders.some(x=>card(x).g1268TappedPlayerGuard&&x.tapped&&!x.sealed&&effectiveCard(x,s).g1268TappedPlayerGuard);
+ const guarded=tappedGuard||moonGuard||selfTappedGuard||s.extLimits?.some(l=>l.kind==='g750CannotAttackPlayer'&&l.player===1-p&&l.turn===s.turn);
  if(guarded&&!s.players[p].battle.some(x=>effectiveCard(x,s).ignoreAttackLocks))return false;
  return extra.photo160.canAttackPlayer(s,p,c)&&!extra.six.attackPower593(s,p,c,true)&&(s.players[p].battle.some(x=>effectiveCard(x,s).ignoreAttackLocks)||!s.players[1-p].battle.some(x=>effectiveCard(x,s).didaGuard&&power(c,false,s)<power(x,false,s)))&&!(c.entered===s.turn&&s.players[1-p].battle.some(x=>effectiveCard(x,s).gaia||effectiveCard(x,s).g40EntryPlayerStop)&&!s.players[p].battle.some(x=>effectiveCard(x,s).ignoreAttackLocks))&&(c.entered<s.turn||effectiveCard(c,s).speedAttacker||effectiveCard(c,s).entryPlayerAttack||extra.abyssPlayer(s,c)||isEvolution(c));
 }

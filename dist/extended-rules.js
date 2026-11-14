@@ -338,6 +338,7 @@ export function createExtendedRules(api){
     if(!b.uids.length){
      delete s.extDiscardBatches[t.batchId];
      notifyDiscard848(s,b.p,b.g848Watchers,b.actual);
+     queueFirstDiscardUses1268(s,b.p,b.firstDiscardUse);
      if(b.actual&&t.afterDiscard248)put(s,t.afterDiscard248);
      if(t.afterDiscard321)put(s,{...t.afterDiscard321,discarded:!!b.actual,
       ...(t.afterDiscard321.g1223PowerPerDiscard?{actualDiscards:b.actual}:{})});
@@ -356,7 +357,16 @@ export function createExtendedRules(api){
     if((t.n>1||t.n===1&&t.afterDiscardCount)&&!t.all){if(t.random){const available=[...own.hand],chosen=[];while(chosen.length<t.n&&available.length)chosen.push(available.splice(Math.floor(random(s)*available.length),1)[0].uid);beginDiscardBatch(s,t,chosen);}else put(s,{...t,op:'discardSelect',selected:[]});break;}
     if(t.all&&(t.afterDiscardCount||own.hand.some(x=>discardMode(s,t,x)))){beginDiscardBatch(s,t,own.hand.map(x=>x.uid));break;}
     if(!t.n||!own.hand.length){if(t.randomDiscardAfter&&t.discarded)put(s,task('discard',1-t.p,t.source,{causedBy:t.p,n:t.discarded,random:true}));break;}
-    if(t.all){const all=[...own.hand],watchers=discardWatchers848(s,t.p);for(const x of all){remove(own.hand,x.uid);clear(x);api.addZone(s,own,'grave',x);afterDiscard(s,{...t,n:1,g848Grouped:true},x,true);}notifyDiscard848(s,t.p,watchers,all.length);log(s,t.p,'discard',`手札${all.length}枚をすべて捨てる`,{cardId:t.source});break;}
+    if(t.all){
+     const all=[...own.hand],watchers=discardWatchers848(s,t.p),group={};
+     for(const x of all){
+      remove(own.hand,x.uid);clear(x);api.addZone(s,own,'grave',x);
+      afterDiscard(s,{...t,n:1,g848Grouped:true},x,true,group);
+     }
+     notifyDiscard848(s,t.p,watchers,all.length);
+     queueFirstDiscardUses1268(s,t.p,group.firstDiscardUse);
+     log(s,t.p,'discard',`手札${all.length}枚をすべて捨てる`,{cardId:t.source});break;
+    }
     const candidates=t.random?[own.hand[Math.floor(random(s)*own.hand.length)]]:own.hand;
     if(t.random){const x=candidates[0];put(s,{...t,op:'discardChosen',uid:x.uid});}
     else choice(s,t,`${t.n}枚${t.optional?'まで':''}手札を捨てる${t.discarded?'（'+t.discarded+'枚選択済み）':''}`, [...candidates.map(x=>opt(card(x).name,x.uid,(t.selfDiscard?-1:1)*Math.min(20,cost(card(x))),x.cardId)),...(t.optional?[opt('ここまでで確定',null,own.hand.length>4?-1:0)]:[])]);
@@ -614,7 +624,12 @@ export function createExtendedRules(api){
    }
   }
  }
- function afterDiscard(s,t,x,discarded){saga.discarded(s,t,x,discarded);environment.discarded(s,t,x,discarded);six.fifteen.discarded(s,t,x,discarded);
+ function queueFirstDiscardUses1268(s,p,first){
+  if(!first)return;
+  for(const {uid,incarnation,source} of first.sources)
+   enqueue(s,p,{uid,incarnation,source,effect:'extended',task:task('g34_FirstDiscardUse1268',p,source,{refs:first.refs})});
+ }
+ function afterDiscard(s,t,x,discarded,group=s.extDiscardBatches?.[t.batchId]){saga.discarded(s,t,x,discarded);environment.discarded(s,t,x,discarded);six.fifteen.discarded(s,t,x,discarded);
   travel.discarded(s,t,x,discarded);zard.discarded(s,t,x,discarded);magic.discarded(s,t,x,discarded);galaxy.discarded(s,t,x,discarded);gospel.discarded(s,t,x,discarded);photo160.discarded(s,t,x,discarded);
   const count=(t.discarded||0)+(discarded?1:0);if(t.batchId&&s.extDiscardBatches?.[t.batchId])s.extDiscardBatches[t.batchId].actual+=discarded?1:0;
   if(discarded){
@@ -627,7 +642,17 @@ export function createExtendedRules(api){
    if(t.costLock)put(s,task('tensaiCost',t.p,t.source,{discardId:x.cardId}));
    if(t.g869ReturnUid&&faces(card(x)).some(c=>c.type==='spell'))
     put(s,task('g34_SpellFinish416',t.causedBy,t.source,{uid:t.g869ReturnUid,to:'hand'}));
-   if(recordFirstDiscard1037(s,t.p))for(const castle of s.players[t.p].shields.flatMap(api.shieldCards))if(castle.faceUp&&card(castle).id==='dm26rp1-043')enqueue(s,t.p,{uid:castle.uid,source:castle.cardId,effect:'extended',task:task('optionalDrawOne',t.p,castle.cardId)});
+   if(recordFirstDiscard1037(s,t.p)){
+    for(const castle of s.players[t.p].shields.flatMap(api.shieldCards))if(castle.faceUp&&card(castle).id==='dm26rp1-043')enqueue(s,t.p,{uid:castle.uid,source:castle.cardId,effect:'extended',task:task('optionalDrawOne',t.p,castle.cardId)});
+    const sources=creatures(s,t.p).filter(y=>card(y).g1268FirstDiscardUse&&!y.sealed&&effective(y,s).g1268FirstDiscardUse)
+     .map(y=>({uid:y.uid,incarnation:y.incarnation||0,source:y.cardId}));
+    if(sources.length){
+     const first={sources,refs:[]};
+     if(group)group.firstDiscardUse=first;
+     else queueFirstDiscardUses1268(s,t.p,{sources,refs:[{uid:x.uid,serial:x.zoneSerial||0}]});
+    }
+   }
+   group?.firstDiscardUse?.refs.push({uid:x.uid,serial:x.zoneSerial||0});
    for(const y of creatures(s,1-t.p))if(effective(y,s).stealDiscardedSpell&&faces(card(x)).some(c=>c.type==='spell'))enqueue(s,1-t.p,{uid:y.uid,source:y.cardId,effect:'extended',task:task('stealSpell',1-t.p,y.cardId,{owner:t.p,uid:x.uid})});
   }
   if(t.batchId)put(s,{...t,op:'discardBatch'});else if(t.n>1)put(s,{...t,op:'discard',n:t.n-1,discarded:count});else if(t.randomDiscardAfter&&count)put(s,task('discard',1-t.p,t.source,{causedBy:t.p,n:count,random:true}));
