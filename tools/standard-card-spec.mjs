@@ -2475,6 +2475,21 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1315&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm26ex2-052'&&f.typeText==='クリーチャー'&&text===
+   'このクリーチャーが出た時自分のシールドゾーンにあるカードを1枚表向きにしてもよい。自分のアーマード・ドラゴン・カードを実行するコストを1少なくする。自分のシールドゾーンに表向きのカードがあれば追加で1少なくする。ただしコストは0以下にならない。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'FlipShields949',who:'self',cardOnly:true,n:1}],
+    g468UseReduction:{race:'アーマード・ドラゴン',amount:1,faceUpShieldBonus:1}};
+  if(d.id==='dm26ex2-029'&&f.typeText==='クリーチャー'&&text===
+   '相手のクリーチャーの能力または呪文によってこのクリーチャーが自分の手札から捨てられた時このクリーチャーを自分の墓地から出してもよい。ブロッカーブロッカーW・ブレイカーこのクリーチャーが出た時または攻撃する時奇数または偶数を選ぶ。次の自分のターンのはじめまで選んだ側のコストの相手のクリーチャーは攻撃もブロックもできない。'){
+   const defs=[{op:'ParityCombatLock1315'}];
+   return {blocker:true,breaker:2,effect:'sixPhoto',g1315EnemyDiscardRevive:true,g34Tasks:defs,g34Attack:defs};
+  }
+  if(d.id==='dm26ex2-045'&&f.typeText==='呪文'&&text===
+   '侵略ZERO:相手のターンの終わりにそのターン相手のクリーチャーがコストを支払わずに出ていたらこの呪文を自分の手札からコストを支払わずに唱えてもよい。相手のパワー5000以下のクリーチャーをすべて破壊する。')
+   return {effect:'sixPhoto',g1315InvasionZero:true,g34Tasks:[{op:'Sweep',filter:{creature:true,maxPower:5000,g199Power:true}}]};
+ }
  if(phase>=1314&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dm37-013'&&text===

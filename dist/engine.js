@@ -2182,6 +2182,7 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  if(isCreature(s,inst)){
   s.players[p].enteredThisTurn=(s.players[p].enteredThisTurn||0)+1;
   s.creaturesEntered=(s.creaturesEntered||0)+1;
+  if(!entryOptions.costPaid&&!entryOptions.paidMana)(s.g1315UnpaidEntryTurns??=[null,null])[p]=s.turn;
   if(c.g174End?.some(d=>d.g1096OtherEntries!==undefined))inst.g1096CountedEntryTurn=s.turn;
  }
  if(entryOptions.g753Swap){
@@ -3495,7 +3496,7 @@ function advanceEnd(s){if(s.lossEvent)return;
   end.stage='resolve';const deferred=end.deferred||[];end.deferred=[];for(const e of deferred)enqueueEffect(s,e.player??s.active,e);if(deferred.length)return;
   if(end.untap.length){s.decision={type:'untap',player:s.active,uids:end.untap};return;}
  }
- if(extra.six.lacrimaNonActive1224(s)||extra.six.revengeNonActive910(s))return;
+ if(extra.six.invasionZeroNonActive1315(s)||extra.six.lacrimaNonActive1224(s)||extra.six.revengeNonActive910(s))return;
  end.declared=end.declared.filter(uid=>own.hand.some(x=>x.uid===uid));
  while(end.declared.length){
   if(end.declared.length>1&&end.declared.some(uid=>card(own.hand.find(x=>x.uid===uid)).endMirage)){s.decision={type:'endAbilityOrder',player:p};return;}

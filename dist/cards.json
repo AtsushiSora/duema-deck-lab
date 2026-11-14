@@ -244860,15 +244860,111 @@
       ],
       "supportBatch": "phase-1314",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex2-052",
+      "name": "カイザー・ルピア",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "アーマード・ファイアー・バード",
+      "text": "このクリーチャーが出た時、自分のシールドゾーンにあるカードを１枚表向きにしてもよい。\n自分のアーマード・ドラゴン・カードを実行するコストを１少なくする。自分のシールドゾーンに表向きのカードがあれば、追加で１少なくする。ただしコストは０以下にならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-052",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "FlipShields949",
+          "who": "self",
+          "cardOnly": true,
+          "n": 1
+        }
+      ],
+      "g468UseReduction": {
+        "race": "アーマード・ドラゴン",
+        "amount": 1,
+        "faceUpShieldBonus": 1
+      },
+      "supportBatch": "phase-1315",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex2-029",
+      "name": "ワダユメ＝縛＝ノミコト",
+      "civ": "光/水/闇",
+      "civilizations": [
+        "光",
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 11000,
+      "race": "ミズガミ/ロスト・クルセイダー",
+      "text": "相手の、クリーチャーの能力または呪文によって、このクリーチャーが自分の手札から捨てられた時、このクリーチャーを自分の墓地から出してもよい。\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時または攻撃する時、奇数または偶数を選ぶ。次の自分のターンのはじめまで、選んだ側のコストの相手のクリーチャーは攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-029",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g1315EnemyDiscardRevive": true,
+      "g34Tasks": [
+        {
+          "op": "ParityCombatLock1315"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "ParityCombatLock1315"
+        }
+      ],
+      "supportBatch": "phase-1315",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex2-045",
+      "name": "「オレたちのZEROの世界を造るまで」",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "ソニック・コマンド・ワード",
+      "text": "侵略ZERO：相手のターンの終わりに、そのターン、相手のクリーチャーがコストを支払わずに出ていたら、この呪文を自分の手札からコストを支払わずに唱えてもよい。\n相手のパワー5000以下のクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-045",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g1315InvasionZero": true,
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "filter": {
+            "creature": true,
+            "maxPower": 5000,
+            "g199Power": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1315",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1314,
+    "phase": 1315,
     "checkedAt": "2026-11-15",
-    "baseCount": 7959,
+    "baseCount": 7962,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7962,
+    "totalCount": 7965,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -266925,6 +267021,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7959,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1314,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7959,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7962,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

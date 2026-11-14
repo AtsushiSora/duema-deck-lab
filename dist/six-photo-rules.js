@@ -4257,8 +4257,17 @@ export function createSixPhotoRules(api){
      y.faceDown?undefined:y.cardId)),skip()
    ]);
   break;
+ case'g34_InvasionZeroDeclare1315':{
+  const x=own.hand.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);
+  if(x&&!api.handAbilityIgnored(s,x))choice(s,t,'侵略ZEROの使用を宣言する？',[opt('宣言する',true,10,x.cardId),skip()]);
+  break;
+ }
+ case'g34_ParityCombatLock1315':
+  choice(s,t,'攻撃もブロックもできなくなるコストを選ぶ',[opt('奇数',1,10),opt('偶数',0,10)]);
+  break;
  case'g34_FlipShields949':{
-  const rows=peekRows585(s,{...t,who:t.who??'both'}),selected=t.selected||[];
+  const options=peekRows585(s,{...t,who:t.who??'both'});
+  const rows=t.cardOnly?options.filter(r=>!r.x.g37ShieldHeld):options,selected=t.selected||[];
   const n=Math.min(t.n??creatures(s,t.p).length,rows.length);
   if(!n)break;
   if(t.done||selected.length>=n){
@@ -6351,6 +6360,18 @@ export function createSixPhotoRules(api){
    zoneMove(s,t.p,'grave',v,'mana',t);
   break;
  }
+ case'g34_InvasionZeroDeclare1315':
+  if(v){
+   api.log(s,t.p,'reveal',card(t.source).name+'の侵略ZEROを使用宣言',{cardId:t.source});
+   api.enqueue(s,t.p,{uid:t.uid,source:t.source,effect:'extended',task:{...t,op:'invasionZero1315'}});
+  }
+  break;
+ case'g34_ParityCombatLock1315':{
+  const player=1-t.p;
+  const refs=creatures(s,player).filter(x=>!x.sealed).flatMap(x=>api.allLayers(x).map(y=>({uid:y.uid,incarnation:y.incarnation||0})));
+  if(refs.length)api.lock(s,t.p,{kind:'g1315ParityCombat',player,refs,parity:v});
+  break;
+ }
  case'g34_FlipShields949':
   if(v)put(s,{...t,selected:[...t.selected,v]});
   else if(t.selected.length)put(s,{...t,done:true});
@@ -7746,6 +7767,7 @@ export function createSixPhotoRules(api){
    if(rule.colorsAny&&!rule.colorsAny.some(color=>colors(c).includes(color)))continue;
    if(rule.nameIncludes&&!exactName(creatureFaceName(c)).includes(rule.nameIncludes))continue;
    discount+=rule.amount;
+   if(rule.faceUpShieldBonus&&ownCondition(s,p,{g757FaceUpShield:true}))discount+=rule.faceUpShieldBonus;
   }
   return discount;
  },
@@ -8950,6 +8972,19 @@ export function createSixPhotoRules(api){
     });
    if(defs.length)queue(s,p,x,defs);
   }if(effective(x,s).g34Role==='dragonOrb')queue(s,p,x,[C('orbDeploy')]);if(ninja(effective(x,s)))for(const y of(snapshot?.dororon?.[p]||active(s,p,'dororon')))queue(s,p,y,[E('Draw',{n:1,optional:true})]);}},
+ invasionZeroNonActive1315(s){
+  const end=s.endStep;
+  if(end?.stage!=='resolve'||end.g1315InvasionZeroChecked||s.decision||s.extTasks?.length||s.triggers||
+   s.leaving||s.battleResolution||s.judge||s.attack||s.pendingEffects?.some(entry=>entry.player===s.active))return false;
+  end.g1315InvasionZeroChecked=true;
+  if(s.g1315UnpaidEntryTurns?.[s.active]!==s.turn)return false;
+  const p=1-s.active;
+  const declarations=s.players[p].hand.filter(x=>card(x).g1315InvasionZero&&!api.handAbilityIgnored(s,x))
+   .map(x=>task('g34_InvasionZeroDeclare1315',p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0}));
+  if(!declarations.length)return false;
+  put(s,...declarations);
+  return true;
+ },
  lacrimaActive1224:s=>declareLacrima1224(s,s.active),
  lacrimaNonActive1224(s){
   const end=s.endStep;

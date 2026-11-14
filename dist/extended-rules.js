@@ -144,6 +144,8 @@ export function createExtendedRules(api){
    !api.allLayers(x).some(y=>l.refs.includes(y.uid+'@'+(y.incarnation||0)))))return true;
   if(kind==='attack'&&creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks))return false;
   if((kind==='attack'||kind==='block')&&pairedCombatLocked(s,x))return true;
+  if((kind==='attack'||kind==='block')&&(s.extLimits||[]).some(l=>l.kind==='g1315ParityCombat'&&l.player===p&&
+   l.refs.some(ref=>matchesRef(x,ref))&&cost(effective(x,s,true))%2===l.parity))return true;
   if(kind==='attack'&&(utilityLightControl.locked(s,x)||(s.extLimits||[]).some(l=>l.kind==='g1257AttackCreatureLock'&&
    api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation))))return true;
   if(kind==='attack'&&x.entered===s.turn&&effective(x,s).speedAttacker&&[0,1].some(q=>creatures(s,q).some(y=>effective(y,s).g163Dione)))return true;
@@ -182,7 +184,7 @@ export function createExtendedRules(api){
   summonTapDonors1293:(s,p)=>six.summonTapDonors1293(s,p),projectSummonTap1293:(s,p,uid)=>six.projectSummonTap1293(s,p,uid),gravePermits:(s,p,x,c)=>[...utilityDispectorSeeds.gravePermits(s,p,x,c),...six.gravePermits294(s,p,x,c)],manaPermits:(s,p,x)=>[...(card(x).manaSummon?[null]:[]),...galaxy.manaPermits(s,p,x),...kenji.manaPermits(s,p,x),...gran.manaPermits(s,p,x),...girls.manaPermits(s,p,x),...six.manaPermits297(s,p,x)]});
  const champion=createChampionRules({...api,creatures,put,task,choice,opt,skip,targetOptions,discardSelected:(s,t,ids)=>beginDiscardBatch(s,t,ids)});
  const recommended=createRecommendedRules({...api,creatures,put,task,choice,opt,skip,targetOptions,targetable,lock});
- const six=createSixPhotoRules({...api,stratoReplacements:seed.stratoReplacements,crossGearGroup:(...args)=>samurai.crossOnEntry(...args),shieldGoCount:(s,p)=>shieldPhoto.shieldGoCount(s,p),costAltPermits568:(...args)=>costAltPermits568(...args),snowVariants:(s,p,c)=>galaxy.reductionVariants(s,p,c),creatures,put,task,choice,opt,skip,targetOptions,targetable,canLeave,snapshot:(s,rows)=>({six:six.snapshot(s,rows)}),handProtected:(s,t)=>handProtected(s,t),
+ const six=createSixPhotoRules({...api,stratoReplacements:seed.stratoReplacements,crossGearGroup:(...args)=>samurai.crossOnEntry(...args),shieldGoCount:(s,p)=>shieldPhoto.shieldGoCount(s,p),costAltPermits568:(...args)=>costAltPermits568(...args),snowVariants:(s,p,c)=>galaxy.reductionVariants(s,p,c),creatures,put,task,choice,opt,skip,targetOptions,targetable,lock,canLeave,snapshot:(s,rows)=>({six:six.snapshot(s,rows)}),handProtected:(s,t)=>handProtected(s,t),
   discardSelected:(s,p,ids,source,causedBy,afterDiscard248=null,afterDiscard321=null,afterDiscardCount=null)=>
    beginDiscardBatch(s,{p,source,causedBy,n:ids.length,...(afterDiscard248?{afterDiscard248}:{}),
     ...(afterDiscard321?{afterDiscard321}:{}),...(afterDiscardCount?{afterDiscardCount}:{})},ids)});
@@ -473,6 +475,11 @@ export function createExtendedRules(api){
    case 'darkFight':{const x=nowCreature(s,t.p,t.uid);if(x&&(t.incarnation===undefined||t.incarnation===(x.incarnation||0)))choice(s,t,'ドギラゴン悪でバトルする相手を選ぶ',[...targetOptions(s,t.p,creatures(s,1-t.p)),skip()]);break;}
    case 'ninjaBottom':{const x=own.battle.find(x=>layers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===t.incarnation));if(x&&card(x).race?.includes('シノビ'))move(s,[{player:t.p,uid:x.uid,to:'deck'}]);break;}
    case 'mirageCast':{const x=own.hand.find(x=>x.uid===t.uid);if(x&&(s.creaturesEntered||0)>=3&&canCast(s,t.p,card(x)))cast(s,t.p,x.uid,true,null,0,null,'hand','ターン終了時の能力');break;}
+   case 'invasionZero1315':{
+    const x=own.hand.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);
+    if(x&&canCast(s,t.p,card(x),'hand'))cast(s,t.p,x.uid,true,null,0,null,'hand','侵略ZERO');
+    break;
+   }
    case 'finishSpell':{const i=(s.extSpells||[]).findIndex(x=>x.inst.uid===t.uid);if(i>=0){const f=s.extSpells[i];if(f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.to='hand';f.g416SelfFinish=true;}if(f.shieldCast){s.extSpells.splice(i,1);api.finishShieldSpell(s,f,f.g416SelfFinish?f.to:null);six.afterSpell566(s,f);break;}
     // A spell's own destination replacement precedes an external one (609.8a).
     if(!f.virtual&&f.spell?.g1027Crest&&f.spell.summonOrigin==='hand'&&
@@ -656,6 +663,8 @@ export function createExtendedRules(api){
   if(discarded){
    if(card(x).g1207DiscardCast&&enemyDiscardEffect(s,t))
     enqueue(s,t.p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('discardedSpell1207',t.p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0})});
+   if(card(x).g1315EnemyDiscardRevive&&enemyDiscardEffect(s,t))
+    six.send(s,t.p,x,'GraveSummonWatch766',{serial:x.zoneSerial||0});
    if(!t.batchId&&!t.g848Grouped)notifyDiscard848(s,t.p,discardWatchers848(s,t.p),1);
    discardByType1241(s,t.p,x);
    if(graveWatchers?.length)notifyGraveDiscard1284(s,t.p,graveWatchers);
@@ -788,7 +797,7 @@ export function createExtendedRules(api){
    if(existingHost&&!api.isEvolution(existingHost)&&!card(existingHost).neoEvolution)return;
    six.evolutionBase397(s,p,x);seed.evolutionBase(s,p,x);combat.evolutionBase(s,p,x);bande.evolutionBase(s,p,x);
   },copyEntry:maruru.copyEntry,photo167,put,task,choice,lock,locked,forcedCreatureTarget,forcedByGitaro1258,beginGraveCast:grave.beginCast,beginGravePut:grave.beginPut,beginUra:grave.beginUra,uraBelow:grave.below,selectBreaker:travel.selectBreaker,broken(s,context,count){six.broken484(s,context,count);requested393J.broken(s,context,count);photo159.broken(s,context,count);combat.broken(s,context,count);travel.broken(s,context,count);},advanceAfterAttack(s){travel.advanceAfter(s);redzone.advanceAfter(s);six.advanceAfterAttack1197(s);},travelDecorate:travel.decorate,beginOni:kenji.beginOni,oniCards:kenji.oniCards,manaRedirect:kenji.manaRedirect,lionelPower:lionel.power,lionelDecorate:lionel.decorate,elevenState:history.stateCheck,lionelState(s){combat.stateCheck(s);history.stateCheck(s);return lionel.stateCheck(s); },gearIdentity:samurai.identity,samuraiPower:samurai.power,samuraiUncrossedBreakCap:samurai.uncrossedBreakCap,samuraiCrossDestroyShield:samurai.crossDestroyShield,bushidoDestroyStay:samurai.bushidoDestroyStay,samuraiExtraBreak:samurai.extraBreak,samuraiDecorate932:samurai.decorate932,samuraiSummonDiscount932:samurai.summonDiscount932,samuraiUnblocked:samurai.unblocked,samuraiSpeed:samurai.speed,samuraiDiscount:samurai.discount,crossOnEntry:samurai.crossOnEntry,crossAction:samurai.crossAction,gearCleanup:samurai.cleanup,gearInherit:samurai.inherit,variants:samurai.variants,muteEntry:giant.muteEntry,deckSafe:(s,p)=>gachi.deckSafe(s,p)||!!s.players[p].g38LibrarySafe,shieldDeclarations:gachi.shieldDeclarations,allowedCard:giant.allowedCard,giantDiscount:giant.discount,replaceBattle:(s,...a)=>requested393SG.replaceBattle(s,...a)||giant.replaceBattle(s,...a),creatures,shieldTo,targetable,allowedSpell:(s,p,c)=>mado.allowedSpell(s,p,c)&&travel.allowedSpell(s,p)&&zard.allowedSpell(s,p,c)&&lionel.allowedSpell(s,p,c),forceActions:(s,p,out)=>requested393J.forceActions(s,p,photo160.forceActions(s,p,history.forceActions(s,p,phoenix.forceActions(s,p,abyss.attackFilter(s,p,kiyo.forceActions(s,p,out)))))),spellShieldTrigger:kiyo.spellShieldTrigger,handMana(s,p,x){six.handMana1087(s,p,x);shieldPhoto.handMana(s,p,x);redzone.handMana(s,p,x);lionel.handMana(s,p,x);kiyo.handMana(s,p,x);},mechaDiscount:mecha.discount,canLeave,shieldAdded(s,p,x){photo167.shieldAdded(s,p,x);photo160.shieldAdded(s,p,x);photo159.shieldAdded(s,p,x);six.fifteen.shieldAdded(s,p,x);shieldPhoto.shieldAdded(s,p,x);mecha.shieldAdded(s,p,x);viride.shieldAdded(s,p,x);},beforeBreak:(s,p,uids)=>six.beforeBreak1136(s,p,uids)||photo159.beforeBreak(s,p,uids)||environment.beforeBreak(s,p,uids)||six.fifteen.beforeBreak(s,p,uids)||girls.beforeBreak(s,p,uids)||lionel.beforeBreak(s,p,uids)||magic.beforeBreak(s,p,uids)||mecha.beforeBreak(s,p,uids),advanceBreak:mecha.advanceBreak,inherit(s,base,x){if(base.g393JCopies?.length){const present=new Map();for(const r of x.g393JCopies||[]){const k=r.key||JSON.stringify(r);present.set(k,(present.get(k)||0)+1);}for(const r of base.g393JCopies){const k=r.key||JSON.stringify(r),n=present.get(k)||0;if(n)present.set(k,n-1);else(x.g393JCopies??=[]).push(structuredClone(r));}}if(base.g393JZero)x.g393JZero=structuredClone(base.g393JZero);seed.inherit(s,base,x);combat.inherit(s,base,x);continuation.inherit(s,base,x);six.inherit(s,base,x);thisInherit(s,base,x);viride.inherit(s,base,x);hachi.inherit(s,base,x);travel.inherit(s,base,x);lionel.inherit(s,base,x);samurai.inherit(s,base,x);zard.inherit(s,base,x);armored.inherit(s,base,x);magic.inherit(s,base,x);},armoredDiscount:armored.discount,noLose:(s,p,kind)=>seed.noLose(s,p,kind)||viride.noLose(s,p)||armored.noLose(s,p)||hunter.noLose(s,p)||six.noLose(s,p),hunterDiscount:hunter.discount,beforeNonActive(s){
-  if(six.lacrimaNonActive1224(s)||six.revengeNonActive910(s))return true;
+  if(six.invasionZeroNonActive1315(s)||six.lacrimaNonActive1224(s)||six.revengeNonActive910(s))return true;
   const w=s.g3Window;
   if(w&&!w.done){const added=jaou.beforeNonActive(s);if(w.done&&s.attack){const ninja=this.ninjaWindow(s,w.p);return added||ninja;}return added;}
   const p=1-s.active;
