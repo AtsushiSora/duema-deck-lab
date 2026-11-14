@@ -2470,6 +2470,20 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1247&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(['dmr11-010','dmx22b-099','dmx25-014','dmex13-026','promoy13-046'].includes(d.id)&&
+   /^このクリーチャー(?:をバトルゾーンに出した|がバトルゾーンに出た)時カードを3枚引いてもよい。そうした(?:場合|ら)自分の手札を2枚山札の(?:一番)?上または(?:一番)?下もしくはその両方に好きな順序で置く。$/.test(text))
+   return {effect:'sixPhoto',g34Tasks:[{op:'Offer',title:'カードを3枚引き、手札2枚を山札に戻す？',defs:[
+    {op:'Draw',n:3},{op:'Select',origin:'hand',n:2,to:'deckTop',g183Return:true,g1247SplitDeck:true,
+     title:'山札に戻す手札を順に2枚選ぶ'}]}]};
+  if(['dm23bd6-009','dm24bd5-049'].includes(d.id)&&
+   /^各ターンはじめてプレイヤーが呪文を唱えるかクリーチャーを召喚した時自分はカードを1枚引いてもよい。このクリーチャーが破壊される時(?:墓地の)?かわりにマナゾーンに置く。$/.test(text))
+   return {g1247FirstSummonOrSpell:[{op:'Draw',n:1,optional:true}],g1242SelfMana:true};
+  if(d.id==='promoy5-018'&&text==='このクリーチャーをバトルゾーンに出した時自分の山札を見る。その中からアーク・セラフィムを1体自分のマナゾーンに加えてもよい。その後山札をシャッフルする。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Look',g201Search:true,g841DeckPeek:true,g255Search:true,n:'all',rest:'shuffle',
+    stages:[{n:1,to:'mana',filter:{g228Face:{type:'creature',raceAll:['アーク・セラフィム']}},optional:true,g1081ConfirmEmpty:true}]}]};
+ }
  if(phase>=1246&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const doubleBreaker='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';

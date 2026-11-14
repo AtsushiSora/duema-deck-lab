@@ -1,0 +1,429 @@
+{
+  "phase": 1247,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7740,
+  "description": "電脳決壊の魔女 アリス、慈愛妖精カーネ、霊騎プリウスライザの全能力を対戦対応し、アリスとカーネの再録を正規IDに紐付ける。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/36992/",
+    "https://dm.takaratomy.co.jp/rule/qa/34329/",
+    "https://dm.takaratomy.co.jp/rule/qa/40504/",
+    "https://dm.takaratomy.co.jp/rule/qa/44350/",
+    "https://dm.takaratomy.co.jp/rule/qa/44351/",
+    "https://dm.takaratomy.co.jp/rule/qa/46391/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmr11-010",
+      "name": "電脳決壊の魔女 アリス",
+      "faces": [
+        {
+          "name": "電脳決壊の魔女 アリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、カードを３枚引いてもよい。そうした場合、自分の手札を２枚、山札の一番上または一番下、もしくはその両方に好きな順序で置く。",
+          "race": "アウトレイジMAX",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-010",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr11-010.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "カードを3枚引き、手札2枚を山札に戻す？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 3
+              },
+              {
+                "op": "Select",
+                "origin": "hand",
+                "n": 2,
+                "to": "deckTop",
+                "g183Return": true,
+                "g1247SplitDeck": true,
+                "title": "山札に戻す手札を順に2枚選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "337001b2d9dff0605a4eb01caac160f9a292d887cdbd014dfa6785aa58e150bd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23bd6-009",
+      "name": "慈愛妖精カーネ",
+      "faces": [
+        {
+          "name": "慈愛妖精カーネ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "各ターンはじめて、プレイヤーが呪文を唱えるかクリーチャーを召喚した時、自分はカードを１枚引いてもよい。\nこのクリーチャーが破壊される時、かわりにマナゾーンに置く。",
+          "race": "ジャイアント・スノーフェアリー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd6-009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd6-009.jpg",
+      "spec": {
+        "g1247FirstSummonOrSpell": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ],
+        "g1242SelfMana": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "f68a1b43c0ed79b4d503d7d4e515458db7df957ecd06c3b3a5b802ffc1633202",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy5-018",
+      "name": "霊騎プリウスライザ",
+      "faces": [
+        {
+          "name": "霊騎プリウスライザ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からアーク・セラフィムを１体、自分のマナゾーンに加えてもよい。その後、山札をシャッフルする。",
+          "race": "アーク・セラフィム",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy5-018",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy5-018.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g841DeckPeek": true,
+            "g255Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "mana",
+                "filter": {
+                  "g228Face": {
+                    "type": "creature",
+                    "raceAll": [
+                      "アーク・セラフィム"
+                    ]
+                  }
+                },
+                "optional": true,
+                "g1081ConfirmEmpty": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "434a3fc08b52dae69099ea720838b3efd9d1c9819d2e0cf97c42f80a6a79cf97",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx22b-099",
+      "name": "電脳決壊の魔女 アリス",
+      "faces": [
+        {
+          "name": "電脳決壊の魔女 アリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、カードを３枚引いてもよい。そうしたら、自分の手札を２枚、山札の一番上または一番下、もしくはその両方に好きな順序で置く。",
+          "race": "アウトレイジMAX",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-099",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx22b-099.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "カードを3枚引き、手札2枚を山札に戻す？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 3
+              },
+              {
+                "op": "Select",
+                "origin": "hand",
+                "n": 2,
+                "to": "deckTop",
+                "g183Return": true,
+                "g1247SplitDeck": true,
+                "title": "山札に戻す手札を順に2枚選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "9b5ecfaeb31fbbe7f93fa97ce3eed2448efad3ac68cf7f4366547bba8fb3178c",
+        "facesMatched": true
+      },
+      "canonicalId": "dmr11-010"
+    },
+    {
+      "id": "dmx25-014",
+      "name": "電脳決壊の魔女 アリス",
+      "faces": [
+        {
+          "name": "電脳決壊の魔女 アリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、カードを３枚引いてもよい。そうした場合、自分の手札を２枚、山札の一番上または一番下、もしくはその両方に好きな順序で置く。",
+          "race": "アウトレイジMAX",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx25-014",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx25-014.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "カードを3枚引き、手札2枚を山札に戻す？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 3
+              },
+              {
+                "op": "Select",
+                "origin": "hand",
+                "n": 2,
+                "to": "deckTop",
+                "g183Return": true,
+                "g1247SplitDeck": true,
+                "title": "山札に戻す手札を順に2枚選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "643893c236c2c477ead6839a0824cd42c840912e95d7fbb811d1dd0b177e1cf4",
+        "facesMatched": true
+      },
+      "canonicalId": "dmr11-010"
+    },
+    {
+      "id": "dmex13-026",
+      "name": "電脳決壊の魔女 アリス",
+      "faces": [
+        {
+          "name": "電脳決壊の魔女 アリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、カードを３枚引いてもよい。そうしたら、自分の手札を２枚、山札の上または下、もしくはその両方に好きな順序で置く。",
+          "race": "アウトレイジMAX",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-026",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex13-026.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "カードを3枚引き、手札2枚を山札に戻す？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 3
+              },
+              {
+                "op": "Select",
+                "origin": "hand",
+                "n": 2,
+                "to": "deckTop",
+                "g183Return": true,
+                "g1247SplitDeck": true,
+                "title": "山札に戻す手札を順に2枚選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "d8a88bbf2661695f6b77127f9627e573665844acff5ff38e05980a07c96a5795",
+        "facesMatched": true
+      },
+      "canonicalId": "dmr11-010"
+    },
+    {
+      "id": "promoy13-046",
+      "name": "電脳決壊の魔女 アリス",
+      "faces": [
+        {
+          "name": "電脳決壊の魔女 アリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、カードを３枚引いてもよい。そうした場合、自分の手札を２枚、山札の一番上または一番下、もしくはその両方に好きな順序で置く。",
+          "race": "アウトレイジMAX",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-046",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy13-046.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "カードを3枚引き、手札2枚を山札に戻す？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 3
+              },
+              {
+                "op": "Select",
+                "origin": "hand",
+                "n": 2,
+                "to": "deckTop",
+                "g183Return": true,
+                "g1247SplitDeck": true,
+                "title": "山札に戻す手札を順に2枚選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "cf0cb7cdb3ac938ce31d573cb72d72407ba4e4b08ac510e8e4df8fb381d71a35",
+        "facesMatched": true
+      },
+      "canonicalId": "dmr11-010"
+    },
+    {
+      "id": "dm24bd5-049",
+      "name": "慈愛妖精カーネ",
+      "faces": [
+        {
+          "name": "慈愛妖精カーネ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "各ターンはじめて、プレイヤーが呪文を唱えるかクリーチャーを召喚した時、自分はカードを１枚引いてもよい。\nこのクリーチャーが破壊される時、墓地のかわりにマナゾーンに置く。",
+          "race": "ジャイアント・スノーフェアリー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd5-049",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd5-049.jpg",
+      "spec": {
+        "g1247FirstSummonOrSpell": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ],
+        "g1242SelfMana": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "8be12e1fd24e07b762da1e04a1b26bd76a6522eac3b333ea55b1f8a07b1d6aed",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23bd6-009"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr11-010": 4,
+      "dm23bd6-009": 4,
+      "promoy5-018": 4,
+      "dmx22b-099": 4,
+      "dmx25-014": 4,
+      "dmex13-026": 4,
+      "promoy13-046": 4,
+      "dm24bd5-049": 4
+    }
+  }
+}

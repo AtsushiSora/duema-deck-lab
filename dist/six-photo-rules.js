@@ -1481,6 +1481,10 @@ export function createSixPhotoRules(api){
    if(x&&zoneMove(s,r.p,r.origin,r.uid,t.to,t)&&matched)start(s,t,t.g583OnMove);
    return;
   }
+  if(t.g1247SplitDeck){
+   if(t.rows?.length)put(s,{...t,op:'g34_SplitDeck1247'});
+   return;
+  }
   if(t.g553Destinations&&t.rows?.length){put(s,{...t,op:'g34_Destination553',destinations:t.g553Destinations,g553Destinations:false});return;}const rows=t.g183Return&&t.to==='deckTop'?[...(t.rows||[])].reverse():t.rows||[];if(t.g899RampTapped){
   let n=0;
   for(const r of rows){
@@ -3130,6 +3134,12 @@ export function createSixPhotoRules(api){
  // Count once while resolving; later mana or battlefield changes do not rewrite the boost.
  case'g34_ManaColorBoost515':{const n=manaCivilizationCount(s,t.p);start(s,t,[{op:'Target',owner:'self',power:t.amount*n}]);break;}
  case'g34_CountCost553':{const n=s.players[t.p][t.zone].filter(y=>matches(s,t.p,y,t.filter)).length;start(s,t,[{...t.def,g513CostBudget:n,title:'合計コスト'+n+'以下になるよう2体まで選ぶ'}]);break;}
+ case'g34_SplitDeck1247':{
+  const count=t.rows.length;
+  choice(s,t,'先に選んだカードから何枚を山札の上に置く？',Array.from({length:count+1},(_,n)=>
+   opt('上に'+n+'枚・下に'+(count-n)+'枚',n,0)));
+  break;
+ }
  case'g34_Destination553':{
   if(Array.isArray(t.destinations)){
    choice(s,t,'選んだカードの移動先を選ぶ',t.destinations.map(to=>opt(destinationName467[to],to,0)));
@@ -6070,6 +6080,12 @@ export function createSixPhotoRules(api){
    {player:t.p,sourceUid:host?host.x.uid:t.uid,source:t.source,controller:t.p,g278Effect:true,...(host?{incarnation:host.x.incarnation||0}:{})});
   break;
  }
+ case'g34_SplitDeck1247':{
+  const top=t.rows.slice(0,v).reverse(),bottom=t.rows.slice(v);
+  for(const r of top)zoneMove(s,r.p,r.origin,r.uid,'deckTop',t);
+  for(const r of bottom)zoneMove(s,r.p,r.origin,r.uid,'deck',t);
+  break;
+ }
  case'g34_Destination553':finishSelect(s,{...t,to:v});break;
  case'g34_BlockUntapPick715':{
   const target=v&&creatures(s,t.p).find(y=>y.uid===v&&!y.sealed);
@@ -6597,6 +6613,19 @@ export function createSixPhotoRules(api){
    try{if(ownCondition(s,p,condition,source.uid))bonus+=6000;}finally{civilAuraReading.delete(s);}
   }
   return bonus;
+ }
+ function firstSummonOrSpell1247(s,previousCount){
+  // The caller runs before recording a summon or after recording a spell.
+  const count=[0,1].reduce((total,p)=>{
+   const summon=s.g463Summons?.[p],spell=s.g37Spells?.[p];
+   return total+(summon?.turn===s.turn?summon.n:0)+(spell?.turn===s.turn?spell.n:0);
+  },0);
+  if(count!==previousCount)return;
+  for(const p of [s.active,1-s.active])for(const x of s.players[p].battle){
+   if(x.sealed||x.faceDown||!card(x).g1247FirstSummonOrSpell||!api.isCreature(s,x))continue;
+   const defs=effective(x,s).g1247FirstSummonOrSpell;
+   if(defs)queue(s,p,x,defs);
+  }
  }
  function qualifyingUse1224(s,p,c,seedUid=null,owner=p){
   const history=s.g1224Uses??=[null,null];
@@ -7160,6 +7189,7 @@ export function createSixPhotoRules(api){
    if(defs)queue(s,p,source,defs);
   }
   if(c.type==='creature'){
+  firstSummonOrSpell1247(s,0);
   useBlockers524(s,p);
   for(const source of s.players[p].battle){
    const watch=card(source).g808SummonWatch&&!source.sealed&&api.isCreature(s,source)&&effective(source,s).g808SummonWatch;
@@ -7191,6 +7221,7 @@ export function createSixPhotoRules(api){
     send(s,p,source,'JudgeUntap969',{g399Attacker:ref},deferred);
  },
  spellCast(s,p,c,origin,owner,inst,face){
+  firstSummonOrSpell1247(s,1);
   qualifyingUse1224(s,p,c,null,owner);
   useBlockers524(s,p);consumeReduction456(s,p,c);noncreatureUse448(s,p,c);countExecution(s,p,c);
   // Capture the cast before it resolves, and require its first physical grave arrival.

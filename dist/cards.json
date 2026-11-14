@@ -236907,15 +236907,127 @@
       ],
       "supportBatch": "phase-1246",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr11-010",
+      "name": "電脳決壊の魔女 アリス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "アウトレイジMAX",
+      "text": "このクリーチャーをバトルゾーンに出した時、カードを３枚引いてもよい。そうした場合、自分の手札を２枚、山札の一番上または一番下、もしくはその両方に好きな順序で置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-010",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "カードを3枚引き、手札2枚を山札に戻す？",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 3
+            },
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 2,
+              "to": "deckTop",
+              "g183Return": true,
+              "g1247SplitDeck": true,
+              "title": "山札に戻す手札を順に2枚選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1247",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23bd6-009",
+      "name": "慈愛妖精カーネ",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ジャイアント・スノーフェアリー",
+      "text": "各ターンはじめて、プレイヤーが呪文を唱えるかクリーチャーを召喚した時、自分はカードを１枚引いてもよい。\nこのクリーチャーが破壊される時、かわりにマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd6-009",
+      "limit": 4,
+      "g1247FirstSummonOrSpell": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "g1242SelfMana": true,
+      "supportBatch": "phase-1247",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy5-018",
+      "name": "霊騎プリウスライザ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2000,
+      "race": "アーク・セラフィム",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からアーク・セラフィムを１体、自分のマナゾーンに加えてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy5-018",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g841DeckPeek": true,
+          "g255Search": true,
+          "n": "all",
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "mana",
+              "filter": {
+                "g228Face": {
+                  "type": "creature",
+                  "raceAll": [
+                    "アーク・セラフィム"
+                  ]
+                }
+              },
+              "optional": true,
+              "g1081ConfirmEmpty": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1247",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1246,
+    "phase": 1247,
     "checkedAt": "2026-11-14",
-    "baseCount": 7737,
+    "baseCount": 7740,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7740,
+    "totalCount": 7743,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -258156,6 +258268,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7737,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1246,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7737,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7740,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
