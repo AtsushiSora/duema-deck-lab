@@ -2475,6 +2475,27 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1255&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmrp12-078'&&text===
+   'このクリーチャーが攻撃する時Jトルネードしてもよい。そうしなかったらこの攻撃を中止する。'+
+   '(Jトルネード:自分の他のジョーカーズを1体手札に戻す)')
+   return {g34Attack:[{op:'Target',owner:'self',to:'hand',toOwnerHand:true,g179Other:true,optional:true,
+    filter:{race:'ジョーカーズ'},title:'Jトルネードする自分の他のジョーカーズを選ぶ',
+    elseDefs:[{op:'Custom',name:'stopAttack'}]}]};
+  if(d.id==='dmrp21-027'&&text===
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   'このクリーチャーは相手プレイヤーを攻撃できない。自分の進化クリーチャーまたはタマシードが出た時相手のクリーチャーを1体選びタップする。')
+   return {blocker:true,noPlayerAttack:true,g251EntryDraw:{g1198EntryScope:true,
+    filter:{any:[{creature:true,evolution:true},{g295Tamaseed:true}]},defs:[{op:'Target',tap:true}]}};
+  if(['dm25rp3-070','dm25ex3-076'].includes(d.id)&&text===
+   '自分のクリーチャーが出た時カードを1枚自分の墓地から山札の下に置いてもよい。そうしたらこのターンそのクリーチャーに「スピードアタッカー」を与える。'+
+   '(「スピードアタッカー」を持つクリーチャーは召喚酔いしない)')
+   return {g251EntryDraw:{g1198EntryScope:true,g1255TrackEntrant:true,filter:{creature:true},defs:[
+    {op:'Select',origin:'grave',to:'deck',n:1,optional:true,g1009AfterMoveAttempt:true,
+     title:'山札の下に置く墓地のカードを選ぶ'}
+   ]}};
+ }
  if(phase>=1254&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dm10-019'&&text===

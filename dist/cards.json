@@ -237762,15 +237762,129 @@
       },
       "supportBatch": "phase-1254",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-078",
+      "name": "パイパーパイプー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 3000,
+      "race": "ジョーカーズ",
+      "text": "このクリーチャーが攻撃する時、Jトルネードしてもよい。そうしなかったら、この攻撃を中止する。（Jトルネード：自分の他のジョーカーズを１体、手札に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-078",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "to": "hand",
+          "toOwnerHand": true,
+          "g179Other": true,
+          "optional": true,
+          "filter": {
+            "race": "ジョーカーズ"
+          },
+          "title": "Jトルネードする自分の他のジョーカーズを選ぶ",
+          "elseDefs": [
+            {
+              "op": "Custom",
+              "name": "stopAttack"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1255",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp21-027",
+      "name": "「剛力の砲娘」",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3500,
+      "race": "メタリカ/レクスターズ",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n自分の進化クリーチャーまたはタマシードが出た時、相手のクリーチャーを１体選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-027",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g251EntryDraw": {
+        "g1198EntryScope": true,
+        "filter": {
+          "any": [
+            {
+              "creature": true,
+              "evolution": true
+            },
+            {
+              "g295Tamaseed": true
+            }
+          ]
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "tap": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1255",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp3-070",
+      "name": "XENOGEAR-速4号",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ティラノ・ドレイク/テクノ・サムライ",
+      "text": "自分のクリーチャーが出た時、カードを１枚、自分の墓地から山札の下に置いてもよい。そうしたら、このターン、そのクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-070",
+      "limit": 4,
+      "g251EntryDraw": {
+        "g1198EntryScope": true,
+        "g1255TrackEntrant": true,
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "deck",
+            "n": 1,
+            "optional": true,
+            "g1009AfterMoveAttempt": true,
+            "title": "山札の下に置く墓地のカードを選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-1255",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1254,
+    "phase": 1255,
     "checkedAt": "2026-11-14",
-    "baseCount": 7761,
+    "baseCount": 7764,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7764,
+    "totalCount": 7767,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -259107,6 +259221,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7761,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1254,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7761,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7764,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

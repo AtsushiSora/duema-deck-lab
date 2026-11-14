@@ -1323,6 +1323,15 @@ export function createSixPhotoRules(api){
   });
  }
  function finishSelect(s,{g585Peek,...t}){
+  if(t.g1255HasteEntrant){
+   const [selected]=t.rows||[];
+   if(!selected||!s.players[t.p].grave.some(x=>x.uid===selected.uid))return;
+   // A prohibited graveyard move still satisfies this attempt (QA 43359).
+   zoneMove(s,t.p,'grave',selected.uid,'deck',t);
+   const host=sourceHost474(s,t.g1255HasteEntrant);
+   if(host)applyGrant(s,{...t,grant:{speedAttacker:true}},host.x);
+   return;
+  }
   if(t.exactOptional&&(t.rows?.length||0)!==t.n)return;
   if(t.g1225ManaExchange){
    moveZoneSelection583(s,t,t.rows);
@@ -6778,7 +6787,11 @@ export function createSixPhotoRules(api){
    // GG suppresses creature-entry triggers; Kinari only suppresses the entrant's abilities.
    if(api.isCreature(s,y)&&(api.selfStopped(s,p)||self&&options.selfMuted))return;
   }else if(self&&(options.selfMuted||api.selfStopped(s,p)))return;
-  if(self&&watch.selfAlways||matches(s,p,y,watch.filter))queue(s,p,x,watch.defs);
+  if(!((self&&watch.selfAlways)||matches(s,p,y,watch.filter)))return;
+  const defs=watch.g1255TrackEntrant
+   ?watch.defs.map(def=>({...def,g1255HasteEntrant:{uid:y.uid,incarnation:y.incarnation||0}}))
+   :watch.defs;
+  queue(s,p,x,defs);
  }
  const modeUse1170=(t,i)=>({g792Once:'mode:'+t.source+':'+i});
  const parottaKey747=x=>'parotta:'+key(x),parottaUsed747=(s,x)=>s.once?.[parottaKey747(x)]===s.turn;
