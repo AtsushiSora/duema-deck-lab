@@ -2721,6 +2721,10 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_IfHand246':if(own.hand.length<=t.max)start(s,t,t.defs);else if(t.elseDefs)start(s,t,t.elseDefs);break;
+ case'g34_NextCreatureGrant1218':
+  (s.extLimits??=[]).push({kind:'g1218NextCreatureGrant',player:t.p,source:t.source,
+   turn:s.turn,who:s.active,expires:'end',grant:t.grant});
+  break;
  case'g34_IfOwn':if(ownCondition(s,t.p,t.filter,t.uid,t.incarnation??null,t.lastKnownCount))start(s,t,t.defs);else if(t.elseDefs)start(s,t,t.elseDefs);break;
  case'g34_Pradox1089':{
   const ids=look(s,{...t,n:5}),peek=deckPeek841(own,ids);
@@ -6245,7 +6249,7 @@ export function createSixPhotoRules(api){
     filter:{creature:true,...(max===Infinity?{}:{max}),...(t.g795OptionalNonEvolution?{nonEvolution:true}:{})}}]);
    break;
   }
-  if(v){const y=s.players[v.p].battle.find(y=>y.uid===v.uid);if(y){if(t.g627StayTarget)stayUntilStart627(s,t,y);if(t.g792Once)(s.once??={})[onceKey792(t,t)]=s.turn;if(t.g805AddCivilization){put(s,{...t,op:'g34_ChooseCivilization805',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g503Stack){const n=api.allLayers(y).length;const effect=t.g503Stack==='opponentDestroy'?{op:'OpponentSelect',n,to:'grave'}:t.g503Stack==='opponentMinus'?{op:'Target',power:-2000*n,g242PowerMinus:true}:t.g503Stack==='shield'?{op:'ShieldTop',n,g779Simultaneous:true}:{op:t.g503Stack==='draw'?'DrawUpTo':'Ramp',n};start(s,t,[effect,...(t.after||[])]);break;}if(t.g467Destinations){put(s,{...t,op:'g34_TargetDestination467',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g235TapOrUntap){put(s,{...t,op:'g34_TapState235',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g565AttackLock)(y.g35NoAttack??=[]).push({turn:s.turn});if(t.g569WeakerBlock)(s.extLimits??=[]).push({kind:'g569WeakerBlock',ref:{uid:y.uid,incarnation:y.incarnation||0},spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1)),expires:'end',who:s.active});if(t.g567PlayerStop)stopPlayerAttack567(s,t,y);if(t.g190Freeze)freeze(s,t,v.p,y);if(t.g546Force)force546(s,t,v.p,y);if(t.g547OwnerShield)put(s,task('g34_ShieldTop',v.p,t.source,{n:1,controller:t.controller??t.p}));if(t.g631MillCost){const amount=cost(effective(y,s));start(s,t,[{op:'Mill',n:Number.isFinite(amount)?amount:'∞',...(t.g638OptionalMill?{optional:true}:{})}]);}if(t.to)move(s,[{player:v.p,uid:v.uid,to:t.to,destroy:t.to==='grave',tapped:!!t.tapped,...(t.moveByTargetController?{controller:v.p}:{}),...(t.g1133AlreadyReplaced?{replacement:true}:{}),...(t.toOwnerMana?{toOwnerMana:true}:{}),...(t.toOwnerHand?{toOwnerHand:true}:{}),...(t.toOwnerDeck?{toOwnerDeck:true}:{}),...(t.toOwnerExtra?{toOwnerExtra:true}:{}),...(t.toOwnerGrave?{toOwnerGrave:true}:{}),...(t.to==='deckTop'?{orderDeckTop:true}:{}),...(t.faceUp?{faceUp:true}:{})}]);const wasTapped=y.tapped;if(t.tap)api.tap(s,v.p,y);const newlyTapped=!wasTapped&&y.tapped;
+  if(v){const y=s.players[v.p].battle.find(y=>y.uid===v.uid);if(y){if(t.g627StayTarget)stayUntilStart627(s,t,y);if(t.g792Once)(s.once??={})[onceKey792(t,t)]=s.turn;if(t.g805AddCivilization){put(s,{...t,op:'g34_ChooseCivilization805',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g503Stack){const n=api.allLayers(y).length;const effect=t.g503Stack==='opponentDestroy'?{op:'OpponentSelect',n,to:'grave'}:t.g503Stack==='opponentMinus'?{op:'Target',power:-2000*n,g242PowerMinus:true}:t.g503Stack==='shield'?{op:'ShieldTop',n,g779Simultaneous:true}:{op:t.g503Stack==='draw'?'DrawUpTo':'Ramp',n};start(s,t,[effect,...(t.after||[])]);break;}if(t.g467Destinations){put(s,{...t,op:'g34_TargetDestination467',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g235TapOrUntap){put(s,{...t,op:'g34_TapState235',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g565AttackLock)(y.g35NoAttack??=[]).push({turn:s.turn});if(t.g569WeakerBlock)(s.extLimits??=[]).push({kind:'g569WeakerBlock',ref:{uid:y.uid,incarnation:y.incarnation||0},spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1)),expires:'end',who:s.active});if(t.g567PlayerStop)stopPlayerAttack567(s,t,y);if(t.g190Freeze)freeze(s,t,v.p,y);if(t.g546Force)force546(s,t,v.p,y);if(t.g547OwnerShield)put(s,task('g34_ShieldTop',v.p,t.source,{n:1,controller:t.controller??t.p}));if(t.g631MillCost){const amount=cost(effective(y,s));start(s,t,[{op:'Mill',n:Number.isFinite(amount)?amount:'∞',...(t.g638OptionalMill?{optional:true}:{})}]);}if(t.to)move(s,[{player:v.p,uid:v.uid,to:t.to,destroy:t.to==='grave',tapped:!!t.tapped,...(t.moveByTargetController?{controller:v.p}:{}),...(t.g1133AlreadyReplaced?{replacement:true}:{}),...(t.toOwnerMana?{toOwnerMana:true}:{}),...(t.toOwnerShields?{toOwnerShields:true}:{}),...(t.toOwnerHand?{toOwnerHand:true}:{}),...(t.toOwnerDeck?{toOwnerDeck:true}:{}),...(t.toOwnerExtra?{toOwnerExtra:true}:{}),...(t.toOwnerGrave?{toOwnerGrave:true}:{}),...(t.to==='deckTop'?{orderDeckTop:true}:{}),...(t.faceUp?{faceUp:true}:{})}]);const wasTapped=y.tapped;if(t.tap)api.tap(s,v.p,y);const newlyTapped=!wasTapped&&y.tapped;
    if(t.g988Lure)(s.g42Lures??=[]).push({p:t.p,uid:y.uid,incarnation:y.incarnation||0,source:t.source,cost:cost(card(t.source))});
    if(t.g1116CreatureUntapLock)(s.extLimits??=[]).push({
     kind:'g1116CreatureUntapLock',ref:key(y),who:t.p,expires:'start',
@@ -6928,6 +6932,14 @@ export function createSixPhotoRules(api){
  twinFinish1088(s,p){return creatures(s,p).some(x=>card(x).g1088Twin&&!api.ignored(s,x));},
  observedEntry(s,p,y,options){
   const c=card(y),eventType=c.type;
+  if(s.extLimits?.some(l=>l.kind==='g1218NextCreatureGrant'&&l.player===p&&l.turn===s.turn)&&
+     !y.sealed&&!y.faceDown&&api.isCreature(s,y)){
+   s.extLimits=s.extLimits.filter(l=>{
+    if(l.kind!=='g1218NextCreatureGrant'||l.player!==p||l.turn!==s.turn)return true;
+    applyGrant(s,{p,source:l.source,spell:true,grant:l.grant},y);
+    return false;
+   });
+  }
   if(!y.sealed&&!y.faceDown&&(c.neoEvolution||api.isEvolution(y))&&api.isCreature(s,y)){
    const entrant={uid:y.uid,incarnation:y.incarnation||0};
    for(const x of s.players[p].grave)if(!x.faceDown&&card(x).g1126GraveBase)

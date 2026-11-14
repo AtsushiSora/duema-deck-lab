@@ -233207,15 +233207,139 @@
       ],
       "supportBatch": "phase-1217",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-030",
+      "name": "監獄呪文「ピカビム」",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "シビルカウント２：この呪文が自分のシールドゾーンにあり、自分の光のクリーチャーまたは光のタマシードが合計２つ以上あれば、この呪文に「S・トリガー」を与える。\n相手の、コスト５以下のクリーチャー１体またはコスト５以下のタマシードを１枚、シールド化する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-030",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g876ShieldTriggerCondition": {
+        "creatureOrSeed": true,
+        "color": "光",
+        "faceUp": true,
+        "g258Civil": 2
+      },
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "element": true,
+          "to": "shields",
+          "toOwnerShields": true,
+          "spell": true,
+          "filter": {
+            "creatureOrSeed": true,
+            "faceUp": true,
+            "max": 5
+          },
+          "title": "シールド化するコスト5以下の相手のクリーチャーまたはタマシードを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1218",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-069",
+      "name": "炎竜闘衣",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "race": "",
+      "text": "このターン、次に出た自分のクリーチャーに、このターンの終わりまで「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）\nシビルカウント２：自分の火のクリーチャーまたは火のタマシードが合計２つ以上あれば、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-069",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "NextCreatureGrant1218",
+          "grant": {
+            "speedAttacker": true
+          }
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creatureOrSeed": true,
+            "color": "火",
+            "faceUp": true,
+            "g258Civil": 2
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1218",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-073",
+      "name": "カタパルト・チャージ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "race": "",
+      "text": "このターン、次に出た自分のクリーチャーに、このターンの終わりまで「マッハファイター」を与える。（「マッハファイター」を持つクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nシビルカウント２：自分の自然のクリーチャーまたは自然のタマシードが合計２つ以上あれば、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-073",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "NextCreatureGrant1218",
+          "grant": {
+            "machFighter": true
+          }
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creatureOrSeed": true,
+            "color": "自然",
+            "faceUp": true,
+            "g258Civil": 2
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1218",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1217,
+    "phase": 1218,
     "checkedAt": "2026-11-14",
-    "baseCount": 7643,
+    "baseCount": 7646,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7646,
+    "totalCount": 7649,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -254108,6 +254232,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7643,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1217,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7643,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7646,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -2470,6 +2470,28 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1218&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
+  const lines=f.abilityText.split('\n').map(normalize);
+  const civilCount2=color=>({creatureOrSeed:true,color,faceUp:true,g258Civil:2});
+  if(d.id==='dm22rp1-030'&&lines.length===2&&
+     lines[0]==='シビルカウント2:この呪文が自分のシールドゾーンにあり自分の光のクリーチャーまたは光のタマシードが合計2つ以上あればこの呪文に「S・トリガー」を与える。'&&
+     lines[1]==='相手のコスト5以下のクリーチャー1体またはコスト5以下のタマシードを1枚シールド化する。')
+   return {effect:'sixPhoto',g876ShieldTriggerCondition:civilCount2('光'),
+    g34Tasks:[{op:'Target',element:true,to:'shields',toOwnerShields:true,spell:true,
+     filter:{creatureOrSeed:true,faceUp:true,max:5},
+     title:'シールド化するコスト5以下の相手のクリーチャーまたはタマシードを選ぶ'}]};
+  const attackGrant={
+   'dm22rp1-069':{color:'火',keyword:'スピードアタッカー',reminder:'「スピードアタッカー」を持つクリーチャーは召喚酔いしない',grant:{speedAttacker:true}},
+   'dm22rp1-073':{color:'自然',keyword:'マッハファイター',reminder:'「マッハファイター」を持つクリーチャーは出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる',grant:{machFighter:true}}
+  }[d.id];
+  if(attackGrant&&lines.length===2){
+   const {color,keyword,reminder,grant}=attackGrant;
+   if(lines[0]==='このターン次に出た自分のクリーチャーにこのターンの終わりまで「'+keyword+'」を与える。('+reminder+')'&&
+      lines[1]==='シビルカウント2:自分の'+color+'のクリーチャーまたは'+color+'のタマシードが合計2つ以上あればカードを1枚引く。')
+    return {effect:'sixPhoto',g34Tasks:[{op:'NextCreatureGrant1218',grant},
+     {op:'IfOwn',filter:civilCount2(color),defs:[{op:'Draw',n:1}]}]};
+  }
+ }
  if(phase>=1217&&d?.status==='complete'){
   const front=normalize(f.abilityText),spell=d.faces[1];
   if(d.id==='dm23rp3-047'&&d.faces.length===2&&f.typeText==='クリーチャー'&&spell.typeText==='呪文'&&
