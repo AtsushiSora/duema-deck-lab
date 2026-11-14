@@ -1922,7 +1922,8 @@ export function entryAbilities(s,p,original,reference){
    extended(ability.label,'g34_Sequence',{defs:ability.defs});
   return out;
  }
- if(c.g997SummonEntry)extended('召喚して出た時','g34_Sequence',{defs:c.g997SummonEntry});
+ const summonEntry=c.g997SummonEntry||c.g1087SummonEntry;
+ if(summonEntry)extended('召喚して出た時','g34_Sequence',{defs:summonEntry});
  for(const ability of eligibleExtraEntry527(c,null))extended(ability.label,'g34_Sequence',{defs:ability.defs});
  if(c.justDiver)add('ジャストダイバー','justDiver');
  if(c.g414ShieldPlus)extended('シールド・プラス','g34_ShieldPlus414');

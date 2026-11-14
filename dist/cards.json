@@ -231481,15 +231481,162 @@
       ],
       "supportBatch": "phase-1205",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-001",
+      "name": "フラウム・ゴルギーニ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 11500,
+      "race": "メカ・デル・ディネロ/スーパーカー・ドラゴン",
+      "text": "自分の「ブロッカー」を持つクリーチャーが２体以上あれば、このクリーチャーの召喚コストを３少なくする。\nW・ブレイカー\nこのクリーチャーが召喚によって出た時、メカ・W・メクレイド８する。（メカ・W・メクレイド８：自分の山札の上から６枚を見る。その中から、コスト８以下のメカを２枚まで、コストを支払わずに使う。残りを好きな順序で山札の下に置く）\n各ターンの終わりに自分のメカをすべてアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-001",
+      "limit": 4,
+      "breaker": 2,
+      "g261Discount": {
+        "filter": {
+          "g370BattleCount": {
+            "filter": {
+              "creature": true,
+              "blocker": true,
+              "faceUp": true
+            },
+            "min": 2
+          }
+        },
+        "amount": 3
+      },
+      "g1087SummonEntry": [
+        {
+          "op": "DoubleRaid1206",
+          "race": "メカ",
+          "max": 8
+        }
+      ],
+      "g474AnyEnd": [
+        {
+          "op": "GroupUntap",
+          "creaturesOrSeeds": true,
+          "filter": {
+            "creatureOrSeed": true,
+            "race": "メカ",
+            "faceUp": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1206",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-003",
+      "name": "Go! 韻句 Steady",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 11000,
+      "race": "マジック・ポセイディア・ドラゴン",
+      "text": "自分のツインパクト・クリーチャーが２体以上あれば、このクリーチャーの召喚コストを３少なくする。\nW・ブレイカー\nこのクリーチャーが召喚によって出た時、マジック・W・メクレイド８する。（マジック・W・メクレイド８：自分の山札の上から６枚を見る。その中から、コスト８以下のマジックを２枚まで、コストを支払わずに使う。残りを好きな順序で山札の下に置く）\n自分のマジック・クリーチャーは攻撃もブロックもされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-003",
+      "limit": 4,
+      "breaker": 2,
+      "g261Discount": {
+        "filter": {
+          "g370BattleCount": {
+            "filter": {
+              "creature": true,
+              "twin": true,
+              "faceUp": true
+            },
+            "min": 2
+          }
+        },
+        "amount": 3
+      },
+      "g1087SummonEntry": [
+        {
+          "op": "DoubleRaid1206",
+          "race": "マジック",
+          "max": 8
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "race": "マジック"
+          },
+          "grants": {
+            "cannotBeAttacked": true,
+            "unblockable": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1206",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-006",
+      "name": "ボルシャック・ノブリス・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 10000,
+      "race": "アーマード・ドラゴン",
+      "text": "自分の火のエレメントが３つ以上あれば、このクリーチャーの召喚コストを３少なくする。\nW・ブレイカー\nこのクリーチャーが召喚によって出た時、アーマード・W・メクレイド８する。（アーマード・W・メクレイド８：自分の山札の上から６枚を見る。その中から、コスト８以下のアーマードを２枚まで、コストを支払わずに使う。残りを好きな順序で山札の下に置く）\n自分のアーマードすべては、バトル中パワーを+3000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-006",
+      "limit": 4,
+      "breaker": 2,
+      "g261Discount": {
+        "filter": {
+          "g370BattleCount": {
+            "filter": {
+              "color": "火",
+              "faceUp": true
+            },
+            "min": 3,
+            "g557Elements": true
+          }
+        },
+        "amount": 3
+      },
+      "g1087SummonEntry": [
+        {
+          "op": "DoubleRaid1206",
+          "race": "アーマード",
+          "max": 8
+        }
+      ],
+      "g466BattleAura": {
+        "filter": {
+          "creature": true,
+          "race": "アーマード"
+        },
+        "power": 3000
+      },
+      "supportBatch": "phase-1206",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1205,
+    "phase": 1206,
     "checkedAt": "2026-11-14",
-    "baseCount": 7607,
+    "baseCount": 7610,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7610,
+    "totalCount": 7613,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -252238,6 +252385,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7607,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1205,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7607,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7610,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -1,0 +1,711 @@
+{
+  "phase": 1206,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7610,
+  "description": "フラウム・ゴルギーニ、Go! 韻句 Steady、ボルシャック・ノブリス・ドラゴンの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/42975/",
+    "https://dm.takaratomy.co.jp/rule/qa/43047/",
+    "https://dm.takaratomy.co.jp/rule/qa/43077/",
+    "https://dm.takaratomy.co.jp/rule/qa/43371/",
+    "https://dm.takaratomy.co.jp/rule/qa/45572/",
+    "https://dm.takaratomy.co.jp/product/dm23rp2/",
+    "https://dm.takaratomy.co.jp/rule/qa/49408/",
+    "https://dm.takaratomy.co.jp/rule/qa/42991/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp2-001",
+      "name": "フラウム・ゴルギーニ",
+      "faces": [
+        {
+          "name": "フラウム・ゴルギーニ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "自分の「ブロッカー」を持つクリーチャーが２体以上あれば、このクリーチャーの召喚コストを３少なくする。\nW・ブレイカー\nこのクリーチャーが召喚によって出た時、メカ・W・メクレイド８する。（メカ・W・メクレイド８：自分の山札の上から６枚を見る。その中から、コスト８以下のメカを２枚まで、コストを支払わずに使う。残りを好きな順序で山札の下に置く）\n各ターンの終わりに自分のメカをすべてアンタップする。",
+          "race": "メカ・デル・ディネロ/スーパーカー・ドラゴン",
+          "powerText": "11500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-001",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-001.jpg",
+      "spec": {
+        "breaker": 2,
+        "g261Discount": {
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "blocker": true,
+                "faceUp": true
+              },
+              "min": 2
+            }
+          },
+          "amount": 3
+        },
+        "g1087SummonEntry": [
+          {
+            "op": "DoubleRaid1206",
+            "race": "メカ",
+            "max": 8
+          }
+        ],
+        "g474AnyEnd": [
+          {
+            "op": "GroupUntap",
+            "creaturesOrSeeds": true,
+            "filter": {
+              "creatureOrSeed": true,
+              "race": "メカ",
+              "faceUp": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "53bfc0bbcf87cfe0719065cb5af2d7c9542c1787cecacf100816fe2731477088",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp2-003",
+      "name": "Go! 韻句 Steady",
+      "faces": [
+        {
+          "name": "Go! 韻句 Steady",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "自分のツインパクト・クリーチャーが２体以上あれば、このクリーチャーの召喚コストを３少なくする。\nW・ブレイカー\nこのクリーチャーが召喚によって出た時、マジック・W・メクレイド８する。（マジック・W・メクレイド８：自分の山札の上から６枚を見る。その中から、コスト８以下のマジックを２枚まで、コストを支払わずに使う。残りを好きな順序で山札の下に置く）\n自分のマジック・クリーチャーは攻撃もブロックもされない。",
+          "race": "マジック・ポセイディア・ドラゴン",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-003.jpg",
+      "spec": {
+        "breaker": 2,
+        "g261Discount": {
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "twin": true,
+                "faceUp": true
+              },
+              "min": 2
+            }
+          },
+          "amount": 3
+        },
+        "g1087SummonEntry": [
+          {
+            "op": "DoubleRaid1206",
+            "race": "マジック",
+            "max": 8
+          }
+        ],
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "race": "マジック"
+            },
+            "grants": {
+              "cannotBeAttacked": true,
+              "unblockable": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "b26aad1177afc60b19b4b662bdc2f77de5a515be4bcf75960ab248f1b75dc81c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp2-006",
+      "name": "ボルシャック・ノブリス・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルシャック・ノブリス・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "自分の火のエレメントが３つ以上あれば、このクリーチャーの召喚コストを３少なくする。\nW・ブレイカー\nこのクリーチャーが召喚によって出た時、アーマード・W・メクレイド８する。（アーマード・W・メクレイド８：自分の山札の上から６枚を見る。その中から、コスト８以下のアーマードを２枚まで、コストを支払わずに使う。残りを好きな順序で山札の下に置く）\n自分のアーマードすべては、バトル中パワーを+3000する。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "10000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-006.jpg",
+      "spec": {
+        "breaker": 2,
+        "g261Discount": {
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "color": "火",
+                "faceUp": true
+              },
+              "min": 3,
+              "g557Elements": true
+            }
+          },
+          "amount": 3
+        },
+        "g1087SummonEntry": [
+          {
+            "op": "DoubleRaid1206",
+            "race": "アーマード",
+            "max": 8
+          }
+        ],
+        "g466BattleAura": {
+          "filter": {
+            "creature": true,
+            "race": "アーマード"
+          },
+          "power": 3000
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "95ccee99d8b5a515832686dc587f0a97987045201c455d878c79016ba79a50a1",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23rp2-11B",
+      "name": "フラウム・ゴルギーニ",
+      "faces": [
+        {
+          "name": "フラウム・ゴルギーニ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "自分の「ブロッカー」を持つクリーチャーが２体以上あれば、このクリーチャーの召喚コストを３少なくする。\nW・ブレイカー\nこのクリーチャーが召喚によって出た時、メカ・W・メクレイド８する。（メカ・W・メクレイド８：自分の山札の上から６枚を見る。その中から、コスト８以下のメカを２枚まで、コストを支払わずに使う。残りを好きな順序で山札の下に置く）\n各ターンの終わりに自分のメカをすべてアンタップする。",
+          "race": "メカ・デル・ディネロ/スーパーカー・ドラゴン",
+          "powerText": "11500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-11B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-11B.jpg",
+      "spec": {
+        "breaker": 2,
+        "g261Discount": {
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "blocker": true,
+                "faceUp": true
+              },
+              "min": 2
+            }
+          },
+          "amount": 3
+        },
+        "g1087SummonEntry": [
+          {
+            "op": "DoubleRaid1206",
+            "race": "メカ",
+            "max": 8
+          }
+        ],
+        "g474AnyEnd": [
+          {
+            "op": "GroupUntap",
+            "creaturesOrSeeds": true,
+            "filter": {
+              "creatureOrSeed": true,
+              "race": "メカ",
+              "faceUp": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "4ef925750958ecf7ea43cd6f4b7bc1abfc6c158b7422ec7115c6b04ad138d2d0",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-001"
+    },
+    {
+      "id": "dm23rp2x-001",
+      "name": "フラウム・ゴルギーニ",
+      "faces": [
+        {
+          "name": "フラウム・ゴルギーニ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "自分の「ブロッカー」を持つクリーチャーが２体以上あれば、このクリーチャーの召喚コストを３少なくする。\nW・ブレイカー\nこのクリーチャーが召喚によって出た時、メカ・W・メクレイド８する。（メカ・W・メクレイド８：自分の山札の上から６枚を見る。その中から、コスト８以下のメカを２枚まで、コストを支払わずに使う。残りを好きな順序で山札の下に置く）\n各ターンの終わりに自分のメカをすべてアンタップする。",
+          "race": "メカ・デル・ディネロ/スーパーカー・ドラゴン",
+          "powerText": "11500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-001",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-001.jpg",
+      "spec": {
+        "breaker": 2,
+        "g261Discount": {
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "blocker": true,
+                "faceUp": true
+              },
+              "min": 2
+            }
+          },
+          "amount": 3
+        },
+        "g1087SummonEntry": [
+          {
+            "op": "DoubleRaid1206",
+            "race": "メカ",
+            "max": 8
+          }
+        ],
+        "g474AnyEnd": [
+          {
+            "op": "GroupUntap",
+            "creaturesOrSeeds": true,
+            "filter": {
+              "creatureOrSeed": true,
+              "race": "メカ",
+              "faceUp": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "baea88cc2999c3b8bd81aba20a47409e0d683e6f81935dc3a52e733f4e79b6c5",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-001"
+    },
+    {
+      "id": "dm23rp2x-11B",
+      "name": "フラウム・ゴルギーニ",
+      "faces": [
+        {
+          "name": "フラウム・ゴルギーニ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "自分の「ブロッカー」を持つクリーチャーが２体以上あれば、このクリーチャーの召喚コストを３少なくする。\nW・ブレイカー\nこのクリーチャーが召喚によって出た時、メカ・W・メクレイド８する。（メカ・W・メクレイド８：自分の山札の上から６枚を見る。その中から、コスト８以下のメカを２枚まで、コストを支払わずに使う。残りを好きな順序で山札の下に置く）\n各ターンの終わりに自分のメカをすべてアンタップする。",
+          "race": "メカ・デル・ディネロ/スーパーカー・ドラゴン",
+          "powerText": "11500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-11B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-11B.jpg",
+      "spec": {
+        "breaker": 2,
+        "g261Discount": {
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "blocker": true,
+                "faceUp": true
+              },
+              "min": 2
+            }
+          },
+          "amount": 3
+        },
+        "g1087SummonEntry": [
+          {
+            "op": "DoubleRaid1206",
+            "race": "メカ",
+            "max": 8
+          }
+        ],
+        "g474AnyEnd": [
+          {
+            "op": "GroupUntap",
+            "creaturesOrSeeds": true,
+            "filter": {
+              "creatureOrSeed": true,
+              "race": "メカ",
+              "faceUp": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "71012693306def01bcb3a260c663658d9741ca8e0b1bb436d80298f92e934190",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-001"
+    },
+    {
+      "id": "dm23rp2x-01X",
+      "name": "フラウム・ゴルギーニ",
+      "faces": [
+        {
+          "name": "フラウム・ゴルギーニ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "自分の「ブロッカー」を持つクリーチャーが２体以上あれば、このクリーチャーの召喚コストを３少なくする。\nW・ブレイカー\nこのクリーチャーが召喚によって出た時、メカ・W・メクレイド８する。（メカ・W・メクレイド８：自分の山札の上から６枚を見る。その中から、コスト８以下のメカを２枚まで、コストを支払わずに使う。残りを好きな順序で山札の下に置く）\n各ターンの終わりに自分のメカをすべてアンタップする。",
+          "race": "メカ・デル・ディネロ/スーパーカー・ドラゴン",
+          "powerText": "11500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-01X",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-01X.jpg",
+      "spec": {
+        "breaker": 2,
+        "g261Discount": {
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "blocker": true,
+                "faceUp": true
+              },
+              "min": 2
+            }
+          },
+          "amount": 3
+        },
+        "g1087SummonEntry": [
+          {
+            "op": "DoubleRaid1206",
+            "race": "メカ",
+            "max": 8
+          }
+        ],
+        "g474AnyEnd": [
+          {
+            "op": "GroupUntap",
+            "creaturesOrSeeds": true,
+            "filter": {
+              "creatureOrSeed": true,
+              "race": "メカ",
+              "faceUp": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "fab3f2cafa600282c10999925c223ab1468be3599e6717a5cbdecfde6216416d",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-001"
+    },
+    {
+      "id": "dm23rp2x-003",
+      "name": "Go! 韻句 Steady",
+      "faces": [
+        {
+          "name": "Go! 韻句 Steady",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "自分のツインパクト・クリーチャーが２体以上あれば、このクリーチャーの召喚コストを３少なくする。\nW・ブレイカー\nこのクリーチャーが召喚によって出た時、マジック・W・メクレイド８する。（マジック・W・メクレイド８：自分の山札の上から６枚を見る。その中から、コスト８以下のマジックを２枚まで、コストを支払わずに使う。残りを好きな順序で山札の下に置く）\n自分のマジック・クリーチャーは攻撃もブロックもされない。",
+          "race": "マジック・ポセイディア・ドラゴン",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-003.jpg",
+      "spec": {
+        "breaker": 2,
+        "g261Discount": {
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "twin": true,
+                "faceUp": true
+              },
+              "min": 2
+            }
+          },
+          "amount": 3
+        },
+        "g1087SummonEntry": [
+          {
+            "op": "DoubleRaid1206",
+            "race": "マジック",
+            "max": 8
+          }
+        ],
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "race": "マジック"
+            },
+            "grants": {
+              "cannotBeAttacked": true,
+              "unblockable": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "602197b5a79f9290adfc22858d247d20b80554241b017d05a3b76e71fb3073fb",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-003"
+    },
+    {
+      "id": "dm23rp2x-03X",
+      "name": "Go! 韻句 Steady",
+      "faces": [
+        {
+          "name": "Go! 韻句 Steady",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "自分のツインパクト・クリーチャーが２体以上あれば、このクリーチャーの召喚コストを３少なくする。\nW・ブレイカー\nこのクリーチャーが召喚によって出た時、マジック・W・メクレイド８する。（マジック・W・メクレイド８：自分の山札の上から６枚を見る。その中から、コスト８以下のマジックを２枚まで、コストを支払わずに使う。残りを好きな順序で山札の下に置く）\n自分のマジック・クリーチャーは攻撃もブロックもされない。",
+          "race": "マジック・ポセイディア・ドラゴン",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-03X",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-03X.jpg",
+      "spec": {
+        "breaker": 2,
+        "g261Discount": {
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "twin": true,
+                "faceUp": true
+              },
+              "min": 2
+            }
+          },
+          "amount": 3
+        },
+        "g1087SummonEntry": [
+          {
+            "op": "DoubleRaid1206",
+            "race": "マジック",
+            "max": 8
+          }
+        ],
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "race": "マジック"
+            },
+            "grants": {
+              "cannotBeAttacked": true,
+              "unblockable": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "b481de420aa2e62109a789ea84ad8df22c003cd506614137f79bbd69e7db72ef",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-003"
+    },
+    {
+      "id": "dm23rp2x-006",
+      "name": "ボルシャック・ノブリス・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルシャック・ノブリス・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "自分の火のエレメントが３つ以上あれば、このクリーチャーの召喚コストを３少なくする。\nW・ブレイカー\nこのクリーチャーが召喚によって出た時、アーマード・W・メクレイド８する。（アーマード・W・メクレイド８：自分の山札の上から６枚を見る。その中から、コスト８以下のアーマードを２枚まで、コストを支払わずに使う。残りを好きな順序で山札の下に置く）\n自分のアーマードすべては、バトル中パワーを+3000する。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "10000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-006.jpg",
+      "spec": {
+        "breaker": 2,
+        "g261Discount": {
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "color": "火",
+                "faceUp": true
+              },
+              "min": 3,
+              "g557Elements": true
+            }
+          },
+          "amount": 3
+        },
+        "g1087SummonEntry": [
+          {
+            "op": "DoubleRaid1206",
+            "race": "アーマード",
+            "max": 8
+          }
+        ],
+        "g466BattleAura": {
+          "filter": {
+            "creature": true,
+            "race": "アーマード"
+          },
+          "power": 3000
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "b2e9a27f6d44a6e8af78391b86b72bfdb62cb5463f951261ed1582d91f2b8bc2",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-006"
+    },
+    {
+      "id": "dm23rp2x-06X",
+      "name": "ボルシャック・ノブリス・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルシャック・ノブリス・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "自分の火のエレメントが３つ以上あれば、このクリーチャーの召喚コストを３少なくする。\nW・ブレイカー\nこのクリーチャーが召喚によって出た時、アーマード・W・メクレイド８する。（アーマード・W・メクレイド８：自分の山札の上から６枚を見る。その中から、コスト８以下のアーマードを２枚まで、コストを支払わずに使う。残りを好きな順序で山札の下に置く）\n自分のアーマードすべては、バトル中パワーを+3000する。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "10000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-06X",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-06X.jpg",
+      "spec": {
+        "breaker": 2,
+        "g261Discount": {
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "color": "火",
+                "faceUp": true
+              },
+              "min": 3,
+              "g557Elements": true
+            }
+          },
+          "amount": 3
+        },
+        "g1087SummonEntry": [
+          {
+            "op": "DoubleRaid1206",
+            "race": "アーマード",
+            "max": 8
+          }
+        ],
+        "g466BattleAura": {
+          "filter": {
+            "creature": true,
+            "race": "アーマード"
+          },
+          "power": 3000
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "0309343cd3e84e0224c509ca100d782f2ce89539739845cb8587c94dc04fe780",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-006"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp2-001": 4,
+      "dm23rp2-003": 4,
+      "dm23rp2-006": 4,
+      "dm23rp2-11B": 4,
+      "dm23rp2x-001": 4,
+      "dm23rp2x-11B": 4,
+      "dm23rp2x-01X": 4,
+      "dm23rp2x-003": 4,
+      "dm23rp2x-03X": 4,
+      "dm23rp2x-006": 4,
+      "dm23rp2x-06X": 4
+    }
+  }
+}

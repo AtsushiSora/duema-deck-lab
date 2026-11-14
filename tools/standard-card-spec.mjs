@@ -2474,6 +2474,30 @@ export function standardCardSpec(d,{phase=165}={}){
   const text=normalize(f.abilityText);
   const raidText=(race,max)=>`${race}・メクレイド${max}する。(${race}・メクレイド${max}:自分の山札の上から3枚を見る。`+
    `その中からコスト${max}以下の${race}を1枚コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く)`;
+  if(phase>=1206){
+   const doubleRaid=(race,condition,min,extra={})=>({
+    breaker:2,g261Discount:{filter:{g370BattleCount:{filter:condition,min,...extra}},amount:3},
+    g1087SummonEntry:[{op:'DoubleRaid1206',race,max:8}]
+   });
+   const doubleText=race=>'W・ブレイカーこのクリーチャーが召喚によって出た時'+race+'・W・メクレイド8する。('+
+    race+'・W・メクレイド8:自分の山札の上から6枚を見る。その中からコスト8以下の'+race+
+    'を2枚までコストを支払わずに使う。残りを好きな順序で山札の下に置く)';
+   if(['dm23rp2-001','dm23rp2-11B','dm23rp2x-001','dm23rp2x-11B','dm23rp2x-01X'].includes(d.id)&&
+      text==='自分の「ブロッカー」を持つクリーチャーが2体以上あればこのクリーチャーの召喚コストを3少なくする。'+
+      doubleText('メカ')+'各ターンの終わりに自分のメカをすべてアンタップする。')
+    return {...doubleRaid('メカ',{creature:true,blocker:true,faceUp:true},2),
+     g474AnyEnd:[{op:'GroupUntap',creaturesOrSeeds:true,filter:{creatureOrSeed:true,race:'メカ',faceUp:true}}]};
+   if(['dm23rp2-003','dm23rp2x-003','dm23rp2x-03X'].includes(d.id)&&
+      text==='自分のツインパクト・クリーチャーが2体以上あればこのクリーチャーの召喚コストを3少なくする。'+
+      doubleText('マジック')+'自分のマジック・クリーチャーは攻撃もブロックもされない。')
+    return {...doubleRaid('マジック',{creature:true,twin:true,faceUp:true},2),
+     g208Auras:[{filter:{creature:true,race:'マジック'},grants:{cannotBeAttacked:true,unblockable:true}}]};
+   if(['dm23rp2-006','dm23rp2x-006','dm23rp2x-06X'].includes(d.id)&&
+      text==='自分の火のエレメントが3つ以上あればこのクリーチャーの召喚コストを3少なくする。'+
+      doubleText('アーマード')+'自分のアーマードすべてはバトル中パワーを+3000する。')
+    return {...doubleRaid('アーマード',{color:'火',faceUp:true},3,{g557Elements:true}),
+     g466BattleAura:{filter:{creature:true,race:'アーマード'},power:3000}};
+  }
   if(phase>=1205){
    if(['dm23rp2-047','dm23rp2x-047'].includes(d.id)&&
       text==='各ターン2枚目のカードを自分のマナゾーンに置いた時'+raidText('ジャイアント',5))
