@@ -2475,6 +2475,22 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1272&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const lines=f.abilityText.split('\n').map(normalize);
+  if(['dm20-002','dmc61-003'].includes(d.id)&&lines.length===2&&
+   lines[0]==='相手がカードを引く時それと同じ枚数のカードを引いてもよい。'&&keyword(lines[1],'W・ブレイカー'))
+   return {breaker:2,g1272MirrorDraw:true};
+  if(['dmx17-012','dm23bd7-029','dmx20-025','promoy18-071'].includes(d.id)&&
+   lines.length===2&&lines.some(line=>keyword(line,'W・ブレイカー'))&&
+   lines.includes('相手がカードを引いた時同じ枚数のカードを引いてもよい。'))
+   return {breaker:2,g1272MirrorDraw:true};
+  if(['dm13-007','promoy3-029'].includes(d.id)){
+   const text=normalize(f.abilityText).replace(/^ブロッカーブロッカー/,'ブロッカー');
+   if(text==='ブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)'+
+    'このクリーチャーは相手プレイヤーを攻撃できない。ターンのはじめにカードを引く時以外に相手がカードを引いた時同じ枚数のカードを引く。')
+    return {blocker:true,noPlayerAttack:true,g1272AsteriaDraw:true};
+  }
+ }
  if(phase>=1271&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const lines=f.abilityText.split('\n').map(normalize);
   if(d.id==='dm36-005'&&lines.length===3&&keyword(lines[2],'W・ブレイカー')&&

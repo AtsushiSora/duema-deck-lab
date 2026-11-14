@@ -8283,10 +8283,15 @@ export function createSixPhotoRules(api){
    if(!y.sealed&&effective(y,s).g789SecondDraw)queue(s,p,y,[E('Draw',{n:1})]);
   }
   for(const y of s.players[1-p].battle){
-   const {g676OppDraw,g678LaterOppDraw}=card(y);
-   if(!(g676OppDraw||g678LaterOppDraw)||y.sealed||api.ignored(s,y)||!api.isCreature(s,y))continue;
+   const {g676OppDraw,g678LaterOppDraw,g1272MirrorDraw,g1272AsteriaDraw}=card(y);
+   if(!(g676OppDraw||g678LaterOppDraw||g1272MirrorDraw||g1272AsteriaDraw)||
+    y.sealed||api.ignored(s,y)||!api.isCreature(s,y))continue;
    if(g676OppDraw)for(let i=0;i<n;i++)queue(s,1-p,y,g676OppDraw);
    if(g678LaterOppDraw&&s.active===p)for(let i=before===0?1:0;i<n;i++)queue(s,1-p,y,g678LaterOppDraw);
+   if(g1272MirrorDraw)queue(s,1-p,y,[{op:'Offer',title:'カードを'+n+'枚引く？',defs:[{op:'Draw',n}]}]);
+   // Asteria excludes the first draw of the active player, even before the turn draw (QA 35248).
+   if(g1272AsteriaDraw)for(let i=s.active===p&&before===0?1:0;i<n;i++)
+    queue(s,1-p,y,[{op:'Draw',n:1}]);
   }
  },
  battleCardDestroyed1126(s,p,x,defs){queue(s,p,x,defs);},
