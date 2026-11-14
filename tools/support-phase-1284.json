@@ -1,0 +1,404 @@
+{
+  "phase": 1284,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7862,
+  "description": "死神覇王 XENARCH、真価と代価のチェスト、♪冬深き 隣は何も せぬ人ぞの全能力を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/42505/",
+    "https://dm.takaratomy.co.jp/rule/qa/45464/",
+    "https://dm.takaratomy.co.jp/rule/qa/42494/",
+    "https://dm.takaratomy.co.jp/rule/qa/42495/",
+    "https://dm.takaratomy.co.jp/rule/qa/42496/",
+    "https://dm.takaratomy.co.jp/rule/qa/39858/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316640/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm22rp2-004",
+      "name": "死神覇王 XENARCH",
+      "faces": [
+        {
+          "name": "死神覇王 XENARCH",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "{GS} G・ストライク\nW・ブレイカー\nこのクリーチャーが出た時、自分のクリーチャーを１体破壊してもよい。そうしたら、相手は自身のクリーチャーを１体選んで破壊する。\n自分の手札を捨てた時、このクリーチャーが自分の墓地にあれば、手札に戻してもよい。",
+          "race": "デーモン・コマンド/ダークロード",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-004.jpg",
+      "spec": {
+        "gStrike": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "to": "grave",
+            "implicitSelection": true,
+            "optional": true,
+            "g587AfterSelection": true,
+            "after": [
+              {
+                "op": "OpponentSelect",
+                "to": "grave",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "g1284GraveDiscardReturn": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "2ad9e4e6e90b82755fb10cde345dd9d7763270c51a4d174ed413ebe39ab46e2a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-026",
+      "name": "真価と代価のチェスト",
+      "faces": [
+        {
+          "name": "真価と代価のチェスト",
+          "typeText": "タマシード",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "シビルカウント ３：自分の光のクリーチャーまたは光のタマシードが合計３つ以上あれば、自分のクリーチャーすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）\nシビルカウント ３：自分の闇のクリーチャーまたは闇のタマシードが合計３つ以上あれば、自分のクリーチャーすべてに「スレイヤー」を与える。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n自分のクリーチャーがバトル中に破壊された時、そのターンの終わりに、そのクリーチャーを墓地から出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-026",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-026.jpg",
+      "spec": {
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "g557Condition": {
+              "creatureOrSeed": true,
+              "color": "光",
+              "faceUp": true,
+              "g258Civil": 3
+            },
+            "grants": {
+              "blocker": true
+            }
+          },
+          {
+            "filter": {
+              "creature": true
+            },
+            "g557Condition": {
+              "creatureOrSeed": true,
+              "color": "闇",
+              "faceUp": true,
+              "g258Civil": 3
+            },
+            "grants": {
+              "slayer": true
+            }
+          }
+        ],
+        "g1284BattleRevival": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "09e09be8104e1122f55117105da8a4eda95160841123a37545d7d4dc119d8b6a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-059",
+      "name": "♪冬深き 隣は何も せぬ人ぞ",
+      "faces": [
+        {
+          "name": "♪冬深き 隣は何も せぬ人ぞ",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\nシビルカウント２：自分の水のクリーチャーまたは水のタマシードが合計２つ以上あれば、この呪文を自分の手札から唱えた後、もう一度、自分の墓地からコストを支払わずに唱える。",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-059",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-059.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "spell": true,
+            "g190Freeze": "start",
+            "g1058FollowUnit": true
+          }
+        ],
+        "g1284CivilRecast": {
+          "creatureOrSeed": true,
+          "color": "水",
+          "faceUp": true,
+          "g258Civil": 2
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "8415bfae061d018ce80fab56831d7e709786501cc79dcba50c614fd373bfbc85",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm22rp2x-004",
+      "name": "死神覇王 XENARCH",
+      "faces": [
+        {
+          "name": "死神覇王 XENARCH",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "{GS} G・ストライク\nW・ブレイカー\nこのクリーチャーが出た時、自分のクリーチャーを１体破壊してもよい。そうしたら、相手は自身のクリーチャーを１体選んで破壊する。\n自分の手札を捨てた時、このクリーチャーが自分の墓地にあれば、手札に戻してもよい。",
+          "race": "デーモン・コマンド/ダークロード",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-004.jpg",
+      "spec": {
+        "gStrike": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "to": "grave",
+            "implicitSelection": true,
+            "optional": true,
+            "g587AfterSelection": true,
+            "after": [
+              {
+                "op": "OpponentSelect",
+                "to": "grave",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "g1284GraveDiscardReturn": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "28b9278c37c2809ac4b70ffe0ed6354c945f782bb0f935c57177e540a2cbaf7f",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-004"
+    },
+    {
+      "id": "dm22rp2x-004X",
+      "name": "死神覇王 XENARCH",
+      "faces": [
+        {
+          "name": "死神覇王 XENARCH",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "{GS} G・ストライク\nW・ブレイカー\nこのクリーチャーが出た時、自分のクリーチャーを１体破壊してもよい。そうしたら、相手は自身のクリーチャーを１体選んで破壊する。\n自分の手札を捨てた時、このクリーチャーが自分の墓地にあれば、手札に戻してもよい。",
+          "race": "デーモン・コマンド/ダークロード",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-004X",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-004X.jpg",
+      "spec": {
+        "gStrike": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "to": "grave",
+            "implicitSelection": true,
+            "optional": true,
+            "g587AfterSelection": true,
+            "after": [
+              {
+                "op": "OpponentSelect",
+                "to": "grave",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "g1284GraveDiscardReturn": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "ebd78c5c8b5a5239692949be62588648857088e77151b51d546f293ab2d16d37",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-004"
+    },
+    {
+      "id": "dm22rp2x-026",
+      "name": "真価と代価のチェスト",
+      "faces": [
+        {
+          "name": "真価と代価のチェスト",
+          "typeText": "タマシード",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "シビルカウント ３：自分の光のクリーチャーまたは光のタマシードが合計３つ以上あれば、自分のクリーチャーすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）\nシビルカウント ３：自分の闇のクリーチャーまたは闇のタマシードが合計３つ以上あれば、自分のクリーチャーすべてに「スレイヤー」を与える。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n自分のクリーチャーがバトル中に破壊された時、そのターンの終わりに、そのクリーチャーを墓地から出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-026",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-026.jpg",
+      "spec": {
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "g557Condition": {
+              "creatureOrSeed": true,
+              "color": "光",
+              "faceUp": true,
+              "g258Civil": 3
+            },
+            "grants": {
+              "blocker": true
+            }
+          },
+          {
+            "filter": {
+              "creature": true
+            },
+            "g557Condition": {
+              "creatureOrSeed": true,
+              "color": "闇",
+              "faceUp": true,
+              "g258Civil": 3
+            },
+            "grants": {
+              "slayer": true
+            }
+          }
+        ],
+        "g1284BattleRevival": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "24ffbd3dc77f32683566da04b113e6530f6c85e2a2963f90f81a95c77adc37d0",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-026"
+    },
+    {
+      "id": "dm22rp2x-059",
+      "name": "♪冬深き 隣は何も せぬ人ぞ",
+      "faces": [
+        {
+          "name": "♪冬深き 隣は何も せぬ人ぞ",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\nシビルカウント２：自分の水のクリーチャーまたは水のタマシードが合計２つ以上あれば、この呪文を自分の手札から唱えた後、もう一度、自分の墓地からコストを支払わずに唱える。",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-059",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-059.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "spell": true,
+            "g190Freeze": "start",
+            "g1058FollowUnit": true
+          }
+        ],
+        "g1284CivilRecast": {
+          "creatureOrSeed": true,
+          "color": "水",
+          "faceUp": true,
+          "g258Civil": 2
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "f301341e5ecf2a0a10bc53c141fb0ea1b8bbd42e62e3895cda01f1a7add76a5f",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-059"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22rp2-004": 4,
+      "dm22rp2-026": 4,
+      "dm22rp2-059": 4,
+      "dm22rp2x-004": 4,
+      "dm22rp2x-004X": 4,
+      "dm22rp2x-026": 4,
+      "dm22rp2x-059": 4
+    },
+    "currentList": "https://dm.takaratomy.co.jp/img/regulation/2608/202608regulation.pdf"
+  }
+}

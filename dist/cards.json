@@ -241054,15 +241054,138 @@
       ],
       "supportBatch": "phase-1283",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-004",
+      "name": "死神覇王 XENARCH",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "デーモン・コマンド/ダークロード",
+      "text": "{GS} G・ストライク\nW・ブレイカー\nこのクリーチャーが出た時、自分のクリーチャーを１体破壊してもよい。そうしたら、相手は自身のクリーチャーを１体選んで破壊する。\n自分の手札を捨てた時、このクリーチャーが自分の墓地にあれば、手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-004",
+      "limit": 4,
+      "gStrike": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "to": "grave",
+          "implicitSelection": true,
+          "optional": true,
+          "g587AfterSelection": true,
+          "after": [
+            {
+              "op": "OpponentSelect",
+              "to": "grave",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "g1284GraveDiscardReturn": true,
+      "supportBatch": "phase-1284",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-026",
+      "name": "真価と代価のチェスト",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "シビルカウント ３：自分の光のクリーチャーまたは光のタマシードが合計３つ以上あれば、自分のクリーチャーすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）\nシビルカウント ３：自分の闇のクリーチャーまたは闇のタマシードが合計３つ以上あれば、自分のクリーチャーすべてに「スレイヤー」を与える。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n自分のクリーチャーがバトル中に破壊された時、そのターンの終わりに、そのクリーチャーを墓地から出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-026",
+      "limit": 4,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "creatureOrSeed": true,
+            "color": "光",
+            "faceUp": true,
+            "g258Civil": 3
+          },
+          "grants": {
+            "blocker": true
+          }
+        },
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "creatureOrSeed": true,
+            "color": "闇",
+            "faceUp": true,
+            "g258Civil": 3
+          },
+          "grants": {
+            "slayer": true
+          }
+        }
+      ],
+      "g1284BattleRevival": true,
+      "supportBatch": "phase-1284",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-059",
+      "name": "♪冬深き 隣は何も せぬ人ぞ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "マジック・ソング",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\nシビルカウント２：自分の水のクリーチャーまたは水のタマシードが合計２つ以上あれば、この呪文を自分の手札から唱えた後、もう一度、自分の墓地からコストを支払わずに唱える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-059",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "spell": true,
+          "g190Freeze": "start",
+          "g1058FollowUnit": true
+        }
+      ],
+      "g1284CivilRecast": {
+        "creatureOrSeed": true,
+        "color": "水",
+        "faceUp": true,
+        "g258Civil": 2
+      },
+      "supportBatch": "phase-1284",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1283,
+    "phase": 1284,
     "checkedAt": "2026-11-14",
-    "baseCount": 7859,
+    "baseCount": 7862,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7862,
+    "totalCount": 7865,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -262747,6 +262870,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7859,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1283,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7859,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7862,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

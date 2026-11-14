@@ -2475,6 +2475,34 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1284&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const civil=(color,n)=>({creatureOrSeed:true,color,faceUp:true,g258Civil:n});
+  if(/^dm22rp2x?-004x?$/i.test(d.id)&&f.typeText==='クリーチャー'&&text===
+   '{GS}G・ストライクW・ブレイカー'+
+   'このクリーチャーが出た時自分のクリーチャーを1体破壊してもよい。そうしたら相手は自身のクリーチャーを1体選んで破壊する。'+
+   '自分の手札を捨てた時このクリーチャーが自分の墓地にあれば手札に戻してもよい。')
+   return {gStrike:true,breaker:2,effect:'sixPhoto',g34Tasks:[
+    {op:'Target',owner:'self',to:'grave',implicitSelection:true,optional:true,g587AfterSelection:true,
+     after:[{op:'OpponentSelect',to:'grave',n:1}]}
+   ],g1284GraveDiscardReturn:true};
+  if(/^dm22rp2x?-026$/i.test(d.id)&&f.typeText==='タマシード'&&text===
+   'シビルカウント3:自分の光のクリーチャーまたは光のタマシードが合計3つ以上あれば自分のクリーチャーすべてに「ブロッカー」を与える。'+
+   '(「ブロッカー」を持つクリーチャーをタップして相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい)'+
+   'シビルカウント3:自分の闇のクリーチャーまたは闇のタマシードが合計3つ以上あれば自分のクリーチャーすべてに「スレイヤー」を与える。'+
+   '(「スレイヤー」を持つクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)'+
+   '自分のクリーチャーがバトル中に破壊された時そのターンの終わりにそのクリーチャーを墓地から出す。')
+   return {g208Auras:[
+    {filter:{creature:true},g557Condition:civil('光',3),grants:{blocker:true}},
+    {filter:{creature:true},g557Condition:civil('闇',3),grants:{slayer:true}}
+   ],g1284BattleRevival:true};
+  if(/^dm22rp2x?-059$/i.test(d.id)&&f.typeText==='呪文'&&text===
+   normalize('S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）')+
+   '相手のクリーチャーを1体選ぶ。次の自分のターンのはじめまでそのクリーチャーは攻撃もブロックもできない。'+
+   'シビルカウント2:自分の水のクリーチャーまたは水のタマシードが合計2つ以上あればこの呪文を自分の手札から唱えた後もう一度自分の墓地からコストを支払わずに唱える。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',spell:true,g190Freeze:'start',g1058FollowUnit:true}],
+    g1284CivilRecast:civil('水',2)};
+ }
  if(phase>=1283&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(/^dm22rp2x?-012$/i.test(d.id)&&f.typeText==='クリーチャー'&&text===

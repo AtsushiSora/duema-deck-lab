@@ -1305,7 +1305,16 @@ export function createSixPhotoRules(api){
    return;
   }
   if((t.selected?.length||0)>=n||!rows.length){if(t.selected?.length||t.g891BouncePair&&!t.g891OwnStage)finishSelect(s,t);else if(t.after)start(s,t,t.after);return;}const scores550=t.g550CostBudget===undefined?null:budgetScores550(s,t,rows,n);choice(s,t,t.title||('カードを'+n+'枚'+(t.optional?'まで':'')+'選ぶ'),[...rows.map(({x,origin,p})=>opt((t.anyOwner?(p===t.p?'自分：':'相手：'):'')+(t.zones?.length>1?({mana:'マナ：',grave:'墓地：',hand:'手札：',...(t.g1114HandAndDeck?{deck:'山札：'}:{})}[origin]||''):'')+(x.faceDown?'裏向きのカード':card(x).name)+((t.g210ManaUntap||t.g806MultiUntap)?(x.tapped?(api.canUntap(x)?'（タップ中）':'（タップ中・アンタップ不可）'):'（アンタップ）'):''),{uid:x.uid,origin,p,...(origin==='extra'&&x.g1085Awakened?{g1104Back:true}:{}),...(scores550?{cost550:cost(api.zoneCard(s,p,x,origin)),serial550:x.zoneSerial||0}:{})},scores550?scores550.get(selectionKey1104(x)):t.g583DrawMoved?contractScore583(s.players[p],x,t.selected.length):t.g405Search&&origin==='deck'&&s.players[t.p].deck.length<=1?-1000:(t.g210ManaUntap||t.g806MultiUntap)?(x.tapped&&api.canUntap(x)?25:-1):x.faceDown?15:t.g530Ids&&origin==='deck'&&(t.selected?.length||0)+1>=s.players[t.p].deck.length?-1000:t.score??(t.g899RampTapped?(s.players[t.p].deck.length>t.selected.length+1?12:-1000):t.g193Select?selectedBattleScore(s,t,x,candidates,n):t.g187OwnPick?-cost(card(x))-api.power(x,false,s)/10000:t.g182HandMana||t.g183Return||t.g184ManaLoss?15-cost(card(x)):t.to==='grave'?-cost(card(x)):15+cost(card(x))),x.faceDown?null:x.cardId)),...(t.optional&&t.selected.length>=(t.minimum??0)&&(!t.g626DistinctEvolution||!t.selected.length)?[opt(t.exactOptional?'使わない':t.g837Reikon&&n>1?'返霊を使わない':t.g626DistinctEvolution?'戻さない':'ここまでで確定',null,0)]:[])]);}
- function freeze(s,t,p,y){if(!y||y.sealed)return;for(const kind of ['attack','block'])(s.extLimits??=[]).push({kind,g190Freeze:true,player:p,uid:y.uid,incarnation:y.incarnation||0,controller:t.controller??t.p,expires:t.g190Freeze==='end'?'end':'start',who:t.g190Freeze==='end'?s.active:t.g190Freeze==='opponent'?1-t.p:t.p,...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});}
+ function freeze(s,t,p,y){
+  if(!y||y.sealed)return;
+  const ref={uid:y.uid,incarnation:y.incarnation||0},end=t.g190Freeze==='end';
+  for(const kind of ['attack','block'])(s.extLimits??=[]).push({
+   kind,g190Freeze:true,player:p,...(t.g1058FollowUnit?{ref,g1058FollowUnit:true}:ref),
+   controller:t.controller??t.p,expires:end?'end':'start',
+   who:end?s.active:t.g190Freeze==='opponent'?1-t.p:t.p,
+   ...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})
+  });
+ }
  function stopPlayerAttack567(s,t,y){
   (s.extLimits??=[]).push({kind:'g567PlayerStop',ref:{uid:y.uid,incarnation:y.incarnation||0},controller:t.p,expires:t.g567PlayerStop,who:t.g567PlayerStop==='start'?t.p:s.active,...(t.spell===false?{}:{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))})});
  }
@@ -2656,6 +2665,12 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_RevealDiscard839':revealDiscard839(s,t);break;
+ case'g34_GraveDiscardReturn1284':{
+  const y=own.grave.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);
+  if(y&&api.canMoveZone(s,t.p,'grave'))start(s,t,[{op:'Offer',title:card(y).name+'を墓地から手札に戻す？',
+   defs:[{op:'SelfGraveHand476',serial:t.serial}]}]);
+  break;
+ }
  case'g34_SelfGraveHand476':{
   const y=own.grave.find(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)&&(y.zoneSerial||0)===t.serial);
   if(y&&(!t.condition||ownCondition(s,t.p,t.condition)))zoneMove(s,t.p,'grave',y.uid,'hand',t);
@@ -5418,6 +5433,7 @@ export function createSixPhotoRules(api){
   ]);
   break;
  }
+ case'g34_RecastFromGrave1245':
  case'g34_RecastAfterSacrifice1250':{
   const row=recastHandSpell1245(s,t);
   if(row)cast(s,t.p,row.x.uid,true,null,t.face,null,'grave',card(t.source).name);
@@ -8481,7 +8497,7 @@ export function createSixPhotoRules(api){
    ...(dragonElement1248(c)?{g1248DragonElement:true}:{}),
    ...(!x.sealed&&c.type==='creature'&&{g1145Cost:cost(c)===Infinity?'∞':cost(c)}),
    ...(!x.sealed&&!x.faceDown&&c.g1124Jingi?{jingi:c.g1124Jingi}:{}),
-   ...((c.g891OwnCreatureLeaves||c.g303DeathWatch?.g891LookBackSelf)&&leaving.some(row=>row.player===p&&row.uid===x.uid)?{g891OnlySelf:true}:{}),element:!x.sealed&&!x.faceDown,...(!x.sealed&&!x.faceDown&&c.g1139OtherCreatureLeaves?{g1139OtherCreatureLeaves:c.g1139OtherCreatureLeaves}:{}),elementDraw:!!c.g617OpponentElementLeaves&&!x.sealed&&!x.faceDown&&!api.ignored(s,x),...(c.g1009OpponentCreatureLeaves&&!x.sealed&&!x.faceDown?{opponentCreatureLeaves:c.g1009OpponentCreatureLeaves}:{}),...(c.g693OtherCreatureGraveDraw&&!x.sealed&&!x.faceDown&&!api.ignored(s,x)&&api.isCreature(s,x)?{graveDraw:true}:{}),watch:!x.sealed&&!api.ignored(s,x)&&(!c.g303DeathWatch?.g725RemainInBattle||!leaving.some(row=>row.player===p&&row.uid===x.uid))?c.g303DeathWatch:undefined};})),selfLeaves:s.players.flatMap((own,p)=>own.battle.flatMap(x=>{const c=effective(x,s);return c.g172Death||c.g172Leave?[{p,uid:x.uid,incarnation:x.incarnation||0,g172Death:c.g172Death,
+   ...((c.g891OwnCreatureLeaves||c.g303DeathWatch?.g891LookBackSelf)&&leaving.some(row=>row.player===p&&row.uid===x.uid)?{g891OnlySelf:true}:{}),element:!x.sealed&&!x.faceDown,...(!x.sealed&&!x.faceDown&&c.g1284BattleRevival?{g1284BattleRevival:true}:{}),...(!x.sealed&&!x.faceDown&&c.g1139OtherCreatureLeaves?{g1139OtherCreatureLeaves:c.g1139OtherCreatureLeaves}:{}),elementDraw:!!c.g617OpponentElementLeaves&&!x.sealed&&!x.faceDown&&!api.ignored(s,x),...(c.g1009OpponentCreatureLeaves&&!x.sealed&&!x.faceDown?{opponentCreatureLeaves:c.g1009OpponentCreatureLeaves}:{}),...(c.g693OtherCreatureGraveDraw&&!x.sealed&&!x.faceDown&&!api.ignored(s,x)&&api.isCreature(s,x)?{graveDraw:true}:{}),watch:!x.sealed&&!api.ignored(s,x)&&(!c.g303DeathWatch?.g725RemainInBattle||!leaving.some(row=>row.player===p&&row.uid===x.uid))?c.g303DeathWatch:undefined};})),selfLeaves:s.players.flatMap((own,p)=>own.battle.flatMap(x=>{const c=effective(x,s);return c.g172Death||c.g172Leave?[{p,uid:x.uid,incarnation:x.incarnation||0,g172Death:c.g172Death,
    ...(c.g172Death?.some(d=>d.g960FormerBases)?{formerBases960:(x.under||[]).flatMap(api.allLayers)
     .map(y=>({uid:y.uid,serial:(y.zoneSerial||0)+1}))}:{}),...(c.g172Death?.some(d=>d.g901Untapped||d.g1012Tapped)?{g901WasTapped:!!x.tapped}:{}),...(c.g172Death?.some(d=>d.op==='CrossedDeathDraw728')?{crossedCount728:crossedCount728(s,x)}:{}),...(c.g172Death?.some(d=>d.op==='MedusaCross929')?{crossedGearRefs929:crossedGearRefs929(s,p,x)}:{}),g172Leave:c.g172Leave,g601OpponentLeave:c.g601OpponentLeave}]:[];})),scarlet:[0,1].map(p=>active(s,p,'scarlet').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0}))),dororon:[0,1].map(p=>active(s,p,'dororon').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0})))};
   if(snapshot.death303.some(row=>row.watch?.defs.some(d=>d.g1192VictimPower))){
@@ -8507,6 +8523,13 @@ export function createSixPhotoRules(api){
   const before=snapshot?.death303;
   const victim=before?.find(y=>y.p===p&&y.element&&key(y)===key(x));
   if(victim){
+   // Battle-result destruction is finalized before victory effects and Slayer (Q&A 42495–42496).
+   if(to==='grave'&&destroy&&victim.creature&&
+      (s.leaving?.after?.kind==='battleResult'||s.battleResolution?.g1237Compare)){
+    for(const source of before.filter(source=>source.p===p&&source.g1284BattleRevival))
+     (s.g537Delays??=[]).push({p,source:source.cardId,uid:x.uid,incarnation:x.incarnation||0,when:'turnEnd',turn:s.turn,
+      defs:[{op:'SelfGraveRevive644',serial:(x.zoneSerial||0)+1,g1069AllowEvolution:true}]});
+   }
    if(victim.creature)s.players[p].creatureLeftTurn=s.turn;
    if(to==='grave'&&destroy&&victim.creature&&victim.g1256Evolution){
     // The hand card must already be present when the destruction occurs (QA 39985).
@@ -8921,7 +8944,13 @@ for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand
    p,who:1-p,source,spellCost:cost(faces(card(source)).at(-1)),uid:x.uid,incarnation:x.incarnation||0,
    turn:s.turn,when:'nextOwnStart',defs:[E('DelayedMove532',{to:'hand',g774Banky:true})]
   });
- }, afterSpell566(s,f){if(f.spell?.g566EvoCharger&&!api.spellIgnored(s,f.spell))put(s,task('g34_EvoCharge566',f.caster??f.owner,f.spell.id,{}));},
+ }, afterSpell566(s,f){
+  const p=f.caster??f.owner,spell=f.spell;
+  if(spell?.g566EvoCharger&&!api.spellIgnored(s,spell))put(s,task('g34_EvoCharge566',p,spell.id,{}));
+  if(!f.virtual&&spell?.g1284CivilRecast&&spell.summonOrigin==='hand'&&f.owner===p&&f.to==='grave'&&
+     !api.spellIgnored(s,spell)&&ownCondition(s,p,spell.g1284CivilRecast))
+   put(s,task('g34_RecastFromGrave1245',p,spell.id,{target:f.inst.uid,serial:f.inst.zoneSerial||0,face:0}));
+ },
 weakerBlock569(s,a,b){const p=s.players.findIndex(own=>own.battle.includes(a));if(p<0)return false;const fromSpell=(s.extLimits||[]).some(l=>l.kind==='g569WeakerBlock'&&api.allLayers(a).some(y=>key(y)===key(l.ref))&&!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})),fromAura=creatures(s,p).some(x=>{if(x.sealed||api.ignored(s,x))return false;const r=effective(x,s).g569Aura;return r&&matches(s,p,a,r.filter)&&(!r.mana||s.players[p].mana.filter(y=>api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,p).includes(r.mana.color)).length>=r.mana.n);});return (fromSpell||fromAura)&&api.power(b,false,s)<api.power(a,true,s);},
 attackPower593(s,p,x,playerOnly){
  const locks=(s.extLimits||[]).filter(l=>l.kind==='g593AttackPower'&&l.playerOnly===playerOnly&&
