@@ -242403,15 +242403,184 @@
       },
       "supportBatch": "phase-1291",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-006",
+      "name": "堅き革命 ボルシュゴス / 「ボルシュゴス・スラッシャー!!」",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "アーマード・ドラゴン",
+      "text": "革命チェンジ：アーマード\nスピードアタッカー\n自分の他のクリーチャーすべてに「ブロッカー」を与える。\nメガ・ラスト・バースト（このクリーチャーが離れて、手札、マナゾーン、または墓地に置かれた時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\n自分の山札の上から５枚を見る。その中からアーマードを１枚、相手に見せてから手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-006",
+      "limit": 4,
+      "rev": {
+        "race": "アーマード",
+        "g486Current": true
+      },
+      "speedAttacker": true,
+      "megaLastBurst": true,
+      "g208Auras": [
+        {
+          "other": true,
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "blocker": true
+          }
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "「ボルシュゴス・スラッシャー!!」",
+        "cost": 2,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "アーマード・アーツ",
+        "text": "自分の山札の上から５枚を見る。その中からアーマードを１枚、相手に見せてから手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 5,
+            "g841DeckPeek": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "anyFaceRace": "アーマード"
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1292",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-016",
+      "name": "シェケダン・ドメ・ゲルス / ドメスティック・アイ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "メカ・エンジェル・コマンド",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、次の自分のターンのはじめまで、相手のクリーチャーはすべて、可能なら攻撃する。\nメガ・ラスト・バースト（このクリーチャーが離れて、手札、マナゾーン、または墓地に置かれた時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\nS・トリガー S・トリガー\n相手は自身のアンタップしているクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-016",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "megaLastBurst": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ForceGroup546",
+          "when": "untilOwnStart",
+          "snapshot": true,
+          "filter": {
+            "faceUp": true
+          }
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "ドメスティック・アイ",
+        "cost": 2,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "メカ・デル・テック",
+        "text": "S・トリガー S・トリガー\n相手は自身のアンタップしているクリーチャーを１体選び、破壊する。",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave",
+            "filter": {
+              "untapped": true,
+              "faceUp": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1292",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-S06",
+      "name": "芸魔龍馬 バルバトチェス",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 11000,
+      "race": "マジック・ドラゴン/ゲーム・コマンド",
+      "text": "革命チェンジ：コスト５以上のマジック\nスピードアタッカー\nW・ブレイカー\nこのクリーチャーが出た時、相手のパワー10000以下のクリーチャーを１体選び、破壊する。その後、カードを２枚引く。\n終極宣言：自分のターンのはじめに、次の能力を使ってもよい。（「終極宣言」は、ゲーム中に一度だけ使える）\n▶このターン、自分のマジックを使うコストを４少なくする。ただし、コストは０以下にはならない。このターン、自分がマジックを使った時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-S06",
+      "limit": 4,
+      "rev": {
+        "race": "マジック",
+        "min": 5,
+        "g486Current": true
+      },
+      "speedAttacker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 10000,
+            "g199Power": true
+          }
+        },
+        {
+          "op": "Draw",
+          "n": 2
+        }
+      ],
+      "g174Start": [
+        {
+          "op": "BarbatChessTerminal1292"
+        }
+      ],
+      "supportBatch": "phase-1292",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1291,
+    "phase": 1292,
     "checkedAt": "2026-11-15",
-    "baseCount": 7885,
+    "baseCount": 7888,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7888,
+    "totalCount": 7891,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -264192,6 +264361,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7885,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1291,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7885,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7888,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

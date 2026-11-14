@@ -2603,7 +2603,15 @@ export function createSixPhotoRules(api){
  // Shinka creates delayed triggers tied to the physical base, rather than abilities of the current top.
  // Resolve Shinka against the evolved unit currently containing the physical base.
  case'g34_ShinkaHost544':{const host=sourceHost474(s,t);if(t.mode==='belowCost'){const n=host?cost(effective(host.x,s)):t.g399Attacker?.cost;if(n!==null&&n!==undefined)start(s,t,[{op:'Target',to:'grave',filter:{belowCost:n===Infinity?'∞':n}}]);}else if(t.mode==='fight'&&host&&!host.x.sealed&&api.isCreature(s,host.x))put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:host.x.uid,incarnation:host.x.incarnation||0},fighterOwner:host.p,optional:true});break;}
- case'g34_ForceGroup546':force546(s,t,1-t.p);break;
+ case'g34_ForceGroup546':
+  if(t.snapshot)for(const {p,y} of groupPowerRows(s,t))force546(s,t,p,y);
+  else force546(s,t,1-t.p);
+  break;
+ case'g34_BarbatChessTerminal1292':
+  if(!s.g7TerminalUsed?.[t.p])choice(s,t,'終極宣言を使う？（ゲーム中1回）',[
+   opt('終極宣言する',true,creatures(s,1-t.p).some(y=>effective(y,s).noCostReduction)?-10:25),skip()
+  ]);
+  break;
  case'g34_GraveShuffle545':put(s,task('g22Shuffle',t.p,t.source,
   {optional:t.optional,owner:t.owner,creaturesThenDraw:t.creaturesThenDraw}));break;
  case'g34_MillRecover545':{const y=api.takeTop(s,t.p);if(!y){api.deckCheck(s,t.p);break;}clear(y);api.addZone(s,t.p,'grave',y);const matched=matches(s,t.p,y,t.filter);api.deckCheck(s,t.p);if(s.winner!==null)break;if(matched)zoneMove(s,t.p,'grave',y.uid,'hand',t);else start(s,t,t.elseDefs);break;}
@@ -5698,6 +5706,15 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
  }
  function chosen(s,t,v){if(fifteen.chosen(s,t,v))return true;if(!t.op.startsWith('g34_'))return false;const own=s.players[t.p],x=live(s,t);switch(t.op){
+ case'g34_BarbatChessTerminal1292':
+  if(v&&!s.g7TerminalUsed?.[t.p]){
+   (s.g7TerminalUsed??=[false,false])[t.p]=true;
+   api.log(s,t.p,'ability',card(t.source).name+'：終極宣言を使用',{cardId:t.source});
+   // The declaration consumes its use even when Diamond Star nullifies the next ability (QA 44206).
+   if(!creatures(s,1-t.p).some(y=>effective(y,s).noCostReduction))
+    (s.extLimits??=[]).push({kind:'g1292MagicTerminal',player:t.p,source:t.source,expires:'end',who:t.p});
+  }
+  break;
  case'g34_UkonSakon1146':{
   if(!v||used792(s,t,t))break;
   const host=sourceHost474(s,t.subject);
@@ -7495,7 +7512,7 @@ export function createSixPhotoRules(api){
  useDiscount468(s,p,c){
   if(c.crossing)return 0;
   const printedCost=cost({...c,cost:c.printedCost??c.cost});
-  let discount=0;
+  let discount=race(c,'マジック')&&magicTerminal1292(s,p)?4:0;
   for(const source of creatures(s,p)){
    if(source.sealed)continue;
    const rule=effective(source,s).g468UseReduction;
@@ -7778,6 +7795,7 @@ export function createSixPhotoRules(api){
   }
  },
  played(s,p,c,x,origin,permit){
+  if(c.type!=='spell')terminalUse1292(s,p,c);
   const seed=c.type==='seed'||c.seedCreature||c.natureAce4;
   if(seed)qualifyingUse1224(s,p,c,x.uid,x.cardOwner??p);
   if(seed)for(const source of s.players[p].battle){
@@ -7826,6 +7844,7 @@ export function createSixPhotoRules(api){
     send(s,p,source,'JudgeUntap969',{g399Attacker:ref},deferred);
  },
  spellCast(s,p,c,origin,owner,inst,face){
+  terminalUse1292(s,p,c);
   firstSummonOrSpell1247(s,1);
   qualifyingUse1224(s,p,c,null,owner);
   useBlockers524(s,p);consumeReduction456(s,p,c);noncreatureUse448(s,p,c);countExecution(s,p,c);
@@ -9004,6 +9023,12 @@ for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand
     send(s,p,x,'GraveSummonWatch766',{serial:x.zoneSerial||0});
  }
  function noncreatureUse448(s,p,c){if(c.type==='creature')return;const prev=s.g448NoncreatureUses?.[p];(s.g448NoncreatureUses??=[null,null])[p]={turn:s.turn,n:prev?.turn===s.turn?prev.n+1:1};}
+ const magicTerminal1292=(s,p)=>s.extLimits?.find(l=>l.kind==='g1292MagicTerminal'&&l.player===p);
+ function terminalUse1292(s,p,c){
+  const rule=magicTerminal1292(s,p);
+  if(rule&&race(c,'マジック'))api.enqueue(s,p,{source:rule.source,effect:'extended',
+   task:task('g34_Draw',p,rule.source,{n:1,optional:true})});
+ }
  function countExecution(s,p,c){const prev=s.g34Executions?.[p];(s.g34Executions??=[null,null])[p]={turn:s.turn,n:prev?.turn===s.turn?prev.n+1:1};if(s.active===p&&cost(c)<=9)for(const x of active(s,1-p,'dokindante'))queue(s,1-p,x,[E('Draw',{n:1,optional:true}),exec('hand',9,{spellOnly:true})]);}
 
  const fifteen=createFifteenPhotoRules({...api,start,tasks,send,key,live,matches,canPut,notifyUntapped:(s,p,x)=>combined.untapped(s,p,x)});

@@ -2475,6 +2475,16 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1292&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'&&
+  ['dm23rp4-S06','dm23rp4x-S06','dm23rp4x-S06X','dm23rp4x-06A'].includes(d.id)&&
+  normalize(f.abilityText)==='革命チェンジ:コスト5以上のマジックスピードアタッカーW・ブレイカー'+
+   'このクリーチャーが出た時相手のパワー10000以下のクリーチャーを1体選び破壊する。その後カードを2枚引く。'+
+   '終極宣言:自分のターンのはじめに次の能力を使ってもよい。(「終極宣言」はゲーム中に一度だけ使える)'+
+   '▶このターン自分のマジックを使うコストを4少なくする。ただしコストは0以下にはならない。'+
+   'このターン自分がマジックを使った時カードを1枚引いてもよい。')
+  return {rev:{race:'マジック',min:5,g486Current:true},speedAttacker:true,breaker:2,effect:'sixPhoto',
+   g34Tasks:[{op:'Target',to:'grave',filter:{maxPower:10000,g199Power:true}},{op:'Draw',n:2}],
+   g174Start:[{op:'BarbatChessTerminal1292'}]};
  if(phase>=1289&&d?.status==='complete'&&d.name==='撃髄医 スパイナー'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const missingMarker=['dmbd10-013','dmrp12-g08'].includes(d.id);
   const [header,entry,minus,bonus,...other]=f.abilityText.split('\n').map(normalize);
@@ -2509,6 +2519,22 @@ export function standardCardSpec(d,{phase=165}={}){
     spellFace:{type:'spell',name:spell.name,cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,
      race:spell.race,text:spell.abilityText,effect:'sixPhoto',...spellRules}});
    const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+   if(phase>=1292){
+    const lastBurst='メガ・ラスト・バースト(このクリーチャーが離れて手札マナゾーンまたは墓地に置かれた時このカードの呪文側をコストを支払わずに唱えてもよい)';
+    if(['dm23rp4-006','dm23rp4x-006','dm23rp4x-006X'].includes(d.id)&&
+     text==='革命チェンジ:アーマードスピードアタッカー自分の他のクリーチャーすべてに「ブロッカー」を与える。'+lastBurst&&
+     back==='自分の山札の上から5枚を見る。その中からアーマードを1枚相手に見せてから手札に加えてもよい。残りを好きな順序で山札の下に置く。')
+     return twin({rev:{race:'アーマード',g486Current:true},speedAttacker:true,megaLastBurst:true,
+      g208Auras:[{other:true,filter:{creature:true},grants:{blocker:true}}]},
+      {g34Tasks:[{op:'Look',n:5,g841DeckPeek:true,rest:'bottom',
+       stages:[{n:1,to:'hand',filter:{anyFaceRace:'アーマード'},reveal:true,optional:true}]}]});
+    if(/^dm23rp4x?-016$/.test(d.id)&&
+     text==='ブロッカーブロッカーW・ブレイカーこのクリーチャーが出た時次の自分のターンのはじめまで相手のクリーチャーはすべて可能なら攻撃する。'+lastBurst&&
+     back==='S・トリガーS・トリガー相手は自身のアンタップしているクリーチャーを1体選び破壊する。')
+     return twin({blocker:true,breaker:2,megaLastBurst:true,effect:'sixPhoto',g34Tasks:[
+      {op:'ForceGroup546',when:'untilOwnStart',snapshot:true,filter:{faceUp:true}}]},
+      {trigger:true,g34Tasks:[{op:'OpponentSelect',n:1,to:'grave',filter:{untapped:true,faceUp:true}}]});
+   }
    if(phase>=1291){
     if(/^dm23rp4x?-047$/.test(d.id)&&
      text==='スピードアタッカー(このクリーチャーは召喚酔いしない)このクリーチャーが出た時自分の手札を1枚捨てカードを1枚引く。'&&
