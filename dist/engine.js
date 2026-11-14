@@ -2648,7 +2648,7 @@ function skipTurn(s,p,source){
  }
  for(const spell of s.extSpells||[])if(spell.shieldCast)finishShieldSpell(s,spell);else if(!spell.virtual){clearBattleState(spell.inst,'grave');addZone(s,s.players[spell.owner],'grave',spell.inst);}s.extSpells=[];
  for(const r of heldJudgeSpells(s.resolvingSpell)){clearBattleState(r.inst,'grave');addZone(s,s.players[r.inst.cardOwner??r.player],'grave',r.inst);}s.resolvingSpell=null;
- delete s.g23After;delete s.g25DeployBatch;delete s.g34DeployBatch;delete s.g15ResumeAfterMove;delete s.g15SmaxResume;
+ delete s.g1197AfterAttack;delete s.g23After;delete s.g25DeployBatch;delete s.g34DeployBatch;delete s.g15ResumeAfterMove;delete s.g15SmaxResume;
  for(const key of ['decision','attack','attackDeclarations','attackLifecycle','battleResolution','judge','endStep','startStep','leaving','triggers','g19BreakSequence','g19Interrupt','g14AfterAttack','g3Window','breakContext','shieldBreak'])s[key]=null;
  s.pendingEffects=[];s.triggerStack=[];s.extTasks=[];s.after=[];s.g10RevDeclarations=[];
  nextTurn(s);
@@ -3217,7 +3217,7 @@ function stepCore(s,action){
   manaDeparted(s,manaPrevious);manaPrevious=manaSnapshot(s);
   refreshDynamicTypes(s);if(extra.lionelState(s)){if(s.decision)break;continue;}powerCleanup(s);advanceAttack(s);extra.advanceBreak(s);const attackEnding=s.attackLifecycle;extra.advanceAttackEnd(s);extra.advanceAfterAttack(s);if(attackEnding&&!s.attackLifecycle)powerCleanup(s);advanceEnd(s);advanceStart(s);
   manaDeparted(s,manaPrevious);manaPrevious=manaSnapshot(s);extra.six.fifteen.graveDeparted(s,gravePrevious);gravePrevious=s.players.map(p=>p.grave.map(x=>x.uid));for(const p of[s.active,1-s.active])checkSidewaysHand(s,p);if(s.lossEvent){advanceLoss(s);if(s.decision||s.winner!==null)break;continue;}
-  if(s.decision||s.winner!==null||!(s.pendingEffects?.length||s.triggers||s.battleResolution||s.judge||s.attackDeclarations||s.leaving||s.endStep||s.startStep||s.extTasks?.length||s.g19BreakSequence||s.g19Interrupt||s.attackLifecycle||s.g14AfterAttack||s.g10RevDeclarations?.length||s.g3Window&&!s.g3Window.done))break;
+  if(s.decision||s.winner!==null||!(s.pendingEffects?.length||s.triggers||s.battleResolution||s.judge||s.attackDeclarations||s.leaving||s.endStep||s.startStep||s.extTasks?.length||s.g19BreakSequence||s.g19Interrupt||s.attackLifecycle||s.g14AfterAttack||s.g1197AfterAttack?.length||s.g10RevDeclarations?.length||s.g3Window&&!s.g3Window.done))break;
   if(n===999)throw Error('待機中の処理を完了できません');
  }
  return s;

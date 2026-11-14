@@ -230415,15 +230415,114 @@
       },
       "supportBatch": "phase-1196",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-039",
+      "name": "落下男",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ヘドリアン",
+      "text": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n相手のクリーチャーが、出たターンに攻撃する時、その攻撃の後、そのクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-039",
+      "limit": 4,
+      "slayer": true,
+      "g252AttackWatch": {
+        "who": "opponent",
+        "entryTurn": true,
+        "defs": [
+          {
+            "op": "AfterAttackDestroy",
+            "g1197Attacker": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1197",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04m-007",
+      "name": "タマタンゴ・パンツァー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 12000,
+      "race": "グランセクト",
+      "text": "T・ブレイカー\nバトルゾーンに置く時、このカードはタップして置く。\n相手のクリーチャーが攻撃する場合、可能ならこのクリーチャーを攻撃する。\n自分のマナゾーンにパワー12000以上のクリーチャーが５体以上あれば、シールドゾーンにあるこのクリーチャーに「S・トリガー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-007",
+      "limit": 4,
+      "breaker": 3,
+      "g295EnterTapped": true,
+      "g431AttackMe": true,
+      "g876ShieldTriggerCondition": {
+        "g1197ManaCount": {
+          "min": 5,
+          "filter": {
+            "faceUp": true,
+            "g228Face": {
+              "type": "creature",
+              "minPower": 12000
+            }
+          }
+        }
+      },
+      "supportBatch": "phase-1197",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-028",
+      "name": "ドゥリツィオ-O6",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 9000,
+      "race": "メカ・デル・ディネロ",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、自分の山札の上から２枚をシールド化する。\n自分のメカ・デル・ステラすべてに「エスケープ」を与える。（「エスケープ」を持つクリーチャーが破壊される時、墓地に置くかわりに自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-028",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldTop",
+          "n": 2,
+          "g779Simultaneous": true
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "g724ExactRace": "メカ・デル・ステラ"
+          },
+          "grants": {
+            "escape": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1197",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1196,
+    "phase": 1197,
     "checkedAt": "2026-11-14",
-    "baseCount": 7579,
+    "baseCount": 7582,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7582,
+    "totalCount": 7585,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -251064,6 +251163,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7579,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1196,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7579,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7582,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

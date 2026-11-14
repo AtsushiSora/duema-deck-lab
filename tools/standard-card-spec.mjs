@@ -2470,6 +2470,23 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1197&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm22rp1-039'&&text==='スレイヤー(このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)'+
+   '相手のクリーチャーが出たターンに攻撃する時その攻撃の後そのクリーチャーを破壊する。')
+   return {slayer:true,g252AttackWatch:{who:'opponent',entryTurn:true,defs:[{op:'AfterAttackDestroy',g1197Attacker:true}]}};
+  if(d.id==='dmrp04m-007'&&text==='T・ブレイカーバトルゾーンに置く時このカードはタップして置く。'+
+   '相手のクリーチャーが攻撃する場合可能ならこのクリーチャーを攻撃する。'+
+   '自分のマナゾーンにパワー12000以上のクリーチャーが5体以上あればシールドゾーンにあるこのクリーチャーに「S・トリガー」を与える。')
+   return {breaker:3,g295EnterTapped:true,g431AttackMe:true,
+    g876ShieldTriggerCondition:{g1197ManaCount:{min:5,filter:{faceUp:true,g228Face:{type:'creature',minPower:12000}}}}};
+  if(d.id==='dm23rp1-028'&&text==='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+
+   'このクリーチャーが出た時自分の山札の上から2枚をシールド化する。'+
+   '自分のメカ・デル・ステラすべてに「エスケープ」を与える。'+
+   '(「エスケープ」を持つクリーチャーが破壊される時墓地に置くかわりに自分のシールドを1つ手札に加えてもよい。ただしその「S・トリガー」は使えない)')
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'ShieldTop',n:2,g779Simultaneous:true}],
+    g208Auras:[{filter:{g724ExactRace:'メカ・デル・ステラ'},grants:{escape:true}}]};
+ }
  if(phase>=1196&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const forceAttack='相手のクリーチャーが攻撃する時可能ならこのクリーチャーを攻撃する。';
