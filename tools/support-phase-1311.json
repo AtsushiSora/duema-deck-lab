@@ -1,0 +1,381 @@
+{
+  "phase": 1311,
+  "checkedAt": "2026-11-15",
+  "baseCount": 7949,
+  "description": "インフィニティ・刃隠・ドラゴン、ティアシャキ・ハーミィ、グラビティ・ドラゴンを対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/rulechange/31649/",
+    "https://dm.takaratomy.co.jp/rule/qa/44370/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35328/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/qa/38612/",
+    "https://dm.takaratomy.co.jp/rule/qa/45800/",
+    "https://dm.takaratomy.co.jp/rule/qa/41123/",
+    "https://dm.takaratomy.co.jp/rule/qa/42130/"
+  ],
+  "cards": [
+    {
+      "id": "dmc45-007",
+      "name": "インフィニティ・刃隠・ドラゴン",
+      "faces": [
+        {
+          "name": "インフィニティ・刃隠・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\n自分のドラゴンが破壊された時、自分の山札の上から１枚目を表向きにしてもよい。\nそのカードがコスト７以下のドラゴンまたはサムライ・クリーチャーであれば、バトルゾーンに出す。",
+          "race": "アーマード・ドラゴン/サムライ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc45-007",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc45-007.jpg",
+      "spec": {
+        "breaker": 2,
+        "g303DeathWatch": {
+          "race": "ドラゴン",
+          "g1311Element": true,
+          "self": true,
+          "g891LookBackSelf": true,
+          "defs": [
+            {
+              "op": "Offer",
+              "g1042LookFirst": true,
+              "title": "山札の上から1枚目を表向きにする？",
+              "defs": [
+                {
+                  "op": "RevealTop514",
+                  "to": "battle",
+                  "filter": {
+                    "max": 7,
+                    "any": [
+                      {
+                        "race": "ドラゴン"
+                      },
+                      {
+                        "creature": true,
+                        "race": "サムライ"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "e72559ccb72a3c8cfc8facc41a436f7d70dd1029ff966f857ed9a6d362e778cb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp21-054",
+      "name": "ティアシャキ・ハーミィ",
+      "faces": [
+        {
+          "name": "ティアシャキ・ハーミィ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "パワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n自分のタマシードを使った時または呪文を唱えた時、このターン、このクリーチャーのパワーを+3000する。",
+          "race": "トリックス/レクスターズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-054",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-054.jpg",
+      "spec": {
+        "poweredBreaker": true,
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "SelfBoost313",
+              "power": 3000,
+              "g536Source": true,
+              "g694ClearOnSeal": true
+            }
+          ]
+        },
+        "g1177TamaseedUse": [
+          {
+            "op": "SelfBoost313",
+            "power": 3000,
+            "g536Source": true,
+            "g694ClearOnSeal": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "b32a291a316af008159fa986a39fac573632a9f943c81e088057aa60d375c555",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy4-002",
+      "name": "グラビティ・ドラゴン",
+      "faces": [
+        {
+          "name": "グラビティ・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーにクロスギアをクロスする時、支払うコストは１少なくなる。ただしコストは１より少なくならない。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy4-002",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy4-002.jpg",
+      "spec": {
+        "breaker": 2,
+        "g933CrossDiscount": 1,
+        "g1311MandatoryCrossDiscount": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "e6bc9f1980f7c31d8ec1e6df1aef27a26ac1cdba6c29b5d16983d8b2a4cfdb19",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc49-005",
+      "name": "インフィニティ・刃隠・ドラゴン",
+      "faces": [
+        {
+          "name": "インフィニティ・刃隠・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n自分のドラゴンが破壊された時、自分の山札の上から１枚目を表向きにしてもよい。そのカードがコスト７以下のドラゴンまたはサムライ・クリーチャーであれば、バトルゾーンに出す。",
+          "race": "アーマード・ドラゴン/サムライ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc49-005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc49-005.jpg",
+      "spec": {
+        "breaker": 2,
+        "g303DeathWatch": {
+          "race": "ドラゴン",
+          "g1311Element": true,
+          "self": true,
+          "g891LookBackSelf": true,
+          "defs": [
+            {
+              "op": "Offer",
+              "g1042LookFirst": true,
+              "title": "山札の上から1枚目を表向きにする？",
+              "defs": [
+                {
+                  "op": "RevealTop514",
+                  "to": "battle",
+                  "filter": {
+                    "max": 7,
+                    "any": [
+                      {
+                        "race": "ドラゴン"
+                      },
+                      {
+                        "creature": true,
+                        "race": "サムライ"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "6bc8de3190aeae4ff6e0c2a04f190db2a3b716614056e5c437f8e6d218d13a30",
+        "facesMatched": true
+      },
+      "canonicalId": "dmc45-007"
+    },
+    {
+      "id": "promoy6-041",
+      "name": "インフィニティ・刃隠・ドラゴン",
+      "faces": [
+        {
+          "name": "インフィニティ・刃隠・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\n自分のドラゴンが破壊された時、自分の山札の上から１枚目を表向きにしてもよい。そのカードがコスト７以下のドラゴンまたはサムライ・クリーチャーであれば、バトルゾーンに出す。",
+          "race": "アーマード・ドラゴン/サムライ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy6-041",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy6-041.jpg",
+      "spec": {
+        "breaker": 2,
+        "g303DeathWatch": {
+          "race": "ドラゴン",
+          "g1311Element": true,
+          "self": true,
+          "g891LookBackSelf": true,
+          "defs": [
+            {
+              "op": "Offer",
+              "g1042LookFirst": true,
+              "title": "山札の上から1枚目を表向きにする？",
+              "defs": [
+                {
+                  "op": "RevealTop514",
+                  "to": "battle",
+                  "filter": {
+                    "max": 7,
+                    "any": [
+                      {
+                        "race": "ドラゴン"
+                      },
+                      {
+                        "creature": true,
+                        "race": "サムライ"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "864562b7cd3cd2ad83cc6941bacffdd413bc709afe8f644e1ae8a123428541fc",
+        "facesMatched": true
+      },
+      "canonicalId": "dmc45-007"
+    },
+    {
+      "id": "promoy6-042",
+      "name": "インフィニティ・刃隠・ドラゴン",
+      "faces": [
+        {
+          "name": "インフィニティ・刃隠・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\n自分のドラゴンが破壊された時、自分の山札の上から１枚目を表向きにしてもよい。そのカードがコスト７以下のドラゴンまたはサムライ・クリーチャーであれば、バトルゾーンに出す。",
+          "race": "アーマード・ドラゴン/サムライ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy6-042",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy6-042.jpg",
+      "spec": {
+        "breaker": 2,
+        "g303DeathWatch": {
+          "race": "ドラゴン",
+          "g1311Element": true,
+          "self": true,
+          "g891LookBackSelf": true,
+          "defs": [
+            {
+              "op": "Offer",
+              "g1042LookFirst": true,
+              "title": "山札の上から1枚目を表向きにする？",
+              "defs": [
+                {
+                  "op": "RevealTop514",
+                  "to": "battle",
+                  "filter": {
+                    "max": 7,
+                    "any": [
+                      {
+                        "race": "ドラゴン"
+                      },
+                      {
+                        "creature": true,
+                        "race": "サムライ"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "e6db38400631bf82328d2a74d57317ef76e5c7b64a6db00b4667cae3feebbe8a",
+        "facesMatched": true
+      },
+      "canonicalId": "dmc45-007"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-15",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmc45-007": 4,
+      "dmrp21-054": 4,
+      "promoy4-002": 4,
+      "dmc49-005": 4,
+      "promoy6-041": 4,
+      "promoy6-042": 4
+    },
+    "currentList": "https://dm.takaratomy.co.jp/img/regulation/2608/202608regulation.pdf"
+  },
+  "sameNameProducts": {
+    "dmc45-007": [
+      "DMC-49 エントリーデッキ ゼロ フォース・オブ・ドラゴン",
+      "DMC-45 スーパーデッキクロス「バトル・オブ・ヤマト魂」",
+      "プロモ限定カード 6期"
+    ],
+    "dmrp21-054": [
+      "DMRP-21 王来MAX第1弾 鬼ヤバ逆襲S-MAX!!"
+    ],
+    "promoy4-002": [
+      "プロモ限定カード 4期"
+    ]
+  },
+  "printNotes": {
+    "dmc45-007": "DMC-45・DMC-49・P41/Y6・P42/Y6は能力の段落や注釈が異なる。同じ能力、基本情報およびカード名を確認。"
+  }
+}

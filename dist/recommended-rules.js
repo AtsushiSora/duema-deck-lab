@@ -94,7 +94,10 @@ export function createRecommendedRules(api){
    case'g36Recover':if(v){const x=policyRemove(s,t.p,'mana',v,api);if(x){clear(x,'hand');api.addZone(s,t.p,'hand',x);}}break;
    case'g36Grave':if(v)put(s,{...t,selected:[...t.selected,v]});else shuffleSelected(s,t);break;
    case'g36DNA':if(v)api.shieldTop(s,t.p,card(t.source));break;
-   case'g36Jack':if(v)api.moveBattleCard(s,1-t.p,v,'grave');break;
+   case'g36Jack':
+    // Rule 701.6 covers the battle-zone card. A buried layer is detached without destruction.
+    if(v)api.moveBattleCard(s,1-t.p,v,'grave',{destroy:true});
+    break;
    case'g36Scrapper':if(v){const x=s.players[1-t.p].battle.find(x=>x.uid===v);if(x)put(s,{...t,selected:[...t.selected,v],budget:t.budget-power(x,x.uid===s.attack?.attacker,s)});}else destroySelected(s,t);break;
    default:throw Error('未実装のおすすめカード選択：'+t.op);
   }return true;

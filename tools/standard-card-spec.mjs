@@ -2475,6 +2475,24 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1311&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.name==='インフィニティ・刃隠・ドラゴン'&&
+   /^W・ブレイカー(?:\(このクリーチャーはシールドを2枚ブレイクする\))?自分のドラゴンが破壊された時自分の山札の上から1枚目を表向きにしてもよい。そのカードがコスト7以下のドラゴンまたはサムライ・クリーチャーであればバトルゾーンに出す。$/.test(text))
+   return {breaker:2,g303DeathWatch:{race:'ドラゴン',g1311Element:true,self:true,g891LookBackSelf:true,defs:[
+    {op:'Offer',g1042LookFirst:true,title:'山札の上から1枚目を表向きにする？',defs:[
+     {op:'RevealTop514',to:'battle',filter:{max:7,any:[{race:'ドラゴン'},{creature:true,race:'サムライ'}]}}
+    ]}
+   ]}};
+  if(d.id==='dmrp21-054'&&text===
+   'パワード・ブレイカー(このクリーチャーはそのパワー6000ごとにシールドをさらに1つブレイクする)自分のタマシードを使った時または呪文を唱えた時このターンこのクリーチャーのパワーを+3000する。'){
+   const defs=[{op:'SelfBoost313',power:3000,g536Source:true,g694ClearOnSeal:true}];
+   return {poweredBreaker:true,g204SpellWatch:{who:'self',defs},g1177TamaseedUse:defs};
+  }
+  if(d.id==='promoy4-002'&&text===
+   'このクリーチャーにクロスギアをクロスする時支払うコストは1少なくなる。ただしコストは1より少なくならない。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g933CrossDiscount:1,g1311MandatoryCrossDiscount:true};
+ }
  if(phase>=1310&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmx21-020'&&text==='自分のゴッドの召喚コストを1少なくしてもよい。ただしコストは0以下にならない。自分のゴッドが破壊された時ゴッドを1体自分の墓地から手札に戻す。')

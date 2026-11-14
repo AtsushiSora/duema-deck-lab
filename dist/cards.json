@@ -244412,15 +244412,124 @@
       "g1302SpellManaLock": true,
       "supportBatch": "phase-1310",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmc45-007",
+      "name": "インフィニティ・刃隠・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "アーマード・ドラゴン/サムライ",
+      "text": "W・ブレイカー\n自分のドラゴンが破壊された時、自分の山札の上から１枚目を表向きにしてもよい。\nそのカードがコスト７以下のドラゴンまたはサムライ・クリーチャーであれば、バトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc45-007",
+      "limit": 4,
+      "breaker": 2,
+      "g303DeathWatch": {
+        "race": "ドラゴン",
+        "g1311Element": true,
+        "self": true,
+        "g891LookBackSelf": true,
+        "defs": [
+          {
+            "op": "Offer",
+            "g1042LookFirst": true,
+            "title": "山札の上から1枚目を表向きにする？",
+            "defs": [
+              {
+                "op": "RevealTop514",
+                "to": "battle",
+                "filter": {
+                  "max": 7,
+                  "any": [
+                    {
+                      "race": "ドラゴン"
+                    },
+                    {
+                      "creature": true,
+                      "race": "サムライ"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1311",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp21-054",
+      "name": "ティアシャキ・ハーミィ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "トリックス/レクスターズ",
+      "text": "パワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n自分のタマシードを使った時または呪文を唱えた時、このターン、このクリーチャーのパワーを+3000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-054",
+      "limit": 4,
+      "poweredBreaker": true,
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "SelfBoost313",
+            "power": 3000,
+            "g536Source": true,
+            "g694ClearOnSeal": true
+          }
+        ]
+      },
+      "g1177TamaseedUse": [
+        {
+          "op": "SelfBoost313",
+          "power": 3000,
+          "g536Source": true,
+          "g694ClearOnSeal": true
+        }
+      ],
+      "supportBatch": "phase-1311",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy4-002",
+      "name": "グラビティ・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アーマード・ドラゴン",
+      "text": "このクリーチャーにクロスギアをクロスする時、支払うコストは１少なくなる。ただしコストは１より少なくならない。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy4-002",
+      "limit": 4,
+      "breaker": 2,
+      "g933CrossDiscount": 1,
+      "g1311MandatoryCrossDiscount": true,
+      "supportBatch": "phase-1311",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1310,
+    "phase": 1311,
     "checkedAt": "2026-11-15",
-    "baseCount": 7946,
+    "baseCount": 7949,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7949,
+    "totalCount": 7952,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -266429,6 +266538,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7946,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1310,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7946,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7949,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -258,7 +258,8 @@ export function createSamuraiRules(api){
     out.push({kind:'crossGear',uid:g.uid,cardId:g.cardId,target:x.uid,cost:0,free:true,
      score:score+(!existing&&x.entered<s.turn&&!x.tapped?4:0)+1,
      label:gear.name+' → '+host.name+'にクロス（無料）'});
-   for(let reduction=0;reduction<=max;reduction++){
+   const minimum=host.g1311MandatoryCrossDiscount?max:0;
+   for(let reduction=minimum;reduction<=max;reduction++){
     const payment=crossPayment(g,reduction);
     if(!free&&!api.canPay(s,p,payment))continue;
     const n=free?0:api.summonCost(s,p,payment);
