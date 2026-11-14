@@ -628,6 +628,7 @@ export function createSixPhotoRules(api){
   if(f.g790MinDraws!==undefined)return (s.players[p].drawsThisTurn||0)>=f.g790MinDraws;
   if(f.g857LightSoulEntered)return s.g857LightSoulEnteredTurn?.[p]===s.turn;
   if(f.g1278BlockerEntered)return s.players[p].blockerEnteredTurn===s.turn;
+  if(f.g1279CreatureLeft)return s.players[p].creatureLeftTurn===s.turn;
   if(f.g722CrossedAny)return [p,1-p].some(owner=>ownCondition(s,owner,{g442CrossedAlly:true}));
   if(f.g666FaceUpShieldGo)return api.shieldGoCount(s,p)>0;
   if(f.g757FaceUpShield)return s.players[p].shields.some(group=>api.shieldCards(group).some(x=>x.faceUp));
@@ -8447,6 +8448,7 @@ export function createSixPhotoRules(api){
   const before=snapshot?.death303;
   const victim=before?.find(y=>y.p===p&&y.element&&key(y)===key(x));
   if(victim){
+   if(victim.creature)s.players[p].creatureLeftTurn=s.turn;
    if(to==='grave'&&destroy&&victim.creature&&victim.g1256Evolution){
     // The hand card must already be present when the destruction occurs (QA 39985).
     const declarations=snapshot.g1256HandEvolutionWatch[p].flatMap(ref=>{

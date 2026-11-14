@@ -240375,15 +240375,185 @@
       "g945CrossBlocker": true,
       "supportBatch": "phase-1278",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm38-006",
+      "name": "幸運の精霊ファイブスター",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5500,
+      "race": "エンジェル・コマンド",
+      "text": "W・シールド・プラス?自分の他の、パワーの最後の三桁が「500」のクリーチャーをバトルゾーンに出した時、自分の山札の上から２枚まで、裏向きのまま、自分のシールドいずれか１枚の下に置いてもよい。(こうして重ねたカードの束を１枚のシールドとみなす)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-006",
+      "limit": 4,
+      "g314OtherEntry": {
+        "who": "self",
+        "filter": {
+          "creature": true,
+          "g587PowerEnding500": true
+        },
+        "defs": [
+          {
+            "op": "ShieldPlus414",
+            "n": 2
+          }
+        ]
+      },
+      "supportBatch": "phase-1279",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-024",
+      "name": "眼鏡の頑強者",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "ビーストフォーク",
+      "text": "シビルカウント ３：このクリーチャーがシールドをブレイクする時、自分の自然のクリーチャーまたは自然のタマシードが合計３つ以上あれば、相手はそのシールドを手札に加えるかわりにマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-024",
+      "limit": 4,
+      "g1279ShieldBreakMana": {
+        "g370BattleCount": {
+          "min": 3,
+          "g557Elements": true,
+          "filter": {
+            "creatureOrSeed": true,
+            "color": "自然",
+            "faceUp": true
+          }
+        }
+      },
+      "supportBatch": "phase-1279",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-040",
+      "name": "深淵の手紙",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 2,
+      "power": 0,
+      "race": "アビスロイヤル",
+      "text": "自分のターンの終わりに、自分のクリーチャーを１体、山札の下に置いてもよい。その後、このターン中に自分のクリーチャーが１体でも離れていたら、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-040",
+      "limit": 4,
+      "g174End": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "optional": true,
+          "to": "deck",
+          "title": "山札の下に置く自分のクリーチャーを選ぶ"
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g1279CreatureLeft": true
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1279",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-034",
+      "name": "竪琴魚",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "マジック・フィッシュ",
+      "text": "自分のタマシードまたは呪文を使った時、次の自分のターンのはじめまで、このクリーチャーは選ばれない。\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を表向きにする。その中から、タマシードと呪文をすべて手札に加え、残りを好きな順序で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-034",
+      "limit": 4,
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "SelfGrant754",
+            "g521UntilStart": true,
+            "g565External": true,
+            "g770LiveCreature": true,
+            "grant": {
+              "g1082ChoiceProtected": true
+            }
+          }
+        ]
+      },
+      "g1177TamaseedUse": [
+        {
+          "op": "SelfGrant754",
+          "g521UntilStart": true,
+          "g565External": true,
+          "g770LiveCreature": true,
+          "grant": {
+            "g1082ChoiceProtected": true
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Look",
+          "n": 3,
+          "public": true,
+          "stages": [
+            {
+              "n": "all",
+              "to": "hand",
+              "allMatches": true,
+              "filter": {
+                "any": [
+                  {
+                    "g228Face": {
+                      "type": "seed"
+                    }
+                  },
+                  {
+                    "spell": true
+                  }
+                ]
+              }
+            }
+          ],
+          "rest": "bottom"
+        }
+      ],
+      "supportBatch": "phase-1279",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1278,
+    "phase": 1279,
     "checkedAt": "2026-11-14",
-    "baseCount": 7840,
+    "baseCount": 7844,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7844,
+    "totalCount": 7848,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -262008,6 +262178,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7840,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1278,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7840,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7844,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

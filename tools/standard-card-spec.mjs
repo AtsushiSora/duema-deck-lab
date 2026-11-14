@@ -2475,6 +2475,32 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1279&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(['dm38-006','dm38-006VC'].includes(d.id)&&f.typeText==='クリーチャー'&&
+   ['?','—'].some(separator=>text==='W・シールド・プラス'+separator+
+    '自分の他のパワーの最後の三桁が「500」のクリーチャーをバトルゾーンに出した時自分の山札の上から2枚まで裏向きのまま自分のシールドいずれか1枚の下に置いてもよい。(こうして重ねたカードの束を1枚のシールドとみなす)'))
+   return {g314OtherEntry:{who:'self',filter:{creature:true,g587PowerEnding500:true},
+    defs:[{op:'ShieldPlus414',n:2}]}};
+  if(/^dm22rp2x?-024$/i.test(d.id)&&f.typeText==='クリーチャー'&&text===
+   'シビルカウント3:このクリーチャーがシールドをブレイクする時自分の自然のクリーチャーまたは自然のタマシードが合計3つ以上あれば相手はそのシールドを手札に加えるかわりにマナゾーンに置く。')
+   return {g1279ShieldBreakMana:{g370BattleCount:{min:3,g557Elements:true,
+    filter:{creatureOrSeed:true,color:'自然',faceUp:true}}}};
+  if(/^dm22rp2x?-040$/i.test(d.id)&&f.typeText==='タマシード'&&text===
+   '自分のターンの終わりに自分のクリーチャーを1体山札の下に置いてもよい。その後このターン中に自分のクリーチャーが1体でも離れていたらカードを1枚引いてもよい。')
+   return {g174End:[{op:'Target',owner:'self',optional:true,to:'deck',
+    title:'山札の下に置く自分のクリーチャーを選ぶ'},
+    {op:'IfOwn',filter:{g1279CreatureLeft:true},defs:[{op:'Draw',n:1,optional:true}]}]};
+  if(/^dm22rp2x?-034$/i.test(d.id)&&f.typeText==='クリーチャー'&&text===
+   '自分のタマシードまたは呪文を使った時次の自分のターンのはじめまでこのクリーチャーは選ばれない。'+
+   'このクリーチャーが攻撃する時自分の山札の上から3枚を表向きにする。その中からタマシードと呪文をすべて手札に加え残りを好きな順序で山札の下に置く。'){
+   const defs=[{op:'SelfGrant754',g521UntilStart:true,g565External:true,g770LiveCreature:true,
+    grant:{g1082ChoiceProtected:true}}];
+   return {g204SpellWatch:{who:'self',defs},g1177TamaseedUse:defs,
+    g34Attack:[{op:'Look',n:3,public:true,stages:[{n:'all',to:'hand',allMatches:true,
+     filter:{any:[{g228Face:{type:'seed'}},{spell:true}]}}],rest:'bottom'}]};
+  }
+ }
  if(phase>=1278&&d?.status==='complete'&&d.faces.length===1){
   const lines=f.abilityText.replaceAll(')このターン、',')\nこのターン、').split('\n').map(normalize);
   if(['dm32-s02','dmc64-005','dmc68-s02','dmx19-s04'].includes(d.id)&&f.typeText==='クリーチャー'&&

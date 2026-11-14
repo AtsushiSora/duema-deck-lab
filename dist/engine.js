@@ -2925,12 +2925,17 @@ function commitShieldBreak(s,defender,uids){
  const count=cardOnly?orphaned.length:breakContext?.replacementBreak?groups.length:groups.filter(x=>shieldCards(x).some(c=>!c.faceUp||!card(c).gCastle)).length;
  const handRemaining=remaining+(cardOnly?0:groups.filter(x=>shieldCards(x).some(y=>y.g37ShieldHeld)).length);
  const goesToGrave=x=>shieldLeavesToGrave(x)&&!breakContext?.replacementBreak&&!(cardOnly&&fortified(x));
- const gsCandidates=new Map(all.filter(x=>!goesToGrave(x)).map(x=>[x.uid,shieldGStrikes(s,defender,x)]));
+ const source=breakContext?.g756Breaker?.length&&card(breakContext.source)?.g1279ShieldBreakMana&&
+  s.players[breakContext.player].battle.find(x=>!x.sealed&&x.uid===breakContext.sourceUid&&
+   (x.incarnation||0)===(breakContext.incarnation||0));
+ const manaCondition=source&&effectiveCard(source,s).g1279ShieldBreakMana;
+ const toMana=!handOnly&&manaCondition&&extra.six.ownCondition(s,breakContext.player,manaCondition,source.uid);
+ const gsCandidates=new Map(all.filter(x=>!toMana&&!goesToGrave(x)).map(x=>[x.uid,shieldGStrikes(s,defender,x)]));
  const summonLocked=summonLocked1019(s,defender);
  const breaker=breakContext?.sourceUid?{uid:breakContext.sourceUid,incarnation:breakContext.incarnation}:undefined;
  // Pending broken shields are excluded from Duelangel's threshold at declaration.
  const pendingBreak={defender,remaining};
- const eligibleFaces=Object.fromEntries(all.flatMap(x=>{if(goesToGrave(x))return [];const faces=!breakContext?.noST&&extra.triggersAllowed(s,defender)?playFaces(card(x)).flatMap((c,face)=>(c.g26Viride&&s.players[1-defender].battle.filter(x=>isCreature(s,x)).length>=3||extra.six.shieldTrigger(s,defender,x,c)||lightShieldTrigger1019(s,defender,c,handRemaining)||extra.requested393J.shieldTrigger(s,defender,x,c)||c.trigger||c.triggerPlus||c.superTrigger||c.graveTotalTrigger&&s.players.reduce((n,p)=>n+p.grave.length,0)>=c.graveTotalTrigger||c.rev2Trigger&&s.players[defender].shields.length-count<=2||x.g19ShieldST!==undefined||c.type==='spell'&&extra.spellShieldTrigger(s,defender,true)||c.shieldConditionalTrigger&&s.players[defender].grave.filter(x=>playFaces(card(x)).some(c=>c.type==='spell')).length>=2)&&(!summonLocked||c.type!=='creature')&&extra.triggersAllowed(s,defender,c)&&!extra.triggerLocked597(s,defender,c,remaining,breaker)&&canCastSpell(s,defender,c)&&(extra.spellPermission(s,defender,c)||extra.six.allowsNonLightSpells687(s,c,pendingBreak))?[face]:[]):[];return faces.length?[[x.uid,faces]]:[];})),eligible=Object.keys(eligibleFaces);
+ const eligibleFaces=Object.fromEntries((toMana?[]:all).flatMap(x=>{if(goesToGrave(x))return [];const faces=!breakContext?.noST&&extra.triggersAllowed(s,defender)?playFaces(card(x)).flatMap((c,face)=>(c.g26Viride&&s.players[1-defender].battle.filter(x=>isCreature(s,x)).length>=3||extra.six.shieldTrigger(s,defender,x,c)||lightShieldTrigger1019(s,defender,c,handRemaining)||extra.requested393J.shieldTrigger(s,defender,x,c)||c.trigger||c.triggerPlus||c.superTrigger||c.graveTotalTrigger&&s.players.reduce((n,p)=>n+p.grave.length,0)>=c.graveTotalTrigger||c.rev2Trigger&&s.players[defender].shields.length-count<=2||x.g19ShieldST!==undefined||c.type==='spell'&&extra.spellShieldTrigger(s,defender,true)||c.shieldConditionalTrigger&&s.players[defender].grave.filter(x=>playFaces(card(x)).some(c=>c.type==='spell')).length>=2)&&(!summonLocked||c.type!=='creature')&&extra.triggersAllowed(s,defender,c)&&!extra.triggerLocked597(s,defender,c,remaining,breaker)&&canCastSpell(s,defender,c)&&(extra.spellPermission(s,defender,c)||extra.six.allowsNonLightSpells687(s,c,pendingBreak))?[face]:[]):[];return faces.length?[[x.uid,faces]]:[];})),eligible=Object.keys(eligibleFaces);
  // QA35246: reveal the cards in the actual break before they enter the hand.
  if(!handOnly&&breakContext?.player===1-defender&&
   (breakContext.g756Breaker?.length||breakContext.g913DepartedBreaker)){
@@ -2939,21 +2944,28 @@ function commitShieldBreak(s,defender,uids){
   if(source)for(const x of all)if(!x.g37ShieldHeld&&!goesToGrave(x))
    log(s,defender,'reveal',`${card(source).name}でブレイクしたシールドを公開：${card(x).name}`,{cardId:x.cardId});
  }
- const broken=[];
+ const broken=[],mana=[];
  let shieldsToHand=0;
  for(const uid of uids){
   const root=cardOnly?removeShieldCard(s,defender,uid):removeShield(s,defender,uid);
   const before=broken.length;
   for(const x of shieldCards(root)){
-   const toGrave=goesToGrave(x);
-   clearBattleState(x,'hand');
-   if(toGrave)addZone(s,own,'grave',x);else broken.push(x);
+   const destination=goesToGrave(x)?'grave':toMana?'mana':'hand';
+   clearBattleState(x,destination==='mana'?'mana':'hand');
+   if(destination==='grave')addZone(s,own,'grave',x);
+   else if(destination==='mana')mana.push(x);
+   else broken.push(x);
   }
   if(broken.length>before)shieldsToHand++;
  }
  for(const group of orphaned)for(const x of shieldCards(removeShield(s,defender,group))){
   clearBattleState(x);
   addZone(s,own,'grave',x);
+ }
+ if(mana.length){
+  // The replacement changes the destination, so the shield is still broken (QA42497).
+  addZone(s,defender,'mana',...mana);
+  log(s,controller,'shieldMana',`ブレイクしたシールドのカード${mana.length}枚をマナゾーンへ`,{cardId:breakContext.source});
  }
  if(!handOnly){
   if(count&&breakContext?.g909RequireBreak){
@@ -2971,7 +2983,7 @@ function commitShieldBreak(s,defender,uids){
  for(const x of broken){if(card(x).triggerPlus)x.triggerPlus=defender!==s.active&&s.players[defender].brokenThisTurn>=2;if(playFaces(card(x)).some(c=>c.superTrigger))x.superTrigger=s.players[defender].shields.length===0;}
  if(handOnly)log(s,controller,'shieldHand',cardOnly?`シールドゾーンのカード${broken.length}枚を手札に加えた`:
   `シールド${groups.length}つ（カード${broken.length}枚）を手札に加えた`,{cardId:breakContext.source});
- else log(s,controller,'break',`シールド${count}つ（カード${broken.length}枚）を同時にブレイク（残り${s.players[defender].shields.length}つ）`);
+ else log(s,controller,'break',`シールド${count}つ（カード${broken.length+mana.length}枚）を同時にブレイク（残り${s.players[defender].shields.length}つ）`);
  for(const x of broken)extra.shieldHand(s,defender,x,true);
  const gs=extra.gsAllowed(s,defender)?broken.flatMap(x=>Array(gsCandidates.get(x.uid)||0).fill(x.uid)):[];
  if(eligible.length||gs.length||extra.hasSB(s,defender,broken)){if(s.triggers)(s.triggerStack??=[]).push(s.triggers);s.triggers={interrupt:!!s.g19Interrupt?.breaking,player:defender,undeclared:eligible.filter(uid=>broken.some(x=>x.uid===uid)),declared:[],entries:[],eligibleFaces,breaker,faceByUid:{},gsUndeclared:gs,gsDeclared:[]};if(s.g19Interrupt?.breaking)s.g19Interrupt.breaking=false;}

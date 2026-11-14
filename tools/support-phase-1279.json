@@ -1,0 +1,471 @@
+{
+  "phase": 1279,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7844,
+  "description": "幸運の精霊ファイブスター、眼鏡の頑強者、深淵の手紙、竪琴魚の全能力を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/36156/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36157/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36158/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36159/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37424/",
+    "https://dm.takaratomy.co.jp/rule/qa/42497/",
+    "https://dm.takaratomy.co.jp/rule/qa/41076/",
+    "https://dm.takaratomy.co.jp/rule/qa/45224/"
+  ],
+  "cards": [
+    {
+      "id": "dm38-006",
+      "name": "幸運の精霊ファイブスター",
+      "faces": [
+        {
+          "name": "幸運の精霊ファイブスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "W・シールド・プラス?自分の他の、パワーの最後の三桁が「500」のクリーチャーをバトルゾーンに出した時、自分の山札の上から２枚まで、裏向きのまま、自分のシールドいずれか１枚の下に置いてもよい。(こうして重ねたカードの束を１枚のシールドとみなす)",
+          "race": "エンジェル・コマンド",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-006.jpg",
+      "spec": {
+        "g314OtherEntry": {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "g587PowerEnding500": true
+          },
+          "defs": [
+            {
+              "op": "ShieldPlus414",
+              "n": 2
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "6e81a8d182c11cfe0708bd806d8b8e88f222a97842a28cf32e068333b2fdf9d1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-024",
+      "name": "眼鏡の頑強者",
+      "faces": [
+        {
+          "name": "眼鏡の頑強者",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "シビルカウント ３：このクリーチャーがシールドをブレイクする時、自分の自然のクリーチャーまたは自然のタマシードが合計３つ以上あれば、相手はそのシールドを手札に加えるかわりにマナゾーンに置く。",
+          "race": "ビーストフォーク",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-024",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-024.jpg",
+      "spec": {
+        "g1279ShieldBreakMana": {
+          "g370BattleCount": {
+            "min": 3,
+            "g557Elements": true,
+            "filter": {
+              "creatureOrSeed": true,
+              "color": "自然",
+              "faceUp": true
+            }
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "666ab5a990f9260e8616a1c0879c3e8d22398d719f95b8156e7af72f713d00f3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-040",
+      "name": "深淵の手紙",
+      "faces": [
+        {
+          "name": "深淵の手紙",
+          "typeText": "タマシード",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のターンの終わりに、自分のクリーチャーを１体、山札の下に置いてもよい。その後、このターン中に自分のクリーチャーが１体でも離れていたら、カードを１枚引いてもよい。",
+          "race": "アビスロイヤル",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-040",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-040.jpg",
+      "spec": {
+        "g174End": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "optional": true,
+            "to": "deck",
+            "title": "山札の下に置く自分のクリーチャーを選ぶ"
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g1279CreatureLeft": true
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "c3785214f6d6f35b1072896a75e8949485c1f77202ba1a762f821910d2973807",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-034",
+      "name": "竪琴魚",
+      "faces": [
+        {
+          "name": "竪琴魚",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のタマシードまたは呪文を使った時、次の自分のターンのはじめまで、このクリーチャーは選ばれない。\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を表向きにする。その中から、タマシードと呪文をすべて手札に加え、残りを好きな順序で山札の下に置く。",
+          "race": "マジック・フィッシュ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-034",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-034.jpg",
+      "spec": {
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "SelfGrant754",
+              "g521UntilStart": true,
+              "g565External": true,
+              "g770LiveCreature": true,
+              "grant": {
+                "g1082ChoiceProtected": true
+              }
+            }
+          ]
+        },
+        "g1177TamaseedUse": [
+          {
+            "op": "SelfGrant754",
+            "g521UntilStart": true,
+            "g565External": true,
+            "g770LiveCreature": true,
+            "grant": {
+              "g1082ChoiceProtected": true
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "stages": [
+              {
+                "n": "all",
+                "to": "hand",
+                "allMatches": true,
+                "filter": {
+                  "any": [
+                    {
+                      "g228Face": {
+                        "type": "seed"
+                      }
+                    },
+                    {
+                      "spell": true
+                    }
+                  ]
+                }
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "af3992dd6c34e69e04fa5a94c4df90a52fdf000042028388e4e76e82057eca51",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm38-006VC",
+      "name": "幸運の精霊ファイブスター",
+      "faces": [
+        {
+          "name": "幸運の精霊ファイブスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "W・シールド・プラス—自分の他の、パワーの最後の三桁が「500」のクリーチャーをバトルゾーンに出した時、自分の山札の上から２枚まで、裏向きのまま、自分のシールドいずれか１枚の下に置いてもよい。（こうして重ねたカードの束を１枚のシールドとみなす）",
+          "race": "エンジェル・コマンド",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-006VC",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-006VC.jpg",
+      "spec": {
+        "g314OtherEntry": {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "g587PowerEnding500": true
+          },
+          "defs": [
+            {
+              "op": "ShieldPlus414",
+              "n": 2
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "202b63f623ac84104fa3950d7cc9f8cffab57df1c5fc1d11b17ce98f1cea3a66",
+        "facesMatched": true
+      },
+      "canonicalId": "dm38-006"
+    },
+    {
+      "id": "dm22rp2x-024",
+      "name": "眼鏡の頑強者",
+      "faces": [
+        {
+          "name": "眼鏡の頑強者",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "シビルカウント ３：このクリーチャーがシールドをブレイクする時、自分の自然のクリーチャーまたは自然のタマシードが合計３つ以上あれば、相手はそのシールドを手札に加えるかわりにマナゾーンに置く。",
+          "race": "ビーストフォーク",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-024",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-024.jpg",
+      "spec": {
+        "g1279ShieldBreakMana": {
+          "g370BattleCount": {
+            "min": 3,
+            "g557Elements": true,
+            "filter": {
+              "creatureOrSeed": true,
+              "color": "自然",
+              "faceUp": true
+            }
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "319e5605ba844b53b0b61a3ffb81a9af88f5cf6c410ab0bcad285ad5f8844c03",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-024"
+    },
+    {
+      "id": "dm22rp2x-040",
+      "name": "深淵の手紙",
+      "faces": [
+        {
+          "name": "深淵の手紙",
+          "typeText": "タマシード",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のターンの終わりに、自分のクリーチャーを１体、山札の下に置いてもよい。その後、このターン中に自分のクリーチャーが１体でも離れていたら、カードを１枚引いてもよい。",
+          "race": "アビスロイヤル",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-040",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-040.jpg",
+      "spec": {
+        "g174End": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "optional": true,
+            "to": "deck",
+            "title": "山札の下に置く自分のクリーチャーを選ぶ"
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g1279CreatureLeft": true
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "227475516463b451f65eca258d00fbc15eb882b7c02f731540ac4368d04fe3d6",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-040"
+    },
+    {
+      "id": "dm22rp2x-034",
+      "name": "竪琴魚",
+      "faces": [
+        {
+          "name": "竪琴魚",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のタマシードまたは呪文を使った時、次の自分のターンのはじめまで、このクリーチャーは選ばれない。\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を表向きにする。その中から、タマシードと呪文をすべて手札に加え、残りを好きな順序で山札の下に置く。",
+          "race": "マジック・フィッシュ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-034",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-034.jpg",
+      "spec": {
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "SelfGrant754",
+              "g521UntilStart": true,
+              "g565External": true,
+              "g770LiveCreature": true,
+              "grant": {
+                "g1082ChoiceProtected": true
+              }
+            }
+          ]
+        },
+        "g1177TamaseedUse": [
+          {
+            "op": "SelfGrant754",
+            "g521UntilStart": true,
+            "g565External": true,
+            "g770LiveCreature": true,
+            "grant": {
+              "g1082ChoiceProtected": true
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "stages": [
+              {
+                "n": "all",
+                "to": "hand",
+                "allMatches": true,
+                "filter": {
+                  "any": [
+                    {
+                      "g228Face": {
+                        "type": "seed"
+                      }
+                    },
+                    {
+                      "spell": true
+                    }
+                  ]
+                }
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "1299a351608ec1fb5e6cfdf08d01d9dcc4f33d59ccd9f8b56e46d20650b393e2",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-034"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm38-006": 4,
+      "dm22rp2-024": 4,
+      "dm22rp2-040": 4,
+      "dm22rp2-034": 4,
+      "dm38-006VC": 4,
+      "dm22rp2x-024": 4,
+      "dm22rp2x-040": 4,
+      "dm22rp2x-034": 4
+    },
+    "currentList": "https://dm.takaratomy.co.jp/img/regulation/2608/202608regulation.pdf"
+  }
+}
