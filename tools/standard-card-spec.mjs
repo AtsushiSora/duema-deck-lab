@@ -2475,6 +2475,21 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1253&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm36-004'&&text===
+   'このクリーチャーが攻撃する時自分の手札を好きな枚数捨ててもよい。こうして捨てた手札1枚につきバトルゾーンにある「ブロッカー」を持つクリーチャーを1体選び持ち主の手札に戻す。')
+   return {effect:'sixPhoto',g34Attack:[{op:'Discard',owner:'self',g1233AnyDiscard:true,optional:true,
+    afterDiscardCount:{op:'g34_AndroBounce1253'}}]};
+  if(d.id==='dmex10-014'&&text===
+   'このクリーチャーがバトルゾーンに出た時相手のクリーチャーを1体選び持ち主のマナゾーンに置く。そのクリーチャーのコストと同じ枚数のカードを自分の山札の上から墓地に置く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',toOwnerMana:true,g631MillCost:true,g1253MillTogether:true,
+    title:'持ち主のマナゾーンに置く相手のクリーチャーを選ぶ'}]};
+  if(d.id==='dmr21-045'&&text===
+   '自分のジャイアントの召喚コストは最大3少なくなる。ただしコストは0以下にはならない。自分のジャイアントがバトルゾーンに出た時このクリーチャーを自分のマナゾーンに置く。')
+   return {g349SummonAuras:[{race:'ジャイアント',amount:3,g560Optional:true}],g251EntryDraw:{g1198EntryScope:true,
+    filter:{creature:true,race:'ジャイアント'},defs:[{op:'SelfMana297',g536Source:true}]}};
+ }
  if(phase>=1252&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(['dmx21-033','dm24ex2-064','dm25rp2-T05','dm25ex3-TF19'].includes(d.id)&&

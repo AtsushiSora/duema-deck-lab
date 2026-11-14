@@ -237566,15 +237566,113 @@
       ],
       "supportBatch": "phase-1252",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm36-004",
+      "name": "封魔アンドロリウス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "グランド・デビル",
+      "text": "このクリーチャーが攻撃する時、自分の手札を好きな枚数捨ててもよい。こうして捨てた手札１枚につき、バトルゾーンにある「ブロッカー」を持つクリーチャーを１体選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-004",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Attack": [
+        {
+          "op": "Discard",
+          "owner": "self",
+          "g1233AnyDiscard": true,
+          "optional": true,
+          "afterDiscardCount": {
+            "op": "g34_AndroBounce1253"
+          }
+        }
+      ],
+      "supportBatch": "phase-1253",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex10-014",
+      "name": "死罠の杖",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ビーストフォーク/不死樹王国",
+      "text": "このクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。そのクリーチャーのコストと同じ枚数のカードを、自分の山札の上から墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex10-014",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "mana",
+          "toOwnerMana": true,
+          "g631MillCost": true,
+          "g1253MillTogether": true,
+          "title": "持ち主のマナゾーンに置く相手のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1253",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-045",
+      "name": "優雅なアントワネット",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "ドリームメイト",
+      "text": "自分のジャイアントの召喚コストは最大３少なくなる。ただし、コストは０以下にはならない。\n自分のジャイアントがバトルゾーンに出た時、このクリーチャーを自分のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-045",
+      "limit": 4,
+      "g349SummonAuras": [
+        {
+          "race": "ジャイアント",
+          "amount": 3,
+          "g560Optional": true
+        }
+      ],
+      "g251EntryDraw": {
+        "g1198EntryScope": true,
+        "filter": {
+          "creature": true,
+          "race": "ジャイアント"
+        },
+        "defs": [
+          {
+            "op": "SelfMana297",
+            "g536Source": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1253",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1252,
+    "phase": 1253,
     "checkedAt": "2026-11-14",
-    "baseCount": 7755,
+    "baseCount": 7758,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7758,
+    "totalCount": 7761,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -258887,6 +258985,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7755,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1252,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7755,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7758,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
