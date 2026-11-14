@@ -867,6 +867,12 @@ export function createSixPhotoRules(api){
     (!r.condition||ownCondition(s,p,r.condition,source.uid))&&matches(s,p,x,r.filter)?[r]:[];
   });
  }
+ function blockProtected1201(s,x){
+  const ref=s.attackLifecycle?.g1201Blocker;
+  return !!ref&&api.isCreature(s,x)&&!x.sealed&&api.allLayers(x).some(y=>key(y)===key(ref))&&
+   s.players[ref.p].battle.some(y=>card(y).g1201ProtectBlockers&&!y.faceDown&&!y.sealed&&
+    api.isCreature(s,y)&&!api.ignored(s,y));
+ }
  function battleSafe466(s,x,y,opponentPower){const c=effective(x,s);return !!c.g34BattleSafe||hooks.destroySafe409(s,x)||!!(c.g466BattleSafe&&y&&opponentPower<=c.g466BattleSafe.maxOpponentPower)||!!(y&&effective(y,s).g466ProtectOpponent)||battleAuras466(s,x).some(r=>r.protect);}
  const reserved=own=>new Set(Object.entries(own).filter(([k,v])=>Array.isArray(v)&&/Protected$|Reveals$/.test(k)).flatMap(([,v])=>v));
  function look(s,t,owner=t.p){
@@ -1999,6 +2005,31 @@ export function createSixPhotoRules(api){
  }
  case'g34_PayFloor500':payFloor500(s,t);break;
  case'g34_PayCount499':payCount499(s,t);break;
+ case'g34_SeedDefense1201':{
+  const source=own.hand.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);
+  if(!source)break;
+  const eligible=own.battle.filter(y=>!y.tapped&&!y.faceDown&&!y.sealed&&matches(s,t.p,y,{g295Tamaseed:true}));
+  const selected=t.selected,light=y=>colors(effective(y,s)).includes('光');
+  const paid=selected.map(uid=>eligible.find(y=>y.uid===uid));
+  if(eligible.length<3||!eligible.some(light)||paid.some(y=>!y))break;
+  if(paid.length===3){
+   if(!paid.some(light))break;
+   for(const y of paid)api.tap(s,t.p,y,t.p);
+   if(paid.every(y=>y.tapped))put(s,{...t,op:'g34_SeedDefenseEnter1201'});
+   break;
+  }
+  const requireLight=paid.length===2&&!paid.some(light);
+  choice(s,t,'サッヴァーク-MAX：光を含むタマシード3枚をタップする（'+paid.length+'/3）',[
+   ...eligible.filter(y=>!selected.includes(y.uid)&&(!requireLight||light(y))).map(y=>opt(card(y).name,y.uid,20,y.cardId)),
+   skip()
+  ]);
+  break;
+ }
+ case'g34_SeedDefenseEnter1201':{
+  const source=own.hand.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);
+  if(source&&canPut(s,t.p,source,'hand'))doPut(s,{...t,origin:'hand',target:t.uid});
+  break;
+ }
  case'g34_TapCast976':{
   const source=own[t.origin].find(x=>x.uid===t.uid),c=source&&api.zoneCard(s,t.p,source,t.origin);
   if(!c?.g976TapCast||api.spellIgnored(s,c)||!api.canMoveZone(s,t.p,t.origin)||
@@ -3217,7 +3248,7 @@ export function createSixPhotoRules(api){
  }
  case'g34_AfterAttack542':if(s.attackLifecycle)(s.attackLifecycle.g542After??=[]).push({p:t.p,source:t.source,uid:t.uid,incarnation:t.incarnation||0,defs:structuredClone(t.defs)});break;
  case'g34_Schedule537':{
-  if(t.when==='turnEnd'&&t.spell&&s.endStep)break;
+  if(t.when==='turnEnd'&&(t.spell||t.g1201BeforeEnd)&&s.endStep)break;
   const spellCost=t.spell?cost(faces(card(t.source)).find(c=>c.type==='spell')||card(t.source)):undefined;
   (s.g537Delays??=[]).push({p:t.p,source:t.source,uid:t.uid,incarnation:t.incarnation||0,turn:s.turn,when:t.when,
    defs:structuredClone(t.defs),...(t.who!==undefined?{who:t.who}:{}),...(spellCost!==undefined?{spellCost}:{})});
@@ -4368,6 +4399,14 @@ export function createSixPhotoRules(api){
    Array.from({length:n+1},(_,count)=>opt(count+'枚',count,count===own.deck.length?-100:count)));
   break;
  }
+ case'g34_MillPerDragon1201':{
+  const moved=api.mill(s,t.p,t.n,{together:true});
+  if(s.winner!==null)break;
+  const n=moved.filter(y=>own.grave.includes(y)&&matches(s,t.p,y,{anyFaceRace:'ドラゴン'})).length;
+  if(n)start(s,t,[{op:'Select',origin:'battle',owner:'opponent',to:'grave',n,
+   g173Targets:true,g193Select:true,filter:{creature:true},title:'同時に破壊する相手のクリーチャーを'+n+'体選ぶ'}]);
+  break;
+ }
  case'g34_MillTrigger1143':{
   const n=Math.min(own.deck.length,t.n);
   if(n)choice(s,t,'山札の上から墓地に置く枚数を選ぶ',
@@ -5116,6 +5155,7 @@ export function createSixPhotoRules(api){
  case'g34_DestroySummon1148':if(v)put(s,{...t,selected:[...t.selected,v]});break;
  case'g34_PayFloor500':if(typeof v==='number'){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),g500Handled:true,g500Amount:v};api.cast(s,t.p,...args);}break;
  case'g34_PayCount499':if(typeof v==='number'){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),g499Handled:true,g499Reduction:v};api.cast(s,t.p,...args);}break;
+ case'g34_SeedDefense1201':
  case'g34_TapCast976':if(v)put(s,{...t,selected:[...t.selected,v]});break;
  case'g34_PaySpell485':if(typeof v==='number'){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),g485Handled:true,g485Amount:v};api.cast(s,t.p,...args);}break;
  case'g34_RevealPayment470':if(typeof v==='string')put(s,{...t,revealed:v});else if(v!==false){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),g470Handled:true,g470Amount:v??0,...(t.revealed?{g470Revealed:t.revealed}:{})};api.cast(s,t.p,...args);}break;
@@ -6548,7 +6588,7 @@ export function createSixPhotoRules(api){
   api.allLayers(x).some(y=>l.refs.includes(key(y)))&&!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})),
  // Resolved continuous effects are independent of the recipient's ignored abilities (QA34228).
  attackEffect409:(s,x,kind)=>(s.extLimits||[]).some(l=>l.kind==='g409AttackEffect'&&l.effect===kind&&s.players[l.player].battle.includes(x)&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)),
- destroySafe409:(s,x)=>!!effective(x,s).g465DestroySafe||api.isCreature(s,x)&&!!externalProtection565(s,x).g465DestroySafe||hooks.attackEffect409(s,x,'destroySafe'),
+ destroySafe409:(s,x)=>blockProtected1201(s,x)||!!effective(x,s).g465DestroySafe||api.isCreature(s,x)&&!!externalProtection565(s,x).g465DestroySafe||hooks.attackEffect409(s,x,'destroySafe'),
  extraBreak557:(s,p,x,c)=>s.players[p].battle.reduce((n,y)=>{
   const r=card(y).g557BreakAura;
   if(!r||y.sealed||r.other&&x.uid===y.uid||r.min!==undefined&&cost(c)<r.min||!api.isCreature(s,y)||api.ignored(s,y))return n;
@@ -7005,6 +7045,8 @@ export function createSixPhotoRules(api){
      send(s,1-p,defender,'DefendMana947');
    }
   }
+  for(const y of s.players[1-p].hand)if(card(y).g1201SeedDefense&&!api.handAbilityIgnored(s,y))
+   send(s,1-p,y,'SeedDefense1201',{serial:y.zoneSerial||0,selected:[]});
   attackWatches252(s,p,x);for(const y of s.players[p].hand)for(const[c,face]of faces(card(y)).map((c,i)=>[c,i])){const w=c.g417Chance;if(w&&!api.spellIgnored(s,c)&&(!w.hyper||hyperMode418(s,x))&&chanceMatches419(s,p,x,w))send(s,p,y,'Chance417',{serial:y.zoneSerial||0,face});}for(const y of active(s,1-p,'souzan'))queue(s,1-p,y,[C('souzanStop')]);{for(const y of s.players[1-p].shields.flatMap(api.shieldCards).filter(y=>y.faceUp&&card(y).g34Role==='mantraCastle'))queue(s,1-p,y,[C('mantraDefend')]);if(s.attack?.target==='player'&&s.players.some(p=>!p.shields.length)&&!s.players[1-p].battle.some(y=>!y.sealed&&card(y).g34Role==='nightmare'))for(const y of s.players[1-p].hand.filter(y=>card(y).g34Role==='nightmare'))queue(s,1-p,y,[C('nightmare')]);}},
  handBattleWins588(s,p,w){
   const own=s.players[p],winner=own.battle.find(x=>x.uid===w.uid);

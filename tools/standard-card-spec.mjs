@@ -2470,6 +2470,31 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1201&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(['dmrp22-1A','dmrp22-S1','dmrp22-3B'].includes(d.id)&&f.typeText==='S-MAX進化クリーチャー'&&text===
+   '相手のクリーチャーが攻撃する時自分の光のタマシードを1枚含むアンタップしているタマシードを合計3枚タップしてもよい。そうしたらこのカードを自分の手札から出す。'+
+   'S-MAX進化:自分がゲームに負ける時かわりにこのクリーチャーを破壊するか自分の手札から《サッヴァーク-MAX》を1枚捨てる。(このクリーチャーは進化元を必要としない。自分のS-MAX進化クリーチャーが2体以上あればそのうちの1体を残し残りをすべて手札に戻す)'+
+   'ブロッカーブロッカーW・ブレイカー自分のクリーチャーはブロック中破壊されない。')
+   return {sMax:true,g34SmaxLoss:true,blocker:true,breaker:2,g1201SeedDefense:true,g1201ProtectBlockers:true};
+  if(d.id==='dmrp04s-s06'&&f.typeText==='クリーチャー'&&text===
+   'ブロッカーブロッカーW・ブレイカースレイヤーこのクリーチャーがバトルゾーンに出た時自分の山札の上から2枚を墓地に置く。'+
+   'その後マフィ・ギャングを2体まで自分の墓地からバトルゾーンに出す。そのターンの終わりに自分のクリーチャーを2体破壊する。')
+   return {blocker:true,breaker:2,slayer:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Mill',n:2,g1042Together:true},
+    {op:'Select',origin:'grave',deploy:true,n:2,optional:true,filter:{faceUp:true,creature:true,race:'マフィ・ギャング'},
+     after:[{op:'Schedule537',when:'turnEnd',g1201BeforeEnd:true,defs:[
+      {op:'Select',origin:'battle',owner:'self',to:'grave',n:2,filter:{creature:true,faceUp:true},g187OwnPick:true,
+       title:'同時に破壊する自分のクリーチャーを2体選ぶ'}
+     ]}]}
+   ]};
+  if(d.id==='dmex18-s07'&&f.typeText==='クリーチャー'&&text===
+   'スレイヤーT・ブレイカー自分のドラゴンが出た時自分の山札の上から3枚を墓地に置いてもよい。'+
+   'こうして墓地に置いたドラゴン1枚につき相手のクリーチャーを1体破壊する。このクリーチャーが攻撃する時クリーチャーを1体自分の墓地から出す。')
+   return {slayer:true,breaker:3,g251EntryDraw:{filter:{race:'ドラゴン',faceUp:true},g1198EntryScope:true,defs:[
+    {op:'Offer',title:'山札の上から3枚を墓地に置く？',defs:[{op:'MillPerDragon1201',n:3}]}
+   ]},g34Attack:[{op:'Select',origin:'grave',deploy:true,n:1,filter:{creature:true,faceUp:true},title:'墓地から出すクリーチャーを1体選ぶ'}]};
+ }
  if(phase>=1200&&d?.status==='complete'&&f.typeText==='クリーチャー'){
   const front=normalize(f.abilityText);
   if(d.id==='dm24ex1-045'&&d.faces.length===2&&f.powerText==='3000'&&

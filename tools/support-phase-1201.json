@@ -1,0 +1,279 @@
+{
+  "phase": 1201,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7594,
+  "description": "サッヴァーク-MAX、阿修羅サソリムカデ、黒龍神モルナルクの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/42392/",
+    "https://dm.takaratomy.co.jp/rule/qa/41464/",
+    "https://dm.takaratomy.co.jp/rule/qa/49608/",
+    "https://dm.takaratomy.co.jp/rule/qa/31648/",
+    "https://dm.takaratomy.co.jp/rule/qa/41285/",
+    "https://dm.takaratomy.co.jp/rule/qa/40832/",
+    "https://dm.takaratomy.co.jp/rule/qa/42931/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmrp22-1A",
+      "name": "サッヴァーク-MAX",
+      "faces": [
+        {
+          "name": "サッヴァーク-MAX",
+          "typeText": "S-MAX進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "相手のクリーチャーが攻撃する時、自分の、光のタマシードを１枚含むアンタップしているタマシードを合計３枚、タップしてもよい。そうしたら、このカードを自分の手札から出す。\nS-MAX進化：自分がゲームに負ける時、かわりにこのクリーチャーを破壊するか、自分の手札から《サッヴァーク-MAX》を１枚捨てる。（このクリーチャーは進化元を必要としない。自分のS-MAX進化クリーチャーが２体以上あれば、そのうちの１体を残し、残りをすべて手札に戻す）\nブロッカー ブロッカー\nW・ブレイカー\n自分のクリーチャーは、ブロック中破壊されない。",
+          "race": "マスター・ドラゴン/メタリカ/レクスターズ",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-1A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-1A.jpg",
+      "spec": {
+        "sMax": true,
+        "g34SmaxLoss": true,
+        "blocker": true,
+        "breaker": 2,
+        "g1201SeedDefense": true,
+        "g1201ProtectBlockers": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "7abefa4aef61b150119100a258276cc9b46aed9334fe7f549f72305607697ddd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-s06",
+      "name": "阿修羅サソリムカデ",
+      "faces": [
+        {
+          "name": "阿修羅サソリムカデ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nスレイヤー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から２枚を墓地に置く。その後、マフィ・ギャングを２体まで、自分の墓地からバトルゾーンに出す。そのターンの終わりに、自分のクリーチャーを２体破壊する。",
+          "race": "マフィ・ギャング",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-s06",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-s06.jpg",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "slayer": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 2,
+            "g1042Together": true
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "deploy": true,
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "faceUp": true,
+              "creature": true,
+              "race": "マフィ・ギャング"
+            },
+            "after": [
+              {
+                "op": "Schedule537",
+                "when": "turnEnd",
+                "g1201BeforeEnd": true,
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "battle",
+                    "owner": "self",
+                    "to": "grave",
+                    "n": 2,
+                    "filter": {
+                      "creature": true,
+                      "faceUp": true
+                    },
+                    "g187OwnPick": true,
+                    "title": "同時に破壊する自分のクリーチャーを2体選ぶ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "4dc89c73255e2742070199db71ecd55cbec3a7afe2e0ae22865ba0574ce70270",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex18-s07",
+      "name": "黒龍神モルナルク",
+      "faces": [
+        {
+          "name": "黒龍神モルナルク",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "スレイヤー\nT・ブレイカー\n自分のドラゴンが出た時、自分の山札の上から３枚を墓地に置いてもよい。こうして墓地に置いたドラゴン１枚につき、相手のクリーチャーを１体破壊する。\nこのクリーチャーが攻撃する時、クリーチャーを１体、自分の墓地から出す。",
+          "race": "ファイブ・オリジン・ドラゴン",
+          "powerText": "16000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-s07",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-s07.jpg",
+      "spec": {
+        "slayer": true,
+        "breaker": 3,
+        "g251EntryDraw": {
+          "filter": {
+            "race": "ドラゴン",
+            "faceUp": true
+          },
+          "g1198EntryScope": true,
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "山札の上から3枚を墓地に置く？",
+              "defs": [
+                {
+                  "op": "MillPerDragon1201",
+                  "n": 3
+                }
+              ]
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "creature": true,
+              "faceUp": true
+            },
+            "title": "墓地から出すクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "20c43b1ee0d7e768440eec1037171919a64ff6f29bf498e5e98688db3f1b78b3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmrp22-S1",
+      "name": "サッヴァーク-MAX",
+      "faces": [
+        {
+          "name": "サッヴァーク-MAX",
+          "typeText": "S-MAX進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "相手のクリーチャーが攻撃する時、自分の、光のタマシードを１枚含むアンタップしているタマシードを合計３枚、タップしてもよい。そうしたら、このカードを自分の手札から出す。\nS-MAX進化：自分がゲームに負ける時、かわりにこのクリーチャーを破壊するか、自分の手札から《サッヴァーク-MAX》を１枚捨てる。（このクリーチャーは進化元を必要としない。自分のS-MAX進化クリーチャーが２体以上あれば、そのうちの１体を残し、残りをすべて手札に戻す）\nブロッカー ブロッカー\nW・ブレイカー\n自分のクリーチャーは、ブロック中破壊されない。",
+          "race": "マスター・ドラゴン/メタリカ/レクスターズ",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-S1",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-S1.jpg",
+      "spec": {
+        "sMax": true,
+        "g34SmaxLoss": true,
+        "blocker": true,
+        "breaker": 2,
+        "g1201SeedDefense": true,
+        "g1201ProtectBlockers": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "c95f064bbd56c2b50b751f125ec90617e8e4cdf85ad225f562e76337e6cd0105",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp22-1A"
+    },
+    {
+      "id": "dmrp22-3B",
+      "name": "サッヴァーク-MAX",
+      "faces": [
+        {
+          "name": "サッヴァーク-MAX",
+          "typeText": "S-MAX進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "相手のクリーチャーが攻撃する時、自分の、光のタマシードを１枚含むアンタップしているタマシードを合計３枚、タップしてもよい。そうしたら、このカードを自分の手札から出す。\nS-MAX進化：自分がゲームに負ける時、かわりにこのクリーチャーを破壊するか、自分の手札から《サッヴァーク-MAX》を１枚捨てる。（このクリーチャーは進化元を必要としない。自分のS-MAX進化クリーチャーが２体以上あれば、そのうちの１体を残し、残りをすべて手札に戻す）\nブロッカー ブロッカー\nW・ブレイカー\n自分のクリーチャーは、ブロック中破壊されない。",
+          "race": "マスター・ドラゴン/メタリカ/レクスターズ",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-3B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-3B.jpg",
+      "spec": {
+        "sMax": true,
+        "g34SmaxLoss": true,
+        "blocker": true,
+        "breaker": 2,
+        "g1201SeedDefense": true,
+        "g1201ProtectBlockers": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "f69e7703ccfa65c2b9d663f42cc3c5a0cceacad70e5cd68426d12547ba15a36b",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp22-1A"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp22-1A": 4,
+      "dmrp04s-s06": 4,
+      "dmex18-s07": 4,
+      "dmrp22-S1": 4,
+      "dmrp22-3B": 4
+    }
+  }
+}
