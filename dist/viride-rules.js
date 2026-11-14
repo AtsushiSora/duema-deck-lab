@@ -1,5 +1,7 @@
 // White/green shield engine. Every continuation and selected identity is serializable.
 export function createVirideRules(api){
+ // This is an alternative cost, so it can be reduced (QA45560).
+ const viridePayment={cost:2,g568PaymentColors:['光']};
  const {card,cost,colors,effective,creatures,put,task,choice,opt,skip,enqueue,log,targetOptions}=api;
  const key=x=>x.uid+'@'+(x.zoneSerial||0);
  const castles=(s,p)=>s.players[p].shields.flatMap(api.shieldCards).filter(x=>x.faceUp&&card(x).gCastle);
@@ -70,8 +72,22 @@ export function createVirideRules(api){
   end(s){return [...creatures(s,s.active).filter(x=>effective(x,s).g26Dogi).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task('g26_End',s.active,x.cardId)})),...castles(s,s.active).filter(x=>card(x).g26Garden&&creatures(s,s.active).length>creatures(s,1-s.active).length).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task('g26_GardenDraw',s.active,x.cardId)}))];},
   expire(s,when,p){if(when==='start'){if(s.g26Extreme)s.g26Extreme[p]=false;for(const own of s.players){own.spellsThisTurn=0;for(const top of own.battle)for(const x of api.allLayers(top))if(x.g26Stay===p)delete x.g26Stay;}}},
   inherit(s,a,b){if(a.g26Stay!==undefined)b.g26Stay=a.g26Stay;},
-  mainActions(s,p){const out=[];for(const origin of ['hand','mana'])for(const x of s.players[p][origin]){const c=card(x);if(!c.g26Viride||s.players[p].shields.length<=s.players[1-p].shields.length||!api.canCast(s,p,c,origin)||!api.canEnter(s,p,c,{origin,execution:true})||!api.canPay(s,p,{...c,cost:2,civilizations:['光'],fixedPayment:true}))continue;const permits=origin==='hand'?[null]:api.manaPermits(s,p,x);for(const permit of permits)out.push({kind:'play',uid:x.uid,cardId:x.cardId,origin,manaPermit:permit,alternative:'viride',cost:2,label:c.name+'を光2マナで召喚'});}return out;},
-  variants(s,p,actions){const out=[];for(const a of actions){if(a.kind!=='play'||a.alternative&&a.alternative!=='golgy'||a.freeSummon){out.push(a);continue;}const x=s.players[p][a.origin||'hand'].find(x=>x.uid===a.uid);if(!x){out.push(a);continue;}const c={...api.faces(card(x))[a.face||0],summonOrigin:a.origin||'hand',g27BaseUid:a.baseUid||null,...(a.alternative==='golgy'&&card(x).g27Big?{fixedPayment:true}:{})},list=gardens(s,p,c).map(key);out.push(a);if(!list.length)continue;const subsets=list.reduce((all,k)=>[...all,...all.map(a=>[...a,k])],[[]]);for(const selected of subsets.filter(x=>x.length!==list.length)){const payment={...c,g26Reducers:selected};if(api.canPay(s,p,payment))out.push({...a,g26Reducers:selected,cost:api.summonCost(s,p,payment),label:a.label+'（庭園の軽減 '+selected.length+'枚）'});}}return out;},
-  alternative(s,p,a){const x=s.players[p][a.origin||'hand'].find(x=>x.uid===a.uid);api.cast(s,p,x.uid,false,a.baseUid||null,0,{cost:2,civilizations:['光'],fixedPayment:true},a.origin||'hand','カードの能力',false,a.manaPermit);},
+  mainActions(s,p){
+   const out=[];
+   if(s.players[p].shields.length<=s.players[1-p].shields.length)return out;
+   for(const origin of ['hand','mana'])for(const x of s.players[p][origin]){
+    const c=card(x);
+    if(!c.g26Viride||!api.canCast(s,p,c,origin)||!api.canEnter(s,p,c,{origin,execution:true}))continue;
+    const payment={...c,...viridePayment,summonOrigin:origin,executionUid:x.uid};
+    if(!api.canPay(s,p,payment))continue;
+    const cost=api.summonCost(s,p,payment);
+    const permits=origin==='hand'?[null]:api.manaPermits(s,p,x);
+    for(const permit of permits)out.push({kind:'play',uid:x.uid,cardId:x.cardId,origin,manaPermit:permit,
+     alternative:'viride',cost,label:c.name+'を別コスト（光の'+cost+'マナ）で召喚'});
+   }
+   return out;
+  },
+  variants(s,p,actions){const out=[];for(const a of actions){if(a.kind!=='play'||a.alternative&&!['golgy','viride'].includes(a.alternative)||a.freeSummon){out.push(a);continue;}const x=s.players[p][a.origin||'hand'].find(x=>x.uid===a.uid);if(!x){out.push(a);continue;}const c={...api.faces(card(x))[a.face||0],...(a.alternative==='viride'?viridePayment:{}),summonOrigin:a.origin||'hand',g27BaseUid:a.baseUid||null,...(a.alternative==='golgy'&&card(x).g27Big?{fixedPayment:true}:{})},list=gardens(s,p,c).map(key);out.push(a);if(!list.length)continue;const subsets=list.reduce((all,k)=>[...all,...all.map(a=>[...a,k])],[[]]);for(const selected of subsets.filter(x=>x.length!==list.length)){const payment={...c,g26Reducers:selected};if(api.canPay(s,p,payment))out.push({...a,g26Reducers:selected,cost:api.summonCost(s,p,payment),label:a.label+'（庭園の軽減 '+selected.length+'枚）'});}}return out;},
+  alternative(s,p,a){const x=s.players[p][a.origin||'hand'].find(x=>x.uid===a.uid);api.cast(s,p,x.uid,false,a.baseUid||null,0,viridePayment,a.origin||'hand','カードの能力',false,a.manaPermit,null,null,null,null,null,a.g26Reducers??null);},
  };
 }

@@ -2470,6 +2470,36 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1229&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText).replaceAll('\uFE0E','');
+  const once=race=>({execution:true,race,amount:1});
+  const floor='ただしコストは0以下にはならない。';
+  const attackMode='このクリーチャーが攻撃する時次のうちいずれか1つを選ぶ。';
+  const justDiver='ジャストダイバー(このクリーチャーが出た時次の自分のターンのはじめまでこのクリーチャーは相手に選ばれず攻撃されない)';
+  if(d.id==='dm23rp1-015'&&text===justDiver+attackMode+
+    '▶カードを2枚引く。▶自分の手札を2枚捨ててもよい。そうしたらマジック・メクレイド8する。'+
+    '(マジック・メクレイド8:自分の山札の上から3枚を見る。その中からコスト8以下のマジックを1枚コストを支払わずに使ってもよい。'+
+    '残りを好きな順序で山札の下に置く)')
+   return {justDiver:true,g34Attack:[{op:'Choose',g184Modes:true,modes:[
+    {label:'カードを2枚引く',defs:[{op:'Draw',n:2}]},
+    {label:'手札を2枚捨ててマジック・メクレイド8する',defs:[{op:'DiscardFor248',n:2,g770DiscardAttempt:true,
+     title:'メクレイドするために捨てる手札を2枚選ぶ（任意）',defs:[{op:'Raid767',race:'マジック',max:8}]}]}
+   ]}]};
+  if(['dm23rp1-021','dm23rp1-14A','dm23rp1-16B'].includes(d.id)&&text===
+    '{GS}G・ストライク(このクリーチャーを自分のシールドゾーンから手札に加える時相手に見せ相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)'+
+    'このクリーチャーが出た時このターン次に使うアーマードのコストを6少なくする。'+floor+
+    '自分のドラゴンすべてに「スピードアタッカー」を与える。(「スピードアタッカー」を持つクリーチャーは召喚酔いしない)')
+   return {gStrike:true,effect:'sixPhoto',g34Tasks:[{op:'NextReduction456',amount:6,filter:{race:'アーマード'}}],
+    g208Auras:[{filter:{creature:true,race:'ドラゴン'},grants:{speedAttacker:true}}]};
+  if(['dm23rp1-052','dm23sd2-012'].includes(d.id)&&text===
+    'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+    'このクリーチャーは相手プレイヤーを攻撃できない。各ターンに一度自分のメカを使うコストを1少なくしてもよい。'+floor)
+   return {blocker:true,noPlayerAttack:true,g464OnceSummon:once('メカ')};
+  if(d.id==='dm23rp1-073'&&text===
+    'ガードマン(このクリーチャーをタップして相手クリーチャーの攻撃先を自分の他のクリーチャーからこのクリーチャーに変更してもよい)'+
+    'このクリーチャーは攻撃できない。各ターンに一度自分のジャイアントを使うコストを1少なくしてもよい。'+floor)
+   return {guardman:true,noAttack:true,g464OnceSummon:once('ジャイアント')};
+ }
  if(phase>=1228&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText).replaceAll('\uFE0E','');
   const raid=(race,max)=>({op:'Raid767',race,max});

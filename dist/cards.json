@@ -235012,15 +235012,159 @@
       ],
       "supportBatch": "phase-1228",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-015",
+      "name": "深海の妹 UNA4000",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "マジック・ムートピア",
+      "text": "ジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\nこのクリーチャーが攻撃する時、次のうちいずれか１つを選ぶ。\n▶カードを２枚引く。\n▶自分の手札を２枚捨ててもよい。そうしたら、マジック・メクレイド８する。（マジック・メクレイド８：自分の山札の上から３枚を見る。その中から、コスト８以下のマジックを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-015",
+      "limit": 4,
+      "justDiver": true,
+      "g34Attack": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "カードを2枚引く",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 2
+                }
+              ]
+            },
+            {
+              "label": "手札を2枚捨ててマジック・メクレイド8する",
+              "defs": [
+                {
+                  "op": "DiscardFor248",
+                  "n": 2,
+                  "g770DiscardAttempt": true,
+                  "title": "メクレイドするために捨てる手札を2枚選ぶ（任意）",
+                  "defs": [
+                    {
+                      "op": "Raid767",
+                      "race": "マジック",
+                      "max": 8
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1229",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-021",
+      "name": "クック・轟・ブルッチ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "アーマード・ファイアー・バード",
+      "text": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nこのクリーチャーが出た時、このターン次に使うアーマードのコストを６少なくする。ただしコストは０以下にはならない。\n自分のドラゴンすべてに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-021",
+      "limit": 4,
+      "gStrike": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "NextReduction456",
+          "amount": 6,
+          "filter": {
+            "race": "アーマード"
+          }
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1229",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-052",
+      "name": "アシスター・アルデ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "メカ・デル・ステラ",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n各ターンに一度、自分のメカを使うコストを１少なくしてもよい。ただし、コストは０以下にはならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-052",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g464OnceSummon": {
+        "execution": true,
+        "race": "メカ",
+        "amount": 1
+      },
+      "supportBatch": "phase-1229",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-073",
+      "name": "アシスター・サイネリア",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 6000,
+      "race": "ジャイアント・スノーフェアリー",
+      "text": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n各ターンに一度、自分のジャイアントを使うコストを１少なくしてもよい。ただし、コストは０以下にはならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-073",
+      "limit": 4,
+      "guardman": true,
+      "noAttack": true,
+      "g464OnceSummon": {
+        "execution": true,
+        "race": "ジャイアント",
+        "amount": 1
+      },
+      "supportBatch": "phase-1229",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1228,
+    "phase": 1229,
     "checkedAt": "2026-11-14",
-    "baseCount": 7680,
+    "baseCount": 7684,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7684,
+    "totalCount": 7688,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -256045,6 +256189,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7680,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1228,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7680,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7684,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

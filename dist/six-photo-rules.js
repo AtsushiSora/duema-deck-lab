@@ -112,7 +112,7 @@ export function createSixPhotoRules(api){
  // Public history counts creatures, not repeated untaps. Evolution keeps a creature's identity.
  function recordUntap472(s,p,x){if(x.sealed||!api.isCreature(s,x)||!s.players[p].battle.includes(x))return;const refs=api.allLayers(x).map(key),h=s.g472Untapped?.turn===s.turn?s.g472Untapped:(s.g472Untapped={turn:s.turn,groups:[]}),seen=h.groups.filter(xs=>xs.some(k=>refs.includes(k)));if(seen.length){for(const xs of seen)for(const k of refs)if(!xs.includes(k))xs.push(k);}else h.groups.push(refs);}
  // These resolved reductions expire on the next matching use, including free uses.
- function reductionMatches456(c,r){const f=r.filter||{};return !c.crossing&&c.type===r.type&&(!f.race||race(c,f.race))&&(!f.color||colors(c).includes(f.color))&&(!f.g756Colorless||colors(c).length===0)&&(f.minPower===undefined||c.power==='∞'||Number(c.power)>=f.minPower);}
+ function reductionMatches456(c,r){const f=r.filter||{};return !c.crossing&&(!r.type||c.type===r.type)&&(!f.race||race(c,f.race))&&(!f.color||colors(c).includes(f.color))&&(!f.g756Colorless||colors(c).length===0)&&(f.minPower===undefined||c.power==='∞'||Number(c.power)>=f.minPower);}
  const reductions456=(s,p,c)=>(s.extLimits||[]).filter(r=>r.kind==='g456NextReduction'&&r.player===p&&r.turn===s.turn&&reductionMatches456(c,r));
  function reductionRange456(s,p,c){
   let min=0,max=0,zero=0;
@@ -7025,7 +7025,7 @@ export function createSixPhotoRules(api){
   }
   if(colors(c).length>1)for(const y of s.players[p].grave)
    if(!y.faceDown&&card(y).g922GraveMultiSummon)send(s,p,y,'GraveReturn754',{serial:y.zoneSerial||0});
- }consumeOnce464(s,p,c,false);recordSummon463(s,p,c);if(c.type==='creature')consumeReduction456(s,p,c);if(c.type==='creature'&&['mana','grave'].includes(origin)&&typeof permit==='string'&&permit.startsWith('g450:'))((s.g450ZoneUses??=[{},{}])[p]??={})[permit]=s.turn;if(c.type!=='spell')noncreatureUse448(s,p,c);if(c.type==='creature'){countExecution(s,p,c);if(colors(c).includes('自然')&&Number(c.power)>=12000)s.g34Discounts=(s.g34Discounts||[]).filter(y=>y.p!==p||y.turn!==s.turn);}},
+ }consumeOnce464(s,p,c,false);recordSummon463(s,p,c);if(c.type!=='spell')consumeReduction456(s,p,c);if(c.type==='creature'&&['mana','grave'].includes(origin)&&typeof permit==='string'&&permit.startsWith('g450:'))((s.g450ZoneUses??=[{},{}])[p]??={})[permit]=s.turn;if(c.type!=='spell')noncreatureUse448(s,p,c);if(c.type==='creature'){countExecution(s,p,c);if(colors(c).includes('自然')&&Number(c.power)>=12000)s.g34Discounts=(s.g34Discounts||[]).filter(y=>y.p!==p||y.turn!==s.turn);}},
  scheduleAltEnd1221(s,p,c,inst){
   if(s.endStep||!c.g568Alt?.end)return;
   (s.g537Delays??=[]).push({p,source:c.id,when:'turnEnd',turn:s.turn,
