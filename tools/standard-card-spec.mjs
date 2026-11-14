@@ -2475,6 +2475,23 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1289&&d?.status==='complete'&&d.name==='撃髄医 スパイナー'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const missingMarker=['dmbd10-013','dmrp12-g08'].includes(d.id);
+  const [header,entry,minus,bonus,...other]=f.abilityText.split('\n').map(normalize);
+  const shorten=text=>text?.replaceAll('バトルゾーンに出','出');
+  const marker=d.id==='dmart17-004'?'{xB}':'xB';
+  const bullet=d.id==='dmrp04m-012'?'??':d.id==='dmbd10-013'?'':'▶︎';
+  const sign=d.id==='dmrp04m-012'?'?':'-';
+  if(!other.length&&header==='スーパー・S・トリガースーパー・S・トリガー(このクリーチャーを自分のシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい。その時自分のシールドが1つもなければこのクリーチャーに'+
+   (d.id==='dmrp12-g08'?'(S)':marker)+'能力を与える)'&&
+   shorten(entry)==='このクリーチャーが出た時次の能力を3回行う。'&&
+   minus===bullet+'相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを'+sign+'3000する。(パワー0以下のクリーチャーは破壊される)'&&
+   shorten(bonus)===(missingMarker?'':marker)+'このクリーチャーが出た時コスト4以下のクリーチャーを好きな数自分の墓地から出す。')
+    return {effect:'sixPhoto',superTrigger:true,
+     g34Tasks:[{op:'Repeat1052',n:3,def:{op:'Target',power:-3000,g242PowerMinus:true}}],
+     g493SuperEntry:[{op:'Select',origin:'grave',n:'all',deploy:true,optional:true,g236GraveDeploy:true,
+      filter:{creature:true,max:4},title:'墓地から出すコスト4以下のクリーチャーを選ぶ'}]};
+ }
  if(phase>=1286&&d?.status==='complete'&&f?.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const civil=n=>({creatureOrSeed:true,color:'火',faceUp:true,g258Civil:n});
@@ -2492,6 +2509,22 @@ export function standardCardSpec(d,{phase=165}={}){
     spellFace:{type:'spell',name:spell.name,cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,
      race:spell.race,text:spell.abilityText,effect:'sixPhoto',...spellRules}});
    const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+   if(phase>=1289&&/^dm23rp4x?-0(?:48|49|51)$/.test(d.id)){
+    const shieldTrigger='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+    if(d.id.endsWith('-048')&&text==='このクリーチャーが出た時相手のクリーチャーを1体選びタップする。次の相手のターンのはじめにそのクリーチャーはアンタップしない。'&&
+     back===shieldTrigger+'パワーの合計が7000以下になるように相手のクリーチャーを2体まで選び破壊する。')
+     return twin({effect:'sixPhoto',g34Tasks:[{op:'Target',tap:true,lock:true,g210TapLock:true}]},
+      {trigger:true,g34Tasks:[{...powerBudget506(back.slice(shieldTrigger.length)),spell:true}]});
+    if(d.id.endsWith('-049')&&text==='マッハファイター(このクリーチャーは出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)'&&
+     back===shieldTrigger+'相手のクリーチャーを1体選び破壊する。自分の山札の上から2枚を墓地に置く。')
+     return twin({machFighter:true},{trigger:true,g34Tasks:[{op:'Target',to:'grave',spell:true},{op:'Mill',n:2,g1042Together:true}]});
+    if(d.id.endsWith('-051')&&text===blocker+'メガ・ラスト・バースト(このクリーチャーが離れて手札マナゾーンまたは墓地に置かれた時このカードの呪文側をコストを支払わずに唱えてもよい)'&&
+     back==='相手のクリーチャーを3体まで選びタップする。')
+     return twin({blocker:true,megaLastBurst:true},{g34Tasks:[
+      {op:'Select',owner:'opponent',origin:'battle',n:3,optional:true,filter:{creature:true},g193Tap:true,spell:true,g173Targets:true,g193Select:true,
+       title:'タップする相手のクリーチャーを3体まで選ぶ'}
+     ]});
+   }
    if(phase>=1288){
     if(d.id==='dm23rp1-009'&&text===blocker+'T・ブレイカー(このクリーチャーはシールドを3つブレイクする)'+
      '自分のメカ・デル・ステラすべてに「ブロッカー」を与える。'&&

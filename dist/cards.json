@@ -241862,15 +241862,212 @@
       },
       "supportBatch": "phase-1288",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04m-012",
+      "name": "撃髄医 スパイナー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 2000,
+      "race": "マフィ・ギャング",
+      "text": "スーパー・S・トリガー スーパー・S・トリガー（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。その時自分のシールドが１つもなければ、このクリーチャーにxB能力を与える）\nこのクリーチャーが出た時、次の能力を３回行う。\n▶︎相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－3000する。（パワー０以下のクリーチャーは破壊される）\nxBこのクリーチャーが出た時、コスト４以下のクリーチャーを好きな数、自分の墓地から出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-012",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "superTrigger": true,
+      "g34Tasks": [
+        {
+          "op": "Repeat1052",
+          "n": 3,
+          "def": {
+            "op": "Target",
+            "power": -3000,
+            "g242PowerMinus": true
+          }
+        }
+      ],
+      "g493SuperEntry": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": "all",
+          "deploy": true,
+          "optional": true,
+          "g236GraveDeploy": true,
+          "filter": {
+            "creature": true,
+            "max": 4
+          },
+          "title": "墓地から出すコスト4以下のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1289",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-048",
+      "name": "ゲキシャ・写・メッチ / 「おいらの激写は機関銃だッピ！」",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2500,
+      "race": "アーマード・ファイアー・バード",
+      "text": "このクリーチャーが出た時、相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nパワーの合計が7000以下になるように相手のクリーチャーを２体まで選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-048",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true,
+          "lock": true,
+          "g210TapLock": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "「おいらの激写は機関銃だッピ！」",
+        "cost": 5,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "アーマード・アーツ",
+        "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nパワーの合計が7000以下になるように相手のクリーチャーを２体まで選び、破壊する。",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g506PowerBudget": 7000,
+            "title": "合計パワー7000以下になるよう2体まで選ぶ",
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1289",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-049",
+      "name": "ア:メナカア / 堕墓邪暗",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "ヴェールアビス",
+      "text": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、破壊する。\n自分の山札の上から２枚を墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-049",
+      "limit": 4,
+      "machFighter": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "堕墓邪暗",
+        "cost": 6,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "アビスへの誘い",
+        "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、破壊する。\n自分の山札の上から２枚を墓地に置く。",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "spell": true
+          },
+          {
+            "op": "Mill",
+            "n": 2,
+            "g1042Together": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1289",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-051",
+      "name": "モッチ・網・パラッチ / 「これが最後の輝きだッピ！」",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "アーマード・ファイアー・バード",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nメガ・ラスト・バースト（このクリーチャーが離れて、手札、マナゾーン、または墓地に置かれた時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\n相手のクリーチャーを３体まで選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-051",
+      "limit": 4,
+      "blocker": true,
+      "megaLastBurst": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "「これが最後の輝きだッピ！」",
+        "cost": 3,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "アーマード・アーツ",
+        "text": "相手のクリーチャーを３体まで選び、タップする。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 3,
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "g193Tap": true,
+            "spell": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "title": "タップする相手のクリーチャーを3体まで選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-1289",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1288,
+    "phase": 1289,
     "checkedAt": "2026-11-15",
-    "baseCount": 7875,
-    "newEffectCards": 3,
+    "baseCount": 7878,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7878,
+    "totalCount": 7882,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -263615,6 +263812,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7875,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1288,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7875,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7878,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
