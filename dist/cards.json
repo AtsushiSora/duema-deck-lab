@@ -238787,15 +238787,151 @@
       ],
       "supportBatch": "phase-1264",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-021",
+      "name": "どんどんトラップなう",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から５枚を見る。その中からクリーチャーを１体相手に見せ、手札に加えてもよい。残りを好きな順序で山札の下に置く。このようにして見せたクリーチャーのパワーが6000以上なら、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-021",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 5,
+          "g841DeckPeek": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "creature": true
+              },
+              "optional": true,
+              "reveal": true,
+              "g1265RevealedPowerAfterOrder": {
+                "min": 6000,
+                "defs": [
+                  {
+                    "op": "Target",
+                    "spell": true,
+                    "to": "mana",
+                    "toOwnerMana": true
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1265",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-041",
+      "name": "絶斗龍 チキチキ・モモキング",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "ジョーカーズ/レクスターズ",
+      "text": "スター進化：レクスターズまたは火のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n他のクリーチャーが破壊された時、このクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-041",
+      "limit": 4,
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g303DeathWatch": {
+        "both": true,
+        "g725RemainInBattle": true,
+        "defs": [
+          {
+            "op": "Untap",
+            "g191First": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1265",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-067",
+      "name": "歓楽のタギャースツ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "トリックス/レクスターズ",
+      "text": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n相手が自分のクリーチャーを選ぶ時、相手は可能ならこのクリーチャーを選ぶ。（ただし、自分の他のクリーチャーを攻撃またはブロックしてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-067",
+      "limit": 4,
+      "gStrike": true,
+      "forceTarget": true,
+      "supportBatch": "phase-1265",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-022",
+      "name": "葬磁縫合 セブ・シュテロン Λ",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "ディスペクター/デーモン・コマンド/サイバー・コマンド",
+      "text": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n相手のターンの終わりに、相手は自身の手札をすべて捨てる。その後、自分はそれと同じ枚数、カードを引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-022",
+      "limit": 4,
+      "exLife": true,
+      "breaker": 2,
+      "g565OpponentEnd": [
+        {
+          "op": "OpponentDiscardAllDraw1265"
+        }
+      ],
+      "supportBatch": "phase-1265",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1264,
+    "phase": 1265,
     "checkedAt": "2026-11-14",
-    "baseCount": 7793,
+    "baseCount": 7797,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7797,
+    "totalCount": 7801,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -260252,6 +260388,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7793,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1264,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7793,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7797,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

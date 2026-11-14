@@ -2475,6 +2475,30 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1265&&d?.status==='complete'&&d.faces.length===1){
+  const lines=f.abilityText.split('\n').map(normalize);
+  const trigger=lines[0]==='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+  const strike=lines[0]==='{GS}G・ストライク(このクリーチャーを自分のシールドゾーンから手札に加える時相手に見せ相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)';
+  if(d.id==='dmrp20-021'&&f.typeText==='呪文'&&trigger&&lines.length===2&&
+   lines[1]==='自分の山札の上から5枚を見る。その中からクリーチャーを1体相手に見せ手札に加えてもよい。残りを好きな順序で山札の下に置く。このようにして見せたクリーチャーのパワーが6000以上なら相手のクリーチャーを1体選び持ち主のマナゾーンに置く。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Look',n:5,g841DeckPeek:true,rest:'bottom',stages:[
+    {n:1,to:'hand',filter:{creature:true},optional:true,reveal:true,g1265RevealedPowerAfterOrder:{min:6000,defs:[
+     {op:'Target',spell:true,to:'mana',toOwnerMana:true}
+    ]}}
+   ]}]};
+  if(['dmrp20-041','promoy20-066'].includes(d.id)&&f.typeText==='スター進化クリーチャー'&&lines.length===3&&
+   lines[0]==='スター進化:レクスターズまたは火のクリーチャー1体の上に置く。(このクリーチャーが離れる時かわりに一番上のカードが離れる)'&&
+   keyword(lines[1],'W・ブレイカー')&&lines[2]==='他のクリーチャーが破壊された時このクリーチャーをアンタップする。')
+   return {starEvolution:true,evolution:{any:[{race:'レクスターズ'},{civilization:'火'}]},breaker:2,
+    g303DeathWatch:{both:true,g725RemainInBattle:true,defs:[{op:'Untap',g191First:true}]}};
+  if(d.id==='dmrp20-067'&&f.typeText==='クリーチャー'&&strike&&lines.length===2&&
+   lines[1]==='相手が自分のクリーチャーを選ぶ時相手は可能ならこのクリーチャーを選ぶ。(ただし自分の他のクリーチャーを攻撃またはブロックしてもよい)')
+   return {gStrike:true,forceTarget:true};
+  if(['dmrp20-022','dm23bd7-046'].includes(d.id)&&f.typeText==='クリーチャー'&&lines.length===3&&
+   lines[0]==='EXライフ(このクリーチャーを出す時自分の山札の上から1枚目をシールド化する。このクリーチャーが離れる時かわりにそのシールドを墓地に置く)'&&
+   keyword(lines[1],'W・ブレイカー')&&lines[2]==='相手のターンの終わりに相手は自身の手札をすべて捨てる。その後自分はそれと同じ枚数カードを引いてもよい。')
+   return {exLife:true,breaker:2,g565OpponentEnd:[{op:'OpponentDiscardAllDraw1265'}]};
+ }
  if(phase>=1264&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
   const lines=f.abilityText.split('\n').map(normalize);
   const trigger=lines[0]==='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
