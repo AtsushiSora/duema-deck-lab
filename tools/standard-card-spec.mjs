@@ -2470,6 +2470,33 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1198&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(['dm23rp2-030','dm23rp2x-030'].includes(d.id)&&text===
+   'このクリーチャーが出た時相手のクリーチャーを1体選びタップする。このクリーチャーがバトルゾーンにある間そのクリーチャーはアンタップしない。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',tap:true,g1198UntapLock:true,
+    title:'タップしてアンタップを止める相手のクリーチャーを1体選ぶ'}]};
+  if(['dm24rp2-019','dm24ex3-021'].includes(d.id)&&text===
+   'スレイヤー(このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)'+
+   '自分の超化獣クリーチャーが出た時このクリーチャーを自分の墓地から手札に戻してもよい。'+
+   'このクリーチャーが出た時自分の山札の上から1枚目を墓地に置く。その後超化獣クリーチャーを1体自分の墓地から手札に戻してもよい。')
+   return {slayer:true,g966GraveEntryRace:'超化獣',g1198GraveEntryCreature:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Mill',n:1},{op:'Select',origin:'grave',to:'hand',n:1,optional:true,
+     filter:{faceUp:true,g228Face:{type:'creature',raceAll:['超化獣']}}}
+   ]};
+  const zeosShield='各ターンに1度自分のドラゴンが出た時自分の山札の上から1枚をシールド化してもよい。';
+  const zeosEscape='自分の生徒会組すべてに「エスケープ」を与える。';
+  const zeosTexts={
+   'dm26ex3-026':'{GS}G・ストライク(このカードを自分のシールドゾーンから手札に加える時表向きにし相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)'+
+    'ブロッカーブロッカー'+zeosShield+zeosEscape+
+    '(「エスケープ」を持つクリーチャーが破壊される時かわりに自分のシールドを1つ手札に加えてもよい。その「S・トリガー」は使えない)',
+   'dm26ex3-SSP003':'{GS}G・ストライクブロッカーブロッカー'+zeosShield+zeosEscape
+  };
+  if(text===zeosTexts[d.id])
+   return {gStrike:true,blocker:true,g251EntryDraw:{filter:{race:'ドラゴン',faceUp:true},g1198EntryScope:true,defs:[
+    {op:'Offer',g792Once:'zeosShield1198',title:'山札の上から1枚をシールド化する？',defs:[{op:'ShieldTop',n:1}]}
+   ]},g208Auras:[{filter:{g724ExactRace:'生徒会組'},grants:{escape:true}}]};
+ }
  if(phase>=1197&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dm22rp1-039'&&text==='スレイヤー(このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)'+

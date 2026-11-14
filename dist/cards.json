@@ -230514,15 +230514,136 @@
       ],
       "supportBatch": "phase-1197",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-030",
+      "name": "星姫械 レゴミール",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "メカ・デル・ステラ",
+      "text": "このクリーチャーが出た時、相手のクリーチャーを１体選び、タップする。このクリーチャーがバトルゾーンにある間、そのクリーチャーはアンタップしない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-030",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true,
+          "g1198UntapLock": true,
+          "title": "タップしてアンタップを止める相手のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1198",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-019",
+      "name": "ポスト＝ポッター",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "アビスロイヤル",
+      "text": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n自分の超化獣クリーチャーが出た時、このクリーチャーを自分の墓地から手札に戻してもよい。\nこのクリーチャーが出た時、自分の山札の上から１枚目を墓地に置く。その後、超化獣クリーチャーを１体、自分の墓地から手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-019",
+      "limit": 4,
+      "slayer": true,
+      "g966GraveEntryRace": "超化獣",
+      "g1198GraveEntryCreature": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "faceUp": true,
+            "g228Face": {
+              "type": "creature",
+              "raceAll": [
+                "超化獣"
+              ]
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-1198",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex3-026",
+      "name": "サーヴァ・K・ゼオス＜スゴイ！＞",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5500,
+      "race": "マスター・ドラゴン/メタリカ/生徒会組",
+      "text": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nブロッカー ブロッカー\n各ターンに１度、自分のドラゴンが出た時、自分の山札の上から１枚をシールド化してもよい。\n自分の生徒会組すべてに「エスケープ」を与える。（「エスケープ」を持つクリーチャーが破壊される時、かわりに自分のシールドを１つ手札に加えてもよい。その「S・トリガー」は使えない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex3-026",
+      "limit": 4,
+      "gStrike": true,
+      "blocker": true,
+      "g251EntryDraw": {
+        "filter": {
+          "race": "ドラゴン",
+          "faceUp": true
+        },
+        "g1198EntryScope": true,
+        "defs": [
+          {
+            "op": "Offer",
+            "g792Once": "zeosShield1198",
+            "title": "山札の上から1枚をシールド化する？",
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "g724ExactRace": "生徒会組"
+          },
+          "grants": {
+            "escape": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1198",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1197,
+    "phase": 1198,
     "checkedAt": "2026-11-14",
-    "baseCount": 7582,
+    "baseCount": 7585,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7585,
+    "totalCount": 7588,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -251175,6 +251296,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7582,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1197,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7582,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7585,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

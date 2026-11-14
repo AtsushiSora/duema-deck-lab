@@ -6127,6 +6127,7 @@ export function createSixPhotoRules(api){
     kind:'g1116CreatureUntapLock',ref:key(y),who:t.p,expires:'start',
     spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))
    });
+   if(t.g1198UntapLock)(s.extLimits??=[]).push({kind:'g1198CreatureUntapLock',ref:key(y),host:key(t)});
    if(t.g676TapNames)tapNames676(s,y);if(t.g291UntapUntilSelf)(y.tapLocks??=[]).push(t.p);if(t.untap&&api.canUntap(y)){const was=y.tapped;y.tapped=false;if(was)combined.untapped(s,v.p,y);}if(t.lock){if(t.spell)(y.g170StartFreeze??=[]).push({spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});else y.skipUntap=true;}if(t.g1111PowerZero){
     (y.powerModifiers??=[]).push({fixedPower:0,expires:'end',who:s.active,spellSource:t.source,spellCost:cost(card(t.source))});
     api.powerCleanup(s);
@@ -6189,6 +6190,16 @@ export function createSixPhotoRules(api){
  const onceKey792=(x,d)=>'g792:'+d.g792Once+':'+key(x);
  const used792=(s,x,d)=>!!d?.g792Once&&s.once?.[onceKey792(x,d)]===s.turn;
  const watchUsed792=(s,x,watch)=>watch.defs.length===1&&used792(s,x,watch.defs[0]);
+ function queueEntryWatch251(s,p,x,y,options){
+  const watch=effective(x,s).g251EntryDraw,self=x.uid===y.uid;
+  if(x.sealed||!watch||watchUsed792(s,x,watch)||
+   watch.g895SummonedHand&&!(options.execution===true&&options.origin==='hand'))return;
+  if(watch.g1198EntryScope){
+   // GG suppresses creature-entry triggers; Kinari only suppresses the entrant's abilities.
+   if(api.isCreature(s,y)&&(api.selfStopped(s,p)||self&&options.selfMuted))return;
+  }else if(self&&(options.selfMuted||api.selfStopped(s,p)))return;
+  if(self&&watch.selfAlways||matches(s,p,y,watch.filter))queue(s,p,x,watch.defs);
+ }
  const modeUse1170=(t,i)=>({g792Once:'mode:'+t.source+':'+i});
  const parottaKey747=x=>'parotta:'+key(x),parottaUsed747=(s,x)=>s.once?.[parottaKey747(x)]===s.turn;
  function custom(s,t){const own=s.players[t.p],opp=s.players[1-t.p],x=live(s,t);switch(t.name){
@@ -6381,6 +6392,9 @@ export function createSixPhotoRules(api){
   if(p<0||!api.isCreature(s,x))return false;
   if(s.extLimits?.some(l=>l.kind==='g1116CreatureUntapLock'&&api.allLayers(x).some(y=>key(y)===l.ref)&&
    !api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})))return true;
+  if(s.extLimits?.some(l=>l.kind==='g1198CreatureUntapLock'&&api.allLayers(x).some(y=>key(y)===l.ref)&&
+   s.players.some(owner=>owner.battle.some(host=>key(host)===l.host&&!host.sealed&&!host.faceDown&&
+    card(host).g34Tasks?.some(d=>d.g1198UntapLock)&&!api.ignored(s,host)&&api.isCreature(s,host)))))return true;
   const c=effective(x,s);
   return s.players[p].grave.length<(c.g1016UntapMinGrave??0)||
    !mecha(c)&&(active(s,0,'shinGod').length||active(s,1,'shinGod').length)>0;
@@ -6773,8 +6787,12 @@ export function createSixPhotoRules(api){
    const graveRaceWatchers=s.players[p].grave.filter(x=>!x.faceDown&&card(x).g966GraveEntryRace);
    if(graveRaceWatchers.length){
     const entrant=effective(y,s,true);
-    for(const x of graveRaceWatchers)if(race(entrant,card(x).g966GraveEntryRace))
-     send(s,p,x,'GraveReturn754',{serial:x.zoneSerial||0});
+    for(const x of graveRaceWatchers){
+     const watcher=card(x);
+     if(race(entrant,watcher.g966GraveEntryRace)&&
+      (!watcher.g1198GraveEntryCreature||api.isCreature(s,y)&&!api.selfStopped(s,p)))
+      send(s,p,x,'GraveReturn754',{serial:x.zoneSerial||0});
+    }
    }
   }
   if(!y.sealed&&!y.faceDown&&hasSoul(card(y),'W')&&api.isCreature(s,y)){
@@ -6938,7 +6956,7 @@ export function createSixPhotoRules(api){
    else if(watch.g765CopyPower)send(s,owner,x,'CopyPower765',{g765Subject:{uid:y.uid,incarnation:y.incarnation||0}});
    else queue(s,owner,x,watch.defs);
   }
-  if(creature&&!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g468EntryWatch;if(!x.sealed&&watch&&(!watch.g565Other||x.uid!==y.uid)&&(!(x.uid===y.uid)||!options.selfMuted&&!api.selfStopped(s,p))&&matches(s,p,y,watch.filter))send(s,p,x,'Entry468',{mode:watch.mode,subject:{uid:y.uid,incarnation:y.incarnation||0}});}if(!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g251EntryDraw,self=x.uid===y.uid;if(!x.sealed&&watch&&!watchUsed792(s,x,watch)&&(!watch.g895SummonedHand||options.execution===true&&options.origin==='hand')&&(!self||!options.selfMuted&&!api.selfStopped(s,p))&&(self&&watch.selfAlways||matches(s,p,y,watch.filter)))queue(s,p,x,watch.defs);}if(!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g250EntryDraw,self=x.uid===y.uid;if(!x.sealed&&watch&&(self?watch.self&&!options.selfMuted&&!api.selfStopped(s,p):matches(s,p,y,watch.filter)))queue(s,p,x,watch.defs);}if(s.active===p&&!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g249OtherEntry;if(!x.sealed&&x.uid!==y.uid&&watch&&matches(s,p,y,watch.filter))queue(s,p,x,watch.defs);}if(creature){const stopped=options.selfMuted||api.selfStopped(s,p);for(const x of active(s,p,'cabbage'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[select('mana',null,1,{creature:true,color:'自然',minPower:12000,exactCost:cost(c)-1},{deploy:true,optional:true})]);if(ninja(effective(y,s)))for(const x of active(s,p,'mukujimmed'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[E('Draw',{n:1,optional:true})]);if(angel(effective(y,s)))for(const x of active(s,p,'everries'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[E('Draw',{n:1,optional:true})]);for(const x of active(s,1-p,'nameko'))if(!options.paidMana)queue(s,1-p,x,[C('nameko',{target:y.uid,targetIncarnation:y.incarnation||0})]);if(options.execution===false)for(const x of active(s,1-p,'oogumo'))queue(s,1-p,x,[E('ExactMove',{to:'grave',target:y.uid,targetIncarnation:y.incarnation||0})]);}if(options.origin!=='hand')for(const x of s.players[1-p].battle.filter(x=>!api.ignored(s,x)))for(const layer of api.layers(x))if(card(layer).g34SoulDock)queue(s,1-p,x,[E('ExactMove',{to:'grave',target:y.uid,targetIncarnation:y.incarnation||0})]);},
+  if(creature&&!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g468EntryWatch;if(!x.sealed&&watch&&(!watch.g565Other||x.uid!==y.uid)&&(!(x.uid===y.uid)||!options.selfMuted&&!api.selfStopped(s,p))&&matches(s,p,y,watch.filter))send(s,p,x,'Entry468',{mode:watch.mode,subject:{uid:y.uid,incarnation:y.incarnation||0}});}if(!y.sealed)for(const x of creatures(s,p))queueEntryWatch251(s,p,x,y,options);if(!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g250EntryDraw,self=x.uid===y.uid;if(!x.sealed&&watch&&(self?watch.self&&!options.selfMuted&&!api.selfStopped(s,p):matches(s,p,y,watch.filter)))queue(s,p,x,watch.defs);}if(s.active===p&&!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g249OtherEntry;if(!x.sealed&&x.uid!==y.uid&&watch&&matches(s,p,y,watch.filter))queue(s,p,x,watch.defs);}if(creature){const stopped=options.selfMuted||api.selfStopped(s,p);for(const x of active(s,p,'cabbage'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[select('mana',null,1,{creature:true,color:'自然',minPower:12000,exactCost:cost(c)-1},{deploy:true,optional:true})]);if(ninja(effective(y,s)))for(const x of active(s,p,'mukujimmed'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[E('Draw',{n:1,optional:true})]);if(angel(effective(y,s)))for(const x of active(s,p,'everries'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[E('Draw',{n:1,optional:true})]);for(const x of active(s,1-p,'nameko'))if(!options.paidMana)queue(s,1-p,x,[C('nameko',{target:y.uid,targetIncarnation:y.incarnation||0})]);if(options.execution===false)for(const x of active(s,1-p,'oogumo'))queue(s,1-p,x,[E('ExactMove',{to:'grave',target:y.uid,targetIncarnation:y.incarnation||0})]);}if(options.origin!=='hand')for(const x of s.players[1-p].battle.filter(x=>!api.ignored(s,x)))for(const layer of api.layers(x))if(card(layer).g34SoulDock)queue(s,1-p,x,[E('ExactMove',{to:'grave',target:y.uid,targetIncarnation:y.incarnation||0})]);},
  attack(s,p,x){if(s.g481Attackers?.turn!==s.turn)s.g481Attackers={turn:s.turn,events:[]};const refs=api.allLayers(x).map(key),first=!s.g481Attackers.events.some(e=>e.refs.some(r=>refs.includes(r)));s.g481Attackers.events.push({p,refs,...(race(effective(x,s,true),'ティラノ・ドレイク')?{tyrannoDrake925:true}:{}),...(s.attack?.target==='player'?{playerTarget:true}:{})});if(s.g481Attackers.events.length===1){
   const attacker={uid:x.uid,incarnation:x.incarnation||0};
   for(const owner of [p,1-p])for(const watcher of s.players[owner].battle){
