@@ -2475,6 +2475,27 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1280&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm39-035'&&f.typeText==='呪文'&&text===
+   'このターンバトルゾーンにある自分のクリーチャーすべてのパワーは+4000されシールドをさらに1枚ブレイクする。'+
+   'このターン自分のクリーチャーが相手を攻撃しブロックされた時相手のシールドを1枚ブレイクする。'+
+   '呪文の効果によってこのターン相手がバトルゾーンにあるクリーチャーを選ぶ時自分のクリーチャーを選ぶことはできない。')
+   return {effect:'sixPhoto',g34Tasks:[
+    {op:'GroupPower',owner:'self',filter:{creature:true},power:4000,spell:true},
+    {op:'GroupLasting412',owner:'self',filter:{creature:true},extraBreak:1,g969FollowControl:true,spell:true},
+    {op:'TurnBlockBreak712',allCreatures:true,spell:true}
+   ]};
+  if(/^dm22rp2x?-013$/i.test(d.id)&&f.typeText==='クリーチャー'&&text===
+   '自分のクリーチャーが相手を攻撃する時カードを1枚引いてもよい。'+
+   'シビルカウント5:自分の水のクリーチャーまたは水のタマシードが合計5つ以上あれば自分の他のクリーチャーとタマシードは選ばれず攻撃されない。')
+   return {g252AttackWatch:{who:'self',playerAttack:true,defs:[{op:'Draw',n:1,optional:true}]},
+    g1280CivilProtection:{creatureOrSeed:true,color:'水',faceUp:true,g258Civil:5}};
+  if(/^dm22rp2x?-050$/i.test(d.id)&&f.typeText==='タマシード'&&text===
+   'このタマシードが出た時自分の山札の上から2枚を墓地に置く。'+
+   '自分のクリーチャーが離れる時かわりにタップしてマナゾーンに置いてもよい。この能力は各ターン1度しか使えない。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Mill',n:2}],g1280LeaveToMana:true};
+ }
  if(phase>=1279&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(['dm38-006','dm38-006VC'].includes(d.id)&&f.typeText==='クリーチャー'&&

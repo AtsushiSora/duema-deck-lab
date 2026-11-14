@@ -5452,7 +5452,9 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_TurnBlockBreak712':
-  (s.extLimits??=[]).push({kind:'g712BlockBreak',player:t.p,source:t.source,uid:t.uid,incarnation:t.incarnation||0,turn:s.turn,expires:'end',who:s.active});
+  (s.extLimits??=[]).push({kind:'g712BlockBreak',player:t.p,source:t.source,uid:t.uid,incarnation:t.incarnation||0,
+   turn:s.turn,expires:'end',who:s.active,...(t.allCreatures?{allCreatures:true}:{}),
+   ...(t.spell?{spellCost:cost(card(t.source))}:{})});
   break;
  case'g34_TurnNamedAttack1123':
   (s.extLimits??=[]).push({kind:'g1123TurnNamedAttack',player:t.p,source:t.source,spellCost:cost(card(t.source)),
@@ -7287,9 +7289,11 @@ export function createSixPhotoRules(api){
      send(s,owner,a,'Break497',{n:1,g747CreatureBreak:true,g830BlockBreaker:a.cardId});
    }
   }
-  if(a&&!a.sealed&&s.attack.g712PlayerTarget&&s.players[p].shields.length&&colors(effective(a,s)).includes('自然')){
+  if(a&&!a.sealed&&s.attack.g712PlayerTarget&&s.players[p].shields.length){
    for(const rule of s.extLimits||[]){
     if(rule.kind!=='g712BlockBreak'||rule.player!==owner||rule.turn!==s.turn)continue;
+     if(!rule.allCreatures&&!colors(effective(a,s)).includes('自然'))continue;
+     if(rule.spellCost!==undefined&&api.spellIgnored(s,{type:'spell',cost:rule.spellCost,spellSource:rule.source}))continue;
     queue(s,owner,{uid:rule.uid,incarnation:rule.incarnation,cardId:rule.source},[{op:'Break497',n:1}]);
    }
   }
@@ -8880,6 +8884,20 @@ attackPower593(s,p,x,playerOnly){
 },
 playerStop567(s,p,x){if(playerStopReading567.has(s))return false;const locks=(s.extLimits||[]).filter(l=>l.kind==='g567PlayerStop'&&(l.ref?api.allLayers(x).some(y=>key(y)===key(l.ref)):l.player===p)&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})));if(!locks.length)return false;playerStopReading567.add(s);try{return locks.some(l=>l.controller===p||!creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks));}finally{playerStopReading567.delete(s);}},
 externalProtection565,
+ civilProtection1280(s,p,x){
+  if(x.sealed||x.faceDown||!s.players[p].battle.some(y=>y!==x&&card(y).g1280CivilProtection))return false;
+  if(!api.isCreature(s,x)&&!matches(s,p,x,{g295Tamaseed:true}))return false;
+  return s.players[p].battle.some(y=>{
+   const filter=card(y).g1280CivilProtection;
+   return y!==x&&filter&&!y.sealed&&!y.faceDown&&api.isCreature(s,y)&&!api.ignored(s,y)&&
+    ownCondition(s,p,filter,y.uid);
+  });
+ },
+ blockBreakSpellProtection1280(s,p,owner,x){
+  return p!==owner&&api.isSpellChoice(s)&&api.isCreature(s,x)&&s.extLimits?.some(rule=>
+   rule.kind==='g712BlockBreak'&&rule.allCreatures&&rule.player===owner&&rule.turn===s.turn&&
+   !api.spellIgnored(s,{type:'spell',cost:rule.spellCost,spellSource:rule.source}));
+ },
  kachuaDragon(s,p,host,{g1082Dragon:source,g31Partner}){
   const linked=[host,...(host.godLinks||[])].map(x=>({uid:x.uid,incarnation:x.incarnation||0}));
   if(g31Partner)for(const delay of s.g537Delays||[]){

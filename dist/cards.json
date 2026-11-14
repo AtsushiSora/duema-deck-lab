@@ -240545,15 +240545,122 @@
       ],
       "supportBatch": "phase-1279",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm39-035",
+      "name": "カンクロウ・ブラスター",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "このターン、バトルゾーンにある自分のクリーチャーすべてのパワーは+4000され、シールドをさらに１枚ブレイクする。\nこのターン、自分のクリーチャーが相手を攻撃しブロックされた時、相手のシールドを１枚ブレイクする。\n呪文の効果によって、このターン、相手がバトルゾーンにあるクリーチャーを選ぶ時、自分のクリーチャーを選ぶことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-035",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupPower",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "power": 4000,
+          "spell": true
+        },
+        {
+          "op": "GroupLasting412",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "extraBreak": 1,
+          "g969FollowControl": true,
+          "spell": true
+        },
+        {
+          "op": "TurnBlockBreak712",
+          "allCreatures": true,
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1280",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-013",
+      "name": "マサオカ・ドラムハイカー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "マジック・マーフォーク",
+      "text": "自分のクリーチャーが相手を攻撃する時、カードを１枚引いてもよい。\nシビルカウント ５：自分の水のクリーチャーまたは水のタマシードが合計５つ以上あれば、自分の他のクリーチャーとタマシードは選ばれず、攻撃されない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-013",
+      "limit": 4,
+      "g252AttackWatch": {
+        "who": "self",
+        "playerAttack": true,
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "g1280CivilProtection": {
+        "creatureOrSeed": true,
+        "color": "水",
+        "faceUp": true,
+        "g258Civil": 5
+      },
+      "supportBatch": "phase-1280",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-050",
+      "name": "霊魂と怨念のドライバー",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "このタマシードが出た時、自分の山札の上から２枚を墓地に置く。\n自分のクリーチャーが離れる時、かわりにタップしてマナゾーンに置いてもよい。この能力は、各ターン１度しか使えない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-050",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 2
+        }
+      ],
+      "g1280LeaveToMana": true,
+      "supportBatch": "phase-1280",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1279,
+    "phase": 1280,
     "checkedAt": "2026-11-14",
-    "baseCount": 7844,
-    "newEffectCards": 4,
+    "baseCount": 7848,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7848,
+    "totalCount": 7851,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -262190,6 +262297,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7844,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1279,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7844,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7848,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
