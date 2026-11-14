@@ -2470,6 +2470,20 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1246&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const doubleBreaker='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';
+  if(['dm22-018','promoy5-054'].includes(d.id)&&text===
+   '攻撃中バトルゾーンにあるタップされている自分の他のクリーチャーすべてのパワーをこのクリーチャーのパワーに加える。'+doubleBreaker)
+   return {breaker:2,g1246TappedAllyPower:true};
+  if(d.id==='dmr19-s02'&&text==='W・ブレイカー'+
+   '自分のターン中に自分のクリーチャーがバトルゾーンを離れる時そのクリーチャーのパワーが0より大きく相手のシールドが2つ以下なら離れるかわりにとどまる。')
+   return {breaker:2,g1246AllyStay:true};
+  if(d.id==='dmx11-026'&&text==='ブロッカーこのクリーチャーをバトルゾーンに出した時自分のシールドをふたつ墓地に置く。'+doubleBreaker||
+   d.id==='dmex13-046'&&text==='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)このクリーチャーがバトルゾーンに出た時自分のシールドを2つ墓地に置く。')
+   return {blocker:true,breaker:2,effect:'sixPhoto',g34Tasks:[{op:'ShieldGrave588',owner:'self',required:true,n:2}]};
+ }
  if(phase>=1245&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText),breaker='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';
   if(d.id==='dmr07-002'&&text===

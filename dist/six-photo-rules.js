@@ -481,6 +481,11 @@ export function createSixPhotoRules(api){
   if((battlePower??api.power(x,attacking,s))<=0)return false;
   return !rule.lightMana||s.players[p].mana.filter(y=>!y.faceDown&&api.manaColors(api.zoneCard(s,p,y,'mana'),s,p).includes('光')).length>=rule.lightMana;
  }
+ function allyStay1246(s,p,x,battlePower){
+  if(s.active!==p||s.players[1-p].shields.length>2||x.sealed||!api.isCreature(s,x))return false;
+  const source=s.players[p].battle.some(y=>!y.sealed&&!y.faceDown&&card(y).g1246AllyStay&&effective(y,s).g1246AllyStay);
+  return source&&(battlePower??currentPower506(s,x))>0;
+ }
  function fightScore240(s,a,b){const ap=api.battlePower(s,a,b,a.uid===s.attack?.attacker),bp=api.battlePower(s,b,a,b.uid===s.attack?.attacker),lose=(!hooks.battleSafe(s,a,b,bp)&&bp>=ap)||api.slayerCount(s,b,a)>0&&!hooks.destroySafe409(s,a),win=(!hooks.battleSafe(s,b,a,ap)&&ap>=bp)||api.slayerCount(s,a,b)>0&&!hooks.destroySafe409(s,b);return(win?10+4*cost(card(b)):0)-(lose?10+4*cost(card(a)):0);}
  function fightPairRows586(s,t,owners){
   const cards=owners.flatMap(p=>creatures(s,p).filter(x=>!x.sealed&&x.uid!==t.first?.uid).map(x=>({p,x})));
@@ -3585,7 +3590,9 @@ export function createSixPhotoRules(api){
    (t.optionalExact?api.shieldCards(y).every(x=>!x.g37ShieldHeld):api.shieldCards(y).some(x=>!x.g37ShieldHeld)));
   if(t.optionalExact&&selected.length+rows.length<t.n)break;
   const zone=t.to==='mana'?'マナゾーン':'墓地';
-  if(selected.length<t.n&&rows.length)choice(s,t,t.optionalExact?zone+'に置く'+side+'のシールドを選ぶ（'+(selected.length+1)+'/'+t.n+'・任意）':t.required?zone+'に置く'+side+'のシールドを1つ選ぶ':zone+'に置く'+side+'のシールドを'+t.n+'つまで選ぶ（'+selected.length+'つ選択済み）',[
+  if(selected.length<t.n&&rows.length)choice(s,t,t.optionalExact?zone+'に置く'+side+'のシールドを選ぶ（'+(selected.length+1)+'/'+t.n+'・任意）':t.required?
+   zone+'に置く'+side+'のシールドを'+(t.n===1?'1つ選ぶ':'選ぶ（'+selected.length+'つ選択済み、最大'+t.n+'つ）'):
+   zone+'に置く'+side+'のシールドを'+t.n+'つまで選ぶ（'+selected.length+'つ選択済み）',[
    ...rows.map(y=>opt('シールド '+(target.shields.indexOf(y)+1),y.uid,10)),...(t.required?[]:[opt(t.optionalExact?'シールドを置かない':'選択を完了',null,0)])
   ]);else finishShieldMove588(s,t);
   break;
@@ -6978,9 +6985,9 @@ export function createSixPhotoRules(api){
    s.players[p].battle.some(y=>!y.sealed&&card(y).g1132NeoStay&&effective(y,s).g1132NeoStay)&&
    (context.battlePower??currentPower506(s,x))>0)return false;
   if((s.extLimits||[]).some(l=>l.kind==='g627Stay'&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)))return false;
-  return context.skip577Stay||!c.g577Stay||!stay577(s,p,x,context.battlePower);
+  return context.skip577Stay||!(c.g577Stay&&stay577(s,p,x,context.battlePower)||allyStay1246(s,p,x,context.battlePower));
  },
- stay577,
+ stay577,allyStay1246,
  zeroSafe:(s,x)=>!!effective(x,s).g34AlwaysWinAtZero&&api.power(x,false,s)<=0,
  // The permission comes from the allied Dragon, even if the attacker is ignored (QA39131).
  dragonAttackUntapped967:(s,p,x,c)=>race(c,'ドラゴン')&&s.players[p].battle.some(source=>
