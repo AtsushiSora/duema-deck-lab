@@ -286,6 +286,11 @@ export function createSixPhotoRules(api){
  }
  // Smash Burst follows the same physical card through its first zone change (QA48746).
  function smashSource320(s,t){for(const origin of['battle','hand','grave','mana','deck','extra']){const xs=origin==='battle'?s.players[t.p].battle.flatMap(api.allLayers):s.players[t.p][origin],x=xs.find(x=>x.uid===t.uid);if(x&&(origin==='battle'?(x.incarnation||0)===(t.incarnation||0):(x.zoneSerial||0)===(t.serial||0)+1))return{origin,x};}return null;}
+ function friendBurstCandidates(s,t){
+  const host=sourceHost474(s,t)?.x;
+  return creatures(s,t.p).filter(y=>y.uid!==host?.uid&&y.uid!==t.uid&&!y.tapped&&!y.sealed&&!y.faceDown&&
+   race(effective(y,s,true),t.race));
+ }
  const send=(s,p,x,op,more={},deferred)=>api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g34_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})},deferred);
  function bioKScore(s,p,source){
   const {recovery,effect}=card(source).g953BioK??{};
@@ -3320,6 +3325,16 @@ export function createSixPhotoRules(api){
  case'g34_KatsuDraw321':put(s,task('draw',t.p,t.source,{n:2}),...(t.high&&t.discarded?[{...t,op:'g34_Untap'}]:[]));break;
  case'g34_Next320':{api.shuffleLibrary(s,t.p,[],t.source);const ids=look(s,{...t,n:1,public:true}),y=own.deck.find(x=>x.uid===ids[0]);if(!y){api.deckCheck(s,t.p);break;}const choices=faces(card(y)).flatMap((c,face)=>{if(!api.canCast(s,t.p,c,'deck')||c.type!=='spell'&&!api.canEnter(s,t.p,c,{origin:'deck',execution:true}))return[];const bases=!c.graveEvolution&&(c.evolution||c.neoEvolution)?api.evolutionBases(s,t.p,c):[],options=c.evolution&&!c.graveEvolution?bases:[null,...bases];return options.map(base=>opt('無料で実行：'+c.name+(base?'（'+card(base).name+'に進化）':''),{uid:y.uid,face,baseUid:base?.uid||null},own.deck.length<=1?-1000:25+cost(c),y.cardId));});choice(s,{...t,target:y.uid},'ゴルギーネクスト：公開したカードをどう使う？',[...choices,opt('手札に加える',{to:'hand'},own.deck.length<=1?-1000:10,y.cardId),opt('マナゾーンに置く',{to:'mana'},own.deck.length<=1?-1000:own.mana.length<6?20:5,y.cardId)]);break;}
  case'g34_IfAllMana320':if(own.mana.every(y=>!y.faceDown&&faces(card(y)).some(c=>race(c,'アビス'))))start(s,t,t.defs);break;
+ case'g34_FriendBurst1210':{
+  const candidates=friendBurstCandidates(s,t);
+  if(!candidates.length)break;
+  const source=card(t.source),spell=faces(card(source.referenceId??t.source))[1];
+  const drawCount=(spell?.g34Tasks??[]).filter(d=>d.op==='Draw').reduce((n,d)=>n+d.n,0);
+  const score=drawCount>=own.deck.length?-1000:drawCount*9;
+  choice(s,t,t.race+'・フレンド・バースト：タップするクリーチャーを選ぶ',
+   [...candidates.map(y=>opt(card(y).name,y.uid,score-cost(card(y)),y.cardId)),skip()]);
+  break;
+ }
  case'g34_Smash320':{const row=smashSource320(s,t),c=faces(card(t.source))[1];if(row&&c&&api.canCast(s,t.p,c,row.origin))choice(s,t,'スマッシュ・バーストで呪文側を唱える？',[opt('「ヤベーのを見たいか？」を唱える',true,own.deck.length<=1?-1000:25,t.source),skip()]);break;}
  case'g34_BattleDeclare588':{
   const cards=t.cards.filter(ref=>own.hand.some(y=>y.uid===ref.uid&&(y.zoneSerial||0)===ref.serial));
@@ -4311,6 +4326,12 @@ export function createSixPhotoRules(api){
    }
   }
   if(!stage){
+   if(t.rest==='keep'){
+    for(const uid of t.ids)release(s,t.p,uid);
+    if(t.after)start(s,t,t.after);
+    api.deckCheck(s,t.p);
+    break;
+   }
    if(t.g791OrderRest)distribute255(s,{...t,ids:[]});
    if(s.winner===null)put(s,{...t,op:t.g255Distribute&&!t.g791OrderRest?'g34_Distribute255':'g34_Order',ids:xs.map(x=>x.uid),ordered:[],after:t.after});
    break;
@@ -4558,7 +4579,8 @@ export function createSixPhotoRules(api){
     &&(!t.g1041Colored||!y.sealed&&!y.faceDown&&colors(effective(y,s)).length>0))
    .map(y=>({player:p,uid:y.uid,to,destroy:to==='grave'&&!t.g815PutInGrave,
     ...(t.toOwnerHand?{toOwnerHand:true}:{}),...(t.toOwnerDeck?{toOwnerDeck:true}:{}),
-    ...(t.toOwnerMana?{toOwnerMana:true}:{}),...(t.g1117ShieldDraw?{faceUp:true,toOwnerShields:true}:{})})));
+    ...(t.toOwnerMana?{toOwnerMana:true}:{}),...(to==='mana'&&t.tapped?{tapped:true}:{}),
+    ...(t.g1117ShieldDraw?{faceUp:true,toOwnerShields:true}:{})})));
   if(rows.length){
    if(t.g994OrderBottom){
     const orders=[s.active,1-s.active].flatMap(p=>{
@@ -5250,6 +5272,15 @@ export function createSixPhotoRules(api){
   break;
  case'g34_KatsuLoot321':{const y=own.hand.find(y=>y.uid===v);if(y)api.discardSelected(s,t.p,[y.uid],t.source,t.p,null,{...t,op:'g34_KatsuDraw321',high:card(y).type==='creature'&&api.power(y,false,s)>=6000});break;}
  case'g34_Next320':{const y=own.deck.find(y=>y.uid===t.target);if(!y)break;release(s,t.p,y.uid);if(v.to){zoneMove(s,t.p,'deck',y.uid,v.to,t);api.deckCheck(s,t.p);}else cast(s,t.p,y.uid,true,v.baseUid,v.face,null,'deck','ゴルギーネクスト');break;}
+ case'g34_FriendBurst1210':{
+  const y=v&&friendBurstCandidates(s,t).find(y=>y.uid===v);
+  if(y){
+   api.tap(s,t.p,y);
+   // QA45088 and QA44115: the tap resolves even if the source has left or has no spell face.
+   api.castBattleSpell(s,t.p,t.uid,t.incarnation,card(t.source).referenceId??t.source,t.race+'・フレンド・バースト');
+  }
+  break;
+ }
  case'g34_Smash320':if(v&&smashSource320(s,t))api.castBattleSpell(s,t.p,t.uid,t.incarnation,t.source);break;
  case'g34_Poker763':if(v)start(s,t,[{op:'AfterAttack542',defs:[{op:'Untap',g191First:true}]}]);break;
  case'g34_TapState235':{const y=s.players[t.target.p].battle.find(y=>y.uid===t.target.uid&&(y.incarnation||0)===t.target.incarnation);if(y){if(v)api.tap(s,t.target.p,y);else if(y.tapped&&api.canUntap(y)){y.tapped=false;combined.untapped(s,t.target.p,y);}}break;}

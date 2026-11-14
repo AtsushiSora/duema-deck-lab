@@ -2470,6 +2470,26 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1210&&d?.status==='complete'&&d.faces.length===2&&f.typeText==='クリーチャー'&&d.faces[1].typeText==='呪文'){
+  const spell=d.faces[1],text=normalize(f.abilityText),back=normalize(spell.abilityText);
+  const friend=race=>race+'・フレンド・バースト(このクリーチャーが出た時自分の他の'+race+
+   '・クリーチャーを1体タップしてもよい。そうしたらこのクリーチャーの呪文側をバトルゾーンに置いたままコストを支払わずに唱える。)';
+  const burst=race=>[{op:'FriendBurst1210',race}];
+  const twin=(g34Tasks,defs,extra={})=>({effect:'sixPhoto',g34Tasks,...extra,spellFace:{type:'spell',
+   name:spell.name,cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,
+   race:spell.race,effect:'sixPhoto',g34Tasks:defs}});
+  if(['dm23rp2-057','dm23rp2x-057'].includes(d.id)&&text===friend('マジック')&&back==='カードを3枚引く。')
+   return twin(burst('マジック'),[{op:'Draw',n:3}]);
+  if(['dm23rp2-020','dm23rp2x-020'].includes(d.id)&&text===friend('アーマード')+'自分の他のファイアー・バードのパワーを+2000する。'&&
+     back==='自分の手札を1枚捨てその後カードを2枚引く。')
+   return twin(burst('アーマード'),[{op:'Discard',owner:'self',n:1},{op:'Draw',n:2}],
+    {g205Aura:{other:true,filter:{creature:true,race:'ファイアー・バード'},power:2000}});
+  if(['dm23rp2-024','dm23rp2x-024','dm23bd6-032','dm24bd5-024'].includes(d.id)&&
+     text==='このクリーチャーが出た時自分の山札の上から2枚を見る。そのうちの1枚をマナゾーンに置く。'&&
+     back==='クリーチャーをすべて持ち主のマナゾーンにタップして置く。')
+   return twin([{op:'Look',n:2,g841DeckPeek:true,rest:'keep',stages:[{n:1,to:'mana'}]}],
+    [{op:'Sweep',both:true,to:'mana',toOwnerMana:true,tapped:true,filter:{creature:true,faceUp:true}}]);
+ }
  if(phase>=1209&&d?.status==='complete'&&d.faces.length===2&&f.typeText==='クリーチャー'&&d.faces[1].typeText==='呪文'){
   const spell=d.faces[1],text=normalize(f.abilityText),back=normalize(spell.abilityText);
   const breaker=d.id==='dm24ex2-Cho037'?'W・ブレイカー':'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)';

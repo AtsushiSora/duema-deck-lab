@@ -232086,15 +232086,169 @@
       },
       "supportBatch": "phase-1209",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-057",
+      "name": "爆弾音愛 メッシュ / ♪キミとボク 共感すれば マジ文殊",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "マジック・マーメイド",
+      "text": "マジック・フレンド・バースト（このクリーチャーが出た時、自分の他のマジック・クリーチャーを１体タップしてもよい。そうしたら、このクリーチャーの呪文側を、バトルゾーンに置いたままコストを支払わずに唱える。）\n【呪文面】\nカードを３枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-057",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "FriendBurst1210",
+          "race": "マジック"
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "♪キミとボク 共感すれば マジ文殊",
+        "cost": 5,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "マジック・ソング",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          }
+        ]
+      },
+      "supportBatch": "phase-1210",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-020",
+      "name": "カラカラ・警・ルピア / 「ここはお任せだッピ！」",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "アーマード・ファイアー・バード",
+      "text": "アーマード・フレンド・バースト（このクリーチャーが出た時、自分の他のアーマード・クリーチャーを１体タップしてもよい。そうしたら、このクリーチャーの呪文側を、バトルゾーンに置いたままコストを支払わずに唱える。）\n自分の他のファイアー・バードのパワーを+2000する。\n【呪文面】\n自分の手札を１枚捨て、その後、カードを２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-020",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "FriendBurst1210",
+          "race": "アーマード"
+        }
+      ],
+      "g205Aura": {
+        "other": true,
+        "filter": {
+          "creature": true,
+          "race": "ファイアー・バード"
+        },
+        "power": 2000
+      },
+      "spellFace": {
+        "type": "spell",
+        "name": "「ここはお任せだッピ！」",
+        "cost": 2,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "アーマード・アーツ",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          },
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      },
+      "supportBatch": "phase-1210",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-024",
+      "name": "マーチングドラム ミドリ / ハーメルン・ハーモニー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ジャイアント・スノーフェアリー",
+      "text": "このクリーチャーが出た時、自分の山札の上から２枚を見る。そのうちの１枚をマナゾーンに置く。\n【呪文面】\nクリーチャーをすべて、持ち主のマナゾーンにタップして置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-024",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g841DeckPeek": true,
+          "rest": "keep",
+          "stages": [
+            {
+              "n": 1,
+              "to": "mana"
+            }
+          ]
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "ハーメルン・ハーモニー",
+        "cost": 8,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "ジャイアント・スキル",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "mana",
+            "toOwnerMana": true,
+            "tapped": true,
+            "filter": {
+              "creature": true,
+              "faceUp": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1210",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1209,
+    "phase": 1210,
     "checkedAt": "2026-11-14",
-    "baseCount": 7619,
+    "baseCount": 7622,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7622,
+    "totalCount": 7625,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -252891,6 +253045,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7619,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1209,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7619,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7622,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
