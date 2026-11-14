@@ -2470,6 +2470,35 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1235&&d?.status==='complete'){
+  const text=normalize(f.abilityText);
+  if(['dm24rp1-OR2','dm24rp1-Sec02','dm24ex3-rp1OR2','dm24ex3-rp1Sec02'].includes(d.id)&&d.faces.length===2){
+   const front='自分の墓地からアビス・クリーチャーを召喚してもよい。(コストは支払う)'+
+    'OVERハイパー化:自分の他のクリーチャーを2体タップする。'+
+    '(自分のメインステップ中にハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く)';
+   if(f.typeText==='クリーチャー'&&f.powerText==='4000'&&text===front&&d.faces[1].powerText==='13000'&&
+    normalize(d.faces[1].abilityText)===front+'T・ブレイカーこのクリーチャーが攻撃する時自分の山札の上から3枚を墓地に置く。'+
+    'その後コストの合計が自分の墓地にあるカードの枚数以下になるよう相手のクリーチャーを2体まで選び破壊する。')
+    return {g294GraveAura:{race:'アビス'},hyperTap:2,hyper:{power:13000,breaker:3,g34Attack:[
+     {op:'Mill',n:3,g1042Together:true},{op:'CountCost553',zone:'grave',def:{op:'Select',origin:'battle',owner:'opponent',
+      n:2,to:'grave',optional:true,filter:{creature:true},g173Targets:true,g193Select:true}}
+    ]}};
+  }
+  if(d.faces.length===1&&f.typeText==='クリーチャー'){
+   if(['dm24rp2-020','dm24ex3-027'].includes(d.id)&&text===
+    'このターン中に捨てた自分の手札1枚につきこのクリーチャーの召喚コストを2少なくする。ただしコストは0以下にはならない。'+
+    'スピードアタッカー自分のターンの終わりにこのターン中に捨てた自分の手札と同じ枚数のカードを引いてもよい。')
+    return {speedAttacker:true,g212CountDiscount:{zone:'discards',amount:2},g174End:[{op:'DrawDiscardCount1235'}]};
+   if(['dm24rp1-S04','dm24ex3-rp1S04','dm24ex3-Sec03'].includes(d.id)&&
+    /^ブロッカーブロッカージャストダイバー相手のターンの終わりにこのクリーチャーがタップしていればカードを2枚引いてもよい。そうしたら自分の手札の枚数以下のコスト(?:を持つ|の)水のカードを1枚自分の手札からコストを支払わずに使ってもよい。$/.test(text))
+    return {blocker:true,justDiver:true,g565OpponentEnd:[{op:'IfSource541',g1064Tapped:true,defs:[
+     {op:'Offer',title:'カードを2枚引く？',defs:[{op:'Draw',n:2,g818AfterDraw:[
+      {op:'Execute',origin:'hand',g1139HandSizeMax:true,spellColorsAny:['水'],optional:true,
+       title:'手札の枚数以下のコストの水のカードを1枚まで使う'}
+     ]}]}
+    ]}]};
+  }
+ }
  if(phase>=1234&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dm24rp2-065'&&f.typeText==='呪文'&&text===

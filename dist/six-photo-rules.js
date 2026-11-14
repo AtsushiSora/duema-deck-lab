@@ -145,6 +145,7 @@ export function createSixPhotoRules(api){
  function recordSummon463(s,p,c){if(c.type!=='creature')return;const prev=s.g463Summons?.[p],r=prev?.turn===s.turn?prev:{turn:s.turn,n:0,colors:{}};r.n++;for(const q of new Set(colors(c)))r.colors[q]=(r.colors[q]||0)+1;(s.g463Summons??=[null,null])[p]=r;}
  function firstSummonMax463(s,p,c){if(c.type!=='creature'||c.crossing)return 0;const history=s.g463Summons?.[p],seen=history?.turn===s.turn?history:null;return creatures(s,p).filter(x=>!x.sealed).reduce((n,x)=>{const r=effective(x,s).g463FirstSummon;return n+(r&&(!r.colors.length?!seen?.n:r.colors.some(q=>colors(c).includes(q))&&!r.colors.some(q=>seen?.colors[q]))?r.amount:0);},0);}
  function firstSummonDiscount463(s,p,c){const max=firstSummonMax463(s,p,c);return c.g463Reduction===undefined?max:Math.min(max,Math.max(0,c.g463Reduction));}
+ const discardCount1235=(s,p)=>s.g1235Discards?.[p]?.turn===s.turn?s.g1235Discards[p].n:0;
  // A card being used from its counted zone is held aside before computing its cost.
  function countDiscountMax499(s,p,c){
   const t=c.g212CountDiscount;
@@ -153,6 +154,7 @@ export function createSixPhotoRules(api){
   const owner=t.owner==='opponent'?1-p:p;
   if(t.g753AllMana)return s.players[owner].mana.length*t.amount;
   if(t.zone==='draws')return(s.players[owner].drawsThisTurn||0)*t.amount;
+  if(t.zone==='discards')return discardCount1235(s,owner)*t.amount;
   if(t.zone==='summonsOrSpells'){
    const summon=s.g463Summons?.[owner],spell=s.g37Spells?.[owner];
    return ((summon?.turn===s.turn?summon.n:0)+(spell?.turn===s.turn?spell.n:0))*t.amount;
@@ -4539,6 +4541,11 @@ export function createSixPhotoRules(api){
    api.draw(s,t.p,1,{drawn:t.drawn});
   }else if(t.drawn.length)put(s,{...t,op:'g52_TopHand',n:t.drawn.length,selected:[]});
   break;
+ case'g34_DrawDiscardCount1235':{
+  const n=discardCount1235(s,t.p);
+  if(n)start(s,t,[{op:'Offer',title:'カードを'+n+'枚引く？',defs:[{op:'Draw',n}]}]);
+  break;
+ }
  case'g34_Draw':
   if(used792(s,t,t))break;
   if(t.optional)choice(s,t,'カードを'+t.n+'枚まで引く',Array.from({length:t.n+1},(_,n)=>opt(n+'枚',n,n<own.deck.length?n*5:-100)));
@@ -6785,7 +6792,11 @@ export function createSixPhotoRules(api){
   return discount;
  },
  untapDiscount472:(s,p,c)=>c.type==='creature'&&!c.crossing&&s.g472Untapped?.turn===s.turn?(c.g472UntapReduction||0)*s.g472Untapped.groups.length:0,
- discarded472(s,p){for(const x of creatures(s,1-p)){const defs=!x.sealed&&effective(x,s).g472OpponentDiscard;if(defs)queue(s,1-p,x,defs);}},
+ discarded472(s,p){
+  // This hook runs only for physical hand cards actually discarded after replacements.
+  const n=discardCount1235(s,p);
+  (s.g1235Discards??=[null,null])[p]={turn:s.turn,n:n+1};
+  for(const x of creatures(s,1-p)){const defs=!x.sealed&&effective(x,s).g472OpponentDiscard;if(defs)queue(s,1-p,x,defs);}},
  firstOpponentDiscard1037(s,p){
   for(const x of creatures(s,1-p)){
    if(x.sealed||!card(x).g1037FirstOpponentDiscard)continue;

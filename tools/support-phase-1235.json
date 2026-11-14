@@ -1,0 +1,604 @@
+{
+  "phase": 1235,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7703,
+  "description": "邪魂の王道 ジャシン帝、芸魔桂馬 バセヌテレジ、seiWond’Ramarの全能力を対戦対応し、公式別版と再録6件を正規IDに対応付ける。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/46074/",
+    "https://dm.takaratomy.co.jp/rule/qa/44826/",
+    "https://dm.takaratomy.co.jp/rule/qa/44824/",
+    "https://dm.takaratomy.co.jp/rule/qa/45142/",
+    "https://dm.takaratomy.co.jp/rule/qa/45119/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp1-OR2",
+      "name": "邪魂の王道 ジャシン帝",
+      "faces": [
+        {
+          "name": "邪魂の王道 ジャシン帝",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の墓地からアビス・クリーチャーを召喚してもよい。（コストは支払う）\nOVERハイパー化：自分の他のクリーチャーを２体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）",
+          "race": "アビスロイヤル/超化獣",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "邪魂の王道 ジャシン帝",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の墓地からアビス・クリーチャーを召喚してもよい。（コストは支払う）\nOVERハイパー化：自分の他のクリーチャーを２体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nT・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を墓地に置く。その後、コストの合計が自分の墓地にあるカードの枚数以下になるよう、相手のクリーチャーを２体まで選び、破壊する。",
+          "race": "アビスロイヤル/超化獣",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-OR2",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-OR2a.jpg",
+      "spec": {
+        "g294GraveAura": {
+          "race": "アビス"
+        },
+        "hyperTap": 2,
+        "hyper": {
+          "power": 13000,
+          "breaker": 3,
+          "g34Attack": [
+            {
+              "op": "Mill",
+              "n": 3,
+              "g1042Together": true
+            },
+            {
+              "op": "CountCost553",
+              "zone": "grave",
+              "def": {
+                "op": "Select",
+                "origin": "battle",
+                "owner": "opponent",
+                "n": 2,
+                "to": "grave",
+                "optional": true,
+                "filter": {
+                  "creature": true
+                },
+                "g173Targets": true,
+                "g193Select": true
+              }
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "568a5c8965a05498a419cb48ebc63357df7fc2350f0a45e300fe418c1b609f16",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-020",
+      "name": "芸魔桂馬 バセヌテレジ",
+      "faces": [
+        {
+          "name": "芸魔桂馬 バセヌテレジ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このターン中に捨てた自分の手札１枚につき、このクリーチャーの召喚コストを２少なくする。ただしコストは０以下にはならない。\nスピードアタッカー\n自分のターンの終わりに、このターン中に捨てた自分の手札と同じ枚数のカードを引いてもよい。",
+          "race": "マジック・モンスター/ゲーム・コマンド",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-020",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-020.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "g212CountDiscount": {
+          "zone": "discards",
+          "amount": 2
+        },
+        "g174End": [
+          {
+            "op": "DrawDiscardCount1235"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "c888944bede16f10c919eb27a36c3293832db4e3daa93143a900503b44f2de58",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-S04",
+      "name": "seiWond’Ramar",
+      "faces": [
+        {
+          "name": "seiWond’Ramar",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー\nジャストダイバー\n相手のターンの終わりに、このクリーチャーがタップしていれば、カードを２枚引いてもよい。そうしたら、自分の手札の枚数以下のコストを持つ水のカードを１枚、自分の手札からコストを支払わずに使ってもよい。",
+          "race": "マジック・コマンド・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-S04",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-S04.jpg",
+      "spec": {
+        "blocker": true,
+        "justDiver": true,
+        "g565OpponentEnd": [
+          {
+            "op": "IfSource541",
+            "g1064Tapped": true,
+            "defs": [
+              {
+                "op": "Offer",
+                "title": "カードを2枚引く？",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 2,
+                    "g818AfterDraw": [
+                      {
+                        "op": "Execute",
+                        "origin": "hand",
+                        "g1139HandSizeMax": true,
+                        "spellColorsAny": [
+                          "水"
+                        ],
+                        "optional": true,
+                        "title": "手札の枚数以下のコストの水のカードを1枚まで使う"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "7a60c0deaa3966629695adc860110b97398cd20bb45e44df23b704c576c629dd",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24rp1-Sec02",
+      "name": "邪魂の王道 ジャシン帝",
+      "faces": [
+        {
+          "name": "邪魂の王道 ジャシン帝",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の墓地からアビス・クリーチャーを召喚してもよい。（コストは支払う）\nOVERハイパー化：自分の他のクリーチャーを２体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）",
+          "race": "アビスロイヤル/超化獣",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "邪魂の王道 ジャシン帝",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の墓地からアビス・クリーチャーを召喚してもよい。（コストは支払う）\nOVERハイパー化：自分の他のクリーチャーを２体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nT・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を墓地に置く。その後、コストの合計が自分の墓地にあるカードの枚数以下になるよう、相手のクリーチャーを２体まで選び、破壊する。",
+          "race": "アビスロイヤル/超化獣",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-Sec02",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-Sec02a.jpg",
+      "spec": {
+        "g294GraveAura": {
+          "race": "アビス"
+        },
+        "hyperTap": 2,
+        "hyper": {
+          "power": 13000,
+          "breaker": 3,
+          "g34Attack": [
+            {
+              "op": "Mill",
+              "n": 3,
+              "g1042Together": true
+            },
+            {
+              "op": "CountCost553",
+              "zone": "grave",
+              "def": {
+                "op": "Select",
+                "origin": "battle",
+                "owner": "opponent",
+                "n": 2,
+                "to": "grave",
+                "optional": true,
+                "filter": {
+                  "creature": true
+                },
+                "g173Targets": true,
+                "g193Select": true
+              }
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "9f727222ee348e05220f6a398db3b3d30f2cc764ca6105a7a045e1e9d3bcbe2c",
+        "facesMatched": true
+      },
+      "canonicalId": "dm24rp1-OR2"
+    },
+    {
+      "id": "dm24ex3-rp1OR2",
+      "name": "邪魂の王道 ジャシン帝",
+      "faces": [
+        {
+          "name": "邪魂の王道 ジャシン帝",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の墓地からアビス・クリーチャーを召喚してもよい。（コストは支払う）\nOVERハイパー化：自分の他のクリーチャーを２体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）",
+          "race": "アビスロイヤル/超化獣",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "邪魂の王道 ジャシン帝",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の墓地からアビス・クリーチャーを召喚してもよい。（コストは支払う）\nOVERハイパー化：自分の他のクリーチャーを２体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nT・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を墓地に置く。その後、コストの合計が自分の墓地にあるカードの枚数以下になるよう、相手のクリーチャーを２体まで選び、破壊する。",
+          "race": "アビスロイヤル/超化獣",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp1OR2",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp1OR2a.jpg",
+      "spec": {
+        "g294GraveAura": {
+          "race": "アビス"
+        },
+        "hyperTap": 2,
+        "hyper": {
+          "power": 13000,
+          "breaker": 3,
+          "g34Attack": [
+            {
+              "op": "Mill",
+              "n": 3,
+              "g1042Together": true
+            },
+            {
+              "op": "CountCost553",
+              "zone": "grave",
+              "def": {
+                "op": "Select",
+                "origin": "battle",
+                "owner": "opponent",
+                "n": 2,
+                "to": "grave",
+                "optional": true,
+                "filter": {
+                  "creature": true
+                },
+                "g173Targets": true,
+                "g193Select": true
+              }
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "de7a2d6fc29f6cbca274fcf827bb9d166d93d5a03331a05b969cefad341f7956",
+        "facesMatched": true
+      },
+      "canonicalId": "dm24rp1-OR2"
+    },
+    {
+      "id": "dm24ex3-rp1Sec02",
+      "name": "邪魂の王道 ジャシン帝",
+      "faces": [
+        {
+          "name": "邪魂の王道 ジャシン帝",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の墓地からアビス・クリーチャーを召喚してもよい。（コストは支払う）\nOVERハイパー化：自分の他のクリーチャーを２体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）",
+          "race": "アビスロイヤル/超化獣",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "邪魂の王道 ジャシン帝",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の墓地からアビス・クリーチャーを召喚してもよい。（コストは支払う）\nOVERハイパー化：自分の他のクリーチャーを２体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nT・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を墓地に置く。その後、コストの合計が自分の墓地にあるカードの枚数以下になるよう、相手のクリーチャーを２体まで選び、破壊する。",
+          "race": "アビスロイヤル/超化獣",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp1Sec02",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp1Sec02a.jpg",
+      "spec": {
+        "g294GraveAura": {
+          "race": "アビス"
+        },
+        "hyperTap": 2,
+        "hyper": {
+          "power": 13000,
+          "breaker": 3,
+          "g34Attack": [
+            {
+              "op": "Mill",
+              "n": 3,
+              "g1042Together": true
+            },
+            {
+              "op": "CountCost553",
+              "zone": "grave",
+              "def": {
+                "op": "Select",
+                "origin": "battle",
+                "owner": "opponent",
+                "n": 2,
+                "to": "grave",
+                "optional": true,
+                "filter": {
+                  "creature": true
+                },
+                "g173Targets": true,
+                "g193Select": true
+              }
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "ab008152da3f56da60d68363e8f3b715b6cc0e22130e3da35e42681f4be014fb",
+        "facesMatched": true
+      },
+      "canonicalId": "dm24rp1-OR2"
+    },
+    {
+      "id": "dm24ex3-027",
+      "name": "芸魔桂馬 バセヌテレジ",
+      "faces": [
+        {
+          "name": "芸魔桂馬 バセヌテレジ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このターン中に捨てた自分の手札１枚につき、このクリーチャーの召喚コストを２少なくする。ただしコストは０以下にはならない。\nスピードアタッカー\n自分のターンの終わりに、このターン中に捨てた自分の手札と同じ枚数のカードを引いてもよい。",
+          "race": "マジック・モンスター/ゲーム・コマンド",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-027",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-027.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "g212CountDiscount": {
+          "zone": "discards",
+          "amount": 2
+        },
+        "g174End": [
+          {
+            "op": "DrawDiscardCount1235"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "f9c815409ce89b259fd20f35a88f87f102f4c12e50fdc352afe723fde327c155",
+        "facesMatched": true
+      },
+      "canonicalId": "dm24rp2-020"
+    },
+    {
+      "id": "dm24ex3-rp1S04",
+      "name": "seiWond’Ramar",
+      "faces": [
+        {
+          "name": "seiWond’Ramar",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー\nジャストダイバー\n相手のターンの終わりに、このクリーチャーがタップしていれば、カードを２枚引いてもよい。そうしたら、自分の手札の枚数以下のコストを持つ水のカードを１枚、自分の手札からコストを支払わずに使ってもよい。",
+          "race": "マジック・コマンド・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp1S04",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp1S04.jpg",
+      "spec": {
+        "blocker": true,
+        "justDiver": true,
+        "g565OpponentEnd": [
+          {
+            "op": "IfSource541",
+            "g1064Tapped": true,
+            "defs": [
+              {
+                "op": "Offer",
+                "title": "カードを2枚引く？",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 2,
+                    "g818AfterDraw": [
+                      {
+                        "op": "Execute",
+                        "origin": "hand",
+                        "g1139HandSizeMax": true,
+                        "spellColorsAny": [
+                          "水"
+                        ],
+                        "optional": true,
+                        "title": "手札の枚数以下のコストの水のカードを1枚まで使う"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "fe0427d18e5aa75f6541fd5add4f98471cdb656982da88faa32b9c66ed956a1b",
+        "facesMatched": true
+      },
+      "canonicalId": "dm24rp1-S04"
+    },
+    {
+      "id": "dm24ex3-Sec03",
+      "name": "seiWond’Ramar",
+      "faces": [
+        {
+          "name": "seiWond’Ramar",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー\nジャストダイバー\n相手のターンの終わりに、このクリーチャーがタップしていれば、カードを２枚引いてもよい。そうしたら、自分の手札の枚数以下のコストの水のカードを１枚、自分の手札からコストを支払わずに使ってもよい。",
+          "race": "マジック・コマンド・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-Sec03",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-Sec03.jpg",
+      "spec": {
+        "blocker": true,
+        "justDiver": true,
+        "g565OpponentEnd": [
+          {
+            "op": "IfSource541",
+            "g1064Tapped": true,
+            "defs": [
+              {
+                "op": "Offer",
+                "title": "カードを2枚引く？",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 2,
+                    "g818AfterDraw": [
+                      {
+                        "op": "Execute",
+                        "origin": "hand",
+                        "g1139HandSizeMax": true,
+                        "spellColorsAny": [
+                          "水"
+                        ],
+                        "optional": true,
+                        "title": "手札の枚数以下のコストの水のカードを1枚まで使う"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "35f9e45e3e17868ac4a9fcf899ee184f4e158671c927a21f10fa492c66995027",
+        "facesMatched": true
+      },
+      "canonicalId": "dm24rp1-S04"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp1-OR2": 4,
+      "dm24rp2-020": 4,
+      "dm24rp1-S04": 4,
+      "dm24rp1-Sec02": 4,
+      "dm24ex3-rp1OR2": 4,
+      "dm24ex3-rp1Sec02": 4,
+      "dm24ex3-027": 4,
+      "dm24ex3-rp1S04": 4,
+      "dm24ex3-Sec03": 4
+    }
+  }
+}

@@ -235723,15 +235723,143 @@
       ],
       "supportBatch": "phase-1234",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp1-OR2",
+      "name": "邪魂の王道 ジャシン帝",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "アビスロイヤル/超化獣",
+      "text": "自分の墓地からアビス・クリーチャーを召喚してもよい。（コストは支払う）\nOVERハイパー化：自分の他のクリーチャーを２体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\n【ハイパーモード】\n自分の墓地からアビス・クリーチャーを召喚してもよい。（コストは支払う）\nOVERハイパー化：自分の他のクリーチャーを２体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nT・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を墓地に置く。その後、コストの合計が自分の墓地にあるカードの枚数以下になるよう、相手のクリーチャーを２体まで選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-OR2",
+      "limit": 4,
+      "g294GraveAura": {
+        "race": "アビス"
+      },
+      "hyperTap": 2,
+      "hyper": {
+        "power": 13000,
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "Mill",
+            "n": 3,
+            "g1042Together": true
+          },
+          {
+            "op": "CountCost553",
+            "zone": "grave",
+            "def": {
+              "op": "Select",
+              "origin": "battle",
+              "owner": "opponent",
+              "n": 2,
+              "to": "grave",
+              "optional": true,
+              "filter": {
+                "creature": true
+              },
+              "g173Targets": true,
+              "g193Select": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1235",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-020",
+      "name": "芸魔桂馬 バセヌテレジ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "マジック・モンスター/ゲーム・コマンド",
+      "text": "このターン中に捨てた自分の手札１枚につき、このクリーチャーの召喚コストを２少なくする。ただしコストは０以下にはならない。\nスピードアタッカー\n自分のターンの終わりに、このターン中に捨てた自分の手札と同じ枚数のカードを引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-020",
+      "limit": 4,
+      "speedAttacker": true,
+      "g212CountDiscount": {
+        "zone": "discards",
+        "amount": 2
+      },
+      "g174End": [
+        {
+          "op": "DrawDiscardCount1235"
+        }
+      ],
+      "supportBatch": "phase-1235",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp1-S04",
+      "name": "seiWond’Ramar",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "マジック・コマンド・ドラゴン",
+      "text": "ブロッカーブロッカー\nジャストダイバー\n相手のターンの終わりに、このクリーチャーがタップしていれば、カードを２枚引いてもよい。そうしたら、自分の手札の枚数以下のコストを持つ水のカードを１枚、自分の手札からコストを支払わずに使ってもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-S04",
+      "limit": 4,
+      "blocker": true,
+      "justDiver": true,
+      "g565OpponentEnd": [
+        {
+          "op": "IfSource541",
+          "g1064Tapped": true,
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを2枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 2,
+                  "g818AfterDraw": [
+                    {
+                      "op": "Execute",
+                      "origin": "hand",
+                      "g1139HandSizeMax": true,
+                      "spellColorsAny": [
+                        "水"
+                      ],
+                      "optional": true,
+                      "title": "手札の枚数以下のコストの水のカードを1枚まで使う"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1235",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1234,
+    "phase": 1235,
     "checkedAt": "2026-11-14",
-    "baseCount": 7700,
+    "baseCount": 7703,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7703,
+    "totalCount": 7706,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -256828,6 +256956,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7700,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1234,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7700,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7703,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
