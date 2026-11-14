@@ -231345,15 +231345,151 @@
       },
       "supportBatch": "phase-1204",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-047",
+      "name": "推出の超人",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ジャイアント",
+      "text": "各ターン２枚目のカードを自分のマナゾーンに置いた時、ジャイアント・メクレイド５する。（ジャイアント・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のジャイアントを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-047",
+      "limit": 4,
+      "g1205SecondMana": [
+        {
+          "op": "Raid767",
+          "race": "ジャイアント",
+          "max": 5
+        }
+      ],
+      "supportBatch": "phase-1205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-029",
+      "name": "星姫械 リゲート",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2500,
+      "race": "メカ・デル・ステラ",
+      "text": "このクリーチャーが出た時、バトルゾーンのメカを３つタップしてもよい。そうしたら、メカ・メクレイド８する。（メカ・メクレイド８：自分の山札の上から３枚を見る。その中から、コスト８以下のメカを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）\n自分のターンの終わりに、自分のクリーチャーを２体までアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-029",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "anyOwner": true,
+          "n": 3,
+          "optional": true,
+          "exactOptional": true,
+          "g193Tap": true,
+          "g193Select": true,
+          "implicitBattleSelection": true,
+          "filter": {
+            "race": "メカ",
+            "creatureOrSeed": true,
+            "faceUp": true,
+            "untapped": true
+          },
+          "title": "タップするメカを3つ選ぶ（任意）",
+          "after": [
+            {
+              "op": "Raid767",
+              "race": "メカ",
+              "max": 8
+            }
+          ]
+        }
+      ],
+      "g174End": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "self",
+          "n": 2,
+          "optional": true,
+          "g510Untap": true,
+          "g193Select": true,
+          "implicitBattleSelection": true,
+          "filter": {
+            "creature": true,
+            "faceUp": true,
+            "tapped": true
+          },
+          "title": "アンタップする自分のクリーチャーを2体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex1-015",
+      "name": "龍后妖精エリカッチュX",
+      "civ": "水/火/自然",
+      "civilizations": [
+        "水",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "ジャイアント・スノーフェアリー/ドラゴンの花嫁",
+      "text": "ジャストダイバー\nW・ブレイカー\n自分のスノーフェアリーが破壊される時、墓地に置くかわりにマナゾーンに置く。\n各ターンの終わりに、カードを１枚、自分のマナゾーンから墓地に置いてもよい。そうしたら、スノーフェアリー・メクレイド５する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-015",
+      "limit": 4,
+      "justDiver": true,
+      "breaker": 2,
+      "g575ManaAura": {
+        "filter": {
+          "race": "スノーフェアリー",
+          "faceUp": true
+        }
+      },
+      "g474AnyEnd": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "owner": "self",
+          "n": 1,
+          "to": "grave",
+          "optional": true,
+          "score": 8,
+          "title": "メクレイドするために自分のマナから墓地に置くカードを1枚選ぶ（任意）",
+          "g1009AfterMoveAttempt": [
+            {
+              "op": "Raid767",
+              "race": "スノーフェアリー",
+              "max": 5
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1205",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1204,
+    "phase": 1205,
     "checkedAt": "2026-11-14",
-    "baseCount": 7604,
+    "baseCount": 7607,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7607,
+    "totalCount": 7610,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -252090,6 +252226,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7604,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1204,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7604,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7607,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

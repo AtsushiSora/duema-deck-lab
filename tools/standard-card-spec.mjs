@@ -2474,6 +2474,29 @@ export function standardCardSpec(d,{phase=165}={}){
   const text=normalize(f.abilityText);
   const raidText=(race,max)=>`${race}・メクレイド${max}する。(${race}・メクレイド${max}:自分の山札の上から3枚を見る。`+
    `その中からコスト${max}以下の${race}を1枚コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く)`;
+  if(phase>=1205){
+   if(['dm23rp2-047','dm23rp2x-047'].includes(d.id)&&
+      text==='各ターン2枚目のカードを自分のマナゾーンに置いた時'+raidText('ジャイアント',5))
+    return {g1205SecondMana:[{op:'Raid767',race:'ジャイアント',max:5}]};
+   if(d.id==='dm23rp1-029'&&text==='このクリーチャーが出た時バトルゾーンのメカを3つタップしてもよい。そうしたら'+
+      raidText('メカ',8)+'自分のターンの終わりに自分のクリーチャーを2体までアンタップする。')
+    return {effect:'sixPhoto',g34Tasks:[{
+     op:'Select',origin:'battle',anyOwner:true,n:3,optional:true,exactOptional:true,g193Tap:true,g193Select:true,
+     implicitBattleSelection:true,filter:{race:'メカ',creatureOrSeed:true,faceUp:true,untapped:true},
+     title:'タップするメカを3つ選ぶ（任意）',after:[{op:'Raid767',race:'メカ',max:8}]
+    }],g174End:[{
+     op:'Select',origin:'battle',owner:'self',n:2,optional:true,g510Untap:true,g193Select:true,
+     implicitBattleSelection:true,filter:{creature:true,faceUp:true,tapped:true},
+     title:'アンタップする自分のクリーチャーを2体まで選ぶ'
+    }]};
+   if(['dm24ex1-015','dm24ex1-Sec05'].includes(d.id)&&text===
+      'ジャストダイバーW・ブレイカー自分のスノーフェアリーが破壊される時墓地に置くかわりにマナゾーンに置く。'+
+      '各ターンの終わりにカードを1枚自分のマナゾーンから墓地に置いてもよい。そうしたらスノーフェアリー・メクレイド5する。')
+    return {justDiver:true,breaker:2,g575ManaAura:{filter:{race:'スノーフェアリー',faceUp:true}},
+     g474AnyEnd:[{op:'Select',origin:'mana',owner:'self',n:1,to:'grave',optional:true,score:8,
+      title:'メクレイドするために自分のマナから墓地に置くカードを1枚選ぶ（任意）',
+      g1009AfterMoveAttempt:[{op:'Raid767',race:'スノーフェアリー',max:5}]}]};
+  }
   if(phase>=1204){
    if(d.id==='dm23rp1-033'&&text==='自分のターンの終わりに自分の手札を2枚捨ててもよい。そうしたら'+raidText('マジック',8))
     return {g174End:[{op:'DiscardFor248',n:2,g770DiscardAttempt:true,

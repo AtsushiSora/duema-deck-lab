@@ -1,0 +1,299 @@
+{
+  "phase": 1205,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7607,
+  "description": "推出の超人、星姫械 リゲート、龍后妖精エリカッチュXの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/42975/",
+    "https://dm.takaratomy.co.jp/rule/qa/43051/",
+    "https://dm.takaratomy.co.jp/rule/qa/43297/",
+    "https://dm.takaratomy.co.jp/rule/qa/45222/",
+    "https://dm.takaratomy.co.jp/rule/qa/45224/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316685/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260723_5.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp2-047",
+      "name": "推出の超人",
+      "faces": [
+        {
+          "name": "推出の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "各ターン２枚目のカードを自分のマナゾーンに置いた時、ジャイアント・メクレイド５する。（ジャイアント・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のジャイアントを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "ジャイアント",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-047",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-047.jpg",
+      "spec": {
+        "g1205SecondMana": [
+          {
+            "op": "Raid767",
+            "race": "ジャイアント",
+            "max": 5
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "9dc0a574782511bce6ff9168780c7b523c46ea14255c06e51dcf18ad4eb253ac",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-029",
+      "name": "星姫械 リゲート",
+      "faces": [
+        {
+          "name": "星姫械 リゲート",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、バトルゾーンのメカを３つタップしてもよい。そうしたら、メカ・メクレイド８する。（メカ・メクレイド８：自分の山札の上から３枚を見る。その中から、コスト８以下のメカを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）\n自分のターンの終わりに、自分のクリーチャーを２体までアンタップする。",
+          "race": "メカ・デル・ステラ",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-029",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-029.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "anyOwner": true,
+            "n": 3,
+            "optional": true,
+            "exactOptional": true,
+            "g193Tap": true,
+            "g193Select": true,
+            "implicitBattleSelection": true,
+            "filter": {
+              "race": "メカ",
+              "creatureOrSeed": true,
+              "faceUp": true,
+              "untapped": true
+            },
+            "title": "タップするメカを3つ選ぶ（任意）",
+            "after": [
+              {
+                "op": "Raid767",
+                "race": "メカ",
+                "max": 8
+              }
+            ]
+          }
+        ],
+        "g174End": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "self",
+            "n": 2,
+            "optional": true,
+            "g510Untap": true,
+            "g193Select": true,
+            "implicitBattleSelection": true,
+            "filter": {
+              "creature": true,
+              "faceUp": true,
+              "tapped": true
+            },
+            "title": "アンタップする自分のクリーチャーを2体まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "91870b72637a3607526d30d01fda6eff6cc0cf7baa804e89cb0b98605e00a517",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex1-015",
+      "name": "龍后妖精エリカッチュX",
+      "faces": [
+        {
+          "name": "龍后妖精エリカッチュX",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火/自然",
+          "civilizations": [
+            "水",
+            "火",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ジャストダイバー\nW・ブレイカー\n自分のスノーフェアリーが破壊される時、墓地に置くかわりにマナゾーンに置く。\n各ターンの終わりに、カードを１枚、自分のマナゾーンから墓地に置いてもよい。そうしたら、スノーフェアリー・メクレイド５する。",
+          "race": "ジャイアント・スノーフェアリー/ドラゴンの花嫁",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-015",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex1-015.jpg",
+      "spec": {
+        "justDiver": true,
+        "breaker": 2,
+        "g575ManaAura": {
+          "filter": {
+            "race": "スノーフェアリー",
+            "faceUp": true
+          }
+        },
+        "g474AnyEnd": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "owner": "self",
+            "n": 1,
+            "to": "grave",
+            "optional": true,
+            "score": 8,
+            "title": "メクレイドするために自分のマナから墓地に置くカードを1枚選ぶ（任意）",
+            "g1009AfterMoveAttempt": [
+              {
+                "op": "Raid767",
+                "race": "スノーフェアリー",
+                "max": 5
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "1196e8ee1c5eeea3a02a4ac83417a33e27e034b9930818f95110e0a3eb5b377c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23rp2x-047",
+      "name": "推出の超人",
+      "faces": [
+        {
+          "name": "推出の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "各ターン２枚目のカードを自分のマナゾーンに置いた時、ジャイアント・メクレイド５する。（ジャイアント・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のジャイアントを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "ジャイアント",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-047",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-047.jpg",
+      "spec": {
+        "g1205SecondMana": [
+          {
+            "op": "Raid767",
+            "race": "ジャイアント",
+            "max": 5
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "acb18ebfc736a8732bfac22a7c5edfc83c4eb873ca8b1fd680b982646f5c9863",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-047"
+    },
+    {
+      "id": "dm24ex1-Sec05",
+      "name": "龍后妖精エリカッチュX",
+      "faces": [
+        {
+          "name": "龍后妖精エリカッチュX",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火/自然",
+          "civilizations": [
+            "水",
+            "火",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ジャストダイバー\nW・ブレイカー\n自分のスノーフェアリーが破壊される時、墓地に置くかわりにマナゾーンに置く。\n各ターンの終わりに、カードを１枚、自分のマナゾーンから墓地に置いてもよい。そうしたら、スノーフェアリー・メクレイド５する。",
+          "race": "ジャイアント・スノーフェアリー/ドラゴンの花嫁",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-Sec05",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex1-Sec05.jpg",
+      "spec": {
+        "justDiver": true,
+        "breaker": 2,
+        "g575ManaAura": {
+          "filter": {
+            "race": "スノーフェアリー",
+            "faceUp": true
+          }
+        },
+        "g474AnyEnd": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "owner": "self",
+            "n": 1,
+            "to": "grave",
+            "optional": true,
+            "score": 8,
+            "title": "メクレイドするために自分のマナから墓地に置くカードを1枚選ぶ（任意）",
+            "g1009AfterMoveAttempt": [
+              {
+                "op": "Raid767",
+                "race": "スノーフェアリー",
+                "max": 5
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "8d8af35bba77c1ca12ee7d8720f157c482f93f976a166c9d8ad1dea508a497b5",
+        "facesMatched": true
+      },
+      "canonicalId": "dm24ex1-015"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp2-047": 4,
+      "dm23rp1-029": 4,
+      "dm24ex1-015": 4,
+      "dm23rp2x-047": 4,
+      "dm24ex1-Sec05": 4
+    }
+  }
+}
