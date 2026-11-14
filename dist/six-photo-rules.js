@@ -899,7 +899,7 @@ export function createSixPhotoRules(api){
    if(!auras||source.sealed||api.ignored(s,source))continue;
    if(!api.isCreature(s,source)&&!(sourceCard.type==='field'&&sourceCard.d2Field))continue;
    for(const aura of auras){
-    if(aura.opponentTurn&&s.active===p||!aura.both&&owner!==p||aura.other&&source.uid===x.uid||!fits(aura.filter))continue;
+    if(aura.opponentTurn&&s.active===p||(!aura.both&&(aura.opponentsOnly?owner===p:owner!==p))||aura.other&&source.uid===x.uid||!fits(aura.filter))continue;
     const condition=aura.g557Condition;
     if(condition?.g258Civil){
      // A creature's speed grant cannot change the civilization or type of counted cards.
@@ -4249,7 +4249,7 @@ export function createSixPhotoRules(api){
  case'g34_DestroyAfterAttack1197':{
   const host=t.targets.map(ref=>sourceHost474(s,ref)).find(Boolean);
   if(host&&!host.x.sealed&&api.isCreature(s,host.x))
-   move(s,[{player:host.p,uid:host.x.uid,to:'grave',controller:t.p}]);
+   move(s,[{player:host.p,uid:host.x.uid,to:'grave',controller:t.p,...(t.g1270Destroy?{destroy:true}:{})}]);
   break;
  }
  case'g34_Offer':{
@@ -8514,6 +8514,13 @@ export function createSixPhotoRules(api){
   });
  },
  attackEnd(s,a,x){
+  if(x&&!x.sealed&&api.isCreature(s,x)){
+   const targets=api.allLayers(x).map(layer=>({uid:layer.uid,incarnation:layer.incarnation||0}));
+   // The watcher and current attacker are determined at attack end, after any Revolution Change.
+   for(const p of [s.active,1-s.active])for(const watcher of creatures(s,p))
+    if(card(watcher).g1270DestroyAttacker&&!watcher.sealed&&!api.ignored(s,watcher))
+     queue(s,p,watcher,[{op:'DestroyAfterAttack1197',targets,g1270Destroy:true}]);
+  }
   if(x&&(a.g1197Deaths?.length||a.g1225AttackDeaths?.length)){
    const targets=api.allLayers(x).map(layer=>({uid:layer.uid,incarnation:layer.incarnation||0}));
    const delayed=(a.g1197Deaths||[]).map(r=>({...r,targets}));

@@ -239535,15 +239535,123 @@
       ],
       "supportBatch": "phase-1269",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-004",
+      "name": "終剣連結 アビスハリケーン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ディスペクター/アウトレイジ",
+      "text": "EXライフ\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nすべてのクリーチャーは、「スピードアタッカー」を得、ブロックできない。\nクリーチャーは可能なら攻撃する。\nクリーチャーの攻撃の終わりに、そのクリーチャーを破壊する。\nこのクリーチャーの「EXライフ」シールドがなければ、このクリーチャーのパワーを+12000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-004",
+      "limit": 4,
+      "exLife": true,
+      "poweredBreaker": true,
+      "g208Auras": [
+        {
+          "both": true,
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "g224ForceAttack": {
+        "owner": "both"
+      },
+      "g1270BlockProhibition": true,
+      "g1270DestroyAttacker": true,
+      "g1270NoExLifePower": 12000,
+      "supportBatch": "phase-1270",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm14-s06",
+      "name": "蒼黒の知将ディアブロスト",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "デーモン・コマンド",
+      "text": "バトルゾーンにある相手のクリーチャーはすべて｢ブロッカー｣を得る。(自分のクリーチャーが攻撃する時、相手は｢ブロッカー｣を得たクリーチャーを\nタップして、その攻撃を阻止してもよい。その後、両クリーチャーはバトルする)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-s06",
+      "limit": 4,
+      "breaker": 2,
+      "g208Auras": [
+        {
+          "opponentsOnly": true,
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1270",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm38-002",
+      "name": "壊滅の撃墜王エスコバルドZ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "デーモン・コマンド",
+      "text": "返霊７(このクリーチャーが攻撃する時、自分の墓地からカードを７枚、好きな順序で山札の一番下に置いてもよい。そうした場合、このクリーチャーの能力を使う)\nコスト７以下の他のクリーチャーをすべて破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-002",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "deck",
+          "n": 7,
+          "optional": true,
+          "g837Reikon": [
+            {
+              "op": "Sweep",
+              "both": true,
+              "to": "grave",
+              "filter": {
+                "creature": true,
+                "max": 7
+              },
+              "g179Other": true
+            }
+          ],
+          "title": "返霊7：山札の下に置く順に墓地のカードを7枚選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1270",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1269,
+    "phase": 1270,
     "checkedAt": "2026-11-14",
-    "baseCount": 7811,
-    "newEffectCards": 4,
+    "baseCount": 7815,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7815,
+    "totalCount": 7818,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -261060,6 +261168,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7811,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1269,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7811,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7815,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

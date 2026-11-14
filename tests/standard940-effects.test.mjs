@@ -162,7 +162,7 @@ test('Future Capsule privately splits and orders both ends without changing unto
  let s=field();
  const [a,b,c,d,f,u,v]=give(s,0,'deck',[MARY,MULTI,GALAXY,HUSTLE,LASER,PLAIN,RUBY]);
  const spell=play(s,CAPSULE);
- const room={game:s,phase:'playing',hostUid:'a',guestUid:'b',profiles:[{name:'A'},{name:'B'}],events:[],expiresAt:10000};
+ const room={game:s,phase:'playing',hostUid:'a',guestUid:'b',decks:[null,null],profiles:[{name:'A'},{name:'B'}],events:[],expiresAt:10000};
  const publicGame=projectRoom(room,{uid:'b'},1).game;
  assert.equal(publicGame.inspectedCards,undefined);
  assert.ok(!JSON.stringify(publicGame).includes(GALAXY));

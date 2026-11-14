@@ -2475,6 +2475,25 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1270&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText),lines=f.abilityText.split('\n').map(normalize);
+  if(['dm14-s06','dmc55-020'].includes(d.id)&&
+   text==='バトルゾーンにある相手のクリーチャーはすべて「ブロッカー」を得る。(自分のクリーチャーが攻撃する時相手は「ブロッカー」を得たクリーチャーをタップしてその攻撃を阻止してもよい。その後両クリーチャーはバトルする)W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g208Auras:[{opponentsOnly:true,filter:{creature:true},grants:{blocker:true}}]};
+  if(d.id==='dm38-002'&&lines.length===3&&keyword(lines[2],'W・ブレイカー')&&
+   lines[0]==='返霊7(このクリーチャーが攻撃する時自分の墓地からカードを7枚好きな順序で山札の一番下に置いてもよい。そうした場合このクリーチャーの能力を使う)'&&
+   lines[1]==='コスト7以下の他のクリーチャーをすべて破壊する。')
+   return {breaker:2,g34Attack:[{op:'Select',origin:'grave',to:'deck',n:7,optional:true,
+    g837Reikon:[{op:'Sweep',both:true,to:'grave',filter:{creature:true,max:7},g179Other:true}],
+    title:'返霊7：山札の下に置く順に墓地のカードを7枚選ぶ'}]};
+  if(d.id==='dmrp20-004'&&lines.length===6&&lines[0]==='EXライフ'&&keyword(lines[1],'パワード・ブレイカー')&&
+   lines[2]==='すべてのクリーチャーは「スピードアタッカー」を得ブロックできない。'&&
+   lines[3]==='クリーチャーは可能なら攻撃する。'&&
+   lines[4]==='クリーチャーの攻撃の終わりにそのクリーチャーを破壊する。'&&
+   lines[5]==='このクリーチャーの「EXライフ」シールドがなければこのクリーチャーのパワーを+12000する。')
+   return {exLife:true,poweredBreaker:true,g208Auras:[{both:true,filter:{creature:true},grants:{speedAttacker:true}}],
+    g224ForceAttack:{owner:'both'},g1270BlockProhibition:true,g1270DestroyAttacker:true,g1270NoExLifePower:12000};
+ }
  if(phase>=1269&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='スター進化クリーチャー'){
   const lines=f.abilityText.split('\n').map(normalize);
   const star=(civilization)=>'スター進化:レクスターズまたは'+civilization+'のクリーチャー1体の上に置く。';
