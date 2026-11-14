@@ -2475,6 +2475,16 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1262&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const lines=f.abilityText.split('\n').map(normalize),text=lines[0];
+  if(['dm17-013','promoy4-035','dm17-028','dmc42-047','dmx22a-029'].includes(d.id)&&lines.length===1&&
+   /^相手の呪文の効果でこのクリーチャーがバトルゾーンから離れる時バトルゾーンから離れ(?:ずに|るかわりに)とどまる。$/.test(text))
+   return {g1262OpponentSpellStay:true};
+  if(d.id==='dm17-038'&&lines.length===1&&text==='このクリーチャーをバトルゾーンに出した時自分のシールドを1枚見る。その後自分の山札の上から1枚目を裏向きのままシールドに加えてもよい。そうした場合見たシールドを山札の一番上に置く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Peek585',who:'self',g1262GroupSwap:true}]};
+  if(d.id==='dm32-046'&&lines.length===1&&text==='自分の進化クリーチャーを召喚した時自分のシールドを1枚見る。自分の山札の上から1枚目を裏向きのままシールドゾーンに加えてもよい。そうした場合見たシールドを自分の山札の一番上に置く。')
+   return {g808SummonWatch:{g816Evolution:true,defs:[{op:'Peek585',who:'self',g1262GroupSwap:true}]}};
+ }
  if(phase>=1261&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const lines=f.abilityText.split('\n').map(normalize);
   if(d.id==='dmr18-008'&&lines.length===3&&keyword(lines[0],'W・ブレイカー')&&
