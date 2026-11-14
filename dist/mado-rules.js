@@ -9,7 +9,7 @@ export function createMadoRules(api){
  const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task(op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
  const live=(s,t)=>s.players[t.p].battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===(t.incarnation||0));
  const gateCard=(s,t)=>s.players[t.p][t.origin].find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);
- const materials=(s,p,joker=false)=>['battle','grave'].flatMap(origin=>s.players[p][origin].filter(x=>origin==='battle'?magic(card(x))||joker&&String(card(x).race).includes('ジョーカーズ'):faces(card(x)).some(c=>magic(c)||joker&&String(c.race).includes('ジョーカーズ'))).map(x=>({origin,uid:x.uid,cardId:x.cardId,serial:x.zoneSerial||0})));
+ const materials=(s,p,joker=false)=>['battle','grave'].flatMap(origin=>s.players[p][origin].filter(x=>(origin==='battle'?[effective(x,s)]:faces(api.zoneCard(s,p,x,'grave'))).some(c=>magic(c)||joker&&String(c.race).includes('ジョーカーズ'))).map(x=>({origin,uid:x.uid,cardId:x.cardId,serial:x.zoneSerial||0})));
  const dark=createDarkMadoRules({...api,on});
  const fields=(s,p)=>s.players[p].battle.filter(x=>effective(x,s).newWorld);
  function declare(s,rows,{end=false,follow=[]}={}){if(!rows.length)return false;put(s,task('g4_Declare',rows[0].p,rows[0].source,{remaining:rows,declared:[],end,follow}));return true;}
@@ -62,7 +62,7 @@ export function createMadoRules(api){
  finishSpell(s,t,f){if(f.virtual||t.g4Declined||!f.spell||!magic(f.spell)||!fields(s,f.owner).length||f.owner!==f.caster&&f.to!=='grave'&&s.active===f.caster)return false;put(s,task('g4_Store',f.owner,f.spell.id,{uid:f.inst.uid}));return true;},
  beforeEnd(s){const rows=[s.active,1-s.active].flatMap(p=>sources(s,p,'end'));declare(s,rows,{end:true});},
  end(s){return [...dark.end(s),...fields(s,s.active).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task('g4_World',s.active,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})})),...creatures(s,s.active).filter(x=>effective(x,s).madoMomo).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task('g4_MomoEnd',s.active,x.cardId)}))];},
- entry(s,p,x,options){if(api.isCreature(s,x)&&magic(card(x)))declare(s,sources(s,p,'creature'));},
+ entry(s,p,x,options){if(api.isCreature(s,x)&&magic(effective(x,s)))declare(s,sources(s,p,'creature'));},
  spellCast(s,p,c){dark.spellCast(s,p,c);for(const x of creatures(s,p))if(effective(x,s).kurokami)on(s,p,x,'attackBlock');},
  attack(s,p,x){dark.attack(s,p,x);const c=effective(x,s);if(api.selfStopped(s,p))return;if(c.dollarGraveDraw)on(s,p,x,'g4_Dollar');if(c.madoGashagon)on(s,p,x,'discard',{n:1,causedBy:p});},
  block(s,p,x){if(effective(x,s).madoGashagon&&!api.selfStopped(s,p))on(s,p,x,'discard',{n:1,causedBy:p});},

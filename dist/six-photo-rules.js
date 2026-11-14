@@ -386,7 +386,7 @@ export function createSixPhotoRules(api){
  const livePower199=(s,x,inCombat)=>api.power(x,!!inCombat&&(x.uid===s.attack?.attacker||x.uid===s.attackLifecycle?.uid&&(x.incarnation||0)===(s.attackLifecycle.incarnation||0)),s);
  const evolutionOrLinkedGod=(x,c)=>api.isEvolution(x)||!!(x.godLinks?.length&&race(c,'ゴッド'));
  function matches(s,p,x,f={}){
-  if(f.g939ShieldForce&&(api.ignored(s,x)||!hasCopiedRole393(card(x),'g35Role','galaxy')))return false;
+  if(f.g939ShieldForce&&(api.ignored(s,x)||!effective(x,s).g1304ShieldForce&&!hasCopiedRole393(card(x),'g35Role','galaxy')))return false;
   if(f.g951ManaCivilizationCost&&cost(effective(x,s))>manaCivilizationCount(s,p))return false;
   const c=api.zoneCard(s,p,x),d=s.players[p].battle.includes(x)?effective(x,s):c;
   if(f.g990PrintedNoAbilities){
@@ -2383,6 +2383,11 @@ export function createSixPhotoRules(api){
   ]);
   break;
  }
+ case'g34_EntryShieldForce1304':{
+  if(own.g34Holding?.some(y=>y.uid===t.target))choice(s,t,'シールド・フォースに使うシールドを選ぶ',[
+   ...own.shields.map((x,i)=>opt('シールド '+(i+1),api.shieldGroup(x),10)),skip()]);
+  break;
+ }
  case'g34_EntryTap432':{const y=own.g34Holding?.find(y=>y.uid===t.target);if(y){const defend=card(y).g431AttackMe&&!api.ignored(s,y);choice(s,t,card(y).name+'をタップして出す？',[opt('タップして出す',true,defend?10:0,y.cardId),opt('アンタップして出す',false,defend?0:1,y.cardId)]);}break;}
  case'g34_Yobi398':put(s,task('g19Yobi',t.p,t.source,{max:cost(card(t.source))}));break;
  // Remember the first ramped card's characteristics before replacement or zone clearing.
@@ -4178,7 +4183,8 @@ export function createSixPhotoRules(api){
   for(const y of own.battle.flatMap(api.allLayers)){
    if(replacements.has(y.exLifeShieldUid))y.exLifeShieldUid=replacements.get(y.exLifeShieldUid);
    if(y.exLifeShieldUids)y.exLifeShieldUids=y.exLifeShieldUids.map(uid=>replacements.get(uid)??uid);
-   if(forceReplacements.has(y.g35ShieldForce))y.g35ShieldForce=forceReplacements.get(y.g35ShieldForce);
+   const forceGroup=replacements.get(y.g35ShieldForce)??forceReplacements.get(y.g35ShieldForce);
+   if(forceGroup)y.g35ShieldForce=forceGroup;
   }
   api.log(s,t.p,'shieldShuffle',card(t.source).name+'：自分のシールドを裏向きにしてシャッフルした',{cardId:t.source});
   break;
@@ -6065,6 +6071,15 @@ export function createSixPhotoRules(api){
   }
   break;
  }
+ case'g34_EntryShieldForce1304':{
+  const y=remove(own.g34Holding||[],t.target);
+  if(y){
+   if(v&&api.findShield(own,v))y.g35ShieldForce=v;
+   enter(s,t.p,y,t.baseUid,{...t.entryOptions,g1304ShieldChosen:true});
+   if(own.battle.includes(y))put(s,...(t.afterEntryTasks||[]));
+  }
+  break;
+ }
  case'g34_EntryTap432':{const y=remove(own.g34Holding||[],t.target);if(y){enter(s,t.p,y,t.baseUid,{...t.entryOptions,g432EntryChosen:true,...(v?{tapped:true}:{})});if(own.battle.includes(y))put(s,...(t.afterEntryTasks||[]));}break;}
  case'g34_Magibomber321':{
   const deploy=v&&{...t,op:'g34_Put',origin:v.origin,target:v.uid,execution:false,g745Magibomber:true};
@@ -7718,6 +7733,7 @@ export function createSixPhotoRules(api){
  allowedEntry(s,p,c,options){if(c.type==='creature'&&(s.players[p].enteredThisTurn||0)>=2&&creatures(s,1-p).some(x=>!x.sealed&&effective(x,s).g320Next))return false;if(c.g298NoHandSummon&&options.execution&&options.origin==='hand')return false;if(c.type==='creature'&&s.active===1-p&&colors(c).length===1&&active(s,1-p,'superRoma').length)return false;return !options.execution||c.type!=='creature'||colors(c).includes('光')||!(active(s,0,'alphadios').length||active(s,1,'alphadios').length);},
  canLeave(s,p,x,context={}){
   const c=effective(x,s);
+  if(c.g1304ShieldForceActive&&!context.skip577Stay&&!context.replacement)return false;
   if((s.extLimits||[]).some(l=>l.kind==='g1087ElementsStay'&&l.player===p)&&!x.sealed)return false;
   if(context.destroy===false&&s.active===p&&c.g1224OwnNonDestructionStay)return false;
   if(context.destroy===false&&api.isCreature(s,x)&&s.players[p].battle.some(y=>{
@@ -9264,6 +9280,13 @@ externalProtection565,
   // This is an entering-state choice, before battlefield-only ability ignoring.
   (s.players[p].g34Holding??=[]).push(x);
   put(s,task('g34_EntryTap432',p,x.cardId,{target:x.uid,baseUid,entryOptions:structuredClone(entryOptions)}));
+  return true;
+ },
+ entryShieldForce1304(s,p,x,baseUid,entryOptions){
+  const own=s.players[p];
+  if(!own.shields.length)return false;
+  (own.g34Holding??=[]).push(x);
+  put(s,task('g34_EntryShieldForce1304',p,x.cardId,{target:x.uid,baseUid,entryOptions:structuredClone(entryOptions)}));
   return true;
  },
  effect(s,p,c,uid,entry){

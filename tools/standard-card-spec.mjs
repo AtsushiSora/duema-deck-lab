@@ -2475,6 +2475,19 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1304&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.name==='不滅の精霊パーフェクト・ギャラクシー'){
+   const abilities=text.replace(/^W・ブレイカー|W・ブレイカー(?:\(このクリーチャーはシールドを2枚ブレイクする\))?$/,'');
+   const body=abilities.replace(/次の[il]能力/g,'次の能力').replace(/[・l](?=このクリーチャー)/g,'');
+   if(abilities!==text&&/^シールド・フォース\(このクリーチャー(?:を(?:バトルゾーンに)?出す|がバトルゾーンに出る)時自分のシールドを(?:1[枚つ]|ひとつ)選んでもよい。そのシールドがシールドゾーンにある間このクリーチャー(?:は次の能力を得る|に次の能力を与える)\)このクリーチャー(?:は「ブロッカー」を得る|に「ブロッカー」を与える)。このクリーチャーが(?:バトルゾーンを)?離れる時(?:バトルゾーンから)?(?:離れずに|離れるかわりに)とどまる。$/.test(body))
+    return {breaker:2,g1304ShieldForce:true};
+  }
+  if(d.id==='dmex19-048'&&text==='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)このクリーチャーは攻撃できない。このクリーチャーが出た時自分の山札の上から2枚を墓地に置く。バトルゾーンと墓地にある自分のマフィ・ギャングはすべて種族に魔導具を追加する。')
+   return {blocker:true,noAttack:true,effect:'sixPhoto',g34Tasks:[{op:'Mill',n:2}],g1304Myoo:true};
+  if(d.id==='dmr01-020'&&text==='このクリーチャーがバトルする時バトルしている相手のクリーチャーを持ち主の手札に戻してもよい。自分のシールドが2枚以下の時このクリーチャーのパワーは+2000され「ブロッカー」を得る。')
+   return {g1304BattleBounce:true,g260Self:{filter:{g265ShieldsMax:2},grants:{power:2000,blocker:true}}};
+ }
  if(phase>=1303&&d?.status==='complete'&&d.faces.length===1){
   const lines=f.abilityText.split('\n').map(normalize);
   if(d.id==='dmex10-024'&&f.typeText==='呪文'&&lines.length===2&&
