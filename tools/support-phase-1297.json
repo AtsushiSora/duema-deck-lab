@@ -1,0 +1,519 @@
+{
+  "phase": 1297,
+  "checkedAt": "2026-11-15",
+  "baseCount": 7904,
+  "description": "緑知銀 フェイウォン、奇石 ゲンブルー、奇石 トーパズ、奇石 フォス、正義の煌き オーリリアを対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31529/",
+    "https://dm.takaratomy.co.jp/rule/qa/31530/",
+    "https://dm.takaratomy.co.jp/rule/qa/31531/",
+    "https://dm.takaratomy.co.jp/rule/qa/40109/",
+    "https://dm.takaratomy.co.jp/rule/qa/47379/",
+    "https://dm.takaratomy.co.jp/rule/qa/44581/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31636/",
+    "https://dm.takaratomy.co.jp/coverage/area18kt_top10card/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmsd02-005",
+      "name": "緑知銀 フェイウォン",
+      "faces": [
+        {
+          "name": "緑知銀 フェイウォン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体タップしてもよい。そうしたら、カードを１枚引く。\nこのクリーチャーをアンタップして、相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。",
+          "race": "メタリカ",
+          "powerText": "1500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd02-005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd02-005.jpg",
+      "spec": {
+        "g1295UntapRedirect": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "untapped": true
+            },
+            "tap": true,
+            "optional": true,
+            "g1044ImplicitTap": true,
+            "g587AfterSelection": true,
+            "g987AfterNewTap": true,
+            "after": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ],
+            "title": "カードを引くためにタップする自分のクリーチャーを選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "6e12bdc52274d85b4aea2b7a76b744371df6e3af0182a22be4ff07aee7cbc8d6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp03-062",
+      "name": "奇石 ゲンブルー",
+      "faces": [
+        {
+          "name": "奇石 ゲンブルー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーをアンタップして、相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。\nこのクリーチャーが破壊された時、相手のクリーチャーを１体選び、タップする。",
+          "race": "メタリカ",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-062",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-062.jpg",
+      "spec": {
+        "g1295UntapRedirect": true,
+        "g172Death": [
+          {
+            "op": "Target",
+            "tap": true,
+            "title": "タップする相手のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "2daffa204e49c9a976e9c81cedf5c3ec0d7817692b39e6a4a4b8df29179f11ae",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-060",
+      "name": "奇石 トーパズ",
+      "faces": [
+        {
+          "name": "奇石 トーパズ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "NEO進化：自分の光のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーをアンタップして、相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。",
+          "race": "メタリカ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-060",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-060.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            }
+          ]
+        },
+        "g1295UntapRedirect": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "d86ddb4cdfef13174b2a206bccbf835c2c09528bb6c725f78c119e285cb0dad5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp07-061",
+      "name": "奇石 フォス",
+      "faces": [
+        {
+          "name": "奇石 フォス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "バトルゾーンにある自分のクリーチャーの数が相手より多ければ、このクリーチャーをアンタップして、相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。",
+          "race": "メタリカ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-061",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-061.jpg",
+      "spec": {
+        "g1295UntapRedirect": true,
+        "g1297RedirectMoreCreatures": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "87ce61522b2470ae4ea6630ab00bdf0965a78e3f88c67783bdabab167cfa5446",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-004",
+      "name": "正義の煌き オーリリア",
+      "faces": [
+        {
+          "name": "正義の煌き オーリリア",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをアンタップして、相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。\nラビリンス：自分のシールドの数が相手より多ければ、相手はコスト５以下の呪文を唱えられない。",
+          "race": "メタリカ",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-004.jpg",
+      "spec": {
+        "g1295UntapRedirect": true,
+        "g1297LabyrinthSpellMax": 5
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "54f15e62182eaa47deb9e099d4974b1858febf9966cb43a841250e9445bedb8d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex02-046",
+      "name": "緑知銀 フェイウォン",
+      "faces": [
+        {
+          "name": "緑知銀 フェイウォン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体タップしてもよい。そうしたら、カードを１枚引く。\nこのクリーチャーをアンタップして、相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。",
+          "race": "メタリカ",
+          "powerText": "1500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-046",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex02-046.jpg",
+      "spec": {
+        "g1295UntapRedirect": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "untapped": true
+            },
+            "tap": true,
+            "optional": true,
+            "g1044ImplicitTap": true,
+            "g587AfterSelection": true,
+            "g987AfterNewTap": true,
+            "after": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ],
+            "title": "カードを引くためにタップする自分のクリーチャーを選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "72d13e0a1a8cc867dbcb1052919a6b0fa5047cc2c4ba30de40da11fe830407e3",
+        "facesMatched": true
+      },
+      "canonicalId": "dmsd02-005"
+    },
+    {
+      "id": "dmex03-005",
+      "name": "緑知銀 フェイウォン",
+      "faces": [
+        {
+          "name": "緑知銀 フェイウォン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体タップしてもよい。そうしたら、カードを１枚引く。\nこのクリーチャーをアンタップして、相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。",
+          "race": "メタリカ",
+          "powerText": "1500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex03-005.jpg",
+      "spec": {
+        "g1295UntapRedirect": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "untapped": true
+            },
+            "tap": true,
+            "optional": true,
+            "g1044ImplicitTap": true,
+            "g587AfterSelection": true,
+            "g987AfterNewTap": true,
+            "after": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ],
+            "title": "カードを引くためにタップする自分のクリーチャーを選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "dc5c6b9046156b0dee3fbbe7ec9a9b2de24c81ff6cc012e7faa51d5f660f8653",
+        "facesMatched": true
+      },
+      "canonicalId": "dmsd02-005"
+    },
+    {
+      "id": "dmsd10-010",
+      "name": "緑知銀 フェイウォン",
+      "faces": [
+        {
+          "name": "緑知銀 フェイウォン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体タップしてもよい。そうしたら、カードを１枚引く。\nこのクリーチャーをアンタップして、相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。",
+          "race": "メタリカ",
+          "powerText": "1500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd10-010",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd10-010.jpg",
+      "spec": {
+        "g1295UntapRedirect": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "untapped": true
+            },
+            "tap": true,
+            "optional": true,
+            "g1044ImplicitTap": true,
+            "g587AfterSelection": true,
+            "g987AfterNewTap": true,
+            "after": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ],
+            "title": "カードを引くためにタップする自分のクリーチャーを選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "c68d692e2ed3bca0543ab7c3921847bc59b818412cad7854fd65dac51026652a",
+        "facesMatched": true
+      },
+      "canonicalId": "dmsd02-005"
+    },
+    {
+      "id": "dmbd04-014",
+      "name": "奇石 トーパズ",
+      "faces": [
+        {
+          "name": "奇石 トーパズ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "NEO進化：自分の光のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーをアンタップして、相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。",
+          "race": "メタリカ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd04-014",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd04-014.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            }
+          ]
+        },
+        "g1295UntapRedirect": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "ffe48f3ea91d7872e5353d517b7a2351862f26d7225becdcfd6a10aa505cd8bd",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp02-060"
+    },
+    {
+      "id": "dmex11-003",
+      "name": "正義の煌き オーリリア",
+      "faces": [
+        {
+          "name": "正義の煌き オーリリア",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをアンタップして、相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。\nラビリンス：自分のシールドの数が相手より多ければ、相手はコスト５以下の呪文を唱えられない。",
+          "race": "メタリカ",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex11-003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex11-003.jpg",
+      "spec": {
+        "g1295UntapRedirect": true,
+        "g1297LabyrinthSpellMax": 5
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "4b3bf96603a1ec4ed6d0150cd92446c2ea3e723133e5e4d627498d3c35a6ff26",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp02-004"
+    },
+    {
+      "id": "dm22bd2-010",
+      "name": "正義の煌き オーリリア",
+      "faces": [
+        {
+          "name": "正義の煌き オーリリア",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをアンタップして、相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。\nラビリンス：自分のシールドの数が相手より多ければ、相手はコスト５以下の呪文を唱えられない。",
+          "race": "メタリカ",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22bd2-010",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22bd2-010.jpg",
+      "spec": {
+        "g1295UntapRedirect": true,
+        "g1297LabyrinthSpellMax": 5
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "1197ef9c10df059a29a1c82ad878fb167e2187ac61486f5ed5b964f9cd08fde1",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp02-004"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-15",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmsd02-005": 4,
+      "dmrp03-062": 4,
+      "dmrp02-060": 4,
+      "dmrp07-061": 4,
+      "dmrp02-004": 4,
+      "dmex02-046": 4,
+      "dmex03-005": 4,
+      "dmsd10-010": 4,
+      "dmbd04-014": 4,
+      "dmex11-003": 4,
+      "dm22bd2-010": 4
+    },
+    "currentList": "https://dm.takaratomy.co.jp/img/regulation/2608/202608regulation.pdf"
+  },
+  "sameNameProducts": {
+    "dmsd02-005": [
+      "dmsd10",
+      "dmex03",
+      "dmex02",
+      "dmsd02"
+    ],
+    "dmrp03-062": [
+      "dmrp03"
+    ],
+    "dmrp02-060": [
+      "dmrp02",
+      "dmbd04"
+    ],
+    "dmrp07-061": [
+      "dmrp07"
+    ],
+    "dmrp02-004": [
+      "dm22bd2",
+      "dmex11",
+      "dmrp02"
+    ]
+  }
+}

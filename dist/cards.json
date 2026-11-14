@@ -242926,15 +242926,149 @@
       ],
       "supportBatch": "phase-1296",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmsd02-005",
+      "name": "緑知銀 フェイウォン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1500,
+      "race": "メタリカ",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体タップしてもよい。そうしたら、カードを１枚引く。\nこのクリーチャーをアンタップして、相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd02-005",
+      "limit": 4,
+      "g1295UntapRedirect": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "filter": {
+            "creature": true,
+            "untapped": true
+          },
+          "tap": true,
+          "optional": true,
+          "g1044ImplicitTap": true,
+          "g587AfterSelection": true,
+          "g987AfterNewTap": true,
+          "after": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ],
+          "title": "カードを引くためにタップする自分のクリーチャーを選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-1297",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-062",
+      "name": "奇石 ゲンブルー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2500,
+      "race": "メタリカ",
+      "text": "このクリーチャーをアンタップして、相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。\nこのクリーチャーが破壊された時、相手のクリーチャーを１体選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-062",
+      "limit": 4,
+      "g1295UntapRedirect": true,
+      "g172Death": [
+        {
+          "op": "Target",
+          "tap": true,
+          "title": "タップする相手のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1297",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp02-060",
+      "name": "奇石 トーパズ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "メタリカ",
+      "text": "NEO進化：自分の光のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーをアンタップして、相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-060",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          }
+        ]
+      },
+      "g1295UntapRedirect": true,
+      "supportBatch": "phase-1297",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-061",
+      "name": "奇石 フォス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "メタリカ",
+      "text": "バトルゾーンにある自分のクリーチャーの数が相手より多ければ、このクリーチャーをアンタップして、相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-061",
+      "limit": 4,
+      "g1295UntapRedirect": true,
+      "g1297RedirectMoreCreatures": true,
+      "supportBatch": "phase-1297",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp02-004",
+      "name": "正義の煌き オーリリア",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4500,
+      "race": "メタリカ",
+      "text": "このクリーチャーをアンタップして、相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。\nラビリンス：自分のシールドの数が相手より多ければ、相手はコスト５以下の呪文を唱えられない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-004",
+      "limit": 4,
+      "g1295UntapRedirect": true,
+      "g1297LabyrinthSpellMax": 5,
+      "supportBatch": "phase-1297",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1296,
+    "phase": 1297,
     "checkedAt": "2026-11-15",
-    "baseCount": 7901,
-    "newEffectCards": 3,
+    "baseCount": 7904,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 7904,
+    "totalCount": 7909,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -264775,6 +264909,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7901,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1296,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7901,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7904,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

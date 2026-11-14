@@ -2475,6 +2475,29 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1297&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const redirect='このクリーチャーをアンタップして相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。';
+  if(['dmrp02-060','dmbd04-014'].includes(d.id)&&f.typeText==='NEOクリーチャー'&&
+   text==='NEO進化:自分の光のクリーチャー1体の上に置いてもよい。(クリーチャーが下にあればこれをNEO進化クリーチャーとして扱う)'+redirect)
+   return {neoEvolution:{any:[{civilization:'光'}]},g1295UntapRedirect:true};
+  if(f.typeText==='クリーチャー'){
+   if(['dmsd02-005','dmex02-046','dmex03-005','dmsd10-010'].includes(d.id)&&
+    text==='このクリーチャーがバトルゾーンに出た時自分のクリーチャーを1体タップしてもよい。そうしたらカードを1枚引く。'+redirect)
+    return {g1295UntapRedirect:true,effect:'sixPhoto',g34Tasks:[{
+     op:'Target',owner:'self',filter:{creature:true,untapped:true},tap:true,optional:true,g1044ImplicitTap:true,
+     g587AfterSelection:true,g987AfterNewTap:true,after:[{op:'Draw',n:1}],
+     title:'カードを引くためにタップする自分のクリーチャーを選ぶ（任意）'
+    }]};
+   if(d.id==='dmrp03-062'&&text===redirect+'このクリーチャーが破壊された時相手のクリーチャーを1体選びタップする。')
+    return {g1295UntapRedirect:true,g172Death:[{op:'Target',tap:true,title:'タップする相手のクリーチャーを選ぶ'}]};
+   if(d.id==='dmrp07-061'&&text==='バトルゾーンにある自分のクリーチャーの数が相手より多ければ'+redirect)
+    return {g1295UntapRedirect:true,g1297RedirectMoreCreatures:true};
+   if(['dmrp02-004','dmex11-003','dm22bd2-010'].includes(d.id)&&
+    text===redirect+'ラビリンス:自分のシールドの数が相手より多ければ相手はコスト5以下の呪文を唱えられない。')
+    return {g1295UntapRedirect:true,g1297LabyrinthSpellMax:5};
+  }
+ }
  if(phase>=1296&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const redirect='このクリーチャーをアンタップして相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。';
