@@ -173,6 +173,13 @@ export function createSamuraiRules(api){
    Math.min(optionalReducers(s,p,c),c.g18Reducers??Infinity);
  },
  speed(s,p,x){const c=card(x);return c.type==='creature'&&(samurai(c)&&creatures(s,p).some(y=>card(y).samuraiSpeed&&!api.ignored(s,y))||(dragon(c)||samurai(c))&&gears(s,p).some(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((q)=>dragon(q)||samurai(q))(card(live(s,p,g)))));},
+ uncrossedBreakCap(s){
+  return s.players.some((own,p)=>own.battle.some(g=>card(g).g1231UncrossedBreakCap&&
+   !g.faceDown&&active(s,g)&&!live(s,p,g)));
+ },
+ crossDestroyShield(s,p,x){
+  return !x.sealed&&attached(s,p,x).some(g=>card(g).g1231CrossShield&&!g.faceDown&&active(s,g));
+ },
  extraBreak(s,p,x){
   if(x.sealed)return 0;
   let count=0;

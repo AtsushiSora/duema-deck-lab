@@ -2470,6 +2470,32 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1231&&d?.status==='complete'){
+  const text=normalize(f.abilityText);
+  const hyperEntry='このクリーチャーが出た時相手のパワー5000以下のクリーチャーを1体選び破壊する。';
+  const hyperCost='ハイパー化:自分の他のクリーチャーを1体タップする。'+
+   '(自分のメインステップ中にハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く)';
+  if(['dm24rp2-S07','dm24rp2-Sec05','dm24ex3-rp2S07'].includes(d.id)&&d.faces.length===2&&
+   d.faces.every(face=>face.typeText==='クリーチャー')&&f.powerText==='4000'&&d.faces[1].powerText==='9000'&&
+   text===hyperEntry+hyperCost&&normalize(d.faces[1].abilityText)===hyperEntry+hyperCost+
+   'W・ブレイカー自分のクリーチャーが攻撃することによって攻撃クリーチャー自身の能力がトリガーする時1度のかわりに2度トリガーする。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',to:'grave',filter:{maxPower:5000,g199Power:true}}],
+    hyperTap:true,hyper:{power:9000,breaker:2,g1231DoubleAttack:true}};
+  if(d.id==='dm16-008'&&d.faces.length===1&&f.typeText==='クロスギア'&&text===
+   'クロスギア:このカードをバトルゾーンに置く。クリーチャーにクロスするにはこのカードのコストをもう一度支払う。'+
+   'そのクリーチャーがバトルゾーンを離れてもこのカードはバトルゾーンに残る。'+
+   'これをクロスしたクリーチャーが破壊される時墓地に置くかわりに裏向きにして自分のシールドに加える。'+
+   'このカードがどのクリーチャーにもクロスされていない時クリーチャーは攻撃1回につきシールドを1枚しかブレイクできない。')
+   return {type:'gear',g1231CrossShield:true,g1231UncrossedBreakCap:true};
+  if(d.id==='dm23rp1-003'&&d.faces.length===1&&f.typeText==='クリーチャー'&&text.replaceAll('\uFE0E','')===
+   'ジャストダイバーこのクリーチャーが出た時カードを3枚引く。その後自分の手札を2枚好きな順序で山札の下に置く。'+
+   '各ターン自分がはじめて呪文を唱えた時自分の手札を1枚捨ててもよい。そうしたらマジック・メクレイド5する。'+
+   '(マジック・メクレイド5:自分の山札の上から3枚を見る。その中からコスト5以下のマジックを1枚コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く)')
+   return {justDiver:true,effect:'sixPhoto',g34Tasks:[{op:'Draw',n:3},
+    {op:'Select',origin:'hand',to:'deck',n:2,g183Return:true,title:'山札の下に置く順に手札を2枚選ぶ'}],
+    g204SpellWatch:{who:'self',g965FirstSpell:true,defs:[{op:'DiscardFor248',n:1,g770DiscardAttempt:true,
+     title:'メクレイドするために捨てる手札を1枚選ぶ（任意）',defs:[{op:'Raid767',race:'マジック',max:5}]}]}};
+ }
  if(phase>=1230&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(['dm15-s04','dmex17-Cho07','dmc39-012'].includes(d.id)&&f.typeText==='クロスギア'&&
