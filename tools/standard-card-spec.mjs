@@ -2445,6 +2445,11 @@ const singleLGateText=race=>'L・ゲート:'+race+'(このクリーチャーが�
 const dragStrikeDeath=()=>[{op:'Select',origin:'hand',n:1,deploy:true,g195HandDeploy:true,
  filter:{creature:true,race:'ドラゴン'},optional:true,title:'手札から出すドラゴンを1体選ぶ'}];
 
+const brainCoralSpec=()=>({effect:'sixPhoto',g34Tasks:[{op:'Draw',n:3},{
+ op:'Execute',origin:'hand',g1139HandSizeMax:true,spellColorsAny:['水'],g1244NoEmptyOffer:true,
+ title:'手札の枚数以下のコストの水のカードを1枚まで使う'
+}]});
+
 export function standardCardSpec(d,{phase=165}={}){
  // Repair only the complete formatting variants pinned to these official prints.
  if(phase>=533&&d?.faces?.length===1){
@@ -2470,15 +2475,35 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1250&&d?.status==='complete'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmex18-018'&&d.faces.length===2&&f.typeText==='呪文'&&text===
+   '自分の山札の上から2枚を見て好きな順序で戻す。この呪文を唱えた後墓地に置くかわりに手札に戻す。'){
+   const back=d.faces[1];
+   if(back.typeText==='呪文'&&normalize(back.abilityText)===
+    'カードを3枚引く。その後自分の手札の枚数以下のコストを持つ水のカードを自分の手札から1枚選んでもよい。そうしたらそのカードをコストを支払わずに使う。'){
+    return {spellFrontName:f.name,effect:'sixPhoto',g34Tasks:[
+     {op:'Look',n:2,stages:[],rest:'top',g259OrderTop:true,g841DeckPeek:true},{op:'SpellFinish416',to:'hand'}
+    ],spellFace:{name:back.name,type:'spell',cost:back.cost,civ:back.civilizationText,
+     civilizations:back.civilizations,race:back.race,...brainCoralSpec()}};
+   }
+  }
+  if(d.faces.length===1){
+   if(d.id==='dmrp18-036'&&f.typeText==='クリーチャー'&&text===
+    'このクリーチャーが出た時カードを1枚引く。自分の手札から呪文を唱えた時このクリーチャーを破壊してもよい。そうしたらその呪文をもう一度墓地からコストを支払わずに唱える。')
+    return {effect:'sixPhoto',g34Tasks:[{op:'Draw',n:1}],g1250RecastSacrifice:true};
+   if(['dmex12-011','dmex16-002','dmrp22-TR10','dm23bd4-034','dm24rp1-TD2','dm25sp2-010','dm26ex3-067'].includes(d.id)&&
+    f.typeText==='ドラゴニック・フィールド'&&
+    /^自分のターンのはじめに自分の山札の上から1枚目?を墓地に置く。(?:それ|そのカード)が進化ではないドラゴンならこの(?:ドラゴニック・)?フィールドを(?:墓地に置い|破壊し)てもよい。そうしたらそのドラゴンを(?:バトルゾーンに)?出す。$/.test(text))
+    return {g461TurnPlayer:true,g174Start:[{op:'DragonWorldMill1250'}]};
+  }
+ }
  if(phase>=1249&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(['dmrp05-018','dmex09-008'].includes(d.id)&&f.typeText==='呪文'&&[
    'カードを3枚引く。その後自分の手札にあるカードの枚数以下のコストを持つ水のカードを1枚選んでもよい。そうしたらそのカードを自分の手札からコストを支払わずに使う。',
    'カードを3枚引く。その後自分の手札の枚数以下のコストを持つ水のカードを1枚自分の手札から選んでもよい。そうしたらそのカードをコストを支払わずに使う。'
-  ].includes(text))return {effect:'sixPhoto',g34Tasks:[{op:'Draw',n:3},{
-   op:'Execute',origin:'hand',g1139HandSizeMax:true,spellColorsAny:['水'],g1244NoEmptyOffer:true,
-   title:'手札の枚数以下のコストの水のカードを1枚まで使う'
-  }]};
+  ].includes(text))return brainCoralSpec();
   if(['dmsd13-019','dmrp11-077'].includes(d.id)&&f.typeText==='クリーチャー'&&text===
    'このクリーチャーが攻撃する時Jトルネードしてもよい。そうしたら相手のパワー6000以下のクリーチャーを1体選び持ち主の手札に戻す。'+
    '(Jトルネード:自分の他のジョーカーズを1体手札に戻す)')

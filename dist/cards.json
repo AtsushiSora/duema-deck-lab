@@ -237240,15 +237240,126 @@
       ],
       "supportBatch": "phase-1249",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex18-018",
+      "name": "エターナル・ブレイン / ブレイン珊瑚の仙樹",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "自分の山札の上から２枚を見て、好きな順序で戻す。\nこの呪文を唱えた後、墓地に置くかわりに手札に戻す。\n【呪文面】\nカードを３枚引く。その後、自分の手札の枚数以下のコストを持つ水のカードを、自分の手札から１枚選んでもよい。そうしたら、そのカードをコストを支払わずに使う。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-018",
+      "limit": 4,
+      "spellFrontName": "エターナル・ブレイン",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "stages": [],
+          "rest": "top",
+          "g259OrderTop": true,
+          "g841DeckPeek": true
+        },
+        {
+          "op": "SpellFinish416",
+          "to": "hand"
+        }
+      ],
+      "spellFace": {
+        "name": "ブレイン珊瑚の仙樹",
+        "type": "spell",
+        "cost": 8,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "g1139HandSizeMax": true,
+            "spellColorsAny": [
+              "水"
+            ],
+            "g1244NoEmptyOffer": true,
+            "title": "手札の枚数以下のコストの水のカードを1枚まで使う"
+          }
+        ]
+      },
+      "supportBatch": "phase-1250",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp18-036",
+      "name": "かっ飛ばす者 ラカン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ムートピア",
+      "text": "このクリーチャーが出た時、カードを１枚引く。\n自分の手札から呪文を唱えた時、このクリーチャーを破壊してもよい。そうしたら、その呪文をもう一度、墓地からコストを支払わずに唱える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-036",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "g1250RecastSacrifice": true,
+      "supportBatch": "phase-1250",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex12-011",
+      "name": "龍世界 ～龍の降臨する地～",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 3,
+      "power": 0,
+      "race": "ドラゴン・ワールド",
+      "text": "自分のターンのはじめに、自分の山札の上から１枚目を墓地に置く。それが進化ではないドラゴンなら、このドラゴニック・フィールドを墓地に置いてもよい。そうしたら、そのドラゴンをバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-011",
+      "limit": 4,
+      "g461TurnPlayer": true,
+      "g174Start": [
+        {
+          "op": "DragonWorldMill1250"
+        }
+      ],
+      "supportBatch": "phase-1250",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1249,
+    "phase": 1250,
     "checkedAt": "2026-11-14",
-    "baseCount": 7746,
+    "baseCount": 7749,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7749,
+    "totalCount": 7752,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -258525,6 +258636,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7746,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1249,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7746,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7749,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

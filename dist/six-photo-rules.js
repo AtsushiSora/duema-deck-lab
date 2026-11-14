@@ -1722,6 +1722,10 @@ export function createSixPhotoRules(api){
    const x=own.grave.find(y=>y.uid===d.target&&(y.zoneSerial||0)===d.serial);
    if(x&&canPut(s,t.p,x,'grave'))score+=8+2*cost(card(x));
   }
+  if(d.op==='RecastAfterSacrifice1250'){
+   const row=recastHandSpell1245(s,{...d,p:t.p});
+   if(row)score+=spellScore555(s,t,row.c);
+  }
   if(card(t.source)?.supportBatch==='phase-627'){
    if(d.op==='ShieldTop'){
     if(api.canAddShield(s,t.p)&&!api.deckLocked(s,t.p))score+=deckCount<=1?-1000:20;
@@ -4021,6 +4025,19 @@ export function createSixPhotoRules(api){
   }
   break;
  }
+ case'g34_DragonWorldMill1250':{
+  const y=api.takeTop(s,t.p);
+  const printed=y&&api.zoneCard(s,t.p,y,'deck');
+  const hit=printed&&!api.isEvolution(y)&&race(printed,'ドラゴン');
+  if(y){clear(y,'grave');api.addZone(s,t.p,'grave',y);}
+  api.deckCheck(s,t.p);
+  const host=hit&&sourceHost474(s,t);
+  if(s.winner===null&&host&&host.x.uid===t.uid&&!host.x.sealed){
+   start(s,t,[{op:'ExactMove',owner:host.p,target:t.uid,targetIncarnation:t.incarnation,optional:true,to:'grave',
+    afterAttempt:[{op:'HatchHunter841',target:y.uid,serial:y.zoneSerial||0}]}]);
+  }
+  break;
+ }
  case'g34_TopDestination1244':{
   const [uid]=look(s,{...t,n:1}),y=own.deck.find(x=>x.uid===uid);
   if(!y)break;
@@ -5072,10 +5089,22 @@ export function createSixPhotoRules(api){
  }
  case'g34_GraveSpell594':choice(s,t,'コスト'+t.max+'以下の呪文をどちらかの墓地から唱える',graveSpellOptions594(s,t));break;
  case'g34_RecastHandSpell1245':{
+  if(t.g1250Sacrifice){
+   const host=sourceHost474(s,t);
+   if(host&&!host.x.sealed&&api.isCreature(s,host.x))start(s,t,[{op:'SelfSacrifice407',defs:[
+    {op:'RecastAfterSacrifice1250',target:t.target,serial:t.serial,face:t.face}
+   ]}]);
+   break;
+  }
   const row=recastHandSpell1245(s,t);
   if(row)choice(s,t,'墓地から同じ呪文をもう一度唱える？',[
    opt(row.c.name+'を唱える',true,spellScore555(s,t,row.c),row.x.cardId),skip()
   ]);
+  break;
+ }
+ case'g34_RecastAfterSacrifice1250':{
+  const row=recastHandSpell1245(s,t);
+  if(row)cast(s,t.p,row.x.uid,true,null,t.face,null,'grave',card(t.source).name);
   break;
  }
  case'g34_ElementOrMana796':choice(s,t,'山札の下に置くエレメントかマナのカードを選ぶ',elementOrManaOptions796(s,t));break;
@@ -7261,8 +7290,11 @@ export function createSixPhotoRules(api){
   useBlockers524(s,p);consumeReduction456(s,p,c);noncreatureUse448(s,p,c);countExecution(s,p,c);
   // Capture the cast before it resolves, and require its first physical grave arrival.
   if(inst&&origin==='hand'&&owner===p)for(const x of creatures(s,p)){
-   if(!x.sealed&&card(x).g1245HandSpellRecast&&effective(x,s).g1245HandSpellRecast)
-    send(s,p,x,'RecastHandSpell1245',{target:inst.uid,serial:(inst.zoneSerial||0)+1,face});
+   if(x.sealed||!card(x).g1245HandSpellRecast&&!card(x).g1250RecastSacrifice)continue;
+   const watcher=effective(x,s);
+   if(watcher.g1245HandSpellRecast||watcher.g1250RecastSacrifice)
+    send(s,p,x,'RecastHandSpell1245',{target:inst.uid,serial:(inst.zoneSerial||0)+1,face,
+     ...(watcher.g1250RecastSacrifice?{g1250Sacrifice:true}:{})});
   }
   // The shared spell count has already recorded this cast, including free casts.
   const firstSpell=s.g37Spells?.[p]?.turn===s.turn&&s.g37Spells[p].n===1;
