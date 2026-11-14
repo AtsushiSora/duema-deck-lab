@@ -2470,6 +2470,36 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1220&&d?.status==='complete'&&['dm23rp3-020','dm23rp3-023','dm22rp1-026'].includes(d.id)){
+  const front=f.abilityText.split('\n').map(normalize),spell=d.faces[1];
+  if(d.id==='dm22rp1-026'&&d.faces.length===1&&f.typeText==='タマシード'&&front.length===2&&
+     front[0]==='S・トリガーS・トリガー(このタマシードをシールドゾーンから手札に加える時コストを支払わずにすぐ使ってもよい)'&&
+     front[1]==='自分の呪文または他のタマシードを使った時カードを1枚引いてもよい。そうしたら自分の手札を1枚タップしてマナゾーンに置いてもよい。'){
+   const defs=[{op:'Offer',title:'カードを1枚引く？',g204DrawDiscard:true,defs:[
+    {op:'Draw',n:1},
+    {op:'Select',origin:'hand',to:'mana',n:1,optional:true,tapped:true,g182HandMana:true,
+     title:'タップしてマナゾーンに置く手札を1枚まで選ぶ'}
+   ]}];
+   return {trigger:true,g204SpellWatch:{who:'self',g1189Tamaseed:true,defs},g1177TamaseedUse:defs};
+  }
+  if(d.faces.length===2&&f.typeText==='クリーチャー'&&spell.typeText==='呪文'&&
+     front.at(-1)==='メガ・ラスト・バースト(このクリーチャーが離れて手札マナゾーンまたは墓地に置かれた時このカードの呪文側をコストを支払わずに唱えてもよい)'){
+   const spellFace={type:'spell',name:spell.name,cost:spell.cost,civ:spell.civilizationText,
+    civilizations:spell.civilizations,race:spell.race,effect:'sixPhoto'};
+   const back=spell.abilityText.split('\n').map(normalize),draw={op:'Draw',n:1};
+   if(d.id==='dm23rp3-020'&&front.length===2&&back.length===2&&
+      front[0]==='各ターンこのクリーチャーの最初の攻撃の終わりにこのクリーチャーをアンタップする。'&&
+      back[0]==='相手の「ブロッカー」を持つクリーチャーを1体選び破壊する。'&&back[1]==='カードを1枚引く。')
+    return {megaLastBurst:true,g1020FirstOwnAttack:true,g474AttackEnd:[{op:'Untap',g191First:true}],
+     spellFace:{...spellFace,g34Tasks:[{op:'Target',to:'grave',filter:{blocker:true}},draw]}};
+   if(d.id==='dm23rp3-023'&&front.length===3&&back.length===2&&
+      front[0]==='このクリーチャーを自分のマナゾーンから召喚してもよい。'&&
+      front[1]==='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'&&
+      back[0]==='自分と相手のクリーチャーを1体ずつ選んでもよい。その2体をバトルさせる。'&&back[1]==='カードを1枚引く。')
+    return {manaSummon:true,breaker:2,megaLastBurst:true,
+     spellFace:{...spellFace,g34Tasks:[{op:'Fight240',optional:true},draw]}};
+  }
+ }
  if(phase>=1219&&d?.status==='complete'&&['dm22rp1-025','promoy21-041','dm23rp3-034','dm23rp3-027'].includes(d.id)){
   const front=f.abilityText.split('\n').map(normalize),spell=d.faces[1];
   if(['dm22rp1-025','promoy21-041'].includes(d.id)&&d.faces.length===1&&f.typeText==='タマシード'&&

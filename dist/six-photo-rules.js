@@ -6832,7 +6832,7 @@ export function createSixPhotoRules(api){
   }
  },
  played(s,p,c,x,origin,permit){
-  if(c.type==='seed'||c.seedCreature)for(const source of s.players[p].battle){
+  if(c.type==='seed'||c.seedCreature||c.natureAce4)for(const source of s.players[p].battle){
    const printed=card(source);
    if(source.sealed||source.uid===x.uid||!printed.g1177TamaseedUse||
     !printed.g204SpellWatch?.g1189Tamaseed&&!api.isCreature(s,source))continue;

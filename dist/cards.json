@@ -233430,15 +233430,177 @@
       },
       "supportBatch": "phase-1219",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp3-020",
+      "name": "ボルゼラス・ドラゴン / 「オレの行く道は止められねぇ」",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "アーマード・ドラゴン",
+      "text": "各ターン、このクリーチャーの最初の攻撃の終わりに、このクリーチャーをアンタップする。\nメガ・ラスト・バースト（このクリーチャーが離れて、手札、マナゾーン、または墓地に置かれた時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\n相手の「ブロッカー」を持つクリーチャーを１体選び、破壊する。\nカードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-020",
+      "limit": 4,
+      "megaLastBurst": true,
+      "g1020FirstOwnAttack": true,
+      "g474AttackEnd": [
+        {
+          "op": "Untap",
+          "g191First": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "「オレの行く道は止められねぇ」",
+        "cost": 3,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "アーマード・アーツ",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "blocker": true
+            }
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1220",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp3-023",
+      "name": "弓道の妖精 / ド級の弩弓",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "ジャイアント・スノーフェアリー",
+      "text": "このクリーチャーを自分のマナゾーンから召喚してもよい。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nメガ・ラスト・バースト（このクリーチャーが離れて、手札、マナゾーン、または墓地に置かれた時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\n自分と相手のクリーチャーを１体ずつ選んでもよい。その２体をバトルさせる。\nカードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-023",
+      "limit": 4,
+      "manaSummon": true,
+      "breaker": 2,
+      "megaLastBurst": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "ド級の弩弓",
+        "cost": 2,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "ジャイアント・スキル",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "optional": true
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1220",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-026",
+      "name": "森林と瀑布のレコード",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（このタマシードをシールドゾーンから手札に加える時、コストを支払わずにすぐ使ってもよい）\n自分の呪文または他のタマシードを使った時、カードを１枚引いてもよい。そうしたら、自分の手札を１枚、タップしてマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-026",
+      "limit": 4,
+      "trigger": true,
+      "g204SpellWatch": {
+        "who": "self",
+        "g1189Tamaseed": true,
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "カードを1枚引く？",
+            "g204DrawDiscard": true,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              },
+              {
+                "op": "Select",
+                "origin": "hand",
+                "to": "mana",
+                "n": 1,
+                "optional": true,
+                "tapped": true,
+                "g182HandMana": true,
+                "title": "タップしてマナゾーンに置く手札を1枚まで選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "g1177TamaseedUse": [
+        {
+          "op": "Offer",
+          "title": "カードを1枚引く？",
+          "g204DrawDiscard": true,
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            },
+            {
+              "op": "Select",
+              "origin": "hand",
+              "to": "mana",
+              "n": 1,
+              "optional": true,
+              "tapped": true,
+              "g182HandMana": true,
+              "title": "タップしてマナゾーンに置く手札を1枚まで選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1220",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1219,
+    "phase": 1220,
     "checkedAt": "2026-11-14",
-    "baseCount": 7649,
+    "baseCount": 7652,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7652,
+    "totalCount": 7655,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -254355,6 +254517,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7649,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1219,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7649,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7652,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
