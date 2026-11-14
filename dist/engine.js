@@ -614,7 +614,32 @@ function moveSealsToGrave1156(s,p,uids){
  const watchers=extra.six.sealDrawWatchers1156(s,p);
  for(const uid of uids)moveSeal(s,p,uid,'grave',null,watchers);
 }
-function seal(s,p,uids,n=1){const own=s.players[p];for(const uid of uids){const x=own.battle.find(x=>x.uid===uid&&!x.sealed);if(!x)continue;for(let i=0;i<n;i++){const top=takeDeckTop(s,p);if(top){rememberBattleInformation(s,p,x,layers(x));if(x.powerModifiers?.some(modifier=>modifier.g694ClearOnSeal))x.powerModifiers=x.powerModifiers.filter(modifier=>!modifier.g694ClearOnSeal);clearBattleState(top,'seals');top.faceDown=true;top.sealOf=x.uid;delete x.g40Reckless;(own.seals??=[]).push(top);x.sealed=true;log(s,p,'seal',card(x.cardId).name+'に封印を付ける',{cardId:x.cardId});}deckCheck(s,p);if(s.winner!==null||s.lossEvent)break;}}refreshDynamicTypes(s);}
+function seal(s,p,uids,n=1){
+ const own=s.players[p];
+ for(const uid of uids){
+  const x=own.battle.find(x=>x.uid===uid&&!x.sealed);
+  if(!x)continue;
+  for(let i=0;i<n;i++){
+   const top=takeDeckTop(s,p);
+   if(top){
+    const affected=layers(x);
+    rememberBattleInformation(s,p,x,affected);
+    // A sealed creature is treated as absent (116.2a), ending the paired duration.
+    if(s.extLimits)s.extLimits=s.extLimits.filter(l=>l.kind!=='g1260PairedCombatLock'||
+     !l.refs.some(ref=>affected.some(y=>y.uid===ref.uid&&(y.incarnation||0)===ref.incarnation)));
+    if(x.powerModifiers?.some(modifier=>modifier.g694ClearOnSeal))
+     x.powerModifiers=x.powerModifiers.filter(modifier=>!modifier.g694ClearOnSeal);
+    clearBattleState(top,'seals');
+    top.faceDown=true;top.sealOf=x.uid;delete x.g40Reckless;
+    (own.seals??=[]).push(top);x.sealed=true;
+    log(s,p,'seal',card(x.cardId).name+'に封印を付ける',{cardId:x.cardId});
+   }
+   deckCheck(s,p);
+   if(s.winner!==null||s.lossEvent)break;
+  }
+ }
+ refreshDynamicTypes(s);
+}
 function recordCombat(s,p){s.g4Combat??=[null,null];const x=s.g4Combat[p];s.g4Combat[p]={turn:s.turn,count:x?.turn===s.turn?x.count+1:1};}
 function attachMugenBases(s,p,inst,refs){const all=[];for(const r of refs){const own=s.players[p],x=remove(own[r.origin],r.uid);if(!x)throw Error('無月の門の素材がありません');const cards=layers(x);if(r.origin==='battle')recordLastPower(s,p,x,cards);for(const y of cards){if(r.origin!=='battle')clearBattleState(y,'battle');else{delete y.under;delete y.godLinks;}}all.push(...cards);}inst.under=all;log(s,p,'mugenSummon',card(inst).name+'の下に'+(card(inst).mugenKind==='joker'?'魔導具・ジョーカーズを':'魔導具を')+refs.length+'つ重ねる',{cardId:inst.cardId});}
 // QA46869–46870: each card moved out from under a creature triggers separately.

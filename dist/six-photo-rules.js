@@ -6535,6 +6535,13 @@ export function createSixPhotoRules(api){
     title:'選んだクリーチャーの下に置く自分の墓地のカードを1枚選ぶ'}]);
    break;
   }
+  if(t.g1260PairedCombatLock){
+   const source=sourceHost474(s,t)?.x,target=v&&s.players[v.p].battle.find(y=>y.uid===v.uid);
+   if(!source||!target||source===target||source.sealed||target.sealed)break;
+   (s.extLimits??=[]).push({kind:'g1260PairedCombatLock',refs:[source,target].map(y=>
+    ({uid:y.uid,incarnation:y.incarnation||0}))});
+   break;
+  }
   if(t.g959MoveTop){
    if(v)api.moveBattleCard(s,v.p,v.uid,t.to,{controller:t.controller??t.p});
    break;
@@ -7093,7 +7100,8 @@ export function createSixPhotoRules(api){
   const target=s.players[1-p].battle.find(y=>y.uid===(s.attack.blockUid||s.attack.target));
   if(target&&!target.sealed&&api.isCreature(s,target)&&cost(effective(target,s))<=c.g899AttackSlayerMax){d.g208SlayerCount=(c.g208SlayerCount||Number(!!(c.slayer||d.slayer)))+1;d.slayer=true;}
  }if(angel(c)&&cost(c)<=8&&active(s,p,'sirius').length)Object.assign(d,{cannotBeAttacked:true,unblockable:true,spellUntargetable:true});if(c.g34Role==='emotional'&&own.battle.some(y=>y.uid!==x.uid&&race(card(y),'オラクル')&&!api.ignored(s,y)))d.untargetable=true;if(c.g34Role==='nightmare'&&x.tapped)d.opponentTapEntry=true;if((s.extLimits||[]).some(l=>l.kind==='g34ForceAttack'&&l.player===p)||active(s,0,'baromreizu').length||active(s,1,'baromreizu').length||forceAttack224(s,p)||forced546(s,p,x)||
-  c.g845RequiredAttacks&&(s.g481Attackers?.turn!==s.turn||s.g481Attackers.events.filter(e=>e.refs.includes(key(x))).length<c.g845RequiredAttacks))d.mustAttack=true;if(c.g736AttackInstead&&hasForce546(s,p,x,true))d.g736ForcedAttack=true;let slayers=d.g208SlayerCount??(c.g208SlayerCount||Number(!!(c.slayer||d.slayer)));for(const g of x.g34Grants||[])if((g.turn===s.turn||g.g774Permanent)&&(g.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:g.spellCost,spellSource:g.spellSource}))){if(g.slayer)slayers++;const attackBonus=g.attackBonus?(d.attackBonus??c.attackBonus??0)+g.attackBonus:null;Object.assign(d,g);if(attackBonus!==null)d.attackBonus=attackBonus;}if(slayers>1)d.g208SlayerCount=slayers;const boosts=(x.g34Grants||[]).filter(g=>g.turn===s.turn&&g.g313Breaker);if(boosts.length){const counts=[c.breaker,d.breaker,...boosts.map(g=>g.g313Breaker)].filter(Boolean);d.breaker=counts.includes('∞')?'∞':Math.max(...counts);}return Object.keys(d).length?{...c,...d}:c;},
+  c.g845RequiredAttacks&&(s.g481Attackers?.turn!==s.turn||s.g481Attackers.events.filter(e=>e.refs.includes(key(x))).length<c.g845RequiredAttacks))d.mustAttack=true;if(c.g736AttackInstead&&hasForce546(s,p,x,true))d.g736ForcedAttack=true;let slayers=d.g208SlayerCount??(c.g208SlayerCount||Number(!!(c.slayer||d.slayer)));for(const g of x.g34Grants||[])if((g.turn===s.turn||g.g774Permanent)&&(g.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:g.spellCost,spellSource:g.spellSource}))){if(g.slayer)slayers++;const attackBonus=g.attackBonus?(d.attackBonus??c.attackBonus??0)+g.attackBonus:null;Object.assign(d,g);if(attackBonus!==null)d.attackBonus=attackBonus;}if(slayers>1)d.g208SlayerCount=slayers;const boosts=(x.g34Grants||[]).filter(g=>g.turn===s.turn&&g.g313Breaker&&
+  (g.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:g.spellCost,spellSource:g.spellSource})));if(boosts.length){const counts=[c.breaker,d.breaker,...boosts.map(g=>g.g313Breaker)].filter(Boolean);d.breaker=counts.includes('∞')?'∞':Math.max(...counts);}return Object.keys(d).length?{...c,...d}:c;},
  selectGrantedBreaker633(s,p,x){
   if(s.attack.g633Breaker!==undefined||!s.players[1-p].shields.length)return false;
   const c=effective(x,s),counts=c.g633BreakerChoices;

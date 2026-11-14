@@ -130,6 +130,10 @@ export function createExtendedRules(api){
  };
  const nowCreature=(s,p,uid)=>s.players[p].battle.find(x=>x.uid===uid);
  const lock=(s,p,more)=>{(s.extLimits??=[]).push({controller:p,expires:'start',who:p,...more});};
+ const matchesRef=(unit,ref)=>api.allLayers(unit).some(y=>y.uid===ref.uid&&(y.incarnation||0)===ref.incarnation);
+ const pairedCombatLocked=(s,x)=>(s.extLimits||[]).some(l=>l.kind==='g1260PairedCombatLock'&&
+  l.refs.some(ref=>matchesRef(x,ref))&&
+  l.refs.every(ref=>s.players.some(own=>own.battle.some(unit=>!unit.sealed&&matchesRef(unit,ref)))));
  const locked=(s,p,x,kind)=>{
   if(kind==='attack'&&s.g481Attackers?.turn===s.turn&&
    (s.extLimits||[]).some(l=>l.kind==='g627AttackCap'&&l.player===p&&l.active&&(l.turn===undefined||l.turn===s.turn)&&
@@ -139,6 +143,7 @@ export function createExtendedRules(api){
   if(kind==='attack'&&(s.extLimits||[]).some(l=>l.kind==='g677OnlyAttacker'&&l.player===p&&
    !api.allLayers(x).some(y=>l.refs.includes(y.uid+'@'+(y.incarnation||0)))))return true;
   if(kind==='attack'&&creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks))return false;
+  if((kind==='attack'||kind==='block')&&pairedCombatLocked(s,x))return true;
   if(kind==='attack'&&(utilityLightControl.locked(s,x)||(s.extLimits||[]).some(l=>l.kind==='g1257AttackCreatureLock'&&
    api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation))))return true;
   if(kind==='attack'&&x.entered===s.turn&&effective(x,s).speedAttacker&&[0,1].some(q=>creatures(s,q).some(y=>effective(y,s).g163Dione)))return true;

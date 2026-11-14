@@ -2475,6 +2475,31 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1260&&d?.status==='complete'&&d.faces.length===1){
+  const lines=f.abilityText.split('\n').map(normalize);
+  if(f.typeText==='クリーチャー'&&d.id==='dmrp06-004'&&lines.length===2&&lines[0]===
+   'このクリーチャーがバトルゾーンに出た時相手のクリーチャーを1体選ぶ。選んだクリーチャーとこのクリーチャーが両方バトルゾーンにある間それらは攻撃もブロックもできない。'&&
+   lines[1]==='自分のターンのはじめにカードを1枚引いてもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',g1260PairedCombatLock:true}],g174Start:[{op:'Draw',n:1,optional:true}]};
+  if(f.typeText==='呪文'&&['dm03-047','dmex10-032'].includes(d.id)&&lines.length===2&&([
+    ['このターンバトルゾーンにある自分のクリーチャーはすべて「W(ダブル)・ブレイカー」を得る。(シールドを攻撃したときそれぞれシールドを2枚ブレイクする)',
+     '自分のシールドが1枚でもあれば裏向きのまま1枚選び自分の墓地に置く。'],
+    ['このターン自分のクリーチャーすべてに「W・ブレイカー」を与える。(「W・ブレイカー」を持つクリーチャーはシールドを2つブレイクする)',
+     '自分のシールドを1つ墓地に置く。']
+   ].some(([grant,shield])=>lines[0]===grant&&lines[1]===shield)))
+   return {effect:'sixPhoto',g34Tasks:[
+    {op:'GroupGrant364',owner:'self',spell:true,grant:{g313Breaker:2}},
+    {op:'ShieldGrave588',owner:'self',n:1,required:true}
+   ]};
+  if(f.typeText==='呪文'&&d.id==='dm08-017'&&lines.length===1&&lines[0]===
+   'このターンが終わるまでバトルゾーンにある自分のドラゴノイドはすべてドラゴンになりパワーが+4000され「W(ダブル)・ブレイカー」を得る。'){
+   const group={owner:'self',filter:{race:'ドラゴノイド'},spell:true};
+   return {effect:'sixPhoto',g34Tasks:[
+    {op:'GroupPower',...group,power:4000},
+    {op:'GroupGrant364',...group,grant:{raceAdd:['ドラゴン'],g313Breaker:2}}
+   ]};
+  }
+ }
  if(phase>=1259&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const lines=f.abilityText.split('\n').map(normalize);
   if(['dmx10-006','dmx16-023','dm22ex2-039','promoy17-026'].includes(d.id)&&lines.length===2&&
