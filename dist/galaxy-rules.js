@@ -24,7 +24,7 @@ export function createGalaxyRules(api){
   case'g22Master':put(s,{...t,op:'g22MasterDiscard'});if(own.mana.some(x=>api.manaColors(card(x),s,t.p).includes('火')))draw(s,t.p,1);break;
   case'g22MasterDiscard':discardSequence(s,t,own.hand.length,'g22AfterMaster',true);break;
   case'g22AfterMaster':{const n=s.g22Discards[t.key].length;delete s.g22Discards[t.key];put(s,...Array.from({length:n},()=>task('destroyPower',t.p,t.source,{max:6000})));break;}
-  case'g22UntapMana':{const list=own.mana.filter(x=>x.tapped&&api.canUntap(x)&&!t.selected.includes(x.uid));if(t.selected.length===2||!list.length){for(const uid of t.selected){const x=own.mana.find(x=>x.uid===uid);if(x&&api.canUntap(x))x.tapped=false;}break;}choice(s,t,'アンタップするマナを2枚まで選ぶ',[...list.map(x=>opt(card(x).name,x.uid,10,card(x).id)),opt('ここまでで確定',null,0)]);break;}
+  case'g22UntapMana':{const list=own.mana.filter(x=>x.tapped&&api.canUntapMana(s,x)&&!t.selected.includes(x.uid));if(t.selected.length===2||!list.length){for(const uid of t.selected){const x=own.mana.find(x=>x.uid===uid);if(x&&api.canUntapMana(s,x))x.tapped=false;}break;}choice(s,t,'アンタップするマナを2枚まで選ぶ',[...list.map(x=>opt(card(x).name,x.uid,10,card(x).id)),opt('ここまでで確定',null,0)]);break;}
   case'g22FairySpell':discardSequence(s,t,1,'g22AfterFairy');break;
   case'g22AfterFairy':{const ids=s.g22Discards[t.key];delete s.g22Discards[t.key];put(s,task('destroyPower',t.p,t.source,{max:6000}),...(ids.some(id=>faces(card(id)).some(snow))?[task('destroyPower',t.p,t.source,{max:6000})]:[]));break;}
   case'g22Shuffle':if(t.owner==='self'){shuffleGrave(s,t,t.p);break;}choice(s,t,'山札に戻してシャッフルする墓地を選ぶ',[opt('自分の墓地',t.p,own.deck.length<8?30:5),opt('相手の墓地',1-t.p,opp.grave.length),...(t.optional?[opt('選ばない',null,0)]:[])]);break;
@@ -35,7 +35,7 @@ export function createGalaxyRules(api){
   default:throw Error('未実装のギャラクシー効果：'+t.op);
  }return true;}
  function chosen(s,t,value){if(!t.op.startsWith('g22'))return false;const own=s.players[t.p];switch(t.op){
-  case'g22UntapMana':if(value)put(s,{...t,selected:[...t.selected,value]});else for(const uid of t.selected){const x=own.mana.find(x=>x.uid===uid);if(x&&api.canUntap(x))x.tapped=false;}break;
+  case'g22UntapMana':if(value)put(s,{...t,selected:[...t.selected,value]});else for(const uid of t.selected){const x=own.mana.find(x=>x.uid===uid);if(x&&api.canUntapMana(s,x))x.tapped=false;}break;
   case'g22Shuffle':if(value!==null)shuffleGrave(s,t,value);break;
   case'g22ManaPermit':{const x=own.mana.find(x=>x.uid===value);if(x)x.g22ManaAllowed=s.turn;break;}
   case'g22Speed':{const x=own.battle.find(x=>x.uid===value);if(x)x.gospelSpeed=s.turn;break;}

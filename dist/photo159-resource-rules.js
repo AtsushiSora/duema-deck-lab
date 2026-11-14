@@ -7,7 +7,7 @@ export function createPhoto159ResourceRules(api){
  const on=(p,x,op,more={})=>({player:p,uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task(op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
  function run(s,t){if(!t.op.startsWith('g159R_'))return false;switch(t.op){
  case'g159R_Stone':{for(let i=0;i<2&&s.winner===null;i++){const x=api.takeTop(s,t.p);if(!x)break;const to=api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana';api.clear(x,to);if(to==='mana')x.tapped=true;api.addZone(s,t.p,to,x);}api.deckCheck(s,t.p);put(s,task('g61_ManaGrave',t.p,t.source,{owner:t.p}));break;}
- case'g159R_ManaUntap':{const x=s.players[t.p].mana.find(x=>x.uid===t.target&&(x.zoneSerial||0)===t.serial);if(x&&api.canUntap(x))x.tapped=false;break;}
+ case'g159R_ManaUntap':{const x=s.players[t.p].mana.find(x=>x.uid===t.target&&(x.zoneSerial||0)===t.serial);if(x&&api.canUntapMana(s,x))x.tapped=false;break;}
  case'g159R_Grant':choice(s,t,'このターン、ササゲール2を与える自分のエレメントを1つ選ぶ',api.targetOptions(s,t.p,s.players[t.p].battle.filter(x=>!x.sealed&&['creature','seed','field','gear'].includes(api.effective(x,s).type))).map(o=>({...o,score:20-cost(card(o.cardId))})));break;
  default:throw Error('未対応の写真カード資源処理：'+t.op);
  }return true;}

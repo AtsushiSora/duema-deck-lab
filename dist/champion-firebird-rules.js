@@ -19,7 +19,7 @@ export function createChampionFirebirdRules(api){
  case'g49_Jaou':choice(s,t,'VSジャオウガ：シールド1つを手札へ（S・トリガー不可）',[...own.shields.map((x,i)=>opt('シールド'+(i+1),x.uid,10)),skip()]);break;
  case'g49_JaouReturn':choice(s,t,'鬼エンド：墓地から闇か火のカードを戻す？',[...own.grave.filter(x=>canMove(s,t.p,'grave')&&faces(card(x)).some(darkFire)).map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)),skip()]);break;
  case'g49_JaouPut':deploy(s,t,'hand',c=>c.type==='creature'&&darkFire(c)&&cost(c)<=4,'鬼エンド：手札のコスト4以下の闇か火を出す？');break;
- case'g49_Kent':{const selected=t.selected||[],n=Math.min(4,own.mana.length),rows=own.mana.filter(x=>!selected.includes(x.uid));if(selected.length===n){for(const uid of selected){const x=own.mana.find(x=>x.uid===uid);if(x&&api.canUntap(x))x.tapped=false;}break;}choice(s,{...t,selected},'ケントナーク：アンタップするマナを4枚選ぶ（'+selected.length+'/'+n+'）',rows.map(x=>opt(card(x).name+(x.tapped?'（タップ）':'（アンタップ）'),x.uid,x.tapped?10:0,x.cardId)));break;}
+ case'g49_Kent':{const selected=t.selected||[],n=Math.min(4,own.mana.length),rows=own.mana.filter(x=>!selected.includes(x.uid));if(selected.length===n){for(const uid of selected){const x=own.mana.find(x=>x.uid===uid);if(x&&api.canUntapMana(s,x))x.tapped=false;}break;}choice(s,{...t,selected},'ケントナーク：アンタップするマナを4枚選ぶ（'+selected.length+'/'+n+'）',rows.map(x=>opt(card(x).name+(x.tapped?'（タップ）':'（アンタップ）'),x.uid,x.tapped?10:0,x.cardId)));break;}
  case'g49_Magician':if(own.hand.length)discardChoice(s,t,'MagicianDiscard');else api.draw(s,t.p,1);break;
  case'g49_MagicianDraw':api.draw(s,t.p,t.discardedBird?2:1);break;
  case'g49_Incoppi':if(own.battle.some(x=>x.uid!==t.uid&&armored(effective(x,s))))api.draw(s,t.p,1);break;

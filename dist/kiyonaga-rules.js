@@ -28,7 +28,7 @@ export function createKiyonagaRules(api){
   case'g21MinoAttack':{const n=own.mana.filter(twin).length,list=own.mana.filter(x=>card(x).type==='creature'&&cost(card(x))<n&&canPut(s,t.p,x,'mana'));choice(s,t,'マナのツインパクト'+n+'枚よりコストが小さい1体を出す',[...list.map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)),skip()]);break;}
   case'g21Hazard':{const x=ramp(s,t.p,1)[0];if(x&&twin(x)&&s.winner===null)draw(s,t.p,1);break;}
   case'g21Fortress':if(t.selected.length===3||!opp.shields.some(x=>!t.selected.includes(x.uid))){finishFortress(s,t);break;}choice(s,t,'墓地に置く相手のシールドを3つまで選ぶ',[...opp.shields.filter(x=>!t.selected.includes(x.uid)).map(x=>opt('シールド'+(opp.shields.indexOf(x)+1),x.uid,10)),opt('ここまでで確定',null,0)]);break;
-  case'g21CasaUntap':{const x=own.mana.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.zoneSerial);if(x&&api.canUntap(x))x.tapped=false;break;}
+  case'g21CasaUntap':{const x=own.mana.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.zoneSerial);if(x&&api.canUntapMana(s,x))x.tapped=false;break;}
   case'g21CasaBounce':{const list=[0,1].flatMap(p=>creatures(s,p).filter(x=>cost(card(x))>=5).map(x=>({player:p,uid:x.uid,to:'hand'})));if(list.length)move(s,list);break;}
   default:throw Error('未実装の清永デッキ効果：'+t.op);
  }return true;}

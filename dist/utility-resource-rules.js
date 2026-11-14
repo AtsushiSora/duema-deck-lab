@@ -69,7 +69,7 @@ export function createUtilityResourceRules(api){
  case'g61_Cactus':put(s,{...t,op:'g61_Searcher',searchRace:'ワイルド・ベジーズ'});break;
  case'g61_SoulVice':{const n=creatures(s,t.p).filter(x=>key(x)!==key(t)&&String(api.effective(x,s).race).includes('ティラノ・ドレイク')).length;if(n)put(s,task('discard',1-t.p,t.source,{n,causedBy:t.p}));break;}
  case'g61_Falken':for(const x of creatures(s,1-t.p))if(x.tapped)x.skipUntap=true;break;
- case'g61_Ancient':if(own.shields.length>=5)for(const x of own.mana)x.tapped=false;break;
+ case'g61_Ancient':if(own.shields.length>=5)for(const x of own.mana)if(!api.cannotUntapSpellMana(s,x))x.tapped=false;break;
  case'g61_Strategy':put(s,task('g13_Murder',t.p,t.source,{anyCard:true}));break;
  case'g61_Drill':put(s,{...t,op:'g61_ManaGrave',owner:t.p},{...t,op:'g61_DrillEnemy'});break;
  case'g61_DrillEnemy':put(s,{...t,op:'g61_ManaGrave',p:1-t.p,owner:1-t.p,controller:t.p});break;

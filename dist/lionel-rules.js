@@ -34,7 +34,7 @@ export function createLionelRules(api){
  case'g15_HeartMove':{const rows=[0,1].flatMap(p=>allTypes(s,p).filter(x=>!t.kept.includes(x.uid)).map(x=>({player:p,uid:x.uid,to:'deck'}))),uids=rows.map(r=>({p:r.player,uids:api.layers(s.players[r.player].battle.find(x=>x.uid===r.uid)).map(x=>x.uid)}));put(s,task('g15_HeartFinish',t.p,t.source,{uids}));move(s,rows);break;}
  case'g15_HeartFinish':{const counts=[0,1].map(p=>{const ids=t.uids.filter(x=>x.p===p).flatMap(x=>x.uids);return s.players[p].deck.filter(x=>ids.includes(x.uid)).length;});for(const p of[s.active,1-s.active])api.shuffleLibrary(s,p);put(s,...[s.active,1-s.active].flatMap(p=>Array.from({length:counts[p]},()=>task('g15_Shield',p,t.source))));break;}
  case'g15_Shield':api.shieldTop(s,t.p,card(t.source));break;
- case'g15_ManaUntap':{const x=own.mana.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);if(x&&api.canUntap(x))x.tapped=false;break;}
+ case'g15_ManaUntap':{const x=own.mana.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);if(x&&api.canUntapMana(s,x))x.tapped=false;break;}
  case'g15_JohnnyWin':if(own.shields.length>=10)api.finish(s,t.p,card(t.source).name+'：シールド10以上で勝利');break;
  case'g15_NonBreakST':{const x=own.hand.find(x=>x.uid===t.uid);if(x&&own.shields.length<=2&&api.triggersAllowed(s,t.p)&&!api.triggerLocked597(s,t.p,card(x))&&api.canCast(s,t.p,card(x))&&!api.spellIgnored(s,card(x))&&(card(x).type==='spell'||api.canEnter(s,t.p,card(x),{origin:'hand',execution:true})))choice(s,t,'革命2のS・トリガーを使う？',[opt(card(x).name+(card(x).type==='spell'?'を唱える':'を召喚する'),true,20,x.cardId),skip()]);break;}
  default:throw Error('未実装のライオネル効果：'+t.op);

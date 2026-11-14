@@ -132,7 +132,7 @@ export function createFifteenPhotoRules(api){
  case'graveNameRevive':give(s,t,[S('grave',null,1,{creature:true,max:(x?cost(effective(x,s)):t.max)-1},{deploy:true,optional:true,grant:{entryPlayerAttack:true},delayed:'deck'})]);break;
  case'iwashin':give(s,t,[E('Offer',{defs:[E('Draw',{n:1}),E('Discard',{owner:'self',n:1})]})]);break;
  case'deferredReturn':{const y=own.extra.find(y=>y.uid===t.target);if(y){deploy(s,t,'extra',y.uid);s.g35Deferred=(s.g35Deferred||[]).filter(r=>r.uid!==y.uid);}break;}
- case'untapMana':{const selected=t.selected||[],ys=own.mana.filter(y=>!selected.includes(y.uid)&&api.canUntap(y));if(selected.length>=t.n||!ys.length)break;choice(s,{...t,selected},'アンタップするマナを選ぶ（'+selected.length+'/'+t.n+'）',ys.map(y=>opt(card(y).name,y.uid,y.tapped?10:0,y.cardId)));break;}
+ case'untapMana':{const selected=t.selected||[],ys=own.mana.filter(y=>!selected.includes(y.uid)&&api.canUntapMana(s,y));if(selected.length>=t.n||!ys.length)break;choice(s,{...t,selected},'アンタップするマナを選ぶ（'+selected.length+'/'+t.n+'）',ys.map(y=>opt(card(y).name,y.uid,y.tapped?10:0,y.cardId)));break;}
  case'scorpionAttack':give(s,t,[E('Ramp',{n:1}),S('mana',null,1,{max:own.mana.length+1,creatureOrSeed:true},{deploy:true,optional:true})]);break;
  case'sixfall':{const rows=creatures(s,t.owner);if(rows.length<2)break;target(s,{...t,p:t.owner,controller:t.p,stage:t.stage||0},t.stage?'その下に置くクリーチャーを選ぶ':'下にカードを重ねるクリーチャーを選ぶ',rows.filter(y=>y.uid!==t.host),true);break;}
  case'alternative':alternative(s,t);break;
@@ -212,7 +212,7 @@ export function createFifteenPhotoRules(api){
  case'isekai':if(v){const p=s.players.findIndex(own=>own.battle.some(y=>y.uid===v)),y=s.players[p].battle.find(y=>y.uid===v);if(y){pending(s,t,'isekaiReveal',{owner:p,max:cost(card(y))});move(s,[{player:p,uid:v,to:'grave'}]);}}break;
  case'rebirth':if(v){pending(s,t,'rebirthPut',{sacrifice:v});move(s,[{player:t.p,uid:v,to:'grave'}]);}break;
  case'worldAttack':move(s,opp.battle.filter(y=>colors(effective(y,s)).includes(v)).map(y=>({player:1-t.p,uid:y.uid,to:'grave'})));break;
- case'untapMana':{const y=own.mana.find(y=>y.uid===v);if(y&&api.canUntap(y))y.tapped=false;pending(s,t,'untapMana',{selected:[...t.selected,v]});break;}
+ case'untapMana':{const y=own.mana.find(y=>y.uid===v);if(y&&api.canUntapMana(s,y))y.tapped=false;pending(s,t,'untapMana',{selected:[...t.selected,v]});break;}
  case'sixfall':if(v){if(!t.host)pending(s,t,'sixfall',{host:v,stage:1});else{const p=t.owner,host=s.players[p].battle.find(y=>y.uid===t.host),y=s.players[p].battle.find(y=>y.uid===v);if(host&&y&&host!==y&&api.canLeave(s,p,y)){api.evolutionBase?.(s,p,y,host);remove(s.players[p].battle,y.uid);(host.under??=[]).push(y);}}}break;
  case'alternative':case'fujiEnd':alternativeChosen(s,t,v);break;
  case'gerachoSwap':if(v&&x){const attack=s.attack?structuredClone(s.attack):null,oldUid=x.uid,y=own.grave.find(y=>y.uid===v);if(y&&api.canLeave(s,t.p,x)){pending(s,t,'gerachoFinish',{target:v,oldUid,attack});move(s,[{player:t.p,uid:x.uid,to:'grave',destroy:false}]);}}break;

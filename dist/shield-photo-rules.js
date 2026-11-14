@@ -91,7 +91,7 @@ export function createShieldPhotoRules(api){
  case'g33_Draw2':if(v)api.draw(s,t.p,2);break;
  case'g33_DekaPick':if(v)take(s,t,v,'hand');put(s,{...t,op:'g33_Order',ids:t.ids.filter(uid=>uid!==v),top:[],bottom:[]});break;
  case'g33_Order':put(s,{...t,ids:t.ids.filter(uid=>uid!==v.uid),[v.to]:[...(t[v.to]||[]),v.uid]});break;
- case'g33_Charge':if(v){const x=own.mana.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial),y=own.hand.find(x=>x.uid===v);if(x&&y){api.log(s,t.p,'reveal',card(y).name+'を公開',{cardId:y.cardId});if(api.canUntap(x))x.tapped=false;}}break;
+ case'g33_Charge':if(v){const x=own.mana.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial),y=own.hand.find(x=>x.uid===v);if(x&&y){api.log(s,t.p,'reveal',card(y).name+'を公開',{cardId:y.cardId});if(api.canUntapMana(s,x))x.tapped=false;}}break;
  case'g33_FinalPick':if(v){const c=faces(card(own[v.origin].find(x=>x.uid===v.uid)))[v.face];if(c.evolution)put(s,task('putCreature',t.p,t.source,{uid:v.uid,origin:v.origin,execution:true,face:v.face}));else cast(s,t.p,v.uid,true,null,v.face,null,v.origin,'ファイナル革命');}break;
  case'g33_Counter':finishExecution(s,t.target,v);break;
  default:throw Error('未実装の表向きシールド選択：'+t.op);

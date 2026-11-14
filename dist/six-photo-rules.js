@@ -3205,14 +3205,14 @@ export function createSixPhotoRules(api){
   break;
  case'g34_FirstMultiManaDraw1160':{
   const mana=own.mana.find(y=>y.uid===t.target&&(y.zoneSerial||0)===t.serial);
-  if(mana&&api.canUntap(mana))mana.tapped=false;
+  if(mana&&api.canUntapMana(s,mana))mana.tapped=false;
   api.draw(s,t.p,1);
   break;
  }
  case'g34_UntapMana':{
   let n=0;
   for(const y of own.mana){
-   if(!y.tapped||!api.canUntap(y)||t.g1175FaceDownOnly&&!y.faceDown||!matches(s,t.p,y,t.filter))continue;
+   if(!y.tapped||!api.canUntapMana(s,y)||t.g1175FaceDownOnly&&!y.faceDown||!matches(s,t.p,y,t.filter))continue;
    if(t.manaColorsAny&&!api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,t.p).some(c=>t.manaColorsAny.includes(c)))continue;
    y.tapped=false;n++;
   }

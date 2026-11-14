@@ -2475,6 +2475,20 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1302&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmx21-021'&&f.typeText==='呪文'&&
+   text==='名前に《龍神ヘヴィ》《龍神メタル》または《破壊神デス》を持つクリーチャーを2体まで自分の手札からバトルゾーンに出す。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'hand',n:2,deploy:true,optional:true,
+    filter:{creature:true,g220NameAny:['龍神ヘヴィ','龍神メタル','破壊神デス']},
+    title:'手札から出すクリーチャーを2体まで選ぶ'}]};
+  if(d.id==='dm16-002'&&f.typeText==='クリーチャー'&&
+   text==='誰も自分自身のマナゾーンの呪文カードをアンタップできない。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g1302SpellManaLock:true};
+  if(d.id==='dm05-010'&&f.typeText==='クリーチャー'&&
+   text==='このクリーチャーがシールドをブレイクし相手が「S(シールド)・トリガー」を使った場合このクリーチャーをアンタップしてもよい。')
+   return {g1302TriggerUntap:true};
+ }
  if(phase>=1301&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dm17-030'&&f.typeText==='クリーチャー'&&

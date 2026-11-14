@@ -41,7 +41,7 @@ export function createKenjiPhotoRules(api){
  case'g32_RecyclePlayer':if(v!==null){const target=s.players[v],all=policyTake(s,v,'grave',api);for(const y of all)clear(y,'deck');target.deck.push(...api.shuffled(all,s));}if(t.super)put(s,{...t,op:'g32_CocoonDeploy'});break;
  case'g32_CocoonDeploy':if(v)put(s,{...t,op:'g32_Put',target:v,origin:'mana'});break;
  case'g32_PandaMinus':if(v){const y=s.players[1-t.p].battle.find(y=>y.uid===v);if(y)(y.powerModifiers??=[]).push({amount:-own.grave.length*1000,expires:'end',who:s.active});}break;
- case'g32_Jaouga8':if(v){api.moveShield(s,t.p,v,'grave');for(const y of own.mana)if(api.canUntap(y))y.tapped=false;}break;
+ case'g32_Jaouga8':if(v){api.moveShield(s,t.p,v,'grave');for(const y of own.mana)if(api.canUntapMana(s,y))y.tapped=false;}break;
  case'g32_AddTop':if(v&&x)putTop(s,t.p,x);break;
  case'g32_ComplexAttack':if(v&&x){const y=x.under?.find(z=>z.uid===v);if(y){const all=layers(y);api.rememberEvolutionGraveSources?.(s,t.p,x,all);remove(x.under,v);for(const z of all)clear(z,'grave');api.addZone(s,own,'grave',...all);if(card(y).type==='creature'&&canPut(s,t.p,y,'grave'))put(s,{...t,op:'g32_Put',target:y.uid,origin:'grave'});}}break;
  case'g32_DrawChoice':if(v)api.draw(s,t.p,1);break;

@@ -34,7 +34,7 @@ export function createOriginalChampionRules(api){
  function run(s,t){if(!t.op.startsWith('g39_'))return false;const own=s.players[t.p];switch(t.op){
  case'g39_Hyakume':put(s,task('g34_Ramp',t.p,t.source,{n:1}),task('discard',1-t.p,t.source,{causedBy:t.p,n:1,random:true}));break;
  case'g39_RinneRamp':put(s,task('g34_Ramp',t.p,t.source,{n:creatures(s,t.p).filter(y=>card(y).g39Rinne).length}));break;
- case'g39_UntapMana':for(const x of own.mana)if(api.canUntap(x))x.tapped=false;break;
+ case'g39_UntapMana':for(const x of own.mana)if(api.canUntapMana(s,x))x.tapped=false;break;
  case'g39_Alice':put(s,task('g34_Look',t.p,t.source,{n:3,stages:[{n:1,to:'hand'},{n:1,to:'grave'}],rest:'top'}));break;
  case'g39_Katsu':if(t.remaining>0)choice(s,t,'カツえもん：使う効果を選ぶ（残り'+t.remaining+'回）',[opt('相手をタップし、ブロッカーなら破壊',0,creatures(s,1-t.p).some(x=>effective(x,s).blocker)?25:creatures(s,1-t.p).some(x=>!x.tapped)?12:-5),opt('カードを1枚引く',1,own.deck.length>1?15:-100)]);break;
  case'g39_KatsuTarget':choice(s,t,'タップする相手のクリーチャーを選ぶ',targetOptions(s,t.p,creatures(s,1-t.p)));break;

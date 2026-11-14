@@ -31,8 +31,8 @@ export function createMadoRules(api){
  case'g4_Blood':choice(s,t,'墓地を山札に戻すプレイヤーを選ぶ',[opt('自分の墓地',t.p,own.deck.length<12?35:-3),opt('相手の墓地',1-t.p,opp.grave.length>5?30:2)]);break;
  case'g4_Untap':{
   const selected=t.selected||[],max=t.max??3;
-  const available=t.uids.filter(uid=>!selected.includes(uid)&&own.mana.some(x=>x.uid===uid&&x.tapped&&api.canUntap(x)));
-  if(selected.length===max||!available.length){for(const uid of selected){const x=own.mana.find(x=>x.uid===uid);if(x&&api.canUntap(x))x.tapped=false;}break;}
+  const available=t.uids.filter(uid=>!selected.includes(uid)&&own.mana.some(x=>x.uid===uid&&x.tapped&&api.canUntapMana(s,x)));
+  if(selected.length===max||!available.length){for(const uid of selected){const x=own.mana.find(x=>x.uid===uid);if(x&&api.canUntapMana(s,x))x.tapped=false;}break;}
   const name=max===3?'ガ・リュザーク':card(t.source).name;
   choice(s,{...t,selected},name+'：アンタップするマナを'+max+'枚まで選ぶ（'+selected.length+'/'+max+'）',
    [...available.map(uid=>{
@@ -51,7 +51,7 @@ export function createMadoRules(api){
  case'g4_Airvo':api.moveBattleCard(s,v.player,v.uid,'hand');break;
  case'g4_Gon':{const x=remove(own.deck,v);if(x){clear(x,'hand');own.hand.push(x);}finishLook(s,t);api.deckCheck(s,t.p);break;}
  case'g4_Blood':{const p=s.players[v],all=policyTake(s,v,'grave',api);for(const x of all)clear(x,'deck');put(s,task('draw',t.p,t.source,{n:1}));api.shuffleLibrary(s,v,all,t.source);log(s,t.p,'graveShuffle',(v===t.p?'自分':'相手')+'の墓地'+all.length+'枚を山札に加えてシャッフル',{cardId:t.source});break;}
- case'g4_Untap':if(v)put(s,{...t,selected:[...t.selected,v]});else for(const uid of t.selected){const x=own.mana.find(x=>x.uid===uid);if(x&&api.canUntap(x))x.tapped=false;}break;
+ case'g4_Untap':if(v)put(s,{...t,selected:[...t.selected,v]});else for(const uid of t.selected){const x=own.mana.find(x=>x.uid===uid);if(x&&api.canUntapMana(s,x))x.tapped=false;}break;
  default:throw Error('未実装の水魔導具選択：'+t.op);
  }return true;}
  return {run,chosen,materials,discount:dark.discount,mainActions:dark.mainActions,summoned:dark.summoned,
@@ -72,7 +72,7 @@ export function createMadoRules(api){
   const source=creatures(s,1-p).find(x=>effective(x,s).manaUntapThree);
   if(!limit&&!source)return false;
   const max=limit?.max??3,smaller=source&&(!limit||max>3);
-  const uids=s.players[p].mana.filter(x=>x.tapped&&!x.skipUntap&&api.canUntap(x)).map(x=>x.uid);
+  const uids=s.players[p].mana.filter(x=>x.tapped&&!x.skipUntap&&api.canUntapMana(s,x)).map(x=>x.uid);
   if(uids.length)put(s,task('g4_Untap',p,smaller?source.cardId:limit.source,{uids,selected:[],...(max>3&&!smaller?{max}:{})}));
   return true;
  },

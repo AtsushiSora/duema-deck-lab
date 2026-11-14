@@ -52,7 +52,7 @@ export function createRedzoneRules(api){
  case'g23_Circle':put(s,task('discard',t.p,t.source,{n:1,causedBy:t.p}),task('g23_DrawUpTo',t.p,t.source),task('discard',t.p,t.source,{n:1,causedBy:t.p}));break;
  case'g23_DrawUpTo':choice(s,t,'引く枚数を選ぶ（3枚まで）',[0,1,2,3].map(n=>opt(n+'枚引く',n,own.deck.length>n?n*10:-100)));break;
  case'g23_Royal':put(s,task('draw',t.p,t.source,{n:2}),task('discard',t.p,t.source,{n:1,causedBy:t.p}));break;
- case'g23_CircleMana':{const x=own.mana.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);if(x)x.tapped=false;break;}
+ case'g23_CircleMana':{const x=own.mana.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);if(x&&!api.cannotUntapSpellMana(s,x))x.tapped=false;break;}
  case'g23_Gareck':if(t.n>0)choice(s,t,'ガレック：効果を選ぶ（残り'+t.n+'回）',[opt('相手1体のパワーを−3000','minus',creatures(s,1-t.p).length?20:-10),opt('上3枚を墓地へ','mill',own.deck.length>6?10:-100),opt('墓地からコスト3以下を出す','revive',own.grave.some(x=>card(x).type==='creature'&&cost(card(x))<=3)?30:-10)]);break;
  case'g23_Minus':choice(s,t,'パワーを−3000する相手を選ぶ',targetOptions(s,t.p,creatures(s,1-t.p)));break;
  case'g23_CT':{const x=declaredCT(s,t);if(x)choice(s,t,'宣言した爆裂英雄 C・T・７を手札から出しますか？',[opt('手札から出す',true,40,x.cardId),skip()]);break;}
