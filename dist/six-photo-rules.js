@@ -3143,6 +3143,7 @@ export function createSixPhotoRules(api){
  }
  case'g34_MarshalTouch558':{const rows=marshalRows558(s,t);if(rows.length)choice(s,t,t.title||'マーシャル・タッチ：戻す自分の他のクリーチャーを1体選ぶ（任意）',[...rows.map(y=>opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},marshalValue558(s,t,y),y.cardId)),skip()]);break;}
  case'g34_SacrificeAlly413':{
+  if(t.g1200GraveStart&&!own.grave.some(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial))break;
   const rows=(t.g547Seed?own.battle.filter(y=>matches(s,t.p,y,{g295Tamaseed:true})):creatures(s,t.p))
    .filter(y=>!y.sealed&&(!t.other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))&&(!t.filter||matches(s,t.p,y,t.filter)));
   const legal=new Set(targetOptions(s,t.p,rows).map(o=>o.value)),payoff=sacrificeValue413(s,t,t.defs||[]);
@@ -6358,8 +6359,15 @@ export function createSixPhotoRules(api){
   }
  },
  turnStart(s,p,tappedBefore){if(s.extLimits){s.extLimits=s.extLimits.filter(l=>!(l.kind==='g546Force'&&l.when==='nextOpponent'&&l.activeTurn!==undefined&&l.activeTurn!==s.turn));for(const l of s.extLimits)if(l.kind==='g546Force'&&l.when==='nextOpponent'&&p===1-l.controller&&s.turn>l.turn)l.activeTurn=s.turn;}const delayed537=collect537(s,'nextOwnStart',p),generic=[p,1-p].flatMap(controller=>s.players[controller].battle.filter(x=>!x.sealed&&(api.isCreature(s,x)||effective(x,s).g461TurnPlayer)).flatMap(x=>{const c=effective(x,s),defs=c[controller===p?'g174Start':'g179OpponentStart'];if(c.g754StartTapped&&!tappedBefore?.has(x.uid))return [];return defs?[{player:controller,uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g34_Sequence',controller,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs})}]:[];}));const grave=s.players[p].grave.flatMap(x=>{
-  const colors=card(x).g754GraveStartColors;
-  if(!colors||x.faceDown)return [];
+  const c=card(x),colors=c.g754GraveStartColors;
+  if(x.faceDown)return [];
+  if(c.g1200GraveStartSacrifice){
+   const serial=x.zoneSerial||0;
+   return [{uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_SacrificeAlly413',p,x.cardId,{
+    uid:x.uid,incarnation:x.incarnation||0,serial,g1200GraveStart:true,defs:[{op:'SelfGraveRevive644',serial}]
+   })}];
+  }
+  if(!colors)return [];
   return [{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g34_GraveReturn754',p,x.cardId,{
    uid:x.uid,incarnation:x.incarnation||0,serial:x.zoneSerial||0,colors
   })}];
@@ -7320,7 +7328,8 @@ export function createSixPhotoRules(api){
      queue(s,p,watcher,watcher.jingi);
    // A source leaving in the same batch sees its own departure only (QA33591).
    if(victim.creature)for(const watcher of before)
-    if(watcher.p===p&&watcher.leaveDraw891&&(!watcher.g891OnlySelf||key(watcher)===key(victim))&&
+    if(watcher.p===p&&watcher.leaveDraw891&&!watchUsed792(s,watcher,{defs:watcher.leaveDraw891})&&
+     (!(watcher.g891OnlySelf||watcher.leaveDraw891[0]?.g792Once&&s.g20LeavingUids?.includes(watcher.uid))||key(watcher)===key(victim))&&
      (!watcher.g965OtherOwnLeave||s.active===p&&key(watcher)!==key(victim)))
      queue(s,p,watcher,watcher.leaveDraw891);
    const watchers=before.filter(y=>y.p!==p&&(y.elementDraw||victim.creature&&y.opponentCreatureLeaves)||

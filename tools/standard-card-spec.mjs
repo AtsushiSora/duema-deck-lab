@@ -2470,6 +2470,34 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1200&&d?.status==='complete'&&f.typeText==='クリーチャー'){
+  const front=normalize(f.abilityText);
+  if(d.id==='dm24ex1-045'&&d.faces.length===2&&f.powerText==='3000'&&
+   d.faces[1].typeText==='クリーチャー'&&d.faces[1].powerText==='6000'){
+   const base='このクリーチャーは相手プレイヤーを攻撃できない。'+
+    'このクリーチャーが出た時自分の山札の上から3枚を表向きにする。その中からドリームメイトを1枚手札に加え残りを好きな順序で山札の下に置く。'+
+    'ハイパー化:自分の他のクリーチャーを1体タップする。(自分のメインステップ中にハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く)';
+   if(front===base&&normalize(d.faces[1].abilityText)===base+
+    'ガードマン(このクリーチャーをタップして相手クリーチャーの攻撃先を自分の他のクリーチャーからこのクリーチャーに変更してもよい)'+
+    '自分のシールドゾーンにあるドリームメイトすべてに「G・ストライク」を与える。')
+    return {noPlayerAttack:true,effect:'sixPhoto',g34Tasks:[{op:'Look',n:3,public:true,rest:'bottom',
+     stages:[{n:1,to:'hand',filter:{anyFaceRace:'ドリームメイト'}}]}],
+     hyperTap:true,hyper:{power:6000,guardman:true,g1200ShieldStrikeRace:'ドリームメイト'}};
+  }
+  if(d.id==='dm23rp3-003'&&d.faces.length===1&&front===
+   '革命チェンジ:メカ(自分のメカが攻撃する時そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい)スレイヤー'+
+   '各ターンに一度自分のクリーチャーが出た時カードを1枚引いてもよい。'+
+   '各ターンに一度自分のクリーチャーが離れた時カードを1枚引いてもよい。'){
+   const draw=g792Once=>[{op:'Offer',g792Once,title:'カードを1枚引く？',defs:[{op:'Draw',n:1}]}];
+   return {rev:{race:'メカ',g486Current:true},slayer:true,
+    g251EntryDraw:{filter:{creature:true,faceUp:true},g1198EntryScope:true,defs:draw('seraphEntry1200')},
+    g891OwnCreatureLeaves:draw('seraphLeave1200')};
+  }
+  if(['promoy14-039','dmr19-038','dmx26-047','dmex12-062'].includes(d.id)&&d.faces.length===1&&front===
+   'スレイヤー(このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)'+
+   '自分のターンのはじめにこのクリーチャーが自分の墓地にあれば自分のクリーチャーを1体破壊してもよい。そうしたらこのクリーチャーをバトルゾーンに出す。')
+   return {slayer:true,g1200GraveStartSacrifice:true};
+ }
  if(phase>=1199&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(['dm24ex1-014','dm24ex1-Sec04'].includes(d.id)&&text==='スピードアタッカーマッハファイターW・ブレイカー'+

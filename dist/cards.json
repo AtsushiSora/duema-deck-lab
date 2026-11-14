@@ -230723,15 +230723,135 @@
       "aterGuard": "creatureOrSeed1199",
       "supportBatch": "phase-1199",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex1-045",
+      "name": "配膳犬のトレス",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "ドリームメイト/超化獣",
+      "text": "このクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが出た時、自分の山札の上から３枚を表向きにする。その中から、ドリームメイトを１枚手札に加え、残りを好きな順序で山札の下に置く。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\n【ハイパーモード】\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが出た時、自分の山札の上から３枚を表向きにする。その中から、ドリームメイトを１枚手札に加え、残りを好きな順序で山札の下に置く。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\n自分のシールドゾーンにあるドリームメイトすべてに「G・ストライク」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-045",
+      "limit": 4,
+      "noPlayerAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "public": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "anyFaceRace": "ドリームメイト"
+              }
+            }
+          ]
+        }
+      ],
+      "hyperTap": true,
+      "hyper": {
+        "power": 6000,
+        "guardman": true,
+        "g1200ShieldStrikeRace": "ドリームメイト"
+      },
+      "supportBatch": "phase-1200",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp3-003",
+      "name": "セラフ・テンペストא",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "メカ・デル・ディネロ",
+      "text": "革命チェンジ：メカ（自分のメカが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nスレイヤー\n各ターンに一度、自分のクリーチャーが出た時、カードを１枚引いてもよい。\n各ターンに一度、自分のクリーチャーが離れた時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-003",
+      "limit": 4,
+      "rev": {
+        "race": "メカ",
+        "g486Current": true
+      },
+      "slayer": true,
+      "g251EntryDraw": {
+        "filter": {
+          "creature": true,
+          "faceUp": true
+        },
+        "g1198EntryScope": true,
+        "defs": [
+          {
+            "op": "Offer",
+            "g792Once": "seraphEntry1200",
+            "title": "カードを1枚引く？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "g891OwnCreatureLeaves": [
+        {
+          "op": "Offer",
+          "g792Once": "seraphLeave1200",
+          "title": "カードを1枚引く？",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1200",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy14-039",
+      "name": "ステニャンコ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ファンキー・ナイトメア/侵略者",
+      "text": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n自分のターンのはじめに、このクリーチャーが自分の墓地にあれば、自分のクリーチャーを１体破壊してもよい。そうしたら、このクリーチャーをバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-039",
+      "limit": 4,
+      "slayer": true,
+      "g1200GraveStartSacrifice": true,
+      "supportBatch": "phase-1200",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1199,
+    "phase": 1200,
     "checkedAt": "2026-11-14",
-    "baseCount": 7588,
+    "baseCount": 7591,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7591,
+    "totalCount": 7594,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -251408,6 +251528,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7588,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1199,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7588,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7591,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
