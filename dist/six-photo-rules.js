@@ -627,6 +627,7 @@ export function createSixPhotoRules(api){
   if(f.g791ExtraSpell)return (s.players[p].extra||[]).some(x=>!x.faceDown&&faces(card(x)).some(c=>c.type==='spell'));
   if(f.g790MinDraws!==undefined)return (s.players[p].drawsThisTurn||0)>=f.g790MinDraws;
   if(f.g857LightSoulEntered)return s.g857LightSoulEnteredTurn?.[p]===s.turn;
+  if(f.g1278BlockerEntered)return s.players[p].blockerEnteredTurn===s.turn;
   if(f.g722CrossedAny)return [p,1-p].some(owner=>ownCondition(s,owner,{g442CrossedAlly:true}));
   if(f.g666FaceUpShieldGo)return api.shieldGoCount(s,p)>0;
   if(f.g757FaceUpShield)return s.players[p].shields.some(group=>api.shieldCards(group).some(x=>x.faceUp));
@@ -7838,9 +7839,12 @@ export function createSixPhotoRules(api){
     send(s,p,x,'TwinInPlace1088',{subject:{uid:y.uid,incarnation:y.incarnation||0,source:y.cardId}});
   }
   if(!options.paidMana&&['creature','gear'].includes(eventType))hooks.magnum1087(s,p);
-  if(p===s.active&&s.g936DreamOrVehicleEntryTurn!==s.turn&&!y.sealed&&api.isCreature(s,y)){
+  const trackRace=s.g936DreamOrVehicleEntryTurn!==s.turn;
+  const trackBlocker=s.players[p].blockerEnteredTurn!==s.turn;
+  if(p===s.active&&(trackRace||trackBlocker)&&!y.sealed&&api.isCreature(s,y)){
    const entered=effective(y,s,true);
-   if(race(entered,'ドリームメイト')||race(entered,'ビークル・ビー'))s.g936DreamOrVehicleEntryTurn=s.turn;
+   if(trackRace&&(race(entered,'ドリームメイト')||race(entered,'ビークル・ビー')))s.g936DreamOrVehicleEntryTurn=s.turn;
+   if(trackBlocker&&!y.faceDown&&entered.blocker)s.players[p].blockerEnteredTurn=s.turn;
   }
   // Graveyard abilities observe the entrant's current power, before any later attachment or entry ability.
   const gravePowerWatchers=s.players[p].grave.filter(x=>!x.faceDown&&card(x).g901GraveEntryPower!==undefined);

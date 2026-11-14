@@ -2475,6 +2475,27 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1278&&d?.status==='complete'&&d.faces.length===1){
+  const lines=f.abilityText.replaceAll(')このターン、',')\nこのターン、').split('\n').map(normalize);
+  if(['dm32-s02','dmc64-005','dmc68-s02','dmx19-s04'].includes(d.id)&&f.typeText==='クリーチャー'&&
+   lines.length===3&&keyword(lines[0],'ブロッカー')&&keyword(lines[2],'T・ブレイカー')&&
+   ['このターン自分の「ブロッカー」を持つクリーチャーをバトルゾーンに出した後でしかこのクリーチャーは相手プレイヤーを攻撃できない。',
+    'このターン自分の「ブロッカー」を持つクリーチャーをバトルゾーンに出していなければこのクリーチャーは相手プレイヤーを攻撃できない。'].includes(lines[1]))
+   return {blocker:true,breaker:3,noPlayerAttack:true,
+    g260Self:{filter:{g1278BlockerEntered:true},grants:{noPlayerAttack:false}}};
+  if(d.id==='dmrp16-071'&&f.typeText==='クリーチャー'&&lines.length===2&&keyword(lines[0],'スレイヤー')&&
+   lines[1]==='バトルゾーンに自分の光のクリーチャーがあればこのクリーチャーに「ブロッカー」を与える。(「ブロッカー」を持つクリーチャーをタップして相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい)')
+   return {slayer:true,g260Self:{filter:{creature:true,color:'光'},grants:{blocker:true}}};
+  if(['dm22rp2-022','dm22rp2x-022'].includes(d.id)&&f.typeText==='クリーチャー'&&lines.length===3&&
+   keyword(lines[0],'マッハファイター')&&keyword(lines[1],'W・ブレイカー')&&
+   lines[2]==='このクリーチャーが攻撃する時自分の他のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを+6000し「マッハファイター」と「パワード・ブレイカー」を与える。(「パワード・ブレイカー」を持つクリーチャーはそのパワー6000ごとにシールドをさらに1つブレイクする)')
+   return {machFighter:true,breaker:2,g34Attack:[{op:'Target',owner:'self',g179Other:true,filter:{creature:true},
+    power:6000,grant:{machFighter:true,poweredBreaker:true,g1116PoweredChoice:true},title:'強化する自分の他のクリーチャーを選ぶ'}]};
+  if(d.id==='dm14-046'&&f.typeText==='クロスギア'&&lines.length===2&&
+   lines[0]==='クロスギア:このカードをバトルゾーンに置く。クリーチャーにクロスするにはこのカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れてもこのカードはバトルゾーンに残る。'&&
+   lines[1]==='これをクロスしたクリーチャーのパワーは+1500され「ブロッカー」を得る。')
+   return {type:'gear',g123CrossPower:1500,g945CrossBlocker:true};
+ }
  if(phase>=1277&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const lines=f.abilityText.split('\n').map(normalize);
   if(d.id==='dm14-002'&&lines.length===2&&keyword(lines[1],'W・ブレイカー')&&

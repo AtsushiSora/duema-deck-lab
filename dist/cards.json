@@ -240261,15 +240261,129 @@
       },
       "supportBatch": "phase-1277",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm32-s02",
+      "name": "白騎士の精霊アルドラ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 12,
+      "power": 15500,
+      "race": "エンジェル・コマンド",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのターン、自分の「ブロッカー」を持つクリーチャーをバトルゾーンに出した後でしか、このクリーチャーは相手プレイヤーを攻撃できない。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-s02",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 3,
+      "noPlayerAttack": true,
+      "g260Self": {
+        "filter": {
+          "g1278BlockerEntered": true
+        },
+        "grants": {
+          "noPlayerAttack": false
+        }
+      },
+      "supportBatch": "phase-1278",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-071",
+      "name": "光で切り裂くツメ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ファンキー・ナイトメア/月光王国",
+      "text": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nバトルゾーンに自分の光のクリーチャーがあれば、このクリーチャーに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-071",
+      "limit": 4,
+      "slayer": true,
+      "g260Self": {
+        "filter": {
+          "creature": true,
+          "color": "光"
+        },
+        "grants": {
+          "blocker": true
+        }
+      },
+      "supportBatch": "phase-1278",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-022",
+      "name": "回板の化身",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ミステリー・トーテム",
+      "text": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、自分の他のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを+6000し、「マッハファイター」と「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-022",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g179Other": true,
+          "filter": {
+            "creature": true
+          },
+          "power": 6000,
+          "grant": {
+            "machFighter": true,
+            "poweredBreaker": true,
+            "g1116PoweredChoice": true
+          },
+          "title": "強化する自分の他のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1278",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm14-046",
+      "name": "シャイニング・ディフェンス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 1,
+      "power": 0,
+      "race": "",
+      "text": "クロスギア:このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーのパワーは+1500され、｢ブロッカー｣を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-046",
+      "limit": 4,
+      "g123CrossPower": 1500,
+      "g945CrossBlocker": true,
+      "supportBatch": "phase-1278",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1277,
+    "phase": 1278,
     "checkedAt": "2026-11-14",
-    "baseCount": 7836,
+    "baseCount": 7840,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7840,
+    "totalCount": 7844,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -261882,6 +261996,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7836,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1277,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7836,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7840,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
