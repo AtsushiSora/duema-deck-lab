@@ -2475,6 +2475,21 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1274&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const lines=f.abilityText.split('\n').map(normalize);
+  if(['dmr20-003','dmex12-002','dm25ex2-Cho016'].includes(d.id)&&lines.length===2&&
+   lines[0]==='自分の水のクリーチャーはすべて種族にマジック・コマンドを追加する。'&&
+   lines[1]==='相手のターン中にこのクリーチャーが破壊される時かわりに相手はカードを5枚引きそのターンこのクリーチャーのパワーを+5000する。')
+   return {g1274Takonchu:true,g208Auras:[{filter:{creature:true,color:'水'},grants:{raceAdd:['マジック・コマンド']}}]};
+  if(d.id==='dm22ex1-057'&&lines.length===3&&
+   lines[0]==='EXライフ(このクリーチャーを出す時自分の山札の上から1枚目をシールド化する。このクリーチャーが離れる時かわりにそのシールドを墓地に置く)'&&
+   keyword(lines[1],'マッハファイター')&&lines[2]==='このクリーチャーはすべての文明を持つ。')
+   return {exLife:true,machFighter:true,g1274AllBattleColors:true};
+  if(d.id==='dmrp19-035'&&lines.length===2&&
+   lines[0]==='自分のディスタスすべてに「ジャストダイバー」を与える。(自分の「ジャストダイバー」を持つクリーチャーが出た時次の自分のターンのはじめまでそのクリーチャーは相手に選ばれず攻撃されない)'&&
+   lines[1]==='ササゲール1(ディスペクターを召喚する時コストを1少なくしてもよい。そうしたらこのクリーチャーを破壊する。そのディスペクターのコストは0以下にはならない)')
+   return {sasage:1,g208Auras:[{filter:{creature:true,race:'ディスタス'},grants:{justDiver:true}}]};
+ }
  if(phase>=1273&&d?.status==='complete'&&d.faces.length===1){
   const lines=f.abilityText.split('\n').map(normalize);
   if(f.typeText==='クリーチャー'&&['dmr05-s07','dm23ex3-TF06'].includes(d.id)&&lines.length===3&&
