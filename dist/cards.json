@@ -236090,15 +236090,130 @@
       "g1237SummonManaColors": true,
       "supportBatch": "phase-1237",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-029",
+      "name": "大青守星 イマムーソー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "メタリカ/レクスターズ",
+      "text": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分のタマシードがあれば、このクリーチャーの召喚コストを２少なくする。\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nブロック中、このクリーチャーは破壊されない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-029",
+      "limit": 4,
+      "gStrike": true,
+      "blocker": true,
+      "g1238SelfBlockProtection": true,
+      "g212CountDiscount": {
+        "zone": "battle",
+        "g557Elements": true,
+        "filter": {
+          "g295Tamaseed": true
+        },
+        "amount": 2,
+        "max": 2
+      },
+      "supportBatch": "phase-1238",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-052",
+      "name": "キユリ ＜ワル.Star＞",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 6000,
+      "race": "スノーフェアリー/マジック・コマンド/レクスターズ",
+      "text": "スター進化：レクスターズまたは水のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、タマシードから進化していれば、カードを２枚引き、その後、自分の手札を１枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-052",
+      "limit": 4,
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "水"
+          }
+        ]
+      },
+      "blocker": true,
+      "breaker": 2,
+      "g1052TamaseedEntry": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        },
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1238",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-065",
+      "name": "カマキリ変怪 ＜マンティス.鬼＞",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 4000,
+      "race": "デモニオ/鬼レクスターズ",
+      "text": "スター進化：レクスターズまたは火のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nこのクリーチャーが出た時、タマシードから進化していれば、相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-065",
+      "limit": 4,
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "g1052TamaseedEntry": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "filter": {
+            "blocker": true
+          },
+          "implicitSelection": true,
+          "to": "grave"
+        }
+      ],
+      "supportBatch": "phase-1238",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1237,
+    "phase": 1238,
     "checkedAt": "2026-11-14",
-    "baseCount": 7709,
+    "baseCount": 7712,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7712,
+    "totalCount": 7715,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -257231,6 +257346,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7709,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1237,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7709,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7712,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -2470,6 +2470,26 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1238&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+  const star=civilization=>'スター進化:レクスターズまたは'+civilization+
+   'のクリーチャー1体の上に置く。(このクリーチャーが離れる時かわりに一番上のカードが離れる)';
+  if(d.id==='dmrp22-029'&&f.typeText==='クリーチャー'&&text===
+   '{GS}G・ストライク(このクリーチャーを自分のシールドゾーンから手札に加える時相手に見せ相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)'+
+   '自分のタマシードがあればこのクリーチャーの召喚コストを2少なくする。'+blocker+'ブロック中このクリーチャーは破壊されない。')
+   return {gStrike:true,blocker:true,g1238SelfBlockProtection:true,
+    g212CountDiscount:{zone:'battle',g557Elements:true,filter:{g295Tamaseed:true},amount:2,max:2}};
+  if(d.id==='dmrp22-052'&&f.typeText==='スター進化クリーチャー'&&text===
+   star('水')+blocker+'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+
+   'このクリーチャーが出た時タマシードから進化していればカードを2枚引きその後自分の手札を1枚捨てる。')
+   return {starEvolution:true,evolution:{any:[{race:'レクスターズ'},{civilization:'水'}]},blocker:true,breaker:2,
+    g1052TamaseedEntry:true,effect:'sixPhoto',g34Tasks:[{op:'Draw',n:2},{op:'Discard',owner:'self',n:1}]};
+  if(d.id==='dmrp22-065'&&f.typeText==='スター進化クリーチャー'&&text===
+   star('火')+'このクリーチャーが出た時タマシードから進化していれば相手の「ブロッカー」を持つクリーチャーを1体破壊する。')
+   return {starEvolution:true,evolution:{any:[{race:'レクスターズ'},{civilization:'火'}]},
+    g1052TamaseedEntry:true,effect:'sixPhoto',g34Tasks:[{op:'Target',filter:{blocker:true},implicitSelection:true,to:'grave'}]};
+ }
  if(phase>=1237&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(['dm32-054','dmx20-042','dmex16-079','dm22rp1-SP4','promoy10-049'].includes(d.id)&&

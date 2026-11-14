@@ -898,7 +898,9 @@ export function createSixPhotoRules(api){
  }
  function blockProtected1201(s,x){
   const ref=s.attackLifecycle?.g1201Blocker;
-  return !!ref&&api.isCreature(s,x)&&!x.sealed&&api.allLayers(x).some(y=>key(y)===key(ref))&&
+  if(!ref||x.sealed||!api.isCreature(s,x))return false;
+  if(key(x)===key(ref)&&card(x).g1238SelfBlockProtection&&!api.ignored(s,x))return true;
+  return api.allLayers(x).some(y=>key(y)===key(ref))&&
    s.players[ref.p].battle.some(y=>card(y).g1201ProtectBlockers&&!y.faceDown&&!y.sealed&&
     api.isCreature(s,y)&&!api.ignored(s,y));
  }
