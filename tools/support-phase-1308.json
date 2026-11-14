@@ -1,0 +1,379 @@
+{
+  "phase": 1308,
+  "checkedAt": "2026-11-15",
+  "baseCount": 7940,
+  "description": "暗獅連結 グレイテスト・ネルザ、イメンズ・サイン、スカル・チェーンソーを対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/40833/",
+    "https://dm.takaratomy.co.jp/rule/qa/40941/",
+    "https://dm.takaratomy.co.jp/rule/qa/40942/",
+    "https://dm.takaratomy.co.jp/rule/qa/40943/",
+    "https://dm.takaratomy.co.jp/rule/qa/40944/",
+    "https://dm.takaratomy.co.jp/rule/qa/44110/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35525/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
+  ],
+  "cards": [
+    {
+      "id": "dmex18-013",
+      "name": "暗獅連結 グレイテスト・ネルザ",
+      "faces": [
+        {
+          "name": "暗獅連結 グレイテスト・ネルザ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇/火",
+          "civilizations": [
+            "光",
+            "闇",
+            "火"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "EXライフ\nスピードアタッカー\nT・ブレイカー\n自分の手札に加えるシールドカードすべてに「G・ストライク」を与える。（「G・ストライク」を持つカードを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nこのクリーチャーが攻撃する時、コスト10以下の呪文を１枚、自分の墓地からコストを支払わずに唱えてもよい。そうしたらその呪文を唱えた後、墓地に置くかわりに山札の下に置く。",
+          "race": "ディスペクター/ゼニス/ナイト",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-013",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-013.jpg",
+      "spec": {
+        "exLife": true,
+        "speedAttacker": true,
+        "breaker": 3,
+        "g1308ShieldStrike": true,
+        "g34Attack": [
+          {
+            "op": "Execute",
+            "origin": "grave",
+            "max": 10,
+            "spellOnly": true,
+            "g555FinishTo": "deck",
+            "g1244NoEmptyOffer": true,
+            "title": "コスト10以下の呪文を1枚、自分の墓地から唱える（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "70aff701085244225127ad00d7338c5da4a6d34f839f8c9a47c7c5c7b4dd3c0c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex08-016",
+      "name": "イメンズ・サイン",
+      "faces": [
+        {
+          "name": "イメンズ・サイン",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\nコスト７以下の進化ではないビーストフォークを１体、自分の手札からバトルゾーンに出す。その後、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-016",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-016.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "race": "ビーストフォーク",
+              "max": 7
+            },
+            "g1173FightAfterDeploy": true,
+            "g998EntryFight": true,
+            "after": [
+              {
+                "op": "FightEnemy240",
+                "g998EntryFight": true,
+                "optional": true
+              }
+            ],
+            "title": "出すコスト7以下の進化ではないビーストフォークを選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "c20d9afbf0830bef1116367984e3f3c09f365108ecebe0aeeebbc5a866c7c0b1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-094",
+      "name": "スカル・チェーンソー",
+      "faces": [
+        {
+          "name": "スカル・チェーンソー",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手は、自分自身の手札を１枚捨てる。手札を捨てることができない場合、相手は自分自身のクリーチャーを１体破壊するか、マナゾーンから自分自身のカードを１枚選んで墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-094",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-094.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 1,
+            "g1308DiscardElse": [
+              {
+                "op": "Choose",
+                "opponentChooses": true,
+                "g184Modes": true,
+                "modes": [
+                  {
+                    "label": "自分のクリーチャーを1体破壊する",
+                    "defs": [
+                      {
+                        "op": "OpponentSelect",
+                        "origin": "battle",
+                        "n": 1,
+                        "to": "grave"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "自分のマナを1枚墓地に置く",
+                    "defs": [
+                      {
+                        "op": "OpponentManaLoss478"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "573968e78923e3ecac545ebf95a415e9adabe372c5c6e93deead03c308e0eec9",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24bd6-021",
+      "name": "暗獅連結 グレイテスト・ネルザ",
+      "faces": [
+        {
+          "name": "暗獅連結 グレイテスト・ネルザ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇/火",
+          "civilizations": [
+            "光",
+            "闇",
+            "火"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "EXライフ\nスピードアタッカー\nT・ブレイカー\n自分のシールドゾーンにあるカードすべてに「G・ストライク」を与える。（「G・ストライク」を持つカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nこのクリーチャーが攻撃する時、コスト10以下の呪文を１枚、自分の墓地からコストを支払わずに唱えてもよい。そうしたら、その呪文を唱えた後、墓地のかわりに山札の下に置く。",
+          "race": "ディスペクター/ゼニス/ナイト",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd6-021",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd6-021.jpg",
+      "spec": {
+        "exLife": true,
+        "speedAttacker": true,
+        "breaker": 3,
+        "g1308ShieldStrike": true,
+        "g34Attack": [
+          {
+            "op": "Execute",
+            "origin": "grave",
+            "max": 10,
+            "spellOnly": true,
+            "g555FinishTo": "deck",
+            "g1244NoEmptyOffer": true,
+            "title": "コスト10以下の呪文を1枚、自分の墓地から唱える（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "552fbcb81e2d88752900665f3459bd43adfe2423ba3260e19bbe900f9a0b9524",
+        "facesMatched": true
+      },
+      "canonicalId": "dmex18-013"
+    },
+    {
+      "id": "dmex13-019",
+      "name": "イメンズ・サイン",
+      "faces": [
+        {
+          "name": "イメンズ・サイン",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nコスト７以下の進化ではないビーストフォークを１体、自分の手札からバトルゾーンに出す。その後、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-019",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex13-019.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "race": "ビーストフォーク",
+              "max": 7
+            },
+            "g1173FightAfterDeploy": true,
+            "g998EntryFight": true,
+            "after": [
+              {
+                "op": "FightEnemy240",
+                "g998EntryFight": true,
+                "optional": true
+              }
+            ],
+            "title": "出すコスト7以下の進化ではないビーストフォークを選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "11fbeca09cf7dde69cae76cae922786055004bfc1057699d1da13bd13addac34",
+        "facesMatched": true
+      },
+      "canonicalId": "dmex08-016"
+    },
+    {
+      "id": "dmex16-035",
+      "name": "イメンズ・サイン",
+      "faces": [
+        {
+          "name": "イメンズ・サイン",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\nコスト７以下の進化ではないビーストフォークを１体、自分の手札から出す。その後、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex16-035",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex16-035.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "race": "ビーストフォーク",
+              "max": 7
+            },
+            "g1173FightAfterDeploy": true,
+            "g998EntryFight": true,
+            "after": [
+              {
+                "op": "FightEnemy240",
+                "g998EntryFight": true,
+                "optional": true
+              }
+            ],
+            "title": "出すコスト7以下の進化ではないビーストフォークを選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "e0e7945f688d1e22857364e3a2a6234c0e5f6469d4a23d883b98813feb07b4b9",
+        "facesMatched": true
+      },
+      "canonicalId": "dmex08-016"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-15",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex18-013": 4,
+      "dmex08-016": 4,
+      "dm24-094": 4,
+      "dm24bd6-021": 4,
+      "dmex13-019": 4,
+      "dmex16-035": 4
+    },
+    "currentList": "https://dm.takaratomy.co.jp/img/regulation/2608/202608regulation.pdf"
+  },
+  "sameNameProducts": {
+    "dmex18-013": [
+      "DM24-BD6 エキサイティング・デュエパ・デッキ ツラトゥストラは水晶と語らう",
+      "DMEX-18 20周年超感謝メモリアルパック 裏の章 パラレル･マスターズ"
+    ],
+    "dmex08-016": [
+      "DMEX-16 20周年超感謝メモリアルパック 技の章 英雄戦略パーフェクト20",
+      "DMEX-13 四強集結→最強直結パック",
+      "DMEX-08 謎のブラックボックスパック"
+    ],
+    "dm24-094": [
+      "DM-24 極神編(バイオレンス・ヘヴン) 第1弾"
+    ]
+  },
+  "printNotes": {
+    "dmex18-013": "DM24-BD6版は場にある間の付与として明記し、呪文の山札下への移動も同じ。2023年のQA 44110を両版に適用。",
+    "dmex08-016": "DMEX-13版のトリガーの注釈とDMEX-16版の移動先の略記は同じ処理。"
+  }
+}

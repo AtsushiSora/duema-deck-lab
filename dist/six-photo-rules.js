@@ -5497,6 +5497,11 @@ export function createSixPhotoRules(api){
  }
  case'g34_Discard':{
   const owner=t.owner==='self'?t.p:t.owner??1-t.p;
+  if(t.g1308DiscardElse&&(!s.players[owner].hand.length||
+   api.handProtected(s,{p:owner,source:t.source,causedBy:t.p}))){
+   start(s,t,t.g1308DiscardElse);
+   break;
+  }
   const n=t.g584Count==='faceUpShieldGo'?api.shieldGoCount(s,t.p):
    t.g585ShieldDeficit?Math.max(0,5-own.shields.length):t.g584Count==='ownShields'?own.shields.length:t.g584Count==='opponentShields'?opp.shields.length:
    (t.g756All||t.g1233AnyDiscard)?s.players[owner].hand.length:t.n??1;

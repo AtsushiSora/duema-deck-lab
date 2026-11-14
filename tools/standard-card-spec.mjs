@@ -2475,6 +2475,29 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1308&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.name==='暗獅連結 グレイテスト・ネルザ'&&f.typeText==='クリーチャー'&&
+   /^EXライフスピードアタッカーT・ブレイカー(?:自分の手札に加えるシールドカード|自分のシールドゾーンにあるカード)すべてに「G・ストライク」を与える。\(「G・ストライク」を持つカードを自分のシールドゾーンから手札に加える時(?:相手に見せ|表向きにし)相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない\)このクリーチャーが攻撃する時コスト10以下の呪文を1枚自分の墓地からコストを支払わずに唱えてもよい。そうしたらその呪文を唱えた後墓地(?:に置く|の)かわりに山札の下に置く。$/.test(text))
+   return {exLife:true,speedAttacker:true,breaker:3,g1308ShieldStrike:true,g34Attack:[
+    {op:'Execute',origin:'grave',max:10,spellOnly:true,g555FinishTo:'deck',g1244NoEmptyOffer:true,
+     title:'コスト10以下の呪文を1枚、自分の墓地から唱える（任意）'}
+   ]};
+  if(d.name==='イメンズ・サイン'&&f.typeText==='呪文'&&
+   /^S・トリガーS・トリガー(?:\(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい\))?コスト7以下の進化ではないビーストフォークを1体自分の手札から(?:バトルゾーンに)?出す。その後相手のクリーチャーを1体選んでもよい。その2体をバトルさせる。$/.test(text))
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'hand',n:1,deploy:true,
+    filter:{creature:true,nonEvolution:true,race:'ビーストフォーク',max:7},g1173FightAfterDeploy:true,g998EntryFight:true,
+    after:[{op:'FightEnemy240',g998EntryFight:true,optional:true}],
+    title:'出すコスト7以下の進化ではないビーストフォークを選ぶ'}]};
+  if(d.name==='スカル・チェーンソー'&&f.typeText==='呪文'&&text===
+   '相手は自分自身の手札を1枚捨てる。手札を捨てることができない場合相手は自分自身のクリーチャーを1体破壊するかマナゾーンから自分自身のカードを1枚選んで墓地に置く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,g1308DiscardElse:[
+    {op:'Choose',opponentChooses:true,g184Modes:true,modes:[
+     {label:'自分のクリーチャーを1体破壊する',defs:[{op:'OpponentSelect',origin:'battle',n:1,to:'grave'}]},
+     {label:'自分のマナを1枚墓地に置く',defs:[{op:'OpponentManaLoss478'}]}
+    ]}
+   ]}]};
+ }
  if(phase>=1307&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(['promoy19-051','dmrp12-026'].includes(d.id)&&text===

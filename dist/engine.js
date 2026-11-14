@@ -3168,10 +3168,14 @@ function commitBreakReplacements401(s,defender,uids){
 function shieldGStrikes(s,p,x){
  let count=Number(!!card(x).gStrike);
  for(const y of s.players[p].battle){
-  if(!y.hyperActive||y.sealed||y.faceDown||!card(y).hyper?.g1200ShieldStrikeRace||
-   s.g20LeavingUids?.includes(y.uid)||!isCreature(s,y))continue;
-  const race=effectiveCard(y,s).g1200ShieldStrikeRace;
-  if(race&&playFaces(card(x)).some(c=>String(c.race||'').includes(race)))count++;
+  const source=card(y);
+  if((!source.g1308ShieldStrike&&(!y.hyperActive||!source.hyper?.g1200ShieldStrikeRace))||
+   y.sealed||y.faceDown||s.g20LeavingUids?.includes(y.uid)||!isCreature(s,y))continue;
+  const active=effectiveCard(y,s),faces=playFaces(card(x));
+  // Nelza grants one instance to each face, including both sides of a Twinpact (QA 44110).
+  if(active.g1308ShieldStrike)count+=faces.length;
+  const race=active.g1200ShieldStrikeRace;
+  if(race&&faces.some(c=>String(c.race||'').includes(race)))count++;
  }
  return count;
 }

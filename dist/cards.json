@@ -244067,15 +244067,147 @@
       "g1307HandSpellLock": true,
       "supportBatch": "phase-1307",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex18-013",
+      "name": "暗獅連結 グレイテスト・ネルザ",
+      "civ": "光/闇/火",
+      "civilizations": [
+        "光",
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 15000,
+      "race": "ディスペクター/ゼニス/ナイト",
+      "text": "EXライフ\nスピードアタッカー\nT・ブレイカー\n自分の手札に加えるシールドカードすべてに「G・ストライク」を与える。（「G・ストライク」を持つカードを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nこのクリーチャーが攻撃する時、コスト10以下の呪文を１枚、自分の墓地からコストを支払わずに唱えてもよい。そうしたらその呪文を唱えた後、墓地に置くかわりに山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-013",
+      "limit": 4,
+      "exLife": true,
+      "speedAttacker": true,
+      "breaker": 3,
+      "g1308ShieldStrike": true,
+      "g34Attack": [
+        {
+          "op": "Execute",
+          "origin": "grave",
+          "max": 10,
+          "spellOnly": true,
+          "g555FinishTo": "deck",
+          "g1244NoEmptyOffer": true,
+          "title": "コスト10以下の呪文を1枚、自分の墓地から唱える（任意）"
+        }
+      ],
+      "supportBatch": "phase-1308",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex08-016",
+      "name": "イメンズ・サイン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー\nコスト７以下の進化ではないビーストフォークを１体、自分の手札からバトルゾーンに出す。その後、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-016",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "race": "ビーストフォーク",
+            "max": 7
+          },
+          "g1173FightAfterDeploy": true,
+          "g998EntryFight": true,
+          "after": [
+            {
+              "op": "FightEnemy240",
+              "g998EntryFight": true,
+              "optional": true
+            }
+          ],
+          "title": "出すコスト7以下の進化ではないビーストフォークを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1308",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24-094",
+      "name": "スカル・チェーンソー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "相手は、自分自身の手札を１枚捨てる。手札を捨てることができない場合、相手は自分自身のクリーチャーを１体破壊するか、マナゾーンから自分自身のカードを１枚選んで墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-094",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "n": 1,
+          "g1308DiscardElse": [
+            {
+              "op": "Choose",
+              "opponentChooses": true,
+              "g184Modes": true,
+              "modes": [
+                {
+                  "label": "自分のクリーチャーを1体破壊する",
+                  "defs": [
+                    {
+                      "op": "OpponentSelect",
+                      "origin": "battle",
+                      "n": 1,
+                      "to": "grave"
+                    }
+                  ]
+                },
+                {
+                  "label": "自分のマナを1枚墓地に置く",
+                  "defs": [
+                    {
+                      "op": "OpponentManaLoss478"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1308",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1307,
+    "phase": 1308,
     "checkedAt": "2026-11-15",
-    "baseCount": 7937,
+    "baseCount": 7940,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7940,
+    "totalCount": 7943,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -266048,6 +266180,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7937,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1307,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7937,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7940,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
