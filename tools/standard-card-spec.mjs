@@ -2475,6 +2475,19 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1293&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(/^dm23rp4x?-015$/.test(d.id)&&
+   text==='各ターンはじめて自分の水またはマジックの呪文を唱えた時このクリーチャーを自分の手札から出してもよい。ブロッカーブロッカー')
+   return {blocker:true,g1293Yurufuwa:true};
+  if(/^dm23rp4x?-027$/.test(d.id)&&
+   text==='このクリーチャーを召喚する時自分のクリーチャーを1体タップしてもよい。そうしたらこのクリーチャーの召喚コストを2少なくする。'+
+    'エスケープ(このクリーチャーが破壊される時墓地に置くかわりに自分のシールドを1つ手札に加えてもよい。ただしその「S・トリガー」は使えない)')
+   return {g1293SummonTap:2,escape:true};
+  if(['dm23rp4-062','dm23rp4x-062','promoy22-067'].includes(d.id)&&
+   text==='自分のメカ・クリーチャーを召喚する時そのコストを2少なくしてもよい。そうしたらこのクリーチャーを破壊する。ただしそのメカのコストは0以下にはならない。')
+   return {g1293Tankrio:2};
+ }
  if(phase>=1292&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'&&
   ['dm23rp4-S06','dm23rp4x-S06','dm23rp4x-S06X','dm23rp4x-06A'].includes(d.id)&&
   normalize(f.abilityText)==='革命チェンジ:コスト5以上のマジックスピードアタッカーW・ブレイカー'+

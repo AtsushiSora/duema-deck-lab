@@ -1342,6 +1342,14 @@ export function createSixPhotoRules(api){
   y.hyperResolved=true;
   api.log(s,p,'hyper',card(y).name+'のハイパーモードを解放',{cardId:y.cardId});
  }
+ function summonTapDonors1293(s,p){
+  return creatures(s,p).filter(x=>!x.tapped&&!x.sealed&&!x.faceDown);
+ }
+ function projectSummonTap1293(s,p,uid){
+  if(!uid)return s;
+  return {...s,players:s.players.map((player,who)=>who===p?{...player,
+   battle:player.battle.map(x=>x.uid===uid?{...x,tapped:true}:x)}:player)};
+ }
  function externalProtection565(s,x){
   const protection={};
   for(const l of s.extLimits||[])
@@ -2607,6 +2615,22 @@ export function createSixPhotoRules(api){
   if(t.snapshot)for(const {p,y} of groupPowerRows(s,t))force546(s,t,p,y);
   else force546(s,t,1-t.p);
   break;
+ case'g34_YurufuwaDeclare1293':{
+  const [row,...remaining]=t.rows;
+  if(!row){put(s,t.follow);break;}
+  const next={...t,rows:remaining,declaring:row};
+  const y=s.players[t.p].hand.find(x=>x.uid===row.uid&&(x.zoneSerial||0)===row.serial);
+  if(!y||api.handAbilityIgnored(s,y)){put(s,next);break;}
+  choice(s,next,card(row.source).name+'の能力を使用宣言しますか？',[
+   opt('使用宣言する',true,15,row.source),skip()
+  ]);
+  break;
+ }
+ case'g34_YurufuwaDeploy1293':{
+  const y=own.hand.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);
+  if(y)start(s,t,[{op:'Put',origin:'hand',target:y.uid,execution:false}]);
+  break;
+ }
  case'g34_BarbatChessTerminal1292':
   if(!s.g7TerminalUsed?.[t.p])choice(s,t,'終極宣言を使う？（ゲーム中1回）',[
    opt('終極宣言する',true,creatures(s,1-t.p).some(y=>effective(y,s).noCostReduction)?-10:25),skip()
@@ -3195,6 +3219,7 @@ export function createSixPhotoRules(api){
  }
  case'g34_DiscardAll244':{if(t.optional&&!t.accepted){const last=t.draw>=own.deck.length,shako=creatures(s,t.p).some(y=>effective(y,s).shako),value=last?(shako?1000:-1000):t.draw*10-own.hand.length*5-own.hand.reduce((n,x)=>n+cost(card(x)),0)/3;choice(s,t,'手札をすべて捨てて'+t.draw+'枚引く？',[opt('すべて捨てて引く',true,value),skip()]);}else put(s,task('discard',t.p,t.source,{causedBy:t.p,selfDiscard:true,n:own.hand.length,all:true}),...(t.draw?[task('draw',t.p,t.source,{n:t.draw})]:[]));break;}
  case'g34_DiscardDraw':{const rows=own.hand.filter(y=>!t.filter||matches(s,t.p,y,t.filter));if(rows.length){const last=t.n>=own.deck.length,win=last&&creatures(s,t.p).some(y=>effective(y,s).shako);choice(s,t,'手札を1枚捨てて'+t.n+'枚引く？',[...rows.map(y=>opt(card(y).name+'を捨てる',y.uid,last?(win?1000:-1000):12+t.n*5-cost(card(y)),y.cardId)),skip()]);}break;}
+ case'g34_DeclareCast1293':api.continueCast1293(s,t.p,t.uid);break;
  case'g34_ResolveSpell207':api.resumeCastSpell(s,t.p,t.uid);break;
  case'g34_BlockUntapTurn989':
   (s.extLimits??=[]).push({kind:'g989BlockUntap',player:t.p,source:t.source,expires:'end',who:s.active});
@@ -5706,6 +5731,16 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
  }
  function chosen(s,t,v){if(fifteen.chosen(s,t,v))return true;if(!t.op.startsWith('g34_'))return false;const own=s.players[t.p],x=live(s,t);switch(t.op){
+ case'g34_YurufuwaDeclare1293':{
+  const row=t.declaring;
+  if(v){
+   api.log(s,t.p,'reveal',card(row.source).name+'の能力を使用宣言',{cardId:row.source});
+   api.enqueue(s,t.p,{source:row.source,uid:row.uid,effect:'extended',
+    task:task('g34_YurufuwaDeploy1293',t.p,row.source,row)});
+  }
+  put(s,t);
+  break;
+ }
  case'g34_BarbatChessTerminal1292':
   if(v&&!s.g7TerminalUsed?.[t.p]){
    (s.g7TerminalUsed??=[false,false])[t.p]=true;
@@ -7541,9 +7576,9 @@ export function createSixPhotoRules(api){
  },
  firstSummonDiscount463,onceDiscount464,
  consumeExecution464:(s,p,c)=>consumeOnce464(s,p,c,true),
- offerExecution464(s,p,c,after){
-  if(c.g464Reducers!==undefined||!onceProviders464(s,p,c).some(x=>effective(x,s).g464OnceSummon.execution))return false;
-  if(api.summonCost(s,p,c)===api.summonCost(s,p,{...c,g464Reducers:[]}))return false;
+ offerExecution464(s,p,c,after,view=s){
+  if(c.g464Reducers!==undefined||!onceProviders464(view,p,c).some(x=>effective(x,s).g464OnceSummon.execution))return false;
+  if(api.summonCost(view,p,c)===api.summonCost(view,p,{...c,g464Reducers:[]}))return false;
   put(s,task('g34_PayOnce464',p,c.id,{c,after,selected:[]}));
   return true;
  },
@@ -7842,6 +7877,17 @@ export function createSixPhotoRules(api){
   for(const source of s.players[p].battle)
    if(card(source).g969FirstJudgeUntap&&!api.ignored(s,source)&&api.isCreature(s,source))
     send(s,p,source,'JudgeUntap969',{g399Attacker:ref},deferred);
+ },
+ declareYurufuwa1293(s,owner,c,follow){
+  if(!colors(c).includes('水')&&!race(c,'マジック'))return false;
+  const seen=s.g1293FirstWaterMagic??=[null,null];
+  if(seen[owner]===s.turn)return false;
+  seen[owner]=s.turn;
+  const rows=s.players[owner].hand.filter(x=>card(x).g1293Yurufuwa&&!api.handAbilityIgnored(s,x))
+   .map(x=>({source:x.cardId,uid:x.uid,serial:x.zoneSerial||0}));
+  if(!rows.length)return false;
+  put(s,task('g34_YurufuwaDeclare1293',owner,rows[0].source,{rows,follow}));
+  return true;
  },
  spellCast(s,p,c,origin,owner,inst,face){
   terminalUse1292(s,p,c);
@@ -8882,7 +8928,23 @@ export function createSixPhotoRules(api){
   }
   return score;
  },
+ summonTapDonors1293,projectSummonTap1293,
  mainActions(s,p){const own=s.players[p],out=graveActions1226(s,p);
+  for(const origin of ['hand','mana','grave'])for(const x of own[origin]){
+   if(x.faceDown||!card(x).g1293SummonTap)continue;
+   const c=api.zoneCard(s,p,x,origin);
+   if(api.handAbilityIgnored(s,x)||!api.canCast(s,p,c,origin)||!api.canEnter(s,p,c,{origin,execution:true}))continue;
+   const permits=api.costAltPermits568(s,p,x,c,origin);
+   if(!permits.length||creatures(s,1-p).some(y=>effective(y,s).noCostReduction))continue;
+   for(const donor of summonTapDonors1293(s,p)){
+    const view=projectSummonTap1293(s,p,donor.uid);
+    const payment={...c,g39Reduction:c.g1293SummonTap,summonOrigin:origin,executionUid:x.uid};
+    if(!api.canPay(view,p,payment))continue;
+    for(const permit of permits)out.push({kind:'play',alternative:'sixPhoto',role:'summonTap1293',
+     uid:x.uid,cardId:x.cardId,origin,manaPermit:permit,tapUid:donor.uid,cost:api.summonCost(view,p,payment),
+     label:c.name+'を召喚（'+card(donor).name+'をタップして2軽減）'});
+   }
+  }
   if(own.hand.length>=13)for(const source of creatures(s,p)){
    const permit='g1088Platinum:'+key(source);
    if(api.ignored(s,source)||!card(source).g1088Platinum||s.once?.[permit]===s.turn)continue;
@@ -8957,6 +9019,11 @@ export function createSixPhotoRules(api){
   }
 for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand')||c.type==='creature'&&!api.canEnter(s,p,c,{origin:'hand',execution:true}))continue;let okay=false;if(r==='sirius')okay=creatures(s,p).filter(y=>angel(effective(y,s))&&!y.tapped&&api.canUntap(y)).length>=5;if(r==='zero')okay=own.hand.filter(y=>y!==x&&colors(card(y)).includes('闇')).length>=3&&creatures(s,p).filter(y=>colors(effective(y,s)).includes('闇')&&api.canLeave(s,p,y)).length>=3;if(r==='reiai')okay=own.battle.filter(y=>api.canLeave(s,p,y)).length>=2&&api.canPay(s,p,{cost:5,civilizations:['光','闇','自然'],fixedPayment:true});if(okay)out.push({kind:'play',alternative:'sixPhoto',uid:x.uid,cardId:x.cardId,role:r,label:c.name+'を代替コストで使う',cost:r==='reiai'?5:0});}return out;},
  alternative(s,p,a){
+  if(a.role==='summonTap1293'){
+   cast(s,p,a.uid,false,null,0,{g39Reduction:card(a.cardId).g1293SummonTap,g976TapPayment:[a.tapUid]},
+    a.origin,'召喚時のコスト軽減',false,a.manaPermit);
+   return;
+  }
   if(a.role==='destroySummon1148'){
    put(s,task('g34_DestroySummon1148',p,a.cardId,{uid:a.uid,origin:a.origin,permit:a.manaPermit??null,selected:[]}));
    return;

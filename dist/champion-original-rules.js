@@ -4,12 +4,15 @@ export function createOriginalChampionRules(api){
  const{card,faces,cost,effective,creatures,put,task,choice,opt,skip,remove,clear,move,targetOptions}=api;
  const key=x=>x.uid+'@'+(x.incarnation||0),queue=(s,t,op,more={})=>put(s,{...t,op:'g39_'+op,...more});
  const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g39_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
- function sasagers(s,p){
+ function sasagers(s,p,c){
   return s.players[p].battle.flatMap(x=>{
    if(x.sealed)return [];
-   const c=effective(x,s);
-   if(!['creature','seed','field','gear'].includes(c.type)||!c.sasage)return [];
-   return [{x,amounts:c.sasageAmounts?.toSorted((a,b)=>b-a)??[c.sasage]}];
+   const donor=effective(x,s);
+   if(!['creature','seed','field','gear'].includes(donor.type))return [];
+   const amounts=String(c.race).includes('ディスペクター')&&donor.sasage?
+    [...(donor.sasageAmounts??[donor.sasage])]:[];
+   if(String(c.race).includes('メカ')&&api.isCreature(s,x)&&donor.g1293Tankrio)amounts.push(donor.g1293Tankrio);
+   return amounts.length?[{x,amounts:amounts.sort((a,b)=>b-a)}]:[];
   });
  }
  function sasageOptions(amounts){
@@ -39,10 +42,14 @@ export function createOriginalChampionRules(api){
  case'g39_PointerReveal':{if(!t.owners.length)break;const owner=t.owners[0],rows=[],player=s.players[owner];if(!api.deckLocked(s,owner))for(const x of policyLook(s,owner,player.deck.length,player.deck,api)){rows.push(x);if(card(x).type==='creature')break;}const found=rows.at(-1),x=found&&card(found).type==='creature'?found:null,ids=rows.map(x=>x.uid);(player.g39Protected??=[]).push(...ids);if(rows.length)api.log(s,t.p,'reveal',card(t.source).name+'：'+rows.map(x=>card(x).name).join('・'),{cardId:t.source});queue(s,t,'PointerShuffle',{owner,ids,owners:t.owners.slice(1)});if(x){release(s,owner,[x.uid]);put(s,task('g34_Put',owner,t.source,{controller:t.p,owner,origin:'deck',target:x.uid,execution:false}));}break;}
  case'g39_PointerShuffle':release(s,t.owner,t.ids);api.shuffleLibrary(s,t.owner,[],t.source);queue(s,t,'PointerReveal');break;
  case'g39_Sasage':{
-  const c=faces(card(t.targetCard))[t.face||0],payment={...c,summonOrigin:t.origin,g39Reduction:t.reduction,
+  const c=faces(card(t.targetCard))[t.face||0],payment={...c,summonOrigin:t.origin,g39Reduction:t.reduction,executionUid:t.target,
    ...(c.neoEvolution?{g27BaseUid:t.base||null}:{}),...(t.g464Reducers===undefined?{}:{g464Reducers:t.g464Reducers})};
-  if(!api.canPay(s,t.p,payment))break;
-  if(api.offerExecution464(s,t.p,payment,t))break;
+  const tap=t.tapUid&&api.summonTapDonors1293(s,t.p).find(x=>x.uid===t.tapUid);
+  if(t.tapUid&&!tap)break;
+  const view=api.projectSummonTap1293(s,t.p,t.tapUid);
+  if(!api.canPay(view,t.p,payment))break;
+  if(api.offerExecution464(s,t.p,payment,t,view))break;
+  if(tap)api.tap(s,t.p,tap);
   const cast={...t,op:'g39_SasageCast',amount:api.summonCost(s,t.p,payment)};
   if(t.g464Reducers)api.consumeExecution464(s,t.p,payment);
   if(new Set(t.sasage).size===t.sasage.length){
@@ -88,31 +95,41 @@ export function createOriginalChampionRules(api){
  selected(s,p,a,d){if(a.kind==='attack')return;const value=a.kind==='extended'?d?.choices?.[a.choice]?.value:null,ids=new Set([...(a.targets||[]).map(t=>t.uid),...(['effect','fight','dragonTap'].includes(a.kind)?[a.target||a.uid]:[]),...(typeof value==='string'?[value]:value?.uid?[value.uid]:[])]);for(const x of creatures(s,1-p))if(ids.has(x.uid)&&effective(x,s).g39Hyakume)on(s,1-p,x,'Hyakume');},
  alternative(s,p,a){
   if(a.alternative==='rinne'){put(s,task('g39_Rinne',p,a.cardId,{target:a.uid,incarnation:a.incarnation}));return;}
-  const reduction=a.sasageReduction??sasagers(s,p).reduce((total,{x,amounts})=>{
+  const reduction=a.sasageReduction??sasagers(s,p,faces(card(a.cardId))[a.face||0]).reduce((total,{x,amounts})=>{
    const count=a.sasage.filter(uid=>uid===x.uid).length;
    return amounts.slice(0,count).reduce((sum,amount)=>sum+amount,total);
   },0);
-  put(s,task('g39_Sasage',p,a.cardId,{target:a.uid,targetCard:a.cardId,face:a.face||0,origin:a.origin||'hand',permit:a.manaPermit,sasage:a.sasage,reduction,base:a.baseUid}));
+  put(s,task('g39_Sasage',p,a.cardId,{target:a.uid,targetCard:a.cardId,face:a.face||0,origin:a.origin||'hand',permit:a.manaPermit,sasage:a.sasage,reduction,base:a.baseUid,tapUid:a.tapUid}));
  },
- mainActions(s,p){const own=s.players[p],out=[],xs=sasagers(s,p),locked=creatures(s,1-p).some(x=>effective(x,s).noCostReduction);for(const x of creatures(s,p)){const c=effective(x,s),spell=faces(card(x))[1];if(c.g39Rinne&&spell&&api.canCast(s,p,spell,'battle')&&api.canPay(s,p,spell))out.push({kind:'play',uid:x.uid,incarnation:x.incarnation||0,cardId:x.cardId,face:1,origin:'battle',alternative:'rinne',cost:api.summonCost(s,p,spell),label:spell.name+'を輪廻∞で唱える'});}if(!xs.length||locked)return out;
- let subsets;
+ mainActions(s,p){const own=s.players[p],out=[],hasDonor=own.battle.some(x=>card(x).g1293Tankrio||effective(x,s).sasage),locked=creatures(s,1-p).some(x=>effective(x,s).noCostReduction);for(const x of creatures(s,p)){const c=effective(x,s),spell=faces(card(x))[1];if(c.g39Rinne&&spell&&api.canCast(s,p,spell,'battle')&&api.canPay(s,p,spell))out.push({kind:'play',uid:x.uid,incarnation:x.incarnation||0,cardId:x.cardId,face:1,origin:'battle',alternative:'rinne',cost:api.summonCost(s,p,spell),label:spell.name+'を輪廻∞で唱える'});}if(!hasDonor||locked)return out;
+ const subsetsByRace=new Map();
  for(const origin of['hand','mana','grave'])for(const x of own[origin])for(const[face,c]of faces(card(x.cardId)).entries()){
-  if(c.type!=='creature'||!String(c.race).includes('ディスペクター')||!api.canCast(s,p,c,origin)||!api.canEnter(s,p,c,{origin,execution:true}))continue;
+  if(c.type!=='creature'||!/ディスペクター|メカ/.test(c.race)||!api.canCast(s,p,c,origin)||!api.canEnter(s,p,c,{origin,execution:true}))continue;
   const permits=origin==='hand'?[null]:origin==='mana'?api.manaPermits(s,p,x):[...(c.graveSummon||c.g38GraveSummon?[null]:[]),...(api.gravePermits?.(s,p,x,c)||[])];if(!permits.length)continue;
-  subsets??=xs.reduce((all,{x,amounts})=>{
+  const mode=[String(c.race).includes('ディスペクター'),String(c.race).includes('メカ')].join(':');
+  if(!subsetsByRace.has(mode))subsetsByRace.set(mode,sasagers(s,p,c).reduce((all,{x,amounts})=>{
    const options=sasageOptions(amounts);
    return [...all,...all.flatMap(selected=>options.map(option=>[...selected,{x,...option}]))];
-  },[[]]).slice(1);
-  for(const selected of subsets){
+  },[[]]).slice(1));
+  for(const selected of subsetsByRace.get(mode)){
    // NEO may enter with no base or evolve on a surviving creature. A destroyed donor cannot remain underneath it.
    const bases=c.evolution||c.neoEvolution?api.evolutionBases(s,p,c).filter(base=>!selected.some(({x})=>x.uid===base.uid)||!api.canLeave(s,p,base)):[];
    const reduction=selected.reduce((sum,option)=>sum+option.reduction,0);
    const differentReduction=selected.some(option=>option.reduction!==option.defaultReduction);
    const donors=selected.flatMap(({x,count})=>Array(count).fill(x.uid));
    const names=selected.map(({x,count,reduction})=>card(x).name+(count>1||differentReduction?' '+count+'回・'+reduction+'軽減':'')).join('・');
-   for(const base of[...(!c.evolution?[null]:[]),...bases]){
-    const payment={...c,summonOrigin:origin,g39Reduction:reduction,...(c.neoEvolution?{g27BaseUid:base?.uid||null}:{})};if(!api.canPay(s,p,payment))continue;
-    for(const permit of permits)out.push({kind:'play',uid:x.uid,cardId:x.cardId,face,origin,manaPermit:permit,baseUid:base?.uid,alternative:'sasage',sasage:donors,...(differentReduction?{sasageReduction:reduction}:{}),cost:api.summonCost(s,p,payment),label:c.name+'をササゲール（'+names+'）で召喚'});
+   const taps=c.g1293SummonTap&&!api.handAbilityIgnored(s,x)?api.summonTapDonors1293(s,p):[];
+   const reductionName=selected.some(({x})=>effective(x,s).g1293Tankrio)?'破壊による軽減':'ササゲール';
+   for(const base of[...(!c.evolution?[null]:[]),...bases])for(const tap of[null,...taps]){
+    const total=reduction+(tap?c.g1293SummonTap:0);
+    const payment={...c,summonOrigin:origin,g39Reduction:total,executionUid:x.uid,
+     ...(c.neoEvolution?{g27BaseUid:base?.uid||null}:{})};
+    const view=api.projectSummonTap1293(s,p,tap?.uid);
+    if(!api.canPay(view,p,payment))continue;
+    const label=c.name+'を'+reductionName+'（'+names+'）で召喚'+(tap?'（'+card(tap).name+'をタップして2軽減）':'');
+    for(const permit of permits)out.push({kind:'play',uid:x.uid,cardId:x.cardId,face,origin,manaPermit:permit,
+     baseUid:base?.uid,alternative:'sasage',sasage:donors,...(tap?{tapUid:tap.uid}:{}),
+     ...(differentReduction||tap?{sasageReduction:total}:{}),cost:api.summonCost(view,p,payment),label});
    }
   }
  }
