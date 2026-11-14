@@ -1,0 +1,560 @@
+{
+  "phase": 1283,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7859,
+  "description": "ルナ・ゲリラライブ、NEXの手甲、悪縁 ガクブッチ＝リッチーモアの全能力を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/41076/",
+    "https://dm.takaratomy.co.jp/rule/qa/32503/",
+    "https://dm.takaratomy.co.jp/rule/qa/42046/",
+    "https://dm.takaratomy.co.jp/rule/qa/42058/",
+    "https://dm.takaratomy.co.jp/rule/qa/42061/",
+    "https://dm.takaratomy.co.jp/rule/qa/42129/",
+    "https://dm.takaratomy.co.jp/rule/qa/42949/",
+    "https://dm.takaratomy.co.jp/rule/qa/43790/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31650/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm22rp2-012",
+      "name": "ルナ・ゲリラライブ",
+      "faces": [
+        {
+          "name": "ルナ・ゲリラライブ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このターンに使った自分の呪文またはタマシード１枚につき、このクリーチャーの召喚コストを３少なくする。ただしコストは０以下にはならない。\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、カードを１枚引き、その後、相手のクリーチャーを１体選んで持ち主の手札に戻す。",
+          "race": "マジック・サイバー・ムーン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-012",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-012.jpg",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g212CountDiscount": {
+          "zone": "spellsOrTamaseeds",
+          "amount": 3
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Target",
+            "to": "hand",
+            "toOwnerHand": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "86226396991d978b57f84093f6e5c938c11b5cf6eb741c81a2e172898d37a719",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-006",
+      "name": "NEXの手甲",
+      "faces": [
+        {
+          "name": "NEXの手甲",
+          "typeText": "タマシード",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "各ターンはじめて自分のタマシードが出た時、次のうちいずれか１つを選ぶ。\n▶自分の手札を１枚捨て、カードを１枚引く。\n▶相手のコスト２以下の、クリーチャー１体またはタマシードを１枚、破壊する。\n▶クリーチャーを１体選ぶ。このターン、そのクリーチャーに「スピードアタッカー」を与える。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-006.jpg",
+      "spec": {
+        "g1283FirstSeed": {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "手札を1枚捨て、1枚引く",
+              "defs": [
+                {
+                  "op": "Discard",
+                  "owner": "self",
+                  "n": 1
+                },
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            },
+            {
+              "label": "相手のコスト2以下のクリーチャーかタマシードを破壊する",
+              "defs": [
+                {
+                  "op": "Target",
+                  "element": true,
+                  "to": "grave",
+                  "filter": {
+                    "creatureOrSeed": true,
+                    "max": 2
+                  }
+                }
+              ]
+            },
+            {
+              "label": "クリーチャーにスピードアタッカーを与える",
+              "defs": [
+                {
+                  "op": "Target",
+                  "anyOwner": true,
+                  "g301Grant": true,
+                  "grant": {
+                    "speedAttacker": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "fda4efa3fc229001e9fc6a85d5e19bcbc28125ba8a18dfda9e4effc5b8662c12",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-003",
+      "name": "悪縁 ガクブッチ＝リッチーモア",
+      "faces": [
+        {
+          "name": "悪縁 ガクブッチ＝リッチーモア",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\nブロッカーブロッカー\nスレイヤー\nW・ブレイカー\nこのクリーチャーが出た時、闇のカードを２枚まで、自分の墓地から手札に戻す。\nシビルカウント５：このクリーチャーが攻撃する時、自分の闇のクリーチャーまたは闇のタマシードが合計５つ以上あれば、相手は自身の手札をすべて捨てる。",
+          "race": "アビスロイヤル",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-003.jpg",
+      "spec": {
+        "abyssRush": true,
+        "blocker": true,
+        "slayer": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "anyFaceColor": "闇",
+              "faceUp": true
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creatureOrSeed": true,
+              "color": "闇",
+              "faceUp": true,
+              "g258Civil": 5
+            },
+            "defs": [
+              {
+                "op": "Discard",
+                "g756All": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "ee11f05128e4abad1333892a1b7cd5d80e5c626afda964ca19d40935f14dced3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm22rp2x-012",
+      "name": "ルナ・ゲリラライブ",
+      "faces": [
+        {
+          "name": "ルナ・ゲリラライブ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このターンに使った自分の呪文またはタマシード１枚につき、このクリーチャーの召喚コストを３少なくする。ただしコストは０以下にはならない。\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、カードを１枚引き、その後、相手のクリーチャーを１体選んで持ち主の手札に戻す。",
+          "race": "マジック・サイバー・ムーン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-012",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-012.jpg",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g212CountDiscount": {
+          "zone": "spellsOrTamaseeds",
+          "amount": 3
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Target",
+            "to": "hand",
+            "toOwnerHand": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "0b988ae57209ed18c61b19ad9e1e104add180294c735f8a7f25421ebd95c57c8",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-012"
+    },
+    {
+      "id": "dm22rp2x-006",
+      "name": "NEXの手甲",
+      "faces": [
+        {
+          "name": "NEXの手甲",
+          "typeText": "タマシード",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "各ターンはじめて自分のタマシードが出た時、次のうちいずれか１つを選ぶ。\n▶自分の手札を１枚捨て、カードを１枚引く。\n▶相手のコスト２以下の、クリーチャー１体またはタマシードを１枚、破壊する。\n▶クリーチャーを１体選ぶ。このターン、そのクリーチャーに「スピードアタッカー」を与える。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-006.jpg",
+      "spec": {
+        "g1283FirstSeed": {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "手札を1枚捨て、1枚引く",
+              "defs": [
+                {
+                  "op": "Discard",
+                  "owner": "self",
+                  "n": 1
+                },
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            },
+            {
+              "label": "相手のコスト2以下のクリーチャーかタマシードを破壊する",
+              "defs": [
+                {
+                  "op": "Target",
+                  "element": true,
+                  "to": "grave",
+                  "filter": {
+                    "creatureOrSeed": true,
+                    "max": 2
+                  }
+                }
+              ]
+            },
+            {
+              "label": "クリーチャーにスピードアタッカーを与える",
+              "defs": [
+                {
+                  "op": "Target",
+                  "anyOwner": true,
+                  "g301Grant": true,
+                  "grant": {
+                    "speedAttacker": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "20f0817b9336fc7e6991e5792542d48301d563f35c6fc19099651d696b3e44d1",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-006"
+    },
+    {
+      "id": "dm22rp2x-006X",
+      "name": "NEXの手甲",
+      "faces": [
+        {
+          "name": "NEXの手甲",
+          "typeText": "タマシード",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "各ターンはじめて自分のタマシードが出た時、次のうちいずれか１つを選ぶ。\n▶自分の手札を１枚捨て、カードを１枚引く。\n▶相手のコスト２以下の、クリーチャー１体またはタマシードを１枚、破壊する。\n▶クリーチャーを１体選ぶ。このターン、そのクリーチャーに「スピードアタッカー」を与える。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-006X",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-006X.jpg",
+      "spec": {
+        "g1283FirstSeed": {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "手札を1枚捨て、1枚引く",
+              "defs": [
+                {
+                  "op": "Discard",
+                  "owner": "self",
+                  "n": 1
+                },
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            },
+            {
+              "label": "相手のコスト2以下のクリーチャーかタマシードを破壊する",
+              "defs": [
+                {
+                  "op": "Target",
+                  "element": true,
+                  "to": "grave",
+                  "filter": {
+                    "creatureOrSeed": true,
+                    "max": 2
+                  }
+                }
+              ]
+            },
+            {
+              "label": "クリーチャーにスピードアタッカーを与える",
+              "defs": [
+                {
+                  "op": "Target",
+                  "anyOwner": true,
+                  "g301Grant": true,
+                  "grant": {
+                    "speedAttacker": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "7265a1b0dbf275b0e5598740f5938a93bce3600a89c9e53067e1d207f9859a8b",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-006"
+    },
+    {
+      "id": "dm22rp2x-003",
+      "name": "悪縁 ガクブッチ＝リッチーモア",
+      "faces": [
+        {
+          "name": "悪縁 ガクブッチ＝リッチーモア",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\nブロッカーブロッカー\nスレイヤー\nW・ブレイカー\nこのクリーチャーが出た時、闇のカードを２枚まで、自分の墓地から手札に戻す。\nシビルカウント５：このクリーチャーが攻撃する時、自分の闇のクリーチャーまたは闇のタマシードが合計５つ以上あれば、相手は自身の手札をすべて捨てる。",
+          "race": "アビスロイヤル",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-003.jpg",
+      "spec": {
+        "abyssRush": true,
+        "blocker": true,
+        "slayer": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "anyFaceColor": "闇",
+              "faceUp": true
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creatureOrSeed": true,
+              "color": "闇",
+              "faceUp": true,
+              "g258Civil": 5
+            },
+            "defs": [
+              {
+                "op": "Discard",
+                "g756All": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "7671d5dc148aee263918a4ecd4fd332cdf06827e8cab5548224faaf0f0fc5d38",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-003"
+    },
+    {
+      "id": "dm23bd2-007",
+      "name": "悪縁 ガクブッチ＝リッチーモア",
+      "faces": [
+        {
+          "name": "悪縁 ガクブッチ＝リッチーモア",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\nブロッカーブロッカー\nスレイヤー\nW・ブレイカー\nこのクリーチャーが出た時、闇のカードを２枚まで、自分の墓地から手札に戻す。\nシビルカウント５：このクリーチャーが攻撃する時、自分の闇のクリーチャーまたは闇のタマシードが合計５つ以上あれば、相手は自身の手札をすべて捨てる。",
+          "race": "アビスロイヤル",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd2-007",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd2-007.jpg",
+      "spec": {
+        "abyssRush": true,
+        "blocker": true,
+        "slayer": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "anyFaceColor": "闇",
+              "faceUp": true
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creatureOrSeed": true,
+              "color": "闇",
+              "faceUp": true,
+              "g258Civil": 5
+            },
+            "defs": [
+              {
+                "op": "Discard",
+                "g756All": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "e587365789c9b2e9ac863807812aee1be28930b0cb87887f924e8d21040ccd59",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-003"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22rp2-012": 4,
+      "dm22rp2-006": 4,
+      "dm22rp2-003": 4,
+      "dm22rp2x-012": 4,
+      "dm22rp2x-006": 4,
+      "dm22rp2x-006X": 4,
+      "dm22rp2x-003": 4,
+      "dm23bd2-007": 4
+    },
+    "currentList": "https://dm.takaratomy.co.jp/img/regulation/2608/202608regulation.pdf"
+  }
+}

@@ -2475,6 +2475,41 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1283&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(/^dm22rp2x?-012$/i.test(d.id)&&f.typeText==='クリーチャー'&&text===
+   'このターンに使った自分の呪文またはタマシード1枚につきこのクリーチャーの召喚コストを3少なくする。ただしコストは0以下にはならない。'+
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+
+   'このクリーチャーが出た時カードを1枚引きその後相手のクリーチャーを1体選んで持ち主の手札に戻す。')
+   return {blocker:true,breaker:2,g212CountDiscount:{zone:'spellsOrTamaseeds',amount:3},
+    effect:'sixPhoto',g34Tasks:[{op:'Draw',n:1},{op:'Target',to:'hand',toOwnerHand:true}]};
+  if(/^dm22rp2x?-006x?$/i.test(d.id)&&f.typeText==='タマシード'&&text===
+   '各ターンはじめて自分のタマシードが出た時次のうちいずれか1つを選ぶ。'+
+   '▶自分の手札を1枚捨てカードを1枚引く。'+
+   '▶相手のコスト2以下のクリーチャー1体またはタマシードを1枚破壊する。'+
+   '▶クリーチャーを1体選ぶ。このターンそのクリーチャーに「スピードアタッカー」を与える。')
+   return {g1283FirstSeed:{
+    op:'Choose',g184Modes:true,modes:[
+     {label:'手札を1枚捨て、1枚引く',defs:[{op:'Discard',owner:'self',n:1},{op:'Draw',n:1}]},
+     {label:'相手のコスト2以下のクリーチャーかタマシードを破壊する',defs:[
+      {op:'Target',element:true,to:'grave',filter:{creatureOrSeed:true,max:2}}
+     ]},
+     {label:'クリーチャーにスピードアタッカーを与える',defs:[
+      {op:'Target',anyOwner:true,g301Grant:true,grant:{speedAttacker:true}}
+     ]}
+    ]
+   }};
+  if(/^(dm22rp2x?-003|dm23bd2-007)$/i.test(d.id)&&f.typeText==='クリーチャー'&&text===
+   'アビスラッシュ:このクリーチャーを自分の墓地から召喚してもよい。そうしたらこのターンこのクリーチャーはプレイヤーを攻撃できターンの終わりに山札の下に置かれる。'+
+   'ブロッカーブロッカースレイヤーW・ブレイカー'+
+   'このクリーチャーが出た時闇のカードを2枚まで自分の墓地から手札に戻す。'+
+   'シビルカウント5:このクリーチャーが攻撃する時自分の闇のクリーチャーまたは闇のタマシードが合計5つ以上あれば相手は自身の手札をすべて捨てる。')
+   return {abyssRush:true,blocker:true,slayer:true,breaker:2,effect:'sixPhoto',g34Tasks:[
+    {op:'Select',origin:'grave',to:'hand',n:2,optional:true,filter:{anyFaceColor:'闇',faceUp:true}}
+   ],g34Attack:[{op:'IfOwn',filter:{creatureOrSeed:true,color:'闇',faceUp:true,g258Civil:5},
+    defs:[{op:'Discard',g756All:true}]}]};
+ }
  if(phase>=1282&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText), trigger=normalize('S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）');
   if(/^dm22rp2x?-055$/i.test(d.id)&&f.typeText==='呪文'&&text===trigger+

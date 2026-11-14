@@ -240900,15 +240900,169 @@
       },
       "supportBatch": "phase-1282",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-012",
+      "name": "ルナ・ゲリラライブ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "マジック・サイバー・ムーン",
+      "text": "このターンに使った自分の呪文またはタマシード１枚につき、このクリーチャーの召喚コストを３少なくする。ただしコストは０以下にはならない。\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、カードを１枚引き、その後、相手のクリーチャーを１体選んで持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-012",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g212CountDiscount": {
+        "zone": "spellsOrTamaseeds",
+        "amount": 3
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Target",
+          "to": "hand",
+          "toOwnerHand": true
+        }
+      ],
+      "supportBatch": "phase-1283",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-006",
+      "name": "NEXの手甲",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "各ターンはじめて自分のタマシードが出た時、次のうちいずれか１つを選ぶ。\n▶自分の手札を１枚捨て、カードを１枚引く。\n▶相手のコスト２以下の、クリーチャー１体またはタマシードを１枚、破壊する。\n▶クリーチャーを１体選ぶ。このターン、そのクリーチャーに「スピードアタッカー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-006",
+      "limit": 4,
+      "g1283FirstSeed": {
+        "op": "Choose",
+        "g184Modes": true,
+        "modes": [
+          {
+            "label": "手札を1枚捨て、1枚引く",
+            "defs": [
+              {
+                "op": "Discard",
+                "owner": "self",
+                "n": 1
+              },
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          },
+          {
+            "label": "相手のコスト2以下のクリーチャーかタマシードを破壊する",
+            "defs": [
+              {
+                "op": "Target",
+                "element": true,
+                "to": "grave",
+                "filter": {
+                  "creatureOrSeed": true,
+                  "max": 2
+                }
+              }
+            ]
+          },
+          {
+            "label": "クリーチャーにスピードアタッカーを与える",
+            "defs": [
+              {
+                "op": "Target",
+                "anyOwner": true,
+                "g301Grant": true,
+                "grant": {
+                  "speedAttacker": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1283",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-003",
+      "name": "悪縁 ガクブッチ＝リッチーモア",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "アビスロイヤル",
+      "text": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\nブロッカーブロッカー\nスレイヤー\nW・ブレイカー\nこのクリーチャーが出た時、闇のカードを２枚まで、自分の墓地から手札に戻す。\nシビルカウント５：このクリーチャーが攻撃する時、自分の闇のクリーチャーまたは闇のタマシードが合計５つ以上あれば、相手は自身の手札をすべて捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-003",
+      "limit": 4,
+      "abyssRush": true,
+      "blocker": true,
+      "slayer": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "anyFaceColor": "闇",
+            "faceUp": true
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creatureOrSeed": true,
+            "color": "闇",
+            "faceUp": true,
+            "g258Civil": 5
+          },
+          "defs": [
+            {
+              "op": "Discard",
+              "g756All": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1283",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1282,
+    "phase": 1283,
     "checkedAt": "2026-11-14",
-    "baseCount": 7855,
-    "newEffectCards": 4,
+    "baseCount": 7859,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7859,
+    "totalCount": 7862,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -262581,6 +262735,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7855,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1282,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7855,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7859,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

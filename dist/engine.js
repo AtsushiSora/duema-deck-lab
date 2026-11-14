@@ -2106,7 +2106,7 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  const allEntryMuted=graveMuted||isCreature(s,inst)&&(selfTriggersStopped(s,p)||extra.muteEntry(s,p));
  const selfMuted=allEntryMuted||!!brakkio;
  // Entry history and opposing watchers also see entries that suppress the entering card's abilities.
- extra.six.observedEntry(s,p,inst,entryOptions);
+ extra.six.observedEntry(s,p,inst,{...entryOptions,allEntryMuted});
  if(entryOptions.g1087Grant)extra.six.lostSignGrant1087(s,p,inst,entryOptions.g1087Grant);
  if(!entryOptions.ignoreEntry){extra.entry(s,p,inst,{...entryOptions,selfMuted,allEntryMuted});extra.command(s,p,inst);}
  if(!entryOptions.paidMana&&isCreature(s,inst))(s.noManaUse??=[false,false])[p]=true;

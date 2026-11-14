@@ -189,6 +189,10 @@ export function createSixPhotoRules(api){
    const summon=s.g463Summons?.[owner],spell=s.g37Spells?.[owner];
    return ((summon?.turn===s.turn?summon.n:0)+(spell?.turn===s.turn?spell.n:0))*t.amount;
   }
+  if(t.zone==='spellsOrTamaseeds'){
+   const use=s.g1224Uses?.[owner];
+   return (use?.turn===s.turn?use.ownUses||0:0)*t.amount;
+  }
   if(t.zone==='shields'){const shields=s.players[owner].shields;return(typeof shields==='number'?shields:shields.length)*t.amount;}
   const count=owner=>(t.zones??[t.zone]).reduce((total,zone)=>total+(s.players[owner][zone]||[]).filter(x=>
    !x.faceDown&&!((t.excludeExecutingCard||t.optional||t.minimum===2||t.minimum===0)&&owner===p&&c.summonOrigin===zone&&x.uid===c.executionUid)&&
@@ -7118,6 +7122,8 @@ export function createSixPhotoRules(api){
   const caster=history[p];
   caster.maxCost=Math.max(caster.maxCost,cost(c));
   const use=history[owner],first=!use.seen;
+  // 「自分の」 refers to ownership (QA 32503), even when someone else casts it.
+  use.ownUses=(use.ownUses||0)+1;
   if(first){use.seen=true;use.firstSeed=seedUid;}
   // For the first seed itself, the first different seed or spell is its first qualifying use.
   if(first||!use.distinct&&seedUid!==use.firstSeed){
@@ -7852,6 +7858,12 @@ export function createSixPhotoRules(api){
    const own=s.players[p],firstCreature=own.enteredThisTurn===1&&api.isCreature(s,y);
    const seed=c.type==='seed'||c.seedCreature||c.natureAce4;
    const history=own.g1219SeedEntries?.turn===s.turn?own.g1219SeedEntries.keys:[];
+   if(seed&&!history.length&&!options.ignoreEntry&&!options.allEntryMuted)for(const watcher of own.battle){
+    if(watcher.sealed||watcher.faceDown||!card(watcher).g1283FirstSeed)continue;
+    const mode=effective(watcher,s).g1283FirstSeed;
+    if(mode)send(s,p,watcher,'Choose',{title:card(watcher).name+'：効果を選ぶ',
+     modes:mode.modes,g184Modes:mode.g184Modes});
+   }
    if(firstCreature||seed&&history.length<2)for(const watcher of own.battle){
     if(watcher.sealed||watcher.faceDown||!card(watcher).g1219FirstEntryDraw||!effective(watcher,s).g1219FirstEntryDraw)continue;
     if(firstCreature)send(s,p,watcher,'Draw',{n:1,optional:true});
