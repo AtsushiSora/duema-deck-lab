@@ -15,9 +15,10 @@ export function createRequested393SuperguardRules(api){
    const giant=opposing&&String(originalCard.race||'').includes('ジャイアント');
    const fire=opposing&&(originalCard.civilizations||String(originalCard.civ||'').split('/')).includes('火');
    const replace=originalCard.g1195BattleMove;
-   if(replace?.to==='mana'&&api.ownCondition(s,p,replace.condition)&&
+   if(replace?.to==='mana'&&(!replace.neo||api.isEvolution(original))&&
+    (!replace.condition||api.ownCondition(s,p,replace.condition))&&
     participants.every((x,i)=>canMove(s,t.rows[i].p,x,p)))
-    out.push({row,kind:'moveBoth',mandatory:true,...ref(p,original),cardId:original.cardId});
+    out.push({row,kind:'moveBoth',mandatory:!replace.optional,...ref(p,original),cardId:original.cardId});
    for(const x of creatures(s,p)){
     if(replace?.to==='hand'&&!x.sealed&&canMove(s,p,x,p))
      out.push({row,kind:'returnOwn',mandatory:true,...ref(p,x),cardId:x.cardId});
@@ -40,7 +41,10 @@ export function createRequested393SuperguardRules(api){
   const p=t.owners[0],rows=candidates(s,t,p);
   if(!rows.length){put(s,{...t,p:t.rows[0].p,owners:t.owners.slice(1)});return true;}
   const mandatory=rows.some(r=>r.mandatory);
-  choice(s,{...t,p},mandatory?'バトルのかわりに行う処理を選ぶ':'かわりにバトルするクリーチャーを選ぶ（任意）',[
+  const move=rows.some(r=>r.kind==='moveBoth'||r.kind==='returnOwn');
+  const title=mandatory?'バトルのかわりに行う処理を選ぶ':
+   move?'バトルのかわりに行う処理を選ぶ（任意）':'かわりにバトルするクリーチャーを選ぶ（任意）';
+  choice(s,{...t,p},title,[
    ...rows.map(r=>{
     const x=live(s,r),other=live(s,t.rows[1-r.row]);
     if(r.kind==='moveBoth')return opt(card(x).name+'でバトルする2体をマナに置く',r,10,r.cardId);

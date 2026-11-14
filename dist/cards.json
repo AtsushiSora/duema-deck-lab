@@ -230294,15 +230294,136 @@
       ],
       "supportBatch": "phase-1195",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp02-010",
+      "name": "ベジタバッタ・パンツァー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "グランセクト",
+      "text": "NEO進化：自分の自然のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\n相手のクリーチャーが攻撃する時、可能ならこのクリーチャーを攻撃する。\nこのクリーチャーがバトルする時、これがNEO進化クリーチャーなら、バトルのかわりにその２体をそれぞれの持ち主のマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-010",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "g431AttackMe": true,
+      "g1195BattleMove": {
+        "to": "mana",
+        "neo": true,
+        "optional": true
+      },
+      "supportBatch": "phase-1196",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp1-016",
+      "name": "ダイキリ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "スプラッシュ・クイーン",
+      "text": "各ターンに一度、自分のエレメントが出た時、または自分が呪文を唱えた時、カードを１枚引いてもよい。\n自分のタップしているクリーチャーが破壊される時、墓地に置くかわりに手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-016",
+      "limit": 4,
+      "g251EntryDraw": {
+        "filter": {
+          "faceUp": true
+        },
+        "defs": [
+          {
+            "op": "Offer",
+            "g792Once": "daikiriDraw",
+            "title": "ダイキリでカードを1枚引く？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "Offer",
+            "g792Once": "daikiriDraw",
+            "title": "ダイキリでカードを1枚引く？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "g390DestroyToHand": {
+        "toOwner": true,
+        "filter": {
+          "creature": true,
+          "tapped": true
+        }
+      },
+      "supportBatch": "phase-1196",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd20-010",
+      "name": "ゴイチゴ隊長",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2000,
+      "race": "グランセクト/レクスターズ",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーはタップして出る。\n自分のタマシードがあれば、このクリーチャーのパワーを+4000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーはシールドを２つブレイクする）\n相手のクリーチャーが攻撃する時、可能ならこのクリーチャーを攻撃する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd20-010",
+      "limit": 4,
+      "trigger": true,
+      "g295EnterTapped": true,
+      "g431AttackMe": true,
+      "g260Self": {
+        "filter": {
+          "g295Tamaseed": true,
+          "faceUp": true
+        },
+        "grants": {
+          "power": 4000,
+          "breaker": 2
+        }
+      },
+      "supportBatch": "phase-1196",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1195,
+    "phase": 1196,
     "checkedAt": "2026-11-14",
-    "baseCount": 7576,
+    "baseCount": 7579,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7579,
+    "totalCount": 7582,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -250931,6 +251052,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7576,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1195,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7576,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7579,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

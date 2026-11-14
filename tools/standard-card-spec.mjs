@@ -2470,6 +2470,27 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1196&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const forceAttack='相手のクリーチャーが攻撃する時可能ならこのクリーチャーを攻撃する。';
+  if(d.id==='dmrp02-010'&&f.typeText==='NEOクリーチャー'&&
+   text==='NEO進化:自分の自然のクリーチャー1体の上に置いてもよい。(クリーチャーが下にあればこれをNEO進化クリーチャーとして扱う)'+forceAttack+
+   'このクリーチャーがバトルする時これがNEO進化クリーチャーならバトルのかわりにその2体をそれぞれの持ち主のマナゾーンに置いてもよい。')
+   return {neoEvolution:{any:[{civilization:'自然'}]},g431AttackMe:true,g1195BattleMove:{to:'mana',neo:true,optional:true}};
+  if(['dm24rp1-016','dm24ex3-013'].includes(d.id)&&f.typeText==='クリーチャー'&&
+   text==='各ターンに一度自分のエレメントが出た時または自分が呪文を唱えた時カードを1枚引いてもよい。'+
+   '自分のタップしているクリーチャーが破壊される時墓地に置くかわりに手札に戻す。'){
+   const defs=[{op:'Offer',g792Once:'daikiriDraw',title:'ダイキリでカードを1枚引く？',defs:[{op:'Draw',n:1}]}];
+   return {g251EntryDraw:{filter:{faceUp:true},defs},g204SpellWatch:{who:'self',defs},
+    g390DestroyToHand:{toOwner:true,filter:{creature:true,tapped:true}}};
+  }
+  if(['dmsd20-010','dmrp21-042'].includes(d.id)&&f.typeText==='クリーチャー'&&
+   text==='S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)'+
+   'このクリーチャーはタップして出る。自分のタマシードがあればこのクリーチャーのパワーを+4000し「W・ブレイカー」を与える。'+
+   '(「W・ブレイカー」を持つクリーチャーはシールドを2つブレイクする)'+forceAttack)
+   return {trigger:true,g295EnterTapped:true,g431AttackMe:true,
+    g260Self:{filter:{g295Tamaseed:true,faceUp:true},grants:{power:4000,breaker:2}}};
+ }
  if(phase>=1195&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmr19-032'&&text==='このクリーチャーがバトルする時かわりに自分のクリーチャーを1体手札に戻す。')

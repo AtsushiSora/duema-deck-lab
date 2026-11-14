@@ -1,0 +1,306 @@
+{
+  "phase": 1196,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7579,
+  "description": "ベジタバッタ・パンツァー、ダイキリ、ゴイチゴ隊長の能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/46526/",
+    "https://dm.takaratomy.co.jp/rule/qa/42657/",
+    "https://dm.takaratomy.co.jp/rule/qa/40676/",
+    "https://dm.takaratomy.co.jp/rule/qa/44212/",
+    "https://dm.takaratomy.co.jp/rule/qa/43588/",
+    "https://dm.takaratomy.co.jp/rule/qa/46615/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36912/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31617/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316639/",
+    "https://dm.takaratomy.co.jp/rule/qa/41071/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp02-010",
+      "name": "ベジタバッタ・パンツァー",
+      "faces": [
+        {
+          "name": "ベジタバッタ・パンツァー",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "NEO進化：自分の自然のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\n相手のクリーチャーが攻撃する時、可能ならこのクリーチャーを攻撃する。\nこのクリーチャーがバトルする時、これがNEO進化クリーチャーなら、バトルのかわりにその２体をそれぞれの持ち主のマナゾーンに置いてもよい。",
+          "race": "グランセクト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-010",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-010.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "g431AttackMe": true,
+        "g1195BattleMove": {
+          "to": "mana",
+          "neo": true,
+          "optional": true
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "ff5357770e578bd10c5f9e08834df2be655e9e8eb2ad91345c4e39041ece23cc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-016",
+      "name": "ダイキリ",
+      "faces": [
+        {
+          "name": "ダイキリ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "各ターンに一度、自分のエレメントが出た時、または自分が呪文を唱えた時、カードを１枚引いてもよい。\n自分のタップしているクリーチャーが破壊される時、墓地に置くかわりに手札に戻す。",
+          "race": "スプラッシュ・クイーン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-016",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-016.jpg",
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "faceUp": true
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "g792Once": "daikiriDraw",
+              "title": "ダイキリでカードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        },
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "Offer",
+              "g792Once": "daikiriDraw",
+              "title": "ダイキリでカードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        },
+        "g390DestroyToHand": {
+          "toOwner": true,
+          "filter": {
+            "creature": true,
+            "tapped": true
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "3eccd122ed229c25ae8701113323b1c996fcd32012a7a5c5959b564711eb81e0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd20-010",
+      "name": "ゴイチゴ隊長",
+      "faces": [
+        {
+          "name": "ゴイチゴ隊長",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーはタップして出る。\n自分のタマシードがあれば、このクリーチャーのパワーを+4000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーはシールドを２つブレイクする）\n相手のクリーチャーが攻撃する時、可能ならこのクリーチャーを攻撃する。",
+          "race": "グランセクト/レクスターズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd20-010",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd20-010.jpg",
+      "spec": {
+        "trigger": true,
+        "g295EnterTapped": true,
+        "g431AttackMe": true,
+        "g260Self": {
+          "filter": {
+            "g295Tamaseed": true,
+            "faceUp": true
+          },
+          "grants": {
+            "power": 4000,
+            "breaker": 2
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "f10e5f4e8b198b82988dcc47c5d810f96860b263954571f345d0b583bf4ea329",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex3-013",
+      "name": "ダイキリ",
+      "faces": [
+        {
+          "name": "ダイキリ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "各ターンに一度、自分のエレメントが出た時または自分が呪文を唱えた時、カードを１枚引いてもよい。\n自分のタップしているクリーチャーが破壊される時、墓地に置くかわりに手札に戻す。",
+          "race": "スプラッシュ・クイーン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-013",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-013.jpg",
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "faceUp": true
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "g792Once": "daikiriDraw",
+              "title": "ダイキリでカードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        },
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "Offer",
+              "g792Once": "daikiriDraw",
+              "title": "ダイキリでカードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        },
+        "g390DestroyToHand": {
+          "toOwner": true,
+          "filter": {
+            "creature": true,
+            "tapped": true
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "13a8769d632f8d488d3d4bcc7bab7c704c4b7e1f620d005eb2007dc841dc1960",
+        "facesMatched": true
+      },
+      "canonicalId": "dm24rp1-016"
+    },
+    {
+      "id": "dmrp21-042",
+      "name": "ゴイチゴ隊長",
+      "faces": [
+        {
+          "name": "ゴイチゴ隊長",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーはタップして出る。\n自分のタマシードがあれば、このクリーチャーのパワーを+4000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーはシールドを２つブレイクする）\n相手のクリーチャーが攻撃する時、可能ならこのクリーチャーを攻撃する。",
+          "race": "グランセクト/レクスターズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-042",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-042.jpg",
+      "spec": {
+        "trigger": true,
+        "g295EnterTapped": true,
+        "g431AttackMe": true,
+        "g260Self": {
+          "filter": {
+            "g295Tamaseed": true,
+            "faceUp": true
+          },
+          "grants": {
+            "power": 4000,
+            "breaker": 2
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "0b23f6c3079a79bf653f30c18b79bf4abd835beb406d8866a8efdae1b5e1de50",
+        "facesMatched": true
+      },
+      "canonicalId": "dmsd20-010"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp02-010": 4,
+      "dm24rp1-016": 4,
+      "dmsd20-010": 4,
+      "dm24ex3-013": 4,
+      "dmrp21-042": 4
+    }
+  }
+}

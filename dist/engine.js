@@ -1076,8 +1076,12 @@ function moveCreatures(s,moves,after=null){
   layers(top).every(x=>canAddShield(s,x.cardOwner??m.player)):canAddShield(s,m.player)))return [];const by=m.controller??m.by??effectActor(s);if(!m.stateBased&&after?.kind!=='battleResult'&&by===1-m.player&&isCreature(s,top)&&s.g26Extreme?.[m.player])return [];const c=effectiveCard(top,s);if((extra.six.zeroSafe(s,top)||extra.six.destroySafe409(s,top))&&(m.to||'grave')==='grave'&&m.destroy!==false)return [];if(c.caddy&&(m.to||'grave')==='grave'&&shevaProtection(s,m.player))return [];if(c.type==='creature'&&((m.to||'grave')!=='grave'||m.destroy===false)&&shevaProtection(s,m.player))return [];const isDestruction=(m.to||'grave')==='grave'&&m.destroy!==false;
  const battleBottomSource=m.battleBottomSource&&!shevaProtection(s,m.player)?m.battleBottomSource:undefined;
  const armorStay=isDestruction&&!m.replacement&&isCreature(s,top)&&extra.six.destroyStay1193(s,m.player);
+ // Decide against the board before any member of this movement batch leaves (QA35145).
+ const handRule=isDestruction&&!m.replacement&&extra.six.destroyToHand390(s,m.player,top);
+ const returnToOwner=handRule==='owner'&&!shevaProtection(s,m.player);
+ const handReturn=handRule==='owner'?returnToOwner:handRule;
  // Use the normal replacement choice when Caddy has competing destinations.
- const caddyManaReplacement=!!(c.caddy&&isDestruction&&(battleBottomSource||armorStay));
+ const caddyManaReplacement=!!(c.caddy&&isDestruction&&(battleBottomSource||armorStay||handReturn));
  const returnDiscard=isDestruction&&!m.replacement&&c.g1156ReturnDiscard;
  const handSave=isDestruction&&!m.replacement&&c.g1157HandSave;
  const manaMoves=isDestruction&&!m.replacement?extra.six.deathMana575(s,m.player,top):null;
@@ -1092,10 +1096,6 @@ function moveCreatures(s,moves,after=null){
   extra.six.ownCondition(s,m.player,c.g842OptionalDestroyShield);
  const shieldReplacement=(mandatoryShield||optionalShield)&&canAddShield(s,m.player)?
   {g842DestroyShield:true,...(c.g1069DestroyShieldStack?{g1069DestroyShieldStack:true}:{}),...(optionalShield?{g842ShieldOptional:true}:{})}:{};
- // Decide against the board before any member of this movement batch leaves (QA35145).
- const handRule=isDestruction&&!m.replacement&&extra.six.destroyToHand390(s,m.player,top);
- const returnToOwner=handRule==='owner'&&!shevaProtection(s,m.player);
- const handReturn=handRule==='owner'?returnToOwner:handRule;
  const sameName=c.g738GraveToHandWithName;
  const sameNameReturn=(m.to||'grave')==='grave'&&sameName&&s.players.some(p=>p.battle.some(y=>
   y.uid!==top.uid&&!y.sealed&&isCreature(s,y)&&effectiveCard(y,s).name===sameName));
