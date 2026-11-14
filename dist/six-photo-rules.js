@@ -4421,6 +4421,7 @@ export function createSixPhotoRules(api){
   }else if(t.drawn.length)put(s,{...t,op:'g52_TopHand',n:t.drawn.length,selected:[]});
   break;
  case'g34_Draw':
+  if(used792(s,t,t))break;
   if(t.optional)choice(s,t,'カードを'+t.n+'枚まで引く',Array.from({length:t.n+1},(_,n)=>opt(n+'枚',n,n<own.deck.length?n*5:-100)));
   else{
    const drawn=api.draw(s,t.owner==='opponent'?1-t.p:t.p,t.n);
@@ -5985,6 +5986,7 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_Draw':
+  if(v&&t.g792Once)(s.once??={})[onceKey792(t,t)]=s.turn;
   if(t.g933TopSame){if(v)put(s,{...t,op:'g34_DrawThenTop933',n:v,drawn:[]});}
   else if(t.g970RevealDraw){if(v)put(s,{...t,op:'g34_DrawReveal911',n:v,drawn:[]});}
   else api.draw(s,t.p,v);
@@ -7198,6 +7200,12 @@ export function createSixPhotoRules(api){
  tapped(s,p,x){
   if(!x.sealed&&api.isCreature(s,x))for(const y of s.players[p].battle){
    const watcher=card(y);
+   if(watcher.g1217AllyTapDraw&&!x.faceDown&&s.players[p].battle.includes(x)&&
+      !y.sealed&&!y.faceDown&&api.isCreature(s,y)&&effective(y,s).g1217AllyTapDraw){
+    // A declined draw leaves the once-per-turn ability available for a later tap.
+    const draw={op:'Draw',n:1,optional:true,g792Once:'allyTapDraw'};
+    if(!used792(s,y,draw))queue(s,p,y,[draw]);
+   }
    if((watcher.g771Wing||watcher.g904AllyTap)&&!y.sealed&&!api.ignored(s,y)&&api.isCreature(s,y)){
     if(watcher.g771Wing)queue(s,p,y,[E('Draw',{n:1,optional:true})]);
     if(watcher.g904AllyTap&&s.players[p].battle.includes(x))send(s,p,y,'ExactMove',{owner:p,to:'grave',optional:true,followEvolution:true,

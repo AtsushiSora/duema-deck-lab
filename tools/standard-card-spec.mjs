@@ -2470,6 +2470,28 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1217&&d?.status==='complete'){
+  const front=normalize(f.abilityText),spell=d.faces[1];
+  if(d.id==='dm23rp3-047'&&d.faces.length===2&&f.typeText==='クリーチャー'&&spell.typeText==='呪文'&&
+     front==='バトル中このクリーチャーのパワーは+3000される。'&&
+     normalize(spell.abilityText)==='S・トリガーS・トリガー相手は自身のマナゾーンにあるカードの枚数よりコストが大きい自身のクリーチャーをすべて好きな順序で山札の下に置く。')
+   return {g38BattleBonus:3000,spellFace:{
+    type:'spell',name:spell.name,cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,
+    race:spell.race,trigger:true,effect:'sixPhoto',g34Tasks:[{op:'OverManaBottom590'}]
+   }};
+  if(['dm24rp1-014','dm24ex3-007'].includes(d.id)&&d.faces.length===1&&f.typeText==='クリーチャー'&&
+     front==='各ターンに一度自分のクリーチャーがタップした時カードを1枚引いてもよい。'+
+      '相手のターン中にこのクリーチャーが離れた時コスト4以下のクリーチャーを1体自分の手札から出してもよい。')
+   return {g1217AllyTapDraw:true,g601OpponentLeave:true,g172Leave:[
+    {op:'Select',origin:'hand',n:1,deploy:true,optional:true,g195HandDeploy:true,filter:{creature:true,max:4}}
+   ]};
+  if(d.id==='dm22rp1-045'&&d.faces.length===1&&f.typeText==='呪文'&&
+     front==='シビルカウント2:この呪文が自分のシールドゾーンにあり自分の火のクリーチャーまたは火のタマシードが合計2つ以上あればこの呪文に「S・トリガー」を与える。'+
+      '相手のパワー5000以下のクリーチャーを1体破壊する。')
+   return {effect:'sixPhoto',g876ShieldTriggerCondition:{creatureOrSeed:true,color:'火',faceUp:true,g258Civil:2},
+    g34Tasks:[{op:'Target',to:'grave',spell:true,filter:{creature:true,maxPower:5000,g199Power:true},
+     title:'パワー5000以下の相手のクリーチャーを1体選ぶ'}]};
+ }
  if(phase>=1216&&d?.status==='complete'&&f.typeText==='クリーチャー'){
   const front=normalize(f.abilityText),spell=d.faces[1];
   const destroyOpponent={op:'Target',to:'grave',destroy:true};
