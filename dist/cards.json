@@ -230982,15 +230982,166 @@
       ],
       "supportBatch": "phase-1201",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp01-s05",
+      "name": "ジョルジュ・バタイユ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 12000,
+      "race": "マフィ・ギャング",
+      "text": "コストを支払うかわりに自分のクリーチャーを４体破壊して、このクリーチャーを召喚してもよい。\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の墓地にあるカードを数える。それと同じ枚数のカードを、自分の山札の上から墓地に置いてもよい。\nこのクリーチャーがバトルゾーンを離れる時、かわりにカードを６枚、自分の墓地から好きな順序で山札の一番下に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-s05",
+      "limit": 4,
+      "breaker": 3,
+      "g1148DestroySummon": {
+        "count": 4,
+        "cost": 0,
+        "g1202Unreplaceable": true
+      },
+      "g1202GraveBottomStay": 6,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountMill967",
+          "zone": "grave",
+          "optional": true,
+          "g1042Together": true
+        }
+      ],
+      "supportBatch": "phase-1202",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp19-017",
+      "name": "蓄積されたハンド",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体破壊し、その後、自分の墓地にある 《蓄積されたハンド》１枚につき、相手のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-017",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "creature": true
+          }
+        },
+        {
+          "op": "CountDestroy1202",
+          "zone": "grave",
+          "filter": {
+            "g201ExactName": "蓄積されたハンド",
+            "faceUp": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1202",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-034",
+      "name": "電脳 メルゲ-２",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "リキッド・ピープル/ディスタス",
+      "text": "このクリーチャーが出た時、カードを２枚引く。その後、バトルゾーンに自分のディスペクターがなければ、自分の手札を２枚捨てる。\nササゲール２（ディスペクターを召喚する時、コストを２少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-034",
+      "limit": 4,
+      "sasage": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "element": true,
+            "race": "ディスペクター",
+            "faceUp": true
+          },
+          "defs": [],
+          "elseDefs": [
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 2
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1202",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex2-056",
+      "name": "命の集う聖域 フィオナの森",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "自分のクリーチャーが出た時、カードを１枚引いてもよい。\n自分のターンの終わりに、自分の手札をすべてマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-056",
+      "limit": 4,
+      "g251EntryDraw": {
+        "filter": {
+          "creature": true,
+          "faceUp": true
+        },
+        "g1198EntryScope": true,
+        "g1202Field": true,
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "g174End": [
+        {
+          "op": "HandAllToMana"
+        }
+      ],
+      "supportBatch": "phase-1202",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1201,
+    "phase": 1202,
     "checkedAt": "2026-11-14",
-    "baseCount": 7594,
-    "newEffectCards": 3,
+    "baseCount": 7597,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7597,
+    "totalCount": 7601,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -251691,6 +251842,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7594,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1201,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7594,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7597,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -2470,6 +2470,33 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1202&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(['dmrp01-s05','dm23rp2-TR06','dm23rp2x-TR06'].includes(d.id)&&f.typeText==='クリーチャー'&&text.replaceAll('バトルゾーンに出た時','出た時').replaceAll('バトルゾーンを離れる時','離れる時').replaceAll('山札の一番下','山札の下')===
+   'コストを支払うかわりに自分のクリーチャーを4体破壊してこのクリーチャーを召喚してもよい。T・ブレイカー'+
+   'このクリーチャーが出た時自分の墓地にあるカードを数える。それと同じ枚数のカードを自分の山札の上から墓地に置いてもよい。'+
+   'このクリーチャーが離れる時かわりにカードを6枚自分の墓地から好きな順序で山札の下に置いてもよい。')
+   return {breaker:3,g1148DestroySummon:{count:4,cost:0,g1202Unreplaceable:true},g1202GraveBottomStay:6,effect:'sixPhoto',
+    g34Tasks:[{op:'CountMill967',zone:'grave',optional:true,g1042Together:true}]};
+  if(d.id==='dmrp19-017'&&f.typeText==='呪文'&&text===
+   'S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)'+
+   '相手のクリーチャーを1体破壊しその後自分の墓地にある《蓄積されたハンド》1枚につき相手のクリーチャーを1体破壊する。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Target',to:'grave',filter:{creature:true}},
+    {op:'CountDestroy1202',zone:'grave',filter:{g201ExactName:'蓄積されたハンド',faceUp:true}}
+   ]};
+  if(d.id==='dmrp20-034'&&f.typeText==='クリーチャー'&&text===
+   'このクリーチャーが出た時カードを2枚引く。その後バトルゾーンに自分のディスペクターがなければ自分の手札を2枚捨てる。'+
+   'ササゲール2(ディスペクターを召喚する時コストを2少なくしてもよい。そうしたらこのクリーチャーを破壊する。そのディスペクターのコストは0以下にはならない)')
+   return {sasage:2,effect:'sixPhoto',g34Tasks:[
+    {op:'Draw',n:2},{op:'IfOwn',filter:{element:true,race:'ディスペクター',faceUp:true},defs:[],
+     elseDefs:[{op:'Discard',owner:'self',n:2}]}
+   ]};
+  if(d.id==='dm23ex2-056'&&f.typeText==='ヒストリック・フィールド'&&text===
+   '自分のクリーチャーが出た時カードを1枚引いてもよい。自分のターンの終わりに自分の手札をすべてマナゾーンに置く。')
+   return {g251EntryDraw:{filter:{creature:true,faceUp:true},g1198EntryScope:true,g1202Field:true,defs:[{op:'Draw',n:1,optional:true}]},
+    g174End:[{op:'HandAllToMana'}]};
+ }
  if(phase>=1201&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(['dmrp22-1A','dmrp22-S1','dmrp22-3B'].includes(d.id)&&f.typeText==='S-MAX進化クリーチャー'&&text===

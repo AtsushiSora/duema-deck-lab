@@ -1996,7 +1996,7 @@ export function createSixPhotoRules(api){
   if(t.selected.length===rule.count){
    put(s,{...t,payment:{...plan.payment,cost:plan.amount,fixedPayment:true}});
    move(s,t.selected.map(uid=>({player:p,uid,to:'grave',destroy:true,toOwnerGrave:true,controller:p,
-    ...(!rule.reduction?{replacement:true}:{})})));
+    ...(!rule.reduction?{replacement:true}:{}),...(rule.g1202Unreplaceable?{selfDeath:true}:{})})));
   }else if(remaining.length>=rule.count-t.selected.length){
    choice(s,t,'召喚のため破壊する自分のクリーチャーを選ぶ（'+t.selected.length+'/'+rule.count+'）',
     [...remaining.map(y=>opt(card(y).name,y.uid,-cost(effective(y,s)),y.cardId)),opt('召喚をやめる',null,-1000)]);
@@ -3022,7 +3022,18 @@ export function createSixPhotoRules(api){
   if(n)start(s,t,[{op:'BlindDiscard773',n}]);
   break;
  }
- case'g34_CountMill967':api.mill(s,t.p,countDraw(s,t.p,t));break;
+ case'g34_CountMill967':{
+  const n=countDraw(s,t.p,t);
+  if(n&&t.optional)start(s,t,[{op:'Mill',n,optional:true,g1042Together:t.g1042Together}]);
+  else if(n)api.mill(s,t.p,n,{together:t.g1042Together});
+  break;
+ }
+ case'g34_CountDestroy1202':{
+  const n=countDraw(s,t.p,t);
+  if(n)start(s,t,[{op:'Select',owner:'opponent',origin:'battle',to:'grave',n,filter:{creature:true},
+   g173Targets:true,g193Select:true,title:'同時に破壊する相手のクリーチャーを'+n+'体選ぶ'}]);
+  break;
+ }
  // Choose the entry order as well as the cards: a newly entered creature may be an evolution base.
  // Keep entry triggers pending until the whole army is placed; never include subsequently recycled cards.
  case'g34_Uncross719':{
@@ -7004,7 +7015,7 @@ export function createSixPhotoRules(api){
    else if(watch.g765CopyPower)send(s,owner,x,'CopyPower765',{g765Subject:{uid:y.uid,incarnation:y.incarnation||0}});
    else queue(s,owner,x,watch.defs);
   }
-  if(creature&&!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g468EntryWatch;if(!x.sealed&&watch&&(!watch.g565Other||x.uid!==y.uid)&&(!(x.uid===y.uid)||!options.selfMuted&&!api.selfStopped(s,p))&&matches(s,p,y,watch.filter))send(s,p,x,'Entry468',{mode:watch.mode,subject:{uid:y.uid,incarnation:y.incarnation||0}});}if(!y.sealed)for(const x of creatures(s,p))queueEntryWatch251(s,p,x,y,options);if(!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g250EntryDraw,self=x.uid===y.uid;if(!x.sealed&&watch&&(self?watch.self&&!options.selfMuted&&!api.selfStopped(s,p):matches(s,p,y,watch.filter)))queue(s,p,x,watch.defs);}if(s.active===p&&!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g249OtherEntry;if(!x.sealed&&x.uid!==y.uid&&watch&&matches(s,p,y,watch.filter))queue(s,p,x,watch.defs);}if(creature){const stopped=options.selfMuted||api.selfStopped(s,p);for(const x of active(s,p,'cabbage'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[select('mana',null,1,{creature:true,color:'自然',minPower:12000,exactCost:cost(c)-1},{deploy:true,optional:true})]);if(ninja(effective(y,s)))for(const x of active(s,p,'mukujimmed'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[E('Draw',{n:1,optional:true})]);if(angel(effective(y,s)))for(const x of active(s,p,'everries'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[E('Draw',{n:1,optional:true})]);for(const x of active(s,1-p,'nameko'))if(!options.paidMana)queue(s,1-p,x,[C('nameko',{target:y.uid,targetIncarnation:y.incarnation||0})]);if(options.execution===false)for(const x of active(s,1-p,'oogumo'))queue(s,1-p,x,[E('ExactMove',{to:'grave',target:y.uid,targetIncarnation:y.incarnation||0})]);}if(options.origin!=='hand')for(const x of s.players[1-p].battle.filter(x=>!api.ignored(s,x)))for(const layer of api.layers(x))if(card(layer).g34SoulDock)queue(s,1-p,x,[E('ExactMove',{to:'grave',target:y.uid,targetIncarnation:y.incarnation||0})]);},
+  if(creature&&!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g468EntryWatch;if(!x.sealed&&watch&&(!watch.g565Other||x.uid!==y.uid)&&(!(x.uid===y.uid)||!options.selfMuted&&!api.selfStopped(s,p))&&matches(s,p,y,watch.filter))send(s,p,x,'Entry468',{mode:watch.mode,subject:{uid:y.uid,incarnation:y.incarnation||0}});}if(!y.sealed)for(const x of s.players[p].battle)if(api.isCreature(s,x)||card(x).g251EntryDraw?.g1202Field)queueEntryWatch251(s,p,x,y,options);if(!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g250EntryDraw,self=x.uid===y.uid;if(!x.sealed&&watch&&(self?watch.self&&!options.selfMuted&&!api.selfStopped(s,p):matches(s,p,y,watch.filter)))queue(s,p,x,watch.defs);}if(s.active===p&&!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g249OtherEntry;if(!x.sealed&&x.uid!==y.uid&&watch&&matches(s,p,y,watch.filter))queue(s,p,x,watch.defs);}if(creature){const stopped=options.selfMuted||api.selfStopped(s,p);for(const x of active(s,p,'cabbage'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[select('mana',null,1,{creature:true,color:'自然',minPower:12000,exactCost:cost(c)-1},{deploy:true,optional:true})]);if(ninja(effective(y,s)))for(const x of active(s,p,'mukujimmed'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[E('Draw',{n:1,optional:true})]);if(angel(effective(y,s)))for(const x of active(s,p,'everries'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[E('Draw',{n:1,optional:true})]);for(const x of active(s,1-p,'nameko'))if(!options.paidMana)queue(s,1-p,x,[C('nameko',{target:y.uid,targetIncarnation:y.incarnation||0})]);if(options.execution===false)for(const x of active(s,1-p,'oogumo'))queue(s,1-p,x,[E('ExactMove',{to:'grave',target:y.uid,targetIncarnation:y.incarnation||0})]);}if(options.origin!=='hand')for(const x of s.players[1-p].battle.filter(x=>!api.ignored(s,x)))for(const layer of api.layers(x))if(card(layer).g34SoulDock)queue(s,1-p,x,[E('ExactMove',{to:'grave',target:y.uid,targetIncarnation:y.incarnation||0})]);},
  attack(s,p,x){if(s.g481Attackers?.turn!==s.turn)s.g481Attackers={turn:s.turn,events:[]};const refs=api.allLayers(x).map(key),first=!s.g481Attackers.events.some(e=>e.refs.some(r=>refs.includes(r)));s.g481Attackers.events.push({p,refs,...(race(effective(x,s,true),'ティラノ・ドレイク')?{tyrannoDrake925:true}:{}),...(s.attack?.target==='player'?{playerTarget:true}:{})});if(s.g481Attackers.events.length===1){
   const attacker={uid:x.uid,incarnation:x.incarnation||0};
   for(const owner of [p,1-p])for(const watcher of s.players[owner].battle){
