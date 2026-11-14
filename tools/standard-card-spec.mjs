@@ -2475,6 +2475,31 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1316&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm26ex2-035'&&f.typeText==='呪文'&&text===
+   'S・トリガーS・トリガー自分の手札を1枚捨てる。こうして捨てたカード以下のコストの相手のクリーチャーを1体選び破壊する。コスト5以下のタマシードとデモニオを最大1つずつ自分のマナゾーンまたは墓地から出す。このカードを自分の手札からマナゾーンに置いた時自分の手札にあるデモニオ・カードを1枚表向きにしてもよい。そうしたらこのカードをアンタップする。'){
+   const pair=[{g295Tamaseed:true},{race:'デモニオ'}];
+   return {trigger:true,effect:'sixPhoto',g1087ManaReveal:'デモニオ',g34Tasks:[
+    {op:'DiscardFor248',required:true,title:'捨てる手札を1枚選ぶ',
+     defs:[{op:'DiscardCost655',g835Creature:true,g1048AnyDiscardedFace:true,inclusive:true}]},
+    {op:'Select',zones:['mana','grave'],n:2,deploy:true,optional:true,g550CostBudget:10,
+     filter:{faceUp:true,max:5,any:pair},g1316DeployPair:pair,
+     title:'出す順にタマシードとデモニオを1つずつまで選ぶ'}
+   ]};
+  }
+  if(d.id==='dm26ex2-032'&&f.typeText==='呪文'&&text===
+   'S・トリガーS・トリガー相手のクリーチャーを1体選び破壊する。その選んだクリーチャーよりコストが小さいゴッドを1つ自分の墓地から出してもよい。こうして出さなければカードを2枚引いてもよい。このカードを自分の手札からマナゾーンに置いた時自分の手札にあるゴッド・カードを1枚表向きにしてもよい。そうしたらこのカードをアンタップする。')
+   return {trigger:true,effect:'sixPhoto',g1087ManaReveal:'ゴッド',g34Tasks:[
+    {op:'Target',to:'grave',spell:true,g1316Ambition:true,elseDefs:[{op:'AmbitionAfterPut1316'}]}
+   ]};
+  if(d.id==='dm26ex2-061'&&f.typeText==='スター進化クリーチャー'&&text===
+   'ストライク・バックS・バック:デモニオ(指定のカードを自分のシールドゾーンから手札に加える時そのカードを捨ててもよい。そうしたらコストを支払わずにこのカードを実行する)スター進化:デモニオまたは火のクリーチャー1体の上に置く。W・ブレイカーこのクリーチャーが出た時または攻撃する時相手のパワー6000以下のクリーチャーを1体選び破壊する。'){
+   const defs=[{op:'Target',to:'grave',filter:{maxPower:6000,g199Power:true}}];
+   return {starEvolution:true,evolution:{any:[{race:'デモニオ'},{civilization:'火'}]},breaker:2,
+    strikeBack:true,strikeBackRace:'デモニオ',effect:'sixPhoto',g34Tasks:defs,g34Attack:defs};
+  }
+ }
  if(phase>=1315&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dm26ex2-052'&&f.typeText==='クリーチャー'&&text===

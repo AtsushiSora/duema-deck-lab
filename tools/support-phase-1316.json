@@ -1,0 +1,234 @@
+{
+  "phase": 1316,
+  "checkedAt": "2026-11-15",
+  "baseCount": 7965,
+  "description": "孤高の決闘、野望の決闘、悪霊鬼王ジャオディオスを対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/49237/",
+    "https://dm.takaratomy.co.jp/rule/qa/47366/",
+    "https://dm.takaratomy.co.jp/rule/qa/42639/",
+    "https://dm.takaratomy.co.jp/rule/qa/45078/",
+    "https://dm.takaratomy.co.jp/rule/qa/48748/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm26ex2-035",
+      "name": "孤高の決闘",
+      "faces": [
+        {
+          "name": "孤高の決闘",
+          "typeText": "呪文",
+          "civilizationText": "闇/火/自然",
+          "civilizations": [
+            "闇",
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\n自分の手札を１枚捨てる。こうして捨てたカード以下のコストの相手のクリーチャーを１体選び、破壊する。\nコスト５以下の、タマシードとデモニオを最大１つずつ、自分のマナゾーンまたは墓地から出す。\nこのカードを自分の手札からマナゾーンに置いた時、自分の手札にあるデモニオ・カードを１枚、表向きにしてもよい。そうしたら、このカードをアンタップする。",
+          "race": "デモニオ・ワード",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-035",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-035.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g1087ManaReveal": "デモニオ",
+        "g34Tasks": [
+          {
+            "op": "DiscardFor248",
+            "required": true,
+            "title": "捨てる手札を1枚選ぶ",
+            "defs": [
+              {
+                "op": "DiscardCost655",
+                "g835Creature": true,
+                "g1048AnyDiscardedFace": true,
+                "inclusive": true
+              }
+            ]
+          },
+          {
+            "op": "Select",
+            "zones": [
+              "mana",
+              "grave"
+            ],
+            "n": 2,
+            "deploy": true,
+            "optional": true,
+            "g550CostBudget": 10,
+            "filter": {
+              "faceUp": true,
+              "max": 5,
+              "any": [
+                {
+                  "g295Tamaseed": true
+                },
+                {
+                  "race": "デモニオ"
+                }
+              ]
+            },
+            "g1316DeployPair": [
+              {
+                "g295Tamaseed": true
+              },
+              {
+                "race": "デモニオ"
+              }
+            ],
+            "title": "出す順にタマシードとデモニオを1つずつまで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "d78fc8841da0a97682dc90813c3decad23806bc9e5992f1b73fed04afbb13c91",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex2-032",
+      "name": "野望の決闘",
+      "faces": [
+        {
+          "name": "野望の決闘",
+          "typeText": "呪文",
+          "civilizationText": "水/闇/火",
+          "civilizations": [
+            "水",
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーを１体選び、破壊する。その選んだクリーチャーよりコストが小さいゴッドを１つ、自分の墓地から出してもよい。こうして出さなければ、カードを２枚引いてもよい。\nこのカードを自分の手札からマナゾーンに置いた時、自分の手札にあるゴッド・カードを１枚、表向きにしてもよい。そうしたら、このカードをアンタップする。",
+          "race": "ゴッド・ガルド・ワード",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-032",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-032.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g1087ManaReveal": "ゴッド",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "spell": true,
+            "g1316Ambition": true,
+            "elseDefs": [
+              {
+                "op": "AmbitionAfterPut1316"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "de4a88d2913c4b6eaaac92d2eb60cde9cf334d65a0ad7b536d2dddc2345e9cd5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex2-061",
+      "name": "悪霊鬼王ジャオディオス",
+      "faces": [
+        {
+          "name": "悪霊鬼王ジャオディオス",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ストライク・バック S・バック：デモニオ（指定のカードを自分のシールドゾーンから手札に加える時、そのカードを捨ててもよい。そうしたら、コストを支払わずにこのカードを実行する）\nスター進化：デモニオまたは火の、クリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが出た時または攻撃する時、相手のパワー6000以下のクリーチャーを１体選び、破壊する。",
+          "race": "デモニオ/鬼レクスターズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-061",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-061.jpg",
+      "spec": {
+        "starEvolution": true,
+        "evolution": {
+          "any": [
+            {
+              "race": "デモニオ"
+            },
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "breaker": 2,
+        "strikeBack": true,
+        "strikeBackRace": "デモニオ",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 6000,
+              "g199Power": true
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 6000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "4a058131bc8f2c421a52facf540b135517fdf1c9f956dc778711e3e6521f95ee",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-15",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26ex2-035": 4,
+      "dm26ex2-032": 4,
+      "dm26ex2-061": 4
+    },
+    "currentList": "https://dm.takaratomy.co.jp/img/regulation/2608/202608regulation.pdf"
+  },
+  "sameNameProducts": {
+    "dm26ex2-035": [
+      "DM26-EX2 悪感謝祭 カリスマBEST"
+    ],
+    "dm26ex2-032": [
+      "DM26-EX2 悪感謝祭 カリスマBEST"
+    ],
+    "dm26ex2-061": [
+      "DM26-EX2 悪感謝祭 カリスマBEST"
+    ]
+  }
+}

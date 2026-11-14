@@ -574,7 +574,8 @@ export function createSixPhotoRules(api){
   const options=faces(api.zoneCard(s,p,x,'hand')).filter(c=>!creatureOnly||c.type==='creature');
   return [...new Set(options.map(c=>cost(c)===Infinity?'∞':cost(c)))];
  }
- const destroyBelowCost655=(belowCost,creatureOnly)=>({op:'Target',element:!creatureOnly,to:'grave',filter:{belowCost}});
+ const discardCostFilter655=(limit,inclusive)=>inclusive?(limit==='∞'?{}:{max:limit}):{belowCost:limit};
+ const destroyBelowCost655=(limit,{g835Creature,inclusive})=>({op:'Target',element:!g835Creature,to:'grave',filter:discardCostFilter655(limit,inclusive)});
  function discardDefs248(s,t,y){
   return t.defs.map(d=>d.op==='DrawColors248'?{op:'Draw',n:discardColors248(y)}:
    d.op==='DiscardCost655'?{...d,costs:discardCosts655(s,t.p,y,d.g835Creature&&!d.g1048AnyDiscardedFace)}:
@@ -1294,6 +1295,12 @@ export function createSixPhotoRules(api){
    const first=s.players[t.p].grave.find(x=>x.uid===t.selected[0]);
    if(first)candidates=candidates.filter(r=>api.isEvolution(r.x)!==api.isEvolution(first));
   }
+  if(t.g1316DeployPair&&t.rows.length){
+   const {p,origin,uid}=t.rows[0],first=s.players[p][origin].find(x=>x.uid===uid);
+   const [seed,demon]=t.g1316DeployPair;
+   candidates=first?candidates.filter(r=>matches(s,p,first,seed)&&matches(s,r.p,r.x,demon)||
+    matches(s,p,first,demon)&&matches(s,r.p,r.x,seed)):[];
+  }
   if(t.g646CivilizationPair&&t.selected.length){
    const first=s.players[t.p].grave.find(x=>x.uid===t.selected[0]);
    const [one,other]=t.g646CivilizationPair;
@@ -1665,6 +1672,14 @@ export function createSixPhotoRules(api){
    const x=s.players[row.p][row.origin].find(y=>y.uid===row.uid);
    if(x)put(s,{...t,...row,owner:row.p,p:t.p,op:'g34_Put',target:x.uid},
     {...t,op:'g34_FightEnemy240',optional:true,fighter:{uid:x.uid,incarnation:(x.incarnation||0)+1}});
+   return;
+  }
+  if(t.g1316AmbitionRevive){
+   const [row]=rows;
+   const x=row&&s.players[row.p][row.origin].find(y=>y.uid===row.uid);
+   if(x)put(s,{...t,...row,owner:row.p,p:t.p,op:'g34_Put',target:x.uid},
+    {...t,op:'g34_AmbitionAfterPut1316',target:x.uid,beforeEntry:x.incarnation||0});
+   else start(s,t,t.after);
    return;
   }
   if(t.g1106OnDeploy){
@@ -3041,7 +3056,7 @@ export function createSixPhotoRules(api){
   const selected=t.selected??[],remaining=(t.n??1)-selected.length;
   const rows=own.hand.filter(y=>!selected.includes(y.uid)&&matches(s,t.p,y,t.g488DiscardFilter));
   if(rows.length>=remaining)choice(s,t,t.title||(t.g488DiscardFilter?'手札のクリーチャーを1体捨てて能力を使う？':'手札を1枚捨てて能力を使う？'),
-   [...rows.map(y=>opt(card(y).name+'を捨てる',y.uid,discardScore248(s,t,y),y.cardId)),skip()]);
+   [...rows.map(y=>opt(card(y).name+'を捨てる',y.uid,discardScore248(s,t,y),y.cardId)),...(t.required?[]:[skip()])]);
   break;
  }
  case'g34_DiscardPower1282':
@@ -3147,7 +3162,7 @@ export function createSixPhotoRules(api){
  case'g34_ManaReveal1087':{
   const x=own.mana.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);
   const rows=own.hand.filter(y=>faces(card(y)).some(c=>race(c,t.race)));
-  if(x?.tapped&&rows.length)choice(s,t,'ロスト・クルセイダーを1枚見せ、このカードをアンタップする？',
+  if(x&&rows.length)choice(s,t,t.race+'を1枚見せ、このカードをアンタップする？',
    [...rows.map(y=>opt(card(y).name,y.uid,10,y.cardId)),skip()]);
   break;
  }
@@ -4407,6 +4422,12 @@ export function createSixPhotoRules(api){
   if((placed?.incarnation||0)===t.beforeEntry)api.draw(s,t.p,1);
   break;
  }
+ case'g34_AmbitionAfterPut1316':{
+  const placed=t.target&&api.physicalCards(s).find(x=>x.uid===t.target);
+  if(!placed||(placed.incarnation||0)<=t.beforeEntry)
+   start(s,t,[{op:'Offer',title:'カードを2枚引く？',defs:[{op:'Draw',n:2}]}]);
+  break;
+ }
  case'g34_ShieldHandEntry1031':{
   const source=own.hand.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);
   if(source&&!api.handAbilityIgnored(s,source)&&canPut(s,t.p,source,'hand'))
@@ -5445,7 +5466,7 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_DiscardCost655':
-  if(t.costs.length===1)start(s,t,[destroyBelowCost655(t.costs[0],t.g835Creature)]);
+  if(t.costs.length===1)start(s,t,[destroyBelowCost655(t.costs[0],t)]);
   else if(t.costs.length>1)choice(s,t,'捨てたカードの参照するコストを選ぶ',t.costs.map(n=>opt('コスト '+n,n,n==='∞'?100:n)));
   break;
  case'g34_TargetBelowSource692':{
@@ -6691,7 +6712,7 @@ export function createSixPhotoRules(api){
   }
   break;
  }
- case'g34_DiscardCost655':if(t.costs.includes(v))start(s,t,[destroyBelowCost655(v,t.g835Creature)]);break;
+ case'g34_DiscardCost655':if(t.costs.includes(v))start(s,t,[destroyBelowCost655(v,t)]);break;
  case'g34_DiscardDraw':if(v&&own.hand.some(y=>y.uid===v&&(!t.filter||matches(s,t.p,y,t.filter)))){put(s,task('draw',t.p,t.source,{n:t.n}));api.discardSelected(s,t.p,[v],t.source,t.p);}break;
  case'g34_HandArmy716':
   if(v){
@@ -7179,6 +7200,16 @@ export function createSixPhotoRules(api){
    if(!y)break;
    move(s,[{player:v.p,uid:y.uid,to:'grave',destroy:true,controller:t.p,g1312Bushido:true}]);
    start(s,t,[{op:'BushidoDestroyHost1312'}]);
+   break;
+  }
+  if(t.g1316Ambition){
+   const y=v&&s.players[v.p].battle.find(x=>x.uid===v.uid);
+   if(!y){start(s,t,t.elseDefs);break;}
+   const limit=cost(effective(y,s));
+   move(s,[{player:v.p,uid:y.uid,to:'grave',destroy:true,controller:t.p}]);
+   start(s,t,[{op:'Select',origin:'grave',n:1,deploy:true,optional:true,g236GraveDeploy:true,
+    filter:{race:'ゴッド',belowCost:limit===Infinity?'∞':limit},g1316AmbitionRevive:true,after:t.elseDefs,
+    title:'選んだクリーチャーよりコストが小さいゴッドを墓地から1つまで選ぶ'}]);
    break;
   }
   if(t.g882DeployBelowCost){

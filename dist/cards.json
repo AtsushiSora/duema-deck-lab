@@ -244956,15 +244956,174 @@
       ],
       "supportBatch": "phase-1315",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex2-035",
+      "name": "孤高の決闘",
+      "civ": "闇/火/自然",
+      "civilizations": [
+        "闇",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "デモニオ・ワード",
+      "text": "S・トリガー S・トリガー\n自分の手札を１枚捨てる。こうして捨てたカード以下のコストの相手のクリーチャーを１体選び、破壊する。\nコスト５以下の、タマシードとデモニオを最大１つずつ、自分のマナゾーンまたは墓地から出す。\nこのカードを自分の手札からマナゾーンに置いた時、自分の手札にあるデモニオ・カードを１枚、表向きにしてもよい。そうしたら、このカードをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-035",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g1087ManaReveal": "デモニオ",
+      "g34Tasks": [
+        {
+          "op": "DiscardFor248",
+          "required": true,
+          "title": "捨てる手札を1枚選ぶ",
+          "defs": [
+            {
+              "op": "DiscardCost655",
+              "g835Creature": true,
+              "g1048AnyDiscardedFace": true,
+              "inclusive": true
+            }
+          ]
+        },
+        {
+          "op": "Select",
+          "zones": [
+            "mana",
+            "grave"
+          ],
+          "n": 2,
+          "deploy": true,
+          "optional": true,
+          "g550CostBudget": 10,
+          "filter": {
+            "faceUp": true,
+            "max": 5,
+            "any": [
+              {
+                "g295Tamaseed": true
+              },
+              {
+                "race": "デモニオ"
+              }
+            ]
+          },
+          "g1316DeployPair": [
+            {
+              "g295Tamaseed": true
+            },
+            {
+              "race": "デモニオ"
+            }
+          ],
+          "title": "出す順にタマシードとデモニオを1つずつまで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1316",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex2-032",
+      "name": "野望の決闘",
+      "civ": "水/闇/火",
+      "civilizations": [
+        "水",
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "ゴッド・ガルド・ワード",
+      "text": "S・トリガー S・トリガー\n相手のクリーチャーを１体選び、破壊する。その選んだクリーチャーよりコストが小さいゴッドを１つ、自分の墓地から出してもよい。こうして出さなければ、カードを２枚引いてもよい。\nこのカードを自分の手札からマナゾーンに置いた時、自分の手札にあるゴッド・カードを１枚、表向きにしてもよい。そうしたら、このカードをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-032",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g1087ManaReveal": "ゴッド",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "spell": true,
+          "g1316Ambition": true,
+          "elseDefs": [
+            {
+              "op": "AmbitionAfterPut1316"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1316",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex2-061",
+      "name": "悪霊鬼王ジャオディオス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 6000,
+      "race": "デモニオ/鬼レクスターズ",
+      "text": "ストライク・バック S・バック：デモニオ（指定のカードを自分のシールドゾーンから手札に加える時、そのカードを捨ててもよい。そうしたら、コストを支払わずにこのカードを実行する）\nスター進化：デモニオまたは火の、クリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが出た時または攻撃する時、相手のパワー6000以下のクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-061",
+      "limit": 4,
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "race": "デモニオ"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "breaker": 2,
+      "strikeBack": true,
+      "strikeBackRace": "デモニオ",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 6000,
+            "g199Power": true
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 6000,
+            "g199Power": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1316",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1315,
+    "phase": 1316,
     "checkedAt": "2026-11-15",
-    "baseCount": 7962,
+    "baseCount": 7965,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7965,
+    "totalCount": 7968,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -267033,6 +267192,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7962,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1315,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7962,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7965,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
