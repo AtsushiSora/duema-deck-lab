@@ -2470,6 +2470,32 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1212&&d?.status==='complete'&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.faces.length===1&&['dm23rp2-044','dm23rp2x-044'].includes(d.id)&&
+     text==='{GS}G・ストライク(このクリーチャーを自分のシールドゾーンから手札に加える時相手に見せ相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)'+
+     'ガードマン(このクリーチャーをタップして相手クリーチャーの攻撃先を自分の他のクリーチャーからこのクリーチャーに変更してもよい)自分のドラゴンが2つ以上なければこのクリーチャーは攻撃できない。')
+   return {gStrike:true,guardman:true,noAttack:true,g260Self:{
+    filter:{g370BattleCount:{g557Elements:true,filter:{race:'ドラゴン',faceUp:true},min:2}},grants:{noAttack:false}
+   }};
+  const spell=d.faces[1];
+  if(d.faces.length===2&&spell.typeText==='呪文'&&['dm23rp2-032','dm23rp2x-032','dm24ex4-064','dm24ex4-PR024'].includes(d.id)&&
+     text==='自分のターンのはじめにこのクリーチャーを手札に戻してもよい。そうしたらマジック・メクレイド5する。(マジック・メクレイド5:自分の山札の上から3枚を見る。その中からコスト5以下のマジックを1枚コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く)'&&
+     normalize(spell.abilityText)==='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)相手は自身のアンタップしているクリーチャーを2体選び手札に戻す。')
+   return {g174Start:[{op:'SelfHand299',optional:true,afterAttempt:[{op:'Raid767',race:'マジック',max:5}]}],
+    spellFace:{type:'spell',name:spell.name,cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,
+     race:spell.race,trigger:true,effect:'sixPhoto',g34Tasks:[
+      {op:'OpponentSelect',n:2,to:'hand',toOwnerHand:true,filter:{untapped:true}}
+     ]}};
+  if(d.faces.length===1&&['dm23rp2-048','dm23rp2x-048','dm24bd5-042','dm24ex4-076','dm24ex4-PR036'].includes(d.id)&&
+     text==='{STP}S・トリガー・プラス(このクリーチャーを自分のシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい。それが相手のターンでそのターン中に自分のシールドが2つ以上ブレイクされていればこのクリーチャーに{x+}能力を与える)'+
+     '{x+}このクリーチャーが出た時自分のクリーチャーを2体マナゾーンに置く。その後相手は自身のクリーチャーを2体選びマナゾーンに置く。このクリーチャーを自分のマナゾーンから召喚してもよい。')
+   return {trigger:true,triggerPlus:true,manaSummon:true,g34Plus:[
+    {op:'Select',origin:'battle',n:2,to:'mana',toOwnerMana:true,filter:{creature:true},implicitBattleSelection:true,g187OwnPick:true,
+     title:'マナゾーンに置く自分のクリーチャーを2体指定する',
+     after:[{op:'OpponentSelect',n:2,to:'mana',toOwnerMana:true}]}
+   ]};
+ }
  if(phase>=1210&&d?.status==='complete'&&d.faces.length===2&&f.typeText==='クリーチャー'&&d.faces[1].typeText==='呪文'){
   const spell=d.faces[1],text=normalize(f.abilityText),back=normalize(spell.abilityText);
   const friend=race=>race+'・フレンド・バースト(このクリーチャーが出た時自分の他の'+race+

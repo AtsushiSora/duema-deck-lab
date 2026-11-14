@@ -232419,15 +232419,149 @@
       ],
       "supportBatch": "phase-1211",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-044",
+      "name": "ワット・棘・トラッピ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 3000,
+      "race": "アーマード・ファイアー・バード",
+      "text": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\n自分のドラゴンが２つ以上なければ、このクリーチャーは攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-044",
+      "limit": 4,
+      "gStrike": true,
+      "guardman": true,
+      "noAttack": true,
+      "g260Self": {
+        "filter": {
+          "g370BattleCount": {
+            "g557Elements": true,
+            "filter": {
+              "race": "ドラゴン",
+              "faceUp": true
+            },
+            "min": 2
+          }
+        },
+        "grants": {
+          "noAttack": false
+        }
+      },
+      "supportBatch": "phase-1212",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-032",
+      "name": "人気魚 / ♪大空の ムーンサルト やや斜め",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "マジック・フィッシュ",
+      "text": "自分のターンのはじめに、このクリーチャーを手札に戻してもよい。そうしたら、マジック・メクレイド５する。（マジック・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のマジックを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手は自身のアンタップしているクリーチャーを２体選び、手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-032",
+      "limit": 4,
+      "g174Start": [
+        {
+          "op": "SelfHand299",
+          "optional": true,
+          "afterAttempt": [
+            {
+              "op": "Raid767",
+              "race": "マジック",
+              "max": 5
+            }
+          ]
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "♪大空の ムーンサルト やや斜め",
+        "cost": 5,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "マジック・ソング",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "OpponentSelect",
+            "n": 2,
+            "to": "hand",
+            "toOwnerHand": true,
+            "filter": {
+              "untapped": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1212",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-048",
+      "name": "マーチングバトン ダイダイ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "ジャイアント・スノーフェアリー",
+      "text": "{STP} S・トリガー・プラス（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、このクリーチャーに{x+}能力を与える）\n{x+}このクリーチャーが出た時、自分のクリーチャーを２体マナゾーンに置く。その後、相手は自身のクリーチャーを２体選び、マナゾーンに置く。\nこのクリーチャーを自分のマナゾーンから召喚してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-048",
+      "limit": 4,
+      "trigger": true,
+      "triggerPlus": true,
+      "manaSummon": true,
+      "g34Plus": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "n": 2,
+          "to": "mana",
+          "toOwnerMana": true,
+          "filter": {
+            "creature": true
+          },
+          "implicitBattleSelection": true,
+          "g187OwnPick": true,
+          "title": "マナゾーンに置く自分のクリーチャーを2体指定する",
+          "after": [
+            {
+              "op": "OpponentSelect",
+              "n": 2,
+              "to": "mana",
+              "toOwnerMana": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1212",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1211,
+    "phase": 1212,
     "checkedAt": "2026-11-14",
-    "baseCount": 7625,
+    "baseCount": 7628,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7628,
+    "totalCount": 7631,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -253248,6 +253382,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7625,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1211,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7625,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7628,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

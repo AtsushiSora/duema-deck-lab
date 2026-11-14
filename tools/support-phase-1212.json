@@ -1,0 +1,740 @@
+{
+  "phase": 1212,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7628,
+  "description": "ワット・棘・トラッピ、人気魚、マーチングバトン ダイダイの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31649/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31636/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316640/",
+    "https://dm.takaratomy.co.jp/rule/qa/45224/",
+    "https://dm.takaratomy.co.jp/rule/qa/42993/",
+    "https://dm.takaratomy.co.jp/rule/qa/43047/",
+    "https://dm.takaratomy.co.jp/rule/qa/45222/",
+    "https://dm.takaratomy.co.jp/rule/qa/43058/",
+    "https://dm.takaratomy.co.jp/rule/qa/44370/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37476/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316639/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp2-044",
+      "name": "ワット・棘・トラッピ",
+      "faces": [
+        {
+          "name": "ワット・棘・トラッピ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\n自分のドラゴンが２つ以上なければ、このクリーチャーは攻撃できない。",
+          "race": "アーマード・ファイアー・バード",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-044",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-044.jpg",
+      "spec": {
+        "gStrike": true,
+        "guardman": true,
+        "noAttack": true,
+        "g260Self": {
+          "filter": {
+            "g370BattleCount": {
+              "g557Elements": true,
+              "filter": {
+                "race": "ドラゴン",
+                "faceUp": true
+              },
+              "min": 2
+            }
+          },
+          "grants": {
+            "noAttack": false
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "ecfb0a1811192b3014a8bd40dcff8eb7eac16737f447a3d2681255879227c6d5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp2-032",
+      "name": "人気魚 / ♪大空の ムーンサルト やや斜め",
+      "faces": [
+        {
+          "name": "人気魚",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターンのはじめに、このクリーチャーを手札に戻してもよい。そうしたら、マジック・メクレイド５する。（マジック・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のマジックを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "マジック・フィッシュ",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "♪大空の ムーンサルト やや斜め",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手は自身のアンタップしているクリーチャーを２体選び、手札に戻す。",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-032",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-032a.jpg",
+      "spec": {
+        "g174Start": [
+          {
+            "op": "SelfHand299",
+            "optional": true,
+            "afterAttempt": [
+              {
+                "op": "Raid767",
+                "race": "マジック",
+                "max": 5
+              }
+            ]
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "♪大空の ムーンサルト やや斜め",
+          "cost": 5,
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "race": "マジック・ソング",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "OpponentSelect",
+              "n": 2,
+              "to": "hand",
+              "toOwnerHand": true,
+              "filter": {
+                "untapped": true
+              }
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "7cb5ccc6b6d4ad8257f392a695413ffe2389e649fa079e378fd2e953cd9750e5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp2-048",
+      "name": "マーチングバトン ダイダイ",
+      "faces": [
+        {
+          "name": "マーチングバトン ダイダイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{STP} S・トリガー・プラス（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、このクリーチャーに{x+}能力を与える）\n{x+}このクリーチャーが出た時、自分のクリーチャーを２体マナゾーンに置く。その後、相手は自身のクリーチャーを２体選び、マナゾーンに置く。\nこのクリーチャーを自分のマナゾーンから召喚してもよい。",
+          "race": "ジャイアント・スノーフェアリー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-048",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-048.jpg",
+      "spec": {
+        "trigger": true,
+        "triggerPlus": true,
+        "manaSummon": true,
+        "g34Plus": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "n": 2,
+            "to": "mana",
+            "toOwnerMana": true,
+            "filter": {
+              "creature": true
+            },
+            "implicitBattleSelection": true,
+            "g187OwnPick": true,
+            "title": "マナゾーンに置く自分のクリーチャーを2体指定する",
+            "after": [
+              {
+                "op": "OpponentSelect",
+                "n": 2,
+                "to": "mana",
+                "toOwnerMana": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "97806cbb84fef070d7eb7a8624692277b45f6995d56fed6f8a6ccf3db7aa382b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23rp2x-044",
+      "name": "ワット・棘・トラッピ",
+      "faces": [
+        {
+          "name": "ワット・棘・トラッピ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\n自分のドラゴンが２つ以上なければ、このクリーチャーは攻撃できない。",
+          "race": "アーマード・ファイアー・バード",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-044",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-044.jpg",
+      "spec": {
+        "gStrike": true,
+        "guardman": true,
+        "noAttack": true,
+        "g260Self": {
+          "filter": {
+            "g370BattleCount": {
+              "g557Elements": true,
+              "filter": {
+                "race": "ドラゴン",
+                "faceUp": true
+              },
+              "min": 2
+            }
+          },
+          "grants": {
+            "noAttack": false
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "9d0a434face94986e278ef5058910ed6de27651e4010c1a7c67244ebd3e9c6ad",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-044"
+    },
+    {
+      "id": "dm23rp2x-032",
+      "name": "人気魚 / ♪大空の ムーンサルト やや斜め",
+      "faces": [
+        {
+          "name": "人気魚",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターンのはじめに、このクリーチャーを手札に戻してもよい。そうしたら、マジック・メクレイド５する。（マジック・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のマジックを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "マジック・フィッシュ",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "♪大空の ムーンサルト やや斜め",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手は自身のアンタップしているクリーチャーを２体選び、手札に戻す。",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-032",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-032a.jpg",
+      "spec": {
+        "g174Start": [
+          {
+            "op": "SelfHand299",
+            "optional": true,
+            "afterAttempt": [
+              {
+                "op": "Raid767",
+                "race": "マジック",
+                "max": 5
+              }
+            ]
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "♪大空の ムーンサルト やや斜め",
+          "cost": 5,
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "race": "マジック・ソング",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "OpponentSelect",
+              "n": 2,
+              "to": "hand",
+              "toOwnerHand": true,
+              "filter": {
+                "untapped": true
+              }
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "cc0b69103186f10d19c66dc7fb6a17d74adad5f23ae63ca81492edf5bb309af6",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-032"
+    },
+    {
+      "id": "dm24ex4-064",
+      "name": "人気魚 / ♪大空の ムーンサルト やや斜め",
+      "faces": [
+        {
+          "name": "人気魚",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターンのはじめに、このクリーチャーを手札に戻してもよい。そうしたら、マジック・メクレイド５する。（マジック・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のマジックを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "マジック・フィッシュ",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "♪大空の ムーンサルト やや斜め",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手は自身のアンタップしているクリーチャーを２体選び、手札に戻す。",
+          "race": "マジック・ソング",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-064",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-064a.jpg",
+      "spec": {
+        "g174Start": [
+          {
+            "op": "SelfHand299",
+            "optional": true,
+            "afterAttempt": [
+              {
+                "op": "Raid767",
+                "race": "マジック",
+                "max": 5
+              }
+            ]
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "♪大空の ムーンサルト やや斜め",
+          "cost": 5,
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "race": "マジック・ソング",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "OpponentSelect",
+              "n": 2,
+              "to": "hand",
+              "toOwnerHand": true,
+              "filter": {
+                "untapped": true
+              }
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "298e69fdd05d1ebb308d5683f2537813b0b2720d5246316e06b0704156e8add2",
+        "facesMatched": true,
+        "notes": "公式検索の呪文欄にもパワー4000が表示される。公式画像ではクリーチャー面のみの値で、呪文面のパワーには含めない。"
+      },
+      "canonicalId": "dm23rp2-032"
+    },
+    {
+      "id": "dm24ex4-PR024",
+      "name": "人気魚 / ♪大空の ムーンサルト やや斜め",
+      "faces": [
+        {
+          "name": "人気魚",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターンのはじめに、このクリーチャーを手札に戻してもよい。そうしたら、マジック・メクレイド５する。（マジック・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のマジックを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "マジック・フィッシュ",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "♪大空の ムーンサルト やや斜め",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手は自身のアンタップしているクリーチャーを２体選び、手札に戻す。",
+          "race": "マジック・ソング",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-PR024",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-PR024a.jpg",
+      "spec": {
+        "g174Start": [
+          {
+            "op": "SelfHand299",
+            "optional": true,
+            "afterAttempt": [
+              {
+                "op": "Raid767",
+                "race": "マジック",
+                "max": 5
+              }
+            ]
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "♪大空の ムーンサルト やや斜め",
+          "cost": 5,
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "race": "マジック・ソング",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "OpponentSelect",
+              "n": 2,
+              "to": "hand",
+              "toOwnerHand": true,
+              "filter": {
+                "untapped": true
+              }
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "c35909d401aa3d84bacb1bba49afdb75479a28bd3ad107378564150efee20d13",
+        "facesMatched": true,
+        "notes": "公式検索の呪文欄にもパワー4000が表示される。公式画像ではクリーチャー面のみの値で、呪文面のパワーには含めない。"
+      },
+      "canonicalId": "dm23rp2-032"
+    },
+    {
+      "id": "dm23rp2x-048",
+      "name": "マーチングバトン ダイダイ",
+      "faces": [
+        {
+          "name": "マーチングバトン ダイダイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{STP} S・トリガー・プラス（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、このクリーチャーに{x+}能力を与える）\n{x+}このクリーチャーが出た時、自分のクリーチャーを２体マナゾーンに置く。その後、相手は自身のクリーチャーを２体選び、マナゾーンに置く。\nこのクリーチャーを自分のマナゾーンから召喚してもよい。",
+          "race": "ジャイアント・スノーフェアリー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-048",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-048.jpg",
+      "spec": {
+        "trigger": true,
+        "triggerPlus": true,
+        "manaSummon": true,
+        "g34Plus": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "n": 2,
+            "to": "mana",
+            "toOwnerMana": true,
+            "filter": {
+              "creature": true
+            },
+            "implicitBattleSelection": true,
+            "g187OwnPick": true,
+            "title": "マナゾーンに置く自分のクリーチャーを2体指定する",
+            "after": [
+              {
+                "op": "OpponentSelect",
+                "n": 2,
+                "to": "mana",
+                "toOwnerMana": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "fe0a4e90b07c95647462e1056a87e32d9565759da1153f09ac9b96f66fefaddf",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-048"
+    },
+    {
+      "id": "dm24bd5-042",
+      "name": "マーチングバトン ダイダイ",
+      "faces": [
+        {
+          "name": "マーチングバトン ダイダイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{STP} S・トリガー・プラス（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、このクリーチャーに{x+}能力を与える）\n{x+} このクリーチャーが出た時、自分のクリーチャーを２体マナゾーンに置く。その後、相手は自身のクリーチャーを２体選び、マナゾーンに置く。\nこのクリーチャーを自分のマナゾーンから召喚してもよい。",
+          "race": "ジャイアント・スノーフェアリー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd5-042",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd5-042.jpg",
+      "spec": {
+        "trigger": true,
+        "triggerPlus": true,
+        "manaSummon": true,
+        "g34Plus": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "n": 2,
+            "to": "mana",
+            "toOwnerMana": true,
+            "filter": {
+              "creature": true
+            },
+            "implicitBattleSelection": true,
+            "g187OwnPick": true,
+            "title": "マナゾーンに置く自分のクリーチャーを2体指定する",
+            "after": [
+              {
+                "op": "OpponentSelect",
+                "n": 2,
+                "to": "mana",
+                "toOwnerMana": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "d99e0a5d218556b8f7a3c86738db79fe197df99a718866a94d320fe1979bcaea",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-048"
+    },
+    {
+      "id": "dm24ex4-076",
+      "name": "マーチングバトン ダイダイ",
+      "faces": [
+        {
+          "name": "マーチングバトン ダイダイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{STP} S・トリガー・プラス（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、このクリーチャーに{x+}能力を与える）\n{x+} このクリーチャーが出た時、自分のクリーチャーを２体マナゾーンに置く。その後、相手は自身のクリーチャーを２体選び、マナゾーンに置く。\nこのクリーチャーを自分のマナゾーンから召喚してもよい。",
+          "race": "ジャイアント・スノーフェアリー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-076",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-076.jpg",
+      "spec": {
+        "trigger": true,
+        "triggerPlus": true,
+        "manaSummon": true,
+        "g34Plus": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "n": 2,
+            "to": "mana",
+            "toOwnerMana": true,
+            "filter": {
+              "creature": true
+            },
+            "implicitBattleSelection": true,
+            "g187OwnPick": true,
+            "title": "マナゾーンに置く自分のクリーチャーを2体指定する",
+            "after": [
+              {
+                "op": "OpponentSelect",
+                "n": 2,
+                "to": "mana",
+                "toOwnerMana": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "0fbf8b1bfedecaa12f4f7314ea9ecc0cdd95a0d40aec97287854c44ce2c26f3a",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-048"
+    },
+    {
+      "id": "dm24ex4-PR036",
+      "name": "マーチングバトン ダイダイ",
+      "faces": [
+        {
+          "name": "マーチングバトン ダイダイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{STP} S・トリガー・プラス（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、このクリーチャーに{x+}能力を与える）\n{x+} このクリーチャーが出た時、自分のクリーチャーを２体マナゾーンに置く。その後、相手は自身のクリーチャーを２体選び、マナゾーンに置く。\nこのクリーチャーを自分のマナゾーンから召喚してもよい。",
+          "race": "ジャイアント・スノーフェアリー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-PR036",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-PR036.jpg",
+      "spec": {
+        "trigger": true,
+        "triggerPlus": true,
+        "manaSummon": true,
+        "g34Plus": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "n": 2,
+            "to": "mana",
+            "toOwnerMana": true,
+            "filter": {
+              "creature": true
+            },
+            "implicitBattleSelection": true,
+            "g187OwnPick": true,
+            "title": "マナゾーンに置く自分のクリーチャーを2体指定する",
+            "after": [
+              {
+                "op": "OpponentSelect",
+                "n": 2,
+                "to": "mana",
+                "toOwnerMana": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "93472c824e33a1248c4f520debbd2f7deacf644cfb9ed32915fdf87fef5cf6b7",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-048"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp2-044": 4,
+      "dm23rp2-032": 4,
+      "dm23rp2-048": 4,
+      "dm23rp2x-044": 4,
+      "dm23rp2x-032": 4,
+      "dm24ex4-064": 4,
+      "dm24ex4-PR024": 4,
+      "dm23rp2x-048": 4,
+      "dm24bd5-042": 4,
+      "dm24ex4-076": 4,
+      "dm24ex4-PR036": 4
+    }
+  }
+}
