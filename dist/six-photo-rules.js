@@ -4680,8 +4680,13 @@ export function createSixPhotoRules(api){
     t={...t,filter:{...t.filter,maxPower:12000}};
   }const owner=t.owner==='self'?t.p:t.owner??1-t.p,ps=t.anyOwner?[t.p,1-t.p]:[owner],candidates=ps.flatMap(p=>s.players[p].battle.filter(y=>y.uid!==t.excludeUid&&matches(s,p,y,{creature:!t.element,...t.filter})&&(!t.g824Panya||panyaCanReturn(s,y))&&(!t.g593OverMana||cost(effective(y,s))>opp.mana.length)&&(!t.g179Other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))));const eligible=t.g810Excluded?candidates.filter(y=>!api.allLayers(y).some(z=>t.g810Excluded.includes(key(z)))):candidates;const rows=t.g741MinPower?lowestPower741(s,eligible):eligible;
   // An instruction to act on one's own card can omit 「選ぶ」 (QA 45224).
+  const manaForRaid=t.owner==='self'&&t.to==='mana'&&t.g587AfterSelection&&t.after?.[0]?.op==='Raid767';
   const options=t.g1044ImplicitTap||t.implicitSelection
-   ?rows.filter(y=>!y.sealed).map(y=>opt(card(y).name,y.uid,y.tapped?5:10,y.cardId))
+   ?rows.filter(y=>!y.sealed).map(y=>{
+    const c=card(y);
+    const score=manaForRaid?(own.deck.length>1?16-cost(c)+(y.tapped?3:0):-1):y.tapped?5:10;
+    return opt(c.name,y.uid,score,y.cardId);
+   })
    :targetOptions(s,t.p,rows);
   if(!options.length&&t.g1163SecondDestroy){secondDestroy1163(s,t);break;}
   if(!options.length&&t.g1040OtherPower){otherTargetPower1040(s,t);break;}

@@ -231133,15 +231133,126 @@
       ],
       "supportBatch": "phase-1202",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23sd1-013",
+      "name": "ボルシャック・爆・ルピア",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "アーマード・ファイアー・バード",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーが破壊された時、アーマード・メクレイド８する。（アーマード・メクレイド８：自分の山札の上から３枚を見る。その中から、コスト８以下のアーマードを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd1-013",
+      "limit": 4,
+      "speedAttacker": true,
+      "g172Death": [
+        {
+          "op": "Raid767",
+          "race": "アーマード",
+          "max": 8
+        }
+      ],
+      "supportBatch": "phase-1203",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-072",
+      "name": "チアコバルト アサギ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "ジャイアント・スノーフェアリー",
+      "text": "このクリーチャーが攻撃する時、自分の他のジャイアントを１つマナゾーンに置いてもよい。そうしたら、ジャイアント・メクレイド５する。（ジャイアント・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のジャイアントを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-072",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "element": true,
+          "g179Other": true,
+          "filter": {
+            "race": "ジャイアント",
+            "faceUp": true
+          },
+          "implicitSelection": true,
+          "to": "mana",
+          "optional": true,
+          "g587AfterSelection": true,
+          "title": "マナゾーンに置く自分の他のジャイアントを選ぶ（任意）",
+          "after": [
+            {
+              "op": "Raid767",
+              "race": "ジャイアント",
+              "max": 5
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1203",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-048",
+      "name": "チアサンライト コハク",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "ジャイアント・スノーフェアリー",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、自分の他のジャイアントを１つマナゾーンに置いてもよい。そうしたら、ジャイアント・メクレイド８する。（ジャイアント・メクレイド８：自分の山札の上から３枚を見る。その中から、コスト８以下のジャイアントを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-048",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "element": true,
+          "g179Other": true,
+          "filter": {
+            "race": "ジャイアント",
+            "faceUp": true
+          },
+          "implicitSelection": true,
+          "to": "mana",
+          "optional": true,
+          "g587AfterSelection": true,
+          "title": "マナゾーンに置く自分の他のジャイアントを選ぶ（任意）",
+          "after": [
+            {
+              "op": "Raid767",
+              "race": "ジャイアント",
+              "max": 8
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1203",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1202,
+    "phase": 1203,
     "checkedAt": "2026-11-14",
-    "baseCount": 7597,
-    "newEffectCards": 4,
+    "baseCount": 7601,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7601,
+    "totalCount": 7604,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -251854,6 +251965,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7597,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1202,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7597,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7601,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

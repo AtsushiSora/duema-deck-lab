@@ -2470,6 +2470,24 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1203&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const raidText=(race,max)=>`${race}・メクレイド${max}する。(${race}・メクレイド${max}:自分の山札の上から3枚を見る。`+
+   `その中からコスト${max}以下の${race}を1枚コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く)`;
+  if(['dm23sd1-013','dm24ex1-079'].includes(d.id)&&text===
+   'スピードアタッカー(このクリーチャーは召喚酔いしない)このクリーチャーが破壊された時'+raidText('アーマード',8))
+   return {speedAttacker:true,g172Death:[{op:'Raid767',race:'アーマード',max:8}]};
+  const giantMax={'dm23rp1-072':5,'dm23rp1-20A':5,'dm23rp1-22B':5,'dm23rp1-048':8,'promoy22-005':8}[d.id];
+  const doubleBreaker=giantMax===8?'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)':'';
+  if(giantMax&&text===doubleBreaker+
+   'このクリーチャーが攻撃する時自分の他のジャイアントを1つマナゾーンに置いてもよい。そうしたら'+raidText('ジャイアント',giantMax))
+   return {...(doubleBreaker?{breaker:2}:{}),g34Attack:[{
+    op:'Target',owner:'self',element:true,g179Other:true,filter:{race:'ジャイアント',faceUp:true},
+    implicitSelection:true,to:'mana',optional:true,g587AfterSelection:true,
+    title:'マナゾーンに置く自分の他のジャイアントを選ぶ（任意）',
+    after:[{op:'Raid767',race:'ジャイアント',max:giantMax}]
+   }]};
+ }
  if(phase>=1202&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(['dmrp01-s05','dm23rp2-TR06','dm23rp2x-TR06'].includes(d.id)&&f.typeText==='クリーチャー'&&text.replaceAll('バトルゾーンに出た時','出た時').replaceAll('バトルゾーンを離れる時','離れる時').replaceAll('山札の一番下','山札の下')===

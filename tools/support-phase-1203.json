@@ -1,0 +1,379 @@
+{
+  "phase": 1203,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7601,
+  "description": "ボルシャック・爆・ルピア、チアコバルト アサギ、チアサンライト コハクの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/42993/",
+    "https://dm.takaratomy.co.jp/rule/qa/42991/",
+    "https://dm.takaratomy.co.jp/rule/qa/43047/",
+    "https://dm.takaratomy.co.jp/rule/qa/43071/",
+    "https://dm.takaratomy.co.jp/rule/qa/42990/"
+  ],
+  "cards": [
+    {
+      "id": "dm23sd1-013",
+      "name": "ボルシャック・爆・ルピア",
+      "faces": [
+        {
+          "name": "ボルシャック・爆・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーが破壊された時、アーマード・メクレイド８する。（アーマード・メクレイド８：自分の山札の上から３枚を見る。その中から、コスト８以下のアーマードを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "アーマード・ファイアー・バード",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd1-013",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23sd1-013.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "g172Death": [
+          {
+            "op": "Raid767",
+            "race": "アーマード",
+            "max": 8
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "b39976829083885dddc14a1f60fd4a579a60cd90f5aeecf3fcf63155736d19ba",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-072",
+      "name": "チアコバルト アサギ",
+      "faces": [
+        {
+          "name": "チアコバルト アサギ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが攻撃する時、自分の他のジャイアントを１つマナゾーンに置いてもよい。そうしたら、ジャイアント・メクレイド５する。（ジャイアント・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のジャイアントを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "ジャイアント・スノーフェアリー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-072",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-072.jpg",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "element": true,
+            "g179Other": true,
+            "filter": {
+              "race": "ジャイアント",
+              "faceUp": true
+            },
+            "implicitSelection": true,
+            "to": "mana",
+            "optional": true,
+            "g587AfterSelection": true,
+            "title": "マナゾーンに置く自分の他のジャイアントを選ぶ（任意）",
+            "after": [
+              {
+                "op": "Raid767",
+                "race": "ジャイアント",
+                "max": 5
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "1c3c97fc17ebbe988a7d62a12252275f3aed667c8db4168b14f9372ca5789f15",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-048",
+      "name": "チアサンライト コハク",
+      "faces": [
+        {
+          "name": "チアサンライト コハク",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、自分の他のジャイアントを１つマナゾーンに置いてもよい。そうしたら、ジャイアント・メクレイド８する。（ジャイアント・メクレイド８：自分の山札の上から３枚を見る。その中から、コスト８以下のジャイアントを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "ジャイアント・スノーフェアリー",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-048",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-048.jpg",
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "element": true,
+            "g179Other": true,
+            "filter": {
+              "race": "ジャイアント",
+              "faceUp": true
+            },
+            "implicitSelection": true,
+            "to": "mana",
+            "optional": true,
+            "g587AfterSelection": true,
+            "title": "マナゾーンに置く自分の他のジャイアントを選ぶ（任意）",
+            "after": [
+              {
+                "op": "Raid767",
+                "race": "ジャイアント",
+                "max": 8
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "68d1c6437c39cd03ac0e56deaf3de96c874638aafd411040a43afdbce78f5c78",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex1-079",
+      "name": "ボルシャック・爆・ルピア",
+      "faces": [
+        {
+          "name": "ボルシャック・爆・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーが破壊された時、アーマード・メクレイド８する。（アーマード・メクレイド８：自分の山札の上から３枚を見る。その中から、コスト８以下のアーマードを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "アーマード・ファイアー・バード",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-079",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex1-079.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "g172Death": [
+          {
+            "op": "Raid767",
+            "race": "アーマード",
+            "max": 8
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "6eb0c504a68e0186823660c238c145f9ec5a9c8ee8648ff422686e254a8d86d2",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23sd1-013"
+    },
+    {
+      "id": "dm23rp1-20A",
+      "name": "チアコバルト アサギ",
+      "faces": [
+        {
+          "name": "チアコバルト アサギ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが攻撃する時、自分の他のジャイアントを１つマナゾーンに置いてもよい。そうしたら、ジャイアント・メクレイド５する。（ジャイアント・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のジャイアントを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "ジャイアント・スノーフェアリー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-20A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-20A.jpg",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "element": true,
+            "g179Other": true,
+            "filter": {
+              "race": "ジャイアント",
+              "faceUp": true
+            },
+            "implicitSelection": true,
+            "to": "mana",
+            "optional": true,
+            "g587AfterSelection": true,
+            "title": "マナゾーンに置く自分の他のジャイアントを選ぶ（任意）",
+            "after": [
+              {
+                "op": "Raid767",
+                "race": "ジャイアント",
+                "max": 5
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "7e8807952d0fe1eb68e5e32f8fe184d25af9f0304b2c4418b5182ef6553bd9bc",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp1-072"
+    },
+    {
+      "id": "dm23rp1-22B",
+      "name": "チアコバルト アサギ",
+      "faces": [
+        {
+          "name": "チアコバルト アサギ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが攻撃する時、自分の他のジャイアントを１つマナゾーンに置いてもよい。そうしたら、ジャイアント・メクレイド５する。（ジャイアント・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のジャイアントを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "ジャイアント・スノーフェアリー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-22B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-22B.jpg",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "element": true,
+            "g179Other": true,
+            "filter": {
+              "race": "ジャイアント",
+              "faceUp": true
+            },
+            "implicitSelection": true,
+            "to": "mana",
+            "optional": true,
+            "g587AfterSelection": true,
+            "title": "マナゾーンに置く自分の他のジャイアントを選ぶ（任意）",
+            "after": [
+              {
+                "op": "Raid767",
+                "race": "ジャイアント",
+                "max": 5
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "92c07f0b78836647ccfc24edab2931780b6ca5215330f0124669dc0b82611ca5",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp1-072"
+    },
+    {
+      "id": "promoy22-005",
+      "name": "チアサンライト コハク",
+      "faces": [
+        {
+          "name": "チアサンライト コハク",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、自分の他のジャイアントを１つマナゾーンに置いてもよい。そうしたら、ジャイアント・メクレイド８する。（ジャイアント・メクレイド８：自分の山札の上から３枚を見る。その中から、コスト８以下のジャイアントを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "ジャイアント・スノーフェアリー",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy22-005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy22-005.jpg",
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "element": true,
+            "g179Other": true,
+            "filter": {
+              "race": "ジャイアント",
+              "faceUp": true
+            },
+            "implicitSelection": true,
+            "to": "mana",
+            "optional": true,
+            "g587AfterSelection": true,
+            "title": "マナゾーンに置く自分の他のジャイアントを選ぶ（任意）",
+            "after": [
+              {
+                "op": "Raid767",
+                "race": "ジャイアント",
+                "max": 8
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "dce2de30c542c4418e7b11b097b6b7b612c91980e5f3ec28faac87f9bb31cee1",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp1-048"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23sd1-013": 4,
+      "dm23rp1-072": 4,
+      "dm23rp1-048": 4,
+      "dm24ex1-079": 4,
+      "dm23rp1-20A": 4,
+      "dm23rp1-22B": 4,
+      "promoy22-005": 4
+    }
+  }
+}
