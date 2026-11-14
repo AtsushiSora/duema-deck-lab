@@ -1,0 +1,402 @@
+{
+  "phase": 1224,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7667,
+  "description": "多目的タッチ短冊 iZaq、ラクリマ・クロウラー、深淵の三咆哮 バウワウジャの全能力を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/rulechange/31631/",
+    "https://dm.takaratomy.co.jp/rule/qa/42046/",
+    "https://dm.takaratomy.co.jp/rule/qa/32503/",
+    "https://dm.takaratomy.co.jp/rule/qa/42946/",
+    "https://dm.takaratomy.co.jp/rule/qa/42058/"
+  ],
+  "cards": [
+    {
+      "id": "dm22rp1-035",
+      "name": "多目的タッチ短冊 iZaq",
+      "faces": [
+        {
+          "name": "多目的タッチ短冊 iZaq",
+          "typeText": "タマシード",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このタマシードをシールドゾーンから手札に加える時、コストを支払わずにすぐ使ってもよい）\nこのタマシードが出た時、または各ターンはじめて自分の呪文または他のタマシードを使った時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-035",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-035.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃もブロックもできなくする相手のクリーチャーを選ぶ"
+          }
+        ],
+        "g1224FirstUse": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃もブロックもできなくする相手のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "fb1f43b8524e8c6fe7c90c39e7865ebff3f500bb1a75ece7f5243d191a0c1e06",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-002",
+      "name": "ラクリマ・クロウラー",
+      "faces": [
+        {
+          "name": "ラクリマ・クロウラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "各ターンの終わりに、自分がそのターン中、コスト５以上の呪文またはコスト５以上のタマシードを使っていたら、このクリーチャーを手札から出してもよい。\nブロッカーブロッカー\nジャストダイバー\nシビルカウント３：このクリーチャーが攻撃する時、自分の水のクリーチャーまたは水のタマシードが合計３つ以上あれば、カードを２枚引いてもよい。",
+          "race": "マジック・アースイーター",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-002",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-002.jpg",
+      "spec": {
+        "blocker": true,
+        "justDiver": true,
+        "g1224HandEnd": 5,
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "any": [
+                {
+                  "creature": true
+                },
+                {
+                  "g295Tamaseed": true
+                }
+              ],
+              "color": "水",
+              "faceUp": true,
+              "g258Civil": 3
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "title": "カードを2枚引く？",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 2
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "8f7d0069dd63f2b5ceb8404f7c894dcb21f3c65be3957706e0e23c5433f82c92",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-4A",
+      "name": "深淵の三咆哮 バウワウジャ",
+      "faces": [
+        {
+          "name": "深淵の三咆哮 バウワウジャ",
+          "typeText": "タマシード/クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このタマシードが出た時、自分の山札の上から４枚を墓地に置いてもよい。\n自分の闇のクリーチャーまたは闇のタマシードが合計４つ以上なければ、バトルゾーンにあるこのタマシードはクリーチャーとして扱わない。\nブロッカーブロッカー\nT・ブレイカー\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体破壊する。\n自分のターン中、このタマシードは破壊以外の方法で離れない。",
+          "race": "アビスロイヤル/ACE",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-4A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-4A.jpg",
+      "spec": {
+        "type": "creature",
+        "seedCreature": true,
+        "aceCivilization": "闇",
+        "blocker": true,
+        "breaker": 3,
+        "g1224OwnNonDestructionStay": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 4,
+            "optional": true,
+            "g1042Together": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "28b4cb5764da45bde788bddc0830df5f0204f753e724b16ab2eb744cc7d759aa",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy21-045",
+      "name": "多目的タッチ短冊 iZaq",
+      "faces": [
+        {
+          "name": "多目的タッチ短冊 iZaq",
+          "typeText": "タマシード",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このタマシードをシールドゾーンから手札に加える時、コストを支払わずにすぐ使ってもよい）\nこのタマシードが出た時、または各ターンはじめて自分の呪文または他のタマシードを使った時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy21-045",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy21-045.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃もブロックもできなくする相手のクリーチャーを選ぶ"
+          }
+        ],
+        "g1224FirstUse": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃もブロックもできなくする相手のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "f313327dd043a750658222422ac5cd0f32a72aa7c57286eb9c3b8b7acd67b4ec",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp1-035"
+    },
+    {
+      "id": "dm22rp1-S4",
+      "name": "深淵の三咆哮 バウワウジャ",
+      "faces": [
+        {
+          "name": "深淵の三咆哮 バウワウジャ",
+          "typeText": "タマシード/クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このタマシードが出た時、自分の山札の上から４枚を墓地に置いてもよい。\n自分の闇のクリーチャーまたは闇のタマシードが合計４つ以上なければ、バトルゾーンにあるこのタマシードはクリーチャーとして扱わない。\nブロッカーブロッカー\nT・ブレイカー\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体破壊する。\n自分のターン中、このタマシードは破壊以外の方法で離れない。",
+          "race": "アビスロイヤル/ACE",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-S4",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-S4.jpg",
+      "spec": {
+        "type": "creature",
+        "seedCreature": true,
+        "aceCivilization": "闇",
+        "blocker": true,
+        "breaker": 3,
+        "g1224OwnNonDestructionStay": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 4,
+            "optional": true,
+            "g1042Together": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "778c89fc8f24d2b1487ae742d2bef3ef0612f1047ae9b5d29fa6ed7daafc64e0",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp1-4A"
+    },
+    {
+      "id": "dm22rp1-6B",
+      "name": "深淵の三咆哮 バウワウジャ",
+      "faces": [
+        {
+          "name": "深淵の三咆哮 バウワウジャ",
+          "typeText": "タマシード/クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このタマシードが出た時、自分の山札の上から４枚を墓地に置いてもよい。\n自分の闇のクリーチャーまたは闇のタマシードが合計４つ以上なければ、バトルゾーンにあるこのタマシードはクリーチャーとして扱わない。\nブロッカーブロッカー\nT・ブレイカー\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体破壊する。\n自分のターン中、このタマシードは破壊以外の方法で離れない。",
+          "race": "アビスロイヤル/ACE",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-6B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-6B.jpg",
+      "spec": {
+        "type": "creature",
+        "seedCreature": true,
+        "aceCivilization": "闇",
+        "blocker": true,
+        "breaker": 3,
+        "g1224OwnNonDestructionStay": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 4,
+            "optional": true,
+            "g1042Together": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "b8653f80bd4eb14d860bb1b2bfd964c2413415650bd0ff9e41631627e253086b",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp1-4A"
+    },
+    {
+      "id": "dm23sp1-006",
+      "name": "深淵の三咆哮 バウワウジャ",
+      "faces": [
+        {
+          "name": "深淵の三咆哮 バウワウジャ",
+          "typeText": "タマシード/クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このタマシードが出た時、自分の山札の上から４枚を墓地に置いてもよい。\n自分の闇のクリーチャーまたは闇のタマシードが合計４つ以上なければ、バトルゾーンにあるこのタマシードはクリーチャーとして扱わない。\nブロッカーブロッカー\nT・ブレイカー\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体選び、破壊する。\n自分のターン中、このタマシードは破壊以外の方法で離れない。",
+          "race": "アビスロイヤル/ACE",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sp1-006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23sp1-006.jpg",
+      "spec": {
+        "type": "creature",
+        "seedCreature": true,
+        "aceCivilization": "闇",
+        "blocker": true,
+        "breaker": 3,
+        "g1224OwnNonDestructionStay": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 4,
+            "optional": true,
+            "g1042Together": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "92906dcbaf1c3e1916ac321c2706d00957f7e3d4132ad023dfcff4c2d3ae74ab",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp1-4A"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22rp1-035": 4,
+      "dm22rp1-002": 4,
+      "dm22rp1-4A": 4,
+      "promoy21-045": 4,
+      "dm22rp1-S4": 4,
+      "dm22rp1-6B": 4,
+      "dm23sp1-006": 4
+    }
+  }
+}

@@ -3022,6 +3022,16 @@ export function createSixPhotoRules(api){
   if(host)api.tap(s,host.p,host.x);
   break;
  }
+ case'g34_LacrimaDeclare1224':{
+  const y=lacrimaHand1224(s,t);
+  if(y)choice(s,t,card(y).name+'のターン終了時の能力を宣言する？',[opt('宣言する',true,25,y.cardId),skip()]);
+  break;
+ }
+ case'g34_LacrimaDeploy1224':{
+  const y=lacrimaHand1224(s,t);
+  if(y)doPut(s,{...t,origin:'hand',target:y.uid});
+  break;
+ }
  case'g34_RevengeDeclare795':{
   const y=revengeCard795(s,t);
   if(y&&(card(y).g795Revenge.opponentDraws===undefined||revengeDraws910(s,t.p,card(y).g795Revenge)))
@@ -5801,6 +5811,15 @@ export function createSixPhotoRules(api){
   }
  }break;
  case'g34_SelfSacrifice407':if(v){const present=s.players.some(p=>p.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))));if(present)start(s,t,[{op:'SelfDestroy'},...(t.defs||[])]);}break;
+ case'g34_LacrimaDeclare1224':if(v){
+  const y=lacrimaHand1224(s,t);
+  if(y&&s.endStep){
+   api.log(s,t.p,'reveal',card(y).name+'のターン終了時の能力を宣言',{cardId:y.cardId});
+   const entry={player:t.p,uid:y.uid,source:y.cardId,effect:'extended',task:{...t,op:'g34_LacrimaDeploy1224'}};
+   if(s.endStep.stage==='resolve')api.enqueue(s,t.p,entry);
+   else s.endStep.deferred.push(entry);
+  }
+ }break;
  case'g34_RevengeDeclare795':if(v){
   const y=revengeCard795(s,t);
   if(y&&s.endStep){
@@ -6346,6 +6365,37 @@ export function createSixPhotoRules(api){
   }
  }
  const sourceDefs=(s,t,defs)=>start(s,t,defs),queue=(s,p,x,defs,source=x.cardId)=>send(s,p,source===x.cardId?x:{...x,cardId:source},'Sequence',{defs});
+ function qualifyingUse1224(s,p,c,seedUid=null,owner=p){
+  const history=s.g1224Uses??=[null,null];
+  for(const player of [p,owner])if(history[player]?.turn!==s.turn)
+   history[player]={turn:s.turn,seen:false,firstSeed:null,distinct:false,maxCost:0};
+  const caster=history[p];
+  caster.maxCost=Math.max(caster.maxCost,cost(c));
+  const use=history[owner],first=!use.seen;
+  if(first){use.seen=true;use.firstSeed=seedUid;}
+  // For the first seed itself, the first different seed or spell is its first qualifying use.
+  if(first||!use.distinct&&seedUid!==use.firstSeed){
+   for(const x of s.players[owner].battle){
+    if(x.faceDown||x.uid===seedUid||!card(x).g1224FirstUse||!first&&x.uid!==use.firstSeed)continue;
+    const defs=effective(x,s).g1224FirstUse;
+    if(defs)queue(s,owner,x,defs);
+   }
+   if(!first)use.distinct=true;
+  }
+ }
+ function lacrimaHand1224(s,t){
+  return s.players[t.p].hand.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial&&!api.handAbilityIgnored(s,x));
+ }
+ function declareLacrima1224(s,p){
+  const use=s.g1224Uses?.[p];
+  if(use?.turn!==s.turn)return false;
+  const ready=s.players[p].hand.filter(x=>{
+   const min=card(x).g1224HandEnd;
+   return min&&use.maxCost>=min&&!api.handAbilityIgnored(s,x);
+  });
+  if(ready.length)put(s,...ready.map(x=>task('g34_LacrimaDeclare1224',p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0})));
+  return ready.length>0;
+ }
  const used=(s,slot,x)=>s[slot]?.[key(x)]===s.turn,mark=(s,slot,x)=>{(s[slot]??={})[key(x)]=s.turn;};
  const onceKey792=(x,d)=>'g792:'+d.g792Once+':'+key(x);
  const used792=(s,x,d)=>!!d?.g792Once&&s.once?.[onceKey792(x,d)]===s.turn;
@@ -6678,6 +6728,7 @@ export function createSixPhotoRules(api){
  canLeave(s,p,x,context={}){
   const c=effective(x,s);
   if((s.extLimits||[]).some(l=>l.kind==='g1087ElementsStay'&&l.player===p)&&!x.sealed)return false;
+  if(context.destroy===false&&s.active===p&&c.g1224OwnNonDestructionStay)return false;
   if(context.destroy===false&&api.isCreature(s,x)&&s.players[p].battle.some(y=>{
    const source=card(y);
    const protects=source.g1087RaceStay&&race(c,source.g1087RaceStay)||
@@ -6857,7 +6908,9 @@ export function createSixPhotoRules(api){
   }
  },
  played(s,p,c,x,origin,permit){
-  if(c.type==='seed'||c.seedCreature||c.natureAce4)for(const source of s.players[p].battle){
+  const seed=c.type==='seed'||c.seedCreature||c.natureAce4;
+  if(seed)qualifyingUse1224(s,p,c,x.uid,x.cardOwner??p);
+  if(seed)for(const source of s.players[p].battle){
    const printed=card(source);
    if(source.sealed||source.uid===x.uid||!printed.g1177TamaseedUse||
     !printed.g204SpellWatch?.g1189Tamaseed&&!api.isCreature(s,source))continue;
@@ -6895,7 +6948,8 @@ export function createSixPhotoRules(api){
    if(card(source).g969FirstJudgeUntap&&!api.ignored(s,source)&&api.isCreature(s,source))
     send(s,p,source,'JudgeUntap969',{g399Attacker:ref},deferred);
  },
- spellCast(s,p,c,origin){
+ spellCast(s,p,c,origin,owner){
+  qualifyingUse1224(s,p,c,null,owner);
   useBlockers524(s,p);consumeReduction456(s,p,c);noncreatureUse448(s,p,c);countExecution(s,p,c);
   // The shared spell count has already recorded this cast, including free casts.
   const firstSpell=s.g37Spells?.[p]?.turn===s.turn&&s.g37Spells[p].n===1;
@@ -7618,6 +7672,13 @@ export function createSixPhotoRules(api){
     });
    if(defs.length)queue(s,p,x,defs);
   }if(effective(x,s).g34Role==='dragonOrb')queue(s,p,x,[C('orbDeploy')]);if(ninja(effective(x,s)))for(const y of(snapshot?.dororon?.[p]||active(s,p,'dororon')))queue(s,p,y,[E('Draw',{n:1,optional:true})]);}},
+ lacrimaActive1224:s=>declareLacrima1224(s,s.active),
+ lacrimaNonActive1224(s){
+  const end=s.endStep;
+  if(end?.stage!=='resolve'||end.g1224LacrimaChecked||s.decision||s.extTasks?.length||s.triggers||s.leaving||s.battleResolution)return false;
+  end.g1224LacrimaChecked=true;
+  return declareLacrima1224(s,1-s.active);
+ },
  revengeEnd795(s){
   const active=s.active;
   const declarations=[active,1-active].flatMap(p=>s.players[p].hand.flatMap(y=>{

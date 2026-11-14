@@ -2470,6 +2470,30 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1224&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const freeze={op:'Target',g190Freeze:'self',title:'攻撃もブロックもできなくする相手のクリーチャーを選ぶ'};
+  if(['dm22rp1-035','promoy21-045'].includes(d.id)&&f.typeText==='タマシード'&&
+   text==='S・トリガーS・トリガー(このタマシードをシールドゾーンから手札に加える時コストを支払わずにすぐ使ってもよい)'+
+    'このタマシードが出た時または各ターンはじめて自分の呪文または他のタマシードを使った時相手のクリーチャーを1体選ぶ。'+
+    '次の自分のターンのはじめまでそのクリーチャーは攻撃もブロックもできない。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[freeze],g1224FirstUse:[freeze]};
+  if(d.id==='dm22rp1-002'&&f.typeText==='クリーチャー'&&
+   text==='各ターンの終わりに自分がそのターン中コスト5以上の呪文またはコスト5以上のタマシードを使っていたらこのクリーチャーを手札から出してもよい。'+
+    'ブロッカーブロッカージャストダイバーシビルカウント3:このクリーチャーが攻撃する時'+
+    '自分の水のクリーチャーまたは水のタマシードが合計3つ以上あればカードを2枚引いてもよい。')
+   return {blocker:true,justDiver:true,g1224HandEnd:5,
+    g34Attack:[{op:'IfOwn',filter:{any:[{creature:true},{g295Tamaseed:true}],color:'水',faceUp:true,g258Civil:3},
+     defs:[{op:'Offer',title:'カードを2枚引く？',defs:[{op:'Draw',n:2}]}]}]};
+  if(['dm22rp1-4A','dm22rp1-S4','dm22rp1-6B','dm23sp1-006'].includes(d.id)&&f.typeText==='タマシード/クリーチャー'&&
+   text==='このタマシードが出た時自分の山札の上から4枚を墓地に置いてもよい。'+
+    '自分の闇のクリーチャーまたは闇のタマシードが合計4つ以上なければバトルゾーンにあるこのタマシードはクリーチャーとして扱わない。'+
+    'ブロッカーブロッカーT・ブレイカーこのクリーチャーが攻撃する時相手のクリーチャーを1体'+
+    (d.id==='dm23sp1-006'?'選び':'')+'破壊する。自分のターン中このタマシードは破壊以外の方法で離れない。')
+   return {type:'creature',seedCreature:true,aceCivilization:'闇',blocker:true,breaker:3,g1224OwnNonDestructionStay:true,
+    effect:'sixPhoto',g34Tasks:[{op:'Mill',n:4,optional:true,g1042Together:true}],
+    g34Attack:[{op:'Target',to:'grave',filter:{creature:true}}]};
+ }
  if(phase>=1223&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';

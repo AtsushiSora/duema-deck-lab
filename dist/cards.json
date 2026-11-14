@@ -234148,15 +234148,141 @@
       "g1223DestroyOnlyStay": true,
       "supportBatch": "phase-1223",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-035",
+      "name": "多目的タッチ短冊 iZaq",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（このタマシードをシールドゾーンから手札に加える時、コストを支払わずにすぐ使ってもよい）\nこのタマシードが出た時、または各ターンはじめて自分の呪文または他のタマシードを使った時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-035",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "g190Freeze": "self",
+          "title": "攻撃もブロックもできなくする相手のクリーチャーを選ぶ"
+        }
+      ],
+      "g1224FirstUse": [
+        {
+          "op": "Target",
+          "g190Freeze": "self",
+          "title": "攻撃もブロックもできなくする相手のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1224",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-002",
+      "name": "ラクリマ・クロウラー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "マジック・アースイーター",
+      "text": "各ターンの終わりに、自分がそのターン中、コスト５以上の呪文またはコスト５以上のタマシードを使っていたら、このクリーチャーを手札から出してもよい。\nブロッカーブロッカー\nジャストダイバー\nシビルカウント３：このクリーチャーが攻撃する時、自分の水のクリーチャーまたは水のタマシードが合計３つ以上あれば、カードを２枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-002",
+      "limit": 4,
+      "blocker": true,
+      "justDiver": true,
+      "g1224HandEnd": 5,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "any": [
+              {
+                "creature": true
+              },
+              {
+                "g295Tamaseed": true
+              }
+            ],
+            "color": "水",
+            "faceUp": true,
+            "g258Civil": 3
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを2枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 2
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1224",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-4A",
+      "name": "深淵の三咆哮 バウワウジャ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 13000,
+      "race": "アビスロイヤル/ACE",
+      "text": "このタマシードが出た時、自分の山札の上から４枚を墓地に置いてもよい。\n自分の闇のクリーチャーまたは闇のタマシードが合計４つ以上なければ、バトルゾーンにあるこのタマシードはクリーチャーとして扱わない。\nブロッカーブロッカー\nT・ブレイカー\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体破壊する。\n自分のターン中、このタマシードは破壊以外の方法で離れない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-4A",
+      "limit": 4,
+      "seedCreature": true,
+      "aceCivilization": "闇",
+      "blocker": true,
+      "breaker": 3,
+      "g1224OwnNonDestructionStay": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 4,
+          "optional": true,
+          "g1042Together": true
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1224",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1223,
+    "phase": 1224,
     "checkedAt": "2026-11-14",
-    "baseCount": 7663,
-    "newEffectCards": 4,
+    "baseCount": 7667,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7667,
+    "totalCount": 7670,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -255121,6 +255247,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7663,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1223,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7663,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7667,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
