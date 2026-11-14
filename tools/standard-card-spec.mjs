@@ -2475,6 +2475,20 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1271&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const lines=f.abilityText.split('\n').map(normalize);
+  if(d.id==='dm36-005'&&lines.length===3&&keyword(lines[2],'W・ブレイカー')&&
+   lines[0]==='地獄返霊4(このクリーチャーが攻撃する時またはその能力を使った時自分の墓地からカードを4枚好きな順序で山札の一番下に置いてもよい。そうした場合このクリーチャーの能力を使う)'&&
+   lines[1]==='相手のクリーチャーを1体破壊する。')
+   return {breaker:2,g1271HellReikon:true,g34Attack:[{op:'HellReikon1271'}]};
+  const bonus='ブレイク・ボーナス(このクリーチャーの攻撃が終わった時このクリーチャーがまだバトルゾーンにあればその攻撃中にブレイクしたシールド1枚につき次の能力を1回使ってもよい)';
+  if(lines.length===2&&keyword(lines[0],'W・ブレイカー')){
+   if(d.id==='dm33-034'&&lines[1]===bonus+'自分の山札の上から2枚をマナゾーンに置く。')
+    return {breaker:2,g1271BreakBonus:{op:'Ramp',n:2,g809Together:true}};
+   if(d.id==='dm33-025'&&lines[1]===bonus+'相手は自身の山札の上から4枚を墓地に置く。')
+    return {breaker:2,g1271BreakBonus:{op:'Mill',opponent:true,n:4,g1042Together:true}};
+  }
+ }
  if(phase>=1270&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText),lines=f.abilityText.split('\n').map(normalize);
   if(['dm14-s06','dmc55-020'].includes(d.id)&&

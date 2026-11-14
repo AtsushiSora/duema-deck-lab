@@ -3111,6 +3111,17 @@ export function createSixPhotoRules(api){
   choice(s,t,'破壊する相手のクリーチャーを選ぶ',chainOptions838(s,t.p));
   break;
  }
+ case'g34_HellReikon1271':{
+  const source=live(s,t);
+  if(t.repeat&&(!source||source.sealed||!effective(source,s).g1271HellReikon||
+    !targetOptions(s,t.p,creatures(s,1-t.p)).length))break;
+  start(s,t,[{op:'Select',origin:'grave',to:'deck',n:4,optional:true,
+   g837Reikon:[{op:'HellReikonDestroy1271'}],title:'地獄返霊4：山札の下に置く順に墓地のカードを4枚選ぶ'}]);
+  break;
+ }
+ case'g34_HellReikonDestroy1271':
+  choice(s,t,'地獄返霊で破壊する相手のクリーチャーを選ぶ',targetOptions(s,t.p,creatures(s,1-t.p)));
+  break;
  case'g34_GroupFreeze':
   for(const {p,y}of groupPowerRows(s,t))freeze(s,t,p,y);
   break;
@@ -5729,6 +5740,11 @@ export function createSixPhotoRules(api){
   if(chosen)move(s,chainMatches838(s,rows,chosen).map(y=>({player:owner,uid:y.uid,to:'grave',destroy:true,controller:t.p})));
   break;
  }
+ case'g34_HellReikonDestroy1271':
+  if(v)move(s,[{player:1-t.p,uid:v,to:'grave',destroy:true,controller:t.p}],{
+   kind:'g1271HellReikon',p:t.p,source:t.source,uid:t.uid,incarnation:t.incarnation||0
+  });
+  break;
  case'g34_RomanoCast1120':
   if(v&&romanoSpells1120(s,t).some(o=>o.value.uid===v.uid&&o.value.face===v.face&&o.value.serial===v.serial))
    cast(s,t.p,v.uid,true,null,v.face,null,'hand',card(t.source).name);
@@ -8107,7 +8123,14 @@ export function createSixPhotoRules(api){
   const refs=context?.g756Breaker;
   if(!count||!refs)return;
   const attack=s.attackLifecycle;
-  if(attack?.player===context.player&&refs.includes(key(attack)))attack.g1075BrokeShield=true;
+  if(attack?.player===context.player&&refs.includes(key(attack))){
+   attack.g1075BrokeShield=true;
+   const x=s.players[attack.player].battle.find(x=>key(x)===key(attack));
+   if(x&&card(x).g1271BreakBonus){
+    const counts=(attack.g1271BreakCounts??={});
+    counts[key(attack)]=(counts[key(attack)]||0)+count;
+   }
+  }
   if(s.g756Breaks?.turn!==s.turn)s.g756Breaks={turn:s.turn,players:[[],[]]};
   const breaks=s.g756Breaks.players[context.player];
   if(!breaks.some(prior=>prior.length===refs.length&&prior.every((r,i)=>r===refs[i])))breaks.push(refs);
@@ -8513,6 +8536,11 @@ export function createSixPhotoRules(api){
    source,effect:'extended',task:task('g34_DestroyAfterAttack1197',p,source,{targets})
   });
  },
+ hellReikonAgain1271(s,t){
+  const x=live(s,t);
+  if(x&&!x.sealed&&effective(x,s).g1271HellReikon)
+   queue(s,t.p,x,[{op:'HellReikon1271',repeat:true}]);
+ },
  attackEnd(s,a,x){
   if(x&&!x.sealed&&api.isCreature(s,x)){
    const targets=api.allLayers(x).map(layer=>({uid:layer.uid,incarnation:layer.incarnation||0}));
@@ -8540,6 +8568,10 @@ export function createSixPhotoRules(api){
   }
   const endRefs=[...(a.g543Refs||[]),...(x?api.allLayers(x).map(key):[])];if(a.g543First)for(const r of s.extLimits||[])if(r.kind==='g543Shinka'&&r.when==='firstAttackEnd'&&endRefs.includes(key(r)))api.enqueue(s,r.p,{source:r.source,effect:'extended',task:task('g34_ResolveDelay537',r.p,r.source,{uid:r.uid,incarnation:r.incarnation,defs:[{op:'Untap',g191First:true}]})});for(const r of a.g542After||[])api.enqueue(s,r.p,{source:r.source,effect:'extended',task:task('g34_ResolveDelay537',r.p,r.source,{uid:r.uid,incarnation:r.incarnation,defs:r.defs})});for(const t of a.g176Deaths||[]){const y=s.players[t.p].battle.find(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===t.incarnation));if(y)api.enqueue(s,t.p,{uid:y.uid,source:t.source,effect:'extended',task:task('g34_ExactMove',t.p,t.source,{owner:t.p,target:y.uid,targetIncarnation:y.incarnation||0,to:'grave'})});}if(!x)return;
   const endCard=effective(x,s);
+  // Decide the number at attack end, then resolve each optional use independently (QA 37698).
+  const breaks=a.g1271BreakCounts?.[key(x)]||0;
+  if(!x.sealed&&endCard.g1271BreakBonus)for(let i=0;i<breaks;i++)
+   queue(s,a.player,x,[{op:'Offer',title:'ブレイク・ボーナスを使う？',defs:[endCard.g1271BreakBonus]}]);
   if(!x.sealed&&endCard.g474AttackEnd&&(!endCard.g1020FirstOwnAttack||a.g543First)&&
    (!endCard.g1075AttackEndRequiresBreak||a.g1075BrokeShield))
    queue(s,a.player,x,endCard.g474AttackEnd);

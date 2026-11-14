@@ -1377,12 +1377,13 @@ function advanceLeaving(s){if(s.lossEvent)return;
  }));
  const watchers=[graveWatchers1126(s,0),graveWatchers1126(s,1)];
  if(watchers.some(rows=>rows.length))leaveWatchers1126.set(batch,{watchers,departures});
- let destroyedForDraw=0;
+ let directDestructions=0;
  for(const row of batch.rows){
   const own=s.players[row.player],top=own.battle.find(x=>x.uid===row.uid),plan=row.plan;if(!top)continue;
   // Count direct destructions that still put the selected creature in the graveyard (QA 34924).
-  if(batch.after?.kind==='g865DrawDestroyed'&&row.destroy!==false&&row.to==='grave'&&(!row.death||row.death==='grave')&&(plan.kind==='leave'||plan.kind==='star'))
-   destroyedForDraw++;
+  if((batch.after?.kind==='g865DrawDestroyed'||batch.after?.kind==='g1271HellReikon')&&
+   row.destroy!==false&&row.to==='grave'&&(!row.death||row.death==='grave')&&(plan.kind==='leave'||plan.kind==='star'))
+   directDestructions++;
   if(plan.kind==='graveBottomStay1202'){
    const cards=plan.cards.map(uid=>remove(own.grave,uid));
    for(const x of cards)clearBattleState(x,'deck');
@@ -1449,7 +1450,9 @@ function advanceLeaving(s){if(s.lossEvent)return;
  const discardTasks=returnDiscards.filter(({uid,owner})=>s.players[owner].hand.some(x=>x.uid===uid)).map(({p,source})=>
   extra.task('discard',p,source,{n:1,causedBy:p,selfDiscard:true,controller:p}));
  if(discardTasks.length)extra.put(s,...discardTasks);
- if(destroyedForDraw)extra.put(s,extra.task('draw',batch.after.player,batch.after.source,{n:destroyedForDraw}));
+ if(directDestructions&&batch.after.kind==='g865DrawDestroyed')
+  extra.put(s,extra.task('draw',batch.after.player,batch.after.source,{n:directDestructions}));
+ if(directDestructions&&batch.after.kind==='g1271HellReikon')extra.six.hellReikonAgain1271(s,batch.after);
  if(batch.after?.kind==='limit')limitNextTurn(s,batch.after.player,card(batch.after.source));
  if(batch.after?.kind==='battleResult'){
   finishBattleResult(s,batch.after.winner,batch.after.late,batch.after.winning,batch.after.both,batch.after.losses,batch.after.g1155PriorEffect,batch.after.resumeTasks,batch.after.g1237BattleToken,batch.after.g1237Blocker);
