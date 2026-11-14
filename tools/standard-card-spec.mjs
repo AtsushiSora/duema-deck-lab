@@ -2475,6 +2475,20 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1294&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmex14-021'&&
+   text==='このクリーチャーが攻撃する時自分のシールドゾーンに表向きで置かれたコスト7以下のクリーチャーを1体バトルゾーンに出してもよい。')
+   return {g34Attack:[{op:'FaceUpShieldPut1294',max:7}]};
+  if(/^dm23rp4x?-044$/.test(d.id)&&
+   text==='革命チェンジ:コスト5以上のジャイアント(自分のコスト5以上のジャイアントが攻撃する時そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい)'+
+    'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)このクリーチャーが出た時自分の山札の上から2枚をマナゾーンに置く。'+
+    '自分のクリーチャーが離れる時かわりに手札に戻してもよい。')
+   return {rev:{race:'ジャイアント',min:5},breaker:2,effect:'sixPhoto',g34Tasks:[{op:'Ramp',n:2,g809Together:true}],g1294AllyLeaveHand:true};
+  if(['dmex02-057','dmex08-256'].includes(d.id)&&
+   /^スピードアタッカーW・ブレイカー自分のターン中自分のビートジョッキーは破壊されず自分はゲームに負けず相手は(ゲームに)?勝てない。$/.test(text))
+   return {speedAttacker:true,breaker:2,g1294Bouncer:true};
+ }
  if(phase>=1293&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(/^dm23rp4x?-015$/.test(d.id)&&
