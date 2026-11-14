@@ -2478,6 +2478,18 @@ export function standardCardSpec(d,{phase=165}={}){
   const twin=(g34Tasks,defs,extra={})=>({effect:'sixPhoto',g34Tasks,...extra,spellFace:{type:'spell',
    name:spell.name,cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,
    race:spell.race,effect:'sixPhoto',g34Tasks:defs}});
+  if(phase>=1211&&['dm23rp2-023','dm23rp2x-023'].includes(d.id)&&
+     text===friend('ジャイアント')+'このクリーチャーがバトルに勝った時カードを1枚引きその後相手のシールドを1つブレイクする。ガードマンW・ブレイカー'&&
+     back==='このターン自分のクリーチャー1体のパワーを+4000する。その後相手のクリーチャーを1体選んでもよい。その2体をバトルさせる。')
+   return twin(burst('ジャイアント'),[{op:'FightBuff241',power:4000,enemyOptional:true,spell:true}],
+    {guardman:true,breaker:2,g189BattleWin:[{op:'Draw',n:1},{op:'Break497',n:1,g747CreatureBreak:true,g913DepartedBreaker:true}]});
+  if(phase>=1211&&['dm23rp2-009','dm23rp2x-009'].includes(d.id)&&
+     text==='ブロッカーブロッカーW・ブレイカー'+friend('メカ')&&
+     back==='自分のクリーチャー1体につき次のうちいずれか1つを選ぶ。▶相手のクリーチャーを1体選びタップする。▶カードを1枚引く。')
+   return twin(burst('メカ'),[{op:'CountOwn538',filter:{creature:true},mode:'choose',def:{op:'Choose',g184Modes:true,modes:[
+    {label:'相手のクリーチャーを1体タップする',defs:[{op:'Target',tap:true,spell:true}]},
+    {label:'カードを1枚引く',defs:[{op:'Draw',n:1}]}
+   ]}}],{blocker:true,breaker:2});
   if(['dm23rp2-057','dm23rp2x-057'].includes(d.id)&&text===friend('マジック')&&back==='カードを3枚引く。')
    return twin(burst('マジック'),[{op:'Draw',n:3}]);
   if(['dm23rp2-020','dm23rp2x-020'].includes(d.id)&&text===friend('アーマード')+'自分の他のファイアー・バードのパワーを+2000する。'&&
@@ -2490,6 +2502,15 @@ export function standardCardSpec(d,{phase=165}={}){
    return twin([{op:'Look',n:2,g841DeckPeek:true,rest:'keep',stages:[{n:1,to:'mana'}]}],
     [{op:'Sweep',both:true,to:'mana',toOwnerMana:true,tapped:true,filter:{creature:true,faceUp:true}}]);
  }
+ if(phase>=1211&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'&&
+    ['dm23rp2-026','dm23rp2x-026','promoy22-027'].includes(d.id)&&
+    normalize(f.abilityText)==='{STP}S・トリガー・プラス(このクリーチャーを自分のシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい。それが相手のターンでそのターン中に自分のシールドが2つ以上ブレイクされていればこのクリーチャーに{x+}能力を与える)'+
+     '{x+}このクリーチャーが出た時相手のクリーチャーを3体まで選ぶ。このターンそれらのクリーチャーは自分を攻撃できない。'+
+     'このクリーチャーが出た時自分のマナゾーンのカードを1枚手札に戻してもよい。このクリーチャーは相手プレイヤーを攻撃できない。')
+  return {trigger:true,triggerPlus:true,noPlayerAttack:true,effect:'sixPhoto',
+   g34Plus:[{op:'Select',origin:'battle',owner:'opponent',n:3,optional:true,g173Targets:true,g193Select:true,
+    filter:{creature:true},g567PlayerStop:'end',spell:false,title:'プレイヤーへの攻撃を止める相手のクリーチャーを3体まで選ぶ'}],
+   g34Tasks:[{op:'Select',origin:'mana',to:'hand',n:1,optional:true,title:'手札に戻す自分のマナを1枚選ぶ'}]};
  if(phase>=1209&&d?.status==='complete'&&d.faces.length===2&&f.typeText==='クリーチャー'&&d.faces[1].typeText==='呪文'){
   const spell=d.faces[1],text=normalize(f.abilityText),back=normalize(spell.abilityText);
   const breaker=d.id==='dm24ex2-Cho037'?'W・ブレイカー':'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)';

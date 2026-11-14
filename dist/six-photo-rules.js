@@ -362,6 +362,7 @@ export function createSixPhotoRules(api){
   return !evolution||!linked.length&&race(effective(x,s),'ゴッド');
  }
  // Effect battles use the normal battle pipeline; choices retain physical incarnation.
+ const fightSpellCost241=t=>t.spell?cost(faces(card(t.source)).at(-1)):undefined;
  const fightRows240=(s,p,owner,filter)=>targetOptions(s,p,creatures(s,owner).filter(x=>!x.sealed&&(!filter||matches(s,owner,x,filter))));
  const fightUnit240=(s,p,r,followEvolution=false)=>r&&creatures(s,p).find(x=>!x.sealed&&
   (followEvolution?api.allLayers(x):[x]).some(y=>y.uid===r.uid&&(y.incarnation||0)===r.incarnation));
@@ -1334,11 +1335,12 @@ export function createSixPhotoRules(api){
    return;
   }
   if(t.g713SameCreature){recoverSameCreature713(s,t);return;}
-  if(t.g671PlayerLockPower)for(const row of t.rows||[]){
+  if(t.g671PlayerLockPower||t.g567PlayerStop)for(const row of t.rows){
    const target=s.players[row.p].battle.find(x=>x.uid===row.uid);
    if(!target||target.sealed)continue;
-   (target.powerModifiers??=[]).push({amount:t.g671PlayerLockPower,expires:'end',who:s.active,spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});
-   stopPlayerAttack567(s,{...t,g567PlayerStop:'end'},target);
+   if(t.g671PlayerLockPower)(target.powerModifiers??=[]).push({amount:t.g671PlayerLockPower,expires:'end',who:s.active,
+    spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});
+   stopPlayerAttack567(s,{...t,g567PlayerStop:t.g567PlayerStop??'end'},target);
   }
   if(t.g961TrapCommune){
    const targets=(t.rows||[]).filter(r=>creatures(s,t.p).some(x=>x.uid===r.uid&&!x.sealed&&matches(s,t.p,x,t.filter)));
@@ -3016,6 +3018,7 @@ export function createSixPhotoRules(api){
   if(t.mode==='maxCost')start(s,t,[{...t.def,max:n}]);
   else if(!n)break;
   else if(t.mode==='select')start(s,t,[{...t.def,n}]);
+  else if(t.mode==='choose')start(s,t,[{...t.def,g1045Preselect:n}]);
   else if(t.mode==='belowCost')start(s,t,[{...t.def,filter:{...t.def.filter,belowCost:n}}]);
   else if(t.mode==='repeat')start(s,t,Array.from({length:n},()=>structuredClone(t.def)));
   else throw Error('未対応のクリーチャー数効果');
@@ -3484,7 +3487,7 @@ export function createSixPhotoRules(api){
   choice(s,t,'バトルする2体目を選ぶ',rows.map(o=>({...o,score:fightPairScore586(s,t,a,fightUnit240(s,o.value.player,o.value),t.first.player,o.value.player)})));
   break;
  }
- case'g34_FightBuff241':{const enemies=fightRows240(s,t.p,1-t.p),allies=fightRows240(s,t.p,t.p);if(allies.length)choice(s,t,'このターン、パワーを+'+t.power+'する自分のクリーチャーを1体選ぶ',allies.map(o=>{const a=own.battle.find(y=>y.uid===o.value),boosted={...a,powerModifiers:[...(a.powerModifiers||[]),{amount:t.power,spellSource:t.spell?t.source:undefined,spellCost:t.spell?cost(card(t.source)):undefined}]},scores=enemies.map(o=>fightScore240(s,boosted,s.players[1-t.p].battle.find(y=>y.uid===o.value)));return{...o,value:{uid:a.uid,incarnation:a.incarnation||0},score:scores.length?Math.max(...scores):5+cost(card(a))};}));break;}
+ case'g34_FightBuff241':{const enemies=fightRows240(s,t.p,1-t.p),allies=fightRows240(s,t.p,t.p);if(allies.length)choice(s,t,'このターン、パワーを+'+t.power+'する自分のクリーチャーを1体選ぶ',allies.map(o=>{const a=own.battle.find(y=>y.uid===o.value),boosted={...a,powerModifiers:[...(a.powerModifiers||[]),{amount:t.power,spellSource:t.spell?t.source:undefined,spellCost:fightSpellCost241(t)}]},scores=enemies.map(o=>fightScore240(s,boosted,s.players[1-t.p].battle.find(y=>y.uid===o.value)));return{...o,value:{uid:a.uid,incarnation:a.incarnation||0},score:scores.length?Math.max(...scores):5+cost(card(a))};}));break;}
  case'g34_Fight240':{const enemies=fightRows240(s,t.p,1-t.p,t.enemyFilter);if(!enemies.length)break;if(t.self){if(x&&api.isCreature(s,x)&&!x.sealed)put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:x.uid,incarnation:x.incarnation||0}});}else{const allies=fightRows240(s,t.p,t.p).filter(o=>!t.g419FightFilter||matches(s,t.p,own.battle.find(y=>y.uid===o.value),t.g419FightFilter));if(allies.length)choice(s,t,'バトルする自分のクリーチャーを1体選ぶ',[...allies.map(o=>{const a=own.battle.find(y=>y.uid===o.value);return{...o,value:{uid:a.uid,incarnation:a.incarnation||0},score:Math.max(...enemies.map(o=>fightScore240(s,a,s.players[1-t.p].battle.find(y=>y.uid===o.value))))};}),...(t.optional?[skip()]:[])]);}break;}
  case'g34_FightEnemy240':{
   const a=fightAttacker240(s,t)?.x;
@@ -5375,7 +5378,7 @@ export function createSixPhotoRules(api){
   put(s,{...t,op:'g34_FightPairSecond586',p:t.opponentPicks?1-t.p:t.p,first:v,owners});
  }break;
  case'g34_FightPairSecond586':if(v)finishFightPair586(s,t,v);break;
- case'g34_FightBuff241':if(v){const a=fightUnit240(s,t.p,v);if(a){(a.powerModifiers??=[]).push({amount:t.power,expires:'end',who:s.active,spellSource:t.spell?t.source:undefined,spellCost:t.spell?cost(card(t.source)):undefined});put(s,{...t,op:'g34_FightEnemy240',fighter:v,optional:t.enemyOptional});}}break;
+ case'g34_FightBuff241':if(v){const a=fightUnit240(s,t.p,v);if(a){(a.powerModifiers??=[]).push({amount:t.power,expires:'end',who:s.active,spellSource:t.spell?t.source:undefined,spellCost:fightSpellCost241(t)});put(s,{...t,op:'g34_FightEnemy240',fighter:v,optional:t.enemyOptional});}}break;
  case'g34_Fight240':if(v)put(s,{...t,op:'g34_FightEnemy240',fighter:v});break;
  case'g34_TapToUntap748':{
   const source=v&&tapSource748(s,t);

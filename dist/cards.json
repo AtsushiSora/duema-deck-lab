@@ -232240,15 +232240,194 @@
       },
       "supportBatch": "phase-1210",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-023",
+      "name": "マーチングベル シアン / ミーミル・ミュージカル",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "ジャイアント・スノーフェアリー",
+      "text": "ジャイアント・フレンド・バースト（このクリーチャーが出た時、自分の他のジャイアント・クリーチャーを１体タップしてもよい。そうしたら、このクリーチャーの呪文側を、バトルゾーンに置いたままコストを支払わずに唱える。）\nこのクリーチャーがバトルに勝った時、カードを１枚引き、その後、相手のシールドを１つブレイクする。\nガードマン\nW・ブレイカー\n【呪文面】\nこのターン、自分のクリーチャー１体のパワーを+4000する。その後、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-023",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "FriendBurst1210",
+          "race": "ジャイアント"
+        }
+      ],
+      "guardman": true,
+      "breaker": 2,
+      "g189BattleWin": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Break497",
+          "n": 1,
+          "g747CreatureBreak": true,
+          "g913DepartedBreaker": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "ミーミル・ミュージカル",
+        "cost": 3,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "ジャイアント・スキル",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightBuff241",
+            "power": 4000,
+            "enemyOptional": true,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1211",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-009",
+      "name": "星姫械 ミントジュバ / ミンティア・リンギング",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "メカ・デル・ステラ",
+      "text": "ブロッカー ブロッカー\nW・ブレイカー\nメカ・フレンド・バースト（このクリーチャーが出た時、自分の他のメカ・クリーチャーを１体タップしてもよい。そうしたら、このクリーチャーの呪文側を、バトルゾーンに置いたままコストを支払わずに唱える。）\n【呪文面】\n自分のクリーチャー１体につき、次のうちいずれか１つを選ぶ。\n▶相手のクリーチャーを１体選び、タップする。\n▶カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-009",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "FriendBurst1210",
+          "race": "メカ"
+        }
+      ],
+      "blocker": true,
+      "breaker": 2,
+      "spellFace": {
+        "type": "spell",
+        "name": "ミンティア・リンギング",
+        "cost": 4,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "メカ・デル・テック",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountOwn538",
+            "filter": {
+              "creature": true
+            },
+            "mode": "choose",
+            "def": {
+              "op": "Choose",
+              "g184Modes": true,
+              "modes": [
+                {
+                  "label": "相手のクリーチャーを1体タップする",
+                  "defs": [
+                    {
+                      "op": "Target",
+                      "tap": true,
+                      "spell": true
+                    }
+                  ]
+                },
+                {
+                  "label": "カードを1枚引く",
+                  "defs": [
+                    {
+                      "op": "Draw",
+                      "n": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1211",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-026",
+      "name": "ニアピン・モスキート",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 6000,
+      "race": "ジャイアント・インセクト",
+      "text": "{STP} S・トリガー・プラス（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、このクリーチャーに{x+}能力を与える）\n{x+}このクリーチャーが出た時、相手のクリーチャーを３体まで選ぶ。このターン、それらのクリーチャーは自分を攻撃できない。\nこのクリーチャーが出た時、自分のマナゾーンのカードを１枚手札に戻してもよい。\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-026",
+      "limit": 4,
+      "trigger": true,
+      "triggerPlus": true,
+      "noPlayerAttack": true,
+      "effect": "sixPhoto",
+      "g34Plus": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "opponent",
+          "n": 3,
+          "optional": true,
+          "g173Targets": true,
+          "g193Select": true,
+          "filter": {
+            "creature": true
+          },
+          "g567PlayerStop": "end",
+          "spell": false,
+          "title": "プレイヤーへの攻撃を止める相手のクリーチャーを3体まで選ぶ"
+        }
+      ],
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "title": "手札に戻す自分のマナを1枚選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1211",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1210,
+    "phase": 1211,
     "checkedAt": "2026-11-14",
-    "baseCount": 7622,
+    "baseCount": 7625,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7625,
+    "totalCount": 7628,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -253057,6 +253236,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7622,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1210,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7622,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7625,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
