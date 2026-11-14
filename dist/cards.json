@@ -237019,15 +237019,130 @@
       ],
       "supportBatch": "phase-1247",
       "supportKind": "effect"
+    },
+    {
+      "id": "promoy15-067",
+      "name": "ガイアール Re:",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "レッド・コマンド・ドラゴン/ハンター/ハムカツ団",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーは、バトルゾーンに出たターンに、アンタップしているクリーチャーを攻撃できる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy15-067",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g1248EntryAttackUntapped": true,
+      "supportBatch": "phase-1248",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23bd4-006",
+      "name": "ボルシャック・インフィニティ",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "アーマード・ドラゴン/アース・ドラゴン",
+      "text": "W・ブレイカー\n各ターンに一度、自分のドラゴンが離れた時、山札の上から１枚目を表向きにしてもよい。それがドラゴン・エレメントなら、出す。そうでなければ、タップしてマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd4-006",
+      "limit": 4,
+      "breaker": 2,
+      "g1248DragonLeaves": true,
+      "g891OwnCreatureLeaves": [
+        {
+          "op": "Offer",
+          "g792Once": "infinityDragonLeave",
+          "g1042LookFirst": true,
+          "title": "山札の上から1枚を表向きにする？",
+          "defs": [
+            {
+              "op": "InfinityTop1248"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1248",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmpcd02-a01",
+      "name": "ボルメテウス・武者・ドラゴンP'S",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アーマード・ドラゴン/サムライ",
+      "text": "W・ブレイカー\nこのクリーチャーが出た時または攻撃する時、相手のパワー6000以下のクリーチャーを１体破壊してもよい。そうしたら、自分のシールドを１つ墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd02-a01",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "belowPower": 6001,
+            "g199Power": true
+          },
+          "optional": true,
+          "g587AfterSelection": true,
+          "after": [
+            {
+              "op": "ShieldGrave588",
+              "owner": "self",
+              "required": true,
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "belowPower": 6001,
+            "g199Power": true
+          },
+          "optional": true,
+          "g587AfterSelection": true,
+          "after": [
+            {
+              "op": "ShieldGrave588",
+              "owner": "self",
+              "required": true,
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1248",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1247,
+    "phase": 1248,
     "checkedAt": "2026-11-14",
-    "baseCount": 7740,
+    "baseCount": 7743,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7743,
+    "totalCount": 7746,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -258280,6 +258395,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7740,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1247,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7740,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7743,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

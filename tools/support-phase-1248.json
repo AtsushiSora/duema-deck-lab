@@ -1,0 +1,321 @@
+{
+  "phase": 1248,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7743,
+  "description": "ガイアール Re:、ボルシャック・インフィニティ、ボルメテウス・武者・ドラゴンP'Sの全能力を対戦対応し、インフィニティの再録を正規IDに紐付ける。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/44370/",
+    "https://dm.takaratomy.co.jp/rule/qa/44212/",
+    "https://dm.takaratomy.co.jp/rule/qa/42642/",
+    "https://dm.takaratomy.co.jp/rule/qa/47059/",
+    "https://dm.takaratomy.co.jp/rule/qa/42955/",
+    "https://dm.takaratomy.co.jp/rule/qa/43296/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+  ],
+  "cards": [
+    {
+      "id": "promoy15-067",
+      "name": "ガイアール Re:",
+      "faces": [
+        {
+          "name": "ガイアール Re:",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーは、バトルゾーンに出たターンに、アンタップしているクリーチャーを攻撃できる。",
+          "race": "レッド・コマンド・ドラゴン/ハンター/ハムカツ団",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy15-067",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy15-067.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g1248EntryAttackUntapped": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "e3b2900da66a79ecfd7463582bdd25065e0ad24bb7a7fb3f4b87a2ad61e3a18c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23bd4-006",
+      "name": "ボルシャック・インフィニティ",
+      "faces": [
+        {
+          "name": "ボルシャック・インフィニティ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\n各ターンに一度、自分のドラゴンが離れた時、山札の上から１枚目を表向きにしてもよい。それがドラゴン・エレメントなら、出す。そうでなければ、タップしてマナゾーンに置く。",
+          "race": "アーマード・ドラゴン/アース・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd4-006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd4-006.jpg",
+      "spec": {
+        "breaker": 2,
+        "g1248DragonLeaves": true,
+        "g891OwnCreatureLeaves": [
+          {
+            "op": "Offer",
+            "g792Once": "infinityDragonLeave",
+            "g1042LookFirst": true,
+            "title": "山札の上から1枚を表向きにする？",
+            "defs": [
+              {
+                "op": "InfinityTop1248"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "3bd649aa87f1622ad35c13286014cff3d6fd8b259981a1882e1f5d4779c3cb1e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmpcd02-a01",
+      "name": "ボルメテウス・武者・ドラゴンP'S",
+      "faces": [
+        {
+          "name": "ボルメテウス・武者・ドラゴンP'S",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが出た時または攻撃する時、相手のパワー6000以下のクリーチャーを１体破壊してもよい。そうしたら、自分のシールドを１つ墓地に置く。",
+          "race": "アーマード・ドラゴン/サムライ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd02-a01",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmpcd02-a01.jpg",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "belowPower": 6001,
+              "g199Power": true
+            },
+            "optional": true,
+            "g587AfterSelection": true,
+            "after": [
+              {
+                "op": "ShieldGrave588",
+                "owner": "self",
+                "required": true,
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "belowPower": 6001,
+              "g199Power": true
+            },
+            "optional": true,
+            "g587AfterSelection": true,
+            "after": [
+              {
+                "op": "ShieldGrave588",
+                "owner": "self",
+                "required": true,
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "c9bf1800c91166e6866517f7dcce4be74d17baa9014f00162f19e743883b662e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25rp1-T04",
+      "name": "ボルシャック・インフィニティ",
+      "faces": [
+        {
+          "name": "ボルシャック・インフィニティ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n各ターンに一度、自分のドラゴンが離れた時、山札の上から１枚を表向きにしてもよい。それがドラゴンなら出す。そうでなければ、タップしてマナゾーンに置く。",
+          "race": "アーマード・ドラゴン/アース・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-T04",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-T04.jpg",
+      "spec": {
+        "breaker": 2,
+        "g1248DragonLeaves": true,
+        "g891OwnCreatureLeaves": [
+          {
+            "op": "Offer",
+            "g792Once": "infinityDragonLeave",
+            "g1042LookFirst": true,
+            "title": "山札の上から1枚を表向きにする？",
+            "defs": [
+              {
+                "op": "InfinityTop1248"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "ee211f4d6446f4d6acf3554b61d633584f2b28f3fad4d70d876f56d023cfebd4",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23bd4-006"
+    },
+    {
+      "id": "dm25ex3-TF15",
+      "name": "ボルシャック・インフィニティ",
+      "faces": [
+        {
+          "name": "ボルシャック・インフィニティ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\n各ターンに１度、自分のドラゴンが離れた時、自分の山札の上から１枚を表向きにしてもよい。それがドラゴンなら出す。それ以外ならタップしてマナゾーンに置く。",
+          "race": "アーマード・ドラゴン/アース・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-TF15",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-TF15.jpg",
+      "spec": {
+        "breaker": 2,
+        "g1248DragonLeaves": true,
+        "g891OwnCreatureLeaves": [
+          {
+            "op": "Offer",
+            "g792Once": "infinityDragonLeave",
+            "g1042LookFirst": true,
+            "title": "山札の上から1枚を表向きにする？",
+            "defs": [
+              {
+                "op": "InfinityTop1248"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "6e33fec922711c84cc30aae7530f83df30c40519f52837414200be6b432dcb63",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23bd4-006"
+    },
+    {
+      "id": "promoy23-028",
+      "name": "ボルシャック・インフィニティ",
+      "faces": [
+        {
+          "name": "ボルシャック・インフィニティ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\n各ターンに一度、自分のドラゴンが離れた時、自分の山札の上から１枚目を表向きにしてもよい。それがドラゴンなら、出す。そうでなければ、タップしてマナゾーンに置く。",
+          "race": "アーマード・ドラゴン/アース・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy23-028",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy23-028.jpg",
+      "spec": {
+        "breaker": 2,
+        "g1248DragonLeaves": true,
+        "g891OwnCreatureLeaves": [
+          {
+            "op": "Offer",
+            "g792Once": "infinityDragonLeave",
+            "g1042LookFirst": true,
+            "title": "山札の上から1枚を表向きにする？",
+            "defs": [
+              {
+                "op": "InfinityTop1248"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "fe96952e8af1fa8841becb8525a72f5754a1a69cea14860aee5f0ad16fe015c2",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23bd4-006"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "promoy15-067": 4,
+      "dm23bd4-006": 4,
+      "dmpcd02-a01": 4,
+      "dm25rp1-T04": 4,
+      "dm25ex3-TF15": 4,
+      "promoy23-028": 4
+    }
+  }
+}

@@ -929,6 +929,8 @@ export function createSixPhotoRules(api){
    (publicLook?'を公開：'+rows.map(x=>card(x).name).join('・'):'を確認'),{cardId:t.source});
   return ids;
  }
+ // QA44370 includes Dragon fields and seeds, and excludes Dragon spells.
+ const dragonElement1248=c=>['creature','seed','field','gear','aura'].includes(c.type)&&race(c,'ドラゴン');
  const deckPeek841=(own,ids)=>({g585Peek:own.deck.filter(x=>ids.includes(x.uid))
   .map(x=>({id:x.cardId,label:'自分の山札'}))});
  function turnManaDown(s,t,ref){
@@ -3992,6 +3994,19 @@ export function createSixPhotoRules(api){
   choice(s,{...t,target:uid},name+'を新しいシールドに置く',api.canAddShield(s,t.p)?[
    opt('表向きで置く',true,-1,y.cardId),opt('裏向きで置く',false,1,y.cardId)
   ]:[opt('確認',false,0,y.cardId)]);
+  break;
+ }
+ case'g34_InfinityTop1248':{
+  const [uid]=look(s,{...t,n:1,public:true}),y=own.deck.find(x=>x.uid===uid);
+  if(!y)break;
+  const c=api.zoneCard(s,t.p,y,'deck');
+  if(dragonElement1248(c)){
+   release(s,t.p,uid);
+   put(s,{...t,op:'g34_Put',origin:'deck',target:uid});
+  }else{
+   zoneMove(s,t.p,'deck',uid,'mana',{tapped:true});
+   api.deckCheck(s,t.p);
+  }
   break;
  }
  case'g34_TopDestination1244':{
@@ -7882,6 +7897,8 @@ export function createSixPhotoRules(api){
  }),leave320:s.players.flatMap((own,p)=>own.battle.map(x=>({p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:!x.sealed&&api.isCreature(s,x),race:effective(x,s).race,watch:!x.sealed&&!!effective(x,s).g320Jave}))),death303:s.players.flatMap((own,p)=>own.battle.map(x=>{const c=effective(x,s);return{p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:api.isCreature(s,x),race:c.race,name:c.name,colors:colors(c),
    ...(race(c,'ドリームメイト')?{deathNames960:battleNames676(s,x)}:{}),...(hasSoul(card(x),'E')?{g860EvilSoul:true}:{}),...(c.g303DeathWatch?.g862OtherSoul&&leaving.some(row=>row.player===p&&row.uid===x.uid)?{g862OnlySelf:true}:{}),...(c.g891OwnCreatureLeaves&&!x.sealed&&!api.ignored(s,x)?{leaveDraw891:c.g891OwnCreatureLeaves}:{}),
    ...(c.g965OtherOwnLeave?{g965OtherOwnLeave:true}:{}),
+   ...(c.g1248DragonLeaves?{g1248DragonLeaves:true}:{}),
+   ...(dragonElement1248(c)?{g1248DragonElement:true}:{}),
    ...(!x.sealed&&c.type==='creature'&&{g1145Cost:cost(c)===Infinity?'∞':cost(c)}),
    ...(!x.sealed&&!x.faceDown&&c.g1124Jingi?{jingi:c.g1124Jingi}:{}),
    ...((c.g891OwnCreatureLeaves||c.g303DeathWatch?.g891LookBackSelf)&&leaving.some(row=>row.player===p&&row.uid===x.uid)?{g891OnlySelf:true}:{}),element:!x.sealed&&!x.faceDown,...(!x.sealed&&!x.faceDown&&c.g1139OtherCreatureLeaves?{g1139OtherCreatureLeaves:c.g1139OtherCreatureLeaves}:{}),elementDraw:!!c.g617OpponentElementLeaves&&!x.sealed&&!x.faceDown&&!api.ignored(s,x),...(c.g1009OpponentCreatureLeaves&&!x.sealed&&!x.faceDown?{opponentCreatureLeaves:c.g1009OpponentCreatureLeaves}:{}),...(c.g693OtherCreatureGraveDraw&&!x.sealed&&!x.faceDown&&!api.ignored(s,x)&&api.isCreature(s,x)?{graveDraw:true}:{}),watch:!x.sealed&&!api.ignored(s,x)&&(!c.g303DeathWatch?.g725RemainInBattle||!leaving.some(row=>row.player===p&&row.uid===x.uid))?c.g303DeathWatch:undefined};})),selfLeaves:s.players.flatMap((own,p)=>own.battle.flatMap(x=>{const c=effective(x,s);return c.g172Death||c.g172Leave?[{p,uid:x.uid,incarnation:x.incarnation||0,g172Death:c.g172Death,
@@ -7919,8 +7936,8 @@ export function createSixPhotoRules(api){
     if(watcher.p===p&&watcher.jingi&&key(watcher)!==key(victim))
      queue(s,p,watcher,watcher.jingi);
    // A source leaving in the same batch sees its own departure only (QA33591).
-   if(victim.creature)for(const watcher of before)
-    if(watcher.p===p&&watcher.leaveDraw891&&!watchUsed792(s,watcher,{defs:watcher.leaveDraw891})&&
+   if(victim.creature||victim.g1248DragonElement)for(const watcher of before)
+    if(watcher.p===p&&watcher.leaveDraw891&&(watcher.g1248DragonLeaves?victim.g1248DragonElement:victim.creature)&&!watchUsed792(s,watcher,{defs:watcher.leaveDraw891})&&
      (!(watcher.g891OnlySelf||watcher.leaveDraw891[0]?.g792Once&&s.g20LeavingUids?.includes(watcher.uid))||key(watcher)===key(victim))&&
      (!watcher.g965OtherOwnLeave||s.active===p&&key(watcher)!==key(victim)))
      queue(s,p,watcher,watcher.leaveDraw891);

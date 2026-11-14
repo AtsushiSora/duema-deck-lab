@@ -2470,6 +2470,23 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1248&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='promoy15-067'&&text==='スピードアタッカー(このクリーチャーは召喚酔いしない)'+
+   'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+
+   'このクリーチャーはバトルゾーンに出たターンにアンタップしているクリーチャーを攻撃できる。')
+   return {speedAttacker:true,breaker:2,g1248EntryAttackUntapped:true};
+  if(['dm23bd4-006','dm25rp1-T04','dm25ex3-TF15','promoy23-028'].includes(d.id)&&
+   /^W・ブレイカー(?:\(このクリーチャーはシールドを2つブレイクする\))?各ターンに(?:一|1)度自分のドラゴンが離れた時(?:自分の)?山札の上から1枚(?:目)?を表向きにしてもよい。それがドラゴン(?:・エレメント)?なら出す。(?:そうでなければ|それ以外なら)タップしてマナゾーンに置く。$/.test(text))
+   return {breaker:2,g1248DragonLeaves:true,g891OwnCreatureLeaves:[{op:'Offer',g792Once:'infinityDragonLeave',
+    g1042LookFirst:true,title:'山札の上から1枚を表向きにする？',defs:[{op:'InfinityTop1248'}]}]};
+  if(d.id==='dmpcd02-a01'&&text==='W・ブレイカーこのクリーチャーが出た時または攻撃する時'+
+   '相手のパワー6000以下のクリーチャーを1体破壊してもよい。そうしたら自分のシールドを1つ墓地に置く。'){
+   const destroy=[{op:'Target',to:'grave',filter:{belowPower:6001,g199Power:true},optional:true,g587AfterSelection:true,
+    after:[{op:'ShieldGrave588',owner:'self',required:true,n:1}]}];
+   return {breaker:2,effect:'sixPhoto',g34Tasks:destroy,g34Attack:destroy};
+  }
+ }
  if(phase>=1247&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(['dmr11-010','dmx22b-099','dmx25-014','dmex13-026','promoy13-046'].includes(d.id)&&
