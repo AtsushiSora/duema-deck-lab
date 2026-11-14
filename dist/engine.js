@@ -2579,8 +2579,9 @@ function blockAttackerAllowed(s,attacker,blocker){
  return !(f.minPower!=null&&power(blocker,false,s)>=f.minPower||f.maxPower!=null&&power(blocker,false,s)<=f.maxPower||f.maxCost!=null&&costValue(b)<=f.maxCost||f.lessPower&&power(blocker,false,s)<power(attacker,true,s)||f.color&&civilizations(b).includes(f.color)||f.exceptRace&&!String(b.race||'').includes(f.exceptRace)||f.nonEvolution&&!isEvolution(blocker)||f.creatureAttack&&s.attack?.target!=='player');
 }
 function redirectCandidates1295(s,p,source,attacker){
+ const canIntercept=effectiveCard(source,s).g1295UntapRedirect!=='otherTapped';
  return s.players[p].battle.filter(x=>
-  x.uid!==s.attack.target&&!x.sealed&&!x.faceDown&&(x.uid===source.uid||x.tapped)&&isCreature(s,x)&&
+  x.uid!==s.attack.target&&!x.sealed&&!x.faceDown&&(x.uid===source.uid?canIntercept:x.tapped)&&isCreature(s,x)&&
   !effectiveCard(x,s).cannotBeAttacked&&attackTargetAllowed(s,attacker,x));
 }
 function defenseOptions(s,p){

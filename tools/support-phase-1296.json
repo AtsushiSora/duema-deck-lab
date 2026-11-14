@@ -1,0 +1,441 @@
+{
+  "phase": 1296,
+  "checkedAt": "2026-11-15",
+  "baseCount": 7901,
+  "description": "月の輝き 夢幻、星の導き 翔天、青守銀 ルヴォワを対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/37916/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37917/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37918/",
+    "https://dm.takaratomy.co.jp/rule/qa/31529/",
+    "https://dm.takaratomy.co.jp/rule/qa/31530/",
+    "https://dm.takaratomy.co.jp/rule/qa/31531/",
+    "https://dm.takaratomy.co.jp/rule/qa/31571/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31636/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmr23-s01",
+      "name": "月の輝き 夢幻",
+      "faces": [
+        {
+          "name": "月の輝き 夢幻",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーをアンタップして、相手クリーチャーの攻撃先を、自分のタップしているクリーチャーに変更してもよい。\n自分のターンの終わりに、自分のクリーチャーを１体タップしてもよい。そうしたら、カードを１枚引く。",
+          "race": "メタリカ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-s01",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-s01.jpg",
+      "spec": {
+        "breaker": 2,
+        "g1295UntapRedirect": "otherTapped",
+        "g174End": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "untapped": true
+            },
+            "tap": true,
+            "optional": true,
+            "g1044ImplicitTap": true,
+            "g587AfterSelection": true,
+            "g987AfterNewTap": true,
+            "after": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ],
+            "title": "カードを引くためにタップする自分のクリーチャーを選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "c2208f0f9af0a5553a1d98f25ff513a5fd98a59d4fe5bdfbf3460d8eeecfd728",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-002",
+      "name": "星の導き 翔天",
+      "faces": [
+        {
+          "name": "星の導き 翔天",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：自分の光のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーをアンタップして、相手クリーチャーの攻撃先を、このクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。\n相手のターンのはじめに、このクリーチャーがタップしていたら、光のコスト８以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンにタップして出してもよい。",
+          "race": "メタリカ",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-002",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-002.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            }
+          ]
+        },
+        "g1295UntapRedirect": true,
+        "g754StartTapped": true,
+        "g179OpponentStart": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "tapped": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "color": "光",
+              "nonEvolution": true,
+              "max": 8
+            },
+            "title": "タップして出す光のクリーチャーを手札から選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "0f88f1fb415fd2c00e4f0231befaf2bcff28ad9384917efc59845af96631702f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd02-003",
+      "name": "青守銀 ルヴォワ",
+      "faces": [
+        {
+          "name": "青守銀 ルヴォワ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体タップしてもよい。そうしたら、相手のクリーチャーを１体選び、タップする。\nこのクリーチャーをアンタップして、相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。",
+          "race": "メタリカ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd02-003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd02-003.jpg",
+      "spec": {
+        "trigger": true,
+        "g1295UntapRedirect": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "untapped": true
+            },
+            "tap": true,
+            "optional": true,
+            "g1044ImplicitTap": true,
+            "g587AfterSelection": true,
+            "g987AfterNewTap": true,
+            "after": [
+              {
+                "op": "Target",
+                "tap": true,
+                "title": "タップする相手のクリーチャーを選ぶ"
+              }
+            ],
+            "title": "タップする自分のクリーチャーを選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "2014270d466ed712ab04fe788771f56c5082d400509993015e9a90a37e15045c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex13-004",
+      "name": "星の導き 翔天",
+      "faces": [
+        {
+          "name": "星の導き 翔天",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：自分の光のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーをアンタップして、相手クリーチャーの攻撃先を、このクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。\n相手のターンのはじめに、このクリーチャーがタップしていたら、光のコスト８以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンにタップして出してもよい。",
+          "race": "メタリカ",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex13-004.jpg",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            }
+          ]
+        },
+        "g1295UntapRedirect": true,
+        "g754StartTapped": true,
+        "g179OpponentStart": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "tapped": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "color": "光",
+              "nonEvolution": true,
+              "max": 8
+            },
+            "title": "タップして出す光のクリーチャーを手札から選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "4c33ae7f1b132abeb47cfb96acb98fa6b5b911ae403c488bfbe7365c64624358",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp01-002"
+    },
+    {
+      "id": "dmbd04-004",
+      "name": "青守銀 ルヴォワ",
+      "faces": [
+        {
+          "name": "青守銀 ルヴォワ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体タップしてもよい。そうしたら、相手のクリーチャーを１体選び、タップする。\nこのクリーチャーをアンタップして、相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。",
+          "race": "メタリカ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd04-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd04-004.jpg",
+      "spec": {
+        "trigger": true,
+        "g1295UntapRedirect": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "untapped": true
+            },
+            "tap": true,
+            "optional": true,
+            "g1044ImplicitTap": true,
+            "g587AfterSelection": true,
+            "g987AfterNewTap": true,
+            "after": [
+              {
+                "op": "Target",
+                "tap": true,
+                "title": "タップする相手のクリーチャーを選ぶ"
+              }
+            ],
+            "title": "タップする自分のクリーチャーを選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "ccfd76d4a281ed9658f7a143fc0f2c8740481a8d1a981da9280c5d03b2d88bf1",
+        "facesMatched": true
+      },
+      "canonicalId": "dmsd02-003"
+    },
+    {
+      "id": "dmsd10-009",
+      "name": "青守銀 ルヴォワ",
+      "faces": [
+        {
+          "name": "青守銀 ルヴォワ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体タップしてもよい。そうしたら、相手のクリーチャーを１体選び、タップする。\nこのクリーチャーをアンタップして、相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。",
+          "race": "メタリカ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd10-009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd10-009.jpg",
+      "spec": {
+        "trigger": true,
+        "g1295UntapRedirect": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "untapped": true
+            },
+            "tap": true,
+            "optional": true,
+            "g1044ImplicitTap": true,
+            "g587AfterSelection": true,
+            "g987AfterNewTap": true,
+            "after": [
+              {
+                "op": "Target",
+                "tap": true,
+                "title": "タップする相手のクリーチャーを選ぶ"
+              }
+            ],
+            "title": "タップする自分のクリーチャーを選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "104eb295f600ef3bc61642c150b89d5ef98917f8aaebdea1f610f344ae986546",
+        "facesMatched": true
+      },
+      "canonicalId": "dmsd02-003"
+    },
+    {
+      "id": "promoy16-094",
+      "name": "青守銀 ルヴォワ",
+      "faces": [
+        {
+          "name": "青守銀 ルヴォワ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体タップしてもよい。そうしたら、相手のクリーチャーを１体選び、タップする。\nこのクリーチャーをアンタップして、相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。",
+          "race": "メタリカ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-094",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy16-094.jpg",
+      "spec": {
+        "trigger": true,
+        "g1295UntapRedirect": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "untapped": true
+            },
+            "tap": true,
+            "optional": true,
+            "g1044ImplicitTap": true,
+            "g587AfterSelection": true,
+            "g987AfterNewTap": true,
+            "after": [
+              {
+                "op": "Target",
+                "tap": true,
+                "title": "タップする相手のクリーチャーを選ぶ"
+              }
+            ],
+            "title": "タップする自分のクリーチャーを選ぶ（任意）"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "65754b6c0913ec66ef37404a3d087a442d70226ccf0501d82c738908127b3507",
+        "facesMatched": true
+      },
+      "canonicalId": "dmsd02-003"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-15",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr23-s01": 4,
+      "dmrp01-002": 4,
+      "dmsd02-003": 4,
+      "dmex13-004": 4,
+      "dmbd04-004": 4,
+      "dmsd10-009": 4,
+      "promoy16-094": 4
+    },
+    "currentList": "https://dm.takaratomy.co.jp/img/regulation/2608/202608regulation.pdf"
+  },
+  "sameNameProducts": {
+    "dmr23-s01": [
+      "DMR-23 革命ファイナル 拡張パック最終章 ドギラゴールデン vs. ドルマゲドンＸ"
+    ],
+    "dmrp01-002": [
+      "dmex13",
+      "dmrp01"
+    ],
+    "dmsd02-003": [
+      "dmbd04",
+      "dmsd02",
+      "dmsd10",
+      "プロモ限定カード 16期"
+    ]
+  }
+}

@@ -2475,6 +2475,30 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1296&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const redirect='このクリーチャーをアンタップして相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。';
+  const tapAlly=(after,title)=>({op:'Target',owner:'self',filter:{creature:true,untapped:true},
+   tap:true,optional:true,g1044ImplicitTap:true,g587AfterSelection:true,g987AfterNewTap:true,after,title});
+  if(d.id==='dmr23-s01'&&f.typeText==='クリーチャー'&&
+   text==='W・ブレイカー'+redirect.replace('このクリーチャーまたは','')+
+    '自分のターンの終わりに自分のクリーチャーを1体タップしてもよい。そうしたらカードを1枚引く。')
+   return {breaker:2,g1295UntapRedirect:'otherTapped',g174End:[
+    tapAlly([{op:'Draw',n:1}],'カードを引くためにタップする自分のクリーチャーを選ぶ（任意）')
+   ]};
+  if(['dmrp01-002','dmex13-004'].includes(d.id)&&f.typeText==='NEOクリーチャー'&&
+   text==='NEO進化:自分の光のクリーチャー1体の上に置いてもよい。(クリーチャーが下にあればこれをNEO進化クリーチャーとして扱う)'+
+    redirect+'相手のターンのはじめにこのクリーチャーがタップしていたら光のコスト8以下の進化ではないクリーチャーを1体自分の手札からバトルゾーンにタップして出してもよい。')
+   return {neoEvolution:{any:[{civilization:'光'}]},g1295UntapRedirect:true,g754StartTapped:true,
+    g179OpponentStart:[{op:'Select',origin:'hand',n:1,deploy:true,tapped:true,optional:true,
+     filter:{creature:true,color:'光',nonEvolution:true,max:8},title:'タップして出す光のクリーチャーを手札から選ぶ（任意）'}]};
+  if(['dmsd02-003','dmsd10-009','dmbd04-004','promoy16-094'].includes(d.id)&&f.typeText==='クリーチャー'&&
+   text==='S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)'+
+    'このクリーチャーがバトルゾーンに出た時自分のクリーチャーを1体タップしてもよい。そうしたら相手のクリーチャーを1体選びタップする。'+redirect)
+   return {trigger:true,g1295UntapRedirect:true,effect:'sixPhoto',g34Tasks:[
+    tapAlly([{op:'Target',tap:true,title:'タップする相手のクリーチャーを選ぶ'}],'タップする自分のクリーチャーを選ぶ（任意）')
+   ]};
+ }
  if(phase>=1295&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const redirect='このクリーチャーをアンタップして相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。';

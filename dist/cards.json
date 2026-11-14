@@ -242796,15 +242796,145 @@
       "g1295UntapRedirect": true,
       "supportBatch": "phase-1295",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr23-s01",
+      "name": "月の輝き 夢幻",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "メタリカ",
+      "text": "W・ブレイカー\nこのクリーチャーをアンタップして、相手クリーチャーの攻撃先を、自分のタップしているクリーチャーに変更してもよい。\n自分のターンの終わりに、自分のクリーチャーを１体タップしてもよい。そうしたら、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-s01",
+      "limit": 4,
+      "breaker": 2,
+      "g1295UntapRedirect": "otherTapped",
+      "g174End": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "filter": {
+            "creature": true,
+            "untapped": true
+          },
+          "tap": true,
+          "optional": true,
+          "g1044ImplicitTap": true,
+          "g587AfterSelection": true,
+          "g987AfterNewTap": true,
+          "after": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ],
+          "title": "カードを引くためにタップする自分のクリーチャーを選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-1296",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp01-002",
+      "name": "星の導き 翔天",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5500,
+      "race": "メタリカ",
+      "text": "NEO進化：自分の光のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーをアンタップして、相手クリーチャーの攻撃先を、このクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。\n相手のターンのはじめに、このクリーチャーがタップしていたら、光のコスト８以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンにタップして出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-002",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          }
+        ]
+      },
+      "g1295UntapRedirect": true,
+      "g754StartTapped": true,
+      "g179OpponentStart": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "tapped": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "color": "光",
+            "nonEvolution": true,
+            "max": 8
+          },
+          "title": "タップして出す光のクリーチャーを手札から選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-1296",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd02-003",
+      "name": "青守銀 ルヴォワ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "メタリカ",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体タップしてもよい。そうしたら、相手のクリーチャーを１体選び、タップする。\nこのクリーチャーをアンタップして、相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd02-003",
+      "limit": 4,
+      "trigger": true,
+      "g1295UntapRedirect": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "filter": {
+            "creature": true,
+            "untapped": true
+          },
+          "tap": true,
+          "optional": true,
+          "g1044ImplicitTap": true,
+          "g587AfterSelection": true,
+          "g987AfterNewTap": true,
+          "after": [
+            {
+              "op": "Target",
+              "tap": true,
+              "title": "タップする相手のクリーチャーを選ぶ"
+            }
+          ],
+          "title": "タップする自分のクリーチャーを選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-1296",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1295,
+    "phase": 1296,
     "checkedAt": "2026-11-15",
-    "baseCount": 7897,
-    "newEffectCards": 4,
+    "baseCount": 7901,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7901,
+    "totalCount": 7904,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -264633,6 +264763,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7897,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1295,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7897,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7901,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
