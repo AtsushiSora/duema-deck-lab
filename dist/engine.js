@@ -1563,7 +1563,10 @@ function summonModes384(s,p,c){
  if(c.neoEvolution)modes.unshift({...c,g27BaseUid:null});
  return modes;
 }
-function quotedSummonCost384(s,p,c){return Math.min(...summonModes384(s,p,c).filter(mode=>validMana(s,p,mode)).map(mode=>summonCost(s,p,mode)));}
+function quotedSummonCost384(s,p,c){
+ const modes=c.g1240DiscardReduction?payableSummonModes1240(s,p,c):summonModes384(s,p,c).filter(mode=>validMana(s,p,mode));
+ return Math.min(...modes.map(mode=>summonCost(s,p,mode)));
+}
 function baseSummonCost297(s,p,c){
  c=executionCard(c);
  if(c.fixedPayment)return costValue(c);
@@ -1589,7 +1592,7 @@ function baseSummonCost297(s,p,c){
  const dddReduction=c.g28DDD?s.players[p].battle.reduce((n,x)=>n+
   (x.sealed?0:effectiveCard(x,s).g1064DDDDiscount||0),0):0;
  const once=extra.six.onceDiscount464(s,p,c);
- const laterReduction=baseDiscount+dddReduction+extra.six.sympathyDiscount211(s,p,c)+extra.six.countDiscount212(s,p,c)+extra.six.conditionalDiscount261(s,p,c)+extra.utilityControl.firstSpellDiscount(s,p,c)+aura.amount+extra.six.firstSummonDiscount463(s,p,c)+once.summon+extra.six.spellDiscount467(s,p,c)+extra.six.useDiscount468(s,p,c)+extra.six.revealDiscount470(s,p,c)+extra.six.untapDiscount472(s,p,c);
+ const laterReduction=(c.g1240DiscardPaid||0)+baseDiscount+dddReduction+extra.six.sympathyDiscount211(s,p,c)+extra.six.countDiscount212(s,p,c)+extra.six.conditionalDiscount261(s,p,c)+extra.utilityControl.firstSpellDiscount(s,p,c)+aura.amount+extra.six.firstSummonDiscount463(s,p,c)+once.summon+extra.six.spellDiscount467(s,p,c)+extra.six.useDiscount468(s,p,c)+extra.six.revealDiscount470(s,p,c)+extra.six.untapDiscount472(s,p,c);
  const applyExecutionReduction=total=>total>1?Math.max(1,total-once.execution):total;
  // A printed zero costs nothing until a reduction with a positive minimum applies (QA40378).
  if(costValue(c)===0&&base===0&&beforeMinimum===0&&laterReduction===0&&!gearDiscount)return 0;
@@ -1649,7 +1652,30 @@ function paymentCard297(s,p,c){
  c=executionCard(c);
  return manaExecutionAllColors(s,p,c)?{...c,civilizations:[...fullManaColors]}:c;
 }
-function validMana(s,p,c){c=paymentCard297(s,p,c);if(freeSpell(s,p,c)&&!c.g40PayNormally)return true;return summonModes384(s,p,c).some(mode=>manaPayment(paymentPool(s,p,[],mode),{...mode,cost:summonCost(s,p,mode)})!==null);}
+function discardCandidates1240(s,p,c){
+ if(!c.g1240DiscardReduction||c.fixedPayment||c.g1240DiscardPaid!==undefined)return [];
+ const hand=s.players[p].hand,source=(s.players[p][c.summonOrigin||'hand']||[])
+  .find(x=>c.executionUid?x.uid===c.executionUid:x.cardId===c.id);
+ if(!source||rawSixNamed(s,source)||s.players[1-p].battle.some(x=>effectiveCard(x,s).noCostReduction))return [];
+ return hand.filter(x=>x.uid!==source.uid);
+}
+function affordableSummonMode(s,p,mode){
+ return manaPayment(paymentPool(s,p,[],mode),{...mode,cost:summonCost(s,p,mode)})!==null;
+}
+function payableSummonModes1240(s,p,c){
+ c=paymentCard297(s,p,c);
+ const modes=summonModes384(s,p,c);
+ return modes.flatMap(mode=>{
+  const paid=discardCandidates1240(s,p,mode).length?{...mode,g1240DiscardPaid:mode.g1240DiscardReduction}:null;
+  return [...(affordableSummonMode(s,p,mode)?[mode]:[]),...(paid&&affordableSummonMode(s,p,paid)?[paid]:[])];
+ });
+}
+function validMana(s,p,c){
+ if(c.g1240DiscardReduction)return payableSummonModes1240(s,p,c).length>0;
+ c=paymentCard297(s,p,c);
+ if(freeSpell(s,p,c)&&!c.g40PayNormally)return true;
+ return summonModes384(s,p,c).some(mode=>affordableSummonMode(s,p,mode));
+}
 class DrawSelectionRequired extends Error{constructor(request){super('ドローの置換を選んでください');this.request=request;}}
 class ManaSelectionRequired extends Error{constructor(request){super('支払うマナを選んでください');this.request=request;}}
 export function manaSelectionStatus(d){
@@ -1872,6 +1898,7 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  if(placementTapped||asCreature&&!inst.tapped&&speedTapOnEntry(s,p,c,isEvolution(inst)))inst.tapped=true;
  if(aceColor(c)&&aceMutesOnEntry(s,c))inst.aceIgnored=true;
  s.players[p].battle.push(inst);
+ if(c.g1240HandEnd)(s.g1240FishEntry??=[null,null])[p]=s.turn;
  if(entryOptions.g1084SealedEntry){
   // Placement restrictions and replacements above still apply (QA48927).
   // Apply placement states, including EX Life, before any entry observer sees this creature.
@@ -2035,7 +2062,7 @@ function advanceEffects(s){if(s.lossEvent)return;
   s.pendingEffects.splice(s.pendingEffects.indexOf(entries[0]),1);resolveEntry(s,entries[0]);advanceBattle(s);
  }
 }
-function playCard(s,p,uid,free=false,baseUid=null,face=0,alternativeCost=null,origin='hand',freeReason='S・トリガー',ownGraveCast=false,permit=null,snowReducers=null,gioReveals=null,magicReducers=null,g7Payment=null,g18Reducers=null,g26Reducers=null,g42Reduction=null,g456Reduction=null,g463Reduction=null,g464Reducers=null){
+function playCard(s,p,uid,free=false,baseUid=null,face=0,alternativeCost=null,origin='hand',freeReason='S・トリガー',ownGraveCast=false,permit=null,snowReducers=null,gioReveals=null,magicReducers=null,g7Payment=null,g18Reducers=null,g26Reducers=null,g42Reduction=null,g456Reduction=null,g463Reduction=null,g464Reducers=null,discardPaid1240=null){
  const source=s.players[p][origin].find(x=>x.uid===uid),ruleOrigin=source?.g5Origin||origin,c=source&&{...playFaces(zoneCard(s,p,source,ruleOrigin,card(source.cardId)))[face],summonOrigin:ruleOrigin,executionUid:uid,g27BaseUid:baseUid,...(freeReason==='D・D・D'?{g28DDD:true}:{}),...(g464Reducers!==null?{g464Reducers}:{}),...(g463Reduction!==null?{g463Reduction}:{}),...(g456Reduction!==null?{g456Reduction}:{}),...(g42Reduction!==null?{g42Reduction}:{}),...(g26Reducers!==null?{g26Reducers}:{}),...(g18Reducers!==null?{g18Reducers}:{}),...(g7Payment?{g7Payment}:{}),...(magicReducers?{magicReducers}:{}),...(snowReducers?{snowReducers}:{}),...(gioReveals?{gioRevealCount:gioReveals.length}:{})};const originBlocked402=!!(c?.type==='creature'&&((c.fushigibirth&&freeReason==='フシギバース'||c.mugenCrime&&freeReason==='ムゲンクライム')&&ruleOrigin==='grave'||c.kirifudaDash&&freeReason==='キリフダッシュ'&&ruleOrigin==='mana')&&!canMoveZone(s,p,ruleOrigin));if(!c||!canCastSpell(s,p,c,ruleOrigin,source?.cardOwner??p)||(c.type!=='spell'&&!canEnterCreature(s,p,c,{origin:ruleOrigin,execution:true,ignoreMovement:originBlocked402})))throw Error('このカードは使えません');
  if(!free&&freeSpell(s,p,c)&&!alternativeCost?.g40PayNormally){free=true;freeReason=freeSpellReason(s,p,c);}
  if(extra.utilityWater.beforeCast(s,p,[uid,free,baseUid,face,alternativeCost,origin,freeReason,ownGraveCast,permit,snowReducers,gioReveals,magicReducers,g7Payment,g18Reducers,g26Reducers,g42Reduction,g456Reduction,g463Reduction,g464Reducers]))return;
@@ -2051,8 +2078,18 @@ function playCard(s,p,uid,free=false,baseUid=null,face=0,alternativeCost=null,or
  if(extra.six.beginPayment470(s,p,c,[uid,free,baseUid,face,alternativeCost,origin,freeReason,ownGraveCast,permit,snowReducers,gioReveals,magicReducers,g7Payment,g18Reducers,g26Reducers,g42Reduction,g456Reduction,g463Reduction,g464Reducers]))return;
  if(extra.six.beginPayment464(s,p,c,[uid,free,baseUid,face,alternativeCost,origin,freeReason,ownGraveCast,permit,snowReducers,gioReveals,magicReducers,g7Payment,g18Reducers,g26Reducers,g42Reduction,g456Reduction,g463Reduction,g464Reducers]))return;
  if(gioReveals?.length)log(s,p,'reveal','超七極 Gioの召喚のため手札を公開：'+gioReveals.map(uid=>card(s.players[p].hand.find(x=>x.uid===uid)).name).join('、'),{cardId:c.id});
+ let payment=alternativeCost===null?c:{...c,...(typeof alternativeCost==='object'?alternativeCost:{cost:alternativeCost}),costReduction:typeof alternativeCost==='object'&&alternativeCost.cost===undefined&&!alternativeCost.fixedPayment?c.costReduction:undefined,printedCost:c.cost};
+ if(!free&&c.g1240DiscardReduction&&discardPaid1240===null){
+  const cards=discardCandidates1240(s,p,{...payment,summonOrigin:origin});
+  if(cards.length&&validMana(s,p,{...payment,g1240DiscardPaid:c.g1240DiscardReduction})){
+   extra.offerDiscard1240(s,p,source,c,origin,cards,validMana(s,p,{...payment,g1240DiscardPaid:0}),
+    [uid,free,baseUid,face,alternativeCost,origin,freeReason,ownGraveCast,permit,snowReducers,gioReveals,magicReducers,g7Payment,g18Reducers,g26Reducers,g42Reduction,g456Reduction,g463Reduction,g464Reducers]);
+   return;
+  }
+ }
  if(!free)for(const id of alternativeCost?.g976TapPayment??c.g7Payment?.energy??[])tapCard(s,p,s.players[p].battle.find(x=>x.uid===id));
- const payment=alternativeCost===null?c:{...c,...(typeof alternativeCost==='object'?alternativeCost:{cost:alternativeCost}),costReduction:typeof alternativeCost==='object'&&alternativeCost.cost===undefined&&!alternativeCost.fixedPayment?c.costReduction:undefined,printedCost:c.cost},cost=summonCost(s,p,payment);const paidMana=free?false:pay(s,p,payment);const originIndex402=originBlocked402?s.players[p][origin].findIndex(x=>x.uid===uid):-1,inst=remove(s.players[p][origin],uid),grantedSuper=free&&!!c.superTrigger&&inst.g30SuperFace===face;delete inst.g30SuperFace;
+ if(discardPaid1240)payment={...payment,g1240DiscardPaid:discardPaid1240};
+ const cost=summonCost(s,p,payment);const paidMana=free?false:pay(s,p,payment);const originIndex402=originBlocked402?s.players[p][origin].findIndex(x=>x.uid===uid):-1,inst=remove(s.players[p][origin],uid),grantedSuper=free&&!!c.superTrigger&&inst.g30SuperFace===face;delete inst.g30SuperFace;
  if(ruleOrigin==='grave')extra.six.consumeGraveUse1226(s,p,inst);
  if(!free&&!payment.fixedPayment)extra.six.consumeExecution464(s,p,payment);
  extra.six.revealCommitted470(s,p,c,alternativeCost);
@@ -3141,8 +3178,8 @@ export function getLegalActions(s){
  }else if(s.phase==='charge'){out=own.hand.map(c=>option('charge',`${card(c).name}をマナへ`,{uid:c.uid,cardId:c.cardId}));out.push(option('skipCharge','マナを置かずに進む'));}
  else if(s.phase==='main'){
   out=own.hand.flatMap(inst=>playFaces(card(inst)).flatMap((c,face)=>{
-   if(c.g1136HandTax)c={...c,executionUid:inst.uid};
-   return canCastSpell(s,p,c)&&(c.type!=='creature'||canEnterCreature(s,p,c))&&validMana(s,p,c)&&(!c.evolution||evolutionBases(s,p,c).length)?[option('play',`${c.name}を${c.type==='creature'?'召喚':c.type==='gear'?'ジェネレート':'使用'}`,{uid:inst.uid,cardId:inst.cardId,cost:c.neoEvolution||hasEvolutionBaseDiscount1239(s,p,c)?quotedSummonCost384(s,p,c):summonCost(s,p,c),...(freeSpell(s,p,c)?{freeSpell:freeSpellReason(s,p,c)}:{}),...((card(inst).spellFace||card(inst).g393JWDFaces)?{face}:{})})]:[];
+   if(c.g1136HandTax||c.g1240DiscardReduction)c={...c,executionUid:inst.uid};
+   return canCastSpell(s,p,c)&&(c.type!=='creature'||canEnterCreature(s,p,c))&&validMana(s,p,c)&&(!c.evolution||evolutionBases(s,p,c).length)?[option('play',`${c.name}を${c.type==='creature'?'召喚':c.type==='gear'?'ジェネレート':'使用'}`,{uid:inst.uid,cardId:inst.cardId,cost:c.g1240DiscardReduction||c.neoEvolution||hasEvolutionBaseDiscount1239(s,p,c)?quotedSummonCost384(s,p,c):summonCost(s,p,c),...(freeSpell(s,p,c)?{freeSpell:freeSpellReason(s,p,c)}:{}),...((card(inst).spellFace||card(inst).g393JWDFaces)?{face}:{})})]:[];
   }));
   out.push(...own.mana.filter(x=>!x.faceDown&&card(x).manaSummon&&canCastSpell(s,p,card(x),'mana')&&canEnterCreature(s,p,card(x),{origin:'mana',execution:true})&&validMana(s,p,{...card(x),summonOrigin:'mana'})&&(!card(x).evolution||evolutionBases(s,p,card(x)).length)).map(x=>option('play',`マナの${card(x).name}を召喚`,{uid:x.uid,cardId:x.cardId,cost:card(x).neoEvolution||hasEvolutionBaseDiscount1239(s,p,card(x))?quotedSummonCost384(s,p,{...card(x),summonOrigin:'mana'}):summonCost(s,p,{...card(x),summonOrigin:'mana'}),origin:'mana'})));
   for(const origin of ['hand','grave'])out.push(...own[origin].filter(x=>canMugen(s,p,card(x),origin)).map(x=>option('mugenStart',`${origin==='hand'?'手札':'墓地'}の${card(x).name}をムゲンクライム${card(x).mugenCrime}で${card(x).type==='spell'?'唱える':'召喚'}`,{uid:x.uid,cardId:x.cardId,origin,cost:Math.max(civilizations(card(x)).length,summonCost(s,p,{...card(x),cost:card(x).mugenCrime,printedCost:card(x).cost,summonOrigin:origin}))})));

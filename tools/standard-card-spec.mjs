@@ -2470,6 +2470,20 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1240&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const discard=n=>'このクリーチャーを召喚する時自分の手札を1枚捨ててもよい。そうしたらこのクリーチャーの召喚コストを'+n+'少なくする。';
+  if(['dm23rp4-034','dm23rp4x-034'].includes(d.id)&&text===
+   discard(2)+'このクリーチャーが出た時相手のパワー4000以下のクリーチャーを1体選び破壊する。')
+   return {g1240DiscardReduction:2,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'grave',filter:{maxPower:4000,g199Power:true}}]};
+  if(d.id==='dmrp13-037'&&text===discard(3))
+   return {g1240DiscardReduction:3};
+  if(['dm24rp2-014','dm24ex3-011'].includes(d.id)&&text===
+   'ブロッカーブロッカージャストダイバー(このクリーチャーが出た時次の自分のターンのはじめまでこのクリーチャーは相手に選ばれず攻撃されない)'+
+   '自分のターンの終わりに自分のタップしているクリーチャーが3体以上ありこのターン自分の《急襲魚》が出ていなければこのクリーチャーを自分の手札から出してもよい。'+
+   'このクリーチャーが破壊される時墓地に置くかわりに手札に戻す。')
+   return {blocker:true,justDiver:true,g1240HandEnd:true,g390DestroyToHand:{self:true,onlySelf:true,toOwner:true}};
+ }
  if(phase>=1239&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dmrp22-069'&&f.typeText==='タマシード'&&text===

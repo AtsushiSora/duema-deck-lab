@@ -3084,12 +3084,13 @@ export function createSixPhotoRules(api){
  }
  case'g34_LacrimaDeclare1224':{
   const y=lacrimaHand1224(s,t);
-  if(y)choice(s,t,card(y).name+'のターン終了時の能力を宣言する？',[opt('宣言する',true,25,y.cardId),skip()]);
+  if(y)choice(s,t,card(y).name+'のターン終了時の能力を宣言する？',
+   [opt('宣言する',true,t.g1240Fish&&!fishEndReady1240(s,t.p)?-5:25,y.cardId),skip()]);
   break;
  }
  case'g34_LacrimaDeploy1224':{
   const y=lacrimaHand1224(s,t);
-  if(y)doPut(s,{...t,origin:'hand',target:y.uid});
+  if(y&&(!t.g1240Fish||fishEndReady1240(s,t.p)))doPut(s,{...t,origin:'hand',target:y.uid});
   break;
  }
  case'g34_RevengeDeclare795':{
@@ -6534,14 +6535,19 @@ export function createSixPhotoRules(api){
  function lacrimaHand1224(s,t){
   return s.players[t.p].hand.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial&&!api.handAbilityIgnored(s,x));
  }
+ // Declared before resolving effects, but the printed entry conditions apply at resolution (QA46517).
+ function fishEndReady1240(s,p){
+  return p===s.active&&s.g1240FishEntry?.[p]!==s.turn&&creatures(s,p).filter(x=>!x.sealed&&x.tapped).length>=3;
+ }
  function declareLacrima1224(s,p){
   const use=s.g1224Uses?.[p];
-  if(use?.turn!==s.turn)return false;
-  const ready=s.players[p].hand.filter(x=>{
-   const min=card(x).g1224HandEnd;
-   return min&&use.maxCost>=min&&!api.handAbilityIgnored(s,x);
+  if(use?.turn!==s.turn&&p!==s.active)return false;
+  const ready=s.players[p].hand.flatMap(x=>{
+   const c=card(x),fish=p===s.active&&c.g1240HandEnd;
+   if(!(fish||use?.turn===s.turn&&c.g1224HandEnd&&use.maxCost>=c.g1224HandEnd)||api.handAbilityIgnored(s,x))return [];
+   return [task('g34_LacrimaDeclare1224',p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0,...(fish?{g1240Fish:true}:{})})];
   });
-  if(ready.length)put(s,...ready.map(x=>task('g34_LacrimaDeclare1224',p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0})));
+  if(ready.length)put(s,...ready);
   return ready.length>0;
  }
  const used=(s,slot,x)=>s[slot]?.[key(x)]===s.turn,mark=(s,slot,x)=>{(s[slot]??={})[key(x)]=s.turn;};
@@ -6966,7 +6972,7 @@ export function createSixPhotoRules(api){
   for(const y of creatures(s,p)){
    const rule=!y.sealed&&!y.faceDown&&effective(y,s).g390DestroyToHand;
    if(!rule||rule.condition&&!ownCondition(s,p,rule.condition))continue;
-   if(!(rule.self&&y.uid===x.uid)&&!matches(s,p,x,rule.filter))continue;
+   if(!(rule.self&&y.uid===x.uid)&&(rule.onlySelf||!matches(s,p,x,rule.filter)))continue;
    if(rule.toOwner)return 'owner';
    found=true;
   }
