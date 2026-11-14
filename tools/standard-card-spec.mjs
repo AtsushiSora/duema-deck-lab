@@ -2470,6 +2470,25 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1249&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(['dmrp05-018','dmex09-008'].includes(d.id)&&f.typeText==='呪文'&&[
+   'カードを3枚引く。その後自分の手札にあるカードの枚数以下のコストを持つ水のカードを1枚選んでもよい。そうしたらそのカードを自分の手札からコストを支払わずに使う。',
+   'カードを3枚引く。その後自分の手札の枚数以下のコストを持つ水のカードを1枚自分の手札から選んでもよい。そうしたらそのカードをコストを支払わずに使う。'
+  ].includes(text))return {effect:'sixPhoto',g34Tasks:[{op:'Draw',n:3},{
+   op:'Execute',origin:'hand',g1139HandSizeMax:true,spellColorsAny:['水'],g1244NoEmptyOffer:true,
+   title:'手札の枚数以下のコストの水のカードを1枚まで使う'
+  }]};
+  if(['dmsd13-019','dmrp11-077'].includes(d.id)&&f.typeText==='クリーチャー'&&text===
+   'このクリーチャーが攻撃する時Jトルネードしてもよい。そうしたら相手のパワー6000以下のクリーチャーを1体選び持ち主の手札に戻す。'+
+   '(Jトルネード:自分の他のジョーカーズを1体手札に戻す)')
+   return {g34Attack:[{op:'Select',origin:'battle',to:'hand',toOwnerHand:true,n:1,optional:true,g179Other:true,g187OwnPick:true,
+    filter:{creature:true,race:'ジョーカーズ'},title:'Jトルネードする自分の他のジョーカーズを選ぶ',
+    afterBattleSelect:[{op:'Target',to:'hand',toOwnerHand:true,filter:{creature:true,maxPower:6000,g199Power:true}}]}]};
+  if(d.id==='dm36-028'&&f.typeText==='呪文'&&text===
+   '数をひとつ選んで言う。その後相手の手札を1枚見ないで選び捨てさせる。そのカードのコストが選んだ数と同じであればカードを1枚引く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'DeclareBlindDiscardCost1249'}]};
+ }
  if(phase>=1248&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='promoy15-067'&&text==='スピードアタッカー(このクリーチャーは召喚酔いしない)'+

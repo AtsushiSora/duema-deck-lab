@@ -1,0 +1,280 @@
+{
+  "phase": 1249,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7746,
+  "description": "ブレイン珊瑚の仙樹、できんダック、アンラッキーダーツの全能力を対戦対応し、仙樹とできんダックの別版を正規IDに紐付ける。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31720/",
+    "https://dm.takaratomy.co.jp/rule/qa/40926/",
+    "https://dm.takaratomy.co.jp/rule/qa/32320/",
+    "https://dm.takaratomy.co.jp/rule/qa/32321/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36040/",
+    "https://dm.takaratomy.co.jp/rule/qa/31742/",
+    "https://dm.takaratomy.co.jp/rule/qa/45440/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmrp05-018",
+      "name": "ブレイン珊瑚の仙樹",
+      "faces": [
+        {
+          "name": "ブレイン珊瑚の仙樹",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "カードを３枚引く。その後、自分の手札にあるカードの枚数以下のコストを持つ水のカードを１枚選んでもよい。そうしたら、そのカードを自分の手札からコストを支払わずに使う。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-018",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-018.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "g1139HandSizeMax": true,
+            "spellColorsAny": [
+              "水"
+            ],
+            "g1244NoEmptyOffer": true,
+            "title": "手札の枚数以下のコストの水のカードを1枚まで使う"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "14a1be1f708292f15e357c621e3f73413684a0e7598620adc4ddbf94462d029c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd13-019",
+      "name": "できんダック",
+      "faces": [
+        {
+          "name": "できんダック",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃する時、Jトルネードしてもよい。そうしたら、相手のパワー6000以下のクリーチャーを１体選び、持ち主の手札に戻す。（Jトルネード：自分の他のジョーカーズを１体、手札に戻す）",
+          "race": "ジョーカーズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd13-019",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd13-019.jpg",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "to": "hand",
+            "toOwnerHand": true,
+            "n": 1,
+            "optional": true,
+            "g179Other": true,
+            "g187OwnPick": true,
+            "filter": {
+              "creature": true,
+              "race": "ジョーカーズ"
+            },
+            "title": "Jトルネードする自分の他のジョーカーズを選ぶ",
+            "afterBattleSelect": [
+              {
+                "op": "Target",
+                "to": "hand",
+                "toOwnerHand": true,
+                "filter": {
+                  "creature": true,
+                  "maxPower": 6000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "3202f4f2b584779b1b4ad94920d65b664efe0d5e64d8947f82f2c853eb54abcd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-028",
+      "name": "アンラッキーダーツ",
+      "faces": [
+        {
+          "name": "アンラッキーダーツ",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "数をひとつ選んで言う。その後、相手の手札を１枚見ないで選び、捨てさせる。そのカードのコストが、選んだ数と同じであれば、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-028",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-028.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DeclareBlindDiscardCost1249"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "55cfc11177ae6595b784f900cc5f242618b30ecefe1550b2ee26b62a6039a23e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex09-008",
+      "name": "ブレイン珊瑚の仙樹",
+      "faces": [
+        {
+          "name": "ブレイン珊瑚の仙樹",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "カードを３枚引く。その後、自分の手札の枚数以下のコストを持つ水のカードを１枚、自分の手札から選んでもよい。そうしたら、そのカードをコストを支払わずに使う。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex09-008",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex09-008.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "g1139HandSizeMax": true,
+            "spellColorsAny": [
+              "水"
+            ],
+            "g1244NoEmptyOffer": true,
+            "title": "手札の枚数以下のコストの水のカードを1枚まで使う"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "29451451dcd6ba7347991d996b3d5e9bccd46a2397766cb170dcdf708ae0557f",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp05-018"
+    },
+    {
+      "id": "dmrp11-077",
+      "name": "できんダック",
+      "faces": [
+        {
+          "name": "できんダック",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃する時、Jトルネードしてもよい。そうしたら、相手のパワー6000以下のクリーチャーを１体選び、持ち主の手札に戻す。（Jトルネード：自分の他のジョーカーズを１体、手札に戻す）",
+          "race": "ジョーカーズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-077",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-077.jpg",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "to": "hand",
+            "toOwnerHand": true,
+            "n": 1,
+            "optional": true,
+            "g179Other": true,
+            "g187OwnPick": true,
+            "filter": {
+              "creature": true,
+              "race": "ジョーカーズ"
+            },
+            "title": "Jトルネードする自分の他のジョーカーズを選ぶ",
+            "afterBattleSelect": [
+              {
+                "op": "Target",
+                "to": "hand",
+                "toOwnerHand": true,
+                "filter": {
+                  "creature": true,
+                  "maxPower": 6000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "91c25e04c072f851c9acd99e06b224e5e7081b7c0d693e6fd99eff5ab349778b",
+        "facesMatched": true
+      },
+      "canonicalId": "dmsd13-019"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp05-018": 4,
+      "dmsd13-019": 4,
+      "dm36-028": 4,
+      "dmex09-008": 4,
+      "dmrp11-077": 4
+    }
+  }
+}

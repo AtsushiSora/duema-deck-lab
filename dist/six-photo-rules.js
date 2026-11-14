@@ -1429,7 +1429,7 @@ export function createSixPhotoRules(api){
  }
  if(t.afterBattleSelect||t.g917BounceMatch){
   const moves=(t.rows||[]).filter(r=>r.origin==='battle'&&s.players[r.p].battle.some(x=>x.uid===r.uid))
-   .map(r=>({player:r.p,uid:r.uid,to:t.to,controller:t.controller??t.p}));
+   .map(r=>({player:r.p,uid:r.uid,to:t.to,controller:t.controller??t.p,...(t.toOwnerHand?{toOwnerHand:true}:{})}));
   // These follow-ups use the selected creatures, including moves changed by replacements (QA 45793, notice 31661).
   if(moves.length){
    move(s,moves);
@@ -2673,6 +2673,18 @@ export function createSixPhotoRules(api){
   start(s,t,[{op:'Look',n:3,public:true,rest:'bottom',stages:[{n:1,to:'hand',filter:{g1134AnyFaceCost:t.number}}]}]);
   break;
  case'g34_Roulette732':put(s,task('g9Number',t.p,t.source,{family:'roulette732'}));break;
+ case'g34_DeclareBlindDiscardCost1249':
+  put(s,task('g9Number',t.p,t.source,{family:'blindDiscardCost1249'}));
+  break;
+ case'g34_CheckBlindDiscardCost1249':{
+  if(!t.discarded)break;
+  const costs=[...new Set(faces(card(t.cardId)).map(c=>cost(c)===Infinity?'∞':cost(c)))];
+  if(costs.length===1){
+   if(costs[0]===t.number)api.draw(s,t.p,1);
+  }else choice(s,t,'捨てられたカードの参照するコストを選ぶ',costs.map(n=>
+   opt('コスト '+n,n,n===t.number?10:0,t.cardId)));
+  break;
+ }
  case'g34_DeclareHandCost1109':
   put(s,task('g9Number',t.p,t.source,{family:'handCost1109'}));
   break;
@@ -5891,13 +5903,21 @@ export function createSixPhotoRules(api){
  case'g34_KingKnightMagic1115':
   start(s,t,Array.from({length:v},()=>t.defs).flat());
   break;
+ case'g34_CheckBlindDiscardCost1249':
+  if(v===t.number)api.draw(s,t.p,1);
+  break;
  case'g34_BlindDiscard773':{
   const hand=s.players[1-t.p].hand,selected=[...(t.selected??[]),v];
   if(selected.length<Math.min(t.n??1,hand.length)){
    put(s,{...t,selected});
   }else{
    const ids=selected.map(i=>hand[i]?.uid).filter(Boolean);
-   if(ids.length)api.discardSelected(s,1-t.p,ids,t.source,t.controller??t.p);
+   if(ids.length){
+    const after=t.g1249DeclaredCost===undefined?null:task('g34_CheckBlindDiscardCost1249',t.p,t.source,{
+     cardId:hand[selected[0]].cardId,number:t.g1249DeclaredCost
+    });
+    api.discardSelected(s,1-t.p,ids,t.source,t.controller??t.p,null,after);
+   }
   }
   break;
  }

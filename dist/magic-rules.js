@@ -29,6 +29,11 @@ export function createMagicRules(api){
     put(s,task('g34_SearchCost1134',t.p,t.source,{number:value}));
     break;
    }
+   if(t.family==='blindDiscardCost1249'){
+    api.log(s,t.p,'declare',String(value)+'を宣言',{cardId:t.source});
+    put(s,task('g34_BlindDiscard773',t.p,t.source,{n:1,g1249DeclaredCost:value}));
+    break;
+   }
    if(t.family==='handCost1109'){
     api.log(s,t.p,'declare',String(value)+'を宣言',{cardId:t.source});
     put(s,task('g34_InspectHandCost1109',t.p,t.source,{number:value}));
