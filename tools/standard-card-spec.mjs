@@ -2470,6 +2470,29 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1233&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(['dm24rp1-002','dm24ex3-rp1002'].includes(d.id)&&f.typeText==='クリーチャー'&&text===
+   'ブロッカーブロッカーT・ブレイカーこのクリーチャーが出た時クリーチャーを5体まで自分の墓地から手札に戻す。'+
+   'このクリーチャーが攻撃する時自分の手札を好きな枚数捨てる。こうして捨てた手札1枚につきこのターン相手のクリーチャーすべてのパワーを-3000する。')
+   return {blocker:true,breaker:3,effect:'sixPhoto',g34Tasks:[
+    {op:'Select',origin:'grave',to:'hand',filter:{creature:true},n:5,optional:true,g583Group:true,
+     title:'墓地から手札に戻すクリーチャーを5体まで選ぶ'}
+   ],g34Attack:[{op:'Discard',owner:'self',g1233AnyDiscard:true,optional:true,
+    afterDiscardCount:{op:'g34_GroupPower',owner:'opponent',power:-3000,g1233PerDiscard:true}}]};
+  if(d.id==='dm24rp2-030'&&f.typeText==='クリーチャー'&&text===
+   'このクリーチャーが出た時自分の山札の上から1枚目を見てシールド化する。'+
+   'その後自分のシールドを1つ手札に加える。ただしその「S・トリガー」は使えない。'+
+   'このクリーチャーが破壊される時墓地に置くかわりにシールド化する。')
+   return {g1069DestroyShieldStack:true,effect:'sixPhoto',g34Tasks:[
+    {op:'ShieldTop',n:1,g1233Look:true},{op:'ShieldHand',g238ShieldHand:true}
+   ]};
+  if(d.id==='dm24rp2-070'&&f.typeText==='呪文'&&text===
+   'S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)'+
+   '自分のクリーチャーを1体選ぶ。それが超化獣であれば次の自分のターンのはじめまでそのハイパーモードを解放する。'+
+   'その後相手のクリーチャーを1体選んでもよい。その2体をバトルさせる。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Fight240',spell:true,g1233ReleaseHyper:true}]};
+ }
  if(phase>=1232&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const dragon={race:'ドラゴン'},stella={race:'メカ・デル・ステラ'};

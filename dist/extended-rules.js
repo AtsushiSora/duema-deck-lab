@@ -340,7 +340,7 @@ export function createExtendedRules(api){
    }
    case 'discard':{
     if(handProtected(s,t)){if(t.afterDiscard321)put(s,{...t.afterDiscard321,discarded:false});break;}
-    if(t.n>1&&!t.all){if(t.random){const available=[...own.hand],chosen=[];while(chosen.length<t.n&&available.length)chosen.push(available.splice(Math.floor(random(s)*available.length),1)[0].uid);beginDiscardBatch(s,t,chosen);}else put(s,{...t,op:'discardSelect',selected:[]});break;}
+    if((t.n>1||t.n===1&&t.afterDiscardCount)&&!t.all){if(t.random){const available=[...own.hand],chosen=[];while(chosen.length<t.n&&available.length)chosen.push(available.splice(Math.floor(random(s)*available.length),1)[0].uid);beginDiscardBatch(s,t,chosen);}else put(s,{...t,op:'discardSelect',selected:[]});break;}
     if(t.all&&(t.afterDiscardCount||own.hand.some(x=>discardMode(s,t,x)))){beginDiscardBatch(s,t,own.hand.map(x=>x.uid));break;}
     if(!t.n||!own.hand.length){if(t.randomDiscardAfter&&t.discarded)put(s,task('discard',1-t.p,t.source,{causedBy:t.p,n:t.discarded,random:true}));break;}
     if(t.all){const all=[...own.hand],watchers=discardWatchers848(s,t.p);for(const x of all){remove(own.hand,x.uid);clear(x);api.addZone(s,own,'grave',x);afterDiscard(s,{...t,n:1,g848Grouped:true},x,true);}notifyDiscard848(s,t.p,watchers,all.length);log(s,t.p,'discard',`手札${all.length}枚をすべて捨てる`,{cardId:t.source});break;}

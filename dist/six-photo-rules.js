@@ -1539,6 +1539,7 @@ export function createSixPhotoRules(api){
   start(s,t,[{op:'IfOwn',filter,defs:[{op:'GroupPower',owner:'opponent',power,excludeUid:selected?.uid,spell:t.spell}]}]);
  }
  function groupPowerAmount(s,t){
+  if(t.g1233PerDiscard)return t.power*t.n;
   if(!t.perManaColor)return t.power;
   const count=s.players[t.p].mana.filter(x=>!x.faceDown&&api.manaColors(card(x),s,t.p).includes(t.perManaColor)).length;
   return t.power*count;
@@ -3589,7 +3590,27 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_FightBuff241':{const enemies=fightRows240(s,t.p,1-t.p),allies=fightRows240(s,t.p,t.p);if(allies.length)choice(s,t,'このターン、パワーを+'+t.power+'する自分のクリーチャーを1体選ぶ',allies.map(o=>{const a=own.battle.find(y=>y.uid===o.value),boosted={...a,powerModifiers:[...(a.powerModifiers||[]),{amount:t.power,spellSource:t.spell?t.source:undefined,spellCost:fightSpellCost241(t)}]},scores=enemies.map(o=>fightScore240(s,boosted,s.players[1-t.p].battle.find(y=>y.uid===o.value)));return{...o,value:{uid:a.uid,incarnation:a.incarnation||0},score:scores.length?Math.max(...scores):5+cost(card(a))};}));break;}
- case'g34_Fight240':{const enemies=fightRows240(s,t.p,1-t.p,t.enemyFilter);if(!enemies.length)break;if(t.self){if(x&&api.isCreature(s,x)&&!x.sealed)put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:x.uid,incarnation:x.incarnation||0}});}else{const allies=fightRows240(s,t.p,t.p).filter(o=>!t.g419FightFilter||matches(s,t.p,own.battle.find(y=>y.uid===o.value),t.g419FightFilter));if(allies.length)choice(s,t,'バトルする自分のクリーチャーを1体選ぶ',[...allies.map(o=>{const a=own.battle.find(y=>y.uid===o.value);return{...o,value:{uid:a.uid,incarnation:a.incarnation||0},score:Math.max(...enemies.map(o=>fightScore240(s,a,s.players[1-t.p].battle.find(y=>y.uid===o.value))))};}),...(t.optional?[skip()]:[])]);}break;}
+ case'g34_Fight240':{
+  const enemies=fightRows240(s,t.p,1-t.p,t.enemyFilter);
+  if(!enemies.length&&!t.g1233ReleaseHyper)break;
+  if(t.self){
+   if(x&&api.isCreature(s,x)&&!x.sealed)
+    put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:x.uid,incarnation:x.incarnation||0}});
+   break;
+  }
+  const allies=fightRows240(s,t.p,t.p).flatMap(o=>{
+   const ally=own.battle.find(y=>y.uid===o.value);
+   if(t.g419FightFilter&&!matches(s,t.p,ally,t.g419FightFilter))return [];
+   const battle=enemies.length
+    ?Math.max(...enemies.map(o=>fightScore240(s,ally,opp.battle.find(y=>y.uid===o.value)))):0;
+   const release=t.g1233ReleaseHyper&&card(ally).hyper&&!ally.hyperActive&&
+    exactRaces(effective(ally,s)).includes('超化獣')?20:0;
+   return [{...o,value:{uid:ally.uid,incarnation:ally.incarnation||0},score:battle+release}];
+  });
+  if(allies.length)choice(s,t,t.g1233ReleaseHyper?'自分のクリーチャーを1体選ぶ':'バトルする自分のクリーチャーを1体選ぶ',
+   [...allies,...(t.optional?[skip()]:[])]);
+  break;
+ }
  case'g34_FightEnemy240':{
   if(used792(s,t,t))break;
   const a=fightAttacker240(s,t)?.x;
@@ -3938,6 +3959,12 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_ShieldTop':
+  if(t.g1233Look){
+   const [uid]=look(s,{...t,n:1});
+   if(uid)choice(s,{...t,target:uid,...deckPeek841(own,[uid])},'山札の上から1枚目を確認',
+    [opt('確認を終える',true,0)]);
+   break;
+  }
   if(t.faceUp)put(s,{...t,op:'g33_FaceTop'});
   else api.shieldTop(s,t.p,card(t.source),null,t.g779Simultaneous?{count:t.n}:t.stackNext?{stackNext:true}:undefined);
   break;
@@ -4882,7 +4909,8 @@ export function createSixPhotoRules(api){
  case'g34_Discard':{
   const owner=t.owner==='self'?t.p:t.owner??1-t.p;
   const n=t.g584Count==='faceUpShieldGo'?api.shieldGoCount(s,t.p):
-   t.g585ShieldDeficit?Math.max(0,5-own.shields.length):t.g584Count==='ownShields'?own.shields.length:t.g584Count==='opponentShields'?opp.shields.length:t.g756All?s.players[owner].hand.length:t.n??1;
+   t.g585ShieldDeficit?Math.max(0,5-own.shields.length):t.g584Count==='ownShields'?own.shields.length:t.g584Count==='opponentShields'?opp.shields.length:
+   (t.g756All||t.g1233AnyDiscard)?s.players[owner].hand.length:t.n??1;
   const after=t.afterDiscardCount&&{...t.afterDiscardCount,p:t.p,source:t.source,controller:t.controller??t.p};
   if(n)put(s,task('discard',owner,t.source,{causedBy:t.p,n,random:!!t.random,optional:!!t.optional,selfDiscard:t.owner==='self',...(t.g756All?{all:true}:{}),...(t.g869ReturnOnSpell?{g869ReturnUid:t.uid}:{}),...(after?{afterDiscardCount:after}:{})}));
   break;
@@ -5204,6 +5232,11 @@ export function createSixPhotoRules(api){
  case'g34_TappedShieldPick842':
   put(s,{...t,picked:[...t.picked,v]});
   break;
+ case'g34_ShieldTop':
+  if(!t.g1233Look)return false;
+  release(s,t.p,t.target);
+  if(v)api.shieldTop(s,t.p,card(t.source),null,{uid:t.target});
+  break;
  case'g34_Unryu852':if(v){
   const top=own.deck.find(x=>x.uid===t.target);
   if(top&&card(top).type==='gear'&&canPut(s,t.p,top,'deck'))
@@ -5489,7 +5522,13 @@ export function createSixPhotoRules(api){
  }break;
  case'g34_FightPairSecond586':if(v)finishFightPair586(s,t,v);break;
  case'g34_FightBuff241':if(v){const a=fightUnit240(s,t.p,v);if(a){(a.powerModifiers??=[]).push({amount:t.power,expires:'end',who:s.active,spellSource:t.spell?t.source:undefined,spellCost:fightSpellCost241(t)});put(s,{...t,op:'g34_FightEnemy240',fighter:v,optional:t.enemyOptional});}}break;
- case'g34_Fight240':if(v)put(s,{...t,op:'g34_FightEnemy240',fighter:v});break;
+ case'g34_Fight240':if(v){
+  if(t.g1233ReleaseHyper){
+   const ally=fightUnit240(s,t.p,v);
+   if(ally&&exactRaces(effective(ally,s)).includes('超化獣'))releaseHyper781(s,t.p,ally);
+  }
+  put(s,{...t,op:'g34_FightEnemy240',fighter:v,optional:t.g1233ReleaseHyper||t.optional});
+ }break;
  case'g34_TapToUntap748':{
   const source=v&&tapSource748(s,t);
   if(source){

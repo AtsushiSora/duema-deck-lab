@@ -235493,15 +235493,122 @@
       },
       "supportBatch": "phase-1232",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp1-002",
+      "name": "深淵の諦園 ガーデン＝ガーチー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 13000,
+      "race": "アビスロイヤル",
+      "text": "ブロッカーブロッカー\nT・ブレイカー\nこのクリーチャーが出た時、クリーチャーを５体まで、自分の墓地から手札に戻す。\nこのクリーチャーが攻撃する時、自分の手札を好きな枚数捨てる。こうして捨てた手札１枚につき、このターン、相手のクリーチャーすべてのパワーを－3000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-002",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "filter": {
+            "creature": true
+          },
+          "n": 5,
+          "optional": true,
+          "g583Group": true,
+          "title": "墓地から手札に戻すクリーチャーを5体まで選ぶ"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Discard",
+          "owner": "self",
+          "g1233AnyDiscard": true,
+          "optional": true,
+          "afterDiscardCount": {
+            "op": "g34_GroupPower",
+            "owner": "opponent",
+            "power": -3000,
+            "g1233PerDiscard": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1233",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-030",
+      "name": "星雷の求道者ア・リガテ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "メカサンダー",
+      "text": "このクリーチャーが出た時、自分の山札の上から１枚目を見て、シールド化する。その後、自分のシールドを１つ手札に加える。ただし、その「S・トリガー」は使えない。\nこのクリーチャーが破壊される時、墓地に置くかわりにシールド化する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-030",
+      "limit": 4,
+      "g1069DestroyShieldStack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldTop",
+          "n": 1,
+          "g1233Look": true
+        },
+        {
+          "op": "ShieldHand",
+          "g238ShieldHand": true
+        }
+      ],
+      "supportBatch": "phase-1233",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-070",
+      "name": "ハイパー・キャストオフ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを１体選ぶ。それが超化獣であれば、次の自分のターンのはじめまで、そのハイパーモードを解放する。その後、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-070",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Fight240",
+          "spell": true,
+          "g1233ReleaseHyper": true
+        }
+      ],
+      "supportBatch": "phase-1233",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1232,
+    "phase": 1233,
     "checkedAt": "2026-11-14",
-    "baseCount": 7694,
+    "baseCount": 7697,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7697,
+    "totalCount": 7700,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -256574,6 +256681,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7694,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1232,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7694,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7697,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

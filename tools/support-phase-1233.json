@@ -1,0 +1,233 @@
+{
+  "phase": 1233,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7697,
+  "description": "深淵の諦園 ガーデン＝ガーチー、星雷の求道者ア・リガテ、ハイパー・キャストオフの全能力を対戦対応し、公式再録1件を正規IDに対応付ける。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/45216/",
+    "https://dm.takaratomy.co.jp/rule/qa/46506/",
+    "https://dm.takaratomy.co.jp/rule/qa/47059/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+    "https://dm.takaratomy.co.jp/rule/qa/44840/",
+    "https://dm.takaratomy.co.jp/rule/qa/45136/"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp1-002",
+      "name": "深淵の諦園 ガーデン＝ガーチー",
+      "faces": [
+        {
+          "name": "深淵の諦園 ガーデン＝ガーチー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ブロッカーブロッカー\nT・ブレイカー\nこのクリーチャーが出た時、クリーチャーを５体まで、自分の墓地から手札に戻す。\nこのクリーチャーが攻撃する時、自分の手札を好きな枚数捨てる。こうして捨てた手札１枚につき、このターン、相手のクリーチャーすべてのパワーを－3000する。",
+          "race": "アビスロイヤル",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-002",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-002.jpg",
+      "spec": {
+        "blocker": true,
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "filter": {
+              "creature": true
+            },
+            "n": 5,
+            "optional": true,
+            "g583Group": true,
+            "title": "墓地から手札に戻すクリーチャーを5体まで選ぶ"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "g1233AnyDiscard": true,
+            "optional": true,
+            "afterDiscardCount": {
+              "op": "g34_GroupPower",
+              "owner": "opponent",
+              "power": -3000,
+              "g1233PerDiscard": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "7d108b5734dd4234dbcb8563ae0a6d4a130077378d16d19f63541b201241c1e3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-030",
+      "name": "星雷の求道者ア・リガテ",
+      "faces": [
+        {
+          "name": "星雷の求道者ア・リガテ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から１枚目を見て、シールド化する。その後、自分のシールドを１つ手札に加える。ただし、その「S・トリガー」は使えない。\nこのクリーチャーが破壊される時、墓地に置くかわりにシールド化する。",
+          "race": "メカサンダー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-030",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-030.jpg",
+      "spec": {
+        "g1069DestroyShieldStack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 1,
+            "g1233Look": true
+          },
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "c55c5a0edf5364b4792d27780a804d788ea6f6f407236b4ac6c664a8bf1d59d3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-070",
+      "name": "ハイパー・キャストオフ",
+      "faces": [
+        {
+          "name": "ハイパー・キャストオフ",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを１体選ぶ。それが超化獣であれば、次の自分のターンのはじめまで、そのハイパーモードを解放する。その後、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-070",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-070.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "spell": true,
+            "g1233ReleaseHyper": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "147d857d0f976ba7782246713f20e667d03d434a94d96b160c66da337a30d43b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex3-rp1002",
+      "name": "深淵の諦園 ガーデン＝ガーチー",
+      "faces": [
+        {
+          "name": "深淵の諦園 ガーデン＝ガーチー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ブロッカーブロッカー\nT・ブレイカー\nこのクリーチャーが出た時、クリーチャーを５体まで、自分の墓地から手札に戻す。\nこのクリーチャーが攻撃する時、自分の手札を好きな枚数捨てる。こうして捨てた手札１枚につき、このターン、相手のクリーチャーすべてのパワーを－3000する。",
+          "race": "アビスロイヤル",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp1002",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp1002.jpg",
+      "spec": {
+        "blocker": true,
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "filter": {
+              "creature": true
+            },
+            "n": 5,
+            "optional": true,
+            "g583Group": true,
+            "title": "墓地から手札に戻すクリーチャーを5体まで選ぶ"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "g1233AnyDiscard": true,
+            "optional": true,
+            "afterDiscardCount": {
+              "op": "g34_GroupPower",
+              "owner": "opponent",
+              "power": -3000,
+              "g1233PerDiscard": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "5ef863f7466f63f49b24978a8bc90c04ae9b6f24f8f64a8590b2f87593d7eee0",
+        "facesMatched": true
+      },
+      "canonicalId": "dm24rp1-002"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp1-002": 4,
+      "dm24ex3-rp1002": 4,
+      "dm24rp2-030": 4,
+      "dm24rp2-070": 4
+    }
+  }
+}
