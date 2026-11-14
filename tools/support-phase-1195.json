@@ -1,0 +1,164 @@
+{
+  "phase": 1195,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7576,
+  "description": "宇宙 ロケットマン、ダイコン・リーガー、百万面相 トカゲ丸の能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37793/",
+    "https://dm.takaratomy.co.jp/rule/qa/40676/",
+    "https://dm.takaratomy.co.jp/rule/qa/39131/",
+    "https://dm.takaratomy.co.jp/rule/qa/39132/",
+    "https://dm.takaratomy.co.jp/rule/qa/39133/",
+    "https://dm.takaratomy.co.jp/rule/qa/39134/",
+    "https://dm.takaratomy.co.jp/rule/qa/39135/"
+  ],
+  "cards": [
+    {
+      "id": "dmr19-032",
+      "name": "宇宙 ロケットマン",
+      "faces": [
+        {
+          "name": "宇宙 ロケットマン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルする時、かわりに自分のクリーチャーを１体手札に戻す。",
+          "race": "リキッド・ピープル閃/侵略者",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-032",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-032.jpg",
+      "spec": {
+        "g1195BattleMove": {
+          "to": "hand"
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "71932d876fe17f3704ea029d4d25dc525614bd569976d7b9657126f30e72251a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-048",
+      "name": "ダイコン・リーガー",
+      "faces": [
+        {
+          "name": "ダイコン・リーガー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、名前に《ダイコン・リーガー》とあるカードを１枚、自分のマナゾーンから出してもよい。\nシビルカウント３：このクリーチャーがバトルする時、自分の自然のクリーチャーまたは自然のタマシードが合計３つ以上あれば、バトルするかわりにその２体を持ち主のマナゾーンに置く。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-048",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-048.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "g819CreatureNameIncludes": "ダイコン・リーガー",
+              "faceUp": true
+            }
+          }
+        ],
+        "g1195BattleMove": {
+          "to": "mana",
+          "condition": {
+            "creatureOrSeed": true,
+            "color": "自然",
+            "g258Civil": 3
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "c50badd1698d93450ac48d1ac50814026919fa5acb32199a90fffd308bde809f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-s11",
+      "name": "百万面相 トカゲ丸",
+      "faces": [
+        {
+          "name": "百万面相 トカゲ丸",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "T・ブレイカー\n自分のクリーチャーはすべて「スピードアタッカー」を得、アンタップしているクリーチャーを攻撃できる。\n自分の他のクリーチャーが相手のクリーチャーとバトルする時、かわりにこのクリーチャーにバトルさせてもよい。\nこのクリーチャーがバトルに勝った時、相手のシールドを１つブレイクしてもよい。",
+          "race": "ジョーカーズ/チーム切札/スペシャルズ",
+          "powerText": "16000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-s11",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-s11.jpg",
+      "spec": {
+        "breaker": 3,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "speedAttacker": true
+            }
+          }
+        ],
+        "g1195AllyAttackUntapped": true,
+        "g1195BattleProxy": true,
+        "g189BattleWin": [
+          {
+            "op": "Break278",
+            "optional": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "83e1bbbc41bed67e19ca66fd1319a0394d583fd22c3c73a4340fc96af5b40a16",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr19-032": 4,
+      "dm22rp1-048": 4,
+      "dmrp16-s11": 4
+    }
+  }
+}

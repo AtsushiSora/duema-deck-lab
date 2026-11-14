@@ -230195,15 +230195,114 @@
       },
       "supportBatch": "phase-1194",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr19-032",
+      "name": "宇宙 ロケットマン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 4000,
+      "race": "リキッド・ピープル閃/侵略者",
+      "text": "このクリーチャーがバトルする時、かわりに自分のクリーチャーを１体手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-032",
+      "limit": 4,
+      "g1195BattleMove": {
+        "to": "hand"
+      },
+      "supportBatch": "phase-1195",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-048",
+      "name": "ダイコン・リーガー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "ワイルド・ベジーズ",
+      "text": "このクリーチャーが出た時、名前に《ダイコン・リーガー》とあるカードを１枚、自分のマナゾーンから出してもよい。\nシビルカウント３：このクリーチャーがバトルする時、自分の自然のクリーチャーまたは自然のタマシードが合計３つ以上あれば、バトルするかわりにその２体を持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-048",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g819CreatureNameIncludes": "ダイコン・リーガー",
+            "faceUp": true
+          }
+        }
+      ],
+      "g1195BattleMove": {
+        "to": "mana",
+        "condition": {
+          "creatureOrSeed": true,
+          "color": "自然",
+          "g258Civil": 3
+        }
+      },
+      "supportBatch": "phase-1195",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-s11",
+      "name": "百万面相 トカゲ丸",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 16000,
+      "race": "ジョーカーズ/チーム切札/スペシャルズ",
+      "text": "T・ブレイカー\n自分のクリーチャーはすべて「スピードアタッカー」を得、アンタップしているクリーチャーを攻撃できる。\n自分の他のクリーチャーが相手のクリーチャーとバトルする時、かわりにこのクリーチャーにバトルさせてもよい。\nこのクリーチャーがバトルに勝った時、相手のシールドを１つブレイクしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-s11",
+      "limit": 4,
+      "breaker": 3,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "g1195AllyAttackUntapped": true,
+      "g1195BattleProxy": true,
+      "g189BattleWin": [
+        {
+          "op": "Break278",
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1195",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1194,
+    "phase": 1195,
     "checkedAt": "2026-11-14",
-    "baseCount": 7573,
+    "baseCount": 7576,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7576,
+    "totalCount": 7579,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -250820,6 +250919,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7573,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1194,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7573,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7576,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

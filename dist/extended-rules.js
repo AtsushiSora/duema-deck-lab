@@ -175,7 +175,7 @@ export function createExtendedRules(api){
  const requested393D=createRequested393DispectorRules({...requested393Api,discardSelected:(s,p,ids,source,causedBy,afterDiscard248=null,afterDiscard321=null)=>beginDiscardBatch(s,{p,source,causedBy,n:ids.length,...(afterDiscard248?{afterDiscard248}:{}),...(afterDiscard321?{afterDiscard321}:{})},ids)});
  const requested393J=createRequested393JokerRules(requested393Api);
  const requested393P=createRequested393PuppetRules(requested393Api);
- const requested393SG=createRequested393SuperguardRules(requested393Api);
+ const requested393SG=createRequested393SuperguardRules({...requested393Api,ownCondition:six.ownCondition});
  const requested394=createRequested394Rules({...requested393Api,discardMode:(s,t,x)=>discardMode(s,t,x),canReplaceDiscard:(s,t,x)=>canReplaceDiscard(s,t,x),discardReplacementOptions,discardManaSource,handProtected:(s,t)=>handProtected(s,t),replaceDiscard:(s,t,x,v)=>replaceDiscard(s,t,x,v),discardCard:(s,t,x)=>discardCard(s,t,x)});
  const shieldPhoto=createShieldPhotoRules({...api,creatures,put,task,choice,opt,skip,targetOptions});
  const photo=createKenjiPhotoRules({...api,creatures,put,task,choice,opt,skip,targetOptions});

@@ -6488,6 +6488,8 @@ export function createSixPhotoRules(api){
  // The permission comes from the allied Dragon, even if the attacker is ignored (QA39131).
  dragonAttackUntapped967:(s,p,x,c)=>race(c,'ドラゴン')&&s.players[p].battle.some(source=>
   source.uid!==x.uid&&card(source).g967DragonAttackUntapped&&!api.ignored(s,source)&&api.isCreature(s,source)),
+ allyAttackUntapped1195:(s,p)=>creatures(s,p).some(source=>!source.sealed&&!source.faceDown&&
+  card(source).g1195AllyAttackUntapped&&!api.ignored(s,source)),
  attackTargets971(s,p,attacker){
   const limits=(s.extLimits||[]).filter(l=>l.kind==='g971AttackTarget'&&l.player===p&&l.turn===s.turn);
   if(!limits.length)return [];

@@ -2470,6 +2470,23 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1195&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmr19-032'&&text==='このクリーチャーがバトルする時かわりに自分のクリーチャーを1体手札に戻す。')
+   return {g1195BattleMove:{to:'hand'}};
+  if(d.id==='dm22rp1-048'&&text==='このクリーチャーが出た時名前に《ダイコン・リーガー》とあるカードを1枚自分のマナゾーンから出してもよい。'+
+   'シビルカウント3:このクリーチャーがバトルする時自分の自然のクリーチャーまたは自然のタマシードが合計3つ以上あればバトルするかわりにその2体を持ち主のマナゾーンに置く。'){
+   return {effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'mana',n:1,deploy:true,optional:true,
+    filter:{g819CreatureNameIncludes:'ダイコン・リーガー',faceUp:true}}],
+    g1195BattleMove:{to:'mana',condition:{creatureOrSeed:true,color:'自然',g258Civil:3}}};
+  }
+  if(d.id==='dmrp16-s11'&&text==='T・ブレイカー自分のクリーチャーはすべて「スピードアタッカー」を得アンタップしているクリーチャーを攻撃できる。'+
+   '自分の他のクリーチャーが相手のクリーチャーとバトルする時かわりにこのクリーチャーにバトルさせてもよい。'+
+   'このクリーチャーがバトルに勝った時相手のシールドを1つブレイクしてもよい。'){
+   return {breaker:3,g208Auras:[{filter:{creature:true},grants:{speedAttacker:true}}],
+    g1195AllyAttackUntapped:true,g1195BattleProxy:true,g189BattleWin:[{op:'Break278',optional:true}]};
+  }
+ }
  if(phase>=1194&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmx12a-011'&&text==='このクリーチャーをバトルゾーンに出した時自分の山札の上から4枚をタップして自分のマナゾーンに置いてもよい。'+
