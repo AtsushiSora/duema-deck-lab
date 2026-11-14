@@ -237952,15 +237952,99 @@
       "g1256HandEvolutionDeath": true,
       "supportBatch": "phase-1256",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-079",
+      "name": "ドンドン選べナウ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "自分の山札の上から５枚を表向きにする。相手はその５枚を２つの束に分ける。自分は一方の束を手札に加え、もう一方を墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-079",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "RevealSplit1257",
+          "n": 5
+        }
+      ],
+      "supportBatch": "phase-1257",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25-039",
+      "name": "ブレード・サークル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "次の相手のターンに、攻撃した光以外のクリーチャー１体目を破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-039",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BladeCircle1257"
+        }
+      ],
+      "supportBatch": "phase-1257",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm21-023",
+      "name": "秘護精ヴィノゴート",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "セイント・ヘッド",
+      "text": "S・トリガー\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンに自分のアーク・セラフィムが１体でもあれば、バトルゾーンにある相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃することができない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-023",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "race": "アーク・セラフィム"
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "g1257NoAttackUntilStart": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1257",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1256,
+    "phase": 1257,
     "checkedAt": "2026-11-14",
-    "baseCount": 7767,
+    "baseCount": 7770,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7770,
+    "totalCount": 7773,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -259321,6 +259405,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7767,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1256,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7767,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7770,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

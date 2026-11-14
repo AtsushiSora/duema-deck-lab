@@ -132,7 +132,8 @@ export function createExtendedRules(api){
   if(kind==='attack'&&(s.extLimits||[]).some(l=>l.kind==='g677OnlyAttacker'&&l.player===p&&
    !api.allLayers(x).some(y=>l.refs.includes(y.uid+'@'+(y.incarnation||0)))))return true;
   if(kind==='attack'&&creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks))return false;
-  if(kind==='attack'&&utilityLightControl.locked(s,x))return true;
+  if(kind==='attack'&&(utilityLightControl.locked(s,x)||(s.extLimits||[]).some(l=>l.kind==='g1257AttackCreatureLock'&&
+   api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation))))return true;
   if(kind==='attack'&&x.entered===s.turn&&effective(x,s).speedAttacker&&[0,1].some(q=>creatures(s,q).some(y=>effective(y,s).g163Dione)))return true;
   if(['attack','block'].includes(kind)&&s.g4Combat?.[p]?.turn===s.turn&&s.g4Combat[p].count>=1&&(s.extLimits||[]).some(l=>l.kind==='g4Combat'&&l.player===p&&!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})))return true;
   if((s.extLimits||[]).some(l=>l.kind==='numberLock'&&(l.creatureSource||!api.spellIgnored(s,{type:'spell',cost:2}))&&l.player===p&&x.g9LockScopes?.includes(l.scope)&&cost(card(x))===(l.cost==='∞'?Infinity:l.cost)))return true;

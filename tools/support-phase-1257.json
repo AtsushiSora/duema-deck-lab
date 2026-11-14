@@ -1,0 +1,145 @@
+{
+  "phase": 1257,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7770,
+  "description": "ドンドン選べナウ、ブレード・サークル、秘護精ヴィノゴートの全能力を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/42367/",
+    "https://dm.takaratomy.co.jp/rule/qa/42370/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31402/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm22ex1-079",
+      "name": "ドンドン選べナウ",
+      "faces": [
+        {
+          "name": "ドンドン選べナウ",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の山札の上から５枚を表向きにする。相手はその５枚を２つの束に分ける。自分は一方の束を手札に加え、もう一方を墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-079",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-079.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RevealSplit1257",
+            "n": 5
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "ee4817375ae7f98c3584dc5683cd4636d41c82e46a74c290265aa8cdf2c96c0d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25-039",
+      "name": "ブレード・サークル",
+      "faces": [
+        {
+          "name": "ブレード・サークル",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "次の相手のターンに、攻撃した光以外のクリーチャー１体目を破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-039",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25-039.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BladeCircle1257"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "a9118d5233a10d7b0404406be10b518379efeb5b57cb63cb3fd500677b4ec8ee",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm21-023",
+      "name": "秘護精ヴィノゴート",
+      "faces": [
+        {
+          "name": "秘護精ヴィノゴート",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンに自分のアーク・セラフィムが１体でもあれば、バトルゾーンにある相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃することができない。",
+          "race": "セイント・ヘッド",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-023",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm21-023.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "race": "アーク・セラフィム"
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "g1257NoAttackUntilStart": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "b8808ae44e37ebc04937f6bea0a3a81cbddd02ae2edb22ed65a77160950937d5",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22ex1-079": 4,
+      "dm25-039": 4,
+      "dm21-023": 4
+    }
+  }
+}

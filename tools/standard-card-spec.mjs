@@ -2475,6 +2475,18 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1257&&d?.status==='complete'&&d.faces.length===1){
+  const lines=f.abilityText.split('\n').map(normalize);
+  if(d.id==='dm22ex1-079'&&f.typeText==='呪文'&&lines.length===1&&lines[0]===
+   '自分の山札の上から5枚を表向きにする。相手はその5枚を2つの束に分ける。自分は一方の束を手札に加えもう一方を墓地に置く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'RevealSplit1257',n:5}]};
+  if(d.id==='dm25-039'&&f.typeText==='呪文'&&lines.length===1&&lines[0]==='次の相手のターンに攻撃した光以外のクリーチャー1体目を破壊する。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'BladeCircle1257'}]};
+  if(d.id==='dm21-023'&&f.typeText==='クリーチャー'&&lines.length===2&&keyword(lines[0],'S・トリガー')&&lines[1]===
+   'このクリーチャーをバトルゾーンに出した時バトルゾーンに自分のアーク・セラフィムが1体でもあればバトルゾーンにある相手のクリーチャーを1体選ぶ。次の自分のターンのはじめまでそのクリーチャーは攻撃することができない。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'IfOwn',filter:{creature:true,race:'アーク・セラフィム'},
+    defs:[{op:'Target',g1257NoAttackUntilStart:true}]}]};
+ }
  if(phase>=1256&&d?.status==='complete'&&d.faces.length===1){
   const lines=f.abilityText.split('\n').map(normalize);
   if(d.id==='dmr18-054'&&f.typeText==='クリーチャー'&&lines.length===1&&lines[0]===

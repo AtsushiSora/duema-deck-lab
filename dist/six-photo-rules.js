@@ -683,6 +683,17 @@ export function createSixPhotoRules(api){
    api.enqueue(s,p,{source:l.source,effect:'extended',task:task('g34_ResolveDelay537',p,l.source,
     {spellCost:l.spellCost,defs:l.defs,...(l.filter?{g399Attacker:{uid:attacker.uid,incarnation:attacker.incarnation||0}}:{})})});
   }
+  for(const l of s.extLimits||[]){
+   if(l.kind!=='g1257BladeCircle'||!l.active||l.spent||l.who!==p||
+    colors(effective(attacker,s)).includes('光')||
+    api.spellIgnored(s,{type:'spell',spellSource:l.source,cost:l.spellCost}))continue;
+   l.spent=true;
+   const controller=1-p;
+   api.enqueue(s,controller,{source:l.source,effect:'extended',task:task('g34_ResolveDelay537',controller,l.source,{
+    spellCost:l.spellCost,defs:[{op:'DestroyAttacker944'}],
+    g399Attacker:{uid:attacker.uid,incarnation:attacker.incarnation||0}
+   })});
+  }
   if(s.attack?.target==='player')for(const l of s.extLimits||[]){
    if(l.kind!=='g741PlayerAttackResponse'||l.who===p)continue;
    api.enqueue(s,l.who,{source:l.source,effect:'extended',task:task('g34_Sequence',l.who,l.source,{defs:l.defs})});
@@ -4602,6 +4613,29 @@ export function createSixPhotoRules(api){
   put(s,{...t,...inspection,op:'g34_LookPick',ids,stage:0,chosen:[]});
   break;
  }
+ case'g34_RevealSplit1257':{
+  const ids=look(s,{...t,public:true});
+  if(ids.length)put(s,{...t,op:'g34_SplitPile1257',ids,first:[]});
+  break;
+ }
+ case'g34_SplitPile1257':{
+  const rows=t.ids.map(uid=>own.deck.find(x=>x.uid===uid)).filter(Boolean);
+  const remaining=rows.filter(x=>!t.first.includes(x.uid));
+  const goal=Math.floor(rows.length/2);
+  if(!remaining.length){put(s,{...t,op:'g34_ChoosePile1257'});break;}
+  choice(s,t,'束Aに入れるカードを選ぶ（'+t.first.length+'枚）。残りは束Bになる',[
+   ...remaining.map(x=>opt(card(x).name+'を束Aへ',x.uid,t.first.length<goal?10:-5,x.cardId)),
+   opt('2つの束を確定',null,t.first.length>=goal?10:0)
+  ],1-t.p);
+  break;
+ }
+ case'g34_ChoosePile1257':{
+  const rows=t.ids.map(uid=>own.deck.find(x=>x.uid===uid)).filter(Boolean);
+  const piles=[rows.filter(x=>t.first.includes(x.uid)),rows.filter(x=>!t.first.includes(x.uid))];
+  choice(s,t,'手札に加える束を選ぶ。もう一方は墓地へ',piles.map((xs,i)=>
+   opt('束'+(i?'B':'A')+'：'+(xs.map(x=>card(x).name).join('・')||'0枚'),i,xs.length*10,xs[0]?.cardId)));
+  break;
+ }
  case'g34_Distribute255':distribute255(s,t);break;
  case'g34_LookPick':{const xs=t.ids.map(uid=>own.deck.find(x=>x.uid===uid)).filter(Boolean),stages=t.stages||[],stage=stages[t.stage];
   if(t.g940SplitTop){
@@ -5226,6 +5260,12 @@ export function createSixPhotoRules(api){
   (s.extLimits??=[]).push({kind:'g1123TurnNamedAttack',player:t.p,source:t.source,spellCost:cost(card(t.source)),
    turn:s.turn,expires:'end',who:s.active,name:exactName(t.name),defs:t.defs});
   break;
+ case'g34_BladeCircle1257':{
+  const who=1-t.p;
+  (s.extLimits??=[]).push({kind:'g1257BladeCircle',source:t.source,spellCost:cost(card(t.source)),
+   who,startsPlayer:who,active:false,expires:'end'});
+  break;
+ }
  case'g34_TurnAttackWatch':
   (s.extLimits??=[]).push({kind:'turnAttackWatch',player:t.p,source:t.source,spellCost:cost(card(t.source)),
    turn:s.turn,expires:'end',who:s.active,filter:t.filter,defs:t.defs});
@@ -6336,6 +6376,14 @@ export function createSixPhotoRules(api){
   }
   break;
  }
+ case'g34_SplitPile1257':
+  put(s,v===null?{...t,op:'g34_ChoosePile1257'}:{...t,first:[...t.first,v]});
+  break;
+ case'g34_ChoosePile1257':{
+  const g255Plans=t.ids.filter(uid=>t.first.includes(uid)===(v===0)).map(uid=>({uid,to:'hand'}));
+  distribute255(s,{...t,g255Plans,ids:t.ids.filter(uid=>!g255Plans.some(r=>r.uid===uid)),rest:'grave'});
+  break;
+ }
  case'g34_LookPick':if(v)put(s,{...t,chosen:[...(t.chosen||[]),v]});else put(s,{...t,stages:t.stages.map((q,i)=>i===t.stage?{...q,n:(t.chosen||[]).length}:q)});break;
  case'g34_GuardOrder834':
  case'g34_Order':put(s,{...t,ids:t.ids.filter(uid=>uid!==v),ordered:[...(t.ordered||[]),v]});break;
@@ -6639,6 +6687,8 @@ export function createSixPhotoRules(api){
   }
   if(v){const y=s.players[v.p].battle.find(y=>y.uid===v.uid);if(y){if(t.g627StayTarget)stayUntilStart627(s,t,y);if(t.g792Once)(s.once??={})[onceKey792(t,t)]=s.turn;if(t.g805AddCivilization){put(s,{...t,op:'g34_ChooseCivilization805',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g503Stack){const n=api.allLayers(y).length;const effect=t.g503Stack==='opponentDestroy'?{op:'OpponentSelect',n,to:'grave'}:t.g503Stack==='opponentMinus'?{op:'Target',power:-2000*n,g242PowerMinus:true}:t.g503Stack==='shield'?{op:'ShieldTop',n,g779Simultaneous:true}:{op:t.g503Stack==='draw'?'DrawUpTo':'Ramp',n};start(s,t,[effect,...(t.after||[])]);break;}if(t.g467Destinations){put(s,{...t,op:'g34_TargetDestination467',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g235TapOrUntap){put(s,{...t,op:'g34_TapState235',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g565AttackLock)(y.g35NoAttack??=[]).push({turn:s.turn});if(t.g569WeakerBlock)(s.extLimits??=[]).push({kind:'g569WeakerBlock',ref:{uid:y.uid,incarnation:y.incarnation||0},spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1)),expires:'end',who:s.active});if(t.g567PlayerStop)stopPlayerAttack567(s,t,y);if(t.g190Freeze)freeze(s,t,v.p,y);if(t.g546Force)force546(s,t,v.p,y);if(t.g547OwnerShield)put(s,task('g34_ShieldTop',v.p,t.source,{n:1,controller:t.controller??t.p}));if(t.g631MillCost){const amount=cost(effective(y,s));start(s,t,[{op:'Mill',n:Number.isFinite(amount)?amount:'∞',...(t.g638OptionalMill?{optional:true}:{}),...(t.g1253MillTogether?{g1042Together:true}:{})}]);}if(t.to)move(s,[{player:v.p,uid:v.uid,to:t.to,destroy:t.to==='grave',tapped:!!t.tapped,...(t.moveByTargetController?{controller:v.p}:{}),...(t.g1133AlreadyReplaced?{replacement:true}:{}),...(t.toOwnerMana?{toOwnerMana:true}:{}),...(t.toOwnerShields?{toOwnerShields:true}:{}),...(t.toOwnerHand?{toOwnerHand:true}:{}),...(t.toOwnerDeck?{toOwnerDeck:true}:{}),...(t.toOwnerExtra?{toOwnerExtra:true}:{}),...(t.toOwnerGrave?{toOwnerGrave:true}:{}),...(t.to==='deckTop'?{orderDeckTop:true}:{}),...(t.faceUp?{faceUp:true}:{})}]);const wasTapped=y.tapped;if(t.tap)api.tap(s,v.p,y);const newlyTapped=!wasTapped&&y.tapped;
    if(t.g988Lure)(s.g42Lures??=[]).push({p:t.p,uid:y.uid,incarnation:y.incarnation||0,source:t.source,cost:cost(card(t.source))});
+   if(t.g1257NoAttackUntilStart)(s.extLimits??=[]).push({kind:'g1257AttackCreatureLock',
+    g1058FollowUnit:true,ref:{uid:y.uid,incarnation:y.incarnation||0},expires:'start',who:t.p});
    if(t.g1116CreatureUntapLock)(s.extLimits??=[]).push({
     kind:'g1116CreatureUntapLock',ref:key(y),who:t.p,expires:'start',
     spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))
