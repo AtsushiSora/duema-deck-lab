@@ -2475,6 +2475,20 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1256&&d?.status==='complete'&&d.faces.length===1){
+  const lines=f.abilityText.split('\n').map(normalize);
+  if(d.id==='dmr18-054'&&f.typeText==='クリーチャー'&&lines.length===1&&lines[0]===
+   'マナ武装3-相手が自分のクリーチャーを選ぶ時自分のマナゾーンに水のカードが3枚以上あれば相手は《アクア特攻兵デコイ》以外選べない。'+
+   '(ただし自分の他のクリーチャーを攻撃またはブロックしてもよい)')
+   return {g1256Decoy:{n:3,color:'水'}};
+  if(d.id==='dmrp18-087'&&f.typeText==='呪文'&&lines.length===2&&keyword(lines[0],'S・トリガー')&&lines[1]===
+   '相手のクリーチャーを1体選ぶ。次の自分のターンのはじめまでそのクリーチャーは可能であれば攻撃し可能であればクリーチャーを攻撃する。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',g521UntilStart:true,g1058FollowUnit:true,g565External:true,spell:true,
+    grant:{mustAttack:true,g736ForcedAttack:true,g1173AttackCreatureIfAble:true}}]};
+  if(d.id==='dmrp22-020'&&f.typeText==='クリーチャー'&&lines.length===2&&keyword(lines[0],'スピードアタッカー')&&lines[1]===
+   '自分の進化クリーチャーが破壊された時バトルゾーンに自分の《U・S・A・AIDORU》がなければこのクリーチャーを自分の手札から出してもよい。')
+   return {speedAttacker:true,g1256HandEvolutionDeath:true};
+ }
  if(phase>=1255&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmrp12-078'&&text===

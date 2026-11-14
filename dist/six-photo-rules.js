@@ -1242,7 +1242,7 @@ export function createSixPhotoRules(api){
   const protection={};
   for(const l of s.extLimits||[])
    if(l.kind==='g521Grant'&&l.g565External&&l.active!==false&&
-      (l.startsPlayer===undefined&&!l.g1106ExternalUntilEnd||l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}))&&
+      (l.startsPlayer===undefined&&!l.g1106ExternalUntilEnd&&!l.grant.g736ForcedAttack||l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}))&&
       api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation))
     Object.assign(protection,l.grant);
   return protection;
@@ -3139,6 +3139,18 @@ export function createSixPhotoRules(api){
   const refs=history.cards[t.p];
   start(s,t,[{op:'Select',origin:'grave',to:'hand',n:1,optional:true,
    filter:{anyFaceRace:'ドラゴン'},g960FormerBases:refs,title:'このターンに破壊されたドラゴンを1体戻す'}]);
+  break;
+ }
+ case'g34_AidoruDeclare1256':{
+  const y=aidoruHand1256(s,t);
+  if(y&&!api.handAbilityIgnored(s,y))choice(s,t,card(y).name+'の能力を宣言する？',
+   [opt('宣言する',true,aidoruOnField1256(s,t.p)?-5:22,y.cardId),skip()]);
+  break;
+ }
+ case'g34_AidoruDeploy1256':{
+  const y=aidoruHand1256(s,t);
+  if(y&&!aidoruOnField1256(s,t.p)&&canPut(s,t.p,y,'hand'))
+   doPut(s,{...t,origin:'hand',target:y.uid});
   break;
  }
  case'g34_LacrimaDeclare1224':{
@@ -6130,6 +6142,13 @@ export function createSixPhotoRules(api){
    if(!permits.some(r=>r.uid===v.uid&&r.serial===v.serial&&r.face===v.face))permits.push(v);
   }
  }break;
+ case'g34_AidoruDeclare1256':if(v){
+  const y=aidoruHand1256(s,t);
+  if(y&&!api.handAbilityIgnored(s,y)){
+   api.log(s,t.p,'reveal',card(y).name+'の能力を宣言',{cardId:y.cardId});
+   send(s,t.p,y,'AidoruDeploy1256',{serial:t.serial});
+  }
+ }break;
  case'g34_LacrimaDeclare1224':if(v){
   const y=lacrimaHand1224(s,t);
   if(y&&s.endStep){
@@ -6757,6 +6776,12 @@ export function createSixPhotoRules(api){
    if(!first)use.distinct=true;
   }
  }
+ function aidoruHand1256(s,t){
+  return s.players[t.p].hand.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial&&card(y).g1256HandEvolutionDeath);
+ }
+ function aidoruOnField1256(s,p){
+  return s.players[p].battle.some(y=>!y.sealed&&!y.faceDown&&battleNames676(s,y).includes('U・S・A・AIDORU'));
+ }
  function lacrimaHand1224(s,t){
   return s.players[t.p].hand.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial&&!api.handAbilityIgnored(s,x));
  }
@@ -6979,6 +7004,17 @@ export function createSixPhotoRules(api){
  }]:[]);
  return [...delayed537,...generic,...grave,...mana,...active(s,p,'engels').filter(()=>!s.g7TerminalUsed?.[p]).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Custom',p,x.cardId,{name:'engelsTerminal',uid:x.uid,incarnation:x.incarnation||0})}))];},
  active,
+ decoyProtected1256(s,owner,x){
+  const own=s.players[owner];
+  if(!own.battle.some(y=>card(y).g1256Decoy)||!api.isCreature(s,x))return false;
+  if(battleNames676(s,x).includes('アクア特攻兵デコイ'))return false;
+  // The restriction remains even if the selecting effect cannot choose the Decoy (QA 37289).
+  return own.battle.some(y=>{
+   if(y.sealed||y.faceDown||!card(y).g1256Decoy||!api.isCreature(s,y))return false;
+   const rule=effective(y,s).g1256Decoy;
+   return !!rule&&manaCondition267(s,owner,rule);
+  });
+ },
  decorate(s,p,x,c){if(!s||p<0||c.type!=='creature')return c;const d={},own=s.players[p];if(c.g756TurboRush==='unblockable'&&turboReady756(s,p,x))d.unblockable=true;for(const l of s.extLimits||[])if(l.kind==='g521Grant'&&l.active!==false&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}))&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation))Object.assign(d,l.grant);if(c.g225AttackRequires&&!attackConditionReading481.has(s)){let ready;attackConditionReading481.add(s);try{ready=attackCondition225(s,p,c.g225AttackRequires,x);}finally{attackConditionReading481.delete(s);}if(!ready)d.noAttack=true;}if(race(c,'コマンド')&&active(s,p,'scarlet').length)d.speedAttacker=true;if(ninja(c)&&active(s,p,'dororon').length)d.blocker=true;if(active(s,p,'fallenMantra').length)d.slayer=true;if(c.g899AttackSlayerMax!==undefined&&s.attack?.attacker===x.uid){
   // QA39683: blocking replaces the creature being attacked for this continuous ability.
   const target=s.players[1-p].battle.find(y=>y.uid===(s.attack.blockUid||s.attack.target));
@@ -7990,7 +8026,10 @@ export function createSixPhotoRules(api){
   const watchers=s.leaving?.snapshot?.six?.scarlet?.[p]||active(s,p,'scarlet').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0}));for(const x of watchers)if(!used(s,'g34Scarlet',x))for(const y of all)if(card(y).type==='creature'&&cost(card(y))<=5)queue(s,p,x,[C('scarletRevive',{target:y.uid,targetSerial:y.zoneSerial||0})]);},
  flushGrave838,
  snapshot(s,leaving=[]){
+  const g1256HandEvolutionWatch=s.players.map(own=>own.hand.filter(x=>card(x).g1256HandEvolutionDeath&&
+   !api.handAbilityIgnored(s,x)).map(x=>({uid:x.uid,serial:x.zoneSerial||0})));
   const snapshot={
+  ...(g1256HandEvolutionWatch.some(x=>x.length)?{g1256HandEvolutionWatch}:{}),
   g1145GraveWatch:s.players.map(own=>own.grave.flatMap(x=>{
    const minCost=card(x).g1145GraveDeathMinCost;
    return !x.faceDown&&minCost!==undefined?[{uid:x.uid,serial:x.zoneSerial||0,minCost}]:[];
@@ -8001,6 +8040,7 @@ export function createSixPhotoRules(api){
  }),leave320:s.players.flatMap((own,p)=>own.battle.map(x=>({p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:!x.sealed&&api.isCreature(s,x),race:effective(x,s).race,watch:!x.sealed&&!!effective(x,s).g320Jave}))),death303:s.players.flatMap((own,p)=>own.battle.map(x=>{const c=effective(x,s);return{p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:api.isCreature(s,x),race:c.race,name:c.name,colors:colors(c),
    ...(race(c,'ドリームメイト')?{deathNames960:battleNames676(s,x)}:{}),...(hasSoul(card(x),'E')?{g860EvilSoul:true}:{}),...(c.g303DeathWatch?.g862OtherSoul&&leaving.some(row=>row.player===p&&row.uid===x.uid)?{g862OnlySelf:true}:{}),...(c.g891OwnCreatureLeaves&&!x.sealed&&!api.ignored(s,x)?{leaveDraw891:c.g891OwnCreatureLeaves}:{}),
    ...(c.g965OtherOwnLeave?{g965OtherOwnLeave:true}:{}),
+   ...(g1256HandEvolutionWatch[p].length&&api.isEvolution(x)?{g1256Evolution:true}:{}),
    ...(c.g1248DragonLeaves?{g1248DragonLeaves:true}:{}),
    ...(dragonElement1248(c)?{g1248DragonElement:true}:{}),
    ...(!x.sealed&&c.type==='creature'&&{g1145Cost:cost(c)===Infinity?'∞':cost(c)}),
@@ -8031,6 +8071,14 @@ export function createSixPhotoRules(api){
   const before=snapshot?.death303;
   const victim=before?.find(y=>y.p===p&&y.element&&key(y)===key(x));
   if(victim){
+   if(to==='grave'&&destroy&&victim.creature&&victim.g1256Evolution){
+    // The hand card must already be present when the destruction occurs (QA 39985).
+    const declarations=snapshot.g1256HandEvolutionWatch[p].flatMap(ref=>{
+     const y=aidoruHand1256(s,{...ref,p});
+     return y?[task('g34_AidoruDeclare1256',p,y.cardId,{...ref,controller:p})]:[];
+    });
+    if(declarations.length)put(s,...declarations);
+   }
    if(to==='grave'&&destroy&&victim.creature)for(const {uid,serial,minCost} of snapshot.g1145GraveWatch?.[p]||[]){
     if(victim.g1145Cost!=='∞'&&!(victim.g1145Cost>=minCost))continue;
     const source=s.players[p].grave.find(y=>y.uid===uid&&(y.zoneSerial||0)===serial);
