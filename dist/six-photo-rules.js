@@ -607,7 +607,8 @@ export function createSixPhotoRules(api){
   if(!api.isCreature(s,x))return false;
   return creatures(s,p).some(y=>{
    const filter=!y.sealed&&effective(y,s).g608Protect;
-   return filter&&(!filter.g334Other||y.uid!==x.uid)&&matches(s,p,x,filter);
+   return filter&&(!filter.g334Other||y.uid!==x.uid)&&
+    (!filter.condition||ownCondition(s,p,filter.condition,y.uid,y.incarnation||0))&&matches(s,p,x,filter);
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{

@@ -2475,6 +2475,21 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1298&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const redirect='このクリーチャーをアンタップして相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。';
+  if(d.id==='dm26rp3-053'&&text==='T・ブレイカー(このクリーチャーはシールドを3つブレイクする)'+redirect)
+   return {breaker:3,g1295UntapRedirect:true};
+  if(d.id==='dmrp07-012'&&
+   text==='このクリーチャーを召喚するコストを1少なくしてもよい。そうしたらこのクリーチャーはタップしてバトルゾーンに出る。'+
+    'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+redirect)
+   return {breaker:2,g1295UntapRedirect:true,g212CountDiscount:{fixed:1,optional:true,tappedEntry:true}};
+  const protection='W・ブレイカー'+redirect+
+   'ラビリンス:相手がクリーチャーを選ぶ時自分のシールドの数が相手より多ければ自分の他のメタリカは選ばれない。(ただしそのクリーチャーを攻撃またはブロックしてもよい。';
+  if(d.id==='promoy16-028'&&text===protection||d.id==='dmbd04-002'&&text===protection.slice(0,-1)+')')
+   return {breaker:2,g1295UntapRedirect:true,g608Protect:{race:'メタリカ',g334Other:true,
+    condition:{g334ZoneCount:{zone:'shields',moreThanOpponent:true}}}};
+ }
  if(phase>=1297&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const redirect='このクリーチャーをアンタップして相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。';
