@@ -2470,6 +2470,31 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1222&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const civil=color=>({any:[{creature:true},{g295Tamaseed:true}],color,faceUp:true,g258Civil:3});
+  if(['dm22rp1-020','dm23sd1-006','promoy22-028'].includes(d.id)&&f.typeText==='クリーチャー'&&
+   text==='各ターンはじめて自分のドラゴンが攻撃する時'+(d.id==='dm22rp1-020'?'':'そのドラゴンを')+'アンタップする。'+
+    '自分のドラゴンがあればこのクリーチャーのパワーを+3000する。'+
+    'シビルカウント3:自分の火のクリーチャーまたは火のタマシードが合計3つ以上あれば自分の他のクリーチャーすべてに「スピードアタッカー」を与える。'+
+    '(「スピードアタッカー」を持つクリーチャーは召喚酔いしない)')
+   return {g252AttackWatch:{who:'self',g1222FirstDragon:true,g399Attacker:true,filter:{race:'ドラゴン'},
+    defs:[{op:'AttackUntap408',g562Creature:true,g764FollowControl:true}]},
+    g260Self:{filter:{race:'ドラゴン',faceUp:true},grants:{power:3000}},
+    g208Auras:[{filter:{creature:true},other:true,g557Condition:civil('火'),grants:{speedAttacker:true}}]};
+  if(d.id==='dm22rp1-021'&&f.typeText==='タマシード'&&
+   text==='自分のクリーチャーが攻撃する時自分の山札の上から1枚目を表向きにする。'+
+    'それが攻撃しているクリーチャーと同じコストのクリーチャーまたはタマシードなら出す。そうでなければ手札に加える。')
+   return {g252AttackWatch:{who:'self',defs:[
+    {op:'RevealTop514',g1222LiveAttackCost:true,filter:{creatureOrSeed:true},to:'battle',elseTo:'hand'}]}};
+  if(d.id==='dm22rp1-023'&&f.typeText==='クリーチャー'&&
+   text==='S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)'+
+    'このクリーチャーをタップして出してもよい。相手のクリーチャーが攻撃する時可能ならクリーチャーを攻撃する。'+
+    'シビルカウント3:自分の自然のクリーチャーまたは自然のタマシードが合計3つ以上あればこのクリーチャーのパワーを+5000し「W・ブレイカー」を与える。'+
+    '(「W・ブレイカー」を持つクリーチャーはシールドを2つブレイクする)')
+   return {trigger:true,g432EntryTap:true,g1128CreatureAttackTarget:true,
+    g260Self:{filter:civil('自然'),grants:{power:5000,breaker:2}}};
+ }
  if(phase>=1221&&d?.status==='complete'&&d.faces.length===1&&
     ['dm22rp1-034','dm22rp1-065','promoy21-043','dm22rp1-018','dm22rp1-042',
      'dm22rp1-019','dm22rp1-14A','dm23sd1-005','dm23bd4-032'].includes(d.id)){

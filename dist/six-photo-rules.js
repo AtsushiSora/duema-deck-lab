@@ -33,7 +33,7 @@ export function createSixPhotoRules(api){
  }
  const exactRaces=c=>String(c.race||'').split('/').filter(Boolean);
  const sharesRace=(a,b)=>exactRaces(a).some(name=>exactRaces(b).includes(name));
- const goatRaceReading=new WeakSet();
+ const goatRaceReading=new WeakSet(),civilAuraReading=new WeakSet();
  // Soul marks are printed characteristics and remain when abilities are ignored.
  const hasSoul=(c,soul)=>c.g558Souls?.includes(soul)||c.text?.includes('【'+soul+'・ソウル】');
  const race=(c,q)=>String(c.race).includes(q),mecha=c=>race(c,'メカ'),ninja=c=>race(c,'シノビ'),demon=c=>race(c,'デーモン・コマンド'),angel=c=>race(c,'エンジェル・コマンド');
@@ -680,6 +680,9 @@ export function createSixPhotoRules(api){
   const previous=s.g23Attacks?.[p],number=previous?.turn===s.turn?previous.count+1:1,first=number===1;
   const firstPlayer=s.attack?.target==='player'&&(s.g481Attackers?.turn!==s.turn||
    !s.g481Attackers.events.some(e=>e.p===p&&e.playerTarget));
+  const dragonAttack=race(effective(attacker,s,true),'ドラゴン');
+  const firstDragon=dragonAttack&&(s.g481Attackers?.turn!==s.turn||
+   !s.g481Attackers.events.some(e=>e.p===p&&e.g1222Dragon));
   // Count qualifying declarations even if the watcher has not entered yet (QA49402).
   let firstCostSix=false;
   if(cost(effective(attacker,s))>=6){
@@ -692,7 +695,7 @@ export function createSixPhotoRules(api){
    for(const watch of watches){
     if(watch.g814CreatureTarget&&!s.players[owner].battle.some(y=>y.uid===s.attack?.target&&api.isCreature(s,y)))continue;
     if(watch.g814ShieldBroken&&!s.players[owner].brokenThisTurn)continue;
-    if((watch.who==='both'||(watch.who==='self'?owner===p:owner!==p))&&!(x.uid===attacker.uid&&(watch.other||api.selfStopped(s,p)))&&(!watch.first||first)&&(!watch.g768AttackNumber||watch.g768AttackNumber===number)&&(!watch.g764FirstCostSix||firstCostSix)&&(!watch.entryTurn||attacker.entered===s.turn)&&(!watch.playerAttack||s.attack?.target==='player')&&(!watch.g799FirstPlayer||firstPlayer)&&(!watch.defs.some(d=>d.g747Once)||!parottaUsed747(s,x))&&!used792(s,x,watch.defs[0])&&matches(s,p,attacker,watch.filter)){
+    if((watch.who==='both'||(watch.who==='self'?owner===p:owner!==p))&&!(x.uid===attacker.uid&&(watch.other||api.selfStopped(s,p)))&&(!watch.first||first)&&(!watch.g768AttackNumber||watch.g768AttackNumber===number)&&(!watch.g764FirstCostSix||firstCostSix)&&(!watch.g1222FirstDragon||firstDragon)&&(!watch.entryTurn||attacker.entered===s.turn)&&(!watch.playerAttack||s.attack?.target==='player')&&(!watch.g799FirstPlayer||firstPlayer)&&(!watch.defs.some(d=>d.g747Once)||!parottaUsed747(s,x))&&!used792(s,x,watch.defs[0])&&matches(s,p,attacker,watch.filter)){
      if(watch.defs.some(d=>d.g1197Attacker)&&s.attack)s.attack.g1197Watched=true;
      if(watch.g399Attacker)send(s,owner,x,'Sequence',{defs:watch.defs,g399Attacker:{uid:attacker.uid,incarnation:attacker.incarnation||0,...(watch.g677Layers?{refs:api.allLayers(attacker).map(key)}:{}),...(watch.defs.some(d=>d.op==='AttackDeploy409'||d.op==='AttackHandDeploy798')?{cost:cost(effective(attacker,s))===Infinity?'∞':cost(effective(attacker,s))}: {})}});else queue(s,owner,x,watch.defs);}
    }
@@ -833,7 +836,17 @@ export function createSixPhotoRules(api){
    const sourceCard=card(source),auras=sourceCard.g208Auras;
    if(!auras||source.sealed||api.ignored(s,source))continue;
    if(!api.isCreature(s,source)&&!(sourceCard.type==='field'&&sourceCard.d2Field))continue;
-   for(const aura of auras){if(aura.opponentTurn&&s.active===p)continue;if(aura.g557Condition&&!ownCondition(s,p,aura.g557Condition,source.uid))continue;if(!aura.both&&owner!==p||aura.other&&source.uid===x.uid||!fits(aura.filter))continue;
+   for(const aura of auras){
+    if(aura.opponentTurn&&s.active===p||!aura.both&&owner!==p||aura.other&&source.uid===x.uid||!fits(aura.filter))continue;
+    const condition=aura.g557Condition;
+    if(condition?.g258Civil){
+     // A creature's speed grant cannot change the civilization or type of counted cards.
+     if(civilAuraReading.has(s))continue;
+     let ready;
+     civilAuraReading.add(s);
+     try{ready=ownCondition(s,p,condition,source.uid);}finally{civilAuraReading.delete(s);}
+     if(!ready)continue;
+    }else if(condition&&!ownCondition(s,p,condition,source.uid))continue;
     for(const [key,value]of Object.entries(aura.grants)){if(racesOnly&&key!=='raceAdd')continue;if(out===c)out={...c};if(key==='slayer'){out.slayer=true;slayers++;}else if(key==='breaker')out.breaker=out.breaker==='∞'||value==='∞'?'∞':Math.max(Number(out.breaker)||1,value);else if(key==='attackBonus')out.attackBonus=(out.attackBonus||0)+value;else if(key==='raceAdd')out.race=[...new Set([...String(out.race||'').split('/').filter(Boolean),...value])].join('/');else out[key]=value;}
    }
   }
@@ -4042,8 +4055,10 @@ export function createSixPhotoRules(api){
     title:'公開したクリーチャーよりパワーが小さい相手を1体破壊する'}]);
    break;
   }
-  const filter=t.g746OwnManaCost?{...t.filter,max:own.mana.length}:t.filter;
-  const matched=matches(s,t.p,y,filter),to=matched?t.to:t.elseTo;
+  const attacker=t.g1222LiveAttackCost&&own.battle.find(x=>x.uid===s.attack?.attacker&&!x.sealed&&api.isCreature(s,x));
+  const filter=attacker?{...t.filter,exactCost:cost(effective(attacker,s))}:
+   t.g746OwnManaCost?{...t.filter,max:own.mana.length}:t.filter;
+  const matched=(!t.g1222LiveAttackCost||attacker)&&matches(s,t.p,y,filter),to=matched?t.to:t.elseTo;
   const defs=to?[{op:'RevealMove514',target:y.uid,to,...(t.g774Banky?{g774Banky:true}:{})}]:matched?[]:t.elseDefs||[];
   const release={op:'RevealRelease514',ids};
   if(matched&&t.optional&&to==='battle'&&canPut(s,t.p,y,'deck'))
@@ -7161,7 +7176,7 @@ export function createSixPhotoRules(api){
    else queue(s,owner,x,watch.defs);
   }
   if(creature&&!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g468EntryWatch;if(!x.sealed&&watch&&(!watch.g565Other||x.uid!==y.uid)&&(!(x.uid===y.uid)||!options.selfMuted&&!api.selfStopped(s,p))&&matches(s,p,y,watch.filter))send(s,p,x,'Entry468',{mode:watch.mode,subject:{uid:y.uid,incarnation:y.incarnation||0}});}if(!y.sealed)for(const x of s.players[p].battle)if(api.isCreature(s,x)||card(x).g251EntryDraw?.g1202Field)queueEntryWatch251(s,p,x,y,options);if(!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g250EntryDraw,self=x.uid===y.uid;if(!x.sealed&&watch&&(self?watch.self&&!options.selfMuted&&!api.selfStopped(s,p):matches(s,p,y,watch.filter)))queue(s,p,x,watch.defs);}if(s.active===p&&!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g249OtherEntry;if(!x.sealed&&x.uid!==y.uid&&watch&&matches(s,p,y,watch.filter))queue(s,p,x,watch.defs);}if(creature){const stopped=options.selfMuted||api.selfStopped(s,p);for(const x of active(s,p,'cabbage'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[select('mana',null,1,{creature:true,color:'自然',minPower:12000,exactCost:cost(c)-1},{deploy:true,optional:true})]);if(ninja(effective(y,s)))for(const x of active(s,p,'mukujimmed'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[E('Draw',{n:1,optional:true})]);if(angel(effective(y,s)))for(const x of active(s,p,'everries'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[E('Draw',{n:1,optional:true})]);for(const x of active(s,1-p,'nameko'))if(!options.paidMana)queue(s,1-p,x,[C('nameko',{target:y.uid,targetIncarnation:y.incarnation||0})]);if(options.execution===false)for(const x of active(s,1-p,'oogumo'))queue(s,1-p,x,[E('ExactMove',{to:'grave',target:y.uid,targetIncarnation:y.incarnation||0})]);}if(options.origin!=='hand')for(const x of s.players[1-p].battle.filter(x=>!api.ignored(s,x)))for(const layer of api.layers(x))if(card(layer).g34SoulDock)queue(s,1-p,x,[E('ExactMove',{to:'grave',target:y.uid,targetIncarnation:y.incarnation||0})]);},
- attack(s,p,x){if(s.g481Attackers?.turn!==s.turn)s.g481Attackers={turn:s.turn,events:[]};const refs=api.allLayers(x).map(key),first=!s.g481Attackers.events.some(e=>e.refs.some(r=>refs.includes(r)));s.g481Attackers.events.push({p,refs,...(race(effective(x,s,true),'ティラノ・ドレイク')?{tyrannoDrake925:true}:{}),...(s.attack?.target==='player'?{playerTarget:true}:{})});if(s.g481Attackers.events.length===1){
+ attack(s,p,x){if(s.g481Attackers?.turn!==s.turn)s.g481Attackers={turn:s.turn,events:[]};const refs=api.allLayers(x).map(key),first=!s.g481Attackers.events.some(e=>e.refs.some(r=>refs.includes(r)));s.g481Attackers.events.push({p,refs,...(race(effective(x,s,true),'ドラゴン')?{g1222Dragon:true}:{}),...(race(effective(x,s,true),'ティラノ・ドレイク')?{tyrannoDrake925:true}:{}),...(s.attack?.target==='player'?{playerTarget:true}:{})});if(s.g481Attackers.events.length===1){
   const attacker={uid:x.uid,incarnation:x.incarnation||0};
   for(const owner of [p,1-p])for(const watcher of s.players[owner].battle){
    if(!watcher.sealed&&!watcher.faceDown&&card(watcher).g1158FirstAttackBreak&&

@@ -233827,15 +233827,153 @@
       },
       "supportBatch": "phase-1221",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-020",
+      "name": "アニー・ルピア",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ファイアー・バード",
+      "text": "各ターン、はじめて自分のドラゴンが攻撃する時、アンタップする。\n自分のドラゴンがあれば、このクリーチャーのパワーを+3000する。\nシビルカウント３：自分の火のクリーチャーまたは火のタマシードが合計３つ以上あれば、自分の他のクリーチャーすべてに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-020",
+      "limit": 4,
+      "g252AttackWatch": {
+        "who": "self",
+        "g1222FirstDragon": true,
+        "g399Attacker": true,
+        "filter": {
+          "race": "ドラゴン"
+        },
+        "defs": [
+          {
+            "op": "AttackUntap408",
+            "g562Creature": true,
+            "g764FollowControl": true
+          }
+        ]
+      },
+      "g260Self": {
+        "filter": {
+          "race": "ドラゴン",
+          "faceUp": true
+        },
+        "grants": {
+          "power": 3000
+        }
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "other": true,
+          "g557Condition": {
+            "any": [
+              {
+                "creature": true
+              },
+              {
+                "g295Tamaseed": true
+              }
+            ],
+            "color": "火",
+            "faceUp": true,
+            "g258Civil": 3
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1222",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-021",
+      "name": "暴竜爵の爪",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "自分のクリーチャーが攻撃する時、自分の山札の上から１枚目を表向きにする。それが攻撃しているクリーチャーと同じコストの、クリーチャーまたはタマシードなら出す。そうでなければ、手札に加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-021",
+      "limit": 4,
+      "g252AttackWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "RevealTop514",
+            "g1222LiveAttackCost": true,
+            "filter": {
+              "creatureOrSeed": true
+            },
+            "to": "battle",
+            "elseTo": "hand"
+          }
+        ]
+      },
+      "supportBatch": "phase-1222",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-023",
+      "name": "コウバシポルチーニダケ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "バルーン・マッシュルーム",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーをタップして出してもよい。\n相手のクリーチャーが攻撃する時、可能ならクリーチャーを攻撃する。\nシビルカウント３：自分の自然のクリーチャーまたは自然のタマシードが合計３つ以上あれば、このクリーチャーのパワーを+5000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーは、シールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-023",
+      "limit": 4,
+      "trigger": true,
+      "g432EntryTap": true,
+      "g1128CreatureAttackTarget": true,
+      "g260Self": {
+        "filter": {
+          "any": [
+            {
+              "creature": true
+            },
+            {
+              "g295Tamaseed": true
+            }
+          ],
+          "color": "自然",
+          "faceUp": true,
+          "g258Civil": 3
+        },
+        "grants": {
+          "power": 5000,
+          "breaker": 2
+        }
+      },
+      "supportBatch": "phase-1222",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1221,
+    "phase": 1222,
     "checkedAt": "2026-11-14",
-    "baseCount": 7655,
-    "newEffectCards": 5,
+    "baseCount": 7660,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7660,
+    "totalCount": 7663,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -254776,6 +254914,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7655,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1221,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7655,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 7660,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

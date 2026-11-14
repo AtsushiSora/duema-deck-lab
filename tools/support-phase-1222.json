@@ -1,0 +1,364 @@
+{
+  "phase": 1222,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7660,
+  "description": "アニー・ルピア、暴竜爵の爪、コウバシポルチーニダケの全能力を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/42051/",
+    "https://dm.takaratomy.co.jp/rule/qa/42052/",
+    "https://dm.takaratomy.co.jp/rule/qa/42053/",
+    "https://dm.takaratomy.co.jp/rule/qa/42132/",
+    "https://dm.takaratomy.co.jp/rule/qa/49402/",
+    "https://dm.takaratomy.co.jp/rule/qa/39646/",
+    "https://dm.takaratomy.co.jp/rule/qa/40270/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31641/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31654/"
+  ],
+  "cards": [
+    {
+      "id": "dm22rp1-020",
+      "name": "アニー・ルピア",
+      "faces": [
+        {
+          "name": "アニー・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "各ターン、はじめて自分のドラゴンが攻撃する時、アンタップする。\n自分のドラゴンがあれば、このクリーチャーのパワーを+3000する。\nシビルカウント３：自分の火のクリーチャーまたは火のタマシードが合計３つ以上あれば、自分の他のクリーチャーすべてに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "ファイアー・バード",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-020",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-020.jpg",
+      "spec": {
+        "g252AttackWatch": {
+          "who": "self",
+          "g1222FirstDragon": true,
+          "g399Attacker": true,
+          "filter": {
+            "race": "ドラゴン"
+          },
+          "defs": [
+            {
+              "op": "AttackUntap408",
+              "g562Creature": true,
+              "g764FollowControl": true
+            }
+          ]
+        },
+        "g260Self": {
+          "filter": {
+            "race": "ドラゴン",
+            "faceUp": true
+          },
+          "grants": {
+            "power": 3000
+          }
+        },
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "other": true,
+            "g557Condition": {
+              "any": [
+                {
+                  "creature": true
+                },
+                {
+                  "g295Tamaseed": true
+                }
+              ],
+              "color": "火",
+              "faceUp": true,
+              "g258Civil": 3
+            },
+            "grants": {
+              "speedAttacker": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "4ea05c43be37306beefe3860c3105c81de8d384e7e927799769122ca42f2c349",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-021",
+      "name": "暴竜爵の爪",
+      "faces": [
+        {
+          "name": "暴竜爵の爪",
+          "typeText": "タマシード",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のクリーチャーが攻撃する時、自分の山札の上から１枚目を表向きにする。それが攻撃しているクリーチャーと同じコストの、クリーチャーまたはタマシードなら出す。そうでなければ、手札に加える。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-021",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-021.jpg",
+      "spec": {
+        "g252AttackWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "RevealTop514",
+              "g1222LiveAttackCost": true,
+              "filter": {
+                "creatureOrSeed": true
+              },
+              "to": "battle",
+              "elseTo": "hand"
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "465a363a79b5657c891ac1c746dd9976ab54f3c7eb7f4f37a3c7e5f1a7951836",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-023",
+      "name": "コウバシポルチーニダケ",
+      "faces": [
+        {
+          "name": "コウバシポルチーニダケ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーをタップして出してもよい。\n相手のクリーチャーが攻撃する時、可能ならクリーチャーを攻撃する。\nシビルカウント３：自分の自然のクリーチャーまたは自然のタマシードが合計３つ以上あれば、このクリーチャーのパワーを+5000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーは、シールドを２つブレイクする）",
+          "race": "バルーン・マッシュルーム",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-023",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-023.jpg",
+      "spec": {
+        "trigger": true,
+        "g432EntryTap": true,
+        "g1128CreatureAttackTarget": true,
+        "g260Self": {
+          "filter": {
+            "any": [
+              {
+                "creature": true
+              },
+              {
+                "g295Tamaseed": true
+              }
+            ],
+            "color": "自然",
+            "faceUp": true,
+            "g258Civil": 3
+          },
+          "grants": {
+            "power": 5000,
+            "breaker": 2
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "649e477ec49c8cba6fb48dd87fe98aea0297c954ce9f3b7fab821d8754a26710",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23sd1-006",
+      "name": "アニー・ルピア",
+      "faces": [
+        {
+          "name": "アニー・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "各ターン、はじめて自分のドラゴンが攻撃する時、そのドラゴンをアンタップする。\n自分のドラゴンがあれば、このクリーチャーのパワーを+3000する。\nシビルカウント３：自分の火のクリーチャーまたは火のタマシードが合計３つ以上あれば、自分の他のクリーチャーすべてに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "ファイアー・バード",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd1-006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23sd1-006.jpg",
+      "spec": {
+        "g252AttackWatch": {
+          "who": "self",
+          "g1222FirstDragon": true,
+          "g399Attacker": true,
+          "filter": {
+            "race": "ドラゴン"
+          },
+          "defs": [
+            {
+              "op": "AttackUntap408",
+              "g562Creature": true,
+              "g764FollowControl": true
+            }
+          ]
+        },
+        "g260Self": {
+          "filter": {
+            "race": "ドラゴン",
+            "faceUp": true
+          },
+          "grants": {
+            "power": 3000
+          }
+        },
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "other": true,
+            "g557Condition": {
+              "any": [
+                {
+                  "creature": true
+                },
+                {
+                  "g295Tamaseed": true
+                }
+              ],
+              "color": "火",
+              "faceUp": true,
+              "g258Civil": 3
+            },
+            "grants": {
+              "speedAttacker": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "a6e1eab08f579c83cdc1c1210de551bfdd532971f0ffb7cd520f653d1c66ebb2",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp1-020"
+    },
+    {
+      "id": "promoy22-028",
+      "name": "アニー・ルピア",
+      "faces": [
+        {
+          "name": "アニー・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "各ターン、はじめて自分のドラゴンが攻撃する時、そのドラゴンをアンタップする。\n自分のドラゴンがあれば、このクリーチャーのパワーを+3000する。\nシビルカウント３：自分の火のクリーチャーまたは火のタマシードが合計３つ以上あれば、自分の他のクリーチャーすべてに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "ファイアー・バード",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy22-028",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy22-028.jpg",
+      "spec": {
+        "g252AttackWatch": {
+          "who": "self",
+          "g1222FirstDragon": true,
+          "g399Attacker": true,
+          "filter": {
+            "race": "ドラゴン"
+          },
+          "defs": [
+            {
+              "op": "AttackUntap408",
+              "g562Creature": true,
+              "g764FollowControl": true
+            }
+          ]
+        },
+        "g260Self": {
+          "filter": {
+            "race": "ドラゴン",
+            "faceUp": true
+          },
+          "grants": {
+            "power": 3000
+          }
+        },
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "other": true,
+            "g557Condition": {
+              "any": [
+                {
+                  "creature": true
+                },
+                {
+                  "g295Tamaseed": true
+                }
+              ],
+              "color": "火",
+              "faceUp": true,
+              "g258Civil": 3
+            },
+            "grants": {
+              "speedAttacker": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "ca579cad9d742941d60b970d266700f51f4b736e3450ef7f5cc5b5335f107939",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp1-020"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22rp1-020": 4,
+      "dm22rp1-021": 4,
+      "dm22rp1-023": 4,
+      "dm23sd1-006": 4,
+      "promoy22-028": 4
+    }
+  }
+}
