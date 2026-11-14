@@ -326,7 +326,8 @@ export function createExtendedRules(api){
      delete s.extDiscardBatches[t.batchId];
      notifyDiscard848(s,b.p,b.g848Watchers,b.actual);
      if(b.actual&&t.afterDiscard248)put(s,t.afterDiscard248);
-     if(t.afterDiscard321)put(s,{...t.afterDiscard321,discarded:!!b.actual});
+     if(t.afterDiscard321)put(s,{...t.afterDiscard321,discarded:!!b.actual,
+      ...(t.afterDiscard321.g1223PowerPerDiscard?{actualDiscards:b.actual}:{})});
      if(t.afterDiscardCount&&b.actual)put(s,{...t.afterDiscardCount,n:b.actual});
      if(b.randomDiscardAfter&&b.actual)put(s,task('discard',1-b.p,b.source,{causedBy:b.p,n:b.actual,random:true}));
      break;

@@ -2470,6 +2470,36 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1223&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+  if(['dm22rp1-5A','dm22rp1-S5','dm22rp1-7B'].includes(d.id)&&f.typeText==='クリーチャー'&&
+   text==='自分のマナゾーンにカードが6枚以上あればこのクリーチャーを[ff03]支払って召喚してもよい。'+
+    'そうしたらこのターンの終わりにこのクリーチャーを破壊しその後カードを1枚引く。スピードアタッカーパワード・ブレイカー'+
+    'シビルカウント3:このクリーチャーが攻撃する時自分の火のクリーチャーまたは火のタマシードが合計3つ以上あれば'+
+    '自分の手札をすべて捨ててもよい。そうしたらカードを3枚引く。こうして捨てたカード1枚につきこのターンこのクリーチャーのパワーを+4000する。')
+   return {speedAttacker:true,poweredBreaker:true,
+    g568Alt:{cost:3,paymentColors:['火'],condition:{g334ZoneCount:{zone:'mana',min:6}},end:[{op:'SelfDestroy'},{op:'Draw',n:1}]},
+    g34Attack:[{op:'IfOwn',filter:{any:[{creature:true},{g295Tamaseed:true}],color:'火',faceUp:true,g258Civil:3},
+     defs:[{op:'HandCycle460',to:'grave',mode:'all',optional:true,fixedDraw:3,g1223PowerPerDiscard:4000}]}]};
+  if(['dm22rp1-6A','dm22rp1-S6','dm22rp1-8B'].includes(d.id)&&f.typeText==='タマシード/クリーチャー'&&
+   text==='このタマシードが出た時相手のパワー4000以下のクリーチャーを1体破壊する。'+
+    '自分の火のクリーチャーまたは火のタマシードが合計4つ以上なければバトルゾーンにあるこのタマシードはクリーチャーとして扱わない。'+
+    'W・ブレイカーこのクリーチャーが攻撃する時このターン自分の他のクリーチャーすべてに「パワーアタッカー+6000」「パワード・ブレイカー」「スピードアタッカー」を与える。')
+   return {type:'creature',seedCreature:true,aceCivilization:'火',breaker:2,effect:'sixPhoto',
+    g34Tasks:[{op:'Target',to:'grave',filter:{creature:true,maxPower:4000,g199Power:true}}],
+    g34Attack:[{op:'GroupGrant364',owner:'self',other:true,filter:{creature:true},
+     grant:{attackBonus:6000,poweredBreaker:true,speedAttacker:true}}]};
+  if(['dm22rp1-038','promoy21-052'].includes(d.id)&&f.typeText==='クリーチャー'&&text===blocker+
+   'このクリーチャーが攻撃する時攻撃の後このクリーチャーを破壊する。'+
+   '自分のターンの終わりに自分の山札の上から1枚目を墓地に置く。それがアビスならカードを1枚引く。')
+   return {blocker:true,g34Attack:[{op:'AfterAttack542',defs:[{op:'SelfDestroy'}]}],
+    g174End:[{op:'MillMatch520',n:1,filter:{anyFaceRace:'アビス'},defs:[{op:'Draw',n:1}]}]};
+  if(d.id==='dm22rp1-040'&&f.typeText==='クリーチャー'&&text===blocker+
+   'このクリーチャーは攻撃できない。'+
+   'このクリーチャーが破壊される時墓地に置くかわりにカードを2枚自分の墓地から好きな順序で山札の下に置いてもよい。')
+   return {blocker:true,noAttack:true,g1202GraveBottomStay:2,g1223DestroyOnlyStay:true};
+ }
  if(phase>=1222&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const civil=color=>({any:[{creature:true},{g295Tamaseed:true}],color,faceUp:true,g258Civil:3});

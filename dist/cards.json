@@ -233965,15 +233965,198 @@
       },
       "supportBatch": "phase-1222",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-5A",
+      "name": "ボルシャック・ヴァルケリー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "アーマード・ドラゴン",
+      "text": "自分のマナゾーンにカードが６枚以上あれば、このクリーチャーを [ff03]支払って召喚してもよい。そうしたら、このターンの終わりにこのクリーチャーを破壊し、その後、カードを１枚引く。\nスピードアタッカー\nパワード・ブレイカー\nシビルカウント３：このクリーチャーが攻撃する時、自分の火のクリーチャーまたは火のタマシードが合計３つ以上あれば、自分の手札をすべて捨ててもよい。そうしたら、カードを３枚引く。こうして捨てたカード１枚につき、このターン、このクリーチャーのパワーを+4000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-5A",
+      "limit": 4,
+      "speedAttacker": true,
+      "poweredBreaker": true,
+      "g568Alt": {
+        "cost": 3,
+        "paymentColors": [
+          "火"
+        ],
+        "condition": {
+          "g334ZoneCount": {
+            "zone": "mana",
+            "min": 6
+          }
+        },
+        "end": [
+          {
+            "op": "SelfDestroy"
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "any": [
+              {
+                "creature": true
+              },
+              {
+                "g295Tamaseed": true
+              }
+            ],
+            "color": "火",
+            "faceUp": true,
+            "g258Civil": 3
+          },
+          "defs": [
+            {
+              "op": "HandCycle460",
+              "to": "grave",
+              "mode": "all",
+              "optional": true,
+              "fixedDraw": 3,
+              "g1223PowerPerDiscard": 4000
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1223",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-6A",
+      "name": "ボルシャック・フォース・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 9000,
+      "race": "アーマード・ドラゴン/ACE",
+      "text": "このタマシードが出た時、相手のパワー4000以下のクリーチャーを１体破壊する。\n自分の火のクリーチャーまたは火のタマシードが合計４つ以上なければ、バトルゾーンにあるこのタマシードはクリーチャーとして扱わない。\nW・ブレイカー\nこのクリーチャーが攻撃する時、このターン、自分の他のクリーチャーすべてに「パワーアタッカー+6000」「パワード・ブレイカー」「スピードアタッカー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-6A",
+      "limit": 4,
+      "seedCreature": true,
+      "aceCivilization": "火",
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "maxPower": 4000,
+            "g199Power": true
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "other": true,
+          "filter": {
+            "creature": true
+          },
+          "grant": {
+            "attackBonus": 6000,
+            "poweredBreaker": true,
+            "speedAttacker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1223",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-038",
+      "name": "レター＝ジェンゲガー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "アビスロイヤル",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが攻撃する時、攻撃の後、このクリーチャーを破壊する。\n自分のターンの終わりに、自分の山札の上から１枚目を墓地に置く。それがアビスなら、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-038",
+      "limit": 4,
+      "blocker": true,
+      "g34Attack": [
+        {
+          "op": "AfterAttack542",
+          "defs": [
+            {
+              "op": "SelfDestroy"
+            }
+          ]
+        }
+      ],
+      "g174End": [
+        {
+          "op": "MillMatch520",
+          "n": 1,
+          "filter": {
+            "anyFaceRace": "アビス"
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1223",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-040",
+      "name": "闇々人形アイビー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 1000,
+      "race": "デスパペット",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーが破壊される時、墓地に置くかわりに、カードを２枚、自分の墓地から好きな順序で山札の下に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-040",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g1202GraveBottomStay": 2,
+      "g1223DestroyOnlyStay": true,
+      "supportBatch": "phase-1223",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1222,
+    "phase": 1223,
     "checkedAt": "2026-11-14",
-    "baseCount": 7660,
-    "newEffectCards": 3,
+    "baseCount": 7663,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7663,
+    "totalCount": 7667,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -254926,6 +255109,18 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 7660,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1222,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7660,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7663,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

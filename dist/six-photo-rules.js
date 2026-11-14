@@ -1895,7 +1895,12 @@ export function createSixPhotoRules(api){
   api.discardSelected(s,owner,[x.uid],t.source,t.controller??t.p,null,{...t,op:'g34_AfterHandFollow584',
    matched:matches(s,owner,x,t.filter),...(discardedColors?{discardedColors}:{})});
  }
- function finishCycle460(s,t,ids){const selected=ids.filter(uid=>s.players[t.p].hand.some(x=>x.uid===uid));api.discardSelected(s,t.p,selected,t.source,t.p,null,{op:'g34_CycleDraw460',p:t.p,source:t.source,n:t.fixedDraw??selected.length,extra:t.extra||0});}
+ function finishCycle460(s,t,ids){
+  const selected=ids.filter(uid=>s.players[t.p].hand.some(x=>x.uid===uid));
+  api.discardSelected(s,t.p,selected,t.source,t.p,null,{op:'g34_CycleDraw460',p:t.p,source:t.source,
+   n:t.fixedDraw??selected.length,extra:t.extra||0,
+   ...(t.g1223PowerPerDiscard?{uid:t.uid,incarnation:t.incarnation,g1223PowerPerDiscard:t.g1223PowerPerDiscard}:{})});
+ }
  // Reveal complete physical hand cards; twinpacts contribute both civilizations but count once.
  function handReveal462(s,t){const own=s.players[t.p],selected=t.selected||[],shown=own.hand.filter(x=>selected.includes(x.uid)),max=t.max??own.hand.length,rows=own.hand.filter(x=>!selected.includes(x.uid)&&matches(s,t.p,x,t.filter));
   if(selected.length>=max||!rows.length){finishReveal462(s,t,shown);return;}
@@ -2142,7 +2147,12 @@ export function createSixPhotoRules(api){
  case'g34_DrawAfterDiscard517':api.draw(s,t.p,1+(t.discarded&&t.matches?1:0));break;
  case'g34_HandCycle460':handCycle460(s,t);break;
  case'g34_CycleDrawAll460':for(let i=0;i<t.ps.length&&s.winner===null;i++)if(t.counts[i])api.draw(s,t.ps[i],t.counts[i]);break;
- case'g34_CycleDraw460':if(t.n+t.extra>0)api.draw(s,t.p,t.n+t.extra);break;
+ case'g34_CycleDraw460':{
+  const n=t.n+t.extra,power=(t.g1223PowerPerDiscard||0)*(t.actualDiscards||0);
+  if(power)start(s,t,[{op:'SelfBoost313',power,g536Source:true,g694ClearOnSeal:true}]);
+  if(n>0)api.draw(s,t.p,n);
+  break;
+ }
  case'g34_EachPlayer459':eachPlayer459(s,t);break;
  case'g34_NextReduction456':(s.extLimits??=[]).push({kind:'g456NextReduction',player:t.p,turn:s.turn,type:t.type,amount:t.amount,optional:!!t.optional,filter:t.filter||{},source:t.source,expires:'end',who:s.active,...(t.g1113ZeroFloor?{g1113ZeroFloor:true}:{})});break;
  case'g34_SpaceCharge454':{
