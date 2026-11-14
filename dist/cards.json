@@ -232835,15 +232835,152 @@
       "g1214OtherShieldSaver": true,
       "supportBatch": "phase-1214",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp3-031",
+      "name": "声凄音愛 オダンゴ / ♪ワタクシの シャウトの前に 皆黙る",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "マジック・マーメイド",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが破壊される時、墓地に置くかわりに手札に戻す。\n【呪文面】\nS・トリガー S・トリガー\n相手のクリーチャーを２体まで選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-031",
+      "limit": 4,
+      "blocker": true,
+      "destroyToHand": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "♪ワタクシの シャウトの前に 皆黙る",
+        "cost": 5,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "マジック・ソング",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "to": "hand",
+            "toOwnerHand": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "spell": true,
+            "title": "持ち主の手札に戻す相手のクリーチャーを2体まで選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-1215",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp3-049",
+      "name": "竹刀の超人 / サイバー免許皆伝",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ジャイアント",
+      "text": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\n【呪文面】\nS・トリガー S・トリガー\n相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\nカードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-049",
+      "limit": 4,
+      "machFighter": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "サイバー免許皆伝",
+        "cost": 2,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "ジャイアント・スキル",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "spell": true,
+            "title": "攻撃もブロックもできなくする相手のクリーチャーを選ぶ"
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1215",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp3-048",
+      "name": "タネダ・パンクトーカー / ♪夕暮れに さらに弱い ヤツ叩く",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "マジック・マーフォーク",
+      "text": "ジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\n【呪文面】\nS・トリガー S・トリガー\n相手のパワー4000以下のクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-048",
+      "limit": 4,
+      "justDiver": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "♪夕暮れに さらに弱い ヤツ叩く",
+        "cost": 3,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "マジック・ソング",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "destroy": true,
+            "filter": {
+              "maxPower": 4000,
+              "g199Power": true
+            },
+            "spell": true,
+            "title": "破壊する相手のパワー4000以下のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-1215",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1214,
+    "phase": 1215,
     "checkedAt": "2026-11-14",
-    "baseCount": 7634,
+    "baseCount": 7637,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7637,
+    "totalCount": 7640,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -253700,6 +253837,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7634,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1214,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7634,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7637,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

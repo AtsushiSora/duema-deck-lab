@@ -1,0 +1,242 @@
+{
+  "phase": 1215,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7637,
+  "description": "声凄音愛 オダンゴ、竹刀の超人、タネダ・パンクトーカーのツインパクト両面を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36009/",
+    "https://dm.takaratomy.co.jp/rule/qa/43961/",
+    "https://dm.takaratomy.co.jp/rule/qa/31896/",
+    "https://dm.takaratomy.co.jp/rule/qa/44184/",
+    "https://dm.takaratomy.co.jp/rule/qa/46492/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp3-031",
+      "name": "声凄音愛 オダンゴ / ♪ワタクシの シャウトの前に 皆黙る",
+      "faces": [
+        {
+          "name": "声凄音愛 オダンゴ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが破壊される時、墓地に置くかわりに手札に戻す。",
+          "race": "マジック・マーメイド",
+          "powerText": "1000",
+          "missingFields": []
+        },
+        {
+          "name": "♪ワタクシの シャウトの前に 皆黙る",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーを２体まで選び、持ち主の手札に戻す。",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-031",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-031a.jpg",
+      "spec": {
+        "blocker": true,
+        "destroyToHand": true,
+        "spellFace": {
+          "type": "spell",
+          "name": "♪ワタクシの シャウトの前に 皆黙る",
+          "cost": 5,
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "race": "マジック・ソング",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "origin": "battle",
+              "owner": "opponent",
+              "n": 2,
+              "optional": true,
+              "filter": {
+                "creature": true
+              },
+              "to": "hand",
+              "toOwnerHand": true,
+              "g173Targets": true,
+              "g193Select": true,
+              "spell": true,
+              "title": "持ち主の手札に戻す相手のクリーチャーを2体まで選ぶ"
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "6a985d6d750f21120aa8262374ac4b09d4b90200aba3fc0d78f0307c747d189b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp3-049",
+      "name": "竹刀の超人 / サイバー免許皆伝",
+      "faces": [
+        {
+          "name": "竹刀の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）",
+          "race": "ジャイアント",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "サイバー免許皆伝",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\nカードを１枚引く。",
+          "race": "ジャイアント・スキル",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-049",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-049a.jpg",
+      "spec": {
+        "machFighter": true,
+        "spellFace": {
+          "type": "spell",
+          "name": "サイバー免許皆伝",
+          "cost": 2,
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "race": "ジャイアント・スキル",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "g190Freeze": "self",
+              "spell": true,
+              "title": "攻撃もブロックもできなくする相手のクリーチャーを選ぶ"
+            },
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "e7e9e2a36fa6fbf48755068321077f91ac7bd7d2ca10681415b42c443f48bf72",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp3-048",
+      "name": "タネダ・パンクトーカー / ♪夕暮れに さらに弱い ヤツ叩く",
+      "faces": [
+        {
+          "name": "タネダ・パンクトーカー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）",
+          "race": "マジック・マーフォーク",
+          "powerText": "1000",
+          "missingFields": []
+        },
+        {
+          "name": "♪夕暮れに さらに弱い ヤツ叩く",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー\n相手のパワー4000以下のクリーチャーを１体選び、破壊する。",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-048",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-048a.jpg",
+      "spec": {
+        "justDiver": true,
+        "spellFace": {
+          "type": "spell",
+          "name": "♪夕暮れに さらに弱い ヤツ叩く",
+          "cost": 3,
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "race": "マジック・ソング",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "destroy": true,
+              "filter": {
+                "maxPower": 4000,
+                "g199Power": true
+              },
+              "spell": true,
+              "title": "破壊する相手のパワー4000以下のクリーチャーを選ぶ"
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "4f3d1515ae71f40a27af12b7e25681154dc4f075e52a663f7353e40fff4995a9",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp3-031": 4,
+      "dm23rp3-049": 4,
+      "dm23rp3-048": 4
+    }
+  }
+}

@@ -2470,6 +2470,38 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1215&&d?.status==='complete'&&d.faces.length===2&&f.typeText==='クリーチャー'&&
+    d.faces[1].typeText==='呪文'){
+  const spell=d.faces[1],front=normalize(f.abilityText),back=normalize(spell.abilityText);
+  const withTrigger=(creature,defs)=>({...creature,spellFace:{
+   type:'spell',name:spell.name,cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,
+   race:spell.race,trigger:true,effect:'sixPhoto',g34Tasks:defs
+  }});
+  const trigger='S・トリガーS・トリガー';
+  if(d.id==='dm23rp3-031'&&
+     front==='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+      'このクリーチャーが破壊される時墓地に置くかわりに手札に戻す。'&&
+     back===trigger+'相手のクリーチャーを2体まで選び持ち主の手札に戻す。')
+   return withTrigger({blocker:true,destroyToHand:true},[
+    {op:'Select',origin:'battle',owner:'opponent',n:2,optional:true,filter:{creature:true},
+     to:'hand',toOwnerHand:true,g173Targets:true,g193Select:true,spell:true,
+     title:'持ち主の手札に戻す相手のクリーチャーを2体まで選ぶ'}
+   ]);
+  if(d.id==='dm23rp3-049'&&
+     front==='マッハファイター(このクリーチャーは出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)'&&
+     back===trigger+'相手のクリーチャーを1体選ぶ。次の自分のターンのはじめまでそのクリーチャーは攻撃もブロックもできない。カードを1枚引く。')
+   return withTrigger({machFighter:true},[
+    {op:'Target',g190Freeze:'self',spell:true,title:'攻撃もブロックもできなくする相手のクリーチャーを選ぶ'},
+    {op:'Draw',n:1}
+   ]);
+  if(d.id==='dm23rp3-048'&&
+     front==='ジャストダイバー(このクリーチャーが出た時次の自分のターンのはじめまでこのクリーチャーは相手に選ばれず攻撃されない)'&&
+     back===trigger+'相手のパワー4000以下のクリーチャーを1体選び破壊する。')
+   return withTrigger({justDiver:true},[
+    {op:'Target',to:'grave',destroy:true,filter:{maxPower:4000,g199Power:true},spell:true,
+     title:'破壊する相手のパワー4000以下のクリーチャーを選ぶ'}
+   ]);
+ }
  if(phase>=1214&&d?.status==='complete'&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText),spell=d.faces[1];
   if(d.faces.length===2&&spell.typeText==='呪文'&&['dm23rp2-037','dm23rp2x-037'].includes(d.id)&&
