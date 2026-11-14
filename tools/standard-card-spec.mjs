@@ -2470,6 +2470,28 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1230&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(['dm15-s04','dmex17-Cho07','dmc39-012'].includes(d.id)&&f.typeText==='クロスギア'&&
+   /^クロスギア(?::このカードをバトルゾーンに置く。クリーチャーにクロスするにはこのカードのコストをもう一度支払う。そのクリーチャーが離れてもこのカードは残る。)?これをクロスしたクリーチャーのパワーは\+2000されシールドをさらにもう1[枚つ]ブレイクする。これをクロスしたクリーチャーが攻撃する時相手のマナゾーンからカードを2枚まで選び持ち主の墓地に置(?:く|いてもよい)。$/.test(text))
+   return {type:'gear',g123CrossPower:2000,g1230CrossExtraBreak:1,g931CrossAttack:[
+    {op:'Select',owner:'opponent',origin:'mana',to:'grave',n:2,optional:true,g184ManaLoss:true,g583Group:true,
+     toOwnerGrave:true,title:'墓地に置く相手のマナを2枚まで選ぶ'}
+   ]};
+  if(['dm23rp1-062','dm23sp1-017','promoy22-spd1006','promoy22-034'].includes(d.id)&&f.typeText==='クリーチャー'&&
+   text==='スレイヤー(このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)'+
+    '各ターンに一度自分のアビスを使うコストを1少なくしてもよい。ただしコストは0以下にはならない。')
+   return {slayer:true,g464OnceSummon:{execution:true,race:'アビス',amount:1}};
+  const trigger='{STP}S・トリガー・プラス(この呪文を自分のシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい。'+
+   'それが相手のターンでそのターン中に自分のシールドが2つ以上ブレイクされていればこの呪文に{x+}能力を与える)';
+  if(d.id==='dm23rp1-025'&&f.typeText==='呪文'&&text===trigger+
+   'クリーチャーを1体選ぶ。次の自分のターンのはじめまでそのクリーチャーのパワーは+4000されプレイヤーを攻撃できない。'+
+   '{x+}自然のコスト7以下のクリーチャーを1体自分のマナゾーンから出す。')
+   return {triggerPlus:true,effect:'sixPhoto',
+    g34Tasks:[{op:'Target',anyOwner:true,power:4000,g521UntilStart:true,g567PlayerStop:'start',spell:true}],
+    g34Plus:[{op:'Select',origin:'mana',deploy:true,n:1,filter:{creature:true,color:'自然',max:7},
+     title:'マナゾーンから出すコスト7以下の自然のクリーチャーを選ぶ'}],g451PlusAfter:true};
+ }
  if(phase>=1229&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText).replaceAll('\uFE0E','');
   const once=race=>({execution:true,race,amount:1});

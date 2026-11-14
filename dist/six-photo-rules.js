@@ -1247,7 +1247,9 @@ export function createSixPhotoRules(api){
   if(dest===t.origin)return [];
   const origin=s.players[owner][t.origin],moved=rows.map(r=>remove(origin,r.uid)).filter(Boolean);
   for(const x of moved)clear(x,dest);
-  api.addZone(s,owner,dest,...moved);
+  if(t.toOwnerGrave&&dest==='grave'){
+   for(const p of [s.active,1-s.active])api.addZone(s,p,dest,...moved.filter(x=>(x.cardOwner??owner)===p));
+  }else api.addZone(s,owner,dest,...moved);
   if(t.origin==='hand'&&dest==='mana')for(const x of moved)api.handMana(s,owner,x);
   if(t.g583DrawMoved&&moved.length)start(s,t,[{op:'Draw',n:moved.length}]);
   return moved;

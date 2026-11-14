@@ -235156,15 +235156,118 @@
       },
       "supportBatch": "phase-1229",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm15-s04",
+      "name": "バジュラズ・ソウル",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "クロスギア\nこれをクロスしたクリーチャーのパワーは+2000され、シールドをさらにもう１枚ブレイクする。\nこれをクロスしたクリーチャーが攻撃する時、相手のマナゾーンからカードを２枚まで選び、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-s04",
+      "limit": 4,
+      "g123CrossPower": 2000,
+      "g1230CrossExtraBreak": 1,
+      "g931CrossAttack": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "mana",
+          "to": "grave",
+          "n": 2,
+          "optional": true,
+          "g184ManaLoss": true,
+          "g583Group": true,
+          "toOwnerGrave": true,
+          "title": "墓地に置く相手のマナを2枚まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1230",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-062",
+      "name": "ド:ノラテップ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ノワールアビス",
+      "text": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n各ターンに一度、自分のアビスを使うコストを１少なくしてもよい。ただし、コストは０以下にはならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-062",
+      "limit": 4,
+      "slayer": true,
+      "g464OnceSummon": {
+        "execution": true,
+        "race": "アビス",
+        "amount": 1
+      },
+      "supportBatch": "phase-1230",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-025",
+      "name": "極拳呪文「デカアース」",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "{STP} S・トリガー・プラス（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、この呪文に{x+}能力を与える）\nクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーのパワーは+4000され、プレイヤーを攻撃できない。\n{x+}自然のコスト７以下のクリーチャーを１体、自分のマナゾーンから出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-025",
+      "limit": 4,
+      "triggerPlus": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "power": 4000,
+          "g521UntilStart": true,
+          "g567PlayerStop": "start",
+          "spell": true
+        }
+      ],
+      "g34Plus": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "creature": true,
+            "color": "自然",
+            "max": 7
+          },
+          "title": "マナゾーンから出すコスト7以下の自然のクリーチャーを選ぶ"
+        }
+      ],
+      "g451PlusAfter": true,
+      "supportBatch": "phase-1230",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1229,
+    "phase": 1230,
     "checkedAt": "2026-11-14",
-    "baseCount": 7684,
-    "newEffectCards": 4,
+    "baseCount": 7688,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7688,
+    "totalCount": 7691,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -256201,6 +256304,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7684,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1229,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7684,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7688,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

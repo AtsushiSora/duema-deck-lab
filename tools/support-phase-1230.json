@@ -1,0 +1,375 @@
+{
+  "phase": 1230,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7688,
+  "description": "バジュラズ・ソウル、ド:ノラテップ、極拳呪文「デカアース」の全能力を対戦対応し、公式別版5件を正規IDに対応付ける。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/43337/",
+    "https://dm.takaratomy.co.jp/rule/qa/45138/",
+    "https://dm.takaratomy.co.jp/rule/qa/43058/",
+    "https://dm.takaratomy.co.jp/rule/qa/43057/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35676/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35361/"
+  ],
+  "cards": [
+    {
+      "id": "dm15-s04",
+      "name": "バジュラズ・ソウル",
+      "faces": [
+        {
+          "name": "バジュラズ・ソウル",
+          "typeText": "クロスギア",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "クロスギア\nこれをクロスしたクリーチャーのパワーは+2000され、シールドをさらにもう１枚ブレイクする。\nこれをクロスしたクリーチャーが攻撃する時、相手のマナゾーンからカードを２枚まで選び、持ち主の墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-s04",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm15-s04.jpg",
+      "spec": {
+        "type": "gear",
+        "g123CrossPower": 2000,
+        "g1230CrossExtraBreak": 1,
+        "g931CrossAttack": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "mana",
+            "to": "grave",
+            "n": 2,
+            "optional": true,
+            "g184ManaLoss": true,
+            "g583Group": true,
+            "toOwnerGrave": true,
+            "title": "墓地に置く相手のマナを2枚まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "c91382197e970c06de6eedfe4684304f08c0ad64ac005e486bf04f4ccbb9864a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-062",
+      "name": "ド:ノラテップ",
+      "faces": [
+        {
+          "name": "ド:ノラテップ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n各ターンに一度、自分のアビスを使うコストを１少なくしてもよい。ただし、コストは０以下にはならない。",
+          "race": "ノワールアビス",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-062",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-062.jpg",
+      "spec": {
+        "slayer": true,
+        "g464OnceSummon": {
+          "execution": true,
+          "race": "アビス",
+          "amount": 1
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "124901f64e894303d45b5bef9846355a794f50d6a8a2f7c69940e45adf986bbc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-025",
+      "name": "極拳呪文「デカアース」",
+      "faces": [
+        {
+          "name": "極拳呪文「デカアース」",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{STP} S・トリガー・プラス（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、この呪文に{x+}能力を与える）\nクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーのパワーは+4000され、プレイヤーを攻撃できない。\n{x+}自然のコスト７以下のクリーチャーを１体、自分のマナゾーンから出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-025",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-025.jpg",
+      "spec": {
+        "triggerPlus": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "power": 4000,
+            "g521UntilStart": true,
+            "g567PlayerStop": "start",
+            "spell": true
+          }
+        ],
+        "g34Plus": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "creature": true,
+              "color": "自然",
+              "max": 7
+            },
+            "title": "マナゾーンから出すコスト7以下の自然のクリーチャーを選ぶ"
+          }
+        ],
+        "g451PlusAfter": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "3bb2340e74824c6056e66c889e713e6f8e7456d95adb36c4798cef735257f412",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex17-Cho07",
+      "name": "バジュラズ・ソウル",
+      "faces": [
+        {
+          "name": "バジュラズ・ソウル",
+          "typeText": "クロスギア",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "クロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーが離れても、このカードは残る。\nこれをクロスしたクリーチャーのパワーは+2000され、シールドをさらにもう１つブレイクする。\nこれをクロスしたクリーチャーが攻撃する時、相手のマナゾーンからカードを２枚まで選び、持ち主の墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-Cho07",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-Cho07.jpg",
+      "spec": {
+        "type": "gear",
+        "g123CrossPower": 2000,
+        "g1230CrossExtraBreak": 1,
+        "g931CrossAttack": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "mana",
+            "to": "grave",
+            "n": 2,
+            "optional": true,
+            "g184ManaLoss": true,
+            "g583Group": true,
+            "toOwnerGrave": true,
+            "title": "墓地に置く相手のマナを2枚まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "e99286df70be88d0233f7f3a8dc01db7c10afb5e1682db09eb846a2a6d337eef",
+        "facesMatched": true
+      },
+      "canonicalId": "dm15-s04"
+    },
+    {
+      "id": "dmc39-012",
+      "name": "バジュラズ・ソウル",
+      "faces": [
+        {
+          "name": "バジュラズ・ソウル",
+          "typeText": "クロスギア",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "クロスギア\nこれをクロスしたクリーチャーのパワーは+2000され、シールドをさらにもう１枚ブレイクする。\nこれをクロスしたクリーチャーが攻撃する時、相手のマナゾーンからカードを２枚まで選び、持ち主の墓地に置いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc39-012",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc39-012.jpg",
+      "spec": {
+        "type": "gear",
+        "g123CrossPower": 2000,
+        "g1230CrossExtraBreak": 1,
+        "g931CrossAttack": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "mana",
+            "to": "grave",
+            "n": 2,
+            "optional": true,
+            "g184ManaLoss": true,
+            "g583Group": true,
+            "toOwnerGrave": true,
+            "title": "墓地に置く相手のマナを2枚まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "930092d97e995c87818e56281aef8e0c7ff2da82d20d8026abb93ce4264d1dd3",
+        "facesMatched": true
+      },
+      "canonicalId": "dm15-s04"
+    },
+    {
+      "id": "dm23sp1-017",
+      "name": "ド:ノラテップ",
+      "faces": [
+        {
+          "name": "ド:ノラテップ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n各ターンに一度、自分のアビスを使うコストを１少なくしてもよい。ただし、コストは０以下にはならない。",
+          "race": "ノワールアビス",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sp1-017",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23sp1-017.jpg",
+      "spec": {
+        "slayer": true,
+        "g464OnceSummon": {
+          "execution": true,
+          "race": "アビス",
+          "amount": 1
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "14e3386eeba830b8055fd64d5b5c57d844ad9da7d49b16f967bcfe7c733cf07a",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp1-062"
+    },
+    {
+      "id": "promoy22-spd1006",
+      "name": "ド:ノラテップ",
+      "faces": [
+        {
+          "name": "ド:ノラテップ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n各ターンに一度、自分のアビスを使うコストを１少なくしてもよい。ただし、コストは０以下にはならない。",
+          "race": "ノワールアビス",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy22-spd1006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy22-spd1006.jpg",
+      "spec": {
+        "slayer": true,
+        "g464OnceSummon": {
+          "execution": true,
+          "race": "アビス",
+          "amount": 1
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "8dc3f2b4b2ff0399a7130f79d8fe1bcfadd2b62b3a9fa5cb06cfc9b14f1d3638",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp1-062"
+    },
+    {
+      "id": "promoy22-034",
+      "name": "ド:ノラテップ",
+      "faces": [
+        {
+          "name": "ド:ノラテップ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n各ターンに一度、自分のアビスを使うコストを１少なくしてもよい。ただし、コストは０以下にはならない。",
+          "race": "ノワールアビス",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy22-034",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy22-034.jpg",
+      "spec": {
+        "slayer": true,
+        "g464OnceSummon": {
+          "execution": true,
+          "race": "アビス",
+          "amount": 1
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "c615f7580e30963f05433c3b69450efdc8ef3fda4dd9d455c1b4d9c05ff83f56",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp1-062"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm15-s04": 4,
+      "dm23rp1-062": 4,
+      "dm23rp1-025": 4,
+      "dmex17-Cho07": 4,
+      "dmc39-012": 4,
+      "dm23sp1-017": 4,
+      "promoy22-spd1006": 4,
+      "promoy22-034": 4
+    }
+  }
+}
