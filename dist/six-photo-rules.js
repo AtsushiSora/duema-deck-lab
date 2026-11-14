@@ -50,7 +50,14 @@ export function createSixPhotoRules(api){
  const manaPermits297=(s,p,x,c=card(x))=>s.active!==p||x.faceDown||!s.players[p].mana.includes(x)||c.type!=='creature'||!api.canMoveZone(s,p,'mana')?[]:[
   ...(c.g297SelfManaSummon&&ownCondition(s,p,c.g297SelfManaSummon)?['g297:self']:[]),
   ...((s.extLimits||[]).some(l=>l.kind==='g297ManaTurn'&&l.player===p&&l.turn===s.turn)?['g297:turn']:
-  creatures(s,p).filter(y=>{const rule=effective(y,s).g297ManaAura,cs=api.manaColors(card(x),s,p);return !y.sealed&&rule&&(rule.exactCost!==undefined?cost(c)===rule.exactCost:rule.colorless?cs.length===0:cs.length>1);}).slice(0,1).map(y=>'g297:'+y.uid+'@'+(y.incarnation||0))),...zonePermits450(s,p,x,c,'mana'),...(c.g539SelfMana&&jokerCount539(s,p)>=c.g539SelfMana?['g539:self']:[])];
+  creatures(s,p).filter(y=>{
+   const rule=effective(y,s).g297ManaAura;
+   if(y.sealed||!rule)return false;
+   if(rule.race)return race(c,rule.race);
+   if(rule.exactCost!==undefined)return cost(c)===rule.exactCost;
+   const cs=api.manaColors(card(x),s,p);
+   return rule.colorless?cs.length===0:cs.length>1;
+  }).slice(0,1).map(y=>'g297:'+y.uid+'@'+(y.incarnation||0))),...zonePermits450(s,p,x,c,'mana'),...(c.g539SelfMana&&jokerCount539(s,p)>=c.g539SelfMana?['g539:self']:[])];
  const crossGears728=(s,p)=>s.players[p].battle.filter(x=>!x.sealed&&card(x).type==='gear');
  const crossedCount728=(s,x)=>s.players.reduce((n,_,p)=>n+crossGears728(s,p).filter(g=>g.crossedTo?.uid===x.uid&&g.crossedTo.incarnation===(x.incarnation||0)).length,0);
  const crossedGearRefs929=(s,p,host)=>crossGears728(s,p)

@@ -501,9 +501,10 @@ function draw(s,p,n,{unreplaceable=false,drawn,turnDraw=false,g1178Resolved=fals
  }
  const own=s.players[p],infinite=n==='∞';let actual=0,replacementDraws=0;
  for(let i=0;(infinite||i<n)&&s.winner===null;i++){
-  const amo=!unreplaceable&&(actual+(own.drawsThisTurn||0)>0)&&s.players[1-p].battle.find(x=>card(x).g1090DrawToMana&&!abilitiesIgnored(s,x)&&isCreature(s,x));
+  const firstDraw=actual+(own.drawsThisTurn||0)===0;
+  const amo=!unreplaceable&&!firstDraw&&s.players[1-p].battle.find(x=>card(x).g1090DrawToMana&&!abilitiesIgnored(s,x)&&isCreature(s,x));
   // The turn player's replacement has priority; neither draw replacement chains onto the other.
-  const replaced=unreplaceable||amo&&p!==s.active?null:babyloniaDraw(s,p);
+  const replaced=unreplaceable||amo&&p!==s.active?null:babyloniaDraw(s,p,firstDraw);
   if(replaced!==null){replacementDraws+=replaced;continue;}
   if(amo){
    const top=takeDeckTop(s,p);
@@ -1814,13 +1815,16 @@ function executeManaMove(s,action,baseDecision=s.decision,payments=[],randomTape
  try{withManaTransaction(t,()=>withEffect(preview,baseDecision?.type==='effect'?baseDecision.player:null,()=>stepCore(preview,action)));}catch(error){
   if(!(error instanceof ManaSelectionRequired)&&!(error instanceof DrawSelectionRequired))throw error;
   const draw=error instanceof DrawSelectionRequired;
-  s.decision={type:draw?'drawReplacement':'manaPayment',title:draw?'ヴェール・バビロニア：ドローを選ぶ':'支払うマナを選ぼう',player:action.player,...error.request,action:structuredClone(action),baseDecision:structuredClone(baseDecision),payments:structuredClone(payments),drawChoices:structuredClone(drawChoices),manualMana,randomTape,cancellable:!draw&&(!baseDecision&&['play','crossGear','pandora','galaxyShield'].includes(action.kind)||baseDecision?.type==='extended'&&['g34_RevealPayment470','g34_PaySpell485'].includes(baseDecision.task?.op)&&!payments.length)};return;
+  s.decision={type:draw?'drawReplacement':'manaPayment',title:draw?card(error.request.source).name+'：ドローを選ぶ':'支払うマナを選ぼう',player:action.player,...error.request,action:structuredClone(action),baseDecision:structuredClone(baseDecision),payments:structuredClone(payments),drawChoices:structuredClone(drawChoices),manualMana,randomTape,cancellable:!draw&&(!baseDecision&&['play','crossGear','pandora','galaxyShield'].includes(action.kind)||baseDecision?.type==='extended'&&['g34_RevealPayment470','g34_PaySpell485'].includes(baseDecision.task?.op)&&!payments.length)};return;
  }
  const previous=s.decision;s.decision=baseDecision;
  try{return withManaTransaction({...t,randomIndex:0,paymentIndex:0,drawIndex:0},()=>withEffect(s,baseDecision?.type==='effect'?baseDecision.player:null,()=>stepCore(s,action)));}catch(error){s.decision=previous;throw error;}
 }
-function babyloniaDraw(s,p){
- const source=s.players[p].battle.find(x=>card(x)?.g45Babylonia&&!abilitiesIgnored(s,x));if(!source||!manaTransaction)return null;
+function babyloniaDraw(s,p,firstDraw){
+ if(!manaTransaction)return null;
+ const source=s.players[p].battle.find(x=>!abilitiesIgnored(s,x)&&
+  (card(x)?.g45Babylonia||firstDraw&&card(x)?.g1273FirstDrawReplacement&&isCreature(s,x)));
+ if(!source)return null;
  const tx=manaTransaction,index=tx.drawIndex++,selected=tx.drawChoices[index];
  if(selected===undefined)throw new DrawSelectionRequired({player:p,source:source.cardId,drawIndex:index,stage:'replace'});
  if(!selected.replace)return null;
@@ -3384,7 +3388,8 @@ export function step(s,action,{manualMana=false}={}){return withEffect(s,s.decis
   if(a.kind==='cancelMana'){s.decision=d.baseDecision;return;}
   if(a.kind==='confirmMana')return executeManaMove(s,d.action,d.baseDecision,[...d.payments,[...d.selected]],d.randomTape,d.drawChoices||[],d.manualMana??true);
  }
- if(!manualMana&&physicalCards(s).some(x=>card(x)?.g45Babylonia))return executeManaMove(s,typeof action==='number'?getLegalActions(s)[action]:action,s.decision,[],[],[],false);
+ if(!manualMana&&physicalCards(s).some(x=>card(x)?.g45Babylonia||card(x)?.g1273FirstDrawReplacement))
+  return executeManaMove(s,typeof action==='number'?getLegalActions(s)[action]:action,s.decision,[],[],[],false);
  if(manualMana)return executeManaMove(s,typeof action==='number'?getLegalActions(s)[action]:action);
  return stepCore(s,action);
  });}

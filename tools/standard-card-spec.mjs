@@ -2475,6 +2475,25 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1273&&d?.status==='complete'&&d.faces.length===1){
+  const lines=f.abilityText.split('\n').map(normalize);
+  if(f.typeText==='クリーチャー'&&['dmr05-s07','dm23ex3-TF06'].includes(d.id)&&lines.length===3&&
+   lines.some(line=>keyword(line,'W・ブレイカー'))&&
+   lines.includes('相手がカードを引いた時自分の山札の上から1枚目をマナゾーンに置いてもよい。')&&
+   lines.some(line=>/^アンノウン(?:・クリーチャー)?を自分のマナゾーンから召喚してもよい。$/.test(line)))
+   return {breaker:2,g297ManaAura:{race:'アンノウン'},g676OppDraw:[{op:'Ramp',n:1,optional:true}]};
+  if(f.typeText==='クリーチャー'&&d.id==='dm22ex2-044'&&lines.length===3&&keyword(lines[0],'ブロッカー')&&
+   lines[1]==='相手がカードを引いた時それがそのターンに相手が引く1枚目でなければ相手は自身の手札を1枚選んで捨てる。'&&
+   lines[2]==='各ターン自分がはじめてカードを引く時1枚のかわりに2枚引いてもよい。そうしたら自分の手札を1枚捨てる。')
+   return {blocker:true,drawDiscard:true,g1273FirstDrawReplacement:true};
+  if(f.typeText==='NEOクリーチャー'&&d.id==='dmex03-010'&&lines.length===5&&
+   lines[0]==='NEO進化:自分の闇のクリーチャー1体の上に置いてもよい。(クリーチャーが下にあればこれをNEO進化クリーチャーとして扱う)'&&
+   keyword(lines[1],'T・ブレイカー')&&lines[2]==='このクリーチャーがバトルゾーンに出た時そのターン他のクリーチャーすべてのパワーを-10000する。'&&
+   lines[3]==='ブレイク・ボーナス(このクリーチャーの攻撃が終わった時その攻撃中にブレイクしたシールド1枚につき次のb能力を1回使ってもよい)'&&
+   lines[4]==='b相手の手札を1枚見ないで選び捨てさせる。')
+   return {neoEvolution:{any:[{civilization:'闇'}]},breaker:3,g1271BreakBonus:{op:'BlindDiscard773',n:1},
+    effect:'sixPhoto',g34Tasks:[{op:'GroupPower',owner:'both',other:true,filter:{creature:true},power:-10000}]};
+ }
  if(phase>=1272&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const lines=f.abilityText.split('\n').map(normalize);
   if(['dm20-002','dmc61-003'].includes(d.id)&&lines.length===2&&
