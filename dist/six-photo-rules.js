@@ -3399,12 +3399,14 @@ export function createSixPhotoRules(api){
  case'g34_LacrimaDeclare1224':{
   const y=lacrimaHand1224(s,t);
   if(y)choice(s,t,card(y).name+'のターン終了時の能力を宣言する？',
-   [opt('宣言する',true,t.g1240Fish&&!fishEndReady1240(s,t.p)?-5:25,y.cardId),skip()]);
+   [opt('宣言する',true,(t.g1240Fish&&!fishEndReady1240(s,t.p)||
+    t.g1313ShieldHand&&!shieldHandEndReady1313(s,t))?-5:25,y.cardId),skip()]);
   break;
  }
  case'g34_LacrimaDeploy1224':{
   const y=lacrimaHand1224(s,t);
-  if(y&&(!t.g1240Fish||fishEndReady1240(s,t.p)))doPut(s,{...t,origin:'hand',target:y.uid});
+  if(y&&(!t.g1240Fish||fishEndReady1240(s,t.p))&&(!t.g1313ShieldHand||shieldHandEndReady1313(s,t)))
+   doPut(s,{...t,origin:'hand',target:y.uid});
   break;
  }
  case'g34_RevengeDeclare795':{
@@ -7443,13 +7445,17 @@ export function createSixPhotoRules(api){
  function fishEndReady1240(s,p){
   return p===s.active&&s.g1240FishEntry?.[p]!==s.turn&&creatures(s,p).filter(x=>!x.sealed&&x.tapped).length>=3;
  }
+ function shieldHandEndReady1313(s,t){
+  return s.g1313ShieldHand?.turn===s.turn&&s.g1313ShieldHand.count>=t.g1313ShieldHand;
+ }
  function declareLacrima1224(s,p){
   const use=s.g1224Uses?.[p];
   if(use?.turn!==s.turn&&p!==s.active)return false;
   const ready=s.players[p].hand.flatMap(x=>{
-   const c=card(x),fish=p===s.active&&c.g1240HandEnd;
-   if(!(fish||use?.turn===s.turn&&c.g1224HandEnd&&use.maxCost>=c.g1224HandEnd)||api.handAbilityIgnored(s,x))return [];
-   return [task('g34_LacrimaDeclare1224',p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0,...(fish?{g1240Fish:true}:{})})];
+   const c=card(x),fish=p===s.active&&c.g1240HandEnd,shieldHand=p===s.active&&c.g1313ShieldHandEnd;
+   if(!(fish||shieldHand||use?.turn===s.turn&&c.g1224HandEnd&&use.maxCost>=c.g1224HandEnd)||api.handAbilityIgnored(s,x))return [];
+   return [task('g34_LacrimaDeclare1224',p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0,
+    ...(fish?{g1240Fish:true}:{}),...(shieldHand?{g1313ShieldHand:shieldHand}:{})})];
   });
   if(ready.length)put(s,...ready);
   return ready.length>0;

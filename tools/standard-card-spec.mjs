@@ -2475,6 +2475,21 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1313&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmrp03-048'&&text===
+   '自分のターンの終わりにそのターンシールドが2つ以上手札に加えられていたらこのクリーチャーを自分の手札からバトルゾーンに出してもよい。')
+   return {g1313ShieldHandEnd:2};
+  if(['dm38-s01','dmex08-269'].includes(d.id)&&
+   /^W・ブレイカー(?:\(このクリーチャーはシールドを2枚ブレイクする\))?バトルゾーンに自分の水のクリーチャーが11体以上あれば自分はゲームに勝(?:利する|つ)。$/.test(text))
+   return {breaker:2,g558Souls:['M'],g42Eleven:true};
+  if(['dmbd06-002','dm23ex3-TF04'].includes(d.id)&&
+   /^ブロッカーブロッカーW・ブレイカーこのクリーチャーが召喚によって(?:バトルゾーンに)?出た時「ブロッカー」を持つ進化ではないクリーチャーを好きな数自分の手札から(?:バトルゾーンに)?出(?:してもよい|す)。(?:このクリーチャーまたは)?自分の(?:他の)?「ブロッカー」を持つクリーチャーが(?:バトルゾーンに)?出た時カードを1枚引いてもよい。$/.test(text))
+   return {blocker:true,breaker:2,summonedEntryOnly:true,effect:'sixPhoto',
+    g34Tasks:[{op:'Select',origin:'hand',n:'all',optional:true,deploy:true,filter:{creature:true,nonEvolution:true,blocker:true},
+     title:'手札から出す進化ではないブロッカーを選ぶ'}],
+    g251EntryDraw:{g1198EntryScope:true,filter:{creature:true,blocker:true},defs:[{op:'Draw',n:1,optional:true}]}};
+ }
  if(phase>=1312&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dmc45-008'&&f.typeText==='クロスギア'&&text===

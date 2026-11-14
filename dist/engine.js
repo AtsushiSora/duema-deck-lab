@@ -947,10 +947,21 @@ function shieldFaceHasTrigger1162(s,p,x,c){
   c.rev2Trigger&&!String(c.text||'').includes('手札に加えるこの')&&s.players[p].shields.length<=2||extra.six.shieldTrigger(s,p,x,c)||
   extra.requested393J.shieldTrigger(s,p,x,c)||lightShieldTrigger1019(s,p,c,s.players[p].shields.length,true);
 }
+// Count a shield once when its group leaves and at least one of its cards reaches hand.
+const shieldGroupSnapshot1313=roots=>new Map(roots.map(root=>[shieldGroup(root),shieldCards(root).map(x=>x.uid)]));
+function recordShieldHand1313(s,p,groups,hand){
+ if(!hand.length)return;
+ const moved=new Set(hand.map(x=>x.uid));
+ const count=[...groups].filter(([group,uids])=>!findShield(s.players[p],group)&&uids.some(uid=>moved.has(uid))).length;
+ if(!count)return;
+ if(s.g1313ShieldHand?.turn!==s.turn)s.g1313ShieldHand={turn:s.turn,count:0};
+ s.g1313ShieldHand.count+=count;
+}
 // Select every shield first, move all physical cards, then enqueue hand-entry effects.
 function moveShields535(s,p,uids,to,{cardOnly=false,handEffects=true,replacement=false,noST=false,escapeSBDeclaration=false,toOwnerMana=false,toOwnerGrave=false}={}){
  if(to==='shields'&&!canAddShield(s,p))return [];
  const selected=[...new Set(uids)];
+ const groups=to==='hand'?shieldGroupSnapshot1313(s.players[p].shields):null;
  const leaving=handEffects&&to==='hand'?(cardOnly?
   s.players[p].shields.flatMap(shieldCards).filter(x=>selected.includes(x.uid)):
   selected.flatMap(uid=>shieldCards(findShield(s.players[p],uid)))):[];
@@ -967,6 +978,7 @@ function moveShields535(s,p,uids,to,{cardOnly=false,handEffects=true,replacement
   clearBattleState(x,target);addZone(s,staysWithShieldOwner&&!toOwnerGrave?p:owner,target,x);
   if(target==='hand')hand.push(x);
  }
+ if(groups)recordShieldHand1313(s,p,groups,hand);
  if(handEffects){
   const fromHand=Object.fromEntries(hand.filter(x=>grantedFaces[x.uid]).map(x=>[x.uid,grantedFaces[x.uid]]));
   const window=Object.keys(fromHand).length>0;
@@ -3191,6 +3203,7 @@ function commitShieldBreak(s,defender,uids){
  const fortified=x=>x.faceUp&&card(x).type==='castle';
  const groups=cardOnly?own.shields.filter(root=>shieldCards(root).some(x=>selected.has(x.uid)&&!x.g37ShieldHeld)):
   uids.map(uid=>findShield(own,uid)).filter(Boolean);
+ const handGroups=shieldGroupSnapshot1313(groups);
  const all=cardOnly?groups.flatMap(shieldCards).filter(x=>selected.has(x.uid)&&!x.g37ShieldHeld):groups.flatMap(shieldCards);
  // QA 31727: a Castle can be chosen, or falls when no shield card remains under it.
  const orphaned=cardOnly?groups.filter(root=>shieldCards(root).every(x=>selected.has(x.uid)||fortified(x))).map(shieldGroup):[];
@@ -3256,6 +3269,7 @@ function commitShieldBreak(s,defender,uids){
   if(count)extra.six.ownShieldBroken1012(s,defender,count);
  }
  s.players[defender].hand.push(...broken);
+ recordShieldHand1313(s,defender,handGroups,broken);
  if(!handOnly){s.players[defender].brokenThisTurn=(s.players[defender].brokenThisTurn||0)+count;s.metrics[controller].breaks+=count;}
  for(const x of broken){if(card(x).triggerPlus)x.triggerPlus=defender!==s.active&&s.players[defender].brokenThisTurn>=2;if(playFaces(card(x)).some(c=>c.superTrigger))x.superTrigger=s.players[defender].shields.length===0;}
  if(handOnly)log(s,controller,'shieldHand',cardOnly?`シールドゾーンのカード${broken.length}枚を手札に加えた`:

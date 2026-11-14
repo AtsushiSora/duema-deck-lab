@@ -244648,15 +244648,108 @@
       ],
       "supportBatch": "phase-1312",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-048",
+      "name": "“SNG”シンガー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ビートジョッキー",
+      "text": "自分のターンの終わりに、そのターン、シールドが２つ以上手札に加えられていたら、このクリーチャーを自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-048",
+      "limit": 4,
+      "g1313ShieldHandEnd": 2,
+      "supportBatch": "phase-1313",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm38-s01",
+      "name": "サイバー・Ｊ・イレブン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 11,
+      "power": 11000,
+      "race": "サイバー・コマンド",
+      "text": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nバトルゾーンに自分の水のクリーチャーが11体以上あれば、自分はゲームに勝利する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-s01",
+      "limit": 4,
+      "breaker": 2,
+      "g558Souls": [
+        "M"
+      ],
+      "g42Eleven": true,
+      "supportBatch": "phase-1313",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd06-002",
+      "name": "「創世」の頂 セーブ・ザ・デイト",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 10500,
+      "race": "エンジェル・コマンド/アンノウン/ゼニス",
+      "text": "ブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが召喚によってバトルゾーンに出た時、「ブロッカー」を持つ進化ではないクリーチャーを好きな数、自分の手札からバトルゾーンに出してもよい。\nこのクリーチャーまたは自分の他の「ブロッカー」を持つクリーチャーがバトルゾーンに出た時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd06-002",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "summonedEntryOnly": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": "all",
+          "optional": true,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "blocker": true
+          },
+          "title": "手札から出す進化ではないブロッカーを選ぶ"
+        }
+      ],
+      "g251EntryDraw": {
+        "g1198EntryScope": true,
+        "filter": {
+          "creature": true,
+          "blocker": true
+        },
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1313",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1312,
+    "phase": 1313,
     "checkedAt": "2026-11-15",
-    "baseCount": 7952,
-    "newEffectCards": 4,
+    "baseCount": 7956,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7956,
+    "totalCount": 7959,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -266689,6 +266782,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7952,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1312,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7952,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7956,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
