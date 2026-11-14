@@ -6932,6 +6932,19 @@ export function createSixPhotoRules(api){
  twinFinish1088(s,p){return creatures(s,p).some(x=>card(x).g1088Twin&&!api.ignored(s,x));},
  observedEntry(s,p,y,options){
   const c=card(y),eventType=c.type;
+  if(!y.sealed&&!y.faceDown){
+   const own=s.players[p],firstCreature=own.enteredThisTurn===1&&api.isCreature(s,y);
+   const seed=c.type==='seed'||c.seedCreature||c.natureAce4;
+   const history=own.g1219SeedEntries?.turn===s.turn?own.g1219SeedEntries.keys:[];
+   if(firstCreature||seed&&history.length<2)for(const watcher of own.battle){
+    if(watcher.sealed||watcher.faceDown||!card(watcher).g1219FirstEntryDraw||!effective(watcher,s).g1219FirstEntryDraw)continue;
+    if(firstCreature)send(s,p,watcher,'Draw',{n:1,optional:true});
+    // The first other Tamaseed may be the second overall if this source entered first.
+    if(seed&&watcher.uid!==y.uid&&history.every(previous=>previous===key(watcher)))
+     send(s,p,watcher,'Draw',{n:1,optional:true});
+   }
+   if(seed&&history.length<2)own.g1219SeedEntries={turn:s.turn,keys:[...history,key(y)]};
+  }
   if(s.extLimits?.some(l=>l.kind==='g1218NextCreatureGrant'&&l.player===p&&l.turn===s.turn)&&
      !y.sealed&&!y.faceDown&&api.isCreature(s,y)){
    s.extLimits=s.extLimits.filter(l=>{

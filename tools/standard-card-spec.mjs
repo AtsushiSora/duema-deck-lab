@@ -2470,6 +2470,29 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1219&&d?.status==='complete'&&['dm22rp1-025','promoy21-041','dm23rp3-034','dm23rp3-027'].includes(d.id)){
+  const front=f.abilityText.split('\n').map(normalize),spell=d.faces[1];
+  if(['dm22rp1-025','promoy21-041'].includes(d.id)&&d.faces.length===1&&f.typeText==='タマシード'&&
+     front.length===2&&front[0]==='各ターンはじめて自分のクリーチャーが出た時カードを1枚引いてもよい。'&&
+     front[1]==='各ターンはじめて自分の他のタマシードが出た時カードを1枚引いてもよい。')
+   return {g1219FirstEntryDraw:true};
+  if(d.faces.length===2&&f.typeText==='クリーチャー'&&spell.typeText==='呪文'&&
+     front.at(-1)==='メガ・ラスト・バースト(このクリーチャーが離れて手札マナゾーンまたは墓地に置かれた時このカードの呪文側をコストを支払わずに唱えてもよい)'){
+   const spellFace={type:'spell',name:spell.name,cost:spell.cost,civ:spell.civilizationText,
+    civilizations:spell.civilizations,race:spell.race,effect:'sixPhoto'};
+   const back=spell.abilityText.split('\n').map(normalize);
+   if(d.id==='dm23rp3-034'&&front.length===2&&
+      front[0]==='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'&&
+      back.length===1&&back[0]==='相手の手札を1枚見ないで選び捨てさせる。')
+    return {blocker:true,megaLastBurst:true,spellFace:{...spellFace,g34Tasks:[{op:'BlindDiscard773',n:1}]}};
+   if(d.id==='dm23rp3-027'&&front.length===1&&back.length===2&&
+      back[0]==='相手のクリーチャーを1体選びタップする。次の相手のターンのはじめにそのクリーチャーはアンタップしない。'&&
+      back[1]==='カードを1枚引く。')
+    return {megaLastBurst:true,spellFace:{...spellFace,g34Tasks:[
+     {op:'Target',tap:true,lock:true,g210TapLock:true,spell:true},{op:'Draw',n:1}
+    ]}};
+  }
+ }
  if(phase>=1218&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
   const lines=f.abilityText.split('\n').map(normalize);
   const civilCount2=color=>({creatureOrSeed:true,color,faceUp:true,g258Civil:2});
