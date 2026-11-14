@@ -244314,15 +244314,113 @@
       ],
       "supportBatch": "phase-1309",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx21-020",
+      "name": "デスメタ・ルピア",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ファイアー・バード",
+      "text": "自分のゴッドの召喚コストを１少なくしてもよい。ただし、コストは０以下にならない。\n自分のゴッドが破壊された時、ゴッドを１体、自分の墓地から手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-020",
+      "limit": 4,
+      "g290SummonAura": {
+        "race": "ゴッド",
+        "amount": 1,
+        "g560Optional": true
+      },
+      "g303DeathWatch": {
+        "race": "ゴッド",
+        "g891LookBackSelf": true,
+        "defs": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true,
+              "race": "ゴッド"
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1310",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm28-059",
+      "name": "エッジアーム・頼光・ドラグーン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ティラノ・ドレイク/サムライ",
+      "text": "このクリーチャーがナイトとバトルする時、自分の山札を見る。その中からクロスギアを１枚選んで相手に見せ、自分の手札に加えてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-059",
+      "limit": 4,
+      "g1310BattleOpponentRace": "ナイト",
+      "g1305BattleTasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g200Search": true,
+          "n": "all",
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "g201Gear": true
+              },
+              "reveal": true,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1310",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx15-011",
+      "name": "害悪のカルマ スタバック",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "オラクル/グレートメカオー",
+      "text": "誰も自身のマナゾーンにある呪文をアンタップできない。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-011",
+      "limit": 4,
+      "breaker": 2,
+      "g1302SpellManaLock": true,
+      "supportBatch": "phase-1310",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1309,
+    "phase": 1310,
     "checkedAt": "2026-11-15",
-    "baseCount": 7943,
+    "baseCount": 7946,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7946,
+    "totalCount": 7949,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -266319,6 +266417,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7943,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1309,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7943,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7946,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

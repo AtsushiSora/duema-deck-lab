@@ -2793,10 +2793,13 @@ function beginBattlePower1237(s,pa,a,pd,b,attackingUid,blockUntap,attackBattle){
  const pairs=[[pa,a,pd,b],[pd,b,pa,a]].sort(([p],[q])=>Number(q===s.active)-Number(p===s.active));
  const effects=pairs.flatMap(([controller,source,player,target])=>{
   const c=effectiveCard(source,s),amount=c.g1237BattleMinus;
+  const opponentRace=c.g1310BattleOpponentRace;
+  const battleTasks=c.g1305BattleTasks&&(!opponentRace||String(effectiveCard(target,s).race||'').includes(opponentRace))
+   ?c.g1305BattleTasks:null;
   const effect={controller,source:source.cardId,player,ref:battleRefs1155(target)[0]};
   return [...(amount?[{...effect,amount:-amount}]:[]),
    ...(c.g1304BattleBounce?[{...effect,bounce:true}]:[]),
-   ...(c.g1305BattleTasks?[{...effect,defs:c.g1305BattleTasks,
+   ...(battleTasks?[{...effect,defs:battleTasks,
     host:{uid:source.uid,incarnation:source.incarnation||0}}]:[])];
  });
  if(!effects.length)return false;

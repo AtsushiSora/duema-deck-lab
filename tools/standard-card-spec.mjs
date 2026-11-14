@@ -2475,6 +2475,17 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1310&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmx21-020'&&text==='自分のゴッドの召喚コストを1少なくしてもよい。ただしコストは0以下にならない。自分のゴッドが破壊された時ゴッドを1体自分の墓地から手札に戻す。')
+   return {g290SummonAura:{race:'ゴッド',amount:1,g560Optional:true},
+    g303DeathWatch:{race:'ゴッド',g891LookBackSelf:true,defs:[{op:'Select',origin:'grave',to:'hand',n:1,filter:{creature:true,race:'ゴッド'}}]}};
+  if(d.id==='dm28-059'&&text==='このクリーチャーがナイトとバトルする時自分の山札を見る。その中からクロスギアを1枚選んで相手に見せ自分の手札に加えてもよい。その後山札をシャッフルする。')
+   return {g1310BattleOpponentRace:'ナイト',g1305BattleTasks:[{op:'Look',g201Search:true,g200Search:true,n:'all',rest:'shuffle',
+    stages:[{n:1,to:'hand',filter:{g201Gear:true},reveal:true,optional:true}]}]};
+  if(d.id==='dmx15-011'&&text==='誰も自身のマナゾーンにある呪文をアンタップできない。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g1302SpellManaLock:true};
+ }
  if(phase>=1309&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='スター進化クリーチャー'&&d.id==='dmrp20-s07'&&text===
