@@ -3214,7 +3214,7 @@ export function getLegalActions(s){
   if(d.type==='manaPayment'){
    out=d.pool.filter(x=>!x.tapped).map(x=>option('selectMana',(d.selected.includes(x.uid)?'選択を解除：':'選ぶ：')+card(x).name,{uid:x.uid,cardId:x.cardId}));
    if(manaSelectionStatus(d).valid)out.push(option('confirmMana','このマナで使う'));if(d.cancellable)out.push(option('cancelMana','キャンセル'));
-   return out.map((a,i)=>({...a,...(a.kind==='play'&&typeof a.manaPermit==='string'&&a.manaPermit.startsWith('g450:')?{label:a.label+extra.six.permitLabel450(s,p,a.manaPermit)}:{}),id:i,player:p}));
+   return out.map((a,i)=>({...a,...(a.kind==='play'&&typeof a.manaPermit==='string'?{label:a.label+extra.six.permitLabel450(s,p,a.manaPermit)}:{}),id:i,player:p}));
   }
   if(d.type==='g1089AttackTarget')out=d.targets.map((x,i)=>option('g1089AttackTarget',x.label,{choice:i,uid:x.uid,target:x.target,cardId:x.cardId}));
   if(d.type==='godLeave')out=[s.players[p].battle.find(x=>x.uid===d.uid)].flatMap(x=>[x,...x.godLinks]).map(x=>option('godLeave',card(x.cardId).name+'を移動する',{uid:x.uid,cardId:x.cardId}));
@@ -3452,7 +3452,7 @@ export function getLegalActions(s){
    return [{...action,label:card(own.battle.find(x=>x.uid===a.uid)).name+'で攻撃（攻撃先は相手が選択）',target:'player',g1089Targets:targets}];
   });
  }
- return out.map((a,i)=>({...a,...(a.kind==='play'&&typeof a.manaPermit==='string'&&a.manaPermit.startsWith('g450:')?{label:a.label+extra.six.permitLabel450(s,p,a.manaPermit)}:{}),id:i,player:p}));
+ return out.map((a,i)=>({...a,...(a.kind==='play'&&typeof a.manaPermit==='string'?{label:a.label+extra.six.permitLabel450(s,p,a.manaPermit)}:{}),id:i,player:p}));
 }
 function mizuhanomeSource1089(s,p){
  return s.players[1-p].battle.find(x=>card(x).g1089ChooseDefense&&!abilitiesIgnored(s,x)&&isCreature(s,x));

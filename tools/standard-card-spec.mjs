@@ -2492,6 +2492,25 @@ export function standardCardSpec(d,{phase=165}={}){
     spellFace:{type:'spell',name:spell.name,cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,
      race:spell.race,text:spell.abilityText,effect:'sixPhoto',...spellRules}});
    const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+   if(phase>=1288){
+    if(d.id==='dm23rp1-009'&&text===blocker+'T・ブレイカー(このクリーチャーはシールドを3つブレイクする)'+
+     '自分のメカ・デル・ステラすべてに「ブロッカー」を与える。'&&
+     back==='次の自分のターンのはじめまで自分のクリーチャーは離れない。')
+     return twin({blocker:true,breaker:3,g208Auras:[{filter:{g724ExactRace:'メカ・デル・ステラ'},grants:{blocker:true}}]},
+      {g34Tasks:[{op:'GroupStay627',owner:'self',spell:true,filter:{creature:true,faceUp:true}}]});
+    if(['dm23rp1-023','dm24bd5-028','dm24ex1-041','dmart14-003','promoy22-010'].includes(d.id)&&
+     text==='このクリーチャーは攻撃できない。相手のターン中に相手のクリーチャーが召喚以外の方法で出た時このクリーチャーとそのクリーチャーをバトルさせてもよい。'&&
+     back==='自分の山札の上から3枚を表向きにする。その中からジャイアントとスノーフェアリーをすべて手札に加え残りを好きな順序で山札の下に置く。')
+     return twin({noAttack:true,g624EntryResponse:'opponentTurnNonSummonFight'},
+      {g34Tasks:[{op:'Look',n:3,public:true,rest:'bottom',stages:[
+       {n:'all',allMatches:true,to:'hand',filter:{any:[{anyFaceRace:'ジャイアント'},{anyFaceRace:'スノーフェアリー'}]}}
+      ]}]});
+    if(d.id==='dm23rp1-047'&&text==='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+
+     'マッハファイター(このクリーチャーは出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)'+
+     'このクリーチャーは自分の手札から召喚できない。'&&
+     back==='このターンクリーチャーを1体自分のマナゾーンから召喚してもよい。(コストは支払う)')
+     return twin({breaker:2,machFighter:true,g298NoHandSummon:true},{g34Tasks:[{op:'ManaSummon1288'}]});
+   }
    if(phase>=1287){
     if(d.id==='dm23rp1-020'&&text==='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+
      'このクリーチャーが出た時相手のクリーチャーを1体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。'+

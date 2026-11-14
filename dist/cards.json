@@ -241714,15 +241714,163 @@
       },
       "supportBatch": "phase-1287",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-009",
+      "name": "ゴルパガーニ-A7 / ダウンフォース・サーキュラー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 12500,
+      "race": "メカ・デル・ディネロ",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）\n自分のメカ・デル・ステラすべてに「ブロッカー」を与える。\n【呪文面】\n次の自分のターンのはじめまで、自分のクリーチャーは離れない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-009",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 3,
+      "g208Auras": [
+        {
+          "filter": {
+            "g724ExactRace": "メカ・デル・ステラ"
+          },
+          "grants": {
+            "blocker": true
+          }
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "ダウンフォース・サーキュラー",
+        "cost": 3,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "メカ・デル・テック",
+        "text": "次の自分のターンのはじめまで、自分のクリーチャーは離れない。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupStay627",
+            "owner": "self",
+            "spell": true,
+            "filter": {
+              "creature": true,
+              "faceUp": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1288",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-023",
+      "name": "氷打の妖精 / 巨打設計図",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 9000,
+      "race": "ジャイアント・スノーフェアリー",
+      "text": "このクリーチャーは攻撃できない。\n相手のターン中に、相手のクリーチャーが召喚以外の方法で出た時、このクリーチャーとそのクリーチャーをバトルさせてもよい。\n【呪文面】\n自分の山札の上から３枚を表向きにする。その中から、ジャイアントとスノーフェアリーをすべて手札に加え、残りを好きな順序で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-023",
+      "limit": 4,
+      "noAttack": true,
+      "g624EntryResponse": "opponentTurnNonSummonFight",
+      "spellFace": {
+        "type": "spell",
+        "name": "巨打設計図",
+        "cost": 3,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "ジャイアント・スキル",
+        "text": "自分の山札の上から３枚を表向きにする。その中から、ジャイアントとスノーフェアリーをすべて手札に加え、残りを好きな順序で山札の下に置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": "all",
+                "allMatches": true,
+                "to": "hand",
+                "filter": {
+                  "any": [
+                    {
+                      "anyFaceRace": "ジャイアント"
+                    },
+                    {
+                      "anyFaceRace": "スノーフェアリー"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1288",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-047",
+      "name": "十柱の超人 / 直撃の極意",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 9000,
+      "race": "ジャイアント",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nマッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nこのクリーチャーは、自分の手札から召喚できない。\n【呪文面】\nこのターン、クリーチャーを１体、自分のマナゾーンから召喚してもよい。（コストは支払う）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-047",
+      "limit": 4,
+      "breaker": 2,
+      "machFighter": true,
+      "g298NoHandSummon": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "直撃の極意",
+        "cost": 1,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "ジャイアント・スキル",
+        "text": "このターン、クリーチャーを１体、自分のマナゾーンから召喚してもよい。（コストは支払う）",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ManaSummon1288"
+          }
+        ]
+      },
+      "supportBatch": "phase-1288",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1287,
+    "phase": 1288,
     "checkedAt": "2026-11-15",
-    "baseCount": 7872,
+    "baseCount": 7875,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7875,
+    "totalCount": 7878,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -263455,6 +263603,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7872,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1287,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7872,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7875,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
