@@ -2475,6 +2475,40 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1286&&d?.status==='complete'&&f?.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const civil=n=>({creatureOrSeed:true,color:'火',faceUp:true,g258Civil:n});
+  if(/^dm22rp2x?-(?:or1|1b)$/i.test(d.id)&&d.faces.length===1&&text===
+   'シビルカウント3:自分の火のクリーチャーまたは火のタマシードが合計3つ以上あればこのクリーチャーは「スピードアタッカー」を得バトル中パワーが+50000される。'+
+   'シビルカウント5:自分の火のクリーチャーまたは火のタマシードが合計5つ以上あればこのクリーチャーが攻撃する時このクリーチャーをアンタップする。'+
+   'このクリーチャーが破壊された時カードを1枚引く。その後名前に《ボルシャック》とある進化ではないドラゴンを1体自分の手札から出してもよい。')
+   return {g260Self:{filter:civil(3),grants:{speedAttacker:true,g209BattlePower:{amount:50000}}},
+    g34Attack:[{op:'Untap',g191First:true,g1286TriggerCondition:civil(5)}],
+    g172Death:[{op:'Draw',n:1},{op:'Select',origin:'hand',n:1,deploy:true,optional:true,
+     filter:{creature:true,nonEvolution:true,race:'ドラゴン',g819CreatureNameIncludes:'ボルシャック'}}]};
+  const spell=d.faces[1];
+  if(d.faces.length===2&&spell.typeText==='呪文'){
+   const back=normalize(spell.abilityText),twin=(front,spellRules)=>({...front,
+    spellFace:{type:'spell',name:spell.name,cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,
+     race:spell.race,text:spell.abilityText,effect:'sixPhoto',...spellRules}});
+   const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+   if(d.id==='dm23rp1-060'&&text===blocker+'T・ブレイカー(このクリーチャーはシールドを3つブレイクする)'+
+    'このクリーチャーが出た時自分の山札の上から4枚を墓地に置いてもよい。'&&
+    back==='相手の手札を見ないで1枚選び捨てさせる。')
+    return twin({blocker:true,breaker:3,effect:'sixPhoto',g34Tasks:[{op:'Mill',n:4,optional:true,g1042Together:true}]},
+     {g34Tasks:[{op:'BlindDiscard773',n:1}]});
+   if(d.id==='dm23rp1-037'&&text==='アビスラッシュ:このクリーチャーを自分の墓地から召喚してもよい。そうしたらこのターンこのクリーチャーはプレイヤーを攻撃できターンの終わりに山札の下に置かれる。'+
+    'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'&&
+    back.replace('−','-')==='相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを-7000する。(パワー0以下のクリーチャーは破壊される)')
+    return twin({abyssRush:true,breaker:2},{g34Tasks:[{op:'Target',spell:true,power:-7000,g242PowerMinus:true}]});
+   if(d.id==='dm23rp1-056'&&text===blocker+'パワード・ブロッカー+4000(ブロック中このクリーチャーのパワーを+4000する)'+
+    'このクリーチャーは攻撃できない。'&&
+    back==='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)'+
+    'クリーチャーを1体選び持ち主の手札に戻す。')
+    return twin({blocker:true,g209PoweredBlocker:4000,noAttack:true},
+     {trigger:true,g34Tasks:[{op:'Target',anyOwner:true,spell:true,to:'hand',toOwnerHand:true}]});
+  }
+ }
  if(phase>=1285&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(/^(?:dm22rp2x?-018|dm23bd7-037)$/i.test(d.id)&&f.typeText==='呪文'&&text===

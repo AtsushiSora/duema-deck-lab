@@ -1,0 +1,560 @@
+{
+  "phase": 1286,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7868,
+  "description": "轟炎の竜皇 ボルシャック・カイザーと、DM23-RP1のツインパクト3種類の両面を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/42519/",
+    "https://dm.takaratomy.co.jp/rule/qa/31571/",
+    "https://dm.takaratomy.co.jp/rule/qa/43087/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm22rp2-OR1",
+      "name": "轟炎の竜皇 ボルシャック・カイザー",
+      "faces": [
+        {
+          "name": "轟炎の竜皇 ボルシャック・カイザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "シビルカウント３：自分の火のクリーチャーまたは火のタマシードが合計３つ以上あれば、このクリーチャーは「スピードアタッカー」を得、バトル中パワーが+50000される。\nシビルカウント ５：自分の火のクリーチャーまたは火のタマシードが合計５つ以上あれば、このクリーチャーが攻撃する時、このクリーチャーをアンタップする。\nこのクリーチャーが破壊された時、カードを１枚引く。その後、名前に《ボルシャック》とある進化ではないドラゴンを１体、自分の手札から出してもよい。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-OR1",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-OR1.jpg",
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "creatureOrSeed": true,
+            "color": "火",
+            "faceUp": true,
+            "g258Civil": 3
+          },
+          "grants": {
+            "speedAttacker": true,
+            "g209BattlePower": {
+              "amount": 50000
+            }
+          }
+        },
+        "g34Attack": [
+          {
+            "op": "Untap",
+            "g191First": true,
+            "g1286TriggerCondition": {
+              "creatureOrSeed": true,
+              "color": "火",
+              "faceUp": true,
+              "g258Civil": 5
+            }
+          }
+        ],
+        "g172Death": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "race": "ドラゴン",
+              "g819CreatureNameIncludes": "ボルシャック"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "bc69ce8c535e7d92e0c932f6fd83769fa7193af753682d8bc68a6059d2e91a68",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-060",
+      "name": "ワイグラス＝ワグラス / 「宴を始めよう」",
+      "faces": [
+        {
+          "name": "ワイグラス＝ワグラス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーが出た時、自分の山札の上から４枚を墓地に置いてもよい。",
+          "race": "アビスロイヤル",
+          "powerText": "12000",
+          "missingFields": []
+        },
+        {
+          "name": "「宴を始めよう」",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手の手札を見ないで１枚選び、捨てさせる。",
+          "race": "アビスへの誘い",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-060",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-060a.jpg",
+      "spec": {
+        "blocker": true,
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 4,
+            "optional": true,
+            "g1042Together": true
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "「宴を始めよう」",
+          "cost": 2,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "アビスへの誘い",
+          "text": "相手の手札を見ないで１枚選び、捨てさせる。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "BlindDiscard773",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "4d222aa30fcc0219aa98ea238bdb3dcdac59c04cf0e0890d4685fcffd2c11da3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-037",
+      "name": "ステッキ＝ステーシー / 「素敵だろう？」",
+      "faces": [
+        {
+          "name": "ステッキ＝ステーシー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+          "race": "アビスロイヤル",
+          "powerText": "8000",
+          "missingFields": []
+        },
+        {
+          "name": "「素敵だろう？」",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－7000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "アビスへの誘い",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-037",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-037a.jpg",
+      "spec": {
+        "abyssRush": true,
+        "breaker": 2,
+        "spellFace": {
+          "type": "spell",
+          "name": "「素敵だろう？」",
+          "cost": 4,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "アビスへの誘い",
+          "text": "相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－7000する。（パワー０以下のクリーチャーは破壊される）",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "spell": true,
+              "power": -7000,
+              "g242PowerMinus": true
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "4024da7017ca98b39e05742e43991814a72191d39c7632b2afc4077677c5555c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-056",
+      "name": "サダイエ・ホンカドリーマー / ♪古池や ワンスアゲイン スパイラル",
+      "faces": [
+        {
+          "name": "サダイエ・ホンカドリーマー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nパワード・ブロッカー +4000（ブロック中、このクリーチャーのパワーを+4000する）\nこのクリーチャーは攻撃できない。",
+          "race": "マジック・マーフォーク",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "♪古池や ワンスアゲイン スパイラル",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-056",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-056a.jpg",
+      "spec": {
+        "blocker": true,
+        "g209PoweredBlocker": 4000,
+        "noAttack": true,
+        "spellFace": {
+          "type": "spell",
+          "name": "♪古池や ワンスアゲイン スパイラル",
+          "cost": 3,
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "race": "マジック・ソング",
+          "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nクリーチャーを１体選び、持ち主の手札に戻す。",
+          "effect": "sixPhoto",
+          "trigger": true,
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "anyOwner": true,
+              "spell": true,
+              "to": "hand",
+              "toOwnerHand": true
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "2d9cd6fdc343b85395164b577a23389f72e2ebb44f5bba6a0f328738be124d6d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm22rp2x-OR1",
+      "name": "轟炎の竜皇 ボルシャック・カイザー",
+      "faces": [
+        {
+          "name": "轟炎の竜皇 ボルシャック・カイザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "シビルカウント３：自分の火のクリーチャーまたは火のタマシードが合計３つ以上あれば、このクリーチャーは「スピードアタッカー」を得、バトル中パワーが+50000される。\nシビルカウント ５：自分の火のクリーチャーまたは火のタマシードが合計５つ以上あれば、このクリーチャーが攻撃する時、このクリーチャーをアンタップする。\nこのクリーチャーが破壊された時、カードを１枚引く。その後、名前に《ボルシャック》とある進化ではないドラゴンを１体、自分の手札から出してもよい。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-OR1",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-OR1.jpg",
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "creatureOrSeed": true,
+            "color": "火",
+            "faceUp": true,
+            "g258Civil": 3
+          },
+          "grants": {
+            "speedAttacker": true,
+            "g209BattlePower": {
+              "amount": 50000
+            }
+          }
+        },
+        "g34Attack": [
+          {
+            "op": "Untap",
+            "g191First": true,
+            "g1286TriggerCondition": {
+              "creatureOrSeed": true,
+              "color": "火",
+              "faceUp": true,
+              "g258Civil": 5
+            }
+          }
+        ],
+        "g172Death": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "race": "ドラゴン",
+              "g819CreatureNameIncludes": "ボルシャック"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "b112da04bbe626c783fe8ad4f5974e6d1e6f3f054f54ae1be1b09c365dcd8410",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-OR1"
+    },
+    {
+      "id": "dm22rp2-1B",
+      "name": "轟炎の竜皇 ボルシャック・カイザー",
+      "faces": [
+        {
+          "name": "轟炎の竜皇 ボルシャック・カイザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "シビルカウント３：自分の火のクリーチャーまたは火のタマシードが合計３つ以上あれば、このクリーチャーは「スピードアタッカー」を得、バトル中パワーが+50000される。\nシビルカウント ５：自分の火のクリーチャーまたは火のタマシードが合計５つ以上あれば、このクリーチャーが攻撃する時、このクリーチャーをアンタップする。\nこのクリーチャーが破壊された時、カードを１枚引く。その後、名前に《ボルシャック》とある進化ではないドラゴンを１体、自分の手札から出してもよい。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-1B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-1B.jpg",
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "creatureOrSeed": true,
+            "color": "火",
+            "faceUp": true,
+            "g258Civil": 3
+          },
+          "grants": {
+            "speedAttacker": true,
+            "g209BattlePower": {
+              "amount": 50000
+            }
+          }
+        },
+        "g34Attack": [
+          {
+            "op": "Untap",
+            "g191First": true,
+            "g1286TriggerCondition": {
+              "creatureOrSeed": true,
+              "color": "火",
+              "faceUp": true,
+              "g258Civil": 5
+            }
+          }
+        ],
+        "g172Death": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "race": "ドラゴン",
+              "g819CreatureNameIncludes": "ボルシャック"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "1a25900deb9103d7b40ebf9ce9af47c84a664905cc6b12c5bc28b0429e42dc7b",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-OR1"
+    },
+    {
+      "id": "dm22rp2x-1B",
+      "name": "轟炎の竜皇 ボルシャック・カイザー",
+      "faces": [
+        {
+          "name": "轟炎の竜皇 ボルシャック・カイザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "シビルカウント３：自分の火のクリーチャーまたは火のタマシードが合計３つ以上あれば、このクリーチャーは「スピードアタッカー」を得、バトル中パワーが+50000される。\nシビルカウント ５：自分の火のクリーチャーまたは火のタマシードが合計５つ以上あれば、このクリーチャーが攻撃する時、このクリーチャーをアンタップする。\nこのクリーチャーが破壊された時、カードを１枚引く。その後、名前に《ボルシャック》とある進化ではないドラゴンを１体、自分の手札から出してもよい。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-1B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-1B.jpg",
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "creatureOrSeed": true,
+            "color": "火",
+            "faceUp": true,
+            "g258Civil": 3
+          },
+          "grants": {
+            "speedAttacker": true,
+            "g209BattlePower": {
+              "amount": 50000
+            }
+          }
+        },
+        "g34Attack": [
+          {
+            "op": "Untap",
+            "g191First": true,
+            "g1286TriggerCondition": {
+              "creatureOrSeed": true,
+              "color": "火",
+              "faceUp": true,
+              "g258Civil": 5
+            }
+          }
+        ],
+        "g172Death": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "race": "ドラゴン",
+              "g819CreatureNameIncludes": "ボルシャック"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "070f61955095ad48e90a7650bb78971f595bd9a2fa768a6619b4361f96fd2630",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-OR1"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22rp2-OR1": 4,
+      "dm22rp2x-OR1": 4,
+      "dm22rp2-1B": 4,
+      "dm22rp2x-1B": 4,
+      "dm23rp1-060": 4,
+      "dm23rp1-037": 4,
+      "dm23rp1-056": 4
+    },
+    "currentList": "https://dm.takaratomy.co.jp/img/regulation/2608/202608regulation.pdf"
+  },
+  "sameNameProducts": {
+    "dm22rp2-OR1": [
+      "dm22rp2",
+      "dm22rp2x"
+    ],
+    "dm23rp1-060": [
+      "dm23rp1"
+    ],
+    "dm23rp1-037": [
+      "dm23rp1"
+    ],
+    "dm23rp1-056": [
+      "dm23rp1"
+    ]
+  },
+  "samePrintAdditionalProduct": {
+    "dm22rp2-OR1": {
+      "product": "https://dm.takaratomy.co.jp/product/dm22sp2/",
+      "image": "https://dm.takaratomy.co.jp/wp-content/themes/dm2019/img/product/dm22sp2/card01.jpg",
+      "printedNumber": "22RP2 OR1/OR2"
+    }
+  }
+}

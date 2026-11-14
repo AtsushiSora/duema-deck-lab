@@ -241334,15 +241334,208 @@
       },
       "supportBatch": "phase-1285",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-OR1",
+      "name": "轟炎の竜皇 ボルシャック・カイザー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "アーマード・ドラゴン",
+      "text": "シビルカウント３：自分の火のクリーチャーまたは火のタマシードが合計３つ以上あれば、このクリーチャーは「スピードアタッカー」を得、バトル中パワーが+50000される。\nシビルカウント ５：自分の火のクリーチャーまたは火のタマシードが合計５つ以上あれば、このクリーチャーが攻撃する時、このクリーチャーをアンタップする。\nこのクリーチャーが破壊された時、カードを１枚引く。その後、名前に《ボルシャック》とある進化ではないドラゴンを１体、自分の手札から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-OR1",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "creatureOrSeed": true,
+          "color": "火",
+          "faceUp": true,
+          "g258Civil": 3
+        },
+        "grants": {
+          "speedAttacker": true,
+          "g209BattlePower": {
+            "amount": 50000
+          }
+        }
+      },
+      "g34Attack": [
+        {
+          "op": "Untap",
+          "g191First": true,
+          "g1286TriggerCondition": {
+            "creatureOrSeed": true,
+            "color": "火",
+            "faceUp": true,
+            "g258Civil": 5
+          }
+        }
+      ],
+      "g172Death": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "race": "ドラゴン",
+            "g819CreatureNameIncludes": "ボルシャック"
+          }
+        }
+      ],
+      "supportBatch": "phase-1286",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-060",
+      "name": "ワイグラス＝ワグラス / 「宴を始めよう」",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 12000,
+      "race": "アビスロイヤル",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーが出た時、自分の山札の上から４枚を墓地に置いてもよい。\n【呪文面】\n相手の手札を見ないで１枚選び、捨てさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-060",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 4,
+          "optional": true,
+          "g1042Together": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "「宴を始めよう」",
+        "cost": 2,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "アビスへの誘い",
+        "text": "相手の手札を見ないで１枚選び、捨てさせる。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BlindDiscard773",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1286",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-037",
+      "name": "ステッキ＝ステーシー / 「素敵だろう？」",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 8000,
+      "race": "アビスロイヤル",
+      "text": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n【呪文面】\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－7000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-037",
+      "limit": 4,
+      "abyssRush": true,
+      "breaker": 2,
+      "spellFace": {
+        "type": "spell",
+        "name": "「素敵だろう？」",
+        "cost": 4,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "アビスへの誘い",
+        "text": "相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－7000する。（パワー０以下のクリーチャーは破壊される）",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "spell": true,
+            "power": -7000,
+            "g242PowerMinus": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1286",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-056",
+      "name": "サダイエ・ホンカドリーマー / ♪古池や ワンスアゲイン スパイラル",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "マジック・マーフォーク",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nパワード・ブロッカー +4000（ブロック中、このクリーチャーのパワーを+4000する）\nこのクリーチャーは攻撃できない。\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nクリーチャーを１体選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-056",
+      "limit": 4,
+      "blocker": true,
+      "g209PoweredBlocker": 4000,
+      "noAttack": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "♪古池や ワンスアゲイン スパイラル",
+        "cost": 3,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "マジック・ソング",
+        "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nクリーチャーを１体選び、持ち主の手札に戻す。",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "spell": true,
+            "to": "hand",
+            "toOwnerHand": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1286",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1285,
+    "phase": 1286,
     "checkedAt": "2026-11-14",
-    "baseCount": 7865,
-    "newEffectCards": 3,
+    "baseCount": 7868,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7868,
+    "totalCount": 7872,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -263051,6 +263244,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7865,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1285,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7865,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7868,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
