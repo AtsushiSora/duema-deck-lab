@@ -2470,6 +2470,35 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1236&&d?.status==='complete'){
+  const text=normalize(f.abilityText);
+  if(['dm24rp2-S06','dm24rp2-Sec04','dm24ex3-rp2S06','dm24ex3-rp2Sec04','dm26ex1-018'].includes(d.id)&&
+   d.faces.length===2&&f.typeText==='クリーチャー'&&f.powerText==='4000'&&d.faces[1].powerText==='10000'){
+   const front='ブロッカーブロッカー自分の墓地から出たクリーチャーはすべて'+
+    (d.id==='dm26ex1-018'?'出たターンに':'出たターンの間')+'相手プレイヤーを攻撃できる。'+
+    'ハイパー化:自分の他のクリーチャーを1体タップする。'+
+    '(自分のメインステップ中にハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く)';
+   if(text===front&&normalize(d.faces[1].abilityText)===front+
+    'W・ブレイカー各ターンはじめて自分のアビスが攻撃する時自分の山札の上から2枚を墓地に置く。'+
+    'その後コスト3以下のアビス・クリーチャーを1体自分の墓地から出してもよい。')
+    return {blocker:true,g1236GravePlayerAttack:true,hyperTap:true,hyper:{power:10000,breaker:2,
+     g252AttackWatch:{who:'self',g1236FirstAbyss:true,filter:{race:'アビス'},defs:[
+      {op:'Mill',n:2,g1042Together:true},
+      {op:'Select',origin:'grave',deploy:true,n:1,optional:true,filter:{faceUp:true,g228Face:{type:'creature',raceAll:['アビス'],max:3}}}
+     ]}}};
+  }
+  if(d.faces.length===1&&f.typeText==='クリーチャー'&&['dm24rp2-S08','dm24ex3-rp2S08','dm24ex3-Sec06'].includes(d.id)&&text===
+   'このクリーチャーの召喚コストを自分のマナゾーンにあるコスト2以下のカード1枚につき1少なくする。ただしコストは0以下にはならない。'+
+   'マッハファイターW・ブレイカーこのクリーチャーが出た時自分の山札の上から2枚をマナゾーンに置いてもよい。'+
+   'このクリーチャーがタップした時コスト2以下のクリーチャーを3体まで自分のマナゾーンから出す。')
+   return {machFighter:true,breaker:2,g212CountDiscount:{zone:'mana',filter:{g1236AnyFaceMax:2},amount:1},
+    effect:'sixPhoto',g34Tasks:[{op:'Offer',title:'山札の上から2枚をマナゾーンに置く？',defs:[{op:'Ramp',n:2,g809Together:true}]}],
+    g188Tapped:[{op:'Select',origin:'mana',deploy:true,n:3,optional:true,filter:{faceUp:true,g228Face:{type:'creature',max:2}},
+     title:'マナゾーンから出すコスト2以下のクリーチャーを3体まで選ぶ'}]};
+  if(d.faces.length===1&&f.typeText==='呪文'&&['dm24rp2-023','dm24ex3-031'].includes(d.id)&&text===
+   'S・トリガーS・トリガー次の自分のターンのはじめまで相手のクリーチャーが自分のシールドをブレイクした時相手のシールドを1つ選んで墓地に置く。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Lock',spell:true,limit:{kind:'g1236ShieldRetaliate'}}]};
+ }
  if(phase>=1235&&d?.status==='complete'){
   const text=normalize(f.abilityText);
   if(['dm24rp1-OR2','dm24rp1-Sec02','dm24ex3-rp1OR2','dm24ex3-rp1Sec02'].includes(d.id)&&d.faces.length===2){

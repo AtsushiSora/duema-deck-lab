@@ -235851,15 +235851,158 @@
       ],
       "supportBatch": "phase-1235",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-S06",
+      "name": "邪魂龍 ジャビビルブラッド",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "アビスドラゴン/超化獣",
+      "text": "ブロッカーブロッカー\n自分の墓地から出たクリーチャーはすべて、出たターンの間、相手プレイヤーを攻撃できる。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\n【ハイパーモード】\nブロッカーブロッカー\n自分の墓地から出たクリーチャーはすべて、出たターンの間、相手プレイヤーを攻撃できる。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nW・ブレイカー\n各ターン、はじめて自分のアビスが攻撃する時、自分の山札の上から２枚を墓地に置く。その後、コスト３以下のアビス・クリーチャーを１体、自分の墓地から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-S06",
+      "limit": 4,
+      "blocker": true,
+      "g1236GravePlayerAttack": true,
+      "hyperTap": true,
+      "hyper": {
+        "power": 10000,
+        "breaker": 2,
+        "g252AttackWatch": {
+          "who": "self",
+          "g1236FirstAbyss": true,
+          "filter": {
+            "race": "アビス"
+          },
+          "defs": [
+            {
+              "op": "Mill",
+              "n": 2,
+              "g1042Together": true
+            },
+            {
+              "op": "Select",
+              "origin": "grave",
+              "deploy": true,
+              "n": 1,
+              "optional": true,
+              "filter": {
+                "faceUp": true,
+                "g228Face": {
+                  "type": "creature",
+                  "raceAll": [
+                    "アビス"
+                  ],
+                  "max": 3
+                }
+              }
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-1236",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-S08",
+      "name": "誠実妖精スミレ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 8000,
+      "race": "スノーフェアリー",
+      "text": "このクリーチャーの召喚コストを、自分のマナゾーンにあるコスト２以下のカード１枚につき１少なくする。ただし、コストは０以下にはならない。\nマッハファイター\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚をマナゾーンに置いてもよい。\nこのクリーチャーがタップした時、コスト２以下のクリーチャーを３体まで、自分のマナゾーンから出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-S08",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 2,
+      "g212CountDiscount": {
+        "zone": "mana",
+        "filter": {
+          "g1236AnyFaceMax": 2
+        },
+        "amount": 1
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "山札の上から2枚をマナゾーンに置く？",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 2,
+              "g809Together": true
+            }
+          ]
+        }
+      ],
+      "g188Tapped": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "deploy": true,
+          "n": 3,
+          "optional": true,
+          "filter": {
+            "faceUp": true,
+            "g228Face": {
+              "type": "creature",
+              "max": 2
+            }
+          },
+          "title": "マナゾーンから出すコスト2以下のクリーチャーを3体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1236",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-023",
+      "name": "決戦！月と太陽!!",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー\n次の自分のターンのはじめまで、相手のクリーチャーが自分のシールドをブレイクした時、相手のシールドを１つ選んで墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-023",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Lock",
+          "spell": true,
+          "limit": {
+            "kind": "g1236ShieldRetaliate"
+          }
+        }
+      ],
+      "supportBatch": "phase-1236",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1235,
+    "phase": 1236,
     "checkedAt": "2026-11-14",
-    "baseCount": 7703,
+    "baseCount": 7706,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7706,
+    "totalCount": 7709,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -256968,6 +257111,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7703,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1235,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7703,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7706,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

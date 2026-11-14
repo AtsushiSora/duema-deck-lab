@@ -129,7 +129,15 @@ export function createAbyssRules(api){
  played(s,p,c,x,origin,permit){if(origin==='grave'&&permit==='abyssRush')grant(s,x,false);},
  discount(s,p,c){return c.type==='creature'&&c.summonOrigin==='grave'?creatures(s,p).filter(x=>effective(x,s).abyssLordGrave).length*2:0;},
  mainActions(s,p){const granted=creatures(s,p).some(x=>effective(x,s).abyssLordGrave);return s.players[p].grave.filter(x=>card(x).type==='creature'&&(card(x).abyssRush||granted&&abyss(card(x)))&&api.canCast(s,p,card(x))&&api.canEnter(s,p,card(x),{origin:'grave',execution:true})&&api.canPay(s,p,{...card(x),summonOrigin:'grave'})&&(!card(x).evolution||api.evolutionBases(s,p,card(x)).length)).map(x=>({kind:'play',uid:x.uid,cardId:x.cardId,origin:'grave',manaPermit:'abyssRush',cost:api.summonCost(s,p,{...card(x),summonOrigin:'grave'}),label:'墓地の'+card(x).name+'をアビスラッシュで召喚'}));},
- playerPermission(s,x){return !x.sealed&&api.allLayers(x).some(y=>y.g13Rush?.some(r=>r.turn===s.turn));},
+ playerPermission(s,x){
+  if(x.sealed)return false;
+  if(api.allLayers(x).some(y=>y.g13Rush?.some(r=>r.turn===s.turn)))return true;
+  // A grave evolution base retains its own arrival when it later becomes the top card (QA45141).
+  if(x.g1236GraveArrival!==s.turn)return false;
+  const owner=s.players.findIndex(p=>p.battle.includes(x));
+  return owner>=0&&creatures(s,owner).some(y=>!y.sealed&&!y.faceDown&&card(y).g1236GravePlayerAttack&&
+   effective(y,s).g1236GravePlayerAttack);
+ },
  attack(s,p,x){for(const y of api.allLayers(x))for(const r of y.g13Rush||[])if(r.turn===s.turn)r.attacked=true;if(api.selfStopped(s,p))return;const c=effective(x,s);if(c.g338Noradi)on(s,p,x,'g13_Noradi');if(c.abyssWMek)on(s,p,x,'g13_WMek');if(c.abyssMurder&&darkCount(s,p)>=3)on(s,p,x,'g13_Borrow',{lastKnownPower:api.power(x,false,s)});},
  attackFilter(s,p,actions){return forceAttackTargets(s,p,actions,api);},
  discarded(s,p){for(const y of creatures(s,1-p))if(effective(y,s).abyssTeresco)on(s,1-p,y,'optionalDrawOne');},

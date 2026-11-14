@@ -1,0 +1,736 @@
+{
+  "phase": 1236,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7706,
+  "description": "邪魂龍 ジャビビルブラッド、誠実妖精スミレ、決戦！月と太陽!!の全能力を対戦対応し、公式別版と再録7件を正規IDに対応付ける。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/45142/",
+    "https://dm.takaratomy.co.jp/rule/qa/45141/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35082/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316661/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp2-S06",
+      "name": "邪魂龍 ジャビビルブラッド",
+      "faces": [
+        {
+          "name": "邪魂龍 ジャビビルブラッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー\n自分の墓地から出たクリーチャーはすべて、出たターンの間、相手プレイヤーを攻撃できる。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）",
+          "race": "アビスドラゴン/超化獣",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "邪魂龍 ジャビビルブラッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー\n自分の墓地から出たクリーチャーはすべて、出たターンの間、相手プレイヤーを攻撃できる。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nW・ブレイカー\n各ターン、はじめて自分のアビスが攻撃する時、自分の山札の上から２枚を墓地に置く。その後、コスト３以下のアビス・クリーチャーを１体、自分の墓地から出してもよい。",
+          "race": "アビスドラゴン/超化獣",
+          "powerText": "10000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-S06",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-S06a.jpg",
+      "spec": {
+        "blocker": true,
+        "g1236GravePlayerAttack": true,
+        "hyperTap": true,
+        "hyper": {
+          "power": 10000,
+          "breaker": 2,
+          "g252AttackWatch": {
+            "who": "self",
+            "g1236FirstAbyss": true,
+            "filter": {
+              "race": "アビス"
+            },
+            "defs": [
+              {
+                "op": "Mill",
+                "n": 2,
+                "g1042Together": true
+              },
+              {
+                "op": "Select",
+                "origin": "grave",
+                "deploy": true,
+                "n": 1,
+                "optional": true,
+                "filter": {
+                  "faceUp": true,
+                  "g228Face": {
+                    "type": "creature",
+                    "raceAll": [
+                      "アビス"
+                    ],
+                    "max": 3
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "f895d1e46b3024de3eb53d2d40f229cefa8f00dd9aa4d3b17f3e72e67d224187",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-S08",
+      "name": "誠実妖精スミレ",
+      "faces": [
+        {
+          "name": "誠実妖精スミレ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "このクリーチャーの召喚コストを、自分のマナゾーンにあるコスト２以下のカード１枚につき１少なくする。ただし、コストは０以下にはならない。\nマッハファイター\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚をマナゾーンに置いてもよい。\nこのクリーチャーがタップした時、コスト２以下のクリーチャーを３体まで、自分のマナゾーンから出す。",
+          "race": "スノーフェアリー",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-S08",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-S08.jpg",
+      "spec": {
+        "machFighter": true,
+        "breaker": 2,
+        "g212CountDiscount": {
+          "zone": "mana",
+          "filter": {
+            "g1236AnyFaceMax": 2
+          },
+          "amount": 1
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "山札の上から2枚をマナゾーンに置く？",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 2,
+                "g809Together": true
+              }
+            ]
+          }
+        ],
+        "g188Tapped": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "deploy": true,
+            "n": 3,
+            "optional": true,
+            "filter": {
+              "faceUp": true,
+              "g228Face": {
+                "type": "creature",
+                "max": 2
+              }
+            },
+            "title": "マナゾーンから出すコスト2以下のクリーチャーを3体まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "0640e7d7d633ccfb4487c679854488650584d9bd4ac1965aaaa6fb6e631e64f4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-023",
+      "name": "決戦！月と太陽!!",
+      "faces": [
+        {
+          "name": "決戦！月と太陽!!",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\n次の自分のターンのはじめまで、相手のクリーチャーが自分のシールドをブレイクした時、相手のシールドを１つ選んで墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-023",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-023.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Lock",
+            "spell": true,
+            "limit": {
+              "kind": "g1236ShieldRetaliate"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "ec9adc85460915882e78371799fd5fbac165c83e1c7d83785b1d18d523d9bf6d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24rp2-Sec04",
+      "name": "邪魂龍 ジャビビルブラッド",
+      "faces": [
+        {
+          "name": "邪魂龍 ジャビビルブラッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー\n自分の墓地から出たクリーチャーはすべて、出たターンの間、相手プレイヤーを攻撃できる。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）",
+          "race": "アビスドラゴン/超化獣",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "邪魂龍 ジャビビルブラッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー\n自分の墓地から出たクリーチャーはすべて、出たターンの間、相手プレイヤーを攻撃できる。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nW・ブレイカー\n各ターン、はじめて自分のアビスが攻撃する時、自分の山札の上から２枚を墓地に置く。その後、コスト３以下のアビス・クリーチャーを１体、自分の墓地から出してもよい。",
+          "race": "アビスドラゴン/超化獣",
+          "powerText": "10000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-Sec04",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-Sec04a.jpg",
+      "spec": {
+        "blocker": true,
+        "g1236GravePlayerAttack": true,
+        "hyperTap": true,
+        "hyper": {
+          "power": 10000,
+          "breaker": 2,
+          "g252AttackWatch": {
+            "who": "self",
+            "g1236FirstAbyss": true,
+            "filter": {
+              "race": "アビス"
+            },
+            "defs": [
+              {
+                "op": "Mill",
+                "n": 2,
+                "g1042Together": true
+              },
+              {
+                "op": "Select",
+                "origin": "grave",
+                "deploy": true,
+                "n": 1,
+                "optional": true,
+                "filter": {
+                  "faceUp": true,
+                  "g228Face": {
+                    "type": "creature",
+                    "raceAll": [
+                      "アビス"
+                    ],
+                    "max": 3
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "36a5f3d876b6e672069e6f80074f2e879cc190ebdcc0ffbf6c556193018dfc2b",
+        "facesMatched": true
+      },
+      "canonicalId": "dm24rp2-S06"
+    },
+    {
+      "id": "dm24ex3-rp2S06",
+      "name": "邪魂龍 ジャビビルブラッド",
+      "faces": [
+        {
+          "name": "邪魂龍 ジャビビルブラッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー\n自分の墓地から出たクリーチャーはすべて、出たターンの間、相手プレイヤーを攻撃できる。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）",
+          "race": "アビスドラゴン/超化獣",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "邪魂龍 ジャビビルブラッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー\n自分の墓地から出たクリーチャーはすべて、出たターンの間、相手プレイヤーを攻撃できる。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nW・ブレイカー\n各ターン、はじめて自分のアビスが攻撃する時、自分の山札の上から２枚を墓地に置く。その後、コスト３以下のアビス・クリーチャーを１体、自分の墓地から出してもよい。",
+          "race": "アビスドラゴン/超化獣",
+          "powerText": "10000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp2S06",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp2S06a.jpg",
+      "spec": {
+        "blocker": true,
+        "g1236GravePlayerAttack": true,
+        "hyperTap": true,
+        "hyper": {
+          "power": 10000,
+          "breaker": 2,
+          "g252AttackWatch": {
+            "who": "self",
+            "g1236FirstAbyss": true,
+            "filter": {
+              "race": "アビス"
+            },
+            "defs": [
+              {
+                "op": "Mill",
+                "n": 2,
+                "g1042Together": true
+              },
+              {
+                "op": "Select",
+                "origin": "grave",
+                "deploy": true,
+                "n": 1,
+                "optional": true,
+                "filter": {
+                  "faceUp": true,
+                  "g228Face": {
+                    "type": "creature",
+                    "raceAll": [
+                      "アビス"
+                    ],
+                    "max": 3
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "2fc26852b9f94283f6c802e631e36653310b6b52cb559a0e0bc4ac7f0461389f",
+        "facesMatched": true
+      },
+      "canonicalId": "dm24rp2-S06"
+    },
+    {
+      "id": "dm24ex3-rp2Sec04",
+      "name": "邪魂龍 ジャビビルブラッド",
+      "faces": [
+        {
+          "name": "邪魂龍 ジャビビルブラッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー\n自分の墓地から出たクリーチャーはすべて、出たターンの間、相手プレイヤーを攻撃できる。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）",
+          "race": "アビスドラゴン/超化獣",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "邪魂龍 ジャビビルブラッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー\n自分の墓地から出たクリーチャーはすべて、出たターンの間、相手プレイヤーを攻撃できる。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nW・ブレイカー\n各ターン、はじめて自分のアビスが攻撃する時、自分の山札の上から２枚を墓地に置く。その後、コスト３以下のアビス・クリーチャーを１体、自分の墓地から出してもよい。",
+          "race": "アビスドラゴン/超化獣",
+          "powerText": "10000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp2Sec04",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp2Sec04a.jpg",
+      "spec": {
+        "blocker": true,
+        "g1236GravePlayerAttack": true,
+        "hyperTap": true,
+        "hyper": {
+          "power": 10000,
+          "breaker": 2,
+          "g252AttackWatch": {
+            "who": "self",
+            "g1236FirstAbyss": true,
+            "filter": {
+              "race": "アビス"
+            },
+            "defs": [
+              {
+                "op": "Mill",
+                "n": 2,
+                "g1042Together": true
+              },
+              {
+                "op": "Select",
+                "origin": "grave",
+                "deploy": true,
+                "n": 1,
+                "optional": true,
+                "filter": {
+                  "faceUp": true,
+                  "g228Face": {
+                    "type": "creature",
+                    "raceAll": [
+                      "アビス"
+                    ],
+                    "max": 3
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "c1c510595ddad39143861b71d4b28b0df3263dc789ca95ee6343b19adde9d5bb",
+        "facesMatched": true
+      },
+      "canonicalId": "dm24rp2-S06"
+    },
+    {
+      "id": "dm26ex1-018",
+      "name": "邪魂龍 ジャビビルブラッド",
+      "faces": [
+        {
+          "name": "邪魂龍 ジャビビルブラッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー\n自分の墓地から出たクリーチャーはすべて、出たターンに相手プレイヤーを攻撃できる。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）",
+          "race": "アビスドラゴン/超化獣",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "邪魂龍 ジャビビルブラッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー\n自分の墓地から出たクリーチャーはすべて、出たターンに相手プレイヤーを攻撃できる。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nW・ブレイカー\n各ターン、はじめて自分のアビスが攻撃する時、自分の山札の上から２枚を墓地に置く。その後、コスト３以下のアビス・クリーチャーを１体、自分の墓地から出してもよい。",
+          "race": "アビスドラゴン/超化獣",
+          "powerText": "10000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-018",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex1-018a.jpg",
+      "spec": {
+        "blocker": true,
+        "g1236GravePlayerAttack": true,
+        "hyperTap": true,
+        "hyper": {
+          "power": 10000,
+          "breaker": 2,
+          "g252AttackWatch": {
+            "who": "self",
+            "g1236FirstAbyss": true,
+            "filter": {
+              "race": "アビス"
+            },
+            "defs": [
+              {
+                "op": "Mill",
+                "n": 2,
+                "g1042Together": true
+              },
+              {
+                "op": "Select",
+                "origin": "grave",
+                "deploy": true,
+                "n": 1,
+                "optional": true,
+                "filter": {
+                  "faceUp": true,
+                  "g228Face": {
+                    "type": "creature",
+                    "raceAll": [
+                      "アビス"
+                    ],
+                    "max": 3
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "8ddd3841aa019505bb7495158d6c6367a9c137f1b1be41bdc541f48ff753da7c",
+        "facesMatched": true
+      },
+      "canonicalId": "dm24rp2-S06"
+    },
+    {
+      "id": "dm24ex3-rp2S08",
+      "name": "誠実妖精スミレ",
+      "faces": [
+        {
+          "name": "誠実妖精スミレ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "このクリーチャーの召喚コストを、自分のマナゾーンにあるコスト２以下のカード１枚につき１少なくする。ただし、コストは０以下にはならない。\nマッハファイター\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚をマナゾーンに置いてもよい。\nこのクリーチャーがタップした時、コスト２以下のクリーチャーを３体まで、自分のマナゾーンから出す。",
+          "race": "スノーフェアリー",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp2S08",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp2S08.jpg",
+      "spec": {
+        "machFighter": true,
+        "breaker": 2,
+        "g212CountDiscount": {
+          "zone": "mana",
+          "filter": {
+            "g1236AnyFaceMax": 2
+          },
+          "amount": 1
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "山札の上から2枚をマナゾーンに置く？",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 2,
+                "g809Together": true
+              }
+            ]
+          }
+        ],
+        "g188Tapped": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "deploy": true,
+            "n": 3,
+            "optional": true,
+            "filter": {
+              "faceUp": true,
+              "g228Face": {
+                "type": "creature",
+                "max": 2
+              }
+            },
+            "title": "マナゾーンから出すコスト2以下のクリーチャーを3体まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "d1e1dadb5f90b81316e55ce74c420aa2018dbc969ebea32d947ad274baaae89a",
+        "facesMatched": true
+      },
+      "canonicalId": "dm24rp2-S08"
+    },
+    {
+      "id": "dm24ex3-Sec06",
+      "name": "誠実妖精スミレ",
+      "faces": [
+        {
+          "name": "誠実妖精スミレ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "このクリーチャーの召喚コストを、自分のマナゾーンにあるコスト２以下のカード１枚につき１少なくする。ただし、コストは０以下にはならない。\nマッハファイター\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚をマナゾーンに置いてもよい。\nこのクリーチャーがタップした時、コスト２以下のクリーチャーを３体まで、自分のマナゾーンから出す。",
+          "race": "スノーフェアリー",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-Sec06",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-Sec06.jpg",
+      "spec": {
+        "machFighter": true,
+        "breaker": 2,
+        "g212CountDiscount": {
+          "zone": "mana",
+          "filter": {
+            "g1236AnyFaceMax": 2
+          },
+          "amount": 1
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "山札の上から2枚をマナゾーンに置く？",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 2,
+                "g809Together": true
+              }
+            ]
+          }
+        ],
+        "g188Tapped": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "deploy": true,
+            "n": 3,
+            "optional": true,
+            "filter": {
+              "faceUp": true,
+              "g228Face": {
+                "type": "creature",
+                "max": 2
+              }
+            },
+            "title": "マナゾーンから出すコスト2以下のクリーチャーを3体まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "c6a6830d5016c1bb19a8db099718b159004535141d0c85a03d151a3a935aebfd",
+        "facesMatched": true
+      },
+      "canonicalId": "dm24rp2-S08"
+    },
+    {
+      "id": "dm24ex3-031",
+      "name": "決戦！月と太陽!!",
+      "faces": [
+        {
+          "name": "決戦！月と太陽!!",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\n次の自分のターンのはじめまで、相手のクリーチャーが自分のシールドをブレイクした時、相手のシールドを１つ選んで墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-031",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-031.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Lock",
+            "spell": true,
+            "limit": {
+              "kind": "g1236ShieldRetaliate"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "a9851302f0e9aec01fd74e79e4fa35905d540705630e795d1a44ae3074470310",
+        "facesMatched": true
+      },
+      "canonicalId": "dm24rp2-023"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp2-S06": 4,
+      "dm24rp2-S08": 4,
+      "dm24rp2-023": 4,
+      "dm24rp2-Sec04": 4,
+      "dm24ex3-rp2S06": 4,
+      "dm24ex3-rp2Sec04": 4,
+      "dm26ex1-018": 4,
+      "dm24ex3-rp2S08": 4,
+      "dm24ex3-Sec06": 4,
+      "dm24ex3-031": 4
+    }
+  }
+}
