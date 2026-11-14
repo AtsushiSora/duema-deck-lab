@@ -2475,6 +2475,24 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1259&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const lines=f.abilityText.split('\n').map(normalize);
+  if(['dmx10-006','dmx16-023','dm22ex2-039','promoy17-026'].includes(d.id)&&lines.length===2&&
+   lines.some(line=>keyword(line,'W・ブレイカー'))&&lines.some(line=>
+    /^自分のターンのはじめにこのクリーチャーが自分の墓地にあれば自分のクリーチャーを2体破壊してもよい。そうした(?:場合|ら)このクリーチャーを自分の墓地から(?:バトルゾーンに)?出す。$/.test(line)))
+   return {breaker:2,g1200GraveStartSacrifice:2};
+  if(d.id==='dm25ex1-033'&&lines.length===3&&keyword(lines[0],'ブロッカー')&&
+   lines[1]==='このクリーチャーは相手プレイヤーを攻撃できない。'&&lines[2]===
+   'このクリーチャーが出た時自分のエンジェル・コマンド1つにつきカードを1枚引いてもよい。次の自分のターンのはじめまでこのクリーチャーは離れない。')
+   return {blocker:true,noPlayerAttack:true,effect:'sixPhoto',g34Tasks:[
+    {op:'CountDraw',zone:'battle',filter:{race:'エンジェル・コマンド'},g262Elements:true,optional:'each'},
+    {op:'Stay627'}
+   ]};
+  if(d.id==='dm06-096'&&lines.length===1&&lines[0]===
+   'バトルゾーンに自分の火のクリーチャーが他に1体もなければこのクリーチャーは「パワーアタッカー+3000」と「W(ダブル)・ブレイカー」を得る。'+
+   '(攻撃中そのクリーチャーのパワーは+3000されシールドを攻撃したときシールドを2枚ブレイクする)')
+   return {g260Self:{filter:{g370BattleCount:{other:true,filter:{color:'火'},max:0}},grants:{attackBonus:3000,breaker:2}}};
+ }
  if(phase>=1258&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const lines=f.abilityText.split('\n').map(normalize);
   if(d.id==='dmrp06-029'&&lines.length===1&&lines[0]===

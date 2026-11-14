@@ -238130,15 +238130,104 @@
       },
       "supportBatch": "phase-1258",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx10-006",
+      "name": "偽りの名 ドレッド・ブラッド",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "ドラゴン・ゾンビ/アンノウン",
+      "text": "自分のターンのはじめに、このクリーチャーが自分の墓地にあれば、自分のクリーチャーを２体破壊してもよい。そうした場合、このクリーチャーを自分の墓地からバトルゾーンに出す。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx10-006",
+      "limit": 4,
+      "breaker": 2,
+      "g1200GraveStartSacrifice": 2,
+      "supportBatch": "phase-1259",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex1-033",
+      "name": "きりふだるる",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 99999,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "ブロッカー ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが出た時、自分のエンジェル・コマンド１つにつき、カードを１枚引いてもよい。次の自分のターンのはじめまで、このクリーチャーは離れない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-033",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "filter": {
+            "race": "エンジェル・コマンド"
+          },
+          "g262Elements": true,
+          "optional": "each"
+        },
+        {
+          "op": "Stay627"
+        }
+      ],
+      "supportBatch": "phase-1259",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm06-096",
+      "name": "捜神兵グチェラリオン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "アーマロイド",
+      "text": "バトルゾーンに自分の火のクリーチャーが他に１体もなければ、このクリーチャーは「パワーアタッカー+3000」と「W(ダブル)・ブレイカー」を得る。(攻撃中、そのクリーチャーのパワーは+3000され、シールドを攻撃したとき、シールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-096",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "g370BattleCount": {
+            "other": true,
+            "filter": {
+              "color": "火"
+            },
+            "max": 0
+          }
+        },
+        "grants": {
+          "attackBonus": 3000,
+          "breaker": 2
+        }
+      },
+      "supportBatch": "phase-1259",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1258,
+    "phase": 1259,
     "checkedAt": "2026-11-14",
-    "baseCount": 7773,
+    "baseCount": 7776,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7776,
+    "totalCount": 7779,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -259523,6 +259612,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7773,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1258,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7773,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7776,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

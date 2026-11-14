@@ -1,0 +1,252 @@
+{
+  "phase": 1259,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7776,
+  "description": "偽りの名 ドレッド・ブラッド、きりふだるる、捜神兵グチェラリオンの全能力を対戦対応し、ドレッド・ブラッドの再録3版を正規IDに紐付ける。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/42955/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36427/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35598/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-054",
+    "https://dm.takaratomy.co.jp/rule/basic/basic08/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmx10-006",
+      "name": "偽りの名 ドレッド・ブラッド",
+      "faces": [
+        {
+          "name": "偽りの名 ドレッド・ブラッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分のターンのはじめに、このクリーチャーが自分の墓地にあれば、自分のクリーチャーを２体破壊してもよい。そうした場合、このクリーチャーを自分の墓地からバトルゾーンに出す。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ドラゴン・ゾンビ/アンノウン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx10-006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx10-006.jpg",
+      "spec": {
+        "breaker": 2,
+        "g1200GraveStartSacrifice": 2
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "ed1e53a2ac4494e30956cf1ca4a17e5e249f5d30efc093905b44bb9324f8a3b5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex1-033",
+      "name": "きりふだるる",
+      "faces": [
+        {
+          "name": "きりふだるる",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが出た時、自分のエンジェル・コマンド１つにつき、カードを１枚引いてもよい。次の自分のターンのはじめまで、このクリーチャーは離れない。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "99999",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-033",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex1-033.jpg",
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "filter": {
+              "race": "エンジェル・コマンド"
+            },
+            "g262Elements": true,
+            "optional": "each"
+          },
+          {
+            "op": "Stay627"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "02e173a638b8a91eb9a592e4da025c627221554c3e84bbac5273968ca72e4ce3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-096",
+      "name": "捜神兵グチェラリオン",
+      "faces": [
+        {
+          "name": "捜神兵グチェラリオン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンに自分の火のクリーチャーが他に１体もなければ、このクリーチャーは「パワーアタッカー+3000」と「W(ダブル)・ブレイカー」を得る。(攻撃中、そのクリーチャーのパワーは+3000され、シールドを攻撃したとき、シールドを２枚ブレイクする)",
+          "race": "アーマロイド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-096",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-096.jpg",
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g370BattleCount": {
+              "other": true,
+              "filter": {
+                "color": "火"
+              },
+              "max": 0
+            }
+          },
+          "grants": {
+            "attackBonus": 3000,
+            "breaker": 2
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "e54d309fe392ca3bfe290f90b1d004a4c6fdbaf7f6b05d60544f5531f5fff2bd",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm22ex2-039",
+      "name": "偽りの名 ドレッド・ブラッド",
+      "faces": [
+        {
+          "name": "偽りの名 ドレッド・ブラッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のターンのはじめに、このクリーチャーが自分の墓地にあれば、自分のクリーチャーを２体破壊してもよい。そうしたら、このクリーチャーを自分の墓地から出す。",
+          "race": "ドラゴン・ゾンビ/アンノウン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-039",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex2-039.jpg",
+      "spec": {
+        "breaker": 2,
+        "g1200GraveStartSacrifice": 2
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "244612acb54265f179a0abab1042dbc202081e9480ae50d465e74131acdfbf77",
+        "facesMatched": true
+      },
+      "canonicalId": "dmx10-006"
+    },
+    {
+      "id": "dmx16-023",
+      "name": "偽りの名 ドレッド・ブラッド",
+      "faces": [
+        {
+          "name": "偽りの名 ドレッド・ブラッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分のターンのはじめに、このクリーチャーが自分の墓地にあれば、自分のクリーチャーを２体破壊してもよい。そうした場合、このクリーチャーを自分の墓地からバトルゾーンに出す。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "ドラゴン・ゾンビ/アンノウン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-023",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx16-023.jpg",
+      "spec": {
+        "breaker": 2,
+        "g1200GraveStartSacrifice": 2
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "47947dad3a8eaa88fa4a4f1eff9d3da936861f8712ccb0c90ccf98e5ad9b9c88",
+        "facesMatched": true
+      },
+      "canonicalId": "dmx10-006"
+    },
+    {
+      "id": "promoy17-026",
+      "name": "偽りの名 ドレッド・ブラッド",
+      "faces": [
+        {
+          "name": "偽りの名 ドレッド・ブラッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のターンのはじめに、このクリーチャーが自分の墓地にあれば、自分のクリーチャーを２体破壊してもよい。そうしたら、このクリーチャーを自分の墓地からバトルゾーンに出す。",
+          "race": "ドラゴン・ゾンビ/アンノウン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy17-026",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy17-026.jpg",
+      "spec": {
+        "breaker": 2,
+        "g1200GraveStartSacrifice": 2
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "aaaa257c6817bc7e4be5419e23b5c373151d1730234fb5ee04f3c455b1972296",
+        "facesMatched": true
+      },
+      "canonicalId": "dmx10-006"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx10-006": 4,
+      "dm25ex1-033": 4,
+      "dm06-096": 4,
+      "dm22ex2-039": 4,
+      "dmx16-023": 4,
+      "promoy17-026": 4
+    }
+  }
+}

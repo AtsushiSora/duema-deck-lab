@@ -625,7 +625,8 @@ export function createSixPhotoRules(api){
   if(f.g1133ManaTwin)return s.players[p].mana.some(y=>!y.faceDown&&api.zoneCard(s,p,y,'mana').spellFace);
   if(f.all)return f.all.every(filter=>ownCondition(s,p,filter,sourceUid,sourceIncarnation,lastKnownCount));if(f.g805NoOpponentMulti)return !s.players[1-p].battle.some(x=>!x.sealed&&!x.faceDown&&colors(effective(x,s,true)).length>1);if(f.g603AttackThisTurn)return !!s.attack||s.g481Attackers?.turn===s.turn&&s.g481Attackers.events.length>0||!!s.g23Attacks?.some(a=>a?.turn===s.turn);if(f.g590AnyEmptyShields)return s.players.some(x=>(x.shields?.length??x.shields)===0);if(f.g590SourceTapped)return s.players[p].battle.some(x=>x.tapped&&api.allLayers(x).some(y=>y.uid===sourceUid&&(sourceIncarnation===null||(y.incarnation||0)===sourceIncarnation)));if(f.g580LaterAttack)return s.g23Attacks?.[p]?.turn===s.turn&&s.g23Attacks[p].count>1;if(f.g580D2Field)return s.players[p].battle.some(x=>!x.sealed&&!x.faceDown&&card(x).d2Field);if(f.g568ManaColors)return f.g568ManaColors.every(color=>s.players[p].mana.some(y=>api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,p).includes(color)));if(f.g567NoTappedMana)return s.players[p].mana.every(y=>!y.tapped);if(f.g565NoAttacks)return s.g481Attackers?.turn!==s.turn||!s.g481Attackers.events.length;if(f.g565FaceUpShields)return Array.isArray(s.players[p].shields)&&s.players[p].shields.flatMap(api.shieldCards).some(x=>x.faceUp);if(f.g563Neo)return neoState563(s,p,s.players[p].battle.find(x=>x.uid===sourceUid&&(sourceIncarnation===null||(x.incarnation||0)===sourceIncarnation)));if(f.g541CreaturesAtLeastShields){const shields=s.players[p].shields;return creatures(s,p).filter(x=>!x.sealed).length>=(typeof shields==='number'?shields:shields.length);}if(f.g539Jokers!==undefined)return jokerCount539(s,p)>=f.g539Jokers;if(f.g508EvolutionOrLink)return creatures(s,p).some(x=>!x.sealed&&evolutionOrLinkedGod(x,api.zoneCard(s,p,x)));if(f.g501TotalCreaturesMax!==undefined)return[0,1].reduce((n,who)=>n+creatures(s,who).filter(x=>!x.sealed).length,0)<=f.g501TotalCreaturesMax;if(f.g479OnlyCreature){const rows=creatures(s,p).filter(x=>!x.sealed);return rows.length===1&&api.layers(rows[0]).some(x=>x.uid===sourceUid&&(sourceIncarnation===null||(x.incarnation||0)===sourceIncarnation));}if(f.g466DistinctCosts)return new Set(s.players[p].battle.filter(x=>!x.sealed&&!x.faceDown).map(x=>api.zoneCard(s,p,x,'battle')).filter(c=>['creature','seed','gear','field','aura'].includes(c.type)).map(cost)).size>=f.g466DistinctCosts;if(f.g465OwnTurn&&s.active!==p)return false;if(f.g465OpponentShieldsMax!==undefined){const shields=s.players[1-p].shields;return(typeof shields==='number'?shields:shields.length)<=f.g465OpponentShieldsMax;}if(f.g458Defending)return !!s.attack&&(s.attack.blockUid||s.attack.target)===sourceUid;if(f.g448Spells)return(s.g37Spells?.[p]?.turn===s.turn?s.g37Spells[p].n:0)>=f.g448Spells;if(f.g448NoncreatureUses)return(s.g448NoncreatureUses?.[p]?.turn===s.turn?s.g448NoncreatureUses[p].n:0)>=f.g448NoncreatureUses;if(f.g448Draws)return(s.players[p].drawsThisTurn||0)>=f.g448Draws;if(f.g448NoName){const norm=v=>String(v||'').normalize('NFKC').replace(/\s/g,'');return !s.players[p].battle.some(x=>!x.sealed&&api.isCreature(s,x)&&norm(effective(x,s).name)===norm(f.g448NoName));}if(f.g448OpponentOverMana)return s.players[1-p].battle.some(x=>!x.sealed&&api.isCreature(s,x)&&cost(effective(x,s))>s.players[1-p].mana.length);if(f.g442CrossedAlly)return s.players.some(own=>own.battle.some(g=>!g.sealed&&card(g).type==='gear'&&g.crossedTo&&s.players[p].battle.some(y=>!y.sealed&&api.isCreature(s,y)&&y.uid===g.crossedTo.uid&&(y.incarnation||0)===g.crossedTo.incarnation)));if(f.g436Crossed){const source=s.players[p].battle.find(x=>x.uid===sourceUid);return !!source&&s.players.some(own=>own.battle.some(g=>!g.sealed&&card(g).type==='gear'&&g.crossedTo?.uid===sourceUid&&g.crossedTo.incarnation===(source.incarnation||0)));}if(f.g413MoreCreatures){const who=f.g413MoreCreatures==='opponent'?1-p:p;return creatures(s,who).filter(y=>!y.sealed).length>creatures(s,1-who).filter(y=>!y.sealed).length;}if(f.g411ManaRace){const r=f.g411ManaRace;return s.players[p].mana.filter(y=>!y.faceDown&&api.manaColors(card(y),s,p).includes(r.color)&&faces(api.zoneCard(s,p,y,'mana')).some(c=>c.type==='creature'&&race(c,r.race))).length>=r.n;}if(f.g400Wave)return [0,1].reduce((n,who)=>n+s.players[who].battle.filter(y=>!y.sealed&&api.isCreature(s,y)&&!api.ignored(s,y)&&api.zoneCard(s,who,y).g400Wave).length,0)>=f.g400Wave;if(f.g370BattleCount){const c=f.g370BattleCount,rows=c.g557Elements
   ?s.players[p].battle.filter(x=>exchangeElement753(api.zoneCard(s,p,x,'battle'))):creatures(s,p);
-  const n=rows.filter(x=>!x.sealed&&matches(s,p,x,c.filter)).length;return(c.min===undefined||n>=c.min)&&(c.max===undefined||n<=c.max);}if(f.g334ZoneCount){const c=f.g334ZoneCount,size=who=>(c.zones??[c.zone]).reduce((sum,zone)=>{const rows=s.players[who][zone];return sum+(typeof rows==='number'?rows:(rows||[]).length);},0),n=c.sumBoth?size(p)+size(1-p):size(c.opponent?1-p:p);return c.atLeastOpponent?n>=size(1-p):c.moreThanOpponent?n>size(1-p):c.lessThanOpponent?n<size(1-p):(c.min===undefined||n>=c.min)&&(c.max===undefined||n<=c.max);}if(f.g286FaceDownMana!==undefined)return s.players[p].mana.filter(y=>y.faceDown).length>=f.g286FaceDownMana;if(f.g285AllManaTapped)return s.players[p].mana.every(y=>y.tapped);if(f.g282AllMana)return s.players[p].mana.every(y=>{const cs=api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,p).filter(c=>['光','水','闇','火','自然'].includes(c));return cs.includes(f.g282AllMana.color)||!!f.g282AllMana.colorless&&cs.length===0;});if(f.g273Grave)return s.players[p].grave.filter(y=>matches(s,p,y,f.g273Grave.filter)).length>=f.g273Grave.n;if(f.g272ManaCount!==undefined)return s.players[p].mana.length>=f.g272ManaCount;if(f.g267Mana)return manaCondition267(s,p,f.g267Mana);if(f.g265ShieldsMax!==undefined){const shields=s.players[p].shields;return(typeof shields==='number'?shields:shields.length)<=f.g265ShieldsMax;}const rows=(f.g334Both?[p,1-p]:[p]).flatMap(who=>s.players[who].battle.filter(x=>!x.sealed&&(!f.g334Other||x.uid!==sourceUid||sourceIncarnation!==null&&(x.incarnation||0)!==sourceIncarnation)&&matches(s,who,x,f.seed&&(card(x).seedCreature||card(x).natureAce4)?{...f,seed:false}:f)));return f.g258Civil?rows.length>=f.g258Civil:rows.length>0;};
+  const n=rows.filter(x=>!x.sealed&&(!c.other||!api.allLayers(x).some(y=>
+   y.uid===sourceUid&&(sourceIncarnation===null||(y.incarnation||0)===sourceIncarnation)))&&matches(s,p,x,c.filter)).length;return(c.min===undefined||n>=c.min)&&(c.max===undefined||n<=c.max);}if(f.g334ZoneCount){const c=f.g334ZoneCount,size=who=>(c.zones??[c.zone]).reduce((sum,zone)=>{const rows=s.players[who][zone];return sum+(typeof rows==='number'?rows:(rows||[]).length);},0),n=c.sumBoth?size(p)+size(1-p):size(c.opponent?1-p:p);return c.atLeastOpponent?n>=size(1-p):c.moreThanOpponent?n>size(1-p):c.lessThanOpponent?n<size(1-p):(c.min===undefined||n>=c.min)&&(c.max===undefined||n<=c.max);}if(f.g286FaceDownMana!==undefined)return s.players[p].mana.filter(y=>y.faceDown).length>=f.g286FaceDownMana;if(f.g285AllManaTapped)return s.players[p].mana.every(y=>y.tapped);if(f.g282AllMana)return s.players[p].mana.every(y=>{const cs=api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,p).filter(c=>['光','水','闇','火','自然'].includes(c));return cs.includes(f.g282AllMana.color)||!!f.g282AllMana.colorless&&cs.length===0;});if(f.g273Grave)return s.players[p].grave.filter(y=>matches(s,p,y,f.g273Grave.filter)).length>=f.g273Grave.n;if(f.g272ManaCount!==undefined)return s.players[p].mana.length>=f.g272ManaCount;if(f.g267Mana)return manaCondition267(s,p,f.g267Mana);if(f.g265ShieldsMax!==undefined){const shields=s.players[p].shields;return(typeof shields==='number'?shields:shields.length)<=f.g265ShieldsMax;}const rows=(f.g334Both?[p,1-p]:[p]).flatMap(who=>s.players[who].battle.filter(x=>!x.sealed&&(!f.g334Other||x.uid!==sourceUid||sourceIncarnation!==null&&(x.incarnation||0)!==sourceIncarnation)&&matches(s,who,x,f.seed&&(card(x).seedCreature||card(x).natureAce4)?{...f,seed:false}:f)));return f.g258Civil?rows.length>=f.g258Civil:rows.length>0;};
  const canPut=(s,p,x,origin,execution=false)=>(['creature','seed','field','gear'].includes(card(x).type)||card(x).gCastle)&&(!execution||api.canCast(s,p,card(x),origin))&&api.canEnter(s,p,card(x),{origin,execution})&&(!card(x).evolution||api.evolutionBases(s,p,card(x),card(x).g31Evolution?.minCards?{origin,execution,exclude:x.uid}:undefined).some(y=>y.uid!==x.uid));
  const countBattleCivilizations=(s,rows)=>new Set(rows.filter(y=>!y.sealed&&!y.faceDown)
   .flatMap(y=>colors(effective(y,s,true))).filter(q=>['光','水','闇','火','自然'].includes(q))).size;
@@ -3394,10 +3395,17 @@ export function createSixPhotoRules(api){
  }
  case'g34_MarshalTouch558':{const rows=marshalRows558(s,t);if(rows.length)choice(s,t,t.title||'マーシャル・タッチ：戻す自分の他のクリーチャーを1体選ぶ（任意）',[...rows.map(y=>opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},marshalValue558(s,t,y),y.cardId)),skip()]);break;}
  case'g34_SacrificeAlly413':{
-  if(t.g1200GraveStart&&!own.grave.some(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial))break;
+  const source=t.g1200GraveStart?own.grave.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial):null;
+  if(t.g1200GraveStart&&!source)break;
+  const selected=t.selected??[];
   const rows=(t.g547Seed?own.battle.filter(y=>matches(s,t.p,y,{g295Tamaseed:true})):creatures(s,t.p))
-   .filter(y=>!y.sealed&&(!t.other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))&&(!t.filter||matches(s,t.p,y,t.filter)));
-  const legal=new Set(targetOptions(s,t.p,rows).map(o=>o.value)),payoff=sacrificeValue413(s,t,t.defs||[]);
+   .filter(y=>!y.sealed&&(!t.other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))&&
+    (!t.filter||matches(s,t.p,y,t.filter))&&!selected.some(z=>z.uid===y.uid));
+  const legal=new Set(targetOptions(s,t.p,rows).map(o=>o.value)),remaining=(t.n??1)-selected.length;
+  if(legal.size<remaining)break;
+  const payoff=source&&t.n>1
+   ?(api.canMoveZone(s,t.p,'grave')&&canPut(s,t.p,source,'grave')?(10+cost(card(source))*3)/t.n:-1000)
+   :sacrificeValue413(s,t,t.defs||[]);
   const options=rows.filter(y=>legal.has(y.uid)).map(y=>{
    const c=effective(y,s),canDie=api.canLeave(s,t.p,y)&&!hooks.destroySafe409(s,y);
    const penalty=canDie?Math.min(30,6+cost(c)*2+api.power(y,false,s)/2000):0;
@@ -3406,7 +3414,8 @@ export function createSixPhotoRules(api){
   });
   if(options.length){
    const title=t.g547Seed?'破壊して効果を使う自分のタマシードを1枚選ぶ':'破壊して効果を使う自分のクリーチャーを1体選ぶ';
-   choice(s,t,title+(t.mandatory?'':'（任意）'),t.mandatory?options:[...options,skip()]);
+   const prompt=t.n>1?'破壊する自分のクリーチャーを'+t.n+'体選ぶ（'+(selected.length+1)+'体目）':title;
+   choice(s,t,prompt+(t.mandatory?'':'（任意）'),t.mandatory?options:[...options,skip()]);
   }
   break;
  }
@@ -6163,7 +6172,20 @@ export function createSixPhotoRules(api){
   if(!t.g857ReturnRequired)start(s,t,defs);
   break;
  }
- case'g34_SacrificeAlly413':if(v){const y=own.battle.find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation&&!y.sealed&&(t.g547Seed?matches(s,t.p,y,{g295Tamaseed:true}):api.isCreature(s,y))&&(!t.filter||matches(s,t.p,y,t.filter)));if(y&&(!t.other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))){move(s,[{player:t.p,uid:y.uid,to:'grave',destroy:true,controller:t.controller??t.p}]);start(s,t,t.defs);}}break;
+ case'g34_SacrificeAlly413':{
+  if(!v||t.g1200GraveStart&&!own.grave.some(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial))break;
+  const selected=[...(t.selected??[]),v],targets=selected.map(ref=>own.battle.find(y=>
+   y.uid===ref.uid&&(y.incarnation||0)===ref.incarnation&&!y.sealed&&
+   (t.g547Seed?matches(s,t.p,y,{g295Tamaseed:true}):api.isCreature(s,y))&&
+   (!t.filter||matches(s,t.p,y,t.filter))&&
+   (!t.other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))));
+  if(targets.some(y=>!y)||new Set(targets).size!==targets.length)break;
+  if(selected.length<(t.n??1)){put(s,{...t,selected});break;}
+  // Rule 101.3a checks the attempt, including when a destruction is replaced.
+  move(s,targets.map(y=>({player:t.p,uid:y.uid,to:'grave',destroy:true,controller:t.controller??t.p})));
+  start(s,t,t.defs);
+  break;
+ }
  case'g34_GraveBase1126':if(v){
   const host=sourceHost474(s,t.entrant);
   const base=own.grave.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);
@@ -7040,7 +7062,8 @@ export function createSixPhotoRules(api){
   if(c.g1200GraveStartSacrifice){
    const serial=x.zoneSerial||0;
    return [{uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_SacrificeAlly413',p,x.cardId,{
-    uid:x.uid,incarnation:x.incarnation||0,serial,g1200GraveStart:true,defs:[{op:'SelfGraveRevive644',serial}]
+    uid:x.uid,incarnation:x.incarnation||0,serial,g1200GraveStart:true,...(c.g1200GraveStartSacrifice>1?{n:c.g1200GraveStartSacrifice}:{}),
+    defs:[{op:'SelfGraveRevive644',serial}]
    })}];
   }
   if(!colors)return [];
