@@ -8,6 +8,13 @@ export function createPhoto159ShieldRules(api){
  const key=x=>x.uid+'@'+(x.incarnation||0);
  const zagaanSources=(s,p,x)=>{const record=s.g159HandEntries?.[p];if(record?.turn!==s.turn)return[];return living(s,p).filter(w=>w.uid!==x.uid&&card(w).g159ShieldRole==='zagaan'&&!api.ignored(s,w)&&key(record.entries.find(r=>r.uid!==w.uid)||{})===key(x));};
  const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g159S_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
+ function firstShieldPlacements(s,p){
+  for(const watcher of living(s,p)){
+   const c=api.effective(watcher,s);
+   if(c.g159ShieldRole==='watchdog')on(s,p,watcher,'Watchdog');
+   if(c.g1199FirstShield)on(s,p,watcher,'OilShield1199');
+  }
+ }
  const queued=(p,x,op,more={})=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g159S_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
  // The leave engine applies a simultaneous group one physical move at a time.
  const shieldBatches=new WeakMap();
@@ -40,6 +47,9 @@ export function createPhoto159ShieldRules(api){
  case'g159S_Christy':if(own.shields.length)choice(s,t,'見る自分のシールドを1つ選ぶ',own.shields.map((x,i)=>opt('シールド '+(i+1),x.uid,10)));else put(s,task('g34_Draw',t.p,t.source,{n:1}));break;
  case'g159S_ChristyPick':{const root=api.findShield(own,t.target),rows=root?api.shieldCards(root).filter(x=>!x.g37ShieldHeld):[];choice(s,t,seen(rows)+'出す進化ではない光のデーモン・コマンドを1体まで選ぶ',[...shieldDemons(s,t.p,rows,true).map(x=>opt(card(x).name,x.uid,20+Math.min(cost(card(x)),20),x.cardId)),opt('出さない',null,0)]);break;}
  case'g159S_Watchdog':put(s,task('g34_Draw',t.p,t.source,{n:1}));break;
+ case'g159S_OilShield1199':
+  put(s,task('g34_Offer',t.p,t.source,{title:'山札の上から1枚をシールド化する？',defs:[{op:'ShieldTop',n:1}]}));
+  break;
  case'g159S_Ashiga':api.shieldTop(s,t.p,card(t.source));break;
  case'g159S_Gaizeki':put(s,task('g34_Choose',t.p,t.source,{uid:t.uid,incarnation:t.incarnation,
   g184Modes:true,modes:card(t.source).g884ShieldGraveModes}));break;
@@ -71,13 +81,13 @@ export function createPhoto159ShieldRules(api){
   turns[p]=s.turn;
   const batch=shieldBatch(s);
   if(batch)batch.placed.add(p);
-  else for(const watcher of active(s,p,'watchdog'))on(s,p,watcher,'Watchdog');
+  else firstShieldPlacements(s,p);
  },
  flushShieldBatch(s,moves){
   const batch=shieldBatches.get(moves);
   if(!batch)return;
   shieldBatches.delete(moves);
-  for(const p of batch.placed)for(const watcher of active(s,p,'watchdog'))on(s,p,watcher,'Watchdog');
+  for(const p of batch.placed)firstShieldPlacements(s,p);
   for(const p of [0,1])if(batch.buried[p])for(const watcher of living(s,p)){
    const op=shieldGraveOps[role(s,watcher)];
    if(op)for(let i=0;i<batch.buried[p];i++)on(s,p,watcher,op);

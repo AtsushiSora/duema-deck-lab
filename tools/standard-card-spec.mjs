@@ -2470,6 +2470,24 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1199&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(['dm24ex1-014','dm24ex1-Sec04'].includes(d.id)&&text==='スピードアタッカーマッハファイターW・ブレイカー'+
+   'このクリーチャーが攻撃する時ドリームメイト・メクレイド5する。'+
+   'エスケープ(このクリーチャーが破壊される時墓地に置くかわりに自分のシールドを1つ手札に加えてもよい。ただしその「S・トリガー」は使えない)')
+   return {speedAttacker:true,machFighter:true,breaker:2,escape:true,
+    g34Attack:[{op:'Raid767',race:'ドリームメイト',max:5}]};
+  if(['dm22rp1-1A','dm22rp1-S1','dm22rp1-3B'].includes(d.id)&&text==='W・ブレイカー'+
+   '自分のクリーチャーすべてに「エスケープ」を与える。'+
+   'このクリーチャーが出た時自分の山札の上から1枚目をシールド化する。'+
+   '各ターンはじめて自分のシールドゾーンにカードを置いた時自分の山札の上から1枚目をシールド化してもよい。')
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'ShieldTop',n:1}],
+    g208Auras:[{filter:{creature:true},grants:{escape:true}}],g1199FirstShield:true};
+  if(['dmrp21-036','promoy21-008'].includes(d.id)&&text===
+   'スレイヤー(このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)'+
+   'このクリーチャーが破壊される時かわりに自分の他のクリーチャー1体またはタマシードを1枚破壊してもよい。')
+   return {slayer:true,aterGuard:'creatureOrSeed1199'};
+ }
  if(phase>=1198&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(['dm23rp2-030','dm23rp2x-030'].includes(d.id)&&text===
