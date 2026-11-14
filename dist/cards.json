@@ -230094,15 +230094,116 @@
       ],
       "supportBatch": "phase-1193",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx12a-011",
+      "name": "オットコマエ・ピーマン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ワイルド・ベジーズ",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から４枚を、タップして自分のマナゾーンに置いてもよい。そうした場合、自分のマナゾーンから４枚、好きな順序で自分の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12a-011",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "g356RampReturn": true,
+          "title": "山札の上から4枚をタップしてマナに置き、マナ4枚を山札の下に置く？",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 4,
+              "tapped": true,
+              "g809Together": true
+            },
+            {
+              "op": "Select",
+              "origin": "mana",
+              "to": "deck",
+              "n": 4,
+              "g583Group": true,
+              "title": "山札の下に置くマナを順番に4枚選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1194",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm19-s08",
+      "name": "オメガ・クライシス・ドラグーン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 6000,
+      "race": "ティラノ・ドレイク",
+      "text": "自分のティラノ・ドレイクをバトルゾーンに出した時、各プレイヤーは自分自身の、ティラノ・ドレイク以外の種族のクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-s08",
+      "limit": 4,
+      "g251EntryDraw": {
+        "filter": {
+          "creature": true,
+          "race": "ティラノ・ドレイク"
+        },
+        "defs": [
+          {
+            "op": "EachPlayer459",
+            "origin": "battle",
+            "to": "grave",
+            "filter": {
+              "notRace": "ティラノ・ドレイク"
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1194",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-054",
+      "name": "ジュースダス・タンク",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "グランセクト",
+      "text": "自分のNEOクリーチャーがバトルゾーンに出た時、自分のマナゾーンにあるクリーチャーを１体、その下に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-054",
+      "limit": 4,
+      "g468EntryWatch": {
+        "mode": "manaBase",
+        "filter": {
+          "creature": true,
+          "g556Neo": true
+        }
+      },
+      "supportBatch": "phase-1194",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1193,
+    "phase": 1194,
     "checkedAt": "2026-11-14",
-    "baseCount": 7570,
+    "baseCount": 7573,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7573,
+    "totalCount": 7576,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -250707,6 +250808,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7570,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1193,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7570,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7573,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

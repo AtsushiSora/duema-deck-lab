@@ -1952,6 +1952,12 @@ export function createSixPhotoRules(api){
    }]);
    break;
   }
+  if(t.mode==='manaBase'){
+   start(s,t,[{op:'Select',origin:'mana',n:1,optional:true,filter:{creature:true,faceUp:true},
+    g1128AttachMana:true,g1132EntryTarget:t.subject,title:'出たNEOクリーチャーの下に置くマナのクリーチャーを選ぶ（任意）'
+   }]);
+   break;
+  }
   const mode=t.mode,host=['protect565','protectAll'].includes(mode)?sourceHost474(s,{uid:t.subject?.uid,incarnation:t.subject?.incarnation})?.x:attackHost408(s,{...t,g399Attacker:t.subject}),y=host&&!host.sealed&&api.isCreature(s,host)?host:null;if(mode==='draw')start(s,t,[{op:'Offer',title:'カードを1枚引く？',defs:[{op:'Draw',n:1}]}]);else if(mode==='freeze')start(s,t,[{op:'Target',tap:true,lock:true}]);else if(y){if(mode==='protectAll')applyGrant(s,{...t,g521UntilStart:true,g565External:true,grant:{g1082ChoiceProtected:true}},y);
  else if(mode==='fight')put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:y.uid,incarnation:y.incarnation||0},optional:true});else if(mode==='protect565')(s.extLimits??=[]).push({kind:'g521Grant',g565External:true,ref:{uid:y.uid,incarnation:y.incarnation||0},grant:{untargetable:true,cannotBeAttacked:true},expires:'start',who:t.p});else if(mode==='mach')(y.g34Grants??=[]).push(timedGrant335(s,t,{machFighter:true}));else if(mode==='rush')put(s,task('g13_JagaGrant',t.p,t.source,{target:y.uid,targetInc:y.incarnation||0}));}break;}
  case'g34_LookDestination467':lookDestination467(s,t);break;

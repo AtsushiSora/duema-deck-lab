@@ -2470,6 +2470,24 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1194&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmx12a-011'&&text==='このクリーチャーをバトルゾーンに出した時自分の山札の上から4枚をタップして自分のマナゾーンに置いてもよい。'+
+   'そうした場合自分のマナゾーンから4枚好きな順序で自分の山札の一番下に置く。'){
+   return {effect:'sixPhoto',g34Tasks:[{op:'Offer',g356RampReturn:true,title:'山札の上から4枚をタップしてマナに置き、マナ4枚を山札の下に置く？',defs:[
+    {op:'Ramp',n:4,tapped:true,g809Together:true},
+    {op:'Select',origin:'mana',to:'deck',n:4,g583Group:true,title:'山札の下に置くマナを順番に4枚選ぶ'}
+   ]}]};
+  }
+  if(d.id==='dm19-s08'&&text==='自分のティラノ・ドレイクをバトルゾーンに出した時各プレイヤーは自分自身のティラノ・ドレイク以外の種族のクリーチャーを1体選び破壊する。'){
+   return {g251EntryDraw:{filter:{creature:true,race:'ティラノ・ドレイク'},defs:[
+    {op:'EachPlayer459',origin:'battle',to:'grave',filter:{notRace:'ティラノ・ドレイク'}}
+   ]}};
+  }
+  if(d.id==='dmrp04s-054'&&text==='自分のNEOクリーチャーがバトルゾーンに出た時自分のマナゾーンにあるクリーチャーを1体その下に置いてもよい。'){
+   return {g468EntryWatch:{mode:'manaBase',filter:{creature:true,g556Neo:true}}};
+  }
+ }
  if(phase>=1193&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dm22-023'&&f.typeText==='呪文'&&

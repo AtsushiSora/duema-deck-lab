@@ -1,0 +1,167 @@
+{
+  "phase": 1194,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7573,
+  "description": "オットコマエ・ピーマン、オメガ・クライシス・ドラグーン、ジュースダス・タンクの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/43071/",
+    "https://dm.takaratomy.co.jp/rule/qa/47678/",
+    "https://dm.takaratomy.co.jp/rule/qa/32922/",
+    "https://dm.takaratomy.co.jp/rule/qa/45917/",
+    "https://dm.takaratomy.co.jp/rule/qa/31532/",
+    "https://dm.takaratomy.co.jp/rule/qa/46526/",
+    "https://dm.takaratomy.co.jp/rule/qa/46525/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31626/"
+  ],
+  "cards": [
+    {
+      "id": "dmx12a-011",
+      "name": "オットコマエ・ピーマン",
+      "faces": [
+        {
+          "name": "オットコマエ・ピーマン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から４枚を、タップして自分のマナゾーンに置いてもよい。そうした場合、自分のマナゾーンから４枚、好きな順序で自分の山札の一番下に置く。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12a-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx12a-011.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g356RampReturn": true,
+            "title": "山札の上から4枚をタップしてマナに置き、マナ4枚を山札の下に置く？",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 4,
+                "tapped": true,
+                "g809Together": true
+              },
+              {
+                "op": "Select",
+                "origin": "mana",
+                "to": "deck",
+                "n": 4,
+                "g583Group": true,
+                "title": "山札の下に置くマナを順番に4枚選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "412298ebb71244b1c0df07f5d8243c2691440c67fa6c7426d0d1bb72731ff5e9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-s08",
+      "name": "オメガ・クライシス・ドラグーン",
+      "faces": [
+        {
+          "name": "オメガ・クライシス・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "自分のティラノ・ドレイクをバトルゾーンに出した時、各プレイヤーは自分自身の、ティラノ・ドレイク以外の種族のクリーチャーを１体選び、破壊する。",
+          "race": "ティラノ・ドレイク",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-s08",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-s08.jpg",
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "race": "ティラノ・ドレイク"
+          },
+          "defs": [
+            {
+              "op": "EachPlayer459",
+              "origin": "battle",
+              "to": "grave",
+              "filter": {
+                "notRace": "ティラノ・ドレイク"
+              }
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "c3b22dd9cac74a189600c4826852de1e039e362ecf75c10b2551939e01c13944",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-054",
+      "name": "ジュースダス・タンク",
+      "faces": [
+        {
+          "name": "ジュースダス・タンク",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のNEOクリーチャーがバトルゾーンに出た時、自分のマナゾーンにあるクリーチャーを１体、その下に置いてもよい。",
+          "race": "グランセクト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-054",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-054.jpg",
+      "spec": {
+        "g468EntryWatch": {
+          "mode": "manaBase",
+          "filter": {
+            "creature": true,
+            "g556Neo": true
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "a45115353beadddabbc0b9f11c1559e0d96d8fc5d6c9faca4874916ed3b026d2",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx12a-011": 4,
+      "dm19-s08": 4,
+      "dmrp04s-054": 4
+    }
+  }
+}
