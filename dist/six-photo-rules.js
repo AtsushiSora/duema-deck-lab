@@ -7056,6 +7056,10 @@ export function createSixPhotoRules(api){
  function alternativeChosen(s,t,v){put(s,{...t,selected:[...(t.selected||[]),v]});}
 
  
+ function hasExemptingAlly1266(s,p,def){
+  return def.g1266UnlessAllyRace&&s.players[p].battle.some(x=>!x.sealed&&!x.faceDown&&
+   exactRaces(effective(x,s)).includes(def.g1266UnlessAllyRace));
+ }
   const hooks={
  firstBlock1216(s,p,x){
   const blockHistory=s.g1216BlockHistory?.turn===s.turn?s.g1216BlockHistory:
@@ -7069,12 +7073,14 @@ export function createSixPhotoRules(api){
  block(s,p,x){
   const blocker=effective(x,s),defs=blocker.g178Block;
   const owner=1-p,a=s.players[owner].battle.find(y=>y.uid===s.attack?.attacker);
-  if(defs)queue(s,p,x,defs.flatMap(d=>{
+  const triggers=defs?.flatMap(d=>{
+   if(hasExemptingAlly1266(s,p,d))return [];
    if(!d.g913BlockedAttacker)return [d];
    if(!a)return [];
    const ref={uid:a.uid,incarnation:a.incarnation||0};
    return [d.op==='ExactMove'?{...d,owner,g403Refs:[ref]}:{...d,subject:ref}];
-  }));
+  });
+  if(triggers?.length)queue(s,p,x,triggers);
   for(const source of creatures(s,p)){
    if(source.sealed)continue;
    const races=effective(source,s).g700BlockDraw;
@@ -7420,6 +7426,11 @@ export function createSixPhotoRules(api){
  destroyStay1193:(s,p)=>(s.extLimits||[]).some(l=>l.kind==='g1193DestroyStay'&&l.player===p&&
   !api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})),
  shieldTrigger(s,p,x,c){
+  if(c.type==='creature'&&colors(c).includes('光')&&s.players[p].battle.some(y=>{
+   if(y.sealed||y.faceDown||!card(y).g1266LightCreatureShieldTrigger||s.g20LeavingUids?.includes(y.uid))return false;
+   const max=effective(y,s).g1266LightCreatureShieldTrigger;
+   return max!==undefined&&cost(c)<=max;
+  }))return true;
   if((s.extLimits||[]).some(l=>l.kind==='g1193ShieldTrigger'&&l.player===p&&
    l.refs.some(r=>r.uid===x.uid&&r.serial===(x.zoneSerial||0))&&
    !api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})))return true;
@@ -7874,7 +7885,7 @@ export function createSixPhotoRules(api){
    queue(s,p,x,[{op:'IfOwn',filter:{g265ShieldsMax:0},defs:[{op:'Untap',g191First:true}]}]);
  }
  if(c.g781ReleaseAll&&!api.selfStopped(s,p))queue(s,p,x,[E('ReleaseAllHyper781')]);
- if(first&&c.g540FirstAttack&&!api.selfStopped(s,p))queue(s,p,x,c.g540FirstAttack);if(c.g320Jave&&!api.selfStopped(s,p))queue(s,p,x,[{op:'Smash320',serial:x.zoneSerial||0}]);if(c.g34Attack&&!api.selfStopped(s,p)){const defs=c.g34Attack.filter(d=>!d.g764PlayerAttack||s.attack?.target==='player');if(defs.length)queue(s,p,x,defs);}if(c.g756TurboRush==='discard'&&!api.selfStopped(s,p)&&turboReady756(s,p,x))queue(s,p,x,[{op:'Discard',g756All:true}]);if(defender&&c.g691AttackCreature&&!api.selfStopped(s,p)&&(c.g714AttackMinPower===undefined||currentPower506(s,defender)>=c.g714AttackMinPower)&&(!c.g801DefenderFilter||matches(s,1-p,defender,c.g801DefenderFilter)))queue(s,p,x,c.g691AttackCreature);if(!api.selfStopped(s,p))for(const {source,grants:g}of c.g404Inherited||[])if(g.g34Attack)queue(s,p,x,g.g34Attack,source);if(!api.selfStopped(s,p))for(const {source,grants:g}of c.g406Inherited||[])if(g.g34Attack)queue(s,p,x,g.g34Attack,source);if(c.g34Role==='emrakul')queue(s,p,x,[C('emrakulSix')]);if(c.g34Role==='minogami')queue(s,p,x,[E('Offer',{defs:[E('Look',{n:3,public:true,stages:[{to:'mana',n:'all',filter:{twin:true}}],after:[C('minogamiBuff')]})]})]);if(card(x).neoEvolution)for(const y of active(s,p,'grasper'))queue(s,p,y,[select('mana',null,1,{creature:true,belowPower:api.power(x,false,s)},{deploy:true,optional:true})]);if(!api.ignored(s,x))for(const layer of api.layers(x))if(card(layer).g34SoulDiscard)queue(s,p,x,[E('Discard',{n:1,random:true})]);if(ninja(c))for(const y of active(s,p,'happou')){if(s.attack?.target==='player')queue(s,p,y,[E('Discard',{n:1,random:true})]);else(x.g34Grants??=[]).push({turn:s.turn,slayer:true,g34BattleSafe:true});}if(api.isEvolution(x)&&cost(c)>=2)for(const y of own.hand.filter(y=>card(y).g34Role==='baromreizu'))queue(s,p,y,[C('reizuCast')]);},
+ if(first&&c.g540FirstAttack&&!api.selfStopped(s,p))queue(s,p,x,c.g540FirstAttack);if(c.g320Jave&&!api.selfStopped(s,p))queue(s,p,x,[{op:'Smash320',serial:x.zoneSerial||0}]);if(c.g34Attack&&!api.selfStopped(s,p)){const defs=c.g34Attack.filter(d=>(!d.g764PlayerAttack||s.attack?.target==='player')&&!hasExemptingAlly1266(s,p,d));if(defs.length)queue(s,p,x,defs);}if(c.g756TurboRush==='discard'&&!api.selfStopped(s,p)&&turboReady756(s,p,x))queue(s,p,x,[{op:'Discard',g756All:true}]);if(defender&&c.g691AttackCreature&&!api.selfStopped(s,p)&&(c.g714AttackMinPower===undefined||currentPower506(s,defender)>=c.g714AttackMinPower)&&(!c.g801DefenderFilter||matches(s,1-p,defender,c.g801DefenderFilter)))queue(s,p,x,c.g691AttackCreature);if(!api.selfStopped(s,p))for(const {source,grants:g}of c.g404Inherited||[])if(g.g34Attack)queue(s,p,x,g.g34Attack,source);if(!api.selfStopped(s,p))for(const {source,grants:g}of c.g406Inherited||[])if(g.g34Attack)queue(s,p,x,g.g34Attack,source);if(c.g34Role==='emrakul')queue(s,p,x,[C('emrakulSix')]);if(c.g34Role==='minogami')queue(s,p,x,[E('Offer',{defs:[E('Look',{n:3,public:true,stages:[{to:'mana',n:'all',filter:{twin:true}}],after:[C('minogamiBuff')]})]})]);if(card(x).neoEvolution)for(const y of active(s,p,'grasper'))queue(s,p,y,[select('mana',null,1,{creature:true,belowPower:api.power(x,false,s)},{deploy:true,optional:true})]);if(!api.ignored(s,x))for(const layer of api.layers(x))if(card(layer).g34SoulDiscard)queue(s,p,x,[E('Discard',{n:1,random:true})]);if(ninja(c))for(const y of active(s,p,'happou')){if(s.attack?.target==='player')queue(s,p,y,[E('Discard',{n:1,random:true})]);else(x.g34Grants??=[]).push({turn:s.turn,slayer:true,g34BattleSafe:true});}if(api.isEvolution(x)&&cost(c)>=2)for(const y of own.hand.filter(y=>card(y).g34Role==='baromreizu'))queue(s,p,y,[C('reizuCast')]);},
  attackStart(s,p,x){
   if(s.attack?.target==='player'){
    if((s.extLimits||[]).some(r=>r.kind==='g712BlockBreak'&&r.player===p&&r.turn===s.turn))s.attack.g712PlayerTarget=true;

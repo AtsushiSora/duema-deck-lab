@@ -238923,15 +238923,119 @@
       ],
       "supportBatch": "phase-1265",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-014",
+      "name": "Disグラークラ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 6000,
+      "race": "サイバー・クラスター/ディスタス",
+      "text": "ジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のターンのはじめに、バトルゾーンにある一番パワーが大きいクリーチャーが自分のクリーチャーなら、カードを１枚引いてもよい。\n自分の手札が相手より多くなければ、このクリーチャーは攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-014",
+      "limit": 4,
+      "justDiver": true,
+      "breaker": 2,
+      "g1266AttackWithLargerHand": true,
+      "g174Start": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g881HighestPower": true,
+            "g1040Ties": true
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1266",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-038",
+      "name": "Disオウジェノ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 9000,
+      "race": "デーモン・コマンド/ディスタス",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃またはブロックした時、バトルゾーンに自分のディスペクターがなければ、その攻撃の後、このクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-038",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "AfterAttackDestroy",
+          "g1266UnlessAllyRace": "ディスペクター"
+        }
+      ],
+      "g178Block": [
+        {
+          "op": "AfterAttackDestroy",
+          "g1266UnlessAllyRace": "ディスペクター"
+        }
+      ],
+      "supportBatch": "phase-1266",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-013",
+      "name": "「光速の星騎士」",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2500,
+      "race": "メタリカ/レクスターズ",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n自分のクリーチャーが出た時、相手のクリーチャーを１体選び、タップする。\n自分のシールドゾーンにある光のコスト４以下のクリーチャーすべてに「 S・トリガー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-013",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g1266LightCreatureShieldTrigger": 4,
+      "g250EntryDraw": {
+        "self": true,
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "tap": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1266",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1265,
+    "phase": 1266,
     "checkedAt": "2026-11-14",
-    "baseCount": 7797,
-    "newEffectCards": 4,
+    "baseCount": 7801,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7801,
+    "totalCount": 7804,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -260400,6 +260504,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7797,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1265,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7797,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7801,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

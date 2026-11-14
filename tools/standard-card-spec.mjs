@@ -2475,6 +2475,27 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1266&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const lines=f.abilityText.split('\n').map(normalize);
+  const trigger=line=>keyword(line,'S・トリガー');
+  const blocker=line=>keyword(line,'ブロッカー');
+  if(d.id==='dmrp20-014'&&lines.length===4&&keyword(lines[0],'ジャストダイバー')&&keyword(lines[1],'W・ブレイカー')&&
+   lines[2]==='自分のターンのはじめにバトルゾーンにある一番パワーが大きいクリーチャーが自分のクリーチャーならカードを1枚引いてもよい。'&&
+   lines[3]==='自分の手札が相手より多くなければこのクリーチャーは攻撃できない。')
+   return {justDiver:true,breaker:2,g1266AttackWithLargerHand:true,
+    g174Start:[{op:'IfOwn',filter:{g881HighestPower:true,g1040Ties:true},defs:[{op:'Draw',n:1,optional:true}]}]};
+  if(d.id==='dmrp20-038'&&lines.length===4&&trigger(lines[0])&&blocker(lines[1])&&keyword(lines[2],'W・ブレイカー')&&
+   lines[3]==='このクリーチャーが攻撃またはブロックした時バトルゾーンに自分のディスペクターがなければその攻撃の後このクリーチャーを破壊する。'){
+   const destroy={op:'AfterAttackDestroy',g1266UnlessAllyRace:'ディスペクター'};
+   return {trigger:true,blocker:true,breaker:2,g34Attack:[destroy],g178Block:[destroy]};
+  }
+  if(['dmrp20-013','dmrp20-coro01'].includes(d.id)&&lines.length===5&&trigger(lines[0])&&blocker(lines[1])&&
+   lines[2]==='このクリーチャーは相手プレイヤーを攻撃できない。'&&
+   lines[3]==='自分のクリーチャーが出た時相手のクリーチャーを1体選びタップする。'&&
+   lines[4]==='自分のシールドゾーンにある光のコスト4以下のクリーチャーすべてに「S・トリガー」を与える。')
+   return {trigger:true,blocker:true,noPlayerAttack:true,g1266LightCreatureShieldTrigger:4,
+    g250EntryDraw:{self:true,filter:{creature:true},defs:[{op:'Target',tap:true}]}};
+ }
  if(phase>=1265&&d?.status==='complete'&&d.faces.length===1){
   const lines=f.abilityText.split('\n').map(normalize);
   const trigger=lines[0]==='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';

@@ -223,6 +223,8 @@ export function effectiveCard(inst,context,forPower=false){
  }
  // G・G・G grants are continuous and disappear immediately when the hand grows.
  if(c.g246LowHand&&context.players[owner].hand.length<=c.g246LowHand.max){const g=c.g246LowHand.grants;c={...c,...g,power:c.power+(g.power||0),...(g.attackBonus?{attackBonus:(c.attackBonus||0)+g.attackBonus}:{}),...(g.breaker?{breaker:c.breaker==='∞'?'∞':Math.max(Number(c.breaker)||1,g.breaker)}:{})};}
+ if(c.g1266AttackWithLargerHand&&context.players[owner].hand.length<=context.players[1-owner].hand.length)
+  c={...c,noAttack:true};
  if(c.g247HandStats){const h=c.g247HandStats,n=context.players[owner].hand.length,ready=h.moreThanOpponent?n>context.players[1-owner].hand.length:(h.min===undefined||n>=h.min)&&(h.max===undefined||n<=h.max);if(ready)c={...c,power:c.power+h.power,...(h.breaker?{breaker:c.breaker==='∞'?'∞':Math.max(Number(c.breaker)||1,h.breaker)}:{})};}
  if(c.g136AllyAttackPower)c={...c,attackBonus:1000*context.players[owner].battle.filter(x=>x.uid!==inst.uid&&!x.sealed&&isCreature(context,x)).length};
  if(c.g136EnemyHandPower)c={...c,power:c.power+2000*context.players[1-owner].hand.length};
