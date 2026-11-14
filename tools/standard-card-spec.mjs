@@ -2470,6 +2470,24 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1243&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmrp08-002'&&text==='ブロッカーブロッカーW・ブレイカー'+
+   'このクリーチャーがバトルゾーンに出た時または破壊された時自分の山札の上から1枚目を見る。'+
+   'それが「ブロッカー」を持つクリーチャーならバトルゾーンに出してもよい。出さないなら手札に加える。'){
+   const look={op:'LookBlocker1243'};
+   return {blocker:true,breaker:2,effect:'sixPhoto',g34Tasks:[look],g172Death:[look]};
+  }
+  if(['dm22-002','dmc48-006'].includes(d.id)&&text===
+   'このクリーチャーが攻撃する時自分の山札の上から1枚目を表向きにする。'+
+   'そのカードがコスト7以下の呪文であればコストを支払わずにすぐに唱えてもよい。それ以外のカードの場合は墓地に置く。'+
+   'W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g34Attack:[{op:'LookSpell841',public:true,g1242MaxCost:7,g1243UnmatchedGrave:true}]};
+  if(d.id==='dmex03-035'&&text==='S・トリガーS・トリガー'+
+   '連鎖(このクリーチャーがバトルゾーンに出た時自分の山札の上から1枚目を見る。'+
+   'そのカードがこのクリーチャーよりコストが小さいクリーチャーならバトルゾーンに出してもよい)')
+   return {trigger:true,effect:'champion',g84Effect:'Chain',g1243ChainPeek:true};
+ }
  if(phase>=1242&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dmrp07-017'&&f.typeText==='呪文'&&text===

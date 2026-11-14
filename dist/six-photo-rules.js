@@ -4289,6 +4289,20 @@ export function createSixPhotoRules(api){
   }else choice(s,{...peek,op:'g34_PeekRead585'},'確認したカード',[opt('確認を終える',null,0)]);
   break;
  }
+ case'g34_LookBlocker1243':{
+  const [uid]=look(s,{...t,n:1}),y=own.deck.find(x=>x.uid===uid);
+  if(!y)break;
+  release(s,t.p,uid);
+  const c=api.zoneCard(s,t.p,y,'deck');
+  if(c.type==='creature'&&c.blocker&&canPut(s,t.p,y,'deck')){
+   choice(s,{...t,target:uid,serial:y.zoneSerial||0,...deckPeek841(own,[uid])},
+    '確認したブロッカーを出す？',[opt('出す',true,own.deck.length>1?20:-1000,y.cardId),opt('手札に加える',false,5,y.cardId)]);
+  }else{
+   zoneMove(s,t.p,'deck',uid,'hand');
+   api.deckCheck(s,t.p);
+  }
+  break;
+ }
  case'g34_LookSpell841':{
   const [uid]=look(s,{...t,n:1,public:t.g878SpellBlue||t.public}),y=own.deck.find(x=>x.uid===uid);
   if(!y)break;
@@ -4299,8 +4313,13 @@ export function createSixPhotoRules(api){
    api.deckCheck(s,t.p);
    break;
   }
-  const options=revealedFaces.flatMap((c,face)=>c.type==='spell'&&
-   (t.g1242MaxCost===undefined||cost(c)<=t.g1242MaxCost)&&api.canCast(s,t.p,c,'deck')
+  const qualifies=c=>c.type==='spell'&&(t.g1242MaxCost===undefined||cost(c)<=t.g1242MaxCost);
+  if(t.g1243UnmatchedGrave&&!revealedFaces.some(qualifies)){
+   zoneMove(s,t.p,'deck',uid,'grave');
+   api.deckCheck(s,t.p);
+   break;
+  }
+  const options=revealedFaces.flatMap((c,face)=>qualifies(c)&&api.canCast(s,t.p,c,'deck')
    ?[opt(c.name+'を唱える',{uid,face,serial:y.zoneSerial||0},own.deck.length===1?-1000:spellScore555(s,t,c),y.cardId)]:[]);
   const peek={...t,g585Peek:[{id:y.cardId,label:'自分の山札の上'}]};
   if(options.length)choice(s,peek,'確認したカードの呪文を唱える？',[...options,skip()]);
@@ -5261,6 +5280,17 @@ export function createSixPhotoRules(api){
   if(top&&card(top).type==='gear'&&canPut(s,t.p,top,'deck'))
    start(s,t,[{op:'Put',origin:'deck',target:top.uid},{op:'Untap',g191First:true}]);
  }break;
+ case'g34_LookBlocker1243':{
+  const y=own.deck.find(x=>x.uid===t.target&&(x.zoneSerial||0)===t.serial);
+  if(!y)break;
+  // Once the player chooses to put it out, an entry replacement does not grant the hand fallback.
+  if(v)put(s,task('g34_Put',t.p,t.source,{origin:'deck',target:y.uid}));
+  else{
+   zoneMove(s,t.p,'deck',y.uid,'hand');
+   api.deckCheck(s,t.p);
+  }
+  break;
+ }
  case'g34_LookSpell841':{
   const y=v&&own.deck.find(x=>x.uid===v.uid&&(x.zoneSerial||0)===v.serial);
   const c=y&&faces(api.zoneCard(s,t.p,y,'deck'))[v.face];
