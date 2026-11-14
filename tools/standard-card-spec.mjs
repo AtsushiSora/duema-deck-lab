@@ -2475,6 +2475,31 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1269&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='スター進化クリーチャー'){
+  const lines=f.abilityText.split('\n').map(normalize);
+  const star=(civilization)=>'スター進化:レクスターズまたは'+civilization+'のクリーチャー1体の上に置く。';
+  const evolution=civilization=>({starEvolution:true,breaker:2,evolution:{any:[{race:'レクスターズ'},{civilization}]}});
+  if(d.id==='dmrp20-s05'&&lines.length===5&&lines[0]===star('火')&&keyword(lines[1],'W・ブレイカー')&&
+   lines[2]==='このクリーチャーが攻撃する時これがこのターン2度目以降の攻撃なら自分の手札をすべて捨ててもよい。そうしたらカードを3枚引く。'&&
+   lines[3]==='このクリーチャーが攻撃する時これがこのターン3度目以降の攻撃なら相手のパワー5000以下のクリーチャーをすべて破壊する。'&&
+   lines[4]==='このクリーチャーが攻撃する時これがこのターン4度目以降の攻撃ならこのターン中このクリーチャーの攻撃先は変更されずその攻撃の終わりにこのクリーチャーをアンタップする。')
+   return {...evolution('火'),g1269TeamAttack:[
+    {min:2,def:{op:'Offer',title:'手札をすべて捨てて3枚引く？',defs:[{op:'Discard',owner:'self',g756All:true},{op:'Draw',n:3}]}},
+    {min:3,def:{op:'Sweep',to:'grave',filter:{creature:true,maxPower:5000,g199Power:true}}},
+    {min:4,def:{op:'AttackLock1269'}}
+   ]};
+  const delayed={
+   'dmrp20-037':{civilization:'闇',to:'grave',tail:'このクリーチャーが攻撃する時カードを1枚自分の墓地から手札に戻してもよい。',
+    abilities:{g34Attack:[{op:'Select',origin:'grave',to:'hand',n:1,optional:true}]}},
+   'dmrp20-033':{civilization:'水',to:'hand',tail:'このクリーチャーはブロックされない。',abilities:{unblockable:true}},
+   'dmrp20-s02':{civilization:'水',to:'hand',tail:'このクリーチャーが攻撃する時自分の山札を見てその中からカードを2枚まで手札に加える。その後山札をシャッフルする。',
+    abilities:{g34Attack:[{op:'Look',g201Search:true,g200Search:true,g841DeckPeek:true,n:'all',rest:'shuffle',stages:[{n:2,to:'hand',optional:true}]}]}}
+  }[d.id];
+  if(delayed&&lines.length===4&&keyword(lines[2],'W・ブレイカー')&&lines[3]===delayed.tail&&
+   lines[0]==='このクリーチャーの召喚コストを2少なくしてもよい。そうしたらこのターンの終わりにこのクリーチャーを'+(delayed.to==='hand'?'手札に戻す。':'破壊する。')&&
+   lines[1]===star(delayed.civilization)+'(このクリーチャーが離れる時かわりに一番上のカードが離れる)')
+   return {...evolution(delayed.civilization),g568Alt:{g1269Reduction:2,end:[{op:'AttachedMove1269',to:delayed.to}]},...delayed.abilities};
+ }
  if(phase>=1268&&d?.status==='complete'&&d.faces.length===1){
   const lines=f.abilityText.split('\n').map(normalize);
   const exLife=lines[0]==='EXライフ'||lines[0]==='EXライフ(このクリーチャーを出す時自分の山札の上から1枚目をシールド化する。このクリーチャーが離れる時かわりにそのシールドを墓地に置く)';

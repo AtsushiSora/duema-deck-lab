@@ -1280,6 +1280,15 @@ export function createSixPhotoRules(api){
  }
  function startUntapLock210(t,y){if(t.spell)(y.g170StartFreeze??=[]).push({spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});else y.skipUntap=true;}
  const timedGrant335=(s,t,grant)=>({turn:s.turn,...grant,...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});
+ // Evolution and reconstruction inherit grants. Leaving the battlefield clears them.
+ function attachedUnit1269(s,t,kind){
+  const mark=key(t)+':'+kind;
+  for(const p of [t.p,1-t.p]){
+   const x=s.players[p].battle.find(y=>y.g34Grants?.some(g=>g.turn===s.turn&&g.g1269Attachment===mark));
+   if(x)return {p,x};
+  }
+  return null;
+ }
  function releaseHyper781(s,p,y){
   if(y.sealed||y.hyperActive||!card(y).hyper)return;
   y.hyperActive=true;
@@ -3549,6 +3558,25 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_ResolveDelay537':if(t.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:t.spellCost,spellSource:t.source}))start(s,t,t.defs);break;
+ case'g34_AttachedMove1269':{
+  const host=attachedUnit1269(s,t,'end');
+  if(host&&!host.x.sealed&&api.isCreature(s,host.x))move(s,[{
+   player:host.p,uid:host.x.uid,to:t.to,destroy:t.to==='grave',toOwnerHand:t.to==='hand',controller:t.p
+  }]);
+  break;
+ }
+ case'g34_AttackLock1269':{
+  const host=sourceHost474(s,t);
+  if(!host||host.x.sealed||!api.isCreature(s,host.x))break;
+  applyGrant(s,{...t,grant:{attackUnredirectable:true,g1269Attachment:key(t)+':attack'}},host.x);
+  start(s,t,[{op:'AfterAttack542',defs:[{op:'AttachedUntap1269'}]}]);
+  break;
+ }
+ case'g34_AttachedUntap1269':{
+  const host=attachedUnit1269(s,t,'attack');
+  if(host&&!host.x.sealed&&api.isCreature(s,host.x))api.untap(s,host.p,host.x);
+  break;
+ }
  case'g34_BreakOrder1136':{
   if(t.sources.length===1){
    const [r]=t.sources;
@@ -7696,6 +7724,8 @@ export function createSixPhotoRules(api){
     delete delayed.g1221PendingUid;
     delayed.uid=y.uid;
     delayed.incarnation=y.incarnation||0;
+    if(c.g568Alt?.g1269Reduction)
+     (y.g34Grants??=[]).push({turn:s.turn,g1269Attachment:key(y)+':end'});
    }
   }
   if(!y.sealed&&!y.faceDown){
@@ -7950,6 +7980,11 @@ export function createSixPhotoRules(api){
    if(abilities&&!watcher.sealed)send(s,1-p,watcher,'Sequence',{defs:abilities,g694Defender:ref});
   }
  }const c=effective(x,s),own=s.players[p];
+ if(c.g1269TeamAttack&&!api.selfStopped(s,p)){
+  const attacks=s.g481Attackers.events.filter(event=>event.p===p).length;
+  for(const {min,def} of c.g1269TeamAttack)
+   if(attacks>=min)queue(s,p,x,[def]);
+ }
  // Each live grant triggers independently. Revolution 0 checks shields on resolution (rule 603.4).
  if(c.g1049RevolutionUntap&&!api.selfStopped(s,p))for(const g of x.g34Grants||[]){
   if(g.g1049RevolutionUntap&&g.turn===s.turn)
@@ -8574,6 +8609,17 @@ export function createSixPhotoRules(api){
   }
   for(const origin of['hand','mana','grave'])for(const x of own[origin]){
    const c=api.zoneCard(s,p,x,origin),r=c.g568Alt;if(x.faceDown||!hasAltPayment568(s,p,origin,r)||!api.canMoveZone(s,p,origin)||!api.canCast(s,p,c,origin)||c.type==='creature'&&!api.canEnter(s,p,c,{origin,execution:true}))continue;
+   if(r.g1269Reduction){
+    for(const permit of new Set(api.costAltPermits568(s,p,x,c,origin)))for(const base of api.evolutionBases(s,p,c))
+     for(const snowReducers of [undefined,...api.snowVariants(s,p,c)]){
+      const payment={...c,g1269Reduction:r.g1269Reduction,g27BaseUid:base.uid,summonOrigin:origin,
+       executionUid:x.uid,...(snowReducers?{snowReducers}:{})};
+      if(api.canPay(s,p,payment))out.push({kind:'play',alternative:'sixPhoto',role:'paidAlt568',uid:x.uid,
+       cardId:x.cardId,origin,manaPermit:permit,baseUid:base.uid,...(snowReducers?{snowReducers}:{}),
+       cost:api.summonCost(s,p,payment),label:c.name+'を2軽減し、'+card(base).name+'の上に進化させる'});
+     }
+    continue;
+   }
    for(const permit of new Set(api.costAltPermits568(s,p,x,c,origin)))for(const base of[c.neoEvolution?null:undefined,...(c.neoEvolution?api.evolutionBases(s,p,c):[])])for(const snowReducers of[undefined,...api.snowVariants(s,p,c)]){
     const payment={...c,...(origin==='mana'?{civilizations:api.manaColors(c,s,p)}:{}),cost:r.cost,printedCost:c.cost,g568PaymentColors:r.paymentColors,...(r.spell?{g40PayNormally:true}:{}),g27BaseUid:base?.uid??null,summonOrigin:origin,executionUid:x.uid,...(snowReducers?{snowReducers}:{})};
     if(api.canPay(s,p,payment))out.push({kind:'play',alternative:'sixPhoto',role:'paidAlt568',uid:x.uid,cardId:x.cardId,origin,manaPermit:permit,baseUid:base?.uid??null,...(snowReducers?{snowReducers}:{}),cost:api.summonCost(s,p,payment),label:c.name+(r.condition||r.handOnly?'を条件付きの別コストで':'を別コストで')+(origin==='hand'?'':origin==='mana'?'マナから':'墓地から')+(c.type==='spell'?'唱える':'召喚')+(base?'・'+card(base).name+'の上にNEO進化':c.neoEvolution?'・進化させず':'')});
@@ -8613,7 +8659,7 @@ for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand
    const origin=a.origin||'hand',x=s.players[p][origin].find(x=>x.uid===a.uid),c=x&&api.zoneCard(s,p,x,origin),r=c?.g568Alt;
    if(!hasAltPayment568(s,p,origin,r)||!api.costAltPermits568(s,p,x,c,origin).includes(a.manaPermit))
     throw Error('別コストの使用条件を満たしていません');
-   const payment={cost:r.cost,g568PaymentColors:r.paymentColors,
+   const payment={...(r.g1269Reduction?{g1269Reduction:r.g1269Reduction}:{cost:r.cost,g568PaymentColors:r.paymentColors}),
     ...(r.g1117MoveToExtra?{g1117MoveToExtra:true}:{}),
     ...(r.end?{g1221AltEnd:true}:{}),
     ...(r.entry?{g777AltEntry:true}:{}),...(r.spell?{g1023PaidAltSpell:true,g40PayNormally:true}:{}),
@@ -8658,7 +8704,8 @@ for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand
   return {c,rule,rows,permits,payment,amount:api.summonCost(s,p,quote)};
  }
  function hasAltPayment568(s,p,origin,r){
-  return !!r&&(!r.origin||origin===r.origin)&&(!r.handOnly||origin==='hand'&&s.players[p].hand.length===1)&&(!r.condition||ownCondition(s,p,r.condition));
+  return !!r&&(!r.g1269Reduction||!creatures(s,1-p).some(x=>effective(x,s).noCostReduction))&&
+   (!r.origin||origin===r.origin)&&(!r.handOnly||origin==='hand'&&s.players[p].hand.length===1)&&(!r.condition||ownCondition(s,p,r.condition));
  }
  function magicToolUse976(s,p){
   for(const x of s.players[p].grave)

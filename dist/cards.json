@@ -239323,15 +239323,227 @@
       },
       "supportBatch": "phase-1268",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-s05",
+      "name": "ダイナボルト ＜ドギラ.Star＞",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 8000,
+      "race": "ビートジョッキー/メガ・コマンド・ドラゴン/レクスターズ",
+      "text": "スター進化：レクスターズまたは火のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが攻撃する時、これが、このターン２度目以降の攻撃なら、自分の手札をすべて捨ててもよい。そうしたら、カードを３枚引く。\nこのクリーチャーが攻撃する時、これが、このターン３度目以降の攻撃なら、相手のパワー5000以下のクリーチャーをすべて破壊する。\nこのクリーチャーが攻撃する時、これが、このターン４度目以降の攻撃なら、このターン中、このクリーチャーの攻撃先は変更されず、その攻撃の終わりに、このクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-s05",
+      "limit": 4,
+      "starEvolution": true,
+      "breaker": 2,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "g1269TeamAttack": [
+        {
+          "min": 2,
+          "def": {
+            "op": "Offer",
+            "title": "手札をすべて捨てて3枚引く？",
+            "defs": [
+              {
+                "op": "Discard",
+                "owner": "self",
+                "g756All": true
+              },
+              {
+                "op": "Draw",
+                "n": 3
+              }
+            ]
+          }
+        },
+        {
+          "min": 3,
+          "def": {
+            "op": "Sweep",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 5000,
+              "g199Power": true
+            }
+          }
+        },
+        {
+          "min": 4,
+          "def": {
+            "op": "AttackLock1269"
+          }
+        }
+      ],
+      "supportBatch": "phase-1269",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-037",
+      "name": "ラトリエ ＜ハリデル.Star＞",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "マフィ・ギャング/レクスターズ",
+      "text": "このクリーチャーの召喚コストを２少なくしてもよい。そうしたら、このターンの終わりに、このクリーチャーを破壊する。\nスター進化：レクスターズまたは闇のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、カードを１枚、自分の墓地から手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-037",
+      "limit": 4,
+      "starEvolution": true,
+      "breaker": 2,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "g568Alt": {
+        "g1269Reduction": 2,
+        "end": [
+          {
+            "op": "AttachedMove1269",
+            "to": "grave"
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1269",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-033",
+      "name": "ググッピー ＜鮫.Star＞",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 8000,
+      "race": "ムートピア/レクスターズ",
+      "text": "このクリーチャーの召喚コストを２少なくしてもよい。そうしたら、このターンの終わりに、このクリーチャーを手札に戻す。\nスター進化：レクスターズまたは水のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーはブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-033",
+      "limit": 4,
+      "starEvolution": true,
+      "breaker": 2,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "水"
+          }
+        ]
+      },
+      "g568Alt": {
+        "g1269Reduction": 2,
+        "end": [
+          {
+            "op": "AttachedMove1269",
+            "to": "hand"
+          }
+        ]
+      },
+      "unblockable": true,
+      "supportBatch": "phase-1269",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-s02",
+      "name": "マニフェスト ＜リーフ.Star＞",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 11000,
+      "race": "トリックス/サイバー・ウイルス/レクスターズ",
+      "text": "このクリーチャーの召喚コストを２少なくしてもよい。そうしたら、このターンの終わりに、このクリーチャーを手札に戻す。\nスター進化：レクスターズまたは水のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札を見て、その中からカードを２枚まで手札に加える。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-s02",
+      "limit": 4,
+      "starEvolution": true,
+      "breaker": 2,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "水"
+          }
+        ]
+      },
+      "g568Alt": {
+        "g1269Reduction": 2,
+        "end": [
+          {
+            "op": "AttachedMove1269",
+            "to": "hand"
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g200Search": true,
+          "g841DeckPeek": true,
+          "n": "all",
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 2,
+              "to": "hand",
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1269",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1268,
+    "phase": 1269,
     "checkedAt": "2026-11-14",
-    "baseCount": 7807,
+    "baseCount": 7811,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7811,
+    "totalCount": 7815,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -260836,6 +261048,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7807,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1268,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7807,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7811,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

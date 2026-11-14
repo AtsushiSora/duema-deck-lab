@@ -1679,7 +1679,7 @@ function baseSummonCost297(s,p,c){
  const dddReduction=c.g28DDD?s.players[p].battle.reduce((n,x)=>n+
   (x.sealed?0:effectiveCard(x,s).g1064DDDDiscount||0),0):0;
  const once=extra.six.onceDiscount464(s,p,c);
- const laterReduction=(c.g1240DiscardPaid||0)+baseDiscount+dddReduction+extra.six.sympathyDiscount211(s,p,c)+extra.six.countDiscount212(s,p,c)+extra.six.conditionalDiscount261(s,p,c)+extra.utilityControl.firstSpellDiscount(s,p,c)+aura.amount+extra.six.firstSummonDiscount463(s,p,c)+once.summon+extra.six.spellDiscount467(s,p,c)+extra.six.useDiscount468(s,p,c)+extra.six.revealDiscount470(s,p,c)+extra.six.untapDiscount472(s,p,c);
+ const laterReduction=(c.g1269Reduction||0)+(c.g1240DiscardPaid||0)+baseDiscount+dddReduction+extra.six.sympathyDiscount211(s,p,c)+extra.six.countDiscount212(s,p,c)+extra.six.conditionalDiscount261(s,p,c)+extra.utilityControl.firstSpellDiscount(s,p,c)+aura.amount+extra.six.firstSummonDiscount463(s,p,c)+once.summon+extra.six.spellDiscount467(s,p,c)+extra.six.useDiscount468(s,p,c)+extra.six.revealDiscount470(s,p,c)+extra.six.untapDiscount472(s,p,c);
  const applyExecutionReduction=total=>total>1?Math.max(1,total-once.execution):total;
  // A printed zero costs nothing until a reduction with a positive minimum applies (QA40378).
  if(costValue(c)===0&&base===0&&beforeMinimum===0&&laterReduction===0&&!gearDiscount)return 0;

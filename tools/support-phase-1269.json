@@ -1,0 +1,286 @@
+{
+  "phase": 1269,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7811,
+  "description": "ダイナボルト ＜ドギラ.Star＞、ラトリエ ＜ハリデル.Star＞、ググッピー ＜鮫.Star＞、マニフェスト ＜リーフ.Star＞を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/40628/",
+    "https://dm.takaratomy.co.jp/rule/qa/40652/",
+    "https://dm.takaratomy.co.jp/rule/qa/40912/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37045/",
+    "https://dm.takaratomy.co.jp/rule/qa/43296/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp20-s05",
+      "name": "ダイナボルト ＜ドギラ.Star＞",
+      "faces": [
+        {
+          "name": "ダイナボルト ＜ドギラ.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スター進化：レクスターズまたは火のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが攻撃する時、これが、このターン２度目以降の攻撃なら、自分の手札をすべて捨ててもよい。そうしたら、カードを３枚引く。\nこのクリーチャーが攻撃する時、これが、このターン３度目以降の攻撃なら、相手のパワー5000以下のクリーチャーをすべて破壊する。\nこのクリーチャーが攻撃する時、これが、このターン４度目以降の攻撃なら、このターン中、このクリーチャーの攻撃先は変更されず、その攻撃の終わりに、このクリーチャーをアンタップする。",
+          "race": "ビートジョッキー/メガ・コマンド・ドラゴン/レクスターズ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-s05",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-s05.jpg",
+      "spec": {
+        "starEvolution": true,
+        "breaker": 2,
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "g1269TeamAttack": [
+          {
+            "min": 2,
+            "def": {
+              "op": "Offer",
+              "title": "手札をすべて捨てて3枚引く？",
+              "defs": [
+                {
+                  "op": "Discard",
+                  "owner": "self",
+                  "g756All": true
+                },
+                {
+                  "op": "Draw",
+                  "n": 3
+                }
+              ]
+            }
+          },
+          {
+            "min": 3,
+            "def": {
+              "op": "Sweep",
+              "to": "grave",
+              "filter": {
+                "creature": true,
+                "maxPower": 5000,
+                "g199Power": true
+              }
+            }
+          },
+          {
+            "min": 4,
+            "def": {
+              "op": "AttackLock1269"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "4a2ff539dcaa102bd84dd390ad3d09fee15112c80744089cd1b521a7ff71afbc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-037",
+      "name": "ラトリエ ＜ハリデル.Star＞",
+      "faces": [
+        {
+          "name": "ラトリエ ＜ハリデル.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーの召喚コストを２少なくしてもよい。そうしたら、このターンの終わりに、このクリーチャーを破壊する。\nスター進化：レクスターズまたは闇のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、カードを１枚、自分の墓地から手札に戻してもよい。",
+          "race": "マフィ・ギャング/レクスターズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-037",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-037.jpg",
+      "spec": {
+        "starEvolution": true,
+        "breaker": 2,
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "g568Alt": {
+          "g1269Reduction": 2,
+          "end": [
+            {
+              "op": "AttachedMove1269",
+              "to": "grave"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "478984af67a98b64896b14267c067549ec1f5af0b97e12b054e95b835e488262",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-033",
+      "name": "ググッピー ＜鮫.Star＞",
+      "faces": [
+        {
+          "name": "ググッピー ＜鮫.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーの召喚コストを２少なくしてもよい。そうしたら、このターンの終わりに、このクリーチャーを手札に戻す。\nスター進化：レクスターズまたは水のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーはブロックされない。",
+          "race": "ムートピア/レクスターズ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-033",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-033.jpg",
+      "spec": {
+        "starEvolution": true,
+        "breaker": 2,
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "水"
+            }
+          ]
+        },
+        "g568Alt": {
+          "g1269Reduction": 2,
+          "end": [
+            {
+              "op": "AttachedMove1269",
+              "to": "hand"
+            }
+          ]
+        },
+        "unblockable": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "ea44688070265faa5c9afc27044f0a9019124017242c2341a64518e0336491b1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-s02",
+      "name": "マニフェスト ＜リーフ.Star＞",
+      "faces": [
+        {
+          "name": "マニフェスト ＜リーフ.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーの召喚コストを２少なくしてもよい。そうしたら、このターンの終わりに、このクリーチャーを手札に戻す。\nスター進化：レクスターズまたは水のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札を見て、その中からカードを２枚まで手札に加える。その後、山札をシャッフルする。",
+          "race": "トリックス/サイバー・ウイルス/レクスターズ",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-s02",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-s02.jpg",
+      "spec": {
+        "starEvolution": true,
+        "breaker": 2,
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "水"
+            }
+          ]
+        },
+        "g568Alt": {
+          "g1269Reduction": 2,
+          "end": [
+            {
+              "op": "AttachedMove1269",
+              "to": "hand"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "g841DeckPeek": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 2,
+                "to": "hand",
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "b53f84985ead5cf4a5aa3f8d064ddac62ea1867d0436597ec5db9aa6b702e280",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp20-s05": 4,
+      "dmrp20-037": 4,
+      "dmrp20-033": 4,
+      "dmrp20-s02": 4
+    }
+  }
+}
