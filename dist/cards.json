@@ -242059,15 +242059,189 @@
       },
       "supportBatch": "phase-1289",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-046",
+      "name": "シュバルスリング-B3 / エン・ゲルス・スパーク",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "メカ・デル・ディネロ",
+      "text": "このクリーチャーが出た時、自分のシールドを１つ墓地に置いてもよい。そうしたら、相手は自身のクリーチャーを１体選び、破壊する。\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーをすべてタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-046",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldGrave588",
+          "owner": "self",
+          "n": 1,
+          "afterAttempt": [
+            {
+              "op": "OpponentSelect",
+              "n": 1,
+              "to": "grave"
+            }
+          ]
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "エン・ゲルス・スパーク",
+        "cost": 5,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "メカ・デル・テック",
+        "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーをすべてタップする。",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "TapAll"
+          }
+        ]
+      },
+      "supportBatch": "phase-1290",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-022",
+      "name": "オ:ベカリーヌ / 裏盗邪撫",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 14000,
+      "race": "ヴェールアビス",
+      "text": "マッハファイター\nT・ブレイカー\n自分の他のアビスすべてのパワーを+6000し「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n【呪文面】\nアビスを１枚、自分の墓地からマナゾーンにタップして置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-022",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 3,
+      "g205Aura": {
+        "filter": {
+          "creature": true,
+          "race": "アビス"
+        },
+        "other": true,
+        "power": 6000
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "race": "アビス"
+          },
+          "other": true,
+          "grants": {
+            "poweredBreaker": true,
+            "g1116PoweredChoice": true
+          }
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "裏盗邪撫",
+        "cost": 1,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "アビスへの誘い",
+        "text": "アビスを１枚、自分の墓地からマナゾーンにタップして置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "mana",
+            "n": 1,
+            "tapped": true,
+            "filter": {
+              "anyFaceRace": "アビス"
+            },
+            "title": "タップしてマナゾーンに置く墓地のアビスを1枚指定する"
+          }
+        ]
+      },
+      "supportBatch": "phase-1290",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-004",
+      "name": "リッチーモア＝ザ＝ダーティ / 「収めてやろうか？」",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "アビスロイヤル",
+      "text": "革命チェンジ：アビス\nマッハファイター\nこのクリーチャーが出た時、このターン、自分のクリーチャー１体のパワーを+4000し、「パワード・ブレイカー」を与える。\nメガ・ラスト・バースト（このクリーチャーが離れて、手札、マナゾーン、または墓地に置かれた時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\n相手の手札を見ないで１枚選び、捨てさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-004",
+      "limit": 4,
+      "rev": {
+        "race": "アビス",
+        "g486Current": true
+      },
+      "machFighter": true,
+      "megaLastBurst": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "implicitSelection": true,
+          "power": 4000,
+          "grant": {
+            "poweredBreaker": true,
+            "g1116PoweredChoice": true
+          },
+          "title": "このターン、パワーを+4000しパワード・ブレイカーを与える自分のクリーチャーを指定する"
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "「収めてやろうか？」",
+        "cost": 2,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "アビスへの誘い",
+        "text": "相手の手札を見ないで１枚選び、捨てさせる。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BlindDiscard773",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1290",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1289,
+    "phase": 1290,
     "checkedAt": "2026-11-15",
-    "baseCount": 7878,
-    "newEffectCards": 4,
+    "baseCount": 7882,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7882,
+    "totalCount": 7885,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -263824,6 +263998,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7878,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1289,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7878,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7882,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

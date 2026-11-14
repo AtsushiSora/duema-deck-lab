@@ -2509,6 +2509,33 @@ export function standardCardSpec(d,{phase=165}={}){
     spellFace:{type:'spell',name:spell.name,cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,
      race:spell.race,text:spell.abilityText,effect:'sixPhoto',...spellRules}});
    const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+   if(phase>=1290){
+    const powered={poweredBreaker:true,g1116PoweredChoice:true};
+    if(/^dm23rp4x?-(?:004|10A|12B)$|^dm23rp4x-004X$/.test(d.id)&&text==='革命チェンジ:アビスマッハファイター'+
+     'このクリーチャーが出た時このターン自分のクリーチャー1体のパワーを+4000し「パワード・ブレイカー」を与える。'+
+     'メガ・ラスト・バースト(このクリーチャーが離れて手札マナゾーンまたは墓地に置かれた時このカードの呪文側をコストを支払わずに唱えてもよい)'&&
+     back==='相手の手札を見ないで1枚選び捨てさせる。')
+     return twin({rev:{race:'アビス',g486Current:true},machFighter:true,megaLastBurst:true,effect:'sixPhoto',
+      g34Tasks:[{op:'Target',owner:'self',implicitSelection:true,power:4000,grant:powered,
+       title:'このターン、パワーを+4000しパワード・ブレイカーを与える自分のクリーチャーを指定する'}]},
+      {g34Tasks:[{op:'BlindDiscard773',n:1}]});
+    if((/^dm23rp4x?-022$/.test(d.id)||d.id==='promoy22-064')&&
+     text==='マッハファイターT・ブレイカー自分の他のアビスすべてのパワーを+6000し「パワード・ブレイカー」を与える。'+
+      '(「パワード・ブレイカー」を持つクリーチャーはそのパワー6000ごとにシールドをさらに1つブレイクする)'&&
+     back==='アビスを1枚自分の墓地からマナゾーンにタップして置く。'){
+     const abyss={creature:true,race:'アビス'};
+     return twin({machFighter:true,breaker:3,g205Aura:{filter:abyss,other:true,power:6000},
+      g208Auras:[{filter:abyss,other:true,grants:powered}]},
+      {g34Tasks:[{op:'Select',origin:'grave',to:'mana',n:1,tapped:true,filter:{anyFaceRace:'アビス'},
+       title:'タップしてマナゾーンに置く墓地のアビスを1枚指定する'}]});
+    }
+    if(/^dm23rp4x?-046$/.test(d.id)&&
+     text==='このクリーチャーが出た時自分のシールドを1つ墓地に置いてもよい。そうしたら相手は自身のクリーチャーを1体選び破壊する。'&&
+     back==='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)相手のクリーチャーをすべてタップする。')
+     return twin({effect:'sixPhoto',g34Tasks:[{op:'ShieldGrave588',owner:'self',n:1,
+      afterAttempt:[{op:'OpponentSelect',n:1,to:'grave'}]}]},
+      {trigger:true,g34Tasks:[{op:'TapAll'}]});
+   }
    if(phase>=1289&&/^dm23rp4x?-0(?:48|49|51)$/.test(d.id)){
     const shieldTrigger='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
     if(d.id.endsWith('-048')&&text==='このクリーチャーが出た時相手のクリーチャーを1体選びタップする。次の相手のターンのはじめにそのクリーチャーはアンタップしない。'&&
