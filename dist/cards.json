@@ -235367,15 +235367,141 @@
       },
       "supportBatch": "phase-1231",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex08-262",
+      "name": "ボルシャックライシス・NEX",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 15,
+      "power": 25000,
+      "race": "メガ・アーマード・コマンド・ドラゴン/ハンター",
+      "text": "ダブル・シンパシー：ドラゴン（このクリーチャーの召喚コストは、バトルゾーンにある自分のドラゴン１体につき２少なくなる。ただしコストは０以下にならない）\nワールド・ブレイカー（このクリーチャーは相手のシールドをすべてブレイクする）\n自分のドラゴンすべてに「スピードアタッカー」を与える。\n自分のドラゴンが攻撃する時、自分の山札の上から１枚目を表向きにする。それがドラゴンなら、バトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-262",
+      "limit": 4,
+      "g211Sympathy": {
+        "amount": 2,
+        "filter": {
+          "race": "ドラゴン",
+          "creature": true
+        }
+      },
+      "breaker": "∞",
+      "worldBreaker": true,
+      "g208Auras": [
+        {
+          "filter": {
+            "race": "ドラゴン"
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "race": "ドラゴン"
+        },
+        "defs": [
+          {
+            "op": "LookDeploy530",
+            "n": 1,
+            "limit": 1,
+            "public": true,
+            "filter": {
+              "race": "ドラゴン"
+            },
+            "title": "公開したドラゴンをバトルゾーンに出す？"
+          }
+        ]
+      },
+      "supportBatch": "phase-1232",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-001",
+      "name": "アプドリ・ビグッティーノ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 13000,
+      "race": "メカ・デル・ディネロ",
+      "text": "T・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーをすべてタップする。次の相手のターンのはじめに、それらのクリーチャーはアンタップしない。\n自分のメカ・デル・ステラすべてのパワーを+6000し、「パワード・ブレイカー」を与える。\n真・エスケープ（このクリーチャーが離れる時、かわりに自分のシールドを２つ手札に加えてもよい。ただし、その「S・トリガー」は使えない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-001",
+      "limit": 4,
+      "breaker": 3,
+      "trueEscape": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LockUntap606",
+          "g1019Tap": true
+        }
+      ],
+      "g205Aura": {
+        "filter": {
+          "race": "メカ・デル・ステラ"
+        },
+        "power": 6000
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "race": "メカ・デル・ステラ"
+          },
+          "grants": {
+            "poweredBreaker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1232",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-030",
+      "name": "瞬現の聖沌 n41kun4",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "メカ・デル・ステラ/シノビ",
+      "text": "このクリーチャーは攻撃できない。\nウルトラ・セイバー：メカ（自分のメカが離れる時、かわりにこのクリーチャーを破壊してもよい）\n相手のクリーチャーが攻撃する時、自分のメカがあれば、このクリーチャーを自分の手札から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-030",
+      "limit": 4,
+      "noAttack": true,
+      "g571Saver": {
+        "filter": {
+          "race": "メカ"
+        },
+        "ultra": true
+      },
+      "g1232HandDefend": {
+        "race": "メカ"
+      },
+      "supportBatch": "phase-1232",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1231,
+    "phase": 1232,
     "checkedAt": "2026-11-14",
-    "baseCount": 7691,
+    "baseCount": 7694,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7694,
+    "totalCount": 7697,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -256436,6 +256562,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7691,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1231,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7691,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7694,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

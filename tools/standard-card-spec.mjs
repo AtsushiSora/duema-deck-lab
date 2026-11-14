@@ -2470,6 +2470,26 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1232&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const dragon={race:'ドラゴン'},stella={race:'メカ・デル・ステラ'};
+  if(['dmex08-262','dmex15-a049','dmbd16-003','dm23bd4-024','dm25bd1-010'].includes(d.id)&&
+   /^ダブル・シンパシー:ドラゴン(?:・クリーチャー)?\(このクリーチャーの召喚コスト(?:は|を)(?:バトルゾーンにある)?自分のドラゴン(?:・クリーチャー)?1体につき2少なく(?:なる|する)。ただしコストは0以下に(?:は)?ならない\)ワールド・ブレイカー\(このクリーチャーは相手のシールドをすべてブレイクする\)自分のドラゴンすべてに「スピードアタッカー」を与える。自分のドラゴンが攻撃する時自分の山札の上から1枚(?:目)?を表向きにする。それがドラゴンなら(?:バトルゾーンに)?出してもよい。$/.test(text))
+   return {g211Sympathy:{amount:2,filter:{...dragon,creature:true}},breaker:'∞',worldBreaker:true,
+    g208Auras:[{filter:dragon,grants:{speedAttacker:true}}],
+    g252AttackWatch:{who:'self',filter:dragon,defs:[{op:'LookDeploy530',n:1,limit:1,public:true,filter:dragon,
+     title:'公開したドラゴンをバトルゾーンに出す？'}]}};
+  if(d.id==='dm23rp1-001'&&text==='T・ブレイカーこのクリーチャーが出た時相手のクリーチャーをすべてタップする。'+
+   '次の相手のターンのはじめにそれらのクリーチャーはアンタップしない。'+
+   '自分のメカ・デル・ステラすべてのパワーを+6000し「パワード・ブレイカー」を与える。'+
+   '真・エスケープ(このクリーチャーが離れる時かわりに自分のシールドを2つ手札に加えてもよい。ただしその「S・トリガー」は使えない)')
+   return {breaker:3,trueEscape:true,effect:'sixPhoto',g34Tasks:[{op:'LockUntap606',g1019Tap:true}],
+    g205Aura:{filter:stella,power:6000},g208Auras:[{filter:stella,grants:{poweredBreaker:true}}]};
+  if(['dm23rp1-030','dm25ex1-052'].includes(d.id)&&text==='このクリーチャーは攻撃できない。'+
+   'ウルトラ・セイバー:メカ(自分のメカが離れる時かわりにこのクリーチャーを破壊してもよい)'+
+   '相手のクリーチャーが攻撃する時自分のメカがあればこのクリーチャーを自分の手札から出してもよい。')
+   return {noAttack:true,g571Saver:{filter:{race:'メカ'},ultra:true},g1232HandDefend:{race:'メカ'}};
+ }
  if(phase>=1231&&d?.status==='complete'){
   const text=normalize(f.abilityText);
   const hyperEntry='このクリーチャーが出た時相手のパワー5000以下のクリーチャーを1体選び破壊する。';
