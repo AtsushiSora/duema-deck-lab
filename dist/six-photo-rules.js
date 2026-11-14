@@ -7060,6 +7060,12 @@ export function createSixPhotoRules(api){
    if(y)start(s,t,[{op:'TurnAttackDraw613',refs:api.allLayers(y).map(key),n:t.g906AttackDraw}]);
    break;
   }
+  if(t.g1307NextAttackUntap){
+   const y=v&&own.battle.find(x=>x.uid===v.uid);
+   if(y)(s.extLimits??=[]).push({kind:'g543Shinka',when:'nextAttackEnd',p:t.p,source:t.source,
+    refs:api.allLayers(y).map(key),expires:'end',who:s.active});
+   break;
+  }
   if(t.g904FirstAttackUntap){
    const y=v&&own.battle.find(x=>x.uid===v.uid);
    if(y)(s.extLimits??=[]).push({kind:'g543Shinka',when:'firstAttackUntap',p:t.p,source:t.source,
@@ -7726,6 +7732,10 @@ export function createSixPhotoRules(api){
  },
  allowedCast(s,p,c){
   if(c.type==='field'&&c.d2Field&&d2Locked1188(s,p))return false;
+  const opponent=s.players[1-p];
+  const handSize=opponent.hand?.length??opponent.handCount??0;
+  if(c.type==='spell'&&cost(c)<handSize&&opponent.battle.some(x=>
+   card(x).g1307HandSpellLock&&!x.sealed&&!x.faceDown&&api.isCreature(s,x)&&!api.ignored(s,x)))return false;
   if(c.type==='spell'&&s.players[1-p].battle.some(x=>{
    const requiredRace=!x.sealed&&card(x).g982SpellLockUnlessRace&&effective(x,s).g982SpellLockUnlessRace;
    return requiredRace&&api.isCreature(s,x)&&!creatures(s,p).some(y=>
@@ -8355,7 +8365,15 @@ export function createSixPhotoRules(api){
    !api.spellIgnored(s,{type:'spell',cost:r.spellCost,spellSource:r.source}))
    api.enqueue(s,r.p,{source:r.source,effect:'extended',
     task:task('g34_ResolveDelay537',r.p,r.source,{spellCost:r.spellCost,defs:[{op:'Untap',g904Refs:refs}]})});
- }const defender=s.attack?.target!=='player'&&s.players[1-p].battle.find(y=>y.uid===s.attack?.target);if(defender){
+ }
+ if(s.attackLifecycle&&s.extLimits?.some(r=>r.kind==='g543Shinka'&&r.when==='nextAttackEnd')){
+  s.extLimits=s.extLimits.filter(r=>{
+   if(r.kind!=='g543Shinka'||r.when!=='nextAttackEnd'||!r.refs.some(ref=>refs.includes(ref)))return true;
+   (s.attackLifecycle.g542After??=[]).push({p:r.p,source:r.source,defs:[{op:'Untap',g904Refs:refs}]});
+   return false;
+  });
+ }
+ const defender=s.attack?.target!=='player'&&s.players[1-p].battle.find(y=>y.uid===s.attack?.target);if(defender){
   const defs=effective(defender,s).g447Attacked;
   if(defs)queue(s,1-p,defender,defs);
   const ref={uid:defender.uid,incarnation:defender.incarnation||0};

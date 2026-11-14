@@ -2475,6 +2475,26 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1307&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(['promoy19-051','dmrp12-026'].includes(d.id)&&text===
+   'スピードアタッカー(このクリーチャーは召喚酔いしない)W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+
+   'このクリーチャーがバトルゾーンに出た時自分の他のクリーチャーを1体選ぶ。このターンそのクリーチャーの次の攻撃の終わりにそのクリーチャーをアンタップする。')
+   return {speedAttacker:true,breaker:2,effect:'sixPhoto',g34Tasks:[
+    {op:'Target',owner:'self',g179Other:true,g1307NextAttackUntap:true}
+   ]};
+  if(d.name==='ベタボメガホン'&&text===
+   'バトルゾーンに自分のクリーチャーが3体以上あればこのクリーチャーに「スピードアタッカー」を与える。'+
+   '(「スピードアタッカー」を持つクリーチャーは召喚酔いしない)'+
+   'このクリーチャーが攻撃する時このターン自分の他のクリーチャー1体に「スピードアタッカー」を与える。')
+   return {g260Self:{filter:{g370BattleCount:{filter:{creature:true},min:3}},grants:{speedAttacker:true}},
+    g34Attack:[{op:'Target',owner:'self',g179Other:true,g927HasteScore:true,grant:{speedAttacker:true}}]};
+  if(d.name==='海龍神クリスド'&&text===
+   'ジャストダイバー(このクリーチャーが出た時次の自分のターンのはじめまでこのクリーチャーは相手に選ばれず攻撃されない)'+
+   'T・ブレイカー自分のドラゴンが出た時カードを5枚まで引く。相手は自分の手札の枚数より小さいコストの呪文を唱えられない。')
+   return {justDiver:true,breaker:3,g251EntryDraw:{g1198EntryScope:true,filter:{race:'ドラゴン',faceUp:true},
+    defs:[{op:'DrawUpTo',n:5}]},g1307HandSpellLock:true};
+ }
  if(phase>=1306&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.name==='連戦の精霊龍 カイザルルール'&&text===

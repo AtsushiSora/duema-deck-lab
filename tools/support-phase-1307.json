@@ -1,0 +1,274 @@
+{
+  "phase": 1307,
+  "checkedAt": "2026-11-15",
+  "baseCount": 7937,
+  "description": "“KNG”メガヒット、ベタボメガホン、海龍神クリスドを対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/40834/",
+    "https://dm.takaratomy.co.jp/rule/qa/40833/",
+    "https://dm.takaratomy.co.jp/rule/qa/47074/",
+    "https://dm.takaratomy.co.jp/rule/basic/basic08/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+  ],
+  "cards": [
+    {
+      "id": "promoy19-051",
+      "name": "\"KNG\"メガヒット",
+      "faces": [
+        {
+          "name": "\"KNG\"メガヒット",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分の他のクリーチャーを１体選ぶ。このターン、そのクリーチャーの次の攻撃の終わりに、そのクリーチャーをアンタップする。",
+          "race": "ビートジョッキー",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy19-051",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy19-051.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g179Other": true,
+            "g1307NextAttackUntap": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "fa7fb553f9032eddd9f958a7f34f8437a59754fa0a270e52490b0dad4bdeecb8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd08-004",
+      "name": "ベタボメガホン",
+      "faces": [
+        {
+          "name": "ベタボメガホン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バトルゾーンに自分のクリーチャーが３体以上あれば、このクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）\nこのクリーチャーが攻撃する時、このターン、自分の他のクリーチャー１体に「スピードアタッカー」を与える。",
+          "race": "ジョーカーズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd08-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd08-004.jpg",
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true
+              },
+              "min": 3
+            }
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        },
+        "g34Attack": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g179Other": true,
+            "g927HasteScore": true,
+            "grant": {
+              "speedAttacker": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "ed960d13eaec70f98ab558edd3d9a29363695d90f89e0accf92fae7d03c6a749",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex18-s05",
+      "name": "海龍神クリスド",
+      "faces": [
+        {
+          "name": "海龍神クリスド",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "ジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\nT・ブレイカー\n自分のドラゴンが出た時、カードを５枚まで引く。\n相手は、自分の手札の枚数より小さいコストの呪文を唱えられない。",
+          "race": "ファイブ・オリジン・ドラゴン",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-s05",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-s05.jpg",
+      "spec": {
+        "justDiver": true,
+        "breaker": 3,
+        "g251EntryDraw": {
+          "g1198EntryScope": true,
+          "filter": {
+            "race": "ドラゴン",
+            "faceUp": true
+          },
+          "defs": [
+            {
+              "op": "DrawUpTo",
+              "n": 5
+            }
+          ]
+        },
+        "g1307HandSpellLock": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "e2714f1dc277fc31a1c0b64be8b7b9eaa14d15b25ec5d3d6f0bbc94a2cb750dc",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmrp12-026",
+      "name": "“KNG”メガヒット",
+      "faces": [
+        {
+          "name": "“KNG”メガヒット",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分の他のクリーチャーを１体選ぶ。このターン、そのクリーチャーの次の攻撃の終わりに、そのクリーチャーをアンタップする。",
+          "race": "ビートジョッキー",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-026",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-026.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g179Other": true,
+            "g1307NextAttackUntap": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "585b3e14a616daa3d78fc2184c8cddbc6678229f4626abbb3598f66e027d6050",
+        "facesMatched": true
+      },
+      "canonicalId": "promoy19-051"
+    },
+    {
+      "id": "dm24sp1-004",
+      "name": "海龍神クリスド",
+      "faces": [
+        {
+          "name": "海龍神クリスド",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "ジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\nT・ブレイカー\n自分のドラゴンが出た時、カードを５枚まで引く。\n相手は、自分の手札の枚数より小さいコストの呪文を唱えられない。",
+          "race": "ファイブ・オリジン・ドラゴン",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24sp1-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24sp1-004.jpg",
+      "spec": {
+        "justDiver": true,
+        "breaker": 3,
+        "g251EntryDraw": {
+          "g1198EntryScope": true,
+          "filter": {
+            "race": "ドラゴン",
+            "faceUp": true
+          },
+          "defs": [
+            {
+              "op": "DrawUpTo",
+              "n": 5
+            }
+          ]
+        },
+        "g1307HandSpellLock": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "05f90fe030aa95746a88a63751b0ad01ed690075c58cd264d7bfcebe6022a12c",
+        "facesMatched": true
+      },
+      "canonicalId": "dmex18-s05"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-15",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "promoy19-051": 4,
+      "dmsd08-004": 4,
+      "dmex18-s05": 4,
+      "dmrp12-026": 4,
+      "dm24sp1-004": 4
+    },
+    "currentList": "https://dm.takaratomy.co.jp/img/regulation/2608/202608regulation.pdf"
+  },
+  "sameNameProducts": {
+    "promoy19-051": [
+      "プロモ限定カード 19期",
+      "DMRP-12 超天篇 拡張パック第4弾 超超超天！覚醒ジョギラゴン vs. 零龍卍誕"
+    ],
+    "dmsd08-004": [
+      "DMSD-08 超ＧＲスタートデッキ ジョーのガチャメカ・ワンダフォー"
+    ],
+    "dmex18-s05": [
+      "DM24-SP1 キャラプレミアムデッキ「ドラゴン娘になりたくないっ！」 イェーイめっちゃドラゴン!!",
+      "DMEX-18 20周年超感謝メモリアルパック 裏の章 パラレル･マスターズ"
+    ]
+  },
+  "printNotes": {
+    "promoy19-051": "同名商品が引用符の表記で分かれる。既存catalogueのdmrp12-026からpromoy19-051への参照を維持し、2版の画像に同じ正規名が印刷されていることと、本文・基本情報の一致を確認。"
+  }
+}

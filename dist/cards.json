@@ -243962,15 +243962,120 @@
       ],
       "supportBatch": "phase-1306",
       "supportKind": "effect"
+    },
+    {
+      "id": "promoy19-051",
+      "name": "\"KNG\"メガヒット",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ビートジョッキー",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分の他のクリーチャーを１体選ぶ。このターン、そのクリーチャーの次の攻撃の終わりに、そのクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy19-051",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g179Other": true,
+          "g1307NextAttackUntap": true
+        }
+      ],
+      "supportBatch": "phase-1307",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd08-004",
+      "name": "ベタボメガホン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ジョーカーズ",
+      "text": "バトルゾーンに自分のクリーチャーが３体以上あれば、このクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）\nこのクリーチャーが攻撃する時、このターン、自分の他のクリーチャー１体に「スピードアタッカー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd08-004",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "g370BattleCount": {
+            "filter": {
+              "creature": true
+            },
+            "min": 3
+          }
+        },
+        "grants": {
+          "speedAttacker": true
+        }
+      },
+      "g34Attack": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g179Other": true,
+          "g927HasteScore": true,
+          "grant": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1307",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex18-s05",
+      "name": "海龍神クリスド",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 15000,
+      "race": "ファイブ・オリジン・ドラゴン",
+      "text": "ジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\nT・ブレイカー\n自分のドラゴンが出た時、カードを５枚まで引く。\n相手は、自分の手札の枚数より小さいコストの呪文を唱えられない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-s05",
+      "limit": 4,
+      "justDiver": true,
+      "breaker": 3,
+      "g251EntryDraw": {
+        "g1198EntryScope": true,
+        "filter": {
+          "race": "ドラゴン",
+          "faceUp": true
+        },
+        "defs": [
+          {
+            "op": "DrawUpTo",
+            "n": 5
+          }
+        ]
+      },
+      "g1307HandSpellLock": true,
+      "supportBatch": "phase-1307",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1306,
+    "phase": 1307,
     "checkedAt": "2026-11-15",
-    "baseCount": 7934,
+    "baseCount": 7937,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7937,
+    "totalCount": 7940,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -265931,6 +266036,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7934,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1306,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7934,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7937,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
