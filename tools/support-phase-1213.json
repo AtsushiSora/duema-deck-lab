@@ -1,0 +1,1052 @@
+{
+  "phase": 1213,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7631,
+  "description": "アウルーリー-T8、幻想と伝承の決断、ガ:ナテハの能力全体を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31620/",
+    "https://dm.takaratomy.co.jp/rule/qa/42523/",
+    "https://dm.takaratomy.co.jp/rule/qa/40186/",
+    "https://dm.takaratomy.co.jp/rule/qa/38759/",
+    "https://dm.takaratomy.co.jp/rule/qa/39791/",
+    "https://dm.takaratomy.co.jp/rule/qa/43354/",
+    "https://dm.takaratomy.co.jp/rule/qa/45222/",
+    "https://dm.takaratomy.co.jp/rule/qa/42991/",
+    "https://dm.takaratomy.co.jp/rule/qa/42993/",
+    "https://dm.takaratomy.co.jp/rule/qa/43047/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp2-010",
+      "name": "アウルーリー-T8",
+      "faces": [
+        {
+          "name": "アウルーリー-T8",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n真・エスケープ（このクリーチャーが離れる時、かわりに自分のシールドを２つ手札に加えてもよい。ただし、その「S・トリガー」は使えない）\n自分のシールドがなければ、このクリーチャーは離れない。",
+          "race": "メカ・デル・ディネロ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-010",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-010.jpg",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "trueEscape": true,
+        "g619Stay": {
+          "g265ShieldsMax": 0
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "11201c5be0ba00245c7a58ca398f7ebfdef2dd169141df1cc3d49e2db077f3fa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp2-008",
+      "name": "幻想と伝承の決断",
+      "faces": [
+        {
+          "name": "幻想と伝承の決断",
+          "typeText": "呪文",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "自分のマナゾーンにコスト７以上のカードが４枚以上あれば、この呪文を唱えるコストを２少なくする。\n次の中から２回選ぶ。（同じものを選んでもよい）\n▶カードを２枚引く。\n▶相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\n▶自分の山札をシャッフルし、その後、上から１枚目を表向きにする。そのカードがクリーチャーなら出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-008",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-008.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g261Discount": {
+          "filter": {
+            "g267Mana": {
+              "n": 4,
+              "filter": {
+                "anyFaceMinCost": 7,
+                "faceUp": true
+              }
+            }
+          },
+          "amount": 2
+        },
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "g1045Preselect": 2,
+            "modes": [
+              {
+                "label": "カードを2枚引く",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 2
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーを1体マナゾーンに置く",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "mana",
+                    "toOwnerMana": true,
+                    "spell": true
+                  }
+                ]
+              },
+              {
+                "label": "山札をシャッフルし、一番上がクリーチャーなら出す",
+                "defs": [
+                  {
+                    "op": "Shuffle405"
+                  },
+                  {
+                    "op": "RevealTop514",
+                    "filter": {
+                      "creature": true
+                    },
+                    "to": "battle"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "a1a2000f7e8cf00d67d9bcb85433df3f74ff453fdd5fa8c8abc40a1993361959",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp2-017",
+      "name": "ガ:ナテハ",
+      "faces": [
+        {
+          "name": "ガ:ナテハ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n自分のターンのはじめに、自分のシールドを２つ墓地に置いてもよい。そうしたら、アビス・メクレイド８する。（アビス・メクレイド８：自分の山札の上から３枚を見る。その中から、コスト８以下のアビスを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "ノワールアビス",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-017",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-017.jpg",
+      "spec": {
+        "blocker": true,
+        "slayer": true,
+        "g174Start": [
+          {
+            "op": "ShieldGrave588",
+            "owner": "self",
+            "n": 2,
+            "optionalExact": true,
+            "afterAttempt": [
+              {
+                "op": "Raid767",
+                "race": "アビス",
+                "max": 8
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "e6595552ebbeb7ad3c521c43e098beb8b0fb4bf3733d20bcdfe4b1d3bb6ae027",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23rp2x-010",
+      "name": "アウルーリー-T8",
+      "faces": [
+        {
+          "name": "アウルーリー-T8",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n真・エスケープ（このクリーチャーが離れる時、かわりに自分のシールドを２つ手札に加えてもよい。ただし、その「S・トリガー」は使えない）\n自分のシールドがなければ、このクリーチャーは離れない。",
+          "race": "メカ・デル・ディネロ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-010",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-010.jpg",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "trueEscape": true,
+        "g619Stay": {
+          "g265ShieldsMax": 0
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "40da970183d208e9e5a7759a420103f4a43d216dcf1a9eef6bf89abd6de8d163",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-010"
+    },
+    {
+      "id": "promoy22-019",
+      "name": "アウルーリー-T8",
+      "faces": [
+        {
+          "name": "アウルーリー-T8",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n真・エスケープ（このクリーチャーが離れる時、かわりに自分のシールドを２つ手札に加えてもよい。ただし、その「S・トリガー」は使えない）\n自分のシールドがなければ、このクリーチャーは離れない。",
+          "race": "メカ・デル・ディネロ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy22-019",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy22-019.jpg",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "trueEscape": true,
+        "g619Stay": {
+          "g265ShieldsMax": 0
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "826fb2c955a10d4f9e7d4026c41097989d9d089d026a9c349ba25fcf35535b7a",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-010"
+    },
+    {
+      "id": "dm23rp2x-008",
+      "name": "幻想と伝承の決断",
+      "faces": [
+        {
+          "name": "幻想と伝承の決断",
+          "typeText": "呪文",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "自分のマナゾーンにコスト７以上のカードが４枚以上あれば、この呪文を唱えるコストを２少なくする。\n次の中から２回選ぶ。（同じものを選んでもよい）\n▶カードを２枚引く。\n▶相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\n▶自分の山札をシャッフルし、その後、上から１枚目を表向きにする。そのカードがクリーチャーなら出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-008",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-008.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g261Discount": {
+          "filter": {
+            "g267Mana": {
+              "n": 4,
+              "filter": {
+                "anyFaceMinCost": 7,
+                "faceUp": true
+              }
+            }
+          },
+          "amount": 2
+        },
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "g1045Preselect": 2,
+            "modes": [
+              {
+                "label": "カードを2枚引く",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 2
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーを1体マナゾーンに置く",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "mana",
+                    "toOwnerMana": true,
+                    "spell": true
+                  }
+                ]
+              },
+              {
+                "label": "山札をシャッフルし、一番上がクリーチャーなら出す",
+                "defs": [
+                  {
+                    "op": "Shuffle405"
+                  },
+                  {
+                    "op": "RevealTop514",
+                    "filter": {
+                      "creature": true
+                    },
+                    "to": "battle"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "857f0ce4cbd2736c01e3146ba2d2d9a5751e43ba02364378e4e3f23c7f4e1386",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-008"
+    },
+    {
+      "id": "dm23rp2-11A",
+      "name": "幻想と伝承の決断",
+      "faces": [
+        {
+          "name": "幻想と伝承の決断",
+          "typeText": "呪文",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "自分のマナゾーンにコスト７以上のカードが４枚以上あれば、この呪文を唱えるコストを２少なくする。\n次の中から２回選ぶ。（同じものを選んでもよい）\n▶カードを２枚引く。\n▶相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\n▶自分の山札をシャッフルし、その後、上から１枚目を表向きにする。そのカードがクリーチャーなら出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-11A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-11A.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g261Discount": {
+          "filter": {
+            "g267Mana": {
+              "n": 4,
+              "filter": {
+                "anyFaceMinCost": 7,
+                "faceUp": true
+              }
+            }
+          },
+          "amount": 2
+        },
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "g1045Preselect": 2,
+            "modes": [
+              {
+                "label": "カードを2枚引く",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 2
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーを1体マナゾーンに置く",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "mana",
+                    "toOwnerMana": true,
+                    "spell": true
+                  }
+                ]
+              },
+              {
+                "label": "山札をシャッフルし、一番上がクリーチャーなら出す",
+                "defs": [
+                  {
+                    "op": "Shuffle405"
+                  },
+                  {
+                    "op": "RevealTop514",
+                    "filter": {
+                      "creature": true
+                    },
+                    "to": "battle"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "8ee294c508a41465c8d3866b824c2aa6ca6383be666ffd9c9876636d112a3b7e",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-008"
+    },
+    {
+      "id": "dm23rp2x-11A",
+      "name": "幻想と伝承の決断",
+      "faces": [
+        {
+          "name": "幻想と伝承の決断",
+          "typeText": "呪文",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "自分のマナゾーンにコスト７以上のカードが４枚以上あれば、この呪文を唱えるコストを２少なくする。\n次の中から２回選ぶ。（同じものを選んでもよい）\n▶カードを２枚引く。\n▶相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\n▶自分の山札をシャッフルし、その後、上から１枚目を表向きにする。そのカードがクリーチャーなら出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-11A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-11A.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g261Discount": {
+          "filter": {
+            "g267Mana": {
+              "n": 4,
+              "filter": {
+                "anyFaceMinCost": 7,
+                "faceUp": true
+              }
+            }
+          },
+          "amount": 2
+        },
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "g1045Preselect": 2,
+            "modes": [
+              {
+                "label": "カードを2枚引く",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 2
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーを1体マナゾーンに置く",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "mana",
+                    "toOwnerMana": true,
+                    "spell": true
+                  }
+                ]
+              },
+              {
+                "label": "山札をシャッフルし、一番上がクリーチャーなら出す",
+                "defs": [
+                  {
+                    "op": "Shuffle405"
+                  },
+                  {
+                    "op": "RevealTop514",
+                    "filter": {
+                      "creature": true
+                    },
+                    "to": "battle"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "175837dce506b0f7a87f2e861faa732dc45427c131bfbcb546e0c8a7ad579d08",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-008"
+    },
+    {
+      "id": "dm23rp2-13B",
+      "name": "幻想と伝承の決断",
+      "faces": [
+        {
+          "name": "幻想と伝承の決断",
+          "typeText": "呪文",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "自分のマナゾーンにコスト７以上のカードが４枚以上あれば、この呪文を唱えるコストを２少なくする。\n次の中から２回選ぶ。（同じものを選んでもよい）\n▶カードを２枚引く。\n▶相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\n▶自分の山札をシャッフルし、その後、上から１枚目を表向きにする。そのカードがクリーチャーなら出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-13B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-13B.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g261Discount": {
+          "filter": {
+            "g267Mana": {
+              "n": 4,
+              "filter": {
+                "anyFaceMinCost": 7,
+                "faceUp": true
+              }
+            }
+          },
+          "amount": 2
+        },
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "g1045Preselect": 2,
+            "modes": [
+              {
+                "label": "カードを2枚引く",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 2
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーを1体マナゾーンに置く",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "mana",
+                    "toOwnerMana": true,
+                    "spell": true
+                  }
+                ]
+              },
+              {
+                "label": "山札をシャッフルし、一番上がクリーチャーなら出す",
+                "defs": [
+                  {
+                    "op": "Shuffle405"
+                  },
+                  {
+                    "op": "RevealTop514",
+                    "filter": {
+                      "creature": true
+                    },
+                    "to": "battle"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "c431f992a1f292a0a71072ef56a7093e8b97afacfa816a583705b844c2ac2201",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-008"
+    },
+    {
+      "id": "dm23rp2x-13B",
+      "name": "幻想と伝承の決断",
+      "faces": [
+        {
+          "name": "幻想と伝承の決断",
+          "typeText": "呪文",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "自分のマナゾーンにコスト７以上のカードが４枚以上あれば、この呪文を唱えるコストを２少なくする。\n次の中から２回選ぶ。（同じものを選んでもよい）\n▶カードを２枚引く。\n▶相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\n▶自分の山札をシャッフルし、その後、上から１枚目を表向きにする。そのカードがクリーチャーなら出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-13B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-13B.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g261Discount": {
+          "filter": {
+            "g267Mana": {
+              "n": 4,
+              "filter": {
+                "anyFaceMinCost": 7,
+                "faceUp": true
+              }
+            }
+          },
+          "amount": 2
+        },
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "g1045Preselect": 2,
+            "modes": [
+              {
+                "label": "カードを2枚引く",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 2
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーを1体マナゾーンに置く",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "mana",
+                    "toOwnerMana": true,
+                    "spell": true
+                  }
+                ]
+              },
+              {
+                "label": "山札をシャッフルし、一番上がクリーチャーなら出す",
+                "defs": [
+                  {
+                    "op": "Shuffle405"
+                  },
+                  {
+                    "op": "RevealTop514",
+                    "filter": {
+                      "creature": true
+                    },
+                    "to": "battle"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "20be3070666091fe04683b1f6657dce4a446829f6a246af329d8135e8de95a73",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-008"
+    },
+    {
+      "id": "dmart14-002",
+      "name": "幻想と伝承の決断",
+      "faces": [
+        {
+          "name": "幻想と伝承の決断",
+          "typeText": "呪文",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "自分のマナゾーンにコスト７以上のカードが４枚以上あれば、この呪文を唱えるコストを２少なくする。\n次の中から２回選ぶ。（同じものを選んでもよい）\n▶カードを２枚引く。\n▶相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\n▶自分の山札をシャッフルし、その後、上から１枚目を表向きにする。そのカードがクリーチャーなら出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmart14-002",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmart14-002.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g261Discount": {
+          "filter": {
+            "g267Mana": {
+              "n": 4,
+              "filter": {
+                "anyFaceMinCost": 7,
+                "faceUp": true
+              }
+            }
+          },
+          "amount": 2
+        },
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "g1045Preselect": 2,
+            "modes": [
+              {
+                "label": "カードを2枚引く",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 2
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーを1体マナゾーンに置く",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "mana",
+                    "toOwnerMana": true,
+                    "spell": true
+                  }
+                ]
+              },
+              {
+                "label": "山札をシャッフルし、一番上がクリーチャーなら出す",
+                "defs": [
+                  {
+                    "op": "Shuffle405"
+                  },
+                  {
+                    "op": "RevealTop514",
+                    "filter": {
+                      "creature": true
+                    },
+                    "to": "battle"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "95c06bbd100ebe84774d616f60c4e8e8125b0ea6dc5f78fc7546baf320ffdd8b",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-008"
+    },
+    {
+      "id": "dm23rp2x-017",
+      "name": "ガ:ナテハ",
+      "faces": [
+        {
+          "name": "ガ:ナテハ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n自分のターンのはじめに、自分のシールドを２つ墓地に置いてもよい。そうしたら、アビス・メクレイド８する。（アビス・メクレイド８：自分の山札の上から３枚を見る。その中から、コスト８以下のアビスを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "ノワールアビス",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-017",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-017.jpg",
+      "spec": {
+        "blocker": true,
+        "slayer": true,
+        "g174Start": [
+          {
+            "op": "ShieldGrave588",
+            "owner": "self",
+            "n": 2,
+            "optionalExact": true,
+            "afterAttempt": [
+              {
+                "op": "Raid767",
+                "race": "アビス",
+                "max": 8
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "dd2bc0dbaa405671d1ddd8413787c69a55b5951638d47b5c96be13cc504439f5",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-017"
+    },
+    {
+      "id": "dm23rp2-14A",
+      "name": "ガ:ナテハ",
+      "faces": [
+        {
+          "name": "ガ:ナテハ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n自分のターンのはじめに、自分のシールドを２つ墓地に置いてもよい。そうしたら、アビス・メクレイド８する。（アビス・メクレイド８：自分の山札の上から３枚を見る。その中から、コスト８以下のアビスを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "ノワールアビス",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-14A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-14A.jpg",
+      "spec": {
+        "blocker": true,
+        "slayer": true,
+        "g174Start": [
+          {
+            "op": "ShieldGrave588",
+            "owner": "self",
+            "n": 2,
+            "optionalExact": true,
+            "afterAttempt": [
+              {
+                "op": "Raid767",
+                "race": "アビス",
+                "max": 8
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "d181aff50bee9841666efa8b1da1c354db1c0698448828eb299362ed79d09c89",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-017"
+    },
+    {
+      "id": "dm23rp2x-14A",
+      "name": "ガ:ナテハ",
+      "faces": [
+        {
+          "name": "ガ:ナテハ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n自分のターンのはじめに、自分のシールドを２つ墓地に置いてもよい。そうしたら、アビス・メクレイド８する。（アビス・メクレイド８：自分の山札の上から３枚を見る。その中から、コスト８以下のアビスを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "ノワールアビス",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-14A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-14A.jpg",
+      "spec": {
+        "blocker": true,
+        "slayer": true,
+        "g174Start": [
+          {
+            "op": "ShieldGrave588",
+            "owner": "self",
+            "n": 2,
+            "optionalExact": true,
+            "afterAttempt": [
+              {
+                "op": "Raid767",
+                "race": "アビス",
+                "max": 8
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "17ba8edba9eb8a168a131bc1f907ab7a928bee14b5bbb9cf44be078689f1f436",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-017"
+    },
+    {
+      "id": "dm23rp2-16B",
+      "name": "ガ:ナテハ",
+      "faces": [
+        {
+          "name": "ガ:ナテハ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n自分のターンのはじめに、自分のシールドを２つ墓地に置いてもよい。そうしたら、アビス・メクレイド８する。（アビス・メクレイド８：自分の山札の上から３枚を見る。その中から、コスト８以下のアビスを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "ノワールアビス",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-16B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-16B.jpg",
+      "spec": {
+        "blocker": true,
+        "slayer": true,
+        "g174Start": [
+          {
+            "op": "ShieldGrave588",
+            "owner": "self",
+            "n": 2,
+            "optionalExact": true,
+            "afterAttempt": [
+              {
+                "op": "Raid767",
+                "race": "アビス",
+                "max": 8
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "663d21d5f7c05469d1e2c218855293e7306c81c11f258a663975b9ea40862531",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-017"
+    },
+    {
+      "id": "dm23rp2x-16B",
+      "name": "ガ:ナテハ",
+      "faces": [
+        {
+          "name": "ガ:ナテハ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n自分のターンのはじめに、自分のシールドを２つ墓地に置いてもよい。そうしたら、アビス・メクレイド８する。（アビス・メクレイド８：自分の山札の上から３枚を見る。その中から、コスト８以下のアビスを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "ノワールアビス",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-16B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-16B.jpg",
+      "spec": {
+        "blocker": true,
+        "slayer": true,
+        "g174Start": [
+          {
+            "op": "ShieldGrave588",
+            "owner": "self",
+            "n": 2,
+            "optionalExact": true,
+            "afterAttempt": [
+              {
+                "op": "Raid767",
+                "race": "アビス",
+                "max": 8
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "a8a7172a6d44516d9a3ee2254c30c88685cb72662922f30bd3f8bad13bd53030",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp2-017"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp2-010": 4,
+      "dm23rp2-008": 4,
+      "dm23rp2-017": 4,
+      "dm23rp2x-010": 4,
+      "promoy22-019": 4,
+      "dm23rp2x-008": 4,
+      "dm23rp2-11A": 4,
+      "dm23rp2x-11A": 4,
+      "dm23rp2-13B": 4,
+      "dm23rp2x-13B": 4,
+      "dmart14-002": 4,
+      "dm23rp2x-017": 4,
+      "dm23rp2-14A": 4,
+      "dm23rp2x-14A": 4,
+      "dm23rp2-16B": 4,
+      "dm23rp2x-16B": 4
+    }
+  }
+}

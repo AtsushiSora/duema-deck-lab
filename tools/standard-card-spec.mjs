@@ -2470,6 +2470,30 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1213&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+  if(f.typeText==='クリーチャー'&&['dm23rp2-010','dm23rp2x-010','promoy22-019'].includes(d.id)&&
+     text===blocker+'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+
+      '真・エスケープ(このクリーチャーが離れる時かわりに自分のシールドを2つ手札に加えてもよい。ただしその「S・トリガー」は使えない)自分のシールドがなければこのクリーチャーは離れない。')
+   return {blocker:true,breaker:2,trueEscape:true,g619Stay:{g265ShieldsMax:0}};
+  if(f.typeText==='呪文'&&['dm23rp2-008','dm23rp2x-008','dm23rp2-11A','dm23rp2x-11A','dm23rp2-13B','dm23rp2x-13B','dmart14-002'].includes(d.id)&&
+     text==='自分のマナゾーンにコスト7以上のカードが4枚以上あればこの呪文を唱えるコストを2少なくする。次の中から2回選ぶ。(同じものを選んでもよい)'+
+      '▶カードを2枚引く。▶相手のクリーチャーを1体選び持ち主のマナゾーンに置く。▶自分の山札をシャッフルしその後上から1枚目を表向きにする。そのカードがクリーチャーなら出す。')
+   return {effect:'sixPhoto',g261Discount:{filter:{g267Mana:{n:4,filter:{anyFaceMinCost:7,faceUp:true}}},amount:2},
+    g34Tasks:[{op:'Choose',g184Modes:true,g1045Preselect:2,modes:[
+     {label:'カードを2枚引く',defs:[{op:'Draw',n:2}]},
+     {label:'相手のクリーチャーを1体マナゾーンに置く',defs:[{op:'Target',to:'mana',toOwnerMana:true,spell:true}]},
+     {label:'山札をシャッフルし、一番上がクリーチャーなら出す',
+      defs:[{op:'Shuffle405'},{op:'RevealTop514',filter:{creature:true},to:'battle'}]}
+    ]}]};
+  if(f.typeText==='クリーチャー'&&['dm23rp2-017','dm23rp2x-017','dm23rp2-14A','dm23rp2x-14A','dm23rp2-16B','dm23rp2x-16B'].includes(d.id)&&
+     text===blocker+'スレイヤー(このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)'+
+      '自分のターンのはじめに自分のシールドを2つ墓地に置いてもよい。そうしたらアビス・メクレイド8する。'+
+      '(アビス・メクレイド8:自分の山札の上から3枚を見る。その中からコスト8以下のアビスを1枚コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く)')
+   return {blocker:true,slayer:true,g174Start:[{op:'ShieldGrave588',owner:'self',n:2,
+    optionalExact:true,afterAttempt:[{op:'Raid767',race:'アビス',max:8}]}]};
+ }
  if(phase>=1212&&d?.status==='complete'&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.faces.length===1&&['dm23rp2-044','dm23rp2x-044'].includes(d.id)&&

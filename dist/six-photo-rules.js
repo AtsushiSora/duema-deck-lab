@@ -525,7 +525,7 @@ export function createSixPhotoRules(api){
   }
   if(d.op==='DiscardCost655'){const costs=discardCosts655(s,t.p,y,d.g835Creature&&!d.g1048AnyDiscardedFace),rows=targetOptions(s,t.p,s.players[1-t.p].battle.filter(x=>costs.some(max=>matches(s,1-t.p,x,{belowCost:max,creature:d.g835Creature}))));return rows.length?22+Math.max(...rows.map(x=>x.score))-cost(card(y)):-100;}if(d.op==='Draw')return modeScore(s,t,[d])-cost(card(y));if(d.op==='Untap'&&d.g191First)return selfUntapValue542(s,t)-cost(card(y));if(d.op==='SelfBoost313'){const x=own.battle.find(x=>x.uid===t.uid);if(!x)return -100;const c=effective(x,s),victim=enemy.find(z=>z.uid===s.attack?.target),before=api.power(x,true,s),battle=victim&&before<api.power(victim,false,s)&&before+d.power>=api.power(victim,false,s)?18:0,breaks=s.attack?.target==='player'&&s.players[1-t.p].shields.length>1&&Number(c.breaker||1)<(d.breaker||1)?12:0;return battle+breaks-cost(card(y));}if(d.op==='DrawColors248'){const n=discardColors248(y);if(n>=own.deck.length&&n)return creatures(s,t.p).some(x=>effective(x,s).shako)?1000:-1000;return(n?12+n*5:-10)-cost(card(y));}if(d.op==='Select'&&d.origin==='grave'&&d.to==='hand'){const rows=[...own.grave,y].filter(x=>matches(s,t.p,x,d.filter));return rows.length?Math.max(...rows.map(x=>cost(card(x))-cost(card(y))+(x.uid===y.uid?-10:4))):-100;}if(d.op==='Look'&&d.g201Search){if(api.deckLocked(s,t.p)||own.deck.length<=1)return -100;const f=d.stages[0].filter;return(own.deck.some(x=>matches(s,t.p,x,f))?14:-10)-cost(card(y));}if(d.op==='Discard')return(s.players[1-t.p].hand.length?12:-10)-cost(card(y));if(d.op==='OpponentSelect')return(enemy.length?10+Math.min(...enemy.map(x=>cost(card(x))*4+api.power(x,false,s)/2000)):-10)-cost(card(y));if(d.op==='Target'){const rows=targetOptions(s,t.p,enemy.filter(x=>matches(s,1-t.p,x,d.filter)));return(rows.length?Math.max(...rows.map(r=>{const x=enemy.find(x=>x.uid===r.value);return d.power?powerMinusScore242(s,{...t,...d},x):10+cost(card(x))*4;})):-10)-cost(card(y));}return -100;}
  // A tamaseed/creature is one element, even while it has both card types.
- const manaCondition267=(s,p,f)=>s.players[p].mana.filter(y=>{const cs=api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,p);return f.multi?cs.length>1:cs.includes(f.color);}).length>=f.n;
+ const manaCondition267=(s,p,f)=>s.players[p].mana.filter(y=>{if(f.filter)return matches(s,p,y,f.filter);const cs=api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,p);return f.multi?cs.length>1:cs.includes(f.color);}).length>=f.n;
  function manaCivilizationCount(s,p){
   const colors=s.players[p].mana.flatMap(y=>api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,p,true));
   return new Set(colors.filter(q=>['光','水','闇','火','自然'].includes(q))).size;
@@ -735,11 +735,12 @@ export function createSixPhotoRules(api){
   ));
  }
  function finishShieldMove588(s,t){
-  if(!t.selected?.length)return;
+  if(!t.selected?.length||t.optionalExact&&t.selected.length!==t.n)return;
   const owner=t.owner==='self'?t.p:1-t.p;
   const to=t.to==='mana'?'mana':'grave',zone=to==='mana'?'マナゾーン':'墓地';
   const moved=api.moveShields(s,owner,t.selected,to);
   if(moved.length)api.log(s,t.p,to==='mana'?'shieldMana':'shieldGrave',card(t.source).name+'：'+(owner===t.p?'自分':'相手')+'のシールドからカード'+moved.length+'枚を'+zone+'に置いた',{cardId:t.source});
+  if(t.afterAttempt)start(s,t,t.afterAttempt);
  }
  function winWatches252(s,p,w){const winner=s.players[p].battle.find(x=>x.uid===w?.uid);if(!winner)return[];return watchSources252(s,p).flatMap(x=>{const watch=effective(x,s).g252WinWatch;return watch&&(!watch.first||w.g587First)&&(!watch.other||x.uid!==winner.uid)&&matches(s,p,winner,watch.filter)?[{player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Sequence',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs:watch.defs,...(watch.winner?{g399Attacker:{uid:winner.uid,incarnation:winner.incarnation||0}}:{})})}]:[];});}
  // Use events come from actual summons and spell casts, not arbitrary battlefield entries.
@@ -3471,10 +3472,12 @@ export function createSixPhotoRules(api){
  case'g34_ShieldMove685':
  case'g34_ShieldGrave588':{
   const target=t.owner==='self'?own:opp,side=t.owner==='self'?'自分':'相手';
-  const selected=t.selected||[],rows=target.shields.filter(y=>!selected.includes(y.uid)&&api.shieldCards(y).some(x=>!x.g37ShieldHeld));
+  const selected=t.selected||[],rows=target.shields.filter(y=>!selected.includes(y.uid)&&
+   (t.optionalExact?api.shieldCards(y).every(x=>!x.g37ShieldHeld):api.shieldCards(y).some(x=>!x.g37ShieldHeld)));
+  if(t.optionalExact&&selected.length+rows.length<t.n)break;
   const zone=t.to==='mana'?'マナゾーン':'墓地';
-  if(selected.length<t.n&&rows.length)choice(s,t,t.required?zone+'に置く'+side+'のシールドを1つ選ぶ':zone+'に置く'+side+'のシールドを'+t.n+'つまで選ぶ（'+selected.length+'つ選択済み）',[
-   ...rows.map(y=>opt('シールド '+(target.shields.indexOf(y)+1),y.uid,10)),...(t.required?[]:[opt('選択を完了',null,0)])
+  if(selected.length<t.n&&rows.length)choice(s,t,t.optionalExact?zone+'に置く'+side+'のシールドを選ぶ（'+(selected.length+1)+'/'+t.n+'・任意）':t.required?zone+'に置く'+side+'のシールドを1つ選ぶ':zone+'に置く'+side+'のシールドを'+t.n+'つまで選ぶ（'+selected.length+'つ選択済み）',[
+   ...rows.map(y=>opt('シールド '+(target.shields.indexOf(y)+1),y.uid,10)),...(t.required?[]:[opt(t.optionalExact?'シールドを置かない':'選択を完了',null,0)])
   ]);else finishShieldMove588(s,t);
   break;
  }

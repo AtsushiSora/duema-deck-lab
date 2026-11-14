@@ -232553,15 +232553,150 @@
       ],
       "supportBatch": "phase-1212",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-010",
+      "name": "アウルーリー-T8",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "メカ・デル・ディネロ",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n真・エスケープ（このクリーチャーが離れる時、かわりに自分のシールドを２つ手札に加えてもよい。ただし、その「S・トリガー」は使えない）\n自分のシールドがなければ、このクリーチャーは離れない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-010",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "trueEscape": true,
+      "g619Stay": {
+        "g265ShieldsMax": 0
+      },
+      "supportBatch": "phase-1213",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-008",
+      "name": "幻想と伝承の決断",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 8,
+      "power": 0,
+      "race": "",
+      "text": "自分のマナゾーンにコスト７以上のカードが４枚以上あれば、この呪文を唱えるコストを２少なくする。\n次の中から２回選ぶ。（同じものを選んでもよい）\n▶カードを２枚引く。\n▶相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\n▶自分の山札をシャッフルし、その後、上から１枚目を表向きにする。そのカードがクリーチャーなら出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-008",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g261Discount": {
+        "filter": {
+          "g267Mana": {
+            "n": 4,
+            "filter": {
+              "anyFaceMinCost": 7,
+              "faceUp": true
+            }
+          }
+        },
+        "amount": 2
+      },
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "g1045Preselect": 2,
+          "modes": [
+            {
+              "label": "カードを2枚引く",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 2
+                }
+              ]
+            },
+            {
+              "label": "相手のクリーチャーを1体マナゾーンに置く",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "mana",
+                  "toOwnerMana": true,
+                  "spell": true
+                }
+              ]
+            },
+            {
+              "label": "山札をシャッフルし、一番上がクリーチャーなら出す",
+              "defs": [
+                {
+                  "op": "Shuffle405"
+                },
+                {
+                  "op": "RevealTop514",
+                  "filter": {
+                    "creature": true
+                  },
+                  "to": "battle"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1213",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-017",
+      "name": "ガ:ナテハ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ノワールアビス",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n自分のターンのはじめに、自分のシールドを２つ墓地に置いてもよい。そうしたら、アビス・メクレイド８する。（アビス・メクレイド８：自分の山札の上から３枚を見る。その中から、コスト８以下のアビスを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-017",
+      "limit": 4,
+      "blocker": true,
+      "slayer": true,
+      "g174Start": [
+        {
+          "op": "ShieldGrave588",
+          "owner": "self",
+          "n": 2,
+          "optionalExact": true,
+          "afterAttempt": [
+            {
+              "op": "Raid767",
+              "race": "アビス",
+              "max": 8
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1213",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1212,
+    "phase": 1213,
     "checkedAt": "2026-11-14",
-    "baseCount": 7628,
+    "baseCount": 7631,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7631,
+    "totalCount": 7634,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -253394,6 +253529,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7628,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1212,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7628,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7631,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
