@@ -1,0 +1,555 @@
+{
+  "phase": 1221,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7655,
+  "description": "氷結呪文「フリズン」、先陣兵アインデッカー、ドッペルデッカー・ワイバーン、爆神兵ツヴァイラッド、ボルシャック・テイル・ドラゴンの全能力を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/45560/",
+    "https://dm.takaratomy.co.jp/rule/qa/31554/",
+    "https://dm.takaratomy.co.jp/rule/qa/42132/",
+    "https://dm.takaratomy.co.jp/rule/qa/41988/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+    "https://dm.takaratomy.co.jp/rule/qa/33060/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36427/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37347/"
+  ],
+  "cards": [
+    {
+      "id": "dm22rp1-034",
+      "name": "氷結呪文「フリズン」",
+      "faces": [
+        {
+          "name": "氷結呪文「フリズン」",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "シビルカウント２：この呪文が自分のシールドゾーンにあり、自分の水のクリーチャーまたは水のタマシードが合計２つ以上あれば、この呪文に「S・トリガー」を与える。\n相手のクリーチャー１体またはタマシードを１枚選ぶ。相手はそれを山札の上または下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-034",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-034.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g876ShieldTriggerCondition": {
+          "any": [
+            {
+              "creature": true
+            },
+            {
+              "g295Tamaseed": true
+            }
+          ],
+          "color": "水",
+          "faceUp": true,
+          "g258Civil": 2
+        },
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "filter": {
+              "any": [
+                {
+                  "creature": true
+                },
+                {
+                  "g295Tamaseed": true
+                }
+              ],
+              "faceUp": true
+            },
+            "g467Destinations": [
+              "deckTop",
+              "deck"
+            ],
+            "g472OwnerDestination": true,
+            "g1089OrderDeck": true,
+            "g1221SpellMove": true,
+            "title": "相手のクリーチャーまたはタマシードを1つ選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "24b02b5fcc936d61ed8675be017f641f025e58303e9ed60ccfb062e477a9d1c3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-065",
+      "name": "先陣兵アインデッカー",
+      "faces": [
+        {
+          "name": "先陣兵アインデッカー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のマナゾーンにカードが３枚以上あれば、このクリーチャーを [ff01]支払って召喚してもよい。そうしたら、このターンの終わりにこのクリーチャーを破壊し、その後、カードを１枚引く。",
+          "race": "ドラゴノイド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-065",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-065.jpg",
+      "spec": {
+        "g568Alt": {
+          "cost": 1,
+          "paymentColors": [
+            "火"
+          ],
+          "condition": {
+            "g334ZoneCount": {
+              "zone": "mana",
+              "min": 3
+            }
+          },
+          "end": [
+            {
+              "op": "SelfDestroy"
+            },
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "8f9d75828cf9bba24a3d1d7391e583b2359a721c58257af0002beda7ca3912dd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-018",
+      "name": "ドッペルデッカー・ワイバーン",
+      "faces": [
+        {
+          "name": "ドッペルデッカー・ワイバーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のマナゾーンにカードが５枚以上あれば、このクリーチャーを [ff02]支払って召喚してもよい。そうしたら、このターンの終わりにこのクリーチャーを破壊し、カードを１枚引く。\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+          "race": "アーマード・ワイバーン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-018",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-018.jpg",
+      "spec": {
+        "g568Alt": {
+          "cost": 2,
+          "paymentColors": [
+            "火"
+          ],
+          "condition": {
+            "g334ZoneCount": {
+              "zone": "mana",
+              "min": 5
+            }
+          },
+          "end": [
+            {
+              "op": "SelfDestroy"
+            },
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        },
+        "speedAttacker": true,
+        "breaker": 2
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "77c5d54b1008a0d1425f289fb36b3f423d6109c32de2a2924d4e9c9e8f28efd4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-042",
+      "name": "爆神兵ツヴァイラッド",
+      "faces": [
+        {
+          "name": "爆神兵ツヴァイラッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のマナゾーンにカードが５枚以上あれば、このクリーチャーを [ff02]支払って召喚してもよい。そうしたら、このターンの終わりにこのクリーチャーを破壊し、その後、カードを１枚引く。\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。このクリーチャーとその選んだクリーチャーをバトルさせる。",
+          "race": "アーマロイド",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-042",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-042.jpg",
+      "spec": {
+        "g568Alt": {
+          "cost": 2,
+          "paymentColors": [
+            "火"
+          ],
+          "condition": {
+            "g334ZoneCount": {
+              "zone": "mana",
+              "min": 5
+            }
+          },
+          "end": [
+            {
+              "op": "SelfDestroy"
+            },
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "self": true,
+            "optional": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "dc1c90e0d41a08cdb74aeec5327e3a350b62a473b474dd209986a03fa934d1da",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-019",
+      "name": "ボルシャック・テイル・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルシャック・テイル・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンか２ら手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\nシビルカウント３：自分の火のクリーチャーまたは火のタマシードが合計３つ以上あれば、このクリーチャーのパワーを+2000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーはシールドを２つブレイクする）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-019",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-019.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "self": true,
+            "optional": true
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "any": [
+              {
+                "creature": true
+              },
+              {
+                "g295Tamaseed": true
+              }
+            ],
+            "color": "火",
+            "faceUp": true,
+            "g258Civil": 3
+          },
+          "grants": {
+            "power": 2000,
+            "breaker": 2
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "22152478586031d3a0fb3f8593a3012e70d9fb3f5a2e2bef55da31d1cb02d2ad",
+        "facesMatched": true
+      },
+      "errata": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-019.jpg",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\nシビルカウント３：自分の火のクリーチャーまたは火のタマシードが合計３つ以上あれば、このクリーチャーのパワーを+2000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーはシールドを２つブレイクする）",
+        "note": "初版ウェブ掲載のS・トリガー注釈の誤植を初版画像と再録で照合。"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy21-043",
+      "name": "先陣兵アインデッカー",
+      "faces": [
+        {
+          "name": "先陣兵アインデッカー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のマナゾーンにカードが３枚以上あれば、このクリーチャーを [ff01]支払って召喚してもよい。そうしたら、このターンの終わりにこのクリーチャーを破壊し、その後、カードを１枚引く。",
+          "race": "ドラゴノイド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy21-043",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy21-043.jpg",
+      "spec": {
+        "g568Alt": {
+          "cost": 1,
+          "paymentColors": [
+            "火"
+          ],
+          "condition": {
+            "g334ZoneCount": {
+              "zone": "mana",
+              "min": 3
+            }
+          },
+          "end": [
+            {
+              "op": "SelfDestroy"
+            },
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "c286f8c504d5e194f19ba46709dfd4f33e5be5e86e7eff87df4bd07462821bac",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp1-065"
+    },
+    {
+      "id": "dm22rp1-14A",
+      "name": "ボルシャック・テイル・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルシャック・テイル・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\nシビルカウント３：自分の火のクリーチャーまたは火のタマシードが合計３つ以上あれば、このクリーチャーのパワーを+2000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーはシールドを２つブレイクする）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-14A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-14A.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "self": true,
+            "optional": true
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "any": [
+              {
+                "creature": true
+              },
+              {
+                "g295Tamaseed": true
+              }
+            ],
+            "color": "火",
+            "faceUp": true,
+            "g258Civil": 3
+          },
+          "grants": {
+            "power": 2000,
+            "breaker": 2
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "0843f135b91fa1fb40ae9b91706c7d8ba861711ae05558afa9b6fe185ea91772",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp1-019"
+    },
+    {
+      "id": "dm23sd1-005",
+      "name": "ボルシャック・テイル・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルシャック・テイル・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\nシビルカウント３：自分の火のクリーチャーまたは火のタマシードが合計３つ以上あれば、このクリーチャーのパワーを+2000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーはシールドを２つブレイクする）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd1-005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23sd1-005.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "self": true,
+            "optional": true
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "any": [
+              {
+                "creature": true
+              },
+              {
+                "g295Tamaseed": true
+              }
+            ],
+            "color": "火",
+            "faceUp": true,
+            "g258Civil": 3
+          },
+          "grants": {
+            "power": 2000,
+            "breaker": 2
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "f2323c94749df5d0105c847f653be82993b1b24109030485d182db0e24a9962d",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp1-019"
+    },
+    {
+      "id": "dm23bd4-032",
+      "name": "ボルシャック・テイル・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルシャック・テイル・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\nシビルカウント３：自分の火のクリーチャーまたは火のタマシードが合計３つ以上あれば、このクリーチャーのパワーを+2000し、「W・ブレイカー」を与える。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd4-032",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd4-032.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "self": true,
+            "optional": true
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "any": [
+              {
+                "creature": true
+              },
+              {
+                "g295Tamaseed": true
+              }
+            ],
+            "color": "火",
+            "faceUp": true,
+            "g258Civil": 3
+          },
+          "grants": {
+            "power": 2000,
+            "breaker": 2
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "bc06f0abf826b12da4e7e851e1b4cde63f06667f3d25388d861c62cb5b7fb95a",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp1-019"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22rp1-034": 4,
+      "dm22rp1-065": 4,
+      "dm22rp1-018": 4,
+      "dm22rp1-042": 4,
+      "dm22rp1-019": 4,
+      "promoy21-043": 4,
+      "dm22rp1-14A": 4,
+      "dm23sd1-005": 4,
+      "dm23bd4-032": 4
+    }
+  }
+}

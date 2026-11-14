@@ -5218,7 +5218,7 @@ export function createSixPhotoRules(api){
    }
    break;
   }
-  const r=t.target,y=s.players[r.p].battle.find(x=>x.uid===r.uid&&(x.incarnation||0)===r.incarnation&&!x.sealed),controller=t.g1089OrderDeck?r.p:t.g472EffectPlayer??t.p;if(y)move(s,[{player:r.p,uid:r.uid,to:v,destroy:v==='grave',controller,...(t.g1089OrderDeck?{g1089OrderDeck:true,toOwnerDeck:true,orderDeckTop:true}:{}),...(t.g1129OwnerDestinations?{toOwnerHand:true,toOwnerMana:true,toOwnerShields:true}:{})}]);if(t.after)start(s,{...t,p:controller},t.after);break;}
+  const r=t.target,y=s.players[r.p].battle.find(x=>x.uid===r.uid&&(x.incarnation||0)===r.incarnation&&!x.sealed),controller=t.g1089OrderDeck&&!t.g1221SpellMove?r.p:t.g472EffectPlayer??t.p;if(y)move(s,[{player:r.p,uid:r.uid,to:v,destroy:v==='grave',controller,...(t.g1089OrderDeck?{g1089OrderDeck:true,toOwnerDeck:true,orderDeckTop:true}:{}),...(t.g1129OwnerDestinations?{toOwnerHand:true,toOwnerMana:true,toOwnerShields:true}:{})}]);if(t.after)start(s,{...t,p:controller},t.after);break;}
  case'g34_NullBreaker471':if(s.attack?.attacker===t.uid){s.attack.g471Breaker=v;api.resolveAttack(s,null);}break;
  case'g34_GrantedBreaker633':if(s.attack?.attacker===t.uid){s.attack.g633Breaker=v;api.resolveAttack(s,null);}break;
  case'g34_HippoMana1124':{
@@ -6853,6 +6853,11 @@ export function createSixPhotoRules(api){
   if(colors(c).length>1)for(const y of s.players[p].grave)
    if(!y.faceDown&&card(y).g922GraveMultiSummon)send(s,p,y,'GraveReturn754',{serial:y.zoneSerial||0});
  }consumeOnce464(s,p,c,false);recordSummon463(s,p,c);if(c.type==='creature')consumeReduction456(s,p,c);if(c.type==='creature'&&['mana','grave'].includes(origin)&&typeof permit==='string'&&permit.startsWith('g450:'))((s.g450ZoneUses??=[{},{}])[p]??={})[permit]=s.turn;if(c.type!=='spell')noncreatureUse448(s,p,c);if(c.type==='creature'){countExecution(s,p,c);if(colors(c).includes('自然')&&Number(c.power)>=12000)s.g34Discounts=(s.g34Discounts||[]).filter(y=>y.p!==p||y.turn!==s.turn);}},
+ scheduleAltEnd1221(s,p,c,inst){
+  if(s.endStep||!c.g568Alt?.end)return;
+  (s.g537Delays??=[]).push({p,source:c.id,when:'turnEnd',turn:s.turn,
+   g1221PendingUid:inst.uid,defs:structuredClone(c.g568Alt.end)});
+ },
  judgeWon969(s,p,deferred){
   const wins=s.g969FirstJudgeWins??=[null,null];
   if(wins[p]===s.turn)return;
@@ -6932,6 +6937,14 @@ export function createSixPhotoRules(api){
  twinFinish1088(s,p){return creatures(s,p).some(x=>card(x).g1088Twin&&!api.ignored(s,x));},
  observedEntry(s,p,y,options){
   const c=card(y),eventType=c.type;
+  if(options.g1221AltEnd){
+   const delayed=s.g537Delays?.find(row=>row.turn===s.turn&&row.g1221PendingUid===y.uid);
+   if(delayed){
+    delete delayed.g1221PendingUid;
+    delayed.uid=y.uid;
+    delayed.incarnation=y.incarnation||0;
+   }
+  }
   if(!y.sealed&&!y.faceDown){
    const own=s.players[p],firstCreature=own.enteredThisTurn===1&&api.isCreature(s,y);
    const seed=c.type==='seed'||c.seedCreature||c.natureAce4;
@@ -7796,6 +7809,7 @@ for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand
     throw Error('別コストの使用条件を満たしていません');
    const payment={cost:r.cost,g568PaymentColors:r.paymentColors,
     ...(r.g1117MoveToExtra?{g1117MoveToExtra:true}:{}),
+    ...(r.end?{g1221AltEnd:true}:{}),
     ...(r.entry?{g777AltEntry:true}:{}),...(r.spell?{g1023PaidAltSpell:true,g40PayNormally:true}:{}),
     ...(origin==='mana'?{civilizations:api.manaColors(c,s,p)}:{})};
    cast(s,p,a.uid,false,a.baseUid??null,0,payment,origin,'条件付き別コスト',false,a.manaPermit,a.snowReducers??null);

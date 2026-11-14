@@ -2470,6 +2470,50 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1221&&d?.status==='complete'&&d.faces.length===1&&
+    ['dm22rp1-034','dm22rp1-065','promoy21-043','dm22rp1-018','dm22rp1-042',
+     'dm22rp1-019','dm22rp1-14A','dm23sd1-005','dm23bd4-032'].includes(d.id)){
+  const lines=f.abilityText.split('\n').map(normalize);
+  const civil=(color,n)=>({any:[{creature:true},{g295Tamaseed:true}],color,faceUp:true,g258Civil:n});
+  if(d.id==='dm22rp1-034'&&f.typeText==='呪文'&&lines.length===2&&
+     lines[0]==='シビルカウント2:この呪文が自分のシールドゾーンにあり自分の水のクリーチャーまたは水のタマシードが合計2つ以上あればこの呪文に「S・トリガー」を与える。'&&
+     lines[1]==='相手のクリーチャー1体またはタマシードを1枚選ぶ。相手はそれを山札の上または下に置く。')
+   return {effect:'sixPhoto',g876ShieldTriggerCondition:civil('水',2),g34Tasks:[
+    {op:'Target',element:true,filter:{any:[{creature:true},{g295Tamaseed:true}],faceUp:true},
+     g467Destinations:['deckTop','deck'],g472OwnerDestination:true,g1089OrderDeck:true,g1221SpellMove:true,
+     title:'相手のクリーチャーまたはタマシードを1つ選ぶ'}
+   ]};
+  if(f.typeText==='クリーチャー'){
+   const fight={op:'Fight240',self:true,optional:true};
+   const wyvern=d.id==='dm22rp1-018',zwei=d.id==='dm22rp1-042';
+   if(wyvern||zwei||['dm22rp1-065','promoy21-043'].includes(d.id)){
+    const threshold=wyvern||zwei?5:3,amount=wyvern||zwei?2:1;
+    const clause='自分のマナゾーンにカードが'+threshold+'枚以上あればこのクリーチャーを[ff0'+amount+
+     ']支払って召喚してもよい。そうしたらこのターンの終わりにこのクリーチャーを破壊し'+
+     (wyvern?'':'その後')+'カードを1枚引く。';
+    const extraLines=wyvern?['スピードアタッカー(このクリーチャーは召喚酔いしない)',
+     'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)']:zwei?
+     ['このクリーチャーが出た時相手のクリーチャーを1体選んでもよい。このクリーチャーとその選んだクリーチャーをバトルさせる。']:[];
+    if(lines.length===1+extraLines.length&&lines[0]===clause&&extraLines.every((line,i)=>line===lines[i+1])){
+     const end=[{op:'SelfDestroy'},{op:'Draw',n:1}];
+     return {g568Alt:{cost:amount,paymentColors:['火'],condition:{g334ZoneCount:{zone:'mana',min:threshold}},end},
+      ...(wyvern?{speedAttacker:true,breaker:2}:zwei?{effect:'sixPhoto',g34Tasks:[fight]}:{})};
+    }
+   }
+   if(['dm22rp1-019','dm22rp1-14A','dm23sd1-005','dm23bd4-032'].includes(d.id)&&lines.length===3){
+    // The 19/74 web listing has an extra ２ in the reminder. Its image confirms から.
+    const reminder='S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)';
+    const first=d.id==='dm22rp1-019'?lines[0].replace('ゾーンか2ら','ゾーンから'):lines[0];
+    const count='シビルカウント3:自分の火のクリーチャーまたは火のタマシードが合計3つ以上あればこのクリーチャーのパワーを+2000し「W・ブレイカー」を与える。';
+    if((first===reminder||d.id==='dm23bd4-032'&&first==='S・トリガーS・トリガー')&&
+       lines[1]==='このクリーチャーが出た時相手のクリーチャーを1体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。'&&
+       (lines[2]===count+'(「W・ブレイカー」を持つクリーチャーはシールドを2つブレイクする)'||
+        d.id==='dm23bd4-032'&&lines[2]===count))
+     return {trigger:true,effect:'sixPhoto',g34Tasks:[fight],
+      g260Self:{filter:civil('火',3),grants:{power:2000,breaker:2}}};
+   }
+  }
+ }
  if(phase>=1220&&d?.status==='complete'&&['dm23rp3-020','dm23rp3-023','dm22rp1-026'].includes(d.id)){
   const front=f.abilityText.split('\n').map(normalize),spell=d.faces[1];
   if(d.id==='dm22rp1-026'&&d.faces.length===1&&f.typeText==='タマシード'&&front.length===2&&

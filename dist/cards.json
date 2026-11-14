@@ -233592,15 +233592,250 @@
       ],
       "supportBatch": "phase-1220",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-034",
+      "name": "氷結呪文「フリズン」",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "シビルカウント２：この呪文が自分のシールドゾーンにあり、自分の水のクリーチャーまたは水のタマシードが合計２つ以上あれば、この呪文に「S・トリガー」を与える。\n相手のクリーチャー１体またはタマシードを１枚選ぶ。相手はそれを山札の上または下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-034",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g876ShieldTriggerCondition": {
+        "any": [
+          {
+            "creature": true
+          },
+          {
+            "g295Tamaseed": true
+          }
+        ],
+        "color": "水",
+        "faceUp": true,
+        "g258Civil": 2
+      },
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "element": true,
+          "filter": {
+            "any": [
+              {
+                "creature": true
+              },
+              {
+                "g295Tamaseed": true
+              }
+            ],
+            "faceUp": true
+          },
+          "g467Destinations": [
+            "deckTop",
+            "deck"
+          ],
+          "g472OwnerDestination": true,
+          "g1089OrderDeck": true,
+          "g1221SpellMove": true,
+          "title": "相手のクリーチャーまたはタマシードを1つ選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1221",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-065",
+      "name": "先陣兵アインデッカー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "ドラゴノイド",
+      "text": "自分のマナゾーンにカードが３枚以上あれば、このクリーチャーを [ff01]支払って召喚してもよい。そうしたら、このターンの終わりにこのクリーチャーを破壊し、その後、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-065",
+      "limit": 4,
+      "g568Alt": {
+        "cost": 1,
+        "paymentColors": [
+          "火"
+        ],
+        "condition": {
+          "g334ZoneCount": {
+            "zone": "mana",
+            "min": 3
+          }
+        },
+        "end": [
+          {
+            "op": "SelfDestroy"
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1221",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-018",
+      "name": "ドッペルデッカー・ワイバーン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "アーマード・ワイバーン",
+      "text": "自分のマナゾーンにカードが５枚以上あれば、このクリーチャーを [ff02]支払って召喚してもよい。そうしたら、このターンの終わりにこのクリーチャーを破壊し、カードを１枚引く。\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-018",
+      "limit": 4,
+      "g568Alt": {
+        "cost": 2,
+        "paymentColors": [
+          "火"
+        ],
+        "condition": {
+          "g334ZoneCount": {
+            "zone": "mana",
+            "min": 5
+          }
+        },
+        "end": [
+          {
+            "op": "SelfDestroy"
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "speedAttacker": true,
+      "breaker": 2,
+      "supportBatch": "phase-1221",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-042",
+      "name": "爆神兵ツヴァイラッド",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "アーマロイド",
+      "text": "自分のマナゾーンにカードが５枚以上あれば、このクリーチャーを [ff02]支払って召喚してもよい。そうしたら、このターンの終わりにこのクリーチャーを破壊し、その後、カードを１枚引く。\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。このクリーチャーとその選んだクリーチャーをバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-042",
+      "limit": 4,
+      "g568Alt": {
+        "cost": 2,
+        "paymentColors": [
+          "火"
+        ],
+        "condition": {
+          "g334ZoneCount": {
+            "zone": "mana",
+            "min": 5
+          }
+        },
+        "end": [
+          {
+            "op": "SelfDestroy"
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Fight240",
+          "self": true,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1221",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-019",
+      "name": "ボルシャック・テイル・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "アーマード・ドラゴン",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\nシビルカウント３：自分の火のクリーチャーまたは火のタマシードが合計３つ以上あれば、このクリーチャーのパワーを+2000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-019",
+      "abilityErrata": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-019.jpg",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\nシビルカウント３：自分の火のクリーチャーまたは火のタマシードが合計３つ以上あれば、このクリーチャーのパワーを+2000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーはシールドを２つブレイクする）",
+        "note": "初版ウェブ掲載のS・トリガー注釈の誤植を初版画像と再録で照合。"
+      },
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Fight240",
+          "self": true,
+          "optional": true
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "any": [
+            {
+              "creature": true
+            },
+            {
+              "g295Tamaseed": true
+            }
+          ],
+          "color": "火",
+          "faceUp": true,
+          "g258Civil": 3
+        },
+        "grants": {
+          "power": 2000,
+          "breaker": 2
+        }
+      },
+      "supportBatch": "phase-1221",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1220,
+    "phase": 1221,
     "checkedAt": "2026-11-14",
-    "baseCount": 7652,
-    "newEffectCards": 3,
+    "baseCount": 7655,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 7655,
+    "totalCount": 7660,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -254529,6 +254764,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7652,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1220,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7652,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7655,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
