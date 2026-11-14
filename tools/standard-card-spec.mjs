@@ -2470,6 +2470,54 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1228&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText).replaceAll('\uFE0E','');
+  const raid=(race,max)=>({op:'Raid767',race,max});
+  const raidText=(race,max)=>race+'・メクレイド'+max+'する。('+race+'・メクレイド'+max+
+   ':自分の山札の上から3枚を見る。その中からコスト'+max+'以下の'+race+
+   'を1枚コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く)';
+  const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+  const modes='次のうちいずれか1つを選ぶ。';
+  const choose=modes=>({op:'Choose',g184Modes:true,modes});
+  if(['dm23rp1-038','dm23sp1-012'].includes(d.id)&&f.typeText==='クリーチャー'&&
+   text===blocker+'このクリーチャーが出た時'+modes+
+   '▶カードを4枚自分の墓地から好きな順序で山札の下に置いてもよい。そうしたら'+raidText('アビス',8)+
+   '▶自分の山札の上から4枚を墓地に置く。')
+   return {blocker:true,effect:'sixPhoto',g34Tasks:[choose([
+    {label:'墓地から4枚を山札の下に置いてアビス・メクレイド8する',defs:[{op:'Select',origin:'grave',
+     to:'deck',n:4,optional:true,g837Reikon:[raid('アビス',8)],title:'山札の下に置く順に墓地のカードを4枚選ぶ（任意）'}]},
+    {label:'山札の上から4枚を墓地に置く',defs:[{op:'Mill',n:4,g1042Together:true}]}
+   ])]};
+  if(['dm23rp1-010','dm23rp1-12A','dm23rp1-14B'].includes(d.id)&&f.typeText==='クリーチャー'&&
+   text==='S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)'+
+   blocker+'このクリーチャーが出た時自分のメカを1つタップしてもよい。そうしたら'+raidText('メカ',5))
+   return {trigger:true,blocker:true,effect:'sixPhoto',g34Tasks:[{
+    op:'Target',owner:'self',element:true,tap:true,optional:true,g1044ImplicitTap:true,
+    filter:{element:true,race:'メカ',faceUp:true},title:'タップする自分のメカを選ぶ（任意）',
+    g587AfterSelection:true,after:[raid('メカ',5)]
+   }]};
+  if(d.id==='dm23rp1-026'&&f.typeText==='クリーチャー'&&
+   text==='スピードアタッカー(このクリーチャーは召喚酔いしない)'+
+   'ジャストダイバー(このクリーチャーが出た時次の自分のターンのはじめまでこのクリーチャーは相手に選ばれず攻撃されない)'+
+   'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)プレイヤーが呪文を唱えた時'+modes+
+   '▶カードを1枚引く。▶相手のシールドを1つブレイクする。')
+   return {speedAttacker:true,justDiver:true,breaker:2,g204SpellWatch:{who:'both',defs:[choose([
+    {label:'カードを1枚引く',defs:[{op:'Draw',n:1}]},
+    {label:'このクリーチャーで相手のシールドを1つブレイクする',defs:[
+     {op:'Break497',n:1,g747CreatureBreak:true,g913DepartedBreaker:true}]}
+   ])]}};
+  if(['dm23rp1-007','dm23rp1-10A','dm23rp1-12B'].includes(d.id)&&f.typeText==='クリーチャー'&&
+   text==='マッハファイターこのクリーチャーが攻撃する時'+modes+
+   '▶自分のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを2倍にし「パワード・ブレイカー」を与える。'+
+   '▶自分の山札の上から1枚目をマナゾーンに置く。▶コスト3以下のクリーチャーを1体自分のマナゾーンから出す。')
+   return {machFighter:true,g34Attack:[choose([
+    {label:'パワーを2倍にし、パワード・ブレイカーを与える',defs:[{op:'Target',owner:'self',
+     filter:{creature:true},powerMultiplier:2,grant:{poweredBreaker:true,g1116PoweredChoice:true},title:'強化する自分のクリーチャーを選ぶ'}]},
+    {label:'山札の上から1枚マナに置く',defs:[{op:'Ramp',n:1}]},
+    {label:'マナからコスト3以下のクリーチャーを1体出す',defs:[{op:'Select',origin:'mana',n:1,
+     deploy:true,filter:{creature:true,faceUp:true,max:3}}]}
+   ])]};
+ }
  if(phase>=1227&&d?.status==='complete'){
   const text=normalize(f.abilityText),spell=d.faces[1];
   const raid=(race)=>({op:'Raid767',race,max:5});
@@ -2506,7 +2554,7 @@ export function standardCardSpec(d,{phase=165}={}){
     g207CountPower:{zone:'battle',filter:{race:'ファイアー・バード'},g561Elements:true,amount:3000},
     g34Tasks:[raid('アーマード')],g251EntryDraw:{filter:{element:true,faceUp:true,race:'ファイアー・バード'},defs:[
      {op:'FightEnemy240',optional:true,g998EntryFight:true,g792Once:'arczeosFight'}]}};
-  if(d.faces.length===2&&['dm23sd1-012','dm23rp1-21B','dm24ex1-078'].includes(d.id)&&f.typeText==='クリーチャー'&&
+  if(d.faces.length===2&&['dm23sd1-012','dm23rp1-19A','dm23rp1-21B','dm24ex1-078'].includes(d.id)&&f.typeText==='クリーチャー'&&
     text==='スピードアタッカー(このクリーチャーは召喚酔いしない)'&&spell.typeText==='呪文'&&
     normalize(spell.abilityText)===raidText('アーマード'))
    return {speedAttacker:true,spellFace:{type:'spell',name:spell.name,cost:spell.cost,civ:spell.civilizationText,

@@ -234786,15 +234786,241 @@
       },
       "supportBatch": "phase-1227",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-038",
+      "name": "ド:スモンマー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "ノワールアビス",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、次のうちいずれか１つを選ぶ。\n▶カードを４枚、自分の墓地から好きな順序で山札の下に置いてもよい。そうしたら、アビス・メクレイド８する。（アビス・メクレイド８：自分の山札の上から３枚を見る。その中から、コスト８以下のアビスを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）\n▶自分の山札の上から４枚を墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-038",
+      "limit": 4,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "墓地から4枚を山札の下に置いてアビス・メクレイド8する",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "to": "deck",
+                  "n": 4,
+                  "optional": true,
+                  "g837Reikon": [
+                    {
+                      "op": "Raid767",
+                      "race": "アビス",
+                      "max": 8
+                    }
+                  ],
+                  "title": "山札の下に置く順に墓地のカードを4枚選ぶ（任意）"
+                }
+              ]
+            },
+            {
+              "label": "山札の上から4枚を墓地に置く",
+              "defs": [
+                {
+                  "op": "Mill",
+                  "n": 4,
+                  "g1042Together": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1228",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-010",
+      "name": "トライシェルビ-P6",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "メカ・デル・ディネロ",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、自分のメカを１つタップしてもよい。そうしたら、メカ・メクレイド５する。（メカ・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のメカを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-010",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "element": true,
+          "tap": true,
+          "optional": true,
+          "g1044ImplicitTap": true,
+          "filter": {
+            "element": true,
+            "race": "メカ",
+            "faceUp": true
+          },
+          "title": "タップする自分のメカを選ぶ（任意）",
+          "g587AfterSelection": true,
+          "after": [
+            {
+              "op": "Raid767",
+              "race": "メカ",
+              "max": 5
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1228",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-026",
+      "name": "炎渦双奏 タイダル＆バーン",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "マジック・コマンド・ドラゴン/アーマード・ドラゴン",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nプレイヤーが呪文を唱えた時、次のうちいずれか１つを選ぶ。\n▶︎カードを１枚引く。\n▶相手のシールドを１つブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-026",
+      "limit": 4,
+      "speedAttacker": true,
+      "justDiver": true,
+      "breaker": 2,
+      "g204SpellWatch": {
+        "who": "both",
+        "defs": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "カードを1枚引く",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "このクリーチャーで相手のシールドを1つブレイクする",
+                "defs": [
+                  {
+                    "op": "Break497",
+                    "n": 1,
+                    "g747CreatureBreak": true,
+                    "g913DepartedBreaker": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1228",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-007",
+      "name": "極輪の妖精",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ジャイアント・スノーフェアリー",
+      "text": "マッハファイター\nこのクリーチャーが攻撃する時、次のうちいずれか１つを選ぶ。\n▶自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを２倍にし、「パワード・ブレイカー」を与える。\n▶自分の山札の上から１枚目をマナゾーンに置く。\n▶コスト３以下のクリーチャーを１体、自分のマナゾーンから出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-007",
+      "limit": 4,
+      "machFighter": true,
+      "g34Attack": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "パワーを2倍にし、パワード・ブレイカーを与える",
+              "defs": [
+                {
+                  "op": "Target",
+                  "owner": "self",
+                  "filter": {
+                    "creature": true
+                  },
+                  "powerMultiplier": 2,
+                  "grant": {
+                    "poweredBreaker": true,
+                    "g1116PoweredChoice": true
+                  },
+                  "title": "強化する自分のクリーチャーを選ぶ"
+                }
+              ]
+            },
+            {
+              "label": "山札の上から1枚マナに置く",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1
+                }
+              ]
+            },
+            {
+              "label": "マナからコスト3以下のクリーチャーを1体出す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "mana",
+                  "n": 1,
+                  "deploy": true,
+                  "filter": {
+                    "creature": true,
+                    "faceUp": true,
+                    "max": 3
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1228",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1227,
+    "phase": 1228,
     "checkedAt": "2026-11-14",
-    "baseCount": 7676,
+    "baseCount": 7680,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7680,
+    "totalCount": 7684,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -255807,6 +256033,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7676,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1227,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7676,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7680,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

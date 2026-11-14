@@ -6359,6 +6359,7 @@ export function createSixPhotoRules(api){
     spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))
    });
    if(t.g1198UntapLock)(s.extLimits??=[]).push({kind:'g1198CreatureUntapLock',ref:key(y),host:key(t)});
+   if(t.powerMultiplier)(y.powerModifiers??=[]).push({amount:0,multiplier:t.powerMultiplier,expires:'end',who:s.active});
    if(t.g676TapNames)tapNames676(s,y);if(t.g291UntapUntilSelf)(y.tapLocks??=[]).push(t.p);if(t.untap&&api.canUntap(y)){const was=y.tapped;y.tapped=false;if(was)combined.untapped(s,v.p,y);}if(t.lock){if(t.spell)(y.g170StartFreeze??=[]).push({spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});else y.skipUntap=true;}if(t.g1111PowerZero){
     (y.powerModifiers??=[]).push({fixedPower:0,expires:'end',who:s.active,spellSource:t.source,spellCost:cost(card(t.source))});
     api.powerCleanup(s);
