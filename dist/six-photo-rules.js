@@ -2370,7 +2370,7 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_EachPlayer459':eachPlayer459(s,t);break;
- case'g34_NextReduction456':(s.extLimits??=[]).push({kind:'g456NextReduction',player:t.p,turn:s.turn,type:t.type,amount:t.amount,optional:!!t.optional,filter:t.filter||{},source:t.source,expires:'end',who:s.active,...(t.g1113ZeroFloor?{g1113ZeroFloor:true}:{})});break;
+ case'g34_NextReduction456':(s.extLimits??=[]).push({kind:'g456NextReduction',player:t.p,turn:s.turn,type:t.type,amount:t.amount,optional:!!t.optional,filter:t.filter||{},source:t.source,expires:'end',who:s.active,...(t.g1113ZeroFloor?{g1113ZeroFloor:true}:{}),...(t.g1305Speed?{g1305Speed:true}:{})});break;
  case'g34_SpaceCharge454':{
   if(t.rules.length===1&&t.rules[0].g792Once){start(s,t,t.rules[0].defs);break;}
   const choices=[];for(let mask=1;mask<2**t.rules.length;mask++){const selected=t.rules.flatMap((r,i)=>mask&(2**i)?[i]:[]);choices.push(opt(selected.map(i=>t.rules[i].color).join('・')+'の効果を使う',selected,selected.reduce((v,i)=>v+spaceScore455(s,t,t.rules[i].defs),0)));}choice(s,t,'スペース・チャージ：使う効果を選ぶ（記載順に解決）',[...choices,skip()]);break;}
@@ -9282,6 +9282,7 @@ externalProtection565,
   put(s,task('g34_EntryTap432',p,x.cardId,{target:x.uid,baseUid,entryOptions:structuredClone(entryOptions)}));
   return true;
  },
+ reductionSpeedSources1305:(s,p,c)=>reductions456(s,p,c).filter(r=>r.g1305Speed).map(r=>r.source),
  entryShieldForce1304(s,p,x,baseUid,entryOptions){
   const own=s.players[p];
   if(!own.shields.length)return false;

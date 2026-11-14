@@ -2194,6 +2194,13 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  // Entry history and opposing watchers also see entries that suppress the entering card's abilities.
  extra.six.observedEntry(s,p,inst,{...entryOptions,allEntryMuted});
  if(entryOptions.g1087Grant)extra.six.lostSignGrant1087(s,p,inst,entryOptions.g1087Grant);
+ if(entryOptions.g1305ReductionSources&&!allEntryMuted&&!entryOptions.ignoreEntry&&!inst.sealed&&isCreature(s,inst)){
+  const {uid,incarnation}=inst;
+  for(const source of entryOptions.g1305ReductionSources)
+   enqueueEffect(s,p,{uid,incarnation,source,effect:'extended',
+    task:extra.task('g34_SelfGrant754',p,source,{uid,incarnation,g770LiveCreature:true,
+     grant:{speedAttacker:true}})});
+ }
  if(!entryOptions.ignoreEntry){extra.entry(s,p,inst,{...entryOptions,selfMuted,allEntryMuted});extra.command(s,p,inst);}
  if(!entryOptions.paidMana&&isCreature(s,inst))(s.noManaUse??=[false,false])[p]=true;
  if(effectiveCard(inst,s).exLife){for(let n=0;n<(c.extraExLife?2:1)&&s.winner===null;n++)shieldTop(s,p,c,inst);if(s.winner!==null){delete s.g24EntryMute;delete s.g1Entering;return;}}
@@ -2361,6 +2368,7 @@ function playCard(s,p,uid,free=false,baseUid=null,face=0,alternativeCost=null,or
 function recordUse420(s,p,c){const last=s.g420LastUse?.[p],ready=last?.turn===s.turn&&last.creature;(s.g420LastUse??=[null,null])[p]={turn:s.turn,creature:c.type==='creature'};return c.g420Cyclone?{...c,g420CycloneReturn:!!ready}:c;}
 function completeExecution(s,p,inst,c,{ruleOrigin,origin,free,freeReason,alternativeCost,paidMana,cost,ownGraveCast,grantedSuper,baseUid,face,permit,originBlocked402=false,originIndex402=-1}){
  c=recordUse420(s,p,c);
+ const reductionSources=c.type==='creature'?extra.six.reductionSpeedSources1305(s,p,c):[];
  // A granted S-Trigger only counts on the face used with that grant (QA45802, QA41751).
  const grantedTrigger=free&&freeReason==='S・トリガー'&&s.triggers?.player===p&&
   !s.triggers.sbDeclared?.includes(inst.uid)&&!!s.triggers.eligibleFaces?.[inst.uid]?.includes(face);
@@ -2400,7 +2408,7 @@ function completeExecution(s,p,inst,c,{ruleOrigin,origin,free,freeReason,alterna
  else if(['creature','seed','gear','field'].includes(c.type)){
   const altEnd=!free&&!!alternativeCost?.g1221AltEnd;
   if(altEnd)extra.six.scheduleAltEnd1221(s,p,c,inst);
-  enterCreature(s,p,inst,baseUid,{origin:ruleOrigin,execution:true,committed:true,paidMana,costPaid:!free&&cost>0,...(altEnd?{g1221AltEnd:true}:{}),effectController:free||alternativeCost!==null?p:null,plus:!!c.triggerPlus&&free&&freeReason==='S・トリガー'&&!!inst.triggerPlus,super:!!c.superTrigger&&free&&(freeReason==='S・トリガー'&&!!inst.superTrigger||grantedSuper),ddd:freeReason==='D・D・D',...(c.g1086FreeSummonEntry&&freeReason===c.g396Zero?.label?{g1086FreeSummon:true}:{}),...(alternativeCost?.g777AltEntry?{g777AltEntry:true}:{}),...(!free&&alternativeCost?.g499Reduction>0&&c.g212CountDiscount?.entry?{g499Reduced:true}:{}),...(!free&&alternativeCost?.g499Reduction>0&&c.g212CountDiscount?.tappedEntry?{tapped:true}:{}),...(alternativeCost?.g1117MoveToExtra?{g1117MoveToExtra:true}:{}),...(typeof permit==='string'&&permit.startsWith('g1087Sign:')?{g1087Grant:permit.slice('g1087Sign:'.length)}:{}),...(c.mugenGate&&Array.isArray(baseUid)?{mugenBases:baseUid}:{})});if(ruleOrigin==='deck')deckCheck(s,p);}
+  enterCreature(s,p,inst,baseUid,{origin:ruleOrigin,execution:true,committed:true,paidMana,costPaid:!free&&cost>0,...(reductionSources.length?{g1305ReductionSources:reductionSources}:{}),...(altEnd?{g1221AltEnd:true}:{}),effectController:free||alternativeCost!==null?p:null,plus:!!c.triggerPlus&&free&&freeReason==='S・トリガー'&&!!inst.triggerPlus,super:!!c.superTrigger&&free&&(freeReason==='S・トリガー'&&!!inst.superTrigger||grantedSuper),ddd:freeReason==='D・D・D',...(c.g1086FreeSummonEntry&&freeReason===c.g396Zero?.label?{g1086FreeSummon:true}:{}),...(alternativeCost?.g777AltEntry?{g777AltEntry:true}:{}),...(!free&&alternativeCost?.g499Reduction>0&&c.g212CountDiscount?.entry?{g499Reduced:true}:{}),...(!free&&alternativeCost?.g499Reduction>0&&c.g212CountDiscount?.tappedEntry?{tapped:true}:{}),...(alternativeCost?.g1117MoveToExtra?{g1117MoveToExtra:true}:{}),...(typeof permit==='string'&&permit.startsWith('g1087Sign:')?{g1087Grant:permit.slice('g1087Sign:'.length)}:{}),...(c.mugenGate&&Array.isArray(baseUid)?{mugenBases:baseUid}:{})});if(ruleOrigin==='deck')deckCheck(s,p);}
  else if(c.charger&&!spellIgnored(s,c)){
   s.resolvingSpell={player:p,inst,source:c.id,face,origin:ruleOrigin};
   if(!checkDeckSpell||!checkDeckSpell841(s,p,c,inst))continueCast1293(s,p,inst.uid);
@@ -2780,14 +2788,16 @@ function advanceAttack(s){if(s.lossEvent)return;
 // Capture color-qualified Slayer at the start of the battle, alongside ordinary Slayer.
 function slayerCount534(s,x,y){const c=effectiveCard(x,s);return(c.slayer?(c.g208SlayerCount||1):0)+(c.g534SlayerColors?.some(color=>civilizations(effectiveCard(y,s)).includes(color))?1:0);}
 const battleRefs1155=x=>layers(x).map(y=>({uid:y.uid,incarnation:y.incarnation||0}));
-// Resolve effects that can remove a participant before comparing battle power.
+// Resolve abilities that trigger when creatures battle before comparing power.
 function beginBattlePower1237(s,pa,a,pd,b,attackingUid,blockUntap,attackBattle){
  const pairs=[[pa,a,pd,b],[pd,b,pa,a]].sort(([p],[q])=>Number(q===s.active)-Number(p===s.active));
  const effects=pairs.flatMap(([controller,source,player,target])=>{
   const c=effectiveCard(source,s),amount=c.g1237BattleMinus;
   const effect={controller,source:source.cardId,player,ref:battleRefs1155(target)[0]};
   return [...(amount?[{...effect,amount:-amount}]:[]),
-   ...(c.g1304BattleBounce&&!selfTriggersStopped(s,controller)?[{...effect,bounce:true}]:[])];
+   ...(c.g1304BattleBounce?[{...effect,bounce:true}]:[]),
+   ...(c.g1305BattleTasks?[{...effect,defs:c.g1305BattleTasks,
+    host:{uid:source.uid,incarnation:source.incarnation||0}}]:[])];
  });
  if(!effects.length)return false;
  const token=(s.g1237BattleSerial??0)+1;
@@ -2803,7 +2813,11 @@ function beginBattlePower1237(s,pa,a,pd,b,attackingUid,blockUntap,attackBattle){
  return true;
 }
 function applyBattlePower1237(s,frame){
- const {controller,source,player,ref,amount,bounce}=frame.effects.shift();
+ const {controller,source,player,ref,amount,bounce,defs,host}=frame.effects.shift();
+ if(defs){
+  extra.put(s,extra.task('g34_Sequence',controller,source,{...host,defs}));
+  return;
+ }
  const target=afterBattleHost(s,[ref]);
  if(target?.p===player&&!target.unit.sealed&&isCreature(s,target.unit)){
   if(bounce){

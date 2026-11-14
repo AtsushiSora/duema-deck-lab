@@ -243751,15 +243751,105 @@
       },
       "supportBatch": "phase-1304",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm39-031",
+      "name": "ライラ・アイニー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ファイアー・バード",
+      "text": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nこのクリーチャーがバトルする時、自分のシールドを１枚手札に加える。ただし、その「S・トリガー」は使えない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-031",
+      "limit": 4,
+      "speedAttacker": true,
+      "g1305BattleTasks": [
+        {
+          "op": "ShieldHand",
+          "g238ShieldHand": true
+        }
+      ],
+      "supportBatch": "phase-1305",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-043",
+      "name": "クック・驚・ブルッチ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "アーマード・ファイアー・バード",
+      "text": "このクリーチャーが出た時、このターン、次に召喚する自分の超化獣クリーチャーのコストを３少なくする。ただし、コストは０以下にはならない。そのクリーチャーが出た時、このターン、そのクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-043",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "NextReduction456",
+          "type": "creature",
+          "amount": 3,
+          "filter": {
+            "race": "超化獣"
+          },
+          "g1305Speed": true
+        }
+      ],
+      "supportBatch": "phase-1305",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25sp2-012",
+      "name": "帝王坂∞",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8888,
+      "race": "∞ドラゴン",
+      "text": "ブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、相手は自身の手札を５枚選び、捨てる。\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－∞する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25sp2-012",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "n": 5
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Target",
+          "power": "-infinity",
+          "g242PowerMinus": true
+        }
+      ],
+      "supportBatch": "phase-1305",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1304,
+    "phase": 1305,
     "checkedAt": "2026-11-15",
-    "baseCount": 7928,
+    "baseCount": 7931,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7931,
+    "totalCount": 7934,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -265696,6 +265786,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7928,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1304,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7928,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7931,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

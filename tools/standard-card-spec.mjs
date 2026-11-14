@@ -2475,6 +2475,17 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1305&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.name==='ライラ・アイニー'&&/^スピードアタッカー\(このクリーチャーは召喚酔いしない\)このクリーチャーがバトルする時自分のシールドを(?:1枚|ひとつ)手札に加える。ただしその「S・トリガー」は使えない。$/.test(text))
+   return {speedAttacker:true,g1305BattleTasks:[{op:'ShieldHand',g238ShieldHand:true}]};
+  if(d.name==='クック・驚・ブルッチ'&&
+   text.replace('0以下にはならない','0以下にならない')==='このクリーチャーが出た時このターン次に召喚する自分の超化獣クリーチャーのコストを3少なくする。ただしコストは0以下にならない。そのクリーチャーが出た時このターンそのクリーチャーに「スピードアタッカー」を与える。(「スピードアタッカー」を持つクリーチャーは召喚酔いしない)')
+   return {effect:'sixPhoto',g34Tasks:[{op:'NextReduction456',type:'creature',amount:3,filter:{race:'超化獣'},g1305Speed:true}]};
+  if(d.name==='帝王坂∞'&&/^ブロッカーブロッカーW・ブレイカーこのクリーチャーが出た時相手は自身の手札を5枚選び捨てる。このクリーチャーが攻撃する時相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを-∞する。(?:\(パワー0以下のクリーチャーは破壊される\))?$/.test(text))
+   return {blocker:true,breaker:2,effect:'sixPhoto',g34Tasks:[{op:'Discard',n:5}],
+    g34Attack:[{op:'Target',power:'-infinity',g242PowerMinus:true}]};
+ }
  if(phase>=1304&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.name==='不滅の精霊パーフェクト・ギャラクシー'){
