@@ -2475,6 +2475,13 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1295&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const redirect='このクリーチャーをアンタップして相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。';
+  if(['dmrp04s-058','dmrp09-066','dmrp01-061'].includes(d.id)&&text===redirect)return {g1295UntapRedirect:true};
+  if(d.id==='dm24rp1-029'&&text==='このクリーチャーがタップした時相手のクリーチャーを1体選びタップしてもよい。'+redirect)
+   return {g1295UntapRedirect:true,g188Tapped:[{op:'Target',tap:true,optional:true,filter:{creature:true}}]};
+ }
  if(phase>=1294&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmex14-021'&&
