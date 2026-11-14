@@ -1543,7 +1543,17 @@ function targets(s,p,effect){
  else if(['buff','unblock'].includes(effect))ts=own.battle.filter(x=>isCreature(s,x)).map(x=>({player:p,uid:x.uid}));
  else if(['bounce','bounceOptional','bounceSmall','bounceBlockers'].includes(effect))ts=[p,1-p].flatMap(player=>s.players[player].battle.filter(x=>isCreature(s,x)).filter(x=>effect!=='bounceSmall'||card(x).cost<=6).map(x=>({player,uid:x.uid})));
  else ts=opp.battle.filter(x=>isCreature(s,x)).filter(x=>effect!=='destroyUntapped'||!x.tapped).filter(x=>effect!=='destroySmall'||power(x,x.uid===s.attack?.attacker,s)<=2000).map(x=>({player:1-p,uid:x.uid}));
- return ts.filter(t=>extra.targetable(s,p,t.player,s.players[t.player].battle.find(x=>layers(x).some(y=>y.uid===t.uid))));
+ const rows=ts.filter(t=>extra.targetable(s,p,t.player,s.players[t.player].battle.find(x=>layers(x).some(y=>y.uid===t.uid))));
+ return effect==='tapTwo'?rows:prioritizeGitaro1258(s,p,rows);
+}
+function prioritizeGitaro1258(s,p,rows){
+ if(!s.extLimits?.some(l=>l.grant?.g1258ForceTarget))return rows;
+ const legal=rows.flatMap(t=>{
+  const x=s.players[t.player].battle.find(x=>x.uid===t.uid);
+  return x?[[t,x]]:[];
+ });
+ if(!legal.some(([t,x])=>extra.forcedByGitaro1258(s,p,t.player,x)))return rows;
+ return legal.filter(([t,x])=>extra.forcedCreatureTarget(s,p,t.player,x)).map(([t])=>t);
 }
 const paymentColors=x=>x.paymentColors??(x.paymentBird||x.paymentAllColors?['光','水','闇','火','自然']:manaCivilizations(card(x)));
 // One distinct mana card per required civilization; five-color mana has value zero.
@@ -1767,7 +1777,7 @@ function doEffectCore(s,p,c,sourceUid=null,entry=null){
  if(e==='destroyWeakerLimitNextTurn'){
   const source=s.players[p].battle.find(top=>layers(top).some(x=>x.uid===sourceUid&&(x.incarnation||0)===(entry?.incarnation||0))),max=source?power(source,source.uid===s.attack?.attacker,s):entry?.lastKnownPower??c.power;
   const ts=s.players[1-p].battle.filter(x=>isCreature(s,x)&&extra.targetable(s,p,1-p,x)).filter(x=>power(x,x.uid===s.attack?.attacker,s)<max).map(x=>({player:1-p,uid:x.uid}));
-  if(ts.length)s.decision={type:'effect',player:p,effect:e,source:c.id,targets:ts,limitAfter:true};else limitNextTurn(s,p,c);
+  if(ts.length)s.decision={type:'effect',player:p,effect:e,source:c.id,targets:prioritizeGitaro1258(s,p,ts),limitAfter:true};else limitNextTurn(s,p,c);
   return;
  }
  if(e==='deployMulticolor7'){s.decision={type:'deploy',player:p,source:c.id};return;}
@@ -3187,6 +3197,13 @@ export function getLegalActions(s){
   if(d.type==='effect'){
    if(d.effect==='tapTwo'){out=[option('effect','選ばない',{targets:[]})];for(let i=0;i<d.targets.length;i++){const a=d.targets[i];out.push(option('effect',`${nameOf(s,a)}をタップ`,{targets:[a]}));for(let j=i+1;j<d.targets.length;j++){const b=d.targets[j];out.push(option('effect',`${nameOf(s,a)}・${nameOf(s,b)}をタップ`,{targets:[a,b]}));}}}
    else out=d.targets.map(t=>option('effect',`${nameOf(s,t)}を選ぶ`,{targets:[t]}));
+   if(d.effect==='tapTwo'&&(s.extLimits||[]).some(l=>l.grant?.g1258ForceTarget)){
+    const forced=new Set(d.targets.filter(t=>{
+     const x=s.players[t.player].battle.find(x=>x.uid===t.uid);
+     return x&&extra.forcedCreatureTarget(s,p,t.player,x);
+    }).map(t=>t.uid));
+    out=out.filter(a=>a.targets.filter(t=>forced.has(t.uid)).length===Math.min(forced.size,a.targets.length));
+   }
    if(d.optional)out.push(option('skipEffect','効果を使わない'));
   }
  }else if(s.phase==='charge'){out=own.hand.map(c=>option('charge',`${card(c).name}をマナへ`,{uid:c.uid,cardId:c.cardId}));out.push(option('skipCharge','マナを置かずに進む'));}

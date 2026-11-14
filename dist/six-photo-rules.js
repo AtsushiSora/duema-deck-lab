@@ -3113,7 +3113,7 @@ export function createSixPhotoRules(api){
   if(y&&!y.sealed)(y.powerModifiers??=[]).push({amount:0,multiplier:t.multiplier,expires:'end',who:s.active});
   break;
  }
- case'g34_SelfBoost313':{const y=t.g536Source?sourceHost474(s,t)?.x:x;if(y&&(!t.g694ClearOnSeal||!y.sealed&&api.isCreature(s,y))){(y.powerModifiers??=[]).push({amount:t.power,expires:'end',who:s.active,...(t.g694ClearOnSeal?{g694ClearOnSeal:true}:{}),...(t.g337PowerAttacker?{attackOnly:true,grantedAbility:true}:{})});if(t.breaker)(y.g34Grants??=[]).push({turn:s.turn,g313Breaker:t.breaker,...(t.g633DoubleBreaker?{g633DoubleBreaker:true}:{})});}break;}
+ case'g34_SelfBoost313':{const y=t.g536Source?sourceHost474(s,t)?.x:x;if(y&&(!t.g694ClearOnSeal||!y.sealed&&api.isCreature(s,y))){(y.powerModifiers??=[]).push({amount:t.power,...(t.g1258UntilStart?{expires:'start',who:t.p}:{expires:'end',who:s.active}),...(t.g694ClearOnSeal?{g694ClearOnSeal:true}:{}),...(t.g337PowerAttacker?{attackOnly:true,grantedAbility:true}:{})});if(t.breaker)(y.g34Grants??=[]).push({turn:s.turn,g313Breaker:t.breaker,...(t.g633DoubleBreaker?{g633DoubleBreaker:true}:{})});}break;}
  case'g34_SelfTap314':{
   const host=t.g536Source?sourceHost474(s,t):x?{p:t.p,x}:null;
   if(host)api.tap(s,host.p,host.x);
@@ -3288,7 +3288,7 @@ export function createSixPhotoRules(api){
   if(moves.size)move(s,[...moves.values()]);
   break;
  }
- case'g34_DelayedMove532':{const host=sourceHost474(s,t);if(host&&(!t.g774Banky||!host.x.sealed))move(s,[{player:host.p,uid:host.x.uid,to:t.to,destroy:t.to==='grave',controller:t.controller??t.p}]);break;}
+ case'g34_DelayedMove532':{const host=sourceHost474(s,t);if(host&&(!t.g774Banky||!host.x.sealed))move(s,[{player:host.p,uid:host.x.uid,to:t.to,destroy:t.to==='grave',controller:t.controller??t.p,...(t.toOwnerGrave?{toOwnerGrave:true}:{})}]);break;}
  case'g34_OpponentBattleWin986':{
   const source=sourceHost474(s,t);
   const tapped=source&&!source.x.sealed?source.x.tapped:t.lastTapped;

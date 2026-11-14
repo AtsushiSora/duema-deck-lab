@@ -2475,6 +2475,26 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1258&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const lines=f.abilityText.split('\n').map(normalize);
+  if(d.id==='dmrp06-029'&&lines.length===1&&lines[0]===
+   'このクリーチャーがバトルゾーンに出た時そのターン相手が自分のクリーチャーを選ぶ時相手は可能ならこのクリーチャーを選ぶ。'+
+   '(ただし自分の他のクリーチャーを攻撃またはブロックしてもよい)')
+   return {effect:'sixPhoto',g34Tasks:[{op:'SelfGrant754',g770LiveCreature:true,g1106ExternalUntilEnd:true,
+    g565External:true,g1058FollowUnit:true,grant:{g1258ForceTarget:true}}]};
+  if(['dm02-046','dmc27-046','dmc42-072','dmx22b-139','dmsd16-013'].includes(d.id)&&lines.length===2&&
+   keyword(lines[0],'ブロッカー')&&[
+    'このクリーチャーは相手プレイヤーを攻撃したあと持ち主の墓地に置かれる。',
+    'このクリーチャーが相手プレイヤーを攻撃する時攻撃の後このクリーチャーを破壊する。',
+    'このクリーチャーが相手プレイヤーを攻撃する時攻撃の後破壊する。'
+   ].includes(lines[1]))
+   return {blocker:true,g34Attack:[{op:'AfterAttack542',g764PlayerAttack:true,
+    defs:[{op:'DelayedMove532',to:'grave',toOwnerGrave:true,g774Banky:true}]}]};
+  if(d.id==='dmrp06-040'&&lines.length===3&&keyword(lines[0],'ブロッカー')&&lines[1]==='このクリーチャーは攻撃できない。'&&lines[2]===
+   '自分が呪文を唱えた時次の自分のターンのはじめまでこのクリーチャーのパワーを+4000する。')
+   return {blocker:true,noAttack:true,g204SpellWatch:{who:'self',
+    defs:[{op:'SelfBoost313',power:4000,g536Source:true,g694ClearOnSeal:true,g1258UntilStart:true}]}};
+ }
  if(phase>=1257&&d?.status==='complete'&&d.faces.length===1){
   const lines=f.abilityText.split('\n').map(normalize);
   if(d.id==='dm22ex1-079'&&f.typeText==='呪文'&&lines.length===1&&lines[0]===

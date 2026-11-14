@@ -238036,15 +238036,109 @@
       ],
       "supportBatch": "phase-1257",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-029",
+      "name": "ギギギのギタロー",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ジョーカーズ",
+      "text": "このクリーチャーがバトルゾーンに出た時、そのターン、相手が自分のクリーチャーを選ぶ時、相手は可能ならこのクリーチャーを選ぶ。（ただし、自分の他のクリーチャーを攻撃またはブロックしてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-029",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SelfGrant754",
+          "g770LiveCreature": true,
+          "g1106ExternalUntilEnd": true,
+          "g565External": true,
+          "g1058FollowUnit": true,
+          "grant": {
+            "g1258ForceTarget": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1258",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm02-046",
+      "name": "ねじれる者ボーン・スライム",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 1000,
+      "race": "リビング・デッド",
+      "text": "ブロッカー(相手クリーチャーが攻撃するとき、このクリーチャーをタップして、その攻撃を阻止してよい。そのあと、その相手クリーチャーとバトルする。)\nこのクリーチャーは相手プレイヤーを攻撃したあと、持ち主の墓地に置かれる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-046",
+      "limit": 4,
+      "blocker": true,
+      "g34Attack": [
+        {
+          "op": "AfterAttack542",
+          "g764PlayerAttack": true,
+          "defs": [
+            {
+              "op": "DelayedMove532",
+              "to": "grave",
+              "toOwnerGrave": true,
+              "g774Banky": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1258",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-040",
+      "name": "宮を守る者 メシタッコ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ムートピア",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n自分が呪文を唱えた時、次の自分のターンのはじめまで、このクリーチャーのパワーを+4000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-040",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "SelfBoost313",
+            "power": 4000,
+            "g536Source": true,
+            "g694ClearOnSeal": true,
+            "g1258UntilStart": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1258",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1257,
+    "phase": 1258,
     "checkedAt": "2026-11-14",
-    "baseCount": 7770,
+    "baseCount": 7773,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7773,
+    "totalCount": 7776,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -259417,6 +259511,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7770,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1257,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7770,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7773,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
