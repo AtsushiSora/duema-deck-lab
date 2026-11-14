@@ -2475,6 +2475,27 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1263&&d?.status==='complete'&&d.faces.length===1){
+  const lines=f.abilityText.split('\n').map(normalize);
+  if(d.id==='dm17-s02'&&f.typeText==='進化クリーチャー'&&lines.length===3&&
+   lines[0]==='進化-自分のデーモン・コマンド1体の上に置く。'&&keyword(lines[1],'W・ブレイカー')&&
+   lines[2]==='相手の呪文の効果でこのクリーチャーがバトルゾーンから離れる時バトルゾーンから離れずにとどまる。')
+   return {evolution:{race:'デーモン・コマンド'},breaker:2,g1262OpponentSpellStay:true};
+  if(d.id==='dmrp20-057'&&f.typeText==='クリーチャー'&&lines.length===2&&
+   lines[0]==='{GS}G・ストライク(このクリーチャーを自分のシールドゾーンから手札に加える時相手に見せ相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)'&&
+   lines[1]==='自分のターンの終わりにカードを1枚自分の墓地からマナゾーンに置いてもよい。')
+   return {gStrike:true,g174End:[{op:'Select',origin:'grave',to:'mana',n:1,optional:true}]};
+  if(d.id==='dmrp20-003'&&f.typeText==='クリーチャー'&&lines.length===4&&
+   lines[0]==='EXライフ(このクリーチャーを出す時自分の山札の上から1枚目をシールド化する。このクリーチャーが離れる時かわりにそのシールドを墓地に置く)'&&
+   keyword(lines[1],'ブロッカー')&&keyword(lines[2],'W・ブレイカー')&&
+   lines[3]==='自分のディスタスが破壊された時このターン相手のクリーチャーすべてのパワーを-3000する。')
+   return {exLife:true,blocker:true,breaker:2,g303DeathWatch:{raceAny:['ディスタス'],self:true,selfFilter:true,g891LookBackSelf:true,
+    defs:[{op:'GroupPower',owner:'opponent',filter:{creature:true},power:-3000}]}};
+  if(d.id==='dmrp20-040'&&f.typeText==='呪文'&&lines.length===2&&
+   lines[0]==='自分のクリーチャーを1体破壊してもよい。そうしたらカードを3枚引く。'&&
+   lines[1]==='こうして破壊したクリーチャーがディスタスならそれを自分の墓地から出す。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'SacrificeAlly413',g1263Babel:true,defs:[{op:'Draw',n:3}]}]};
+ }
  if(phase>=1262&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const lines=f.abilityText.split('\n').map(normalize),text=lines[0];
   if(['dm17-013','promoy4-035','dm17-028','dmc42-047','dmx22a-029'].includes(d.id)&&lines.length===1&&

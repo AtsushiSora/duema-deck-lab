@@ -3151,6 +3151,17 @@ export function createSixPhotoRules(api){
   force546(s,{...t,when:'turn'},host.p,host.x);
   break;
  }
+ case'g34_BabelRevive1263':{
+  const {uid,serial}=t.victim;
+  // The initial sacrifice must actually destroy this creature. A replacement
+  // that saves it or moves it elsewhere still allows the preceding draw.
+  const destroyed=s.g1225Destroyed;
+  if(destroyed?.turn!==s.turn||!destroyed.cards[t.p].some(x=>x.uid===uid&&x.serial===serial))break;
+  const y=own.grave.find(x=>x.uid===uid&&(x.zoneSerial||0)===serial);
+  if(y&&api.canMoveZone(s,t.p,'grave'))
+   start(s,t,[{op:'Put',origin:'grave',target:uid,execution:false,g960FormerBases:[t.victim]}]);
+  break;
+ }
  case'g34_DragonDestroyedReturn1225':{
   const history=s.g1225Destroyed;
   if(history?.turn!==s.turn)break;
@@ -6212,8 +6223,10 @@ export function createSixPhotoRules(api){
   if(targets.some(y=>!y)||new Set(targets).size!==targets.length)break;
   if(selected.length<(t.n??1)){put(s,{...t,selected});break;}
   // Rule 101.3a checks the attempt, including when a destruction is replaced.
+  const chosen=targets[0],victim=t.g1263Babel&&exactRaces(effective(chosen,s)).includes('ディスタス')?
+   {uid:chosen.uid,serial:(chosen.zoneSerial||0)+1}:null;
   move(s,targets.map(y=>({player:t.p,uid:y.uid,to:'grave',destroy:true,controller:t.controller??t.p})));
-  start(s,t,t.defs);
+  start(s,t,victim?[...t.defs,{op:'BabelRevive1263',victim}]:t.defs);
   break;
  }
  case'g34_GraveBase1126':if(v){

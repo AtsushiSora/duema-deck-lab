@@ -1,0 +1,198 @@
+{
+  "phase": 1263,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7789,
+  "description": "悪魔神ゲドラ、黒龍神の翔天 クロロ、終槍接続 ブリティオーラ、バベル・アゲインの全能力を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/35382/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35384/",
+    "https://dm.takaratomy.co.jp/rule/qa/40960/",
+    "https://dm.takaratomy.co.jp/rule/qa/45451/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37358/",
+    "https://dm.takaratomy.co.jp/rule/qa/40197/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm17-s02",
+      "name": "悪魔神ゲドラ",
+      "faces": [
+        {
+          "name": "悪魔神ゲドラ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化-自分のデーモン・コマンド１体の上に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n相手の呪文の効果でこのクリーチャーがバトルゾーンから離れる時、バトルゾーンから離れずにとどまる。",
+          "race": "デーモン・コマンド",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-s02",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm17-s02.jpg",
+      "spec": {
+        "evolution": {
+          "race": "デーモン・コマンド"
+        },
+        "breaker": 2,
+        "g1262OpponentSpellStay": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "cd7eec8313dd3f75a90051e54fd7413b157cedebbd889e919d183e2d4a44b25d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-057",
+      "name": "黒龍神の翔天 クロロ",
+      "faces": [
+        {
+          "name": "黒龍神の翔天 クロロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分のターンの終わりに、カードを１枚、自分の墓地からマナゾーンに置いてもよい。",
+          "race": "ファイアー・バード/ディスタス",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-057",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-057.jpg",
+      "spec": {
+        "gStrike": true,
+        "g174End": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "mana",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "2a0045a8d607fd5cd6ab3188f6ae020eed04afc5c2d425fbdf53bc235c07f1cd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-003",
+      "name": "終槍接続 ブリティオーラ",
+      "faces": [
+        {
+          "name": "終槍接続 ブリティオーラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nブロッカー ブロッカー\nW・ブレイカー\n自分のディスタスが破壊された時、このターン、相手のクリーチャーすべてのパワーを－3000する。",
+          "race": "ディスペクター/アウトレイジ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-003.jpg",
+      "spec": {
+        "exLife": true,
+        "blocker": true,
+        "breaker": 2,
+        "g303DeathWatch": {
+          "raceAny": [
+            "ディスタス"
+          ],
+          "self": true,
+          "selfFilter": true,
+          "g891LookBackSelf": true,
+          "defs": [
+            {
+              "op": "GroupPower",
+              "owner": "opponent",
+              "filter": {
+                "creature": true
+              },
+              "power": -3000
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "65eb93b8d8054b44db2677ce5e7d3f45a7947f490091dc32eb4b2bf7c6c4aeed",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-040",
+      "name": "バベル・アゲイン",
+      "faces": [
+        {
+          "name": "バベル・アゲイン",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のクリーチャーを１体破壊してもよい。そうしたら、カードを３枚引く。\nこうして破壊したクリーチャーがディスタスなら、それを自分の墓地から出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-040",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-040.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "g1263Babel": true,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 3
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "a003f0bc6bf4039530407900619601f011839e80e1c860a0d9c5b7e3b7e20021",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm17-s02": 4,
+      "dmrp20-057": 4,
+      "dmrp20-003": 4,
+      "dmrp20-040": 4
+    }
+  }
+}
