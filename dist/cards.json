@@ -230008,15 +230008,101 @@
       "afterBattleDie": true,
       "supportBatch": "phase-1192",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22-023",
+      "name": "フラッシュ・アーマー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nこのターン、自分のクリーチャーが破壊される時、墓地に置かれるかわりにバトルゾーンにとどまる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-023",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DestroyStay1193"
+        }
+      ],
+      "supportBatch": "phase-1193",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-090",
+      "name": "ボルザード・ゴールド・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "アーマード・ドラゴン",
+      "text": "このクリーチャーの召喚コストを１少なくしてもよい。そうしたら、このクリーチャーが出た時、このクリーチャーは自分のシールドを１つブレイクする。\nスピードアタッカー（このクリーチャーは召喚酔いしない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-090",
+      "limit": 4,
+      "speedAttacker": true,
+      "g212CountDiscount": {
+        "fixed": 1,
+        "optional": true,
+        "entry": [
+          {
+            "op": "Break497",
+            "owner": "self",
+            "n": 1,
+            "g747CreatureBreak": true,
+            "g913DepartedBreaker": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1193",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-085",
+      "name": "銀・河・出・撃",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "チーム銀河",
+      "text": "自分のシールドを１つ選ぶ。次の自分のターンのはじめまで、そのシールドのカードすべてに「S・トリガー」を与える。\nカードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-085",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldTrigger1193"
+        },
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1193",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1192,
+    "phase": 1193,
     "checkedAt": "2026-11-14",
-    "baseCount": 7567,
+    "baseCount": 7570,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7570,
+    "totalCount": 7573,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -250609,6 +250695,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7567,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1192,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7567,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7570,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

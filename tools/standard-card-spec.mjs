@@ -2470,6 +2470,25 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1193&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm22-023'&&f.typeText==='呪文'&&
+   text==='S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)'+
+    'このターン自分のクリーチャーが破壊される時墓地に置かれるかわりにバトルゾーンにとどまる。'){
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'DestroyStay1193'}]};
+  }
+  if(['dm24ex4-090','promoy23-118'].includes(d.id)&&f.typeText==='クリーチャー'&&
+   text==='このクリーチャーの召喚コストを1少なくしてもよい。そうしたらこのクリーチャーが出た時このクリーチャーは自分のシールドを1つブレイクする。'+
+    'スピードアタッカー(このクリーチャーは召喚酔いしない)'){
+   return {speedAttacker:true,g212CountDiscount:{fixed:1,optional:true,entry:[
+    {op:'Break497',owner:'self',n:1,g747CreatureBreak:true,g913DepartedBreaker:true}
+   ]}};
+  }
+  if(d.id==='dmrp13-085'&&f.typeText==='呪文'&&
+   text==='自分のシールドを1つ選ぶ。次の自分のターンのはじめまでそのシールドのカードすべてに「S・トリガー」を与える。カードを1枚引く。'){
+   return {effect:'sixPhoto',g34Tasks:[{op:'ShieldTrigger1193'},{op:'Draw',n:1}]};
+  }
+ }
  if(phase>=1192&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmr23-004'&&text==='W・ブレイカー'+

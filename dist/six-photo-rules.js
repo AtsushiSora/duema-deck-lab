@@ -148,6 +148,7 @@ export function createSixPhotoRules(api){
  function countDiscountMax499(s,p,c){
   const t=c.g212CountDiscount;
   if(!t)return 0;
+  if(t.fixed!==undefined)return t.fixed;
   const owner=t.owner==='opponent'?1-p:p;
   if(t.g753AllMana)return s.players[owner].mana.length*t.amount;
   if(t.zone==='draws')return(s.players[owner].drawsThisTurn||0)*t.amount;
@@ -3724,6 +3725,14 @@ export function createSixPhotoRules(api){
    choice(s,t,card(source).name+'を手札から出す？',[opt('出す',true,20,source.cardId),skip()]);
   break;
  }
+ case'g34_DestroyStay1193':
+  (s.extLimits??=[]).push({kind:'g1193DestroyStay',player:t.p,expires:'end',who:s.active,
+   spellSource:t.source,spellCost:cost(card(t.source))});
+  break;
+ case'g34_ShieldTrigger1193':
+  if(own.shields.length)choice(s,t,'S・トリガーを与えるシールドを1つ選ぶ',
+   own.shields.map((x,i)=>opt('シールド'+(i+1),api.shieldGroup(x),10)));
+  break;
  case'g34_ShieldHand':put(s,{...t,op:'g55_ShieldHand'});break;
  case'g34_HandShield657':
   if(own.hand.length&&(t.afterAttempt||api.canAddShield(s,t.p)))choice(s,t,'シールド化する手札を1枚選ぶ（任意）',[
@@ -5722,6 +5731,13 @@ export function createSixPhotoRules(api){
    {...t,op:'g34_CrestDeployResult1030',target:target.uid,beforeEntry:target.incarnation||0});
   break;
  }
+ case'g34_ShieldTrigger1193':{
+  const root=api.findShield(own,v);
+  if(root)(s.extLimits??=[]).push({kind:'g1193ShieldTrigger',player:t.p,expires:'start',who:t.p,
+   refs:api.shieldCards(root).map(x=>({uid:x.uid,serial:x.zoneSerial||0})),
+   spellSource:t.source,spellCost:cost(card(t.source))});
+  break;
+ }
  case'g34_ShieldHandEntry1031':
   if(v)put(s,{...t,op:'g34_Put',origin:'hand',target:t.uid});
   break;
@@ -6563,7 +6579,13 @@ export function createSixPhotoRules(api){
  beginLoss(s,p,uid){const x=s.players[p].battle.find(x=>x.uid===uid);if(x)minoLoss(s,{op:'g34_Custom',name:'minoLoss',p,source:x.cardId,uid,selected:[]});},
  muku(s,p,x){return ninja(effective(x,s))?active(s,p,'mukujimmed').filter(y=>!used(s,'g34Muku',y)).map(y=>({uid:y.uid,key:key(y),cardId:y.cardId})):[];},
  useMuku(s,p,k){(s.g34Muku??={})[k]=s.turn;},
- shieldTrigger(s,p,x,c){if(race(c,'ドラゴン')&&s.players[p].battle.some(y=>!y.sealed&&card(y).g794DragonShieldTrigger&&cost(c)<=effective(y,s).g794DragonShieldTrigger))return true;if(c.type==='creature'&&mecha(c)&&cost(c)<=8&&active(s,p,'kuusoku').length)return true;const root=s.players[p].shields.find(r=>api.shieldCards(r).some(y=>y.uid===x.uid)),group=root&&api.shieldGroup(root);
+ destroyStay1193:(s,p)=>(s.extLimits||[]).some(l=>l.kind==='g1193DestroyStay'&&l.player===p&&
+  !api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})),
+ shieldTrigger(s,p,x,c){
+  if((s.extLimits||[]).some(l=>l.kind==='g1193ShieldTrigger'&&l.player===p&&
+   l.refs.some(r=>r.uid===x.uid&&r.serial===(x.zoneSerial||0))&&
+   !api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})))return true;
+  if(race(c,'ドラゴン')&&s.players[p].battle.some(y=>!y.sealed&&card(y).g794DragonShieldTrigger&&cost(c)<=effective(y,s).g794DragonShieldTrigger))return true;if(c.type==='creature'&&mecha(c)&&cost(c)<=8&&active(s,p,'kuusoku').length)return true;const root=s.players[p].shields.find(r=>api.shieldCards(r).some(y=>y.uid===x.uid)),group=root&&api.shieldGroup(root);
   if(root&&c.g876ShieldTriggerCondition&&ownCondition(s,p,c.g876ShieldTriggerCondition))return true;
   if(root&&c.type==='creature'&&c.g433SeedTrigger&&s.players[p].battle.some(y=>!y.sealed&&matches(s,p,y,{g295Tamaseed:true})))return true;return active(s,p,'fourJustice').length>0&&s.players[p].battle.some(y=>api.layers(y).some(z=>(z.exLifeShieldUids||[z.exLifeShieldUid]).includes(group)));},
  // Mana entry is independent of casting or battlefield entry (QA39403/39404).
