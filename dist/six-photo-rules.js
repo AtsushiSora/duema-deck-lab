@@ -1966,7 +1966,8 @@ export function createSixPhotoRules(api){
   if(selected.length>=max||!rows.length){finishReveal462(s,t,shown);return;}
   const seen=new Set(shown.flatMap(x=>faces(card(x)).flatMap(colors))),ready=t.needColors?.every(c=>seen.has(c));
   const score=x=>{if(t.g1111CostDraw){const viable=faces(card(x)).map(cost).filter(n=>n<own.deck.length);return viable.length?Math.max(...viable):-1000;}if(t.drawEach||t.rampEach)return shown.length+1>=own.deck.length?-1000:10;if(t.powerEach)return creatures(s,t.p).filter(y=>!y.sealed).length?8:0;if(t.needColors){const added=new Set(faces(card(x)).flatMap(colors));return t.needColors.filter(c=>!seen.has(c)&&added.has(c)).length*20-2;}if(t.defs?.some(d=>d.op==='Draw'||d.op==='Ramp'))return own.deck.length>1?10:-1000;return 5;};
-  choice(s,{...t,selected},'効果のために見せる手札を選ぶ（'+selected.length+'枚選択済み）',[...rows.map(x=>opt(card(x).name,x.uid,score(x),x.cardId)),...(t.g1111CostDraw?[]:[opt(selected.length?'この枚数で確定':'見せずに進む',null,ready?25:0)])]);
+  const allowDecline=!t.g1111CostDraw||t.optional;
+  choice(s,{...t,selected},'効果のために見せる手札を選ぶ（'+selected.length+'枚選択済み）',[...rows.map(x=>opt(card(x).name,x.uid,score(x),x.cardId)),...(allowDecline?[opt(selected.length?'この枚数で確定':'見せずに進む',null,ready?25:0)]:[])]);
  }
  function finishReveal462(s,t,shown){if(!shown.length){if(t.elseDefs)start(s,t,t.elseDefs);return;}for(const x of shown)api.log(s,t.p,'reveal',card(t.source).name+'で手札公開：'+card(x).name,{cardId:x.cardId,source:t.source});
   if(t.g1111CostDraw){
@@ -5075,11 +5076,14 @@ export function createSixPhotoRules(api){
  }
  case'g34_Repeat1052':start(s,t,Array.from({length:t.n},()=>t.def));break;
  case'g34_AndroBounce1253':
+ case'g34_DiscardCountBounce1254':{
   // Fix the distinct targets before applying their movement replacements (QA 32491).
+  const blockersOnly=t.op==='g34_AndroBounce1253';
   start(s,t,[{op:'Select',origin:'battle',anyOwner:true,n:t.n,to:'hand',toOwnerHand:true,
-   filter:{creature:true,blocker:true},g173Targets:true,g193Select:true,
-   title:'持ち主の手札に戻すブロッカーを選ぶ'}]);
+   filter:{creature:true,...(blockersOnly?{blocker:true}:{})},g173Targets:true,g193Select:true,
+   title:blockersOnly?'持ち主の手札に戻すブロッカーを選ぶ':'持ち主の手札に戻すクリーチャーを選ぶ'}]);
   break;
+ }
  case'g34_Scorpion614':scorpion614(s,t);break;
  case'g34_OverManaBottom590':{
   const owner=1-t.p;

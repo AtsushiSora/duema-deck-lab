@@ -2475,6 +2475,21 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1254&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm10-019'&&text===
+   '自分のサイバー・ウイルスをバトルゾーンに出した時自分の手札を2枚まで捨ててもよい。捨てたカード1枚につきクリーチャーを1体バトルゾーンから選び持ち主の手札に戻す。')
+   return {g251EntryDraw:{g1198EntryScope:true,filter:{creature:true,race:'サイバー・ウイルス'},
+    defs:[{op:'Discard',owner:'self',n:2,optional:true,afterDiscardCount:{op:'g34_DiscardCountBounce1254'}}]}};
+  if(d.id==='promoy18-087'&&text===
+   'このクリーチャーがバトルゾーンに出た時自分の手札を1枚相手に見せてもよい。そうしたらそのカードのコストと同じ枚数のカードを引く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'HandReveal462',max:1,g1111CostDraw:true,optional:true}]};
+  if(['dmd26-007','dmex18-056'].includes(d.id)&&
+   /^oSこのクリーチャーが攻撃する時カードを1枚引いてもよい。サバイバー\(自分のサバイバー(?:はすべて上のoS能力を持つ|すべてに上のoS能力を与える)\)$/.test(text)){
+   const grants={g34Attack:[{op:'Draw',n:1,optional:true}]};
+   return {...grants,g406Survivor:structuredClone(grants)};
+  }
+ }
  if(phase>=1253&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dm36-004'&&text===
