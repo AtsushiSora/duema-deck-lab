@@ -1291,6 +1291,13 @@ export function createSixPhotoRules(api){
   const c=x&&faces(api.zoneCard(s,t.p,x,'grave'))[t.face];
   return c?.type==='spell'&&api.canCast(s,t.p,c,'grave')?{x,c}:null;
  }
+ function topCreatureOrSpell1251(s,t,y){
+  return faces(api.zoneCard(s,t.p,y,'deck')).flatMap((c,face)=>{
+   if(c.type==='spell'&&api.canCast(s,t.p,c,'deck'))return [{c,face}];
+   if(c.type==='creature'&&canPut(s,t.p,y,'deck'))return [{c,face}];
+   return [];
+  });
+ }
  function recoverSameCreature713(s,t){
   const grave=s.players[t.p].grave;
   const selected=grave.find(x=>x.uid===t.rows?.[0]?.uid);
@@ -4404,6 +4411,15 @@ export function createSixPhotoRules(api){
   else if(!t.g878SpellBlue)choice(s,peek,'確認したカード',[opt('確認を終える',null,0)]);
   break;
  }
+ case'g34_RevealTopCreatureOrSpell1251':{
+  const [uid]=look(s,{...t,n:1,public:true}),y=own.deck.find(x=>x.uid===uid);
+  if(!y)break;
+  release(s,t.p,uid);
+  const options=topCreatureOrSpell1251(s,t,y).map(({c,face})=>opt(c.name+(c.type==='spell'?'を唱える':'を出す'),
+   face,own.deck.length===1?-1000:c.type==='spell'?spellScore555(s,t,c):12+cost(c),y.cardId));
+  if(options.length)choice(s,{...t,target:uid,serial:y.zoneSerial||0},'公開したカードを使う？',[...options,skip()]);
+  break;
+ }
  case'g34_MillHatch841':{
   const y=api.takeTop(s,t.p);
   if(y){clear(y,'grave');api.addZone(s,t.p,'grave',y);}
@@ -5404,6 +5420,15 @@ export function createSixPhotoRules(api){
   const c=y&&faces(api.zoneCard(s,t.p,y,'deck'))[v.face];
   if(c?.type==='spell'&&(t.g1242MaxCost===undefined||cost(c)<=t.g1242MaxCost)&&api.canCast(s,t.p,c,'deck'))
    cast(s,t.p,y.uid,true,null,v.face,null,'deck',t.g878SpellBlue||t.g1242MaxCost!==undefined?card(t.source).name:'スーパー・スペル・グレートブルー');
+  break;
+ }
+ case'g34_RevealTopCreatureOrSpell1251':{
+  if(v===null)break;
+  const y=own.deck.find(x=>x.uid===t.target&&(x.zoneSerial||0)===t.serial);
+  const selected=y&&topCreatureOrSpell1251(s,t,y).find(x=>x.face===v);
+  if(selected?.c.type==='spell')cast(s,t.p,y.uid,true,null,v,null,'deck',card(t.source).name);
+  else if(selected)put(s,{...t,op:'g34_Put',origin:'deck',target:y.uid,face:v},
+   {...t,op:'g34_RevealRelease514',ids:[]});
   break;
  }
  case'g34_SelfGraveBottom839':

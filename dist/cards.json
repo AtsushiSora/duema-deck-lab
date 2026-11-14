@@ -237351,15 +237351,122 @@
       ],
       "supportBatch": "phase-1250",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-s04",
+      "name": "龍装艦 ゴクガ・ロイザー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "ドラゴンギルド/ムートピア",
+      "text": "ブロッカーブロッカー\nこのクリーチャーがバトルゾーンに出た時、カードを２枚引く。\n呪文の効果によって相手がクリーチャーを選ぶ時、このクリーチャーは選ばれない。\n呪文を自分の手札から唱えた時、その呪文を、墓地からコストを支払わずに唱えてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-s04",
+      "limit": 4,
+      "blocker": true,
+      "spellUntargetable": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        }
+      ],
+      "g1245HandSpellRecast": true,
+      "supportBatch": "phase-1251",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp3-014",
+      "name": "海底の超人",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ジャイアント",
+      "text": "{STP} S・トリガー・プラス（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、このクリーチャーに{x+}能力を与える）\n{x+}このクリーチャーが出た時、自分の山札をシャッフルし、上から１枚目を表向きにする。それがクリーチャーなら出してもよい。呪文なら、コストを支払わずに唱えてもよい。\nブロッカーブロッカー\nこのクリーチャーが出た時、カードを３枚引き、その後、自分の手札を２枚、好きな順序で山札の上に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-014",
+      "limit": 4,
+      "triggerPlus": true,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Plus": [
+        {
+          "op": "Shuffle405"
+        },
+        {
+          "op": "RevealTopCreatureOrSpell1251"
+        }
+      ],
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 3
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 2,
+          "to": "deckTop",
+          "g183Return": true,
+          "title": "山札の上から戻す手札を順に2枚選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1251",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx23-021",
+      "name": "導子の精霊龍 ホーマ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "エンジェル・コマンド・ドラゴン/革命軍",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、カードを１枚引く。その後、光のコスト５以下の呪文を１枚、コストを支払わずに自分の手札から唱えてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx23-021",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "spellOnly": true,
+          "max": 5,
+          "spellColorsAny": [
+            "光"
+          ],
+          "g1244NoEmptyOffer": true
+        }
+      ],
+      "supportBatch": "phase-1251",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1250,
+    "phase": 1251,
     "checkedAt": "2026-11-14",
-    "baseCount": 7749,
+    "baseCount": 7752,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7752,
+    "totalCount": 7755,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -258648,6 +258755,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7749,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1250,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7749,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7752,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

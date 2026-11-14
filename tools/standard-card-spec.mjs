@@ -2475,6 +2475,29 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1251&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const blocker='ブロッカーブロッカー';
+  if(['dmrp05-s04','dmex18-s06'].includes(d.id)&&[
+   'このクリーチャーがバトルゾーンに出た時','このクリーチャーが出た時'
+  ].some(entry=>text===blocker+entry+'カードを2枚引く。'+
+   '呪文の効果によって相手がクリーチャーを選ぶ時このクリーチャーは選ばれない。'+
+   '呪文を自分の手札から唱えた時その呪文を墓地からコストを支払わずに唱えてもよい。'))
+   return {blocker:true,spellUntargetable:true,effect:'sixPhoto',g34Tasks:[{op:'Draw',n:2}],g1245HandSpellRecast:true};
+  if(['dm23rp3-014','promoy22-043'].includes(d.id)&&text===
+   '{STP}S・トリガー・プラス(このクリーチャーを自分のシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい。'+
+   'それが相手のターンでそのターン中に自分のシールドが2つ以上ブレイクされていればこのクリーチャーに{x+}能力を与える)'+
+   '{x+}このクリーチャーが出た時自分の山札をシャッフルし上から1枚目を表向きにする。'+
+   'それがクリーチャーなら出してもよい。呪文ならコストを支払わずに唱えてもよい。'+blocker+
+   'このクリーチャーが出た時カードを3枚引きその後自分の手札を2枚好きな順序で山札の上に置く。')
+   return {triggerPlus:true,blocker:true,effect:'sixPhoto',
+    g34Plus:[{op:'Shuffle405'},{op:'RevealTopCreatureOrSpell1251'}],g34Tasks:[{op:'Draw',n:3},
+     {op:'Select',origin:'hand',n:2,to:'deckTop',g183Return:true,title:'山札の上から戻す手札を順に2枚選ぶ'}]};
+  if(['dmx23-021','dmex04-038'].includes(d.id)&&
+   /^W・ブレイカー\(このクリーチャーはシールドを2つブレイクする\)このクリーチャーがバトルゾーンに出た時カードを1枚引く。その後光のコスト5以下の呪文を1枚(?:自分の手札からコストを支払わずに|コストを支払わずに自分の手札から)唱えてもよい。$/.test(text))
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'Draw',n:1},
+    {op:'Execute',origin:'hand',spellOnly:true,max:5,spellColorsAny:['光'],g1244NoEmptyOffer:true}]};
+ }
  if(phase>=1250&&d?.status==='complete'){
   const text=normalize(f.abilityText);
   if(d.id==='dmex18-018'&&d.faces.length===2&&f.typeText==='呪文'&&text===
