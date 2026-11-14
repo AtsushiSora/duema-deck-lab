@@ -282,7 +282,8 @@ export function manualBoardHTML(s,ui,{art,icon}){
  if(momoActive(s))policies.push('モモムゲン：両者の多色ではないクリーチャー能力・呪文効果を無視');
  if(genmuActive(s))policies.push('ゲンム：両者のコスト5以下のクリーチャー能力・呪文効果を無視');
  for(const who of [0,1]){
-  if(s.players[1-who].battle.some(x=>effectiveCard(x,s).selfEntrySilence))policies.push(`${who?'相手':'自分'}のクリーチャー自身の登場時能力はキーナリーによりトリガーしない`);
+  const entrySilencer=s.players[1-who].battle.map(x=>effectiveCard(x,s)).find(c=>c.selfEntrySilence);
+  if(entrySilencer)policies.push(`${who?'相手':'自分'}のクリーチャー自身の登場時能力は${entrySilencer.name}によりトリガーしない`);
   if(s.players[who].battle.some(x=>effectiveCard(x,s).watch))policies.push(`${who?'相手':'自分'}のジ・ウォッチ：相手のクリーチャー登場・呪文使用後にターンを飛ばせる`);
   if(s.players[who].battle.some(x=>effectiveCard(x,s).dragonOnlyEntry))policies.push('ドラゴ大王：両者のドラゴンではないクリーチャーは出るかわりに墓地へ');
   if(s.players[who].battle.some(x=>effectiveCard(x,s).savakGuard))policies.push(`${who?'相手':'自分'}はサッヴァークで表向きのシールドカード1枚を墓地へ置き、クリーチャーを残せる`);

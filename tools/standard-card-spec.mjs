@@ -2475,6 +2475,21 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1275&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const lines=f.abilityText.split('\n').map(normalize);
+  if(['dmrp19-031','dm26ex4-CHO040'].includes(d.id)&&lines.length===2&&
+   lines[0]==='相手が自身のマナゾーンのカードの枚数よりコストが大きいクリーチャーを出した時相手はそのクリーチャーを山札の下に置く。'&&
+   (d.id==='dm26ex4-CHO040'?lines[1]==='ササゲール1':
+    lines[1]==='ササゲール1(ディスペクターを召喚する時コストを1少なくしてもよい。そうしたらこのクリーチャーを破壊する。そのディスペクターのコストは0以下にはならない)'))
+   return {sasage:1,g314OtherEntry:{who:'opponent',filter:{creature:true},g1088EntrantOverMana:true,g1088Bottom:true,g1275FollowEntrant:true}};
+  if(['dmrp17-033','dm23rp4-T06','dm23rp4x-TF06'].includes(d.id)&&lines.length===2&&
+   lines[0]==='{GS}G・ストライク(このクリーチャーを自分のシールドゾーンから手札に加える時相手に見せ相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)'&&
+   lines[1]==='誰も手札以外からカードを出せない。')
+   return {gStrike:true,g1275HandOnly:true};
+  if(['dmr13-s05','dmbd05-004','dmbd18-se04'].includes(d.id)&&lines.length===2&&keyword(lines[0],'ワールド・ブレイカー')&&
+   /^相手のクリーチャーが(?:バトルゾーンに)?出てそのクリーチャーの能力がトリガーする時かわりにその能力はトリガーしない。\(例えば相手は「このクリーチャー(?:をバトルゾーンに出した|が(?:バトルゾーンに)?出た)時」で始まる能力を使えない\)$/.test(lines[1].replace('出てその能力','出てそのクリーチャーの能力')))
+   return {breaker:'∞',worldBreaker:true,selfEntrySilence:true,g1275Brakkio:true};
+ }
  if(phase>=1274&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const lines=f.abilityText.split('\n').map(normalize);
   if(['dmr20-003','dmex12-002','dm25ex2-Cho016'].includes(d.id)&&lines.length===2&&

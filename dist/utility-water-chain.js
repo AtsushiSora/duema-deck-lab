@@ -51,7 +51,7 @@ export function createUtilityWaterChain(api){
  default:throw Error('未実装の水の連鎖・補充選択：'+t.op);
  }return true;}
  return{run,chosen,effect(s,p,c,uid,entry){if(!c.g84Effect)return false;const ref={uid,incarnation:entry?.incarnation??s.players[p].battle.find(x=>x.uid===uid)?.incarnation??0},root=s.players[p].battle.find(x=>self(x,ref)),max=root?effective(root,s).cost:entry?.lastKnownCost??c.cost;put(s,task('g84_'+c.g84Effect,p,c.id,{...ref,max,...(c.g865PublicChain?{publicLook:true}:{}),...(c.g1243ChainPeek?{singlePeek:true}:{})}));return true;},
- entry(s,p,x,o){if(!api.isCreature(s,x)||o.selfMuted||api.selfStopped(s,p))return;for(const y of living(s,p)){
+ entry(s,p,x,o){if(!api.isCreature(s,x)||o.allEntryMuted||api.selfStopped(s,p))return;for(const y of living(s,p)){
   const c=effective(y,s);if(c.g84Jester&&s.active===p&&s.players[p].enteredThisTurn===2)api.enqueue(s,p,{uid:y.uid,incarnation:y.incarnation||0,source:y.cardId,effect:'extended',task:task('g34_Draw',p,y.cardId,{n:1,optional:true})});
   if(c.g84Irons&&y.uid!==x.uid&&colors(effective(x,s)).includes('水'))api.enqueue(s,p,{uid:y.uid,incarnation:y.incarnation||0,source:y.cardId,effect:'extended',task:task('g84_Irons',p,y.cardId,{uid:y.uid,incarnation:y.incarnation||0})});
  }} };

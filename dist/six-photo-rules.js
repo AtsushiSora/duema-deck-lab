@@ -7969,7 +7969,10 @@ export function createSixPhotoRules(api){
     });
    }
    else if(watch.g1088Bottom)send(s,owner,x,'ExactMove',{
-    target:y.uid,targetIncarnation:y.incarnation||0,to:'deck',g1088OwnerMoves:true
+    target:y.uid,targetIncarnation:y.incarnation||0,to:'deck',g1088OwnerMoves:true,
+    // The creature remains the same when an evolution is placed on it (QA40249).
+    ...(watch.g1275FollowEntrant?{g403Refs:[{uid:y.uid,incarnation:y.incarnation||0}],followEvolution:'evolutionOnly',
+     filter:{creature:true}}:{})
    });
    else if(watch.g765CopyPower)send(s,owner,x,'CopyPower765',{g765Subject:{uid:y.uid,incarnation:y.incarnation||0}});
    else queue(s,owner,x,watch.defs);

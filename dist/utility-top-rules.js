@@ -8,7 +8,7 @@ export function createUtilityTopRules(api){
  const available=own=>{const skip=held(own);return own.deck.filter(x=>!skip.has(x.uid));};
  const queue=(s,t,op,more={})=>put(s,{...t,op:'g63_'+op,...more});
  function look(s,t,n){const xs=available(s.players[t.p]).slice(0,api.lookCount(s,t.p,n));if(!xs.length)return;(s.players[t.p].g34Protected??=[]).push(...xs.map(x=>x.uid));api.log(s,t.p,api.lookPublic(s,t.p)?'reveal':'look',card(t.source).name+'：山札の上'+xs.length+'枚を確認'+(api.lookPublic(s,t.p)?'：'+xs.map(x=>card(x).name).join('・'):''),{cardId:t.source});queue(s,t,'Order',{ids:xs.map(x=>x.uid),ordered:[]});}
- function watch(s,p,x,o){if(!api.isCreature(s,x))return;for(const q of[0,1]){if(q===p&&(o.selfMuted||api.selfStopped(s,p)))continue;for(const y of active(s,q,'g63Mist'))if(y.uid!==x.uid)api.enqueue(s,q,{uid:y.uid,incarnation:y.incarnation||0,source:y.cardId,effect:'extended',task:task('g34_Draw',q,y.cardId,{n:1,optional:true,uid:y.uid,incarnation:y.incarnation||0})});}}
+ function watch(s,p,x,o){if(!api.isCreature(s,x))return;for(const q of[0,1]){if(q===p&&(o.allEntryMuted||api.selfStopped(s,p)))continue;for(const y of active(s,q,'g63Mist'))if(y.uid!==x.uid)api.enqueue(s,q,{uid:y.uid,incarnation:y.incarnation||0,source:y.cardId,effect:'extended',task:task('g34_Draw',q,y.cardId,{n:1,optional:true,uid:y.uid,incarnation:y.incarnation||0})});}}
  function run(s,t){if(!t.op.startsWith('g63_'))return false;const own=s.players[t.p];switch(t.op){
  case'g63_Analyze':{const n=Math.min(5,available(own).length,api.lookCount(s,t.p,5));if(n)choice(s,t,'見る枚数を選ぶ（上から5枚まで）',Array.from({length:n+1},(_,n)=>opt(n+'枚を見る',n,n)));break;}
  case'g63_Synapse':look(s,t,4);break;
@@ -21,7 +21,7 @@ export function createUtilityTopRules(api){
  effect(s,p,c,uid){if(!c.g63Effect)return false;put(s,task('g63_'+c.g63Effect,p,c.id,{uid}));return true;},
  rupias:(s,p,c)=>dragon(c)?active(s,p,'g63Rupia').length:0,
  decorate(s,p,x,c){return dragon(c)&&[0,1].some(q=>active(s,q,'g63Citta').length)?{...c,attackUntapped:true}:c;},
- entry(s,p,x,o){if(s.g25DeployBatch||s.g32DeployBatch||s.g34DeployBatch){(s.g63Entries??=[]).push({p,uid:x.uid,incarnation:x.incarnation||0,selfMuted:!!o.selfMuted});}else watch(s,p,x,o);},
- flush(s){if(!s.g63Entries?.length)return;const events=s.g63Entries;delete s.g63Entries;for(const r of events){const x=s.players[r.p].battle.find(x=>x.uid===r.uid&&(x.incarnation||0)===r.incarnation);if(x)watch(s,r.p,x,{selfMuted:r.selfMuted||s.players[1-r.p].battle.some(y=>api.effective(y,s).entrySilence)});}}
+ entry(s,p,x,o){if(s.g25DeployBatch||s.g32DeployBatch||s.g34DeployBatch){(s.g63Entries??=[]).push({p,uid:x.uid,incarnation:x.incarnation||0,selfMuted:!!o.allEntryMuted});}else watch(s,p,x,o);},
+ flush(s){if(!s.g63Entries?.length)return;const events=s.g63Entries;delete s.g63Entries;for(const r of events){const x=s.players[r.p].battle.find(x=>x.uid===r.uid&&(x.incarnation||0)===r.incarnation);if(x)watch(s,r.p,x,{allEntryMuted:r.selfMuted||s.players[1-r.p].battle.some(y=>api.effective(y,s).entrySilence)});}}
  };
 }
