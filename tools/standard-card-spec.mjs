@@ -2470,6 +2470,24 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1242&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmrp07-017'&&f.typeText==='呪文'&&text===
+   'S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)'+
+   '自分の山札をシャッフルしその後上から1枚目を見る。それがコスト7以下の呪文ならコストを支払わずに唱えてもよい。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Shuffle405'},{op:'LookSpell841',g1242MaxCost:7}]};
+  if(['dmrp06-s07','dmbd22-017'].includes(d.id)&&f.typeText==='クリーチャー'&&
+   text==='このクリーチャーが攻撃する時相手は自身の手札を1枚選んで捨てる。'+
+    '相手が「S・トリガー」を持つカードを使った時このクリーチャーを破壊する。'+
+    (d.id==='dmrp06-s07'?'自分のターンの終わりに相手のクリーチャーがバトルゾーンに1体もなければこのクリーチャーを自分の墓地からバトルゾーンに出す。':
+     '自分のターンの終わりに相手のクリーチャーが1体もなければこのクリーチャーを自分の墓地から出す。'))
+   return {g34Attack:[{op:'Discard',n:1}],g1242TriggerUseWatch:true,g971GraveDeployEnd:{
+    g1242NoEnemyCreatures:true,g1242Mandatory:true
+   }};
+  if(d.id==='dm18-135'&&f.typeText==='クリーチャー'&&text===
+   'このクリーチャーが破壊される時墓地に置くかわりに自分のマナゾーンに置く。')
+   return {g1242SelfMana:true};
+ }
  if(phase>=1241&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText),discard={op:'DiscardFor248',g770DiscardAttempt:true,defs:[]};
   if(d.id==='dmrp06-081'&&text===

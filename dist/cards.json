@@ -236500,15 +236500,92 @@
       "g842DestroyShield": true,
       "supportBatch": "phase-1241",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-017",
+      "name": "ウォーター・イン・ザ・ダーク",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札をシャッフルし、その後、上から１枚目を見る。それがコスト７以下の呪文なら、コストを支払わずに唱えてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-017",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Shuffle405"
+        },
+        {
+          "op": "LookSpell841",
+          "g1242MaxCost": 7
+        }
+      ],
+      "supportBatch": "phase-1242",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-s07",
+      "name": "ビックリーノ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "マフィ・ギャング/スペシャルズ",
+      "text": "このクリーチャーが攻撃する時、相手は自身の手札を１枚選んで捨てる。\n相手が「S・トリガー」を持つカードを使った時、このクリーチャーを破壊する。\n自分のターンの終わりに、相手のクリーチャーがバトルゾーンに１体もなければ、このクリーチャーを自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-s07",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Discard",
+          "n": 1
+        }
+      ],
+      "g1242TriggerUseWatch": true,
+      "g971GraveDeployEnd": {
+        "g1242NoEnemyCreatures": true,
+        "g1242Mandatory": true
+      },
+      "supportBatch": "phase-1242",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm18-135",
+      "name": "無敵の咆哮(マイティ・シャウター)",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ビーストフォーク",
+      "text": "このクリーチャーが破壊される時、墓地に置くかわりに自分のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm18-135",
+      "limit": 4,
+      "g1242SelfMana": true,
+      "supportBatch": "phase-1242",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1241,
+    "phase": 1242,
     "checkedAt": "2026-11-14",
-    "baseCount": 7721,
-    "newEffectCards": 4,
+    "baseCount": 7725,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7725,
+    "totalCount": 7728,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -257689,6 +257766,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7721,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1241,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7721,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7725,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

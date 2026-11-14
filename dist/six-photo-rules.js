@@ -601,6 +601,7 @@ export function createSixPhotoRules(api){
    const candidates=allies.filter(x=>colors(effective(x,s)).includes(first));
    return allies.some(x=>colors(effective(x,s)).includes(second)&&candidates.some(y=>y.uid!==x.uid));
   }
+  if(f.g1242NoEnemyCreatures)return !creatures(s,1-p).some(x=>!x.sealed);
   if(f.g985NoUntappedOpponent)return !creatures(s,1-p).some(x=>!x.sealed&&!x.tapped);
   if(f.g1050OpponentDestroyed!==undefined)return s.g393DDestroyed?.turn===s.turn&&
    (s.g393DDestroyed.byPlayer?.[1-p]||0)>=f.g1050OpponentDestroyed;
@@ -2452,6 +2453,10 @@ export function createSixPhotoRules(api){
    break;
   }
   if(!api.canMoveZone(s,t.p,'grave')||t.condition&&!ownCondition(s,t.p,t.condition))break;
+  if(t.deploy&&t.condition?.g1242Mandatory){
+   doPut(s,{...t,owner:t.p,origin:'grave',target:y.uid});
+   break;
+  }
   if(t.condition?.g1050MandatoryGraveReturn){zoneMove(s,t.p,'grave',y.uid,'hand',t);break;}
   if(t.deploy&&!canPut(s,t.p,y,'grave'))break;
   if(t.colors?.length){
@@ -4294,7 +4299,8 @@ export function createSixPhotoRules(api){
    api.deckCheck(s,t.p);
    break;
   }
-  const options=revealedFaces.flatMap((c,face)=>c.type==='spell'&&api.canCast(s,t.p,c,'deck')
+  const options=revealedFaces.flatMap((c,face)=>c.type==='spell'&&
+   (t.g1242MaxCost===undefined||cost(c)<=t.g1242MaxCost)&&api.canCast(s,t.p,c,'deck')
    ?[opt(c.name+'を唱える',{uid,face,serial:y.zoneSerial||0},own.deck.length===1?-1000:spellScore555(s,t,c),y.cardId)]:[]);
   const peek={...t,g585Peek:[{id:y.cardId,label:'自分の山札の上'}]};
   if(options.length)choice(s,peek,'確認したカードの呪文を唱える？',[...options,skip()]);
@@ -5258,7 +5264,8 @@ export function createSixPhotoRules(api){
  case'g34_LookSpell841':{
   const y=v&&own.deck.find(x=>x.uid===v.uid&&(x.zoneSerial||0)===v.serial);
   const c=y&&faces(api.zoneCard(s,t.p,y,'deck'))[v.face];
-  if(c?.type==='spell'&&api.canCast(s,t.p,c,'deck'))cast(s,t.p,y.uid,true,null,v.face,null,'deck',t.g878SpellBlue?card(t.source).name:'スーパー・スペル・グレートブルー');
+  if(c?.type==='spell'&&(t.g1242MaxCost===undefined||cost(c)<=t.g1242MaxCost)&&api.canCast(s,t.p,c,'deck'))
+   cast(s,t.p,y.uid,true,null,v.face,null,'deck',t.g878SpellBlue||t.g1242MaxCost!==undefined?card(t.source).name:'スーパー・スペル・グレートブルー');
   break;
  }
  case'g34_SelfGraveBottom839':
@@ -7160,6 +7167,12 @@ export function createSixPhotoRules(api){
     api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',
      task:task('g34_Target',executor,x.cardId,{owner:'self',to:'grave',controller:p,title:'百発人形マグナム：破壊する自分のクリーチャーを1体選ぶ'})});
   }
+ },
+ triggerCardUsed1242(s,p,c,granted=false){
+  if(!granted&&!c.trigger&&!c.triggerPlus&&!c.superTrigger)return;
+  for(const x of s.players[1-p].battle)
+   if(!x.sealed&&card(x).g1242TriggerUseWatch&&api.isCreature(s,x)&&effective(x,s).g1242TriggerUseWatch)
+    queue(s,1-p,x,[{op:'SelfDestroy'}]);
  },
  execution1088(s,p){
   const enemy=1-p;
