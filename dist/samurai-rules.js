@@ -165,9 +165,10 @@ export function createSamuraiRules(api){
   let speed=false,blocker=false,slayers=0,attackBonus=0;
   for(const owner of [p,1-p])for(const g of s.players[owner].battle){
    const def=card(g);
-   if((!def.g932UncrossedSpeed&&!def.g932UncrossedSlayer&&!def.g945CrossBlocker)||g.faceDown||!active(s,g))continue;
+   if((!def.g932UncrossedSpeed&&!def.g932UncrossedSlayer&&!def.g945CrossBlocker&&!def.g1312CrossSpeed)||g.faceDown||!active(s,g))continue;
    const host=live(s,owner,g);
    if(def.g945CrossBlocker&&owner===p&&host===x)blocker=true;
+   if(def.g1312CrossSpeed&&owner===p&&host===x)speed=true;
    if(!host){speed||=!!def.g932UncrossedSpeed;slayers+=Number(!!def.g932UncrossedSlayer);}
    else if(owner===p&&host.uid===x.uid&&(host.incarnation||0)===(x.incarnation||0))attackBonus+=def.g932CrossAttackBonus||0;
   }
@@ -191,6 +192,10 @@ export function createSamuraiRules(api){
  uncrossedBreakCap(s){
   return s.players.some((own,p)=>own.battle.some(g=>card(g).g1231UncrossedBreakCap&&
    !g.faceDown&&active(s,g)&&!live(s,p,g)));
+ },
+ bushidoDestroyStay(s,p,x){
+  const crossed=attached(s,p,x).filter(g=>!g.faceDown);
+  return crossed.some(g=>card(g).g1312KamikazeStay&&active(s,g))&&crossed.some(g=>g.cardId==='dmc45-009');
  },
  crossDestroyShield(s,p,x){
   return !x.sealed&&attached(s,p,x).some(g=>card(g).g1231CrossShield&&!g.faceDown&&active(s,g));
@@ -227,7 +232,9 @@ export function createSamuraiRules(api){
    if(!active(s,g))continue;
    const gear=card(g);
    if(gear.doss)on(s,p,g,'g18_Mekraid');
-   if(gear.g931CrossAttack&&!g.faceDown)on(s,p,g,'g34_Sequence',{defs:gear.g931CrossAttack});
+   if(gear.g931CrossAttack&&!g.faceDown)on(s,p,g,'g34_Sequence',{defs:gear.g931CrossAttack,
+    ...(gear.g931CrossAttack.some(d=>d.g828CompareAttacker)?{g399Attacker:{uid:x.uid,incarnation:x.incarnation||0}}:{})
+   });
    if(gear.g930CrossAttack)on(s,p,g,'g34_Offer',{
     title:'山札の上から4枚を見る？',defs:gear.g930CrossAttack,score:s.players[p].deck.length>1?10:-1000
    });
@@ -250,7 +257,9 @@ export function createSamuraiRules(api){
    const gear=card(g),host=identity(s,p,x,card(x)),existing=!!live(s,p,g),free=active(s,g)&&freeCross(gear,host);
    const hostFree=host.g946FreeCross&&!x.sealed&&active(s,x)&&!g.sealed&&!g.faceDown;
    const base=free?0:api.summonCost(s,p,crossPayment(g));
-   const max=free||!host.g933CrossDiscount||!active(s,x)||noReduce(s,p)?0:Math.min(host.g933CrossDiscount,base-1);
+   const hostDiscount=active(s,x)?host.g933CrossDiscount||0:0;
+   const gearDiscount=gear.g1312SamuraiCrossDiscount&&!g.faceDown&&active(s,g)&&samurai(effective(x,s))?gear.g1312SamuraiCrossDiscount:0;
+   const max=free||noReduce(s,p)?0:Math.min(hostDiscount+gearDiscount,base-1);
    const score=gear.g125CrossUnblock?(existing?-30:attached(s,p,x).some(y=>card(y).g125CrossUnblock&&active(s,y))?5:35)+(x.tapped?-10:0):
     gear.g119Petro?(existing||attached(s,p,x).some(y=>card(y).g119Petro&&active(s,y))?-30:40+Math.min(cost(host),12)*3):
     existing?-30:gear.zangeki&&(dragon(host)||samurai(host))?70:gear.doss?30:10;
@@ -258,7 +267,7 @@ export function createSamuraiRules(api){
     out.push({kind:'crossGear',uid:g.uid,cardId:g.cardId,target:x.uid,cost:0,free:true,
      score:score+(!existing&&x.entered<s.turn&&!x.tapped?4:0)+1,
      label:gear.name+' → '+host.name+'にクロス（無料）'});
-   const minimum=host.g1311MandatoryCrossDiscount?max:0;
+   const minimum=host.g1311MandatoryCrossDiscount?Math.min(hostDiscount,max):0;
    for(let reduction=minimum;reduction<=max;reduction++){
     const payment=crossPayment(g,reduction);
     if(!free&&!api.canPay(s,p,payment))continue;

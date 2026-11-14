@@ -2475,6 +2475,26 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1312&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmc45-008'&&f.typeText==='クロスギア'&&text===
+   'クロスギアこのカードをサムライ・クリーチャーにクロスする時そのコストを最大2少なくしてもよい。ただしコストは1より少なくならない。これをクロスしたクリーチャーは「スピードアタッカー」を得る。これと《雷刃ブシドー・スピリット》をクロスしたクリーチャーが《雷刃ブシドー・スピリット》の能力で破壊される時そのクリーチャーは墓地に置かれるかわりにバトルゾーンにとどまる。')
+   return {type:'gear',g1312SamuraiCrossDiscount:2,g1312CrossSpeed:true,g1312KamikazeStay:true};
+  if(d.id==='dmc45-009'&&f.typeText==='クロスギア'&&text===
+   'クロスギアこのカードをサムライ・クリーチャーにクロスする時そのコストを1少なくしてもよい。ただしコストは1より少なくならない。これをクロスしたクリーチャーが攻撃する時そのクリーチャーよりパワーが小さい相手のクリーチャーを1体破壊してもよい。そうした場合これをクロスしたクリーチャーを破壊する。')
+   return {type:'gear',g1312SamuraiCrossDiscount:1,g931CrossAttack:[
+    {op:'TargetBelowSource692',to:'grave',optional:true,g199Power:true,g828CompareAttacker:true,g1312Bushido:true}
+   ]};
+  if(d.id==='dm26-016'&&f.typeText==='クリーチャー'&&text===
+   'マナゾーンに置く時このカードはタップして置く。多色呪文が唱えられた時または他の多色クリーチャーがバトルゾーンに出た時カードを1枚引いてもよい。'){
+   const defs=[{op:'Draw',n:1,optional:true}];
+   return {g204SpellWatch:{who:'both',multicolor:true,defs},g314OtherEntry:{who:'both',filter:{multicolor:true},defs}};
+  }
+  if(d.id==='dmex13-016'&&f.typeText==='クリーチャー'&&text===
+   'このクリーチャーがバトルゾーンに出た時相手のパワー6000以下のクリーチャーを1体選び持ち主の手札に戻す。その後そのクリーチャーよりコストが小さいクリーチャーを1体自分の墓地からバトルゾーンに出す。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',to:'hand',toOwnerHand:true,g882DeployBelowCost:'grave',
+    filter:{maxPower:6000,g199Power:true},title:'持ち主の手札に戻す相手のクリーチャーを選ぶ'}]};
+ }
  if(phase>=1311&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.name==='インフィニティ・刃隠・ドラゴン'&&

@@ -389,6 +389,7 @@ export function createSixPhotoRules(api){
   if(f.g939ShieldForce&&(api.ignored(s,x)||!effective(x,s).g1304ShieldForce&&!hasCopiedRole393(card(x),'g35Role','galaxy')))return false;
   if(f.g951ManaCivilizationCost&&cost(effective(x,s))>manaCivilizationCount(s,p))return false;
   const c=api.zoneCard(s,p,x),d=s.players[p].battle.includes(x)?effective(x,s):c;
+  if(f.multicolor&&colors(d).length<2)return false;
   if(f.g990PrintedNoAbilities){
    const printed=card(x).text;
    if(typeof printed!=='string')return false;
@@ -3565,6 +3566,12 @@ export function createSixPhotoRules(api){
   }
   break;
  }
+ case'g34_BushidoDestroyHost1312':{
+  const host=sourceHost474(s,t.g399Attacker);
+  if(host&&!host.x.sealed&&api.isCreature(s,host.x))
+   move(s,[{player:host.p,uid:host.x.uid,to:'grave',destroy:true,controller:t.p,g1312Bushido:true}]);
+  break;
+ }
  case'g34_ShieldPlus414':put(s,{...t,op:'g71_Plus',optional:true});break;
  case'g34_MedusaCross929':{
   if(!remainingGears929(s,t).length)break;
@@ -5444,7 +5451,7 @@ export function createSixPhotoRules(api){
     g173Targets:true,g193Select:true,filter:{creature:true,...filter},
     title:'パワーが小さい相手のクリーチャーを'+t.n+'体まで選ぶ'}]);
    else start(s,t,[{op:'Target',to:t.to,optional:t.optional,...(t.anyOwner?{anyOwner:true}:{}),
-    ...(t.g179Other?{g179Other:true}:{}),filter}]);
+    ...(t.g179Other?{g179Other:true}:{}),...(t.g1312Bushido?{g1312Bushido:true}:{}),filter}]);
   }
   break;
  }
@@ -7136,14 +7143,22 @@ export function createSixPhotoRules(api){
      ...(t.g983FirstTapThisTurn?{spellCost:cost(faces(card(t.source)).at(-1))}:{})});
    break;
   }
+  if(t.g1312Bushido){
+   const y=v&&s.players[v.p].battle.find(x=>x.uid===v.uid);
+   if(!y)break;
+   move(s,[{player:v.p,uid:y.uid,to:'grave',destroy:true,controller:t.p,g1312Bushido:true}]);
+   start(s,t,[{op:'BushidoDestroyHost1312'}]);
+   break;
+  }
   if(t.g882DeployBelowCost){
    const y=v&&s.players[v.p].battle.find(x=>x.uid===v.uid);
    if(!y)break;
    // The chosen creature supplies the cost even if its return is replaced.
    const limit=cost(effective(y,s));
-   move(s,[{player:v.p,uid:y.uid,to:'hand',destroy:false,controller:t.p}]);
-   start(s,t,[{op:'Select',origin:'hand',n:1,deploy:true,optional:true,
-    filter:{creature:true,belowCost:limit===Infinity?'∞':limit}}]);
+   const fromGrave=t.g882DeployBelowCost==='grave';
+   move(s,[{player:v.p,uid:y.uid,to:'hand',destroy:false,controller:t.p,...(t.toOwnerHand?{toOwnerHand:true}:{})}]);
+   start(s,t,[{op:'Select',origin:fromGrave?'grave':'hand',n:1,deploy:true,optional:!fromGrave,
+    ...(fromGrave?{g236GraveDeploy:true}:{}),filter:{creature:true,belowCost:limit===Infinity?'∞':limit}}]);
    break;
   }
   if(t.g882TapBelowPower){
