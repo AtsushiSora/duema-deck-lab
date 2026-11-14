@@ -2475,6 +2475,32 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1264&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
+  const lines=f.abilityText.split('\n').map(normalize);
+  const trigger=lines[0]==='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+  const strike=lines[0]==='{GS}G・ストライク(この呪文を自分のシールドゾーンから手札に加える時相手に見せ相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)';
+  const tap={op:'Select',origin:'battle',g193Select:true,g193Tap:true,filter:{creature:true},spell:true};
+  if(d.id==='dmrp20-075'&&trigger&&lines.length===2&&
+   lines[1]==='自分の山札の上から1枚目を墓地に置きその後相手のクリーチャーを1体選ぶ。このターン自分の墓地にあるカード1枚につきそのクリーチャーのパワーを-1000する。(パワー0以下のクリーチャーは破壊される)')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Mill',n:1},{op:'CountTarget544',zone:'grave',amount:-1000,
+    def:{op:'Target',spell:true,g242PowerMinus:true}}]};
+  if(d.id==='dmrp20-064'&&trigger&&lines.length===3&&lines[1]==='自分のクリーチャーを好きな数タップする。'&&
+   lines[2]==='バトルゾーンにある自分のタップしているクリーチャー1体につき相手のクリーチャーを1体選びタップする。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[
+    {...tap,owner:'self',n:'all',optional:true,filter:{creature:true,untapped:true},title:'タップする自分のクリーチャーを選ぶ（任意）'},
+    {op:'CountOwn538',filter:{creature:true,tapped:true},mode:'select',
+     def:{...tap,owner:'opponent',g173Targets:true,title:'タップする相手のクリーチャーを選ぶ'}}
+   ]};
+  if(d.id==='dmrp20-063'&&strike&&lines.length===2&&
+   lines[1]==='自分の山札の上から4枚を見る。その中から「ブロッカー」を持つクリーチャーを好きな数相手に見せ手札に加えてもよい。残りを好きな順序で山札の下に置く。')
+   return {gStrike:true,effect:'sixPhoto',g34Tasks:[{op:'Look',n:4,g841DeckPeek:true,rest:'bottom',g255Distribute:true,g791OrderRest:true,
+    stages:[{n:'all',to:'hand',filter:{creature:true,blocker:true},optional:true,reveal:true}]}]};
+  if(d.id==='dmrp20-090'&&strike&&lines.length===2&&
+   lines[1]==='自分の山札の上から4枚を表向きにする。その中からパワー6000以上のクリーチャーを1体とパワー5000以下のクリーチャーを1体手札に加え残りを好きな順序で山札の下に置く。')
+   return {gStrike:true,effect:'sixPhoto',g34Tasks:[{op:'Look',n:4,public:true,rest:'bottom',g255Distribute:true,g791OrderRest:true,
+    stages:[{n:1,to:'hand',filter:{creature:true,g1264RevealedMin:6000}},
+     {n:1,to:'hand',filter:{creature:true,g1264RevealedMax:5000}}]}]};
+ }
  if(phase>=1263&&d?.status==='complete'&&d.faces.length===1){
   const lines=f.abilityText.split('\n').map(normalize);
   if(d.id==='dm17-s02'&&f.typeText==='進化クリーチャー'&&lines.length===3&&

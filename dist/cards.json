@@ -238603,15 +238603,199 @@
       ],
       "supportBatch": "phase-1263",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-075",
+      "name": "魔弾ルナンド・ストライク",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "ナイト",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から１枚目を墓地に置き、その後、相手のクリーチャーを１体選ぶ。このターン、自分の墓地にあるカード１枚につき、そのクリーチャーのパワーを－1000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-075",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 1
+        },
+        {
+          "op": "CountTarget544",
+          "zone": "grave",
+          "amount": -1000,
+          "def": {
+            "op": "Target",
+            "spell": true,
+            "g242PowerMinus": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1264",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-064",
+      "name": "コルテオ・スパーク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを好きな数、タップする。\nバトルゾーンにある自分のタップしているクリーチャー１体につき、相手のクリーチャーを１体選びタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-064",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "g193Select": true,
+          "g193Tap": true,
+          "filter": {
+            "creature": true,
+            "untapped": true
+          },
+          "spell": true,
+          "owner": "self",
+          "n": "all",
+          "optional": true,
+          "title": "タップする自分のクリーチャーを選ぶ（任意）"
+        },
+        {
+          "op": "CountOwn538",
+          "filter": {
+            "creature": true,
+            "tapped": true
+          },
+          "mode": "select",
+          "def": {
+            "op": "Select",
+            "origin": "battle",
+            "g193Select": true,
+            "g193Tap": true,
+            "filter": {
+              "creature": true
+            },
+            "spell": true,
+            "owner": "opponent",
+            "g173Targets": true,
+            "title": "タップする相手のクリーチャーを選ぶ"
+          }
+        }
+      ],
+      "supportBatch": "phase-1264",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-063",
+      "name": "神聖十二神騎:||",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "{GS} G・ストライク（この呪文を自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分の山札の上から４枚を見る。その中から「ブロッカー」を持つクリーチャーを好きな数相手に見せ、手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-063",
+      "limit": 4,
+      "gStrike": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 4,
+          "g841DeckPeek": true,
+          "rest": "bottom",
+          "g255Distribute": true,
+          "g791OrderRest": true,
+          "stages": [
+            {
+              "n": "all",
+              "to": "hand",
+              "filter": {
+                "creature": true,
+                "blocker": true
+              },
+              "optional": true,
+              "reveal": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1264",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-090",
+      "name": "凸凹設計図",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "{GS} G・ストライク（この呪文を自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分の山札の上から４枚を表向きにする。その中からパワー6000以上のクリーチャーを１体と、パワー5000以下のクリーチャーを１体手札に加え、残りを好きな順序で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-090",
+      "limit": 4,
+      "gStrike": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 4,
+          "public": true,
+          "rest": "bottom",
+          "g255Distribute": true,
+          "g791OrderRest": true,
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "creature": true,
+                "g1264RevealedMin": 6000
+              }
+            },
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "creature": true,
+                "g1264RevealedMax": 5000
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1264",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1263,
+    "phase": 1264,
     "checkedAt": "2026-11-14",
-    "baseCount": 7789,
+    "baseCount": 7793,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7793,
+    "totalCount": 7797,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -260056,6 +260240,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7789,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1263,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7789,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7793,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

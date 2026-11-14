@@ -1,0 +1,257 @@
+{
+  "phase": 1264,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7793,
+  "description": "魔弾ルナンド・ストライク、コルテオ・スパーク、神聖十二神騎:||、凸凹設計図の全能力を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/40960/",
+    "https://dm.takaratomy.co.jp/rule/qa/48920/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31662/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmrp20-075",
+      "name": "魔弾ルナンド・ストライク",
+      "faces": [
+        {
+          "name": "魔弾ルナンド・ストライク",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から１枚目を墓地に置き、その後、相手のクリーチャーを１体選ぶ。このターン、自分の墓地にあるカード１枚につき、そのクリーチャーのパワーを－1000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "ナイト",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-075",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-075.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 1
+          },
+          {
+            "op": "CountTarget544",
+            "zone": "grave",
+            "amount": -1000,
+            "def": {
+              "op": "Target",
+              "spell": true,
+              "g242PowerMinus": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "56de367f3c096d6adfffa13fb444946e02e1acfe4fbb947d164a732e37bff1fa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-064",
+      "name": "コルテオ・スパーク",
+      "faces": [
+        {
+          "name": "コルテオ・スパーク",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを好きな数、タップする。\nバトルゾーンにある自分のタップしているクリーチャー１体につき、相手のクリーチャーを１体選びタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-064",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-064.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "g193Select": true,
+            "g193Tap": true,
+            "filter": {
+              "creature": true,
+              "untapped": true
+            },
+            "spell": true,
+            "owner": "self",
+            "n": "all",
+            "optional": true,
+            "title": "タップする自分のクリーチャーを選ぶ（任意）"
+          },
+          {
+            "op": "CountOwn538",
+            "filter": {
+              "creature": true,
+              "tapped": true
+            },
+            "mode": "select",
+            "def": {
+              "op": "Select",
+              "origin": "battle",
+              "g193Select": true,
+              "g193Tap": true,
+              "filter": {
+                "creature": true
+              },
+              "spell": true,
+              "owner": "opponent",
+              "g173Targets": true,
+              "title": "タップする相手のクリーチャーを選ぶ"
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "f05b2272ee7ff541112a37f3b2f50656d1aea5fdbab564dcf2b287a92455680b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-063",
+      "name": "神聖十二神騎:||",
+      "faces": [
+        {
+          "name": "神聖十二神騎:||",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{GS} G・ストライク（この呪文を自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分の山札の上から４枚を見る。その中から「ブロッカー」を持つクリーチャーを好きな数相手に見せ、手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-063",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-063.jpg",
+      "spec": {
+        "gStrike": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 4,
+            "g841DeckPeek": true,
+            "rest": "bottom",
+            "g255Distribute": true,
+            "g791OrderRest": true,
+            "stages": [
+              {
+                "n": "all",
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "blocker": true
+                },
+                "optional": true,
+                "reveal": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "06cf1651d3380bb7dfecf81ce36d68d52ef64fc76a14e4fe1555d50169c292e6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-090",
+      "name": "凸凹設計図",
+      "faces": [
+        {
+          "name": "凸凹設計図",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{GS} G・ストライク（この呪文を自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分の山札の上から４枚を表向きにする。その中からパワー6000以上のクリーチャーを１体と、パワー5000以下のクリーチャーを１体手札に加え、残りを好きな順序で山札の下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-090",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-090.jpg",
+      "spec": {
+        "gStrike": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 4,
+            "public": true,
+            "rest": "bottom",
+            "g255Distribute": true,
+            "g791OrderRest": true,
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "g1264RevealedMin": 6000
+                }
+              },
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "g1264RevealedMax": 5000
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "d78def932b071317ebae18a270a93dd87b0b24ef7f83cf1c42c691b79d5a3c9b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp20-075": 4,
+      "dmrp20-064": 4,
+      "dmrp20-063": 4,
+      "dmrp20-090": 4
+    }
+  }
+}

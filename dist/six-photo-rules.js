@@ -357,6 +357,8 @@ export function createSixPhotoRules(api){
     /^(?:このカードを)?マナゾーンに置く時、?(?:このカードは)?タップして置く。?$/.test(abilities.normalize('NFKC'));
    if(abilities&&abilities!=='能力なし'&&!legacyMana)return false;
   }
+  if(f.g1264RevealedMin!==undefined&&api.revealedPower(x,s)<f.g1264RevealedMin)return false;
+  if(f.g1264RevealedMax!==undefined&&api.revealedPower(x,s)>f.g1264RevealedMax)return false;
   if(f.g717Silent&&!d.g496Silent)return false;
   if(f.g1236AnyFaceMax!==undefined&&!faces(c).some(face=>cost(face)<=f.g1236AnyFaceMax))return false;
   const exactCost=f.manaCostOffset===undefined?f.g1134AnyFaceCost:s.players[p].mana.length+f.manaCostOffset;
