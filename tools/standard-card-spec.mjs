@@ -2470,6 +2470,23 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1239&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmrp22-069'&&f.typeText==='タマシード'&&text===
+   'シンカライズ:このタマシードがクリーチャーであるかのようにこの上に進化クリーチャーを置いてもよい。'+
+   'このタマシードから進化するクリーチャーのコストを2少なくする。ただしコストは0以下にはならない。')
+   return {type:'seed',shinkalize:true,g1239EvolutionBaseDiscount:2};
+  if(d.id==='dmrp22-016'&&f.typeText==='クリーチャー'&&text===
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   'このクリーチャーが出た時自分のタマシード1枚につき自分のシールドを1つブレイクする。(そのS・トリガーを使ってもよい)')
+   return {blocker:true,effect:'sixPhoto',g34Tasks:[{op:'CountOwn538',mode:'select',g262Elements:true,
+    filter:{g295Tamaseed:true,faceUp:true},def:{op:'Break497',owner:'self',g747CreatureBreak:true,
+     g913DepartedBreaker:true,g1084FixedBreak:true}}]};
+  if(['dm24rp1-001','dm24ex3-rp1001'].includes(d.id)&&f.typeText==='クリーチャー'&&text===
+   'W・ブレイカーこのクリーチャーがシールドをブレイクする時かわりに自分の山札の上から1枚目をシールド化する。'+
+   'このクリーチャーが離れた時自分の山札の上から1枚目をシールド化する。')
+   return {breaker:2,g1239ReplaceBreakWithShield:true,g172Leave:[{op:'ShieldTop',n:1}]};
+ }
  if(phase>=1238&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';

@@ -3121,7 +3121,7 @@ export function createSixPhotoRules(api){
   const xs=t.rows.flatMap(r=>{const y=s.players[r.p].battle.find(y=>y.uid===r.uid);return y?[y]:[];});choice(s,t,'選んだエレメントすべての移動先を選ぶ',[opt('すべてマナゾーンに置く','mana',xs.length*10),opt('すべて破壊する','grave',xs.reduce((n,y)=>n+(hooks.destroySafe409(s,y)?-5:30+cost(card(y))),0))]);break;
  }
  case'g34_CountOwn538':{
-  const n=creatures(s,t.p).filter(y=>!y.sealed&&matches(s,t.p,y,t.filter)).length;
+  const n=countDraw(s,t.p,{zone:'battle',filter:t.filter,g262Elements:t.g262Elements});
   if(t.mode==='maxCost')start(s,t,[{...t.def,max:n}]);
   else if(!n)break;
   else if(t.mode==='select')start(s,t,[{...t.def,n}]);

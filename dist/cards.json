@@ -236205,15 +236205,99 @@
       ],
       "supportBatch": "phase-1238",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-069",
+      "name": "ルピア炎鬼の封",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 3,
+      "power": 0,
+      "race": "デモニオ/鬼レクスターズ",
+      "text": "シンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードから進化するクリーチャーのコストを２少なくする。ただしコストは０以下にはならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-069",
+      "limit": 4,
+      "shinkalize": true,
+      "g1239EvolutionBaseDiscount": 2,
+      "supportBatch": "phase-1239",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-016",
+      "name": "シシ★シー＆サジ★ターリ＆ミズ★ガーメ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "マフィ・ギャング/ムーゲッツ/レクスターズ",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、自分のタマシード１枚につき、自分のシールドを１つブレイクする。（そのS・トリガーを使ってもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-016",
+      "limit": 4,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountOwn538",
+          "mode": "select",
+          "g262Elements": true,
+          "filter": {
+            "g295Tamaseed": true,
+            "faceUp": true
+          },
+          "def": {
+            "op": "Break497",
+            "owner": "self",
+            "g747CreatureBreak": true,
+            "g913DepartedBreaker": true,
+            "g1084FixedBreak": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1239",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp1-001",
+      "name": "回帰の守護者タテフ・エール",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 6500,
+      "race": "ガーディアン",
+      "text": "W・ブレイカー\nこのクリーチャーがシールドをブレイクする時、かわりに自分の山札の上から１枚目をシールド化する。\nこのクリーチャーが離れた時、自分の山札の上から１枚目をシールド化する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-001",
+      "limit": 4,
+      "breaker": 2,
+      "g1239ReplaceBreakWithShield": true,
+      "g172Leave": [
+        {
+          "op": "ShieldTop",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1239",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1238,
+    "phase": 1239,
     "checkedAt": "2026-11-14",
-    "baseCount": 7712,
+    "baseCount": 7715,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7715,
+    "totalCount": 7718,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -257358,6 +257442,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7712,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1238,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7712,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7715,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
