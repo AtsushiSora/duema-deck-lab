@@ -1,0 +1,381 @@
+{
+  "phase": 1216,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7640,
+  "description": "イード＝ミードとパトファール-P4のツインパクト両面、幾層の守り 針亜の全能力を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/44192/",
+    "https://dm.takaratomy.co.jp/rule/qa/46058/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31636/",
+    "https://dm.takaratomy.co.jp/rule/qa/40111/",
+    "https://dm.takaratomy.co.jp/rule/qa/46570/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp1-017",
+      "name": "イード＝ミード / 「奈落を見たいか？」",
+      "faces": [
+        {
+          "name": "イード＝ミード",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "T・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、破壊する。\nこのクリーチャーが攻撃する時、カードを１枚、自分の墓地から手札に戻してもよい。",
+          "race": "アビスロイヤル",
+          "powerText": "12000",
+          "missingFields": []
+        },
+        {
+          "name": "「奈落を見たいか？」",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の山札の上から２枚を墓地に置く。",
+          "race": "アビスへの誘い",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-017",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-017a.jpg",
+      "spec": {
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "destroy": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "「奈落を見たいか？」",
+          "cost": 2,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "アビスへの誘い",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Mill",
+              "n": 2,
+              "g1042Together": true
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "6837950a1695066e19ee327c1d88edacc3a0876af1878979f9698061c0ba0777",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp3-046",
+      "name": "パトファール-P4 / サイレント・サイレン",
+      "faces": [
+        {
+          "name": "パトファール-P4",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、クリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは離れない。",
+          "race": "メカ・デル・ディネロ",
+          "powerText": "500",
+          "missingFields": []
+        },
+        {
+          "name": "サイレント・サイレン",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーを１体選び、破壊する。",
+          "race": "メカ・デル・テック",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-046",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-046a.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "g627StayTarget": true,
+            "title": "次の自分のターンのはじめまで離れなくするクリーチャーを選ぶ"
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "サイレント・サイレン",
+          "cost": 5,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "メカ・デル・テック",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "destroy": true,
+              "spell": true
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "6ebeb1877d3b124bbe1fa0cd2c7c02b87e9f29e4ab53c5668c8cf279f3d816c7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-027",
+      "name": "幾層の守り 針亜",
+      "faces": [
+        {
+          "name": "幾層の守り 針亜",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n各ターン、はじめてこのクリーチャーがブロックした時、このクリーチャーをアンタップする。",
+          "race": "メタリカ",
+          "powerText": "8500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-027",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-027.jpg",
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g1216FirstBlock": [
+          {
+            "op": "Untap",
+            "g191First": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "a79ac8b9b1af0c6a1d9a3157fa3e77d2309ea4f01decbea02367413381774eac",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23sp1-009",
+      "name": "イード＝ミード / 「奈落を見たいか？」",
+      "faces": [
+        {
+          "name": "イード＝ミード",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "T・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、破壊する。\nこのクリーチャーが攻撃する時、カードを１枚、自分の墓地から手札に戻してもよい。",
+          "race": "アビスロイヤル",
+          "powerText": "12000",
+          "missingFields": []
+        },
+        {
+          "name": "「奈落を見たいか？」",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の山札の上から２枚を墓地に置く。",
+          "race": "アビスへの誘い",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sp1-009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23sp1-009a.jpg",
+      "spec": {
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "destroy": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "「奈落を見たいか？」",
+          "cost": 2,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "アビスへの誘い",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Mill",
+              "n": 2,
+              "g1042Together": true
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "3f47171d9ebbe5f50aca1a121a3a0826cf716de6e7eb58dd0a38e254ee5adfa8",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp1-017"
+    },
+    {
+      "id": "promoy22-001",
+      "name": "イード＝ミード / 「奈落を見たいか？」",
+      "faces": [
+        {
+          "name": "イード＝ミード",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "T・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、破壊する。\nこのクリーチャーが攻撃する時、カードを１枚、自分の墓地から手札に戻してもよい。",
+          "race": "アビスロイヤル",
+          "powerText": "12000",
+          "missingFields": []
+        },
+        {
+          "name": "「奈落を見たいか？」",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の山札の上から２枚を墓地に置く。",
+          "race": "アビスへの誘い",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy22-001",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy22-001a.jpg",
+      "spec": {
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "destroy": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "「奈落を見たいか？」",
+          "cost": 2,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "アビスへの誘い",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Mill",
+              "n": 2,
+              "g1042Together": true
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "23e37da0a2e3c03ae77cadecb911be60d135798dcd84e52263c12bc91a6ed35a",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp1-017"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp1-017": 4,
+      "dm23rp3-046": 4,
+      "dm22rp1-027": 4,
+      "dm23sp1-009": 4,
+      "promoy22-001": 4
+    }
+  }
+}

@@ -2511,9 +2511,15 @@ function resolveAttack(s,blockUid){
    }];
   }
   extra.phoenix.godCombat(s,s.active,a,'blocked');
-  tapCard(s,other,b);extra.block(s,other,b);
+  tapCard(s,other,b);extra.six.firstBlock1216(s,other,b);extra.block(s,other,b);
   log(s,other,'block',`${card(b).name}でブロック`,{cardId:b.cardId});
   extra.ninjaWindow(s,s.active);return;
+ }
+ // Multiple defense abilities can redirect an attack. Only the final blocker counts (507.2).
+ const finalBlocker=s.attack.stage.startsWith('redirecting')&&s.attackLifecycle?.g1201Blocker;
+ if(finalBlocker&&s.attack.target===finalBlocker.uid){
+  const b=s.players[other].battle.find(x=>x.uid===finalBlocker.uid&&(x.incarnation||0)===finalBlocker.incarnation);
+  if(b&&extra.six.firstBlock1216(s,other,b))return;
  }
  if(!s.attack.g482Unblocked){
   // QA35614: fix the civilization count before resolving unblocked triggers.

@@ -232972,15 +232972,142 @@
       },
       "supportBatch": "phase-1215",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-017",
+      "name": "イード＝ミード / 「奈落を見たいか？」",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 12000,
+      "race": "アビスロイヤル",
+      "text": "T・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、破壊する。\nこのクリーチャーが攻撃する時、カードを１枚、自分の墓地から手札に戻してもよい。\n【呪文面】\n自分の山札の上から２枚を墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-017",
+      "limit": 4,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "destroy": true
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "「奈落を見たいか？」",
+        "cost": 2,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "アビスへの誘い",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 2,
+            "g1042Together": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1216",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp3-046",
+      "name": "パトファール-P4 / サイレント・サイレン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 500,
+      "race": "メカ・デル・ディネロ",
+      "text": "このクリーチャーが出た時、クリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは離れない。\n【呪文面】\nS・トリガー S・トリガー\n相手のクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-046",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "g627StayTarget": true,
+          "title": "次の自分のターンのはじめまで離れなくするクリーチャーを選ぶ"
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "サイレント・サイレン",
+        "cost": 5,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "メカ・デル・テック",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "destroy": true,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1216",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-027",
+      "name": "幾層の守り 針亜",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 8500,
+      "race": "メタリカ",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n各ターン、はじめてこのクリーチャーがブロックした時、このクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-027",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g1216FirstBlock": [
+        {
+          "op": "Untap",
+          "g191First": true
+        }
+      ],
+      "supportBatch": "phase-1216",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1215,
+    "phase": 1216,
     "checkedAt": "2026-11-14",
-    "baseCount": 7637,
+    "baseCount": 7640,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7640,
+    "totalCount": 7643,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -253849,6 +253976,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7637,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1215,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7637,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7640,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

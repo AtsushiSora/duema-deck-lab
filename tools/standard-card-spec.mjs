@@ -2470,6 +2470,30 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1216&&d?.status==='complete'&&f.typeText==='クリーチャー'){
+  const front=normalize(f.abilityText),spell=d.faces[1];
+  const destroyOpponent={op:'Target',to:'grave',destroy:true};
+  const spellFace=(defs,trigger=false)=>({type:'spell',name:spell.name,cost:spell.cost,
+   civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,
+   ...(trigger?{trigger:true}:{}),effect:'sixPhoto',g34Tasks:defs});
+  if(d.faces.length===2&&spell.typeText==='呪文'&&['dm23rp1-017','dm23sp1-009','promoy22-001'].includes(d.id)&&
+     front==='T・ブレイカー(このクリーチャーはシールドを3つブレイクする)このクリーチャーが出た時相手のクリーチャーを1体選び破壊する。'+
+      'このクリーチャーが攻撃する時カードを1枚自分の墓地から手札に戻してもよい。'&&
+     normalize(spell.abilityText)==='自分の山札の上から2枚を墓地に置く。')
+   return {breaker:3,effect:'sixPhoto',g34Tasks:[destroyOpponent],
+    g34Attack:[{op:'Select',origin:'grave',to:'hand',n:1,optional:true}],
+    spellFace:spellFace([{op:'Mill',n:2,g1042Together:true}])};
+  if(d.faces.length===2&&spell.typeText==='呪文'&&d.id==='dm23rp3-046'&&
+     front==='このクリーチャーが出た時クリーチャーを1体選ぶ。次の自分のターンのはじめまでそのクリーチャーは離れない。'&&
+     normalize(spell.abilityText)==='S・トリガーS・トリガー相手のクリーチャーを1体選び破壊する。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',anyOwner:true,g627StayTarget:true,
+    title:'次の自分のターンのはじめまで離れなくするクリーチャーを選ぶ'}],
+    spellFace:spellFace([{...destroyOpponent,spell:true}],true)};
+  if(d.faces.length===1&&d.id==='dm22rp1-027'&&
+     front==='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+      'このクリーチャーは相手プレイヤーを攻撃できない。各ターンはじめてこのクリーチャーがブロックした時このクリーチャーをアンタップする。')
+   return {blocker:true,noPlayerAttack:true,g1216FirstBlock:[{op:'Untap',g191First:true}]};
+ }
  if(phase>=1215&&d?.status==='complete'&&d.faces.length===2&&f.typeText==='クリーチャー'&&
     d.faces[1].typeText==='呪文'){
   const spell=d.faces[1],front=normalize(f.abilityText),back=normalize(spell.abilityText);
