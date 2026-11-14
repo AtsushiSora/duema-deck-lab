@@ -585,6 +585,22 @@ export function createExtendedRules(api){
   remove(s.players[t.p].hand,x.uid);clear(x);api.addZone(s,s.players[t.p],'grave',x);log(s,t.p,'discard',`${card(x).name}を手札から捨てる`,{cardId:x.cardId});
   afterDiscard(s,t,x,true);
  }
+ function discardByType1241(s,p,discarded){
+  let types;
+  for(const x of s.players[p].battle){
+   if(x.sealed||!card(x).g1241DiscardTypes||!api.isCreature(s,x))continue;
+   const rule=effective(x,s).g1241DiscardTypes;
+   if(!rule)continue;
+   const incarnation=x.incarnation||0;
+   // Both faces of a discarded twinpact count (QA31877).
+   types??=new Set(faces(card(discarded)).map(f=>f.type));
+   for(const type of types){
+    const defs=rule[type];
+    if(defs)enqueue(s,p,{uid:x.uid,incarnation,source:x.cardId,effect:'extended',
+     task:task('g34_Sequence',p,x.cardId,{uid:x.uid,incarnation,defs})});
+   }
+  }
+ }
  function afterDiscard(s,t,x,discarded){saga.discarded(s,t,x,discarded);environment.discarded(s,t,x,discarded);six.fifteen.discarded(s,t,x,discarded);
   travel.discarded(s,t,x,discarded);zard.discarded(s,t,x,discarded);magic.discarded(s,t,x,discarded);galaxy.discarded(s,t,x,discarded);gospel.discarded(s,t,x,discarded);photo160.discarded(s,t,x,discarded);
   const count=(t.discarded||0)+(discarded?1:0);if(t.batchId&&s.extDiscardBatches?.[t.batchId])s.extDiscardBatches[t.batchId].actual+=discarded?1:0;
@@ -592,6 +608,7 @@ export function createExtendedRules(api){
    if(card(x).g1207DiscardCast&&enemyDiscardEffect(s,t))
     enqueue(s,t.p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('discardedSpell1207',t.p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0})});
    if(!t.batchId&&!t.g848Grouped)notifyDiscard848(s,t.p,discardWatchers848(s,t.p),1);
+   discardByType1241(s,t.p,x);
    six.discarded472(s,t.p);
    abyss.discarded(s,t.p);starter.discarded(s,t.p);
    if(t.costLock)put(s,task('tensaiCost',t.p,t.source,{discardId:x.cardId}));
@@ -691,7 +708,7 @@ export function createExtendedRules(api){
  return {
   entryWouldReplace753:(s,p,c)=>galaxy.entryWouldReplace(s,p,c,'mana',false),swapped753:magic.swapped,
   requested393C,requested393D,requested393J,requested393P,photo160,photo159,utilityLightControl,utilityTwinSupport,utilityRaid,utilityGraveKnights,utilityRomano,utilityNatureSupport,utilityGuard,utilityDragon,utilityTide,utilityTop,utilityControl,spellTax:utilityControl.spellTax,utilityExpansion,utilityWater,utilityNature,utilityDark,saga,control,seed,cyber,firebird,combat,junior,history,revisions,continuation,original,environment,recommended,six,photo,golgy,viride,originAllowed:viride.originAllowed,everSaver:viride.everSaver,virideDiscount:viride.discount,
-  notifyHandDiscard848(s,p){recordFirstDiscard1037(s,p);notifyDiscard848(s,p,discardWatchers848(s,p),1);},
+  notifyHandDiscard848(s,p,x){recordFirstDiscard1037(s,p);notifyDiscard848(s,p,discardWatchers848(s,p),1);if(x)discardByType1241(s,p,x);},
   abyss,abyssDiscount:abyss.discount,abyssPlayer:abyss.playerPermission,hasSB:(s,p,a)=>abyss.hasSB(s,p,a),beginSB:(s,p,a,w,escape)=>abyss.beginSB(s,p,a,w,escape),discardManaSource,forcedDiscard(s,p,uids,source,{allowTurnReplacement=false,replaceToMana=false}={}){
    const event={p,source,n:1,causedBy:p,g848Grouped:true},watchers=discardWatchers848(s,p);
    let actual=0;

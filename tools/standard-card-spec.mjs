@@ -2470,6 +2470,33 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1241&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText),discard={op:'DiscardFor248',g770DiscardAttempt:true,defs:[]};
+  if(d.id==='dmrp06-081'&&text===
+   'S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)'+
+   'このクリーチャーがバトルゾーンに出た時自分の手札を1枚捨ててもよい。そうしたらそのターンの終わりにカードを2枚引く。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{...discard,defs:[
+    {op:'Schedule537',when:'turnEnd',g1201BeforeEnd:true,defs:[{op:'Draw',n:2}]}
+   ]}]};
+  if(d.id==='dmrp08-006'&&text===
+   'W・ブレイカーこのクリーチャーがバトルゾーンに出た時または攻撃する時自分の手札を1枚捨ててもよい。'+
+   'クリーチャーを自分の手札から捨てた時そのターンこのクリーチャーはパワーを+6000されシールドをさらに1つブレイクする。'+
+   '呪文を自分の手札から捨てた時相手のクリーチャーを1体選ぶ。そのターンそのクリーチャーのパワーは-6000される。'){
+   const optionalDiscard={op:'Discard',owner:'self',n:1,optional:true};
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[optionalDiscard],g34Attack:[optionalDiscard],g1241DiscardTypes:{
+    creature:[{op:'SelfBoost313',power:6000,g536Source:true},{op:'SelfExtraBreak444',amount:1,g969FollowControl:true}],
+    spell:[{op:'Target',power:-6000,g242PowerMinus:true}]
+   }};
+  }
+  if(d.id==='dm24rp4-065'&&text===
+   'このクリーチャーがバトルする時そのバトルの終わりまでバトルしている相手クリーチャーのパワーを-3000する。(パワー0以下のクリーチャーは破壊される)')
+   return {g1237BattleMinus:3000};
+  if(d.id==='dmrp06-060'&&text===
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   'このクリーチャーは相手プレイヤーを攻撃できない。'+
+   'このクリーチャーが破壊される時墓地に置くかわりに裏向きにして自分のシールドゾーンに新しいシールドとして置く。')
+   return {blocker:true,noPlayerAttack:true,g842DestroyShield:true};
+ }
  if(phase>=1240&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const discard=n=>'このクリーチャーを召喚する時自分の手札を1枚捨ててもよい。そうしたらこのクリーチャーの召喚コストを'+n+'少なくする。';

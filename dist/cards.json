@@ -236364,15 +236364,151 @@
       },
       "supportBatch": "phase-1240",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-081",
+      "name": "IPPON釣吉",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "ジョーカーズ",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分の手札を１枚捨ててもよい。そうしたら、そのターンの終わりにカードを２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-081",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DiscardFor248",
+          "g770DiscardAttempt": true,
+          "defs": [
+            {
+              "op": "Schedule537",
+              "when": "turnEnd",
+              "g1201BeforeEnd": true,
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 2
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1241",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-006",
+      "name": "ドクロデルス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "スペシャルズ/マフィ・ギャング",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、自分の手札を１枚捨ててもよい。\nクリーチャーを自分の手札から捨てた時、そのターン、このクリーチャーはパワーを+6000され、シールドをさらに１つブレイクする。\n呪文を自分の手札から捨てた時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは－6000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-006",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "g1241DiscardTypes": {
+        "creature": [
+          {
+            "op": "SelfBoost313",
+            "power": 6000,
+            "g536Source": true
+          },
+          {
+            "op": "SelfExtraBreak444",
+            "amount": 1,
+            "g969FollowControl": true
+          }
+        ],
+        "spell": [
+          {
+            "op": "Target",
+            "power": -6000,
+            "g242PowerMinus": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1241",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-065",
+      "name": "カンテ＝ランタン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "アビスロイヤル",
+      "text": "このクリーチャーがバトルする時、そのバトルの終わりまで、バトルしている相手クリーチャーのパワーを－3000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-065",
+      "limit": 4,
+      "g1237BattleMinus": 3000,
+      "supportBatch": "phase-1241",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-060",
+      "name": "ケイビノ裁徒",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4500,
+      "race": "メタリカ/サバキスト",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが破壊される時、墓地に置くかわりに、裏向きにして自分のシールドゾーンに新しいシールドとして置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-060",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g842DestroyShield": true,
+      "supportBatch": "phase-1241",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1240,
+    "phase": 1241,
     "checkedAt": "2026-11-14",
-    "baseCount": 7718,
-    "newEffectCards": 3,
+    "baseCount": 7721,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7721,
+    "totalCount": 7725,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -257541,6 +257677,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7718,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1240,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7718,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7721,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

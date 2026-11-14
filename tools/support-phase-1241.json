@@ -1,0 +1,210 @@
+{
+  "phase": 1241,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7721,
+  "description": "IPPON釣吉、ドクロデルス、カンテ＝ランタン、ケイビノ裁徒の全能力を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31877/",
+    "https://dm.takaratomy.co.jp/rule/qa/42955/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31632/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/%E5%A4%89%E6%9B%B4%E7%82%B92026-07-23/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmrp06-081",
+      "name": "IPPON釣吉",
+      "faces": [
+        {
+          "name": "IPPON釣吉",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分の手札を１枚捨ててもよい。そうしたら、そのターンの終わりにカードを２枚引く。",
+          "race": "ジョーカーズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-081",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-081.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DiscardFor248",
+            "g770DiscardAttempt": true,
+            "defs": [
+              {
+                "op": "Schedule537",
+                "when": "turnEnd",
+                "g1201BeforeEnd": true,
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 2
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "dc3815da19746bb60131be5ee5dcea6f478924261f531c4324b7007d756d506c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp08-006",
+      "name": "ドクロデルス",
+      "faces": [
+        {
+          "name": "ドクロデルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、自分の手札を１枚捨ててもよい。\nクリーチャーを自分の手札から捨てた時、そのターン、このクリーチャーはパワーを+6000され、シールドをさらに１つブレイクする。\n呪文を自分の手札から捨てた時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは－6000される。",
+          "race": "スペシャルズ/マフィ・ギャング",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-006.jpg",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1,
+            "optional": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1,
+            "optional": true
+          }
+        ],
+        "g1241DiscardTypes": {
+          "creature": [
+            {
+              "op": "SelfBoost313",
+              "power": 6000,
+              "g536Source": true
+            },
+            {
+              "op": "SelfExtraBreak444",
+              "amount": 1,
+              "g969FollowControl": true
+            }
+          ],
+          "spell": [
+            {
+              "op": "Target",
+              "power": -6000,
+              "g242PowerMinus": true
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "95e351debf27a9f6976750951500169d5cbf9eb21c8a9aea7863c2f6f0249ebd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-065",
+      "name": "カンテ＝ランタン",
+      "faces": [
+        {
+          "name": "カンテ＝ランタン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルする時、そのバトルの終わりまで、バトルしている相手クリーチャーのパワーを－3000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "アビスロイヤル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-065",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-065.jpg",
+      "spec": {
+        "g1237BattleMinus": 3000
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "366aafbf5b4caa7946252917d07e9e93a74423510ea76e7cd9c2e9988d36b63e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp06-060",
+      "name": "ケイビノ裁徒",
+      "faces": [
+        {
+          "name": "ケイビノ裁徒",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが破壊される時、墓地に置くかわりに、裏向きにして自分のシールドゾーンに新しいシールドとして置く。",
+          "race": "メタリカ/サバキスト",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-060",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-060.jpg",
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g842DestroyShield": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "15b8d15d1ab9fe02fb55fd2f0f063e5a9c65f7a6b8dab5636fd4e2aea6fe93b6",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp06-081": 4,
+      "dmrp08-006": 4,
+      "dm24rp4-065": 4,
+      "dmrp06-060": 4
+    }
+  }
+}
