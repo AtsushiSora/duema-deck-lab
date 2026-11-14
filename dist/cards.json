@@ -241527,15 +241527,202 @@
       },
       "supportBatch": "phase-1286",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-020",
+      "name": "ボルザード・スラッシャー / 「愛ゆえに斬る!!」",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アーマード・ドラゴン",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\n自分の墓地にファイアー・バードがあれば、バトル中、このクリーチャーのパワーを+6000する。\n【呪文面】\n自分の手札を１枚捨て、カードを１枚引き、その後、相手のパワー2000以下のクリーチャーを１体選んで破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-020",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "FightEnemy240",
+          "optional": true,
+          "g998EntryFight": true
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g273Grave": {
+            "n": 1,
+            "filter": {
+              "anyFaceRace": "ファイアー・バード"
+            }
+          }
+        },
+        "grants": {
+          "g209BattlePower": {
+            "amount": 6000
+          }
+        }
+      },
+      "spellFace": {
+        "type": "spell",
+        "name": "「愛ゆえに斬る!!」",
+        "cost": 2,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "アーマード・アーツ",
+        "text": "自分の手札を１枚捨て、カードを１枚引き、その後、相手のパワー2000以下のクリーチャーを１体選んで破壊する。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Target",
+            "spell": true,
+            "to": "grave",
+            "filter": {
+              "maxPower": 2000
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1287",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-032",
+      "name": "マジック・A・セミプーロ / ♪閑かさや とにかくブレイン 蝉ミンミン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "マジック・サイバー・コマンド",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが破壊された時、相手のクリーチャーを１体選び、持ち主の手札に戻す。\n【呪文面】\nカードを３枚引く。その後、自分の手札を２枚、好きな順序で山札の上に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-032",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "g172Death": [
+        {
+          "op": "Target",
+          "to": "hand",
+          "toOwnerHand": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "♪閑かさや とにかくブレイン 蝉ミンミン",
+        "cost": 2,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "マジック・ソング",
+        "text": "カードを３枚引く。その後、自分の手札を２枚、好きな順序で山札の上に置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 2,
+            "to": "deckTop",
+            "g183Return": true,
+            "title": "山札の上から戻す手札を順に2枚選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-1287",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-051",
+      "name": "星姫械 アイリプス / アイリス・アンブレラ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 5500,
+      "race": "メカ・デル・ステラ",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、自分のクリーチャーをすべてアンタップする。その後、自分のクリーチャー１体につき１枚、カードを引いてもよい。\n【呪文面】\n相手のクリーチャーを１体選び、タップする。その後、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-051",
+      "limit": 4,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupUntap",
+          "filter": {
+            "creature": true,
+            "faceUp": true
+          }
+        },
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "faceUp": true
+          },
+          "optional": "each"
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "アイリス・アンブレラ",
+        "cost": 2,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "メカ・デル・テック",
+        "text": "相手のクリーチャーを１体選び、タップする。その後、カードを１枚引く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "spell": true,
+            "tap": true
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1287",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1286,
-    "checkedAt": "2026-11-14",
-    "baseCount": 7868,
-    "newEffectCards": 4,
+    "phase": 1287,
+    "checkedAt": "2026-11-15",
+    "baseCount": 7872,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7872,
+    "totalCount": 7875,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -263256,6 +263443,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7868,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1286,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7868,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7872,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

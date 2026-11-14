@@ -2492,6 +2492,30 @@ export function standardCardSpec(d,{phase=165}={}){
     spellFace:{type:'spell',name:spell.name,cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,
      race:spell.race,text:spell.abilityText,effect:'sixPhoto',...spellRules}});
    const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+   if(phase>=1287){
+    if(d.id==='dm23rp1-020'&&text==='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+
+     'このクリーチャーが出た時相手のクリーチャーを1体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。'+
+     '自分の墓地にファイアー・バードがあればバトル中このクリーチャーのパワーを+6000する。'&&
+     back==='自分の手札を1枚捨てカードを1枚引きその後相手のパワー2000以下のクリーチャーを1体選んで破壊する。')
+     return twin({breaker:2,effect:'sixPhoto',g34Tasks:[{op:'FightEnemy240',optional:true,g998EntryFight:true}],
+      g260Self:{filter:{g273Grave:{n:1,filter:{anyFaceRace:'ファイアー・バード'}}},
+       grants:{g209BattlePower:{amount:6000}}}},
+      {g34Tasks:[{op:'Discard',owner:'self',n:1},{op:'Draw',n:1},
+       {op:'Target',spell:true,to:'grave',filter:{maxPower:2000}}]});
+    if(['dm23rp1-032','promoy22-004'].includes(d.id)&&
+     text==='S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)'+
+     blocker+'このクリーチャーが破壊された時相手のクリーチャーを1体選び持ち主の手札に戻す。'&&
+     back==='カードを3枚引く。その後自分の手札を2枚好きな順序で山札の上に置く。')
+     return twin({trigger:true,blocker:true,g172Death:[{op:'Target',to:'hand',toOwnerHand:true}]},
+      {g34Tasks:[{op:'Draw',n:3},{op:'Select',origin:'hand',n:2,to:'deckTop',g183Return:true,
+       title:'山札の上から戻す手札を順に2枚選ぶ'}]});
+    if(d.id==='dm23rp1-051'&&text===blocker+
+     'このクリーチャーが出た時自分のクリーチャーをすべてアンタップする。その後自分のクリーチャー1体につき1枚カードを引いてもよい。'&&
+     back==='相手のクリーチャーを1体選びタップする。その後カードを1枚引く。')
+     return twin({blocker:true,effect:'sixPhoto',g34Tasks:[{op:'GroupUntap',filter:{creature:true,faceUp:true}},
+      {op:'CountDraw',zone:'battle',filter:{creature:true,faceUp:true},optional:'each'}]},
+      {g34Tasks:[{op:'Target',spell:true,tap:true},{op:'Draw',n:1}]});
+   }
    if(d.id==='dm23rp1-060'&&text===blocker+'T・ブレイカー(このクリーチャーはシールドを3つブレイクする)'+
     'このクリーチャーが出た時自分の山札の上から4枚を墓地に置いてもよい。'&&
     back==='相手の手札を見ないで1枚選び捨てさせる。')

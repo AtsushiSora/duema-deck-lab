@@ -1,0 +1,384 @@
+{
+  "phase": 1287,
+  "checkedAt": "2026-11-15",
+  "baseCount": 7872,
+  "description": "ボルザード・スラッシャー、マジック・A・セミプーロ、星姫械 アイリプスのツインパクト両面を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/43087/",
+    "https://dm.takaratomy.co.jp/rule/qa/31572/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34870/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp1-020",
+      "name": "ボルザード・スラッシャー / 「愛ゆえに斬る!!」",
+      "faces": [
+        {
+          "name": "ボルザード・スラッシャー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\n自分の墓地にファイアー・バードがあれば、バトル中、このクリーチャーのパワーを+6000する。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "「愛ゆえに斬る!!」",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の手札を１枚捨て、カードを１枚引き、その後、相手のパワー2000以下のクリーチャーを１体選んで破壊する。",
+          "race": "アーマード・アーツ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-020",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-020a.jpg",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightEnemy240",
+            "optional": true,
+            "g998EntryFight": true
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g273Grave": {
+              "n": 1,
+              "filter": {
+                "anyFaceRace": "ファイアー・バード"
+              }
+            }
+          },
+          "grants": {
+            "g209BattlePower": {
+              "amount": 6000
+            }
+          }
+        },
+        "spellFace": {
+          "type": "spell",
+          "name": "「愛ゆえに斬る!!」",
+          "cost": 2,
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "race": "アーマード・アーツ",
+          "text": "自分の手札を１枚捨て、カードを１枚引き、その後、相手のパワー2000以下のクリーチャーを１体選んで破壊する。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 1
+            },
+            {
+              "op": "Draw",
+              "n": 1
+            },
+            {
+              "op": "Target",
+              "spell": true,
+              "to": "grave",
+              "filter": {
+                "maxPower": 2000
+              }
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "32510b41bebe4536b7ff2a35f199c71f8669318fac11cc13933e9afb8e672dc1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-032",
+      "name": "マジック・A・セミプーロ / ♪閑かさや とにかくブレイン 蝉ミンミン",
+      "faces": [
+        {
+          "name": "マジック・A・セミプーロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが破壊された時、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "マジック・サイバー・コマンド",
+          "powerText": "5000",
+          "missingFields": []
+        },
+        {
+          "name": "♪閑かさや とにかくブレイン 蝉ミンミン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "カードを３枚引く。その後、自分の手札を２枚、好きな順序で山札の上に置く。",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-032",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-032a.jpg",
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "g172Death": [
+          {
+            "op": "Target",
+            "to": "hand",
+            "toOwnerHand": true
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "♪閑かさや とにかくブレイン 蝉ミンミン",
+          "cost": 2,
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "race": "マジック・ソング",
+          "text": "カードを３枚引く。その後、自分の手札を２枚、好きな順序で山札の上に置く。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Draw",
+              "n": 3
+            },
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 2,
+              "to": "deckTop",
+              "g183Return": true,
+              "title": "山札の上から戻す手札を順に2枚選ぶ"
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "6f2ad857701e7cbf656b4b43ec96f00ba3440b8bd2083a5df83b4512c4e9e136",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-051",
+      "name": "星姫械 アイリプス / アイリス・アンブレラ",
+      "faces": [
+        {
+          "name": "星姫械 アイリプス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、自分のクリーチャーをすべてアンタップする。その後、自分のクリーチャー１体につき１枚、カードを引いてもよい。",
+          "race": "メカ・デル・ステラ",
+          "powerText": "5500",
+          "missingFields": []
+        },
+        {
+          "name": "アイリス・アンブレラ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手のクリーチャーを１体選び、タップする。その後、カードを１枚引く。",
+          "race": "メカ・デル・テック",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-051",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-051a.jpg",
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupUntap",
+            "filter": {
+              "creature": true,
+              "faceUp": true
+            }
+          },
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "faceUp": true
+            },
+            "optional": "each"
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "アイリス・アンブレラ",
+          "cost": 2,
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "race": "メカ・デル・テック",
+          "text": "相手のクリーチャーを１体選び、タップする。その後、カードを１枚引く。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "spell": true,
+              "tap": true
+            },
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "6b611ff4e05bba7c98fbb0f618dfca6aa718201271060d60d1beacb61bac9b81",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy22-004",
+      "name": "マジック・A・セミプーロ / ♪閑かさや とにかくブレイン 蝉ミンミン",
+      "faces": [
+        {
+          "name": "マジック・A・セミプーロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが破壊された時、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "マジック・サイバー・コマンド",
+          "powerText": "5000",
+          "missingFields": []
+        },
+        {
+          "name": "♪閑かさや とにかくブレイン 蝉ミンミン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "カードを３枚引く。その後、自分の手札を２枚、好きな順序で山札の上に置く。",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy22-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy22-004a.jpg",
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "g172Death": [
+          {
+            "op": "Target",
+            "to": "hand",
+            "toOwnerHand": true
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "♪閑かさや とにかくブレイン 蝉ミンミン",
+          "cost": 2,
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "race": "マジック・ソング",
+          "text": "カードを３枚引く。その後、自分の手札を２枚、好きな順序で山札の上に置く。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Draw",
+              "n": 3
+            },
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 2,
+              "to": "deckTop",
+              "g183Return": true,
+              "title": "山札の上から戻す手札を順に2枚選ぶ"
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "ebe07e60264d1ac573262435709c2d1942d77fafb4f3e9937c01e87703dcdee6",
+        "facesMatched": true
+      },
+      "canonicalId": "dm23rp1-032"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-15",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp1-020": 4,
+      "dm23rp1-032": 4,
+      "dm23rp1-051": 4,
+      "promoy22-004": 4
+    },
+    "currentList": "https://dm.takaratomy.co.jp/img/regulation/2608/202608regulation.pdf"
+  },
+  "sameNameProducts": {
+    "dm23rp1-020": [
+      "dm23rp1"
+    ],
+    "dm23rp1-032": [
+      "dm23rp1",
+      "プロモ限定カード 22期"
+    ],
+    "dm23rp1-051": [
+      "dm23rp1"
+    ]
+  }
+}
