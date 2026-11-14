@@ -231244,15 +231244,116 @@
       ],
       "supportBatch": "phase-1203",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-033",
+      "name": "drAm’n rAsh",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "マジック・コマンド",
+      "text": "自分のターンの終わりに、自分の手札を２枚捨ててもよい。そうしたら、マジック・メクレイド８する。（マジック・メクレイド８：自分の山札の上から３枚を見る。その中から、コスト８以下のマジックを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-033",
+      "limit": 4,
+      "g174End": [
+        {
+          "op": "DiscardFor248",
+          "n": 2,
+          "g770DiscardAttempt": true,
+          "title": "メクレイドするために捨てる手札を2枚選ぶ（任意）",
+          "defs": [
+            {
+              "op": "Raid767",
+              "race": "マジック",
+              "max": 8
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1204",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23sp1-013",
+      "name": "グ:ボガメン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ノワールアビス",
+      "text": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\nこのクリーチャーが攻撃する時、自分の他のクリーチャーを１体破壊してもよい。そうしたら、アビス・メクレイド５する。（アビス・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のアビスを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sp1-013",
+      "limit": 4,
+      "abyssRush": true,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g179Other": true,
+          "implicitSelection": true,
+          "to": "grave",
+          "optional": true,
+          "g587AfterSelection": true,
+          "title": "破壊する自分の他のクリーチャーを選ぶ（任意）",
+          "after": [
+            {
+              "op": "Raid767",
+              "race": "アビス",
+              "max": 5
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1204",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-028",
+      "name": "星姫械 エルナリク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 8000,
+      "race": "メカ・デル・ステラ/シノビ",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n各ターンの終わりに、このターン自分のシールドゾーンにカードが２枚以上置かれていたら、メカ・メクレイド８する。（メカ・メクレイド８：自分の山札の上から３枚を見る。その中から、コスト８以下のメカを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-028",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g1204ShieldPlacementEnd": {
+        "min": 2,
+        "defs": [
+          {
+            "op": "Raid767",
+            "race": "メカ",
+            "max": 8
+          }
+        ]
+      },
+      "supportBatch": "phase-1204",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1203,
+    "phase": 1204,
     "checkedAt": "2026-11-14",
-    "baseCount": 7601,
+    "baseCount": 7604,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7604,
+    "totalCount": 7607,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -251977,6 +252078,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7601,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1203,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7601,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7604,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

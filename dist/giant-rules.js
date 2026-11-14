@@ -17,7 +17,8 @@ export function createGiantRules(api){
  case'g17_TermMana':choice(s,t,'マナと同じ'+own.mana.length+'枚を山札からマナに置きますか？',[opt(own.mana.length+'枚をマナへ',true,own.deck.length>own.mana.length?15:-20),skip()]);break;
  case'g17_Ramp':ramp(s,t.p,t.n??1);break;
  case'g17_Scarlet':choice(s,t,'他のジャイアントをマナに置いてメクレイド8する？',[...own.battle.filter(x=>['creature','seed'].includes(card(x).type)&&x.uid!==t.uid&&giant(effective(x,s))&&api.canLeave(s,t.p,x)&&!api.manaMoveForbidden(s,t.p,x)).map(x=>opt(card(x).name,x.uid,Math.max(1,15-cost(card(x))),x.cardId)),skip()]);break;
- case'g17_AfterScarlet':if(own.mana.some(x=>x.uid===t.moved))put(s,task('g17_Mekraid',t.p,t.source));break;
+ // QA 43071: attempting the movement is enough, even if it is replaced.
+ case'g17_AfterScarlet':put(s,task('g17_Mekraid',t.p,t.source));break;
  case'g17_Mekraid':{const uids=protect(s,t.p,3),options=uids.flatMap(uid=>{const x=own.deck.find(x=>x.uid===uid);return faces(card(x)).flatMap((c,face)=>giant(c)&&cost(c)<=8&&api.canCast(s,t.p,c)&&(c.type==='spell'||api.canEnter(s,t.p,c,{origin:'deck',execution:true})&&(!c.evolution||api.evolutionBases(s,t.p,c).length))?[opt(c.name,{uid,face},20+cost(c),x.cardId)]:[]);});choice(s,{...t,uids},'上3枚からコスト8以下のジャイアントを使う',[...options,skip()]);break;}
  case'g17_MekUse':{const x=own.deck.find(x=>x.uid===t.uid),c=x&&faces(card(x))[t.face||0];if(!x)break;if(c.evolution||c.neoEvolution)choice(s,t,'メクレイドの進化元を選ぶ',[...(c.neoEvolution?[opt('進化せずに出す',null,1)]:[]),...api.evolutionBases(s,t.p,c).map(x=>opt(card(x).name,x.uid,5,x.cardId))]);else cast(s,t.p,x.uid,true,null,t.face||0,null,'deck','ジャイアント・メクレイド');break;}
  case'g17_Order':if(!t.uids.length){unprotect(own,t.protected);if(t.after)put(s,t.after);break;}if(t.uids.length===1){const x=remove(own.deck,t.uids[0]);if(x)own.deck.push(x);put(s,{...t,uids:[]});break;}choice(s,t,'残りを山札の下へ置く順序を選ぶ',t.uids.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,0,x.cardId);}));break;

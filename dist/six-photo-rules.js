@@ -508,6 +508,7 @@ export function createSixPhotoRules(api){
    d.op==='DiscardCost655'?{...d,costs:discardCosts655(s,t.p,y,d.g835Creature&&!d.g1048AnyDiscardedFace)}:d);
  }
  function discardScore248(s,t,y){const own=s.players[t.p],enemy=creatures(s,1-t.p).filter(x=>!x.sealed),d=t.defs[0];
+  if(d.op==='Raid767')return own.deck.length>1&&!api.deckLocked(s,t.p)?10-cost(card(y)):-100;
   if(d.op==='Clock842')return own.deck.length>1&&!api.deckLocked(s,t.p)?5-Math.min(cost(card(y)),8):-100;
   if(d.op==='ShieldTop')return api.canAddShield(s,t.p)&&own.deck.length>1?12-cost(card(y)):-100;
   if(d.op==='SelfGrant754'&&d.grant.speedAttacker){
@@ -4680,11 +4681,11 @@ export function createSixPhotoRules(api){
     t={...t,filter:{...t.filter,maxPower:12000}};
   }const owner=t.owner==='self'?t.p:t.owner??1-t.p,ps=t.anyOwner?[t.p,1-t.p]:[owner],candidates=ps.flatMap(p=>s.players[p].battle.filter(y=>y.uid!==t.excludeUid&&matches(s,p,y,{creature:!t.element,...t.filter})&&(!t.g824Panya||panyaCanReturn(s,y))&&(!t.g593OverMana||cost(effective(y,s))>opp.mana.length)&&(!t.g179Other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))));const eligible=t.g810Excluded?candidates.filter(y=>!api.allLayers(y).some(z=>t.g810Excluded.includes(key(z)))):candidates;const rows=t.g741MinPower?lowestPower741(s,eligible):eligible;
   // An instruction to act on one's own card can omit 「選ぶ」 (QA 45224).
-  const manaForRaid=t.owner==='self'&&t.to==='mana'&&t.g587AfterSelection&&t.after?.[0]?.op==='Raid767';
+  const moveForRaid=t.owner==='self'&&t.g587AfterSelection&&t.after?.[0]?.op==='Raid767';
   const options=t.g1044ImplicitTap||t.implicitSelection
    ?rows.filter(y=>!y.sealed).map(y=>{
     const c=card(y);
-    const score=manaForRaid?(own.deck.length>1?16-cost(c)+(y.tapped?3:0):-1):y.tapped?5:10;
+    const score=moveForRaid?(own.deck.length>1&&!api.deckLocked(s,t.p)?16-cost(c)+(y.tapped?3:0):-1):y.tapped?5:10;
     return opt(c.name,y.uid,score,y.cardId);
    })
    :targetOptions(s,t.p,rows);
@@ -6779,6 +6780,8 @@ export function createSixPhotoRules(api){
    send(s,p,x,'GraveReturn754',{serial:x.zoneSerial||0});
  },
  shieldAdded918(s,p,count=1){
+  if(s.g1204ShieldPlacements?.turn!==s.turn)s.g1204ShieldPlacements={turn:s.turn,counts:[0,0]};
+  s.g1204ShieldPlacements.counts[p]+=count;
   if(s.g20LeavingUids&&s.leaving){
    const counts=shieldAdds918.get(s.leaving)||[0,0];
    counts[p]+=count;
@@ -7487,6 +7490,10 @@ export function createSixPhotoRules(api){
   if(card(x).g1032ShieldAddedEnd&&!x.sealed&&s.g159ShieldAddedTurns?.[p]===s.turn){
    const defs=effective(x,s).g1032ShieldAddedEnd;
    if(defs)add(x,defs);
+  }
+  if(card(x).g1204ShieldPlacementEnd&&api.isCreature(s,x)&&s.g1204ShieldPlacements?.turn===s.turn){
+   const end=effective(x,s).g1204ShieldPlacementEnd;
+   if(end&&s.g1204ShieldPlacements.counts[p]>=end.min)add(x,end.defs);
   }
   if(card(x).g1036ShieldLeftEnd&&!x.sealed&&s.g1036ShieldGroupLeftTurns?.[p]===s.turn){
    const defs=effective(x,s).g1036ShieldLeftEnd;

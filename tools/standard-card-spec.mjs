@@ -2474,6 +2474,23 @@ export function standardCardSpec(d,{phase=165}={}){
   const text=normalize(f.abilityText);
   const raidText=(race,max)=>`${race}・メクレイド${max}する。(${race}・メクレイド${max}:自分の山札の上から3枚を見る。`+
    `その中からコスト${max}以下の${race}を1枚コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く)`;
+  if(phase>=1204){
+   if(d.id==='dm23rp1-033'&&text==='自分のターンの終わりに自分の手札を2枚捨ててもよい。そうしたら'+raidText('マジック',8))
+    return {g174End:[{op:'DiscardFor248',n:2,g770DiscardAttempt:true,
+     title:'メクレイドするために捨てる手札を2枚選ぶ（任意）',defs:[{op:'Raid767',race:'マジック',max:8}]}]};
+   if(d.id==='dm23sp1-013'&&text===
+    'アビスラッシュ:このクリーチャーを自分の墓地から召喚してもよい。そうしたらこのターンこのクリーチャーはプレイヤーを攻撃できターンの終わりに山札の下に置かれる。'+
+    'このクリーチャーが攻撃する時自分の他のクリーチャーを1体破壊してもよい。そうしたら'+raidText('アビス',5))
+    return {abyssRush:true,g34Attack:[{
+     op:'Target',owner:'self',g179Other:true,implicitSelection:true,to:'grave',optional:true,g587AfterSelection:true,
+     title:'破壊する自分の他のクリーチャーを選ぶ（任意）',after:[{op:'Raid767',race:'アビス',max:5}]
+    }]};
+   if(['dm23rp2-028','dm23rp2x-028'].includes(d.id)&&text===
+    'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+    'このクリーチャーは相手プレイヤーを攻撃できない。'+
+    '各ターンの終わりにこのターン自分のシールドゾーンにカードが2枚以上置かれていたら'+raidText('メカ',8))
+    return {blocker:true,noPlayerAttack:true,g1204ShieldPlacementEnd:{min:2,defs:[{op:'Raid767',race:'メカ',max:8}]}};
+  }
   if(['dm23sd1-013','dm24ex1-079'].includes(d.id)&&text===
    'スピードアタッカー(このクリーチャーは召喚酔いしない)このクリーチャーが破壊された時'+raidText('アーマード',8))
    return {speedAttacker:true,g172Death:[{op:'Raid767',race:'アーマード',max:8}]};

@@ -11,7 +11,25 @@ test('Heavy terminal permits independent draw and ramp decisions after observing
 test('Heavy terminal may skip draw but double current mana and declining entire terminal preserves use',()=>{const s=setup();give(s,0,'mana',[W,W]);give(s,0,'deck',Array(10).fill(W));awake(s,'g17_Terminal');pick(s,null);assert.ok(!s.g7TerminalUsed?.[0]);awake(s,'g17_Terminal');pick(s,true);pick(s,null);pick(s,true);assert.equal(s.players[0].mana.length,4);});
 test('Scarlet gives one paid Giant mana summon per instance and ramps after summoning before entry effects',()=>{const s=setup();give(s,0,'battle',[A]);s.players[0].mana.push(inst(B));const before=s.players[0].mana.length,uid=s.players[0].mana.at(-1).uid;act(s,'play',a=>a.uid===uid&&a.manaPermit?.startsWith('g17:'));assert.ok(s.players[0].battle.some(x=>x.uid===uid));assert.equal(s.players[0].mana.length,before);assert.equal(e.getLegalActions(s).filter(a=>a.manaPermit?.startsWith('g17:')).length,0);s.players[0].battle.push(inst(A));s.players[0].mana.push(inst(B));assert.ok(e.getLegalActions(s).some(a=>a.manaPermit?.startsWith('g17:')));});
 test('Scarlet mana permission is consumed for G-zero evolution and cannot summon a prohibited card',()=>{const s=setup();give(s,0,'battle',[A,B,C,E]);s.players[0].mana.push(inst(Y));const uid=s.players[0].mana.at(-1).uid;act(s,'play',a=>a.uid===uid&&a.freeSummon&&a.manaPermit?.startsWith('g17:'));assert.equal(s.decision.type,'evolution');act(s,'evolve',a=>a.baseUid===s.players[0].battle[1].uid);drain(s);assert.ok(s.players[0].battle.some(x=>x.cardId===Y));assert.equal(Object.keys(s.g17ManaUsed).length,1);});
-test('Scarlet attack requires an actual other Giant entering mana before its mekraid',()=>{const s=setup();give(s,0,'battle',[A,B]);give(s,0,'deck',[M,W,W,...Array(6).fill(W)]);attack(s);pick(s,s.players[0].battle[1].uid);assert.equal(s.decision.task.op,'g17_Mekraid');pick(s,v=>v?.uid);drain(s);assert.ok(s.players[0].battle.some(x=>x.cardId===M));assert.ok(s.players[0].mana.some(x=>x.cardId===B));const t=setup();give(t,0,'battle',[A,C]);give(t,0,'shields',[]);attack(t);pick(t,t.players[0].battle[1].uid);act(t,'replaceUltra');assert.notEqual(t.decision?.task?.op,'g17_Mekraid');});
+test('Scarlet resolves Mekraid after normal mana placement and Ultra Saver replacement',()=>{
+ const s=setup();
+ give(s,0,'battle',[A,B]);give(s,0,'deck',[M,W,W,...Array(6).fill(W)]);
+ attack(s);pick(s,s.players[0].battle[1].uid);
+ assert.equal(s.decision.task.op,'g17_Mekraid');
+ pick(s,v=>v?.uid);drain(s);
+ assert.ok(s.players[0].battle.some(x=>x.cardId===M));
+ assert.ok(s.players[0].mana.some(x=>x.cardId===B));
+
+ const t=setup();
+ give(t,0,'battle',[A,B,C]);give(t,0,'shields',[]);
+ const sacrifice=t.players[0].battle[1];
+ const saver=t.players[0].battle[2];
+ attack(t);pick(t,sacrifice.uid);
+ act(t,'replaceUltra',a=>a.uid===saver.uid);
+ assert.ok(t.players[0].battle.includes(sacrifice));
+ assert.ok(t.players[0].grave.some(x=>x.uid===saver.uid));
+ assert.equal(t.decision.task.op,'g17_Mekraid');
+});
 test('Giant mekraid uses the selected spell face and protects unselected top cards while spell draws',()=>{const s=setup(),tw=O;give(s,0,'deck',[tw,C,B,W,...Array(8).fill(W)]);give(s,1,'battle',[Z]);awake(s,'g17_Mekraid',0,A);const ids=s.players[0].deck.slice(0,3).map(x=>x.uid);pick(s,v=>v?.face===1);pick(s,s.players[1].battle[0].uid);pick(s,null);drain(s);assert.ok(s.players[0].grave.some(x=>x.cardId===O));assert.deepEqual(s.players[0].deck.slice(-2).map(x=>x.uid),ids.slice(1));assert.deepEqual(s.players[0].g17Protected,[]);});
 test('Lake must select two distinct cards, orders the rest, reveals a hand card then chooses exact-cost bounce',()=>{const s=setup();give(s,0,'deck',[M,B,C,N,S,E,...Array(10).fill(W)]);give(s,1,'battle',[M,Z]);cast(s,L);pick(s,s.players[0].deck[0].uid);pick(s,s.players[0].deck[1].uid);for(let i=0;i<3;i++)pick(s,s.decision.choices[0].value);assert.equal(s.decision.task.op,'g17_RevealHand');pick(s,s.players[0].hand.find(x=>x.cardId===M).uid);assert.deepEqual(s.decision.choices.map(x=>x.cardId),[M]);pick(s,s.players[1].battle[0].uid);assert.equal(s.players[1].battle.length,1);assert.deepEqual(s.players[0].g17Protected,[]);});
 test('Lake reveals twinpact and chooses which of its two costs to reference',()=>{const s=setup();give(s,0,'hand',[O]);give(s,1,'battle',[M]);awake(s,'g17_RevealHand',0,L);pick(s,s.players[0].hand[0].uid);assert.equal(s.decision.task.op,'g17_RevealCost');pick(s,5);assert.equal(s.decision.task.op,'g17_LakeBounce');});

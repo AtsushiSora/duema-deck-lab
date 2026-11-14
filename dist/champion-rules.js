@@ -23,7 +23,13 @@ export function createChampionRules(api){
  case'g38_YabadanMill':choice(s,t,'山札の上から'+t.n+'枚を墓地に置く？',[opt('墓地に置く',true,t.n<own.deck.length?10:-100),skip()]);break;
  case'g38_Another':for(const p of[s.active,1-s.active]){const rows=[...s.players[p].hand.splice(0),...policyTake(s,p,'grave',api)];for(const x of rows)clear(x,'deck');api.shuffleLibrary(s,p,rows,t.source);}put(s,...[s.active,1-s.active].map(p=>task('draw',p,t.source,{n:5})));break;
  case'g38_Trial':trial(s,t);break;
- case'g38_Mondo':own.g38LibrarySafe=true;api.draw(s,t.p,5);if(!own.deck.length)put(s,task('g5ExtraTurn',t.p,t.source));break;
+ case'g38_Mondo':{
+  own.g38LibrarySafe=true;
+  api.draw(s,t.p,5);
+  // Cards reserved by Mekraid are unavailable until its spell finishes (QA 43077).
+  if(!api.hasAvailableDeckCard(s,t.p))put(s,task('g5ExtraTurn',t.p,t.source));
+  break;
+ }
  case'g38_DoryumCost':{const selected=(t.selected||[]).filter(uid=>own.hand.some(x=>x.uid===uid));if(selected.length===2){put(s,task('g38_DoryumCast',t.p,t.source,{target:t.target}));api.discardSelected(s,{...t,n:2,causedBy:t.p},selected);break;}choice(s,{...t,selected},'ド・リュミーズ：捨てる魔導具を2枚選ぶ（'+selected.length+'/2）',own.hand.filter(x=>x.uid!==t.target&&!selected.includes(x.uid)&&magic(x)).map(x=>opt(card(x).name,x.uid,15-cost(card(x)),x.cardId)));break;}
  case'g38_DoryumCast':if(own.hand.some(x=>x.uid===t.target)&&api.canCast(s,t.p,card(t.source),'hand'))api.cast(s,t.p,t.target,true,null,0,null,'hand','ド・リュミーズの代替コスト');break;
  case'g38_Ukidu':{const options=[0,1].flatMap(p=>s.players[p].shields.map((x,i)=>opt((p===t.p?'自分':'相手')+'のシールド'+(i+1),{p,uid:x.uid},p===t.p?-2:10)));if(options.length)choice(s,t,'ウキドゥ：見るシールドを選ぶ',options);else put(s,task('draw',t.p,t.source,{n:1}));break;}
