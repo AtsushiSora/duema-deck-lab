@@ -243135,15 +243135,161 @@
       },
       "supportBatch": "phase-1298",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp01-003",
+      "name": "緑知銀 サモハン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "メタリカ",
+      "text": "自分のクリーチャーを相手が選ぶ時、自分の他のクリーチャーは選べない。（ただし、自分の他のクリーチャーを攻撃またはブロックしてもよい）\n相手がこのクリーチャーを選んだ時、カードを２枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-003",
+      "limit": 4,
+      "g608Protect": {
+        "creature": true,
+        "g334Other": true
+      },
+      "g447Selected": [
+        {
+          "op": "Offer",
+          "title": "カードを2枚引く？",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 2
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1299",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex12-032",
+      "name": "シリウ・ヘブン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 2000,
+      "race": "ファンキー・ナイトメア",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、次のうちいずれか１つを選ぶ。\n▶︎相手のアンタップしているクリーチャーを１体破壊する。\n▶︎コスト５以下のファンキー・ナイトメアを１体、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-032",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "noAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "相手のアンタップしているクリーチャーを破壊する",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "creature": true,
+                    "untapped": true
+                  }
+                }
+              ]
+            },
+            {
+              "label": "墓地からコスト5以下のファンキー・ナイトメアを出す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "n": 1,
+                  "deploy": true,
+                  "filter": {
+                    "creature": true,
+                    "race": "ファンキー・ナイトメア",
+                    "max": 5
+                  },
+                  "title": "墓地から出すファンキー・ナイトメアを選ぶ"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1299",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex07-018",
+      "name": "コヴ・シディア/ライトハンド・ライトニング",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3500,
+      "race": "メタリカ",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが破壊される時、墓地に置くかわりに、表向きのまま、自分のシールド１つの上に置く。（そのシールドの束は１つと数える）\n自分のターンの終わりに、自分のクリーチャーを１体タップまたはアンタップしてもよい。\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、タップする。\nカードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex07-018",
+      "limit": 4,
+      "blocker": true,
+      "g1299DestroyToShield": true,
+      "g174End": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g235TapOrUntap": true,
+          "optional": true,
+          "title": "タップまたはアンタップする自分のクリーチャーを選ぶ"
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "ライトハンド・ライトニング",
+        "cost": 3,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "spell": true
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1299",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1298,
+    "phase": 1299,
     "checkedAt": "2026-11-15",
-    "baseCount": 7909,
+    "baseCount": 7912,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7912,
+    "totalCount": 7915,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -265008,6 +265154,18 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 7909,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1298,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7909,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7912,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -2475,6 +2475,37 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1299&&f?.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText).replaceAll('\uFE0E','');
+  const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+  if(d.id==='dmrp01-003'&&d.status==='complete'&&d.faces.length===1&&
+   text==='自分のクリーチャーを相手が選ぶ時自分の他のクリーチャーは選べない。(ただし自分の他のクリーチャーを攻撃またはブロックしてもよい)'+
+    '相手がこのクリーチャーを選んだ時カードを2枚引いてもよい。')
+   return {g608Protect:{creature:true,g334Other:true},g447Selected:[
+    {op:'Offer',title:'カードを2枚引く？',defs:[{op:'Draw',n:2}]}
+   ]};
+  if(d.id==='dmex12-032'&&d.status==='complete'&&d.faces.length===1&&
+   text==='S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)'+blocker+
+    'このクリーチャーは攻撃できない。このクリーチャーがバトルゾーンに出た時次のうちいずれか1つを選ぶ。'+
+    '▶相手のアンタップしているクリーチャーを1体破壊する。▶コスト5以下のファンキー・ナイトメアを1体自分の墓地からバトルゾーンに出す。')
+   return {trigger:true,blocker:true,noAttack:true,effect:'sixPhoto',g34Tasks:[{op:'Choose',g184Modes:true,modes:[
+    {label:'相手のアンタップしているクリーチャーを破壊する',defs:[{op:'Target',to:'grave',filter:{creature:true,untapped:true}}]},
+    {label:'墓地からコスト5以下のファンキー・ナイトメアを出す',defs:[{op:'Select',origin:'grave',n:1,deploy:true,
+     filter:{creature:true,race:'ファンキー・ナイトメア',max:5},title:'墓地から出すファンキー・ナイトメアを選ぶ'}]}
+   ]}]};
+  const spell=d.faces[1];
+  // The official scan shows light on the spell half, whose website field is blank.
+  if(d.id==='dmex07-018'&&d.faces.length===2&&!f.missingFields.length&&f.civilizationText==='光'&&
+   spell.typeText==='呪文'&&spell.missingFields.length===1&&spell.missingFields[0]==='civilization'&&
+   text===blocker+'このクリーチャーが破壊される時墓地に置くかわりに表向きのまま自分のシールド1つの上に置く。'+
+    '(そのシールドの束は1つと数える)自分のターンの終わりに自分のクリーチャーを1体タップまたはアンタップしてもよい。'&&
+   normalize(spell.abilityText)==='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)'+
+    '相手のクリーチャーを1体選びタップする。カードを1枚引く。')
+   return {blocker:true,g1299DestroyToShield:true,g174End:[
+    {op:'Target',owner:'self',g235TapOrUntap:true,optional:true,title:'タップまたはアンタップする自分のクリーチャーを選ぶ'}
+   ],spellFace:{type:'spell',name:spell.name,cost:spell.cost,civ:'光',civilizations:['光'],race:spell.race,trigger:true,
+    effect:'sixPhoto',g34Tasks:[{op:'Target',tap:true,spell:true},{op:'Draw',n:1}]}};
+ }
  if(phase>=1298&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const redirect='このクリーチャーをアンタップして相手クリーチャーの攻撃先をこのクリーチャーまたは自分のタップしているクリーチャーに変更してもよい。';
