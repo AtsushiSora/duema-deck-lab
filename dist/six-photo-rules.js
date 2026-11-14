@@ -1,6 +1,6 @@
 import {createFifteenPhotoRules} from './fifteen-photo-rules.js?v=0.721.2';
 import {createChampionRaid} from './champion-raid-helpers.js';
-import {policyTake} from './champion-zone-policy.js';
+import {policyLook,policyTake} from './champion-zone-policy.js';
 import {RECOVERY_RACES} from './utility-recovery-races.js?v=0.119.0';
 import {hasCopiedRole393} from './requested393-joker-rules.js?v=0.721.2';
 import {afterEntry} from './entry-followup.js?v=0.721.2';
@@ -3695,6 +3695,50 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
   break;
  }
+ case'g34_TimeChanger1276':{
+  if(!t.host){
+   const hosts=creatures(s,t.p).filter(y=>api.isEvolution(y));
+   if(hosts.length&&!api.deckLocked(s,t.p))
+    choice(s,t,'山札からカードを重ねる進化クリーチャーを選ぶ',
+     [...targetOptions(s,t.p,hosts).map(o=>({...o,value:{uid:o.value,incarnation:own.battle.find(y=>y.uid===o.value).incarnation||0}})),skip()]);
+   break;
+  }
+  const host=own.battle.find(y=>key(y)===key(t.host)&&!y.sealed&&api.isCreature(s,y)&&api.isEvolution(y));
+  if(!host)break;
+  const selected=t.selected||[];
+  const pool=t.ids?own.deck.filter(y=>t.ids.includes(y.uid)):policyLook(s,t.p,own.deck.length,own.deck,api)
+   .filter(y=>faces(api.zoneCard(s,t.p,y,'deck')).some(c=>c.type==='creature'));
+  const remaining=pool.filter(y=>!selected.includes(y.uid));
+  if(selected.length<2&&remaining.length){
+   choice(s,{...t,ids:pool.map(y=>y.uid),selected},'進化クリーチャーの下に置くクリーチャーを2体選ぶ',
+    remaining.map(y=>opt(card(y).name,y.uid,10,y.cardId)));
+   break;
+  }
+  if(card(host).g50Kingdom)host.g50KingdomCount=api.allLayers(host).length;
+  for(const uid of selected){
+   const y=remove(own.deck,uid);
+   if(!y)continue;
+   api.log(s,t.p,'reveal',card(t.source).name+'で公開：'+card(y).name,{cardId:y.cardId});
+   clear(y,'under');
+   (host.under??=[]).push(y);
+  }
+  api.shuffleLibrary(s,t.p);
+  api.deckCheck(s,t.p);
+  break;
+ }
+ case'g34_DokindamSwitch1276':
+  if(x&&!x.sealed&&!x.g1175DSwitched&&effective(x,s).g1276DokindamArea&&!d2Locked1188(s,t.p))
+   choice(s,t,'Dスイッチを使う？',[opt('Dスイッチを使う',true,own.seals?.length?25:0),skip()]);
+  break;
+ case'g34_DokindamUnseal1276':{
+  const selected=t.selected||[];
+  const seals=(own.seals||[]).filter(y=>!selected.includes(y.uid));
+  if(selected.length<6&&seals.length){
+   const options=seals.map(y=>opt('封印 '+((own.seals||[]).indexOf(y)+1),y.uid,8));
+   choice(s,{...t,selected},'墓地に置く自分の封印を6枚まで選ぶ',[...options,opt('選択を終える',null,0)]);
+  }else api.moveSealsToGrave1156(s,t.p,selected);
+  break;
+ }
  case'g34_TransferBases1132':{
   const source=sourceHost474(s,t);
   const host=t.destination&&sourceHost474(s,t.destination);
@@ -5868,6 +5912,15 @@ export function createSixPhotoRules(api){
   break;
  }else break;
  case'g34_Harpoon618':put(s,{...t,kept:[...(t.kept||[]),v]});break;
+ case'g34_TimeChanger1276':if(v)put(s,t.host?{...t,selected:[...t.selected,v]}:{...t,host:v});break;
+ case'g34_DokindamSwitch1276':if(v&&x&&!x.sealed&&!x.g1175DSwitched&&effective(x,s).g1276DokindamArea&&!d2Locked1188(s,t.p)){
+  x.g1175DSwitched=true;
+  put(s,{...t,op:'g34_DokindamUnseal1276',selected:[]});
+ }break;
+ case'g34_DokindamUnseal1276':
+  if(v)put(s,{...t,selected:[...t.selected,v]});
+  else api.moveSealsToGrave1156(s,t.p,t.selected);
+  break;
  case'g34_TransferBases1132':
   if(v)put(s,t.destination?{...t,selected:[...(t.selected||[]),v]}:{...t,destination:v,selected:[]});
   else if(t.selected?.length){
@@ -7271,7 +7324,10 @@ export function createSixPhotoRules(api){
   uid:x.uid,source:x.cardId,effect:'extended',
   task:task('g34_ManaStart1131',p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0})
  }]:[]);
- return [...delayed537,...generic,...grave,...mana,...active(s,p,'engels').filter(()=>!s.g7TerminalUsed?.[p]).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Custom',p,x.cardId,{name:'engelsTerminal',uid:x.uid,incarnation:x.incarnation||0})}))];},
+ const dokindam=s.players[p].battle.filter(x=>!x.sealed&&!x.g1175DSwitched&&card(x).g1276DokindamArea&&effective(x,s).g1276DokindamArea)
+  .map(x=>({uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',
+   task:task('g34_DokindamSwitch1276',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})}));
+ return [...delayed537,...generic,...grave,...mana,...dokindam,...active(s,p,'engels').filter(()=>!s.g7TerminalUsed?.[p]).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Custom',p,x.cardId,{name:'engelsTerminal',uid:x.uid,incarnation:x.incarnation||0})}))];},
  active,
  decoyProtected1256(s,owner,x){
   const own=s.players[owner];
@@ -8322,6 +8378,11 @@ export function createSixPhotoRules(api){
   s.g767GraveEntries.counts[p]+=all.length;
   if(s.g20LeavingUids&&s.leaving)s.leaving.g838GraveCount=(s.leaving.g838GraveCount||0)+all.length;
   else flushGrave838(s,all.length);
+  for(const x of s.players[1-p].battle){
+   if(x.sealed||x.faceDown||s.g20LeavingUids?.includes(x.uid)||!card(x).g1276OpponentGrave||!api.isCreature(s,x))continue;
+   const defs=effective(x,s).g1276OpponentGrave;
+   if(defs)for(const y of all)queue(s,1-p,x,defs);
+  }
   for(const y of all)if(card(y).g590SelfGraveBottom)queue(s,p,y,[{op:'GraveBottom589',self:true}]);
   // Cards with grave-entry abilities trigger from the new zone (QA46841).
   for(const y of all){

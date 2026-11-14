@@ -135,7 +135,11 @@ export function createCombatChampionRules(api){
  finishSpell(s,f){if(!f.inst.g50KingFace||!f.inst.under?.length)return;const parts=f.inst.under.flatMap(api.layers);delete f.inst.under;const to=['deck','mana'].includes(f.to)?f.to:'grave';for(const y of parts){clear(y,to);api.addZone(s,f.owner,to,y);}},
  effect(s,p,c,uid,entry){if(!c.g50Effect)return false;put(s,task('g50_'+c.g50Effect,p,c.id,{uid,incarnation:entry?.incarnation||0,super:!!(entry?.super||c.superTriggerActive)}));return true;},
  entry(s,p,x,options={}){if(rek(card(x)))for(const y of s.players[p].battle)if(y.uid!==x.uid&&card(y).g50Kingdom&&!api.ignored(s,y))on(s,p,y,'KingdomOffer');},
- stateCheck(s){for(const p of[0,1])for(const top of s.players[p].battle){const all=api.layers(top),n=all.length;for(const x of all){const c=card(x);if(!c.g50Kingdom)continue;const previous=x.g50KingdomCount;x.g50KingdomCount=n;if(x===top&&!api.ignored(s,x)&&n===c.g50Kingdom&&previous!==n){if(n===6)for(const y of creatures(s,1-p))(y.powerModifiers??=[]).push({amount:-99999,expires:'end',who:s.active});else on(s,p,x,'KingdomFour');}}}},
+ stateCheck(s){for(const p of[0,1])for(const top of s.players[p].battle){const all=api.layers(top),n=all.length;for(const x of all){const c=card(x);if(!c.g50Kingdom)continue;const previous=x.g50KingdomCount;x.g50KingdomCount=n;
+  // The stack can pass through six cards while a single effect adds two (QA40206).
+  const reached=n===c.g50Kingdom&&previous!==n||c.g50Kingdom===6&&previous<6&&n>6;
+  if(x===top&&!api.ignored(s,x)&&reached){if(c.g50Kingdom===6)for(const y of creatures(s,1-p))(y.powerModifiers??=[]).push({amount:-99999,expires:'end',who:s.active});else on(s,p,x,'KingdomFour');}
+ }}},
  decorate(s,p,x,c){if(p<0)return c;const own=s.players[p],graveFire=own.grave.filter(y=>fire(card(y))).length;if(c.g50Duel)c={...c,power:Number(c.power)+graveFire*1000};if(c.g50Nex)c={...c,attackBonus:(c.attackBonus||0)+graveFire*2000};if(c.g50Kingdom&&api.layers(x).length<c.g50Kingdom)c={...c,noAttack:true,untargetable:true};if(c.g50Volzeos&&x.entered===s.turn)c={...c,unblockable:true};if(x.g50OrderGrant&&s.players[x.g50OrderGrant.p].turns===x.g50OrderGrant.turns)c={...c,speedAttacker:true,blocker:true};return c;},
  allowedCast(s,p,c){if(c.type==='cell')return false;return c.type!=='creature'||cost(c)>4||!s.players.some(own=>own.battle.some(x=>card(x).g50Cross&&!api.ignored(s,x)));},
  allowedEntry(s,p,c,options={}){return !options.execution||!c||c.type!=='creature'||this.allowedCast(s,p,c);},

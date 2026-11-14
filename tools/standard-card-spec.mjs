@@ -2475,6 +2475,33 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1276&&d?.status==='complete'&&d.faces.length===1){
+  const lines=f.abilityText.split('\n').map(normalize);
+  if(['dm22-010','dm34-026','dmx10-033','dm25rp2-T07','dm25ex3-TF22'].includes(d.id)&&f.typeText==='クリーチャー'){
+   const text=lines.join('');
+   if([
+    'このクリーチャーをバトルゾーンに出した時バトルゾーンにある自分の進化クリーチャーを1体選ぶ。そうした場合自分の山札を見てその中からクリーチャーを2体まで選び相手に見せてから選んだ進化クリーチャーの下に置いてもよい。その後山札をシャッフルする。',
+    'このクリーチャーをバトルゾーンに出した時バトルゾーンにある自分の進化クリーチャーを1体選んでもよい。そうした場合自分の山札を見る。その中からクリーチャーを2体まで選び相手に見せてから選んだ進化クリーチャーの下に置く。その後山札をシャッフルする。',
+    'このクリーチャーが出た時自分の進化クリーチャーを1体選んでもよい。そうしたら自分の山札を見てその中からクリーチャーを2体表向きにし選んだ進化クリーチャーの下に置く。その後山札をシャッフルする。'
+   ].includes(text))return {effect:'sixPhoto',g34Tasks:[{op:'TimeChanger1276'}]};
+  }
+  if(['dmr21-004','dmex15-a039','dm22ex2-006'].includes(d.id)&&f.typeText==='D2フィールド'){
+   const text=lines.join('').replaceAll('バトルゾーンを離れる','離れる').replaceAll('がバトルゾーンに出た時','が出た時')
+    .replace('封印をひとつ','封印を1つ')
+    .replace('封印を付ける','封印を1つ付ける');
+   if(text==='自分のクリーチャーが離れる時かわりにそのクリーチャーに封印を1つ付ける。(カードを封印するには自分の山札の上から1枚目を裏向きのままそのカードの上に置く。コマンドが出た時その持ち主はそのコマンドと同じ文明を持つ自身のカードから封印を1つ墓地に置く。クリーチャーが封印されている間両プレイヤーはそのクリーチャーを無視する)(他のD2フィールドが出た時このD2フィールドを自分の墓地に置く)**Dスイッチ:自分のターンのはじめにこのD2フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら自分の封印を6枚まで墓地に置いてもよい。')
+    return {d2Field:true,g1276DokindamArea:true};
+  }
+  if(['dmr07-s05','dmx19-s55','dmrp08-g05','dmex12-dr5','dmrp17-a18','dmrp17-b18','dm22ex2-S14','dm24sp1-007','promoy15-044'].includes(d.id)&&f.typeText==='クリーチャー'){
+   const rules=lines.filter(line=>line!=='マナゾーンに置く時このカードはタップして置く。'&&!keyword(line,'T・ブレイカー'));
+   if(lines.filter(line=>keyword(line,'T・ブレイカー')).length===1&&lines.length<=4&&rules.length===2&&
+    /^このクリーチャー(?:をバトルゾーンに出した|が(?:バトルゾーンに)?出た)時相手のクリーチャーを1体(?:選び)?破壊する。その後カードを1枚相手のマナゾーンから選び持ち主の墓地に置く。$/.test(rules[0])&&
+    rules[1]==='相手のカードがどこからでも墓地へ置かれた時自分の山札の上から1枚目をマナゾーンに置いてもよい。')
+    return {breaker:3,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'grave'},
+     {op:'Select',origin:'mana',owner:'opponent',to:'grave',n:1,title:'墓地に置く相手のマナを1枚選ぶ'}],
+     g1276OpponentGrave:[{op:'Ramp',n:1,optional:true}]};
+  }
+ }
  if(phase>=1275&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const lines=f.abilityText.split('\n').map(normalize);
   if(['dmrp19-031','dm26ex4-CHO040'].includes(d.id)&&lines.length===2&&

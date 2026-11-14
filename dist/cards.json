@@ -240024,15 +240024,102 @@
       "g1275Brakkio": true,
       "supportBatch": "phase-1275",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22-010",
+      "name": "時空工兵タイムチェンジャー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "グレートメカオー",
+      "text": "このクリーチャーが出た時、自分の進化クリーチャーを１体選んでもよい。そうしたら、自分の山札を見て、その中からクリーチャーを２体表向きにし、選んだ進化クリーチャーの下に置く。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-010",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "TimeChanger1276"
+        }
+      ],
+      "supportBatch": "phase-1276",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-004",
+      "name": "Dの禁断 ドキンダムエリア",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "自分のクリーチャーがバトルゾーンを離れる時、かわりにそのクリーチャーに封印を付ける。（カードを封印するには、自分の山札の上から１枚目を裏向きのままそのカードの上に置く。コマンドがバトルゾーンに出た時、その持ち主はそのコマンドと同じ文明を持つ自身のカードから封印をひとつ、墓地に置く。クリーチャーが封印されている間、両プレイヤーはそのクリーチャーを無視する）（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**\nDスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、自分の封印を６枚まで墓地に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-004",
+      "limit": 4,
+      "d2Field": true,
+      "g1276DokindamArea": true,
+      "supportBatch": "phase-1276",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr07-s05",
+      "name": "偽りの王 ヴィルヘルム",
+      "civ": "闇/火/自然",
+      "civilizations": [
+        "闇",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 12000,
+      "race": "キング・コマンド・ドラゴン/アンノウン",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、相手のクリーチャーを１体破壊する。その後、カードを１枚相手のマナゾーンから選び、持ち主の墓地に置く。\n相手のカードがどこからでも墓地へ置かれた時、自分の山札の上から１枚目をマナゾーンに置いてもよい。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-s05",
+      "limit": 4,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave"
+        },
+        {
+          "op": "Select",
+          "origin": "mana",
+          "owner": "opponent",
+          "to": "grave",
+          "n": 1,
+          "title": "墓地に置く相手のマナを1枚選ぶ"
+        }
+      ],
+      "g1276OpponentGrave": [
+        {
+          "op": "Ramp",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1276",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1275,
+    "phase": 1276,
     "checkedAt": "2026-11-14",
-    "baseCount": 7830,
+    "baseCount": 7833,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7833,
+    "totalCount": 7836,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -261621,6 +261708,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7830,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1275,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7830,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7833,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
