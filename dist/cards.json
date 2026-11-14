@@ -236748,15 +236748,105 @@
       ],
       "supportBatch": "phase-1244",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr07-002",
+      "name": "真実の名 アカデミー・マスター",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 6000,
+      "race": "リキッド・ピープル/ハンター/アンノウン",
+      "text": "自分の手札から呪文を唱えた時、その後、その呪文を墓地からコストを支払わずに唱えてよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-002",
+      "limit": 4,
+      "breaker": 2,
+      "g1245HandSpellRecast": true,
+      "supportBatch": "phase-1245",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd19-003",
+      "name": "憤怒の悪魔龍 ガナルドナル",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 7000,
+      "race": "デーモン・コマンド・ドラゴン",
+      "text": "このクリーチャーをバトルゾーンに出した時、タップされているクリーチャーをすべて破壊する。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd19-003",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "tapped": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1245",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd03-004",
+      "name": "大地のアニキ虎武流",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ガイア・コマンド/ハンター",
+      "text": "自分の他のハンターをバトルゾーンに出した時、ハンターを１枚、自分のマナゾーンから手札に戻してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd03-004",
+      "limit": 4,
+      "breaker": 2,
+      "g314OtherEntry": {
+        "who": "self",
+        "filter": {
+          "creature": true,
+          "g724ExactRace": "ハンター"
+        },
+        "defs": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "faceUp": true,
+              "g819AnyFaceRace": "ハンター"
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1245",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1244,
+    "phase": 1245,
     "checkedAt": "2026-11-14",
-    "baseCount": 7731,
+    "baseCount": 7734,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7734,
+    "totalCount": 7737,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -257973,6 +258063,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7731,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1244,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7731,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7734,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

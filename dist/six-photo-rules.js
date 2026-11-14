@@ -1278,6 +1278,12 @@ export function createSixPhotoRules(api){
    c.type==='spell'&&cost(c)<=t.max&&api.canCast(s,t.p,c,'grave',p)?[opt((p===t.p?'自分：':'相手：')+c.name,{uid:x.uid,owner:p,face,serial:x.zoneSerial||0},15+cost(c),x.cardId)]:[]
   )):[]);
  }
+ function recastHandSpell1245(s,t){
+  if(!api.canMoveZone(s,t.p,'grave'))return null;
+  const x=s.players[t.p].grave.find(x=>x.uid===t.target&&(x.zoneSerial||0)===t.serial);
+  const c=x&&faces(api.zoneCard(s,t.p,x,'grave'))[t.face];
+  return c?.type==='spell'&&api.canCast(s,t.p,c,'grave')?{x,c}:null;
+ }
  function recoverSameCreature713(s,t){
   const grave=s.players[t.p].grave;
   const selected=grave.find(x=>x.uid===t.rows?.[0]?.uid);
@@ -5021,6 +5027,13 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_GraveSpell594':choice(s,t,'コスト'+t.max+'以下の呪文をどちらかの墓地から唱える',graveSpellOptions594(s,t));break;
+ case'g34_RecastHandSpell1245':{
+  const row=recastHandSpell1245(s,t);
+  if(row)choice(s,t,'墓地から同じ呪文をもう一度唱える？',[
+   opt(row.c.name+'を唱える',true,spellScore555(s,t,row.c),row.x.cardId),skip()
+  ]);
+  break;
+ }
  case'g34_ElementOrMana796':choice(s,t,'山札の下に置くエレメントかマナのカードを選ぶ',elementOrManaOptions796(s,t));break;
  case'g34_GravePick598':{
   if(t.owner===undefined){
@@ -5358,6 +5371,11 @@ export function createSixPhotoRules(api){
   if(foreign){x.cardOwner=v.owner;x.g5Origin='grave';(own.g34Holding??=[]).push(x);}
   x.finishTo='deck';
   cast(s,t.p,x.uid,true,null,v.face,null,origin,'スーパー・S・トリガー');
+  break;
+ }
+ case'g34_RecastHandSpell1245':{
+  const row=v&&recastHandSpell1245(s,t);
+  if(row)cast(s,t.p,row.x.uid,true,null,t.face,null,'grave',card(t.source).name);
   break;
  }
  case'g34_Scorpion614':
@@ -7165,9 +7183,14 @@ export function createSixPhotoRules(api){
    if(card(source).g969FirstJudgeUntap&&!api.ignored(s,source)&&api.isCreature(s,source))
     send(s,p,source,'JudgeUntap969',{g399Attacker:ref},deferred);
  },
- spellCast(s,p,c,origin,owner){
+ spellCast(s,p,c,origin,owner,inst,face){
   qualifyingUse1224(s,p,c,null,owner);
   useBlockers524(s,p);consumeReduction456(s,p,c);noncreatureUse448(s,p,c);countExecution(s,p,c);
+  // Capture the cast before it resolves, and require its first physical grave arrival.
+  if(inst&&origin==='hand'&&owner===p)for(const x of creatures(s,p)){
+   if(!x.sealed&&card(x).g1245HandSpellRecast&&effective(x,s).g1245HandSpellRecast)
+    send(s,p,x,'RecastHandSpell1245',{target:inst.uid,serial:(inst.zoneSerial||0)+1,face});
+  }
   // The shared spell count has already recorded this cast, including free casts.
   const firstSpell=s.g37Spells?.[p]?.turn===s.turn&&s.g37Spells[p].n===1;
   for(const {owner,x,watch}of spellWatches(s,p,c,origin))

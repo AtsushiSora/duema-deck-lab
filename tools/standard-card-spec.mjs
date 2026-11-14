@@ -2470,6 +2470,22 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1245&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText),breaker='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';
+  if(d.id==='dmr07-002'&&text===
+   '自分の手札から呪文を唱えた時その後その呪文を墓地からコストを支払わずに唱えてよい。'+breaker)
+   return {breaker:2,g1245HandSpellRecast:true};
+  if(d.id==='dmd19-003'&&text===
+   'このクリーチャーをバトルゾーンに出した時タップされているクリーチャーをすべて破壊する。'+breaker||
+   d.id==='dmx20-011'&&text===
+   'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)このクリーチャーがバトルゾーンに出た時タップしているクリーチャーをすべて破壊する。')
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'Sweep',both:true,to:'grave',filter:{creature:true,tapped:true}}]};
+  if(d.id==='dmd03-004'&&text===
+   '自分の他のハンターをバトルゾーンに出した時ハンターを1枚自分のマナゾーンから手札に戻してもよい。'+breaker)
+   return {breaker:2,g314OtherEntry:{who:'self',filter:{creature:true,g724ExactRace:'ハンター'},defs:[
+    {op:'Select',origin:'mana',to:'hand',n:1,optional:true,filter:{faceUp:true,g819AnyFaceRace:'ハンター'}}
+   ]}};
+ }
  if(phase>=1244&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmr09-s02'&&text===
