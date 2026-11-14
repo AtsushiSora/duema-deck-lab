@@ -2895,7 +2895,13 @@ function battle(s,pa,a,pd,b,attackingUid=null,replaced=false,blockUntap,attackBa
  const losses=[];
  // Record the loss and compared powers before either participant leaves.
  const queueLoss=(player,unit,opponentPlayer,opponent,ownPower,otherPower,won)=>{
-  if(won||otherPower<=ownPower||!effectiveCard(unit,s).g968LossToLarger)return;
+  if(won)return;
+  const c=effectiveCard(unit,s);
+  if(c.g1314BattleLossRevive)losses.push({player,uid:unit.uid,source:unit.cardId,onLoss:true,
+   task:extra.task('g34_SelfGraveRevive644',player,unit.cardId,{
+    uid:unit.uid,serial:(unit.zoneSerial||0)+1,tapped:true
+   })});
+  if(otherPower<=ownPower||!c.g968LossToLarger)return;
   const refs=layers(opponent).map(x=>({uid:x.uid,incarnation:x.incarnation||0}));
   losses.push({player,uid:unit.uid,source:unit.cardId,onLoss:true,
    task:extra.task('g34_ExactMove',player,unit.cardId,{owner:opponentPlayer,to:'mana',filter:{creature:true},g403Refs:refs,followEvolution:true})});

@@ -244741,15 +244741,134 @@
       },
       "supportBatch": "phase-1313",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm37-013",
+      "name": "ガラティア・ドラグーン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ティラノ・ドレイク",
+      "text": "ブロッカー\nこのクリーチャーは攻撃することができない。\nこのクリーチャーがブロックした時、次のうちいずれかひとつを選ぶ。\nバトルゾーンにある相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーは-1000される。(パワー０以下のクリーチャーは破壊される)\nこのターン、このクリーチャーにブロックされたクリーチャーのパワーは-2000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-013",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g178Block": [
+        {
+          "op": "BlockedPowerModes1314",
+          "g913BlockedAttacker": true
+        }
+      ],
+      "supportBatch": "phase-1314",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd15-005",
+      "name": "ガワラ入道",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "デモニオ/鬼札王国",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーの「攻撃できない」能力を無視する。\nこのクリーチャーがバトルに負けた時、自分の墓地からタップしてバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd15-005",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g1314BattleLossRevive": true,
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "shields",
+            "sumBoth": true,
+            "max": 6
+          }
+        },
+        "grants": {
+          "noAttack": false
+        }
+      },
+      "supportBatch": "phase-1314",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm37-045",
+      "name": "ヤミノドーベル",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ダーク・モンスター",
+      "text": "ブロッカー\nこのクリーチャーは、攻撃することができない。\n自分のターン中に相手のクリーチャーがバトルゾーンを離れた時、自分の山札の上から３枚をすべてのプレイヤーに見せてもよい。そうした場合、その中から、名前に「Z」とあるクリーチャーを好きな数自分の手札に加え、その後、残りを自分の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-045",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g1009OpponentCreatureLeaves": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g465OwnTurn": true
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "g359RevealAll": true,
+              "title": "山札の上から3枚を公開する？",
+              "defs": [
+                {
+                  "op": "Look",
+                  "n": 3,
+                  "public": true,
+                  "g255Distribute": true,
+                  "rest": "grave",
+                  "stages": [
+                    {
+                      "n": "all",
+                      "to": "hand",
+                      "optional": true,
+                      "filter": {
+                        "g228Face": {
+                          "type": "creature",
+                          "nameAny": [
+                            "Z",
+                            "Ｚ"
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1314",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1313,
+    "phase": 1314,
     "checkedAt": "2026-11-15",
-    "baseCount": 7956,
+    "baseCount": 7959,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7959,
+    "totalCount": 7962,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -266794,6 +266913,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7956,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1313,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7956,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7959,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

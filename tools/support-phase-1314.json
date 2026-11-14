@@ -1,0 +1,192 @@
+{
+  "phase": 1314,
+  "checkedAt": "2026-11-15",
+  "baseCount": 7959,
+  "description": "ガラティア・ドラグーン、ガワラ入道、ヤミノドーベルを対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/39135/",
+    "https://dm.takaratomy.co.jp/rule/qa/33474/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31637/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm37-013",
+      "name": "ガラティア・ドラグーン",
+      "faces": [
+        {
+          "name": "ガラティア・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー\nこのクリーチャーは攻撃することができない。\nこのクリーチャーがブロックした時、次のうちいずれかひとつを選ぶ。\nバトルゾーンにある相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーは-1000される。(パワー０以下のクリーチャーは破壊される)\nこのターン、このクリーチャーにブロックされたクリーチャーのパワーは-2000される。",
+          "race": "ティラノ・ドレイク",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-013",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-013.jpg",
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g178Block": [
+          {
+            "op": "BlockedPowerModes1314",
+            "g913BlockedAttacker": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "b5bfa77ccfea6763db9555bdb6d8056b78da2ca19938ece1bdf0a1866c4d34a7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd15-005",
+      "name": "ガワラ入道",
+      "faces": [
+        {
+          "name": "ガワラ入道",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーの「攻撃できない」能力を無視する。\nこのクリーチャーがバトルに負けた時、自分の墓地からタップしてバトルゾーンに出す。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd15-005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd15-005.jpg",
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g1314BattleLossRevive": true,
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "grants": {
+            "noAttack": false
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "580f1dc927046792620e6300d249f68bf8755f879ea0580daab2bf5a4e1dff37",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm37-045",
+      "name": "ヤミノドーベル",
+      "faces": [
+        {
+          "name": "ヤミノドーベル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー\nこのクリーチャーは、攻撃することができない。\n自分のターン中に相手のクリーチャーがバトルゾーンを離れた時、自分の山札の上から３枚をすべてのプレイヤーに見せてもよい。そうした場合、その中から、名前に「Z」とあるクリーチャーを好きな数自分の手札に加え、その後、残りを自分の墓地に置く。",
+          "race": "ダーク・モンスター",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-045",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-045.jpg",
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g1009OpponentCreatureLeaves": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g465OwnTurn": true
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "g359RevealAll": true,
+                "title": "山札の上から3枚を公開する？",
+                "defs": [
+                  {
+                    "op": "Look",
+                    "n": 3,
+                    "public": true,
+                    "g255Distribute": true,
+                    "rest": "grave",
+                    "stages": [
+                      {
+                        "n": "all",
+                        "to": "hand",
+                        "optional": true,
+                        "filter": {
+                          "g228Face": {
+                            "type": "creature",
+                            "nameAny": [
+                              "Z",
+                              "Ｚ"
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "30a3b70784b61504a0016940c091e1abc8446d0c5dba2c703bd372ecab9ef9d4",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-15",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm37-013": 4,
+      "dmsd15-005": 4,
+      "dm37-045": 4
+    },
+    "currentList": "https://dm.takaratomy.co.jp/img/regulation/2608/202608regulation.pdf"
+  },
+  "sameNameProducts": {
+    "dm37-013": [
+      "DM-37 覚醒編 第2弾 暗黒の野望(ダーク・エンペラー)"
+    ],
+    "dmsd15-005": [
+      "DMSD-15 キングマスタースタートデッキ 鬼札の鬼タイム"
+    ],
+    "dm37-045": [
+      "DM-37 覚醒編 第2弾 暗黒の野望(ダーク・エンペラー)"
+    ]
+  }
+}

@@ -2598,6 +2598,14 @@ export function createSixPhotoRules(api){
   if(amount)(recipient.powerModifiers??=[]).push({amount,expires:'start',who:t.p,g694ClearOnSeal:true});
   break;
  }
+ case'g34_BlockedPowerModes1314':
+  start(s,t,[{op:'Choose',modes:[
+   {label:'相手のクリーチャー1体のパワーを−1000',score:5,
+    defs:[{op:'Target',power:-1000,g242PowerMinus:true}]},
+   {label:'ブロックしたクリーチャーのパワーを−2000',score:10,
+    defs:[{op:'EntryBoost755',subject:t.subject,power:-2000}]}
+  ]}]);
+  break;
  case'g34_EntryBoost755':
  case'g34_DefenderBoost694':{
   const subject=t.subject??t.g694Defender;

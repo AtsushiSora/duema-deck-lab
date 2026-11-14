@@ -2475,6 +2475,27 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1314&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm37-013'&&text===
+   'ブロッカーこのクリーチャーは攻撃することができない。このクリーチャーがブロックした時次のうちいずれかひとつを選ぶ。バトルゾーンにある相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーは-1000される。(パワー0以下のクリーチャーは破壊される)このターンこのクリーチャーにブロックされたクリーチャーのパワーは-2000される。')
+   return {blocker:true,noAttack:true,g178Block:[{op:'BlockedPowerModes1314',g913BlockedAttacker:true}]};
+  if(d.id==='dmsd15-005'&&text===
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)このクリーチャーは攻撃できない。鬼タイム:自分と相手のシールドの数が合計6つ以下ならこのクリーチャーの「攻撃できない」能力を無視する。このクリーチャーがバトルに負けた時自分の墓地からタップしてバトルゾーンに出す。')
+   return {blocker:true,noAttack:true,g1314BattleLossRevive:true,
+    g260Self:{filter:{g334ZoneCount:{zone:'shields',sumBoth:true,max:6}},grants:{noAttack:false}}};
+  if(d.id==='dm37-045'&&text===
+   'ブロッカーこのクリーチャーは攻撃することができない。自分のターン中に相手のクリーチャーがバトルゾーンを離れた時自分の山札の上から3枚をすべてのプレイヤーに見せてもよい。そうした場合その中から名前に「Z」とあるクリーチャーを好きな数自分の手札に加えその後残りを自分の墓地に置く。')
+   return {blocker:true,noAttack:true,g1009OpponentCreatureLeaves:[
+    {op:'IfOwn',filter:{g465OwnTurn:true},defs:[
+     {op:'Offer',g359RevealAll:true,title:'山札の上から3枚を公開する？',defs:[
+      {op:'Look',n:3,public:true,g255Distribute:true,rest:'grave',stages:[
+       {n:'all',to:'hand',optional:true,filter:{g228Face:{type:'creature',nameAny:['Z','Ｚ']}}}
+      ]}
+     ]}
+    ]}
+   ]};
+ }
  if(phase>=1313&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmrp03-048'&&text===
