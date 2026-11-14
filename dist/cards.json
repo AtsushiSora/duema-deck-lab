@@ -240111,15 +240111,165 @@
       ],
       "supportBatch": "phase-1276",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm14-002",
+      "name": "光器メラーニヤ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "メカ・デル・ソル",
+      "text": "自分のシールドが１枚もない時、自分のクリーチャーはすべて｢ブロッカー｣を得る。(相手クリーチャーが攻撃する時、｢ブロッカー｣を得たクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-002",
+      "limit": 4,
+      "breaker": 2,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "g265ShieldsMax": 0
+          },
+          "grants": {
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1277",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm04-012",
+      "name": "邪妃グレゴリア",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "ダークロード",
+      "text": "このクリーチャーがバトルゾーンにある間、バトルゾーンにあるデーモン・コマンドすべてのパワーは+2000され、「ブロッカー」を得る。(相手クリーチャーが攻撃するとき、このクリーチャーをタップして、その攻撃を阻止してよい。その後、その相手クリーチャーとバトルする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-012",
+      "limit": 4,
+      "g205Aura": {
+        "filter": {
+          "creature": true,
+          "race": "デーモン・コマンド"
+        },
+        "both": true,
+        "power": 2000
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "race": "デーモン・コマンド"
+          },
+          "both": true,
+          "grants": {
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1277",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr08-sec02",
+      "name": "誇り高き破壊者 ムスタング",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アウトレイジ",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\n自分の他のクリーチャーがどこからでも自分の墓地に置かれた時、相手の「ブロッカー」を持つクリーチャーまたは相手のパワー5000以下のクリーチャーを１体、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-sec02",
+      "limit": 4,
+      "breaker": 2,
+      "g677AllyGrave": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "blocker": true
+              },
+              {
+                "maxPower": 5000,
+                "g199Power": true
+              }
+            ]
+          },
+          "title": "破壊する相手のブロッカーまたはパワー5000以下のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1277",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmc67-005",
+      "name": "爆竜デュアルベルフォース",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 11000,
+      "race": "アーマード・ドラゴン/サムライ/フレイム・コマンド",
+      "text": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nバトルゾーンに自分の、名前に《NEX》または《XX》とあるクリーチャーがある時、このクリーチャーは「パワーアタッカー+5000」と「T・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc67-005",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g260Self": {
+        "filter": {
+          "g370BattleCount": {
+            "min": 1,
+            "filter": {
+              "creature": true,
+              "any": [
+                {
+                  "g819CreatureNameIncludes": "NEX"
+                },
+                {
+                  "g819CreatureNameIncludes": "XX"
+                }
+              ]
+            }
+          }
+        },
+        "grants": {
+          "attackBonus": 5000,
+          "breaker": 3
+        }
+      },
+      "supportBatch": "phase-1277",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1276,
+    "phase": 1277,
     "checkedAt": "2026-11-14",
-    "baseCount": 7833,
-    "newEffectCards": 3,
+    "baseCount": 7836,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7836,
+    "totalCount": 7840,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -261720,6 +261870,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7833,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1276,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7833,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7836,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

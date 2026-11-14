@@ -2475,6 +2475,25 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1277&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const lines=f.abilityText.split('\n').map(normalize);
+  if(d.id==='dm14-002'&&lines.length===2&&keyword(lines[1],'W・ブレイカー')&&
+   lines[0]==='自分のシールドが1枚もない時自分のクリーチャーはすべて「ブロッカー」を得る。(相手クリーチャーが攻撃する時「ブロッカー」を得たクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)')
+   return {breaker:2,g208Auras:[{filter:{creature:true},g557Condition:{g265ShieldsMax:0},grants:{blocker:true}}]};
+  if(d.id==='dm04-012'&&lines.length===1&&
+   lines[0]==='このクリーチャーがバトルゾーンにある間バトルゾーンにあるデーモン・コマンドすべてのパワーは+2000され「ブロッカー」を得る。(相手クリーチャーが攻撃するときこのクリーチャーをタップしてその攻撃を阻止してよい。その後その相手クリーチャーとバトルする)'){
+   const filter={creature:true,race:'デーモン・コマンド'};
+   return {g205Aura:{filter,both:true,power:2000},g208Auras:[{filter,both:true,grants:{blocker:true}}]};
+  }
+  if(d.id==='dmr08-sec02'&&lines.length===2&&keyword(lines[0],'W・ブレイカー')&&
+   lines[1]==='自分の他のクリーチャーがどこからでも自分の墓地に置かれた時相手の「ブロッカー」を持つクリーチャーまたは相手のパワー5000以下のクリーチャーを1体破壊する。')
+   return {breaker:2,g677AllyGrave:[{op:'Target',to:'grave',filter:{creature:true,
+    any:[{blocker:true},{maxPower:5000,g199Power:true}]},title:'破壊する相手のブロッカーまたはパワー5000以下のクリーチャーを選ぶ'}]};
+  if(d.id==='dmc67-005'&&lines.length===3&&keyword(lines[0],'スピードアタッカー')&&keyword(lines[1],'W・ブレイカー')&&
+   lines[2]==='バトルゾーンに自分の名前に《NEX》または《XX》とあるクリーチャーがある時このクリーチャーは「パワーアタッカー+5000」と「T・ブレイカー」を得る。')
+   return {speedAttacker:true,breaker:2,g260Self:{filter:{g370BattleCount:{min:1,filter:{creature:true,
+    any:[{g819CreatureNameIncludes:'NEX'},{g819CreatureNameIncludes:'XX'}]}}},grants:{attackBonus:5000,breaker:3}}};
+ }
  if(phase>=1276&&d?.status==='complete'&&d.faces.length===1){
   const lines=f.abilityText.split('\n').map(normalize);
   if(['dm22-010','dm34-026','dmx10-033','dm25rp2-T07','dm25ex3-TF22'].includes(d.id)&&f.typeText==='クリーチャー'){

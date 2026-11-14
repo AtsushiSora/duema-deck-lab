@@ -1,0 +1,224 @@
+{
+  "phase": 1277,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7836,
+  "description": "光器メラーニヤ、邪妃グレゴリア、誇り高き破壊者 ムスタング、爆竜デュアルベルフォースの全能力を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/archive/capture/volweeklydash47/",
+    "https://dm.takaratomy.co.jp/rule/qa/41440/",
+    "https://dm.takaratomy.co.jp/rule/qa/41166/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm14-002",
+      "name": "光器メラーニヤ",
+      "faces": [
+        {
+          "name": "光器メラーニヤ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分のシールドが１枚もない時、自分のクリーチャーはすべて｢ブロッカー｣を得る。(相手クリーチャーが攻撃する時、｢ブロッカー｣を得たクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "メカ・デル・ソル",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-002",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-002.jpg",
+      "spec": {
+        "breaker": 2,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "g557Condition": {
+              "g265ShieldsMax": 0
+            },
+            "grants": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "9ba519416ab0c1ed77ea81cb808ee55d1a54e838103e2aaf34be609778d2759c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm04-012",
+      "name": "邪妃グレゴリア",
+      "faces": [
+        {
+          "name": "邪妃グレゴリア",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーがバトルゾーンにある間、バトルゾーンにあるデーモン・コマンドすべてのパワーは+2000され、「ブロッカー」を得る。(相手クリーチャーが攻撃するとき、このクリーチャーをタップして、その攻撃を阻止してよい。その後、その相手クリーチャーとバトルする)",
+          "race": "ダークロード",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-012",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm04-012.jpg",
+      "spec": {
+        "g205Aura": {
+          "filter": {
+            "creature": true,
+            "race": "デーモン・コマンド"
+          },
+          "both": true,
+          "power": 2000
+        },
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "race": "デーモン・コマンド"
+            },
+            "both": true,
+            "grants": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "4afba1c0c31173c3c699da86cbcd9427e432e1176abd22210c8cf6e227328329",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr08-sec02",
+      "name": "誇り高き破壊者 ムスタング",
+      "faces": [
+        {
+          "name": "誇り高き破壊者 ムスタング",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\n自分の他のクリーチャーがどこからでも自分の墓地に置かれた時、相手の「ブロッカー」を持つクリーチャーまたは相手のパワー5000以下のクリーチャーを１体、破壊する。",
+          "race": "アウトレイジ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-sec02",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-sec02.jpg",
+      "spec": {
+        "breaker": 2,
+        "g677AllyGrave": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "any": [
+                {
+                  "blocker": true
+                },
+                {
+                  "maxPower": 5000,
+                  "g199Power": true
+                }
+              ]
+            },
+            "title": "破壊する相手のブロッカーまたはパワー5000以下のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "b9ddb841a9c54f75225af2c12875c273f730385fe9b730fe8d349f60c0a9795a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc67-005",
+      "name": "爆竜デュアルベルフォース",
+      "faces": [
+        {
+          "name": "爆竜デュアルベルフォース",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nバトルゾーンに自分の、名前に《NEX》または《XX》とあるクリーチャーがある時、このクリーチャーは「パワーアタッカー+5000」と「T・ブレイカー」を得る。",
+          "race": "アーマード・ドラゴン/サムライ/フレイム・コマンド",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc67-005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc67-005.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g260Self": {
+          "filter": {
+            "g370BattleCount": {
+              "min": 1,
+              "filter": {
+                "creature": true,
+                "any": [
+                  {
+                    "g819CreatureNameIncludes": "NEX"
+                  },
+                  {
+                    "g819CreatureNameIncludes": "XX"
+                  }
+                ]
+              }
+            }
+          },
+          "grants": {
+            "attackBonus": 5000,
+            "breaker": 3
+          }
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "9a620f2416b59c8b5d3d38e2d9f3832034d9e8d548c7e2c19e88595028ba14dc",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm14-002": 4,
+      "dm04-012": 4,
+      "dmr08-sec02": 4,
+      "dmc67-005": 4
+    },
+    "currentList": "https://dm.takaratomy.co.jp/img/regulation/2608/202608regulation.pdf"
+  }
+}

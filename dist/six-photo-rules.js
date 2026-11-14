@@ -8389,7 +8389,8 @@ export function createSixPhotoRules(api){
    const defs=card(y).g675GraveEntry;
    if(defs)queue(s,p,y,defs.map(d=>d.op==='SelfGraveHand476'?{...d,serial:y.zoneSerial||0}:d));
   }
-  const graveWatchers=s.players[p].battle.filter(x=>card(x).g677AllyGrave&&!x.sealed&&api.isCreature(s,x)&&!api.ignored(s,x));
+  const graveWatchers=s.players[p].battle.filter(x=>card(x).g677AllyGrave&&!x.sealed&&!x.faceDown&&
+   !s.g20LeavingUids?.includes(x.uid)&&api.isCreature(s,x)&&!api.ignored(s,x));
   if(graveWatchers.length){
    const newCreatures=all.filter(y=>faces(api.zoneCard(s,p,y,'grave')).some(face=>face.type==='creature'));
    for(const x of graveWatchers)for(const y of newCreatures)if(y.uid!==x.uid)queue(s,p,x,card(x).g677AllyGrave);
