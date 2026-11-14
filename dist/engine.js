@@ -1988,14 +1988,27 @@ function doEffectCore(s,p,c,sourceUid=null,entry=null){
  if(e==='searchCreature'){if(lookPublic(s,p)){const x=s.players[p].deck[0];if(x)log(s,p,'reveal','曲通風により山札の上1枚を公開：'+card(x).name,{cardId:x.cardId});}s.decision={type:'search',player:p,source:c.id};return;}
  const ts=targets(s,p,e);if(ts.length)s.decision={type:'effect',player:p,effect:e,source:c.id,targets:ts,optional:e==='bounceOptional'};
 }
+const canDoubleEntry1300=(s,p)=>s.extLimits?.some(r=>r.kind==='g1300DoubleEntry'&&r.player===p);
 function enqueueEffect(s,p,entry,deferred){
- if(s.g24EntryMute===p&&s.players[p].battle.some(x=>(entry.uid?x.uid===entry.uid:x.cardId===entry.source)&&isCreature(s,x)))return;
  const ctx=s.g1Entering,self=ctx?.player===p&&(entry.uid?entry.uid===ctx.uid:entry.source===ctx.cardId);
- if(self&&s.players[1-p].battle.some(x=>effectiveCard(x,s).selfEntrySilence))return;
+ const doubles=self&&(ctx.doubleEntry||canDoubleEntry1300(s,p));
+ const hasPriority=doubles&&s.active===p;
+ if(!hasPriority&&s.g24EntryMute===p&&s.players[p].battle.some(x=>(entry.uid?x.uid===entry.uid:x.cardId===entry.source)&&isCreature(s,x)))return;
+ if(self&&!hasPriority&&s.players[1-p].battle.some(x=>effectiveCard(x,s).selfEntrySilence))return;
  const queue=deferred??(s.triggers?s.triggers.entries:(s.pendingEffects??=[]));
  if(entry.task)entry={...entry,task:{...entry.task,controller:entry.task.controller??p}};
  queue.push({...entry,player:p,effectId:s.effectSerial=(s.effectSerial||0)+1});
- if(self)extra.copyEntry(s,p,ctx,entry);
+ if(self){
+  if(doubles){
+   if(!ctx.doubleEntry){
+    s.extLimits=s.extLimits.filter(r=>r.kind!=='g1300DoubleEntry'||r.player!==p);
+    ctx.doubleEntry=true;
+   }
+   queue.push({...structuredClone(entry),player:p,effectId:++s.effectSerial});
+  }
+  extra.copyEntry(s,p,ctx,entry);
+  if(doubles)extra.copyEntry(s,p,ctx,entry);
+ }
 }
 function speedTapOnEntry(s,p,c,evolved){
  // Static grants on the battlefield do not give the entering creature a keyword yet.
@@ -2095,6 +2108,8 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  }
  if(placementTapped||asCreature&&!inst.tapped&&speedTapOnEntry(s,p,c,isEvolution(inst)))inst.tapped=true;
  if(aceColor(c)&&aceMutesOnEntry(s,c))inst.aceIgnored=true;
+ // A creature entering from the graveyard cannot observe its own departure (QA 43059).
+ observeGraveDepartures1300(s);
  s.players[p].battle.push(inst);
  if(c.g1240HandEnd)(s.g1240FishEntry??=[null,null])[p]=s.turn;
  if(entryOptions.g1084SealedEntry){
@@ -2143,7 +2158,9 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  if(effectiveCard(inst,s).exLife){for(let n=0;n<(c.extraExLife?2:1)&&s.winner===null;n++)shieldTop(s,p,c,inst);if(s.winner!==null){delete s.g24EntryMute;delete s.g1Entering;return;}}
  const firstNamedEntry=c.g1086FirstNamedEntry&&!(s.g1086NamedEntries?.[p]||[]).includes(c.name);
  if(firstNamedEntry)(s.g1086NamedEntries??=[[],[]])[p].push(c.name);
- const stopped=graveMuted||!!brakkio||c.g31God&&genmuActive(s)&&costValue(c)<=5||c.abakuOni&&s.players.reduce((n,p)=>n+p.shields.length,0)<=6||entryOptions.ignoreEntry||(isCreature(s,inst)&&(!c.stackOnlyEntry&&selfTriggersStopped(s,p)||extra.muteEntry(s,p)))||abilitiesIgnored(s,inst);
+ // The turn player's replacement takes priority over an opponent's entry-trigger replacement (QA 33614).
+ const doublePriority=s.active===p&&canDoubleEntry1300(s,p);
+ const stopped=!doublePriority&&(graveMuted||!!brakkio)||c.g31God&&genmuActive(s)&&costValue(c)<=5||c.abakuOni&&s.players.reduce((n,p)=>n+p.shields.length,0)<=6||entryOptions.ignoreEntry||(isCreature(s,inst)&&(!c.stackOnlyEntry&&selfTriggersStopped(s,p)||extra.muteEntry(s,p)))||abilitiesIgnored(s,inst);
  if(stopped&&(c.effect||c.dragonEntryTap))log(s,p,'triggerPrevented',`${c.name}自身の登場時能力は${abilitiesIgnored(s,inst)?'能力の無視':graveMuted?'ブラキオ龍樹':brakkio?card(brakkio).name:c.abakuOni&&s.players.reduce((n,p)=>n+p.shields.length,0)<=6?'鬼タイム':extra.muteEntry(s,p)?'マリニャンX':'GG'}によりトリガーしない`,{cardId:c.id});
  if(!stopped){
   const defs=firstNamedEntry&&entryOptions.execution?[{op:'Custom',name:'extraTurn'}]:
@@ -3270,7 +3287,28 @@ function manaDeparted(s,before){
     enqueueEffect(s,p,{uid,incarnation,source:cardId,effect:'extended',task:extra.task('g34_Sequence',p,cardId,{uid,incarnation,defs})});
  }
 }
+const graveHistory1300=new WeakMap();
+const graveSnapshot1300=s=>s.players.map(p=>p.grave.map(x=>x.uid));
+function observeGraveDepartures1300(s){
+ const before=graveHistory1300.get(s);
+ if(!before)return;
+ const p=s.active;
+ for(const who of [p,1-p]){
+  const grave=s.players[who].grave;
+  if(s.g1300GraveTurn?.[who]===s.turn||!before[who].some(uid=>!grave.some(x=>x.uid===uid)))continue;
+  (s.g1300GraveTurn??=[null,null])[who]=s.turn;
+  for(const x of s.players[who].battle){
+   if(x.sealed||x.faceDown||!card(x).g1300FirstGraveLeft||!isCreature(s,x))continue;
+   const trigger=effectiveCard(x,s).g1300FirstGraveLeft;
+   if(!trigger||trigger.ownTurn&&who!==p)continue;
+   enqueueEffect(s,who,{uid:x.uid,incarnation:x.incarnation,source:x.cardId,effect:'extended',
+    task:extra.task('g34_Sequence',who,x.cardId,{uid:x.uid,incarnation:x.incarnation,defs:trigger.defs})});
+  }
+ }
+ graveHistory1300.set(s,graveSnapshot1300(s));
+}
 function nextTurn(s){
+ observeGraveDepartures1300(s);
  extra.expire(s,'end',s.active);for(const p of[s.active,1-s.active]){deckCheck(s,p);if(s.winner!==null||s.lossEvent)return;}s.noManaUse=[false,false];s.endStep=null;s.creaturesEntered=0;
  for(const p of s.players){p.enteredThisTurn=0;p.entryLimitThisTurn=false;for(const c of p.battle){c.buff=0;c.unblocked=false;delete c.buffSources;delete c.unblockSpellCost;}}
  completeDisplayTurn(s,s.active);
@@ -3650,7 +3688,7 @@ function stepCore(s,action){
  // Only the declared number may differ from a legal template; all other fields stay validated.
  if(!a&&s.decision?.task?.op==='g9Number'&&(action?.number==='∞'||Number.isSafeInteger(action?.number)&&action.number>=(s.decision.task.minNumber??0))){const template=opts.find(x=>JSON.stringify({...x,number:action.number})===JSON.stringify(action));if(template)a={...template,number:action.number};}
  if(!a)throw Error('選択できない行動です');
- const manaBefore=manaSnapshot(s),graveBefore=s.players.map(p=>p.grave.map(x=>x.uid));const p=a.player,d=s.decision;s.actions++;extra.combat.selected(s,p,a,d);extra.original.selected(s,p,a,d);extra.phoenix.selected(s,p,a,d);extra.six.fifteen.selected(s,p,a,d);extra.six.selected447(s,p,a,d);extra.abyss.selected(s,p,a,d);
+ const manaBefore=manaSnapshot(s),graveBefore=graveSnapshot1300(s);graveHistory1300.set(s,graveBefore);const p=a.player,d=s.decision;s.actions++;extra.combat.selected(s,p,a,d);extra.original.selected(s,p,a,d);extra.phoenix.selected(s,p,a,d);extra.six.fifteen.selected(s,p,a,d);extra.six.selected447(s,p,a,d);extra.abyss.selected(s,p,a,d);
  if(a.kind==='silent496'){const x=s.players[p].battle.find(c=>c.uid===d.uid),state=s.startStep;if(!state||state.stage!=='silent496'||!x||!canSilent496(s,x))throw Error('サイレントスキルを使えない状態です');if(a.yes)state.chosen.push({uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,defs:structuredClone(effectiveCard(x,s).g496Silent)});state.remaining.shift();s.decision=null;log(s,p,'ability',card(x).name+(a.yes?'：アンタップせずサイレントスキルを使う':'：サイレントスキルを使わずアンタップする'),{cardId:x.cardId});}
  if(a.kind==='godLeave'){s.leaving.rows.find(r=>r.player===p&&r.uid===d.uid).godPart=a.uid;s.decision=null;}
  if(a.kind==='extended')extra.step(s,a,d);
@@ -3853,7 +3891,7 @@ function stepCore(s,action){
  if(a.kind==='skipGaiaSummon')s.decision=null;
  if(a.kind==='endTurn')beginEnd(s);
  if(a.kind==='endUntap'){s.decision=null;if(a.yes)for(const c of s.players[p].battle)if(d.uids.includes(c.uid))untapCard(s,p,c);if(!s.endStep)nextTurn(s);}
- manaDeparted(s,manaBefore);let manaPrevious=manaSnapshot(s);extra.six.fifteen.graveDeparted(s,graveBefore);let gravePrevious=s.players.map(p=>p.grave.map(x=>x.uid));for(let n=0;n<1000;n++){manaDeparted(s,manaPrevious);manaPrevious=manaSnapshot(s);extra.six.fifteen.graveDeparted(s,gravePrevious);gravePrevious=s.players.map(p=>p.grave.map(x=>x.uid));
+ manaDeparted(s,manaBefore);let manaPrevious=manaSnapshot(s);extra.six.fifteen.graveDeparted(s,graveBefore);observeGraveDepartures1300(s);let gravePrevious=s.players.map(p=>p.grave.map(x=>x.uid));for(let n=0;n<1000;n++){manaDeparted(s,manaPrevious);manaPrevious=manaSnapshot(s);extra.six.fifteen.graveDeparted(s,gravePrevious);observeGraveDepartures1300(s);gravePrevious=s.players.map(p=>p.grave.map(x=>x.uid));
   for(const p of[s.active,1-s.active])checkSidewaysHand(s,p);
   if(advanceLoss(s)){if(s.decision||s.winner!==null)break;continue;}
   refreshDynamicTypes(s);if(extra.lionelState(s)){if(s.decision)break;continue;}advanceLeaving(s);if(extra.lionelState(s)){if(s.decision)break;continue;}if(!s.leaving&&!s.decision)for(const p of[s.active,1-s.active]){deckCheck(s,p);if(s.winner!==null||s.lossEvent)break;}if(s.winner!==null)break;if(s.lossEvent)continue;if(!s.decision&&s.judge?.stage==='destinations878')advanceJudgeCosts(s);resumeInterrupt(s);advanceDeclarations(s);advanceBattle(s);extra.finishSwap(s);
@@ -3867,10 +3905,11 @@ function stepCore(s,action){
   if(s.g19Interrupt?.tasks[0]?.g909AfterBreak)resumeInterrupt(s);
   manaDeparted(s,manaPrevious);manaPrevious=manaSnapshot(s);
   refreshDynamicTypes(s);if(extra.lionelState(s)){if(s.decision)break;continue;}powerCleanup(s);advanceAttack(s);extra.advanceBreak(s);const attackEnding=s.attackLifecycle;extra.advanceAttackEnd(s);extra.advanceAfterAttack(s);if(attackEnding&&!s.attackLifecycle)powerCleanup(s);advanceEnd(s);advanceStart(s);
-  manaDeparted(s,manaPrevious);manaPrevious=manaSnapshot(s);extra.six.fifteen.graveDeparted(s,gravePrevious);gravePrevious=s.players.map(p=>p.grave.map(x=>x.uid));for(const p of[s.active,1-s.active])checkSidewaysHand(s,p);if(s.lossEvent){advanceLoss(s);if(s.decision||s.winner!==null)break;continue;}
+  manaDeparted(s,manaPrevious);manaPrevious=manaSnapshot(s);extra.six.fifteen.graveDeparted(s,gravePrevious);observeGraveDepartures1300(s);gravePrevious=s.players.map(p=>p.grave.map(x=>x.uid));for(const p of[s.active,1-s.active])checkSidewaysHand(s,p);if(s.lossEvent){advanceLoss(s);if(s.decision||s.winner!==null)break;continue;}
   if(s.decision||s.winner!==null||!(s.pendingEffects?.length||s.triggers||s.battleResolution||s.judge||s.attackDeclarations||s.leaving||s.endStep||s.startStep||s.extTasks?.length||s.g19BreakSequence||s.g19Interrupt||s.attackLifecycle||s.g14AfterAttack||s.g1197AfterAttack?.length||s.g10RevDeclarations?.length||s.g3Window&&!s.g3Window.done))break;
   if(n===999)throw Error('待機中の処理を完了できません');
  }
+ graveHistory1300.delete(s);
  return s;
 }
 // This observation deliberately omits both players' shield identities and deck order,

@@ -243281,15 +243281,165 @@
       },
       "supportBatch": "phase-1299",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-019",
+      "name": "凶鬼90号 ゾレーゴ / 「大当たり！もう一本!!」",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "マフィ・ギャング",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体破壊する。\n【呪文面】\nこのターン、次に自分のクリーチャーがバトルゾーンに出て、その能力がトリガーする時、その能力は１度のかわりに２度トリガーする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-019",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave"
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "「大当たり！もう一本!!」",
+        "cost": 2,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DoubleEntry1300"
+          }
+        ]
+      },
+      "supportBatch": "phase-1300",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-018",
+      "name": "グ:ルナグーシ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ノワールアビス",
+      "text": "このクリーチャーが出た時、または自分のターンのはじめに、自分の墓地のカードが４枚以下なら、５枚になるよう、自分の山札の上から墓地にカードを置いてもよい。\n自分のターン中、はじめて自分の墓地からカードが離れた時、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-018",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "MillToGrave1300",
+          "total": 5
+        }
+      ],
+      "g174Start": [
+        {
+          "op": "MillToGrave1300",
+          "total": 5
+        }
+      ],
+      "g1300FirstGraveLeft": {
+        "ownTurn": true,
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1300",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp3-068",
+      "name": "魔誕妖クズトレイン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "デーモン・コマンド",
+      "text": "このクリーチャーが出た時、または各ターンはじめてカードが自分の墓地から離れた時、自分の手札を１枚捨ててもよい。そうしたら、カードを２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-068",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DiscardDraw",
+          "n": 2
+        }
+      ],
+      "g1300FirstGraveLeft": {
+        "defs": [
+          {
+            "op": "DiscardDraw",
+            "n": 2
+          }
+        ]
+      },
+      "supportBatch": "phase-1300",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp4-042",
+      "name": "パイロー＝アイロ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ルージュアビス",
+      "text": "パワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこのクリーチャーのパワーを、自分の墓地にあるアビス・カード１枚につき+2000する。\n各ターン、はじめてカードが自分の墓地から離れた時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-042",
+      "limit": 4,
+      "poweredBreaker": true,
+      "g207CountPower": {
+        "zone": "grave",
+        "filter": {
+          "race": "アビス"
+        },
+        "amount": 2000
+      },
+      "g1300FirstGraveLeft": {
+        "defs": [
+          {
+            "op": "Fight240",
+            "self": true,
+            "optional": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1300",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1299,
+    "phase": 1300,
     "checkedAt": "2026-11-15",
-    "baseCount": 7912,
-    "newEffectCards": 3,
+    "baseCount": 7915,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7915,
+    "totalCount": 7919,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -265166,6 +265316,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7912,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1299,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7912,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7915,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

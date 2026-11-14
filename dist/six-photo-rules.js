@@ -3454,6 +3454,14 @@ export function createSixPhotoRules(api){
   else if(n)api.mill(s,t.p,n,{together:t.g1042Together});
   break;
  }
+ case'g34_MillToGrave1300':{
+  const n=t.total-own.grave.length;
+  if(n>0)start(s,t,[{op:'Mill',n,optional:true,g1042Together:true}]);
+  break;
+ }
+ case'g34_DoubleEntry1300':
+  (s.extLimits??=[]).push({kind:'g1300DoubleEntry',player:t.p,who:s.active,expires:'end'});
+  break;
  case'g34_CountDestroy1202':{
   const n=countDraw(s,t.p,t);
   if(n)start(s,t,[{op:'Select',owner:'opponent',origin:'battle',to:'grave',n,filter:{creature:true},

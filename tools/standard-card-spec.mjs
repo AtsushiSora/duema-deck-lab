@@ -2475,6 +2475,34 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1300&&d?.status==='complete'&&f?.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText),spell=d.faces[1];
+  if(['dmrp09-019','dm23ex2-064'].includes(d.id)&&d.faces.length===2&&spell.typeText==='呪文'&&
+   /^W・ブレイカー\(このクリーチャーはシールドを2つブレイクする\)このクリーチャーが(?:バトルゾーンに)?出た時相手のクリーチャーを1体(?:選び)?破壊する。$/.test(text)&&
+   /^このターン次に自分のクリーチャーが(?:バトルゾーンに)?出て(?:その|それの)能力がトリガーする時(?:その能力は)?1度のかわりに2度トリガーする。$/.test(normalize(spell.abilityText)))
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'grave'}],
+    spellFace:{type:'spell',name:spell.name,cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,
+     race:spell.race,effect:'sixPhoto',g34Tasks:[{op:'DoubleEntry1300'}]}};
+  if(d.faces.length===1){
+   if(['dm23rp1-018','dm23rp1-13A','promoy22-039'].includes(d.id)&&
+    text==='このクリーチャーが出た時または自分のターンのはじめに自分の墓地のカードが4枚以下なら5枚になるよう自分の山札の上から墓地にカードを置いてもよい。'+
+     '自分のターン中はじめて自分の墓地からカードが離れた時カードを1枚引く。'){
+    const fill=[{op:'MillToGrave1300',total:5}];
+    return {effect:'sixPhoto',g34Tasks:fill,g174Start:fill,g1300FirstGraveLeft:{ownTurn:true,defs:[{op:'Draw',n:1}]}};
+   }
+   if(['dm25rp3-068','dm25ex3-074'].includes(d.id)&&
+    text==='このクリーチャーが出た時または各ターンはじめてカードが自分の墓地から離れた時自分の手札を1枚捨ててもよい。そうしたらカードを2枚引く。'){
+    const loot=[{op:'DiscardDraw',n:2}];
+    return {effect:'sixPhoto',g34Tasks:loot,g1300FirstGraveLeft:{defs:loot}};
+   }
+   if(['dm25rp4-042','dm25ex3-050'].includes(d.id)&&
+    text==='パワード・ブレイカー(このクリーチャーはそのパワー6000ごとにシールドをさらに1つブレイクする)'+
+     'このクリーチャーのパワーを自分の墓地にあるアビス・カード1枚につき+2000する。'+
+     '各ターンはじめてカードが自分の墓地から離れた時相手のクリーチャーを1体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。')
+    return {poweredBreaker:true,g207CountPower:{zone:'grave',filter:{race:'アビス'},amount:2000},
+     g1300FirstGraveLeft:{defs:[{op:'Fight240',self:true,optional:true}]}};
+  }
+ }
  if(phase>=1299&&f?.typeText==='クリーチャー'){
   const text=normalize(f.abilityText).replaceAll('\uFE0E','');
   const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
