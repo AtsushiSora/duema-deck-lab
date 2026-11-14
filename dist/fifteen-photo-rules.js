@@ -120,7 +120,13 @@ export function createFifteenPhotoRules(api){
  case'isekaiFinish':api.shuffleLibrary(s,t.p);break;
  case'rebirth':target(s,t,'破壊する自分のクリーチャーを選ぶ',creatures(s,t.p),true);break;
  case'rebirthPut':if(!own.grave.some(y=>y.uid===t.sacrifice))break;give(s,t,[S('hand',null,1,{creature:true,max:own.mana.length},{deploy:true})]);break;
- case'worldEntry':if(x&&api.allLayers(x).length-1>=3)give(s,t,[E('Discard',{n:opp.hand.length})]);if(x&&api.allLayers(x).length-1>=5)(s.g35ZeroMana??=[]).push({p:1-t.p,who:t.p,turns:own.turns});break;
+ case'worldEntry':{
+  const bases=x?api.allLayers(x).length-1:0;
+  if(bases>=3)give(s,t,[E('Discard',{n:opp.hand.length})]);
+  if(bases>=5)(s.g35ZeroMana??=[]).push({p:1-t.p,who:t.p,turns:own.turns,
+   refs:opp.mana.map(y=>({uid:y.uid,serial:y.zoneSerial||0}))});
+  break;
+ }
  case'worldAttack':choice(s,t,'破壊するエレメントの文明を選ぶ',['光','水','闇','火','自然'].map(v=>opt(v,v,opp.battle.filter(y=>colors(effective(y,s)).includes(v)).length*10)));break;
  case'graveName':{if(!opp.hand.length)break;const y=opp.hand[Math.floor(api.random(s)*opp.hand.length)];api.discardSelected(s,1-t.p,[y.uid],t.source,t.p);give(s,t,[E('Mill',{n:cost(card(y)),optional:true})]);break;}
  case'graveNameRevive':give(s,t,[S('grave',null,1,{creature:true,max:(x?cost(effective(x,s)):t.max)-1},{deploy:true,optional:true,grant:{entryPlayerAttack:true},delayed:'deck'})]);break;

@@ -240777,15 +240777,138 @@
       ],
       "supportBatch": "phase-1281",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-055",
+      "name": "レバレッジ・ドリフト",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを１体アンタップする。次の自分のターンのはじめまで、そのクリーチャーのパワーを+3000し、「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-055",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "untap": true,
+          "spell": true,
+          "power": 3000,
+          "g521UntilStart": true,
+          "g1058FollowUnit": true,
+          "grant": {
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1282",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-S7",
+      "name": "氷駆の妖精",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "ジャイアント・スノーフェアリー",
+      "text": "このクリーチャーが出た時、自分の山札の上から１枚目をタップしてマナゾーンに置く。\nシビルカウント ５：自分の自然のクリーチャーまたは自然のタマシードが合計５つ以上あれば、自分のマナゾーンにあるカードのマナの数字を２にする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-S7",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1,
+          "tapped": true
+        }
+      ],
+      "g1282ManaValue": {
+        "creatureOrSeed": true,
+        "color": "自然",
+        "faceUp": true,
+        "g258Civil": 5
+      },
+      "supportBatch": "phase-1282",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-064",
+      "name": "スケルトン・デバイス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "クリーチャーを１体、自分の手札から捨ててもよい。そうしたら、相手のクリーチャーを１体選ぶ。このターン、その捨てたクリーチャーのパワーと同じだけ、選んだクリーチャーのパワーを少なくする。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-064",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DiscardFor248",
+          "g488DiscardFilter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "DiscardPower1282",
+              "spell": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1282",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-032",
+      "name": "ディグル",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "マジック・サイバーロード",
+      "text": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\n自分のタマシードを使うコストを２少なくする。ただし、コストは０以下にはならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-032",
+      "limit": 4,
+      "gStrike": true,
+      "justDiver": true,
+      "g468UseReduction": {
+        "amount": 2,
+        "g1282Tamaseed": true
+      },
+      "supportBatch": "phase-1282",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1281,
+    "phase": 1282,
     "checkedAt": "2026-11-14",
-    "baseCount": 7851,
+    "baseCount": 7855,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 7855,
+    "totalCount": 7859,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -262446,6 +262569,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7851,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1281,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7851,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7855,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

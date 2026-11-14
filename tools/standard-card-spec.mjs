@@ -2475,6 +2475,33 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1282&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText), trigger=normalize('S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）');
+  if(/^dm22rp2x?-055$/i.test(d.id)&&f.typeText==='呪文'&&text===trigger+
+   '自分のクリーチャーを1体アンタップする。次の自分のターンのはじめまでそのクリーチャーのパワーを+3000し「ブロッカー」を与える。'+
+   '(「ブロッカー」を持つクリーチャーをタップして相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい)')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Target',owner:'self',untap:true,spell:true,power:3000,g521UntilStart:true,g1058FollowUnit:true,grant:{blocker:true}}
+   ]};
+  if(/^(dm22rp2x?-(S7|9B|7A)|dm22rp2x-S7X|dm24bd5-014)$/i.test(d.id)&&
+   f.typeText==='クリーチャー'&&text===
+   'このクリーチャーが出た時自分の山札の上から1枚目をタップしてマナゾーンに置く。'+
+   'シビルカウント5:自分の自然のクリーチャーまたは自然のタマシードが合計5つ以上あれば自分のマナゾーンにあるカードのマナの数字を2にする。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Ramp',n:1,tapped:true}],
+    g1282ManaValue:{creatureOrSeed:true,color:'自然',faceUp:true,g258Civil:5}};
+  if(/^dm22rp2x?-064$/i.test(d.id)&&f.typeText==='呪文'&&text===
+   'クリーチャーを1体自分の手札から捨ててもよい。そうしたら相手のクリーチャーを1体選ぶ。'+
+   'このターンその捨てたクリーチャーのパワーと同じだけ選んだクリーチャーのパワーを少なくする。'+
+   '(パワー0以下のクリーチャーは破壊される)')
+   return {effect:'sixPhoto',g34Tasks:[
+    {op:'DiscardFor248',g488DiscardFilter:{creature:true},defs:[{op:'DiscardPower1282',spell:true}]}
+   ]};
+  if(/^dm22rp2x?-032$/i.test(d.id)&&f.typeText==='クリーチャー'&&text===
+   '{GS}G・ストライク(このクリーチャーを自分のシールドゾーンから手札に加える時相手に見せ相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)'+
+   'ジャストダイバー(このクリーチャーが出た時次の自分のターンのはじめまでこのクリーチャーは相手に選ばれず攻撃されない)'+
+   '自分のタマシードを使うコストを2少なくする。ただしコストは0以下にはならない。')
+   return {gStrike:true,justDiver:true,g468UseReduction:{amount:2,g1282Tamaseed:true}};
+ }
  if(phase>=1281&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText), creature={creature:true};
   if(/^(dm22rp2x?-020|promoy21-076)$/i.test(d.id)&&f.typeText==='タマシード'&&text===

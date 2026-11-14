@@ -1,0 +1,647 @@
+{
+  "phase": 1282,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7855,
+  "description": "レバレッジ・ドリフト、氷駆の妖精、スケルトン・デバイス、ディグルの全能力を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31609/",
+    "https://dm.takaratomy.co.jp/rule/qa/42509/",
+    "https://dm.takaratomy.co.jp/rule/qa/43061/",
+    "https://dm.takaratomy.co.jp/rule/qa/45911/",
+    "https://dm.takaratomy.co.jp/rule/qa/42487/",
+    "https://dm.takaratomy.co.jp/rule/qa/42129/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36487/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm22rp2-055",
+      "name": "レバレッジ・ドリフト",
+      "faces": [
+        {
+          "name": "レバレッジ・ドリフト",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを１体アンタップする。次の自分のターンのはじめまで、そのクリーチャーのパワーを+3000し、「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-055",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-055.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "untap": true,
+            "spell": true,
+            "power": 3000,
+            "g521UntilStart": true,
+            "g1058FollowUnit": true,
+            "grant": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "102db1b6d82f9f533eebad06780391ca79e190cab9abfee9a6aad4bd196494b0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-S7",
+      "name": "氷駆の妖精",
+      "faces": [
+        {
+          "name": "氷駆の妖精",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から１枚目をタップしてマナゾーンに置く。\nシビルカウント ５：自分の自然のクリーチャーまたは自然のタマシードが合計５つ以上あれば、自分のマナゾーンにあるカードのマナの数字を２にする。",
+          "race": "ジャイアント・スノーフェアリー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-S7",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-S7.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "tapped": true
+          }
+        ],
+        "g1282ManaValue": {
+          "creatureOrSeed": true,
+          "color": "自然",
+          "faceUp": true,
+          "g258Civil": 5
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "8250c562fe1d2341d8eb8de441389ce82d6ea2d6680cbabc2e511851e43f8186",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-064",
+      "name": "スケルトン・デバイス",
+      "faces": [
+        {
+          "name": "スケルトン・デバイス",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "クリーチャーを１体、自分の手札から捨ててもよい。そうしたら、相手のクリーチャーを１体選ぶ。このターン、その捨てたクリーチャーのパワーと同じだけ、選んだクリーチャーのパワーを少なくする。（パワー０以下のクリーチャーは破壊される）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-064",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-064.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DiscardFor248",
+            "g488DiscardFilter": {
+              "creature": true
+            },
+            "defs": [
+              {
+                "op": "DiscardPower1282",
+                "spell": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "34e43aca2e88ddb1b4ca8e1053cb21e5eed126b617dc916b03f9e6d87f2bfd0a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-032",
+      "name": "ディグル",
+      "faces": [
+        {
+          "name": "ディグル",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\n自分のタマシードを使うコストを２少なくする。ただし、コストは０以下にはならない。",
+          "race": "マジック・サイバーロード",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-032",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-032.jpg",
+      "spec": {
+        "gStrike": true,
+        "justDiver": true,
+        "g468UseReduction": {
+          "amount": 2,
+          "g1282Tamaseed": true
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "8888f778fbd4b98dd436c63a4b75bf8e37bdab7bda33d9bd36e5ec1576279b7d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm22rp2x-055",
+      "name": "レバレッジ・ドリフト",
+      "faces": [
+        {
+          "name": "レバレッジ・ドリフト",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを１体アンタップする。次の自分のターンのはじめまで、そのクリーチャーのパワーを+3000し、「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-055",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-055.jpg",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "untap": true,
+            "spell": true,
+            "power": 3000,
+            "g521UntilStart": true,
+            "g1058FollowUnit": true,
+            "grant": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "b10c10984296eee75ab9b2fa65d5f7589b4c7290f8a87d6c934b49f8876735ef",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-055"
+    },
+    {
+      "id": "dm22rp2x-S7",
+      "name": "氷駆の妖精",
+      "faces": [
+        {
+          "name": "氷駆の妖精",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から１枚目をタップしてマナゾーンに置く。\nシビルカウント ５：自分の自然のクリーチャーまたは自然のタマシードが合計５つ以上あれば、自分のマナゾーンにあるカードのマナの数字を２にする。",
+          "race": "ジャイアント・スノーフェアリー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-S7",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-S7.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "tapped": true
+          }
+        ],
+        "g1282ManaValue": {
+          "creatureOrSeed": true,
+          "color": "自然",
+          "faceUp": true,
+          "g258Civil": 5
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "f612c0f61d5386cee1306f3cde919dd3066cb3fe0aacb09cfea66f2e787a7d4c",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-S7"
+    },
+    {
+      "id": "dm22rp2x-S7X",
+      "name": "氷駆の妖精",
+      "faces": [
+        {
+          "name": "氷駆の妖精",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から１枚目をタップしてマナゾーンに置く。\nシビルカウント ５：自分の自然のクリーチャーまたは自然のタマシードが合計５つ以上あれば、自分のマナゾーンにあるカードのマナの数字を２にする。",
+          "race": "ジャイアント・スノーフェアリー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-S7X",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-S7X.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "tapped": true
+          }
+        ],
+        "g1282ManaValue": {
+          "creatureOrSeed": true,
+          "color": "自然",
+          "faceUp": true,
+          "g258Civil": 5
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "58315c2cf5c01ca67760c0f193c576647f6989ee616955427e7c34def095f62f",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-S7"
+    },
+    {
+      "id": "dm22rp2-9B",
+      "name": "氷駆の妖精",
+      "faces": [
+        {
+          "name": "氷駆の妖精",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から１枚目をタップしてマナゾーンに置く。\nシビルカウント ５：自分の自然のクリーチャーまたは自然のタマシードが合計５つ以上あれば、自分のマナゾーンにあるカードのマナの数字を２にする。",
+          "race": "ジャイアント・スノーフェアリー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-9B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-9B.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "tapped": true
+          }
+        ],
+        "g1282ManaValue": {
+          "creatureOrSeed": true,
+          "color": "自然",
+          "faceUp": true,
+          "g258Civil": 5
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "8619f5ac91d3fa7da70dd97edd8dcdd188afcf3f1b28dcc887d30a48769d9353",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-S7"
+    },
+    {
+      "id": "dm22rp2x-9B",
+      "name": "氷駆の妖精",
+      "faces": [
+        {
+          "name": "氷駆の妖精",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から１枚目をタップしてマナゾーンに置く。\nシビルカウント ５：自分の自然のクリーチャーまたは自然のタマシードが合計５つ以上あれば、自分のマナゾーンにあるカードのマナの数字を２にする。",
+          "race": "ジャイアント・スノーフェアリー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-9B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-9B.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "tapped": true
+          }
+        ],
+        "g1282ManaValue": {
+          "creatureOrSeed": true,
+          "color": "自然",
+          "faceUp": true,
+          "g258Civil": 5
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "dc30a739a104b01697408304cbe5459fc7fe5e5c8c4e52728c68fff621d8a645",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-S7"
+    },
+    {
+      "id": "dm22rp2-7A",
+      "name": "氷駆の妖精",
+      "faces": [
+        {
+          "name": "氷駆の妖精",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から１枚目をタップしてマナゾーンに置く。\nシビルカウント ５：自分の自然のクリーチャーまたは自然のタマシードが合計５つ以上あれば、自分のマナゾーンにあるカードのマナの数字を２にする。",
+          "race": "ジャイアント・スノーフェアリー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-7A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-7A.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "tapped": true
+          }
+        ],
+        "g1282ManaValue": {
+          "creatureOrSeed": true,
+          "color": "自然",
+          "faceUp": true,
+          "g258Civil": 5
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "22a487c2e5e2b52eae6ad8b8508486a46b90ff5aaee0e2f7c3db9e971a151579",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-S7"
+    },
+    {
+      "id": "dm22rp2x-7A",
+      "name": "氷駆の妖精",
+      "faces": [
+        {
+          "name": "氷駆の妖精",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から１枚目をタップしてマナゾーンに置く。\nシビルカウント ５：自分の自然のクリーチャーまたは自然のタマシードが合計５つ以上あれば、自分のマナゾーンにあるカードのマナの数字を２にする。",
+          "race": "ジャイアント・スノーフェアリー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-7A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-7A.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "tapped": true
+          }
+        ],
+        "g1282ManaValue": {
+          "creatureOrSeed": true,
+          "color": "自然",
+          "faceUp": true,
+          "g258Civil": 5
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "f9eda8d3e767d5bf96b5b3572de335009b6bf6f1b2ad757f7e1ca323fd680aab",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-S7"
+    },
+    {
+      "id": "dm24bd5-014",
+      "name": "氷駆の妖精",
+      "faces": [
+        {
+          "name": "氷駆の妖精",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から１枚目をタップしてマナゾーンに置く。\nシビルカウント ５：自分の、自然のクリーチャーまたは自然のタマシードが合計５つ以上あれば、自分のマナゾーンにあるカードのマナの数字を２にする。",
+          "race": "ジャイアント・スノーフェアリー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd5-014",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd5-014.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "tapped": true
+          }
+        ],
+        "g1282ManaValue": {
+          "creatureOrSeed": true,
+          "color": "自然",
+          "faceUp": true,
+          "g258Civil": 5
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "4b6c0ff5243b227c3958d8ff14f19e38ee2a1afb5b1d022f47c33e024f4ef5f9",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-S7"
+    },
+    {
+      "id": "dm22rp2x-064",
+      "name": "スケルトン・デバイス",
+      "faces": [
+        {
+          "name": "スケルトン・デバイス",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "クリーチャーを１体、自分の手札から捨ててもよい。そうしたら、相手のクリーチャーを１体選ぶ。このターン、その捨てたクリーチャーのパワーと同じだけ、選んだクリーチャーのパワーを少なくする。（パワー０以下のクリーチャーは破壊される）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-064",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-064.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DiscardFor248",
+            "g488DiscardFilter": {
+              "creature": true
+            },
+            "defs": [
+              {
+                "op": "DiscardPower1282",
+                "spell": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "1a04a71de0ae095d59e55c0fb37e8aa51c85eaf4338d59eb353a7534994cc975",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-064"
+    },
+    {
+      "id": "dm22rp2x-032",
+      "name": "ディグル",
+      "faces": [
+        {
+          "name": "ディグル",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\n自分のタマシードを使うコストを２少なくする。ただし、コストは０以下にはならない。",
+          "race": "マジック・サイバーロード",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-032",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-032.jpg",
+      "spec": {
+        "gStrike": true,
+        "justDiver": true,
+        "g468UseReduction": {
+          "amount": 2,
+          "g1282Tamaseed": true
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "b2a817940b549bcc3e67bfddb23b6c22ad60ff7f976f15d54aef7bf4ada420cb",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-032"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22rp2-055": 4,
+      "dm22rp2-S7": 4,
+      "dm22rp2-064": 4,
+      "dm22rp2-032": 4,
+      "dm22rp2x-055": 4,
+      "dm22rp2x-S7": 4,
+      "dm22rp2x-S7X": 4,
+      "dm22rp2-9B": 4,
+      "dm22rp2x-9B": 4,
+      "dm22rp2-7A": 4,
+      "dm22rp2x-7A": 4,
+      "dm24bd5-014": 4,
+      "dm22rp2x-064": 4,
+      "dm22rp2x-032": 4
+    },
+    "currentList": "https://dm.takaratomy.co.jp/img/regulation/2608/202608regulation.pdf"
+  }
+}

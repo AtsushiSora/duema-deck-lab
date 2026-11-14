@@ -1029,7 +1029,10 @@ export function dddPayment(s,p,c){
 function limitNextTurn(s,p,source){s.players[1-p].entryLimitNextTurn=true;log(s,p,'entryLimit',`${source.name}：次の相手のターン、相手が出せるクリーチャーは1体まで`,{cardId:source.id});}
 export const civilizations=c=>c.civilizations||String(c.civ).split('/');
 export const manaCivilizations=c=>[...new Set(playFaces(c).flatMap(civilizations))];
-export const manaValueAt=(s,p,x)=>(s.g35ZeroMana||[]).some(l=>l.p===p)?0:manaValue(card(x));
+const zeroManaValue=(s,p,x)=>(s.g35ZeroMana||[]).some(l=>l.p===p&&
+ (!l.refs||l.refs.some(ref=>ref.uid===x.uid&&ref.serial===(x.zoneSerial||0))));
+export const manaValueAt=(s,p,x)=>x.paymentBird?manaValue(card(x)):
+ zeroManaValue(s,p,x)?0:extra.six.manaValue1282(s,p)?2:manaValue(card(x));
 export const manaValue=c=>c.manaValue??(civilizations(c).length===5?0:1);
 export const isDragon=c=>c.type==='creature'&&String(c.race).includes('ドラゴン');
 function heldJudgeSpells(frame){
@@ -1771,7 +1774,9 @@ export function manaColors(c,s=null,p=null,forPower=false){
  return natureManaColors1261(s,p,c);
 }
 export function paymentPool(s,p,exclude=[],c=null){
- const zero=(s.g35ZeroMana||[]).some(l=>l.p===p),origin=c?.type==='creature'&&c.g423OriginMana||c?.type==='spell'&&c.g826OriginSpellMana,crystal=c?.g434CrystalSoul,all=s.players[p].battle.some(x=>effectiveCard(x,s).casablanca||effectiveCard(x,s).g51Courtney||String(c?.race).includes('生徒会組')&&effectiveCard(x,s).g28Gyai);
+ const fairy=extra.six.manaValue1282(s,p);
+ const origin=!fairy&&(c?.type==='creature'&&c.g423OriginMana||c?.type==='spell'&&c.g826OriginSpellMana);
+ const crystal=c?.g434CrystalSoul,all=s.players[p].battle.some(x=>effectiveCard(x,s).casablanca||effectiveCard(x,s).g51Courtney||String(c?.race).includes('生徒会組')&&effectiveCard(x,s).g28Gyai);
  // Printed mana stays unchanged. Crystal Soul applies only to face-down mana
  // for this payment, and overrides a prior zero-mana effect (official Q&A 45912).
  const summonColors=c?.type==='creature'&&!c.crossing&&s.players[p].battle.some(x=>
@@ -1779,14 +1784,15 @@ export function paymentPool(s,p,exclude=[],c=null){
  const twins=twinManaColors(s,p),colorlessOnly=c?.type==='creature'&&c.g1039ColorlessPayment;
  const mana=s.players[p].mana.filter(x=>!colorlessOnly||!manaColors(card(x),s,p).length);
  return [...mana.map(x=>{
-  const c=card(x),value=zero?0:manaValue(c),boost=crystal&&x.faceDown;
+  const c=card(x),zero=zeroManaValue(s,p,x),value=zero?0:fairy?2:manaValue(c),boost=crystal&&x.faceDown;
   const double=origin&&value===1&&String(c.race||'').split('/').includes('オリジン');
   const anyColor=all||summonColors||twins&&c.spellFace||!x.faceDown&&raceManaColors(s,p,c);
   const colors=x.faceDown||anyColor?null:natureManaColors1261(s,p,c);
   const addedColors=colors&&colors.length>manaCivilizations(c).length;
-  return zero||origin||crystal||anyColor||addedColors?{...x,
+  return zero||fairy||origin||crystal||anyColor||addedColors?{...x,
    ...(addedColors?{paymentColors:colors}:{}),
-   ...(zero||double||boost?{paymentValue:boost?crystal:double?2:0}:{}),
+   ...(zero||fairy||double||boost?{paymentValue:boost?crystal:double?2:value}:{}),
+   ...(fairy?{paymentFairy1282:true}:{}),
    ...(origin?{paymentExact423:true}:{}),...(crystal?{paymentCrystal434:true}:{}),
    ...(anyColor?{paymentAllColors:true}:{})
   }:x;
@@ -1841,9 +1847,12 @@ export function manaSelectionStatus(d){
  const goal=(1<<colors.length)-1,best=[...masks].sort((a,b)=>b.toString(2).replaceAll('0','').length-a.toString(2).replaceAll('0','').length)[0];
  const exact=d.pool.some(x=>x.paymentExact423),amountValid=amount>=d.cost&&(!exact||amount===d.cost||d.cost<colors.length&&selected.length===colors.length);
  const status={amount,cost:d.cost,colors:colors.map((name,i)=>({name,paid:!!(best&1<<i)})),valid:new Set(d.selected).size===d.selected.length&&selected.length===d.selected.length&&selected.every(x=>!x.tapped)&&amountValid&&masks.has(goal)};
- // Excess produced by the last needed crystal mana is allowed (Q&A 44611),
+ // A needed two-mana card may overpay by one (Q&A 44611 and 42509),
  // but an extra card that can be removed without losing payment is not.
- if(status.valid&&d.pool.some(x=>x.paymentCrystal434)){const pool=d.pool.map(x=>({...x,paymentCrystal434:false}));status.valid=!selected.some(x=>manaSelectionStatus({...d,pool,selected:d.selected.filter(uid=>uid!==x.uid)}).valid);}
+ if(status.valid&&d.pool.some(x=>x.paymentCrystal434||x.paymentFairy1282)){
+  const pool=d.pool.map(x=>({...x,paymentCrystal434:false,paymentFairy1282:false}));
+  status.valid=!selected.some(x=>manaSelectionStatus({...d,pool,selected:d.selected.filter(uid=>uid!==x.uid)}).valid);
+ }
  return status;
 }
 function paymentIds(s,p,c,exclude=[],fixed=false){

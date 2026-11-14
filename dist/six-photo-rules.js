@@ -541,7 +541,18 @@ export function createSixPhotoRules(api){
   if(t.tap){if(a)api.tap(s,t.first.player,a);if(b)api.tap(s,second.player,b);}
   if(a&&b)api.battle(s,t.first.player,a,second.player,b);
  }
- function powerMinusScore242(s,t,y){const attacking=y.uid===s.attack?.attacker||y.uid===s.attackLifecycle?.uid&&(y.incarnation||0)===(s.attackLifecycle.incarnation||0),before=api.power(y,attacking,s),after=api.power({...y,powerModifiers:[...(y.powerModifiers||[]),{amount:t.power,spellSource:t.spell?t.source:undefined,spellCost:t.spell?cost(faces(card(t.source)).at(-1)):undefined}]},attacking,s);if(after>=before)return -5;return after<=0&&!effective(y,s).g34AlwaysWinAtZero?40+cost(card(y))*4+before/1000:5+Math.min(-t.power,before)/1000+cost(card(y));}
+ function powerMinusScore242(s,t,y){
+  const attacking=y.uid===s.attack?.attacker||y.uid===s.attackLifecycle?.uid&&(y.incarnation||0)===(s.attackLifecycle.incarnation||0);
+  const before=api.power(y,attacking,s);
+  const modifier={amount:t.power,spellSource:t.spell?t.source:undefined,spellCost:t.spell?cost(faces(card(t.source)).at(-1)):undefined};
+  const after=api.power({...y,powerModifiers:[...(y.powerModifiers||[]),modifier]},attacking,s);
+  if(after>=before)return -5;
+  const targetCost=cost(card(y)),scoreCost=targetCost===Infinity?30:targetCost;
+  const powerPoints=before===Infinity?30:before/1000;
+  if(after<=0&&!effective(y,s).g34AlwaysWinAtZero)return 40+scoreCost*4+powerPoints;
+  const reductionPoints=t.power==='-infinity'?powerPoints:Math.min(-t.power,before)/1000;
+  return 5+reductionPoints+scoreCost;
+ }
  function discardColors248(x){return new Set(faces(card(x)).flatMap(colors)).size;}
  function selfUntapValue542(s,t){const host=sourceHost474(s,t);if(!host||host.p!==t.p||s.active!==t.p||!api.isCreature(s,host.x)||!host.x.tapped||!api.canUntap(host.x)||effective(host.x,s).noAttack)return -100;const c=effective(host.x,s);return 24+Math.min(12,api.power(host.x,true,s)/3000)+Math.max(0,(Number(c.breaker)||1)-1)*5;}
  function tapForUntapScore987(s,t,y){
@@ -555,9 +566,16 @@ export function createSixPhotoRules(api){
  const destroyBelowCost655=(belowCost,creatureOnly)=>({op:'Target',element:!creatureOnly,to:'grave',filter:{belowCost}});
  function discardDefs248(s,t,y){
   return t.defs.map(d=>d.op==='DrawColors248'?{op:'Draw',n:discardColors248(y)}:
-   d.op==='DiscardCost655'?{...d,costs:discardCosts655(s,t.p,y,d.g835Creature&&!d.g1048AnyDiscardedFace)}:d);
+   d.op==='DiscardCost655'?{...d,costs:discardCosts655(s,t.p,y,d.g835Creature&&!d.g1048AnyDiscardedFace)}:
+   d.op==='DiscardPower1282'?{...d,power:card(y).power==='∞'?'-infinity':-card(y).power}:d);
  }
  function discardScore248(s,t,y){const own=s.players[t.p],enemy=creatures(s,1-t.p).filter(x=>!x.sealed),d=t.defs[0];
+  if(d.op==='DiscardPower1282'){
+   const [effect]=discardDefs248(s,t,y),rows=targetOptions(s,t.p,enemy);
+   if(!rows.length)return -100;
+   const scores=rows.map(r=>powerMinusScore242(s,{...t,...effect},enemy.find(x=>x.uid===r.value)));
+   return Math.min(100,Math.max(...scores))-cost(card(y));
+  }
   if(d.op==='Raid767')return own.deck.length>1&&!api.deckLocked(s,t.p)?10-cost(card(y)):-100;
   if(d.op==='Clock842')return own.deck.length>1&&!api.deckLocked(s,t.p)?5-Math.min(cost(card(y)),8):-100;
   if(d.op==='ShieldTop')return api.canAddShield(s,t.p)&&own.deck.length>1?12-cost(card(y)):-100;
@@ -2905,6 +2923,10 @@ export function createSixPhotoRules(api){
    [...rows.map(y=>opt(card(y).name+'を捨てる',y.uid,discardScore248(s,t,y),y.cardId)),skip()]);
   break;
  }
+ case'g34_DiscardPower1282':
+  start(s,t,[{op:'Target',spell:t.spell,title:'相手のクリーチャーを1体選ぶ',
+   ...(t.discarded?{power:t.power,g242PowerMinus:true}:{})}]);
+  break;
  case'g34_IfHand246':if(own.hand.length<=t.max)start(s,t,t.defs);else if(t.elseDefs)start(s,t,t.elseDefs);break;
  case'g34_NextCreatureGrant1218':
   (s.extLimits??=[]).push({kind:'g1218NextCreatureGrant',player:t.p,source:t.source,
@@ -6372,6 +6394,11 @@ export function createSixPhotoRules(api){
     break;
    }
    const after={...t,op:'g34_Sequence',defs:discardDefs248(s,t,y)};
+   if(after.defs[0].op==='DiscardPower1282'){
+    // Still choose a creature after the attempt, but use power only after an actual discard (QA 42487).
+    api.discardSelected(s,t.p,selected,t.source,t.p,null,{...after,...after.defs[0],op:'g34_DiscardPower1282'});
+    break;
+   }
    // Rule 101.3a: this continuation also follows an attempted discard that was replaced.
    api.discardSelected(s,t.p,selected,t.source,t.p,t.g770DiscardAttempt?null:after,t.g770DiscardAttempt?after:null);
   }
@@ -7398,6 +7425,7 @@ export function createSixPhotoRules(api){
    if(source.sealed)continue;
    const rule=effective(source,s).g468UseReduction;
    if(!rule||rule.min!==undefined&&printedCost<rule.min)continue;
+   if(rule.g1282Tamaseed&&c.type!=='seed'&&!c.seedCreature&&!c.natureAce4)continue;
    if(rule.g896LaterSameKind&&!(c.type==='creature'?s.g463Summons?.[p]?.turn===s.turn&&s.g463Summons[p].n>0:c.type==='spell'&&(s.players[p].spellsThisTurn||0)>0))continue;
    if(rule.race&&!race(c,rule.race))continue;
    if(rule.colorsAny&&!rule.colorsAny.some(color=>colors(c).includes(color)))continue;
@@ -8899,6 +8927,12 @@ attackPower593(s,p,x,playerOnly){
 },
 playerStop567(s,p,x){if(playerStopReading567.has(s))return false;const locks=(s.extLimits||[]).filter(l=>l.kind==='g567PlayerStop'&&(l.ref?api.allLayers(x).some(y=>key(y)===key(l.ref)):l.player===p)&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})));if(!locks.length)return false;playerStopReading567.add(s);try{return locks.some(l=>l.controller===p||!creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks));}finally{playerStopReading567.delete(s);}},
 externalProtection565,
+ manaValue1282(s,p){
+  return s.players[p].battle.some(x=>{
+   const condition=card(x).g1282ManaValue;
+   return condition&&!x.sealed&&!x.faceDown&&api.isCreature(s,x)&&!api.ignored(s,x)&&ownCondition(s,p,condition,x.uid);
+  });
+ },
  civilProtection1280(s,p,x){
   if(x.sealed||x.faceDown||!s.players[p].battle.some(y=>y!==x&&card(y).g1280CivilProtection))return false;
   if(!api.isCreature(s,x)&&!matches(s,p,x,{g295Tamaseed:true}))return false;
