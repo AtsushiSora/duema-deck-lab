@@ -2475,6 +2475,18 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1301&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm17-030'&&f.typeText==='クリーチャー'&&
+   text==='カードがマナゾーンから墓地に置かれた時そのターンの終わりまでこのクリーチャーは「パワーアタッカー+3000」を得る。(「パワーアタッカー+3000」を得たクリーチャーのパワーは攻撃中+3000される)')
+   return {g1301ManaToGrave:[{op:'SelfBoost313',power:3000,g536Source:true,g337PowerAttacker:true}]};
+  if(d.id==='dm22-029'&&f.typeText==='呪文'&&text==='自分のシールドをすべて裏向きにしシャッフルして並べる。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'ShuffleOwnShields1301'}]};
+  if(d.id==='dmex17-066'&&f.typeText==='呪文'&&
+   text==='バトルゾーンにある自分のクリーチャーを1体タップしてマナゾーンに置く。その後そのクリーチャーよりコストが小さいクリーチャーを1体自分のマナゾーンから出す。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',implicitSelection:true,spell:true,g1301ManaDeploy:true,
+    title:'タップしてマナゾーンに置く自分のクリーチャーを1体指定する'}]};
+ }
  if(phase>=1300&&d?.status==='complete'&&f?.typeText==='クリーチャー'){
   const text=normalize(f.abilityText),spell=d.faces[1];
   if(['dmrp09-019','dm23ex2-064'].includes(d.id)&&d.faces.length===2&&spell.typeText==='呪文'&&

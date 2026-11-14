@@ -4153,6 +4153,30 @@ export function createSixPhotoRules(api){
   if(options.length)choice(s,t,'マナに置くシールドを1つ選ぶ（任意）',[...options,skip()]);
   break;
  }
+ case'g34_ShuffleOwnShields1301':{
+  if(!own.shields.length)break;
+  const slots=own.shields.map(api.shieldCards),groups=own.shields.map(api.shieldGroup);
+  const shuffled=api.shuffled(slots.flat(),Math.floor(api.random(s)*4294967296));
+  for(const y of shuffled){delete y.faceUp;delete y.shieldCardOnly;delete y.shieldStack;delete y.shieldGroup;}
+  const replacements=new Map(),forceReplacements=new Map();
+  let offset=0;
+  own.shields=slots.map((slot,i)=>{
+   const [root,...stack]=shuffled.slice(offset,offset+slot.length);
+   offset+=slot.length;
+   if(stack.length)root.shieldStack=stack;
+   replacements.set(groups[i],root.uid);
+   for(const y of slot)forceReplacements.set(y.uid,root.uid);
+   return root;
+  });
+  // EX Life and Shield Force keep their original shield positions (QA 39544, 37439).
+  for(const y of own.battle.flatMap(api.allLayers)){
+   if(replacements.has(y.exLifeShieldUid))y.exLifeShieldUid=replacements.get(y.exLifeShieldUid);
+   if(y.exLifeShieldUids)y.exLifeShieldUids=y.exLifeShieldUids.map(uid=>replacements.get(uid)??uid);
+   if(forceReplacements.has(y.g35ShieldForce))y.g35ShieldForce=forceReplacements.get(y.g35ShieldForce);
+  }
+  api.log(s,t.p,'shieldShuffle',card(t.source).name+'：自分のシールドを裏向きにしてシャッフルした',{cardId:t.source});
+  break;
+ }
  case'g34_ShieldShuffle1018':{
   const options=[t.p,1-t.p].flatMap(owner=>ownShieldGraveOptions(s,owner).map(o=>({
    ...o,label:(owner===t.p?'自分の':'相手の')+o.label,value:{owner,uid:o.value},
@@ -7129,6 +7153,16 @@ export function createSixPhotoRules(api){
    const n=colors(effective(y,s,true)).filter(color=>civilizations805.includes(color)).length;
    move(s,[{player:t.p,uid:y.uid,to:'grave',destroy:true,controller:t.controller??t.p}]);
    if(n)start(s,t,[{op:'Ramp',n,g809Together:true}]);
+   break;
+  }
+  if(t.g1301ManaDeploy){
+   const y=v&&own.battle.find(x=>x.uid===v.uid);
+   if(!y)break;
+   // The selected creature supplies the cost even if its move is replaced (QA 42017).
+   const limit=cost(effective(y,s));
+   move(s,[{player:t.p,uid:y.uid,to:'mana',toOwnerMana:true,tapped:true,controller:t.p}]);
+   start(s,t,[{op:'Select',origin:'mana',n:1,deploy:true,
+    filter:{creature:true,faceUp:true,belowCost:limit===Infinity?'∞':limit}}]);
    break;
   }
   if(t.g786ReviveAtCost){

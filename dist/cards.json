@@ -243431,15 +243431,94 @@
       },
       "supportBatch": "phase-1300",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm17-030",
+      "name": "報復士シュバイン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ドラゴノイド",
+      "text": "カードがマナゾーンから墓地に置かれた時、そのターンの終わりまで、このクリーチャーは「パワーアタッカー+3000」を得る。(「パワーアタッカー+3000」を得たクリーチャーのパワーは、攻撃中、+3000される)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-030",
+      "limit": 4,
+      "g1301ManaToGrave": [
+        {
+          "op": "SelfBoost313",
+          "power": 3000,
+          "g536Source": true,
+          "g337PowerAttacker": true
+        }
+      ],
+      "supportBatch": "phase-1301",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22-029",
+      "name": "冥界の手",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "race": "",
+      "text": "自分のシールドをすべて裏向きにし、シャッフルして並べる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-029",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShuffleOwnShields1301"
+        }
+      ],
+      "supportBatch": "phase-1301",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex17-066",
+      "name": "母なる聖地",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある自分のクリーチャーを１体、タップしてマナゾーンに置く。その後、そのクリーチャーよりコストが小さいクリーチャーを１体、自分のマナゾーンから出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-066",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "implicitSelection": true,
+          "spell": true,
+          "g1301ManaDeploy": true,
+          "title": "タップしてマナゾーンに置く自分のクリーチャーを1体指定する"
+        }
+      ],
+      "supportBatch": "phase-1301",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1300,
+    "phase": 1301,
     "checkedAt": "2026-11-15",
-    "baseCount": 7915,
-    "newEffectCards": 4,
+    "baseCount": 7919,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7919,
+    "totalCount": 7922,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -265328,6 +265407,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7915,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1300,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7915,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7919,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

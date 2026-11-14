@@ -3257,26 +3257,33 @@ function skipTurn(s,p,source){
 }
 function manaSnapshot(s){
  return s.players.map(own=>{
-  const watchers=[],perCard=[],jingi=[];
+  const watchers=[],perCard=[],jingi=[],toGrave=[];
   for(const x of own.battle){
    const c=card(x);
-   if(!(c?.g47Strato||c?.g811ManaDeparture||c?.g1124Jingi)||abilitiesIgnored(s,x))continue;
+   if(!(c?.g47Strato||c?.g811ManaDeparture||c?.g1124Jingi||c?.g1301ManaToGrave)||abilitiesIgnored(s,x))continue;
    const ref={uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0};
    if(c.g47Strato)watchers.push(ref);
    if(c.g811ManaDeparture)perCard.push({...ref,defs:c.g811ManaDeparture});
+   if(c.g1301ManaToGrave&&!x.sealed&&!x.faceDown)toGrave.push({...ref,defs:c.g1301ManaToGrave});
    if(c.g1124Jingi&&!x.sealed&&!x.faceDown&&isCreature(s,x))jingi.push({...ref,defs:c.g1124Jingi});
   }
-  return {uids:own.mana.map(x=>x.uid),watchers,perCard,jingi,creatures:jingi.length?
+  return {uids:own.mana.map(x=>x.uid),watchers,perCard,jingi,toGrave,creatures:jingi.length?
    own.mana.filter(x=>!x.faceDown&&playFaces(card(x)).some(face=>face.type==='creature')).map(x=>x.uid):[]};
  });
 }
 function manaDeparted(s,before){
+ let buried=0;
+ const trackBurials=before.some(x=>x.toGrave.length);
  for(let p=0;p<2;p++){
   const {uids,watchers,perCard,jingi,creatures}=before[p],mana=s.players[p].mana;
   if(uids.length===mana.length&&uids.every((uid,i)=>uid===mana[i].uid))continue;
   const remaining=new Set(mana.map(x=>x.uid));
   const departed=uids.filter(uid=>!remaining.has(uid)).length;
   if(!departed)continue;
+  if(trackBurials){
+   const graveUids=new Set(s.players.flatMap(player=>player.grave.map(x=>x.uid)));
+   buried+=uids.filter(uid=>!remaining.has(uid)&&graveUids.has(uid)).length;
+  }
   extra.seed.manaLeft(s,p,watchers);
   for(const {uid,cardId,incarnation,defs} of jingi)
    for(const departedUid of creatures)
@@ -3286,6 +3293,10 @@ function manaDeparted(s,before){
    for(let i=0;i<departed;i++)
     enqueueEffect(s,p,{uid,incarnation,source:cardId,effect:'extended',task:extra.task('g34_Sequence',p,cardId,{uid,incarnation,defs})});
  }
+ for(const p of [s.active,1-s.active])
+  for(const {uid,cardId,incarnation,defs} of before[p].toGrave)
+   for(let i=0;i<buried;i++)
+    enqueueEffect(s,p,{uid,incarnation,source:cardId,effect:'extended',task:extra.task('g34_Sequence',p,cardId,{uid,incarnation,defs})});
 }
 const graveHistory1300=new WeakMap();
 const graveSnapshot1300=s=>s.players.map(p=>p.grave.map(x=>x.uid));
