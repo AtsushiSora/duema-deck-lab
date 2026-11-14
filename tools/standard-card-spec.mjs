@@ -2475,6 +2475,21 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1252&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(['dmx21-033','dm24ex2-064','dm25rp2-T05','dm25ex3-TF19'].includes(d.id)&&
+   /^このクリーチャーが(?:バトルゾーンに)?出た時カードを1枚引く。自分が(?:《ホーリー・スパーク》|名前に《ホーリー・スパーク》とある呪文)を唱えた時名前に《聖霊王》とある進化クリーチャーを1体(?:自分の手札からコストを支払わずに|コストを支払わずに自分の手札から)召喚してもよい。$/.test(text))
+   return {effect:'sixPhoto',g34Tasks:[{op:'Draw',n:1}],g204SpellWatch:{who:'self',g1252NameIncludes:'ホーリー・スパーク',defs:[
+    {op:'Execute',origin:'hand',creatureOnly:true,filter:{evolution:true,name:'聖霊王'},g1244NoEmptyOffer:true}
+   ]}};
+  if(d.id==='dmsd13-006'&&text===
+   'このクリーチャーがバトルゾーンに出た時数字を1つ言う。次の自分のターンのはじめまでその数字と同じコストを持つ相手のクリーチャーはすべて攻撃もブロックもできない。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'g9Number',family:'creatureLock1252'}]};
+  if(d.id==='promoy14-012'&&text===
+   'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)このクリーチャーがバトルゾーンに出た時相手のシールドが2つ以下なら相手の「ブロッカー」を持つクリーチャーをすべて破壊する。')
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'IfOwn',filter:{g334ZoneCount:{zone:'shields',opponent:true,max:2}},
+    defs:[{op:'Sweep',to:'grave',filter:{creature:true,blocker:true}}]}]};
+ }
  if(phase>=1251&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const blocker='ブロッカーブロッカー';

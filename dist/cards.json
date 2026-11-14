@@ -237458,15 +237458,123 @@
       ],
       "supportBatch": "phase-1251",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx21-033",
+      "name": "神聖の精霊アルカ・キッド",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "エンジェル・コマンド",
+      "text": "このクリーチャーが出た時、カードを１枚引く。\n自分が名前に《ホーリー・スパーク》とある呪文を唱えた時、名前に《聖霊王》とある進化クリーチャーを１体、自分の手札からコストを支払わずに召喚してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-033",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "g204SpellWatch": {
+        "who": "self",
+        "g1252NameIncludes": "ホーリー・スパーク",
+        "defs": [
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "creatureOnly": true,
+            "filter": {
+              "evolution": true,
+              "name": "聖霊王"
+            },
+            "g1244NoEmptyOffer": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1252",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd13-006",
+      "name": "数ー字ーQ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ジョーカーズ",
+      "text": "このクリーチャーがバトルゾーンに出た時、数字を１つ言う。次の自分のターンのはじめまで、その数字と同じコストを持つ相手のクリーチャーはすべて、攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd13-006",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "g9Number",
+          "family": "creatureLock1252"
+        }
+      ],
+      "supportBatch": "phase-1252",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy14-012",
+      "name": "音速 バイクロン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "ソニック・コマンド/侵略者",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、相手のシールドが２つ以下なら、相手の「ブロッカー」を持つクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-012",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "opponent": true,
+              "max": 2
+            }
+          },
+          "defs": [
+            {
+              "op": "Sweep",
+              "to": "grave",
+              "filter": {
+                "creature": true,
+                "blocker": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1252",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1251,
+    "phase": 1252,
     "checkedAt": "2026-11-14",
-    "baseCount": 7752,
+    "baseCount": 7755,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7755,
+    "totalCount": 7758,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -258767,6 +258875,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7752,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1251,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7752,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7755,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

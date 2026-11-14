@@ -331,7 +331,10 @@ export function createSixPhotoRules(api){
  }
  const bioBattleUnit=(s,ref)=>s.players[ref.p].battle.find(x=>
   x.uid===ref.uid&&(x.incarnation||0)===ref.incarnation&&!x.sealed&&api.isCreature(s,x));
- const tasks=(p,source,defs,more={})=>(defs||[]).map(d=>task(/^(?:g35_|g393[CDJP]_)/.test(d.op)?d.op:'g34_'+d.op,p,source,{...more,...d,op:/^(?:g35_|g393[CDJP]_)/.test(d.op)?d.op:'g34_'+d.op,p:d.p??p,source}));
+ const tasks=(p,source,defs,more={})=>(defs||[]).map(d=>{
+  const op=/^(?:g35_|g393[CDJP]_|g9Number$)/.test(d.op)?d.op:'g34_'+d.op;
+  return task(op,p,source,{...more,...d,op,p:d.p??p,source});
+ });
  const start=(s,t,defs)=>put(s,...tasks(t.p,t.source,defs,{uid:t.uid,incarnation:t.incarnation||0,controller:t.controller??t.p,moved:t.moved||0,...(t.lastKnownCount!==undefined?{lastKnownCount:t.lastKnownCount}:{}),...(t.g692LastPower!==undefined?{g692LastPower:t.g692LastPower}:{}),...(t.g1184LastRaces!==undefined?{g1184LastRaces:t.g1184LastRaces}:{}),...(t.g1059LastEvolution!==undefined?{g1059LastEvolution:t.g1059LastEvolution}:{}),...(t.g1064LastTapped!==undefined?{g1064LastTapped:t.g1064LastTapped}:{}),...(t.g694Defender?{g694Defender:t.g694Defender}:{}),...(t.g399Attacker?{g399Attacker:t.g399Attacker}:{})}));
  // Delayed effects retain the attacking creature, independently of the watcher.
  const attackHost408=(s,t)=>t.g399Attacker&&s.players[t.p].battle.find(y=>api.allLayers(y).some(z=>z.uid===t.g399Attacker.uid&&(z.incarnation||0)===t.g399Attacker.incarnation));
@@ -769,6 +772,7 @@ export function createSixPhotoRules(api){
    if(!watch||(watch.who!=='both'&&owner!==(watch.who==='self'?caster:1-caster)))return [];
    return (!watch.opponentTurn||s.active!==owner)&&(!watch.origin||watch.origin===origin)&&
     useColorsMatch(watch,c)&&(!watch.race||race(c,watch.race))&&
+    (!watch.g1252NameIncludes||exactName(c.name).includes(exactName(watch.g1252NameIncludes)))&&
     (!watch.g766Once||!used(s,'g766SpellUse',x))&&!watchUsed792(s,x,watch)?[{owner,x,watch}]:[];
   }));
  // Use the already decorated target stats and suppress breaker calculation on sources to avoid power recursion.

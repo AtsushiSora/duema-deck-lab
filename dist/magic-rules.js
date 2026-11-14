@@ -44,7 +44,16 @@ export function createMagicRules(api){
     put(s,task('g34_RouletteReveal732',t.p,t.source,{number:value}));
     break;
    }
-   const scope=String(s.g9Serial=(s.g9Serial||0)+1),field=t.family==='ignore'?'g9IgnoreScopes':'g9LockScopes';for(const x of s.players[1-t.p].battle)if(!x.sealed&&(t.family==='ignore'||api.isCreature(s,x)))(x[field]??=[]).push(scope);api.lock(s,t.p,{kind:t.family==='ignore'?'numberIgnore':'numberLock',player:1-t.p,cost:value,scope,creatureSource:t.family==='shuffle'});if(t.family==='ignore'||t.family==='shuffle')api.lock(s,t.p,{kind:'numberCast',player:1-t.p,cost:value,creatureSource:t.family==='shuffle'});api.log(s,t.p,'declare',String(value)+'を宣言',{cardId:t.source});break;}
+   const scope=String(s.g9Serial=(s.g9Serial||0)+1);
+   const ignore=t.family==='ignore',creatureSource=t.family==='shuffle'||t.family==='creatureLock1252';
+   const field=ignore?'g9IgnoreScopes':'g9LockScopes';
+   for(const x of s.players[1-t.p].battle)
+    if(!x.sealed&&(ignore||api.isCreature(s,x)))(x[field]??=[]).push(scope);
+   api.lock(s,t.p,{kind:ignore?'numberIgnore':'numberLock',player:1-t.p,cost:value,scope,creatureSource});
+   if(ignore||t.family==='shuffle')api.lock(s,t.p,{kind:'numberCast',player:1-t.p,cost:value,creatureSource});
+   api.log(s,t.p,'declare',String(value)+'を宣言',{cardId:t.source});
+   break;
+  }
   case'g9FireModes':put(s,{...t,remaining:t.remaining-1,selected:[...t.selected,value]});break;
   case'g9FireMode':if(t.mode===1){const x=own.battle.find(x=>x.uid===value);if(x)(x.g9Speed??=[]).push({turn:s.turn,cost:faces(card(t.source)).find(c=>c.type==='spell').cost,spellSource:t.source});}else grant(s,t.p,value,t.source,false);break;
   case'g9Peecap':grant(s,t.p,value,t.source);break;
