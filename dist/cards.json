@@ -234274,15 +234274,197 @@
       ],
       "supportBatch": "phase-1224",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-3A",
+      "name": "Drache der'Zen",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 11000,
+      "race": "マジック・コマンド・ドラゴン/ACE",
+      "text": "このタマシードが出た時、カードを３枚引いてもよい。そうしたら、自分の手札を２枚捨てる。\n自分の水のクリーチャーまたは水のタマシードが合計４つ以上なければ、バトルゾーンにあるこのタマシードはクリーチャーとして扱わない。\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、次のうちいずれか１つを選ぶ。\n▶コスト５以下のタマシードを１枚、自分の墓地からコストを支払わずに使う。\n▶コスト５以下の呪文を１枚、自分の墓地からコストを支払わずに唱える。そうしたら、その呪文を唱えた後、墓地に置くかわりに山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-3A",
+      "limit": 4,
+      "seedCreature": true,
+      "aceCivilization": "水",
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "3枚引いてから手札を2枚捨てる？",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 3
+            },
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 2
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "墓地のコスト5以下のタマシードを使う",
+              "defs": [
+                {
+                  "op": "Execute",
+                  "origin": "grave",
+                  "max": 5,
+                  "g1225SeedOnly": true,
+                  "optional": false
+                }
+              ]
+            },
+            {
+              "label": "墓地のコスト5以下の呪文を唱える",
+              "defs": [
+                {
+                  "op": "Execute",
+                  "origin": "grave",
+                  "max": 5,
+                  "spellOnly": true,
+                  "g555FinishTo": "deck",
+                  "optional": false
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1225",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-005",
+      "name": "ボルシャック・クリスド",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "アーマード・ドラゴン",
+      "text": "スピードアタッカー\nこのクリーチャーが攻撃する時、カードを１枚引く。その後、コスト５以下のクリーチャーを１体、自分の手札から出してもよい。このターン、そのクリーチャーは「スピードアタッカー」を得、可能なら攻撃し、その攻撃の後、そのクリーチャーを破壊する。\n各ターンの終わりに、そのターン中に破壊されたドラゴンを１体、自分の墓地から手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-005",
+      "limit": 4,
+      "speedAttacker": true,
+      "g34Attack": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "max": 5
+          },
+          "g1225ChristoDeploy": true
+        }
+      ],
+      "g474AnyEnd": [
+        {
+          "op": "DragonDestroyedReturn1225"
+        }
+      ],
+      "supportBatch": "phase-1225",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-007",
+      "name": "緑神龍リャンジャオ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "アース・ドラゴン",
+      "text": "W・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーをコストの合計が５以下になるように好きな数選び、持ち主のマナゾーンに置く.。\nシビルカウント３：このクリーチャーが攻撃する時、自分の自然のクリーチャーまたは自然のタマシードが合計３つ以上あれば、カードを２枚、自分のマナゾーンから手札に戻してもよい。そうしたら、自分の山札の上から２枚をマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-007",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "opponent",
+          "n": "all",
+          "optional": true,
+          "to": "mana",
+          "toOwnerMana": true,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g513CostBudget": 5,
+          "title": "合計コスト5以下でマナに置く相手のクリーチャーを選ぶ"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "any": [
+              {
+                "creature": true
+              },
+              {
+                "g295Tamaseed": true
+              }
+            ],
+            "color": "自然",
+            "faceUp": true,
+            "g258Civil": 3
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "mana",
+              "to": "hand",
+              "n": 2,
+              "optional": true,
+              "exactOptional": true,
+              "g1225ManaExchange": true,
+              "title": "手札に戻すマナを2枚選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1225",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1224,
+    "phase": 1225,
     "checkedAt": "2026-11-14",
-    "baseCount": 7667,
+    "baseCount": 7670,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7670,
+    "totalCount": 7673,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -255259,6 +255441,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7667,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1224,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7667,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7670,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

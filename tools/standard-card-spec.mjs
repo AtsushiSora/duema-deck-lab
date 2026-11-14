@@ -2470,6 +2470,40 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1225&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(['dm22rp1-3A','dm22rp1-S3','dm22rp1-5B','dmart13-003'].includes(d.id)&&f.typeText==='タマシード/クリーチャー'&&
+   text==='このタマシードが出た時カードを3枚引いてもよい。そうしたら自分の手札を2枚捨てる。'+
+    '自分の水のクリーチャーまたは水のタマシードが合計4つ以上なければバトルゾーンにあるこのタマシードはクリーチャーとして扱わない。'+
+    'ブロッカーブロッカーW・ブレイカーこのクリーチャーが攻撃する時次のうちいずれか1つを選ぶ。'+
+    '▶コスト5以下のタマシードを1枚自分の墓地からコストを支払わずに使う。'+
+    '▶コスト5以下の呪文を1枚自分の墓地からコストを支払わずに唱える。'+
+    (d.id==='dmart13-003'?'':'そうしたら')+'その呪文を唱えた後墓地に置くかわりに山札の下に置く。')
+   return {type:'creature',seedCreature:true,aceCivilization:'水',blocker:true,breaker:2,effect:'sixPhoto',
+    g34Tasks:[{op:'Offer',title:'3枚引いてから手札を2枚捨てる？',defs:[{op:'Draw',n:3},{op:'Discard',owner:'self',n:2}]}],
+    g34Attack:[{op:'Choose',modes:[
+     {label:'墓地のコスト5以下のタマシードを使う',defs:[{op:'Execute',origin:'grave',max:5,g1225SeedOnly:true,optional:false}]},
+     {label:'墓地のコスト5以下の呪文を唱える',defs:[{op:'Execute',origin:'grave',max:5,spellOnly:true,g555FinishTo:'deck',optional:false}]}
+    ]}]};
+  if(['dm22rp2-005','dm22rp2-9A','dm22rp2x-9A','dm22rp2x-005'].includes(d.id)&&f.typeText==='クリーチャー'&&
+   text==='スピードアタッカーこのクリーチャーが攻撃する時カードを1枚引く。'+
+    'その後コスト5以下のクリーチャーを1体自分の手札から出してもよい。'+
+    'このターンそのクリーチャーは「スピードアタッカー」を得可能なら攻撃しその攻撃の後そのクリーチャーを破壊する。'+
+    '各ターンの終わりにそのターン中に破壊されたドラゴンを1体自分の墓地から手札に戻してもよい。')
+   return {speedAttacker:true,g34Attack:[{op:'Draw',n:1},
+    {op:'Select',origin:'hand',n:1,deploy:true,optional:true,filter:{creature:true,max:5},g1225ChristoDeploy:true}],
+    g474AnyEnd:[{op:'DragonDestroyedReturn1225'}]};
+  if(d.id==='dm22rp1-007'&&f.typeText==='クリーチャー'&&
+   text==='W・ブレイカーこのクリーチャーが出た時相手のクリーチャーをコストの合計が5以下になるように好きな数選び持ち主のマナゾーンに置く.。'+
+    'シビルカウント3:このクリーチャーが攻撃する時自分の自然のクリーチャーまたは自然のタマシードが合計3つ以上あれば'+
+    'カードを2枚自分のマナゾーンから手札に戻してもよい。そうしたら自分の山札の上から2枚をマナゾーンに置く。')
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'battle',owner:'opponent',n:'all',optional:true,to:'mana',
+    toOwnerMana:true,filter:{creature:true},g173Targets:true,g193Select:true,g513CostBudget:5,
+    title:'合計コスト5以下でマナに置く相手のクリーチャーを選ぶ'}],
+    g34Attack:[{op:'IfOwn',filter:{any:[{creature:true},{g295Tamaseed:true}],color:'自然',faceUp:true,g258Civil:3},
+     defs:[{op:'Select',origin:'mana',to:'hand',n:2,optional:true,exactOptional:true,g1225ManaExchange:true,
+      title:'手札に戻すマナを2枚選ぶ'}]}]};
+ }
  if(phase>=1224&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const freeze={op:'Target',g190Freeze:'self',title:'攻撃もブロックもできなくする相手のクリーチャーを選ぶ'};

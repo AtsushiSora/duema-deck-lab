@@ -1,0 +1,672 @@
+{
+  "phase": 1225,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7670,
+  "description": "Drache der’Zen、ボルシャック・クリスド、緑神龍リャンジャオの全能力を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/42129/",
+    "https://dm.takaratomy.co.jp/rule/qa/31935/",
+    "https://dm.takaratomy.co.jp/rule/qa/42502/",
+    "https://dm.takaratomy.co.jp/rule/qa/44117/",
+    "https://dm.takaratomy.co.jp/rule/qa/42988/",
+    "https://dm.takaratomy.co.jp/rule/qa/40197/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316682/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316661/"
+  ],
+  "cards": [
+    {
+      "id": "dm22rp1-3A",
+      "name": "Drache der'Zen",
+      "faces": [
+        {
+          "name": "Drache der'Zen",
+          "typeText": "タマシード/クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このタマシードが出た時、カードを３枚引いてもよい。そうしたら、自分の手札を２枚捨てる。\n自分の水のクリーチャーまたは水のタマシードが合計４つ以上なければ、バトルゾーンにあるこのタマシードはクリーチャーとして扱わない。\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、次のうちいずれか１つを選ぶ。\n▶コスト５以下のタマシードを１枚、自分の墓地からコストを支払わずに使う。\n▶コスト５以下の呪文を１枚、自分の墓地からコストを支払わずに唱える。そうしたら、その呪文を唱えた後、墓地に置くかわりに山札の下に置く。",
+          "race": "マジック・コマンド・ドラゴン/ACE",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-3A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-3A.jpg",
+      "spec": {
+        "type": "creature",
+        "seedCreature": true,
+        "aceCivilization": "水",
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "3枚引いてから手札を2枚捨てる？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 3
+              },
+              {
+                "op": "Discard",
+                "owner": "self",
+                "n": 2
+              }
+            ]
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Choose",
+            "modes": [
+              {
+                "label": "墓地のコスト5以下のタマシードを使う",
+                "defs": [
+                  {
+                    "op": "Execute",
+                    "origin": "grave",
+                    "max": 5,
+                    "g1225SeedOnly": true,
+                    "optional": false
+                  }
+                ]
+              },
+              {
+                "label": "墓地のコスト5以下の呪文を唱える",
+                "defs": [
+                  {
+                    "op": "Execute",
+                    "origin": "grave",
+                    "max": 5,
+                    "spellOnly": true,
+                    "g555FinishTo": "deck",
+                    "optional": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "02b944ff1044a54f7cbe3e5f47d58463d775619f8855be026a52da3c58f05837",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-005",
+      "name": "ボルシャック・クリスド",
+      "faces": [
+        {
+          "name": "ボルシャック・クリスド",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー\nこのクリーチャーが攻撃する時、カードを１枚引く。その後、コスト５以下のクリーチャーを１体、自分の手札から出してもよい。このターン、そのクリーチャーは「スピードアタッカー」を得、可能なら攻撃し、その攻撃の後、そのクリーチャーを破壊する。\n各ターンの終わりに、そのターン中に破壊されたドラゴンを１体、自分の墓地から手札に戻してもよい。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-005.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "g34Attack": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 5
+            },
+            "g1225ChristoDeploy": true
+          }
+        ],
+        "g474AnyEnd": [
+          {
+            "op": "DragonDestroyedReturn1225"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "f1f5e544cad08f077fbbbc30f8fe9046cf430c7a951227f4c1560d3131833bf1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-007",
+      "name": "緑神龍リャンジャオ",
+      "faces": [
+        {
+          "name": "緑神龍リャンジャオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーをコストの合計が５以下になるように好きな数選び、持ち主のマナゾーンに置く.。\nシビルカウント３：このクリーチャーが攻撃する時、自分の自然のクリーチャーまたは自然のタマシードが合計３つ以上あれば、カードを２枚、自分のマナゾーンから手札に戻してもよい。そうしたら、自分の山札の上から２枚をマナゾーンに置く。",
+          "race": "アース・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-007",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-007.jpg",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": "all",
+            "optional": true,
+            "to": "mana",
+            "toOwnerMana": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g513CostBudget": 5,
+            "title": "合計コスト5以下でマナに置く相手のクリーチャーを選ぶ"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "any": [
+                {
+                  "creature": true
+                },
+                {
+                  "g295Tamaseed": true
+                }
+              ],
+              "color": "自然",
+              "faceUp": true,
+              "g258Civil": 3
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "mana",
+                "to": "hand",
+                "n": 2,
+                "optional": true,
+                "exactOptional": true,
+                "g1225ManaExchange": true,
+                "title": "手札に戻すマナを2枚選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "3ae94b6e4194c47dd283d3d3e2b43de7485452bae1d77fced64445d5df90d20a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm22rp1-S3",
+      "name": "Drache der'Zen",
+      "faces": [
+        {
+          "name": "Drache der'Zen",
+          "typeText": "タマシード/クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このタマシードが出た時、カードを３枚引いてもよい。そうしたら、自分の手札を２枚捨てる。\n自分の水のクリーチャーまたは水のタマシードが合計４つ以上なければ、バトルゾーンにあるこのタマシードはクリーチャーとして扱わない。\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、次のうちいずれか１つを選ぶ。\n▶コスト５以下のタマシードを１枚、自分の墓地からコストを支払わずに使う。\n▶コスト５以下の呪文を１枚、自分の墓地からコストを支払わずに唱える。そうしたら、その呪文を唱えた後、墓地に置くかわりに山札の下に置く。",
+          "race": "マジック・コマンド・ドラゴン/ACE",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-S3",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-S3.jpg",
+      "spec": {
+        "type": "creature",
+        "seedCreature": true,
+        "aceCivilization": "水",
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "3枚引いてから手札を2枚捨てる？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 3
+              },
+              {
+                "op": "Discard",
+                "owner": "self",
+                "n": 2
+              }
+            ]
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Choose",
+            "modes": [
+              {
+                "label": "墓地のコスト5以下のタマシードを使う",
+                "defs": [
+                  {
+                    "op": "Execute",
+                    "origin": "grave",
+                    "max": 5,
+                    "g1225SeedOnly": true,
+                    "optional": false
+                  }
+                ]
+              },
+              {
+                "label": "墓地のコスト5以下の呪文を唱える",
+                "defs": [
+                  {
+                    "op": "Execute",
+                    "origin": "grave",
+                    "max": 5,
+                    "spellOnly": true,
+                    "g555FinishTo": "deck",
+                    "optional": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "1409cb867f45466cb01269da569315dad3deb4efdac6f22a648bfd0c5ea7e72d",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp1-3A"
+    },
+    {
+      "id": "dm22rp1-5B",
+      "name": "Drache der'Zen",
+      "faces": [
+        {
+          "name": "Drache der'Zen",
+          "typeText": "タマシード/クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このタマシードが出た時、カードを３枚引いてもよい。そうしたら、自分の手札を２枚捨てる。\n自分の水のクリーチャーまたは水のタマシードが合計４つ以上なければ、バトルゾーンにあるこのタマシードはクリーチャーとして扱わない。\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、次のうちいずれか１つを選ぶ。\n▶コスト５以下のタマシードを１枚、自分の墓地からコストを支払わずに使う。\n▶コスト５以下の呪文を１枚、自分の墓地からコストを支払わずに唱える。そうしたら、その呪文を唱えた後、墓地に置くかわりに山札の下に置く。",
+          "race": "マジック・コマンド・ドラゴン/ACE",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-5B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-5B.jpg",
+      "spec": {
+        "type": "creature",
+        "seedCreature": true,
+        "aceCivilization": "水",
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "3枚引いてから手札を2枚捨てる？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 3
+              },
+              {
+                "op": "Discard",
+                "owner": "self",
+                "n": 2
+              }
+            ]
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Choose",
+            "modes": [
+              {
+                "label": "墓地のコスト5以下のタマシードを使う",
+                "defs": [
+                  {
+                    "op": "Execute",
+                    "origin": "grave",
+                    "max": 5,
+                    "g1225SeedOnly": true,
+                    "optional": false
+                  }
+                ]
+              },
+              {
+                "label": "墓地のコスト5以下の呪文を唱える",
+                "defs": [
+                  {
+                    "op": "Execute",
+                    "origin": "grave",
+                    "max": 5,
+                    "spellOnly": true,
+                    "g555FinishTo": "deck",
+                    "optional": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "8757ded8cf99eb68cd2e8444bd6ad511909ee20330ee8657b50ce904ff2376c5",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp1-3A"
+    },
+    {
+      "id": "dmart13-003",
+      "name": "Drache der'Zen",
+      "faces": [
+        {
+          "name": "Drache der'Zen",
+          "typeText": "タマシード/クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このタマシードが出た時、カードを３枚引いてもよい。そうしたら、自分の手札を２枚捨てる。\n自分の水のクリーチャーまたは水のタマシードが合計４つ以上なければ、バトルゾーンにあるこのタマシードはクリーチャーとして扱わない。\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、次のうちいずれか１つを選ぶ。\n▶コスト５以下のタマシードを１枚、自分の墓地からコストを支払わずに使う。\n▶コスト５以下の呪文を１枚、自分の墓地からコストを支払わずに唱える。その呪文を唱えた後、墓地に置くかわりに山札の下に置く。",
+          "race": "マジック・コマンド・ドラゴン/ACE",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmart13-003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmart13-003.jpg",
+      "spec": {
+        "type": "creature",
+        "seedCreature": true,
+        "aceCivilization": "水",
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "3枚引いてから手札を2枚捨てる？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 3
+              },
+              {
+                "op": "Discard",
+                "owner": "self",
+                "n": 2
+              }
+            ]
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Choose",
+            "modes": [
+              {
+                "label": "墓地のコスト5以下のタマシードを使う",
+                "defs": [
+                  {
+                    "op": "Execute",
+                    "origin": "grave",
+                    "max": 5,
+                    "g1225SeedOnly": true,
+                    "optional": false
+                  }
+                ]
+              },
+              {
+                "label": "墓地のコスト5以下の呪文を唱える",
+                "defs": [
+                  {
+                    "op": "Execute",
+                    "origin": "grave",
+                    "max": 5,
+                    "spellOnly": true,
+                    "g555FinishTo": "deck",
+                    "optional": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "7987bb8f219b7f6cd46f6b8e871b618be4a704915f7436477582b81a09f87faa",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp1-3A"
+    },
+    {
+      "id": "dm22rp2-9A",
+      "name": "ボルシャック・クリスド",
+      "faces": [
+        {
+          "name": "ボルシャック・クリスド",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー\nこのクリーチャーが攻撃する時、カードを１枚引く。その後、コスト５以下のクリーチャーを１体、自分の手札から出してもよい。このターン、そのクリーチャーは「スピードアタッカー」を得、可能なら攻撃し、その攻撃の後、そのクリーチャーを破壊する。\n各ターンの終わりに、そのターン中に破壊されたドラゴンを１体、自分の墓地から手札に戻してもよい。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-9A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-9A.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "g34Attack": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 5
+            },
+            "g1225ChristoDeploy": true
+          }
+        ],
+        "g474AnyEnd": [
+          {
+            "op": "DragonDestroyedReturn1225"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "0726bfb2583c05efbfc0401cd4529c5f27965f8dc3a11ac24ae08147679fe357",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-005"
+    },
+    {
+      "id": "dm22rp2x-9A",
+      "name": "ボルシャック・クリスド",
+      "faces": [
+        {
+          "name": "ボルシャック・クリスド",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー\nこのクリーチャーが攻撃する時、カードを１枚引く。その後、コスト５以下のクリーチャーを１体、自分の手札から出してもよい。このターン、そのクリーチャーは「スピードアタッカー」を得、可能なら攻撃し、その攻撃の後、そのクリーチャーを破壊する。\n各ターンの終わりに、そのターン中に破壊されたドラゴンを１体、自分の墓地から手札に戻してもよい。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-9A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-9A.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "g34Attack": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 5
+            },
+            "g1225ChristoDeploy": true
+          }
+        ],
+        "g474AnyEnd": [
+          {
+            "op": "DragonDestroyedReturn1225"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "16d7b767209b66222e1447057c92ebdf5dbc8ec7fbe0b04b1ebdbe358932a61e",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-005"
+    },
+    {
+      "id": "dm22rp2x-005",
+      "name": "ボルシャック・クリスド",
+      "faces": [
+        {
+          "name": "ボルシャック・クリスド",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー\nこのクリーチャーが攻撃する時、カードを１枚引く。その後、コスト５以下のクリーチャーを１体、自分の手札から出してもよい。このターン、そのクリーチャーは「スピードアタッカー」を得、可能なら攻撃し、その攻撃の後、そのクリーチャーを破壊する。\n各ターンの終わりに、そのターン中に破壊されたドラゴンを１体、自分の墓地から手札に戻してもよい。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-005.jpg",
+      "spec": {
+        "speedAttacker": true,
+        "g34Attack": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 5
+            },
+            "g1225ChristoDeploy": true
+          }
+        ],
+        "g474AnyEnd": [
+          {
+            "op": "DragonDestroyedReturn1225"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "cdb23859d46ac18281acf85210298756088cec32f21e0e42a8e188c2ea7f5988",
+        "facesMatched": true
+      },
+      "canonicalId": "dm22rp2-005"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22rp1-3A": 4,
+      "dm22rp2-005": 4,
+      "dm22rp1-007": 4,
+      "dm22rp1-S3": 4,
+      "dm22rp1-5B": 4,
+      "dmart13-003": 4,
+      "dm22rp2-9A": 4,
+      "dm22rp2x-9A": 4,
+      "dm22rp2x-005": 4
+    }
+  }
+}
