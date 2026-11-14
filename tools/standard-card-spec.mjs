@@ -2475,6 +2475,31 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1267&&d?.status==='complete'&&d.faces.length===1){
+  const lines=f.abilityText.split('\n').map(normalize);
+  const exLife=keyword(lines[0],'EXライフ')&&
+   (lines[0]==='EXライフ'||lines[0]==='EXライフ(このクリーチャーを出す時自分の山札の上から1枚目をシールド化する。このクリーチャーが離れる時かわりにそのシールドを墓地に置く)');
+  const xxAura='自分のクリーチャーすべてに「スピードアタッカー」と「スレイヤー」を与える。';
+  if(['dmrp20-009','dm22ex1-041','dm22bd3-010','dm23bd1-SE009','dm26rp1-TR009'].includes(d.id)&&
+   f.typeText==='クリーチャー'&&lines.length===4&&exLife&&keyword(lines[1],'W・ブレイカー')&&
+   [xxAura,xxAura+'(「スレイヤー」を持つクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)'].includes(lines[2])&&
+   lines[3]==='このクリーチャーが攻撃する時このクリーチャーの「EXライフ」シールドを墓地に置いてもよい。そうしたら次の自分のターンのはじめまで相手は呪文を唱えられない。')
+   return {exLife:true,breaker:2,g208Auras:[{filter:{creature:true},grants:{speedAttacker:true,slayer:true}}],
+    g34Attack:[{op:'ExLifeGrave1267',then:[{op:'SpellLock489',expires:'start'}]}]};
+  if(d.id==='dmrp20-010'&&f.typeText==='クリーチャー'&&lines.length===4&&exLife&&
+   keyword(lines[1],'マッハファイター')&&keyword(lines[2],'W・ブレイカー')&&
+   lines[3]==='このクリーチャーが攻撃する時カードを1枚引きその後カードを1枚自分のマナゾーンまたは墓地から手札に戻す。その後自分の手札を1枚相手に見ないで選ばせる。自分はそれをコストを支払わずに使ってもよい。')
+   return {exLife:true,machFighter:true,breaker:2,g34Attack:[{op:'Draw',n:1},
+    {op:'Select',zones:['mana','grave'],to:'hand',n:1},{op:'BlindReveal803',g1267Execute:true}]};
+  if(['dmrp20-011','dm22ex1-Cho12','dm23rp4-TR09','dm23rp4x-TR09','dm24rp1-SP5'].includes(d.id)&&
+   f.typeText==='呪文'&&lines.length===3&&lines[0]==='アタック・チャンス:水と闇と自然を持つディスペクター(自分の水と闇と自然を持つディスペクターが攻撃する時この呪文をコストを支払わずに唱えてもよい)'&&
+   lines[1]==='自分の山札の上から3枚を見る。その中から2枚をマナゾーンに置き残りの1枚を手札に加える。'&&
+   lines[2]==='相手のクリーチャーを1体選ぶ。このターン自分のマナゾーンのカード1枚につきそのクリーチャーのパワーを-1000する。')
+   return {effect:'sixPhoto',g417Chance:{creature:true,g724ExactRace:'ディスペクター',colorsAll:['水','闇','自然']},
+    g34Tasks:[{op:'Look',n:3,g841DeckPeek:true,g255Distribute:true,stages:[
+     {n:2,to:'mana',tapMulticolor:true},{n:1,to:'hand'}
+    ]},{op:'CountTarget544',zone:'mana',amount:-1000,def:{op:'Target',spell:true,g242PowerMinus:true}}]};
+ }
  if(phase>=1266&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const lines=f.abilityText.split('\n').map(normalize);
   const trigger=line=>keyword(line,'S・トリガー');

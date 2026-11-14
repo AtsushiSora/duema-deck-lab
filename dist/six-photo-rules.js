@@ -750,6 +750,16 @@ export function createSixPhotoRules(api){
    ?[opt('シールド '+(i+1)+(x.faceUp?'：'+card(x).name:''),x.uid,10,x.faceUp?x.cardId:undefined)]
    :[]);
  }
+ function exLifeGraveOptions1267(s,t){
+  // The physical source may now be an evolution base (QA40839).
+  const host=sourceHost474(s,t);
+  if(!host||host.p!==t.p||host.x.sealed)return [];
+  const groups=new Set(api.allLayers(host.x).flatMap(x=>[x.exLifeShieldUid,...(x.exLifeShieldUids||[])]).filter(Boolean));
+  return ownShieldGraveOptions(s,t.p).filter(o=>{
+   const root=api.findShield(s.players[t.p],o.value);
+   return groups.has(api.shieldGroup(root))&&api.shieldCards(root).every(x=>!x.g37ShieldHeld);
+  }).map(o=>({...o,score:s.players[1-t.p].shields.length?20:4}));
+ }
  function d2Locked1188(s,p){
   return (s.extLimits||[]).some(l=>l.kind==='g1188D2Lock'&&l.player===p&&
    !api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}));
@@ -1104,7 +1114,7 @@ export function createSixPhotoRules(api){
     ['shields','under'].includes(r.to)&&api.deckRedirect(s);
    const to=redirect?'grave':r.to;
    clear(x,to);
-   if(to==='mana'&&r.tapped)x.tapped=true;
+   if(to==='mana'&&(r.tapped||r.tapMulticolor&&api.manaColors(card(x)).length>1))x.tapped=true;
    return [{...r,to,x}];
   });
   for(const r of rows.filter(r=>r.to==='deck'))own.deck.push(r.x);
@@ -3823,6 +3833,11 @@ export function createSixPhotoRules(api){
   if(options.length)choice(s,{...t,chooser},zone+'に置く自分のクリーチャーかシールドを選ぶ',options,chooser);
   break;
  }
+ case'g34_ExLifeGrave1267':{
+  const options=exLifeGraveOptions1267(s,t);
+  if(options.length)choice(s,t,'このクリーチャーのEXライフシールドを墓地に置く？',[...options,skip()]);
+  break;
+ }
  case'g34_ShieldGrave':{
   const options=ownShieldGraveOptions(s,t.p);
   if(options.length)choice(s,t,'墓地に置く自分のシールドを1つ選ぶ',t.optional?[...options,skip()]:options);
@@ -4735,7 +4750,7 @@ export function createSixPhotoRules(api){
    break;
   }
   if(stage.allMatches&&rows.length){put(s,{...t,chosen:[...selected,...rows.map(y=>y.uid)]});break;}
-  if(stage.g424AllOrNone&&rows.length){choice(s,{...t,op:'g34_LookAll424',g424Ids:rows.map(y=>y.uid)},'条件に合うカードをすべて手札に加える？',[opt('すべて手札に加える',true,rows.length>=own.deck.length?-1000:rows.reduce((n,y)=>n+10+cost(card(y)),0),rows[0].cardId),skip()]);break;}if(stage.g467Destinations&&!selected.length&&stage.n===1&&rows.length===1&&!stage.optional){put(s,{...t,chosen:[rows[0].uid]});break;}if(selected.length>=(stage.n==='all'?Infinity:stage.n)||!rows.length){const moved=selected.filter(uid=>own.deck.some(x=>x.uid===uid));if(stage.g467Destinations&&!stage.g467Chosen&&moved.length){put(s,{...t,op:'g34_LookDestination467'});break;}if(t.g255Distribute){put(s,{...t,ids:t.ids.filter(uid=>!moved.includes(uid)),stage:t.stage+1,chosen:[],g255Plans:[...(t.g255Plans||[]),...moved.map(uid=>({uid,to:stage.to,...(stage.reveal?{reveal:true}:{}),...(stage.tapped?{tapped:true}:{})}))]});break;}let after=t.after;
+  if(stage.g424AllOrNone&&rows.length){choice(s,{...t,op:'g34_LookAll424',g424Ids:rows.map(y=>y.uid)},'条件に合うカードをすべて手札に加える？',[opt('すべて手札に加える',true,rows.length>=own.deck.length?-1000:rows.reduce((n,y)=>n+10+cost(card(y)),0),rows[0].cardId),skip()]);break;}if(stage.g467Destinations&&!selected.length&&stage.n===1&&rows.length===1&&!stage.optional){put(s,{...t,chosen:[rows[0].uid]});break;}if(selected.length>=(stage.n==='all'?Infinity:stage.n)||!rows.length){const moved=selected.filter(uid=>own.deck.some(x=>x.uid===uid));if(stage.g467Destinations&&!stage.g467Chosen&&moved.length){put(s,{...t,op:'g34_LookDestination467'});break;}if(t.g255Distribute){put(s,{...t,ids:t.ids.filter(uid=>!moved.includes(uid)),stage:t.stage+1,chosen:[],g255Plans:[...(t.g255Plans||[]),...moved.map(uid=>({uid,to:stage.to,...(stage.reveal?{reveal:true}:{}),...(stage.tapped?{tapped:true}:{}),...(stage.tapMulticolor?{tapMulticolor:true}:{})}))]});break;}let after=t.after;
    for(const uid of moved){
     const y=own.deck.find(x=>x.uid===uid),follow=stage.g1265RevealedPowerAfterOrder;
     // The power is read while the card is revealed in the library, before its move.
@@ -6069,6 +6084,13 @@ export function createSixPhotoRules(api){
   }
   break;
  }
+ case'g34_ExLifeGrave1267':
+  if(v&&exLifeGraveOptions1267(s,t).some(o=>o.value===v)){
+   // QA40665: attempting the move is enough even when it is replaced.
+   api.moveShield(s,t.p,v,'grave');
+   start(s,t,t.then);
+  }
+  break;
  case'g34_ShieldGrave':if(v){
   const moved=api.moveShield(s,t.p,v,'grave');
   api.log(s,t.p,'shieldGrave',card(t.source).name+'：シールド1つ（カード'+moved.length+'枚）を墓地に置いた',{cardId:t.source});
@@ -6077,6 +6099,10 @@ export function createSixPhotoRules(api){
  case'g34_BlindReveal803':{
   const owner=t.owner==='opponent'?1-t.p:t.p,y=s.players[owner].hand[v];
   if(y){
+   if(t.g1267Execute){
+    start(s,t,[{op:'Execute',origin:'hand',filter:{exactUid:y.uid},g1244NoEmptyOffer:true}]);
+    break;
+   }
    api.log(s,owner,'reveal',card(t.source).name+'で公開：'+card(y).name,{cardId:y.cardId});
    if(t.g1010Deploy){
     if(card(y).type==='creature'&&canPut(s,t.p,y,'hand'))start(s,t,[{op:'Offer',

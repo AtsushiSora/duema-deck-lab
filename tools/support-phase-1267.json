@@ -1,0 +1,727 @@
+{
+  "phase": 1267,
+  "checkedAt": "2026-11-14",
+  "baseCount": 7804,
+  "description": "覚醒連結 XXDDZ、邪偽縫合 デスネークニア、終末王秘伝オリジナルフィナーレの全能力を対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/39553/",
+    "https://dm.takaratomy.co.jp/rule/qa/40839/",
+    "https://dm.takaratomy.co.jp/rule/qa/40665/",
+    "https://dm.takaratomy.co.jp/rule/qa/44311/",
+    "https://dm.takaratomy.co.jp/rule/qa/40664/",
+    "https://dm.takaratomy.co.jp/rule/qa/42506/",
+    "https://dm.takaratomy.co.jp/rule/qa/31825/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmrp20-009",
+      "name": "覚醒連結 XXDDZ",
+      "faces": [
+        {
+          "name": "覚醒連結 XXDDZ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇/火",
+          "civilizations": [
+            "光",
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nW・ブレイカー\n自分のクリーチャーすべてに「スピードアタッカー」と「スレイヤー」を与える。\nこのクリーチャーが攻撃する時、このクリーチャーの「EXライフ」シールドを墓地に置いてもよい。そうしたら、次の自分のターンのはじめまで、相手は呪文を唱えられない。",
+          "race": "ディスペクター/アーマード・ドラゴン/ワールド・コマンド",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-009.jpg",
+      "spec": {
+        "exLife": true,
+        "breaker": 2,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "speedAttacker": true,
+              "slayer": true
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "ExLifeGrave1267",
+            "then": [
+              {
+                "op": "SpellLock489",
+                "expires": "start"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "c9ffd9bd2da3e2b1ae6d7403da4017ebbb8546264e991d1e79b24c596891a2a6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-010",
+      "name": "邪偽縫合 デスネークニア",
+      "faces": [
+        {
+          "name": "邪偽縫合 デスネークニア",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇/自然",
+          "civilizations": [
+            "水",
+            "闇",
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nマッハファイター\nW・ブレイカー\nこのクリーチャーが攻撃する時、カードを１枚引き、その後、カードを１枚、自分のマナゾーンまたは墓地から手札に戻す。その後、自分の手札を１枚、相手に見ないで選ばせる。自分はそれをコストを支払わずに使ってもよい。",
+          "race": "ディスペクター/アンノウン/クリスタル・コマンド・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-010",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-010.jpg",
+      "spec": {
+        "exLife": true,
+        "machFighter": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "zones": [
+              "mana",
+              "grave"
+            ],
+            "to": "hand",
+            "n": 1
+          },
+          {
+            "op": "BlindReveal803",
+            "g1267Execute": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "4e03f8d012c34d11fab71352fd50b421814b6603a1283d0d83308630d4ba533f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-011",
+      "name": "終末王秘伝オリジナルフィナーレ",
+      "faces": [
+        {
+          "name": "終末王秘伝オリジナルフィナーレ",
+          "typeText": "呪文",
+          "civilizationText": "水/闇/自然",
+          "civilizations": [
+            "水",
+            "闇",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "アタック・チャンス：水と闇と自然を持つディスペクター（自分の水と闇と自然を持つディスペクターが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n自分の山札の上から３枚を見る。その中から２枚をマナゾーンに置き、残りの１枚を手札に加える。\n相手のクリーチャーを１体選ぶ。このターン、自分のマナゾーンのカード１枚につき、そのクリーチャーのパワーを－1000する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-011.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g417Chance": {
+          "creature": true,
+          "g724ExactRace": "ディスペクター",
+          "colorsAll": [
+            "水",
+            "闇",
+            "自然"
+          ]
+        },
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "g841DeckPeek": true,
+            "g255Distribute": true,
+            "stages": [
+              {
+                "n": 2,
+                "to": "mana",
+                "tapMulticolor": true
+              },
+              {
+                "n": 1,
+                "to": "hand"
+              }
+            ]
+          },
+          {
+            "op": "CountTarget544",
+            "zone": "mana",
+            "amount": -1000,
+            "def": {
+              "op": "Target",
+              "spell": true,
+              "g242PowerMinus": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "de0cc72be2fe8454a2f5c32812ff581dc8f9c1e45944f3a886e64be13947b125",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm22ex1-041",
+      "name": "覚醒連結 XXDDZ",
+      "faces": [
+        {
+          "name": "覚醒連結 XXDDZ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇/火",
+          "civilizations": [
+            "光",
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nW・ブレイカー\n自分のクリーチャーすべてに「スピードアタッカー」と「スレイヤー」を与える。\nこのクリーチャーが攻撃する時、このクリーチャーの「EXライフ」シールドを墓地に置いてもよい。そうしたら、次の自分のターンのはじめまで、相手は呪文を唱えられない。",
+          "race": "ディスペクター/アーマード・ドラゴン/ワールド・コマンド",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-041",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-041.jpg",
+      "spec": {
+        "exLife": true,
+        "breaker": 2,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "speedAttacker": true,
+              "slayer": true
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "ExLifeGrave1267",
+            "then": [
+              {
+                "op": "SpellLock489",
+                "expires": "start"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "90706f54abe325ae341924a918cbe3903edf569c33a19d00ac3abbd15f07290f",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp20-009"
+    },
+    {
+      "id": "dm22bd3-010",
+      "name": "覚醒連結 XXDDZ",
+      "faces": [
+        {
+          "name": "覚醒連結 XXDDZ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇/火",
+          "civilizations": [
+            "光",
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nW・ブレイカー\n自分のクリーチャーすべてに「スピードアタッカー」と「スレイヤー」を与える。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーが攻撃する時、このクリーチャーの「EXライフ」シールドを墓地に置いてもよい。そうしたら、次の自分のターンのはじめまで、相手は呪文を唱えられない。",
+          "race": "ディスペクター/アーマード・ドラゴン/ワールド・コマンド",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22bd3-010",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22bd3-010.jpg",
+      "spec": {
+        "exLife": true,
+        "breaker": 2,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "speedAttacker": true,
+              "slayer": true
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "ExLifeGrave1267",
+            "then": [
+              {
+                "op": "SpellLock489",
+                "expires": "start"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "79f1109211184f2babc1c984c8cc0d66eb5dcca50d64dc5d613719aa1dd20ddd",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp20-009"
+    },
+    {
+      "id": "dm23bd1-SE009",
+      "name": "覚醒連結 XXDDZ",
+      "faces": [
+        {
+          "name": "覚醒連結 XXDDZ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇/火",
+          "civilizations": [
+            "光",
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nW・ブレイカー\n自分のクリーチャーすべてに「スピードアタッカー」と「スレイヤー」を与える。\nこのクリーチャーが攻撃する時、このクリーチャーの「EXライフ」シールドを墓地に置いてもよい。そうしたら、次の自分のターンのはじめまで、相手は呪文を唱えられない。",
+          "race": "ディスペクター/アーマード・ドラゴン/ワールド・コマンド",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd1-SE009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd1-SE009.jpg",
+      "spec": {
+        "exLife": true,
+        "breaker": 2,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "speedAttacker": true,
+              "slayer": true
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "ExLifeGrave1267",
+            "then": [
+              {
+                "op": "SpellLock489",
+                "expires": "start"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "b43c22f7723494b6390f929bdbe8ebe04482ace1f0edaf11fafab8ceb5573505",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp20-009"
+    },
+    {
+      "id": "dm26rp1-TR009",
+      "name": "覚醒連結 XXDDZ",
+      "faces": [
+        {
+          "name": "覚醒連結 XXDDZ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇/火",
+          "civilizations": [
+            "光",
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "EXライフ\nW・ブレイカー\n自分のクリーチャーすべてに「スピードアタッカー」と「スレイヤー」を与える。\nこのクリーチャーが攻撃する時、このクリーチャーの「EXライフ」シールドを墓地に置いてもよい。そうしたら、次の自分のターンのはじめまで、相手は呪文を唱えられない。",
+          "race": "ディスペクター/アーマード・ドラゴン/ワールド・コマンド",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-TR009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-TR009.jpg",
+      "spec": {
+        "exLife": true,
+        "breaker": 2,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "speedAttacker": true,
+              "slayer": true
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "ExLifeGrave1267",
+            "then": [
+              {
+                "op": "SpellLock489",
+                "expires": "start"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "99aed63652f584700d28a57145f2a0aad1299c33714d0bfd2c6afac83797ffeb",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp20-009"
+    },
+    {
+      "id": "dm22ex1-Cho12",
+      "name": "終末王秘伝オリジナルフィナーレ",
+      "faces": [
+        {
+          "name": "終末王秘伝オリジナルフィナーレ",
+          "typeText": "呪文",
+          "civilizationText": "水/闇/自然",
+          "civilizations": [
+            "水",
+            "闇",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "アタック・チャンス：水と闇と自然を持つディスペクター（自分の水と闇と自然を持つディスペクターが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n自分の山札の上から３枚を見る。その中から２枚をマナゾーンに置き、残りの１枚を手札に加える。\n相手のクリーチャーを１体選ぶ。このターン、自分のマナゾーンのカード１枚につき、そのクリーチャーのパワーを－1000する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-Cho12",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-Cho12.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g417Chance": {
+          "creature": true,
+          "g724ExactRace": "ディスペクター",
+          "colorsAll": [
+            "水",
+            "闇",
+            "自然"
+          ]
+        },
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "g841DeckPeek": true,
+            "g255Distribute": true,
+            "stages": [
+              {
+                "n": 2,
+                "to": "mana",
+                "tapMulticolor": true
+              },
+              {
+                "n": 1,
+                "to": "hand"
+              }
+            ]
+          },
+          {
+            "op": "CountTarget544",
+            "zone": "mana",
+            "amount": -1000,
+            "def": {
+              "op": "Target",
+              "spell": true,
+              "g242PowerMinus": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "09bbc019613dccd12906b267eb65f087f39a2ee2dae873b1e2b0100b6640d9ed",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp20-011"
+    },
+    {
+      "id": "dm23rp4-TR09",
+      "name": "終末王秘伝オリジナルフィナーレ",
+      "faces": [
+        {
+          "name": "終末王秘伝オリジナルフィナーレ",
+          "typeText": "呪文",
+          "civilizationText": "水/闇/自然",
+          "civilizations": [
+            "水",
+            "闇",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "アタック・チャンス：水と闇と自然を持つディスペクター（自分の水と闇と自然を持つディスペクターが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n自分の山札の上から３枚を見る。その中から２枚をマナゾーンに置き、残りの１枚を手札に加える。\n相手のクリーチャーを１体選ぶ。このターン、自分のマナゾーンのカード１枚につき、そのクリーチャーのパワーを－1000する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-TR09",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-TR09.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g417Chance": {
+          "creature": true,
+          "g724ExactRace": "ディスペクター",
+          "colorsAll": [
+            "水",
+            "闇",
+            "自然"
+          ]
+        },
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "g841DeckPeek": true,
+            "g255Distribute": true,
+            "stages": [
+              {
+                "n": 2,
+                "to": "mana",
+                "tapMulticolor": true
+              },
+              {
+                "n": 1,
+                "to": "hand"
+              }
+            ]
+          },
+          {
+            "op": "CountTarget544",
+            "zone": "mana",
+            "amount": -1000,
+            "def": {
+              "op": "Target",
+              "spell": true,
+              "g242PowerMinus": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "ef3d4f9268ae4d80f70261b263fa58c8ad4f42d9c7f22ddc8714484b7eb06e34",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp20-011"
+    },
+    {
+      "id": "dm23rp4x-TR09",
+      "name": "終末王秘伝オリジナルフィナーレ",
+      "faces": [
+        {
+          "name": "終末王秘伝オリジナルフィナーレ",
+          "typeText": "呪文",
+          "civilizationText": "水/闇/自然",
+          "civilizations": [
+            "水",
+            "闇",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "アタック・チャンス：水と闇と自然を持つディスペクター（自分の水と闇と自然を持つディスペクターが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n自分の山札の上から３枚を見る。その中から２枚をマナゾーンに置き、残りの１枚を手札に加える。\n相手のクリーチャーを１体選ぶ。このターン、自分のマナゾーンのカード１枚につき、そのクリーチャーのパワーを－1000する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-TR09",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-TR09.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g417Chance": {
+          "creature": true,
+          "g724ExactRace": "ディスペクター",
+          "colorsAll": [
+            "水",
+            "闇",
+            "自然"
+          ]
+        },
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "g841DeckPeek": true,
+            "g255Distribute": true,
+            "stages": [
+              {
+                "n": 2,
+                "to": "mana",
+                "tapMulticolor": true
+              },
+              {
+                "n": 1,
+                "to": "hand"
+              }
+            ]
+          },
+          {
+            "op": "CountTarget544",
+            "zone": "mana",
+            "amount": -1000,
+            "def": {
+              "op": "Target",
+              "spell": true,
+              "g242PowerMinus": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "10a6687b7c144e7f4e818f6d693c4fc036a873d934f4cf1db18bae7352111818",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp20-011"
+    },
+    {
+      "id": "dm24rp1-SP5",
+      "name": "終末王秘伝オリジナルフィナーレ",
+      "faces": [
+        {
+          "name": "終末王秘伝オリジナルフィナーレ",
+          "typeText": "呪文",
+          "civilizationText": "水/闇/自然",
+          "civilizations": [
+            "水",
+            "闇",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "アタック・チャンス：水と闇と自然を持つディスペクター（自分の水と闇と自然を持つディスペクターが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n自分の山札の上から３枚を見る。その中から２枚をマナゾーンに置き、残りの１枚を手札に加える。\n相手のクリーチャーを１体選ぶ。このターン、自分のマナゾーンのカード１枚につき、そのクリーチャーのパワーを－1000する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-SP5",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-SP5.jpg",
+      "spec": {
+        "effect": "sixPhoto",
+        "g417Chance": {
+          "creature": true,
+          "g724ExactRace": "ディスペクター",
+          "colorsAll": [
+            "水",
+            "闇",
+            "自然"
+          ]
+        },
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "g841DeckPeek": true,
+            "g255Distribute": true,
+            "stages": [
+              {
+                "n": 2,
+                "to": "mana",
+                "tapMulticolor": true
+              },
+              {
+                "n": 1,
+                "to": "hand"
+              }
+            ]
+          },
+          {
+            "op": "CountTarget544",
+            "zone": "mana",
+            "amount": -1000,
+            "def": {
+              "op": "Target",
+              "spell": true,
+              "g242PowerMinus": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-14",
+        "sha256": "f3f9ab13865fc7f60467ac899f996091df1743f13347e846221e8f89d65d4b75",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp20-011"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-14",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp20-009": 4,
+      "dmrp20-010": 4,
+      "dmrp20-011": 4,
+      "dm22ex1-041": 4,
+      "dm22bd3-010": 4,
+      "dm23bd1-SE009": 4,
+      "dm26rp1-TR009": 4,
+      "dm22ex1-Cho12": 4,
+      "dm23rp4-TR09": 4,
+      "dm23rp4x-TR09": 4,
+      "dm24rp1-SP5": 4
+    }
+  }
+}
