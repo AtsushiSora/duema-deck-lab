@@ -2425,13 +2425,18 @@ export function createSixPhotoRules(api){
   else release(s,t.p,t.target);
   break;
  }
+ case'g34_HandEntryResponse1261':
  case'g34_GhostRecovery878':
  case'g34_DeathRecovery831':{
   const ref=t.g831Subject;
-  const subject=own.battle.find(x=>x.uid===ref.uid&&(x.incarnation||0)===ref.incarnation&&!x.sealed);
+  const denebia=t.op==='g34_HandEntryResponse1261';
+  const subject=(denebia?s.players[1-t.p]:own).battle.find(x=>x.uid===ref.uid&&(x.incarnation||0)===ref.incarnation&&!x.sealed);
   const value=subject?cost(effective(subject,s)):t.g831LastCost??ref.cost;
   const limit=value===Infinity?'∞':value;
-  if(t.op==='g34_GhostRecovery878')
+  if(denebia)start(s,t,[{op:'Select',origin:'hand',n:1,deploy:true,optional:true,filter:{
+   color:'光',...(limit==='∞'?{}:{max:limit}),any:[{creature:true},{g295Tamaseed:true}]
+  }}]);
+  else if(t.op==='g34_GhostRecovery878')
    start(s,t,[{op:'Select',origin:'grave',n:1,deploy:true,optional:true,filter:{creature:true,race:'ゴースト',exactCost:limit}}]);
   else start(s,t,[{op:'Select',origin:'grave',n:1,to:'hand',optional:true,
    filter:{creature:true,g819CreatureNameIncludes:'死神',belowCost:limit}}]);
@@ -7536,6 +7541,16 @@ export function createSixPhotoRules(api){
  twinFinish1088(s,p){return creatures(s,p).some(x=>card(x).g1088Twin&&!api.ignored(s,x));},
  observedEntry(s,p,y,options){
   const c=card(y),eventType=c.type;
+  if(options.execution===false&&options.origin==='hand'&&(y.cardOwner??p)===p&&
+     !y.sealed&&!y.faceDown&&api.isCreature(s,y)){
+   for(const watcher of creatures(s,1-p)){
+    if(!card(watcher).g1261HandEntryWatch||api.ignored(s,watcher))continue;
+    const entrantCost=cost(effective(y,s,true));
+    send(s,1-p,watcher,'HandEntryResponse1261',{g831Subject:{
+     uid:y.uid,incarnation:y.incarnation||0,cost:entrantCost===Infinity?'∞':entrantCost
+    }});
+   }
+  }
   if(options.g1221AltEnd){
    const delayed=s.g537Delays?.find(row=>row.turn===s.turn&&row.g1221PendingUid===y.uid);
    if(delayed){

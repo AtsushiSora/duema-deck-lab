@@ -2475,6 +2475,18 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1261&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const lines=f.abilityText.split('\n').map(normalize);
+  if(d.id==='dmr18-008'&&lines.length===3&&keyword(lines[0],'W・ブレイカー')&&
+   lines[1]==='バトル中このクリーチャーのパワーを+8000する。'&&
+   lines[2]==='このクリーチャーのアタック中相手はクリーチャーをバトルゾーンに出せない。')
+   return {breaker:2,g38BattleBonus:8000,g1261AttackEntryLock:true};
+  if(['dm22rp2-030','dm22rp2x-030'].includes(d.id)&&lines.length===1&&lines[0]===
+   '相手のクリーチャーが召喚以外の方法で持ち主の手札から出た時そのクリーチャーのコスト以下の光のクリーチャー1体または光のタマシードを1枚自分の手札から出してもよい。')
+   return {g1261HandEntryWatch:true};
+  if(d.id==='dm24-106'&&lines.length===1&&lines[0]==='自分のマナゾーンにある自然のカードは光または火のカードでもある。')
+   return {g1261NatureManaColors:true};
+ }
  if(phase>=1260&&d?.status==='complete'&&d.faces.length===1){
   const lines=f.abilityText.split('\n').map(normalize);
   if(f.typeText==='クリーチャー'&&d.id==='dmrp06-004'&&lines.length===2&&lines[0]===

@@ -170,6 +170,10 @@ export function zoneCard(s,p,inst,zone=null,definition=card(inst)){
   const cs=own.battle.includes(inst)?battleCivilizations920(s,inst,c,own):battleCivilizations805(s,inst,c);
   if(cs.join('/')!==civilizations(c).join('/'))c={...c,civilizations:cs,civ:cs.join('/')};
  }
+ if(zone==='mana'||!zone&&own.mana.includes(inst)){
+  const cs=natureManaColors1261(s,p,c);
+  if(cs.length>manaCivilizations(c).length)c={...c,civilizations:cs,civ:cs.join('/')};
+ }
  if(!own.battle.some(x=>!x.faceDown&&!x.sealed&&card(x).g395Rapia&&!abilitiesIgnored(s,x)))return c;
  const covered=['mana','deck','grave','battle'];
  if(zone?!covered.includes(zone):!covered.some(z=>(own[z]||[]).some(x=>z==='battle'?layers(x).some(y=>y.uid===inst.uid):x.uid===inst.uid)))return c;
@@ -950,6 +954,10 @@ function summonLocked1019(s,p){
 }
 export function canEnterCreature(s,p,c=null,{origin='hand',execution=true,committed=false,ignoreMovement=false,declare=false,pendingEntries=0}={}){
  if(!declare&&creatureCapReached616(s,p,c,pendingEntries))return false;
+ const attack=s.attackLifecycle;
+ if(!declare&&attack?.player===1-p&&(!c||wouldEnterCreature(s,p,c))&&s.players[1-p].battle.some(x=>
+  x.uid===attack.uid&&(x.incarnation||0)===attack.incarnation&&card(x).g1261AttackEntryLock&&
+  !abilitiesIgnored(s,x)))return false;
  if(execution&&c?.type==='creature'&&c.g475NoSummon)return false;
  if(execution&&!committed&&c?.g755SummonHandMax!==undefined&&s.players[p].hand.length>c.g755SummonHandMax)return false;
  if(execution&&c?.type==='creature'&&c.g280NeedsSpell&&!(s.players[p].spellsThisTurn||0))return false;
@@ -1661,8 +1669,16 @@ function manaExecutionAllColors(s,p,c){
  return c.summonOrigin==='mana'&&(c.type==='creature'&&allManaColors(s,p)||
   !!c.id&&!!card(c.id)?.spellFace&&twinManaColors(s,p)||raceManaColors(s,p,card(c.id)||c));
 }
+function natureManaColors1261(s,p,c){
+ const printed=manaCivilizations(c);
+ if(!printed.includes('自然')||!s.players[p].battle.some(x=>
+  card(x).g1261NatureManaColors&&!x.faceDown&&!abilitiesIgnored(s,x)))return printed;
+ return [...new Set([...printed,'光','火'])];
+}
 export function manaColors(c,s=null,p=null,forPower=false){
- return s&&p!==null&&(allManaColors(s,p)||c.spellFace&&twinManaColors(s,p)||raceManaColors(s,p,c))?[...fullManaColors]:manaCivilizations(c);
+ if(!s||p===null)return manaCivilizations(c);
+ if(allManaColors(s,p)||c.spellFace&&twinManaColors(s,p)||raceManaColors(s,p,c))return [...fullManaColors];
+ return natureManaColors1261(s,p,c);
 }
 export function paymentPool(s,p,exclude=[],c=null){
  const zero=(s.g35ZeroMana||[]).some(l=>l.p===p),origin=c?.type==='creature'&&c.g423OriginMana||c?.type==='spell'&&c.g826OriginSpellMana,crystal=c?.g434CrystalSoul,all=s.players[p].battle.some(x=>effectiveCard(x,s).casablanca||effectiveCard(x,s).g51Courtney||String(c?.race).includes('生徒会組')&&effectiveCard(x,s).g28Gyai);
@@ -1676,7 +1692,10 @@ export function paymentPool(s,p,exclude=[],c=null){
   const c=card(x),value=zero?0:manaValue(c),boost=crystal&&x.faceDown;
   const double=origin&&value===1&&String(c.race||'').split('/').includes('オリジン');
   const anyColor=all||summonColors||twins&&c.spellFace||!x.faceDown&&raceManaColors(s,p,c);
-  return zero||origin||crystal||anyColor?{...x,
+  const colors=x.faceDown||anyColor?null:natureManaColors1261(s,p,c);
+  const addedColors=colors&&colors.length>manaCivilizations(c).length;
+  return zero||origin||crystal||anyColor||addedColors?{...x,
+   ...(addedColors?{paymentColors:colors}:{}),
    ...(zero||double||boost?{paymentValue:boost?crystal:double?2:0}:{}),
    ...(origin?{paymentExact423:true}:{}),...(crystal?{paymentCrystal434:true}:{}),
    ...(anyColor?{paymentAllColors:true}:{})
@@ -1694,7 +1713,10 @@ function freeSpellReason(s,p,c){return c.g261Free&&extra.six.ownCondition(s,p,c.
 // A card still has its mana-zone civilizations while its cost is being paid (official 31410).
 function paymentCard297(s,p,c){
  c=executionCard(c);
- return manaExecutionAllColors(s,p,c)?{...c,civilizations:[...fullManaColors]}:c;
+ if(c.summonOrigin!=='mana')return c;
+ if(manaExecutionAllColors(s,p,c))return {...c,civilizations:[...fullManaColors]};
+ const colors=natureManaColors1261(s,p,card(c.id)||c);
+ return colors.length>manaCivilizations(card(c.id)||c).length?{...c,civilizations:colors}:c;
 }
 function discardCandidates1240(s,p,c){
  if(!c.g1240DiscardReduction||c.fixedPayment||c.g1240DiscardPaid!==undefined)return [];
