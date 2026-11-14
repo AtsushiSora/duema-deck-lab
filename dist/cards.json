@@ -236657,15 +236657,106 @@
       "g1243ChainPeek": true,
       "supportBatch": "phase-1243",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-s02",
+      "name": "天空の精霊インパクトリガー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 12500,
+      "race": "エンジェル・コマンド",
+      "text": "このクリーチャーまたは自分の他のクリーチャーを召喚してバトルゾーンに出した時、「S・トリガー」を持つ呪文を１枚、コストを支払わずに自分の手札から唱えてもよい。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-s02",
+      "limit": 4,
+      "breaker": 3,
+      "g1244SummonEntry": [
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "spellOnly": true,
+          "trigger": true,
+          "g1244NoEmptyOffer": true,
+          "title": "手札からS・トリガーを持つ呪文を唱える？"
+        }
+      ],
+      "supportBatch": "phase-1244",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx23-026",
+      "name": "二族 ミア・ンババ",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ジュラシック・ドラゴン/革命軍/ダママ団",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を見る。そのカードを自分のマナゾーンに置くか、または新しいシールドとして自分のシールドゾーンに裏向きにして置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx23-026",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "TopDestination1244"
+        }
+      ],
+      "supportBatch": "phase-1244",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd32-001",
+      "name": "天門の精霊ヘブンズ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 9500,
+      "race": "エンジェル・コマンド",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、光の、「ブロッカー」を持つ進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd32-001",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "g195HandDeploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "color": "光",
+            "blocker": true,
+            "nonEvolution": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1244",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1243,
+    "phase": 1244,
     "checkedAt": "2026-11-14",
-    "baseCount": 7728,
+    "baseCount": 7731,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7731,
+    "totalCount": 7734,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -257870,6 +257961,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7728,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1243,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7728,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7731,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

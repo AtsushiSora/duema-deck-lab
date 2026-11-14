@@ -3971,6 +3971,17 @@ export function createSixPhotoRules(api){
   ]:[opt('確認',false,0,y.cardId)]);
   break;
  }
+ case'g34_TopDestination1244':{
+  const [uid]=look(s,{...t,n:1}),y=own.deck.find(x=>x.uid===uid);
+  if(!y)break;
+  release(s,t.p,uid);
+  const shield=api.canAddShield(s,t.p),manaScore=own.deck.length>1&&!api.deckRedirect(s,t.p)?12:0;
+  choice(s,{...t,target:uid,serial:y.zoneSerial||0,...deckPeek841(own,[uid])},'確認したカードを置く場所を選ぶ',[
+   opt('マナゾーンに置く','mana',manaScore,y.cardId),
+   opt('裏向きの新しいシールドにする','shields',shield?(own.shields.length<3&&own.deck.length>1?18:8):-10,y.cardId)
+  ]);
+  break;
+ }
  case'g34_ShieldTop':
   if(t.g1233Look){
    const [uid]=look(s,{...t,n:1});
@@ -5150,6 +5161,7 @@ export function createSixPhotoRules(api){
     });
    });
   });
+  if(!rows.length&&t.g1244NoEmptyOffer)break;
   if(!rows.length&&t.g1164MustDeclineWhenUnavailable){start(s,t,t.g408Decline);break;}
   if(t.optional!==false)rows.push(t.g408Decline?{...skip(),score:modeScore(s,t,t.g408Decline)}:skip());
   choice(s,t,t.title||'コストを支払わず実行するカードを選ぶ',rows);
@@ -5270,6 +5282,16 @@ export function createSixPhotoRules(api){
  case'g34_TappedShieldPick842':
   put(s,{...t,picked:[...t.picked,v]});
   break;
+ case'g34_TopDestination1244':{
+  const y=own.deck.find(x=>x.uid===t.target&&(x.zoneSerial||0)===t.serial);
+  if(!y)break;
+  if(v==='shields')api.shieldTop(s,t.p,card(t.source),null,{uid:y.uid});
+  else{
+   zoneMove(s,t.p,'deck',y.uid,'mana');
+   api.deckCheck(s,t.p);
+  }
+  break;
+ }
  case'g34_ShieldTop':
   if(!t.g1233Look)return false;
   release(s,t.p,t.target);
@@ -7305,9 +7327,11 @@ export function createSixPhotoRules(api){
   if(creature&&!y.sealed&&options.execution===true){
    const commandDragon=race(effective(y,s,true),'コマンド・ドラゴン');
    for(const watcher of creatures(s,p)){
-    if(watcher.sealed||!card(watcher).g997SummonEntry)continue;
-    const defs=effective(watcher,s).g997SummonEntry;
-    if(defs&&(watcher===y?!options.selfMuted&&!api.selfStopped(s,p):commandDragon))queue(s,p,watcher,defs);
+    if(watcher.sealed||!(card(watcher).g997SummonEntry||card(watcher).g1244SummonEntry))continue;
+    if(watcher===y&&(options.selfMuted||api.selfStopped(s,p)))continue;
+    const {g997SummonEntry,g1244SummonEntry}=effective(watcher,s);
+    if(g997SummonEntry&&(watcher===y||commandDragon))queue(s,p,watcher,g997SummonEntry);
+    if(g1244SummonEntry)queue(s,p,watcher,g1244SummonEntry);
    }
   }
   if(!y.sealed&&!y.faceDown&&race(effective(y,s,true),'ドラゴン')){

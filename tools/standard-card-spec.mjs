@@ -2470,6 +2470,22 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1244&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmr09-s02'&&text===
+   'このクリーチャーまたは自分の他のクリーチャーを召喚してバトルゾーンに出した時「S・トリガー」を持つ呪文を1枚コストを支払わずに自分の手札から唱えてもよい。'+
+   'T・ブレイカー(このクリーチャーはシールドを3枚ブレイクする)')
+   return {breaker:3,g1244SummonEntry:[{op:'Execute',origin:'hand',spellOnly:true,trigger:true,g1244NoEmptyOffer:true,
+    title:'手札からS・トリガーを持つ呪文を唱える？'}]};
+  if(d.id==='dmx23-026'&&text==='マナゾーンに置く時このカードはタップして置く。'+
+   'このクリーチャーがバトルゾーンに出た時自分の山札の上から1枚目を見る。'+
+   'そのカードを自分のマナゾーンに置くかまたは新しいシールドとして自分のシールドゾーンに裏向きにして置く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'TopDestination1244'}]};
+  if(['dmd32-001','dmex13-007'].includes(d.id)&&text==='ブロッカーブロッカーW・ブレイカー'+
+   'このクリーチャーがバトルゾーンに出た時光の「ブロッカー」を持つ進化ではないクリーチャーを1体自分の手札からバトルゾーンに出してもよい。')
+   return {blocker:true,breaker:2,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'hand',n:1,
+    deploy:true,g195HandDeploy:true,optional:true,filter:{creature:true,color:'光',blocker:true,nonEvolution:true}}]};
+ }
  if(phase>=1243&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmrp08-002'&&text==='ブロッカーブロッカーW・ブレイカー'+
