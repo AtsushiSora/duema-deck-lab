@@ -231628,15 +231628,140 @@
       },
       "supportBatch": "phase-1206",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-007",
+      "name": "乱振！アルバトロス・タランチュラ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 13000,
+      "race": "ジャイアント・インセクト",
+      "text": "自分のパワー6000以上のクリーチャーが２体以上あれば、このクリーチャーの召喚コストを３少なくする。\nT・ブレイカー\nこのクリーチャーが召喚によって出た時、ジャイアント・W・メクレイド８する。（ジャイアント・W・メクレイド８：自分の山札の上から６枚を見る。その中から、コスト８以下のジャイアントを２枚まで、コストを支払わずに使う。残りを好きな順序で山札の下に置く）\n自分のジャイアントが破壊される時、墓地に置くかわりにマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-007",
+      "limit": 4,
+      "breaker": 3,
+      "g261Discount": {
+        "filter": {
+          "g370BattleCount": {
+            "filter": {
+              "creature": true,
+              "minPower": 6000,
+              "faceUp": true
+            },
+            "min": 2
+          }
+        },
+        "amount": 3
+      },
+      "g1087SummonEntry": [
+        {
+          "op": "DoubleRaid1206",
+          "race": "ジャイアント",
+          "max": 8
+        }
+      ],
+      "g575ManaAura": {
+        "optional": true,
+        "filter": {
+          "race": "ジャイアント",
+          "faceUp": true
+        }
+      },
+      "supportBatch": "phase-1207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex1-035",
+      "name": "ハラグロX☆行っくよー！",
+      "civ": "水/火/自然",
+      "civilizations": [
+        "水",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "スノーフェアリーの集い",
+      "text": "S・トリガー S・トリガー\n相手の、呪文またはクリーチャーの能力によって、この呪文が自分の手札から捨てられた時、この呪文を自分の墓地からコストを支払わずに唱えてもよい。\nスノーフェアリー・W・メクレイド５する。（スノーフェアリー・W・メクレイド５：自分の山札の上から６枚を見る。その中から、コスト５以下のスノーフェアリーを２枚まで、コストを支払わずに使う。残りを好きな順序で山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-035",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g1207DiscardCast": true,
+      "g34Tasks": [
+        {
+          "op": "DoubleRaid1206",
+          "race": "スノーフェアリー",
+          "max": 5
+        }
+      ],
+      "supportBatch": "phase-1207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-071",
+      "name": "無双の妖精 / 招然呪文「ジャイババン」",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 8000,
+      "race": "ジャイアント・スノーフェアリー",
+      "text": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n【呪文面】\n自分の山札の上から１枚目をマナゾーンに置く。その後、ジャイアントを１枚、自分のマナゾーンから手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-071",
+      "limit": 4,
+      "guardman": true,
+      "breaker": 2,
+      "spellFace": {
+        "type": "spell",
+        "name": "招然呪文「ジャイババン」",
+        "cost": 3,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "ジャイアント・スキル",
+        "text": "自分の山札の上から１枚目をマナゾーンに置く。その後、ジャイアントを１枚、自分のマナゾーンから手札に戻してもよい。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "anyFaceRace": "ジャイアント",
+              "faceUp": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1207",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1206,
+    "phase": 1207,
     "checkedAt": "2026-11-14",
-    "baseCount": 7610,
+    "baseCount": 7613,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7613,
+    "totalCount": 7616,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -252397,6 +252522,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7610,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1206,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7610,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7613,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

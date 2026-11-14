@@ -2470,6 +2470,31 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1207&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText),raid=(race,max)=>({op:'DoubleRaid1206',race,max});
+  const raidText=(race,max)=>`${race}・W・メクレイド${max}する。(${race}・W・メクレイド${max}:自分の山札の上から6枚を見る。`+
+   `その中からコスト${max}以下の${race}を2枚までコストを支払わずに使う。残りを好きな順序で山札の下に置く)`;
+  if(f.typeText==='クリーチャー'&&['dm23rp2-007','dm23rp2x-007','dm23rp2x-07X'].includes(d.id)&&
+     text==='自分のパワー6000以上のクリーチャーが2体以上あればこのクリーチャーの召喚コストを3少なくする。'+
+      'T・ブレイカーこのクリーチャーが召喚によって出た時'+raidText('ジャイアント',8)+
+      '自分のジャイアントが破壊される時墓地に置くかわりにマナゾーンに置いてもよい。')
+   return {breaker:3,g261Discount:{filter:{g370BattleCount:{filter:{creature:true,minPower:6000,faceUp:true},min:2}},amount:3},
+    g1087SummonEntry:[raid('ジャイアント',8)],g575ManaAura:{optional:true,filter:{race:'ジャイアント',faceUp:true}}};
+  if(f.typeText==='呪文'&&d.id==='dm24ex1-035'&&text===
+     'S・トリガーS・トリガー相手の呪文またはクリーチャーの能力によってこの呪文が自分の手札から捨てられた時'+
+     'この呪文を自分の墓地からコストを支払わずに唱えてもよい。'+raidText('スノーフェアリー',5))
+   return {trigger:true,effect:'sixPhoto',g1207DiscardCast:true,g34Tasks:[raid('スノーフェアリー',5)]};
+ }
+ if(phase>=1207&&d?.status==='complete'&&d.faces.length===2&&['dm23rp2-071','dm23rp2x-071'].includes(d.id)){
+  const spell=d.faces[1];
+  if(f.typeText==='クリーチャー'&&spell.typeText==='呪文'&&
+     normalize(f.abilityText)==='ガードマン(このクリーチャーをタップして相手クリーチャーの攻撃先を自分の他のクリーチャーからこのクリーチャーに変更してもよい)'+
+      'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'&&
+     normalize(spell.abilityText)==='自分の山札の上から1枚目をマナゾーンに置く。その後ジャイアントを1枚自分のマナゾーンから手札に戻してもよい。')
+   return {guardman:true,breaker:2,spellFace:{type:'spell',name:spell.name,cost:spell.cost,civ:spell.civilizationText,
+    civilizations:spell.civilizations,race:spell.race,text:spell.abilityText,effect:'sixPhoto',
+    g34Tasks:[{op:'Ramp',n:1},{op:'Select',origin:'mana',to:'hand',n:1,optional:true,filter:{anyFaceRace:'ジャイアント',faceUp:true}}]}};
+ }
  if(phase>=1203&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const raidText=(race,max)=>`${race}・メクレイド${max}する。(${race}・メクレイド${max}:自分の山札の上から3枚を見る。`+

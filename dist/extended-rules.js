@@ -216,6 +216,11 @@ export function createExtendedRules(api){
  const maruru=createMaruruRules({...api,creatures,put,task,choice,opt,skip,targetOptions});
  const abyss=createAbyssRules({...api,creatures,put,task,choice,opt,skip,targetOptions,canLeave,discardSelected:(s,t,ids)=>beginDiscardBatch(s,t,ids)});
  const enemyDiscardEffect=(s,t)=>!t.selfDiscard&&(t.causedBy??t.controller??s.active)===1-t.p&&['spell','creature'].includes(card(t.source)?.type);
+ const discardedSpell1207=(s,t)=>{
+  if(!api.canMoveZone(s,t.p,'grave'))return;
+  const x=s.players[t.p].grave.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);
+  if(x&&canCast(s,t.p,card(x),'grave'))return x;
+ };
  const handProtected=(s,t)=>enemyDiscardEffect(s,t)&&creatures(s,t.p).some(x=>effective(x,s).g591HandShield);
  function neoDiscardHosts977(s,p){
   return creatures(s,p).filter(y=>!y.sealed&&!y.faceDown&&api.zoneCard(s,p,y,'battle').neoEvolution);
@@ -393,6 +398,11 @@ export function createExtendedRules(api){
    case 'stealSpell':{
     const x=api.canMoveZone(s,t.owner,'grave')&&s.players[t.owner].grave.find(x=>x.uid===t.uid);if(x&&faces(card(x)).some(c=>c.type==='spell'&&canCast(s,t.p,c,'grave')))choice(s,t,'相手の墓地から呪文を唱えますか？',[opt('唱える',true,20,x.cardId),skip()]);break;
    }
+   case 'discardedSpell1207':{
+    const x=discardedSpell1207(s,t);
+    if(x)choice(s,t,'捨てられた呪文を墓地から唱えますか？',[opt('唱える',true,20,x.cardId),skip()]);
+    break;
+   }
    case 'kakuReturn':{const x=nowCreature(s,t.p,t.uid);if(x)choice(s,t,'出したクリーチャーを山札のどちらに置く？',[opt('山札の上', 'deckTop',0),opt('山札の下','deck',1)]);break;}
    case 'tensaiCost':choice(s,t,'捨てたカードのどちらのコストを使う？',faces(card(t.discardId)).map(c=>opt(c.name+'：'+c.cost,c.cost,0)));break;
    case 'bounceAny':choice(s,t,'手札に戻すクリーチャーを選ぶ',[...targetOptions(s,t.p,[...creatures(s,t.p),...creatures(s,1-t.p)]),skip()]);break;
@@ -564,6 +574,8 @@ export function createExtendedRules(api){
   travel.discarded(s,t,x,discarded);zard.discarded(s,t,x,discarded);magic.discarded(s,t,x,discarded);galaxy.discarded(s,t,x,discarded);gospel.discarded(s,t,x,discarded);photo160.discarded(s,t,x,discarded);
   const count=(t.discarded||0)+(discarded?1:0);if(t.batchId&&s.extDiscardBatches?.[t.batchId])s.extDiscardBatches[t.batchId].actual+=discarded?1:0;
   if(discarded){
+   if(card(x).g1207DiscardCast&&enemyDiscardEffect(s,t))
+    enqueue(s,t.p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('discardedSpell1207',t.p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0})});
    if(!t.batchId&&!t.g848Grouped)notifyDiscard848(s,t.p,discardWatchers848(s,t.p),1);
    six.discarded472(s,t.p);
    abyss.discarded(s,t.p);starter.discarded(s,t.p);
@@ -626,6 +638,7 @@ export function createExtendedRules(api){
   case 'sameName':if(value)put(s,task('putCreature',t.p,t.source,{uid:value,origin:'hand'}));break;
   case 'execute':if(value){const x=own[t.origin||'hand'].find(x=>x.uid===value.uid);if(t.deploy)put(s,task('putCreature',t.p,t.source,{uid:value.uid,origin:t.origin||'hand'}));else{const c=faces(card(x))[value.face];if(x&&t.bottomAfter&&c.type==='spell')x.finishTo='deck';if(c.evolution||c.neoEvolution)put(s,task('putCreature',t.p,t.source,{uid:x.uid,origin:t.origin||'hand',execution:true,face:value.face}));else cast(s,t.p,value.uid,true,null,value.face,null,t.origin||'hand','カードの能力');}}else if(t.fallbackDraw)draw(s,t.p,t.fallbackDraw);break;
   case 'stealSpell':if(value&&api.canMoveZone(s,t.owner,'grave')){const x=remove(s.players[t.owner].grave,t.uid);if(x){x.cardOwner=t.owner;own.hand.push(x);const face=faces(card(x)).findIndex(c=>c.type==='spell');cast(s,t.p,x.uid,true,null,face,null,'hand','相手の墓地から');}}break;
+  case 'discardedSpell1207':if(value&&discardedSpell1207(s,t))cast(s,t.p,t.uid,true,null,0,null,'grave','捨てられた時の能力');break;
   case 'kakuReturn':move(s,[{player:t.p,uid:t.uid,to:value}]);break;
   case 'tensaiCost':for(const x of creatures(s,1-t.p))if(faces(card(x)).some(c=>cost(c)===(value==='∞'?Infinity:Number(value))))for(const kind of ['attack','block'])lock(s,t.p,{kind,player:1-t.p,cost:value,uid:x.uid,incarnation:x.incarnation||0});break;
   case 'bounceAny':if(value){const owner=s.players.findIndex(p=>p.battle.some(x=>x.uid===value));move(s,[{player:owner,uid:value,to:'hand'}]);}break;
