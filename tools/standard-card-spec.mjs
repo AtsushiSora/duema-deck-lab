@@ -2470,6 +2470,33 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1208&&d?.status==='complete'&&d.faces.length===2&&f.typeText==='クリーチャー'&&d.faces[1].typeText==='呪文'){
+  const spell=d.faces[1],text=normalize(f.abilityText),back=normalize(spell.abilityText);
+  const breaker='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)';
+  const rest='残りを好きな順序で山札の下に置く。';
+  const look=(n,filter)=>({op:'Look',n,g841DeckPeek:true,rest:'bottom',
+   stages:[{n:1,to:'hand',filter,reveal:true,optional:true}]});
+  const twin=(creature,g34Tasks)=>({...creature,breaker:2,spellFace:{type:'spell',name:spell.name,cost:spell.cost,
+   civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,text:spell.abilityText,effect:'sixPhoto',g34Tasks}});
+  if(['dm23rp2-056','dm23rp2x-056','dm23sd3-013'].includes(d.id)&&
+     text==='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+      'パワード・ブロッカー+4000(ブロック中このクリーチャーのパワーを+4000する)'+breaker&&
+     back==='自分の山札の上から2枚を見る。その中からマジックまたは呪文を1枚相手に見せてから手札に加えてもよい。'+rest)
+   return twin({blocker:true,g209PoweredBlocker:4000},[look(2,{any:[{anyFaceRace:'マジック'},{spell:true}]})]);
+  if(['dm23rp2-066','dm23rp2x-066'].includes(d.id)&&
+     text==='パワーアタッカー+4000(攻撃中このクリーチャーのパワーを+4000する)'+breaker&&
+     back==='自分のファイアー・バードがあれば自分の山札の上から4枚を見る。そうでなければ自分の山札の上から1枚目を見る。'+
+      'その中からアーマードを1枚相手に見せてから手札に加えてもよい。'+rest){
+   const filter={anyFaceRace:'アーマード'};
+   return twin({attackBonus:4000},[{op:'IfOwn',filter:{g370BattleCount:{
+    g557Elements:true,min:1,filter:{race:'ファイアー・バード',faceUp:true}
+   }},defs:[look(4,filter)],elseDefs:[look(1,filter)]}]);
+  }
+  if(['dm23rp2-061','dm23rp2x-061','promoy22-022'].includes(d.id)&&
+     text==='アビスラッシュ:このクリーチャーを自分の墓地から召喚してもよい。そうしたらこのターンこのクリーチャーはプレイヤーを攻撃できターンの終わりに山札の下に置かれる。'+breaker&&
+     back==='自分の山札の上から1枚目を墓地に置きその後自分の墓地からアビスを1枚手札に戻す。')
+   return twin({abyssRush:true},[{op:'Mill',n:1},{op:'Select',origin:'grave',to:'hand',n:1,filter:{anyFaceRace:'アビス',faceUp:true}}]);
+ }
  if(phase>=1207&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText),raid=(race,max)=>({op:'DoubleRaid1206',race,max});
   const raidText=(race,max)=>`${race}・W・メクレイド${max}する。(${race}・W・メクレイド${max}:自分の山札の上から6枚を見る。`+

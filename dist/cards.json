@@ -231753,15 +231753,207 @@
       },
       "supportBatch": "phase-1207",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-056",
+      "name": "詠み人-シラズ-Machine / 招水呪文「マジックル」",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "マジック・コマンド",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nパワード・ブロッカー +4000（ブロック中、このクリーチャーのパワーを+4000する）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n【呪文面】\n自分の山札の上から２枚を見る。その中からマジックまたは呪文を１枚、相手に見せてから手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-056",
+      "limit": 4,
+      "blocker": true,
+      "g209PoweredBlocker": 4000,
+      "breaker": 2,
+      "spellFace": {
+        "type": "spell",
+        "name": "招水呪文「マジックル」",
+        "cost": 1,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "マジック・ソング",
+        "text": "自分の山札の上から２枚を見る。その中からマジックまたは呪文を１枚、相手に見せてから手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 2,
+            "g841DeckPeek": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "any": [
+                    {
+                      "anyFaceRace": "マジック"
+                    },
+                    {
+                      "spell": true
+                    }
+                  ]
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1208",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-066",
+      "name": "ゲンジ・天・パワッチ / 招火呪文「アーマアド」",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "アーマード・ファイアー・バード",
+      "text": "パワーアタッカー+4000（攻撃中、このクリーチャーのパワーを+4000する）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n【呪文面】\n自分のファイアー・バードがあれば、自分の山札の上から４枚を見る。そうでなければ、自分の山札の上から１枚目を見る。その中からアーマードを１枚、相手に見せてから手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-066",
+      "limit": 4,
+      "attackBonus": 4000,
+      "breaker": 2,
+      "spellFace": {
+        "type": "spell",
+        "name": "招火呪文「アーマアド」",
+        "cost": 1,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "アーマード・アーツ",
+        "text": "自分のファイアー・バードがあれば、自分の山札の上から４枚を見る。そうでなければ、自分の山札の上から１枚目を見る。その中からアーマードを１枚、相手に見せてから手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "g557Elements": true,
+                "min": 1,
+                "filter": {
+                  "race": "ファイアー・バード",
+                  "faceUp": true
+                }
+              }
+            },
+            "defs": [
+              {
+                "op": "Look",
+                "n": 4,
+                "g841DeckPeek": true,
+                "rest": "bottom",
+                "stages": [
+                  {
+                    "n": 1,
+                    "to": "hand",
+                    "filter": {
+                      "anyFaceRace": "アーマード"
+                    },
+                    "reveal": true,
+                    "optional": true
+                  }
+                ]
+              }
+            ],
+            "elseDefs": [
+              {
+                "op": "Look",
+                "n": 1,
+                "g841DeckPeek": true,
+                "rest": "bottom",
+                "stages": [
+                  {
+                    "n": 1,
+                    "to": "hand",
+                    "filter": {
+                      "anyFaceRace": "アーマード"
+                    },
+                    "reveal": true,
+                    "optional": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1208",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-061",
+      "name": "サドレイン=トレイン / 邪神呪文「アビサール」",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "アビスロイヤル",
+      "text": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n【呪文面】\n自分の山札の上から１枚目を墓地に置き、その後、自分の墓地からアビスを１枚手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-061",
+      "limit": 4,
+      "abyssRush": true,
+      "breaker": 2,
+      "spellFace": {
+        "type": "spell",
+        "name": "邪神呪文「アビサール」",
+        "cost": 1,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "アビスへの誘い",
+        "text": "自分の山札の上から１枚目を墓地に置き、その後、自分の墓地からアビスを１枚手札に戻す。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "anyFaceRace": "アビス",
+              "faceUp": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1208",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1207,
+    "phase": 1208,
     "checkedAt": "2026-11-14",
-    "baseCount": 7613,
+    "baseCount": 7616,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7616,
+    "totalCount": 7619,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -252534,6 +252726,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7613,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1207,
+        "checkedAt": "2026-11-14",
+        "baseCount": 7613,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7616,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
