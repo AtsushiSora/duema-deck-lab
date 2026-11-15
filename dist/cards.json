@@ -247926,28 +247926,90 @@
       },
       "supportBatch": "phase-1349",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-m01",
+      "name": "The ジョラゴン・ガンマスター",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "マスター・ドラゴン/ジョーカーズ/ワンダフォース",
+      "text": "バトルゾーンまたはマナゾーンに自分のジョーカーズが合計５枚以上あれば、このクリーチャーはバトルゾーンに出たターン、相手プレイヤーを攻撃できる。\n超天フィーバー：バトルゾーンまたはマナゾーンに自分のジョーカーズが合計10枚以上あれば、このクリーチャーのパワーを+8000し、「W・ブレイカー」を与え、このクリーチャーが攻撃する時、好きな枚数のジョーカーズ・クリーチャーを自分の手札から捨てる。こうして捨てたジョーカーズ１体につき、相手のパワー10000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-m01",
+      "limit": 4,
+      "gr": true,
+      "g268ManaGrants": [
+        {
+          "filter": {
+            "g539Jokers": 5
+          },
+          "grants": {
+            "entryPlayerAttack": true
+          }
+        },
+        {
+          "filter": {
+            "g539Jokers": 10
+          },
+          "grants": {
+            "power": 8000,
+            "breaker": 2
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "HandCycle460",
+          "mode": "any",
+          "to": "grave",
+          "g1286TriggerCondition": {
+            "g539Jokers": 10
+          },
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "raceAll": [
+                "ジョーカーズ"
+              ]
+            }
+          },
+          "afterDiscardSelect": {
+            "owner": "opponent",
+            "origin": "battle",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 10000,
+              "g199Power": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "title": "破壊するパワー10000以下の相手のクリーチャーを選ぶ"
+          }
+        }
+      ],
+      "supportBatch": "phase-1350",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1349,
+    "phase": 1350,
     "checkedAt": "2026-11-15",
-    "baseCount": 8035,
+    "baseCount": 8036,
     "newEffectCards": 1,
     "newVanillaCards": 0,
-    "totalCount": 8036,
+    "totalCount": 8037,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/40835/",
-      "https://dm.takaratomy.co.jp/rule/qa/40836/",
-      "https://dm.takaratomy.co.jp/rule/qa/40837/",
-      "https://dm.takaratomy.co.jp/rule/qa/40838/",
-      "https://dm.takaratomy.co.jp/rule/qa/40839/",
-      "https://dm.takaratomy.co.jp/rule/qa/43244/",
-      "https://dm.takaratomy.co.jp/rule/qa/44663/",
-      "https://dm.takaratomy.co.jp/rule/qa/45073/"
+      "https://dm.takaratomy.co.jp/rule/qa/32435/",
+      "https://dm.takaratomy.co.jp/rule/qa/40828/",
+      "https://dm.takaratomy.co.jp/battleclip/episode-dmrp09/"
     ],
     "next": [
-      "残る裁定の再現に必要なカードを検証する"
+      "QA 40828のオーラ装着とGR召喚を同時に行う組み合わせは、オーラの対戦対応後に確認する"
     ],
     "history": [
       {
@@ -270597,6 +270659,28 @@
         ],
         "next": [
           "残る裁定の再現に必要なカードのみを検証する"
+        ]
+      },
+      {
+        "phase": 1349,
+        "checkedAt": "2026-11-15",
+        "baseCount": 8035,
+        "newEffectCards": 1,
+        "newVanillaCards": 0,
+        "totalCount": 8036,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/40835/",
+          "https://dm.takaratomy.co.jp/rule/qa/40836/",
+          "https://dm.takaratomy.co.jp/rule/qa/40837/",
+          "https://dm.takaratomy.co.jp/rule/qa/40838/",
+          "https://dm.takaratomy.co.jp/rule/qa/40839/",
+          "https://dm.takaratomy.co.jp/rule/qa/43244/",
+          "https://dm.takaratomy.co.jp/rule/qa/44663/",
+          "https://dm.takaratomy.co.jp/rule/qa/45073/"
+        ],
+        "next": [
+          "残る裁定の再現に必要なカードを検証する"
         ]
       }
     ]

@@ -1,0 +1,196 @@
+{
+  "phase": 1350,
+  "checkedAt": "2026-11-15",
+  "baseCount": 8036,
+  "description": "QA 40828の再現に必要なThe ジョラゴン・ガンマスターの全能力と、既存のGR召喚とヴォルジャアクの連動を検証する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/32435/",
+    "https://dm.takaratomy.co.jp/rule/qa/40828/",
+    "https://dm.takaratomy.co.jp/battleclip/episode-dmrp09/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp09-m01",
+      "name": "The ジョラゴン・ガンマスター",
+      "faces": [
+        {
+          "name": "The ジョラゴン・ガンマスター",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンまたはマナゾーンに自分のジョーカーズが合計５枚以上あれば、このクリーチャーはバトルゾーンに出たターン、相手プレイヤーを攻撃できる。\n超天フィーバー：バトルゾーンまたはマナゾーンに自分のジョーカーズが合計10枚以上あれば、このクリーチャーのパワーを+8000し、「W・ブレイカー」を与え、このクリーチャーが攻撃する時、好きな枚数のジョーカーズ・クリーチャーを自分の手札から捨てる。こうして捨てたジョーカーズ１体につき、相手のパワー10000以下のクリーチャーを１体破壊する。",
+          "race": "マスター・ドラゴン/ジョーカーズ/ワンダフォース",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-m01",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-m01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "1964358b25edff75f1f1f441224d5aceb905bc7e3a01cb6251d5dd7c0f826fba",
+        "imageSha256": "a13bc640aa05e24702b2a67880d7b12c5196ef077fd1438af5fdb09d829c7edd",
+        "facesMatched": true
+      },
+      "spec": {
+        "manaValue": 0,
+        "gr": true,
+        "g268ManaGrants": [
+          {
+            "filter": {
+              "g539Jokers": 5
+            },
+            "grants": {
+              "entryPlayerAttack": true
+            }
+          },
+          {
+            "filter": {
+              "g539Jokers": 10
+            },
+            "grants": {
+              "power": 8000,
+              "breaker": 2
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "HandCycle460",
+            "mode": "any",
+            "to": "grave",
+            "g1286TriggerCondition": {
+              "g539Jokers": 10
+            },
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "raceAll": [
+                  "ジョーカーズ"
+                ]
+              }
+            },
+            "afterDiscardSelect": {
+              "owner": "opponent",
+              "origin": "battle",
+              "to": "grave",
+              "filter": {
+                "creature": true,
+                "maxPower": 10000,
+                "g199Power": true
+              },
+              "g173Targets": true,
+              "g193Select": true,
+              "title": "破壊するパワー10000以下の相手のクリーチャーを選ぶ"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex05-m01",
+      "name": "The ジョラゴン・ガンマスター",
+      "faces": [
+        {
+          "name": "The ジョラゴン・ガンマスター",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンまたはマナゾーンに自分のジョーカーズが合計５枚以上あれば、このクリーチャーはバトルゾーンに出たターン、相手プレイヤーを攻撃できる。\n超天フィーバー：バトルゾーンまたはマナゾーンに自分のジョーカーズが合計10枚以上あれば、このクリーチャーのパワーを+8000し、「W・ブレイカー」を与え、このクリーチャーが攻撃する時、好きな枚数のジョーカーズ・クリーチャーを自分の手札から捨てる。こうして捨てたジョーカーズ１体につき、相手のパワー10000以下のクリーチャーを１体破壊する。",
+          "race": "マスター・ドラゴン/ジョーカーズ/ワンダフォース",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex05-m01",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex05-m01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "fb530c3592aa9c3ed0bb5cefc2b57a8c78de122c52e935068b0cee5525afda5b",
+        "imageSha256": "ca50ad37b1da683dcd0365e1f515a39944352effa84813d9270e59c5fadbd0ca",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp09-m01"
+    },
+    {
+      "id": "dmex19-m22",
+      "name": "The ジョラゴン・ガンマスター",
+      "faces": [
+        {
+          "name": "The ジョラゴン・ガンマスター",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンまたはマナゾーンに自分のジョーカーズが合計５枚以上あれば、このクリーチャーは出たターン、相手プレイヤーを攻撃できる。\n超天フィーバー：バトルゾーンまたはマナゾーンに自分のジョーカーズが合計10枚以上あれば、このクリーチャーのパワーを+8000し、「W・ブレイカー」を与え、このクリーチャーが攻撃する時、好きな枚数のジョーカーズ・クリーチャーを自分の手札から捨てる。こうして捨てたジョーカーズ１体につき、相手のパワー10000以下のクリーチャーを１体破壊する。",
+          "race": "マスター・ドラゴン/ジョーカーズ/ワンダフォース",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-m22",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-m22.jpg",
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "145034d40c2079e1f8ddb7c7f40e14f6278b33413b422c6ab3132ee2b683e31b",
+        "imageSha256": "fbbcbb6062bdc4f349a35a85e0614fdd07320c85ef946df293d3be0ffe103ad9",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp09-m01"
+    },
+    {
+      "id": "promoy18-csp1",
+      "name": "The ジョラゴン・ガンマスター",
+      "faces": [
+        {
+          "name": "The ジョラゴン・ガンマスター",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンまたはマナゾーンに自分のジョーカーズが合計５枚以上あれば、このクリーチャーはバトルゾーンに出たターン、相手プレイヤーを攻撃できる。\n超天フィーバー：バトルゾーンまたはマナゾーンに自分のジョーカーズが合計10枚以上あれば、このクリーチャーのパワーを+8000し、「W・ブレイカー」を与え、このクリーチャーが攻撃する時、好きな枚数のジョーカーズ・クリーチャーを自分の手札から捨てる。こうして捨てたジョーカーズ１体につき、相手のパワー10000以下のクリーチャーを１体破壊する。",
+          "race": "マスター・ドラゴン/ジョーカーズ/ワンダフォース",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy18-csp1",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy18-csp1.jpg",
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "c287405a4bd9e8f398795eede1377c539939b7e4ee46dd9213a9c8233d2d9450",
+        "imageSha256": "8c00153a696ac14d3cf89deabafaa072187b80fd81c0c0f62f3be7a3dcb5c4af",
+        "facesMatched": true
+      },
+      "canonicalId": "dmrp09-m01"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-15",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "limits": {
+      "dmrp09-m01": 2,
+      "dmex05-m01": 2,
+      "dmex19-m22": 2,
+      "promoy18-csp1": 2
+    }
+  }
+}

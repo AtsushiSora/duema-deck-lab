@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8036,
-  "pendingNames": 3790,
-  "phase": 1349,
+  "supportedNames": 8037,
+  "pendingNames": 3789,
+  "phase": 1350,
   "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -157,7 +157,7 @@
     "クリーチャー": 2127,
     "NEOクリーチャー": 70,
     "呪文": 452,
-    "GRクリーチャー": 156,
+    "GRクリーチャー": 155,
     "G-NEOクリーチャー": 26,
     "タマシード": 37,
     "デュエルメイト呪文": 10,
@@ -223,7 +223,7 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 1073,
+    "複数面・特殊カードタイプまたは情報不足": 1072,
     "未対応の能力文": 2526,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 18,
@@ -490308,14 +490308,59 @@
       "remainingRegistered": 27,
       "remainingPrints": 1,
       "remainingIndividualCards": 26
+    },
+    {
+      "phase": 1350,
+      "baseline": "ce09582c",
+      "before": 8036,
+      "supported": 8037,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmrp09-m01",
+          "name": "The ジョラゴン・ガンマスター"
+        }
+      ],
+      "printAliases": 3,
+      "results": {
+        "focus": {
+          "passed": 5,
+          "log": "/tmp/duema-uncapped/gamma-focus.log",
+          "command": "node --test --test-reporter=spec tests/standard1350-effects.test.mjs",
+          "seconds": 7.996
+        },
+        "regression": {
+          "passed": 247,
+          "log": "/tmp/duema-uncapped/gamma-regression.log",
+          "command": "node --test --test-concurrency=2 --test-reporter=spec tests/standard{460,539,1010,1137,1209,1223,1226,1326,1349,1350}-effects.test.mjs",
+          "seconds": 180.69
+        },
+        "check": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "/tmp/duema-uncapped/gamma-check.log",
+          "rulesBlobs": {
+            "dist/six-photo-rules.js": "91676880a8f4475f3ee9667cf9029cfc534b0c31"
+          }
+        },
+        "audit": {
+          "status": "passed",
+          "command": "node tools/audit-card-support.mjs",
+          "log": "/tmp/duema-uncapped/gamma-audit.log"
+        }
+      },
+      "resolvedRegistered": 0,
+      "remainingRegistered": 27,
+      "remainingPrints": 1,
+      "remainingIndividualCards": 26
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1349,
+    "lastVerifiedPhase": 1350,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "P侵略とP革命チェンジの固有・回帰テストは通過。分割ログをテスト名で集計し、長時間の対戦とワーカーの完了を確認する。残る裁定は依存カードの能力全体を公式資料と照合してから再現する。",
+    "steps": "The ジョラゴン・ガンマスターの固有・回帰は通過。QA 40828はオーラの共通処理が実装された後に再現する。分割ログをテスト名で集計し、長時間対戦とワーカーの完了を確認する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -490608,8 +490653,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8036,
-    "pendingNames": 3790,
+    "supportedNames": 8037,
+    "pendingNames": 3789,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -534603,8 +534648,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8036,
-      "pendingNames": 3790,
+      "supportedNames": 8037,
+      "pendingNames": 3789,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -536518,8 +536563,15 @@
             "dmrp09-m01"
           ],
           "test": "ドラゴンのオーラとGRドラゴンから別々に誘発し、オーラ自身のパワーは参照しない。",
-          "reason": "指定オーラとGRクリーチャーが未対応。オーラと超GRの共通処理が必要。フォース・ドラゴンのパワーなしの分岐は実カードで通過。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/40828/"
+          "reason": "GRクリーチャーはPhase 1350で全能力を実装し、ヴォルジャアクがGR召喚に誘発して現在のパワー3000または11000を使う場合を実測。残る指定オーラの装着により、パワーのないオーラとGRドラゴンから別々に誘発する実カードの組み合わせは未検証。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40828/",
+          "verifiedDependency": {
+            "id": "dmrp09-m01",
+            "phase": 1350,
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-m01",
+            "command": "node --test --test-reporter=spec tests/standard1350-effects.test.mjs",
+            "log": "/tmp/duema-uncapped/gamma-focus.log"
+          }
         },
         {
           "cardId": "dm24rp2-S07",
@@ -536738,10 +536790,11 @@
           "dmx21-026",
           "dmex19-025",
           "dmbd07-b-005",
-          "dmex18-s03"
+          "dmex18-s03",
+          "dmrp09-m01"
         ],
-        "officialPrints": 101,
-        "newAliases": 75,
+        "officialPrints": 105,
+        "newAliases": 78,
         "evidence": [
           {
             "id": "dm23rp2-065",
@@ -537555,6 +537608,38 @@
             "pageSha256": "60e91f439e9843d84961eba75c15a37d5b1d2216cee19a73f9e890cc640154f7",
             "imageSha256": "8a4f3cafeeac05f9f87ce04df579c22777fab02fdf59f27f7f591d975f67d7c0",
             "backImageSha256": "e2cd17413610c425d586bad48a9ab81c2333d9c2b2057146c682aa1dfd3526b7"
+          },
+          {
+            "id": "dmrp09-m01",
+            "canonicalId": "dmrp09-m01",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-m01",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-m01.jpg",
+            "pageSha256": "1964358b25edff75f1f1f441224d5aceb905bc7e3a01cb6251d5dd7c0f826fba",
+            "imageSha256": "a13bc640aa05e24702b2a67880d7b12c5196ef077fd1438af5fdb09d829c7edd"
+          },
+          {
+            "id": "dmex05-m01",
+            "canonicalId": "dmrp09-m01",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex05-m01",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex05-m01.jpg",
+            "pageSha256": "fb530c3592aa9c3ed0bb5cefc2b57a8c78de122c52e935068b0cee5525afda5b",
+            "imageSha256": "ca50ad37b1da683dcd0365e1f515a39944352effa84813d9270e59c5fadbd0ca"
+          },
+          {
+            "id": "dmex19-m22",
+            "canonicalId": "dmrp09-m01",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-m22",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-m22.jpg",
+            "pageSha256": "145034d40c2079e1f8ddb7c7f40e14f6278b33413b422c6ab3132ee2b683e31b",
+            "imageSha256": "fbbcbb6062bdc4f349a35a85e0614fdd07320c85ef946df293d3be0ffe103ad9"
+          },
+          {
+            "id": "promoy18-csp1",
+            "canonicalId": "dmrp09-m01",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy18-csp1",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy18-csp1.jpg",
+            "pageSha256": "c287405a4bd9e8f398795eede1377c539939b7e4ee46dd9213a9c8233d2d9450",
+            "imageSha256": "8c00153a696ac14d3cf89deabafaa072187b80fd81c0c0f62f3be7a3dcb5c4af"
           }
         ],
         "testLog": "/tmp/duema-verify-8009/verification-followup-prints.log",
@@ -537869,8 +537954,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8036,
-        "pending": 3790,
+        "supported": 8037,
+        "pending": 3789,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -538470,11 +538555,9 @@
       "finalCheck": {
         "status": "passed",
         "command": "npm run check",
-        "log": "/tmp/duema-uncapped/buster-check.log",
+        "log": "/tmp/duema-uncapped/gamma-check.log",
         "rulesBlobs": {
-          "dist/extended-rules.js": "331dc0d8de93ac11ca26662262a4c570d1bd71b2",
-          "dist/redzone-rules.js": "8325ef281e126faf19e39fd476078b3462193bb3",
-          "dist/six-photo-rules.js": "a57bb9684cad73b354254b4b503a79c9ddee2935"
+          "dist/six-photo-rules.js": "91676880a8f4475f3ee9667cf9029cfc534b0c31"
         }
       },
       "abyssShort": {
@@ -538521,10 +538604,6 @@
         {
           "id": "dmbd12-g01",
           "name": "卍∞ ジ・エンデザーク ∞卍"
-        },
-        {
-          "id": "dmrp09-m01",
-          "name": "The ジョラゴン・ガンマスター"
         },
         {
           "id": "dmrp03-dg01",
@@ -538619,48 +538698,46 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1349,
-        "baseline": "897fb5ba",
-        "before": 8035,
-        "supported": 8036,
+        "phase": 1350,
+        "baseline": "ce09582c",
+        "before": 8036,
+        "supported": 8037,
         "duplicates": 0,
         "added": [
           {
-            "id": "dmex18-s03",
-            "name": "轟く覚醒 レッドゾーン・バスター"
+            "id": "dmrp09-m01",
+            "name": "The ジョラゴン・ガンマスター"
           }
         ],
-        "printAliases": 4,
+        "printAliases": 3,
         "results": {
           "focus": {
-            "passed": 8,
-            "log": "/tmp/duema-uncapped/buster-focus.log",
-            "command": "node --test --test-reporter=spec tests/standard1349-effects.test.mjs",
-            "seconds": 4.618
+            "passed": 5,
+            "log": "/tmp/duema-uncapped/gamma-focus.log",
+            "command": "node --test --test-reporter=spec tests/standard1350-effects.test.mjs",
+            "seconds": 7.996
           },
           "regression": {
-            "passed": 237,
-            "log": "/tmp/duema-uncapped/buster-regression-final.log",
-            "command": "node --test --test-concurrency=1 --test-reporter=spec tests/standard{486,849,1104,1105,1106,1112,1267,1348,1349}-effects.test.mjs",
-            "seconds": 96.14
+            "passed": 247,
+            "log": "/tmp/duema-uncapped/gamma-regression.log",
+            "command": "node --test --test-concurrency=2 --test-reporter=spec tests/standard{460,539,1010,1137,1209,1223,1226,1326,1349,1350}-effects.test.mjs",
+            "seconds": 180.69
           },
           "check": {
             "status": "passed",
             "command": "npm run check",
-            "log": "/tmp/duema-uncapped/buster-check.log",
+            "log": "/tmp/duema-uncapped/gamma-check.log",
             "rulesBlobs": {
-              "dist/extended-rules.js": "331dc0d8de93ac11ca26662262a4c570d1bd71b2",
-              "dist/redzone-rules.js": "8325ef281e126faf19e39fd476078b3462193bb3",
-              "dist/six-photo-rules.js": "a57bb9684cad73b354254b4b503a79c9ddee2935"
+              "dist/six-photo-rules.js": "91676880a8f4475f3ee9667cf9029cfc534b0c31"
             }
           },
           "audit": {
             "status": "passed",
             "command": "node tools/audit-card-support.mjs",
-            "log": "/tmp/duema-uncapped/buster-audit.log"
+            "log": "/tmp/duema-uncapped/gamma-audit.log"
           }
         },
-        "resolvedRegistered": 1,
+        "resolvedRegistered": 0,
         "remainingRegistered": 27,
         "remainingPrints": 1,
         "remainingIndividualCards": 26
@@ -540741,8 +540818,8 @@
         "command": "python3 /tmp/duema-uncapped/run-tests.py",
         "reason": "ユーザー指示により時間上限を解除。未確認テスト名をフィルタ指定し、前の一括実行は中断・合否未確認のまま保持。",
         "snapshot": {
-          "completeGroups": 20,
-          "passedNamedTests": 37,
+          "completeGroups": 21,
+          "passedNamedTests": 40,
           "failedNamedTests": 2,
           "enginePairings": {
             "seconds": 643.82,
@@ -540810,7 +540887,7 @@
           },
           "aggregateByExactName": {
             "planned": 818,
-            "passed": 268,
+            "passed": 271,
             "result": "二つの固定コミットのログで、パスとテスト名が一致する通過を重複なしで数えた。大会フィクスチャを修正した改名ケースは別の分割記録に保存。"
           },
           "armoredLong": {
@@ -540848,7 +540925,7 @@
             "status": "実行中",
             "decks": 85,
             "planned": 255,
-            "completed": 25,
+            "completed": 56,
             "failures": 0,
             "log": "/tmp/duema-uncapped/current-ai-audit.log",
             "report": "/tmp/duema-uncapped/current-ai-audit.json",
@@ -540879,6 +540956,31 @@
             "command": "npm run check",
             "status": "通過",
             "log": "/tmp/duema-uncapped/current-check-c836360c.log"
+          },
+          "galaxyLong": {
+            "commit": "3f87d5f0",
+            "path": "tests/galaxy-effects.test.mjs",
+            "passed": [
+              "No22 random legal actions conserve all cards and preserve decisions and AI scores after JSON restoration",
+              "No22 versus itself, two ready starter decks and4 tournament decks finishes and conserves80 physical cards",
+              "production worker completes No22 against itself and every ready starter and environment list"
+            ],
+            "seededGames": 42,
+            "randomizedSeeds": 35,
+            "workerGames": 140,
+            "seconds": 7080.38,
+            "log": "/tmp/duema-uncapped/logs/0021.log"
+          },
+          "verifiedDependency": {
+            "phase": 1350,
+            "id": "dmrp09-m01",
+            "sources": [
+              "https://dm.takaratomy.co.jp/rule/qa/32435/",
+              "https://dm.takaratomy.co.jp/rule/qa/40828/",
+              "https://dm.takaratomy.co.jp/battleclip/episode-dmrp09/"
+            ],
+            "log": "/tmp/duema-uncapped/gamma-focus.log",
+            "result": "実カードのGR召喚からヴォルジャアクが参照するパワー、5枚と10枚の閾値、選んで捨てるジョーカーズ・クリーチャーと破壊対象を確認。QA 40828のオーラ側は保留。"
           }
         },
         "latestRegisteredRulings": {

@@ -2145,7 +2145,8 @@ export function createSixPhotoRules(api){
  }
  // These clauses refer to the chosen hand size, even when discarding is replaced (official 31661).
  function handCycle460(s,t){
-  const own=s.players[t.p],selected=t.selected||[],ids=t.ids||own.hand.map(x=>x.uid);
+  const own=s.players[t.p],selected=t.selected||[];
+  const ids=t.ids||own.hand.filter(x=>!t.filter||matches(s,t.p,x,t.filter)).map(x=>x.uid);
   if(t.to==='deck'){
    if(t.order){
     const left=ids.filter(uid=>!selected.includes(uid)&&own.hand.some(x=>x.uid===uid));
@@ -2166,7 +2167,18 @@ export function createSixPhotoRules(api){
   }
   if(t.optional&&!t.accepted){const n=t.fixedDraw??own.hand.length+(t.extra||0),score=n>=own.deck.length?-1000:10+(t.extra||0)*10;choice(s,t,'手札をすべて捨てて、'+(t.fixedDraw!==undefined?t.fixedDraw:'捨てた枚数'+(t.extra?'＋'+t.extra:''))+'枚引く？',[opt('入れ替える',true,score),skip()]);return;}
   const cap=Math.min(t.max??ids.length,ids.length),available=ids.filter(uid=>!selected.includes(uid)&&own.hand.some(x=>x.uid===uid));
-  if(t.mode==='any'&&selected.length<cap&&available.length){choice(s,{...t,ids,selected},'捨てる手札を選ぶ（'+selected.length+'枚選択済み）',[...available.map(uid=>{const x=own.hand.find(y=>y.uid===uid);return opt(card(x).name,uid,own.deck.length<=selected.length+(t.extra||0)+1?-1000:3-cost(card(x)),x.cardId);}),opt('この枚数で確定',null,0)]);return;}
+  if(t.mode==='any'&&selected.length<cap&&available.length){
+   const eligible=t.afterDiscardSelect?list(s,{...t.afterDiscardSelect,p:t.p}).length:0;
+   choice(s,{...t,ids,selected},'捨てる手札を選ぶ（'+selected.length+'枚選択済み）',[
+    ...available.map(uid=>{
+     const x=own.hand.find(y=>y.uid===uid),price=cost(card(x));
+     const score=t.afterDiscardSelect?(selected.length<eligible?12-price:-10):
+      own.deck.length<=selected.length+(t.extra||0)+1?-1000:3-price;
+     return opt(card(x).name,uid,score,x.cardId);
+    }),opt('この枚数で確定',null,0)
+   ]);
+   return;
+  }
   finishCycle460(s,t,t.mode==='all'?ids:selected);
  }
  function finishBottomCycle460(s,t,ids){
@@ -2183,6 +2195,11 @@ export function createSixPhotoRules(api){
  }
  function finishCycle460(s,t,ids){
   const selected=ids.filter(uid=>s.players[t.p].hand.some(x=>x.uid===uid));
+  if(t.afterDiscardSelect){
+   if(selected.length)api.discardSelected(s,t.p,selected,t.source,t.p,null,null,
+    task('g34_Select',t.p,t.source,t.afterDiscardSelect));
+   return;
+  }
   api.discardSelected(s,t.p,selected,t.source,t.p,null,{op:'g34_CycleDraw460',p:t.p,source:t.source,
    n:t.fixedDraw??selected.length,extra:t.extra||0,
    ...(t.g1223PowerPerDiscard?{uid:t.uid,incarnation:t.incarnation,g1223PowerPerDiscard:t.g1223PowerPerDiscard}:{})});
