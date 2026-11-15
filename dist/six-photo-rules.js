@@ -3577,6 +3577,15 @@ export function createSixPhotoRules(api){
    ...(t.to==='mana'?{toOwnerMana:true}:{toOwnerShields:true})}]);
   break;
  }
+ case'g34_BlockedPairBounce1318':{
+  const rows=[t.subject,t].flatMap(ref=>{
+   const host=sourceHost474(s,ref);
+   return host&&api.isCreature(s,host.x)?[{player:host.p,uid:host.x.uid,to:'hand',toOwnerHand:true,
+    controller:t.controller??t.p}]:[];
+  });
+  if(rows.length)move(s,rows);
+  break;
+ }
  case'g34_ExactMove':{
   const owner=t.owner??1-t.p;
   const y=s.players[owner].battle.find(y=>{
@@ -3847,7 +3856,7 @@ export function createSixPhotoRules(api){
    [...candidates.map(y=>opt(card(y).name,y.uid,score-cost(card(y)),y.cardId)),skip()]);
   break;
  }
- case'g34_Smash320':{const row=smashSource320(s,t),c=faces(card(t.source))[1];if(row&&c&&api.canCast(s,t.p,c,row.origin))choice(s,t,'スマッシュ・バーストで呪文側を唱える？',[opt('「ヤベーのを見たいか？」を唱える',true,own.deck.length<=1?-1000:25,t.source),skip()]);break;}
+ case'g34_Smash320':{const row=smashSource320(s,t),c=faces(card(t.source))[1];if(row&&c&&api.canCast(s,t.p,c,row.origin))choice(s,t,'スマッシュ・バーストで呪文側を唱える？',[opt(c.name+'を唱える',true,own.deck.length<=1?-1000:25,t.source),skip()]);break;}
  case'g34_BattleDeclare588':{
   const cards=t.cards.filter(ref=>own.hand.some(y=>y.uid===ref.uid&&(y.zoneSerial||0)===ref.serial));
   if(cards.length)choice(s,{...t,cards},'バトル勝利で使う手札の能力を宣言（任意）',[
@@ -5133,6 +5142,13 @@ export function createSixPhotoRules(api){
     for(const uid of t.ids)release(s,t.p,uid);
     if(t.after)start(s,t,t.after);
     api.deckCheck(s,t.p);
+    break;
+   }
+   if(t.rest==='topAndBottom'){
+    const ids=xs.map(x=>x.uid);
+    for(const uid of ids)release(s,t.p,uid);
+    (own.g33Protected??=[]).push(...ids);
+    put(s,{...t,op:'g33_Order',ids,top:[],bottom:[]});
     break;
    }
    if(t.g791OrderRest)distribute255(s,{...t,ids:[]});
@@ -8560,7 +8576,7 @@ export function createSixPhotoRules(api){
    queue(s,p,x,[{op:'IfOwn',filter:{g265ShieldsMax:0},defs:[{op:'Untap',g191First:true}]}]);
  }
  if(c.g781ReleaseAll&&!api.selfStopped(s,p))queue(s,p,x,[E('ReleaseAllHyper781')]);
- if(first&&c.g540FirstAttack&&!api.selfStopped(s,p))queue(s,p,x,c.g540FirstAttack);if(c.g320Jave&&!api.selfStopped(s,p))queue(s,p,x,[{op:'Smash320',serial:x.zoneSerial||0}]);
+ if(first&&c.g540FirstAttack&&!api.selfStopped(s,p))queue(s,p,x,c.g540FirstAttack);if((c.g320Jave||c.g1318Smash)&&!api.selfStopped(s,p))queue(s,p,x,[{op:'Smash320',serial:x.zoneSerial||0}]);
  if(c.g34Attack&&!api.selfStopped(s,p)){
   // Attack trigger conditions are checked before any attack effects resolve (QA 42519).
   const defs=c.g34Attack.filter(d=>

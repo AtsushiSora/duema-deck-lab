@@ -2475,6 +2475,46 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1318&&d?.status==='complete'&&f.typeText==='クリーチャー'){
+  const trigger='S・トリガーS・トリガー(このカードを自分のシールドゾーンから手札に加える時コストを支払わずにすぐ実行してもよい)';
+  const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+  const text=normalize(f.abilityText);
+  if(d.id==='dm26ex2-068'&&d.faces.length===1&&text===trigger+blocker+
+   'このクリーチャーがブロックした時このクリーチャーと攻撃しているクリーチャーを持ち主の手札に戻す。'+
+   'このクリーチャーが離れた時自分の山札の上から4枚を見る。その中から1枚を手札に加え残りを好きな順序で山札の上か下に置く。')
+   return {trigger:true,blocker:true,g178Block:[{op:'BlockedPairBounce1318',g913BlockedAttacker:true}],
+    g172Leave:[{op:'Look',n:4,g841DeckPeek:true,rest:'topAndBottom',stages:[{n:1,to:'hand'}]}]};
+  if(d.id==='dm26ex2-075'&&d.faces.length===1&&text===
+   'このクリーチャーを[ww03]支払って召喚してもよい。そうしたらこのクリーチャーが出た時自分のクリーチャーを1体手札に戻す。'+blocker+
+   'このクリーチャーは攻撃できない。このクリーチャーが離れた時相手のクリーチャーを1体選ぶ。次の自分のターンのはじめまでそのクリーチャーは攻撃もブロックもできない。')
+   return {blocker:true,noAttack:true,g568Alt:{cost:3,paymentColors:['水'],entry:[
+    {op:'Target',owner:'self',to:'hand',toOwnerHand:true}]},
+    g172Leave:[{op:'Target',g190Freeze:'start',g1058FollowUnit:true}]};
+  const spell=d.faces[1];
+  if(d.faces.length===2&&spell.typeText==='呪文'){
+   const back=normalize(spell.abilityText);
+   const face=defs=>({type:'spell',name:spell.name,cost:spell.cost,civ:spell.civilizationText,
+    civilizations:spell.civilizations,race:spell.race,text:spell.abilityText,effect:'sixPhoto',g34Tasks:defs});
+   if(d.id==='dm26ex2-060'&&text===trigger+
+    'スマッシュ・バースト(このクリーチャーが攻撃する時このカードの呪文側をバトルゾーンに置いたままコストを支払わずに唱えてもよい)'&&
+    back==='自分の手札を1枚捨て次の中から1回選ぶ。▶カードを2枚引く。▶相手のパワー7000以下のクリーチャーを1体選び破壊する。')
+    return {trigger:true,g1318Smash:true,spellFace:face([
+     {op:'Discard',owner:'self',n:1},
+     {op:'Choose',g184Modes:true,modes:[
+      {label:'カードを2枚引く',defs:[{op:'Draw',n:2}]},
+      {label:'相手のパワー7000以下のクリーチャーを破壊する',
+       defs:[{op:'Target',to:'grave',spell:true,filter:{maxPower:7000,g199Power:true}}]}
+     ]}
+    ])};
+   if(d.id==='dm26ex2-082'&&text===
+    '{GS}G・ストライク(このカードを自分のシールドゾーンから手札に加える時表向きにし相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)'+
+    'マッハファイター(このクリーチャーは出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'&&
+    back==='自分の山札の上から5枚を表向きにする。その中から進化クリーチャーを1体手札に加え残りを好きな順序で山札の下に置く。')
+    return {gStrike:true,machFighter:true,breaker:2,spellFace:face([
+     {op:'Look',n:5,public:true,rest:'bottom',stages:[{n:1,to:'hand',filter:{creature:true,evolution:true}}]}
+    ])};
+  }
+ }
  if(phase>=1317&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dm26ex2-008'&&f.typeText==='クリーチャー'&&text===

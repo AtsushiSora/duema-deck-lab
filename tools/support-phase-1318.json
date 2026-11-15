@@ -1,0 +1,318 @@
+{
+  "phase": 1318,
+  "checkedAt": "2026-11-15",
+  "baseCount": 7971,
+  "description": "ワダウザノミコト、ワダゲコノミコト、轟速 ザ・ダラー、轟速 ザ・ジオを対戦対応する。",
+  "rules": "https://dm.takaratomy.co.jp/rule/regulation/",
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/43052/",
+    "https://dm.takaratomy.co.jp/rule/qa/44369/",
+    "https://dm.takaratomy.co.jp/rule/qa/48746/",
+    "https://dm.takaratomy.co.jp/rule/qa/46947/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm26ex2-068",
+      "name": "ワダウザノミコト",
+      "faces": [
+        {
+          "name": "ワダウザノミコト",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがブロックした時、このクリーチャーと攻撃しているクリーチャーを持ち主の手札に戻す。\nこのクリーチャーが離れた時、自分の山札の上から４枚を見る。その中から１枚を手札に加え、残りを好きな順序で山札の上か下に置く。",
+          "race": "ミズガミ/ロスト・クルセイダー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-068",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-068.jpg",
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "g178Block": [
+          {
+            "op": "BlockedPairBounce1318",
+            "g913BlockedAttacker": true
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Look",
+            "n": 4,
+            "g841DeckPeek": true,
+            "rest": "topAndBottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "f8f73376dda6515b7f759e95fd5557b9376008bbdffcf61721478df3d27d4bc9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex2-075",
+      "name": "ワダゲコノミコト",
+      "faces": [
+        {
+          "name": "ワダゲコノミコト",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーを[ww03]支払って召喚してもよい。そうしたら、このクリーチャーが出た時、自分のクリーチャーを１体手札に戻す。\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーが離れた時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "ミズガミ/ロスト・クルセイダー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-075",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-075.jpg",
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g568Alt": {
+          "cost": 3,
+          "paymentColors": [
+            "水"
+          ],
+          "entry": [
+            {
+              "op": "Target",
+              "owner": "self",
+              "to": "hand",
+              "toOwnerHand": true
+            }
+          ]
+        },
+        "g172Leave": [
+          {
+            "op": "Target",
+            "g190Freeze": "start",
+            "g1058FollowUnit": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "dce3de436a8fbbef775f047c2e5475290c369b24c2ac2f92451f79f920d6e616",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex2-060",
+      "name": "轟速 ザ・ダラー / 「イグニッション！ソニックドロォォォ!!」",
+      "faces": [
+        {
+          "name": "轟速 ザ・ダラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）",
+          "race": "ソニック・コマンド/侵略者",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "「イグニッション！ソニックドロォォォ!!」",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の手札を１枚捨て、次の中から１回選ぶ。\n▶カードを２枚引く。\n▶相手のパワー7000以下のクリーチャーを１体選び、破壊する。",
+          "race": "ソニック・コマンド・ワード",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-060",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-060a.jpg",
+      "spec": {
+        "trigger": true,
+        "g1318Smash": true,
+        "spellFace": {
+          "type": "spell",
+          "name": "「イグニッション！ソニックドロォォォ!!」",
+          "cost": 2,
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "race": "ソニック・コマンド・ワード",
+          "text": "自分の手札を１枚捨て、次の中から１回選ぶ。\n▶カードを２枚引く。\n▶相手のパワー7000以下のクリーチャーを１体選び、破壊する。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 1
+            },
+            {
+              "op": "Choose",
+              "g184Modes": true,
+              "modes": [
+                {
+                  "label": "カードを2枚引く",
+                  "defs": [
+                    {
+                      "op": "Draw",
+                      "n": 2
+                    }
+                  ]
+                },
+                {
+                  "label": "相手のパワー7000以下のクリーチャーを破壊する",
+                  "defs": [
+                    {
+                      "op": "Target",
+                      "to": "grave",
+                      "spell": true,
+                      "filter": {
+                        "maxPower": 7000,
+                        "g199Power": true
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "8973ec98083a3f8e19f01643a98ee1f44201a9c8e98b02f00dfd0be222e53e93",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex2-082",
+      "name": "轟速 ザ・ジオ / 「キサマのデュエマは周回遅れだ！」",
+      "faces": [
+        {
+          "name": "轟速 ザ・ジオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nマッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+          "race": "ソニック・コマンド/侵略者",
+          "powerText": "7000",
+          "missingFields": []
+        },
+        {
+          "name": "「キサマのデュエマは周回遅れだ！」",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "自分の山札の上から５枚を表向きにする。その中から進化クリーチャーを１体手札に加え、残りを好きな順序で山札の下に置く。",
+          "race": "ソニック・コマンド・ワード",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-082",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-082a.jpg",
+      "spec": {
+        "gStrike": true,
+        "machFighter": true,
+        "breaker": 2,
+        "spellFace": {
+          "type": "spell",
+          "name": "「キサマのデュエマは周回遅れだ！」",
+          "cost": 1,
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "race": "ソニック・コマンド・ワード",
+          "text": "自分の山札の上から５枚を表向きにする。その中から進化クリーチャーを１体手札に加え、残りを好きな順序で山札の下に置く。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Look",
+              "n": 5,
+              "public": true,
+              "rest": "bottom",
+              "stages": [
+                {
+                  "n": 1,
+                  "to": "hand",
+                  "filter": {
+                    "creature": true,
+                    "evolution": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "123b22cb4e1b7203ef5915009f3c78173d035978cacf008ee48bfe6fb0d8b8d1",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-15",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26ex2-068": 4,
+      "dm26ex2-075": 4,
+      "dm26ex2-060": 4,
+      "dm26ex2-082": 4
+    },
+    "currentList": "https://dm.takaratomy.co.jp/img/regulation/2608/202608regulation.pdf"
+  },
+  "sameNameProducts": {
+    "dm26ex2-068": [
+      "DM26-EX2 悪感謝祭 カリスマBEST"
+    ],
+    "dm26ex2-075": [
+      "DM26-EX2 悪感謝祭 カリスマBEST"
+    ],
+    "dm26ex2-060": [
+      "DM26-EX2 悪感謝祭 カリスマBEST"
+    ],
+    "dm26ex2-082": [
+      "DM26-EX2 悪感謝祭 カリスマBEST"
+    ]
+  }
+}
