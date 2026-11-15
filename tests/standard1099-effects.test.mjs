@@ -128,3 +128,38 @@ test('Each verified print resolves to its original canonical ID and four-copy li
   for(const print of prints)assert.equal(registry.get(print),card);
  }
 });
+
+test('Shiny looks at each Psychic face before counting the five-cost budget (QA37744)',()=>{
+ for(const back of [false,true]){
+  const s=table(),own=s.players[0],enemy=inst(NATURE);
+  const [bolshack,untouchable,john]=own.extra,diana=inst('dm36-041');
+  own.extra.push(diana);
+  assert.deepEqual([e.card(diana).cost,e.card(diana).g1085Back.cost],[5,10]);
+  s.players[1].battle.push(enemy);
+  cast(s,SHINY);
+  pick(s,enemy.uid);pick(s,0);
+  const faces=()=>s.decision.choices.map(({value})=>value&&[value.uid,!!value.g1104Back]);
+  assert.deepEqual(faces(),[[untouchable.uid,false],[john.uid,false],[john.uid,true],[diana.uid,false],null]);
+  act(s,'extended',a=>{
+   const value=s.decision.choices[a.choice].value;
+   return value?.uid===john.uid&&!!value.g1104Back===back;
+  });
+  if(!back){assert.deepEqual(faces(),[[untouchable.uid,false],null]);pick(s,untouchable.uid);}
+  assert.ok(own.battle.includes(john));assert.equal(!!john.g1085Awakened,back);
+  assert.equal(john.g1085AwakenedTurn,undefined);
+  assert.equal(e.card(john).cost,back?5:3);
+  assert.ok(own.extra.includes(bolshack));
+ }
+});
+
+test('Shiny can directly deploy the light back face of a non-light Psychic in the seven-cost mode',()=>{
+ const s=table(),own=s.players[0],martini=inst('dm37-024'),enemy=inst(NATURE);
+ own.extra.splice(0,own.extra.length,martini);
+ s.players[1].battle.push(enemy);
+ cast(s,SHINY);pick(s,enemy.uid);pick(s,1);
+ assert.deepEqual(s.decision.choices.map(({value})=>[value.uid,value.g1104Back]),[[martini.uid,true]]);
+ pick(s,martini.uid);
+ assert.equal(e.card(martini).cost,6);
+ assert.deepEqual(e.card(martini).civilizations,['光']);
+ assert.ok(own.battle.includes(martini));
+});

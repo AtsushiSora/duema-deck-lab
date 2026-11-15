@@ -489791,7 +489791,7 @@
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "カリヤドネを使用した裁定と氷駆の妖精・ワルドバロムの組み合わせを確認済み。個別35種類と長時間の分割検証を継続する。",
+    "steps": "シャイニー・ホールの両面選択を追加検証した。個別34種類と長時間の分割検証を継続する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -489875,6 +489875,10 @@
     "registrationStatus": "ユーザーの指示で10分間隔のカード登録を再開。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [
+      {
+        "id": "dmrp08-s03",
+        "name": "不夜城艦 クランヴィア"
+      },
       {
         "id": "dmrp12-008",
         "name": "帝神龍装 ティーゾリス"
@@ -535107,7 +535111,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別35種類（裁定40件・版固有の金箔再録2件、重複1種類）と長時間対戦・ワーカーの検証が継続中。Netlifyを更新せずにPagesへ公開する経路の確認も必要。",
+        "reason": "個別34種類（裁定39件と版固有の金箔再録2件、重複1種類）と長時間対戦・ワーカーの検証が継続中。Netlifyを更新せずにPagesへ公開する経路の確認も必要。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -535556,17 +535560,6 @@
             "https://dm.takaratomy.co.jp/rule/qa/45911/"
           ],
           "result": "既存テストを再実行し、氷駆の妖精の条件を満たしている相手にワルドバロムが出た時、すでにあったマナの数字は0、次のターンにチャージしたカードは2になることを確認した。"
-        }
-      ],
-      "remainingRegistered": [
-        {
-          "cardId": "dmr03-024",
-          "dependencyIds": [
-            "dmd03-002"
-          ],
-          "test": "相手が自身の破壊されないサイキックを選べて、選んだクリーチャーが残る（QA 36427と同型）",
-          "reason": "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
         },
         {
           "cardId": "dm36-077",
@@ -535591,8 +535584,6 @@
             "dmpcd03-a12"
           ],
           "test": "超次元の各面をコスト・文明・種族で判定し、条件を満たす覚醒後の面を直接出せる",
-          "reason": "Phase 1104は今回追加した4種類の展開で両面選択を検証。登録済みの他の展開効果への適用と、選択肢の順序が保存済み対戦の再現に与える影響は未検証。展開元ごとに条件と表示をテストする。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa_old/37744/",
           "rechecked1331": {
             "status": "pending",
             "verifiedModes": "Phase 1104で実装済みの4種類は両面選択を確認済み。",
@@ -535603,7 +535594,25 @@
             "sources": [
               "https://dm.takaratomy.co.jp/rule/qa_old/37744/"
             ]
-          }
+          },
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/37744/",
+          "path": "tests/standard1099-effects.test.mjs",
+          "log": "/tmp/duema-uncapped/shiny-focus.log",
+          "regression": "/tmp/duema-uncapped/shiny-regression-final.log",
+          "check": "/tmp/duema-uncapped/shiny-check.log",
+          "supportedNames": 8023,
+          "result": "合計コスト5の選択でディアナのコスト5の面は選べ、裏のコスト10の面は候補に出ないことを確認。ジョンのコスト5の裏面は選んで直接出せる。光・コスト7以下の分岐はマティーナの裏面だけを選べる。"
+        }
+      ],
+      "remainingRegistered": [
+        {
+          "cardId": "dmr03-024",
+          "dependencyIds": [
+            "dmd03-002"
+          ],
+          "test": "相手が自身の破壊されないサイキックを選べて、選んだクリーチャーが残る（QA 36427と同型）",
+          "reason": "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
         },
         {
           "cardId": "dmbd13-015",

@@ -11000,7 +11000,7 @@ export function standardCardSpec(d,{phase=165}={}){
    d.id==='dm25ex4-T28'&&text==='カードを1枚引く。水のコスト7以下のサイキック・クリーチャーを1体またはコストの合計が5以下になるようにサイキック・クリーチャーを好きな数自分の超次元ゾーンから出す。'
   );
   const hole=holes.find(row=>row.ids.includes(d.id))||(twinEnergy?holes.at(-1):null);
-  const psychicFace=d.id==='dm37-023'?{g1104PsychicFaces:true}:{};
+  const psychicFace=d.id==='dm37-023'||hole?.ids[0]==='dm36-077'?{g1104PsychicFaces:true}:{};
   if(hole&&(twinEnergy||common===hole.printed+choose+group+
    'コスト7以下の'+hole.color+'のサイキック・クリーチャーを1体自分の超次元ゾーンからバトルゾーンに出す。'))
    return {effect:'sixPhoto',g34Tasks:[hole.task,modes(
