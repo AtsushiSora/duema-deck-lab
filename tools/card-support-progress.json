@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8022,
-  "pendingNames": 3804,
-  "phase": 1336,
+  "supportedNames": 8023,
+  "pendingNames": 3803,
+  "phase": 1337,
   "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2135,
+    "クリーチャー": 2134,
     "NEOクリーチャー": 70,
     "呪文": 455,
     "GRクリーチャー": 156,
@@ -223,7 +223,7 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 1076,
+    "複数面・特殊カードタイプまたは情報不足": 1075,
     "未対応の能力文": 2536,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 19,
@@ -489729,14 +489729,69 @@
       "remainingRegistered": 42,
       "remainingPrints": 2,
       "remainingIndividualCards": 37
+    },
+    {
+      "phase": 1337,
+      "baseline": "69e72052",
+      "before": 8022,
+      "supported": 8023,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmrp11-s04",
+          "name": "魔導管理室 カリヤドネ / ハーミット・サークル"
+        }
+      ],
+      "printAliases": 1,
+      "results": {
+        "focus": {
+          "passed": 7,
+          "log": "/tmp/duema-uncapped/kariya-focused.log",
+          "command": "node --test tests/standard1337-effects.test.mjs",
+          "seconds": 4.005
+        },
+        "regression": {
+          "passed": 62,
+          "log": "/tmp/duema-uncapped/kariya-regression.log",
+          "command": "node --test --test-concurrency=2 tests/standard{598,1109,1226,1300,1336,1337}-effects.test.mjs",
+          "seconds": 12.889
+        },
+        "puppet": {
+          "passed": 15,
+          "log": "/tmp/duema-uncapped/kariya-puppet.log",
+          "command": "node --test tests/requested393-puppet.test.mjs",
+          "seconds": 2.313
+        },
+        "mana": {
+          "passed": 2,
+          "log": "/tmp/duema-uncapped/kariya-mana.log",
+          "command": "node --test --test-name-pattern=\"only mana present|Fairy changes zero\" tests/standard1282-effects.test.mjs",
+          "seconds": 1.835
+        },
+        "check": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "/tmp/duema-uncapped/kariya-check.log",
+          "rulesBlob": "bf142c9d8b66f2c45e9320b0050fa7a316d93826"
+        },
+        "audit": {
+          "status": "passed",
+          "command": "node tools/audit-card-support.mjs",
+          "log": "/tmp/duema-uncapped/kariya-audit.log"
+        }
+      },
+      "resolvedRegistered": 2,
+      "remainingRegistered": 40,
+      "remainingPrints": 2,
+      "remainingIndividualCards": 35
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1336,
+    "lastVerifiedPhase": 1337,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "アルキングでアイアンラビットンボの裁定2件を確認済み。個別37種類の裁定・金箔再録と、時間上限を外した長時間の分割検証を継続する。",
+    "steps": "カリヤドネを使用した裁定と氷駆の妖精・ワルドバロムの組み合わせを確認済み。個別35種類と長時間の分割検証を継続する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -490029,8 +490084,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8022,
-    "pendingNames": 3804,
+    "supportedNames": 8023,
+    "pendingNames": 3803,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -534024,8 +534079,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8022,
-      "pendingNames": 3804,
+      "supportedNames": 8023,
+      "pendingNames": 3803,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -535052,7 +535107,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別37種類（裁定42件・版固有の金箔再録2件、重複1種類）と長時間対戦・ワーカーの検証が継続中。Netlifyを更新せずにPagesへ公開する経路の確認も必要。",
+        "reason": "個別35種類（裁定40件・版固有の金箔再録2件、重複1種類）と長時間対戦・ワーカーの検証が継続中。Netlifyを更新せずにPagesへ公開する経路の確認も必要。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -535450,6 +535505,57 @@
             "https://dm.takaratomy.co.jp/rule/qa/43451/"
           ],
           "result": "ラビットンボのシールドとエクストラEXライフの2つを候補に表示。JSON復元後にラビットンボのシールドを選び、置換でアルキングを残した。シールド離脱で誘発した能力も解決できた。"
+        },
+        {
+          "cardId": "dm22rp1-014",
+          "dependencyIds": [
+            "dmrp11-s04"
+          ],
+          "test": "魔導管理室 カリヤドネ / ハーミット・サークルを選んだ場合、呪文側だけを使用できる。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/42147/",
+          "phase": 1337,
+          "path": "tests/standard1337-effects.test.mjs",
+          "log": "/tmp/duema-uncapped/kariya-focused.log",
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/42147/",
+            "https://dm.takaratomy.co.jp/rule/qa/42076/",
+            "https://dm.takaratomy.co.jp/rule/qa/40163/",
+            "https://dm.takaratomy.co.jp/rule/qa/40428/",
+            "https://dm.takaratomy.co.jp/rule/qa/39405/",
+            "https://dm.takaratomy.co.jp/rule/qa/39390/",
+            "https://dm.takaratomy.co.jp/rule/qa/46623/"
+          ],
+          "result": "実物のカリヤドネが墓地にある時の使用許可を確認。コスト3で呪文面だけを唱え、相手のクリーチャーをタップして次のアンタップを止めた。"
+        },
+        {
+          "cardId": "dm22rp2-S7",
+          "dependencyIds": [],
+          "test": "氷駆の妖精のシビルカウント５と悪魔世界ワルドバロムの既存マナを０にする効果が重なった場合の優先順位。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/45911/",
+          "path": "tests/standard1282-effects.test.mjs",
+          "log": "/tmp/duema-uncapped/kariya-mana.log",
+          "reverification": {
+            "passed": 39,
+            "log": "/tmp/duema-verify-remaining/mana-takonchu-final.log",
+            "official": [
+              "https://dm.takaratomy.co.jp/rule/qa/45911/",
+              "https://dm.takaratomy.co.jp/rule/qa/45912/",
+              "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+            ],
+            "result": "QA45911の既存マナと解決後に置くマナの区別は再検証済み。QA45912は水晶ソウル3の支払い時の裁定。氷駆の妖精の常在型能力との優先関係を直接示す資料は未特定。"
+          },
+          "rechecked1335": {
+            "summary": "後から置いたマナに0が適用されない裁定と、水晶ソウルの支払い時に値を3へ変更できる裁定を照合。既存マナのシビルカウント5との優先順位を直接示す公式資料は未確認。",
+            "sources": [
+              "https://dm.takaratomy.co.jp/rule/qa/45911/",
+              "https://dm.takaratomy.co.jp/rule/qa/45912/"
+            ]
+          },
+          "phase": 1337,
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/45911/"
+          ],
+          "result": "既存テストを再実行し、氷駆の妖精の条件を満たしている相手にワルドバロムが出た時、すでにあったマナの数字は0、次のターンにチャージしたカードは2になることを確認した。"
         }
       ],
       "remainingRegistered": [
@@ -535653,15 +535759,6 @@
           "source": "https://dm.takaratomy.co.jp/rule/qa/40832/"
         },
         {
-          "cardId": "dm22rp1-014",
-          "dependencyIds": [
-            "dmrp11-s04"
-          ],
-          "test": "魔導管理室 カリヤドネ / ハーミット・サークルを選んだ場合、呪文側だけを使用できる。",
-          "reason": "指定ツインパクトが未対応。別の実カードによる呪文側のみの使用と実際の解決は固有テストで通過。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/42147/"
-        },
-        {
           "cardId": "dmex18-s10",
           "dependencyIds": [
             "dmbd12-g01",
@@ -535794,32 +535891,6 @@
           "reason": "ドキンダムエリアの離脱置換を実カードで確認。ケンゲキオージャの実カードが未対応。"
         },
         {
-          "cardId": "dm22rp2-S7",
-          "dependencyIds": [],
-          "test": "氷駆の妖精のシビルカウント５と悪魔世界ワルドバロムの既存マナを０にする効果が重なった場合の優先順位。",
-          "reason": "実行結果は既存マナが０、解決後にチャージしたカードが２。QA 45911は後から置かれたカードだけを扱うため、両方の効果が既存マナに適用される場合の公式根拠は未確認。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/45911/",
-          "path": "tests/standard1282-effects.test.mjs",
-          "log": "/tmp/duema-phase-1282/focus-final.log",
-          "reverification": {
-            "passed": 39,
-            "log": "/tmp/duema-verify-remaining/mana-takonchu-final.log",
-            "official": [
-              "https://dm.takaratomy.co.jp/rule/qa/45911/",
-              "https://dm.takaratomy.co.jp/rule/qa/45912/",
-              "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
-            ],
-            "result": "QA45911の既存マナと解決後に置くマナの区別は再検証済み。QA45912は水晶ソウル3の支払い時の裁定。氷駆の妖精の常在型能力との優先関係を直接示す資料は未特定。"
-          },
-          "rechecked1335": {
-            "summary": "後から置いたマナに0が適用されない裁定と、水晶ソウルの支払い時に値を3へ変更できる裁定を照合。既存マナのシビルカウント5との優先順位を直接示す公式資料は未確認。",
-            "sources": [
-              "https://dm.takaratomy.co.jp/rule/qa/45911/",
-              "https://dm.takaratomy.co.jp/rule/qa/45912/"
-            ]
-          }
-        },
-        {
           "cardId": "dm23rp4-046",
           "dependencyIds": [
             "dmrp11-s06"
@@ -535949,10 +536020,11 @@
           "dmc40-006",
           "dmc40-008",
           "dmrp15-009",
-          "dm22ex2-S15"
+          "dm22ex2-S15",
+          "dmrp11-s04"
         ],
-        "officialPrints": 57,
-        "newAliases": 46,
+        "officialPrints": 59,
+        "newAliases": 47,
         "evidence": [
           {
             "id": "dm23rp2-065",
@@ -536412,6 +536484,22 @@
             "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex2-8B.jpg",
             "pageSha256": "ad65071052e670ea494b69d9366ea7e9dd0e9b82d7dfb79d767cd29380567717",
             "imageSha256": "909ee47017b6ff5c754636c62d120c20fb01070eb143c4564f5b565baa2b2456"
+          },
+          {
+            "id": "dmrp11-s04",
+            "canonicalId": "dmrp11-s04",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-s04",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-s04a.jpg",
+            "pageSha256": "b6ff385d07ee0134b4b3e2bcf2b5f50ccb8818ba452904d0bd30b51fc9117aa3",
+            "imageSha256": "ed814f6f1d3cdf909d25e7b55dc3e303c24585abd539f17f3bbf965af55570b8"
+          },
+          {
+            "id": "dm23ex2-ChoG009",
+            "canonicalId": "dmrp11-s04",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-ChoG009",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex2-ChoG009a.jpg",
+            "pageSha256": "60db0ed17e4e25742065665dc8f94e522e52d8e59c3504bc39ab08a45db16dd0",
+            "imageSha256": "5a81d9df34e17d06a2fe2bddb6f5f06ea65c84d2f63aa4b7dc25001c59d8fc32"
           }
         ],
         "testLog": "/tmp/duema-verify-8009/verification-followup-prints.log",
@@ -536807,8 +536895,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8022,
-        "pending": 3804,
+        "supported": 8023,
+        "pending": 3803,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -537408,9 +537496,8 @@
       "finalCheck": {
         "status": "passed",
         "command": "npm run check",
-        "log": "/tmp/duema-uncapped/arking-check.log",
-        "rulesBlob": "447c8b2dfa337349db65eb56d319134fe43b5268",
-        "phoenixBlob": "fb8973d1ef86f47dd7ad2eb2133a2bb1e25c946d"
+        "log": "/tmp/duema-uncapped/kariya-check.log",
+        "rulesBlob": "bf142c9d8b66f2c45e9320b0050fa7a316d93826"
       },
       "abyssShort": {
         "passed": 33,
@@ -537468,10 +537555,6 @@
         {
           "id": "dmx15-005",
           "name": "禁術のカルマ カレイコ"
-        },
-        {
-          "id": "dmrp11-s04",
-          "name": "魔導管理室 カリヤドネ / ハーミット・サークル"
         },
         {
           "id": "dmbd12-g01",
@@ -537602,66 +537685,59 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1336,
-        "baseline": "3f87d5f0",
-        "before": 8021,
-        "supported": 8022,
+        "phase": 1337,
+        "baseline": "69e72052",
+        "before": 8022,
+        "supported": 8023,
         "duplicates": 0,
         "added": [
           {
-            "id": "dm22ex2-S15",
-            "name": "不敬合成王 ロマティックダム・アルキング"
+            "id": "dmrp11-s04",
+            "name": "魔導管理室 カリヤドネ / ハーミット・サークル"
           }
         ],
-        "printAliases": 3,
+        "printAliases": 1,
         "results": {
           "focus": {
-            "passed": 6,
-            "log": "/tmp/duema-uncapped/arking-focus-final.log",
-            "command": "node --test tests/standard1336-effects.test.mjs",
-            "seconds": 1.224
+            "passed": 7,
+            "log": "/tmp/duema-uncapped/kariya-focused.log",
+            "command": "node --test tests/standard1337-effects.test.mjs",
+            "seconds": 4.005
           },
           "regression": {
-            "passed": 79,
-            "log": "/tmp/duema-uncapped/arking-regression.log",
-            "command": "node --test --test-concurrency=2 tests/standard{1274,1301,1304,1308,1333,1334,1335,1336}-effects.test.mjs",
-            "seconds": 10.132
+            "passed": 62,
+            "log": "/tmp/duema-uncapped/kariya-regression.log",
+            "command": "node --test --test-concurrency=2 tests/standard{598,1109,1226,1300,1336,1337}-effects.test.mjs",
+            "seconds": 12.889
           },
-          "sasage": {
+          "puppet": {
             "passed": 15,
-            "log": "/tmp/duema-uncapped/arking-sasage.log",
-            "command": "node --test tests/sasage-neo-evolution.test.mjs",
-            "seconds": 1.434
+            "log": "/tmp/duema-uncapped/kariya-puppet.log",
+            "command": "node --test tests/requested393-puppet.test.mjs",
+            "seconds": 2.313
           },
-          "phoenix": {
-            "passed": 6,
-            "log": "/tmp/duema-uncapped/arking-phoenix.log",
-            "command": "node --test --test-name-pattern=\"^(Dark King|Poppo|V evolution|Xeno)\" tests/phoenix-photo.test.mjs",
-            "seconds": 0.778
-          },
-          "original": {
-            "passed": 9,
-            "log": "/tmp/duema-uncapped/arking-original.log",
-            "command": "node --test --test-name-pattern=\"^(Hyakume|Sasage|multiple Sasage|Rinne and Sasage|Fuujin prevents)\" tests/original-champion-effects.test.mjs",
-            "seconds": 0.89
+          "mana": {
+            "passed": 2,
+            "log": "/tmp/duema-uncapped/kariya-mana.log",
+            "command": "node --test --test-name-pattern=\"only mana present|Fairy changes zero\" tests/standard1282-effects.test.mjs",
+            "seconds": 1.835
           },
           "check": {
             "status": "passed",
             "command": "npm run check",
-            "log": "/tmp/duema-uncapped/arking-check.log",
-            "rulesBlob": "447c8b2dfa337349db65eb56d319134fe43b5268",
-            "phoenixBlob": "fb8973d1ef86f47dd7ad2eb2133a2bb1e25c946d"
+            "log": "/tmp/duema-uncapped/kariya-check.log",
+            "rulesBlob": "bf142c9d8b66f2c45e9320b0050fa7a316d93826"
           },
           "audit": {
             "status": "passed",
             "command": "node tools/audit-card-support.mjs",
-            "log": "/tmp/duema-uncapped/arking-audit.log"
+            "log": "/tmp/duema-uncapped/kariya-audit.log"
           }
         },
         "resolvedRegistered": 2,
-        "remainingRegistered": 42,
+        "remainingRegistered": 40,
         "remainingPrints": 2,
-        "remainingIndividualCards": 37
+        "remainingIndividualCards": 35
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
@@ -539737,7 +539813,32 @@
         "plan": "/tmp/duema-uncapped/plan.json",
         "results": "/tmp/duema-uncapped/results.jsonl",
         "command": "python3 /tmp/duema-uncapped/run-tests.py",
-        "reason": "ユーザー指示により時間上限を解除。未確認テスト名をフィルタ指定し、前の一括実行は中断・合否未確認のまま保持。"
+        "reason": "ユーザー指示により時間上限を解除。未確認テスト名をフィルタ指定し、前の一括実行は中断・合否未確認のまま保持。",
+        "snapshot": {
+          "completeGroups": 12,
+          "passedNamedTests": 25,
+          "failedNamedTests": 1,
+          "enginePairings": {
+            "seconds": 643.82,
+            "games": 72,
+            "result": "通過"
+          },
+          "onlineMatch": {
+            "result": "通過"
+          },
+          "tournamentFixtures": {
+            "plan": "/tmp/duema-uncapped/fixture-plan.json",
+            "results": "/tmp/duema-uncapped/fixture-results.jsonl",
+            "plannedGroups": 53,
+            "completedGroups": 13,
+            "passedGroups": 13,
+            "status": "実行中"
+          },
+          "aiCoverage": {
+            "result": "旧レポートの入力指紋が現行データと不一致。現行入力85デッキ255試合を再実行中。",
+            "log": "/tmp/duema-uncapped/ai-audit-run.log"
+          }
+        }
       }
     }
   },

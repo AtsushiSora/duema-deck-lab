@@ -1423,6 +1423,25 @@ export function createSixPhotoRules(api){
    c.type==='spell'&&cost(c)<=t.max&&api.canCast(s,t.p,c,'grave',p)?[opt((p===t.p?'自分：':'相手：')+c.name,{uid:x.uid,owner:p,face,serial:x.zoneSerial||0},15+cost(c),x.cardId)]:[]
   )):[]);
  }
+ function kariyaSpellOptions1337(s,t){
+  if(!api.canMoveZone(s,t.p,'grave'))return [];
+  return s.players[t.p].grave.flatMap(x=>{
+   if(x.faceDown||t.picks?.some(pick=>pick.uid===x.uid))return [];
+   return faces(api.zoneCard(s,t.p,x,'grave')).flatMap((c,face)=>
+    c.type==='spell'&&cost(c)<=3?[opt(c.name,{uid:x.uid,face},15+cost(c),x.cardId)]:[]);
+  });
+ }
+ function reserveKariyaSpells1337(s,t){
+  const own=s.players[t.p];
+  // All choices become pending before the first spell resolves (QA42076).
+  for(const {uid} of t.picks||[]){
+   const x=remove(own.grave,uid);
+   x.g5Origin='grave';
+   x.g1337GraveHeld=true;
+   (own.g34Holding??=[]).push(x);
+  }
+  put(s,...(t.picks||[]).map(({uid,face})=>({...t,op:'g34_KariyaCast1337',uid,face})));
+ }
  function recastHandSpell1245(s,t){
   if(!api.canMoveZone(s,t.p,'grave'))return null;
   const x=s.players[t.p].grave.find(x=>x.uid===t.target&&(x.zoneSerial||0)===t.serial);
@@ -5715,6 +5734,27 @@ export function createSixPhotoRules(api){
   ]);
   break;
  }
+ case'g34_KariyaSelect1337':{
+  const rows=t.picks?.length===3?[]:kariyaSpellOptions1337(s,t);
+  if(rows.length)choice(s,t,'唱える順に墓地からコスト3以下の呪文を選ぶ（3枚まで）',[...rows,skip()]);
+  else reserveKariyaSpells1337(s,t);
+  break;
+ }
+ case'g34_KariyaCast1337':{
+  const x=own.g34Holding?.find(x=>x.uid===t.uid);
+  if(!x)break;
+  const c=faces(api.zoneCard(s,t.p,x,'grave'))[t.face];
+  if(!api.canCast(s,t.p,c,'grave')){
+   remove(own.g34Holding,x.uid);
+   delete x.g5Origin;
+   delete x.g1337GraveHeld;
+   own.grave.push(x);
+   break;
+  }
+  x.finishTo='deck';
+  cast(s,t.p,x.uid,true,null,t.face,null,'g34Holding',card(t.source).name);
+  break;
+ }
  case'g34_GraveSpell594':choice(s,t,'コスト'+t.max+'以下の呪文をどちらかの墓地から唱える',graveSpellOptions594(s,t));break;
  case'g34_RecastHandSpell1245':{
   if(t.g1250Sacrifice){
@@ -6114,6 +6154,10 @@ export function createSixPhotoRules(api){
  case'g34_PowerSweep696':start(s,t,[{op:'Sweep',both:true,to:'grave',filter:{creature:true,...(v>0?{minPower:v}:{}),maxPower:v,g199Power:true}}]);break;
  case'g34_CostSweep596':start(s,t,[{op:'Sweep',to:'grave',filter:{creature:true,min:v,max:v}}]);break;
  case'g34_GraveHandMana771':put(s,{...t,picks:[...(t.picks||[]),v]});break;
+ case'g34_KariyaSelect1337':
+  if(v)put(s,{...t,picks:[...(t.picks||[]),v]});
+  else reserveKariyaSpells1337(s,t);
+  break;
  case'g34_GraveSpell594':{
   if(!v||!graveSpellOptions594(s,t).some(({value:r})=>r.owner===v.owner&&r.uid===v.uid&&r.face===v.face&&r.serial===v.serial))break;
   const foreign=v.owner!==t.p,origin=foreign?'g34Holding':'grave',grave=s.players[v.owner].grave;

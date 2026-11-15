@@ -258,7 +258,7 @@ export function createFifteenPhotoRules(api){
  played(s,p,c,x,origin,permit){if(c.type!=='spell')execution(s,p);if(permit?.startsWith('g35:'))(s.g35Permits??={})[permit]=s.turn;},
  discarded(s,t,x,actual){if(actual&&j(card(x)))for(const w of active(s,t.p,'joragon'))on(s,t.p,w,'copyEntry',{copy:x.cardId});},
  graveAdded(s,p,all){for(const x of all)if(card(x).g35Role==='iwashin')on(s,p,x,'iwashin');for(const w of active(s,1-p,'venom'))if(!used(s,'g35FirstGrave',w)){mark(s,'g35FirstGrave',w);queue(s,1-p,w,[E('Draw',{n:1,optional:true})]);}},
- graveDeparted(s,before){for(const p of[0,1])if(before[p].some(uid=>!s.players[p].grave.some(x=>x.uid===uid)))for(const x of s.players[p].battle)if(soul(s,x,'heel')&&!used(s,'g35GraveLeft',x)){mark(s,'g35GraveLeft',x);queue(s,p,x,[E('Draw',{n:1,optional:true})]);}},
+ graveDeparted(s,before,after){for(const p of[0,1])if(before[p].some(uid=>!after[p].includes(uid)))for(const x of s.players[p].battle)if(soul(s,x,'heel')&&!used(s,'g35GraveLeft',x)){mark(s,'g35GraveLeft',x);queue(s,p,x,[E('Draw',{n:1,optional:true})]);}},
  shieldAdded(s,p){for(const x of s.players[p].grave.filter(x=>card(x).g35Role==='container'))on(s,p,x,'containerRevive',{target:x.uid});},
  block(s,p,x){if(hasRole(effective(x,s),'galaxy'))on(s,p,x,'galaxyAttack');},
  unsealed(s,p,uid){const x=s.players[p].battle.find(x=>x.uid===uid);if(!x||(s.players[p].seals||[]).some(y=>y.sealOf===uid))return;if(card(x).g35Role==='vv')queue(s,p,x,[C('extraTurn')]);if(card(x.cardId).g35Role==='skull')on(s,p,x,'skullOpen');},

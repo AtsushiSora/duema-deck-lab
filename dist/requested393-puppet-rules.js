@@ -10,7 +10,7 @@ export function createRequested393PuppetRules(api){
  const sources=(s,p)=>s.players[p].battle.filter(x=>!x.sealed&&!api.ignored(s,x)&&effective(x,s).g393PNaga).map(x=>({uid:x.uid,incarnation:x.incarnation||0,source:x.cardId}));
  return{run,chosen,
   effect(s,p,c,uid){if(!c.g393PNaga)return false;const x=s.players[p].battle.find(x=>x.uid===uid);put(s,task('g393P_NagaEntry',p,c.id,{uid,incarnation:x?.incarnation||0}));return true;},
-  graveSnapshot(s){return s.players.map((own,p)=>s.g393PGraveFirst?.[p]===s.turn?null:{rows:own.grave.map(x=>[x.uid,x.zoneSerial||0]),sources:sources(s,p)});},
-  graveObserved(s,before){if(!before)return false;let queued=false;for(let p=0;p<2;p++){const row=before[p];if(!row||s.g393PGraveFirst?.[p]===s.turn)continue;const now=new Map(s.players[p].grave.map(x=>[x.uid,x.zoneSerial||0]));if(!row.rows.some(([uid,serial])=>!now.has(uid)||now.get(uid)!==serial))continue;(s.g393PGraveFirst??={})[p]=s.turn;for(const x of row.sources){queued=true;api.enqueue(s,p,{...x,effect:'extended',task:task('g393P_NagaFirst',p,x.source,x)});}}return queued;}
+  graveSnapshot(s){return s.players.map((_,p)=>s.g393PGraveFirst?.[p]===s.turn?null:{rows:api.graveCardsWithPending(s,p).map(x=>[x.uid,x.zoneSerial||0]),sources:sources(s,p)});},
+  graveObserved(s,before){if(!before)return false;let queued=false;for(let p=0;p<2;p++){const row=before[p];if(!row||s.g393PGraveFirst?.[p]===s.turn)continue;const now=new Map(api.graveCardsWithPending(s,p).map(x=>[x.uid,x.zoneSerial||0]));if(!row.rows.some(([uid,serial])=>!now.has(uid)||now.get(uid)!==serial))continue;(s.g393PGraveFirst??={})[p]=s.turn;for(const x of row.sources){queued=true;api.enqueue(s,p,{...x,effect:'extended',task:task('g393P_NagaFirst',p,x.source,x)});}}return queued;}
  };
 }
