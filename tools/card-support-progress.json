@@ -536578,7 +536578,30 @@
           ],
           "test": "パワーが0に固定され、山札切れで敗北しない場合の強制ループと競技上の再試合。",
           "reason": "山札とパワーが変化しない場合は自動再処理の反復を打ち切る。競技規定4.5の再試合への移行は現行の対戦終了処理では未検証。",
-          "source": "https://dm.takaratomy.co.jp/img/dm_competition_rule_20250501.pdf"
+          "source": "https://dm.takaratomy.co.jp/img/dm_competition_rule_20250501.pdf",
+          "latestReproduction": {
+            "commit": "125ea7e1",
+            "cards": [
+              "dm23rp1-S3",
+              "dmex15-b025",
+              "dmr20-003"
+            ],
+            "steps": "先攻がder’Zen Mondoの呪文側を唱え、山札を0枚にし敗北防止を有効にする。相手のタコンチュを永遠の無でパワー0にする。",
+            "observed": {
+              "p0Deck": 0,
+              "p0Hand": 5,
+              "protected": true,
+              "power": 0,
+              "replacementCount": 3,
+              "winner": null,
+              "phase": "main",
+              "reason": "",
+              "canContinueAttackPhase": true
+            },
+            "log": "/tmp/duema-uncapped/forced-loop-125ea7e1.log",
+            "expected": "両者に選択肢がない強制ループでは競技イベント運営ルール4.5に従って進行中のゲームを中断し再試合する。",
+            "compatibility": "対戦の状態と結果には2人の勝者か継続中しか表せない。再試合の結果、通信と履歴の扱いは今回未変更。"
+          }
         },
         {
           "cardId": "dmr21-004",
@@ -540779,6 +540802,34 @@
             "workerGames": 260,
             "seconds": 7600.49,
             "log": "/tmp/duema-uncapped/logs/0008.log"
+          },
+          "pendingOfficialSources": {
+            "commit": "125ea7e1",
+            "status": "未解消",
+            "cases": 27,
+            "checkedSources": 29,
+            "availableSources": 29,
+            "log": "/tmp/duema-uncapped/official-pending-125ea7e1/sources.json",
+            "result": "保留中の裁定の公式参照先に全件到達。実カードの対戦結果が不足するケースと、キーワードの包含関係を直接説明する裁定が未確認のケースを引き続き保留。"
+          },
+          "currentOnline": {
+            "commit": "125ea7e1",
+            "passed": 10,
+            "failed": 0,
+            "seconds": 44.471,
+            "log": "/tmp/duema-uncapped/current-online-125ea7e1.log",
+            "result": "2アカウントの通し対戦、暗号化保存と再接続、旧デッキ、ルールの指紋の不一致、アドバンスの公開・非公開ゾーンを確認。"
+          },
+          "currentAiAudit": {
+            "commit": "125ea7e1",
+            "status": "実行中",
+            "decks": 85,
+            "planned": 255,
+            "completed": 11,
+            "failures": 0,
+            "log": "/tmp/duema-uncapped/current-ai-audit.log",
+            "report": "/tmp/duema-uncapped/current-ai-audit.json",
+            "result": "ルールソースの異なる検証済みコミットで、85デッキの合法性、物理カードの保持、JSON復元と非公開情報の扱いを再検証中。"
           }
         },
         "latestRegisteredRulings": {
