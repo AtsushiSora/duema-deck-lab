@@ -151,3 +151,23 @@ for(const path of [HATCH,DELETE])for(const outcome of ['stay','grave'])test('QA4
  assert.ok(inZone(s,0,'shields',other));
  assert.ok(!inZone(s,0,'battle',shield));
 });
+
+test('rule 310.8 moves an attached aura with a GR creature chosen by Rakujo no Kei',()=>{
+ const s=field(),{host,aura:attached}=aura(s);
+ s.active=1;s.phase='main';
+ cast(s,'dmr15-041');
+ pick(s,host.uid);
+ assert.ok(inZone(s,0,'hand',attached));
+ assert.ok(inZone(s,0,'gr',host));
+ assert.ok(!inZone(s,0,'grave',attached));
+});
+
+test('Jokers Heart counts the GR and its aura before the GR returns to the extra deck',()=>{
+ const s=field(),{host,aura:attached}=aura(s),n=s.players[0].shields.length;
+ cast(s,'dmex19-023');
+ const heart=s.players[0].battle.find(x=>x.cardId==='dmex19-023');
+ pick(s,heart.uid);pick(s,null);
+ assert.equal(s.players[0].shields.length,n+2);
+ assert.ok(inZone(s,0,'gr',host));
+ assert.ok(inZone(s,0,'deck',attached)||inZone(s,0,'shields',attached));
+});

@@ -1615,6 +1615,11 @@ function leaveOptions(s,row){
 }
 function shevaProtection(s,p){const own=s.players[p];return own.battle.some(x=>effectiveCard(x,s).sheva)&&new Set(own.battle.map(x=>costValue(card(x)))).size>=5;}
 function addDepartingCards(s,row,to,cards){
+ const heart=s.leaving?.after;
+ if(to==='deck'&&heart?.kind==='jokerHeart1355'){
+  for(const x of cards)if(card(x.cardId)?.gr&&heart.uids[row.player].includes(x.uid))
+   heart.grArrivals[row.player].push(x.uid);
+ }
  if(to==='grave')for(const x of cards){
   if(card(x.cardId)?.carolReturns&&(row.replacement||row.carolReplacementChecked||x.uid!==row.uid))skipCarolReturn.add(x);
   if(card(x.cardId)?.g1346GraveShuffle&&(row.replacement||x.uid===row.uid||row.plan?.kind==='gneo'))skipGraveShuffle1346.add(x);
@@ -2036,8 +2041,8 @@ function advanceLeaving(s){if(s.lossEvent)return;
    if(s.attack?.attacker===top.uid)s.attack.attacker=base.uid;if(s.attack?.target===top.uid)s.attack.target=base.uid;
    extra.inherit(s,top,base);extra.leaving(s,row.player,top,row.leaveKaku,batch.snapshot,row.to,row.to==='grave'&&row.destroy!==false);if(row.to==='grave')rememberBattleGrave(s,row.player,[top],batch);clearBattleState(top,row.to);if(row.faceDown){top.faceDown=true;top.tapped=false;}else if(row.tapped&&row.to==='mana')top.tapped=true;if(row.faceUp&&row.to==='shields')top.faceUp=true;if(row.to==='deckTop')placeOnTop(row,[top]);else if(row.shieldAttach)addShieldCard(s,row.player,row.shieldAttach,top);else if(row.g731Shuffling)returnAndShuffle(row,[top],top.cardId);else addDepartingCards(s,row,row.to,[top]);log(s,row.player,'reconstruct',`${card(top).name}だけが${({hand:'手札',mana:'マナ',grave:'墓地',deck:row.g731Shuffling?'山札':'山札の下',deckTop:'山札の上',shields:'シールド',extra:'超次元ゾーン'})[row.to]||row.to}へ移動し、下の${card(base).name}が残る`,{cardId:top.cardId});
   }
-  else{remove(own.battle,top.uid);if(s.attack&&(s.attack.attacker===top.uid||s.attack.target===top.uid))s.attack=null;const to=row.to==='grave'&&row.death?row.death:row.to,auras=attachedAuras1352(s,row.player,top),cards=[...layers(top),...auras];
-   for(const aura of auras){remove(own.battle,aura.uid);extra.leaving(s,row.player,aura,false,batch.snapshot,to,false);}if(to==='grave'||row.cardOnly)rememberEvolutionGraveSources(s,row.player,top,to==='grave'?cards:cards.slice(1),batch);if(row.g1089OrderDeck&&to==='deck')for(const owner of [row.player,1-row.player]){const rows=bottomCards(row,top).filter(r=>(cards.find(x=>x.uid===r.uid)?.cardOwner??row.player)===owner);if(rows.length>1)(batch.bottomOrders??=[]).push(extra.task('g78_BottomOrder',owner,top.cardId,{rows,ordered:[],newCards:true}));}if(row.cardOnly){const rest=cards.splice(1);for(const x of rest)clearBattleState(x,'grave');addZone(s,own,'grave',...rest);}extra.leaving(s,row.player,top,row.leaveKaku,batch.snapshot,to,row.destroy!==false&&to==='grave');for(const x of cards){clearBattleState(x,to);if(row.faceDown){x.faceDown=true;x.tapped=false;}else if(row.tapped&&to==='mana')x.tapped=true;if(to==='shields'&&(row.faceUp||auras.includes(x)))x.faceUp=true;}if(to==='deckTop')placeOnTop(row,cards);else if(row.shieldAttach)for(const x of cards)addShieldCard(s,row.player,row.shieldAttach,x);else if(row.g731Shuffling)returnAndShuffle(row,cards,top.cardId);else if(to==='shields'&&(auras.length||row.g1069DestroyShieldStack&&cards.length>1)){
+  else{remove(own.battle,top.uid);if(s.attack&&(s.attack.attacker===top.uid||s.attack.target===top.uid))s.attack=null;const to=row.to==='grave'&&row.death?row.death:row.to,auras=attachedAuras1352(s,row.player,top),creatureCards=layers(top),cards=[...creatureCards,...auras];
+   for(const aura of auras){remove(own.battle,aura.uid);extra.leaving(s,row.player,aura,false,batch.snapshot,to,false);}if(to==='grave'||row.cardOnly)rememberEvolutionGraveSources(s,row.player,top,to==='grave'?cards:creatureCards.slice(1),batch);if(row.g1089OrderDeck&&to==='deck')for(const owner of [row.player,1-row.player]){const rows=bottomCards(row,top).filter(r=>(cards.find(x=>x.uid===r.uid)?.cardOwner??row.player)===owner);if(rows.length>1)(batch.bottomOrders??=[]).push(extra.task('g78_BottomOrder',owner,top.cardId,{rows,ordered:[],newCards:true}));}if(row.cardOnly){const rest=cards.splice(1,creatureCards.length-1);for(const x of rest)clearBattleState(x,'grave');addZone(s,own,'grave',...rest);}extra.leaving(s,row.player,top,row.leaveKaku,batch.snapshot,to,row.destroy!==false&&to==='grave');for(const x of cards){clearBattleState(x,to);if(row.faceDown){x.faceDown=true;x.tapped=false;}else if(row.tapped&&to==='mana')x.tapped=true;if(to==='shields'&&(row.faceUp||auras.includes(x)))x.faceUp=true;}if(to==='deckTop')placeOnTop(row,cards);else if(row.shieldAttach)for(const x of cards)addShieldCard(s,row.player,row.shieldAttach,x);else if(row.g731Shuffling)returnAndShuffle(row,cards,top.cardId);else if(to==='shields'&&(auras.length||row.g1069DestroyShieldStack&&cards.length>1)){
    cards[0].shieldStack=cards.slice(1);
    addZone(s,own,to,cards[0]);
   }else addDepartingCards(s,row,to,cards);if(to==='shields'&&!row.shieldAttach)for(const x of cards)extra.shieldAdded(s,row.toOwnerShields?x.cardOwner??row.player:row.player,x);log(s,row.player,'leave',`${card(top).name}${cards.length>1?`と進化元${cards.length-1}枚`:''}が${{grave:'墓地',hand:'手札',mana:'マナ',abyss:'深淵ゾーン',deckTop:row.g731Shuffling?'山札':'山札の下',deckTop:'山札の上',deckFourth:'山札の4枚目（横向き）',shields:'シールド',extra:'超次元ゾーン',abyss:'深淵ゾーン'}[to]}へ移動`,{cardId:top.cardId});}
@@ -2057,6 +2062,13 @@ function advanceLeaving(s){if(s.lossEvent)return;
  if(batch.after?.kind==='manaExchange753')finishManaExchange753(s,batch.after);
  if(batch.after?.kind==='g394Cut')extra.requested394.finishZones(s,batch.after);
  if(batch.after?.kind==='allDelete1347')finishAllDelete1347(s,batch.after);
+ if(batch.after?.kind==='jokerHeart1355'){
+  const {player,source,uids,grArrivals}=batch.after;
+  const counts=s.players.map((own,p)=>new Set([
+   ...own.deck.filter(x=>uids[p].includes(x.uid)).map(x=>x.uid),...grArrivals[p]
+  ]).size);
+  extra.put(s,extra.task('g15_HeartFinish',player,source,{counts}));
+ }
  if(batch.after?.kind==='shieldSaverBreak401'){log(s,batch.after.player,'shieldSaver',`シールド・セイバーでシールド${batch.rows.length}つを残す`);if(batch.after.uids.length)commitBreakReplacements401(s,batch.after.player,batch.after.uids);else s.breakContext=null;}
  const discardTasks=returnDiscards.filter(({uid,owner})=>s.players[owner].hand.some(x=>x.uid===uid)).map(({p,source})=>
   extra.task('discard',p,source,{n:1,causedBy:p,selfDiscard:true,controller:p}));

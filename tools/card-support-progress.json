@@ -490639,6 +490639,42 @@
           "rows": 8041,
           "count": 8041,
           "duplicates": 0
+        },
+        "auraFollowup": {
+          "baseline": "e3323a89",
+          "reason": "公式の2026年4月10日改定に従い、落城の計でGR本体を選んでもオーラは移動先を共有する。ジョーカーズの心絵は、超GRへ戻る前に山札に置かれたGRと山札に置かれたオーラの両方を数える。",
+          "primarySources": [
+            "https://dm.takaratomy.co.jp/rule/rulechange/316683/",
+            "https://dm.takaratomy.co.jp/rule/rulechange/316682/"
+          ],
+          "tests": [
+            {
+              "passed": 7,
+              "failed": 0,
+              "log": "tmp/duema-verification-e3323a89/aura-departure/heart.log"
+            },
+            {
+              "passed": 55,
+              "failed": 0,
+              "log": "tmp/duema-verification-e3323a89/aura-departure/exact-regression.log"
+            }
+          ],
+          "check": {
+            "status": "passed",
+            "log": "tmp/duema-verification-e3323a89/aura-departure/final-check.log"
+          },
+          "audit": {
+            "supported": 8041,
+            "pending": 3785,
+            "ready": 0,
+            "dependencyBlocked": 0,
+            "log": "tmp/duema-verification-e3323a89/aura-departure/audit.log"
+          },
+          "nameKey": {
+            "rows": 8041,
+            "count": 8041,
+            "duplicates": 0
+          }
         }
       },
       "resolvedRegistered": 1,
@@ -538139,6 +538175,15 @@
               }
             ],
             "result": "タカラトミーの発売時アンケートとコロコロのカード紹介の掲載画像を開き、どちらも印刷番号がOR2/OR2であることを目視した。2S/2は保留。"
+          },
+          "lastEvidenceRecheck": {
+            "checkedAt": "2026-11-16",
+            "sources": [
+              "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-2B",
+              "https://dm.takaratomy.co.jp/product/dm22rp1/",
+              "https://dorasuta.jp/duelmasters/product?pid=419611"
+            ],
+            "result": "販売店の2S/2表記を確認。公式製品ページと公式2B/10ページでは2S/2の版を識別できず、公式資料の照合は保留。"
           }
         }
       ],
@@ -539008,7 +539053,7 @@
           "name": "行くよー！アオハル、ハイチーズ！"
         }
       ],
-      "remainingTestsSummary": "独立した分割記録と再検証の通過を追記。未完了の長時間対戦とワーカーを継続中。一括のnpm testは中断・合否未確認。",
+      "remainingTestsSummary": "No.11は分割集計で98試合を確認。No.03・04・06・13・16・21の分割と、残る未検証名の検証を継続。全体のnpm testは中断・合否未確認。",
       "advanceImplementation": {
         "status": "implemented",
         "phases": [
@@ -539103,6 +539148,42 @@
             "rows": 8041,
             "count": 8041,
             "duplicates": 0
+          },
+          "auraFollowup": {
+            "baseline": "e3323a89",
+            "reason": "公式の2026年4月10日改定に従い、落城の計でGR本体を選んでもオーラは移動先を共有する。ジョーカーズの心絵は、超GRへ戻る前に山札に置かれたGRと山札に置かれたオーラの両方を数える。",
+            "primarySources": [
+              "https://dm.takaratomy.co.jp/rule/rulechange/316683/",
+              "https://dm.takaratomy.co.jp/rule/rulechange/316682/"
+            ],
+            "tests": [
+              {
+                "passed": 7,
+                "failed": 0,
+                "log": "tmp/duema-verification-e3323a89/aura-departure/heart.log"
+              },
+              {
+                "passed": 55,
+                "failed": 0,
+                "log": "tmp/duema-verification-e3323a89/aura-departure/exact-regression.log"
+              }
+            ],
+            "check": {
+              "status": "passed",
+              "log": "tmp/duema-verification-e3323a89/aura-departure/final-check.log"
+            },
+            "audit": {
+              "supported": 8041,
+              "pending": 3785,
+              "ready": 0,
+              "dependencyBlocked": 0,
+              "log": "tmp/duema-verification-e3323a89/aura-departure/audit.log"
+            },
+            "nameKey": {
+              "rows": 8041,
+              "count": 8041,
+              "duplicates": 0
+            }
           }
         },
         "resolvedRegistered": 1,
@@ -541566,6 +541647,40 @@
             ],
             "testCaseCommit": "0d6147fe",
             "finalSmoke": "tmp/duema-remaining-1353/no11-final-smoke.log"
+          },
+          "resumedOpponentShards": {
+            "baseline": "e3323a89",
+            "status": "running",
+            "plan": "tmp/duema-verification-e3323a89/plan.json",
+            "results": "tmp/duema-verification-e3323a89/results.jsonl",
+            "resume": "tmp/duema-verification-e3323a89/resume.py",
+            "testHarness": "tmp/duema-verification-e3323a89/snapshot/tests/duema-long-shards.mjs",
+            "plannedParts": 344,
+            "verifiedParts": 12,
+            "loggedFailures": [],
+            "replayGamesPlanned": 886,
+            "workerGamesPlanned": 2460,
+            "replayGamesPassed": 44,
+            "workerGamesPassed": 60,
+            "note": "No.03・04・06・13を対戦相手単位に分割。前回の二つの一時ランナーとログは再開時に消えていた。記録済みの合否は保持し、新しい対象はこの保存先を参照。現在の実行が終了したことを確認してから中断分のみ再開する。",
+            "legacyFixtures": {
+              "status": "running",
+              "files": [
+                "tests/gransect-effects.test.mjs",
+                "tests/kiyonaga-effects.test.mjs"
+              ],
+              "plannedOpponents": {
+                "No16": 9,
+                "No21": 10
+              },
+              "plannedReplayGames": 114,
+              "plannedWorkerGames": 380,
+              "plannedRandomSeeds": 75,
+              "passedShards": 4,
+              "failedShards": 0,
+              "results": "tmp/duema-verification-e3323a89/legacy-fixtures/results.jsonl",
+              "note": "もともとの大会4デッキの組み合わせ・順序・乱数を保持し、対戦相手またはシードごとに分割。全対象のログを確認後、テスト差分をコミットする。対象全体を含んだ回帰の試行は中断し、監査対象には足さない。"
+            }
           }
         },
         "latestRegisteredRulings": {
