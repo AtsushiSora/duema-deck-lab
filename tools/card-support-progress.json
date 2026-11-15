@@ -489441,7 +489441,7 @@
     ],
     "restartSteps": [
       "ローカルHEADと作業ツリー、ステージ済み差分、AGENTS.md、実行中のテストを確認する。dist/cards.jsonをnameKeyで再集計する。",
-      "remainingVerificationRunのログと除外テスト一覧を確認し、対戦相手とseedで分割する。レッドゾーンのランダム検証は既に通過したseedを繰り返さない。",
+      "remainingVerificationRunの追加分割結果を確認し、未完了の範囲を対戦相手・シード・カード範囲で検証する。全対応カードの合法経路テストは失敗した9範囲から再開し、既に最後まで通過したカード範囲と対戦シードを繰り返さない。",
       "未検証裁定の再現に必要なカードを、実カードの公式情報と照合して追加する。アリスのビビッドロー公開の順序、アルドラの攻撃制限、スペル・デル・フィンの手札公開範囲を確認する。",
       "残る金箔2版は公式IDと公式画像を照合する。全検証が通過し、Netlifyに影響しない公開経路を確認するまで、公開は保留する。"
     ],
@@ -489506,6 +489506,72 @@
             "cardimage/dm22sd1-SEC.jpg",
             "cardimage/dm22sd1-001S.png"
           ]
+        },
+        "officialSearch": {
+          "source": "https://dm.takaratomy.co.jp/card/",
+          "pages": [
+            "/tmp/duema-verify-remaining/jashin-official-search.html",
+            "/tmp/duema-verify-remaining/jashin-official-search-2.html"
+          ],
+          "results": 51,
+          "ids": [
+            "dm26ex4-SEC025",
+            "dm26ex4-038",
+            "dm26sd1-m004",
+            "dm25ex3-OR2",
+            "dm25ex3-OR3",
+            "dm25ex3-OR4",
+            "dm25rp4-ChoSec01",
+            "dm25rp4-ChoSec06",
+            "dm25rp4-Sec01",
+            "dm25rp4-OR1",
+            "dm25ex2-024",
+            "dm25rp2-Sec01",
+            "dm25rp2-OR1",
+            "dm25rp1-Sec01",
+            "dm25rp1-OR1",
+            "dm25sd1-002",
+            "dm25sd1-001",
+            "dm24ex3-rp1Sec02",
+            "dm24ex3-OR3",
+            "dm24ex3-rp1OR2",
+            "dm24ex3-rp1TR04",
+            "dm24rp1-Sec02",
+            "dm24rp1-OR2",
+            "dm24rp1-TR04",
+            "dm23ex3-OR2",
+            "dm23ex3-ORsec2",
+            "dm23sp1-002",
+            "dm22ex2-S04",
+            "dm22ex2-2A",
+            "dm22ex2-2B",
+            "dm22rp1-OR1",
+            "dm22rp1-1B",
+            "dm22sd1-001",
+            "promoy23-spd1101",
+            "promoy22-spd1001",
+            "promoy21-901",
+            "promoy25-020",
+            "promoy24-001",
+            "promoy24-088",
+            "promoy24-113",
+            "promoy24-118",
+            "promoy24-119",
+            "promoy24-120",
+            "promoy23-000",
+            "promoy23-083",
+            "promoy23-Sec083",
+            "promoy22-062",
+            "promoy21-012",
+            "promoy21-036",
+            "promoy21-051",
+            "promoy21-winjashin1"
+          ],
+          "matchingIds": [
+            "dm22sd1-001",
+            "promoy21-012"
+          ],
+          "result": "2ページを照合。公式商品画像で金箔版の印字は確認済みだが、公式カード検索でその版固有のIDを特定できなかった。"
         }
       },
       {
@@ -489545,7 +489611,38 @@
             "cardimage/dm22rp1-2S.png",
             "cardimage/dm22rp1-2S.webp"
           ]
-        }
+        },
+        "officialSearch": {
+          "source": "https://dm.takaratomy.co.jp/card/",
+          "pages": [
+            "/tmp/duema-verify-remaining/dran-official-search.html"
+          ],
+          "results": 10,
+          "ids": [
+            "dm25rp1-Sec16",
+            "dm25rp1-012",
+            "dm24ex3-rp3Sec01",
+            "dm24ex3-OR1",
+            "dm24ex3-rp3OR1",
+            "dm24rp3-Sec001",
+            "dm24rp3-OR01",
+            "dm22rp1-OR2",
+            "dm22rp1-2B",
+            "promoy24-021"
+          ],
+          "matchingIds": [
+            "dm22rp1-OR2",
+            "dm22rp1-2B"
+          ],
+          "result": "DM22-RP1の検索結果は通常版OR2と2B。2S/2の公式画像と個別IDを特定できなかった。"
+        },
+        "officialRelease": {
+          "source": "https://www.takaratomy.co.jp/product_release/pdf/p220805_02.pdf",
+          "page": 3,
+          "cardNumber": "OR2/OR2",
+          "sha256": "781d02b605779f5801d854c1cff147e7e05c9c8ca20c3156679fb0f796594094"
+        },
+        "physicalPrintReference": "https://dorasuta.jp/duelmasters/product?pid=419611"
       }
     ]
   },
@@ -534579,7 +534676,17 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "残る裁定51件、再録2件、除外した長時間・ワーカー試験が未確認。ローカルで確認したmainのpushワークフローにはNetlify本番デプロイが含まれ、Pagesのみの公開経路は未確認。"
+        "reason": "残る裁定51件、再録2件、長時間テストとワーカーの未確認範囲が残る。GitHubから読み直したmainのワークフローにNetlify本番デプロイがあり、Netlifyを更新しないPages公開経路は未確認。",
+        "remoteWorkflowFiles": {
+          "pages": {
+            "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
+            "blob": "406411a7e2e225e751ac635d630ea9a95c4d424b"
+          },
+          "netlify": {
+            "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/netlify.yml",
+            "blob": "264d438e199883f7db33c84e6ca18c7925711012"
+          }
+        }
       },
       "resolvedRegistered": [
         {
@@ -535197,7 +535304,17 @@
           "reason": "実行結果は既存マナが０、解決後にチャージしたカードが２。QA 45911は後から置かれたカードだけを扱うため、両方の効果が既存マナに適用される場合の公式根拠は未確認。",
           "source": "https://dm.takaratomy.co.jp/rule/qa/45911/",
           "path": "tests/standard1282-effects.test.mjs",
-          "log": "/tmp/duema-phase-1282/focus-final.log"
+          "log": "/tmp/duema-phase-1282/focus-final.log",
+          "reverification": {
+            "passed": 39,
+            "log": "/tmp/duema-verify-remaining/mana-takonchu-final.log",
+            "official": [
+              "https://dm.takaratomy.co.jp/rule/qa/45911/",
+              "https://dm.takaratomy.co.jp/rule/qa/45912/",
+              "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+            ],
+            "result": "QA45911の既存マナと解決後に置くマナの区別は再検証済み。QA45912は水晶ソウル3の支払い時の裁定。氷駆の妖精の常在型能力との優先関係を直接示す資料は未特定。"
+          }
         },
         {
           "cardId": "dm23rp4-046",
@@ -535571,6 +535688,72 @@
               "cardimage/dm22sd1-SEC.jpg",
               "cardimage/dm22sd1-001S.png"
             ]
+          },
+          "officialSearch": {
+            "source": "https://dm.takaratomy.co.jp/card/",
+            "pages": [
+              "/tmp/duema-verify-remaining/jashin-official-search.html",
+              "/tmp/duema-verify-remaining/jashin-official-search-2.html"
+            ],
+            "results": 51,
+            "ids": [
+              "dm26ex4-SEC025",
+              "dm26ex4-038",
+              "dm26sd1-m004",
+              "dm25ex3-OR2",
+              "dm25ex3-OR3",
+              "dm25ex3-OR4",
+              "dm25rp4-ChoSec01",
+              "dm25rp4-ChoSec06",
+              "dm25rp4-Sec01",
+              "dm25rp4-OR1",
+              "dm25ex2-024",
+              "dm25rp2-Sec01",
+              "dm25rp2-OR1",
+              "dm25rp1-Sec01",
+              "dm25rp1-OR1",
+              "dm25sd1-002",
+              "dm25sd1-001",
+              "dm24ex3-rp1Sec02",
+              "dm24ex3-OR3",
+              "dm24ex3-rp1OR2",
+              "dm24ex3-rp1TR04",
+              "dm24rp1-Sec02",
+              "dm24rp1-OR2",
+              "dm24rp1-TR04",
+              "dm23ex3-OR2",
+              "dm23ex3-ORsec2",
+              "dm23sp1-002",
+              "dm22ex2-S04",
+              "dm22ex2-2A",
+              "dm22ex2-2B",
+              "dm22rp1-OR1",
+              "dm22rp1-1B",
+              "dm22sd1-001",
+              "promoy23-spd1101",
+              "promoy22-spd1001",
+              "promoy21-901",
+              "promoy25-020",
+              "promoy24-001",
+              "promoy24-088",
+              "promoy24-113",
+              "promoy24-118",
+              "promoy24-119",
+              "promoy24-120",
+              "promoy23-000",
+              "promoy23-083",
+              "promoy23-Sec083",
+              "promoy22-062",
+              "promoy21-012",
+              "promoy21-036",
+              "promoy21-051",
+              "promoy21-winjashin1"
+            ],
+            "matchingIds": [
+              "dm22sd1-001",
+              "promoy21-012"
+            ],
+            "result": "2ページを照合。公式商品画像で金箔版の印字は確認済みだが、公式カード検索でその版固有のIDを特定できなかった。"
           }
         },
         {
@@ -535610,7 +535793,38 @@
               "cardimage/dm22rp1-2S.png",
               "cardimage/dm22rp1-2S.webp"
             ]
-          }
+          },
+          "officialSearch": {
+            "source": "https://dm.takaratomy.co.jp/card/",
+            "pages": [
+              "/tmp/duema-verify-remaining/dran-official-search.html"
+            ],
+            "results": 10,
+            "ids": [
+              "dm25rp1-Sec16",
+              "dm25rp1-012",
+              "dm24ex3-rp3Sec01",
+              "dm24ex3-OR1",
+              "dm24ex3-rp3OR1",
+              "dm24rp3-Sec001",
+              "dm24rp3-OR01",
+              "dm22rp1-OR2",
+              "dm22rp1-2B",
+              "promoy24-021"
+            ],
+            "matchingIds": [
+              "dm22rp1-OR2",
+              "dm22rp1-2B"
+            ],
+            "result": "DM22-RP1の検索結果は通常版OR2と2B。2S/2の公式画像と個別IDを特定できなかった。"
+          },
+          "officialRelease": {
+            "source": "https://www.takaratomy.co.jp/product_release/pdf/p220805_02.pdf",
+            "page": 3,
+            "cardNumber": "OR2/OR2",
+            "sha256": "781d02b605779f5801d854c1cff147e7e05c9c8ca20c3156679fb0f796594094"
+          },
+          "physicalPrintReference": "https://dorasuta.jp/duelmasters/product?pid=419611"
         }
       ],
       "resolvedRegressions": [
@@ -535801,7 +536015,7 @@
           ]
         }
       ],
-      "latestTestCommit": "521a5383",
+      "latestTestCommit": "80f19d9a9f430fc3c1a2c68c79d07ff838953d82",
       "counts": {
         "supported": 8013,
         "pending": 3813,
@@ -536402,8 +536616,8 @@
       },
       "finalCheck": {
         "status": "passed",
-        "commit": "a0e0102dba5d889b4e221741ae97714c423cb1f3",
-        "log": "/tmp/duema-verify-8001/final-local-check.log"
+        "commit": "80f19d9a9f430fc3c1a2c68c79d07ff838953d82",
+        "log": "/tmp/duema-verify-remaining/post-shard-check.log"
       },
       "abyssShort": {
         "passed": 33,
@@ -536579,7 +536793,7 @@
           "name": "聖板龍 ジークシュトルツ"
         }
       ],
-      "remainingTestsSummary": "変更前の504グループの結果を回収し、報告された失敗41件の該当箇所を再検証した。時間切れグループの短いケースを再分割して通過。残る長時間ケースを同じ条件の対戦相手・シード・対戦範囲に分割して検証する。全体npm testは中断・合否未確認。",
+      "remainingTestsSummary": "変更前の504グループで報告された失敗41件を修正、再検証。時間切れを分割し、練習デッキ72対戦、ドット30シード、レッドゾーンのランダム27シードを完走。全対応カードの合法経路テストは9範囲が最初の失敗で停止し、各失敗を変更前で再現した。該当9カードの固有回帰249件は通過。未確認範囲、他の長時間対戦とワーカー検証は継続。全体npm testは中断・合否未確認。",
       "advanceImplementation": {
         "status": "implemented",
         "phases": [
@@ -537556,20 +537770,8 @@
                 "title": "every supported borrowed entry ability preserves physical cards and resolves serializable decisions"
               },
               {
-                "path": "tests/dotto-deck.test.mjs",
-                "title": "the new official deck plays seeded games against itself and the existing deck with all eighty cards conserved"
-              },
-              {
                 "path": "tests/effect-expansion.test.mjs",
                 "title": "expanded-card games take legal actions, terminate, and conserve every physical card"
-              },
-              {
-                "path": "tests/engine.test.mjs",
-                "title": "same seed and decks reproduce every action and result"
-              },
-              {
-                "path": "tests/engine.test.mjs",
-                "title": "all pairings finish legally and conserve every card over every action"
               },
               {
                 "path": "tests/engine.test.mjs",
@@ -537798,18 +538000,6 @@
                 "title": "No11 production worker completes62 games against all31 opponents"
               },
               {
-                "path": "tests/hero-challenge.test.mjs",
-                "title": "a challenge is an explicit CPU-seat-only option; theme metadata never changes ordinary matches"
-              },
-              {
-                "path": "tests/hero-challenge.test.mjs",
-                "title": "CPU draws exactly one available useful card, keeps physical cards and does not reveal the selection policy"
-              },
-              {
-                "path": "tests/hero-challenge.test.mjs",
-                "title": "normal CPU draw remains the actual top card and the human draws are never replaced"
-              },
-              {
                 "path": "tests/kiyonaga-effects.test.mjs",
                 "title": "No21 random legal choices conserve all cards and serialize every decision and AI score exactly"
               },
@@ -537834,10 +538024,6 @@
                 "title": "production worker completes220 No19 games with no unresolved matches"
               },
               {
-                "path": "tests/rival-challenge.test.mjs",
-                "title": "every rival gets the same five-card CPU opening policy, without changing human or shields"
-              },
-              {
                 "path": "tests/target-integration.test.mjs",
                 "title": "complete-deck games replay deterministically and scoring never mutates game state or reads future deck order"
               },
@@ -537856,7 +538042,89 @@
           "status": "passed",
           "log": "/tmp/duema-verify-remaining/boot-check.log"
         },
-        "pendingSuiteFailures": [],
+        "pendingSuiteFailures": [
+          {
+            "card": "愛銀河マーキュリー・スターフォージ",
+            "message": "愛銀河マーキュリー・スターフォージ",
+            "baselineCode": 1,
+            "reproduced": true,
+            "log": "/tmp/duema-verify-remaining/baseline-abilities-1000-1500.log",
+            "currentLog": "/tmp/duema-verify-remaining/abilities-1000-1500.log",
+            "cardId": "dm25ex1-023"
+          },
+          {
+            "card": "聖騎士ムーンティアー",
+            "message": "聖騎士ムーンティアー",
+            "baselineCode": 1,
+            "reproduced": true,
+            "log": "/tmp/duema-verify-remaining/baseline-abilities-3000-3500.log",
+            "currentLog": "/tmp/duema-verify-remaining/abilities-3000-3500.log",
+            "cardId": "dm06-044"
+          },
+          {
+            "card": "地底探検モーグ",
+            "message": "地底探検モーグ",
+            "baselineCode": 1,
+            "reproduced": true,
+            "log": "/tmp/duema-verify-remaining/baseline-abilities-3500-4000.log",
+            "currentLog": "/tmp/duema-verify-remaining/abilities-3500-4000.log",
+            "cardId": "dm24rp4-075"
+          },
+          {
+            "card": "U・S・A・SIIFU",
+            "message": "U・S・A・SIIFU",
+            "baselineCode": 1,
+            "reproduced": true,
+            "log": "/tmp/duema-verify-remaining/baseline-abilities-4500-5000.log",
+            "currentLog": "/tmp/duema-verify-remaining/abilities-4500-5000.log",
+            "cardId": "dmex14-025"
+          },
+          {
+            "card": "暗黒神羅凰ゼロ・フェニックス",
+            "message": "暗黒神羅凰ゼロ・フェニックス",
+            "baselineCode": 1,
+            "reproduced": true,
+            "log": "/tmp/duema-verify-remaining/baseline-abilities-5500-6000.log",
+            "currentLog": "/tmp/duema-verify-remaining/abilities-5500-6000.log",
+            "cardId": "dm26ex5-S008"
+          },
+          {
+            "card": "クリスタル・アックス",
+            "message": "クリスタル・アックス",
+            "baselineCode": 1,
+            "reproduced": true,
+            "log": "/tmp/duema-verify-remaining/baseline-abilities-6000-6500.log",
+            "currentLog": "/tmp/duema-verify-remaining/abilities-6000-6500.log",
+            "cardId": "dm32-003"
+          },
+          {
+            "card": "超熱血 ギラギラ・ドガッツ",
+            "message": "複合進化元 超熱血 ギラギラ・ドガッツ",
+            "baselineCode": 1,
+            "reproduced": true,
+            "log": "/tmp/duema-verify-remaining/baseline-abilities-6500-7000.log",
+            "currentLog": "/tmp/duema-verify-remaining/abilities-6500-7000.log",
+            "cardId": "dmr14-s04"
+          },
+          {
+            "card": "教化のクリス ハラ＆ミッタ",
+            "message": "教化のクリス ハラ＆ミッタ",
+            "baselineCode": 1,
+            "reproduced": true,
+            "log": "/tmp/duema-verify-remaining/baseline-abilities-7000-7500.log",
+            "currentLog": "/tmp/duema-verify-remaining/abilities-7000-7500.log",
+            "cardId": "dm23ex3-052"
+          },
+          {
+            "card": "禁断 ～封印されしX～",
+            "message": "禁断 ～封印されしX～",
+            "baselineCode": 1,
+            "reproduced": true,
+            "log": "/tmp/duema-verify-remaining/baseline-abilities-8000-8013.log",
+            "currentLog": "/tmp/duema-verify-remaining/abilities-8000-8013.log",
+            "cardId": "dmr19-fl01"
+          }
+        ],
         "imageIndexGap": {
           "officialReferencePrints": 10094,
           "indexedPrints": 3981,
@@ -537894,6 +538162,416 @@
             "/tmp/duema-verify-remaining/strongest-fixtures-final.log"
           ],
           "reason": "歴史的なカウンター選択試験に当時の登録段階のカードプールを使う。現行プールのデッキは別のテストで合法性、再現性、履歴とカードの保持を検証した。"
+        },
+        "additionalSplitVerification": {
+          "commit": "80f19d9a9f430fc3c1a2c68c79d07ff838953d82",
+          "timeLimitSeconds": 150,
+          "plan": "/tmp/duema-verify-remaining/final-engine-shards.py",
+          "results": "/tmp/duema-verify-remaining/final-engine-shards.jsonl",
+          "enginePairings": {
+            "games": 72,
+            "shards": [
+              {
+                "name": "pairings-0-2",
+                "path": "tests/engine.test.mjs",
+                "title": "all pairings finish legally and conserve every card over every action",
+                "count": 8,
+                "code": 0,
+                "passed": true,
+                "seconds": 48.63,
+                "log": "/tmp/duema-verify-remaining/pairings-0-2.log"
+              },
+              {
+                "name": "pairings-0-0",
+                "path": "tests/engine.test.mjs",
+                "title": "all pairings finish legally and conserve every card over every action",
+                "count": 8,
+                "code": 0,
+                "passed": true,
+                "seconds": 52.59,
+                "log": "/tmp/duema-verify-remaining/pairings-0-0.log"
+              },
+              {
+                "name": "pairings-0-1",
+                "path": "tests/engine.test.mjs",
+                "title": "all pairings finish legally and conserve every card over every action",
+                "count": 8,
+                "code": 0,
+                "passed": true,
+                "seconds": 65.83,
+                "log": "/tmp/duema-verify-remaining/pairings-0-1.log"
+              },
+              {
+                "name": "pairings-1-0",
+                "path": "tests/engine.test.mjs",
+                "title": "all pairings finish legally and conserve every card over every action",
+                "count": 8,
+                "code": 0,
+                "passed": true,
+                "seconds": 74.49,
+                "log": "/tmp/duema-verify-remaining/pairings-1-0.log"
+              },
+              {
+                "name": "pairings-1-2",
+                "path": "tests/engine.test.mjs",
+                "title": "all pairings finish legally and conserve every card over every action",
+                "count": 8,
+                "code": 0,
+                "passed": true,
+                "seconds": 74.35,
+                "log": "/tmp/duema-verify-remaining/pairings-1-2.log"
+              },
+              {
+                "name": "pairings-2-0",
+                "path": "tests/engine.test.mjs",
+                "title": "all pairings finish legally and conserve every card over every action",
+                "count": 8,
+                "code": 0,
+                "passed": true,
+                "seconds": 77.74,
+                "log": "/tmp/duema-verify-remaining/pairings-2-0.log"
+              },
+              {
+                "name": "pairings-1-1",
+                "path": "tests/engine.test.mjs",
+                "title": "all pairings finish legally and conserve every card over every action",
+                "count": 8,
+                "code": 0,
+                "passed": true,
+                "seconds": 106.26,
+                "log": "/tmp/duema-verify-remaining/pairings-1-1.log"
+              },
+              {
+                "name": "pairings-2-1",
+                "path": "tests/engine.test.mjs",
+                "title": "all pairings finish legally and conserve every card over every action",
+                "count": 8,
+                "code": 0,
+                "passed": true,
+                "seconds": 100.56,
+                "log": "/tmp/duema-verify-remaining/pairings-2-1.log"
+              },
+              {
+                "name": "pairings-2-2",
+                "path": "tests/engine.test.mjs",
+                "title": "all pairings finish legally and conserve every card over every action",
+                "count": 8,
+                "code": 0,
+                "passed": true,
+                "seconds": 91.99,
+                "log": "/tmp/duema-verify-remaining/pairings-2-2.log"
+              }
+            ]
+          },
+          "dotto": {
+            "seeds": 30,
+            "shards": [
+              {
+                "name": "dotto-7-9",
+                "path": "tests/dotto-deck.test.mjs",
+                "title": "the new official deck plays seeded games against itself and the existing deck with all eighty cards conserved",
+                "count": 3,
+                "code": 0,
+                "passed": true,
+                "seconds": 14.46,
+                "log": "/tmp/duema-verify-remaining/dotto-7-9.log"
+              },
+              {
+                "name": "dotto-10-12",
+                "path": "tests/dotto-deck.test.mjs",
+                "title": "the new official deck plays seeded games against itself and the existing deck with all eighty cards conserved",
+                "count": 3,
+                "code": 0,
+                "passed": true,
+                "seconds": 16.34,
+                "log": "/tmp/duema-verify-remaining/dotto-10-12.log"
+              },
+              {
+                "name": "dotto-4-6",
+                "path": "tests/dotto-deck.test.mjs",
+                "title": "the new official deck plays seeded games against itself and the existing deck with all eighty cards conserved",
+                "count": 3,
+                "code": 0,
+                "passed": true,
+                "seconds": 30.13,
+                "log": "/tmp/duema-verify-remaining/dotto-4-6.log"
+              },
+              {
+                "name": "dotto-13-15",
+                "path": "tests/dotto-deck.test.mjs",
+                "title": "the new official deck plays seeded games against itself and the existing deck with all eighty cards conserved",
+                "count": 3,
+                "code": 0,
+                "passed": true,
+                "seconds": 24.81,
+                "log": "/tmp/duema-verify-remaining/dotto-13-15.log"
+              },
+              {
+                "name": "dotto-1-3",
+                "path": "tests/dotto-deck.test.mjs",
+                "title": "the new official deck plays seeded games against itself and the existing deck with all eighty cards conserved",
+                "count": 3,
+                "code": 0,
+                "passed": true,
+                "seconds": 47.82,
+                "log": "/tmp/duema-verify-remaining/dotto-1-3.log"
+              },
+              {
+                "name": "dotto-19-21",
+                "path": "tests/dotto-deck.test.mjs",
+                "title": "the new official deck plays seeded games against itself and the existing deck with all eighty cards conserved",
+                "count": 3,
+                "code": 0,
+                "passed": true,
+                "seconds": 19.54,
+                "log": "/tmp/duema-verify-remaining/dotto-19-21.log"
+              },
+              {
+                "name": "dotto-16-18",
+                "path": "tests/dotto-deck.test.mjs",
+                "title": "the new official deck plays seeded games against itself and the existing deck with all eighty cards conserved",
+                "count": 3,
+                "code": 0,
+                "passed": true,
+                "seconds": 28.56,
+                "log": "/tmp/duema-verify-remaining/dotto-16-18.log"
+              },
+              {
+                "name": "dotto-25-27",
+                "path": "tests/dotto-deck.test.mjs",
+                "title": "the new official deck plays seeded games against itself and the existing deck with all eighty cards conserved",
+                "count": 3,
+                "code": 0,
+                "passed": true,
+                "seconds": 19.94,
+                "log": "/tmp/duema-verify-remaining/dotto-25-27.log"
+              },
+              {
+                "name": "dotto-22-24",
+                "path": "tests/dotto-deck.test.mjs",
+                "title": "the new official deck plays seeded games against itself and the existing deck with all eighty cards conserved",
+                "count": 3,
+                "code": 0,
+                "passed": true,
+                "seconds": 24.66,
+                "log": "/tmp/duema-verify-remaining/dotto-22-24.log"
+              },
+              {
+                "name": "dotto-28-30",
+                "path": "tests/dotto-deck.test.mjs",
+                "title": "the new official deck plays seeded games against itself and the existing deck with all eighty cards conserved",
+                "count": 3,
+                "code": 0,
+                "passed": true,
+                "seconds": 22.16,
+                "log": "/tmp/duema-verify-remaining/dotto-28-30.log"
+              }
+            ]
+          },
+          "engineRepeat": {
+            "passed": 1,
+            "log": "/tmp/duema-verify-remaining/engine-seeded-repeat-final.log"
+          },
+          "cpuOpeningAndDraw": {
+            "passed": 4,
+            "logs": [
+              "/tmp/duema-verify-remaining/hero-opening-policy-final.log",
+              "/tmp/duema-verify-remaining/rival-opening-policy-final.log"
+            ]
+          },
+          "manaAndReplacement": {
+            "passed": 39,
+            "log": "/tmp/duema-verify-remaining/mana-takonchu-final.log"
+          },
+          "knightMagic": {
+            "passed": 8,
+            "log": "/tmp/duema-verify-remaining/fixed-regression-final.log"
+          },
+          "allSupportedPaths": {
+            "plannedRows": 8013,
+            "fullyPassedRows": 4000,
+            "unresolvedShardRows": 4013,
+            "shards": [
+              {
+                "name": "abilities-0-500",
+                "path": "tests/engine.test.mjs",
+                "title": "all supported spell effects and creature abilities have legal execution paths",
+                "count": 500,
+                "code": 0,
+                "passed": true,
+                "seconds": 16.93,
+                "log": "/tmp/duema-verify-remaining/abilities-0-500.log"
+              },
+              {
+                "name": "abilities-1000-1500",
+                "path": "tests/engine.test.mjs",
+                "title": "all supported spell effects and creature abilities have legal execution paths",
+                "count": 500,
+                "code": 1,
+                "passed": false,
+                "seconds": 13.92,
+                "log": "/tmp/duema-verify-remaining/abilities-1000-1500.log"
+              },
+              {
+                "name": "abilities-500-1000",
+                "path": "tests/engine.test.mjs",
+                "title": "all supported spell effects and creature abilities have legal execution paths",
+                "count": 500,
+                "code": 0,
+                "passed": true,
+                "seconds": 23.01,
+                "log": "/tmp/duema-verify-remaining/abilities-500-1000.log"
+              },
+              {
+                "name": "abilities-2000-2500",
+                "path": "tests/engine.test.mjs",
+                "title": "all supported spell effects and creature abilities have legal execution paths",
+                "count": 500,
+                "code": 0,
+                "passed": true,
+                "seconds": 19.53,
+                "log": "/tmp/duema-verify-remaining/abilities-2000-2500.log"
+              },
+              {
+                "name": "abilities-1500-2000",
+                "path": "tests/engine.test.mjs",
+                "title": "all supported spell effects and creature abilities have legal execution paths",
+                "count": 500,
+                "code": 0,
+                "passed": true,
+                "seconds": 21.48,
+                "log": "/tmp/duema-verify-remaining/abilities-1500-2000.log"
+              },
+              {
+                "name": "abilities-2500-3000",
+                "path": "tests/engine.test.mjs",
+                "title": "all supported spell effects and creature abilities have legal execution paths",
+                "count": 500,
+                "code": 0,
+                "passed": true,
+                "seconds": 19.6,
+                "log": "/tmp/duema-verify-remaining/abilities-2500-3000.log"
+              },
+              {
+                "name": "abilities-3500-4000",
+                "path": "tests/engine.test.mjs",
+                "title": "all supported spell effects and creature abilities have legal execution paths",
+                "count": 500,
+                "code": 1,
+                "passed": false,
+                "seconds": 2.91,
+                "log": "/tmp/duema-verify-remaining/abilities-3500-4000.log"
+              },
+              {
+                "name": "abilities-4500-5000",
+                "path": "tests/engine.test.mjs",
+                "title": "all supported spell effects and creature abilities have legal execution paths",
+                "count": 500,
+                "code": 1,
+                "passed": false,
+                "seconds": 9.59,
+                "log": "/tmp/duema-verify-remaining/abilities-4500-5000.log"
+              },
+              {
+                "name": "abilities-3000-3500",
+                "path": "tests/engine.test.mjs",
+                "title": "all supported spell effects and creature abilities have legal execution paths",
+                "count": 500,
+                "code": 1,
+                "passed": false,
+                "seconds": 18.92,
+                "log": "/tmp/duema-verify-remaining/abilities-3000-3500.log"
+              },
+              {
+                "name": "abilities-4000-4500",
+                "path": "tests/engine.test.mjs",
+                "title": "all supported spell effects and creature abilities have legal execution paths",
+                "count": 500,
+                "code": 0,
+                "passed": true,
+                "seconds": 19.63,
+                "log": "/tmp/duema-verify-remaining/abilities-4000-4500.log"
+              },
+              {
+                "name": "abilities-5500-6000",
+                "path": "tests/engine.test.mjs",
+                "title": "all supported spell effects and creature abilities have legal execution paths",
+                "count": 500,
+                "code": 1,
+                "passed": false,
+                "seconds": 6.14,
+                "log": "/tmp/duema-verify-remaining/abilities-5500-6000.log"
+              },
+              {
+                "name": "abilities-7000-7500",
+                "path": "tests/engine.test.mjs",
+                "title": "all supported spell effects and creature abilities have legal execution paths",
+                "count": 500,
+                "code": 1,
+                "passed": false,
+                "seconds": 3.39,
+                "log": "/tmp/duema-verify-remaining/abilities-7000-7500.log"
+              },
+              {
+                "name": "abilities-5000-5500",
+                "path": "tests/engine.test.mjs",
+                "title": "all supported spell effects and creature abilities have legal execution paths",
+                "count": 500,
+                "code": 0,
+                "passed": true,
+                "seconds": 20.88,
+                "log": "/tmp/duema-verify-remaining/abilities-5000-5500.log"
+              },
+              {
+                "name": "abilities-8000-8013",
+                "path": "tests/engine.test.mjs",
+                "title": "all supported spell effects and creature abilities have legal execution paths",
+                "count": 13,
+                "code": 1,
+                "passed": false,
+                "seconds": 0.72,
+                "log": "/tmp/duema-verify-remaining/abilities-8000-8013.log"
+              },
+              {
+                "name": "abilities-6000-6500",
+                "path": "tests/engine.test.mjs",
+                "title": "all supported spell effects and creature abilities have legal execution paths",
+                "count": 500,
+                "code": 1,
+                "passed": false,
+                "seconds": 13.9,
+                "log": "/tmp/duema-verify-remaining/abilities-6000-6500.log"
+              },
+              {
+                "name": "abilities-6500-7000",
+                "path": "tests/engine.test.mjs",
+                "title": "all supported spell effects and creature abilities have legal execution paths",
+                "count": 500,
+                "code": 1,
+                "passed": false,
+                "seconds": 15.89,
+                "log": "/tmp/duema-verify-remaining/abilities-6500-7000.log"
+              },
+              {
+                "name": "abilities-7500-8000",
+                "path": "tests/engine.test.mjs",
+                "title": "all supported spell effects and creature abilities have legal execution paths",
+                "count": 500,
+                "code": 0,
+                "passed": true,
+                "seconds": 20.64,
+                "log": "/tmp/duema-verify-remaining/abilities-7500-8000.log"
+              }
+            ],
+            "comparisonCommit": "3a665662",
+            "reproducedFirstFailures": 9,
+            "comparison": "/tmp/duema-verify-remaining/abilities-baseline.jsonl",
+            "specificRegression": {
+              "passed": 249,
+              "log": "/tmp/duema-verify-remaining/ability-specific-final.log"
+            },
+            "reason": "失敗した各範囲は最初の失敗で停止。各カードの固有経路は個別回帰で通過した。共通フィクスチャには手札進化元、呪文を唱えた履歴、マナ召喚、開始時配置などの条件が欠ける。各失敗の原因を調べて必要な初期条件を用意し、対象範囲を再検証する。"
+          }
         }
       },
       "verifiedProductPrints": [
