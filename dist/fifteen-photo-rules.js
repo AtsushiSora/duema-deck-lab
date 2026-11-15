@@ -72,7 +72,16 @@ export function createFifteenPhotoRules(api){
  case'graveAllMana':for(const y of [...own.grave])zoneMove(s,t.p,'grave',y.uid,'mana',{...t,tapped:true});break;
  case'souryu':choice(s,t,'マナから非進化を1体出す',own.mana.filter(y=>card(y).type==='creature'&&!card(y).evolution&&cost(card(y))<own.mana.length&&canPut(s,t.p,y,'mana')).map(y=>opt(card(y).name,y.uid,15+cost(card(y)),y.cardId)));break;
  case'souryuFight':{const y=own.battle.find(y=>y.uid===t.target);if(y&&colors(card(y)).some(v=>['火','自然'].includes(v)))put(s,task('g35_Fight',t.p,t.source,{uid:y.uid,optional:true}));break;}
- case'endWorld':{const selected=t.selected||[],view=policyLook(s,t.p,own.deck.length,own.deck,api);if(selected.length>=Math.min(3,view.length)){for(const y of [...own.deck])if(!selected.includes(y.uid))zoneMove(s,t.p,'deck',y.uid,'grave',t);order(s,t,selected,t.p,true);break;}choice(s,{...t,selected},'山札に残す3枚を選ぶ（'+selected.length+'/3）',view.filter(y=>!selected.includes(y.uid)).map(y=>opt(card(y).name,y.uid,cost(card(y)),y.cardId)));break;}
+ case'endWorld':{const selected=t.selected||[],view=policyLook(s,t.p,own.deck.length,own.deck,api);if(selected.length>=Math.min(3,view.length)){
+  const incoming=own.deck.filter(y=>!selected.includes(y.uid));
+  for(const y of incoming){
+   remove(own.deck,y.uid);clear(y,'grave');
+   own.g35Protected=(own.g35Protected||[]).filter(uid=>uid!==y.uid);
+  }
+  api.addZone(s,t.p,'grave',...incoming);
+  if(!incoming.some(y=>own.deck.includes(y)))order(s,t,selected,t.p,true);
+  break;
+ }choice(s,{...t,selected},'山札に残す3枚を選ぶ（'+selected.length+'/3）',view.filter(y=>!selected.includes(y.uid)).map(y=>opt(card(y).name,y.uid,cost(card(y)),y.cardId)));break;}
  case'topShield':{if(!api.canAddShield(s,t.p))break;const y=api.takeTop(s,t.p);if(y){clear(y,'shields');api.addZone(s,t.p,'shields',y);api.notifyShieldAdded(s,t.p,y);}api.deckCheck(s,t.p);break;}
  case'containerRevive':{const y=own.grave.find(y=>y.uid===t.target);if(y)offer(s,t,'DARK MEMORY CONTAINERを墓地から出す？');break;}
  case'ulfeusCast':pickExecute(s,t,{colorsAny:['光','火'],filter:{spell:true}});break;

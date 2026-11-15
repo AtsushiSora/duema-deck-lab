@@ -3676,7 +3676,7 @@ export function createSixPhotoRules(api){
    choice(s,{...t,op:'g34_Offer',defs:[{...t,op:'ExactMove',optional:false}]},card(y).name+'を'+label+'？',[opt('実行する',true,score,y.cardId),skip()]);
   }else{
    move(s,[{player:owner,uid:y.uid,to:t.to,destroy:t.to==='grave',controller:t.g1088OwnerMoves?owner:t.controller??t.p,
-    ...(t.toOwnerHand?{toOwnerHand:true}:{}),...(t.toOwnerExtra?{toOwnerExtra:true}:{}),...(t.g1088OwnerMoves?{toOwnerDeck:true,g1089OrderDeck:true}:{})}]);
+    ...(t.toOwnerHand?{toOwnerHand:true}:{}),...(t.toOwnerMana?{toOwnerMana:true}:{}),...(t.toOwnerExtra?{toOwnerExtra:true}:{}),...(t.g1088OwnerMoves?{toOwnerDeck:true,g1089OrderDeck:true}:{})}]);
    if(t.afterAttempt)start(s,t,t.afterAttempt);
   }
   break;
@@ -8592,10 +8592,14 @@ export function createSixPhotoRules(api){
    (s.g857LightSoulEnteredTurn??=[null,null])[p]=s.turn;
   if(!y.sealed)for(const watcher of creatures(s,1-p)){
    if(watcher.sealed||api.ignored(s,watcher))continue;
-   const {g767SecondEnemy,g767UnpaidRaid,g768UnpaidRamp}=effective(watcher,s);
+   const {g767SecondEnemy,g767UnpaidRaid,g768UnpaidRamp,g1346UnpaidMana}=effective(watcher,s);
    if(g767SecondEnemy&&api.isCreature(s,y)&&s.players[p].enteredThisTurn>=2)
     send(s,1-p,watcher,'Batsuda767',{entrants:[y,...(y.godLinks||[])].map(x=>({uid:x.uid,incarnation:x.incarnation||0}))});
    if(options.costPaid||options.paidMana)continue;
+   if(g1346UnpaidMana&&api.isCreature(s,y)){
+    const refs=[y,...(y.godLinks||[])].map(x=>({uid:x.uid,incarnation:x.incarnation||0}));
+    queue(s,1-p,watcher,[{op:'ExactMove',owner:p,g403Refs:refs,to:'mana',toOwnerMana:true}]);
+   }
    if(g767UnpaidRaid&&!used(s,'g767UnpaidRaidUsed',watcher))send(s,1-p,watcher,'Zentuu767');
    if(g768UnpaidRamp)queue(s,1-p,watcher,[{op:'Offer',title:'山札の上から1枚をマナゾーンに置く？',defs:[{op:'Ramp',n:1}]}]);
   }

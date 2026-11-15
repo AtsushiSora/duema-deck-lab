@@ -776,8 +776,11 @@ if(f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.to='hand';f.g416S
   afterDiscard(s,t,x,false);
  }
  function discardCard(s,t,x,graveWatchers=t.batchId?s.extDiscardBatches?.[t.batchId]?.g1284Watchers??[]:graveDiscardWatch1284(s,t.p)){
-  remove(s.players[t.p].hand,x.uid);clear(x);api.addZone(s,s.players[t.p],'grave',x);log(s,t.p,'discard',`${card(x).name}を手札から捨てる`,{cardId:x.cardId});
-  afterDiscard(s,t,x,true,undefined,graveWatchers);
+  const own=s.players[t.p];
+  remove(own.hand,x.uid);clear(x);api.addZone(s,own,'grave',x);
+  const discarded=own.grave.includes(x);
+  if(discarded)log(s,t.p,'discard',`${card(x).name}を手札から捨てる`,{cardId:x.cardId});
+  afterDiscard(s,t,x,discarded,undefined,graveWatchers);
  }
  function discardByType1241(s,p,discarded){
   let types;

@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8031,
-  "pendingNames": 3795,
-  "phase": 1345,
+  "supportedNames": 8032,
+  "pendingNames": 3794,
+  "phase": 1346,
   "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2128,
+    "クリーチャー": 2127,
     "NEOクリーチャー": 70,
     "呪文": 455,
     "GRクリーチャー": 156,
@@ -224,7 +224,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1074,
-    "未対応の能力文": 2530,
+    "未対応の能力文": 2529,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
@@ -490128,14 +490128,57 @@
       "remainingRegistered": 32,
       "remainingPrints": 1,
       "remainingIndividualCards": 27
+    },
+    {
+      "phase": 1346,
+      "baseline": "56e0aa2b",
+      "before": 8031,
+      "supported": 8032,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmr08s-007",
+          "name": "悠久を統べる者 フォーエバー・プリンセス"
+        }
+      ],
+      "printAliases": 7,
+      "results": {
+        "focus": {
+          "passed": 8,
+          "log": "/tmp/duema-uncapped/forever-focus.log",
+          "command": "node --test tests/standard1346-effects.test.mjs",
+          "seconds": 1.127
+        },
+        "regression": {
+          "passed": 206,
+          "log": "/tmp/duema-uncapped/forever-regression.log",
+          "command": "node --test --test-concurrency=1 tests/standard{1187,1250,1346,955,848,1037,459,460}-effects.test.mjs",
+          "seconds": 79.626
+        },
+        "check": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "/tmp/duema-uncapped/forever-check.log",
+          "rulesBlob": "1f0aa1135466f8ff369cdb69d39b94abf71526d9"
+        },
+        "audit": {
+          "status": "passed",
+          "command": "node tools/audit-card-support.mjs",
+          "log": "/tmp/duema-uncapped/forever-audit.log"
+        }
+      },
+      "resolvedRegistered": 2,
+      "remainingRegistered": 30,
+      "remainingPrints": 1,
+      "remainingIndividualCards": 26
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1345,
+    "lastVerifiedPhase": 1346,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "ティーゾリスとボンバードの誘発回数および移動元による違いを実カードで検証済み。残りの個別裁定と分割テストを継続する。",
+    "steps": "フォーエバー・プリンセスとメタルカオス・バースト、龍世界の組み合わせを実カードで検証済み。残りの個別裁定と分割テストを継続する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -490224,8 +490267,12 @@
         "name": "不死身のブーストグレンオー"
       },
       {
-        "id": "dmr08s-007",
-        "name": "悠久を統べる者 フォーエバー・プリンセス"
+        "id": "dmx21-026",
+        "name": "オールデリート"
+      },
+      {
+        "id": "dmex19-025",
+        "name": "正義ノ裁キ"
       }
     ],
     "printVerificationPending": [
@@ -490424,8 +490471,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8031,
-    "pendingNames": 3795,
+    "supportedNames": 8032,
+    "pendingNames": 3794,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -534419,8 +534466,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8031,
-      "pendingNames": 3795,
+      "supportedNames": 8032,
+      "pendingNames": 3794,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -535447,7 +535494,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別27種類（裁定32件と版固有の金箔再録1件）と長時間対戦・ワーカーの検証が継続中。mainへのpushを契機にNetlify本番を更新する .github/workflows/netlify.yml がある。Netlifyを更新せずにPagesへ公開する別経路は確認できていない。",
+        "reason": "個別26種類（裁定30件と版固有の金箔再録1件）と長時間対戦・ワーカーの検証が継続中。mainへのpushを契機にNetlify本番を更新する .github/workflows/netlify.yml がある。Netlifyを更新せずにPagesへ公開する別経路は確認できていない。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -536086,6 +536133,48 @@
             "https://dm.takaratomy.co.jp/rule/qa/39103/"
           ],
           "result": "ティーゾリス下の実カードのボンバードは、バトルゾーンで破壊された場合に−2000が2回、手札や進化元から墓地に置かれた場合に1回。離れた後、同時破壊、離れる前、召喚時の任意2軽減と破壊も検証した。"
+        },
+        {
+          "cardId": "dmrp20-043",
+          "dependencyIds": [
+            "dmr08s-007"
+          ],
+          "test": "山札の上のカードが墓地に置かれず山札へ移る置換を適用した後も、メタルカオス・バーストの「そのカード」を参照する。",
+          "source": "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+          "phase": 1346,
+          "path": "tests/standard1346-effects.test.mjs",
+          "log": "/tmp/duema-uncapped/forever-focus.log",
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/38632/",
+            "https://dm.takaratomy.co.jp/rule/qa/39570/",
+            "https://dm.takaratomy.co.jp/rule/qa/40188/",
+            "https://dm.takaratomy.co.jp/rule/qa/40654/",
+            "https://dm.takaratomy.co.jp/rule/qa/41288/",
+            "https://dm.takaratomy.co.jp/rule/qa/45440/",
+            "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
+          ],
+          "result": "墓地に置こうとしたフォーエバー・プリンセスが墓地のカードと山札に戻った後も、メタルカオス・バーストが元のコスト8を参照することを確認した。"
+        },
+        {
+          "cardId": "dmex12-011",
+          "dependencyIds": [
+            "dmr08s-007"
+          ],
+          "test": "山札からの墓地送りがフォーエバー・プリンセスの山札戻しに置き換わっても龍世界は破壊を選べるが、戻ったカードは出せない（QA38632）。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/38632/",
+          "phase": 1346,
+          "path": "tests/standard1346-effects.test.mjs",
+          "log": "/tmp/duema-uncapped/forever-focus.log",
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/38632/",
+            "https://dm.takaratomy.co.jp/rule/qa/39570/",
+            "https://dm.takaratomy.co.jp/rule/qa/40188/",
+            "https://dm.takaratomy.co.jp/rule/qa/40654/",
+            "https://dm.takaratomy.co.jp/rule/qa/41288/",
+            "https://dm.takaratomy.co.jp/rule/qa/45440/",
+            "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
+          ],
+          "result": "フォーエバー・プリンセスが山札に戻っても龍世界は自壊を選べる。実行・見送りの両方を実測し、山札に戻ったカードは出なかった。"
         }
       ],
       "remainingRegistered": [
@@ -536200,15 +536289,6 @@
           "source": "https://dm.takaratomy.co.jp/rule/qa/48115/"
         },
         {
-          "cardId": "dmrp20-043",
-          "dependencyIds": [
-            "dmr08s-007"
-          ],
-          "test": "山札の上のカードが墓地に置かれず山札へ移る置換を適用した後も、メタルカオス・バーストの「そのカード」を参照する。",
-          "reason": "公式ルール変更31661の「そのカード」形式に基づく処理。置換を持つ悠久を統べる者 フォーエバー・プリンセスが対戦未対応で、実カード同士の組み合わせは未検証。",
-          "source": "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
-        },
-        {
           "cardId": "dmex18-s07",
           "dependencyIds": [
             "dmx12b-010",
@@ -536245,15 +536325,6 @@
           "test": "相手の《「復活」の鬼 ヨミノ晴明R》でクリーチャーを選ぶプレイヤーが置き換わるときのJトルネード。類似のマスターJトルネード裁定QA44324を参照。",
           "reason": "ヨミノ晴明Rの選択置換が未実装。既存のJトルネードの選択、任意の不使用と移動置換は検証済み。選択者を変更する処理の実カード確認を保留。",
           "source": "https://dm.takaratomy.co.jp/rule/qa/44324/"
-        },
-        {
-          "cardId": "dmex12-011",
-          "dependencyIds": [
-            "dmr08s-007"
-          ],
-          "test": "山札からの墓地送りがフォーエバー・プリンセスの山札戻しに置き換わっても龍世界は破壊を選べるが、戻ったカードは出せない（QA38632）。",
-          "reason": "フォーエバー・プリンセスは未登録。「どこからでも墓地へ」の置換と山札の再構成を実装してから実カードで確認する。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/38632/"
         },
         {
           "cardId": "dmex12-011",
@@ -536451,10 +536522,11 @@
           "dm23rp1-004",
           "dmrp16-s01",
           "dm10-s09",
-          "dmrp12-008"
+          "dmrp12-008",
+          "dmr08s-007"
         ],
-        "officialPrints": 76,
-        "newAliases": 55,
+        "officialPrints": 84,
+        "newAliases": 62,
         "evidence": [
           {
             "id": "dm23rp2-065",
@@ -537058,6 +537130,70 @@
             "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-008.jpg",
             "pageSha256": "744bb1a361ded552f585c4ae5ebe2ff749a1c39a2a230099fd4909428abed5a4",
             "imageSha256": "db598bc31de2b8404923e13119a2221c362ed25723f9340792b12aa947bff633"
+          },
+          {
+            "id": "dmr08s-007",
+            "canonicalId": "dmr08s-007",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08s-007",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08s-007.jpg",
+            "pageSha256": "916bc9f808edad00d2fb6902c8b908ac490215c0340d124247415f98b7f4c9ff",
+            "imageSha256": "a2a59d1e8ca383402aa3859cd510ad6aaa331516c865020eda6ce4ec6eb34660"
+          },
+          {
+            "id": "promoy11-024",
+            "canonicalId": "dmr08s-007",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy11-024",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy11-024.jpg",
+            "pageSha256": "423417cf80175d5f0f60e20326df8a692dd53a6ec435cfdaa141ebe915ee4af4",
+            "imageSha256": "4da93c228dbb016cb66512e4852e7b902d9977bf9429d704531926b7bc81df4d"
+          },
+          {
+            "id": "dm25ex2-Cho021",
+            "canonicalId": "dmr08s-007",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-Cho021",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-Cho021.jpg",
+            "pageSha256": "879866dab17f975d5ff575affa110b0532673fc2be83acde0be87749cca51195",
+            "imageSha256": "ca2033c4d4b76f1b2c974d3aabb753b2b72af78db4d13a85363cab2abfcfc9a7"
+          },
+          {
+            "id": "dm23ex1-028",
+            "canonicalId": "dmr08s-007",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-028",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex1-028.jpg",
+            "pageSha256": "234130b481de7e8d73312b18637de6dd62223416bd1cbd30a37fe9ec11e3afcb",
+            "imageSha256": "72b91b5cf1d11c782f1da6a2b72da79e6ac5cc06b1b8ed9afcc6a705e9765d68"
+          },
+          {
+            "id": "dmx24-011",
+            "canonicalId": "dmr08s-007",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx24-011",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx24-011.jpg",
+            "pageSha256": "7e888ceed5475d5038b9727beee43a3e0cea39941c43e62c36d22d03dea49eda",
+            "imageSha256": "310abf2a3eb35e3a7a5622584a46a825132dd8b3aba3b1c8797658e5c57ad05e"
+          },
+          {
+            "id": "dmex15-a045",
+            "canonicalId": "dmr08s-007",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-a045",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex15-a045.jpg",
+            "pageSha256": "22a402c140b2fc8814ed734434c9b0acba228b58f930cc3bbd75fbe591873193",
+            "imageSha256": "c376112b9ece21585ab2f5dccf176b46fc2c2386a4ac05e16dd1eac97a429b46"
+          },
+          {
+            "id": "dmbd09-008",
+            "canonicalId": "dmr08s-007",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd09-008",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd09-008.jpg",
+            "pageSha256": "ae882be7a243836895dc2cab7c18f9934235b3fde4f396b7fe1acdc6cab33a61",
+            "imageSha256": "b91023433588c3820706949eb51e69db9b45c74d9839a5d1fe4c90eeadd752ee"
+          },
+          {
+            "id": "dmd20-009",
+            "canonicalId": "dmr08s-007",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd20-009",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd20-009.jpg",
+            "pageSha256": "437da777f54470fbb2e6ecb06ab65e2b7d03a49f340bb750965cbe7246a03042",
+            "imageSha256": "658f8c6dedc9e300c27a2de02de11cb37b64b4748ae08a034ad3ca045a3cb93c"
           }
         ],
         "testLog": "/tmp/duema-verify-8009/verification-followup-prints.log",
@@ -537343,8 +537479,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8031,
-        "pending": 3795,
+        "supported": 8032,
+        "pending": 3794,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -537944,8 +538080,8 @@
       "finalCheck": {
         "status": "passed",
         "command": "npm run check",
-        "log": "/tmp/duema-uncapped/tee-check.log",
-        "rulesBlob": "83502c93d91f5caa3702ce1fb008b597b0ed2d70"
+        "log": "/tmp/duema-uncapped/forever-check.log",
+        "rulesBlob": "1f0aa1135466f8ff369cdb69d39b94abf71526d9"
       },
       "abyssShort": {
         "passed": 33,
@@ -537979,10 +538115,6 @@
         {
           "id": "dm25ex4-SPR01",
           "name": "沈黙の守護者、シュタイン"
-        },
-        {
-          "id": "dmr08s-007",
-          "name": "悠久を統べる者 フォーエバー・プリンセス"
         },
         {
           "id": "dmx12b-010",
@@ -538105,47 +538237,47 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1345,
-        "baseline": "0c062f67",
-        "before": 8030,
-        "supported": 8031,
+        "phase": 1346,
+        "baseline": "56e0aa2b",
+        "before": 8031,
+        "supported": 8032,
         "duplicates": 0,
         "added": [
           {
-            "id": "dmrp12-008",
-            "name": "帝神龍装 ティーゾリス"
+            "id": "dmr08s-007",
+            "name": "悠久を統べる者 フォーエバー・プリンセス"
           }
         ],
-        "printAliases": 0,
+        "printAliases": 7,
         "results": {
           "focus": {
-            "passed": 5,
-            "log": "/tmp/duema-uncapped/tee-focus.log",
-            "command": "node --test tests/standard1345-effects.test.mjs",
-            "seconds": 1.344
+            "passed": 8,
+            "log": "/tmp/duema-uncapped/forever-focus.log",
+            "command": "node --test tests/standard1346-effects.test.mjs",
+            "seconds": 1.127
           },
           "regression": {
-            "passed": 215,
-            "log": "/tmp/duema-uncapped/tee-regression.log",
-            "command": "node --test --test-concurrency=1 tests/standard{1122,1156,1162,1339,1344,1345,390,499}-effects.test.mjs",
-            "seconds": 120.925
+            "passed": 206,
+            "log": "/tmp/duema-uncapped/forever-regression.log",
+            "command": "node --test --test-concurrency=1 tests/standard{1187,1250,1346,955,848,1037,459,460}-effects.test.mjs",
+            "seconds": 79.626
           },
           "check": {
             "status": "passed",
             "command": "npm run check",
-            "log": "/tmp/duema-uncapped/tee-check.log",
-            "rulesBlob": "83502c93d91f5caa3702ce1fb008b597b0ed2d70"
+            "log": "/tmp/duema-uncapped/forever-check.log",
+            "rulesBlob": "1f0aa1135466f8ff369cdb69d39b94abf71526d9"
           },
           "audit": {
             "status": "passed",
             "command": "node tools/audit-card-support.mjs",
-            "log": "/tmp/duema-uncapped/tee-audit.log"
+            "log": "/tmp/duema-uncapped/forever-audit.log"
           }
         },
-        "resolvedRegistered": 1,
-        "remainingRegistered": 32,
+        "resolvedRegistered": 2,
+        "remainingRegistered": 30,
         "remainingPrints": 1,
-        "remainingIndividualCards": 27
+        "remainingIndividualCards": 26
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
@@ -540281,6 +540413,17 @@
             "coverageLog": "/tmp/duema-uncapped/ai-coverage-current.log",
             "review": "残り1件はマナ7枚のとき印刷コスト8のガラワルドが相手のクイーン&かぼちゃうちゃうで置換される盤面。既存レビューと保存状態を照合。後続カードとCPU修正を含む公開対象コミットの全範囲は未確定。"
           }
+        },
+        "latestRegisteredRulings": {
+          "phase": 1346,
+          "sources": [
+            "https://dm.takaratomy.co.jp/rule/qa/32395/",
+            "https://dm.takaratomy.co.jp/rule/qa/40654/",
+            "https://dm.takaratomy.co.jp/rule/qa/41288/",
+            "https://dm.takaratomy.co.jp/rule/qa/45440/"
+          ],
+          "result": "コスト未払いの登場、持ち主のマナへの移動、バイケンの自己バウンス、墓地ロック、複数カードの同時墓地移動と実際の手札破棄を区別する挙動を確認した。初版と再録7版の公式本文と画像を照合した。",
+          "log": "/tmp/duema-uncapped/forever-focus.log"
         }
       }
     }
