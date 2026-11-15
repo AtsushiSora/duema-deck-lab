@@ -629,13 +629,15 @@ function draw(s,p,n,{unreplaceable=false,drawn,turnDraw=false,g1178Resolved=fals
   if(!unreplaceable&&!s.players[p].deck.length&&extra.deckSafe(s,p)&&s.players[p].battle.some(x=>effectiveCard(x,s).bigBang)){extra.put(s,extra.task("g10_Draws",p,s.players[p].battle.find(x=>effectiveCard(x,s).bigBang).cardId,{n:infinite?n:n-i}));break;}const last=s.players[p].deck.length===1&&!extra.deckSafe(s,p)&&!extra.seed.noLose(s,1-p,'replacementWin')&&s.players[p].battle.some(x=>effectiveCard(x,s).shako),c=takeDrawCard(s,p);if(c){clearBattleState(c,'hand');s.players[p].hand.push(c);drawn?.push(c.uid);actual++;if(!last&&c.g11FromSideways){checkSidewaysHand(s,p);if(s.winner!==null||s.lossEvent){if((infinite||n-i-1)&&s.lossEvent)extra.put(s,extra.task('draw',p,c.cardId,{n:infinite?n:n-i-1}));break;}}}if(last&&c){finish(s,p,'シャコガイル：山札の最後の1枚を引いて勝利','replacementWin');if(s.winner===null)deckCheck(s,p);}else deckCheck(s,p);checkSidewaysHand(s,p);if(c&&s.winner===null&&!s.lossEvent)markVividDraw1335(s,p,c);if(infinite&&!c)break;}
  if(turnDraw&&actual&&s.winner===null)extra.six.turnDrawn947(s,p,actual);
  extra.drawn(s,p,actual,turnDraw);log(s,p,'draw',`カードを${actual}枚引いた`);return actual+replacementDraws;}
-function mill(s,p,n,{together=false}={}){
+function mill(s,p,n,{together=false,replacement=false}={}){
  if(together&&s.winner===null){
   const moved=[];
   for(let i=0;i<n;i++){
    const x=takeDeckTop(s,p);
    if(!x)break;
    clearBattleState(x);
+   if(replacement&&card(x.cardId).carolReturns)skipCarolReturn.add(x);
+   if(replacement&&card(x.cardId).g1346GraveShuffle)skipGraveShuffle1346.add(x);
    moved.push(x);
   }
   addZone(s,p,'grave',...moved);
@@ -705,7 +707,7 @@ function shuffleGraveEntries1346(s,p,arrivals){
 function markCarolFromMana(s,p,x){
  if(x&&carolReturns(s,p,x))carolMarkedInMana.add(x);
 }
-function addZone(s,player,zone,...cards){if(!cards.length)return;for(const x of cards){if(zone!=='hand')delete x.g1335Vivid;if(zone==='grave'&&card(x.cardId)?.g39Verde)x.g39GraveColors=true;else delete x.g39GraveColors;}const p=typeof player==='number'?player:s.players.indexOf(player);if(p<0)throw Error('移動先のプレイヤーを確認できません');
+function addZone(s,player,zone,...cards){if(!cards.length)return;if(zone==='abyss'){const own=typeof player==='number'?s.players[player]:player;(own.abyss??=[]).push(...cards);return;}for(const x of cards){if(zone!=='hand')delete x.g1335Vivid;if(zone==='grave'&&card(x.cardId)?.g39Verde)x.g39GraveColors=true;else delete x.g39GraveColors;}const p=typeof player==='number'?player:s.players.indexOf(player);if(p<0)throw Error('移動先のプレイヤーを確認できません');
  if(zone==='grave'&&cards.some(x=>card(x.cardId)?.carolReturns)){
   const returning=cards.filter(x=>!skipCarolReturn.has(x)&&(x.cardOwner??p)===p&&
    (carolMarkedInMana.has(x)||carolReturns(s,p,x)));
@@ -1396,7 +1398,7 @@ function heldJudgeSpells(frame){
  for(let r=frame;r;r=r.previous)if(!r.virtual&&!r.shieldCast)held.push(r);
  return held;
 }
-export function physicalCards(s){const flatten=c=>[c,...[...(c.under||[]),...(c.shieldStack||[]),...(c.godLinks||[])].flatMap(flatten)];return [...s.players.flatMap(p=>['deck','hand','shields','mana','battle','grave','extra','gr','seals'].flatMap(z=>(p[z]||[]).flatMap(flatten))),...s.players.flatMap(p=>[...(p.g34Holding||[]),...(p.g31Holding||[]),...(p.g29Holding||[]),...(p.g29Reviving||[]),...(p.g24Holding||[]),...(p.g5Holding||[]),...(p.g20Holding||[]),...(p.g21Holding||[]),...(p.g21ManaPending||[]),...(p.g19Holding||[]),...(p.g7Holding||[])].flatMap(flatten)),...(s.g33Executions||[]).filter(x=>!x.options.virtualArgs).flatMap(x=>flatten(x.inst)),...(s.g22Entry?flatten(s.g22Entry.inst):[]),...(s.g22Entries||[]).flatMap(e=>flatten(e.inst)),...heldJudgeSpells(s.resolvingSpell).flatMap(r=>flatten(r.inst)),...(s.extSpells||[]).filter(f=>!f.virtual).flatMap(f=>flatten(f.inst))];}
+export function physicalCards(s){const flatten=c=>[c,...[...(c.under||[]),...(c.shieldStack||[]),...(c.godLinks||[])].flatMap(flatten)];return [...s.players.flatMap(p=>['deck','hand','shields','mana','battle','grave','extra','gr','seals','abyss'].flatMap(z=>(p[z]||[]).flatMap(flatten))),...s.players.flatMap(p=>[...(p.g34Holding||[]),...(p.g31Holding||[]),...(p.g29Holding||[]),...(p.g29Reviving||[]),...(p.g24Holding||[]),...(p.g5Holding||[]),...(p.g20Holding||[]),...(p.g21Holding||[]),...(p.g21ManaPending||[]),...(p.g19Holding||[]),...(p.g7Holding||[])].flatMap(flatten)),...(s.g33Executions||[]).filter(x=>!x.options.virtualArgs).flatMap(x=>flatten(x.inst)),...(s.g22Entry?flatten(s.g22Entry.inst):[]),...(s.g22Entries||[]).flatMap(e=>flatten(e.inst)),...heldJudgeSpells(s.resolvingSpell).flatMap(r=>flatten(r.inst)),...(s.extSpells||[]).filter(f=>!f.virtual).flatMap(f=>flatten(f.inst))];}
 // A Saver belongs to its source and can protect a matching allied element, including itself.
 function saver571(s,row,source,override=null){
  const sourceCard=effectiveCard(source,s),rule=override??sourceCard.g571Saver;
@@ -1482,6 +1484,11 @@ function graveBottomPayment1202(s,row,selected=[]){
  const reserved=new Set([...selected,...reservedLeaveGraveCards(s,row)]);
  return s.players[row.player].grave.filter(x=>!reserved.has(x.uid));
 }
+function graveMillAvailable1351(s,p){
+ if(handOnly1275(s)||deckTopIndex(s,p)<0)return 0;
+ const own=s.players[p],held=new Set(Object.entries(own).filter(([k,v])=>Array.isArray(v)&&(/Protected$|Reveals$/.test(k))).flatMap(([,v])=>v));
+ return own.deck.filter(x=>!held.has(x.uid)).length;
+}
 function leaveOptions(s,row){
  const own=s.players[row.player],batch=s.leaving,usedShields=new Set(batch.rows.flatMap(r=>r.plan?.shield?[r.plan.shield]:r.plan?.kind==='ever'?r.plan.shields:[])),usedMana=new Set(batch.rows.flatMap(r=>r.plan?.mana||[]));
  const sacrifices=replacementSacrifices(batch.rows);
@@ -1527,7 +1534,10 @@ function leaveOptions(s,row){
  const skullMoon=current.g1332SkullMoon&&row.to==='grave'&&row.destroy!==false&&!row.replacement&&!row.godPart?
   s.players[1-row.player].battle.filter(x=>!sacrifices.has(x.uid)&&isCreature(s,x)&&
    extra.targetable(s,row.player,1-row.player,x)&&extra.canLeave(s,1-row.player,x,{destroy:true,replacement:true})):[];
- return {graveBottomStay:graveBottomPayment1202(s,row).length>=row.g1202GraveBottomStay,skullMoon,battleBottomSource:row.battleBottomSource,ninjaToMana,hachi:hunterSavers1138(s,row,host,sacrifices),psychicRelease:row.psychicRelease,lGate:lGateOptions955(s,row),g393J:extra.requested393J.leaveOptions(s,row,batch),g47:extra.seed.leaveOptions(s,row,batch),g49:extra.firebird.leaveOptions(s,row,batch,sacrifices),deathShield:!zoneLocked&&!!row.g842DestroyShield,deathDeck:!!row.destroyToDeck,deathShuffle:!!row.g731DestroyShuffle,deathMana:!zoneLocked&&!!(row.destroyToMana||row.g575TappedMana),crystalMana:!zoneLocked&&!!row.crystalMana,tappedMana:row.g575TappedMana,yamata:!zoneLocked&&(row.yamata||row.destroyToMana||row.g575OptionalMana),omega:row.omega||row.destroyToHand,optionalHand:row.g708OptionalGraveToHand||row.g1088LeaveToHand,allyLeaveHand:row.g1294AllyLeaveHand,
+ const alreadyMilling=batch.rows.filter(r=>r.player===row.player&&r.plan?.kind==='millStay1351').length;
+ const millStay1351=!row.replacement&&isCreature(s,host)&&current.g1351MillStay&&
+  graveMillAvailable1351(s,row.player)>=(alreadyMilling+1)*current.g1351MillStay;
+ return {millStay1351,graveBottomStay:graveBottomPayment1202(s,row).length>=row.g1202GraveBottomStay,skullMoon,battleBottomSource:row.battleBottomSource,ninjaToMana,hachi:hunterSavers1138(s,row,host,sacrifices),psychicRelease:row.psychicRelease,lGate:lGateOptions955(s,row),g393J:extra.requested393J.leaveOptions(s,row,batch),g47:extra.seed.leaveOptions(s,row,batch),g49:extra.firebird.leaveOptions(s,row,batch,sacrifices),deathShield:!zoneLocked&&!!row.g842DestroyShield,deathDeck:!!row.destroyToDeck,deathShuffle:!!row.g731DestroyShuffle,deathMana:!zoneLocked&&!!(row.destroyToMana||row.g575TappedMana),crystalMana:!zoneLocked&&!!row.crystalMana,tappedMana:row.g575TappedMana,yamata:!zoneLocked&&(row.yamata||row.destroyToMana||row.g575OptionalMana),omega:row.omega||row.destroyToHand,optionalHand:row.g708OptionalGraveToHand||row.g1088LeaveToHand,allyLeaveHand:row.g1294AllyLeaveHand,
   attachShields,takonchu1274:row.takonchu1274,dokindamSeal,driverMana,returnDiscard1156:row.g1156ReturnDiscard,handSave1157:handSaveOptions1157(s,row,batch),
   kent:[...shieldSavers,...(!row.replacement&&String(effectiveCard(host,s).race).includes('ジョーカーズ')?
    own.battle.flatMap(x=>{
@@ -1553,7 +1563,7 @@ function addDepartingCards(s,row,to,cards){
   if(card(x.cardId)?.g1346GraveShuffle&&(row.replacement||x.uid===row.uid||row.plan?.kind==='gneo'))skipGraveShuffle1346.add(x);
  }
 
- if(to==='mana'&&row.toOwnerMana||to==='hand'&&row.toOwnerHand||to==='deck'&&row.toOwnerDeck||to==='extra'&&row.toOwnerExtra||to==='grave'&&row.toOwnerGrave||to==='shields'&&row.toOwnerShields){
+ if(to==='abyss'||to==='mana'&&row.toOwnerMana||to==='hand'&&row.toOwnerHand||to==='deck'&&row.toOwnerDeck||to==='extra'&&row.toOwnerExtra||to==='grave'&&row.toOwnerGrave||to==='shields'&&row.toOwnerShields){
   // Return each physical card to its owner, including cards under an evolution.
   for(const owner of [row.player,1-row.player])
    addZone(s,owner,to,...cards.filter(x=>(x.cardOwner??row.player)===owner));
@@ -1598,7 +1608,10 @@ function finishAllDelete1347(s,{zones,source}){
 }
 function moveCreatures(s,moves,after=null){
  for(const m of moves)if((s.players[m.player].seals||[]).some(x=>x.uid===m.uid))moveSeal(s,m.player,m.uid,m.to||'grave',m.shieldAttach);
- const rows=moves.flatMap(m=>{const top=s.players[m.player].battle.find(x=>x.uid===m.uid);if(!top||top.sealed||(m.to==='mana'||m.to==='shields')&&kedoActive(s)&&isCreature(s,top)||!extra.canLeave(s,m.player,top,{battleLoss:after?.kind==='battleResult',battlePower:m.battlePower,skip577Stay:true,replacement:m.replacement,destroy:(m.to||'grave')==='grave'&&m.destroy!==false})||m.to==='shields'&&!(m.toOwnerShields?
+ const rows=moves.flatMap(m=>{const top=s.players[m.player].battle.find(x=>x.uid===m.uid);
+ // An already selected creature moves with all its physical cards, including linked Gods (QA 47943).
+ if(m.to==='abyss')return top?[{...m,abyssSend:true,destroy:false,leaveKaku:!!effectiveCard(top,s).kakuLeave,plan:{kind:'leave'}}]:[];
+ if(!top||top.sealed||(m.to==='mana'||m.to==='shields')&&kedoActive(s)&&isCreature(s,top)||!extra.canLeave(s,m.player,top,{battleLoss:after?.kind==='battleResult',battlePower:m.battlePower,skip577Stay:true,replacement:m.replacement,destroy:(m.to||'grave')==='grave'&&m.destroy!==false})||m.to==='shields'&&!(m.toOwnerShields?
   layers(top).every(x=>canAddShield(s,x.cardOwner??m.player)):canAddShield(s,m.player)))return [];const by=m.controller??m.by??effectActor(s);if(!m.stateBased&&after?.kind!=='battleResult'&&by===1-m.player&&isCreature(s,top)&&s.g26Extreme?.[m.player])return [];const c=effectiveCard(top,s);if((extra.six.zeroSafe(s,top)||extra.six.destroySafe409(s,top))&&(m.to||'grave')==='grave'&&m.destroy!==false)return [];if(c.caddy&&(m.to||'grave')==='grave'&&shevaProtection(s,m.player))return [];if(c.type==='creature'&&((m.to||'grave')!=='grave'||m.destroy===false)&&shevaProtection(s,m.player))return [];const isDestruction=(m.to||'grave')==='grave'&&m.destroy!==false;
  const shuffleGrave1346=(m.to||'grave')==='grave'&&!m.replacement&&c.g1346GraveShuffle&&
   (top.cardOwner??m.player)===m.player&&isCreature(s,top);
@@ -1661,12 +1674,13 @@ function advanceLeaving(s){if(s.lossEvent)return;
   const coreChoices=finalForbiddenCoreChoices(s,who,ownCardForRow(s,row),row);
   // A mandatory replacement with a choice of shield groups uses the same prompt as competing replacements.
   if(opts.attachShields?.length){s.decision={type:'leaveReplace',player:who,uid:row.uid,mandatory:true};return;}
-  const mandatory=!!(opts.dokindamSeal||opts.takonchu1274||opts.ultra.some(x=>card(x).g571Saver?.mandatory)||opts.deathShield&&!optionalShield||opts.deathMana||opts.crystalMana||opts.omega||opts.ex||opts.psychicRelease||opts.stay577||opts.gneo||opts.star||opts.ningyo||opts.hawk||opts.deathShuffle||opts.mandatoryTop||ownSeed.some(x=>x.mandatory)),optional=coreChoices.length||opts.skullMoon?.length||opts.graveBottomStay||optionalShield||ownSeed.length||opts.lGate.length||opts.g393J.length||opts.g49.length||opts.kent.length||opts.hachi.length||optionalManaChoice||opts.optionalHand||opts.allyLeaveHand||opts.returnDiscard1156||opts.handSave1157?.length||opts.optionalTop||opts.muku.length||opts.g33.length||(opts.hawk&&!opts.deathDeck)||opts.exChoices.length>1||opts.ever.length>=2||opts.jashin.length>=leaveDiscardCount(row)||opts.savak.length||opts.ura.length>=5||opts.oni.length>=3||opts.escape.length||opts.mana.length>=3||opts.ater.length||opts.ultra.length;
+  const mandatory=!!(opts.dokindamSeal||opts.takonchu1274||opts.ultra.some(x=>card(x).g571Saver?.mandatory)||opts.deathShield&&!optionalShield||opts.deathMana||opts.crystalMana||opts.omega||opts.ex||opts.psychicRelease||opts.stay577||opts.gneo||opts.star||opts.ningyo||opts.hawk||opts.deathShuffle||opts.mandatoryTop||ownSeed.some(x=>x.mandatory)),optional=opts.millStay1351||coreChoices.length||opts.skullMoon?.length||opts.graveBottomStay||optionalShield||ownSeed.length||opts.lGate.length||opts.g393J.length||opts.g49.length||opts.kent.length||opts.hachi.length||optionalManaChoice||opts.optionalHand||opts.allyLeaveHand||opts.returnDiscard1156||opts.handSave1157?.length||opts.optionalTop||opts.muku.length||opts.g33.length||(opts.hawk&&!opts.deathDeck)||opts.exChoices.length>1||opts.ever.length>=2||opts.jashin.length>=leaveDiscardCount(row)||opts.savak.length||opts.ura.length>=5||opts.oni.length>=3||opts.escape.length||opts.mana.length>=3||opts.ater.length||opts.ultra.length;
   if(!optional&&Number(!!opts.dokindamSeal)+Number(!!opts.takonchu1274)+Number(!!opts.ex)+Number(!!opts.gneo)+Number(!!opts.psychicRelease)+Number(!!opts.stay577)+Number(!!opts.star)+Number(!!opts.ningyo)+Number(!!opts.omega)+Number(!!opts.deathMana)+Number(!!opts.deathDeck)+Number(!!opts.deathShuffle)+Number(!!opts.deathShield)+Number(!!opts.crystalMana)+Number(!!opts.mandatoryTop)<=1)row.plan=opts.dokindamSeal?{kind:'dokindam1276'}:opts.takonchu1274?{kind:'takonchu1274'}:opts.mandatoryTop?{kind:'deckTop846'}:opts.deathShield?{kind:'shield842'}:opts.crystalMana?{kind:'yamata',faceDown:true}:opts.deathMana?{kind:'yamata',...(opts.tappedMana?{tapped:true}:{})}:opts.deathDeck?{kind:'hawk'}:opts.deathShuffle?{kind:'shuffle731'}:opts.omega?{kind:'omega'}:opts.ningyo?{kind:'ningyo'}:opts.ex?{kind:'ex',shield:opts.ex}:opts.stay577?{kind:'stay577'}:opts.psychicRelease?{kind:'psychicRelease'}:opts.gneo?{kind:'gneo'}:opts.star?{kind:'star'}:{kind:'leave'};
   else{s.decision={type:'leaveReplace',player:who,uid:row.uid,mandatory};return;}
   if(row.plan?.kind==='leave'&&foreign.length&&!row.g47StratoDeclined){delete row.plan;s.decision={type:'leaveReplace',player:1-who,owner:who,uid:row.uid,foreignOnly:true,ownerPassed:true};return;}
  }
  for(const row of s.leaving.rows){
+  if(row.abyssSend)continue;
   if(row.plan?.kind==='leave'){
    const opts=leaveOptions(s,row),foreign=opts.g47.filter(x=>x.controller!==row.player);
    if(foreign.length){delete row.plan;s.decision={type:'leaveReplace',player:1-row.player,owner:row.player,uid:row.uid,foreignOnly:true,ownerPassed:true};return;}
@@ -1848,6 +1862,11 @@ function advanceLeaving(s){if(s.lossEvent)return;
    row.destroy!==false&&row.to==='grave'&&(!row.death||row.death==='grave')&&(plan.kind==='leave'||plan.kind==='star'))
    directDestructions++;
   if(plan.kind==='takonchu1274'){takonchuReplacements.push(top);continue;}
+  if(plan.kind==='millStay1351'){
+   mill(s,row.player,5,{together:true,replacement:true});
+   log(s,row.player,'stay',card(top).name+'を残すかわりに山札から5枚を墓地へ',{cardId:top.cardId});
+   continue;
+  }
   if(plan.kind==='dokindam1276')continue;
   if(plan.kind==='finalForbiddenCore'){
    for(const x of top.under||[])if(plan.cores.includes(x.uid))x.forbiddenCoreSpent=true;
@@ -1948,7 +1967,7 @@ function advanceLeaving(s){if(s.lossEvent)return;
   else{remove(own.battle,top.uid);if(s.attack&&(s.attack.attacker===top.uid||s.attack.target===top.uid))s.attack=null;const to=row.to==='grave'&&row.death?row.death:row.to,cards=layers(top);if(to==='grave'||row.cardOnly)rememberEvolutionGraveSources(s,row.player,top,to==='grave'?cards:cards.slice(1),batch);if(row.g1089OrderDeck&&to==='deck')for(const owner of [row.player,1-row.player]){const rows=bottomCards(row,top).filter(r=>(cards.find(x=>x.uid===r.uid)?.cardOwner??row.player)===owner);if(rows.length>1)(batch.bottomOrders??=[]).push(extra.task('g78_BottomOrder',owner,top.cardId,{rows,ordered:[],newCards:true}));}if(row.cardOnly){const rest=cards.splice(1);for(const x of rest)clearBattleState(x,'grave');addZone(s,own,'grave',...rest);}extra.leaving(s,row.player,top,row.leaveKaku,batch.snapshot,to,row.destroy!==false&&to==='grave');for(const x of cards){clearBattleState(x,to);if(row.faceDown){x.faceDown=true;x.tapped=false;}else if(row.tapped&&to==='mana')x.tapped=true;if(row.faceUp&&to==='shields')x.faceUp=true;}if(to==='deckTop')placeOnTop(row,cards);else if(row.shieldAttach)for(const x of cards)addShieldCard(s,row.player,row.shieldAttach,x);else if(row.g731Shuffling)returnAndShuffle(row,cards,top.cardId);else if(to==='shields'&&row.g1069DestroyShieldStack&&cards.length>1){
    cards[0].shieldStack=cards.slice(1);
    addZone(s,own,to,cards[0]);
-  }else addDepartingCards(s,row,to,cards);if(to==='shields'&&!row.shieldAttach)for(const x of cards)extra.shieldAdded(s,row.toOwnerShields?x.cardOwner??row.player:row.player,x);log(s,row.player,'leave',`${card(top).name}${cards.length>1?`と進化元${cards.length-1}枚`:''}が${{grave:'墓地',hand:'手札',mana:'マナ',deck:row.g731Shuffling?'山札':'山札の下',deckTop:'山札の上',deckFourth:'山札の4枚目（横向き）',shields:'シールド',extra:'超次元ゾーン'}[to]}へ移動`,{cardId:top.cardId});}
+  }else addDepartingCards(s,row,to,cards);if(to==='shields'&&!row.shieldAttach)for(const x of cards)extra.shieldAdded(s,row.toOwnerShields?x.cardOwner??row.player:row.player,x);log(s,row.player,'leave',`${card(top).name}${cards.length>1?`と進化元${cards.length-1}枚`:''}が${{grave:'墓地',hand:'手札',mana:'マナ',abyss:'深淵ゾーン',deckTop:row.g731Shuffling?'山札':'山札の下',deckTop:'山札の上',deckFourth:'山札の4枚目（横向き）',shields:'シールド',extra:'超次元ゾーン',abyss:'深淵ゾーン'}[to]}へ移動`,{cardId:top.cardId});}
  }
  for(const row of batch.rows)if(row.plan.kind==='jashin')extra.forcedDiscard(s,row.player,row.plan.cards,card(ownCardForRow(s,row)).id);
  const orders=[...(batch.bottomOrders||[])];
@@ -2059,7 +2078,14 @@ function matchesEvolution(base,condition,context){
  return false;
 }
 export function ultraBases(s,p,c){return s.players[p].battle.filter(x=>isCreature(s,x)&&!isEvolution(x)&&(effectiveCard(x,s).g293AnyEvolutionRace||/コマンド|ドラゴン/.test(String(effectiveCard(x,s).race))));}
-export function evolutionBases(s,p,c,options={}){if(c.g45MDeck)return s.players[p].deck.slice(0,1);if(extra.phoenix.complex(s,p,c))return extra.phoenix.bases(s,p,c,options);if(c.ultraEvolution){const list=ultraBases(s,p,c);return list.reduce((n,x)=>n+costValue(effectiveCard(x,s)),0)>=c.ultraEvolution?list:[];}const condition=c.evolution||c.neoEvolution;if(c.manaEvolution&&!canMoveZone(s,p,'mana'))return[];if(c.graveEvolution&&!canMoveZone(s,p,'grave'))return[];if(c.manaEvolution)return s.players[p].mana.filter(x=>!x.faceDown&&card(x).type==='creature'&&matchesEvolution(x,condition,s)&&!(s.players[p].g34ManaHeld||[]).includes(x.uid)&&!(s.players[p].g20Holding||[]).includes(x));if(c.graveEvolution)return s.players[p].grave.filter(x=>card(x).type==='creature');return condition?s.players[p].battle.filter(x=>(isCreature(s,x)||card(x).shinkalize)&&matchesEvolution(x,condition,s)):[];}
+function graveNeoBases1351(s,p,c){
+ return c.g1351GraveNeo&&canMoveZone(s,p,'grave')?s.players[p].grave.filter(x=>
+  x.uid!==c.executionUid&&card(x).type==='creature'&&matchesEvolution(x,c.neoEvolution,s)):[];
+}
+export function evolutionBases(s,p,c,options={}){if(c.g1351GraveNeo)return [
+ ...s.players[p].battle.filter(x=>isCreature(s,x)&&matchesEvolution(x,c.neoEvolution,s)),
+ ...graveNeoBases1351(s,p,c)
+];if(c.g45MDeck)return s.players[p].deck.slice(0,1);if(extra.phoenix.complex(s,p,c))return extra.phoenix.bases(s,p,c,options);if(c.ultraEvolution){const list=ultraBases(s,p,c);return list.reduce((n,x)=>n+costValue(effectiveCard(x,s)),0)>=c.ultraEvolution?list:[];}const condition=c.evolution||c.neoEvolution;if(c.manaEvolution&&!canMoveZone(s,p,'mana'))return[];if(c.graveEvolution&&!canMoveZone(s,p,'grave'))return[];if(c.manaEvolution)return s.players[p].mana.filter(x=>!x.faceDown&&card(x).type==='creature'&&matchesEvolution(x,condition,s)&&!(s.players[p].g34ManaHeld||[]).includes(x.uid)&&!(s.players[p].g20Holding||[]).includes(x));if(c.graveEvolution)return s.players[p].grave.filter(x=>card(x).type==='creature');return condition?s.players[p].battle.filter(x=>(isCreature(s,x)||card(x).shinkalize)&&matchesEvolution(x,condition,s)):[];}
 export function isEvolution(inst){return !!(card(inst).g45MDeck||card(inst).g50ForbiddenEvolution||card(inst).g48HandEvolution&&inst.under?.length||card(inst).sMax||card(inst).evolution||(card(inst).neoEvolution&&inst.under?.length));}
 export function selfTriggersStopped(s,p){return s.players[1-p].battle.some(x=>effectiveCard(x,s).stopSelfEntryAttack&&isEvolution(x));}
 function fixedPower1111(x,s){
@@ -2607,6 +2633,11 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  else if(c.graveEvolution){if(!baseUid.length||new Set(baseUid).size!==baseUid.length||!baseUid.every(uid=>s.players[p].grave.some(x=>x.uid===uid&&card(x).type==='creature')))throw Error('墓地進化元が正しくありません');inst.under=baseUid.map(uid=>{const x=remove(s.players[p].grave,uid);clearBattleState(x,'battle');x.g1236GraveArrival=s.turn;return x;});}
  else if(c.ultraEvolution){const list=baseUid.map(uid=>s.players[p].battle.find(x=>x.uid===uid)),allowed=ultraBases(s,p,c);if(!list.length||new Set(baseUid).size!==baseUid.length||list.some(x=>!allowed.includes(x))||list.reduce((n,x)=>n+costValue(effectiveCard(x,s)),0)<20)throw Error('超無限進化の進化元が正しくありません');for(const x of list)extra.evolutionBase(s,p,x);inst.under=list;inst.tapped=!!entryOptions.tapped||typedTap||list.some(x=>x.tapped)||extra.tapEntry(s,p)||s.players[1-p].battle.some(x=>effectiveCard(x,s).opponentTapEntry);inst.buff=list.reduce((n,x)=>n+(x.buff||0),0);inst.unblocked=list.some(x=>x.unblocked);inst.powerModifiers=list.flatMap(x=>structuredClone(x.powerModifiers||[]));inst.tapLocks=list.flatMap(x=>x.tapLocks||[]);if(list.some(x=>x.gospelSpeed===s.turn))inst.gospelSpeed=s.turn;for(const x of list){remove(s.players[p].battle,x.uid);extra.inherit(s,x,inst);if(s.attack?.attacker===x.uid)s.attack.attacker=inst.uid;if(s.attack?.target===x.uid)s.attack.target=inst.uid;}log(s,p,'evolve','コスト合計'+list.reduce((n,x)=>n+costValue(card(x)),0)+'の'+list.length+'体から'+c.name+'へ進化',{cardId:c.id});}
  else if(c.manaEvolution){const base=s.players[p].mana.find(x=>x.uid===baseUid&&x.uid!==inst.uid);if(!base||!matchesEvolution(base,c.evolution,s))throw Error('マナ進化元が正しくありません');remove(s.players[p].mana,baseUid);clearBattleState(base,'battle');inst.under=[base];}
+ else if(c.g1351GraveNeo&&baseUid&&graveNeoBases1351(s,p,c).some(x=>x.uid===baseUid)){
+  const base=remove(s.players[p].grave,baseUid);
+  clearBattleState(base,'battle');inst.under=[base];
+  log(s,p,'evolve',`${card(base).name}を墓地から進化元にして${c.name}へ進化`,{cardId:c.id});
+ }
  else if(c.evolution||(c.neoEvolution&&baseUid)){const base=s.players[p].battle.find(x=>x.uid===baseUid);if(!base||!matchesEvolution(base,c.evolution||c.neoEvolution,s))throw Error('進化元が正しくありません');extra.evolutionBase(s,p,base);remove(s.players[p].battle,baseUid);inst.under=[base];inst.tapped=!!entryOptions.tapped||typedTap||base.tapped||extra.tapEntry(s,p)||s.players[1-p].battle.some(x=>effectiveCard(x,s).opponentTapEntry);inst.buff=base.buff||0;inst.unblocked=base.unblocked||false;if(base.tapLocks)inst.tapLocks=[...base.tapLocks];if(base.buffSources)inst.buffSources=base.buffSources.map(x=>({...x}));if(base.unblockSpellCost)inst.unblockSpellCost=base.unblockSpellCost;if(base.powerModifiers)inst.powerModifiers=structuredClone(base.powerModifiers);if(base.skipUntap)inst.skipUntap=true;if(base.justDiverActive)inst.justDiverActive=true;for(const k of['g393JCopies','g393JZero'])if(base[k])inst[k]=structuredClone(base[k]);if(base.gospelSpeed===s.turn)inst.gospelSpeed=s.turn;if(base.g19Protected)inst.g19Protected=true;if(base.g19Blocker!==undefined)inst.g19Blocker=base.g19Blocker;
   extra.inherit(s,base,inst);if(s.attack?.attacker===baseUid)s.attack.attacker=inst.uid;
   if(s.attack?.target===baseUid)s.attack.target=inst.uid;
@@ -4083,6 +4114,7 @@ export function getLegalActions(s){
      (shield?'（シールド'+shield+'を墓地へ）':''),{cores:entry.cores,shield:entry.shield}));
    }
    if(v.dokindamSeal)out.push(option('replaceDokindam1276',name+'の離脱を封印に置き換える',{cardId:v.dokindamSeal}));
+   if(v.millStay1351)out.push(option('replaceMillStay1351',name+'を残すため山札から5枚を墓地へ置く',{cardId:ownCardForRow(s,row).cardId}));
    if(v.takonchu1274)out.push(option('replaceTakonchu1274',name+'を残し、相手が5枚引いてパワーを+5000する',
     {cardId:ownCardForRow(s,row).cardId}));
    if(v.psychicRelease)out.push(option('replacePsychicRelease',name+'の解除で裏返す',{cardId:ownCardForRow(s,row).cardId}));
@@ -4157,7 +4189,7 @@ export function getLegalActions(s){
    const eligible=baseUid=>free||!baseChangesCost||validMana(s,p,payment(baseUid));
    const quote=baseUid=>free?0:summonCost(s,p,payment(baseUid));
    out=evolutionBases(s,p,c).filter(base=>base.uid!==d.uid&&eligible(base.uid))
-    .map(base=>option('evolve',`${card(base).name}の上に${c.name}を重ねる`,{
+    .map(base=>option('evolve',`${card(base).name}${c.g1351GraveNeo&&own.grave.includes(base)?'（墓地）':''}の上に${c.name}を重ねる`,{
      uid:d.uid,baseUid:base.uid,cardId:c.id,...(baseChangesCost?{cost:quote(base.uid)}:{})
     }));
    if(c.neoEvolution&&eligible(null))out.unshift(option('evolve',`${c.name}を進化させず召喚`,{
@@ -4382,6 +4414,7 @@ function stepCore(s,action){
  if(a.kind==='replaceFinalForbiddenCore'){
   s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p).plan={kind:'finalForbiddenCore',cores:a.cores,shield:a.shield};s.decision=null;
  }
+ if(a.kind==='replaceMillStay1351'){s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p).plan={kind:'millStay1351'};s.decision=null;}
  if(a.kind==='replaceTakonchu1274'){
   s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p).plan={kind:'takonchu1274'};
   s.decision=null;
@@ -5428,6 +5461,7 @@ export function rankHeuristicActions(s){
   if(a.kind==='replaceTakonchu1274')return them.deckCount<=5?1000:30;
   if(a.kind==='replaceDokindam1276')return me.deckCount<=1?-1000:10;
   if(a.kind==='replaceEscape'){const x=find(p,s.decision?.uid);return x&&power(x,false,v)<=0?-1:30;}
+  if(a.kind==='replaceMillStay1351'){const x=find(p,s.decision?.uid);return me.deckCount>6&&x&&power(x,false,v)>0?38:-100;}
   if(a.kind==='replaceGraveBottom1202')return 30;
   if(a.kind==='graveBottomStayPick1202')return 12-aiCost(c);
   if(a.kind==='graveBottomStayCancel1202')return -100;

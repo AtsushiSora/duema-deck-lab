@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8037,
-  "pendingNames": 3789,
-  "phase": 1350,
+  "supportedNames": 8038,
+  "pendingNames": 3788,
+  "phase": 1351,
   "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -155,7 +155,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 2127,
-    "NEOクリーチャー": 70,
+    "NEOクリーチャー": 69,
     "呪文": 452,
     "GRクリーチャー": 155,
     "G-NEOクリーチャー": 26,
@@ -224,7 +224,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1072,
-    "未対応の能力文": 2526,
+    "未対応の能力文": 2525,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
@@ -490372,10 +490372,11 @@
           "log": "/tmp/duema-uncapped/takonchu-rematch-rules.log"
         },
         "additionalRegression": {
-          "status": "running",
-          "passed": null,
-          "failed": null,
-          "log": "/tmp/duema-uncapped/takonchu-rematch-regression.log"
+          "status": "passed",
+          "passed": 55,
+          "failed": 0,
+          "log": "/tmp/duema-uncapped/takonchu-rematch-regression.log",
+          "commit": "6cb32644"
         },
         "check": {
           "status": "passed",
@@ -490408,14 +490409,64 @@
       "remainingPrints": 1,
       "remainingIndividualCards": 25,
       "next": "分割ログを集計し、No.11ワーカーの固定31件を実デッキ一覧に合わせる。現在の同一テストの終了を待ち、既存の乱数と先攻を保って対戦相手単位に確認する。個別は未対応の共通処理と公式資料の照合を継続。"
+    },
+    {
+      "phase": 1351,
+      "baseline": "6cb32644",
+      "before": 8037,
+      "supported": 8038,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dm25rp4-OR1",
+          "name": "アビスラブ=ジャシン帝"
+        }
+      ],
+      "printAliases": 6,
+      "results": {
+        "focus": {
+          "passed": 16,
+          "log": "/tmp/duema-uncapped/abyss-focus.log"
+        },
+        "print": {
+          "verified": 7,
+          "passed": 1,
+          "log": "/tmp/duema-uncapped/abyss-all-prints.log"
+        },
+        "regression": {
+          "passed": 80,
+          "log": "/tmp/duema-uncapped/abyss-regression.log"
+        },
+        "check": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "/tmp/duema-uncapped/abyss-final-check.log"
+        },
+        "audit": {
+          "status": "passed",
+          "command": "node tools/audit-card-support.mjs",
+          "log": "/tmp/duema-uncapped/abyss-audit.log"
+        },
+        "nameKey": {
+          "rows": 8038,
+          "count": 8038,
+          "duplicates": 0,
+          "log": "/tmp/duema-uncapped/abyss-namekey.log"
+        }
+      },
+      "resolvedRegistered": 1,
+      "remainingRegistered": 25,
+      "remainingPrints": 1,
+      "remainingIndividualCards": 24,
+      "next": "未対応のオーラ、ウエポン、覚醒リンク等に共通処理から対応する。深淵ゾーンは既存のゲームのJSONに影響しない任意項目。旧ゲームの再読込と全物理カードの保存を確認済み。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1350,
+    "lastVerifiedPhase": 1351,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "タコンチュの強制ループは競技規定4.5の再試合まで検証済み。通常登録は停止したまま、未検証25種類、分割の未完了テスト、No.11の集計不一致を確認する。No.11は先に実行中の同一テストを終了まで待ち、対戦相手単位で検証する。",
+    "steps": "残る個別24種類に対応する。実カードのオーラ・ウエポンと選択置換などは共通処理から実装し、組み合わせを検証する。統計のNo.11は先に実行中の同一テストを待ち、既存の対戦相手とシードを維持して分割する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -534703,8 +534754,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8037,
-      "pendingNames": 3789,
+      "supportedNames": 8038,
+      "pendingNames": 3788,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -535731,7 +535782,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別25種類に関する裁定26件と金箔再録1件、および分割した長時間対戦・ワーカーの検証が残る。mainのpushに連動して .github/workflows/netlify.yml がNetlify本番を更新する構成があり、Netlifyへ影響しないPages公開経路は未確認。",
+        "reason": "個別24種類に関する裁定25件と金箔再録1件、および分割した長時間対戦・ワーカーの検証が残る。mainのpushはNetlify本番を更新するため、Netlifyへ影響しないPages公開経路は引き続き未確認。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -536532,6 +536583,27 @@
             "/tmp/duema-uncapped/takonchu-rematch-rules.log",
             "/tmp/duema-uncapped/takonchu-rematch-integration.log"
           ]
+        },
+        {
+          "cardId": "dm25rp2-S08",
+          "dependencyIds": [
+            "dm25rp4-OR1"
+          ],
+          "test": "公式QA 47945の深淵送りで離脱防止を無視する処理",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/47945/",
+          "phase": 1351,
+          "path": "tests/standard1351-effects.test.mjs",
+          "log": "/tmp/duema-uncapped/abyss-regression.log",
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/47939/",
+            "https://dm.takaratomy.co.jp/rule/qa/47940/",
+            "https://dm.takaratomy.co.jp/rule/qa/47941/",
+            "https://dm.takaratomy.co.jp/rule/qa/47942/",
+            "https://dm.takaratomy.co.jp/rule/qa/47943/",
+            "https://dm.takaratomy.co.jp/rule/qa/47945/",
+            "https://dm.takaratomy.co.jp/rule/qa/47946/"
+          ],
+          "result": "アビスラブ=ジャシン帝を実装し、同一の3枚のNEOクリーチャーの束が、普通の破壊ではPERFE910自身の能力で残り、深淵送りでは全部が深淵ゾーンに置かれることを確認。S-NEOで場か墓地の対象1枚を重ねる場合と進化しない場合、山札5枚を使う離脱置換の使用・不使用・不足、選ばれない相手、スター進化・Gリンク・サイキック・GR・EXライフの処理、双方の表示とJSON復元も実測。"
         }
       ],
       "remainingRegistered": [
@@ -536620,15 +536692,6 @@
             "source": "https://corocoro-news.jp/news/398184/",
             "result": "コロコロ公式の発売時カード紹介で本文と印刷コスト5を照合した。軽減の適用条件やドラム・トレボールとの組み合わせは掲載されていない。"
           }
-        },
-        {
-          "cardId": "dm25rp2-S08",
-          "dependencyIds": [
-            "dm25rp4-OR1"
-          ],
-          "test": "公式QA 47945の深淵送りで離脱防止を無視する処理",
-          "reason": "アビスラブ=ジャシン帝が未対応。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/47945/"
         },
         {
           "cardId": "dmr14-012",
@@ -538042,8 +538105,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8037,
-        "pending": 3789,
+        "supported": 8038,
+        "pending": 3788,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -538670,10 +538733,6 @@
           "name": "希望のジョー星"
         },
         {
-          "id": "dm25rp4-OR1",
-          "name": "アビスラブ=ジャシン帝"
-        },
-        {
           "id": "dmrp08-s10",
           "name": "ラドン・ベップバーン"
         },
@@ -538786,59 +538845,54 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1350,
-        "baseline": "49d35e5b",
+        "phase": 1351,
+        "baseline": "6cb32644",
         "before": 8037,
-        "supported": 8037,
+        "supported": 8038,
         "duplicates": 0,
-        "added": [],
-        "printAliases": 0,
+        "added": [
+          {
+            "id": "dm25rp4-OR1",
+            "name": "アビスラブ=ジャシン帝"
+          }
+        ],
+        "printAliases": 6,
         "results": {
-          "integration": {
-            "passed": 13,
-            "log": "/tmp/duema-uncapped/takonchu-rematch-integration.log"
+          "focus": {
+            "passed": 16,
+            "log": "/tmp/duema-uncapped/abyss-focus.log"
+          },
+          "print": {
+            "verified": 7,
+            "passed": 1,
+            "log": "/tmp/duema-uncapped/abyss-all-prints.log"
           },
           "regression": {
-            "passed": 9,
-            "log": "/tmp/duema-uncapped/takonchu-rematch-rules.log"
-          },
-          "additionalRegression": {
-            "status": "running",
-            "passed": null,
-            "failed": null,
-            "log": "/tmp/duema-uncapped/takonchu-rematch-regression.log"
+            "passed": 80,
+            "log": "/tmp/duema-uncapped/abyss-regression.log"
           },
           "check": {
             "status": "passed",
             "command": "npm run check",
-            "log": "/tmp/duema-uncapped/takonchu-rematch-check.log",
-            "rulesBlobs": {
-              "dist/engine.js": "5a467caa32d454b72f40ab9747c2157645e5aefe",
-              "dist/app.js": "d290385075c93c6734e4d9956efcd659e244709c",
-              "dist/manual-ui.js": "f0c0b1f520b45eb781abb5b4647f681d0da593be",
-              "dist/online-ui.js": "0c0d3e4b32163a27af02c45364cd6802eca8e4fb",
-              "dist/ai-playback.js": "2f2c13dda5dad686a449c62bc23ebe05e2947796",
-              "dist/tournament-simulation.js": "9bd0a8b70afd46e01d7ef24dacde07db37a1fd85",
-              "server/duel-core.mjs": "f621889a0a9db63bb0388b1a4106f4f74d9b1dda"
-            }
+            "log": "/tmp/duema-uncapped/abyss-final-check.log"
           },
           "audit": {
             "status": "passed",
             "command": "node tools/audit-card-support.mjs",
-            "log": "/tmp/duema-uncapped/takonchu-rematch-audit.log"
+            "log": "/tmp/duema-uncapped/abyss-audit.log"
           },
           "nameKey": {
-            "rows": 8037,
-            "count": 8037,
+            "rows": 8038,
+            "count": 8038,
             "duplicates": 0,
-            "log": "/tmp/duema-uncapped/takonchu-rematch-namekey.log"
+            "log": "/tmp/duema-uncapped/abyss-namekey.log"
           }
         },
         "resolvedRegistered": 1,
-        "remainingRegistered": 26,
+        "remainingRegistered": 25,
         "remainingPrints": 1,
-        "remainingIndividualCards": 25,
-        "next": "分割ログを集計し、No.11ワーカーの固定31件を実デッキ一覧に合わせる。現在の同一テストの終了を待ち、既存の乱数と先攻を保って対戦相手単位に確認する。個別は未対応の共通処理と公式資料の照合を継続。"
+        "remainingIndividualCards": 24,
+        "next": "未対応のオーラ、ウエポン、覚醒リンク等に共通処理から対応する。深淵ゾーンは既存のゲームのJSONに影響しない任意項目。旧ゲームの再読込と全物理カードの保存を確認済み。"
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
@@ -540798,6 +540852,60 @@
           ],
           "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-1S.jpg",
           "aliasAdded": false
+        },
+        {
+          "id": "dm25rp4-ChoSec01",
+          "canonicalId": "dm25rp4-OR1",
+          "name": "アビスラブ=ジャシン帝",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-ChoSec01",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp4-ChoSec01.jpg",
+          "phase": 1351,
+          "result": "公式の能力文・画像・使用制限を照合して同名カードに統合。"
+        },
+        {
+          "id": "dm25rp4-Sec01",
+          "canonicalId": "dm25rp4-OR1",
+          "name": "アビスラブ=ジャシン帝",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-Sec01",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp4-Sec01.jpg",
+          "phase": 1351,
+          "result": "公式の能力文・画像・使用制限を照合して同名カードに統合。"
+        },
+        {
+          "id": "dm25ex3-OR2",
+          "canonicalId": "dm25rp4-OR1",
+          "name": "アビスラブ=ジャシン帝",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-OR2",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-OR2.jpg",
+          "phase": 1351,
+          "result": "公式の能力文・画像・使用制限を照合して同名カードに統合。"
+        },
+        {
+          "id": "promoy24-118",
+          "canonicalId": "dm25rp4-OR1",
+          "name": "アビスラブ=ジャシン帝",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy24-118",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy24-118.jpg",
+          "phase": 1351,
+          "result": "公式の能力文・画像・使用制限を照合して同名カードに統合。"
+        },
+        {
+          "id": "promoy24-119",
+          "canonicalId": "dm25rp4-OR1",
+          "name": "アビスラブ=ジャシン帝",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy24-119",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy24-119.jpg",
+          "phase": 1351,
+          "result": "公式の能力文・画像・使用制限を照合して同名カードに統合。"
+        },
+        {
+          "id": "promoy24-120",
+          "canonicalId": "dm25rp4-OR1",
+          "name": "アビスラブ=ジャシン帝",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy24-120",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy24-120.jpg",
+          "phase": 1351,
+          "result": "公式の能力文・画像・使用制限を照合して同名カードに統合。"
         }
       ],
       "individualRecheck": {
@@ -541141,10 +541249,11 @@
               "log": "/tmp/duema-uncapped/takonchu-rematch-rules.log"
             },
             "additionalRegression": {
-              "status": "running",
-              "passed": null,
-              "failed": null,
-              "log": "/tmp/duema-uncapped/takonchu-rematch-regression.log"
+              "status": "passed",
+              "passed": 55,
+              "failed": 0,
+              "log": "/tmp/duema-uncapped/takonchu-rematch-regression.log",
+              "commit": "6cb32644"
             },
             "check": {
               "status": "passed",

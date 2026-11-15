@@ -2480,6 +2480,18 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1351&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='NEOクリーチャー'&&
+    ['dm25rp4-OR1','dm25rp4-ChoSec01','dm25rp4-Sec01','dm25ex3-OR2','promoy24-118','promoy24-119','promoy24-120'].includes(d.id)){
+  const lines=f.abilityText.split('\n').map(normalize);
+  const base=normalize('S-NEO進化(墓地)：バトルゾーンまたは墓地の、アビス・クリーチャー１体の上に重ねつつ出してもよい。'),
+   attack=normalize('このクリーチャーが攻撃する時、相手のクリーチャーを１体まで選び、深淵送りにする。'),
+   stay=normalize('このクリーチャーが離れる時、かわりに自分の山札の上から５枚を墓地に置いてもよい。');
+  if(lines.length===4&&[base,base+normalize('（カードが下にあれば、これをNEO進化クリーチャーとして扱う）')].includes(lines[0])&&
+     lines[1]==='W・ブレイカー'&&[attack,attack+normalize('（それを持ち主の深淵ゾーンに置く。この移動は妨げられない）')].includes(lines[2])&&lines[3]===stay)
+   return {neoEvolution:{any:[{category:'アビス'}]},g1351GraveNeo:true,breaker:2,g1351MillStay:5,
+    g34Attack:[{op:'Target',to:'abyss',filter:{creature:true},
+     optional:true,title:'深淵送りにする相手のクリーチャーを選ぶ'}]};
+ }
  if(phase>=1325&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='タマシード'&&
   ['dmsd21-008','dmrp21-018','dm25ex3-TF02','dm25rp4-T02','dm25sp2-009','dm26ex2-MC018','promoy21-078','promoy22-016'].includes(d.id)){
   const lines=f.abilityText.split('\n').map(normalize);

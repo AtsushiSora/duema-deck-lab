@@ -248,7 +248,7 @@ function mobileDockHTML(s,ui,m){
 
 export function manualBoardHTML(s,ui,{art,icon}){
  const m=manualModel(s,ui),route=attackRoute(s,ui),handSelection=handCardModel(s,ui.hand,ui.handFace,m.actions),destinations=handSelection?.destinations||[],inlineMana=!ui.mobile&&!ui.landscape;
- const specialZones=(p,who)=>`${p.gr||p.extra?.length||p.seals?.length?`<div class="play-special-zones">${p.gr?`<span>超GR ${p.gr.length}枚</span>`:''}${p.extra?.length?`<button data-action="zone-detail" data-player="${who}" data-zone="extra">超次元 <b>${p.extra.length}</b> ›</button>`:''}${p.seals?.length?`<button data-action="zone-detail" data-player="${who}" data-zone="seals">封印 <b>${p.seals.length}</b> ›</button>`:''}</div>`:''}`;
+ const specialZones=(p,who)=>`${p.gr||p.extra?.length||p.seals?.length||p.abyss?.length?`<div class="play-special-zones">${p.gr?`<span>超GR ${p.gr.length}枚</span>`:''}${p.extra?.length?`<button data-action="zone-detail" data-player="${who}" data-zone="extra">超次元 <b>${p.extra.length}</b> ›</button>`:''}${p.seals?.length?`<button data-action="zone-detail" data-player="${who}" data-zone="seals">封印 <b>${p.seals.length}</b> ›</button>`:''}${p.abyss?.length?`<button data-action="zone-detail" data-player="${who}" data-zone="abyss">深淵 <b>${p.abyss.length}</b> ›</button>`:''}</div>`:''}`;
  const resources=(p,who)=>{
   const visible=who&&!ui.spectator?visibleOpponentHand(s,0).length:0;
   const ready=p.mana.filter(x=>!x.tapped).reduce((n,x)=>n+manaValueAt(s,who,x),0),total=p.mana.reduce((n,x)=>n+manaValueAt(s,who,x),0);
