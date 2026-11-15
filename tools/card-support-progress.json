@@ -536661,7 +536661,12 @@
             },
             "log": "/tmp/duema-uncapped/forced-loop-125ea7e1.log",
             "expected": "両者に選択肢がない強制ループでは競技イベント運営ルール4.5に従って進行中のゲームを中断し再試合する。",
-            "compatibility": "対戦の状態と結果には2人の勝者か継続中しか表せない。再試合の結果、通信と履歴の扱いは今回未変更。"
+            "compatibility": "対戦の状態と結果には2人の勝者か継続中しか表せない。再試合の結果、通信と履歴の扱いは今回未変更。",
+            "officialRelatedSources": [
+              "https://dm.takaratomy.co.jp/rule/rulechange/",
+              "https://dm.takaratomy.co.jp/rule/qa/40600/",
+              "https://dm.takaratomy.co.jp/rule/qa/43220/"
+            ]
           }
         },
         {
@@ -540883,8 +540888,8 @@
           },
           "latestTestSplit": {
             "commit": "7c13d049",
-            "completedGroups": 178,
-            "passedNamedTests": 231,
+            "completedGroups": 181,
+            "passedNamedTests": 237,
             "failedGroups": [],
             "result": "互いに重複しない完了ログを集計。長時間の対戦と本番ワーカーを含む未完了の実行は継続中。",
             "command": "python3 /tmp/duema-uncapped/run-current.py",
@@ -540892,7 +540897,7 @@
           },
           "aggregateByExactName": {
             "planned": 818,
-            "passed": 271,
+            "passed": 277,
             "result": "二つの固定コミットのログで、パスとテスト名が一致する通過を重複なしで数えた。大会フィクスチャを修正した改名ケースは別の分割記録に保存。"
           },
           "armoredLong": {
@@ -540930,11 +540935,12 @@
             "status": "実行中",
             "decks": 85,
             "planned": 255,
-            "completed": 64,
+            "completed": 107,
             "failures": 0,
             "log": "/tmp/duema-uncapped/current-ai-audit.log",
             "report": "/tmp/duema-uncapped/current-ai-audit.json",
-            "result": "ルールソースの異なる検証済みコミットで、85デッキの合法性、物理カードの保持、JSON復元と非公開情報の扱いを再検証中。"
+            "result": "ルールソースの異なる検証済みコミットで、85デッキの合法性、物理カードの保持、JSON復元と非公開情報の扱いを再検証中。",
+            "reviewFindings": 1
           },
           "pendingDependencies": {
             "commit": "c836360c",
@@ -540993,7 +540999,39 @@
             "failed": 0,
             "seconds": 59.269830999999996,
             "log": "/tmp/duema-uncapped/current-online-be33e936.log"
-          }
+          },
+          "additionalLongPasses": [
+            {
+              "commit": "7c13d049",
+              "path": "tests/golgy-effects.test.mjs",
+              "passed": [
+                "Golgy AI games complete against all31 configured opponents with deterministic replay",
+                "Golgy production worker completes62 games without unresolved matches"
+              ],
+              "seconds": 5048.82,
+              "log": "/tmp/duema-uncapped/current-logs/0025.log"
+            },
+            {
+              "commit": "7c13d049",
+              "path": "tests/gate-effects.test.mjs",
+              "passed": [
+                "No20 random legal choices conserve cards and serialize/replay legal actions and AI exactly",
+                "production worker completes160 No20 games with no unresolved matches"
+              ],
+              "seconds": 5338.2,
+              "log": "/tmp/duema-uncapped/current-logs/0022.log"
+            },
+            {
+              "commit": "7c13d049",
+              "path": "tests/grasper-haikyu.test.mjs",
+              "passed": [
+                "the exact screenshot deck completes from both initiatives with eighty unique physical cards",
+                "the production worker accepts the exact forty cards and completes its match"
+              ],
+              "seconds": 90.15,
+              "log": "/tmp/duema-uncapped/current-logs/0027.log"
+            }
+          ]
         },
         "latestRegisteredRulings": {
           "phase": 1349,
