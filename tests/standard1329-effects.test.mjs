@@ -165,7 +165,8 @@ test('QA39087: ケドケドがいても手札で解決するS・トリガーで�
 test('公式画像で確認した金箔再録とキャロルの再録は既存の対戦IDに解決する',()=>{
  const catalogue=createCatalogue(snapshot,data.cards,details);
  assert.equal(catalogue.get('dm22rp2-1S').id,'dm22rp2-OR1');
- assert.equal(catalogue.get('dmex13-056').id,CAROL);
+ for(const id of ['dmex13-056','dmex03-029','dm23ex1-062','promoy12-031','dm26ex4-CHO046'])assert.equal(catalogue.get(id).id,CAROL);
+ assert.equal(catalogue.get('dm23rp4x-009').id,NEMESIS);
  assert.equal(new Set(data.cards.map(row=>nameKey(row.name))).size,data.cards.length);
 });
 

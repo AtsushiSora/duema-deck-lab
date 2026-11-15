@@ -73,8 +73,8 @@ test('Mirzam Kid can decline Shield Plus and has no target when there are no shi
   if(empty)give(s,0,'shields',[]);
   const top=s.players[0].deck[0].uid;
   act(s,'play');
-  if(empty)assert.deepEqual(s.decision.choices.map(valueOf),[null]);
-  pick(s,null);
+  if(empty)assert.equal(s.decision,null);
+  else pick(s,null);
   assert.equal(s.players[0].deck[0].uid,top);
   assert.equal(s.players[0].shields.length,empty?0:5);
  }

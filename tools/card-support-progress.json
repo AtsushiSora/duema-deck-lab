@@ -489311,7 +489311,7 @@
           "name": "バリバリ・ケドケド"
         }
       ],
-      "printAliases": 2,
+      "printAliases": 7,
       "results": {
         "focused": {
           "passed": 17,
@@ -534554,7 +534554,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "登録済みカードの未検証項目、再録照合、分割テストが残る。前回のGitHub上の確認ではmainに反応するNetlifyワークフローが有効。Pagesのみを更新する公開経路は未確認。"
+        "reason": "残る裁定52件、再録3件と長時間・分割回帰の合格確認が必要。前回のGitHub上の確認ではmainに反応するNetlifyワークフローが有効で、Pagesのみを更新する公開経路は未確認。"
       },
       "resolvedRegistered": [
         {
@@ -535328,10 +535328,11 @@
           "dm23rp2-065",
           "dmbd10-017",
           "dm22rp2-OR1",
-          "dmx14-031"
+          "dmx14-031",
+          "dm23rp4-009"
         ],
-        "officialPrints": 13,
-        "newAliases": 11,
+        "officialPrints": 18,
+        "newAliases": 16,
         "evidence": [
           {
             "id": "dm23rp2-065",
@@ -535439,9 +535440,49 @@
             "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex13-056.jpg",
             "pageSha256": "93b92ef9a8fb7f50261d1bf9606bce23492e818bc89f48f261cc69961cf58c63",
             "imageSha256": "303843ef75f0a9fc28f11ca6a1252f53309fa61988bc7af9ecc30842efeb7211"
+          },
+          {
+            "id": "dmex03-029",
+            "canonicalId": "dmx14-031",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-029",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex03-029.jpg",
+            "pageSha256": "897130bf9a48d322ddb3e7f5f00fa69e557cdf14a6b6945b9e7f65d3ca0637e8",
+            "imageSha256": "8ea4dfebe73b9968df8f5d4f631c00174dfa8c80e2a067cf923be94c5404fb2e"
+          },
+          {
+            "id": "dm23ex1-062",
+            "canonicalId": "dmx14-031",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-062",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex1-062.jpg",
+            "pageSha256": "b32f90025169644cb48c24321baeb4aa58f036c1ded1c59200a91d8068222d6a",
+            "imageSha256": "1307db38fa2151a0ff4ca2bdf50df8fc0770695ca647795778fa0f67d9ba5452"
+          },
+          {
+            "id": "promoy12-031",
+            "canonicalId": "dmx14-031",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy12-031",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy12-031.jpg",
+            "pageSha256": "df35a1bd94da8dfe216aa0922a56001c0f724db3e88f5c3ecfb19933f29cb1e2",
+            "imageSha256": "552a217f41224060ddeabc8737aaa8efd7eb552745898da9448750236728cca4"
+          },
+          {
+            "id": "dm26ex4-CHO046",
+            "canonicalId": "dmx14-031",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-CHO046",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-CHO046.jpg",
+            "pageSha256": "ea634a0ea39ed47555bcedcf394fac3ec559cc5bad07932752398e6d33602cf5",
+            "imageSha256": "3b64e33e80e71845ac7c582cc41a76ba72944a4cd6504ad8a98d10aeebe89cec"
+          },
+          {
+            "id": "dm23rp4x-009",
+            "canonicalId": "dm23rp4-009",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-009",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-009.jpg",
+            "pageSha256": "43812e22bf736be21e19f4f58ec70867f71df16865d12ebe3a82df30a8e93268",
+            "imageSha256": "5da471e0b97d040b86c5e1b3e925ba2b0db8cac181264c61f8d58bfca3e913b2"
           }
         ],
-        "testLog": "/tmp/duema-verify-8001/reprint-tests.log",
+        "testLog": "/tmp/duema-verify-8009/verification-followup-prints.log",
         "notes": "既存のカード行と詳細行を保持。公式HTMLの二重エスケープを実カード画像の矢印に対応付け、初版の多色マナのタップと2ドロー・2捨てを対戦で確認。カタログの同名重複1件が解消し、対戦対応数は8,001種類。"
       },
       "remainingPrints": [
@@ -535595,6 +535636,65 @@
           ],
           "resultLog": "/tmp/duema-verify-8001/changes-focus.log",
           "result": "3デッキ各40枚の合法性、対応率と画像位置を現在のデータで確認。"
+        },
+        {
+          "phase1329Followup": true,
+          "cardIds": [
+            "dmr07-001",
+            "dmd33-003",
+            "dm39-046",
+            "dm02-003",
+            "dmex19-039",
+            "dmx15-017",
+            "dm26rp1-053"
+          ],
+          "test": "分割テストで再現した登録時期、種族の追加、シールド・プラスの検証13件",
+          "reason": "変更前の3a665662で13件失敗。後続段階での登録を古い候補テストの入力から除き、能力を無視された側に外部から種族が追加される裁定と、自分のシールドがない場合にシールド・プラスの選択がないカード本文にテストを合わせた。",
+          "results": {
+            "scanner": {
+              "paths": [
+                "tests/standard323-effects.test.mjs",
+                "tests/standard324-effects.test.mjs",
+                "tests/standard327-effects.test.mjs",
+                "tests/standard328-effects.test.mjs",
+                "tests/standard331-effects.test.mjs",
+                "tests/standard332-effects.test.mjs",
+                "tests/standard336-effects.test.mjs",
+                "tests/standard388-effects.test.mjs"
+              ],
+              "fixed": 8,
+              "passed": 16,
+              "log": "/tmp/duema-verify-8009/historical-scanner.log"
+            },
+            "phase515": {
+              "paths": [
+                "tests/standard515-effects.test.mjs"
+              ],
+              "fixed": 1,
+              "passed": 1,
+              "log": "/tmp/duema-verify-8009/phase515-regression.log"
+            },
+            "race": {
+              "paths": [
+                "tests/standard341-effects.test.mjs"
+              ],
+              "fixed": 2,
+              "passed": 56,
+              "log": "/tmp/duema-verify-8009/race-aura-regression.log",
+              "source": "https://dm.takaratomy.co.jp/rule/qa/31678/"
+            },
+            "shieldAndCatalogue": {
+              "paths": [
+                "tests/standard638-effects.test.mjs",
+                "tests/standard639-effects.test.mjs"
+              ],
+              "fixed": 2,
+              "passed": 9,
+              "log": "/tmp/duema-verify-8009/shield-and-catalogue-regression.log",
+              "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-053"
+            }
+          },
+          "result": "変更後の該当実行82件が通過。"
         }
       ],
       "countsAtRegressions": {
@@ -536520,7 +536620,7 @@
             "name": "バリバリ・ケドケド"
           }
         ],
-        "printAliases": 2,
+        "printAliases": 7,
         "results": {
           "focused": {
             "passed": 17,
@@ -536738,13 +536838,149 @@
           "plan": "/tmp/duema-verify-8009/refined-plan.json",
           "resultFile": "/tmp/duema-verify-8009/refined-results.jsonl",
           "timeLimitSeconds": 85,
-          "recorded": 19,
-          "passedGroups": 19,
-          "timedOut": [],
-          "failures": [],
-          "testPass": 4855,
+          "recorded": 142,
+          "passedGroups": 133,
+          "timedOut": [
+            {
+              "index": 132,
+              "paths": [
+                "tests/standard506-effects.test.mjs",
+                "tests/standard507-effects.test.mjs",
+                "tests/standard508-effects.test.mjs",
+                "tests/standard509-effects.test.mjs",
+                "tests/standard510-effects.test.mjs"
+              ],
+              "log": "/tmp/duema-verify-8009/refined-short-0132.log",
+              "seconds": 85.03
+            },
+            {
+              "index": 143,
+              "paths": [
+                "tests/standard561-effects.test.mjs",
+                "tests/standard562-effects.test.mjs",
+                "tests/standard563-effects.test.mjs",
+                "tests/standard564-effects.test.mjs",
+                "tests/standard565-effects.test.mjs"
+              ],
+              "log": "/tmp/duema-verify-8009/refined-short-0143.log",
+              "seconds": 85.04
+            }
+          ],
+          "testPass": 26156,
           "testSkipped": 0,
-          "snapshotAt": "2026-11-15T06:54:54.958Z"
+          "snapshotAt": "2026-11-15T07:02:53.430Z",
+          "planned": 504,
+          "historicalFailures": [
+            {
+              "index": 99,
+              "log": "/tmp/duema-verify-8009/refined-short-0099.log",
+              "tests": [
+                {
+                  "path": "tests/standard336-effects.test.mjs",
+                  "title": "scanner discovers exactly eleven complete cards and blocks unresolved named dependencies (10345.025333ms)",
+                  "relievedByFocusedRerun": true
+                },
+                {
+                  "path": "tests/standard341-effects.test.mjs",
+                  "title": "dmex19-039 race aura respects ignoredRecipient (4.342333ms)",
+                  "relievedByFocusedRerun": true
+                },
+                {
+                  "path": "tests/standard341-effects.test.mjs",
+                  "title": "dmx15-017 race aura respects ignoredRecipient (0.565834ms)",
+                  "relievedByFocusedRerun": true
+                }
+              ]
+            },
+            {
+              "index": 109,
+              "log": "/tmp/duema-verify-8009/refined-short-0109.log",
+              "tests": [
+                {
+                  "path": "tests/standard388-effects.test.mjs",
+                  "title": "unknown clauses rejected, previous compiler specifications pinned and scanner finds three cards (520.46575ms)",
+                  "relievedByFocusedRerun": true
+                }
+              ]
+            },
+            {
+              "index": 98,
+              "log": "/tmp/duema-verify-8009/refined-short-0098.log",
+              "tests": [
+                {
+                  "path": "tests/standard331-effects.test.mjs",
+                  "title": "scanner discovers exactly four complete cards without mutating or accepting unresolved dependencies (11067.371209ms)",
+                  "relievedByFocusedRerun": true
+                },
+                {
+                  "path": "tests/standard332-effects.test.mjs",
+                  "title": "scanner discovers exactly nine fully parsed cards and retains unresolved dependency blocking (10515.38375ms)",
+                  "relievedByFocusedRerun": true
+                }
+              ]
+            },
+            {
+              "index": 96,
+              "log": "/tmp/duema-verify-8009/refined-short-0096.log",
+              "tests": [
+                {
+                  "path": "tests/standard323-effects.test.mjs",
+                  "title": "read-only scanner finds the four complete cards and keeps unresolved named searches blocked (10350.895459ms)",
+                  "relievedByFocusedRerun": true
+                },
+                {
+                  "path": "tests/standard324-effects.test.mjs",
+                  "title": "read-only scanner finds exactly the four complete cards while unresolved named search stays blocked (11435.748917ms)",
+                  "relievedByFocusedRerun": true
+                }
+              ]
+            },
+            {
+              "index": 97,
+              "log": "/tmp/duema-verify-8009/refined-short-0097.log",
+              "tests": [
+                {
+                  "path": "tests/standard327-effects.test.mjs",
+                  "title": "read-only scanner discovers exactly six complete cards and still blocks unresolved exact-name searches (10173.286708ms)",
+                  "relievedByFocusedRerun": true
+                },
+                {
+                  "path": "tests/standard328-effects.test.mjs",
+                  "title": "read-only scanner discovers ten complete cards without adding unresolved named searches (11597.062417ms)",
+                  "relievedByFocusedRerun": true
+                }
+              ]
+            },
+            {
+              "index": 133,
+              "log": "/tmp/duema-verify-8009/refined-short-0133.log",
+              "tests": [
+                {
+                  "path": "tests/standard515-effects.test.mjs",
+                  "title": "both supported legal forties cover all four additions and the dependency-sensitive candidate stays pending (10467.574083ms)",
+                  "relievedByFocusedRerun": true
+                }
+              ]
+            },
+            {
+              "index": 158,
+              "log": "/tmp/duema-verify-8009/refined-short-0158.log",
+              "tests": [
+                {
+                  "path": "tests/standard638-effects.test.mjs",
+                  "title": "Mirzam Kid can decline Shield Plus and has no target when there are no shields (15.886917ms)",
+                  "relievedByFocusedRerun": true
+                },
+                {
+                  "path": "tests/standard639-effects.test.mjs",
+                  "title": "Phase 639 verifies the complete original prints and their saved deck identities (350.131ms)",
+                  "relievedByFocusedRerun": true
+                }
+              ]
+            }
+          ],
+          "status": "runningAtCheckpoint",
+          "resume": "変更前の3a665662を展開した作業用スナップショットでのみ実行。resultFileの差分を調べ、未完了・除外した長時間ケースを個別に分割する。"
         },
         "long": {
           "status": "partial",
@@ -536894,6 +537130,70 @@
           ]
         },
         "status": "incomplete"
+      },
+      "verificationFollowup": {
+        "baseline": "5483b70c",
+        "supportedNames": 8012,
+        "duplicateNames": 0,
+        "reprints": [
+          "dmex03-029",
+          "dm23ex1-062",
+          "promoy12-031",
+          "dm26ex4-CHO046",
+          "dm23rp4x-009"
+        ],
+        "check": {
+          "status": "passed",
+          "log": "/tmp/duema-verify-8009/pending-validation-check.log"
+        },
+        "reprintAndRulings": {
+          "passed": 17,
+          "log": "/tmp/duema-verify-8009/verification-followup-prints.log"
+        },
+        "regressions": {
+          "scanner": {
+            "paths": [
+              "tests/standard323-effects.test.mjs",
+              "tests/standard324-effects.test.mjs",
+              "tests/standard327-effects.test.mjs",
+              "tests/standard328-effects.test.mjs",
+              "tests/standard331-effects.test.mjs",
+              "tests/standard332-effects.test.mjs",
+              "tests/standard336-effects.test.mjs",
+              "tests/standard388-effects.test.mjs"
+            ],
+            "fixed": 8,
+            "passed": 16,
+            "log": "/tmp/duema-verify-8009/historical-scanner.log"
+          },
+          "phase515": {
+            "paths": [
+              "tests/standard515-effects.test.mjs"
+            ],
+            "fixed": 1,
+            "passed": 1,
+            "log": "/tmp/duema-verify-8009/phase515-regression.log"
+          },
+          "race": {
+            "paths": [
+              "tests/standard341-effects.test.mjs"
+            ],
+            "fixed": 2,
+            "passed": 56,
+            "log": "/tmp/duema-verify-8009/race-aura-regression.log",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/31678/"
+          },
+          "shieldAndCatalogue": {
+            "paths": [
+              "tests/standard638-effects.test.mjs",
+              "tests/standard639-effects.test.mjs"
+            ],
+            "fixed": 2,
+            "passed": 9,
+            "log": "/tmp/duema-verify-8009/shield-and-catalogue-regression.log",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-053"
+          }
+        }
       }
     }
   },

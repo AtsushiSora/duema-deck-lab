@@ -35,7 +35,7 @@ test('Phase 639 verifies the complete original prints and their saved deck ident
   assert.deepEqual(catalogue.resolveRows(deck.cards),deck.cards);
   assert.deepEqual(e.validateDeck(deck),[]);
  }
- assert.ok(!data.cards.some(c=>c.id===MAGIN));
+ assert.throws(()=>standardCardSpec(details.cards.find(c=>c.id===MAGIN),{phase:639}));
 });
 
 test('Shinaiga offers only friendly Tamaseeds and draws two only when the sacrifice is chosen',()=>{
