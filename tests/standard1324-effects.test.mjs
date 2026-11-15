@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createCatalogue,nameKey} from '../dist/catalogue.js';
 import {CARD_IMAGES} from '../dist/card-images.js';
+import {manualModel} from '../dist/manual-ui.js';
 import {standardCardSpec} from '../tools/standard-card-spec.mjs';
 import {act,attack,data,details,drain,e,give,inst,PRESETS,setup,snapshot} from './target-fixture.mjs';
 
@@ -185,6 +186,7 @@ for(const yes of [true,false])test('Cocoa’s controller selects an opposing han
  s.phase='attack';act(s,'endTurn');
  assert.equal(s.decision.player,0);
  assert.deepEqual(choices(s),[choice.uid,other.uid]);
+ assert.match(manualModel(s).help,/相手がそれを出すか決めます/);
  assert.ok(s.decision.task.g585Peek.some(x=>x.id===spell.cardId&&x.label==='選択不可'));
  pick(s,choice.uid);
  assert.equal(s.decision.player,1);

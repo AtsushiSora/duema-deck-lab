@@ -51,6 +51,7 @@ export function manualModel(s,ui={}){
 function decisionHelp(s){
  const d=s.decision;
  if(d.type==='silent496')return '能力を使うと、このクリーチャーはタップしたままになります。効果はほかのカードのアンタップ後に解決します。';
+ if(d.task?.g1324ChooseCreature&&d.choices.some(c=>c.value))return '相手の手札からクリーチャーを1体選びます。相手がそれを出すか決めます。';
  if(d.task?.g223Inspect&&d.task.chooseOne)return '相手の手札を確認し、条件に合うカードから1枚選びます。';
  if(d.task?.g223Inspect)return d.task.discard?'「詳細」で能力を確認できます。確認を終えると、「捨てさせるカード」をすべて処理します。':'「詳細」で能力を確認できます。「確認を終える」を押すまで、手札はそのまま表示します。';
  if(d.task?.op==='hyperCost'&&d.task.n===1)return '自分の他のアンタップしているクリーチャーを1体選びます。選んだ仲間だけをタップし、ハイパーモードを解放します。出したばかりの仲間も選べます。';
