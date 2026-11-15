@@ -10,6 +10,20 @@ const rows=s=>e.getLegalActions(s).map(a=>({...a,...(a.kind==='extended'?s.decis
 function pick(s,predicate){const a=e.getLegalActions(s).find(a=>{const r={...a,...(a.kind==='extended'?s.decision.choices[a.choice]:{})};return typeof predicate==='function'?predicate(r):r.value===predicate;});assert.ok(a,JSON.stringify(s.decision));e.step(s,a);}
 const play=(s,id,face=0)=>{s.players[s.active].hand.push(inst(id));act(s,'play',a=>a.cardId===id&&(a.face||0)===face&&!a.alternative);};
 const physical=s=>e.physicalCards(s).map(x=>x.uid).sort();
+test('CPU uses Dokkoi to charge Zombie when one library card remains',()=>{
+ const s=setup();
+ give(s,0,'battle',[T,D]);
+ give(s,0,'deck',[FIRE]);
+ play(s,Z);
+ assert.equal(s.decision.type,'leaveReplace');
+ assert.equal(e.chooseAI(s).choice.to,'mana');
+ e.step(s,e.chooseAI(s));
+ assert.ok(s.players[0].mana.some(x=>x.cardId===Z));
+ assert.equal(s.decision.task.op,'g34_Draw');
+ e.step(s,e.chooseAI(s));
+ assert.equal(s.players[0].deck.length,1);
+ assert.equal(s.players[0].hand.some(x=>x.cardId===Z),false);
+});
 const chooseUid=(s,uid)=>pick(s,a=>a.value===uid||a.value?.uid===uid||a.targets?.some(x=>x.uid===uid));
 const orderAll=s=>{for(let n=0;s.decision?.task?.op==='g34_Order';n++){assert.ok(n<30);pick(s,a=>a.kind==='extended');}};
 const end=s=>{s.phase='attack';act(s,'endTurn');drain(s);};

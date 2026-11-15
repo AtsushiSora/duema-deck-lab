@@ -101,6 +101,17 @@ export function createStrategicAI(api){
  }
  function decisionChoice(s,rows){
   const task=s.decision?.task,p=rows[0]?.a.player;
+  if(s.decision?.type==='leaveReplace'&&s.players[p]?.deck.length===1){
+   const own=s.players[p],uid=s.decision.uid;
+   const dying=own.battle.find(x=>x.uid===uid);
+   const replaceToMana=rows.find(({a})=>a.kind==='g47Replace'&&
+    a.choice.replacement==='dokkoi'&&a.choice.to==='mana');
+   // With one card in the library, replaying the same vanilla summon cannot
+   // turn Aqua Teacher's optional draw into progress.
+   if(replaceToMana&&dying&&card(dying).g47Vanilla&&power(dying,false,s)<=0&&
+      own.battle.some(x=>effective(x,s).g47Teacher)&&
+      !own.battle.some(x=>effective(x,s).shako))return replaceToMana.a;
+  }
   const defense=defenseChoice(s,rows,p);if(defense)return defense;
   const deployment=characterDeployment(s,rows,p,task);if(deployment)return deployment;
   if(['g10_Fight','darkFight','g3_Fight','g35_Fight','g11_Fight'].includes(task?.op))return fightChoice(s,rows,p,task);

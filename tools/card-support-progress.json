@@ -537885,8 +537885,7 @@
       "finalCheck": {
         "status": "passed",
         "command": "npm run check",
-        "log": "/tmp/duema-uncapped/melkis-check.log",
-        "rulesBlob": "452af54b64e40e26b6a862268b95c46dc04b45a3"
+        "log": "/tmp/duema-uncapped/dokkoi-check.log"
       },
       "abyssShort": {
         "passed": 33,
@@ -540183,21 +540182,46 @@
             "plan": "/tmp/duema-uncapped/fixture-plan.json",
             "results": "/tmp/duema-uncapped/fixture-results.jsonl",
             "plannedGroups": 53,
-            "completedGroups": 50,
-            "passedGroups": 50,
+            "completedGroups": 52,
+            "passedGroups": 52,
             "status": "実行中",
             "passedDeterministicGames": 114,
             "passedRandomGames": 75,
-            "passedWorkerGames": 320
+            "passedWorkerGames": 360
           },
           "historicalWorker": {
             "result": "champion-dmscs09a-2-original、seed 2853211514、後攻側からの第5ターンで、ゾンビポンの助の召喚・ドッコイの手札戻し・任意ドローの繰り返しにより2500手で未決着。再現ログ取得済み。",
             "log": "/tmp/duema-uncapped/logs/0014.log",
-            "probe": "/tmp/duema-uncapped/champion-worker-probe.jsonl"
+            "probe": "/tmp/duema-uncapped/champion-worker-probe.jsonl",
+            "verification": "ドッコイでゾンビポンの助をマナに置くようCPUを修正し、同じ乱数の本番ワーカーで102手、5ターンで決着。",
+            "seed": 2853211514,
+            "fixedGame": {
+              "turns": 5,
+              "actions": 102,
+              "winner": 0,
+              "reason": "まつぴ · 超CSⅨ 新潟の山札がなくなった"
+            },
+            "fixedLog": "/tmp/duema-uncapped/champion-worker-final.jsonl",
+            "regressionLog": "/tmp/duema-uncapped/dokkoi-regression.log",
+            "regressionTests": 57,
+            "tracedHistoricalCases": 37,
+            "fullWorkerReverification": "追加の分割試験と残りの歴代対戦を確認中。"
           },
           "aiCoverage": {
-            "result": "85デッキ255試合を完走、失敗0件。任意の未展開1件は保存盤面で既存の判定根拠を再確認した。現行デッキの入力指紋が一致。実行時のエンジン指紋の照合と後続差分を別途記録する。",
-            "log": "/tmp/duema-uncapped/ai-audit-run.log"
+            "status": "ベースの分割検証通過",
+            "engineBaseline": "69e72052",
+            "engine": "0.595.0",
+            "ai": "2.3.413",
+            "fingerprint": "087037c5f929c43b7673242b7683a98f780d320206d19af545efb92662bd6ad0",
+            "inputFingerprint": "58afbff281d13f4d53a3a7e43c61d2a72d357af2344cd14ccbe9ba2b50d9195f",
+            "planned": 255,
+            "completed": 255,
+            "failures": 0,
+            "reviewFindings": 1,
+            "report": "tools/ai-all-decks-audit-v0.93.1.json",
+            "log": "/tmp/duema-uncapped/ai-audit-run.log",
+            "coverageLog": "/tmp/duema-uncapped/ai-coverage-current.log",
+            "review": "残り1件はマナ7枚のとき印刷コスト8のガラワルドが相手のクイーン&かぼちゃうちゃうで置換される盤面。既存レビューと保存状態を照合。後続カードとCPU修正を含む公開対象コミットの全範囲は未確定。"
           }
         }
       }
