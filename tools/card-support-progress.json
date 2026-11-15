@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8016,
-  "pendingNames": 3810,
-  "phase": 1332,
-  "added": 2,
+  "supportedNames": 8017,
+  "pendingNames": 3809,
+  "phase": 1333,
+  "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2140,
+    "クリーチャー": 2139,
     "NEOクリーチャー": 70,
     "呪文": 455,
     "GRクリーチャー": 156,
@@ -224,7 +224,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1076,
-    "未対応の能力文": 2542,
+    "未対応の能力文": 2541,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 19,
     "未対応のシンカパワー": 2,
@@ -489457,14 +489457,84 @@
           "reason": "正義ノ裁キの公式本文、版、画像、裁定44311を照合。裁きの紋章のシールド追加と、サバキZのシールド離脱後の宣言を通しで再現する必要がある。"
         }
       ]
+    },
+    {
+      "phase": 1333,
+      "baseline": "ff02d83e",
+      "before": 8016,
+      "supported": 8017,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dm22-001",
+          "name": "光神龍スペル・デル・フィン"
+        }
+      ],
+      "printAliases": 5,
+      "results": {
+        "focus": {
+          "passed": 5,
+          "log": "/tmp/duema-individual/delfin-focus.log"
+        },
+        "standardRegressions": {
+          "passed": 89,
+          "log": "/tmp/duema-individual/delfin-standard.log"
+        },
+        "publicHandManualUI": {
+          "passed": 5,
+          "log": "/tmp/duema-individual/delfin-manual-focus.log"
+        },
+        "onlineUI": {
+          "passed": 7,
+          "log": "/tmp/duema-individual/delfin-online-ui.log"
+        },
+        "onlineProjections": {
+          "passed": 6,
+          "log": "/tmp/duema-individual/delfin-online.log"
+        },
+        "check": {
+          "status": "passed",
+          "log": "/tmp/duema-individual/delfin-check.log",
+          "rulesBlob": "00e1c7bd6c0f2c00fefb9bd1606370bec75e49d6"
+        },
+        "audit": {
+          "status": "passed",
+          "log": "/tmp/duema-individual/delfin-audit.log"
+        },
+        "manualFullRun": {
+          "status": "interrupted",
+          "logs": [
+            "/tmp/duema-individual/delfin-regressions.log",
+            "/tmp/duema-individual/delfin-ui.log"
+          ],
+          "reason": "長時間の自動対戦を含む手動UIの通し回帰は中断。公開手札・表示・既存の非公開手札に関する実行を個別の試験名で分割して、通過を確認。"
+        }
+      },
+      "resolvedRegistered": 2,
+      "remainingRegistered": 46,
+      "remainingPrints": 2,
+      "remainingIndividualCards": 40,
+      "held": [
+        {
+          "id": "dmrp15-009",
+          "name": "シーラ・カンフー",
+          "reason": "アリスと組み合わせるビビッドローは、各ドロー直後の宣言と代替コストを実カードで検証する必要がある。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40504/"
+        },
+        {
+          "id": "dm25ex2-082",
+          "reason": "カード本文では通常のナイト・マジックとキング・ナイト・マジックは別名。両能力の扱いを直接説明する公式裁定は今回の検索でも未特定。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-082"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1332,
+    "lastVerifiedPhase": 1333,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "個別41種類（裁定48件・再録2件、重複1種類）の未検証を継続。公開手札を必要とするアリスとブルー・モヒートの裁定、および各裁定に必要な依存カードを優先する。",
+    "steps": "個別40種類（裁定46件・再録2件、重複1種類）の未検証を継続。アリスのビビッドロー裁定と、破壊・離脱能力の二重誘発に必要な依存カードを照合する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -489542,19 +489612,19 @@
     "restartSteps": [
       "ローカルHEADと作業ツリー、ステージ済み差分、AGENTS.md、実行中のテストを確認する。dist/cards.jsonをnameKeyで再集計する。",
       "remainingVerificationRunの結果を確認する。全カードの合法経路と登場時能力借用の完走を確認した。残る対戦・ワーカーを対戦相手・シード単位に分ける。",
-      "個別の残件を確認し、未検証裁定の再現に必要なカードのみ追加する。光神龍スペル・デル・フィンの公開手札をローカルとオンラインの両方で確認する。",
+      "個別の残件を確認し、裁定再現に必要なカードを追加する。爆撃男の破壊・離脱誘発とアリスのドロー直後のビビッドロー宣言から検証する。",
       "残る金箔2版は公式IDと公式画像を照合する。全検証が通過し、Netlifyに影響しない公開経路を確認するまで、公開は保留する。"
     ],
     "registrationStatus": "ユーザーの指示で10分間隔のカード登録を再開。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [
       {
-        "id": "dm22-001",
-        "name": "光神龍スペル・デル・フィン"
-      },
-      {
         "id": "dmrp12-008",
         "name": "帝神龍装 ティーゾリス"
+      },
+      {
+        "id": "dmrp15-009",
+        "name": "シーラ・カンフー"
       },
       {
         "id": "dmex19-025",
@@ -489757,8 +489827,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8016,
-    "pendingNames": 3810,
+    "supportedNames": 8017,
+    "pendingNames": 3809,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -533752,8 +533822,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8016,
-      "pendingNames": 3810,
+      "supportedNames": 8017,
+      "pendingNames": 3809,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -534780,7 +534850,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別の裁定48件、再録2件、長時間対戦とワーカーが未確認。GitHub上のmainのpushにNetlify本番ワークフローがあり、Netlifyを更新せずにPagesへ公開する経路は未確認。",
+        "reason": "個別の裁定46件、再録2件、長時間対戦とワーカーが未確認。GitHub上のmainのpushにNetlify本番ワークフローがあり、Netlifyを更新せずにPagesへ公開する経路は未確認。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -535064,6 +535134,30 @@
           "log": "/tmp/duema-individual/focus.log",
           "phase": 1332,
           "result": "神羅スカル・ムーンの破壊を相手の不滅の精霊パーフェクト・ギャラクシーの破壊で置換すると、ギャラクシーの指定シールドを残したままギャラクシーが破壊され、スカル・ムーンは残ることを実対戦で確認。"
+        },
+        {
+          "cardId": "dmr11-010",
+          "dependencyIds": [
+            "dm22-001"
+          ],
+          "test": "相手の光神龍スペル・デル・フィンで手札公開中、山札に戻す2枚は相手にも分かり、戻す順序は非公開（QA34329）。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/34329/",
+          "phase": 1333,
+          "path": "tests/standard1333-effects.test.mjs",
+          "log": "/tmp/duema-individual/delfin-focus.log",
+          "result": "アリスで引いたカードを含む手札を相手から確認できる。山札へ戻したカードの名前を順不同で記録し、相手には選択順や山札の上下を送信しない。両方の選択順とJSON再開を実測。アリスのビビッドロー裁定40504は別途検証が必要。"
+        },
+        {
+          "cardId": "dmr01-004",
+          "dependencyIds": [
+            "dm22-001"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36354/",
+          "test": "スペル・デル・フィンで手札が表向きになる場合にも、モヒートの選択時は並びを隠した裏向きの手札から相手が選ぶことを確認する。",
+          "path": "tests/standard1333-effects.test.mjs",
+          "log": "/tmp/duema-individual/delfin-focus.log",
+          "phase": 1333,
+          "result": "公開中の手札でもブルー・モヒートの選択時は伏せ札の番号だけを表示する。ローカル画面、オンライン両席とJSON再開で、番号とカードの対応、選んだクリーチャーの展開と公開手札の再開を検証。"
         }
       ],
       "remainingRegistered": [
@@ -535297,15 +535391,6 @@
           "test": "アリスで引いたビビッドロー持ちを公開する時点と、公開したカードも山札に戻せること（QA40504）。",
           "reason": "ビビッドローのドロー直後の宣言と代替コストが未実装。シーラ・カンフーなど対応済みの実カードで再現できるようになってから検証する。",
           "source": "https://dm.takaratomy.co.jp/rule/qa/40504/"
-        },
-        {
-          "cardId": "dmr11-010",
-          "dependencyIds": [
-            "dm22-001"
-          ],
-          "test": "相手の光神龍スペル・デル・フィンで手札公開中、山札に戻す2枚は相手にも分かり、戻す順序は非公開（QA34329）。",
-          "reason": "通常の非公開手札で選択と戻す順序が相手に公開されないことは確認済み。スペル・デル・フィンの公開手札の継続効果が未対応で、公開の範囲を実カードで再現できていない。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/34329/"
         },
         {
           "cardId": "dmsd13-019",
@@ -535575,17 +535660,6 @@
           "reason": "ネルザのG・ストライク付与とシールドの手札追加は実測済み。ジークシュトルツは未登録のため、表向きのシールドとS・トリガー禁止を含む組み合わせの再現が未完了。",
           "path": "tests/standard1308-effects.test.mjs",
           "log": "/tmp/duema-phase-1308/focus-final.log"
-        },
-        {
-          "cardId": "dmr01-004",
-          "dependencyIds": [
-            "dm22-001"
-          ],
-          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36354/",
-          "test": "スペル・デル・フィンで手札が表向きになる場合にも、モヒートの選択時は並びを隠した裏向きの手札から相手が選ぶことを確認する。",
-          "reason": "モヒートの番号のみの選択肢、オンライン対戦相手の手札非開示、JSON復元後の選択は実測済み。スペル・デル・フィンは未登録のため、継続的な手札公開との組み合わせは未確認。",
-          "path": "tests/standard1309-effects.test.mjs",
-          "log": "/tmp/duema-phase-1309/focus-final.log"
         }
       ],
       "printResults": {
@@ -535599,10 +535673,11 @@
           "dmex12-021",
           "dm26-006",
           "dm22rp2-002",
-          "dm32-s05"
+          "dm32-s05",
+          "dm22-001"
         ],
-        "officialPrints": 31,
-        "newAliases": 26,
+        "officialPrints": 37,
+        "newAliases": 31,
         "evidence": [
           {
             "id": "dm23rp2-065",
@@ -535854,6 +535929,54 @@
             "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc64-006.jpg",
             "pageSha256": "10e96c9671e867574e2c125df8a1740c6b29f9e20d8306ec1fc8521e2164cffa",
             "imageSha256": "009131169a7c24934b9564de50866bc4265b95027296b10bed1f1deea1004b6f"
+          },
+          {
+            "id": "dm22-001",
+            "canonicalId": "dm22-001",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-001",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22-001.jpg",
+            "pageSha256": "850264396518d689d6d0783b7df8c2c5740be6130f446231df1679da5582afc9",
+            "imageSha256": "66e16104624b453dd0a111d8d9c8283ff3b436b8e0758bc9e9d036c3ba380a16"
+          },
+          {
+            "id": "dm26ex5-DP003",
+            "canonicalId": "dm22-001",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-DP003",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-DP003.jpg",
+            "pageSha256": "c62579fec61a2d53fc872f0980c2c927970c86e37c6c4890c62ad529bd5aa5bd",
+            "imageSha256": "ce8c85b39fe8f486b97663f4f96995215f3ba18e62929d72bad42ec3a2910a38"
+          },
+          {
+            "id": "dmex12-dr6",
+            "canonicalId": "dm22-001",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-dr6",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex12-dr6.jpg",
+            "pageSha256": "438d4514f4f9095e155813d36ec5d6bcb990616f11ee4d3a210180e0f6015b96",
+            "imageSha256": "6cc44dbf2ca68a79b0e3de409270e95d82ed0250cb11c88d4d46b7166d5e4d21"
+          },
+          {
+            "id": "dmbd05-007",
+            "canonicalId": "dm22-001",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd05-007",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd05-007.jpg",
+            "pageSha256": "e731033549cfe8566cb7389e9a242af9036cc4914f528bd53d354a5b62854110",
+            "imageSha256": "b2d6c89e618c017adc513a77f090b324ca888d997f1fc416374f464c8bc06861"
+          },
+          {
+            "id": "dmc66-025",
+            "canonicalId": "dm22-001",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc66-025",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc66-025.jpg",
+            "pageSha256": "b466562022919e80cf9a57013790794768439f121bdcd81d6ede512c733e47bc",
+            "imageSha256": "099afef53dcddbcb438afdd66cb5d5676382704795cbf2dae2505ad02d027766"
+          },
+          {
+            "id": "dmc46-022",
+            "canonicalId": "dm22-001",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc46-022",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc46-022.jpg",
+            "pageSha256": "164900980ff7ec28dfebb6156721e1ef94b99c2e84b7789f2c9697a6af794bd6",
+            "imageSha256": "3c2aefad611742dedb6a5ca05d4af43b70d4aba7b6cbdb5fc12bdebce9db83a0"
           }
         ],
         "testLog": "/tmp/duema-verify-8009/verification-followup-prints.log",
@@ -536237,8 +536360,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8016,
-        "pending": 3810,
+        "supported": 8017,
+        "pending": 3809,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -536837,8 +536960,8 @@
       },
       "finalCheck": {
         "status": "passed",
-        "log": "/tmp/duema-individual/check.log",
-        "rulesBlob": "c62e3794d10e26ced85ea475f3cf1d35a085d49f"
+        "log": "/tmp/duema-individual/delfin-check.log",
+        "rulesBlob": "00e1c7bd6c0f2c00fefb9bd1606370bec75e49d6"
       },
       "abyssShort": {
         "passed": 33,
@@ -536920,10 +537043,6 @@
         {
           "id": "dmrp15-009",
           "name": "シーラ・カンフー"
-        },
-        {
-          "id": "dm22-001",
-          "name": "光神龍スペル・デル・フィン"
         },
         {
           "id": "dmrp22-003",
@@ -537054,54 +537173,72 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1332,
-        "baseline": "abe60c02",
-        "before": 8014,
-        "supported": 8016,
+        "phase": 1333,
+        "baseline": "ff02d83e",
+        "before": 8016,
+        "supported": 8017,
         "duplicates": 0,
         "added": [
           {
-            "id": "dm22rp2-002",
-            "name": "アカシック・ヴィジョン"
-          },
-          {
-            "id": "dm32-s05",
-            "name": "神羅スカル・ムーン"
+            "id": "dm22-001",
+            "name": "光神龍スペル・デル・フィン"
           }
         ],
-        "printAliases": 4,
+        "printAliases": 5,
         "results": {
           "focus": {
-            "passed": 7,
-            "log": "/tmp/duema-individual/focus.log"
+            "passed": 5,
+            "log": "/tmp/duema-individual/delfin-focus.log"
           },
           "standardRegressions": {
-            "passed": 194,
-            "log": "/tmp/duema-individual/regressions-standard.log"
+            "passed": 89,
+            "log": "/tmp/duema-individual/delfin-standard.log"
           },
-          "targetedRegressions": {
-            "passed": 4,
-            "log": "/tmp/duema-individual/regressions-orochi.log"
+          "publicHandManualUI": {
+            "passed": 5,
+            "log": "/tmp/duema-individual/delfin-manual-focus.log"
+          },
+          "onlineUI": {
+            "passed": 7,
+            "log": "/tmp/duema-individual/delfin-online-ui.log"
+          },
+          "onlineProjections": {
+            "passed": 6,
+            "log": "/tmp/duema-individual/delfin-online.log"
           },
           "check": {
             "status": "passed",
-            "log": "/tmp/duema-individual/check.log",
-            "rulesBlob": "c62e3794d10e26ced85ea475f3cf1d35a085d49f"
+            "log": "/tmp/duema-individual/delfin-check.log",
+            "rulesBlob": "00e1c7bd6c0f2c00fefb9bd1606370bec75e49d6"
           },
           "audit": {
             "status": "passed",
-            "log": "/tmp/duema-individual/audit.log"
+            "log": "/tmp/duema-individual/delfin-audit.log"
+          },
+          "manualFullRun": {
+            "status": "interrupted",
+            "logs": [
+              "/tmp/duema-individual/delfin-regressions.log",
+              "/tmp/duema-individual/delfin-ui.log"
+            ],
+            "reason": "長時間の自動対戦を含む手動UIの通し回帰は中断。公開手札・表示・既存の非公開手札に関する実行を個別の試験名で分割して、通過を確認。"
           }
         },
         "resolvedRegistered": 2,
-        "remainingRegistered": 48,
+        "remainingRegistered": 46,
         "remainingPrints": 2,
-        "remainingIndividualCards": 41,
+        "remainingIndividualCards": 40,
         "held": [
           {
-            "id": "dmex19-025",
-            "name": "正義ノ裁キ",
-            "reason": "正義ノ裁キの公式本文、版、画像、裁定44311を照合。裁きの紋章のシールド追加と、サバキZのシールド離脱後の宣言を通しで再現する必要がある。"
+            "id": "dmrp15-009",
+            "name": "シーラ・カンフー",
+            "reason": "アリスと組み合わせるビビッドローは、各ドロー直後の宣言と代替コストを実カードで検証する必要がある。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/40504/"
+          },
+          {
+            "id": "dm25ex2-082",
+            "reason": "カード本文では通常のナイト・マジックとキング・ナイト・マジックは別名。両能力の扱いを直接説明する公式裁定は今回の検索でも未特定。",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-082"
           }
         ]
       },

@@ -2840,7 +2840,7 @@ export function createSixPhotoRules(api){
   const owner=t.owner==='opponent'?1-t.p:t.p,hand=s.players[owner].hand;
   if(!hand.length)break;
   // Even an already revealed hand is chosen blind for Blue Mojito (QA 36354).
-  const slots=t.g1309BounceDeploy?api.shuffled(hand.map(x=>x.uid),Math.floor(api.random(s)*4294967296)):null;
+  const slots=t.g1309BounceDeploy||api.handIsPublic(s,owner)?api.shuffled(hand.map(x=>x.uid),Math.floor(api.random(s)*4294967296)):null;
   choice(s,slots?{...t,slots}:t,'相手の手札を裏向きのまま1枚選ぶ',
    hand.map((_,i)=>opt('裏向きの手札 '+(i+1),i,0)),1-owner);
   break;
@@ -2905,7 +2905,9 @@ export function createSixPhotoRules(api){
     break;
    }
    const title=t.op==='g34_BlindDiscard773'?'捨てさせる相手の手札を裏向きのまま'+count+'枚選ぶ':'マナに置く相手の手札を裏向きのまま1枚選ぶ';
-   choice(s,t,title,opp.hand.flatMap((_,i)=>selected.includes(i)?[]:[opt('裏向きの手札 '+(i+1),i,0)]));
+   const slots=t.slots??(api.handIsPublic(s,1-t.p)?
+    api.shuffled(opp.hand.map(x=>x.uid),Math.floor(api.random(s)*4294967296)):null);
+   choice(s,slots?{...t,slots}:t,title,opp.hand.flatMap((_,i)=>selected.includes(i)?[]:[opt('裏向きの手札 '+(i+1),i,0)]));
   }
   break;
  case'g34_StartManaLimit794':put(s,task('g43_LimitMana',t.p,t.source,{max:t.max}));break;
@@ -6675,10 +6677,10 @@ export function createSixPhotoRules(api){
   if(selected.length<Math.min(t.n??1,hand.length)){
    put(s,{...t,selected});
   }else{
-   const ids=selected.map(i=>hand[i]?.uid).filter(Boolean);
+   const ids=selected.map(i=>t.slots?.[i]??hand[i]?.uid).filter(uid=>hand.some(x=>x.uid===uid));
    if(ids.length){
     const after=t.g1249DeclaredCost===undefined?null:task('g34_CheckBlindDiscardCost1249',t.p,t.source,{
-     cardId:hand[selected[0]].cardId,number:t.g1249DeclaredCost
+     cardId:hand.find(x=>x.uid===ids[0]).cardId,number:t.g1249DeclaredCost
     });
     api.discardSelected(s,1-t.p,ids,t.source,t.controller??t.p,null,after);
    }
@@ -6699,7 +6701,7 @@ export function createSixPhotoRules(api){
  }
  case'g34_ManaColorsLock1054':put(s,{...t,selected:[...(t.selected||[]),v]});break;
  case'g34_BlindHandMana675':{
-  const y=s.players[1-t.p].hand[v];
+  const hand=s.players[1-t.p].hand,y=t.slots?hand.find(x=>x.uid===t.slots[v]):hand[v];
   if(y&&zoneMove(s,1-t.p,'hand',y.uid,'mana',{g182HandMana:true})){
    api.log(s,t.p,'handToMana',card(t.source).name+'：'+card(y).name+'を相手のマナゾーンに置いた',{cardId:y.cardId});
   }
@@ -6919,6 +6921,14 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_SplitDeck1247':{
+  if(api.handIsPublic(s,t.p)){
+   const ids=t.rows.flatMap(r=>{
+    const y=s.players[r.p].hand.find(x=>x.uid===r.uid);
+    return y&&r.origin==='hand'?[y.cardId]:[];
+   }).sort();
+   if(ids.length)api.log(s,t.p,'g1333PublicHandReturn',
+    '山札に戻したカード：'+ids.map(id=>card(id).name).join('、'),{cardIds:ids});
+  }
   const top=t.rows.slice(0,v).reverse(),bottom=t.rows.slice(v);
   for(const r of top)zoneMove(s,r.p,r.origin,r.uid,'deckTop',t);
   for(const r of bottom)zoneMove(s,r.p,r.origin,r.uid,'deck',t);
@@ -7648,7 +7658,7 @@ export function createSixPhotoRules(api){
  case'declareName':{if(!x)break;const cs=api.allCards().filter(c=>c.type==='creature'&&c.g34Role!=='emotional');choice(s,t,'能力を無視するクリーチャーの名前を選ぶ',cs.map(c=>opt(c.name,c.name,s.players[1-t.p].battle.some(y=>card(y).name===c.name)?60:0,c.id)));break;}
  case'shinobiMekraid':{const ids=look(s,{...t,n:3});put(s,{...t,name:'mekraidPick',ids});break;}
  case'mekraidPick':{const rows=t.ids.flatMap(uid=>{const y=own.deck.find(x=>x.uid===uid);return y?faces(card(y)).flatMap((c,face)=>ninja(c)&&cost(c)<=5&&api.canCast(s,t.p,c,'deck')&&(c.type!=='creature'||canPut(s,t.p,y,'deck',true))?[opt(c.name,{uid,face},20+cost(c),y.cardId)]:[]):[];});choice(s,t,'シノビ・メクレイド5：実行するカードを1枚まで選ぶ',[...rows,skip()]);break;}
- case'karenReveal':{const chosen=t.selected||[],rows=own.hand.filter(y=>ninja(card(y))&&!chosen.includes(y.uid));if(!rows.length){karenDone(s,t);break;}choice(s,t,'公開する手札のシノビを選ぶ（好きな枚数）',[...rows.map(y=>opt(card(y).name,y.uid,5,y.cardId)),opt('公開して確定',null,0)]);break;}
+ case'karenReveal':{const chosen=t.selected||[],rows=api.handIsPublic(s,t.p)?[]:own.hand.filter(y=>ninja(card(y))&&!chosen.includes(y.uid));if(!rows.length){karenDone(s,t);break;}choice(s,t,'公開する手札のシノビを選ぶ（好きな枚数）',[...rows.map(y=>opt(card(y).name,y.uid,5,y.cardId)),opt('公開して確定',null,0)]);break;}
  case'forceEnemyAttacks':(s.extLimits??=[]).push({kind:'g34ForceAttack',player:1-t.p,expires:'start',who:t.p});break;
  case'graveCostDestroy':start(s,t,[E('Target',{to:'grave',filter:{max:own.grave.length}})]);break;
  case'reiaiModes':start(s,t,[E('Choose',{repeat:2,modes:[{label:'山札3枚から手札1枚、残りをタップしてマナへ',score:own.deck.length>3?14:-100,defs:[E('Look',{n:3,stages:[{to:'hand',n:1}],rest:'mana',restTapped:true})]},{label:'手札から進化ではないコスト9以下を出す',score:Math.max(-20,...own.hand.filter(y=>card(y).type==='creature'&&!card(y).evolution&&!card(y).sMax&&cost(card(y))<=9&&canPut(s,t.p,y,'hand')).map(y=>12+cost(card(y))*2)),defs:[select('hand',null,1,{creature:true,nonEvolution:true,max:9},{deploy:true,delayed:'grave'})]},{label:'エレメントを2つまで破壊',score:opp.battle.length?12+Math.max(...opp.battle.map(y=>Math.min(20,cost(card(y)))*3)):-20,defs:[C('destroyTwo',{anyOwner:true,element:true,optional:true})]}]})]);break;
