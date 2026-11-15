@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8013,
-  "pendingNames": 3813,
-  "phase": 1330,
+  "supportedNames": 8014,
+  "pendingNames": 3812,
+  "phase": 1331,
   "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -156,7 +156,7 @@
   "pendingByType": {
     "クリーチャー": 2140,
     "NEOクリーチャー": 70,
-    "呪文": 456,
+    "呪文": 455,
     "GRクリーチャー": 156,
     "G-NEOクリーチャー": 26,
     "タマシード": 38,
@@ -224,7 +224,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1077,
-    "未対応の能力文": 2544,
+    "未対応の能力文": 2543,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 19,
     "未対応のシンカパワー": 2,
@@ -489357,14 +489357,62 @@
       "resolvedRegistered": 1,
       "remainingRegistered": 51,
       "remainingPrints": 2
+    },
+    {
+      "phase": 1331,
+      "baseline": "16fe8b18",
+      "before": 8013,
+      "supported": 8014,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dm26-006",
+          "name": "ダイヤモンド・ソード"
+        }
+      ],
+      "printAliases": 5,
+      "results": {
+        "focus": {
+          "passed": 6,
+          "log": "/tmp/duema-verify-cont/diamond-focus.log"
+        },
+        "regressions": {
+          "passed": 124,
+          "log": "/tmp/duema-verify-cont/diamond-regressions.log"
+        },
+        "allAbilityPaths": {
+          "groups": 17,
+          "cards": 8014,
+          "results": "/tmp/duema-verify-cont/ability-paths-1331.jsonl"
+        },
+        "check": {
+          "status": "passed",
+          "log": "/tmp/duema-verify-cont/phase1331-check.log",
+          "rulesBlob": "4a1e729ffd2c94073765233dc34a0a80929bbafe"
+        },
+        "audit": {
+          "log": "/tmp/duema-verify-cont/phase1331-audit.log"
+        },
+        "online": {
+          "passed": 21,
+          "log": "/tmp/duema-verify-cont/phase1331-online-split.log"
+        },
+        "engineShort": {
+          "passed": 17,
+          "log": "/tmp/duema-verify-cont/engine-core-1331.log"
+        }
+      },
+      "resolvedRegistered": 1,
+      "remainingRegistered": 50,
+      "remainingPrints": 2
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1330,
+    "lastVerifiedPhase": 1331,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "裁定51件、公式ID未確認の再録2件、長時間対戦・ワーカーから再開する。次元隠しの術とステニャンコの組み合わせは実カードで検証済み。",
+    "steps": "登録済みの裁定50件、公式ID未確認の再録2件、長時間対戦・ワーカーを検証する。アルドラとダイヤモンド・ソードの裁定35807は確認済み。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -489441,8 +489489,8 @@
     ],
     "restartSteps": [
       "ローカルHEADと作業ツリー、ステージ済み差分、AGENTS.md、実行中のテストを確認する。dist/cards.jsonをnameKeyで再集計する。",
-      "remainingVerificationRunの追加分割結果を確認し、未完了の範囲を対戦相手・シード・カード範囲で検証する。全対応カードの合法経路テストは失敗した9範囲から再開し、既に最後まで通過したカード範囲と対戦シードを繰り返さない。",
-      "未検証裁定の再現に必要なカードを、実カードの公式情報と照合して追加する。アリスのビビッドロー公開の順序、アルドラの攻撃制限、スペル・デル・フィンの手札公開範囲を確認する。",
+      "remainingVerificationRunの結果を確認する。全カードの合法経路と登場時能力借用の完走を確認した。残る対戦・ワーカーを対戦相手・シード単位に分ける。",
+      "未検証裁定の再現に必要なカードのみ追加する。アリスのビビッドロー公開と、スペル・デル・フィンの公開手札を複数の画面で検証する。",
       "残る金箔2版は公式IDと公式画像を照合する。全検証が通過し、Netlifyに影響しない公開経路を確認するまで、公開は保留する。"
     ],
     "registrationStatus": "ユーザーの指示で10分間隔のカード登録を再開。",
@@ -489653,8 +489701,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8013,
-    "pendingNames": 3813,
+    "supportedNames": 8014,
+    "pendingNames": 3812,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -533648,8 +533696,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8013,
-      "pendingNames": 3813,
+      "supportedNames": 8014,
+      "pendingNames": 3812,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -534676,7 +534724,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "残る裁定51件、再録2件、長時間テストとワーカーの未確認範囲が残る。GitHubから読み直したmainのワークフローにNetlify本番デプロイがあり、Netlifyを更新しないPages公開経路は未確認。",
+        "reason": "登録済みカードの裁定50件、再録2件、長時間対戦とワーカーが未確認。GitHub上のmainのpushにNetlify本番ワークフローがあり、Netlifyを更新しないPages公開経路は未確認。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -534924,6 +534972,18 @@
           "phase": 1330,
           "log": "/tmp/duema-verify-remaining/1330-regressions.log",
           "result": "相手ターンはコスト2のクリーチャーの登場が制限される。ステニャンコのターン開始能力で自軍を破壊でき、ステニャンコは墓地に残る。"
+        },
+        {
+          "cardId": "dm32-s02",
+          "dependencyIds": [
+            "dm26-006"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/35807/",
+          "test": "ダイヤモンド・ソードを唱えると、ブロッカーの登場がないターンでもアルドラが相手プレイヤーを攻撃できる。",
+          "path": "tests/standard1331-effects.test.mjs",
+          "phase": 1331,
+          "log": "/tmp/duema-verify-cont/diamond-focus.log",
+          "result": "公式の全6版を照合し、アルドラが当該ターンにブロッカーを出していなくても、ダイヤモンド・ソードで相手プレイヤーを攻撃して3枚ブレイクできることを確認。付与前からいる召喚酔いのクリーチャー、後から出たクリーチャー、怪獣のパワー制限、ターン終了、能力無視とJSON再開を確認。"
         }
       ],
       "remainingRegistered": [
@@ -534960,7 +535020,12 @@
           ],
           "test": "超次元の各面をコスト・文明・種族で判定し、条件を満たす覚醒後の面を直接出せる",
           "reason": "Phase 1104は今回追加した4種類の展開で両面選択を検証。登録済みの他の展開効果への適用と、選択肢の順序が保存済み対戦の再現に与える影響は未検証。展開元ごとに条件と表示をテストする。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa_old/37744/"
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/37744/",
+          "rechecked1331": {
+            "status": "pending",
+            "verifiedModes": "Phase 1104で実装済みの4種類は両面選択を確認済み。",
+            "reason": "残る展開元は片面を列挙する。両面を出す際に既存の選択肢番号や保留状態を変えると、保存された対戦の再生に影響しうるため、互換性を先に確認する。"
+          }
         },
         {
           "cardId": "dmbd13-015",
@@ -535289,15 +535354,6 @@
           "reason": "ドキンダムエリアの離脱置換を実カードで確認。ケンゲキオージャの実カードが未対応。"
         },
         {
-          "cardId": "dm32-s02",
-          "dependencyIds": [
-            "dm26-006"
-          ],
-          "source": "https://dm.takaratomy.co.jp/rule/qa_old/35807/",
-          "test": "ダイヤモンド・ソードを唱えると、ブロッカーの登場がないターンでもアルドラが相手プレイヤーを攻撃できる。",
-          "reason": "ダイヤモンド・ソードは未対応。クリーチャーへの攻撃と区別し、相手プレイヤーへの攻撃だけに適用される制限解除を実カードで検証する。"
-        },
-        {
           "cardId": "dm22rp2-S7",
           "dependencyIds": [],
           "test": "氷駆の妖精のシビルカウント５と悪魔世界ワルドバロムの既存マナを０にする効果が重なった場合の優先順位。",
@@ -535475,10 +535531,11 @@
           "dm22rp2-OR1",
           "dmx14-031",
           "dm23rp4-009",
-          "dmex12-021"
+          "dmex12-021",
+          "dm26-006"
         ],
-        "officialPrints": 19,
-        "newAliases": 17,
+        "officialPrints": 25,
+        "newAliases": 22,
         "evidence": [
           {
             "id": "dm23rp2-065",
@@ -535634,6 +535691,54 @@
             "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-016.jpg",
             "pageSha256": "52bc336cc319f0bb6ddffda84a7039d2249a4a3408b8064cbd5690d3a10d3407",
             "imageSha256": "c729a1dd80a3fb2e4e1bf64111a4f28df5ef06181cd7a2fd0365b648474ea5f2"
+          },
+          {
+            "id": "dm26-006",
+            "canonicalId": "dm26-006",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-006",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26-006.jpg",
+            "pageSha256": "83dd0e2f715e6b4c61907a71d8cb99c19443e3e2476e6a1ddde96080766f3429",
+            "imageSha256": "81a91f34d7b0e7706fffe36b93e58e3347b23120962f7331a128f98d0b84b20a"
+          },
+          {
+            "id": "dmex17-Cho12",
+            "canonicalId": "dm26-006",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-Cho12",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-Cho12.jpg",
+            "pageSha256": "3511564f0c29c2127a468890f9f1e7b2504ed1e896f737ec75d3204546e1dfc8",
+            "imageSha256": "60022fed53c9cb379d90256cce05d8a66afa7f1b344093755a2bee86ff65dc07"
+          },
+          {
+            "id": "dmex11-008",
+            "canonicalId": "dm26-006",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex11-008",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex11-008.jpg",
+            "pageSha256": "73257238ffdd8df0d9f123024a5b39f75ce8bb81b66cd5d93a4d7c2fa3a20699",
+            "imageSha256": "9d70ee6a649988fe7e0c2a11de255c238383df83627bdce646dfe91b81fdf8a1"
+          },
+          {
+            "id": "dmex01-029",
+            "canonicalId": "dm26-006",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex01-029",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex01-029.jpg",
+            "pageSha256": "b8d17619355d1d3b623e4d81ded009d2ac764c1a76c5fbf2dac2360501c483d4",
+            "imageSha256": "7417d87ffd2ea0d00c25f739753d6de0db5a635ab31de7af8b50be43a2212448"
+          },
+          {
+            "id": "dmx18-023",
+            "canonicalId": "dm26-006",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx18-023",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx18-023.jpg",
+            "pageSha256": "f91179919d5d66018636851431e25f99198ca3357a58f44e8dac0724a04a3cd4",
+            "imageSha256": "926bd45067d9679bc6421af7f5dc72689d529dabdb8b82ac1f5701e83c0578fe"
+          },
+          {
+            "id": "dmc68-006",
+            "canonicalId": "dm26-006",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc68-006",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc68-006.jpg",
+            "pageSha256": "7409dd425feddd99c25a7a0cfa6db46bec29275b0806eae1314161de325b4002",
+            "imageSha256": "b21039baa1485386f6bcb73275a9b3858e31871400c394bf01c78116325571fc"
           }
         ],
         "testLog": "/tmp/duema-verify-8009/verification-followup-prints.log",
@@ -536017,8 +536122,8 @@
       ],
       "latestTestCommit": "80f19d9a9f430fc3c1a2c68c79d07ff838953d82",
       "counts": {
-        "supported": 8013,
-        "pending": 3813,
+        "supported": 8014,
+        "pending": 3812,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -536267,23 +536372,13 @@
       },
       "borrowedEntryMatrix": {
         "status": "checked",
-        "validatedCommit": "52255a6d",
-        "scopedCardRows": 8002,
-        "checkedCardRows": 8002,
+        "validatedCommit": "16fe8b18",
+        "scopedCardRows": 8014,
+        "checkedCardRows": 8014,
         "verifiedEntryAbilities": 2539,
         "groups": 33,
-        "results": "/tmp/duema-verify-8001/borrowed.jsonl",
+        "results": "/tmp/duema-verify-cont/borrowed.jsonl",
         "coverage": [
-          {
-            "start": 250,
-            "end": 500,
-            "firstId": "dm19-090",
-            "lastId": "dmr20-068",
-            "exit": 0,
-            "checked": 2,
-            "duration": 1.35,
-            "log": "/tmp/duema-verify-8001/borrowed-0250.log"
-          },
           {
             "start": 0,
             "end": 250,
@@ -536291,8 +536386,18 @@
             "lastId": "dm23rp3-064",
             "exit": 0,
             "checked": 4,
-            "duration": 1.58,
-            "log": "/tmp/duema-verify-8001/borrowed-0000.log"
+            "duration": 1.16,
+            "log": "/tmp/duema-verify-cont/borrowed-0000.log"
+          },
+          {
+            "start": 250,
+            "end": 500,
+            "firstId": "dm19-090",
+            "lastId": "dmr20-068",
+            "exit": 0,
+            "checked": 2,
+            "duration": 0.97,
+            "log": "/tmp/duema-verify-cont/borrowed-0250.log"
           },
           {
             "start": 500,
@@ -536301,18 +536406,8 @@
             "lastId": "dm24rp3-005",
             "exit": 0,
             "checked": 96,
-            "duration": 19.01,
-            "log": "/tmp/duema-verify-8001/borrowed-0500.log"
-          },
-          {
-            "start": 1000,
-            "end": 1250,
-            "firstId": "dm26ex4-033",
-            "lastId": "dmrp22-042",
-            "exit": 0,
-            "checked": 129,
-            "duration": 26.05,
-            "log": "/tmp/duema-verify-8001/borrowed-1000.log"
+            "duration": 12.84,
+            "log": "/tmp/duema-verify-cont/borrowed-0500.log"
           },
           {
             "start": 750,
@@ -536321,8 +536416,18 @@
             "lastId": "dmd25-008",
             "exit": 0,
             "checked": 146,
-            "duration": 31.25,
-            "log": "/tmp/duema-verify-8001/borrowed-0750.log"
+            "duration": 20.42,
+            "log": "/tmp/duema-verify-cont/borrowed-0750.log"
+          },
+          {
+            "start": 1000,
+            "end": 1250,
+            "firstId": "dm26ex4-033",
+            "lastId": "dmrp22-042",
+            "exit": 0,
+            "checked": 129,
+            "duration": 17.41,
+            "log": "/tmp/duema-verify-cont/borrowed-1000.log"
           },
           {
             "start": 1250,
@@ -536331,8 +536436,8 @@
             "lastId": "dm22-039",
             "exit": 0,
             "checked": 97,
-            "duration": 20.51,
-            "log": "/tmp/duema-verify-8001/borrowed-1250.log"
+            "duration": 13.56,
+            "log": "/tmp/duema-verify-cont/borrowed-1250.log"
           },
           {
             "start": 1500,
@@ -536341,8 +536446,8 @@
             "lastId": "dm32-098",
             "exit": 0,
             "checked": 103,
-            "duration": 20.65,
-            "log": "/tmp/duema-verify-8001/borrowed-1500.log"
+            "duration": 14.87,
+            "log": "/tmp/duema-verify-cont/borrowed-1500.log"
           },
           {
             "start": 1750,
@@ -536351,8 +536456,8 @@
             "lastId": "dmrp12-040",
             "exit": 0,
             "checked": 114,
-            "duration": 21.67,
-            "log": "/tmp/duema-verify-8001/borrowed-1750.log"
+            "duration": 15.14,
+            "log": "/tmp/duema-verify-cont/borrowed-1750.log"
           },
           {
             "start": 2000,
@@ -536361,18 +536466,8 @@
             "lastId": "dmrp02-086",
             "exit": 0,
             "checked": 84,
-            "duration": 15.32,
-            "log": "/tmp/duema-verify-8001/borrowed-2000.log"
-          },
-          {
-            "start": 2750,
-            "end": 3000,
-            "firstId": "dmrp04s-073",
-            "lastId": "dmx09-006",
-            "exit": 0,
-            "checked": 61,
-            "duration": 13.23,
-            "log": "/tmp/duema-verify-8001/borrowed-2750.log"
+            "duration": 11.07,
+            "log": "/tmp/duema-verify-cont/borrowed-2000.log"
           },
           {
             "start": 2250,
@@ -536381,8 +536476,8 @@
             "lastId": "dmrp18-063",
             "exit": 0,
             "checked": 112,
-            "duration": 20.49,
-            "log": "/tmp/duema-verify-8001/borrowed-2250.log"
+            "duration": 14.46,
+            "log": "/tmp/duema-verify-cont/borrowed-2250.log"
           },
           {
             "start": 2500,
@@ -536391,28 +536486,18 @@
             "lastId": "dm24rp3-058",
             "exit": 0,
             "checked": 109,
-            "duration": 22.08,
-            "log": "/tmp/duema-verify-8001/borrowed-2500.log"
+            "duration": 15.35,
+            "log": "/tmp/duema-verify-cont/borrowed-2500.log"
           },
           {
-            "start": 3250,
-            "end": 3500,
-            "firstId": "dmrp17-086",
-            "lastId": "dm14-059",
+            "start": 2750,
+            "end": 3000,
+            "firstId": "dmrp04s-073",
+            "lastId": "dmx09-006",
             "exit": 0,
-            "checked": 57,
-            "duration": 11.39,
-            "log": "/tmp/duema-verify-8001/borrowed-3250.log"
-          },
-          {
-            "start": 3500,
-            "end": 3750,
-            "firstId": "dm03-049",
-            "lastId": "dmr01-044",
-            "exit": 0,
-            "checked": 52,
-            "duration": 10.82,
-            "log": "/tmp/duema-verify-8001/borrowed-3500.log"
+            "checked": 61,
+            "duration": 9.13,
+            "log": "/tmp/duema-verify-cont/borrowed-2750.log"
           },
           {
             "start": 3000,
@@ -536421,8 +536506,28 @@
             "lastId": "dmrp22-075",
             "exit": 0,
             "checked": 99,
-            "duration": 20.06,
-            "log": "/tmp/duema-verify-8001/borrowed-3000.log"
+            "duration": 14.34,
+            "log": "/tmp/duema-verify-cont/borrowed-3000.log"
+          },
+          {
+            "start": 3250,
+            "end": 3500,
+            "firstId": "dmrp17-086",
+            "lastId": "dm14-059",
+            "exit": 0,
+            "checked": 57,
+            "duration": 8.02,
+            "log": "/tmp/duema-verify-cont/borrowed-3250.log"
+          },
+          {
+            "start": 3500,
+            "end": 3750,
+            "firstId": "dm03-049",
+            "lastId": "dmr01-044",
+            "exit": 0,
+            "checked": 52,
+            "duration": 7.82,
+            "log": "/tmp/duema-verify-cont/borrowed-3500.log"
           },
           {
             "start": 3750,
@@ -536431,18 +536536,8 @@
             "lastId": "dm26rp3-045",
             "exit": 0,
             "checked": 79,
-            "duration": 16.67,
-            "log": "/tmp/duema-verify-8001/borrowed-3750.log"
-          },
-          {
-            "start": 4250,
-            "end": 4500,
-            "firstId": "dmx17-026",
-            "lastId": "dm21-001",
-            "exit": 0,
-            "checked": 94,
-            "duration": 20.77,
-            "log": "/tmp/duema-verify-8001/borrowed-4250.log"
+            "duration": 13.06,
+            "log": "/tmp/duema-verify-cont/borrowed-3750.log"
           },
           {
             "start": 4000,
@@ -536451,8 +536546,18 @@
             "lastId": "dmex13-040",
             "exit": 0,
             "checked": 102,
-            "duration": 22.37,
-            "log": "/tmp/duema-verify-8001/borrowed-4000.log"
+            "duration": 16.38,
+            "log": "/tmp/duema-verify-cont/borrowed-4000.log"
+          },
+          {
+            "start": 4250,
+            "end": 4500,
+            "firstId": "dmx17-026",
+            "lastId": "dm21-001",
+            "exit": 0,
+            "checked": 94,
+            "duration": 15.09,
+            "log": "/tmp/duema-verify-cont/borrowed-4250.log"
           },
           {
             "start": 4500,
@@ -536461,8 +536566,8 @@
             "lastId": "dmx11-029",
             "exit": 0,
             "checked": 75,
-            "duration": 15.77,
-            "log": "/tmp/duema-verify-8001/borrowed-4500.log"
+            "duration": 11.66,
+            "log": "/tmp/duema-verify-cont/borrowed-4500.log"
           },
           {
             "start": 4750,
@@ -536471,18 +536576,8 @@
             "lastId": "dmr17-023",
             "exit": 0,
             "checked": 74,
-            "duration": 15.26,
-            "log": "/tmp/duema-verify-8001/borrowed-4750.log"
-          },
-          {
-            "start": 5250,
-            "end": 5500,
-            "firstId": "dmbd07-a-001",
-            "lastId": "dmbd17-010",
-            "exit": 0,
-            "checked": 64,
-            "duration": 13.35,
-            "log": "/tmp/duema-verify-8001/borrowed-5250.log"
+            "duration": 11.17,
+            "log": "/tmp/duema-verify-cont/borrowed-4750.log"
           },
           {
             "start": 5000,
@@ -536491,18 +536586,18 @@
             "lastId": "dmrp02-s05",
             "exit": 0,
             "checked": 110,
-            "duration": 24.52,
-            "log": "/tmp/duema-verify-8001/borrowed-5000.log"
+            "duration": 18.7,
+            "log": "/tmp/duema-verify-cont/borrowed-5000.log"
           },
           {
-            "start": 5750,
-            "end": 6000,
-            "firstId": "dm26rp3-062",
-            "lastId": "dm19-081",
+            "start": 5250,
+            "end": 5500,
+            "firstId": "dmbd07-a-001",
+            "lastId": "dmbd17-010",
             "exit": 0,
-            "checked": 45,
-            "duration": 10.65,
-            "log": "/tmp/duema-verify-8001/borrowed-5750.log"
+            "checked": 64,
+            "duration": 10.29,
+            "log": "/tmp/duema-verify-cont/borrowed-5250.log"
           },
           {
             "start": 5500,
@@ -536511,18 +536606,18 @@
             "lastId": "dm26rp3-038",
             "exit": 0,
             "checked": 76,
-            "duration": 16.45,
-            "log": "/tmp/duema-verify-8001/borrowed-5500.log"
+            "duration": 12.34,
+            "log": "/tmp/duema-verify-cont/borrowed-5500.log"
           },
           {
-            "start": 6250,
-            "end": 6500,
-            "firstId": "dm24rp4-S10",
-            "lastId": "dmr05-037",
+            "start": 5750,
+            "end": 6000,
+            "firstId": "dm26rp3-062",
+            "lastId": "dm19-081",
             "exit": 0,
-            "checked": 47,
-            "duration": 10.75,
-            "log": "/tmp/duema-verify-8001/borrowed-6250.log"
+            "checked": 45,
+            "duration": 7.79,
+            "log": "/tmp/duema-verify-cont/borrowed-5750.log"
           },
           {
             "start": 6000,
@@ -536531,8 +536626,18 @@
             "lastId": "dm24rp4-005",
             "exit": 0,
             "checked": 76,
-            "duration": 14.82,
-            "log": "/tmp/duema-verify-8001/borrowed-6000.log"
+            "duration": 11.44,
+            "log": "/tmp/duema-verify-cont/borrowed-6000.log"
+          },
+          {
+            "start": 6250,
+            "end": 6500,
+            "firstId": "dm24rp4-S10",
+            "lastId": "dmr05-037",
+            "exit": 0,
+            "checked": 47,
+            "duration": 8.43,
+            "log": "/tmp/duema-verify-cont/borrowed-6250.log"
           },
           {
             "start": 6500,
@@ -536541,18 +536646,8 @@
             "lastId": "dm23-053",
             "exit": 0,
             "checked": 44,
-            "duration": 9.1,
-            "log": "/tmp/duema-verify-8001/borrowed-6500.log"
-          },
-          {
-            "start": 7250,
-            "end": 7500,
-            "firstId": "dmr02-011",
-            "lastId": "dmrp03-075",
-            "exit": 0,
-            "checked": 63,
-            "duration": 14.39,
-            "log": "/tmp/duema-verify-8001/borrowed-7250.log"
+            "duration": 6.88,
+            "log": "/tmp/duema-verify-cont/borrowed-6500.log"
           },
           {
             "start": 6750,
@@ -536561,8 +536656,8 @@
             "lastId": "dmr18-s08",
             "exit": 0,
             "checked": 81,
-            "duration": 17.57,
-            "log": "/tmp/duema-verify-8001/borrowed-6750.log"
+            "duration": 12.89,
+            "log": "/tmp/duema-verify-cont/borrowed-6750.log"
           },
           {
             "start": 7000,
@@ -536571,28 +536666,18 @@
             "lastId": "dmr03-024",
             "exit": 0,
             "checked": 98,
-            "duration": 19.14,
-            "log": "/tmp/duema-verify-8001/borrowed-7000.log"
+            "duration": 14.83,
+            "log": "/tmp/duema-verify-cont/borrowed-7000.log"
           },
           {
-            "start": 8000,
-            "end": 8002,
-            "firstId": "dm26ex3-022",
-            "lastId": "dmsd21-008",
+            "start": 7250,
+            "end": 7500,
+            "firstId": "dmr02-011",
+            "lastId": "dmrp03-075",
             "exit": 0,
-            "checked": 1,
-            "duration": 1.05,
-            "log": "/tmp/duema-verify-8001/borrowed-8000.log"
-          },
-          {
-            "start": 7750,
-            "end": 8000,
-            "firstId": "dmrp18-036",
-            "lastId": "dm26ex3-011",
-            "exit": 0,
-            "checked": 60,
-            "duration": 11.43,
-            "log": "/tmp/duema-verify-8001/borrowed-7750.log"
+            "checked": 63,
+            "duration": 11.53,
+            "log": "/tmp/duema-verify-cont/borrowed-7250.log"
           },
           {
             "start": 7500,
@@ -536601,10 +536686,31 @@
             "lastId": "dmex18-018",
             "exit": 0,
             "checked": 85,
-            "duration": 15.55,
-            "log": "/tmp/duema-verify-8001/borrowed-7500.log"
+            "duration": 11.56,
+            "log": "/tmp/duema-verify-cont/borrowed-7500.log"
+          },
+          {
+            "start": 7750,
+            "end": 8000,
+            "firstId": "dmrp18-036",
+            "lastId": "dm26ex3-011",
+            "exit": 0,
+            "checked": 60,
+            "duration": 8.41,
+            "log": "/tmp/duema-verify-cont/borrowed-7750.log"
+          },
+          {
+            "start": 8000,
+            "end": 8014,
+            "firstId": "dm26ex3-022",
+            "lastId": "dm26-006",
+            "exit": 0,
+            "checked": 1,
+            "duration": 1.36,
+            "log": "/tmp/duema-verify-cont/borrowed-1331-8000.log"
           }
-        ]
+        ],
+        "addedCardRows": "/tmp/duema-verify-cont/borrowed-1331-last.jsonl"
       },
       "online": {
         "passed": 71,
@@ -536616,8 +536722,8 @@
       },
       "finalCheck": {
         "status": "passed",
-        "commit": "80f19d9a9f430fc3c1a2c68c79d07ff838953d82",
-        "log": "/tmp/duema-verify-remaining/post-shard-check.log"
+        "log": "/tmp/duema-verify-cont/phase1331-check.log",
+        "rulesBlob": "4a1e729ffd2c94073765233dc34a0a80929bbafe"
       },
       "abyssShort": {
         "passed": 33,
@@ -536749,10 +536855,6 @@
           "name": "ケンゲキオージャ ～究極火焔～"
         },
         {
-          "id": "dm26-006",
-          "name": "ダイヤモンド・ソード"
-        },
-        {
           "id": "dmc40-002",
           "name": "龍神ヘヴィ"
         },
@@ -536793,7 +536895,7 @@
           "name": "聖板龍 ジークシュトルツ"
         }
       ],
-      "remainingTestsSummary": "変更前の504グループで報告された失敗41件を修正、再検証。時間切れを分割し、練習デッキ72対戦、ドット30シード、レッドゾーンのランダム27シードを完走。全対応カードの合法経路テストは9範囲が最初の失敗で停止し、各失敗を変更前で再現した。該当9カードの固有回帰249件は通過。未確認範囲、他の長時間対戦とワーカー検証は継続。全体npm testは中断・合否未確認。",
+      "remainingTestsSummary": "全8,014種類の合法経路を17区間で通過。借用した登場時処理2539件、No20の48対戦、手動対戦UIの30シード・1225場面も実測で通過。残る長時間対戦とワーカー試験は対戦相手・シード単位で検証を継続。一括のnpm testは中断・合否未確認。",
       "advanceImplementation": {
         "status": "implemented",
         "phases": [
@@ -536845,31 +536947,51 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1330,
-        "baseline": "521a5383",
-        "before": 8012,
-        "supported": 8013,
+        "phase": 1331,
+        "baseline": "16fe8b18",
+        "before": 8013,
+        "supported": 8014,
         "duplicates": 0,
         "added": [
           {
-            "id": "dmex12-021",
-            "name": "怒流牙忍法 次元隠しの術"
+            "id": "dm26-006",
+            "name": "ダイヤモンド・ソード"
           }
         ],
-        "printAliases": 1,
+        "printAliases": 5,
         "results": {
+          "focus": {
+            "passed": 6,
+            "log": "/tmp/duema-verify-cont/diamond-focus.log"
+          },
           "regressions": {
-            "status": "passed",
-            "passed": 87,
-            "log": "/tmp/duema-verify-remaining/1330-regressions.log"
+            "passed": 124,
+            "log": "/tmp/duema-verify-cont/diamond-regressions.log"
+          },
+          "allAbilityPaths": {
+            "groups": 17,
+            "cards": 8014,
+            "results": "/tmp/duema-verify-cont/ability-paths-1331.jsonl"
           },
           "check": {
             "status": "passed",
-            "log": "/tmp/duema-verify-remaining/1330-process-check.log"
+            "log": "/tmp/duema-verify-cont/phase1331-check.log",
+            "rulesBlob": "4a1e729ffd2c94073765233dc34a0a80929bbafe"
+          },
+          "audit": {
+            "log": "/tmp/duema-verify-cont/phase1331-audit.log"
+          },
+          "online": {
+            "passed": 21,
+            "log": "/tmp/duema-verify-cont/phase1331-online-split.log"
+          },
+          "engineShort": {
+            "passed": 17,
+            "log": "/tmp/duema-verify-cont/engine-core-1331.log"
           }
         },
         "resolvedRegistered": 1,
-        "remainingRegistered": 51,
+        "remainingRegistered": 50,
         "remainingPrints": 2
       },
       "currentSplitEvidence": {
@@ -537766,20 +537888,8 @@
             "failed": [],
             "remainingLong": [
               {
-                "path": "tests/abyss-effects.test.mjs",
-                "title": "every supported borrowed entry ability preserves physical cards and resolves serializable decisions"
-              },
-              {
                 "path": "tests/effect-expansion.test.mjs",
                 "title": "expanded-card games take legal actions, terminate, and conserve every physical card"
-              },
-              {
-                "path": "tests/engine.test.mjs",
-                "title": "all supported spell effects and creature abilities have legal execution paths"
-              },
-              {
-                "path": "tests/gate-effects.test.mjs",
-                "title": "No20 finishes against itself, three ready starters and4 tournament decks with80 unique cards after every action"
               },
               {
                 "path": "tests/gransect-effects.test.mjs",
@@ -537792,10 +537902,6 @@
               {
                 "path": "tests/magic-effects.test.mjs",
                 "title": "No09 random actions conserve cards, finite AI values and JSON continuations at every decision"
-              },
-              {
-                "path": "tests/manual-ui.test.mjs",
-                "title": "every reachable UI action over complete-deck games is legal and rendering is pure through effects, shields and replacements"
               },
               {
                 "path": "tests/mecha-effects.test.mjs",
@@ -538042,89 +538148,7 @@
           "status": "passed",
           "log": "/tmp/duema-verify-remaining/boot-check.log"
         },
-        "pendingSuiteFailures": [
-          {
-            "card": "愛銀河マーキュリー・スターフォージ",
-            "message": "愛銀河マーキュリー・スターフォージ",
-            "baselineCode": 1,
-            "reproduced": true,
-            "log": "/tmp/duema-verify-remaining/baseline-abilities-1000-1500.log",
-            "currentLog": "/tmp/duema-verify-remaining/abilities-1000-1500.log",
-            "cardId": "dm25ex1-023"
-          },
-          {
-            "card": "聖騎士ムーンティアー",
-            "message": "聖騎士ムーンティアー",
-            "baselineCode": 1,
-            "reproduced": true,
-            "log": "/tmp/duema-verify-remaining/baseline-abilities-3000-3500.log",
-            "currentLog": "/tmp/duema-verify-remaining/abilities-3000-3500.log",
-            "cardId": "dm06-044"
-          },
-          {
-            "card": "地底探検モーグ",
-            "message": "地底探検モーグ",
-            "baselineCode": 1,
-            "reproduced": true,
-            "log": "/tmp/duema-verify-remaining/baseline-abilities-3500-4000.log",
-            "currentLog": "/tmp/duema-verify-remaining/abilities-3500-4000.log",
-            "cardId": "dm24rp4-075"
-          },
-          {
-            "card": "U・S・A・SIIFU",
-            "message": "U・S・A・SIIFU",
-            "baselineCode": 1,
-            "reproduced": true,
-            "log": "/tmp/duema-verify-remaining/baseline-abilities-4500-5000.log",
-            "currentLog": "/tmp/duema-verify-remaining/abilities-4500-5000.log",
-            "cardId": "dmex14-025"
-          },
-          {
-            "card": "暗黒神羅凰ゼロ・フェニックス",
-            "message": "暗黒神羅凰ゼロ・フェニックス",
-            "baselineCode": 1,
-            "reproduced": true,
-            "log": "/tmp/duema-verify-remaining/baseline-abilities-5500-6000.log",
-            "currentLog": "/tmp/duema-verify-remaining/abilities-5500-6000.log",
-            "cardId": "dm26ex5-S008"
-          },
-          {
-            "card": "クリスタル・アックス",
-            "message": "クリスタル・アックス",
-            "baselineCode": 1,
-            "reproduced": true,
-            "log": "/tmp/duema-verify-remaining/baseline-abilities-6000-6500.log",
-            "currentLog": "/tmp/duema-verify-remaining/abilities-6000-6500.log",
-            "cardId": "dm32-003"
-          },
-          {
-            "card": "超熱血 ギラギラ・ドガッツ",
-            "message": "複合進化元 超熱血 ギラギラ・ドガッツ",
-            "baselineCode": 1,
-            "reproduced": true,
-            "log": "/tmp/duema-verify-remaining/baseline-abilities-6500-7000.log",
-            "currentLog": "/tmp/duema-verify-remaining/abilities-6500-7000.log",
-            "cardId": "dmr14-s04"
-          },
-          {
-            "card": "教化のクリス ハラ＆ミッタ",
-            "message": "教化のクリス ハラ＆ミッタ",
-            "baselineCode": 1,
-            "reproduced": true,
-            "log": "/tmp/duema-verify-remaining/baseline-abilities-7000-7500.log",
-            "currentLog": "/tmp/duema-verify-remaining/abilities-7000-7500.log",
-            "cardId": "dm23ex3-052"
-          },
-          {
-            "card": "禁断 ～封印されしX～",
-            "message": "禁断 ～封印されしX～",
-            "baselineCode": 1,
-            "reproduced": true,
-            "log": "/tmp/duema-verify-remaining/baseline-abilities-8000-8013.log",
-            "currentLog": "/tmp/duema-verify-remaining/abilities-8000-8013.log",
-            "cardId": "dmr19-fl01"
-          }
-        ],
+        "pendingSuiteFailures": [],
         "imageIndexGap": {
           "officialReferencePrints": 10094,
           "indexedPrints": 3981,
@@ -538572,7 +538596,310 @@
             },
             "reason": "失敗した各範囲は最初の失敗で停止。各カードの固有経路は個別回帰で通過した。共通フィクスチャには手札進化元、呪文を唱えた履歴、マナ召喚、開始時配置などの条件が欠ける。各失敗の原因を調べて必要な初期条件を用意し、対象範囲を再検証する。"
           }
-        }
+        },
+        "abilityPathsRecovery": {
+          "status": "passed",
+          "shards": [
+            {
+              "start": 0,
+              "end": 500,
+              "code": 0,
+              "passed": true,
+              "seconds": 15.16,
+              "log": "/tmp/duema-verify-cont/phase1331-paths-0-500.log"
+            },
+            {
+              "start": 500,
+              "end": 1000,
+              "code": 0,
+              "passed": true,
+              "seconds": 20.14,
+              "log": "/tmp/duema-verify-cont/phase1331-paths-500-1000.log"
+            },
+            {
+              "start": 1000,
+              "end": 1500,
+              "code": 0,
+              "passed": true,
+              "seconds": 18.65,
+              "log": "/tmp/duema-verify-cont/phase1331-paths-1000-1500.log"
+            },
+            {
+              "start": 1500,
+              "end": 2000,
+              "code": 0,
+              "passed": true,
+              "seconds": 18.13,
+              "log": "/tmp/duema-verify-cont/phase1331-paths-1500-2000.log"
+            },
+            {
+              "start": 2000,
+              "end": 2500,
+              "code": 0,
+              "passed": true,
+              "seconds": 17.14,
+              "log": "/tmp/duema-verify-cont/phase1331-paths-2000-2500.log"
+            },
+            {
+              "start": 2500,
+              "end": 3000,
+              "code": 0,
+              "passed": true,
+              "seconds": 17.05,
+              "log": "/tmp/duema-verify-cont/phase1331-paths-2500-3000.log"
+            },
+            {
+              "start": 3000,
+              "end": 3500,
+              "code": 0,
+              "passed": true,
+              "seconds": 17.23,
+              "log": "/tmp/duema-verify-cont/phase1331-paths-3000-3500.log"
+            },
+            {
+              "start": 3500,
+              "end": 4000,
+              "code": 0,
+              "passed": true,
+              "seconds": 16.42,
+              "log": "/tmp/duema-verify-cont/phase1331-paths-3500-4000.log"
+            },
+            {
+              "start": 4000,
+              "end": 4500,
+              "code": 0,
+              "passed": true,
+              "seconds": 17.71,
+              "log": "/tmp/duema-verify-cont/phase1331-paths-4000-4500.log"
+            },
+            {
+              "start": 4500,
+              "end": 5000,
+              "code": 0,
+              "passed": true,
+              "seconds": 16.79,
+              "log": "/tmp/duema-verify-cont/phase1331-paths-4500-5000.log"
+            },
+            {
+              "start": 5000,
+              "end": 5500,
+              "code": 0,
+              "passed": true,
+              "seconds": 18.75,
+              "log": "/tmp/duema-verify-cont/phase1331-paths-5000-5500.log"
+            },
+            {
+              "start": 5500,
+              "end": 6000,
+              "code": 0,
+              "passed": true,
+              "seconds": 17.72,
+              "log": "/tmp/duema-verify-cont/phase1331-paths-5500-6000.log"
+            },
+            {
+              "start": 6000,
+              "end": 6500,
+              "code": 0,
+              "passed": true,
+              "seconds": 20.19,
+              "log": "/tmp/duema-verify-cont/phase1331-paths-6000-6500.log"
+            },
+            {
+              "start": 6500,
+              "end": 7000,
+              "code": 0,
+              "passed": true,
+              "seconds": 19.7,
+              "log": "/tmp/duema-verify-cont/phase1331-paths-6500-7000.log"
+            },
+            {
+              "start": 7000,
+              "end": 7500,
+              "code": 0,
+              "passed": true,
+              "seconds": 21.35,
+              "log": "/tmp/duema-verify-cont/phase1331-paths-7000-7500.log"
+            },
+            {
+              "start": 7500,
+              "end": 8000,
+              "code": 0,
+              "passed": true,
+              "seconds": 19.64,
+              "log": "/tmp/duema-verify-cont/phase1331-paths-7500-8000.log"
+            },
+            {
+              "start": 8000,
+              "end": 8014,
+              "code": 0,
+              "passed": true,
+              "seconds": 1,
+              "log": "/tmp/duema-verify-cont/phase1331-paths-8000-8014.log"
+            }
+          ],
+          "cardRows": 8014,
+          "plan": "/tmp/duema-verify-cont/ability-paths-1331.py",
+          "results": "/tmp/duema-verify-cont/ability-paths-1331.jsonl",
+          "timeoutSeconds": 150,
+          "diagnostic": {
+            "results": "/tmp/duema-verify-cont/ability-diagnostics.jsonl",
+            "cards": [
+              {
+                "id": "dm06-044",
+                "name": "聖騎士ムーンティアー",
+                "error": "聖騎士ムーンティアー"
+              },
+              {
+                "id": "dm06-076",
+                "name": "予言者ユーク",
+                "error": "予言者ユーク"
+              },
+              {
+                "id": "dm06-013",
+                "name": "綺羅星の精霊ガリアル",
+                "error": "綺羅星の精霊ガリアル"
+              },
+              {
+                "id": "dm24rp4-075",
+                "name": "地底探検モーグ",
+                "error": "地底探検モーグ"
+              },
+              {
+                "id": "dm25ex1-023",
+                "name": "愛銀河マーキュリー・スターフォージ",
+                "error": "愛銀河マーキュリー・スターフォージ"
+              },
+              {
+                "id": "dmrp20-km5",
+                "name": "新世界王の闘気",
+                "error": "新世界王の闘気"
+              },
+              {
+                "id": "dmex18-012",
+                "name": "新世界王の破壊",
+                "error": "新世界王の破壊"
+              },
+              {
+                "id": "dmex14-025",
+                "name": "U・S・A・SIIFU",
+                "error": "U・S・A・SIIFU"
+              },
+              {
+                "id": "dmr13-038",
+                "name": "連鎖庇護類 ジュラピ",
+                "error": "連鎖庇護類 ジュラピ"
+              },
+              {
+                "id": "dm26ex5-S008",
+                "name": "暗黒神羅凰ゼロ・フェニックス",
+                "error": "暗黒神羅凰ゼロ・フェニックス"
+              },
+              {
+                "id": "dm32-003",
+                "name": "クリスタル・アックス",
+                "error": "クリスタル・アックス"
+              },
+              {
+                "id": "dm35-040",
+                "name": "魔皇アンドラージ",
+                "error": "魔皇アンドラージ"
+              },
+              {
+                "id": "dmr19-fl01",
+                "name": "禁断 ～封印されしX～",
+                "error": "禁断 ～封印されしX～"
+              },
+              {
+                "id": "dmrp12-mz1",
+                "name": "滅亡の起源 零無",
+                "error": "滅亡の起源 零無"
+              },
+              {
+                "id": "dmr23-ffl01",
+                "name": "FORBIDDEN STAR ～世界最後の日～",
+                "error": "FORBIDDEN STAR ～世界最後の日～"
+              },
+              {
+                "id": "dmr14-s04",
+                "name": "超熱血 ギラギラ・ドガッツ",
+                "error": "複合進化元 超熱血 ギラギラ・ドガッツ"
+              },
+              {
+                "id": "dm23ex3-052",
+                "name": "教化のクリス ハラ＆ミッタ",
+                "error": "教化のクリス ハラ＆ミッタ"
+              },
+              {
+                "id": "dm25rp3-034",
+                "name": "～卿騒の蒸気大作戦～",
+                "error": "～卿騒の蒸気大作戦～"
+              },
+              {
+                "id": "dmex03-006",
+                "name": "賀二流忍者ザリガニンゾウ",
+                "error": "賀二流忍者ザリガニンゾウ"
+              },
+              {
+                "id": "dm26rp1-S003",
+                "name": "偉形のX エクストリーム・キリコ",
+                "error": "偉形のX エクストリーム・キリコ"
+              }
+            ]
+          },
+          "explanation": "開始時配置、キング・セルのチャージ、手札進化元、複数進化元、呪文の実行履歴、マナからの召喚、無色の支払い、召喚以外の展開を、通常の対戦操作で検証する。ツインパクトは手札から召喚できなくても呪文面を使用できる。"
+        },
+        "gameAndUIRecovery": {
+          "gate": {
+            "games": 48,
+            "groups": 16,
+            "results": "/tmp/duema-verify-cont/gate-shards.jsonl"
+          },
+          "manual": {
+            "seeds": 30,
+            "scenes": 1225,
+            "sceneTypes": [
+              "attack",
+              "battleWinOrder",
+              "block",
+              "breakChoice",
+              "charge",
+              "dddDeclare",
+              "dddSummon",
+              "deploy",
+              "dragonTap",
+              "draw",
+              "effect",
+              "effectOrder",
+              "entryOrder",
+              "fight",
+              "judgeBreak",
+              "judgeContinue",
+              "judgeCost",
+              "leaveReplace",
+              "main",
+              "manaTop",
+              "optionalRamp",
+              "revealEvolution",
+              "trigger"
+            ],
+            "groups": 15,
+            "results": "/tmp/duema-verify-cont/manual-shards.jsonl"
+          },
+          "timeoutSeconds": 150,
+          "plan": "/tmp/duema-verify-cont/deck-shards.py"
+        },
+        "interruptedFollowup": [
+          {
+            "path": "tests/online-server.test.mjs",
+            "log": "/tmp/duema-verify-cont/phase1331-online.log",
+            "reason": "オンラインサーバーの全対戦を含む追加実行を中断し、関連する認証・保存・画面テストを対象名で分割。通し対戦の未確認分は継続。"
+          },
+          {
+            "path": "tests/engine.test.mjs",
+            "log": "/tmp/duema-verify-cont/engine-short-1331.log",
+            "reason": "集計用の自動対戦も含まれる追加実行を中断し、基本操作を個別に指定して実行。自動対戦を含む集計テストの再確認は継続。"
+          }
+        ]
       },
       "verifiedProductPrints": [
         {

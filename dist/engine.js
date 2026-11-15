@@ -1935,15 +1935,22 @@ function speedEntryAttackLocked(s,p,x,c){
 function finalForbiddenAttackLocked(s,p,definition){
  return !!finalForbiddenField(s,p)&&!/コマンド|イニシャルズ/.test(definition.race||'')&&!definition.name.includes('禁断');
 }
+function diamondPlayerAttack1331(s,p,x){
+ if(x.sealed||x.faceDown||!s.extLimits?.length)return false;
+ return s.extLimits.some(l=>l.kind==='g521Grant'&&l.grant.g1331Diamond&&l.who===p&&
+  layers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)&&
+  !spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}));
+}
 export function attackLocked(s,p,c){
  if(!s||!c||c.sealed)return false;
  const data=effectiveCard(c,s);
- return data.type==='creature'&&(finalForbiddenAttackLocked(s,p,data)||extra.locked(s,p,c,'attack')||speedEntryAttackLocked(s,p,c,data));
+ return data.type==='creature'&&!diamondPlayerAttack1331(s,p,c)&&(finalForbiddenAttackLocked(s,p,data)||extra.locked(s,p,c,'attack')||speedEntryAttackLocked(s,p,c,data));
 }
 export function canCreatureAttack(s,p,c){
  const rule=effectiveCard(c,s);
  const allowFresh=rule.g1182FreshTappedAttack&&c.entered===s.turn;
- return canAttack(s,p,c,allowFresh,rule)||!!(rule.g1226PlayerAttack&&!rule.noPlayerAttack&&
+ return rule.type==='creature'&&!c.tapped&&diamondPlayerAttack1331(s,p,c)||
+  canAttack(s,p,c,allowFresh,rule)||!!(rule.g1226PlayerAttack&&!rule.noPlayerAttack&&
   canAttack(s,p,c,allowFresh,rule,true)&&canAttackPlayer(s,c,rule));
 }
 function canAttack(s,p,c,allowFresh=false,d=effectiveCard(c,s),ignoreOwnAttackLimit=false){return d.type==='creature'&&!finalForbiddenAttackLocked(s,p,d)&&!speedEntryAttackLocked(s,p,c,d)&&extra.history.canAttack(s,p,c)&&extra.six.fifteen.canAttack(s,p,c)&&(!d.twoTappedAttack||s.players[p].battle.filter(x=>isCreature(s,x)&&x.tapped).length>=2)&&!c.tapped&&(!d.noAttack||ignoreOwnAttackLimit)&&(!d.needsBigAttack||s.g16BigAttack?.[p]===s.turn)&&!extra.locked(s,p,c,'attack')&&!extra.six.attackPower593(s,p,c,false)&&!(c.entered===s.turn&&s.players[1-p].battle.some(x=>{const guard=effectiveCard(x,s);return guard.stopEntryAttack||guard.g475StopNonEvolutionEntryAttack&&!isEvolution(c);})&&!s.players[p].battle.some(x=>effectiveCard(x,s).ignoreAttackLocks))&&(c.entered<s.turn||c.g1085Awakened&&c.g1085AwakenedTurn===s.turn||d.speedAttacker||isEvolution(c)||d.machFighter||d.entryPlayerAttack||extra.abyssPlayer(s,c)||allowFresh);}
@@ -3963,9 +3970,10 @@ export function getLegalActions(s){
    const allowFresh=rule.g838FreshUntapped||freshTappedAttack||attackTargets.length>0;
    const canAttackNormally=canAttack(s,p,c,allowFresh,rule);
    const aura=rule.g1226PlayerAttack;
-   if(!canAttackNormally&&!(aura&&canAttack(s,p,c,allowFresh,rule,true)))continue;
+   const diamond=rule.type==='creature'&&!c.tapped&&diamondPlayerAttack1331(s,p,c);
+   if(!canAttackNormally&&!diamond&&!(aura&&canAttack(s,p,c,allowFresh,rule,true)))continue;
    const canAttackCreaturesNormally=c.entered<s.turn||rule.speedAttacker||isEvolution(c)||rule.machFighter;
-   if(!rule.noPlayerAttack&&canAttackPlayer(s,c,rule)){if(opp.shields.length&&rule.noShieldBreak){}else if(capped&&opp.shields.length&&(rule.gBreaker||rule.breaker!==undefined||rule.extraBreak))out.push(option('attack',`${card(c).name} → 相手（最大1枚ブレイク）`,{uid:c.uid,target:'player'}));else if(rule.gBreaker&&!rule.g1021WorldBreaker)out.push(option('attack',`${card(c).name} → 相手（G・ブレイカー）`,{uid:c.uid,target:'player'}));else if(opp.shields.length&&(rule.breaker!==undefined||rule.extraBreak))out.push(option('attack',`${card(c).name} → 相手（${rule.worldBreaker||rule.g1021WorldBreaker?'ワールド・ブレイカー':rule.breaker==='∞'?'∞ブレイカー':Math.min(numeric(rule.breaker??1)+(rule.extraBreak||0),opp.shields.length)+'枚ブレイク'}）`,{uid:c.uid,target:'player'}));else if(opp.shields.length)for(let i=0;i<opp.shields.length;i++){const ex=!!exLifeShieldInfo(s,1-p,opp.shields[i].uid)?.active;out.push(option('attack',`${card(c).name} → シールド${i+1}${ex?'（EXライフ）':''}`,{uid:c.uid,target:'player',shield:opp.shields[i].uid,exLifeHit:ex}));}else out.push(option('attack',`${card(c).name}でダイレクトアタック`,{uid:c.uid,target:'player'}));}
+   if(diamond||!rule.noPlayerAttack&&canAttackPlayer(s,c,rule)){if(opp.shields.length&&rule.noShieldBreak){}else if(capped&&opp.shields.length&&(rule.gBreaker||rule.breaker!==undefined||rule.extraBreak))out.push(option('attack',`${card(c).name} → 相手（最大1枚ブレイク）`,{uid:c.uid,target:'player'}));else if(rule.gBreaker&&!rule.g1021WorldBreaker)out.push(option('attack',`${card(c).name} → 相手（G・ブレイカー）`,{uid:c.uid,target:'player'}));else if(opp.shields.length&&(rule.breaker!==undefined||rule.extraBreak))out.push(option('attack',`${card(c).name} → 相手（${rule.worldBreaker||rule.g1021WorldBreaker?'ワールド・ブレイカー':rule.breaker==='∞'?'∞ブレイカー':Math.min(numeric(rule.breaker??1)+(rule.extraBreak||0),opp.shields.length)+'枚ブレイク'}）`,{uid:c.uid,target:'player'}));else if(opp.shields.length)for(let i=0;i<opp.shields.length;i++){const ex=!!exLifeShieldInfo(s,1-p,opp.shields[i].uid)?.active;out.push(option('attack',`${card(c).name} → シールド${i+1}${ex?'（EXライフ）':''}`,{uid:c.uid,target:'player',shield:opp.shields[i].uid,exLifeHit:ex}));}else out.push(option('attack',`${card(c).name}でダイレクトアタック`,{uid:c.uid,target:'player'}));}
    const attackUntapped=rule.attackUntapped||rule.g1248EntryAttackUntapped&&(c.originalEntryTurn??c.entered)===s.turn||
     extra.six.dragonAttackUntapped967(s,p,c,rule)||extra.six.allyAttackUntapped1195(s,p);
    if(canAttackNormally&&!creatureAttackLocked&&!rule.noCreatureAttack&&(canAttackCreaturesNormally||rule.g838FreshUntapped||freshTappedAttack||attackTargets.length))for(const target of opp.battle.filter(x=>isCreature(s,x)&&(canAttackCreaturesNormally||rule.g838FreshUntapped&&!x.tapped||freshTappedAttack&&x.tapped||attackTargets.includes(x.uid))&&!effectiveCard(x,s).cannotBeAttacked&&(!rule.g692AttackOnlyBlockers||effectiveCard(x,s).blocker)&&attackTargetAllowed(s,c,x)&&extra.six.fifteen.canAttackTarget(s,c,x)&&(!effectiveCard(x,s).flying||rule.flying)&&(x.tapped||attackUntapped||attackTargets.includes(x.uid)||extra.six.attackableUntapped(s,x,rule)||rule.g483AttackUntappedColors?.some(color=>civilizations(effectiveCard(x,s)).includes(color))||(c.entered===s.turn&&rule.machFighter))&&(!effectiveCard(x,s).justDiver||!x.justDiverActive||extra.creatures(s,p).some(y=>effectiveCard(y,s).ignoreAttackLocks))))out.push(option('attack',`${card(c).name} → ${card(target).name}`,{uid:c.uid,target:target.uid}));

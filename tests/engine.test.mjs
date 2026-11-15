@@ -29,5 +29,113 @@ test('empty library loses immediately even when caused by mana acceleration',()=
 test('AI observation hides opponent hand, shields, and library contents',()=>{const s=game(),v=observation(s,0);assert.ok(v.players[1].hand.every(c=>c.hidden&&!c.cardId));assert.equal(typeof v.players[0].shields,'number');assert.ok(!('deck'in v.players[0]));assert.ok(!('deck'in v.players[1]));const old=chooseAI(s);s.players[1].hand=Array(5).fill(0).map(()=>inst(52));s.players[1].deck.reverse();s.players[0].shields.reverse();assert.deepEqual(chooseAI(s),old);});
 test('same seed and decks reproduce every action and result',()=>{const a=runGame([PRESETS[0],PRESETS[2]],{seed:891,first:1}),b=runGame([PRESETS[0],PRESETS[2]],{seed:891,first:1});assert.deepEqual(a,b);});
 test('all pairings finish legally and conserve every card over every action',()=>{for(let p=0;p<3;p++)for(let q=0;q<3;q++)for(let seed=0;seed<8;seed++){const s=createGame([PRESETS[p],PRESETS[q]],{seed,first:seed%2});while(s.winner===null&&s.actions<2500){const a=chooseAI(s);assert.ok(a);step(s,a);const all=physicalCards(s);assert.equal(all.length,80);assert.equal(new Set(all.map(c=>c.uid)).size,80);}assert.notEqual(s.winner,null);}});
-test('all supported spell effects and creature abilities have legal execution paths',()=>{for(const c of cards){const s=game();s.phase='main';give(s,0,'hand',[c.id]);give(s,0,'mana',['dm01-075','dm01-083','dm01-090','dm01-097','dm01-108',...Array.from({length:Math.max(Number.isFinite(c.cost)?c.cost:8,8)},()=>'dm01-108')]);give(s,0,'battle',c.mugenCrime?Array.from({length:c.mugenCrime},(_,i)=>[97,108,75,84][i%4]):[97,108]);if(c.g34Role==='sirius'){const base=cards.find(x=>x.type==='creature'&&!x.evolution&&x.race.includes('エンジェル・コマンド')&&!x.g34Role);give(s,0,'battle',Array(5).fill(base.id));}else if(c.g31Evolution){if(['grave','battle'].includes(c.g31Evolution.zone)){const match=(x,q)=>q.any?q.any.some(r=>match(x,r)):q.race?x.race.split('/').includes(q.race):q.civilization?(x.civilizations||String(x.civ).split('/')).includes(q.civilization):true;const bases=c.g31Evolution.conditions.map(q=>{const base=cards.find(x=>x.type==='creature'&&!x.evolution&&!x.sMax&&x.id!==c.id&&match(x,q));assert.ok(base,'複合進化元 '+c.name);return base.id;});give(s,0,c.g31Evolution.zone,bases);}}else if(c.graveEvolution){give(s,0,'grave',[108]);}else if(c.ultraEvolution){const base=cards.find(x=>x.type==='creature'&&!x.evolution&&!x.neoEvolution&&!x.sMax&&/コマンド|ドラゴン/.test(x.race)&&Number.isFinite(x.cost)&&x.cost>=5);assert.ok(base);give(s,0,'battle',Array(4).fill(base.id));}else if(c.manaEvolution){const base=cards.find(x=>{if(x.type!=='creature'||x.id===c.id)return false;const candidate=inst(x.id);s.players[0].mana.push(candidate);const valid=evolutionBases(s,0,c).some(y=>y.uid===candidate.uid);s.players[0].mana.pop();return valid;});assert.ok(base,'マナ進化元 '+c.name);s.players[0].mana.push(inst(base.id));}else if(c.evolution){const base=cards.find(x=>{if(x.type!=='creature'||(x.evolution&&!c.evolution.evolution&&!c.evolution.ultimate)||x.id===c.id)return false;give(s,0,'battle',[x.id]);return evolutionBases(s,0,c).length>0;});assert.ok(base,'進化元 '+c.name);give(s,0,'battle',[base.id]);}give(s,1,'battle',[75,84]);s.players[1].battle[0].tapped=false;const a=getLegalActions(s).find(x=>x.kind==='play'||x.kind==='mugenStart');assert.ok(a,c.name);step(s,a);let guard=0;while(s.decision&&s.winner===null&&guard++<100)step(s,chooseAI(s));assert.ok(guard<100,c.name);}});
+function completeAbilityDecisions(s,c){
+ for(let count=0;s.decision&&s.winner===null;count++){
+  assert.ok(count<100,c.name);
+  const next=chooseAI(s);
+  assert.ok(next,c.name);
+  step(s,next);
+ }
+}
+function abilityBaseMatches(c,condition){
+ if(condition.any)return condition.any.some(branch=>abilityBaseMatches(c,branch));
+ if(condition.race)return c.race.includes(condition.race);
+ if(condition.civilization)return (c.civilizations||String(c.civ).split('/')).includes(condition.civilization);
+ return condition.creature===true;
+}
+function prepareAbilityEvolution(s,c){
+ if(c.g34Role==='sirius'){
+  const base=cards.find(x=>x.type==='creature'&&!x.evolution&&x.race.includes('エンジェル・コマンド')&&!x.g34Role);
+  give(s,0,'battle',Array(5).fill(base.id));
+ }else if(c.g31Evolution){
+  const {zone,conditions,minCards}=c.g31Evolution;
+  if(zone==='deck')return;
+  const bases=conditions.map(condition=>{
+   const base=cards.find(x=>x.type==='creature'&&!x.evolution&&!x.neoEvolution&&!x.sMax&&x.id!==c.id&&abilityBaseMatches(x,condition));
+   assert.ok(base,'複合進化元 '+c.name);
+   return base.id;
+  });
+  while(bases.length<(minCards||0))bases.push(bases[0]);
+  give(s,0,zone,bases);
+ }else if(c.graveEvolution){
+  give(s,0,'grave',[108]);
+ }else if(c.ultraEvolution){
+  const base=cards.find(x=>x.type==='creature'&&!x.evolution&&!x.neoEvolution&&!x.sMax&&/コマンド|ドラゴン/.test(x.race)&&Number.isFinite(x.cost)&&x.cost>=5);
+  assert.ok(base,c.name);
+  give(s,0,'battle',Array(4).fill(base.id));
+ }else if(c.manaEvolution){
+  const base=cards.find(x=>{
+   if(x.type!=='creature'||x.id===c.id)return false;
+   s.players[0].mana.push(inst(x.id));
+   const ok=evolutionBases(s,0,c).some(y=>y===s.players[0].mana.at(-1));
+   s.players[0].mana.pop();
+   return ok;
+  });
+  assert.ok(base,'マナ進化元 '+c.name);
+  s.players[0].mana.push(inst(base.id));
+ }else if(c.evolution){
+  const base=cards.find(x=>{
+   if(x.type!=='creature'||(x.evolution&&!c.evolution.evolution&&!c.evolution.ultimate)||x.id===c.id)return false;
+   give(s,0,'battle',[x.id]);
+   return evolutionBases(s,0,c).length>0;
+  });
+  assert.ok(base,'進化元 '+c.name);
+ }
+}
+function checkAbilityExecution(c){
+ if(c.startCard){
+  const first={...PRESETS[0],format:'advance',startCards:[{id:c.id,count:1}]};
+  if(c.startCard.kind==='zeroryu')first.grCards=[{id:'dmex08-251',count:12}];
+  const s=createGame([first,{...PRESETS[1],format:'advance'}],{seed:42});
+  const start=s.players[0].battle.find(x=>x.cardId===c.id);
+  assert.ok(start,c.name);
+  const pieces=c.startCard.parts||[];
+  assert.equal(physicalCards(s).filter(x=>pieces.some(row=>row.id===x.cardId)).length,pieces.length,c.name);
+  assert.equal(s.players[0].seals.filter(x=>x.sealOf===start.uid||start.under?.some(y=>y.uid===x.sealOf)).length,c.startCard.seals,c.name);
+  return;
+ }
+ const s=game(),own=s.players[0],target=inst(c.id);
+ if(c.g50KingParts){
+  own.hand=[target];
+  action(s,'charge',a=>a.uid===target.uid);
+  assert.ok(own.mana.includes(target),c.name);
+  assert.equal(target.tapped,false,c.name);
+  return;
+ }
+ s.phase='main';
+ const fromMana=c.g298NoHandSummon&&c.manaSummon;
+ own.hand=fromMana||c.g475NoSummon?[]:[target];
+ give(s,0,'mana',['dm01-075','dm01-083','dm01-090','dm01-097','dm01-108',...Array.from({length:Math.max(Number.isFinite(c.cost)?c.cost:8,8)},()=>'dm01-108')]);
+ give(s,0,'battle',c.mugenCrime?Array.from({length:c.mugenCrime},(_,i)=>[97,108,75,84][i%4]):[97,108]);
+ give(s,1,'battle',[75,84]);
+ prepareAbilityEvolution(s,c);
+ if(fromMana)own.mana.push(target);
+ if(c.g48HandEvolution)own.hand.push(...Array.from({length:c.g48Mercury?3:1},()=>inst(83)));
+ if(c.g1039ColorlessPayment)own.mana.push(inst('dmrp07-001'),inst('dmrp07-001'));
+ if(c.g280NeedsSpell||c.g1068NeedsNoncreatureUse){
+  const spell=inst('dm01-102');
+  own.hand.push(spell);
+  action(s,'play',a=>a.uid===spell.uid);
+  completeAbilityDecisions(s,c);
+  for(const mana of own.mana)mana.tapped=false;
+ }
+ if(c.g475NoSummon){
+  const spell=inst('dmc44-001');
+  own.hand.push(spell);
+  own.grave.push(target);
+  action(s,'play',a=>a.uid===spell.uid);
+  action(s,'extended',a=>{const value=s.decision.choices[a.choice].value;return (value?.uid??value)===target.uid;});
+  completeAbilityDecisions(s,c);
+  assert.ok(own.battle.includes(target),c.name);
+  return;
+ }
+ const play=getLegalActions(s).find(a=>a.uid===target.uid&&(a.kind==='play'||a.kind==='mugenStart'));
+ assert.ok(play,c.name);
+ step(s,play);
+ completeAbilityDecisions(s,c);
+}
+
+test('all supported spell effects and creature abilities have legal execution paths',()=>{
+ for(const c of cards)checkAbilityExecution(c);
+});
 test('aggregate excludes unresolved games from wins and reports sample interval',()=>{const a=runSummary(runGame([PRESETS[0],PRESETS[1]],{seed:50})),b=structuredClone(a);a.winner=0;b.winner=null;const s=aggregate([a,b]);assert.equal(s.rate,1);assert.equal(s.unresolved,1);assert.equal(s.completed,1);assert.ok(s.interval[0]<1);});
