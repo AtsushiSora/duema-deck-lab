@@ -1478,6 +1478,14 @@ export function createSixPhotoRules(api){
    c.type==='spell'&&colors(c).some(color=>mana.has(color))&&api.canCast(s,t.p,c,'battle')
     ?[opt(c.name,{uid:x.uid,face},15+cost(c),x.cardId)]:[]));
  }
+ function graveAuras1354(s,t){
+  if(!api.auraHost1352(s,t.p,t.host)||!api.canMoveZone(s,t.p,'grave'))return [];
+  return s.players[t.p].grave.filter(y=>{
+   const c=card(y);
+   return !y.faceDown&&c.type==='aura'&&cost(c)<=t.max&&
+    api.canEnter(s,t.p,c,{origin:'grave',execution:false,auraHost:t.host});
+  });
+ }
  function kariyaSpellOptions1337(s,t){
   if(!api.canMoveZone(s,t.p,'grave'))return [];
   return s.players[t.p].grave.flatMap(x=>{
@@ -5938,6 +5946,12 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_AuraGr1353':api.grSummon(s,t.p);break;
+ case'g34_AuraFromGrave1354':{
+  const rows=graveAuras1354(s,t);
+  if(rows.length)choice(s,t,'このクリーチャーに付ける墓地のオーラを選ぶ',rows.map(x=>
+   opt(card(x).name,{uid:x.uid,serial:x.zoneSerial||0},10+cost(card(x)),x.cardId)));
+  break;
+ }
  case'g34_AuraReattach1353':{
   const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation&&x.auraTo1352);
   const targets=x?api.auraTargets1352(s,t.p).filter(y=>y.uid!==x.auraTo1352.uid):[];
@@ -6387,6 +6401,15 @@ export function createSixPhotoRules(api){
   const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation&&x.auraTo1352);
   const host=x&&api.auraTargets1352(s,t.p).find(y=>y.uid===v&&y.uid!==x.auraTo1352.uid);
   if(host)api.attachAura1352(s,t.p,x,host,'battle');
+  break;
+ }
+ case'g34_AuraFromGrave1354':{
+  const aura=v&&graveAuras1354(s,t).find(x=>x.uid===v.uid&&(x.zoneSerial||0)===v.serial);
+  if(!aura)break;
+  const host=api.auraHost1352(s,t.p,t.host);
+  remove(own.grave,aura.uid);
+  clear(aura,'battle');
+  api.attachAura1352(s,t.p,aura,host,'grave');
   break;
  }
  case'g34_RecastHandSpell1245':{
