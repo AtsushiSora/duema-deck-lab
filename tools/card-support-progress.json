@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8020,
-  "pendingNames": 3806,
-  "phase": 1334,
-  "added": 3,
+  "supportedNames": 8021,
+  "pendingNames": 3805,
+  "phase": 1335,
+  "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2136,
+    "クリーチャー": 2135,
     "NEOクリーチャー": 70,
     "呪文": 455,
     "GRクリーチャー": 156,
@@ -224,7 +224,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1076,
-    "未対応の能力文": 2538,
+    "未対応の能力文": 2537,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 19,
     "未対応のシンカパワー": 2,
@@ -489587,14 +489587,94 @@
           "source": "https://dm.takaratomy.co.jp/rule/qa/40941/"
         }
       ]
+    },
+    {
+      "phase": 1335,
+      "baseline": "9c0440ae",
+      "before": 8020,
+      "supported": 8021,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmrp15-009",
+          "name": "シーラ・カンフー"
+        }
+      ],
+      "printAliases": 0,
+      "results": {
+        "focus": {
+          "passed": 6,
+          "seconds": 0.693,
+          "log": "/tmp/duema-all39/focus-final.log",
+          "command": "node --test tests/standard1335-effects.test.mjs"
+        },
+        "regression": {
+          "passed": 233,
+          "seconds": 28.737,
+          "log": "/tmp/duema-all39/regression-final.log",
+          "command": "node --test --test-concurrency=2 tests/standard456-effects.test.mjs tests/standard463-effects.test.mjs tests/standard1104-effects.test.mjs tests/standard1247-effects.test.mjs tests/standard1273-effects.test.mjs tests/standard1333-effects.test.mjs tests/standard1334-effects.test.mjs tests/standard1335-effects.test.mjs"
+        },
+        "online": {
+          "passed": 7,
+          "seconds": 0.789,
+          "log": "/tmp/duema-all39/online-final.log",
+          "command": "node --test --test-name-pattern=\"^(room storage is|creating, joining and refreshing|the server validates|public online gears|Murder hand inspection|online play labels|online stacked shields)\" tests/online-server.test.mjs"
+        },
+        "check": {
+          "status": "passed",
+          "log": "/tmp/duema-all39/check-final.log",
+          "command": "npm run check",
+          "rulesBlob": "4678346e17146f9ecf036d0b5fb2521318fac484",
+          "sixPhotoBlob": "686ecd8e9d7a8b0a07a3f9c469ba425f9b5f0fb8"
+        },
+        "audit": {
+          "status": "passed",
+          "log": "/tmp/duema-all39/audit-final.log",
+          "command": "node tools/audit-card-support.mjs"
+        }
+      },
+      "resolvedRegistered": 1,
+      "remainingRegistered": 44,
+      "remainingPrints": 2,
+      "remainingIndividualCards": 38,
+      "held": [
+        {
+          "id": "dmrp12-008",
+          "name": "帝神龍装 ティーゾリス",
+          "reason": "爆撃男の裁定を再現するには、召喚時の任意軽減と連動した登場時の味方破壊、およびバトルゾーンから破壊・離脱した時の自分のクリーチャー能力の重複誘発を検証する。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/33064/"
+        },
+        {
+          "id": "dm22ex2-S15",
+          "name": "不敬合成王 ロマティックダム・アルキング",
+          "reason": "ラビットンボの裁定2件を再現するには、バトル・マナ・墓地の各ゾーンから1体ずつを選ぶ進化GV・Ω、別の進化元から引き継ぐEXライフと離脱の監視を整える。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/42663/"
+        },
+        {
+          "id": "dm23rp1-004",
+          "name": "終納 カボード＝ロウ",
+          "reason": "タップしている間の常在能力が、攻撃と能力によるブレイクの両方に適用される。攻撃時だけを変更すると連続ブレイクの途中で発生源が離れるケースを再現できない。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/43069/",
+          "relatedSources": [
+            "https://dm.takaratomy.co.jp/rule/qa/43222/",
+            "https://dm.takaratomy.co.jp/rule/qa/43224/"
+          ]
+        },
+        {
+          "id": "dmrp03-dg01",
+          "name": "DG 〜ヒトノ造リシモノ〜",
+          "reason": "両プレイヤーのシールドを1つずつ同時にブレイクする。両者の宣言と解決の順序、メタリカと裁きの紋章へのS・トリガー付与を揃えて検証する。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/45078/"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1334,
+    "lastVerifiedPhase": 1335,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "個別39種類（裁定45件・再録2件、重複1種類）の検証を継続。ゴッド・オブ・ゼットは指定3種とG・リンクを確認済み。",
+    "steps": "実データを再集計し、個別38種類の検証を継続する。まず依存カードの実装が再現に必要なティーゾリス、アルキング、カボード＝ロウの全能力と関連裁定を確認する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -489672,23 +489752,23 @@
     "restartSteps": [
       "ローカルHEADと作業ツリー、ステージ済み差分、AGENTS.md、実行中のテストを確認する。dist/cards.jsonをnameKeyで再集計する。",
       "remainingVerificationRunの結果を確認する。全カードの合法経路と登場時能力借用の完走を確認した。残る対戦・ワーカーを対戦相手・シード単位に分ける。",
-      "残る裁定を確認し、再現に必要な依存カードのみ追加する。ラビットンボとアルキングのEXライフ2件、爆撃男の離脱誘発、アリスのビビッドロー宣言を確認する。",
+      "依存が重なる裁定を優先し、必要な依存カードの公式照合と能力全体を確認する。個別裁定、金箔再録、長時間対戦・ワーカーを最大10分の区間で検証する。",
       "残る金箔2版は公式IDと公式画像を照合する。全検証が通過し、Netlifyに影響しない公開経路を確認するまで、公開は保留する。"
     ],
     "registrationStatus": "ユーザーの指示で10分間隔のカード登録を再開。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [
       {
-        "id": "dm22ex2-S15",
-        "name": "不敬合成王 ロマティックダム・アルキング"
-      },
-      {
         "id": "dmrp12-008",
         "name": "帝神龍装 ティーゾリス"
       },
       {
-        "id": "dmrp15-009",
-        "name": "シーラ・カンフー"
+        "id": "dm22ex2-S15",
+        "name": "不敬合成王 ロマティックダム・アルキング"
+      },
+      {
+        "id": "dm23rp1-004",
+        "name": "終納 カボード＝ロウ"
       }
     ],
     "printVerificationPending": [
@@ -489887,8 +489967,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8020,
-    "pendingNames": 3806,
+    "supportedNames": 8021,
+    "pendingNames": 3805,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -533882,8 +533962,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8020,
-      "pendingNames": 3806,
+      "supportedNames": 8021,
+      "pendingNames": 3805,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -534910,7 +534990,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別の裁定45件、再録2件、長時間対戦とワーカーが未確認。GitHub上のmainのpushにNetlify本番ワークフローがあり、Netlifyを更新せずにPagesへ公開する経路は未確認。",
+        "reason": "個別38種類（裁定44件・版固有の金箔再録2件、重複1種類）と長時間対戦・ワーカーが未確認。GitHub側のmainのpushで起動するNetlify本番ワークフローがあり、Netlifyを更新せずにPagesへ公開する経路の確認が必要。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -535241,6 +535321,27 @@
             "https://dm.takaratomy.co.jp/rule/qa_old/37723/",
             "https://dm.takaratomy.co.jp/rule/qa/42633/"
           ]
+        },
+        {
+          "cardId": "dmr11-010",
+          "dependencyIds": [
+            "dmrp15-009"
+          ],
+          "test": "アリスで引いたビビッドロー持ちを公開する時点と、公開したカードも山札に戻せること（QA40504）。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40504/",
+          "phase": 1335,
+          "path": "tests/standard1335-effects.test.mjs",
+          "log": "/tmp/duema-all39/focus-final.log",
+          "result": "アリスの3枚ドローの途中でビビッドローを宣言。公開したシーラ・カンフーを山札の上へ戻せること、公開が続かないこと、他の手札が非公開であること、宣言保留中のJSON復元を確認。水・火を含む代替コスト、通常召喚、任意軽減との併用、攻撃ステップ以降の宣言不可、W・ブレイカー、開始時の2ドローと相手ターン終了時の全手札破棄を確認。",
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/38753/",
+            "https://dm.takaratomy.co.jp/rule/qa/38754/",
+            "https://dm.takaratomy.co.jp/rule/qa/40447/",
+            "https://dm.takaratomy.co.jp/rule/qa/40504/",
+            "https://dm.takaratomy.co.jp/rule/qa/40964/",
+            "https://dm.takaratomy.co.jp/rule/qa/34197/",
+            "https://dm.takaratomy.co.jp/rule/qa/40940/"
+          ]
         }
       ],
       "remainingRegistered": [
@@ -535282,6 +535383,12 @@
             "status": "pending",
             "verifiedModes": "Phase 1104で実装済みの4種類は両面選択を確認済み。",
             "reason": "残る展開元は片面を列挙する。両面を出す際に既存の選択肢番号や保留状態を変えると、保存された対戦の再生に影響しうるため、互換性を先に確認する。"
+          },
+          "rechecked1335": {
+            "summary": "従来の各単面モードとPhase 1104の両面・同一カード重複不可の対戦は通過。残る関連IDで両面モードを広げた際の選択肢順と保存済み対戦の再生は未確認。",
+            "sources": [
+              "https://dm.takaratomy.co.jp/rule/qa_old/37744/"
+            ]
           }
         },
         {
@@ -535339,7 +535446,15 @@
             "dm30-047",
             "dmex17-083"
           ],
-          "log": "/tmp/duema-phase-1119/focused.log"
+          "log": "/tmp/duema-phase-1119/focused.log",
+          "rechecked1335": {
+            "summary": "公式本文の普通のナイト・マジックとキング・ナイト・マジックの付記、旧QAの普通のナイト・マジックの説明を照合。該当する組み合わせを直接扱う公式資料は未確認。",
+            "sources": [
+              "https://dm.takaratomy.co.jp/card/detail/?id=dm30-047",
+              "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-082",
+              "https://dm.takaratomy.co.jp/rule/qa_old/37520/"
+            ]
+          }
         },
         {
           "cardId": "dm25rp2-S08",
@@ -535465,15 +535580,6 @@
           "test": "終納 カボード＝ロウのブレイク減少と未クロス時の上限が重なり、通常の1ブレイクの攻撃が0ブレイクになる（QA43069）。",
           "reason": "指定カードが未対応。上限1と能力によるブレイクを区別するケースは確認した。",
           "source": "https://dm.takaratomy.co.jp/rule/qa/43069/"
-        },
-        {
-          "cardId": "dmr11-010",
-          "dependencyIds": [
-            "dmrp15-009"
-          ],
-          "test": "アリスで引いたビビッドロー持ちを公開する時点と、公開したカードも山札に戻せること（QA40504）。",
-          "reason": "ビビッドローのドロー直後の宣言と代替コストが未実装。シーラ・カンフーなど対応済みの実カードで再現できるようになってから検証する。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/40504/"
         },
         {
           "cardId": "dmsd13-019",
@@ -535614,6 +535720,13 @@
               "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
             ],
             "result": "QA45911の既存マナと解決後に置くマナの区別は再検証済み。QA45912は水晶ソウル3の支払い時の裁定。氷駆の妖精の常在型能力との優先関係を直接示す資料は未特定。"
+          },
+          "rechecked1335": {
+            "summary": "後から置いたマナに0が適用されない裁定と、水晶ソウルの支払い時に値を3へ変更できる裁定を照合。既存マナのシビルカウント5との優先順位を直接示す公式資料は未確認。",
+            "sources": [
+              "https://dm.takaratomy.co.jp/rule/qa/45911/",
+              "https://dm.takaratomy.co.jp/rule/qa/45912/"
+            ]
           }
         },
         {
@@ -535744,9 +535857,10 @@
           "dm22-001",
           "dmc40-002",
           "dmc40-006",
-          "dmc40-008"
+          "dmc40-008",
+          "dmrp15-009"
         ],
-        "officialPrints": 52,
+        "officialPrints": 53,
         "newAliases": 43,
         "evidence": [
           {
@@ -536167,6 +536281,14 @@
             "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc55-014.jpg",
             "pageSha256": "1949196d79642a3ccbdc566441701796b68e93904bdc09f6bceede8daceeb1b4",
             "imageSha256": "60e7c9ce2419eb11c7fd6ad5568a56b65a5502046b922df6efe111b7dd5bf89f"
+          },
+          {
+            "id": "dmrp15-009",
+            "canonicalId": "dmrp15-009",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-009",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-009.jpg",
+            "pageSha256": "88cdb20473c1e0994559dae9d205b1fff89fa5b7f9093aed79445f8f3d417173",
+            "imageSha256": "6955e6e5a916f1a93f21a81e6d31b76786fd24174338dfc72fb09f8b0c0f23e7"
           }
         ],
         "testLog": "/tmp/duema-verify-8009/verification-followup-prints.log",
@@ -536287,6 +536409,12 @@
               "promoy21-012"
             ],
             "result": "2ページを照合。公式商品画像で金箔版の印字は確認済みだが、公式カード検索でその版固有のIDを特定できなかった。"
+          },
+          "rechecked1335": {
+            "checkedAt": "2026-11-15",
+            "source": "https://dm.takaratomy.co.jp/product/dm22sd1/",
+            "pageSha256": "f188a3790e3ebe7c7e41a98474573cfb036013a7926c09a3d773429e48a05608",
+            "result": "公式商品写真の印刷番号㊙1/㊙1を再確認。通常版の対戦IDは確認済みで、金箔版固有の公式カードIDは未特定。"
           }
         },
         {
@@ -536357,7 +536485,13 @@
             "cardNumber": "OR2/OR2",
             "sha256": "781d02b605779f5801d854c1cff147e7e05c9c8ca20c3156679fb0f796594094"
           },
-          "physicalPrintReference": "https://dorasuta.jp/duelmasters/product?pid=419611"
+          "physicalPrintReference": "https://dorasuta.jp/duelmasters/product?pid=419611",
+          "rechecked1335": {
+            "checkedAt": "2026-11-15",
+            "source": "https://dm.takaratomy.co.jp/product/dm22rp1/",
+            "pageSha256": "6d82881075a0668c5b2a85d8ce21d8faf1e0b7e5bb4670b355512272621f8f1f",
+            "result": "公式商品の掲載内容と個別公式ページのOR2・2Bを照合。金箔2S/2の識別に使える公式画像と版固有のIDは未確認。"
+          }
         }
       ],
       "resolvedRegressions": [
@@ -536550,8 +536684,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8020,
-        "pending": 3806,
+        "supported": 8021,
+        "pending": 3805,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -537150,9 +537284,10 @@
       },
       "finalCheck": {
         "status": "passed",
-        "log": "/tmp/duema-gods/check-final.log",
-        "rulesBlob": "488b1e4f01f8cdb621935f32116951883d831e57",
-        "phoenixBlob": "5f4e5f11734a2b512c88e99b0d5e21453e6d3afb"
+        "log": "/tmp/duema-all39/check-final.log",
+        "command": "npm run check",
+        "rulesBlob": "4678346e17146f9ecf036d0b5fb2521318fac484",
+        "sixPhotoBlob": "686ecd8e9d7a8b0a07a3f9c469ba425f9b5f0fb8"
       },
       "abyssShort": {
         "passed": 33,
@@ -537230,10 +537365,6 @@
         {
           "id": "dm23rp1-004",
           "name": "終納 カボード＝ロウ"
-        },
-        {
-          "id": "dmrp15-009",
-          "name": "シーラ・カンフー"
         },
         {
           "id": "dmrp22-003",
@@ -537352,62 +537483,82 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1334,
-        "baseline": "91bd2420",
-        "before": 8017,
-        "supported": 8020,
+        "phase": 1335,
+        "baseline": "9c0440ae",
+        "before": 8020,
+        "supported": 8021,
         "duplicates": 0,
         "added": [
           {
-            "id": "dmc40-002",
-            "name": "龍神ヘヴィ"
-          },
-          {
-            "id": "dmc40-006",
-            "name": "龍神メタル"
-          },
-          {
-            "id": "dmc40-008",
-            "name": "破壊神デス"
+            "id": "dmrp15-009",
+            "name": "シーラ・カンフー"
           }
         ],
-        "printAliases": 12,
+        "printAliases": 0,
         "results": {
           "focus": {
-            "passed": 16,
-            "log": "/tmp/duema-gods/focus-final.log"
+            "passed": 6,
+            "seconds": 0.693,
+            "log": "/tmp/duema-all39/focus-final.log",
+            "command": "node --test tests/standard1335-effects.test.mjs"
           },
-          "regressions": {
-            "passed": 78,
-            "log": "/tmp/duema-gods/regression-final.log"
+          "regression": {
+            "passed": 233,
+            "seconds": 28.737,
+            "log": "/tmp/duema-all39/regression-final.log",
+            "command": "node --test --test-concurrency=2 tests/standard456-effects.test.mjs tests/standard463-effects.test.mjs tests/standard1104-effects.test.mjs tests/standard1247-effects.test.mjs tests/standard1273-effects.test.mjs tests/standard1333-effects.test.mjs tests/standard1334-effects.test.mjs tests/standard1335-effects.test.mjs"
+          },
+          "online": {
+            "passed": 7,
+            "seconds": 0.789,
+            "log": "/tmp/duema-all39/online-final.log",
+            "command": "node --test --test-name-pattern=\"^(room storage is|creating, joining and refreshing|the server validates|public online gears|Murder hand inspection|online play labels|online stacked shields)\" tests/online-server.test.mjs"
           },
           "check": {
             "status": "passed",
-            "log": "/tmp/duema-gods/check-final.log",
-            "rulesBlob": "488b1e4f01f8cdb621935f32116951883d831e57",
-            "phoenixBlob": "5f4e5f11734a2b512c88e99b0d5e21453e6d3afb"
+            "log": "/tmp/duema-all39/check-final.log",
+            "command": "npm run check",
+            "rulesBlob": "4678346e17146f9ecf036d0b5fb2521318fac484",
+            "sixPhotoBlob": "686ecd8e9d7a8b0a07a3f9c469ba425f9b5f0fb8"
           },
           "audit": {
             "status": "passed",
-            "log": "/tmp/duema-gods/audit-final.log"
+            "log": "/tmp/duema-all39/audit-final.log",
+            "command": "node tools/audit-card-support.mjs"
           }
         },
         "resolvedRegistered": 1,
-        "remainingRegistered": 45,
+        "remainingRegistered": 44,
         "remainingPrints": 2,
-        "remainingIndividualCards": 39,
+        "remainingIndividualCards": 38,
         "held": [
           {
-            "id": "dm25ex4-SPR01",
-            "name": "沈黙の守護者、シュタイン",
-            "reason": "7r0yの裁定に必要。デュエリストの各ターンの実行権と、超次元から出すデュエルメイト3種のリンクを通して確認する。",
-            "source": "https://dm.takaratomy.co.jp/rule/qa/48142/"
+            "id": "dmrp12-008",
+            "name": "帝神龍装 ティーゾリス",
+            "reason": "爆撃男の裁定を再現するには、召喚時の任意軽減と連動した登場時の味方破壊、およびバトルゾーンから破壊・離脱した時の自分のクリーチャー能力の重複誘発を検証する。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/33064/"
           },
           {
-            "id": "dmrp16-s01",
-            "name": "聖板龍 ジークシュトルツ",
-            "reason": "ネルザと組み合わせる裁定に必要。表向きのシールドの能力無視を持続効果とシールドの離脱時に適用し、G・ストライクの外部付与とS・トリガー禁止を確認する。",
-            "source": "https://dm.takaratomy.co.jp/rule/qa/40941/"
+            "id": "dm22ex2-S15",
+            "name": "不敬合成王 ロマティックダム・アルキング",
+            "reason": "ラビットンボの裁定2件を再現するには、バトル・マナ・墓地の各ゾーンから1体ずつを選ぶ進化GV・Ω、別の進化元から引き継ぐEXライフと離脱の監視を整える。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/42663/"
+          },
+          {
+            "id": "dm23rp1-004",
+            "name": "終納 カボード＝ロウ",
+            "reason": "タップしている間の常在能力が、攻撃と能力によるブレイクの両方に適用される。攻撃時だけを変更すると連続ブレイクの途中で発生源が離れるケースを再現できない。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/43069/",
+            "relatedSources": [
+              "https://dm.takaratomy.co.jp/rule/qa/43222/",
+              "https://dm.takaratomy.co.jp/rule/qa/43224/"
+            ]
+          },
+          {
+            "id": "dmrp03-dg01",
+            "name": "DG 〜ヒトノ造リシモノ〜",
+            "reason": "両プレイヤーのシールドを1つずつ同時にブレイクする。両者の宣言と解決の順序、メタリカと裁きの紋章へのS・トリガー付与を揃えて検証する。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/45078/"
           }
         ]
       },
@@ -539370,7 +539521,113 @@
           "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-1S.jpg",
           "aliasAdded": false
         }
-      ]
+      ],
+      "individualRecheck": {
+        "phase": 1335,
+        "startingCards": 39,
+        "startingRulings": 45,
+        "officialSourceRetrieval": {
+          "checkedAt": "2026-11-15",
+          "distinctUrls": 51,
+          "http200": 51,
+          "log": "/tmp/duema-all39/official-sources.json",
+          "result": "進捗にある裁定・商品・規定の公式URLを取得し、本文またはファイルを保存した。掲載確認と対戦での再現を分けて記録する。"
+        },
+        "phaseSuites": {
+          "files": 33,
+          "passed": 414,
+          "failed": 0,
+          "groups": [
+            {
+              "files": [
+                "tests/standard1094-effects.test.mjs",
+                "tests/standard1099-effects.test.mjs",
+                "tests/standard1105-effects.test.mjs",
+                "tests/standard1107-effects.test.mjs",
+                "tests/standard1114-effects.test.mjs",
+                "tests/standard1115-effects.test.mjs"
+              ],
+              "passed": 53,
+              "seconds": 2.503,
+              "log": "/tmp/duema-all39/remaining-final-1.log",
+              "command": "node --test --test-concurrency=2 tests/standard1094-effects.test.mjs tests/standard1099-effects.test.mjs tests/standard1105-effects.test.mjs tests/standard1107-effects.test.mjs tests/standard1114-effects.test.mjs tests/standard1115-effects.test.mjs"
+            },
+            {
+              "files": [
+                "tests/standard1132-effects.test.mjs",
+                "tests/standard1148-effects.test.mjs",
+                "tests/standard1169-effects.test.mjs",
+                "tests/standard1172-effects.test.mjs",
+                "tests/standard1174-effects.test.mjs",
+                "tests/standard1176-effects.test.mjs"
+              ],
+              "passed": 84,
+              "seconds": 2.827,
+              "log": "/tmp/duema-all39/remaining-final-2.log",
+              "command": "node --test --test-concurrency=2 tests/standard1132-effects.test.mjs tests/standard1148-effects.test.mjs tests/standard1169-effects.test.mjs tests/standard1172-effects.test.mjs tests/standard1174-effects.test.mjs tests/standard1176-effects.test.mjs"
+            },
+            {
+              "files": [
+                "tests/standard1187-effects.test.mjs",
+                "tests/standard1201-effects.test.mjs",
+                "tests/standard1226-effects.test.mjs",
+                "tests/standard1231-effects.test.mjs",
+                "tests/standard1247-effects.test.mjs",
+                "tests/standard1249-effects.test.mjs"
+              ],
+              "passed": 74,
+              "seconds": 3.764,
+              "log": "/tmp/duema-all39/remaining-final-3.log",
+              "command": "node --test --test-concurrency=2 tests/standard1187-effects.test.mjs tests/standard1201-effects.test.mjs tests/standard1226-effects.test.mjs tests/standard1231-effects.test.mjs tests/standard1247-effects.test.mjs tests/standard1249-effects.test.mjs"
+            },
+            {
+              "files": [
+                "tests/standard1250-effects.test.mjs",
+                "tests/standard1262-effects.test.mjs",
+                "tests/standard1267-effects.test.mjs",
+                "tests/standard1269-effects.test.mjs",
+                "tests/standard1270-effects.test.mjs",
+                "tests/standard1274-effects.test.mjs"
+              ],
+              "passed": 80,
+              "seconds": 3.94,
+              "log": "/tmp/duema-all39/remaining-final-4.log",
+              "command": "node --test --test-concurrency=2 tests/standard1250-effects.test.mjs tests/standard1262-effects.test.mjs tests/standard1267-effects.test.mjs tests/standard1269-effects.test.mjs tests/standard1270-effects.test.mjs tests/standard1274-effects.test.mjs"
+            },
+            {
+              "files": [
+                "tests/standard1276-effects.test.mjs",
+                "tests/standard1282-effects.test.mjs",
+                "tests/standard1290-effects.test.mjs",
+                "tests/standard1294-effects.test.mjs",
+                "tests/standard1300-effects.test.mjs",
+                "tests/standard1303-effects.test.mjs"
+              ],
+              "passed": 87,
+              "seconds": 3.791,
+              "log": "/tmp/duema-all39/remaining-final-5.log",
+              "command": "node --test --test-concurrency=2 tests/standard1276-effects.test.mjs tests/standard1282-effects.test.mjs tests/standard1290-effects.test.mjs tests/standard1294-effects.test.mjs tests/standard1300-effects.test.mjs tests/standard1303-effects.test.mjs"
+            },
+            {
+              "files": [
+                "tests/standard1304-effects.test.mjs",
+                "tests/standard1305-effects.test.mjs",
+                "tests/standard1308-effects.test.mjs"
+              ],
+              "passed": 36,
+              "seconds": 1.736,
+              "log": "/tmp/duema-all39/remaining-final-6.log",
+              "command": "node --test --test-concurrency=2 tests/standard1304-effects.test.mjs tests/standard1305-effects.test.mjs tests/standard1308-effects.test.mjs"
+            }
+          ],
+          "result": "未検証項目の対象カードを登録した33の既存テストファイルを全件実行。個別の依存カードとの組み合わせは、該当する固有シナリオで再現できたものを完了とした。"
+        },
+        "remaining": {
+          "rulings": 44,
+          "reprints": 2,
+          "names": 38
+        }
+      }
     }
   },
   "registrationStop": {

@@ -2840,7 +2840,7 @@ export function createSixPhotoRules(api){
   const owner=t.owner==='opponent'?1-t.p:t.p,hand=s.players[owner].hand;
   if(!hand.length)break;
   // Even an already revealed hand is chosen blind for Blue Mojito (QA 36354).
-  const slots=t.g1309BounceDeploy||api.handIsPublic(s,owner)?api.shuffled(hand.map(x=>x.uid),Math.floor(api.random(s)*4294967296)):null;
+  const slots=t.g1309BounceDeploy||api.handHasPublicCards(s,owner)?api.shuffled(hand.map(x=>x.uid),Math.floor(api.random(s)*4294967296)):null;
   choice(s,slots?{...t,slots}:t,'相手の手札を裏向きのまま1枚選ぶ',
    hand.map((_,i)=>opt('裏向きの手札 '+(i+1),i,0)),1-owner);
   break;
@@ -2905,7 +2905,7 @@ export function createSixPhotoRules(api){
     break;
    }
    const title=t.op==='g34_BlindDiscard773'?'捨てさせる相手の手札を裏向きのまま'+count+'枚選ぶ':'マナに置く相手の手札を裏向きのまま1枚選ぶ';
-   const slots=t.slots??(api.handIsPublic(s,1-t.p)?
+   const slots=t.slots??(api.handHasPublicCards(s,1-t.p)?
     api.shuffled(opp.hand.map(x=>x.uid),Math.floor(api.random(s)*4294967296)):null);
    choice(s,slots?{...t,slots}:t,title,opp.hand.flatMap((_,i)=>selected.includes(i)?[]:[opt('裏向きの手札 '+(i+1),i,0)]));
   }
@@ -7879,8 +7879,8 @@ export function createSixPhotoRules(api){
   const r=summonAuras560(s,p,c),selected=c.g560Amount===undefined?r.optional:Math.min(r.optional,Math.max(0,c.g560Amount));
   return {amount:r.mandatory+selected,zeroAmount:r.zeroMandatory+Math.min(selected,r.zeroOptional)};
  },
- variants456(s,p,actions){if(!s.extLimits?.some(r=>r.kind==='g456NextReduction'&&r.player===p&&r.turn===s.turn)||creatures(s,1-p).some(y=>effective(y,s).noCostReduction))return actions;const out=[...actions];for(const a of actions){if(a.kind!=='play'||a.freeSummon||a.freeSpell||a.alternative||a.g456Reduction!==undefined)continue;const c=faces(card(a.cardId))[a.face||0],r=reductionRange456(s,p,c);for(let n=r.min;n<r.max;n++){const payment={...c,summonOrigin:a.origin||'hand',g456Reduction:n,...(a.g7Payment?{g7Payment:a.g7Payment}:{}),...(a.snowReducers?{snowReducers:a.snowReducers}:{}),...(a.magicReducers?{magicReducers:a.magicReducers}:{}),...(a.g18Reducers!==undefined?{g18Reducers:a.g18Reducers}:{}),...(a.g26Reducers?{g26Reducers:a.g26Reducers}:{}),...(a.g42Reduction!==undefined?{g42Reduction:a.g42Reduction}:{})};if(api.canPay(s,p,payment))out.push({...a,g456Reduction:n,requiresMethod:true,cost:api.summonCost(s,p,payment),label:c.name+'を次回の軽減'+n+'で使う'});}}return out;},
- variants463(s,p,actions){if(!creatures(s,p).some(y=>!y.sealed&&effective(y,s).g463FirstSummon)||creatures(s,1-p).some(y=>effective(y,s).noCostReduction))return actions;const out=[...actions];for(const a of actions){if(a.kind!=='play'||a.freeSummon||a.freeSpell||a.alternative||a.g463Reduction!==undefined)continue;const c=faces(card(a.cardId))[a.face||0],max=firstSummonMax463(s,p,c);for(let n=0;n<max;n++){const payment={...c,summonOrigin:a.origin||'hand',g463Reduction:n,...Object.fromEntries(['g7Payment','snowReducers','magicReducers','g18Reducers','g26Reducers','g42Reduction','g456Reduction'].filter(k=>a[k]!==undefined).map(k=>[k,a[k]]))};if(api.canPay(s,p,payment))out.push({...a,g463Reduction:n,requiresMethod:true,cost:api.summonCost(s,p,payment),label:c.name+'を最初の召喚の軽減'+n+'で使う'});}}return out;},
+ variants456(s,p,actions){if(!s.extLimits?.some(r=>r.kind==='g456NextReduction'&&r.player===p&&r.turn===s.turn)||creatures(s,1-p).some(y=>effective(y,s).noCostReduction))return actions;const out=[...actions];for(const a of actions){if(a.kind!=='play'||a.freeSummon||a.freeSpell||a.alternative&&a.alternative!=='vividDraw1335'||a.g456Reduction!==undefined)continue;const face=faces(card(a.cardId))[a.face||0],c=a.alternative==='vividDraw1335'?{...face,cost:face.g1335VividDraw,printedCost:face.cost}:face,r=reductionRange456(s,p,c);for(let n=r.min;n<r.max;n++){const payment={...c,summonOrigin:a.origin||'hand',g456Reduction:n,...(a.g7Payment?{g7Payment:a.g7Payment}:{}),...(a.snowReducers?{snowReducers:a.snowReducers}:{}),...(a.magicReducers?{magicReducers:a.magicReducers}:{}),...(a.g18Reducers!==undefined?{g18Reducers:a.g18Reducers}:{}),...(a.g26Reducers?{g26Reducers:a.g26Reducers}:{}),...(a.g42Reduction!==undefined?{g42Reduction:a.g42Reduction}:{})};if(api.canPay(s,p,payment))out.push({...a,g456Reduction:n,requiresMethod:true,cost:api.summonCost(s,p,payment),label:a.alternative?a.label+'（次回の軽減'+n+'）':c.name+'を次回の軽減'+n+'で使う'});}}return out;},
+ variants463(s,p,actions){if(!creatures(s,p).some(y=>!y.sealed&&effective(y,s).g463FirstSummon)||creatures(s,1-p).some(y=>effective(y,s).noCostReduction))return actions;const out=[...actions];for(const a of actions){if(a.kind!=='play'||a.freeSummon||a.freeSpell||a.alternative&&a.alternative!=='vividDraw1335'||a.g463Reduction!==undefined)continue;const face=faces(card(a.cardId))[a.face||0],c=a.alternative==='vividDraw1335'?{...face,cost:face.g1335VividDraw,printedCost:face.cost}:face,max=firstSummonMax463(s,p,c);for(let n=0;n<max;n++){const payment={...c,summonOrigin:a.origin||'hand',g463Reduction:n,...Object.fromEntries(['g7Payment','snowReducers','magicReducers','g18Reducers','g26Reducers','g42Reduction','g456Reduction'].filter(k=>a[k]!==undefined).map(k=>[k,a[k]]))};if(api.canPay(s,p,payment))out.push({...a,g463Reduction:n,requiresMethod:true,cost:api.summonCost(s,p,payment),label:a.alternative?a.label+'（最初の召喚の軽減'+n+'）':c.name+'を最初の召喚の軽減'+n+'で使う'});}}return out;},
  useDiscount468(s,p,c){
   if(c.crossing)return 0;
   const printedCost=cost({...c,cost:c.printedCost??c.cost});
