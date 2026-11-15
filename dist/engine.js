@@ -1205,7 +1205,7 @@ function recordShieldHand1313(s,p,groups,hand){
  s.g1313ShieldHand.count+=count;
 }
 // Select every shield first, move all physical cards, then enqueue hand-entry effects.
-function moveShields535(s,p,uids,to,{cardOnly=false,handEffects=true,replacement=false,noST=false,escapeSBDeclaration=false,toOwnerMana=false,toOwnerGrave=false}={}){
+function moveShields535(s,p,uids,to,{cardOnly=false,handEffects=true,replacement=false,noST=false,escapeSBDeclaration=false,toOwnerMana=false,toOwnerGrave=false,toOwnerDeck=false}={}){
  if(to==='shields'&&!canAddShield(s,p))return [];
  const selected=[...new Set(uids)];
  const groups=to==='hand'?shieldGroupSnapshot1313(s.players[p].shields):null;
@@ -1220,7 +1220,7 @@ function moveShields535(s,p,uids,to,{cardOnly=false,handEffects=true,replacement
  })):{};
  const roots=selected.map(uid=>cardOnly?removeShieldCard(s,p,uid):removeShield(s,p,uid)),all=roots.flatMap(shieldCards),hand=[];
  for(const x of all){
-  const owner=(to==='mana'&&toOwnerMana||to==='grave'&&toOwnerGrave)?x.cardOwner??p:p;
+  const owner=(to==='mana'&&toOwnerMana||to==='grave'&&toOwnerGrave||to==='deck'&&toOwnerDeck)?x.cardOwner??p:p;
   const staysWithShieldOwner=!replacement&&shieldLeavesToGrave(s,p,x);
   const target=staysWithShieldOwner||to==='mana'&&extra.manaRedirect(s,owner)?'grave':to;
   if(target==='grave'&&(replacement||target!==to)&&card(x.cardId)?.g1346GraveShuffle)skipGraveShuffle1346.add(x);
@@ -1533,6 +1533,35 @@ function opposingSpell1262(s,p){
  if(judge?.source===source)return judge.player===1-p;
  return s.extSpells?.findLast(f=>f.spell.id===source)?.caster===1-p;
 }
+function allDelete1347(s,p,source){
+ const zones=s.players.map((own,owner)=>({
+  hand:own.hand.map(x=>x.uid),
+  grave:canMoveZone(s,owner,'grave')?own.grave.map(x=>x.uid):[],
+  shields:own.shields.map(shieldGroup),
+  seals:(own.seals||[]).filter(x=>mayMoveSeal(s,owner,x,'deck')).map(x=>x.uid)
+ }));
+ // Plan all battlefield replacements while the other zones still contain their original cards (QA37768).
+ const moves=s.players.flatMap((own,player)=>own.battle.map(x=>({
+  player,uid:x.uid,to:'deck',destroy:false,toOwnerDeck:true,controller:p,g1347MoveAll:true
+ })));
+ moveCreatures(s,moves,{kind:'allDelete1347',zones,source});
+}
+function finishAllDelete1347(s,{zones,source}){
+ for(const [p,own] of s.players.entries()){
+  const {hand,grave,shields}=zones[p];
+  moveShields535(s,p,shields,'deck',{toOwnerDeck:true,handEffects:false});
+  for(const [zone,uids] of [['hand',hand],['grave',grave]]){
+   for(const uid of uids){
+    const x=remove(own[zone],uid);
+    if(!x)continue;
+    clearBattleState(x,'deck');
+    addZone(s,x.cardOwner??p,'deck',x);
+   }
+  }
+ }
+ for(const [p,zone] of zones.entries())for(const uid of zone.seals)moveSeal(s,p,uid,'deck');
+ for(const p of [s.active,1-s.active])shuffleLibrary(s,p,[],source);
+}
 function moveCreatures(s,moves,after=null){
  for(const m of moves)if((s.players[m.player].seals||[]).some(x=>x.uid===m.uid))moveSeal(s,m.player,m.uid,m.to||'grave',m.shieldAttach);
  const rows=moves.flatMap(m=>{const top=s.players[m.player].battle.find(x=>x.uid===m.uid);if(!top||top.sealed||(m.to==='mana'||m.to==='shields')&&kedoActive(s)&&isCreature(s,top)||!extra.canLeave(s,m.player,top,{battleLoss:after?.kind==='battleResult',battlePower:m.battlePower,skip577Stay:true,replacement:m.replacement,destroy:(m.to||'grave')==='grave'&&m.destroy!==false})||m.to==='shields'&&!(m.toOwnerShields?
@@ -1612,7 +1641,7 @@ function advanceLeaving(s){if(s.lossEvent)return;
   const top=ownCardForRow(s,row);
   const mustUnlink=['leave','battleBottom1190'].includes(row.plan.kind)||row.plan.kind==='omega'&&(row.jagglaReturn1190||row.plan.allyLeaveHand)||
    row.plan.kind==='yamata'&&!!row.plan.key;
-  if(mustUnlink&&top?.godLinks?.length&&!row.godPart){
+  if(mustUnlink&&top?.godLinks?.length&&!row.godPart&&!row.g1347MoveAll){
    s.decision={type:'godLeave',player:row.player,uid:row.uid,title:'離れるゴッドを1枚選ぶ'};return;
   }
  }
@@ -1901,6 +1930,7 @@ function advanceLeaving(s){if(s.lossEvent)return;
  if(batch.after?.kind==='jayTornado')extra.finishJayTornado(s,batch.after);
  if(batch.after?.kind==='manaExchange753')finishManaExchange753(s,batch.after);
  if(batch.after?.kind==='g394Cut')extra.requested394.finishZones(s,batch.after);
+ if(batch.after?.kind==='allDelete1347')finishAllDelete1347(s,batch.after);
  if(batch.after?.kind==='shieldSaverBreak401'){log(s,batch.after.player,'shieldSaver',`シールド・セイバーでシールド${batch.rows.length}つを残す`);if(batch.after.uids.length)commitBreakReplacements401(s,batch.after.player,batch.after.uids);else s.breakContext=null;}
  const discardTasks=returnDiscards.filter(({uid,owner})=>s.players[owner].hand.some(x=>x.uid===uid)).map(({p,source})=>
   extra.task('discard',p,source,{n:1,causedBy:p,selfDiscard:true,controller:p}));
@@ -6115,6 +6145,6 @@ function availableAttackers916(s){
  const actions=getLegalActions({...s,phase:'attack',decision:null});
  return new Set(actions.filter(a=>a.kind==='attack').map(a=>a.uid));
 }
-const extra=createExtendedRules({departureSnapshot1345,withDeparture1345,doubledGraveArrival1345:(p,x)=>doubledGraveArrivals1345.get(x)===p,shieldBreakSource1344,shieldFaceHasTrigger1162,creatureBreakCount1342:(...args)=>extra.six.creatureBreakCount1342(...args),graveCardsWithPending,powerCleanup,handIsPublic,handHasPublicCards,destroySafeForLoss:(s,x)=>extra.six.destroySafe409(s,x),awakenPsychic,underCardsLeft,transferBattleBases,physicalCards,availableAttackers916,evolutionPlaced849,handAbilityIgnored:rawSixNamed,slayerCount:slayerCount534,untap:untapCard,battlePower(s,x,y,attacking=false){const c=effectiveCard(x,s),p=s.players.findIndex(v=>v.battle.some(z=>z.uid===x.uid));return matchupPower(x,y,attacking,s)+(c.revZero&&p>=0&&!s.players[p].shields.length?10000*powerMultiplier1147(x):0);},canAddTurn:(s,p)=>extra.seed.canAddTurn(s,p),canMoveZone,lookCount,lookPublic,shieldGStrikes,recordLastPower,leaving:(...args)=>extra.leaving(...args),evolutionBase:(...args)=>extra.evolutionBase(...args),canLeave:(...args)=>extra.canLeave(...args),canAddShield,handOnly1275,replaceLossBaku(s,p,uid){const event=s.lossEvent,x=s.players[p].battle.find(x=>x.uid===uid);if(!event||event.loser!==p||!x||!extra.canLeave(s,p,x))throw Error('敗北置換を適用できません');const snapshot=extra.leaveSnapshot(s,[{player:p,uid}]),all=layers(x);extra.leaving(s,p,x,false,snapshot,'mana',false);remove(s.players[p].battle,uid);for(const y of all)clearBattleState(y,'mana');addZone(s,p,'mana',...all);delete s.lossEvent;s.decision=event.resume;},castShieldSpell,finishShieldSpell,grSummon,waveSpellCast,resolveForbiddenSeal,activeRitual,linkRitual,flipFinalForbidden,chooseFinalForbiddenSeal,mayMoveSeal,choosingSpell996,choosingEffectCost,carolReturns,markCarolFromMana,kedoActive,withAbilitySource,allCards:()=>[...catalogue.values()].filter(c=>!c.ritual&&!c.forbiddenCore),isEvolution,completeExecution,canReplaceExecution,replaceExecutionCard,ultraBases,matchesEvolution,notifyShieldAdded:(s,p,x)=>extra.shieldAdded(s,p,x),effectActor,withEffect,extremeProtected:(s,p)=>!!s.g26Extreme?.[p],saintBreak(s,p,uid,context){s.breakContext={...context,g26SaintUsed:true,replacementBreak:true};commitShieldBreak(s,p,[uid]);},deckLocked,shuffleLibrary,revealedPower,entryAbilities,allLayers:layers,rememberEvolutionGraveSources,seal,moveSeal,moveSealsToGrave1156,visibleBattleCards,addZone,attachMugenBases,moveBattleCard,resolveSpell,resumeCastSpell,continueCast1293,oniTime1303,isNonMulticolorSpellChoice1303,isSpellResolution:s=>!!s.resolvingSpell||!!s.extSpells?.length,isSpellChoice:s=>!!choosingSpell996(s),isFireSpellChoice:s=>{const spell=choosingSpell996(s);return !!spell&&civilizations(spell).includes('火');},isNonLightSpellChoice:s=>{const spell=choosingSpell996(s);return !!spell&&!civilizations(spell).includes('光');},wouldEnterCreature,shieldCards,shieldGroup,findShield,removeShieldCard,moveShield,shieldHasTrigger1162,addShieldCard,moveShields:moveShields535,sendBattleCardToShield,skipTurn,resolveEntry,copySource,takeTop:takeDeckTop,hasAvailableDeckCard:(s,p)=>deckTopIndex(s,p)>=0,canSwapShield585,swapShield585,canSwapShieldGroup1262,beginShieldGroupSwap1262,finishShieldGroupSwap1262,shieldLeavesToGrave,resolveEffect:doEffect,resolveAttack,peekTop:peekDeckTop,visionTop:visionTop1332,finishCharger,pay,manaRedirect:(s,p)=>extra.manaRedirect(s,p),destroyReplacementCards,completeLossReplacement,replaceJohnnyHandLoss,manaMoveForbidden:shevaProtection,card,zoneCard,faces:playFaces,cost:costValue,colors:civilizations,effective:effectiveCard,power,layers:x=>x.sealed?[]:layers(x),draw,mill,move:moveCreatures,beginManaExchange753,manaExchangeBases753,enter:enterCreature,cast:playCard,remove,removeShield,clear:clearBattleState,enqueue:enqueueEffect,log,random,canEnter:canEnterCreature,canCast:canCastSpell,evolutionBases,battle,tap:tapCard,selfStopped:selfTriggersStopped,ignored:abilitiesIgnored,spellIgnored,deckRedirect,shieldTop,canPay:validMana,freeSpell,summonCost,shuffled,manaColors,deckCheck,finish,isCreature,castBattleSpell,breakShields,interruptBreak,canUntap,canUntapMana,cannotUntapSpellMana,singleJudge:(s,p,source,uid,onWin)=>startJudge(s,p,source,uid,'single',onWin),replaceLoss,replaceStackLoss1137,replaceHandLoss,declineLoss,payDeferred(s,p,n,civ){const ids=paymentIds(s,p,{cost:n,civilizations:[civ]},[],true);if(!ids)return false;tapPayment(s,p,ids);return true;},shieldHand:(s,p,x)=>extra.shieldHand(s,p,x),defenseOptions,defend,defendRequired,defenseSequence1295,resolveDefense1295,handMana:(s,p,x)=>extra.handMana(s,p,x)});
+const extra=createExtendedRules({allDelete1347,departureSnapshot1345,withDeparture1345,doubledGraveArrival1345:(p,x)=>doubledGraveArrivals1345.get(x)===p,shieldBreakSource1344,shieldFaceHasTrigger1162,creatureBreakCount1342:(...args)=>extra.six.creatureBreakCount1342(...args),graveCardsWithPending,powerCleanup,handIsPublic,handHasPublicCards,destroySafeForLoss:(s,x)=>extra.six.destroySafe409(s,x),awakenPsychic,underCardsLeft,transferBattleBases,physicalCards,availableAttackers916,evolutionPlaced849,handAbilityIgnored:rawSixNamed,slayerCount:slayerCount534,untap:untapCard,battlePower(s,x,y,attacking=false){const c=effectiveCard(x,s),p=s.players.findIndex(v=>v.battle.some(z=>z.uid===x.uid));return matchupPower(x,y,attacking,s)+(c.revZero&&p>=0&&!s.players[p].shields.length?10000*powerMultiplier1147(x):0);},canAddTurn:(s,p)=>extra.seed.canAddTurn(s,p),canMoveZone,lookCount,lookPublic,shieldGStrikes,recordLastPower,leaving:(...args)=>extra.leaving(...args),evolutionBase:(...args)=>extra.evolutionBase(...args),canLeave:(...args)=>extra.canLeave(...args),canAddShield,handOnly1275,replaceLossBaku(s,p,uid){const event=s.lossEvent,x=s.players[p].battle.find(x=>x.uid===uid);if(!event||event.loser!==p||!x||!extra.canLeave(s,p,x))throw Error('敗北置換を適用できません');const snapshot=extra.leaveSnapshot(s,[{player:p,uid}]),all=layers(x);extra.leaving(s,p,x,false,snapshot,'mana',false);remove(s.players[p].battle,uid);for(const y of all)clearBattleState(y,'mana');addZone(s,p,'mana',...all);delete s.lossEvent;s.decision=event.resume;},castShieldSpell,finishShieldSpell,grSummon,waveSpellCast,resolveForbiddenSeal,activeRitual,linkRitual,flipFinalForbidden,chooseFinalForbiddenSeal,mayMoveSeal,choosingSpell996,choosingEffectCost,carolReturns,markCarolFromMana,kedoActive,withAbilitySource,allCards:()=>[...catalogue.values()].filter(c=>!c.ritual&&!c.forbiddenCore),isEvolution,completeExecution,canReplaceExecution,replaceExecutionCard,ultraBases,matchesEvolution,notifyShieldAdded:(s,p,x)=>extra.shieldAdded(s,p,x),effectActor,withEffect,extremeProtected:(s,p)=>!!s.g26Extreme?.[p],saintBreak(s,p,uid,context){s.breakContext={...context,g26SaintUsed:true,replacementBreak:true};commitShieldBreak(s,p,[uid]);},deckLocked,shuffleLibrary,revealedPower,entryAbilities,allLayers:layers,rememberEvolutionGraveSources,seal,moveSeal,moveSealsToGrave1156,visibleBattleCards,addZone,attachMugenBases,moveBattleCard,resolveSpell,resumeCastSpell,continueCast1293,oniTime1303,isNonMulticolorSpellChoice1303,isSpellResolution:s=>!!s.resolvingSpell||!!s.extSpells?.length,isSpellChoice:s=>!!choosingSpell996(s),isFireSpellChoice:s=>{const spell=choosingSpell996(s);return !!spell&&civilizations(spell).includes('火');},isNonLightSpellChoice:s=>{const spell=choosingSpell996(s);return !!spell&&!civilizations(spell).includes('光');},wouldEnterCreature,shieldCards,shieldGroup,findShield,removeShieldCard,moveShield,shieldHasTrigger1162,addShieldCard,moveShields:moveShields535,sendBattleCardToShield,skipTurn,resolveEntry,copySource,takeTop:takeDeckTop,hasAvailableDeckCard:(s,p)=>deckTopIndex(s,p)>=0,canSwapShield585,swapShield585,canSwapShieldGroup1262,beginShieldGroupSwap1262,finishShieldGroupSwap1262,shieldLeavesToGrave,resolveEffect:doEffect,resolveAttack,peekTop:peekDeckTop,visionTop:visionTop1332,finishCharger,pay,manaRedirect:(s,p)=>extra.manaRedirect(s,p),destroyReplacementCards,completeLossReplacement,replaceJohnnyHandLoss,manaMoveForbidden:shevaProtection,card,zoneCard,faces:playFaces,cost:costValue,colors:civilizations,effective:effectiveCard,power,layers:x=>x.sealed?[]:layers(x),draw,mill,move:moveCreatures,beginManaExchange753,manaExchangeBases753,enter:enterCreature,cast:playCard,remove,removeShield,clear:clearBattleState,enqueue:enqueueEffect,log,random,canEnter:canEnterCreature,canCast:canCastSpell,evolutionBases,battle,tap:tapCard,selfStopped:selfTriggersStopped,ignored:abilitiesIgnored,spellIgnored,deckRedirect,shieldTop,canPay:validMana,freeSpell,summonCost,shuffled,manaColors,deckCheck,finish,isCreature,castBattleSpell,breakShields,interruptBreak,canUntap,canUntapMana,cannotUntapSpellMana,singleJudge:(s,p,source,uid,onWin)=>startJudge(s,p,source,uid,'single',onWin),replaceLoss,replaceStackLoss1137,replaceHandLoss,declineLoss,payDeferred(s,p,n,civ){const ids=paymentIds(s,p,{cost:n,civilizations:[civ]},[],true);if(!ids)return false;tapPayment(s,p,ids);return true;},shieldHand:(s,p,x)=>extra.shieldHand(s,p,x),defenseOptions,defend,defendRequired,defenseSequence1295,resolveDefense1295,handMana:(s,p,x)=>extra.handMana(s,p,x)});
 const strategicAI=createStrategicAI({battleSafe:(s,x,y,n)=>extra.firebird.battleSafe(s,x)||extra.six.battleSafe(s,x,y,n),matchupPower,blockersFor:(s,p,x)=>defenseOptions({...s,active:1-p,attack:{attacker:x.uid,target:'player',player:1-p}},p).filter(a=>a.kind==='block'||a.kind==='guardman').map(a=>a.uid),directAttackProtected:(s,p)=>extra.noLose({...s,attack:{player:1-p,target:"player"}},p,'directAttack'),canAttack,canAttackPlayer,canUntap,card,faces:playFaces,effective:effectiveCard,power,isCreature,summonCost,legal:getLegalActions,step:(s,a)=>{aiPlanningDepth++;try{return step(s,a);}finally{aiPlanningDepth--;}},rank:rankHeuristicActions,observe:observation,colors:manaCivilizations,mark:s=>aiProjections.add(s)});
 export const analyzeAI=s=>strategicAI.analyze(s);

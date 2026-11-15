@@ -3823,6 +3823,7 @@ export function createSixPhotoRules(api){
  case'g34_IfMana':if(own.mana.filter(y=>{const cs=api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,t.p);return t.multi?cs.length>1:cs.includes(t.color);}).length>=t.n)start(s,t,t.defs);break;
  case'g34_IfOwnPower':if(creatures(s,t.p).some(y=>api.power(y,y.uid===s.attack?.attacker||y.uid===s.attackLifecycle?.uid&&(y.incarnation||0)===(s.attackLifecycle.incarnation||0),s)>=t.minPower))start(s,t,t.defs);break;
  case'g34_Kourin405':{const r=t.rule;if(r.origin==='deck'&&api.deckLocked(s,t.p))break;put(s,task('g34_Select',t.p,t.source,{uid:t.uid,incarnation:t.incarnation||0,origin:r.origin,g405Search:r.origin==='deck',deploy:true,n:1,optional:true,filter:r.filter,title:({deck:'山札',mana:'マナゾーン',grave:'墓地'}[r.origin])+'から光臨で出すクリーチャーを1体まで選ぶ',...(r.origin==='deck'?{after:[{op:'Shuffle405'}]}:{})}));break;}
+ case'g34_AllDelete1347':api.allDelete1347(s,t.p,t.source);break;
  case'g34_Shuffle405':api.shuffleLibrary(s,t.p);api.deckCheck(s,t.p);break;
  case'g34_ShuffleOnMove673':{
   if(s.players[t.opponent].deck.some(x=>t.uids.includes(x.uid)))api.shuffleLibrary(s,t.opponent);

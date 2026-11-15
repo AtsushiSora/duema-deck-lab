@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8032,
-  "pendingNames": 3794,
-  "phase": 1346,
+  "supportedNames": 8033,
+  "pendingNames": 3793,
+  "phase": 1347,
   "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -156,7 +156,7 @@
   "pendingByType": {
     "クリーチャー": 2127,
     "NEOクリーチャー": 70,
-    "呪文": 455,
+    "呪文": 454,
     "GRクリーチャー": 156,
     "G-NEOクリーチャー": 26,
     "タマシード": 37,
@@ -224,7 +224,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1074,
-    "未対応の能力文": 2529,
+    "未対応の能力文": 2528,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
@@ -490171,14 +490171,57 @@
       "remainingRegistered": 30,
       "remainingPrints": 1,
       "remainingIndividualCards": 26
+    },
+    {
+      "phase": 1347,
+      "baseline": "eca63428",
+      "before": 8032,
+      "supported": 8033,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmx21-026",
+          "name": "オールデリート"
+        }
+      ],
+      "printAliases": 7,
+      "results": {
+        "focus": {
+          "passed": 5,
+          "log": "/tmp/duema-uncapped/delete-focus.log",
+          "command": "node --test tests/standard1347-effects.test.mjs",
+          "seconds": 1.042
+        },
+        "regression": {
+          "passed": 83,
+          "log": "/tmp/duema-uncapped/delete-regression.log",
+          "command": "node --test --test-concurrency=1 tests/standard{1276,1304,1326,1346,1347,394,1178,955}-effects.test.mjs",
+          "seconds": 10.365
+        },
+        "check": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "/tmp/duema-uncapped/delete-check.log",
+          "rulesBlob": "3208e18158a41aca2c528fa5664cab02363b064d"
+        },
+        "audit": {
+          "status": "passed",
+          "command": "node tools/audit-card-support.mjs",
+          "log": "/tmp/duema-uncapped/delete-audit.log"
+        }
+      },
+      "resolvedRegistered": 1,
+      "remainingRegistered": 29,
+      "remainingPrints": 1,
+      "remainingIndividualCards": 26
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1346,
+    "lastVerifiedPhase": 1347,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "フォーエバー・プリンセスとメタルカオス・バースト、龍世界の組み合わせを実カードで検証済み。残りの個別裁定と分割テストを継続する。",
+    "steps": "オールデリートによるパーフェクト・ギャラクシーのシールド・フォースを実カードで検証済み。残りの個別裁定と分割テストを継続する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -490267,12 +490310,12 @@
         "name": "不死身のブーストグレンオー"
       },
       {
-        "id": "dmx21-026",
-        "name": "オールデリート"
-      },
-      {
         "id": "dmex19-025",
         "name": "正義ノ裁キ"
+      },
+      {
+        "id": "dm35-004",
+        "name": "ケンゲキオージャ ～究極火焔～"
       }
     ],
     "printVerificationPending": [
@@ -490471,8 +490514,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8032,
-    "pendingNames": 3794,
+    "supportedNames": 8033,
+    "pendingNames": 3793,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -534466,8 +534509,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8032,
-      "pendingNames": 3794,
+      "supportedNames": 8033,
+      "pendingNames": 3793,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -535494,7 +535537,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別26種類（裁定30件と版固有の金箔再録1件）と長時間対戦・ワーカーの検証が継続中。mainへのpushを契機にNetlify本番を更新する .github/workflows/netlify.yml がある。Netlifyを更新せずにPagesへ公開する別経路は確認できていない。",
+        "reason": "個別26種類（裁定29件と版固有の金箔再録1件）と長時間対戦・ワーカーの検証が継続中。mainへのpushを契機にNetlify本番を更新する .github/workflows/netlify.yml がある。Netlifyを更新せずにPagesへ公開する別経路は確認できていない。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -536175,6 +536218,25 @@
             "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
           ],
           "result": "フォーエバー・プリンセスが山札に戻っても龍世界は自壊を選べる。実行・見送りの両方を実測し、山札に戻ったカードは出なかった。"
+        },
+        {
+          "cardId": "dm28-002",
+          "dependencyIds": [
+            "dmx21-026"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/37768/",
+          "test": "オールデリートによりシールドとクリーチャーがまとめて山札に戻る時、シールド・フォースが離脱前の状態を参照することを実カードで確認する。",
+          "path": "tests/standard1347-effects.test.mjs",
+          "log": "/tmp/duema-uncapped/delete-focus.log",
+          "phase": 1347,
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/39786/",
+            "https://dm.takaratomy.co.jp/rule/qa/40456/",
+            "https://dm.takaratomy.co.jp/rule/qa/40458/",
+            "https://dm.takaratomy.co.jp/rule/qa/46622/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/37768/"
+          ],
+          "result": "オールデリートの解決時に、パーフェクト・ギャラクシーは元のシールドを参照して残り、その後はシールド・フォースが解除された。適用なしの場合はギャラクシーも山札に戻った。"
         }
       ],
       "remainingRegistered": [
@@ -536464,17 +536526,6 @@
         {
           "cardId": "dm28-002",
           "dependencyIds": [
-            "dmx21-026"
-          ],
-          "source": "https://dm.takaratomy.co.jp/rule/qa_old/37768/",
-          "test": "オールデリートによりシールドとクリーチャーがまとめて山札に戻る時、シールド・フォースが離脱前の状態を参照することを実カードで確認する。",
-          "reason": "通常の離脱置換とシールド離脱後の解除は実測済み。オールデリートは未登録。",
-          "path": "tests/standard1304-effects.test.mjs",
-          "log": "/tmp/duema-phase-1304/focus-final.log"
-        },
-        {
-          "cardId": "dm28-002",
-          "dependencyIds": [
             "dmrp15-s10",
             "dmrp22-003"
           ],
@@ -536523,10 +536574,11 @@
           "dmrp16-s01",
           "dm10-s09",
           "dmrp12-008",
-          "dmr08s-007"
+          "dmr08s-007",
+          "dmx21-026"
         ],
-        "officialPrints": 84,
-        "newAliases": 62,
+        "officialPrints": 92,
+        "newAliases": 69,
         "evidence": [
           {
             "id": "dm23rp2-065",
@@ -537194,6 +537246,70 @@
             "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd20-009.jpg",
             "pageSha256": "437da777f54470fbb2e6ecb06ab65e2b7d03a49f340bb750965cbe7246a03042",
             "imageSha256": "658f8c6dedc9e300c27a2de02de11cb37b64b4748ae08a034ad3ca045a3cb93c"
+          },
+          {
+            "id": "dmx21-026",
+            "canonicalId": "dmx21-026",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-026",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx21-026.jpg",
+            "pageSha256": "8b46061c839cc51d76ba3d17cd93f4e331c70c46b8a5298dbe895ca9260e7fbc",
+            "imageSha256": "3bdb8d215f607bec0f9b5c80958753a248911c73b3f100d7d2f9af2fae943706"
+          },
+          {
+            "id": "dmx24-008",
+            "canonicalId": "dmx21-026",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx24-008",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx24-008.jpg",
+            "pageSha256": "779c801112a2569ff105b8ac9da5c0aafa5e5ba450b549f9cbe9d4123ce32b6b",
+            "imageSha256": "f0271d63275067d2cfded2e614779552676277986d2c36c21bddcae364f3ee8c"
+          },
+          {
+            "id": "dmex15-a040",
+            "canonicalId": "dmx21-026",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-a040",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex15-a040.jpg",
+            "pageSha256": "5b9eb0d0f3dd7fc2d655400ea5099a9c1bc215c01dae9d5912b26dcf5e85a250",
+            "imageSha256": "02663e74e1ddb0a04e1a0fbf6988512a36483201e7ac3c0126e92af5a974003d"
+          },
+          {
+            "id": "dmrp20-a11",
+            "canonicalId": "dmx21-026",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-a11",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-a11.jpg",
+            "pageSha256": "1902b83f62a64cdd4147c2af50dcdeaf233b398151a125124633efe7eb9701c0",
+            "imageSha256": "4350f0425a7c28c79d3270c36dfefb8d0b0660ae358972a1a9e0b3de580aefcf"
+          },
+          {
+            "id": "dmrp20-b11",
+            "canonicalId": "dmx21-026",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-b11",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-b11.jpg",
+            "pageSha256": "595b94a5c39eeb8c22d1384be4b2e776a41c46facaa507bf6e8e047c9bff42e2",
+            "imageSha256": "97545d4bc89d16279a1b080d89a3416d82df762fadedac998ea7befa49bcfb1b"
+          },
+          {
+            "id": "dm22ex1-029",
+            "canonicalId": "dmx21-026",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-029",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-029.jpg",
+            "pageSha256": "2dc23612cda5016c110d13bdc9a1f320c60a10f01037f83c03050af5eaf2bd5a",
+            "imageSha256": "e7369a01ab8755caf9c874f7b6d67fa860f8d55f86810028c463363238f1da82"
+          },
+          {
+            "id": "dmart15-003",
+            "canonicalId": "dmx21-026",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmart15-003",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmart15-003.jpg",
+            "pageSha256": "2e0f5acd531f56eeb66efbfe107e9a7ea65de55e5134bd21585b76521b4df7b2",
+            "imageSha256": "eb88c8d649d827d16914e41dc15a1755acfc902d68eab4b5b5a63c6e27f22f20"
+          },
+          {
+            "id": "dm25ex3-CSP3",
+            "canonicalId": "dmx21-026",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-CSP3",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-CSP3.jpg",
+            "pageSha256": "bd9bc55b0767691c445ec3a8c61a1c4b34c0dbd86cc4d8eb6b2c766d1260c1b4",
+            "imageSha256": "3179eb1984b79760b11882a4563061bf1368331cbee0a8d5855da5f8df56ed3c"
           }
         ],
         "testLog": "/tmp/duema-verify-8009/verification-followup-prints.log",
@@ -537479,8 +537595,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8032,
-        "pending": 3794,
+        "supported": 8033,
+        "pending": 3793,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -538080,8 +538196,8 @@
       "finalCheck": {
         "status": "passed",
         "command": "npm run check",
-        "log": "/tmp/duema-uncapped/forever-check.log",
-        "rulesBlob": "1f0aa1135466f8ff369cdb69d39b94abf71526d9"
+        "log": "/tmp/duema-uncapped/delete-check.log",
+        "rulesBlob": "3208e18158a41aca2c528fa5664cab02363b064d"
       },
       "abyssShort": {
         "passed": 33,
@@ -538177,10 +538293,6 @@
           "name": "謎の存在 メモッタ"
         },
         {
-          "id": "dmx21-026",
-          "name": "オールデリート"
-        },
-        {
           "id": "dm26ex3-038",
           "name": "行くよー！アオハル、ハイチーズ！"
         }
@@ -538237,45 +538349,45 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1346,
-        "baseline": "56e0aa2b",
-        "before": 8031,
-        "supported": 8032,
+        "phase": 1347,
+        "baseline": "eca63428",
+        "before": 8032,
+        "supported": 8033,
         "duplicates": 0,
         "added": [
           {
-            "id": "dmr08s-007",
-            "name": "悠久を統べる者 フォーエバー・プリンセス"
+            "id": "dmx21-026",
+            "name": "オールデリート"
           }
         ],
         "printAliases": 7,
         "results": {
           "focus": {
-            "passed": 8,
-            "log": "/tmp/duema-uncapped/forever-focus.log",
-            "command": "node --test tests/standard1346-effects.test.mjs",
-            "seconds": 1.127
+            "passed": 5,
+            "log": "/tmp/duema-uncapped/delete-focus.log",
+            "command": "node --test tests/standard1347-effects.test.mjs",
+            "seconds": 1.042
           },
           "regression": {
-            "passed": 206,
-            "log": "/tmp/duema-uncapped/forever-regression.log",
-            "command": "node --test --test-concurrency=1 tests/standard{1187,1250,1346,955,848,1037,459,460}-effects.test.mjs",
-            "seconds": 79.626
+            "passed": 83,
+            "log": "/tmp/duema-uncapped/delete-regression.log",
+            "command": "node --test --test-concurrency=1 tests/standard{1276,1304,1326,1346,1347,394,1178,955}-effects.test.mjs",
+            "seconds": 10.365
           },
           "check": {
             "status": "passed",
             "command": "npm run check",
-            "log": "/tmp/duema-uncapped/forever-check.log",
-            "rulesBlob": "1f0aa1135466f8ff369cdb69d39b94abf71526d9"
+            "log": "/tmp/duema-uncapped/delete-check.log",
+            "rulesBlob": "3208e18158a41aca2c528fa5664cab02363b064d"
           },
           "audit": {
             "status": "passed",
             "command": "node tools/audit-card-support.mjs",
-            "log": "/tmp/duema-uncapped/forever-audit.log"
+            "log": "/tmp/duema-uncapped/delete-audit.log"
           }
         },
-        "resolvedRegistered": 2,
-        "remainingRegistered": 30,
+        "resolvedRegistered": 1,
+        "remainingRegistered": 29,
         "remainingPrints": 1,
         "remainingIndividualCards": 26
       },
@@ -540415,15 +540527,14 @@
           }
         },
         "latestRegisteredRulings": {
-          "phase": 1346,
+          "phase": 1347,
           "sources": [
-            "https://dm.takaratomy.co.jp/rule/qa/32395/",
-            "https://dm.takaratomy.co.jp/rule/qa/40654/",
-            "https://dm.takaratomy.co.jp/rule/qa/41288/",
-            "https://dm.takaratomy.co.jp/rule/qa/45440/"
+            "https://dm.takaratomy.co.jp/rule/qa_old/37768/",
+            "https://dm.takaratomy.co.jp/rule/qa/39786/",
+            "https://dm.takaratomy.co.jp/coverage/dmgp2025-2nda_round8/"
           ],
-          "result": "コスト未払いの登場、持ち主のマナへの移動、バイケンの自己バウンス、墓地ロック、複数カードの同時墓地移動と実際の手札破棄を区別する挙動を確認した。初版と再録7版の公式本文と画像を照合した。",
-          "log": "/tmp/duema-uncapped/forever-focus.log"
+          "result": "4ゾーンの移動、進化元とシールドの束、および保留中の呪文を確認した。禁断解放前のドキンダムを残し、封印が戻った後の禁断解放も確認した。初版と再録7版の公式本文と画像を照合した。",
+          "log": "/tmp/duema-uncapped/delete-focus.log"
         }
       }
     }
