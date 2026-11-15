@@ -1033,42 +1033,93 @@ function psychicLinkPartners1355(s,p,x,partner){
  return s.players[p].battle.filter(y=>y!==x&&!y.sealed&&!y.faceDown&&
   !y.psychicLinks?.length&&y.cardId===partner&&card(y).type==='creature');
 }
-function linkPsychic1355(s,p,x,y){
- const own=s.players[p];
- remove(own.battle,y.uid);
- x.tapped||=y.tapped;
- x.entered=Math.max(x.entered??0,y.entered??0);
- x.g1085AwakenedTurn=s.turn;
- x.buff=(x.buff||0)+(y.buff||0);
- for(const key of ['powerModifiers','buffSources','tapLocks']){
-  if(y[key]?.length)(x[key]??=[]).push(...structuredClone(y[key]));
+function linkedPsychicParts(x){return [x,...(x.psychicLinks||[])];}
+const psychicLinkCombatKeys=[
+ 'tapped','entered','buff','unblocked','powerModifiers','tapLocks','buffSources',
+ 'unblockSpellCost','skipUntap','gospelSpeed','g19Protected','g19Blocker','justDiverActive','g1085AwakenedTurn'
+];
+function followPsychicAttack(s,old,next){
+ if(s.attack)for(const key of ['attacker','target','blockUid'])if(s.attack[key]===old.uid)s.attack[key]=next.uid;
+ if(s.attackLifecycle?.uid===old.uid){
+  s.attackLifecycle.uid=next.uid;
+  s.attackLifecycle.incarnation=next.incarnation||0;
  }
- for(const key of ['unblocked','skipUntap','justDiverActive','gospelSpeed','g19Protected','g19Blocker'])
-  if(y[key])x[key]=structuredClone(y[key]);
- extra.inherit(s,y,x);
- for(const aura of attachedAuras1352(s,p,y))aura.auraTo1352={uid:x.uid,incarnation:x.incarnation||0};
- y.psychicCell=true;
- x.psychicLinks=[y];
+}
+function linkPsychic1355(s,p,x,...partners){
+ const own=s.players[p];
+ x.g1085AwakenedTurn=s.turn;
+ for(const y of partners){
+  remove(own.battle,y.uid);
+  x.tapped||=y.tapped;
+  x.entered=Math.max(x.entered??0,y.entered??0);
+  x.buff=(x.buff||0)+(y.buff||0);
+  for(const key of ['powerModifiers','buffSources','tapLocks']){
+   if(y[key]?.length)(x[key]??=[]).push(...structuredClone(y[key]));
+  }
+  for(const key of ['unblocked','skipUntap','justDiverActive','gospelSpeed','g19Protected','g19Blocker'])
+   if(y[key])x[key]=structuredClone(y[key]);
+  extra.inherit(s,y,x);
+  for(const aura of attachedAuras1352(s,p,y))aura.auraTo1352={uid:x.uid,incarnation:x.incarnation||0};
+  followPsychicAttack(s,y,x);
+  y.psychicCell=true;
+ }
+ x.psychicLinks=partners;
  log(s,p,'awaken',card(x).name+'に覚醒リンク',{cardId:x.cardId,uid:x.uid});
 }
-function unlinkPsychic1355(s,p,top,uid){
- const own=s.players[p],parts=[top,...top.psychicLinks],out=parts.find(x=>x.uid===uid);
- const remaining=parts.find(x=>x!==out),name=card(top).name;
+function psychicAttachments1356(s,p,x){
+ const gear=s.players.flatMap(own=>own.battle).filter(y=>y.crossedTo?.uid===x.uid&&
+  (y.crossedTo.incarnation||0)===(x.incarnation||0));
+ return [...gear,...attachedAuras1352(s,p,x)];
+}
+function unlinkPsychic1355(s,row,top){
+ const p=row.player,own=s.players[p],parts=linkedPsychicParts(top),out=parts.find(x=>x.uid===row.psychicUnlink);
+ const remaining=parts.filter(x=>x!==out),name=card(top).name,attachments=psychicAttachments1356(s,p,top);
  delete top.psychicLinks;
- delete remaining.psychicCell;
- if(remaining!==top){
-  for(const key of ['tapped','entered','buff','unblocked','powerModifiers','tapLocks','buffSources',
-   'unblockSpellCost','skipUntap','gospelSpeed','g19Protected','g19Blocker','justDiverActive','g1085AwakenedTurn'])
-   if(top[key]===undefined)delete remaining[key];else remaining[key]=structuredClone(top[key]);
-  delete remaining.g34Grants;
-  extra.inherit(s,top,remaining);
-  for(const aura of attachedAuras1352(s,p,top))aura.auraTo1352={uid:remaining.uid,incarnation:remaining.incarnation||0};
-  own.battle[own.battle.indexOf(top)]=remaining;
-  if(s.attack)for(const key of ['attacker','target','blockUid'])if(s.attack[key]===top.uid)s.attack[key]=remaining.uid;
+ for(const next of remaining){
+  delete next.psychicCell;
+  if(next===top)continue;
+  for(const key of psychicLinkCombatKeys)
+   if(top[key]===undefined)delete next[key];else next[key]=structuredClone(top[key]);
+  delete next.g34Grants;
+  extra.inherit(s,top,next,remaining.length>1);
  }
+ for(const item of attachments){
+  const dest=remaining.find(x=>x.uid===row.psychicAttachments?.[item.uid])??remaining[0];
+  item[item.auraTo1352?'auraTo1352':'crossedTo']={uid:dest.uid,incarnation:dest.incarnation||0};
+ }
+ const continuing=remaining.find(x=>x.uid===row.psychicContinue)??remaining[0];
+ own.battle.splice(own.battle.indexOf(top),1,...remaining);
+ followPsychicAttack(s,top,continuing);
  clearBattleState(out,'extra');
  addZone(s,out.cardOwner??p,'extra',out);
- log(s,p,'psychicUnlink',name+'がリンク解除し、'+card(remaining).name+'は残る',{cardId:out.cardId});
+ log(s,p,'psychicUnlink',name+'がリンク解除し、'+remaining.map(x=>card(x).name).join('と')+'は残る',{cardId:out.cardId});
+}
+// V Awakening Link is a rule action. A copy has to be physically flippable (QA40886).
+function victoryLinkGroups1356(s,p){
+ const own=s.players[p].battle;
+ const groups=[];
+ for(const host of own){
+  const ids=card(host.cardId).g1356VictoryLink;
+  if(!ids||host.psychicLinks?.length||host.faceDown||host.sealed||!effectiveCard(host,s).g1356VictoryLink)continue;
+  const [left,right]=ids.map(id=>psychicLinkPartners1355(s,p,host,id));
+  for(const a of left)for(const b of right)groups.push([host,a,b]);
+ }
+ return groups;
+}
+function resolveVictoryLink1356(s,p,parts,entry){
+ const [host,...partners]=parts;
+ // Keep entry observers' references until the original entry abilities have been queued.
+ linkPsychic1355(s,p,host,...partners);
+ if(entry)extra.command(s,p,parts.includes(entry)?host:entry);
+}
+function advanceVictoryLink1356(s,p,entry=null){
+ const groups=victoryLinkGroups1356(s,p);
+ if(groups.length===1)resolveVictoryLink1356(s,p,groups[0],entry);
+ else if(groups.length>1){
+  s.decision={type:'victoryLink1356',player:p,source:groups[0][0].cardId,entry:entry?.uid,
+   title:'V覚醒リンクする3体を選ぶ',groups:groups.map(xs=>xs.map(x=>x.uid))};
+ }
+ return groups.length>0;
 }
 // Only the marked soul ability transfers; entry effects and other base abilities do not.
 export function shieldGuardSources(s,p){return s.players[p].battle.filter(c=>!abilitiesIgnored(s,c)&&c.under?.length&&layers(c).some(x=>card(x).soulShieldGuard));}
@@ -1818,7 +1869,18 @@ function advanceLeaving(s){if(s.lossEvent)return;
    row.plan.kind==='yamata'&&!!row.plan.key;
   if(top?.psychicLinks?.length&&!row.psychicUnlink&&effectiveCard(top,s).g1355Unlink&&
    (mustUnlink||['hawk','shield842','shieldAttach1299','lGate955','deckTop846','shuffle731','ningyo'].includes(row.plan.kind))){
-   s.decision={type:'psychicUnlink',player:row.player,uid:row.uid,title:'超次元ゾーンに戻すサイキック・セルを選ぶ'};return;
+   s.decision={type:'psychicUnlink',player:top.cardOwner??row.player,owner:row.player,uid:row.uid,title:'超次元ゾーンに戻すサイキック・セルを選ぶ'};return;
+  }
+  if(row.psychicUnlink&&top.psychicLinks?.length>1){
+   if(s.attack?.attacker===top.uid&&!row.psychicContinue){
+    s.decision={type:'psychicUnlink',stage:'continue',player:s.active,owner:row.player,uid:row.uid,
+     title:'攻撃を続けるクリーチャーを選ぶ'};return;
+   }
+   const attachment=psychicAttachments1356(s,row.player,top).find(x=>!row.psychicAttachments?.[x.uid]);
+   if(attachment){
+    s.decision={type:'psychicUnlink',stage:'attachment',player:attachment.cardOwner??row.player,owner:row.player,
+     uid:row.uid,attachment:attachment.uid,source:attachment.cardId,title:card(attachment).name+'を引き継ぐクリーチャーを選ぶ'};return;
+   }
   }
   if(row.abyssSend)continue;
   if(mustUnlink&&top?.godLinks?.length&&!row.godPart&&!row.g1347MoveAll){
@@ -2036,7 +2098,7 @@ function advanceLeaving(s){if(s.lossEvent)return;
   if(plan.kind==='g47'){extra.seed.replaceLeaving(s,row,plan);continue;}
   if(plan.kind==='handSave1157')continue;
   if(plan.kind==='g49'){extra.firebird.replaceLeaving(s,row,plan);continue;}
-  if(plan.kind==='psychicUnlink'){unlinkPsychic1355(s,row.player,top,row.psychicUnlink);continue;}
+  if(plan.kind==='psychicUnlink'){unlinkPsychic1355(s,row,top);continue;}
   if(plan.kind==='psychicRelease'){
    const name=card(top).name;delete top.g1085Awakened;
    log(s,row.player,'psychicRelease',name+'が解除して'+card(top).name+'に戻る',{cardId:top.cardId});
@@ -2862,6 +2924,7 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
   const parts=[x,...x.psychicLinks],order=entryOptions.psychicBaseOrder?.[x.uid];
   delete x.psychicLinks;
   for(const part of parts)part.psychicCell=true;
+  if(Array.isArray(order))return order.map(uid=>parts.find(y=>y.uid===uid));
   return order?parts.sort((a,b)=>Number(b.uid===order)-Number(a.uid===order)):parts;
  });
  if(placementTapped||asCreature&&!inst.tapped&&speedTapOnEntry(s,p,c,isEvolution(inst)))inst.tapped=true;
@@ -2920,7 +2983,11 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
     task:extra.task('g34_SelfGrant754',p,source,{uid,incarnation,g770LiveCreature:true,
      grant:{speedAttacker:true}})});
  }
- if(!entryOptions.ignoreEntry){extra.entry(s,p,inst,{...entryOptions,selfMuted,allEntryMuted});extra.command(s,p,inst);}
+ const deferCommand=card(inst.cardId).g1356VictoryPart&&victoryLinkGroups1356(s,p).length;
+ if(!entryOptions.ignoreEntry){
+  extra.entry(s,p,inst,{...entryOptions,selfMuted,allEntryMuted});
+  if(!deferCommand)extra.command(s,p,inst);
+ }
  if(!entryOptions.paidMana&&isCreature(s,inst))(s.noManaUse??=[false,false])[p]=true;
  if(effectiveCard(inst,s).exLife){for(let n=0;n<(c.extraExLife?2:1)&&s.winner===null;n++)shieldTop(s,p,c,inst);if(s.winner!==null){delete s.g24EntryMute;delete s.g1Entering;return;}}
  const firstNamedEntry=c.g1086FirstNamedEntry&&!(s.g1086NamedEntries?.[p]||[]).includes(c.name);
@@ -2966,6 +3033,7 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  if(entryOptions.g781HyperEntry&&!inst.sealed&&isCreature(s,inst))
   extra.six.hyperEntry781(s,p,inst,entryOptions.g781HyperEntry);
  delete s.g24EntryMute;delete s.g1Entering;
+ if(deferCommand&&!s.decision)advanceVictoryLink1356(s,p,entryOptions.ignoreEntry?null:inst);
 }
 // Borrowing chooses a printed entry ability; no creature enters and no watchers fire.
 export function entryAbilities(s,p,original,reference){
@@ -4314,10 +4382,14 @@ export function getLegalActions(s){
   }
   if(d.type==='g1089AttackTarget')out=d.targets.map((x,i)=>option('g1089AttackTarget',x.label,{choice:i,uid:x.uid,target:x.target,cardId:x.cardId}));
   if(d.type==='psychicUnlink'){
-   const top=s.players[p].battle.find(x=>x.uid===d.uid);
-   out=[top,...top.psychicLinks].map(x=>option('psychicUnlink',card(x.cardId).name+'を超次元ゾーンへ',
-    {uid:x.uid,cardId:x.cardId,score:-costValue(card(x.cardId))}));
+   const top=s.players[d.owner??p].battle.find(x=>x.uid===d.uid);
+   const returning=s.leaving.rows.find(r=>r.player===(d.owner??p)&&r.uid===d.uid).psychicUnlink;
+   out=linkedPsychicParts(top).filter(x=>!d.stage||x.uid!==returning).map(x=>
+    option('psychicUnlink',card(x.cardId).name+(!d.stage?'を超次元ゾーンへ':'を選ぶ'),
+     {uid:x.uid,cardId:x.cardId,score:(d.stage?1:-1)*costValue(card(x.cardId))}));
   }
+  if(d.type==='victoryLink1356')out=d.groups.map((uids,choice)=>option('victoryLink1356',
+   uids.map(uid=>card(own.battle.find(x=>x.uid===uid)).name).join('・'),{choice,cardId:d.source}));
   if(d.type==='godLeave')out=[s.players[p].battle.find(x=>x.uid===d.uid)].flatMap(x=>[x,...x.godLinks]).map(x=>option('godLeave',card(x.cardId).name+'を移動する',{uid:x.uid,cardId:x.cardId}));
   else if(d.type==='extended')out=extra.actions(s,d);
   if(d.type==='leaveReplace'){
@@ -4646,7 +4718,18 @@ function stepCore(s,action){
   s.decision=null;s.aura1352.grUid=s.players[p].gr[0].uid;grSummon(s,p);
  }
  if(a.kind==='silent496'){const x=s.players[p].battle.find(c=>c.uid===d.uid),state=s.startStep;if(!state||state.stage!=='silent496'||!x||!canSilent496(s,x))throw Error('サイレントスキルを使えない状態です');if(a.yes)state.chosen.push({uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,defs:structuredClone(effectiveCard(x,s).g496Silent)});state.remaining.shift();s.decision=null;log(s,p,'ability',card(x).name+(a.yes?'：アンタップせずサイレントスキルを使う':'：サイレントスキルを使わずアンタップする'),{cardId:x.cardId});}
- if(a.kind==='psychicUnlink'){s.leaving.rows.find(r=>r.player===p&&r.uid===d.uid).psychicUnlink=a.uid;s.decision=null;}
+ if(a.kind==='psychicUnlink'){
+  const row=s.leaving.rows.find(r=>r.player===(d.owner??p)&&r.uid===d.uid);
+  if(d.stage==='continue')row.psychicContinue=a.uid;
+  else if(d.stage==='attachment')(row.psychicAttachments??={})[d.attachment]=a.uid;
+  else row.psychicUnlink=a.uid;
+  s.decision=null;
+ }
+ if(a.kind==='victoryLink1356'){
+  const own=s.players[p],parts=d.groups[a.choice].map(uid=>own.battle.find(x=>x.uid===uid));
+  s.decision=null;
+  resolveVictoryLink1356(s,p,parts,own.battle.find(x=>x.uid===d.entry));
+ }
  if(a.kind==='godLeave'){s.leaving.rows.find(r=>r.player===p&&r.uid===d.uid).godPart=a.uid;s.decision=null;}
  if(a.kind==='extended')extra.step(s,a,d);
  if(a.kind==='g1088Kent'){s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p).plan={kind:'g1088Kent',...a.choice};s.decision=null;}
@@ -6464,6 +6547,12 @@ function powerCleanup(s){
  if(s.phase==='rematch'||s.g25DeployBatch||s.g32DeployBatch||s.g34DeployBatch||s.lossEvent)return;
  if(s.winner===null)extra.utilityTop.flush(s);
  while(s.winner===null&&!s.leaving&&!s.decision&&!s.lossEvent){
+  if(s.players.some(p=>p.battle.some(x=>card(x.cardId).g1356VictoryLink))){
+   if([s.active,1-s.active].some(p=>advanceVictoryLink1356(s,p))){
+    if(s.decision)return;
+    continue;
+   }
+  }
   const orphaned=s.players.some(p=>p.hasAuras1352)?s.players.flatMap((own,player)=>own.hasAuras1352?
    own.battle.filter(a=>a.auraTo1352&&!own.battle.some(x=>x.uid===a.auraTo1352.uid&&
     (x.incarnation||0)===a.auraTo1352.incarnation&&(x.sealed||isCreature(s,x))))

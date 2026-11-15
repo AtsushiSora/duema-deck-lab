@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8043,
-  "pendingNames": 3783,
-  "phase": 1355,
-  "added": 2,
+  "supportedNames": 8046,
+  "pendingNames": 3780,
+  "phase": 1356,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -118,7 +118,7 @@
     },
     {
       "ability": "覚醒",
-      "pendingNames": 94,
+      "pendingNames": 91,
       "examples": [
         {
           "id": "dmx07-v01",
@@ -176,7 +176,7 @@
     "進化クリーチャー(進化GV)": 13,
     "タマシード/クリーチャー": 4,
     "土地": 1,
-    "サイキック・クリーチャー": 112,
+    "サイキック・クリーチャー": 109,
     "進化クロスギア": 6,
     "進化クリーチャー(手札進化)": 2,
     "ドラグハート・タマシード": 1,
@@ -223,7 +223,7 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 1067,
+    "複数面・特殊カードタイプまたは情報不足": 1064,
     "未対応の能力文": 2525,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 18,
@@ -490750,14 +490750,97 @@
       "remainingPrints": 1,
       "remainingIndividualCards": 18,
       "next": "勝利のガイアール・カイザーの裁定には、勝利のリュウセイ・カイザーと勝利のプリンプリン、3体のV覚醒リンク、および複数体に戻るリンク解除が必要。DGには両者のS・トリガー等の宣言、同時手札移動、サバキZ宣言とターン順での解決を分けた共通処理が必要。未検証の分割テストは既存プロセスと保存済みログを確認して残りから継続する。"
+    },
+    {
+      "phase": 1356,
+      "baseline": "cd3e7501",
+      "before": 8043,
+      "supported": 8046,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmr04-v03",
+          "name": "勝利のガイアール・カイザー"
+        },
+        {
+          "id": "dmr04-v02",
+          "name": "勝利のリュウセイ・カイザー"
+        },
+        {
+          "id": "dmr04-051",
+          "name": "勝利のプリンプリン"
+        }
+      ],
+      "printAliases": 15,
+      "results": {
+        "officialPrints": {
+          "verified": 18,
+          "imagesVerified": 36,
+          "manifest": "tools/support-phase-1356.json"
+        },
+        "focus": {
+          "passed": 18,
+          "failed": 0,
+          "log": "tmp/duema-phase-1356/focus-final.log"
+        },
+        "regression": {
+          "passed": 138,
+          "failed": 0,
+          "log": "tmp/duema-phase-1356/regression-final.log",
+          "includesFocus": true
+        },
+        "interruptedRegression": {
+          "status": "superseded",
+          "reason": "No.18の長時間AI対戦を含んでいたため今回の実行だけを中断し、必要な短い関連テストを別実行した。",
+          "log": "tmp/duema-phase-1356/regression.log"
+        },
+        "godLinkRegression": {
+          "passed": 5,
+          "failed": 0,
+          "log": "tmp/duema-phase-1356/god-regression.log"
+        },
+        "crossGearRegression": {
+          "passed": 4,
+          "failed": 0,
+          "log": "tmp/duema-phase-1356/gear-regression.log"
+        },
+        "check": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "tmp/duema-phase-1356/check.log",
+          "rulesBlobs": {
+            "dist/engine.js": "99caca5ba7f1dd2661bfe69fda6c0b340a3bfee4",
+            "dist/extended-rules.js": "8ba2741ded8c5b4c078d184ab5fae3c465d85bb3",
+            "dist/six-photo-rules.js": "04b98ea2e48541c9424bfb0a60335712f7093baa",
+            "dist/cards.json": "5717dbf266ab9d13059e1f4422a815bc04f0ccb1"
+          }
+        },
+        "audit": {
+          "supported": 8046,
+          "pending": 3780,
+          "ready": 0,
+          "dependencyBlocked": 0,
+          "log": "tmp/duema-phase-1356/audit.log"
+        },
+        "nameKey": {
+          "rows": 8046,
+          "count": 8046,
+          "duplicates": 0
+        }
+      },
+      "resolvedRegistered": 1,
+      "remainingRegistered": 18,
+      "remainingPrints": 1,
+      "remainingIndividualCards": 17,
+      "next": "アカシック・パラレルはカードのコピーと元の状態を分け、進化時の手札の文明・シールド・フォース・裏返せないカードでのV覚醒リンクを実カードで確認する。DGは両者の宣言と同時手札移動の共通処理が必要。分割テストは進行中の実行と保存ログを確認して残りから継続する。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1355,
+    "lastVerifiedPhase": 1356,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "個別の未検証は18種類（裁定19件、再録1件）。勝利のガイアール・カイザーの裁定には、勝利のリュウセイ・カイザーと勝利のプリンプリン、3体のV覚醒リンク、および複数体に戻るリンク解除が必要。DGには両者のS・トリガー等の宣言、同時手札移動、サバキZ宣言とターン順での解決を分けた共通処理が必要。未検証の分割テストは既存プロセスと保存済みログを確認して残りから継続する。",
+    "steps": "個別の未検証は17種類（裁定18件、再録1件）。アカシック・パラレルはカードのコピーと元の状態を分け、進化時の手札の文明・シールド・フォース・裏返せないカードでのV覚醒リンクを実カードで確認する。DGは両者の宣言と同時手札移動の共通処理が必要。分割テストは進行中の実行と保存ログを確認して残りから継続する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "Phase 322の旧スキャナーテストは、Phase 419で対応した真実の名 ワクワク・チャップルン（dmr07-001）を依然として未対応一覧に期待する。Phase 742基点とPhase 743作業ツリーで候補11件・対象はブロック一覧にいないことを再現。今回の変更とは分けて扱う。",
@@ -490841,14 +490924,6 @@
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [
       {
-        "cardId": "dmbd13-015",
-        "dependencyIds": [
-          "dmr04-v03"
-        ],
-        "test": "奇石 ミクセルの登場監視とリュウセイ・ホールのマナ追加の順序を勝利のガイアール・カイザーで再現する（QA 38717）",
-        "source": "https://dm.takaratomy.co.jp/rule/qa/38717/"
-      },
-      {
         "cardId": "dm38-011",
         "dependencyIds": [
           "dmr01-053"
@@ -490863,6 +490938,14 @@
         ],
         "test": "DG ～ヒトノ造リシモノ～自身のタップ時誘発が、攻撃時にも1回だけとなる（QA45139）。",
         "source": "https://dm.takaratomy.co.jp/rule/qa/45139/"
+      },
+      {
+        "cardId": "dmrp20-s02",
+        "dependencyIds": [
+          "dmex18-022"
+        ],
+        "test": "《緊縛の影バインド・シャドウ》と《アカシック・パラレル》がいる状況で、後者が《天災 デドダム》を選んだ後にマニフェストへ進化しても、手札での水文明を参照しアンタップで出る。",
+        "source": "https://dm.takaratomy.co.jp/rule/qa/40912/"
       }
     ],
     "printVerificationPending": [
@@ -535056,8 +535139,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8043,
-      "pendingNames": 3783,
+      "supportedNames": 8046,
+      "pendingNames": 3780,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -537021,9 +537104,7 @@
           "path": "tests/standard1355-effects.test.mjs",
           "log": "tmp/duema-phase-1355/focus-final.log",
           "result": "選択する相手に不死身のブーストグレンオーが提示され、選んでも破壊されない。デーモン・ハンドとスレイヤーの破壊、バトルに負けた時の超次元への帰還、剛腕の政との覚醒リンク、セル1枚を対象にした時を含むリンク解除、進化元に重ねたセルからの再構築を実カードで検証。"
-        }
-      ],
-      "remainingRegistered": [
+        },
         {
           "cardId": "dmbd13-015",
           "dependencyIds": [
@@ -537031,191 +537112,27 @@
             "dmr04-v02",
             "dmr04-051"
           ],
-          "test": "奇石 ミクセルの登場監視とリュウセイ・ホールのマナ追加の順序を勝利のガイアール・カイザーで再現する（QA 38717）",
-          "reason": "勝利のガイアール・カイザーの表面だけではカード全体の対戦対応が完結しない。3体がそろった時のV覚醒リンク、リンク解除後に残る2体の選択と状態継承、再録の裏面にあるバトル勝利時の2シールドブレイクを実装してから公式例を検証する。",
+          "phase": 1356,
           "source": "https://dm.takaratomy.co.jp/rule/qa/38717/",
-          "path": "tests/standard1105-effects.test.mjs",
-          "log": "/tmp/duema-phase-1105/focused.log",
-          "dependencyReview": {
-            "checkedAt": "2026-11-16",
-            "logDirectory": "tmp/duema-phase-1356",
-            "prints": [
-              {
-                "id": "dm23ex2-ChoG001",
-                "canonicalId": "dmr04-v03",
-                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-ChoG001",
-                "faces": 2,
-                "backHasPrintedAbilities": true,
-                "imageSha256": [
-                  "e1e1e67db9393cdd3d769efe880222e440dac4c752984443938fc993e8cfd851",
-                  "814421929e976cc6e95eb0ef8d6ab9ad702ff571552dfccd7739d8da4200bdf3"
-                ]
-              },
-              {
-                "id": "dm25ex4-T29",
-                "canonicalId": "dmr04-051",
-                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-T29",
-                "faces": 2,
-                "backHasPrintedAbilities": true,
-                "imageSha256": [
-                  "651b8df25adc8afededfaf673c21ccaa5cd7537cf30ccca780596093d38afbc9",
-                  "e770897d736fd20a521f9514135530287b6578fdccfc16153569ef4104ef20ce"
-                ]
-              },
-              {
-                "id": "dm25ex4-TR03",
-                "canonicalId": "dmr04-v03",
-                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-TR03",
-                "faces": 2,
-                "backHasPrintedAbilities": true,
-                "imageSha256": [
-                  "e9d5749cac38766fb3ddd394f39be3d4614fd3a62bad9f65423f1036a985619a",
-                  "22769651b8253b2cd5793dfd13633ae3ab79e5760d338a43e6f0d79f160ce7f2"
-                ]
-              },
-              {
-                "id": "dmbd13-002",
-                "canonicalId": "dmr04-v02",
-                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd13-002",
-                "faces": 2,
-                "backHasPrintedAbilities": true,
-                "imageSha256": [
-                  "1d468d5aef1c56b9822410adbdc53ba8f0ab8ad5ecac97390ea2fa0ee794cca8",
-                  "b0cc47cc111f56387d1147e956088d16f0ac3cf92571812547bbbf59718e5f0a"
-                ]
-              },
-              {
-                "id": "dmbd13-003",
-                "canonicalId": "dmr04-v03",
-                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd13-003",
-                "faces": 2,
-                "backHasPrintedAbilities": false,
-                "imageSha256": [
-                  "966d943b30dbe4302d0fcabed43edb749573097c991c3c6966c32cd194d8277a",
-                  "5a81e9dbc73861c8729856dd9a8a119a8544ec01377d90e04765dd0bc709a2e1"
-                ]
-              },
-              {
-                "id": "dmbd13-004",
-                "canonicalId": "dmr04-051",
-                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd13-004",
-                "faces": 2,
-                "backHasPrintedAbilities": false,
-                "imageSha256": [
-                  "8bf394e19175ac728312d50228c33db3c17ed5712d732046deed5cd6cef787b9",
-                  "c515115f09468e924be2a36865d0e63fa320107a70bf24c5436bbd7ffafc8cdc"
-                ]
-              },
-              {
-                "id": "dmd20-022",
-                "canonicalId": "dmr04-051",
-                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd20-022",
-                "faces": 2,
-                "backHasPrintedAbilities": false,
-                "imageSha256": [
-                  "52ddbef1f5b3d51fd18ed4fc390adf3069e6edb4776bb94b1b54879b7666836b",
-                  "dc6ce27bbf7bdc058a91c8e917ed6020251bec8bb72df87882c5edc842ba09f1"
-                ]
-              },
-              {
-                "id": "dmr04-051",
-                "canonicalId": "dmr04-051",
-                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-051",
-                "faces": 2,
-                "backHasPrintedAbilities": true,
-                "imageSha256": [
-                  "e232e815b190929fbb78faa5cfde03b59ad8115bbf53678cfe717575af20494b",
-                  "9426f625864467c72d23be1566ce2dc39ef25fe1712701542e588e5fc08c3f5f"
-                ]
-              },
-              {
-                "id": "dmr04-v02",
-                "canonicalId": "dmr04-v02",
-                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-v02",
-                "faces": 2,
-                "backHasPrintedAbilities": true,
-                "imageSha256": [
-                  "c1f2f837391757f961f8ba672c73088d37986e4a01c81b84d0c3a17f895bbe37",
-                  "1aa61927b6928f9e0f6f75bde9bffe98c0ec17c385464dd9be8761fb488b2776"
-                ]
-              },
-              {
-                "id": "dmr04-v02h",
-                "canonicalId": "dmr04-v02",
-                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-v02h",
-                "faces": 2,
-                "backHasPrintedAbilities": true,
-                "imageSha256": [
-                  "c1f2f837391757f961f8ba672c73088d37986e4a01c81b84d0c3a17f895bbe37",
-                  "1aa61927b6928f9e0f6f75bde9bffe98c0ec17c385464dd9be8761fb488b2776"
-                ]
-              },
-              {
-                "id": "dmr04-v03",
-                "canonicalId": "dmr04-v03",
-                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-v03",
-                "faces": 2,
-                "backHasPrintedAbilities": true,
-                "imageSha256": [
-                  "42c734ef1bd253c2e38910b8aaa939780b30606e874ae175ce3190eef58ee171",
-                  "ba470ff3eebf222cb21d8b51f7dd76c7bafb7ae3712c4fe6497a62d6a2ddfe3f"
-                ]
-              },
-              {
-                "id": "dmr04-v03h",
-                "canonicalId": "dmr04-v03",
-                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-v03h",
-                "faces": 2,
-                "backHasPrintedAbilities": true,
-                "imageSha256": [
-                  "42c734ef1bd253c2e38910b8aaa939780b30606e874ae175ce3190eef58ee171",
-                  "ba470ff3eebf222cb21d8b51f7dd76c7bafb7ae3712c4fe6497a62d6a2ddfe3f"
-                ]
-              },
-              {
-                "id": "dmx25-021",
-                "canonicalId": "dmr04-051",
-                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx25-021",
-                "faces": 2,
-                "backHasPrintedAbilities": false,
-                "imageSha256": [
-                  "ef40714135f29c0f449334c37845e78392958b50957fb39239c8172735d44422",
-                  "3ef3975b0e91bd3a424e077533e7c92072d5603054aea28714bddfae7a91705e"
-                ]
-              },
-              {
-                "id": "dmx25-v11",
-                "canonicalId": "dmr04-v02",
-                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx25-v11",
-                "faces": 2,
-                "backHasPrintedAbilities": true,
-                "imageSha256": [
-                  "e5b18aaa84bfdbc8166537ef11073666eea6016fcbd7b59e4f3ee56a052cc4be",
-                  "9c2c7158ce6146db7de6134c09000898a33e54393b96a44e9e5762aa31f2937a"
-                ]
-              },
-              {
-                "id": "dmx25-v12",
-                "canonicalId": "dmr04-v03",
-                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx25-v12",
-                "faces": 2,
-                "backHasPrintedAbilities": false,
-                "imageSha256": [
-                  "53d9e03eb1d22caba5e4921a5ebc359493c7863cff0bd8041fde665de83ba003",
-                  "637306726e0395d01ab2eb7b22d48925a5b2019dad6a9ed9c9b6724b3f7f33a4"
-                ]
-              }
-            ],
-            "officialSources": [
-              "https://dm.takaratomy.co.jp/rule/qa/45569/",
-              "https://dm.takaratomy.co.jp/rule/qa/40886/",
-              "https://dm.takaratomy.co.jp/rule/qa/38695/",
-              "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-TR03",
-              "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-T29"
-            ],
-            "result": "公式の初出では勝利時に相手のシールドを選んで手札に加えると記載。DM25-EX4版ではガイアール・オレドラゴンによる2ブレイクを明記。コピーで同名になっても裏返せないカードではリンクしない。裏面の能力が公式ページ上で空欄の版は、裏面画像を対応する版と照合してから再録を登録する。"
-          }
-        },
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/38717/",
+            "https://dm.takaratomy.co.jp/rule/qa/45569/",
+            "https://dm.takaratomy.co.jp/rule/qa/40886/",
+            "https://dm.takaratomy.co.jp/rule/qa/40373/",
+            "https://dm.takaratomy.co.jp/rule/qa/40691/",
+            "https://dm.takaratomy.co.jp/rule/qa/38695/",
+            "https://dm.takaratomy.co.jp/rule/qa/45097/",
+            "https://dm.takaratomy.co.jp/rule/qa/48139/",
+            "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+            "https://dm.takaratomy.co.jp/rule/qa_old/37761/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/35707/"
+          ],
+          "path": "tests/standard1356-effects.test.mjs",
+          "log": "tmp/duema-phase-1356/focus-final.log",
+          "result": "実カードで6→7マナの場合は奇石 ミクセルで勝利のガイアールが超次元ゾーンに戻り、対照の7→8マナの場合は残ることを確認（QA 38717）。V覚醒リンク、リンク解除後の攻撃継続、継続効果とクロスギアの承継、順序を選んだ進化元からの再構築も検証。"
+        }
+      ],
+      "remainingRegistered": [
         {
           "cardId": "dm38-011",
           "dependencyIds": [
@@ -538648,8 +538565,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8043,
-        "pending": 3783,
+        "supported": 8046,
+        "pending": 3780,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -539249,11 +539166,12 @@
       "finalCheck": {
         "status": "passed",
         "command": "npm run check",
-        "log": "tmp/duema-phase-1355/check-final.log",
+        "log": "tmp/duema-phase-1356/check.log",
         "rulesBlobs": {
-          "dist/engine.js": "c5c65d01ce10761ab1881d5d8096f786e4da6c81",
-          "dist/six-photo-rules.js": "541d12d79d1e842d3d99db67f85d976e74ede1b5",
-          "dist/cards.json": "32bf56ca8a77d19ba515298de4579bae46ee001c"
+          "dist/engine.js": "99caca5ba7f1dd2661bfe69fda6c0b340a3bfee4",
+          "dist/extended-rules.js": "8ba2741ded8c5b4c078d184ab5fae3c465d85bb3",
+          "dist/six-photo-rules.js": "04b98ea2e48541c9424bfb0a60335712f7093baa",
+          "dist/cards.json": "5717dbf266ab9d13059e1f4422a815bc04f0ccb1"
         }
       },
       "abyssShort": {
@@ -539261,10 +539179,6 @@
         "log": "/tmp/duema-verify-8001/abyss-short-final.log"
       },
       "remainingDependencies": [
-        {
-          "id": "dmr04-v03",
-          "name": "勝利のガイアール・カイザー"
-        },
         {
           "id": "dmr01-053",
           "name": "竜骨なる者ザビ・リゲル"
@@ -539322,7 +539236,7 @@
           "name": "行くよー！アオハル、ハイチーズ！"
         }
       ],
-      "remainingTestsSummary": "全体のnpm testは中断・合否未確認。固定スナップショットのNo.03・04・06・13は37/344分割、No.16・21の作業ツリー分割は11/113件が通過。残りは既存実行の結果を待つ。",
+      "remainingTestsSummary": "全体のnpm testは中断・合否未確認。固定スナップショットのNo.03・04・06・13は57/344分割、No.16・21の作業ツリー分割は17/113件が通過。残りは既存実行の結果を待つ。",
       "advanceImplementation": {
         "status": "implemented",
         "phases": [
@@ -539374,72 +539288,87 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1355,
-        "baseline": "ff371b36",
-        "before": 8041,
-        "supported": 8043,
+        "phase": 1356,
+        "baseline": "cd3e7501",
+        "before": 8043,
+        "supported": 8046,
         "duplicates": 0,
         "added": [
           {
-            "id": "dmd03-001",
-            "name": "剛腕の政"
+            "id": "dmr04-v03",
+            "name": "勝利のガイアール・カイザー"
           },
           {
-            "id": "dmd03-002",
-            "name": "不死身のブーストグレンオー"
+            "id": "dmr04-v02",
+            "name": "勝利のリュウセイ・カイザー"
+          },
+          {
+            "id": "dmr04-051",
+            "name": "勝利のプリンプリン"
           }
         ],
-        "printAliases": 2,
+        "printAliases": 15,
         "results": {
           "officialPrints": {
-            "verified": 4,
-            "imagesVerified": 8,
-            "manifest": "tools/support-phase-1355.json"
+            "verified": 18,
+            "imagesVerified": 36,
+            "manifest": "tools/support-phase-1356.json"
           },
           "focus": {
-            "passed": 7,
+            "passed": 18,
             "failed": 0,
-            "log": "tmp/duema-phase-1355/focus-final.log"
+            "log": "tmp/duema-phase-1356/focus-final.log"
           },
           "regression": {
-            "passed": 116,
+            "passed": 138,
             "failed": 0,
-            "log": "tmp/duema-phase-1355/regression-final.log",
+            "log": "tmp/duema-phase-1356/regression-final.log",
             "includesFocus": true
+          },
+          "interruptedRegression": {
+            "status": "superseded",
+            "reason": "No.18の長時間AI対戦を含んでいたため今回の実行だけを中断し、必要な短い関連テストを別実行した。",
+            "log": "tmp/duema-phase-1356/regression.log"
           },
           "godLinkRegression": {
             "passed": 5,
             "failed": 0,
-            "log": "tmp/duema-phase-1355/god-regression.log"
+            "log": "tmp/duema-phase-1356/god-regression.log"
+          },
+          "crossGearRegression": {
+            "passed": 4,
+            "failed": 0,
+            "log": "tmp/duema-phase-1356/gear-regression.log"
           },
           "check": {
             "status": "passed",
             "command": "npm run check",
-            "log": "tmp/duema-phase-1355/check-final.log",
+            "log": "tmp/duema-phase-1356/check.log",
             "rulesBlobs": {
-              "dist/engine.js": "c5c65d01ce10761ab1881d5d8096f786e4da6c81",
-              "dist/six-photo-rules.js": "541d12d79d1e842d3d99db67f85d976e74ede1b5",
-              "dist/cards.json": "32bf56ca8a77d19ba515298de4579bae46ee001c"
+              "dist/engine.js": "99caca5ba7f1dd2661bfe69fda6c0b340a3bfee4",
+              "dist/extended-rules.js": "8ba2741ded8c5b4c078d184ab5fae3c465d85bb3",
+              "dist/six-photo-rules.js": "04b98ea2e48541c9424bfb0a60335712f7093baa",
+              "dist/cards.json": "5717dbf266ab9d13059e1f4422a815bc04f0ccb1"
             }
           },
           "audit": {
-            "supported": 8043,
-            "pending": 3783,
+            "supported": 8046,
+            "pending": 3780,
             "ready": 0,
             "dependencyBlocked": 0,
-            "log": "tmp/duema-phase-1355/audit.log"
+            "log": "tmp/duema-phase-1356/audit.log"
           },
           "nameKey": {
-            "rows": 8043,
-            "count": 8043,
+            "rows": 8046,
+            "count": 8046,
             "duplicates": 0
           }
         },
         "resolvedRegistered": 1,
-        "remainingRegistered": 19,
+        "remainingRegistered": 18,
         "remainingPrints": 1,
-        "remainingIndividualCards": 18,
-        "next": "勝利のガイアール・カイザーの裁定には、勝利のリュウセイ・カイザーと勝利のプリンプリン、3体のV覚醒リンク、および複数体に戻るリンク解除が必要。DGには両者のS・トリガー等の宣言、同時手札移動、サバキZ宣言とターン順での解決を分けた共通処理が必要。未検証の分割テストは既存プロセスと保存済みログを確認して残りから継続する。"
+        "remainingIndividualCards": 17,
+        "next": "アカシック・パラレルはカードのコピーと元の状態を分け、進化時の手札の文明・シールド・フォース・裏返せないカードでのV覚醒リンクを実カードで確認する。DGは両者の宣言と同時手札移動の共通処理が必要。分割テストは進行中の実行と保存ログを確認して残りから継続する。"
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
@@ -541934,18 +541863,18 @@
               "checkedAt": "2026-11-16",
               "frozen": {
                 "baseline": "e3323a89",
-                "verified": 37,
+                "verified": 57,
                 "planned": 344,
-                "games": 370,
+                "games": 564,
                 "results": "tmp/duema-verification-e3323a89/results.jsonl"
               },
               "legacy": {
                 "scope": "実行時の作業ツリー。固定コミットの検証結果としては扱わない。",
-                "verified": 11,
+                "verified": 17,
                 "planned": 113,
                 "byKind": {
                   "AI replay": 9,
-                  "production worker": 2
+                  "production worker": 8
                 },
                 "results": "tmp/duema-verification-e3323a89/legacy-fixtures/results.jsonl"
               }

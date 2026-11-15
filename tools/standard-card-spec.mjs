@@ -2480,6 +2480,51 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1356&&d?.status==='complete'&&d.faces.length===2&&f.typeText==='サイキック・クリーチャー'){
+  const current={'dmr04-v03':'dm25ex4-TR03','dmr04-v02':'dm25ex4-TR02','dmr04-051':'dm25ex4-T29'};
+  const id=Object.hasOwn(current,d.id)?d.id:Object.keys(current).find(id=>current[id]===d.id);
+  const back=d.faces[1],currentText=d.id===current[id];
+  const reminder='(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)';
+  const rush='このクリーチャーが出た時、そのターン、このクリーチャーはアンタップしているクリーチャーを攻撃できる。';
+  const bind='次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。';
+  const front=currentText?{
+   'dmr04-v03':'スピードアタッカー'+rush,
+   'dmr04-v02':'W・ブレイカー相手のカードはマナゾーンにタップして置かれる。',
+   'dmr04-051':'このクリーチャーが出た時、相手のクリーチャーを１体選ぶ。'+bind+
+    'V覚醒リンク：自分の《勝利のガイアール・カイザー》と《勝利のリュウセイ・カイザー》がある時、それら１体ずつとこのクリーチャーを裏返しリンクさせる。'+reminder
+  }:{
+   'dmr04-v03':'スピードアタッカー(このクリーチャーは召喚酔いしない)'+
+    'このクリーチャーは、バトルゾーンに出したターン、アンタップされているクリーチャーを攻撃できる。'+reminder,
+   'dmr04-v02':'相手は、自身のマナゾーンにカードを置く時、タップして置く。'+
+    'W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)'+reminder,
+   'dmr04-051':'このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選ぶ。'+bind+
+    'V(ビクトリー) 覚醒(サイキック)リンク ? バトルゾーンに自分の《勝利のガイアール・カイザー》と《勝利のリュウセイ・カイザー》がある時、そのクリーチャーとこのクリーチャーを裏返しリンクさせる。'+reminder
+  };
+  const linked=currentText?'スピードアタッカーハンティングワールド・ブレイカー'+
+   'このクリーチャーがバトルに勝った時、このクリーチャーをアンタップし、このクリーチャーは相手のシールドを２つブレイクする。リンク解除':
+   'スピードアタッカー(このクリーチャーは召喚酔いしない)'+
+   'ハンティング(バトル中、このクリーチャーのパワーは、バトルゾーンにある自分のハンター１体につき+1000される)'+
+   'このクリーチャーがバトルに勝った時、このクリーチャーをアンタップし、相手のシールドをふたつ選ぶ。相手はそのシールドを自身の手札に加える。'+
+   'ワールド・ブレイカー(このクリーチャーは相手のシールドをすべてブレイクする)'+
+   'リンク解除(このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す)'+
+   '※覚醒リンクするために必要なカード(勝利のリュウセイ・カイザー/勝利のガイアール・カイザー/勝利のプリンプリン)';
+  if(id&&back.name==='唯我独尊ガイアール・オレドラゴン'&&back.typeText==='サイキック・スーパー・クリーチャー'&&
+   normalize(f.abilityText)===normalize(front[id])&&normalize(back.abilityText)===normalize(linked)){
+   const effects={
+    'dmr04-v03':{speedAttacker:true,effect:'sixPhoto',g34Tasks:[{op:'SelfGrant754',g770LiveCreature:true,grant:{attackUntapped:true}}]},
+    'dmr04-v02':{opponentManaTap:true,breaker:2},
+    'dmr04-051':{g1356VictoryLink:['dmr04-v03','dmr04-v02'],effect:'sixPhoto',
+     g34Tasks:[{op:'Target',g1257NoAttackUntilStart:true,g1356NoBlock:true}]}
+   };
+   return {psychic:true,manaValue:0,g1356VictoryPart:true,...effects[id],
+    g1355LinkedFace:{name:back.name,type:'creature',civ:back.civilizationText,civilizations:back.civilizations,
+     cost:back.cost,power:parseInt(back.powerText,10),race:back.race,breaker:'∞',worldBreaker:true,
+     speedAttacker:true,g166Hunting:true,g1355Unlink:true,
+     g189BattleWin:[{op:'Untap',g191First:true},{op:'Break497',n:2,g747CreatureBreak:true,g913DepartedBreaker:true}],
+     image:'https://dm.takaratomy.co.jp/wp-content/card/cardimage/'+id+'b.jpg'}
+   };
+  }
+ }
  if(phase>=1355&&d?.status==='complete'&&['dmd03-001','dmd03-002'].includes(d.id)&&
     d.faces.length===2&&f.typeText==='サイキック・クリーチャー'){
   const back=d.faces[1],strongArm=d.id==='dmd03-001';
