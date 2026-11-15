@@ -2475,6 +2475,25 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1319&&d?.status==='complete'&&f.typeText==='タマシード'&&d.faces.length===2&&
+  normalize(f.abilityText)==='ササゲール2(自分のディスペクター・クリーチャーの召喚コストを2少なくしてもよい。そうしたらこのエレメントを破壊する。ただしコストは0以下にならない)'){
+  const spell=d.faces[1];
+  const trigger='S・トリガーS・トリガー(このカードを自分のシールドゾーンから手札に加える時コストを支払わずにすぐ実行してもよい)';
+  const removal={
+   'dm26rp3-061':{body:'相手のエレメントを1つ選び持ち主の手札に戻す。',
+    def:{element:true,to:'hand',toOwnerHand:true,filter:{element:true,faceUp:true}}},
+   'dm26rp3-066':{body:'相手のアンタップしているクリーチャーを1体選び破壊する。',
+    def:{to:'grave',filter:{untapped:true}}},
+   'dm26rp3-071':{body:'相手のパワー6000以下のクリーチャーを1体選び破壊する。',
+    def:{to:'grave',filter:{maxPower:6000,g199Power:true}}},
+   'dm26rp3-075':{body:'コスト5以下のエレメントを1つ選び持ち主のマナゾーンに置く。',
+    def:{element:true,anyOwner:true,to:'mana',toOwnerMana:true,filter:{element:true,faceUp:true,max:5}}}
+  }[d.id];
+  if(removal&&spell.typeText==='呪文'&&normalize(spell.abilityText)===trigger+removal.body)
+   return {sasage:2,spellFrontName:f.name,spellFace:{type:'spell',name:spell.name,cost:spell.cost,civ:spell.civilizationText,
+    civilizations:spell.civilizations,race:spell.race,text:spell.abilityText,trigger:true,effect:'sixPhoto',
+    g34Tasks:[{op:'Target',spell:true,...removal.def}]}};
+ }
  if(phase>=1318&&d?.status==='complete'&&f.typeText==='クリーチャー'){
   const trigger='S・トリガーS・トリガー(このカードを自分のシールドゾーンから手札に加える時コストを支払わずにすぐ実行してもよい)';
   const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
