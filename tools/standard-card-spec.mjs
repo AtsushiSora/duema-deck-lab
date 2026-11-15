@@ -3,6 +3,11 @@
 const colors=['光','水','闇','火','自然'];
 const aliasNames=new Set(['炎のたてがみ(バーニング・ヘアー)','青銅の鎧(ブロンズ・アーム・トライブ)','無敵の咆哮(マイティ・シャウター)','紅玉草(ルビー・グラス)','ワ・タンポ－ポ・タンク','【問２】ノロン&#x2934','怪力の化身(マイティ・トーテム)']);
 const normalize=s=>s.normalize('NFKC').replace(/\s|■/g,'').replaceAll('、','');
+const teleportText=max=>'跳次元召喚'+max+'(コスト'+max+'以下でその文明がすべて自分のマナゾーンにあるクリーチャーを1体自分の超次元ゾーンからコストを支払ったものとして召喚してもよい)';
+const teleportSummon=max=>({
+ op:'Select',origin:'extra',n:1,deploy:true,execution:true,optional:true,g1104PsychicFaces:true,g1321Teleport:true,
+ filter:{creature:true,max,g1321ManaCivilizations:true},title:'跳次元召喚するクリーチャーを1体選ぶ'
+});
 const keyword=(line,name)=>new RegExp('^(?:'+name+'){1,2}(?:\\([^()]*\\))?$').test(line);
 const christinaFall=()=>({op:'Target',owner:'self',tap:true,g882TapBelowPower:true,title:'タップする自分のクリーチャーを選ぶ'});
 const formulaVictory=()=>({breaker:2,g174End:[{op:'IfSource541',defs:[{op:'IfOwn',
@@ -2475,6 +2480,40 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1322&&d?.status==='complete'){
+  const spell=d.faces[1];
+  if(d.faces.length===1&&f.typeText==='呪文'){
+   const [first,second,...rest]=f.abilityText.split('\n').map(normalize);
+   const opening={
+    'dm25ex4-056':['相手のクリーチャーを1体選び持ち主の手札に戻してもよい。',
+     {op:'Target',spell:true,to:'hand',toOwnerHand:true,optional:true}],
+    'dm25ex4-062':['相手のパワー4000以下のクリーチャーを1体選び破壊する。',
+     {op:'Target',spell:true,to:'grave',filter:{maxPower:4000,g199Power:true}}]
+   }[d.id];
+   if(opening&&first===opening[0]&&second===teleportText(2)&&!rest.length)
+    return {effect:'sixPhoto',g34Tasks:[opening[1],teleportSummon(2)]};
+  }
+  if(d.faces.length===2&&spell.typeText==='呪文'&&normalize(spell.abilityText)===teleportText(4)){
+   const smash='スマッシュ・バースト(このクリーチャーが攻撃する時このカードの呪文側をバトルゾーンに置いたままコストを支払わずに唱えてもよい)';
+   const lastBurst='メガ・ラスト・バースト(このクリーチャーが離れて手札マナゾーンまたは墓地に置かれた時このカードの呪文側をコストを支払わずに唱えてもよい)';
+   const front={
+    'dm25ex4-045':['NEOクリーチャー',
+     'NEO進化:闇火または自然のクリーチャー1体の上に置いてもよい。(カードが下にあればこれをNEO進化クリーチャーとして扱う)'+smash,
+     {neoEvolution:{any:['闇','火','自然'].map(civilization=>({civilization}))},g1318Smash:true}],
+    'dm25ex4-048':['クリーチャー',
+     'マッハファイター(このクリーチャーは出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)'+
+     'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+smash,
+     {machFighter:true,breaker:2,g1318Smash:true}],
+    'dm25ex4-039':['クリーチャー',
+     'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+lastBurst,
+     {blocker:true,megaLastBurst:true}]
+   }[d.id];
+   if(front&&f.typeText===front[0]&&normalize(f.abilityText)===front[1])
+    return {...front[2],spellFrontName:f.name,spellFace:{type:'spell',name:spell.name,cost:spell.cost,
+     civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,text:spell.abilityText,
+     effect:'sixPhoto',g34Tasks:[teleportSummon(4)]}};
+  }
+ }
  if(phase>=1321&&d?.status==='complete'&&d.faces.length===1){
   const lines=f.abilityText.split('\n').map(normalize);
   const strike='{GS}G・ストライク(このカードを自分のシールドゾーンから手札に加える時表向きにし相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)';
@@ -2499,11 +2538,8 @@ export function standardCardSpec(d,{phase=165}={}){
    'dm25ex4-065':['自分の手札を1枚マナゾーンに置いてもよい。',{op:'Select',origin:'hand',to:'mana',n:1,optional:true,g182HandMana:true}]
   }[d.id];
   if(first&&f.typeText==='呪文'&&lines.length===2&&lines[0]===first[0]&&
-   lines[1]==='跳次元召喚2(コスト2以下でその文明がすべて自分のマナゾーンにあるクリーチャーを1体自分の超次元ゾーンからコストを支払ったものとして召喚してもよい)')
-   return {effect:'sixPhoto',g34Tasks:[first[1],
-    {op:'Select',origin:'extra',n:1,deploy:true,execution:true,optional:true,g1104PsychicFaces:true,g1321Teleport:true,
-     filter:{creature:true,max:2,g1321ManaCivilizations:true},title:'跳次元召喚するクリーチャーを1体選ぶ'}
-   ]};
+   lines[1]===teleportText(2))
+   return {effect:'sixPhoto',g34Tasks:[first[1],teleportSummon(2)]};
  }
  if(phase>=1320&&d?.status==='complete'&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);

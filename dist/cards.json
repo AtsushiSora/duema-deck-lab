@@ -246009,15 +246009,271 @@
       ],
       "supportBatch": "phase-1321",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-056",
+      "name": "スパイラル・テレポートホール",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "相手のクリーチャーを１体選び、持ち主の手札に戻してもよい。\n跳次元召喚２（コスト２以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-056",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "spell": true,
+          "to": "hand",
+          "toOwnerHand": true,
+          "optional": true
+        },
+        {
+          "op": "Select",
+          "origin": "extra",
+          "n": 1,
+          "deploy": true,
+          "execution": true,
+          "optional": true,
+          "g1104PsychicFaces": true,
+          "g1321Teleport": true,
+          "filter": {
+            "creature": true,
+            "max": 2,
+            "g1321ManaCivilizations": true
+          },
+          "title": "跳次元召喚するクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1322",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-062",
+      "name": "トルネード・テレポートホール",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "相手のパワー4000以下のクリーチャーを１体選び、破壊する。\n跳次元召喚２（コスト２以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-062",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "spell": true,
+          "to": "grave",
+          "filter": {
+            "maxPower": 4000,
+            "g199Power": true
+          }
+        },
+        {
+          "op": "Select",
+          "origin": "extra",
+          "n": 1,
+          "deploy": true,
+          "execution": true,
+          "optional": true,
+          "g1104PsychicFaces": true,
+          "g1321Teleport": true,
+          "filter": {
+            "creature": true,
+            "max": 2,
+            "g1321ManaCivilizations": true
+          },
+          "title": "跳次元召喚するクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1322",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-045",
+      "name": "斬速 ザ・マンマ / レッド・テレポートホール",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "デスパペット/ソニック・コマンド/エイリアン",
+      "text": "NEO進化：闇、火または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）\n【呪文面】\n跳次元召喚４（コスト４以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-045",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "闇"
+          },
+          {
+            "civilization": "火"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "g1318Smash": true,
+      "spellFrontName": "斬速 ザ・マンマ",
+      "spellFace": {
+        "type": "spell",
+        "name": "レッド・テレポートホール",
+        "cost": 3,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "text": "跳次元召喚４（コスト４以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "n": 1,
+            "deploy": true,
+            "execution": true,
+            "optional": true,
+            "g1104PsychicFaces": true,
+            "g1321Teleport": true,
+            "filter": {
+              "creature": true,
+              "max": 4,
+              "g1321ManaCivilizations": true
+            },
+            "title": "跳次元召喚するクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-1322",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-048",
+      "name": "跳次元の豪力 / グリーン・テレポートホール",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "ジャイアント/ビーストフォーク/ハンター",
+      "text": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）\n【呪文面】\n跳次元召喚４（コスト４以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-048",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 2,
+      "g1318Smash": true,
+      "spellFrontName": "跳次元の豪力",
+      "spellFace": {
+        "type": "spell",
+        "name": "グリーン・テレポートホール",
+        "cost": 3,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "text": "跳次元召喚４（コスト４以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "n": 1,
+            "deploy": true,
+            "execution": true,
+            "optional": true,
+            "g1104PsychicFaces": true,
+            "g1321Teleport": true,
+            "filter": {
+              "creature": true,
+              "max": 4,
+              "g1321ManaCivilizations": true
+            },
+            "title": "跳次元召喚するクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-1322",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-039",
+      "name": "セブ・マゴアクマン / ブルー・テレポートホール",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "マジック・サイバーロード/エイリアン",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nメガ・ラスト・バースト（このクリーチャーが離れて、手札、マナゾーン、または墓地に置かれた時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\n跳次元召喚４（コスト４以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-039",
+      "limit": 4,
+      "blocker": true,
+      "megaLastBurst": true,
+      "spellFrontName": "セブ・マゴアクマン",
+      "spellFace": {
+        "type": "spell",
+        "name": "ブルー・テレポートホール",
+        "cost": 3,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "text": "跳次元召喚４（コスト４以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "n": 1,
+            "deploy": true,
+            "execution": true,
+            "optional": true,
+            "g1104PsychicFaces": true,
+            "g1321Teleport": true,
+            "filter": {
+              "creature": true,
+              "max": 4,
+              "g1321ManaCivilizations": true
+            },
+            "title": "跳次元召喚するクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-1322",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1321,
+    "phase": 1322,
     "checkedAt": "2026-11-15",
-    "baseCount": 7983,
+    "baseCount": 7988,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 7988,
+    "totalCount": 7993,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -268158,6 +268414,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7983,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1321,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7983,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 7988,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
