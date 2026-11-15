@@ -3030,9 +3030,10 @@ export function createSixPhotoRules(api){
   if(!hand.length){api.log(s,t.p,'look',card(t.source).name+'：相手の手札はありません',{cardId:t.source});break;}
   if(t.g1324ChooseCreature){
    api.log(s,t.p,'look',card(t.source).name+'で相手の手札を確認',{cardId:t.source});
-   const options=hand.filter(y=>faces(card(y)).some(c=>c.type==='creature'))
-    .map(y=>opt(card(y).name,y.uid,10-cost(card(y)),y.cardId));
-   choice(s,{...t,seen:hand.map(y=>y.cardId)},'相手の手札からクリーチャーを指定する',
+   const rows=hand.map(y=>({y,eligible:faces(card(y)).some(c=>c.type==='creature')}));
+   const options=rows.filter(row=>row.eligible).map(({y})=>opt(card(y).name,y.uid,10-cost(card(y)),y.cardId));
+   const g585Peek=rows.map(({y,eligible})=>({id:y.cardId,label:eligible?'選択可能':'選択不可'}));
+   choice(s,{...t,g585Peek},'相手の手札からクリーチャーを指定する',
     options.length?options:[opt('確認を終える',null,0)]);
    break;
   }

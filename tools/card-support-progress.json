@@ -1,8 +1,8 @@
 {
   "checkedAt": "2026-11-15",
-  "catalogueNames": 11827,
+  "catalogueNames": 11826,
   "supportedNames": 8001,
-  "pendingNames": 3826,
+  "pendingNames": 3825,
   "phase": 1324,
   "added": 5,
   "readyForOfficialVerification": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2145,
+    "クリーチャー": 2144,
     "NEOクリーチャー": 70,
     "呪文": 457,
     "GRクリーチャー": 159,
@@ -230,7 +230,6 @@
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 20,
     "未対応のシンカパワー": 2,
-    "既存名の別表記": 6,
     "未対応のD2フィールド能力": 39,
     "複雑な進化条件": 12,
     "未対応のスリリング・スリー効果": 2,
@@ -242,6 +241,7 @@
     "未対応の攻撃時能力": 1,
     "未対応のレインボーナス効果": 1,
     "未対応のスペース・チャージ効果": 4,
+    "既存名の別表記": 5,
     "未対応の進化V能力": 15,
     "呪文の効果がありません": 2,
     "未対応の光臨条件": 2,
@@ -322,20 +322,6 @@
       {
         "id": "dmrp22-019",
         "name": "ダイナボルト ＜カツドン.Star＞"
-      }
-    ],
-    "既存名の別表記": [
-      {
-        "id": "dmr23-067",
-        "name": "【問２】ノロン&#x2934"
-      },
-      {
-        "id": "promoy17-033",
-        "name": "ワ・タンポ－ポ・タンク"
-      },
-      {
-        "id": "dm18-138",
-        "name": "炎のたてがみ(バーニング・ヘアー)"
       }
     ],
     "未対応のD2フィールド能力": [
@@ -470,6 +456,20 @@
       {
         "id": "dmr03-016",
         "name": "鎧亜戦隊ディス・ミュージック"
+      }
+    ],
+    "既存名の別表記": [
+      {
+        "id": "promoy17-033",
+        "name": "ワ・タンポ－ポ・タンク"
+      },
+      {
+        "id": "dm18-138",
+        "name": "炎のたてがみ(バーニング・ヘアー)"
+      },
+      {
+        "id": "dm18-086",
+        "name": "怪力の化身(マイティ・トーテム)"
       }
     ],
     "未対応の進化V能力": [
@@ -530712,7 +530712,989 @@
       "publication": {
         "status": "held",
         "reason": "未検証項目を確認中。mainへのpushはGitHub PagesとNetlifyの両ワークフローを起動する設定。Netlifyを更新しない公開経路を確認するまでpushを保留。"
-      }
+      },
+      "resolvedRegistered": [
+        {
+          "cardId": "dm03-039",
+          "path": "tests/utility87-effects.test.mjs",
+          "test": "Holy Mail keeps the added shield UID private in both online projections",
+          "reason": "テスト用ルームにdecksがなく、projectRoomがroom.decks[0]の参照で例外を出す。変更前のエンジンでも同じエラーを再現。ルームを本番の生成経路か現行形式のフィクスチャで作成してから再検証する。",
+          "log": "/tmp/duema-verify-8001/first-fixes.log",
+          "result": "projectRoomを現在のルーム情報で動作させ、シールドのUIDが両方の画面で非公開であることを確認。"
+        },
+        {
+          "cardId": "dm14-013",
+          "path": "tests/utility87-effects.test.mjs",
+          "test": "Cavalt private inspection is sent only to its controller and never stored as a public hand-name log",
+          "reason": "テスト用ルームにdecksがなく、projectRoomがroom.decks[0]の参照で例外を出す。変更前のエンジンでも同じエラーを再現。ルームを本番の生成経路か現行形式のフィクスチャで作成してから再検証する。",
+          "log": "/tmp/duema-verify-8001/first-fixes.log",
+          "result": "手札の内容が操作側だけに表示され、公開ログに記録されないことを確認。"
+        },
+        {
+          "cardId": "dm22-039",
+          "path": "tests/utility87-effects.test.mjs",
+          "test": "Arc hides the former public creature when it becomes a shield in online play",
+          "reason": "テスト用ルームにdecksがなく、projectRoomがroom.decks[0]の参照で例外を出す。変更前のエンジンでも同じエラーを再現。ルームを本番の生成経路か現行形式のフィクスチャで作成してから再検証する。",
+          "log": "/tmp/duema-verify-8001/first-fixes.log",
+          "result": "表向きだったクリーチャーを裏向きシールドへ移した後、両方の画面でUIDが非公開であることを確認。"
+        },
+        {
+          "cardId": "dm24ex4-062",
+          "path": "tests/bolshack-photo.test.mjs",
+          "test": "a private Bolbady look never exposes deck identities or actions to the opposing account",
+          "reason": "テスト用ルームにdecksがなく、projectRoomがroom.decks[0]の参照で例外を出す。変更前のエンジンでも同じエラーを再現。ルームを本番の生成経路か現行形式のフィクスチャで作成してから再検証する。",
+          "log": "/tmp/duema-verify-8001/first-fixes.log",
+          "result": "山札の確認結果と選択肢が相手側の画面に公開されないことを確認。"
+        },
+        {
+          "cardId": "dm23rp3-S07",
+          "dependencyIds": [
+            "dm22rp2-S8"
+          ],
+          "test": "Flare makes the first opposing creature-card entry tapped, including ACE seeds, but not entry replacements",
+          "reason": "変更前b0507de2を一時ディレクトリへ展開して再現。同じ行でACEタマシードのtappedがtrueを期待するがfalseとなる。公式裁定と実装を照合するまで保留。",
+          "verificationLog": "/tmp/duema-phase-1232/related-decks-focused.log",
+          "baselineLog": "/tmp/duema-phase-1232/flare-baseline.log",
+          "result": "ACEタマシードの最初の登場を印刷されたクリーチャーの特性で判断し、タップで置くことを確認。",
+          "log": "/tmp/duema-verify-8001/tap-fixes.log"
+        },
+        {
+          "cardId": "dm32-054",
+          "dependencyIds": [
+            "dmrp17-033"
+          ],
+          "test": "相手の検問の守り 輝羅がいるとき、手札から出すデスマーチに墓地の闇のクリーチャーを重ねられる（QA39672）。",
+          "reason": "輝羅の初版と再録2版、封印とカードの下に重ねる裁定を公式で照合済み。双方の登場制限の実装と、指定カードを使った対戦での再現が残る。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/39672/",
+          "result": "手札からデスマーチを出す際、墓地の進化元を重ねられることを実カードで確認。",
+          "log": "/tmp/duema-verify-8001/kira.log"
+        },
+        {
+          "cardId": "dm24bd6-006",
+          "dependencyIds": [
+            "dm22rp1-8A"
+          ],
+          "test": "Shura counts an incoming creature that remains a Tamaseed (QA 42928)",
+          "reason": "変更前d893bc6eを一時ディレクトリに展開して同じテストの同じ行で再現。クリーチャーとして扱われないACEタマシードが最初に出る際、タップ状態を期待するがアンタップになる。既存の初回登場処理を公式裁定と照合して修正する必要がある。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/42928/",
+          "verificationLog": "/tmp/duema-phase-1244/regression.log",
+          "baselineLog": "/tmp/duema-phase-1244/baseline-shura.log",
+          "result": "最初のタマシード／クリーチャーはタップで出て、次のクリーチャーはアンタップで出ることを確認。",
+          "log": "/tmp/duema-verify-8001/tap-fixes.log"
+        }
+      ],
+      "remainingRegistered": [
+        {
+          "cardId": "dmr03-024",
+          "dependencyIds": [
+            "dmd03-002"
+          ],
+          "test": "相手が自身の破壊されないサイキックを選べて、選んだクリーチャーが残る（QA 36427と同型）",
+          "reason": "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
+        },
+        {
+          "cardId": "dm36-077",
+          "relatedCardIds": [
+            "dm36-101",
+            "dm38-046",
+            "dm38-051",
+            "dmr01-095",
+            "dmr01-072",
+            "dmr01-104",
+            "dmex17-134",
+            "dmc62-006",
+            "dmr01-034",
+            "dm36-109",
+            "dm36-093",
+            "dm37-039",
+            "dm36-085",
+            "dm37-049",
+            "dm37-053",
+            "dm22ex1-127",
+            "dm22ex1-112",
+            "dmpcd03-a12"
+          ],
+          "test": "超次元の各面をコスト・文明・種族で判定し、条件を満たす覚醒後の面を直接出せる",
+          "reason": "Phase 1104は今回追加した4種類の展開で両面選択を検証。登録済みの他の展開効果への適用と、選択肢の順序が保存済み対戦の再現に与える影響は未検証。展開元ごとに条件と表示をテストする。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/37744/"
+        },
+        {
+          "cardId": "dmbd13-015",
+          "dependencyIds": [
+            "dmr04-v03"
+          ],
+          "test": "奇石 ミクセルの登場監視とリュウセイ・ホールのマナ追加の順序を勝利のガイアール・カイザーで再現する（QA 38717）",
+          "reason": "勝利のガイアール・カイザーはV覚醒リンクを含む能力全体が未対応。同じコスト7の登録済みサイキック、時空の火焔ボルシャック・ドラゴンでは、6マナで登場してからマナを追加する順序を確認済み。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/38717/",
+          "path": "tests/standard1105-effects.test.mjs",
+          "log": "/tmp/duema-phase-1105/focused.log"
+        },
+        {
+          "cardId": "dm38-011",
+          "dependencyIds": [
+            "dmr01-053"
+          ],
+          "test": "ロマノフ・ホールで相手が自身のエイリアンを選び破壊した場合、ザビ・リゲルが呪文による破壊を参照する（QA 36348）",
+          "path": "tests/standard1107-effects.test.mjs",
+          "reason": "竜骨なる者ザビ・リゲルが覚醒リンクを含め対戦未対応。相手本人による選択・破壊と、その後に唱えた側が闇のサイキックを出すことは固有テストで確認済み。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36348/"
+        },
+        {
+          "cardId": "dmex12-052",
+          "dependencyIds": [
+            "dmex12-022"
+          ],
+          "test": "希望のジョー星と透明妖精リリンの登場順により、マナのスノーフェアリーの文明が変わる（QA 38608）",
+          "reason": "希望のジョー星はプレミアム殿堂かつ対戦未対応。依存カードに対応後、通常のデッキ制限を守ったままテスト用の盤面で両方の登場順を再現する。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/38608/",
+          "path": "tests/standard1114-effects.test.mjs"
+        },
+        {
+          "cardId": "dmex17-004",
+          "dependencyIds": [
+            "dmex12-022"
+          ],
+          "test": "希望のジョー星で無色になった山札のカードをアシッド・テクノが参照する（裁定変更のお知らせ31641）",
+          "reason": "希望のジョー星が対戦未対応のため、既に受けている文明変更が山札を見ている間も続く組み合わせを再現できない。依存カードへの対応後に確認する。",
+          "source": "https://dm.takaratomy.co.jp/rule/rulechange/31641/",
+          "path": "tests/standard1114-effects.test.mjs"
+        },
+        {
+          "cardId": "dm25ex2-082",
+          "test": "ドラム・トレボールが参照する「ナイト・マジック」にキング・ナイト・マジックが含まれるかを確認する",
+          "reason": "両版のドラム・トレボールは対戦対応済み。公式カード本文で異なる名称のキーワードを区別し、通常のナイト・マジックだけが軽減される実装と対戦テストを確認。キング・ナイト・マジックがナイト・マジックを兼ねるかを直接説明する公式裁定は未確認。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm30-047",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-083",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-082"
+          ],
+          "path": "tests/standard1119-effects.test.mjs",
+          "relatedCardIds": [
+            "dm30-047",
+            "dmex17-083"
+          ],
+          "log": "/tmp/duema-phase-1119/focused.log"
+        },
+        {
+          "cardId": "dm39-034",
+          "test": "バリバリ・ケドケドが陰陽の舞のマナ爆誕0の宣言を止める（QA 39622）",
+          "reason": "バリバリ・ケドケド（dmrp16-017）が未対応。若き大長老 アプルの既存マナ離脱禁止では0マナでも宣言できないことを確認済み。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-017",
+            "https://dm.takaratomy.co.jp/rule/qa/39622/"
+          ]
+        },
+        {
+          "cardId": "dm25rp2-S08",
+          "dependencyIds": [
+            "dm25rp4-OR1"
+          ],
+          "test": "公式QA 47945の深淵送りで離脱防止を無視する処理",
+          "reason": "アビスラブ=ジャシン帝が未対応。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/47945/"
+        },
+        {
+          "cardId": "dm26rp2-S001",
+          "test": "ゾロ・ア・スタートの遅延誘発と複数カードの解決順",
+          "reason": "QA 48906は手札進化（キリコ＋デドダム）、墓地進化（デスシラズ）、マナ進化（レッドランチャー）の組み合わせを実カードで確認。超次元ゾーンを一度離れたカードの追跡と、複数の遅延誘発をゾロの持ち主が並べる裁定が残る。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/rule/qa/48912/",
+            "https://dm.takaratomy.co.jp/rule/qa/48915/"
+          ]
+        },
+        {
+          "cardId": "dmr14-012",
+          "dependencyIds": [
+            "dmrp08-s10"
+          ],
+          "test": "ラドン・ベップバーンの効果でマナなしの代替召喚のみ禁止（QA 39626）",
+          "reason": "公式本文と画像を照合。相手がマナをタップせずに出す宣言を支払い前に禁止し、各種の代替召喚・効果による登場およびバトルの置換を一貫して処理できるまで保留。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/39626/"
+        },
+        {
+          "cardId": "dmr14-012",
+          "dependencyIds": [
+            "dmrp11-039"
+          ],
+          "test": "ジェイ-SHOCKERの登場禁止下で破壊の代替コストを支払えない（QA 39624）",
+          "reason": "同等の登場制限を設定した固有テストは通過。公式本文と同名再録2版を照合。超GRとGR召喚に加え、Jトルネードによる登場禁止の処理が必要なため保留。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/39624/"
+        },
+        {
+          "cardId": "dmex14-003",
+          "dependencyIds": [
+            "dmx14-031"
+          ],
+          "test": "《夜露死苦 キャロル》が手札に残る場合にサイバー・V・チューブのレインボーナスが誘発しない（QA 39440）",
+          "reason": "夜露死苦 キャロルの全ゾーンからの墓地移動を置換する能力が未対応。今回の固有テストでは、既存のエイリアン・ファーザーを使用し、捨てる処理がマナ移動に置換された場合に誘発しないことを確認済み。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/39440/",
+          "path": "tests/standard1168-effects.test.mjs",
+          "log": "/tmp/duema-phase-1168/focused.log"
+        },
+        {
+          "cardId": "dmrp03-075",
+          "dependencyIds": [
+            "dmrp12-008"
+          ],
+          "test": "帝神龍装 ティーゾリスで爆撃男のバトルゾーンでの破壊時だけ能力を2回使う（QA 33064）",
+          "reason": "帝神龍装 ティーゾリスの能力が未登録。今回、山札・手札・マナ・バトルゾーン・シールド・封印からの墓地移動で通常は1回誘発することを確認した。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/33064/",
+          "path": "tests/standard1169-effects.test.mjs",
+          "log": "/tmp/duema-phase-1169/focused.log"
+        },
+        {
+          "cardId": "dm23sd2-014",
+          "dependencyIds": [
+            "dm25ex4-SPR01"
+          ],
+          "test": "メカのデュエリストであるシュタインも7r0yで手札に戻せる（QA 48142）",
+          "reason": "公式例の沈黙の守護者、シュタインが対戦未対応。対戦データでデュエリストを戻す選択肢は未検証。離脱置換で7r0yの後半へ進む裁定は別のQA 43296。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/48142/",
+          "path": "tests/standard1172-effects.test.mjs",
+          "log": "/tmp/duema-phase-1172/focused.log"
+        },
+        {
+          "cardId": "dmd27-017",
+          "dependencyIds": [
+            "dmr19-fl01"
+          ],
+          "test": "S・トリガーで最後の封印を墓地に置いて、相手ターンにも禁断解放する（プロモ版の公式カード情報）",
+          "reason": "禁断 ～封印されしX～が対戦未対応。対戦中の自分の封印の選択・移動、およびクリーチャー破壊対象がいない時の封印移動は確認済み。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-046",
+          "path": "tests/standard1173-effects.test.mjs",
+          "log": "/tmp/duema-phase-1173/focused.log"
+        },
+        {
+          "cardId": "dmrp17-010",
+          "dependencyIds": [
+            "dmrp08-s03"
+          ],
+          "test": "唱えた灰燼と天門の儀式を墓地に置くかわりにクランヴィアの下へ置く",
+          "reason": "不夜城艦 クランヴィアが対戦未対応。呪文の行き先の置換を実カードで検証する。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/42379/",
+          "path": "tests/standard1174-effects.test.mjs",
+          "log": "/tmp/duema-phase-1174/focused.log"
+        },
+        {
+          "cardId": "dmrp21-5A",
+          "dependencyIds": [
+            "dmrp22-4A"
+          ],
+          "test": "タップして出たタマシードを下に置いてもアンタップ中のマニフェストはタップしない",
+          "reason": "マニフェスト ＜ファイナル.Star＞が対戦未対応。グーゴルが相手タマシードをタップして出す処理は実カードで確認。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/41451/",
+          "path": "tests/standard1174-effects.test.mjs",
+          "log": "/tmp/duema-phase-1174/focused.log"
+        },
+        {
+          "cardId": "dm22sd1-001",
+          "test": "QA 48115のウエポンとオーラの装備解除を実カードで確認",
+          "reason": "ウエポンとオーラの両タイプは対戦カタログ未対応。クロスギアには既存の装備解除が適用される。",
+          "dependencyIds": [],
+          "source": "https://dm.takaratomy.co.jp/rule/qa/48115/"
+        },
+        {
+          "cardId": "dmrp20-043",
+          "dependencyIds": [
+            "dmr08s-007"
+          ],
+          "test": "山札の上のカードが墓地に置かれず山札へ移る置換を適用した後も、メタルカオス・バーストの「そのカード」を参照する。",
+          "reason": "公式ルール変更31661の「そのカード」形式に基づく処理。置換を持つ悠久を統べる者 フォーエバー・プリンセスが対戦未対応で、実カード同士の組み合わせは未検証。",
+          "source": "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
+        },
+        {
+          "cardId": "promoy14-039",
+          "dependencyIds": [
+            "dmex12-021"
+          ],
+          "test": "怒流牙忍法 次元隠しの術の登場制限中も自軍を破壊でき、ステニャンコは墓地に残る（QA 38621）。",
+          "reason": "次元隠しの術が未対応のため実カードの組み合わせで未検証。別の制限（若き大長老 アプル）で墓地から移動できなくても自軍を破壊できることは検証済み。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/38621/"
+        },
+        {
+          "cardId": "dmex18-s07",
+          "dependencyIds": [
+            "dmx12b-010",
+            "dmx15-005"
+          ],
+          "test": "キクチ師範代または禁術のカルマ カレイコがいる場合、墓地送りがシャッフルに置き換わるため、相手を破壊しない（QA 40832）。",
+          "reason": "2枚の置換元が未対応で、実カード同士は未検証。実際に墓地に置いたドラゴンだけを数えること、および同じ墓地に置くカレイコの黒像では破壊できることは検証済み（QA 42931の置換の扱い）。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40832/"
+        },
+        {
+          "cardId": "dm22rp1-014",
+          "dependencyIds": [
+            "dmrp11-s04"
+          ],
+          "test": "魔導管理室 カリヤドネ / ハーミット・サークルを選んだ場合、呪文側だけを使用できる。",
+          "reason": "指定ツインパクトが未対応。別の実カードによる呪文側のみの使用と実際の解決は固有テストで通過。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/42147/"
+        },
+        {
+          "cardId": "dmex18-s10",
+          "dependencyIds": [
+            "dmbd12-g01",
+            "dmrp09-m01"
+          ],
+          "test": "ドラゴンのオーラとGRドラゴンから別々に誘発し、オーラ自身のパワーは参照しない。",
+          "reason": "指定オーラとGRクリーチャーが未対応。オーラと超GRの共通処理が必要。フォース・ドラゴンのパワーなしの分岐は実カードで通過。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40828/"
+        },
+        {
+          "cardId": "dmex18-s10",
+          "dependencyIds": [
+            "dmsd21-008"
+          ],
+          "test": "ヴィオラの黒像を進化元にした非ドラゴンのデッドゾーンのパワーは参照しない。",
+          "reason": "ヴィオラの黒像が未対応。ドラゴンへの進化後のパワーを使うQA47324は指定された実カードで通過。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/47325/"
+        },
+        {
+          "cardId": "dm24rp2-S07",
+          "dependencyIds": [
+            "dmrp03-dg01"
+          ],
+          "test": "DG ～ヒトノ造リシモノ～自身のタップ時誘発が、攻撃時にも1回だけとなる（QA45139）。",
+          "reason": "指定カードが未対応。オカルト・チューナーで同じタップ時誘発が1回であることは確認した。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/45139/"
+        },
+        {
+          "cardId": "dm16-008",
+          "dependencyIds": [
+            "dm23rp1-004"
+          ],
+          "test": "終納 カボード＝ロウのブレイク減少と未クロス時の上限が重なり、通常の1ブレイクの攻撃が0ブレイクになる（QA43069）。",
+          "reason": "指定カードが未対応。上限1と能力によるブレイクを区別するケースは確認した。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/43069/"
+        },
+        {
+          "cardId": "dmr11-010",
+          "dependencyIds": [
+            "dmrp15-009"
+          ],
+          "test": "アリスで引いたビビッドロー持ちを公開する時点と、公開したカードも山札に戻せること（QA40504）。",
+          "reason": "ビビッドローのドロー直後の宣言と代替コストが未実装。シーラ・カンフーなど対応済みの実カードで再現できるようになってから検証する。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40504/"
+        },
+        {
+          "cardId": "dmr11-010",
+          "dependencyIds": [
+            "dm22-001"
+          ],
+          "test": "相手の光神龍スペル・デル・フィンで手札公開中、山札に戻す2枚は相手にも分かり、戻す順序は非公開（QA34329）。",
+          "reason": "通常の非公開手札で選択と戻す順序が相手に公開されないことは確認済み。スペル・デル・フィンの公開手札の継続効果が未対応で、公開の範囲を実カードで再現できていない。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/34329/"
+        },
+        {
+          "cardId": "dmsd13-019",
+          "dependencyIds": [
+            "dmrp22-003"
+          ],
+          "test": "相手の《「復活」の鬼 ヨミノ晴明R》でクリーチャーを選ぶプレイヤーが置き換わるときのJトルネード。類似のマスターJトルネード裁定QA44324を参照。",
+          "reason": "ヨミノ晴明Rの選択置換が未実装。既存のJトルネードの選択、任意の不使用と移動置換は検証済み。選択者を変更する処理の実カード確認を保留。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/44324/"
+        },
+        {
+          "cardId": "dmex12-011",
+          "dependencyIds": [
+            "dmr08s-007"
+          ],
+          "test": "山札からの墓地送りがフォーエバー・プリンセスの山札戻しに置き換わっても龍世界は破壊を選べるが、戻ったカードは出せない（QA38632）。",
+          "reason": "フォーエバー・プリンセスは未登録。「どこからでも墓地へ」の置換と山札の再構成を実装してから実カードで確認する。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/38632/"
+        },
+        {
+          "cardId": "dmex12-011",
+          "dependencyIds": [
+            "dmrp11-m02"
+          ],
+          "test": "ドラゴン種族を持つオーラを墓地に置き、龍世界の効果で出す場合の付け先とGR召喚。",
+          "reason": "ドラゴンのオーラは対戦データに未登録。オーラの実カードでの登場経路は未検証。",
+          "source": "https://dm.takaratomy.co.jp/rule/rulechange/31649/"
+        },
+        {
+          "cardId": "dm17-028",
+          "dependencyIds": [
+            "dm10-s09"
+          ],
+          "test": "陽炎の守護者ブルー・メルキスで相手のシールドのスパイラル・ゲートを唱え、デンデン・パーカッションを選んでも残る。",
+          "reason": "QA35384の唱え手と所有者が異なる場合はバイオレットゾーンで検証済み。裁定にある陽炎の守護者ブルー・メルキスは未実装のため、相手のシールドのスパイラル・ゲートを唱える実物同士の再現は未検証。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/35384/"
+        },
+        {
+          "cardId": "dmrp20-009",
+          "dependencyIds": [
+            "dmex18-s03"
+          ],
+          "test": "《轟く覚醒 レッドゾーン・バスター》を超次元ゾーンから侵略で重ね、進化前のEXライフで呪文を禁止する。",
+          "reason": "QA40839の進化後の処理は、実装済みの《轟く侵略 レッドゾーン》で実際に侵略して検証済み。裁定の超次元カードが未実装のため、そのカードの組み合わせは未検証。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40839/"
+        },
+        {
+          "cardId": "dmrp20-009",
+          "dependencyIds": [
+            "dmrp11-s06"
+          ],
+          "test": "《極幻空 ザハ・エルハ》の置換でEXライフが墓地に置かれなくても、相手は呪文を唱えられない。",
+          "reason": "QA40665に合わせ、移動を試みた後は移動結果にかかわらず呪文禁止に進む。置換を行う《極幻空 ザハ・エルハ》が未実装のため、実カードによる再現は未検証。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40665/"
+        },
+        {
+          "cardId": "dmrp20-009",
+          "dependencyIds": [
+            "dmex19-025"
+          ],
+          "test": "表向きの《正義ノ裁キ》を含むシールドがブレイクされた時、裁きの紋章呪文のS・トリガーは宣言できるが唱えられず、サバキZは宣言できない。",
+          "reason": "通常の呪文および呪文のS・トリガーへの禁止は検証済み。QA44311の《正義ノ裁キ》と裁きの紋章呪文の組み合わせは前者が未実装のため未検証。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/44311/"
+        },
+        {
+          "cardId": "dmrp20-010",
+          "dependencyIds": [
+            "dmr23-ffl01"
+          ],
+          "test": "手札から選ばれた《轟く侵略 レッドゾーン》に適切な進化元がいない時、《FORBIDDEN STAR ～世界最後の日～》の封印は外れない。",
+          "reason": "QA40664の進化元がなく召喚できないことは実カードで検証済み。裁定にある禁断の封印の変化は《FORBIDDEN STAR ～世界最後の日～》が未実装のため未検証。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40664/"
+        },
+        {
+          "cardId": "dmrp20-011",
+          "dependencyIds": [
+            "dm22rp2-002"
+          ],
+          "test": "《アカシック・ヴィジョン》で山札の一番上からオリジナルフィナーレのアタック・チャンスを使う。",
+          "reason": "手札からのアタック・チャンスは検証済み。QA42506の山札からの使用許可、およびその許可を攻撃時の宣言・解決に反映する処理は《アカシック・ヴィジョン》が未実装のため未検証。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/42506/"
+        },
+        {
+          "cardId": "dmrp20-008",
+          "dependencyIds": [
+            "dmx14-031"
+          ],
+          "test": "《夜露死苦 キャロル》の置換で手札に残った時に初回の手札破棄能力は誘発せず、その後に実際に捨てたカードが初回と扱われる。",
+          "reason": "QA40666。実装済みの《魔素縫合 アモデゴラス》が手札からマナに置き換えた場合は検証済み。裁定と同じ、置換で手札に残る実カードは未実装。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40666/"
+        },
+        {
+          "cardId": "dmrp20-s02",
+          "dependencyIds": [
+            "dmex18-022"
+          ],
+          "test": "《緊縛の影バインド・シャドウ》と《アカシック・パラレル》がいる状況で、後者が《天災 デドダム》を選んだ後にマニフェストへ進化しても、手札での水文明を参照しアンタップで出る。",
+          "reason": "QA40912。マニフェストの進化自体は検証済み。《アカシック・パラレル》が未実装のため、カード名と登場時の特性をコピーする実カードとの組み合わせは未検証。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40912/"
+        },
+        {
+          "cardId": "dmrp20-004",
+          "dependencyIds": [
+            "dmrp21-002"
+          ],
+          "test": "《神ナル機カイ「亜堕無」》が攻撃終了時に上面だけ手札へ戻り、別のアンタップしたタマシードに重なった後、元の進化元がクリーチャーの場合だけ破壊される。",
+          "reason": "QA41640。元の進化元がクリーチャーかタマシードかで破壊を分ける挙動をスター進化で確認済み。《神ナル機カイ「亜堕無」》自体は未実装のため、再配置を含めた同じカード同士の再現が残る。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/41640/"
+        },
+        {
+          "cardId": "dmr20-003",
+          "dependencyIds": [
+            "dmrp12-mz1"
+          ],
+          "test": "零龍卍誕によるパワー0固定の後、破壊の置換を山札切れまで繰り返す。",
+          "reason": "永遠の無によるパワー0固定で山札切れまでの再適用を確認。零龍の初期配置と卍誕が未対応のため実カードの組み合わせは未検証。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40600/"
+        },
+        {
+          "cardId": "dmr20-003",
+          "dependencyIds": [
+            "dmr23-ffl01"
+          ],
+          "test": "水/闇の非コマンドを召喚しても、FORBIDDEN STARの封印を外せない。",
+          "reason": "VV-8の登場時の封印解除は実カードで確認。FORBIDDEN STARの対戦開始時配置と召喚時の封印処理は未対応。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/38649/"
+        },
+        {
+          "cardId": "dm22ex1-057",
+          "dependencyIds": [
+            "dm22ex2-S15"
+          ],
+          "test": "ラビットンボのEXライフシールドが離れると、別のクリーチャーであるアルキングの能力が誘発する。",
+          "reason": "アルキング未実装。ラビットンボ自身のEXライフによるシールド移動は確認。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/42662/"
+        },
+        {
+          "cardId": "dm22ex1-057",
+          "dependencyIds": [
+            "dm22ex2-S15"
+          ],
+          "test": "アルキングがラビットンボの上に進化した場合、進化元のEXライフシールドを置換に使える。",
+          "reason": "変更後の裁定をレッヴォゾーンとラビットンボで再現済み。アルキングは未実装。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/42663/"
+        },
+        {
+          "cardId": "dmr20-003",
+          "dependencyIds": [
+            "dmex15-b025"
+          ],
+          "test": "パワーが0に固定され、山札切れで敗北しない場合の強制ループと競技上の再試合。",
+          "reason": "山札とパワーが変化しない場合は自動再処理の反復を打ち切る。競技規定4.5の再試合への移行は現行の対戦終了処理では未検証。",
+          "source": "https://dm.takaratomy.co.jp/img/dm_competition_rule_20250501.pdf"
+        },
+        {
+          "cardId": "dmr21-004",
+          "dependencyIds": [
+            "dm35-004"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40956/",
+          "test": "ケンゲキオージャが相手の効果で離れる際、ドキンダムエリアの置換により封印され、勝利が誘発しない。",
+          "reason": "ドキンダムエリアの離脱置換を実カードで確認。ケンゲキオージャの実カードが未対応。"
+        },
+        {
+          "cardId": "dmr07-s05",
+          "dependencyIds": [
+            "dmsd11-005"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa/41166/",
+          "test": "Wave ウェイブで墓地から唱えた呪文が同じ墓地に戻る際、ヴィルヘルムの能力は誘発しない。",
+          "reason": "墓地からスパイラル・ゲートを唱える共通処理で再現。Wave ウェイブは召喚時の墓地詠唱と各ターン最初の呪文でのGR召喚が未対応。"
+        },
+        {
+          "cardId": "dm32-s02",
+          "dependencyIds": [
+            "dm26-006"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/35807/",
+          "test": "ダイヤモンド・ソードを唱えると、ブロッカーの登場がないターンでもアルドラが相手プレイヤーを攻撃できる。",
+          "reason": "ダイヤモンド・ソードは未対応。クリーチャーへの攻撃と区別し、相手プレイヤーへの攻撃だけに適用される制限解除を実カードで検証する。"
+        },
+        {
+          "cardId": "dm22rp2-064",
+          "dependencyIds": [
+            "dmx14-031"
+          ],
+          "test": "スケルトン・デバイスで《夜露死苦 キャロル》が手札に残った時に相手クリーチャーは選ぶが、パワーは減らない（QA 42487）。",
+          "reason": "キャロルの全ゾーンからの墓地移動置換が未対応。《魔素縫合 アモデゴラス》で破棄がマナ移動に置き換わる場合の対象選択とパワー不変は実測済み。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/42487/",
+          "path": "tests/standard1282-effects.test.mjs",
+          "log": "/tmp/duema-phase-1282/focus-final.log"
+        },
+        {
+          "cardId": "dm22rp2-S7",
+          "dependencyIds": [],
+          "test": "氷駆の妖精のシビルカウント５と悪魔世界ワルドバロムの既存マナを０にする効果が重なった場合の優先順位。",
+          "reason": "実行結果は既存マナが０、解決後にチャージしたカードが２。QA 45911は後から置かれたカードだけを扱うため、両方の効果が既存マナに適用される場合の公式根拠は未確認。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/45911/",
+          "path": "tests/standard1282-effects.test.mjs",
+          "log": "/tmp/duema-phase-1282/focus-final.log"
+        },
+        {
+          "cardId": "dm23rp4-046",
+          "dependencyIds": [
+            "dmrp11-s06"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40268/",
+          "test": "シュバルスリングが自分のシールドを墓地に置こうとし、極幻空 ザハ・エルハの置換でシールドが残った場合も、相手が自身のクリーチャーを1体選び破壊する。",
+          "reason": "移動の成否に関係なく続行する既存のafterAttemptを使用。実カードによる置換の確認にはザハ・エルハの対戦対応が必要。",
+          "log": "/tmp/duema-phase-1290/focus-final.log"
+        },
+        {
+          "cardId": "dm23rp4-027",
+          "dependencyIds": [
+            "dm23rp4-009"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa/44196/",
+          "test": "追加コストとして自分の偽りの嘘 ネメシスをタップし、アルデ&パワッチを軽減して召喚する。",
+          "reason": "対象選択から保護されたクリーチャーを軽減のためにタップできることと、手動支払いの取消・確定は固有テストで確認。ネメシスは対戦未対応のため、公式QAの実カード同士の組み合わせは未検証。",
+          "log": "/tmp/duema-phase-1293/focus-final.log"
+        },
+        {
+          "cardId": "dmex14-021",
+          "dependencyIds": [
+            "dmrp11-s06"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40456/",
+          "test": "表向きの凄惨なる牙 パラノーマルを快速のハッチャキで出そうとした時、ザハ・エルハのシールド維持とシールド・ゴーの墓地行きが競合する場合の置換選択を確認する。",
+          "reason": "シールド・ゴー単独で墓地に行くケースは実カードで確認。ザハ・エルハは対戦未対応で、QA 40456の競合原則を快速のハッチャキに適用する組み合わせは未検証。",
+          "log": "/tmp/duema-phase-1294/focus-verified.log"
+        },
+        {
+          "cardId": "dm23rp1-018",
+          "dependencyIds": [
+            "dmx12b-010",
+            "dmx15-005"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa/43060/",
+          "test": "グ:ルナグーシが墓地0枚から5枚を置こうとする時、キクチ師範代の置換で非公開のまま山札をシャッフルする。",
+          "reason": "通常の墓地補充と、絶望と反魂と滅殺の決断で2体が墓地から出るQA 43059は実カードで検証済み。山札の移動をシャッフルに置き換えるキクチ師範代と禁術のカルマ カレイコが未対応で、QA 43060の構成は未検証。",
+          "path": "tests/standard1300-effects.test.mjs",
+          "log": "/tmp/duema-phase-1300/focus-verified.log"
+        },
+        {
+          "cardId": "dmx21-021",
+          "dependencyIds": [
+            "dmc40-002",
+            "dmc40-006",
+            "dmc40-008"
+          ],
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-021",
+          "relatedSources": [
+            "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+          ],
+          "test": "《龍神ヘヴィ》《龍神メタル》《破壊神デス》そのものを手札に入れて、ゴッド・オブ・ゼットの候補となることと、同時登場時のリンク処理を確認する。",
+          "reason": "同じ名前の一部を持つ極限龍神ヘヴィと極限龍神メタルで0～2体の登場と選択範囲を検証済み。呪文の能力文に載る元の3種は未登録のため、その実カードを使う構成は未検証。",
+          "path": "tests/standard1302-effects.test.mjs",
+          "log": "/tmp/duema-phase-1302/focus-final.log"
+        },
+        {
+          "cardId": "dmsd18-001",
+          "dependencyIds": [
+            "dmrp15-s10",
+            "dmrp22-003"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa/39545/",
+          "test": "邪風風邪の解決時に、ライジン天の置換で呪文を唱えた側に選択者が移っても、非多色呪文では相手のバロディアスを選べないことを確認する。",
+          "reason": "デーモン・ハンドによる相手からの非多色呪文の選択不可と、オラクル・ジュエルによる多色呪文での選択可を実測済み。ライジン天と類似例のヨミノ晴明Rは未登録。",
+          "path": "tests/standard1303-effects.test.mjs",
+          "log": "/tmp/duema-phase-1303/focus-final-commit.log"
+        },
+        {
+          "cardId": "dm28-002",
+          "dependencyIds": [
+            "dmr16s-007"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40375/",
+          "test": "真・龍覇 ヘブンズロージアが与えるシールド・セイバーで、シールド・フォース中のパーフェクト・ギャラクシーが破壊されることを確認する。",
+          "reason": "守護すぎる守護 鋼鉄がシールド・セイバーを付与する経路で同じ置換を実測済み。真・龍覇 ヘブンズロージアは未登録。",
+          "path": "tests/standard1304-effects.test.mjs",
+          "log": "/tmp/duema-phase-1304/focus-final.log"
+        },
+        {
+          "cardId": "dm28-002",
+          "dependencyIds": [
+            "dmex18-022",
+            "dm25rp4-002"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40898/",
+          "test": "アカシック・パラレルで相手のパーフェクト・ギャラクシーをコピーした後、シールド・フォースの参照を引き継がないことを確認する。",
+          "reason": "アカシック・パラレルと類似例の謎の存在 メモッタが未登録。",
+          "path": "tests/standard1304-effects.test.mjs",
+          "log": "/tmp/duema-phase-1304/focus-final.log"
+        },
+        {
+          "cardId": "dm28-002",
+          "dependencyIds": [
+            "dmx21-026"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/37768/",
+          "test": "オールデリートによりシールドとクリーチャーがまとめて山札に戻る時、シールド・フォースが離脱前の状態を参照することを実カードで確認する。",
+          "reason": "通常の離脱置換とシールド離脱後の解除は実測済み。オールデリートは未登録。",
+          "path": "tests/standard1304-effects.test.mjs",
+          "log": "/tmp/duema-phase-1304/focus-final.log"
+        },
+        {
+          "cardId": "dm28-002",
+          "dependencyIds": [
+            "dm32-s05"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/35832/",
+          "test": "神羅スカル・ムーンの破壊の置換でギャラクシーを破壊し、二重に置換しないことを確認する。",
+          "reason": "シールド・セイバーで同様に二重置換しないことは実測済み。神羅スカル・ムーンは未登録。",
+          "path": "tests/standard1304-effects.test.mjs",
+          "log": "/tmp/duema-phase-1304/focus-final.log"
+        },
+        {
+          "cardId": "dm28-002",
+          "dependencyIds": [
+            "dmrp15-s10",
+            "dmrp22-003"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa/34254/",
+          "test": "ライジン天の選択者の置換とギャラクシーの離脱置換を実カードで再現する。",
+          "reason": "ギャラクシーの単独の離脱置換は実測済み。ライジン天と類似例のヨミノ晴明Rは未登録。",
+          "path": "tests/standard1304-effects.test.mjs",
+          "log": "/tmp/duema-phase-1304/focus-final.log"
+        },
+        {
+          "cardId": "dm25sp2-012",
+          "dependencyIds": [
+            "dm26ex3-038"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa/49222/",
+          "test": "行くよー！アオハル、ハイチーズ！で帝王坂∞の攻撃時能力を使う時、呪文によって選ばれないガル・ラガンザークを対象にできず、選べる別のクリーチャーにはパワー−∞を適用する。",
+          "reason": "帝王坂∞自身の攻撃ではガル・ラガンザークを選べることをPhase 1305で実測済み。QA 49222で発生源が呪文になる場合の選択不可を確認し、記録の期待結果を訂正。呪文が未登録のため組み合わせの対戦は未検証。",
+          "path": "tests/standard1305-effects.test.mjs",
+          "log": "/tmp/duema-phase-1305/focus-verified.log"
+        },
+        {
+          "cardId": "dmex18-013",
+          "dependencyIds": [
+            "dmrp16-s01"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40941/",
+          "test": "ジークシュトルツが相手の場にいる状態で、自分の表向きのシールドカードが手札に加わる時に、ネルザから得たG・ストライクを使用できることを確認する。",
+          "reason": "ネルザのG・ストライク付与とシールドの手札追加は実測済み。ジークシュトルツは未登録のため、表向きのシールドとS・トリガー禁止を含む組み合わせの再現が未完了。",
+          "path": "tests/standard1308-effects.test.mjs",
+          "log": "/tmp/duema-phase-1308/focus-final.log"
+        },
+        {
+          "cardId": "dmr01-004",
+          "dependencyIds": [
+            "dm22-001"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36354/",
+          "test": "スペル・デル・フィンで手札が表向きになる場合にも、モヒートの選択時は並びを隠した裏向きの手札から相手が選ぶことを確認する。",
+          "reason": "モヒートの番号のみの選択肢、オンライン対戦相手の手札非開示、JSON復元後の選択は実測済み。スペル・デル・フィンは未登録のため、継続的な手札公開との組み合わせは未確認。",
+          "path": "tests/standard1309-effects.test.mjs",
+          "log": "/tmp/duema-phase-1309/focus-final.log"
+        }
+      ],
+      "printResults": {
+        "status": "verified",
+        "groups": [
+          "dm23rp2-065",
+          "dmbd10-017"
+        ],
+        "officialPrints": 11,
+        "newAliases": 9,
+        "evidence": [
+          {
+            "id": "dm23rp2-065",
+            "canonicalId": "dm23rp2-065",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-065",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-065.jpg",
+            "pageSha256": "8cbd6ab279cd6f005996e3cc8aed709ee8243664b791b620c1e21d98ea35f2df",
+            "imageSha256": "b16d467204c9bf64e35eaedfd282e082697d57b1a76b39387be886c6425cc63f"
+          },
+          {
+            "id": "dm23rp2x-065",
+            "canonicalId": "dm23rp2-065",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-065",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-065.jpg",
+            "pageSha256": "c7f9ff9a1ca153da026494c2d2980ab57c5db8e8d3b86c4c8b658456ccf12d76",
+            "imageSha256": "2141d623b53af6b2f7d843a6f59c8f5685f08294ebcb944f6798ce64d46cbcf5"
+          },
+          {
+            "id": "dm23rp2-18A",
+            "canonicalId": "dm23rp2-065",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-18A",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-18A.jpg",
+            "pageSha256": "ad51a03d896ca44a84746b6136f6df0972deed070806a943e8c44ca6d3ce09fd",
+            "imageSha256": "46936fa3a5a467650b822e53e745bc478eff2c1217bb05ac7c7d454b12862f04"
+          },
+          {
+            "id": "dm23rp2x-18A",
+            "canonicalId": "dm23rp2-065",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-18A",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-18A.jpg",
+            "pageSha256": "232e76c22a4d71628ba48c57f0c929a493d8746dd4660d2ed0b7a83355990987",
+            "imageSha256": "46936fa3a5a467650b822e53e745bc478eff2c1217bb05ac7c7d454b12862f04"
+          },
+          {
+            "id": "dm23rp2-20B",
+            "canonicalId": "dm23rp2-065",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-20B",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-20B.jpg",
+            "pageSha256": "247ada4a4a42b919ace6a274171e9e32e1fd1abd9dad1af14f0de0d40d4e3e53",
+            "imageSha256": "1dc2109bd804c7933596043984950851e0f42663eab0cc27f4a59c0278228b30"
+          },
+          {
+            "id": "dm23rp2x-20B",
+            "canonicalId": "dm23rp2-065",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-20B",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-20B.jpg",
+            "pageSha256": "88ae743b183bf9c63acb2f8f8b0295228d2e8063715d6370ae8de59ceaf51019",
+            "imageSha256": "1dc2109bd804c7933596043984950851e0f42663eab0cc27f4a59c0278228b30"
+          },
+          {
+            "id": "dm24ex1-075",
+            "canonicalId": "dm23rp2-065",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-075",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex1-075.jpg",
+            "pageSha256": "5dd0bc40507a6b746f2218cac9c55ad0c859c75358b2b253c18df9e918e0d8cb",
+            "imageSha256": "7269f0a3ffeea63192acbc8ad7782ec521e19fd693b72da73bd9a6ca8de96ff6"
+          },
+          {
+            "id": "dmbd10-017",
+            "canonicalId": "dmbd10-017",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd10-017",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd10-017.jpg",
+            "pageSha256": "2fb4c83f8a6398ba1d05a49799ade46ac8307d1dc2d1b57327730d6e571e4311",
+            "imageSha256": "7683c9b8feacdc54dbd524bc15c68f15fd6a14c89f636ed0d6c1c346516ba409"
+          },
+          {
+            "id": "dmr23-067",
+            "canonicalId": "dmbd10-017",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-067",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-067.jpg",
+            "pageSha256": "436c1fd434a76a3291894f0773c6763597cc4b33737b892bc7ed8109eebc77ec",
+            "imageSha256": "cec50ada28401e37198b13fe2469cae6aec14011ea562f542914c3526929eab3"
+          },
+          {
+            "id": "dmbd22-025",
+            "canonicalId": "dmbd10-017",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd22-025",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd22-025.jpg",
+            "pageSha256": "5192735f2f085e8d52b51be2328376c1d4d4b8eb7b5f495765b0ada8daaf1902",
+            "imageSha256": "516f5683c7420ee8e23393d52ea4c29aae650a87e5c7d8bb20085602093179d3"
+          },
+          {
+            "id": "dm26ex5-039",
+            "canonicalId": "dmbd10-017",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-039",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-039.jpg",
+            "pageSha256": "a77f77f231feb3b3a0e188d352a7b8315d2d968da8565a6916123c9bd2acfbb3",
+            "imageSha256": "5aacd3edad9ce25f61eda719f06740467dd7cbc0c94342bc466e648241aeb821"
+          }
+        ],
+        "testLog": "/tmp/duema-verify-8001/reprint-tests.log",
+        "notes": "既存のカード行と詳細行を保持。公式HTMLの二重エスケープを実カード画像の矢印に対応付け、初版の多色マナのタップと2ドロー・2捨てを対戦で確認。カタログの同名重複1件が解消し、対戦対応数は8,001種類。"
+      },
+      "remainingPrints": [
+        {
+          "id": "dm22sd1-001",
+          "name": "深淵の支配者 ジャシン",
+          "reason": "スターターのシークレットSPゴールドレアは公式商品ページに掲載。通常版とプロモ版は個別ページと画像を照合済み。ゴールドレアの個別IDは未特定。",
+          "source": "https://dm.takaratomy.co.jp/product/dm22sd1/",
+          "latestResult": "候補IDの公式個別ページにカード情報と画像が掲載されていなかった。通常版と区別できる資料を引き続き確認する。",
+          "checkedCandidateIds": [
+            "dm22sd1-SP001",
+            "dm22sd1-001S",
+            "dm22sd1-1S"
+          ]
+        },
+        {
+          "id": "dm22rp1-2B",
+          "name": "ドラン・ゴルギーニ",
+          "reason": "金箔2Sの個別公式ページと公式画像を特定できなかった。2BとOR2の個別ページと画像は照合済み。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-2B",
+          "latestResult": "候補IDの公式個別ページにカード情報と画像が掲載されていなかった。通常版と区別できる資料を引き続き確認する。",
+          "checkedCandidateIds": [
+            "dm22rp1-2S"
+          ]
+        },
+        {
+          "id": "dm22rp2-1S",
+          "canonicalId": "dm22rp2-OR1",
+          "name": "轟炎の竜皇 ボルシャック・カイザー",
+          "printedNumber": "1S/2",
+          "reason": "商品案内はシークレットSPゴールドレアに言及するが、公式カード検索ではこの版の個別ページと画像を取得できず、カード番号・全文・正規IDとの対応を公式に照合できなかった。idは商品コードと印刷番号から記録した照合候補。確証が得られるまで別IDの登録を保留。",
+          "source": "https://dm.takaratomy.co.jp/product/dm22rp2/",
+          "researchSource": "https://torekakaku.com/dm/card/?cardid=216604",
+          "latestResult": "候補IDの公式個別ページにカード情報と画像が掲載されていなかった。通常版と区別できる資料を引き続き確認する。",
+          "checkedCandidateIds": [
+            "dm22rp2-1S"
+          ]
+        },
+        {
+          "id": "dm22rp2x-1S",
+          "canonicalId": "dm22rp2-OR1",
+          "name": "轟炎の竜皇 ボルシャック・カイザー",
+          "printedNumber": "1S/2",
+          "reason": "商品案内はシークレットSPゴールドレアに言及するが、公式カード検索ではこの版の個別ページと画像を取得できず、カード番号・全文・正規IDとの対応を公式に照合できなかった。idは商品コードと印刷番号から記録した照合候補。確証が得られるまで別IDの登録を保留。",
+          "source": "https://dm.takaratomy.co.jp/product/dm22rp2x/",
+          "researchSource": "https://torekakaku.com/dm/card/?cardid=216604",
+          "latestResult": "候補IDの公式個別ページにカード情報と画像が掲載されていなかった。通常版と区別できる資料を引き続き確認する。",
+          "checkedCandidateIds": [
+            "dm22rp2x-1S"
+          ]
+        }
+      ],
+      "resolvedRegressions": [
+        {
+          "cardIds": [
+            "dmrp16-s05",
+            "dm22ex1-008"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa/39117/",
+          "test": "tests/mado-effects.test.mjsのギャイアと「無月」の頂 ＄スザーク＄の登場置換",
+          "reason": "バトルゾーンの残数が期待0に対して1。変更前の1a6bcbb8をgit archiveで復元し、対象テスト1件で同じ失敗を再現。裁定のメラヴォルガルと既存回帰で使う＄スザーク＄の置換条件と進入経路を調べる。 今回も開始時の2619967eで同じ失敗を単独再現。",
+          "logs": [
+            "/tmp/duema-phase-1276/entry.log",
+            "/tmp/duema-phase-1275/baseline-mado.log",
+            "/tmp/duema-phase-1304/verified-mado-effects.test.log",
+            "/tmp/duema-phase-1304/baseline-gaiha.log"
+          ],
+          "resultLog": "/tmp/duema-verify-8001/second-fixes.log",
+          "result": "QA39117にあるメラヴォルガルと素材4枚の移動を実カードで再現。QA42535に沿って異なる文章で始まるスザークが出られることも確認。"
+        },
+        {
+          "test": "tests/standard319-effects.test.mjs の旧スキャナー期待値",
+          "cardIds": [
+            "dmr07-001"
+          ],
+          "reason": "既に対応済みの真実の名 ワクワク・チャップルンを依存保留に期待して失敗。変更前の094cd06dをgit archiveで復元し、同じ1件の失敗を再現。",
+          "logs": [
+            "/tmp/duema-phase-1300/regression-grave-confirmed.log",
+            "/tmp/duema-phase-1300/baseline-scanner.log"
+          ],
+          "resultLog": "/tmp/duema-verify-8001/second-fixes.log",
+          "result": "依存するウィング・スパークが未登録のフィクスチャで依存保留を確認。"
+        },
+        {
+          "test": "tests/standard939-effects.test.mjs のアルゴルスのオンライン公開範囲",
+          "cardIds": [
+            "dm23-026"
+          ],
+          "reason": "オンラインのテスト用ルームにdecksがなくprojectRoomで例外。変更前のe91feff7をgit archiveで復元し、該当1件で同じ例外を再現。 今回も開始時の2619967eで同じ失敗を単独再現。",
+          "logs": [
+            "/tmp/duema-phase-1301/regression-rules.log",
+            "/tmp/duema-phase-1301/baseline-argolus.log",
+            "/tmp/duema-phase-1304/regression-battle.log",
+            "/tmp/duema-phase-1304/baseline-argolus.log"
+          ],
+          "resultLog": "/tmp/duema-verify-8001/changes-focus.log",
+          "result": "オンライン投影で省略されていたデッキ情報を安全に扱い、確認した山札が操作側だけに表示されることを確認。"
+        },
+        {
+          "test": "tests/revised-three-photo.test.mjs の収録数1796の固定アサーション",
+          "cardIds": [],
+          "reason": "変更前のd42a08ccで7,971と1,796の不一致を単独再現。変更後は7,975と1,796の不一致。固定件数のアサーションで停止する3デッキについて、各40枚・カード対応率・デッキの妥当性・画像の位置を個別に再検証して通過。",
+          "logs": [
+            "/tmp/duema-phase-1318/regression.log",
+            "/tmp/duema-phase-1318/baseline-revised.log",
+            "/tmp/duema-phase-1318/revised-decks.log"
+          ],
+          "resultLog": "/tmp/duema-verify-8001/changes-focus.log",
+          "result": "3デッキ各40枚の合法性、対応率と画像位置を現在のデータで確認。"
+        }
+      ],
+      "countsAtRegressions": {
+        "supported": 8001,
+        "pending": 3825,
+        "catalogue": 11826
+      },
+      "focusedRuns": [
+        {
+          "summary": "対象回帰224件",
+          "log": "/tmp/duema-verify-8001/changes-focus.log"
+        },
+        {
+          "summary": "ACEタマシードと登場時タップ4件",
+          "log": "/tmp/duema-verify-8001/tap-fixes.log"
+        },
+        {
+          "summary": "再録IDと通常の対戦2件",
+          "log": "/tmp/duema-verify-8001/reprint-tests.log"
+        },
+        {
+          "summary": "npm run check",
+          "log": "/tmp/duema-verify-8001/changes-check.log"
+        }
+      ],
+      "onlineCocoa": {
+        "status": "fixed",
+        "log": "/tmp/duema-verify-8001/changes-focus.log",
+        "result": "手札の全カードを選択中のプレイヤーだけに送る。選択後と対戦相手へのデータには手札の一覧を含めない。"
+      },
+      "compatibilityBlockers": [
+        {
+          "area": "超GRとゲーム開始時のカード",
+          "files": [
+            "dist/deck-format.js",
+            "README.md"
+          ],
+          "result": "現行アドバンスのデッキ検証は超GRゾーンと開始カードを拒否する。GR召喚、禁断・零龍、オーラとGRの実カードを使う検証には、デッキ・対戦状態・対戦開始経路の互換性を含めた対応が必要。"
+        }
+      ]
     }
   },
   "registrationStop": {

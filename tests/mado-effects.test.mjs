@@ -50,7 +50,27 @@ test('No04 production worker completes260 matches across all26 ready opponents',
 
 test('NewWorld replacement draw still permits Shako loss replacement (QA44088)',()=>{const s=setup();give(s,0,'battle',[W,data.cards.find(c=>c.shako).id]);give(s,0,'deck',[N]);cast(s,Z);pick(s,s.decision.choices[0].value);assert.equal(s.winner,0);assert.match(s.reason,/シャコガイル/);});
 test('Bockdu plus is granted only on a shield-trigger execution with two broken shields',()=>{for(const n of[1,2]){const s=setup();give(s,0,'battle',[N]);give(s,1,'shields',[C,N,N,N,N]);s.players[1].brokenThisTurn=n-1;s.phase='attack';act(s,'attack',a=>a.target==='player'&&a.shield===s.players[1].shields[0].uid);act(s,'noBlock');act(s,'useTrigger');assert.equal(s.decision.task.op,n===2?'elementBounce':'attackBlock');if(n===2)pick(s,s.players[0].battle[0].uid);else pick(s,s.players[0].battle[0].uid);drain(s);assert.equal(s.players[0].battle.length,n===2?0:1);}const s=setup();give(s,1,'battle',[N]);const x=inst(C);x.triggerPlus=true;s.players[0].hand.push(x);act(s,'play');assert.equal(s.decision.task.op,'attackBlock');});
-test('Gaiha replacement moves all Mugen bases and does not summon Dollar entry abilities (QA39117)',()=>{const s=setup();give(s,1,'battle',[data.cards.find(c=>c.gaiaEntry).id]);completeMaterials(s,6);give(s,0,'hand',[D]);s.phase='attack';act(s,'endTurn');pick(s,true);for(let i=0;i<6;i++)pick(s,s.decision.choices[0].value);drain(s);assert.equal(s.players[0].battle.length,0);assert.equal(s.players[0].mana.filter(x=>[D,Z].includes(x.cardId)).length,7);});
+test('Gaiha moves Mela Volgar and all four Gate bases to mana before any break (QA39117)',()=>{
+ const s=setup(),MELA='dmrp07-006',TOOL='dmrp07-076';
+ give(s,1,'battle',['dmrp16-s05']);
+ give(s,0,'battle',[TOOL]);give(s,0,'grave',[TOOL,TOOL]);give(s,0,'hand',[MELA]);
+ const shields=s.players.map(p=>p.shields.length);
+ cast(s,TOOL);assert.equal(s.decision.task.op,'g4_Declare');pick(s,true);
+ if(s.decision.type==='effectOrder')order(s,'g4_Gate');
+ for(let i=0;i<4;i++)pick(s,s.decision.choices[0].value);
+ drain(s);
+ assert.ok(!s.players[0].battle.some(x=>x.cardId===MELA));
+ assert.equal(s.players[0].mana.filter(x=>[MELA,TOOL].includes(x.cardId)).length,5);
+ assert.deepEqual(s.players.map(p=>p.shields.length),shields);
+});
+test('Gaiha does not replace Dollar whose trigger begins with a summon condition (QA42535)',()=>{
+ const s=setup();
+ give(s,1,'battle',['dmrp16-s05']);completeMaterials(s,6);give(s,0,'hand',[D]);
+ s.phase='attack';act(s,'endTurn');pick(s,true);
+ for(let i=0;i<6;i++)pick(s,s.decision.choices[0].value);
+ assert.ok(s.players[0].battle.some(x=>x.cardId===D));
+ assert.ok(!s.players[0].mana.some(x=>[D,Z].includes(x.cardId)));
+});
 test('NewWorld use resets after the field leaves and is played again',()=>{const s=setup(),field=readyField(s);field.g4WorldUsed=true;cast(s,A);pick(s,v=>v?.uid===field.uid);s.phase='main';act(s,'play',a=>a.uid===field.uid);assert.ok(!s.players[0].battle[0].g4WorldUsed);});
 test('all-seeing restriction is ignored while Genmu is present and resumes after it leaves',()=>{const s=setup();give(s,1,'battle',[N,N]);give(s,0,'hand',[Y]);act(s,'play',a=>a.face===1);give(s,0,'battle',[GEN]);s.active=1;s.phase='attack';act(s,'attack',a=>a.uid===s.players[1].battle[0].uid&&a.target==='player');act(s,'noBlock');assert.ok(e.getLegalActions(s).some(a=>a.kind==='attack'));give(s,0,'battle',[]);assert.ok(!e.getLegalActions(s).some(a=>a.kind==='attack'));});
 test('NewWorld draw cannot apply a second draw replacement from BigBang (QA42954)',()=>{const s=setup();give(s,0,'battle',[W,data.cards.find(c=>c.bigBang).id]);give(s,0,'deck',[]);give(s,0,'grave',[N]);cast(s,Z);pick(s,s.decision.choices[0].value);assert.equal(s.decision,null);assert.equal(s.players[0].battle.length,2);assert.equal(s.players[0].grave.length,1);assert.equal(s.winner,null);});

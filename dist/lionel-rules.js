@@ -66,11 +66,10 @@ export function createLionelRules(api){
  decorate(s,p,x,c){if(c.aqCivil&&allTypes(s,p).filter(y=>colors(card(y)).includes('水')).length>=3)c={...c,blocker:true,death:'hand'};if(x.g15Blocker?.length)c={...c,blocker:true};return c;},
  allowedSpell(s,p,c){return colors(c).includes('光')||!creatures(s,1-p).some(x=>effective(x,s).arcTeam);},
  tapEntry(s,p){
-  const entered=s.players[p].enteredThisTurn||0;
-  if(entered)return false;
+  if(s.g7Entries?.[p]||s.players[p].enteredThisTurn)return false;
   return creatures(s,1-p).some(x=>{
    const c=effective(x,s);
-   return c.arcTeam||!s.g7Entries?.[p]&&c.g1149FirstOpponentEntryTapped;
+   return c.arcTeam||c.g1149FirstOpponentEntryTapped;
   });
  },
  handMana(s,p,x){if(card(x).runeUntap)api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g15_ManaUntap',p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0})});},

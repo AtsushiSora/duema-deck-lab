@@ -165,13 +165,27 @@ test('Cocoa resists bounce but can be destroyed',()=>{
  assert.ok(has(s,0,'grave',cocoa));
 });
 
+test('Cocoa sends the complete inspected hand only to the player making the selection',async()=>{
+ const {projectRoom}=await import('../server/duel-core.mjs');
+ const s=field();add(s,0,'battle',COCOA);
+ const creature=add(s,1,'hand',BASIC),spell=add(s,1,'hand',JOE);
+ s.phase='attack';act(s,'endTurn');
+ const room={game:s,phase:'playing',hostUid:'a',guestUid:'b',profiles:[{name:'A'},{name:'B'}],
+  decks:PRESETS.slice(0,2),events:[],expiresAt:10000};
+ assert.deepEqual(projectRoom(room,{uid:'a'},1).game.inspectedCards.map(x=>x.id),[creature.cardId,spell.cardId]);
+ assert.equal(projectRoom(room,{uid:'b'},1).game.inspectedCards,undefined);
+ pick(s,creature.uid);
+ assert.equal(projectRoom(room,{uid:'a'},1).game.inspectedCards,undefined);
+ assert.equal(projectRoom(room,{uid:'b'},1).game.inspectedCards,undefined);
+});
+
 for(const yes of [true,false])test('Cocoa’s controller selects an opposing hand creature and its owner decides '+yes,()=>{
  const s=field(),cocoa=add(s,0,'battle',COCOA),choice=add(s,1,'hand',BASIC);
  const other=add(s,1,'hand',WATER),spell=add(s,1,'hand',JOE);
  s.phase='attack';act(s,'endTurn');
  assert.equal(s.decision.player,0);
  assert.deepEqual(choices(s),[choice.uid,other.uid]);
- assert.ok(s.decision.task.seen.includes(spell.cardId));
+ assert.ok(s.decision.task.g585Peek.some(x=>x.id===spell.cardId&&x.label==='選択不可'));
  pick(s,choice.uid);
  assert.equal(s.decision.player,1);
  assert.deepEqual(choices(s),[choice.uid,null]);

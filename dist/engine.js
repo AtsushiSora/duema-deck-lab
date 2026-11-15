@@ -2135,8 +2135,10 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  if(c.g728CrossOnEntry&&extra.six.crossEntry728(s,p,inst,baseUid,entryOptions))return;
  const placementTapped=opponentTapsPlacement1038(s,p);
  const asCreature=wouldEnterCreature(s,p,c);
- const typedTap=placementTapped||asCreature&&(typedTapOnEntry720(s,p,c)||c.speedAttacker&&
-  s.players.some(owner=>owner.battle.some(x=>card(x).g847SpeedTap&&isCreature(s,x)&&!abilitiesIgnored(s,x))));
+ // Entry state can refer to the printed creature type before an ACE becomes a Tamaseed (QA 41990, 42928).
+ const typedTap=placementTapped||typedTapOnEntry720(s,p,c)||asCreature&&c.speedAttacker&&
+  s.players.some(owner=>owner.battle.some(x=>card(x).g847SpeedTap&&isCreature(s,x)&&!abilitiesIgnored(s,x)));
+ const firstCreatureTap=c.type==='creature'&&extra.tapEntry(s,p);
  const baseIds=Array.isArray(baseUid)?baseUid:[baseUid];
  const baseWasTamaseed=c.g1052TamaseedEntry&&s.players[p].battle.some(x=>
   baseIds.includes(x.uid)&&extra.six.matches(s,p,x,{g295Tamaseed:true}));
@@ -2144,7 +2146,7 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
   .filter(x=>baseIds.includes(x.uid)&&isCreature(s,x))
   .map(x=>[x.uid,String(effectiveCard(x,s,true).race||'')])):null;
  if(c.g432EntryTap&&extra.six.optionalEntry432(s,p,inst,baseUid,entryOptions,!!(entryOptions.tapped||typedTap||extra.tapEntry(s,p)||speedTapOnEntry(s,p,c,isEvolution(inst)||!!(c.neoEvolution&&baseUid))||s.players[1-p].battle.some(x=>effectiveCard(x,s).opponentTapEntry||effectiveCard(x,s).g35Venom)||s.players[p].battle.some(x=>(Array.isArray(baseUid)?baseUid.includes(x.uid):x.uid===baseUid)&&x.tapped))))return;
- if(entryOptions.mugenBases)attachMugenBases(s,p,inst,entryOptions.mugenBases);delete inst.g22ManaAllowed;delete inst.originalEntryTurn;inst.entered=s.turn;inst.tapped=asCreature&&(entryOptions.tapped||typedTap||c.g295EnterTapped&&!abilitiesIgnored(s,inst)||c.g32Complex&&!abilitiesIgnored(s,inst)||c.g26Zaze&&!abilitiesIgnored(s,inst)||extra.tapEntry(s,p)||s.players[1-p].battle.some(x=>effectiveCard(x,s).opponentTapEntry||effectiveCard(x,s).g35Venom));inst.incarnation=(inst.incarnation||0)+1;
+ if(entryOptions.mugenBases)attachMugenBases(s,p,inst,entryOptions.mugenBases);delete inst.g22ManaAllowed;delete inst.originalEntryTurn;inst.entered=s.turn;inst.tapped=!!(entryOptions.tapped||typedTap||firstCreatureTap||asCreature&&(c.g295EnterTapped&&!abilitiesIgnored(s,inst)||c.g32Complex&&!abilitiesIgnored(s,inst)||c.g26Zaze&&!abilitiesIgnored(s,inst)||s.players[1-p].battle.some(x=>effectiveCard(x,s).opponentTapEntry||effectiveCard(x,s).g35Venom)));inst.incarnation=(inst.incarnation||0)+1;
  if(entryOptions.origin==='grave')inst.g1236GraveArrival=s.turn;
  if(entryOptions.g31Force||extra.phoenix.complex(s,p,c,entryOptions))extra.phoenix.attach(s,p,inst,baseUid,entryOptions);
  else if(c.g831SingleDeckEvolution){

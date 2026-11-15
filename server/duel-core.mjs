@@ -25,7 +25,7 @@ function publicCard(s,x,owner,viewer){if(x.sealOf)return {uid:x.uid,hidden:true,
 export function projectRoom(room,user,now=Date.now()){
  const seat=indexOf(room,user),expired=now>=room.expiresAt&&['waiting','playing'].includes(room.phase);
  if(seat<0&&room.phase!=='waiting')fail('room/forbidden','このルームには参加できません。',403);
- const v={schemaVersion:PROTOCOL,engineVersion:room.engineVersion,code:room.code,phase:expired?'expired':room.phase,revision:room.revision,expiresAt:room.expiresAt,updatedAt:room.updatedAt,seat,...(room.decks[0]?.format==='advance'?{format:'advance'}:{}),players:room.profiles.map(p=>p?{name:p.name}:null),canJoin:seat<0&&room.phase==='waiting'&&!expired,events:room.events.slice(-40)};
+ const v={schemaVersion:PROTOCOL,engineVersion:room.engineVersion,code:room.code,phase:expired?'expired':room.phase,revision:room.revision,expiresAt:room.expiresAt,updatedAt:room.updatedAt,seat,...(room.decks?.[0]?.format==='advance'?{format:'advance'}:{}),players:room.profiles.map(p=>p?{name:p.name}:null),canJoin:seat<0&&room.phase==='waiting'&&!expired,events:room.events.slice(-40)};
  if(seat<0||!room.game)return v;
  const s=room.game,actions=getLegalActions(s),actor=actions[0]?.player??null;
  const inspection=actor===seat&&!expired&&room.phase==='playing'?s.decision?.task?.g585Peek:null;
