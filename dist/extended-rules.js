@@ -557,6 +557,25 @@ export function createExtendedRules(api){
      }
     }
     const selfFinish=f.g416SelfFinish||f.inst.normalFinish||f.inst.crystalFinish||f.spell?.graveCast&&f.to==='deck';if(!selfFinish&&!f.g159FinishResolved&&mado.finishSpell(s,t,f))break;
+    if(!f.virtual&&!selfFinish&&f.to==='grave'&&f.spell?.summonOrigin==='hand'&&
+       !f.spell.g393PAfterExtra&&f.owner===f.caster&&t.g1338Choice!==null){
+     const hosts=s.players[f.caster].battle.filter(x=>!x.sealed&&!x.faceDown&&
+      card(x).g1338ClanFinish&&effective(x,s).g1338ClanFinish);
+     const host=hosts.find(x=>x.uid===t.g1338Choice);
+     if(host){
+      s.extSpells.splice(i,1);
+      clear(f.inst,'battle');
+      (host.under??=[]).push(f.inst);
+      six.afterSpell566(s,f);
+      break;
+     }
+     if(hosts.length&&t.g1338Choice===undefined){
+      choice(s,{...t,op:'g1338ClanFinish'},'呪文をクランヴィアの下に置く？',[
+       ...hosts.map(x=>opt(card(x).name,x.uid,18,x.cardId)),skip()
+      ]);
+      break;
+     }
+    }
     if(!selfFinish&&!f.spell?.g393PAfterExtra&&f.inst.g795CycleFinish&&f.to==='extra'){
      choice(s,{...t,op:'g795SpellDestination'},'唱え終えた呪文の移動先を選ぶ',[
       opt('インターステラで超次元ゾーンに置く','extra',20),opt('サイクルペディアで山札の下に置く','deck',15)]);
@@ -813,6 +832,7 @@ export function createExtendedRules(api){
    break;
   }
   case 'photo159FinishSpell':{const f=s.extSpells?.find(f=>f.inst.uid===t.uid);if(f){f.g159FinishResolved=true;f.to=value;put(s,task('finishSpell',t.p,t.source,{uid:t.uid}));}break;}
+  case 'g1338ClanFinish':put(s,{...t,op:'finishSpell',g1338Choice:value});break;
   case 'g1027CrestShield':put(s,{...t,op:'finishSpell',g1027Shield:value});break;
   case 'destroyCost':case 'destroyPower':if(value)move(s,[{player:1-t.p,uid:value,to:'grave'}]);break;
   case 'finalForbiddenUnseal':api.chooseFinalForbiddenSeal(s,t.p,value);break;

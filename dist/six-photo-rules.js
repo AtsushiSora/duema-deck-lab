@@ -1423,6 +1423,14 @@ export function createSixPhotoRules(api){
    c.type==='spell'&&cost(c)<=t.max&&api.canCast(s,t.p,c,'grave',p)?[opt((p===t.p?'自分：':'相手：')+c.name,{uid:x.uid,owner:p,face,serial:x.zoneSerial||0},15+cost(c),x.cardId)]:[]
   )):[]);
  }
+ function clanSpellOptions1338(s,t,host){
+  if(!host||host.sealed)return [];
+  const mana=new Set(s.players[t.p].mana.filter(x=>!x.faceDown)
+   .flatMap(x=>faces(api.zoneCard(s,t.p,x,'mana')).flatMap(colors)));
+  return (host.under||[]).flatMap(x=>x.faceDown||x.sealed?[]:faces(card(x)).flatMap((c,face)=>
+   c.type==='spell'&&colors(c).some(color=>mana.has(color))&&api.canCast(s,t.p,c,'battle')
+    ?[opt(c.name,{uid:x.uid,face},15+cost(c),x.cardId)]:[]));
+ }
  function kariyaSpellOptions1337(s,t){
   if(!api.canMoveZone(s,t.p,'grave'))return [];
   return s.players[t.p].grave.flatMap(x=>{
@@ -5734,6 +5742,34 @@ export function createSixPhotoRules(api){
   ]);
   break;
  }
+ case'g34_ClanReveal1338':{
+  api.shuffleLibrary(s,t.p,[],t.source);
+  const ids=look(s,{...t,n:3,public:true});
+  const host=sourceHost474(s,t)?.x,milled=[];
+  for(const uid of ids){
+   const y=own.deck.find(x=>x.uid===uid);
+   release(s,t.p,uid);
+   if(!y)continue;
+   if(faces(api.zoneCard(s,t.p,y,'deck')).some(c=>c.type==='spell')){
+    if(!host||host.sealed)continue;
+    remove(own.deck,uid);
+    clear(y,'battle');
+    (host.under??=[]).push(y);
+   }else{
+    remove(own.deck,uid);
+    clear(y,'grave');
+    milled.push(y);
+   }
+  }
+  api.addZone(s,t.p,'grave',...milled);
+  api.deckCheck(s,t.p);
+  break;
+ }
+ case'g34_ClanAttack1338':{
+  const options=clanSpellOptions1338(s,t,sourceHost474(s,t)?.x);
+  if(options.length)choice(s,t,'このクリーチャーの下から呪文を1枚唱える',[...options,skip()]);
+  break;
+ }
  case'g34_KariyaSelect1337':{
   const rows=t.picks?.length===3?[]:kariyaSpellOptions1337(s,t);
   if(rows.length)choice(s,t,'唱える順に墓地からコスト3以下の呪文を選ぶ（3枚まで）',[...rows,skip()]);
@@ -6154,6 +6190,17 @@ export function createSixPhotoRules(api){
  case'g34_PowerSweep696':start(s,t,[{op:'Sweep',both:true,to:'grave',filter:{creature:true,...(v>0?{minPower:v}:{}),maxPower:v,g199Power:true}}]);break;
  case'g34_CostSweep596':start(s,t,[{op:'Sweep',to:'grave',filter:{creature:true,min:v,max:v}}]);break;
  case'g34_GraveHandMana771':put(s,{...t,picks:[...(t.picks||[]),v]});break;
+ case'g34_ClanAttack1338':{
+  const host=sourceHost474(s,t)?.x;
+  if(!v||!clanSpellOptions1338(s,t,host).some(({value})=>value.uid===v.uid&&value.face===v.face))break;
+  const x=remove(host.under,v.uid);
+  x.g5Origin='battle';
+  x.tapped=host.tapped;
+  (own.g34Holding??=[]).push(x);
+  api.underCardsLeft(s,t.p,host,1);
+  cast(s,t.p,x.uid,true,null,v.face,null,'g34Holding',card(t.source).name);
+  break;
+ }
  case'g34_KariyaSelect1337':
   if(v)put(s,{...t,picks:[...(t.picks||[]),v]});
   else reserveKariyaSpells1337(s,t);

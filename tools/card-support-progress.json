@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8023,
-  "pendingNames": 3803,
-  "phase": 1337,
+  "supportedNames": 8024,
+  "pendingNames": 3802,
+  "phase": 1338,
   "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2134,
+    "クリーチャー": 2133,
     "NEOクリーチャー": 70,
     "呪文": 455,
     "GRクリーチャー": 156,
@@ -224,7 +224,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1075,
-    "未対応の能力文": 2536,
+    "未対応の能力文": 2535,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 19,
     "未対応のシンカパワー": 2,
@@ -489784,14 +489784,57 @@
       "remainingRegistered": 40,
       "remainingPrints": 2,
       "remainingIndividualCards": 35
+    },
+    {
+      "phase": 1338,
+      "baseline": "6a00986d",
+      "before": 8023,
+      "supported": 8024,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmrp08-s03",
+          "name": "不夜城艦 クランヴィア"
+        }
+      ],
+      "printAliases": 1,
+      "results": {
+        "focus": {
+          "passed": 6,
+          "log": "/tmp/duema-uncapped/clan-focus.log",
+          "command": "node --test tests/standard1338-effects.test.mjs",
+          "seconds": 1.638
+        },
+        "regression": {
+          "passed": 70,
+          "log": "/tmp/duema-uncapped/clan-regression-final.log",
+          "command": "node --test --test-concurrency=2 tests/standard{1084,1131,1174,1226,1337,1338}-effects.test.mjs",
+          "seconds": 11.568
+        },
+        "check": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "/tmp/duema-uncapped/clan-check-final.log",
+          "rulesBlob": "1f41078e7d3b9a7824e02da47c1e91755c609f6c"
+        },
+        "audit": {
+          "status": "passed",
+          "command": "node tools/audit-card-support.mjs",
+          "log": "/tmp/duema-uncapped/clan-audit.log"
+        }
+      },
+      "resolvedRegistered": 1,
+      "remainingRegistered": 39,
+      "remainingPrints": 1,
+      "remainingIndividualCards": 34
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1337,
+    "lastVerifiedPhase": 1338,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "シャイニー・ホールの両面選択と、ジャシンの金箔版を確認済み。個別34種類と継続中の対戦テストを検証する。",
+    "steps": "灰燼と天門の儀式で出したクランヴィアの置換を確認した。星龍の暴発からバトルゾーン内でクリーチャー側を出す組み合わせを含む残りの裁定と分割テストを継続する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -489876,20 +489919,18 @@
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [
       {
-        "id": "dmrp08-s03",
-        "name": "不夜城艦 クランヴィア"
+        "id": "dm22ex1-061",
+        "name": "暴発秘宝ベンゾ / 星龍の暴発",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-061",
+        "reason": "クランヴィアの下から唱えた際の出た時能力とタップ状態の裁定QA45545に必要。"
+      },
+      {
+        "id": "dmrp22-4A",
+        "name": "マニフェスト ＜ファイナル.Star＞"
       },
       {
         "id": "dmrp12-008",
         "name": "帝神龍装 ティーゾリス"
-      },
-      {
-        "id": "dm23rp1-004",
-        "name": "終納 カボード＝ロウ"
-      },
-      {
-        "id": "dmr08s-007",
-        "name": "悠久を統べる者 フォーエバー・プリンセス"
       }
     ],
     "printVerificationPending": [
@@ -490088,8 +490129,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8023,
-    "pendingNames": 3803,
+    "supportedNames": 8024,
+    "pendingNames": 3802,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -534083,8 +534124,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8023,
-      "pendingNames": 3803,
+      "supportedNames": 8024,
+      "pendingNames": 3802,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -535111,7 +535152,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別34種類（裁定39件と版固有の金箔再録1件）と長時間対戦・ワーカーの検証が継続中。Netlifyを更新せずにPagesへ公開する経路の確認も必要。",
+        "reason": "個別34種類（裁定39件・版固有の金箔再録1件）と長時間対戦・ワーカーの検証が継続中。Netlifyを更新せずにPagesへ公開する経路の確認も必要。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -535602,6 +535643,21 @@
           "check": "/tmp/duema-uncapped/shiny-check.log",
           "supportedNames": 8023,
           "result": "合計コスト5の選択でディアナのコスト5の面は選べ、裏のコスト10の面は候補に出ないことを確認。ジョンのコスト5の裏面は選んで直接出せる。光・コスト7以下の分岐はマティーナの裏面だけを選べる。"
+        },
+        {
+          "cardId": "dmrp17-010",
+          "dependencyIds": [
+            "dmrp08-s03"
+          ],
+          "test": "唱えた灰燼と天門の儀式を墓地に置くかわりにクランヴィアの下へ置く",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/42379/",
+          "path": "tests/standard1338-effects.test.mjs",
+          "log": "/tmp/duema-uncapped/clan-focus.log",
+          "phase": 1338,
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/42379/"
+          ],
+          "result": "手札から唱えた灰燼と天門の儀式が実カードのクランヴィアを蘇生。解決後に保存した状態を復元し、そのクランヴィアの下に置く場合と墓地に置く場合の両方を確認した。"
         }
       ],
       "remainingRegistered": [
@@ -535718,17 +535774,6 @@
           "source": "https://dm.takaratomy.co.jp/rule/qa/48142/",
           "path": "tests/standard1172-effects.test.mjs",
           "log": "/tmp/duema-phase-1172/focused.log"
-        },
-        {
-          "cardId": "dmrp17-010",
-          "dependencyIds": [
-            "dmrp08-s03"
-          ],
-          "test": "唱えた灰燼と天門の儀式を墓地に置くかわりにクランヴィアの下へ置く",
-          "reason": "不夜城艦 クランヴィアが対戦未対応。呪文の行き先の置換を実カードで検証する。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/42379/",
-          "path": "tests/standard1174-effects.test.mjs",
-          "log": "/tmp/duema-phase-1174/focused.log"
         },
         {
           "cardId": "dmrp21-5A",
@@ -536010,6 +536055,15 @@
           "reason": "ネルザのG・ストライク付与とシールドの手札追加は実測済み。ジークシュトルツは未登録のため、表向きのシールドとS・トリガー禁止を含む組み合わせの再現が未完了。",
           "path": "tests/standard1308-effects.test.mjs",
           "log": "/tmp/duema-phase-1308/focus-final.log"
+        },
+        {
+          "cardId": "dmrp08-s03",
+          "dependencyIds": [
+            "dm22ex1-061"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa/45545/",
+          "test": "下から星龍の暴発を唱えると、クリーチャー側はタップ状態のままバトルゾーンで独立し、出た時の能力は誘発しない。",
+          "reason": "新規に確認した関連裁定。下から唱えた呪文の実行元をバトルゾーンとして扱うところまでは実カードで確認済み。ツインパクトの星龍の暴発との組み合わせは未検証。"
         }
       ],
       "printResults": {
@@ -536030,10 +536084,11 @@
           "dmc40-008",
           "dmrp15-009",
           "dm22ex2-S15",
-          "dmrp11-s04"
+          "dmrp11-s04",
+          "dmrp08-s03"
         ],
-        "officialPrints": 60,
-        "newAliases": 47,
+        "officialPrints": 62,
+        "newAliases": 48,
         "evidence": [
           {
             "id": "dm23rp2-065",
@@ -536509,6 +536564,22 @@
             "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex2-ChoG009a.jpg",
             "pageSha256": "60db0ed17e4e25742065665dc8f94e522e52d8e59c3504bc39ab08a45db16dd0",
             "imageSha256": "5a81d9df34e17d06a2fe2bddb6f5f06ea65c84d2f63aa4b7dc25001c59d8fc32"
+          },
+          {
+            "id": "dmrp08-s03",
+            "canonicalId": "dmrp08-s03",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-s03",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-s03.jpg",
+            "pageSha256": "ea8229ec820ecb63f2109302a7d354aae533cef71fdf742e0edd4045a11eafbf",
+            "imageSha256": "050ecbe88b5fa659213f7278db23e69e9b82e290ab14bf89d23d63254964a0e7"
+          },
+          {
+            "id": "dm22ex1-006",
+            "canonicalId": "dmrp08-s03",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-006",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-006.jpg",
+            "pageSha256": "e667233716c148a2d40867c0de432bef342c45bd88ee6ac694295978236bc3c0",
+            "imageSha256": "1c4d025d2657acefcf2a7208733c57a7260971b5ad0bc9113660e0332cbd58b0"
           }
         ],
         "testLog": "/tmp/duema-verify-8009/verification-followup-prints.log",
@@ -536794,8 +536865,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8023,
-        "pending": 3803,
+        "supported": 8024,
+        "pending": 3802,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -537395,8 +537466,8 @@
       "finalCheck": {
         "status": "passed",
         "command": "npm run check",
-        "log": "/tmp/duema-uncapped/kariya-check.log",
-        "rulesBlob": "bf142c9d8b66f2c45e9320b0050fa7a316d93826"
+        "log": "/tmp/duema-uncapped/clan-check-final.log",
+        "rulesBlob": "1f41078e7d3b9a7824e02da47c1e91755c609f6c"
       },
       "abyssShort": {
         "passed": 33,
@@ -537434,10 +537505,6 @@
         {
           "id": "dm25ex4-SPR01",
           "name": "沈黙の守護者、シュタイン"
-        },
-        {
-          "id": "dmrp08-s03",
-          "name": "不夜城艦 クランヴィア"
         },
         {
           "id": "dmrp22-4A",
@@ -537530,6 +537597,12 @@
         {
           "id": "dmrp16-s01",
           "name": "聖板龍 ジークシュトルツ"
+        },
+        {
+          "id": "dm22ex1-061",
+          "name": "暴発秘宝ベンゾ / 星龍の暴発",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-061",
+          "reason": "クランヴィアの下から唱えた際の出た時能力とタップ状態の裁定QA45545に必要。"
         }
       ],
       "remainingTestsSummary": "全8,014種類の合法経路を17区間で通過。借用した登場時処理2539件、No20の48対戦、手動対戦UIの30シード・1225場面も実測で通過。残る長時間対戦とワーカー試験は対戦相手・シード単位で検証を継続。一括のnpm testは中断・合否未確認。",
@@ -537584,59 +537657,47 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1337,
-        "baseline": "69e72052",
-        "before": 8022,
-        "supported": 8023,
+        "phase": 1338,
+        "baseline": "6a00986d",
+        "before": 8023,
+        "supported": 8024,
         "duplicates": 0,
         "added": [
           {
-            "id": "dmrp11-s04",
-            "name": "魔導管理室 カリヤドネ / ハーミット・サークル"
+            "id": "dmrp08-s03",
+            "name": "不夜城艦 クランヴィア"
           }
         ],
         "printAliases": 1,
         "results": {
           "focus": {
-            "passed": 7,
-            "log": "/tmp/duema-uncapped/kariya-focused.log",
-            "command": "node --test tests/standard1337-effects.test.mjs",
-            "seconds": 4.005
+            "passed": 6,
+            "log": "/tmp/duema-uncapped/clan-focus.log",
+            "command": "node --test tests/standard1338-effects.test.mjs",
+            "seconds": 1.638
           },
           "regression": {
-            "passed": 62,
-            "log": "/tmp/duema-uncapped/kariya-regression.log",
-            "command": "node --test --test-concurrency=2 tests/standard{598,1109,1226,1300,1336,1337}-effects.test.mjs",
-            "seconds": 12.889
-          },
-          "puppet": {
-            "passed": 15,
-            "log": "/tmp/duema-uncapped/kariya-puppet.log",
-            "command": "node --test tests/requested393-puppet.test.mjs",
-            "seconds": 2.313
-          },
-          "mana": {
-            "passed": 2,
-            "log": "/tmp/duema-uncapped/kariya-mana.log",
-            "command": "node --test --test-name-pattern=\"only mana present|Fairy changes zero\" tests/standard1282-effects.test.mjs",
-            "seconds": 1.835
+            "passed": 70,
+            "log": "/tmp/duema-uncapped/clan-regression-final.log",
+            "command": "node --test --test-concurrency=2 tests/standard{1084,1131,1174,1226,1337,1338}-effects.test.mjs",
+            "seconds": 11.568
           },
           "check": {
             "status": "passed",
             "command": "npm run check",
-            "log": "/tmp/duema-uncapped/kariya-check.log",
-            "rulesBlob": "bf142c9d8b66f2c45e9320b0050fa7a316d93826"
+            "log": "/tmp/duema-uncapped/clan-check-final.log",
+            "rulesBlob": "1f41078e7d3b9a7824e02da47c1e91755c609f6c"
           },
           "audit": {
             "status": "passed",
             "command": "node tools/audit-card-support.mjs",
-            "log": "/tmp/duema-uncapped/kariya-audit.log"
+            "log": "/tmp/duema-uncapped/clan-audit.log"
           }
         },
-        "resolvedRegistered": 2,
-        "remainingRegistered": 40,
-        "remainingPrints": 2,
-        "remainingIndividualCards": 35
+        "resolvedRegistered": 1,
+        "remainingRegistered": 39,
+        "remainingPrints": 1,
+        "remainingIndividualCards": 34
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
@@ -539714,9 +539775,9 @@
         "command": "python3 /tmp/duema-uncapped/run-tests.py",
         "reason": "ユーザー指示により時間上限を解除。未確認テスト名をフィルタ指定し、前の一括実行は中断・合否未確認のまま保持。",
         "snapshot": {
-          "completeGroups": 12,
-          "passedNamedTests": 25,
-          "failedNamedTests": 1,
+          "completeGroups": 15,
+          "passedNamedTests": 28,
+          "failedNamedTests": 2,
           "enginePairings": {
             "seconds": 643.82,
             "games": 72,
@@ -539729,11 +539790,9 @@
             "plan": "/tmp/duema-uncapped/fixture-plan.json",
             "results": "/tmp/duema-uncapped/fixture-results.jsonl",
             "plannedGroups": 53,
-            "completedGroups": 19,
-            "passedGroups": 19,
-            "status": "実行中",
-            "passedDeterministicGames": 114,
-            "fixtureChange": "No16・No21の対戦相手に登録時の大会デッキ4つを使う。現行環境の24デッキを渡すとうち20デッキが余分で、180・200試合を前提とする集計が失敗する。"
+            "completedGroups": 22,
+            "passedGroups": 22,
+            "status": "実行中"
           },
           "aiCoverage": {
             "result": "旧レポートの入力指紋が現行データと不一致。現行入力85デッキ255試合を再実行中。",
