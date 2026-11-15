@@ -2480,6 +2480,17 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1353&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='オレガ・オーラ'&&
+    ['dmrp11-m02','dmex19-m31'].includes(d.id)){
+  const destination=d.id==='dmrp11-m02'?'一番下':'下';
+  const expected=[
+   'これを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）',
+   'DL-Sys：これを付けたクリーチャーの攻撃の終わりに、相手の墓地にある呪文を１枚コストを支払わずに唱えてもよい。そうしたら、その呪文を持ち主の山札の'+destination+'に置く。その後、このオーラを自分の他のGRクリーチャー１体に付けてもよい。',
+   '自分のターンの終わりに、GR召喚する。'
+  ].map(normalize),actual=f.abilityText.split('\n').map(normalize);
+  if(actual.length===expected.length&&actual.every((line,i)=>line===expected[i]))
+   return {type:'aura',power:0,auraPower:4000,g1352Powered:true,g1353DLSys:true,g174End:[{op:'AuraGr1353'}]};
+ }
  if(phase>=1352&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='オレガ・オーラ'&&
     ['dmrp11-s06','dmex17-008'].includes(d.id)){
   const actual=f.abilityText.split('\n').map(normalize),expected=[

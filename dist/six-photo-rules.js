@@ -714,7 +714,7 @@ export function createSixPhotoRules(api){
    if(c.zone==='shields'&&c.sumBoth&&c.max===6)return api.oniTime1303(s,p);
    if(c.zone==='shields'&&c.sumBoth&&c.min===7)return !api.oniTime1303(s,p);
    const size=who=>(c.zones??[c.zone]).reduce((sum,zone)=>{const rows=s.players[who][zone];return sum+(typeof rows==='number'?rows:(rows||[]).length);},0),n=c.sumBoth?size(p)+size(1-p):size(c.opponent?1-p:p);return c.atLeastOpponent?n>=size(1-p):c.moreThanOpponent?n>size(1-p):c.lessThanOpponent?n<size(1-p):(c.min===undefined||n>=c.min)&&(c.max===undefined||n<=c.max);}if(f.g286FaceDownMana!==undefined)return s.players[p].mana.filter(y=>y.faceDown).length>=f.g286FaceDownMana;if(f.g285AllManaTapped)return s.players[p].mana.every(y=>y.tapped);if(f.g282AllMana)return s.players[p].mana.every(y=>{const cs=api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,p).filter(c=>['光','水','闇','火','自然'].includes(c));return cs.includes(f.g282AllMana.color)||!!f.g282AllMana.colorless&&cs.length===0;});if(f.g273Grave)return s.players[p].grave.filter(y=>matches(s,p,y,f.g273Grave.filter)).length>=f.g273Grave.n;if(f.g272ManaCount!==undefined)return s.players[p].mana.length>=f.g272ManaCount;if(f.g267Mana)return manaCondition267(s,p,f.g267Mana);if(f.g265ShieldsMax!==undefined){const shields=s.players[p].shields;return(typeof shields==='number'?shields:shields.length)<=f.g265ShieldsMax;}const rows=(f.g334Both?[p,1-p]:[p]).flatMap(who=>s.players[who].battle.filter(x=>!x.sealed&&(!f.g334Other||x.uid!==sourceUid||sourceIncarnation!==null&&(x.incarnation||0)!==sourceIncarnation)&&matches(s,who,x,f.seed&&(card(x).seedCreature||card(x).natureAce4)?{...f,seed:false}:f)));return f.g258Civil?rows.length>=f.g258Civil:rows.length>0;};
- const canPut=(s,p,x,origin,execution=false)=>(['creature','seed','field','gear'].includes(card(x).type)||card(x).gCastle)&&(!execution||api.canCast(s,p,card(x),origin))&&api.canEnter(s,p,card(x),{origin,execution})&&(!card(x).evolution||api.evolutionBases(s,p,card(x),card(x).g31Evolution?.minCards?{origin,execution,exclude:x.uid}:undefined).some(y=>y.uid!==x.uid));
+ const canPut=(s,p,x,origin,execution=false)=>(['creature','seed','field','gear','aura'].includes(card(x).type)||card(x).gCastle)&&(!execution||api.canCast(s,p,card(x),origin))&&api.canEnter(s,p,card(x),{origin,execution})&&(!card(x).evolution||api.evolutionBases(s,p,card(x),card(x).g31Evolution?.minCards?{origin,execution,exclude:x.uid}:undefined).some(y=>y.uid!==x.uid));
  const countBattleCivilizations=(s,rows)=>new Set(rows.filter(y=>!y.sealed&&!y.faceDown)
   .flatMap(y=>colors(effective(y,s,true))).filter(q=>['光','水','闇','火','自然'].includes(q))).size;
  const countDraw=(s,p,t)=>{const owner=t.owner==='opponent'?1-p:p;
@@ -1460,8 +1460,8 @@ export function createSixPhotoRules(api){
   if(moved[1])api.handMana(s,t.p,moved[1]);
  }
  function graveSpellOptions594(s,t){
-  return s.players.flatMap((owner,p)=>api.canMoveZone(s,p,'grave')?owner.grave.flatMap(x=>faces(card(x)).flatMap((c,face)=>
-   c.type==='spell'&&cost(c)<=t.max&&api.canCast(s,t.p,c,'grave',p)?[opt((p===t.p?'自分：':'相手：')+c.name,{uid:x.uid,owner:p,face,serial:x.zoneSerial||0},15+cost(c),x.cardId)]:[]
+  return s.players.flatMap((owner,p)=>(!t.g1353DLSys||p!==t.p)&&api.canMoveZone(s,p,'grave')?owner.grave.flatMap(x=>faces(card(x)).flatMap((c,face)=>
+   c.type==='spell'&&(t.g1353DLSys||cost(c)<=t.max)&&api.canCast(s,t.p,c,'grave',p)?[opt((p===t.p?'自分：':'相手：')+c.name,{uid:x.uid,owner:p,face,serial:x.zoneSerial||0},15+cost(c),x.cardId)]:[]
   )):[]);
  }
  function adamSeeds1341(s,t){
@@ -5930,7 +5930,20 @@ export function createSixPhotoRules(api){
   cast(s,t.p,x.uid,true,null,t.face,null,'g34Holding',card(t.source).name);
   break;
  }
- case'g34_GraveSpell594':choice(s,t,'コスト'+t.max+'以下の呪文をどちらかの墓地から唱える',graveSpellOptions594(s,t));break;
+ case'g34_GraveSpell594':{
+  const rows=graveSpellOptions594(s,t);
+  if(!t.g1353DLSys)choice(s,t,'コスト'+t.max+'以下の呪文をどちらかの墓地から唱える',rows);
+  else if(rows.length)choice(s,t,'DL-Sys：相手の墓地の呪文を唱える？',[...rows,skip()]);
+  else put(s,{...t,op:'g34_AuraReattach1353'});
+  break;
+ }
+ case'g34_AuraGr1353':api.grSummon(s,t.p);break;
+ case'g34_AuraReattach1353':{
+  const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation&&x.auraTo1352);
+  const targets=x?api.auraTargets1352(s,t.p).filter(y=>y.uid!==x.auraTo1352.uid):[];
+  if(targets.length)choice(s,t,'DL-Sys：別のGRクリーチャーに付ける？',[...targetOptions(s,t.p,targets),skip()]);
+  break;
+ }
  case'g34_RecastHandSpell1245':{
   if(t.g1250Sacrifice){
    const host=sourceHost474(s,t);
@@ -6361,12 +6374,19 @@ export function createSixPhotoRules(api){
   else reserveKariyaSpells1337(s,t);
   break;
  case'g34_GraveSpell594':{
+  if(t.g1353DLSys)put(s,{...t,op:'g34_AuraReattach1353'});
   if(!v||!graveSpellOptions594(s,t).some(({value:r})=>r.owner===v.owner&&r.uid===v.uid&&r.face===v.face&&r.serial===v.serial))break;
   const foreign=v.owner!==t.p,origin=foreign?'g34Holding':'grave',grave=s.players[v.owner].grave;
   const x=foreign?remove(grave,v.uid):grave.find(x=>x.uid===v.uid);
   if(foreign){x.cardOwner=v.owner;x.g5Origin='grave';(own.g34Holding??=[]).push(x);}
   x.finishTo='deck';
-  cast(s,t.p,x.uid,true,null,v.face,null,origin,'スーパー・S・トリガー');
+  cast(s,t.p,x.uid,true,null,v.face,null,origin,t.g1353DLSys?'DL-Sys':'スーパー・S・トリガー');
+  break;
+ }
+ case'g34_AuraReattach1353':{
+  const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation&&x.auraTo1352);
+  const host=x&&api.auraTargets1352(s,t.p).find(y=>y.uid===v&&y.uid!==x.auraTo1352.uid);
+  if(host)api.attachAura1352(s,t.p,x,host,'battle');
   break;
  }
  case'g34_RecastHandSpell1245':{

@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8039,
-  "pendingNames": 3787,
-  "phase": 1352,
+  "supportedNames": 8040,
+  "pendingNames": 3786,
+  "phase": 1353,
   "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -46,7 +46,7 @@
     },
     {
       "ability": "GR召喚",
-      "pendingNames": 156,
+      "pendingNames": 155,
       "examples": [
         {
           "id": "dmrp12-s11",
@@ -166,7 +166,7 @@
     "スター進化クリーチャー": 55,
     "進化クリーチャー(超無限進化・Ω)": 1,
     "ギガ・オレガ・オーラ": 2,
-    "オレガ・オーラ": 101,
+    "オレガ・オーラ": 100,
     "デュエルメイト・クリーチャー": 5,
     "ルール・プラス": 1,
     "Mono Artifact": 1,
@@ -223,7 +223,7 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 1071,
+    "複数面・特殊カードタイプまたは情報不足": 1070,
     "未対応の能力文": 2525,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 18,
@@ -490542,14 +490542,66 @@
         "method": "2f7677a2の隔離スナップショットで、全対戦相手に元の乱数と先後のまま両方の対戦を行い、対戦相手・乱数・2試合完了・未決着0を検証。分割結果を保存し、実行中は再起動しない。"
       },
       "next": "Code：1059とジ・エンデザークは今回のオーラ処理を再利用して固有能力とQA40828を確認する。次いで、キクチ師範代／カレイコによる山札の移動置換、覚醒リンクの実カード、ドラン・ゴルギーニの金箔再録の公式画像を確認。既存の長時間テストはそのまま完了を待ち、No.11は同じ分割を再起動しない。"
+    },
+    {
+      "phase": 1353,
+      "baseline": "2d7c5b54",
+      "before": 8039,
+      "supported": 8040,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmrp11-m02",
+          "name": "Code：1059"
+        }
+      ],
+      "printAliases": 1,
+      "results": {
+        "officialPrints": {
+          "verified": 2,
+          "manifest": "tools/support-phase-1353.json"
+        },
+        "focus": {
+          "passed": 7,
+          "failed": 0,
+          "log": "tmp/duema-remaining-1353/code/regression.log"
+        },
+        "regression": {
+          "passed": 56,
+          "failed": 0,
+          "includesFocus": true,
+          "log": "tmp/duema-remaining-1353/code/regression.log"
+        },
+        "check": {
+          "status": "passed",
+          "log": "tmp/duema-remaining-1353/code/check.log"
+        },
+        "audit": {
+          "supported": 8040,
+          "pending": 3786,
+          "ready": 0,
+          "dependencyBlocked": 0,
+          "log": "tmp/duema-remaining-1353/code/audit.log"
+        },
+        "nameKey": {
+          "rows": 8040,
+          "count": 8040,
+          "duplicates": 0
+        }
+      },
+      "resolvedRegistered": 1,
+      "remainingRegistered": 21,
+      "remainingPrints": 1,
+      "remainingIndividualCards": 20,
+      "next": "ジ・エンデザークの墓地からの復帰とオーラ追加を実装し、QA40828の独立した2回の誘発を実カードとGRの現在パワーで検証する。分割対戦No.11の完了ログを集約する。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1352,
+    "lastVerifiedPhase": 1353,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "個別の未検証は21種類（裁定22件、金箔再録1件）。Code：1059とジ・エンデザークは今回のオーラ処理を再利用して固有能力とQA40828を確認する。次いで、キクチ師範代／カレイコによる山札の移動置換、覚醒リンクの実カード、ドラン・ゴルギーニの金箔再録の公式画像を確認。既存の長時間テストはそのまま完了を待ち、No.11は同じ分割を再起動しない。",
+    "steps": "個別の未検証は20種類。ジ・エンデザークの墓地からの復帰とオーラ追加を実装し、QA40828の独立した2回の誘発を実カードとGRの現在パワーで検証する。分割対戦No.11の完了ログを集約する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -534837,8 +534889,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8039,
-      "pendingNames": 3787,
+      "supportedNames": 8040,
+      "pendingNames": 3786,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -535865,7 +535917,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別の未検証21種類（裁定22件と金箔再録1件）と、分割した長時間対戦・ワーカーの検証が残っている。mainのpushはNetlify本番を更新するため、Netlifyへ影響しないPages公開経路は未確認。",
+        "reason": "個別20種類（裁定21件と金箔再録1件）と分割した長時間対戦・ワーカーの検証が残る。mainのpushはNetlify本番を更新するため、Netlifyへ影響しないPages公開経路は未確認。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -536747,6 +536799,23 @@
             "https://dm.takaratomy.co.jp/rule/qa/42077/"
           ],
           "result": "ザハ・エルハとパラノーマルを使用。ハッチャキのシールドから出す試みと、QA40456にあるオールデリートの双方で持ち主が置換を選び、選んだとおりシールドに残るか墓地へ行く。"
+        },
+        {
+          "cardId": "dmex12-011",
+          "dependencyIds": [
+            "dmrp11-m02"
+          ],
+          "test": "ドラゴン種族を持つオーラを墓地に置き、龍世界の効果で出す場合の付け先とGR召喚。",
+          "phase": 1353,
+          "source": "https://dm.takaratomy.co.jp/rule/rulechange/31649/",
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+            "https://dm.takaratomy.co.jp/rule/qa/32340/",
+            "https://dm.takaratomy.co.jp/rule/qa/33704/"
+          ],
+          "path": "tests/standard1353-effects.test.mjs",
+          "log": "tmp/duema-remaining-1353/code/regression.log",
+          "result": "龍世界が山札から同じCode：1059を墓地に置き、龍世界を破壊して、既存のGRクリーチャーまたは新たにGR召喚したクリーチャーへ付ける。DL-Sysで相手墓地の呪文が唱え終わる順序、元の持ち主の山札の下とチャージャーの移動先、呪文がない時の付け替えと自分のターン終了時のGR召喚も実測。"
         }
       ],
       "remainingRegistered": [
@@ -536925,15 +536994,6 @@
           "test": "相手の《「復活」の鬼 ヨミノ晴明R》でクリーチャーを選ぶプレイヤーが置き換わるときのJトルネード。類似のマスターJトルネード裁定QA44324を参照。",
           "reason": "ヨミノ晴明Rの選択置換が未実装。既存のJトルネードの選択、任意の不使用と移動置換は検証済み。選択者を変更する処理の実カード確認を保留。",
           "source": "https://dm.takaratomy.co.jp/rule/qa/44324/"
-        },
-        {
-          "cardId": "dmex12-011",
-          "dependencyIds": [
-            "dmrp11-m02"
-          ],
-          "test": "ドラゴン種族を持つオーラを墓地に置き、龍世界の効果で出す場合の付け先とGR召喚。",
-          "reason": "ドラゴンのオーラは対戦データに未登録。オーラの実カードでの登場経路は未検証。",
-          "source": "https://dm.takaratomy.co.jp/rule/rulechange/31649/"
         },
         {
           "cardId": "dmrp20-s02",
@@ -538219,8 +538279,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8039,
-        "pending": 3787,
+        "supported": 8040,
+        "pending": 3786,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -538875,10 +538935,6 @@
           "name": "「復活」の鬼 ヨミノ晴明R"
         },
         {
-          "id": "dmrp11-m02",
-          "name": "Code：1059"
-        },
-        {
           "id": "dmex18-022",
           "name": "アカシック・パラレル"
         },
@@ -538955,87 +539011,56 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1352,
-        "baseline": "2f7677a2",
-        "before": 8038,
-        "supported": 8039,
+        "phase": 1353,
+        "baseline": "2d7c5b54",
+        "before": 8039,
+        "supported": 8040,
         "duplicates": 0,
         "added": [
           {
-            "id": "dmrp11-s06",
-            "name": "極幻空 ザハ・エルハ"
+            "id": "dmrp11-m02",
+            "name": "Code：1059"
           }
         ],
         "printAliases": 1,
         "results": {
-          "focus": {
-            "passed": 22,
-            "failed": 0,
-            "log": "/tmp/duema-uncapped/zaha-focus.log",
-            "coverage": "オーラの装着先、付ける前のGRの破壊、装着後の進化・破壊・別のカードの下への順序選択、パワーと追加ブレイク、任意ドロー、3件の対象裁定、ラグナロクの実際の移動枚数、置換選択中のJSON再開とオンライン表示。"
-          },
           "officialPrints": {
             "verified": 2,
-            "log": "/tmp/duema-uncapped/zaha-source.log",
-            "manifest": "tools/support-phase-1352.json"
+            "manifest": "tools/support-phase-1353.json"
+          },
+          "focus": {
+            "passed": 7,
+            "failed": 0,
+            "log": "tmp/duema-remaining-1353/code/regression.log"
           },
           "regression": {
-            "passed": 342,
+            "passed": 56,
             "failed": 0,
-            "log": "/tmp/duema-uncapped/zaha-regression.log"
+            "includesFocus": true,
+            "log": "tmp/duema-remaining-1353/code/regression.log"
           },
           "check": {
             "status": "passed",
-            "command": "npm run check",
-            "log": "/tmp/duema-uncapped/zaha-final-check.log"
+            "log": "tmp/duema-remaining-1353/code/check.log"
           },
           "audit": {
-            "status": "passed",
-            "command": "node tools/audit-card-support.mjs",
-            "log": "/tmp/duema-uncapped/zaha-audit.log"
+            "supported": 8040,
+            "pending": 3786,
+            "ready": 0,
+            "dependencyBlocked": 0,
+            "log": "tmp/duema-remaining-1353/code/audit.log"
           },
           "nameKey": {
-            "rows": 8039,
-            "count": 8039,
-            "duplicates": 0,
-            "log": "/tmp/duema-uncapped/zaha-namekey.log"
+            "rows": 8040,
+            "count": 8040,
+            "duplicates": 0
           }
         },
-        "resolvedRegistered": 3,
-        "remainingRegistered": 22,
+        "resolvedRegistered": 1,
+        "remainingRegistered": 21,
         "remainingPrints": 1,
-        "remainingIndividualCards": 21,
-        "worker": {
-          "baseline": "2f7677a2",
-          "plan": "/tmp/duema-uncapped/no11-worker-shards.json",
-          "results": "/tmp/duema-uncapped/no11-shards-2f7677a2.jsonl",
-          "oldResult": "対戦相手の固定件数31件と現在の49件が不一致。旧実行はデッキ数の検査で失敗したため本番ワーカーの合否未確認。",
-          "status": "分割実行中",
-          "groupsCompleted": 9,
-          "groupsPlanned": 13,
-          "opponentsPassed": 36,
-          "opponentsPlanned": 49,
-          "workerGamesPassed": 72,
-          "workerGamesPlanned": 98,
-          "failedGroups": [],
-          "pendingOpponents": [
-            "env-gospel-practice",
-            "env-magic-practice",
-            "env-abyss-practice",
-            "env-water-mado-practice",
-            "env-giant-practice",
-            "env-zard-practice",
-            "env-anadark-jaouga-practice",
-            "env-kenji-gp2024-maiken",
-            "env-dark-mado-practice",
-            "env-bande-practice",
-            "env-barom-practice",
-            "env-maruru-practice",
-            "env-lionel-practice"
-          ],
-          "method": "2f7677a2の隔離スナップショットで、全対戦相手に元の乱数と先後のまま両方の対戦を行い、対戦相手・乱数・2試合完了・未決着0を検証。分割結果を保存し、実行中は再起動しない。"
-        },
-        "next": "Code：1059とジ・エンデザークは今回のオーラ処理を再利用して固有能力とQA40828を確認する。次いで、キクチ師範代／カレイコによる山札の移動置換、覚醒リンクの実カード、ドラン・ゴルギーニの金箔再録の公式画像を確認。既存の長時間テストはそのまま完了を待ち、No.11は同じ分割を再起動しない。"
+        "remainingIndividualCards": 20,
+        "next": "ジ・エンデザークの墓地からの復帰とオーラ追加を実装し、QA40828の独立した2回の誘発を実カードとGRの現在パワーで検証する。分割対戦No.11の完了ログを集約する。"
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
@@ -541058,6 +541083,15 @@
           "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-008.jpg",
           "phase": 1352,
           "result": "公式カードページの能力文全体と画像、現在の使用制限を照合。同一カードに統合し、既存の表記とカードIDを維持。"
+        },
+        {
+          "id": "dmex19-m31",
+          "name": "Code：1059",
+          "canonicalId": "dmrp11-m02",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-m31",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-m31.jpg",
+          "phase": 1353,
+          "result": "公式能力文・画像・使用制限4枚を照合し、同じ対戦定義と既存IDに統合。"
         }
       ],
       "individualRecheck": {
@@ -541451,7 +541485,7 @@
             "plan": "/tmp/duema-uncapped/no11-worker-shards.json",
             "results": "/tmp/duema-uncapped/no11-shards-2f7677a2.jsonl",
             "oldResult": "対戦相手の固定件数31件と現在の49件が不一致。旧実行はデッキ数の検査で失敗したため本番ワーカーの合否未確認。",
-            "status": "分割実行中",
+            "status": "残っていた対戦相手を分割実行中",
             "groupsCompleted": 9,
             "groupsPlanned": 13,
             "opponentsPassed": 36,
@@ -541474,7 +541508,9 @@
               "env-maruru-practice",
               "env-lionel-practice"
             ],
-            "method": "2f7677a2の隔離スナップショットで、全対戦相手に元の乱数と先後のまま両方の対戦を行い、対戦相手・乱数・2試合完了・未決着0を検証。分割結果を保存し、実行中は再起動しない。"
+            "method": "2f7677a2の隔離スナップショットで、全対戦相手に元の乱数と先後のまま両方の対戦を行い、対戦相手・乱数・2試合完了・未決着0を検証。分割結果を保存し、実行中は再起動しない。",
+            "continuationResults": "tmp/duema-remaining-1353/no11-results.jsonl",
+            "note": "前回の一時ログは再開時に取得できなかった。進捗に記録済みの36対戦相手と重複させず、同じ2f7677a2、先後、乱数で未集計の13対戦相手を実行。"
           }
         },
         "latestRegisteredRulings": {
