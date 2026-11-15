@@ -2189,6 +2189,13 @@ export function createSixPhotoRules(api){
    shown.map(x=>opt(card(x).name,x.uid,cost(card(x)),x.cardId)));
  }
  const ownGraveSource839=(own,t)=>own.grave.find(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)&&(y.zoneSerial||0)===t.serial);
+ function chanceCard417(s,t){
+  const origin=t.origin??'hand';
+  const y=origin==='deck'?api.visionTop(s,t.p):s.players[t.p].hand.find(v=>v.uid===t.uid);
+  if(y?.uid!==t.uid||(y.zoneSerial||0)!==t.serial)return null;
+  const c=faces(card(y))[t.face];
+  return c?.g417Chance&&!api.spellIgnored(s,c)&&api.canCast(s,t.p,c,origin)?c:null;
+ }
  function run(s,t){if(fifteen.run(s,t))return true;if(!t.op.startsWith('g34_'))return false;const own=s.players[t.p],opp=s.players[1-t.p],x=live(s,t);switch(t.op){
  // Evo Charger continues after the physical spell has completed its move to mana.
  case'g34_EvoCharge566':{const hosts=creatures(s,t.p).filter(y=>!y.sealed&&api.isEvolution(y)),rows=own.mana.filter(y=>!y.faceDown&&faces(card(y)).some(c=>c.type==='creature'));if(!api.canMoveZone(s,t.p,'mana')||!hosts.length||!rows.length)break;if(!t.host)choice(s,t,'進化元を追加する自分の進化クリーチャーを選ぶ（任意）',[...hosts.map(y=>opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},8,y.cardId)),skip()]);else if(hosts.some(y=>key(y)===key(t.host)))choice(s,t,'進化元に追加するマナのクリーチャーを選ぶ（任意）',[...rows.map(y=>opt(card(y).name,{uid:y.uid,serial:y.zoneSerial||0},6-cost(card(y)),y.cardId)),skip()]);break;}
@@ -3472,7 +3479,7 @@ export function createSixPhotoRules(api){
    [opt('コストを支払わずに召喚する',true,25,y.cardId),skip()]);
   break;
  }
- case'g34_Chance417':{const y=own.hand.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial),c=y&&faces(card(y))[t.face];if(c?.g417Chance&&!api.spellIgnored(s,c)&&api.canCast(s,t.p,c,'hand'))choice(s,t,'アタック・チャンス：'+c.name+'を唱える？',[opt('コストを支払わずに唱える',true,20+modeScore(s,t,c.g34Tasks||[]),y.cardId),skip()]);break;}
+ case'g34_Chance417':{const c=chanceCard417(s,t);if(c)choice(s,t,'アタック・チャンス：'+c.name+'を唱える？',[opt('コストを支払わずに唱える',true,20+modeScore(s,t,c.g34Tasks||[]),t.source),skip()]);break;}
  case'g34_SpellFinish416':{const frame=(s.extSpells||[]).find(f=>f.inst.uid===t.uid&&f.caster===t.p&&(!f.virtual||f.shieldCast));if(frame){frame.to=t.to;frame.g416SelfFinish=true;if(frame.shieldCast)frame.inst.finishTo=t.to;}break;}
  case'g34_Judge318':api.singleJudge(s,t.p,t.source,t.uid,{...t,op:'g34_Sequence',defs:t.defs});break;
  case'g34_Thrill443':{const ids=look(s,{...t,n:3,public:true}),n=ids.filter(uid=>{const y=own.deck.find(y=>y.uid===uid);return y&&matches(s,t.p,y,{creature:true,raceAny:t.races});}).length,batch=String(s.g443Serial=(s.g443Serial||0)+1),defs=t.defs.map(d=>d.op==='Look'&&d.g201Search?{op:'ThrillSearch443',batch,ids,search:d}:d);for(const uid of ids)release(s,t.p,uid);put(s,...tasks(t.p,t.source,Array.from({length:n},(_,i)=>({op:'Offer',title:'スリリング・スリー '+(i+1)+'/'+n+'：能力を使う？',defs})),{uid:t.uid,incarnation:t.incarnation}),{...t,op:'g34_Order',g443Root:batch,ids,rest:'bottom',ordered:[]});break;}
@@ -6864,7 +6871,7 @@ export function createSixPhotoRules(api){
   const y=revengeCard795(s,t);
   if(y&&revengeReady795(s,t.p,y,t.origin))cast(s,t.p,y.uid,true,null,0,null,t.origin||'hand','リベンジ・チャンス');
  }break;
- case'g34_Chance417':if(v){const y=own.hand.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial),c=y&&faces(card(y))[t.face];if(c?.g417Chance&&!api.spellIgnored(s,c)&&api.canCast(s,t.p,c,'hand'))cast(s,t.p,y.uid,true,null,t.face,null,'hand','アタック・チャンス');}break;
+ case'g34_Chance417':if(v&&chanceCard417(s,t))cast(s,t.p,t.uid,true,null,t.face,null,t.origin??'hand','アタック・チャンス');break;
  case'g34_FairyManaExchange828':if(v)put(s,{...t,accepted:true});break;
  case'g34_Offer':if(v){
   if(t.g792Once){
@@ -8636,7 +8643,14 @@ export function createSixPhotoRules(api){
   if(hyperMode418(s,x))for(const y of s.players[p].grave)
    if(!y.faceDown&&card(y).g1234HyperGraveAttack)
     send(s,p,y,'GraveSummonWatch766',{serial:y.zoneSerial||0});
-  attackWatches252(s,p,x);for(const y of s.players[p].hand)for(const[c,face]of faces(card(y)).map((c,i)=>[c,i])){const w=c.g417Chance;if(w&&!api.spellIgnored(s,c)&&(!w.hyper||hyperMode418(s,x))&&chanceMatches419(s,p,x,w))send(s,p,y,'Chance417',{serial:y.zoneSerial||0,face});}for(const y of active(s,1-p,'souzan'))queue(s,1-p,y,[C('souzanStop')]);{for(const y of s.players[1-p].shields.flatMap(api.shieldCards).filter(y=>y.faceUp&&card(y).g34Role==='mantraCastle'))queue(s,1-p,y,[C('mantraDefend')]);if(s.attack?.target==='player'&&s.players.some(p=>!p.shields.length)&&!s.players[1-p].battle.some(y=>!y.sealed&&card(y).g34Role==='nightmare'))for(const y of s.players[1-p].hand.filter(y=>card(y).g34Role==='nightmare'))queue(s,1-p,y,[C('nightmare')]);}},
+  attackWatches252(s,p,x);
+  const top=api.visionTop(s,p);
+  for(const y of [...s.players[p].hand,...(top?[top]:[])])for(const [face,c] of faces(card(y)).entries()){
+   const w=c.g417Chance;
+   if(w&&!api.spellIgnored(s,c)&&(!w.hyper||hyperMode418(s,x))&&chanceMatches419(s,p,x,w))
+    send(s,p,y,'Chance417',{serial:y.zoneSerial||0,face,...(y===top?{origin:'deck'}:{})});
+  }
+  for(const y of active(s,1-p,'souzan'))queue(s,1-p,y,[C('souzanStop')]);{for(const y of s.players[1-p].shields.flatMap(api.shieldCards).filter(y=>y.faceUp&&card(y).g34Role==='mantraCastle'))queue(s,1-p,y,[C('mantraDefend')]);if(s.attack?.target==='player'&&s.players.some(p=>!p.shields.length)&&!s.players[1-p].battle.some(y=>!y.sealed&&card(y).g34Role==='nightmare'))for(const y of s.players[1-p].hand.filter(y=>card(y).g34Role==='nightmare'))queue(s,1-p,y,[C('nightmare')]);}},
  handBattleWins588(s,p,w){
   const own=s.players[p],winner=own.battle.find(x=>x.uid===w.uid);
   if(!winner)return[];

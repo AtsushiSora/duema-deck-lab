@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8014,
-  "pendingNames": 3812,
-  "phase": 1331,
-  "added": 1,
+  "supportedNames": 8016,
+  "pendingNames": 3810,
+  "phase": 1332,
+  "added": 2,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -159,7 +159,7 @@
     "呪文": 455,
     "GRクリーチャー": 156,
     "G-NEOクリーチャー": 26,
-    "タマシード": 38,
+    "タマシード": 37,
     "デュエルメイト呪文": 10,
     "S-MAX進化クリーチャー": 8,
     "進化クリーチャー": 257,
@@ -210,7 +210,7 @@
     "零龍星雲": 4,
     "進化クリーチャー（究極進化）": 1,
     "進化ドリーム・クリーチャー": 1,
-    "進化クリーチャー(究極進化)": 8,
+    "進化クリーチャー(究極進化)": 7,
     "デュエリスト": 5,
     "進化クリーチャー(墓地進化GV)": 2,
     "フェアリー・フィールド": 1,
@@ -223,8 +223,8 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 1077,
-    "未対応の能力文": 2543,
+    "複数面・特殊カードタイプまたは情報不足": 1076,
+    "未対応の能力文": 2542,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 19,
     "未対応のシンカパワー": 2,
@@ -489405,14 +489405,66 @@
       "resolvedRegistered": 1,
       "remainingRegistered": 50,
       "remainingPrints": 2
+    },
+    {
+      "phase": 1332,
+      "baseline": "abe60c02",
+      "before": 8014,
+      "supported": 8016,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dm22rp2-002",
+          "name": "アカシック・ヴィジョン"
+        },
+        {
+          "id": "dm32-s05",
+          "name": "神羅スカル・ムーン"
+        }
+      ],
+      "printAliases": 4,
+      "results": {
+        "focus": {
+          "passed": 7,
+          "log": "/tmp/duema-individual/focus.log"
+        },
+        "standardRegressions": {
+          "passed": 194,
+          "log": "/tmp/duema-individual/regressions-standard.log"
+        },
+        "targetedRegressions": {
+          "passed": 4,
+          "log": "/tmp/duema-individual/regressions-orochi.log"
+        },
+        "check": {
+          "status": "passed",
+          "log": "/tmp/duema-individual/check.log",
+          "rulesBlob": "c62e3794d10e26ced85ea475f3cf1d35a085d49f"
+        },
+        "audit": {
+          "status": "passed",
+          "log": "/tmp/duema-individual/audit.log"
+        }
+      },
+      "resolvedRegistered": 2,
+      "remainingRegistered": 48,
+      "remainingPrints": 2,
+      "remainingIndividualCards": 41,
+      "held": [
+        {
+          "id": "dmex19-025",
+          "name": "正義ノ裁キ",
+          "reason": "正義ノ裁キの公式本文、版、画像、裁定44311を照合。裁きの紋章のシールド追加と、サバキZのシールド離脱後の宣言を通しで再現する必要がある。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1331,
+    "lastVerifiedPhase": 1332,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "登録済みの裁定50件、公式ID未確認の再録2件、長時間対戦・ワーカーを検証する。アルドラとダイヤモンド・ソードの裁定35807は確認済み。",
+    "steps": "個別41種類（裁定48件・再録2件、重複1種類）の未検証を継続。公開手札を必要とするアリスとブルー・モヒートの裁定、および各裁定に必要な依存カードを優先する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -489490,19 +489542,23 @@
     "restartSteps": [
       "ローカルHEADと作業ツリー、ステージ済み差分、AGENTS.md、実行中のテストを確認する。dist/cards.jsonをnameKeyで再集計する。",
       "remainingVerificationRunの結果を確認する。全カードの合法経路と登場時能力借用の完走を確認した。残る対戦・ワーカーを対戦相手・シード単位に分ける。",
-      "未検証裁定の再現に必要なカードのみ追加する。アリスのビビッドロー公開と、スペル・デル・フィンの公開手札を複数の画面で検証する。",
+      "個別の残件を確認し、未検証裁定の再現に必要なカードのみ追加する。光神龍スペル・デル・フィンの公開手札をローカルとオンラインの両方で確認する。",
       "残る金箔2版は公式IDと公式画像を照合する。全検証が通過し、Netlifyに影響しない公開経路を確認するまで、公開は保留する。"
     ],
     "registrationStatus": "ユーザーの指示で10分間隔のカード登録を再開。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [
       {
-        "id": "dm26-006",
-        "name": "ダイヤモンド・ソード"
-      },
-      {
         "id": "dm22-001",
         "name": "光神龍スペル・デル・フィン"
+      },
+      {
+        "id": "dmrp12-008",
+        "name": "帝神龍装 ティーゾリス"
+      },
+      {
+        "id": "dmex19-025",
+        "name": "正義ノ裁キ"
       }
     ],
     "printVerificationPending": [
@@ -489701,8 +489757,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8014,
-    "pendingNames": 3812,
+    "supportedNames": 8016,
+    "pendingNames": 3810,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -533696,8 +533752,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8014,
-      "pendingNames": 3812,
+      "supportedNames": 8016,
+      "pendingNames": 3810,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -534724,7 +534780,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "登録済みカードの裁定50件、再録2件、長時間対戦とワーカーが未確認。GitHub上のmainのpushにNetlify本番ワークフローがあり、Netlifyを更新しないPages公開経路は未確認。",
+        "reason": "個別の裁定48件、再録2件、長時間対戦とワーカーが未確認。GitHub上のmainのpushにNetlify本番ワークフローがあり、Netlifyを更新せずにPagesへ公開する経路は未確認。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -534984,6 +535040,30 @@
           "phase": 1331,
           "log": "/tmp/duema-verify-cont/diamond-focus.log",
           "result": "公式の全6版を照合し、アルドラが当該ターンにブロッカーを出していなくても、ダイヤモンド・ソードで相手プレイヤーを攻撃して3枚ブレイクできることを確認。付与前からいる召喚酔いのクリーチャー、後から出たクリーチャー、怪獣のパワー制限、ターン終了、能力無視とJSON再開を確認。"
+        },
+        {
+          "cardId": "dmrp20-011",
+          "dependencyIds": [
+            "dm22rp2-002"
+          ],
+          "test": "《アカシック・ヴィジョン》で山札の一番上からオリジナルフィナーレのアタック・チャンスを使う。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/42506/",
+          "phase": 1332,
+          "path": "tests/standard1332-effects.test.mjs",
+          "log": "/tmp/duema-individual/focus.log",
+          "result": "アカシック・ヴィジョンで山札の一番上を見て、ディスペクターの攻撃からオリジナル・フィナーレのアタック・チャンスを使えることを実対戦で確認。鬼エンドによる使用は手札に限られ、山札の一番上は持ち主の画面だけに表示される。"
+        },
+        {
+          "cardId": "dm28-002",
+          "dependencyIds": [
+            "dm32-s05"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/35832/",
+          "test": "神羅スカル・ムーンの破壊の置換でギャラクシーを破壊し、二重に置換しないことを確認する。",
+          "path": "tests/standard1332-effects.test.mjs",
+          "log": "/tmp/duema-individual/focus.log",
+          "phase": 1332,
+          "result": "神羅スカル・ムーンの破壊を相手の不滅の精霊パーフェクト・ギャラクシーの破壊で置換すると、ギャラクシーの指定シールドを残したままギャラクシーが破壊され、スカル・ムーンは残ることを実対戦で確認。"
         }
       ],
       "remainingRegistered": [
@@ -535288,16 +535368,12 @@
           ],
           "test": "表向きの《正義ノ裁キ》を含むシールドがブレイクされた時、裁きの紋章呪文のS・トリガーは宣言できるが唱えられず、サバキZは宣言できない。",
           "reason": "通常の呪文および呪文のS・トリガーへの禁止は検証済み。QA44311の《正義ノ裁キ》と裁きの紋章呪文の組み合わせは前者が未実装のため未検証。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/44311/"
-        },
-        {
-          "cardId": "dmrp20-011",
-          "dependencyIds": [
-            "dm22rp2-002"
-          ],
-          "test": "《アカシック・ヴィジョン》で山札の一番上からオリジナルフィナーレのアタック・チャンスを使う。",
-          "reason": "手札からのアタック・チャンスは検証済み。QA42506の山札からの使用許可、およびその許可を攻撃時の宣言・解決に反映する処理は《アカシック・ヴィジョン》が未実装のため未検証。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/42506/"
+          "source": "https://dm.takaratomy.co.jp/rule/qa/44311/",
+          "rechecked1332": {
+            "status": "pending",
+            "reason": "正義ノ裁キの公式本文、版、画像、裁定44311を照合。裁きの紋章のシールド追加と、サバキZのシールド離脱後の宣言を通しで再現する必要がある。",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-025"
+          }
         },
         {
           "cardId": "dmrp20-s02",
@@ -535469,17 +535545,6 @@
         {
           "cardId": "dm28-002",
           "dependencyIds": [
-            "dm32-s05"
-          ],
-          "source": "https://dm.takaratomy.co.jp/rule/qa_old/35832/",
-          "test": "神羅スカル・ムーンの破壊の置換でギャラクシーを破壊し、二重に置換しないことを確認する。",
-          "reason": "シールド・セイバーで同様に二重置換しないことは実測済み。神羅スカル・ムーンは未登録。",
-          "path": "tests/standard1304-effects.test.mjs",
-          "log": "/tmp/duema-phase-1304/focus-final.log"
-        },
-        {
-          "cardId": "dm28-002",
-          "dependencyIds": [
             "dmrp15-s10",
             "dmrp22-003"
           ],
@@ -535532,10 +535597,12 @@
           "dmx14-031",
           "dm23rp4-009",
           "dmex12-021",
-          "dm26-006"
+          "dm26-006",
+          "dm22rp2-002",
+          "dm32-s05"
         ],
-        "officialPrints": 25,
-        "newAliases": 22,
+        "officialPrints": 31,
+        "newAliases": 26,
         "evidence": [
           {
             "id": "dm23rp2-065",
@@ -535739,6 +535806,54 @@
             "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc68-006.jpg",
             "pageSha256": "7409dd425feddd99c25a7a0cfa6db46bec29275b0806eae1314161de325b4002",
             "imageSha256": "b21039baa1485386f6bcb73275a9b3858e31871400c394bf01c78116325571fc"
+          },
+          {
+            "id": "dm22rp2-002",
+            "canonicalId": "dm22rp2-002",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-002",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-002.jpg",
+            "pageSha256": "acc002e9389c0598c08a73fc9d38aa0348b2ceb26e053a133648e010c72a108d",
+            "imageSha256": "7ec3246dbd9e881f168aa32345fe9ca502d9dd9ab49f84622758ef1f63561356"
+          },
+          {
+            "id": "dm32-s05",
+            "canonicalId": "dm32-s05",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-s05",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-s05.jpg",
+            "pageSha256": "d58904cd69ab6a339b304a516677cc53edc537bc63da4003b5d6280d5f47bb9f",
+            "imageSha256": "c9c05997e7f8c245dc1d95d1581caae9331e196e6a03bd0d2e145a833a814087"
+          },
+          {
+            "id": "dm22rp2x-002",
+            "canonicalId": "dm22rp2-002",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-002",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-002.jpg",
+            "pageSha256": "7892238a5d79ce7a226082a2ed2378ba4b255a82e351e150df8f5ea95caff8be",
+            "imageSha256": "af5f6dc3d32493904d5ddcf0b0838caa1c08550740c4968f7e1c7495b7254884"
+          },
+          {
+            "id": "dm22rp2x-002X",
+            "canonicalId": "dm22rp2-002",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-002X",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-002X.jpg",
+            "pageSha256": "48e730798d46115938e06a3b0544733a7f99e13a045a62b306efb77db35c33c3",
+            "imageSha256": "4ccc445aae66ad1feea9a2f0b76311e8770de5958de8326223ae4333f94175f7"
+          },
+          {
+            "id": "dmc66-007",
+            "canonicalId": "dm32-s05",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc66-007",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc66-007.jpg",
+            "pageSha256": "a792d5a41ae2298b4eb885ed330e2e25524814a252286b178603d7673cb24697",
+            "imageSha256": "c80ec8ca66ea711f1de544830559fcb4ca64099c5e64787c2945bb8e177b1dfa"
+          },
+          {
+            "id": "dmc64-006",
+            "canonicalId": "dm32-s05",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc64-006",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc64-006.jpg",
+            "pageSha256": "10e96c9671e867574e2c125df8a1740c6b29f9e20d8306ec1fc8521e2164cffa",
+            "imageSha256": "009131169a7c24934b9564de50866bc4265b95027296b10bed1f1deea1004b6f"
           }
         ],
         "testLog": "/tmp/duema-verify-8009/verification-followup-prints.log",
@@ -536122,8 +536237,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8014,
-        "pending": 3812,
+        "supported": 8016,
+        "pending": 3810,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -536722,9 +536837,8 @@
       },
       "finalCheck": {
         "status": "passed",
-        "log": "/tmp/duema-verify-cont/phase1331-check.log",
-        "rulesBlob": "4a1e729ffd2c94073765233dc34a0a80929bbafe",
-        "commit": "6e6ff1d2a190ed48c915168301e037a561bb594a"
+        "log": "/tmp/duema-individual/check.log",
+        "rulesBlob": "c62e3794d10e26ced85ea475f3cf1d35a085d49f"
       },
       "abyssShort": {
         "passed": 33,
@@ -536836,10 +536950,6 @@
           "name": "正義ノ裁キ"
         },
         {
-          "id": "dm22rp2-002",
-          "name": "アカシック・ヴィジョン"
-        },
-        {
           "id": "dmex18-022",
           "name": "アカシック・パラレル"
         },
@@ -536882,10 +536992,6 @@
         {
           "id": "dmx21-026",
           "name": "オールデリート"
-        },
-        {
-          "id": "dm32-s05",
-          "name": "神羅スカル・ムーン"
         },
         {
           "id": "dm26ex3-038",
@@ -536948,52 +537054,56 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1331,
-        "baseline": "16fe8b18",
-        "before": 8013,
-        "supported": 8014,
+        "phase": 1332,
+        "baseline": "abe60c02",
+        "before": 8014,
+        "supported": 8016,
         "duplicates": 0,
         "added": [
           {
-            "id": "dm26-006",
-            "name": "ダイヤモンド・ソード"
+            "id": "dm22rp2-002",
+            "name": "アカシック・ヴィジョン"
+          },
+          {
+            "id": "dm32-s05",
+            "name": "神羅スカル・ムーン"
           }
         ],
-        "printAliases": 5,
+        "printAliases": 4,
         "results": {
           "focus": {
-            "passed": 6,
-            "log": "/tmp/duema-verify-cont/diamond-focus.log"
+            "passed": 7,
+            "log": "/tmp/duema-individual/focus.log"
           },
-          "regressions": {
-            "passed": 124,
-            "log": "/tmp/duema-verify-cont/diamond-regressions.log"
+          "standardRegressions": {
+            "passed": 194,
+            "log": "/tmp/duema-individual/regressions-standard.log"
           },
-          "allAbilityPaths": {
-            "groups": 17,
-            "cards": 8014,
-            "results": "/tmp/duema-verify-cont/ability-paths-1331.jsonl"
+          "targetedRegressions": {
+            "passed": 4,
+            "log": "/tmp/duema-individual/regressions-orochi.log"
           },
           "check": {
             "status": "passed",
-            "log": "/tmp/duema-verify-cont/phase1331-check.log",
-            "rulesBlob": "4a1e729ffd2c94073765233dc34a0a80929bbafe"
+            "log": "/tmp/duema-individual/check.log",
+            "rulesBlob": "c62e3794d10e26ced85ea475f3cf1d35a085d49f"
           },
           "audit": {
-            "log": "/tmp/duema-verify-cont/phase1331-audit.log"
-          },
-          "online": {
-            "passed": 21,
-            "log": "/tmp/duema-verify-cont/phase1331-online-split.log"
-          },
-          "engineShort": {
-            "passed": 17,
-            "log": "/tmp/duema-verify-cont/engine-core-1331.log"
+            "status": "passed",
+            "log": "/tmp/duema-individual/audit.log"
           }
         },
-        "resolvedRegistered": 1,
-        "remainingRegistered": 50,
-        "remainingPrints": 2
+        "resolvedRegistered": 2,
+        "remainingRegistered": 48,
+        "remainingPrints": 2,
+        "remainingIndividualCards": 41,
+        "held": [
+          {
+            "id": "dmex19-025",
+            "name": "正義ノ裁キ",
+            "reason": "正義ノ裁キの公式本文、版、画像、裁定44311を照合。裁きの紋章のシールド追加と、サバキZのシールド離脱後の宣言を通しで再現する必要がある。"
+          }
+        ]
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
