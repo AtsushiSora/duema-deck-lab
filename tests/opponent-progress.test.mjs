@@ -82,7 +82,7 @@ test('app completion hook saves ordinary manual wins once using the started oppo
 });
 test('opponent pickers show the mark for copies and starter lists while own-deck views remain clear',()=>{
  const h=harness();h.read("starterDecks=resolveStarter25Decks(registry);const d=starterDecks[0];saved.friends=[prepareDeckCopy([],d,registry,{id:'opponent',category:'相手'}).deck];battle={state:{winner:0},decks:[saved.decks[0],saved.friends[0]]};recordManualOutcome();showSavedOpponentPicker()");assert.match(h.dialog.innerHTML,/✓ 撃破済み/);
- assert.match(h.read('starter25HTML({role:"opponent",direct:true})'),/✓ 撃破済み/);assert.ok(!h.read('starter25HTML({role:"mine",direct:true})').includes('✓ 撃破済み'));
+ assert.match(h.read('starter25HTML("opponent")'),/✓ 撃破済み/);assert.ok(!h.read('starter25HTML("mine")').includes('✓ 撃破済み'));
  h.read('battle=null;showSavedOpponentPicker()');assert.match(h.dialog.innerHTML,/✓ 撃破済み/);h.read('closeDialog();view="decks";render()');assert.ok(!h.root.innerHTML.includes('✓ 撃破済み'));
 });
 test('challenge completion preserves legacy progress, records its deck and remains isolated from automatic history',()=>{
