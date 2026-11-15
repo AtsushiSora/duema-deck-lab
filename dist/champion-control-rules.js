@@ -33,8 +33,22 @@ export function createControlChampionRules(api){
  return {run,chosen,
  effect(s,p,c){if(!c.g44Effect)return false;put(s,task('g44_'+c.g44Effect,p,c.id));return true;},
  entry(s,p,x){if(!api.isCreature(s,x))return;for(const w of creatures(s,p).filter(w=>w.uid!==x.uid&&!api.ignored(s,w)&&effective(w,s).g44Bella))on(s,p,w,'Bella');},
- mainActions(s,p){return movable(s,p,'mana')?s.players[p].mana.filter(x=>card(x).g44ManaSpell&&api.canCast(s,p,card(x),'mana')&&api.canPay(s,p,card(x))).map(x=>({kind:'play',uid:x.uid,cardId:x.cardId,origin:'mana',alternative:'g44Mana',cost:api.summonCost(s,p,card(x)),label:card(x).name+'をマナから唱える'})):[];},
- alternative(s,p,a){const x=s.players[p].mana.find(x=>x.uid===a.uid);if(!x||!movable(s,p,'mana'))return;x.finishTo='deck';api.cast(s,p,a.uid,false,null,0,null,'mana','生命と大地と轟破の決断');},
+ mainActions(s,p){
+  if(!movable(s,p,'mana'))return [];
+  return s.players[p].mana.flatMap(x=>{
+   const c=card(x);
+   if(!(c.g44ManaSpell||c.g1323ManaSpell&&!x.faceDown)||!api.canCast(s,p,c,'mana')||!api.canPay(s,p,c))return [];
+   return [{kind:'play',uid:x.uid,cardId:x.cardId,origin:'mana',alternative:'g44Mana',
+    cost:api.summonCost(s,p,c),label:c.name+'をマナから唱える'}];
+  });
+ },
+ alternative(s,p,a){
+  const x=s.players[p].mana.find(x=>x.uid===a.uid);
+  if(!x||!movable(s,p,'mana'))return;
+  const c=card(x);
+  if(c.g44ManaSpell)x.finishTo='deck';
+  api.cast(s,p,a.uid,false,null,0,null,'mana',c.name);
+ },
  played(s,p,c,x,origin){if(c.g44ManaSpell&&origin==='mana')x.finishTo='deck';},
  };
 }

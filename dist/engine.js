@@ -2866,6 +2866,7 @@ function battle(s,pa,a,pd,b,attackingUid=null,replaced=false,blockUntap,attackBa
  const ap=matchupPower(a,b,a.uid===attackingUid,s,b.uid===attackingUid,false,!!powerFrame)+bonus(a,pa),bp=matchupPower(b,a,b.uid===attackingUid,s,a.uid===attackingUid,!!powerFrame?.g1237Compare.blocker,!!powerFrame)+bonus(b,pd),late=[],forced=extra.beforeBattle(s,pa,a,pd,b);
  for(let n=0,count=slayerCount534(s,a,b);n<count;n++)late.push({controller:pa,player:pd,uid:b.uid,source:a.cardId});
  for(let n=0,count=slayerCount534(s,b,a);n<count;n++)late.push({controller:pd,player:pa,uid:a.uid,source:b.cardId});
+ const hasSlayer=late.length>0;
  for(const [player,unit] of [[pa,a],[pd,b]]){
   const c=effectiveCard(unit,s);
   if(c.afterBattleDie&&(!c.g1067NonEvolutionBattleDeath||!isEvolution(unit)))
@@ -2916,8 +2917,9 @@ function battle(s,pa,a,pd,b,attackingUid=null,replaced=false,blockUntap,attackBa
  queueLoss(pd,b,pa,a,bp,ap,bw);
  if(aw)losses.push(...extra.six.opponentBattleWins986(s,pa,a));
  if(bw)losses.push(...extra.six.opponentBattleWins986(s,pd,b));
- const hasAfterBounce=late.some(x=>x.g1155Bounce);
- const resumeTasks=powerFrame?.resumeTasks??(hasAfterBounce?s.extTasks?.splice(0):null);
+ // Resolve triggers from the battle loss before Slayer (QA45585).
+ const waitForResultEffects=hasSlayer||late.some(x=>x.g1155Bounce);
+ const resumeTasks=powerFrame?.resumeTasks??(waitForResultEffects?s.extTasks?.splice(0):null);
  moveCreatures(s,moves,{
   kind:'battleResult',winner,
   both:aw&&bw?[{player:pa,...result(pa,a,ap,bp)},{player:pd,...result(pd,b,bp,ap)}]:null,
@@ -2925,7 +2927,7 @@ function battle(s,pa,a,pd,b,attackingUid=null,replaced=false,blockUntap,attackBa
   ...(losses.length?{losses}:{}),
   late:late.sort((x,y)=>Number(y.controller===s.active)-Number(x.controller===s.active)),
   ...(powerFrame?{g1237BattleToken:powerFrame.g1237Compare.token,g1237Blocker:powerFrame.g1237Compare.blocker}:{}),
-  ...(hasAfterBounce||powerFrame?{g1155PriorEffect:powerFrame?.g1155PriorEffect??s.effectSerial??0,...(resumeTasks?.length?{resumeTasks}:{})}:{})
+  ...(waitForResultEffects||powerFrame?{g1155PriorEffect:powerFrame?.g1155PriorEffect??s.effectSerial??0,...(resumeTasks?.length?{resumeTasks}:{})}:{})
  });
 }
 function markBattleWin587(s,p,w){

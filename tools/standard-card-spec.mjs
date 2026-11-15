@@ -2480,6 +2480,18 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1323&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'&&
+  ['dm25rp4-S11','dm25rp4-Sec12','dm25rp4-ChoSec07','dm25ex3-rp4S11','dm25ex3-rp4Sec12'].includes(d.id)){
+  const lines=f.abilityText.split('\n').map(normalize);
+  const summonText=max=>'コスト'+max+'以下のデーモン・コマンドを1つ自分の墓地またはマナゾーンから出してもよい。';
+  if(lines.length===4&&lines[0]==='{GS}G・ストライク'&&
+   lines[1]==='この呪文を自分のマナゾーンから唱えてもよい。'&&lines[2]===summonText(4)&&lines[3]===summonText(6))
+   return {gStrike:true,g1323ManaSpell:true,effect:'sixPhoto',g34Tasks:[4,6].map(max=>({
+    op:'Select',zones:['grave','mana'],n:1,deploy:true,optional:true,
+    filter:{race:'デーモン・コマンド',faceUp:true,max},
+    title:'墓地またはマナから出すコスト'+max+'以下のデーモン・コマンドを選ぶ'
+   }))};
+ }
  if(phase>=1322&&d?.status==='complete'){
   const spell=d.faces[1];
   if(d.faces.length===1&&f.typeText==='呪文'){
@@ -2506,7 +2518,16 @@ export function standardCardSpec(d,{phase=165}={}){
      {machFighter:true,breaker:2,g1318Smash:true}],
     'dm25ex4-039':['クリーチャー',
      'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+lastBurst,
-     {blocker:true,megaLastBurst:true}]
+     {blocker:true,megaLastBurst:true}],
+    ...(phase>=1323?{
+     'dm25ex4-042':['クリーチャー',
+      'スレイヤー(このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)'+lastBurst,
+      {slayer:true,megaLastBurst:true}],
+     'dm25ex4-036':['クリーチャー',
+      'S・トリガーS・トリガー(このカードをシールドゾーンから手札に加える時コストを支払わずにすぐ実行してもよい)'+
+      'メカ・フレンド・バースト(このクリーチャーが出た時自分の他のメカ・クリーチャーを1体タップしてもよい。そうしたらこのクリーチャーの呪文側をバトルゾーンに置いたままコストを支払わずに唱える)',
+      {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'FriendBurst1210',race:'メカ'}]}]
+    }:{})
    }[d.id];
    if(front&&f.typeText===front[0]&&normalize(f.abilityText)===front[1])
     return {...front[2],spellFrontName:f.name,spellFace:{type:'spell',name:spell.name,cost:spell.cost,
