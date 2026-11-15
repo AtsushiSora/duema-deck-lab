@@ -537027,13 +537027,194 @@
         {
           "cardId": "dmbd13-015",
           "dependencyIds": [
-            "dmr04-v03"
+            "dmr04-v03",
+            "dmr04-v02",
+            "dmr04-051"
           ],
           "test": "奇石 ミクセルの登場監視とリュウセイ・ホールのマナ追加の順序を勝利のガイアール・カイザーで再現する（QA 38717）",
-          "reason": "勝利のガイアール・カイザーはV覚醒リンクを含む能力全体が未対応。同じコスト7の登録済みサイキック、時空の火焔ボルシャック・ドラゴンでは、6マナで登場してからマナを追加する順序を確認済み。",
+          "reason": "勝利のガイアール・カイザーの表面だけではカード全体の対戦対応が完結しない。3体がそろった時のV覚醒リンク、リンク解除後に残る2体の選択と状態継承、再録の裏面にあるバトル勝利時の2シールドブレイクを実装してから公式例を検証する。",
           "source": "https://dm.takaratomy.co.jp/rule/qa/38717/",
           "path": "tests/standard1105-effects.test.mjs",
-          "log": "/tmp/duema-phase-1105/focused.log"
+          "log": "/tmp/duema-phase-1105/focused.log",
+          "dependencyReview": {
+            "checkedAt": "2026-11-16",
+            "logDirectory": "tmp/duema-phase-1356",
+            "prints": [
+              {
+                "id": "dm23ex2-ChoG001",
+                "canonicalId": "dmr04-v03",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-ChoG001",
+                "faces": 2,
+                "backHasPrintedAbilities": true,
+                "imageSha256": [
+                  "e1e1e67db9393cdd3d769efe880222e440dac4c752984443938fc993e8cfd851",
+                  "814421929e976cc6e95eb0ef8d6ab9ad702ff571552dfccd7739d8da4200bdf3"
+                ]
+              },
+              {
+                "id": "dm25ex4-T29",
+                "canonicalId": "dmr04-051",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-T29",
+                "faces": 2,
+                "backHasPrintedAbilities": true,
+                "imageSha256": [
+                  "651b8df25adc8afededfaf673c21ccaa5cd7537cf30ccca780596093d38afbc9",
+                  "e770897d736fd20a521f9514135530287b6578fdccfc16153569ef4104ef20ce"
+                ]
+              },
+              {
+                "id": "dm25ex4-TR03",
+                "canonicalId": "dmr04-v03",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-TR03",
+                "faces": 2,
+                "backHasPrintedAbilities": true,
+                "imageSha256": [
+                  "e9d5749cac38766fb3ddd394f39be3d4614fd3a62bad9f65423f1036a985619a",
+                  "22769651b8253b2cd5793dfd13633ae3ab79e5760d338a43e6f0d79f160ce7f2"
+                ]
+              },
+              {
+                "id": "dmbd13-002",
+                "canonicalId": "dmr04-v02",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd13-002",
+                "faces": 2,
+                "backHasPrintedAbilities": true,
+                "imageSha256": [
+                  "1d468d5aef1c56b9822410adbdc53ba8f0ab8ad5ecac97390ea2fa0ee794cca8",
+                  "b0cc47cc111f56387d1147e956088d16f0ac3cf92571812547bbbf59718e5f0a"
+                ]
+              },
+              {
+                "id": "dmbd13-003",
+                "canonicalId": "dmr04-v03",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd13-003",
+                "faces": 2,
+                "backHasPrintedAbilities": false,
+                "imageSha256": [
+                  "966d943b30dbe4302d0fcabed43edb749573097c991c3c6966c32cd194d8277a",
+                  "5a81e9dbc73861c8729856dd9a8a119a8544ec01377d90e04765dd0bc709a2e1"
+                ]
+              },
+              {
+                "id": "dmbd13-004",
+                "canonicalId": "dmr04-051",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd13-004",
+                "faces": 2,
+                "backHasPrintedAbilities": false,
+                "imageSha256": [
+                  "8bf394e19175ac728312d50228c33db3c17ed5712d732046deed5cd6cef787b9",
+                  "c515115f09468e924be2a36865d0e63fa320107a70bf24c5436bbd7ffafc8cdc"
+                ]
+              },
+              {
+                "id": "dmd20-022",
+                "canonicalId": "dmr04-051",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd20-022",
+                "faces": 2,
+                "backHasPrintedAbilities": false,
+                "imageSha256": [
+                  "52ddbef1f5b3d51fd18ed4fc390adf3069e6edb4776bb94b1b54879b7666836b",
+                  "dc6ce27bbf7bdc058a91c8e917ed6020251bec8bb72df87882c5edc842ba09f1"
+                ]
+              },
+              {
+                "id": "dmr04-051",
+                "canonicalId": "dmr04-051",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-051",
+                "faces": 2,
+                "backHasPrintedAbilities": true,
+                "imageSha256": [
+                  "e232e815b190929fbb78faa5cfde03b59ad8115bbf53678cfe717575af20494b",
+                  "9426f625864467c72d23be1566ce2dc39ef25fe1712701542e588e5fc08c3f5f"
+                ]
+              },
+              {
+                "id": "dmr04-v02",
+                "canonicalId": "dmr04-v02",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-v02",
+                "faces": 2,
+                "backHasPrintedAbilities": true,
+                "imageSha256": [
+                  "c1f2f837391757f961f8ba672c73088d37986e4a01c81b84d0c3a17f895bbe37",
+                  "1aa61927b6928f9e0f6f75bde9bffe98c0ec17c385464dd9be8761fb488b2776"
+                ]
+              },
+              {
+                "id": "dmr04-v02h",
+                "canonicalId": "dmr04-v02",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-v02h",
+                "faces": 2,
+                "backHasPrintedAbilities": true,
+                "imageSha256": [
+                  "c1f2f837391757f961f8ba672c73088d37986e4a01c81b84d0c3a17f895bbe37",
+                  "1aa61927b6928f9e0f6f75bde9bffe98c0ec17c385464dd9be8761fb488b2776"
+                ]
+              },
+              {
+                "id": "dmr04-v03",
+                "canonicalId": "dmr04-v03",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-v03",
+                "faces": 2,
+                "backHasPrintedAbilities": true,
+                "imageSha256": [
+                  "42c734ef1bd253c2e38910b8aaa939780b30606e874ae175ce3190eef58ee171",
+                  "ba470ff3eebf222cb21d8b51f7dd76c7bafb7ae3712c4fe6497a62d6a2ddfe3f"
+                ]
+              },
+              {
+                "id": "dmr04-v03h",
+                "canonicalId": "dmr04-v03",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-v03h",
+                "faces": 2,
+                "backHasPrintedAbilities": true,
+                "imageSha256": [
+                  "42c734ef1bd253c2e38910b8aaa939780b30606e874ae175ce3190eef58ee171",
+                  "ba470ff3eebf222cb21d8b51f7dd76c7bafb7ae3712c4fe6497a62d6a2ddfe3f"
+                ]
+              },
+              {
+                "id": "dmx25-021",
+                "canonicalId": "dmr04-051",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx25-021",
+                "faces": 2,
+                "backHasPrintedAbilities": false,
+                "imageSha256": [
+                  "ef40714135f29c0f449334c37845e78392958b50957fb39239c8172735d44422",
+                  "3ef3975b0e91bd3a424e077533e7c92072d5603054aea28714bddfae7a91705e"
+                ]
+              },
+              {
+                "id": "dmx25-v11",
+                "canonicalId": "dmr04-v02",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx25-v11",
+                "faces": 2,
+                "backHasPrintedAbilities": true,
+                "imageSha256": [
+                  "e5b18aaa84bfdbc8166537ef11073666eea6016fcbd7b59e4f3ee56a052cc4be",
+                  "9c2c7158ce6146db7de6134c09000898a33e54393b96a44e9e5762aa31f2937a"
+                ]
+              },
+              {
+                "id": "dmx25-v12",
+                "canonicalId": "dmr04-v03",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx25-v12",
+                "faces": 2,
+                "backHasPrintedAbilities": false,
+                "imageSha256": [
+                  "53d9e03eb1d22caba5e4921a5ebc359493c7863cff0bd8041fde665de83ba003",
+                  "637306726e0395d01ab2eb7b22d48925a5b2019dad6a9ed9c9b6724b3f7f33a4"
+                ]
+              }
+            ],
+            "officialSources": [
+              "https://dm.takaratomy.co.jp/rule/qa/45569/",
+              "https://dm.takaratomy.co.jp/rule/qa/40886/",
+              "https://dm.takaratomy.co.jp/rule/qa/38695/",
+              "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-TR03",
+              "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-T29"
+            ],
+            "result": "公式の初出では勝利時に相手のシールドを選んで手札に加えると記載。DM25-EX4版ではガイアール・オレドラゴンによる2ブレイクを明記。コピーで同名になっても裏返せないカードではリンクしない。裏面の能力が公式ページ上で空欄の版は、裏面画像を対応する版と照合してから再録を登録する。"
+          }
         },
         {
           "cardId": "dm38-011",
@@ -537124,7 +537305,7 @@
         {
           "cardId": "dm22sd1-001",
           "test": "QA 48115のウエポンとオーラの装備解除を実カードで確認",
-          "reason": "ウエポンとオーラの両タイプは対戦カタログ未対応。クロスギアには既存の装備解除が適用される。",
+          "reason": "クロスギアの装備解除は検証済み。オレガ・オーラの共通処理はPhase 1352以降に対応したが、ジャシンがクリーチャーでなくなる盤面で両タイプを再現する検証は未完了。公式例の適用にはドラグハート・ウエポンが外れて墓地を経由し、超次元ゾーンへ戻る処理が必要。",
           "dependencyIds": [],
           "source": "https://dm.takaratomy.co.jp/rule/qa/48115/"
         },
