@@ -486951,15 +486951,6 @@
           "source": "https://dm.takaratomy.co.jp/rule/qa/47945/"
         },
         {
-          "cardId": "dm26rp2-S001",
-          "test": "ゾロ・ア・スタートの遅延誘発と複数カードの解決順",
-          "reason": "QA 48906は手札進化（キリコ＋デドダム）、墓地進化（デスシラズ）、マナ進化（レッドランチャー）の組み合わせを実カードで確認。超次元ゾーンを一度離れたカードの追跡と、複数の遅延誘発をゾロの持ち主が並べる裁定が残る。",
-          "sources": [
-            "https://dm.takaratomy.co.jp/rule/qa/48912/",
-            "https://dm.takaratomy.co.jp/rule/qa/48915/"
-          ]
-        },
-        {
           "cardId": "dmr14-012",
           "dependencyIds": [
             "dmrp08-s10"
@@ -533286,6 +533277,21 @@
           "source": "https://dm.takaratomy.co.jp/rule/qa/47325/",
           "result": "QA 47325を指定の3種で確認。ヴィオラの黒像に闇のデッドゾーンを重ねた後はドラゴンではないため、ヴォルジャアクの能力でパワー12000を参照しない。",
           "log": "/tmp/duema-verify-8001/viola-focus.log"
+        },
+        {
+          "cardId": "dm26rp2-S001",
+          "test": "ゾロ・ア・スタートの遅延誘発と複数カードの解決順",
+          "reason": "QA 48906は手札進化（キリコ＋デドダム）、墓地進化（デスシラズ）、マナ進化（レッドランチャー）の組み合わせを実カードで確認。超次元ゾーンを一度離れたカードの追跡と、複数の遅延誘発をゾロの持ち主が並べる裁定が残る。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/rule/qa/48912/",
+            "https://dm.takaratomy.co.jp/rule/qa/48915/"
+          ],
+          "result": "QA 48912は同じ物理カードが超次元ゾーンを離れて戻った場合に追跡しないこと、QA 48915は両方が残った時にゾロ側が順序を決めることを検証。ゾロが手札に戻っても遅延誘発を解決し、順序選択中のJSON復元を確認した。",
+          "logs": [
+            "/tmp/duema-verify-8001/zoro-focus.log",
+            "/tmp/duema-verify-8001/zoro-related.log",
+            "/tmp/duema-verify-8001/zoro-check.log"
+          ]
         }
       ],
       "remainingRegistered": [
@@ -533398,15 +533404,6 @@
           "test": "公式QA 47945の深淵送りで離脱防止を無視する処理",
           "reason": "アビスラブ=ジャシン帝が未対応。",
           "source": "https://dm.takaratomy.co.jp/rule/qa/47945/"
-        },
-        {
-          "cardId": "dm26rp2-S001",
-          "test": "ゾロ・ア・スタートの遅延誘発と複数カードの解決順",
-          "reason": "QA 48906は手札進化（キリコ＋デドダム）、墓地進化（デスシラズ）、マナ進化（レッドランチャー）の組み合わせを実カードで確認。超次元ゾーンを一度離れたカードの追跡と、複数の遅延誘発をゾロの持ち主が並べる裁定が残る。",
-          "sources": [
-            "https://dm.takaratomy.co.jp/rule/qa/48912/",
-            "https://dm.takaratomy.co.jp/rule/qa/48915/"
-          ]
         },
         {
           "cardId": "dmr14-012",
@@ -534204,6 +534201,15 @@
             "/tmp/duema-verify-8001/viola-regression.log",
             "/tmp/duema-verify-8001/viola-final-check.log",
             "/tmp/duema-verify-8001/viola-main-audit.log"
+          ]
+        },
+        {
+          "id": "dm26rp2-S001",
+          "result": "QA 48912は同じ物理カードが超次元ゾーンを離れて戻った場合に追跡しないこと、QA 48915は両方が残った時にゾロ側が順序を決めることを検証。ゾロが手札に戻っても遅延誘発を解決し、順序選択中のJSON復元を確認した。",
+          "logs": [
+            "/tmp/duema-verify-8001/zoro-focus.log",
+            "/tmp/duema-verify-8001/zoro-related.log",
+            "/tmp/duema-verify-8001/zoro-check.log"
           ]
         }
       ]

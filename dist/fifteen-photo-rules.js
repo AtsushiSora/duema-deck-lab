@@ -131,7 +131,13 @@ export function createFifteenPhotoRules(api){
  case'graveName':{if(!opp.hand.length)break;const y=opp.hand[Math.floor(api.random(s)*opp.hand.length)];api.discardSelected(s,1-t.p,[y.uid],t.source,t.p);give(s,t,[E('Mill',{n:cost(card(y)),optional:true})]);break;}
  case'graveNameRevive':give(s,t,[S('grave',null,1,{creature:true,max:(x?cost(effective(x,s)):t.max)-1},{deploy:true,optional:true,grant:{entryPlayerAttack:true},delayed:'deck'})]);break;
  case'iwashin':give(s,t,[E('Offer',{defs:[E('Draw',{n:1}),E('Discard',{owner:'self',n:1})]})]);break;
- case'deferredReturn':{const y=own.extra.find(y=>y.uid===t.target);if(y){deploy(s,t,'extra',y.uid);s.g35Deferred=(s.g35Deferred||[]).filter(r=>r.uid!==y.uid);}break;}
+ case'deferredReturn':{
+  const player=t.targetPlayer??t.p;
+  const y=s.players[player].extra.find(y=>y.uid===t.target&&(t.serial===undefined||(y.zoneSerial||0)===t.serial));
+  if(t.targetPlayer===undefined)s.g35Deferred=(s.g35Deferred||[]).filter(r=>r.uid!==t.target);
+  if(y)deploy(s,{...t,p:player},'extra',y.uid);
+  break;
+ }
  case'untapMana':{const selected=t.selected||[],ys=own.mana.filter(y=>!selected.includes(y.uid)&&api.canUntapMana(s,y));if(selected.length>=t.n||!ys.length)break;choice(s,{...t,selected},'アンタップするマナを選ぶ（'+selected.length+'/'+t.n+'）',ys.map(y=>opt(card(y).name,y.uid,y.tapped?10:0,y.cardId)));break;}
  case'scorpionAttack':give(s,t,[E('Ramp',{n:1}),S('mana',null,1,{max:own.mana.length+1,creatureOrSeed:true},{deploy:true,optional:true})]);break;
  case'sixfall':{const rows=creatures(s,t.owner);if(rows.length<2)break;target(s,{...t,p:t.owner,controller:t.p,stage:t.stage||0},t.stage?'その下に置くクリーチャーを選ぶ':'下にカードを重ねるクリーチャーを選ぶ',rows.filter(y=>y.uid!==t.host),true);break;}
@@ -259,7 +265,17 @@ export function createFifteenPhotoRules(api){
  battleWins(s,p,w){const x=s.players[p].battle.find(x=>x.uid===w.uid);return x&&hasRole(effective(x,s),'mobius')?[event(p,x,'mobiusWin')]:[];},
  snapshot(s){return{fuji:[0,1].map(p=>active(s,p,'fuji').map(x=>({...x}))),limone:[0,1].map(p=>active(s,p,'limone').map(x=>({...x}))),roles:[0,1].map(p=>s.players[p].battle.map(x=>({uid:x.uid,c:effective(x,s)})))};},
  leaving(s,p,x,snapshot,to,destroy){const c=snapshot?.roles?.[p]?.find(y=>y.uid===x.uid)?.c||effective(x,s),r=c.g35Role;if(j(c))for(const w of snapshot?.fuji?.[p]||active(s,p,'fuji'))if(w.uid!==x.uid&&!used(s,'g35Fuji',w)){mark(s,'g35Fuji',w);on(s,p,w,'copyEntry',{copy:x.cardId});}for(const r of roles(c)){if(r==='bakus'&&to==='mana')(s.g35BakuNoLose??=[]).push({p,turn:s.turn});if(r==='quasar')on(s,p,x,'quasarLeave');if(r==='venom'&&to==='grave'&&destroy)queue(s,p,x,[E('Offer',{defs:[E('Put',{origin:'grave',target:x.uid,tapped:true})]})]);}if(to==='deck'&&x.g35DrawOnBottom)queue(s,p,x,[E('Draw',{n:1})]);if(to==='grave'&&destroy)for(const w of snapshot?.limone?.[1-p]||active(s,1-p,'limone'))if(!used(s,'g35Limone',w)){mark(s,'g35Limone',w);queue(s,1-p,w,[E('Discard',{n:2})]);}},
- turnStart(s,p){const out=[];for(const x of active(s,p,'lastJudge'))if(!s.g7TerminalUsed?.[p])out.push(event(p,x,'terminal'));for(const x of active(s,p,'shuramaru'))out.push(event(p,x,'shuramaru'));for(const x of s.players[p].battle.filter(x=>card(x.cardId).g35Role==='skull'))out.push(event(p,x,'skullUnseal'));for(const r of s.g35Deferred||[])if(r.p===p)out.push(event(p,{uid:r.uid,cardId:r.cardId},'deferredReturn',{target:r.uid}));return out;},
+ turnStart(s,p){const out=[];for(const x of active(s,p,'lastJudge'))if(!s.g7TerminalUsed?.[p])out.push(event(p,x,'terminal'));for(const x of active(s,p,'shuramaru'))out.push(event(p,x,'shuramaru'));for(const x of s.players[p].battle.filter(x=>card(x.cardId).g35Role==='skull'))out.push(event(p,x,'skullUnseal'));if(s.g35Deferred?.length){
+  const due=s.g35Deferred.filter(r=>r.p===p);
+  s.g35Deferred=s.g35Deferred.filter(r=>r.p!==p);
+  // The controller of the delayed ability orders it; the affected player puts the card into battle (QA 48915).
+  for(const r of due){
+   const y=s.players[p].extra.find(x=>x.uid===r.uid&&(r.serial===undefined||(x.zoneSerial||0)===r.serial));
+   if(y)out.push({...event(r.controller??1-p,{uid:r.uid,cardId:r.source??r.cardId},'deferredReturn',{
+    target:r.uid,targetPlayer:p,serial:r.serial
+   }),label:card(r.cardId).name+'を超次元ゾーンから出す'});
+  }
+ }return out;},
  end(s){const out=[];for(const p of[0,1]){if(s.active===p){for(const r of['punisher','infinity'])for(const x of active(s,p,r))out.push(event(p,x,r==='infinity'?'infinity':'punisher'));for(const x of s.players[p].hand.filter(x=>card(x).g35Role==='fuji'))out.push(event(p,x,'fujiEnd'));if(active(s,p,'ruru').length)for(const x of creatures(s,p))out.push({...event(p,x,'noop'),task:task('g34_Untap',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})});}else for(const x of s.players[p].battle)if(soul(s,x,'pp'))out.push(event(p,x,'ppEnd'));}return out;},
  expire(s,when,p){if(when==='start')s.g35ZeroMana=(s.g35ZeroMana||[]).filter(l=>l.who!==p||s.players[p].turns<l.turns);},
  lossOptions(s,p){return active(s,p,'bakus').filter(x=>api.canLeave(s,p,x,{destroy:false})).map(x=>opt(card(x).name+'をかわりにマナへ置く',{kind:'g35Baku',uid:x.uid},50,x.cardId));},
@@ -276,7 +292,9 @@ export function createFifteenPhotoRules(api){
  }
  return out;},
  replacementOptions(s,p,c,origin,manaCount=s.players[p].mana.length){const rows=[];if(c.type!=='creature')return rows;for(const x of s.players[1-p].battle){if(api.ignored(s,x))continue;for(const r of roles(effective(x,s))){const to=r==='van'&&/コマンド|ドラゴン/.test(c.race)?'grave':r==='pp'&&cost(c)>manaCount?'mana':r==='zoro'&&s.active===p&&origin!=='extra'?'extra':r==='baby'&&s.active===p&&jokerCount(s,1-p)>=3&&cost(c)>manaCount?'deck':null;if(to)rows.push({source:x.cardId,owner:1-p,to,g35Role:r,g35Uid:x.uid});}}return rows;},
- replaced(s,e,r){if(r.g35Role==='zoro')(s.g35Deferred??=[]).push({p:e.p,uid:e.inst.uid,cardId:e.inst.cardId});if(r.g35Role==='baby')move(s,[{player:r.owner,uid:r.g35Uid,to:'deck',destroy:false}]);},
+ replaced(s,e,r){if(r.g35Role==='zoro')(s.g35Deferred??=[]).push({
+  p:e.p,uid:e.inst.uid,cardId:e.inst.cardId,serial:e.inst.zoneSerial||0,controller:r.owner,source:r.source
+ });if(r.g35Role==='baby')move(s,[{player:r.owner,uid:r.g35Uid,to:'deck',destroy:false}]);},
  selected(s,p,a,d){const value=a.kind==='extended'?d?.choices?.[a.choice]?.value:null,ids=new Set([...(a.targets||[]).map(t=>t.uid),...(['effect','fight','dragonTap'].includes(a.kind)?[a.target||a.uid]:[]),...(typeof value==='string'?[value]:value?.uid?[value.uid]:[])]);for(const x of s.players[1-p].battle)if(ids.has(x.uid)){const r=effective(x,s).g35Role;if(r==='gaiging')on(s,1-p,x,'extraTurn');if(r==='mobius'&&x.hyperActive)on(s,1-p,x,'mobiusChosen');}},
  beforeBreak(s,defender,uids){const ctx=s.breakContext,x=ctx&&s.players[ctx.player].battle.find(x=>x.uid===ctx.sourceUid);if(!ctx||ctx.g35Prepared||!x||!hasRole(effective(x,s),'hyperJohnny')||x.entered!==s.turn||defender===ctx.player)return false;ctx.g35Prepared=true;put(s,task('g35_Custom',ctx.player,x.cardId,{name:'masterBreak',uid:x.uid,incarnation:x.incarnation||0,defender,uids:[...uids],context:structuredClone(ctx)}));return true;},
  };

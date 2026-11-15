@@ -183,3 +183,37 @@ test('Lobby triggers once for each creature in a sweep it survives',()=>{
  assert.equal(s.players[1].grave.length,2);
  assert.equal(e.power(lobby,false,s),7000);
 });
+
+test('the Zoro controller orders both delayed returns, even after Zoro leaves (QA48915)',()=>{
+ const s=field(),zoro=put(s,1,'battle','dm26rp2-S001');
+ const first=play(s,NATURE),second=play(s,WATER);
+ assert.deepEqual(s.players[0].extra,[first,second]);
+ bounce(s,zoro.uid);
+ assert.ok(s.players[1].hand.includes(zoro));
+ end(s);drain(s);act(s,'skipCharge');end(s);
+ const choices=legal(s,'orderEffect');
+ assert.equal(s.decision.player,1);
+ assert.deepEqual(choices.map(x=>x.uid),[first.uid,second.uid]);
+ const restored=JSON.parse(JSON.stringify(s));
+ act(restored,'orderEffect',a=>a.uid===second.uid);
+ drain(restored);
+ assert.deepEqual(restored.players[0].battle.map(x=>x.uid),[second.uid,first.uid]);
+ assert.deepEqual(restored.g35Deferred,[]);
+});
+
+test('Zoro ignores a new visit to the extra zone by the same physical card (QA48912)',()=>{
+ const s=field(),id='dm26rp2-S001';
+ put(s,1,'battle',id);
+ const card=play(s,NATURE),firstSerial=card.zoneSerial;
+ assert.equal(s.players[0].extra[0],card);
+ s.extTasks=[{op:'g34_Put',p:0,source:id,origin:'extra',target:card.uid}];
+ act(s,'toAttack');drain(s);assert.ok(s.players[0].battle.includes(card));
+ s.phase='main';
+ s.extTasks=[{op:'g34_ExactMove',p:0,source:id,owner:0,target:card.uid,to:'extra'}];
+ act(s,'toAttack');drain(s);assert.equal(s.players[0].extra[0],card);
+ assert.notEqual(card.zoneSerial,firstSerial);
+ end(s);drain(s);act(s,'skipCharge');end(s);drain(s);
+ assert.ok(s.players[0].extra.includes(card));
+ assert.deepEqual(s.players[0].battle,[]);
+ assert.deepEqual(s.g35Deferred,[]);
+});
