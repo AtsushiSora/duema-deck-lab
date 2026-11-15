@@ -536459,6 +536459,10 @@
               "https://dm.takaratomy.co.jp/rule/qa/43058/"
             ],
             "result": "公式Q&Aには、名称が異なる拡張キーワードも元の能力として扱う例がある。キング・ナイト・マジックとナイト・マジックの包含関係を直接述べる裁定は確認できず、現行テストだけで対応済みとは判定しない。"
+          },
+          "publisherPreview": {
+            "source": "https://corocoro-news.jp/news/398184/",
+            "result": "コロコロ公式の発売時カード紹介で本文と印刷コスト5を照合した。軽減の適用条件やドラム・トレボールとの組み合わせは掲載されていない。"
           }
         },
         {
@@ -537653,6 +537657,25 @@
               "https://www.youtube.com/watch?v=QuzPogyXhsY"
             ],
             "result": "発売前の公式配信で49分46秒に金箔レアリティの新名称、50分にドラン・ゴルギーニのシークレットSPレアの画像を確認した。1時間9分15秒のカード紹介と公式開封配信の確認範囲でも、金箔2S/2のカード画像と印刷番号を特定できなかった。"
+          },
+          "officialIllustrationRecheck": {
+            "checkedAt": "2026-11-15",
+            "printNumberObserved": "OR2/OR2",
+            "sources": [
+              "https://dm.takaratomy.co.jp/enq_dm22rp1_01/",
+              "https://corocoro-news.jp/news/345575/"
+            ],
+            "verifiedImageEvidence": [
+              {
+                "url": "https://dm.takaratomy.co.jp/wp-content/card/cardthumb/dm22rp1-OR2.jpg",
+                "sha256": "59f72981ee3773bd8e3ac39dbad11e8dad583c9768bd998b34a4fa8d4d63f686"
+              },
+              {
+                "url": "https://corocoro-news.jp/wp-content/uploads/2022/09/1d942df29cb35b490ce42b942481ec22.jpg",
+                "sha256": "6ecb8dcfb7b7ce26afd6bbf69860f987389e3a7fa283e9d604c91130ee4daeb1"
+              }
+            ],
+            "result": "タカラトミーの発売時アンケートとコロコロのカード紹介の掲載画像を開き、どちらも印刷番号がOR2/OR2であることを目視した。2S/2は保留。"
           }
         }
       ],
@@ -540825,11 +540848,37 @@
             "status": "実行中",
             "decks": 85,
             "planned": 255,
-            "completed": 11,
+            "completed": 25,
             "failures": 0,
             "log": "/tmp/duema-uncapped/current-ai-audit.log",
             "report": "/tmp/duema-uncapped/current-ai-audit.json",
             "result": "ルールソースの異なる検証済みコミットで、85デッキの合法性、物理カードの保持、JSON復元と非公開情報の扱いを再検証中。"
+          },
+          "pendingDependencies": {
+            "commit": "c836360c",
+            "canonicalNames": 8036,
+            "missingFromBattleCatalogue": 21,
+            "officialDetailPages": 21,
+            "officialCardFaceImages": 24,
+            "detailEvidence": "/tmp/duema-uncapped/dependencies-c836360c/sources.json",
+            "imageEvidence": "/tmp/duema-uncapped/dependencies-c836360c/images.json",
+            "result": "実データをIDとnameKeyで照合し、対象21種類がいずれの経路にもないことを確認。公式詳細21ページと、別面を含む画像24点を取得した。対戦での再現は未完了。"
+          },
+          "currentIndividual": {
+            "commit": "c836360c",
+            "groups": 9,
+            "files": 48,
+            "passed": 507,
+            "failed": 0,
+            "skipped": 0,
+            "results": "/tmp/duema-uncapped/current-individual-c836360c.json",
+            "result": "従来の個別裁定の33ファイルと追加15ファイルを全件実行。未実装の依存カードを要求する裁定は個別の残項目に保持。"
+          },
+          "currentCheck": {
+            "commit": "c836360c",
+            "command": "npm run check",
+            "status": "通過",
+            "log": "/tmp/duema-uncapped/current-check-c836360c.log"
           }
         },
         "latestRegisteredRulings": {
