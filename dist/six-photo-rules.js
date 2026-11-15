@@ -3028,6 +3028,14 @@ export function createSixPhotoRules(api){
  case'g34_InspectHand':{
   const hand=opp.hand;
   if(!hand.length){api.log(s,t.p,'look',card(t.source).name+'：相手の手札はありません',{cardId:t.source});break;}
+  if(t.g1324ChooseCreature){
+   api.log(s,t.p,'look',card(t.source).name+'で相手の手札を確認',{cardId:t.source});
+   const options=hand.filter(y=>faces(card(y)).some(c=>c.type==='creature'))
+    .map(y=>opt(card(y).name,y.uid,10-cost(card(y)),y.cardId));
+   choice(s,{...t,seen:hand.map(y=>y.cardId)},'相手の手札からクリーチャーを指定する',
+    options.length?options:[opt('確認を終える',null,0)]);
+   break;
+  }
   if(t.g904ToShield){
    api.log(s,t.p,'look',card(t.source).name+'で相手の手札を確認',{cardId:t.source});
    const options=hand.filter(y=>api.canAddShield(s,y.cardOwner??1-t.p))
@@ -5862,6 +5870,7 @@ export function createSixPhotoRules(api){
     if(!matches(s,t.p,{...y,cardId:y.cardId},t.filter))return [];
     return faces(card(y)).flatMap((c,face)=>{
      const type=c.type;
+     if(t.g1324ExecuteRace&&!race(c,t.g1324ExecuteRace)&&!(type==='spell'&&cost(c)<=t.g1324SpellMax))return [];
      if(t.spellOnly&&type!=='spell'||t.g1225SeedOnly&&!(type==='seed'||c.seedCreature||c.natureAce4)||t.g985FaceNameIncludes&&!c.name.includes(t.g985FaceNameIncludes)||
         t.g556SpellColor&&!colors(c).includes(t.g556SpellColor)||
         t.spellColorsAny&&!t.spellColorsAny.some(color=>colors(c).includes(color))||
@@ -6703,6 +6712,11 @@ export function createSixPhotoRules(api){
   if(t.count)start(s,t,[{op:'DrawUpTo',n:t.count,g203Draw:true,g853EachDraw:true}]);
   break;
  case'g34_InspectHand':
+  if(t.g1324ChooseCreature){
+   if(v)start(s,{...t,p:1-t.p},[{op:'Select',origin:'hand',deploy:true,n:1,optional:true,
+    filter:{creature:true,exactUid:v},title:'指定されたクリーチャーを出す？'}]);
+   break;
+  }
   if(t.g904ToShield){
    const owner=1-t.p;
    const y=s.players[owner].hand.find(x=>x.uid===v);
@@ -7946,7 +7960,7 @@ export function createSixPhotoRules(api){
   const c=effective(x,s);
   if(c.g1304ShieldForceActive&&!context.skip577Stay&&!context.replacement)return false;
   if((s.extLimits||[]).some(l=>l.kind==='g1087ElementsStay'&&l.player===p)&&!x.sealed)return false;
-  if(context.destroy===false&&s.active===p&&c.g1224OwnNonDestructionStay)return false;
+  if(context.destroy===false&&(c.g1324NonDestructionStay||s.active===p&&c.g1224OwnNonDestructionStay))return false;
   if(context.destroy===false&&api.isCreature(s,x)&&s.players[p].battle.some(y=>{
    const source=card(y);
    const protects=source.g1087RaceStay&&race(c,source.g1087RaceStay)||
@@ -8512,7 +8526,8 @@ export function createSixPhotoRules(api){
   if(!y.sealed)for(const owner of [0,1])for(const x of creatures(s,owner)){
    if(!creature&&!card(x).g314OtherEntry?.g765Element)continue;
    const watch=effective(x,s).g314OtherEntry;
-   if(!watch||!creature&&!watch.g765Element||x.sealed||x.uid===y.uid||watch.who!=='both'&&owner!==(watch.who==='opponent'?1-p:p))continue;
+   if(!watch||!creature&&!watch.g765Element||x.sealed||x.uid===y.uid&&
+    (!watch.g1324IncludeSelf||options.selfMuted||api.selfStopped(s,p))||watch.who!=='both'&&owner!==(watch.who==='opponent'?1-p:p))continue;
    if(watch.g1175OutsideHand&&(!options.origin||options.origin==='hand'))continue;
    if(watch.entryCount!==undefined&&s.players[p].enteredThisTurn!==watch.entryCount)continue;
    if(watch.minEntryCount!==undefined&&(s.players[p].enteredThisTurn||0)<watch.minEntryCount)continue;
@@ -9194,6 +9209,11 @@ export function createSixPhotoRules(api){
   }
   const endRefs=[...(a.g543Refs||[]),...(x?api.allLayers(x).map(key):[])];if(a.g543First)for(const r of s.extLimits||[])if(r.kind==='g543Shinka'&&r.when==='firstAttackEnd'&&endRefs.includes(key(r)))api.enqueue(s,r.p,{source:r.source,effect:'extended',task:task('g34_ResolveDelay537',r.p,r.source,{uid:r.uid,incarnation:r.incarnation,defs:[{op:'Untap',g191First:true}]})});for(const r of a.g542After||[])api.enqueue(s,r.p,{source:r.source,effect:'extended',task:task('g34_ResolveDelay537',r.p,r.source,{uid:r.uid,incarnation:r.incarnation,defs:r.defs})});for(const t of a.g176Deaths||[]){const y=s.players[t.p].battle.find(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===t.incarnation));if(y)api.enqueue(s,t.p,{uid:y.uid,source:t.source,effect:'extended',task:task('g34_ExactMove',t.p,t.source,{owner:t.p,target:y.uid,targetIncarnation:y.incarnation||0,to:'grave'})});}if(!x)return;
   const endCard=effective(x,s);
+  if(a.g543First&&!x.sealed&&api.isCreature(s,x))for(const watcher of creatures(s,a.player)){
+   const watchedRace=effective(watcher,s).g1324FirstAttackUntapRace;
+   if(watchedRace&&race(endCard,watchedRace))
+    queue(s,a.player,watcher,[{op:'Untap',g904Refs:endRefs}]);
+  }
   // Decide the number at attack end, then resolve each optional use independently (QA 37698).
   const breaks=a.g1271BreakCounts?.[key(x)]||0;
   if(!x.sealed&&endCard.g1271BreakBonus)for(let i=0;i<breaks;i++)

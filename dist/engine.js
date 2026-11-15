@@ -1864,11 +1864,14 @@ export function paymentPool(s,p,exclude=[],c=null){
  const summonColors=c?.type==='creature'&&!c.crossing&&s.players[p].battle.some(x=>
   !x.sealed&&!x.faceDown&&card(x).g1237SummonManaColors&&isCreature(s,x)&&effectiveCard(x,s).g1237SummonManaColors);
  const twins=twinManaColors(s,p),colorlessOnly=c?.type==='creature'&&c.g1039ColorlessPayment;
+ const paymentType=c;
  const mana=s.players[p].mana.filter(x=>!colorlessOnly||!manaColors(card(x),s,p).length);
  return [...mana.map(x=>{
   const c=card(x),zero=zeroManaValue(s,p,x),value=zero?0:fairy?2:manaValue(c),boost=crystal&&x.faceDown;
   const double=origin&&value===1&&String(c.race||'').split('/').includes('オリジン');
-  const anyColor=all||summonColors||twins&&c.spellFace||!x.faceDown&&raceManaColors(s,p,c);
+  const jokerPayment=!x.faceDown&&c.g1324JokerMana&&
+   paymentType?.type==='creature'&&String(paymentType.race).includes('ジョーカーズ');
+  const anyColor=all||summonColors||twins&&c.spellFace||jokerPayment||!x.faceDown&&raceManaColors(s,p,c);
   const colors=x.faceDown||anyColor?null:natureManaColors1261(s,p,c);
   const addedColors=colors&&colors.length>manaCivilizations(c).length;
   return zero||fairy||origin||crystal||anyColor||addedColors?{...x,

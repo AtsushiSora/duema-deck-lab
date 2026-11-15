@@ -2480,6 +2480,43 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1324&&d?.status==='complete'&&d.faces.length===1){
+  const lines=f.abilityText.split('\n').map(normalize);
+  const text=lines.join('');
+  const strike='{GS}G・ストライク(このカードを自分のシールドゾーンから手札に加える時表向きにし相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)';
+  if(d.id==='dm26ex4-081'&&f.typeText==='呪文'&&text===strike+
+   'チャージャー(この呪文を唱えた後墓地のかわりにマナゾーンに置く)'+
+   'ジョーカーズ・クリーチャーを召喚する時マナゾーンにあるこのカードをすべての文明を持つかのようにタップしてもよい。')
+   return {gStrike:true,normalCharger:true,g1324JokerMana:true};
+  const doraRaidReminder='(自分の山札の上から3枚を見る。その中から指定の種族で指定のコスト以下のカードを1枚コストを支払わずに実行してもよい。残りを好きな順序で山札の下に置く)';
+  if(['dm26ex3-017','dm26ex3-SEC007','dm26ex3-SEC007CHO'].includes(d.id)&&f.typeText==='クリーチャー'&&text==='スピードアタッカーT・ブレイカー'+
+   'このクリーチャーが攻撃する時ドラゴン・メクレイド10する。'+(d.id==='dm26ex3-017'?doraRaidReminder:'')+
+   '各ターン自分の各アオハル組の最初の攻撃の終わりにそのクリーチャーをアンタップする。')
+   return {speedAttacker:true,breaker:3,g34Attack:[{op:'Raid767',race:'ドラゴン',max:10}],g1324FirstAttackUntapRace:'アオハル組'};
+  if(['dm26ex3-021','dm26ex3-SEC008','dm26ex3-SEC008CHO'].includes(d.id)&&f.typeText==='クリーチャー'&&text==='マッハファイターW・ブレイカー'+
+   'このクリーチャーが出た時自分の山札の上から3枚を表向きにする。その中から呪文とJack-Potカードをすべて手札に加え残りを好きな順序で山札の下に置く。'+
+   '龍マナ武装5:このクリーチャーが攻撃する時自分のマナゾーンにドラゴン・クリーチャーが5体以上あればJack-Potカードまたはコスト8以下の呪文を1枚自分の手札からコストを支払わずに実行してもよい。')
+   return {machFighter:true,breaker:2,effect:'sixPhoto',g34Tasks:[
+    {op:'Look',n:3,public:true,g255Distribute:true,rest:'bottom',
+     stages:[{n:'all',allMatches:true,to:'hand',filter:{any:[{spell:true},{anyFaceRace:'Jack-Pot'}]}}]}
+   ],g34Attack:[{op:'IfOwn',filter:{g267Mana:{n:5,filter:{faceUp:true,g228Face:{type:'creature',raceAll:['ドラゴン']}}}},
+    defs:[{op:'Execute',origin:'hand',g1324ExecuteRace:'Jack-Pot',g1324SpellMax:8,g1244NoEmptyOffer:true}]}]};
+  if(['dm26ex3-011','dm26ex3-SEC004','dm26ex3-SEC004CHO','dm26ex3-SSP002'].includes(d.id)&&f.typeText==='クリーチャー'&&text==='{GS}G・ストライクパワード・ブレイカー'+
+   '自分の生徒会組すべてに「スピードアタッカー」を与える。'+
+   '自分のターン中自分の他の生徒会組1つにつきこのクリーチャーのパワーを+6000する。'+
+   '各ターンに1度自分のドラゴンが出た時相手のクリーチャーを1体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。')
+   return {gStrike:true,poweredBreaker:true,g1116PoweredChoice:true,
+    g208Auras:[{filter:{race:'生徒会組',creature:true},grants:{speedAttacker:true}}],
+    g207CountPower:{zone:'battle',other:true,turn:'own',g561Elements:true,filter:{race:'生徒会組'},amount:6000},
+    g314OtherEntry:{who:'self',g765Element:true,g1324IncludeSelf:true,filter:{race:'ドラゴン',faceUp:true},
+     defs:[{op:'Fight240',self:true,optional:true,g792Once:'growFight1324'}]}};
+  if(d.id==='dm26ex3-022'&&f.typeText==='クリーチャー'&&text==='スピードアタッカーT・ブレイカー'+
+   'このクリーチャーは破壊以外の方法で離れない。'+
+   '相手のターンのはじめに相手の手札を見てクリーチャーを1体選ぶ。相手はそれを出してもよい。')
+   return {speedAttacker:true,breaker:3,g1324NonDestructionStay:true,g179OpponentStart:[
+    {op:'InspectHand',g223Inspect:true,g1324ChooseCreature:true}
+   ]};
+ }
  if(phase>=1323&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'&&
   ['dm25rp4-S11','dm25rp4-Sec12','dm25rp4-ChoSec07','dm25ex3-rp4S11','dm25ex3-rp4Sec12'].includes(d.id)){
   const lines=f.abilityText.split('\n').map(normalize);

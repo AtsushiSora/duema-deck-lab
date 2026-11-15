@@ -246430,15 +246430,229 @@
       ],
       "supportBatch": "phase-1323",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex4-081",
+      "name": "ジョー星・チャージャー",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "ジョーカーズ",
+      "text": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nチャージャー（この呪文を唱えた後、墓地のかわりにマナゾーンに置く）\nジョーカーズ・クリーチャーを召喚する時、マナゾーンにあるこのカードをすべての文明を持つかのようにタップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-081",
+      "limit": 4,
+      "gStrike": true,
+      "normalCharger": true,
+      "g1324JokerMana": true,
+      "supportBatch": "phase-1324",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex3-017",
+      "name": "伍代ドーラ＜楽勝じゃ！＞",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 13000,
+      "race": "レッド・コマンド・ドラゴン/アオハル組",
+      "text": "スピードアタッカー\nT・ブレイカー\nこのクリーチャーが攻撃する時、ドラゴン・メクレイド10する。（自分の山札の上から３枚を見る。その中から、指定の種族で指定のコスト以下のカードを１枚、コストを支払わずに実行してもよい。残りを好きな順序で山札の下に置く）\n各ターン、自分の各アオハル組の最初の攻撃の終わりに、そのクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex3-017",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "Raid767",
+          "race": "ドラゴン",
+          "max": 10
+        }
+      ],
+      "g1324FirstAttackUntapRace": "アオハル組",
+      "supportBatch": "phase-1324",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex3-021",
+      "name": "庵野水晶＜がんばるっ!!＞",
+      "civ": "光/水/自然",
+      "civilizations": [
+        "光",
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "キング・コマンド・ドラゴン/Jack-Pot",
+      "text": "マッハファイター\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から３枚を表向きにする。その中から、呪文とJack-Potカードをすべて手札に加え、残りを好きな順序で山札の下に置く。\n龍マナ武装 5：このクリーチャーが攻撃する時、自分のマナゾーンにドラゴン・クリーチャーが５体以上あれば、Jack-Potカードまたはコスト８以下の呪文を１枚、自分の手札からコストを支払わずに実行してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex3-021",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "public": true,
+          "g255Distribute": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": "all",
+              "allMatches": true,
+              "to": "hand",
+              "filter": {
+                "any": [
+                  {
+                    "spell": true
+                  },
+                  {
+                    "anyFaceRace": "Jack-Pot"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g267Mana": {
+              "n": 5,
+              "filter": {
+                "faceUp": true,
+                "g228Face": {
+                  "type": "creature",
+                  "raceAll": [
+                    "ドラゴン"
+                  ]
+                }
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Execute",
+              "origin": "hand",
+              "g1324ExecuteRace": "Jack-Pot",
+              "g1324SpellMax": 8,
+              "g1244NoEmptyOffer": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1324",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex3-011",
+      "name": "真久間メガ＜ボクにおまかせ！＞",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "メガ・コマンド・ドラゴン/生徒会組/革命軍",
+      "text": "{GS} G・ストライク\nパワード・ブレイカー\n自分の生徒会組すべてに「スピードアタッカー」を与える。\n自分のターン中、自分の他の生徒会組１つにつき、このクリーチャーのパワーを+6000する。\n各ターンに１度、自分のドラゴンが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex3-011",
+      "limit": 4,
+      "gStrike": true,
+      "poweredBreaker": true,
+      "g1116PoweredChoice": true,
+      "g208Auras": [
+        {
+          "filter": {
+            "race": "生徒会組",
+            "creature": true
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "turn": "own",
+        "g561Elements": true,
+        "filter": {
+          "race": "生徒会組"
+        },
+        "amount": 6000
+      },
+      "g314OtherEntry": {
+        "who": "self",
+        "g765Element": true,
+        "g1324IncludeSelf": true,
+        "filter": {
+          "race": "ドラゴン",
+          "faceUp": true
+        },
+        "defs": [
+          {
+            "op": "Fight240",
+            "self": true,
+            "optional": true,
+            "g792Once": "growFight1324"
+          }
+        ]
+      },
+      "supportBatch": "phase-1324",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex3-022",
+      "name": "恋葉ココア",
+      "civ": "光/闇/火",
+      "civilizations": [
+        "光",
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 12000,
+      "race": "レインボー・ドラゴン",
+      "text": "スピードアタッカー\nT・ブレイカー\nこのクリーチャーは、破壊以外の方法で離れない。\n相手のターンのはじめに、相手の手札を見てクリーチャーを１体選ぶ。相手はそれを出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex3-022",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 3,
+      "g1324NonDestructionStay": true,
+      "g179OpponentStart": [
+        {
+          "op": "InspectHand",
+          "g223Inspect": true,
+          "g1324ChooseCreature": true
+        }
+      ],
+      "supportBatch": "phase-1324",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1323,
+    "phase": 1324,
     "checkedAt": "2026-11-15",
-    "baseCount": 7993,
-    "newEffectCards": 3,
+    "baseCount": 7996,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 7996,
+    "totalCount": 8001,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -268603,6 +268817,18 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 7993,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1323,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7993,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7996,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
