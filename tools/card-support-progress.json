@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8002,
-  "pendingNames": 3824,
-  "phase": 1325,
-  "added": 1,
+  "supportedNames": 8007,
+  "pendingNames": 3819,
+  "phase": 1326,
+  "added": 5,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -46,7 +46,7 @@
     },
     {
       "ability": "GR召喚",
-      "pendingNames": 157,
+      "pendingNames": 156,
       "examples": [
         {
           "id": "dmrp12-s11",
@@ -154,10 +154,10 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2144,
+    "クリーチャー": 2143,
     "NEOクリーチャー": 70,
     "呪文": 457,
-    "GRクリーチャー": 159,
+    "GRクリーチャー": 156,
     "G-NEOクリーチャー": 26,
     "タマシード": 38,
     "デュエルメイト呪文": 10,
@@ -198,7 +198,7 @@
     "進化クリーチャー(デッキ進化)": 5,
     "G城": 10,
     "ヒストリック・フィールド": 4,
-    "禁断の鼓動": 3,
+    "禁断の鼓動": 2,
     "幸せのフィールド": 1,
     "進化サイキック・クリーチャー": 2,
     "進化クリーチャー（墓地進化）": 1,
@@ -225,10 +225,10 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 1083,
+    "複数面・特殊カードタイプまたは情報不足": 1079,
     "未対応の能力文": 2548,
     "未対応のG・ゼロ条件": 21,
-    "未対応の召喚時能力": 20,
+    "未対応の召喚時能力": 19,
     "未対応のシンカパワー": 2,
     "未対応のD2フィールド能力": 39,
     "複雑な進化条件": 12,
@@ -489092,6 +489092,84 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 1326,
+      "baseline": "91f5997b",
+      "before": 8002,
+      "supported": 8007,
+      "duplicates": 0,
+      "pending": 3819,
+      "added": [
+        {
+          "id": "dmex08-251",
+          "name": "ＧＲの犬 ワンワンワン"
+        },
+        {
+          "id": "dmsd11-014",
+          "name": "クリオ・ネック"
+        },
+        {
+          "id": "dmsd11-005",
+          "name": "Wave ウェイブ"
+        },
+        {
+          "id": "dmr19-fl01",
+          "name": "禁断 ～封印されしX～"
+        },
+        {
+          "id": "dmrp11-039",
+          "name": "ジェイ-SHOCKER"
+        }
+      ],
+      "results": {
+        "focused": {
+          "passed": 11,
+          "log": "/tmp/duema-advance-1326/focused.log"
+        },
+        "related": {
+          "passed": 45,
+          "log": "/tmp/duema-advance-1326/final-local-tests.log"
+        },
+        "online": {
+          "passed": 1,
+          "log": "/tmp/duema-advance-1326/online-advance.log"
+        },
+        "check": {
+          "status": "passed",
+          "log": "/tmp/duema-advance-1326/check-final.log"
+        },
+        "seals": {
+          "passed": 5,
+          "log": "/tmp/duema-advance-1326/seals-regression.log"
+        }
+      },
+      "pendingCases": [
+        {
+          "id": "dmr23-ffl01",
+          "reason": "最終禁断フィールドの封印制限は、バトルゾーンへの移動を置換された召喚でも作動する。4隅の能力、コアの移動と敗北まで検証が必要。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/33262/"
+        },
+        {
+          "id": "dmrp12-mz1",
+          "reason": "4種の零龍星雲の独立した誘発・リンクと、卍誕時のパワー固定を検証する。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-mz1"
+        },
+        {
+          "id": "dmbd12-g01",
+          "reason": "オーラの装着・移動および実カードの個別裁定を検証する。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40828/"
+        }
+      ],
+      "remainingTest": {
+        "path": "tests/redzone-effects.test.mjs",
+        "reason": "長時間の対戦比較・ランダム検証・worker試行を含む実行は結果を確認中。その他の機能回帰を分割実行した。"
+      },
+      "resume": [
+        "先に作業ツリー・テスト状況とnameKey件数を確認する。",
+        "新規登録の停止条件は維持し、未検証の公式裁定に必要なカードとルールだけを追加する。",
+        "開始時カードとオーラについてカード固有、デッキ保存、オンライン非公開情報、関連裁定を個別に検証する。"
+      ]
     }
   ],
   "resume": {
@@ -489191,8 +489269,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 7001,
-    "pendingNames": 4826,
+    "supportedNames": 8007,
+    "pendingNames": 3819,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -533186,8 +533264,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8002,
-      "pendingNames": 3824,
+      "supportedNames": 8007,
+      "pendingNames": 3819,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -534310,6 +534388,39 @@
             "/tmp/duema-verify-8001/zoro-related.log",
             "/tmp/duema-verify-8001/zoro-check.log"
           ]
+        },
+        {
+          "cardId": "dmr14-012",
+          "dependencyIds": [
+            "dmrp11-039"
+          ],
+          "test": "ジェイ-SHOCKERの登場禁止下で破壊の代替コストを支払えない（QA 39624）",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/39624/",
+          "result": "実カードから対戦操作で再現し通過",
+          "path": "tests/standard1326-effects.test.mjs",
+          "log": "/tmp/duema-advance-1326/focused.log"
+        },
+        {
+          "cardId": "dmd27-017",
+          "dependencyIds": [
+            "dmr19-fl01"
+          ],
+          "test": "S・トリガーで最後の封印を墓地に置いて、相手ターンにも禁断解放する（プロモ版の公式カード情報）",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-046",
+          "path": "tests/standard1326-effects.test.mjs",
+          "log": "/tmp/duema-advance-1326/focused.log",
+          "result": "実カードから対戦操作で再現し通過"
+        },
+        {
+          "cardId": "dmr07-s05",
+          "dependencyIds": [
+            "dmsd11-005"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa/41166/",
+          "test": "Wave ウェイブで墓地から唱えた呪文が同じ墓地に戻る際、ヴィルヘルムの能力は誘発しない。",
+          "result": "実カードから対戦操作で再現し通過",
+          "path": "tests/standard1326-effects.test.mjs",
+          "log": "/tmp/duema-advance-1326/focused.log"
         }
       ],
       "remainingRegistered": [
@@ -534433,15 +534544,6 @@
           "source": "https://dm.takaratomy.co.jp/rule/qa/39626/"
         },
         {
-          "cardId": "dmr14-012",
-          "dependencyIds": [
-            "dmrp11-039"
-          ],
-          "test": "ジェイ-SHOCKERの登場禁止下で破壊の代替コストを支払えない（QA 39624）",
-          "reason": "同等の登場制限を設定した固有テストは通過。公式本文と同名再録2版を照合。超GRとGR召喚に加え、Jトルネードによる登場禁止の処理が必要なため保留。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/39624/"
-        },
-        {
           "cardId": "dmex14-003",
           "dependencyIds": [
             "dmx14-031"
@@ -534473,17 +534575,6 @@
           "source": "https://dm.takaratomy.co.jp/rule/qa/48142/",
           "path": "tests/standard1172-effects.test.mjs",
           "log": "/tmp/duema-phase-1172/focused.log"
-        },
-        {
-          "cardId": "dmd27-017",
-          "dependencyIds": [
-            "dmr19-fl01"
-          ],
-          "test": "S・トリガーで最後の封印を墓地に置いて、相手ターンにも禁断解放する（プロモ版の公式カード情報）",
-          "reason": "禁断 ～封印されしX～が対戦未対応。対戦中の自分の封印の選択・移動、およびクリーチャー破壊対象がいない時の封印移動は確認済み。",
-          "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-046",
-          "path": "tests/standard1173-effects.test.mjs",
-          "log": "/tmp/duema-phase-1173/focused.log"
         },
         {
           "cardId": "dmrp17-010",
@@ -534758,15 +534849,6 @@
           "source": "https://dm.takaratomy.co.jp/rule/qa/40956/",
           "test": "ケンゲキオージャが相手の効果で離れる際、ドキンダムエリアの置換により封印され、勝利が誘発しない。",
           "reason": "ドキンダムエリアの離脱置換を実カードで確認。ケンゲキオージャの実カードが未対応。"
-        },
-        {
-          "cardId": "dmr07-s05",
-          "dependencyIds": [
-            "dmsd11-005"
-          ],
-          "source": "https://dm.takaratomy.co.jp/rule/qa/41166/",
-          "test": "Wave ウェイブで墓地から唱えた呪文が同じ墓地に戻る際、ヴィルヘルムの能力は誘発しない。",
-          "reason": "墓地からスパイラル・ゲートを唱える共通処理で再現。Wave ウェイブは召喚時の墓地詠唱と各ターン最初の呪文でのGR召喚が未対応。"
         },
         {
           "cardId": "dm32-s02",
@@ -535207,12 +535289,25 @@
       },
       "compatibilityBlockers": [
         {
-          "area": "超GRとゲーム開始時のカード",
-          "files": [
-            "dist/deck-format.js",
-            "README.md"
-          ],
-          "result": "現行アドバンスのデッキ検証は超GRゾーンと開始カードを拒否する。GR召喚、禁断・零龍、オーラとGRの実カードを使う検証には、デッキ・対戦状態・対戦開始経路の互換性を含めた対応が必要。"
+          "area": "対戦開始時カードとオーラの未実装範囲",
+          "result": "超GRと《禁断 ～封印されしX～》は対戦・保存・オンラインを確認。FORBIDDEN STAR、零龍、オーラに依存する裁定は検証継続。",
+          "remaining": [
+            {
+              "id": "dmr23-ffl01",
+              "reason": "最終禁断フィールドの封印制限は、バトルゾーンへの移動を置換された召喚でも作動する。4隅の能力、コアの移動と敗北まで検証が必要。",
+              "source": "https://dm.takaratomy.co.jp/rule/qa/33262/"
+            },
+            {
+              "id": "dmrp12-mz1",
+              "reason": "4種の零龍星雲の独立した誘発・リンクと、卍誕時のパワー固定を検証する。",
+              "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-mz1"
+            },
+            {
+              "id": "dmbd12-g01",
+              "reason": "オーラの装着・移動および実カードの個別裁定を検証する。",
+              "source": "https://dm.takaratomy.co.jp/rule/qa/40828/"
+            }
+          ]
         }
       ],
       "dependencyChecks": [
@@ -535242,8 +535337,8 @@
       ],
       "latestTestCommit": "a0e0102dba5d889b4e221741ae97714c423cb1f3",
       "counts": {
-        "supported": 8002,
-        "pending": 3824,
+        "supported": 8007,
+        "pending": 3819,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -536050,7 +536145,85 @@
           "name": "聖板龍 ジークシュトルツ"
         }
       ],
-      "remainingTestsSummary": "まとめて時間切れになったファイルは長時間対戦を除き、短い対戦・能力テストを分割する。長時間対戦は残る対戦相手とseedを個別に実行し、既に通過済みの組み合わせは同じ対象コミットの検証の証拠がある場合に維持する。"
+      "remainingTestsSummary": "まとめて時間切れになったファイルは長時間対戦を除き、短い対戦・能力テストを分割する。長時間対戦は残る対戦相手とseedを個別に実行し、既に通過済みの組み合わせは同じ対象コミットの検証の証拠がある場合に維持する。",
+      "advanceImplementation": {
+        "phase": 1326,
+        "baseline": "91f5997b",
+        "before": 8002,
+        "supported": 8007,
+        "duplicates": 0,
+        "pending": 3819,
+        "added": [
+          {
+            "id": "dmex08-251",
+            "name": "ＧＲの犬 ワンワンワン"
+          },
+          {
+            "id": "dmsd11-014",
+            "name": "クリオ・ネック"
+          },
+          {
+            "id": "dmsd11-005",
+            "name": "Wave ウェイブ"
+          },
+          {
+            "id": "dmr19-fl01",
+            "name": "禁断 ～封印されしX～"
+          },
+          {
+            "id": "dmrp11-039",
+            "name": "ジェイ-SHOCKER"
+          }
+        ],
+        "results": {
+          "focused": {
+            "passed": 11,
+            "log": "/tmp/duema-advance-1326/focused.log"
+          },
+          "related": {
+            "passed": 45,
+            "log": "/tmp/duema-advance-1326/final-local-tests.log"
+          },
+          "online": {
+            "passed": 1,
+            "log": "/tmp/duema-advance-1326/online-advance.log"
+          },
+          "check": {
+            "status": "passed",
+            "log": "/tmp/duema-advance-1326/check-final.log"
+          },
+          "seals": {
+            "passed": 5,
+            "log": "/tmp/duema-advance-1326/seals-regression.log"
+          }
+        },
+        "pendingCases": [
+          {
+            "id": "dmr23-ffl01",
+            "reason": "最終禁断フィールドの封印制限は、バトルゾーンへの移動を置換された召喚でも作動する。4隅の能力、コアの移動と敗北まで検証が必要。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/33262/"
+          },
+          {
+            "id": "dmrp12-mz1",
+            "reason": "4種の零龍星雲の独立した誘発・リンクと、卍誕時のパワー固定を検証する。",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-mz1"
+          },
+          {
+            "id": "dmbd12-g01",
+            "reason": "オーラの装着・移動および実カードの個別裁定を検証する。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/40828/"
+          }
+        ],
+        "remainingTest": {
+          "path": "tests/redzone-effects.test.mjs",
+          "reason": "長時間の対戦比較・ランダム検証・worker試行を含む実行は結果を確認中。その他の機能回帰を分割実行した。"
+        },
+        "resume": [
+          "先に作業ツリー・テスト状況とnameKey件数を確認する。",
+          "新規登録の停止条件は維持し、未検証の公式裁定に必要なカードとルールだけを追加する。",
+          "開始時カードとオーラについてカード固有、デッキ保存、オンライン非公開情報、関連裁定を個別に検証する。"
+        ]
+      }
     }
   },
   "registrationStop": {

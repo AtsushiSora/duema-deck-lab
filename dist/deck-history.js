@@ -1,19 +1,21 @@
+import {extraDeckKeys} from './deck-format.js';
+
 // Content snapshots stay local and never include previous snapshots or game data.
 export const DECK_HISTORY_LIMIT=10,DECK_HISTORY_TOTAL=100;
-const fields=['name','cards','format','extraCards','description','historicalId','tournament','templateId','sourceTitle','source','product'];
+const fields=['name','cards','format',...extraDeckKeys,'description','historicalId','tournament','templateId','sourceTitle','source','product'];
 const roleKey=(role,id)=>{if(!['mine','opponent'].includes(role)||typeof id!=='string'||!id)throw Error('デッキを確認してください');return role+':'+id;};
 const zone=role=>role==='opponent'?'friends':'decks';
 const timestamp=(value,fallback)=>typeof value==='string'&&Number.isFinite(Date.parse(value))?value:fallback;
 export function deckContentSnapshot(deck){const value={};for(const k of fields)if(Object.hasOwn(deck,k))value[k]=structuredClone(deck[k]);return value;}
-const signature=deck=>{const value=deckContentSnapshot(deck);value.cards=[...(value.cards||[])].map(r=>({id:r.id,count:r.count})).sort((a,b)=>a.id.localeCompare(b.id));if(value.extraCards)value.extraCards.sort((a,b)=>a.id.localeCompare(b.id));return JSON.stringify(fields.map(k=>value[k]??null));};
+const signature=deck=>{const value=deckContentSnapshot(deck);value.cards=[...(value.cards||[])].map(r=>({id:r.id,count:r.count})).sort((a,b)=>a.id.localeCompare(b.id));for(const key of extraDeckKeys)value[key]?.sort((a,b)=>a.id.localeCompare(b.id));return JSON.stringify(fields.map(k=>value[k]??null));};
 export function deckRevisions(saved,role,id){const rows=saved.deckRevisions?.[roleKey(role,id)];return Array.isArray(rows)?rows.filter(r=>r&&typeof r.id==='string'&&r.deck&&typeof r.deck.name==='string'&&Array.isArray(r.deck.cards)).slice(0,DECK_HISTORY_LIMIT):[];}
 export function deckCardChanges(current,previous){
  const sum=rows=>{const counts=new Map();for(const r of rows||[])counts.set(r.id,(counts.get(r.id)||0)+r.count);return counts;};
- return ['cards','extraCards'].flatMap(zone=>{
+ return ['cards',...extraDeckKeys].flatMap(zone=>{
   const a=sum(current[zone]),b=sum(previous[zone]);
   return [...new Set([...a.keys(),...b.keys()])].flatMap(id=>{
    const count=(b.get(id)||0)-(a.get(id)||0);
-   return count?[{id,count,...(zone==='extraCards'?{zone:'extra'}:{})}]:[];
+   return count?[{id,count,...(zone==='cards'?{}:{zone:zone.slice(0,-5)})}]:[];
   });
  });
 }

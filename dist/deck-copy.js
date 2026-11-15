@@ -1,5 +1,6 @@
+import {extraDeckKeys} from './deck-format.js';
 // Copies belong to the destination collection. Never share editable card rows.
-const fingerprint=(deck,registry)=>JSON.stringify([deck.format||'original',...['cards','extraCards'].map(zone=>registry.resolveRows(deck[zone]||[]).sort((a,b)=>a.id.localeCompare(b.id)))]);
+const fingerprint=(deck,registry)=>JSON.stringify([deck.format||'original',...['cards',...extraDeckKeys].map(zone=>registry.resolveRows(deck[zone]||[]).sort((a,b)=>a.id.localeCompare(b.id)))]);
 export function prepareDeckCopy(existing,source,registry,{id,created,category='自分'}={}){
  if(!['自分','相手'].includes(category))throw Error('保存先が正しくありません');
  const errors=registry.validate(source);if(errors.length)throw Error(errors.join(' / '));

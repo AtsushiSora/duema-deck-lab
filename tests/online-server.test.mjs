@@ -106,3 +106,21 @@ test('Advance rooms reject Original guests and preserve initial public Psychic c
  const after=await h.service.get(waiting.code,host,host.uid);
  assert.deepEqual(after.game.players.map(p=>p.extra),joined.game.players.map(p=>p.extra));
 });
+
+test('Advance persists the opening cards and hides the GR order and seals from both clients',async()=>{
+ const h=setup(),base={...PRESETS[0],format:'advance'};
+ const deck={...base,grCards:[{id:'dmex08-251',count:12}],startCards:[{id:'dmr19-fl01',count:1}]};
+ const waiting=await h.service.create({deck,requestId:requestId('advance-gr')},host,host.uid);
+ await h.service.join({code:waiting.code,deck:base,requestId:requestId('advance-opponent')},guest,guest.uid);
+ const raw=h.raw(waiting.code),player=raw.game.players[0];
+ assert.equal(player.gr.length,12);
+ assert.equal(player.seals.length,6);
+ for(const user of [host,guest]){
+  const view=await h.service.get(waiting.code,user,user.uid),seen=view.game.players[0],serialized=JSON.stringify(view);
+  assert.equal(seen.grCount,12);
+  assert.equal(seen.battle[0].id,'dmr19-fl01');
+  assert.ok(seen.seals.every(x=>x.hidden&&!x.id&&x.sealOf===seen.battle[0].uid));
+  for(const x of player.gr)assert.ok(!serialized.includes(x.uid));
+  assert.ok(!serialized.includes('dmex08-251'));
+ }
+});
