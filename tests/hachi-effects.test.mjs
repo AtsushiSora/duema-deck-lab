@@ -39,5 +39,26 @@ test('QQ Maruru may move its single top card without showing its identity (QA470
 test('QQ sideways defeat can be replaced by Hunter destruction and remaining draws resume once',()=>{const s=setup();give(s,1,'battle',[Q]);const protector=data.cards.find(c=>c.hunterLoss);give(s,0,'battle',[protector.id,H]);const before=s.players[0].deck.length;s.players[0].deck[0].g11Sideways=true;task(s,'draw',0,{n:2});assert.equal(s.decision.task.op,'g12Loss');pick(s,v=>v?.kind==='hunter');assert.equal(s.winner,null);assert.equal(s.players[0].hand.length,2);assert.equal(s.players[0].deck.length,before-2);});
 test('Invincible Power does not downgrade larger breakers and overrides a smaller powered breaker',()=>{const s=setup();give(s,0,'battle',[X]);spell(s,S);assert.equal(e.power(s.players[0].battle[0],false,s),11000);assert.equal(e.effectiveCard(s.players[0].battle[0],s).breaker,3);});
 test('No11 random actions keep80 unique cards and serializable legal choices',()=>{for(let seed=1;seed<=12;seed++){const s=e.createGame([target,opponents[seed*2%opponents.length]],{seed:seed*4011,first:seed%2}),rng={rng:seed};for(let n=0;n<400&&s.winner===null;n++){const actions=e.getLegalActions(s);assert.ok(actions.length);e.step(s,actions[Math.floor(e.random(rng)*actions.length)]);conserve(s);const v=JSON.parse(JSON.stringify(s));assert.deepEqual(e.getLegalActions(v),e.getLegalActions(s));}}});
-test('No11 production worker completes62 games against all31 opponents',async()=>{const messages=[];globalThis.self={};globalThis.postMessage=x=>messages.push(structuredClone(x));try{await import('../dist/worker.js?hachi11');await self.onmessage({data:{cards:data.cards,deck:target,opponents,count:2,first:'random',seed:4111}});assert.ok(!messages.some(x=>x.type==='error'),JSON.stringify(messages.filter(x=>x.type==='error')));const done=messages.filter(x=>x.type==='done');assert.equal(done.length,1);assert.equal(done[0].results.length,31);for(const r of done[0].results){assert.equal(r.stats.completed,2,JSON.stringify(r));assert.equal(r.stats.unresolved,0);}}finally{delete globalThis.self;delete globalThis.postMessage;}});
+for(const [index,opponent] of opponents.entries())test('No11 production worker: '+opponent.id,async()=>{
+ const messages=[];
+ globalThis.self={};
+ globalThis.postMessage=message=>messages.push(structuredClone(message));
+ try{
+  await import('../dist/worker.js?hachi11='+index);
+  const seed=(4111+Math.imul(index,2246822519))>>>0;
+  await self.onmessage({data:{cards:data.cards,deck:target,opponents:[opponent],count:2,first:'random',seed}});
+  assert.ok(!messages.some(x=>x.type==='error'),JSON.stringify(messages.filter(x=>x.type==='error')));
+  const done=messages.filter(x=>x.type==='done');
+  assert.equal(done.length,1);
+  assert.equal(done[0].results.length,1);
+  const [result]=done[0].results;
+  assert.equal(result.stats.completed,2,JSON.stringify(result));
+  assert.equal(result.stats.unresolved,0);
+  assert.equal(result.opponent.id,opponent.id);
+  assert.deepEqual(result.games.map(game=>[game.first,game.seed]),[1,2].map(n=>[n-1,(seed+Math.imul(n,2654435761))>>>0]));
+ }finally{
+  delete globalThis.self;
+  delete globalThis.postMessage;
+ }
+});
 test('GG does not suppress Hachi end-of-attack ability, which is a separate timing',()=>{const s=setup();give(s,0,'battle',[H,Q]);give(s,1,'battle',['dm25rp3-S09']);s.players[1].battle[0].under=[inst(N)];give(s,0,'deck',[X,H,...Array(8).fill(N)]);attack(s);act(s,'noBlock');assert.equal(s.decision.task.op,'g11_Search');});
