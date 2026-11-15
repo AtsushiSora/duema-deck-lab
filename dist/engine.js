@@ -1076,6 +1076,11 @@ function shieldLeft(s,p,x,group=null){
  if(group!==null)(s.g1036ShieldGroupLeftTurns??=[null,null])[p]=s.turn;
  extra.shieldLeft(s,p,x,group);delete x.g19ShieldST;
  if(group===null)return;
+ const remembered=s.players[p].g1336ExLifeGroups?.includes(group);
+ const tracked=remembered||s.players[p].battle.some(top=>layers(top).some(source=>
+  source.exLifeShieldUid===group||source.exLifeShieldUids?.includes(group)));
+ if(remembered)s.players[p].g1336ExLifeGroups=s.players[p].g1336ExLifeGroups.filter(uid=>uid!==group);
+ if(tracked)extra.phoenix.exLifeLeft(s,p);
  for(const top of s.players[p].battle)for(const c of layers(top)){if(c.exLifeShieldUid===group)delete c.exLifeShieldUid;if(c.exLifeShieldUids)c.exLifeShieldUids=c.exLifeShieldUids.filter(x=>x!==group);}
  for(const who of [0,1])for(const c of s.players[who].battle)if(card(c).zRush){if(!c.hyperActive)log(s,who,'hyper',`${card(c).name}のZラッシュでハイパーモードを解放`,{cardId:c.cardId});c.hyperActive=true;}
 }
@@ -1228,7 +1233,9 @@ function shieldTop(s,p,source,exLifeSource=null,{uid=null,faceUp=false,count=1,s
  }
  for(const shield of shields){
   clearBattleState(shield,'shields');if(faceUp)shield.faceUp=true;addZone(s,p,'shields',shield);
-  if(exLifeSource){if(card(exLifeSource).extraExLife)(exLifeSource.exLifeShieldUids??=[]).push(shield.uid);else exLifeSource.exLifeShieldUid=shield.uid;}
+  if(exLifeSource){
+   (own.g1336ExLifeGroups??=[]).push(shieldGroup(shield));
+   if(card(exLifeSource).extraExLife)(exLifeSource.exLifeShieldUids??=[]).push(shield.uid);else exLifeSource.exLifeShieldUid=shield.uid;}
  }
  for(const shield of shields){
   log(s,p,exLifeSource?'exLifeAdd':'shieldAdd',faceUp?`${source.name}で${card(shield).name}を表向きでシールド化`:`${source.name}${exLifeSource?'のEXライフ':''}で山札の上から1枚をシールド化（内容は非公開）`,{cardId:source.id});
@@ -3519,12 +3526,12 @@ function shieldGStrikes(s,p,x){
  let count=Number(!!card(x).gStrike);
  for(const y of s.players[p].battle){
   const source=card(y);
-  if((!source.g1308ShieldStrike&&(!y.hyperActive||!source.hyper?.g1200ShieldStrikeRace))||
+  if((!source.g1308ShieldStrike&&!source.g1336ShieldStrikeRace&&(!y.hyperActive||!source.hyper?.g1200ShieldStrikeRace))||
    y.sealed||y.faceDown||s.g20LeavingUids?.includes(y.uid)||!isCreature(s,y))continue;
   const active=effectiveCard(y,s),faces=playFaces(card(x));
   // Nelza grants one instance to each face, including both sides of a Twinpact (QA 44110).
   if(active.g1308ShieldStrike)count+=faces.length;
-  const race=active.g1200ShieldStrikeRace;
+  const race=active.g1336ShieldStrikeRace||active.g1200ShieldStrikeRace;
   if(race&&faces.some(c=>String(c.race||'').includes(race)))count++;
  }
  return count;

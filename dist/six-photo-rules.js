@@ -4266,6 +4266,7 @@ export function createSixPhotoRules(api){
    return root;
   });
   // EX Life and Shield Force keep their original shield positions (QA 39544, 37439).
+  if(own.g1336ExLifeGroups)own.g1336ExLifeGroups=own.g1336ExLifeGroups.map(uid=>replacements.get(uid)??uid);
   for(const y of own.battle.flatMap(api.allLayers)){
    if(replacements.has(y.exLifeShieldUid))y.exLifeShieldUid=replacements.get(y.exLifeShieldUid);
    if(y.exLifeShieldUids)y.exLifeShieldUids=y.exLifeShieldUids.map(uid=>replacements.get(uid)??uid);

@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8021,
-  "pendingNames": 3805,
-  "phase": 1335,
+  "supportedNames": 8022,
+  "pendingNames": 3804,
+  "phase": 1336,
   "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -162,7 +162,7 @@
     "タマシード": 37,
     "デュエルメイト呪文": 10,
     "S-MAX進化クリーチャー": 8,
-    "進化クリーチャー": 257,
+    "進化クリーチャー": 256,
     "スター進化クリーチャー": 57,
     "進化クリーチャー(超無限進化・Ω)": 1,
     "ギガ・オレガ・オーラ": 2,
@@ -224,7 +224,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1076,
-    "未対応の能力文": 2537,
+    "未対応の能力文": 2536,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 19,
     "未対応のシンカパワー": 2,
@@ -489667,14 +489667,76 @@
           "source": "https://dm.takaratomy.co.jp/rule/qa/45078/"
         }
       ]
+    },
+    {
+      "phase": 1336,
+      "baseline": "3f87d5f0",
+      "before": 8021,
+      "supported": 8022,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dm22ex2-S15",
+          "name": "不敬合成王 ロマティックダム・アルキング"
+        }
+      ],
+      "printAliases": 3,
+      "results": {
+        "focus": {
+          "passed": 6,
+          "log": "/tmp/duema-uncapped/arking-focus-final.log",
+          "command": "node --test tests/standard1336-effects.test.mjs",
+          "seconds": 1.224
+        },
+        "regression": {
+          "passed": 79,
+          "log": "/tmp/duema-uncapped/arking-regression.log",
+          "command": "node --test --test-concurrency=2 tests/standard{1274,1301,1304,1308,1333,1334,1335,1336}-effects.test.mjs",
+          "seconds": 10.132
+        },
+        "sasage": {
+          "passed": 15,
+          "log": "/tmp/duema-uncapped/arking-sasage.log",
+          "command": "node --test tests/sasage-neo-evolution.test.mjs",
+          "seconds": 1.434
+        },
+        "phoenix": {
+          "passed": 6,
+          "log": "/tmp/duema-uncapped/arking-phoenix.log",
+          "command": "node --test --test-name-pattern=\"^(Dark King|Poppo|V evolution|Xeno)\" tests/phoenix-photo.test.mjs",
+          "seconds": 0.778
+        },
+        "original": {
+          "passed": 9,
+          "log": "/tmp/duema-uncapped/arking-original.log",
+          "command": "node --test --test-name-pattern=\"^(Hyakume|Sasage|multiple Sasage|Rinne and Sasage|Fuujin prevents)\" tests/original-champion-effects.test.mjs",
+          "seconds": 0.89
+        },
+        "check": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "/tmp/duema-uncapped/arking-check.log",
+          "rulesBlob": "447c8b2dfa337349db65eb56d319134fe43b5268",
+          "phoenixBlob": "fb8973d1ef86f47dd7ad2eb2133a2bb1e25c946d"
+        },
+        "audit": {
+          "status": "passed",
+          "command": "node tools/audit-card-support.mjs",
+          "log": "/tmp/duema-uncapped/arking-audit.log"
+        }
+      },
+      "resolvedRegistered": 2,
+      "remainingRegistered": 42,
+      "remainingPrints": 2,
+      "remainingIndividualCards": 37
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1335,
+    "lastVerifiedPhase": 1336,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "実データを再集計し、個別38種類の検証を継続する。まず依存カードの実装が再現に必要なティーゾリス、アルキング、カボード＝ロウの全能力と関連裁定を確認する。",
+    "steps": "アルキングでアイアンラビットンボの裁定2件を確認済み。個別37種類の裁定・金箔再録と、時間上限を外した長時間の分割検証を継続する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -489752,7 +489814,7 @@
     "restartSteps": [
       "ローカルHEADと作業ツリー、ステージ済み差分、AGENTS.md、実行中のテストを確認する。dist/cards.jsonをnameKeyで再集計する。",
       "remainingVerificationRunの結果を確認する。全カードの合法経路と登場時能力借用の完走を確認した。残る対戦・ワーカーを対戦相手・シード単位に分ける。",
-      "依存が重なる裁定を優先し、必要な依存カードの公式照合と能力全体を確認する。個別裁定、金箔再録、長時間対戦・ワーカーを最大10分の区間で検証する。",
+      "依存カードの実装と固有テストを続ける。長時間テストは進行中のログを読み、終了したケースの合否を集約して失敗を確認する。",
       "残る金箔2版は公式IDと公式画像を照合する。全検証が通過し、Netlifyに影響しない公開経路を確認するまで、公開は保留する。"
     ],
     "registrationStatus": "ユーザーの指示で10分間隔のカード登録を再開。",
@@ -489763,12 +489825,12 @@
         "name": "帝神龍装 ティーゾリス"
       },
       {
-        "id": "dm22ex2-S15",
-        "name": "不敬合成王 ロマティックダム・アルキング"
-      },
-      {
         "id": "dm23rp1-004",
         "name": "終納 カボード＝ロウ"
+      },
+      {
+        "id": "dmr08s-007",
+        "name": "悠久を統べる者 フォーエバー・プリンセス"
       }
     ],
     "printVerificationPending": [
@@ -489967,8 +490029,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8021,
-    "pendingNames": 3805,
+    "supportedNames": 8022,
+    "pendingNames": 3804,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -533962,8 +534024,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8021,
-      "pendingNames": 3805,
+      "supportedNames": 8022,
+      "pendingNames": 3804,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -534990,7 +535052,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別38種類（裁定44件・版固有の金箔再録2件、重複1種類）と長時間対戦・ワーカーが未確認。GitHub側のmainのpushで起動するNetlify本番ワークフローがあり、Netlifyを更新せずにPagesへ公開する経路の確認が必要。",
+        "reason": "個別37種類（裁定42件・版固有の金箔再録2件、重複1種類）と長時間対戦・ワーカーの検証が継続中。Netlifyを更新せずにPagesへ公開する経路の確認も必要。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -535342,6 +535404,52 @@
             "https://dm.takaratomy.co.jp/rule/qa/34197/",
             "https://dm.takaratomy.co.jp/rule/qa/40940/"
           ]
+        },
+        {
+          "cardId": "dm22ex1-057",
+          "dependencyIds": [
+            "dm22ex2-S15"
+          ],
+          "test": "ラビットンボのEXライフシールドが離れると、別のクリーチャーであるアルキングの能力が誘発する。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/42662/",
+          "phase": 1336,
+          "path": "tests/standard1336-effects.test.mjs",
+          "log": "/tmp/duema-uncapped/arking-focus-final.log",
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/42662/",
+            "https://dm.takaratomy.co.jp/rule/qa/42663/",
+            "https://dm.takaratomy.co.jp/rule/qa/43338/",
+            "https://dm.takaratomy.co.jp/rule/qa/42636/",
+            "https://dm.takaratomy.co.jp/rule/qa/43585/",
+            "https://dm.takaratomy.co.jp/rule/qa/39549/",
+            "https://dm.takaratomy.co.jp/rule/qa/39672/",
+            "https://dm.takaratomy.co.jp/rule/qa/43336/",
+            "https://dm.takaratomy.co.jp/rule/qa/43451/"
+          ],
+          "result": "別個体のラビットンボを破壊する際にEXライフのシールドだけが墓地に移動し、アルキングの誘発で下の非進化クリーチャーを墓地から出した。"
+        },
+        {
+          "cardId": "dm22ex1-057",
+          "dependencyIds": [
+            "dm22ex2-S15"
+          ],
+          "test": "アルキングがラビットンボの上に進化した場合、進化元のEXライフシールドを置換に使える。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/42663/",
+          "phase": 1336,
+          "path": "tests/standard1336-effects.test.mjs",
+          "log": "/tmp/duema-uncapped/arking-focus-final.log",
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/42662/",
+            "https://dm.takaratomy.co.jp/rule/qa/42663/",
+            "https://dm.takaratomy.co.jp/rule/qa/43338/",
+            "https://dm.takaratomy.co.jp/rule/qa/42636/",
+            "https://dm.takaratomy.co.jp/rule/qa/43585/",
+            "https://dm.takaratomy.co.jp/rule/qa/39549/",
+            "https://dm.takaratomy.co.jp/rule/qa/39672/",
+            "https://dm.takaratomy.co.jp/rule/qa/43336/",
+            "https://dm.takaratomy.co.jp/rule/qa/43451/"
+          ],
+          "result": "ラビットンボのシールドとエクストラEXライフの2つを候補に表示。JSON復元後にラビットンボのシールドを選び、置換でアルキングを残した。シールド離脱で誘発した能力も解決できた。"
         }
       ],
       "remainingRegistered": [
@@ -535668,24 +535776,6 @@
           "source": "https://dm.takaratomy.co.jp/rule/qa/41640/"
         },
         {
-          "cardId": "dm22ex1-057",
-          "dependencyIds": [
-            "dm22ex2-S15"
-          ],
-          "test": "ラビットンボのEXライフシールドが離れると、別のクリーチャーであるアルキングの能力が誘発する。",
-          "reason": "アルキング未実装。ラビットンボ自身のEXライフによるシールド移動は確認。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/42662/"
-        },
-        {
-          "cardId": "dm22ex1-057",
-          "dependencyIds": [
-            "dm22ex2-S15"
-          ],
-          "test": "アルキングがラビットンボの上に進化した場合、進化元のEXライフシールドを置換に使える。",
-          "reason": "変更後の裁定をレッヴォゾーンとラビットンボで再現済み。アルキングは未実装。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/42663/"
-        },
-        {
           "cardId": "dmr20-003",
           "dependencyIds": [
             "dmex15-b025"
@@ -535858,10 +535948,11 @@
           "dmc40-002",
           "dmc40-006",
           "dmc40-008",
-          "dmrp15-009"
+          "dmrp15-009",
+          "dm22ex2-S15"
         ],
-        "officialPrints": 53,
-        "newAliases": 43,
+        "officialPrints": 57,
+        "newAliases": 46,
         "evidence": [
           {
             "id": "dm23rp2-065",
@@ -536289,6 +536380,38 @@
             "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-009.jpg",
             "pageSha256": "88cdb20473c1e0994559dae9d205b1fff89fa5b7f9093aed79445f8f3d417173",
             "imageSha256": "6955e6e5a916f1a93f21a81e6d31b76786fd24174338dfc72fb09f8b0c0f23e7"
+          },
+          {
+            "id": "dm22ex2-S15",
+            "canonicalId": "dm22ex2-S15",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-S15",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex2-S15.jpg",
+            "pageSha256": "e27346705511292c6cc2c74a6353e169d5f6ff910b0022e7609902d043cf4922",
+            "imageSha256": "7a85143ed47501e76fd416d1e93cb316708bc9538be9559bd237001fbd7ff322"
+          },
+          {
+            "id": "dm26ex2-MC009",
+            "canonicalId": "dm22ex2-S15",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-MC009",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-MC009.jpg",
+            "pageSha256": "f8b80402c4ea2205192577c027e2c044c58b5f5a8210c3ef8c48b27dbf8743dc",
+            "imageSha256": "85aa28a572d45e29385c56fdb2c0aa1db55568cd6f4f9bdbea7795095386052a"
+          },
+          {
+            "id": "dm22ex2-8A",
+            "canonicalId": "dm22ex2-S15",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-8A",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex2-8A.jpg",
+            "pageSha256": "35f5679c76ed17588fe3005f720beeb6bf8b8b6292149e991e591cd3df2d632f",
+            "imageSha256": "2bb997b961a4ec261685539b9511877fda0e68294b751e18837c341f027e2ff1"
+          },
+          {
+            "id": "dm22ex2-8B",
+            "canonicalId": "dm22ex2-S15",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-8B",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex2-8B.jpg",
+            "pageSha256": "ad65071052e670ea494b69d9366ea7e9dd0e9b82d7dfb79d767cd29380567717",
+            "imageSha256": "909ee47017b6ff5c754636c62d120c20fb01070eb143c4564f5b565baa2b2456"
           }
         ],
         "testLog": "/tmp/duema-verify-8009/verification-followup-prints.log",
@@ -536684,8 +536807,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8021,
-        "pending": 3805,
+        "supported": 8022,
+        "pending": 3804,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -537284,10 +537407,10 @@
       },
       "finalCheck": {
         "status": "passed",
-        "log": "/tmp/duema-all39/check-final.log",
         "command": "npm run check",
-        "rulesBlob": "4678346e17146f9ecf036d0b5fb2521318fac484",
-        "sixPhotoBlob": "686ecd8e9d7a8b0a07a3f9c469ba425f9b5f0fb8"
+        "log": "/tmp/duema-uncapped/arking-check.log",
+        "rulesBlob": "447c8b2dfa337349db65eb56d319134fe43b5268",
+        "phoenixBlob": "fb8973d1ef86f47dd7ad2eb2133a2bb1e25c946d"
       },
       "abyssShort": {
         "passed": 33,
@@ -537399,10 +537522,6 @@
           "name": "神ナル機カイ「亜堕無」"
         },
         {
-          "id": "dm22ex2-S15",
-          "name": "不敬合成王 ロマティックダム・アルキング"
-        },
-        {
           "id": "dm35-004",
           "name": "ケンゲキオージャ ～究極火焔～"
         },
@@ -537483,84 +537602,66 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1335,
-        "baseline": "9c0440ae",
-        "before": 8020,
-        "supported": 8021,
+        "phase": 1336,
+        "baseline": "3f87d5f0",
+        "before": 8021,
+        "supported": 8022,
         "duplicates": 0,
         "added": [
           {
-            "id": "dmrp15-009",
-            "name": "シーラ・カンフー"
+            "id": "dm22ex2-S15",
+            "name": "不敬合成王 ロマティックダム・アルキング"
           }
         ],
-        "printAliases": 0,
+        "printAliases": 3,
         "results": {
           "focus": {
             "passed": 6,
-            "seconds": 0.693,
-            "log": "/tmp/duema-all39/focus-final.log",
-            "command": "node --test tests/standard1335-effects.test.mjs"
+            "log": "/tmp/duema-uncapped/arking-focus-final.log",
+            "command": "node --test tests/standard1336-effects.test.mjs",
+            "seconds": 1.224
           },
           "regression": {
-            "passed": 233,
-            "seconds": 28.737,
-            "log": "/tmp/duema-all39/regression-final.log",
-            "command": "node --test --test-concurrency=2 tests/standard456-effects.test.mjs tests/standard463-effects.test.mjs tests/standard1104-effects.test.mjs tests/standard1247-effects.test.mjs tests/standard1273-effects.test.mjs tests/standard1333-effects.test.mjs tests/standard1334-effects.test.mjs tests/standard1335-effects.test.mjs"
+            "passed": 79,
+            "log": "/tmp/duema-uncapped/arking-regression.log",
+            "command": "node --test --test-concurrency=2 tests/standard{1274,1301,1304,1308,1333,1334,1335,1336}-effects.test.mjs",
+            "seconds": 10.132
           },
-          "online": {
-            "passed": 7,
-            "seconds": 0.789,
-            "log": "/tmp/duema-all39/online-final.log",
-            "command": "node --test --test-name-pattern=\"^(room storage is|creating, joining and refreshing|the server validates|public online gears|Murder hand inspection|online play labels|online stacked shields)\" tests/online-server.test.mjs"
+          "sasage": {
+            "passed": 15,
+            "log": "/tmp/duema-uncapped/arking-sasage.log",
+            "command": "node --test tests/sasage-neo-evolution.test.mjs",
+            "seconds": 1.434
+          },
+          "phoenix": {
+            "passed": 6,
+            "log": "/tmp/duema-uncapped/arking-phoenix.log",
+            "command": "node --test --test-name-pattern=\"^(Dark King|Poppo|V evolution|Xeno)\" tests/phoenix-photo.test.mjs",
+            "seconds": 0.778
+          },
+          "original": {
+            "passed": 9,
+            "log": "/tmp/duema-uncapped/arking-original.log",
+            "command": "node --test --test-name-pattern=\"^(Hyakume|Sasage|multiple Sasage|Rinne and Sasage|Fuujin prevents)\" tests/original-champion-effects.test.mjs",
+            "seconds": 0.89
           },
           "check": {
             "status": "passed",
-            "log": "/tmp/duema-all39/check-final.log",
             "command": "npm run check",
-            "rulesBlob": "4678346e17146f9ecf036d0b5fb2521318fac484",
-            "sixPhotoBlob": "686ecd8e9d7a8b0a07a3f9c469ba425f9b5f0fb8"
+            "log": "/tmp/duema-uncapped/arking-check.log",
+            "rulesBlob": "447c8b2dfa337349db65eb56d319134fe43b5268",
+            "phoenixBlob": "fb8973d1ef86f47dd7ad2eb2133a2bb1e25c946d"
           },
           "audit": {
             "status": "passed",
-            "log": "/tmp/duema-all39/audit-final.log",
-            "command": "node tools/audit-card-support.mjs"
+            "command": "node tools/audit-card-support.mjs",
+            "log": "/tmp/duema-uncapped/arking-audit.log"
           }
         },
-        "resolvedRegistered": 1,
-        "remainingRegistered": 44,
+        "resolvedRegistered": 2,
+        "remainingRegistered": 42,
         "remainingPrints": 2,
-        "remainingIndividualCards": 38,
-        "held": [
-          {
-            "id": "dmrp12-008",
-            "name": "帝神龍装 ティーゾリス",
-            "reason": "爆撃男の裁定を再現するには、召喚時の任意軽減と連動した登場時の味方破壊、およびバトルゾーンから破壊・離脱した時の自分のクリーチャー能力の重複誘発を検証する。",
-            "source": "https://dm.takaratomy.co.jp/rule/qa/33064/"
-          },
-          {
-            "id": "dm22ex2-S15",
-            "name": "不敬合成王 ロマティックダム・アルキング",
-            "reason": "ラビットンボの裁定2件を再現するには、バトル・マナ・墓地の各ゾーンから1体ずつを選ぶ進化GV・Ω、別の進化元から引き継ぐEXライフと離脱の監視を整える。",
-            "source": "https://dm.takaratomy.co.jp/rule/qa/42663/"
-          },
-          {
-            "id": "dm23rp1-004",
-            "name": "終納 カボード＝ロウ",
-            "reason": "タップしている間の常在能力が、攻撃と能力によるブレイクの両方に適用される。攻撃時だけを変更すると連続ブレイクの途中で発生源が離れるケースを再現できない。",
-            "source": "https://dm.takaratomy.co.jp/rule/qa/43069/",
-            "relatedSources": [
-              "https://dm.takaratomy.co.jp/rule/qa/43222/",
-              "https://dm.takaratomy.co.jp/rule/qa/43224/"
-            ]
-          },
-          {
-            "id": "dmrp03-dg01",
-            "name": "DG 〜ヒトノ造リシモノ〜",
-            "reason": "両プレイヤーのシールドを1つずつ同時にブレイクする。両者の宣言と解決の順序、メタリカと裁きの紋章へのS・トリガー付与を揃えて検証する。",
-            "source": "https://dm.takaratomy.co.jp/rule/qa/45078/"
-          }
-        ]
+        "remainingIndividualCards": 37
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
@@ -539627,6 +539728,16 @@
           "reprints": 2,
           "names": 38
         }
+      },
+      "uncappedRun": {
+        "baseline": "3f87d5f0",
+        "status": "running",
+        "plannedGroups": 443,
+        "plannedNamedTests": 818,
+        "plan": "/tmp/duema-uncapped/plan.json",
+        "results": "/tmp/duema-uncapped/results.jsonl",
+        "command": "python3 /tmp/duema-uncapped/run-tests.py",
+        "reason": "ユーザー指示により時間上限を解除。未確認テスト名をフィルタ指定し、前の一括実行は中断・合否未確認のまま保持。"
       }
     }
   },

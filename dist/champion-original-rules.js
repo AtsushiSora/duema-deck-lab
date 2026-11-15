@@ -68,7 +68,18 @@ export function createOriginalChampionRules(api){
  case'g39_SasageDestroy':
   if(own.battle.some(x=>x.uid===t.target&&(x.incarnation||0)===t.incarnation))destroySasage(s,t.p,[t.target]);
   break;
- case'g39_SasageCast':{const x=own[t.origin].find(x=>x.uid===t.target);if(x)api.cast(s,t.p,x.uid,false,t.base||null,t.face||0,{cost:t.amount,fixedPayment:true},t.origin,'ササゲール',false,t.permit);break;}
+ case'g39_SasageCast':{
+  const x=own[t.origin].find(x=>x.uid===t.target);
+  if(!x)break;
+  const c=faces(card(x))[t.face||0],payment={cost:t.amount,fixedPayment:true};
+  if(c.g31Evolution?.zones&&!api.phoenixHasChosenBases(s,t.p,c,t.base,{exclude:t.target})){
+   // QA 43585: the declared cost is paid even if a chosen base was sacrificed.
+   api.pay(s,t.p,{...c,...payment,summonOrigin:t.origin});
+   break;
+  }
+  api.cast(s,t.p,x.uid,false,t.base||null,t.face||0,payment,t.origin,'ササゲール',false,t.permit);
+  break;
+ }
  case'g39_Rinne':{
   const x=own.battle.find(x=>x.uid===t.target&&(x.incarnation||0)===t.incarnation);
   if(!x||!effective(x,s).g39Rinne)break;
@@ -99,7 +110,10 @@ export function createOriginalChampionRules(api){
    const count=a.sasage.filter(uid=>uid===x.uid).length;
    return amounts.slice(0,count).reduce((sum,amount)=>sum+amount,total);
   },0);
-  put(s,task('g39_Sasage',p,a.cardId,{target:a.uid,targetCard:a.cardId,face:a.face||0,origin:a.origin||'hand',permit:a.manaPermit,sasage:a.sasage,reduction,base:a.baseUid,tapUid:a.tapUid}));
+  const payment=task('g39_Sasage',p,a.cardId,{target:a.uid,targetCard:a.cardId,face:a.face||0,origin:a.origin||'hand',permit:a.manaPermit,sasage:a.sasage,reduction,base:a.baseUid,tapUid:a.tapUid});
+  const c=faces(card(a.cardId))[a.face||0];
+  if(c.g31Evolution?.zones)api.phoenixBeginSasage(s,p,payment);
+  else put(s,payment);
  },
  mainActions(s,p){const own=s.players[p],out=[],hasDonor=own.battle.some(x=>card(x).g1293Tankrio||effective(x,s).sasage),locked=creatures(s,1-p).some(x=>effective(x,s).noCostReduction);for(const x of creatures(s,p)){const c=effective(x,s),spell=faces(card(x))[1];if(c.g39Rinne&&spell&&api.canCast(s,p,spell,'battle')&&api.canPay(s,p,spell))out.push({kind:'play',uid:x.uid,incarnation:x.incarnation||0,cardId:x.cardId,face:1,origin:'battle',alternative:'rinne',cost:api.summonCost(s,p,spell),label:spell.name+'を輪廻∞で唱える'});}if(!hasDonor||locked)return out;
  const subsetsByRace=new Map();
@@ -113,7 +127,9 @@ export function createOriginalChampionRules(api){
   },[[]]).slice(1));
   for(const selected of subsetsByRace.get(mode)){
    // NEO may enter with no base or evolve on a surviving creature. A destroyed donor cannot remain underneath it.
-   const bases=c.evolution||c.neoEvolution?api.evolutionBases(s,p,c).filter(base=>!selected.some(({x})=>x.uid===base.uid)||!api.canLeave(s,p,base)):[];
+   const multiZone=c.g31Evolution?.zones;
+   if(multiZone&&!api.evolutionBases(s,p,c).length)continue;
+   const bases=multiZone?[null]:c.evolution||c.neoEvolution?api.evolutionBases(s,p,c).filter(base=>!selected.some(({x})=>x.uid===base.uid)||!api.canLeave(s,p,base)):[];
    const reduction=selected.reduce((sum,option)=>sum+option.reduction,0);
    const differentReduction=selected.some(option=>option.reduction!==option.defaultReduction);
    const donors=selected.flatMap(({x,count})=>Array(count).fill(x.uid));

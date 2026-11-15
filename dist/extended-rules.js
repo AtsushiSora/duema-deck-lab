@@ -186,6 +186,8 @@ export function createExtendedRules(api){
  const revisions=createPhotoRevisionRules({...api,creatures,put,task,choice,opt,skip,targetOptions});
  const continuation=createChampionContinuationRules({...api,creatures,put,task,choice,opt,skip,targetOptions,conditionalFreeSpell261:(s,p,c)=>!!c.g261Free&&six.ownCondition(s,p,c.g261Free.filter)});
  const original=createOriginalChampionRules({...shared,...optionalExecution,
+  phoenixBeginSasage:(...args)=>phoenix.beginSasage(...args),
+  phoenixHasChosenBases:(...args)=>phoenix.hasChosenBases(...args),
   summonTapDonors1293:(s,p)=>six.summonTapDonors1293(s,p),projectSummonTap1293:(s,p,uid)=>six.projectSummonTap1293(s,p,uid),gravePermits:(s,p,x,c)=>[...utilityDispectorSeeds.gravePermits(s,p,x,c),...six.gravePermits294(s,p,x,c)],manaPermits:(s,p,x)=>[...(card(x).manaSummon?[null]:[]),...galaxy.manaPermits(s,p,x),...kenji.manaPermits(s,p,x),...gran.manaPermits(s,p,x),...girls.manaPermits(s,p,x),...six.manaPermits297(s,p,x)]});
  const champion=createChampionRules({...api,creatures,put,task,choice,opt,skip,targetOptions,discardSelected:(s,t,ids)=>beginDiscardBatch(s,t,ids)});
  const recommended=createRecommendedRules({...api,creatures,put,task,choice,opt,skip,targetOptions,targetable,lock});
