@@ -2480,6 +2480,34 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1355&&d?.status==='complete'&&['dmd03-001','dmd03-002'].includes(d.id)&&
+    d.faces.length===2&&f.typeText==='サイキック・クリーチャー'){
+  const back=d.faces[1],strongArm=d.id==='dmd03-001';
+  const frontText=strongArm?[
+   '覚醒 (サイキック)リンク - 自分のターンのはじめに、バトルゾーンに自分の《不死身のブーストグレンオー》があれば、そのクリーチャーとこのクリーチャーを裏返しリンクさせる。',
+   'ハンティング'
+  ]:[
+   'このクリーチャーは破壊されない。',
+   'このクリーチャーがバトルに負けた時、自分の超次元ゾーンに戻す。',
+   'W・ブレイカー'
+  ];
+  const backText=[
+   'このクリーチャーは破壊されない。',
+   'ハンティング(バトル中、このクリーチャーのパワーは、バトルゾーンにある自分のハンター１体につき+1000される)',
+   'T・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)',
+   'リンク解除(このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す)',
+   '※覚醒リンクするために必要なカード(剛腕の政/不死身のブーストグレンオー)'
+  ];
+  if(back.name==='爆裂ダッシュ！グレンセーバー政'&&back.typeText==='サイキック・スーパー・クリーチャー'&&
+     normalize(f.abilityText)===normalize(frontText.join(''))&&normalize(back.abilityText)===normalize(backText.join('')))
+   return {psychic:true,manaValue:0,
+    ...(strongArm?{g166Hunting:true,g174Start:[{op:'PsychicLink1355',partner:'dmd03-002'}]}:
+     {g465DestroySafe:true,g1355ReturnOnLoss:true,breaker:2}),
+    g1355LinkedFace:{name:back.name,type:'creature',civ:back.civilizationText,civilizations:back.civilizations,
+     cost:back.cost,power:Number(back.powerText),race:back.race,breaker:3,g465DestroySafe:true,g166Hunting:true,
+     g1355Unlink:true,image:'https://dm.takaratomy.co.jp/wp-content/card/cardimage/'+d.id+'b.jpg'}
+   };
+ }
  if(phase>=1354&&d?.status==='complete'&&d.id==='dmbd12-g01'&&d.faces.length===1&&f.typeText==='オレガ・オーラ'){
   const expected=[
    'これを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）',

@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8041,
-  "pendingNames": 3785,
-  "phase": 1354,
-  "added": 1,
+  "supportedNames": 8043,
+  "pendingNames": 3783,
+  "phase": 1355,
+  "added": 2,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -118,7 +118,7 @@
     },
     {
       "ability": "覚醒",
-      "pendingNames": 96,
+      "pendingNames": 94,
       "examples": [
         {
           "id": "dmx07-v01",
@@ -176,7 +176,7 @@
     "進化クリーチャー(進化GV)": 13,
     "タマシード/クリーチャー": 4,
     "土地": 1,
-    "サイキック・クリーチャー": 114,
+    "サイキック・クリーチャー": 112,
     "進化クロスギア": 6,
     "進化クリーチャー(手札進化)": 2,
     "ドラグハート・タマシード": 1,
@@ -223,7 +223,7 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 1069,
+    "複数面・特殊カードタイプまたは情報不足": 1067,
     "未対応の能力文": 2525,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 18,
@@ -490682,17 +490682,84 @@
       "remainingPrints": 1,
       "remainingIndividualCards": 19,
       "next": "残る山札の移動置換、覚醒リンク、選択者の置換と、ドラン・ゴルギーニの版を識別できる公式資料の確認を進める。別の長時間テストに残る個別ケースは過去のログの有無を確認して対象を分割する。"
+    },
+    {
+      "phase": 1355,
+      "baseline": "ff371b36",
+      "before": 8041,
+      "supported": 8043,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmd03-001",
+          "name": "剛腕の政"
+        },
+        {
+          "id": "dmd03-002",
+          "name": "不死身のブーストグレンオー"
+        }
+      ],
+      "printAliases": 2,
+      "results": {
+        "officialPrints": {
+          "verified": 4,
+          "imagesVerified": 8,
+          "manifest": "tools/support-phase-1355.json"
+        },
+        "focus": {
+          "passed": 7,
+          "failed": 0,
+          "log": "tmp/duema-phase-1355/focus-final.log"
+        },
+        "regression": {
+          "passed": 116,
+          "failed": 0,
+          "log": "tmp/duema-phase-1355/regression-final.log",
+          "includesFocus": true
+        },
+        "godLinkRegression": {
+          "passed": 5,
+          "failed": 0,
+          "log": "tmp/duema-phase-1355/god-regression.log"
+        },
+        "check": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "tmp/duema-phase-1355/check-final.log",
+          "rulesBlobs": {
+            "dist/engine.js": "c5c65d01ce10761ab1881d5d8096f786e4da6c81",
+            "dist/six-photo-rules.js": "541d12d79d1e842d3d99db67f85d976e74ede1b5",
+            "dist/cards.json": "32bf56ca8a77d19ba515298de4579bae46ee001c"
+          }
+        },
+        "audit": {
+          "supported": 8043,
+          "pending": 3783,
+          "ready": 0,
+          "dependencyBlocked": 0,
+          "log": "tmp/duema-phase-1355/audit.log"
+        },
+        "nameKey": {
+          "rows": 8043,
+          "count": 8043,
+          "duplicates": 0
+        }
+      },
+      "resolvedRegistered": 1,
+      "remainingRegistered": 19,
+      "remainingPrints": 1,
+      "remainingIndividualCards": 18,
+      "next": "勝利のガイアール・カイザーの裁定には、勝利のリュウセイ・カイザーと勝利のプリンプリン、3体のV覚醒リンク、および複数体に戻るリンク解除が必要。DGには両者のS・トリガー等の宣言、同時手札移動、サバキZ宣言とターン順での解決を分けた共通処理が必要。未検証の分割テストは既存プロセスと保存済みログを確認して残りから継続する。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1354,
+    "lastVerifiedPhase": 1355,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "個別の未検証は19種類。残る山札の移動置換、覚醒リンク、選択者の置換と、ドラン・ゴルギーニの版を識別できる公式資料の確認を進める。別の長時間テストに残る個別ケースは過去のログの有無を確認して対象を分割する。",
+    "steps": "個別の未検証は18種類（裁定19件、再録1件）。勝利のガイアール・カイザーの裁定には、勝利のリュウセイ・カイザーと勝利のプリンプリン、3体のV覚醒リンク、および複数体に戻るリンク解除が必要。DGには両者のS・トリガー等の宣言、同時手札移動、サバキZ宣言とターン順での解決を分けた共通処理が必要。未検証の分割テストは既存プロセスと保存済みログを確認して残りから継続する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
-      "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
       "Phase 322の旧スキャナーテストは、Phase 419で対応した真実の名 ワクワク・チャップルン（dmr07-001）を依然として未対応一覧に期待する。Phase 742基点とPhase 743作業ツリーで候補11件・対象はブロック一覧にいないことを再現。今回の変更とは分けて扱う。",
       "Phase 321・322の既存マジボンバーは、手札からEXライフ持ちを出す際に公式QA 41150と異なり、先に閲覧中のカードを解放する。既存の対戦挙動を維持するため、このバッチの裁定対応はHOODに限定。既存カードへの適用は再開データと回帰テストを別途検証する。",
       "Phase 749の偽爆電融 ゾルネードシヴァの任意ブレイクは現行定義で1つ固定。総合ルール701.14dと類似QA 39660に沿う追加ブレイクへの切り替え、発生源が離れた後の挙動、保存途中の既存選択肢との互換性を別途確認する。",
@@ -490774,16 +490841,28 @@
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [
       {
-        "id": "dmrp03-dg01",
-        "name": "DG 〜ヒトノ造リシモノ〜"
+        "cardId": "dmbd13-015",
+        "dependencyIds": [
+          "dmr04-v03"
+        ],
+        "test": "奇石 ミクセルの登場監視とリュウセイ・ホールのマナ追加の順序を勝利のガイアール・カイザーで再現する（QA 38717）",
+        "source": "https://dm.takaratomy.co.jp/rule/qa/38717/"
       },
       {
-        "id": "dmex12-022",
-        "name": "希望のジョー星"
+        "cardId": "dm38-011",
+        "dependencyIds": [
+          "dmr01-053"
+        ],
+        "test": "ロマノフ・ホールで相手が自身のエイリアンを選び破壊した場合、ザビ・リゲルが呪文による破壊を参照する（QA 36348）",
+        "source": "https://dm.takaratomy.co.jp/rule/qa_old/36348/"
       },
       {
-        "id": "dm35-004",
-        "name": "ケンゲキオージャ ～究極火焔～"
+        "cardId": "dm24rp2-S07",
+        "dependencyIds": [
+          "dmrp03-dg01"
+        ],
+        "test": "DG ～ヒトノ造リシモノ～自身のタップ時誘発が、攻撃時にも1回だけとなる（QA45139）。",
+        "source": "https://dm.takaratomy.co.jp/rule/qa/45139/"
       }
     ],
     "printVerificationPending": [
@@ -534977,8 +535056,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8041,
-      "pendingNames": 3785,
+      "supportedNames": 8043,
+      "pendingNames": 3783,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -536922,18 +537001,29 @@
           "path": "tests/standard1354-effects.test.mjs",
           "log": "tmp/duema-remaining-1353/ende/regression.log",
           "result": "ザ・ジョラゴン・ガンマスターをGR召喚してジ・エンデザークを付けると、ヴォルジャアクが独立に2回誘発する。オーラを参照した分は何も選ばず、GRを参照した分は装着後の7000未満のみ選べる。2体を破壊して墓地から復帰するか断る手順と、コスト7以下の墓地のオーラを同じクリーチャーに追加する処理を実測。"
-        }
-      ],
-      "remainingRegistered": [
+        },
         {
           "cardId": "dmr03-024",
           "dependencyIds": [
+            "dmd03-001",
             "dmd03-002"
           ],
-          "test": "相手が自身の破壊されないサイキックを選べて、選んだクリーチャーが残る（QA 36427と同型）",
-          "reason": "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
-        },
+          "phase": 1355,
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36427/",
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+            "https://dm.takaratomy.co.jp/rule/rulechange/31645/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36426/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36427/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/36428/",
+            "https://dm.takaratomy.co.jp/rule/qa/43933/"
+          ],
+          "path": "tests/standard1355-effects.test.mjs",
+          "log": "tmp/duema-phase-1355/focus-final.log",
+          "result": "選択する相手に不死身のブーストグレンオーが提示され、選んでも破壊されない。デーモン・ハンドとスレイヤーの破壊、バトルに負けた時の超次元への帰還、剛腕の政との覚醒リンク、セル1枚を対象にした時を含むリンク解除、進化元に重ねたセルからの再構築を実カードで検証。"
+        }
+      ],
+      "remainingRegistered": [
         {
           "cardId": "dmbd13-015",
           "dependencyIds": [
@@ -538377,8 +538467,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8041,
-        "pending": 3785,
+        "supported": 8043,
+        "pending": 3783,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -538978,9 +539068,11 @@
       "finalCheck": {
         "status": "passed",
         "command": "npm run check",
-        "log": "/tmp/duema-uncapped/gamma-check.log",
+        "log": "tmp/duema-phase-1355/check-final.log",
         "rulesBlobs": {
-          "dist/six-photo-rules.js": "91676880a8f4475f3ee9667cf9029cfc534b0c31"
+          "dist/engine.js": "c5c65d01ce10761ab1881d5d8096f786e4da6c81",
+          "dist/six-photo-rules.js": "541d12d79d1e842d3d99db67f85d976e74ede1b5",
+          "dist/cards.json": "32bf56ca8a77d19ba515298de4579bae46ee001c"
         }
       },
       "abyssShort": {
@@ -538988,10 +539080,6 @@
         "log": "/tmp/duema-verify-8001/abyss-short-final.log"
       },
       "remainingDependencies": [
-        {
-          "id": "dmd03-002",
-          "name": "不死身のブーストグレンオー"
-        },
         {
           "id": "dmr04-v03",
           "name": "勝利のガイアール・カイザー"
@@ -539053,7 +539141,7 @@
           "name": "行くよー！アオハル、ハイチーズ！"
         }
       ],
-      "remainingTestsSummary": "No.11は分割集計で98試合を確認。No.03・04・06・13・16・21の分割と、残る未検証名の検証を継続。全体のnpm testは中断・合否未確認。",
+      "remainingTestsSummary": "全体のnpm testは中断・合否未確認。固定スナップショットのNo.03・04・06・13は37/344分割、No.16・21の作業ツリー分割は11/113件が通過。残りは既存実行の結果を待つ。",
       "advanceImplementation": {
         "status": "implemented",
         "phases": [
@@ -539105,92 +539193,72 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1354,
-        "baseline": "0d6147fe",
-        "before": 8040,
-        "supported": 8041,
+        "phase": 1355,
+        "baseline": "ff371b36",
+        "before": 8041,
+        "supported": 8043,
         "duplicates": 0,
         "added": [
           {
-            "id": "dmbd12-g01",
-            "name": "卍∞ ジ・エンデザーク ∞卍"
+            "id": "dmd03-001",
+            "name": "剛腕の政"
+          },
+          {
+            "id": "dmd03-002",
+            "name": "不死身のブーストグレンオー"
           }
         ],
-        "printAliases": 0,
+        "printAliases": 2,
         "results": {
           "officialPrints": {
-            "verified": 1,
-            "manifest": "tools/support-phase-1354.json"
+            "verified": 4,
+            "imagesVerified": 8,
+            "manifest": "tools/support-phase-1355.json"
           },
           "focus": {
-            "passed": 5,
+            "passed": 7,
             "failed": 0,
-            "log": "tmp/duema-remaining-1353/ende/regression.log"
+            "log": "tmp/duema-phase-1355/focus-final.log"
           },
           "regression": {
-            "passed": 76,
+            "passed": 116,
             "failed": 0,
-            "includesFocus": true,
-            "log": "tmp/duema-remaining-1353/ende/regression.log"
+            "log": "tmp/duema-phase-1355/regression-final.log",
+            "includesFocus": true
+          },
+          "godLinkRegression": {
+            "passed": 5,
+            "failed": 0,
+            "log": "tmp/duema-phase-1355/god-regression.log"
           },
           "check": {
             "status": "passed",
-            "log": "tmp/duema-remaining-1353/ende/check.log"
+            "command": "npm run check",
+            "log": "tmp/duema-phase-1355/check-final.log",
+            "rulesBlobs": {
+              "dist/engine.js": "c5c65d01ce10761ab1881d5d8096f786e4da6c81",
+              "dist/six-photo-rules.js": "541d12d79d1e842d3d99db67f85d976e74ede1b5",
+              "dist/cards.json": "32bf56ca8a77d19ba515298de4579bae46ee001c"
+            }
           },
           "audit": {
-            "supported": 8041,
-            "pending": 3785,
+            "supported": 8043,
+            "pending": 3783,
             "ready": 0,
             "dependencyBlocked": 0,
-            "log": "tmp/duema-remaining-1353/ende/audit.log"
+            "log": "tmp/duema-phase-1355/audit.log"
           },
           "nameKey": {
-            "rows": 8041,
-            "count": 8041,
+            "rows": 8043,
+            "count": 8043,
             "duplicates": 0
-          },
-          "auraFollowup": {
-            "baseline": "e3323a89",
-            "reason": "公式の2026年4月10日改定に従い、落城の計でGR本体を選んでもオーラは移動先を共有する。ジョーカーズの心絵は、超GRへ戻る前に山札に置かれたGRと山札に置かれたオーラの両方を数える。",
-            "primarySources": [
-              "https://dm.takaratomy.co.jp/rule/rulechange/316683/",
-              "https://dm.takaratomy.co.jp/rule/rulechange/316682/"
-            ],
-            "tests": [
-              {
-                "passed": 7,
-                "failed": 0,
-                "log": "tmp/duema-verification-e3323a89/aura-departure/heart.log"
-              },
-              {
-                "passed": 55,
-                "failed": 0,
-                "log": "tmp/duema-verification-e3323a89/aura-departure/exact-regression.log"
-              }
-            ],
-            "check": {
-              "status": "passed",
-              "log": "tmp/duema-verification-e3323a89/aura-departure/final-check.log"
-            },
-            "audit": {
-              "supported": 8041,
-              "pending": 3785,
-              "ready": 0,
-              "dependencyBlocked": 0,
-              "log": "tmp/duema-verification-e3323a89/aura-departure/audit.log"
-            },
-            "nameKey": {
-              "rows": 8041,
-              "count": 8041,
-              "duplicates": 0
-            }
           }
         },
         "resolvedRegistered": 1,
-        "remainingRegistered": 20,
+        "remainingRegistered": 19,
         "remainingPrints": 1,
-        "remainingIndividualCards": 19,
-        "next": "残る山札の移動置換、覚醒リンク、選択者の置換と、ドラン・ゴルギーニの版を識別できる公式資料の確認を進める。別の長時間テストに残る個別ケースは過去のログの有無を確認して対象を分割する。"
+        "remainingIndividualCards": 18,
+        "next": "勝利のガイアール・カイザーの裁定には、勝利のリュウセイ・カイザーと勝利のプリンプリン、3体のV覚醒リンク、および複数体に戻るリンク解除が必要。DGには両者のS・トリガー等の宣言、同時手札移動、サバキZ宣言とターン順での解決を分けた共通処理が必要。未検証の分割テストは既存プロセスと保存済みログを確認して残りから継続する。"
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
@@ -541680,6 +541748,26 @@
               "failedShards": 0,
               "results": "tmp/duema-verification-e3323a89/legacy-fixtures/results.jsonl",
               "note": "もともとの大会4デッキの組み合わせ・順序・乱数を保持し、対戦相手またはシードごとに分割。全対象のログを確認後、テスト差分をコミットする。対象全体を含んだ回帰の試行は中断し、監査対象には足さない。"
+            },
+            "latestObserved": {
+              "checkedAt": "2026-11-16",
+              "frozen": {
+                "baseline": "e3323a89",
+                "verified": 37,
+                "planned": 344,
+                "games": 370,
+                "results": "tmp/duema-verification-e3323a89/results.jsonl"
+              },
+              "legacy": {
+                "scope": "実行時の作業ツリー。固定コミットの検証結果としては扱わない。",
+                "verified": 11,
+                "planned": 113,
+                "byKind": {
+                  "AI replay": 9,
+                  "production worker": 2
+                },
+                "results": "tmp/duema-verification-e3323a89/legacy-fixtures/results.jsonl"
+              }
             }
           }
         },

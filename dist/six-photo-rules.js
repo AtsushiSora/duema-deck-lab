@@ -459,17 +459,19 @@ export function createSixPhotoRules(api){
     const definition=t.min!==undefined||t.max!==undefined?effective(top,s):null;
     for(const [index,x] of api.layers(top).entries()){
      if((t.g917EvolutionTop&&x!==top)||(t.other&&x.uid===t.uid)||x.uid===t.excludeUid)continue;
-     if(t.filter&&!matches(s,p,x,t.filter))continue;
+     const physical=api.physicalBattleFace1355(top,x);
+     const cell=physical.type==='cell'&&physical.psychic;
+     if(t.filter&&!matches(s,p,cell?{...x,psychicLinks:null,psychicCell:true}:x,t.filter))continue;
      if(t.g813NonEvolution&&!x.faceDown&&api.isEvolution(x))continue;
      const sealIndex=own.seals?.indexOf(x)??-1;
-     const below=index>0&&!top.godLinks?.includes(x);
+     const below=index>0&&!top.godLinks?.includes(x)&&!top.psychicLinks?.includes(x);
      if(linked&&!below&&!api.targetable(s,t.p,p,top))continue;
-     if(t.nonCreature&&!x.faceDown&&(below?faces(card(x)).some(c=>c.type==='creature'):api.isCreature(s,top)))continue;
+     if(t.nonCreature&&!cell&&!x.faceDown&&(below?faces(card(x)).some(c=>c.type==='creature'):api.isCreature(s,top)))continue;
      if(definition){
-      const costs=x.faceDown?[0]:below?faces(card(x)).map(cost):[cost(linked?card(x):definition)];
+      const costs=x.faceDown||cell?[0]:below?faces(card(x)).map(cost):[cost(linked?card(x):definition)];
       if(!costs.some(n=>n>=(t.min??0)&&n<=(t.max??Infinity)))continue;
      }
-     const name=x.faceDown?'裏向きのカード '+index:card(x).name;
+     const name=x.faceDown?'裏向きのカード '+index:cell?card(x.cardId).name+'（サイキック・セル）':card(x).name;
      const label=sealIndex>=0?'封印 '+(sealIndex+1):below?card(top).name+'の下：'+name:name;
      rows.set(x.uid,{x,label:zones.length>1?side+'場：'+label:label,p,origin:'battle'});
     }
@@ -3728,7 +3730,7 @@ export function createSixPhotoRules(api){
   const y=s.players[owner].battle.find(y=>{
    if(!t.g403Refs)return y.uid===t.target&&(t.targetIncarnation===undefined||(y.incarnation||0)===t.targetIncarnation);
    const follow=t.followEvolution==='evolutionOnly'?api.isEvolution(y):t.followEvolution;
-   const layers=t.filter?.g600OverMana||follow?api.allLayers(y):[y,...(y.godLinks||[])];
+   const layers=t.filter?.g600OverMana||follow?api.allLayers(y):[y,...(y.godLinks||[]),...(y.psychicLinks||[])];
    return layers.some(z=>t.g403Refs.some(r=>r.uid===z.uid&&r.incarnation===(z.incarnation||0)));
   });
   if(!y||y.sealed&&!t.g1082Dragon&&(t.filter||t.followEvolution)||t.filter&&!matches(s,owner,y,t.filter))break;
@@ -3953,6 +3955,20 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_Sequence':start(s,t,t.defs);break;
+ case'g34_PsychicBaseOrder1355':{
+  const x=s.players[t.controller].battle.find(x=>x.uid===t.host);
+  choice(s,t,'進化元の一番上に置くサイキック・セルを選ぶ',
+   [x,...x.psychicLinks].map(y=>opt(card(y.cardId).name,y.uid,0,y.cardId)));
+  break;
+ }
+ case'g34_PsychicLink1355':{
+  const host=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation);
+  const partners=api.psychicLinkPartners1355(s,t.p,host,t.partner);
+  if(partners.length===1)api.linkPsychic1355(s,t.p,host,partners[0]);
+  else if(partners.length>1)choice(s,t,'覚醒リンクするサイキック・クリーチャーを選ぶ',
+   partners.map(x=>opt(card(x).name,x.uid,x.tapped?-5:5,x.cardId)));
+  break;
+ }
  case'g34_Awaken1095':{
   const x=own.battle.find(y=>y.uid===t.uid&&(y.incarnation||0)===t.incarnation&&!y.sealed);
   if(!x||x.g1085Awakened&&!t.loop)break;
@@ -7455,6 +7471,22 @@ export function createSixPhotoRules(api){
  case'g34_OwnCard581':ownCard581(s,t,v);break;
  case'g34_ManaPair581':finishManaPair581(s,t,v);break;
  case'g34_ProtectBattleChoice580':if(v)put(s,{...t,op:'g34_BattleCardMove579',p:1-t.p,to:'grave',excludeUid:v});break;
+ case'g34_PsychicBaseOrder1355':{
+  const x=remove(s.players[t.controller].g34Holding||[],t.target);
+  if(x){
+   enter(s,t.controller,x,t.baseUid,{...t.entryOptions,psychicBaseOrder:{
+    ...t.entryOptions.psychicBaseOrder,[t.host]:v
+   }});
+   if(s.players[t.controller].battle.includes(x))put(s,...(t.afterEntryTasks||[]));
+  }
+  break;
+ }
+ case'g34_PsychicLink1355':{
+  const host=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation);
+  const partner=api.psychicLinkPartners1355(s,t.p,host,t.partner).find(x=>x.uid===v);
+  if(partner)api.linkPsychic1355(s,t.p,host,partner);
+  break;
+ }
  case'g34_BattleCardDestination580':api.moveBattleCard(s,t.p,t.target,v,{controller:t.controller});break;
  case'g34_BattleCardBounce578':
  case'g34_BattleCardMove579':if(v){
@@ -8097,7 +8129,7 @@ export function createSixPhotoRules(api){
     title:'マナゾーンに置く自分の手札を1枚選ぶ（任意）'});
   }
  },
- turnStart(s,p,tappedBefore){if(s.extLimits){s.extLimits=s.extLimits.filter(l=>!(l.kind==='g546Force'&&l.when==='nextOpponent'&&l.activeTurn!==undefined&&l.activeTurn!==s.turn));for(const l of s.extLimits)if(l.kind==='g546Force'&&l.when==='nextOpponent'&&p===1-l.controller&&s.turn>l.turn)l.activeTurn=s.turn;}const delayed537=collect537(s,'nextOwnStart',p),generic=[p,1-p].flatMap(controller=>s.players[controller].battle.filter(x=>!x.sealed&&(api.isCreature(s,x)||effective(x,s).g461TurnPlayer)).flatMap(x=>{const c=effective(x,s),defs=c[controller===p?'g174Start':'g179OpponentStart'];if(c.g754StartTapped&&!(controller===p?tappedBefore?.has(x.uid):x.tapped))return [];return defs?[{player:controller,uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g34_Sequence',controller,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs})}]:[];}));const grave=s.players[p].grave.flatMap(x=>{
+ turnStart(s,p,tappedBefore){if(s.extLimits){s.extLimits=s.extLimits.filter(l=>!(l.kind==='g546Force'&&l.when==='nextOpponent'&&l.activeTurn!==undefined&&l.activeTurn!==s.turn));for(const l of s.extLimits)if(l.kind==='g546Force'&&l.when==='nextOpponent'&&p===1-l.controller&&s.turn>l.turn)l.activeTurn=s.turn;}const delayed537=collect537(s,'nextOwnStart',p),generic=[p,1-p].flatMap(controller=>s.players[controller].battle.filter(x=>!x.sealed&&(api.isCreature(s,x)||effective(x,s).g461TurnPlayer)).flatMap(x=>{const c=effective(x,s),defs=c[controller===p?'g174Start':'g179OpponentStart'];if(defs?.[0]?.op==='PsychicLink1355'&&!api.psychicLinkPartners1355(s,controller,x,defs[0].partner).length)return [];if(c.g754StartTapped&&!(controller===p?tappedBefore?.has(x.uid):x.tapped))return [];return defs?[{player:controller,uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g34_Sequence',controller,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs})}]:[];}));const grave=s.players[p].grave.flatMap(x=>{
   const c=card(x),colors=c.g754GraveStartColors;
   if(x.faceDown)return [];
   if(c.g1200GraveStartSacrifice){

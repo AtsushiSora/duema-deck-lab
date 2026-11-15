@@ -2,7 +2,7 @@ import {card,effectiveCard,power,isEvolution,canUntap,skipsStartUntap,abilitiesI
 import {sourceCardCount} from './card-info.js?v=0.721.2';
 
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const layers=x=>[x,...(x.under||[]).flatMap(layers),...(x.godLinks||[]).flatMap(layers)];
+const layers=x=>[x,...(x.under||[]).flatMap(layers),...(x.godLinks||[]).flatMap(layers),...(x.psychicLinks||[]).flatMap(layers)];
 const side=p=>p===0?'自分':'相手';
 const number=n=>n===Infinity||n==='∞'?'∞':Number(n).toLocaleString('ja-JP');
 export function effectExpiry(s,e){

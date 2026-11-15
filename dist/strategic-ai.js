@@ -19,7 +19,7 @@ export function createStrategicAI(api){
   // A player knows their submitted list, but not which unseen cards are shields.
   // Sample from the whole unseen bag, never from the actual remaining library.
   const bag=new Map((x.knownDeck||[]).map(r=>[r.id,r.count]));
-  const subtract=y=>{if(!y.faceDown&&bag.has(y.cardId))bag.set(y.cardId,Math.max(0,bag.get(y.cardId)-1));for(const z of [...(y.under||[]),...(y.godLinks||[])])subtract(z);};
+  const subtract=y=>{if(!y.faceDown&&bag.has(y.cardId))bag.set(y.cardId,Math.max(0,bag.get(y.cardId)-1));for(const z of [...(y.under||[]),...(y.godLinks||[]),...(y.psychicLinks||[])])subtract(z);};
   for(const zone of ['hand','battle','mana','grave','extra'])for(const y of x[zone])subtract(y);
   for(const y of shownShields)subtract(y);
   const pool=[...bag].sort(([a],[b])=>a.localeCompare(b)).flatMap(([id,n])=>Array(n).fill(id));

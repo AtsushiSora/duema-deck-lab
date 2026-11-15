@@ -271,7 +271,7 @@ function recordStrongestOutcome(){
 function pageHead(title,sub,actions='',eyebrow='DECK LAB'){return `<div class="page-head"><div class="page-title"><div class="eyebrow">${eyebrow}</div><h1>${title}</h1>${sub?`<p>${sub}</p>`:''}</div>${actions}</div>`;}
 const cardArt=createCardArt();cardArt.bind(document);
 function art(id,options={}){
- const c=card(id),back=options.awakened&&(c?.g1085Back||c?.startCard?.back);
+ const c=card(id),back=options.awakened&&(c?.g1085Back||c?.startCard?.back||c?.g1355LinkedFace);
  return cardArt.html(back?{...c,...back,faces:[],imageOverride:back.image}:c?.ritual||c?.forbiddenCore?{...c,imageOverride:c.image}:c,options);
 }
 function miniDeck(d){const ids=[...d.cards].filter(r=>card(r.id)).sort((a,b)=>(card(a.id).type==='creature'?0:1)-(card(b.id).type==='creature'?0:1)).slice(0,3);return `<span class="mini-deck">${ids.map(r=>art(r.id,{mini:true})).join('')}</span>`;}
@@ -675,7 +675,7 @@ function showRetryDecks(){
  if(!battle||battle.state.winner===null||battle.tournamentId)return;
  const o=battle.decks[1];showDialog('デッキを変えて挑戦',`<p class="small">相手：${esc(o.name)}</p><p class="small mt8">デッキを選ぶと、同じ相手との対戦を始めます。</p><div class="mt16">${saved.decks.map(d=>{const reason=matchBlockReason(d,[o]),r=manualResultSummary(saved.manualResults,{...battle,decks:[d,o]},registry,saved.heroProgress);return `<button class="opponent full retry-deck" data-action="manual-retry-deck" data-id="${esc(d.id)}" ${reason?'disabled':''}>${miniDeck(d)}<span class="grow"><strong>${esc(d.name)}</strong><small>${sum(d)}枚${d.id===battle.decks[0].id?' · 今回使用':''}</small><small>${reason?esc(reason):r.deckWins+'勝 '+r.deckLosses+'敗 · このデッキで挑戦'}</small></span>${icon('chevron',15)}</button>`;}).join('')||'<p class="small">マイデッキを登録すると選べます。</p>'}</div>`);
 }
-const evolutionLayers=c=>[...(c.under||[]),...(c.godLinks||[])].flatMap(x=>[x,...evolutionLayers(x)]);
+const evolutionLayers=c=>[...(c.under||[]),...(c.godLinks||[]),...(c.psychicLinks||[])].flatMap(x=>[x,...evolutionLayers(x)]);
 async function loadChallengeDecks(){
  if(heroDecks.length&&rivalDecks.length&&characterDecks.length)return;
  const [heroes,rivals,characters]=await Promise.all(['hero-decks.json','rival-decks.json','character-decks.json'].map(async file=>{const r=await fetch(file+'?v='+APP_VERSION,{cache:'no-cache'});if(!r.ok)throw Error('チャレンジデッキを読み込めませんでした');return r.json();}));
