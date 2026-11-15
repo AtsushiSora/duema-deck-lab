@@ -67,6 +67,12 @@ export function createSixPhotoRules(api){
   .map(g=>({uid:g.uid,incarnation:g.incarnation||0}));
  const remainingGears929=(s,t)=>crossGears728(s,t.p)
   .filter(g=>!g.faceDown&&t.gears.some(ref=>ref.uid===g.uid&&ref.incarnation===(g.incarnation||0)));
+ function creatureBreakCount1342(s,p,x,n){
+  if(!x?.tapped||x.sealed||x.faceDown||!api.isCreature(s,x))return n;
+  const reductions=s.players[1-p].battle.filter(y=>card(y).g1342Kabord&&!y.sealed&&!y.faceDown&&
+   api.isCreature(s,y)&&!api.ignored(s,y)).length;
+  return Math.max(0,n-reductions);
+ }
  const key=x=>x.uid+'@'+(x.incarnation||0),live=(s,t)=>s.players[t.p].battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===(t.incarnation||0));
  function turboReady756(s,p,x){
   const history=s.g756Breaks;
@@ -4256,8 +4262,10 @@ export function createSixPhotoRules(api){
   if(c?.g977CannotBreak)break;
   const keeping=t.keep!==undefined;
   if(keeping&&shields.length<=t.keep)break;
-  const n=keeping?t.keep:t.n==='all'?shields.length:Math.min(t.n+(t.g1084FixedBreak?0:c?.extraBreak||0),shields.length);
-  const selected=t.n==='all'&&!keeping?shields.map(y=>y.uid):(t.selected||[]).filter(uid=>shields.some(y=>y.uid===uid));
+  const printed=keeping?shields.length-t.keep:t.n==='all'?shields.length:t.n+(t.g1084FixedBreak?0:c?.extraBreak||0);
+  const cap=t.g1342AlreadyCounted?printed:creatureBreakCount1342(s,t.p,host,printed);
+  const n=keeping?shields.length-cap:Math.min(cap,shields.length);
+  const selected=t.n==='all'&&!keeping&&n===shields.length?shields.map(y=>y.uid):(t.selected||[]).filter(uid=>shields.some(y=>y.uid===uid));
   if(selected.length<n){
    const action=keeping?'残す':'ブレイクする';
    choice(s,{...t,selected},
@@ -4333,7 +4341,7 @@ export function createSixPhotoRules(api){
  case'g34_ShieldMana557':if(opp.shields.length)choice(s,t,'マナに置く相手のシールドを1つ選ぶ',opp.shields.map((x,i)=>opt('シールド'+(i+1),x.uid,10)));break;
  case'g34_Break278':{
   const host=t.requiresCreature&&sourceHost474(s,t);
-  if(t.requiresCreature&&(!host||!api.isCreature(s,host.x)||effective(host.x,s).g977CannotBreak))break;
+  if(t.requiresCreature&&(!host||!api.isCreature(s,host.x)||effective(host.x,s).g977CannotBreak||!creatureBreakCount1342(s,t.p,host.x,1)))break;
   if(opp.shields.length)choice(s,t,'ブレイクする相手のシールドを1つ選ぶ',[...opp.shields.map((x,i)=>opt('シールド'+(i+1),x.uid,10)),...(t.optional?[skip()]:[])]);break;
  }
  case'g34_AfterBreak278':if(t.g909Broke)start(s,t,t.g909AfterBreak);break;
@@ -7082,7 +7090,7 @@ export function createSixPhotoRules(api){
  }break;
  case'g34_Break278':{
   const host=t.requiresCreature&&sourceHost474(s,t);
-  if(t.requiresCreature&&(!host||!api.isCreature(s,host.x)||effective(host.x,s).g977CannotBreak))break;
+  if(t.requiresCreature&&(!host||!api.isCreature(s,host.x)||effective(host.x,s).g977CannotBreak||!creatureBreakCount1342(s,t.p,host.x,1)))break;
   if(s.players[1-t.p].shields.some(x=>x.uid===v))api.interruptBreak(s,1-t.p,[v],{...t,op:'g34_AfterBreak278'},
    {player:t.p,sourceUid:host?host.x.uid:t.uid,source:t.source,controller:t.p,g278Effect:true,...(host?{incarnation:host.x.incarnation||0}:{})});
   break;
@@ -9730,7 +9738,7 @@ externalProtection565,
   applyGrant(s,{p,source,grant:{speedAttacker:true}},host);
   (s.g537Delays??=[]).push({p,source,when:'turnEnd',turn:s.turn,
    defs:[{op:'ExactMove',owner:p,to:'grave',g403Refs:linked,followEvolution:true,g1082Dragon:true}]});
- },run,chosen,matches,hasSoul,ownCondition,canPut,countDraw,modeScore,recoveryScore326,spellWatches,attackDraws613,seedWatches548,entryPlan549,auraPower,countPower,grantAuras,send,tasks,start,race,mecha,ninja,angel,demon,key,live,
+ },run,chosen,creatureBreakCount1342,matches,hasSoul,ownCondition,canPut,countDraw,modeScore,recoveryScore326,spellWatches,attackDraws613,seedWatches548,entryPlan549,auraPower,countPower,grantAuras,send,tasks,start,race,mecha,ninja,angel,demon,key,live,
  crossEntry728(s,p,x,baseUid,entryOptions){
   if(entryOptions.g728CrossIds||!crossGears728(s,p).length)return false;
   (s.players[p].g34Holding??=[]).push(x);

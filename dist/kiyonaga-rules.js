@@ -15,8 +15,14 @@ export function createKiyonagaRules(api){
   case'g21Gohaten':{for(const p of[s.active,1-s.active]){const own=s.players[p];if(!api.canMoveZone(s,p,'mana')){own.g21ManaPending=[];continue;}own.g21ManaPending=own.mana.filter(x=>card(x).type==='creature');own.mana=own.mana.filter(x=>card(x).type!=='creature');}put(s,task('g21GohatenUse',s.active,t.source,{next:1-s.active}));break;}
   case'g21GohatenUse':{const list=(own.g21ManaPending||[]).filter(x=>canPut(s,t.p,x,'mana')||card(x).manaEvolution&&api.canEnter(s,t.p,card(x),{origin:'mana',execution:false}));if(!list.length){own.mana.push(...(own.g21ManaPending||[]));own.g21ManaPending=[];if(t.next!==undefined)put(s,task('g21GohatenUse',t.next,t.source));break;}choice(s,t,'轟破天で次にマナから出すクリーチャーを選ぶ',list.map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)));break;}
   case'g21Enter':{const x=own[t.zone]?.find(x=>x.uid===t.uid);if(x&&t.zone==='g21ManaPending'&&card(x).manaEvolution&&!api.evolutionBases(s,t.p,card(x)).length){remove(own[t.zone],x.uid);own.mana.push(x);break;}if(!x||!canPut(s,t.p,x,t.origin,t.execution))break;const c=card(x),bases=api.evolutionBases(s,t.p,c).filter(y=>y.uid!==x.uid);if(c.evolution||c.neoEvolution)choice(s,t,'進化元を選ぶ',[...(c.neoEvolution?[opt('進化させずに出す',false,1)]:[]),...bases.map(x=>opt(card(x).name,x.uid,2,x.cardId))]);else doEnter(s,t,null);break;}
-  case'g21BreakNine':{const shields=opp.shields,n=Math.min(9,shields.length);if(n===shields.length){if(n)api.breakShields(s,1-t.p,shields.map(x=>x.uid));}else put(s,task('g21BreakChoose',t.p,t.source,{selected:[],n}));break;}
-  case'g21BreakChoose':choice(s,t,'効果でブレイクする9つのシールドを選ぶ',opp.shields.filter(x=>!t.selected.includes(x.uid)).map((x,i)=>opt('シールド'+(opp.shields.indexOf(x)+1),x.uid,1)));break;
+  case'g21BreakNine':{
+   const host=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation);
+   const shields=opp.shields,n=Math.min(api.creatureBreakCount1342(s,t.p,host,9),shields.length);
+   if(n===shields.length){if(n)api.breakShields(s,1-t.p,shields.map(x=>x.uid));}
+   else if(n)put(s,task('g21BreakChoose',t.p,t.source,{selected:[],n}));
+   break;
+  }
+  case'g21BreakChoose':choice(s,t,'効果でブレイクする'+t.n+'つのシールドを選ぶ',opp.shields.filter(x=>!t.selected.includes(x.uid)).map((x,i)=>opt('シールド'+(opp.shields.indexOf(x)+1),x.uid,1)));break;
   case'g21ZenonRamp':if(creatures(s,t.p).some(twin))ramp(s,t.p,1);break;
   case'g21Zenon':if((s.g21ZenonUsed||{})[t.key]!==s.turn&&api.canCast(s,t.p,faces(card(t.attackerSource))[1]))choice(s,t,'ゼノンで攻撃中のツインパクトの呪文側を唱える？',[opt('呪文側を唱える',true,15,t.attackerSource),skip()]);break;
   case'g21CobaltDraw':choice(s,t,'メヂカラでカードを2枚引く？',[opt('2枚引く',true,own.deck.length>2?10:-10),skip()]);break;

@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8027,
-  "pendingNames": 3799,
-  "phase": 1341,
+  "supportedNames": 8028,
+  "pendingNames": 3798,
+  "phase": 1342,
   "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2132,
+    "クリーチャー": 2131,
     "NEOクリーチャー": 70,
     "呪文": 455,
     "GRクリーチャー": 156,
@@ -224,7 +224,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1074,
-    "未対応の能力文": 2534,
+    "未対応の能力文": 2533,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
@@ -489956,14 +489956,57 @@
       "remainingRegistered": 36,
       "remainingPrints": 1,
       "remainingIndividualCards": 31
+    },
+    {
+      "phase": 1342,
+      "baseline": "d811cf02",
+      "before": 8027,
+      "supported": 8028,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dm23rp1-004",
+          "name": "終納 カボード＝ロウ"
+        }
+      ],
+      "printAliases": 0,
+      "results": {
+        "focus": {
+          "passed": 6,
+          "log": "/tmp/duema-uncapped/kabord-focus.log",
+          "command": "node --test tests/standard1342-effects.test.mjs",
+          "seconds": 1.886
+        },
+        "regression": {
+          "passed": 108,
+          "log": "/tmp/duema-uncapped/kabord-regression.log",
+          "command": "node --test --test-concurrency=1 tests/standard{1231,1232,828,830,879,880,1158,1339,1340,1341}-effects.test.mjs",
+          "seconds": 26.495
+        },
+        "check": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "/tmp/duema-uncapped/kabord-check.log",
+          "rulesBlob": "f5cd37d59be062ee96e1cf6e9f02713d4b947799"
+        },
+        "audit": {
+          "status": "passed",
+          "command": "node tools/audit-card-support.mjs",
+          "log": "/tmp/duema-uncapped/kabord-audit.log"
+        }
+      },
+      "resolvedRegistered": 1,
+      "remainingRegistered": 35,
+      "remainingPrints": 1,
+      "remainingIndividualCards": 30
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1341,
+    "lastVerifiedPhase": 1342,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "亜堕無の戻し・置き直しとアビスハリケーンの対象を実カードで検証済み。残りの個別裁定と分割テストを継続する。",
+    "steps": "カボード＝ロウとインパクト・アブソーバーのブレイク数を実カードで検証済み。残りの個別裁定と分割テストを継続する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -490052,8 +490095,8 @@
         "name": "帝神龍装 ティーゾリス"
       },
       {
-        "id": "dm23rp1-004",
-        "name": "終納 カボード＝ロウ"
+        "id": "dmd03-002",
+        "name": "不死身のブーストグレンオー"
       },
       {
         "id": "dmr08s-007",
@@ -490256,8 +490299,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8027,
-    "pendingNames": 3799,
+    "supportedNames": 8028,
+    "pendingNames": 3798,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -534251,8 +534294,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8027,
-      "pendingNames": 3799,
+      "supportedNames": 8028,
+      "pendingNames": 3798,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -535279,7 +535322,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別31種類（裁定36件と版固有の金箔再録1件）と長時間対戦・ワーカーの検証が継続中。Netlifyを更新せずにPagesへ公開する経路の確認も必要。",
+        "reason": "個別30種類（裁定35件と版固有の金箔再録1件）と長時間対戦・ワーカーの検証が継続中。Netlifyを更新せずにPagesへ公開する経路の確認も必要。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -535843,6 +535886,23 @@
             "https://dm.takaratomy.co.jp/rule/qa/41995/"
           ],
           "result": "亜堕無だけを手札に戻し、JSON復元後に別のアンタップ中のシンカライズ持ちへ重ねた。アビスハリケーンは元の進化元がクリーチャーのときだけ破壊した。シンカライズなしとタップ中のタマシードの除外、出し直しが召喚時能力を誘発しないこと、召喚時に宣言した数のロックと期限も検証した。"
+        },
+        {
+          "cardId": "dm16-008",
+          "dependencyIds": [
+            "dm23rp1-004"
+          ],
+          "test": "終納 カボード＝ロウのブレイク減少と未クロス時の上限が重なり、通常の1ブレイクの攻撃が0ブレイクになる（QA43069）。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/43069/",
+          "phase": 1342,
+          "path": "tests/standard1342-effects.test.mjs",
+          "log": "/tmp/duema-uncapped/kabord-focus.log",
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/43069/",
+            "https://dm.takaratomy.co.jp/rule/qa/43222/",
+            "https://dm.takaratomy.co.jp/rule/qa/43224/"
+          ],
+          "result": "カボード＝ロウの常在能力と未クロスのインパクト・アブソーバーの上限1を重ね、単一ブレイクのプレイヤー攻撃が0になることを確認した。パワー低下で破壊されたR.S.F.K.の5ブレイクと、タップ中に生存する禍武斗の8ブレイクを確認した。アビスラッシュと自分の他のアビスへの強化も検証した。"
         }
       ],
       "remainingRegistered": [
@@ -536004,15 +536064,6 @@
           "test": "DG ～ヒトノ造リシモノ～自身のタップ時誘発が、攻撃時にも1回だけとなる（QA45139）。",
           "reason": "指定カードが未対応。オカルト・チューナーで同じタップ時誘発が1回であることは確認した。",
           "source": "https://dm.takaratomy.co.jp/rule/qa/45139/"
-        },
-        {
-          "cardId": "dm16-008",
-          "dependencyIds": [
-            "dm23rp1-004"
-          ],
-          "test": "終納 カボード＝ロウのブレイク減少と未クロス時の上限が重なり、通常の1ブレイクの攻撃が0ブレイクになる（QA43069）。",
-          "reason": "指定カードが未対応。上限1と能力によるブレイクを区別するケースは確認した。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/43069/"
         },
         {
           "cardId": "dmsd13-019",
@@ -536244,9 +536295,10 @@
           "dmrp08-s03",
           "dm22ex1-061",
           "dmrp22-4A",
-          "dmrp21-002"
+          "dmrp21-002",
+          "dm23rp1-004"
         ],
-        "officialPrints": 71,
+        "officialPrints": 72,
         "newAliases": 54,
         "evidence": [
           {
@@ -536811,6 +536863,14 @@
             "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-9A.jpg",
             "pageSha256": "bb545faea4bd75a48dcba163c4362aaadb3b870e2fb1291378b281daddfb987d",
             "imageSha256": "839965ccf5d6a0fab9198b7b36ea3aa26b806fef33ac08b25607013e0f33a3fd"
+          },
+          {
+            "id": "dm23rp1-004",
+            "canonicalId": "dm23rp1-004",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-004",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-004.jpg",
+            "pageSha256": "0b127510c9580b6bbf94c7977a2fa09d9e101fee3017e471c8ead19bb5a9f8e3",
+            "imageSha256": "f8bc3a043923e0d50ac6afa53a1304cf025a7c2c215e63f3e5eb5e0bf419f0fb"
           }
         ],
         "testLog": "/tmp/duema-verify-8009/verification-followup-prints.log",
@@ -537096,8 +537156,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8027,
-        "pending": 3799,
+        "supported": 8028,
+        "pending": 3798,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -537697,8 +537757,8 @@
       "finalCheck": {
         "status": "passed",
         "command": "npm run check",
-        "log": "/tmp/duema-uncapped/adam-check.log",
-        "rulesBlob": "821ce727338b84b3610f79552e2635f85f2312dc"
+        "log": "/tmp/duema-uncapped/kabord-check.log",
+        "rulesBlob": "f5cd37d59be062ee96e1cf6e9f02713d4b947799"
       },
       "abyssShort": {
         "passed": 33,
@@ -537760,10 +537820,6 @@
         {
           "id": "dmrp03-dg01",
           "name": "DG 〜ヒトノ造リシモノ〜"
-        },
-        {
-          "id": "dm23rp1-004",
-          "name": "終納 カボード＝ロウ"
         },
         {
           "id": "dmrp22-003",
@@ -537874,47 +537930,47 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1341,
-        "baseline": "4b199e10",
-        "before": 8026,
-        "supported": 8027,
+        "phase": 1342,
+        "baseline": "d811cf02",
+        "before": 8027,
+        "supported": 8028,
         "duplicates": 0,
         "added": [
           {
-            "id": "dmrp21-002",
-            "name": "神ナル機カイ「亜堕無」"
+            "id": "dm23rp1-004",
+            "name": "終納 カボード＝ロウ"
           }
         ],
-        "printAliases": 1,
+        "printAliases": 0,
         "results": {
           "focus": {
-            "passed": 4,
-            "log": "/tmp/duema-uncapped/adam-focus.log",
-            "command": "node --test tests/standard1341-effects.test.mjs",
-            "seconds": 1.638
+            "passed": 6,
+            "log": "/tmp/duema-uncapped/kabord-focus.log",
+            "command": "node --test tests/standard1342-effects.test.mjs",
+            "seconds": 1.886
           },
           "regression": {
-            "passed": 53,
-            "log": "/tmp/duema-uncapped/adam-regression.log",
-            "command": "node --test --test-concurrency=2 tests/standard{1052,1148,1231,1270,1340,1341}-effects.test.mjs",
-            "seconds": 12.561
+            "passed": 108,
+            "log": "/tmp/duema-uncapped/kabord-regression.log",
+            "command": "node --test --test-concurrency=1 tests/standard{1231,1232,828,830,879,880,1158,1339,1340,1341}-effects.test.mjs",
+            "seconds": 26.495
           },
           "check": {
             "status": "passed",
             "command": "npm run check",
-            "log": "/tmp/duema-uncapped/adam-check.log",
-            "rulesBlob": "821ce727338b84b3610f79552e2635f85f2312dc"
+            "log": "/tmp/duema-uncapped/kabord-check.log",
+            "rulesBlob": "f5cd37d59be062ee96e1cf6e9f02713d4b947799"
           },
           "audit": {
             "status": "passed",
             "command": "node tools/audit-card-support.mjs",
-            "log": "/tmp/duema-uncapped/adam-audit.log"
+            "log": "/tmp/duema-uncapped/kabord-audit.log"
           }
         },
         "resolvedRegistered": 1,
-        "remainingRegistered": 36,
+        "remainingRegistered": 35,
         "remainingPrints": 1,
-        "remainingIndividualCards": 31
+        "remainingIndividualCards": 30
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
@@ -539992,8 +540048,8 @@
         "command": "python3 /tmp/duema-uncapped/run-tests.py",
         "reason": "ユーザー指示により時間上限を解除。未確認テスト名をフィルタ指定し、前の一括実行は中断・合否未確認のまま保持。",
         "snapshot": {
-          "completeGroups": 18,
-          "passedNamedTests": 33,
+          "completeGroups": 19,
+          "passedNamedTests": 34,
           "failedNamedTests": 2,
           "enginePairings": {
             "seconds": 643.82,
@@ -540007,11 +540063,12 @@
             "plan": "/tmp/duema-uncapped/fixture-plan.json",
             "results": "/tmp/duema-uncapped/fixture-results.jsonl",
             "plannedGroups": 53,
-            "completedGroups": 34,
-            "passedGroups": 34,
+            "completedGroups": 38,
+            "passedGroups": 38,
             "status": "実行中",
             "passedDeterministicGames": 114,
-            "passedRandomGames": 75
+            "passedRandomGames": 75,
+            "passedWorkerGames": 80
           },
           "aiCoverage": {
             "result": "旧レポートの入力指紋が現行データと不一致。現行入力85デッキ255試合を再実行中。",
