@@ -307,7 +307,7 @@ export function createExtendedRules(api){
   return null;
  }
  const hachi=createHachiRules({...api,creatures,put,task,choice,opt,skip,targetOptions,manaPermits:(s,p,x)=>[...galaxy.manaPermits(s,p,x),...kenji.manaPermits(s,p,x),...gran.manaPermits(s,p,x),...girls.manaPermits(s,p,x),...six.manaPermits297(s,p,x)],discardSelected:(s,t,ids)=>beginDiscardBatch(s,t,ids)});
- const viride=createVirideRules({...api,creatures,put,task,choice,opt,skip,targetOptions,manaPermits:(s,p,x)=>[...galaxy.manaPermits(s,p,x),...kenji.manaPermits(s,p,x),...gran.manaPermits(s,p,x),...girls.manaPermits(s,p,x),...six.manaPermits297(s,p,x)]});
+ const viride=createVirideRules({...api,shieldAbilitiesMuted:shieldPhoto.shieldAbilitiesMuted,creatures,put,task,choice,opt,skip,targetOptions,manaPermits:(s,p,x)=>[...galaxy.manaPermits(s,p,x),...kenji.manaPermits(s,p,x),...gran.manaPermits(s,p,x),...girls.manaPermits(s,p,x),...six.manaPermits297(s,p,x)]});
  const bande=createBandeRules({...api,creatures,put,task,choice,opt,skip,targetOptions});
  const golgy=createGolgyRules({...api,creatures,put,task,choice,opt,skip,targetOptions,manaPermits:(s,p,x)=>[...galaxy.manaPermits(s,p,x),...kenji.manaPermits(s,p,x),...gran.manaPermits(s,p,x),...girls.manaPermits(s,p,x),...six.manaPermits297(s,p,x)]});
  const ninjaAllowed=(s,p,c)=>s.players[p].mana.length>=(c.ninjaMin??3)&&(c.ninjaColors??['水']).every(color=>s.players[p].mana.some(y=>api.manaColors(card(y),s,p).includes(color)));
@@ -646,7 +646,7 @@ if(f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.to='hand';f.g416S
   enter(s,f.caster,f.inst,base,{origin:'hand',execution:false,replacement:true});
   six.afterSpell566(s,f);
  }
- const revCard=(s,p,uid)=>s.players[p].hand.find(x=>x.uid===uid)||s.players[p].shields.flatMap(api.shieldCards).find(x=>x.uid===uid&&x.faceUp&&card(x).sRev);
+ const revCard=(s,p,uid)=>s.players[p].hand.find(x=>x.uid===uid)||shieldPhoto.activeUp(s,p).find(x=>x.uid===uid&&card(x).sRev);
  // A new hand incarnation is not the card whose trigger was declared.
  function revOrigin486(own,x,serial){return serial===undefined||own.hand.includes(x)&&(x.zoneSerial||0)===serial;}
  function revMatches(s,x,c){const r=c.rev,d=r?.g486Current?effective(x,s):card(x);return !!r&&api.isCreature(s,x)&&(r.any|| (r.categories?r.categories.some(q=>String(d.race).includes(q)):r.race?String(d.race).includes(r.race):d.race.includes('ドラゴン')))&&(!r.nameIncludes||d.name.includes(r.nameIncludes))&&(!r.multicolor||colors(d).length>1)&&(!r.powerMin||power(x,x.uid===s.attack?.attacker,s)>=r.powerMin)&&cost(d)>=(r.min||0)&&(!r.colors||colors(d).some(v=>r.colors.includes(v)));}
@@ -972,7 +972,7 @@ if(f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.to='hand';f.g416S
   },
   attackStart(s,p,x){
    if(card(x.cardId)?.jayTornado&&effective(x,s).jayTornado)api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation,source:x.cardId,effect:'extended',task:task('jayTornado',p,x.cardId,{uid:x.uid})});
-   requested393D.attackStart(s,p,x);utilityTide.attackStart(s,p,x);combat.attackStart(s,p,x);six.attackStart(s,p,x);redzone.attackStart(s,p,x);requested393J.attackStart(s,p,x);jaou.attackStart(s,p,x);zard.attackStart(s,p,x);magic.attackStart(s,p,x);continuation.attackStart(s,p,x);travel.attackStart(s,p,x);const remaining=[...s.players[p].hand,...shieldPhoto.up(s,p).filter(y=>card(y).sRev)].filter(y=>revMatches(s,x,card(y))).map(y=>y.uid);if(remaining.length){const modern=remaining.map(uid=>revCard(s,p,uid)).filter(y=>card(y).rev?.g486Current);put(s,task('revDeclare',p,x.cardId,{remaining,declared:[],attacker:x.uid,...(modern.length?{g486Refs:api.allLayers(x).map(z=>({uid:z.uid,incarnation:z.incarnation||0,serial:z.zoneSerial||0})),g486Origins:Object.fromEntries(modern.map(y=>[y.uid,y.zoneSerial||0]))}:{})}));}},
+   requested393D.attackStart(s,p,x);utilityTide.attackStart(s,p,x);combat.attackStart(s,p,x);six.attackStart(s,p,x);redzone.attackStart(s,p,x);requested393J.attackStart(s,p,x);jaou.attackStart(s,p,x);zard.attackStart(s,p,x);magic.attackStart(s,p,x);continuation.attackStart(s,p,x);travel.attackStart(s,p,x);const remaining=[...s.players[p].hand,...shieldPhoto.activeUp(s,p).filter(y=>card(y).sRev)].filter(y=>revMatches(s,x,card(y))).map(y=>y.uid);if(remaining.length){const modern=remaining.map(uid=>revCard(s,p,uid)).filter(y=>card(y).rev?.g486Current);put(s,task('revDeclare',p,x.cardId,{remaining,declared:[],attacker:x.uid,...(modern.length?{g486Refs:api.allLayers(x).map(z=>({uid:z.uid,incarnation:z.incarnation||0,serial:z.zoneSerial||0})),g486Origins:Object.fromEntries(modern.map(y=>[y.uid,y.zoneSerial||0]))}:{})}));}},
   unblockedAttack(s,p,x){
    const creatureTriggered=six.unblocked482(s,p,x),gearTriggered=samurai.unblockedAttack(s,p,x);
    const godTriggered=s.attack.target==='player'&&!s.attack.g484Blocked&&phoenix.godCombat(s,p,x,'unblocked');

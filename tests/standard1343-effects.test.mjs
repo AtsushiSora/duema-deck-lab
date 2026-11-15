@@ -93,3 +93,22 @@ test('a released Dokindam remains in a face-up shield until Zieg leaves (QA39113
  drain(s);
  assert.equal(s.winner,0);
 });
+
+test('Zieg prevents Saint Castle from replacing a break on a different shield',()=>{
+ for(const muted of [false,true]){
+  const s=setup(),attacker=add(s,0,'battle',RAIL),shield=s.players[1].shields[0];
+  const castle=add(s,1,'shields','dm26rp1-057',{faceUp:true});
+  if(muted)add(s,0,'battle',ZIEG);
+  attack(s,attacker.uid);
+  act(s,'noBlock');
+  if(muted){
+   assert.equal(s.decision,null);
+   assert.ok(has(s,1,'hand',shield));
+   assert.ok(has(s,1,'shields',castle));
+  }else{
+   assert.equal(s.decision.task.op,'g26_Saint');
+   pick(s,castle.uid);
+   assert.ok(has(s,1,'shields',shield));
+  }
+ }
+});
