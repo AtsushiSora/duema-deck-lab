@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8030,
-  "pendingNames": 3796,
-  "phase": 1344,
+  "supportedNames": 8031,
+  "pendingNames": 3795,
+  "phase": 1345,
   "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2129,
+    "クリーチャー": 2128,
     "NEOクリーチャー": 70,
     "呪文": 455,
     "GRクリーチャー": 156,
@@ -224,7 +224,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1074,
-    "未対応の能力文": 2531,
+    "未対応の能力文": 2530,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
@@ -490085,14 +490085,57 @@
       "remainingRegistered": 33,
       "remainingPrints": 1,
       "remainingIndividualCards": 28
+    },
+    {
+      "phase": 1345,
+      "baseline": "0c062f67",
+      "before": 8030,
+      "supported": 8031,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmrp12-008",
+          "name": "帝神龍装 ティーゾリス"
+        }
+      ],
+      "printAliases": 0,
+      "results": {
+        "focus": {
+          "passed": 5,
+          "log": "/tmp/duema-uncapped/tee-focus.log",
+          "command": "node --test tests/standard1345-effects.test.mjs",
+          "seconds": 1.344
+        },
+        "regression": {
+          "passed": 215,
+          "log": "/tmp/duema-uncapped/tee-regression.log",
+          "command": "node --test --test-concurrency=1 tests/standard{1122,1156,1162,1339,1344,1345,390,499}-effects.test.mjs",
+          "seconds": 120.925
+        },
+        "check": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "/tmp/duema-uncapped/tee-check.log",
+          "rulesBlob": "83502c93d91f5caa3702ce1fb008b597b0ed2d70"
+        },
+        "audit": {
+          "status": "passed",
+          "command": "node tools/audit-card-support.mjs",
+          "log": "/tmp/duema-uncapped/tee-audit.log"
+        }
+      },
+      "resolvedRegistered": 1,
+      "remainingRegistered": 32,
+      "remainingPrints": 1,
+      "remainingIndividualCards": 27
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1344,
+    "lastVerifiedPhase": 1345,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "ブルー・メルキスとデンデン・パーカッションを実カードで検証済み。残りの個別裁定と分割テストを継続する。",
+    "steps": "ティーゾリスとボンバードの誘発回数および移動元による違いを実カードで検証済み。残りの個別裁定と分割テストを継続する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -490176,10 +490219,6 @@
     "registrationStatus": "ユーザーの指示で10分間隔のカード登録を再開。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [
-      {
-        "id": "dmrp12-008",
-        "name": "帝神龍装 ティーゾリス"
-      },
       {
         "id": "dmd03-002",
         "name": "不死身のブーストグレンオー"
@@ -490385,8 +490424,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8030,
-    "pendingNames": 3796,
+    "supportedNames": 8031,
+    "pendingNames": 3795,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -534380,8 +534419,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8030,
-      "pendingNames": 3796,
+      "supportedNames": 8031,
+      "pendingNames": 3795,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -535408,7 +535447,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別28種類（裁定33件と版固有の金箔再録1件）と長時間対戦・ワーカーの検証が継続中。mainへのpushを契機にNetlify本番を更新する .github/workflows/netlify.yml がある。Netlifyを更新せずにPagesへ公開する別経路は確認できていない。",
+        "reason": "個別27種類（裁定32件と版固有の金箔再録1件）と長時間対戦・ワーカーの検証が継続中。mainへのpushを契機にNetlify本番を更新する .github/workflows/netlify.yml がある。Netlifyを更新せずにPagesへ公開する別経路は確認できていない。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -536025,6 +536064,28 @@
             "https://dm.takaratomy.co.jp/rule/qa_old/35276/"
           ],
           "result": "ブルー・メルキスが相手のシールドのスパイラル・ゲートを唱え、デンデン・パーカッションを選んでも場にとどまった。呪文は持ち主の墓地へ。1シールドの複数呪文、クリーチャーのS・トリガー、唱えられない呪文の手札移動、発生源が離れた後の残りのブレイクを検証した。"
+        },
+        {
+          "cardId": "dmrp03-075",
+          "dependencyIds": [
+            "dmrp12-008"
+          ],
+          "test": "帝神龍装 ティーゾリスで爆撃男のバトルゾーンでの破壊時だけ能力を2回使う（QA 33064）",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/33064/",
+          "path": "tests/standard1345-effects.test.mjs",
+          "log": "/tmp/duema-uncapped/tee-focus.log",
+          "phase": 1345,
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/33063/",
+            "https://dm.takaratomy.co.jp/rule/qa/33064/",
+            "https://dm.takaratomy.co.jp/rule/qa/33065/",
+            "https://dm.takaratomy.co.jp/rule/qa/33066/",
+            "https://dm.takaratomy.co.jp/rule/qa/33067/",
+            "https://dm.takaratomy.co.jp/rule/qa/40884/",
+            "https://dm.takaratomy.co.jp/rule/qa/41280/",
+            "https://dm.takaratomy.co.jp/rule/qa/39103/"
+          ],
+          "result": "ティーゾリス下の実カードのボンバードは、バトルゾーンで破壊された場合に−2000が2回、手札や進化元から墓地に置かれた場合に1回。離れた後、同時破壊、離れる前、召喚時の任意2軽減と破壊も検証した。"
         }
       ],
       "remainingRegistered": [
@@ -536119,17 +536180,6 @@
           "test": "ラドン・ベップバーンの効果でマナなしの代替召喚のみ禁止（QA 39626）",
           "reason": "公式本文と画像を照合。相手がマナをタップせずに出す宣言を支払い前に禁止し、各種の代替召喚・効果による登場およびバトルの置換を一貫して処理できるまで保留。",
           "source": "https://dm.takaratomy.co.jp/rule/qa/39626/"
-        },
-        {
-          "cardId": "dmrp03-075",
-          "dependencyIds": [
-            "dmrp12-008"
-          ],
-          "test": "帝神龍装 ティーゾリスで爆撃男のバトルゾーンでの破壊時だけ能力を2回使う（QA 33064）",
-          "reason": "帝神龍装 ティーゾリスの能力が未登録。今回、山札・手札・マナ・バトルゾーン・シールド・封印からの墓地移動で通常は1回誘発することを確認した。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/33064/",
-          "path": "tests/standard1169-effects.test.mjs",
-          "log": "/tmp/duema-phase-1169/focused.log"
         },
         {
           "cardId": "dm23sd2-014",
@@ -536400,9 +536450,10 @@
           "dmrp21-002",
           "dm23rp1-004",
           "dmrp16-s01",
-          "dm10-s09"
+          "dm10-s09",
+          "dmrp12-008"
         ],
-        "officialPrints": 75,
+        "officialPrints": 76,
         "newAliases": 55,
         "evidence": [
           {
@@ -536999,6 +537050,14 @@
             "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc66-018.jpg",
             "pageSha256": "b1af7e07ea691379c750a42ca744b0736b485b3619a6ee305f6ca4750fbc2bb5",
             "imageSha256": "d8ff0cbe6f8ccc357e57ce91b0c28e9295242818d7ff61a32b28775d8da55066"
+          },
+          {
+            "id": "dmrp12-008",
+            "canonicalId": "dmrp12-008",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-008",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-008.jpg",
+            "pageSha256": "744bb1a361ded552f585c4ae5ebe2ff749a1c39a2a230099fd4909428abed5a4",
+            "imageSha256": "db598bc31de2b8404923e13119a2221c362ed25723f9340792b12aa947bff633"
           }
         ],
         "testLog": "/tmp/duema-verify-8009/verification-followup-prints.log",
@@ -537284,8 +537343,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8030,
-        "pending": 3796,
+        "supported": 8031,
+        "pending": 3795,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -537885,7 +537944,8 @@
       "finalCheck": {
         "status": "passed",
         "command": "npm run check",
-        "log": "/tmp/duema-uncapped/dokkoi-check.log"
+        "log": "/tmp/duema-uncapped/tee-check.log",
+        "rulesBlob": "83502c93d91f5caa3702ce1fb008b597b0ed2d70"
       },
       "abyssShort": {
         "passed": 33,
@@ -537915,10 +537975,6 @@
         {
           "id": "dmrp08-s10",
           "name": "ラドン・ベップバーン"
-        },
-        {
-          "id": "dmrp12-008",
-          "name": "帝神龍装 ティーゾリス"
         },
         {
           "id": "dm25ex4-SPR01",
@@ -538049,47 +538105,47 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1344,
-        "baseline": "6d12d70f",
-        "before": 8029,
-        "supported": 8030,
+        "phase": 1345,
+        "baseline": "0c062f67",
+        "before": 8030,
+        "supported": 8031,
         "duplicates": 0,
         "added": [
           {
-            "id": "dm10-s09",
-            "name": "陽炎の守護者ブルー・メルキス"
+            "id": "dmrp12-008",
+            "name": "帝神龍装 ティーゾリス"
           }
         ],
-        "printAliases": 1,
+        "printAliases": 0,
         "results": {
           "focus": {
-            "passed": 6,
-            "log": "/tmp/duema-uncapped/melkis-focus.log",
-            "command": "node --test tests/standard1344-effects.test.mjs",
-            "seconds": 1.961
+            "passed": 5,
+            "log": "/tmp/duema-uncapped/tee-focus.log",
+            "command": "node --test tests/standard1345-effects.test.mjs",
+            "seconds": 1.344
           },
           "regression": {
-            "passed": 84,
-            "log": "/tmp/duema-uncapped/melkis-regression.log",
-            "command": "node --test --test-concurrency=1 tests/standard{1262,1231,1343,637,1339,1294,1207,1162}-effects.test.mjs",
-            "seconds": 24.898
+            "passed": 215,
+            "log": "/tmp/duema-uncapped/tee-regression.log",
+            "command": "node --test --test-concurrency=1 tests/standard{1122,1156,1162,1339,1344,1345,390,499}-effects.test.mjs",
+            "seconds": 120.925
           },
           "check": {
             "status": "passed",
             "command": "npm run check",
-            "log": "/tmp/duema-uncapped/melkis-check.log",
-            "rulesBlob": "452af54b64e40e26b6a862268b95c46dc04b45a3"
+            "log": "/tmp/duema-uncapped/tee-check.log",
+            "rulesBlob": "83502c93d91f5caa3702ce1fb008b597b0ed2d70"
           },
           "audit": {
             "status": "passed",
             "command": "node tools/audit-card-support.mjs",
-            "log": "/tmp/duema-uncapped/melkis-audit.log"
+            "log": "/tmp/duema-uncapped/tee-audit.log"
           }
         },
         "resolvedRegistered": 1,
-        "remainingRegistered": 33,
+        "remainingRegistered": 32,
         "remainingPrints": 1,
-        "remainingIndividualCards": 28
+        "remainingIndividualCards": 27
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
@@ -540182,12 +540238,12 @@
             "plan": "/tmp/duema-uncapped/fixture-plan.json",
             "results": "/tmp/duema-uncapped/fixture-results.jsonl",
             "plannedGroups": 53,
-            "completedGroups": 52,
-            "passedGroups": 52,
-            "status": "実行中",
+            "completedGroups": 53,
+            "passedGroups": 53,
+            "status": "全分割検証通過",
             "passedDeterministicGames": 114,
             "passedRandomGames": 75,
-            "passedWorkerGames": 360
+            "passedWorkerGames": 380
           },
           "historicalWorker": {
             "result": "champion-dmscs09a-2-original、seed 2853211514、後攻側からの第5ターンで、ゾンビポンの助の召喚・ドッコイの手札戻し・任意ドローの繰り返しにより2500手で未決着。再現ログ取得済み。",
@@ -540204,8 +540260,10 @@
             "fixedLog": "/tmp/duema-uncapped/champion-worker-final.jsonl",
             "regressionLog": "/tmp/duema-uncapped/dokkoi-regression.log",
             "regressionTests": 57,
-            "tracedHistoricalCases": 37,
-            "fullWorkerReverification": "追加の分割試験と残りの歴代対戦を確認中。"
+            "tracedHistoricalCases": 38,
+            "fullWorkerReverification": "元のベース37試合と修正後の同じ条件での1試合を別々に確認した。",
+            "originallyPassed": 37,
+            "fixedWithIdenticalSeed": 1
           },
           "aiCoverage": {
             "status": "ベースの分割検証通過",

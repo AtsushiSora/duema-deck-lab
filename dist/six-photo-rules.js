@@ -217,7 +217,7 @@ export function createSixPhotoRules(api){
    matches(s,owner,x,t.filter)).length,0);
   return Math.min(t.max??Infinity,(t.owner==='both'?count(p)+count(1-p):count(owner))*t.amount);
  }
- function payCount499(s,t){const choices=[],max=countDiscountMax499(s,t.p,t.c);for(let amount=max;amount>=0;amount--){const c={...t.c,g499Handled:true,g499Reduction:amount};if(api.canPay(s,t.p,c)){const n=api.summonCost(s,t.p,c);choices.push(opt((amount?amount+'軽減する':'軽減しない')+'（'+n+'マナ）',amount,100-n*5,t.source));}}choice(s,t,'召喚の軽減量を選ぶ',[...choices,opt('召喚をやめる',false,-1000)]);}
+ function payCount499(s,t){const choices=[],max=countDiscountMax499(s,t.p,t.c);for(let amount=max;amount>=0;amount--){if(t.c.g212CountDiscount.fullOrNone&&amount!==0&&amount!==max)continue;const c={...t.c,g499Handled:true,g499Reduction:amount};if(api.canPay(s,t.p,c)){const n=api.summonCost(s,t.p,c);choices.push(opt((amount?amount+'軽減する':'軽減しない')+'（'+n+'マナ）',amount,100-n*5,t.source));}}choice(s,t,'召喚の軽減量を選ぶ',[...choices,opt('召喚をやめる',false,-1000)]);}
  // Apply higher floors before the independent one-mana-floor reductions.
  function sympathyAmount500(s,p,c){
   const r=c.g211Sympathy;
@@ -9134,17 +9134,20 @@ export function createSixPhotoRules(api){
    const defs=effective(x,s).g1276OpponentGrave;
    if(defs)for(const y of all)queue(s,1-p,x,defs);
   }
-  for(const y of all)if(card(y).g590SelfGraveBottom)queue(s,p,y,[{op:'GraveBottom589',self:true}]);
+  const copies=y=>api.doubledGraveArrival1345(p,y)?2:1;
+  for(const y of all)if(card(y).g590SelfGraveBottom)
+   for(let i=0;i<copies(y);i++)queue(s,p,y,[{op:'GraveBottom589',self:true}]);
   // Cards with grave-entry abilities trigger from the new zone (QA46841).
   for(const y of all){
    const defs=card(y).g675GraveEntry;
-   if(defs)queue(s,p,y,defs.map(d=>d.op==='SelfGraveHand476'?{...d,serial:y.zoneSerial||0}:d));
+   if(defs)for(let i=0;i<copies(y);i++)queue(s,p,y,defs.map(d=>d.op==='SelfGraveHand476'?{...d,serial:y.zoneSerial||0}:d));
   }
   const graveWatchers=s.players[p].battle.filter(x=>card(x).g677AllyGrave&&!x.sealed&&!x.faceDown&&
    !s.g20LeavingUids?.includes(x.uid)&&api.isCreature(s,x)&&!api.ignored(s,x));
   if(graveWatchers.length){
    const newCreatures=all.filter(y=>faces(api.zoneCard(s,p,y,'grave')).some(face=>face.type==='creature'));
-   for(const x of graveWatchers)for(const y of newCreatures)if(y.uid!==x.uid)queue(s,p,x,card(x).g677AllyGrave);
+   for(const x of graveWatchers)for(const y of newCreatures)if(y.uid!==x.uid)
+    for(let i=0;i<copies(y);i++)queue(s,p,x,card(x).g677AllyGrave);
   }
   const watchers=s.leaving?.snapshot?.six?.scarlet?.[p]||active(s,p,'scarlet').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0}));for(const x of watchers)if(!used(s,'g34Scarlet',x))for(const y of all)if(card(y).type==='creature'&&cost(card(y))<=5)queue(s,p,x,[C('scarletRevive',{target:y.uid,targetSerial:y.zoneSerial||0})]);},
  flushGrave838,
