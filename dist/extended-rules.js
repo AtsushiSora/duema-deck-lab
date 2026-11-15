@@ -177,7 +177,12 @@ export function createExtendedRules(api){
  const seed=createSeedChampionRules(shared),cyber=createChampionCyberRules(shared),firebird=createChampionFirebirdRules({...shared,discardSelected:(s,t,ids)=>beginDiscardBatch(s,t,ids)}),combat=createCombatChampionRules({...shared,...optionalExecution});
  const junior=createJuniorChampionRules({...api,creatures,put,task,choice,opt,skip,targetOptions});
  const history=createChampion2025Rules({...api,creatures,put,task,choice,opt,skip,targetOptions});
- const canLeave=(s,p,x,context={})=>!(card(x).startCard?.kind==='dokindam'&&!x.startFlipped&&!api.ignored(s,x))&&x.g26Stay===undefined&&mecha.canLeave(s,p,x)&&photo.canLeave(s,p,x)&&six.canLeave(s,p,x,context)&&requested393J.canLeave(s,p,x)&&history.canLeave(s,p,x,context);
+ const canLeave=(s,p,x,context={})=>{
+  const c=card(x);
+  if(!api.ignored(s,x)&&((c.ritual||c.startCard)&&!x.startFlipped||
+     c.zeroryuBattle&&power(x,x.uid===s.attack?.attacker,s)<=0))return false;
+  return x.g26Stay===undefined&&mecha.canLeave(s,p,x)&&photo.canLeave(s,p,x)&&six.canLeave(s,p,x,context)&&requested393J.canLeave(s,p,x)&&history.canLeave(s,p,x,context);
+ };
  const revisions=createPhotoRevisionRules({...api,creatures,put,task,choice,opt,skip,targetOptions});
  const continuation=createChampionContinuationRules({...api,creatures,put,task,choice,opt,skip,targetOptions,conditionalFreeSpell261:(s,p,c)=>!!c.g261Free&&six.ownCondition(s,p,c.g261Free.filter)});
  const original=createOriginalChampionRules({...shared,...optionalExecution,
@@ -469,6 +474,38 @@ export function createExtendedRules(api){
    }
    case 'grSummon':api.grSummon(s,t.p);break;
    case 'forbiddenSealAll':api.resolveForbiddenSeal(s,t.p);break;
+   case 'finalForbiddenUnseal':{
+    const rows=own.seals.filter(x=>api.mayMoveSeal(s,t.p,x,'grave',true));
+    choice(s,t,'外す封印を選ぶ',rows.map(x=>{
+     const host=own.battle.find(c=>c.uid===x.sealOf),corner=x.forbiddenCorner;
+     const name=corner===undefined?card(host.cardId).name:card(host).startCard.parts[corner].name;
+     return opt(name+'の封印を外す',x.uid,30);
+    }));
+    break;
+   }
+   case 'finalForbiddenCorner':{
+    const owner=t.effect==='destroy'?1-t.p:t.p;
+    const rows=creatures(s,owner).filter(x=>t.effect!=='destroy'||power(x,x.uid===s.attack?.attacker,s)<=1111);
+    choice(s,t,t.effect==='destroy'?'パワー1111以下の相手クリーチャーを破壊する':'能力を与える自分のクリーチャーを選ぶ',targetOptions(s,t.p,rows));
+    break;
+   }
+   case 'finalForbiddenFlip':api.flipFinalForbidden(s,t.p,t.uid);break;
+   case 'zeroryuRitual':{
+    const active=api.activeRitual(s,t.p,t.kind);
+    if(active)choice(s,t,card(active.piece).name+'をリンクしますか？',[opt('リンクする',true,40),skip()]);
+    break;
+   }
+   case 'zeroryuPower':
+    for(const x of creatures(s,1-t.p))(x.powerModifiers??=[]).unshift({fixedPower:0,expires:'end',who:s.active});
+    break;
+   case 'zeroryuGrave':choice(s,t,'相手クリーチャーのパワーを−3000する',targetOptions(s,t.p,creatures(s,1-t.p)));break;
+   case 'zeroryuRecover':{
+    if(api.canMoveZone(s,t.p,'grave')){
+     const options=own.grave.filter(x=>colors(card(x)).includes('闇')).map(x=>opt(card(x).name,x.uid,20,x.cardId));
+     choice(s,t,'闇のカードを手札に戻す',options);
+    }
+    break;
+   }
    case 'jayTornado':{
     const rows=creatures(s,t.p).filter(x=>x.uid!==t.uid&&String(effective(x,s).race).includes('ジョーカーズ')&&canLeave(s,t.p,x));
     if(rows.length)choice(s,t,'Jトルネードでジョーカーズを手札に戻しますか？',[
@@ -768,6 +805,31 @@ export function createExtendedRules(api){
   case 'photo159FinishSpell':{const f=s.extSpells?.find(f=>f.inst.uid===t.uid);if(f){f.g159FinishResolved=true;f.to=value;put(s,task('finishSpell',t.p,t.source,{uid:t.uid}));}break;}
   case 'g1027CrestShield':put(s,{...t,op:'finishSpell',g1027Shield:value});break;
   case 'destroyCost':case 'destroyPower':if(value)move(s,[{player:1-t.p,uid:value,to:'grave'}]);break;
+  case 'finalForbiddenUnseal':api.chooseFinalForbiddenSeal(s,t.p,value);break;
+  case 'finalForbiddenCorner':{
+   const owner=t.effect==='destroy'?1-t.p:t.p,x=nowCreature(s,owner,value);
+   if(!x)break;
+   if(t.effect==='destroy')api.move(s,[{player:owner,uid:x.uid,to:'grave',destroy:true,controller:t.p}]);
+   else if(t.effect==='attack')(x.powerModifiers??=[]).push({amount:2222,attackOnly:true,expires:'end',who:s.active});
+   else (x.g34Grants??=[]).push({slayer:true,turn:s.turn});
+   break;
+  }
+  case 'zeroryuRitual':if(value&&api.linkRitual(s,t.p,t.kind)){
+   if(t.kind==='hand')api.grSummon(s,t.p);
+   if(t.kind==='grave')put(s,{...t,op:'zeroryuGrave'});
+   if(t.kind==='destroy')put(s,{...t,op:'zeroryuRecover'});
+   if(t.kind==='revive')api.mill(s,t.p,2);
+  }break;
+  case 'zeroryuGrave':{
+   const x=nowCreature(s,1-t.p,value);
+   if(x)(x.powerModifiers??=[]).push({amount:-3000,expires:'end',who:s.active});
+   break;
+  }
+  case 'zeroryuRecover':{
+   const x=remove(own.grave,value);
+   if(x){clear(x,'hand');api.addZone(s,t.p,'hand',x);}
+   break;
+  }
   case 'jayTornado':if(value){
    const x=own.battle.find(x=>x.uid===value);
    if(x)api.move(s,[{player:t.p,uid:x.uid,to:'hand',toOwnerHand:true,controller:t.p}],{

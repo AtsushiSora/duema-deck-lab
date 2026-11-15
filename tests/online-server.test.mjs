@@ -124,3 +124,20 @@ test('Advance persists the opening cards and hides the GR order and seals from b
   assert.ok(!serialized.includes('dmex08-251'));
  }
 });
+
+test('Advance projects the complete public opening sets across an encrypted reconnect',async()=>{
+ const h=setup(),base={...PRESETS[0],format:'advance'};
+ const hostDeck={...base,startCards:[{id:'dmr23-ffl01',count:1}]},guestDeck={...base,startCards:[{id:'dmrp12-mz1',count:1}]};
+ const waiting=await h.service.create({deck:hostDeck,requestId:requestId('advance-star')},host,host.uid);
+ await h.service.join({code:waiting.code,deck:guestDeck,requestId:requestId('advance-zero')},guest,guest.uid);
+ const {game:raw}=h.raw(waiting.code);
+ for(const user of [host,guest]){
+  const {game}=await h.service.get(waiting.code,user,user.uid);
+  assert.equal(game.players[0].handCount,6);
+  assert.equal(game.players[0].battle[0].under.length,4);
+  assert.deepEqual(game.players[0].seals.map(x=>x.forbiddenCorner),[0,1,2,3]);
+  assert.ok(game.players[0].seals.every(x=>x.hidden&&!x.id));
+  assert.equal(game.players[1].battle.length,5);
+  assert.ok(game.players.every((p,i)=>p.hand.length===(user===host?i===0:i===1)*raw.players[i].hand.length));
+ }
+});

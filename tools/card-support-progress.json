@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8007,
-  "pendingNames": 3819,
-  "phase": 1326,
-  "added": 5,
+  "supportedNames": 8009,
+  "pendingNames": 3817,
+  "phase": 1328,
+  "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -171,7 +171,6 @@
     "ルール・プラス": 1,
     "Mono Artifact": 1,
     "D2フィールド": 39,
-    "最終禁断フィールド": 1,
     "禁断フィールド": 1,
     "クロスギア": 56,
     "進化クリーチャー(進化GV)": 13,
@@ -219,13 +218,12 @@
     "進化クリーチャー(マナ進化V)": 3,
     "進化クリーチャー(手札進化V)": 1,
     "DMフィールド": 2,
-    "零龍の儀": 1,
     "進化クリーチャー（進化GV）": 1,
     "進化エグザイル・クリーチャー": 2,
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 1079,
+    "複数面・特殊カードタイプまたは情報不足": 1077,
     "未対応の能力文": 2548,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 19,
@@ -489163,13 +489161,135 @@
       ],
       "remainingTest": {
         "path": "tests/redzone-effects.test.mjs",
-        "reason": "長時間の対戦比較・ランダム検証・worker試行を含む実行は結果を確認中。その他の機能回帰を分割実行した。"
+        "status": "中断・合否未確認",
+        "exitCode": 124,
+        "reason": "長時間の対戦比較、ランダム検証、worker試行を含む実行と名前除外を使ったグループが時間切れ。封印関連6件は明示的に対象を選んで完走。残る長時間ケースは対戦相手・seedまたはファイル内のケース単位で分割する。",
+        "logs": [
+          "/tmp/duema-advance-1326/focused-and-regression.log",
+          "/tmp/duema-advance-1326/short-regression.log"
+        ]
       },
       "resume": [
         "先に作業ツリー・テスト状況とnameKey件数を確認する。",
         "新規登録の停止条件は維持し、未検証の公式裁定に必要なカードとルールだけを追加する。",
         "開始時カードとオーラについてカード固有、デッキ保存、オンライン非公開情報、関連裁定を個別に検証する。"
       ]
+    },
+    {
+      "phase": 1327,
+      "baseline": "1f5e44c7",
+      "before": 8007,
+      "supported": 8008,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmrp12-mz1",
+          "name": "滅亡の起源 零無"
+        }
+      ],
+      "printAliases": 5,
+      "results": {
+        "focusedAndRelated": {
+          "passed": 99,
+          "log": "/tmp/duema-advance-1326/advance-final-tests.log"
+        },
+        "onlinePrivacy": {
+          "passed": 4,
+          "log": "/tmp/duema-advance-1326/advance-final-online.log"
+        },
+        "onlineRuntime": {
+          "passed": 21,
+          "log": "/tmp/duema-advance-1326/online-runtime-regression.log"
+        },
+        "sealRegressions": {
+          "passed": 6,
+          "log": "/tmp/duema-advance-1326/advance-seals-final.log"
+        },
+        "check": {
+          "status": "passed",
+          "log": "/tmp/duema-advance-1326/advance-final-check.log"
+        }
+      },
+      "pendingCases": [
+        {
+          "id": "dmbd12-g01",
+          "reason": "オーラの装着、進化後の保持、装着先が移動する際の扱いとGRクリーチャーだけが戻る処理を実カードで検証する。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40828/"
+        },
+        {
+          "id": "dm22sd1-001",
+          "reason": "ウエポンとオーラを装備解除する実カード条件が未対応。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/48115/"
+        }
+      ],
+      "remainingTest": {
+        "path": "tests/redzone-effects.test.mjs",
+        "status": "中断・合否未確認",
+        "exitCode": 124,
+        "reason": "長時間の対戦比較、ランダム検証、worker試行を含む実行と名前除外を使ったグループが時間切れ。封印関連6件は明示的に対象を選んで完走。残る長時間ケースは対戦相手・seedまたはファイル内のケース単位で分割する。",
+        "logs": [
+          "/tmp/duema-advance-1326/focused-and-regression.log",
+          "/tmp/duema-advance-1326/short-regression.log"
+        ]
+      }
+    },
+    {
+      "phase": 1328,
+      "baseline": "1f5e44c7",
+      "before": 8008,
+      "supported": 8009,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmr23-ffl01",
+          "name": "FORBIDDEN STAR ～世界最後の日～"
+        }
+      ],
+      "printAliases": 2,
+      "results": {
+        "focusedAndRelated": {
+          "passed": 99,
+          "log": "/tmp/duema-advance-1326/advance-final-tests.log"
+        },
+        "onlinePrivacy": {
+          "passed": 4,
+          "log": "/tmp/duema-advance-1326/advance-final-online.log"
+        },
+        "onlineRuntime": {
+          "passed": 21,
+          "log": "/tmp/duema-advance-1326/online-runtime-regression.log"
+        },
+        "sealRegressions": {
+          "passed": 6,
+          "log": "/tmp/duema-advance-1326/advance-seals-final.log"
+        },
+        "check": {
+          "status": "passed",
+          "log": "/tmp/duema-advance-1326/advance-final-check.log"
+        }
+      },
+      "pendingCases": [
+        {
+          "id": "dmbd12-g01",
+          "reason": "オーラの装着、進化後の保持、装着先が移動する際の扱いとGRクリーチャーだけが戻る処理を実カードで検証する。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40828/"
+        },
+        {
+          "id": "dm22sd1-001",
+          "reason": "ウエポンとオーラを装備解除する実カード条件が未対応。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/48115/"
+        }
+      ],
+      "remainingTest": {
+        "path": "tests/redzone-effects.test.mjs",
+        "status": "中断・合否未確認",
+        "exitCode": 124,
+        "reason": "長時間の対戦比較、ランダム検証、worker試行を含む実行と名前除外を使ったグループが時間切れ。封印関連6件は明示的に対象を選んで完走。残る長時間ケースは対戦相手・seedまたはファイル内のケース単位で分割する。",
+        "logs": [
+          "/tmp/duema-advance-1326/focused-and-regression.log",
+          "/tmp/duema-advance-1326/short-regression.log"
+        ]
+      }
     }
   ],
   "resume": {
@@ -489269,8 +489389,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8007,
-    "pendingNames": 3819,
+    "supportedNames": 8009,
+    "pendingNames": 3817,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -533264,8 +533384,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8007,
-      "pendingNames": 3819,
+      "supportedNames": 8009,
+      "pendingNames": 3817,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -534421,6 +534541,39 @@
           "result": "実カードから対戦操作で再現し通過",
           "path": "tests/standard1326-effects.test.mjs",
           "log": "/tmp/duema-advance-1326/focused.log"
+        },
+        {
+          "cardId": "dmrp20-010",
+          "dependencyIds": [
+            "dmr23-ffl01"
+          ],
+          "test": "手札から選ばれた《轟く侵略 レッドゾーン》に適切な進化元がいない時、《FORBIDDEN STAR ～世界最後の日～》の封印は外れない。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40664/",
+          "result": "実カードから対戦操作で再現し通過",
+          "path": "tests/standard1328-effects.test.mjs",
+          "log": "/tmp/duema-advance-1326/advance-final-tests.log"
+        },
+        {
+          "cardId": "dmr20-003",
+          "dependencyIds": [
+            "dmrp12-mz1"
+          ],
+          "test": "零龍卍誕によるパワー0固定の後、破壊の置換を山札切れまで繰り返す。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40600/",
+          "result": "実カードから対戦操作で再現し通過",
+          "path": "tests/standard1327-effects.test.mjs",
+          "log": "/tmp/duema-advance-1326/advance-final-tests.log"
+        },
+        {
+          "cardId": "dmr20-003",
+          "dependencyIds": [
+            "dmr23-ffl01"
+          ],
+          "test": "水/闇の非コマンドを召喚しても、FORBIDDEN STARの封印を外せない。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/38649/",
+          "result": "実カードから対戦操作で再現し通過",
+          "path": "tests/standard1328-effects.test.mjs",
+          "log": "/tmp/duema-advance-1326/advance-final-tests.log"
         }
       ],
       "remainingRegistered": [
@@ -534752,15 +534905,6 @@
           "source": "https://dm.takaratomy.co.jp/rule/qa/44311/"
         },
         {
-          "cardId": "dmrp20-010",
-          "dependencyIds": [
-            "dmr23-ffl01"
-          ],
-          "test": "手札から選ばれた《轟く侵略 レッドゾーン》に適切な進化元がいない時、《FORBIDDEN STAR ～世界最後の日～》の封印は外れない。",
-          "reason": "QA40664の進化元がなく召喚できないことは実カードで検証済み。裁定にある禁断の封印の変化は《FORBIDDEN STAR ～世界最後の日～》が未実装のため未検証。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/40664/"
-        },
-        {
           "cardId": "dmrp20-011",
           "dependencyIds": [
             "dm22rp2-002"
@@ -534795,24 +534939,6 @@
           "test": "《神ナル機カイ「亜堕無」》が攻撃終了時に上面だけ手札へ戻り、別のアンタップしたタマシードに重なった後、元の進化元がクリーチャーの場合だけ破壊される。",
           "reason": "QA41640。元の進化元がクリーチャーかタマシードかで破壊を分ける挙動をスター進化で確認済み。《神ナル機カイ「亜堕無」》自体は未実装のため、再配置を含めた同じカード同士の再現が残る。",
           "source": "https://dm.takaratomy.co.jp/rule/qa/41640/"
-        },
-        {
-          "cardId": "dmr20-003",
-          "dependencyIds": [
-            "dmrp12-mz1"
-          ],
-          "test": "零龍卍誕によるパワー0固定の後、破壊の置換を山札切れまで繰り返す。",
-          "reason": "永遠の無によるパワー0固定で山札切れまでの再適用を確認。零龍の初期配置と卍誕が未対応のため実カードの組み合わせは未検証。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/40600/"
-        },
-        {
-          "cardId": "dmr20-003",
-          "dependencyIds": [
-            "dmr23-ffl01"
-          ],
-          "test": "水/闇の非コマンドを召喚しても、FORBIDDEN STARの封印を外せない。",
-          "reason": "VV-8の登場時の封印解除は実カードで確認。FORBIDDEN STARの対戦開始時配置と召喚時の封印処理は未対応。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/38649/"
         },
         {
           "cardId": "dm22ex1-057",
@@ -535289,23 +535415,17 @@
       },
       "compatibilityBlockers": [
         {
-          "area": "対戦開始時カードとオーラの未実装範囲",
-          "result": "超GRと《禁断 ～封印されしX～》は対戦・保存・オンラインを確認。FORBIDDEN STAR、零龍、オーラに依存する裁定は検証継続。",
+          "area": "オーラ・ウエポンに依存する裁定",
           "remaining": [
             {
-              "id": "dmr23-ffl01",
-              "reason": "最終禁断フィールドの封印制限は、バトルゾーンへの移動を置換された召喚でも作動する。4隅の能力、コアの移動と敗北まで検証が必要。",
-              "source": "https://dm.takaratomy.co.jp/rule/qa/33262/"
-            },
-            {
-              "id": "dmrp12-mz1",
-              "reason": "4種の零龍星雲の独立した誘発・リンクと、卍誕時のパワー固定を検証する。",
-              "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-mz1"
-            },
-            {
               "id": "dmbd12-g01",
-              "reason": "オーラの装着・移動および実カードの個別裁定を検証する。",
+              "reason": "オーラの装着、進化後の保持、装着先が移動する際の扱いとGRクリーチャーだけが戻る処理を実カードで検証する。",
               "source": "https://dm.takaratomy.co.jp/rule/qa/40828/"
+            },
+            {
+              "id": "dm22sd1-001",
+              "reason": "ウエポンとオーラを装備解除する実カード条件が未対応。",
+              "source": "https://dm.takaratomy.co.jp/rule/qa/48115/"
             }
           ]
         }
@@ -535337,8 +535457,8 @@
       ],
       "latestTestCommit": "a0e0102dba5d889b4e221741ae97714c423cb1f3",
       "counts": {
-        "supported": 8007,
-        "pending": 3819,
+        "supported": 8009,
+        "pending": 3817,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -535969,10 +536089,6 @@
           "name": "ラドン・ベップバーン"
         },
         {
-          "id": "dmrp11-039",
-          "name": "ジェイ-SHOCKER"
-        },
-        {
           "id": "dmx14-031",
           "name": "夜露死苦 キャロル"
         },
@@ -535983,10 +536099,6 @@
         {
           "id": "dm25ex4-SPR01",
           "name": "沈黙の守護者、シュタイン"
-        },
-        {
-          "id": "dmr19-fl01",
-          "name": "禁断 ～封印されしX～"
         },
         {
           "id": "dmrp08-s03",
@@ -536065,10 +536177,6 @@
           "name": "正義ノ裁キ"
         },
         {
-          "id": "dmr23-ffl01",
-          "name": "FORBIDDEN STAR ～世界最後の日～"
-        },
-        {
           "id": "dm22rp2-002",
           "name": "アカシック・ヴィジョン"
         },
@@ -536081,20 +536189,12 @@
           "name": "神ナル機カイ「亜堕無」"
         },
         {
-          "id": "dmrp12-mz1",
-          "name": "滅亡の起源 零無"
-        },
-        {
           "id": "dm22ex2-S15",
           "name": "不敬合成王 ロマティックダム・アルキング"
         },
         {
           "id": "dm35-004",
           "name": "ケンゲキオージャ ～究極火焔～"
-        },
-        {
-          "id": "dmsd11-005",
-          "name": "Wave ウェイブ"
         },
         {
           "id": "dm26-006",
@@ -536147,81 +536247,53 @@
       ],
       "remainingTestsSummary": "まとめて時間切れになったファイルは長時間対戦を除き、短い対戦・能力テストを分割する。長時間対戦は残る対戦相手とseedを個別に実行し、既に通過済みの組み合わせは同じ対象コミットの検証の証拠がある場合に維持する。",
       "advanceImplementation": {
-        "phase": 1326,
-        "baseline": "91f5997b",
-        "before": 8002,
-        "supported": 8007,
-        "duplicates": 0,
-        "pending": 3819,
-        "added": [
-          {
-            "id": "dmex08-251",
-            "name": "ＧＲの犬 ワンワンワン"
-          },
-          {
-            "id": "dmsd11-014",
-            "name": "クリオ・ネック"
-          },
-          {
-            "id": "dmsd11-005",
-            "name": "Wave ウェイブ"
-          },
-          {
-            "id": "dmr19-fl01",
-            "name": "禁断 ～封印されしX～"
-          },
-          {
-            "id": "dmrp11-039",
-            "name": "ジェイ-SHOCKER"
-          }
+        "status": "implemented",
+        "phases": [
+          1326,
+          1327,
+          1328
         ],
+        "supportedNames": 8009,
+        "duplicateNames": 0,
         "results": {
-          "focused": {
-            "passed": 11,
-            "log": "/tmp/duema-advance-1326/focused.log"
+          "focusedAndRelated": {
+            "passed": 99,
+            "log": "/tmp/duema-advance-1326/advance-final-tests.log"
           },
-          "related": {
-            "passed": 45,
-            "log": "/tmp/duema-advance-1326/final-local-tests.log"
+          "onlinePrivacy": {
+            "passed": 4,
+            "log": "/tmp/duema-advance-1326/advance-final-online.log"
           },
-          "online": {
-            "passed": 1,
-            "log": "/tmp/duema-advance-1326/online-advance.log"
+          "onlineRuntime": {
+            "passed": 21,
+            "log": "/tmp/duema-advance-1326/online-runtime-regression.log"
+          },
+          "sealRegressions": {
+            "passed": 6,
+            "log": "/tmp/duema-advance-1326/advance-seals-final.log"
           },
           "check": {
             "status": "passed",
-            "log": "/tmp/duema-advance-1326/check-final.log"
-          },
-          "seals": {
-            "passed": 5,
-            "log": "/tmp/duema-advance-1326/seals-regression.log"
+            "log": "/tmp/duema-advance-1326/advance-final-check.log"
           }
         },
-        "pendingCases": [
-          {
-            "id": "dmr23-ffl01",
-            "reason": "最終禁断フィールドの封印制限は、バトルゾーンへの移動を置換された召喚でも作動する。4隅の能力、コアの移動と敗北まで検証が必要。",
-            "source": "https://dm.takaratomy.co.jp/rule/qa/33262/"
-          },
-          {
-            "id": "dmrp12-mz1",
-            "reason": "4種の零龍星雲の独立した誘発・リンクと、卍誕時のパワー固定を検証する。",
-            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-mz1"
-          },
-          {
-            "id": "dmbd12-g01",
-            "reason": "オーラの装着・移動および実カードの個別裁定を検証する。",
-            "source": "https://dm.takaratomy.co.jp/rule/qa/40828/"
-          }
-        ],
         "remainingTest": {
           "path": "tests/redzone-effects.test.mjs",
-          "reason": "長時間の対戦比較・ランダム検証・worker試行を含む実行は結果を確認中。その他の機能回帰を分割実行した。"
+          "status": "中断・合否未確認",
+          "exitCode": 124,
+          "reason": "長時間の対戦比較、ランダム検証、worker試行を含む実行と名前除外を使ったグループが時間切れ。封印関連6件は明示的に対象を選んで完走。残る長時間ケースは対戦相手・seedまたはファイル内のケース単位で分割する。",
+          "logs": [
+            "/tmp/duema-advance-1326/focused-and-regression.log",
+            "/tmp/duema-advance-1326/short-regression.log"
+          ]
         },
+        "additionalRulings": [
+          "FORBIDDEN STARの禁断コアがカード指定の一括移動を受ける組み合わせは、対応が必要になったカードと合わせて実カードで検証する（QA46806）。"
+        ],
         "resume": [
-          "先に作業ツリー・テスト状況とnameKey件数を確認する。",
-          "新規登録の停止条件は維持し、未検証の公式裁定に必要なカードとルールだけを追加する。",
-          "開始時カードとオーラについてカード固有、デッキ保存、オンライン非公開情報、関連裁定を個別に検証する。"
+          "作業ツリー、実行中テストとnameKey件数を確認する。",
+          "対戦開始時カード3セット・超GRの運用を維持し、オーラの共通処理と未検証のカードを公式裁定から進める。",
+          "未確認の再録・長時間テストを分割検証する。公開は全件の検証とNetlifyを更新しない手順確認の後。"
         ]
       }
     }
