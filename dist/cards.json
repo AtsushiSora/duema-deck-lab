@@ -245115,15 +245115,120 @@
       ],
       "supportBatch": "phase-1316",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex2-008",
+      "name": "夢の轟速 ザ・ランド",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 8000,
+      "race": "ソニック・コマンド/侵略者/フュージョナー",
+      "text": "{GS} G・ストライク\nスピードアタッカー\nW・ブレイカー\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが攻撃する時、自分の山札の上から２枚を見る。その中からこのクリーチャー以下のコストのクリーチャーを１体出してもよい。このターン、そのクリーチャーに「スピードアタッカー」を与える。その後、残りを好きな順序で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-008",
+      "limit": 4,
+      "gStrike": true,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "AttackLookDeploy1317"
+        }
+      ],
+      "g404Soul": {
+        "g34Attack": [
+          {
+            "op": "AttackLookDeploy1317"
+          }
+        ]
+      },
+      "supportBatch": "phase-1317",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex2-033",
+      "name": "覇道の決闘",
+      "civ": "水/火/自然",
+      "civilizations": [
+        "水",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "ソニック・コマンド・ワード",
+      "text": "S・トリガー S・トリガー\n自分の山札の上から１枚をマナゾーンに置く。その後、コストの合計が８以下になるように、ソニック・コマンドを２つまで自分のマナゾーンから出す。次の自分のターンのはじめまで、それらに「ブロッカー」を与える。\nこのカードを自分の手札からマナゾーンに置いた時、自分の手札にあるソニック・コマンド・カードを１枚、表向きにしてもよい。そうしたら、このカードをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-033",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g1087ManaReveal": "ソニック・コマンド",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "mana",
+          "filter": {
+            "faceUp": true,
+            "race": "ソニック・コマンド"
+          },
+          "deploy": true,
+          "n": 2,
+          "optional": true,
+          "g550CostBudget": 8,
+          "g791Grant": {
+            "blocker": true
+          },
+          "title": "出すソニック・コマンドを合計コスト8以下で2つまで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1317",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex2-065",
+      "name": "バクロ法師の封",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 4,
+      "power": 0,
+      "race": "デモニオ/鬼レクスターズ",
+      "text": "ストライク・バック S・バック：デモニオ（指定のカードを自分のシールドゾーンから手札に加える時、そのカードを捨ててもよい。そうしたら、コストを支払わずにこのカードを実行する）\nシンカライズ（このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい）\nこのタマシードが出た時、自分のシールドゾーンにあるカードを１枚マナゾーンに置く。そうしたら、自分のマナゾーンにあるカードの枚数以下のコストの進化デモニオ・クリーチャーを１体、自分のマナゾーンから出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-065",
+      "limit": 4,
+      "strikeBack": true,
+      "strikeBackRace": "デモニオ",
+      "shinkalize": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldCardManaDeploy1317"
+        }
+      ],
+      "supportBatch": "phase-1317",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1316,
+    "phase": 1317,
     "checkedAt": "2026-11-15",
-    "baseCount": 7965,
+    "baseCount": 7968,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 7968,
+    "totalCount": 7971,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -267204,6 +267309,18 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 7965,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1316,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7965,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 7968,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

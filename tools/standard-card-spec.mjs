@@ -2475,6 +2475,25 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1317&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm26ex2-008'&&f.typeText==='クリーチャー'&&text===
+   '{GS}G・ストライクスピードアタッカーW・ブレイカー超魂X(これがクリーチャーの下にあればそのクリーチャーにも以下の能力を与える)このクリーチャーが攻撃する時自分の山札の上から2枚を見る。その中からこのクリーチャー以下のコストのクリーチャーを1体出してもよい。このターンそのクリーチャーに「スピードアタッカー」を与える。その後残りを好きな順序で山札の下に置く。'){
+   const attack=[{op:'AttackLookDeploy1317'}];
+   return {gStrike:true,speedAttacker:true,breaker:2,g34Attack:attack,g404Soul:{g34Attack:attack}};
+  }
+  if(d.id==='dm26ex2-033'&&f.typeText==='呪文'&&text===
+   'S・トリガーS・トリガー自分の山札の上から1枚をマナゾーンに置く。その後コストの合計が8以下になるようにソニック・コマンドを2つまで自分のマナゾーンから出す。次の自分のターンのはじめまでそれらに「ブロッカー」を与える。このカードを自分の手札からマナゾーンに置いた時自分の手札にあるソニック・コマンド・カードを1枚表向きにしてもよい。そうしたらこのカードをアンタップする。')
+   return {trigger:true,effect:'sixPhoto',g1087ManaReveal:'ソニック・コマンド',g34Tasks:[
+    {op:'Ramp',n:1},
+    {op:'Select',origin:'mana',filter:{faceUp:true,race:'ソニック・コマンド'},deploy:true,
+     n:2,optional:true,g550CostBudget:8,g791Grant:{blocker:true},
+     title:'出すソニック・コマンドを合計コスト8以下で2つまで選ぶ'}
+   ]};
+  if(d.id==='dm26ex2-065'&&f.typeText==='タマシード'&&text===
+   'ストライク・バックS・バック:デモニオ(指定のカードを自分のシールドゾーンから手札に加える時そのカードを捨ててもよい。そうしたらコストを支払わずにこのカードを実行する)シンカライズ(このタマシードがクリーチャーであるかのようにこの上に進化クリーチャーを置いてもよい)このタマシードが出た時自分のシールドゾーンにあるカードを1枚マナゾーンに置く。そうしたら自分のマナゾーンにあるカードの枚数以下のコストの進化デモニオ・クリーチャーを1体自分のマナゾーンから出す。')
+   return {strikeBack:true,strikeBackRace:'デモニオ',shinkalize:true,effect:'sixPhoto',g34Tasks:[{op:'ShieldCardManaDeploy1317'}]};
+ }
  if(phase>=1316&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dm26ex2-035'&&f.typeText==='呪文'&&text===

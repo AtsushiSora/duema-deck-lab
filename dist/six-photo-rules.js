@@ -2055,7 +2055,7 @@ export function createSixPhotoRules(api){
   return hasBouncer1294(s,s.active)&&s.players[s.active].battle.includes(x)&&
    api.isCreature(s,x)&&race(effective(x,s),'ビートジョッキー');
  }
- function doPut(s,t,base=null){const owner=t.owner??t.p,own=s.players[owner],x=putSource1294(s,t);if(!x||!matchesDeathDeployment960(t,x)||t.g550CostBudget!==undefined&&(x.zoneSerial||0)!==(t.serial550||0))return;if(t.execution&&faces(card(x))[t.face||0]?.type==='spell'){release(s,owner,x.uid);if(!api.canCast(s,t.p,faces(card(x))[t.face||0],t.origin))return;cast(s,t.p,x.uid,!t.payment,base,t.face||0,t.payment||null,t.origin);return;}const selected=t.g1104Back?psychicBack1104(x):x;if(!canPut(s,t.p,selected,t.origin,!!t.execution)||card(x).gCastle&&!api.canAddShield(s,t.p))return;own.g34ManaHeld=(own.g34ManaHeld||[]).filter(uid=>uid!==x.uid);if(t.origin==='deck')release(s,owner,x.uid);if(t.execution)cast(s,t.p,x.uid,!t.payment,base,t.face||0,t.payment||null,t.origin,t.reason||'カードの能力',false,t.g1087Grant?'g1087Sign:'+t.source:null);else{if(t.g1294FaceUpShield){if(!api.removeShieldCard(s,t.p,x.uid))return;}else remove(own[t.origin],x.uid);if(card(x).gCastle){clear(x,'shields');x.faceUp=true;s.players[t.p].shields.push(x);api.notifyShieldAdded(s,t.p,x);(s.noManaUse??=[false,false])[t.p]=true;return;}clear(x,'battle');if(t.g1104Back)x.g1085Awakened=true;enter(s,t.p,x,base,{origin:t.origin,execution:false,tapped:!!t.tapped,...(t.g745Magibomber?{g745Magibomber:true}:{}),...(t.g781HyperEntry?{g781HyperEntry:t.source}:{}),...(t.g785Group===undefined?{}:{g785Group:t.g785Group}),...(t.g1082Dragon?{g1082Dragon:t.source}:{}),...(t.g1084SealedEntry?{g1084SealedEntry:true}:{}),...(t.g771DeploySpeed||t.g774Banky?{g771SpeedSpell:t.source,g774Banky:t.g774Banky}:{}),...(t.g791Grant?{g791Grant:t.g791Grant,g791Spell:t.source,g793FightOnEntry:t.g793FightOnEntry}:{})});
+ function doPut(s,t,base=null){const owner=t.owner??t.p,own=s.players[owner],x=putSource1294(s,t);if(!x||!matchesDeathDeployment960(t,x)||t.g550CostBudget!==undefined&&(x.zoneSerial||0)!==(t.serial550||0))return;if(t.execution&&faces(card(x))[t.face||0]?.type==='spell'){release(s,owner,x.uid);if(!api.canCast(s,t.p,faces(card(x))[t.face||0],t.origin))return;cast(s,t.p,x.uid,!t.payment,base,t.face||0,t.payment||null,t.origin);return;}const selected=t.g1104Back?psychicBack1104(x):x;if(!canPut(s,t.p,selected,t.origin,!!t.execution)||card(x).gCastle&&!api.canAddShield(s,t.p))return;own.g34ManaHeld=(own.g34ManaHeld||[]).filter(uid=>uid!==x.uid);if(t.origin==='deck')release(s,owner,x.uid);if(t.execution)cast(s,t.p,x.uid,!t.payment,base,t.face||0,t.payment||null,t.origin,t.reason||'カードの能力',false,t.g1087Grant?'g1087Sign:'+t.source:null);else{if(t.g1294FaceUpShield){if(!api.removeShieldCard(s,t.p,x.uid))return;}else remove(own[t.origin],x.uid);if(card(x).gCastle){clear(x,'shields');x.faceUp=true;s.players[t.p].shields.push(x);api.notifyShieldAdded(s,t.p,x);(s.noManaUse??=[false,false])[t.p]=true;return;}clear(x,'battle');if(t.g1104Back)x.g1085Awakened=true;enter(s,t.p,x,base,{origin:t.origin,execution:false,tapped:!!t.tapped,...(t.g745Magibomber?{g745Magibomber:true}:{}),...(t.g781HyperEntry?{g781HyperEntry:t.source}:{}),...(t.g785Group===undefined?{}:{g785Group:t.g785Group}),...(t.g1082Dragon?{g1082Dragon:t.source}:{}),...(t.g1084SealedEntry?{g1084SealedEntry:true}:{}),...(t.g771DeploySpeed||t.g774Banky?{g771SpeedSpell:t.source,g774Banky:t.g774Banky,g1317SpeedFromCreature:t.g1317SpeedFromCreature}:{}),...(t.g791Grant?{g791Grant:t.g791Grant,g791Spell:t.source,g793FightOnEntry:t.g793FightOnEntry}:{})});
   if(t.g1225ChristoDeploy)afterEntry(s,t.p,x,task('g34_ChristoGrant1225',t.p,t.source,{
    uid:x.uid,incarnation:x.incarnation||0,controller:t.controller??t.p
   }),put);
@@ -2461,6 +2461,14 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_AttackEffect409':{if(attackHost408(s,t))(s.extLimits??=[]).push({kind:'g409AttackEffect',player:t.p,ref:t.g399Attacker,effect:t.kind,expires:'start',who:t.p});break;}
+ case'g34_AttackLookDeploy1317':{
+  const host=sourceHost474(s,t.g399Attacker)?.x;
+  const ceiling=host?cost(effective(host,s)):t.g399Attacker.cost;
+  const filter={creature:true,...(ceiling==='∞'||ceiling===Infinity?{}:{max:ceiling})};
+  start(s,t,[{op:'LookDeploy530',n:2,limit:1,rest:'bottom',filter,g841DeckPeek:true,
+   g771DeploySpeed:true,g1317SpeedFromCreature:true}]);
+  break;
+ }
  case'g34_AttackHandDeploy798':{
   if(used792(s,t,t))break;
   const host=sourceHost474(s,t.g399Attacker)?.x;
@@ -4188,6 +4196,12 @@ export function createSixPhotoRules(api){
     ...(triggeredBreaker&&!host?{g913DepartedBreaker:true}:{}),
     ...(t.g909AfterBreak?{g909RequireBreak:true}:{}),
     ...(host?{incarnation:host.incarnation||0,...(c.g122NoST?{noST:true}:{}),reverse:!!c.reverseBurn,burn:!!c.shieldBurn,...(c.qqLock?{qqBreak:true}:{})}:{})});
+  break;
+ }
+ case'g34_ShieldCardManaDeploy1317':{
+  const rows=peekRows585(s,{...t,who:'self',cardOnly:true}).filter(({x})=>!x.g37ShieldHeld);
+  if(rows.length)choice(s,t,'マナに置く自分のシールドカードを1枚選ぶ',rows.map(({x,label})=>
+   opt(label,x.uid,1,x.faceUp?x.cardId:undefined)));
   break;
  }
  case'g34_ShieldToMana980':{
@@ -6823,6 +6837,13 @@ export function createSixPhotoRules(api){
   else start(s,t,[{op:'Draw',n:2}]);
   break;
  case'g34_Break497':if(v)put(s,{...t,selected:[...(t.selected||[]),v]});break;
+ case'g34_ShieldCardManaDeploy1317':
+  // An attempted move still satisfies the continuation under a replacement (QA 42955).
+  if(api.moveShield(s,t.p,v,'mana',{cardOnly:true}).length)
+   start(s,t,[{op:'Select',origin:'mana',n:1,deploy:true,
+    filter:{faceUp:true,creature:true,evolution:true,race:'デモニオ',max:own.mana.length},
+    title:'マナから出す進化デモニオを1体選ぶ'}]);
+  break;
  case'g34_ShieldToMana980':
   if(v&&!used792(s,t,t)){
    if(t.g792Once)(s.once??={})[onceKey792(t,t)]=s.turn;
@@ -7423,7 +7444,15 @@ export function createSixPhotoRules(api){
    if(defs)queue(s,p,x,defs);
   }
  }
- const sourceDefs=(s,t,defs)=>start(s,t,defs),queue=(s,p,x,defs,source=x.cardId)=>send(s,p,source===x.cardId?x:{...x,cardId:source},'Sequence',{defs});
+ const sourceDefs=(s,t,defs)=>start(s,t,defs);
+ function queue(s,p,x,defs,source=x.cardId){
+  const more={defs};
+  if(defs?.some(d=>d.op==='AttackLookDeploy1317')){
+   const currentCost=cost(effective(x,s));
+   more.g399Attacker={uid:x.uid,incarnation:x.incarnation||0,cost:currentCost===Infinity?'∞':currentCost};
+  }
+  send(s,p,source===x.cardId?x:{...x,cardId:source},'Sequence',more);
+ }
  const graveFace1226=c=>c&&(c.type==='spell'||c.type==='seed'||c.seedCreature||c.natureAce4);
  function graveActions1226(s,p){
   if(s.g1226GraveUse?.turn!==s.turn||!api.canMoveZone(s,p,'grave'))return [];
@@ -9392,8 +9421,8 @@ for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand
  }, deploymentGrant791(s,p,x,grant,source,fight){
   applyGrant(s,{p,source,grant,g521UntilStart:true,spell:true},x);
   if(fight)put(s,task('g34_FightEnemy240',p,source,{fighter:{uid:x.uid,incarnation:x.incarnation||0},optional:true}));
- }, deploymentSpeed771(s,p,x,source,returnAtOpponentStart){
-  applyGrant(s,{p,source,spell:true,grant:{speedAttacker:true,...(returnAtOpponentStart?{g774Permanent:true}:{})}},x);
+ }, deploymentSpeed771(s,p,x,source,returnAtOpponentStart,fromCreature){
+  applyGrant(s,{p,source,spell:!fromCreature,grant:{speedAttacker:true,...(returnAtOpponentStart?{g774Permanent:true}:{})}},x);
   if(returnAtOpponentStart)(s.g537Delays??=[]).push({
    p,who:1-p,source,spellCost:cost(faces(card(source)).at(-1)),uid:x.uid,incarnation:x.incarnation||0,
    turn:s.turn,when:'nextOwnStart',defs:[E('DelayedMove532',{to:'hand',g774Banky:true})]
