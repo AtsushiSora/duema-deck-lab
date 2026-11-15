@@ -1429,6 +1429,12 @@ export function createSixPhotoRules(api){
    c.type==='spell'&&cost(c)<=t.max&&api.canCast(s,t.p,c,'grave',p)?[opt((p===t.p?'自分：':'相手：')+c.name,{uid:x.uid,owner:p,face,serial:x.zoneSerial||0},15+cost(c),x.cardId)]:[]
   )):[]);
  }
+ function adamSeeds1341(s,t){
+  const own=s.players[t.p],x=own.hand.find(x=>x.uid===t.uid);
+  if(!x||!api.canEnter(s,t.p,card(x),{origin:'hand',execution:false}))return [];
+  return own.battle.filter(y=>!y.tapped&&!y.sealed&&!y.faceDown&&matches(s,t.p,y,{g295Tamaseed:true})&&
+   (api.isCreature(s,y)||effective(y,s).shinkalize));
+ }
  function clanSpellOptions1338(s,t,host){
   if(!host||host.sealed)return [];
   const mana=new Set(s.players[t.p].mana.filter(x=>!x.faceDown)
@@ -5748,6 +5754,18 @@ export function createSixPhotoRules(api){
   ]);
   break;
  }
+ case'g34_AdamReturn1341':{
+  const x=live(s,t);
+  if(x&&!x.sealed)choice(s,t,'このクリーチャーを手札に戻す？',[opt('手札に戻す',true,12,x.cardId),skip()]);
+  break;
+ }
+ case'g34_AdamPlace1341':{
+  const rows=adamSeeds1341(s,t);
+  if(rows.length)choice(s,t,'重ねるアンタップ状態のタマシードを選ぶ',[
+   ...rows.map(x=>opt(card(x).name,x.uid,12,x.cardId)),skip()
+  ]);
+  break;
+ }
  case'g34_FinalSeed1340':{
   const host=live(s,t),x=live(s,{...t,...t.seed});
   if(host&&!host.sealed&&x&&x!==host&&!x.sealed&&matches(s,t.p,x,{g295Tamaseed:true}))
@@ -6225,6 +6243,22 @@ export function createSixPhotoRules(api){
  case'g34_PowerSweep696':start(s,t,[{op:'Sweep',both:true,to:'grave',filter:{creature:true,...(v>0?{minPower:v}:{}),maxPower:v,g199Power:true}}]);break;
  case'g34_CostSweep596':start(s,t,[{op:'Sweep',to:'grave',filter:{creature:true,min:v,max:v}}]);break;
  case'g34_GraveHandMana771':put(s,{...t,picks:[...(t.picks||[]),v]});break;
+ case'g34_AdamReturn1341':{
+  const x=v&&live(s,t);
+  if(x&&!x.sealed){
+   put(s,{...t,op:'g34_AdamPlace1341'});
+   move(s,[{player:t.p,uid:x.uid,to:'hand',destroy:false,controller:t.p}]);
+  }
+  break;
+ }
+ case'g34_AdamPlace1341':{
+  const seed=v&&adamSeeds1341(s,t).find(x=>x.uid===v);
+  if(seed){
+   const x=remove(own.hand,t.uid);
+   enter(s,t.p,x,seed.uid,{origin:'hand',execution:false,g31Force:true});
+  }
+  break;
+ }
  case'g34_FinalSeed1340':
   if(v)put(s,task('g47_AttachOrder',t.p,t.source,{host:{uid:t.uid,incarnation:t.incarnation||0},targetRef:t.seed,ordered:[]}));
   break;

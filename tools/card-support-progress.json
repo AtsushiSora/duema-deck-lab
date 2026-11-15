@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8026,
-  "pendingNames": 3800,
-  "phase": 1340,
+  "supportedNames": 8027,
+  "pendingNames": 3799,
+  "phase": 1341,
   "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -163,7 +163,7 @@
     "デュエルメイト呪文": 10,
     "S-MAX進化クリーチャー": 8,
     "進化クリーチャー": 256,
-    "スター進化クリーチャー": 56,
+    "スター進化クリーチャー": 55,
     "進化クリーチャー(超無限進化・Ω)": 1,
     "ギガ・オレガ・オーラ": 2,
     "オレガ・オーラ": 102,
@@ -226,7 +226,7 @@
     "複数面・特殊カードタイプまたは情報不足": 1074,
     "未対応の能力文": 2534,
     "未対応のG・ゼロ条件": 21,
-    "未対応の召喚時能力": 19,
+    "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
     "未対応のD2フィールド能力": 39,
     "複雑な進化条件": 12,
@@ -489913,14 +489913,57 @@
       "remainingRegistered": 37,
       "remainingPrints": 1,
       "remainingIndividualCards": 32
+    },
+    {
+      "phase": 1341,
+      "baseline": "4b199e10",
+      "before": 8026,
+      "supported": 8027,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmrp21-002",
+          "name": "神ナル機カイ「亜堕無」"
+        }
+      ],
+      "printAliases": 1,
+      "results": {
+        "focus": {
+          "passed": 4,
+          "log": "/tmp/duema-uncapped/adam-focus.log",
+          "command": "node --test tests/standard1341-effects.test.mjs",
+          "seconds": 1.638
+        },
+        "regression": {
+          "passed": 53,
+          "log": "/tmp/duema-uncapped/adam-regression.log",
+          "command": "node --test --test-concurrency=2 tests/standard{1052,1148,1231,1270,1340,1341}-effects.test.mjs",
+          "seconds": 12.561
+        },
+        "check": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "/tmp/duema-uncapped/adam-check.log",
+          "rulesBlob": "821ce727338b84b3610f79552e2635f85f2312dc"
+        },
+        "audit": {
+          "status": "passed",
+          "command": "node tools/audit-card-support.mjs",
+          "log": "/tmp/duema-uncapped/adam-audit.log"
+        }
+      },
+      "resolvedRegistered": 1,
+      "remainingRegistered": 36,
+      "remainingPrints": 1,
+      "remainingIndividualCards": 31
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1340,
+    "lastVerifiedPhase": 1341,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "グーゴルの影響でタップ状態で出たタマシードをマニフェストの下に置く裁定を検証済み。残りの裁定と分割テストを続ける。",
+    "steps": "亜堕無の戻し・置き直しとアビスハリケーンの対象を実カードで検証済み。残りの個別裁定と分割テストを継続する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -490005,16 +490048,16 @@
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [
       {
-        "id": "dmrp21-002",
-        "name": "神ナル機カイ「亜堕無」"
-      },
-      {
         "id": "dmrp12-008",
         "name": "帝神龍装 ティーゾリス"
       },
       {
         "id": "dm23rp1-004",
         "name": "終納 カボード＝ロウ"
+      },
+      {
+        "id": "dmr08s-007",
+        "name": "悠久を統べる者 フォーエバー・プリンセス"
       }
     ],
     "printVerificationPending": [
@@ -490213,8 +490256,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8026,
-    "pendingNames": 3800,
+    "supportedNames": 8027,
+    "pendingNames": 3799,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -534208,8 +534251,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8026,
-      "pendingNames": 3800,
+      "supportedNames": 8027,
+      "pendingNames": 3799,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -535236,7 +535279,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別32種類（裁定37件と版固有の金箔再録1件）と長時間対戦・ワーカーの検証が継続中。Netlifyを更新せずにPagesへ公開する経路の確認も必要。",
+        "reason": "個別31種類（裁定36件と版固有の金箔再録1件）と長時間対戦・ワーカーの検証が継続中。Netlifyを更新せずにPagesへ公開する経路の確認も必要。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -535776,6 +535819,30 @@
             "https://dm.takaratomy.co.jp/rule/qa/48122/"
           ],
           "result": "相手の実カードのグーゴルでタマシードがタップ状態で出たことを確認。JSON復元後に、マニフェストの下に置く場合も辞退する場合も、マニフェストはアンタップ状態を保った。超無限スター進化の複数素材、パワーとブレイカー、超無限スターの離脱置換、六枚を山札の下に置く追加ターンも検証した。"
+        },
+        {
+          "cardId": "dmrp20-004",
+          "dependencyIds": [
+            "dmrp21-002"
+          ],
+          "test": "《神ナル機カイ「亜堕無」》が攻撃終了時に上面だけ手札へ戻り、別のアンタップしたタマシードに重なった後、元の進化元がクリーチャーの場合だけ破壊される。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/41640/",
+          "phase": 1341,
+          "path": "tests/standard1341-effects.test.mjs",
+          "log": "/tmp/duema-uncapped/adam-focus.log",
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/41640/",
+            "https://dm.takaratomy.co.jp/rule/qa/41179/",
+            "https://dm.takaratomy.co.jp/rule/qa/41416/",
+            "https://dm.takaratomy.co.jp/rule/qa/41642/",
+            "https://dm.takaratomy.co.jp/rule/qa/41463/",
+            "https://dm.takaratomy.co.jp/rule/qa/41178/",
+            "https://dm.takaratomy.co.jp/rule/qa/41177/",
+            "https://dm.takaratomy.co.jp/rule/qa/41176/",
+            "https://dm.takaratomy.co.jp/rule/qa/41301/",
+            "https://dm.takaratomy.co.jp/rule/qa/41995/"
+          ],
+          "result": "亜堕無だけを手札に戻し、JSON復元後に別のアンタップ中のシンカライズ持ちへ重ねた。アビスハリケーンは元の進化元がクリーチャーのときだけ破壊した。シンカライズなしとタップ中のタマシードの除外、出し直しが召喚時能力を誘発しないこと、召喚時に宣言した数のロックと期限も検証した。"
         }
       ],
       "remainingRegistered": [
@@ -536025,15 +536092,6 @@
           "source": "https://dm.takaratomy.co.jp/rule/qa/40912/"
         },
         {
-          "cardId": "dmrp20-004",
-          "dependencyIds": [
-            "dmrp21-002"
-          ],
-          "test": "《神ナル機カイ「亜堕無」》が攻撃終了時に上面だけ手札へ戻り、別のアンタップしたタマシードに重なった後、元の進化元がクリーチャーの場合だけ破壊される。",
-          "reason": "QA41640。元の進化元がクリーチャーかタマシードかで破壊を分ける挙動をスター進化で確認済み。《神ナル機カイ「亜堕無」》自体は未実装のため、再配置を含めた同じカード同士の再現が残る。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/41640/"
-        },
-        {
           "cardId": "dmr20-003",
           "dependencyIds": [
             "dmex15-b025"
@@ -536185,10 +536243,11 @@
           "dmrp11-s04",
           "dmrp08-s03",
           "dm22ex1-061",
-          "dmrp22-4A"
+          "dmrp22-4A",
+          "dmrp21-002"
         ],
-        "officialPrints": 69,
-        "newAliases": 53,
+        "officialPrints": 71,
+        "newAliases": 54,
         "evidence": [
           {
             "id": "dm23rp2-065",
@@ -536736,6 +536795,22 @@
             "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-6B.jpg",
             "pageSha256": "9ced1fd1f2dbfaa73fec8063bd3b54f627561f03c3ff06b60fb9168cd2ed94ca",
             "imageSha256": "7d48b0e71facbe6271fde57085daf6bb3884dbdccd1326bb7726fdbb1046d8f9"
+          },
+          {
+            "id": "dmrp21-002",
+            "canonicalId": "dmrp21-002",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-002",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-002.jpg",
+            "pageSha256": "3a71a3a250ae4cc7708f9e0686fe0194fba529744605e12e05f370b1f343e844",
+            "imageSha256": "1d515ad54c72022a8c95bde86c114400a3f2a1215b0a44d0be9f0ac034bcff48"
+          },
+          {
+            "id": "dmrp21-9A",
+            "canonicalId": "dmrp21-002",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-9A",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-9A.jpg",
+            "pageSha256": "bb545faea4bd75a48dcba163c4362aaadb3b870e2fb1291378b281daddfb987d",
+            "imageSha256": "839965ccf5d6a0fab9198b7b36ea3aa26b806fef33ac08b25607013e0f33a3fd"
           }
         ],
         "testLog": "/tmp/duema-verify-8009/verification-followup-prints.log",
@@ -537021,8 +537096,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8026,
-        "pending": 3800,
+        "supported": 8027,
+        "pending": 3799,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -537622,8 +537697,8 @@
       "finalCheck": {
         "status": "passed",
         "command": "npm run check",
-        "log": "/tmp/duema-uncapped/manifest-check.log",
-        "rulesBlob": "7df5d73ee049a92531372d709c48ebdb8fff1161"
+        "log": "/tmp/duema-uncapped/adam-check.log",
+        "rulesBlob": "821ce727338b84b3610f79552e2635f85f2312dc"
       },
       "abyssShort": {
         "passed": 33,
@@ -537719,10 +537794,6 @@
           "name": "アカシック・パラレル"
         },
         {
-          "id": "dmrp21-002",
-          "name": "神ナル機カイ「亜堕無」"
-        },
-        {
           "id": "dm35-004",
           "name": "ケンゲキオージャ ～究極火焔～"
         },
@@ -537803,47 +537874,47 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1340,
-        "baseline": "09610465",
-        "before": 8025,
-        "supported": 8026,
+        "phase": 1341,
+        "baseline": "4b199e10",
+        "before": 8026,
+        "supported": 8027,
         "duplicates": 0,
         "added": [
           {
-            "id": "dmrp22-4A",
-            "name": "マニフェスト ＜ファイナル.Star＞"
+            "id": "dmrp21-002",
+            "name": "神ナル機カイ「亜堕無」"
           }
         ],
-        "printAliases": 2,
+        "printAliases": 1,
         "results": {
           "focus": {
-            "passed": 5,
-            "log": "/tmp/duema-uncapped/manifest-focus.log",
-            "command": "node --test tests/standard1340-effects.test.mjs",
-            "seconds": 1.994
+            "passed": 4,
+            "log": "/tmp/duema-uncapped/adam-focus.log",
+            "command": "node --test tests/standard1341-effects.test.mjs",
+            "seconds": 1.638
           },
           "regression": {
-            "passed": 93,
-            "log": "/tmp/duema-uncapped/manifest-regression.log",
-            "command": "node --test --test-concurrency=2 tests/standard{1052,1084,1131,1148,1187,1335,1336,1340}-effects.test.mjs tests/sasage-neo-evolution.test.mjs",
-            "seconds": 16.53
+            "passed": 53,
+            "log": "/tmp/duema-uncapped/adam-regression.log",
+            "command": "node --test --test-concurrency=2 tests/standard{1052,1148,1231,1270,1340,1341}-effects.test.mjs",
+            "seconds": 12.561
           },
           "check": {
             "status": "passed",
             "command": "npm run check",
-            "log": "/tmp/duema-uncapped/manifest-check.log",
-            "rulesBlob": "7df5d73ee049a92531372d709c48ebdb8fff1161"
+            "log": "/tmp/duema-uncapped/adam-check.log",
+            "rulesBlob": "821ce727338b84b3610f79552e2635f85f2312dc"
           },
           "audit": {
             "status": "passed",
             "command": "node tools/audit-card-support.mjs",
-            "log": "/tmp/duema-uncapped/manifest-audit.log"
+            "log": "/tmp/duema-uncapped/adam-audit.log"
           }
         },
         "resolvedRegistered": 1,
-        "remainingRegistered": 37,
+        "remainingRegistered": 36,
         "remainingPrints": 1,
-        "remainingIndividualCards": 32
+        "remainingIndividualCards": 31
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
@@ -539921,8 +539992,8 @@
         "command": "python3 /tmp/duema-uncapped/run-tests.py",
         "reason": "ユーザー指示により時間上限を解除。未確認テスト名をフィルタ指定し、前の一括実行は中断・合否未確認のまま保持。",
         "snapshot": {
-          "completeGroups": 17,
-          "passedNamedTests": 31,
+          "completeGroups": 18,
+          "passedNamedTests": 33,
           "failedNamedTests": 2,
           "enginePairings": {
             "seconds": 643.82,
@@ -539936,9 +540007,11 @@
             "plan": "/tmp/duema-uncapped/fixture-plan.json",
             "results": "/tmp/duema-uncapped/fixture-results.jsonl",
             "plannedGroups": 53,
-            "completedGroups": 31,
-            "passedGroups": 31,
-            "status": "実行中"
+            "completedGroups": 34,
+            "passedGroups": 34,
+            "status": "実行中",
+            "passedDeterministicGames": 114,
+            "passedRandomGames": 75
           },
           "aiCoverage": {
             "result": "旧レポートの入力指紋が現行データと不一致。現行入力85デッキ255試合を再実行中。",
