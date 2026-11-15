@@ -2475,6 +2475,36 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1321&&d?.status==='complete'&&d.faces.length===1){
+  const lines=f.abilityText.split('\n').map(normalize);
+  const strike='{GS}G・ストライク(このカードを自分のシールドゾーンから手札に加える時表向きにし相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)';
+  if(d.id==='dm26rp3-018'&&f.typeText==='クリーチャー'&&lines.length===4&&lines[0]===strike&&
+   lines[1]==='スピードアタッカー'&&lines[2]==='W・ブレイカー'&&
+   lines[3]==='このクリーチャーが攻撃する時自分の山札の下から3枚を表向きにする。その中からコスト8以下のジョーカーズ・クリーチャーを1体出してもよい。残りを好きな順序で山札の上に置く。')
+   return {gStrike:true,speedAttacker:true,breaker:2,g34Attack:[
+    {op:'LookDeploy530',fromBottom:true,n:3,public:true,limit:1,rest:'top',filter:{creature:true,race:'ジョーカーズ',max:8}}
+   ]};
+  if(d.id==='dm26rp3-026'&&f.typeText==='クリーチャー'&&lines.length===5&&
+   lines[0]==='EXライフ(このクリーチャーを出す時自分の山札の上から1枚をシールド化する。このクリーチャーが離れる時かわりにそのシールドを墓地に置く)'&&
+   lines[1]==='マッハファイター'&&lines[2]==='W・ブレイカー'&&
+   lines[3]==='このクリーチャーが攻撃する時ディスタスを1つ自分の墓地から出してもよい。'&&
+   lines[4]==='フシギバース[dn09](自分のクリーチャーを1体タップしてマナゾーンに置き[dn09]からそのクリーチャーのコストを引いた数のコストを支払ってこのクリーチャーを自分の墓地から召喚してもよい。ただしコストは[dn02]より少なくならない)')
+   return {exLife:true,machFighter:true,breaker:2,fushigibirth:9,fushiMin:2,g402FushiColors:['闇','自然'],g34Attack:[
+    {op:'Select',origin:'grave',n:1,deploy:true,optional:true,filter:{race:'ディスタス',faceUp:true},
+     title:'墓地から出すディスタスを1つ選ぶ'}
+   ]};
+  const first={
+   'dm25ex4-053':['自分の山札の上から1枚をシールド化する。',{op:'ShieldTop',n:1}],
+   'dm25ex4-059':['相手は自身の手札を1枚選び捨てる。',{op:'Discard',n:1}],
+   'dm25ex4-065':['自分の手札を1枚マナゾーンに置いてもよい。',{op:'Select',origin:'hand',to:'mana',n:1,optional:true,g182HandMana:true}]
+  }[d.id];
+  if(first&&f.typeText==='呪文'&&lines.length===2&&lines[0]===first[0]&&
+   lines[1]==='跳次元召喚2(コスト2以下でその文明がすべて自分のマナゾーンにあるクリーチャーを1体自分の超次元ゾーンからコストを支払ったものとして召喚してもよい)')
+   return {effect:'sixPhoto',g34Tasks:[first[1],
+    {op:'Select',origin:'extra',n:1,deploy:true,execution:true,optional:true,g1104PsychicFaces:true,g1321Teleport:true,
+     filter:{creature:true,max:2,g1321ManaCivilizations:true},title:'跳次元召喚するクリーチャーを1体選ぶ'}
+   ]};
+ }
  if(phase>=1320&&d?.status==='complete'&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const exLife='EXライフ(このクリーチャーを出す時自分の山札の上から1枚をシールド化する。このクリーチャーが離れる時かわりにそのシールドを墓地に置く)';

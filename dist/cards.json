@@ -245804,15 +245804,220 @@
       ],
       "supportBatch": "phase-1320",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp3-018",
+      "name": "キング・ザ・ベスト",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ジョーカーズ",
+      "text": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nスピードアタッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の下から３枚を表向きにする。その中からコスト８以下のジョーカーズ・クリーチャーを１体、出してもよい。残りを好きな順序で山札の上に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-018",
+      "limit": 4,
+      "gStrike": true,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "LookDeploy530",
+          "fromBottom": true,
+          "n": 3,
+          "public": true,
+          "limit": 1,
+          "rest": "top",
+          "filter": {
+            "creature": true,
+            "race": "ジョーカーズ",
+            "max": 8
+          }
+        }
+      ],
+      "supportBatch": "phase-1321",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp3-026",
+      "name": "昆怪逆夢 アンダステリオン",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ディスペクター/デビルマスク/グランセクト/不死樹王国",
+      "text": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nマッハファイター\nW・ブレイカー\nこのクリーチャーが攻撃する時、ディスタスを１つ、自分の墓地から出してもよい。\nフシギバース [dn09]（自分のクリーチャーを１体タップしてマナゾーンに置き、[dn09]からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただしコストは[dn02]より少なくならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-026",
+      "limit": 4,
+      "exLife": true,
+      "machFighter": true,
+      "breaker": 2,
+      "fushigibirth": 9,
+      "fushiMin": 2,
+      "g402FushiColors": [
+        "闇",
+        "自然"
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "race": "ディスタス",
+            "faceUp": true
+          },
+          "title": "墓地から出すディスタスを1つ選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1321",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-053",
+      "name": "プロテクション・テレポートホール",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "自分の山札の上から１枚をシールド化する。\n跳次元召喚２（コスト２以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-053",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldTop",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "extra",
+          "n": 1,
+          "deploy": true,
+          "execution": true,
+          "optional": true,
+          "g1104PsychicFaces": true,
+          "g1321Teleport": true,
+          "filter": {
+            "creature": true,
+            "max": 2,
+            "g1321ManaCivilizations": true
+          },
+          "title": "跳次元召喚するクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1321",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-059",
+      "name": "ゴースト・テレポートホール",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "相手は自身の手札を１枚選び、捨てる。\n跳次元召喚２（コスト２以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-059",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "extra",
+          "n": 1,
+          "deploy": true,
+          "execution": true,
+          "optional": true,
+          "g1104PsychicFaces": true,
+          "g1321Teleport": true,
+          "filter": {
+            "creature": true,
+            "max": 2,
+            "g1321ManaCivilizations": true
+          },
+          "title": "跳次元召喚するクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1321",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-065",
+      "name": "アシダケ・テレポートホール",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "自分の手札を１枚、マナゾーンに置いてもよい。\n跳次元召喚２（コスト２以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-065",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "mana",
+          "n": 1,
+          "optional": true,
+          "g182HandMana": true
+        },
+        {
+          "op": "Select",
+          "origin": "extra",
+          "n": 1,
+          "deploy": true,
+          "execution": true,
+          "optional": true,
+          "g1104PsychicFaces": true,
+          "g1321Teleport": true,
+          "filter": {
+            "creature": true,
+            "max": 2,
+            "g1321ManaCivilizations": true
+          },
+          "title": "跳次元召喚するクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1321",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1320,
+    "phase": 1321,
     "checkedAt": "2026-11-15",
-    "baseCount": 7979,
-    "newEffectCards": 4,
+    "baseCount": 7983,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 7983,
+    "totalCount": 7988,
     "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -267941,6 +268146,18 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 7979,
+        "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1320,
+        "checkedAt": "2026-11-15",
+        "baseCount": 7979,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 7983,
         "ruleSource": "https://dm.takaratomy.co.jp/rule/regulation/",
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
