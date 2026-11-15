@@ -27,7 +27,7 @@ export function createPhoenixRules(api){
    options.execution!==false&&phoenix(c)&&poppo(s,p)?['battle','grave']:['battle']);
   return zones.filter(zone=>api.canMoveZone(s,p,zone)).flatMap(zone=>s.players[p][zone].filter(x=>
    zone==='battle'?(d.minCards?!x.sealed&&(api.isCreature(s,x)||effective(x,s).shinkalize):
-    (!d.zones||!x.sealed&&!x.faceDown)&&api.isCreature(s,x)):
+    (!d.zones||!x.sealed&&!x.faceDown)&&(api.isCreature(s,x)||d.allowShinkalize&&!x.sealed&&!x.faceDown&&effective(x,s).shinkalize)):
     (zone==='grave'&&!d.zones||!x.faceDown)&&card(x).type==='creature').map(x=>({x,zone})));
  }
  const matches=(s,x,condition)=>condition.creature||api.matchesEvolution(x,condition,s);

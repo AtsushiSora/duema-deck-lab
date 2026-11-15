@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8025,
-  "pendingNames": 3801,
-  "phase": 1339,
+  "supportedNames": 8026,
+  "pendingNames": 3800,
+  "phase": 1340,
   "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -163,7 +163,7 @@
     "デュエルメイト呪文": 10,
     "S-MAX進化クリーチャー": 8,
     "進化クリーチャー": 256,
-    "スター進化クリーチャー": 57,
+    "スター進化クリーチャー": 56,
     "進化クリーチャー(超無限進化・Ω)": 1,
     "ギガ・オレガ・オーラ": 2,
     "オレガ・オーラ": 102,
@@ -224,7 +224,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1074,
-    "未対応の能力文": 2535,
+    "未対応の能力文": 2534,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 19,
     "未対応のシンカパワー": 2,
@@ -489870,14 +489870,57 @@
       "remainingRegistered": 38,
       "remainingPrints": 1,
       "remainingIndividualCards": 33
+    },
+    {
+      "phase": 1340,
+      "baseline": "09610465",
+      "before": 8025,
+      "supported": 8026,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmrp22-4A",
+          "name": "マニフェスト ＜ファイナル.Star＞"
+        }
+      ],
+      "printAliases": 2,
+      "results": {
+        "focus": {
+          "passed": 5,
+          "log": "/tmp/duema-uncapped/manifest-focus.log",
+          "command": "node --test tests/standard1340-effects.test.mjs",
+          "seconds": 1.994
+        },
+        "regression": {
+          "passed": 93,
+          "log": "/tmp/duema-uncapped/manifest-regression.log",
+          "command": "node --test --test-concurrency=2 tests/standard{1052,1084,1131,1148,1187,1335,1336,1340}-effects.test.mjs tests/sasage-neo-evolution.test.mjs",
+          "seconds": 16.53
+        },
+        "check": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "/tmp/duema-uncapped/manifest-check.log",
+          "rulesBlob": "7df5d73ee049a92531372d709c48ebdb8fff1161"
+        },
+        "audit": {
+          "status": "passed",
+          "command": "node tools/audit-card-support.mjs",
+          "log": "/tmp/duema-uncapped/manifest-audit.log"
+        }
+      },
+      "resolvedRegistered": 1,
+      "remainingRegistered": 37,
+      "remainingPrints": 1,
+      "remainingIndividualCards": 32
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1339,
+    "lastVerifiedPhase": 1340,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "クランヴィアと星龍の暴発を組み合わせた裁定を検証済み。マニフェストのタマシードを下に置く裁定と他の残り、分割対戦・AI監査の結果確認へ進む。",
+    "steps": "グーゴルの影響でタップ状態で出たタマシードをマニフェストの下に置く裁定を検証済み。残りの裁定と分割テストを続ける。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -489962,8 +490005,8 @@
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [
       {
-        "id": "dmrp22-4A",
-        "name": "マニフェスト ＜ファイナル.Star＞"
+        "id": "dmrp21-002",
+        "name": "神ナル機カイ「亜堕無」"
       },
       {
         "id": "dmrp12-008",
@@ -490170,8 +490213,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8025,
-    "pendingNames": 3801,
+    "supportedNames": 8026,
+    "pendingNames": 3800,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -534165,8 +534208,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8025,
-      "pendingNames": 3801,
+      "supportedNames": 8026,
+      "pendingNames": 3800,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -535193,7 +535236,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別33種類（裁定38件と版固有の金箔再録1件）と長時間対戦・ワーカーの検証が継続中。Netlifyを更新せずにPagesへ公開する経路の確認も必要。",
+        "reason": "個別32種類（裁定37件と版固有の金箔再録1件）と長時間対戦・ワーカーの検証が継続中。Netlifyを更新せずにPagesへ公開する経路の確認も必要。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -535717,6 +535760,22 @@
             "https://dm.takaratomy.co.jp/rule/qa/48755/"
           ],
           "result": "実カードの星龍の暴発をクランヴィアの下から唱え、同じ物理カードがタップしたままバトルゾーンに残り、出た時の能力で自分のシールドをブレイクしないことを確認した。通常の手札から唱えた場合、相手ターンのS・トリガー、世紀末の善悪と持ち主の異なる呪文、6枚の束すべてへの付与も検証した。"
+        },
+        {
+          "cardId": "dmrp21-5A",
+          "dependencyIds": [
+            "dmrp22-4A"
+          ],
+          "test": "タップして出たタマシードを下に置いてもアンタップ中のマニフェストはタップしない",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/41451/",
+          "path": "tests/standard1340-effects.test.mjs",
+          "log": "/tmp/duema-uncapped/manifest-focus.log",
+          "phase": 1340,
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/41451/",
+            "https://dm.takaratomy.co.jp/rule/qa/48122/"
+          ],
+          "result": "相手の実カードのグーゴルでタマシードがタップ状態で出たことを確認。JSON復元後に、マニフェストの下に置く場合も辞退する場合も、マニフェストはアンタップ状態を保った。超無限スター進化の複数素材、パワーとブレイカー、超無限スターの離脱置換、六枚を山札の下に置く追加ターンも検証した。"
         }
       ],
       "remainingRegistered": [
@@ -535833,17 +535892,6 @@
           "source": "https://dm.takaratomy.co.jp/rule/qa/48142/",
           "path": "tests/standard1172-effects.test.mjs",
           "log": "/tmp/duema-phase-1172/focused.log"
-        },
-        {
-          "cardId": "dmrp21-5A",
-          "dependencyIds": [
-            "dmrp22-4A"
-          ],
-          "test": "タップして出たタマシードを下に置いてもアンタップ中のマニフェストはタップしない",
-          "reason": "マニフェスト ＜ファイナル.Star＞が対戦未対応。グーゴルが相手タマシードをタップして出す処理は実カードで確認。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/41451/",
-          "path": "tests/standard1174-effects.test.mjs",
-          "log": "/tmp/duema-phase-1174/focused.log"
         },
         {
           "cardId": "dm22sd1-001",
@@ -536136,10 +536184,11 @@
           "dm22ex2-S15",
           "dmrp11-s04",
           "dmrp08-s03",
-          "dm22ex1-061"
+          "dm22ex1-061",
+          "dmrp22-4A"
         ],
-        "officialPrints": 66,
-        "newAliases": 51,
+        "officialPrints": 69,
+        "newAliases": 53,
         "evidence": [
           {
             "id": "dm23rp2-065",
@@ -536663,6 +536712,30 @@
             "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex1-047a.jpg",
             "pageSha256": "cf0cc662a16b177960a0306d0d194e0edf4a5b15dccdae6887d6be7c6afdd29e",
             "imageSha256": "9013f547640bdc458183399e306936445cd288310ea6598cda96d73a14bde50d"
+          },
+          {
+            "id": "dmrp22-4A",
+            "canonicalId": "dmrp22-4A",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-4A",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-4A.jpg",
+            "pageSha256": "7e6e1aa0917869abab6acc0aa1124dbeed98c0454e4efc5f940c698b1e503011",
+            "imageSha256": "821aa8d7056ab4b99995cd68613d7e69c77299bb5ba472fd66dea6ec6d602597"
+          },
+          {
+            "id": "dmrp22-S4",
+            "canonicalId": "dmrp22-4A",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-S4",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-S4.jpg",
+            "pageSha256": "90c7cd285e57201fd75f58a13f7ac430703568ad69d951104a291065551c2745",
+            "imageSha256": "08356e04e5de4a5ebaf2000d05b1cc547b4925b285ac03c3db1dbd90e33de7c9"
+          },
+          {
+            "id": "dmrp22-6B",
+            "canonicalId": "dmrp22-4A",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-6B",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-6B.jpg",
+            "pageSha256": "9ced1fd1f2dbfaa73fec8063bd3b54f627561f03c3ff06b60fb9168cd2ed94ca",
+            "imageSha256": "7d48b0e71facbe6271fde57085daf6bb3884dbdccd1326bb7726fdbb1046d8f9"
           }
         ],
         "testLog": "/tmp/duema-verify-8009/verification-followup-prints.log",
@@ -536948,8 +537021,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8025,
-        "pending": 3801,
+        "supported": 8026,
+        "pending": 3800,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -537549,8 +537622,8 @@
       "finalCheck": {
         "status": "passed",
         "command": "npm run check",
-        "log": "/tmp/duema-uncapped/benzo-check-final.log",
-        "rulesBlob": "61b48a1a50834565bf8e62b1848d50bdade535a4"
+        "log": "/tmp/duema-uncapped/manifest-check.log",
+        "rulesBlob": "7df5d73ee049a92531372d709c48ebdb8fff1161"
       },
       "abyssShort": {
         "passed": 33,
@@ -537588,10 +537661,6 @@
         {
           "id": "dm25ex4-SPR01",
           "name": "沈黙の守護者、シュタイン"
-        },
-        {
-          "id": "dmrp22-4A",
-          "name": "マニフェスト ＜ファイナル.Star＞"
         },
         {
           "id": "dmr08s-007",
@@ -537734,47 +537803,47 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1339,
-        "baseline": "6d9ba253",
-        "before": 8024,
-        "supported": 8025,
+        "phase": 1340,
+        "baseline": "09610465",
+        "before": 8025,
+        "supported": 8026,
         "duplicates": 0,
         "added": [
           {
-            "id": "dm22ex1-061",
-            "name": "暴発秘宝ベンゾ / 星龍の暴発"
+            "id": "dmrp22-4A",
+            "name": "マニフェスト ＜ファイナル.Star＞"
           }
         ],
-        "printAliases": 3,
+        "printAliases": 2,
         "results": {
           "focus": {
-            "passed": 6,
-            "log": "/tmp/duema-uncapped/benzo-focus.log",
-            "command": "node --test tests/standard1339-effects.test.mjs",
-            "seconds": 1.969
+            "passed": 5,
+            "log": "/tmp/duema-uncapped/manifest-focus.log",
+            "command": "node --test tests/standard1340-effects.test.mjs",
+            "seconds": 1.994
           },
           "regression": {
-            "passed": 60,
-            "log": "/tmp/duema-uncapped/benzo-complete.log",
-            "command": "node --test --test-concurrency=2 tests/standard{637,1207,1224,1303,1337,1338,1339}-effects.test.mjs",
-            "seconds": 9.59
+            "passed": 93,
+            "log": "/tmp/duema-uncapped/manifest-regression.log",
+            "command": "node --test --test-concurrency=2 tests/standard{1052,1084,1131,1148,1187,1335,1336,1340}-effects.test.mjs tests/sasage-neo-evolution.test.mjs",
+            "seconds": 16.53
           },
           "check": {
             "status": "passed",
             "command": "npm run check",
-            "log": "/tmp/duema-uncapped/benzo-check-final.log",
-            "rulesBlob": "61b48a1a50834565bf8e62b1848d50bdade535a4"
+            "log": "/tmp/duema-uncapped/manifest-check.log",
+            "rulesBlob": "7df5d73ee049a92531372d709c48ebdb8fff1161"
           },
           "audit": {
             "status": "passed",
             "command": "node tools/audit-card-support.mjs",
-            "log": "/tmp/duema-uncapped/benzo-audit.log"
+            "log": "/tmp/duema-uncapped/manifest-audit.log"
           }
         },
         "resolvedRegistered": 1,
-        "remainingRegistered": 38,
+        "remainingRegistered": 37,
         "remainingPrints": 1,
-        "remainingIndividualCards": 33
+        "remainingIndividualCards": 32
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
@@ -539867,8 +539936,8 @@
             "plan": "/tmp/duema-uncapped/fixture-plan.json",
             "results": "/tmp/duema-uncapped/fixture-results.jsonl",
             "plannedGroups": 53,
-            "completedGroups": 26,
-            "passedGroups": 26,
+            "completedGroups": 31,
+            "passedGroups": 31,
             "status": "実行中"
           },
           "aiCoverage": {

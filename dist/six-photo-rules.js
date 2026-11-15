@@ -78,7 +78,12 @@ export function createSixPhotoRules(api){
  function seedWatches548(s,p,y,{selfMuted=false,prospective=false}={}){
   if(y.sealed||!matches(s,p,y,{g295Tamaseed:true}))return[];
   const rows=prospective&&!s.players[p].battle.includes(y)?[...s.players[p].battle,y]:s.players[p].battle;
-  return rows.flatMap(x=>{const w=!x.sealed&&effective(x,s).g548SeedEntry,self=x.uid===y.uid;return w&&!(self&&selfMuted)&&(self&&w.selfAlways||matches(s,p,y,w.filter))?[{x,defs:w.defs}]:[];});
+  return rows.flatMap(x=>{
+   const w=!x.sealed&&effective(x,s).g548SeedEntry,self=x.uid===y.uid;
+   if(!w||self&&selfMuted||!(self&&w.selfAlways||matches(s,p,y,w.filter)))return [];
+   const defs=w.captureSeed?w.defs.map(d=>({...d,seed:{uid:y.uid,incarnation:y.incarnation||0}})):w.defs;
+   return [{x,defs}];
+  });
  }
  // Only public counts are projected; an unknown library order is never consulted.
  function entryPlan549(s,p,c,source){
@@ -906,6 +911,7 @@ export function createSixPhotoRules(api){
  function countPower(s,x,c,attacking=false,t=c.g207CountPower){if(!t)return 0;const owner=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));
   if(!t||owner<0||x.sealed||c.type!=='creature'||t.evolution&&!api.isEvolution(x)||t.attackOnly&&!attacking||t.turn==='own'&&s.active!==owner||t.turn==='opponent'&&s.active===owner)return 0;
   const owners=t.both?[0,1]:[t.opponent?1-owner:owner];
+  if(t.zone==='under')return t.amount*(x.under||[]).flatMap(api.allLayers).length;
   if(t.graveName)return t.amount*graveNameCount698(s,owners,t.graveName);
   if(t.zone==='shields')return t.amount*owners.reduce((n,p)=>n+(typeof s.players[p].shields==='number'?s.players[p].shields:t.g333ShieldCards?s.players[p].shields.reduce((n,x)=>n+api.shieldCards(x).length,0):s.players[p].shields.length),0);
   const rows=owners.flatMap(p=>(s.players[p][t.zone]||[]).map(y=>({p,y}))).filter(({y})=>!t.other||y.uid!==x.uid);
@@ -5742,6 +5748,28 @@ export function createSixPhotoRules(api){
   ]);
   break;
  }
+ case'g34_FinalSeed1340':{
+  const host=live(s,t),x=live(s,{...t,...t.seed});
+  if(host&&!host.sealed&&x&&x!==host&&!x.sealed&&matches(s,t.p,x,{g295Tamaseed:true}))
+   choice(s,t,'出たタマシードをこのクリーチャーの下に置く？',[opt('下に置く',true,15,x.cardId),skip()]);
+  break;
+ }
+ case'g34_FinalTurn1340':{
+  const host=live(s,t),picked=t.picked||[];
+  const cards=host&&!host.sealed?(host.under||[]).flatMap(api.allLayers):[];
+  if(cards.length<6||!picked.every(uid=>cards.some(x=>x.uid===uid)))break;
+  if(picked.length===6){
+   const order=api.shuffled(picked,Math.floor(api.random(s)*4294967296));
+   for(const uid of order)api.moveBattleCard(s,t.p,uid,'deck',{controller:t.p});
+   if(api.canAddTurn(s,t.p)){
+    (s.extraTurns??=[]).push({player:t.p,source:t.source});
+    api.log(s,t.p,'extraTurn','このターンの後、もう一度自分のターンを行う',{cardId:t.source});
+   }
+  }else choice(s,t,'山札の下に置くカードを6枚選ぶ（'+picked.length+'枚選択済み）',[
+   ...cards.filter(x=>!picked.includes(x.uid)).map(x=>opt(x.faceDown?'裏向きのカード':card(x).name,x.uid,12,x.faceDown?undefined:x.cardId)),skip()
+  ]);
+  break;
+ }
  case'g34_BenzoSide1339':{
   (s.extLimits??=[]).push({kind:'g1339ShieldTriggers',expires:'start',who:t.p,controller:t.p});
   const frame=s.extSpells?.find(f=>f.inst.uid===t.uid);
@@ -6197,6 +6225,12 @@ export function createSixPhotoRules(api){
  case'g34_PowerSweep696':start(s,t,[{op:'Sweep',both:true,to:'grave',filter:{creature:true,...(v>0?{minPower:v}:{}),maxPower:v,g199Power:true}}]);break;
  case'g34_CostSweep596':start(s,t,[{op:'Sweep',to:'grave',filter:{creature:true,min:v,max:v}}]);break;
  case'g34_GraveHandMana771':put(s,{...t,picks:[...(t.picks||[]),v]});break;
+ case'g34_FinalSeed1340':
+  if(v)put(s,task('g47_AttachOrder',t.p,t.source,{host:{uid:t.uid,incarnation:t.incarnation||0},targetRef:t.seed,ordered:[]}));
+  break;
+ case'g34_FinalTurn1340':
+  if(v)put(s,{...t,picked:[...(t.picked||[]),v]});
+  break;
  case'g34_ClanAttack1338':{
   const host=sourceHost474(s,t)?.x;
   if(!v||!clanSpellOptions1338(s,t,host).some(({value})=>value.uid===v.uid&&value.face===v.face))break;
