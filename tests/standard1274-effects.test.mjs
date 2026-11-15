@@ -92,6 +92,29 @@ for(const shako of [false,true])test('fixed zero power repeats the replacement t
  assert.equal(e.power(x,false,s),0);
 });
 
+test('fixed zero power with a protected empty library requires a rematch (QA40600)',()=>{
+ const s=field(),x=add(s,1,'battle',TAKONCHU),mondo=add(s,0,'hand','dm23rp1-S3');
+ give(s,0,'deck',Array(10).fill(NATURE));
+ play(s,mondo,a=>a.face===1);
+ drain(s);
+ const drawn=s.players[0].deck.map(y=>y.uid);
+ assert.equal(drawn.length,5);
+ const physical=e.physicalCards(s).map(y=>y.uid).sort(),initialHand=s.players[0].hand.map(y=>y.uid);
+ const zero=add(s,0,'hand',ZERO);
+ play(s,zero);pick(s,x.uid);
+ assert.deepEqual(s.players[0].hand.map(y=>y.uid),[...initialHand,...drawn]);
+ assert.deepEqual(e.physicalCards(s).map(y=>y.uid).sort(),[...physical,zero.uid].sort());
+ assert.equal(s.winner,null);
+ assert.equal(s.phase,'rematch');
+ assert.equal(s.decision,null);
+ assert.equal(e.power(x,false,s),0);
+ assert.equal(s.log.filter(row=>row.type==='rematch').length,1);
+ const saved=structuredClone(s);
+ assert.deepEqual(e.getLegalActions(saved),[]);
+ assert.equal(e.chooseAI(saved),null);
+ assert.throws(()=>e.step(saved,0),/選択できない行動/);
+});
+
 test('simultaneous destruction determines Dis Penter eligibility before Takonchu gains power (QA39667)',()=>{
  const s=field(),x=add(s,1,'battle',TAKONCHU),penter=add(s,1,'battle',PENTER);
  for(let i=0;i<4;i++)add(s,0,'battle',WATER);

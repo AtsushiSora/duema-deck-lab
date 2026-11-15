@@ -36,6 +36,26 @@ function harness(){
  vm.runInContext(app,ctx);const read=c=>vm.runInContext(c,ctx);read("registry=fixtureRegistry;cards=registry.cards;battleCards=fixtureData.cards;environmentDecks=fixtureSources;saved={decks:[{...structuredClone(PRESETS[0]),id:'mine',name:'自分'}],friends:[],history:[],selected:'mine'};loadTournamentSources=async()=>{};render=()=>{};scheduleAI=()=>{};");
  return {read,root,dialog,toast,fields,workers,writes,timers,change:async(id,value)=>listeners.change({target:{id,value,matches:()=>false}}),click:async(action,extra={})=>{const b={dataset:{action,...extra},closest:()=>null};await listeners.click({target:{closest:()=>b}});}};
 }
+test('a forced rematch starts with the same tournament seat and leaves records unchanged',async()=>{
+ const h=harness();
+ h.read("saved.localTournament=createLocalTournament({id:'cup',deck:saved.decks[0],opponents:environmentDecks,size:4,seed:9,first:'second'});startTournamentHumanMatch();Object.assign(battle.state,{phase:'rematch',winner:null,reason:'強制ループのため再試合が必要です'});recordManualOutcome();checkpointTournamentBattle();");
+ const snapshot=()=>h.read("JSON.stringify([battle.decks,battle.tournamentId,battle.tournamentMatchId,battle.state.first,saved.localTournament,saved.history,saved.manualResults])");
+ const before=snapshot(),game=h.read('battle.manualGame');
+ const html=h.read("manualScreenHTML(battle.state,{spectator:false,tournament:true,mobile:true,mobilePanel:'actions'},{art:()=>'',icon:()=>'',displayCard:battleCard})");
+ assert.match(html,/data-action="battle-rematch"/);
+ assert.doesNotMatch(html,/最強CPU撃破|勝利！/);
+ await h.click('battle-rematch');
+ assert.equal(snapshot(),before);
+ assert.notEqual(h.read('battle.manualGame'),game);
+ assert.equal(h.read('battle.state.phase'),'charge');
+ assert.equal(h.read('battle.state.winner'),null);
+});
+test('CPU forced rematches keep the first player and cannot award an unresolved bracket win',()=>{
+ const calls=[],stub=(_d,o)=>{calls.push(o);return {phase:calls.length===2?'main':'rematch',winner:calls.length===2?1:null,...o};};
+ assert.equal(simulateTournamentMatch([],{seed:7,first:1},stub).winner,1);
+ assert.deepEqual(calls.map(o=>o.first),[1,1]);
+ assert.throws(()=>simulateTournamentMatch([],{seed:7,first:1},()=>({phase:'rematch',winner:null})),/再試合/);
+});
 test('app creates only valid unique opponents and reports insufficient random candidates without replacing an existing cup',()=>{const h=harness();h.read("initializeTournamentDraft();tournamentDraft.size=4;tournamentDraft.first='second';createTournamentFromForm()");assert.equal(h.read('saved.localTournament.size'),4);assert.equal(h.read('saved.localTournament.first'),'second');assert.equal(h.read('new Set(saved.localTournament.players.map(p=>deckSignature(p.deck))).size'),4);const before=h.read('JSON.stringify(saved.localTournament)');h.read("initializeTournamentDraft();tournamentDraft.size=4;tournamentDraft.candidates=tournamentDraft.candidates.slice(0,3)");assert.throws(()=>h.read('createTournamentFromForm()'),/参加数を減らす/);assert.equal(h.read('JSON.stringify(saved.localTournament)'),before);});
 test('app result random button retains the started own deck and practice, changes opponent and leaves saved decks intact',async()=>{const h=harness();h.read("beginManualBattle(saved.decks[0],environmentDecks[0],{practice:true});battle.challengeId='shobu';battle.challengeGame=battle.manualGame;battle.state.winner=0;const oldId=battle.manualGame;const originalDecks=JSON.stringify(saved.decks);recordManualOutcome()");await h.click('manual-random-opponent');assert.equal(h.read('battle.decks[0].id'),'mine');assert.equal(h.read('battle.practice'),true);assert.equal(h.read('battle.challengeId'),undefined);assert.equal(h.read('battle.state.winner'),null);assert.equal(h.read('battle.manualGame!==oldId'),true);assert.equal(h.read('deckSignature(battle.decks[1])!==deckSignature(environmentDecks[0])'),true);assert.equal(h.read('JSON.stringify(saved.decks)===originalDecks'),true);assert.equal(h.read('Object.values(saved.manualResults).reduce((n,v)=>n+(v.wins||0),0)'),1);});
 test('CPU completion starts the human match only in the tournament view and preserves selected first-player preference',()=>{const h=harness();h.read("saved.localTournament=createLocalTournament({id:'cup',deck:saved.decks[0],opponents:environmentDecks,size:4,seed:9,first:'second'});view='tournament';advanceLocalTournament()");assert.equal(h.workers.length,1);const w=h.workers[0];assert.equal(w.job.jobs.length,1);const job=w.job.jobs[0];w.emit({type:'result',matchId:job.id,winner:0,reason:'決着'});w.emit({type:'done'});assert.equal(h.read('battle.tournamentId'),'cup');assert.equal(h.read('battle.state.first'),1);assert.equal(h.read('battle.practice'),false);assert.equal(h.read('view'),'manual');assert.equal(w.stopped,true);});

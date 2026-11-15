@@ -49,7 +49,7 @@ export function aiResultCues(before,s,{opponentOnly=false,spectator=false}={}){
 export function createAIPlayback({getState,isActive=()=>true,isBlocked=()=>false,onChange=()=>{},timer=setTimeout,cancelTimer=clearTimeout,legal=getLegalActions,choose=null,cancelChoose=()=>{},disposeChoose=()=>{},cards=null,execute=step,speed='normal',spectator=false}={}){
  const chooser=!choose&&cards&&typeof Worker!=='undefined'?createAIDecision({cards}):null,pick=choose||(chooser?s=>chooser.choose(s):chooseAI);
  let currentSpeed=AI_SPEEDS[speed]?speed:'normal',paused=false,cue=null,queue=[],plan=null,handle=null,generation=0,disposed=false,position=0,total=0,thinking=false,thinkingGeneration=0;
- const active=()=>!disposed&&isActive(),aiTurn=()=>{const s=getState();return s&&s.winner===null&&(spectator||(s.decision?.player??s.active)===1);};
+ const active=()=>!disposed&&isActive(),aiTurn=()=>{const s=getState();return s&&s.phase!=='rematch'&&s.winner===null&&(spectator||(s.decision?.player??s.active)===1);};
  const clear=()=>{generation++;if(handle!==null)cancelTimer(handle);handle=null;};
  const snapshot=()=>({spectator,speed:currentSpeed,paused,cue,position,total,thinking,hasNext:thinking||!!plan||queue.length>0||!!aiTurn(),pending:queue.length+(plan?1:0)});
  const notify=()=>onChange(snapshot());

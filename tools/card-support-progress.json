@@ -490353,6 +490353,61 @@
       "remainingRegistered": 27,
       "remainingPrints": 1,
       "remainingIndividualCards": 26
+    },
+    {
+      "phase": 1350,
+      "baseline": "49d35e5b",
+      "before": 8037,
+      "supported": 8037,
+      "duplicates": 0,
+      "added": [],
+      "printAliases": 0,
+      "results": {
+        "integration": {
+          "passed": 13,
+          "log": "/tmp/duema-uncapped/takonchu-rematch-integration.log"
+        },
+        "regression": {
+          "passed": 9,
+          "log": "/tmp/duema-uncapped/takonchu-rematch-rules.log"
+        },
+        "additionalRegression": {
+          "status": "running",
+          "passed": null,
+          "failed": null,
+          "log": "/tmp/duema-uncapped/takonchu-rematch-regression.log"
+        },
+        "check": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "/tmp/duema-uncapped/takonchu-rematch-check.log",
+          "rulesBlobs": {
+            "dist/engine.js": "5a467caa32d454b72f40ab9747c2157645e5aefe",
+            "dist/app.js": "d290385075c93c6734e4d9956efcd659e244709c",
+            "dist/manual-ui.js": "f0c0b1f520b45eb781abb5b4647f681d0da593be",
+            "dist/online-ui.js": "0c0d3e4b32163a27af02c45364cd6802eca8e4fb",
+            "dist/ai-playback.js": "2f2c13dda5dad686a449c62bc23ebe05e2947796",
+            "dist/tournament-simulation.js": "9bd0a8b70afd46e01d7ef24dacde07db37a1fd85",
+            "server/duel-core.mjs": "f621889a0a9db63bb0388b1a4106f4f74d9b1dda"
+          }
+        },
+        "audit": {
+          "status": "passed",
+          "command": "node tools/audit-card-support.mjs",
+          "log": "/tmp/duema-uncapped/takonchu-rematch-audit.log"
+        },
+        "nameKey": {
+          "rows": 8037,
+          "count": 8037,
+          "duplicates": 0,
+          "log": "/tmp/duema-uncapped/takonchu-rematch-namekey.log"
+        }
+      },
+      "resolvedRegistered": 1,
+      "remainingRegistered": 26,
+      "remainingPrints": 1,
+      "remainingIndividualCards": 25,
+      "next": "分割ログを集計し、No.11ワーカーの固定31件を実デッキ一覧に合わせる。現在の同一テストの終了を待ち、既存の乱数と先攻を保って対戦相手単位に確認する。個別は未対応の共通処理と公式資料の照合を継続。"
     }
   ],
   "resume": {
@@ -490360,7 +490415,7 @@
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "The ジョラゴン・ガンマスターの固有・回帰は通過。QA 40828はオーラの共通処理が実装された後に再現する。分割ログをテスト名で集計し、長時間対戦とワーカーの完了を確認する。",
+    "steps": "タコンチュの強制ループは競技規定4.5の再試合まで検証済み。通常登録は停止したまま、未検証25種類、分割の未完了テスト、No.11の集計不一致を確認する。No.11は先に実行中の同一テストを終了まで待ち、対戦相手単位で検証する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -535676,7 +535731,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別26種類に関する裁定27件と金箔再録1件、および分割した長時間対戦・ワーカーの検証が残る。mainのpushに連動して .github/workflows/netlify.yml がNetlify本番を更新する構成があり、Netlifyへ影響しないPages公開経路は未確認。",
+        "reason": "個別25種類に関する裁定26件と金箔再録1件、および分割した長時間対戦・ワーカーの検証が残る。mainのpushに連動して .github/workflows/netlify.yml がNetlify本番を更新する構成があり、Netlifyへ影響しないPages公開経路は未確認。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -536426,6 +536481,57 @@
             "https://dm.takaratomy.co.jp/rule/qa/45073/"
           ],
           "result": "覚醒連結 XXDDZのEXライフ・シールドを作り、実物の両面サイキックをP侵略で同じ攻撃中に重ねた。進化元にひも付くシールドを墓地に置いて、相手の呪文を禁止した。宣言が不要なことと途中状態をJSONから復元する経路も確認した。"
+        },
+        {
+          "cardId": "dmr20-003",
+          "dependencyIds": [
+            "dmex15-b025",
+            "dm23rp1-S3"
+          ],
+          "test": "パワーが0に固定され、山札切れで敗北しない場合の強制ループと競技上の再試合。",
+          "source": "https://dm.takaratomy.co.jp/img/dm_competition_rule_20250501.pdf",
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/40600/",
+            "https://dm.takaratomy.co.jp/img/dm_competition_rule_20250501.pdf#page=24"
+          ],
+          "previousReproduction": {
+            "commit": "125ea7e1",
+            "cards": [
+              "dm23rp1-S3",
+              "dmex15-b025",
+              "dmr20-003"
+            ],
+            "steps": "先攻がder’Zen Mondoの呪文側を唱え、山札を0枚にし敗北防止を有効にする。相手のタコンチュを永遠の無でパワー0にする。",
+            "observed": {
+              "p0Deck": 0,
+              "p0Hand": 5,
+              "protected": true,
+              "power": 0,
+              "replacementCount": 3,
+              "winner": null,
+              "phase": "main",
+              "reason": "",
+              "canContinueAttackPhase": true
+            },
+            "log": "/tmp/duema-uncapped/forced-loop-125ea7e1.log",
+            "expected": "両者に選択肢がない強制ループでは競技イベント運営ルール4.5に従って進行中のゲームを中断し再試合する。",
+            "compatibility": "対戦の状態と結果には2人の勝者か継続中しか表せない。再試合の結果、通信と履歴の扱いは今回未変更。",
+            "officialRelatedSources": [
+              "https://dm.takaratomy.co.jp/rule/rulechange/",
+              "https://dm.takaratomy.co.jp/rule/qa/40600/",
+              "https://dm.takaratomy.co.jp/rule/qa/43220/"
+            ]
+          },
+          "result": "der’Zen Mondoの呪文側で山札切れによる敗北を防止し、永遠の無で相手のタコンチュをパワー0に固定。残る5枚のドロー後に強制ループで再試合となり、勝者なし、追加の合法行動なし、物理カードの総数も一致。保護なしの山札切れとシャコガイルの特殊勝利、手動大会の同じデッキ・先攻での再試合と戦績の維持、暗号化オンライン対戦での両者への表示を確認。",
+          "paths": [
+            "tests/standard1274-effects.test.mjs",
+            "tests/local-tournament.test.mjs",
+            "tests/online-server.test.mjs"
+          ],
+          "logs": [
+            "/tmp/duema-uncapped/takonchu-rematch-rules.log",
+            "/tmp/duema-uncapped/takonchu-rematch-integration.log"
+          ]
         }
       ],
       "remainingRegistered": [
@@ -536594,6 +536700,15 @@
               "https://dm.takaratomy.co.jp/rule/qa/31602/"
             ],
             "reason": "DGの能力では両者のS・トリガー、G・ストライク、S・バックの宣言を済ませてからシールドを同時に手札に加え、サバキZの宣言と各プレイヤーの解決へ進む。現在の片側ずつのブレイク処理だけではこの順序を再現できない。"
+          },
+          "dependencyReadiness": {
+            "sources": [
+              "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-dg01",
+              "https://dm.takaratomy.co.jp/rule/qa/45078/",
+              "https://dm.takaratomy.co.jp/rule/qa/44100/",
+              "https://dm.takaratomy.co.jp/rule/qa/45139/"
+            ],
+            "finding": "DGの登場時・タップ時で両者のシールドを同時にブレイクする。両者の宣言を先にターン順で行い、その後両者の手札に移動してサバキZを宣言する。現行のcommitShieldBreakは片側をすぐ手札に移すため、2つの個別ブレイクで代用せず、両側の宣言と移動を分ける共通処理が必要。"
           }
         },
         {
@@ -536631,43 +536746,6 @@
           "test": "《緊縛の影バインド・シャドウ》と《アカシック・パラレル》がいる状況で、後者が《天災 デドダム》を選んだ後にマニフェストへ進化しても、手札での水文明を参照しアンタップで出る。",
           "reason": "QA40912。マニフェストの進化自体は検証済み。《アカシック・パラレル》が未実装のため、カード名と登場時の特性をコピーする実カードとの組み合わせは未検証。",
           "source": "https://dm.takaratomy.co.jp/rule/qa/40912/"
-        },
-        {
-          "cardId": "dmr20-003",
-          "dependencyIds": [
-            "dmex15-b025"
-          ],
-          "test": "パワーが0に固定され、山札切れで敗北しない場合の強制ループと競技上の再試合。",
-          "reason": "山札とパワーが変化しない場合は自動再処理の反復を打ち切る。競技規定4.5の再試合への移行は現行の対戦終了処理では未検証。",
-          "source": "https://dm.takaratomy.co.jp/img/dm_competition_rule_20250501.pdf",
-          "latestReproduction": {
-            "commit": "125ea7e1",
-            "cards": [
-              "dm23rp1-S3",
-              "dmex15-b025",
-              "dmr20-003"
-            ],
-            "steps": "先攻がder’Zen Mondoの呪文側を唱え、山札を0枚にし敗北防止を有効にする。相手のタコンチュを永遠の無でパワー0にする。",
-            "observed": {
-              "p0Deck": 0,
-              "p0Hand": 5,
-              "protected": true,
-              "power": 0,
-              "replacementCount": 3,
-              "winner": null,
-              "phase": "main",
-              "reason": "",
-              "canContinueAttackPhase": true
-            },
-            "log": "/tmp/duema-uncapped/forced-loop-125ea7e1.log",
-            "expected": "両者に選択肢がない強制ループでは競技イベント運営ルール4.5に従って進行中のゲームを中断し再試合する。",
-            "compatibility": "対戦の状態と結果には2人の勝者か継続中しか表せない。再試合の結果、通信と履歴の扱いは今回未変更。",
-            "officialRelatedSources": [
-              "https://dm.takaratomy.co.jp/rule/rulechange/",
-              "https://dm.takaratomy.co.jp/rule/qa/40600/",
-              "https://dm.takaratomy.co.jp/rule/qa/43220/"
-            ]
-          }
         },
         {
           "cardId": "dmr21-004",
@@ -538656,7 +538734,7 @@
           "name": "行くよー！アオハル、ハイチーズ！"
         }
       ],
-      "remainingTestsSummary": "全8,014種類の合法経路を17区間で通過。借用した登場時処理2539件、No20の48対戦、手動対戦UIの30シード・1225場面も実測で通過。残る長時間対戦とワーカー試験は対戦相手・シード単位で検証を継続。一括のnpm testは中断・合否未確認。",
+      "remainingTestsSummary": "独立した分割記録と再検証の通過を追記。未完了の長時間対戦とワーカーを継続中。一括のnpm testは中断・合否未確認。",
       "advanceImplementation": {
         "status": "implemented",
         "phases": [
@@ -538709,48 +538787,58 @@
       },
       "latestVerificationBatch": {
         "phase": 1350,
-        "baseline": "ce09582c",
-        "before": 8036,
+        "baseline": "49d35e5b",
+        "before": 8037,
         "supported": 8037,
         "duplicates": 0,
-        "added": [
-          {
-            "id": "dmrp09-m01",
-            "name": "The ジョラゴン・ガンマスター"
-          }
-        ],
-        "printAliases": 3,
+        "added": [],
+        "printAliases": 0,
         "results": {
-          "focus": {
-            "passed": 5,
-            "log": "/tmp/duema-uncapped/gamma-focus.log",
-            "command": "node --test --test-reporter=spec tests/standard1350-effects.test.mjs",
-            "seconds": 7.996
+          "integration": {
+            "passed": 13,
+            "log": "/tmp/duema-uncapped/takonchu-rematch-integration.log"
           },
           "regression": {
-            "passed": 247,
-            "log": "/tmp/duema-uncapped/gamma-regression.log",
-            "command": "node --test --test-concurrency=2 --test-reporter=spec tests/standard{460,539,1010,1137,1209,1223,1226,1326,1349,1350}-effects.test.mjs",
-            "seconds": 180.69
+            "passed": 9,
+            "log": "/tmp/duema-uncapped/takonchu-rematch-rules.log"
+          },
+          "additionalRegression": {
+            "status": "running",
+            "passed": null,
+            "failed": null,
+            "log": "/tmp/duema-uncapped/takonchu-rematch-regression.log"
           },
           "check": {
             "status": "passed",
             "command": "npm run check",
-            "log": "/tmp/duema-uncapped/gamma-check.log",
+            "log": "/tmp/duema-uncapped/takonchu-rematch-check.log",
             "rulesBlobs": {
-              "dist/six-photo-rules.js": "91676880a8f4475f3ee9667cf9029cfc534b0c31"
+              "dist/engine.js": "5a467caa32d454b72f40ab9747c2157645e5aefe",
+              "dist/app.js": "d290385075c93c6734e4d9956efcd659e244709c",
+              "dist/manual-ui.js": "f0c0b1f520b45eb781abb5b4647f681d0da593be",
+              "dist/online-ui.js": "0c0d3e4b32163a27af02c45364cd6802eca8e4fb",
+              "dist/ai-playback.js": "2f2c13dda5dad686a449c62bc23ebe05e2947796",
+              "dist/tournament-simulation.js": "9bd0a8b70afd46e01d7ef24dacde07db37a1fd85",
+              "server/duel-core.mjs": "f621889a0a9db63bb0388b1a4106f4f74d9b1dda"
             }
           },
           "audit": {
             "status": "passed",
             "command": "node tools/audit-card-support.mjs",
-            "log": "/tmp/duema-uncapped/gamma-audit.log"
+            "log": "/tmp/duema-uncapped/takonchu-rematch-audit.log"
+          },
+          "nameKey": {
+            "rows": 8037,
+            "count": 8037,
+            "duplicates": 0,
+            "log": "/tmp/duema-uncapped/takonchu-rematch-namekey.log"
           }
         },
-        "resolvedRegistered": 0,
-        "remainingRegistered": 27,
+        "resolvedRegistered": 1,
+        "remainingRegistered": 26,
         "remainingPrints": 1,
-        "remainingIndividualCards": 26
+        "remainingIndividualCards": 25,
+        "next": "分割ログを集計し、No.11ワーカーの固定31件を実デッキ一覧に合わせる。現在の同一テストの終了を待ち、既存の乱数と先攻を保って対戦相手単位に確認する。個別は未対応の共通処理と公式資料の照合を継続。"
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
@@ -540828,8 +540916,8 @@
         "command": "python3 /tmp/duema-uncapped/run-tests.py",
         "reason": "ユーザー指示により時間上限を解除。未確認テスト名をフィルタ指定し、前の一括実行は中断・合否未確認のまま保持。",
         "snapshot": {
-          "completeGroups": 22,
-          "passedNamedTests": 42,
+          "completeGroups": 27,
+          "passedNamedTests": 55,
           "failedNamedTests": 2,
           "enginePairings": {
             "seconds": 643.82,
@@ -540888,17 +540976,26 @@
           },
           "latestTestSplit": {
             "commit": "7c13d049",
-            "completedGroups": 181,
-            "passedNamedTests": 237,
-            "failedGroups": [],
+            "completedGroups": 194,
+            "passedNamedTests": 292,
+            "failedGroups": [
+              {
+                "path": "tests/hachi-effects.test.mjs",
+                "failed": [
+                  "No11 production worker completes62 games against all31 opponents"
+                ],
+                "log": "/tmp/duema-uncapped/current-logs/0029.log"
+              }
+            ],
             "result": "互いに重複しない完了ログを集計。長時間の対戦と本番ワーカーを含む未完了の実行は継続中。",
             "command": "python3 /tmp/duema-uncapped/run-current.py",
             "log": "/tmp/duema-uncapped/current-results.jsonl"
           },
           "aggregateByExactName": {
             "planned": 818,
-            "passed": 277,
-            "result": "二つの固定コミットのログで、パスとテスト名が一致する通過を重複なしで数えた。大会フィクスチャを修正した改名ケースは別の分割記録に保存。"
+            "passed": 335,
+            "result": "二つの固定コミットのログで、パスとテスト名が一致する通過を重複なしで数えた。大会フィクスチャを修正した改名ケースは別の分割記録に保存。",
+            "remaining": 483
           },
           "armoredLong": {
             "commit": "3f87d5f0",
@@ -541033,7 +541130,61 @@
               "seconds": 90.15,
               "log": "/tmp/duema-uncapped/current-logs/0027.log"
             }
-          ]
+          ],
+          "rematchVerification": {
+            "integration": {
+              "passed": 13,
+              "log": "/tmp/duema-uncapped/takonchu-rematch-integration.log"
+            },
+            "regression": {
+              "passed": 9,
+              "log": "/tmp/duema-uncapped/takonchu-rematch-rules.log"
+            },
+            "additionalRegression": {
+              "status": "running",
+              "passed": null,
+              "failed": null,
+              "log": "/tmp/duema-uncapped/takonchu-rematch-regression.log"
+            },
+            "check": {
+              "status": "passed",
+              "command": "npm run check",
+              "log": "/tmp/duema-uncapped/takonchu-rematch-check.log",
+              "rulesBlobs": {
+                "dist/engine.js": "5a467caa32d454b72f40ab9747c2157645e5aefe",
+                "dist/app.js": "d290385075c93c6734e4d9956efcd659e244709c",
+                "dist/manual-ui.js": "f0c0b1f520b45eb781abb5b4647f681d0da593be",
+                "dist/online-ui.js": "0c0d3e4b32163a27af02c45364cd6802eca8e4fb",
+                "dist/ai-playback.js": "2f2c13dda5dad686a449c62bc23ebe05e2947796",
+                "dist/tournament-simulation.js": "9bd0a8b70afd46e01d7ef24dacde07db37a1fd85",
+                "server/duel-core.mjs": "f621889a0a9db63bb0388b1a4106f4f74d9b1dda"
+              }
+            },
+            "audit": {
+              "status": "passed",
+              "command": "node tools/audit-card-support.mjs",
+              "log": "/tmp/duema-uncapped/takonchu-rematch-audit.log"
+            },
+            "nameKey": {
+              "rows": 8037,
+              "count": 8037,
+              "duplicates": 0,
+              "log": "/tmp/duema-uncapped/takonchu-rematch-namekey.log"
+            },
+            "source": "https://dm.takaratomy.co.jp/rule/qa/40600/"
+          },
+          "hachiWorker": {
+            "commit": "7c13d049",
+            "log": "/tmp/duema-uncapped/current-logs/0029.log",
+            "seconds": 2170.32,
+            "status": "テスト失敗・個々の対戦結果は未検証",
+            "actualOpponents": 49,
+            "expectedOpponents": 31,
+            "plannedGameOutputs": 98,
+            "shardPlan": "/tmp/duema-uncapped/no11-worker-shards.json",
+            "reason": "本番ワーカーはエラーを出さず、49件への結果を返した。テストが固定31件を期待し、各対戦の決着を検査する前に停止。",
+            "next": "旧スナップショットで同一の長時間テストが実行中。追加起動せず、終了後に対戦相手ごとに旧シードを保持して結果を検証する。"
+          }
         },
         "latestRegisteredRulings": {
           "phase": 1349,

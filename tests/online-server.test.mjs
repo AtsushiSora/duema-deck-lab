@@ -43,6 +43,34 @@ test('No08 accepts both accounts and finishes with80 unique cards after every en
 test('online stacked shields expose group size and faceup cards only to either account',async()=>{const h=setup(),{code}=await h.start(),raw=h.raw(code),own=raw.game.players[0],hidden=own.shields[0],face=own.deck.shift();face.faceUp=true;face.shieldCardOnly=true;hidden.shieldGroup=hidden.uid;hidden.shieldStack=[face];h.rooms.get(code).doc=sealRoom(raw,key);for(const user of[host,guest]){const v=await h.service.get(code,user,user.uid),p=v.game.players[0],json=JSON.stringify(v);assert.equal(p.shieldCount,5);assert.equal(p.shieldGroups[0].cardCount,2);assert.deepEqual(p.faceUpShields.map(x=>x.uid),[face.uid]);assert.ok(json.includes(face.uid));assert.ok(!json.includes(hidden.uid));assert.ok(!Object.hasOwn(p.faceUpShields[0],'shieldStack'));}});
 
 test('No04 accepts both accounts and finishes with80 unique cards after every encrypted move',async()=>{const {data,snapshot,details}=await import('./target-fixture.mjs'),{createCatalogue}=await import('../dist/catalogue.js'),{resolveStarter25Decks}=await import('../dist/starter25.js'),registry=createCatalogue(snapshot,data.cards,details),deck=resolveStarter25Decks(registry)[3],h=setup();const w=await h.service.create({deck,requestId:requestId('mado-host')},host,host.uid);let r=await h.service.join({code:w.code,deck,requestId:requestId('mado-guest')},guest,guest.uid);for(let n=0;n<1200&&r.phase==='playing';n++){r=await move(h,r,'mado-'+n);const raw=h.raw(r.code).game,all=e.physicalCards(raw);assert.equal(all.length,80);assert.equal(new Set(all.map(x=>x.uid)).size,80);assert.equal(r.game.players[1-r.seat].hand.length,0);}assert.equal(r.phase,'finished');assert.equal((await h.service.get(r.code,host,host.uid)).game.winner,(await h.service.get(r.code,guest,guest.uid)).game.winner);});
+test('online forced rematch finishes without a winner or draw and is visible to both players',async()=>{
+ const {inst,setup:gameFixture}=await import('./target-fixture.mjs');
+ const h=setup(),{code}=await h.start(),raw=h.raw(code),s=raw.game=gameFixture();
+ s.active=0;
+ const target=inst('dmr20-003'),mondo=inst('dm23rp1-S3'),zero=inst('dmex15-b025');
+ s.players[1].battle.push(target);s.players[0].hand.push(mondo);
+ s.players[0].deck=Array.from({length:10},()=>inst('dm01-108'));
+ e.step(s,e.getLegalActions(s).find(a=>a.kind==='play'&&a.uid===mondo.uid&&a.face===1));
+ for(let n=0;s.decision&&n<20;n++)e.step(s,e.chooseAI(s));
+ s.players[0].hand.push(zero);
+ e.step(s,e.getLegalActions(s).find(a=>a.kind==='play'&&a.uid===zero.uid));
+ const a=e.getLegalActions(s).find(a=>a.kind==='extended'&&s.decision.choices[a.choice]?.value?.uid===target.uid);
+ assert.ok(a);
+ h.rooms.get(code).doc=sealRoom(raw,key);
+ const finished=await h.service.move({code,revision:raw.revision,actionId:a.id,requestId:requestId('rematch')},host,host.uid);
+ assert.equal(finished.phase,'finished');
+ for(const user of [host,guest]){
+  const view=await h.service.get(code,user,user.uid);
+  assert.equal(view.phase,'finished');
+  assert.equal(view.game.phase,'rematch');
+  assert.equal(view.game.winner,null);
+  assert.equal(view.game.draw,false);
+  assert.match(view.game.reason,/強制ループ/);
+  assert.deepEqual(view.game.actions,[]);
+  assert.equal(await h.service.resume(user,user.uid),null);
+ }
+ await assert.rejects(h.service.move({code,revision:finished.revision,actionId:0,requestId:requestId('end')},host,host.uid),e=>e.code==='room/phase');
+});
 test('online NewWorld exposes only its public base count and use state to both accounts',async()=>{const {projectRoom}=await import('../server/duel-core.mjs'),{inst}=await import('./target-fixture.mjs'),h=setup(),{code}=await h.start(),room=h.raw(code),x=inst('dmrp08-005');x.under=[inst('dmex08-293')];x.g4WorldUsed=true;room.game.players[0].battle=[x];for(const u of[host,guest]){const v=projectRoom(room,u);assert.equal(v.game.players[0].battle[0].type,'field');assert.equal(v.game.players[0].battle[0].worldUsed,true);assert.equal(v.game.players[0].battle[0].under.length,1);assert.equal(v.game.players[1-v.seat].hand.length,0);}});
 
 test('No23 accepts both accounts and finishes with80 unique cards after every encrypted move',async()=>{const {data,snapshot,details}=await import('./target-fixture.mjs'),{createCatalogue}=await import('../dist/catalogue.js'),{resolveStarter25Decks}=await import('../dist/starter25.js'),registry=createCatalogue(snapshot,data.cards,details),deck=resolveStarter25Decks(registry)[22],h=setup();const w=await h.service.create({deck,requestId:requestId('redzone-host')},host,host.uid);let r=await h.service.join({code:w.code,deck,requestId:requestId('redzone-guest')},guest,guest.uid);for(let n=0;n<1200&&r.phase==='playing';n++){r=await move(h,r,'redzone-'+n);const raw=h.raw(r.code).game,all=e.physicalCards(raw);assert.equal(all.length,80);assert.equal(new Set(all.map(x=>x.uid)).size,80);assert.equal(r.game.players[1-r.seat].hand.length,0);}assert.equal(r.phase,'finished');assert.equal((await h.service.get(r.code,host,host.uid)).game.winner,(await h.service.get(r.code,guest,guest.uid)).game.winner);});
