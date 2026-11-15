@@ -437,6 +437,37 @@ export function createExtendedRules(api){
     const list=own[t.origin||'hand'].flatMap(x=>faces(card(x)).map((c,face)=>({x,c,face}))).filter(({c})=>(!t.creatureOnly||c.type==='creature')&&(!t.elementOnly||c.type!=='spell')&&(!t.noncreature||c.type!=='creature')&&(!t.spellOnly||c.type==='spell')&&cost(c)<=(t.max==='∞'?Infinity:t.max)&&(!t.light||colors(c).includes('光'))&&(!t.trigger||c.trigger)&&canCast(s,t.p,c,t.origin||'hand')&&(c.type==='spell'||canEnter(s,t.p,c,{origin:t.origin||'hand',execution:!t.deploy})&&(!c.evolution||evolutionBases(s,t.p,c).length)));
     choice(s,t,'コストを支払わずに使うカードを選ぶ',[...list.map(({x,c,face})=>opt(c.name,{uid:x.uid,face},15+cost(c),x.cardId)),...(t.optional!==false?[skip()]:[])]);break;
    }
+   case 'g1344MelkisBreak':{
+    const uids=t.uids.filter(uid=>api.findShield(opp,uid));
+    if(!uids.length)break;
+    if(!api.shieldBreakSource1344(s,t.defender,t.context)){
+     s.breakContext=t.context;
+     api.breakShields(s,t.defender,uids);
+     break;
+    }
+    const rows=api.shieldCards(api.findShield(opp,uids[0])).filter(x=>!x.g37ShieldHeld);
+    for(const x of rows)log(s,t.p,'reveal',c.name+'がシールドを公開：'+card(x).name,{cardId:x.cardId});
+    const spells=rows.flatMap(x=>faces(card(x)).flatMap((spell,face)=>
+     spell.type==='spell'&&api.shieldFaceHasTrigger1162(s,t.defender,x,spell)?[{uid:x.uid,face}]:[]));
+    put(s,{...t,op:'g1344MelkisSpells',uids:uids.slice(1),spells,shown:rows.map(x=>x.uid)});
+    break;
+   }
+   case 'g1344MelkisSpells':{
+    const shields=opp.shields.flatMap(api.shieldCards);
+    const choices=t.spells.flatMap(({uid,face})=>{
+     const x=shields.find(y=>y.uid===uid&&!y.g37ShieldHeld),spell=x&&faces(card(x))[face];
+     return spell&&canCast(s,t.p,spell,'shields',t.defender)?[opt(spell.name,{uid,face},10,x.cardId)]:[];
+    });
+    if(choices.length){
+     choice(s,t,'ブルー・メルキス：唱えるシールドの呪文を選ぶ',choices);
+     break;
+    }
+    const other=t.shown.filter(uid=>shields.some(x=>x.uid===uid&&!x.g37ShieldHeld));
+    const next={...t,op:'g1344MelkisBreak'};
+    if(other.length)api.interruptBreak(s,t.defender,other,next,{g842Hand:true,cardOnly:true,source:t.source,controller:t.p});
+    else put(s,next);
+    break;
+   }
    case 'stealSpell':{
     const x=api.canMoveZone(s,t.owner,'grave')&&s.players[t.owner].grave.find(x=>x.uid===t.uid);
     if(x&&faces(card(x)).some(c=>c.type==='spell'&&canCast(s,t.p,c,'grave',t.owner)))
@@ -850,6 +881,18 @@ if(f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.to='hand';f.g416S
   case 'endJagan':if(value){const x=nowCreature(s,t.p,value);if(x){put(s,task('sameName',t.p,t.source,{nameId:x.cardId}));move(s,[{player:t.p,uid:x.uid,to:'hand'}]);}}break;
   case 'sameName':if(value)put(s,task('putCreature',t.p,t.source,{uid:value,origin:'hand'}));break;
   case 'execute':if(value){const x=own[t.origin||'hand'].find(x=>x.uid===value.uid);if(t.deploy)put(s,task('putCreature',t.p,t.source,{uid:value.uid,origin:t.origin||'hand'}));else{const c=faces(card(x))[value.face];if(x&&t.bottomAfter&&c.type==='spell')x.finishTo='deck';if(c.evolution||c.neoEvolution)put(s,task('putCreature',t.p,t.source,{uid:x.uid,origin:t.origin||'hand',execution:true,face:value.face}));else cast(s,t.p,value.uid,true,null,value.face,null,t.origin||'hand','カードの能力');}}else if(t.fallbackDraw)draw(s,t.p,t.fallbackDraw);break;
+  case 'g1344MelkisSpells':{
+   const x=api.removeShieldCard(s,t.defender,value.uid);
+   put(s,{...t,spells:t.spells.filter(y=>y.uid!==value.uid),shown:t.shown.filter(uid=>uid!==value.uid)});
+   if(x){
+    clear(x,'g34Holding');
+    x.cardOwner??=t.defender;
+    x.g5Origin='shields';
+    (own.g34Holding??=[]).push(x);
+    cast(s,t.p,x.uid,true,null,value.face,null,'g34Holding','ブルー・メルキス');
+   }
+   break;
+  }
   case 'stealSpell':{
    const grave=s.players[t.owner].grave,x=value&&grave.find(x=>x.uid===t.uid);
    const face=x?faces(card(x)).findIndex(c=>c.type==='spell'&&canCast(s,t.p,c,'grave',t.owner)):-1;

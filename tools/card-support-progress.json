@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8029,
-  "pendingNames": 3797,
-  "phase": 1343,
+  "supportedNames": 8030,
+  "pendingNames": 3796,
+  "phase": 1344,
   "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2130,
+    "クリーチャー": 2129,
     "NEOクリーチャー": 70,
     "呪文": 455,
     "GRクリーチャー": 156,
@@ -224,7 +224,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1074,
-    "未対応の能力文": 2532,
+    "未対応の能力文": 2531,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
@@ -490042,14 +490042,57 @@
       "remainingRegistered": 34,
       "remainingPrints": 1,
       "remainingIndividualCards": 29
+    },
+    {
+      "phase": 1344,
+      "baseline": "6d12d70f",
+      "before": 8029,
+      "supported": 8030,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dm10-s09",
+          "name": "陽炎の守護者ブルー・メルキス"
+        }
+      ],
+      "printAliases": 1,
+      "results": {
+        "focus": {
+          "passed": 6,
+          "log": "/tmp/duema-uncapped/melkis-focus.log",
+          "command": "node --test tests/standard1344-effects.test.mjs",
+          "seconds": 1.961
+        },
+        "regression": {
+          "passed": 84,
+          "log": "/tmp/duema-uncapped/melkis-regression.log",
+          "command": "node --test --test-concurrency=1 tests/standard{1262,1231,1343,637,1339,1294,1207,1162}-effects.test.mjs",
+          "seconds": 24.898
+        },
+        "check": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "/tmp/duema-uncapped/melkis-check.log",
+          "rulesBlob": "452af54b64e40e26b6a862268b95c46dc04b45a3"
+        },
+        "audit": {
+          "status": "passed",
+          "command": "node tools/audit-card-support.mjs",
+          "log": "/tmp/duema-uncapped/melkis-audit.log"
+        }
+      },
+      "resolvedRegistered": 1,
+      "remainingRegistered": 33,
+      "remainingPrints": 1,
+      "remainingIndividualCards": 28
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1343,
+    "lastVerifiedPhase": 1344,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "ジークシュトルツとネルザの表向きシールドのG・ストライクを実カードで検証済み。残りの個別裁定と分割テストを継続する。",
+    "steps": "ブルー・メルキスとデンデン・パーカッションを実カードで検証済み。残りの個別裁定と分割テストを継続する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -490342,8 +490385,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8029,
-    "pendingNames": 3797,
+    "supportedNames": 8030,
+    "pendingNames": 3796,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -534337,8 +534380,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8029,
-      "pendingNames": 3797,
+      "supportedNames": 8030,
+      "pendingNames": 3796,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -535365,7 +535408,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別29種類（裁定34件と版固有の金箔再録1件）と長時間対戦・ワーカーの検証が継続中。mainへのpushを契機にNetlify本番を更新する .github/workflows/netlify.yml がある。Netlifyを更新せずにPagesへ公開する別経路は確認できていない。",
+        "reason": "個別28種類（裁定33件と版固有の金箔再録1件）と長時間対戦・ワーカーの検証が継続中。mainへのpushを契機にNetlify本番を更新する .github/workflows/netlify.yml がある。Netlifyを更新せずにPagesへ公開する別経路は確認できていない。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -535965,6 +536008,23 @@
             "https://dm.takaratomy.co.jp/rule/qa/39113/"
           ],
           "result": "ネルザから得たG・ストライクは、ジークシュトルツがいても表向きのカードを手札に加える際に宣言でき、攻撃制限を適用した。表向きのS・トリガーは禁止、裏向きのS・トリガーは宣言可能。パラノーマル4枚によるパワー低下を無視し、初回攻撃の表向きシールド化と、解放済みドキンダムXのシールド中の敗北無視も実カードで確認した。"
+        },
+        {
+          "cardId": "dm17-028",
+          "dependencyIds": [
+            "dm10-s09"
+          ],
+          "test": "陽炎の守護者ブルー・メルキスで相手のシールドのスパイラル・ゲートを唱え、デンデン・パーカッションを選んでも残る。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/35384/",
+          "phase": 1344,
+          "path": "tests/standard1344-effects.test.mjs",
+          "log": "/tmp/duema-uncapped/melkis-focus.log",
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa_old/35384/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/35317/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/35276/"
+          ],
+          "result": "ブルー・メルキスが相手のシールドのスパイラル・ゲートを唱え、デンデン・パーカッションを選んでも場にとどまった。呪文は持ち主の墓地へ。1シールドの複数呪文、クリーチャーのS・トリガー、唱えられない呪文の手札移動、発生源が離れた後の残りのブレイクを検証した。"
         }
       ],
       "remainingRegistered": [
@@ -536155,15 +536215,6 @@
           "source": "https://dm.takaratomy.co.jp/rule/rulechange/31649/"
         },
         {
-          "cardId": "dm17-028",
-          "dependencyIds": [
-            "dm10-s09"
-          ],
-          "test": "陽炎の守護者ブルー・メルキスで相手のシールドのスパイラル・ゲートを唱え、デンデン・パーカッションを選んでも残る。",
-          "reason": "QA35384の唱え手と所有者が異なる場合はバイオレットゾーンで検証済み。裁定にある陽炎の守護者ブルー・メルキスは未実装のため、相手のシールドのスパイラル・ゲートを唱える実物同士の再現は未検証。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa_old/35384/"
-        },
-        {
           "cardId": "dmrp20-009",
           "dependencyIds": [
             "dmex18-s03"
@@ -536348,10 +536399,11 @@
           "dmrp22-4A",
           "dmrp21-002",
           "dm23rp1-004",
-          "dmrp16-s01"
+          "dmrp16-s01",
+          "dm10-s09"
         ],
-        "officialPrints": 73,
-        "newAliases": 54,
+        "officialPrints": 75,
+        "newAliases": 55,
         "evidence": [
           {
             "id": "dm23rp2-065",
@@ -536931,6 +536983,22 @@
             "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-s01.jpg",
             "pageSha256": "011f33f2a4d4879f6daf5955f51aab2121e18f623c81c8ca3db14cfd772e8d41",
             "imageSha256": "fbf949bed197d5654bc199580345ef80fb06b842e25a2cfbb2e696932c2d0051"
+          },
+          {
+            "id": "dm10-s09",
+            "canonicalId": "dm10-s09",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-s09",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-s09.jpg",
+            "pageSha256": "74f11167e7f0a528d6dbbe15acc68e72bcf1781f8f32ef6de44f087ba2d7649a",
+            "imageSha256": "1032fa989d99b076bcfbd3308112f521233de154a19ed5a7df4a4df477c25b18"
+          },
+          {
+            "id": "dmc66-018",
+            "canonicalId": "dm10-s09",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc66-018",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc66-018.jpg",
+            "pageSha256": "b1af7e07ea691379c750a42ca744b0736b485b3619a6ee305f6ca4750fbc2bb5",
+            "imageSha256": "d8ff0cbe6f8ccc357e57ce91b0c28e9295242818d7ff61a32b28775d8da55066"
           }
         ],
         "testLog": "/tmp/duema-verify-8009/verification-followup-prints.log",
@@ -537216,8 +537284,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8029,
-        "pending": 3797,
+        "supported": 8030,
+        "pending": 3796,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -537817,7 +537885,7 @@
       "finalCheck": {
         "status": "passed",
         "command": "npm run check",
-        "log": "/tmp/duema-uncapped/zieg-shield-check.log",
+        "log": "/tmp/duema-uncapped/melkis-check.log",
         "rulesBlob": "452af54b64e40e26b6a862268b95c46dc04b45a3"
       },
       "abyssShort": {
@@ -537888,10 +537956,6 @@
         {
           "id": "dmrp11-m02",
           "name": "Code：1059"
-        },
-        {
-          "id": "dm10-s09",
-          "name": "陽炎の守護者ブルー・メルキス"
         },
         {
           "id": "dmex18-s03",
@@ -537986,54 +538050,47 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1343,
-        "baseline": "8033eecb",
-        "before": 8028,
-        "supported": 8029,
+        "phase": 1344,
+        "baseline": "6d12d70f",
+        "before": 8029,
+        "supported": 8030,
         "duplicates": 0,
         "added": [
           {
-            "id": "dmrp16-s01",
-            "name": "聖板龍 ジークシュトルツ"
+            "id": "dm10-s09",
+            "name": "陽炎の守護者ブルー・メルキス"
           }
         ],
-        "printAliases": 0,
+        "printAliases": 1,
         "results": {
           "focus": {
             "passed": 6,
-            "log": "/tmp/duema-uncapped/zieg-focus.log",
-            "command": "node --test tests/standard1343-effects.test.mjs",
-            "seconds": 2.289
+            "log": "/tmp/duema-uncapped/melkis-focus.log",
+            "command": "node --test tests/standard1344-effects.test.mjs",
+            "seconds": 1.961
           },
           "regression": {
-            "passed": 95,
-            "log": "/tmp/duema-uncapped/zieg-regression.log",
-            "command": "node --test --test-concurrency=1 tests/standard{668,1030,1162,1294,1308,1326,1328,1336,1339}-effects.test.mjs",
-            "seconds": 19.487
+            "passed": 84,
+            "log": "/tmp/duema-uncapped/melkis-regression.log",
+            "command": "node --test --test-concurrency=1 tests/standard{1262,1231,1343,637,1339,1294,1207,1162}-effects.test.mjs",
+            "seconds": 24.898
           },
           "check": {
             "status": "passed",
             "command": "npm run check",
-            "log": "/tmp/duema-uncapped/zieg-check.log",
+            "log": "/tmp/duema-uncapped/melkis-check.log",
             "rulesBlob": "452af54b64e40e26b6a862268b95c46dc04b45a3"
           },
           "audit": {
             "status": "passed",
             "command": "node tools/audit-card-support.mjs",
-            "log": "/tmp/duema-uncapped/zieg-audit.log"
+            "log": "/tmp/duema-uncapped/melkis-audit.log"
           }
         },
         "resolvedRegistered": 1,
-        "remainingRegistered": 34,
+        "remainingRegistered": 33,
         "remainingPrints": 1,
-        "remainingIndividualCards": 29,
-        "shieldSuppressionFollowup": {
-          "baseline": "88fb81d7",
-          "tests": 69,
-          "log": "/tmp/duema-uncapped/zieg-shield-regression.log",
-          "checkLog": "/tmp/duema-uncapped/zieg-shield-check.log",
-          "result": "セイント・キャッスルのブレイク置換を抑止し、城の常在・シールド設置時能力と、表向きシールドからのS革命チェンジにも同じ無視判定を適用。"
-        }
+        "remainingIndividualCards": 28
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
@@ -540126,20 +540183,20 @@
             "plan": "/tmp/duema-uncapped/fixture-plan.json",
             "results": "/tmp/duema-uncapped/fixture-results.jsonl",
             "plannedGroups": 53,
-            "completedGroups": 45,
-            "passedGroups": 45,
+            "completedGroups": 50,
+            "passedGroups": 50,
             "status": "実行中",
             "passedDeterministicGames": 114,
             "passedRandomGames": 75,
-            "passedWorkerGames": 220
+            "passedWorkerGames": 320
           },
           "historicalWorker": {
-            "result": "旧コミットで38リストのワーカー試験が完成試合0件の対戦を出した。個別の対戦ID特定を同じ乱数で実行中。",
+            "result": "champion-dmscs09a-2-original、seed 2853211514、後攻側からの第5ターンで、ゾンビポンの助の召喚・ドッコイの手札戻し・任意ドローの繰り返しにより2500手で未決着。再現ログ取得済み。",
             "log": "/tmp/duema-uncapped/logs/0014.log",
             "probe": "/tmp/duema-uncapped/champion-worker-probe.jsonl"
           },
           "aiCoverage": {
-            "result": "旧レポートの入力指紋が現行データと不一致。現行入力85デッキ255試合を再実行中。",
+            "result": "85デッキ255試合を完走、失敗0件。任意の未展開1件は保存盤面で既存の判定根拠を再確認した。現行デッキの入力指紋が一致。実行時のエンジン指紋の照合と後続差分を別途記録する。",
             "log": "/tmp/duema-uncapped/ai-audit-run.log"
           }
         }
