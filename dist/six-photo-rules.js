@@ -5742,6 +5742,12 @@ export function createSixPhotoRules(api){
   ]);
   break;
  }
+ case'g34_BenzoSide1339':{
+  (s.extLimits??=[]).push({kind:'g1339ShieldTriggers',expires:'start',who:t.p,controller:t.p});
+  const frame=s.extSpells?.find(f=>f.inst.uid===t.uid);
+  if(frame&&s.active===t.p)frame.g1339Creature=true;
+  break;
+ }
  case'g34_ClanReveal1338':{
   api.shuffleLibrary(s,t.p,[],t.source);
   const ids=look(s,{...t,n:3,public:true});
@@ -5754,6 +5760,7 @@ export function createSixPhotoRules(api){
     if(!host||host.sealed)continue;
     remove(own.deck,uid);
     clear(y,'battle');
+    y.entered=s.turn;
     (host.under??=[]).push(y);
    }else{
     remove(own.deck,uid);

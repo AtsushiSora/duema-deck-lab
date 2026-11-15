@@ -1061,6 +1061,9 @@ function allShieldTrigger1303(s,p){
  return s.players[p].battle.some(x=>!x.sealed&&!x.faceDown&&card(x).g1303AllShieldTrigger&&
   !s.g20LeavingUids?.includes(x.uid)&&isCreature(s,x)&&!abilitiesIgnored(s,x));
 }
+function allShieldTriggersToHand(s,p){
+ return allShieldTrigger1303(s,p)||s.extLimits?.some(row=>row.kind==='g1339ShieldTriggers'&&row.who===p);
+}
 function shieldTriggerWindow1303(s,p,eligibleFaces,{breaker,untapBreaker,gs=[],breaking=false}={}){
  if(s.triggers)(s.triggerStack??=[]).push(s.triggers);
  s.triggers={interrupt:breaking,player:p,undeclared:Object.keys(eligibleFaces),declared:[],entries:[],eligibleFaces,
@@ -1181,7 +1184,7 @@ function moveShields535(s,p,uids,to,{cardOnly=false,handEffects=true,replacement
   s.players[p].shields.flatMap(shieldCards).filter(x=>selected.includes(x.uid)):
   selected.flatMap(uid=>shieldCards(findShield(s.players[p],uid)))):[];
  const gsCounts=new Map(leaving.map(x=>[x.uid,shieldGStrikes(s,p,x)]));
- const grantedFaces=!noST&&leaving.length&&allShieldTrigger1303(s,p)?Object.fromEntries(leaving.flatMap(x=>{
+ const grantedFaces=!noST&&leaving.length&&allShieldTriggersToHand(s,p)?Object.fromEntries(leaving.flatMap(x=>{
   const faces=playFaces(card(x)).flatMap((face,i)=>canUseTrigger(s,p,face,null)?[i]:[]);
   return faces.length?[[x.uid,faces]]:[];
  })):{};
@@ -2699,7 +2702,12 @@ function playCard(s,p,uid,free=false,baseUid=null,face=0,alternativeCost=null,or
  if(discardPaid1240)payment={...payment,g1240DiscardPaid:discardPaid1240};
  const cost=summonCost(s,p,payment);const paidMana=free?false:pay(s,p,payment);const originIndex402=originBlocked402?s.players[p][origin].findIndex(x=>x.uid===uid):-1,inst=remove(s.players[p][origin],uid),grantedSuper=free&&!!c.superTrigger&&inst.g30SuperFace===face;delete inst.g30SuperFace;
  delete inst.g1335Vivid;
- if(ruleOrigin==='grave')extra.six.consumeGraveUse1226(s,p,inst);
+ if(ruleOrigin==='grave'){
+  extra.six.consumeGraveUse1226(s,p,inst);
+  // QA48755: entering the pending state loses the spell's own waiting discard effect,
+  // including when the resolved spell returns to the same graveyard.
+  if(c.g1207DiscardCast)inst.g1207GraveExecutions=(inst.g1207GraveExecutions||0)+1;
+ }
  if(!free&&!payment.fixedPayment)extra.six.consumeExecution464(s,p,payment);
  extra.six.revealCommitted470(s,p,c,alternativeCost);
  const execution={ruleOrigin,origin,free,freeReason,alternativeCost,paidMana,cost,ownGraveCast,grantedSuper,baseUid,face,permit,originBlocked402,originIndex402};if(extra.shieldPhoto.beforeExecution(s,p,c,inst,execution))return;completeExecution(s,p,inst,c,execution);
@@ -3566,7 +3574,7 @@ function commitShieldBreak(s,defender,uids){
   card(breakContext.source)?.g1302TriggerUntap?
   {uid:breaker.uid,incarnation:breaker.incarnation??0,player:breakContext.player,source:breakContext.source}:null;
  // Pending broken shields are excluded from Duelangel's threshold at declaration.
- const pendingBreak={defender,remaining},allTrigger=allShieldTrigger1303(s,defender);
+ const pendingBreak={defender,remaining},allTrigger=allShieldTriggersToHand(s,defender);
  const eligibleFaces=Object.fromEntries((toMana?[]:all).flatMap(x=>{if(goesToGrave(x))return [];const faces=!breakContext?.noST&&extra.triggersAllowed(s,defender)?playFaces(card(x)).flatMap((c,face)=>(allTrigger||c.g26Viride&&s.players[1-defender].battle.filter(x=>isCreature(s,x)).length>=3||extra.six.shieldTrigger(s,defender,x,c)||lightShieldTrigger1019(s,defender,c,handRemaining)||extra.requested393J.shieldTrigger(s,defender,x,c)||c.trigger||c.triggerPlus||c.superTrigger||c.graveTotalTrigger&&s.players.reduce((n,p)=>n+p.grave.length,0)>=c.graveTotalTrigger||c.rev2Trigger&&s.players[defender].shields.length-count<=2||x.g19ShieldST!==undefined||c.type==='spell'&&extra.spellShieldTrigger(s,defender,true)||c.shieldConditionalTrigger&&s.players[defender].grave.filter(x=>playFaces(card(x)).some(c=>c.type==='spell')).length>=2)&&(!summonLocked||c.type!=='creature')&&extra.triggersAllowed(s,defender,c)&&!extra.triggerLocked597(s,defender,c,remaining,breaker)&&canCastSpell(s,defender,c,null,defender,pendingBreak)&&(extra.spellPermission(s,defender,c)||extra.six.allowsNonLightSpells687(s,c,pendingBreak))?[face]:[]):[];return faces.length?[[x.uid,faces]]:[];})),eligible=Object.keys(eligibleFaces);
  // QA35246: reveal the cards in the actual break before they enter the hand.
  if(!handOnly&&breakContext?.player===1-defender&&

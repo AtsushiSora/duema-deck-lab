@@ -245,7 +245,8 @@ export function createExtendedRules(api){
  const enemyDiscardEffect=(s,t)=>!t.selfDiscard&&(t.causedBy??t.controller??s.active)===1-t.p&&['spell','creature'].includes(card(t.source)?.type);
  const discardedSpell1207=(s,t)=>{
   if(!api.canMoveZone(s,t.p,'grave'))return;
-  const x=s.players[t.p].grave.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);
+  const x=s.players[t.p].grave.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial&&
+   (x.g1207GraveExecutions||0)===(t.g1207GraveExecutions||0));
   if(x&&canCast(s,t.p,card(x),'grave'))return x;
  };
  const handProtected=(s,t)=>enemyDiscardEffect(s,t)&&creatures(s,t.p).some(x=>effective(x,s).g591HandShield);
@@ -437,7 +438,10 @@ export function createExtendedRules(api){
     choice(s,t,'コストを支払わずに使うカードを選ぶ',[...list.map(({x,c,face})=>opt(c.name,{uid:x.uid,face},15+cost(c),x.cardId)),...(t.optional!==false?[skip()]:[])]);break;
    }
    case 'stealSpell':{
-    const x=api.canMoveZone(s,t.owner,'grave')&&s.players[t.owner].grave.find(x=>x.uid===t.uid);if(x&&faces(card(x)).some(c=>c.type==='spell'&&canCast(s,t.p,c,'grave')))choice(s,t,'相手の墓地から呪文を唱えますか？',[opt('唱える',true,20,x.cardId),skip()]);break;
+    const x=api.canMoveZone(s,t.owner,'grave')&&s.players[t.owner].grave.find(x=>x.uid===t.uid);
+    if(x&&faces(card(x)).some(c=>c.type==='spell'&&canCast(s,t.p,c,'grave',t.owner)))
+     choice(s,t,'相手の墓地から呪文を唱えますか？',[opt('唱える',true,20,x.cardId),skip()]);
+    break;
    }
    case 'discardedSpell1207':{
     const x=discardedSpell1207(s,t);
@@ -536,7 +540,9 @@ export function createExtendedRules(api){
     if(x&&canCast(s,t.p,card(x),'hand'))cast(s,t.p,x.uid,true,null,0,null,'hand','侵略ZERO');
     break;
    }
-   case 'finishSpell':{const i=(s.extSpells||[]).findIndex(x=>x.inst.uid===t.uid);if(i>=0){const f=s.extSpells[i];if(f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.to='hand';f.g416SelfFinish=true;}if(f.shieldCast){s.extSpells.splice(i,1);api.finishShieldSpell(s,f,f.g416SelfFinish?f.to:null);six.afterSpell566(s,f);break;}
+   case 'finishSpell':{const i=(s.extSpells||[]).findIndex(x=>x.inst.uid===t.uid);if(i>=0){const f=s.extSpells[i];
+    if(f.g1339Creature&&finishBenzoSide(s,f)){six.afterSpell566(s,f);break;}
+if(f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.to='hand';f.g416SelfFinish=true;}if(f.shieldCast){s.extSpells.splice(i,1);api.finishShieldSpell(s,f,f.g416SelfFinish?f.to:null);six.afterSpell566(s,f);break;}
     // A spell's own destination replacement precedes an external one (609.8a).
     if(!f.virtual&&f.spell?.g1027Crest&&f.spell.summonOrigin==='hand'&&
        !api.spellIgnored(s,f.spell)&&api.canAddShield(s,f.caster)){
@@ -565,6 +571,7 @@ export function createExtendedRules(api){
      if(host){
       s.extSpells.splice(i,1);
       clear(f.inst,'battle');
+      f.inst.entered=s.turn;
       (host.under??=[]).push(f.inst);
       six.afterSpell566(s,f);
       break;
@@ -607,6 +614,31 @@ export function createExtendedRules(api){
     const sameGrave=f.to==='grave'&&f.spell?.summonOrigin==='grave',heldSerial=f.inst.zoneSerial;clear(f.inst,f.to);if(sameGrave){if(heldSerial===undefined)delete f.inst.zoneSerial;else f.inst.zoneSerial=heldSerial;}if(f.to==='shields')f.inst.faceUp=true;if(f.to==='mana'&&f.spell?.manaFinishTapped)f.inst.tapped=true;if(f.crystal&&f.to==='mana'){f.inst.faceDown=true;f.inst.tapped=false;api.addZone(s,s.players[f.owner],'mana',f.inst);}else{if(sameGrave)s.players[f.owner].grave.push(f.inst);else api.addZone(s,s.players[f.owner],['deck','mana','hand','shields','extra'].includes(f.to)?f.to:'grave',f.inst);if(f.to==='shields')api.notifyShieldAdded(s,f.owner,f.inst);}six.afterSpell566(s,f);}break;}
    default:if(!phoenix.run(s,t)&&!bolshack.run(s,t)&&!bande.run(s,t)&&!golgy.run(s,t)&&!viride.run(s,t)&&!hachi.run(s,t)&&!abyss.run(s,t)&&!redzone.run(s,t)&&!mado.run(s,t)&&!girls.run(s,t)&&!maruru.run(s,t)&&!grave.run(s,t)&&!travel.run(s,t)&&!kenji.run(s,t)&&!lionel.run(s,t)&&!samurai.run(s,t)&&!gachi.run(s,t)&&!giant.run(s,t)&&!jaou.run(s,t)&&!zard.run(s,t)&&!hunter.run(s,t)&&!armored.run(s,t)&&!magic.run(s,t)&&!mecha.run(s,t)&&!kiyo.run(s,t)&&!gran.run(s,t)&&!gate.run(s,t)&&!galaxy.run(s,t)&&!gospel.run(s,t)&&!starter.run(s,t))throw Error('未実装の継続効果です：'+t.op);
   }
+ }
+ function finishBenzoSide(s,f){
+  const {owner,spell,shieldCast}=f,own=s.players[owner];
+  if(f.virtual&&!shieldCast)return false;
+  const origin=shieldCast?'shields':spell.summonOrigin;
+  const x=shieldCast?own.shields.flatMap(api.shieldCards).find(y=>y.uid===shieldCast.uid):f.inst;
+  if(!x||origin!=='battle'&&!canEnter(s,owner,card(x),{origin,execution:false}))return false;
+  s.extSpells.splice(s.extSpells.indexOf(f),1);
+  if(shieldCast){
+   delete x.g37ShieldHeld;
+   api.removeShieldCard(s,owner,x.uid);
+  }
+  if(origin==='battle'){
+   // From below Clanvia the card remains in the same zone and keeps the stack's tap state (QA45545).
+   const {tapped,zoneSerial}=x;
+   clear(x,'battle');
+   x.tapped=tapped;
+   if(zoneSerial===undefined)delete x.zoneSerial;else x.zoneSerial=zoneSerial;
+   own.battle.push(x);
+  }else{
+   clear(x,'battle');
+   enter(s,owner,x,null,{origin,execution:false});
+  }
+  f.to='battle';
+  return true;
  }
  function finishTwin1088(s,f,base){
   s.extSpells.splice(s.extSpells.indexOf(f),1);
@@ -742,7 +774,7 @@ export function createExtendedRules(api){
   const count=(t.discarded||0)+(discarded?1:0);if(t.batchId&&s.extDiscardBatches?.[t.batchId])s.extDiscardBatches[t.batchId].actual+=discarded?1:0;
   if(discarded){
    if(card(x).g1207DiscardCast&&enemyDiscardEffect(s,t))
-    enqueue(s,t.p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('discardedSpell1207',t.p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0})});
+    enqueue(s,t.p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('discardedSpell1207',t.p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0,g1207GraveExecutions:x.g1207GraveExecutions||0})});
    if(card(x).g1315EnemyDiscardRevive&&enemyDiscardEffect(s,t))
     six.send(s,t.p,x,'GraveSummonWatch766',{serial:x.zoneSerial||0});
    if(!t.batchId&&!t.g848Grouped)notifyDiscard848(s,t.p,discardWatchers848(s,t.p),1);
@@ -818,7 +850,18 @@ export function createExtendedRules(api){
   case 'endJagan':if(value){const x=nowCreature(s,t.p,value);if(x){put(s,task('sameName',t.p,t.source,{nameId:x.cardId}));move(s,[{player:t.p,uid:x.uid,to:'hand'}]);}}break;
   case 'sameName':if(value)put(s,task('putCreature',t.p,t.source,{uid:value,origin:'hand'}));break;
   case 'execute':if(value){const x=own[t.origin||'hand'].find(x=>x.uid===value.uid);if(t.deploy)put(s,task('putCreature',t.p,t.source,{uid:value.uid,origin:t.origin||'hand'}));else{const c=faces(card(x))[value.face];if(x&&t.bottomAfter&&c.type==='spell')x.finishTo='deck';if(c.evolution||c.neoEvolution)put(s,task('putCreature',t.p,t.source,{uid:x.uid,origin:t.origin||'hand',execution:true,face:value.face}));else cast(s,t.p,value.uid,true,null,value.face,null,t.origin||'hand','カードの能力');}}else if(t.fallbackDraw)draw(s,t.p,t.fallbackDraw);break;
-  case 'stealSpell':if(value&&api.canMoveZone(s,t.owner,'grave')){const x=remove(s.players[t.owner].grave,t.uid);if(x){x.cardOwner=t.owner;own.hand.push(x);const face=faces(card(x)).findIndex(c=>c.type==='spell');cast(s,t.p,x.uid,true,null,face,null,'hand','相手の墓地から');}}break;
+  case 'stealSpell':{
+   const grave=s.players[t.owner].grave,x=value&&grave.find(x=>x.uid===t.uid);
+   const face=x?faces(card(x)).findIndex(c=>c.type==='spell'&&canCast(s,t.p,c,'grave',t.owner)):-1;
+   if(face>=0){
+    remove(grave,x.uid);
+    x.cardOwner=t.owner;
+    x.g5Origin='grave';
+    (own.g34Holding??=[]).push(x);
+    cast(s,t.p,x.uid,true,null,face,null,'g34Holding','相手の墓地から');
+   }
+   break;
+  }
   case 'discardedSpell1207':if(value&&discardedSpell1207(s,t))cast(s,t.p,t.uid,true,null,0,null,'grave','捨てられた時の能力');break;
   case 'kakuReturn':move(s,[{player:t.p,uid:t.uid,to:value}]);break;
   case 'tensaiCost':for(const x of creatures(s,1-t.p))if(faces(card(x)).some(c=>cost(c)===(value==='∞'?Infinity:Number(value))))for(const kind of ['attack','block'])lock(s,t.p,{kind,player:1-t.p,cost:value,uid:x.uid,incarnation:x.incarnation||0});break;

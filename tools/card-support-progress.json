@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8024,
-  "pendingNames": 3802,
-  "phase": 1338,
+  "supportedNames": 8025,
+  "pendingNames": 3801,
+  "phase": 1339,
   "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2133,
+    "クリーチャー": 2132,
     "NEOクリーチャー": 70,
     "呪文": 455,
     "GRクリーチャー": 156,
@@ -223,7 +223,7 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 1075,
+    "複数面・特殊カードタイプまたは情報不足": 1074,
     "未対応の能力文": 2535,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 19,
@@ -489827,14 +489827,57 @@
       "remainingRegistered": 39,
       "remainingPrints": 1,
       "remainingIndividualCards": 34
+    },
+    {
+      "phase": 1339,
+      "baseline": "6d9ba253",
+      "before": 8024,
+      "supported": 8025,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dm22ex1-061",
+          "name": "暴発秘宝ベンゾ / 星龍の暴発"
+        }
+      ],
+      "printAliases": 3,
+      "results": {
+        "focus": {
+          "passed": 6,
+          "log": "/tmp/duema-uncapped/benzo-focus.log",
+          "command": "node --test tests/standard1339-effects.test.mjs",
+          "seconds": 1.969
+        },
+        "regression": {
+          "passed": 60,
+          "log": "/tmp/duema-uncapped/benzo-complete.log",
+          "command": "node --test --test-concurrency=2 tests/standard{637,1207,1224,1303,1337,1338,1339}-effects.test.mjs",
+          "seconds": 9.59
+        },
+        "check": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "/tmp/duema-uncapped/benzo-check-final.log",
+          "rulesBlob": "61b48a1a50834565bf8e62b1848d50bdade535a4"
+        },
+        "audit": {
+          "status": "passed",
+          "command": "node tools/audit-card-support.mjs",
+          "log": "/tmp/duema-uncapped/benzo-audit.log"
+        }
+      },
+      "resolvedRegistered": 1,
+      "remainingRegistered": 38,
+      "remainingPrints": 1,
+      "remainingIndividualCards": 33
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1338,
+    "lastVerifiedPhase": 1339,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "灰燼と天門の儀式で出したクランヴィアの置換を確認した。星龍の暴発からバトルゾーン内でクリーチャー側を出す組み合わせを含む残りの裁定と分割テストを継続する。",
+    "steps": "クランヴィアと星龍の暴発を組み合わせた裁定を検証済み。マニフェストのタマシードを下に置く裁定と他の残り、分割対戦・AI監査の結果確認へ進む。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -489919,18 +489962,16 @@
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [
       {
-        "id": "dm22ex1-061",
-        "name": "暴発秘宝ベンゾ / 星龍の暴発",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-061",
-        "reason": "クランヴィアの下から唱えた際の出た時能力とタップ状態の裁定QA45545に必要。"
-      },
-      {
         "id": "dmrp22-4A",
         "name": "マニフェスト ＜ファイナル.Star＞"
       },
       {
         "id": "dmrp12-008",
         "name": "帝神龍装 ティーゾリス"
+      },
+      {
+        "id": "dm23rp1-004",
+        "name": "終納 カボード＝ロウ"
       }
     ],
     "printVerificationPending": [
@@ -490129,8 +490170,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8024,
-    "pendingNames": 3802,
+    "supportedNames": 8025,
+    "pendingNames": 3801,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -534124,8 +534165,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8024,
-      "pendingNames": 3802,
+      "supportedNames": 8025,
+      "pendingNames": 3801,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -535152,7 +535193,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別34種類（裁定39件・版固有の金箔再録1件）と長時間対戦・ワーカーの検証が継続中。Netlifyを更新せずにPagesへ公開する経路の確認も必要。",
+        "reason": "個別33種類（裁定38件と版固有の金箔再録1件）と長時間対戦・ワーカーの検証が継続中。Netlifyを更新せずにPagesへ公開する経路の確認も必要。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -535658,6 +535699,24 @@
             "https://dm.takaratomy.co.jp/rule/qa/42379/"
           ],
           "result": "手札から唱えた灰燼と天門の儀式が実カードのクランヴィアを蘇生。解決後に保存した状態を復元し、そのクランヴィアの下に置く場合と墓地に置く場合の両方を確認した。"
+        },
+        {
+          "cardId": "dmrp08-s03",
+          "dependencyIds": [
+            "dm22ex1-061"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa/45545/",
+          "test": "下から星龍の暴発を唱えると、クリーチャー側はタップ状態のままバトルゾーンで独立し、出た時の能力は誘発しない。",
+          "phase": 1339,
+          "path": "tests/standard1339-effects.test.mjs",
+          "log": "/tmp/duema-uncapped/benzo-focus.log",
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/45545/",
+            "https://dm.takaratomy.co.jp/rule/qa/47370/",
+            "https://dm.takaratomy.co.jp/rule/qa/46592/",
+            "https://dm.takaratomy.co.jp/rule/qa/48755/"
+          ],
+          "result": "実カードの星龍の暴発をクランヴィアの下から唱え、同じ物理カードがタップしたままバトルゾーンに残り、出た時の能力で自分のシールドをブレイクしないことを確認した。通常の手札から唱えた場合、相手ターンのS・トリガー、世紀末の善悪と持ち主の異なる呪文、6枚の束すべてへの付与も検証した。"
         }
       ],
       "remainingRegistered": [
@@ -536055,15 +536114,6 @@
           "reason": "ネルザのG・ストライク付与とシールドの手札追加は実測済み。ジークシュトルツは未登録のため、表向きのシールドとS・トリガー禁止を含む組み合わせの再現が未完了。",
           "path": "tests/standard1308-effects.test.mjs",
           "log": "/tmp/duema-phase-1308/focus-final.log"
-        },
-        {
-          "cardId": "dmrp08-s03",
-          "dependencyIds": [
-            "dm22ex1-061"
-          ],
-          "source": "https://dm.takaratomy.co.jp/rule/qa/45545/",
-          "test": "下から星龍の暴発を唱えると、クリーチャー側はタップ状態のままバトルゾーンで独立し、出た時の能力は誘発しない。",
-          "reason": "新規に確認した関連裁定。下から唱えた呪文の実行元をバトルゾーンとして扱うところまでは実カードで確認済み。ツインパクトの星龍の暴発との組み合わせは未検証。"
         }
       ],
       "printResults": {
@@ -536085,10 +536135,11 @@
           "dmrp15-009",
           "dm22ex2-S15",
           "dmrp11-s04",
-          "dmrp08-s03"
+          "dmrp08-s03",
+          "dm22ex1-061"
         ],
-        "officialPrints": 62,
-        "newAliases": 48,
+        "officialPrints": 66,
+        "newAliases": 51,
         "evidence": [
           {
             "id": "dm23rp2-065",
@@ -536580,6 +536631,38 @@
             "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-006.jpg",
             "pageSha256": "e667233716c148a2d40867c0de432bef342c45bd88ee6ac694295978236bc3c0",
             "imageSha256": "1c4d025d2657acefcf2a7208733c57a7260971b5ad0bc9113660e0332cbd58b0"
+          },
+          {
+            "id": "dm22ex1-061",
+            "canonicalId": "dm22ex1-061",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-061",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-061a.jpg",
+            "pageSha256": "92582ff248b59dffaa27e0490eeecf0672f61cc784b4752b7823bfcd83147422",
+            "imageSha256": "d705182c6027c7ad3d235e26e3bf9dfc6c7e531181c1f72066ab53b49964ab5d"
+          },
+          {
+            "id": "promoy22-048",
+            "canonicalId": "dm22ex1-061",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy22-048",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy22-048a.jpg",
+            "pageSha256": "14879f7d72bae41dcd52e8ea450471e39ae958f008647833c2695d8ee6177748",
+            "imageSha256": "962ee6bccd05787992c8b229c47eaa337784ef871e6ef6114d52dc5961a85c2f"
+          },
+          {
+            "id": "dm26rp1-T003",
+            "canonicalId": "dm22ex1-061",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-T003",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-T003a.jpg",
+            "pageSha256": "efe946d7543a688d54f9cac67e7117fca49675e3ea768f45f8ab1ec474922114",
+            "imageSha256": "33d5e424c498d3d53d476fd46a4435e50ec3489fa9fde34f6095e32fae9872a4"
+          },
+          {
+            "id": "dm24ex1-047",
+            "canonicalId": "dm22ex1-061",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-047",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex1-047a.jpg",
+            "pageSha256": "cf0cc662a16b177960a0306d0d194e0edf4a5b15dccdae6887d6be7c6afdd29e",
+            "imageSha256": "9013f547640bdc458183399e306936445cd288310ea6598cda96d73a14bde50d"
           }
         ],
         "testLog": "/tmp/duema-verify-8009/verification-followup-prints.log",
@@ -536865,8 +536948,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8024,
-        "pending": 3802,
+        "supported": 8025,
+        "pending": 3801,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -537466,8 +537549,8 @@
       "finalCheck": {
         "status": "passed",
         "command": "npm run check",
-        "log": "/tmp/duema-uncapped/clan-check-final.log",
-        "rulesBlob": "1f41078e7d3b9a7824e02da47c1e91755c609f6c"
+        "log": "/tmp/duema-uncapped/benzo-check-final.log",
+        "rulesBlob": "61b48a1a50834565bf8e62b1848d50bdade535a4"
       },
       "abyssShort": {
         "passed": 33,
@@ -537597,12 +537680,6 @@
         {
           "id": "dmrp16-s01",
           "name": "聖板龍 ジークシュトルツ"
-        },
-        {
-          "id": "dm22ex1-061",
-          "name": "暴発秘宝ベンゾ / 星龍の暴発",
-          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-061",
-          "reason": "クランヴィアの下から唱えた際の出た時能力とタップ状態の裁定QA45545に必要。"
         }
       ],
       "remainingTestsSummary": "全8,014種類の合法経路を17区間で通過。借用した登場時処理2539件、No20の48対戦、手動対戦UIの30シード・1225場面も実測で通過。残る長時間対戦とワーカー試験は対戦相手・シード単位で検証を継続。一括のnpm testは中断・合否未確認。",
@@ -537657,47 +537734,47 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1338,
-        "baseline": "6a00986d",
-        "before": 8023,
-        "supported": 8024,
+        "phase": 1339,
+        "baseline": "6d9ba253",
+        "before": 8024,
+        "supported": 8025,
         "duplicates": 0,
         "added": [
           {
-            "id": "dmrp08-s03",
-            "name": "不夜城艦 クランヴィア"
+            "id": "dm22ex1-061",
+            "name": "暴発秘宝ベンゾ / 星龍の暴発"
           }
         ],
-        "printAliases": 1,
+        "printAliases": 3,
         "results": {
           "focus": {
             "passed": 6,
-            "log": "/tmp/duema-uncapped/clan-focus.log",
-            "command": "node --test tests/standard1338-effects.test.mjs",
-            "seconds": 1.638
+            "log": "/tmp/duema-uncapped/benzo-focus.log",
+            "command": "node --test tests/standard1339-effects.test.mjs",
+            "seconds": 1.969
           },
           "regression": {
-            "passed": 70,
-            "log": "/tmp/duema-uncapped/clan-regression-final.log",
-            "command": "node --test --test-concurrency=2 tests/standard{1084,1131,1174,1226,1337,1338}-effects.test.mjs",
-            "seconds": 11.568
+            "passed": 60,
+            "log": "/tmp/duema-uncapped/benzo-complete.log",
+            "command": "node --test --test-concurrency=2 tests/standard{637,1207,1224,1303,1337,1338,1339}-effects.test.mjs",
+            "seconds": 9.59
           },
           "check": {
             "status": "passed",
             "command": "npm run check",
-            "log": "/tmp/duema-uncapped/clan-check-final.log",
-            "rulesBlob": "1f41078e7d3b9a7824e02da47c1e91755c609f6c"
+            "log": "/tmp/duema-uncapped/benzo-check-final.log",
+            "rulesBlob": "61b48a1a50834565bf8e62b1848d50bdade535a4"
           },
           "audit": {
             "status": "passed",
             "command": "node tools/audit-card-support.mjs",
-            "log": "/tmp/duema-uncapped/clan-audit.log"
+            "log": "/tmp/duema-uncapped/benzo-audit.log"
           }
         },
         "resolvedRegistered": 1,
-        "remainingRegistered": 39,
+        "remainingRegistered": 38,
         "remainingPrints": 1,
-        "remainingIndividualCards": 34
+        "remainingIndividualCards": 33
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
@@ -539775,8 +539852,8 @@
         "command": "python3 /tmp/duema-uncapped/run-tests.py",
         "reason": "ユーザー指示により時間上限を解除。未確認テスト名をフィルタ指定し、前の一括実行は中断・合否未確認のまま保持。",
         "snapshot": {
-          "completeGroups": 15,
-          "passedNamedTests": 28,
+          "completeGroups": 17,
+          "passedNamedTests": 31,
           "failedNamedTests": 2,
           "enginePairings": {
             "seconds": 643.82,
@@ -539790,8 +539867,8 @@
             "plan": "/tmp/duema-uncapped/fixture-plan.json",
             "results": "/tmp/duema-uncapped/fixture-results.jsonl",
             "plannedGroups": 53,
-            "completedGroups": 22,
-            "passedGroups": 22,
+            "completedGroups": 26,
+            "passedGroups": 26,
             "status": "実行中"
           },
           "aiCoverage": {
