@@ -2475,6 +2475,41 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1320&&d?.status==='complete'&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const exLife='EXライフ(このクリーチャーを出す時自分の山札の上から1枚をシールド化する。このクリーチャーが離れる時かわりにそのシールドを墓地に置く)';
+  const smash='スマッシュ・バースト(このクリーチャーが攻撃する時このカードの呪文側をバトルゾーンに置いたままコストを支払わずに唱えてもよい)';
+  const spell=d.faces[1];
+  if(d.faces.length===2&&spell.typeText==='呪文'&&text===exLife+smash){
+   const modes={
+    'dm26rp3-028':{body:'カードを1枚引く。その後コスト2以下のクリーチャーまたはタマシードを1つ自分の手札から出してもよい。',
+     defs:[{op:'Draw',n:1},{op:'Select',origin:'hand',n:1,deploy:true,optional:true,
+      filter:{creatureOrSeed:true,max:2},title:'手札から出すコスト2以下のクリーチャーまたはタマシードを選ぶ'}]},
+    'dm26rp3-032':{body:'カードを2枚引く。相手のクリーチャーを1体選ぶ。次の自分のターンのはじめまでそれらは攻撃もブロックもできない。',
+     defs:[{op:'Draw',n:2},{op:'Target',spell:true,g190Freeze:'start',g1058FollowUnit:true,
+      title:'攻撃とブロックを止める相手クリーチャーを1体選ぶ'}]},
+    'dm26rp3-036':{body:'相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーをー3000する。(パワー0以下のクリーチャーは破壊される)',
+     defs:[{op:'Target',spell:true,power:-3000,g242PowerMinus:true}]}
+   }[d.id];
+   if(modes&&normalize(spell.abilityText)===modes.body)
+    return {exLife:true,g1318Smash:true,spellFrontName:f.name,spellFace:{type:'spell',name:spell.name,cost:spell.cost,
+     civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,text:spell.abilityText,
+     effect:'sixPhoto',g34Tasks:modes.defs}};
+  }
+  const trigger='S・トリガーS・トリガー(このカードを自分のシールドゾーンから手札に加える時コストを支払わずにすぐ実行してもよい)';
+  if(d.id==='dm26rp3-033'&&d.faces.length===1&&text===trigger+
+   'このクリーチャーが出た時相手のクリーチャーを2体まで選ぶ。次の自分のターンのはじめまでそれらは攻撃もブロックもできない。'+
+   'このクリーチャーが攻撃する時Jトルネードしてもよい。そうしたらカードを3枚引き自分の手札を1枚捨てる。'+
+   '(Jトルネード:自分の他のジョーカーズ・クリーチャーを1体手札に戻す)')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Select',origin:'battle',owner:'opponent',n:2,optional:true,g173Targets:true,g190Freeze:'start',
+     g1058FollowUnit:true,filter:{creature:true},title:'攻撃とブロックを止める相手クリーチャーを2体まで選ぶ'}
+   ],g34Attack:[
+    {op:'Select',origin:'battle',to:'hand',toOwnerHand:true,n:1,optional:true,g179Other:true,g187OwnPick:true,
+     filter:{creature:true,race:'ジョーカーズ'},title:'Jトルネードする自分の他のジョーカーズ・クリーチャーを選ぶ',
+     afterBattleSelect:[{op:'Draw',n:3},{op:'Discard',owner:'self',n:1}]}
+   ]};
+ }
  if(phase>=1319&&d?.status==='complete'&&f.typeText==='タマシード'&&d.faces.length===2&&
   normalize(f.abilityText)==='ササゲール2(自分のディスペクター・クリーチャーの召喚コストを2少なくしてもよい。そうしたらこのエレメントを破壊する。ただしコストは0以下にならない)'){
   const spell=d.faces[1];
