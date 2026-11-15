@@ -4,6 +4,17 @@ export function createRedzoneRules(api){
  const on=(s,p,x,op,more={})=>enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task(op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
  const live=(s,t)=>s.players[t.p].battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===(t.incarnation||0)&&!x.sealed);
  const matches=(s,a,c)=>api.isCreature(s,a)&&(!c.invasion.evolution||api.isEvolution(a))&&(c.invasion.anyCreature||(c.invasion.categories||['コマンド']).some(q=>String(effective(a,s).race).includes(q)))&&cost(effective(a,s))>=(c.invasion.min||0)&&(c.invasion.anyColor||colors(effective(a,s)).some(v=>c.invasion.colors.includes(v)));
+ function psychicInvasion1349(s,t){
+  const own=s.players[t.p];
+  const x=own.extra.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);
+  const attacker=own.battle.find(x=>x.uid===s.attack?.attacker&&!x.sealed);
+  if(!x||!attacker||!api.allLayers(attacker).some(y=>y.uid===t.attacker&&
+   (y.incarnation||0)===t.attackerIncarnation&&(y.zoneSerial||0)===t.attackerSerial))return null;
+  const c=card(x.cardId);
+  if(!c.g1349PsychicInvasion||!api.canEnter(s,t.p,c,{origin:'extra',execution:false})||
+   !api.evolutionBases(s,t.p,c).includes(attacker))return null;
+  return {x,attacker};
+ }
  const handRows=(s,p,flag,kind)=>s.players[p].hand.filter(x=>card(x)[flag]).map(x=>({uid:x.uid,source:x.cardId,origin:'hand',serial:x.zoneSerial||0,kind}));
  const declarationTasks={bal:'g23_BalWait',invade:'g23_Invade',ct:'g23_CT'};
  function declaredCT(s,t){
@@ -15,6 +26,9 @@ export function createRedzoneRules(api){
   const index=own.battle.indexOf(x),[base,...rest]=x.under||[];if(base){api.underCardsLeft(s,t.p,x,1);if(rest.length)(base.under??=[]).push(...rest);inherit(s,x,base);own.battle[index]=base;}else own.battle.splice(index,1);delete x.under;remove(own.battle,a.uid);x.under=[a];inherit(s,a,x);own.battle.push(x);s.attack.attacker=x.uid;api.gearCleanup(s);api.evolutionPlaced849(s,t.p,x);
  }else if(api.canEnter(s,t.p,card(x),{origin:t.origin,execution:false})){remove(own[t.origin],x.uid);api.enter(s,t.p,x,a.uid,{origin:t.origin,execution:false});}log(s,t.p,'invasion',card(x).name+'を侵略で重ねる',{cardId:x.cardId});}
  function run(s,t){if(!t.op.startsWith('g23_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g23_PsychicInvasion1349':
+  if(psychicInvasion1349(s,t))choice(s,t,'P侵略で攻撃中のクリーチャーに重ねる？',[opt('重ねる',true,45,t.source),skip()]);
+  break;
  case'g23_Declare':{
   const row=t.remaining[0];
   if(!row){
@@ -61,6 +75,14 @@ export function createRedzoneRules(api){
  default:throw Error('未実装のレッドゾーン効果：'+t.op);
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g23_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g23_PsychicInvasion1349':{
+  const pending=v&&psychicInvasion1349(s,t);
+  if(!pending)break;
+  const {x,attacker}=pending;
+  remove(own.extra,x.uid);delete x.g1085Awakened;
+  api.enter(s,t.p,x,attacker.uid,{origin:'extra',execution:false});
+  break;
+ }
  case'g23_Declare':{const row=t.remaining[0];if(v)log(s,t.p,'redDeclare',card(row.source).name+'を使用宣言',{cardId:row.source});put(s,{...t,remaining:t.remaining.slice(1),declared:v?[...t.declared,row]:t.declared});break;}
  case'g23_Invade':if(v)invade(s,t);break;
  case'g23_Unseal':api.moveSeal(s,t.p,v,'grave');break;
@@ -84,6 +106,15 @@ export function createRedzoneRules(api){
  command(s,p,x){if(!api.isCreature(s,x)||!String(effective(x,s).race).includes('コマンド'))return;const cs=colors(effective(x,s));if((s.players[p].seals||[]).some(y=>api.mayMoveSeal(s,p,y)&&s.players[p].battle.some(z=>z.uid===y.sealOf&&colors(card(z.cardId)).some(c=>cs.includes(c)))))put(s,task('g23_Unseal',p,x.cardId,{colors:cs}));},
  handMana(s,p,x){if(card(x).redCircleMana)on(s,p,x,'g23_CircleMana',{serial:x.zoneSerial||0});},
  start(s,p){return creatures(s,p).filter(x=>effective(x,s).redPurin).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task('g23_Purin',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})}));},
+ psychicInvasions1349(s,p,a){
+  const attacker=effective(a,s);
+  if(attacker.psychic||!colors(attacker).includes('光')||!String(attacker.race).includes('コマンド'))return;
+  for(const x of s.players[p].extra)if(card(x.cardId).g1349PsychicInvasion)enqueue(s,p,{
+   uid:x.uid,source:x.cardId,effect:'extended',label:'P侵略',task:task('g23_PsychicInvasion1349',p,x.cardId,{
+    uid:x.uid,attacker:a.uid,attackerIncarnation:a.incarnation||0,attackerSerial:a.zoneSerial||0,serial:x.zoneSerial||0
+   })
+  });
+ },
  attackStart(s,p,a){const old=s.g23Attacks?.[p],count=old?.turn===s.turn?old.count+1:1;(s.g23Attacks??=[null,null])[p]={turn:s.turn,count};const rows=['hand','grave','battle','extra','mana'].flatMap(origin=>s.players[p][origin].filter(x=>x.uid!==a.uid&&!x.sealed&&card(x).invasion?.origins.includes(origin)&&matches(s,a,card(x))).map(x=>({uid:x.uid,source:x.cardId,origin,serial:x.zoneSerial||0,kind:'invade'})));if(count===2&&s.g23BalEntered?.[p]!==s.turn)rows.push(...handRows(s,p,'balchuris','bal'));rows.push(...handRows(s,p,'g790AttackDeclare','ct'));if(rows.length)put(s,task('g23_Declare',p,a.cardId,{remaining:rows,declared:[]}));},
  attackEnd(s,a,x){if(x&&a.number===1&&effective(x,s).redF)on(s,a.player,x,'g23_FEnd');},
  advanceAfter(s){if(!s.g23After?.length||s.attackLifecycle||s.attack||s.decision||s.pendingEffects?.length||s.extTasks?.length||s.triggers||s.judge||s.leaving||s.battleResolution||s.g19BreakSequence||s.g19Interrupt||s.breakContext||s.winner!==null)return;const rows=s.g23After;delete s.g23After;for(const r of rows)enqueue(s,r.p,{uid:r.uid,source:r.source,effect:'extended',task:{...r,op:'g23_BalPut'}});},

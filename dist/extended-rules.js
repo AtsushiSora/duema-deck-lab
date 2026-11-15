@@ -560,7 +560,28 @@ export function createExtendedRules(api){
    }
    case 'revDeclare':if(t.remaining.length){const uid=t.remaining[0],x=revCard(s,t.p,uid);if(x&&revOrigin486(own,x,t.g486Origins?.[uid]))choice(s,t,card(x).name+'の革命チェンジを宣言する？',[opt('宣言する',true,15,x.cardId),skip()]);else put(s,{...t,remaining:t.remaining.slice(1)});}else for(const uid of t.declared){const x=revCard(s,t.p,uid);if(x&&revOrigin486(own,x,t.g486Origins?.[uid]))enqueue(s,t.p,{uid,source:x.cardId,effect:'extended',task:task('revResolve',t.p,x.cardId,{uid,attacker:t.attacker,...(card(x).rev?.g486Current?{g486Refs:t.g486Refs,g486Serial:t.g486Origins?.[uid]}:{})})});}break;
    case 'revResolve':{const x=revCard(s,t.p,t.uid),a=t.g486Refs?own.battle.find(y=>y.uid===s.attack?.attacker&&api.allLayers(y).some(z=>t.g486Refs.some(r=>z.uid===r.uid&&(z.incarnation||0)===r.incarnation&&(z.zoneSerial||0)===r.serial))):nowCreature(s,t.p,t.attacker);if(x&&revOrigin486(own,x,t.g486Serial)&&a&&s.attack?.attacker===a.uid&&revMatches(s,a,card(x))&&canEnter(s,t.p,card(x),{origin:own.hand.includes(x)?'hand':'shields',execution:false}))choice(s,t,'革命チェンジを実行する？',[opt('入れ替える',a.uid,25,x.cardId),skip()]);break;}
-   case 'swapFinish':{const origin=t.origin||'hand',old=origin==='hand'?own.hand.find(x=>x.uid===t.old):own.shields.flatMap(api.shieldCards).find(x=>x.uid===t.old),x=origin==='hand'?own.hand.find(x=>x.uid===t.uid):revCard(s,t.p,t.uid);if(old&&x&&revOrigin486(own,x,t.g486Serial)&&!own.battle.some(y=>y.uid===t.old)&&canEnter(s,t.p,card(x),{origin,execution:false})){if(origin==='hand')remove(own.hand,x.uid);else{api.removeShieldCard(s,t.p,x.uid);clear(x,'battle');}enter(s,t.p,x,null,{origin,execution:false,revolution:t.revolution});x.tapped=t.tapped;if(t.attack){s.attack={...t.attack};magic.swapped(s,t.old,x);for(const key of ['attacker','target','blockUid'])if(s.attack[key]===t.old)s.attack[key]=x.uid;}}break;}
+   case 'psychicChange1349':{
+    const x=psychicChangeCard1349(s,t),attacker=own.battle.find(y=>y.uid===s.attack?.attacker&&!y.sealed);
+    if(x&&attacker&&revMatches(s,attacker,card({...x,g1085Awakened:true})))
+     choice(s,t,'P革命チェンジで入れ替える？',[opt('入れ替える',attacker.uid,25,x.cardId),skip()]);
+    break;
+   }
+   case 'swapFinish':{
+    const origin=t.origin||'hand',zone=origin==='shields'?own.shields.flatMap(api.shieldCards):own[origin];
+    const old=zone.find(x=>x.uid===t.old),x=origin==='extra'?psychicChangeCard1349(s,t):
+     origin==='hand'?own.hand.find(x=>x.uid===t.uid):revCard(s,t.p,t.uid);
+    const c=x&&card(origin==='extra'?{...x,g1085Awakened:true}:x);
+    if(old&&x&&(origin==='extra'||revOrigin486(own,x,t.g486Serial))&&!own.battle.some(y=>y.uid===t.old)&&
+     canEnter(s,t.p,c,{origin,execution:false})){
+     if(origin==='shields'){api.removeShieldCard(s,t.p,x.uid);clear(x,'battle');}
+     else remove(own[origin],x.uid);
+     if(origin==='extra')x.g1085Awakened=true;
+     enter(s,t.p,x,null,{origin,execution:false,revolution:t.revolution,tapped:origin==='extra'&&t.tapped});
+     if(origin!=='extra')x.tapped=t.tapped;
+     if(t.attack){s.attack={...t.attack};magic.swapped(s,t.old,x);for(const key of ['attacker','target','blockUid'])if(s.attack[key]===t.old)s.attack[key]=x.uid;}
+    }
+    break;
+   }
    case 'finalDark':if(!s.finalUsed?.[t.p]){(s.finalUsed??=[false,false])[t.p]=true;(s.finalHistory??=[false,false])[t.p]=true;put(s,task('mill',t.p,t.source,{n:2}),task('revive',t.p,t.source,{max:7,multi:true,optional:false}));}break;
    case 'finalLight':if(!s.finalUsed?.[t.p]){(s.finalUsed??=[false,false])[t.p]=true;(s.finalHistory??=[false,false])[t.p]=true;lock(s,t.p,{kind:'summon',player:1-t.p,max:7,expires:'end',who:1-t.p});}break;
    case 'darkFight':{const x=nowCreature(s,t.p,t.uid);if(x&&(t.incarnation===undefined||t.incarnation===(x.incarnation||0)))choice(s,t,'ドギラゴン悪でバトルする相手を選ぶ',[...targetOptions(s,t.p,creatures(s,1-t.p)),skip()]);break;}
@@ -678,10 +699,29 @@ if(f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.to='hand';f.g416S
   six.afterSpell566(s,f);
  }
  const revCard=(s,p,uid)=>s.players[p].hand.find(x=>x.uid===uid)||shieldPhoto.activeUp(s,p).find(x=>x.uid===uid&&card(x).sRev);
+ function psychicChangeCard1349(s,t){
+  return s.players[t.p].extra.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial&&card(x.cardId).g1349PsychicInvasion);
+ }
  // A new hand incarnation is not the card whose trigger was declared.
  function revOrigin486(own,x,serial){return serial===undefined||own.hand.includes(x)&&(x.zoneSerial||0)===serial;}
- function revMatches(s,x,c){const r=c.rev,d=r?.g486Current?effective(x,s):card(x);return !!r&&api.isCreature(s,x)&&(r.any|| (r.categories?r.categories.some(q=>String(d.race).includes(q)):r.race?String(d.race).includes(r.race):d.race.includes('ドラゴン')))&&(!r.nameIncludes||d.name.includes(r.nameIncludes))&&(!r.multicolor||colors(d).length>1)&&(!r.powerMin||power(x,x.uid===s.attack?.attacker,s)>=r.powerMin)&&cost(d)>=(r.min||0)&&(!r.colors||colors(d).some(v=>r.colors.includes(v)));}
- function startSwap(s,t,uid,revolution){const own=s.players[t.p],incoming=revCard(s,t.p,t.uid),origin=incoming&&own.hand.includes(incoming)?'hand':'shields';if(incoming&&galaxy.entryWouldReplace(s,t.p,card(incoming),origin,false)){log(s,t.p,'swapFailed','登場の置き換えにより入れ替えは実行されない',{cardId:t.source});return;}const old=nowCreature(s,t.p,uid);if(!old||!incoming||!revOrigin486(own,incoming,t.g486Serial))return;if(card(old).starEvolution&&old.under?.length){log(s,t.p,'swapFailed','スター進化の構成カードすべては戻せないため入れ替えできない',{cardId:t.source});return;}const attack=s.attack&&[s.attack.attacker,s.attack.target,s.attack.blockUid].includes(uid)?structuredClone(s.attack):null;put(s,{...t,op:'swapFinish',old:uid,tapped:old.tapped,attack,revolution,origin});move(s,[{player:t.p,uid,exchange:true,to:origin==='hand'?'hand':'shields',...(origin==='shields'?{shieldAttach:api.shieldGroup(own.shields.find(root=>api.shieldCards(root).some(y=>y.uid===incoming.uid)))}:{}),destroy:false}]);}
+ function revMatches(s,x,c){const r=c.rev,d=r?.g486Current?effective(x,s):card(x);return !!r&&api.isCreature(s,x)&&!(r.g1349NonPsychic&&d.psychic)&&(r.any|| (r.categories?r.categories.some(q=>String(d.race).includes(q)):r.race?String(d.race).includes(r.race):d.race.includes('ドラゴン')))&&(!r.nameIncludes||d.name.includes(r.nameIncludes))&&(!r.multicolor||colors(d).length>1)&&(!r.powerMin||power(x,x.uid===s.attack?.attacker,s)>=r.powerMin)&&cost(d)>=(r.min||0)&&(!r.colors||colors(d).some(v=>r.colors.includes(v)));}
+ function startSwap(s,t,uid,revolution){
+  const own=s.players[t.p],psychic=t.op==='psychicChange1349';
+  const incoming=psychic?psychicChangeCard1349(s,t):revCard(s,t.p,t.uid);
+  const origin=psychic?'extra':incoming&&own.hand.includes(incoming)?'hand':'shields';
+  const c=incoming&&card(psychic?{...incoming,g1085Awakened:true}:incoming);
+  const old=nowCreature(s,t.p,uid);
+  if(!old||!incoming||(!psychic&&!revOrigin486(own,incoming,t.g486Serial)))return;
+  if(psychic&&(!revMatches(s,old,c)||!canEnter(s,t.p,c,{origin,execution:false})))return;
+  if(galaxy.entryWouldReplace(s,t.p,c,origin,false)){
+   log(s,t.p,'swapFailed','登場の置き換えにより入れ替えは実行されない',{cardId:t.source});return;
+  }
+  if(card(old).starEvolution&&old.under?.length){log(s,t.p,'swapFailed','スター進化の構成カードすべては戻せないため入れ替えできない',{cardId:t.source});return;}
+  const attack=s.attack&&[s.attack.attacker,s.attack.target,s.attack.blockUid].includes(uid)?structuredClone(s.attack):null;
+  put(s,{...t,op:'swapFinish',old:uid,tapped:old.tapped,attack,revolution,origin});
+  move(s,[{player:t.p,uid,exchange:true,to:origin,
+   ...(origin==='shields'?{shieldAttach:api.shieldGroup(own.shields.find(root=>api.shieldCards(root).some(y=>y.uid===incoming.uid)))}:{}),destroy:false}]);
+ }
  function discardWatchers848(s,p){
   const own=s.players[p].battle.flatMap(x=>{
    const printed=card(x);
@@ -972,7 +1012,7 @@ if(f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.to='hand';f.g416S
    if(x){remove(own.hand,x.uid);clear(x,'battle');enter(s,t.p,x,null,{origin:'hand',execution:false});}
   }break;
   case 'ninjaResolve':if(value){const x=own.hand.find(x=>x.uid===t.uid);if(value==='strike'){(s.attack.ninjaUsed??={})[t.p]={any:true,strike:true};cast(s,t.p,x.uid,true,null,0,null,'hand','ニンジャ・ストライク');const entered=nowCreature(s,t.p,t.uid);if(entered)entered.uraNinja={turn:s.turn,incarnation:entered.incarnation};for(const y of creatures(s,t.p))if(effective(y,s).ninjaDraw)enqueue(s,t.p,{uid:y.uid,source:y.cardId,effect:'extended',task:task('optionalDrawOne',t.p,y.cardId)});}else{(s.attack.ninjaUsed??={})[t.p]={...(s.attack.ninjaUsed?.[t.p]||{}),any:true};startSwap(s,t,value,false);}}break;
-  case 'revResolve':if(value)startSwap(s,t,value,true);break;
+  case 'psychicChange1349':case 'revResolve':if(value)startSwap(s,t,value,true);break;
   case 'darkFight':if(value){const x=nowCreature(s,t.p,t.uid),y=nowCreature(s,1-t.p,value);if(x&&y){(s.darkFights??={})[t.uid+'@'+(x.incarnation||0)]=s.turn;api.battle(s,t.p,x,1-t.p,y,s.attack?.attacker);}}break;
   default:if(!phoenix.chosen(s,t,value)&&!bolshack.chosen(s,t,value)&&!bande.chosen(s,t,value)&&!golgy.chosen(s,t,value)&&!viride.chosen(s,t,value)&&!hachi.chosen(s,t,value)&&!abyss.chosen(s,t,value)&&!redzone.chosen(s,t,value)&&!mado.chosen(s,t,value)&&!girls.chosen(s,t,value)&&!maruru.chosen(s,t,value)&&!grave.chosen(s,t,value)&&!travel.chosen(s,t,value)&&!kenji.chosen(s,t,value)&&!lionel.chosen(s,t,value)&&!samurai.chosen(s,t,value)&&!gachi.chosen(s,t,value)&&!giant.chosen(s,t,value)&&!jaou.chosen(s,t,value)&&!zard.chosen(s,t,value)&&!hunter.chosen(s,t,value)&&!armored.chosen(s,t,value)&&!magic.chosen(s,t,value)&&!mecha.chosen(s,t,value)&&!kiyo.chosen(s,t,value)&&!gran.chosen(s,t,value)&&!gate.chosen(s,t,value)&&!galaxy.chosen(s,t,value)&&!gospel.chosen(s,t,value)&&!starter.chosen(s,t,value))throw Error('未実装の選択です：'+t.op);
  }}
@@ -1018,7 +1058,13 @@ if(f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.to='hand';f.g416S
   },
   attackStart(s,p,x){
    if(card(x.cardId)?.jayTornado&&effective(x,s).jayTornado)api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation,source:x.cardId,effect:'extended',task:task('jayTornado',p,x.cardId,{uid:x.uid})});
-   requested393D.attackStart(s,p,x);utilityTide.attackStart(s,p,x);combat.attackStart(s,p,x);six.attackStart(s,p,x);redzone.attackStart(s,p,x);requested393J.attackStart(s,p,x);jaou.attackStart(s,p,x);zard.attackStart(s,p,x);magic.attackStart(s,p,x);continuation.attackStart(s,p,x);travel.attackStart(s,p,x);const remaining=[...s.players[p].hand,...shieldPhoto.activeUp(s,p).filter(y=>card(y).sRev)].filter(y=>revMatches(s,x,card(y))).map(y=>y.uid);if(remaining.length){const modern=remaining.map(uid=>revCard(s,p,uid)).filter(y=>card(y).rev?.g486Current);put(s,task('revDeclare',p,x.cardId,{remaining,declared:[],attacker:x.uid,...(modern.length?{g486Refs:api.allLayers(x).map(z=>({uid:z.uid,incarnation:z.incarnation||0,serial:z.zoneSerial||0})),g486Origins:Object.fromEntries(modern.map(y=>[y.uid,y.zoneSerial||0]))}:{})}));}},
+   requested393D.attackStart(s,p,x);utilityTide.attackStart(s,p,x);combat.attackStart(s,p,x);six.attackStart(s,p,x);redzone.attackStart(s,p,x);redzone.psychicInvasions1349(s,p,x);
+   for(const y of s.players[p].extra){
+    if(!card(y.cardId).g1349PsychicInvasion||!revMatches(s,x,card({...y,g1085Awakened:true})))continue;
+    enqueue(s,p,{uid:y.uid,source:y.cardId,effect:'extended',label:'P革命チェンジ',
+     task:task('psychicChange1349',p,y.cardId,{uid:y.uid,serial:y.zoneSerial||0})});
+   }
+   requested393J.attackStart(s,p,x);jaou.attackStart(s,p,x);zard.attackStart(s,p,x);magic.attackStart(s,p,x);continuation.attackStart(s,p,x);travel.attackStart(s,p,x);const remaining=[...s.players[p].hand,...shieldPhoto.activeUp(s,p).filter(y=>card(y).sRev)].filter(y=>revMatches(s,x,card(y))).map(y=>y.uid);if(remaining.length){const modern=remaining.map(uid=>revCard(s,p,uid)).filter(y=>card(y).rev?.g486Current);put(s,task('revDeclare',p,x.cardId,{remaining,declared:[],attacker:x.uid,...(modern.length?{g486Refs:api.allLayers(x).map(z=>({uid:z.uid,incarnation:z.incarnation||0,serial:z.zoneSerial||0})),g486Origins:Object.fromEntries(modern.map(y=>[y.uid,y.zoneSerial||0]))}:{})}));}},
   unblockedAttack(s,p,x){
    const creatureTriggered=six.unblocked482(s,p,x),gearTriggered=samurai.unblockedAttack(s,p,x);
    const godTriggered=s.attack.target==='player'&&!s.attack.g484Blocked&&phoenix.godCombat(s,p,x,'unblocked');

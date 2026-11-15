@@ -1,0 +1,339 @@
+{
+  "phase": 1349,
+  "checkedAt": "2026-11-15",
+  "baseCount": 8035,
+  "description": "両面サイキックのP侵略とP革命チェンジを実装し、XXDDZのEXライフを進化後に使う裁定を検証する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/40835/",
+    "https://dm.takaratomy.co.jp/rule/qa/40836/",
+    "https://dm.takaratomy.co.jp/rule/qa/40837/",
+    "https://dm.takaratomy.co.jp/rule/qa/40838/",
+    "https://dm.takaratomy.co.jp/rule/qa/40839/",
+    "https://dm.takaratomy.co.jp/rule/qa/43244/",
+    "https://dm.takaratomy.co.jp/rule/qa/44663/",
+    "https://dm.takaratomy.co.jp/rule/qa/45073/"
+  ],
+  "cards": [
+    {
+      "id": "dmex18-s03",
+      "name": "轟く覚醒 レッドゾーン・バスター",
+      "faces": [
+        {
+          "name": "轟く覚醒 レッドゾーン・バスター",
+          "typeText": "進化サイキック・クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化：光のクリーチャー１体の上に置く。\nP侵略：自分の光の、サイキックではないコマンドが攻撃する時、自分の超次元ゾーンにあるこのクリーチャーをその上に重ねてもよい。\nT・ブレイカー\nこのクリーチャーが出た時、自分の手札を１枚、超次元ゾーンに置き、その後、一番パワーが大きい相手のクリーチャーをすべてタップする。次の相手のターンのはじめに、それらはアンタップしない。",
+          "race": "ソニック・コマンド/侵略者",
+          "powerText": "12000",
+          "missingFields": []
+        },
+        {
+          "name": "蒼き覚醒 ドギラゴンX",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "P革命チェンジ：自分の闇または水のコスト５以上の、サイキックではないドラゴンが攻撃する時、そのクリーチャーと自分の超次元ゾーンにあるこのクリーチャーを入れ替えてもよい。\nT・ブレイカー\nこのクリーチャーはブロックされない。\nこのクリーチャーが出た時、自分の手札を１枚捨てる。\n自分の手札を捨てた時、次の自分のターンのはじめまで、自分の他の多色クリーチャーすべてに「スレイヤー」を与える。",
+          "race": "メガ・コマンド・ドラゴン/革命軍/ハムカツ団",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-s03",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-s03a.jpg",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-s03b.jpg",
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "c9f874f52beeb0d1e12f8ea7b5a918d6ff7153cd1f23e721d1a7ee3cabde736c",
+        "imageSha256": "7561e53926122832876513de7c6c15537056697cdb592433285acff40fe5cc36",
+        "backImageSha256": "915a1c86d29f137d5c84e339c0322673d08d6da88f4d83ed5cf5f7b5db328b39",
+        "facesMatched": true
+      },
+      "spec": {
+        "manaValue": 0,
+        "psychic": true,
+        "breaker": 3,
+        "evolution": {
+          "civilization": "光"
+        },
+        "g1349PsychicInvasion": true,
+        "g527ExtraEntry": [
+          {
+            "label": "手札を超次元へ置き、最大パワーの相手をすべてタップする",
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "hand",
+                "to": "extra",
+                "n": 1,
+                "title": "超次元ゾーンに置く自分の手札を1枚選ぶ"
+              },
+              {
+                "op": "TapHighest1349"
+              }
+            ]
+          }
+        ],
+        "g1085Back": {
+          "name": "蒼き覚醒 ドギラゴンX",
+          "type": "creature",
+          "cost": 8,
+          "power": 13000,
+          "civ": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "race": "メガ・コマンド・ドラゴン/革命軍/ハムカツ団",
+          "text": "P革命チェンジ：自分の闇または水のコスト５以上の、サイキックではないドラゴンが攻撃する時、そのクリーチャーと自分の超次元ゾーンにあるこのクリーチャーを入れ替えてもよい。\nT・ブレイカー\nこのクリーチャーはブロックされない。\nこのクリーチャーが出た時、自分の手札を１枚捨てる。\n自分の手札を捨てた時、次の自分のターンのはじめまで、自分の他の多色クリーチャーすべてに「スレイヤー」を与える。",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-s03b.jpg",
+          "evolution": null,
+          "unblockable": true,
+          "rev": {
+            "g486Current": true,
+            "g1349NonPsychic": true,
+            "colors": [
+              "水",
+              "闇"
+            ],
+            "min": 5
+          },
+          "g527ExtraEntry": [
+            {
+              "label": "手札を1枚捨てる",
+              "defs": [
+                {
+                  "op": "Discard",
+                  "owner": "self",
+                  "n": 1
+                }
+              ]
+            }
+          ],
+          "g1168DiscardWatch": [
+            {
+              "op": "GroupGrant364",
+              "owner": "self",
+              "other": true,
+              "filter": {
+                "multicolor": true
+              },
+              "g521UntilStart": true,
+              "grant": {
+                "slayer": true
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23rp3-TR02",
+      "name": "轟く覚醒 レッドゾーン・バスター",
+      "faces": [
+        {
+          "name": "轟く覚醒 レッドゾーン・バスター",
+          "typeText": "進化サイキック・クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化：光のクリーチャー１体の上に置く。\nP侵略：自分の光の、サイキックではないコマンドが攻撃する時、自分の超次元ゾーンにあるこのクリーチャーをその上に重ねてもよい。\nT・ブレイカー\nこのクリーチャーが出た時、自分の手札を１枚、超次元ゾーンに置き、その後、一番パワーが大きい相手のクリーチャーをすべてタップする。次の相手のターンのはじめに、それらはアンタップしない。",
+          "race": "ソニック・コマンド/侵略者",
+          "powerText": "12000",
+          "missingFields": []
+        },
+        {
+          "name": "蒼き覚醒 ドギラゴンX",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "P革命チェンジ：自分の水または闇のコスト５以上の、サイキックではないドラゴンが攻撃する時、そのクリーチャーと自分の超次元ゾーンにあるこのクリーチャーを入れ替えてもよい。\nT・ブレイカー\nこのクリーチャーはブロックされない。\nこのクリーチャーが出た時、自分の手札を１枚捨てる。\n自分の手札を捨てた時、次の自分のターンのはじめまで、自分の他の多色クリーチャーすべてに「スレイヤー」を与える。",
+          "race": "メガ・コマンド・ドラゴン/革命軍/ハムカツ団",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-TR02",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-TR02a.jpg",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-TR02b.jpg",
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "795e11e3e175ded2b302945f7cd2071aa0201b1229c95cd7a089d20f4e998856",
+        "imageSha256": "4d5537e95f539068e788f93b700b78681be3311e29b4eeea2d4bc94d4f7d1646",
+        "backImageSha256": "1d9b0628bc68189c9384c1dc1f163a6350b7ef8ce26cd2dedbab509c7a2a527c",
+        "facesMatched": true
+      },
+      "canonicalId": "dmex18-s03"
+    },
+    {
+      "id": "dm24ex2-Cho009",
+      "name": "轟く覚醒 レッドゾーン・バスター",
+      "faces": [
+        {
+          "name": "轟く覚醒 レッドゾーン・バスター",
+          "typeText": "進化サイキック・クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化：光のクリーチャー１体の上に置く。\nP侵略：自分の光の、サイキックではないコマンドが攻撃する時、自分の超次元ゾーンにあるこのクリーチャーをその上に置いてもよい。\nT・ブレイカー\nこのクリーチャーが出た時、自分の手札を１枚、超次元ゾーンに置き、その後、一番パワーが大きい相手のクリーチャーをすべてタップする。次の相手のターンのはじめに、それらはアンタップしない。",
+          "race": "ソニック・コマンド/侵略者",
+          "powerText": "12000",
+          "missingFields": []
+        },
+        {
+          "name": "蒼き覚醒 ドギラゴンX",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "P革命チェンジ：自分の水または闇の、コスト５以上の、サイキックではないドラゴンが攻撃する時、そのクリーチャーと自分の超次元ゾーンにあるこのクリーチャーを入れ替えてもよい。\nT・ブレイカー\nこのクリーチャーはブロックされない。\nこのクリーチャーが出た時、自分の手札を１枚捨てる。\n自分の手札を捨てた時、次の自分のターンのはじめまで、自分の他の多色クリーチャーすべてに「スレイヤー」を与える。",
+          "race": "メガ・コマンド・ドラゴン/革命軍/ハムカツ団",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-Cho009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex2-Cho009a.jpg",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex2-Cho009b.jpg",
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "f30e9e3207b4752eb953d15717fee3964854b449dee895c28b0f4b413b4f59b2",
+        "imageSha256": "e77fe6b2e741e0abd14201b868b139cbc8b6baa9433521e128138657828e9953",
+        "backImageSha256": "2b56793be3e45661ef23dc0c3472b41203a692e53b25bce31aea36f09ddfdd53",
+        "facesMatched": true
+      },
+      "canonicalId": "dmex18-s03"
+    },
+    {
+      "id": "dm25ex4-TR05",
+      "name": "轟く覚醒 レッドゾーン・バスター",
+      "faces": [
+        {
+          "name": "轟く覚醒 レッドゾーン・バスター",
+          "typeText": "進化サイキック・クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化：光のクリーチャー１体の上に置く。\nP侵略：自分の光の、サイキックではないコマンドが攻撃する時、自分の超次元ゾーンにあるこのクリーチャーをその上に置いてもよい。\nT・ブレイカー\nこのクリーチャーが出た時、自分の手札を１枚超次元ゾーンに置き、その後、相手のパワーが一番大きいクリーチャーをすべてタップする。次の相手のターンのはじめに、それらはアンタップしない。",
+          "race": "ソニック・コマンド/侵略者",
+          "powerText": "12000",
+          "missingFields": []
+        },
+        {
+          "name": "蒼き覚醒 ドギラゴンX",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "P革命チェンジ：自分の水または闇の、コスト５以上の、サイキックではないドラゴンが攻撃する時、そのクリーチャーと自分の超次元ゾーンにあるこのクリーチャーを入れ替えてもよい。\nT・ブレイカー\nこのクリーチャーが出た時、自分の手札を１枚捨てる。\nこのクリーチャーはブロックされない。\n自分が手札を１枚捨てた時、次の自分のターンのはじめまで、自分の他の多色クリーチャーすべてに「スレイヤー」を与える。",
+          "race": "メガ・コマンド・ドラゴン/革命軍/ハムカツ団",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-TR05",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-TR05a.jpg",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-TR05b.jpg",
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "4ca4790401639cb5af7e1b63824da81fd57a96577e86b349622d382b8e182192",
+        "imageSha256": "1a90ef1234c954034707150d1f1b76691b6f3da66ac28ed9ed0c79c40f05fb94",
+        "backImageSha256": "c9c356fbf62aa24a3e444f0406202b57c1ecdf14c16e082a0e3d9518b464b877",
+        "facesMatched": true
+      },
+      "canonicalId": "dmex18-s03"
+    },
+    {
+      "id": "dmart15-001",
+      "name": "轟く覚醒 レッドゾーン・バスター",
+      "faces": [
+        {
+          "name": "轟く覚醒 レッドゾーン・バスター",
+          "typeText": "進化サイキック・クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化：光のクリーチャー１体の上に置く。\nP侵略：自分の光の、サイキックではないコマンドが攻撃する時、自分の超次元ゾーンにあるこのクリーチャーをその上に置いてもよい。\nT・ブレイカー\nこのクリーチャーが出た時、自分の手札を１枚、超次元ゾーンに置き、その後、一番パワーが大きい相手のクリーチャーをすべてタップする。次の相手のターンのはじめに、それらはアンタップしない。",
+          "race": "ソニック・コマンド/侵略者",
+          "powerText": "12000",
+          "missingFields": []
+        },
+        {
+          "name": "蒼き覚醒 ドギラゴンX",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "P革命チェンジ：自分の水または闇のコスト５以上の、サイキックではないドラゴンが攻撃する時、そのクリーチャーと自分の超次元ゾーンにあるこのクリーチャーを入れ替えてもよい。\nT・ブレイカー\nこのクリーチャーはブロックされない。\nこのクリーチャーが出た時、自分の手札を１枚捨てる。\n自分の手札を捨てた時、次の自分のターンのはじめまで、自分の他の多色クリーチャーすべてに「スレイヤー」を与える。",
+          "race": "メガ・コマンド・ドラゴン/革命軍/ハムカツ団",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmart15-001",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmart15-001a.jpg",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmart15-001b.jpg",
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "60e91f439e9843d84961eba75c15a37d5b1d2216cee19a73f9e890cc640154f7",
+        "imageSha256": "8a4f3cafeeac05f9f87ce04df579c22777fab02fdf59f27f7f591d975f67d7c0",
+        "backImageSha256": "e2cd17413610c425d586bad48a9ab81c2333d9c2b2057146c682aa1dfd3526b7",
+        "facesMatched": true
+      },
+      "canonicalId": "dmex18-s03"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-15",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "limits": {
+      "dmex18-s03": 1,
+      "dm23rp3-TR02": 1,
+      "dm24ex2-Cho009": 1,
+      "dm25ex4-TR05": 1,
+      "dmart15-001": 1
+    }
+  }
+}

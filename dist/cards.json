@@ -247834,24 +247834,120 @@
       ],
       "supportBatch": "phase-1348",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex18-s03",
+      "name": "轟く覚醒 レッドゾーン・バスター",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 6,
+      "power": 12000,
+      "race": "ソニック・コマンド/侵略者",
+      "text": "進化：光のクリーチャー１体の上に置く。\nP侵略：自分の光の、サイキックではないコマンドが攻撃する時、自分の超次元ゾーンにあるこのクリーチャーをその上に重ねてもよい。\nT・ブレイカー\nこのクリーチャーが出た時、自分の手札を１枚、超次元ゾーンに置き、その後、一番パワーが大きい相手のクリーチャーをすべてタップする。次の相手のターンのはじめに、それらはアンタップしない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-s03",
+      "limit": 1,
+      "psychic": true,
+      "breaker": 3,
+      "evolution": {
+        "civilization": "光"
+      },
+      "g1349PsychicInvasion": true,
+      "g527ExtraEntry": [
+        {
+          "label": "手札を超次元へ置き、最大パワーの相手をすべてタップする",
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "to": "extra",
+              "n": 1,
+              "title": "超次元ゾーンに置く自分の手札を1枚選ぶ"
+            },
+            {
+              "op": "TapHighest1349"
+            }
+          ]
+        }
+      ],
+      "g1085Back": {
+        "name": "蒼き覚醒 ドギラゴンX",
+        "type": "creature",
+        "cost": 8,
+        "power": 13000,
+        "civ": "水/闇",
+        "civilizations": [
+          "水",
+          "闇"
+        ],
+        "race": "メガ・コマンド・ドラゴン/革命軍/ハムカツ団",
+        "text": "P革命チェンジ：自分の闇または水のコスト５以上の、サイキックではないドラゴンが攻撃する時、そのクリーチャーと自分の超次元ゾーンにあるこのクリーチャーを入れ替えてもよい。\nT・ブレイカー\nこのクリーチャーはブロックされない。\nこのクリーチャーが出た時、自分の手札を１枚捨てる。\n自分の手札を捨てた時、次の自分のターンのはじめまで、自分の他の多色クリーチャーすべてに「スレイヤー」を与える。",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-s03b.jpg",
+        "evolution": null,
+        "unblockable": true,
+        "rev": {
+          "g486Current": true,
+          "g1349NonPsychic": true,
+          "colors": [
+            "水",
+            "闇"
+          ],
+          "min": 5
+        },
+        "g527ExtraEntry": [
+          {
+            "label": "手札を1枚捨てる",
+            "defs": [
+              {
+                "op": "Discard",
+                "owner": "self",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "g1168DiscardWatch": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "other": true,
+            "filter": {
+              "multicolor": true
+            },
+            "g521UntilStart": true,
+            "grant": {
+              "slayer": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1349",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1348,
+    "phase": 1349,
     "checkedAt": "2026-11-15",
-    "baseCount": 8033,
-    "newEffectCards": 2,
+    "baseCount": 8035,
+    "newEffectCards": 1,
     "newVanillaCards": 0,
-    "totalCount": 8035,
+    "totalCount": 8036,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/41643/",
-      "https://dm.takaratomy.co.jp/rule/qa/41644/",
-      "https://dm.takaratomy.co.jp/rule/qa/44100/",
-      "https://dm.takaratomy.co.jp/rule/qa/44311/"
+      "https://dm.takaratomy.co.jp/rule/qa/40835/",
+      "https://dm.takaratomy.co.jp/rule/qa/40836/",
+      "https://dm.takaratomy.co.jp/rule/qa/40837/",
+      "https://dm.takaratomy.co.jp/rule/qa/40838/",
+      "https://dm.takaratomy.co.jp/rule/qa/40839/",
+      "https://dm.takaratomy.co.jp/rule/qa/43244/",
+      "https://dm.takaratomy.co.jp/rule/qa/44663/",
+      "https://dm.takaratomy.co.jp/rule/qa/45073/"
     ],
     "next": [
-      "残る裁定の再現に必要なカードのみを検証する"
+      "残る裁定の再現に必要なカードを検証する"
     ],
     "history": [
       {
@@ -270480,6 +270576,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/40458/",
           "https://dm.takaratomy.co.jp/rule/qa/46622/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37768/"
+        ],
+        "next": [
+          "残る裁定の再現に必要なカードのみを検証する"
+        ]
+      },
+      {
+        "phase": 1348,
+        "checkedAt": "2026-11-15",
+        "baseCount": 8033,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 8035,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/41643/",
+          "https://dm.takaratomy.co.jp/rule/qa/41644/",
+          "https://dm.takaratomy.co.jp/rule/qa/44100/",
+          "https://dm.takaratomy.co.jp/rule/qa/44311/"
         ],
         "next": [
           "残る裁定の再現に必要なカードのみを検証する"

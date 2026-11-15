@@ -1086,7 +1086,7 @@ export function createSixPhotoRules(api){
  const psychicBack1104=x=>({...x,g1085Awakened:true});
  function extraFaces1104(x,t,origin){
   const back=origin==='extra'&&card(x.cardId).g1085Back;
-  return back&&(t.g1104PsychicFaces||t.deploy&&back.g464OnceSummon?.execution)?[x,psychicBack1104(x)]:[x];
+  return back&&(t.g1104PsychicFaces||t.deploy&&(back.g464OnceSummon?.execution||card(x.cardId).g1349PsychicInvasion))?[x,psychicBack1104(x)]:[x];
  }
  const selectionKey1104=x=>key(x)+(x.g1085Awakened?':back':':front');
  const spent550=t=>(t.rows||[]).reduce((n,r)=>n+(r.cost550||0),0);
@@ -3375,6 +3375,16 @@ export function createSixPhotoRules(api){
  case'g34_GroupFreeze':
   for(const {p,y}of groupPowerRows(s,t))freeze(s,t,p,y);
   break;
+ case'g34_TapHighest1349':{
+  const player=1-t.p,rows=creatures(s,player);
+  const powers=rows.map(x=>api.power(x,x.uid===s.attack?.attacker,s));
+  const highest=Math.max(...powers);
+  for(const [index,x] of rows.entries())if(powers[index]===highest){
+   api.tap(s,player,x);
+   x.skipUntap=true;
+  }
+  break;
+ }
  case'g34_GroupGrant364':
   for(const {p,y}of groupPowerRows(s,t)){
    if(t.g736ForceAttack)force546(s,{...t,when:'end'},p,y);

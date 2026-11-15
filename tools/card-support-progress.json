@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8035,
-  "pendingNames": 3791,
-  "phase": 1348,
-  "added": 2,
+  "supportedNames": 8036,
+  "pendingNames": 3790,
+  "phase": 1349,
+  "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -64,7 +64,7 @@
     },
     {
       "ability": "革命チェンジ",
-      "pendingNames": 36,
+      "pendingNames": 35,
       "examples": [
         {
           "id": "dmr23-023",
@@ -199,9 +199,9 @@
     "ヒストリック・フィールド": 4,
     "禁断の鼓動": 2,
     "幸せのフィールド": 1,
-    "進化サイキック・クリーチャー": 2,
     "進化クリーチャー（墓地進化）": 1,
     "進化クリーチャー(マナ進化)": 3,
+    "進化サイキック・クリーチャー": 1,
     "サイキック・クロスギア": 4,
     "WDフィールド": 1,
     "ドラゴニック・フィールド": 2,
@@ -223,7 +223,7 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 1074,
+    "複数面・特殊カードタイプまたは情報不足": 1073,
     "未対応の能力文": 2526,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 18,
@@ -490261,14 +490261,61 @@
       "remainingRegistered": 28,
       "remainingPrints": 1,
       "remainingIndividualCards": 26
+    },
+    {
+      "phase": 1349,
+      "baseline": "897fb5ba",
+      "before": 8035,
+      "supported": 8036,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmex18-s03",
+          "name": "轟く覚醒 レッドゾーン・バスター"
+        }
+      ],
+      "printAliases": 4,
+      "results": {
+        "focus": {
+          "passed": 8,
+          "log": "/tmp/duema-uncapped/buster-focus.log",
+          "command": "node --test --test-reporter=spec tests/standard1349-effects.test.mjs",
+          "seconds": 4.618
+        },
+        "regression": {
+          "passed": 237,
+          "log": "/tmp/duema-uncapped/buster-regression-final.log",
+          "command": "node --test --test-concurrency=1 --test-reporter=spec tests/standard{486,849,1104,1105,1106,1112,1267,1348,1349}-effects.test.mjs",
+          "seconds": 96.14
+        },
+        "check": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "/tmp/duema-uncapped/buster-check.log",
+          "rulesBlobs": {
+            "dist/extended-rules.js": "331dc0d8de93ac11ca26662262a4c570d1bd71b2",
+            "dist/redzone-rules.js": "8325ef281e126faf19e39fd476078b3462193bb3",
+            "dist/six-photo-rules.js": "a57bb9684cad73b354254b4b503a79c9ddee2935"
+          }
+        },
+        "audit": {
+          "status": "passed",
+          "command": "node tools/audit-card-support.mjs",
+          "log": "/tmp/duema-uncapped/buster-audit.log"
+        }
+      },
+      "resolvedRegistered": 1,
+      "remainingRegistered": 27,
+      "remainingPrints": 1,
+      "remainingIndividualCards": 26
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1348,
+    "lastVerifiedPhase": 1349,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "正義ノ裁キとXXDDZのS・トリガー宣言時と解決時の判定、集結ノ正裁ZのサバキZを実カードで検証済み。残りの個別裁定と分割テストを継続する。",
+    "steps": "P侵略とP革命チェンジの固有・回帰テストは通過。分割ログをテスト名で集計し、長時間の対戦とワーカーの完了を確認する。残る裁定は依存カードの能力全体を公式資料と照合してから再現する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -490561,8 +490608,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8035,
-    "pendingNames": 3791,
+    "supportedNames": 8036,
+    "pendingNames": 3790,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -534556,8 +534603,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8035,
-      "pendingNames": 3791,
+      "supportedNames": 8036,
+      "pendingNames": 3790,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -535584,7 +535631,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別26種類（裁定28件と版固有の金箔再録1件）と長時間対戦・ワーカーの検証が継続中。mainへのpushを契機にNetlify本番を更新する .github/workflows/netlify.yml がある。Netlifyを更新せずにPagesへ公開する別経路は確認できていない。",
+        "reason": "個別26種類に関する裁定27件と金箔再録1件、および分割した長時間対戦・ワーカーの検証が残る。mainのpushに連動して .github/workflows/netlify.yml がNetlify本番を更新する構成があり、Netlifyへ影響しないPages公開経路は未確認。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -536307,6 +536354,28 @@
             "https://dm.takaratomy.co.jp/rule/qa/44311/"
           ],
           "result": "実際のXXDDZのEXライフを墓地へ置いて呪文を禁止し、正義ノ裁キと同じシールドに含まれる隻眼ノ裁キのS・トリガーは宣言できるが手札で唱えられず、集結ノ正裁ZのサバキZは宣言できないことを確認した。禁止がなければサバキZの宣言で先に紋章を捨て、S・トリガーと任意の順に解決できた。"
+        },
+        {
+          "cardId": "dmrp20-009",
+          "dependencyIds": [
+            "dmex18-s03"
+          ],
+          "test": "《轟く覚醒 レッドゾーン・バスター》を超次元ゾーンから侵略で重ね、進化前のEXライフで呪文を禁止する。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40839/",
+          "phase": 1349,
+          "path": "tests/standard1349-effects.test.mjs",
+          "log": "/tmp/duema-uncapped/buster-focus.log",
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/40835/",
+            "https://dm.takaratomy.co.jp/rule/qa/40836/",
+            "https://dm.takaratomy.co.jp/rule/qa/40837/",
+            "https://dm.takaratomy.co.jp/rule/qa/40838/",
+            "https://dm.takaratomy.co.jp/rule/qa/40839/",
+            "https://dm.takaratomy.co.jp/rule/qa/43244/",
+            "https://dm.takaratomy.co.jp/rule/qa/44663/",
+            "https://dm.takaratomy.co.jp/rule/qa/45073/"
+          ],
+          "result": "覚醒連結 XXDDZのEXライフ・シールドを作り、実物の両面サイキックをP侵略で同じ攻撃中に重ねた。進化元にひも付くシールドを墓地に置いて、相手の呪文を禁止した。宣言が不要なことと途中状態をJSONから復元する経路も確認した。"
         }
       ],
       "remainingRegistered": [
@@ -536382,6 +536451,14 @@
               "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-082",
               "https://dm.takaratomy.co.jp/rule/qa_old/37520/"
             ]
+          },
+          "relatedOfficialAnalogy": {
+            "checkedAt": "2026-11-15",
+            "sources": [
+              "https://dm.takaratomy.co.jp/rule/qa_old/37913/",
+              "https://dm.takaratomy.co.jp/rule/qa/43058/"
+            ],
+            "result": "公式Q&Aには、名称が異なる拡張キーワードも元の能力として扱う例がある。キング・ナイト・マジックとナイト・マジックの包含関係を直接述べる裁定は確認できず、現行テストだけで対応済みとは判定しない。"
           }
         },
         {
@@ -536447,7 +536524,16 @@
           ],
           "test": "DG ～ヒトノ造リシモノ～自身のタップ時誘発が、攻撃時にも1回だけとなる（QA45139）。",
           "reason": "指定カードが未対応。オカルト・チューナーで同じタップ時誘発が1回であることは確認した。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/45139/"
+          "source": "https://dm.takaratomy.co.jp/rule/qa/45139/",
+          "dependencyReview": {
+            "checkedAt": "2026-11-15",
+            "sources": [
+              "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-dg01",
+              "https://dm.takaratomy.co.jp/rule/qa/45078/",
+              "https://dm.takaratomy.co.jp/rule/qa/31602/"
+            ],
+            "reason": "DGの能力では両者のS・トリガー、G・ストライク、S・バックの宣言を済ませてからシールドを同時に手札に加え、サバキZの宣言と各プレイヤーの解決へ進む。現在の片側ずつのブレイク処理だけではこの順序を再現できない。"
+          }
         },
         {
           "cardId": "dmsd13-019",
@@ -536466,15 +536552,6 @@
           "test": "ドラゴン種族を持つオーラを墓地に置き、龍世界の効果で出す場合の付け先とGR召喚。",
           "reason": "ドラゴンのオーラは対戦データに未登録。オーラの実カードでの登場経路は未検証。",
           "source": "https://dm.takaratomy.co.jp/rule/rulechange/31649/"
-        },
-        {
-          "cardId": "dmrp20-009",
-          "dependencyIds": [
-            "dmex18-s03"
-          ],
-          "test": "《轟く覚醒 レッドゾーン・バスター》を超次元ゾーンから侵略で重ね、進化前のEXライフで呪文を禁止する。",
-          "reason": "QA40839の進化後の処理は、実装済みの《轟く侵略 レッドゾーン》で実際に侵略して検証済み。裁定の超次元カードが未実装のため、そのカードの組み合わせは未検証。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/40839/"
         },
         {
           "cardId": "dmrp20-009",
@@ -536633,10 +536710,11 @@
           "dmr08s-007",
           "dmx21-026",
           "dmex19-025",
-          "dmbd07-b-005"
+          "dmbd07-b-005",
+          "dmex18-s03"
         ],
-        "officialPrints": 96,
-        "newAliases": 71,
+        "officialPrints": 101,
+        "newAliases": 75,
         "evidence": [
           {
             "id": "dm23rp2-065",
@@ -537400,6 +537478,56 @@
             "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy17-087.jpg",
             "pageSha256": "ceb7793140f91cb47773d73c53c25a9ed6bb1a09fe8260dbceb4a43fe19efbf8",
             "imageSha256": "1a08283117c2e4ca1c67dcb2d5ffa1a09d91bb93cca5a819d6e7e83e16009f5d"
+          },
+          {
+            "id": "dmex18-s03",
+            "canonicalId": "dmex18-s03",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-s03",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-s03a.jpg",
+            "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-s03b.jpg",
+            "pageSha256": "c9f874f52beeb0d1e12f8ea7b5a918d6ff7153cd1f23e721d1a7ee3cabde736c",
+            "imageSha256": "7561e53926122832876513de7c6c15537056697cdb592433285acff40fe5cc36",
+            "backImageSha256": "915a1c86d29f137d5c84e339c0322673d08d6da88f4d83ed5cf5f7b5db328b39"
+          },
+          {
+            "id": "dm23rp3-TR02",
+            "canonicalId": "dmex18-s03",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-TR02",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-TR02a.jpg",
+            "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-TR02b.jpg",
+            "pageSha256": "795e11e3e175ded2b302945f7cd2071aa0201b1229c95cd7a089d20f4e998856",
+            "imageSha256": "4d5537e95f539068e788f93b700b78681be3311e29b4eeea2d4bc94d4f7d1646",
+            "backImageSha256": "1d9b0628bc68189c9384c1dc1f163a6350b7ef8ce26cd2dedbab509c7a2a527c"
+          },
+          {
+            "id": "dm24ex2-Cho009",
+            "canonicalId": "dmex18-s03",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-Cho009",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex2-Cho009a.jpg",
+            "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex2-Cho009b.jpg",
+            "pageSha256": "f30e9e3207b4752eb953d15717fee3964854b449dee895c28b0f4b413b4f59b2",
+            "imageSha256": "e77fe6b2e741e0abd14201b868b139cbc8b6baa9433521e128138657828e9953",
+            "backImageSha256": "2b56793be3e45661ef23dc0c3472b41203a692e53b25bce31aea36f09ddfdd53"
+          },
+          {
+            "id": "dm25ex4-TR05",
+            "canonicalId": "dmex18-s03",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-TR05",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-TR05a.jpg",
+            "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-TR05b.jpg",
+            "pageSha256": "4ca4790401639cb5af7e1b63824da81fd57a96577e86b349622d382b8e182192",
+            "imageSha256": "1a90ef1234c954034707150d1f1b76691b6f3da66ac28ed9ed0c79c40f05fb94",
+            "backImageSha256": "c9c356fbf62aa24a3e444f0406202b57c1ecdf14c16e082a0e3d9518b464b877"
+          },
+          {
+            "id": "dmart15-001",
+            "canonicalId": "dmex18-s03",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmart15-001",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmart15-001a.jpg",
+            "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmart15-001b.jpg",
+            "pageSha256": "60e91f439e9843d84961eba75c15a37d5b1d2216cee19a73f9e890cc640154f7",
+            "imageSha256": "8a4f3cafeeac05f9f87ce04df579c22777fab02fdf59f27f7f591d975f67d7c0",
+            "backImageSha256": "e2cd17413610c425d586bad48a9ab81c2333d9c2b2057146c682aa1dfd3526b7"
           }
         ],
         "testLog": "/tmp/duema-verify-8009/verification-followup-prints.log",
@@ -537492,6 +537620,16 @@
             "source": "https://dm.takaratomy.co.jp/product/dm22rp1/",
             "pageSha256": "6d82881075a0668c5b2a85d8ce21d8faf1e0b7e5bb4670b355512272621f8f1f",
             "result": "公式商品の掲載内容と個別公式ページのOR2・2Bを照合。金箔2S/2の識別に使える公式画像と版固有のIDは未確認。"
+          },
+          "officialBroadcastRecheck": {
+            "checkedAt": "2026-11-15",
+            "sources": [
+              "https://www.youtube.com/watch?v=RFeocOhpFbg&t=2986s",
+              "https://www.youtube.com/watch?v=RFeocOhpFbg&t=3000s",
+              "https://www.youtube.com/watch?v=RFeocOhpFbg&t=4155s",
+              "https://www.youtube.com/watch?v=QuzPogyXhsY"
+            ],
+            "result": "発売前の公式配信で49分46秒に金箔レアリティの新名称、50分にドラン・ゴルギーニのシークレットSPレアの画像を確認した。1時間9分15秒のカード紹介と公式開封配信の確認範囲でも、金箔2S/2のカード画像と印刷番号を特定できなかった。"
           }
         }
       ],
@@ -537685,8 +537823,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8035,
-        "pending": 3791,
+        "supported": 8036,
+        "pending": 3790,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -538286,8 +538424,12 @@
       "finalCheck": {
         "status": "passed",
         "command": "npm run check",
-        "log": "/tmp/duema-uncapped/justice-check.log",
-        "rulesBlob": "736f1bf153444b9ecbb189fc5d84f5b4aabfd0a0"
+        "log": "/tmp/duema-uncapped/buster-check.log",
+        "rulesBlobs": {
+          "dist/extended-rules.js": "331dc0d8de93ac11ca26662262a4c570d1bd71b2",
+          "dist/redzone-rules.js": "8325ef281e126faf19e39fd476078b3462193bb3",
+          "dist/six-photo-rules.js": "a57bb9684cad73b354254b4b503a79c9ddee2935"
+        }
       },
       "abyssShort": {
         "passed": 33,
@@ -538349,10 +538491,6 @@
         {
           "id": "dmrp11-m02",
           "name": "Code：1059"
-        },
-        {
-          "id": "dmex18-s03",
-          "name": "轟く覚醒 レッドゾーン・バスター"
         },
         {
           "id": "dmrp11-s06",
@@ -538435,49 +538573,49 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1348,
-        "baseline": "7c13d049",
-        "before": 8033,
-        "supported": 8035,
+        "phase": 1349,
+        "baseline": "897fb5ba",
+        "before": 8035,
+        "supported": 8036,
         "duplicates": 0,
         "added": [
           {
-            "id": "dmex19-025",
-            "name": "正義ノ裁キ"
-          },
-          {
-            "id": "dmbd07-b-005",
-            "name": "集結ノ正裁Z"
+            "id": "dmex18-s03",
+            "name": "轟く覚醒 レッドゾーン・バスター"
           }
         ],
-        "printAliases": 2,
+        "printAliases": 4,
         "results": {
           "focus": {
-            "passed": 6,
-            "log": "/tmp/duema-uncapped/justice-focus.log",
-            "command": "node --test tests/standard1348-effects.test.mjs",
-            "seconds": 1.72
+            "passed": 8,
+            "log": "/tmp/duema-uncapped/buster-focus.log",
+            "command": "node --test --test-reporter=spec tests/standard1349-effects.test.mjs",
+            "seconds": 4.618
           },
           "regression": {
-            "passed": 82,
-            "log": "/tmp/duema-uncapped/justice-regression.log",
-            "command": "node --test --test-concurrency=1 tests/standard{1028,1267,1297,1303,1326,1333,1343,1347,1348}-effects.test.mjs",
-            "seconds": 21.838
+            "passed": 237,
+            "log": "/tmp/duema-uncapped/buster-regression-final.log",
+            "command": "node --test --test-concurrency=1 --test-reporter=spec tests/standard{486,849,1104,1105,1106,1112,1267,1348,1349}-effects.test.mjs",
+            "seconds": 96.14
           },
           "check": {
             "status": "passed",
             "command": "npm run check",
-            "log": "/tmp/duema-uncapped/justice-check.log",
-            "rulesBlob": "736f1bf153444b9ecbb189fc5d84f5b4aabfd0a0"
+            "log": "/tmp/duema-uncapped/buster-check.log",
+            "rulesBlobs": {
+              "dist/extended-rules.js": "331dc0d8de93ac11ca26662262a4c570d1bd71b2",
+              "dist/redzone-rules.js": "8325ef281e126faf19e39fd476078b3462193bb3",
+              "dist/six-photo-rules.js": "a57bb9684cad73b354254b4b503a79c9ddee2935"
+            }
           },
           "audit": {
             "status": "passed",
             "command": "node tools/audit-card-support.mjs",
-            "log": "/tmp/duema-uncapped/justice-audit.log"
+            "log": "/tmp/duema-uncapped/buster-audit.log"
           }
         },
         "resolvedRegistered": 1,
-        "remainingRegistered": 28,
+        "remainingRegistered": 27,
         "remainingPrints": 1,
         "remainingIndividualCards": 26
       },
@@ -540557,8 +540695,8 @@
         "command": "python3 /tmp/duema-uncapped/run-tests.py",
         "reason": "ユーザー指示により時間上限を解除。未確認テスト名をフィルタ指定し、前の一括実行は中断・合否未確認のまま保持。",
         "snapshot": {
-          "completeGroups": 19,
-          "passedNamedTests": 34,
+          "completeGroups": 20,
+          "passedNamedTests": 37,
           "failedNamedTests": 2,
           "enginePairings": {
             "seconds": 643.82,
@@ -540620,20 +540758,43 @@
             "completedGroups": 178,
             "passedNamedTests": 231,
             "failedGroups": [],
-            "result": "基本の分割テストで検証済みの対象と実行中のアーマード、ガチロボ、ギャラクシーを除き、検証済みコミットで残りのグループを実行中。",
+            "result": "互いに重複しない完了ログを集計。長時間の対戦と本番ワーカーを含む未完了の実行は継続中。",
             "command": "python3 /tmp/duema-uncapped/run-current.py",
             "log": "/tmp/duema-uncapped/current-results.jsonl"
+          },
+          "aggregateByExactName": {
+            "planned": 818,
+            "passed": 268,
+            "result": "二つの固定コミットのログで、パスとテスト名が一致する通過を重複なしで数えた。大会フィクスチャを修正した改名ケースは別の分割記録に保存。"
+          },
+          "armoredLong": {
+            "commit": "3f87d5f0",
+            "path": "tests/armored-effects.test.mjs",
+            "passed": [
+              "No07 completes78 seeded AI games, conserves80 unique cards and replays every state deterministically",
+              "No07 random legal choices conserve cards and serialize all pending deployments, payments and AI choices",
+              "production worker completes260 No07 games with no unresolved matches"
+            ],
+            "deterministicGames": 78,
+            "workerGames": 260,
+            "seconds": 7600.49,
+            "log": "/tmp/duema-uncapped/logs/0008.log"
           }
         },
         "latestRegisteredRulings": {
-          "phase": 1348,
+          "phase": 1349,
           "sources": [
-            "https://dm.takaratomy.co.jp/rule/qa/44311/",
-            "https://dm.takaratomy.co.jp/rule/qa/41644/",
-            "https://dm.takaratomy.co.jp/rule/qa/45078/"
+            "https://dm.takaratomy.co.jp/rule/qa/40835/",
+            "https://dm.takaratomy.co.jp/rule/qa/40836/",
+            "https://dm.takaratomy.co.jp/rule/qa/40837/",
+            "https://dm.takaratomy.co.jp/rule/qa/40838/",
+            "https://dm.takaratomy.co.jp/rule/qa/40839/",
+            "https://dm.takaratomy.co.jp/rule/qa/43244/",
+            "https://dm.takaratomy.co.jp/rule/qa/44663/",
+            "https://dm.takaratomy.co.jp/rule/qa/45073/"
           ],
-          "result": "正義ノ裁キの常在能力、両呪文の手札からの実行後の置き方、およびサバキZとS・トリガーの解決順を確認した。両カードの初版と各1再録の公式本文と画像を照合した。",
-          "log": "/tmp/duema-uncapped/justice-focus.log"
+          "log": "/tmp/duema-uncapped/buster-focus.log",
+          "result": "両面のP侵略とP革命チェンジ、各面の登場能力、入れ替え後のカードの移動先とスレイヤーの付与期間、XXDDZのEXライフの参照を確認した。両面の公式画像を初版と再録4種類で照合した。"
         }
       }
     }
