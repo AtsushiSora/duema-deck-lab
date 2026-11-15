@@ -247757,22 +247757,98 @@
       ],
       "supportBatch": "phase-1347",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex19-025",
+      "name": "正義ノ裁キ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "裁きの紋章",
+      "text": "カードを１枚引く。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに、表向きのままシールド１つの上に置く。（そのシールドの束は１つと数える）\nこのカードがシールドゾーンに表向きであれば、自分は、裁きの紋章を唱えられなくする効果を無視する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-025",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g1027Crest": true,
+      "g1348Justice": true,
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1348",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd07-b-005",
+      "name": "集結ノ正裁Z",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "裁きの紋章Z",
+      "text": "サバキZ（裁きの紋章が自分のシールドゾーンから手札に加えられた時、そのカードを捨ててもよい。そうしたら、この呪文をコストを支払わずに唱える）\n自分の山札の上から２枚を表向きにする。その中からドラゴン、メタリカ、呪文をすべて手札に加え、残りを好きな順序で山札の一番下に置く。\nこの呪文を自分の手札から唱えた後、自分のシールド１つの上に、表向きにして置く。（そのシールドの束は１つと数える）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd07-b-005",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g1027Crest": true,
+      "g1348Sabaki": true,
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g255Search": true,
+          "n": 2,
+          "public": true,
+          "stages": [
+            {
+              "n": "all",
+              "to": "hand",
+              "filter": {
+                "any": [
+                  {
+                    "anyFaceRace": "ドラゴン"
+                  },
+                  {
+                    "anyFaceRace": "メタリカ"
+                  },
+                  {
+                    "spell": true
+                  }
+                ]
+              },
+              "allMatches": true
+            }
+          ],
+          "rest": "bottom"
+        }
+      ],
+      "supportBatch": "phase-1348",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1347,
+    "phase": 1348,
     "checkedAt": "2026-11-15",
-    "baseCount": 8032,
-    "newEffectCards": 1,
+    "baseCount": 8033,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 8033,
+    "totalCount": 8035,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/39786/",
-      "https://dm.takaratomy.co.jp/rule/qa/40456/",
-      "https://dm.takaratomy.co.jp/rule/qa/40458/",
-      "https://dm.takaratomy.co.jp/rule/qa/46622/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37768/"
+      "https://dm.takaratomy.co.jp/rule/qa/41643/",
+      "https://dm.takaratomy.co.jp/rule/qa/41644/",
+      "https://dm.takaratomy.co.jp/rule/qa/44100/",
+      "https://dm.takaratomy.co.jp/rule/qa/44311/"
     ],
     "next": [
       "残る裁定の再現に必要なカードのみを検証する"
@@ -270385,6 +270461,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/41288/",
           "https://dm.takaratomy.co.jp/rule/qa/45440/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
+        ],
+        "next": [
+          "残る裁定の再現に必要なカードのみを検証する"
+        ]
+      },
+      {
+        "phase": 1347,
+        "checkedAt": "2026-11-15",
+        "baseCount": 8032,
+        "newEffectCards": 1,
+        "newVanillaCards": 0,
+        "totalCount": 8033,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/39786/",
+          "https://dm.takaratomy.co.jp/rule/qa/40456/",
+          "https://dm.takaratomy.co.jp/rule/qa/40458/",
+          "https://dm.takaratomy.co.jp/rule/qa/46622/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37768/"
         ],
         "next": [
           "残る裁定の再現に必要なカードのみを検証する"

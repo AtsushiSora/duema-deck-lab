@@ -405,7 +405,32 @@ export function visibleOpponentHand(s,p){
  const hand=s.players[opponent].hand;
  return handIsPublic(s,opponent)?hand:hand.filter(x=>vividRevealed1335(s,opponent,x));
 }
-export function canCastSpell(s,p,c,origin=null,originOwner=p,pendingBreak=null){c=executionCard(c);if(c.forbiddenCore||c.ritual||c.startCard)return false;if(labyrinthSpellBlocked1297(s,p,c,pendingBreak))return false;if(c.type==='spell'&&s.active===p&&costValue(c)>=4&&s.players.some(owner=>owner.battle.some(x=>card(x).g671OwnTurnSpellMin&&costValue(c)>=effectiveCard(x,s).g671OwnTurnSpellMin)))return false;if(c.type==='spell'&&graveNameSpellBlocked614(s,p,c))return false;if(c.type==='spell'&&s.attackLifecycle?.g494SpellLock===p)return false;if(c.type==='spell'&&!civilizations(c).includes('光')&&s.players[1-p].battle.some(x=>effectiveCard(x,s).g595NonLightSpellLock))return false;if(!extra.requested393D.allowedCast(s,p,c))return false;if(c.type==='spell'&&s.attack&&s.active===1-p&&s.players[1-p].battle.some(x=>x.uid===s.attack.attacker&&effectiveCard(x,s).g277AttackSpellLock))return false;if(!extra.saga.allowedCast(s,p,c)||!extra.cyber.allowedCast(s,p,c,origin)||!extra.combat.allowedCast(s,p,c,origin))return false;if(c.type==='spell'&&(!canMoveZone(s,originOwner,origin)||origin==='grave'&&s.players.some(v=>v.battle.some(x=>card(x).g592GraveSpellLock&&!abilitiesIgnored(s,x)&&isCreature(s,x)))))return false;if(c.type==='castle'&&!canAddShield(s,p))return false;if(!extra.environment.allowedCast(s,p,c)||!extra.six.allowedCast(s,p,c))return false;if(c.type==='spell'&&s.active===1-p&&s.players[1-p].battle.some(x=>effectiveCard(x,s).g32Dolf))return false;if(!extra.viride.spellAllowed(s,p,c)||origin&&!extra.originAllowed(s,p,origin))return false;return extra.spellPermission(s,p,c)||extra.allowedCard(s,p,c)&&(c.type!=='spell'||(extra.allowedSpell(s,p,c)&&extra.six.allowsNonLightSpells687(s,c)&&!s.players[1-p].battle.some(x=>!x.sealed&&effectiveCard(x,s).g473OpponentSpellLock)&&!s.players[1-p].battle.some(x=>c.cost<=(effectiveCard(x,s).spellLockMaxCost??-1))&&!(s.extLimits||[]).some(l=>l.player===p&&(l.kind==='cast'||l.kind==='spellCostLock'&&costValue(c)<=l.max||l.kind==='numberCast'&&(l.creatureSource||!spellIgnored(s,{type:'spell',cost:4}))&&costValue(c)===(l.cost==='∞'?Infinity:l.cost)))));}
+const judgmentCrest1348=c=>String(c.race).split('/').some(r=>r==='裁きの紋章'||r==='裁きの紋章Z');
+function crestPermission1348(s,p,c){
+ return c.type==='spell'&&judgmentCrest1348(c)&&Array.isArray(s.players[p].shields)&&
+  s.players[p].shields.some(root=>shieldCards(root).some(x=>x.faceUp&&card(x).g1348Justice));
+}
+export function canCastSpell(s,p,c,origin=null,originOwner=p,pendingBreak=null){
+ c=executionCard(c);
+ if(c.forbiddenCore||c.ritual||c.startCard)return false;
+ if(c.type==='spell'&&!canMoveZone(s,originOwner,origin)||origin&&!extra.originAllowed(s,p,origin))return false;
+ // Recheck the visible shield when actually casting a declared trigger (QA44311).
+ if(crestPermission1348(s,p,c))return true;
+ if(labyrinthSpellBlocked1297(s,p,c,pendingBreak))return false;
+ if(c.type==='spell'&&s.active===p&&costValue(c)>=4&&s.players.some(owner=>owner.battle.some(x=>card(x).g671OwnTurnSpellMin&&costValue(c)>=effectiveCard(x,s).g671OwnTurnSpellMin)))return false;
+ if(c.type==='spell'&&graveNameSpellBlocked614(s,p,c))return false;
+ if(c.type==='spell'&&s.attackLifecycle?.g494SpellLock===p)return false;
+ if(c.type==='spell'&&!civilizations(c).includes('光')&&s.players[1-p].battle.some(x=>effectiveCard(x,s).g595NonLightSpellLock))return false;
+ if(!extra.requested393D.allowedCast(s,p,c))return false;
+ if(c.type==='spell'&&s.attack&&s.active===1-p&&s.players[1-p].battle.some(x=>x.uid===s.attack.attacker&&effectiveCard(x,s).g277AttackSpellLock))return false;
+ if(!extra.saga.allowedCast(s,p,c)||!extra.cyber.allowedCast(s,p,c,origin)||!extra.combat.allowedCast(s,p,c,origin))return false;
+ if(c.type==='spell'&&origin==='grave'&&s.players.some(v=>v.battle.some(x=>card(x).g592GraveSpellLock&&!abilitiesIgnored(s,x)&&isCreature(s,x))))return false;
+ if(c.type==='castle'&&!canAddShield(s,p))return false;
+ if(!extra.environment.allowedCast(s,p,c)||!extra.six.allowedCast(s,p,c))return false;
+ if(c.type==='spell'&&s.active===1-p&&s.players[1-p].battle.some(x=>effectiveCard(x,s).g32Dolf))return false;
+ if(!extra.viride.spellAllowed(s,p,c))return false;
+ return extra.spellPermission(s,p,c)||extra.allowedCard(s,p,c)&&(c.type!=='spell'||(extra.allowedSpell(s,p,c)&&extra.six.allowsNonLightSpells687(s,c)&&!s.players[1-p].battle.some(x=>!x.sealed&&effectiveCard(x,s).g473OpponentSpellLock)&&!s.players[1-p].battle.some(x=>c.cost<=(effectiveCard(x,s).spellLockMaxCost??-1))&&!(s.extLimits||[]).some(l=>l.player===p&&(l.kind==='cast'||l.kind==='spellCostLock'&&costValue(c)<=l.max||l.kind==='numberCast'&&(l.creatureSource||!spellIgnored(s,{type:'spell',cost:4}))&&costValue(c)===(l.cost==='∞'?Infinity:l.cost)))));
+}
 export const canUntap=c=>!c.sealed&&!c.tapLocks?.length&&!c.g32NoUntap&&!c.g34NoUntap;
 function cannotUntapSpellMana(s,x){
  return !x.faceDown&&playFaces(card(x)).some(c=>c.type==='spell')&&
@@ -1087,10 +1112,18 @@ function allShieldTrigger1303(s,p){
 function allShieldTriggersToHand(s,p){
  return allShieldTrigger1303(s,p)||s.extLimits?.some(row=>row.kind==='g1339ShieldTriggers'&&row.who===p);
 }
-function shieldTriggerWindow1303(s,p,eligibleFaces,{breaker,untapBreaker,gs=[],breaking=false}={}){
+function sabakiCandidates1348(s,p,arrived){
+ const own=s.players[p];
+ if(!own.hand.some(x=>card(x).g1348Sabaki))return [];
+ return arrived.filter(x=>judgmentCrest1348(card(x))).flatMap(x=>own.hand
+  .filter(y=>y!==x&&card(y).g1348Sabaki&&canCastSpell(s,p,card(y),'hand'))
+  .map(y=>({payment:x.uid,paymentSerial:x.zoneSerial||0,target:y.uid,targetSerial:y.zoneSerial||0,source:y.cardId})));
+}
+function shieldTriggerWindow1303(s,p,eligibleFaces,{breaker,untapBreaker,gs=[],breaking=false,sabaki=[]}={}){
  if(s.triggers)(s.triggerStack??=[]).push(s.triggers);
  s.triggers={interrupt:breaking,player:p,undeclared:Object.keys(eligibleFaces),declared:[],entries:[],eligibleFaces,
-  breaker,...(untapBreaker?{g1302TriggerUntap:untapBreaker}:{}),faceByUid:{},gsUndeclared:gs,gsDeclared:[]};
+  breaker,...(untapBreaker?{g1302TriggerUntap:untapBreaker}:{}),faceByUid:{},gsUndeclared:gs,gsDeclared:[],
+  ...(sabaki.length?{g1348Sabaki:sabaki}:{})};
 }
 export function exLifeShields(s,p,c){if(!effectiveCard(c,s).exLife)return[];const ids=new Set(layers(c).flatMap(x=>[...(x.exLifeShieldUids||[]),...(x.exLifeShieldUid?[x.exLifeShieldUid]:[])]));return s.players[p].shields.filter(x=>ids.has(shieldGroup(x)));}
 export function exLifeShieldInfo(s,p,uid){
@@ -1230,13 +1263,14 @@ function moveShields535(s,p,uids,to,{cardOnly=false,handEffects=true,replacement
  if(groups)recordShieldHand1313(s,p,groups,hand);
  if(handEffects){
   const fromHand=Object.fromEntries(hand.filter(x=>grantedFaces[x.uid]).map(x=>[x.uid,grantedFaces[x.uid]]));
-  const window=Object.keys(fromHand).length>0;
+  const sabaki=sabakiCandidates1348(s,p,hand);
+  const window=Object.keys(fromHand).length>0||sabaki.length>0;
   if(window){
    const gs=extra.gsAllowed(s,p)?hand.flatMap(x=>Array(gsCounts.get(x.uid)||0).fill(x.uid)):[];
    const pending=s.g19Interrupt;
    s.g19Interrupt={breaking:false,tasks:(s.extTasks??=[]).splice(0),effects:(s.pendingEffects??=[]).splice(0),
     context:s.breakContext,...(pending?{parent:pending}:{})};
-   shieldTriggerWindow1303(s,p,fromHand,{gs,breaking:true});
+   shieldTriggerWindow1303(s,p,fromHand,{gs,breaking:true,sabaki});
   }
   extra.beginSB(s,p,hand,window,escapeSBDeclaration);
   for(const x of hand)extra.shieldHand(s,p,x,window,{noST:noST||mutedTriggers.has(x.uid),gsCount:gsCounts.get(x.uid)});
@@ -3687,7 +3721,7 @@ function commitShieldBreak(s,defender,uids){
   {uid:breaker.uid,incarnation:breaker.incarnation??0,player:breakContext.player,source:breakContext.source}:null;
  // Pending broken shields are excluded from Duelangel's threshold at declaration.
  const pendingBreak={defender,remaining},allTrigger=allShieldTriggersToHand(s,defender);
- const eligibleFaces=Object.fromEntries((toMana?[]:all).flatMap(x=>{if(goesToGrave(x)||mutedTriggers.has(x.uid))return [];const faces=!breakContext?.noST&&extra.triggersAllowed(s,defender)?playFaces(card(x)).flatMap((c,face)=>(allTrigger||c.g26Viride&&s.players[1-defender].battle.filter(x=>isCreature(s,x)).length>=3||extra.six.shieldTrigger(s,defender,x,c)||lightShieldTrigger1019(s,defender,c,handRemaining)||extra.requested393J.shieldTrigger(s,defender,x,c)||c.trigger||c.triggerPlus||c.superTrigger||c.graveTotalTrigger&&s.players.reduce((n,p)=>n+p.grave.length,0)>=c.graveTotalTrigger||c.rev2Trigger&&s.players[defender].shields.length-count<=2||x.g19ShieldST!==undefined||c.type==='spell'&&extra.spellShieldTrigger(s,defender,true)||c.shieldConditionalTrigger&&s.players[defender].grave.filter(x=>playFaces(card(x)).some(c=>c.type==='spell')).length>=2)&&(!summonLocked||c.type!=='creature')&&extra.triggersAllowed(s,defender,c)&&!extra.triggerLocked597(s,defender,c,remaining,breaker)&&canCastSpell(s,defender,c,null,defender,pendingBreak)&&(extra.spellPermission(s,defender,c)||extra.six.allowsNonLightSpells687(s,c,pendingBreak))?[face]:[]):[];return faces.length?[[x.uid,faces]]:[];})),eligible=Object.keys(eligibleFaces);
+ const eligibleFaces=Object.fromEntries((toMana?[]:all).flatMap(x=>{if(goesToGrave(x)||mutedTriggers.has(x.uid))return [];const faces=!breakContext?.noST&&extra.triggersAllowed(s,defender)?playFaces(card(x)).flatMap((c,face)=>(allTrigger||c.g26Viride&&s.players[1-defender].battle.filter(x=>isCreature(s,x)).length>=3||extra.six.shieldTrigger(s,defender,x,c)||lightShieldTrigger1019(s,defender,c,handRemaining)||extra.requested393J.shieldTrigger(s,defender,x,c)||c.trigger||c.triggerPlus||c.superTrigger||c.graveTotalTrigger&&s.players.reduce((n,p)=>n+p.grave.length,0)>=c.graveTotalTrigger||c.rev2Trigger&&s.players[defender].shields.length-count<=2||x.g19ShieldST!==undefined||c.type==='spell'&&extra.spellShieldTrigger(s,defender,true)||c.shieldConditionalTrigger&&s.players[defender].grave.filter(x=>playFaces(card(x)).some(c=>c.type==='spell')).length>=2)&&(!summonLocked||c.type!=='creature')&&extra.triggersAllowed(s,defender,c)&&!extra.triggerLocked597(s,defender,c,remaining,breaker)&&canCastSpell(s,defender,c,null,defender,pendingBreak)&&(crestPermission1348(s,defender,c)||extra.spellPermission(s,defender,c)||extra.six.allowsNonLightSpells687(s,c,pendingBreak))?[face]:[]):[];return faces.length?[[x.uid,faces]]:[];})),eligible=Object.keys(eligibleFaces);
  // QA35246: reveal the cards in the actual break before they enter the hand.
  if(!handOnly&&breakContext?.player===1-defender&&
   (breakContext.g756Breaker?.length||breakContext.g913DepartedBreaker)){
@@ -3739,9 +3773,10 @@ function commitShieldBreak(s,defender,uids){
  else log(s,controller,'break',`シールド${count}つ（カード${broken.length+mana.length}枚）を同時にブレイク（残り${s.players[defender].shields.length}つ）`);
  for(const x of broken)extra.shieldHand(s,defender,x,true,{noST:mutedTriggers.has(x.uid)});
  const gs=extra.gsAllowed(s,defender)?broken.flatMap(x=>Array(gsCandidates.get(x.uid)||0).fill(x.uid)):[];
- if(eligible.length||gs.length||extra.hasSB(s,defender,broken)){
+ const sabaki=sabakiCandidates1348(s,defender,broken);
+ if(eligible.length||gs.length||sabaki.length||extra.hasSB(s,defender,broken)){
   const faces=Object.fromEntries(broken.filter(x=>eligibleFaces[x.uid]).map(x=>[x.uid,eligibleFaces[x.uid]]));
-  shieldTriggerWindow1303(s,defender,faces,{breaker,untapBreaker,gs,breaking:!!s.g19Interrupt?.breaking});
+  shieldTriggerWindow1303(s,defender,faces,{breaker,untapBreaker,gs,sabaki,breaking:!!s.g19Interrupt?.breaking});
   if(s.g19Interrupt?.breaking)s.g19Interrupt.breaking=false;
  }
  extra.beginSB(s,defender,broken,true);
@@ -3765,6 +3800,17 @@ function advanceTriggers(s){if(s.lossEvent)return;
   t.declared=t.declared.filter(uid=>{const x=s.players[p].hand.find(c=>c.uid===uid);if(!x||t.sbDeclared?.includes(uid)&&(x.zoneSerial||0)!==t.sbSerials?.[uid])return false;const c=playFaces(card(x))[t.faceByUid?.[uid]||0];if(c.type!=='creature'||canEnterCreature(s,p,c,{declare:true}))return true;log(s,p,'entryPrevented',`${card(x).name}は登場制限により召喚できず手札に残る`,{cardId:x.cardId});return false;});
   t.gsUndeclared=t.gsUndeclared?.filter(uid=>s.players[p].hand.some(x=>x.uid===uid))??[];
   if(t.gsUndeclared.length){const uid=t.gsUndeclared[0];extra.choice(s,extra.task('gsDeclare',p,s.players[p].hand.find(x=>x.uid===uid).cardId,{uid}),'G・ストライクを使いますか？',[{label:'使う',value:true,score:15},{label:'使わない',value:false,score:0}]);return;}
+  while(t.g1348Sabaki?.length){
+   const next=t.g1348Sabaki.shift(),own=s.players[p];
+   const spell=own.hand.find(x=>x.uid===next.target&&(x.zoneSerial||0)===next.targetSerial);
+   const payment=own.hand.find(x=>x.uid===next.payment&&(x.zoneSerial||0)===next.paymentSerial);
+   if(!spell||!payment||t.g1348SabakiDeclared?.[spell.uid]!==undefined||!canCastSpell(s,p,card(spell),'hand'))continue;
+   extra.choice(s,extra.task('g34_SabakiPay1348',p,spell.cardId,next),
+    'サバキZ：'+card(payment).name+'を捨てて唱える？',[
+     {label:'使う',value:true,score:15},{label:'使わない',value:null,score:0}
+    ]);
+   return;
+  }
   t.gsDeclared=(t.gsDeclared||[]).filter(uid=>declaredGStrikeSource(s,t,uid));
   const usable=t.declared.filter(uid=>canUseTrigger(s,p,playFaces(card(s.players[p].hand.find(x=>x.uid===uid)))[t.faceByUid?.[uid]||0],uid));
   if(usable.length+new Set(t.gsDeclared).size>1){s.decision={type:'triggerOrder',player:p};return;}
@@ -3789,10 +3835,13 @@ function advanceTriggers(s){if(s.lossEvent)return;
   s.triggers=s.triggerStack?.pop()||null;
  }
 }
-function canUseTrigger(s,p,c,uid=null){if(s.triggers?.sbDeclared?.includes(uid))return canCastSpell(s,p,c)&&(c.type!=='creature'||canEnterCreature(s,p,c))&&(!c.evolution||evolutionBases(s,p,c).length>0);return extra.triggersAllowed(s,p,c)&&!extra.triggerLocked597(s,p,c,undefined,s.triggers?.breaker)&&canCastSpell(s,p,c)&&!spellIgnored(s,c)&&(c.type!=='creature'||canEnterCreature(s,p,c))&&(!c.evolution||evolutionBases(s,p,c).length>0);}
+function canUseTrigger(s,p,c,uid=null){if(s.triggers?.g1348SabakiDeclared?.[uid]!==undefined){
+  const y=s.players[p].hand.find(x=>x.uid===uid);
+  return y&&(y.zoneSerial||0)===s.triggers.g1348SabakiDeclared[uid]&&canCastSpell(s,p,c,'hand');
+ }if(s.triggers?.sbDeclared?.includes(uid))return canCastSpell(s,p,c)&&(c.type!=='creature'||canEnterCreature(s,p,c))&&(!c.evolution||evolutionBases(s,p,c).length>0);return extra.triggersAllowed(s,p,c)&&!extra.triggerLocked597(s,p,c,undefined,s.triggers?.breaker)&&canCastSpell(s,p,c)&&!spellIgnored(s,c)&&(c.type!=='creature'||canEnterCreature(s,p,c))&&(!c.evolution||evolutionBases(s,p,c).length>0);}
 function executeTrigger(s,p,uid,face){const x=s.players[p].hand.find(x=>x.uid===uid),c=playFaces(card(x))[face];
  if(s.triggers.gsDeclared?.includes(uid))(s.triggers.gsSBSource??={})[uid]=x.cardId;
- if(c.evolution||c.neoEvolution)s.decision={type:'triggerEvolution',player:p,uid,source:x.cardId,face};else playCard(s,p,uid,true,null,face,null,'hand',s.triggers?.sbDeclared?.includes(uid)?'S・バック':'S・トリガー');}
+ if(c.evolution||c.neoEvolution)s.decision={type:'triggerEvolution',player:p,uid,source:x.cardId,face};else playCard(s,p,uid,true,null,face,null,'hand',s.triggers?.g1348SabakiDeclared?.[uid]!==undefined?'サバキZ':s.triggers?.sbDeclared?.includes(uid)?'S・バック':'S・トリガー');}
 function combinations(items,n){if(n===0)return [[]];if(n>items.length)return [];return items.flatMap((x,i)=>combinations(items.slice(i+1),n-1).map(rest=>[x,...rest]));}
 
 function skipTurn(s,p,source){

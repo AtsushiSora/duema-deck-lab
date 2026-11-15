@@ -3823,6 +3823,15 @@ export function createSixPhotoRules(api){
  case'g34_IfMana':if(own.mana.filter(y=>{const cs=api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,t.p);return t.multi?cs.length>1:cs.includes(t.color);}).length>=t.n)start(s,t,t.defs);break;
  case'g34_IfOwnPower':if(creatures(s,t.p).some(y=>api.power(y,y.uid===s.attack?.attacker||y.uid===s.attackLifecycle?.uid&&(y.incarnation||0)===(s.attackLifecycle.incarnation||0),s)>=t.minPower))start(s,t,t.defs);break;
  case'g34_Kourin405':{const r=t.rule;if(r.origin==='deck'&&api.deckLocked(s,t.p))break;put(s,task('g34_Select',t.p,t.source,{uid:t.uid,incarnation:t.incarnation||0,origin:r.origin,g405Search:r.origin==='deck',deploy:true,n:1,optional:true,filter:r.filter,title:({deck:'山札',mana:'マナゾーン',grave:'墓地'}[r.origin])+'から光臨で出すクリーチャーを1体まで選ぶ',...(r.origin==='deck'?{after:[{op:'Shuffle405'}]}:{})}));break;}
+ case'g34_SabakiDeclared1348':{
+  const window=s.triggers;
+  const y=own.hand.find(x=>x.uid===t.target&&(x.zoneSerial||0)===t.targetSerial);
+  if(window?.player!==t.p||!y)break;
+  (window.g1348SabakiDeclared??={})[y.uid]=t.targetSerial;
+  if(!window.declared.includes(y.uid))window.declared.push(y.uid);
+  api.log(s,t.p,'triggerDeclare',card(y).name+'のサバキZを宣言',{cardId:y.cardId});
+  break;
+ }
  case'g34_AllDelete1347':api.allDelete1347(s,t.p,t.source);break;
  case'g34_Shuffle405':api.shuffleLibrary(s,t.p);api.deckCheck(s,t.p);break;
  case'g34_ShuffleOnMove673':{
@@ -7296,6 +7305,12 @@ export function createSixPhotoRules(api){
  case'g34_PlayersDiscard1178':{
   const picks=t.picks??[],p=picks.length===0?s.active:1-s.active;
   put(s,{...t,picks:[...picks,{p,uid:v}]});
+  break;
+ }
+ case'g34_SabakiPay1348':{
+  const y=v&&own.hand.find(x=>x.uid===t.target);
+  if(y&&own.hand.some(x=>x.uid===t.payment)&&api.canCast(s,t.p,card(y),'hand'))
+   api.discardSelected(s,t.p,[t.payment],t.source,t.p,{...t,op:'g34_SabakiDeclared1348'});
   break;
  }
  case'g34_DiscardMatch517':{const y=own.hand.find(y=>y.uid===v);if(y)api.discardSelected(s,t.p,[y.uid],t.source,t.p,null,{op:'g34_DrawAfterDiscard517',p:t.p,source:t.source,matches:matches(s,t.p,y,t.filter)});else api.draw(s,t.p,1);break;}

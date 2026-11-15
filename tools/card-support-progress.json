@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8033,
-  "pendingNames": 3793,
-  "phase": 1347,
-  "added": 1,
+  "supportedNames": 8035,
+  "pendingNames": 3791,
+  "phase": 1348,
+  "added": 2,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -156,7 +156,7 @@
   "pendingByType": {
     "クリーチャー": 2127,
     "NEOクリーチャー": 70,
-    "呪文": 454,
+    "呪文": 452,
     "GRクリーチャー": 156,
     "G-NEOクリーチャー": 26,
     "タマシード": 37,
@@ -224,7 +224,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1074,
-    "未対応の能力文": 2528,
+    "未対応の能力文": 2526,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
@@ -490214,14 +490214,61 @@
       "remainingRegistered": 29,
       "remainingPrints": 1,
       "remainingIndividualCards": 26
+    },
+    {
+      "phase": 1348,
+      "baseline": "7c13d049",
+      "before": 8033,
+      "supported": 8035,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmex19-025",
+          "name": "正義ノ裁キ"
+        },
+        {
+          "id": "dmbd07-b-005",
+          "name": "集結ノ正裁Z"
+        }
+      ],
+      "printAliases": 2,
+      "results": {
+        "focus": {
+          "passed": 6,
+          "log": "/tmp/duema-uncapped/justice-focus.log",
+          "command": "node --test tests/standard1348-effects.test.mjs",
+          "seconds": 1.72
+        },
+        "regression": {
+          "passed": 82,
+          "log": "/tmp/duema-uncapped/justice-regression.log",
+          "command": "node --test --test-concurrency=1 tests/standard{1028,1267,1297,1303,1326,1333,1343,1347,1348}-effects.test.mjs",
+          "seconds": 21.838
+        },
+        "check": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "/tmp/duema-uncapped/justice-check.log",
+          "rulesBlob": "736f1bf153444b9ecbb189fc5d84f5b4aabfd0a0"
+        },
+        "audit": {
+          "status": "passed",
+          "command": "node tools/audit-card-support.mjs",
+          "log": "/tmp/duema-uncapped/justice-audit.log"
+        }
+      },
+      "resolvedRegistered": 1,
+      "remainingRegistered": 28,
+      "remainingPrints": 1,
+      "remainingIndividualCards": 26
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1347,
+    "lastVerifiedPhase": 1348,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "オールデリートによるパーフェクト・ギャラクシーのシールド・フォースを実カードで検証済み。残りの個別裁定と分割テストを継続する。",
+    "steps": "正義ノ裁キとXXDDZのS・トリガー宣言時と解決時の判定、集結ノ正裁ZのサバキZを実カードで検証済み。残りの個別裁定と分割テストを継続する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -490306,12 +490353,12 @@
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [
       {
-        "id": "dmd03-002",
-        "name": "不死身のブーストグレンオー"
+        "id": "dmrp03-dg01",
+        "name": "DG 〜ヒトノ造リシモノ〜"
       },
       {
-        "id": "dmex19-025",
-        "name": "正義ノ裁キ"
+        "id": "dmex12-022",
+        "name": "希望のジョー星"
       },
       {
         "id": "dm35-004",
@@ -490514,8 +490561,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8033,
-    "pendingNames": 3793,
+    "supportedNames": 8035,
+    "pendingNames": 3791,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -534509,8 +534556,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8033,
-      "pendingNames": 3793,
+      "supportedNames": 8035,
+      "pendingNames": 3791,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -535537,7 +535584,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別26種類（裁定29件と版固有の金箔再録1件）と長時間対戦・ワーカーの検証が継続中。mainへのpushを契機にNetlify本番を更新する .github/workflows/netlify.yml がある。Netlifyを更新せずにPagesへ公開する別経路は確認できていない。",
+        "reason": "個別26種類（裁定28件と版固有の金箔再録1件）と長時間対戦・ワーカーの検証が継続中。mainへのpushを契機にNetlify本番を更新する .github/workflows/netlify.yml がある。Netlifyを更新せずにPagesへ公開する別経路は確認できていない。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -536237,6 +536284,29 @@
             "https://dm.takaratomy.co.jp/rule/qa_old/37768/"
           ],
           "result": "オールデリートの解決時に、パーフェクト・ギャラクシーは元のシールドを参照して残り、その後はシールド・フォースが解除された。適用なしの場合はギャラクシーも山札に戻った。"
+        },
+        {
+          "cardId": "dmrp20-009",
+          "dependencyIds": [
+            "dmex19-025"
+          ],
+          "test": "表向きの《正義ノ裁キ》を含むシールドがブレイクされた時、裁きの紋章呪文のS・トリガーは宣言できるが唱えられず、サバキZは宣言できない。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/44311/",
+          "rechecked1332": {
+            "status": "pending",
+            "reason": "正義ノ裁キの公式本文、版、画像、裁定44311を照合。裁きの紋章のシールド追加と、サバキZのシールド離脱後の宣言を通しで再現する必要がある。",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-025"
+          },
+          "phase": 1348,
+          "path": "tests/standard1348-effects.test.mjs",
+          "log": "/tmp/duema-uncapped/justice-focus.log",
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/41643/",
+            "https://dm.takaratomy.co.jp/rule/qa/41644/",
+            "https://dm.takaratomy.co.jp/rule/qa/44100/",
+            "https://dm.takaratomy.co.jp/rule/qa/44311/"
+          ],
+          "result": "実際のXXDDZのEXライフを墓地へ置いて呪文を禁止し、正義ノ裁キと同じシールドに含まれる隻眼ノ裁キのS・トリガーは宣言できるが手札で唱えられず、集結ノ正裁ZのサバキZは宣言できないことを確認した。禁止がなければサバキZの宣言で先に紋章を捨て、S・トリガーと任意の順に解決できた。"
         }
       ],
       "remainingRegistered": [
@@ -536416,20 +536486,6 @@
           "source": "https://dm.takaratomy.co.jp/rule/qa/40665/"
         },
         {
-          "cardId": "dmrp20-009",
-          "dependencyIds": [
-            "dmex19-025"
-          ],
-          "test": "表向きの《正義ノ裁キ》を含むシールドがブレイクされた時、裁きの紋章呪文のS・トリガーは宣言できるが唱えられず、サバキZは宣言できない。",
-          "reason": "通常の呪文および呪文のS・トリガーへの禁止は検証済み。QA44311の《正義ノ裁キ》と裁きの紋章呪文の組み合わせは前者が未実装のため未検証。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/44311/",
-          "rechecked1332": {
-            "status": "pending",
-            "reason": "正義ノ裁キの公式本文、版、画像、裁定44311を照合。裁きの紋章のシールド追加と、サバキZのシールド離脱後の宣言を通しで再現する必要がある。",
-            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-025"
-          }
-        },
-        {
           "cardId": "dmrp20-s02",
           "dependencyIds": [
             "dmex18-022"
@@ -536575,10 +536631,12 @@
           "dm10-s09",
           "dmrp12-008",
           "dmr08s-007",
-          "dmx21-026"
+          "dmx21-026",
+          "dmex19-025",
+          "dmbd07-b-005"
         ],
-        "officialPrints": 92,
-        "newAliases": 69,
+        "officialPrints": 96,
+        "newAliases": 71,
         "evidence": [
           {
             "id": "dm23rp2-065",
@@ -537310,6 +537368,38 @@
             "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-CSP3.jpg",
             "pageSha256": "bd9bc55b0767691c445ec3a8c61a1c4b34c0dbd86cc4d8eb6b2c766d1260c1b4",
             "imageSha256": "3179eb1984b79760b11882a4563061bf1368331cbee0a8d5855da5f8df56ed3c"
+          },
+          {
+            "id": "dmex19-025",
+            "canonicalId": "dmex19-025",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-025",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-025.jpg",
+            "pageSha256": "aea6d5cea4dacce43d4b78c2dc38fdafd1b562da0ed594952f866091908f561c",
+            "imageSha256": "d13a5d7b913ba7a282f33bf35f7945ae04bfeeaea828fbb6534e40fc97bebb16"
+          },
+          {
+            "id": "dmbd07-b-005",
+            "canonicalId": "dmbd07-b-005",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd07-b-005",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd07-b-005.jpg",
+            "pageSha256": "40dbdf5d2f4103bc5325fdc3c4919a7ce75c6ed4086a85ec724992a6552a2942",
+            "imageSha256": "0b9539072ff957c0b73d77644a1807fe5ef8633140ffb6c10612518dc929f7d3"
+          },
+          {
+            "id": "promoy24-044",
+            "canonicalId": "dmex19-025",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy24-044",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy24-044.jpg",
+            "pageSha256": "2bc785dc1474f004cc3ca0d344ef13f9571c56f82abe84b7390d666ede9a8a12",
+            "imageSha256": "e348f6ded08ac498122dbad6839f71957a1a302c78488f1e05aa828010e14048"
+          },
+          {
+            "id": "promoy17-087",
+            "canonicalId": "dmbd07-b-005",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy17-087",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy17-087.jpg",
+            "pageSha256": "ceb7793140f91cb47773d73c53c25a9ed6bb1a09fe8260dbceb4a43fe19efbf8",
+            "imageSha256": "1a08283117c2e4ca1c67dcb2d5ffa1a09d91bb93cca5a819d6e7e83e16009f5d"
           }
         ],
         "testLog": "/tmp/duema-verify-8009/verification-followup-prints.log",
@@ -537595,8 +537685,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8033,
-        "pending": 3793,
+        "supported": 8035,
+        "pending": 3791,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -538196,8 +538286,8 @@
       "finalCheck": {
         "status": "passed",
         "command": "npm run check",
-        "log": "/tmp/duema-uncapped/delete-check.log",
-        "rulesBlob": "3208e18158a41aca2c528fa5664cab02363b064d"
+        "log": "/tmp/duema-uncapped/justice-check.log",
+        "rulesBlob": "736f1bf153444b9ecbb189fc5d84f5b4aabfd0a0"
       },
       "abyssShort": {
         "passed": 33,
@@ -538267,10 +538357,6 @@
         {
           "id": "dmrp11-s06",
           "name": "極幻空 ザハ・エルハ"
-        },
-        {
-          "id": "dmex19-025",
-          "name": "正義ノ裁キ"
         },
         {
           "id": "dmex18-022",
@@ -538349,45 +538435,49 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1347,
-        "baseline": "eca63428",
-        "before": 8032,
-        "supported": 8033,
+        "phase": 1348,
+        "baseline": "7c13d049",
+        "before": 8033,
+        "supported": 8035,
         "duplicates": 0,
         "added": [
           {
-            "id": "dmx21-026",
-            "name": "オールデリート"
+            "id": "dmex19-025",
+            "name": "正義ノ裁キ"
+          },
+          {
+            "id": "dmbd07-b-005",
+            "name": "集結ノ正裁Z"
           }
         ],
-        "printAliases": 7,
+        "printAliases": 2,
         "results": {
           "focus": {
-            "passed": 5,
-            "log": "/tmp/duema-uncapped/delete-focus.log",
-            "command": "node --test tests/standard1347-effects.test.mjs",
-            "seconds": 1.042
+            "passed": 6,
+            "log": "/tmp/duema-uncapped/justice-focus.log",
+            "command": "node --test tests/standard1348-effects.test.mjs",
+            "seconds": 1.72
           },
           "regression": {
-            "passed": 83,
-            "log": "/tmp/duema-uncapped/delete-regression.log",
-            "command": "node --test --test-concurrency=1 tests/standard{1276,1304,1326,1346,1347,394,1178,955}-effects.test.mjs",
-            "seconds": 10.365
+            "passed": 82,
+            "log": "/tmp/duema-uncapped/justice-regression.log",
+            "command": "node --test --test-concurrency=1 tests/standard{1028,1267,1297,1303,1326,1333,1343,1347,1348}-effects.test.mjs",
+            "seconds": 21.838
           },
           "check": {
             "status": "passed",
             "command": "npm run check",
-            "log": "/tmp/duema-uncapped/delete-check.log",
-            "rulesBlob": "3208e18158a41aca2c528fa5664cab02363b064d"
+            "log": "/tmp/duema-uncapped/justice-check.log",
+            "rulesBlob": "736f1bf153444b9ecbb189fc5d84f5b4aabfd0a0"
           },
           "audit": {
             "status": "passed",
             "command": "node tools/audit-card-support.mjs",
-            "log": "/tmp/duema-uncapped/delete-audit.log"
+            "log": "/tmp/duema-uncapped/justice-audit.log"
           }
         },
         "resolvedRegistered": 1,
-        "remainingRegistered": 29,
+        "remainingRegistered": 28,
         "remainingPrints": 1,
         "remainingIndividualCards": 26
       },
@@ -540524,17 +540614,26 @@
             "log": "/tmp/duema-uncapped/ai-audit-run.log",
             "coverageLog": "/tmp/duema-uncapped/ai-coverage-current.log",
             "review": "残り1件はマナ7枚のとき印刷コスト8のガラワルドが相手のクイーン&かぼちゃうちゃうで置換される盤面。既存レビューと保存状態を照合。後続カードとCPU修正を含む公開対象コミットの全範囲は未確定。"
+          },
+          "latestTestSplit": {
+            "commit": "7c13d049",
+            "completedGroups": 178,
+            "passedNamedTests": 231,
+            "failedGroups": [],
+            "result": "基本の分割テストで検証済みの対象と実行中のアーマード、ガチロボ、ギャラクシーを除き、検証済みコミットで残りのグループを実行中。",
+            "command": "python3 /tmp/duema-uncapped/run-current.py",
+            "log": "/tmp/duema-uncapped/current-results.jsonl"
           }
         },
         "latestRegisteredRulings": {
-          "phase": 1347,
+          "phase": 1348,
           "sources": [
-            "https://dm.takaratomy.co.jp/rule/qa_old/37768/",
-            "https://dm.takaratomy.co.jp/rule/qa/39786/",
-            "https://dm.takaratomy.co.jp/coverage/dmgp2025-2nda_round8/"
+            "https://dm.takaratomy.co.jp/rule/qa/44311/",
+            "https://dm.takaratomy.co.jp/rule/qa/41644/",
+            "https://dm.takaratomy.co.jp/rule/qa/45078/"
           ],
-          "result": "4ゾーンの移動、進化元とシールドの束、および保留中の呪文を確認した。禁断解放前のドキンダムを残し、封印が戻った後の禁断解放も確認した。初版と再録7版の公式本文と画像を照合した。",
-          "log": "/tmp/duema-uncapped/delete-focus.log"
+          "result": "正義ノ裁キの常在能力、両呪文の手札からの実行後の置き方、およびサバキZとS・トリガーの解決順を確認した。両カードの初版と各1再録の公式本文と画像を照合した。",
+          "log": "/tmp/duema-uncapped/justice-focus.log"
         }
       }
     }
