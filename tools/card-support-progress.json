@@ -490832,7 +490832,8 @@
       "remainingRegistered": 18,
       "remainingPrints": 1,
       "remainingIndividualCards": 17,
-      "next": "アカシック・パラレルはカードのコピーと元の状態を分け、進化時の手札の文明・シールド・フォース・裏返せないカードでのV覚醒リンクを実カードで確認する。DGは両者の宣言と同時手札移動の共通処理が必要。分割テストは進行中の実行と保存ログを確認して残りから継続する。"
+      "next": "アカシック・パラレルはカードのコピーと元の状態を分け、進化時の手札の文明・シールド・フォース・裏返せないカードでのV覚醒リンクを実カードで確認する。DGは両者の宣言と同時手札移動の共通処理が必要。分割テストは進行中の実行と保存ログを確認して残りから継続する。",
+      "verifiedCommit": "de0e9e9bf3f1789458ba5dab24a5f3e1ec025985"
     }
   ],
   "resume": {
@@ -536167,7 +536168,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別19種類（裁定20件と金箔再録1件）とNo.11以外の分割した長時間対戦・ワーカー検証が残る。mainのpushはNetlify本番を更新するため、Netlifyへ影響しないPages公開経路は未確認。",
+        "reason": "個別17種類（裁定18件と金箔再録1件）と長時間分割検証が残る。mainのpushがNetlify本番デプロイを起動し、Netlifyに影響しない既存Pagesへの公開経路は未確認。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -537279,7 +537280,67 @@
           ],
           "test": "《緊縛の影バインド・シャドウ》と《アカシック・パラレル》がいる状況で、後者が《天災 デドダム》を選んだ後にマニフェストへ進化しても、手札での水文明を参照しアンタップで出る。",
           "reason": "QA40912。マニフェストの進化自体は検証済み。《アカシック・パラレル》が未実装のため、カード名と登場時の特性をコピーする実カードとの組み合わせは未検証。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/40912/"
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40912/",
+          "dependencyReview": {
+            "checkedAt": "2026-11-16",
+            "prints": [
+              {
+                "id": "dmex18-022",
+                "canonicalId": "dmex18-022",
+                "name": "アカシック・パラレル",
+                "printedNumber": "EX18 22/75",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-022",
+                "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-022.jpg",
+                "imageSha256": "391e97fa3e6222948c302c8e0cc40fb2809ef838f6c9787e7a83996d9fff87d9"
+              },
+              {
+                "id": "dm25rp4-002",
+                "canonicalId": "dm25rp4-002",
+                "name": "謎の存在 メモッタ",
+                "printedNumber": "25RP4 2/78",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-002",
+                "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp4-002.jpg",
+                "imageSha256": "b84b5cdaef1aa381ac735326a61ac3d912259290c15fc24d84f2ea6b9f1c8ba7"
+              },
+              {
+                "id": "dm25ex3-rp4002",
+                "canonicalId": "dm25rp4-002",
+                "name": "謎の存在 メモッタ",
+                "printedNumber": "25RP4 2/78",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp4002",
+                "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-rp4002.jpg",
+                "imageSha256": "69717147c8471674450d86e39224faa4b74fd59311826bf1b76e54e1a16348c0"
+              }
+            ],
+            "regulation": "https://dm.takaratomy.co.jp/rule/regulation/",
+            "officialClarifications": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/40912/",
+                "result": "コピー元が闇を含むデドダムでも、進化で出るマニフェストの手札での文明を参照する。"
+              },
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/40886/",
+                "result": "コピーで勝利のリュウセイ・カイザーになったカードを物理的に裏返せず、3体のリンクは成立しない。"
+              },
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/40904/",
+                "result": "サイキックやGRの特性をコピーしても、離脱先は物理カードの種類で決まる。"
+              },
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/47916/",
+                "result": "メモッタは選んだ特性で登場し、選んだカードの登場時能力が誘発する。EXライフや任意のタップインなど出る時の状態定義は適用されない。"
+              },
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/47912/",
+                "result": "進化クリーチャーを選んでコピーしても、単体で出る。"
+              },
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/47915/",
+                "result": "VAN・ベートーベンの着地置換は、出る前のメモッタ自体の種族を参照する。"
+              }
+            ],
+            "result": "公式本文と画像を照合。メモッタのDM25EX3収録ページの画像にも25RP4 2/78と印刷されているため、既存正規IDを使う。対戦データには2種類ともまだ存在しない。コピーした特性、外部の効果、物理カード、出る時と出た時を区別する共通処理が必要。"
+          }
         },
         {
           "cardId": "dmr21-004",
@@ -537335,7 +537396,16 @@
           "test": "アカシック・パラレルで相手のパーフェクト・ギャラクシーをコピーした後、シールド・フォースの参照を引き継がないことを確認する。",
           "reason": "アカシック・パラレルと類似例の謎の存在 メモッタが未登録。",
           "path": "tests/standard1304-effects.test.mjs",
-          "log": "/tmp/duema-phase-1304/focus-final.log"
+          "log": "/tmp/duema-phase-1304/focus-final.log",
+          "dependencyReview": {
+            "checkedAt": "2026-11-16",
+            "sources": [
+              "https://dm.takaratomy.co.jp/rule/qa/40898/",
+              "https://dm.takaratomy.co.jp/rule/qa/40891/",
+              "https://dm.takaratomy.co.jp/rule/qa/47916/"
+            ],
+            "result": "コピー先のクリーチャーが参照しているシールドや付与された能力は引き継がれない。メモッタは登場時能力が誘発するため、シールド・フォースのシールドを自ら指定する経路と区別して検証する。"
+          }
         },
         {
           "cardId": "dm28-002",
@@ -538372,6 +538442,16 @@
               "https://dorasuta.jp/duelmasters/product?pid=419611"
             ],
             "result": "販売店の2S/2表記を確認。公式製品ページと公式2B/10ページでは2S/2の版を識別できず、公式資料の照合は保留。"
+          },
+          "latestCatalogueRecheck": {
+            "checkedAt": "2026-11-16",
+            "sources": [
+              "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-2B",
+              "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-S2",
+              "https://www.ka-nabell.com/ec/sell/duel-masters/single/72d04126-ecff-422e-a6e8-c21c92a39ed8",
+              "https://www.suruga-ya.jp/product/detail/BL587841"
+            ],
+            "result": "複数の販売店が金箔版を2S/2で掲載。公式の2Bは2B/10、S2はシェケダン・ドメチアーレ。2S、s2、SEC2、Sec002の候補で対象版の個別公式ページは確認できず、公式照合を保留。"
           }
         }
       ],
@@ -539236,7 +539316,7 @@
           "name": "行くよー！アオハル、ハイチーズ！"
         }
       ],
-      "remainingTestsSummary": "全体のnpm testは中断・合否未確認。固定スナップショットのNo.03・04・06・13は57/344分割、No.16・21の作業ツリー分割は17/113件が通過。残りは既存実行の結果を待つ。",
+      "remainingTestsSummary": "全体のnpm testは中断・合否未確認。固定スナップショットのNo.03・04・06・13は66/344分割、No.16・21の作業ツリー分割は18/113件が通過。残りは既存実行の結果から確認する。",
       "advanceImplementation": {
         "status": "implemented",
         "phases": [
@@ -539368,7 +539448,8 @@
         "remainingRegistered": 18,
         "remainingPrints": 1,
         "remainingIndividualCards": 17,
-        "next": "アカシック・パラレルはカードのコピーと元の状態を分け、進化時の手札の文明・シールド・フォース・裏返せないカードでのV覚醒リンクを実カードで確認する。DGは両者の宣言と同時手札移動の共通処理が必要。分割テストは進行中の実行と保存ログを確認して残りから継続する。"
+        "next": "アカシック・パラレルはカードのコピーと元の状態を分け、進化時の手札の文明・シールド・フォース・裏返せないカードでのV覚醒リンクを実カードで確認する。DGは両者の宣言と同時手札移動の共通処理が必要。分割テストは進行中の実行と保存ログを確認して残りから継続する。",
+        "verifiedCommit": "de0e9e9bf3f1789458ba5dab24a5f3e1ec025985"
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
@@ -541863,18 +541944,18 @@
               "checkedAt": "2026-11-16",
               "frozen": {
                 "baseline": "e3323a89",
-                "verified": 57,
+                "verified": 66,
                 "planned": 344,
-                "games": 564,
+                "games": 666,
                 "results": "tmp/duema-verification-e3323a89/results.jsonl"
               },
               "legacy": {
                 "scope": "実行時の作業ツリー。固定コミットの検証結果としては扱わない。",
-                "verified": 17,
+                "verified": 18,
                 "planned": 113,
                 "byKind": {
                   "AI replay": 9,
-                  "production worker": 8
+                  "production worker": 9
                 },
                 "results": "tmp/duema-verification-e3323a89/legacy-fixtures/results.jsonl"
               }
