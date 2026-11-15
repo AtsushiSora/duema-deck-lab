@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8017,
-  "pendingNames": 3809,
-  "phase": 1333,
-  "added": 1,
+  "supportedNames": 8020,
+  "pendingNames": 3806,
+  "phase": 1334,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2139,
+    "クリーチャー": 2136,
     "NEOクリーチャー": 70,
     "呪文": 455,
     "GRクリーチャー": 156,
@@ -224,7 +224,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1076,
-    "未対応の能力文": 2541,
+    "未対応の能力文": 2538,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 19,
     "未対応のシンカパワー": 2,
@@ -489527,14 +489527,74 @@
           "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-082"
         }
       ]
+    },
+    {
+      "phase": 1334,
+      "baseline": "91bd2420",
+      "before": 8017,
+      "supported": 8020,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmc40-002",
+          "name": "龍神ヘヴィ"
+        },
+        {
+          "id": "dmc40-006",
+          "name": "龍神メタル"
+        },
+        {
+          "id": "dmc40-008",
+          "name": "破壊神デス"
+        }
+      ],
+      "printAliases": 12,
+      "results": {
+        "focus": {
+          "passed": 16,
+          "log": "/tmp/duema-gods/focus-final.log"
+        },
+        "regressions": {
+          "passed": 78,
+          "log": "/tmp/duema-gods/regression-final.log"
+        },
+        "check": {
+          "status": "passed",
+          "log": "/tmp/duema-gods/check-final.log",
+          "rulesBlob": "488b1e4f01f8cdb621935f32116951883d831e57",
+          "phoenixBlob": "5f4e5f11734a2b512c88e99b0d5e21453e6d3afb"
+        },
+        "audit": {
+          "status": "passed",
+          "log": "/tmp/duema-gods/audit-final.log"
+        }
+      },
+      "resolvedRegistered": 1,
+      "remainingRegistered": 45,
+      "remainingPrints": 2,
+      "remainingIndividualCards": 39,
+      "held": [
+        {
+          "id": "dm25ex4-SPR01",
+          "name": "沈黙の守護者、シュタイン",
+          "reason": "7r0yの裁定に必要。デュエリストの各ターンの実行権と、超次元から出すデュエルメイト3種のリンクを通して確認する。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/48142/"
+        },
+        {
+          "id": "dmrp16-s01",
+          "name": "聖板龍 ジークシュトルツ",
+          "reason": "ネルザと組み合わせる裁定に必要。表向きのシールドの能力無視を持続効果とシールドの離脱時に適用し、G・ストライクの外部付与とS・トリガー禁止を確認する。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40941/"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1333,
+    "lastVerifiedPhase": 1334,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "個別40種類（裁定46件・再録2件、重複1種類）の未検証を継続。アリスのビビッドロー裁定と、破壊・離脱能力の二重誘発に必要な依存カードを照合する。",
+    "steps": "個別39種類（裁定45件・再録2件、重複1種類）の検証を継続。ゴッド・オブ・ゼットは指定3種とG・リンクを確認済み。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -489612,12 +489672,16 @@
     "restartSteps": [
       "ローカルHEADと作業ツリー、ステージ済み差分、AGENTS.md、実行中のテストを確認する。dist/cards.jsonをnameKeyで再集計する。",
       "remainingVerificationRunの結果を確認する。全カードの合法経路と登場時能力借用の完走を確認した。残る対戦・ワーカーを対戦相手・シード単位に分ける。",
-      "個別の残件を確認し、裁定再現に必要なカードを追加する。爆撃男の破壊・離脱誘発とアリスのドロー直後のビビッドロー宣言から検証する。",
+      "残る裁定を確認し、再現に必要な依存カードのみ追加する。ラビットンボとアルキングのEXライフ2件、爆撃男の離脱誘発、アリスのビビッドロー宣言を確認する。",
       "残る金箔2版は公式IDと公式画像を照合する。全検証が通過し、Netlifyに影響しない公開経路を確認するまで、公開は保留する。"
     ],
     "registrationStatus": "ユーザーの指示で10分間隔のカード登録を再開。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [
+      {
+        "id": "dm22ex2-S15",
+        "name": "不敬合成王 ロマティックダム・アルキング"
+      },
       {
         "id": "dmrp12-008",
         "name": "帝神龍装 ティーゾリス"
@@ -489625,10 +489689,6 @@
       {
         "id": "dmrp15-009",
         "name": "シーラ・カンフー"
-      },
-      {
-        "id": "dmex19-025",
-        "name": "正義ノ裁キ"
       }
     ],
     "printVerificationPending": [
@@ -489827,8 +489887,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8017,
-    "pendingNames": 3809,
+    "supportedNames": 8020,
+    "pendingNames": 3806,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -533822,8 +533882,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8017,
-      "pendingNames": 3809,
+      "supportedNames": 8020,
+      "pendingNames": 3806,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -534850,7 +534910,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別の裁定46件、再録2件、長時間対戦とワーカーが未確認。GitHub上のmainのpushにNetlify本番ワークフローがあり、Netlifyを更新せずにPagesへ公開する経路は未確認。",
+        "reason": "個別の裁定45件、再録2件、長時間対戦とワーカーが未確認。GitHub上のmainのpushにNetlify本番ワークフローがあり、Netlifyを更新せずにPagesへ公開する経路は未確認。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -535158,6 +535218,29 @@
           "log": "/tmp/duema-individual/delfin-focus.log",
           "phase": 1333,
           "result": "公開中の手札でもブルー・モヒートの選択時は伏せ札の番号だけを表示する。ローカル画面、オンライン両席とJSON再開で、番号とカードの対応、選んだクリーチャーの展開と公開手札の再開を検証。"
+        },
+        {
+          "cardId": "dmx21-021",
+          "dependencyIds": [
+            "dmc40-002",
+            "dmc40-006",
+            "dmc40-008"
+          ],
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-021",
+          "relatedSources": [
+            "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+          ],
+          "test": "《龍神ヘヴィ》《龍神メタル》《破壊神デス》そのものを手札に入れて、ゴッド・オブ・ゼットの候補となることと、同時登場時のリンク処理を確認する。",
+          "path": "tests/standard1334-effects.test.mjs",
+          "log": "/tmp/duema-gods/focus-final.log",
+          "phase": 1334,
+          "result": "ゴッド・オブ・ゼットの候補に元の3種類が入り、2体を選ぶと1体ずつ出て先に出た相手にリンクできる。三体の組合せ、破壊神デスの全体破壊とワールド・ブレイカー、対象選択制限、デスが離れた後の再リンク、極限龍神とのリンク、JSON復元を実対戦で検証。",
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/34396/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/35539/",
+            "https://dm.takaratomy.co.jp/rule/qa_old/37723/",
+            "https://dm.takaratomy.co.jp/rule/qa/42633/"
+          ]
         }
       ],
       "remainingRegistered": [
@@ -535566,22 +535649,6 @@
           "log": "/tmp/duema-phase-1300/focus-verified.log"
         },
         {
-          "cardId": "dmx21-021",
-          "dependencyIds": [
-            "dmc40-002",
-            "dmc40-006",
-            "dmc40-008"
-          ],
-          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-021",
-          "relatedSources": [
-            "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
-          ],
-          "test": "《龍神ヘヴィ》《龍神メタル》《破壊神デス》そのものを手札に入れて、ゴッド・オブ・ゼットの候補となることと、同時登場時のリンク処理を確認する。",
-          "reason": "同じ名前の一部を持つ極限龍神ヘヴィと極限龍神メタルで0～2体の登場と選択範囲を検証済み。呪文の能力文に載る元の3種は未登録のため、その実カードを使う構成は未検証。",
-          "path": "tests/standard1302-effects.test.mjs",
-          "log": "/tmp/duema-phase-1302/focus-final.log"
-        },
-        {
           "cardId": "dmsd18-001",
           "dependencyIds": [
             "dmrp15-s10",
@@ -535674,10 +535741,13 @@
           "dm26-006",
           "dm22rp2-002",
           "dm32-s05",
-          "dm22-001"
+          "dm22-001",
+          "dmc40-002",
+          "dmc40-006",
+          "dmc40-008"
         ],
-        "officialPrints": 37,
-        "newAliases": 31,
+        "officialPrints": 52,
+        "newAliases": 43,
         "evidence": [
           {
             "id": "dm23rp2-065",
@@ -535977,6 +536047,126 @@
             "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc46-022.jpg",
             "pageSha256": "164900980ff7ec28dfebb6156721e1ef94b99c2e84b7789f2c9697a6af794bd6",
             "imageSha256": "3c2aefad611742dedb6a5ca05d4af43b70d4aba7b6cbdb5fc12bdebce9db83a0"
+          },
+          {
+            "id": "dmc40-002",
+            "canonicalId": "dmc40-002",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc40-002",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc40-002.jpg",
+            "pageSha256": "7cb7bad5c8498a9833442e2e8cf8bb75c212d7d1ce88adb2748c9018abaa1e8f",
+            "imageSha256": "6aeac05d195c5feb26cfefa48d72f2eaa4557c512f9db91ef11616f145b1325d"
+          },
+          {
+            "id": "dmc40-006",
+            "canonicalId": "dmc40-006",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc40-006",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc40-006.jpg",
+            "pageSha256": "21e2da42f84de576793d13c6036c3816f0ed1c425dabb1c08a3eec975df45b25",
+            "imageSha256": "5669b5c2b7549d21cf055ade5bca74831d6ac280902ccdc2c1012b87df509f07"
+          },
+          {
+            "id": "dmc40-008",
+            "canonicalId": "dmc40-008",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc40-008",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc40-008.jpg",
+            "pageSha256": "84d0409c86ea9d834d5f7e0e8662e94679737cd5aa8cb83fce8d516e4922a582",
+            "imageSha256": "845d042d31d089bb304d0f27e3144e6b298d1d3ab1b521ac02c377b2c39c1718"
+          },
+          {
+            "id": "dmex16-058",
+            "canonicalId": "dmc40-002",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex16-058",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex16-058.jpg",
+            "pageSha256": "8aab39316384e91f1b3cccdba7cb08a950e5c94a5579bbe93ab89bec1db0bb75",
+            "imageSha256": "5c6bab9d30198783df0ee7d37e92ccd47f3b03b48d4b29413891c4ec4d406405"
+          },
+          {
+            "id": "dmx21-015",
+            "canonicalId": "dmc40-002",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-015",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx21-015.jpg",
+            "pageSha256": "ca48120b46d3fb7bc107510d1d7d8c2bc4a5c800a00c7766e93e676ab28ba4ef",
+            "imageSha256": "76a3fe416ceabf55d4b14596c35162cec81ed9368db521e11e4a833fd70fb040"
+          },
+          {
+            "id": "dmc55-004",
+            "canonicalId": "dmc40-002",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc55-004",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc55-004.jpg",
+            "pageSha256": "f123ff4e31c4dee00424ba4f0120d2bbf8a621660aa1e114b2843b4578b5ba4a",
+            "imageSha256": "ff8db8cf41c4e69442f2f0c8125ab9702cc6f2800783b6029cef149bbe1f9e9f"
+          },
+          {
+            "id": "dmc54-001",
+            "canonicalId": "dmc40-002",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc54-001",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc54-001.jpg",
+            "pageSha256": "2b0aff3d8ee709c7478549b88e0774185c9ca8fdb73d37e1306570f07db52a59",
+            "imageSha256": "3326dbb8a96a346664659691816b23fa46201a8c95efff097537b4bbec6dedfb"
+          },
+          {
+            "id": "dm29+1d-002",
+            "canonicalId": "dmc40-002",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29+1d-002",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm29+1d-002.jpg",
+            "pageSha256": "fce4058ffcaadf2648d3210027942daa605706619e6ad7dddff144ea9a1cc7c5",
+            "imageSha256": "40e50eb963281610c54d30426aa60a783e7b9a03ebf677bc18a987c852d57461"
+          },
+          {
+            "id": "dmex16-059",
+            "canonicalId": "dmc40-006",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex16-059",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex16-059.jpg",
+            "pageSha256": "5614e671c09b8fe7102631ccca7817e5cc5d4e101fae306f8b52508c97cc1377",
+            "imageSha256": "d319e1b1bbfcb340c115ed30ab65ff2c5f5f79f78a5cdeb9ebf7d3e407117f96"
+          },
+          {
+            "id": "dmx21-016",
+            "canonicalId": "dmc40-006",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-016",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx21-016.jpg",
+            "pageSha256": "f3c25fbff396a31525e9bb642585273f39c014676e4a9199de6d84bb891d1a2e",
+            "imageSha256": "759f17fdad7407d4a77ab5a5b39a53e3b8a0c204fbeee46e92a971e4aa50c85d"
+          },
+          {
+            "id": "dmc55-007",
+            "canonicalId": "dmc40-006",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc55-007",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc55-007.jpg",
+            "pageSha256": "9dbb70ed55515bb2dec3da7ee7239b607a8267e6c294bfcc6c27a8f1323988c3",
+            "imageSha256": "b4c9a1fff74eb8573e629ead7899c2385c22da29ff99b2fa7fe54f6d22c199cd"
+          },
+          {
+            "id": "dmc54-004",
+            "canonicalId": "dmc40-006",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc54-004",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc54-004.jpg",
+            "pageSha256": "33d2440d51699ec9a6eb528bdf67962364818bec168e8f3ad21a66fd8aea853d",
+            "imageSha256": "e7c5fa1efc2ea4141672f787d246092ec67ce5ee8ede9a11598c82ce90ac8f12"
+          },
+          {
+            "id": "dm29+1d-003",
+            "canonicalId": "dmc40-006",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29+1d-003",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm29+1d-003.jpg",
+            "pageSha256": "045877ea0cd8694c0164e4499dfd206df68f9803e30f3457abba386889b9d7bd",
+            "imageSha256": "d52d15c49f8157072044577020f3076add61420c67324f6bf10076592571921d"
+          },
+          {
+            "id": "dmx21-017",
+            "canonicalId": "dmc40-008",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-017",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx21-017.jpg",
+            "pageSha256": "f5ed05fc45177181d7e8ae39a03958def9bbafdf526e71c42fb38a8c711a3f4b",
+            "imageSha256": "7edf6cfa8876173f3453b82c031e369d68dc05af4eecea0798fea15d5ea1ba18"
+          },
+          {
+            "id": "dmc55-014",
+            "canonicalId": "dmc40-008",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc55-014",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc55-014.jpg",
+            "pageSha256": "1949196d79642a3ccbdc566441701796b68e93904bdc09f6bceede8daceeb1b4",
+            "imageSha256": "60e7c9ce2419eb11c7fd6ad5568a56b65a5502046b922df6efe111b7dd5bf89f"
           }
         ],
         "testLog": "/tmp/duema-verify-8009/verification-followup-prints.log",
@@ -536360,8 +536550,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8017,
-        "pending": 3809,
+        "supported": 8020,
+        "pending": 3806,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -536960,8 +537150,9 @@
       },
       "finalCheck": {
         "status": "passed",
-        "log": "/tmp/duema-individual/delfin-check.log",
-        "rulesBlob": "00e1c7bd6c0f2c00fefb9bd1606370bec75e49d6"
+        "log": "/tmp/duema-gods/check-final.log",
+        "rulesBlob": "488b1e4f01f8cdb621935f32116951883d831e57",
+        "phoenixBlob": "5f4e5f11734a2b512c88e99b0d5e21453e6d3afb"
       },
       "abyssShort": {
         "passed": 33,
@@ -537085,18 +537276,6 @@
           "name": "ケンゲキオージャ ～究極火焔～"
         },
         {
-          "id": "dmc40-002",
-          "name": "龍神ヘヴィ"
-        },
-        {
-          "id": "dmc40-006",
-          "name": "龍神メタル"
-        },
-        {
-          "id": "dmc40-008",
-          "name": "破壊神デス"
-        },
-        {
           "id": "dmrp15-s10",
           "name": "「迅雷」の鬼 ライジン天"
         },
@@ -537173,72 +537352,62 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1333,
-        "baseline": "ff02d83e",
-        "before": 8016,
-        "supported": 8017,
+        "phase": 1334,
+        "baseline": "91bd2420",
+        "before": 8017,
+        "supported": 8020,
         "duplicates": 0,
         "added": [
           {
-            "id": "dm22-001",
-            "name": "光神龍スペル・デル・フィン"
+            "id": "dmc40-002",
+            "name": "龍神ヘヴィ"
+          },
+          {
+            "id": "dmc40-006",
+            "name": "龍神メタル"
+          },
+          {
+            "id": "dmc40-008",
+            "name": "破壊神デス"
           }
         ],
-        "printAliases": 5,
+        "printAliases": 12,
         "results": {
           "focus": {
-            "passed": 5,
-            "log": "/tmp/duema-individual/delfin-focus.log"
+            "passed": 16,
+            "log": "/tmp/duema-gods/focus-final.log"
           },
-          "standardRegressions": {
-            "passed": 89,
-            "log": "/tmp/duema-individual/delfin-standard.log"
-          },
-          "publicHandManualUI": {
-            "passed": 5,
-            "log": "/tmp/duema-individual/delfin-manual-focus.log"
-          },
-          "onlineUI": {
-            "passed": 7,
-            "log": "/tmp/duema-individual/delfin-online-ui.log"
-          },
-          "onlineProjections": {
-            "passed": 6,
-            "log": "/tmp/duema-individual/delfin-online.log"
+          "regressions": {
+            "passed": 78,
+            "log": "/tmp/duema-gods/regression-final.log"
           },
           "check": {
             "status": "passed",
-            "log": "/tmp/duema-individual/delfin-check.log",
-            "rulesBlob": "00e1c7bd6c0f2c00fefb9bd1606370bec75e49d6"
+            "log": "/tmp/duema-gods/check-final.log",
+            "rulesBlob": "488b1e4f01f8cdb621935f32116951883d831e57",
+            "phoenixBlob": "5f4e5f11734a2b512c88e99b0d5e21453e6d3afb"
           },
           "audit": {
             "status": "passed",
-            "log": "/tmp/duema-individual/delfin-audit.log"
-          },
-          "manualFullRun": {
-            "status": "interrupted",
-            "logs": [
-              "/tmp/duema-individual/delfin-regressions.log",
-              "/tmp/duema-individual/delfin-ui.log"
-            ],
-            "reason": "長時間の自動対戦を含む手動UIの通し回帰は中断。公開手札・表示・既存の非公開手札に関する実行を個別の試験名で分割して、通過を確認。"
+            "log": "/tmp/duema-gods/audit-final.log"
           }
         },
-        "resolvedRegistered": 2,
-        "remainingRegistered": 46,
+        "resolvedRegistered": 1,
+        "remainingRegistered": 45,
         "remainingPrints": 2,
-        "remainingIndividualCards": 40,
+        "remainingIndividualCards": 39,
         "held": [
           {
-            "id": "dmrp15-009",
-            "name": "シーラ・カンフー",
-            "reason": "アリスと組み合わせるビビッドローは、各ドロー直後の宣言と代替コストを実カードで検証する必要がある。",
-            "source": "https://dm.takaratomy.co.jp/rule/qa/40504/"
+            "id": "dm25ex4-SPR01",
+            "name": "沈黙の守護者、シュタイン",
+            "reason": "7r0yの裁定に必要。デュエリストの各ターンの実行権と、超次元から出すデュエルメイト3種のリンクを通して確認する。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/48142/"
           },
           {
-            "id": "dm25ex2-082",
-            "reason": "カード本文では通常のナイト・マジックとキング・ナイト・マジックは別名。両能力の扱いを直接説明する公式裁定は今回の検索でも未特定。",
-            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-082"
+            "id": "dmrp16-s01",
+            "name": "聖板龍 ジークシュトルツ",
+            "reason": "ネルザと組み合わせる裁定に必要。表向きのシールドの能力無視を持続効果とシールドの離脱時に適用し、G・ストライクの外部付与とS・トリガー禁止を確認する。",
+            "source": "https://dm.takaratomy.co.jp/rule/qa/40941/"
           }
         ]
       },

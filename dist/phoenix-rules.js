@@ -3,6 +3,10 @@ import {policyRemove,policyLook} from './champion-zone-policy.js';
 // Physical multi-base evolution and Phoenix effects. All choices survive JSON round-trips.
 export function createPhoenixRules(api){
  const {card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,move,enter,cast,targetOptions}=api;
+ const heavyId='dmc40-002',metalId='dmc40-006',deathId='dmc40-008';
+ const godParts=x=>[x,...(x.godLinks||[])];
+ const hasGod=(x,id)=>godParts(x).some(y=>card(y).id===id);
+ const completeHdm=x=>[heavyId,deathId,metalId].every(id=>hasGod(x,id));
  const phoenix=c=>String(c.race).includes('フェニックス');
  const live=(s,t)=>s.players[t.p].battle.find(x=>api.layers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)));
  const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g31_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
@@ -110,6 +114,24 @@ export function createPhoenixRules(api){
  case'g31_Reload':choice(s,t,'手札を1枚捨てて1枚引く？',[...own.hand.map(x=>opt(card(x).name,x.uid,10-cost(card(x))*.1,x.cardId)),skip()]);break;
  case'g31_Mill':choice(s,t,'山札の上3枚を墓地に置く？',[opt('3枚置く',true,own.deck.length>3?20:-100),skip()]);break;
  case'g31_Heavy':choice(s,t,'自分の1体を破壊して1枚引き、相手にも1体破壊させる？',[...creatures(s,t.p).map(x=>opt(card(x).name,x.uid,creatures(s,1-t.p).length?30-cost(card(x)):-20,x.cardId)),skip()]);break;
+ case'g31_OriginalMetal':{
+  const gears=opp.battle.filter(x=>effective(x,s).type==='gear'&&api.targetable(s,t.p,1-t.p,x));
+  const mana=api.canMoveZone(s,1-t.p,'mana')?opp.mana:[];
+  if(gears.length||mana.length)choice(s,t,'相手のクロスギアかマナを1枚、持ち主の墓地に置く？',[
+   ...gears.map(x=>opt(card(x).name+'（クロスギア）',{uid:x.uid,zone:'battle'},20,x.cardId)),
+   ...mana.map(x=>opt(x.faceDown?'裏向きのマナ':card(x).name+'（マナ）',{uid:x.uid,zone:'mana'},15,x.faceDown?null:x.cardId)),
+   skip()]);
+  break;
+ }
+ case'g31_DeathLink':move(s,creatures(s,1-t.p).filter(x=>!String(effective(x,s).race).includes('ゴッド'))
+  .map(x=>({player:1-t.p,uid:x.uid,to:'grave',controller:t.p})));break;
+ case'g31_RelinkHdm':{
+  const [base,other]=t.partners.map(uid=>own.battle.find(x=>x.uid===uid&&!x.sealed&&!x.godLinks?.length));
+  if(base&&other&&!api.ignored(s,base)&&!api.ignored(s,other))
+   choice(s,t,'龍神ヘヴィと龍神メタルを再びリンクする？',[opt('G・リンクする',true,40,metalId),skip()]);
+  else if(s.attack&&t.partners.includes(s.attack.attacker))s.attack=null;
+  break;
+ }
  case'g31_Metal':choice(s,t,'相手のマナ1枚と、クリーチャーでない場のカード1枚を破壊する？',[opt('使う',true,opp.mana.length||opp.battle.some(x=>!api.isCreature(s,x))?30:0),skip()]);break;
  case'g31_ManaTrash':{const selected=t.selected||[];if(selected.length===t.max||!opp.mana.some(x=>!selected.includes(x.uid))){for(const uid of selected){const x=policyRemove(s,1-t.p,'mana',uid,api);if(x){clear(x,'grave');api.addZone(s,opp,'grave',x);}}break;}choice(s,{...t,selected},'墓地に置く相手のマナを選ぶ',[...opp.mana.filter(x=>!selected.includes(x.uid)).map(x=>opt(card(x).name,x.uid,20,x.cardId)),...(t.optional?[opt('この内容で確定',null,0)]:[])]);break;}
  case'g31_NonCreature':choice(s,t,'相手のクリーチャーでないカードを破壊する',targetOptions(s,t.p,opp.battle.filter(x=>!api.isCreature(s,x))));break;
@@ -121,7 +143,11 @@ export function createPhoenixRules(api){
  case'g31_Xeno':{const x=live(s,t);if(x)choice(s,t,'進化フェニックスをこのクリーチャーの上に置く？',[...own.hand.filter(y=>card(y).evolution&&phoenix(card(y))&&cost(card(y))<=7&&api.canEnter(s,t.p,card(y),{origin:'hand',execution:false})).map(y=>opt(card(y).name,y.uid,30+cost(card(y)),y.cardId)),skip()]);break;}
  case'g31_XenoReturn':{const x=own.grave.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);if(x&&own.grave.filter(y=>faces(api.zoneCard(s,t.p,y,'grave')).some(phoenix)).length>=2)choice(s,t,'ゼノバース・ラピアを墓地から手札へ戻す？',[opt('戻す',true,30,x.cardId),skip()]);break;}
  case'g31_XenoEnd':{const x=live(s,t);if(x)move(s,[{player:t.p,uid:x.uid,to:'grave'}]);break;}
- case'g31_Link':{const x=own.g31Holding.find(x=>x.uid===t.uid);if(x)choice(s,t,'ゴッドをG・リンクして出す？',[...linkCandidates(s,t.p,card(x)).map(y=>opt(card(y).name+'とリンク',y.uid,40,y.cardId)),skip()]);break;}
+ case'g31_Link':{
+  const x=own.g31Holding.find(x=>x.uid===t.uid);
+  if(x)choice(s,t,'ゴッドをG・リンクして出す？',[...linkOptions(s,t.p,card(x)),skip()]);
+  break;
+ }
  default:throw Error('未実装のフェニックス効果：'+t.op);
  }return true;}
  function apolloMinus(s,t){for(const x of creatures(s,1-t.p))(x.powerModifiers??=[]).push({amount:-4000*t.count,expires:'end',who:s.active});}
@@ -148,7 +174,29 @@ export function createPhoenixRules(api){
  case'g31_RecoverPick':if(v){const x=policyRemove(s,t.p,'grave',v,api);if(x){clear(x,'hand');own.hand.push(x);}}break;
  case'g31_Reload':if(v)put(s,task('discardChosen',t.p,t.source,{n:1,causedBy:t.p,uid:v}),task('draw',t.p,t.source,{n:1}));break;
  case'g31_Mill':if(v)put(s,task('mill',t.p,t.source,{n:3}));break;
- case'g31_Heavy':if(v){put(s,task('draw',t.p,t.source,{n:1}),task('g24_EnemySacrifice',1-t.p,t.source));move(s,[{player:t.p,uid:v,to:'grave'}]);}break;
+ case'g31_Heavy':if(v){
+  if(t.source===heavyId)move(s,[{player:t.p,uid:v,to:'grave',controller:t.p}],
+   {kind:'g1334HeavySacrifice',player:t.p,source:t.source});
+  else{
+   put(s,task('draw',t.p,t.source,{n:1}),task('g24_EnemySacrifice',1-t.p,t.source));
+   move(s,[{player:t.p,uid:v,to:'grave'}]);
+  }
+ }break;
+ case'g31_OriginalMetal':if(v){
+  const x=s.players[1-t.p][v.zone].find(y=>y.uid===v.uid);
+  if(!x)break;
+  if(v.zone==='battle')move(s,[{player:1-t.p,uid:x.uid,to:'grave',destroy:false,controller:t.p,toOwnerGrave:true}]);
+  else{
+   const selected=policyRemove(s,1-t.p,'mana',x.uid,api);
+   if(selected){api.markCarolFromMana(s,1-t.p,selected);clear(selected,'grave');api.addZone(s,s.players[selected.cardOwner??1-t.p],'grave',selected);}
+  }
+ }break;
+ case'g31_RelinkHdm':{
+  const partners=t.partners.map(uid=>own.battle.find(x=>x.uid===uid));
+  if(v&&partners.every(Boolean))mergeGods(s,t.p,partners[0],partners.slice(1));
+  else if(s.attack&&t.partners.includes(s.attack.attacker))s.attack=null;
+  break;
+ }
  case'g31_Metal':if(v)put(s,task('g31_ManaTrash',t.p,t.source,{max:1}),task('g31_NonCreature',t.p,t.source));break;
  case'g31_ManaTrash':if(v)put(s,{...t,selected:[...t.selected,v]});else{for(const uid of t.selected){const x=policyRemove(s,1-t.p,'mana',uid,api);if(x){clear(x,'grave');api.addZone(s,s.players[1-t.p],'grave',x);}}}break;
  case'g31_Oni':put(s,task('g31_OniDiscount',t.p,t.source));api.moveShield(s,t.p,v,'hand',{replacement:true,noST:true});break;
@@ -192,15 +240,77 @@ export function createPhoenixRules(api){
   const side=c.g31God==='left'?'right':'left';
   return creatures(s,p).filter(x=>{
    const partner=card(x);
-   return !x.godLinks?.length&&!api.ignored(s,x)&&partner.g31God===side&&
+   return !x.godLinks?.length&&!api.ignored(s,x)&&
+    (partner.g31God===side||partner.id===deathId&&['dmex17-033','dmex17-059'].includes(c.id))&&
     (!c.g1079GodPartner||c.g1079GodPartner===partner.id)&&
     (!partner.g1079GodPartner||partner.g1079GodPartner===c.id);
   });
  }
+ function linkOptions(s,p,c){
+  const offer=x=>opt(card(x).name+'とリンク',x.uid,40,x.cardId);
+  const pool=creatures(s,p).filter(x=>!api.ignored(s,x)&&!x.sealed);
+  const single=x=>!x.godLinks?.length;
+  const slot=(x,side)=>godParts(x).some(y=>card(y).g31God===side);
+  const openDeathSlot=side=>pool.filter(x=>hasGod(x,deathId)&&!slot(x,side));
+  const extreme=['dmex17-033','dmex17-059'].includes(c.id);
+  if(!c.g1334God){
+   const normal=linkCandidates(s,p,c);
+   const linked=extreme?openDeathSlot(c.g31God).filter(x=>!single(x)):[];
+   return [...normal,...linked].map(offer);
+  }
+  const wings={left:[heavyId,'dmex17-033'],right:[metalId,'dmex17-059']};
+  const isWing=(x,side)=>single(x)&&wings[side].includes(card(x).id);
+  if(c.id!==deathId){
+   const side=c.g31God,opposite=side==='left'?'right':'left';
+   return [...pool.filter(x=>isWing(x,opposite)),...openDeathSlot(side)].map(offer);
+  }
+  const heavies=pool.filter(x=>isWing(x,'left')),metals=pool.filter(x=>isWing(x,'right'));
+  const between=pool.filter(x=>godParts(x).length===2&&
+   Object.values(wings).every(ids=>ids.some(id=>hasGod(x,id))));
+  return [...heavies.map(offer),...metals.map(offer),...between.map(offer),
+   ...heavies.flatMap(h=>metals.map(m=>opt(card(h).name+'と'+card(m).name+'の間にリンク',[h.uid,m.uid],60,deathId)))];
+ }
+ function mergeGods(s,p,base,others,entrant=null){
+  const own=s.players[p];
+  for(const x of others){
+   base.tapped||=x.tapped;
+   remove(own.battle,x.uid);
+   if(entrant&&x!==entrant)api.inherit(s,x,base);
+   if(s.attack)for(const key of ['attacker','target','blockUid'])if(s.attack[key]===x.uid)s.attack[key]=base.uid;
+   (base.godLinks??=[]).push(...godParts(x));
+   delete x.godLinks;
+  }
+  return base;
+ }
  return{run,chosen,complex,bases,beginCast,beginPut,attach,godCombat,
+ splitDeath(s,p,out,remaining){
+  if(card(out).id!==deathId||remaining.length!==2)return false;
+  const metal=remaining.find(x=>card(x).id===metalId);
+  if(metal&&remaining.some(x=>card(x).id===heavyId))on(s,p,metal,'RelinkHdm',{partners:remaining.map(x=>x.uid)});
+  else if(s.attack&&[out,...remaining].some(x=>s.attack.attacker===x.uid))s.attack=null;
+  return true;
+ },
  beginPayment(s,p,args){const x=s.players[p][args[5]].find(x=>x.uid===args[0]),c=x&&faces(card(x))[args[3]];if(args[1]||args[4]!==null||c?.type!=='creature'||!colors(c).some(x=>['闇','火'].includes(x))||!(s.g31Discounts||[]).some(x=>x.p===p&&x.turn===s.turn)||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;put(s,task('g31_Reduce',p,c.id,{args}));return true;},
- beginLink(s,p,x,base,options){if(!card(x).g31God||options.g31Linked||!linkCandidates(s,p,card(x)).length)return false;(s.players[p].g31Holding??=[]).push(x);put(s,task('g31_Link',p,x.cardId,{uid:x.uid,base,options}));return true;},
- link(s,p,x,options){if(!options.g31Partner)return x;const own=s.players[p],base=own.battle.find(y=>y.uid===options.g31Partner);if(!base||base.godLinks?.length)return x;remove(own.battle,x.uid);base.godLinks=[x];api.log(s,p,'godLink',card(base.cardId).name+'と'+card(x).name+'をG・リンク',{cardId:x.cardId});return base;},
+ beginLink(s,p,x,base,options){if(!card(x).g31God||options.g31Linked||!linkOptions(s,p,card(x)).length)return false;(s.players[p].g31Holding??=[]).push(x);put(s,task('g31_Link',p,x.cardId,{uid:x.uid,base,options}));return true;},
+ link(s,p,x,options){
+  if(!options.g31Partner)return x;
+  const own=s.players[p],ids=[options.g31Partner].flat();
+  const [base,...others]=ids.map(uid=>own.battle.find(y=>y.uid===uid));
+  if(!base||others.some(y=>!y))return x;
+  const originalLink=card(x).g1334God||hasGod(base,deathId)||card(base).g1334God;
+  if(base.godLinks?.length&&!originalLink)return x;
+  if(originalLink){
+   const names=[base,...others,x].map(y=>card(y).name);
+   mergeGods(s,p,base,[...others,x],x);
+   api.log(s,p,'godLink',names.join('と')+'をG・リンク',{cardId:x.cardId});
+   if(completeHdm(base)&&!api.ignored(s,base))on(s,p,godParts(base).find(y=>card(y).id===deathId),'DeathLink');
+  }else{
+   remove(own.battle,x.uid);
+   base.godLinks=[x];
+   api.log(s,p,'godLink',card(base.cardId).name+'と'+card(x).name+'をG・リンク',{cardId:x.cardId});
+  }
+  return base;
+ },
  effect(s,p,c,uid,entry){if(!c.effect?.startsWith('phoenix'))return false;put(s,task('g31_'+c.effect.slice(7),p,c.id,{uid,incarnation:entry?.incarnation||0}));return true;},
  attack(s,p,x){if(api.selfStopped(s,p))return;godCombat(s,p,x,'linkedAttack');const c=effective(x,s);if(c.g213Mars)on(s,p,x,'MarsOffer');if(c.g31Apollo)on(s,p,x,'Meteor',{kind:'apollo',count:0});if(c.g31Pluto)on(s,p,x,'Meteor',{kind:'pluto'});if(c.g31Destroy)on(s,p,x,'Meteor',{kind:'destroy'});if(c.g825Meteor)on(s,p,x,'Meteor',{follow825:c.g825Meteor});},
  snapshot(s,rows){return rows.map(r=>{const x=s.players[r.player].battle.find(x=>x.uid===r.uid);return{p:r.player,uid:r.uid,c:x&&effective(x,s)};});},

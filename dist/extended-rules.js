@@ -205,7 +205,7 @@ export function createExtendedRules(api){
  const shieldPhoto=createShieldPhotoRules({...api,creatures,put,task,choice,opt,skip,targetOptions});
  const photo=createKenjiPhotoRules({...api,creatures,put,task,choice,opt,skip,targetOptions});
  const bolshack=createBolshackRules({...api,creatures,put,task,choice,opt,skip,targetOptions,targetable,lock});
- const phoenix=createPhoenixRules({...api,creatures,put,task,choice,opt,skip,targetOptions,stratoReplacements:seed.stratoReplacements,evolutionBase:(s,p,x)=>{
+ const phoenix=createPhoenixRules({...api,creatures,put,task,choice,opt,skip,targetOptions,targetable,stratoReplacements:seed.stratoReplacements,evolutionBase:(s,p,x)=>{
   if(effective(x,s).evolvedEntryOnly)six.evolutionBase397(s,p,x);
   bande.evolutionBase(s,p,x);
  },inherit:(s,b,x)=>{thisInherit(s,b,x);viride.inherit(s,b,x);hachi.inherit(s,b,x);travel.inherit(s,b,x);lionel.inherit(s,b,x);samurai.inherit(s,b,x);zard.inherit(s,b,x);armored.inherit(s,b,x);magic.inherit(s,b,x);}});
