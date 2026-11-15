@@ -2480,6 +2480,18 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1325&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='タマシード'&&
+  ['dmsd21-008','dmrp21-018','dm25ex3-TF02','dm25rp4-T02','dm25sp2-009','dm26ex2-MC018','promoy21-078','promoy22-016'].includes(d.id)){
+  const lines=f.abilityText.split('\n').map(normalize);
+  const trigger='S・トリガーS・トリガー',rise='このタマシードがクリーチャーであるかのようにこの上に進化クリーチャーを置いてもよい';
+  const destroy='このタマシードが出た時相手のクリーチャーを1体',revive='クリーチャーよりコストが小さいクリーチャーを1体自分の墓地から出してもよい。';
+  const old=[trigger+'(このタマシードをシールドゾーンから手札に加える時コストを支払わずにすぐ使ってもよい)',
+   'シンカライズ:'+rise+'。',destroy+'破壊する。その破壊した'+revive];
+  const current=[trigger,d.id==='dm26ex2-MC018'?'シンカライズ':'シンカライズ('+rise+')',destroy+'選び破壊する。その選んだ'+revive];
+  if(lines.length===3&&[old,current].some(print=>print.every((line,i)=>line===lines[i])))
+   return {trigger:true,shinkalize:true,effect:'sixPhoto',
+    g34Tasks:[{op:'Target',g786ReviveAtCost:true,g1325StrictlyLower:true}]};
+ }
  if(phase>=1324&&d?.status==='complete'&&d.faces.length===1){
   const lines=f.abilityText.split('\n').map(normalize);
   const text=lines.join('');
