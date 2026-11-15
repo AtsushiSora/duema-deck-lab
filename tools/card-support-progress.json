@@ -536120,7 +536120,7 @@
           ]
         }
       ],
-      "latestTestCommit": "80f19d9a9f430fc3c1a2c68c79d07ff838953d82",
+      "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
         "supported": 8014,
         "pending": 3812,
@@ -536723,7 +536723,8 @@
       "finalCheck": {
         "status": "passed",
         "log": "/tmp/duema-verify-cont/phase1331-check.log",
-        "rulesBlob": "4a1e729ffd2c94073765233dc34a0a80929bbafe"
+        "rulesBlob": "4a1e729ffd2c94073765233dc34a0a80929bbafe",
+        "commit": "6e6ff1d2a190ed48c915168301e037a561bb594a"
       },
       "abyssShort": {
         "passed": 33,
@@ -538131,10 +538132,6 @@
               },
               {
                 "path": "tests/target-integration.test.mjs",
-                "title": "complete-deck games replay deterministically and scoring never mutates game state or reads future deck order"
-              },
-              {
-                "path": "tests/target-integration.test.mjs",
                 "title": "random legal manual choices preserve cards and avoid inaccessible or non-serializable decisions"
               },
               {
@@ -538886,7 +538883,42 @@
             "results": "/tmp/duema-verify-cont/manual-shards.jsonl"
           },
           "timeoutSeconds": 150,
-          "plan": "/tmp/duema-verify-cont/deck-shards.py"
+          "plan": "/tmp/duema-verify-cont/deck-shards.py",
+          "replayTarget": {
+            "status": "passed",
+            "codeCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
+            "seeds": [
+              13,
+              103,
+              1003
+            ],
+            "results": "/tmp/duema-verify-cont/replay-target.jsonl",
+            "shards": [
+              {
+                "seed": 13,
+                "exit": 0,
+                "passed": true,
+                "elapsed": 8.36,
+                "log": "/tmp/duema-verify-cont/target-replay-13.log"
+              },
+              {
+                "seed": 103,
+                "exit": 0,
+                "passed": true,
+                "elapsed": 5.86,
+                "log": "/tmp/duema-verify-cont/target-replay-103.log"
+              },
+              {
+                "seed": 1003,
+                "exit": 0,
+                "passed": true,
+                "elapsed": 9.07,
+                "log": "/tmp/duema-verify-cont/target-replay-1003.log"
+              }
+            ],
+            "plan": "/tmp/duema-verify-cont/replay-target.py",
+            "timeoutSeconds": 150
+          }
         },
         "interruptedFollowup": [
           {
@@ -538899,7 +538931,14 @@
             "log": "/tmp/duema-verify-cont/engine-short-1331.log",
             "reason": "集計用の自動対戦も含まれる追加実行を中断し、基本操作を個別に指定して実行。自動対戦を含む集計テストの再確認は継続。"
           }
-        ]
+        ],
+        "remainingDeckFixtureIssue": {
+          "paths": [
+            "tests/gransect-effects.test.mjs",
+            "tests/kiyonaga-effects.test.mjs"
+          ],
+          "reason": "当初の4大会デッキを使う想定に対し、現行の共通一覧は24件を返す。現行の一覧で増えた対戦の検証範囲と、workerで期待する9件・10件の固定フィクスチャを照合してから対戦相手・シードで分割する。"
+        }
       },
       "verifiedProductPrints": [
         {
