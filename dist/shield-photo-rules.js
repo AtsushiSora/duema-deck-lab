@@ -3,8 +3,13 @@ import {policyLook} from './champion-zone-policy.js';
 export function createShieldPhotoRules(api){
  const{card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,enter,cast,move,targetOptions}=api;
  const armored=c=>String(c.race).includes('アーマード'),dragon=c=>String(c.race).includes('ドラゴン'),ad=c=>String(c.race).includes('アーマード・ドラゴン');
- const shields=(s,p)=>Array.isArray(s.players[p].shields)?s.players[p].shields.flatMap(api.shieldCards):(s.players[p].publicShields||[]),up=(s,p)=>shields(s,p).filter(x=>x.faceUp),castles=(s,p,flag)=>up(s,p).filter(x=>card(x).gCastle&&card(x)[flag]);
- const shieldGoCount=(s,p)=>up(s,p).filter(x=>card(x).shieldGo).length;
+ const shields=(s,p)=>Array.isArray(s.players[p].shields)?s.players[p].shields.flatMap(api.shieldCards):(s.players[p].publicShields||[]);
+ const up=(s,p)=>shields(s,p).filter(x=>x.faceUp);
+ const shieldAbilitiesMuted=(s,p)=>s.players[1-p].battle.some(x=>
+  card(x).g1343ShieldMute&&!x.faceDown&&api.isCreature(s,x)&&!api.ignored(s,x));
+ const activeUp=(s,p)=>shieldAbilitiesMuted(s,p)?[]:up(s,p);
+ const castles=(s,p,flag)=>activeUp(s,p).filter(x=>card(x).gCastle&&card(x)[flag]);
+ const shieldGoCount=(s,p)=>activeUp(s,p).filter(x=>card(x).shieldGo).length;
  const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g33_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
  const shieldEffect=(p,x,defs)=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Sequence',p,x.cardId,{defs})});
  const crestEffect=(p,x,defs)=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',
@@ -96,19 +101,19 @@ export function createShieldPhotoRules(api){
  case'g33_Counter':finishExecution(s,t.target,v);break;
  default:throw Error('未実装の表向きシールド選択：'+t.op);
  }return true;}
- return{run,chosen,up,shieldGoCount,
- forcesCreatureAttack:(s,p)=>up(s,1-p).some(shield=>card(shield).g669ShieldForceCreatureAttack),
+ return{run,chosen,up,activeUp,shieldAbilitiesMuted,shieldGoCount,
+ forcesCreatureAttack:(s,p)=>activeUp(s,1-p).some(shield=>card(shield).g669ShieldForceCreatureAttack),
  execution(s,p){
-  for(const shield of up(s,p))if(card(shield).g668ShieldExecutionDraw)api.enqueue(s,p,shieldEffect(p,shield,[{op:'Draw',n:1,optional:true}]));
+  for(const shield of activeUp(s,p))if(card(shield).g668ShieldExecutionDraw)api.enqueue(s,p,shieldEffect(p,shield,[{op:'Draw',n:1,optional:true}]));
  },
  powerModifier(s,x){
   const p=s.players.findIndex(owner=>owner.battle.some(y=>y.uid===x.uid));
   if(p<0)return 0;
-  const allyPower=up(s,p).reduce((power,shield)=>{
+  const allyPower=activeUp(s,p).reduce((power,shield)=>{
    const c=card(shield);
    return power+(c.g1030ShieldAllyPower&&activeCrest(s,c)?c.g1030ShieldAllyPower:0);
   },0);
-  return allyPower+up(s,1-p).reduce((power,shield)=>power+(card(shield).g668ShieldEnemyPower||0),0);
+  return allyPower+activeUp(s,1-p).reduce((power,shield)=>power+(card(shield).g668ShieldEnemyPower||0),0);
  },
  effect(s,p,c,uid){const effects={shieldFaceTop:'FaceTop',shieldDogi:'Dogi',shieldResolve:'Resolve',shieldBounce:'Bounce',shieldMirror:'Mirror',shieldMirrorSpell:'Mirror',shieldD4:'D4',shieldParfe:'Parfe',shieldDeka:'Deka'};if(!effects[c.effect])return false;put(s,task('g33_'+effects[c.effect],p,c.id,{uid,optional:c.effect==='shieldMirror'}));return true;},
  discount(s,p,c){return c.type==='creature'&&up(s,p).length?c.g33FaceDiscount||0:0;},
@@ -116,7 +121,7 @@ export function createShieldPhotoRules(api){
   if(c.type!=='creature')return c;
   if(armored(c)&&castles(s,p,'g33Mai').length)c={...c,blocker:true,speedAttacker:true};
   if(colors(c).length>1&&s.players[p].battle.some(y=>card(y).g33Dogi&&!api.ignored(s,y)))c={...c,speedAttacker:true};
-  const faceUpShields=up(s,p);
+  const faceUpShields=activeUp(s,p);
   if(!c.g401ShieldSaver&&faceUpShields.some(y=>card(y).g663ShieldSaver))c={...c,g401ShieldSaver:true};
   if(c.g663ShieldGoAttackUntapped&&shieldGoCount(s,p))c={...c,attackUntapped:true};
   if(c.g666ShieldGoGrants&&shieldGoCount(s,p)){
@@ -131,19 +136,20 @@ export function createShieldPhotoRules(api){
  guard(s,p,x){return ad(effective(x,s))&&creatures(s,p).some(y=>effective(y,s).g33Kaku);},
  shieldAdded(s,p,x){
   if(!x.faceUp)return;
-  if(card(x).g657FaceUpEntry)api.enqueue(s,p,{
+  const active=!shieldAbilitiesMuted(s,p);
+  if(active&&card(x).g657FaceUpEntry)api.enqueue(s,p,{
    uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Select',p,x.cardId,{
     owner:'opponent',origin:'battle',to:'hand',n:2,optional:true,filter:{creature:true},
     g173Targets:true,g193Select:true,title:'手札に戻す相手のクリーチャーを2体まで選ぶ'
    })
   });
   const defs=card(x).g658ShieldOrStart||card(x).g660ShieldEntry;
-  if(defs)api.enqueue(s,p,shieldEffect(p,x,defs));
+  if(active&&defs)api.enqueue(s,p,shieldEffect(p,x,defs));
   for(const y of s.players[p].hand)if(card(y).g33Parfe&&s.players[p].mana.length>=2)on(s,p,y,'Offer',{serial:y.zoneSerial||0});},
- shieldLeft(s,p,x){if(x.faceUp&&card(x).g33Mai)on(s,p,x,'FaceTop');},
+ shieldLeft(s,p,x){if(x.faceUp&&!shieldAbilitiesMuted(s,p)&&card(x).g33Mai)on(s,p,x,'FaceTop');},
  entry(s,p,x,options){if(!api.isCreature(s,x))return;const c=effective(x,s);if(!options.selfMuted&&!api.selfStopped(s,p)&&!api.ignored(s,x)){if(c.g33Hikari&&options.revolution)on(s,p,x,'Hikari');if(c.g33Dogi&&options.revolution)on(s,p,x,'Final');}if(ad(c))for(const y of creatures(s,p))if(effective(y,s).g33Golgini&&(y.uid!==x.uid||!options.selfMuted&&!api.selfStopped(s,p)))on(s,p,y,'TapLock');for(const castle of castles(s,1-p,'g33Shachi'))if(cost(c)>s.players[p].mana.length)on(s,1-p,castle,'Shachi',{p,target:x.uid,targetInc:x.incarnation||0,controller:1-p});},
  attack(s,p,x){
-  for(const shield of up(s,p)){
+  for(const shield of activeUp(s,p)){
    const defs=card(shield).g662ShieldAttack;
    if(defs)api.enqueue(s,p,shieldEffect(p,shield,defs));
    const crest=card(shield);
@@ -155,7 +161,7 @@ export function createShieldPhotoRules(api){
  firstDestruction(s){
   for(const p of [s.active,1-s.active])for(const x of castles(s,p,'g658FirstDestruction'))api.enqueue(s,p,shieldEffect(p,x,[{op:'Draw',n:1,optional:true}]));
  },
- start(s,p){return up(s,p).flatMap(x=>{
+ start(s,p){return activeUp(s,p).flatMap(x=>{
   const c=card(x),defs=c.g662ShieldStart||(c.gCastle&&c.g658ShieldOrStart);
   return defs?[shieldEffect(p,x,defs)]:[];
  });},
@@ -164,7 +170,7 @@ export function createShieldPhotoRules(api){
   const out=[0,1].flatMap(p=>castles(s,p,'g33Mai').map(x=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g33_UntapArmored',p,x.cardId)})));
   if(s.g481Attackers?.turn===s.turn&&s.g481Attackers.events.length)return out;
   const p=1-s.active;
-  for(const shield of up(s,p)){
+  for(const shield of activeUp(s,p)){
    const crest=card(shield);
    if(crest.g1030ShieldQuietEnd&&activeCrest(s,crest))out.push(crestEffect(p,shield,crest.g1030ShieldQuietEnd));
   }

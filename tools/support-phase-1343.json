@@ -1,0 +1,78 @@
+{
+  "phase": 1343,
+  "checkedAt": "2026-11-15",
+  "baseCount": 8028,
+  "description": "ジークシュトルツの表向きシールド無視とネルザのG・ストライクを実カードで再現する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/40941/",
+    "https://dm.takaratomy.co.jp/rule/qa/39110/",
+    "https://dm.takaratomy.co.jp/rule/qa/39111/",
+    "https://dm.takaratomy.co.jp/rule/qa/39112/",
+    "https://dm.takaratomy.co.jp/rule/qa/39113/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp16-s01",
+      "name": "聖板龍 ジークシュトルツ",
+      "faces": [
+        {
+          "name": "聖板龍 ジークシュトルツ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\n相手のシールドゾーンにある表向きのカードの能力を無視する。\n相手は、自身のシールドゾーンにある表向きのカードを手札に加える時、その「S・トリガー」を使えない。\nアバレチェーン：自分のクリーチャーが攻撃する時、それがこのターン最初の攻撃なら、相手のクリーチャーを１体選び、表向きのまま、新しいシールドとして持ち主のシールドゾーンに置く。",
+          "race": "バーサーカー・ドラゴン/暴拳王国",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-s01",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-s01.jpg",
+      "spec": {
+        "manaValue": 1,
+        "blocker": true,
+        "breaker": 2,
+        "g1343ShieldMute": true,
+        "g252AttackWatch": {
+          "who": "self",
+          "first": true,
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "filter": {
+                "creature": true
+              },
+              "to": "shields",
+              "faceUp": true,
+              "toOwnerShields": true
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-15",
+        "sha256": "011f33f2a4d4879f6daf5955f51aab2121e18f623c81c8ca3db14cfd772e8d41",
+        "imageSha256": "fbf949bed197d5654bc199580345ef80fb06b842e25a2cfbb2e696932c2d0051",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-15",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "limits": {
+      "dmrp16-s01": 4
+    }
+  }
+}

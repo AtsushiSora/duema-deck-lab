@@ -4487,7 +4487,7 @@ export function createSixPhotoRules(api){
  }
  case'g34_OrderShield1262':{
   const root=api.findShield(own,t.shieldUid);
-  const remaining=api.shieldCards(root).filter(x=>!api.shieldLeavesToGrave(x)&&!t.ordered.includes(x.uid));
+  const remaining=api.shieldCards(root).filter(x=>!api.shieldLeavesToGrave(s,t.p,x)&&!t.ordered.includes(x.uid));
   if(remaining.length<=1){
    if(api.finishShieldGroupSwap1262(s,t.p,t.shieldUid,[...t.ordered,...remaining.map(x=>x.uid)]))
     api.log(s,t.p,'shieldSwap',card(t.source).name+'：確認したシールドを山札の上に移した（内容は非公開）',{cardId:t.source});
@@ -6594,7 +6594,7 @@ export function createSixPhotoRules(api){
   if(!selected)break;
   const c=card(selected);
   if(c.type!=='creature'||api.isEvolution(selected)||!api.canEnter(s,t.p,c,options))break;
-  if(selected.faceUp&&c.shieldGo){api.moveShield(s,t.p,selected.uid,'grave',{cardOnly:true});break;}
+  if(api.shieldLeavesToGrave(s,t.p,selected)){api.moveShield(s,t.p,selected.uid,'grave',{cardOnly:true});break;}
   const entrant=api.removeShieldCard(s,t.p,selected.uid);
   if(entrant){clear(entrant,'battle');enter(s,t.p,entrant,null,options);}
   break;
@@ -7176,7 +7176,7 @@ export function createSixPhotoRules(api){
   if(v){
    const deploy={op:'Put',origin:'shields',target:v,g1294FaceUpShield:true};
    const chosen=putSource1294(s,{...deploy,p:t.p});
-   if(chosen&&api.shieldLeavesToGrave(chosen))api.moveShield(s,t.p,v,'grave',{cardOnly:true});
+   if(chosen&&api.shieldLeavesToGrave(s,t.p,chosen))api.moveShield(s,t.p,v,'grave',{cardOnly:true});
    else if(chosen)start(s,t,[deploy]);
   }
   break;

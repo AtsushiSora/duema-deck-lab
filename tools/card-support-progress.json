@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8028,
-  "pendingNames": 3798,
-  "phase": 1342,
+  "supportedNames": 8029,
+  "pendingNames": 3797,
+  "phase": 1343,
   "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2131,
+    "クリーチャー": 2130,
     "NEOクリーチャー": 70,
     "呪文": 455,
     "GRクリーチャー": 156,
@@ -224,7 +224,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1074,
-    "未対応の能力文": 2533,
+    "未対応の能力文": 2532,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
@@ -489999,14 +489999,57 @@
       "remainingRegistered": 35,
       "remainingPrints": 1,
       "remainingIndividualCards": 30
+    },
+    {
+      "phase": 1343,
+      "baseline": "8033eecb",
+      "before": 8028,
+      "supported": 8029,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmrp16-s01",
+          "name": "聖板龍 ジークシュトルツ"
+        }
+      ],
+      "printAliases": 0,
+      "results": {
+        "focus": {
+          "passed": 6,
+          "log": "/tmp/duema-uncapped/zieg-focus.log",
+          "command": "node --test tests/standard1343-effects.test.mjs",
+          "seconds": 2.289
+        },
+        "regression": {
+          "passed": 95,
+          "log": "/tmp/duema-uncapped/zieg-regression.log",
+          "command": "node --test --test-concurrency=1 tests/standard{668,1030,1162,1294,1308,1326,1328,1336,1339}-effects.test.mjs",
+          "seconds": 19.487
+        },
+        "check": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "/tmp/duema-uncapped/zieg-check.log",
+          "rulesBlob": "452af54b64e40e26b6a862268b95c46dc04b45a3"
+        },
+        "audit": {
+          "status": "passed",
+          "command": "node tools/audit-card-support.mjs",
+          "log": "/tmp/duema-uncapped/zieg-audit.log"
+        }
+      },
+      "resolvedRegistered": 1,
+      "remainingRegistered": 34,
+      "remainingPrints": 1,
+      "remainingIndividualCards": 29
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1342,
+    "lastVerifiedPhase": 1343,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "カボード＝ロウとインパクト・アブソーバーのブレイク数を実カードで検証済み。残りの個別裁定と分割テストを継続する。",
+    "steps": "ジークシュトルツとネルザの表向きシールドのG・ストライクを実カードで検証済み。残りの個別裁定と分割テストを継続する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -490299,8 +490342,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8028,
-    "pendingNames": 3798,
+    "supportedNames": 8029,
+    "pendingNames": 3797,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -534294,8 +534337,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8028,
-      "pendingNames": 3798,
+      "supportedNames": 8029,
+      "pendingNames": 3797,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -535322,7 +535365,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別30種類（裁定35件と版固有の金箔再録1件）と長時間対戦・ワーカーの検証が継続中。Netlifyを更新せずにPagesへ公開する経路の確認も必要。",
+        "reason": "個別29種類（裁定34件と版固有の金箔再録1件）と長時間対戦・ワーカーの検証が継続中。mainへのpushを契機にNetlify本番を更新する .github/workflows/netlify.yml がある。Netlifyを更新せずにPagesへ公開する別経路は確認できていない。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -535903,6 +535946,25 @@
             "https://dm.takaratomy.co.jp/rule/qa/43224/"
           ],
           "result": "カボード＝ロウの常在能力と未クロスのインパクト・アブソーバーの上限1を重ね、単一ブレイクのプレイヤー攻撃が0になることを確認した。パワー低下で破壊されたR.S.F.K.の5ブレイクと、タップ中に生存する禍武斗の8ブレイクを確認した。アビスラッシュと自分の他のアビスへの強化も検証した。"
+        },
+        {
+          "cardId": "dmex18-013",
+          "dependencyIds": [
+            "dmrp16-s01"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40941/",
+          "test": "ジークシュトルツが相手の場にいる状態で、自分の表向きのシールドカードが手札に加わる時に、ネルザから得たG・ストライクを使用できることを確認する。",
+          "path": "tests/standard1343-effects.test.mjs",
+          "log": "/tmp/duema-uncapped/zieg-focus.log",
+          "phase": 1343,
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/40941/",
+            "https://dm.takaratomy.co.jp/rule/qa/39110/",
+            "https://dm.takaratomy.co.jp/rule/qa/39111/",
+            "https://dm.takaratomy.co.jp/rule/qa/39112/",
+            "https://dm.takaratomy.co.jp/rule/qa/39113/"
+          ],
+          "result": "ネルザから得たG・ストライクは、ジークシュトルツがいても表向きのカードを手札に加える際に宣言でき、攻撃制限を適用した。表向きのS・トリガーは禁止、裏向きのS・トリガーは宣言可能。パラノーマル4枚によるパワー低下を無視し、初回攻撃の表向きシールド化と、解放済みドキンダムXのシールド中の敗北無視も実カードで確認した。"
         }
       ],
       "remainingRegistered": [
@@ -536260,17 +536322,6 @@
           "reason": "帝王坂∞自身の攻撃ではガル・ラガンザークを選べることをPhase 1305で実測済み。QA 49222で発生源が呪文になる場合の選択不可を確認し、記録の期待結果を訂正。呪文が未登録のため組み合わせの対戦は未検証。",
           "path": "tests/standard1305-effects.test.mjs",
           "log": "/tmp/duema-phase-1305/focus-verified.log"
-        },
-        {
-          "cardId": "dmex18-013",
-          "dependencyIds": [
-            "dmrp16-s01"
-          ],
-          "source": "https://dm.takaratomy.co.jp/rule/qa/40941/",
-          "test": "ジークシュトルツが相手の場にいる状態で、自分の表向きのシールドカードが手札に加わる時に、ネルザから得たG・ストライクを使用できることを確認する。",
-          "reason": "ネルザのG・ストライク付与とシールドの手札追加は実測済み。ジークシュトルツは未登録のため、表向きのシールドとS・トリガー禁止を含む組み合わせの再現が未完了。",
-          "path": "tests/standard1308-effects.test.mjs",
-          "log": "/tmp/duema-phase-1308/focus-final.log"
         }
       ],
       "printResults": {
@@ -536296,9 +536347,10 @@
           "dm22ex1-061",
           "dmrp22-4A",
           "dmrp21-002",
-          "dm23rp1-004"
+          "dm23rp1-004",
+          "dmrp16-s01"
         ],
-        "officialPrints": 72,
+        "officialPrints": 73,
         "newAliases": 54,
         "evidence": [
           {
@@ -536871,6 +536923,14 @@
             "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-004.jpg",
             "pageSha256": "0b127510c9580b6bbf94c7977a2fa09d9e101fee3017e471c8ead19bb5a9f8e3",
             "imageSha256": "f8bc3a043923e0d50ac6afa53a1304cf025a7c2c215e63f3e5eb5e0bf419f0fb"
+          },
+          {
+            "id": "dmrp16-s01",
+            "canonicalId": "dmrp16-s01",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-s01",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-s01.jpg",
+            "pageSha256": "011f33f2a4d4879f6daf5955f51aab2121e18f623c81c8ca3db14cfd772e8d41",
+            "imageSha256": "fbf949bed197d5654bc199580345ef80fb06b842e25a2cfbb2e696932c2d0051"
           }
         ],
         "testLog": "/tmp/duema-verify-8009/verification-followup-prints.log",
@@ -537156,8 +537216,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8028,
-        "pending": 3798,
+        "supported": 8029,
+        "pending": 3797,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -537757,8 +537817,8 @@
       "finalCheck": {
         "status": "passed",
         "command": "npm run check",
-        "log": "/tmp/duema-uncapped/kabord-check.log",
-        "rulesBlob": "f5cd37d59be062ee96e1cf6e9f02713d4b947799"
+        "log": "/tmp/duema-uncapped/zieg-check.log",
+        "rulesBlob": "452af54b64e40e26b6a862268b95c46dc04b45a3"
       },
       "abyssShort": {
         "passed": 33,
@@ -537872,10 +537932,6 @@
         {
           "id": "dm26ex3-038",
           "name": "行くよー！アオハル、ハイチーズ！"
-        },
-        {
-          "id": "dmrp16-s01",
-          "name": "聖板龍 ジークシュトルツ"
         }
       ],
       "remainingTestsSummary": "全8,014種類の合法経路を17区間で通過。借用した登場時処理2539件、No20の48対戦、手動対戦UIの30シード・1225場面も実測で通過。残る長時間対戦とワーカー試験は対戦相手・シード単位で検証を継続。一括のnpm testは中断・合否未確認。",
@@ -537930,47 +537986,47 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1342,
-        "baseline": "d811cf02",
-        "before": 8027,
-        "supported": 8028,
+        "phase": 1343,
+        "baseline": "8033eecb",
+        "before": 8028,
+        "supported": 8029,
         "duplicates": 0,
         "added": [
           {
-            "id": "dm23rp1-004",
-            "name": "終納 カボード＝ロウ"
+            "id": "dmrp16-s01",
+            "name": "聖板龍 ジークシュトルツ"
           }
         ],
         "printAliases": 0,
         "results": {
           "focus": {
             "passed": 6,
-            "log": "/tmp/duema-uncapped/kabord-focus.log",
-            "command": "node --test tests/standard1342-effects.test.mjs",
-            "seconds": 1.886
+            "log": "/tmp/duema-uncapped/zieg-focus.log",
+            "command": "node --test tests/standard1343-effects.test.mjs",
+            "seconds": 2.289
           },
           "regression": {
-            "passed": 108,
-            "log": "/tmp/duema-uncapped/kabord-regression.log",
-            "command": "node --test --test-concurrency=1 tests/standard{1231,1232,828,830,879,880,1158,1339,1340,1341}-effects.test.mjs",
-            "seconds": 26.495
+            "passed": 95,
+            "log": "/tmp/duema-uncapped/zieg-regression.log",
+            "command": "node --test --test-concurrency=1 tests/standard{668,1030,1162,1294,1308,1326,1328,1336,1339}-effects.test.mjs",
+            "seconds": 19.487
           },
           "check": {
             "status": "passed",
             "command": "npm run check",
-            "log": "/tmp/duema-uncapped/kabord-check.log",
-            "rulesBlob": "f5cd37d59be062ee96e1cf6e9f02713d4b947799"
+            "log": "/tmp/duema-uncapped/zieg-check.log",
+            "rulesBlob": "452af54b64e40e26b6a862268b95c46dc04b45a3"
           },
           "audit": {
             "status": "passed",
             "command": "node tools/audit-card-support.mjs",
-            "log": "/tmp/duema-uncapped/kabord-audit.log"
+            "log": "/tmp/duema-uncapped/zieg-audit.log"
           }
         },
         "resolvedRegistered": 1,
-        "remainingRegistered": 35,
+        "remainingRegistered": 34,
         "remainingPrints": 1,
-        "remainingIndividualCards": 30
+        "remainingIndividualCards": 29
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
@@ -540063,12 +540119,17 @@
             "plan": "/tmp/duema-uncapped/fixture-plan.json",
             "results": "/tmp/duema-uncapped/fixture-results.jsonl",
             "plannedGroups": 53,
-            "completedGroups": 38,
-            "passedGroups": 38,
+            "completedGroups": 45,
+            "passedGroups": 45,
             "status": "実行中",
             "passedDeterministicGames": 114,
             "passedRandomGames": 75,
-            "passedWorkerGames": 80
+            "passedWorkerGames": 220
+          },
+          "historicalWorker": {
+            "result": "旧コミットで38リストのワーカー試験が完成試合0件の対戦を出した。個別の対戦ID特定を同じ乱数で実行中。",
+            "log": "/tmp/duema-uncapped/logs/0014.log",
+            "probe": "/tmp/duema-uncapped/champion-worker-probe.jsonl"
           },
           "aiCoverage": {
             "result": "旧レポートの入力指紋が現行データと不一致。現行入力85デッキ255試合を再実行中。",
