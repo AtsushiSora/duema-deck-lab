@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8012,
-  "pendingNames": 3814,
-  "phase": 1329,
-  "added": 3,
+  "supportedNames": 8013,
+  "pendingNames": 3813,
+  "phase": 1330,
+  "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -156,7 +156,7 @@
   "pendingByType": {
     "クリーチャー": 2140,
     "NEOクリーチャー": 70,
-    "呪文": 457,
+    "呪文": 456,
     "GRクリーチャー": 156,
     "G-NEOクリーチャー": 26,
     "タマシード": 38,
@@ -224,7 +224,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1077,
-    "未対応の能力文": 2545,
+    "未対応の能力文": 2544,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 19,
     "未対応のシンカパワー": 2,
@@ -489329,14 +489329,42 @@
       "resolvedRegistered": 5,
       "remainingRegistered": 52,
       "remainingPrints": 3
+    },
+    {
+      "phase": 1330,
+      "baseline": "521a5383",
+      "before": 8012,
+      "supported": 8013,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmex12-021",
+          "name": "怒流牙忍法 次元隠しの術"
+        }
+      ],
+      "printAliases": 1,
+      "results": {
+        "regressions": {
+          "status": "passed",
+          "passed": 87,
+          "log": "/tmp/duema-verify-remaining/1330-regressions.log"
+        },
+        "check": {
+          "status": "passed",
+          "log": "/tmp/duema-verify-remaining/1330-process-check.log"
+        }
+      },
+      "resolvedRegistered": 1,
+      "remainingRegistered": 51,
+      "remainingPrints": 2
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1329,
+    "lastVerifiedPhase": 1330,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "通常登録は停止済み。進捗のpostThresholdに記録した未検証裁定・再録・分割テストから再開する。",
+    "steps": "裁定51件、公式ID未確認の再録2件、長時間対戦・ワーカーから再開する。次元隠しの術とステニャンコの組み合わせは実カードで検証済み。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -489412,10 +489440,10 @@
       "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。"
     ],
     "restartSteps": [
-      "ローカルHEAD、作業ツリーとステージ済み差分、AGENTS.md、実行中テストを確認する。dist/cards.jsonをdist/catalogue.jsのnameKeyで再集計する。",
-      "分割実行の結果と除外したテスト名を確認し、時間切れになった対戦を別の相手・シード単位に分ける。全体のnpm testは再実行しない。",
-      "残る裁定から公式画像と能力文を確認できた依存カードを優先する。ダイヤモンド・ソード（dm26-006）の対プレイヤー攻撃と、光神龍スペル・デル・フィン（dm22-001）の手札公開範囲を照合し、現行の対戦・観戦モデルで検証できる場合に実装する。",
-      "残る再録は公式画像と印刷番号が取得できる版を照合する。検証済みをローカルコミットし、Netlifyに影響しない公開手順を確認した後にのみGitHub Pagesへ公開する。"
+      "ローカルHEADと作業ツリー、ステージ済み差分、AGENTS.md、実行中のテストを確認する。dist/cards.jsonをnameKeyで再集計する。",
+      "remainingVerificationRunのログと除外テスト一覧を確認し、対戦相手とseedで分割する。レッドゾーンのランダム検証は既に通過したseedを繰り返さない。",
+      "未検証裁定の再現に必要なカードを、実カードの公式情報と照合して追加する。アリスのビビッドロー公開の順序、アルドラの攻撃制限、スペル・デル・フィンの手札公開範囲を確認する。",
+      "残る金箔2版は公式IDと公式画像を照合する。全検証が通過し、Netlifyに影響しない公開経路を確認するまで、公開は保留する。"
     ],
     "registrationStatus": "ユーザーの指示で10分間隔のカード登録を再開。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
@@ -489467,6 +489495,17 @@
           "date": "2026-11-15",
           "httpStatus": 404,
           "officialPath": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/"
+        },
+        "followupCandidateImages": {
+          "checkedAt": "2026-11-15",
+          "httpStatus": 404,
+          "base": "https://dm.takaratomy.co.jp/wp-content/card/",
+          "paths": [
+            "cardthumb/dm22sd1-1S.jpg",
+            "cardthumb/dm22sd1-SEC1.jpg",
+            "cardimage/dm22sd1-SEC.jpg",
+            "cardimage/dm22sd1-001S.png"
+          ]
         }
       },
       {
@@ -489495,32 +489534,18 @@
           "date": "2026-11-15",
           "httpStatus": 404,
           "officialPath": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/"
-        }
-      },
-      {
-        "id": "dm22rp2x-1S",
-        "canonicalId": "dm22rp2-OR1",
-        "name": "轟炎の竜皇 ボルシャック・カイザー",
-        "printedNumber": "1S/2",
-        "reason": "商品案内はシークレットSPゴールドレアに言及するが、公式カード検索ではこの版の個別ページと画像を取得できず、カード番号・全文・正規IDとの対応を公式に照合できなかった。idは商品コードと印刷番号から記録した照合候補。確証が得られるまで別IDの登録を保留。",
-        "source": "https://dm.takaratomy.co.jp/product/dm22rp2x/",
-        "researchSource": "https://torekakaku.com/dm/card/?cardid=216604",
-        "latestResult": "DM22-RP2の公式画像で22RP2 OR 1S/2を確認。DM22-RP2Xの商品カード一覧と個別ページで別の版の存在を確認できず、画像候補も404だった。",
-        "checkedCandidateIds": [
-          "dm22rp2x-1S"
-        ],
-        "checkedImageIds": [
-          "dm22rp2x-1S",
-          "dm22rp2x-1SEC",
-          "dm22rp2x-1s",
-          "dm22rp2x-001S"
-        ],
-        "imageRecheck": {
-          "date": "2026-11-15",
-          "httpStatus": 404,
-          "officialPath": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/"
         },
-        "relatedVerifiedPrint": "dm22rp2-1S"
+        "followupCandidateImages": {
+          "checkedAt": "2026-11-15",
+          "httpStatus": 404,
+          "base": "https://dm.takaratomy.co.jp/wp-content/card/",
+          "paths": [
+            "cardthumb/dm22rp1-2S.jpg",
+            "cardthumb/dm22rp1-2s.jpg",
+            "cardimage/dm22rp1-2S.png",
+            "cardimage/dm22rp1-2S.webp"
+          ]
+        }
       }
     ]
   },
@@ -489531,8 +489556,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8012,
-    "pendingNames": 3814,
+    "supportedNames": 8013,
+    "pendingNames": 3813,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -533526,8 +533551,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8012,
-      "pendingNames": 3814,
+      "supportedNames": 8013,
+      "pendingNames": 3813,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -534554,7 +534579,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "登録済みカードの裁定、再録、分割回帰の失敗・長時間項目が残る。前回のGitHub上の確認でmainへのpushに反応するNetlifyワークフローが有効で、GitHub Pagesだけを公開する経路は未確認。"
+        "reason": "残る裁定51件、再録2件、除外した長時間・ワーカー試験が未確認。ローカルで確認したmainのpushワークフローにはNetlify本番デプロイが含まれ、Pagesのみの公開経路は未確認。"
       },
       "resolvedRegistered": [
         {
@@ -534780,6 +534805,18 @@
           "phase": 1329,
           "path": "tests/standard1329-effects.test.mjs",
           "log": "/tmp/duema-verify-8009/1329-focus-mana.log"
+        },
+        {
+          "cardId": "promoy14-039",
+          "dependencyIds": [
+            "dmex12-021"
+          ],
+          "test": "怒流牙忍法 次元隠しの術の登場制限中も自軍を破壊でき、ステニャンコは墓地に残る（QA 38621）。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/38621/",
+          "path": "tests/standard1330-effects.test.mjs",
+          "phase": 1330,
+          "log": "/tmp/duema-verify-remaining/1330-regressions.log",
+          "result": "相手ターンはコスト2のクリーチャーの登場が制限される。ステニャンコのターン開始能力で自軍を破壊でき、ステニャンコは墓地に残る。"
         }
       ],
       "remainingRegistered": [
@@ -534952,15 +534989,6 @@
           "test": "山札の上のカードが墓地に置かれず山札へ移る置換を適用した後も、メタルカオス・バーストの「そのカード」を参照する。",
           "reason": "公式ルール変更31661の「そのカード」形式に基づく処理。置換を持つ悠久を統べる者 フォーエバー・プリンセスが対戦未対応で、実カード同士の組み合わせは未検証。",
           "source": "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
-        },
-        {
-          "cardId": "promoy14-039",
-          "dependencyIds": [
-            "dmex12-021"
-          ],
-          "test": "怒流牙忍法 次元隠しの術の登場制限中も自軍を破壊でき、ステニャンコは墓地に残る（QA 38621）。",
-          "reason": "次元隠しの術が未対応のため実カードの組み合わせで未検証。別の制限（若き大長老 アプル）で墓地から移動できなくても自軍を破壊できることは検証済み。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/38621/"
         },
         {
           "cardId": "dmex18-s07",
@@ -535329,10 +535357,11 @@
           "dmbd10-017",
           "dm22rp2-OR1",
           "dmx14-031",
-          "dm23rp4-009"
+          "dm23rp4-009",
+          "dmex12-021"
         ],
-        "officialPrints": 18,
-        "newAliases": 16,
+        "officialPrints": 19,
+        "newAliases": 17,
         "evidence": [
           {
             "id": "dm23rp2-065",
@@ -535480,6 +535509,14 @@
             "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-009.jpg",
             "pageSha256": "43812e22bf736be21e19f4f58ec70867f71df16865d12ebe3a82df30a8e93268",
             "imageSha256": "5da471e0b97d040b86c5e1b3e925ba2b0db8cac181264c61f8d58bfca3e913b2"
+          },
+          {
+            "id": "dmex18-016",
+            "canonicalId": "dmex12-021",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-016",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-016.jpg",
+            "pageSha256": "52bc336cc319f0bb6ddffda84a7039d2249a4a3408b8064cbd5690d3a10d3407",
+            "imageSha256": "c729a1dd80a3fb2e4e1bf64111a4f28df5ef06181cd7a2fd0365b648474ea5f2"
           }
         ],
         "testLog": "/tmp/duema-verify-8009/verification-followup-prints.log",
@@ -535523,6 +535560,17 @@
             "date": "2026-11-15",
             "httpStatus": 404,
             "officialPath": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/"
+          },
+          "followupCandidateImages": {
+            "checkedAt": "2026-11-15",
+            "httpStatus": 404,
+            "base": "https://dm.takaratomy.co.jp/wp-content/card/",
+            "paths": [
+              "cardthumb/dm22sd1-1S.jpg",
+              "cardthumb/dm22sd1-SEC1.jpg",
+              "cardimage/dm22sd1-SEC.jpg",
+              "cardimage/dm22sd1-001S.png"
+            ]
           }
         },
         {
@@ -535551,32 +535599,18 @@
             "date": "2026-11-15",
             "httpStatus": 404,
             "officialPath": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/"
-          }
-        },
-        {
-          "id": "dm22rp2x-1S",
-          "canonicalId": "dm22rp2-OR1",
-          "name": "轟炎の竜皇 ボルシャック・カイザー",
-          "printedNumber": "1S/2",
-          "reason": "商品案内はシークレットSPゴールドレアに言及するが、公式カード検索ではこの版の個別ページと画像を取得できず、カード番号・全文・正規IDとの対応を公式に照合できなかった。idは商品コードと印刷番号から記録した照合候補。確証が得られるまで別IDの登録を保留。",
-          "source": "https://dm.takaratomy.co.jp/product/dm22rp2x/",
-          "researchSource": "https://torekakaku.com/dm/card/?cardid=216604",
-          "latestResult": "DM22-RP2の公式画像で22RP2 OR 1S/2を確認。DM22-RP2Xの商品カード一覧と個別ページで別の版の存在を確認できず、画像候補も404だった。",
-          "checkedCandidateIds": [
-            "dm22rp2x-1S"
-          ],
-          "checkedImageIds": [
-            "dm22rp2x-1S",
-            "dm22rp2x-1SEC",
-            "dm22rp2x-1s",
-            "dm22rp2x-001S"
-          ],
-          "imageRecheck": {
-            "date": "2026-11-15",
-            "httpStatus": 404,
-            "officialPath": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/"
           },
-          "relatedVerifiedPrint": "dm22rp2-1S"
+          "followupCandidateImages": {
+            "checkedAt": "2026-11-15",
+            "httpStatus": 404,
+            "base": "https://dm.takaratomy.co.jp/wp-content/card/",
+            "paths": [
+              "cardthumb/dm22rp1-2S.jpg",
+              "cardthumb/dm22rp1-2s.jpg",
+              "cardimage/dm22rp1-2S.png",
+              "cardimage/dm22rp1-2S.webp"
+            ]
+          }
         }
       ],
       "resolvedRegressions": [
@@ -535767,10 +535801,10 @@
           ]
         }
       ],
-      "latestTestCommit": "3a665662",
+      "latestTestCommit": "521a5383",
       "counts": {
-        "supported": 8012,
-        "pending": 3814,
+        "supported": 8013,
+        "pending": 3813,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -536421,10 +536455,6 @@
           "name": "悠久を統べる者 フォーエバー・プリンセス"
         },
         {
-          "id": "dmex12-021",
-          "name": "怒流牙忍法 次元隠しの術"
-        },
-        {
           "id": "dmx12b-010",
           "name": "デュエマの鬼！キクチ師範代"
         },
@@ -536549,7 +536579,7 @@
           "name": "聖板龍 ジークシュトルツ"
         }
       ],
-      "remainingTestsSummary": "比較・保存復元・ワーカーの長時間ケースを除いた実行を先に確定する。名前フィルターで除外されたケースと時間切れのグループは試験単位と対戦相手・シードへ分割する。公開候補の同じコミットで全項目の通過が必要。",
+      "remainingTestsSummary": "変更前の504グループの結果を回収し、報告された失敗41件の該当箇所を再検証した。時間切れグループの短いケースを再分割して通過。残る長時間ケースを同じ条件の対戦相手・シード・対戦範囲に分割して検証する。全体npm testは中断・合否未確認。",
       "advanceImplementation": {
         "status": "implemented",
         "phases": [
@@ -536601,43 +536631,32 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1329,
-        "baseline": "3a665662",
-        "before": 8009,
-        "supported": 8012,
+        "phase": 1330,
+        "baseline": "521a5383",
+        "before": 8012,
+        "supported": 8013,
         "duplicates": 0,
         "added": [
           {
-            "id": "dmx14-031",
-            "name": "夜露死苦 キャロル"
-          },
-          {
-            "id": "dm23rp4-009",
-            "name": "偽りの嘘 ネメシス"
-          },
-          {
-            "id": "dmrp16-017",
-            "name": "バリバリ・ケドケド"
+            "id": "dmex12-021",
+            "name": "怒流牙忍法 次元隠しの術"
           }
         ],
-        "printAliases": 7,
+        "printAliases": 1,
         "results": {
-          "focused": {
-            "passed": 17,
-            "log": "/tmp/duema-verify-8009/1329-focus-mana.log"
-          },
-          "regression": {
-            "passed": 226,
-            "log": "/tmp/duema-verify-8009/1329-regressions-final.log"
+          "regressions": {
+            "status": "passed",
+            "passed": 87,
+            "log": "/tmp/duema-verify-remaining/1330-regressions.log"
           },
           "check": {
             "status": "passed",
-            "log": "/tmp/duema-verify-8009/1329-check-final.log"
+            "log": "/tmp/duema-verify-remaining/1330-process-check.log"
           }
         },
-        "resolvedRegistered": 5,
-        "remainingRegistered": 52,
-        "remainingPrints": 3
+        "resolvedRegistered": 1,
+        "remainingRegistered": 51,
+        "remainingPrints": 2
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
@@ -537095,7 +537114,7 @@
               "path": "tests/card-fingerprint.test.mjs",
               "title": "verified official reference prints retain canonical names and never auto-confirm as another card (228.165375ms)",
               "log": "/tmp/duema-verify-8009/refined-short-0252.log",
-              "status": "pending"
+              "status": "focusedPassed"
             },
             {
               "path": "tests/champion-completion.test.mjs",
@@ -537197,31 +537216,31 @@
               "path": "tests/strongest-cpu.test.mjs",
               "title": "the earlier counter pool uses 防鎧 and ハチ公 against discard-heavy decks (703.260916ms)",
               "log": "/tmp/duema-verify-8009/refined-short-0394.log",
-              "status": "pending"
+              "status": "focusedPassed"
             },
             {
               "path": "tests/strongest-cpu.test.mjs",
               "title": "フィオナ remains an available counter against spell-heavy マジック and 水魔導具 (713.698791ms)",
               "log": "/tmp/duema-verify-8009/refined-short-0394.log",
-              "status": "pending"
+              "status": "focusedPassed"
             },
             {
               "path": "tests/strongest-cpu.test.mjs",
               "title": "the pool before blocker counters selects sweep counters suited to the opposing deck (1953.18125ms)",
               "log": "/tmp/duema-verify-8009/refined-short-0394.log",
-              "status": "pending"
+              "status": "focusedPassed"
             },
             {
               "path": "tests/strongest-cpu.test.mjs",
               "title": "the pool before blocker counters adopts creature-trigger counters against Dragon Girls (678.430625ms)",
               "log": "/tmp/duema-verify-8009/refined-short-0394.log",
-              "status": "pending"
+              "status": "focusedPassed"
             },
             {
               "path": "tests/strongest-cpu.test.mjs",
               "title": "the earlier pool selects grave counters against 墓地ソース and アビス (617.413667ms)",
               "log": "/tmp/duema-verify-8009/refined-short-0394.log",
-              "status": "pending"
+              "status": "focusedPassed"
             },
             {
               "path": "tests/utility-battles.test.mjs",
@@ -537521,64 +537540,377 @@
         },
         "timeoutFollowup": {
           "planned": 66,
-          "recorded": 29,
-          "passed": 29,
-          "testPass": 299,
-          "remains": [],
-          "declaredLongOrSkipped": 61,
-          "plan": "/tmp/duema-verify-remaining/timeout-parts-plan.json",
+          "recorded": 66,
+          "passed": 55,
+          "timedOut": 11,
+          "testPass": 589,
           "results": "/tmp/duema-verify-remaining/timeout-parts-results.jsonl",
-          "timeLimitSeconds": 185
+          "recovery": {
+            "passed": 11,
+            "testPass": 56,
+            "results": "/tmp/duema-verify-remaining/timed-short-recovery.jsonl",
+            "failed": [],
+            "remainingLong": [
+              {
+                "path": "tests/abyss-effects.test.mjs",
+                "title": "every supported borrowed entry ability preserves physical cards and resolves serializable decisions"
+              },
+              {
+                "path": "tests/dotto-deck.test.mjs",
+                "title": "the new official deck plays seeded games against itself and the existing deck with all eighty cards conserved"
+              },
+              {
+                "path": "tests/effect-expansion.test.mjs",
+                "title": "expanded-card games take legal actions, terminate, and conserve every physical card"
+              },
+              {
+                "path": "tests/engine.test.mjs",
+                "title": "same seed and decks reproduce every action and result"
+              },
+              {
+                "path": "tests/engine.test.mjs",
+                "title": "all pairings finish legally and conserve every card over every action"
+              },
+              {
+                "path": "tests/engine.test.mjs",
+                "title": "all supported spell effects and creature abilities have legal execution paths"
+              },
+              {
+                "path": "tests/gate-effects.test.mjs",
+                "title": "No20 finishes against itself, three ready starters and4 tournament decks with80 unique cards after every action"
+              },
+              {
+                "path": "tests/gransect-effects.test.mjs",
+                "title": "No16 finishes against itself, four ready starters and4 tournament lists with80 unique cards throughout"
+              },
+              {
+                "path": "tests/kiyonaga-effects.test.mjs",
+                "title": "No21 finishes against itself, five ready starters and4 tournament lists with80 unique cards throughout"
+              },
+              {
+                "path": "tests/magic-effects.test.mjs",
+                "title": "No09 random actions conserve cards, finite AI values and JSON continuations at every decision"
+              },
+              {
+                "path": "tests/manual-ui.test.mjs",
+                "title": "every reachable UI action over complete-deck games is legal and rendering is pure through effects, shields and replacements"
+              },
+              {
+                "path": "tests/mecha-effects.test.mjs",
+                "title": "No19 finishes against itself, six ready starters and4 tournament lists with80 unique cards throughout"
+              },
+              {
+                "path": "tests/target-integration.test.mjs",
+                "title": "one thousand games of the complete unchanged forty-card list finish against itself and practice opponents with eighty unique cards at every action"
+              }
+            ],
+            "previouslyExcluded": [
+              {
+                "path": "tests/standard506-effects.test.mjs",
+                "title": "CPU choice and current-power filtering remain pure and independent of private opponent card identities"
+              },
+              {
+                "path": "tests/standard506-effects.test.mjs",
+                "title": "legal forty CPU game completes after JSON continuation with eighty unique physical cards 0"
+              },
+              {
+                "path": "tests/standard506-effects.test.mjs",
+                "title": "legal forty CPU game completes after JSON continuation with eighty unique physical cards 1"
+              },
+              {
+                "path": "tests/standard507-effects.test.mjs",
+                "title": "CPU choices for mana-copy deployment are pure and independent of hidden opponent identities"
+              },
+              {
+                "path": "tests/standard507-effects.test.mjs",
+                "title": "legal forty CPU game completes through JSON continuation with eighty unique physical cards 0"
+              },
+              {
+                "path": "tests/standard507-effects.test.mjs",
+                "title": "legal forty CPU game completes through JSON continuation with eighty unique physical cards 1"
+              },
+              {
+                "path": "tests/standard508-effects.test.mjs",
+                "title": "legal forty CPU game with JSON resume and eighty physical cards 0"
+              },
+              {
+                "path": "tests/standard508-effects.test.mjs",
+                "title": "legal forty CPU game with JSON resume and eighty physical cards 1"
+              },
+              {
+                "path": "tests/standard509-effects.test.mjs",
+                "title": "legal forty CPU game with JSON resume keeps eighty physical cards and reaches a winner 0"
+              },
+              {
+                "path": "tests/standard509-effects.test.mjs",
+                "title": "legal forty CPU game with JSON resume keeps eighty physical cards and reaches a winner 1"
+              },
+              {
+                "path": "tests/standard510-effects.test.mjs",
+                "title": "legal forty CPU game with JSON resume conserves eighty physical cards and reaches a winner 0"
+              },
+              {
+                "path": "tests/standard510-effects.test.mjs",
+                "title": "legal forty CPU game with JSON resume conserves eighty physical cards and reaches a winner 1"
+              },
+              {
+                "path": "tests/standard510-effects.test.mjs",
+                "title": "CPU mode scores prefer useful untaps and otherwise prefer the Wheel draw false"
+              },
+              {
+                "path": "tests/standard510-effects.test.mjs",
+                "title": "CPU mode scores prefer useful untaps and otherwise prefer the Wheel draw true"
+              },
+              {
+                "path": "tests/standard510-effects.test.mjs",
+                "title": "CPU cycle mode score avoids forced library defeat and picks the harmless alternative"
+              },
+              {
+                "path": "tests/standard510-effects.test.mjs",
+                "title": "CPU recognizes the cross-gear mode when Jack has no legal creature targets"
+              },
+              {
+                "path": "tests/standard510-effects.test.mjs",
+                "title": "CPU selects a tapped ally and then stops rather than spending an untap on an already untapped ally"
+              },
+              {
+                "path": "tests/standard561-effects.test.mjs",
+                "title": "Pig optional mill can lose by exhausting the library and the CPU may decline"
+              },
+              {
+                "path": "tests/standard561-effects.test.mjs",
+                "title": "ガガの守護者サメヘッド CPU inspection is read only and ignores opposing hidden card identities"
+              },
+              {
+                "path": "tests/standard561-effects.test.mjs",
+                "title": "デーモン・ソード CPU inspection is read only and ignores opposing hidden card identities"
+              },
+              {
+                "path": "tests/standard561-effects.test.mjs",
+                "title": "デモンズ・ライト CPU inspection is read only and ignores opposing hidden card identities"
+              },
+              {
+                "path": "tests/standard561-effects.test.mjs",
+                "title": "バクエン変怪 ＜シグマ.鬼＞ CPU inspection is read only and ignores opposing hidden card identities"
+              },
+              {
+                "path": "tests/standard561-effects.test.mjs",
+                "title": "パックポック・ピッグ CPU inspection is read only and ignores opposing hidden card identities"
+              },
+              {
+                "path": "tests/standard561-effects.test.mjs",
+                "title": "ポンズ・DE・オイシイタケ CPU inspection is read only and ignores opposing hidden card identities"
+              },
+              {
+                "path": "tests/standard561-effects.test.mjs",
+                "title": "ミスティック・ガストゥール CPU inspection is read only and ignores opposing hidden card identities"
+              },
+              {
+                "path": "tests/standard561-effects.test.mjs",
+                "title": "メイ様とおサルのシンバル CPU inspection is read only and ignores opposing hidden card identities"
+              },
+              {
+                "path": "tests/standard561-effects.test.mjs",
+                "title": "legal forty CPU game finishes after JSON continuation conserving eighty identities 0"
+              },
+              {
+                "path": "tests/standard561-effects.test.mjs",
+                "title": "legal forty CPU game finishes after JSON continuation conserving eighty identities 1"
+              },
+              {
+                "path": "tests/standard562-effects.test.mjs",
+                "title": "legal forty CPU game finishes after JSON continuation conserving eighty identities 0"
+              },
+              {
+                "path": "tests/standard562-effects.test.mjs",
+                "title": "legal forty CPU game finishes after JSON continuation conserving eighty identities 1"
+              },
+              {
+                "path": "tests/standard563-effects.test.mjs",
+                "title": "legal forty CPU game finishes after JSON continuation conserving eighty identities 0"
+              },
+              {
+                "path": "tests/standard563-effects.test.mjs",
+                "title": "legal forty CPU game finishes after JSON continuation conserving eighty identities 1"
+              },
+              {
+                "path": "tests/standard564-effects.test.mjs",
+                "title": "legal forty CPU game finishes after JSON continuation conserving eighty identities 0"
+              },
+              {
+                "path": "tests/standard564-effects.test.mjs",
+                "title": "legal forty CPU game finishes after JSON continuation conserving eighty identities 1"
+              },
+              {
+                "path": "tests/standard565-effects.test.mjs",
+                "title": "legal forty CPU game finishes after JSON continuation conserving eighty identities 0"
+              },
+              {
+                "path": "tests/standard565-effects.test.mjs",
+                "title": "legal forty CPU game finishes after JSON continuation conserving eighty identities 1"
+              },
+              {
+                "path": "tests/abyss-effects.test.mjs",
+                "title": "No13 AI matches all28 ready opponents with deterministic replay and80 physical cards"
+              },
+              {
+                "path": "tests/abyss-effects.test.mjs",
+                "title": "No13 random choices preserve80 unique cards and legal decisions through JSON"
+              },
+              {
+                "path": "tests/abyss-effects.test.mjs",
+                "title": "No13 production worker completes280 matches across all28 ready opponents"
+              },
+              {
+                "path": "tests/dotto-deck.test.mjs",
+                "title": "the production worker simulates the new deck against both available tournament decks"
+              },
+              {
+                "path": "tests/gate-effects.test.mjs",
+                "title": "No20 random legal choices conserve cards and serialize/replay legal actions and AI exactly"
+              },
+              {
+                "path": "tests/gate-effects.test.mjs",
+                "title": "production worker completes160 No20 games with no unresolved matches"
+              },
+              {
+                "path": "tests/golgy-effects.test.mjs",
+                "title": "Golgy AI games complete against all31 configured opponents with deterministic replay"
+              },
+              {
+                "path": "tests/golgy-effects.test.mjs",
+                "title": "Golgy production worker completes62 games without unresolved matches"
+              },
+              {
+                "path": "tests/gransect-effects.test.mjs",
+                "title": "No16 random legal choices conserve all cards and serialize every decision and AI score exactly"
+              },
+              {
+                "path": "tests/gransect-effects.test.mjs",
+                "title": "production worker completes180 No16 games with no unresolved matches"
+              },
+              {
+                "path": "tests/hachi-effects.test.mjs",
+                "title": "No11 AI games against all29 ready opponents terminate conserve80 cards and replay"
+              },
+              {
+                "path": "tests/hachi-effects.test.mjs",
+                "title": "No11 production worker completes62 games against all31 opponents"
+              },
+              {
+                "path": "tests/hero-challenge.test.mjs",
+                "title": "a challenge is an explicit CPU-seat-only option; theme metadata never changes ordinary matches"
+              },
+              {
+                "path": "tests/hero-challenge.test.mjs",
+                "title": "CPU draws exactly one available useful card, keeps physical cards and does not reveal the selection policy"
+              },
+              {
+                "path": "tests/hero-challenge.test.mjs",
+                "title": "normal CPU draw remains the actual top card and the human draws are never replaced"
+              },
+              {
+                "path": "tests/kiyonaga-effects.test.mjs",
+                "title": "No21 random legal choices conserve all cards and serialize every decision and AI score exactly"
+              },
+              {
+                "path": "tests/kiyonaga-effects.test.mjs",
+                "title": "production worker completes200 No21 games with no unresolved matches"
+              },
+              {
+                "path": "tests/magic-effects.test.mjs",
+                "title": "No09 finishes72 AI matches against itself and11 ready opponents, conserving80 cards and exact seeded replays"
+              },
+              {
+                "path": "tests/magic-effects.test.mjs",
+                "title": "production worker completes240 No09 games with no unresolved matches"
+              },
+              {
+                "path": "tests/mecha-effects.test.mjs",
+                "title": "No19 random legal choices conserve all cards and serialize every decision and AI score exactly"
+              },
+              {
+                "path": "tests/mecha-effects.test.mjs",
+                "title": "production worker completes220 No19 games with no unresolved matches"
+              },
+              {
+                "path": "tests/rival-challenge.test.mjs",
+                "title": "every rival gets the same five-card CPU opening policy, without changing human or shields"
+              },
+              {
+                "path": "tests/target-integration.test.mjs",
+                "title": "complete-deck games replay deterministically and scoring never mutates game state or reads future deck order"
+              },
+              {
+                "path": "tests/target-integration.test.mjs",
+                "title": "random legal manual choices preserve cards and avoid inaccessible or non-serializable decisions"
+              },
+              {
+                "path": "tests/target-integration.test.mjs",
+                "title": "the production simulation worker accepts the completed tournament list and emits usable results and statistics"
+              }
+            ]
+          }
         },
         "check": {
           "status": "passed",
           "log": "/tmp/duema-verify-remaining/boot-check.log"
         },
-        "pendingSuiteFailures": [
-          {
-            "path": "tests/card-fingerprint.test.mjs",
-            "title": "verified official reference prints retain canonical names and never auto-confirm as another card (228.165375ms)",
-            "log": "/tmp/duema-verify-8009/refined-short-0252.log",
-            "status": "pending"
-          },
-          {
-            "path": "tests/strongest-cpu.test.mjs",
-            "title": "the earlier counter pool uses 防鎧 and ハチ公 against discard-heavy decks (703.260916ms)",
-            "log": "/tmp/duema-verify-8009/refined-short-0394.log",
-            "status": "pending"
-          },
-          {
-            "path": "tests/strongest-cpu.test.mjs",
-            "title": "フィオナ remains an available counter against spell-heavy マジック and 水魔導具 (713.698791ms)",
-            "log": "/tmp/duema-verify-8009/refined-short-0394.log",
-            "status": "pending"
-          },
-          {
-            "path": "tests/strongest-cpu.test.mjs",
-            "title": "the pool before blocker counters selects sweep counters suited to the opposing deck (1953.18125ms)",
-            "log": "/tmp/duema-verify-8009/refined-short-0394.log",
-            "status": "pending"
-          },
-          {
-            "path": "tests/strongest-cpu.test.mjs",
-            "title": "the pool before blocker counters adopts creature-trigger counters against Dragon Girls (678.430625ms)",
-            "log": "/tmp/duema-verify-8009/refined-short-0394.log",
-            "status": "pending"
-          },
-          {
-            "path": "tests/strongest-cpu.test.mjs",
-            "title": "the earlier pool selects grave counters against 墓地ソース and アビス (617.413667ms)",
-            "log": "/tmp/duema-verify-8009/refined-short-0394.log",
-            "status": "pending"
-          }
-        ],
+        "pendingSuiteFailures": [],
         "imageIndexGap": {
-          "officialReferencePrints": 10092,
+          "officialReferencePrints": 10094,
           "indexedPrints": 3981,
-          "referencePrintsWithoutFingerprint": 7176,
-          "reason": "画像照合用の指紋を含む公開インデックスが公式参照全件を含んでいない。現在の画像照合テストを通過扱いにできない。"
+          "referencePrintsWithoutFingerprint": 7178,
+          "reason": "既存の提供範囲では、公開インデックスにないカードは文字認識と手動確認に回る。公開中の指紋は全件の正規IDと他カードへの誤確定がないことを検証した。",
+          "test": {
+            "passed": 7,
+            "log": "/tmp/duema-verify-remaining/art-index.log"
+          },
+          "resolvedMapping": {
+            "print": "dmr23-067",
+            "id": "dmbd10-017"
+          }
+        },
+        "remainingNamedLongList": {
+          "path": "/tmp/duema-verify-remaining/long-by-filter.json",
+          "reason": "旧定義に基づく暫定リスト。公開候補の最新コミットで、名前除外されたケース・作業中の長時間対戦・ワーカーを個別に検証する。"
+        },
+        "redzoneLong": {
+          "results": "/tmp/duema-verify-remaining/redzone-parts.jsonl",
+          "additionalRandomResults": "/tmp/duema-verify-remaining/redzone-random-remaining.jsonl",
+          "randomPassed": 27,
+          "randomPlanned": 27,
+          "deterministicPassed": 3,
+          "workerPassed": 2,
+          "timeLimitSeconds": 270,
+          "unresolved": []
+        },
+        "strongestFixtures": {
+          "status": "passed",
+          "fullRunPassed": 48,
+          "correctedExactTests": 2,
+          "logs": [
+            "/tmp/duema-verify-remaining/strongest-final.log",
+            "/tmp/duema-verify-remaining/strongest-fixtures-final.log"
+          ],
+          "reason": "歴史的なカウンター選択試験に当時の登録段階のカードプールを使う。現行プールのデッキは別のテストで合法性、再現性、履歴とカードの保持を検証した。"
         }
-      }
+      },
+      "verifiedProductPrints": [
+        {
+          "candidateId": "dm22rp2x-1S",
+          "canonicalId": "dm22rp2-OR1",
+          "printId": "dm22rp2-1S",
+          "printedNumber": "22RP2 OR 1S/2",
+          "result": "公式商品案内とクリエイターズ・レター49でカイザーを例に各シークレットレアの個別封入を両商品で比較している。両商品への金箔版封入を確認し、確認済みの印刷版を参照する。別の印刷番号・公式IDは資料に示されていない。",
+          "sources": [
+            "https://dm.takaratomy.co.jp/product/dm22rp2x/",
+            "https://dm.takaratomy.co.jp/cls/creatorsletter49/"
+          ],
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-1S.jpg",
+          "aliasAdded": false
+        }
+      ]
     }
   },
   "registrationStop": {

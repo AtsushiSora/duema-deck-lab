@@ -1,4 +1,5 @@
 import test from'node:test';import assert from'node:assert/strict';
+import {createCatalogue,nameKey} from '../dist/catalogue.js';
 import {cardFingerprint,encodeFingerprint,decodeFingerprint,createImageMatcher,combineCardEvidence}from'../dist/card-fingerprint.js';
 const signature=seed=>cardFingerprint({width:36,height:48,data:Uint8Array.from({length:36*48*4},(_,i)=>i%4===3?255:((Math.floor(i/4/3)+seed)*73+seed*29)%256)});
 const cards=[{id:'a',name:'カードA'},{id:'b',name:'カードB'},{id:'c',name:'カードC'}],index=entries=>({schemaVersion:1,entries:entries.map(([id,f])=>[id,encodeFingerprint(f)])});
@@ -8,4 +9,30 @@ test('identical art used by two distinct names stays ambiguous and cannot auto-c
 test('unrelated or missing pixels never become a confident card',()=>{const match=createImageMatcher(index([['a',signature(1)],['b',signature(2)]]),cards);for(const f of [[],[new Uint8Array(288)],[new Uint8Array(288).fill(255)]]){const r=match(f);assert.equal(r.confirmed,false);assert.equal(r.id,'');}assert.throws(()=>createImageMatcher({schemaVersion:2,entries:[]},cards));assert.throws(()=>createImageMatcher(index([['missing',signature(1)]]),cards));});
 test('multiple crop variants can recover a shifted card, without changing canonical identity',()=>{const a=signature(1),r=createImageMatcher(index([['a',a],['b',signature(20)]]),cards)([signature(10),a]);assert.equal(r.id,'a');assert.equal(r.confirmed,true);});
 test('text and image disagreement requires review, while a weak image does not override exact text',()=>{const ocr={id:'a',confirmed:true,candidates:[{id:'a',name:'カードA',score:1}],original:'カードA',score:1},image={id:'b',confirmed:false,candidates:[{id:'b',name:'カードB',score:.9}],score:.9,imageError:.1};assert.equal(combineCardEvidence(ocr,image).confirmed,false);assert.equal(combineCardEvidence(ocr,{...image,imageError:.3}).confirmed,true);assert.equal(combineCardEvidence(ocr,{...image,id:'a'}).confirmed,true);const certain=combineCardEvidence(ocr,{...image,confirmed:true,imageError:.02});assert.equal(certain.id,'b');assert.equal(certain.original,'カードA');});
-test('verified official reference prints retain canonical names and never auto-confirm as another card',async()=>{const fs=await import('node:fs/promises'),read=async p=>JSON.parse(await fs.readFile(new URL(p,import.meta.url),'utf8')),refs=await read('../tools/image-reference-prints.json'),data=await read('../dist/image-index.json'),catalogue=await read('../dist/catalogue.json'),match=createImageMatcher(data,catalogue.cards),byPrint=new Map(data.entries.map(e=>[e[2],e]));assert.equal(new Set(refs.prints.map(r=>r.canonicalId)).size,926);for(const r of refs.prints){const entry=byPrint.get(r.id);assert.ok(entry,'missing '+r.id);assert.equal(entry[0],r.canonicalId);assert.equal(catalogue.cards.find(c=>c.id===r.canonicalId)?.name,r.name);assert.ok(r.source.startsWith('https://dm.takaratomy.co.jp/card/detail/?id='));assert.ok(r.image.startsWith('https://dm.takaratomy.co.jp/wp-content/card/'));const result=match([decodeFingerprint(entry[1])]);if(result.confirmed)assert.equal(result.id,r.canonicalId,'wrong auto-confirmation '+r.id);}});
+test('published image fingerprints use valid canonical IDs and never auto-confirm as another card',async()=>{
+ const fs=await import('node:fs/promises');
+ const read=async path=>JSON.parse(await fs.readFile(new URL(path,import.meta.url),'utf8'));
+ const [{prints},index,snapshot,{cards:supported}]=await Promise.all([
+  '../tools/image-reference-prints.json','../dist/image-index.json','../dist/catalogue.json','../dist/cards.json'
+ ].map(read));
+ const catalogue=createCatalogue(snapshot,supported);
+ const match=createImageMatcher(index,catalogue.cards);
+ const refs=new Map(prints.map(print=>[print.id,print]));
+ assert.equal(index.printCount,index.entries.length);
+ assert.equal(new Set(index.entries.map(([, ,printId])=>printId)).size,index.printCount);
+ assert.equal(new Set(index.entries.map(([id])=>id)).size,index.nameCount);
+ assert.ok(index.entries.length>0);
+ for(const [id,encoded,printId] of index.entries){
+  const card=catalogue.get(id);
+  assert.equal(card?.id,id,printId);
+  const ref=refs.get(printId);
+  if(ref){
+   assert.equal(catalogue.get(ref.canonicalId)?.id,id,printId);
+   assert.equal(nameKey(card.name),nameKey(ref.name),printId);
+  }
+  const result=match([decodeFingerprint(encoded)]);
+  if(result.confirmed)assert.equal(result.id,id,'wrong auto-confirmation '+printId);
+ }
+ const alias=index.entries.find(([, ,printId])=>printId==='dmr23-067');
+ assert.equal(alias?.[0],'dmbd10-017');
+});

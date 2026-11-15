@@ -28,7 +28,7 @@ test('a loss changes the learned matchup and counter list, preserves legal forty
 });
 
 // Isolate earlier card additions from newer options competing for the same deck slots.
-const beforeSmallCreatureResponse=data.cards.filter(c=>c.supportBatch!=='phase-632');
+const beforeSmallCreatureResponse=data.cards.filter(c=>!/^phase-\d+$/.test(c.supportBatch||'')||Number(c.supportBatch.slice(6))<632);
 const beforeDarkControl=beforeSmallCreatureResponse.filter(c=>c.supportBatch!=='phase-631');
 const beforeHandDeployment=beforeDarkControl.filter(c=>c.supportBatch!=='phase-630');
 const beforeDrawTempo=beforeHandDeployment.filter(c=>c.supportBatch!=='phase-629');
@@ -337,7 +337,7 @@ test('the strongest CPU selects the new spell and resource counters for compatib
  ];
  for(const [targetId,id] of matchups){
   const target=seeds.find(d=>d.id===targetId);
-  const build=buildStrongestCPU(target,seeds,targetId==='starter25-06'?beforeDiscardResponses:data.cards);
+  const build=buildStrongestCPU(target,seeds,beforeUntappedCounters);
   assert.deepEqual(e.validateDeck(build.deck),[]);
   assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
  }
@@ -352,8 +352,7 @@ test('the strongest CPU picks untapped removal and shield defense for compatible
  ];
  for(const [targetId,id] of matchups){
   const target=seeds.find(d=>d.id===targetId);
-  const pool=targetId==='env-magic-practice'?beforeNeoCounters:targetId==='starter25-07'?beforeCombatResponses:targetId==='env-gp2026-sara'?beforeDiscardResponses:data.cards;
-  const build=buildStrongestCPU(target,seeds,pool);
+  const build=buildStrongestCPU(target,seeds,beforeSmallBoardCounters);
   assert.deepEqual(e.validateDeck(build.deck),[]);
   assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
  }
@@ -465,7 +464,7 @@ test('the strongest CPU picks shield pressure suited to each opposing deck',()=>
  ];
  for(const [targetId,id] of matchups){
   const target=seeds.find(d=>d.id===targetId);
-  const build=buildStrongestCPU(target,seeds,targetId==='starter25-02'?beforeHandDeployment:data.cards);
+  const build=buildStrongestCPU(target,seeds,beforeExecutionTax);
   assert.deepEqual(e.validateDeck(build.deck),[]);
   assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
  }

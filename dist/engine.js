@@ -1254,6 +1254,9 @@ export function canEnterCreature(s,p,c=null,{origin='hand',execution=true,commit
  if(!extra.photo160.allowedEntry(s,p,c)||!extra.combat.allowedEntry(s,p,c,{origin,execution})||!extra.original.allowedEntry(s,p,c))return false;
  if(!extra.environment.allowedEntry(s,p,c)||!extra.recommended.allowedEntry(s,p,c,{execution}))return false;
  if(c&&(s.extLimits||[]).some(l=>l.kind==='jayEntry'&&l.player===p&&l.cost===costValue(c)))return false;
+ if(c&&(s.extLimits||[]).some(l=>l.kind==='g1330ExactEntry'&&l.player===p&&
+  (l.cost==='∞'?Infinity:l.cost)===costValue(c)&&wouldEnterCreature(s,p,c)&&
+  !spellIgnored(s,{spellSource:l.spellSource,cost:l.spellCost,type:'spell'})))return false;
  if(c&&execution&&!extra.allowedCard(s,p,c))return false;
  const own=s.players[p];if(c?.g48HandEvolution&&!committed&&!extra.cyber.allowedCast(s,p,c,origin,true))return false;if((!c||c.type==='creature')&&own.entryLimitThisTurn&&(own.enteredThisTurn||0)>=1)return false;
  if(!c)return true;if(execution&&!committed&&!extra.six.allowedCast(s,p,c))return false;if(!extra.six.allowedEntry(s,p,c,{origin,execution}))return false;

@@ -7356,6 +7356,15 @@ export function createSixPhotoRules(api){
     title:'破壊する別の相手クリーチャーを選ぶ'}]);
    break;
   }
+  if(t.g1330ExtraCostLock){
+   const y=v&&s.players[v.p].battle.find(x=>x.uid===v.uid);
+   if(!y)break;
+   // The selected cost applies even when the move is replaced (QA 38620).
+   const selected=cost(effective(y,s));
+   move(s,[{player:v.p,uid:y.uid,to:'extra',destroy:false,toOwnerExtra:true,controller:t.p}]);
+   start(s,t,[{op:'Lock',spell:true,limit:{kind:'g1330ExactEntry',cost:selected===Infinity?'∞':selected}}]);
+   break;
+  }
   if(t.g1121ExtraOwnerDraw){
    const y=v&&s.players[v.p].battle.find(x=>x.uid===v.uid);
    if(y){
