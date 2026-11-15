@@ -18,6 +18,7 @@ export function createUtilityDarkControl(api){
  case'g78_Black':put(s,follow(t,'Gajira'),follow(t,'BlackShield'));break;
  case'g78_BlackShield':if(api.canAddShield(s,t.p))put(s,task('g34_Select',t.p,t.source,{origin:'grave',to:'shields',n:1,filter:{creature:true,race:'コマンド'},title:'墓地から裏向きでシールドに置くコマンドを1体選ぶ'}));break;
  case'g78_Congrat':{const n=Math.min(2,living(s,1-t.p).length),danger=own.shields.length<=1&&living(s,1-t.p).length>n;choice(s,t,'自分のシールドを1つ墓地に置き、相手にクリーチャーを2体破壊させる？',[...own.shields.filter(x=>!api.shieldCards(x).some(y=>y.g37ShieldHeld)).map((x,i)=>opt('シールド '+(i+1)+'（カード'+api.shieldCards(x).length+'枚）を墓地に置く',x.uid,n&&!danger?n*15-api.shieldCards(x).length:-10)),opt('墓地に置かない',null,0)]);break;}
+ case'g78_CongratMoveDone':if(t.g1352Moved.length)put(s,follow(t,'Sacrifice',{controller:t.p,p:1-t.p,n:2,selected:[]}));break;
  case'g78_Sacrifice':{const options=targetOptions(s,t.p,living(s,t.p).filter(x=>!t.selected.some(r=>r.uid===x.uid)));if(t.selected.length>=t.n||!options.length){destroy(s,t);break;}choice(s,t,'破壊する自分のクリーチャーを'+t.n+'体選ぶ（'+t.selected.length+'/'+t.n+'）',options.map(o=>({...o,score:-o.score+(card(o.cardId).g78Fly?15:0)})));break;}
  case'g78_Gajira':choice(s,t,'墓地に置く相手のシールドを1つ選ぶ（S・トリガーは使えません）',s.players[1-t.p].shields.filter(x=>!api.shieldCards(x).some(y=>y.g37ShieldHeld)).map((x,i)=>opt('シールド '+(i+1)+'（カード'+api.shieldCards(x).length+'枚）',x.uid,api.shieldCards(x).length)));break;
  case'g78_Dotsuki':choice(s,t,'山札の一番下に置く相手のタップ中のクリーチャーを1体選ぶ',targetOptions(s,t.p,living(s,1-t.p).filter(x=>x.tapped)));break;
@@ -27,7 +28,11 @@ export function createUtilityDarkControl(api){
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g78_'))return false;switch(t.op){
  case'g78_Sacrifice':{const x=s.players[t.p].battle.find(x=>x.uid===v);if(x)put(s,follow(t,'Sacrifice',{selected:[...t.selected,{uid:x.uid,incarnation:x.incarnation||0}]}));break;}
- case'g78_Congrat':if(v&&api.moveShield(s,t.p,v,'grave').length)put(s,follow(t,'Sacrifice',{controller:t.p,p:1-t.p,n:2,selected:[]}));break;
+ case'g78_Congrat':if(v){
+  const moved=api.moveShield(s,t.p,v,'grave');
+  if(!api.deferShieldMove1352(s,follow(t,'CongratMoveDone'))&&moved.length)
+   put(s,follow(t,'Sacrifice',{controller:t.p,p:1-t.p,n:2,selected:[]}));
+ }break;
  case'g78_Gajira':if(v)api.moveShield(s,1-t.p,v,'grave');break;
  case'g78_Dotsuki':case'g78_Alexei':if(v){const p=s.players.findIndex(p=>p.battle.some(x=>x.uid===v)),x=s.players[p]?.battle.find(x=>x.uid===v);if(x){const rows=api.allLayers(x).map((y,i)=>({uid:y.uid,label:y.faceDown?'裏向きのカード '+(i+1):card(y).name,cardId:y.faceDown?null:y.cardId}));put(s,follow(t,'BottomOrder',{p,rows,ordered:[],newCards:true}));api.move(s,[{player:p,uid:v,to:'deck',destroy:false,controller:t.p}]);}}break;
  case'g78_TopOrder':case'g78_BottomOrder':put(s,{...t,ordered:[...t.ordered,v]});break;

@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8038,
-  "pendingNames": 3788,
-  "phase": 1351,
+  "supportedNames": 8039,
+  "pendingNames": 3787,
+  "phase": 1352,
   "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -166,7 +166,7 @@
     "スター進化クリーチャー": 55,
     "進化クリーチャー(超無限進化・Ω)": 1,
     "ギガ・オレガ・オーラ": 2,
-    "オレガ・オーラ": 102,
+    "オレガ・オーラ": 101,
     "デュエルメイト・クリーチャー": 5,
     "ルール・プラス": 1,
     "Mono Artifact": 1,
@@ -223,7 +223,7 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 1072,
+    "複数面・特殊カードタイプまたは情報不足": 1071,
     "未対応の能力文": 2525,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 18,
@@ -490459,14 +490459,97 @@
       "remainingPrints": 1,
       "remainingIndividualCards": 24,
       "next": "未対応のオーラ、ウエポン、覚醒リンク等に共通処理から対応する。深淵ゾーンは既存のゲームのJSONに影響しない任意項目。旧ゲームの再読込と全物理カードの保存を確認済み。"
+    },
+    {
+      "phase": 1352,
+      "baseline": "2f7677a2",
+      "before": 8038,
+      "supported": 8039,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmrp11-s06",
+          "name": "極幻空 ザハ・エルハ"
+        }
+      ],
+      "printAliases": 1,
+      "results": {
+        "focus": {
+          "passed": 22,
+          "failed": 0,
+          "log": "/tmp/duema-uncapped/zaha-focus.log",
+          "coverage": "オーラの装着先、付ける前のGRの破壊、装着後の進化・破壊・別のカードの下への順序選択、パワーと追加ブレイク、任意ドロー、3件の対象裁定、ラグナロクの実際の移動枚数、置換選択中のJSON再開とオンライン表示。"
+        },
+        "officialPrints": {
+          "verified": 2,
+          "log": "/tmp/duema-uncapped/zaha-source.log",
+          "manifest": "tools/support-phase-1352.json"
+        },
+        "regression": {
+          "passed": 342,
+          "failed": 0,
+          "log": "/tmp/duema-uncapped/zaha-regression.log"
+        },
+        "check": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "/tmp/duema-uncapped/zaha-final-check.log"
+        },
+        "audit": {
+          "status": "passed",
+          "command": "node tools/audit-card-support.mjs",
+          "log": "/tmp/duema-uncapped/zaha-audit.log"
+        },
+        "nameKey": {
+          "rows": 8039,
+          "count": 8039,
+          "duplicates": 0,
+          "log": "/tmp/duema-uncapped/zaha-namekey.log"
+        }
+      },
+      "resolvedRegistered": 3,
+      "remainingRegistered": 22,
+      "remainingPrints": 1,
+      "remainingIndividualCards": 21,
+      "worker": {
+        "baseline": "2f7677a2",
+        "plan": "/tmp/duema-uncapped/no11-worker-shards.json",
+        "results": "/tmp/duema-uncapped/no11-shards-2f7677a2.jsonl",
+        "oldResult": "対戦相手の固定件数31件と現在の49件が不一致。旧実行はデッキ数の検査で失敗したため本番ワーカーの合否未確認。",
+        "status": "分割実行中",
+        "groupsCompleted": 9,
+        "groupsPlanned": 13,
+        "opponentsPassed": 36,
+        "opponentsPlanned": 49,
+        "workerGamesPassed": 72,
+        "workerGamesPlanned": 98,
+        "failedGroups": [],
+        "pendingOpponents": [
+          "env-gospel-practice",
+          "env-magic-practice",
+          "env-abyss-practice",
+          "env-water-mado-practice",
+          "env-giant-practice",
+          "env-zard-practice",
+          "env-anadark-jaouga-practice",
+          "env-kenji-gp2024-maiken",
+          "env-dark-mado-practice",
+          "env-bande-practice",
+          "env-barom-practice",
+          "env-maruru-practice",
+          "env-lionel-practice"
+        ],
+        "method": "2f7677a2の隔離スナップショットで、全対戦相手に元の乱数と先後のまま両方の対戦を行い、対戦相手・乱数・2試合完了・未決着0を検証。分割結果を保存し、実行中は再起動しない。"
+      },
+      "next": "Code：1059とジ・エンデザークは今回のオーラ処理を再利用して固有能力とQA40828を確認する。次いで、キクチ師範代／カレイコによる山札の移動置換、覚醒リンクの実カード、ドラン・ゴルギーニの金箔再録の公式画像を確認。既存の長時間テストはそのまま完了を待ち、No.11は同じ分割を再起動しない。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1351,
+    "lastVerifiedPhase": 1352,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "残る個別24種類に対応する。実カードのオーラ・ウエポンと選択置換などは共通処理から実装し、組み合わせを検証する。統計のNo.11は先に実行中の同一テストを待ち、既存の対戦相手とシードを維持して分割する。",
+    "steps": "個別の未検証は21種類（裁定22件、金箔再録1件）。Code：1059とジ・エンデザークは今回のオーラ処理を再利用して固有能力とQA40828を確認する。次いで、キクチ師範代／カレイコによる山札の移動置換、覚醒リンクの実カード、ドラン・ゴルギーニの金箔再録の公式画像を確認。既存の長時間テストはそのまま完了を待ち、No.11は同じ分割を再起動しない。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -534754,8 +534837,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8038,
-      "pendingNames": 3788,
+      "supportedNames": 8039,
+      "pendingNames": 3787,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -535782,7 +535865,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別24種類に関する裁定25件と金箔再録1件、および分割した長時間対戦・ワーカーの検証が残る。mainのpushはNetlify本番を更新するため、Netlifyへ影響しないPages公開経路は引き続き未確認。",
+        "reason": "個別の未検証21種類（裁定22件と金箔再録1件）と、分割した長時間対戦・ワーカーの検証が残っている。mainのpushはNetlify本番を更新するため、Netlifyへ影響しないPages公開経路は未確認。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -536604,6 +536687,66 @@
             "https://dm.takaratomy.co.jp/rule/qa/47946/"
           ],
           "result": "アビスラブ=ジャシン帝を実装し、同一の3枚のNEOクリーチャーの束が、普通の破壊ではPERFE910自身の能力で残り、深淵送りでは全部が深淵ゾーンに置かれることを確認。S-NEOで場か墓地の対象1枚を重ねる場合と進化しない場合、山札5枚を使う離脱置換の使用・不使用・不足、選ばれない相手、スター進化・Gリンク・サイキック・GR・EXライフの処理、双方の表示とJSON復元も実測。"
+        },
+        {
+          "cardId": "dmrp20-009",
+          "dependencyIds": [
+            "dmrp11-s06"
+          ],
+          "test": "《極幻空 ザハ・エルハ》の置換でEXライフが墓地に置かれなくても、相手は呪文を唱えられない。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40665/",
+          "phase": 1352,
+          "path": "tests/standard1352-effects.test.mjs",
+          "log": "/tmp/duema-uncapped/zaha-focus.log",
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/39077/",
+            "https://dm.takaratomy.co.jp/rule/qa/40268/",
+            "https://dm.takaratomy.co.jp/rule/qa/40456/",
+            "https://dm.takaratomy.co.jp/rule/qa/40457/",
+            "https://dm.takaratomy.co.jp/rule/qa/40665/",
+            "https://dm.takaratomy.co.jp/rule/qa/42077/"
+          ],
+          "result": "自分のEXライフがザハ・エルハの置換でシールドゾーンに残り、相手は呪文を唱えられない。"
+        },
+        {
+          "cardId": "dm23rp4-046",
+          "dependencyIds": [
+            "dmrp11-s06"
+          ],
+          "test": "シュバルスリングが自分のシールドを墓地に置こうとし、極幻空 ザハ・エルハの置換でシールドが残った場合も、相手が自身のクリーチャーを1体選び破壊する。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40268/",
+          "phase": 1352,
+          "path": "tests/standard1352-effects.test.mjs",
+          "log": "/tmp/duema-uncapped/zaha-focus.log",
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/39077/",
+            "https://dm.takaratomy.co.jp/rule/qa/40268/",
+            "https://dm.takaratomy.co.jp/rule/qa/40456/",
+            "https://dm.takaratomy.co.jp/rule/qa/40457/",
+            "https://dm.takaratomy.co.jp/rule/qa/40665/",
+            "https://dm.takaratomy.co.jp/rule/qa/42077/"
+          ],
+          "result": "ザハ・エルハの置換で自分のシールドが残っても、相手が自身のクリーチャーを選び破壊する。"
+        },
+        {
+          "cardId": "dmex14-021",
+          "dependencyIds": [
+            "dmrp11-s06"
+          ],
+          "test": "表向きの凄惨なる牙 パラノーマルを快速のハッチャキで出そうとした時、ザハ・エルハのシールド維持とシールド・ゴーの墓地行きが競合する場合の置換選択を確認する。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40456/",
+          "phase": 1352,
+          "path": "tests/standard1352-effects.test.mjs",
+          "log": "/tmp/duema-uncapped/zaha-focus.log",
+          "officialClarifications": [
+            "https://dm.takaratomy.co.jp/rule/qa/39077/",
+            "https://dm.takaratomy.co.jp/rule/qa/40268/",
+            "https://dm.takaratomy.co.jp/rule/qa/40456/",
+            "https://dm.takaratomy.co.jp/rule/qa/40457/",
+            "https://dm.takaratomy.co.jp/rule/qa/40665/",
+            "https://dm.takaratomy.co.jp/rule/qa/42077/"
+          ],
+          "result": "ザハ・エルハとパラノーマルを使用。ハッチャキのシールドから出す試みと、QA40456にあるオールデリートの双方で持ち主が置換を選び、選んだとおりシールドに残るか墓地へ行く。"
         }
       ],
       "remainingRegistered": [
@@ -536793,15 +536936,6 @@
           "source": "https://dm.takaratomy.co.jp/rule/rulechange/31649/"
         },
         {
-          "cardId": "dmrp20-009",
-          "dependencyIds": [
-            "dmrp11-s06"
-          ],
-          "test": "《極幻空 ザハ・エルハ》の置換でEXライフが墓地に置かれなくても、相手は呪文を唱えられない。",
-          "reason": "QA40665に合わせ、移動を試みた後は移動結果にかかわらず呪文禁止に進む。置換を行う《極幻空 ザハ・エルハ》が未実装のため、実カードによる再現は未検証。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/40665/"
-        },
-        {
           "cardId": "dmrp20-s02",
           "dependencyIds": [
             "dmex18-022"
@@ -536818,26 +536952,6 @@
           "source": "https://dm.takaratomy.co.jp/rule/qa/40956/",
           "test": "ケンゲキオージャが相手の効果で離れる際、ドキンダムエリアの置換により封印され、勝利が誘発しない。",
           "reason": "ドキンダムエリアの離脱置換を実カードで確認。ケンゲキオージャの実カードが未対応。"
-        },
-        {
-          "cardId": "dm23rp4-046",
-          "dependencyIds": [
-            "dmrp11-s06"
-          ],
-          "source": "https://dm.takaratomy.co.jp/rule/qa/40268/",
-          "test": "シュバルスリングが自分のシールドを墓地に置こうとし、極幻空 ザハ・エルハの置換でシールドが残った場合も、相手が自身のクリーチャーを1体選び破壊する。",
-          "reason": "移動の成否に関係なく続行する既存のafterAttemptを使用。実カードによる置換の確認にはザハ・エルハの対戦対応が必要。",
-          "log": "/tmp/duema-phase-1290/focus-final.log"
-        },
-        {
-          "cardId": "dmex14-021",
-          "dependencyIds": [
-            "dmrp11-s06"
-          ],
-          "source": "https://dm.takaratomy.co.jp/rule/qa/40456/",
-          "test": "表向きの凄惨なる牙 パラノーマルを快速のハッチャキで出そうとした時、ザハ・エルハのシールド維持とシールド・ゴーの墓地行きが競合する場合の置換選択を確認する。",
-          "reason": "シールド・ゴー単独で墓地に行くケースは実カードで確認。ザハ・エルハは対戦未対応で、QA 40456の競合原則を快速のハッチャキに適用する組み合わせは未検証。",
-          "log": "/tmp/duema-phase-1294/focus-verified.log"
         },
         {
           "cardId": "dm23rp1-018",
@@ -538105,8 +538219,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8038,
-        "pending": 3788,
+        "supported": 8039,
+        "pending": 3787,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -538765,10 +538879,6 @@
           "name": "Code：1059"
         },
         {
-          "id": "dmrp11-s06",
-          "name": "極幻空 ザハ・エルハ"
-        },
-        {
           "id": "dmex18-022",
           "name": "アカシック・パラレル"
         },
@@ -538845,54 +538955,87 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1351,
-        "baseline": "6cb32644",
-        "before": 8037,
-        "supported": 8038,
+        "phase": 1352,
+        "baseline": "2f7677a2",
+        "before": 8038,
+        "supported": 8039,
         "duplicates": 0,
         "added": [
           {
-            "id": "dm25rp4-OR1",
-            "name": "アビスラブ=ジャシン帝"
+            "id": "dmrp11-s06",
+            "name": "極幻空 ザハ・エルハ"
           }
         ],
-        "printAliases": 6,
+        "printAliases": 1,
         "results": {
           "focus": {
-            "passed": 16,
-            "log": "/tmp/duema-uncapped/abyss-focus.log"
+            "passed": 22,
+            "failed": 0,
+            "log": "/tmp/duema-uncapped/zaha-focus.log",
+            "coverage": "オーラの装着先、付ける前のGRの破壊、装着後の進化・破壊・別のカードの下への順序選択、パワーと追加ブレイク、任意ドロー、3件の対象裁定、ラグナロクの実際の移動枚数、置換選択中のJSON再開とオンライン表示。"
           },
-          "print": {
-            "verified": 7,
-            "passed": 1,
-            "log": "/tmp/duema-uncapped/abyss-all-prints.log"
+          "officialPrints": {
+            "verified": 2,
+            "log": "/tmp/duema-uncapped/zaha-source.log",
+            "manifest": "tools/support-phase-1352.json"
           },
           "regression": {
-            "passed": 80,
-            "log": "/tmp/duema-uncapped/abyss-regression.log"
+            "passed": 342,
+            "failed": 0,
+            "log": "/tmp/duema-uncapped/zaha-regression.log"
           },
           "check": {
             "status": "passed",
             "command": "npm run check",
-            "log": "/tmp/duema-uncapped/abyss-final-check.log"
+            "log": "/tmp/duema-uncapped/zaha-final-check.log"
           },
           "audit": {
             "status": "passed",
             "command": "node tools/audit-card-support.mjs",
-            "log": "/tmp/duema-uncapped/abyss-audit.log"
+            "log": "/tmp/duema-uncapped/zaha-audit.log"
           },
           "nameKey": {
-            "rows": 8038,
-            "count": 8038,
+            "rows": 8039,
+            "count": 8039,
             "duplicates": 0,
-            "log": "/tmp/duema-uncapped/abyss-namekey.log"
+            "log": "/tmp/duema-uncapped/zaha-namekey.log"
           }
         },
-        "resolvedRegistered": 1,
-        "remainingRegistered": 25,
+        "resolvedRegistered": 3,
+        "remainingRegistered": 22,
         "remainingPrints": 1,
-        "remainingIndividualCards": 24,
-        "next": "未対応のオーラ、ウエポン、覚醒リンク等に共通処理から対応する。深淵ゾーンは既存のゲームのJSONに影響しない任意項目。旧ゲームの再読込と全物理カードの保存を確認済み。"
+        "remainingIndividualCards": 21,
+        "worker": {
+          "baseline": "2f7677a2",
+          "plan": "/tmp/duema-uncapped/no11-worker-shards.json",
+          "results": "/tmp/duema-uncapped/no11-shards-2f7677a2.jsonl",
+          "oldResult": "対戦相手の固定件数31件と現在の49件が不一致。旧実行はデッキ数の検査で失敗したため本番ワーカーの合否未確認。",
+          "status": "分割実行中",
+          "groupsCompleted": 9,
+          "groupsPlanned": 13,
+          "opponentsPassed": 36,
+          "opponentsPlanned": 49,
+          "workerGamesPassed": 72,
+          "workerGamesPlanned": 98,
+          "failedGroups": [],
+          "pendingOpponents": [
+            "env-gospel-practice",
+            "env-magic-practice",
+            "env-abyss-practice",
+            "env-water-mado-practice",
+            "env-giant-practice",
+            "env-zard-practice",
+            "env-anadark-jaouga-practice",
+            "env-kenji-gp2024-maiken",
+            "env-dark-mado-practice",
+            "env-bande-practice",
+            "env-barom-practice",
+            "env-maruru-practice",
+            "env-lionel-practice"
+          ],
+          "method": "2f7677a2の隔離スナップショットで、全対戦相手に元の乱数と先後のまま両方の対戦を行い、対戦相手・乱数・2試合完了・未決着0を検証。分割結果を保存し、実行中は再起動しない。"
+        },
+        "next": "Code：1059とジ・エンデザークは今回のオーラ処理を再利用して固有能力とQA40828を確認する。次いで、キクチ師範代／カレイコによる山札の移動置換、覚醒リンクの実カード、ドラン・ゴルギーニの金箔再録の公式画像を確認。既存の長時間テストはそのまま完了を待ち、No.11は同じ分割を再起動しない。"
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
@@ -540906,6 +541049,15 @@
           "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy24-120.jpg",
           "phase": 1351,
           "result": "公式の能力文・画像・使用制限を照合して同名カードに統合。"
+        },
+        {
+          "id": "dmex17-008",
+          "canonicalId": "dmrp11-s06",
+          "name": "極幻空 ザハ・エルハ",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-008",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-008.jpg",
+          "phase": 1352,
+          "result": "公式カードページの能力文全体と画像、現在の使用制限を照合。同一カードに統合し、既存の表記とカードIDを維持。"
         }
       ],
       "individualRecheck": {
@@ -541293,6 +541445,36 @@
             "shardPlan": "/tmp/duema-uncapped/no11-worker-shards.json",
             "reason": "本番ワーカーはエラーを出さず、49件への結果を返した。テストが固定31件を期待し、各対戦の決着を検査する前に停止。",
             "next": "旧スナップショットで同一の長時間テストが実行中。追加起動せず、終了後に対戦相手ごとに旧シードを保持して結果を検証する。"
+          },
+          "no11WorkerShards": {
+            "baseline": "2f7677a2",
+            "plan": "/tmp/duema-uncapped/no11-worker-shards.json",
+            "results": "/tmp/duema-uncapped/no11-shards-2f7677a2.jsonl",
+            "oldResult": "対戦相手の固定件数31件と現在の49件が不一致。旧実行はデッキ数の検査で失敗したため本番ワーカーの合否未確認。",
+            "status": "分割実行中",
+            "groupsCompleted": 9,
+            "groupsPlanned": 13,
+            "opponentsPassed": 36,
+            "opponentsPlanned": 49,
+            "workerGamesPassed": 72,
+            "workerGamesPlanned": 98,
+            "failedGroups": [],
+            "pendingOpponents": [
+              "env-gospel-practice",
+              "env-magic-practice",
+              "env-abyss-practice",
+              "env-water-mado-practice",
+              "env-giant-practice",
+              "env-zard-practice",
+              "env-anadark-jaouga-practice",
+              "env-kenji-gp2024-maiken",
+              "env-dark-mado-practice",
+              "env-bande-practice",
+              "env-barom-practice",
+              "env-maruru-practice",
+              "env-lionel-practice"
+            ],
+            "method": "2f7677a2の隔離スナップショットで、全対戦相手に元の乱数と先後のまま両方の対戦を行い、対戦相手・乱数・2試合完了・未決着0を検証。分割結果を保存し、実行中は再起動しない。"
           }
         },
         "latestRegisteredRulings": {

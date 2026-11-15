@@ -19,6 +19,21 @@ export function createFifteenPhotoRules(api){
  const soul=(s,x,role)=>api.ignored(s,x)?0:api.allLayers(x).filter(y=>card(y).g35Role===role).length;
  const peek=(s,p)=>api.deckLocked(s,p)?null:s.players[p].deck.find(x=>!Object.entries(s.players[p]).some(([k,v])=>/Protected$|Reveals$/.test(k)&&Array.isArray(v)&&v.includes(x.uid)));
  const pending=(s,t,name=t.name,more={})=>put(s,{...t,op:'g35_Custom',name,...more});
+ function stackSixfall1352(s,t,host,y,ordered=[]){
+  if(!host||!y||host===y||!api.canLeave(s,t.owner,y))return;
+  const auras=api.attachedAuras1352(s,t.owner,y);
+  const group=[y,...auras];
+  if(ordered.length<group.length-1){
+   choice(s,{...t,name:'sixfallOrder1352',victim:y.uid,ordered},'下に置く順番を選ぶ（上から）',group
+    .filter(x=>!ordered.includes(x.uid)).map(x=>opt(card(x).name,x.uid,1,x.cardId)),t.owner);
+   return;
+  }
+  const board=s.players[t.owner].battle;
+  api.evolutionBase?.(s,t.owner,y,host);
+  for(const z of auras)clear(z,'under');
+  const orderedGroup=[...ordered.map(uid=>group.find(x=>x.uid===uid)),...group.filter(x=>!ordered.includes(x.uid))];
+  for(const z of orderedGroup){remove(board,z.uid);(host.under??=[]).push(z);}
+ }
  const offer=(s,t,title,more={})=>choice(s,{...t,...more},title,[opt('使う',true,more.score??10),skip()]);
  const target=(s,t,title,list,optional=false)=>choice(s,t,title,[...targetOptions(s,t.p,list),...(optional?[skip()]:[])]);
  const queue=(s,p,x,defs)=>api.send(s,p,x,'Sequence',{defs});
@@ -228,7 +243,12 @@ export function createFifteenPhotoRules(api){
  case'rebirth':if(v){pending(s,t,'rebirthPut',{sacrifice:v});move(s,[{player:t.p,uid:v,to:'grave'}]);}break;
  case'worldAttack':move(s,opp.battle.filter(y=>colors(effective(y,s)).includes(v)).map(y=>({player:1-t.p,uid:y.uid,to:'grave'})));break;
  case'untapMana':{const y=own.mana.find(y=>y.uid===v);if(y&&api.canUntapMana(s,y))y.tapped=false;pending(s,t,'untapMana',{selected:[...t.selected,v]});break;}
- case'sixfall':if(v){if(!t.host)pending(s,t,'sixfall',{host:v,stage:1});else{const p=t.owner,host=s.players[p].battle.find(y=>y.uid===t.host),y=s.players[p].battle.find(y=>y.uid===v);if(host&&y&&host!==y&&api.canLeave(s,p,y)){api.evolutionBase?.(s,p,y,host);remove(s.players[p].battle,y.uid);(host.under??=[]).push(y);}}}break;
+ case'sixfall':if(v){if(!t.host)pending(s,t,'sixfall',{host:v,stage:1});else{const board=s.players[t.owner].battle;stackSixfall1352(s,t,board.find(y=>y.uid===t.host),board.find(y=>y.uid===v));}}break;
+ case'sixfallOrder1352':{
+  const board=s.players[t.owner].battle;
+  stackSixfall1352(s,t,board.find(y=>y.uid===t.host),board.find(y=>y.uid===t.victim),[...t.ordered,v]);
+  break;
+ }
  case'alternative':case'fujiEnd':alternativeChosen(s,t,v);break;
  case'gerachoSwap':if(v&&x){const attack=s.attack?structuredClone(s.attack):null,oldUid=x.uid,y=own.grave.find(y=>y.uid===v);if(y&&api.canLeave(s,t.p,x)){pending(s,t,'gerachoFinish',{target:v,oldUid,attack});move(s,[{player:t.p,uid:x.uid,to:'grave',destroy:false}]);}}break;
  case'nefer':if(v)zoneMove(s,t.p,'deck',t.target,'hand',t);break;

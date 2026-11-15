@@ -2480,6 +2480,16 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1352&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='オレガ・オーラ'&&
+    ['dmrp11-s06','dmex17-008'].includes(d.id)){
+  const actual=f.abilityText.split('\n').map(normalize),expected=[
+   'これを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）',
+   (d.id==='dmex17-008'?'オーラ':'このオーラまたは他のオーラ')+'を自分のクリーチャーに付けた時、カードを１枚引いてもよい。',
+   '自分のシールドが、シールドゾーンから手札以外のゾーンに置かれる時、かわりにシールドゾーンにとどまる。'
+  ].map(normalize);
+  if(actual.every((line,i)=>line===expected[i])&&actual.length===expected.length)
+   return {type:'aura',power:0,auraPower:4000,g1352Powered:true,g1352AuraDraw:true,g1352ShieldStay:true};
+ }
  if(phase>=1351&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='NEOクリーチャー'&&
     ['dm25rp4-OR1','dm25rp4-ChoSec01','dm25rp4-Sec01','dm25ex3-OR2','promoy24-118','promoy24-119','promoy24-120'].includes(d.id)){
   const lines=f.abilityText.split('\n').map(normalize);

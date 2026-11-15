@@ -860,6 +860,35 @@ export function createSixPhotoRules(api){
    (x.faceDown?'裏向きのマナ':card(x).name)+(Array.isArray(color)?'を選ぶ':'を'+color+'として選ぶ'),x.uid,6,x.faceDown?undefined:x.cardId
   ));
  }
+ function shieldMoveDone1352(s,t,kind,owner,moved){
+  const own=s.players[owner];
+  if(kind==='ragnarok'){
+   start(s,t,[{op:'ShieldTop',n:moved.filter(x=>own.grave.includes(x)).length+1,g779Simultaneous:true}]);
+  }else if(kind==='shuffle'){
+   if(moved.length){
+    const added=moved.map(y=>remove(own.deck,y.uid)).filter(Boolean);
+    api.shuffleLibrary(s,owner,added,t.source);
+    api.log(s,t.p,'shieldShuffle',card(t.source).name+'：シールド1つを持ち主の山札に戻した',{cardId:t.source});
+    start(s,t,[{op:'Schedule537',when:'turnEnd',defs:[{op:'ShieldTop',p:owner,n:1}]}]);
+   }
+  }else if(kind==='replace'){
+   if(moved.length)start(s,t,[{op:'ShieldTop',p:owner,n:1}]);
+  }else if(kind==='ownGrave'){
+   api.log(s,t.p,'shieldGrave',card(t.source).name+'：シールド1つ（カード'+moved.length+'枚）を墓地に置いた',{cardId:t.source});
+   if(moved.length&&t.then)start(s,t,t.then);
+  }else if(kind==='mana'){
+   api.log(s,t.p,'shieldMana',card(t.source).name+'：相手のシールドを1つマナへ置いた（カード'+moved.length+'枚）',{cardId:t.source});
+   const mana=t.g795DeployBelow&&moved.filter(y=>own.mana.includes(y));
+   if(mana?.length){
+    const limit=Math.max(...mana.flatMap(y=>faces(card(y)).map(cost)));
+    start(s,t,[{op:'Select',origin:'mana',n:1,deploy:true,optional:true,filter:{creature:true,belowCost:limit===Infinity?'∞':limit}}]);
+   }
+  }
+ }
+ function finishOrDeferShield1352(s,t,kind,owner,moved){
+  if(!api.deferShieldMove1352(s,{...t,op:'g34_ShieldMoveDone1352',kind1352:kind,owner1352:owner}))
+   shieldMoveDone1352(s,t,kind,owner,moved);
+ }
  function finishShieldMove588(s,t){
   if(!t.selected?.length||t.optionalExact&&t.selected.length!==t.n)return;
   const owner=t.owner==='self'?t.p:1-t.p;
@@ -4278,8 +4307,10 @@ export function createSixPhotoRules(api){
   const owners=t.owners??(t.opponentOnly?[1-t.p]:[s.active,1-s.active].filter(p=>!t.moreOnly||s.players[p].shields.length===most));
   const [owner,...rest]=owners,to=t.to??'grave',zone=to==='mana'?'マナゾーン':'墓地';
   if(owner===undefined){
-   for(const {owner,uid} of t.picks||[]){
+   const picks=t.picks||[];
+   for(const [i,{owner,uid}] of picks.entries()){
     const moved=api.moveShield(s,owner,uid,to);
+    if(api.deferShieldMove1352(s,{...t,op:'g34_OwnShieldGravesDone1352',picks:picks.slice(i+1),owner1352:owner}))break;
     if(moved.length)api.log(s,owner,to==='mana'?'shieldMana':'shieldGrave',card(t.source).name+'：シールド1つ（カード'+moved.length+'枚）を'+zone+'に置いた',{cardId:t.source});
    }
    break;
@@ -4287,6 +4318,12 @@ export function createSixPhotoRules(api){
   const options=ownShieldGraveOptions(s,owner),next={...t,owners:rest};
   if(options.length)choice(s,{...next,chooser:owner},zone+'に置く自分のシールドを1つ選ぶ',options,owner);
   else put(s,next);
+  break;
+ }
+ case'g34_OwnShieldGravesDone1352':{
+  const to=t.to??'grave',mana=to==='mana';
+  if(t.g1352Moved.length)api.log(s,t.owner1352,mana?'shieldMana':'shieldGrave',card(t.source).name+'：シールド1つ（カード'+t.g1352Moved.length+'枚）を'+(mana?'マナゾーン':'墓地')+'に置いた',{cardId:t.source});
+  put(s,{...t,op:'g34_OwnShieldGraves697'});
   break;
  }
  case'g34_Break497':{
@@ -4649,10 +4686,14 @@ export function createSixPhotoRules(api){
   if(t.faceUp)put(s,{...t,op:'g33_FaceTop'});
   else api.shieldTop(s,t.p,card(t.source),null,t.g779Simultaneous?{count:t.n}:t.stackNext?{stackNext:true}:undefined);
   break;
+ case'g34_ShieldMoveDone1352':{
+  const byUid=new Map(api.physicalCards(s).map(x=>[x.uid,x]));
+  shieldMoveDone1352(s,t,t.kind1352,t.owner1352,t.g1352Moved.map(uid=>byUid.get(uid)).filter(Boolean));
+  break;
+ }
  case'g34_Ragnarok':{
   const moved=api.moveShields(s,t.p,own.shields.map(api.shieldGroup),'grave');
-  const n=moved.filter(x=>own.grave.includes(x)).length+1;
-  start(s,t,[{op:'ShieldTop',n,g779Simultaneous:true}]);
+  finishOrDeferShield1352(s,t,'ragnarok',t.p,moved);
   break;
  }
  case'g34_OnShieldMove654':{
@@ -6192,19 +6233,13 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_ShieldShuffle1018':{
-  const {owner,uid}=v,deck=s.players[owner].deck;
-  const moved=api.moveShield(s,owner,uid,'deck');
-  if(!moved.length)break;
-  const added=moved.map(y=>remove(deck,y.uid)).filter(Boolean);
-  api.shuffleLibrary(s,owner,added,t.source);
-  api.log(s,t.p,'shieldShuffle',card(t.source).name+'：シールド1つを持ち主の山札に戻した',{cardId:t.source});
-  start(s,t,[{op:'Schedule537',when:'turnEnd',defs:[{op:'ShieldTop',p:owner,n:1}]}]);
+  const {owner,uid}=v,moved=api.moveShield(s,owner,uid,'deck');
+  finishOrDeferShield1352(s,t,'shuffle',owner,moved);
   break;
  }
  case'g34_ShieldGraveReplace1109':{
-  const {owner,uid}=v;
-  const moved=api.moveShield(s,owner,uid,'grave');
-  if(moved.length)start(s,t,[{op:'ShieldTop',p:owner,n:1}]);
+  const {owner,uid}=v,moved=api.moveShield(s,owner,uid,'grave');
+  finishOrDeferShield1352(s,t,'replace',owner,moved);
   break;
  }
  case'g34_TappedShieldPick842':
@@ -6631,7 +6666,7 @@ export function createSixPhotoRules(api){
   if(!selected)break;
   const c=card(selected);
   if(c.type!=='creature'||api.isEvolution(selected)||!api.canEnter(s,t.p,c,options))break;
-  if(api.shieldLeavesToGrave(s,t.p,selected)){api.moveShield(s,t.p,selected.uid,'grave',{cardOnly:true});break;}
+  if(api.shieldLeavesToGrave(s,t.p,selected)||api.shieldStaySource1352(s,t.p)){api.moveShield(s,t.p,selected.uid,'grave',{cardOnly:true});break;}
   const entrant=api.removeShieldCard(s,t.p,selected.uid);
   if(entrant){clear(entrant,'battle');enter(s,t.p,entrant,null,options);}
   break;
@@ -6839,8 +6874,7 @@ export function createSixPhotoRules(api){
   break;
  case'g34_ShieldGrave':if(v){
   const moved=api.moveShield(s,t.p,v,'grave');
-  api.log(s,t.p,'shieldGrave',card(t.source).name+'：シールド1つ（カード'+moved.length+'枚）を墓地に置いた',{cardId:t.source});
-  if(moved.length&&t.then)start(s,t,t.then);
+  finishOrDeferShield1352(s,t,'ownGrave',t.p,moved);
  }break;
  case'g34_BlindReveal803':{
   const owner=t.owner==='opponent'?1-t.p:t.p,hand=s.players[owner].hand;
@@ -7113,18 +7147,11 @@ export function createSixPhotoRules(api){
   }
   break;
  case'g34_ShieldMana557':{
-  const opp=s.players[1-t.p];
-  if(!opp.shields.some(x=>x.uid===v))break;
+  if(!s.players[1-t.p].shields.some(x=>x.uid===v))break;
   const moved=api.moveShields(s,1-t.p,[v],'mana');
-  api.log(s,t.p,'shieldMana',card(t.source).name+'：相手のシールドを1つマナへ置いた（カード'+moved.length+'枚）',{cardId:t.source});
-  if(t.g795DeployBelow){
-   const movedToMana=moved.filter(y=>opp.mana.includes(y));
-   if(movedToMana.length){
-    const limit=Math.max(...movedToMana.flatMap(y=>faces(card(y)).map(cost)));
-    start(s,t,[{op:'Select',origin:'mana',n:1,deploy:true,optional:true,filter:{creature:true,belowCost:limit===Infinity?'∞':limit}}]);
-   }
-  }
- }break;
+  finishOrDeferShield1352(s,t,'mana',1-t.p,moved);
+  break;
+ }
  case'g34_Break278':{
   const host=t.requiresCreature&&sourceHost474(s,t);
   if(t.requiresCreature&&(!host||!api.isCreature(s,host.x)||effective(host.x,s).g977CannotBreak||!creatureBreakCount1342(s,t.p,host.x,1)))break;
@@ -7213,7 +7240,7 @@ export function createSixPhotoRules(api){
   if(v){
    const deploy={op:'Put',origin:'shields',target:v,g1294FaceUpShield:true};
    const chosen=putSource1294(s,{...deploy,p:t.p});
-   if(chosen&&api.shieldLeavesToGrave(s,t.p,chosen))api.moveShield(s,t.p,v,'grave',{cardOnly:true});
+   if(chosen&&(api.shieldLeavesToGrave(s,t.p,chosen)||api.shieldStaySource1352(s,t.p)))api.moveShield(s,t.p,v,'grave',{cardOnly:true});
    else if(chosen)start(s,t,[deploy]);
   }
   break;

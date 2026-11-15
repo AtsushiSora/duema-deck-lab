@@ -36,6 +36,7 @@ export function createRequested393JokerRules(api){
   case'g393J_ZeroExact':{const y=live(s,t.owner,t.target);if(y)y.g393JZero={turn:s.turn};break;}
   case'g393J_WDStart':if(!own.shields.length)break;choice(s,t,'シールド1つを墓地へ置いて1枚引き、次の召喚を2軽減する？',[opt('使う',true,own.deck.length>1?12:-1000),skip()]);break;
   case'g393J_WDShield':{const rows=own.shields.filter(x=>api.shieldCards(x).some(y=>!y.g37ShieldHeld));if(rows.length)choice(s,t,'墓地に置く自分のシールドを1つ選ぶ',rows.map((x,i)=>opt('シールド '+(i+1),x.uid,10)));break;}
+  case'g393J_WDShieldDone':if(t.g1352Moved.length)put(s,{...t,op:'g393J_WDDraw'});break;
   case'g393J_WDDraw':draw(s,t.p,1);(s.g393JDiscounts??=[]).push({p:t.p,turn:s.turn,n:2});break;
   case'g393J_WDFlip':{const x=live(s,t.p,t);if(x&&effective(x,s).g393JWDBack)choice(s,t,'欲望の邪道 ニガ=アブシューム側にする？',[opt('ニガ=アブシューム側にする',true,10),skip()]);break;}
   case'g393J_Destroy':{const x=live(s,t.owner,t.target);if(x)move(s,[{player:t.owner,uid:x.uid,to:'grave',destroy:true,controller:t.p}]);break;}
@@ -45,7 +46,7 @@ export function createRequested393JokerRules(api){
   case'g393J_MaxGMana':{const x=remove(s.players[t.p].hand,v);if(x){clear(x,'mana');const dest=api.manaRedirect(s,t.p)?'grave':'mana';api.addZone(s,t.p,dest,x);if(dest==='mana'){api.handMana(s,t.p,x);copyCard(s,t.p,live(s,t.p,t),x);}}break;}
   case'g393J_ZeroTarget':{const owner=1-t.p,x=live(s,owner,{uid:v,incarnation:s.players[owner].battle.find(y=>y.uid===v)?.incarnation||0});if(x)x.g393JZero={turn:s.turn};break;}
   case'g393J_WDStart':if(v)put(s,{...t,op:'g393J_WDShield'});break;
-  case'g393J_WDShield':if(v){const moved=api.moveShield(s,t.p,v,'grave');if(moved.length)put(s,{...t,op:'g393J_WDDraw'});}break;
+  case'g393J_WDShield':if(v){const moved=api.moveShield(s,t.p,v,'grave');if(!api.deferShieldMove1352(s,{...t,op:'g393J_WDShieldDone'})&&moved.length)put(s,{...t,op:'g393J_WDDraw'});}break;
   case'g393J_WDFlip':if(v)flip(s,t.p,live(s,t.p,t),false);break;
   default:throw Error('未実装の追加ジョーカーズ選択：'+t.op);
  }return true;}

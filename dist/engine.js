@@ -146,6 +146,26 @@ export function isCreature(s,x){
  const p=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));
  return p<0||numberIgnored(s,x)||travelIgnored(s,x)||!!x.aceIgnored||aceElements(s,p,color)>=4;
 }
+function auraHost1352(s,p,ref){
+ const host=ref&&s.players[p].battle.find(x=>x.uid===ref.uid&&(x.incarnation||0)===ref.incarnation);
+ return host&&isCreature(s,host)?host:null;
+}
+function attachedAuras1352(s,p,host){
+ const own=s.players[p];
+ if(!own.hasAuras1352)return [];
+ return own.battle.filter(a=>a.auraTo1352?.uid===host.uid&&
+  a.auraTo1352.incarnation===(host.incarnation||0)&&card(a.cardId).type==='aura');
+}
+function auraTargets1352(s,p){
+ return s.players[p].battle.filter(x=>!x.sealed&&!x.faceDown&&card(x).gr&&isCreature(s,x));
+}
+function canSummonForAura1352(s,p){
+ const top=s.players[p].gr?.[0];
+ return !!top&&canEnterCreature(s,p,card(top),{origin:'gr',execution:true});
+}
+function auraPlacementPossible1352(s,p){
+ return auraTargets1352(s,p).length>0||canSummonForAura1352(s,p);
+}
 function refreshDynamicTypes(s){
  refreshSeals(s);
  for(const p of [0,1])for(const x of s.players[p].battle){
@@ -157,6 +177,8 @@ function refreshDynamicTypes(s){
  }
  extra.gearCleanup(s);for(const own of s.players)for(const x of own.battle)if(card(x).g32Complex||x.g32NoUntap)x.g32NoUntap=extra.photo.noUntap(s,x);for(const own of s.players)for(const x of own.battle)x.g34NoUntap=extra.six.noUntap(s,x);}
 function abilitiesIgnoredBeforeCivilization920(s,c){
+ if(c.auraTo1352&&s?.players.some(p=>p.battle.some(x=>x.uid===c.auraTo1352.uid&&
+    (x.incarnation||0)===c.auraTo1352.incarnation&&x.sealed)))return true;
  return c.g35Ignored===s?.turn||!!c.sealed||rawSixMute(s,c)||rawSixNamed(s,c)||travelIgnored(s,c)||numberIgnored(s,c)||
   genmuActive(s)&&isCreature(s,c)&&costValue(card(c))<=5;
 }
@@ -207,14 +229,20 @@ export function effectiveCard(inst,context,forPower=false){
  let base=card(inst);const owner=context?.players.findIndex(p=>p.battle.some(x=>x.uid===inst.uid));
  if(owner==null||owner<0){if(context)for(const p of [0,1]){const c=zoneCard(context,p,inst);if(c!==base)return c;}return base;}
  base=zoneCard(context,owner,inst,'battle');
+ const attached=base.type==='creature'&&context.players[owner].hasAuras1352
+  ?attachedAuras1352(context,owner,inst).filter(x=>!x.sealed&&!x.faceDown):[];
+ const powerFromAuras=attached.reduce((n,x)=>n+(card(x.cardId).auraPower||0),0);
+ const poweredFromAuras=attached.some(x=>card(x.cardId).g1352Powered&&!abilitiesIgnored(context,x));
+
  // A resolved spell can change the recipient's race even while its own abilities are ignored.
  const races=inst.g34Grants?.flatMap(g=>g.raceAdd&&activeTurnGrant(context,g)?g.raceAdd:[]);
  if(races?.length&&!inst.sealed&&isCreature(context,inst))
   base={...base,race:[...new Set([...String(base.race||'').split('/').filter(Boolean),...races])].join('/')};
- if(abilitiesIgnored(context,inst)){const {id,name,additionalNames,type,civ,civilizations,manaValue,cost,power,race,limit,sMax,starEvolution,psychic}=extra.six.grantAuras(context,owner,inst,base,true);return externalBlockState(context,owner,inst,extra.utilityNatureSupport.decorate(context,owner,inst,{id,name,...(additionalNames?.length?{additionalNames}:{}),type,civ,civilizations,manaValue,cost,...(psychic?{psychic:true}:{}),...(inst.g40Reckless?.turn===context.turn||extra.six.forced546(context,owner,inst)?{mustAttack:true}:{}),...(sMax?{sMax:true}:{}),...(starEvolution?{starEvolution:true}:{}),power:base.hyper&&inst.hyperActive&&(base.hyperTap||inst.hyperResolved)?base.hyper.power:power,race,limit}));}
+ if(abilitiesIgnored(context,inst)){const {id,name,additionalNames,type,civ,civilizations,manaValue,cost,power,race,limit,sMax,starEvolution,psychic}=extra.six.grantAuras(context,owner,inst,base,true);return externalBlockState(context,owner,inst,extra.utilityNatureSupport.decorate(context,owner,inst,{id,name,...(additionalNames?.length?{additionalNames}:{}),type,civ,civilizations,manaValue,cost,...(psychic?{psychic:true}:{}),...(inst.g40Reckless?.turn===context.turn||extra.six.forced546(context,owner,inst)?{mustAttack:true}:{}),...(sMax?{sMax:true}:{}),...(starEvolution?{starEvolution:true}:{}),power:powerFromAuras?powerFromAuras+numeric(base.hyper&&inst.hyperActive&&(base.hyperTap||inst.hyperResolved)?base.hyper.power:power):base.hyper&&inst.hyperActive&&(base.hyperTap||inst.hyperResolved)?base.hyper.power:power,race,limit,...(poweredFromAuras?{poweredBreaker:true,breaker:forPower?undefined:Math.max(1,1+Math.floor(powerForAuraBreaker1352(context,inst)/6000))}:{})}));}
+ if(poweredFromAuras)base={...base,poweredBreaker:true,g1116PoweredChoice:true};
  // Track ordinary Blocker grants separately from printed restricted Blockers.
  const printed=base.g716DragonBlock||base.g911BlockColors?{...base,blocker:false}:base;
- let c=inheritSoul404(base.hyper&&inst.hyperActive?{...printed,...base.hyper}:printed,inst,card,layers);if(aceColor(base)&&!isCreature(context,inst))c={...c,type:'seed',power:0};
+ let c=inheritSoul404(base.hyper&&inst.hyperActive?{...printed,...base.hyper}:printed,inst,card,layers);if(aceColor(base)&&!isCreature(context,inst))c={...c,type:'seed',power:0};else if(powerFromAuras)c={...c,power:numeric(c.power)+powerFromAuras};
  if(c.g1304ShieldForce&&findShield(context.players[owner],inst.g35ShieldForce))c={...c,blocker:true,g1304ShieldForceActive:true};
  if(c.g787AttackAfterShieldLeaves&&context.g787ShieldLeftTurns?.[owner]!==context.turn)c={...c,noAttack:true};
  if(c.g1031PlayerAttackRequiresShield&&context.g159ShieldAddedTurns?.[owner]!==context.turn)c={...c,noPlayerAttack:true};
@@ -1083,6 +1111,7 @@ function tapCard(s,p,x,controller=effectActor(s)){
  extra.tapped(s,p,x);
 }
 function clearBattleState(x,to='grave'){
+ delete x.auraTo1352;
  delete x.g1337GraveHeld;
  delete x.g1335Vivid;
  delete x.g1175DSwitched;
@@ -1149,6 +1178,11 @@ function shieldLeft(s,p,x,group=null){
 function removeShield(s,p,uid){const own=s.players[p],root=findShield(own,uid);if(!root)return null;if(shieldCards(root).some(x=>x.g37ShieldHeld)){const moved=shieldCards(root).filter(x=>!x.g37ShieldHeld).map(x=>removeShieldCard(s,p,x.uid)).filter(Boolean);if(!moved.length)return null;const first=moved.shift();if(moved.length)first.shieldStack=moved;return first;}remove(own.shields,root.uid);for(const [i,x] of shieldCards(root).entries())shieldLeft(s,p,x,i===0?shieldGroup(root):null);return root;}
 function removeShieldCard(s,p,uid){if(s.players[p].shields.flatMap(shieldCards).some(x=>x.uid===uid&&x.g37ShieldHeld))return null;const row=detachShieldCard(s.players[p],uid);if(!row)return null;shieldLeft(s,p,row.card,row.removedGroup?row.group:null);return row.card;}
 // A face-up Shield Go card still counts as a broken shield (official QA 36950).
+function shieldStaySource1352(s,p){
+ const own=s.players[p];if(!own.hasAuras1352)return undefined;
+ return own.battle.find(a=>a.auraTo1352&&card(a.cardId).g1352ShieldStay&&
+   auraHost1352(s,p,a.auraTo1352)&&!a.faceDown&&!abilitiesIgnored(s,a))?.cardId;
+}
 function shieldLeavesToGrave(s,p,x){
  return x.faceUp&&(card(x).gCastle||card(x).shieldGo&&!extra.shieldPhoto.shieldAbilitiesMuted(s,p));
 }
@@ -1156,7 +1190,7 @@ function faceUpShieldTriggerBlocked1343(s,p,x){
  return x.faceUp&&extra.shieldPhoto.shieldAbilitiesMuted(s,p);
 }
 function canSwapShield585(s,p,uid){
- return canAddShield(s,p)&&!deckRedirect(s)&&deckTopIndex(s,p)>=0&&s.players[p].shields.some(root=>shieldCards(root).some(x=>x.uid===uid&&!x.g37ShieldHeld&&!shieldLeavesToGrave(s,p,x)));
+ return canAddShield(s,p)&&!shieldStaySource1352(s,p)&&!deckRedirect(s)&&deckTopIndex(s,p)>=0&&s.players[p].shields.some(root=>shieldCards(root).some(x=>x.uid===uid&&!x.g37ShieldHeld&&!shieldLeavesToGrave(s,p,x)));
 }
 function swapShield585(s,p,uid){
  if(!canSwapShield585(s,p,uid))return false;
@@ -1181,6 +1215,7 @@ function swapShield585(s,p,uid){
  return true;
 }
 function canSwapShieldGroup1262(s,p,uid){
+ if(shieldStaySource1352(s,p))return false;
  const root=findShield(s.players[p],uid);
  return (uid==null||!!root&&!shieldCards(root).some(x=>x.g37ShieldHeld))&&deckTopIndex(s,p)>=0;
 }
@@ -1240,9 +1275,24 @@ function recordShieldHand1313(s,p,groups,hand){
  s.g1313ShieldHand.count+=count;
 }
 // Select every shield first, move all physical cards, then enqueue hand-entry effects.
-function moveShields535(s,p,uids,to,{cardOnly=false,handEffects=true,replacement=false,noST=false,escapeSBDeclaration=false,toOwnerMana=false,toOwnerGrave=false,toOwnerDeck=false}={}){
+function moveShields535(s,p,uids,to,options={}){
+ const {cardOnly=false,handEffects=true,replacement=false,noST=false,escapeSBDeclaration=false,toOwnerMana=false,toOwnerGrave=false,toOwnerDeck=false,zaha1352:planned}=options;
  if(to==='shields'&&!canAddShield(s,p))return [];
  const selected=[...new Set(uids)];
+ const protector=to!=='hand'&&!replacement&&(planned?.source??shieldStaySource1352(s,p));
+ if(protector){
+  const own=s.players[p],cards=cardOnly?own.shields.flatMap(shieldCards).filter(x=>selected.includes(x.uid)):
+   selected.flatMap(uid=>shieldCards(findShield(own,uid)));
+  const choices=cards.filter(x=>shieldLeavesToGrave(s,p,x)&&!Object.hasOwn(planned?.choices||{},x.uid));
+  if(choices.length&&!s.decision){
+   s.decision={type:'shieldStay1352',player:p,title:'シールドの置換効果を選ぶ',source:protector,
+    uid:choices[0].uid,context:{kind:'move',uids,to,options,choices:planned?.choices||{}}};
+   return [];
+  }
+  const toGrave=cards.filter(x=>planned?.choices?.[x.uid]==='grave').map(x=>x.uid);
+  if(cards.length>toGrave.length)log(s,p,'shieldStay',card(protector).name+'でシールドはとどまる',{cardId:protector});
+  return moveShields535(s,p,toGrave,'grave',{cardOnly:true,replacement:true,handEffects:false,toOwnerGrave});
+ }
  const groups=to==='hand'?shieldGroupSnapshot1313(s.players[p].shields):null;
  const leaving=handEffects&&to==='hand'?(cardOnly?
   s.players[p].shields.flatMap(shieldCards).filter(x=>selected.includes(x.uid)):
@@ -1278,6 +1328,12 @@ function moveShields535(s,p,uids,to,{cardOnly=false,handEffects=true,replacement
   for(const x of hand)extra.shieldHand(s,p,x,window,{noST:noST||mutedTriggers.has(x.uid),gsCount:gsCounts.get(x.uid)});
  }
  return all;
+}
+function deferShieldMove1352(s,follow){
+ const d=s.decision;
+ if(d?.type!=='shieldStay1352'||d.context.kind!=='move')return false;
+ d.context.follow=follow;
+ return true;
 }
 function moveShield(s,p,uid,to,options={}){return moveShields535(s,p,[uid],to,options);}
 function addShieldCard(s,p,uid,x,options={}){if(!canAddShield(s,p))return false;if(!attachShield(s.players[p],uid,x,options))return false;extra.shieldAdded(s,p,x);extra.six.shieldAdded918(s,p);for(const y of s.players[p].battle)if(effectiveCard(y,s).shieldEntryTapLock)enqueueEffect(s,p,{uid:y.uid,source:y.cardId,effect:'shieldEntryTapLock'});if(s.format===ADVANCE&&(card(x.cardId)?.psychic||card(x.cardId)?.gr))returnExtraCards(s,p,'shields');return true;}
@@ -1345,6 +1401,7 @@ function kedoActive(s){
 }
 export function canEnterCreature(s,p,c=null,{origin='hand',execution=true,committed=false,ignoreMovement=false,declare=false,pendingEntries=0}={}){
  if((origin==='mana'||origin==='shields')&&(!c||wouldEnterCreature(s,p,c))&&kedoActive(s))return false;
+ if(c?.type==='aura'&&!auraPlacementPossible1352(s,p))return false;
  if(!declare&&creatureCapReached616(s,p,c,pendingEntries))return false;
  const attack=s.attackLifecycle;
  if(!declare&&attack?.player===1-p&&(!c||wouldEnterCreature(s,p,c))&&s.players[1-p].battle.some(x=>
@@ -1398,7 +1455,7 @@ function heldJudgeSpells(frame){
  for(let r=frame;r;r=r.previous)if(!r.virtual&&!r.shieldCast)held.push(r);
  return held;
 }
-export function physicalCards(s){const flatten=c=>[c,...[...(c.under||[]),...(c.shieldStack||[]),...(c.godLinks||[])].flatMap(flatten)];return [...s.players.flatMap(p=>['deck','hand','shields','mana','battle','grave','extra','gr','seals','abyss'].flatMap(z=>(p[z]||[]).flatMap(flatten))),...s.players.flatMap(p=>[...(p.g34Holding||[]),...(p.g31Holding||[]),...(p.g29Holding||[]),...(p.g29Reviving||[]),...(p.g24Holding||[]),...(p.g5Holding||[]),...(p.g20Holding||[]),...(p.g21Holding||[]),...(p.g21ManaPending||[]),...(p.g19Holding||[]),...(p.g7Holding||[])].flatMap(flatten)),...(s.g33Executions||[]).filter(x=>!x.options.virtualArgs).flatMap(x=>flatten(x.inst)),...(s.g22Entry?flatten(s.g22Entry.inst):[]),...(s.g22Entries||[]).flatMap(e=>flatten(e.inst)),...heldJudgeSpells(s.resolvingSpell).flatMap(r=>flatten(r.inst)),...(s.extSpells||[]).filter(f=>!f.virtual).flatMap(f=>flatten(f.inst))];}
+export function physicalCards(s){const flatten=c=>[c,...[...(c.under||[]),...(c.shieldStack||[]),...(c.godLinks||[])].flatMap(flatten)];return [...s.players.flatMap(p=>['deck','hand','shields','mana','battle','grave','extra','gr','seals','abyss'].flatMap(z=>(p[z]||[]).flatMap(flatten))),...(s.aura1352?[s.aura1352.inst]:[]),...s.players.flatMap(p=>[...(p.g34Holding||[]),...(p.g31Holding||[]),...(p.g29Holding||[]),...(p.g29Reviving||[]),...(p.g24Holding||[]),...(p.g5Holding||[]),...(p.g20Holding||[]),...(p.g21Holding||[]),...(p.g21ManaPending||[]),...(p.g19Holding||[]),...(p.g7Holding||[])].flatMap(flatten)),...(s.g33Executions||[]).filter(x=>!x.options.virtualArgs).flatMap(x=>flatten(x.inst)),...(s.g22Entry?flatten(s.g22Entry.inst):[]),...(s.g22Entries||[]).flatMap(e=>flatten(e.inst)),...heldJudgeSpells(s.resolvingSpell).flatMap(r=>flatten(r.inst)),...(s.extSpells||[]).filter(f=>!f.virtual).flatMap(f=>flatten(f.inst))];}
 // A Saver belongs to its source and can protect a matching allied element, including itself.
 function saver571(s,row,source,override=null){
  const sourceCard=effectiveCard(source,s),rule=override??sourceCard.g571Saver;
@@ -1577,11 +1634,23 @@ function opposingSpell1262(s,p){
  if(judge?.source===source)return judge.player===1-p;
  return s.extSpells?.findLast(f=>f.spell.id===source)?.caster===1-p;
 }
-function allDelete1347(s,p,source){
+function allDelete1347(s,p,source,choices={}){
+ for(const owner of [s.active,1-s.active]){
+  const protector=shieldStaySource1352(s,owner);
+  if(!protector)continue;
+  const conflict=s.players[owner].shields.flatMap(shieldCards).find(x=>
+   shieldLeavesToGrave(s,owner,x)&&!Object.hasOwn(choices,x.uid));
+  if(conflict){
+   s.decision={type:'shieldStay1352',player:owner,title:'シールドの置換効果を選ぶ',source:protector,
+    uid:conflict.uid,context:{kind:'allDelete',caster:p,spell:source,choices}};
+   return;
+  }
+ }
  const zones=s.players.map((own,owner)=>({
   hand:own.hand.map(x=>x.uid),
   grave:canMoveZone(s,owner,'grave')?own.grave.map(x=>x.uid):[],
   shields:own.shields.map(shieldGroup),
+  zaha1352:{source:shieldStaySource1352(s,owner)||false,choices},
   seals:(own.seals||[]).filter(x=>mayMoveSeal(s,owner,x,'deck')).map(x=>x.uid)
  }));
  // Plan all battlefield replacements while the other zones still contain their original cards (QA37768).
@@ -1593,7 +1662,7 @@ function allDelete1347(s,p,source){
 function finishAllDelete1347(s,{zones,source}){
  for(const [p,own] of s.players.entries()){
   const {hand,grave,shields}=zones[p];
-  moveShields535(s,p,shields,'deck',{toOwnerDeck:true,handEffects:false});
+  moveShields535(s,p,shields,'deck',{toOwnerDeck:true,handEffects:false,zaha1352:zones[p].zaha1352});
   for(const [zone,uids] of [['hand',hand],['grave',grave]]){
    for(const uid of uids){
     const x=remove(own[zone],uid);
@@ -1930,6 +1999,7 @@ function advanceLeaving(s){if(s.lossEvent)return;
    remove(own.battle,top.uid);
    const split=extra.phoenix.splitDeath(s,row.player,out,remaining);
    if(remaining.length>1&&!split)next.godLinks=remaining.slice(1);
+   if(next!==top)for(const aura of attachedAuras1352(s,row.player,top))aura.auraTo1352={uid:next.uid,incarnation:next.incarnation||0};
    const shared=['tapped','entered','buff','unblocked','powerModifiers','tapLocks','gospelSpeed'];
    if(next!==top){
     for(const key of shared)if(top[key]!==undefined)next[key]=structuredClone(top[key]);
@@ -1957,14 +2027,17 @@ function advanceLeaving(s){if(s.lossEvent)return;
    log(s,row.player,'godUnlink',card(out.cardId).name+'だけが離れ、残りのゴッドは場に残る',{cardId:out.cardId});
   }
   else if((row.cardOnly&&isEvolution(top)||plan.kind==='star')&&reconstructSources(s,row.player,top).length){
-   const [base,...other]=top.under,underEntered=base.entered||0;underCardsLeft(s,row.player,top,1);const index=own.battle.indexOf(top);own.battle[index]=base;if(other.length)(base.under??=[]).push(...other);
+   const [base,...other]=top.under;
+   for(const aura of attachedAuras1352(s,row.player,top))aura.auraTo1352={uid:base.uid,incarnation:base.incarnation||0};
+   const underEntered=base.entered||0;underCardsLeft(s,row.player,top,1);const index=own.battle.indexOf(top);own.battle[index]=base;if(other.length)(base.under??=[]).push(...other);
    // Reconstruction retains attack state but does not change when the surviving card entered.
    base.originalEntryTurn??=underEntered;
    for(const key of ['tapped','entered','buff','unblocked','tapLocks','buffSources','unblockSpellCost','powerModifiers','skipUntap','gospelSpeed','g19Protected','g19Blocker','justDiverActive','g393JCopies','g393JZero'])if(top[key]!==undefined)base[key]=structuredClone(top[key]);base.entered=Math.max(base.entered||0,underEntered);
    if(s.attack?.attacker===top.uid)s.attack.attacker=base.uid;if(s.attack?.target===top.uid)s.attack.target=base.uid;
    extra.inherit(s,top,base);extra.leaving(s,row.player,top,row.leaveKaku,batch.snapshot,row.to,row.to==='grave'&&row.destroy!==false);if(row.to==='grave')rememberBattleGrave(s,row.player,[top],batch);clearBattleState(top,row.to);if(row.faceDown){top.faceDown=true;top.tapped=false;}else if(row.tapped&&row.to==='mana')top.tapped=true;if(row.faceUp&&row.to==='shields')top.faceUp=true;if(row.to==='deckTop')placeOnTop(row,[top]);else if(row.shieldAttach)addShieldCard(s,row.player,row.shieldAttach,top);else if(row.g731Shuffling)returnAndShuffle(row,[top],top.cardId);else addDepartingCards(s,row,row.to,[top]);log(s,row.player,'reconstruct',`${card(top).name}だけが${({hand:'手札',mana:'マナ',grave:'墓地',deck:row.g731Shuffling?'山札':'山札の下',deckTop:'山札の上',shields:'シールド',extra:'超次元ゾーン'})[row.to]||row.to}へ移動し、下の${card(base).name}が残る`,{cardId:top.cardId});
   }
-  else{remove(own.battle,top.uid);if(s.attack&&(s.attack.attacker===top.uid||s.attack.target===top.uid))s.attack=null;const to=row.to==='grave'&&row.death?row.death:row.to,cards=layers(top);if(to==='grave'||row.cardOnly)rememberEvolutionGraveSources(s,row.player,top,to==='grave'?cards:cards.slice(1),batch);if(row.g1089OrderDeck&&to==='deck')for(const owner of [row.player,1-row.player]){const rows=bottomCards(row,top).filter(r=>(cards.find(x=>x.uid===r.uid)?.cardOwner??row.player)===owner);if(rows.length>1)(batch.bottomOrders??=[]).push(extra.task('g78_BottomOrder',owner,top.cardId,{rows,ordered:[],newCards:true}));}if(row.cardOnly){const rest=cards.splice(1);for(const x of rest)clearBattleState(x,'grave');addZone(s,own,'grave',...rest);}extra.leaving(s,row.player,top,row.leaveKaku,batch.snapshot,to,row.destroy!==false&&to==='grave');for(const x of cards){clearBattleState(x,to);if(row.faceDown){x.faceDown=true;x.tapped=false;}else if(row.tapped&&to==='mana')x.tapped=true;if(row.faceUp&&to==='shields')x.faceUp=true;}if(to==='deckTop')placeOnTop(row,cards);else if(row.shieldAttach)for(const x of cards)addShieldCard(s,row.player,row.shieldAttach,x);else if(row.g731Shuffling)returnAndShuffle(row,cards,top.cardId);else if(to==='shields'&&row.g1069DestroyShieldStack&&cards.length>1){
+  else{remove(own.battle,top.uid);if(s.attack&&(s.attack.attacker===top.uid||s.attack.target===top.uid))s.attack=null;const to=row.to==='grave'&&row.death?row.death:row.to,auras=attachedAuras1352(s,row.player,top),cards=[...layers(top),...auras];
+   for(const aura of auras){remove(own.battle,aura.uid);extra.leaving(s,row.player,aura,false,batch.snapshot,to,false);}if(to==='grave'||row.cardOnly)rememberEvolutionGraveSources(s,row.player,top,to==='grave'?cards:cards.slice(1),batch);if(row.g1089OrderDeck&&to==='deck')for(const owner of [row.player,1-row.player]){const rows=bottomCards(row,top).filter(r=>(cards.find(x=>x.uid===r.uid)?.cardOwner??row.player)===owner);if(rows.length>1)(batch.bottomOrders??=[]).push(extra.task('g78_BottomOrder',owner,top.cardId,{rows,ordered:[],newCards:true}));}if(row.cardOnly){const rest=cards.splice(1);for(const x of rest)clearBattleState(x,'grave');addZone(s,own,'grave',...rest);}extra.leaving(s,row.player,top,row.leaveKaku,batch.snapshot,to,row.destroy!==false&&to==='grave');for(const x of cards){clearBattleState(x,to);if(row.faceDown){x.faceDown=true;x.tapped=false;}else if(row.tapped&&to==='mana')x.tapped=true;if(to==='shields'&&(row.faceUp||auras.includes(x)))x.faceUp=true;}if(to==='deckTop')placeOnTop(row,cards);else if(row.shieldAttach)for(const x of cards)addShieldCard(s,row.player,row.shieldAttach,x);else if(row.g731Shuffling)returnAndShuffle(row,cards,top.cardId);else if(to==='shields'&&(auras.length||row.g1069DestroyShieldStack&&cards.length>1)){
    cards[0].shieldStack=cards.slice(1);
    addZone(s,own,to,cards[0]);
   }else addDepartingCards(s,row,to,cards);if(to==='shields'&&!row.shieldAttach)for(const x of cards)extra.shieldAdded(s,row.toOwnerShields?x.cardOwner??row.player:row.player,x);log(s,row.player,'leave',`${card(top).name}${cards.length>1?`と進化元${cards.length-1}枚`:''}が${{grave:'墓地',hand:'手札',mana:'マナ',abyss:'深淵ゾーン',deckTop:row.g731Shuffling?'山札':'山札の下',deckTop:'山札の上',deckFourth:'山札の4枚目（横向き）',shields:'シールド',extra:'超次元ゾーン',abyss:'深淵ゾーン'}[to]}へ移動`,{cardId:top.cardId});}
@@ -2132,6 +2205,7 @@ function blockPower570(s,x,c,y=null){
  }
  return r.amount;
 }
+function powerForAuraBreaker1352(s,x){return power(x,x.uid===s.attack?.attacker,s);}
 function poweredBlockerActive(s,x){
  const paused=s?.battleResolution?.g1237Compare?.blocker??s?.battleResolution?.g1237Blocker;
  return !!(paused?.uid===x.uid&&(x.incarnation||0)===paused.incarnation||
@@ -2595,7 +2669,42 @@ function entryBreakShort770(s,p,c){
 function eligibleExtraEntry527(c,origin){
  return (c.g527ExtraEntry||[]).filter(a=>a.fromHand===undefined||origin!=null&&a.fromHand===(origin==='hand'));
 }
+function attachAura1352(s,p,aura,host,origin){
+ aura.auraTo1352={uid:host.uid,incarnation:host.incarnation||0};
+ aura.incarnation=(aura.incarnation||0)+1;
+ aura.entered=s.turn;aura.tapped=false;aura.cardOwner??=p;
+ s.players[p].hasAuras1352=true;
+ s.players[p].battle.push(aura);
+ const c=card(aura);
+ log(s,p,'entry',c.name+'を'+card(host).name+'に付ける',{cardId:c.id});
+ extra.entry(s,p,aura,{selfMuted:false,allEntryMuted:false,origin});
+ for(const source of s.players[p].battle){
+  if(!source.auraTo1352||!card(source.cardId).g1352AuraDraw||abilitiesIgnored(s,source)||
+     !auraHost1352(s,p,source.auraTo1352))continue;
+  enqueueEffect(s,p,{uid:source.uid,source:source.cardId,effect:'extended',
+   task:extra.task('g34_Sequence',p,source.cardId,{defs:[{op:'Draw',n:1,optional:true}]})});
+ }
+}
+function finishAura1352(s){
+ const a=s.aura1352;
+ if(!a?.grUid||s.decision||s.leaving||s.lossEvent||gameFinished(s))return;
+ const own=s.players[a.player],host=own.battle.find(x=>x.uid===a.grUid&&!x.sealed&&!x.faceDown&&isCreature(s,x));
+ if(!host&&(s.extTasks?.length||s.pendingEffects?.length))return;
+ delete s.aura1352;
+ if(host)attachAura1352(s,a.player,a.inst,host,a.origin);
+ else own[a.origin].splice(a.originIndex??own[a.origin].length,0,a.inst);
+}
+function beginAura1352(s,p,inst,entryOptions){
+ const origin=entryOptions.origin||'hand',originIndex=entryOptions.auraOriginIndex;
+ if(!auraPlacementPossible1352(s,p)){
+  s.players[p][origin].splice(originIndex??s.players[p][origin].length,0,inst);
+  return;
+ }
+ s.aura1352={player:p,inst,origin,originIndex};
+ s.decision={type:'aura1352',player:p,title:'オーラを付ける方法を選ぶ',source:inst.cardId};
+}
 function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
+ if(card(inst).type==='aura'){beginAura1352(s,p,inst,entryOptions);return;}
  delete inst.g39GraveColors;if(extra.saga.beginMDeck(s,p,inst,baseUid,entryOptions))return;if(extra.cyber.beforeEnter(s,p,inst,baseUid,entryOptions))return;
  if(!entryOptions.g753Swap&&!canEnterCreature(s,p,card(inst),{...entryOptions,committed:true}))throw Error('このクリーチャーは現在出せません');
  if(!entryOptions.g31Force&&extra.phoenix.complex(s,p,card(inst),entryOptions)&&!Array.isArray(baseUid)){extra.phoenix.beginPut(s,p,inst,baseUid,entryOptions);return;}
@@ -2639,6 +2748,7 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
   log(s,p,'evolve',`${card(base).name}を墓地から進化元にして${c.name}へ進化`,{cardId:c.id});
  }
  else if(c.evolution||(c.neoEvolution&&baseUid)){const base=s.players[p].battle.find(x=>x.uid===baseUid);if(!base||!matchesEvolution(base,c.evolution||c.neoEvolution,s))throw Error('進化元が正しくありません');extra.evolutionBase(s,p,base);remove(s.players[p].battle,baseUid);inst.under=[base];inst.tapped=!!entryOptions.tapped||typedTap||base.tapped||extra.tapEntry(s,p)||s.players[1-p].battle.some(x=>effectiveCard(x,s).opponentTapEntry);inst.buff=base.buff||0;inst.unblocked=base.unblocked||false;if(base.tapLocks)inst.tapLocks=[...base.tapLocks];if(base.buffSources)inst.buffSources=base.buffSources.map(x=>({...x}));if(base.unblockSpellCost)inst.unblockSpellCost=base.unblockSpellCost;if(base.powerModifiers)inst.powerModifiers=structuredClone(base.powerModifiers);if(base.skipUntap)inst.skipUntap=true;if(base.justDiverActive)inst.justDiverActive=true;for(const k of['g393JCopies','g393JZero'])if(base[k])inst[k]=structuredClone(base[k]);if(base.gospelSpeed===s.turn)inst.gospelSpeed=s.turn;if(base.g19Protected)inst.g19Protected=true;if(base.g19Blocker!==undefined)inst.g19Blocker=base.g19Blocker;
+  for(const a of attachedAuras1352(s,p,base))a.auraTo1352={uid:inst.uid,incarnation:inst.incarnation||0};
   extra.inherit(s,base,inst);if(s.attack?.attacker===baseUid)s.attack.attacker=inst.uid;
   if(s.attack?.target===baseUid)s.attack.target=inst.uid;
   log(s,p,'evolve',`${card(base).name}から${c.name}へ進化`,{cardId:c.id});
@@ -2858,6 +2968,7 @@ function playCard(s,p,uid,free=false,baseUid=null,face=0,alternativeCost=null,or
  }
  if(!free)for(const id of alternativeCost?.g976TapPayment??c.g7Payment?.energy??[])tapCard(s,p,s.players[p].battle.find(x=>x.uid===id));
  if(discardPaid1240)payment={...payment,g1240DiscardPaid:discardPaid1240};
+ const auraOriginIndex=c.type==='aura'?s.players[p][origin].findIndex(x=>x.uid===uid):undefined;
  const cost=summonCost(s,p,payment);const paidMana=free?false:pay(s,p,payment);const originIndex402=originBlocked402?s.players[p][origin].findIndex(x=>x.uid===uid):-1,inst=remove(s.players[p][origin],uid),grantedSuper=free&&!!c.superTrigger&&inst.g30SuperFace===face;delete inst.g30SuperFace;
  delete inst.g1335Vivid;
  if(ruleOrigin==='grave'){
@@ -2868,12 +2979,12 @@ function playCard(s,p,uid,free=false,baseUid=null,face=0,alternativeCost=null,or
  }
  if(!free&&!payment.fixedPayment)extra.six.consumeExecution464(s,p,payment);
  extra.six.revealCommitted470(s,p,c,alternativeCost);
- const execution={ruleOrigin,origin,free,freeReason,alternativeCost,paidMana,cost,ownGraveCast,grantedSuper,baseUid,face,permit,originBlocked402,originIndex402};if(extra.shieldPhoto.beforeExecution(s,p,c,inst,execution))return;completeExecution(s,p,inst,c,execution);
+ const execution={ruleOrigin,origin,free,freeReason,alternativeCost,paidMana,cost,ownGraveCast,grantedSuper,baseUid,face,permit,originBlocked402,originIndex402,auraOriginIndex};if(extra.shieldPhoto.beforeExecution(s,p,c,inst,execution))return;completeExecution(s,p,inst,c,execution);
 }
 // Cyclone checks the previous card used by this player in this turn, before recording this use.
 // Entry effects and non-summon deployments do not overwrite that history (official QA37513).
 function recordUse420(s,p,c){const last=s.g420LastUse?.[p],ready=last?.turn===s.turn&&last.creature;(s.g420LastUse??=[null,null])[p]={turn:s.turn,creature:c.type==='creature'};return c.g420Cyclone?{...c,g420CycloneReturn:!!ready}:c;}
-function completeExecution(s,p,inst,c,{ruleOrigin,origin,free,freeReason,alternativeCost,paidMana,cost,ownGraveCast,grantedSuper,baseUid,face,permit,originBlocked402=false,originIndex402=-1}){
+function completeExecution(s,p,inst,c,{ruleOrigin,origin,free,freeReason,alternativeCost,paidMana,cost,ownGraveCast,grantedSuper,baseUid,face,permit,originBlocked402=false,originIndex402=-1,auraOriginIndex}){
  c=recordUse420(s,p,c);
  const reductionSources=c.type==='creature'?extra.six.reductionSpeedSources1305(s,p,c):[];
  // A granted S-Trigger only counts on the face used with that grant (QA45802, QA41751).
@@ -2914,6 +3025,7 @@ function completeExecution(s,p,inst,c,{ruleOrigin,origin,free,freeReason,alterna
   extra.spellCast(s,p,c,inst,ruleOrigin,face,paidMana);
  }
  if(c.type==='castle'){inst.faceUp=true;s.players[p].shields.push(inst);extra.shieldAdded(s,p,inst);extra.six.shieldAdded918(s,p);}
+ else if(c.type==='aura')beginAura1352(s,p,inst,{origin,auraOriginIndex});
  else if(['creature','seed','gear','field'].includes(c.type)){
   const altEnd=!free&&!!alternativeCost?.g1221AltEnd;
   if(altEnd)extra.six.scheduleAltEnd1221(s,p,c,inst);
@@ -4062,6 +4174,17 @@ export function getLegalActions(s){
  if(gameFinished(s))return [];
  let out=[];const d=s.decision,p=d?d.player:s.active,own=s.players[p],opp=s.players[1-p];
  if(d){
+  if(d.type==='shieldStay1352')return [
+   option('chooseShieldStay1352',card(d.source).name+'でシールドに残す',{choice:'stay',cardId:d.source}),
+   option('chooseShieldStay1352','シールド・ゴーの置換で墓地に置く',{choice:'grave'})
+  ].map((a,id)=>({...a,id,player:p}));
+  if(d.type==='aura1352'){
+   const a=s.aura1352;
+   if(!a)return [];
+   return [...auraTargets1352(s,p).map(x=>option('attachAura1352',card(x).name+'に付ける',{uid:x.uid,cardId:a.inst.cardId})),
+    ...(canSummonForAura1352(s,p)?[option('grAura1352','GR召喚して付ける',{cardId:a.inst.cardId})]:[])]
+    .map((action,id)=>({...action,id,player:p}));
+  }
   if(d.type==='drawReplacement'&&d.stage==='vivid')return [
    option('vividReveal',card(d.source).name+'を表向きにする',{reveal:true,cardId:d.source,score:5}),
    option('vividReveal','表向きにしない',{reveal:false,score:0})
@@ -4256,7 +4379,7 @@ export function getLegalActions(s){
  else if(s.phase==='main'){
   out=own.hand.flatMap(inst=>playFaces(card(inst)).flatMap((c,face)=>{
    if(c.g1136HandTax||c.g1240DiscardReduction)c={...c,executionUid:inst.uid};
-   return canCastSpell(s,p,c)&&(c.type!=='creature'||canEnterCreature(s,p,c))&&validMana(s,p,c)&&(!c.evolution||evolutionBases(s,p,c).length)?[option('play',`${c.name}を${c.type==='creature'?'召喚':c.type==='gear'?'ジェネレート':'使用'}`,{uid:inst.uid,cardId:inst.cardId,cost:c.g1240DiscardReduction||c.neoEvolution||hasEvolutionBaseDiscount1239(s,p,c)?quotedSummonCost384(s,p,c):summonCost(s,p,c),...(freeSpell(s,p,c)?{freeSpell:freeSpellReason(s,p,c)}:{}),...((card(inst).spellFace||card(inst).g393JWDFaces)?{face}:{})})]:[];
+   return canCastSpell(s,p,c)&&(c.type!=='creature'||canEnterCreature(s,p,c))&&(c.type!=='aura'||canEnterCreature(s,p,c,{origin:'hand',execution:true}))&&validMana(s,p,c)&&(!c.evolution||evolutionBases(s,p,c).length)?[option('play',`${c.name}を${c.type==='creature'?'召喚':c.type==='gear'?'ジェネレート':'使用'}`,{uid:inst.uid,cardId:inst.cardId,cost:c.g1240DiscardReduction||c.neoEvolution||hasEvolutionBaseDiscount1239(s,p,c)?quotedSummonCost384(s,p,c):summonCost(s,p,c),...(freeSpell(s,p,c)?{freeSpell:freeSpellReason(s,p,c)}:{}),...((card(inst).spellFace||card(inst).g393JWDFaces)?{face}:{})})]:[];
   }));
   for(const x of own.hand){
    const c=card(x),cost=c.g1335VividDraw;
@@ -4386,6 +4509,23 @@ function stepCore(s,action){
  if(!a&&s.decision?.task?.op==='g9Number'&&(action?.number==='∞'||Number.isSafeInteger(action?.number)&&action.number>=(s.decision.task.minNumber??0))){const template=opts.find(x=>JSON.stringify({...x,number:action.number})===JSON.stringify(action));if(template)a={...template,number:action.number};}
  if(!a)throw Error('選択できない行動です');
  const manaBefore=manaSnapshot(s),graveBefore=graveSnapshot1300(s);graveHistory1300.set(s,graveBefore);const p=a.player,d=s.decision;s.actions++;extra.combat.selected(s,p,a,d);extra.original.selected(s,p,a,d);extra.phoenix.selected(s,p,a,d);extra.six.fifteen.selected(s,p,a,d);extra.six.selected447(s,p,a,d);extra.abyss.selected(s,p,a,d);
+ if(a.kind==='chooseShieldStay1352'){
+  const context=d.context,choices={...context.choices,[d.uid]:a.choice};s.decision=null;
+  if(context.kind==='allDelete')allDelete1347(s,context.caster,context.spell,choices);
+  else{
+   const moved=moveShields535(s,p,context.uids,context.to,
+    {...context.options,zaha1352:{source:d.source,choices}});
+   if(context.follow&&!deferShieldMove1352(s,context.follow))
+    extra.put(s,{...context.follow,g1352Moved:moved.map(x=>x.uid)});
+  }
+ }
+ if(a.kind==='attachAura1352'){
+  const pending=s.aura1352,host=ownCardForRow(s,{player:p,uid:a.uid});
+  s.decision=null;delete s.aura1352;attachAura1352(s,p,pending.inst,host,pending.origin);
+ }
+ if(a.kind==='grAura1352'){
+  s.decision=null;s.aura1352.grUid=s.players[p].gr[0].uid;grSummon(s,p);
+ }
  if(a.kind==='silent496'){const x=s.players[p].battle.find(c=>c.uid===d.uid),state=s.startStep;if(!state||state.stage!=='silent496'||!x||!canSilent496(s,x))throw Error('サイレントスキルを使えない状態です');if(a.yes)state.chosen.push({uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,defs:structuredClone(effectiveCard(x,s).g496Silent)});state.remaining.shift();s.decision=null;log(s,p,'ability',card(x).name+(a.yes?'：アンタップせずサイレントスキルを使う':'：サイレントスキルを使わずアンタップする'),{cardId:x.cardId});}
  if(a.kind==='godLeave'){s.leaving.rows.find(r=>r.player===p&&r.uid===d.uid).godPart=a.uid;s.decision=null;}
  if(a.kind==='extended')extra.step(s,a,d);
@@ -4624,14 +4764,14 @@ function stepCore(s,action){
   if(!s.leaving)advanceTriggers(s);advanceJudgeBreaks(s);
   // Native effects and extended tasks can each move mana before power is checked.
   manaDeparted(s,manaPrevious);manaPrevious=manaSnapshot(s);
-  powerCleanup(s);if(s.phase==='rematch')break;if(!s.pendingEffects?.length&&!s.triggers)extra.beforeNonActive(s);extra.advance(s);
+  powerCleanup(s);if(s.phase==='rematch')break;finishAura1352(s);if(!s.pendingEffects?.length&&!s.triggers)extra.beforeNonActive(s);extra.advance(s);
   if(s.phase==='rematch')break;
   // An effect that broke a shield without opening a trigger window still has to finish before blocking.
   if(s.g19Interrupt?.tasks[0]?.g909AfterBreak)resumeInterrupt(s);
   manaDeparted(s,manaPrevious);manaPrevious=manaSnapshot(s);
   refreshDynamicTypes(s);if(extra.lionelState(s)){if(s.decision)break;continue;}powerCleanup(s);if(s.phase==='rematch')break;advanceAttack(s);extra.advanceBreak(s);const attackEnding=s.attackLifecycle;extra.advanceAttackEnd(s);extra.advanceAfterAttack(s);if(attackEnding&&!s.attackLifecycle)powerCleanup(s);if(s.phase==='rematch')break;advanceEnd(s);advanceStart(s);
   manaDeparted(s,manaPrevious);manaPrevious=manaSnapshot(s);gravePrevious=checkGraveDepartures(gravePrevious);for(const p of[s.active,1-s.active])checkSidewaysHand(s,p);if(s.lossEvent){advanceLoss(s);if(s.decision||s.winner!==null)break;continue;}
-  if(s.decision||gameFinished(s)||!(s.pendingEffects?.length||s.triggers||s.battleResolution||s.judge||s.attackDeclarations||s.leaving||s.endStep||s.startStep||s.extTasks?.length||s.g19BreakSequence||s.g19Interrupt||s.attackLifecycle||s.g14AfterAttack||s.g1197AfterAttack?.length||s.g10RevDeclarations?.length||s.g3Window&&!s.g3Window.done))break;
+  if(s.decision||gameFinished(s)||!(s.pendingEffects?.length||s.triggers||s.battleResolution||s.judge||s.attackDeclarations||s.leaving||s.endStep||s.startStep||s.extTasks?.length||s.g19BreakSequence||s.g19Interrupt||s.attackLifecycle||s.g14AfterAttack||s.g1197AfterAttack?.length||s.g10RevDeclarations?.length||s.g3Window&&!s.g3Window.done||s.aura1352?.grUid))break;
   if(n===999)throw Error('待機中の処理を完了できません');
  }
  graveHistory1300.delete(s);
@@ -6203,6 +6343,12 @@ function powerCleanup(s){
  if(s.phase==='rematch'||s.g25DeployBatch||s.g32DeployBatch||s.g34DeployBatch||s.lossEvent)return;
  if(s.winner===null)extra.utilityTop.flush(s);
  while(s.winner===null&&!s.leaving&&!s.decision&&!s.lossEvent){
+  const orphaned=s.players.some(p=>p.hasAuras1352)?s.players.flatMap((own,player)=>own.hasAuras1352?
+   own.battle.filter(a=>a.auraTo1352&&!own.battle.some(x=>x.uid===a.auraTo1352.uid&&
+    (x.incarnation||0)===a.auraTo1352.incarnation&&(x.sealed||isCreature(s,x))))
+    .map(a=>({player,uid:a.uid,to:'grave',destroy:false,stateBased:true})):[]):[];
+  if(orphaned.length)moveCreatures(s,orphaned);
+  if(s.leaving||s.decision||s.lossEvent||s.winner!==null)return;
   // QA 42523: declare and discard before repeating a zero-power destruction.
   if(extra.advanceEscapeSB(s))continue;
   if(s.format===ADVANCE){
@@ -6246,6 +6392,6 @@ function availableAttackers916(s){
  const actions=getLegalActions({...s,phase:'attack',decision:null});
  return new Set(actions.filter(a=>a.kind==='attack').map(a=>a.uid));
 }
-const extra=createExtendedRules({allDelete1347,departureSnapshot1345,withDeparture1345,doubledGraveArrival1345:(p,x)=>doubledGraveArrivals1345.get(x)===p,shieldBreakSource1344,shieldFaceHasTrigger1162,creatureBreakCount1342:(...args)=>extra.six.creatureBreakCount1342(...args),graveCardsWithPending,powerCleanup,handIsPublic,handHasPublicCards,destroySafeForLoss:(s,x)=>extra.six.destroySafe409(s,x),awakenPsychic,underCardsLeft,transferBattleBases,physicalCards,availableAttackers916,evolutionPlaced849,handAbilityIgnored:rawSixNamed,slayerCount:slayerCount534,untap:untapCard,battlePower(s,x,y,attacking=false){const c=effectiveCard(x,s),p=s.players.findIndex(v=>v.battle.some(z=>z.uid===x.uid));return matchupPower(x,y,attacking,s)+(c.revZero&&p>=0&&!s.players[p].shields.length?10000*powerMultiplier1147(x):0);},canAddTurn:(s,p)=>extra.seed.canAddTurn(s,p),canMoveZone,lookCount,lookPublic,shieldGStrikes,recordLastPower,leaving:(...args)=>extra.leaving(...args),evolutionBase:(...args)=>extra.evolutionBase(...args),canLeave:(...args)=>extra.canLeave(...args),canAddShield,handOnly1275,replaceLossBaku(s,p,uid){const event=s.lossEvent,x=s.players[p].battle.find(x=>x.uid===uid);if(!event||event.loser!==p||!x||!extra.canLeave(s,p,x))throw Error('敗北置換を適用できません');const snapshot=extra.leaveSnapshot(s,[{player:p,uid}]),all=layers(x);extra.leaving(s,p,x,false,snapshot,'mana',false);remove(s.players[p].battle,uid);for(const y of all)clearBattleState(y,'mana');addZone(s,p,'mana',...all);delete s.lossEvent;s.decision=event.resume;},castShieldSpell,finishShieldSpell,grSummon,waveSpellCast,resolveForbiddenSeal,activeRitual,linkRitual,flipFinalForbidden,chooseFinalForbiddenSeal,mayMoveSeal,choosingSpell996,choosingEffectCost,carolReturns,markCarolFromMana,kedoActive,withAbilitySource,allCards:()=>[...catalogue.values()].filter(c=>!c.ritual&&!c.forbiddenCore),isEvolution,completeExecution,canReplaceExecution,replaceExecutionCard,ultraBases,matchesEvolution,notifyShieldAdded:(s,p,x)=>extra.shieldAdded(s,p,x),effectActor,withEffect,extremeProtected:(s,p)=>!!s.g26Extreme?.[p],saintBreak(s,p,uid,context){s.breakContext={...context,g26SaintUsed:true,replacementBreak:true};commitShieldBreak(s,p,[uid]);},deckLocked,shuffleLibrary,revealedPower,entryAbilities,allLayers:layers,rememberEvolutionGraveSources,seal,moveSeal,moveSealsToGrave1156,visibleBattleCards,addZone,attachMugenBases,moveBattleCard,resolveSpell,resumeCastSpell,continueCast1293,oniTime1303,isNonMulticolorSpellChoice1303,isSpellResolution:s=>!!s.resolvingSpell||!!s.extSpells?.length,isSpellChoice:s=>!!choosingSpell996(s),isFireSpellChoice:s=>{const spell=choosingSpell996(s);return !!spell&&civilizations(spell).includes('火');},isNonLightSpellChoice:s=>{const spell=choosingSpell996(s);return !!spell&&!civilizations(spell).includes('光');},wouldEnterCreature,shieldCards,shieldGroup,findShield,removeShieldCard,moveShield,shieldHasTrigger1162,addShieldCard,moveShields:moveShields535,sendBattleCardToShield,skipTurn,resolveEntry,copySource,takeTop:takeDeckTop,hasAvailableDeckCard:(s,p)=>deckTopIndex(s,p)>=0,canSwapShield585,swapShield585,canSwapShieldGroup1262,beginShieldGroupSwap1262,finishShieldGroupSwap1262,shieldLeavesToGrave,resolveEffect:doEffect,resolveAttack,peekTop:peekDeckTop,visionTop:visionTop1332,finishCharger,pay,manaRedirect:(s,p)=>extra.manaRedirect(s,p),destroyReplacementCards,completeLossReplacement,replaceJohnnyHandLoss,manaMoveForbidden:shevaProtection,card,zoneCard,faces:playFaces,cost:costValue,colors:civilizations,effective:effectiveCard,power,layers:x=>x.sealed?[]:layers(x),draw,mill,move:moveCreatures,beginManaExchange753,manaExchangeBases753,enter:enterCreature,cast:playCard,remove,removeShield,clear:clearBattleState,enqueue:enqueueEffect,log,random,canEnter:canEnterCreature,canCast:canCastSpell,evolutionBases,battle,tap:tapCard,selfStopped:selfTriggersStopped,ignored:abilitiesIgnored,spellIgnored,deckRedirect,shieldTop,canPay:validMana,freeSpell,summonCost,shuffled,manaColors,deckCheck,finish,isCreature,castBattleSpell,breakShields,interruptBreak,canUntap,canUntapMana,cannotUntapSpellMana,singleJudge:(s,p,source,uid,onWin)=>startJudge(s,p,source,uid,'single',onWin),replaceLoss,replaceStackLoss1137,replaceHandLoss,declineLoss,payDeferred(s,p,n,civ){const ids=paymentIds(s,p,{cost:n,civilizations:[civ]},[],true);if(!ids)return false;tapPayment(s,p,ids);return true;},shieldHand:(s,p,x)=>extra.shieldHand(s,p,x),defenseOptions,defend,defendRequired,defenseSequence1295,resolveDefense1295,handMana:(s,p,x)=>extra.handMana(s,p,x)});
+const extra=createExtendedRules({attachedAuras1352,allDelete1347,departureSnapshot1345,withDeparture1345,doubledGraveArrival1345:(p,x)=>doubledGraveArrivals1345.get(x)===p,shieldBreakSource1344,shieldFaceHasTrigger1162,creatureBreakCount1342:(...args)=>extra.six.creatureBreakCount1342(...args),graveCardsWithPending,powerCleanup,handIsPublic,handHasPublicCards,destroySafeForLoss:(s,x)=>extra.six.destroySafe409(s,x),awakenPsychic,underCardsLeft,transferBattleBases,physicalCards,availableAttackers916,evolutionPlaced849,handAbilityIgnored:rawSixNamed,slayerCount:slayerCount534,untap:untapCard,battlePower(s,x,y,attacking=false){const c=effectiveCard(x,s),p=s.players.findIndex(v=>v.battle.some(z=>z.uid===x.uid));return matchupPower(x,y,attacking,s)+(c.revZero&&p>=0&&!s.players[p].shields.length?10000*powerMultiplier1147(x):0);},canAddTurn:(s,p)=>extra.seed.canAddTurn(s,p),canMoveZone,lookCount,lookPublic,shieldGStrikes,recordLastPower,leaving:(...args)=>extra.leaving(...args),evolutionBase:(...args)=>extra.evolutionBase(...args),canLeave:(...args)=>extra.canLeave(...args),canAddShield,handOnly1275,replaceLossBaku(s,p,uid){const event=s.lossEvent,x=s.players[p].battle.find(x=>x.uid===uid);if(!event||event.loser!==p||!x||!extra.canLeave(s,p,x))throw Error('敗北置換を適用できません');const snapshot=extra.leaveSnapshot(s,[{player:p,uid}]),all=layers(x);extra.leaving(s,p,x,false,snapshot,'mana',false);remove(s.players[p].battle,uid);for(const y of all)clearBattleState(y,'mana');addZone(s,p,'mana',...all);delete s.lossEvent;s.decision=event.resume;},castShieldSpell,finishShieldSpell,grSummon,waveSpellCast,resolveForbiddenSeal,activeRitual,linkRitual,flipFinalForbidden,chooseFinalForbiddenSeal,mayMoveSeal,choosingSpell996,choosingEffectCost,carolReturns,markCarolFromMana,kedoActive,withAbilitySource,allCards:()=>[...catalogue.values()].filter(c=>!c.ritual&&!c.forbiddenCore),isEvolution,completeExecution,canReplaceExecution,replaceExecutionCard,ultraBases,matchesEvolution,notifyShieldAdded:(s,p,x)=>extra.shieldAdded(s,p,x),effectActor,withEffect,extremeProtected:(s,p)=>!!s.g26Extreme?.[p],saintBreak(s,p,uid,context){s.breakContext={...context,g26SaintUsed:true,replacementBreak:true};commitShieldBreak(s,p,[uid]);},deckLocked,shuffleLibrary,revealedPower,entryAbilities,allLayers:layers,rememberEvolutionGraveSources,seal,moveSeal,moveSealsToGrave1156,visibleBattleCards,addZone,attachMugenBases,moveBattleCard,resolveSpell,resumeCastSpell,continueCast1293,oniTime1303,isNonMulticolorSpellChoice1303,isSpellResolution:s=>!!s.resolvingSpell||!!s.extSpells?.length,isSpellChoice:s=>!!choosingSpell996(s),isFireSpellChoice:s=>{const spell=choosingSpell996(s);return !!spell&&civilizations(spell).includes('火');},isNonLightSpellChoice:s=>{const spell=choosingSpell996(s);return !!spell&&!civilizations(spell).includes('光');},wouldEnterCreature,shieldCards,shieldGroup,findShield,removeShieldCard,shieldStaySource1352,deferShieldMove1352,moveShield,shieldHasTrigger1162,addShieldCard,moveShields:moveShields535,sendBattleCardToShield,skipTurn,resolveEntry,copySource,takeTop:takeDeckTop,hasAvailableDeckCard:(s,p)=>deckTopIndex(s,p)>=0,canSwapShield585,swapShield585,canSwapShieldGroup1262,beginShieldGroupSwap1262,finishShieldGroupSwap1262,shieldLeavesToGrave,resolveEffect:doEffect,resolveAttack,peekTop:peekDeckTop,visionTop:visionTop1332,finishCharger,pay,manaRedirect:(s,p)=>extra.manaRedirect(s,p),destroyReplacementCards,completeLossReplacement,replaceJohnnyHandLoss,manaMoveForbidden:shevaProtection,card,zoneCard,faces:playFaces,cost:costValue,colors:civilizations,effective:effectiveCard,power,layers:x=>x.sealed?[]:layers(x),draw,mill,move:moveCreatures,beginManaExchange753,manaExchangeBases753,enter:enterCreature,cast:playCard,remove,removeShield,clear:clearBattleState,enqueue:enqueueEffect,log,random,canEnter:canEnterCreature,canCast:canCastSpell,evolutionBases,battle,tap:tapCard,selfStopped:selfTriggersStopped,ignored:abilitiesIgnored,spellIgnored,deckRedirect,shieldTop,canPay:validMana,freeSpell,summonCost,shuffled,manaColors,deckCheck,finish,isCreature,castBattleSpell,breakShields,interruptBreak,canUntap,canUntapMana,cannotUntapSpellMana,singleJudge:(s,p,source,uid,onWin)=>startJudge(s,p,source,uid,'single',onWin),replaceLoss,replaceStackLoss1137,replaceHandLoss,declineLoss,payDeferred(s,p,n,civ){const ids=paymentIds(s,p,{cost:n,civilizations:[civ]},[],true);if(!ids)return false;tapPayment(s,p,ids);return true;},shieldHand:(s,p,x)=>extra.shieldHand(s,p,x),defenseOptions,defend,defendRequired,defenseSequence1295,resolveDefense1295,handMana:(s,p,x)=>extra.handMana(s,p,x)});
 const strategicAI=createStrategicAI({battleSafe:(s,x,y,n)=>extra.firebird.battleSafe(s,x)||extra.six.battleSafe(s,x,y,n),matchupPower,blockersFor:(s,p,x)=>defenseOptions({...s,active:1-p,attack:{attacker:x.uid,target:'player',player:1-p}},p).filter(a=>a.kind==='block'||a.kind==='guardman').map(a=>a.uid),directAttackProtected:(s,p)=>extra.noLose({...s,attack:{player:1-p,target:"player"}},p,'directAttack'),canAttack,canAttackPlayer,canUntap,card,faces:playFaces,effective:effectiveCard,power,isCreature,summonCost,legal:getLegalActions,step:(s,a)=>{aiPlanningDepth++;try{return step(s,a);}finally{aiPlanningDepth--;}},rank:rankHeuristicActions,observe:observation,colors:manaCivilizations,mark:s=>aiProjections.add(s)});
 export const analyzeAI=s=>strategicAI.analyze(s);
