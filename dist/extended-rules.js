@@ -158,7 +158,7 @@ export function createExtendedRules(api){
  };
  const shieldTo=(s,p,uid,to,options)=>api.moveShield(s,p,uid,to,options)[0];
  const gsAllowed=(s,p)=>{const x=s.attack&&s.players[s.active].battle.find(x=>x.uid===s.attack.attacker);return !(x&&p!==s.active&&effective(x,s).attackNoGS);};
- const targetable=(s,p,owner,x)=>!x||utilityDispectorSeeds.targetable(s,p,owner,x)&&continuation.targetable(s,p,owner,x)&&six.fifteen.targetable(s,p,owner,x)&&!x.sealed&&!(p!==owner&&card(x.cardId)?.startCard&&x.startFlipped&&effective(x,s).forbiddenSpellProtection&&cost(api.choosingSpell996(s)||{cost:Infinity})<=4)&&(!s.extLimits?.length||!six.externalProtection565(s,x).g1082ChoiceProtected)&&!six.civilProtection1280(s,owner,x)&&!six.blockBreakSpellProtection1280(s,p,owner,x)&&(p===owner||!(six.decoyProtected1256(s,owner,x)||samurai.protected(s,owner,x)||six.protects608(s,owner,x)||effective(x,s).untargetable||effective(x,s).g1029TargetProtection&&(api.isSpellChoice(s)||card(s.g35ChoosingSource)?.type==='creature')||effective(x,s).justDiver&&x.justDiverActive||effective(x,s).spellUntargetable&&api.isSpellResolution(s)||
+ const targetable=(s,p,owner,x)=>!x||utilityDispectorSeeds.targetable(s,p,owner,x)&&continuation.targetable(s,p,owner,x)&&six.fifteen.targetable(s,p,owner,x)&&!x.sealed&&!(card(x.cardId)?.nemesis&&effective(x,s).nemesis&&api.choosingEffectCost(s)<=5)&&!(p!==owner&&card(x.cardId)?.startCard&&x.startFlipped&&effective(x,s).forbiddenSpellProtection&&cost(api.choosingSpell996(s)||{cost:Infinity})<=4)&&(!s.extLimits?.length||!six.externalProtection565(s,x).g1082ChoiceProtected)&&!six.civilProtection1280(s,owner,x)&&!six.blockBreakSpellProtection1280(s,p,owner,x)&&(p===owner||!(six.decoyProtected1256(s,owner,x)||samurai.protected(s,owner,x)||six.protects608(s,owner,x)||effective(x,s).untargetable||effective(x,s).g1029TargetProtection&&(api.isSpellChoice(s)||card(s.g35ChoosingSource)?.type==='creature')||effective(x,s).justDiver&&x.justDiverActive||effective(x,s).spellUntargetable&&api.isSpellResolution(s)||
   effective(x,s).g1303NonMulticolorSpellUntargetable&&api.isNonMulticolorSpellChoice1303(s)||
   effective(x,s).g996NonLightSpellUntargetable&&api.isNonLightSpellChoice(s)||
   effective(x,s).g1125FireSpellUntargetable&&api.isFireSpellChoice(s)));
@@ -255,6 +255,7 @@ export function createExtendedRules(api){
  }
  function canUseCardDiscardReplacement(s,t,x){
   const c=card(x);
+  if(c.carolReturns)return api.carolReturns(s,t.p,x)&&!api.handAbilityIgnored(s,x);
   if(c.g977DiscardUnderNeo)return neoDiscardHosts977(s,t.p).length>0;
   return c.g843DiscardToMana||canEnter(s,t.p,c,{origin:'hand',execution:false});
  }
@@ -272,6 +273,7 @@ export function createExtendedRules(api){
  }
  function cardDiscardReplacementOptions(s,t,x){
   const c=card(x),own=s.players[t.p];
+  if(c.carolReturns)return {title:'捨てる時の置換効果を選ぶ',options:[opt('手札にとどめる',true,35,x.cardId)]};
   if(c.g977DiscardUnderNeo)return {
    title:'捨てるかわりに下に置く自分のNEOクリーチャーを選ぶ',
    options:neoDiscardHosts977(s,t.p).map(y=>opt(card(y).name+'の下に置く',{uid:y.uid,incarnation:y.incarnation||0},25,y.cardId))
@@ -287,6 +289,7 @@ export function createExtendedRules(api){
  }
  function cardDiscardMode(s,t,x){
   const c=card(x),enemyTurn=t.p!==s.active;
+  if(c.carolReturns&&api.carolReturns(s,t.p,x)&&!api.handAbilityIgnored(s,x))return 'mandatory';
   if(c.g977DiscardUnderNeo&&!api.handAbilityIgnored(s,x))return 'optional';
   if(c.g843DiscardToMana&&!api.handAbilityIgnored(s,x)&&enemyDiscardEffect(s,t))return 'optional';
   if(c.g591Discard==='opponentEffect607'||c.g591Discard==='opponentElement1114'){
@@ -655,6 +658,11 @@ export function createExtendedRules(api){
     return;
    }
    discardToMana(s,t,x);return;
+  }
+  if(c.carolReturns){
+   log(s,t.p,'discardReplace',c.name+'を手札にとどめる',{cardId:c.id});
+   afterDiscard(s,t,x,false);
+   return;
   }
   if(c.g977DiscardUnderNeo){
    const host=neoDiscardHosts977(s,t.p).find(y=>y.uid===selected?.uid&&(y.incarnation||0)===selected.incarnation);

@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-15",
   "catalogueNames": 11826,
-  "supportedNames": 8009,
-  "pendingNames": 3817,
-  "phase": 1328,
-  "added": 1,
+  "supportedNames": 8012,
+  "pendingNames": 3814,
+  "phase": 1329,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2143,
+    "クリーチャー": 2140,
     "NEOクリーチャー": 70,
     "呪文": 457,
     "GRクリーチャー": 156,
@@ -224,7 +224,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1077,
-    "未対応の能力文": 2548,
+    "未対応の能力文": 2545,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 19,
     "未対応のシンカパワー": 2,
@@ -489290,14 +489290,53 @@
           "/tmp/duema-advance-1326/short-regression.log"
         ]
       }
+    },
+    {
+      "phase": 1329,
+      "baseline": "3a665662",
+      "before": 8009,
+      "supported": 8012,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmx14-031",
+          "name": "夜露死苦 キャロル"
+        },
+        {
+          "id": "dm23rp4-009",
+          "name": "偽りの嘘 ネメシス"
+        },
+        {
+          "id": "dmrp16-017",
+          "name": "バリバリ・ケドケド"
+        }
+      ],
+      "printAliases": 2,
+      "results": {
+        "focused": {
+          "passed": 17,
+          "log": "/tmp/duema-verify-8009/1329-focus-mana.log"
+        },
+        "regression": {
+          "passed": 226,
+          "log": "/tmp/duema-verify-8009/1329-regressions-final.log"
+        },
+        "check": {
+          "status": "passed",
+          "log": "/tmp/duema-verify-8009/1329-check-final.log"
+        }
+      },
+      "resolvedRegistered": 5,
+      "remainingRegistered": 52,
+      "remainingPrints": 3
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1325,
+    "lastVerifiedPhase": 1329,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "通常登録は停止済み。未検証の63項目、残る再録ID4件、未完了の分割テストをregisteredCardVerification.postThresholdで確認する。超GR・対戦開始時カードの検証に必要な互換性変更は着手前に相談する。検証完了かつNetlifyを更新しない手順を確認したコミットを公開する。",
+    "steps": "通常登録は停止済み。進捗のpostThresholdに記録した未検証裁定・再録・分割テストから再開する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "不死身のブーストグレンオーが未対応。相手による選択と、選択後に解除で離脱が置換される場合を別々に確認。",
@@ -489373,24 +489412,127 @@
       "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。"
     ],
     "restartSteps": [
-      "最新コミット、作業ツリーとステージ済み差分、AGENTS.md、進捗ファイル、前回ログ、実行中の作業、正規カード名の件数を確認する。自動登録はローカルの履歴を基点にする。",
-      "次の候補の公式全文、基本情報、画像、使用制限、再録と裁定を確認する。超次元の未検証項目に使える実カードは登録と同時に組み合わせを確認する。",
-      "固有・回帰テストをそれぞれ強制終了込み10分以内で実行し、npm run check と実データの再集計を行う。全体のnpm testは中断・合否未確認を維持する。"
+      "ローカルHEAD、作業ツリーとステージ済み差分、AGENTS.md、実行中テストを確認する。dist/cards.jsonをdist/catalogue.jsのnameKeyで再集計する。",
+      "分割実行の結果と除外したテスト名を確認し、時間切れになった対戦を別の相手・シード単位に分ける。全体のnpm testは再実行しない。",
+      "残る裁定から公式画像と能力文を確認できた依存カードを優先する。ダイヤモンド・ソード（dm26-006）の対プレイヤー攻撃と、光神龍スペル・デル・フィン（dm22-001）の手札公開範囲を照合し、現行の対戦・観戦モデルで検証できる場合に実装する。",
+      "残る再録は公式画像と印刷番号が取得できる版を照合する。検証済みをローカルコミットし、Netlifyに影響しない公開手順を確認した後にのみGitHub Pagesへ公開する。"
     ],
     "registrationStatus": "ユーザーの指示で10分間隔のカード登録を再開。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
-    "nextRequestedCards": [],
-    "printVerificationPending": []
+    "nextRequestedCards": [
+      {
+        "id": "dm26-006",
+        "name": "ダイヤモンド・ソード"
+      },
+      {
+        "id": "dm22-001",
+        "name": "光神龍スペル・デル・フィン"
+      }
+    ],
+    "printVerificationPending": [
+      {
+        "id": "dm22sd1-001",
+        "name": "深淵の支配者 ジャシン",
+        "reason": "スターターのシークレットSPゴールドレアは公式商品ページに掲載。通常版とプロモ版は個別ページと画像を照合済み。ゴールドレアの個別IDは未特定。",
+        "source": "https://dm.takaratomy.co.jp/product/dm22sd1/",
+        "latestResult": "公式商品画像でカード番号㊙1/㊙1、文明・能力・マナ・パワーと通常版との同一性を確認。個別カードページの正式IDは未特定。",
+        "checkedCandidateIds": [
+          "dm22sd1-SP001",
+          "dm22sd1-001S",
+          "dm22sd1-1S",
+          "dm22sd1-SEC001",
+          "dm22sd1-Sec01",
+          "dm22sd1-Sec1",
+          "dm22sd1-SEC1",
+          "dm22sd1-sec001",
+          "dm22sd1-se01"
+        ],
+        "printedNumber": "㊙1/㊙1",
+        "officialProductImage": "https://dm.takaratomy.co.jp/wp-content/themes/dm2019/img/product/dm22sd1/card03.jpg",
+        "officialProductImageSha256": "a87e42ddabfe345e7b5227a77878e544377d491e5af25b46874a35ba542073e1",
+        "checkedImageIds": [
+          "dm22sd1-SP001",
+          "dm22sd1-001S",
+          "dm22sd1-1S",
+          "dm22sd1-SEC001",
+          "dm22sd1-Sec01",
+          "dm22sd1-Sec1",
+          "dm22sd1-SEC1",
+          "dm22sd1-sec001",
+          "dm22sd1-se01",
+          "dm22sd1-1s",
+          "dm22sd1-001SEC"
+        ],
+        "imageRecheck": {
+          "date": "2026-11-15",
+          "httpStatus": 404,
+          "officialPath": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/"
+        }
+      },
+      {
+        "id": "dm22rp1-2B",
+        "name": "ドラン・ゴルギーニ",
+        "reason": "金箔2Sの個別公式ページと公式画像を特定できなかった。2BとOR2の個別ページと画像は照合済み。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-2B",
+        "latestResult": "候補IDの公式個別ページにカード情報と画像が掲載されていなかった。通常版と区別できる資料を引き続き確認する。 公式商品ページのカード紹介画像も確認したが、対象の金箔版を識別できるスキャンはなかった。",
+        "checkedCandidateIds": [
+          "dm22rp1-2S"
+        ],
+        "checkedImageIds": [
+          "dm22rp1-2S",
+          "dm22rp1-2SEC",
+          "dm22rp1-2s",
+          "dm22rp1-002S",
+          "dm22rp1-2C",
+          "dm22rp1-OR2S",
+          "dm22rp1-2G",
+          "dm22rp1-OR2-G",
+          "dm22rp1-OR2_2",
+          "dm22rp1-2SG",
+          "dm22rp1-2SP"
+        ],
+        "imageRecheck": {
+          "date": "2026-11-15",
+          "httpStatus": 404,
+          "officialPath": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/"
+        }
+      },
+      {
+        "id": "dm22rp2x-1S",
+        "canonicalId": "dm22rp2-OR1",
+        "name": "轟炎の竜皇 ボルシャック・カイザー",
+        "printedNumber": "1S/2",
+        "reason": "商品案内はシークレットSPゴールドレアに言及するが、公式カード検索ではこの版の個別ページと画像を取得できず、カード番号・全文・正規IDとの対応を公式に照合できなかった。idは商品コードと印刷番号から記録した照合候補。確証が得られるまで別IDの登録を保留。",
+        "source": "https://dm.takaratomy.co.jp/product/dm22rp2x/",
+        "researchSource": "https://torekakaku.com/dm/card/?cardid=216604",
+        "latestResult": "DM22-RP2の公式画像で22RP2 OR 1S/2を確認。DM22-RP2Xの商品カード一覧と個別ページで別の版の存在を確認できず、画像候補も404だった。",
+        "checkedCandidateIds": [
+          "dm22rp2x-1S"
+        ],
+        "checkedImageIds": [
+          "dm22rp2x-1S",
+          "dm22rp2x-1SEC",
+          "dm22rp2x-1s",
+          "dm22rp2x-001S"
+        ],
+        "imageRecheck": {
+          "date": "2026-11-15",
+          "httpStatus": 404,
+          "officialPath": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/"
+        },
+        "relatedVerifiedPrint": "dm22rp2-1S"
+      }
+    ]
   },
   "registeredCardVerification": {
-    "checkedAt": "2026-11-12",
+    "checkedAt": "2026-11-15",
     "registrationCommit": "477ba594",
     "automation": {
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8009,
-    "pendingNames": 3817,
+    "supportedNames": 8012,
+    "pendingNames": 3814,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -533384,8 +533526,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8009,
-      "pendingNames": 3817,
+      "supportedNames": 8012,
+      "pendingNames": 3814,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -534412,7 +534554,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "登録済みカードの未検証項目、再録IDと分割検証が残る。mainのpushに反応するNetlifyワークフローがGitHub上で有効。公開読み取りAPIではPages設定404、フック一覧401で、GitHub Pagesだけに公開する経路は確認できない。"
+        "reason": "登録済みカードの未検証項目、再録照合、分割テストが残る。前回のGitHub上の確認ではmainに反応するNetlifyワークフローが有効。Pagesのみを更新する公開経路は未確認。"
       },
       "resolvedRegistered": [
         {
@@ -534574,6 +534716,70 @@
           "result": "実カードから対戦操作で再現し通過",
           "path": "tests/standard1328-effects.test.mjs",
           "log": "/tmp/duema-advance-1326/advance-final-tests.log"
+        },
+        {
+          "cardId": "dm39-034",
+          "test": "バリバリ・ケドケドが陰陽の舞のマナ爆誕0の宣言を止める（QA 39622）",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-017",
+            "https://dm.takaratomy.co.jp/rule/qa/39622/"
+          ],
+          "dependencyIds": [
+            "dmrp16-017"
+          ],
+          "result": "ケドケドが存在する場合にマナ爆誕0の宣言が表示されず、存在しない場合は宣言できる。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/39622/",
+          "phase": 1329,
+          "path": "tests/standard1329-effects.test.mjs",
+          "log": "/tmp/duema-verify-8009/1329-focus-mana.log"
+        },
+        {
+          "cardId": "dmex14-003",
+          "dependencyIds": [
+            "dmx14-031"
+          ],
+          "test": "《夜露死苦 キャロル》が手札に残る場合にサイバー・V・チューブのレインボーナスが誘発しない（QA 39440）",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/39440/",
+          "result": "多色クリーチャー存在下でV・チューブの登場時にキャロルを選ぶ。キャロルが手札に残り、相手を戻す選択が誘発しない。",
+          "phase": 1329,
+          "path": "tests/standard1329-effects.test.mjs",
+          "log": "/tmp/duema-verify-8009/1329-focus-mana.log"
+        },
+        {
+          "cardId": "dmrp20-008",
+          "dependencyIds": [
+            "dmx14-031"
+          ],
+          "test": "《夜露死苦 キャロル》の置換で手札に残った時に初回の手札破棄能力は誘発せず、その後に実際に捨てたカードが初回と扱われる。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40666/",
+          "result": "キャロルが手札に残った攻撃では初回の捨て札能力が誘発せず、そのターンに後で実際に捨てたクリーチャーを出せる。",
+          "phase": 1329,
+          "path": "tests/standard1329-effects.test.mjs",
+          "log": "/tmp/duema-verify-8009/1329-focus-mana.log"
+        },
+        {
+          "cardId": "dm22rp2-064",
+          "dependencyIds": [
+            "dmx14-031"
+          ],
+          "test": "スケルトン・デバイスで《夜露死苦 キャロル》が手札に残った時に相手クリーチャーは選ぶが、パワーは減らない（QA 42487）。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/42487/",
+          "result": "キャロルが手札に残った後もデバイスで相手クリーチャーを選ぶ。対象のパワーは変化しない。",
+          "phase": 1329,
+          "path": "tests/standard1329-effects.test.mjs",
+          "log": "/tmp/duema-verify-8009/1329-focus-mana.log"
+        },
+        {
+          "cardId": "dm23rp4-027",
+          "dependencyIds": [
+            "dm23rp4-009"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa/44196/",
+          "test": "追加コストとして自分の偽りの嘘 ネメシスをタップし、アルデ&パワッチを軽減して召喚する。",
+          "result": "コスト5以下の効果で選べないネメシスを代替コストでタップし、アルデの召喚が成立する。",
+          "phase": 1329,
+          "path": "tests/standard1329-effects.test.mjs",
+          "log": "/tmp/duema-verify-8009/1329-focus-mana.log"
         }
       ],
       "remainingRegistered": [
@@ -534670,15 +534876,6 @@
           "log": "/tmp/duema-phase-1119/focused.log"
         },
         {
-          "cardId": "dm39-034",
-          "test": "バリバリ・ケドケドが陰陽の舞のマナ爆誕0の宣言を止める（QA 39622）",
-          "reason": "バリバリ・ケドケド（dmrp16-017）が未対応。若き大長老 アプルの既存マナ離脱禁止では0マナでも宣言できないことを確認済み。",
-          "sources": [
-            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-017",
-            "https://dm.takaratomy.co.jp/rule/qa/39622/"
-          ]
-        },
-        {
           "cardId": "dm25rp2-S08",
           "dependencyIds": [
             "dm25rp4-OR1"
@@ -534695,17 +534892,6 @@
           "test": "ラドン・ベップバーンの効果でマナなしの代替召喚のみ禁止（QA 39626）",
           "reason": "公式本文と画像を照合。相手がマナをタップせずに出す宣言を支払い前に禁止し、各種の代替召喚・効果による登場およびバトルの置換を一貫して処理できるまで保留。",
           "source": "https://dm.takaratomy.co.jp/rule/qa/39626/"
-        },
-        {
-          "cardId": "dmex14-003",
-          "dependencyIds": [
-            "dmx14-031"
-          ],
-          "test": "《夜露死苦 キャロル》が手札に残る場合にサイバー・V・チューブのレインボーナスが誘発しない（QA 39440）",
-          "reason": "夜露死苦 キャロルの全ゾーンからの墓地移動を置換する能力が未対応。今回の固有テストでは、既存のエイリアン・ファーザーを使用し、捨てる処理がマナ移動に置換された場合に誘発しないことを確認済み。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/39440/",
-          "path": "tests/standard1168-effects.test.mjs",
-          "log": "/tmp/duema-phase-1168/focused.log"
         },
         {
           "cardId": "dmrp03-075",
@@ -534914,15 +535100,6 @@
           "source": "https://dm.takaratomy.co.jp/rule/qa/42506/"
         },
         {
-          "cardId": "dmrp20-008",
-          "dependencyIds": [
-            "dmx14-031"
-          ],
-          "test": "《夜露死苦 キャロル》の置換で手札に残った時に初回の手札破棄能力は誘発せず、その後に実際に捨てたカードが初回と扱われる。",
-          "reason": "QA40666。実装済みの《魔素縫合 アモデゴラス》が手札からマナに置き換えた場合は検証済み。裁定と同じ、置換で手札に残る実カードは未実装。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/40666/"
-        },
-        {
           "cardId": "dmrp20-s02",
           "dependencyIds": [
             "dmex18-022"
@@ -534986,17 +535163,6 @@
           "reason": "ダイヤモンド・ソードは未対応。クリーチャーへの攻撃と区別し、相手プレイヤーへの攻撃だけに適用される制限解除を実カードで検証する。"
         },
         {
-          "cardId": "dm22rp2-064",
-          "dependencyIds": [
-            "dmx14-031"
-          ],
-          "test": "スケルトン・デバイスで《夜露死苦 キャロル》が手札に残った時に相手クリーチャーは選ぶが、パワーは減らない（QA 42487）。",
-          "reason": "キャロルの全ゾーンからの墓地移動置換が未対応。《魔素縫合 アモデゴラス》で破棄がマナ移動に置き換わる場合の対象選択とパワー不変は実測済み。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/42487/",
-          "path": "tests/standard1282-effects.test.mjs",
-          "log": "/tmp/duema-phase-1282/focus-final.log"
-        },
-        {
           "cardId": "dm22rp2-S7",
           "dependencyIds": [],
           "test": "氷駆の妖精のシビルカウント５と悪魔世界ワルドバロムの既存マナを０にする効果が重なった場合の優先順位。",
@@ -535014,16 +535180,6 @@
           "test": "シュバルスリングが自分のシールドを墓地に置こうとし、極幻空 ザハ・エルハの置換でシールドが残った場合も、相手が自身のクリーチャーを1体選び破壊する。",
           "reason": "移動の成否に関係なく続行する既存のafterAttemptを使用。実カードによる置換の確認にはザハ・エルハの対戦対応が必要。",
           "log": "/tmp/duema-phase-1290/focus-final.log"
-        },
-        {
-          "cardId": "dm23rp4-027",
-          "dependencyIds": [
-            "dm23rp4-009"
-          ],
-          "source": "https://dm.takaratomy.co.jp/rule/qa/44196/",
-          "test": "追加コストとして自分の偽りの嘘 ネメシスをタップし、アルデ&パワッチを軽減して召喚する。",
-          "reason": "対象選択から保護されたクリーチャーを軽減のためにタップできることと、手動支払いの取消・確定は固有テストで確認。ネメシスは対戦未対応のため、公式QAの実カード同士の組み合わせは未検証。",
-          "log": "/tmp/duema-phase-1293/focus-final.log"
         },
         {
           "cardId": "dmex14-021",
@@ -535170,10 +535326,12 @@
         "status": "verified",
         "groups": [
           "dm23rp2-065",
-          "dmbd10-017"
+          "dmbd10-017",
+          "dm22rp2-OR1",
+          "dmx14-031"
         ],
-        "officialPrints": 11,
-        "newAliases": 9,
+        "officialPrints": 13,
+        "newAliases": 11,
         "evidence": [
           {
             "id": "dm23rp2-065",
@@ -535262,6 +535420,25 @@
             "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-039.jpg",
             "pageSha256": "a77f77f231feb3b3a0e188d352a7b8315d2d968da8565a6916123c9bd2acfbb3",
             "imageSha256": "5aacd3edad9ce25f61eda719f06740467dd7cbc0c94342bc466e648241aeb821"
+          },
+          {
+            "id": "dm22rp2-1S",
+            "canonicalId": "dm22rp2-OR1",
+            "name": "轟炎の竜皇 ボルシャック・カイザー",
+            "source": "https://dm.takaratomy.co.jp/product/dm22rp2/",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-1S.jpg",
+            "imageSha256": "ffde01971d1b1015fa397f5efae3360bc7c0c6bdd69dfc7841eda2a40d633f13",
+            "printedNumber": "22RP2 OR 1S/2",
+            "evidenceType": "officialImage",
+            "notes": "公式画像上の印刷番号、文明、コスト、パワー、種族、能力全文を通常版と照合。個別ページにはカード本体の情報が表示されない。"
+          },
+          {
+            "id": "dmex13-056",
+            "canonicalId": "dmx14-031",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-056",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex13-056.jpg",
+            "pageSha256": "93b92ef9a8fb7f50261d1bf9606bce23492e818bc89f48f261cc69961cf58c63",
+            "imageSha256": "303843ef75f0a9fc28f11ca6a1252f53309fa61988bc7af9ecc30842efeb7211"
           }
         ],
         "testLog": "/tmp/duema-verify-8001/reprint-tests.log",
@@ -535287,7 +535464,25 @@
           ],
           "printedNumber": "㊙1/㊙1",
           "officialProductImage": "https://dm.takaratomy.co.jp/wp-content/themes/dm2019/img/product/dm22sd1/card03.jpg",
-          "officialProductImageSha256": "a87e42ddabfe345e7b5227a77878e544377d491e5af25b46874a35ba542073e1"
+          "officialProductImageSha256": "a87e42ddabfe345e7b5227a77878e544377d491e5af25b46874a35ba542073e1",
+          "checkedImageIds": [
+            "dm22sd1-SP001",
+            "dm22sd1-001S",
+            "dm22sd1-1S",
+            "dm22sd1-SEC001",
+            "dm22sd1-Sec01",
+            "dm22sd1-Sec1",
+            "dm22sd1-SEC1",
+            "dm22sd1-sec001",
+            "dm22sd1-se01",
+            "dm22sd1-1s",
+            "dm22sd1-001SEC"
+          ],
+          "imageRecheck": {
+            "date": "2026-11-15",
+            "httpStatus": 404,
+            "officialPath": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/"
+          }
         },
         {
           "id": "dm22rp1-2B",
@@ -535297,20 +535492,25 @@
           "latestResult": "候補IDの公式個別ページにカード情報と画像が掲載されていなかった。通常版と区別できる資料を引き続き確認する。 公式商品ページのカード紹介画像も確認したが、対象の金箔版を識別できるスキャンはなかった。",
           "checkedCandidateIds": [
             "dm22rp1-2S"
-          ]
-        },
-        {
-          "id": "dm22rp2-1S",
-          "canonicalId": "dm22rp2-OR1",
-          "name": "轟炎の竜皇 ボルシャック・カイザー",
-          "printedNumber": "1S/2",
-          "reason": "商品案内はシークレットSPゴールドレアに言及するが、公式カード検索ではこの版の個別ページと画像を取得できず、カード番号・全文・正規IDとの対応を公式に照合できなかった。idは商品コードと印刷番号から記録した照合候補。確証が得られるまで別IDの登録を保留。",
-          "source": "https://dm.takaratomy.co.jp/product/dm22rp2/",
-          "researchSource": "https://torekakaku.com/dm/card/?cardid=216604",
-          "latestResult": "候補IDの公式個別ページにカード情報と画像が掲載されていなかった。通常版と区別できる資料を引き続き確認する。 公式商品ページのカード紹介画像も確認したが、対象の金箔版を識別できるスキャンはなかった。",
-          "checkedCandidateIds": [
-            "dm22rp2-1S"
-          ]
+          ],
+          "checkedImageIds": [
+            "dm22rp1-2S",
+            "dm22rp1-2SEC",
+            "dm22rp1-2s",
+            "dm22rp1-002S",
+            "dm22rp1-2C",
+            "dm22rp1-OR2S",
+            "dm22rp1-2G",
+            "dm22rp1-OR2-G",
+            "dm22rp1-OR2_2",
+            "dm22rp1-2SG",
+            "dm22rp1-2SP"
+          ],
+          "imageRecheck": {
+            "date": "2026-11-15",
+            "httpStatus": 404,
+            "officialPath": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/"
+          }
         },
         {
           "id": "dm22rp2x-1S",
@@ -535320,10 +535520,22 @@
           "reason": "商品案内はシークレットSPゴールドレアに言及するが、公式カード検索ではこの版の個別ページと画像を取得できず、カード番号・全文・正規IDとの対応を公式に照合できなかった。idは商品コードと印刷番号から記録した照合候補。確証が得られるまで別IDの登録を保留。",
           "source": "https://dm.takaratomy.co.jp/product/dm22rp2x/",
           "researchSource": "https://torekakaku.com/dm/card/?cardid=216604",
-          "latestResult": "候補IDの公式個別ページにカード情報と画像が掲載されていなかった。通常版と区別できる資料を引き続き確認する。 公式商品ページのカード紹介画像も確認したが、対象の金箔版を識別できるスキャンはなかった。",
+          "latestResult": "DM22-RP2の公式画像で22RP2 OR 1S/2を確認。DM22-RP2Xの商品カード一覧と個別ページで別の版の存在を確認できず、画像候補も404だった。",
           "checkedCandidateIds": [
             "dm22rp2x-1S"
-          ]
+          ],
+          "checkedImageIds": [
+            "dm22rp2x-1S",
+            "dm22rp2x-1SEC",
+            "dm22rp2x-1s",
+            "dm22rp2x-001S"
+          ],
+          "imageRecheck": {
+            "date": "2026-11-15",
+            "httpStatus": 404,
+            "officialPath": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/"
+          },
+          "relatedVerifiedPrint": "dm22rp2-1S"
         }
       ],
       "resolvedRegressions": [
@@ -535455,10 +535667,10 @@
           ]
         }
       ],
-      "latestTestCommit": "a0e0102dba5d889b4e221741ae97714c423cb1f3",
+      "latestTestCommit": "3a665662",
       "counts": {
-        "supported": 8009,
-        "pending": 3817,
+        "supported": 8012,
+        "pending": 3814,
         "catalogue": 11826,
         "duplicates": 0
       },
@@ -536089,10 +536301,6 @@
           "name": "ラドン・ベップバーン"
         },
         {
-          "id": "dmx14-031",
-          "name": "夜露死苦 キャロル"
-        },
-        {
           "id": "dmrp12-008",
           "name": "帝神龍装 ティーゾリス"
         },
@@ -536201,10 +536409,6 @@
           "name": "ダイヤモンド・ソード"
         },
         {
-          "id": "dm23rp4-009",
-          "name": "偽りの嘘 ネメシス"
-        },
-        {
           "id": "dmc40-002",
           "name": "龍神ヘヴィ"
         },
@@ -536245,7 +536449,7 @@
           "name": "聖板龍 ジークシュトルツ"
         }
       ],
-      "remainingTestsSummary": "まとめて時間切れになったファイルは長時間対戦を除き、短い対戦・能力テストを分割する。長時間対戦は残る対戦相手とseedを個別に実行し、既に通過済みの組み合わせは同じ対象コミットの検証の証拠がある場合に維持する。",
+      "remainingTestsSummary": "比較・保存復元・ワーカーの長時間ケースを除いた実行を先に確定する。名前フィルターで除外されたケースと時間切れのグループは試験単位と対戦相手・シードへ分割する。公開候補の同じコミットで全項目の通過が必要。",
       "advanceImplementation": {
         "status": "implemented",
         "phases": [
@@ -536295,6 +536499,401 @@
           "対戦開始時カード3セット・超GRの運用を維持し、オーラの共通処理と未検証のカードを公式裁定から進める。",
           "未確認の再録・長時間テストを分割検証する。公開は全件の検証とNetlifyを更新しない手順確認の後。"
         ]
+      },
+      "latestVerificationBatch": {
+        "phase": 1329,
+        "baseline": "3a665662",
+        "before": 8009,
+        "supported": 8012,
+        "duplicates": 0,
+        "added": [
+          {
+            "id": "dmx14-031",
+            "name": "夜露死苦 キャロル"
+          },
+          {
+            "id": "dm23rp4-009",
+            "name": "偽りの嘘 ネメシス"
+          },
+          {
+            "id": "dmrp16-017",
+            "name": "バリバリ・ケドケド"
+          }
+        ],
+        "printAliases": 2,
+        "results": {
+          "focused": {
+            "passed": 17,
+            "log": "/tmp/duema-verify-8009/1329-focus-mana.log"
+          },
+          "regression": {
+            "passed": 226,
+            "log": "/tmp/duema-verify-8009/1329-regressions-final.log"
+          },
+          "check": {
+            "status": "passed",
+            "log": "/tmp/duema-verify-8009/1329-check-final.log"
+          }
+        },
+        "resolvedRegistered": 5,
+        "remainingRegistered": 52,
+        "remainingPrints": 3
+      },
+      "currentSplitEvidence": {
+        "baseline": "3a665662",
+        "initial": {
+          "plan": "/tmp/duema-verify-8009/short-plan.json",
+          "resultFile": "/tmp/duema-verify-8009/short-results.jsonl",
+          "timeLimitSeconds": 130,
+          "recorded": 96,
+          "passedGroups": 81,
+          "timedOut": [
+            {
+              "index": 65,
+              "paths": [
+                "tests/standard1325-effects.test.mjs",
+                "tests/standard1326-effects.test.mjs",
+                "tests/standard1327-effects.test.mjs",
+                "tests/standard1328-effects.test.mjs",
+                "tests/standard165-effects.test.mjs"
+              ],
+              "log": "/tmp/duema-verify-8009/short-0065.log",
+              "seconds": 130.01
+            },
+            {
+              "index": 66,
+              "paths": [
+                "tests/standard166-effects.test.mjs",
+                "tests/standard168-effects.test.mjs",
+                "tests/standard169-effects.test.mjs",
+                "tests/standard170-effects.test.mjs",
+                "tests/standard171-effects.test.mjs"
+              ],
+              "log": "/tmp/duema-verify-8009/short-0066.log",
+              "seconds": 130.01
+            },
+            {
+              "index": 67,
+              "paths": [
+                "tests/standard172-effects.test.mjs",
+                "tests/standard173-effects.test.mjs",
+                "tests/standard174-effects.test.mjs",
+                "tests/standard175-effects.test.mjs",
+                "tests/standard176-effects.test.mjs"
+              ],
+              "log": "/tmp/duema-verify-8009/short-0067.log",
+              "seconds": 130.02
+            },
+            {
+              "index": 68,
+              "paths": [
+                "tests/standard177-effects.test.mjs",
+                "tests/standard178-effects.test.mjs",
+                "tests/standard179-effects.test.mjs",
+                "tests/standard180-effects.test.mjs",
+                "tests/standard181-effects.test.mjs"
+              ],
+              "log": "/tmp/duema-verify-8009/short-0068.log",
+              "seconds": 130.02
+            },
+            {
+              "index": 73,
+              "paths": [
+                "tests/standard203-effects.test.mjs",
+                "tests/standard204-effects.test.mjs",
+                "tests/standard205-effects.test.mjs",
+                "tests/standard206-effects.test.mjs",
+                "tests/standard207-effects.test.mjs"
+              ],
+              "log": "/tmp/duema-verify-8009/short-0073.log",
+              "seconds": 130.03
+            },
+            {
+              "index": 74,
+              "paths": [
+                "tests/standard208-effects.test.mjs",
+                "tests/standard209-effects.test.mjs",
+                "tests/standard210-effects.test.mjs",
+                "tests/standard211-effects.test.mjs",
+                "tests/standard212-effects.test.mjs"
+              ],
+              "log": "/tmp/duema-verify-8009/short-0074.log",
+              "seconds": 130.01
+            },
+            {
+              "index": 84,
+              "paths": [
+                "tests/standard259-effects.test.mjs",
+                "tests/standard260-effects.test.mjs",
+                "tests/standard261-effects.test.mjs",
+                "tests/standard262-effects.test.mjs",
+                "tests/standard263-effects.test.mjs"
+              ],
+              "log": "/tmp/duema-verify-8009/short-0084.log",
+              "seconds": 130.01
+            },
+            {
+              "index": 85,
+              "paths": [
+                "tests/standard264-effects.test.mjs",
+                "tests/standard265-effects.test.mjs",
+                "tests/standard266-effects.test.mjs",
+                "tests/standard267-effects.test.mjs",
+                "tests/standard268-effects.test.mjs"
+              ],
+              "log": "/tmp/duema-verify-8009/short-0085.log",
+              "seconds": 130.01
+            },
+            {
+              "index": 86,
+              "paths": [
+                "tests/standard269-effects.test.mjs",
+                "tests/standard270-effects.test.mjs",
+                "tests/standard271-effects.test.mjs",
+                "tests/standard272-effects.test.mjs",
+                "tests/standard273-effects.test.mjs"
+              ],
+              "log": "/tmp/duema-verify-8009/short-0086.log",
+              "seconds": 130.01
+            },
+            {
+              "index": 88,
+              "paths": [
+                "tests/standard279-effects.test.mjs",
+                "tests/standard280-effects.test.mjs",
+                "tests/standard281-effects.test.mjs",
+                "tests/standard282-effects.test.mjs",
+                "tests/standard283-effects.test.mjs"
+              ],
+              "log": "/tmp/duema-verify-8009/short-0088.log",
+              "seconds": 130.03
+            },
+            {
+              "index": 89,
+              "paths": [
+                "tests/standard284-effects.test.mjs",
+                "tests/standard285-effects.test.mjs",
+                "tests/standard286-effects.test.mjs",
+                "tests/standard287-effects.test.mjs",
+                "tests/standard288-effects.test.mjs"
+              ],
+              "log": "/tmp/duema-verify-8009/short-0089.log",
+              "seconds": 130.01
+            },
+            {
+              "index": 90,
+              "paths": [
+                "tests/standard289-effects.test.mjs",
+                "tests/standard290-effects.test.mjs",
+                "tests/standard291-effects.test.mjs",
+                "tests/standard292-effects.test.mjs",
+                "tests/standard293-effects.test.mjs"
+              ],
+              "log": "/tmp/duema-verify-8009/short-0090.log",
+              "seconds": 130.01
+            },
+            {
+              "index": 91,
+              "paths": [
+                "tests/standard294-effects.test.mjs",
+                "tests/standard295-effects.test.mjs",
+                "tests/standard296-effects.test.mjs",
+                "tests/standard297-effects.test.mjs",
+                "tests/standard298-effects.test.mjs"
+              ],
+              "log": "/tmp/duema-verify-8009/short-0091.log",
+              "seconds": 130.01
+            },
+            {
+              "index": 92,
+              "paths": [
+                "tests/standard299-effects.test.mjs",
+                "tests/standard300-effects.test.mjs",
+                "tests/standard301-effects.test.mjs",
+                "tests/standard302-effects.test.mjs",
+                "tests/standard303-effects.test.mjs"
+              ],
+              "log": "/tmp/duema-verify-8009/short-0092.log",
+              "seconds": 130.02
+            },
+            {
+              "index": 95,
+              "paths": [
+                "tests/standard314-effects.test.mjs",
+                "tests/standard315-effects.test.mjs",
+                "tests/standard316-effects.test.mjs",
+                "tests/standard317-effects.test.mjs",
+                "tests/standard318-effects.test.mjs"
+              ],
+              "log": "/tmp/duema-verify-8009/short-0095.log",
+              "seconds": 130.01
+            }
+          ],
+          "failures": [],
+          "testPass": 6834,
+          "testSkipped": 0,
+          "snapshotAt": "2026-11-15T06:54:54.957Z"
+        },
+        "refined": {
+          "plan": "/tmp/duema-verify-8009/refined-plan.json",
+          "resultFile": "/tmp/duema-verify-8009/refined-results.jsonl",
+          "timeLimitSeconds": 85,
+          "recorded": 19,
+          "passedGroups": 19,
+          "timedOut": [],
+          "failures": [],
+          "testPass": 4855,
+          "testSkipped": 0,
+          "snapshotAt": "2026-11-15T06:54:54.958Z"
+        },
+        "long": {
+          "status": "partial",
+          "timeLimitSeconds": 265,
+          "passed": 14,
+          "results": [
+            {
+              "index": 254,
+              "path": "tests/jaou-effects.test.mjs",
+              "title": "No03 completes138 AI games with80 unique physical cards and deterministic state replay",
+              "label": "opponent-48-seed-5",
+              "exit": 0,
+              "seconds": 7.5,
+              "passed": true,
+              "log": "/tmp/duema-verify-8009/bounded-long-254-opponent-48-seed-5.log"
+            },
+            {
+              "index": 254,
+              "path": "tests/jaou-effects.test.mjs",
+              "title": "No03 completes138 AI games with80 unique physical cards and deterministic state replay",
+              "label": "opponent-48-seed-6",
+              "exit": 0,
+              "seconds": 11.54,
+              "passed": true,
+              "log": "/tmp/duema-verify-8009/bounded-long-254-opponent-48-seed-6.log"
+            },
+            {
+              "index": 268,
+              "path": "tests/jaou-effects.test.mjs",
+              "title": "No03 random legal choices serialize continuations with80 unique cards",
+              "label": "seed-40-40",
+              "exit": 0,
+              "seconds": 37.14,
+              "passed": true,
+              "log": "/tmp/duema-verify-8009/bounded-long-268-seed-40-40.log"
+            },
+            {
+              "index": 347,
+              "path": "tests/starter6-effects.test.mjs",
+              "title": "No06 random legal play survives JSON restoration with legal choices and exactly eighty physical cards",
+              "label": "seed-28",
+              "exit": 0,
+              "seconds": 37.16,
+              "passed": true,
+              "log": "/tmp/duema-verify-8009/bounded-long-347-seed-28.log"
+            },
+            {
+              "index": 103,
+              "path": "tests/abyss-effects.test.mjs",
+              "title": "No13 random choices preserve80 unique cards and legal decisions through JSON",
+              "label": "seed-16",
+              "exit": 0,
+              "seconds": 65.22,
+              "passed": true,
+              "log": "/tmp/duema-verify-8009/bounded-long-103-seed-16.log"
+            },
+            {
+              "index": 505,
+              "path": "tests/mado-effects.test.mjs",
+              "title": "No04 random choices preserve80 unique cards and JSON legal actions",
+              "label": "seed-19",
+              "exit": 0,
+              "seconds": 33.93,
+              "passed": true,
+              "log": "/tmp/duema-verify-8009/bounded-long-505-seed-19.log"
+            },
+            {
+              "index": 347,
+              "path": "tests/starter6-effects.test.mjs",
+              "title": "No06 random legal play survives JSON restoration with legal choices and exactly eighty physical cards",
+              "label": "seed-29",
+              "exit": 0,
+              "seconds": 48.58,
+              "passed": true,
+              "log": "/tmp/duema-verify-8009/bounded-long-347-seed-29.log"
+            },
+            {
+              "index": 103,
+              "path": "tests/abyss-effects.test.mjs",
+              "title": "No13 random choices preserve80 unique cards and legal decisions through JSON",
+              "label": "seed-17",
+              "exit": 0,
+              "seconds": 39.95,
+              "passed": true,
+              "log": "/tmp/duema-verify-8009/bounded-long-103-seed-17.log"
+            },
+            {
+              "index": 505,
+              "path": "tests/mado-effects.test.mjs",
+              "title": "No04 random choices preserve80 unique cards and JSON legal actions",
+              "label": "seed-20",
+              "exit": 0,
+              "seconds": 51.93,
+              "passed": true,
+              "log": "/tmp/duema-verify-8009/bounded-long-505-seed-20.log"
+            },
+            {
+              "index": 347,
+              "path": "tests/starter6-effects.test.mjs",
+              "title": "No06 random legal play survives JSON restoration with legal choices and exactly eighty physical cards",
+              "label": "seed-30",
+              "exit": 0,
+              "seconds": 50.35,
+              "passed": true,
+              "log": "/tmp/duema-verify-8009/bounded-long-347-seed-30.log"
+            },
+            {
+              "index": 561,
+              "path": "tests/dark-mado-photo.test.mjs",
+              "title": "random manual dark photo games preserve cards, legal actions and replay determinism through JSON",
+              "label": "seed-4-4",
+              "exit": 0,
+              "seconds": 7.57,
+              "passed": true,
+              "log": "/tmp/duema-verify-8009/bounded-long-561-seed-4-4.log"
+            },
+            {
+              "index": 103,
+              "path": "tests/abyss-effects.test.mjs",
+              "title": "No13 random choices preserve80 unique cards and legal decisions through JSON",
+              "label": "seed-18",
+              "exit": 0,
+              "seconds": 59.56,
+              "passed": true,
+              "log": "/tmp/duema-verify-8009/bounded-long-103-seed-18.log"
+            },
+            {
+              "index": 562,
+              "path": "tests/water-mado-photo.test.mjs",
+              "title": "water photo games finish against all configured opponents and preserve eighty physical cards",
+              "label": "opponent-0",
+              "exit": 0,
+              "seconds": 10.73,
+              "passed": true,
+              "log": "/tmp/duema-verify-8009/bounded-long-562-opponent-0.log"
+            },
+            {
+              "index": 505,
+              "path": "tests/mado-effects.test.mjs",
+              "title": "No04 random choices preserve80 unique cards and JSON legal actions",
+              "label": "seed-21",
+              "exit": 0,
+              "seconds": 54.26,
+              "passed": true,
+              "log": "/tmp/duema-verify-8009/bounded-long-505-seed-21.log"
+            }
+          ]
+        },
+        "status": "incomplete"
       }
     }
   },
