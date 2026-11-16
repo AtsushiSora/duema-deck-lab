@@ -536399,7 +536399,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別14種類（裁定14件と金箔再録1件）と長時間分割検証が残る。mainのpushがNetlify本番デプロイを起動し、Netlifyに影響しない既存Pagesへの公開経路は未確認。",
+        "reason": "個別14種類（裁定14件と金箔再録1件）と長時間分割検証が残る。Netlifyの本番ワークフローはmainへのpushで起動し、リポジトリ全体のpushを受けるNetlifyの連携フックも有効。既存GitHub Pages環境の許可ブランチはmainのみ。設定変更なしでNetlifyの更新を避けられる公開手順は未確認。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -536411,9 +536411,31 @@
           }
         },
         "hooksRecheck": {
-          "checkedAt": "2026-11-15",
+          "checkedAt": "2026-11-16",
           "settings": "https://github.com/AtsushiSora/duema-deck-lab/settings/hooks",
-          "result": "管理設定への読み取りは未ログイン状態で404となり、別ブラウザでも設定を開けなかった。別ブランチのpushがNetlify連携を起動しないことは未確認。"
+          "evidence": "tmp/duema-phase-1360/github-readonly.json",
+          "endpoints": [
+            "hooks",
+            "pages",
+            "environments/github-pages/deployment-branch-policies",
+            "contents/.github/workflows/netlify.yml?ref=main",
+            "contents/.github/workflows/pages.yml?ref=main"
+          ],
+          "hooks": [
+            {
+              "active": true,
+              "events": [
+                "push"
+              ],
+              "host": "api.netlify.com"
+            }
+          ],
+          "pagesBuildType": "workflow",
+          "pagesDeploymentBranches": [
+            "main"
+          ],
+          "netlifyMainPushDeploysProduction": true,
+          "result": "管理者権限の読み取りで検証。NetlifyへのpushフックとNetlify本番ワークフローは有効。GitHub Pagesの許可ブランチはmainのみ。"
         }
       },
       "resolvedRegistered": [
@@ -542080,18 +542102,18 @@
               "checkedAt": "2026-11-16",
               "frozen": {
                 "baseline": "e3323a89",
-                "verified": 118,
+                "verified": 124,
                 "planned": 344,
-                "games": 1200,
+                "games": 1252,
                 "results": "tmp/duema-verification-e3323a89/results.jsonl"
               },
               "legacy": {
                 "scope": "実行時の作業ツリー。固定コミットの検証結果としては扱わない。",
-                "verified": 63,
+                "verified": 65,
                 "planned": 113,
                 "byKind": {
                   "AI replay": 19,
-                  "production worker": 9,
+                  "production worker": 11,
                   "random legal choices": 35
                 },
                 "results": "tmp/duema-verification-e3323a89/legacy-fixtures/results.jsonl"
@@ -542114,6 +542136,60 @@
           "log": "/tmp/duema-uncapped/buster-focus.log",
           "result": "両面のP侵略とP革命チェンジ、各面の登場能力、入れ替え後のカードの移動先とスレイヤーの付与期間、XXDDZのEXライフの参照を確認した。両面の公式画像を初版と再録4種類で照合した。"
         }
+      },
+      "dependencyOfficialRecheck": {
+        "checkedAt": "2026-11-16",
+        "baseline": "582d9f87",
+        "name": "希望のジョー星",
+        "canonicalCatalogueId": "dmex12-022",
+        "supported": false,
+        "verifiedPrints": [
+          {
+            "id": "dmex12-022",
+            "number": "22/110",
+            "official": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-022",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex12-022.jpg",
+            "sha256": "94e041c4393427043b1bddcc1f0170eb863bf1758b0fc43d0106cdc5ec5b7181"
+          },
+          {
+            "id": "dmex17-Cho38",
+            "number": "超38/超40",
+            "official": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-Cho38",
+            "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-Cho38.jpg",
+            "sha256": "4a8abfce737fa09d3febe9cdcabdeb9a851c8d45be4bf058a610906f048c2d77"
+          }
+        ],
+        "regulation": {
+          "limit": 0,
+          "source": "https://dm.takaratomy.co.jp/rule/regulation/"
+        },
+        "rulings": [
+          {
+            "source": "https://dm.takaratomy.co.jp/rule/qa/38608/",
+            "behavior": "ジョー星とリリンの登場順で、マナのスノーフェアリーが全5文明になるか無色になるかが決まる。"
+          },
+          {
+            "source": "https://dm.takaratomy.co.jp/rule/rulechange/31641/",
+            "behavior": "山札を見る前からの文明変更が続くため、アシッド・テクノで元が有色のコスト7以下のクリーチャーを出せる。"
+          },
+          {
+            "source": "https://dm.takaratomy.co.jp/rule/qa/38606/",
+            "behavior": "全ゾーンに及び、ジョー星が離れると文明が戻る。"
+          },
+          {
+            "source": "https://dm.takaratomy.co.jp/rule/qa/38697/",
+            "behavior": "印刷されたマナコストとテキスト内のマナ記号は無色化する。マナ武装やO・ドライブなどの文明名は保持する。"
+          },
+          {
+            "source": "https://dm.takaratomy.co.jp/rule/qa/38701/",
+            "behavior": "ヴェルデ自身の文明を決める特性定義能力より後にジョー星の効果を適用する。"
+          },
+          {
+            "source": "https://dm.takaratomy.co.jp/rule/qa/40872/",
+            "behavior": "極楽鳥が能力で支払う場合はジョー星との登場順によらず好きな文明の1マナ。"
+          }
+        ],
+        "next": "文明変更の順序を保存互換で扱い、ゾーン内のカードとカードを使う際の文明を区別して、支払い・ツインパクトの両面・山札検索・離脱後の復帰を検証する。公式資料の確認だけではQA38608・31641を解決済みに数えない。"
       }
     }
   },
