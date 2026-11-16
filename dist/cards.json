@@ -248439,45 +248439,202 @@
       ],
       "supportBatch": "phase-1357",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-053",
+      "name": "竜骨なる者ザビ・リゲル",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "リビング・デッド/エイリアン",
+      "text": "自分のエイリアンが相手の呪文によって破壊された場合、相手は自身のクリーチャーを１体選び、破壊する。\n自分のエイリアンのパワーが相手の呪文によって０以下に減らされた場合、相手は自身のクリーチャーを１体選び、破壊する。\n覚醒リンク - 自分のターンのはじめに、バトルゾーンに自分の《ガロウズ・セブ・カイザー》と《ハイドラ・ギルザウルス》があれば、そのクリーチャーとこのクリーチャーをすべて裏返しリンクさせる。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)\n【覚醒リンク面】\n相手プレイヤーはコストを支払わずにクリーチャーを召喚したり呪文を唱えたりできない。\nこのクリーチャーが攻撃する時、バトルゾーンにあるクリーチャーを２体まで選び、持ち主の手札に戻してもよい。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)\nリンク解除(このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す)\n※覚醒リンクするために必要なカード(ガロウズ・セブ・カイザー/竜骨なる者ザビ・リゲル/ハイドラ・ギルザウルス)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-053",
+      "limit": 4,
+      "psychic": true,
+      "g1358Rigel": true,
+      "g174Start": [
+        {
+          "op": "PsychicLink1355",
+          "partners": [
+            "dmr01-v01",
+            "dmr01-059"
+          ]
+        }
+      ],
+      "g1355LinkedFace": {
+        "name": "死海竜ガロウズ・デビルドラゴン",
+        "type": "creature",
+        "civ": "水/闇/火",
+        "civilizations": [
+          "水",
+          "闇",
+          "火"
+        ],
+        "cost": 24,
+        "power": 12000,
+        "race": "デビル・コマンド・ドラゴン/エイリアン",
+        "breaker": 3,
+        "g1355Unlink": true,
+        "g1358UnpaidLock": true,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "anyOwner": true,
+            "filter": {
+              "creature": true
+            },
+            "n": 2,
+            "optional": true,
+            "g173Targets": true,
+            "to": "hand",
+            "toOwnerHand": true
+          }
+        ],
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-053b.jpg"
+      },
+      "supportBatch": "phase-1358",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-059",
+      "name": "ハイドラ・ギルザウルス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ロック・ビースト/エイリアン",
+      "text": "相手がコストを支払わずにクリーチャーを召喚した時または呪文を唱えた時、相手はカードを１枚、自身のマナゾーンから選んで墓地に置く。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)\n【覚醒リンク面】\n相手プレイヤーはコストを支払わずにクリーチャーを召喚したり呪文を唱えたりできない。\nこのクリーチャーが攻撃する時、バトルゾーンにあるクリーチャーを２体まで選び、持ち主の手札に戻してもよい。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)\nリンク解除(このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す)\n※覚醒リンクするために必要なカード(ガロウズ・セブ・カイザー/竜骨なる者ザビ・リゲル/ハイドラ・ギルザウルス)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-059",
+      "limit": 4,
+      "psychic": true,
+      "g1358Hydra": true,
+      "g1355LinkedFace": {
+        "name": "死海竜ガロウズ・デビルドラゴン",
+        "type": "creature",
+        "civ": "水/闇/火",
+        "civilizations": [
+          "水",
+          "闇",
+          "火"
+        ],
+        "cost": 24,
+        "power": 12000,
+        "race": "デビル・コマンド・ドラゴン/エイリアン",
+        "breaker": 3,
+        "g1355Unlink": true,
+        "g1358UnpaidLock": true,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "anyOwner": true,
+            "filter": {
+              "creature": true
+            },
+            "n": 2,
+            "optional": true,
+            "g173Targets": true,
+            "to": "hand",
+            "toOwnerHand": true
+          }
+        ],
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-059b.jpg"
+      },
+      "supportBatch": "phase-1358",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-v01",
+      "name": "ガロウズ・セブ・カイザー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "サイバー・コマンド/エイリアン",
+      "text": "相手のクリーチャーが攻撃する時、カードを１枚引いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n【覚醒リンク面】\n相手プレイヤーはコストを支払わずにクリーチャーを召喚したり呪文を唱えたりできない。\nこのクリーチャーが攻撃する時、バトルゾーンにあるクリーチャーを２体まで選び、持ち主の手札に戻してもよい。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)\nリンク解除(このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す)\n※覚醒リンクするために必要なカード(ガロウズ・セブ・カイザー/竜骨なる者ザビ・リゲル/ハイドラ・ギルザウルス)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-v01",
+      "limit": 4,
+      "psychic": true,
+      "breaker": 2,
+      "g252AttackWatch": {
+        "who": "opponent",
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "g1355LinkedFace": {
+        "name": "死海竜ガロウズ・デビルドラゴン",
+        "type": "creature",
+        "civ": "水/闇/火",
+        "civilizations": [
+          "水",
+          "闇",
+          "火"
+        ],
+        "cost": 24,
+        "power": 12000,
+        "race": "デビル・コマンド・ドラゴン/エイリアン",
+        "breaker": 3,
+        "g1355Unlink": true,
+        "g1358UnpaidLock": true,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "anyOwner": true,
+            "filter": {
+              "creature": true
+            },
+            "n": 2,
+            "optional": true,
+            "g173Targets": true,
+            "to": "hand",
+            "toOwnerHand": true
+          }
+        ],
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-v01b.jpg"
+      },
+      "supportBatch": "phase-1358",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1357,
+    "phase": 1358,
     "checkedAt": "2026-11-16",
-    "baseCount": 8046,
-    "newEffectCards": 2,
+    "baseCount": 8048,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 8048,
+    "totalCount": 8051,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/40912/",
-      "https://dm.takaratomy.co.jp/rule/qa/40886/",
-      "https://dm.takaratomy.co.jp/rule/qa/40887/",
-      "https://dm.takaratomy.co.jp/rule/qa/40889/",
-      "https://dm.takaratomy.co.jp/rule/qa/40890/",
-      "https://dm.takaratomy.co.jp/rule/qa/40891/",
-      "https://dm.takaratomy.co.jp/rule/qa/40895/",
-      "https://dm.takaratomy.co.jp/rule/qa/40896/",
-      "https://dm.takaratomy.co.jp/rule/qa/40897/",
-      "https://dm.takaratomy.co.jp/rule/qa/40898/",
-      "https://dm.takaratomy.co.jp/rule/qa/40900/",
-      "https://dm.takaratomy.co.jp/rule/qa/40901/",
-      "https://dm.takaratomy.co.jp/rule/qa/40902/",
-      "https://dm.takaratomy.co.jp/rule/qa/40904/",
-      "https://dm.takaratomy.co.jp/rule/qa/40905/",
-      "https://dm.takaratomy.co.jp/rule/qa/40906/",
-      "https://dm.takaratomy.co.jp/rule/qa/40907/",
-      "https://dm.takaratomy.co.jp/rule/qa/40908/",
-      "https://dm.takaratomy.co.jp/rule/qa/40909/",
-      "https://dm.takaratomy.co.jp/rule/qa/40910/",
-      "https://dm.takaratomy.co.jp/rule/qa/40911/",
-      "https://dm.takaratomy.co.jp/rule/qa/44833/",
-      "https://dm.takaratomy.co.jp/rule/qa/47911/",
-      "https://dm.takaratomy.co.jp/rule/qa/47912/",
-      "https://dm.takaratomy.co.jp/rule/qa/47913/",
-      "https://dm.takaratomy.co.jp/rule/qa/47914/",
-      "https://dm.takaratomy.co.jp/rule/qa/47915/",
-      "https://dm.takaratomy.co.jp/rule/qa/47916/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36348/",
+      "https://dm.takaratomy.co.jp/rule/qa/45086/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36315/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36317/",
+      "https://dm.takaratomy.co.jp/rule/qa/39643/",
+      "https://dm.takaratomy.co.jp/rule/qa/39644/",
+      "https://dm.takaratomy.co.jp/rule/qa/48153/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -271282,6 +271439,48 @@
           "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
           "https://dm.takaratomy.co.jp/rule/qa_old/37761/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35707/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1357,
+        "checkedAt": "2026-11-16",
+        "baseCount": 8046,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 8048,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/40912/",
+          "https://dm.takaratomy.co.jp/rule/qa/40886/",
+          "https://dm.takaratomy.co.jp/rule/qa/40887/",
+          "https://dm.takaratomy.co.jp/rule/qa/40889/",
+          "https://dm.takaratomy.co.jp/rule/qa/40890/",
+          "https://dm.takaratomy.co.jp/rule/qa/40891/",
+          "https://dm.takaratomy.co.jp/rule/qa/40895/",
+          "https://dm.takaratomy.co.jp/rule/qa/40896/",
+          "https://dm.takaratomy.co.jp/rule/qa/40897/",
+          "https://dm.takaratomy.co.jp/rule/qa/40898/",
+          "https://dm.takaratomy.co.jp/rule/qa/40900/",
+          "https://dm.takaratomy.co.jp/rule/qa/40901/",
+          "https://dm.takaratomy.co.jp/rule/qa/40902/",
+          "https://dm.takaratomy.co.jp/rule/qa/40904/",
+          "https://dm.takaratomy.co.jp/rule/qa/40905/",
+          "https://dm.takaratomy.co.jp/rule/qa/40906/",
+          "https://dm.takaratomy.co.jp/rule/qa/40907/",
+          "https://dm.takaratomy.co.jp/rule/qa/40908/",
+          "https://dm.takaratomy.co.jp/rule/qa/40909/",
+          "https://dm.takaratomy.co.jp/rule/qa/40910/",
+          "https://dm.takaratomy.co.jp/rule/qa/40911/",
+          "https://dm.takaratomy.co.jp/rule/qa/44833/",
+          "https://dm.takaratomy.co.jp/rule/qa/47911/",
+          "https://dm.takaratomy.co.jp/rule/qa/47912/",
+          "https://dm.takaratomy.co.jp/rule/qa/47913/",
+          "https://dm.takaratomy.co.jp/rule/qa/47914/",
+          "https://dm.takaratomy.co.jp/rule/qa/47915/",
+          "https://dm.takaratomy.co.jp/rule/qa/47916/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

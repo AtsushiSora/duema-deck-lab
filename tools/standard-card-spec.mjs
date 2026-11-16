@@ -2493,6 +2493,40 @@ export function standardCardSpec(d,{phase=165}={}){
   return {trigger:true,g1357CopyOnEntry:true,g174Start:[{op:'Target',g1357Become:true,
    g1357EndThisTurn:true,optional:true,title:'このクリーチャーがコピーする相手のクリーチャーを選ぶ'}]};
  }
+ if(phase>=1358&&d?.status==='complete'&&d.faces.length===2&&f.typeText==='サイキック・クリーチャー'){
+  const rigel='dmr01-053',hydra='dmr01-059',garrows='dmr01-v01',back=d.faces[1];
+  const id=d.id==='dmr01-053M'?rigel:d.id;
+  const reminder='(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)';
+  const retaliate='相手は自身のクリーチャーを１体選び、破壊する。';
+  const front={
+   [rigel]:'自分のエイリアンが相手の呪文によって破壊された場合、'+retaliate+
+    '自分のエイリアンのパワーが相手の呪文によって０以下に減らされた場合、'+retaliate+
+    '覚醒リンク - 自分のターンのはじめに、バトルゾーンに自分の《ガロウズ・セブ・カイザー》と《ハイドラ・ギルザウルス》があれば、そのクリーチャーとこのクリーチャーをすべて裏返しリンクさせる。'+reminder,
+   [hydra]:'相手がコストを支払わずにクリーチャーを召喚した時または呪文を唱えた時、相手はカードを１枚、自身のマナゾーンから選んで墓地に置く。'+reminder,
+   [garrows]:'相手のクリーチャーが攻撃する時、カードを１枚引いてもよい。W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)'
+  };
+  const linked='相手プレイヤーはコストを支払わずにクリーチャーを召喚したり呪文を唱えたりできない。'+
+   'このクリーチャーが攻撃する時、バトルゾーンにあるクリーチャーを２体まで選び、持ち主の手札に戻してもよい。'+
+   'T・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)'+
+   'リンク解除(このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す)'+
+   '※覚醒リンクするために必要なカード(ガロウズ・セブ・カイザー/竜骨なる者ザビ・リゲル/ハイドラ・ギルザウルス)';
+  if(Object.hasOwn(front,id)&&normalize(f.abilityText).replace('(ruby:サイキック)','')===normalize(front[id])&&
+     back.name==='死海竜ガロウズ・デビルドラゴン'&&back.typeText==='サイキック・スーパー・クリーチャー'&&
+     normalize(back.abilityText)===normalize(linked)){
+   const effects={
+    [rigel]:{g1358Rigel:true,g174Start:[{op:'PsychicLink1355',partners:[garrows,hydra]}]},
+    [hydra]:{g1358Hydra:true},
+    [garrows]:{breaker:2,g252AttackWatch:{who:'opponent',filter:{creature:true},defs:[{op:'Draw',n:1,optional:true}]}}
+   };
+   return {psychic:true,manaValue:0,...effects[id],
+    g1355LinkedFace:{name:back.name,type:'creature',civ:back.civilizationText,civilizations:back.civilizations,
+     cost:back.cost,power:Number(back.powerText),race:back.race,breaker:3,g1355Unlink:true,g1358UnpaidLock:true,
+     g34Attack:[{op:'Select',origin:'battle',anyOwner:true,filter:{creature:true},n:2,optional:true,
+      g173Targets:true,to:'hand',toOwnerHand:true}],
+     image:'https://dm.takaratomy.co.jp/wp-content/card/cardimage/'+id+'b.jpg'}
+   };
+  }
+ }
  if(phase>=1356&&d?.status==='complete'&&d.faces.length===2&&f.typeText==='サイキック・クリーチャー'){
   const current={'dmr04-v03':'dm25ex4-TR03','dmr04-v02':'dm25ex4-TR02','dmr04-051':'dm25ex4-T29'};
   const id=Object.hasOwn(current,d.id)?d.id:Object.keys(current).find(id=>current[id]===d.id);

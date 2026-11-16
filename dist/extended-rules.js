@@ -444,7 +444,7 @@ export function createExtendedRules(api){
     const list=own.hand.filter(x=>x.cardId===t.nameId&&canEnter(s,t.p,card(x),{origin:'hand',execution:false}));choice(s,t,'同名のクリーチャーを手札から出す',[...list.map(x=>opt(card(x).name,x.uid,25,x.cardId)),skip()]);break;
    }
    case 'execute':{
-    const list=own[t.origin||'hand'].flatMap(x=>faces(card(x)).map((c,face)=>({x,c,face}))).filter(({c})=>(!t.creatureOnly||c.type==='creature')&&(!t.elementOnly||c.type!=='spell')&&(!t.noncreature||c.type!=='creature')&&(!t.spellOnly||c.type==='spell')&&cost(c)<=(t.max==='∞'?Infinity:t.max)&&(!t.light||colors(c).includes('光'))&&(!t.trigger||c.trigger)&&canCast(s,t.p,c,t.origin||'hand')&&(c.type==='spell'||canEnter(s,t.p,c,{origin:t.origin||'hand',execution:!t.deploy})&&(!c.evolution||evolutionBases(s,t.p,c).length)));
+    const list=own[t.origin||'hand'].flatMap(x=>faces(card(x)).map((c,face)=>({x,c,face}))).filter(({c})=>(!t.creatureOnly||c.type==='creature')&&(!t.elementOnly||c.type!=='spell')&&(!t.noncreature||c.type!=='creature')&&(!t.spellOnly||c.type==='spell')&&cost(c)<=(t.max==='∞'?Infinity:t.max)&&(!t.light||colors(c).includes('光'))&&(!t.trigger||c.trigger)&&(t.deploy||api.canExecuteUnpaid(s,t.p,c))&&canCast(s,t.p,c,t.origin||'hand')&&(c.type==='spell'||canEnter(s,t.p,c,{origin:t.origin||'hand',execution:!t.deploy})&&(!c.evolution||evolutionBases(s,t.p,c).length)));
     choice(s,t,'コストを支払わずに使うカードを選ぶ',[...list.map(({x,c,face})=>opt(c.name,{uid:x.uid,face},15+cost(c),x.cardId)),...(t.optional!==false?[skip()]:[])]);break;
    }
    case 'g1344MelkisBreak':{
@@ -466,7 +466,7 @@ export function createExtendedRules(api){
     const shields=opp.shields.flatMap(api.shieldCards);
     const choices=t.spells.flatMap(({uid,face})=>{
      const x=shields.find(y=>y.uid===uid&&!y.g37ShieldHeld),spell=x&&faces(card(x))[face];
-     return spell&&canCast(s,t.p,spell,'shields',t.defender)?[opt(spell.name,{uid,face},10,x.cardId)]:[];
+     return spell&&api.canExecuteUnpaid(s,t.p,spell)&&canCast(s,t.p,spell,'shields',t.defender)?[opt(spell.name,{uid,face},10,x.cardId)]:[];
     });
     if(choices.length){
      choice(s,t,'ブルー・メルキス：唱えるシールドの呪文を選ぶ',choices);
@@ -480,7 +480,7 @@ export function createExtendedRules(api){
    }
    case 'stealSpell':{
     const x=api.canMoveZone(s,t.owner,'grave')&&s.players[t.owner].grave.find(x=>x.uid===t.uid);
-    if(x&&faces(card(x)).some(c=>c.type==='spell'&&canCast(s,t.p,c,'grave',t.owner)))
+    if(x&&faces(card(x)).some(c=>c.type==='spell'&&api.canExecuteUnpaid(s,t.p,c)&&canCast(s,t.p,c,'grave',t.owner)))
      choice(s,t,'相手の墓地から呪文を唱えますか？',[opt('唱える',true,20,x.cardId),skip()]);
     break;
    }
@@ -948,7 +948,7 @@ if(f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.to='hand';f.g416S
   }
   case 'stealSpell':{
    const grave=s.players[t.owner].grave,x=value&&grave.find(x=>x.uid===t.uid);
-   const face=x?faces(card(x)).findIndex(c=>c.type==='spell'&&canCast(s,t.p,c,'grave',t.owner)):-1;
+   const face=x?faces(card(x)).findIndex(c=>c.type==='spell'&&api.canExecuteUnpaid(s,t.p,c)&&canCast(s,t.p,c,'grave',t.owner)):-1;
    if(face>=0){
     remove(grave,x.uid);
     x.cardOwner=t.owner;

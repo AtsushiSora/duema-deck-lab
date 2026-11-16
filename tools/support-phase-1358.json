@@ -1,0 +1,395 @@
+{
+  "phase": 1358,
+  "checkedAt": "2026-11-16",
+  "baseCount": 8048,
+  "description": "ザビ・リゲル、ハイドラ・ギルザウルス、ガロウズ・セブ・カイザーと死海竜ガロウズ・デビルドラゴンでロマノフ・ホールの裁定を検証する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36348/",
+    "https://dm.takaratomy.co.jp/rule/qa/45086/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36315/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36317/",
+    "https://dm.takaratomy.co.jp/rule/qa/39643/",
+    "https://dm.takaratomy.co.jp/rule/qa/39644/",
+    "https://dm.takaratomy.co.jp/rule/qa/48153/"
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-16",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "limits": {
+      "dmr01-053": 4,
+      "dmr01-059": 4,
+      "dmr01-v01": 4,
+      "dmr01-053M": 4
+    }
+  },
+  "cards": [
+    {
+      "id": "dmr01-053",
+      "name": "竜骨なる者ザビ・リゲル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-053",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-053a.jpg",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-053b.jpg",
+      "faces": [
+        {
+          "name": "竜骨なる者ザビ・リゲル",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のエイリアンが相手の呪文によって破壊された場合、相手は自身のクリーチャーを１体選び、破壊する。\n自分のエイリアンのパワーが相手の呪文によって０以下に減らされた場合、相手は自身のクリーチャーを１体選び、破壊する。\n覚醒リンク - 自分のターンのはじめに、バトルゾーンに自分の《ガロウズ・セブ・カイザー》と《ハイドラ・ギルザウルス》があれば、そのクリーチャーとこのクリーチャーをすべて裏返しリンクさせる。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "リビング・デッド/エイリアン",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "死海竜ガロウズ・デビルドラゴン",
+          "typeText": "サイキック・スーパー・クリーチャー",
+          "civilizationText": "水/闇/火",
+          "civilizations": [
+            "水",
+            "闇",
+            "火"
+          ],
+          "cost": 24,
+          "costText": "24",
+          "abilityText": "相手プレイヤーはコストを支払わずにクリーチャーを召喚したり呪文を唱えたりできない。\nこのクリーチャーが攻撃する時、バトルゾーンにあるクリーチャーを２体まで選び、持ち主の手札に戻してもよい。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)\nリンク解除(このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す)\n※覚醒リンクするために必要なカード(ガロウズ・セブ・カイザー/竜骨なる者ザビ・リゲル/ハイドラ・ギルザウルス)",
+          "race": "デビル・コマンド・ドラゴン/エイリアン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "g1358Rigel": true,
+        "g174Start": [
+          {
+            "op": "PsychicLink1355",
+            "partners": [
+              "dmr01-v01",
+              "dmr01-059"
+            ]
+          }
+        ],
+        "g1355LinkedFace": {
+          "name": "死海竜ガロウズ・デビルドラゴン",
+          "type": "creature",
+          "civ": "水/闇/火",
+          "civilizations": [
+            "水",
+            "闇",
+            "火"
+          ],
+          "cost": 24,
+          "power": 12000,
+          "race": "デビル・コマンド・ドラゴン/エイリアン",
+          "breaker": 3,
+          "g1355Unlink": true,
+          "g1358UnpaidLock": true,
+          "g34Attack": [
+            {
+              "op": "Select",
+              "origin": "battle",
+              "anyOwner": true,
+              "filter": {
+                "creature": true
+              },
+              "n": 2,
+              "optional": true,
+              "g173Targets": true,
+              "to": "hand",
+              "toOwnerHand": true
+            }
+          ],
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-053b.jpg"
+        }
+      },
+      "verification": {
+        "facesMatched": true,
+        "manaValue": 0,
+        "sha256": "9def07b265f9649ad895c6257a8c85ea956fefc09e669e6ff1fec8e58060f430",
+        "imageSha256": "35d5b8f665be25bb8f4400911f45f230cbdaf65478c29cbb2ee8b3fda9dcb5c0",
+        "backImageSha256": "ca1b23889fdc78f27981553d5df6453eaf7f777e74a3dc2c5410d55e9446c96a"
+      }
+    },
+    {
+      "id": "dmr01-059",
+      "name": "ハイドラ・ギルザウルス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-059",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-059a.jpg",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-059b.jpg",
+      "faces": [
+        {
+          "name": "ハイドラ・ギルザウルス",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手がコストを支払わずにクリーチャーを召喚した時または呪文を唱えた時、相手はカードを１枚、自身のマナゾーンから選んで墓地に置く。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "ロック・ビースト/エイリアン",
+          "powerText": "5000",
+          "missingFields": []
+        },
+        {
+          "name": "死海竜ガロウズ・デビルドラゴン",
+          "typeText": "サイキック・スーパー・クリーチャー",
+          "civilizationText": "水/闇/火",
+          "civilizations": [
+            "水",
+            "闇",
+            "火"
+          ],
+          "cost": 24,
+          "costText": "24",
+          "abilityText": "相手プレイヤーはコストを支払わずにクリーチャーを召喚したり呪文を唱えたりできない。\nこのクリーチャーが攻撃する時、バトルゾーンにあるクリーチャーを２体まで選び、持ち主の手札に戻してもよい。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)\nリンク解除(このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す)\n※覚醒リンクするために必要なカード(ガロウズ・セブ・カイザー/竜骨なる者ザビ・リゲル/ハイドラ・ギルザウルス)",
+          "race": "デビル・コマンド・ドラゴン/エイリアン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "g1358Hydra": true,
+        "g1355LinkedFace": {
+          "name": "死海竜ガロウズ・デビルドラゴン",
+          "type": "creature",
+          "civ": "水/闇/火",
+          "civilizations": [
+            "水",
+            "闇",
+            "火"
+          ],
+          "cost": 24,
+          "power": 12000,
+          "race": "デビル・コマンド・ドラゴン/エイリアン",
+          "breaker": 3,
+          "g1355Unlink": true,
+          "g1358UnpaidLock": true,
+          "g34Attack": [
+            {
+              "op": "Select",
+              "origin": "battle",
+              "anyOwner": true,
+              "filter": {
+                "creature": true
+              },
+              "n": 2,
+              "optional": true,
+              "g173Targets": true,
+              "to": "hand",
+              "toOwnerHand": true
+            }
+          ],
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-059b.jpg"
+        }
+      },
+      "verification": {
+        "facesMatched": true,
+        "manaValue": 0,
+        "sha256": "25bae485bc8a3d5b7bd8262d5ac53a6be035491882cbe8fba7703b40e7e78fc3",
+        "imageSha256": "dce6237a2a113ecb65496703e7ff38905961ef6acbcc11c5736d04f7ad8bdbca",
+        "backImageSha256": "34c9b289a9d937396d780aab9bd8e17443c79bb1ab56bee5cfb9ca594bdd8230"
+      }
+    },
+    {
+      "id": "dmr01-v01",
+      "name": "ガロウズ・セブ・カイザー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-v01",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-v01a.jpg",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-v01b.jpg",
+      "faces": [
+        {
+          "name": "ガロウズ・セブ・カイザー",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "相手のクリーチャーが攻撃する時、カードを１枚引いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "サイバー・コマンド/エイリアン",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "死海竜ガロウズ・デビルドラゴン",
+          "typeText": "サイキック・スーパー・クリーチャー",
+          "civilizationText": "水/闇/火",
+          "civilizations": [
+            "水",
+            "闇",
+            "火"
+          ],
+          "cost": 24,
+          "costText": "24",
+          "abilityText": "相手プレイヤーはコストを支払わずにクリーチャーを召喚したり呪文を唱えたりできない。\nこのクリーチャーが攻撃する時、バトルゾーンにあるクリーチャーを２体まで選び、持ち主の手札に戻してもよい。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)\nリンク解除(このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す)\n※覚醒リンクするために必要なカード(ガロウズ・セブ・カイザー/竜骨なる者ザビ・リゲル/ハイドラ・ギルザウルス)",
+          "race": "デビル・コマンド・ドラゴン/エイリアン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "breaker": 2,
+        "g252AttackWatch": {
+          "who": "opponent",
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        },
+        "g1355LinkedFace": {
+          "name": "死海竜ガロウズ・デビルドラゴン",
+          "type": "creature",
+          "civ": "水/闇/火",
+          "civilizations": [
+            "水",
+            "闇",
+            "火"
+          ],
+          "cost": 24,
+          "power": 12000,
+          "race": "デビル・コマンド・ドラゴン/エイリアン",
+          "breaker": 3,
+          "g1355Unlink": true,
+          "g1358UnpaidLock": true,
+          "g34Attack": [
+            {
+              "op": "Select",
+              "origin": "battle",
+              "anyOwner": true,
+              "filter": {
+                "creature": true
+              },
+              "n": 2,
+              "optional": true,
+              "g173Targets": true,
+              "to": "hand",
+              "toOwnerHand": true
+            }
+          ],
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-v01b.jpg"
+        }
+      },
+      "verification": {
+        "facesMatched": true,
+        "manaValue": 0,
+        "sha256": "3fc19ced3c53137ce000c9104adbab558d48a8ff4c2acf39da764145ac218a18",
+        "imageSha256": "8bc034c065cec0f9fd21659185579643a493eecae942870b1f027716ec28462f",
+        "backImageSha256": "c11da4003b8cce2de59219227a21f3ffb9f38a87091f16707d4c1693d0bbb03c"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmr01-053M",
+      "canonicalId": "dmr01-053",
+      "name": "竜骨なる者ザビ・リゲル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-053M",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-053Ma.jpg",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-053Mb.jpg",
+      "faces": [
+        {
+          "name": "竜骨なる者ザビ・リゲル",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のエイリアンが相手の呪文によって破壊された場合、相手は自身のクリーチャーを１体選び、破壊する。\n自分のエイリアンのパワーが相手の呪文によって０以下に減らされた場合、相手は自身のクリーチャーを１体選び、破壊する。\n覚醒 (ruby:サイキック）リンク - 自分のターンのはじめに、バトルゾーンに自分の《ガロウズ・セブ・カイザー》と《ハイドラ・ギルザウルス》があれば、そのクリーチャーとこのクリーチャーをすべて裏返しリンクさせる。 （ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "リビング・デッド/エイリアン",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "死海竜ガロウズ・デビルドラゴン",
+          "typeText": "サイキック・スーパー・クリーチャー",
+          "civilizationText": "水/闇/火",
+          "civilizations": [
+            "水",
+            "闇",
+            "火"
+          ],
+          "cost": 24,
+          "costText": "24",
+          "abilityText": "相手プレイヤーはコストを支払わずにクリーチャーを召喚したり呪文を唱えたりできない。\nこのクリーチャーが攻撃する時、バトルゾーンにあるクリーチャーを２体まで選び、持ち主の手札に戻してもよい。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)\nリンク解除(このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す)\n※覚醒リンクするために必要なカード(ガロウズ・セブ・カイザー/竜骨なる者ザビ・リゲル/ハイドラ・ギルザウルス)",
+          "race": "デビル・コマンド・ドラゴン/エイリアン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "g1358Rigel": true,
+        "g174Start": [
+          {
+            "op": "PsychicLink1355",
+            "partners": [
+              "dmr01-v01",
+              "dmr01-059"
+            ]
+          }
+        ],
+        "g1355LinkedFace": {
+          "name": "死海竜ガロウズ・デビルドラゴン",
+          "type": "creature",
+          "civ": "水/闇/火",
+          "civilizations": [
+            "水",
+            "闇",
+            "火"
+          ],
+          "cost": 24,
+          "power": 12000,
+          "race": "デビル・コマンド・ドラゴン/エイリアン",
+          "breaker": 3,
+          "g1355Unlink": true,
+          "g1358UnpaidLock": true,
+          "g34Attack": [
+            {
+              "op": "Select",
+              "origin": "battle",
+              "anyOwner": true,
+              "filter": {
+                "creature": true
+              },
+              "n": 2,
+              "optional": true,
+              "g173Targets": true,
+              "to": "hand",
+              "toOwnerHand": true
+            }
+          ],
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-053b.jpg"
+        }
+      },
+      "verification": {
+        "facesMatched": true,
+        "manaValue": 0,
+        "sha256": "ecf9812ce3d6e9c4b3b927a9e828b902d2f77cbdce92e31167a05b24c8743878",
+        "imageSha256": "c2c2bda3a938cb80f60e9c9000480eef1468a17ed6b126f33a47c379cbe722b2",
+        "backImageSha256": "ca2775f4f2a4486b099519469de675f6c0792b7f7fce1f1499b547b3901d3bc2"
+      }
+    }
+  ]
+}
