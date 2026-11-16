@@ -2493,6 +2493,14 @@ export function standardCardSpec(d,{phase=165}={}){
   return {trigger:true,g1357CopyOnEntry:true,g174Start:[{op:'Target',g1357Become:true,
    g1357EndThisTurn:true,optional:true,title:'このクリーチャーがコピーする相手のクリーチャーを選ぶ'}]};
  }
+ if(phase>=1359&&d?.status==='complete'&&d.id==='dmrp08-s10'&&d.faces.length===1&&f.typeText==='クリーチャー'&&
+    normalize(f.abilityText)===normalize(
+     'Q・ブレイカー（このクリーチャーはシールドを４つブレイクする）'+
+     '自分の他のクリーチャーが相手のクリーチャーとバトルする時、かわりにこのクリーチャーにバトルさせてもよい。'+
+     'このクリーチャーがバトルに勝った時、カードを１枚引いてもよい。その後、自分の山札の上から１枚目をマナゾーンに置いてもよい。'+
+     '相手は自身のターン中、マナゾーンのカードをタップして召喚しなければ、クリーチャーをバトルゾーンに出せない。')){
+  return {breaker:4,g1359Radon:true,g189BattleWin:[{op:'Draw',n:1,optional:true},{op:'Ramp',n:1,optional:true}]};
+ }
  if(phase>=1358&&d?.status==='complete'&&d.faces.length===2&&f.typeText==='サイキック・クリーチャー'){
   const rigel='dmr01-053',hydra='dmr01-059',garrows='dmr01-v01',back=d.faces[1];
   const id=d.id==='dmr01-053M'?rigel:d.id;
