@@ -13,3 +13,14 @@ test('online board shows stacked shield card counts with no hidden card identiti
 test('online fields show NewWorld bases and its one-use state instead of creature power',()=>{const s=fixture();s.room.game.players[0].battle=[{...c('world','新世壊'),type:'field',worldUsed:true,under:[c('base')]}];const html=onlineScreenHTML(s,{user:{}});assert.match(html,/下 1枚 · 使用済/);assert.ok(!html.includes('creature-current-power">0'));});
 test('an attached aura identifies its visible host on the online field',()=>{const s=fixture(),host=c('host','装着先＆GR');s.room.game.players[0].battle=[host,{...c('zaha'),type:'aura',auraTo:{uid:host.uid,incarnation:0}}];assert.match(onlineScreenHTML(s,{user:{}}),/装着：装着先＆GR/);host.hidden=true;assert.doesNotMatch(onlineScreenHTML(s,{user:{}}),/装着先＆GR/);});
 test('online badges and the selected-card drawer count all nested sources, while hidden cards expose none',()=>{const s=fixture(),x={...c('evo'),evolution:true,under:[{...c('base'),under:[c('deep1'),c('deep2')]}]};s.room.game.players[0].battle=[x];let html=onlineScreenHTML(s,{user:{},actionsOpen:true,selected:'evo'});assert.match(html,/aria-label="進化元 3枚"/);assert.match(html,/コスト 3 · 進化元 3枚/);x.under[0].under.pop();html=onlineScreenHTML(s,{user:{}});assert.match(html,/aria-label="進化元 2枚"/);x.hidden=true;html=onlineScreenHTML(s,{user:{}});assert.ok(!html.includes('creature-source-count'));x.hidden=false;x.sealed=true;html=onlineScreenHTML(s,{user:{}});assert.ok(!html.includes('creature-source-count'));});
+
+test('an equipped weapon identifies its host and a released Dragheart requests the reverse art',()=>{
+ const s=fixture(),host=c('host','装備先＆クリーチャー');
+ const weapon={...c('weapon'),type:'weapon',weaponTo:{uid:host.uid,incarnation:0}};
+ const dragon={...c('dragon'),type:'creature',awakened:true};
+ s.room.game.players[0].battle=[host,weapon,dragon];
+ const sides=[];
+ const html=onlineScreenHTML(s,{user:{},art:(id,options)=>{if(id===dragon.id)sides.push(options?.awakened);return '';}});
+ assert.match(html,/装備：装備先＆クリーチャー/);
+ assert.ok(sides.includes(true));
+});

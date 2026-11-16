@@ -1342,6 +1342,16 @@ export function createSixPhotoRules(api){
   }
   return groups;
  }
+ function dragheartOptions1361(s,t){
+  const own=s.players[t.p];
+  const mana=t.weaponOnly?new Set(own.mana.flatMap(x=>x.faceDown?[]:api.manaColors(card(x),s,t.p))):null;
+  return own.extra.filter(x=>{
+   const c=card(x);
+   if(!c.dragheart)return false;
+   return t.weaponOnly?c.type==='weapon'&&cost(c)<=4&&colors(c).some(color=>mana.has(color)):
+    cost(c)<=3||cost(c)<=5&&colors(c).includes('光');
+  }).filter(x=>api.canEnter(s,t.p,card(x),{origin:'extra',execution:false}));
+ }
  function selection(s,t){
   let candidates=t.anyOwner?[...list(s,{...t,owner:'opponent'}),...list(s,{...t,owner:'self'})]:list(s,t);
   if(t.g1111DistinctNames){
@@ -2312,6 +2322,17 @@ export function createSixPhotoRules(api){
   return c?.g417Chance&&!api.spellIgnored(s,c)&&api.canCast(s,t.p,c,origin)?c:null;
  }
  function run(s,t){if(fifteen.run(s,t))return true;if(!t.op.startsWith('g34_'))return false;const own=s.players[t.p],opp=s.players[1-t.p],x=live(s,t);switch(t.op){
+ case'g34_ChooseWeaponHost1361':{
+  const options=targetOptions(s,t.p,creatures(s,t.p));
+  if(options.length)choice(s,t,'ウエポンを装備する自分のクリーチャーを選ぶ',options);
+  break;
+ }
+ case'g34_DeployDragheart1361':{
+  const options=dragheartOptions1361(s,t).map(y=>opt(card(y).name,y.uid,20,y.cardId));
+  if(options.length)choice(s,t,'超次元ゾーンから出すドラグハートを選ぶ',options);
+  break;
+ }
+ case'g34_UltoRelease1361':if(x)api.dragonRelease1361(s,t.p,x);break;
  // Evo Charger continues after the physical spell has completed its move to mana.
  case'g34_EvoCharge566':{const hosts=creatures(s,t.p).filter(y=>!y.sealed&&api.isEvolution(y)),rows=own.mana.filter(y=>!y.faceDown&&faces(card(y)).some(c=>c.type==='creature'));if(!api.canMoveZone(s,t.p,'mana')||!hosts.length||!rows.length)break;if(!t.host)choice(s,t,'進化元を追加する自分の進化クリーチャーを選ぶ（任意）',[...hosts.map(y=>opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},8,y.cardId)),skip()]);else if(hosts.some(y=>key(y)===key(t.host)))choice(s,t,'進化元に追加するマナのクリーチャーを選ぶ（任意）',[...rows.map(y=>opt(card(y).name,{uid:y.uid,serial:y.zoneSerial||0},6-cost(card(y)),y.cardId)),skip()]);break;}
  case'g34_Bind566':{const caster=t.caster??t.p,stage=t.stage||0;if(stage<2){const chooser=stage?1-caster:caster,rows=creatures(s,chooser).filter(y=>!y.sealed);if(!rows.length)put(s,{...t,p:caster,caster,stage:stage+1});else choice(s,{...t,p:chooser,caster,stage},'攻撃できる自分のクリーチャーを1体選ぶ',rows.map(y=>opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},api.power(y,false,s)/1000,y.cardId)));}else{const chosen=t.chosen||[];for(const who of[0,1])for(const y of creatures(s,who))if(!y.sealed&&!chosen.includes(key(y)))(y.g35NoAttack??=[]).push({turn:s.turn,g566SpellCost:cost(card(t.source)),g566Controller:caster},{turn:s.turn+1,g566SpellCost:cost(card(t.source)),g566Controller:caster});}break;}
@@ -6230,6 +6251,22 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
  }
  function chosen(s,t,v){if(fifteen.chosen(s,t,v))return true;if(!t.op.startsWith('g34_'))return false;const own=s.players[t.p],x=live(s,t);switch(t.op){
+ case'g34_ChooseWeaponHost1361':{
+  const host=creatures(s,t.p).find(y=>y.uid===v);
+  if(host)put(s,{...t,op:'g34_DeployDragheart1361',uid:host.uid,incarnation:host.incarnation||0,weaponOnly:true});
+  break;
+ }
+ case'g34_DeployDragheart1361':{
+  const y=dragheartOptions1361(s,t).find(y=>y.uid===v);
+  if(!y)break;
+  remove(own.extra,y.uid);
+  if(card(y).type==='weapon'){
+   y.weaponTo={uid:t.uid,incarnation:t.incarnation||0};
+   own.hasWeapons1361=true;
+  }
+  enter(s,t.p,y,null,{origin:'extra',execution:false,effectController:t.controller??t.p});
+  break;
+ }
  case'g34_YurufuwaDeclare1293':{
   const row=t.declaring;
   if(v){
@@ -9544,6 +9581,8 @@ export function createSixPhotoRules(api){
      ...(g971GraveDeployEnd?{deploy:true}:{})})});
   }
   const remaining501=[];for(const r of s.g501EndDelays||[])if(!r.ownEnd||r.p===s.active)out.push({player:r.p,source:r.source,effect:'extended',task:task('g34_ResolveEnd501',r.p,r.source,{...r})});else remaining501.push(r);s.g501EndDelays=remaining501;for(const t of s.g484BreakEnds||[])if(t.turn===s.turn)out.push({player:t.p,source:t.source,uid:t.uid,effect:'extended',task:task('g34_Sequence',t.p,t.source,{uid:t.uid,incarnation:t.incarnation,defs:[E('BreakReturn484')]})});s.g484BreakEnds=[];for(const t of s.g408EndUntaps||[])if(t.turn===s.turn)out.push({player:t.p,source:t.source,uid:t.g399Attacker.uid,effect:'extended',task:task('g34_AttackUntap408',t.p,t.source,{g399Attacker:t.g399Attacker})});s.g408EndUntaps=[];for(const p of[0,1]){const add=(x,defs,source=x.cardId)=>out.push({player:p,uid:x.uid,source,effect:'extended',task:task('g34_Sequence',p,source,{uid:x.uid,incarnation:x.incarnation||0,defs})});for(const x of s.players[p].battle){if(x.g34Delayed?.turn===s.turn){const d=x.g34Delayed,controller=d.controller??p,source=d.source||x.cardId;out.push({player:controller,uid:x.uid,source,effect:'extended',task:task('g34_DelayedMove532',controller,source,{uid:x.uid,incarnation:x.incarnation||0,to:d.to})});}if(api.ignored(s,x))continue;const r=card(x).g34Role;if(!x.sealed&&effective(x,s).g474AnyEnd)add(x,effective(x,s).g474AnyEnd);
+  // Rule 603.4 checks the host's tapped state when the end-step ability resolves.
+  if(p===s.active&&card(x).weaponBlocker)add(x,[E('UltoRelease1361')]);
   const manaLeftEnd=card(x).g811ManaLeftEnd;
   if(manaLeftEnd&&s.g47ManaLeft?.[p]===s.turn)add(x,manaLeftEnd);
   if(card(x).g1032ShieldAddedEnd&&!x.sealed&&s.g159ShieldAddedTurns?.[p]===s.turn){

@@ -271,7 +271,7 @@ function recordStrongestOutcome(){
 function pageHead(title,sub,actions='',eyebrow='DECK LAB'){return `<div class="page-head"><div class="page-title"><div class="eyebrow">${eyebrow}</div><h1>${title}</h1>${sub?`<p>${sub}</p>`:''}</div>${actions}</div>`;}
 const cardArt=createCardArt();cardArt.bind(document);
 function art(id,options={}){
- const c=card(id),back=options.awakened&&(c?.g1085Back||c?.startCard?.back||c?.g1355LinkedFace);
+ const c=card(id),back=options.awakened&&(c?.g1085Back||c?.startCard?.back||c?.g1355LinkedFace||c?.dragheartBack);
  return cardArt.html(back?{...c,...back,faces:[],imageOverride:back.image}:c?.ritual||c?.forbiddenCore?{...c,imageOverride:c.image}:c,options);
 }
 function miniDeck(d){const ids=[...d.cards].filter(r=>card(r.id)).sort((a,b)=>(card(a.id).type==='creature'?0:1)-(card(b.id).type==='creature'?0:1)).slice(0,3);return `<span class="mini-deck">${ids.map(r=>art(r.id,{mini:true})).join('')}</span>`;}
@@ -795,7 +795,7 @@ function registerSupportDeck(confirmed=false){
  if(edit.cards.length&&!confirmed){showDialog('この40枚で登録しますか？','<p class="small">編集中のカード構成を、画像から確認した40枚に置き換えて保存します。デッキ名はそのまま使います。</p>', '<button class="btn" data-action="close-dialog">編集を続ける</button><button class="btn primary" data-action="support-register-confirm">40枚に置き換えて保存</button>');return;}
  edit.cards=result.cards;closeDialog();saveDeck();if(!edit)clearPhoto();
 }
-function updateQuantity(id,delta){if(!edit||!Number.isInteger(delta)||![-1,1].includes(delta))return;const c=card(id);if(!c||c.psychic)return;const row=edit.cards.find(r=>r.id===id);if(delta<0&&!row)return;if(delta>0&&((row?.count||0)>=maxCopies(c)||sum(edit)>=40)){toast('上限に達しています');return;}rememberEdit();if(row)row.count=Math.max(0,row.count+delta);else edit.cards.push({id,count:1});edit.cards=edit.cards.filter(r=>r.count>0);refreshEditor();}
+function updateQuantity(id,delta){if(!edit||!Number.isInteger(delta)||![-1,1].includes(delta))return;const c=card(id);if(!c||extraDeckZone(c))return;const row=edit.cards.find(r=>r.id===id);if(delta<0&&!row)return;if(delta>0&&((row?.count||0)>=maxCopies(c)||sum(edit)>=40)){toast('上限に達しています');return;}rememberEdit();if(row)row.count=Math.max(0,row.count+delta);else edit.cards.push({id,count:1});edit.cards=edit.cards.filter(r=>r.count>0);refreshEditor();}
 function opponentChoice(d,action,label){const errors=registrationErrors(d),unsupported=coverage(d).unsupported;return `<button class="opponent-choice" data-action="${action}" data-id="${esc(d.id)}" ${errors.length?'disabled':''}>${miniDeck(d)}<span class="grow"><strong>${esc(d.name)}</strong>${opponentMark(d)}<small>${esc(label)} · ${sum(d)}枚</small><small>${errors.length?'編集中：40枚の構成を確認してください':unsupported?`効果未対応 ${unsupported}枚 · 対戦は準備中`:'対戦可能'}</small></span>${icon('chevron',14)}</button>`;}
 function opponentSourceButton(title,note,action,extra=''){return `<button class="source-choice" data-action="${action}" ${extra}><span><strong>${title}</strong><small>${note}</small></span>${icon('chevron',15)}</button>`;}
 function showOpponentPicker(){

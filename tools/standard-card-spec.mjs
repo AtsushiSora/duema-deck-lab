@@ -2493,6 +2493,45 @@ export function standardCardSpec(d,{phase=165}={}){
   return {trigger:true,g1357CopyOnEntry:true,g174Start:[{op:'Target',g1357Become:true,
    g1357EndThisTurn:true,optional:true,title:'このクリーチャーがコピーする相手のクリーチャーを選ぶ'}]};
  }
+ if(phase>=1361&&d?.status==='complete'){
+  const back=d.faces[1];
+  if(['dmr13-045','promoy13-057'].includes(d.id)&&d.faces.length===2&&f.typeText==='ドラグハート・ウエポン'&&
+     back.typeText==='ドラグハート・クリーチャー'&&normalize(f.abilityText)===normalize(
+      'これを装備したクリーチャーは「ブロッカー」を得る。'+
+      '龍解：自分のターンの終わりに、これを装備したクリーチャーがタップされていれば、このドラグハートをクリーチャー側に裏返し、アンタップする。'+
+      '（ゲーム開始時、ドラグハートは自身の超次元ゾーンに置き、ドラグハートまたはそれを装備したクリーチャーがバトルゾーンを離れた場合、そこに戻す）')&&
+     normalize(back.abilityText)===normalize('ブロッカー ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）'+
+      'このクリーチャーは、相手プレイヤーを攻撃できない。')){
+   return {type:'weapon',manaValue:0,dragheart:true,weaponBlocker:true,dragheartBack:{
+    name:back.name,type:'creature',cost:back.cost,power:Number(back.powerText),race:back.race,
+    blocker:true,noPlayerAttack:true,weaponBlocker:false,
+    image:'https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-045b.jpg'
+   }};
+  }
+  if(['dmr16s-007','dmr16g-SEC1D','dmx26-037','dmex06-054','dmbd14-019','dmrp19-a11','dmrp19-b11'].includes(d.id)&&
+     d.faces.length===1&&f.typeText==='クリーチャー'){
+   const canonical=f.abilityText.replace(/このクリーチャー[をが](?:バトルゾーンに)?出(?:した|た)時/,'このクリーチャーが出た時')
+    .replaceAll('バトルゾーンに出す','出す').replace('このクリーチャーに装備する','このクリーチャーに装備して出す')
+    .replace(/バトルゾーンにある自分の光のクリーチャー(?:はすべて|すべてに)/,'自分の光のクリーチャーすべてに')
+    .replace('「シールド・セイバー」を得る','「シールド・セイバー」を与える')
+    .replace('「シールド・セイバー」を持つクリーチャーを破壊','「シールド・セイバー」を持つクリーチャーを１体破壊');
+   if(normalize(canonical)===normalize('このクリーチャーが出た時、コスト３以下のドラグハートを１枚、または光のコスト５以下のドラグハートを１枚、自分の超次元ゾーンから出す。（それがウエポンであれば、このクリーチャーに装備して出す）'+
+    'マナ武装 ５：自分のマナゾーンに光のカードが５枚以上あれば、自分の光のクリーチャーすべてに「シールド・セイバー」を与える。（自分のシールドがブレイクされる時、かわりに「シールド・セイバー」を持つクリーチャーを１体破壊してもよい）'))
+    return {effect:'sixPhoto',g34Tasks:[{op:'DeployDragheart1361'}],g1361Rozia:true};
+  }
+  if(['dmbd14-015','dmex17-093','dm25ex2-Cho044'].includes(d.id)&&d.faces.length===2&&
+     f.typeText==='クリーチャー'&&back.typeText==='呪文'){
+   const front=f.abilityText.replace('バトルゾーンに出た時','出た時').replace('１枚目を表','１枚を表').replaceAll('・カード','');
+   const spell=back.abilityText.replace('その後、','').replace('ウエポンを１枚','ウエポンを１つ')
+    .replace('から、その選んだクリーチャーに装備してバトルゾーンに出す。','から出し、その選んだクリーチャーに装備する。')
+    .replace('から、その選んだクリーチャーに装備して出す。','から出し、その選んだクリーチャーに装備する。');
+   if(normalize(front)===normalize('このクリーチャーが出た時、自分の山札の上から１枚を表向きにする。それがドラグナーまたはドラゴンなら、手札に加える。')&&
+      normalize(spell)===normalize('自分のクリーチャーを１体選ぶ。自分のマナゾーンにあるカードと同じ文明を持つ、コスト４以下のドラグハート・ウエポンを１つ、自分の超次元ゾーンから出し、その選んだクリーチャーに装備する。'))
+    return {effect:'sixPhoto',g34Tasks:[{op:'RevealTop514',filter:{raceAny:['ドラグナー','ドラゴン']},to:'hand'}],
+     spellFrontName:f.name,spellFace:{name:back.name,type:'spell',cost:back.cost,civ:back.civilizationText,
+      civilizations:back.civilizations,race:back.race,text:back.abilityText,effect:'sixPhoto',g34Tasks:[{op:'ChooseWeaponHost1361'}]}};
+  }
+ }
  if(phase>=1359&&d?.status==='complete'&&d.id==='dmrp08-s10'&&d.faces.length===1&&f.typeText==='クリーチャー'&&
     normalize(f.abilityText)===normalize(
      'Q・ブレイカー（このクリーチャーはシールドを４つブレイクする）'+

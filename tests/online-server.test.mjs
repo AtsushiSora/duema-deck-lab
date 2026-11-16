@@ -169,3 +169,29 @@ test('Advance projects the complete public opening sets across an encrypted reco
   assert.ok(game.players.every((p,i)=>p.hand.length===(user===host?i===0:i===1)*raw.players[i].hand.length));
  }
 });
+
+test('Advance projects an equipped Dragheart and its released side across encrypted state restoration',async()=>{
+ const {projectRoom}=await import('../server/duel-core.mjs');
+ const {inst}=await import('./target-fixture.mjs');
+ const h=setup(),deck={...PRESETS[0],format:'advance',extraCards:[{id:'dmr13-045',count:1}]};
+ const waiting=await h.service.create({deck,requestId:requestId('dragheart-create')},host,host.uid);
+ await h.service.join({code:waiting.code,deck,requestId:requestId('dragheart-join')},guest,guest.uid);
+ const room=h.raw(waiting.code),own=room.game.players[0],weapon=own.extra.pop(),holder=inst('dm01-090');
+ weapon.weaponTo={uid:holder.uid,incarnation:0};
+ own.hasWeapons1361=true;
+ own.battle.push(holder,weapon);
+ const restored=()=>openRoom(sealRoom(room,key),key);
+ for(const player of [host,guest]){
+  const field=projectRoom(restored(),player).game.players[0].battle;
+  assert.equal(field[1].type,'weapon');
+  assert.deepEqual(field[1].weaponTo,{uid:holder.uid,incarnation:0});
+ }
+ delete weapon.weaponTo;
+ weapon.dragheartFlipped=true;
+ for(const player of [host,guest]){
+  const shown=projectRoom(restored(),player).game.players[0].battle[1];
+  assert.equal(shown.name,'神光の精霊龍 ウルティマリア');
+  assert.equal(shown.awakened,true);
+  assert.equal(shown.weaponTo,undefined);
+ }
+});

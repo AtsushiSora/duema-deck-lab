@@ -159,7 +159,15 @@ export function createSamuraiRules(api){
  },
  effect(s,p,c,uid,entry){const op={samuraiBui:'g18_Bui',samuraiMusashi:'g18_Musashi',samuraiMekraid:'g18_Mekraid',samuraiFlash:'g18_Flash'}[c.effect];if(!op)return false;put(s,task(op,p,c.id,{uid,incarnation:entry?.incarnation||0}));return true;},
  cleanup(s){for(const p of[0,1])for(const g of gears(s,p))if(g.crossedTo&&!live(s,p,g))delete g.crossedTo;},
- inherit(s,base,x){if(base.g18Blocker)x.g18Blocker=structuredClone(base.g18Blocker);for(const p of[0,1])for(const g of attached(s,p,base))g.crossedTo={uid:x.uid,incarnation:x.incarnation||0};},
+ inherit(s,base,x){
+  if(base.g18Blocker)x.g18Blocker=structuredClone(base.g18Blocker);
+  for(const p of [0,1]){
+   for(const g of attached(s,p,base))g.crossedTo={uid:x.uid,incarnation:x.incarnation||0};
+   if(s.players[p].hasWeapons1361)for(const g of s.players[p].battle)
+    if(g.weaponTo?.uid===base.uid&&g.weaponTo.incarnation===(base.incarnation||0))
+     g.weaponTo={uid:x.uid,incarnation:x.incarnation||0};
+  }
+ },
  decorate932(s,p,x,c){
   if(c.type!=='creature')return c;
   let speed=false,blocker=false,slayers=0,attackBonus=0;

@@ -248649,25 +248649,134 @@
       ],
       "supportBatch": "phase-1359",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-045",
+      "name": "神光の龍槍 ウルオヴェリア",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 0,
+      "type": "weapon",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "これを装備したクリーチャーは「ブロッカー」を得る。\n龍解：自分のターンの終わりに、これを装備したクリーチャーがタップされていれば、このドラグハートをクリーチャー側に裏返し、アンタップする。 （ゲーム開始時、ドラグハートは自身の超次元ゾーンに置き、ドラグハートまたはそれを装備したクリーチャーがバトルゾーンを離れた場合、そこに戻す）\n【龍解面】\nブロッカー ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-045",
+      "limit": 4,
+      "dragheart": true,
+      "weaponBlocker": true,
+      "dragheartBack": {
+        "name": "神光の精霊龍 ウルティマリア",
+        "type": "creature",
+        "cost": 5,
+        "power": 7500,
+        "race": "エンジェル・コマンド・ドラゴン",
+        "blocker": true,
+        "noPlayerAttack": true,
+        "weaponBlocker": false,
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-045b.jpg"
+      },
+      "supportBatch": "phase-1361",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr16s-007",
+      "name": "真・龍覇 ヘブンズロージア",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5500,
+      "race": "エンジェル・コマンド・ドラゴン/ジャスティス・ウイング/ドラグナー",
+      "text": "このクリーチャーをバトルゾーンに出した時、コスト３以下のドラグハートを１枚、または光のコスト５以下のドラグハートを１枚、自分の超次元ゾーンからバトルゾーンに出す。（それがウエポンであれば、このクリーチャーに装備して出す）\nマナ武装 ５：自分のマナゾーンに光のカードが５枚以上あれば、バトルゾーンにある自分の光のクリーチャーはすべて「シールド・セイバー」を得る。（自分のシールドがブレイクされる時、かわりに「シールド・セイバー」を持つクリーチャーを破壊してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-007",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DeployDragheart1361"
+        }
+      ],
+      "g1361Rozia": true,
+      "supportBatch": "phase-1361",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd14-015",
+      "name": "爆龍覇 リンクウッド /「お前の相手はオレだ、ザ=デッドマン！」",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ヒューマノイド爆/ドラグナー",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を表向きにする。それがドラグナーまたはドラゴンなら、手札に加える。\n【呪文面】\n自分のクリーチャーを１体選ぶ。その後、自分のマナゾーンにあるカードと同じ文明を持つ、コスト４以下のドラグハート・ウエポンを１枚、自分の超次元ゾーンから、その選んだクリーチャーに装備してバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd14-015",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "RevealTop514",
+          "filter": {
+            "raceAny": [
+              "ドラグナー",
+              "ドラゴン"
+            ]
+          },
+          "to": "hand"
+        }
+      ],
+      "spellFrontName": "爆龍覇 リンクウッド",
+      "spellFace": {
+        "name": "「お前の相手はオレだ、ザ=デッドマン！」",
+        "type": "spell",
+        "cost": 4,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "text": "自分のクリーチャーを１体選ぶ。その後、自分のマナゾーンにあるカードと同じ文明を持つ、コスト４以下のドラグハート・ウエポンを１枚、自分の超次元ゾーンから、その選んだクリーチャーに装備してバトルゾーンに出す。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ChooseWeaponHost1361"
+          }
+        ]
+      },
+      "supportBatch": "phase-1361",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1359,
+    "phase": 1361,
     "checkedAt": "2026-11-16",
-    "baseCount": 8051,
-    "newEffectCards": 1,
+    "baseCount": 8052,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 8052,
+    "totalCount": 8055,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31627/",
-      "https://dm.takaratomy.co.jp/rule/qa/39626/",
-      "https://dm.takaratomy.co.jp/rule/qa/39627/",
-      "https://dm.takaratomy.co.jp/rule/qa/39628/",
-      "https://dm.takaratomy.co.jp/rule/qa/46818/"
+      "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+      "https://dm.takaratomy.co.jp/rule/qa/48115/",
+      "https://dm.takaratomy.co.jp/rule/qa/40375/",
+      "https://dm.takaratomy.co.jp/rule/qa/39682/",
+      "https://dm.takaratomy.co.jp/rule/qa/40248/",
+      "https://dm.takaratomy.co.jp/rule/qa/45080/",
+      "https://dm.takaratomy.co.jp/rule/qa/42077/",
+      "https://dm.takaratomy.co.jp/rule/qa/40207/",
+      "https://dm.takaratomy.co.jp/rule/qa/48118/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316682/"
     ],
     "next": [
-      "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+      "個別裁定が必要とする未対応カードを検証する"
     ],
     "history": [
       {
@@ -271532,6 +271641,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/39643/",
           "https://dm.takaratomy.co.jp/rule/qa/39644/",
           "https://dm.takaratomy.co.jp/rule/qa/48153/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1359,
+        "checkedAt": "2026-11-16",
+        "baseCount": 8051,
+        "newEffectCards": 1,
+        "newVanillaCards": 0,
+        "totalCount": 8052,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31627/",
+          "https://dm.takaratomy.co.jp/rule/qa/39626/",
+          "https://dm.takaratomy.co.jp/rule/qa/39627/",
+          "https://dm.takaratomy.co.jp/rule/qa/39628/",
+          "https://dm.takaratomy.co.jp/rule/qa/46818/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

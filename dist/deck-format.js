@@ -9,7 +9,7 @@ export const EXTRA_DECK_ZONES=Object.freeze({
  startCards:{label:'対戦開始時カード',max:1,copies:1}
 });
 export const extraDeckKeys=Object.keys(EXTRA_DECK_ZONES);
-export const extraDeckZone=card=>card?.psychic?'extraCards':card?.gr?'grCards':card?.startCard?'startCards':null;
+export const extraDeckZone=card=>card?.psychic||card?.dragheart?'extraCards':card?.gr?'grCards':card?.startCard?'startCards':null;
 export function copyExtraDeck(deck,copy){
  return Object.fromEntries(extraDeckKeys.filter(key=>deck[key]?.length).map(key=>[key,copy(deck[key])]));
 }
