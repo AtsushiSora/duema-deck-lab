@@ -539583,7 +539583,7 @@
           "name": "行くよー！アオハル、ハイチーズ！"
         }
       ],
-      "remainingTestsSummary": "全体のnpm testは中断・合否未確認。固定スナップショットのNo.03・04・06・13は134/344分割（1364試合）、No.16・21の作業ツリー分割は68/113件が通過。広範囲のオンラインサーバー検証は実行中。残りは既存実行から照合する。",
+      "remainingTestsSummary": "全体のnpm testは中断・合否未確認。固定スナップショットのNo.03・04・06・13は141/344分割（1436試合）、No.16・21の作業ツリー分割は69/113件が通過。Phase 1361のオンライン等の分割は75/75件通過。稼働中の分割は同じ対象を再起動せず、終了後にログを回収する。",
       "advanceImplementation": {
         "status": "implemented",
         "phases": [
@@ -542212,18 +542212,18 @@
               "checkedAt": "2026-11-16",
               "frozen": {
                 "baseline": "e3323a89",
-                "verified": 134,
+                "verified": 141,
                 "planned": 344,
-                "games": 1364,
+                "games": 1436,
                 "results": "tmp/duema-verification-e3323a89/results.jsonl"
               },
               "legacy": {
                 "scope": "実行時の作業ツリー。固定コミットの検証結果としては扱わない。",
-                "verified": 68,
+                "verified": 69,
                 "planned": 113,
                 "byKind": {
                   "AI replay": 19,
-                  "production worker": 14,
+                  "production worker": 15,
                   "random legal choices": 35
                 },
                 "results": "tmp/duema-verification-e3323a89/legacy-fixtures/results.jsonl"
@@ -542302,9 +542302,33 @@
         "next": "文明変更の順序を保存互換で扱い、ゾーン内のカードとカードを使う際の文明を区別して、支払い・ツインパクトの両面・山札検索・離脱後の復帰を検証する。公式資料の確認だけではQA38608・31641を解決済みに数えない。"
       },
       "onlineBroad1361": {
-        "status": "running",
+        "status": "passed",
         "log": "tmp/duema-phase-1361/online-final.log",
-        "appliesTo": "実行時の作業ツリー。最終コミットの全件合否としては未確認。"
+        "appliesTo": "Phase 1361のオンライン・UI・サーバー・固有テスト。テストログは作業ツリー実行、公開対象コミットは未確定。",
+        "passed": 75,
+        "failed": 0,
+        "durationSeconds": 405.408
+      },
+      "kengekiOfficialRecheck": {
+        "checkedAt": "2026-11-16",
+        "baseline": "98bb5367f6c1b420c7de3c35590559ec5e1b2d39",
+        "pendingRuling": "https://dm.takaratomy.co.jp/rule/qa/40956/",
+        "cardPrints": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm35-004",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmc64-013"
+        ],
+        "candidateBase": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-023",
+        "rulings": {
+          "38763": "オーラが発生源の場合は勝たない。",
+          "40885": "超無限進化で選んだ各クリーチャーのコストを合計し、その下のカードは含めない。",
+          "40956": "ドキンダムエリアの置換を先に適用して封印する。勝利は成立しない。",
+          "40957": "キューブリックの墓地で誘発した能力で離れても勝たない。",
+          "40958": "寄成ギョウで自分が使用しても、相手のブラック・フェザーが発生源であるため勝つ。",
+          "40959": "ケロディ・フロッグの離脱誘発にバトルゾーンの直前の情報を適用するため勝つ。",
+          "40960": "相手の呪文でパワー0にしても、破壊は状況起因処理なので勝たない。",
+          "41280": "ティーゾリスで離れる時の能力の発動回数は増えない。"
+        },
+        "next": "選んだ進化元で支払いを計算し、バトルゾーンでの発生源と能力の解決者を別に扱う。離脱による誘発は直前の発生源を記録し、置換確定後に勝利条件を評価する。ケンゲキオージャと進化元の登録および実カード検証は保留。"
       }
     }
   },
