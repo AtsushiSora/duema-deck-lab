@@ -21,14 +21,35 @@ export function setCards(cards){for(const c of cards){if(c.effect&&!EFFECTS.has(
 const SEAL_CARD={id:'face-down-seal',name:'裏向きの封印',type:'seal',cost:0,power:0,civ:'',civilizations:[],race:'',manaValue:0};
 const FACE_DOWN={id:'face-down-mana',name:'裏向きのマナ',type:'unknown',cost:0,power:0,race:'',civ:'',civilizations:[],manaValue:1};
 export const copySource=(original,reference)=>'ability-copy:'+encodeURIComponent(original)+':'+encodeURIComponent(reference);
+// A rules action may read printed definitions by ID, including during nested spells.
+// Bind the game only for synchronous rules evaluation; catalogue and deck data stay printed.
+let civilizationContext1363;
+function withCivilizationContext1363(s,resolve){
+ const previous=civilizationContext1363;
+ civilizationContext1363=s;
+ try{return resolve();}
+ finally{civilizationContext1363=previous;}
+}
+function withoutCivilizations1363(c){
+ if(!c||c===FACE_DOWN||c===SEAL_CARD)return c;
+ return {...c,civ:'ゼロ',civilizations:[],manaValue:manaValue(c),
+  ...(c.g568PaymentColors?{g568PaymentColors:[]}:{}),
+  ...(c.spellFace?{spellFace:withoutCivilizations1363(c.spellFace)}:{}),
+  ...(c.g393JWDFaces?{g393JWDFaces:c.g393JWDFaces.map(withoutCivilizations1363)}:{})};
+}
 export function card(id){
- if(typeof id!=='string'&&id?.g50KingFace){const c=card(id.g50KingDefinition||id.cardId);return {...c.g50KingFace,id:id.cardId,limit:c.limit};}
+ const c=printedCard1363(id);
+ return civilizationContext1363?.g1363JoePlayed&&joeOrder1363(civilizationContext1363)!==null?
+  withoutCivilizations1363(c):c;
+}
+function printedCard1363(id){
+ if(typeof id!=='string'&&id?.g50KingFace){const c=printedCard1363(id.g50KingDefinition||id.cardId);return {...c.g50KingFace,id:id.cardId,limit:c.limit};}
  if(typeof id!=='string'&&id?.sealOf)return SEAL_CARD;
  if(typeof id!=='string'&&id?.faceDown)return FACE_DOWN;
- if(typeof id!=='string'&&id?.sealed){const c=card(id.cardId);return {id:c.id,name:c.name,type:'ignored',cost:Infinity,power:0,civ:'',civilizations:[],race:'',limit:c.limit};}
+ if(typeof id!=='string'&&id?.sealed){const c=printedCard1363(id.cardId);return {id:c.id,name:c.name,type:'ignored',cost:Infinity,power:0,civ:'',civilizations:[],race:'',limit:c.limit};}
  if(typeof id!=='string'&&id?.g1357Copies?.length)return id.g1357Copies.at(-1).definition;
  if(typeof id!=='string'&&id?.godLinks?.length){
-  const defs=[id,...id.godLinks].map(x=>card(x.cardId)),base={...defs[0]};
+  const defs=[id,...id.godLinks].map(x=>printedCard1363(x.cardId)),base={...defs[0]};
   const union=key=>[...new Set(defs.flatMap(c=>key==='civilizations'?civilizations(c):String(c[key]||'').split('/')))];
   for(const c of defs)for(const [k,v] of Object.entries(c))if(v===true)base[k]=true;
   const completeHdm=['heavy','death','metal'].every(role=>defs.some(c=>c.g1334God===role));
@@ -48,10 +69,10 @@ export function card(id){
    civilizations:base.g1355LinkedFace.civilizations,civ:base.g1355LinkedFace.civ,psychic:true,manaValue:0
   };
   const definition=id.g1085Awakened&&base.g1085Back?{...base,...base.g1085Back,g1085AwakenOnWin:false}:base.g393JWDFaces?wdDefinition393(id,base):base;
-  return id.g393JCopies?.length?copiedDefinition393(id,definition,card):definition;
+  return id.g393JCopies?.length?copiedDefinition393(id,definition,printedCard1363):definition;
  }if(!key?.startsWith('ability-copy:')||key.length>4096)return base;
  const parts=key.split(':');if(parts.length!==3)return undefined;
- try{const source=card(decodeURIComponent(parts[1])),reference=card(decodeURIComponent(parts[2]));if(!source||!reference)return undefined;return {...source,...Object.fromEntries(['name','cost','printedCost','civ','civilizations','power','race','type'].map(k=>[k,reference[k]])),id:key,copyOf:source.id,referenceId:reference.id};}catch{return undefined;}
+ try{const source=printedCard1363(decodeURIComponent(parts[1])),reference=printedCard1363(decodeURIComponent(parts[2]));if(!source||!reference)return undefined;return {...source,...Object.fromEntries(['name','cost','printedCost','civ','civilizations','power','race','type'].map(k=>[k,reference[k]])),id:key,copyOf:source.id,referenceId:reference.id};}catch{return undefined;}
 }
 export const numeric=value=>value==='∞'?Infinity:Number(value);
 const rulesCost=c=>c.type==='cell'||c.forbiddenCore?0:(c.startCard||c.ritual)&&c.cost==null?NaN:c.cost;
@@ -59,10 +80,11 @@ export const costValue=c=>numeric(rulesCost(c));
 function copyCreature1357(s,p,host,target,thisTurn=false){
  // Only the target's copiable characteristics survive a change of identity.
  // Attachments, counters, choices, and the physical card remain separate.
- const definition=structuredClone(card(target.g393JCopies?.length?{...target,g393JCopies:null}:target));
+ const definition=structuredClone(printedCard1363(target.g393JCopies?.length?{...target,g393JCopies:null}:target));
  (host.g1357Copies??=[]).push({definition,evolution:isEvolution(target),appliedTurn:s.turn,
   ...(thisTurn?{expiresTurn:s.turn}:{expiresPlayer:1-p}),
-  order:s.g1357CopyOrder=(s.g1357CopyOrder||0)+1});
+  order:s.g1357CopyOrder=(s.g1357CopyOrder||0)+1,
+  ...(grantsCivilizations1363(definition)?{g1363ColorOrder:nextColorOrder1363(s)}:{})});
  log(s,p,'copy',card(host.cardId).name+'が'+definition.name+'になる',{cardId:host.cardId,uid:host.uid});
 }
 function splitCopiedGod1357(s,p,x){
@@ -103,10 +125,31 @@ function rawSixNamed(s,x){
 export function momoActive(s){return !!s?.players.some(p=>p.battle.some(x=>card(x).g32Momo&&!rawNumberIgnored(s,x)&&!rawTravelIgnored(s,x)&&!rawSixMute(s,x)&&!rawSixNamed(s,x)));}
 export function genmuActive(s){return !!s?.players.some(p=>p.battle.some(x=>card(x).ignoreSmall&&!rawNumberIgnored(s,x)&&!rawTravelIgnored(s,x)));}
 export function numberIgnored(s,x){return rawNumberIgnored(s,x)&&!genmuActive(s);}
+const checkingJoe1363=new WeakSet();
+function joeOrder1363(s){
+ if(!s?.g1363JoePlayed||checkingJoe1363.has(s))return null;
+ checkingJoe1363.add(s);
+ try{
+  const stars=s.players.flatMap(p=>p.battle.filter(x=>!x.faceDown&&!x.sealed&&
+   printedCard1363(x).g1363JoeStar&&!abilitiesIgnoredBeforeCivilization920(s,x)));
+  return stars.length?Math.max(...stars.map(x=>x.g1363ColorOrder??0)):null;
+ }finally{checkingJoe1363.delete(s);}
+}
+function grantsCivilizations1363(c){
+ return c.g1363JoeStar||c.casablanca||c.g51Courtney||c.g972TwinManaColors||c.g1114ManaRace||c.g1274AllBattleColors;
+}
+function nextColorOrder1363(s){return s.g1363ColorOrder=(s.g1363ColorOrder||0)+1;}
+// Both battle entries and temporary civilization grants use the same order.
+function colorEffectAfter1363(joe,x){
+ return joe===null||(x.g1357Copies?.at(-1)?.g1363ColorOrder??x.g1363ColorOrder??0)>joe;
+}
 function battleCivilizations805(s,x,c=card(x)){
- if(c.g1274AllBattleColors&&!x.faceDown&&!abilitiesIgnoredBeforeCivilization920(s,x))
+ const joe=joeOrder1363(s);
+ if(joe!==null&&!x.faceDown&&!x.sealed)c=withoutCivilizations1363(c);
+ else if(c.g39Verde&&!x.faceDown&&!x.sealed)c={...c,civilizations:fullManaColors};
+ if(c.g1274AllBattleColors&&!x.faceDown&&colorEffectAfter1363(joe,x)&&!abilitiesIgnoredBeforeCivilization920(s,x))
   return ['光','水','闇','火','自然'];
- const additions=(s.extLimits||[]).filter(r=>r.kind==='g805BattleColor'&&r.turn===s.turn);
+ const additions=(s.extLimits||[]).filter(r=>r.kind==='g805BattleColor'&&r.turn===s.turn&&colorEffectAfter1363(joe,r));
  if(!additions.length||x.sealed||x.faceDown)return civilizations(c);
  const refs=layers(x);
  const added=additions.filter(r=>refs.some(y=>y.uid===r.uid&&(y.incarnation||0)===r.incarnation)).map(r=>r.color);
@@ -232,15 +275,17 @@ export function abilitiesIgnored(s,c){
 // evolution sources. Definitions and hidden/face-down characteristics stay intact.
 export function zoneCard(s,p,inst,zone=null,definition=card(inst)){
  let c=definition;if(!c||!s?.players?.[p]||typeof inst==='string'||inst.faceDown||inst.sealed)return c;
- const own=s.players[p];
+ const own=s.players[p],joe=joeOrder1363(s);
+ if(joe!==null)c=withoutCivilizations1363(c);
  if(zone==='battle'||!zone&&own.battle.includes(inst)){
   c=extra.gearIdentity(s,p,inst,c);
   const cs=own.battle.includes(inst)?battleCivilizations920(s,inst,c,own):battleCivilizations805(s,inst,c);
   if(cs.join('/')!==civilizations(c).join('/'))c={...c,civilizations:cs,civ:cs.join('/')};
  }
  if(zone==='mana'||!zone&&own.mana.includes(inst)){
-  const cs=natureManaColors1261(s,p,c);
-  if(cs.length>manaCivilizations(c).length)c={...c,civilizations:cs,civ:cs.join('/')};
+  const cs=joe===null?natureManaColors1261(s,p,c):manaColors(c,s,p);
+  if(cs.join('/')!==civilizations(c).join('/')&&(joe!==null||cs.length>manaCivilizations(c).length))
+   c={...c,civilizations:cs,civ:cs.join('/')||'ゼロ'};
  }
  const madoZone=zone??(own.battle.includes(inst)?'battle':own.grave.includes(inst)?'grave':null);
  if((madoZone==='battle'||madoZone==='grave')&&String(c.race).split('/').includes('マフィ・ギャング')&&
@@ -256,7 +301,7 @@ export function zoneCard(s,p,inst,zone=null,definition=card(inst)){
 }
 // Read-only UI access to the same physical-layer permissions used by legal moves.
 export function graveSummonSources(s,p=0){return extra.six.fifteen.graveSummonSources(s,p);}
-export function spellIgnored(s,c){if(c.spellSource){const source=card(c.spellSource),face=source&&playFaces(source).find(f=>f.type==='spell');if(face)c={...face,cost:c.cost};}return c.type==='spell'&&(costValue(c)<=5&&genmuActive(s)||momoActive(s)&&civilizations(c.civilizations||c.civ?c:c.id?(card(c.id)||c):c).length<=1);}
+export function spellIgnored(s,c){if(c.spellSource){const source=card(c.spellSource),face=source&&playFaces(source).find(f=>f.type==='spell');if(face)c={...face,cost:c.cost};}return c.type==='spell'&&(costValue(c)<=5&&genmuActive(s)||momoActive(s)&&(joeOrder1363(s)!==null||civilizations(c.civilizations||c.civ?c:c.id?(card(c.id)||c):c).length<=1));}
 const activeTurnGrant=(s,g)=>g.turn===s.turn&&(g.spellCost===undefined||!spellIgnored(s,{type:'spell',cost:g.spellCost,spellSource:g.spellSource}));
 function externalBlockState(s,p,x,c){
  if(c.type==='creature'&&s.players[p].hasWeapons1361&&isCreature(s,x)&&s.players[p].battle.some(y=>
@@ -272,7 +317,15 @@ function externalBlockState(s,p,x,c){
 const conditional260Reading=new WeakSet();
 export function effectiveCard(inst,context,forPower=false){
  let base=card(inst);const owner=context?.players.findIndex(p=>p.battle.some(x=>x.uid===inst.uid));
- if(owner==null||owner<0){if(context)for(const p of [0,1]){const c=zoneCard(context,p,inst);if(c!==base)return c;}return base;}
+ if(owner==null||owner<0){
+  if(context){
+   // Use the actual owner of mana and grave cards before applying an all-zone effect.
+   const player=context.g1363JoePlayed?context.players.findIndex(p=>p.mana.includes(inst)||p.grave.includes(inst)):-1;
+   if(player>=0)return zoneCard(context,player,inst);
+   for(const p of [0,1]){const c=zoneCard(context,p,inst);if(c!==base)return c;}
+  }
+  return base;
+ }
  base=zoneCard(context,owner,inst,'battle');
  const attached=base.type==='creature'&&context.players[owner].hasAuras1352
   ?attachedAuras1352(context,owner,inst).filter(x=>!x.sealed&&!x.faceDown):[];
@@ -326,7 +379,7 @@ export function effectiveCard(inst,context,forPower=false){
  if(c.g133Tropico&&context.players[owner].battle.filter(x=>x.uid!==inst.uid&&!x.sealed&&isCreature(context,x)).length>=2)c={...c,unblockable:true};
  if(String(c.race).includes('生徒会組')&&context.players[owner].battle.some(x=>card(x).g28Suzu&&!abilitiesIgnored(context,x)))c={...c,slayer:true};
  if(c.g38EnemyTurnBonus&&context.active!==owner)c={...c,power:c.power+c.g38EnemyTurnBonus};
- if(c.g39Verde)c={...c,civilizations:['光','水','闇','火','自然'],civ:'光/水/闇/火/自然'};
+
  if(c.g39Fuujin&&!context.players[1-owner].shields.length)c={...c,speedAttacker:true};
  if(c.g38Mela&&!context.players[owner].shields.length)c={...c,blocker:true};
  if(c.madoDeSuzaku&&layers(inst).length>=5||c.g974UntappedOpponentTap&&!inst.tapped)c={...c,opponentTapEntry:true};
@@ -495,6 +548,7 @@ function canExecuteUnpaid(s,p,c){return !unpaidExecutionBlocked1358(s,p,c)&&!nee
 
 export function canCastSpell(s,p,c,origin=null,originOwner=p,pendingBreak=null){
  c=executionCard(c);
+ if(joeOrder1363(s)!==null)c=withoutCivilizations1363(c);
  if(c.forbiddenCore||c.ritual||c.startCard)return false;
  if(c.type==='spell'&&!canMoveZone(s,originOwner,origin)||origin&&!extra.originAllowed(s,p,origin))return false;
  // Recheck the visible shield when actually casting a declared trigger (QA44311).
@@ -1601,7 +1655,7 @@ export function canEnterCreature(s,p,c=null,{origin='hand',execution=true,commit
 export function dddPayment(s,p,c){
  if(!c.ddd)return null;
  if(c.ddd.attackDiscount&&s.players[1-p].battle.some(x=>effectiveCard(x,s).noCostReduction))return null;
- if(!c.ddd.attackDiscount)return {cost:c.ddd.cost,civilizations:c.ddd.civilizations||civilizations(c)};
+ if(!c.ddd.attackDiscount)return {cost:c.ddd.cost,civilizations:joeOrder1363(s)===null?(c.ddd.civilizations||civilizations(c)):[]};
  const colors=new Set(s.players[p].mana.flatMap(x=>manaColors(card(x),s,p)));if(!['光','火','自然'].every(x=>colors.has(x)))return null;
  const attacker=s.players[p].battle.find(x=>x.uid===s.attack?.attacker);return {cost:Math.max(1,8-(attacker?costValue(card(attacker)):0)),civilizations:[]};
 }
@@ -2543,6 +2597,7 @@ function hasColorlessMana(s,p){
 }
 function baseSummonCost297(s,p,c){
  c=executionCard(c);
+ if(joeOrder1363(s)!==null)c=withoutCivilizations1363(c);
  if(c.fixedPayment)return costValue(c);
  if(freeSpell(s,p,c)&&!c.g40PayNormally)return 0;
  const handTax=(c.summonOrigin||'hand')==='hand'?(c.g653HandSummonTax||0):0;
@@ -2584,12 +2639,17 @@ function baseSummonCost297(s,p,c){
 }
 // These printed color-granting abilities do not depend on creature power or stealth.
 // Reading them without decorating the whole board avoids a cycle through stealth.
-function allManaColors(s,p){return s.players[p].battle.some(x=>!x.sealed&&(card(x).casablanca||card(x).g51Courtney)&&!abilitiesIgnored(s,x));}
+function allManaColors(s,p,joe=joeOrder1363(s)){
+ return s.players[p].battle.some(x=>!x.sealed&&(card(x).casablanca||card(x).g51Courtney)&&
+  colorEffectAfter1363(joe,x)&&!abilitiesIgnored(s,x));
+}
 const fullManaColors=['光','水','闇','火','自然'];
-function twinManaColors(s,p){return s.players[p].battle.some(x=>card(x).g972TwinManaColors&&!abilitiesIgnored(s,x));}
-function raceManaColors(s,p,c){
+function twinManaColors(s,p,joe=joeOrder1363(s)){
+ return s.players[p].battle.some(x=>card(x).g972TwinManaColors&&colorEffectAfter1363(joe,x)&&!abilitiesIgnored(s,x));
+}
+function raceManaColors(s,p,c,joe=joeOrder1363(s)){
  const races=playFaces(c).flatMap(face=>String(face.race||'').split('/'));
- return s.players[p].battle.some(x=>!x.sealed&&races.includes(card(x).g1114ManaRace)&&
+ return s.players[p].battle.some(x=>!x.sealed&&races.includes(card(x).g1114ManaRace)&&colorEffectAfter1363(joe,x)&&
   effectiveCard(x,s).g1114ManaRace);
 }
 function manaExecutionAllColors(s,p,c){
@@ -2603,14 +2663,18 @@ function natureManaColors1261(s,p,c){
  return [...new Set([...printed,'光','火'])];
 }
 export function manaColors(c,s=null,p=null,forPower=false){
- if(!s||p===null)return manaCivilizations(c);
- if(allManaColors(s,p)||c.spellFace&&twinManaColors(s,p)||raceManaColors(s,p,c))return [...fullManaColors];
- return natureManaColors1261(s,p,c);
+ if(!s||p===null||c===FACE_DOWN||c===SEAL_CARD)return manaCivilizations(c);
+ const joe=joeOrder1363(s);
+ if(allManaColors(s,p,joe)||c.spellFace&&twinManaColors(s,p,joe)||raceManaColors(s,p,c,joe))return [...fullManaColors];
+ return joe===null?natureManaColors1261(s,p,c):[];
 }
 export function paymentPool(s,p,exclude=[],c=null){
  const fairy=extra.six.manaValue1282(s,p);
  const origin=!fairy&&(c?.type==='creature'&&c.g423OriginMana||c?.type==='spell'&&c.g826OriginSpellMana);
- const crystal=c?.g434CrystalSoul,all=s.players[p].battle.some(x=>effectiveCard(x,s).casablanca||effectiveCard(x,s).g51Courtney||String(c?.race).includes('生徒会組')&&effectiveCard(x,s).g28Gyai);
+ const joe=joeOrder1363(s);
+ const crystal=c?.g434CrystalSoul,all=s.players[p].battle.some(x=>
+  colorEffectAfter1363(joe,x)&&(effectiveCard(x,s).casablanca||effectiveCard(x,s).g51Courtney)||
+  String(c?.race).includes('生徒会組')&&effectiveCard(x,s).g28Gyai);
  // Printed mana stays unchanged. Crystal Soul applies only to face-down mana
  // for this payment, and overrides a prior zero-mana effect (official Q&A 45912).
  const summonColors=c?.type==='creature'&&!c.crossing&&s.players[p].battle.some(x=>
@@ -2624,10 +2688,10 @@ export function paymentPool(s,p,exclude=[],c=null){
   const jokerPayment=!x.faceDown&&c.g1324JokerMana&&
    paymentType?.type==='creature'&&String(paymentType.race).includes('ジョーカーズ');
   const anyColor=all||summonColors||twins&&c.spellFace||jokerPayment||!x.faceDown&&raceManaColors(s,p,c);
-  const colors=x.faceDown||anyColor?null:natureManaColors1261(s,p,c);
-  const addedColors=colors&&colors.length>manaCivilizations(c).length;
-  return zero||fairy||origin||crystal||anyColor||addedColors?{...x,
-   ...(addedColors?{paymentColors:colors}:{}),
+  const colors=x.faceDown||anyColor?null:joe===null?natureManaColors1261(s,p,c):[];
+  const changedColors=colors&&(joe!==null||colors.length>manaCivilizations(c).length);
+  return zero||fairy||origin||crystal||anyColor||changedColors?{...x,
+   ...(changedColors?{paymentColors:colors}:{}),
    ...(zero||fairy||double||boost?{paymentValue:boost?crystal:double?2:value}:{}),
    ...(fairy?{paymentFairy1282:true}:{}),
    ...(origin?{paymentExact423:true}:{}),...(crystal?{paymentCrystal434:true}:{}),
@@ -2646,6 +2710,16 @@ function freeSpellReason(s,p,c){return c.g261Free&&extra.six.ownCondition(s,p,c.
 // A card still has its mana-zone civilizations while its cost is being paid (official 31410).
 function paymentCard297(s,p,c){
  c=executionCard(c);
+ const joe=joeOrder1363(s);
+ if(joe!==null){
+  c=withoutCivilizations1363(c);
+  if(c.summonOrigin==='mana'&&!c.fixedPayment&&c.g568PaymentColors===undefined){
+   const original=printedCard1363(c.id)||c;
+   const colors=manaColors(original,s,p);
+   if(colors.length)c={...c,civilizations:colors};
+  }
+  return c;
+ }
  if(c.summonOrigin!=='mana')return c;
  if(manaExecutionAllColors(s,p,c))return {...c,civilizations:[...fullManaColors]};
  const colors=natureManaColors1261(s,p,card(c.id)||c);
@@ -3106,6 +3180,9 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  if(aceColor(c)&&aceMutesOnEntry(s,c))inst.aceIgnored=true;
  // A creature entering from the graveyard cannot observe its own departure (QA 43059).
  observeGraveDepartures1300(s);
+ const colorSource=printedCard1363(inst);
+ if(colorSource.g1363JoeStar)s.g1363JoePlayed=true;
+ if(grantsCivilizations1363(colorSource))inst.g1363ColorOrder=nextColorOrder1363(s);
  s.players[p].battle.push(inst);
  const copyTarget=entryOptions.g1357BecomeTarget&&s.players[1-p].battle.find(x=>x.uid===entryOptions.g1357BecomeTarget);
  if(copyTarget)copyCreature1357(s,p,inst,copyTarget,true);
@@ -4548,6 +4625,9 @@ function option(kind,label,extra={}){return {kind,label,...extra};}
 function effectOptions(entries,kind){return entries.map((e,i)=>option(kind,`${card(e.source).name} ${i+1}：${e.label||(e.effect==='g166EndUntap'?'ターン終了時の強制アンタップ':e.effect==='endUntap'?'ターン終了時の任意アンタップ':e.effect==='justDiver'?'ジャストダイバー':e.effect==='dragonEntryTap'?'ドラゴン登場時の任意タップ':e.effect==='shieldEntryTapLock'?'シールド追加時のタップとアンタップ制限':e.effect==='ddd'?'宣言したD・D・D':e.effect==='attackDragonReveal'?'攻撃時の山札公開':e.effect==='attackJudge'?'攻撃時のガチンコ・ジャッジ':e.effect==='extended'?({g19Yobi:'ヨビニオン',g1_Copy:'オルゲイトの能力コピー',g1_Look:'2体目登場時の手札・マナ追加',g1_Skip:'ターンの残りを飛ばす'}[e.task?.op]||'カードの能力'):'出た時の効果')}を先に解決`,{uid:e.uid,cardId:e.source,effectId:e.effectId}));}
 export function gameFinished(s){return s.winner!==null||s.phase==='rematch';}
 export function getLegalActions(s){
+ return s.g1363JoePlayed?withCivilizationContext1363(s,()=>legalActionsCore1363(s)):legalActionsCore1363(s);
+}
+function legalActionsCore1363(s){
  if(gameFinished(s))return [];
  let out=[];const d=s.decision,p=d?d.player:s.active,own=s.players[p],opp=s.players[1-p];
  if(d){
@@ -4859,7 +4939,10 @@ function mizuhanomeSource1089(s,p){
 }
 function nameOf(s,t){const seal=(s.players[t.player].seals||[]).find(x=>x.uid===t.uid);if(seal)return '裏向きの封印';const top=s.players[t.player].battle.find(x=>layers(x).some(y=>y.uid===t.uid)),x=top&&layers(top).find(x=>x.uid===t.uid);return card(x).name+(top.uid!==x.uid?'（'+card(top).name+'の下）':'');}
 const evolutionFace=a=>playFaces(card(a.cardId))[a.face||0];
-export function step(s,action,{manualMana=false}={}){return withEffect(s,s.decision?.type==='effect'?s.decision.player:null,()=>{
+export function step(s,action,{manualMana=false}={}){
+ return withCivilizationContext1363(s,()=>stepWithEffect1363(s,action,manualMana));
+}
+function stepWithEffect1363(s,action,manualMana){return withEffect(s,s.decision?.type==='effect'?s.decision.player:null,()=>{
  if(s.decision?.type==='drawReplacement'){
   const d=s.decision,a=(typeof action==='number'?getLegalActions(s)[action]:getLegalActions(s).find(x=>JSON.stringify(x)===JSON.stringify(action)));if(!a)throw Error('選択できない行動です');
   const choices=structuredClone(d.drawChoices);choices[d.drawIndex]=a.kind==='vividReveal'?{reveal:a.reveal}:a.kind==='replaceDraw'?{replace:a.replace}:{...choices[d.drawIndex],discard:a.uid,...(a.toMana?{discardMana:true}:{})};
@@ -4895,7 +4978,8 @@ function declareAttack(s,p,a){
     enqueueEffect(s,p,structuredClone(effect));
   }
  }
-function stepCore(s,action){
+function stepCore(s,action){return withCivilizationContext1363(s,()=>applyStepCore1363(s,action));}
+function applyStepCore1363(s,action){
  const opts=getLegalActions(s);let a=typeof action==='number'?opts[action]:opts.find(x=>JSON.stringify(x)===JSON.stringify(action));
  // Only the declared number may differ from a legal template; all other fields stay validated.
  if(!a&&s.decision?.task?.op==='g9Number'&&(action?.number==='∞'||Number.isSafeInteger(action?.number)&&action.number>=(s.decision.task.minNumber??0))){const template=opts.find(x=>JSON.stringify({...x,number:action.number})===JSON.stringify(action));if(template)a={...template,number:action.number};}
@@ -6728,7 +6812,7 @@ export const chooseHeuristicAI=s=>rankHeuristicActions(s)[0]?.a??null;
 export function chooseAI(s){
  if(gameFinished(s))return null;
  if(s.decision?.type==='manaPayment'){const d=s.decision,actions=getLegalActions(s),target=manaPayment(d.pool,{cost:d.cost,civilizations:d.colors,requireZoneMana:d.requireZoneMana})||[],remove=d.selected.find(uid=>!target.includes(uid)),add=target.find(uid=>!d.selected.includes(uid));return actions.find(a=>a.kind==='selectMana'&&a.uid===(remove||add))||actions.find(a=>a.kind==='confirmMana')||actions[0];}
- return strategicAI.choose(s);
+ return s.g1363JoePlayed?withCivilizationContext1363(s,()=>strategicAI.choose(s)):strategicAI.choose(s);
 }
 export function runGame(decks,options={}){const s=createGame(decks,options);while(!gameFinished(s)&&s.actions<2500&&s.turn<160){const a=chooseAI(s);if(!a)break;step(s,a);}return s;}
 export function runSummary(s){return {seed:s.seed,first:s.first,winner:s.winner,reason:s.reason,turns:s.turn,round:displayTurn(s),metrics:s.metrics,actions:s.actions,version:s.version,aiVersion:AI_VERSION};}

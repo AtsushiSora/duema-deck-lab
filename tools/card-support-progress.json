@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-16",
   "catalogueNames": 11825,
-  "supportedNames": 8058,
-  "pendingNames": 3767,
-  "phase": 1362,
-  "added": 3,
+  "supportedNames": 8059,
+  "pendingNames": 3766,
+  "phase": 1363,
+  "added": 1,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -170,7 +170,7 @@
     "デュエルメイト・クリーチャー": 5,
     "ルール・プラス": 1,
     "Mono Artifact": 1,
-    "D2フィールド": 39,
+    "D2フィールド": 38,
     "禁断フィールド": 1,
     "クロスギア": 56,
     "進化クリーチャー(進化GV)": 13,
@@ -228,7 +228,7 @@
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
-    "未対応のD2フィールド能力": 39,
+    "未対応のD2フィールド能力": 38,
     "複雑な進化条件": 12,
     "未対応のスリリング・スリー効果": 2,
     "未対応のスーパー・S・トリガー能力": 14,
@@ -491247,14 +491247,104 @@
         }
       ],
       "next": "寄成ギョウの登場時能力の置換を調べ、希望のジョー星またはキクチ師範代・禁術のカルマ カレイコで元の残件を進める。進行中の対戦は新たに起動せず合格ログを回収する。"
+    },
+    {
+      "phase": 1363,
+      "baseline": "7ca29acbbae295618333c9b1377654f29724e141",
+      "before": 8058,
+      "supported": 8059,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmex12-022",
+          "name": "希望のジョー星"
+        }
+      ],
+      "printAliases": 1,
+      "results": {
+        "officialPrints": {
+          "verified": 2,
+          "imagesVerified": 2,
+          "manifest": "tools/support-phase-1363.json"
+        },
+        "focus": {
+          "passed": 9,
+          "failed": 0,
+          "seconds": 9.186464749999999,
+          "log": "tmp/duema-phase-1363/focus-verified.log"
+        },
+        "regression": {
+          "passed": 278,
+          "failed": 0,
+          "seconds": 121.854119916,
+          "log": "tmp/duema-phase-1363/rules-final.log"
+        },
+        "online": {
+          "passed": 10,
+          "failed": 0,
+          "seconds": 0.73691825,
+          "log": "tmp/duema-phase-1363/online-final.log"
+        },
+        "phoenix": {
+          "verified": 50,
+          "opponents": 49,
+          "games": 51,
+          "baseline": "7ca29acbbae295618333c9b1377654f29724e141",
+          "plan": "tmp/duema-phase-1363/phoenix/plan.json",
+          "results": "tmp/duema-phase-1363/phoenix/results.jsonl",
+          "harness": "tmp/duema-phase-1363/phoenix/snapshot/tests/duema-phoenix-shards.mjs",
+          "scope": "Phase 1362を固定した50分割すべてが通過。25スターター・24環境デッキとの元テストのシード48000〜48048で物理カード80枚と決着を確認。本番ワーカーは元テストと同じシード48で2試合。"
+        },
+        "check": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "tmp/duema-phase-1363/check-final.log",
+          "rulesBlobs": {
+            "dist/cards.json": "5b2b325498f0b1c293e5420b52483d7309d286ea",
+            "dist/catalogue.json": "f6ac382797bed08c771b59b3c873b2655f01f8b1",
+            "dist/details.json": "4c8e31d3e8c1e0673431a211894bddfef37f5372",
+            "dist/engine.js": "d5a4f9c039e57c093ef1bbffc1490bd3ab837f9b",
+            "dist/six-photo-rules.js": "37afe83d721136f54d86f54bb916a61350831223",
+            "dist/online-compatibility.js": "650aeb7e692abb66bab5317e3460274d1b538bfd"
+          }
+        },
+        "audit": {
+          "supported": 8059,
+          "pending": 3766,
+          "ready": 0,
+          "dependencyBlocked": 0,
+          "log": "tmp/duema-phase-1363/audit.log"
+        },
+        "nameKey": {
+          "before": 8058,
+          "after": 8059,
+          "preserved": 8058,
+          "duplicates": 0,
+          "path": "dist/cards.json",
+          "normalizer": "dist/catalogue.js#nameKey"
+        }
+      },
+      "resolvedRegistered": 2,
+      "remainingRegistered": 9,
+      "remainingPrints": 1,
+      "remainingIndividualCards": 10,
+      "relatedFollowUps": [
+        {
+          "cardId": "dm35-004",
+          "dependencyId": "dmex15-b009",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40958/",
+          "reason": "寄成ギョウの登場時誘発の置換が未実装。相手クリーチャーの効果の発生源を保存して、実カードの選択から勝利までを引き続き検証する。"
+        }
+      ],
+      "next": "残る裁定の再現には、キクチ師範代・カレイコの山札移動置換、ヨミノ晴明R・ライジン天の選択者置換、シュタインのデュエリスト処理、DGの同時シールド処理、アオハルの攻撃時能力の使用処理、寄成ギョウの誘発置換への対応が必要。既存の分割ランナーを重ねて起動せず、終了した検証ログを集計する。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1362,
+    "lastVerifiedPhase": 1363,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "従来の個別未検証は12種類（裁定11件、再録1件）。ケンゲキオージャの追加裁定が1件残る。寄成ギョウの登場時能力の置換を調べ、希望のジョー星またはキクチ師範代・禁術のカルマ カレイコで元の残件を進める。進行中の対戦は新たに起動せず合格ログを回収する。",
+    "steps": "個別未検証は10種類（裁定9件、再録1件）。ケンゲキオージャの追加裁定が1件残る。残る裁定の再現には、キクチ師範代・カレイコの山札移動置換、ヨミノ晴明R・ライジン天の選択者置換、シュタインのデュエリスト処理、DGの同時シールド処理、アオハルの攻撃時能力の使用処理、寄成ギョウの誘発置換への対応が必要。既存の分割ランナーを重ねて起動せず、終了した検証ログを集計する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "Phase 322の旧スキャナーテストは、Phase 419で対応した真実の名 ワクワク・チャップルン（dmr07-001）を依然として未対応一覧に期待する。Phase 742基点とPhase 743作業ツリーで候補11件・対象はブロック一覧にいないことを再現。今回の変更とは分けて扱う。",
@@ -535563,8 +535653,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-15",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8058,
-      "pendingNames": 3767,
+      "supportedNames": 8059,
+      "pendingNames": 3766,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -536591,7 +536681,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "元の個別12種類（裁定11件、金箔再録1件）とケンゲキオージャの追加裁定1件、長時間分割検証が残る。mainへのpushでNetlifyの本番ワークフローが起動し、Netlifyのpush連携フックも有効。既存GitHub Pagesの許可ブランチはmainのみ。Netlifyを更新せず公開できる手順は未確認。",
+        "reason": "元の個別10種類（裁定9件、金箔再録1件）とケンゲキオージャの追加裁定1件、長時間の分割検証が残る。mainへのpushでNetlifyの本番ワークフローと連携フックが反応する。既存GitHub Pagesの許可ブランチはmainのみなので公開保留。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -537659,29 +537749,31 @@
             "dmsd09-013"
           ],
           "result": "実カードでドキンダムエリアを出し、相手のデーモン・ハンドでケンゲキオージャを選んだ。エリアがある盤面ではケンゲキオージャが封印され勝利なし。エリアがない盤面ではケンゲキオージャが離れる前に勝利。"
-        }
-      ],
-      "remainingRegistered": [
+        },
         {
           "cardId": "dmex12-052",
+          "phase": 1363,
+          "source": "https://dm.takaratomy.co.jp/rule/qa/38608/",
+          "path": "tests/standard1363-effects.test.mjs",
+          "log": "tmp/duema-phase-1363/focus-verified.log",
           "dependencyIds": [
             "dmex12-022"
           ],
-          "test": "希望のジョー星と透明妖精リリンの登場順により、マナのスノーフェアリーの文明が変わる（QA 38608）",
-          "reason": "希望のジョー星はプレミアム殿堂かつ対戦未対応。依存カードに対応後、通常のデッキ制限を守ったままテスト用の盤面で両方の登場順を再現する。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/38608/",
-          "path": "tests/standard1114-effects.test.mjs"
+          "result": "毎回実カードを召喚。ジョー星が後ならマナのスノーフェアリーは無色、リリンが後なら全5文明。両プレイヤーと同一ターンの登場順、保存復元、D2フィールドの交代後に文明が戻ることを確認。"
         },
         {
           "cardId": "dmex17-004",
+          "phase": 1363,
+          "source": "https://dm.takaratomy.co.jp/rule/rulechange/31641/",
+          "path": "tests/standard1363-effects.test.mjs",
+          "log": "tmp/duema-phase-1363/focus-verified.log",
           "dependencyIds": [
             "dmex12-022"
           ],
-          "test": "希望のジョー星で無色になった山札のカードをアシッド・テクノが参照する（裁定変更のお知らせ31641）",
-          "reason": "希望のジョー星が対戦未対応のため、既に受けている文明変更が山札を見ている間も続く組み合わせを再現できない。依存カードへの対応後に確認する。",
-          "source": "https://dm.takaratomy.co.jp/rule/rulechange/31641/",
-          "path": "tests/standard1114-effects.test.mjs"
-        },
+          "result": "アシッド・テクノの終了時能力で2体を破壊。ジョー星があると手札と山札の元は有色のコスト7以下を出せる。ジョー星がない対照では有色カードは候補外。山札は見た側にだけ提示。"
+        }
+      ],
+      "remainingRegistered": [
         {
           "cardId": "dm25ex2-082",
           "test": "ドラム・トレボールが参照する「ナイト・マジック」にキング・ナイト・マジックが含まれるかを確認する",
@@ -539037,8 +539129,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8058,
-        "pending": 3767,
+        "supported": 8059,
+        "pending": 3766,
         "catalogue": 11825,
         "duplicates": 0
       },
@@ -539638,17 +539730,14 @@
       "finalCheck": {
         "status": "passed",
         "command": "npm run check",
-        "log": "tmp/duema-phase-1362/check-final.log",
+        "log": "tmp/duema-phase-1363/check-final.log",
         "rulesBlobs": {
-          "dist/cards.json": "6408661a450eb390598391361dbe39c009f71b72",
-          "dist/catalogue.json": "5de5ebf511aecf419aeaa3a43457d32f3fa67dba",
-          "dist/details.json": "8253c3bc047dff663bb887230896fd31fa04d998",
-          "dist/engine.js": "9130ce7a3c81e96aa80f229ecdc147698960250d",
-          "dist/extended-rules.js": "ea661bd84dacffeb3ce0dd6f061d6a3d6e08f5bc",
-          "dist/phoenix-rules.js": "88882cee705322df5d2e67d3591f4bb08050c140",
-          "dist/six-photo-rules.js": "5289448f93a86b93cf94b8076bd0e13ab49d7bfc",
-          "dist/utility-resource-rules.js": "1e9bf50ec6e8deb0e0f560360bfcfba1da2ec5aa",
-          "dist/online-compatibility.js": "8c899515873939b593590b52f4d86bb1f8644f5c"
+          "dist/cards.json": "5b2b325498f0b1c293e5420b52483d7309d286ea",
+          "dist/catalogue.json": "f6ac382797bed08c771b59b3c873b2655f01f8b1",
+          "dist/details.json": "4c8e31d3e8c1e0673431a211894bddfef37f5372",
+          "dist/engine.js": "d5a4f9c039e57c093ef1bbffc1490bd3ab837f9b",
+          "dist/six-photo-rules.js": "37afe83d721136f54d86f54bb916a61350831223",
+          "dist/online-compatibility.js": "650aeb7e692abb66bab5317e3460274d1b538bfd"
         }
       },
       "abyssShort": {
@@ -539656,10 +539745,6 @@
         "log": "/tmp/duema-verify-8001/abyss-short-final.log"
       },
       "remainingDependencies": [
-        {
-          "id": "dmex12-022",
-          "name": "希望のジョー星"
-        },
         {
           "id": "dm25ex4-SPR01",
           "name": "沈黙の守護者、シュタイン"
@@ -539689,7 +539774,7 @@
           "name": "行くよー！アオハル、ハイチーズ！"
         }
       ],
-      "remainingTestsSummary": "全体のnpm testは中断・合否未確認。固定スナップショットのNo.03・04・06・13は153/344分割（1564試合）、No.16・21の作業ツリー分割は81/113件が通過。Phase 1362の固有・関連回帰・オンラインの結果は最新バッチを参照。進行中の実行と、今回のPhoenix分割で除外した全相手対戦・本番ワーカーは未確認。",
+      "remainingTestsSummary": "全体のnpm testは中断・合否未確認。固定スナップショットe3323a89のNo.03・04・06・13は166/344分割（1692試合）、No.16・21の作業ツリー分割は105/113件が通過。フェニックスの除外していた相手全49試合と本番ワーカー2試合は固定コミット7ca29acbで完了。進行中の分割と公開候補での未確認分が残る。",
       "advanceImplementation": {
         "status": "implemented",
         "phases": [
@@ -539741,102 +539826,85 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1362,
-        "baseline": "eeeb4247f687b68f5b8b441c600eaf8f6a464aab",
-        "before": 8055,
-        "supported": 8058,
+        "phase": 1363,
+        "baseline": "7ca29acbbae295618333c9b1377654f29724e141",
+        "before": 8058,
+        "supported": 8059,
         "duplicates": 0,
         "added": [
           {
-            "id": "dm35-004",
-            "name": "ケンゲキオージャ ～究極火焔～"
-          },
-          {
-            "id": "dmex18-023",
-            "name": "ゴウケンオー ～秘剣轟誕～"
-          },
-          {
-            "id": "dmsd09-013",
-            "name": "*/弐幻ニャミバウン/*"
+            "id": "dmex12-022",
+            "name": "希望のジョー星"
           }
         ],
-        "printAliases": 6,
+        "printAliases": 1,
         "results": {
           "officialPrints": {
-            "verified": 9,
-            "imagesVerified": 9,
-            "manifest": "tools/support-phase-1362.json"
+            "verified": 2,
+            "imagesVerified": 2,
+            "manifest": "tools/support-phase-1363.json"
           },
           "focus": {
-            "passed": 18,
+            "passed": 9,
             "failed": 0,
-            "skipped": 0,
-            "seconds": 2.199488875,
-            "log": "tmp/duema-phase-1362/focus-complete.log"
+            "seconds": 9.186464749999999,
+            "log": "tmp/duema-phase-1363/focus-verified.log"
           },
           "regression": {
-            "passed": 108,
+            "passed": 278,
             "failed": 0,
-            "skipped": 0,
-            "seconds": 13.06485625,
-            "log": "tmp/duema-phase-1362/rules-final.log"
+            "seconds": 121.854119916,
+            "log": "tmp/duema-phase-1363/rules-final.log"
+          },
+          "online": {
+            "passed": 10,
+            "failed": 0,
+            "seconds": 0.73691825,
+            "log": "tmp/duema-phase-1363/online-final.log"
           },
           "phoenix": {
-            "passed": 35,
-            "failed": 0,
-            "skipped": 0,
-            "seconds": 126.744818833,
-            "log": "tmp/duema-phase-1362/phoenix.log"
-          },
-          "onlineUi": {
-            "passed": 18,
-            "failed": 0,
-            "skipped": 0,
-            "seconds": 2.8106345409999998,
-            "log": "tmp/duema-phase-1362/online-ui.log"
-          },
-          "onlineServer": {
-            "passed": 4,
-            "failed": 0,
-            "skipped": 0,
-            "seconds": 1.216210541,
-            "log": "tmp/duema-phase-1362/online-server.log"
+            "verified": 50,
+            "opponents": 49,
+            "games": 51,
+            "baseline": "7ca29acbbae295618333c9b1377654f29724e141",
+            "plan": "tmp/duema-phase-1363/phoenix/plan.json",
+            "results": "tmp/duema-phase-1363/phoenix/results.jsonl",
+            "harness": "tmp/duema-phase-1363/phoenix/snapshot/tests/duema-phoenix-shards.mjs",
+            "scope": "Phase 1362を固定した50分割すべてが通過。25スターター・24環境デッキとの元テストのシード48000〜48048で物理カード80枚と決着を確認。本番ワーカーは元テストと同じシード48で2試合。"
           },
           "check": {
             "status": "passed",
             "command": "npm run check",
-            "log": "tmp/duema-phase-1362/check-final.log",
+            "log": "tmp/duema-phase-1363/check-final.log",
             "rulesBlobs": {
-              "dist/cards.json": "6408661a450eb390598391361dbe39c009f71b72",
-              "dist/catalogue.json": "5de5ebf511aecf419aeaa3a43457d32f3fa67dba",
-              "dist/details.json": "8253c3bc047dff663bb887230896fd31fa04d998",
-              "dist/engine.js": "9130ce7a3c81e96aa80f229ecdc147698960250d",
-              "dist/extended-rules.js": "ea661bd84dacffeb3ce0dd6f061d6a3d6e08f5bc",
-              "dist/phoenix-rules.js": "88882cee705322df5d2e67d3591f4bb08050c140",
-              "dist/six-photo-rules.js": "5289448f93a86b93cf94b8076bd0e13ab49d7bfc",
-              "dist/utility-resource-rules.js": "1e9bf50ec6e8deb0e0f560360bfcfba1da2ec5aa",
-              "dist/online-compatibility.js": "8c899515873939b593590b52f4d86bb1f8644f5c"
+              "dist/cards.json": "5b2b325498f0b1c293e5420b52483d7309d286ea",
+              "dist/catalogue.json": "f6ac382797bed08c771b59b3c873b2655f01f8b1",
+              "dist/details.json": "4c8e31d3e8c1e0673431a211894bddfef37f5372",
+              "dist/engine.js": "d5a4f9c039e57c093ef1bbffc1490bd3ab837f9b",
+              "dist/six-photo-rules.js": "37afe83d721136f54d86f54bb916a61350831223",
+              "dist/online-compatibility.js": "650aeb7e692abb66bab5317e3460274d1b538bfd"
             }
           },
           "audit": {
-            "supported": 8058,
-            "pending": 3767,
+            "supported": 8059,
+            "pending": 3766,
             "ready": 0,
             "dependencyBlocked": 0,
-            "log": "tmp/duema-phase-1362/audit.log"
+            "log": "tmp/duema-phase-1363/audit.log"
           },
           "nameKey": {
-            "before": 8055,
-            "after": 8058,
-            "rows": 8058,
+            "before": 8058,
+            "after": 8059,
+            "preserved": 8058,
             "duplicates": 0,
-            "preserved": 8055
+            "path": "dist/cards.json",
+            "normalizer": "dist/catalogue.js#nameKey"
           }
         },
-        "resolvedRegistered": 1,
-        "remainingRegistered": 11,
+        "resolvedRegistered": 2,
+        "remainingRegistered": 9,
         "remainingPrints": 1,
-        "remainingIndividualCards": 12,
+        "remainingIndividualCards": 10,
         "relatedFollowUps": [
           {
             "cardId": "dm35-004",
@@ -539845,7 +539913,7 @@
             "reason": "寄成ギョウの登場時誘発の置換が未実装。相手クリーチャーの効果の発生源を保存して、実カードの選択から勝利までを引き続き検証する。"
           }
         ],
-        "next": "寄成ギョウの登場時能力の置換を調べ、希望のジョー星またはキクチ師範代・禁術のカルマ カレイコで元の残件を進める。進行中の対戦は新たに起動せず合格ログを回収する。"
+        "next": "残る裁定の再現には、キクチ師範代・カレイコの山札移動置換、ヨミノ晴明R・ライジン天の選択者置換、シュタインのデュエリスト処理、DGの同時シールド処理、アオハルの攻撃時能力の使用処理、寄成ギョウの誘発置換への対応が必要。既存の分割ランナーを重ねて起動せず、終了した検証ログを集計する。"
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
@@ -542340,19 +542408,19 @@
               "checkedAt": "2026-11-16",
               "frozen": {
                 "baseline": "e3323a89",
-                "verified": 153,
+                "verified": 166,
                 "planned": 344,
-                "games": 1564,
+                "games": 1692,
                 "results": "tmp/duema-verification-e3323a89/results.jsonl"
               },
               "legacy": {
                 "scope": "実行時の作業ツリー。固定コミットの検証結果としては扱わない。",
-                "verified": 81,
+                "verified": 105,
                 "planned": 113,
                 "byKind": {
                   "AI replay": 19,
                   "production worker": 19,
-                  "random legal choices": 43
+                  "random legal choices": 67
                 },
                 "results": "tmp/duema-verification-e3323a89/legacy-fixtures/results.jsonl"
               }
@@ -542380,7 +542448,7 @@
         "baseline": "582d9f87",
         "name": "希望のジョー星",
         "canonicalCatalogueId": "dmex12-022",
-        "supported": false,
+        "supported": true,
         "verifiedPrints": [
           {
             "id": "dmex12-022",
@@ -542427,7 +542495,19 @@
             "behavior": "極楽鳥が能力で支払う場合はジョー星との登場順によらず好きな文明の1マナ。"
           }
         ],
-        "next": "文明変更の順序を保存互換で扱い、ゾーン内のカードとカードを使う際の文明を区別して、支払い・ツインパクトの両面・山札検索・離脱後の復帰を検証する。公式資料の確認だけではQA38608・31641を解決済みに数えない。"
+        "verifiedInPhase": 1363,
+        "reproductionLog": "tmp/duema-phase-1363/focus-verified.log",
+        "verified": [
+          "38606",
+          "38608",
+          "38697",
+          "38698",
+          "38699",
+          "38701",
+          "40872",
+          "31641"
+        ],
+        "result": "初版と再録を同じ初版IDで扱う。殿堂レギュレーションでは0枚。両プレイヤーの全ゾーン、使用コスト、D2フィールド交代、後から適用される文明追加、コピー中の元の特性を検証。"
       },
       "onlineBroad1361": {
         "status": "passed",

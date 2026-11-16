@@ -2493,6 +2493,12 @@ export function standardCardSpec(d,{phase=165}={}){
   return {trigger:true,g1357CopyOnEntry:true,g174Start:[{op:'Target',g1357Become:true,
    g1357EndThisTurn:true,optional:true,title:'このクリーチャーがコピーする相手のクリーチャーを選ぶ'}]};
  }
+ if(phase>=1363&&['dmex12-022','dmex17-Cho38'].includes(d?.id)&&d.status==='complete'&&
+    d.faces.length===1&&f.typeText==='D2フィールド'&&normalize(f.abilityText
+     .replace('使用する','使う').replace('フィールドが出た時','フィールドがバトルゾーンに出た時'))===normalize(
+     'このゲームで使うカード、そのコスト、そのテキスト内のコストはすべて、文明を失う。（無色となる）'+
+     '（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）'))
+  return {d2Field:true,g1363JoeStar:true,limit:0};
  if(phase>=1362&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='オレガ・オーラ'&&
     ['dmsd09-013','dmrp09-040','dmex05-047','promoy18-003','dmbd12-g13'].includes(d.id)&&
     normalize(f.abilityText)===normalize(

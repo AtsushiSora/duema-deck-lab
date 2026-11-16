@@ -6954,7 +6954,8 @@ export function createSixPhotoRules(api){
   if(t.target){
    const x=s.players[t.target.p].battle.find(y=>y.uid===t.target.uid&&(y.incarnation||0)===t.target.incarnation);
    if(x&&!x.sealed&&api.isCreature(s,x))(s.extLimits??=[]).push({
-    kind:'g805BattleColor',uid:x.uid,incarnation:x.incarnation||0,color:v,turn:s.turn,expires:'end',who:s.active
+    kind:'g805BattleColor',uid:x.uid,incarnation:x.incarnation||0,color:v,turn:s.turn,expires:'end',who:s.active,
+    g1363ColorOrder:s.g1363ColorOrder=(s.g1363ColorOrder||0)+1
    });
   }else for(const {p,x,cs} of creatureCivilizations805(s))if(cs.some(c=>c!==v))api.tap(s,p,x);
   break;
