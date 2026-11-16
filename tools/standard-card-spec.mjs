@@ -2480,6 +2480,19 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1357&&d?.id==='dmex18-022'&&d.status==='complete'&&d.faces.length===1&&
+  f.typeText==='クリーチャー'&&normalize(f.abilityText)===normalize(
+   'このクリーチャーが出た時、または自分のターンのはじめに、相手のクリーチャーを１体選ぶ。次の相手のターンの終わりまで、このクリーチャーはその選んだクリーチャーになる。')){
+  const become={op:'Target',g1357Become:true,title:'このクリーチャーがコピーする相手のクリーチャーを選ぶ'};
+  return {effect:'sixPhoto',g34Tasks:[become],g174Start:[become]};
+ }
+ if(phase>=1357&&['dm25rp4-002','dm25ex3-rp4002'].includes(d?.id)&&d.status==='complete'&&d.faces.length===1&&
+  f.typeText==='クリーチャー'&&normalize(f.abilityText)===normalize(
+   'S・トリガー S・トリガー\nこのクリーチャーが出る時、相手のクリーチャーを１体選んでもよい。そうしたら、このクリーチャーはそのクリーチャーとして出る。このターンの終わりまで、このクリーチャーはその選んだクリーチャーである。\n'+
+   '自分のターンのはじめに、相手のクリーチャーを１体選んでもよい。そうしたら、このターンの終わりまで、このクリーチャーはその選んだクリーチャーになる。')){
+  return {trigger:true,g1357CopyOnEntry:true,g174Start:[{op:'Target',g1357Become:true,
+   g1357EndThisTurn:true,optional:true,title:'このクリーチャーがコピーする相手のクリーチャーを選ぶ'}]};
+ }
  if(phase>=1356&&d?.status==='complete'&&d.faces.length===2&&f.typeText==='サイキック・クリーチャー'){
   const current={'dmr04-v03':'dm25ex4-TR03','dmr04-v02':'dm25ex4-TR02','dmr04-051':'dm25ex4-T29'};
   const id=Object.hasOwn(current,d.id)?d.id:Object.keys(current).find(id=>current[id]===d.id);

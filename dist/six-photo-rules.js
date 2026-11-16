@@ -344,7 +344,11 @@ export function createSixPhotoRules(api){
   return creatures(s,t.p).filter(y=>y.uid!==host?.uid&&y.uid!==t.uid&&!y.tapped&&!y.sealed&&!y.faceDown&&
    race(effective(y,s,true),t.race));
  }
- const send=(s,p,x,op,more={},deferred)=>api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g34_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})},deferred);
+ const send=(s,p,x,op,more={},deferred)=>{
+  const source=x.g1357Copies?.at(-1)?.definition.id??x.cardId;
+  api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source,effect:'extended',
+   task:task('g34_'+op,p,source,{uid:x.uid,incarnation:x.incarnation||0,...more})},deferred);
+ };
  function bioKScore(s,p,source){
   const {recovery,effect}=card(source).g953BioK??{};
   const own=s.players[p],opp=s.players[1-p];
@@ -5721,7 +5725,14 @@ export function createSixPhotoRules(api){
   else if(optional)api.beginManaExchange753(s,t,null);
   break;
  }
+ case'g34_CopyOnEntry1357':{
+  const options=targetOptions(s,t.p,creatures(s,1-t.p));
+  if(options.length)choice(s,t,'出る時にコピーする相手のクリーチャーを選ぶ',[...options,skip()]);
+  else copyOnEntry1357(s,t,null);
+  break;
+ }
  case'g34_Target':{
+  if(t.g1357Become&&!sourceHost474(s,t)?.x)break;
   if(t.g1150AttachGrave&&(!own.grave.length||!api.canMoveZone(s,t.p,'grave')))break;
   if(t.g1086BelowGrave)t={...t,filter:{...t.filter,belowCost:own.grave.length}};
   if(used792(s,t,t))break;
@@ -7512,8 +7523,15 @@ export function createSixPhotoRules(api){
   else if(optional)api.beginManaExchange753(s,next,null);
  }break;
  case'g34_ManaExchangeBase753':api.beginManaExchange753(s,t,v);break;
+ case'g34_CopyOnEntry1357':copyOnEntry1357(s,t,v);break;
  case'g34_Target':
   if(used792(s,t,t))break;
+  if(t.g1357Become){
+   const host=sourceHost474(s,t)?.x;
+   const target=v&&s.players[v.p].battle.find(y=>y.uid===v.uid);
+   if(host&&target&&!host.sealed&&api.isCreature(s,host))api.copyCreature1357(s,t.p,host,target,t.g1357EndThisTurn);
+   break;
+  }
   if(!v&&t.elseDefs){start(s,t,t.elseDefs);break;}
   if(t.g1309Revealed){
    const returned=v&&own.battle.find(y=>y.uid===v.uid);
@@ -7844,7 +7862,14 @@ export function createSixPhotoRules(api){
    const currentCost=cost(effective(x,s));
    more.g399Attacker={uid:x.uid,incarnation:x.incarnation||0,cost:currentCost===Infinity?'∞':currentCost};
   }
-  send(s,p,source===x.cardId?x:{...x,cardId:source},'Sequence',more);
+  send(s,p,source===x.cardId?x:{...x,cardId:source,g1357Copies:undefined},'Sequence',more);
+ }
+ function copyOnEntry1357(s,t,uid){
+  const x=remove(s.players[t.p].g34Holding||[],t.held);
+  if(x){
+   enter(s,t.p,x,t.baseUid,{...t.entryOptions,g1357BecomeTarget:uid??null});
+   if(s.players[t.p].battle.includes(x))put(s,...(t.afterEntryTasks||[]));
+  }
  }
  const graveFace1226=c=>c&&(c.type==='spell'||c.type==='seed'||c.seedCreature||c.natureAce4);
  function graveActions1226(s,p){

@@ -213,6 +213,11 @@ export function createExtendedRules(api){
   bande.evolutionBase(s,p,x);
  },inherit:(s,b,x)=>{thisInherit(s,b,x);viride.inherit(s,b,x);hachi.inherit(s,b,x);travel.inherit(s,b,x);lionel.inherit(s,b,x);samurai.inherit(s,b,x);zard.inherit(s,b,x);armored.inherit(s,b,x);magic.inherit(s,b,x);}});
  function thisInherit(s,b,x,split=false){
+  if(b.g1357Copies?.length&&b!==x){
+   const copies=new Map([...(x.g1357Copies||[]),...b.g1357Copies].map(copy=>[copy.order,copy]));
+   x.g1357Copies=structuredClone([...copies.values()].sort((a,b)=>a.order-b.order));
+   if(!split)delete b.g1357Copies;
+  }
   if(b.g170StartFreeze)x.g170StartFreeze=[...new Map([...(x.g170StartFreeze||[]),...b.g170StartFreeze].map(e=>[JSON.stringify(e),structuredClone(e)])).values()];
   if(b.g31EndDeath)(x.g31EndDeath??=[]).push(...structuredClone(b.g31EndDeath));
   // Lasting effects on a creature survive evolution and reconstruction of that creature.
