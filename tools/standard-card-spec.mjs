@@ -2493,6 +2493,33 @@ export function standardCardSpec(d,{phase=165}={}){
   return {trigger:true,g1357CopyOnEntry:true,g174Start:[{op:'Target',g1357Become:true,
    g1357EndThisTurn:true,optional:true,title:'このクリーチャーがコピーする相手のクリーチャーを選ぶ'}]};
  }
+ if(phase>=1362&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='オレガ・オーラ'&&
+    ['dmsd09-013','dmrp09-040','dmex05-047','promoy18-003','dmbd12-g13'].includes(d.id)&&
+    normalize(f.abilityText)===normalize(
+     'S・トリガー S・トリガー（このオーラをシールドゾーンから手札に加える時、コストを支払わずにすぐ使ってもよい）'+
+     'これをクリーチャーに付けた時、クリーチャーを１体選び、持ち主の手札に戻してもよい。'))
+  return {type:'aura',power:0,auraPower:2000,trigger:true,g1362AuraBounce:true};
+ if(phase>=1362&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='進化クリーチャー'){
+  if(['dm35-004','dmc64-013','dmex18-005'].includes(d.id)){
+   const canonical=f.abilityText.replace('進化-バトルゾーンにある自分の、','進化：')
+    .replace('ただし、このクリーチャーのコストは１より少なくならない)','ただし、コストは０以下にはならない。')
+    .replace('クリーチャーがバトルゾーンを離れる時、自分はゲームに勝利する。','クリーチャーが離れる時、自分はゲームに勝つ。')
+    .replace('Q・ブレイカー(このクリーチャーはシールドを４枚ブレイクする)','Q・ブレイカー')
+    .replace('ソウルシフト(','ソウルシフト（');
+   if(normalize(canonical)===normalize('進化：名前に《ゴウケンオー》とあるクリーチャー１体の上に置く。'+
+    'ソウルシフト（このクリーチャーを召喚する時、このクリーチャーの進化元クリーチャーを選ぶ。このクリーチャーのコストは、その選んだクリーチャーのコストだけ少なくなる。ただし、コストは０以下にはならない。'+
+    'Q・ブレイカー'+
+    '相手の呪文またはバトルゾーンにある相手のクリーチャーの能力によって、このクリーチャーが離れる時、自分はゲームに勝つ。'))
+    return {evolution:{nameIncludes:'ゴウケンオー'},g1362SoulShift:true,breaker:4,g1362DepartureWin:true};
+  }
+  if(d.id==='dmex18-023'&&normalize(f.abilityText)===normalize(
+   '超無限進化：名前に《グレンオー》とあるクリーチャー１体以上の上に置く。'+
+   '∞ ソウルシフト（このクリーチャーを召喚する時、このクリーチャーのコストを、その進化元クリーチャーのコストの合計分少なくする。ただし、コストは０以下にはならない。）'+
+   'T・ブレイカー（このクリーチャーはシールドを３つブレイクする）'+
+   'このクリーチャーが攻撃する時、自分の山札の上から７枚を見る。その中から名前に《ケンゲキオージャ》とあるクリーチャーを１体選び、このクリーチャーの上に置いてもよい。その後、山札をシャッフルする。'))
+   return {evolution:{nameIncludes:'グレンオー'},g31Evolution:{zone:'battle',conditions:[{nameIncludes:'グレンオー'}],variable:true},
+    g1362SoulShift:true,breaker:3,g34Attack:[{op:'GoukenEvolution1362'}]};
+ }
  if(phase>=1361&&d?.status==='complete'){
   const back=d.faces[1];
   if(['dmr13-045','promoy13-057'].includes(d.id)&&d.faces.length===2&&f.typeText==='ドラグハート・ウエポン'&&

@@ -126,6 +126,17 @@ export function createPhoenixRules(api){
   ]);
   break;
  }
+ if(c.g1362SoulShift&&d.variable&&t.mode==='cast'&&!t.args[1]){
+  const rows=bases(s,t.p,c,options),available=rows.filter(x=>!t.selected.includes(x.uid));
+  const canPay=ids=>api.canPay(s,t.p,{...c,summonOrigin:t.args[5],executionUid:t.uid,g27BaseUid:ids});
+  const choices=available.map(x=>opt(card(x).name,x.uid,30+cost(effective(x,s)),x.cardId));
+  if(t.selected.length&&canPay(t.selected))
+   choices.push(opt('この進化元で召喚（'+api.summonCost(s,t.p,{...c,g27BaseUid:t.selected})+'マナ）',null,60));
+  if(t.selected.length)choices.push(opt('進化元を選び直す','reset',-100));
+  choices.push(opt('召喚をやめる','cancel',-100));
+  choice(s,t,'超無限進化：進化元を1体以上選ぶ',choices);
+  break;
+ }
  if(d.zone==='deck'||!d.variable&&t.selected.length===n){finishBases(s,t);break;}const list=candidates(s,t.p,c,options).filter(r=>!t.selected.includes(r.x.uid)&&completions(s,t.p,c,[...t.selected,r.x.uid],options));if(!list.length&&d.variable&&t.selected.length){finishBases(s,t);break;}if(!list.length){if(t.mode==='put'){const x=remove(own.g31Holding,t.uid);if(x){clear(x,'grave');api.addZone(s,own,'grave',x);}}break;}choice(s,t,'進化元を順に選ぶ（'+t.selected.length+'/'+(d.variable?'好きな数':n)+'）',[...list.map(r=>opt(card(r.x).name+'（'+baseZoneLabel[r.zone]+'）',r.x.uid,30-cost(card(r.x)),r.x.cardId)),...(d.variable&&t.selected.length?[opt('確定する',null,0)]:[]),...(d.zones&&(t.mode==='sasage'||t.mode==='cast'&&!t.args[1])?[opt('召喚をやめる','cancel',-100)]:[])]);break;}
  case'g31_ZeroLeave':put(s,task('discard',1-t.p,t.source,{n:2,causedBy:t.p}),task('g31_ManaTrash',t.p,t.source,{max:2,optional:true}));break;
  case'g31_Fel':put(s,task('g31_Sacrifice',t.p,t.source,{n:2,selected:[],after:[task('discard',1-t.p,t.source,{n:2,causedBy:t.p})]}));break;

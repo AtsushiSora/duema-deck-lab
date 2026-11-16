@@ -2614,6 +2614,25 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_AttackEffect409':{if(attackHost408(s,t))(s.extLimits??=[]).push({kind:'g409AttackEffect',player:t.p,ref:t.g399Attacker,effect:t.kind,expires:'start',who:t.p});break;}
+ case'g34_GoukenEvolution1362':{
+  const ids=look(s,{...t,n:7});
+  const host=sourceHost474(s,t)?.x;
+  const rows=host&&own.battle.includes(host)&&api.isCreature(s,host)?own.deck.filter(x=>
+   ids.includes(x.uid)&&card(x).type==='creature'&&card(x).name.includes('ケンゲキオージャ')&&
+   canPut(s,t.p,x,'deck')):[];
+  if(rows.length)choice(s,{...t,...deckPeek841(own,ids),ids},'ゴウケンオーの上に重ねるケンゲキオージャを選ぶ',[
+   ...rows.map(x=>opt(card(x).name,x.uid,30,x.cardId)),skip()
+  ]);
+  else{
+   for(const uid of ids)release(s,t.p,uid);
+   api.shuffleLibrary(s,t.p,[],t.source);
+  }
+  break;
+ }
+ case'g34_GoukenShuffle1362':
+  for(const uid of t.ids)release(s,t.p,uid);
+  api.shuffleLibrary(s,t.p,[],t.source);
+  break;
  case'g34_AttackLookDeploy1317':{
   const host=sourceHost474(s,t.g399Attacker)?.x;
   const ceiling=host?cost(effective(host,s)):t.g399Attacker.cost;
@@ -7364,6 +7383,16 @@ export function createSixPhotoRules(api){
    else if(chosen)start(s,t,[deploy]);
   }
   break;
+ case'g34_GoukenEvolution1362':{
+  const host=sourceHost474(s,t)?.x;
+  put(s,{...t,op:'g34_GoukenShuffle1362'});
+  if(v&&host&&own.battle.includes(host)&&api.isCreature(s,host)){
+   release(s,t.p,v);
+   const x=remove(own.deck,v);
+   if(x)enter(s,t.p,x,host.uid,{origin:'deck',execution:false,g31Force:true});
+  }
+  break;
+ }
  case'g34_Put':doPut(s,t,v);break;
  case'g34_Marianna728':put(s,{...t,op:'g34_Order',rest:'shuffle',after:v?[{op:'MariannaCast728',selected:v}]:null});break;
  case'g34_MariannaCast728':if(v)cast(s,t.p,t.selected.uid,true,null,t.selected.face,null,'deck','光器マリアンナの能力');break;
