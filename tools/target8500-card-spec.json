@@ -13331,5 +13331,97 @@
       ],
       "auraPower": 4000
     }
+  },
+  "dmr14-039": {
+    "phase": 1451,
+    "faces": [
+      {
+        "name": "アクア戦士 ブルーマイティ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "自分のドラグハートをバトルゾーンに出した時、カードを１枚引いてもよい。",
+        "race": "リキッド・ピープル閃",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g250EntryDraw": {
+        "filter": {
+          "g1451Dragheart": true
+        },
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      }
+    }
+  },
+  "dmr14-033": {
+    "phase": 1451,
+    "faces": [
+      {
+        "name": "歌姫の面 エリカッチュ",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分のドラグハートをバトルゾーンに出した時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+        "race": "ビーストフォーク號",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g250EntryDraw": {
+        "filter": {
+          "g1451Dragheart": true
+        },
+        "defs": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dmex17-106": {
+    "phase": 1451,
+    "faces": [
+      {
+        "name": "夢幻なる零龍",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 0,
+        "costText": "0",
+        "abilityText": "（パワー０以下のクリーチャーは破壊される）\nこのクリーチャーはシールドを１つもブレイクしない。",
+        "race": "ゼロ・ドラゴン",
+        "powerText": "0",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g977CannotBreak": true
+    }
   }
 }
