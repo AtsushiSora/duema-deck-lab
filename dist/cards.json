@@ -267317,15 +267317,236 @@
       "attackUntapped": true,
       "supportBatch": "phase-1491",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-034",
+      "name": "愛友情 ニケ・M",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "アウトレイジMAX",
+      "text": "バトルゾーンにある自分の、名前に《友情》とあるエグザイル・クリーチャーはすべて「ブロッカー」を得る。\nドロン・ゴー：このクリーチャーが破壊された時、名前に《M》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《愛友情 ニケ・M》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-034",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "愛友情 ニケ・M",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "M"
+            ]
+          }
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "g1490Exile": true,
+            "g227NameIncludes": "友情"
+          },
+          "grants": {
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1492",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-024",
+      "name": "学友情 ロビー・R",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "アウトレイジMAX",
+      "text": "バトルゾーンにある自分の、名前に《友情》とあるエグザイル・クリーチャーはすべてブロックされない。\nドロン・ゴー：このクリーチャーが破壊された時、名前に《R》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《学友情 ロビー・R》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-024",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "学友情 ロビー・R",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "R"
+            ]
+          }
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "g1490Exile": true,
+            "g227NameIncludes": "友情"
+          },
+          "grants": {
+            "unblockable": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1492",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-026",
+      "name": "豚乱舞 ブータン・ジャクソン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "アウトレイジMAX",
+      "text": "このクリーチャーが攻撃する時、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-3000される。（パワー０以下のクリーチャーは破壊される）\nウルトラ・ドロン・ゴー：このクリーチャーがバトルゾーンを離れた時、名前に《乱舞》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《乱舞》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-026",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "乱舞",
+      "g172Leave": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "乱舞"
+            ]
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Target",
+          "power": -3000,
+          "g242PowerMinus": true
+        }
+      ],
+      "supportBatch": "phase-1492",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-s03",
+      "name": "凶槍乱舞 デスメタル・パンク",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "アウトレイジMAX",
+      "text": "このクリーチャーが攻撃する時、バトルゾーンにある相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーは無限にパワーを失う。（パワー０以下のクリーチャーは破壊される）\nW・ブレイカー\nウルトラ・ドロン・ゴー：このクリーチャーがバトルゾーンを離れた時、名前に《乱舞》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《乱舞》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-s03",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "乱舞",
+      "g172Leave": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "乱舞"
+            ]
+          }
+        }
+      ],
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "power": "-infinity",
+          "g242PowerMinus": true
+        }
+      ],
+      "supportBatch": "phase-1492",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy12-036",
+      "name": "激流剣砲 カツ∞キング",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 12000,
+      "race": "アウトレイジMAX",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、相手の「ブロッカー」を持つクリーチャーを無限の数破壊する。その後、カードを１枚引いてもよい。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）\n自分の他の、名前に《剣砲》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy12-036",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "剣砲",
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "blocker": true
+          }
+        },
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1492",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1491,
+    "phase": 1492,
     "checkedAt": "2026-11-20",
-    "baseCount": 8578,
+    "baseCount": 8583,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8583,
+    "totalCount": 8588,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -291978,6 +292199,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8578,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1491,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8578,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8583,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
