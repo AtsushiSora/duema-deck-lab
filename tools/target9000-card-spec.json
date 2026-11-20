@@ -2160,5 +2160,141 @@
         ]
       }
     }
+  },
+  "dm24sp2-002": {
+    "phase": 1484,
+    "faces": [
+      {
+        "name": "「奇妙」の頂天 クリス=バアル",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "G・ゼロ：自分のマナゾーンに裏向きのカードが５枚以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\nT・ブレイカー\nこのクリーチャーは、出たターン、相手プレイヤーを攻撃できる。\nこのクリーチャーが出た時、ゼニスまたは無色カードを１枚、自分の墓地から手札に戻す。",
+        "race": "ゼニス・セレス",
+        "powerText": "17371",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 3,
+      "entryPlayerAttack": true,
+      "g396Zero": {
+        "all": [
+          {
+            "g286FaceDownMana": 5
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "filter": {
+            "any": [
+              {
+                "race": "ゼニス"
+              },
+              {
+                "g200Colorless": true
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "dmr11-051": {
+    "phase": 1484,
+    "faces": [
+      {
+        "name": "護神のインガ イヌハッカ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/闇",
+        "civilizations": [
+          "光",
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nG・ゼロ - バトルゾーンに自分のゴッドがあれば、このクリーチャーをコストを支払わずに召喚してもよい。\nブロッカー ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーはバトルに勝っても、バトルの後、破壊される。",
+        "race": "オラクル",
+        "powerText": "5500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noPlayerAttack": true,
+      "afterBattleDie": true,
+      "g396Zero": {
+        "all": [
+          {
+            "g370BattleCount": {
+              "filter": {
+                "race": "ゴッド"
+              },
+              "min": 1
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dmc40-001": {
+    "phase": 1484,
+    "faces": [
+      {
+        "name": "黒龍王ダーク・ジオス",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "G・ゼロ-相手の墓地にクリーチャーが６体以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\n自分のドラゴンが攻撃する時、相手は自分自身のクリーチャーを１体選び、破壊する。",
+        "race": "デーモン・コマンド",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g396Zero": {
+        "all": [
+          {
+            "g1484ZoneCount": {
+              "opponent": true,
+              "zone": "grave",
+              "min": 6,
+              "filter": {
+                "g228Face": {
+                  "type": "creature"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "race": "ドラゴン"
+        },
+        "defs": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave"
+          }
+        ]
+      }
+    }
   }
 }

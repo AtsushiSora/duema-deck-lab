@@ -266165,15 +266165,140 @@
       },
       "supportBatch": "phase-1483",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24sp2-002",
+      "name": "「奇妙」の頂天 クリス=バアル",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 17371,
+      "race": "ゼニス・セレス",
+      "text": "G・ゼロ：自分のマナゾーンに裏向きのカードが５枚以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\nT・ブレイカー\nこのクリーチャーは、出たターン、相手プレイヤーを攻撃できる。\nこのクリーチャーが出た時、ゼニスまたは無色カードを１枚、自分の墓地から手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24sp2-002",
+      "limit": 4,
+      "breaker": 3,
+      "entryPlayerAttack": true,
+      "g396Zero": {
+        "all": [
+          {
+            "g286FaceDownMana": 5
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "filter": {
+            "any": [
+              {
+                "race": "ゼニス"
+              },
+              {
+                "g200Colorless": true
+              }
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-1484",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr11-051",
+      "name": "護神のインガ イヌハッカ",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 5500,
+      "race": "オラクル",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nG・ゼロ - バトルゾーンに自分のゴッドがあれば、このクリーチャーをコストを支払わずに召喚してもよい。\nブロッカー ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーはバトルに勝っても、バトルの後、破壊される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-051",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "afterBattleDie": true,
+      "g396Zero": {
+        "all": [
+          {
+            "g370BattleCount": {
+              "filter": {
+                "race": "ゴッド"
+              },
+              "min": 1
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1484",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmc40-001",
+      "name": "黒龍王ダーク・ジオス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "デーモン・コマンド",
+      "text": "G・ゼロ-相手の墓地にクリーチャーが６体以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\n自分のドラゴンが攻撃する時、相手は自分自身のクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc40-001",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "g1484ZoneCount": {
+              "opponent": true,
+              "zone": "grave",
+              "min": 6,
+              "filter": {
+                "g228Face": {
+                  "type": "creature"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "race": "ドラゴン"
+        },
+        "defs": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave"
+          }
+        ]
+      },
+      "supportBatch": "phase-1484",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1483,
+    "phase": 1484,
     "checkedAt": "2026-11-20",
-    "baseCount": 8545,
-    "newEffectCards": 5,
+    "baseCount": 8550,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 8550,
+    "totalCount": 8553,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -290714,6 +290839,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8545,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1483,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8545,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8550,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

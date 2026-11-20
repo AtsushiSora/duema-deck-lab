@@ -648,6 +648,7 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g1484ZoneCount){const r=f.g1484ZoneCount,who=r.opponent?1-p:p,n=s.players[who][r.zone].filter(y=>matches(s,who,y,r.filter)).length;return(r.min===undefined||n>=r.min)&&(r.max===undefined||n<=r.max);}
   if(f.g1475Attacking){const a=s.attack||s.attackLifecycle;return !!a&&s.players[p].battle.some(x=>api.allLayers(x).some(y=>y.uid===sourceUid&&(sourceIncarnation===null||(y.incarnation||0)===sourceIncarnation))&&(x.uid===(a.attacker??a.uid)));}
   if(f.g1473RepeatedUnitAttack){const host=s.players[p].battle.find(x=>api.allLayers(x).some(y=>y.uid===sourceUid&&(sourceIncarnation===null||(y.incarnation||0)===sourceIncarnation)));if(!host||s.g481Attackers?.turn!==s.turn)return false;const refs=api.allLayers(host).map(key);return s.g481Attackers.events.filter(e=>e.p===p&&e.refs.some(r=>refs.includes(r))).length>1;}
   if(f.g1471GrCount!==undefined)return creatures(s,p).filter(x=>!x.sealed&&!x.faceDown&&api.zoneCard(s,p,x,'battle').gr).length>=f.g1471GrCount;

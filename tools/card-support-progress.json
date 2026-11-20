@@ -1,28 +1,28 @@
 {
   "checkedAt": "2026-11-20",
   "catalogueNames": 11825,
-  "supportedNames": 8550,
-  "pendingNames": 3275,
-  "phase": 1483,
-  "added": 5,
+  "supportedNames": 8553,
+  "pendingNames": 3272,
+  "phase": 1484,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
     {
       "ability": "G・ゼロ",
-      "pendingNames": 26,
+      "pendingNames": 23,
       "examples": [
         {
           "id": "dmex15-b028",
           "name": "「ひっくり返したれやぁぁぁ!!」"
         },
         {
-          "id": "dm24sp2-002",
-          "name": "「奇妙」の頂天 クリス=バアル"
-        },
-        {
           "id": "dmr21-s02",
           "name": "D2S 皇帝ワルスラ"
+        },
+        {
+          "id": "dmex07-m04",
+          "name": "FZゲイザー feat. アアルカイト"
         }
       ]
     },
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1917,
+    "クリーチャー": 1914,
     "NEOクリーチャー": 69,
     "呪文": 394,
     "GRクリーチャー": 19,
@@ -224,7 +224,7 @@
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 807,
     "未対応の能力文": 2287,
-    "未対応のG・ゼロ条件": 20,
+    "未対応のG・ゼロ条件": 17,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
     "未対応のD2フィールド能力": 37,
@@ -288,12 +288,12 @@
         "name": "「ひっくり返したれやぁぁぁ!!」"
       },
       {
-        "id": "dm24sp2-002",
-        "name": "「奇妙」の頂天 クリス=バアル"
-      },
-      {
         "id": "dmr21-s02",
         "name": "D2S 皇帝ワルスラ"
+      },
+      {
+        "id": "dmex07-m04",
+        "name": "FZゲイザー feat. アアルカイト"
       }
     ],
     "未対応の召喚時能力": [
@@ -505715,11 +505715,117 @@
         "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
       ],
       "next": "目標9000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
+    },
+    {
+      "phase": 1484,
+      "kind": "registration-toward-9000",
+      "checkedAt": "2026-11-20T21:11:23.823Z",
+      "baseline": "abeeac4dc90885d5c3225d2c3fadd4894cef48de",
+      "manifest": "tools/support-phase-1484.json",
+      "status": "verified-local",
+      "before": 8550,
+      "supported": 8553,
+      "pending": 3272,
+      "added": [
+        {
+          "id": "dm24sp2-002",
+          "name": "「奇妙」の頂天 クリス=バアル"
+        },
+        {
+          "id": "dmr11-051",
+          "name": "護神のインガ イヌハッカ"
+        },
+        {
+          "id": "dmc40-001",
+          "name": "黒龍王ダーク・ジオス"
+        }
+      ],
+      "duplicates": 0,
+      "results": {
+        "focused": {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1484-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.463,
+          "log": "tmp/duema-phase-1484/focused.log",
+          "passed": 84,
+          "failed": 0
+        },
+        "related": {
+          "name": "related",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard396-effects.test.mjs",
+            "tests/standard434-effects.test.mjs",
+            "tests/standard591-effects.test.mjs",
+            "tests/standard1470-effects.test.mjs",
+            "tests/standard1471-effects.test.mjs",
+            "tests/standard1483-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 24.939,
+          "log": "tmp/duema-phase-1484/related.log",
+          "passed": 264,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.022,
+          "log": "tmp/duema-phase-1484/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 13.481,
+          "log": "tmp/duema-phase-1484/audit.log"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tools/verify-target9000.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.196,
+          "log": "tmp/duema-phase-1484/invariants.log"
+        }
+      },
+      "totalTestsPassed": 348,
+      "reason": "既存の処理を用いて全能力を個別に検証し3種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+      "remaining": [
+        "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
+      ],
+      "next": "目標9000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1483,
-    "nextPhase": 1484,
+    "lastVerifiedPhase": 1484,
+    "nextPhase": 1485,
     "workInProgress": null,
     "nextCandidates": [
       "公式照合済みの通常能力を持たないGRクリーチャー",
@@ -505728,7 +505834,7 @@
     ],
     "steps": [
       "開始時にHEAD・作業差分・ステージ・既存プロセス・AGENTS・進捗を確認。",
-      "実データ8550種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8553種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "再開時は既存プロセス・最新コミット・作業ツリーを確認し、tools/verify-target8500.mjsとtools/target8500-verification.jsonを参照。ユーザー保留項目は既存記録を維持。",
       "個別の残件2件はユーザー保留。再開指示まで追加調査・問い合わせ送信をしない。",
       "一括npm testを再実行せず、公開候補の未集約範囲だけ分割検証する。過去の固定ソースの合格と現版の合格を区別する。",
@@ -505809,14 +505915,14 @@
     ],
     "restartSteps": [
       "公開済みの版はb40ae0df (v0.722.1 / engine0.602.1 / 8074種類)。Pages・Netlifyを同じ版に更新済み。最新HEAD・差分・ステージ・既存プロセスを最初に確認。",
-      "実データ8550種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8553種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "再開時は既存プロセス・最新コミット・作業ツリーを確認し、tools/verify-target8500.mjsとtools/target8500-verification.jsonを参照。ユーザー保留項目は既存記録を維持。",
       "既存8072定義は深い比較で不変。カードID・保存形式・保存済みデッキ・対戦履歴を維持。",
       "個別の残件2件と問い合わせ案はユーザー指示「後回しにしよう」で保留。再開指示があるまでこの2件の調査・送信を行わない。",
       "No13長時間検証はengine0.601.0の固定ソースで完了済み。今回のengine0.602.0の全面検証には数えない。必要な未集約項目は対象を特定し、細かく分割して確認する。",
       "Netlifyは手動反映専用。workflow_dispatchだけ、GitHub pushフック停止、stop_builds=trueを維持。通常のカード追加pushでは反映しない。今回の公開に保留・未検証の解消は含めない。"
     ],
-    "registrationStatus": "ユーザーの新目標9000種類に向けて通常登録を再開。現在8550種類、残り450種類。automationはPAUSEDのまま。",
+    "registrationStatus": "ユーザーの新目標9000種類に向けて通常登録を再開。現在8553種類、残り447種類。automationはPAUSEDのまま。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [],
     "printVerificationPending": [
@@ -505928,10 +506034,10 @@
     "registrationTarget": {
       "target": 9000,
       "startCount": 8500,
-      "currentCount": 8550,
-      "remaining": 450,
+      "currentCount": 8553,
+      "remaining": 447,
       "status": "active",
-      "phase": 1483
+      "phase": 1484
     },
     "deferredRegistrationCandidates": [
       {
@@ -557866,10 +557972,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1483,
+    "phase": 1484,
     "threshold": 9000,
-    "supportedNames": 8550,
-    "pendingNames": 3275,
+    "supportedNames": 8553,
+    "pendingNames": 3272,
     "checkedAt": "2026-11-20",
     "registrationStopped": false,
     "automationId": "duema-deck-lab",
