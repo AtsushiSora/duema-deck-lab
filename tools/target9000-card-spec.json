@@ -6740,5 +6740,154 @@
       },
       "sasage": 2
     }
+  },
+  "dmr21-s02": {
+    "phase": 1508,
+    "faces": [
+      {
+        "name": "D2S 皇帝ワルスラ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "W・ブレイカー\nG・ゼロ-バトルゾーンに自分の水のクリーチャーが５体以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\n自分のクリーチャーは攻撃されない。\n呪文の効果によって、相手がバトルゾーンにあるクリーチャーを１体選ぶ時、自分のD２フィールドがバトルゾーンにあれば、自分のクリーチャーは選べない。",
+        "race": "マジック・コマンド/マスター・イニシャルズ",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g396Zero": {
+        "all": [
+          {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "color": "水"
+              },
+              "min": 5
+            }
+          }
+        ]
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "cannotBeAttacked": true
+          }
+        },
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "g580D2Field": true
+          },
+          "grants": {
+            "spellUntargetable": true
+          }
+        }
+      ]
+    }
+  },
+  "dmsd04-003": {
+    "phase": 1508,
+    "faces": [
+      {
+        "name": "シャダンＱ",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "G・ゼロ：バトルゾーンに自分のコスト５以上のジョーカーズがあれば、このクリーチャーをコストを支払わずに召喚してもよい。\n自分がクリーチャーに攻撃された時、このクリーチャーをタップしてその攻撃を中止してもよい。",
+        "race": "ジョーカーズ",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g396Zero": {
+        "all": [
+          {
+            "g370BattleCount": {
+              "g557Elements": true,
+              "filter": {
+                "race": "ジョーカーズ",
+                "min": 5
+              },
+              "min": 1
+            }
+          }
+        ]
+      },
+      "g252AttackWatch": {
+        "who": "opponent",
+        "playerAttack": true,
+        "defs": [
+          {
+            "op": "TapToStopAttack979"
+          }
+        ]
+      }
+    }
+  },
+  "dm25ex1-020": {
+    "phase": 1508,
+    "faces": [
+      {
+        "name": "閃光の決闘",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "G・ゼロ ：自分のエンジェル・コマンドが５つ以上あれば、この呪文をコストを支払わずに唱えてもよい。\n相手のクリーチャーをすべてタップする。\n次の自分のターンのはじめまで、自分のエンジェル・コマンドは離れない。",
+        "race": "エンジェル・コマンド・ワード",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g396Zero": {
+        "all": [
+          {
+            "g370BattleCount": {
+              "g557Elements": true,
+              "filter": {
+                "race": "エンジェル・コマンド"
+              },
+              "min": 5
+            }
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "TapAll"
+        },
+        {
+          "op": "GroupStay627",
+          "owner": "self",
+          "spell": true,
+          "filter": {
+            "race": "エンジェル・コマンド"
+          },
+          "g262Elements": true
+        }
+      ]
+    }
   }
 }

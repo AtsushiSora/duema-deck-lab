@@ -6274,7 +6274,7 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_GroupStay627':
-  for(const {y} of groupPowerRows(s,t))stayUntilStart627(s,t,y);
+  for(const {y} of t.g262Elements?s.players[t.p].battle.filter(y=>!y.sealed&&!y.faceDown&&matches(s,t.p,y,t.filter)).map(y=>({y})):groupPowerRows(s,t))stayUntilStart627(s,t,y);
   break;
  case'g34_Stay627':stayUntilStart627(s,t,sourceHost474(s,t)?.x);break;
  case'g34_LockAttacks726':

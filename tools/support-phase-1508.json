@@ -1,0 +1,245 @@
+{
+  "phase": 1508,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8653,
+  "description": "既存の処理を用いて全能力を個別に検証し3種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmr21-s02",
+      "name": "D2S 皇帝ワルスラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-s02",
+      "faces": [
+        {
+          "name": "D2S 皇帝ワルスラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nG・ゼロ-バトルゾーンに自分の水のクリーチャーが５体以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\n自分のクリーチャーは攻撃されない。\n呪文の効果によって、相手がバトルゾーンにあるクリーチャーを１体選ぶ時、自分のD２フィールドがバトルゾーンにあれば、自分のクリーチャーは選べない。",
+          "race": "マジック・コマンド/マスター・イニシャルズ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g396Zero": {
+          "all": [
+            {
+              "g370BattleCount": {
+                "filter": {
+                  "creature": true,
+                  "color": "水"
+                },
+                "min": 5
+              }
+            }
+          ]
+        },
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "cannotBeAttacked": true
+            }
+          },
+          {
+            "filter": {
+              "creature": true
+            },
+            "g557Condition": {
+              "g580D2Field": true
+            },
+            "grants": {
+              "spellUntargetable": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-s02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "3ce235b6c6526b11e839f582d0ece8202436b40080769e2eb522b165625680a1",
+        "facesMatched": true,
+        "imageSha256": "9ca376415007892a69f69c176835cabca2b71c49d0080dede62d5020a9a49da5",
+        "imageBytes": 143383
+      },
+      "sameNameProducts": [
+        "DMR-21 革命ファイナル 拡張パック第１章 ハムカツ団とドギラゴン剣"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-s02",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmsd04-003",
+      "name": "シャダンＱ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd04-003",
+      "faces": [
+        {
+          "name": "シャダンＱ",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "G・ゼロ：バトルゾーンに自分のコスト５以上のジョーカーズがあれば、このクリーチャーをコストを支払わずに召喚してもよい。\n自分がクリーチャーに攻撃された時、このクリーチャーをタップしてその攻撃を中止してもよい。",
+          "race": "ジョーカーズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "g370BattleCount": {
+                "g557Elements": true,
+                "filter": {
+                  "race": "ジョーカーズ",
+                  "min": 5
+                },
+                "min": 1
+              }
+            }
+          ]
+        },
+        "g252AttackWatch": {
+          "who": "opponent",
+          "playerAttack": true,
+          "defs": [
+            {
+              "op": "TapToStopAttack979"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd04-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "56a19d96156f0d16d56750ac4525bbe3c492bc83d9f18192c3807d1f6b02ecc4",
+        "facesMatched": true,
+        "imageSha256": "f769fc358b158dc41f7f6bdcbab0623793ae6c7452fb0fbc580b028bb2273371",
+        "imageBytes": 108887
+      },
+      "sameNameProducts": [
+        "DM24-EX3 刺激爆発デュエナマイトパック",
+        "DM24-RP3 王道篇 第3弾 「ゴールド・オブ・ハイパーエンジェル」",
+        "DMEX-07 必殺!!マキシマム・ザ・マスターパック",
+        "DMSD-04 ジョーカーズ・弾銃炸裂・スタートデッキ"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd04-003",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm25ex1-020",
+      "name": "閃光の決闘",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-020",
+      "faces": [
+        {
+          "name": "閃光の決闘",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "G・ゼロ ：自分のエンジェル・コマンドが５つ以上あれば、この呪文をコストを支払わずに唱えてもよい。\n相手のクリーチャーをすべてタップする。\n次の自分のターンのはじめまで、自分のエンジェル・コマンドは離れない。",
+          "race": "エンジェル・コマンド・ワード",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "g370BattleCount": {
+                "g557Elements": true,
+                "filter": {
+                  "race": "エンジェル・コマンド"
+                },
+                "min": 5
+              }
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll"
+          },
+          {
+            "op": "GroupStay627",
+            "owner": "self",
+            "spell": true,
+            "filter": {
+              "race": "エンジェル・コマンド"
+            },
+            "g262Elements": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex1-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "7422314757ed59ed896ac6133a00ebfceed2e8697a4cff445506e08ff07de648",
+        "facesMatched": true,
+        "imageSha256": "2dc56e93d41cff37d4bb5430aa7f7fc06d4844e912e4dbfdafb0935b18f14e53",
+        "imageBytes": 145493
+      },
+      "sameNameProducts": [
+        "DM25-EX1 愛感謝祭 ヒロインBEST"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-020",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr21-s02": 4,
+      "dmsd04-003": 4,
+      "dm25ex1-020": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    }
+  ],
+  "testCorrections": [
+    "全体タップは既存TapAll処理を使用。全エンジェル・コマンドへの離脱防止はクリーチャー以外のタマシードにも適用するため、GroupStay627の明示的なelements指定を実装し検証。"
+  ]
+}

@@ -270420,15 +270420,153 @@
       "sasage": 2,
       "supportBatch": "phase-1507",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-s02",
+      "name": "D2S 皇帝ワルスラ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "マジック・コマンド/マスター・イニシャルズ",
+      "text": "W・ブレイカー\nG・ゼロ-バトルゾーンに自分の水のクリーチャーが５体以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\n自分のクリーチャーは攻撃されない。\n呪文の効果によって、相手がバトルゾーンにあるクリーチャーを１体選ぶ時、自分のD２フィールドがバトルゾーンにあれば、自分のクリーチャーは選べない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-s02",
+      "limit": 4,
+      "breaker": 2,
+      "g396Zero": {
+        "all": [
+          {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "color": "水"
+              },
+              "min": 5
+            }
+          }
+        ]
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "cannotBeAttacked": true
+          }
+        },
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "g580D2Field": true
+          },
+          "grants": {
+            "spellUntargetable": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1508",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd04-003",
+      "name": "シャダンＱ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 3000,
+      "race": "ジョーカーズ",
+      "text": "G・ゼロ：バトルゾーンに自分のコスト５以上のジョーカーズがあれば、このクリーチャーをコストを支払わずに召喚してもよい。\n自分がクリーチャーに攻撃された時、このクリーチャーをタップしてその攻撃を中止してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd04-003",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "g370BattleCount": {
+              "g557Elements": true,
+              "filter": {
+                "race": "ジョーカーズ",
+                "min": 5
+              },
+              "min": 1
+            }
+          }
+        ]
+      },
+      "g252AttackWatch": {
+        "who": "opponent",
+        "playerAttack": true,
+        "defs": [
+          {
+            "op": "TapToStopAttack979"
+          }
+        ]
+      },
+      "supportBatch": "phase-1508",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex1-020",
+      "name": "閃光の決闘",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "エンジェル・コマンド・ワード",
+      "text": "G・ゼロ ：自分のエンジェル・コマンドが５つ以上あれば、この呪文をコストを支払わずに唱えてもよい。\n相手のクリーチャーをすべてタップする。\n次の自分のターンのはじめまで、自分のエンジェル・コマンドは離れない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-020",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "g370BattleCount": {
+              "g557Elements": true,
+              "filter": {
+                "race": "エンジェル・コマンド"
+              },
+              "min": 5
+            }
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "TapAll"
+        },
+        {
+          "op": "GroupStay627",
+          "owner": "self",
+          "spell": true,
+          "filter": {
+            "race": "エンジェル・コマンド"
+          },
+          "g262Elements": true
+        }
+      ],
+      "supportBatch": "phase-1508",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1507,
+    "phase": 1508,
     "checkedAt": "2026-11-20",
-    "baseCount": 8650,
+    "baseCount": 8653,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 8653,
+    "totalCount": 8656,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -295305,6 +295443,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 8650,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1507,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8650,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 8653,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
