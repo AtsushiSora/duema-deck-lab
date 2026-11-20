@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-20",
   "catalogueNames": 11825,
-  "supportedNames": 8179,
-  "pendingNames": 3646,
-  "phase": 1399,
+  "supportedNames": 8184,
+  "pendingNames": 3641,
+  "phase": 1400,
   "added": 5,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2079,
+    "クリーチャー": 2074,
     "NEOクリーチャー": 69,
     "呪文": 433,
     "GRクリーチャー": 100,
@@ -223,7 +223,7 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 978,
+    "複数面・特殊カードタイプまたは情報不足": 973,
     "未対応の能力文": 2478,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 18,
@@ -496150,11 +496150,143 @@
         "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
       ],
       "next": "目標8500種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
+    },
+    {
+      "phase": 1400,
+      "kind": "registration-toward-8500",
+      "checkedAt": "2026-11-20T14:44:33.924Z",
+      "baseline": "c937578312d97236453ba50f18cdac0d9cd44b58",
+      "manifest": "tools/support-phase-1400.json",
+      "status": "verified-local",
+      "before": 8179,
+      "supported": 8184,
+      "pending": 3641,
+      "added": [
+        {
+          "id": "dmex08-193",
+          "name": "拘束の影メリコミ・タマタマ /グシャット・フィスト"
+        },
+        {
+          "id": "dmrp05-005",
+          "name": "龍装医 ルギヌス / 地獄のゴッド・ハンド"
+        },
+        {
+          "id": "dmrp11-008",
+          "name": "ピー・タンパン/「はいちゃダメ&#x1f4a2」"
+        },
+        {
+          "id": "dmrp07-s05",
+          "name": "牙修羅バット/真血染める闇牙"
+        },
+        {
+          "id": "dm24bd4-013",
+          "name": "戦慄の死神アゲゾール / 「我が一撃に戦慄せよ」"
+        }
+      ],
+      "duplicates": 0,
+      "results": {
+        "focused": {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1400-effects.test.mjs",
+            "tests/standard1396-effects.test.mjs",
+            "tests/standard1397-effects.test.mjs",
+            "tests/standard1398-effects.test.mjs",
+            "tests/standard1399-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 3.431,
+          "log": "tmp/duema-phase-1400/focused.log",
+          "passed": 192,
+          "failed": 0
+        },
+        "focused-zero": {
+          "name": "focused-zero",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1400-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.73,
+          "log": "tmp/duema-phase-1400/focused-zero.log",
+          "passed": 30,
+          "failed": 0
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 15.935,
+          "log": "tmp/duema-phase-1400/audit.log"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.822,
+          "log": "tmp/duema-phase-1400/check.log"
+        }
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1400-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.086,
+          "log": "tmp/duema-phase-1400/focused-civilization-payment-fixture-error.log"
+        }
+      ],
+      "testCorrections": [
+        "メリコミの減少後コスト0でも文明の支払いは必要（公式QA旧36775、総合ルール112.2b）。エンジンの闇マナ1枚の支払いは正しく、共通試験の支払い枚数の期待を文明数優先に修正。"
+      ],
+      "totalTestsPassed": 222,
+      "reason": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+      "remaining": [
+        "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
+      ],
+      "next": "目標8500種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。",
+      "deferred": [
+        {
+          "id": "dmex04-066",
+          "name": "フェルナンド・ソシュール / プライマル・スクリーム",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-066",
+          "reason": "現行公式ページで呪文面の文明が欠落し、保存済み全文・基本情報と一致しない。基本情報を別の公式資料で確定できるまで保留し、別候補を追加。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1399,
-    "nextPhase": 1400,
+    "lastVerifiedPhase": 1400,
+    "nextPhase": 1401,
     "workInProgress": null,
     "nextCandidates": [
       "公式照合済みの通常能力を持たないGRクリーチャー",
@@ -496163,7 +496295,7 @@
     ],
     "steps": [
       "開始時にHEAD・作業差分・ステージ・既存プロセス・AGENTS・進捗を確認。",
-      "実データ8179種類・重複0。新目標8500種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8184種類・重複0。新目標8500種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "phase1372の指定5種類は完了済み。tools/support-phase-1372.jsonと実装コミット58f1c830を参照。",
       "個別の残件2件はユーザー保留。再開指示まで追加調査・問い合わせ送信をしない。",
       "一括npm testを再実行せず、公開候補の未集約範囲だけ分割検証する。過去の固定ソースの合格と現版の合格を区別する。",
@@ -496244,14 +496376,14 @@
     ],
     "restartSteps": [
       "公開済みの版はb40ae0df (v0.722.1 / engine0.602.1 / 8074種類)。Pages・Netlifyを同じ版に更新済み。最新HEAD・差分・ステージ・既存プロセスを最初に確認。",
-      "実データ8179種類・重複0。新目標8500種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8184種類・重複0。新目標8500種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "指定5種類は新規2・既存3を完了。manifestに公式全文・基本情報・画像・使用制限・関連裁定・秘版解決・検証結果を記録。",
       "既存8072定義は深い比較で不変。カードID・保存形式・保存済みデッキ・対戦履歴を維持。",
       "個別の残件2件と問い合わせ案はユーザー指示「後回しにしよう」で保留。再開指示があるまでこの2件の調査・送信を行わない。",
       "No13長時間検証はengine0.601.0の固定ソースで完了済み。今回のengine0.602.0の全面検証には数えない。必要な未集約項目は対象を特定し、細かく分割して確認する。",
       "Netlifyは手動反映専用。workflow_dispatchだけ、GitHub pushフック停止、stop_builds=trueを維持。通常のカード追加pushでは反映しない。今回の公開に保留・未検証の解消は含めない。"
     ],
-    "registrationStatus": "ユーザーの新目標8500種類に向けて通常登録を再開。現在8179種類、残り321種類。automationはPAUSEDのまま。",
+    "registrationStatus": "ユーザーの新目標8500種類に向けて通常登録を再開。現在8184種類、残り316種類。automationはPAUSEDのまま。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [],
     "printVerificationPending": [
@@ -496363,10 +496495,10 @@
     "registrationTarget": {
       "target": 8500,
       "startCount": 8074,
-      "currentCount": 8179,
-      "remaining": 321,
+      "currentCount": 8184,
+      "remaining": 316,
       "status": "active",
-      "phase": 1399
+      "phase": 1400
     },
     "deferredRegistrationCandidates": [
       {
@@ -496375,6 +496507,13 @@
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-072",
         "reason": "現行公式ページの呪文面に文明がなく、保存済みの全文・文明情報とも一致しない。別の公式再録を含む基本情報の確証が得られるまで登録しない。今回の候補は別カードに交換。",
         "phase": 1398
+      },
+      {
+        "id": "dmex04-066",
+        "name": "フェルナンド・ソシュール / プライマル・スクリーム",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-066",
+        "reason": "現行公式ページで呪文面の文明が欠落し、保存済み全文・基本情報と一致しない。基本情報を別の公式資料で確定できるまで保留し、別候補を追加。",
+        "phase": 1400
       }
     ]
   },
@@ -548241,10 +548380,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1399,
+    "phase": 1400,
     "threshold": 8500,
-    "supportedNames": 8179,
-    "pendingNames": 3646,
+    "supportedNames": 8184,
+    "pendingNames": 3641,
     "checkedAt": "2026-11-20",
     "registrationStopped": false,
     "automationId": "duema-deck-lab",

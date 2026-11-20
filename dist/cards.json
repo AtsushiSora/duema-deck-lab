@@ -252687,15 +252687,312 @@
       },
       "supportBatch": "phase-1399",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex08-193",
+      "name": "拘束の影メリコミ・タマタマ /グシャット・フィスト",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 4000,
+      "race": "ゴースト/エイリアン",
+      "text": "自分のマナゾーンにあるクリーチャー１体につき、このクリーチャーの召喚コストを１少なくする。ただし、コストは０より少なくならない。\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー3000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-193",
+      "limit": 4,
+      "g212CountDiscount": {
+        "zone": "mana",
+        "filter": {
+          "creature": true
+        },
+        "amount": 1,
+        "minimum": 0
+      },
+      "slayer": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "グシャット・フィスト",
+        "cost": 4,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-005",
+      "name": "龍装医 ルギヌス / 地獄のゴッド・ハンド",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 11000,
+      "race": "ドラゴンギルド/マフィ・ギャング",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、コスト７以下の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。\n【呪文面】\n相手のクリーチャーを１体、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-005",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "g236GraveDeploy": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "max": 7
+          },
+          "optional": false,
+          "title": "墓地から出す進化ではないクリーチャーを1体選ぶ"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "g236GraveDeploy": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "max": 7
+          },
+          "optional": false,
+          "title": "墓地から出す進化ではないクリーチャーを1体選ぶ"
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "地獄のゴッド・ハンド",
+        "cost": 5,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "grave",
+            "title": "破壊する相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-1400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-008",
+      "name": "ピー・タンパン/「はいちゃダメ&#x1f4a2」",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ジョーカーズ/スペシャルズ",
+      "text": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nW・ブレイカー\nこのクリーチャーがバトルに勝った時、相手のシールドを１つブレイクする。\n【呪文面】\nS・トリガー S・トリガー\n自分と相手のクリーチャーを１体ずつ選び、その２体をバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-008",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 2,
+      "g189BattleWin": [
+        {
+          "op": "Break278"
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "「はいちゃダメ&#x1f4a2」",
+        "cost": 2,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "optional": false
+          }
+        ]
+      },
+      "supportBatch": "phase-1400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-s05",
+      "name": "牙修羅バット/真血染める闇牙",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "ドラゴンギルド/マフィ・ギャング",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手の手札を見てその中から呪文を１枚選び、捨てさせる。\n自分のターンのはじめに、コスト６以下のクリーチャーを１体、自分の墓地からバトルゾーンに出す。\n【呪文面】\n相手は自身の手札を２枚選んで捨てる。その後、相手は自身のクリーチャーを２体選んで破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-s05",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "InspectHand",
+          "g223Inspect": true,
+          "chooseOne": true,
+          "discard": true,
+          "filter": {
+            "g228Face": {
+              "type": "spell"
+            }
+          }
+        }
+      ],
+      "g174Start": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "g236GraveDeploy": true,
+          "filter": {
+            "creature": true,
+            "max": 6
+          },
+          "optional": false,
+          "title": "墓地から出すクリーチャーを1体選ぶ"
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "真血染める闇牙",
+        "cost": 8,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 2
+          },
+          {
+            "op": "OpponentSelect",
+            "n": 2,
+            "to": "grave"
+          }
+        ]
+      },
+      "supportBatch": "phase-1400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24bd4-013",
+      "name": "戦慄の死神アゲゾール / 「我が一撃に戦慄せよ」",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "デーモン・コマンド",
+      "text": "このクリーチャーが出た時、自分のクリーチャーを１体破壊してもよい。そうしたら、相手は自身のクリーチャーを１体選び、破壊する。その後、相手は自身の手札を１枚選び、捨てる。\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー6000以下のクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd4-013",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SacrificeAlly413",
+          "defs": [
+            {
+              "op": "OpponentSelect",
+              "n": 1,
+              "to": "grave"
+            },
+            {
+              "op": "Discard",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "「我が一撃に戦慄せよ」",
+        "cost": 3,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 6000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1400",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1399,
+    "phase": 1400,
     "checkedAt": "2026-11-20",
-    "baseCount": 8174,
+    "baseCount": 8179,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8179,
+    "totalCount": 8184,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -276059,6 +276356,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8174,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1399,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8174,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8179,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

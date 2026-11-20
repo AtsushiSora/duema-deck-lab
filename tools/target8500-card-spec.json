@@ -3947,5 +3947,387 @@
         ]
       }
     }
+  },
+  "dmex08-193": {
+    "phase": 1400,
+    "faces": [
+      {
+        "name": "拘束の影メリコミ・タマタマ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "自分のマナゾーンにあるクリーチャー１体につき、このクリーチャーの召喚コストを１少なくする。ただし、コストは０より少なくならない。\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+        "race": "ゴースト/エイリアン",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "グシャット・フィスト",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー3000以下のクリーチャーを１体破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g212CountDiscount": {
+        "zone": "mana",
+        "filter": {
+          "creature": true
+        },
+        "amount": 1,
+        "minimum": 0
+      },
+      "slayer": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "グシャット・フィスト",
+        "cost": 4,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dmrp05-005": {
+    "phase": 1400,
+    "faces": [
+      {
+        "name": "龍装医 ルギヌス",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、コスト７以下の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+        "race": "ドラゴンギルド/マフィ・ギャング",
+        "powerText": "11000",
+        "missingFields": []
+      },
+      {
+        "name": "地獄のゴッド・ハンド",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "相手のクリーチャーを１体、破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "g236GraveDeploy": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "max": 7
+          },
+          "optional": false,
+          "title": "墓地から出す進化ではないクリーチャーを1体選ぶ"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "g236GraveDeploy": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "max": 7
+          },
+          "optional": false,
+          "title": "墓地から出す進化ではないクリーチャーを1体選ぶ"
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "地獄のゴッド・ハンド",
+        "cost": 5,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "grave",
+            "title": "破壊する相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      }
+    }
+  },
+  "dmrp07-s05": {
+    "phase": 1400,
+    "faces": [
+      {
+        "name": "牙修羅バット",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手の手札を見てその中から呪文を１枚選び、捨てさせる。\n自分のターンのはじめに、コスト６以下のクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+        "race": "ドラゴンギルド/マフィ・ギャング",
+        "powerText": "8000",
+        "missingFields": []
+      },
+      {
+        "name": "真血染める闇牙",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "相手は自身の手札を２枚選んで捨てる。その後、相手は自身のクリーチャーを２体選んで破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "InspectHand",
+          "g223Inspect": true,
+          "chooseOne": true,
+          "discard": true,
+          "filter": {
+            "g228Face": {
+              "type": "spell"
+            }
+          }
+        }
+      ],
+      "g174Start": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "g236GraveDeploy": true,
+          "filter": {
+            "creature": true,
+            "max": 6
+          },
+          "optional": false,
+          "title": "墓地から出すクリーチャーを1体選ぶ"
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "真血染める闇牙",
+        "cost": 8,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 2
+          },
+          {
+            "op": "OpponentSelect",
+            "n": 2,
+            "to": "grave"
+          }
+        ]
+      }
+    }
+  },
+  "dm24bd4-013": {
+    "phase": 1400,
+    "faces": [
+      {
+        "name": "戦慄の死神アゲゾール",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "このクリーチャーが出た時、自分のクリーチャーを１体破壊してもよい。そうしたら、相手は自身のクリーチャーを１体選び、破壊する。その後、相手は自身の手札を１枚選び、捨てる。",
+        "race": "デーモン・コマンド",
+        "powerText": "5000",
+        "missingFields": []
+      },
+      {
+        "name": "「我が一撃に戦慄せよ」",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー6000以下のクリーチャーを１体選び、破壊する。",
+        "race": "",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SacrificeAlly413",
+          "defs": [
+            {
+              "op": "OpponentSelect",
+              "n": 1,
+              "to": "grave"
+            },
+            {
+              "op": "Discard",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "「我が一撃に戦慄せよ」",
+        "cost": 3,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 6000,
+              "g199Power": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dmrp11-008": {
+    "phase": 1400,
+    "faces": [
+      {
+        "name": "ピー・タンパン",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nW・ブレイカー\nこのクリーチャーがバトルに勝った時、相手のシールドを１つブレイクする。",
+        "race": "ジョーカーズ/スペシャルズ",
+        "powerText": "7000",
+        "missingFields": []
+      },
+      {
+        "name": "「はいちゃダメ&#x1f4a2」",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "S・トリガー S・トリガー\n自分と相手のクリーチャーを１体ずつ選び、その２体をバトルさせる。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "machFighter": true,
+      "breaker": 2,
+      "g189BattleWin": [
+        {
+          "op": "Break278"
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "「はいちゃダメ&#x1f4a2」",
+        "cost": 2,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "optional": false
+          }
+        ]
+      }
+    }
   }
 }
