@@ -2557,5 +2557,139 @@
         "power": 4000
       }
     }
+  },
+  "dm28-026": {
+    "phase": 1487,
+    "faces": [
+      {
+        "name": "邪法カルネイジ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ブロッカー\nこのクリーチャーは攻撃することができない。\nシールド・フォース(このクリーチャーをバトルゾーンに出す時、自分のシールドを１枚選んでもよい。そのシールドがシールドゾーンにある間、このクリーチャーは次の能力を得る)\nこのクリーチャーがブロックした時、クリーチャーを１体、自分の墓地から手札に戻してもよい。",
+        "race": "ダークロード",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noAttack": true,
+      "g1486ShieldForce": {
+        "g178Block": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dm28-041": {
+    "phase": 1487,
+    "faces": [
+      {
+        "name": "天武の精霊ライトニング・キッド",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "シールド・プラス-このクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を裏向きのまま、自分のシールドいずれかの下に置いてもよい。(こうして重ねたカードの束を１枚のシールドとみなす)\nシールド・フォース(このクリーチャーをバトルゾーンに出す時、自分のシールドを１枚選んでもよい。そのシールドがシールドゾーンにある間、このクリーチャーは次の能力を得る)\nこのクリーチャーのパワーは+5500され、「W・ブレイカー」を得る。",
+        "race": "エンジェル・コマンド",
+        "powerText": "5500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g414ShieldPlus": true,
+      "g1486ShieldForce": {
+        "power": 5500,
+        "breaker": 2
+      }
+    }
+  },
+  "dm29-036": {
+    "phase": 1487,
+    "faces": [
+      {
+        "name": "天雷獣ピュアホワイト",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nシールド・フォース(このクリーチャーをバトルゾーンに出す時、自分のシールドを１枚選んでもよい。そのシールドがシールドゾーンにある間、このクリーチャーは次の能力を得る)\nバトルゾーンにある自分のクリーチャーすべては、種族にナイトを追加する。",
+        "race": "シャイン・モンスター",
+        "powerText": "4500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g1486ShieldForce": {},
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "g1486ShieldForce": true
+          },
+          "grants": {
+            "raceAdd": [
+              "ナイト"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "dm28-075": {
+    "phase": 1487,
+    "faces": [
+      {
+        "name": "烈空の使徒バグリス",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "シールド・フォース(このクリーチャーをバトルゾーンに出す時、自分のシールドを１枚選んでもよい。そのシールドがシールドゾーンにある間、このクリーチャーは次の能力を得る)\n各ターンの終わりに、バトルゾーンにある自分のクリーチャーを１体アンタップする。",
+        "race": "イニシエート",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1486ShieldForce": {
+        "g474AnyEnd": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "untap": true
+          }
+        ]
+      }
+    }
   }
 }

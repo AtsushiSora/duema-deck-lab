@@ -648,6 +648,7 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g1486ShieldForce){const x=s.players[p].battle.find(x=>x.uid===sourceUid&&(sourceIncarnation===null||(x.incarnation||0)===sourceIncarnation));return !!x&&!!api.findShield(s.players[p],x.g35ShieldForce);}
   if(f.g1485BattleName){const r=f.g1485BattleName,found=s.players[p].battle.some(x=>!x.sealed&&!x.faceDown&&battleNames676(s,x).includes(exactName(r.name)));return r.absent?!found:found;}
   if(f.g1484ZoneCount){const r=f.g1484ZoneCount,who=r.opponent?1-p:p,n=s.players[who][r.zone].filter(y=>matches(s,who,y,r.filter)).length;return(r.min===undefined||n>=r.min)&&(r.max===undefined||n<=r.max);}
   if(f.g1475Attacking){const a=s.attack||s.attackLifecycle;return !!a&&s.players[p].battle.some(x=>api.allLayers(x).some(y=>y.uid===sourceUid&&(sourceIncarnation===null||(y.incarnation||0)===sourceIncarnation))&&(x.uid===(a.attacker??a.uid)));}

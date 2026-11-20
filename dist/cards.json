@@ -266525,15 +266525,137 @@
       },
       "supportBatch": "phase-1486",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm28-026",
+      "name": "邪法カルネイジ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ダークロード",
+      "text": "ブロッカー\nこのクリーチャーは攻撃することができない。\nシールド・フォース(このクリーチャーをバトルゾーンに出す時、自分のシールドを１枚選んでもよい。そのシールドがシールドゾーンにある間、このクリーチャーは次の能力を得る)\nこのクリーチャーがブロックした時、クリーチャーを１体、自分の墓地から手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-026",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g1486ShieldForce": {
+        "g178Block": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1487",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm28-041",
+      "name": "天武の精霊ライトニング・キッド",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5500,
+      "race": "エンジェル・コマンド",
+      "text": "シールド・プラス-このクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を裏向きのまま、自分のシールドいずれかの下に置いてもよい。(こうして重ねたカードの束を１枚のシールドとみなす)\nシールド・フォース(このクリーチャーをバトルゾーンに出す時、自分のシールドを１枚選んでもよい。そのシールドがシールドゾーンにある間、このクリーチャーは次の能力を得る)\nこのクリーチャーのパワーは+5500され、「W・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-041",
+      "limit": 4,
+      "g414ShieldPlus": true,
+      "g1486ShieldForce": {
+        "power": 5500,
+        "breaker": 2
+      },
+      "supportBatch": "phase-1487",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm29-036",
+      "name": "天雷獣ピュアホワイト",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4500,
+      "race": "シャイン・モンスター",
+      "text": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nシールド・フォース(このクリーチャーをバトルゾーンに出す時、自分のシールドを１枚選んでもよい。そのシールドがシールドゾーンにある間、このクリーチャーは次の能力を得る)\nバトルゾーンにある自分のクリーチャーすべては、種族にナイトを追加する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-036",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g1486ShieldForce": {},
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "g1486ShieldForce": true
+          },
+          "grants": {
+            "raceAdd": [
+              "ナイト"
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-1487",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm28-075",
+      "name": "烈空の使徒バグリス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "イニシエート",
+      "text": "シールド・フォース(このクリーチャーをバトルゾーンに出す時、自分のシールドを１枚選んでもよい。そのシールドがシールドゾーンにある間、このクリーチャーは次の能力を得る)\n各ターンの終わりに、バトルゾーンにある自分のクリーチャーを１体アンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-075",
+      "limit": 4,
+      "g1486ShieldForce": {
+        "g474AnyEnd": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "untap": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1487",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1486,
+    "phase": 1487,
     "checkedAt": "2026-11-20",
-    "baseCount": 8556,
-    "newEffectCards": 5,
+    "baseCount": 8561,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 8561,
+    "totalCount": 8565,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -291116,6 +291238,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 8556,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1486,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8556,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8561,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
