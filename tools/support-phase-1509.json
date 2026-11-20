@@ -1,0 +1,448 @@
+{
+  "phase": 1509,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8656,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "scopeNotes": [
+    "9,000種類キャンペーンの既登録呪文22種について、期限付き効果の呪文由来・元のコストを保持するspell属性を全ての処理と継続へ明示。元の8,500種類の定義には触れず、全キャンペーン固有テストを再検証する。",
+    "GR付与に呪文の元のコストを残し、あとからゲンムエンペラーが出た場合も呪文の継続効果だけを正しく無視する。"
+  ],
+  "correctedSpellOrigins": [
+    {
+      "id": "dmr10-020",
+      "phase": 1485
+    },
+    {
+      "id": "dmrp01-013",
+      "phase": 1488
+    },
+    {
+      "id": "dmrp05-022",
+      "phase": 1488
+    },
+    {
+      "id": "dmrp03-017",
+      "phase": 1488
+    },
+    {
+      "id": "dmrp05-013",
+      "phase": 1488
+    },
+    {
+      "id": "dmrp06-041",
+      "phase": 1489
+    },
+    {
+      "id": "dmrp06-046",
+      "phase": 1489
+    },
+    {
+      "id": "dmrp06-056",
+      "phase": 1489
+    },
+    {
+      "id": "dmrp06-051",
+      "phase": 1489
+    },
+    {
+      "id": "dmr12-025",
+      "phase": 1494
+    },
+    {
+      "id": "dmr12-047",
+      "phase": 1494
+    },
+    {
+      "id": "dmr12-022",
+      "phase": 1494
+    },
+    {
+      "id": "dmr12-044",
+      "phase": 1494
+    },
+    {
+      "id": "dmr12-032",
+      "phase": 1494
+    },
+    {
+      "id": "dmrp12-103",
+      "phase": 1497
+    },
+    {
+      "id": "dmrp11-081",
+      "phase": 1497
+    },
+    {
+      "id": "promoy18-036",
+      "phase": 1498
+    },
+    {
+      "id": "dmrp10-102",
+      "phase": 1498
+    },
+    {
+      "id": "dmbd11-a10",
+      "phase": 1499
+    },
+    {
+      "id": "dmrp12-088",
+      "phase": 1500
+    },
+    {
+      "id": "dmrp11-056",
+      "phase": 1502
+    },
+    {
+      "id": "dm25ex1-020",
+      "phase": 1508
+    }
+  ],
+  "cards": [
+    {
+      "id": "dmrp10-s05",
+      "name": "知識と流転と時空の決断",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-s05",
+      "faces": [
+        {
+          "name": "知識と流転と時空の決断",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の墓地に呪文が４枚以上あり、この呪文が自分のシールドゾーンにあれば、この呪文に「S・トリガー」を与える。\n次の中から２回選ぶ。（同じものを選んでもよい）\n▶カードを１枚引く。\n▶GR召喚する。\n▶相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "shieldConditionalTrigger": true,
+        "g1509GraveSpellTrigger": 4,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g1045Preselect": 2,
+            "modes": [
+              {
+                "label": "1枚引く",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1,
+                    "spell": true
+                  }
+                ]
+              },
+              {
+                "label": "GR召喚",
+                "defs": [
+                  {
+                    "op": "AuraGr1353",
+                    "spell": true
+                  }
+                ]
+              },
+              {
+                "label": "相手1体を手札に戻す",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "hand",
+                    "toOwnerHand": true,
+                    "spell": true
+                  }
+                ]
+              }
+            ],
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp10-s05.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "132af119a6ac80ccb2f9ea52617632567cdef914e88a6c9b2d804b05547166d7",
+        "facesMatched": true,
+        "imageSha256": "b5987c5e8fba0e73d04c51ef47474b1e2fe0a719a8e9959452ab9882d2c1d989",
+        "imageBytes": 176157
+      },
+      "sameNameProducts": [
+        "DMRP-21 王来MAX第1弾 鬼ヤバ逆襲S-MAX!!",
+        "DMRP-10 超天篇 拡張パック第2弾 青きC.A.P.と漆黒の大卍罪",
+        "DMART-04 神アート 超獣創造 ～松本しげのぶの世界～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-s05",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp12-074",
+      "name": "牛乳ウェーブ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-074",
+      "faces": [
+        {
+          "name": "牛乳ウェーブ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、Jトルネードしてもよい。そうしたら、GR召喚を２回する。\n（Jトルネード：自分の他のジョーカーズを１体、手札に戻す）\n（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "to": "hand",
+            "toOwnerHand": true,
+            "n": 1,
+            "optional": true,
+            "g179Other": true,
+            "g187OwnPick": true,
+            "filter": {
+              "creature": true,
+              "race": "ジョーカーズ"
+            },
+            "title": "Jトルネードする自分の他のジョーカーズを選ぶ",
+            "afterBattleSelect": [
+              {
+                "op": "AuraGr1353"
+              },
+              {
+                "op": "AuraGr1353"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-074.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "b545ebd912c64a35d9c722730381ac0b7b7f6810c91ee255a0a1cfafeff9367c",
+        "facesMatched": true,
+        "imageSha256": "2f8e00c4b0ece96d2b0b970c10b141ca86447f0835caab86c6891efa603beb9e",
+        "imageBytes": 102510
+      },
+      "sameNameProducts": [
+        "DMRP-12 超天篇 拡張パック第4弾 超超超天！覚醒ジョギラゴン vs. 零龍卍誕"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-074",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm26ex4-040",
+      "name": "キング・ガ・チャレンジ3",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-040",
+      "faces": [
+        {
+          "name": "キング・ガ・チャレンジ3",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "ハイパーエナジー（このカードを実行する時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、このカードの実行を２少なくする。ただしコストは０以下にならない）\nT・ブレイカー\nこのクリーチャーが出た時または攻撃する時、GR召喚を３回する。",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "hyperEnergy": true,
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "AuraGr1353"
+          },
+          {
+            "op": "AuraGr1353"
+          },
+          {
+            "op": "AuraGr1353"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "AuraGr1353"
+          },
+          {
+            "op": "AuraGr1353"
+          },
+          {
+            "op": "AuraGr1353"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "47e93b4573f1cf2bfc032d5b171ef0cb07b94a18747fc6f2fb9f6f478a91c5a2",
+        "facesMatched": true,
+        "imageSha256": "6446787dd2e4eff0d4a116ae3c18d9e5719370a063e6a8fab90792aa19a60f28",
+        "imageBytes": 98080
+      },
+      "sameNameProducts": [
+        "DM26-EX4 切札不滅!! デュエキング FOREVER 2026"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-040",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp12-053",
+      "name": "TOTUGEKI・スパパム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-053",
+      "faces": [
+        {
+          "name": "TOTUGEKI・スパパム",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーの攻撃の終わりに、このクリーチャーを破壊してもよい。そうしたら、GR召喚する。このターン、そのGRクリーチャーに「スピードアタッカー」を与える。\n（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "ビートジョッキー/ワンダフォース",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g474AttackEnd": [
+          {
+            "op": "SelfSacrifice407",
+            "defs": [
+              {
+                "op": "GrSummon1498",
+                "grant": {
+                  "speedAttacker": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "67250f5201c365f9ffd1bff60e8320443b6dd84547e3c6fdc09cd4e6cebe504e",
+        "facesMatched": true,
+        "imageSha256": "976ebe27e990a3e4f703edde02a68f4f5ef7dd2e70f0bd0c57c405469830586b",
+        "imageBytes": 91022
+      },
+      "sameNameProducts": [
+        "DMRP-12 超天篇 拡張パック第4弾 超超超天！覚醒ジョギラゴン vs. 零龍卍誕"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-053",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp09-025",
+      "name": "TOKKO-BOON!",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-025",
+      "faces": [
+        {
+          "name": "TOKKO-BOON!",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "GR召喚する。このターン、そのGRクリーチャーに「スピードアタッカー」を与える。このターン、そのクリーチャーが攻撃する時、攻撃の後、それを破壊する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GrSummon1498",
+            "grant": {
+              "speedAttacker": true,
+              "g1225DestroyAfterAttack": "tokko1509",
+              "g1225ChristoSource": "dmrp09-025"
+            },
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "dfe4a3e4debb1bc89bc77ec2000ed02560c5462d540b46faa5d43592546e9504",
+        "facesMatched": true,
+        "imageSha256": "b287a75fb5559cb7213fb24b80d0a768da6d2dfbc82bf0a253710717f133627f",
+        "imageBytes": 133477
+      },
+      "sameNameProducts": [
+        "DMEX-05 100%新世界！超GRパック100",
+        "DMRP-09 超天篇 拡張パック第１弾 新世界ガチ誕！超ＧＲとオレガ・オーラ!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-025",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp10-s05": 4,
+      "dmrp12-074": 4,
+      "dm26ex4-040": 4,
+      "dmrp12-053": 4,
+      "dmrp09-025": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    }
+  ],
+  "testCorrections": [
+    "ハイパーエナジーの異なるコストの供与者として、炎のたてがみと同コストのアクア・ビークルを別コストのアクア・ハルカスへ変更。同コストの除外と残り6マナの期待は維持。"
+  ]
+}
