@@ -272007,15 +272007,155 @@
       },
       "supportBatch": "phase-1515",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-018",
+      "name": "紅弔の魔人 ギリアール/闘い踊る凶器",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "デーモン・コマンド",
+      "text": "自分の他のクリーチャーが破壊された時、相手は自身の手札を１枚選び、捨てる。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\n各プレイヤーは、自身のクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-018",
+      "limit": 4,
+      "g303DeathWatch": {
+        "defs": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "g40LastBurst": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "闘い踊る凶器",
+        "cost": 3,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "EachPlayer459",
+            "origin": "battle",
+            "to": "grave",
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1516",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-040",
+      "name": "凶鬼93号 ジャジャン/冥界からの重低音",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "マフィ・ギャング",
+      "text": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\n相手は自身の手札を２枚選び、残りを捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-040",
+      "limit": 4,
+      "slayer": true,
+      "g40LastBurst": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "冥界からの重低音",
+        "cost": 5,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "KeepHand1516",
+            "keep": 2,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1516",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-007",
+      "name": "アドレック・ワークマン/バイス・スクラッパー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "マフィ・ギャング",
+      "text": "他のクリーチャーが破壊された時、相手は自身の手札を１枚選んで捨てる。\n【呪文面】\nS・トリガー S・トリガー\n相手のクリーチャーを好きな数、パワーの合計が5000以下になるように選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-007",
+      "limit": 4,
+      "g303DeathWatch": {
+        "both": true,
+        "defs": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "spellFace": {
+        "type": "spell",
+        "name": "バイス・スクラッパー",
+        "cost": 6,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": "all",
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g506PowerBudget": 5000,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1516",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1515,
+    "phase": 1516,
     "checkedAt": "2026-11-20",
-    "baseCount": 8682,
-    "newEffectCards": 4,
+    "baseCount": 8686,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 8686,
+    "totalCount": 8689,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -297004,6 +297144,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8682,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1515,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8682,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 8686,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

@@ -8782,5 +8782,196 @@
         ]
       }
     }
+  },
+  "dmrp07-018": {
+    "phase": 1516,
+    "faces": [
+      {
+        "name": "紅弔の魔人 ギリアール",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "自分の他のクリーチャーが破壊された時、相手は自身の手札を１枚選び、捨てる。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+        "race": "デーモン・コマンド",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "闘い踊る凶器",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "各プレイヤーは、自身のクリーチャーを１体選び、破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g303DeathWatch": {
+        "defs": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "g40LastBurst": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "闘い踊る凶器",
+        "cost": 3,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "EachPlayer459",
+            "origin": "battle",
+            "to": "grave",
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp07-040": {
+    "phase": 1516,
+    "faces": [
+      {
+        "name": "凶鬼93号 ジャジャン",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+        "race": "マフィ・ギャング",
+        "powerText": "1000",
+        "missingFields": []
+      },
+      {
+        "name": "冥界からの重低音",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "相手は自身の手札を２枚選び、残りを捨てる。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "slayer": true,
+      "g40LastBurst": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "冥界からの重低音",
+        "cost": 5,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "KeepHand1516",
+            "keep": 2,
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp12-007": {
+    "phase": 1516,
+    "faces": [
+      {
+        "name": "アドレック・ワークマン",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "他のクリーチャーが破壊された時、相手は自身の手札を１枚選んで捨てる。",
+        "race": "マフィ・ギャング",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "バイス・スクラッパー",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーを好きな数、パワーの合計が5000以下になるように選び、破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g303DeathWatch": {
+        "both": true,
+        "defs": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "spellFace": {
+        "type": "spell",
+        "name": "バイス・スクラッパー",
+        "cost": 6,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": "all",
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g506PowerBudget": 5000,
+            "spell": true
+          }
+        ]
+      }
+    }
   }
 }

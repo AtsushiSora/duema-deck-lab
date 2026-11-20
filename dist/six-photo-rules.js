@@ -4861,6 +4861,12 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_KeepTypes1285':keepTypes1285(s,t);break;
+ case'g34_KeepHand1516':{
+  const keeper=t.keeper??1-t.p,hand=s.players[keeper].hand,selected=t.selected||[],keep=t.keep??2,controller=t.controller??t.p;
+  if(hand.length<=keep)break;
+  if(selected.length>=keep){api.discardSelected(s,keeper,hand.filter(y=>!selected.includes(y.uid)).map(y=>y.uid),t.source,controller);break;}
+  choice(s,{...t,p:keeper,keeper,controller,selected},'残す自分の手札を'+keep+'枚選ぶ',hand.filter(y=>!selected.includes(y.uid)).map(y=>opt(card(y).name,y.uid,20-Math.min(20,cost(card(y))),y.cardId)));break;
+ }
  case'g34_KeepOne604':{
   const p=t.owner==='self'?t.p:1-t.p,hand=t.zone==='hand';
   const rows=hand?s.players[p].hand:creatures(s,p).filter(y=>!y.sealed);
@@ -6660,6 +6666,7 @@ export function createSixPhotoRules(api){
   else put(s,{...t,selected:[...t.selected,v]});
   break;
  case'g34_KeepTypes1285':put(s,{...t,step:t.step+1,picked:[...t.picked,v]});break;
+ case'g34_KeepHand1516':if(v&&!t.selected.includes(v))put(s,{...t,selected:[...t.selected,v]});break;
  case'g34_KeepOne604':{
   const hand=t.zone==='hand',to=t.to||'grave',rows=hand?own.hand:creatures(s,t.p).filter(y=>!y.sealed);
   if(!rows.some(y=>y.uid===v))break;
