@@ -11871,5 +11871,179 @@
         ]
       }
     }
+  },
+  "dmex05-002": {
+    "phase": 1443,
+    "faces": [
+      {
+        "name": "ポクタマたま",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、相手の墓地にあるカードをすべてシャッフルさせ、持ち主の山札の一番下に置いてもよい。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gr": true,
+      "manaValue": 0,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "相手の墓地をシャッフルして山札の下に置く？",
+          "defs": [
+            {
+              "op": "GraveBottom589",
+              "self": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmsd09-011": {
+    "phase": 1443,
+    "faces": [
+      {
+        "name": "感応 TT-20",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "相手の呪文の効果またはカードの能力によって、相手がこのクリーチャーを選ぶ時、カードを１枚引く。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "トリックス/デリートロン",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gr": true,
+      "manaValue": 0,
+      "g447Selected": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ]
+    }
+  },
+  "dmsd12-002": {
+    "phase": 1443,
+    "faces": [
+      {
+        "name": "ノロイ 丙-三式",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "相手の呪文またはカードの効果によって、相手がこのクリーチャーを選んだ時、相手は自身の手札を１枚選んで捨てる。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "マフィ・ギャング/デリートロン",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gr": true,
+      "manaValue": 0,
+      "g447Selected": [
+        {
+          "op": "Discard",
+          "n": 1
+        }
+      ]
+    }
+  },
+  "dmex08-047": {
+    "phase": 1443,
+    "faces": [
+      {
+        "name": "自然の三男 チョロ松",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分のマナゾーンにツインパクトカードがある間、このクリーチャーに「ガードマン」を与える。（「ガードマン」を持つクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからそのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+        "race": "ニート",
+        "powerText": "4545",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gr": true,
+      "manaValue": 0,
+      "noPlayerAttack": true,
+      "g260Self": {
+        "filter": {
+          "g1133ManaTwin": true
+        },
+        "grants": {
+          "guardman": true
+        }
+      }
+    }
+  },
+  "dmrp11-064": {
+    "phase": 1443,
+    "faces": [
+      {
+        "name": "救命の意志 テュラー",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "マナドライブ ２ （光）：自分のマナゾーンのカードが２枚以上で光文明があれば、このクリーチャーに「セイバー：光のクリーチャー」を与える。（自分の光のクリーチャーが破壊される時、「セイバー：光のクリーチャー」を持つクリーチャーをかわりに破壊してもよい）\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "メタリカ/ワンダフォース",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gr": true,
+      "manaValue": 0,
+      "g260Self": {
+        "filter": {
+          "all": [
+            {
+              "g334ZoneCount": {
+                "zone": "mana",
+                "min": 2
+              }
+            },
+            {
+              "g1064ManaColors": [
+                "光"
+              ]
+            }
+          ]
+        },
+        "grants": {
+          "g571Saver": {
+            "filter": {
+              "creature": true,
+              "color": "光"
+            }
+          }
+        }
+      }
+    }
   }
 }

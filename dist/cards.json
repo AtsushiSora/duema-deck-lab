@@ -259671,15 +259671,167 @@
       },
       "supportBatch": "phase-1442",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex05-002",
+      "name": "ポクタマたま",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "このクリーチャーがバトルゾーンに出た時、相手の墓地にあるカードをすべてシャッフルさせ、持ち主の山札の一番下に置いてもよい。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex05-002",
+      "limit": 4,
+      "gr": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "相手の墓地をシャッフルして山札の下に置く？",
+          "defs": [
+            {
+              "op": "GraveBottom589",
+              "self": false
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1443",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd09-011",
+      "name": "感応 TT-20",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "トリックス/デリートロン",
+      "text": "相手の呪文の効果またはカードの能力によって、相手がこのクリーチャーを選ぶ時、カードを１枚引く。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd09-011",
+      "limit": 4,
+      "gr": true,
+      "g447Selected": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1443",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd12-002",
+      "name": "ノロイ 丙-三式",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "マフィ・ギャング/デリートロン",
+      "text": "相手の呪文またはカードの効果によって、相手がこのクリーチャーを選んだ時、相手は自身の手札を１枚選んで捨てる。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd12-002",
+      "limit": 4,
+      "gr": true,
+      "g447Selected": [
+        {
+          "op": "Discard",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1443",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex08-047",
+      "name": "自然の三男 チョロ松",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 4545,
+      "race": "ニート",
+      "text": "自分のマナゾーンにツインパクトカードがある間、このクリーチャーに「ガードマン」を与える。（「ガードマン」を持つクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからそのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-047",
+      "limit": 4,
+      "gr": true,
+      "noPlayerAttack": true,
+      "g260Self": {
+        "filter": {
+          "g1133ManaTwin": true
+        },
+        "grants": {
+          "guardman": true
+        }
+      },
+      "supportBatch": "phase-1443",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-064",
+      "name": "救命の意志 テュラー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "メタリカ/ワンダフォース",
+      "text": "マナドライブ ２ （光）：自分のマナゾーンのカードが２枚以上で光文明があれば、このクリーチャーに「セイバー：光のクリーチャー」を与える。（自分の光のクリーチャーが破壊される時、「セイバー：光のクリーチャー」を持つクリーチャーをかわりに破壊してもよい）\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-064",
+      "limit": 4,
+      "gr": true,
+      "g260Self": {
+        "filter": {
+          "all": [
+            {
+              "g334ZoneCount": {
+                "zone": "mana",
+                "min": 2
+              }
+            },
+            {
+              "g1064ManaColors": [
+                "光"
+              ]
+            }
+          ]
+        },
+        "grants": {
+          "g571Saver": {
+            "filter": {
+              "creature": true,
+              "color": "光"
+            }
+          }
+        }
+      },
+      "supportBatch": "phase-1443",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1442,
+    "phase": 1443,
     "checkedAt": "2026-11-20",
-    "baseCount": 8369,
+    "baseCount": 8374,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8374,
+    "totalCount": 8379,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -283646,6 +283798,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8369,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1442,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8369,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8374,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
