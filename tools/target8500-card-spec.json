@@ -2991,5 +2991,291 @@
         ]
       }
     }
+  },
+  "dmrp05-036": {
+    "phase": 1397,
+    "faces": [
+      {
+        "name": "貝の理解者 カチカッチン",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+        "race": "ムートピア",
+        "powerText": "6000",
+        "missingFields": []
+      },
+      {
+        "name": "サンキュー・ホタッテ",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "カードを３枚引く。その後、自分の手札を１枚捨てる。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "spellFace": {
+        "type": "spell",
+        "name": "サンキュー・ホタッテ",
+        "cost": 4,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ]
+      }
+    }
+  },
+  "dmrp05-066": {
+    "phase": 1397,
+    "faces": [
+      {
+        "name": "貝獣 ゴマキ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーはブロックされない。",
+        "race": "ムートピア",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "突撃ゴッチン・ヘッド",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "クリーチャーを１体選び、持ち主の手札に戻す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "unblockable": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "突撃ゴッチン・ヘッド",
+        "cost": 2,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "hand"
+          }
+        ]
+      }
+    }
+  },
+  "dmex12-063": {
+    "phase": 1397,
+    "faces": [
+      {
+        "name": "レイノ・ウッシ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "自分のターンの終わりに、自分の山札の上から１枚目を墓地に置いてもよい。",
+        "race": "ファンキー・ナイトメア",
+        "powerText": "1000",
+        "missingFields": []
+      },
+      {
+        "name": "「また引きずり込まれる～」",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－2000する。（パワー０以下のクリーチャーは破壊される）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g174End": [
+        {
+          "op": "Mill",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "「また引きずり込まれる～」",
+        "cost": 4,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -2000,
+            "g242PowerMinus": true,
+            "title": "パワーを-2000する相手のクリーチャーを選ぶ",
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp05-059": {
+    "phase": 1397,
+    "faces": [
+      {
+        "name": "青守銀 ニプローハ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+        "race": "メタリカ",
+        "powerText": "4500",
+        "missingFields": []
+      },
+      {
+        "name": "ニプローハ・アロー",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "相手のクリーチャーを１体選び、タップする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noPlayerAttack": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "ニプローハ・アロー",
+        "cost": 1,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp05-014": {
+    "phase": 1397,
+    "faces": [
+      {
+        "name": "暴走 ザバイク",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）",
+        "race": "ソニック・コマンド",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "ブンブン・バースト",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "相手のパワー4000以下のクリーチャーを１体、破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "ブンブン・バースト",
+        "cost": 2,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 4000,
+              "g199Power": true
+            }
+          }
+        ]
+      }
+    }
   }
 }
