@@ -261915,15 +261915,252 @@
       ],
       "supportBatch": "phase-1456",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-029",
+      "name": "アンバサダー・リンク・ホール",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "シンパシー：相手の墓地にあるカード（相手の墓地にあるカード１枚につき、この呪文を唱えるコストを１少なくする。ただしコストは０以下にならない）\n次の中から１回選ぶ。\n▶跳次元召喚６（コスト６以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）\n▶相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－12000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-029",
+      "limit": 4,
+      "g212CountDiscount": {
+        "zone": "grave",
+        "owner": "opponent",
+        "amount": 1
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "跳次元召喚6",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "extra",
+                  "n": 1,
+                  "deploy": true,
+                  "execution": true,
+                  "optional": true,
+                  "g1104PsychicFaces": true,
+                  "g1321Teleport": true,
+                  "filter": {
+                    "creature": true,
+                    "max": 6,
+                    "g1321ManaCivilizations": true
+                  },
+                  "title": "跳次元召喚するクリーチャーを1体選ぶ"
+                }
+              ]
+            },
+            {
+              "label": "パワーを12000下げる",
+              "defs": [
+                {
+                  "op": "Target",
+                  "power": -12000,
+                  "g242PowerMinus": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1457",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-032",
+      "name": "マエストロ・リンク・ホール",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "シンパシー：相手のクリーチャー（相手のクリーチャー１体につき、この呪文を唱えるコストを１少なくする。ただしコストは０以下にならない）\n次の中から１回選ぶ。\n▶跳次元召喚６（コスト６以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）\n▶相手のパワー5000以下のクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-032",
+      "limit": 4,
+      "g212CountDiscount": {
+        "zone": "battle",
+        "owner": "opponent",
+        "amount": 1,
+        "filter": {
+          "creature": true
+        }
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "跳次元召喚6",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "extra",
+                  "n": 1,
+                  "deploy": true,
+                  "execution": true,
+                  "optional": true,
+                  "g1104PsychicFaces": true,
+                  "g1321Teleport": true,
+                  "filter": {
+                    "creature": true,
+                    "max": 6,
+                    "g1321ManaCivilizations": true
+                  },
+                  "title": "跳次元召喚するクリーチャーを1体選ぶ"
+                }
+              ]
+            },
+            {
+              "label": "パワー5000以下を破壊",
+              "defs": [
+                {
+                  "op": "Sweep",
+                  "to": "grave",
+                  "filter": {
+                    "creature": true,
+                    "maxPower": 5000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1457",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd10-004",
+      "name": "審絆 バンジョルノ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "メタリカ/ワンダフォース",
+      "text": "シンパシー：クリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n自分のGRクリーチャーすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd10-004",
+      "limit": 4,
+      "g168Sympathy": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "g1428Gr": true
+          },
+          "grants": {
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1457",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-015",
+      "name": "審絆の勇み 陽彩",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 15000,
+      "race": "メタリカ",
+      "text": "シンパシー：クリーチャー（このクリーチャーの召喚コストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にはならない）\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）\n自分のコスト６以下のクリーチャーは「ブロッカー」を得、相手プレイヤーを攻撃できない。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-015",
+      "limit": 4,
+      "g168Sympathy": true,
+      "breaker": 3,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "g562MaxCost": 6
+          },
+          "grants": {
+            "blocker": true,
+            "noPlayerAttack": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1457",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-s02",
+      "name": "聖審絆官 シェムパザーレ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 11,
+      "power": 15500,
+      "race": "メタリカ/エンジェル・コマンド",
+      "text": "シンパシー：クリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nブロッカーブロッカー\nT・ブレイカー\n自分のクリーチャーが攻撃する時、相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。（まず何を攻撃するか選んでから、タップするクリーチャーを選ぶ）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-s02",
+      "limit": 4,
+      "g168Sympathy": true,
+      "blocker": true,
+      "breaker": 3,
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "tap": true,
+            "lock": true,
+            "g210TapLock": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1457",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1456,
+    "phase": 1457,
     "checkedAt": "2026-11-20",
-    "baseCount": 8430,
+    "baseCount": 8435,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8435,
+    "totalCount": 8440,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -286086,6 +286323,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 8430,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1456,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8430,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8435,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

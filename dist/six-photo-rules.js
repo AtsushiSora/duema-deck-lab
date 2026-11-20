@@ -938,7 +938,7 @@ export function createSixPhotoRules(api){
  function auraPower(s,x,c){
   const owner=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));
   if(owner<0||x.sealed||c.type!=='creature')return 0;
-  const fits=f=>(!f.g856Souls||f.g856Souls.some(soul=>hasSoul(card(x),soul)))&&
+  const fits=f=>(!f.g1428Gr||!!c.gr)&&(!f.g856Souls||f.g856Souls.some(soul=>hasSoul(card(x),soul)))&&
    (!f.creature||c.type==='creature')&&(f.g1085Psychic===undefined||!!c.psychic===f.g1085Psychic)&&
    (!f.color||colors(c).includes(f.color))&&(!f.race||race(c,f.race))&&
    (!f.raceAny||f.raceAny.some(q=>race(c,q)))&&
@@ -1005,7 +1005,7 @@ export function createSixPhotoRules(api){
  // recursively decorating other aura recipients; ignored recipients never reach this hook.
  function grantAuras(s,owner,x,c,racesOnly=false){
   if(c.type!=='creature')return c;
-  const fits=f=>(!f.g856Souls||f.g856Souls.some(soul=>hasSoul(card(x),soul)))&&(f.g562MaxCost===undefined||cost(c)<=f.g562MaxCost)&&(!f.g717Silent||!!c.g496Silent)&&(!f.multi||colors(c).length>1)&&(!f.tapped||x.tapped)&&(!f.untapped||!x.tapped)&&(!f.g227NameIncludes||String(c.name).normalize('NFKC').includes(f.g227NameIncludes))&&(!f.g819CreatureNameIncludes||battleNames676(s,x).some(name=>name.includes(f.g819CreatureNameIncludes)))&&(!f.color||colors(c).includes(f.color))&&(!f.colorsAny||f.colorsAny.some(q=>colors(c).includes(q)))&&(!f.g724ExactRace||exactRaces(c).includes(f.g724ExactRace))&&(!f.race||race(c,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(c,q)))&&(!f.raceAll||f.raceAll.every(q=>race(c,q)))&&(!f.notRace||!race(c,f.notRace))&&(!f.evolution||api.isEvolution(x))&&(f.min===undefined||cost(c)>=f.min);
+  const fits=f=>(!f.g1428Gr||!!c.gr)&&(!f.g856Souls||f.g856Souls.some(soul=>hasSoul(card(x),soul)))&&(f.g562MaxCost===undefined||cost(c)<=f.g562MaxCost)&&(!f.g717Silent||!!c.g496Silent)&&(!f.multi||colors(c).length>1)&&(!f.tapped||x.tapped)&&(!f.untapped||!x.tapped)&&(!f.g227NameIncludes||String(c.name).normalize('NFKC').includes(f.g227NameIncludes))&&(!f.g819CreatureNameIncludes||battleNames676(s,x).some(name=>name.includes(f.g819CreatureNameIncludes)))&&(!f.color||colors(c).includes(f.color))&&(!f.colorsAny||f.colorsAny.some(q=>colors(c).includes(q)))&&(!f.g724ExactRace||exactRaces(c).includes(f.g724ExactRace))&&(!f.race||race(c,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(c,q)))&&(!f.raceAll||f.raceAll.every(q=>race(c,q)))&&(!f.notRace||!race(c,f.notRace))&&(!f.evolution||api.isEvolution(x))&&(f.min===undefined||cost(c)>=f.min);
   let out=c,slayers=c.g208SlayerCount||Number(!!c.slayer);
   for(const p of [0,1])for(const source of s.players[p].battle){
    const sourceCard=card(source),auras=sourceCard.g208Auras;

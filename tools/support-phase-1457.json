@@ -1,0 +1,382 @@
+{
+  "phase": 1457,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8435,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dm25ex4-029",
+      "name": "アンバサダー・リンク・ホール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-029",
+      "faces": [
+        {
+          "name": "アンバサダー・リンク・ホール",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "シンパシー：相手の墓地にあるカード（相手の墓地にあるカード１枚につき、この呪文を唱えるコストを１少なくする。ただしコストは０以下にならない）\n次の中から１回選ぶ。\n▶跳次元召喚６（コスト６以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）\n▶相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－12000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "grave",
+          "owner": "opponent",
+          "amount": 1
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "跳次元召喚6",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "n": 1,
+                    "deploy": true,
+                    "execution": true,
+                    "optional": true,
+                    "g1104PsychicFaces": true,
+                    "g1321Teleport": true,
+                    "filter": {
+                      "creature": true,
+                      "max": 6,
+                      "g1321ManaCivilizations": true
+                    },
+                    "title": "跳次元召喚するクリーチャーを1体選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "パワーを12000下げる",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "power": -12000,
+                    "g242PowerMinus": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "02b5a9b83e03fec6abda79406452559c3c93911b3b324531ed4efee6dcf03dd9",
+        "facesMatched": true,
+        "imageSha256": "c23205bf246fb8d18285e3785eae37e9828d918473a5dd2c82860661a8cc0903",
+        "imageBytes": 162725
+      },
+      "sameNameProducts": [
+        "DM25-EX4 エピソード4 パンドラ・ウォーズ"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-029",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm25ex4-032",
+      "name": "マエストロ・リンク・ホール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-032",
+      "faces": [
+        {
+          "name": "マエストロ・リンク・ホール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "シンパシー：相手のクリーチャー（相手のクリーチャー１体につき、この呪文を唱えるコストを１少なくする。ただしコストは０以下にならない）\n次の中から１回選ぶ。\n▶跳次元召喚６（コスト６以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）\n▶相手のパワー5000以下のクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "battle",
+          "owner": "opponent",
+          "amount": 1,
+          "filter": {
+            "creature": true
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "跳次元召喚6",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "n": 1,
+                    "deploy": true,
+                    "execution": true,
+                    "optional": true,
+                    "g1104PsychicFaces": true,
+                    "g1321Teleport": true,
+                    "filter": {
+                      "creature": true,
+                      "max": 6,
+                      "g1321ManaCivilizations": true
+                    },
+                    "title": "跳次元召喚するクリーチャーを1体選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "パワー5000以下を破壊",
+                "defs": [
+                  {
+                    "op": "Sweep",
+                    "to": "grave",
+                    "filter": {
+                      "creature": true,
+                      "maxPower": 5000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "25014db851185238a584c8186d9eebf22bbc9e63fb9d46a1b465199c126ca9f8",
+        "facesMatched": true,
+        "imageSha256": "18cf9a68284669eab2bb3b168eb29c4e69e06dade363f21c3a2da7491d28b76d",
+        "imageBytes": 155887
+      },
+      "sameNameProducts": [
+        "DM25-EX4 エピソード4 パンドラ・ウォーズ",
+        "プロモ限定カード 25期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-032",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmsd10-004",
+      "name": "審絆 バンジョルノ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd10-004",
+      "faces": [
+        {
+          "name": "審絆 バンジョルノ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "シンパシー：クリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n自分のGRクリーチャーすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+          "race": "メタリカ/ワンダフォース",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g168Sympathy": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "AuraGr1353"
+          }
+        ],
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "g1428Gr": true
+            },
+            "grants": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd10-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "0bf5a3770e0e211c7cdcc77bbdf54fccab17b2d059dfbea14b7ca39bd163a172",
+        "facesMatched": true,
+        "imageSha256": "2c45d08d2edb750e0edbfe7f7508f9c59ba2561832a06e99e97743b2a130f85a",
+        "imageBytes": 138720
+      },
+      "sameNameProducts": [
+        "DMSD-10 超GRスタートデッキ キラのギラミリオン・ギラクシー"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd10-004",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp12-015",
+      "name": "審絆の勇み 陽彩",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-015",
+      "faces": [
+        {
+          "name": "審絆の勇み 陽彩",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "シンパシー：クリーチャー（このクリーチャーの召喚コストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にはならない）\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）\n自分のコスト６以下のクリーチャーは「ブロッカー」を得、相手プレイヤーを攻撃できない。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+          "race": "メタリカ",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g168Sympathy": true,
+        "breaker": 3,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "g562MaxCost": 6
+            },
+            "grants": {
+              "blocker": true,
+              "noPlayerAttack": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "88eae704f4d042b3735c244c153aa4b83946d96f6c0e9bb39b60f4e1ef2389f3",
+        "facesMatched": true,
+        "imageSha256": "96fdd5323ad7d169c1601ca0754f4dd21f15d0639f7cb078ea040ee38844b288",
+        "imageBytes": 121309
+      },
+      "sameNameProducts": [
+        "DMRP-12 超天篇 拡張パック第4弾 超超超天！覚醒ジョギラゴン vs. 零龍卍誕"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-015",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp11-s02",
+      "name": "聖審絆官 シェムパザーレ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-s02",
+      "faces": [
+        {
+          "name": "聖審絆官 シェムパザーレ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 11,
+          "costText": "11",
+          "abilityText": "シンパシー：クリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nブロッカーブロッカー\nT・ブレイカー\n自分のクリーチャーが攻撃する時、相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。（まず何を攻撃するか選んでから、タップするクリーチャーを選ぶ）",
+          "race": "メタリカ/エンジェル・コマンド",
+          "powerText": "15500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g168Sympathy": true,
+        "blocker": true,
+        "breaker": 3,
+        "g252AttackWatch": {
+          "who": "self",
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "tap": true,
+              "lock": true,
+              "g210TapLock": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-s02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "18de7d79dcb6d6ee6adb05f9548810585f027f25fb7d5b0f532edd9b06650014",
+        "facesMatched": true,
+        "imageSha256": "59bc8d04d27c7ef5f710b1032f98af3bea520ff3af15ec376311d2c865a535d2",
+        "imageBytes": 113725
+      },
+      "sameNameProducts": [
+        "DMRP-11 超天篇 拡張パック第3弾 零誕！魔神おこせジョルネード1059!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-s02",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25ex4-029": 4,
+      "dm25ex4-032": 4,
+      "dmsd10-004": 4,
+      "dmrp12-015": 4,
+      "dmrp11-s02": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    }
+  ],
+  "testCorrections": [
+    "大パワー対象のテストIDを既存dm05-s04へ訂正。GR限定の継続能力でg1428Grを静的付与フィルタも認識するよう修正し、通常クリーチャーに付与されないことを確認。"
+  ]
+}
