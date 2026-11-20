@@ -1,0 +1,349 @@
+{
+  "phase": 1458,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8440,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp12-067",
+      "name": "音奏 テルミワイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-067",
+      "faces": [
+        {
+          "name": "音奏 テルミワイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のコスト６以上のクリーチャーがバトルゾーンに出た時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+          "race": "メタリカ/ワンダフォース",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g250EntryDraw": {
+          "self": false,
+          "filter": {
+            "creature": true,
+            "min": 6
+          },
+          "defs": [
+            {
+              "op": "AuraGr1353"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-067.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "40f483831f3df0d87e24bd59c3eede392b6b6075d3ba7c5ee9995d10c5947101",
+        "facesMatched": true,
+        "imageSha256": "b7323e5c3caa25a628de521226391a60c81e4173cde899f27ac596c0f2efc9a3",
+        "imageBytes": 104325
+      },
+      "sameNameProducts": [
+        "DMRP-12 超天篇 拡張パック第4弾 超超超天！覚醒ジョギラゴン vs. 零龍卍誕"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-067",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp11-033",
+      "name": "音奏 ジュリドゥ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-033",
+      "faces": [
+        {
+          "name": "音奏 ジュリドゥ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の他の、GRではないクリーチャーがバトルゾーンに出た時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+          "race": "メタリカ/ワンダフォース",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g250EntryDraw": {
+          "self": false,
+          "filter": {
+            "creature": true,
+            "g1428Gr": false
+          },
+          "defs": [
+            {
+              "op": "AuraGr1353"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "f51657c06b3a7859786d42c8dcb9601e7d73d0fe24490182c6a7c82e888b1d68",
+        "facesMatched": true,
+        "imageSha256": "383b2dba2feda986166b6a88dc619047a23d7e97024b3a674cba59d1da8177e1",
+        "imageBytes": 99005
+      },
+      "sameNameProducts": [
+        "DMRP-11 超天篇 拡張パック第3弾 零誕！魔神おこせジョルネード1059!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-033",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex08-274",
+      "name": "トミカタウン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-274",
+      "faces": [
+        {
+          "name": "トミカタウン",
+          "typeText": "T2フィールド",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の「スピードアタッカー」を持つクリーチャーはすべて「ブロッカー」を得、ターンの終わりにアンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "speedAttacker": true
+            },
+            "grants": {
+              "blocker": true,
+              "g166EndUntap": true,
+              "g565OpponentEnd": [
+                {
+                  "op": "Untap",
+                  "g191First": true
+                }
+              ]
+            }
+          }
+        ],
+        "g1458FieldAura": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-274.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "2dac143573bd7025ee6a728ca82e56efb0102209cd4ad85db1f325154995e565",
+        "facesMatched": true,
+        "imageSha256": "f2137af6f5921b120a6cd25d37d151ffbc5a34bc693e403841121c317de2edb9",
+        "imageBytes": 122557
+      },
+      "sameNameProducts": [
+        "DMEX-08 謎のブラックボックスパック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-274",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm21-011",
+      "name": "グレート・リンク・テクノロジー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-011",
+      "faces": [
+        {
+          "name": "グレート・リンク・テクノロジー",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "シンパシー：グレートメカオーとキカイヒーロー(この呪文を唱える時支払うコストは、バトルゾーンにある自分のグレートメカオーまたはキカイヒーロー１体につき１少なくなる。ただし、コストは１より少なくならない)\nバトルゾーンにあるクリーチャーを１体選ぶ。そのクリーチャーのコストの数と同じ枚数のカードを引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "グレートメカオー",
+              "キカイヒーロー"
+            ]
+          },
+          "amount": 1
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "g1458DrawCost": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm21-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "82d704acf8ec7603b99dbeb60a842b2f784a05ceba527407fd833c56a1e398ba",
+        "facesMatched": true,
+        "imageSha256": "e770cdd8ab99bd81beaae110002e1d29ada1650d7c65c2d5bbdc92a5b0188f38",
+        "imageBytes": 100696
+      },
+      "sameNameProducts": [
+        "DM-21 不死鳥編 第3弾 封魔王の系譜(ヒストリー・オブ・デビル・ノヴァ)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-011",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp12-s03",
+      "name": "神楯と天門と正義の決断",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-s03",
+      "faces": [
+        {
+          "name": "神楯と天門と正義の決断",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "シンパシー：クリーチャー（この呪文を唱えるコストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にはならない）\n次の中から２回選ぶ。（同じものを選んでもよい）\n→自分の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置く。\n→光の「ブロッカー」を持つ進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出す。\n→相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g168Sympathy": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "repeat": 2,
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "シールドを追加",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "光のブロッカーを出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "hand",
+                    "n": 1,
+                    "deploy": true,
+                    "g195HandDeploy": true,
+                    "optional": true,
+                    "filter": {
+                      "creature": true,
+                      "nonEvolution": true,
+                      "color": "光",
+                      "blocker": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "タップして次のアンタップを防ぐ",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "tap": true,
+                    "lock": true,
+                    "g210TapLock": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-s03.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "15b1640e4ae14ec14e833e341bfcd1604b27b9318e21a042d00ccf1db38ead78",
+        "facesMatched": true,
+        "imageSha256": "8eb64c7c6881e74d3dbef9d23c1f6323b1829e799ce02ddc656b9132b8e4733c",
+        "imageBytes": 122892
+      },
+      "sameNameProducts": [
+        "DMEX-15 20周年超感謝メモリアルパック 魂の章 名場面BEST",
+        "DMRP-12 超天篇 拡張パック第4弾 超超超天！覚醒ジョギラゴン vs. 零龍卍誕",
+        "DMART-04 神アート 超獣創造 ～松本しげのぶの世界～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-s03",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp12-067": 4,
+      "dmrp11-033": 4,
+      "dmex08-274": 4,
+      "dm21-011": 4,
+      "dmrp12-s03": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    }
+  ],
+  "testCorrections": [
+    "トミカタウンは通常フィールドであるため専用の静的能力源フラグで付与し、両プレイヤーのターン終了時のアンタップも検証。"
+  ]
+}
