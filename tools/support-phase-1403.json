@@ -1,0 +1,447 @@
+{
+  "phase": 1403,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8192,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31970/",
+    "https://dm.takaratomy.co.jp/rule/qa/31971/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa_old/36427/": "破壊を試みれば、破壊が置換や防止されても後続の効果を使う。",
+    "https://dm.takaratomy.co.jp/rule/qa/31970/": "マナの枚数と指定文明のカードが1枚以上存在することを確認する。",
+    "https://dm.takaratomy.co.jp/rule/qa/31971/": "条件を満たしていない時点でも誘発し、解決前に条件を満たせば使用できる。"
+  },
+  "cards": [
+    {
+      "id": "dmrp12-029",
+      "name": "ウォルナⅣ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-029",
+      "faces": [
+        {
+          "name": "ウォルナⅣ",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナドライブ６（自然）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが６枚以上で自然文明があれば、このクリーチャーを破壊してもよい。そうしたら、このクリーチャーの◇能力を使う。\n◇相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "グランセクト/デリートロン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "all": [
+                {
+                  "g334ZoneCount": {
+                    "zone": "mana",
+                    "min": 6
+                  }
+                },
+                {
+                  "g1064ManaColors": [
+                    "自然"
+                  ]
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "SelfSacrifice407",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "owner": "opponent",
+                    "origin": "battle",
+                    "n": 1,
+                    "filter": {
+                      "creature": true
+                    },
+                    "g173Targets": true,
+                    "g193Select": true,
+                    "to": "mana",
+                    "title": "マナに置く相手のクリーチャーを1体選ぶ"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "gr": true,
+        "manaValue": 0
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "b9af88868d279035d46514983dec6051da08cb5d9ccbee7517bf074c1d2462c1",
+        "facesMatched": true,
+        "imageSha256": "233ef3a323642b5dfc3969d279046f4ce5a638847ee6a68033e0a4af313d568c",
+        "imageBytes": 123614
+      },
+      "sameNameProducts": [
+        "DMRP-12 超天篇 拡張パック第4弾 超超超天！覚醒ジョギラゴン vs. 零龍卍誕"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-029",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp12-045",
+      "name": "カット 丙-二式",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-045",
+      "faces": [
+        {
+          "name": "カット 丙-二式",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナドライブ５（闇）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが５枚以上で闇文明があれば、このクリーチャーを破壊してもよい。そうしたら、このクリーチャーの◇能力を使う。\n◇相手の手札を見て１枚選び、捨てさせる。",
+          "race": "マフィ・ギャング/デリートロン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "all": [
+                {
+                  "g334ZoneCount": {
+                    "zone": "mana",
+                    "min": 5
+                  }
+                },
+                {
+                  "g1064ManaColors": [
+                    "闇"
+                  ]
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "SelfSacrifice407",
+                "defs": [
+                  {
+                    "op": "InspectOne258"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "gr": true,
+        "manaValue": 0
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "f30362b3313b0979edb42e7c55f5e2b0e48dae071214a69ce95d019e5b227a91",
+        "facesMatched": true,
+        "imageSha256": "b9eede8d2a5732003a7e509ab6b2988cd095df3b6a489bcb85fbe54ad7ca3922",
+        "imageBytes": 125534
+      },
+      "sameNameProducts": [
+        "DMEX-19 マスター・ファイナル・メモリアル・パック",
+        "DMRP-12 超天篇 拡張パック第4弾 超超超天！覚醒ジョギラゴン vs. 零龍卍誕"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-045",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp12-051",
+      "name": "ゴルドンゴルドー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-051",
+      "faces": [
+        {
+          "name": "ゴルドンゴルドー",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナドライブ４（火）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが４枚以上で火文明があれば、このクリーチャーを破壊してもよい。そうしたら、このクリーチャーの◇能力を使う。\n◇相手のパワー6000以下のクリーチャーを１体破壊する。",
+          "race": "ビートジョッキー/ワンダフォース",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "all": [
+                {
+                  "g334ZoneCount": {
+                    "zone": "mana",
+                    "min": 4
+                  }
+                },
+                {
+                  "g1064ManaColors": [
+                    "火"
+                  ]
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "SelfSacrifice407",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 6000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "gr": true,
+        "manaValue": 0
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "62f3dd5cf12e8d755c02fe7efde5c0c49a3a2dc92c64e04a9772e272950d9681",
+        "facesMatched": true,
+        "imageSha256": "ec251e71e25f6ea2e8c00a9938e71e6dd6acb7d9c85679b6fb795acf45eef2ee",
+        "imageBytes": 138783
+      },
+      "sameNameProducts": [
+        "DMEX-17 20周年超感謝メモリアルパック 究極の章 デュエキングMAX",
+        "DMRP-12 超天篇 拡張パック第4弾 超超超天！覚醒ジョギラゴン vs. 零龍卍誕"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-051",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp12-034",
+      "name": "威光の意志 ティントレ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-034",
+      "faces": [
+        {
+          "name": "威光の意志 ティントレ",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナドライブ４（光）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが４枚以上で光文明があれば、このクリーチャーを破壊してもよい。そうしたら、このクリーチャーの◇能力を使う。\n◇相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。",
+          "race": "メタリカ/ワンダフォース",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "all": [
+                {
+                  "g334ZoneCount": {
+                    "zone": "mana",
+                    "min": 4
+                  }
+                },
+                {
+                  "g1064ManaColors": [
+                    "光"
+                  ]
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "SelfSacrifice407",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "tap": true,
+                    "lock": true,
+                    "g210TapLock": true,
+                    "title": "タップして次のターンまで止めるクリーチャーを1体選ぶ"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "gr": true,
+        "manaValue": 0
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "e965009150f091644a42e43732df1c5b2511eb3e1be02905be8b79d352937d60",
+        "facesMatched": true,
+        "imageSha256": "4584a4afd0ec91d2c2c039b0559ae27f9c3f1783b4958b867aa8337266ba430a",
+        "imageBytes": 125480
+      },
+      "sameNameProducts": [
+        "DMRP-12 超天篇 拡張パック第4弾 超超超天！覚醒ジョギラゴン vs. 零龍卍誕"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-034",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp12-039",
+      "name": "サザン・エー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-039",
+      "faces": [
+        {
+          "name": "サザン・エー",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナドライブ４（水）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが４枚以上で水文明があれば、このクリーチャーを破壊してもよい。そうしたら、このクリーチャーの◇能力を使う。\n◇カードを２枚引く。",
+          "race": "トリックス/ワンダフォース",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "all": [
+                {
+                  "g334ZoneCount": {
+                    "zone": "mana",
+                    "min": 4
+                  }
+                },
+                {
+                  "g1064ManaColors": [
+                    "水"
+                  ]
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "SelfSacrifice407",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 2
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "gr": true,
+        "manaValue": 0
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "c845d02fe022585094a4ce35d2f0b3e318da672a0431e3bf66a02680a05a34ec",
+        "facesMatched": true,
+        "imageSha256": "c9f8618dfe84f5cc0decd5b7ae7ad578d67f73598c755362dc013f09af381c93",
+        "imageBytes": 96391
+      },
+      "sameNameProducts": [
+        "DM23-EX2 頂上決戦!!デュエキングMAX 2023",
+        "DMRP-12 超天篇 拡張パック第4弾 超超超天！覚醒ジョギラゴン vs. 零龍卍誕"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-039",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp12-029": 4,
+      "dmrp12-045": 4,
+      "dmrp12-051": 4,
+      "dmrp12-034": 4,
+      "dmrp12-039": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/31970/",
+    "https://dm.takaratomy.co.jp/rule/qa/31971/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31970/",
+      "sha256": "e9a4d20ba0541bca6d8fdf9432f9a610285d7f2953691bfc964abeab4c7a5a6c",
+      "result": "マナの枚数と指定文明のカードが1枚以上存在することを確認する。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31971/",
+      "sha256": "0156d843b108e9511dff433d8fe792b487f49db3f905c25fef76f2d25aae0224",
+      "result": "条件を満たしていない時点でも誘発し、解決前に条件を満たせば使用できる。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36427/",
+      "sha256": "8c46ba65f8d770d23e866fef8d3d41480a8bbad0224fa4cfac826f6b54128b37",
+      "result": "破壊を試みれば、破壊が置換や防止されても後続の効果を使う。"
+    }
+  ]
+}
