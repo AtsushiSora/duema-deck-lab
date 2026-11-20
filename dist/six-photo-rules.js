@@ -1369,8 +1369,9 @@ export function createSixPhotoRules(api){
   return own.extra.filter(x=>{
    const c=card(x);
    if(!c.dragheart)return false;
+   if(t.options)return t.options.some(r=>cost(c)<=r.max&&(!r.color||colors(c).includes(r.color)));
    if(t.max!==undefined)return cost(c)<=t.max;
-   return t.weaponOnly?c.type==='weapon'&&cost(c)<=4&&colors(c).some(color=>mana.has(color)):
+   return t.weaponOnly?c.type==='weapon'&&cost(c)<=(t.weaponMax??4)&&colors(c).some(color=>mana.has(color)):
     cost(c)<=3||cost(c)<=5&&colors(c).includes('光');
   }).filter(x=>api.canEnter(s,t.p,card(x),{origin:'extra',execution:false}));
  }
