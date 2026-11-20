@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-20",
   "catalogueNames": 11825,
-  "supportedNames": 8527,
-  "pendingNames": 3298,
-  "phase": 1478,
-  "added": 3,
+  "supportedNames": 8532,
+  "pendingNames": 3293,
+  "phase": 1479,
+  "added": 5,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1937,
+    "クリーチャー": 1932,
     "NEOクリーチャー": 69,
     "呪文": 394,
     "GRクリーチャー": 19,
@@ -223,7 +223,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 810,
-    "未対応の能力文": 2305,
+    "未対応の能力文": 2301,
     "未対応のG・ゼロ条件": 20,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
@@ -245,7 +245,7 @@
     "未対応のG城能力": 10,
     "未対応の革命誘発効果": 3,
     "未対応のS・トリガー・プラス能力": 1,
-    "独立した誘発能力の順序対応が必要": 4,
+    "独立した誘発能力の順序対応が必要": 3,
     "未対応の被攻撃・被選択能力": 1,
     "未対応の非ブロック時能力": 1,
     "再録サバイバーの共有処理が未対応": 1,
@@ -534,16 +534,16 @@
     ],
     "独立した誘発能力の順序対応が必要": [
       {
-        "id": "dmbd14-014",
-        "name": "最終龍覇 ボロフ"
-      },
-      {
         "id": "promoy24-092",
         "name": "次世代龍覇 Q.E.Deux"
       },
       {
         "id": "dmex17-032",
         "name": "超罪龍覇 ボロフHELL"
+      },
+      {
+        "id": "dmd32-002",
+        "name": "龍聖霊ウィズダムフェウス"
       }
     ],
     "未対応の被攻撃・被選択能力": [
@@ -505095,11 +505095,125 @@
         "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
       ],
       "next": "目標9000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
+    },
+    {
+      "phase": 1479,
+      "kind": "registration-toward-9000",
+      "checkedAt": "2026-11-20T20:56:39.438Z",
+      "baseline": "f83e5f5518ecf1dc09dc47f083728e5c6d3fd4c2",
+      "manifest": "tools/support-phase-1479.json",
+      "status": "verified-local",
+      "before": 8527,
+      "supported": 8532,
+      "pending": 3293,
+      "added": [
+        {
+          "id": "dmbd14-012",
+          "name": "最終龍覇 ロージア"
+        },
+        {
+          "id": "dmbd14-014",
+          "name": "最終龍覇 ボロフ"
+        },
+        {
+          "id": "dmr13-031",
+          "name": "龍覇 グレンモルト"
+        },
+        {
+          "id": "dmx18-002",
+          "name": "龍覇 グレンモルト「爆」"
+        },
+        {
+          "id": "dmbd14-013",
+          "name": "龍覇 ラブエース"
+        }
+      ],
+      "duplicates": 0,
+      "results": {
+        "focused": {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1479-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.454,
+          "log": "tmp/duema-phase-1479/focused.log",
+          "passed": 87,
+          "failed": 0
+        },
+        "related": {
+          "name": "related",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1361-effects.test.mjs",
+            "tests/standard1474-effects.test.mjs",
+            "tests/standard1475-effects.test.mjs",
+            "tests/standard1476-effects.test.mjs",
+            "tests/standard1478-effects.test.mjs",
+            "tests/standard1324-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.993,
+          "log": "tmp/duema-phase-1479/related.log",
+          "passed": 99,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.021,
+          "log": "tmp/duema-phase-1479/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 13.496,
+          "log": "tmp/duema-phase-1479/audit.log"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tools/verify-target9000.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.203,
+          "log": "tmp/duema-phase-1479/invariants.log"
+        }
+      },
+      "totalTestsPassed": 186,
+      "reason": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+      "remaining": [
+        "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
+      ],
+      "next": "目標9000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1478,
-    "nextPhase": 1479,
+    "lastVerifiedPhase": 1479,
+    "nextPhase": 1480,
     "workInProgress": null,
     "nextCandidates": [
       "公式照合済みの通常能力を持たないGRクリーチャー",
@@ -505108,7 +505222,7 @@
     ],
     "steps": [
       "開始時にHEAD・作業差分・ステージ・既存プロセス・AGENTS・進捗を確認。",
-      "実データ8527種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8532種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "再開時は既存プロセス・最新コミット・作業ツリーを確認し、tools/verify-target8500.mjsとtools/target8500-verification.jsonを参照。ユーザー保留項目は既存記録を維持。",
       "個別の残件2件はユーザー保留。再開指示まで追加調査・問い合わせ送信をしない。",
       "一括npm testを再実行せず、公開候補の未集約範囲だけ分割検証する。過去の固定ソースの合格と現版の合格を区別する。",
@@ -505189,14 +505303,14 @@
     ],
     "restartSteps": [
       "公開済みの版はb40ae0df (v0.722.1 / engine0.602.1 / 8074種類)。Pages・Netlifyを同じ版に更新済み。最新HEAD・差分・ステージ・既存プロセスを最初に確認。",
-      "実データ8527種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8532種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "再開時は既存プロセス・最新コミット・作業ツリーを確認し、tools/verify-target8500.mjsとtools/target8500-verification.jsonを参照。ユーザー保留項目は既存記録を維持。",
       "既存8072定義は深い比較で不変。カードID・保存形式・保存済みデッキ・対戦履歴を維持。",
       "個別の残件2件と問い合わせ案はユーザー指示「後回しにしよう」で保留。再開指示があるまでこの2件の調査・送信を行わない。",
       "No13長時間検証はengine0.601.0の固定ソースで完了済み。今回のengine0.602.0の全面検証には数えない。必要な未集約項目は対象を特定し、細かく分割して確認する。",
       "Netlifyは手動反映専用。workflow_dispatchだけ、GitHub pushフック停止、stop_builds=trueを維持。通常のカード追加pushでは反映しない。今回の公開に保留・未検証の解消は含めない。"
     ],
-    "registrationStatus": "ユーザーの新目標9000種類に向けて通常登録を再開。現在8527種類、残り473種類。automationはPAUSEDのまま。",
+    "registrationStatus": "ユーザーの新目標9000種類に向けて通常登録を再開。現在8532種類、残り468種類。automationはPAUSEDのまま。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [],
     "printVerificationPending": [
@@ -505308,10 +505422,10 @@
     "registrationTarget": {
       "target": 9000,
       "startCount": 8500,
-      "currentCount": 8527,
-      "remaining": 473,
+      "currentCount": 8532,
+      "remaining": 468,
       "status": "active",
-      "phase": 1478
+      "phase": 1479
     },
     "deferredRegistrationCandidates": [
       {
@@ -557246,10 +557360,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1478,
+    "phase": 1479,
     "threshold": 9000,
-    "supportedNames": 8527,
-    "pendingNames": 3298,
+    "supportedNames": 8532,
+    "pendingNames": 3293,
     "checkedAt": "2026-11-20",
     "registrationStopped": false,
     "automationId": "duema-deck-lab",

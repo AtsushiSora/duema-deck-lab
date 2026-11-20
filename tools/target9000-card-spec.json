@@ -1042,5 +1042,200 @@
         }
       ]
     }
+  },
+  "dmbd14-012": {
+    "phase": 1479,
+    "faces": [
+      {
+        "name": "最終龍覇 ロージア",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分のマナゾーンにあるカードと同じ文明を持つ、コスト４以下のドラグハート・ウエポンを１枚、自分の超次元ゾーンからバトルゾーンに出す。（このクリーチャーに装備する）",
+        "race": "エンジェル・コマンド・ドラゴン/ジャスティス・ウイング/ドラグナー",
+        "powerText": "3500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DeployDragheart1361",
+          "weaponOnly": true
+        }
+      ]
+    }
+  },
+  "dmbd14-014": {
+    "phase": 1479,
+    "faces": [
+      {
+        "name": "最終龍覇 ボロフ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を墓地に置く。その後、カードを１枚、自分の墓地から手札に戻す。\nこのクリーチャーがバトルゾーンに出た時、自分のマナゾーンにあるカードと同じ文明を持つ、コスト４以下のドラグハート・ウエポンを１枚、自分の超次元ゾーンからバトルゾーンに出す。（このクリーチャーに装備する）",
+        "race": "デーモン・コマンド・ドラゴン/ファンキー・ナイトメア/ドラグナー",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1
+        }
+      ],
+      "g527ExtraEntry": [
+        {
+          "label": "ドラグハートを出す",
+          "defs": [
+            {
+              "op": "DeployDragheart1361",
+              "weaponOnly": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmr13-031": {
+    "phase": 1479,
+    "faces": [
+      {
+        "name": "龍覇 グレンモルト",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、コスト２以下のドラグハート１枚、または、コスト４以下の火のドラグハートを１枚、自分の超次元ゾーンからバトルゾーンに出す。（それがウエポンであれば、このクリーチャーに装備して出す）\nバトル中、このクリーチャーのパワーは+3000される。",
+        "race": "ヒューマノイド爆/ドラグナー",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g38BattleBonus": 3000,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DeployDragheart1361",
+          "options": [
+            {
+              "max": 2
+            },
+            {
+              "max": 4,
+              "color": "火"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmx18-002": {
+    "phase": 1479,
+    "faces": [
+      {
+        "name": "龍覇 グレンモルト「爆」",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、コスト５以下の火のドラグハートを１枚、自分の超次元ゾーンからバトルゾーンに出す。（それがウエポンであれば、このクリーチャーに装備して出す）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+        "race": "ヒューマノイド爆/ドラグナー",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DeployDragheart1361",
+          "options": [
+            {
+              "max": 5,
+              "color": "火"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmbd14-013": {
+    "phase": 1479,
+    "faces": [
+      {
+        "name": "龍覇 ラブエース",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、自分のマナゾーンにあるカードと同じ文明を持つ、コスト３以下のドラグハート・ウエポンを１枚、自分の超次元ゾーンからバトルゾーンに出す。（このクリーチャーに装備する）\n自分のドラグハートをバトルゾーンに出した時、カードを１枚引いてもよい。",
+        "race": "エンジェル・ドラゴン/ジャスティス・ウイング/ドラグナー",
+        "powerText": "3500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DeployDragheart1361",
+          "weaponOnly": true,
+          "weaponMax": 3
+        }
+      ],
+      "g314OtherEntry": {
+        "who": "self",
+        "g765Element": true,
+        "filter": {
+          "g1451Dragheart": true
+        },
+        "defs": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      }
+    }
   }
 }
