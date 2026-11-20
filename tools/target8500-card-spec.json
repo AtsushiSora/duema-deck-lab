@@ -12639,5 +12639,189 @@
         }
       ]
     }
+  },
+  "dm08-004": {
+    "phase": 1447,
+    "faces": [
+      {
+        "name": "紅神龍ジャガルザー",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "W(ダブル)・ブレイカー\nターボラッシュ(自分の他のクリーチャーがシールドをブレイクしたあと、そのターンが終わるまで、このクリーチャーは次の能力を得る)\nこのクリーチャーがバトルゾーンにある間、バトルゾーンにある自分のクリーチャーはすべて「スピードアタッカー」を得る。(「スピードアタッカー」を持つクリーチャーは召喚酔いしない)",
+        "race": "ボルケーノ・ドラゴン",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "g962TurboRush": true
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ]
+    }
+  },
+  "dm08-016": {
+    "phase": 1447,
+    "faces": [
+      {
+        "name": "重装兵ガルバック",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "ターボラッシュ(自分の他のクリーチャーがシールドをブレイクした後、そのターンが終わるまで、このクリーチャーは次の能力を得る)\nこのクリーチャーが攻撃するとき、バトルゾーンにあるパワー4000以下の相手のクリーチャーを１体選び、持ち主の墓地に置いてもよい。",
+        "race": "ドラゴノイド",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g260Self": {
+        "filter": {
+          "g962TurboRush": true
+        },
+        "grants": {
+          "g34Attack": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "maxPower": 4000,
+                "g199Power": true
+              },
+              "optional": true
+            }
+          ]
+        }
+      }
+    }
+  },
+  "dm08-010": {
+    "phase": 1447,
+    "faces": [
+      {
+        "name": "ビコラキス",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ターボラッシュ(自分の他のクリーチャーがシールドをブレイクしたあと、そのターンが終わるまで、このクリーチャーは次の能力を得る)\nこのクリーチャーが攻撃するとき、自分の山札を見る。その中から１枚選び、自分の手札に加えてもよい。その後、山札をシャッフルする。",
+        "race": "シー・ハッカー",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g260Self": {
+        "filter": {
+          "g962TurboRush": true
+        },
+        "grants": {
+          "g34Attack": [
+            {
+              "op": "Look",
+              "g201Search": true,
+              "g200Search": true,
+              "n": "all",
+              "rest": "shuffle",
+              "stages": [
+                {
+                  "n": 1,
+                  "to": "hand",
+                  "optional": true
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "dm08-028": {
+    "phase": 1447,
+    "faces": [
+      {
+        "name": "機怪人形ガチャック",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ターボラッシュ(自分の他のクリーチャーがシールドをブレイクした後、そのターンが終わるまで、このクリーチャーは次の能力を得る)\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかったとき、バトルゾーンにあるクリーチャーを１体選び、持ち主の墓地に置いてもよい。",
+        "race": "デスパペット",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g260Self": {
+        "filter": {
+          "g962TurboRush": true
+        },
+        "grants": {
+          "g482Unblocked": [
+            {
+              "op": "Target",
+              "anyOwner": true,
+              "to": "grave",
+              "optional": true
+            }
+          ]
+        }
+      }
+    }
+  },
+  "dm08-050": {
+    "phase": 1447,
+    "faces": [
+      {
+        "name": "肉弾兵ウルティモ",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ターボラッシュ(自分の他のクリーチャーがシールドをブレイクしたあと、そのターンが終わるまで、このクリーチャーは次の能力を得る)\nこのクリーチャーはタップされていないクリーチャーを攻撃でき、「パワーアタッカー+4000」を得る。",
+        "race": "ドラゴノイド",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g260Self": {
+        "filter": {
+          "g962TurboRush": true
+        },
+        "grants": {
+          "attackUntapped": true,
+          "attackBonus": 4000
+        }
+      }
+    }
   }
 }
