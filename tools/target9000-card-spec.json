@@ -3201,5 +3201,221 @@
         }
       ]
     }
+  },
+  "dmr09-066": {
+    "phase": 1491,
+    "faces": [
+      {
+        "name": "鼓笛獣 五朗丸",
+        "typeText": "エグザイル・クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "ガードマン（自分の他のクリーチャーが攻撃される時、このクリーチャーをタップしてもよい。そうした場合、攻撃クリーチャーはかわりにこのクリーチャーを攻撃する）\nドロン・ゴー：このクリーチャーが破壊された時、名前に《鼓笛》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《鼓笛》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+        "race": "アウトレイジMAX",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1490Exile": true,
+      "g1490ExileLimit": "鼓笛",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "鼓笛"
+            ]
+          }
+        }
+      ],
+      "guardman": true
+    }
+  },
+  "dmr09-046": {
+    "phase": 1491,
+    "faces": [
+      {
+        "name": "宇宙刃 ニケ",
+        "typeText": "エグザイル・クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "ブロッカー ブロッカー\nW・ブレイカー\nシールド・セイバー（自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい）\nドロン・ゴー：このクリーチャーが破壊された時、名前に《宇宙》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《宇宙》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+        "race": "アウトレイジMAX",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1490Exile": true,
+      "g1490ExileLimit": "宇宙",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "宇宙"
+            ]
+          }
+        }
+      ],
+      "blocker": true,
+      "breaker": 2,
+      "g401ShieldSaver": true
+    }
+  },
+  "promoy12-016": {
+    "phase": 1491,
+    "faces": [
+      {
+        "name": "双拳銃 ドラポン",
+        "typeText": "エグザイル・クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーが攻撃する時、相手のパワー3000以下のクリーチャーを１体破壊する。\nドロン・ゴー：このクリーチャーが破壊された時、名前に《拳銃》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《拳銃》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+        "race": "アウトレイジMAX",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1490Exile": true,
+      "g1490ExileLimit": "拳銃",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "拳銃"
+            ]
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 3000
+          }
+        }
+      ]
+    }
+  },
+  "promoy12-015": {
+    "phase": 1491,
+    "faces": [
+      {
+        "name": "弐超拳銃 ドラゴ・リボルバー",
+        "typeText": "エグザイル・クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "このクリーチャーが攻撃する時、相手のパワー6000以下のクリーチャーを１体破壊する。\nW・ブレイカー\nドロン・ゴー：このクリーチャーが破壊された時、名前に《拳銃》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《拳銃》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+        "race": "アウトレイジMAX",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1490Exile": true,
+      "g1490ExileLimit": "拳銃",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "拳銃"
+            ]
+          }
+        }
+      ],
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 6000
+          }
+        }
+      ]
+    }
+  },
+  "dmr09-061": {
+    "phase": 1491,
+    "faces": [
+      {
+        "name": "武闘龍 カツドン",
+        "typeText": "エグザイル・クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nパワーアタッカー+3000\nこのクリーチャーは、タップされていないクリーチャーを攻撃できる。\nドロン・ゴー：このクリーチャーが破壊された時、名前に《武闘》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《武闘》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+        "race": "アウトレイジMAX",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1490Exile": true,
+      "g1490ExileLimit": "武闘",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "武闘"
+            ]
+          }
+        }
+      ],
+      "speedAttacker": true,
+      "attackBonus": 3000,
+      "attackUntapped": true
+    }
   }
 }
