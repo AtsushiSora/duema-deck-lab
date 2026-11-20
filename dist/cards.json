@@ -269342,15 +269342,188 @@
       "g1500SinSpell": true,
       "supportBatch": "phase-1500",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-s06",
+      "name": "レグルス・ギル・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "アーマード・ドラゴン/エイリアン",
+      "text": "スペース・チャージ：自然（自分のマナゾーンに自然のカードが置かれた時、このクリーチャーの q 能力を使ってもよい）\nq このターン、バトルゾーンにある自分のクリーチャー１体のパワーは+5000され、シールドをさらにもう１枚ブレイクする。このターン、そのクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-s06",
+      "limit": 4,
+      "breaker": 2,
+      "g454Space": [
+        {
+          "color": "自然",
+          "defs": [
+            {
+              "op": "Target",
+              "owner": "self",
+              "power": 5000,
+              "g455ExtraBreak": 1,
+              "grant": {
+                "g1501AttackRamp": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1501",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr04-019",
+      "name": "屍術師インフェルノ・カイザー",
+      "civ": "闇/火/自然",
+      "civilizations": [
+        "闇",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "レインボー・コマンド・ドラゴン/エイリアン",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nスペース・チャージ：多色（自分のマナゾーンに多色カードが置かれた時、このクリーチャーの q 能力を使ってもよい）\nq コスト５以下の、進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。このターン、そのクリーチャーは「スピードアタッカー」を得る。このターンの終わりに、それを山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-019",
+      "limit": 4,
+      "g454Space": [
+        {
+          "color": "多色",
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "n": 1,
+              "deploy": true,
+              "filter": {
+                "creature": true,
+                "nonEvolution": true,
+                "max": 5
+              },
+              "grant": {
+                "speedAttacker": true
+              },
+              "delayed": "deck"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1501",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr02-s05",
+      "name": "常勝ディス・オプティマス",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "グレートメカオー/エイリアン",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nスペース・チャージ：光/水（自分のマナゾーンに光、水のいずれかまたは両方を持つカードが置かれた時、このクリーチャーの q 能力を使ってもよい）\nq 光：呪文を１枚、自分の墓地から手札に戻す。\nq 水：自分のシールドを１枚、手札に加える。ただし、その「Ｓ・トリガー」は使えない。その後、自分の手札を１枚裏向きにして、新しいシールドとして自分のシールドゾーンに加える。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-s05",
+      "limit": 1,
+      "breaker": 2,
+      "g454Space": [
+        {
+          "color": "光",
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "to": "hand",
+              "n": 1,
+              "filter": {
+                "spell": true
+              }
+            }
+          ]
+        },
+        {
+          "color": "水",
+          "defs": [
+            {
+              "op": "ShieldHand",
+              "g238ShieldHand": true
+            },
+            {
+              "op": "Select",
+              "origin": "hand",
+              "to": "shields",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1501",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr04-018",
+      "name": "混沌の覇者ディス・ガジラ",
+      "civ": "水/闇/火",
+      "civilizations": [
+        "水",
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "デーモン・コマンド/エイリアン",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nスペース・チャージ：多色（自分のマナゾーンに多色カードが置かれた時、このクリーチャーの q 能力を使ってもよい）\nq 相手は自身の手札を１枚選んで捨てる。\nパワーアタッカー+3000（攻撃中、このクリーチャーのパワーは+3000される）\nこのクリーチャーがシールドをブレイクする時、相手の手札が１枚もなければ、相手はそのシールドを手札に加えるかわりに墓地に置く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-018",
+      "limit": 4,
+      "breaker": 2,
+      "attackBonus": 3000,
+      "g454Space": [
+        {
+          "color": "多色",
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "hand",
+            "opponent": true,
+            "max": 0
+          }
+        },
+        "grants": {
+          "shieldBurn": true
+        }
+      },
+      "supportBatch": "phase-1501",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1500,
+    "phase": 1501,
     "checkedAt": "2026-11-20",
-    "baseCount": 8621,
+    "baseCount": 8625,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 8625,
+    "totalCount": 8629,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -294129,6 +294302,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8621,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1500,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8621,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 8625,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

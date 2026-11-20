@@ -5578,5 +5578,190 @@
       "g1432Sin": 2,
       "g1500SinSpell": true
     }
+  },
+  "dmr01-s06": {
+    "phase": 1501,
+    "faces": [
+      {
+        "name": "レグルス・ギル・ドラゴン",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "スペース・チャージ：自然（自分のマナゾーンに自然のカードが置かれた時、このクリーチャーの q 能力を使ってもよい）\nq このターン、バトルゾーンにある自分のクリーチャー１体のパワーは+5000され、シールドをさらにもう１枚ブレイクする。このターン、そのクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+        "race": "アーマード・ドラゴン/エイリアン",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g454Space": [
+        {
+          "color": "自然",
+          "defs": [
+            {
+              "op": "Target",
+              "owner": "self",
+              "power": 5000,
+              "g455ExtraBreak": 1,
+              "grant": {
+                "g1501AttackRamp": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmr04-019": {
+    "phase": 1501,
+    "faces": [
+      {
+        "name": "屍術師インフェルノ・カイザー",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇/火/自然",
+        "civilizations": [
+          "闇",
+          "火",
+          "自然"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nスペース・チャージ：多色（自分のマナゾーンに多色カードが置かれた時、このクリーチャーの q 能力を使ってもよい）\nq コスト５以下の、進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。このターン、そのクリーチャーは「スピードアタッカー」を得る。このターンの終わりに、それを山札の一番下に置く。",
+        "race": "レインボー・コマンド・ドラゴン/エイリアン",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g454Space": [
+        {
+          "color": "多色",
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "n": 1,
+              "deploy": true,
+              "filter": {
+                "creature": true,
+                "nonEvolution": true,
+                "max": 5
+              },
+              "grant": {
+                "speedAttacker": true
+              },
+              "delayed": "deck"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmr02-s05": {
+    "phase": 1501,
+    "faces": [
+      {
+        "name": "常勝ディス・オプティマス",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nスペース・チャージ：光/水（自分のマナゾーンに光、水のいずれかまたは両方を持つカードが置かれた時、このクリーチャーの q 能力を使ってもよい）\nq 光：呪文を１枚、自分の墓地から手札に戻す。\nq 水：自分のシールドを１枚、手札に加える。ただし、その「Ｓ・トリガー」は使えない。その後、自分の手札を１枚裏向きにして、新しいシールドとして自分のシールドゾーンに加える。\nW・ブレイカー",
+        "race": "グレートメカオー/エイリアン",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g454Space": [
+        {
+          "color": "光",
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "to": "hand",
+              "n": 1,
+              "filter": {
+                "spell": true
+              }
+            }
+          ]
+        },
+        {
+          "color": "水",
+          "defs": [
+            {
+              "op": "ShieldHand",
+              "g238ShieldHand": true
+            },
+            {
+              "op": "Select",
+              "origin": "hand",
+              "to": "shields",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmr04-018": {
+    "phase": 1501,
+    "faces": [
+      {
+        "name": "混沌の覇者ディス・ガジラ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/闇/火",
+        "civilizations": [
+          "水",
+          "闇",
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nスペース・チャージ：多色（自分のマナゾーンに多色カードが置かれた時、このクリーチャーの q 能力を使ってもよい）\nq 相手は自身の手札を１枚選んで捨てる。\nパワーアタッカー+3000（攻撃中、このクリーチャーのパワーは+3000される）\nこのクリーチャーがシールドをブレイクする時、相手の手札が１枚もなければ、相手はそのシールドを手札に加えるかわりに墓地に置く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+        "race": "デーモン・コマンド/エイリアン",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "attackBonus": 3000,
+      "g454Space": [
+        {
+          "color": "多色",
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "hand",
+            "opponent": true,
+            "max": 0
+          }
+        },
+        "grants": {
+          "shieldBurn": true
+        }
+      }
+    }
   }
 }

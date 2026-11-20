@@ -9219,6 +9219,7 @@ export function createSixPhotoRules(api){
    if(abilities&&!watcher.sealed)send(s,1-p,watcher,'Sequence',{defs:abilities,g694Defender:ref});
   }
  }const c=effective(x,s),own=s.players[p];
+ if(!api.ignored(s,x)&&!api.selfStopped(s,p))for(const grant of x.g34Grants||[])if(grant.turn===s.turn&&grant.g1501AttackRamp)queue(s,p,x,[{op:'Ramp',n:1}]);
  if(c.g1269TeamAttack&&!api.selfStopped(s,p)){
   const attacks=s.g481Attackers.events.filter(event=>event.p===p).length;
   for(const {min,def} of c.g1269TeamAttack)
