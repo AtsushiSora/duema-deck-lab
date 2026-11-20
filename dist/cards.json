@@ -250063,15 +250063,168 @@
       ],
       "supportBatch": "phase-1384",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-055",
+      "name": "ガチャボンバ・チャージャー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "相手のパワー3000以下のクリーチャーを１体破壊する。\nGR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nチャージャー（この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-055",
+      "limit": 4,
+      "normalCharger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 3000,
+            "g199Power": true
+          }
+        },
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "supportBatch": "phase-1385",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-069",
+      "name": "♪正義の意志にひれ伏せ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nGR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n相手のクリーチャーを１体選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-069",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        },
+        {
+          "op": "Target",
+          "tap": true
+        }
+      ],
+      "supportBatch": "phase-1385",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-013",
+      "name": "♪仰ぎ見よ閃光の奇跡",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nGR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n相手のクリーチャーをすべてタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-013",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        },
+        {
+          "op": "TapAll"
+        }
+      ],
+      "supportBatch": "phase-1385",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd11-013",
+      "name": "イェーガー a.k.a. 噴射",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\nGR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd11-013",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "g190Freeze": "self",
+          "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ",
+          "spell": true
+        },
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "supportBatch": "phase-1385",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd11-017",
+      "name": "スパイラル a.k.a. 竜巻",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "相手のパワー7000以下のクリーチャーを１体選び、持ち主の手札に戻す。\nGR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd11-017",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "hand",
+          "filter": {
+            "maxPower": 7000,
+            "g199Power": true
+          }
+        },
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "supportBatch": "phase-1385",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1384,
+    "phase": 1385,
     "checkedAt": "2026-11-20",
-    "baseCount": 8099,
+    "baseCount": 8104,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8104,
+    "totalCount": 8109,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -273225,6 +273378,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8099,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1384,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8099,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8104,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

@@ -777,5 +777,173 @@
         }
       ]
     }
+  },
+  "dmrp11-055": {
+    "phase": 1385,
+    "faces": [
+      {
+        "name": "ガチャボンバ・チャージャー",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "相手のパワー3000以下のクリーチャーを１体破壊する。\nGR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nチャージャー（この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "normalCharger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 3000,
+            "g199Power": true
+          }
+        },
+        {
+          "op": "AuraGr1353"
+        }
+      ]
+    }
+  },
+  "dmrp09-069": {
+    "phase": 1385,
+    "faces": [
+      {
+        "name": "♪正義の意志にひれ伏せ",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nGR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n相手のクリーチャーを１体選び、タップする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        },
+        {
+          "op": "Target",
+          "tap": true
+        }
+      ]
+    }
+  },
+  "dmrp09-013": {
+    "phase": 1385,
+    "faces": [
+      {
+        "name": "♪仰ぎ見よ閃光の奇跡",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nGR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n相手のクリーチャーをすべてタップする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        },
+        {
+          "op": "TapAll"
+        }
+      ]
+    }
+  },
+  "dmsd11-013": {
+    "phase": 1385,
+    "faces": [
+      {
+        "name": "イェーガー a.k.a. 噴射",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\nGR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "g190Freeze": "self",
+          "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ",
+          "spell": true
+        },
+        {
+          "op": "AuraGr1353"
+        }
+      ]
+    }
+  },
+  "dmsd11-017": {
+    "phase": 1385,
+    "faces": [
+      {
+        "name": "スパイラル a.k.a. 竜巻",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "相手のパワー7000以下のクリーチャーを１体選び、持ち主の手札に戻す。\nGR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "hand",
+          "filter": {
+            "maxPower": 7000,
+            "g199Power": true
+          }
+        },
+        {
+          "op": "AuraGr1353"
+        }
+      ]
+    }
   }
 }
