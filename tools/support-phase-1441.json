@@ -1,0 +1,399 @@
+{
+  "phase": 1441,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8364,
+  "description": "O・ドライブの追加支払いを色別に選び、追加額を加えてから軽減し、支払った能力のみ取得する。複数色と3色同時支払い、手動マナ選択、キャンセル、離脱後の能力消滅を検証。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/37539/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37542/",
+    "https://dm.takaratomy.co.jp/rule/qa/38697/",
+    "https://dm.takaratomy.co.jp/rule/qa/33406/",
+    "https://dm.takaratomy.co.jp/rule/qa/49223/",
+    "https://dm.takaratomy.co.jp/rule/qa/40938/"
+  ],
+  "cards": [
+    {
+      "id": "dm24-109",
+      "name": "ガーデニング・ドライブ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-109",
+      "faces": [
+        {
+          "name": "ガーデニング・ドライブ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の山札の一番上のカードを、マナゾーンに置く。\nO・ドライブ 光x１(この呪文を唱える時、自分のマナゾーンで光のカードをさらに１枚タップしてもよい。そうした場合、この呪文は次の能力を得る)\n呪文を１枚、自分のマナゾーンから手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ],
+        "g1439ODrive": {
+          "options": [
+            {
+              "colors": [
+                "光"
+              ],
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "mana",
+                  "to": "hand",
+                  "n": 1,
+                  "filter": {
+                    "spell": true
+                  },
+                  "g220ManaReturn": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-109.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "21e6d4cacfa3bb4ea31f786e23ea53d25ca2c288afef5e55f62085dc3d636c34",
+        "facesMatched": true,
+        "imageSha256": "89f60e7928b1263410a02384d6f58d54ea38c1efb5f726c5906d69bc87128231",
+        "imageBytes": 95775
+      },
+      "sameNameProducts": [
+        "DM-24 極神編(バイオレンス・ヘヴン) 第1弾"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-109",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm24-093",
+      "name": "ダークフレイム・ドライブ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-093",
+      "faces": [
+        {
+          "name": "ダークフレイム・ドライブ",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手のタップされていないクリーチャーを１体破壊する。\nO・ドライブ 火x１ (この呪文を唱える時、自分のマナゾーンで火のカードをさらに１枚タップしてもよい。そうした場合、この呪文は次の能力を得る)\nこのターン、バトルゾーンにある自分のクリーチャー１体は「W・ブレイカー」を得る。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "untapped": true
+            }
+          }
+        ],
+        "g1439ODrive": {
+          "options": [
+            {
+              "colors": [
+                "火"
+              ],
+              "defs": [
+                {
+                  "op": "Target",
+                  "owner": "self",
+                  "grant": {
+                    "breaker": 2
+                  },
+                  "spell": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-093.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "6a9ad671ee5ee3e0b37225335894503aba9b944e3c5095bf3d1edb0ca5cd7be7",
+        "facesMatched": true,
+        "imageSha256": "88003c1e4779d902de8980f3a3a53990872a415cc978592850c75dd671fc6b3b",
+        "imageBytes": 95173
+      },
+      "sameNameProducts": [
+        "DM-24 極神編(バイオレンス・ヘヴン) 第1弾"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-093",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm24-105",
+      "name": "パチパチ・クリキントン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-105",
+      "faces": [
+        {
+          "name": "パチパチ・クリキントン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "O・ドライブ 火x１(このクリーチャーを召喚する時、自分のマナゾーンで火のカードをさらに１枚タップしてもよい。そうした場合、次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、そのターンの終わりまで、このクリーチャーは「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1439ODrive": {
+          "options": [
+            {
+              "colors": [
+                "火"
+              ],
+              "defs": [
+                {
+                  "op": "SelfGrant754",
+                  "g770LiveCreature": true,
+                  "grant": {
+                    "speedAttacker": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-105.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "c662cf587ef58e8cc991564acd3e47e681be0badc89a910d98f71e9d6a7c31cf",
+        "facesMatched": true,
+        "imageSha256": "0d2800589e8f07dc57641292822c797cb8311f8988655cd0cf73d9f99933e8cd",
+        "imageBytes": 96674
+      },
+      "sameNameProducts": [
+        "DM-24 極神編(バイオレンス・ヘヴン) 第1弾"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-105",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm24-054",
+      "name": "暴神兵ジェットライオス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-054",
+      "faces": [
+        {
+          "name": "暴神兵ジェットライオス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nO・ドライブ 自然x２ (このクリーチャーを召喚する時、自分のマナゾーンで自然のカードをさらに２枚タップしてもよい。そうした場合、次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、そのターンの終わりまで、このクリーチャーは「パワーアタッカー+5000」と「W・ブレイカー」を得る。",
+          "race": "アーマロイド",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "g1439ODrive": {
+          "options": [
+            {
+              "colors": [
+                "自然",
+                "自然"
+              ],
+              "defs": [
+                {
+                  "op": "SelfGrant754",
+                  "g770LiveCreature": true,
+                  "grant": {
+                    "attackBonus": 5000,
+                    "breaker": 2
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "774d17e61f0898d41bd9fcee61de3143b02a20799125fc41f64e7886e5e85a8e",
+        "facesMatched": true,
+        "imageSha256": "1743f903e9a5cea82d662f748289a0ef54c6736fb7f5668ab19d3081ede7794c",
+        "imageBytes": 106441
+      },
+      "sameNameProducts": [
+        "DM-24 極神編(バイオレンス・ヘヴン) 第1弾"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-054",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm26-027",
+      "name": "猛菌恐皇ビューティシャン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-027",
+      "faces": [
+        {
+          "name": "猛菌恐皇ビューティシャン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカー\nこのクリーチャーは攻撃することができない。\nO・ドライブ - 水x１と闇x１:(このクリーチャーを召喚する時、自分のマナゾーンでさらに水１枚と闇１枚をタップしてもよい。そうした場合、次の能力を得る)\n相手に手札を１枚捨てさせ、その後、カードを１枚引いてもよい。",
+          "race": "サイバー・ウイルス/ダークロード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g1439ODrive": {
+          "options": [
+            {
+              "colors": [
+                "水",
+                "闇"
+              ],
+              "defs": [
+                {
+                  "op": "Discard",
+                  "n": 1
+                },
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "optional": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "05262d9b361b16108e8e89b58db1b398b171f087a374348d887d1015161a4c2e",
+        "facesMatched": true,
+        "imageSha256": "a134fa74b9a3e5ad1a2381cce77f9cd4c6dfbbb43d20d592c0abe60b52e5575d",
+        "imageBytes": 102624
+      },
+      "sameNameProducts": [
+        "DMC-55 コロコロ・レジェンド・７",
+        "DM-26 極神編 第3弾 超絶VS究極(ドラゴニック・ウォーズ)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-027",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24-109": 4,
+      "dm24-093": 4,
+      "dm24-105": 4,
+      "dm24-054": 4,
+      "dm26-027": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37539/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37542/",
+    "https://dm.takaratomy.co.jp/rule/qa/38697/",
+    "https://dm.takaratomy.co.jp/rule/qa/33406/",
+    "https://dm.takaratomy.co.jp/rule/qa/49223/",
+    "https://dm.takaratomy.co.jp/rule/qa/40938/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/37539/",
+      "sha256": "540e2abef31499411e49b01fe73a619b519f0790442c1f8737da61282b3b430c",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/37542/",
+      "sha256": "de3889b8d8729699bc3b9c150496420442ff7a8c4bc51804bb2459549d41ca8f",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/38697/",
+      "sha256": "3b0d45b654a89823a1290dc4574ebe7ff94568be9b196fe1bb939d4c8bde8099",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33406/",
+      "sha256": "752584fd4d916b2bef32d8692ee3cbb90f22ebddbbb1e10823d762509041e479",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/49223/",
+      "sha256": "8bb41781472622ddbb6b0c3c8f41110b24323fb2b9552bb7e35bfbfeff5da879",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40938/",
+      "sha256": "e035798f53495c7b543eafe35e388f09d53ccc2c1c775c50b5d0acc972979908",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    }
+  ],
+  "testCorrections": [
+    "ビューティシャンの任意1ドローの選択値はbooleanではなく枚数1。テストの指定だけを実際の選択肢に合わせて修正。"
+  ]
+}

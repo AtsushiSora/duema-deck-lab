@@ -11402,5 +11402,230 @@
         ]
       }
     }
+  },
+  "dm24-109": {
+    "phase": 1441,
+    "faces": [
+      {
+        "name": "ガーデニング・ドライブ",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の山札の一番上のカードを、マナゾーンに置く。\nO・ドライブ 光x１(この呪文を唱える時、自分のマナゾーンで光のカードをさらに１枚タップしてもよい。そうした場合、この呪文は次の能力を得る)\n呪文を１枚、自分のマナゾーンから手札に戻す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        }
+      ],
+      "g1439ODrive": {
+        "options": [
+          {
+            "colors": [
+              "光"
+            ],
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "mana",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "spell": true
+                },
+                "g220ManaReturn": true
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dm24-093": {
+    "phase": 1441,
+    "faces": [
+      {
+        "name": "ダークフレイム・ドライブ",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "相手のタップされていないクリーチャーを１体破壊する。\nO・ドライブ 火x１ (この呪文を唱える時、自分のマナゾーンで火のカードをさらに１枚タップしてもよい。そうした場合、この呪文は次の能力を得る)\nこのターン、バトルゾーンにある自分のクリーチャー１体は「W・ブレイカー」を得る。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "untapped": true
+          }
+        }
+      ],
+      "g1439ODrive": {
+        "options": [
+          {
+            "colors": [
+              "火"
+            ],
+            "defs": [
+              {
+                "op": "Target",
+                "owner": "self",
+                "grant": {
+                  "breaker": 2
+                },
+                "spell": true
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dm24-105": {
+    "phase": 1441,
+    "faces": [
+      {
+        "name": "パチパチ・クリキントン",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "O・ドライブ 火x１(このクリーチャーを召喚する時、自分のマナゾーンで火のカードをさらに１枚タップしてもよい。そうした場合、次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、そのターンの終わりまで、このクリーチャーは「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)",
+        "race": "ワイルド・ベジーズ",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1439ODrive": {
+        "options": [
+          {
+            "colors": [
+              "火"
+            ],
+            "defs": [
+              {
+                "op": "SelfGrant754",
+                "g770LiveCreature": true,
+                "grant": {
+                  "speedAttacker": true
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dm24-054": {
+    "phase": 1441,
+    "faces": [
+      {
+        "name": "暴神兵ジェットライオス",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nO・ドライブ 自然x２ (このクリーチャーを召喚する時、自分のマナゾーンで自然のカードをさらに２枚タップしてもよい。そうした場合、次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、そのターンの終わりまで、このクリーチャーは「パワーアタッカー+5000」と「W・ブレイカー」を得る。",
+        "race": "アーマロイド",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "g1439ODrive": {
+        "options": [
+          {
+            "colors": [
+              "自然",
+              "自然"
+            ],
+            "defs": [
+              {
+                "op": "SelfGrant754",
+                "g770LiveCreature": true,
+                "grant": {
+                  "attackBonus": 5000,
+                  "breaker": 2
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dm26-027": {
+    "phase": 1441,
+    "faces": [
+      {
+        "name": "猛菌恐皇ビューティシャン",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/闇",
+        "civilizations": [
+          "水",
+          "闇"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカー\nこのクリーチャーは攻撃することができない。\nO・ドライブ - 水x１と闇x１:(このクリーチャーを召喚する時、自分のマナゾーンでさらに水１枚と闇１枚をタップしてもよい。そうした場合、次の能力を得る)\n相手に手札を１枚捨てさせ、その後、カードを１枚引いてもよい。",
+        "race": "サイバー・ウイルス/ダークロード",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noAttack": true,
+      "g1439ODrive": {
+        "options": [
+          {
+            "colors": [
+              "水",
+              "闇"
+            ],
+            "defs": [
+              {
+                "op": "Discard",
+                "n": 1
+              },
+              {
+                "op": "Draw",
+                "n": 1,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      }
+    }
   }
 }
