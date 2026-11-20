@@ -251043,15 +251043,156 @@
       "gr": true,
       "supportBatch": "phase-1391",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmsd13-003",
+      "name": "オレちんレンジ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から２枚を見て、そのうちの１枚を自分の山札の一番下に置く。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd13-003",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g200Search": true,
+          "n": 2,
+          "rest": "top",
+          "stages": [
+            {
+              "n": 1,
+              "to": "deck"
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1392",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-048",
+      "name": "スパイキースパイク",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ビートジョッキー/ワンダフォース",
+      "text": "このクリーチャーが攻撃する時、このターン、自分の他のクリーチャー１体のパワーを+3000する。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-048",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "power": 3000,
+          "g179Other": true,
+          "title": "パワーを+3000する自分の他のクリーチャーを1体選ぶ"
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1392",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-064",
+      "name": "チョコっとファクトリー",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "このクリーチャーが攻撃する時、自分の手札を１枚、マナゾーンに置く。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-064",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "mana",
+          "n": 1,
+          "g182HandMana": true
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1392",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-s08",
+      "name": "ドドド・ドーピードープ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 7000,
+      "race": "ビートジョッキー/ワンダフォース",
+      "text": "W・ブレイカー\nこのクリーチャーが攻撃する時、自分の手札を２枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-s08",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 2
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1392",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-089",
+      "name": "バルバルバルチュー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ビートジョッキー/ワンダフォース",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分のシールドを１つ、手札に加える。ただし、その「S・トリガー」は使えない。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-089",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldHand",
+          "g238ShieldHand": true
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1392",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1391,
+    "phase": 1392,
     "checkedAt": "2026-11-20",
-    "baseCount": 8134,
+    "baseCount": 8139,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8139,
+    "totalCount": 8144,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -274303,6 +274444,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8134,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1391,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8134,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8139,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
