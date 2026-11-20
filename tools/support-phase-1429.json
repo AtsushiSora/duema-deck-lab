@@ -1,0 +1,405 @@
+{
+  "phase": 1429,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8304,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp11-082",
+      "name": "ソゲキ 丙-一式",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-082",
+      "faces": [
+        {
+          "name": "ソゲキ 丙-一式",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナドライブ４（闇）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが４枚以上で闇文明があれば、相手は自身の手札を１枚撰んで捨てる。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+          "race": "マフィ・ギャング/デリートロン",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "all": [
+                {
+                  "g334ZoneCount": {
+                    "zone": "mana",
+                    "min": 4
+                  }
+                },
+                {
+                  "g1064ManaColors": [
+                    "闇"
+                  ]
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "Discard",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "gr": true,
+        "manaValue": 0
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-082.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "28260e7678cd749fe339985d30ddcfea712ce7be214c80b22c0de311c4e872bf",
+        "facesMatched": true,
+        "imageSha256": "3c8a60f3dfc046fb219cd9afb28ee83dac818b21dad27bb4b148d5e1562f4b04",
+        "imageBytes": 137206
+      },
+      "sameNameProducts": [
+        "DMBD-12 ガチヤバ4！無限改造デッキセットDX!! ゼーロのドラゴンオーラ",
+        "DMRP-11 超天篇 拡張パック第3弾 零誕！魔神おこせジョルネード1059!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-082",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp11-011",
+      "name": "バイナラシャッター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-011",
+      "faces": [
+        {
+          "name": "バイナラシャッター",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナドライブ６（J）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが６枚以上でジョーカーズがあれば、相手のコスト７以下のクリーチャーを１体選び、相手はそれを自身の山札の一番下に置く。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "all": [
+                {
+                  "g334ZoneCount": {
+                    "zone": "mana",
+                    "min": 6
+                  }
+                },
+                {
+                  "g1197ManaCount": {
+                    "min": 1,
+                    "filter": {
+                      "race": "ジョーカーズ"
+                    }
+                  }
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "deck",
+                "filter": {
+                  "max": 7
+                }
+              }
+            ]
+          }
+        ],
+        "gr": true,
+        "manaValue": 0
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "067e065b59168a6c5ef72cd5b89616ef38f42db8d0efa457f0d98c18cfb93c64",
+        "facesMatched": true,
+        "imageSha256": "5c9e2ebb9b8185cf688a027ad2eba94c8e6c7016aac74099a369680adae3fdd2",
+        "imageBytes": 125860
+      },
+      "sameNameProducts": [
+        "DMSP-04 デュエマ・ストロング・ドリーム ジョーカーズGR",
+        "DMBD-11 ガチヤバ4！無限改造デッキセットDX!! ジョーのビッグバンGR",
+        "DMRP-11 超天篇 拡張パック第3弾 零誕！魔神おこせジョルネード1059!!",
+        "プロモ限定カード 18期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-011",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp11-012",
+      "name": "浄界の意志 ダリファント",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-012",
+      "faces": [
+        {
+          "name": "浄界の意志 ダリファント",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナドライブ ６ （光）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが６枚以上で光文明があれば、相手のコスト７以下の進化ではないクリーチャーを１体選び、裏向きにして、新しいシールドとして持ち主のシールドゾーンに置く。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+          "race": "メタリカ/ワンダフォース",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "all": [
+                {
+                  "g334ZoneCount": {
+                    "zone": "mana",
+                    "min": 6
+                  }
+                },
+                {
+                  "g1064ManaColors": [
+                    "光"
+                  ]
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "shields",
+                "filter": {
+                  "max": 7,
+                  "nonEvolution": true
+                }
+              }
+            ]
+          }
+        ],
+        "gr": true,
+        "manaValue": 0
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "49e175db277512563fb3220dd1066d1db2b5e766ede318d926e106dd17f064ce",
+        "facesMatched": true,
+        "imageSha256": "664efd27b1f79fee51712507d728d8727f95edeb8e596313c820ba75281ddf97",
+        "imageBytes": 125588
+      },
+      "sameNameProducts": [
+        "DMRP-11 超天篇 拡張パック第3弾 零誕！魔神おこせジョルネード1059!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-012",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex08-190",
+      "name": "プラチナポンの助",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-190",
+      "faces": [
+        {
+          "name": "プラチナポンの助",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナドライブ３（はずれポンの助）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが３枚以上で《はずれポンの助》があれば、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "all": [
+                {
+                  "g334ZoneCount": {
+                    "zone": "mana",
+                    "min": 3
+                  }
+                },
+                {
+                  "g1197ManaCount": {
+                    "min": 1,
+                    "filter": {
+                      "g201ExactName": "はずれポンの助"
+                    }
+                  }
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "AuraGr1353"
+              }
+            ]
+          }
+        ],
+        "gr": true,
+        "manaValue": 0
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-190.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "37d6756e9bd26b7ceec5787b134814a44d95d6cd0914600b8dcf1d4408b9d8cf",
+        "facesMatched": true,
+        "imageSha256": "89260f8ce728b7be42454780dba3a4d3aa3297b1982f7148e6d2c0e415d12b5b",
+        "imageBytes": 177605
+      },
+      "sameNameProducts": [
+        "DMEX-08 謎のブラックボックスパック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-190",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp10-017",
+      "name": "マグ・カジロ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-017",
+      "faces": [
+        {
+          "name": "マグ・カジロ",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナドライブ ４（水）：このクリーチャーが攻撃する時、自分のマナゾーンのカードが４枚以上で水文明があれば、コスト４以下の水の呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+          "race": "トリックス/ワンダフォース",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "all": [
+                {
+                  "g334ZoneCount": {
+                    "zone": "mana",
+                    "min": 4
+                  }
+                },
+                {
+                  "g1064ManaColors": [
+                    "水"
+                  ]
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "Execute",
+                "origin": "hand",
+                "spellOnly": true,
+                "max": 4,
+                "optional": true,
+                "filter": {
+                  "g228Face": {
+                    "type": "spell",
+                    "color": "水",
+                    "max": 4
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "gr": true,
+        "manaValue": 0
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp10-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "543c75ac13e271dfc00261d467a099e5cfbea2b64ad32ecd612ceb4c1742d352",
+        "facesMatched": true,
+        "imageSha256": "97188c16f17e35001cacb3354b38bb3c0e453c09dc2edcca9859fcdb3b5d2ef8",
+        "imageBytes": 164218
+      },
+      "sameNameProducts": [
+        "DMRP-10 超天篇 拡張パック第2弾 青きC.A.P.と漆黒の大卍罪"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-017",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp11-082": 4,
+      "dmrp11-011": 4,
+      "dmrp11-012": 4,
+      "dmex08-190": 4,
+      "dmrp10-017": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    }
+  ],
+  "testCorrections": [
+    "マグ・カジロの任意実行をカード選択から既存Executeへ接続。Selectはカード移動用であり、呪文はExecuteで無料実行する。実際に唱えた後の墓地移動も検証。",
+    "バイナラの上限テストを実データで確認したコスト8のクリーチャーに修正し、進化クリーチャーの選択とダリファントの非進化条件を確認。"
+  ]
+}

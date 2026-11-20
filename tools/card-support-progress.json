@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-20",
   "catalogueNames": 11825,
-  "supportedNames": 8304,
-  "pendingNames": 3521,
-  "phase": 1428,
+  "supportedNames": 8309,
+  "pendingNames": 3516,
+  "phase": 1429,
   "added": 5,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -46,7 +46,7 @@
     },
     {
       "ability": "GR召喚",
-      "pendingNames": 119,
+      "pendingNames": 118,
       "examples": [
         {
           "id": "dmrp12-s11",
@@ -157,7 +157,7 @@
     "クリーチャー": 2038,
     "NEOクリーチャー": 69,
     "呪文": 419,
-    "GRクリーチャー": 54,
+    "GRクリーチャー": 49,
     "G-NEOクリーチャー": 26,
     "タマシード": 37,
     "デュエルメイト呪文": 8,
@@ -223,7 +223,7 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 900,
+    "複数面・特殊カードタイプまたは情報不足": 895,
     "未対応の能力文": 2432,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 18,
@@ -499129,11 +499129,151 @@
         "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
       ],
       "next": "目標8500種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
+    },
+    {
+      "phase": 1429,
+      "kind": "registration-toward-8500",
+      "checkedAt": "2026-11-20T16:42:39.231Z",
+      "baseline": "68d19e796cb747e17873c4e15fee7ae0db8c7e8b",
+      "manifest": "tools/support-phase-1429.json",
+      "status": "verified-local",
+      "before": 8304,
+      "supported": 8309,
+      "pending": 3516,
+      "added": [
+        {
+          "id": "dmrp11-082",
+          "name": "ソゲキ 丙-一式"
+        },
+        {
+          "id": "dmrp11-011",
+          "name": "バイナラシャッター"
+        },
+        {
+          "id": "dmrp11-012",
+          "name": "浄界の意志 ダリファント"
+        },
+        {
+          "id": "dmex08-190",
+          "name": "プラチナポンの助"
+        },
+        {
+          "id": "dmrp10-017",
+          "name": "マグ・カジロ"
+        }
+      ],
+      "duplicates": 0,
+      "results": {
+        "focused": {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1429-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.377,
+          "log": "tmp/duema-phase-1429/focused.log",
+          "passed": 111,
+          "failed": 0
+        },
+        "related": {
+          "name": "related",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1394-effects.test.mjs",
+            "tests/standard1395-effects.test.mjs",
+            "tests/standard1425-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.989,
+          "log": "tmp/duema-phase-1429/related.log",
+          "passed": 93,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 18.836,
+          "log": "tmp/duema-phase-1429/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 14.247,
+          "log": "tmp/duema-phase-1429/audit.log"
+        }
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1429-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.547,
+          "log": "tmp/duema-phase-1429/focused.log"
+        },
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1429-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.412,
+          "log": "tmp/duema-phase-1429/focused.log"
+        }
+      ],
+      "testCorrections": [
+        "マグ・カジロの任意実行をカード選択から既存Executeへ接続。Selectはカード移動用であり、呪文はExecuteで無料実行する。実際に唱えた後の墓地移動も検証。",
+        "バイナラの上限テストを実データで確認したコスト8のクリーチャーに修正し、進化クリーチャーの選択とダリファントの非進化条件を確認。"
+      ],
+      "totalTestsPassed": 204,
+      "reason": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+      "remaining": [
+        "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
+      ],
+      "next": "目標8500種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1428,
-    "nextPhase": 1429,
+    "lastVerifiedPhase": 1429,
+    "nextPhase": 1430,
     "workInProgress": null,
     "nextCandidates": [
       "公式照合済みの通常能力を持たないGRクリーチャー",
@@ -499142,7 +499282,7 @@
     ],
     "steps": [
       "開始時にHEAD・作業差分・ステージ・既存プロセス・AGENTS・進捗を確認。",
-      "実データ8304種類・重複0。新目標8500種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8309種類・重複0。新目標8500種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "phase1372の指定5種類は完了済み。tools/support-phase-1372.jsonと実装コミット58f1c830を参照。",
       "個別の残件2件はユーザー保留。再開指示まで追加調査・問い合わせ送信をしない。",
       "一括npm testを再実行せず、公開候補の未集約範囲だけ分割検証する。過去の固定ソースの合格と現版の合格を区別する。",
@@ -499223,14 +499363,14 @@
     ],
     "restartSteps": [
       "公開済みの版はb40ae0df (v0.722.1 / engine0.602.1 / 8074種類)。Pages・Netlifyを同じ版に更新済み。最新HEAD・差分・ステージ・既存プロセスを最初に確認。",
-      "実データ8304種類・重複0。新目標8500種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8309種類・重複0。新目標8500種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "指定5種類は新規2・既存3を完了。manifestに公式全文・基本情報・画像・使用制限・関連裁定・秘版解決・検証結果を記録。",
       "既存8072定義は深い比較で不変。カードID・保存形式・保存済みデッキ・対戦履歴を維持。",
       "個別の残件2件と問い合わせ案はユーザー指示「後回しにしよう」で保留。再開指示があるまでこの2件の調査・送信を行わない。",
       "No13長時間検証はengine0.601.0の固定ソースで完了済み。今回のengine0.602.0の全面検証には数えない。必要な未集約項目は対象を特定し、細かく分割して確認する。",
       "Netlifyは手動反映専用。workflow_dispatchだけ、GitHub pushフック停止、stop_builds=trueを維持。通常のカード追加pushでは反映しない。今回の公開に保留・未検証の解消は含めない。"
     ],
-    "registrationStatus": "ユーザーの新目標8500種類に向けて通常登録を再開。現在8304種類、残り196種類。automationはPAUSEDのまま。",
+    "registrationStatus": "ユーザーの新目標8500種類に向けて通常登録を再開。現在8309種類、残り191種類。automationはPAUSEDのまま。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [],
     "printVerificationPending": [
@@ -499342,10 +499482,10 @@
     "registrationTarget": {
       "target": 8500,
       "startCount": 8074,
-      "currentCount": 8304,
-      "remaining": 196,
+      "currentCount": 8309,
+      "remaining": 191,
       "status": "active",
-      "phase": 1428
+      "phase": 1429
     },
     "deferredRegistrationCandidates": [
       {
@@ -551245,10 +551385,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1428,
+    "phase": 1429,
     "threshold": 8500,
-    "supportedNames": 8304,
-    "pendingNames": 3521,
+    "supportedNames": 8309,
+    "pendingNames": 3516,
     "checkedAt": "2026-11-20",
     "registrationStopped": false,
     "automationId": "duema-deck-lab",

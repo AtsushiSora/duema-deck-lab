@@ -9009,5 +9009,276 @@
         }
       ]
     }
+  },
+  "dmrp11-082": {
+    "phase": 1429,
+    "faces": [
+      {
+        "name": "ソゲキ 丙-一式",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "マナドライブ４（闇）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが４枚以上で闇文明があれば、相手は自身の手札を１枚撰んで捨てる。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "マフィ・ギャング/デリートロン",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 4
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "闇"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmrp11-011": {
+    "phase": 1429,
+    "faces": [
+      {
+        "name": "バイナラシャッター",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "マナドライブ６（J）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが６枚以上でジョーカーズがあれば、相手のコスト７以下のクリーチャーを１体選び、相手はそれを自身の山札の一番下に置く。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 6
+                }
+              },
+              {
+                "g1197ManaCount": {
+                  "min": 1,
+                  "filter": {
+                    "race": "ジョーカーズ"
+                  }
+                }
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "deck",
+              "filter": {
+                "max": 7
+              }
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmrp11-012": {
+    "phase": 1429,
+    "faces": [
+      {
+        "name": "浄界の意志 ダリファント",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "マナドライブ ６ （光）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが６枚以上で光文明があれば、相手のコスト７以下の進化ではないクリーチャーを１体選び、裏向きにして、新しいシールドとして持ち主のシールドゾーンに置く。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "メタリカ/ワンダフォース",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 6
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "光"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "shields",
+              "filter": {
+                "max": 7,
+                "nonEvolution": true
+              }
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmex08-190": {
+    "phase": 1429,
+    "faces": [
+      {
+        "name": "プラチナポンの助",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "マナドライブ３（はずれポンの助）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが３枚以上で《はずれポンの助》があれば、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 3
+                }
+              },
+              {
+                "g1197ManaCount": {
+                  "min": 1,
+                  "filter": {
+                    "g201ExactName": "はずれポンの助"
+                  }
+                }
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "AuraGr1353"
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmrp10-017": {
+    "phase": 1429,
+    "faces": [
+      {
+        "name": "マグ・カジロ",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "マナドライブ ４（水）：このクリーチャーが攻撃する時、自分のマナゾーンのカードが４枚以上で水文明があれば、コスト４以下の水の呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "トリックス/ワンダフォース",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 4
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "水"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Execute",
+              "origin": "hand",
+              "spellOnly": true,
+              "max": 4,
+              "optional": true,
+              "filter": {
+                "g228Face": {
+                  "type": "spell",
+                  "color": "水",
+                  "max": 4
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
   }
 }
