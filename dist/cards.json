@@ -270820,15 +270820,232 @@
       ],
       "supportBatch": "phase-1509",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex2-072",
+      "name": "コオニ小町 / 「世界はジャオウガ様のモノ！」",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "デモニオ",
+      "text": "このクリーチャーが出た時、各プレイヤーは自身の手札を１枚選んで捨てる。\n【呪文面】\n自分の手札をすべて捨て、カードを３枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-072",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "EachPlayer459",
+          "origin": "hand",
+          "to": "grave"
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "「世界はジャオウガ様のモノ！」",
+        "cost": 3,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DiscardAll244",
+            "draw": 3,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1510",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-039",
+      "name": "貝獣 カイバシラ/コバシーラ・ポコポーコ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ムートピア",
+      "text": "このクリーチャーはブロックされない。\n【呪文面】\nこのターン、自分のクリーチャー１体はパワーを+2000され、ブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-039",
+      "limit": 4,
+      "unblockable": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "コバシーラ・ポコポーコ",
+        "cost": 2,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 2000,
+            "grant": {
+              "unblockable": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1510",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-050",
+      "name": "ガチャベス１/ガチャガチャ・スクランブル",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "このクリーチャーが攻撃する時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n【呪文面】\nGR召喚する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-050",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "ガチャガチャ・スクランブル",
+        "cost": 2,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "AuraGr1353",
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1510",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-048",
+      "name": "暴走 ザクルマ/「緊急発進だ!!」",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ソニック・コマンド",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\n【呪文面】\nこのターン、自分のクリーチャー１体のパワーを+5000し、「スピードアタッカー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-048",
+      "limit": 4,
+      "speedAttacker": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "「緊急発進だ!!」",
+        "cost": 2,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 5000,
+            "grant": {
+              "speedAttacker": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1510",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-052",
+      "name": "雪風妖精チャユニクス/スノー坊のパトロール",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "スノーフェアリー",
+      "text": "このクリーチャーが破壊された時、クリーチャーを１体、自分のマナゾーンから手札に戻してもよい。\n【呪文面】\nカードを２枚、自分の墓地からマナゾーンにタップして置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-052",
+      "limit": 4,
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "filter": {
+            "creature": true
+          },
+          "optional": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "スノー坊のパトロール",
+        "cost": 4,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "mana",
+            "tapped": true,
+            "n": 2,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1510",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1509,
+    "phase": 1510,
     "checkedAt": "2026-11-20",
-    "baseCount": 8656,
+    "baseCount": 8661,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8661,
+    "totalCount": 8666,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -295733,6 +295950,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 8656,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1509,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8656,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8661,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
