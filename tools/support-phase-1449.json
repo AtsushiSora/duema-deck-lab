@@ -1,0 +1,355 @@
+{
+  "phase": 1449,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8403,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/46953/",
+    "https://dm.takaratomy.co.jp/rule/qa/48756/",
+    "https://dm.takaratomy.co.jp/rule/qa/39834/"
+  ],
+  "cards": [
+    {
+      "id": "dmbd17-008",
+      "name": "裏斬の取引 パルサー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd17-008",
+      "faces": [
+        {
+          "name": "裏斬の取引 パルサー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ニンジャ・ストライク５（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが５枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなかったら、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の下に置く）\nこのクリーチャーは攻撃できない。\nこのクリーチャーが出た時、カードを１枚引き、その後、自分の手札を１枚捨てる。\n自分の墓地にカードが６枚以上あれば、このクリーチャーに「ブロッカー」を与える。",
+          "race": "アウトレイジ/シノビ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 5,
+        "ninjaColors": [],
+        "noAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "grave",
+              "min": 6
+            }
+          },
+          "grants": {
+            "blocker": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd17-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "84e6a69475e0de6f2386ff196f79f2a754031d1008d0453ee73ee99bbf7992aa",
+        "facesMatched": true,
+        "imageSha256": "f03c386f885ef47b9b0442182fe1b785b83c0c123aa8acd05e90f42ed7ef0ff7",
+        "imageBytes": 145059
+      },
+      "sameNameProducts": [
+        "DM23-EX1 大感謝祭 ビクトリーBEST",
+        "DMBD-17 20th クロニクルデッキ 熱血!! アウトレイジ・ビクトリー"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd17-008",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex12-025",
+      "name": "裏斬隠 カタビラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-025",
+      "faces": [
+        {
+          "name": "裏斬隠 カタビラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ニンジャ・ストライク ８（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが８枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の一番下に置く）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体選ぶ。そのターン、そのクリーチャーはすべてのバトルに勝つ。",
+          "race": "オラクル/シノビ",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 8,
+        "ninjaColors": [],
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "g34AlwaysWin": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex12-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "68b43ef60f5e595695a5b53355cb361654c58aed69226afc3253f8b7fa472d4b",
+        "facesMatched": true,
+        "imageSha256": "a1f237c47174e4aed1b933488fbf3c2d6df704a62eb31066a6f594c79365878b",
+        "imageBytes": 124272
+      },
+      "sameNameProducts": [
+        "DM24-BD6 エキサイティング・デュエパ・デッキ ツラトゥストラは水晶と語らう",
+        "DM23-BD5 エキサイティング・デュエパ・デッキ 「不敬なり！真邪眼騎士団」",
+        "DMEX-12 最強戦略!!ドラリンパック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-025",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex12-s09",
+      "name": "裏斬隠蒼頭龍 バジリスク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-s09",
+      "faces": [
+        {
+          "name": "裏斬隠蒼頭龍 バジリスク",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ニンジャ・ストライク ８（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが８枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の一番下に置く）\nブロッカーブロッカー\nW・ブレイカー\n自分のシノビがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "シノビ・ドラゴン/オリジン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 8,
+        "ninjaColors": [],
+        "blocker": true,
+        "breaker": 2,
+        "g250EntryDraw": {
+          "self": true,
+          "filter": {
+            "creature": true,
+            "race": "シノビ"
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "g190Freeze": "start"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex12-s09.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "6efd24646bd8f95d33d6ebd0fbffef37f6ce8e4bb468451e1d7e45d5adc7840b",
+        "facesMatched": true,
+        "imageSha256": "1a0a7402610d87dfaeed699cbfc704bd58d9767cbb76040880dc5def992b8531",
+        "imageBytes": 135490
+      },
+      "sameNameProducts": [
+        "DM25-EX3 邪神爆発デュエナマイトパック「王道W」",
+        "DM23-RP2X アビス・レボリューション 第2弾 「忍邪乱武」 超刺激パック",
+        "DM23-RP2 アビス・レボリューション 第2弾 「忍邪乱武」",
+        "DMEX-12 最強戦略!!ドラリンパック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-s09",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm25ex1-084",
+      "name": "裏斬隠 メッサー・シュミット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-084",
+      "faces": [
+        {
+          "name": "裏斬隠 メッサー・シュミット",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ウラ・ニンジャ・ストライク３（自然）（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンのカードが３枚以上で自然文明があり、その攻撃中に「ニンジャ・ストライク」を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の下に置く）\nＴ・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーが出た時、クリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを+4000し、そのクリーチャーは相手プレイヤーを攻撃できない。",
+          "race": "グランセクト/メカ・スプリガン/シノビ",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 3,
+        "ninjaColors": [
+          "自然"
+        ],
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "power": 4000,
+            "grant": {
+              "noPlayerAttack": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex1-084.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "28dcea90797ff8c0360071a93c42999b2c15d8221d7f3186000174877ab0329f",
+        "facesMatched": true,
+        "imageSha256": "677368826220bb81345497d94c4bae9255f34578a9056d0ba4d2c04e7e61b8df",
+        "imageBytes": 167722
+      },
+      "sameNameProducts": [
+        "DM25-EX1 愛感謝祭 ヒロインBEST"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-084",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm26rp1-029",
+      "name": "雷遁の開眼者ウッズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-029",
+      "faces": [
+        {
+          "name": "雷遁の開眼者ウッズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ウラ・ニンジャ・ストライク４（光）（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンのカードが４枚以上で光文明があり、その攻撃中に「ニンジャ・ストライク」を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の下に置く）\nこのクリーチャーが出た時、相手のマナゾーンにあるカードの枚数よりコストが大きい相手のエレメントを１つ選び、持ち主の山札の下に置く。",
+          "race": "メカサンダー/オリジン/シノビ",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 4,
+        "ninjaColors": [
+          "光"
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "to": "deck",
+            "filter": {
+              "g600OverMana": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "248565dfb1b6baa7e94c68b015d8cdc6af9c4135689719ce0bd8bbae06047adb",
+        "facesMatched": true,
+        "imageSha256": "3eb6a317e53f2cacc27603749f9eade340e159b7c24f090da8fa9fa8c38d65fb",
+        "imageBytes": 179646
+      },
+      "sameNameProducts": [
+        "DM26-RP1 逆札篇 第1弾 逆転神VS切札竜"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-029",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmbd17-008": 4,
+      "dmex12-025": 4,
+      "dmex12-s09": 4,
+      "dm25ex1-084": 4,
+      "dm26rp1-029": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/46953/",
+    "https://dm.takaratomy.co.jp/rule/qa/48756/",
+    "https://dm.takaratomy.co.jp/rule/qa/39834/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/46953/",
+      "sha256": "4bee142c680c1a7c7d685ab573df59d3cc660ca63bee07e1c3bde5d8490f7259",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/48756/",
+      "sha256": "2890fc8cf746ce334099c54c802e5e180a0f53d1cce2d34bc24c3b1cc9656c92",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39834/",
+      "sha256": "507932d4db31b7c88b6fd30e2fbf0fd76dad9331918820d110c3cea65198ac9b",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    }
+  ],
+  "testCorrections": [
+    "バジリスクの攻撃・ブロック禁止はextLimitsのuidで記録される。ref.uidという別種の付与の保存形を前提にしたテストを修正し、自身と後続シノビで各2件ずつ増えることを検証。"
+  ]
+}

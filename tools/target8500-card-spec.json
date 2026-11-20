@@ -13019,5 +13019,202 @@
         }
       ]
     }
+  },
+  "dmbd17-008": {
+    "phase": 1449,
+    "faces": [
+      {
+        "name": "裏斬の取引 パルサー",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ニンジャ・ストライク５（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが５枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなかったら、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の下に置く）\nこのクリーチャーは攻撃できない。\nこのクリーチャーが出た時、カードを１枚引き、その後、自分の手札を１枚捨てる。\n自分の墓地にカードが６枚以上あれば、このクリーチャーに「ブロッカー」を与える。",
+        "race": "アウトレイジ/シノビ",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "ninjaStrike": true,
+      "ninjaMin": 5,
+      "ninjaColors": [],
+      "noAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 1
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "grave",
+            "min": 6
+          }
+        },
+        "grants": {
+          "blocker": true
+        }
+      }
+    }
+  },
+  "dmex12-025": {
+    "phase": 1449,
+    "faces": [
+      {
+        "name": "裏斬隠 カタビラ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "ニンジャ・ストライク ８（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが８枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の一番下に置く）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体選ぶ。そのターン、そのクリーチャーはすべてのバトルに勝つ。",
+        "race": "オラクル/シノビ",
+        "powerText": "3500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "ninjaStrike": true,
+      "ninjaMin": 8,
+      "ninjaColors": [],
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "grant": {
+            "g34AlwaysWin": true
+          }
+        }
+      ]
+    }
+  },
+  "dmex12-s09": {
+    "phase": 1449,
+    "faces": [
+      {
+        "name": "裏斬隠蒼頭龍 バジリスク",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "ニンジャ・ストライク ８（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが８枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の一番下に置く）\nブロッカーブロッカー\nW・ブレイカー\n自分のシノビがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+        "race": "シノビ・ドラゴン/オリジン",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "ninjaStrike": true,
+      "ninjaMin": 8,
+      "ninjaColors": [],
+      "blocker": true,
+      "breaker": 2,
+      "g250EntryDraw": {
+        "self": true,
+        "filter": {
+          "creature": true,
+          "race": "シノビ"
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "g190Freeze": "start"
+          }
+        ]
+      }
+    }
+  },
+  "dm25ex1-084": {
+    "phase": 1449,
+    "faces": [
+      {
+        "name": "裏斬隠 メッサー・シュミット",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "ウラ・ニンジャ・ストライク３（自然）（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンのカードが３枚以上で自然文明があり、その攻撃中に「ニンジャ・ストライク」を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の下に置く）\nＴ・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーが出た時、クリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを+4000し、そのクリーチャーは相手プレイヤーを攻撃できない。",
+        "race": "グランセクト/メカ・スプリガン/シノビ",
+        "powerText": "13000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "ninjaStrike": true,
+      "ninjaMin": 3,
+      "ninjaColors": [
+        "自然"
+      ],
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "power": 4000,
+          "grant": {
+            "noPlayerAttack": true
+          }
+        }
+      ]
+    }
+  },
+  "dm26rp1-029": {
+    "phase": 1449,
+    "faces": [
+      {
+        "name": "雷遁の開眼者ウッズ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ウラ・ニンジャ・ストライク４（光）（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンのカードが４枚以上で光文明があり、その攻撃中に「ニンジャ・ストライク」を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の下に置く）\nこのクリーチャーが出た時、相手のマナゾーンにあるカードの枚数よりコストが大きい相手のエレメントを１つ選び、持ち主の山札の下に置く。",
+        "race": "メカサンダー/オリジン/シノビ",
+        "powerText": "2500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "ninjaStrike": true,
+      "ninjaMin": 4,
+      "ninjaColors": [
+        "光"
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "element": true,
+          "to": "deck",
+          "filter": {
+            "g600OverMana": true
+          }
+        }
+      ]
+    }
   }
 }
