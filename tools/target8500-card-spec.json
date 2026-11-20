@@ -8790,5 +8790,224 @@
         }
       ]
     }
+  },
+  "dmrp09-068": {
+    "phase": 1428,
+    "faces": [
+      {
+        "name": "♪響け慟哭 奏でよ旋律",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "GR召喚を２回する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "spell",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        },
+        {
+          "op": "AuraGr1353"
+        }
+      ]
+    }
+  },
+  "dmrp12-072": {
+    "phase": 1428,
+    "faces": [
+      {
+        "name": "♪高め合う領域",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、GR召喚する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "spell",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "min": 3,
+              "filter": {
+                "g1428Gr": true
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "AuraGr1353"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmrp12-080": {
+    "phase": 1428,
+    "faces": [
+      {
+        "name": "ハイドロー a.k.a. 飛空",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、カードを２枚引く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "spell",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "min": 3,
+              "filter": {
+                "g1428Gr": true
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 2
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmrp11-080": {
+    "phase": 1428,
+    "faces": [
+      {
+        "name": "バミューダ・トライデント",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "spell",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "min": 3,
+              "filter": {
+                "g1428Gr": true
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "hand"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmrp12-044": {
+    "phase": 1428,
+    "faces": [
+      {
+        "name": "ネオンプール a.k.a. 夜景",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、クリーチャーを２体まで選び、持ち主の手札に戻す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "spell",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "min": 3,
+              "filter": {
+                "g1428Gr": true
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "battle",
+              "to": "hand",
+              "n": 2,
+              "optional": true,
+              "g173Targets": true,
+              "g193Select": true,
+              "filter": {
+                "creature": true
+              },
+              "anyOwner": true
+            }
+          ]
+        }
+      ]
+    }
   }
 }
