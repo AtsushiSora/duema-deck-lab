@@ -258503,15 +258503,254 @@
       ],
       "supportBatch": "phase-1437",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-022",
+      "name": "ヨミジ 丁-二式",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "マフィ・ギャング/デリートロン",
+      "text": "マナドライブ７（闇）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが７枚以上で闇文明があれば、このクリーチャーを破壊してもよい。そうしたら、このクリーチャーの◇能力を使う。\n◇コスト８以下の進化ではないクリーチャー１体またはコスト８以下のオーラを１枚、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-022",
+      "limit": 0,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 7
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "闇"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "SelfSacrifice407",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "deploy": true,
+                  "n": 1,
+                  "filter": {
+                    "any": [
+                      {
+                        "creature": true,
+                        "nonEvolution": true,
+                        "max": 8
+                      },
+                      {
+                        "aura": true,
+                        "max": 8
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1438",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-028",
+      "name": "マリゴルドⅢ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "グランセクト/デリートロン",
+      "text": "マナドライブ６（自然）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが６枚以上で自然文明があれば、コスト５以下の進化ではないクリーチャー１体またはコスト５以下のオーラ１枚を、自分のマナゾーンからバトルゾーンに出してもよい。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-028",
+      "limit": 0,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 6
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "自然"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "mana",
+              "deploy": true,
+              "n": 1,
+              "optional": true,
+              "filter": {
+                "any": [
+                  {
+                    "creature": true,
+                    "nonEvolution": true,
+                    "max": 5
+                  },
+                  {
+                    "aura": true,
+                    "max": 5
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1438",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-s07",
+      "name": "ヘルエグリゴリ-零式",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 8000,
+      "race": "マフィ・ギャング/デリートロン",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の他のGRクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-s07",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "self",
+          "to": "grave",
+          "n": 1,
+          "g179Other": true,
+          "filter": {
+            "creature": true,
+            "g1428Gr": true
+          }
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1438",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-023",
+      "name": "ロッキーロック",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "ビートジョッキー/ワンダフォース",
+      "text": "このクリーチャーがバトルゾーンを離れた時、GR召喚する。そのGRクリーチャーはタップしてバトルゾーンに出る。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-023",
+      "limit": 4,
+      "g172Leave": [
+        {
+          "op": "AuraGr1353",
+          "tapped": true
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1438",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-063",
+      "name": "メカドクターGr.",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "マナドライブ３（J）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが３枚以上でジョーカーズがあれば、そのターン、自分のジョーカーズ１体はシールドをさらに１つブレイクする。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-063",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 3
+                }
+              },
+              {
+                "g1197ManaCount": {
+                  "min": 1,
+                  "filter": {
+                    "race": "ジョーカーズ"
+                  }
+                }
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "owner": "self",
+              "filter": {
+                "race": "ジョーカーズ"
+              },
+              "g1438ExtraBreak": 1
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1438",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1437,
+    "phase": 1438,
     "checkedAt": "2026-11-20",
-    "baseCount": 8344,
+    "baseCount": 8349,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8349,
+    "totalCount": 8354,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -282408,6 +282647,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8344,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1437,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8344,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8349,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

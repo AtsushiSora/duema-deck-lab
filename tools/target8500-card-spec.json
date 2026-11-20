@@ -10621,5 +10621,266 @@
         }
       ]
     }
+  },
+  "dmrp12-022": {
+    "phase": 1438,
+    "faces": [
+      {
+        "name": "ヨミジ 丁-二式",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "マナドライブ７（闇）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが７枚以上で闇文明があれば、このクリーチャーを破壊してもよい。そうしたら、このクリーチャーの◇能力を使う。\n◇コスト８以下の進化ではないクリーチャー１体またはコスト８以下のオーラを１枚、自分の墓地からバトルゾーンに出す。",
+        "race": "マフィ・ギャング/デリートロン",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 7
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "闇"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "SelfSacrifice407",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "deploy": true,
+                  "n": 1,
+                  "filter": {
+                    "any": [
+                      {
+                        "creature": true,
+                        "nonEvolution": true,
+                        "max": 8
+                      },
+                      {
+                        "aura": true,
+                        "max": 8
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmrp11-028": {
+    "phase": 1438,
+    "faces": [
+      {
+        "name": "マリゴルドⅢ",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "マナドライブ６（自然）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが６枚以上で自然文明があれば、コスト５以下の進化ではないクリーチャー１体またはコスト５以下のオーラ１枚を、自分のマナゾーンからバトルゾーンに出してもよい。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "グランセクト/デリートロン",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 6
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "自然"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "mana",
+              "deploy": true,
+              "n": 1,
+              "optional": true,
+              "filter": {
+                "any": [
+                  {
+                    "creature": true,
+                    "nonEvolution": true,
+                    "max": 5
+                  },
+                  {
+                    "aura": true,
+                    "max": 5
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmrp12-s07": {
+    "phase": 1438,
+    "faces": [
+      {
+        "name": "ヘルエグリゴリ-零式",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の他のGRクリーチャーを１体破壊する。",
+        "race": "マフィ・ギャング/デリートロン",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "self",
+          "to": "grave",
+          "n": 1,
+          "g179Other": true,
+          "filter": {
+            "creature": true,
+            "g1428Gr": true
+          }
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmrp09-023": {
+    "phase": 1438,
+    "faces": [
+      {
+        "name": "ロッキーロック",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーがバトルゾーンを離れた時、GR召喚する。そのGRクリーチャーはタップしてバトルゾーンに出る。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "ビートジョッキー/ワンダフォース",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g172Leave": [
+        {
+          "op": "AuraGr1353",
+          "tapped": true
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmrp11-063": {
+    "phase": 1438,
+    "faces": [
+      {
+        "name": "メカドクターGr.",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "マナドライブ３（J）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが３枚以上でジョーカーズがあれば、そのターン、自分のジョーカーズ１体はシールドをさらに１つブレイクする。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 3
+                }
+              },
+              {
+                "g1197ManaCount": {
+                  "min": 1,
+                  "filter": {
+                    "race": "ジョーカーズ"
+                  }
+                }
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "owner": "self",
+              "filter": {
+                "race": "ジョーカーズ"
+              },
+              "g1438ExtraBreak": 1
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
   }
 }
