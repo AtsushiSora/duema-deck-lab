@@ -24,3 +24,29 @@ test('an equipped weapon identifies its host and a released Dragheart requests t
  assert.match(html,/装備：装備先＆クリーチャー/);
  assert.ok(sides.includes(true));
 });
+
+test('lobby chooses one shared deck before create or join and removes the AI shortcut',()=>{
+ const state={room:null,busy:false,connected:true},decks=[{id:'mine',name:'自分のデッキ'},{id:'bad',name:'未対応'}],before=structuredClone({state,decks});
+ const html=onlineScreenHTML(state,{user:{name:'友達 & 自分'},decks,selectedDeckId:'mine',valid:d=>d.id==='mine'});
+ assert.doesNotMatch(html,/AI対戦へ|data-view="battle"/);assert.match(html,/友達 &amp; 自分/);
+ assert.equal((html.match(/id="online-deck"/g)||[]).length,1);
+ assert.ok(html.indexOf('id="online-deck"')<html.indexOf('data-action="online-create"'));
+ assert.ok(html.indexOf('id="online-deck"')<html.indexOf('data-action="online-join"'));
+ assert.match(html,/<option value="bad"[^>]*disabled/);
+ assert.match(html,/<label for="online-code">/);assert.match(html,/<details class="online-help"><summary>/);
+ assert.ok(html.indexOf('data-action="online-resume"')>html.indexOf('data-action="online-join"'));
+ assert.deepEqual({state,decks},before);
+});
+test('an invitation preserves the escaped code and places joining before room creation',()=>{
+ const html=onlineScreenHTML({room:null},{user:{name:'自分'},decks:[{id:'d',name:'deck'}],selectedDeckId:'d',code:'A1B2"<code>'});
+ assert.match(html,/招待されたルームに参加/);assert.match(html,/value="A1B2&quot;&lt;code&gt;"/);
+ assert.ok(html.indexOf('data-action="online-join"')<html.indexOf('data-action="online-create"'));
+});
+test('lobby blocks creation and joining when no playable deck exists or a request is pending',()=>{
+ for(const [busy,decks,valid] of [[false,[],()=>true],[false,[{id:'bad',name:'未対応'}],()=>false],[true,[{id:'d',name:'deck'}],()=>true]]){
+  const html=onlineScreenHTML({room:null,busy},{user:{name:'自分'},decks,valid});
+  for(const action of ['online-create','online-join'])assert.match(html,new RegExp(`data-action="${action}" disabled`));
+  if(!busy)assert.match(html,/data-view="decks"/);
+ }
+ const html=onlineScreenHTML({room:null},{user:null});assert.match(html,/まずはGoogleでログイン/);assert.match(html,/data-view="account"/);assert.doesNotMatch(html,/data-action="online-(create|join)"/);
+});

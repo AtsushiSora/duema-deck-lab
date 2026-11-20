@@ -1,0 +1,99 @@
+{
+  "phase": 1376,
+  "kind": "friend-lobby-ui",
+  "checkedAt": "2026-11-20T13:19:06.154477+00:00",
+  "baseline": "223b7de0d810acba684236ac1b56644c2bd2142f",
+  "status": "passed-local-unpublished",
+  "changes": [
+    "友達対戦のロビーからAI対戦へボタンを削除。大きなイラスト付き見出しをコンパクトな案内に変更。",
+    "共通のデッキ選択を先に配置し、作成・参加を別々の選択肢として整理。スマホでは縦並び、PCでは横並び。",
+    "招待コードがある場合は参加を先に表示。中断した対戦の再開と折りたたみ式ヘルプは下に配置。",
+    "主要入力・作成・参加ボタンは48px以上。コード入力を16pxにし、スマホの入力を使いやすくする。ログイン名・履歴の折り返しに対応。"
+  ],
+  "cards": {
+    "beforeRows": 8074,
+    "beforeUniqueNames": 8074,
+    "afterRows": 8074,
+    "afterUniqueNames": 8074,
+    "normalizer": "dist/catalogue.js:nameKey",
+    "duplicates": 0,
+    "added": []
+  },
+  "results": {
+    "focused": {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/online-ui.test.mjs",
+        "tests/online-app.test.mjs",
+        "tests/online-client.test.mjs",
+        "tests/online-runtime.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.229,
+      "log": "tmp/duema-phase-1376/focused.log",
+      "passed": 34,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 19.213,
+      "log": "tmp/duema-phase-1376/check.log"
+    },
+    "related": {
+      "name": "related",
+      "command": [
+        "node",
+        "--test",
+        "tests/home-navigation.test.mjs",
+        "tests/deck-history.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 7.418,
+      "log": "tmp/duema-phase-1376/related.log",
+      "passed": 38,
+      "failed": 0
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 17.128,
+      "log": "tmp/duema-phase-1376/audit.log"
+    }
+  },
+  "totalTestsPassed": 72,
+  "visualVerification": {
+    "status": "passed",
+    "method": "実際のrenderOnline/shell出力と本番CSSをローカルでChrome表示。375px・320px幅のiframeと1200pxのPC幅で目視。作成・参加・下部の再開・ヘルプの配置、文字・入力のはみ出しがないことを確認。",
+    "scope": "ローカルのテストデータ。実際のログインや本番ルームは操作していない。"
+  },
+  "integrationVerification": [
+    "ローカル対戦サーバーを用いた実アプリのVM操作で、デッキを変更して招待コードから参加し、選択したデッキが送信され、参加者席の対戦が開始することを確認。保存済みデッキ・AI戦績が不変。",
+    "既存のルーム作成・招待・両者の参加・操作・投了・対戦履歴・接続切断後の結果確認も回帰テストで通過。"
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false,
+    "reason": "今回はUI変更依頼。今回の変更を公開する新しい指示はまだない。Netlifyは手動更新専用のまま。"
+  },
+  "remaining": [
+    "従来の全体npm testは中断・合否未確認を維持。今回の72件を全体検証済みとはしない。",
+    "ユーザー保留中の公式照合2件と、本番での2つのGoogleアカウントを用いた友達対戦確認は既存記録を維持。"
+  ]
+}
