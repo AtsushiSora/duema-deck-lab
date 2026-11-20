@@ -648,6 +648,7 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g1473RepeatedUnitAttack){const host=s.players[p].battle.find(x=>api.allLayers(x).some(y=>y.uid===sourceUid&&(sourceIncarnation===null||(y.incarnation||0)===sourceIncarnation)));if(!host||s.g481Attackers?.turn!==s.turn)return false;const refs=api.allLayers(host).map(key);return s.g481Attackers.events.filter(e=>e.p===p&&e.refs.some(r=>refs.includes(r))).length>1;}
   if(f.g1471GrCount!==undefined)return creatures(s,p).filter(x=>!x.sealed&&!x.faceDown&&api.zoneCard(s,p,x,'battle').gr).length>=f.g1471GrCount;
   if(f.g1465ManaRace)return s.players[p].mana.some(x=>!x.faceDown&&faces(card(x)).some(c=>race(c,f.g1465ManaRace)));
   if(f.g1455FirstUnitAttack){const host=s.players[p].battle.find(x=>api.allLayers(x).some(y=>y.uid===sourceUid&&(sourceIncarnation===null||(y.incarnation||0)===sourceIncarnation)));if(!host||s.g481Attackers?.turn!==s.turn)return false;const refs=api.allLayers(host).map(key);return s.g481Attackers.events.filter(e=>e.p===p&&e.refs.some(r=>refs.includes(r))).length===1;}

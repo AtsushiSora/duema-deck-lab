@@ -264346,15 +264346,142 @@
       ],
       "supportBatch": "phase-1472",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-055",
+      "name": "GIRIGIRI・チクタック",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ビートジョッキー/ワンダフォース",
+      "text": "このクリーチャーがバトルゾーンに出た時、相手のシールドが４つ以下なら、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-055",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g465OpponentShieldsMax": 4
+          },
+          "defs": [
+            {
+              "op": "AuraGr1353"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1473",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-054",
+      "name": "CATWAE・ネコボン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ビートジョッキー/ワンダフォース",
+      "text": "このクリーチャーが攻撃する時、それがそのターンはじめての攻撃でなければ、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-054",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g1473RepeatedUnitAttack": true
+          },
+          "defs": [
+            {
+              "op": "AuraGr1353"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1473",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-055",
+      "name": "獣軍隊 オンバ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ビーストフォーク號/侵略者",
+      "text": "自分の他の、自然のパワー6000以上のクリーチャーがあれば、このクリーチャーのパワーを+3000し、「W・ブレイカー」を与え、種族にゲリラ・コマンドを追加する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-055",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "creature": true,
+          "g334Other": true,
+          "color": "自然",
+          "minPower": 6000,
+          "g199Power": true
+        },
+        "grants": {
+          "power": 3000,
+          "breaker": 2,
+          "raceAdd": [
+            "ゲリラ・コマンド"
+          ]
+        }
+      },
+      "supportBatch": "phase-1473",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-005",
+      "name": "極幻球 ウォボル・ダ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 6,
+      "power": 0,
+      "race": "トリックス/デリートロン",
+      "text": "これを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n相手がクリーチャーを選ぶ時、バトルゾーンに自分のGRクリーチャーが３体以上あれば、相手はこれを付けたクリーチャーを選べない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-005",
+      "limit": 4,
+      "auraPower": 4000,
+      "g1352Powered": true,
+      "g1421AuraGrants": {
+        "g260Self": {
+          "filter": {
+            "g1471GrCount": 3
+          },
+          "grants": {
+            "untargetable": true
+          }
+        }
+      },
+      "supportBatch": "phase-1473",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1472,
+    "phase": 1473,
     "checkedAt": "2026-11-20",
-    "baseCount": 8500,
-    "newEffectCards": 3,
+    "baseCount": 8503,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 8503,
+    "totalCount": 8507,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -288746,6 +288873,20 @@
         ],
         "next": [
           "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1472,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8500,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 8503,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
         ]
       }
     ]
