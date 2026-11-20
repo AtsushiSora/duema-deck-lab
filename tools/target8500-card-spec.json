@@ -8081,5 +8081,162 @@
         }
       ]
     }
+  },
+  "dmex07-001": {
+    "phase": 1424,
+    "faces": [
+      {
+        "name": "全能ゼンノー",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "相手のクリーチャーは、バトルゾーンに出たターン、攻撃できない。",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "stopEntryAttack": true,
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmrp12-018": {
+    "phase": 1424,
+    "faces": [
+      {
+        "name": "ホエル・デージェ",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "W・ブレイカー\n自分の手札が５枚以上なければ、このクリーチャーは攻撃できない。",
+        "race": "トリックス/ワンダフォース",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "hand",
+            "max": 4
+          }
+        },
+        "grants": {
+          "noAttack": true
+        }
+      },
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmex08-246": {
+    "phase": 1424,
+    "faces": [
+      {
+        "name": "ＧＲの猫 ニャンニャン",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "バトルゾーンにある自分のクリーチャーがこのクリーチャーだけなら、パワーを+2222する。",
+        "race": "アウトレイジ猫",
+        "powerText": "2222",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g260Self": {
+        "filter": {
+          "g479OnlyCreature": true
+        },
+        "grants": {
+          "power": 2222
+        }
+      },
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmrp09-s01": {
+    "phase": 1424,
+    "faces": [
+      {
+        "name": "Mt.富士山ックス",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "バトルゾーンに自分の他の《Mt.富士山ックス》があれば、このクリーチャーのパワーを+11000し、「T・ブレイカー」を与える。",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g260Self": {
+        "filter": {
+          "creature": true,
+          "g201ExactName": "Mt.富士山ックス",
+          "g334Other": true
+        },
+        "grants": {
+          "power": 11000,
+          "breaker": 3
+        }
+      },
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmex05-s01": {
+    "phase": 1424,
+    "faces": [
+      {
+        "name": "鋼ド級 ダテンクウェールB",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーは、可能なら毎ターン攻撃する。\n自分のターン中、このクリーチャーのパワーを+5000し、「W・ブレイカー」を与える。",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "mustAttack": true,
+      "g260Self": {
+        "filter": {
+          "g465OwnTurn": true
+        },
+        "grants": {
+          "power": 5000,
+          "breaker": 2
+        }
+      },
+      "gr": true,
+      "manaValue": 0
+    }
   }
 }

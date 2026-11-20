@@ -256313,15 +256313,146 @@
       ],
       "supportBatch": "phase-1423",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex07-001",
+      "name": "全能ゼンノー",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "相手のクリーチャーは、バトルゾーンに出たターン、攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex07-001",
+      "limit": 4,
+      "stopEntryAttack": true,
+      "gr": true,
+      "supportBatch": "phase-1424",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-018",
+      "name": "ホエル・デージェ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 7000,
+      "race": "トリックス/ワンダフォース",
+      "text": "W・ブレイカー\n自分の手札が５枚以上なければ、このクリーチャーは攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-018",
+      "limit": 4,
+      "breaker": 2,
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "hand",
+            "max": 4
+          }
+        },
+        "grants": {
+          "noAttack": true
+        }
+      },
+      "gr": true,
+      "supportBatch": "phase-1424",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex08-246",
+      "name": "ＧＲの猫 ニャンニャン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 2,
+      "power": 2222,
+      "race": "アウトレイジ猫",
+      "text": "バトルゾーンにある自分のクリーチャーがこのクリーチャーだけなら、パワーを+2222する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-246",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "g479OnlyCreature": true
+        },
+        "grants": {
+          "power": 2222
+        }
+      },
+      "gr": true,
+      "supportBatch": "phase-1424",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-s01",
+      "name": "Mt.富士山ックス",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "バトルゾーンに自分の他の《Mt.富士山ックス》があれば、このクリーチャーのパワーを+11000し、「T・ブレイカー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-s01",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "creature": true,
+          "g201ExactName": "Mt.富士山ックス",
+          "g334Other": true
+        },
+        "grants": {
+          "power": 11000,
+          "breaker": 3
+        }
+      },
+      "gr": true,
+      "supportBatch": "phase-1424",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex05-s01",
+      "name": "鋼ド級 ダテンクウェールB",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "このクリーチャーは、可能なら毎ターン攻撃する。\n自分のターン中、このクリーチャーのパワーを+5000し、「W・ブレイカー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex05-s01",
+      "limit": 4,
+      "mustAttack": true,
+      "g260Self": {
+        "filter": {
+          "g465OwnTurn": true
+        },
+        "grants": {
+          "power": 5000,
+          "breaker": 2
+        }
+      },
+      "gr": true,
+      "supportBatch": "phase-1424",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1423,
+    "phase": 1424,
     "checkedAt": "2026-11-20",
-    "baseCount": 8276,
-    "newEffectCards": 4,
+    "baseCount": 8280,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8280,
+    "totalCount": 8285,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -280022,6 +280153,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 8276,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1423,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8276,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 8280,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
