@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-20",
   "catalogueNames": 11825,
-  "supportedNames": 8229,
-  "pendingNames": 3596,
-  "phase": 1410,
-  "added": 5,
+  "supportedNames": 8231,
+  "pendingNames": 3594,
+  "phase": 1411,
+  "added": 2,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2061,
+    "クリーチャー": 2059,
     "NEOクリーチャー": 69,
     "呪文": 428,
     "GRクリーチャー": 73,
@@ -224,7 +224,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 943,
-    "未対応の能力文": 2464,
+    "未対応の能力文": 2462,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
@@ -497145,20 +497145,230 @@
         "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
       ],
       "next": "目標8500種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
+    },
+    {
+      "phase": 1411,
+      "kind": "registration-toward-8500",
+      "checkedAt": "2026-11-20T15:28:23.397Z",
+      "baseline": "a33ae120f10902fbe7f1160e8fa60247a980502d",
+      "manifest": "tools/support-phase-1411.json",
+      "status": "verified-local",
+      "before": 8229,
+      "supported": 8231,
+      "pending": 3594,
+      "added": [
+        {
+          "id": "dm23rp2-S03",
+          "name": "Kl’avia Tune"
+        },
+        {
+          "id": "dmrp13-s08",
+          "name": "ウマキン☆プロジェクト"
+        }
+      ],
+      "duplicates": 0,
+      "results": {
+        "focused": {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1411-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.592,
+          "log": "tmp/duema-phase-1411/focused.log",
+          "passed": 43,
+          "failed": 0
+        },
+        "related": {
+          "name": "related",
+          "command": [
+            "node",
+            "--test",
+            "tests/mana-payment.test.mjs",
+            "tests/printed-mana.test.mjs",
+            "tests/hand-ui.test.mjs",
+            "tests/g-strike-ui.test.mjs",
+            "tests/twin-g-strike.test.mjs",
+            "tests/standard1303-effects.test.mjs",
+            "tests/standard1357-effects.test.mjs",
+            "tests/standard1362-effects.test.mjs",
+            "tests/standard1364-effects.test.mjs",
+            "tests/standard1370-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 3.727,
+          "log": "tmp/duema-phase-1411/related.log",
+          "passed": 126,
+          "failed": 0
+        },
+        "registered-regression": {
+          "name": "registered-regression",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1380-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1384-effects.test.mjs",
+            "tests/standard1385-effects.test.mjs",
+            "tests/standard1386-effects.test.mjs",
+            "tests/standard1387-effects.test.mjs",
+            "tests/standard1388-effects.test.mjs",
+            "tests/standard1389-effects.test.mjs",
+            "tests/standard1390-effects.test.mjs",
+            "tests/standard1391-effects.test.mjs",
+            "tests/standard1392-effects.test.mjs",
+            "tests/standard1393-effects.test.mjs",
+            "tests/standard1394-effects.test.mjs",
+            "tests/standard1395-effects.test.mjs",
+            "tests/standard1396-effects.test.mjs",
+            "tests/standard1397-effects.test.mjs",
+            "tests/standard1398-effects.test.mjs",
+            "tests/standard1399-effects.test.mjs",
+            "tests/standard1400-effects.test.mjs",
+            "tests/standard1401-effects.test.mjs",
+            "tests/standard1402-effects.test.mjs",
+            "tests/standard1403-effects.test.mjs",
+            "tests/standard1404-effects.test.mjs",
+            "tests/standard1405-effects.test.mjs",
+            "tests/standard1406-effects.test.mjs",
+            "tests/standard1407-effects.test.mjs",
+            "tests/standard1408-effects.test.mjs",
+            "tests/standard1409-effects.test.mjs",
+            "tests/standard1410-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 8.429,
+          "log": "tmp/duema-phase-1411/registered-regression.log",
+          "passed": 656,
+          "failed": 0
+        },
+        "online-short": {
+          "name": "online-short",
+          "command": [
+            "node",
+            "--test",
+            "tests/online-app.test.mjs",
+            "tests/online-client.test.mjs",
+            "tests/online-ui.test.mjs",
+            "tests/online-runtime.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.165,
+          "log": "tmp/duema-phase-1411/online-short.log",
+          "passed": 34,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 18.837,
+          "log": "tmp/duema-phase-1411/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 14.465,
+          "log": "tmp/duema-phase-1411/audit.log"
+        }
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1411-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.007,
+          "log": "tmp/duema-phase-1411/focused.log"
+        },
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1411-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.046,
+          "log": "tmp/duema-phase-1411/focused.log"
+        },
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1411-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.663,
+          "log": "tmp/duema-phase-1411/focused.log"
+        },
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1411-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.607,
+          "log": "tmp/duema-phase-1411/focused.log"
+        }
+      ],
+      "testCorrections": [
+        "初期の固有テストで、出す効果・全体除去・呪文税の既存APIと、ブレイク数1の自動処理、G・ストライクの自動移行を確認し、テスト用の定義と期待値を修正。",
+        "発生源の退場時能力のテストで保護判定が失われる実不具合を再現。バトルゾーン由来の退場誘発に発生源情報を保存して修正。場の外のG・ストライクは対象に選べるまま。",
+        "実際の進化による制限解除を検証する際、ガーディアンをエンジェル・コマンドの進化元にしたテストを、種族が一致する光輪の精霊シャウナに修正。"
+      ],
+      "totalTestsPassed": 859,
+      "reason": "ユーザー指定のKl’avia Tuneとウマキン☆プロジェクトの全能力を追加。置換コスト、発生源に基づく選択保護、バズレンダの支払いと反復を実装。",
+      "remaining": [
+        "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
+      ],
+      "next": "目標8500種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。",
+      "compatibilityVerification": {
+        "originalDefinitionsUnchanged": 8074,
+        "saveFormatUnchanged": true
+      }
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1410,
-    "nextPhase": 1411,
+    "lastVerifiedPhase": 1411,
+    "nextPhase": 1412,
     "workInProgress": null,
     "nextCandidates": [
-      "公式照合済みの通常能力を持たないGRクリーチャー",
-      "既存のキーワード処理と一致するGRクリーチャー",
-      "既存処理で両面を完全に扱えるツインパクトを個別検証。公式未確認・特殊条件は保留。"
+      "保留していたギャラクシールドの汎用化と候補11種類。tmp/duema-target-8500/galaxy-engine.patch はengine 0.602.2ベースなので、最新の0.602.3へ手動で差分を適用し次版に更新する。",
+      "今回実装したバズレンダで全能力を再現できる候補を公式全文照合して追加。"
     ],
     "steps": [
       "開始時にHEAD・作業差分・ステージ・既存プロセス・AGENTS・進捗を確認。",
-      "実データ8229種類・重複0。新目標8500種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8231種類・重複0。新目標8500種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "phase1372の指定5種類は完了済み。tools/support-phase-1372.jsonと実装コミット58f1c830を参照。",
       "個別の残件2件はユーザー保留。再開指示まで追加調査・問い合わせ送信をしない。",
       "一括npm testを再実行せず、公開候補の未集約範囲だけ分割検証する。過去の固定ソースの合格と現版の合格を区別する。",
@@ -497239,14 +497449,14 @@
     ],
     "restartSteps": [
       "公開済みの版はb40ae0df (v0.722.1 / engine0.602.1 / 8074種類)。Pages・Netlifyを同じ版に更新済み。最新HEAD・差分・ステージ・既存プロセスを最初に確認。",
-      "実データ8229種類・重複0。新目標8500種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8231種類・重複0。新目標8500種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "指定5種類は新規2・既存3を完了。manifestに公式全文・基本情報・画像・使用制限・関連裁定・秘版解決・検証結果を記録。",
       "既存8072定義は深い比較で不変。カードID・保存形式・保存済みデッキ・対戦履歴を維持。",
       "個別の残件2件と問い合わせ案はユーザー指示「後回しにしよう」で保留。再開指示があるまでこの2件の調査・送信を行わない。",
       "No13長時間検証はengine0.601.0の固定ソースで完了済み。今回のengine0.602.0の全面検証には数えない。必要な未集約項目は対象を特定し、細かく分割して確認する。",
       "Netlifyは手動反映専用。workflow_dispatchだけ、GitHub pushフック停止、stop_builds=trueを維持。通常のカード追加pushでは反映しない。今回の公開に保留・未検証の解消は含めない。"
     ],
-    "registrationStatus": "ユーザーの新目標8500種類に向けて通常登録を再開。現在8229種類、残り271種類。automationはPAUSEDのまま。",
+    "registrationStatus": "ユーザーの新目標8500種類に向けて通常登録を再開。現在8231種類、残り269種類。automationはPAUSEDのまま。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [],
     "printVerificationPending": [
@@ -497358,10 +497568,10 @@
     "registrationTarget": {
       "target": 8500,
       "startCount": 8074,
-      "currentCount": 8229,
-      "remaining": 271,
+      "currentCount": 8231,
+      "remaining": 269,
       "status": "active",
-      "phase": 1410
+      "phase": 1411
     },
     "deferredRegistrationCandidates": [
       {
@@ -497378,7 +497588,25 @@
         "reason": "現行公式ページで呪文面の文明が欠落し、保存済み全文・基本情報と一致しない。基本情報を別の公式資料で確定できるまで保留し、別候補を追加。",
         "phase": 1400
       }
-    ]
+    ],
+    "lastExplicitUserAddition": {
+      "phase": 1411,
+      "cards": [
+        "dm23rp2-S03",
+        "dmrp13-s08"
+      ],
+      "status": "verified-local",
+      "supportedNames": 8231,
+      "testsPassed": 859,
+      "reprintsVerified": 5,
+      "originalDefinitionsUnchanged": 8074
+    },
+    "parkedRegistrationWork": {
+      "kind": "Galaxyshield parameterization",
+      "patch": "tmp/duema-target-8500/galaxy-engine.patch",
+      "status": "not-applied-not-verified",
+      "reason": "ユーザー指定2種類を先に完了。Galaxyshield候補は対応済み件数に含めない。"
+    }
   },
   "registeredCardVerification": {
     "checkedAt": "2026-11-20",
@@ -549243,10 +549471,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1410,
+    "phase": 1411,
     "threshold": 8500,
-    "supportedNames": 8229,
-    "pendingNames": 3596,
+    "supportedNames": 8231,
+    "pendingNames": 3594,
     "checkedAt": "2026-11-20",
     "registrationStopped": false,
     "automationId": "duema-deck-lab",

@@ -1405,7 +1405,7 @@ export function createSixPhotoRules(api){
   if(!y||y.sealed)return;
   const ref={uid:y.uid,incarnation:y.incarnation||0},end=t.g190Freeze==='end';
   for(const kind of ['attack','block'])(s.extLimits??=[]).push({
-   kind,g190Freeze:true,player:p,...(t.g1058FollowUnit?{ref,g1058FollowUnit:true}:ref),
+   kind,g190Freeze:true,player:p,...(t.g1411MaxCost===undefined?{}:{g1411MaxCost:t.g1411MaxCost}),...(t.g1058FollowUnit?{ref,g1058FollowUnit:true}:ref),
    controller:t.controller??t.p,expires:end?'end':'start',
    who:end?s.active:t.g190Freeze==='opponent'?1-t.p:t.p,
    ...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})
@@ -7967,8 +7967,8 @@ export function createSixPhotoRules(api){
   }
  }
  const sourceDefs=(s,t,defs)=>start(s,t,defs);
- function queue(s,p,x,defs,source=x.cardId){
-  const more={defs};
+ function queue(s,p,x,defs,source=x.cardId,elementOrigin1411){
+  const more={defs,...(elementOrigin1411===undefined?{}:{elementOrigin1411})};
   if(defs?.some(d=>d.op==='AttackLookDeploy1317')){
    const currentCost=cost(effective(x,s));
    more.g399Attacker={uid:x.uid,incarnation:x.incarnation||0,cost:currentCost===Infinity?'∞':currentCost};
@@ -9498,9 +9498,11 @@ export function createSixPhotoRules(api){
   return snapshot;
  },
  leaving(s,p,x,snapshot,to,destroy){
+  // Leave-triggered abilities originate in battle even after the source has moved.
+  const queueBattle=(s,owner,source,defs,id=source.cardId)=>queue(s,owner,source,defs,id,owner);
   // An ability that sees its own move to the graveyard looks back only for its own card.
   const graveDefs=card(x).g838AnyGrave;
-  if(to==='grave'&&graveDefs&&(snapshot?.g838SelfGrave?.includes(key(x))??!api.ignored(s,x)))queue(s,p,x,graveDefs);
+  if(to==='grave'&&graveDefs&&(snapshot?.g838SelfGrave?.includes(key(x))??!api.ignored(s,x)))queueBattle(s,p,x,graveDefs);
   if(to==='grave'&&destroy){
    if(s.g1225Destroyed?.turn!==s.turn)s.g1225Destroyed={turn:s.turn,cards:[[],[]]};
    s.g1225Destroyed.cards[p].push({uid:x.uid,serial:(x.zoneSerial||0)+1});
@@ -9531,13 +9533,13 @@ export function createSixPhotoRules(api){
    }
    if(victim.creature)for(const watcher of before)
     if(watcher.p===p&&watcher.jingi&&key(watcher)!==key(victim))
-     queue(s,p,watcher,watcher.jingi);
+     queueBattle(s,p,watcher,watcher.jingi);
    // A source leaving in the same batch sees its own departure only (QA33591).
    if(victim.creature||victim.g1248DragonElement)for(const watcher of before)
     if(watcher.p===p&&watcher.leaveDraw891&&(watcher.g1248DragonLeaves?victim.g1248DragonElement:victim.creature)&&!watchUsed792(s,watcher,{defs:watcher.leaveDraw891})&&
      (!(watcher.g891OnlySelf||watcher.leaveDraw891[0]?.g792Once&&s.g20LeavingUids?.includes(watcher.uid))||key(watcher)===key(victim))&&
      (!watcher.g965OtherOwnLeave||s.active===p&&key(watcher)!==key(victim)))
-     queue(s,p,watcher,watcher.leaveDraw891);
+     queueBattle(s,p,watcher,watcher.leaveDraw891);
    const watchers=before.filter(y=>y.p!==p&&(y.elementDraw||victim.creature&&y.opponentCreatureLeaves)||
     to==='grave'&&victim.creature&&y.graveDraw&&key(y)!==key(victim));
    if(victim.creature)for(const y of before){
@@ -9550,7 +9552,7 @@ export function createSixPhotoRules(api){
     else hooks.flushElementLeaves617(s,watchers);
    }
   }
-  const victim320=snapshot?.leave320?.find(y=>y.p===p&&key(y)===key(x));if(victim320?.creature&&String(victim320.race).includes('アビス'))for(const watcher of snapshot.leave320.filter(y=>y.p===p&&y.watch)){if(!used(s,'g320JaveUsed',watcher)){mark(s,'g320JaveUsed',watcher);queue(s,p,watcher,[{op:'Discard',n:1}]);}}const prior=snapshot?.selfLeaves?snapshot.selfLeaves.find(y=>y.p===p&&key(y)===key(x)):effective(x,s);if(prior?.g172Leave&&(!prior.g601OpponentLeave||s.active!==p))queue(s,p,x,prior.g172Leave);if(to==='grave'&&destroy){const death=snapshot?.death303,victim=death?.find(y=>y.p===p&&key(y)===key(x));const firstCreatureDeath=victim?.creature&&s.g612CreatureDeathTurn!==s.turn;if(firstCreatureDeath)s.g612CreatureDeathTurn=s.turn;if(victim)for(const watcher of death.filter(y=>y.watch&&
+  const victim320=snapshot?.leave320?.find(y=>y.p===p&&key(y)===key(x));if(victim320?.creature&&String(victim320.race).includes('アビス'))for(const watcher of snapshot.leave320.filter(y=>y.p===p&&y.watch)){if(!used(s,'g320JaveUsed',watcher)){mark(s,'g320JaveUsed',watcher);queueBattle(s,p,watcher,[{op:'Discard',n:1}]);}}const prior=snapshot?.selfLeaves?snapshot.selfLeaves.find(y=>y.p===p&&key(y)===key(x)):effective(x,s);if(prior?.g172Leave&&(!prior.g601OpponentLeave||s.active!==p))queueBattle(s,p,x,prior.g172Leave);if(to==='grave'&&destroy){const death=snapshot?.death303,victim=death?.find(y=>y.p===p&&key(y)===key(x));const firstCreatureDeath=victim?.creature&&s.g612CreatureDeathTurn!==s.turn;if(firstCreatureDeath)s.g612CreatureDeathTurn=s.turn;if(victim)for(const watcher of death.filter(y=>y.watch&&
    (victim.creature||victim.element&&y.watch.g1311Element)&&(!y.watch.firstCreatureDeath||firstCreatureDeath)&&
    (y.watch.both||y.p===(y.watch.opponent?1-p:p)))){const self=key(watcher)===key(victim);
    // Rule 603.5d: a source that leaves in this batch can see only itself.
@@ -9568,7 +9570,7 @@ export function createSixPhotoRules(api){
      if(d.op==='StackDestroyed1130')return {...d,victim:{uid:x.uid,serial:(x.zoneSerial||0)+1}};
      return d;
     });
-    queue(s,watcher.p,watcher,defs);
+    queueBattle(s,watcher.p,watcher,defs);
    }
   }if(prior?.g172Death){
    const defs=prior.g172Death
@@ -9595,8 +9597,8 @@ export function createSixPhotoRules(api){
      }
      return [['SelfGraveHand476','ScheduleGraveReturn644','SelfGraveShield659','SelfGraveBottom839','GraveReturn754'].includes(d.op)||d.g901Untapped||d.g1063Evolved?{...d,serial:(x.zoneSerial||0)+1}:d];
     });
-   if(defs.length)queue(s,p,x,defs);
-  }if(effective(x,s).g34Role==='dragonOrb')queue(s,p,x,[C('orbDeploy')]);if(ninja(effective(x,s)))for(const y of(snapshot?.dororon?.[p]||active(s,p,'dororon')))queue(s,p,y,[E('Draw',{n:1,optional:true})]);}},
+   if(defs.length)queueBattle(s,p,x,defs);
+  }if(effective(x,s).g34Role==='dragonOrb')queueBattle(s,p,x,[C('orbDeploy')]);if(ninja(effective(x,s)))for(const y of(snapshot?.dororon?.[p]||active(s,p,'dororon')))queueBattle(s,p,y,[E('Draw',{n:1,optional:true})]);}},
  invasionZeroNonActive1315(s){
   const end=s.endStep;
   if(end?.stage!=='resolve'||end.g1315InvasionZeroChecked||s.decision||s.extTasks?.length||s.triggers||

@@ -254819,17 +254819,92 @@
       },
       "supportBatch": "phase-1410",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-S03",
+      "name": "Kl’avia Tune",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 12000,
+      "race": "マジック・コマンド・ドラゴン",
+      "text": "ブロッカーブロッカー\nT・ブレイカー\nこのクリーチャーが出た時、次の自分のターンのはじめまで、相手のコスト７以下のクリーチャーは攻撃もブロックもできない。\n相手のコスト７以下の、クリーチャーではないカードを使うコストは、かわりに８になる。\nこのクリーチャーは、相手のコスト７以下の、エレメントの能力または呪文によって選ばれない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-S03",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupFreeze",
+          "owner": "opponent",
+          "g190Freeze": "self",
+          "g1411MaxCost": 7
+        }
+      ],
+      "g1411TunePayment": true,
+      "g1411TuneProtection": true,
+      "supportBatch": "phase-1411",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-s08",
+      "name": "ウマキン☆プロジェクト",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 0,
+      "race": "トリックス/サイバー・コマンド/チームウェイブ",
+      "text": "バズレンダ [cc02]（このクリーチャーのコストを支払う時、追加で [cc02]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その{OL} 能力を１回と、追加で [cc02]支払った回数、使う）\n{OL}自分の山札の上から２枚を見る。そのうちの１枚を手札に加え、もう１枚をタップしてマナゾーンに置く。\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n自分のマナゾーンにあるカード１枚につき、このクリーチャーのパワーを+1000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-s08",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand"
+            }
+          ],
+          "rest": "mana",
+          "restTapped": true
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 2
+      },
+      "poweredBreaker": true,
+      "g207CountPower": {
+        "zone": "mana",
+        "filter": {},
+        "amount": 1000
+      },
+      "supportBatch": "phase-1411",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1410,
+    "phase": 1411,
     "checkedAt": "2026-11-20",
-    "baseCount": 8224,
-    "newEffectCards": 5,
+    "baseCount": 8229,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 8229,
+    "totalCount": 8231,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
       "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
@@ -278345,6 +278420,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 8224,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1410,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8224,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8229,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
