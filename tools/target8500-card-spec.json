@@ -8435,5 +8435,211 @@
       "gr": true,
       "manaValue": 0
     }
+  },
+  "dmsd08-001": {
+    "phase": 1426,
+    "faces": [
+      {
+        "name": "鋼特Q ダンガスティックB",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "バトルゾーンまたはマナゾーンに自分のジョーカーズが合計８枚以上あれば、このクリーチャーのパワーを+6000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーはシールドを２つブレイクする）",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g260Self": {
+        "filter": {
+          "g539Jokers": 8
+        },
+        "grants": {
+          "power": 6000,
+          "breaker": 2
+        }
+      },
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "promoy18-sp6d01": {
+    "phase": 1426,
+    "faces": [
+      {
+        "name": "The ジョラゴンGS",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "バトルゾーンに自分のジョーカーズが３体以上あれば、このクリーチャーのパワーを+3000する。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "マスター・ドラゴン/ジョーカーズ/ワンダフォース",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g260Self": {
+        "filter": {
+          "g370BattleCount": {
+            "min": 3,
+            "filter": {
+              "race": "ジョーカーズ"
+            }
+          }
+        },
+        "grants": {
+          "power": 3000
+        }
+      },
+      "gr": true,
+      "manaValue": 0
+    },
+    "manaImageEvidence": {
+      "htmlManaValue": 1,
+      "printedManaValue": 0,
+      "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy18-sp6d01.jpg",
+      "sha256": "8748fb9bbde101f5ac5ff364e11420b62cf46a4d524d31a28cb768b59d6cc795",
+      "reviewedAt": "2026-11-20T16:33:55.866Z",
+      "reason": "公式HTMLのマナ欄は1だが、公式カード画像に数値のマナシンボルはなくGRのロゴのみ。GRはマナに残らないため、既存GRと同じ内部マナ値0を用いる。公式画像の能力・基本情報とも目視確認。"
+    }
+  },
+  "dmex08-240": {
+    "phase": 1426,
+    "faces": [
+      {
+        "name": "炎舞闘士サピエント・アーク GR",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ウェーブストライカー（バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーに次のw能力を与える）\nwこのクリーチャーは、パワーを+3000され、アンタップしているクリーチャーを攻撃できる。",
+        "race": "ドラゴノイド",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "power": 3000,
+          "attackUntapped": true
+        }
+      },
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmsd12-010": {
+    "phase": 1426,
+    "faces": [
+      {
+        "name": "ダラク 丙-二式",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を見る。それを自分の墓地に置いてもよい。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "マフィ・ギャング/デリートロン",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g200Search": true,
+          "n": 1,
+          "stages": [
+            {
+              "n": 1,
+              "to": "grave",
+              "optional": true
+            }
+          ],
+          "rest": "top"
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "promoy18-025": {
+    "phase": 1426,
+    "faces": [
+      {
+        "name": "パッパラパーリ騎士",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "マナドライブ２（J）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが２枚以上でジョーカーズがあれば、ジョーカーズを１枚、自分の墓地からマナゾーンに置く。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 2
+                }
+              },
+              {
+                "g1197ManaCount": {
+                  "min": 1,
+                  "filter": {
+                    "race": "ジョーカーズ"
+                  }
+                }
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "to": "mana",
+              "n": 1,
+              "filter": {
+                "race": "ジョーカーズ"
+              }
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
   }
 }
