@@ -1,0 +1,334 @@
+{
+  "phase": 1401,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8184,
+  "description": "公式全文・基本情報・画像・制限・同名収録を照合し、残るツインパクト3種類の両面を完全実装して検証。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/33716/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/33716/": "S・トリガーの付与や使用可能な面は条件を満たす片面だけに適用する。"
+  },
+  "cards": [
+    {
+      "id": "dm25ex1-036",
+      "name": "赤薔薇の精霊龍 ジェネラローズ / 「ハゲしくアツかりしスパークよ！」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-036",
+      "faces": [
+        {
+          "name": "赤薔薇の精霊龍 ジェネラローズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが出た時、カードを１枚引く。その後、光のコスト６以下の進化ではないクリーチャーを１体、自分の手札から出してもよい。",
+          "race": "エンジェル・コマンド・ドラゴン/革命軍",
+          "powerText": "7500",
+          "missingFields": []
+        },
+        {
+          "name": "「ハゲしくアツかりしスパークよ！」",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーを２体選び、タップする。その後、相手のタップしているクリーチャー１体につき、カードを１枚引いてもよい。",
+          "race": "エンジェル・コマンド・ワード",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "color": "光",
+              "max": 6,
+              "nonEvolution": true
+            },
+            "optional": true
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "「ハゲしくアツかりしスパークよ！」",
+          "cost": 6,
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "race": "エンジェル・コマンド・ワード",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "owner": "opponent",
+              "origin": "battle",
+              "n": 2,
+              "filter": {
+                "creature": true
+              },
+              "g173Targets": true,
+              "g193Select": true,
+              "g193Tap": true,
+              "title": "タップする相手のクリーチャーを2体選ぶ"
+            },
+            {
+              "op": "CountDraw",
+              "zone": "battle",
+              "owner": "opponent",
+              "filter": {
+                "creature": true,
+                "tapped": true
+              },
+              "optional": "each"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex1-036a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "d478b3d722dd9662ac595622b873958dc3168bb8c7ef364e5cfac89281dd1124",
+        "facesMatched": true,
+        "imageSha256": "0a891d1514623228d8e360f4e1048d9c880e9b1fa812b986626c71d2a8f4dbf1",
+        "imageBytes": 195777
+      },
+      "sameNameProducts": [
+        "DM25-EX1 愛感謝祭 ヒロインBEST"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-036",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp09-007",
+      "name": "暴走 グロール/カルド・コバーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-007",
+      "faces": [
+        {
+          "name": "暴走 グロール",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スピードアタッカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。",
+          "race": "ソニック・コマンド",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "カルド・コバーン",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "バトルゾーンにある相手の、クリーチャーではないカードを１枚選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "self": true,
+            "optional": true
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "カルド・コバーン",
+          "cost": 2,
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "BattleCardMove579",
+              "to": "mana",
+              "nonCreature": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-007a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "b8cbd7f1bf88f36f21854d2957ef2c4053a3610865f8b46583cd22059aa3e38e",
+        "facesMatched": true,
+        "imageSha256": "0740c5fc41a2e679b8c2783740067530bc1fd96320c1cfdfff16523c21ce40ac",
+        "imageBytes": 158073
+      },
+      "sameNameProducts": [
+        "DMRP-09 超天篇 拡張パック第１弾 新世界ガチ誕！超ＧＲとオレガ・オーラ!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-007",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm22ex1-055",
+      "name": "薔薇の使者 / ガイアズ・ソング",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-055",
+      "faces": [
+        {
+          "name": "薔薇の使者",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から２枚をマナゾーンに置く。\nこのクリーチャーが離れた時、カードを２枚、自分のマナゾーンから好きな順序で山札の上に置く。",
+          "race": "ビーストフォーク/オリジン",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "ガイアズ・ソング",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "自分のクリーチャーを１体、マナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 2
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "deckTop",
+            "n": 2,
+            "g183Return": true,
+            "title": "山札の上に戻すマナを2枚選ぶ（先に選んだカードが一番上）"
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "ガイアズ・ソング",
+          "cost": 1,
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "owner": "self",
+              "to": "mana",
+              "g177SelfMana": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-055a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "735b6b7e37c4edbd1a4595bb55aa74511a6ad07bb8032559966d36f3172cd767",
+        "facesMatched": true,
+        "imageSha256": "45782d14102d7bc2e8770e86814ef0115b8677fec75cec866f45d770e1836e8f",
+        "imageBytes": 132306
+      },
+      "sameNameProducts": [
+        "DM22-EX1 黄金戦略!!デュエキングMAX 2022"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-055",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25ex1-036": 4,
+      "dmrp09-007": 4,
+      "dm22ex1-055": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/33716/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33716/",
+      "sha256": "0e3296031e1dfb8ceec8afade9c5962b09b58597abcfa218c51dc2bac129a205",
+      "result": "S・トリガーの付与や使用可能な面は条件を満たす片面だけに適用する。"
+    }
+  ],
+  "testCorrections": [
+    "光6コストの登場対象を天空の守護者グラン・ギューレの実IDに修正。",
+    "薔薇の使者を破壊するデーモン・ハンドの対象選択を完了してから、離れた時のマナ選択を検証するよう修正。",
+    "既存の初期カードにはcivilizations配列ではなくciv文字列を使う保存定義もあるため、テストが双方を参照するよう修正。既存データは変更しない。"
+  ]
+}

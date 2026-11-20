@@ -4329,5 +4329,232 @@
         ]
       }
     }
+  },
+  "dm25ex1-036": {
+    "phase": 1401,
+    "faces": [
+      {
+        "name": "赤薔薇の精霊龍 ジェネラローズ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "W・ブレイカー\nこのクリーチャーが出た時、カードを１枚引く。その後、光のコスト６以下の進化ではないクリーチャーを１体、自分の手札から出してもよい。",
+        "race": "エンジェル・コマンド・ドラゴン/革命軍",
+        "powerText": "7500",
+        "missingFields": []
+      },
+      {
+        "name": "「ハゲしくアツかりしスパークよ！」",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーを２体選び、タップする。その後、相手のタップしているクリーチャー１体につき、カードを１枚引いてもよい。",
+        "race": "エンジェル・コマンド・ワード",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "g195HandDeploy": true,
+          "filter": {
+            "creature": true,
+            "color": "光",
+            "max": 6,
+            "nonEvolution": true
+          },
+          "optional": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "「ハゲしくアツかりしスパークよ！」",
+        "cost": 6,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "エンジェル・コマンド・ワード",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "title": "タップする相手のクリーチャーを2体選ぶ"
+          },
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "owner": "opponent",
+            "filter": {
+              "creature": true,
+              "tapped": true
+            },
+            "optional": "each"
+          }
+        ]
+      }
+    }
+  },
+  "dmrp09-007": {
+    "phase": 1401,
+    "faces": [
+      {
+        "name": "暴走 グロール",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "スピードアタッカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。",
+        "race": "ソニック・コマンド",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "カルド・コバーン",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "バトルゾーンにある相手の、クリーチャーではないカードを１枚選び、持ち主のマナゾーンに置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Fight240",
+          "self": true,
+          "optional": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "カルド・コバーン",
+        "cost": 2,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "to": "mana",
+            "nonCreature": true
+          }
+        ]
+      }
+    }
+  },
+  "dm22ex1-055": {
+    "phase": 1401,
+    "faces": [
+      {
+        "name": "薔薇の使者",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "このクリーチャーが出た時、自分の山札の上から２枚をマナゾーンに置く。\nこのクリーチャーが離れた時、カードを２枚、自分のマナゾーンから好きな順序で山札の上に置く。",
+        "race": "ビーストフォーク/オリジン",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "ガイアズ・ソング",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "自分のクリーチャーを１体、マナゾーンに置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 2
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "deckTop",
+          "n": 2,
+          "g183Return": true,
+          "title": "山札の上に戻すマナを2枚選ぶ（先に選んだカードが一番上）"
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "ガイアズ・ソング",
+        "cost": 1,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "to": "mana",
+            "g177SelfMana": true
+          }
+        ]
+      }
+    }
   }
 }
