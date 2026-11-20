@@ -3653,5 +3653,303 @@
         }
       ]
     }
+  },
+  "dmr10-021": {
+    "phase": 1493,
+    "faces": [
+      {
+        "name": "奪太陽 サンサン",
+        "typeText": "エグザイル・クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーが攻撃する時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加えてもよい。\nドロン・ゴー：このクリーチャーが破壊された時、名前に「太陽」とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に「サンサン」とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+        "race": "アウトレイジMAX",
+        "powerText": "3500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1490Exile": true,
+      "g1490ExileLimit": "サンサン",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "太陽"
+            ]
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmd13-006": {
+    "phase": 1493,
+    "faces": [
+      {
+        "name": "無敵 ドン・カツドン",
+        "typeText": "エグザイル・クリーチャー",
+        "civilizationText": "火/自然",
+        "civilizations": [
+          "火",
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置いてもよい。\nパワーアタッカー+3000\nドロン・ゴー：このクリーチャーが破壊された時、名前に《無敵》（ルビ：アウト ロー）とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《無敵》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+        "race": "アウトレイジMAX",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1490Exile": true,
+      "g1490ExileLimit": "無敵",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "無敵"
+            ]
+          }
+        }
+      ],
+      "attackBonus": 3000,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmr09-051": {
+    "phase": 1493,
+    "faces": [
+      {
+        "name": "超合金 ロビー",
+        "typeText": "エグザイル・クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "このクリーチャーが攻撃する時、カードを３枚引いてもよい。そうした場合、自分の手札を２枚捨てる。\nドロン・ゴー：このクリーチャーが破壊された時、名前に《合金》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《合金》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+        "race": "アウトレイジMAX",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1490Exile": true,
+      "g1490ExileLimit": "合金",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "合金"
+            ]
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "g204DrawDiscard": true,
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 3
+            },
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 2
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmr11-013": {
+    "phase": 1493,
+    "faces": [
+      {
+        "name": "超法剣 カツキング GANG",
+        "typeText": "エグザイル・クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、相手のパワー3000以下のクリーチャーを１体、破壊する。その後、相手の「ブロッカー」を持つクリーチャーを１体、破壊する。\nW・ブレイカー\nドロン・ゴー：このクリーチャーが破壊された時、名前に《法》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《超法》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+        "race": "アウトレイジMAX",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1490Exile": true,
+      "g1490ExileLimit": "超法",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "法"
+            ]
+          }
+        }
+      ],
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 3000
+          }
+        },
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "blocker": true
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 3000
+          }
+        },
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "blocker": true
+          }
+        }
+      ]
+    }
+  },
+  "dmr09-s09": {
+    "phase": 1493,
+    "faces": [
+      {
+        "name": "獣音鼓笛 グローバル",
+        "typeText": "エグザイル・クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から５枚をすべてのプレイヤーに見せる。その中から好きな数のアウトレイジを手札に加えてもよい。その後、残りを好きな順序で山札の一番下に戻す。\nW・ブレイカー\nドロン・ゴー：このクリーチャーが破壊された時、名前に《鼓笛》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《鼓笛》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+        "race": "アウトレイジMAX",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1490Exile": true,
+      "g1490ExileLimit": "鼓笛",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "鼓笛"
+            ]
+          }
+        }
+      ],
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 5,
+          "public": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "to": "hand",
+              "n": 5,
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "race": "アウトレイジ"
+              }
+            }
+          ]
+        }
+      ]
+    }
   }
 }

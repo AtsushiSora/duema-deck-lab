@@ -1,0 +1,448 @@
+{
+  "phase": 1493,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8588,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/36874/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36875/"
+  ],
+  "cards": [
+    {
+      "id": "dmr10-021",
+      "name": "奪太陽 サンサン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-021",
+      "faces": [
+        {
+          "name": "奪太陽 サンサン",
+          "typeText": "エグザイル・クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが攻撃する時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加えてもよい。\nドロン・ゴー：このクリーチャーが破壊された時、名前に「太陽」とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に「サンサン」とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+          "race": "アウトレイジMAX",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1490Exile": true,
+        "g1490ExileLimit": "サンサン",
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "g1490Exile": true,
+              "g220NameAny": [
+                "太陽"
+              ]
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "ced6bf09903bc1504468723fc2bcca69a05054e9a35d11a222c29196f9052c3e",
+        "facesMatched": true,
+        "imageSha256": "f4096462b84bbe42ee1654b440d2636c55a2f38af56ac147020ff7212ff0fdb8",
+        "imageBytes": 153873
+      },
+      "sameNameProducts": [
+        "DMR-10 エピソード3 デッド＆ビート"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-021",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmd13-006",
+      "name": "無敵 ドン・カツドン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd13-006",
+      "faces": [
+        {
+          "name": "無敵 ドン・カツドン",
+          "typeText": "エグザイル・クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置いてもよい。\nパワーアタッカー+3000\nドロン・ゴー：このクリーチャーが破壊された時、名前に《無敵》（ルビ：アウト ロー）とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《無敵》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+          "race": "アウトレイジMAX",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1490Exile": true,
+        "g1490ExileLimit": "無敵",
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "g1490Exile": true,
+              "g220NameAny": [
+                "無敵"
+              ]
+            }
+          }
+        ],
+        "attackBonus": 3000,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd13-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "1d318ba86b8f5334c0fd108b6abba0d6caad3e6407eb040c26f585f8b80e53d6",
+        "facesMatched": true,
+        "imageSha256": "9df78bb08b5e3b6ae541b8c452b7e2b15b06a5eadb33cfa98bc2c30a75e5c716",
+        "imageBytes": 191133
+      },
+      "sameNameProducts": [
+        "DMX-25 ファイナル・メモリアル・パック ～Ｅ１・Ｅ２・Ｅ３編～",
+        "DMX-22 革命 超ブラック・ボックス・パック",
+        "DMD-13 スーパーデッキMAX カツキングと伝説の秘宝"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd13-006",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmr09-051",
+      "name": "超合金 ロビー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-051",
+      "faces": [
+        {
+          "name": "超合金 ロビー",
+          "typeText": "エグザイル・クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、カードを３枚引いてもよい。そうした場合、自分の手札を２枚捨てる。\nドロン・ゴー：このクリーチャーが破壊された時、名前に《合金》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《合金》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+          "race": "アウトレイジMAX",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1490Exile": true,
+        "g1490ExileLimit": "合金",
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "g1490Exile": true,
+              "g220NameAny": [
+                "合金"
+              ]
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "g204DrawDiscard": true,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 3
+              },
+              {
+                "op": "Discard",
+                "owner": "self",
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "f96f97c478e8ef57196e0ecee1492fa0b6a26396ff405dad3e42bc45efd76050",
+        "facesMatched": true,
+        "imageSha256": "994d01b0603baebf3f8e11f2e437dc98f3e3d3f3528233ad9d19e934baa9953e",
+        "imageBytes": 125449
+      },
+      "sameNameProducts": [
+        "DMR-09 エピソード３ レイジVSゴッド",
+        "DMD-11 禁断の変形デッキ アウトレイジの書"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-051",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmr11-013",
+      "name": "超法剣 カツキング GANG",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-013",
+      "faces": [
+        {
+          "name": "超法剣 カツキング GANG",
+          "typeText": "エグザイル・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、相手のパワー3000以下のクリーチャーを１体、破壊する。その後、相手の「ブロッカー」を持つクリーチャーを１体、破壊する。\nW・ブレイカー\nドロン・ゴー：このクリーチャーが破壊された時、名前に《法》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《超法》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+          "race": "アウトレイジMAX",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1490Exile": true,
+        "g1490ExileLimit": "超法",
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "g1490Exile": true,
+              "g220NameAny": [
+                "法"
+              ]
+            }
+          }
+        ],
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 3000
+            }
+          },
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "blocker": true
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 3000
+            }
+          },
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr11-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "742f5689c92a8df7efc5c14d56ad379481d4f9d1259a5b2bef808b016300b29f",
+        "facesMatched": true,
+        "imageSha256": "e3622909fb9cacedb95b1c5b329cc66598c682c570358f62a969a9fb5b72e5e2",
+        "imageBytes": 187159
+      },
+      "sameNameProducts": [
+        "DMR-11 エピソード３ ウルトラＶマスター",
+        "プロモ限定カード 12期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-013",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmr09-s09",
+      "name": "獣音鼓笛 グローバル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-s09",
+      "faces": [
+        {
+          "name": "獣音鼓笛 グローバル",
+          "typeText": "エグザイル・クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から５枚をすべてのプレイヤーに見せる。その中から好きな数のアウトレイジを手札に加えてもよい。その後、残りを好きな順序で山札の一番下に戻す。\nW・ブレイカー\nドロン・ゴー：このクリーチャーが破壊された時、名前に《鼓笛》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《鼓笛》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+          "race": "アウトレイジMAX",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1490Exile": true,
+        "g1490ExileLimit": "鼓笛",
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "g1490Exile": true,
+              "g220NameAny": [
+                "鼓笛"
+              ]
+            }
+          }
+        ],
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 5,
+            "public": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "to": "hand",
+                "n": 5,
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "race": "アウトレイジ"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-s09.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "85adbbf7b14d55d77c16b6f36520f20b00d57aa2d7cdc32c5fe1397c9478bedf",
+        "facesMatched": true,
+        "imageSha256": "59fe51ebfaeaf2a45efba9ed3ac448dd39186173bc40bfc425b0f8ed5f2119a8",
+        "imageBytes": 162762
+      },
+      "sameNameProducts": [
+        "DMR-09 エピソード３ レイジVSゴッド"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-s09",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr10-021": 4,
+      "dmd13-006": 4,
+      "dmr09-051": 4,
+      "dmr11-013": 4,
+      "dmr09-s09": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36874/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36875/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36874/",
+      "sha256": "886374de8850aa6eda7f727a404ccb95a34581970ca6fa90cf9402d0169c75a7",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36875/",
+      "sha256": "5f1cef89313aa3766da745b44cce0fd8c62edc27168dfb2e154f21f1ad378af1",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    }
+  ],
+  "testCorrections": [
+    "Lookは内部の選択継続タスクg34_LookPickを提示するため、テストのタスク名を修正。能力と結果の期待は維持。",
+    "残りの選択可能カードがなくなった時および残りの並べ替えが1枚になった時の自動継続に合わせ、存在しない選択を送らないようテストを修正。手札と山札の最終順序は厳密に検証。"
+  ]
+}

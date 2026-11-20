@@ -267538,15 +267538,298 @@
       ],
       "supportBatch": "phase-1492",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr10-021",
+      "name": "奪太陽 サンサン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3500,
+      "race": "アウトレイジMAX",
+      "text": "このクリーチャーが攻撃する時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加えてもよい。\nドロン・ゴー：このクリーチャーが破壊された時、名前に「太陽」とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に「サンサン」とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-021",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "サンサン",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "太陽"
+            ]
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1493",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd13-006",
+      "name": "無敵 ドン・カツドン",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2000,
+      "race": "アウトレイジMAX",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置いてもよい。\nパワーアタッカー+3000\nドロン・ゴー：このクリーチャーが破壊された時、名前に《無敵》（ルビ：アウト ロー）とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《無敵》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd13-006",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "無敵",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "無敵"
+            ]
+          }
+        }
+      ],
+      "attackBonus": 3000,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1493",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-051",
+      "name": "超合金 ロビー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "アウトレイジMAX",
+      "text": "このクリーチャーが攻撃する時、カードを３枚引いてもよい。そうした場合、自分の手札を２枚捨てる。\nドロン・ゴー：このクリーチャーが破壊された時、名前に《合金》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《合金》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-051",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "合金",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "合金"
+            ]
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "g204DrawDiscard": true,
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 3
+            },
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 2
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1493",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr11-013",
+      "name": "超法剣 カツキング GANG",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "アウトレイジMAX",
+      "text": "このクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、相手のパワー3000以下のクリーチャーを１体、破壊する。その後、相手の「ブロッカー」を持つクリーチャーを１体、破壊する。\nW・ブレイカー\nドロン・ゴー：このクリーチャーが破壊された時、名前に《法》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《超法》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-013",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "超法",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "法"
+            ]
+          }
+        }
+      ],
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 3000
+          }
+        },
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "blocker": true
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 3000
+          }
+        },
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1493",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-s09",
+      "name": "獣音鼓笛 グローバル",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "アウトレイジMAX",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から５枚をすべてのプレイヤーに見せる。その中から好きな数のアウトレイジを手札に加えてもよい。その後、残りを好きな順序で山札の一番下に戻す。\nW・ブレイカー\nドロン・ゴー：このクリーチャーが破壊された時、名前に《鼓笛》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《鼓笛》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-s09",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "鼓笛",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "鼓笛"
+            ]
+          }
+        }
+      ],
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 5,
+          "public": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "to": "hand",
+              "n": 5,
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "race": "アウトレイジ"
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1493",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1492,
+    "phase": 1493,
     "checkedAt": "2026-11-20",
-    "baseCount": 8583,
+    "baseCount": 8588,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8588,
+    "totalCount": 8593,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -292213,6 +292496,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8583,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1492,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8583,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8588,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
