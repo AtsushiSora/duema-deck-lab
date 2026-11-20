@@ -258996,15 +258996,251 @@
       },
       "supportBatch": "phase-1439",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24-022",
+      "name": "炎獄の剛魔ビルギアス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 1000,
+      "race": "デーモン・コマンド",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-3000される。\nO・ドライブ 火x２(このクリーチャーを召喚する時、自分のマナゾーンで火のカードをさらに２枚タップしてもよい。そうした場合、次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、相手のパワー3000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-022",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -3000,
+          "g242PowerMinus": true,
+          "title": "パワーを-3000する相手のクリーチャーを選ぶ"
+        }
+      ],
+      "g1439ODrive": {
+        "options": [
+          {
+            "colors": [
+              "火",
+              "火"
+            ],
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 3000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1440",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24-077",
+      "name": "海賊メカ・スカルフック",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1500,
+      "race": "グレートメカオー",
+      "text": "O・ドライブ 自然x１(このクリーチャーを召喚する時、自分のマナゾーンで自然のカードをさらに１枚タップしてもよい。そうした場合、次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、そのターンの終わりまで、バトルゾーンにある自分のクリーチャー１体は「パワーアタッカー+2000」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-077",
+      "limit": 4,
+      "g1439ODrive": {
+        "options": [
+          {
+            "colors": [
+              "自然"
+            ],
+            "defs": [
+              {
+                "op": "Target",
+                "owner": "self",
+                "power": 2000,
+                "g337PowerAttacker": true,
+                "title": "このターン、パワーアタッカー+2000を与える自分のクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1440",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25-026",
+      "name": "機動闘竜メタルクロー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "アーマロイド/ティラノ・ドレイク",
+      "text": "O・ドライブ 闇x１・自然x１(このクリーチャーを召喚する時、自分のマナゾーンでさらに闇１枚または自然１枚またはその両方をタップしてもよい。そうした場合、次の能力を得る)\n闇：このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-2000される。\n自然：このクリーチャーをバトルゾーンに出した時、そのターン、バトルゾーンにある自分のクリーチャー１体のパワーは+2000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-026",
+      "limit": 4,
+      "g1439ODrive": {
+        "options": [
+          {
+            "colors": [
+              "闇"
+            ],
+            "defs": [
+              {
+                "op": "Target",
+                "power": -2000,
+                "g242PowerMinus": true,
+                "title": "パワーを-2000する相手のクリーチャーを選ぶ"
+              }
+            ]
+          },
+          {
+            "colors": [
+              "自然"
+            ],
+            "defs": [
+              {
+                "op": "Target",
+                "owner": "self",
+                "power": 2000,
+                "title": "パワーを+2000する自分のクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1440",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24-089",
+      "name": "封魔秘宝アバランバ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "グランド・デビル/パンドラボックス",
+      "text": "O・ドライブ 水x１(このクリーチャーを召喚する時、自分のマナゾーンで水のカードをさらに１枚タップしてもよい。そうした場合、次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、カードを３枚引く。その後、自分の手札を２枚、好きな順序で山札の上に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-089",
+      "limit": 4,
+      "g1439ODrive": {
+        "options": [
+          {
+            "colors": [
+              "水"
+            ],
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 3
+              },
+              {
+                "op": "Select",
+                "origin": "hand",
+                "to": "deckTop",
+                "n": 2,
+                "g183Return": true,
+                "title": "山札の上に戻す手札を選ぶ（先に選んだカードが一番上）"
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1440",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25-004",
+      "name": "霊騎死爵サー・アルビデス",
+      "civ": "光/闇/自然",
+      "civilizations": [
+        "光",
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ダークロード/アーク・セラフィム",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nO・ドライブ 光x２・闇x２・自然x１(このクリーチャーを召喚する時、自分のマナゾーンでさらに光２枚、闇２枚、自然１枚またはそのいずれかの組み合わせをタップしてもよい。そうした場合、次の能力を得る)\n光：このクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を、裏向きのままシールドに加える。\n闇：このクリーチャーをバトルゾーンに出した時、相手のタップされているクリーチャーを１体破壊する。\n自然：このクリーチャーをバトルゾーンに出した時、そのターン、バトルゾーンにある自分のクリーチャー１体のパワーは+7000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-004",
+      "limit": 4,
+      "g1439ODrive": {
+        "options": [
+          {
+            "colors": [
+              "光",
+              "光"
+            ],
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          },
+          {
+            "colors": [
+              "闇",
+              "闇"
+            ],
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "tapped": true
+                }
+              }
+            ]
+          },
+          {
+            "colors": [
+              "自然"
+            ],
+            "defs": [
+              {
+                "op": "Target",
+                "owner": "self",
+                "power": 7000,
+                "title": "パワーを+7000する自分のクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1440",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1439,
+    "phase": 1440,
     "checkedAt": "2026-11-20",
-    "baseCount": 8354,
+    "baseCount": 8359,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8359,
+    "totalCount": 8364,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -282929,6 +283165,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8354,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1439,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8354,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8359,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

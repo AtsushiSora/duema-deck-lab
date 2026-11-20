@@ -1,0 +1,421 @@
+{
+  "phase": 1440,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8359,
+  "description": "O・ドライブの追加支払いを色別に選び、追加額を加えてから軽減し、支払った能力のみ取得する。複数色と3色同時支払い、手動マナ選択、キャンセル、離脱後の能力消滅を検証。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/37539/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37542/",
+    "https://dm.takaratomy.co.jp/rule/qa/38697/",
+    "https://dm.takaratomy.co.jp/rule/qa/33406/",
+    "https://dm.takaratomy.co.jp/rule/qa/49223/",
+    "https://dm.takaratomy.co.jp/rule/qa/40938/"
+  ],
+  "cards": [
+    {
+      "id": "dm24-022",
+      "name": "炎獄の剛魔ビルギアス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-022",
+      "faces": [
+        {
+          "name": "炎獄の剛魔ビルギアス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-3000される。\nO・ドライブ 火x２(このクリーチャーを召喚する時、自分のマナゾーンで火のカードをさらに２枚タップしてもよい。そうした場合、次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、相手のパワー3000以下のクリーチャーを１体破壊する。",
+          "race": "デーモン・コマンド",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -3000,
+            "g242PowerMinus": true,
+            "title": "パワーを-3000する相手のクリーチャーを選ぶ"
+          }
+        ],
+        "g1439ODrive": {
+          "options": [
+            {
+              "colors": [
+                "火",
+                "火"
+              ],
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "maxPower": 3000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "c0da1495ffae0f1e9210550f0b4b7c51ac2955604f108b6488e120fdfa598de1",
+        "facesMatched": true,
+        "imageSha256": "494dd3d47f43e1babb370436859da149046db3f92753eb0c7a3dd68a599d9e41",
+        "imageBytes": 102769
+      },
+      "sameNameProducts": [
+        "DM-24 極神編(バイオレンス・ヘヴン) 第1弾"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-022",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm24-077",
+      "name": "海賊メカ・スカルフック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-077",
+      "faces": [
+        {
+          "name": "海賊メカ・スカルフック",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "O・ドライブ 自然x１(このクリーチャーを召喚する時、自分のマナゾーンで自然のカードをさらに１枚タップしてもよい。そうした場合、次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、そのターンの終わりまで、バトルゾーンにある自分のクリーチャー１体は「パワーアタッカー+2000」を得る。",
+          "race": "グレートメカオー",
+          "powerText": "1500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1439ODrive": {
+          "options": [
+            {
+              "colors": [
+                "自然"
+              ],
+              "defs": [
+                {
+                  "op": "Target",
+                  "owner": "self",
+                  "power": 2000,
+                  "g337PowerAttacker": true,
+                  "title": "このターン、パワーアタッカー+2000を与える自分のクリーチャーを1体選ぶ"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-077.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "dad21a361560cdec9a7d22ecb18d0504d3b4d28a5126b8089d028b2aa51f43fa",
+        "facesMatched": true,
+        "imageSha256": "e68302b4d8ffd056c0fcf37d25c15ab37f4c7440033e2b47e158201e28f59195",
+        "imageBytes": 110648
+      },
+      "sameNameProducts": [
+        "DM-24 極神編(バイオレンス・ヘヴン) 第1弾"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-077",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm25-026",
+      "name": "機動闘竜メタルクロー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-026",
+      "faces": [
+        {
+          "name": "機動闘竜メタルクロー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "O・ドライブ 闇x１・自然x１(このクリーチャーを召喚する時、自分のマナゾーンでさらに闇１枚または自然１枚またはその両方をタップしてもよい。そうした場合、次の能力を得る)\n闇：このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-2000される。\n自然：このクリーチャーをバトルゾーンに出した時、そのターン、バトルゾーンにある自分のクリーチャー１体のパワーは+2000される。",
+          "race": "アーマロイド/ティラノ・ドレイク",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1439ODrive": {
+          "options": [
+            {
+              "colors": [
+                "闇"
+              ],
+              "defs": [
+                {
+                  "op": "Target",
+                  "power": -2000,
+                  "g242PowerMinus": true,
+                  "title": "パワーを-2000する相手のクリーチャーを選ぶ"
+                }
+              ]
+            },
+            {
+              "colors": [
+                "自然"
+              ],
+              "defs": [
+                {
+                  "op": "Target",
+                  "owner": "self",
+                  "power": 2000,
+                  "title": "パワーを+2000する自分のクリーチャーを1体選ぶ"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "261e054efd4c8212e4e622788ed979e1dcf80c056ff56ccc4bb689cb00409fba",
+        "facesMatched": true,
+        "imageSha256": "49d79ed2e52b22227dc101beed50de983f34f0fe9f343c7b1469a94749db5a8b",
+        "imageBytes": 122661
+      },
+      "sameNameProducts": [
+        "DM-25 極神編 第2弾 人造神の創造(バイオレンス・クリエイター)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-026",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm24-089",
+      "name": "封魔秘宝アバランバ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-089",
+      "faces": [
+        {
+          "name": "封魔秘宝アバランバ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "O・ドライブ 水x１(このクリーチャーを召喚する時、自分のマナゾーンで水のカードをさらに１枚タップしてもよい。そうした場合、次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、カードを３枚引く。その後、自分の手札を２枚、好きな順序で山札の上に置く。",
+          "race": "グランド・デビル/パンドラボックス",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1439ODrive": {
+          "options": [
+            {
+              "colors": [
+                "水"
+              ],
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 3
+                },
+                {
+                  "op": "Select",
+                  "origin": "hand",
+                  "to": "deckTop",
+                  "n": 2,
+                  "g183Return": true,
+                  "title": "山札の上に戻す手札を選ぶ（先に選んだカードが一番上）"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-089.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "4bf3e00a7df7546d2a6a661f4a6ff455a6c931eb326b213618630fc743f8ff12",
+        "facesMatched": true,
+        "imageSha256": "a9d268e2e751cff23cd6992f49ca646e4cc63e1f1793ca907ee4b7bd12a60d45",
+        "imageBytes": 79093
+      },
+      "sameNameProducts": [
+        "DM-24 極神編(バイオレンス・ヘヴン) 第1弾"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-089",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm25-004",
+      "name": "霊騎死爵サー・アルビデス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-004",
+      "faces": [
+        {
+          "name": "霊騎死爵サー・アルビデス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇/自然",
+          "civilizations": [
+            "光",
+            "闇",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nO・ドライブ 光x２・闇x２・自然x１(このクリーチャーを召喚する時、自分のマナゾーンでさらに光２枚、闇２枚、自然１枚またはそのいずれかの組み合わせをタップしてもよい。そうした場合、次の能力を得る)\n光：このクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を、裏向きのままシールドに加える。\n闇：このクリーチャーをバトルゾーンに出した時、相手のタップされているクリーチャーを１体破壊する。\n自然：このクリーチャーをバトルゾーンに出した時、そのターン、バトルゾーンにある自分のクリーチャー１体のパワーは+7000される。",
+          "race": "ダークロード/アーク・セラフィム",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1439ODrive": {
+          "options": [
+            {
+              "colors": [
+                "光",
+                "光"
+              ],
+              "defs": [
+                {
+                  "op": "ShieldTop",
+                  "n": 1
+                }
+              ]
+            },
+            {
+              "colors": [
+                "闇",
+                "闇"
+              ],
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "tapped": true
+                  }
+                }
+              ]
+            },
+            {
+              "colors": [
+                "自然"
+              ],
+              "defs": [
+                {
+                  "op": "Target",
+                  "owner": "self",
+                  "power": 7000,
+                  "title": "パワーを+7000する自分のクリーチャーを1体選ぶ"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "621ff7313460e43a19878c6a1aca1aaaff0183ed6d0cbeef3c39e767d9503b1c",
+        "facesMatched": true,
+        "imageSha256": "1ab74bcd4586cd473d787b65b313a8de1d91c4a610ab916ffa8dbe29f07104d8",
+        "imageBytes": 98415
+      },
+      "sameNameProducts": [
+        "DM-25 極神編 第2弾 人造神の創造(バイオレンス・クリエイター)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-004",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24-022": 4,
+      "dm24-077": 4,
+      "dm25-026": 4,
+      "dm24-089": 4,
+      "dm25-004": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37539/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37542/",
+    "https://dm.takaratomy.co.jp/rule/qa/38697/",
+    "https://dm.takaratomy.co.jp/rule/qa/33406/",
+    "https://dm.takaratomy.co.jp/rule/qa/49223/",
+    "https://dm.takaratomy.co.jp/rule/qa/40938/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/37539/",
+      "sha256": "540e2abef31499411e49b01fe73a619b519f0790442c1f8737da61282b3b430c",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/37542/",
+      "sha256": "de3889b8d8729699bc3b9c150496420442ff7a8c4bc51804bb2459549d41ca8f",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/38697/",
+      "sha256": "3b0d45b654a89823a1290dc4574ebe7ff94568be9b196fe1bb939d4c8bde8099",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33406/",
+      "sha256": "752584fd4d916b2bef32d8692ee3cbb90f22ebddbbb1e10823d762509041e479",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/49223/",
+      "sha256": "8bb41781472622ddbb6b0c3c8f41110b24323fb2b9552bb7e35bfbfeff5da879",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40938/",
+      "sha256": "e035798f53495c7b543eafe35e388f09d53ccc2c1c775c50b5d0acc972979908",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    }
+  ]
+}
