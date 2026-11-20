@@ -5230,5 +5230,214 @@
         }
       ]
     }
+  },
+  "dmrp09-s11": {
+    "phase": 1499,
+    "faces": [
+      {
+        "name": "スターダム・スタージアム",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "T・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、GR召喚を２回する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n自分のGRクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "14000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        },
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g314OtherEntry": {
+        "who": "self",
+        "filter": {
+          "g1428Gr": true
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "to": "mana",
+            "toOwnerMana": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp11-s09": {
+    "phase": 1499,
+    "faces": [
+      {
+        "name": "DROROOON・バックラスター",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、GR召喚する。\n自分のGRクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\nバトル中、このクリーチャーのパワーを+2000する。",
+        "race": "ビートジョッキー/ワンダフォース",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g38BattleBonus": 2000,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g314OtherEntry": {
+        "who": "self",
+        "filter": {
+          "g1428Gr": true
+        },
+        "defs": [
+          {
+            "op": "Fight240",
+            "self": true,
+            "optional": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp10-054": {
+    "phase": 1499,
+    "faces": [
+      {
+        "name": "SHUWAWA・ソソーダ",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n自分のGRクリーチャーが攻撃する時、自分の手札を１枚捨ててもよい。そうしたら、カードを１枚引く。",
+        "race": "ビートジョッキー/ワンダフォース",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g253AttackWatches": [
+        {
+          "who": "self",
+          "filter": {
+            "g1428Gr": true
+          },
+          "defs": [
+            {
+              "op": "DiscardDraw",
+              "n": 1,
+              "g216DiscardDraw": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmrp12-002": {
+    "phase": 1499,
+    "faces": [
+      {
+        "name": "不朽音奏 トロンベルト",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがタップした時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、このクリーチャーはバトルゾーンを離れない。",
+        "race": "メタリカ/ワンダフォース",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g188Tapped": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g370BattleCount": {
+            "filter": {
+              "g1428Gr": true
+            },
+            "min": 3
+          }
+        },
+        "grants": {
+          "g577Stay": {
+            "anyPower": true
+          }
+        }
+      }
+    }
+  },
+  "dmbd11-a10": {
+    "phase": 1499,
+    "faces": [
+      {
+        "name": "ジョラゴン・オーバーロード",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "自分の山札の上から１枚目を、マナゾーンに置く。\nバトルゾーンまたはマナゾーンに、自分のジョーカーズが合計７枚以上あれば、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g539Jokers": 7
+          },
+          "defs": [
+            {
+              "op": "AuraGr1353"
+            }
+          ]
+        }
+      ]
+    }
   }
 }

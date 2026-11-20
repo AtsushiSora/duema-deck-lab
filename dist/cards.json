@@ -269021,15 +269021,209 @@
       ],
       "supportBatch": "phase-1498",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-s11",
+      "name": "スターダム・スタージアム",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 14000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "T・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、GR召喚を２回する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n自分のGRクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-s11",
+      "limit": 4,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        },
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g314OtherEntry": {
+        "who": "self",
+        "filter": {
+          "g1428Gr": true
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "to": "mana",
+            "toOwnerMana": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1499",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-s09",
+      "name": "DROROOON・バックラスター",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ビートジョッキー/ワンダフォース",
+      "text": "このクリーチャーがバトルゾーンに出た時、GR召喚する。\n自分のGRクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\nバトル中、このクリーチャーのパワーを+2000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-s09",
+      "limit": 4,
+      "g38BattleBonus": 2000,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g314OtherEntry": {
+        "who": "self",
+        "filter": {
+          "g1428Gr": true
+        },
+        "defs": [
+          {
+            "op": "Fight240",
+            "self": true,
+            "optional": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1499",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-054",
+      "name": "SHUWAWA・ソソーダ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ビートジョッキー/ワンダフォース",
+      "text": "このクリーチャーがバトルゾーンに出た時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n自分のGRクリーチャーが攻撃する時、自分の手札を１枚捨ててもよい。そうしたら、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-054",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g253AttackWatches": [
+        {
+          "who": "self",
+          "filter": {
+            "g1428Gr": true
+          },
+          "defs": [
+            {
+              "op": "DiscardDraw",
+              "n": 1,
+              "g216DiscardDraw": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1499",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-002",
+      "name": "不朽音奏 トロンベルト",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "メタリカ/ワンダフォース",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがタップした時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、このクリーチャーはバトルゾーンを離れない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-002",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g188Tapped": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g370BattleCount": {
+            "filter": {
+              "g1428Gr": true
+            },
+            "min": 3
+          }
+        },
+        "grants": {
+          "g577Stay": {
+            "anyPower": true
+          }
+        }
+      },
+      "supportBatch": "phase-1499",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd11-a10",
+      "name": "ジョラゴン・オーバーロード",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "自分の山札の上から１枚目を、マナゾーンに置く。\nバトルゾーンまたはマナゾーンに、自分のジョーカーズが合計７枚以上あれば、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd11-a10",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g539Jokers": 7
+          },
+          "defs": [
+            {
+              "op": "AuraGr1353"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1499",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1498,
+    "phase": 1499,
     "checkedAt": "2026-11-20",
-    "baseCount": 8612,
-    "newEffectCards": 4,
+    "baseCount": 8616,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8616,
+    "totalCount": 8621,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -293780,6 +293974,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8612,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1498,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8612,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 8616,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
