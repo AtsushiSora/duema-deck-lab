@@ -1,3 +1,4 @@
+import {overdriveEntry1439} from './overdrive1439-rules.js?v=0.722.1';
 import {borrowedAttackAbilities} from './borrowed-attack-abilities.js';
 import {replacementSacrifices} from './kenji-rules.js?v=0.722.1';
 import {decorateSurvivor406} from './survivor-rules.js?v=0.722.1';
@@ -15,8 +16,8 @@ import {createExtendedRules} from './extended-rules.js?v=0.722.1';
 import {createStrategicAI} from './strategic-ai.js?v=0.722.1';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.227';
-export const ENGINE_VERSION='0.602.15';
-export const AI_VERSION='2.3.418';
+export const ENGINE_VERSION='0.602.16';
+export const AI_VERSION='2.3.419';
 const EFFECTS=new Set(['champion','environment','recommended','sixPhoto','ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall','bounceBlockers','dragonRamp2','ramp2Return1','optionalRamp4Return2','purgeNonDragonMana','fightOptional','destroyWeakerLimitNextTurn','shieldTop1','deployMulticolor7','superheroSweep','destroyBattleCard3','destroyBattleCard2','jadowShield','vamBounce','goodEvil','aterModes','jaganRevive','reverseLock','urEvolve','muteLoot','tensaiLoot','graveRecycle','destroyMin','vtBounce','miradaCast','spellLock','miracleDraw','serpentModal','icicleModes','mirageModes','judgeDraw','maryRevive','darknessModes','fumiModes','brainSlash','charonReset','jennySacrifice','inspectDiscard','gospelRecover','dolsuzakuTurn','frozenCarnival','finalStop','oriotisJudge','nextSummonSpeed','tripleMode','sirenMana','courageMode','burningLoot','lastDragonFlame','destroy6000','masterGGGLoot','untapTwoMana','fairyDiscard6000','graveShuffle','permitManaSummon','wellkius','mikadoreo','sheva','rudolf','saiphogate','heavensGate','stargaze','bambooRamp','sharappu','fairyPower','takeback','hugePlan','shakoRecycle','naturalGo','herculesRecycle','jurassicHowl','corenReveal','plantRamp','sonicMana','jumboReveal','granRamp','kiyonagaReveal','gohaten','zenonRamp','wiseShutter','dokiBounce','minogamiRecover','hazardPact','fortress','casablancaBounce','sheketDraw','petrovaProtect','bojiMill','dranEntry','goldShield','c0braRevive','mechaDraw','ameliaShield','mechaMinus','goryuShield','magicNapo','magicSmallDestroy','magicIgnore','magicNumberLock','magicFire','magicKaraku','magicHime','magicBounce','magicPeecap','magicDraw','armoredBaku','armoredValkyria','armoredVal','armoredMonster','hunterMekraid','hunterBambi','hunterSweep4','hunterSweep2','hunterVictory','hunterMana','hunterDraw','zardCast','dogiRamp','dolfSweep','damdRemove','fiveModes','dragonSign','aquaReveal','bossDeploy','dedoAllocate','fireAllocate','fairyMiracle','babaBottom','cycleEntry','jaougaShields','katsuLook','reverseMinus','jaoumon','fortuneRamp','giantHeavy','giantLake','giantTouch','giantYuki','giantSpace','giantSineraria','giantFirefly','gachiRobo','gachiCambiare','gachiFight','gachiMystery','gachiNicol','gachiBigBang','gachiMagrul','gachiRice','gachiGuignol','samuraiBui','samuraiMusashi','samuraiMekraid','samuraiFlash','lionelPeace','lionelRune','lionelHeart','lionelSlotton','lionelAQ','lionelKorail','lionelGera','lionelSong','lionelStar','kenjiCrymax','kenjiDida','kenjiMill','kenjiPlan','kenjiHeart','travelJourney','travelAfro','travelKatsura','travelPrison','travelRevZero','travelG3','travelZero','travelHelt','travelOra','travelChicken','graveGT','graveObuza','graveKaibyaku','graveUra','graveAbaku','graveLoot','graveDoor','graveMinus4','maruruOrugate','maruruKiinary','maruruWatch','maruruBunker','maruruSky','girlsDaiou','girlsSavak','girlsZeos','girlsTry','girlsMega','girlsGyai','girlsArshu','girlsRupia','madoNothing','madoAirvo','madoBarred','madoGon','madoBlood','madoBock','madoCombat','madoDollar','madoDraw','madoShuno','madoGokusatsu','madoGyap','redBlack','redMax','redRoyal','redCircle','redClock','redGareck','abyssJaga','abyssSis','abyssMurder','abyssMakua','abyssMill','abyssMek','abyssSeal','abyssBella','hachiRedZ','hachiStorm','hachiFight','hachiForbidden','hachiShibire','hachiPower','hachiSSD','virideEver','golgyEntry','golgyKohaku','golgyBig','golgyShield','golgyHerc','golgyWest','golgyGin','golgyBlueprint','golgyJasmine','bandeRadio','bandePizza','bandeDecision','bandeDagra','bandeBalance','bandeSeal','bandeTaka','madoZadan','madoMaou','madoNameless','madoJaw','madoGride','madoFunz','madoVoga','madoLab','madoTin','bolBaro','bolBT','bolAgony','bolLoot','bolMol','bolLand','bolJura','bolDuel','bolBird','phoenixFel','phoenixGate','phoenixMetal','phoenixReverse','phoenixRecover','phoenixXeno','phoenixLoot','phoenixAbu','phoenixHeavy','phoenixOriginalMetal','phoenixMill','phoenixReload','phoenixOni','kenjiMysteryCube','kenjiCocoon','kenjiPanda','kenjiJaouga8','shieldDogi','shieldResolve','shieldBounce','shieldD4','shieldMirror','shieldMirrorSpell','shieldParfe','shieldDeka','shieldFaceTop']);
 let catalogue=new Map();
 const borrowedDefinition1370=new WeakMap();
@@ -37,12 +38,12 @@ function withCivilizationContext1363(s,resolve){
 function withoutCivilizations1363(c){
  if(!c||c===FACE_DOWN||c===SEAL_CARD)return c;
  return {...c,civ:'ゼロ',civilizations:[],manaValue:manaValue(c),
-  ...(c.g568PaymentColors?{g568PaymentColors:[]}:{}),
+  ...(c.g568PaymentColors?{g568PaymentColors:c.g1439TextColors||[]}:{}),
   ...(c.spellFace?{spellFace:withoutCivilizations1363(c.spellFace)}:{}),
   ...(c.g393JWDFaces?{g393JWDFaces:c.g393JWDFaces.map(withoutCivilizations1363)}:{})};
 }
 export function card(id){
- const c=printedCard1363(id);
+ const printed=printedCard1363(id),c=overdriveEntry1439(printed,typeof id==='string'?0:id?.g1439PaidMask||0);
  return civilizationContext1363?.g1363JoePlayed&&joeOrder1363(civilizationContext1363)!==null?
   withoutCivilizations1363(c):c;
 }
@@ -1618,7 +1619,7 @@ function tapCard(s,p,x,controller=effectActor(s)){
  auraEvent1434(s,p,x,'g1434HostTap');
 }
 function clearBattleState(x,to='grave'){
- delete x.g1357Copies;
+ delete x.g1357Copies;delete x.g1439PaidMask;
  delete x.auraTo1352;delete x.psychicLinks;delete x.psychicCell;
  delete x.weaponTo;delete x.dragheartFlipped;
  delete x.g1337GraveHeld;
@@ -2895,12 +2896,12 @@ function hasColorlessMana(s,p){
 function baseSummonCost297(s,p,c){
  c=executionCard(c);
  if(joeOrder1363(s)!==null)c=withoutCivilizations1363(c);
- if(c.fixedPayment)return costValue(c)+buzzAdditional1411(c);
+ if(c.fixedPayment)return costValue(c)+buzzAdditional1411(c)+(c.g1439ExtraCost||0);
  if(freeSpell(s,p,c)&&!c.g40PayNormally)return 0;
- if(tunePayment1411(s,p,c,effectiveCard,costValue))return 8+buzzAdditional1411(c);
+ if(tunePayment1411(s,p,c,effectiveCard,costValue))return 8+buzzAdditional1411(c)+(c.g1439ExtraCost||0);
  const handTax=(c.summonOrigin||'hand')==='hand'?(c.g653HandSummonTax||0):0;
  const handCountTax=c.g1136HandTax?s.players[p].hand.filter(x=>x.uid!==c.executionUid).length:0;
- const tax=auraCost1431(s,p,c).tax+extra.spellTax(s,p,c)+handTax+handCountTax+buzzAdditional1411(c);
+ const tax=auraCost1431(s,p,c).tax+extra.spellTax(s,p,c)+handTax+handCountTax+buzzAdditional1411(c)+(c.g1439ExtraCost||0);
  if(s.players[1-p].battle.some(x=>effectiveCard(x,s).noCostReduction))return costValue(c)+tax;
  if(c.crossing)return Math.max(1,costValue(c)-extra.samuraiDiscount(s,p,c)-(c.g933CrossReduction||0));
  const reduce=c.type==='creature'&&((c.costReduction==='opponentMulticolorMana3'&&s.players[1-p].mana.some(x=>manaColors(card(x),s,p).length>1))||(c.costReduction==='ownFourDragonsMana3'&&s.players[p].mana.filter(x=>isDragon(card(x))).length>=4)||(c.costReduction==='ownFiveLightFireMana3'&&s.players[p].mana.filter(x=>manaColors(card(x),s,p).some(v=>v==='光'||v==='火')).length>=5));
@@ -3101,7 +3102,7 @@ function executeManaMove(s,action,baseDecision=s.decision,payments=[],randomTape
   if(!(error instanceof ManaSelectionRequired)&&!(error instanceof DrawSelectionRequired)&&!(error instanceof DeckSelectionRequired1365))throw error;
   const draw=error instanceof DrawSelectionRequired;
   if(error instanceof DeckSelectionRequired1365){s.decision={type:'deckMove1365',title:'山札移動の置換を選ぶ',...error.request,action:structuredClone(action),baseDecision:structuredClone(baseDecision),payments:structuredClone(payments),drawChoices:structuredClone(drawChoices),deckChoices:structuredClone(deckChoices),manualMana,randomTape};return;}
-  s.decision={type:draw?'drawReplacement':'manaPayment',title:draw?card(error.request.source).name+(error.request.stage==='vivid'?'：ビビッドローを宣言する？':'：ドローを選ぶ'):'支払うマナを選ぼう',player:action.player,...error.request,action:structuredClone(action),baseDecision:structuredClone(baseDecision),payments:structuredClone(payments),drawChoices:structuredClone(drawChoices),deckChoices:structuredClone(deckChoices),manualMana,randomTape,cancellable:!draw&&(!baseDecision&&['play','crossGear','pandora','galaxyShield'].includes(action.kind)||baseDecision?.type==='extended'&&['g34_RevealPayment470','g34_PaySpell485'].includes(baseDecision.task?.op)&&!payments.length)};return;
+  s.decision={type:draw?'drawReplacement':'manaPayment',title:draw?card(error.request.source).name+(error.request.stage==='vivid'?'：ビビッドローを宣言する？':'：ドローを選ぶ'):'支払うマナを選ぼう',player:action.player,...error.request,action:structuredClone(action),baseDecision:structuredClone(baseDecision),payments:structuredClone(payments),drawChoices:structuredClone(drawChoices),deckChoices:structuredClone(deckChoices),manualMana,randomTape,cancellable:!draw&&(!baseDecision&&['play','crossGear','pandora','galaxyShield'].includes(action.kind)||baseDecision?.type==='extended'&&['g34_RevealPayment470','g34_PaySpell485','g34_ODrive1439'].includes(baseDecision.task?.op)&&!payments.length)};return;
  }
  const previous=s.decision;s.decision=baseDecision;
  try{return withManaTransaction({...t,randomIndex:0,paymentIndex:0,drawIndex:0,deckIndex:0},()=>withEffect(s,baseDecision?.type==='effect'?(baseDecision.g1369Resolver??baseDecision.player):null,()=>stepCore(s,action)));}catch(error){s.decision=previous;throw error;}
@@ -3672,7 +3673,7 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  if(c.g493SuperEntry&&entryOptions.super&&!stopped)enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,source:c.id,effect:'extended',task:extra.task('g34_Sequence',p,c.id,{uid:inst.uid,incarnation:inst.incarnation,defs:c.g493SuperEntry})});
  if(c.triggerPlus&&inst.triggerPlus&&!stopped&&c.g34Plus)enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,source:c.id,effect:'extended',task:extra.task('g34_Sequence',p,c.id,{uid:inst.uid,incarnation:inst.incarnation,defs:c.g34Plus})});
  if(c.triggerPlus&&inst.triggerPlus&&!stopped&&!c.g34Plus)enqueueEffect(s,p,{uid:inst.uid,source:c.id,effect:'extended',task:extra.task('muteAttackLock',p,c.id)});
- if(c.effect&&!(c.effect==='sixPhoto'&&!c.g34Tasks?.length)&&!stopped&&(!c.evolvedEntryOnly||isEvolution(inst))&&(!c.stackOnlyEntry||baseWasCreature)&&(!c.nonEvolutionBase||baseWasCreature&&!baseWasEvolution)&&(!c.summonedEntryOnly||entryOptions.execution!==false)&&(!c.g1052TamaseedEntry||baseWasTamaseed))enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,lastKnownPower:power(inst,false,s),lastKnownCost:effectiveCard(inst,s).cost,source:c.id,lastKnownCount:layers(inst).length,super:!!entryOptions.super,effect:'entry',...(inst.g1357Copies?.length||c.g1411BuzzRenda&&entryOptions.g1411BuzzN?{g1357Entry:buzzEntry1411(c,entryOptions.g1411BuzzN||0)}:{})});
+ if(c.effect&&!(c.effect==='sixPhoto'&&!c.g34Tasks?.length)&&!stopped&&(!c.evolvedEntryOnly||isEvolution(inst))&&(!c.stackOnlyEntry||baseWasCreature)&&(!c.nonEvolutionBase||baseWasCreature&&!baseWasEvolution)&&(!c.summonedEntryOnly||entryOptions.execution!==false)&&(!c.g1052TamaseedEntry||baseWasTamaseed))enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,lastKnownPower:power(inst,false,s),lastKnownCost:effectiveCard(inst,s).cost,source:c.id,lastKnownCount:layers(inst).length,super:!!entryOptions.super,effect:'entry',...(inst.g1357Copies?.length||inst.g1439PaidMask||c.g1411BuzzRenda&&entryOptions.g1411BuzzN?{g1357Entry:buzzEntry1411(c,entryOptions.g1411BuzzN||0)}:{})});
  if(!stopped&&entryBreakShort770(s,p,c))enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,source:c.id,
   label:'シールド条件による自壊',effect:'extended',task:extra.task('g34_SelfDestroy',p,c.id,{uid:inst.uid,incarnation:inst.incarnation})});
  if(!stopped)for(const ability of eligibleExtraEntry527(c,entryOptions.origin??'hand')){
@@ -3804,6 +3805,7 @@ function playCard(s,p,uid,free=false,baseUid=null,face=0,alternativeCost=null,or
  const c=source&&{...playFaces(zoneCard(s,p,source,ruleOrigin,definition))[face],summonOrigin:ruleOrigin,executionUid:uid,g27BaseUid:baseUid,...(freeReason==='D・D・D'?{g28DDD:true}:{}),...(g464Reducers!==null?{g464Reducers}:{}),...(g463Reduction!==null?{g463Reduction}:{}),...(g456Reduction!==null?{g456Reduction}:{}),...(g42Reduction!==null?{g42Reduction}:{}),...(g26Reducers!==null?{g26Reducers}:{}),...(g18Reducers!==null?{g18Reducers}:{}),...(g7Payment?{g7Payment}:{}),...(magicReducers?{magicReducers}:{}),...(snowReducers?{snowReducers}:{}),...(gioReveals?{gioRevealCount:gioReveals.length}:{})};const originBlocked402=!!(c?.type==='creature'&&((c.fushigibirth&&freeReason==='フシギバース'||c.mugenCrime&&freeReason==='ムゲンクライム')&&ruleOrigin==='grave'||c.kirifudaDash&&freeReason==='キリフダッシュ'&&ruleOrigin==='mana')&&!canMoveZone(s,p,ruleOrigin));if(!c||!canCastSpell(s,p,c,ruleOrigin,source?.cardOwner??p)||(c.type!=='spell'&&!canEnterCreature(s,p,c,{origin:ruleOrigin,execution:true,ignoreMovement:originBlocked402})))throw Error('このカードは使えません');
  if(!free&&freeSpell(s,p,c)&&!alternativeCost?.g40PayNormally){free=true;freeReason=freeSpellReason(s,p,c);}
  if(free&&(freeReason==='跳次元召喚'?needsZoneMana1359(s,p,c):!canExecuteUnpaid(s,p,c)))return;
+ if(extra.six.beginOverdrive1439(s,p,c,[uid,free,baseUid,face,alternativeCost,origin,freeReason,ownGraveCast,permit,snowReducers,gioReveals,magicReducers,g7Payment,g18Reducers,g26Reducers,g42Reduction,g456Reduction,g463Reduction,g464Reducers,discardPaid1240]))return;
  if(extra.utilityWater.beforeCast(s,p,[uid,free,baseUid,face,alternativeCost,origin,freeReason,ownGraveCast,permit,snowReducers,gioReveals,magicReducers,g7Payment,g18Reducers,g26Reducers,g42Reduction,g456Reduction,g463Reduction,g464Reducers]))return;
  if(extra.cyber.beforeCast(s,p,[uid,free,baseUid,face,alternativeCost,origin,freeReason,ownGraveCast,permit,snowReducers,gioReveals,magicReducers,g7Payment,g18Reducers,g26Reducers,g42Reduction,g456Reduction,g463Reduction,g464Reducers]))return;
  if(extra.phoenix.beginPayment(s,p,[uid,free,baseUid,face,alternativeCost,origin,freeReason,ownGraveCast,permit,snowReducers,gioReveals,magicReducers,g7Payment,g18Reducers,g26Reducers,g42Reduction,g456Reduction,g463Reduction,g464Reducers]))return;
@@ -3852,6 +3854,7 @@ function playCard(s,p,uid,free=false,baseUid=null,face=0,alternativeCost=null,or
 // Entry effects and non-summon deployments do not overwrite that history (official QA37513).
 function recordUse420(s,p,c){const last=s.g420LastUse?.[p],ready=last?.turn===s.turn&&last.creature;(s.g420LastUse??=[null,null])[p]={turn:s.turn,creature:c.type==='creature'};return c.g420Cyclone?{...c,g420CycloneReturn:!!ready}:c;}
 function completeExecution(s,p,inst,c,{ruleOrigin,origin,free,freeReason,alternativeCost,paidMana,unpaid,cost,ownGraveCast,grantedSuper,baseUid,face,permit,originBlocked402=false,originIndex402=-1,auraOriginIndex}){
+ if(!free&&alternativeCost?.g1439Mask){c=overdriveEntry1439(c,alternativeCost.g1439Mask);if(c.type==='creature')inst.g1439PaidMask=alternativeCost.g1439Mask;}
  c=recordUse420(s,p,c);
  const costPaid=freeReason==='跳次元召喚'||!free&&cost>0;
  if((unpaid??!costPaid)&&(c.type==='creature'||c.type==='spell'))extra.six.unpaidExecution1358(s,p);
@@ -3963,6 +3966,7 @@ function castShieldSpell(s,p,uid,face,source,counterChecked=false){
  const x=s.players[p].shields.flatMap(shieldCards).find(x=>x.uid===uid&&!x.g37ShieldHeld);let c=x&&playFaces(card(x))[face];if(!c||c.type!=='spell'||unpaidExecutionBlocked1358(s,p,c)||!canCastSpell(s,p,c,'shields'))return;
  if(!counterChecked&&extra.shieldPhoto.beforeExecution(s,p,c,{uid:'pending-shield-'+String(s.virtualSerial=(s.virtualSerial||0)+1),cardId:x.cardId},{virtualArgs:[uid,face,source,{shield:true}],origin:'shields'}))return;
  extra.six.unpaidExecution1358(s,p);
+ if(!free&&alternativeCost?.g1439Mask){c=overdriveEntry1439(c,alternativeCost.g1439Mask);if(c.type==='creature')inst.g1439PaidMask=alternativeCost.g1439Mask;}
  c=recordUse420(s,p,c);x.g37ShieldHeld=true;const virtualUid=uid+':shield-spell:'+String(s.virtualSerial=(s.virtualSerial||0)+1),inst={uid:virtualUid,cardId:x.cardId},frame={inst,owner:p,caster:p,spell:c,virtual:true,shieldCast:{uid,face}};
  (s.extSpells??=[]).push(frame);s.metrics[p].played[c.id]=(s.metrics[p].played[c.id]||0)+1;(s.noManaUse??=[false,false])[p]=true;log(s,p,'play',c.name+'をラッキー・ダーツで唱える',{cardId:x.cardId});extra.spellCast(s,p,c,inst,'shields',face);
  extra.six.triggerCardUsed1242(s,p,c,shieldFaceHasTrigger1162(s,p,x,c));

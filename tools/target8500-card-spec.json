@@ -10882,5 +10882,274 @@
       "gr": true,
       "manaValue": 0
     }
+  },
+  "dm24-085": {
+    "phase": 1439,
+    "faces": [
+      {
+        "name": "スパイラル・ドライブ",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻す。\nO・ドライブ 闇x１(この呪文を唱える時、自分のマナゾーンで闇のカードをさらに１枚タップしてもよい。そうした場合、この呪文は次の能力を得る)\nクリーチャーを１体、自分の墓地から手札に戻す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "to": "hand"
+        }
+      ],
+      "g1439ODrive": {
+        "options": [
+          {
+            "colors": [
+              "闇"
+            ],
+            "defs": [
+              {
+                "op": "Select",
+                "g228Recovery": true,
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "g228Face": {
+                    "type": "creature"
+                  }
+                },
+                "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dm25-040": {
+    "phase": 1439,
+    "faces": [
+      {
+        "name": "ミラー・エッグ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "O・ドライブ 光x１・闇x２(このクリーチャーを召喚する時、自分のマナゾーンでさらに光１枚または闇２枚またはその両方をタップしてもよい。そうした場合、次の能力を得る)\n光：このクリーチャーをバトルゾーンに出した時、呪文を１枚、自分の墓地から手札に戻す。\n闇：このクリーチャーをバトルゾーンに出した時、クリーチャーを１体、自分の墓地から手札に戻す。",
+        "race": "サイバー・ウイルス",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1439ODrive": {
+        "options": [
+          {
+            "colors": [
+              "光"
+            ],
+            "defs": [
+              {
+                "op": "Select",
+                "g228Recovery": true,
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "g228Face": {
+                    "type": "spell"
+                  }
+                },
+                "title": "手札に戻す墓地の呪文を1枚選ぶ"
+              }
+            ]
+          },
+          {
+            "colors": [
+              "闇",
+              "闇"
+            ],
+            "defs": [
+              {
+                "op": "Select",
+                "g228Recovery": true,
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "g228Face": {
+                    "type": "creature"
+                  }
+                },
+                "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dm24-081": {
+    "phase": 1439,
+    "faces": [
+      {
+        "name": "モルスク・パイレーツ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "O・ドライブ 光x１ (このクリーチャーを召喚する時、自分のマナゾーンで光のカードをさらに１枚タップしてもよい。そうした場合、次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、呪文を１枚、自分のマナゾーンから手札に戻す。",
+        "race": "マーフォーク",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1439ODrive": {
+        "options": [
+          {
+            "colors": [
+              "光"
+            ],
+            "defs": [
+              {
+                "op": "Select",
+                "g220ManaReturn": true,
+                "origin": "mana",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "spell": true
+                },
+                "title": "手札に戻すマナの呪文を1枚選ぶ"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dm27-033": {
+    "phase": 1439,
+    "faces": [
+      {
+        "name": "深塊封魔ゲルネウス",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/闇",
+        "civilizations": [
+          "水",
+          "闇"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nO・ドライブ-光x１と火x１と自然x１(このクリーチャーを召喚する時、自分のマナゾーンでさらに光１枚と火１枚と自然１枚をタップしてもよい。そうした場合、次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻す。その後、クリーチャーを１体、自分の墓地から手札に戻す。",
+        "race": "グランド・デビル/ディープ・マリーン",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1439ODrive": {
+        "options": [
+          {
+            "colors": [
+              "光",
+              "火",
+              "自然"
+            ],
+            "defs": [
+              {
+                "op": "Target",
+                "anyOwner": true,
+                "to": "hand"
+              },
+              {
+                "op": "Select",
+                "g228Recovery": true,
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "g228Face": {
+                    "type": "creature"
+                  }
+                },
+                "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dm24-012": {
+    "phase": 1439,
+    "faces": [
+      {
+        "name": "宣凶師ルギアス",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、タップする。\nO・ドライブ 水x２ (このクリーチャーを召喚する時、自分のマナゾーンで水のカードをさらに２枚タップしてもよい。そうした場合、次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻す。",
+        "race": "グラディエーター",
+        "powerText": "4500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 1,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g193Tap": true,
+          "title": "タップする相手のクリーチャーを1体選ぶ"
+        }
+      ],
+      "g1439ODrive": {
+        "options": [
+          {
+            "colors": [
+              "水",
+              "水"
+            ],
+            "defs": [
+              {
+                "op": "Target",
+                "anyOwner": true,
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      }
+    }
   }
 }

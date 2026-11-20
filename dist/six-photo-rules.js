@@ -1,3 +1,4 @@
+import {overdrivePayment1439} from './overdrive1439-rules.js?v=0.722.1';
 import {createFifteenPhotoRules} from './fifteen-photo-rules.js?v=0.722.1';
 import {createChampionRaid} from './champion-raid-helpers.js';
 import {policyLook,policyTake} from './champion-zone-policy.js';
@@ -240,6 +241,16 @@ export function createSixPhotoRules(api){
   },ownReduction);
  }
  function spellReduction485(s,p,c){const max=spellReductionMax485(s,p,c);return c.g485Amount===undefined?max:Math.max(0,Math.min(max,c.g485Amount));}
+ function overdrive1439(s,t){
+  const old=t.args[4],base={...t.c,...(typeof old==='object'?old:old!==null?{cost:old}:{}),printedCost:t.c.cost},choices=[];
+  for(let mask=0;mask<(1<<t.c.g1439ODrive.options.length);mask++){
+   const payment={...base,...overdrivePayment1439(base,mask)};
+   if(!api.canPay(s,t.p,payment))continue;
+   const colors=payment.g1439TextColors.join('・');
+   choices.push(opt((mask?'O・ドライブ '+colors:'追加で支払わない')+'（'+api.summonCost(s,t.p,payment)+'マナ）',mask,mask?20:0,t.source));
+  }
+  choice(s,t,'O・ドライブの追加コストを選ぶ',[...choices,opt('使用をやめる',false,-1000)]);
+ }
  function paySpell485(s,t){const max=spellReductionMax485(s,t.p,t.c),choices=[];for(let amount=max;amount>=0;amount--){const c={...t.c,g485Handled:true,g485Amount:amount};if(api.canPay(s,t.p,c)){const n=api.summonCost(s,t.p,c);choices.push(opt((amount?amount+'軽減する':'軽減しない')+'（'+n+'マナ）',amount,100-n*5,t.source));}}choice(s,t,'呪文の軽減を使う量を選ぶ',[...choices,opt('唱えるのをやめる',false,-1000)]);}
  // The card being summoned is in use, so a different physical hand card must be revealed.
  function revealCards470(s,p,c){const rule=c.g470RevealReduction;if(!rule)return[];const source=c.executionUid??((c.summonOrigin||'hand')==='hand'?s.players[p].hand.find(x=>x.cardId===c.id)?.uid:null);return s.players[p].hand.filter(x=>x.uid!==source&&(rule.evolution?api.isEvolution(x)||faces(card(x)).some(f=>f.evolution||f.g48HandEvolution||f.sMax):faces(card(x)).some(f=>cost(f)>=rule.min)));}
@@ -2464,6 +2475,7 @@ export function createSixPhotoRules(api){
    [...eligible.filter(x=>!selected.includes(x.uid)).map(x=>opt(card(x).name,x.uid,14-cost(card(x)),x.cardId)),skip()]);
   break;
  }
+ case'g34_ODrive1439':overdrive1439(s,t);break;
  case'g34_PaySpell485':paySpell485(s,t);break;
  case'g34_RevealPayment470':revealPayment470(s,t);break;
  case'g34_PayOnce464':payOnce464(s,t);break;
@@ -6633,6 +6645,7 @@ export function createSixPhotoRules(api){
  case'g34_PayCount499':if(typeof v==='number'){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),g499Handled:true,g499Reduction:v};api.cast(s,t.p,...args);}break;
  case'g34_SeedDefense1201':
  case'g34_TapCast976':if(v)put(s,{...t,selected:[...t.selected,v]});break;
+ case'g34_ODrive1439':if(typeof v==='number'){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),...overdrivePayment1439({...t.c,...(typeof old==='object'?old:old!==null?{cost:old}:{})},v)};api.cast(s,t.p,...args);}break;
  case'g34_PaySpell485':if(typeof v==='number'){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),g485Handled:true,g485Amount:v};api.cast(s,t.p,...args);}break;
  case'g34_RevealPayment470':if(typeof v==='string')put(s,{...t,revealed:v});else if(v!==false){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),g470Handled:true,g470Amount:v??0,...(t.revealed?{g470Revealed:t.revealed}:{})};api.cast(s,t.p,...args);}break;
  case'g34_PayOnce464':if(typeof v==='string')put(s,{...t,selected:[...t.selected,v]});else if(v===null){
@@ -8429,6 +8442,7 @@ export function createSixPhotoRules(api){
  beginPayment500(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g500Handled||!floorOptions500(s,p,c)[0]||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PayFloor500',p,c.id,{c:payment,args}));return true;},
  floorCost500(s,p,c,base){if(c.type!=='creature'||c.crossing)return base;const minimum=c.g211Sympathy?.minimum;if(minimum>=3)base=Math.min(base,Math.max(minimum,base-sympathyAmount500(s,p,c)));const amounts=floorOptions500(s,p,c),aura=c.g500Amount===undefined?amounts[0]:amounts.includes(c.g500Amount)?c.g500Amount:0,n=aura+(c.g212CountDiscount?.minimum===2?countDiscountMax499(s,p,c):0)+(c.g211Sympathy?.minimum===2?sympathyAmount500(s,p,c):0);return n?Math.min(base,Math.max(2,base-n)):base;},
  beginPayment499(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g499Handled||c.type!=='creature'||!c.g212CountDiscount?.optional||!countDiscountMax499(s,p,c)||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PayCount499',p,c.id,{c:payment,args}));return true;},
+ beginOverdrive1439(s,p,c,args){if(args[1]||args[4]?.g1439Handled||!c.g1439ODrive)return false;put(s,task('g34_ODrive1439',p,c.id,{c,args}));return true;},
  beginPayment485(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g485Handled||!spellReductionMax485(s,p,c)||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PaySpell485',p,c.id,{c:payment,args}));return true;},
  beginPayment470(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g470Handled||!c.g470RevealReduction||!revealCards470(s,p,c).length)return false;put(s,task('g34_RevealPayment470',p,c.id,{c,args,revealed:null}));return true;},
  revealDiscount470(s,p,c){if(c.type!=='creature'||c.crossing||!c.g470RevealReduction)return 0;const rows=revealCards470(s,p,c);return c.g470Handled?rows.some(x=>x.uid===c.g470Revealed)?Math.max(0,Math.min(c.g470RevealReduction.amount,c.g470Amount||0)):0:rows.length?c.g470RevealReduction.amount:0;},

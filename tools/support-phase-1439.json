@@ -1,0 +1,443 @@
+{
+  "phase": 1439,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8354,
+  "description": "O・ドライブの追加支払いを色別に選び、追加額を加えてから軽減し、支払った能力のみ取得する。複数色と3色同時支払い、手動マナ選択、キャンセル、離脱後の能力消滅を検証。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/37539/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37542/",
+    "https://dm.takaratomy.co.jp/rule/qa/38697/",
+    "https://dm.takaratomy.co.jp/rule/qa/33406/",
+    "https://dm.takaratomy.co.jp/rule/qa/49223/",
+    "https://dm.takaratomy.co.jp/rule/qa/40938/"
+  ],
+  "cards": [
+    {
+      "id": "dm24-085",
+      "name": "スパイラル・ドライブ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-085",
+      "faces": [
+        {
+          "name": "スパイラル・ドライブ",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻す。\nO・ドライブ 闇x１(この呪文を唱える時、自分のマナゾーンで闇のカードをさらに１枚タップしてもよい。そうした場合、この呪文は次の能力を得る)\nクリーチャーを１体、自分の墓地から手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "hand"
+          }
+        ],
+        "g1439ODrive": {
+          "options": [
+            {
+              "colors": [
+                "闇"
+              ],
+              "defs": [
+                {
+                  "op": "Select",
+                  "g228Recovery": true,
+                  "origin": "grave",
+                  "to": "hand",
+                  "n": 1,
+                  "filter": {
+                    "g228Face": {
+                      "type": "creature"
+                    }
+                  },
+                  "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-085.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "4f3f8b8b286133a1bada6d88c452a10a99a049446b308a3ee243db4635428549",
+        "facesMatched": true,
+        "imageSha256": "466912c9332a205b0b1053e76cf44d689347c8e5be57fcb9f81fdadb3324eb9a",
+        "imageBytes": 93004
+      },
+      "sameNameProducts": [
+        "DM-24 極神編(バイオレンス・ヘヴン) 第1弾"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-085",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm25-040",
+      "name": "ミラー・エッグ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-040",
+      "faces": [
+        {
+          "name": "ミラー・エッグ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "O・ドライブ 光x１・闇x２(このクリーチャーを召喚する時、自分のマナゾーンでさらに光１枚または闇２枚またはその両方をタップしてもよい。そうした場合、次の能力を得る)\n光：このクリーチャーをバトルゾーンに出した時、呪文を１枚、自分の墓地から手札に戻す。\n闇：このクリーチャーをバトルゾーンに出した時、クリーチャーを１体、自分の墓地から手札に戻す。",
+          "race": "サイバー・ウイルス",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1439ODrive": {
+          "options": [
+            {
+              "colors": [
+                "光"
+              ],
+              "defs": [
+                {
+                  "op": "Select",
+                  "g228Recovery": true,
+                  "origin": "grave",
+                  "to": "hand",
+                  "n": 1,
+                  "filter": {
+                    "g228Face": {
+                      "type": "spell"
+                    }
+                  },
+                  "title": "手札に戻す墓地の呪文を1枚選ぶ"
+                }
+              ]
+            },
+            {
+              "colors": [
+                "闇",
+                "闇"
+              ],
+              "defs": [
+                {
+                  "op": "Select",
+                  "g228Recovery": true,
+                  "origin": "grave",
+                  "to": "hand",
+                  "n": 1,
+                  "filter": {
+                    "g228Face": {
+                      "type": "creature"
+                    }
+                  },
+                  "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "c0669dcd96900c8499568b03bf872d727f70453e37b4be18911a7636fd58b601",
+        "facesMatched": true,
+        "imageSha256": "723be860c68422e3aa6df9550886ab15fe62222bad8f036e5763fc15afe6538a",
+        "imageBytes": 91825
+      },
+      "sameNameProducts": [
+        "DM-25 極神編 第2弾 人造神の創造(バイオレンス・クリエイター)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-040",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm24-081",
+      "name": "モルスク・パイレーツ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-081",
+      "faces": [
+        {
+          "name": "モルスク・パイレーツ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "O・ドライブ 光x１ (このクリーチャーを召喚する時、自分のマナゾーンで光のカードをさらに１枚タップしてもよい。そうした場合、次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、呪文を１枚、自分のマナゾーンから手札に戻す。",
+          "race": "マーフォーク",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1439ODrive": {
+          "options": [
+            {
+              "colors": [
+                "光"
+              ],
+              "defs": [
+                {
+                  "op": "Select",
+                  "g220ManaReturn": true,
+                  "origin": "mana",
+                  "to": "hand",
+                  "n": 1,
+                  "filter": {
+                    "spell": true
+                  },
+                  "title": "手札に戻すマナの呪文を1枚選ぶ"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-081.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "fa853831a20bb673115a3ddcc63325aa669e0bbd5dd793bb70a2040db45674de",
+        "facesMatched": true,
+        "imageSha256": "f16ac19af304c8c24176de630a5a45c002e39151a84d9834727751a408a8f15a",
+        "imageBytes": 122892
+      },
+      "sameNameProducts": [
+        "DM-24 極神編(バイオレンス・ヘヴン) 第1弾"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-081",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm27-033",
+      "name": "深塊封魔ゲルネウス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-033",
+      "faces": [
+        {
+          "name": "深塊封魔ゲルネウス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nO・ドライブ-光x１と火x１と自然x１(このクリーチャーを召喚する時、自分のマナゾーンでさらに光１枚と火１枚と自然１枚をタップしてもよい。そうした場合、次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻す。その後、クリーチャーを１体、自分の墓地から手札に戻す。",
+          "race": "グランド・デビル/ディープ・マリーン",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1439ODrive": {
+          "options": [
+            {
+              "colors": [
+                "光",
+                "火",
+                "自然"
+              ],
+              "defs": [
+                {
+                  "op": "Target",
+                  "anyOwner": true,
+                  "to": "hand"
+                },
+                {
+                  "op": "Select",
+                  "g228Recovery": true,
+                  "origin": "grave",
+                  "to": "hand",
+                  "n": 1,
+                  "filter": {
+                    "g228Face": {
+                      "type": "creature"
+                    }
+                  },
+                  "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm27-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "0c92efc7957eeb5d58681e09b242cc226faf5276162a1cdf88baa37131f486eb",
+        "facesMatched": true,
+        "imageSha256": "0eb6bfd53cd5be5916b175983da1c3c1047c8194a1126a2527cf4e0339d67e31",
+        "imageBytes": 100920
+      },
+      "sameNameProducts": [
+        "DM-27 極神編 第4弾 完全極神(パーフェクト・ヘヴン)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-033",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm24-012",
+      "name": "宣凶師ルギアス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-012",
+      "faces": [
+        {
+          "name": "宣凶師ルギアス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、タップする。\nO・ドライブ 水x２ (このクリーチャーを召喚する時、自分のマナゾーンで水のカードをさらに２枚タップしてもよい。そうした場合、次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "グラディエーター",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "title": "タップする相手のクリーチャーを1体選ぶ"
+          }
+        ],
+        "g1439ODrive": {
+          "options": [
+            {
+              "colors": [
+                "水",
+                "水"
+              ],
+              "defs": [
+                {
+                  "op": "Target",
+                  "anyOwner": true,
+                  "to": "hand"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "bfc41086c173f58ce4af3384854fc2e53d6ce7b898a0a8fdffe49a7523b97f8f",
+        "facesMatched": true,
+        "imageSha256": "47b4516fad8bd17f4d6442a962726892c774978e4eca2bf3f9540f66958179dc",
+        "imageBytes": 111615
+      },
+      "sameNameProducts": [
+        "DM-24 極神編(バイオレンス・ヘヴン) 第1弾"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-012",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24-085": 4,
+      "dm25-040": 4,
+      "dm24-081": 4,
+      "dm27-033": 4,
+      "dm24-012": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37539/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37542/",
+    "https://dm.takaratomy.co.jp/rule/qa/38697/",
+    "https://dm.takaratomy.co.jp/rule/qa/33406/",
+    "https://dm.takaratomy.co.jp/rule/qa/49223/",
+    "https://dm.takaratomy.co.jp/rule/qa/40938/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/37539/",
+      "sha256": "540e2abef31499411e49b01fe73a619b519f0790442c1f8737da61282b3b430c",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/37542/",
+      "sha256": "de3889b8d8729699bc3b9c150496420442ff7a8c4bc51804bb2459549d41ca8f",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/38697/",
+      "sha256": "3b0d45b654a89823a1290dc4574ebe7ff94568be9b196fe1bb939d4c8bde8099",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33406/",
+      "sha256": "752584fd4d916b2bef32d8692ee3cbb90f22ebddbbb1e10823d762509041e479",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/49223/",
+      "sha256": "8bb41781472622ddbb6b0c3c8f41110b24323fb2b9552bb7e35bfbfeff5da879",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40938/",
+      "sha256": "e035798f53495c7b543eafe35e388f09d53ccc2c1c775c50b5d0acc972979908",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    }
+  ],
+  "testCorrections": [
+    "テスト用の行動はvalueを直接持たずdecision.choices[action.choice]を参照する。手動指定はstepの第3引数に指定しcancelManaで復帰する。",
+    "一般支払いテストで自己バウンスした個体のO・ドライブが消える正しい挙動を反映。文明参照はcivilizations/civ双方、複文明の基本支払いとジョー星は実際の使用を再現して修正。"
+  ]
+}
