@@ -14,7 +14,7 @@ for(const row of m.cards){
  row.sameNameProducts=[...list.matchAll(/<li[^>]*>([\s\S]*?)<\/li>/g)].map(x=>textContent(x[1]));
  row.reprintVerification={source:row.source,result:'公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。'};
 }
-m.rulings=['https://dm.takaratomy.co.jp/rule/qa/31899/','https://dm.takaratomy.co.jp/rule/qa/31917/'];
+m.rulings=[...new Set(['https://dm.takaratomy.co.jp/rule/qa/31899/','https://dm.takaratomy.co.jp/rule/qa/31917/',...(m.extraRulings||[])])];
 m.rulingVerification=[];
-for(const source of m.rulings){const response=await fetch(source,{signal:AbortSignal.timeout(30000)});assert.ok(response.ok);const html=await response.text();m.rulingVerification.push({source,sha256:hash(html),result:source.endsWith('31899/')?'超GRは12枚、同名2枚まで。':'バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。'});}
+for(const source of m.rulings){const response=await fetch(source,{signal:AbortSignal.timeout(30000)});assert.ok(response.ok);const html=await response.text();m.rulingVerification.push({source,sha256:hash(html),result:source.endsWith('31899/')?'超GRは12枚、同名2枚まで。':source.endsWith('31917/')?'バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。':m.rulingNotes?.[source]||'関連する公式裁定の本文を取得して照合。'});}
 fs.writeFileSync(path,JSON.stringify(m,null,2)+'\n');console.log('Verified images, same-name products and GR rulings for '+m.cards.length+' cards.');

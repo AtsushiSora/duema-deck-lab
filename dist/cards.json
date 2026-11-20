@@ -250347,15 +250347,175 @@
       ],
       "supportBatch": "phase-1386",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-093",
+      "name": "PAIPAI・ピンナポー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ビートジョッキー/ワンダフォース",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体破壊してもよい。そうしたら、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-093",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SacrificeAlly413",
+          "defs": [
+            {
+              "op": "AuraGr1353"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1387",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-094",
+      "name": "TEKUTEKU・ボンバヘイ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ビートジョッキー/ワンダフォース",
+      "text": "このクリーチャーが破壊された時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-094",
+      "limit": 4,
+      "g172Death": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "supportBatch": "phase-1387",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd11-a05",
+      "name": "ドトシオール・タバローチェ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "このクリーチャーがバトルゾーンに出た時、呪文を１枚、自分の墓地から手札に戻す。その後、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd11-a05",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "g228Recovery": true,
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "filter": {
+            "g228Face": {
+              "type": "spell"
+            }
+          },
+          "title": "手札に戻す墓地の呪文を1枚選ぶ"
+        },
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "supportBatch": "phase-1387",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-077",
+      "name": "サイバー a.k.a. 獅子",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "カードを３枚引く。その後、手札を２枚捨てる。\nGR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-077",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 3
+        },
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 2
+        },
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "supportBatch": "phase-1387",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-028",
+      "name": "マン・オブ・すて～る",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\nGR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-028",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 1,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "to": "mana",
+          "title": "マナに置く相手のクリーチャーを1体選ぶ"
+        },
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "supportBatch": "phase-1387",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1386,
+    "phase": 1387,
     "checkedAt": "2026-11-20",
-    "baseCount": 8109,
+    "baseCount": 8114,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8114,
+    "totalCount": 8119,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -273537,6 +273697,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8109,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1386,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8109,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8114,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
