@@ -1,0 +1,394 @@
+{
+  "phase": 1402,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8187,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31970/",
+    "https://dm.takaratomy.co.jp/rule/qa/31971/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/31970/": "マナの枚数と指定文明のカードが1枚以上存在することを確認する。",
+    "https://dm.takaratomy.co.jp/rule/qa/31971/": "条件を満たしていない時点でも誘発し、解決前に条件を満たせば使用できる。"
+  },
+  "cards": [
+    {
+      "id": "dmsd11-003",
+      "name": "ホッテ・ホッタ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd11-003",
+      "faces": [
+        {
+          "name": "ホッテ・ホッタ",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナドライブ ３（水）：このクリーチャーが攻撃する時、自分のマナゾーンのカードが３枚以上で水文明があれば、カードを１枚引く。",
+          "race": "トリックス/ワンダフォース",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "all": [
+                {
+                  "g334ZoneCount": {
+                    "zone": "mana",
+                    "min": 3
+                  }
+                },
+                {
+                  "g1064ManaColors": [
+                    "水"
+                  ]
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "gr": true,
+        "manaValue": 0
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd11-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "9176c6a2bf881ba566dd237b84e85fe009e3742164c7815a91fd9b058a094e54",
+        "facesMatched": true,
+        "imageSha256": "2357c0e77281564fc3d64310717502f5630f3bcfde807d35813ab1e65def5c01",
+        "imageBytes": 118280
+      },
+      "sameNameProducts": [
+        "DMSD-11 超GRスタートデッキ キャップのWAVEガチャ・パラダイス"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd11-003",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp10-096",
+      "name": "パキラキⅡ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-096",
+      "faces": [
+        {
+          "name": "パキラキⅡ",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナドライブ ３（自然）：このクリーチャーがバトルゾーンを離れた時、自分のマナゾーンのカードが３枚以上で自然文明があれば、自分の山札の上から１枚目をマナゾーンに置く。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+          "race": "グランセクト/デリートロン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Leave": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "all": [
+                {
+                  "g334ZoneCount": {
+                    "zone": "mana",
+                    "min": 3
+                  }
+                },
+                {
+                  "g1064ManaColors": [
+                    "自然"
+                  ]
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "gr": true,
+        "manaValue": 0
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp10-096.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "18d67dea91ed0c2847c3616ac1c4f9bb26cc2506d5dde07e63a9a34c93f8e9af",
+        "facesMatched": true,
+        "imageSha256": "da4e1a682aad1c77c98300d7e4c99777f471f81c45ad158afe3ee229beaf54fb",
+        "imageBytes": 173845
+      },
+      "sameNameProducts": [
+        "DMRP-10 超天篇 拡張パック第2弾 青きC.A.P.と漆黒の大卍罪"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-096",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp10-001",
+      "name": "白皇鎧の意志 ベアスケス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-001",
+      "faces": [
+        {
+          "name": "白皇鎧の意志 ベアスケス",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナドライブ４ （光）：このクリーチャーがバトルゾーンを離れた時、自分のマナゾーンのカードが４枚以上で光文明があれば、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。",
+          "race": "メタリカ/ワンダフォース",
+          "powerText": "1500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Leave": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "all": [
+                {
+                  "g334ZoneCount": {
+                    "zone": "mana",
+                    "min": 4
+                  }
+                },
+                {
+                  "g1064ManaColors": [
+                    "光"
+                  ]
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "gr": true,
+        "manaValue": 0
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp10-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "0c82429112abc1c7c9c1262ba061c92c6f773de8a5c467e60c761c5ba86e1123",
+        "facesMatched": true,
+        "imageSha256": "a04fc26d0c032cda9784ddc9382498077ff5351dda67f3402a25e91c4da8166c",
+        "imageBytes": 154044
+      },
+      "sameNameProducts": [
+        "DMRP-10 超天篇 拡張パック第2弾 青きC.A.P.と漆黒の大卍罪"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-001",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp10-034",
+      "name": "捕縛の意志 フェルメル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-034",
+      "faces": [
+        {
+          "name": "捕縛の意志 フェルメル",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナドライブ ２ （光）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが２枚以上で光文明があれば、相手のクリーチャーを１体選び、タップする。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+          "race": "メタリカ/ワンダフォース",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "all": [
+                {
+                  "g334ZoneCount": {
+                    "zone": "mana",
+                    "min": 2
+                  }
+                },
+                {
+                  "g1064ManaColors": [
+                    "光"
+                  ]
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "tap": true
+              }
+            ]
+          }
+        ],
+        "gr": true,
+        "manaValue": 0
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp10-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "b76ae39fcffbe4e102301f4343d0a3bcf27a90c1e7d61507858a87bea8139d9b",
+        "facesMatched": true,
+        "imageSha256": "48a6c67915bed3c32fa46ee45fd789f8a2c6c86cc7152776a1bfed09505d0669",
+        "imageBytes": 151398
+      },
+      "sameNameProducts": [
+        "DMRP-10 超天篇 拡張パック第2弾 青きC.A.P.と漆黒の大卍罪"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-034",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp11-032",
+      "name": "続召の意志 マーチス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-032",
+      "faces": [
+        {
+          "name": "続召の意志 マーチス",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナドライブ ５ （光）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが５枚以上で光文明があれば、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+          "race": "メタリカ/ワンダフォース",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "all": [
+                {
+                  "g334ZoneCount": {
+                    "zone": "mana",
+                    "min": 5
+                  }
+                },
+                {
+                  "g1064ManaColors": [
+                    "光"
+                  ]
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "AuraGr1353"
+              }
+            ]
+          }
+        ],
+        "gr": true,
+        "manaValue": 0
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "e45ff6ee2fae73ef9b69d5bf6e375ae52a93ecf8013ee39ec42e6afcda2491a7",
+        "facesMatched": true,
+        "imageSha256": "0424d2ea5f801b038021b25070cb22110fcfff698ce8ee98da27f025b3da72d1",
+        "imageBytes": 135413
+      },
+      "sameNameProducts": [
+        "DMRP-22 王来MAX最終弾 切札!マスターCRYMAX!!",
+        "DMRP-21 王来MAX第1弾 鬼ヤバ逆襲S-MAX!!",
+        "DMRP-11 超天篇 拡張パック第3弾 零誕！魔神おこせジョルネード1059!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-032",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmsd11-003": 4,
+      "dmrp10-096": 4,
+      "dmrp10-001": 4,
+      "dmrp10-034": 4,
+      "dmrp11-032": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/31970/",
+    "https://dm.takaratomy.co.jp/rule/qa/31971/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31970/",
+      "sha256": "e9a4d20ba0541bca6d8fdf9432f9a610285d7f2953691bfc964abeab4c7a5a6c",
+      "result": "マナの枚数と指定文明のカードが1枚以上存在することを確認する。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31971/",
+      "sha256": "0156d843b108e9511dff433d8fe792b487f49db3f905c25fef76f2d25aae0224",
+      "result": "条件を満たしていない時点でも誘発し、解決前に条件を満たせば使用できる。"
+    }
+  ]
+}

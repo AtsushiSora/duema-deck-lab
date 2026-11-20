@@ -253160,15 +253160,241 @@
       },
       "supportBatch": "phase-1401",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmsd11-003",
+      "name": "ホッテ・ホッタ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "トリックス/ワンダフォース",
+      "text": "マナドライブ ３（水）：このクリーチャーが攻撃する時、自分のマナゾーンのカードが３枚以上で水文明があれば、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd11-003",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 3
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "水"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-096",
+      "name": "パキラキⅡ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "グランセクト/デリートロン",
+      "text": "マナドライブ ３（自然）：このクリーチャーがバトルゾーンを離れた時、自分のマナゾーンのカードが３枚以上で自然文明があれば、自分の山札の上から１枚目をマナゾーンに置く。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-096",
+      "limit": 4,
+      "g172Leave": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 3
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "自然"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-001",
+      "name": "白皇鎧の意志 ベアスケス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 1500,
+      "race": "メタリカ/ワンダフォース",
+      "text": "マナドライブ４ （光）：このクリーチャーがバトルゾーンを離れた時、自分のマナゾーンのカードが４枚以上で光文明があれば、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-001",
+      "limit": 4,
+      "g172Leave": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 4
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "光"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-034",
+      "name": "捕縛の意志 フェルメル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "メタリカ/ワンダフォース",
+      "text": "マナドライブ ２ （光）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが２枚以上で光文明があれば、相手のクリーチャーを１体選び、タップする。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-034",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 2
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "光"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "tap": true
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-032",
+      "name": "続召の意志 マーチス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "メタリカ/ワンダフォース",
+      "text": "マナドライブ ５ （光）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが５枚以上で光文明があれば、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-032",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 5
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "光"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "AuraGr1353"
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1402",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1401,
+    "phase": 1402,
     "checkedAt": "2026-11-20",
-    "baseCount": 8184,
-    "newEffectCards": 3,
+    "baseCount": 8187,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8187,
+    "totalCount": 8192,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -276560,6 +276786,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8184,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1401,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8184,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 8187,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
