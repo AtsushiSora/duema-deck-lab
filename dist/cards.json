@@ -263656,15 +263656,166 @@
       ],
       "supportBatch": "phase-1467",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp01-079",
+      "name": "暗黒の太陽",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを _3000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-079",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -3000,
+          "g242PowerMinus": true,
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1468",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-079",
+      "name": "塵王の黒穴",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを?3000 する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-079",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -3000,
+          "g242PowerMinus": true,
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1468",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex2-006",
+      "name": "聖霊王ドリーム・アルカディアス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 12500,
+      "race": "エンジェル・コマンド",
+      "text": "進化：エンジェル・コマンド・クリーチャー１体の上に置く。\nブロッカーブロッカー\nT・ブレイカー\nエスケープ\nこのクリーチャーがタップしていれば、自分はゲームに負けない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-006",
+      "limit": 4,
+      "evolution": {
+        "race": "エンジェル・コマンド"
+      },
+      "blocker": true,
+      "breaker": 3,
+      "escape": true,
+      "g1468TappedNoLose": true,
+      "supportBatch": "phase-1468",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd07-007",
+      "name": "無双竜鬼ミツルギブースト",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "アース・ドラゴン/アーマード・ドラゴン/ハンター",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、このクリーチャーをマナゾーンに置いてもよい。そうした場合、相手のパワー6000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd07-007",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SelfManaFollow1468",
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "maxPower": 6000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1468",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr02-003",
+      "name": "若頭 鬼流院 刃",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 17000,
+      "race": "ガイア・コマンド/ビーストフォーク/ハンター",
+      "text": "このクリーチャーをバトルゾーンに出した時、自然のハンター・クリーチャーを好きな数、自分のマナゾーンからバトルゾーンにタップして出してもよい。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-003",
+      "limit": 4,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": "all",
+          "optional": true,
+          "deploy": true,
+          "tapped": true,
+          "filter": {
+            "creature": true,
+            "color": "自然",
+            "race": "ハンター"
+          }
+        }
+      ],
+      "supportBatch": "phase-1468",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1467,
+    "phase": 1468,
     "checkedAt": "2026-11-20",
-    "baseCount": 8480,
-    "newEffectCards": 4,
+    "baseCount": 8484,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8484,
+    "totalCount": 8489,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -287981,6 +288132,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 8480,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1467,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8480,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 8484,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

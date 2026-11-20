@@ -3002,6 +3002,9 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_ManaTurn297':(s.extLimits??=[]).push({kind:'g297ManaTurn',player:t.p,controller:t.p,turn:s.turn,who:s.active,expires:'end'});break;
+ case'g34_SelfManaFollow1468':{
+  if(sourceHost474(s,t))choice(s,t,'このクリーチャーをマナに置く？',[opt('マナに置く',true,10),skip()]);break;
+ }
  case'g34_SelfMana297':{
   const host=t.g536Source?sourceHost474(s,t):x?{p:t.p,x}:null;
   if(!host||host.x.sealed&&t.g536Source)break;
@@ -7326,6 +7329,7 @@ export function createSixPhotoRules(api){
    (host.x.under??=[]).push(base);
   }
  }break;
+ case'g34_SelfManaFollow1468':if(v&&sourceHost474(s,t))start(s,t,[{op:'SelfMana297',g536Source:true},...t.defs]);break;
  case'g34_SelfSacrifice407':if(v){const present=s.players.some(p=>p.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))));if(present)start(s,t,[{op:'SelfDestroy'},...(t.defs||[])]);}break;
  case'g34_GraveUse1226':if(v){
   const y=own.grave.find(x=>x.uid===v.uid&&(x.zoneSerial||0)===v.serial&&!x.faceDown);
@@ -8642,7 +8646,7 @@ export function createSixPhotoRules(api){
   });
  },
  noLose(s,p){
-  return hasBouncer1294(s,p)||(s.extLimits||[]).some(l=>l.kind==='g34NoLose'&&l.player===p)||
+  return creatures(s,p).some(x=>x.tapped&&!x.sealed&&effective(x,s).g1468TappedNoLose)||hasBouncer1294(s,p)||(s.extLimits||[]).some(l=>l.kind==='g34NoLose'&&l.player===p)||
    active(s,p,'valhalla').some(()=>s.players[p].mana.filter(x=>api.manaColors(card(x),s,p).includes('光')).length>=9)||
    creatures(s,1-p).some(x=>!x.sealed&&effective(x,s).g995OpponentCannotLose);
  },
