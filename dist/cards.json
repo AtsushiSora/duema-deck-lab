@@ -249793,15 +249793,150 @@
       "gr": true,
       "supportBatch": "phase-1382",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmsd09-010",
+      "name": "補充 CL-20",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "トリックス/デリートロン",
+      "text": "このクリーチャーがバトルゾーンを離れた時、カードを１枚引く。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd09-010",
+      "limit": 4,
+      "g172Leave": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1383",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex05-003",
+      "name": "制圧の意志 エルグレ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "メタリカ/ワンダフォース",
+      "text": "このクリーチャーがバトルゾーンを離れた時、相手のクリーチャーを１体選び、タップする。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex05-003",
+      "limit": 4,
+      "g172Leave": [
+        {
+          "op": "Target",
+          "tap": true
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1383",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex05-009",
+      "name": "シニガミ 丁-四式",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "マフィ・ギャング/デリートロン",
+      "text": "このクリーチャーがバトルゾーンを離れた時、自分の山札の上から２枚を墓地に置く。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex05-009",
+      "limit": 4,
+      "g172Leave": [
+        {
+          "op": "Mill",
+          "n": 2
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1383",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex05-013",
+      "name": "ナギー・ナグナグ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ビートジョッキー/ワンダフォース",
+      "text": "このクリーチャーがバトルゾーンを離れた時、相手のパワー2000以下のクリーチャーを１体破壊する。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex05-013",
+      "limit": 4,
+      "g172Leave": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 2000,
+            "g199Power": true
+          }
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1383",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex05-017",
+      "name": "シャギーⅡ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "グランセクト/デリートロン",
+      "text": "このクリーチャーがバトルゾーンを離れた時、カードを１枚、自分のマナゾーンから手札に戻してもよい。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex05-017",
+      "limit": 4,
+      "g172Leave": [
+        {
+          "op": "Select",
+          "g220ManaReturn": true,
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "filter": {},
+          "optional": true,
+          "title": "手札に戻すマナのカードを1枚選ぶ"
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1383",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1382,
+    "phase": 1383,
     "checkedAt": "2026-11-20",
-    "baseCount": 8089,
-    "newEffectCards": 4,
-    "newVanillaCards": 1,
-    "totalCount": 8094,
+    "baseCount": 8094,
+    "newEffectCards": 5,
+    "newVanillaCards": 0,
+    "totalCount": 8099,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -272927,6 +273062,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8089,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1382,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8089,
+        "newEffectCards": 4,
+        "newVanillaCards": 1,
+        "totalCount": 8094,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
