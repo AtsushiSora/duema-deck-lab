@@ -15957,5 +15957,146 @@
         }
       ]
     }
+  },
+  "dmex05-004": {
+    "phase": 1466,
+    "faces": [
+      {
+        "name": "音奏 リコピン",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n自分の他のクリーチャーがバトルゾーンに出た時、カードを１枚引く。",
+        "race": "メタリカ/ワンダフォース",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g250EntryDraw": {
+        "self": false,
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      }
+    }
+  },
+  "promoy15-sp2d04": {
+    "phase": 1466,
+    "faces": [
+      {
+        "name": "チキチキ・JET・サーキット",
+        "typeText": "D2フィールド",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "自分のクリーチャーすべてに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "field",
+      "power": 0,
+      "d2Field": true,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ]
+    }
+  },
+  "dm24ex4-073": {
+    "phase": 1466,
+    "faces": [
+      {
+        "name": "導姫ユーキ",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーを召喚する時、自分の手札を１枚捨ててもよい。そうしたら、このクリーチャーの召喚コストを２少なくする。\nスピードアタッカー（このクリーチャーは召喚酔いしない）",
+        "race": "ヒューマノイド",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "g1240DiscardReduction": 2
+    }
+  },
+  "dmrp12-063": {
+    "phase": 1466,
+    "faces": [
+      {
+        "name": "忍者フロシキくん",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "min": 3,
+              "filter": {
+                "creature": true,
+                "g1428Gr": true
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "mana"
+            }
+          ]
+        }
+      ]
+    }
   }
 }
