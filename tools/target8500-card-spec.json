@@ -2458,5 +2458,255 @@
       "gr": true,
       "manaValue": 0
     }
+  },
+  "promoy18-024": {
+    "phase": 1395,
+    "faces": [
+      {
+        "name": "C.A.P. カイト",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "マナドライブ３（水）：このクリーチャーが攻撃する時、自分のマナゾーンのカードが３枚以上で水文明があれば、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "トリックス/ワンダフォース",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "mana",
+              "min": 3
+            }
+          },
+          "defs": [
+            {
+              "op": "IfMana",
+              "n": 1,
+              "color": "水",
+              "defs": [
+                {
+                  "op": "Target",
+                  "g190Freeze": "self",
+                  "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmrp10-021": {
+    "phase": 1395,
+    "faces": [
+      {
+        "name": "ゴウモン 丙-二式",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "マナドライブ３（闇）：このクリーチャーが攻撃する時、自分のマナゾーンのカードが３枚以上で闇文明があれば、相手の手札を１枚見ないで選び、捨てさせる。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "マフィ・ギャング/デリートロン",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "mana",
+              "min": 3
+            }
+          },
+          "defs": [
+            {
+              "op": "IfMana",
+              "n": 1,
+              "color": "闇",
+              "defs": [
+                {
+                  "op": "Discard",
+                  "n": 1,
+                  "random": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmrp11-045": {
+    "phase": 1395,
+    "faces": [
+      {
+        "name": "ヨモツ 丁-三式",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "マナドライブ５（闇）：このクリーチャーが攻撃する時、自分のマナゾーンのカードが５枚以上で闇文明があれば、闇のカードを１枚、自分の墓地から手札に戻す。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "マフィ・ギャング/デリートロン",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "mana",
+              "min": 5
+            }
+          },
+          "defs": [
+            {
+              "op": "IfMana",
+              "n": 1,
+              "color": "闇",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "to": "hand",
+                  "n": 1,
+                  "filter": {
+                    "anyFaceColor": "闇"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmrp11-019": {
+    "phase": 1395,
+    "faces": [
+      {
+        "name": "マジン 丁-二式",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "マナドライブ６（闇）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが６枚以上で闇文明があれば、相手は自身のクリーチャーを１体選び、破壊する。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "マフィ・ギャング/デリートロン",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "mana",
+              "min": 6
+            }
+          },
+          "defs": [
+            {
+              "op": "IfMana",
+              "n": 1,
+              "color": "闇",
+              "defs": [
+                {
+                  "op": "OpponentSelect",
+                  "n": 1,
+                  "to": "grave"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmrp11-016": {
+    "phase": 1395,
+    "faces": [
+      {
+        "name": "天啓 CX-20",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "マナドライブ６（水）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが６枚以上で水文明があれば、カードを３枚引いてもよい。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "トリックス/デリートロン",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "mana",
+              "min": 6
+            }
+          },
+          "defs": [
+            {
+              "op": "IfMana",
+              "n": 1,
+              "color": "水",
+              "defs": [
+                {
+                  "op": "Offer",
+                  "defs": [
+                    {
+                      "op": "Draw",
+                      "n": 3
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
   }
 }
