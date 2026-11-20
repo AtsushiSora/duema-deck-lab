@@ -265698,15 +265698,192 @@
       ],
       "supportBatch": "phase-1481",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex2-069",
+      "name": "新世代龍覇 グレングラッサ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "ガイアール・コマンド・ドラゴン/ヒューマノイド爆/ドラグナー",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーが出た時、自分のマナゾーンにあるカードと同じ文明を持つ、コスト４以下のドラグハート・ウエポンを１枚、自分の超次元ゾーンから出す。（このクリーチャーに装備する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-069",
+      "limit": 4,
+      "trigger": true,
+      "speedAttacker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DeployDragheart1361",
+          "weaponOnly": true
+        }
+      ],
+      "supportBatch": "phase-1482",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy24-092",
+      "name": "次世代龍覇 Q.E.Deux",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 4000,
+      "race": "クリスタル・コマンド・ドラゴン/リキッド・ピープル閃/ドラグナー",
+      "text": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nこのクリーチャーが出た時、相手のエレメントを１つ選び、持ち主の手札に戻す。\nこのクリーチャーが出た時、自分のマナゾーンにあるカードと同じ文明を持つ、コスト４以下のドラグハート・ウエポンを１つ、自分の超次元ゾーンから出し、このクリーチャーに装備する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy24-092",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "element": true,
+          "to": "hand",
+          "toOwnerHand": true
+        }
+      ],
+      "g527ExtraEntry": [
+        {
+          "label": "ドラグハートを出す",
+          "defs": [
+            {
+              "op": "DeployDragheart1361",
+              "weaponOnly": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1482",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd14-016",
+      "name": "爆龍覇 ヒビキ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ヒューマノイド爆/ドラグナー",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーがバトルゾーンに出た時、自分のマナゾーンにあるカードと同じ文明を持つ、コスト３以下のドラグハート・ウエポンを１枚、自分の超次元ゾーンからバトルゾーンに出してもよい。（このクリーチャーに装備する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd14-016",
+      "limit": 4,
+      "speedAttacker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "ウエポンを出す？",
+          "defs": [
+            {
+              "op": "DeployDragheart1361",
+              "weaponOnly": true,
+              "weaponMax": 3
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1482",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-009",
+      "name": "龍覇 M・A・S",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 2000,
+      "race": "リキッド・ピープル閃/ドラグナー",
+      "text": "このクリーチャーをバトルゾーンに出した時、コスト４以下の水のドラグハートを１枚、自分の超次元ゾーンからバトルゾーンに出す。（それがウエポンであれば、このクリーチャーに装備して出す）\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のコスト６以下のクリーチャーを１体選び、持ち主の手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-009",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DeployDragheart1361",
+          "options": [
+            {
+              "max": 4,
+              "color": "水"
+            }
+          ]
+        }
+      ],
+      "g527ExtraEntry": [
+        {
+          "label": "コスト6以下を手札に戻す（任意）",
+          "defs": [
+            {
+              "op": "Target",
+              "to": "hand",
+              "toOwnerHand": true,
+              "filter": {
+                "max": 6
+              },
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1482",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx18-017",
+      "name": "龍覇 イメン=ブーゴ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ビーストフォーク號/ドラグナー",
+      "text": "このクリーチャーをバトルゾーンに出した時、自然のコスト４以下のドラグハートを１枚、自分の超次元ゾーンからバトルゾーンに出す。（それがウエポンであれば、このクリーチャーに装備して出す）\n自分のマナゾーンにあるカードを、すべての文明のカードとして扱う。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx18-017",
+      "limit": 4,
+      "breaker": 2,
+      "g51Courtney": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DeployDragheart1361",
+          "options": [
+            {
+              "max": 4,
+              "color": "自然"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1482",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1481,
+    "phase": 1482,
     "checkedAt": "2026-11-20",
-    "baseCount": 8535,
+    "baseCount": 8540,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8540,
+    "totalCount": 8545,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -290219,6 +290396,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 8535,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1481,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8535,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8540,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
