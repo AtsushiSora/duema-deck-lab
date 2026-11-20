@@ -7,5 +7,5 @@ for(const seed of [1372,2744])test('the five requested cards use legal forties w
   if(n%19===0){const copy=JSON.parse(JSON.stringify(s));assert.deepEqual(e.getLegalActions(copy),e.getLegalActions(s));assert.deepEqual(e.chooseAI(copy),action);s=copy;}
   e.step(s,action);assert.deepEqual(e.physicalCards(s).map(x=>x.uid).sort(),ids);
  }
- assert.notEqual(s.winner,null,JSON.stringify(e.runSummary(s)));assert.equal(e.runSummary(s).version,'0.602.0');
+ assert.notEqual(s.winner,null,JSON.stringify(e.runSummary(s)));assert.equal(e.runSummary(s).version,e.ENGINE_VERSION);
 });

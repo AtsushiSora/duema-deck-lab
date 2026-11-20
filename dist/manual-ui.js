@@ -38,6 +38,8 @@ export function manualModel(s,ui={}){
  if(s.decision?.type==='mugen')title='タップする'+card(s.decision.source).mugenCrime+'体を選ぼう';
  if(s.decision?.type==='block'&&actions.some(a=>a.kind==='untapRedirect1295'))title='攻撃先を変更する能力を選ぼう';
  else if(s.decision?.type==='block'&&actions.some(a=>a.kind==='guardman'))title='ブロック・ガードマンを選ぼう';
+ const lastAttack=s.log.findLastIndex(e=>e.type==='attack');
+ if(s.decision?.type==='block'&&s.attack&&s.log.slice(lastAttack+1).some(e=>e.attackContinues===s.attack.attacker))title='全タップ後も、宣言済みの攻撃は続行中';
  let help=s.winner!==null?s.reason:!human?'相手の手札や山札は非公開です。':s.decision?decisionHelp(s):s.phase==='charge'?'手札をタップしてから「マナに置く」。1ターンに1枚です。':s.phase==='main'?'選んだカードの能力を確認して、召喚・呪文を使えます。':attacker?'光っている相手のカードか、プレイヤーへの攻撃をタップ。':'「攻撃可」のカードをタップ。対象を選んでから攻撃します。';
  if(human&&!s.decision&&s.phase==='main'){const zones=[...new Set(actions.filter(a=>a.kind==='play'&&['mana','grave'].includes(a.origin)).map(a=>a.origin==='mana'?'マナ':'墓地'))];if(zones.length){if(!hand)title='使うカードを選ぼう';help='手札のカード、または「'+zones.join('・')+'から使う」から選べます。';}}
  if(rinne.length&&!hand){
@@ -51,6 +53,10 @@ export function manualModel(s,ui={}){
 }
 function decisionHelp(s){
  const d=s.decision;
+ if(d.type==='block'){
+  const attacker=s.attack&&s.players[s.active].battle.find(x=>x.uid===s.attack.attacker);
+  if(attacker)return `「${card(attacker).name}」の攻撃はすでに宣言されています。攻撃中にタップしても、この攻撃は止まりません。ブロックなどの防御を選んでください。`;
+ }
  if(d.type==='silent496')return '能力を使うと、このクリーチャーはタップしたままになります。効果はほかのカードのアンタップ後に解決します。';
  if(d.task?.g1324ChooseCreature&&d.choices.some(c=>c.value))return '相手の手札からクリーチャーを1体選びます。相手がそれを出すか決めます。';
  if(d.task?.g223Inspect&&d.task.chooseOne)return '相手の手札を確認し、条件に合うカードから1枚選びます。';
@@ -190,7 +196,7 @@ export function manualPrimaryAction(s,ui,m=manualModel(s,ui)){
 }
 export const MANUAL_LOG_FILTERS=[['all','すべて'],['summon','召喚・呪文'],['attack','攻撃・バトル'],['ability','能力'],['mana','マナ'],['shield','シールド'],['draw','ドロー・確認']];
 function logMatches(e,filter){
- const type=String(e.type||''),summon=['play','enter','deploy','evolve','dddSummon','mugenSummon','gaiaSummon'].includes(type),attack=['attack','block','battle','battleWin','fight','afterBattle','guardman','break'].includes(type),mana=/mana|ramp|charge/i.test(type),shield=/shield|break|exLife/i.test(type),draw=['draw','search','peek','look','scry','reorder'].includes(type),system=['start','turn','phase','finish','skip','skipTurn','skipNextTurn','extraTurn'].includes(type);
+ const type=String(e.type||''),summon=['play','enter','deploy','evolve','dddSummon','mugenSummon','gaiaSummon'].includes(type),attack=['attack','block','battle','battleWin','fight','afterBattle','guardman','break'].includes(type)||type==='finish'&&String(e.text||'').includes('ダイレクトアタック'),mana=/mana|ramp|charge/i.test(type),shield=/shield|break|exLife/i.test(type),draw=['draw','search','peek','look','scry','reorder'].includes(type),system=['start','turn','phase','finish','skip','skipTurn','skipNextTurn','extraTurn'].includes(type);
  return filter==='all'||filter==='summon'&&summon||filter==='attack'&&attack||filter==='mana'&&mana||filter==='shield'&&shield||filter==='draw'&&draw||filter==='ability'&&!summon&&!attack&&!mana&&!shield&&!draw&&!system;
 }
 export function manualLogHTML(s,{spectator=false,filter='all',limit=20}={}){

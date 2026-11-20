@@ -1,0 +1,147 @@
+{
+  "phase": 1374,
+  "kind": "attack-feedback-improvement",
+  "checkedAt": "2026-11-20",
+  "baseline": "c3152d3e",
+  "status": "passed",
+  "engineVersion": "0.602.1",
+  "aiVersion": "2.3.418",
+  "changes": [
+    "攻撃中の全タップのログに、現在の攻撃者とタップだけでは攻撃中止にならない説明を付ける。",
+    "全タップ後の防御選択画面は「全タップ後も、宣言済みの攻撃は続行中」と見出しに表示。補足文が省略されるスマホ・横画面でも見出しで伝える。",
+    "ブロック選択の説明に攻撃者名と攻撃続行の理由を表示。",
+    "ダイレクト成立のログに攻撃者名と公開カードへのリンクを残す。「攻撃・バトル」フィルターにも結果を表示。",
+    "旧ログはそのまま読み込み、保存された勝敗理由の文言は維持。カードID・デッキ・対戦履歴の形式は維持。"
+  ],
+  "behavior": "攻撃可能な行動・全タップ・ニンジャ・チェンジ・勝敗判定を変更しない。変更はログの文言・既存ログの任意情報・表示ガイドとバージョン整合性。",
+  "compatibility": "ENGINE_VERSIONに0.602.1を付け、オンライン互換性情報とreleaseを同期。AI2.3.418は維持。ログに省略可能なattackContinues(公開中の攻撃者UID)と既存cardIdを使用し、旧ログの移行は不要。",
+  "counts": {
+    "before": 8074,
+    "after": 8074,
+    "added": 0,
+    "duplicates": 0
+  },
+  "existingDefinitionsUnchanged": 8074,
+  "results": {
+    "focused-final": {
+      "name": "focused-final",
+      "command": [
+        "node",
+        "--test",
+        "tests/attack-continuation-ui.test.mjs",
+        "tests/chaos-attack-continuation.test.mjs",
+        "tests/log-filter.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.79,
+      "log": "tmp/duema-phase-1374/focused-final.log",
+      "passed": 17,
+      "failed": 0
+    },
+    "related-ui-short": {
+      "name": "related-ui-short",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=^(AI announces|pause cancels|speed changes|changed states|snapshots and|public attacks|paused playback|initial human|a human block|draw narration|both public|phone restores|the board conceals|Galaxyshield|manual screen|selecting an attacker|quadruple|single effect|Mugen Crime|many choices|the screen never|end-turn review|normal and twinpact|mana summons|desktop hand|card names and log|NewWorld fields|Redzone hand|Murder hand|board badges)",
+        "tests/ai-playback.test.mjs",
+        "tests/manual-ui.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.958,
+      "log": "tmp/duema-phase-1374/related-ui-short.log",
+      "passed": 30,
+      "failed": 0
+    },
+    "related-games": {
+      "name": "related-games",
+      "command": [
+        "node",
+        "--test",
+        "tests/requested1372-games.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 8.446,
+      "log": "tmp/duema-phase-1374/related-games.log",
+      "passed": 2,
+      "failed": 0
+    },
+    "online-short": {
+      "name": "online-short",
+      "command": [
+        "node",
+        "--test",
+        "tests/online-runtime.test.mjs",
+        "tests/online-app.test.mjs",
+        "tests/online-client.test.mjs",
+        "tests/online-ui.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.17,
+      "log": "tmp/duema-phase-1374/online-short.log",
+      "passed": 30,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.587,
+      "log": "tmp/duema-phase-1374/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 15.127,
+      "log": "tmp/duema-phase-1374/audit.log"
+    }
+  },
+  "totalTestsPassed": 79,
+  "sourceSha256": {
+    "dist/engine.js": "1e7a1d40f87626993f32c20ccfa0d1fdabb3082c9356d93b7b61a6d71e75bd2d",
+    "dist/manual-ui.js": "eb801c98bcd7a6be5a48425f7dd4ed3f31256d4117ca5122f97948a7a551bccc",
+    "dist/release.json": "429daf2238054b1669de9a1ace8672d1b3f5e05777515ebde42e9b19731bea5a",
+    "dist/online-compatibility.js": "033abe0956973fa14ca0ec8df52464802b5aebeec200f59f74115eb6a0a95104",
+    "dist/cards.json": "cb912df5a49b69377f03aeb12b907072bb1585f1a85a2cc92f1984eed7690ae8",
+    "tests/attack-continuation-ui.test.mjs": "150e875df6c9a9858e5ba65bee43d6cabf381b21d3d241e449f4e6a7ff794178",
+    "tests/requested1372-games.test.mjs": "a313defa1d23e1ac505ae78fb0f066fa2efeab396aed9d65777cfff78ff3f78e"
+  },
+  "limitations": {
+    "visualVerification": "スマホ・デスクトップのHTMLとガイドモデルで見出し・説明・合法手の不変とエスケープを検証。ブラウザのスクリーンショットによる目視検証は未実施。",
+    "wholeNpmTest": "中断・合否未確認を維持。再実行しない。",
+    "broadUI": {
+      "status": "interrupted-not-aggregated",
+      "run": {
+        "name": "related-ui",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^(?!presentation timing preserves|every reachable UI action).*",
+          "tests/ai-playback.test.mjs",
+          "tests/manual-ui.test.mjs"
+        ],
+        "code": 1,
+        "timedout": false,
+        "seconds": 70.203,
+        "log": "tmp/duema-phase-1374/related-ui.log"
+      },
+      "reason": "除外フィルターが無関係な長時間対戦も選択したため当該グループを停止し、短い30項目を名前の明示指定で全件通過。中断実行を合格に数えない。"
+    },
+    "publication": "公式根拠2件のユーザー保留、公開候補全対象の集約、Netlifyを更新しない公開手順は引き続き未解消。push・公開・デプロイなし。"
+  },
+  "next": "新規ログから攻撃者と攻撃続行の理由が見える。元の153件の対戦データの解析は行っていないため、その試合全体の全挙動を検証済みとはしない。"
+}
