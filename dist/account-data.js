@@ -1,4 +1,4 @@
-import {normalizeDeckTags} from './deck-tags.js?v=0.721.2';
+import {normalizeDeckTags} from './deck-tags.js?v=0.722.0';
 import {historicalMetadata} from './historical-regulations.js';
 import {copyExtraDeck,extraDeckKeys} from './deck-format.js';
 

@@ -1,5 +1,5 @@
 import {extraDeckKeys} from './deck-format.js';
-import {normalizeDeckTags} from './deck-tags.js?v=0.721.2';
+import {normalizeDeckTags} from './deck-tags.js?v=0.722.0';
 const rowsSignature=rows=>(rows||[]).map(r=>[r.id,r.count]).sort((a,b)=>a[0].localeCompare(b[0]));
 const signature=deck=>JSON.stringify([deck.name,deck.format||'original',rowsSignature(deck.cards),...extraDeckKeys.map(key=>rowsSignature(deck[key])),deck.description||'',deck.historicalId||'',deck.tournament||'',deck.templateId||'',deck.sourceTitle||'',deck.source||'',deck.product||null,!!deck.favorite,normalizeDeckTags(deck.tags).sort()]);
 export function deckAccountStatus(deck,role,state,{localOK=true}={}){
