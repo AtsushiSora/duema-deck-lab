@@ -13802,5 +13802,149 @@
         ]
       }
     }
+  },
+  "dmc55-013": {
+    "phase": 1454,
+    "faces": [
+      {
+        "name": "血風聖霊ザーディア",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/火",
+        "civilizations": [
+          "光",
+          "火"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nシンパシー：エンジェル・コマンドおよびメルト・ウォリアー(このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のエンジェル・コマンドまたはメルト・ウォリアー１体につき１少なくなる。ただしコストは２より少なくならない)\nこのクリーチャーをバトルゾーンに出した時、相手のクリーチャーをパワーの合計が5500以下になるよう好きな数選び、破壊する。その後、自分の山札の上から１枚目を、裏向きのまま自分のシールドに加える。",
+        "race": "エンジェル・コマンド/メルト・ウォリアー",
+        "powerText": "5500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": "all",
+          "optional": true,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g506PowerBudget": 5500,
+          "title": "合計パワー5500以下になるよう好きな数選ぶ"
+        },
+        {
+          "op": "ShieldTop",
+          "n": 1
+        }
+      ],
+      "g212CountDiscount": {
+        "zone": "battle",
+        "filter": {
+          "creature": true,
+          "raceAny": [
+            "エンジェル・コマンド",
+            "メルト・ウォリアー"
+          ]
+        },
+        "amount": 1,
+        "minimum": 2
+      }
+    }
+  },
+  "dm26rp1-S010": {
+    "phase": 1454,
+    "faces": [
+      {
+        "name": "森仙のJ ロマネスク",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/自然",
+        "civilizations": [
+          "光",
+          "自然"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "シンパシー：自分のクリーチャー（このカードの実行コストを、自分のクリーチャー１体につき１少なくする。ただしコストは０以下にならない）\nマッハファイター\nT・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から４枚をマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に戻してもよい。\n自分のクリーチャーすべてに「シールド・セイバー」を与える。（自分のシールドがブレイクされる時、かわりに「シールド・セイバー」を持つクリーチャーを１体破壊してもよい）",
+        "race": "アポロニア・ドラゴン/アーマード・ドラゴン/アース・ドラゴン",
+        "powerText": "15000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "machFighter": true,
+      "breaker": 3,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "g401ShieldSaver": true
+          }
+        }
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 4
+        },
+        {
+          "op": "Select",
+          "g220ManaReturn": true,
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "filter": {},
+          "optional": true,
+          "title": "手札に戻すマナのカードを1枚選ぶ"
+        }
+      ],
+      "g168Sympathy": true
+    }
+  },
+  "dm13-003": {
+    "phase": 1454,
+    "faces": [
+      {
+        "name": "電磁旋竜アカシック・ファースト",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/火",
+        "civilizations": [
+          "水",
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nシンパシー：サイバー・ウイルスおよびドラゴノイド(このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のサイバー・ウイルスまたはドラゴノイド１体につき１少なくなる。ただしコストは２より少なくならない)\nこのクリーチャーは、タップされていないクリーチャーを攻撃できる。\nこのクリーチャーが破壊される時、墓地に置くかわりに自分の手札に戻す。",
+        "race": "サイバーロード/ボルケーノ・ドラゴン",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "attackUntapped": true,
+      "destroyToHand": true,
+      "g212CountDiscount": {
+        "zone": "battle",
+        "filter": {
+          "creature": true,
+          "raceAny": [
+            "サイバー・ウイルス",
+            "ドラゴノイド"
+          ]
+        },
+        "amount": 1,
+        "minimum": 2
+      }
+    }
   }
 }

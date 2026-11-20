@@ -1,0 +1,239 @@
+{
+  "phase": 1454,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8423,
+  "description": "既存の処理を用いて全能力を個別に検証し3種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmc55-013",
+      "name": "血風聖霊ザーディア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc55-013",
+      "faces": [
+        {
+          "name": "血風聖霊ザーディア",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nシンパシー：エンジェル・コマンドおよびメルト・ウォリアー(このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のエンジェル・コマンドまたはメルト・ウォリアー１体につき１少なくなる。ただしコストは２より少なくならない)\nこのクリーチャーをバトルゾーンに出した時、相手のクリーチャーをパワーの合計が5500以下になるよう好きな数選び、破壊する。その後、自分の山札の上から１枚目を、裏向きのまま自分のシールドに加える。",
+          "race": "エンジェル・コマンド/メルト・ウォリアー",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": "all",
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g506PowerBudget": 5500,
+            "title": "合計パワー5500以下になるよう好きな数選ぶ"
+          },
+          {
+            "op": "ShieldTop",
+            "n": 1
+          }
+        ],
+        "g212CountDiscount": {
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "エンジェル・コマンド",
+              "メルト・ウォリアー"
+            ]
+          },
+          "amount": 1,
+          "minimum": 2
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc55-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "8c569a2249a7647436c854ccb77aa4c9f8913da3055aac30405727cff779eec3",
+        "facesMatched": true,
+        "imageSha256": "ddc1d0aef713eefbc8d7feca13fff2b07900173ab8a09cec4a57da77f52b6712",
+        "imageBytes": 118715
+      },
+      "sameNameProducts": [
+        "DMC-55 コロコロ・レジェンド・７",
+        "プロモ限定カード 3期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc55-013",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm26rp1-S010",
+      "name": "森仙のJ ロマネスク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-S010",
+      "faces": [
+        {
+          "name": "森仙のJ ロマネスク",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "シンパシー：自分のクリーチャー（このカードの実行コストを、自分のクリーチャー１体につき１少なくする。ただしコストは０以下にならない）\nマッハファイター\nT・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から４枚をマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に戻してもよい。\n自分のクリーチャーすべてに「シールド・セイバー」を与える。（自分のシールドがブレイクされる時、かわりに「シールド・セイバー」を持つクリーチャーを１体破壊してもよい）",
+          "race": "アポロニア・ドラゴン/アーマード・ドラゴン/アース・ドラゴン",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "breaker": 3,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "g401ShieldSaver": true
+            }
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 4
+          },
+          {
+            "op": "Select",
+            "g220ManaReturn": true,
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "filter": {},
+            "optional": true,
+            "title": "手札に戻すマナのカードを1枚選ぶ"
+          }
+        ],
+        "g168Sympathy": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-S010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "9ce353766d3184b49d497d7e57373ed104d6f981889cec8d7c2ed2b20cd75e1d",
+        "facesMatched": true,
+        "imageSha256": "3463abcc7f9224f161137461f0071179e6d21083287e8c64324062999045cdce",
+        "imageBytes": 231494
+      },
+      "sameNameProducts": [
+        "DM26-RP1 逆札篇 第1弾 逆転神VS切札竜"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-S010",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm13-003",
+      "name": "電磁旋竜アカシック・ファースト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-003",
+      "faces": [
+        {
+          "name": "電磁旋竜アカシック・ファースト",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nシンパシー：サイバー・ウイルスおよびドラゴノイド(このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のサイバー・ウイルスまたはドラゴノイド１体につき１少なくなる。ただしコストは２より少なくならない)\nこのクリーチャーは、タップされていないクリーチャーを攻撃できる。\nこのクリーチャーが破壊される時、墓地に置くかわりに自分の手札に戻す。",
+          "race": "サイバーロード/ボルケーノ・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "attackUntapped": true,
+        "destroyToHand": true,
+        "g212CountDiscount": {
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "サイバー・ウイルス",
+              "ドラゴノイド"
+            ]
+          },
+          "amount": 1,
+          "minimum": 2
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "3554de289aa4b6b9821202321a2ffb6543770fc7eb79b3984f2f7a9f5fd42493",
+        "facesMatched": true,
+        "imageSha256": "b56ff0c18c258032a96c2dc7cd22f29c6401fd22727a7ae4b464d34c616ab1e2",
+        "imageBytes": 106467
+      },
+      "sameNameProducts": [
+        "DM-13 聖拳編 第4弾 龍炎鳳神誕(エターナル・フェニックス)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-003",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmc55-013": 4,
+      "dm26rp1-S010": 4,
+      "dm13-003": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    }
+  ],
+  "testCorrections": [
+    "多色ロマネスクは数値コストが1まで減っても光・自然の支払いを満たすため2枚をタップする。テストの支払い期待値を必要文明数以上に修正。",
+    "ザーディアは対象2体の合計4000を選んだ時点で、残り9000は残予算1500を超え、選択は自動完了する。残る選択肢の確認を2体目の選択前に移動。"
+  ]
+}

@@ -261402,15 +261402,150 @@
       },
       "supportBatch": "phase-1453",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmc55-013",
+      "name": "血風聖霊ザーディア",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 5500,
+      "race": "エンジェル・コマンド/メルト・ウォリアー",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nシンパシー：エンジェル・コマンドおよびメルト・ウォリアー(このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のエンジェル・コマンドまたはメルト・ウォリアー１体につき１少なくなる。ただしコストは２より少なくならない)\nこのクリーチャーをバトルゾーンに出した時、相手のクリーチャーをパワーの合計が5500以下になるよう好きな数選び、破壊する。その後、自分の山札の上から１枚目を、裏向きのまま自分のシールドに加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc55-013",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": "all",
+          "optional": true,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g506PowerBudget": 5500,
+          "title": "合計パワー5500以下になるよう好きな数選ぶ"
+        },
+        {
+          "op": "ShieldTop",
+          "n": 1
+        }
+      ],
+      "g212CountDiscount": {
+        "zone": "battle",
+        "filter": {
+          "creature": true,
+          "raceAny": [
+            "エンジェル・コマンド",
+            "メルト・ウォリアー"
+          ]
+        },
+        "amount": 1,
+        "minimum": 2
+      },
+      "supportBatch": "phase-1454",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp1-S010",
+      "name": "森仙のJ ロマネスク",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 15000,
+      "race": "アポロニア・ドラゴン/アーマード・ドラゴン/アース・ドラゴン",
+      "text": "シンパシー：自分のクリーチャー（このカードの実行コストを、自分のクリーチャー１体につき１少なくする。ただしコストは０以下にならない）\nマッハファイター\nT・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から４枚をマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に戻してもよい。\n自分のクリーチャーすべてに「シールド・セイバー」を与える。（自分のシールドがブレイクされる時、かわりに「シールド・セイバー」を持つクリーチャーを１体破壊してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-S010",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 3,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "g401ShieldSaver": true
+          }
+        }
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 4
+        },
+        {
+          "op": "Select",
+          "g220ManaReturn": true,
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "filter": {},
+          "optional": true,
+          "title": "手札に戻すマナのカードを1枚選ぶ"
+        }
+      ],
+      "g168Sympathy": true,
+      "supportBatch": "phase-1454",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm13-003",
+      "name": "電磁旋竜アカシック・ファースト",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "サイバーロード/ボルケーノ・ドラゴン",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nシンパシー：サイバー・ウイルスおよびドラゴノイド(このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のサイバー・ウイルスまたはドラゴノイド１体につき１少なくなる。ただしコストは２より少なくならない)\nこのクリーチャーは、タップされていないクリーチャーを攻撃できる。\nこのクリーチャーが破壊される時、墓地に置くかわりに自分の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-003",
+      "limit": 4,
+      "attackUntapped": true,
+      "destroyToHand": true,
+      "g212CountDiscount": {
+        "zone": "battle",
+        "filter": {
+          "creature": true,
+          "raceAny": [
+            "サイバー・ウイルス",
+            "ドラゴノイド"
+          ]
+        },
+        "amount": 1,
+        "minimum": 2
+      },
+      "supportBatch": "phase-1454",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1453,
+    "phase": 1454,
     "checkedAt": "2026-11-20",
-    "baseCount": 8418,
-    "newEffectCards": 5,
+    "baseCount": 8423,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 8423,
+    "totalCount": 8426,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -285531,6 +285666,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 8418,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1453,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8418,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8423,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
