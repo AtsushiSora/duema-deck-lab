@@ -6058,6 +6058,21 @@ export function createSixPhotoRules(api){
   else put(s,{...t,op:'g34_AuraReattach1353'});
   break;
  }
+ case'g34_TopZoneLook1450':{
+  if(!t.zone){
+   choice(s,t,'確認する山札を選ぶ',[opt('山札の上を見る','deck',0),opt('超GRの上を見る','gr',0)]);break;
+  }
+  if(t.zone==='deck'&&api.deckLocked(s,t.p))break;
+  const rows=own[t.zone]||[],y=rows[0];if(!y)break;
+  choice(s,{...t,target:y.uid,serial:y.zoneSerial||0,op:'g34_TopZoneBottom1450'},card(t.source).name+'：'+card(y).name+'を一番下に置く？',[
+   opt('一番下に置く',true,0,y.cardId),opt('上に残す',false,0,y.cardId)]);
+  break;
+ }
+ case'g34_OrderGR1450':{
+  const ids=t.ids||own.gr.slice(0,3).map(x=>({uid:x.uid,serial:x.zoneSerial||0})),selected=t.selected||[],left=ids.filter(r=>!selected.includes(r.uid)&&own.gr.some(x=>x.uid===r.uid&&(x.zoneSerial||0)===r.serial));
+  if(left.length<=1){const order=[...selected,...left.map(r=>r.uid)],byId=new Map(own.gr.map(x=>[x.uid,x]));own.gr=[...order.map(id=>byId.get(id)).filter(Boolean),...own.gr.filter(x=>!order.includes(x.uid))];break;}
+  choice(s,{...t,ids,selected},'超GRの上から置く順序を選ぶ',left.map(r=>{const x=own.gr.find(y=>y.uid===r.uid);return opt(card(x).name,x.uid,0,x.cardId);}));break;
+ }
  case'g34_AuraIf1444':{
   const host=own.battle.flatMap(y=>api.allLayers(y)).find(y=>y.uid===t.host?.uid&&(y.incarnation||0)===(t.host.incarnation||0));
   if(host&&api.attachedAuras1352(s,t.p,host).length>=t.min)start(s,t,t.defs);
@@ -6653,6 +6668,9 @@ export function createSixPhotoRules(api){
  case'g34_SeedDefense1201':
  case'g34_TapCast976':if(v)put(s,{...t,selected:[...t.selected,v]});break;
  case'g34_ODrive1439':if(typeof v==='number'){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),...overdrivePayment1439({...t.c,...(typeof old==='object'?old:old!==null?{cost:old}:{})},v)};api.cast(s,t.p,...args);}break;
+ case'g34_TopZoneLook1450':if(v==='deck'||v==='gr')put(s,{...t,zone:v});break;
+ case'g34_TopZoneBottom1450':if(v===true){const rows=own[t.zone],y=rows[0];if(y?.uid===t.target&&(y.zoneSerial||0)===t.serial){rows.shift();rows.push(y);}}break;
+ case'g34_OrderGR1450':if(typeof v==='string')put(s,{...t,selected:[...(t.selected||[]),v]});break;
  case'g34_PaySpell485':if(typeof v==='number'){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),g485Handled:true,g485Amount:v};api.cast(s,t.p,...args);}break;
  case'g34_RevealPayment470':if(typeof v==='string')put(s,{...t,revealed:v});else if(v!==false){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),g470Handled:true,g470Amount:v??0,...(t.revealed?{g470Revealed:t.revealed}:{})};api.cast(s,t.p,...args);}break;
  case'g34_PayOnce464':if(typeof v==='string')put(s,{...t,selected:[...t.selected,v]});else if(v===null){
