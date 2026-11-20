@@ -254522,15 +254522,148 @@
       "g1335VividDraw": 2,
       "supportBatch": "phase-1408",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-014",
+      "name": "雅役者 マチネソワレ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ムートピア/美孔麗王国",
+      "text": "ビビッドロー [ww04]（自分のターン中、攻撃の前にこのクリーチャーをドローした時、表向きにしてもよい。そうしたら、このターンこのクリーチャーを [ww04]支払って召喚してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを２体まで選ぶ。次の自分のターンのはじめまで、それらは攻撃もブロックもできない。\n相手がクリーチャーを選ぶ時、このクリーチャーは選べない。（ただし、このクリーチャーを攻撃またはブロックしてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-014",
+      "limit": 4,
+      "breaker": 2,
+      "untargetable": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g190Freeze": "self",
+          "title": "攻撃とブロックを止めるクリーチャーを2体まで選ぶ",
+          "optional": true
+        }
+      ],
+      "g1335VividDraw": 4,
+      "supportBatch": "phase-1409",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-004",
+      "name": "絶対悪役 ヴィランヒヰル",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "ムートピア/美孔麗王国",
+      "text": "ビビッドロー [ff03] （自分のターン中、攻撃の前にこのクリーチャーをドローした時、表向きにしてもよい。そうしたら、このターンこのクリーチャーを [ff03]支払って召喚してもよい）\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\nこのクリーチャーがバトルに勝った時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-004",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Fight240",
+          "self": true,
+          "optional": true
+        }
+      ],
+      "g189BattleWin": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "g1335VividDraw": 3,
+      "supportBatch": "phase-1409",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-033",
+      "name": "読役者 ハクダイホン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ムートピア/美孔麗王国",
+      "text": "ビビッドロー [ww03]（自分のターン中、攻撃の前にこのクリーチャーをドローした時、表向きにしてもよい。そうしたら、このターンこのクリーチャーを[ww03]支払って召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-033",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g1335VividDraw": 3,
+      "supportBatch": "phase-1409",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp3-049",
+      "name": "翔天 スケプ-3",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ファイアー・バード/ディスタス/美孔麗王国",
+      "text": "ビビッドロー [wf02]（自分のターン中、攻撃の前にこのカードをドローした時、表向きにしてもよい。そうしたら、このターンこのカードを[wf02]支払って実行してもよい）\nこのクリーチャーが出た時、カードを４枚引く。その後、自分の手札を２枚、好きな順序で山札の上に置く。\nササゲール３（自分のディスペクター・クリーチャーの召喚コストを３少なくしてもよい。そうしたら、このエレメントを破壊する。ただしコストは０以下にならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-049",
+      "limit": 4,
+      "sasage": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 4
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "deckTop",
+          "n": 2,
+          "g183Return": true,
+          "title": "山札の上に戻す手札を選ぶ（先に選んだカードが一番上）"
+        }
+      ],
+      "g1335VividDraw": 2,
+      "supportBatch": "phase-1409",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1408,
+    "phase": 1409,
     "checkedAt": "2026-11-20",
-    "baseCount": 8215,
-    "newEffectCards": 5,
+    "baseCount": 8220,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 8220,
+    "totalCount": 8224,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -278020,6 +278153,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8215,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1408,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8215,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8220,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

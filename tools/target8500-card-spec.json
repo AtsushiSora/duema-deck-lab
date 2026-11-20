@@ -6052,5 +6052,150 @@
       "blocker": true,
       "g1335VividDraw": 2
     }
+  },
+  "dmrp15-014": {
+    "phase": 1409,
+    "faces": [
+      {
+        "name": "雅役者 マチネソワレ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "ビビッドロー [ww04]（自分のターン中、攻撃の前にこのクリーチャーをドローした時、表向きにしてもよい。そうしたら、このターンこのクリーチャーを [ww04]支払って召喚してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを２体まで選ぶ。次の自分のターンのはじめまで、それらは攻撃もブロックもできない。\n相手がクリーチャーを選ぶ時、このクリーチャーは選べない。（ただし、このクリーチャーを攻撃またはブロックしてもよい）",
+        "race": "ムートピア/美孔麗王国",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "untargetable": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g190Freeze": "self",
+          "title": "攻撃とブロックを止めるクリーチャーを2体まで選ぶ",
+          "optional": true
+        }
+      ],
+      "g1335VividDraw": 4
+    }
+  },
+  "dmrp15-004": {
+    "phase": 1409,
+    "faces": [
+      {
+        "name": "絶対悪役 ヴィランヒヰル",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "ビビッドロー [ff03] （自分のターン中、攻撃の前にこのクリーチャーをドローした時、表向きにしてもよい。そうしたら、このターンこのクリーチャーを [ff03]支払って召喚してもよい）\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\nこのクリーチャーがバトルに勝った時、カードを１枚引いてもよい。",
+        "race": "ムートピア/美孔麗王国",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Fight240",
+          "self": true,
+          "optional": true
+        }
+      ],
+      "g189BattleWin": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "g1335VividDraw": 3
+    }
+  },
+  "dmrp16-033": {
+    "phase": 1409,
+    "faces": [
+      {
+        "name": "読役者 ハクダイホン",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "ビビッドロー [ww03]（自分のターン中、攻撃の前にこのクリーチャーをドローした時、表向きにしてもよい。そうしたら、このターンこのクリーチャーを[ww03]支払って召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+        "race": "ムートピア/美孔麗王国",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g1335VividDraw": 3
+    }
+  },
+  "dm26rp3-049": {
+    "phase": 1409,
+    "faces": [
+      {
+        "name": "翔天 スケプ-3",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/火",
+        "civilizations": [
+          "水",
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "ビビッドロー [wf02]（自分のターン中、攻撃の前にこのカードをドローした時、表向きにしてもよい。そうしたら、このターンこのカードを[wf02]支払って実行してもよい）\nこのクリーチャーが出た時、カードを４枚引く。その後、自分の手札を２枚、好きな順序で山札の上に置く。\nササゲール３（自分のディスペクター・クリーチャーの召喚コストを３少なくしてもよい。そうしたら、このエレメントを破壊する。ただしコストは０以下にならない）",
+        "race": "ファイアー・バード/ディスタス/美孔麗王国",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "sasage": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 4
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "deckTop",
+          "n": 2,
+          "g183Return": true,
+          "title": "山札の上に戻す手札を選ぶ（先に選んだカードが一番上）"
+        }
+      ],
+      "g1335VividDraw": 2
+    }
   }
 }

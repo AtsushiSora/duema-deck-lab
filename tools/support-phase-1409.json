@@ -1,0 +1,273 @@
+{
+  "phase": 1409,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8220,
+  "description": "既存の処理を用いて全能力を個別に検証し4種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/39104/",
+    "https://dm.takaratomy.co.jp/rule/qa/40964/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/39104/": "ゲーム開始時の手順はどちらのターンでもないためビビッドローを宣言できない。",
+    "https://dm.takaratomy.co.jp/rule/qa/40964/": "引いたタイミングで、他の能力の解決前に相手に見せて使用を宣言する。"
+  },
+  "cards": [
+    {
+      "id": "dmrp15-014",
+      "name": "雅役者 マチネソワレ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-014",
+      "faces": [
+        {
+          "name": "雅役者 マチネソワレ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ビビッドロー [ww04]（自分のターン中、攻撃の前にこのクリーチャーをドローした時、表向きにしてもよい。そうしたら、このターンこのクリーチャーを [ww04]支払って召喚してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを２体まで選ぶ。次の自分のターンのはじめまで、それらは攻撃もブロックもできない。\n相手がクリーチャーを選ぶ時、このクリーチャーは選べない。（ただし、このクリーチャーを攻撃またはブロックしてもよい）",
+          "race": "ムートピア/美孔麗王国",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "untargetable": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを2体まで選ぶ",
+            "optional": true
+          }
+        ],
+        "g1335VividDraw": 4
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "0dba07f9d87c5f59b99581f2955d734842a7f67b076c4943c84e192dedfe8a73",
+        "facesMatched": true,
+        "imageSha256": "8dd189e69e77dc18410eaf84e5c82041f4da30c0b5c2eccc9c268fa46f0f545d",
+        "imageBytes": 105938
+      },
+      "sameNameProducts": [
+        "DMRP-15 十王篇拡張パック第3弾 幻龍×凶襲 ゲンムエンペラー!!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-014",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp15-004",
+      "name": "絶対悪役 ヴィランヒヰル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-004",
+      "faces": [
+        {
+          "name": "絶対悪役 ヴィランヒヰル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ビビッドロー [ff03] （自分のターン中、攻撃の前にこのクリーチャーをドローした時、表向きにしてもよい。そうしたら、このターンこのクリーチャーを [ff03]支払って召喚してもよい）\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\nこのクリーチャーがバトルに勝った時、カードを１枚引いてもよい。",
+          "race": "ムートピア/美孔麗王国",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "self": true,
+            "optional": true
+          }
+        ],
+        "g189BattleWin": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "g1335VividDraw": 3
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "103bb98b94d221a17eee9c7e7e14149f96cd104784c39d86cd3f36408ca98f4f",
+        "facesMatched": true,
+        "imageSha256": "ddee62dcd30bf7b168973faabf2f99b206df20da4a6169d9347ca7576ac4d35a",
+        "imageBytes": 133124
+      },
+      "sameNameProducts": [
+        "DMRP-15 十王篇拡張パック第3弾 幻龍×凶襲 ゲンムエンペラー!!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-004",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp16-033",
+      "name": "読役者 ハクダイホン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-033",
+      "faces": [
+        {
+          "name": "読役者 ハクダイホン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ビビッドロー [ww03]（自分のターン中、攻撃の前にこのクリーチャーをドローした時、表向きにしてもよい。そうしたら、このターンこのクリーチャーを[ww03]支払って召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+          "race": "ムートピア/美孔麗王国",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g1335VividDraw": 3
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "0436e8c50e0fb63ea6434f40541fcfe373b29168a61ec2366e0fa72a55648de5",
+        "facesMatched": true,
+        "imageSha256": "168c4aa1a3a46504d4bcec2979438e9f5582e4038225c5238b3fee9f0c8e5f4d",
+        "imageBytes": 97249
+      },
+      "sameNameProducts": [
+        "DMRP-16 十王篇拡張パック第4弾 百王×邪王 鬼レヴォリューション!!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-033",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm26rp3-049",
+      "name": "翔天 スケプ-3",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-049",
+      "faces": [
+        {
+          "name": "翔天 スケプ-3",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ビビッドロー [wf02]（自分のターン中、攻撃の前にこのカードをドローした時、表向きにしてもよい。そうしたら、このターンこのカードを[wf02]支払って実行してもよい）\nこのクリーチャーが出た時、カードを４枚引く。その後、自分の手札を２枚、好きな順序で山札の上に置く。\nササゲール３（自分のディスペクター・クリーチャーの召喚コストを３少なくしてもよい。そうしたら、このエレメントを破壊する。ただしコストは０以下にならない）",
+          "race": "ファイアー・バード/ディスタス/美孔麗王国",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "sasage": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 4
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "deckTop",
+            "n": 2,
+            "g183Return": true,
+            "title": "山札の上に戻す手札を選ぶ（先に選んだカードが一番上）"
+          }
+        ],
+        "g1335VividDraw": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp3-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "96341adbcf8ec2b738c4191937f9022a41c9a37906d8f7e8f2dbe06a57faec4f",
+        "facesMatched": true,
+        "imageSha256": "b9b03fd16265cdcc9bc75d5743762a0d7e164683a75c9e448bb1ad62d5622d54",
+        "imageBytes": 107641
+      },
+      "sameNameProducts": [
+        "DM26-RP3 逆札篇 第3弾 勝敵！逆転おこせ鬼の∞ディスペクター!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-049",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp15-014": 4,
+      "dmrp15-004": 4,
+      "dmrp16-033": 4,
+      "dm26rp3-049": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/39104/",
+    "https://dm.takaratomy.co.jp/rule/qa/40964/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39104/",
+      "sha256": "2d5d2fd82910d6c17398fafe484086ec5915fdea5f77aed1441096cae0453c9f",
+      "result": "ゲーム開始時の手順はどちらのターンでもないためビビッドローを宣言できない。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40964/",
+      "sha256": "1b4286ee8ed83ed647c19ba48764421a642c8f50f3c4839c7c04e53a05a93de6",
+      "result": "引いたタイミングで、他の能力の解決前に相手に見せて使用を宣言する。"
+    }
+  ]
+}
