@@ -493980,11 +493980,75 @@
         "従来の全体npm testは中断・合否未確認を維持。今回の72件を全体検証済みとはしない。",
         "ユーザー保留中の公式照合2件と、本番での2つのGoogleアカウントを用いた友達対戦確認は既存記録を維持。"
       ]
+    },
+    {
+      "phase": 1377,
+      "kind": "explicit-netlify-release",
+      "checkedAt": "2026-11-20T13:24:05.921393+00:00",
+      "baseline": "8315be7513a5176e609f5dbfc9e73eaf947e81cd",
+      "artifact": "tools/release-lobby-1377.json",
+      "status": "verified-ready-for-explicit-publication",
+      "before": 8074,
+      "supported": 8074,
+      "pending": 3751,
+      "added": [],
+      "duplicates": 0,
+      "totalTestsPassed": 72,
+      "results": {
+        "release-tests": {
+          "name": "release-tests",
+          "command": [
+            "node",
+            "--test",
+            "tests/app-updates.test.mjs",
+            "tests/home-navigation.test.mjs",
+            "tests/online-ui.test.mjs",
+            "tests/online-app.test.mjs",
+            "tests/online-client.test.mjs",
+            "tests/online-runtime.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 6.795,
+          "log": "tmp/duema-release-lobby-1377/release-tests.log",
+          "passed": 72,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 18.837,
+          "log": "tmp/duema-release-lobby-1377/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 14.888,
+          "log": "tmp/duema-release-lobby-1377/audit.log"
+        }
+      },
+      "reason": "ユーザーの明示指示により友達対戦UIとホームの削除ボタンをv0.722.1としてPages・Netlifyへ公開する準備。",
+      "remaining": [
+        "全体npm testの過去の中断・合否未確認を維持。",
+        "公式照合2件はユーザー指示により保留中。",
+        "本番の2Googleアカウントによる友達対戦は未確認。ローカルの実アプリ・サーバー結合テストは通過。"
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1376,
-    "nextPhase": 1377,
+    "lastVerifiedPhase": 1377,
+    "nextPhase": 1378,
     "workInProgress": null,
     "nextCandidates": [
       "通常登録停止と保留2件を維持する。追加はユーザー明示指定または検証依存のみ。",
@@ -494174,6 +494238,11 @@
       "workflow": "https://github.com/AtsushiSora/duema-deck-lab/actions/runs/44741951857",
       "netlifyUpdated": false,
       "reason": "前回ユーザーの「プッシュして」によりPages更新成功。配信app.jsとhome-theme.cssが同コミットと一致。Netlifyの公開deployは6b0043eaf2b2a0b1ea017187のまま。"
+    },
+    "currentUserRelease": {
+      "artifact": "tools/release-lobby-1377.json",
+      "version": "0.722.1",
+      "status": "verified-ready-for-explicit-publication"
     }
   },
   "registeredCardVerification": {

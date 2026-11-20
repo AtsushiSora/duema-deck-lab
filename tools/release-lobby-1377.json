@@ -1,0 +1,75 @@
+{
+  "phase": 1377,
+  "checkedAt": "2026-11-20T13:24:05.921393+00:00",
+  "status": "verified-ready-for-explicit-publication",
+  "baseline": "8315be7513a5176e609f5dbfc9e73eaf947e81cd",
+  "appVersion": "0.722.1",
+  "engineVersion": "0.602.1",
+  "supportedCards": 8074,
+  "duplicates": 0,
+  "added": [],
+  "userInstruction": "プッシュして・Netlify反映もして",
+  "scope": [
+    "ホームの前回条件削除ボタン",
+    "友達対戦ロビー整理とAI対戦へボタン削除",
+    "更新検知用のアプリ版・モジュールURLと更新内容の案内"
+  ],
+  "verification": {
+    "release-tests": {
+      "name": "release-tests",
+      "command": [
+        "node",
+        "--test",
+        "tests/app-updates.test.mjs",
+        "tests/home-navigation.test.mjs",
+        "tests/online-ui.test.mjs",
+        "tests/online-app.test.mjs",
+        "tests/online-client.test.mjs",
+        "tests/online-runtime.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 6.795,
+      "log": "tmp/duema-release-lobby-1377/release-tests.log",
+      "passed": 72,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 18.837,
+      "log": "tmp/duema-release-lobby-1377/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 14.888,
+      "log": "tmp/duema-release-lobby-1377/audit.log"
+    }
+  },
+  "totalTestsPassed": 72,
+  "versionChangeReview": "release-notes以外の公開ファイル差分は0.722.0から0.722.1への置換のみ。カード定義と保存形式は不変。UI本体は1375/1376で検証済み。",
+  "netlifyPolicy": {
+    "siteId": "bd2b701e-0687-4ded-bdf6-f8c18e04d3f9",
+    "automaticBuildsStopped": true,
+    "pushHookActive": false,
+    "workflowTrigger": "workflow_dispatch only",
+    "releaseMethod": "今回1回のCLI production deploy。distとnetlify/functionsを同じコミットで公開。"
+  },
+  "remaining": [
+    "全体npm testの過去の中断・合否未確認を維持。",
+    "公式照合2件はユーザー指示により保留中。",
+    "本番の2Googleアカウントによる友達対戦は未確認。ローカルの実アプリ・サーバー結合テストは通過。"
+  ]
+}
