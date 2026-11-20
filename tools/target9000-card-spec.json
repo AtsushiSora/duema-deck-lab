@@ -6614,5 +6614,131 @@
       },
       "breaker": 2
     }
+  },
+  "dmrp14-km3": {
+    "phase": 1507,
+    "faces": [
+      {
+        "name": "キング・マニフェスト",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/自然",
+        "civilizations": [
+          "水",
+          "自然"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "バズレンダ [cc03]（このクリーチャーのコストを支払う時、追加で [cc03]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その[OL]能力を１回と、追加で[cc03]支払った回数、使う）\n{OL}自分の山札をシャッフルし、上から１枚目を表向きにする。それがクリーチャーなら、コストを支払わずに召喚してもよい。呪文なら、コストを支払わずに唱えてもよい。\nマッハファイター\nW・ブレイカー",
+        "race": "トリックス/チームウェイブ",
+        "powerText": "11000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Shuffle405"
+        },
+        {
+          "op": "RevealTopCreatureOrSpell1251",
+          "execution": true
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 3
+      },
+      "machFighter": true,
+      "breaker": 2
+    }
+  },
+  "dmex09-s02": {
+    "phase": 1507,
+    "faces": [
+      {
+        "name": "ロールモデルタイガー",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/自然",
+        "civilizations": [
+          "水",
+          "自然"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "バズレンダ [cc03] （このクリーチャーのコストを支払う時、追加で [cc03] を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その{OL} 能力を１回と、追加で [cc03] 支払った回数、使う）\n{OL} カードを１枚引き、その後、自分のマナゾーンにあるカードの枚数以下のコストを持つクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。\nマッハファイター\nT・ブレイカー\n相手のクリーチャーが攻撃する時、可能ならこのクリーチャーを攻撃する。",
+        "race": "トリックス/チームウェイブ",
+        "powerText": "14000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 1,
+          "deploy": true,
+          "g746OwnManaCost": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 3
+      },
+      "machFighter": true,
+      "breaker": 3,
+      "g431AttackMe": true
+    }
+  },
+  "dm26rp3-050": {
+    "phase": 1507,
+    "faces": [
+      {
+        "name": "妖精 キユリ-2",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/自然",
+        "civilizations": [
+          "水",
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "バズレンダ [cc02]（このクリーチャーのコストを支払う時、追加で [cc02]を好きな回数支払ってもよい。このクリーチャーが出た時、その{O} 能力を１回と、追加で [cc02]支払った回数、使う）\n{O} 自分の山札の上から１枚を見る。そのカードを手札に加えるか、タップしてマナゾーンに置く。\nササゲール２（自分のディスペクター・クリーチャーの召喚コストを２少なくしてもよい。そうしたら、このエレメントを破壊する。ただしコストは０以下にならない）",
+        "race": "スノーフェアリー/ディスタス/チームウェイブ",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 1,
+          "rest": "top",
+          "stages": [
+            {
+              "n": 1,
+              "g467Destinations": [
+                "hand",
+                "mana"
+              ],
+              "tapped": true
+            }
+          ]
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 2
+      },
+      "sasage": 2
+    }
   }
 }

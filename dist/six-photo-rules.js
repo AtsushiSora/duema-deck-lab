@@ -1565,8 +1565,9 @@ export function createSixPhotoRules(api){
  }
  function topCreatureOrSpell1251(s,t,y){
   return faces(api.zoneCard(s,t.p,y,'deck')).flatMap((c,face)=>{
+   if(t.execution&&!api.canExecuteUnpaid(s,t.p,c))return [];
    if(c.type==='spell'&&api.canCast(s,t.p,c,'deck'))return [{c,face}];
-   if(c.type==='creature'&&canPut(s,t.p,y,'deck'))return [{c,face}];
+   if(c.type==='creature'&&canPut(s,t.p,y,'deck',!!t.execution))return [{c,face}];
    return [];
   });
  }

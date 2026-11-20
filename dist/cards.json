@@ -270303,15 +270303,132 @@
       "breaker": 2,
       "supportBatch": "phase-1506",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-km3",
+      "name": "キング・マニフェスト",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 11000,
+      "race": "トリックス/チームウェイブ",
+      "text": "バズレンダ [cc03]（このクリーチャーのコストを支払う時、追加で [cc03]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その[OL]能力を１回と、追加で[cc03]支払った回数、使う）\n{OL}自分の山札をシャッフルし、上から１枚目を表向きにする。それがクリーチャーなら、コストを支払わずに召喚してもよい。呪文なら、コストを支払わずに唱えてもよい。\nマッハファイター\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-km3",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Shuffle405"
+        },
+        {
+          "op": "RevealTopCreatureOrSpell1251",
+          "execution": true
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 3
+      },
+      "machFighter": true,
+      "breaker": 2,
+      "supportBatch": "phase-1507",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex09-s02",
+      "name": "ロールモデルタイガー",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 14000,
+      "race": "トリックス/チームウェイブ",
+      "text": "バズレンダ [cc03] （このクリーチャーのコストを支払う時、追加で [cc03] を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その{OL} 能力を１回と、追加で [cc03] 支払った回数、使う）\n{OL} カードを１枚引き、その後、自分のマナゾーンにあるカードの枚数以下のコストを持つクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。\nマッハファイター\nT・ブレイカー\n相手のクリーチャーが攻撃する時、可能ならこのクリーチャーを攻撃する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex09-s02",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 1,
+          "deploy": true,
+          "g746OwnManaCost": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 3
+      },
+      "machFighter": true,
+      "breaker": 3,
+      "supportBatch": "phase-1507",
+      "supportKind": "effect",
+      "g431AttackMe": true
+    },
+    {
+      "id": "dm26rp3-050",
+      "name": "妖精 キユリ-2",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "スノーフェアリー/ディスタス/チームウェイブ",
+      "text": "バズレンダ [cc02]（このクリーチャーのコストを支払う時、追加で [cc02]を好きな回数支払ってもよい。このクリーチャーが出た時、その{O} 能力を１回と、追加で [cc02]支払った回数、使う）\n{O} 自分の山札の上から１枚を見る。そのカードを手札に加えるか、タップしてマナゾーンに置く。\nササゲール２（自分のディスペクター・クリーチャーの召喚コストを２少なくしてもよい。そうしたら、このエレメントを破壊する。ただしコストは０以下にならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-050",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 1,
+          "rest": "top",
+          "stages": [
+            {
+              "n": 1,
+              "g467Destinations": [
+                "hand",
+                "mana"
+              ],
+              "tapped": true
+            }
+          ]
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 2
+      },
+      "sasage": 2,
+      "supportBatch": "phase-1507",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1506,
+    "phase": 1507,
     "checkedAt": "2026-11-20",
-    "baseCount": 8647,
+    "baseCount": 8650,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 8650,
+    "totalCount": 8653,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -295174,6 +295291,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 8647,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1506,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8647,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 8650,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
