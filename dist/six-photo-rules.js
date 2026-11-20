@@ -647,6 +647,7 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g1465ManaRace)return s.players[p].mana.some(x=>!x.faceDown&&faces(card(x)).some(c=>race(c,f.g1465ManaRace)));
   if(f.g1455FirstUnitAttack){const host=s.players[p].battle.find(x=>api.allLayers(x).some(y=>y.uid===sourceUid&&(sourceIncarnation===null||(y.incarnation||0)===sourceIncarnation)));if(!host||s.g481Attackers?.turn!==s.turn)return false;const refs=api.allLayers(host).map(key);return s.g481Attackers.events.filter(e=>e.p===p&&e.refs.some(r=>refs.includes(r))).length===1;}
 
   if(f.g1445HostAuras){const r=f.g1445HostAuras,host=s.players[p].battle.flatMap(y=>api.allLayers(y)).find(y=>y.uid===sourceUid&&(sourceIncarnation===null||(y.incarnation||0)===sourceIncarnation));if(!host)return false;const n=api.attachedAuras1352(s,p,host).length;return(r.min===undefined||n>=r.min)&&(r.max===undefined||n<=r.max);}
@@ -3209,6 +3210,7 @@ export function createSixPhotoRules(api){
  case'g34_InspectHand':{
   const hand=opp.hand;
   if(!hand.length){api.log(s,t.p,'look',card(t.source).name+'：相手の手札はありません',{cardId:t.source});break;}
+  if(t.g1465ToBottom){api.log(s,t.p,'look',card(t.source).name+'で相手の手札を確認',{cardId:t.source});choice(s,t,'相手の手札から山札の下に置くカードを選ぶ',hand.map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)));break;}
   if(t.g1324ChooseCreature){
    api.log(s,t.p,'look',card(t.source).name+'で相手の手札を確認',{cardId:t.source});
    const rows=hand.map(y=>({y,eligible:faces(card(y)).some(c=>c.type==='creature')}));
@@ -4889,6 +4891,7 @@ export function createSixPhotoRules(api){
  }
  case'g34_OpponentSelect':{
   const origin=t.origin||'battle',battle=origin==='battle';
+  if(battle&&t.g741MinPower)t={...t,g530Ids:lowestPower741(s,creatures(s,1-t.p).filter(x=>matches(s,1-t.p,x,t.filter))).map(x=>x.uid)};
   const action=t.tap?'タップする':t.to==='grave'?'破壊する':t.to==='hand'?'手札に戻す':'マナに置く';
   const title=t.title||action+(battle?'自分のクリーチャーを'+(t.n??1)+'体':'自分の'+origin+'のカードを'+(t.n??1)+'枚')+'選ぶ';
   put(s,{...t,op:'g34_Select',p:1-t.p,controller:t.controller??t.p,origin,filter:{...(battle?{creature:true}:{}),...t.filter},g187OwnPick:!t.deploy,title});
@@ -7209,6 +7212,7 @@ export function createSixPhotoRules(api){
   if(t.count)start(s,t,[{op:'DrawUpTo',n:t.count,g203Draw:true,g853EachDraw:true}]);
   break;
  case'g34_InspectHand':
+  if(t.g1465ToBottom){if(v)zoneMove(s,1-t.p,'hand',v,'deck',t);break;}
   if(t.g1324ChooseCreature){
    if(v)start(s,{...t,p:1-t.p},[{op:'Select',origin:'hand',deploy:true,n:1,optional:true,
     filter:{creature:true,exactUid:v},title:'指定されたクリーチャーを出す？'}]);

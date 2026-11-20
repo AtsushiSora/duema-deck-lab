@@ -263214,15 +263214,184 @@
       ],
       "supportBatch": "phase-1464",
       "supportKind": "effect"
+    },
+    {
+      "id": "promoy14-048",
+      "name": "禁断C マーモ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ソニック・コマンド/侵略者/イニシャルズ",
+      "text": "ウルトラ・セイバー-《ドキンダム》と名前にあるクリーチャー（自分の《ドキンダム》と名前にあるクリーチャーがバトルゾーンを離れる時、このクリーチャーをかわりに破壊してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-048",
+      "limit": 4,
+      "g571Saver": {
+        "ultra": true,
+        "filter": {
+          "creature": true,
+          "name": "ドキンダム"
+        }
+      },
+      "supportBatch": "phase-1465",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx05-s04",
+      "name": "凶星王ザビ・ヒドラ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ダークロード/エイリアン",
+      "text": "自分の他のエイリアンをバトルゾーンに出した時、《凶星王ザビ・ヒドラ》以外のエイリアンを１体、自分の墓地から手札に戻してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx05-s04",
+      "limit": 4,
+      "breaker": 2,
+      "g250EntryDraw": {
+        "self": false,
+        "filter": {
+          "creature": true,
+          "race": "エイリアン"
+        },
+        "defs": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "race": "エイリアン",
+              "g412ExceptName": "凶星王ザビ・ヒドラ"
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1465",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr08s-001",
+      "name": "告別のカノン 弥勒",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "オラクル",
+      "text": "このクリーチャーをバトルゾーンに出した時、相手の手札を見て、その中から１枚選ぶ。相手はそれを自身の山札の一番下に置く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08s-001",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "InspectHand",
+          "g1465ToBottom": true
+        }
+      ],
+      "supportBatch": "phase-1465",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex03-034",
+      "name": "ピラミットーテム",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "メタリカ/スペシャルズ",
+      "text": "サイレントスキル（自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次のi能力を使ってもよい）\ni相手のクリーチャーを１体選び、タップする。そのクリーチャーは、次の相手のターンのはじめにアンタップしない。\n光臨：自分のターンの終わりに、このクリーチャーがタップしていれば、自分の山札を見る。その中からコスト８以下のメタリカを１体、バトルゾーンに出してもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-034",
+      "limit": 4,
+      "g496Silent": [
+        {
+          "op": "Target",
+          "tap": true,
+          "lock": true,
+          "g210TapLock": true
+        }
+      ],
+      "g405Kourin": {
+        "origin": "deck",
+        "filter": {
+          "creature": true,
+          "max": 8,
+          "race": "メタリカ"
+        }
+      },
+      "supportBatch": "phase-1465",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex08-227",
+      "name": "Mt.富士山ックスMAX",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "マナドライブ４（J）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが４枚以上でジョーカーズがあれば、相手は自身の一番パワーが小さいクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-227",
+      "limit": 4,
+      "gr": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 4
+                }
+              },
+              {
+                "g1465ManaRace": "ジョーカーズ"
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "OpponentSelect",
+              "to": "grave",
+              "n": 1,
+              "g741MinPower": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1465",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1464,
+    "phase": 1465,
     "checkedAt": "2026-11-20",
-    "baseCount": 8467,
-    "newEffectCards": 4,
+    "baseCount": 8471,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8471,
+    "totalCount": 8476,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -287497,6 +287666,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8467,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1464,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8467,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 8471,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

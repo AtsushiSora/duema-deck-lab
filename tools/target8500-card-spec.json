@@ -15770,5 +15770,192 @@
         }
       ]
     }
+  },
+  "promoy14-048": {
+    "phase": 1465,
+    "faces": [
+      {
+        "name": "禁断C マーモ",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "ウルトラ・セイバー-《ドキンダム》と名前にあるクリーチャー（自分の《ドキンダム》と名前にあるクリーチャーがバトルゾーンを離れる時、このクリーチャーをかわりに破壊してもよい）",
+        "race": "ソニック・コマンド/侵略者/イニシャルズ",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g571Saver": {
+        "ultra": true,
+        "filter": {
+          "creature": true,
+          "name": "ドキンダム"
+        }
+      }
+    }
+  },
+  "dmx05-s04": {
+    "phase": 1465,
+    "faces": [
+      {
+        "name": "凶星王ザビ・ヒドラ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "自分の他のエイリアンをバトルゾーンに出した時、《凶星王ザビ・ヒドラ》以外のエイリアンを１体、自分の墓地から手札に戻してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "ダークロード/エイリアン",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g250EntryDraw": {
+        "self": false,
+        "filter": {
+          "creature": true,
+          "race": "エイリアン"
+        },
+        "defs": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "race": "エイリアン",
+              "g412ExceptName": "凶星王ザビ・ヒドラ"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dmr08s-001": {
+    "phase": 1465,
+    "faces": [
+      {
+        "name": "告別のカノン 弥勒",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、相手の手札を見て、その中から１枚選ぶ。相手はそれを自身の山札の一番下に置く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+        "race": "オラクル",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "InspectHand",
+          "g1465ToBottom": true
+        }
+      ]
+    }
+  },
+  "dmex03-034": {
+    "phase": 1465,
+    "faces": [
+      {
+        "name": "ピラミットーテム",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "サイレントスキル（自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次のi能力を使ってもよい）\ni相手のクリーチャーを１体選び、タップする。そのクリーチャーは、次の相手のターンのはじめにアンタップしない。\n光臨：自分のターンの終わりに、このクリーチャーがタップしていれば、自分の山札を見る。その中からコスト８以下のメタリカを１体、バトルゾーンに出してもよい。その後、山札をシャッフルする。",
+        "race": "メタリカ/スペシャルズ",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g496Silent": [
+        {
+          "op": "Target",
+          "tap": true,
+          "lock": true,
+          "g210TapLock": true
+        }
+      ],
+      "g405Kourin": {
+        "origin": "deck",
+        "filter": {
+          "creature": true,
+          "max": 8,
+          "race": "メタリカ"
+        }
+      }
+    }
+  },
+  "dmex08-227": {
+    "phase": 1465,
+    "faces": [
+      {
+        "name": "Mt.富士山ックスMAX",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "マナドライブ４（J）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが４枚以上でジョーカーズがあれば、相手は自身の一番パワーが小さいクリーチャーを１体選び、破壊する。",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gr": true,
+      "manaValue": 0,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 4
+                }
+              },
+              {
+                "g1465ManaRace": "ジョーカーズ"
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "OpponentSelect",
+              "to": "grave",
+              "n": 1,
+              "g741MinPower": true
+            }
+          ]
+        }
+      ]
+    }
   }
 }
