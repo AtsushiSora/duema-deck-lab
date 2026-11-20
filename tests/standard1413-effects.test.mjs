@@ -1,0 +1,8 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {e,setup,inst,act,cast,drain} from './target-fixture.mjs';
+import {verifyGalaxyBatch,put,pick} from './target8500-galaxy-fixture.mjs';
+verifyGalaxyBatch(1413);
+for(const id of['dmrp14-030','dmex11-010'])test(e.card(id).name+' works as a free shield trigger with no mana',()=>{const s=setup();s.active=1;s.players[0].mana=[];s.players[0].shields=[inst(id)];const x=put(s,1,'dm01-108');s.phase='attack';act(s,'attack',a=>a.uid===x.uid&&a.target==='player');act(s,'noBlock');act(s,'useTrigger');drain(s);assert.ok(s.players[0].battle.some(x=>x.cardId===id));assert.equal(s.players[0].mana.length,0);});
+test('Blue Wave bounces exactly the selected enemy on entry',()=>{const s=setup();s.active=0;const a=put(s,1,'dm01-108'),b=put(s,1,'dm01-108');cast(s,'dmex11-010');pick(s,b.uid);drain(s);assert.ok(s.players[1].battle.includes(a));assert.ok(s.players[1].hand.includes(b));});
+for(const id of['dmrp14-030','dmex11-029'])test(e.card(id).name+' can block while freshly summoned',()=>{const s=setup();s.active=0;cast(s,id);drain(s);const blocker=s.players[0].battle[0],attacker=put(s,1,'dm01-108');s.active=1;s.phase='attack';act(s,'attack',a=>a.uid===attacker.uid&&a.target==='player');assert.ok(e.getLegalActions(s).some(a=>a.kind==='block'&&a.uid===blocker.uid));});
+test('Traditional giant cannot attack players but can attack tapped creatures',()=>{const s=setup();s.active=0;const x=put(s,0,'dmex11-029'),y=put(s,1,'dm01-108');y.tapped=true;s.phase='attack';const a=e.getLegalActions(s).filter(a=>a.kind==='attack'&&a.uid===x.uid);assert.ok(a.some(a=>a.target===y.uid));assert.ok(!a.some(a=>a.target==='player'));});
