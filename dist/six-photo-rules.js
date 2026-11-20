@@ -230,14 +230,16 @@ export function createSixPhotoRules(api){
  function payFloor500(s,t){const choices=[];for(const amount of floorOptions500(s,t.p,t.c)){const c={...t.c,g500Handled:true,g500Amount:amount};if(api.canPay(s,t.p,c)){const n=api.summonCost(s,t.p,c);choices.push(opt((amount?amount+'軽減する':'軽減しない')+'（'+n+'マナ）',amount,100-n*5,t.source));}}choice(s,t,'最低2マナの軽減量を選ぶ',[...choices,opt('召喚をやめる',false,-1000)]);}
  // Optional continuous spell reductions are chosen for each paid cast, including zero use.
  function spellReductionMax485(s,p,c){
-  if(c.type!=='spell'||c.crossing)return 0;
-  const self=c.g985SpellReduction;
+  if(!['spell','aura'].includes(c.type)||c.crossing)return 0;
+  const self=c.type==='spell'&&c.g985SpellReduction;
   const ownReduction=self&&ownCondition(s,p,self.filter)?self.amount:0;
   return creatures(s,p).filter(x=>!x.sealed).reduce((n,x)=>{
-   const r=effective(x,s).g485SpellReduction;
-   if(typeof r==='number')return n+r;
-   if(!r||r.color&&!colors(c).includes(r.color)||r.knightMagic&&!hasKnightMagic(c))return n;
-   return n+(r.g1470BattleCount?creatures(s,p).filter(y=>!y.sealed&&matches(s,p,y,r.g1470BattleCount)).length:r.amount);
+   const source=effective(x,s),shared=source.g1517SpellAuraReduction||0;
+   if(c.type==='aura')return n+shared;
+   const r=source.g485SpellReduction;
+   if(typeof r==='number')return n+r+shared;
+   if(!r||r.color&&!colors(c).includes(r.color)||r.knightMagic&&!hasKnightMagic(c))return n+shared;
+   return n+shared+(r.g1470BattleCount?creatures(s,p).filter(y=>!y.sealed&&matches(s,p,y,r.g1470BattleCount)).length:r.amount);
   },ownReduction);
  }
  function spellReduction485(s,p,c){const max=spellReductionMax485(s,p,c);return c.g485Amount===undefined?max:Math.max(0,Math.min(max,c.g485Amount));}
@@ -251,7 +253,7 @@ export function createSixPhotoRules(api){
   }
   choice(s,t,'O・ドライブの追加コストを選ぶ',[...choices,opt('使用をやめる',false,-1000)]);
  }
- function paySpell485(s,t){const max=spellReductionMax485(s,t.p,t.c),choices=[];for(let amount=max;amount>=0;amount--){const c={...t.c,g485Handled:true,g485Amount:amount};if(api.canPay(s,t.p,c)){const n=api.summonCost(s,t.p,c);choices.push(opt((amount?amount+'軽減する':'軽減しない')+'（'+n+'マナ）',amount,100-n*5,t.source));}}choice(s,t,'呪文の軽減を使う量を選ぶ',[...choices,opt('唱えるのをやめる',false,-1000)]);}
+ function paySpell485(s,t){const max=spellReductionMax485(s,t.p,t.c),choices=[];for(let amount=max;amount>=0;amount--){const c={...t.c,g485Handled:true,g485Amount:amount};if(api.canPay(s,t.p,c)){const n=api.summonCost(s,t.p,c);choices.push(opt((amount?amount+'軽減する':'軽減しない')+'（'+n+'マナ）',amount,100-n*5,t.source));}}choice(s,t,t.c.type==='aura'?'オーラの軽減を使う量を選ぶ':'呪文の軽減を使う量を選ぶ',[...choices,opt('唱えるのをやめる',false,-1000)]);}
  // The card being summoned is in use, so a different physical hand card must be revealed.
  function revealCards470(s,p,c){const rule=c.g470RevealReduction;if(!rule)return[];const source=c.executionUid??((c.summonOrigin||'hand')==='hand'?s.players[p].hand.find(x=>x.cardId===c.id)?.uid:null);return s.players[p].hand.filter(x=>x.uid!==source&&(rule.evolution?api.isEvolution(x)||faces(card(x)).some(f=>f.evolution||f.g48HandEvolution||f.sMax):faces(card(x)).some(f=>cost(f)>=rule.min)));}
  function revealPayment470(s,t){const payment={...t.c,...(typeof t.args[4]==='object'?t.args[4]:t.args[4]!==null?{cost:t.args[4]}:{}),printedCost:t.c.cost},rows=revealCards470(s,t.p,payment),selected=rows.find(x=>x.uid===t.revealed);if(selected){const rule=payment.g470RevealReduction,n=creatures(s,1-t.p).some(x=>effective(x,s).noCostReduction)?0:rule.amount,amounts=rule.exact?[n]:Array.from({length:n+1},(_,i)=>n-i);choice(s,t,rule.exact?'手札を見せて召喚する？':'軽減する量を選ぶ',amounts.filter(amount=>api.canPay(s,t.p,{...payment,g470Handled:true,g470Revealed:selected.uid,g470Amount:amount})).map(amount=>{const c={...payment,g470Handled:true,g470Revealed:selected.uid,g470Amount:amount};return opt(amount+'軽減して召喚（'+api.summonCost(s,t.p,c)+'マナ）',amount,amount*10+5,selected.cardId);}).concat([opt('召喚をやめる',false,-1000)]));return;}const plain={...payment,g470Handled:true,g470Amount:0};choice(s,{...t,revealed:null},payment.g470RevealReduction.evolution?'進化クリーチャーを手札から1体見せる？':'コスト7以上の手札を1枚見せる？',[...rows.map(x=>opt(card(x).name,x.uid,20,x.cardId)),...(api.canPay(s,t.p,plain)?[opt('見せずに召喚する（'+api.summonCost(s,t.p,plain)+'マナ）',null,0)]:[]),opt('召喚をやめる',false,-1000)]);}
@@ -8506,6 +8508,7 @@ export function createSixPhotoRules(api){
   return true;
  },
  spellDiscount467(s,p,c){
+  if(c.type==='aura')return spellReduction485(s,p,c);
   if(c.type!=='spell')return 0;
   return creatures(s,p).filter(x=>!x.sealed).reduce((n,x)=>{
    const reduction=effective(x,s).g467SpellReduction;
@@ -8823,7 +8826,7 @@ export function createSixPhotoRules(api){
   terminalUse1292(s,p,c);
   firstSummonOrSpell1247(s,1);
   qualifyingUse1224(s,p,c,null,owner);
-  useBlockers524(s,p);consumeReduction456(s,p,c);noncreatureUse448(s,p,c);countExecution(s,p,c);
+  useBlockers524(s,p);consumeReduction456(s,p,c);noncreatureUse448(s,p,c,owner??p);countExecution(s,p,c);
   // Capture the cast before it resolves, and require its first physical grave arrival.
   if(inst&&origin==='hand'&&owner===p)for(const x of creatures(s,p)){
    if(x.sealed||!card(x).g1245HandSpellRecast&&!card(x).g1250RecastSacrifice)continue;
@@ -10103,7 +10106,7 @@ for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand
    if(!x.faceDown&&card(x).g976MagicToolUse)
     send(s,p,x,'GraveSummonWatch766',{serial:x.zoneSerial||0});
  }
- function noncreatureUse448(s,p,c){if(c.type==='creature')return;const prev=s.g448NoncreatureUses?.[p];(s.g448NoncreatureUses??=[null,null])[p]={turn:s.turn,n:prev?.turn===s.turn?prev.n+1:1};}
+ function noncreatureUse448(s,p,c,watchOwner=p){if(c.type==='creature')return;if(c.type==='spell'||c.type==='aura')for(const x of creatures(s,watchOwner)){const defs=!x.sealed&&effective(x,s).g1517SpellAuraWatch;if(defs)queue(s,watchOwner,x,defs);}const prev=s.g448NoncreatureUses?.[p];(s.g448NoncreatureUses??=[null,null])[p]={turn:s.turn,n:prev?.turn===s.turn?prev.n+1:1};}
  const magicTerminal1292=(s,p)=>s.extLimits?.find(l=>l.kind==='g1292MagicTerminal'&&l.player===p);
  function terminalUse1292(s,p,c){
   const rule=magicTerminal1292(s,p);

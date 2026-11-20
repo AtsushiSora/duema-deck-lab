@@ -272147,15 +272147,147 @@
       },
       "supportBatch": "phase-1516",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmsd09-012",
+      "name": "プロト・コア / 暗黒の不法侵入",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "トリックス/デリートロン",
+      "text": "自分の呪文を唱えるコストまたはオーラを使うコストを最大２少なくする。ただし、コストは０以下にはならない。\n【呪文面】\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－5000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd09-012",
+      "limit": 4,
+      "g1517SpellAuraReduction": 2,
+      "spellFace": {
+        "type": "spell",
+        "name": "暗黒の不法侵入",
+        "cost": 3,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -5000,
+            "g242PowerMinus": true,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1517",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-s01",
+      "name": "無双の縛り 達閃 / パシフィック・スパーク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4500,
+      "race": "メタリカ",
+      "text": "ブロッカーブロッカー\n相手は、自身のターンに１体しかクリーチャーをバトルゾーンに出せない。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\n相手のクリーチャーをすべてタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-s01",
+      "limit": 4,
+      "blocker": true,
+      "g1517EnemyOwnTurnMax": 1,
+      "g40LastBurst": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "パシフィック・スパーク",
+        "cost": 3,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll",
+            "g218Tap": true,
+            "filter": {
+              "creature": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1517",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-004",
+      "name": "機動基盤 コア・キャリバー/エレクトロ・シャワー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "トリックス/デリートロン",
+      "text": "自分の呪文を唱えた時、またはオーラを使った時、カードを１枚引いてもよい。\n【呪文面】\n自分の山札の上から２枚を、タップして自分のマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-004",
+      "limit": 4,
+      "g1517SpellAuraWatch": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "エレクトロ・シャワー",
+        "cost": 4,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 2,
+            "tapped": true,
+            "g809Together": true,
+            "spell": true
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1517",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1516,
+    "phase": 1517,
     "checkedAt": "2026-11-20",
-    "baseCount": 8686,
+    "baseCount": 8689,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 8689,
+    "totalCount": 8692,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -297158,6 +297290,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 8686,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1516,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8686,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 8689,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
