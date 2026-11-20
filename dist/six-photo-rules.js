@@ -10125,6 +10125,8 @@ for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand
   });
  }, afterSpell566(s,f){
   const p=f.caster??f.owner,spell=f.spell;
+  if(!f.virtual&&spell?.g1489SuperRecast&&spell.superTriggerActive&&spell.summonOrigin==='hand'&&f.owner===p&&f.to==='grave'&&!api.spellIgnored(s,spell))
+   put(s,task('g34_RecastHandSpell1245',p,spell.id,{target:f.inst.uid,serial:f.inst.zoneSerial||0,face:0}));
   if(spell?.g566EvoCharger&&!api.spellIgnored(s,spell))put(s,task('g34_EvoCharge566',p,spell.id,{}));
   if(!f.virtual&&spell?.g1284CivilRecast&&spell.summonOrigin==='hand'&&f.owner===p&&f.to==='grave'&&
      !api.spellIgnored(s,spell)&&ownCondition(s,p,spell.g1284CivilRecast))
