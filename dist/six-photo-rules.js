@@ -648,6 +648,7 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g1485BattleName){const r=f.g1485BattleName,found=s.players[p].battle.some(x=>!x.sealed&&!x.faceDown&&battleNames676(s,x).includes(exactName(r.name)));return r.absent?!found:found;}
   if(f.g1484ZoneCount){const r=f.g1484ZoneCount,who=r.opponent?1-p:p,n=s.players[who][r.zone].filter(y=>matches(s,who,y,r.filter)).length;return(r.min===undefined||n>=r.min)&&(r.max===undefined||n<=r.max);}
   if(f.g1475Attacking){const a=s.attack||s.attackLifecycle;return !!a&&s.players[p].battle.some(x=>api.allLayers(x).some(y=>y.uid===sourceUid&&(sourceIncarnation===null||(y.incarnation||0)===sourceIncarnation))&&(x.uid===(a.attacker??a.uid)));}
   if(f.g1473RepeatedUnitAttack){const host=s.players[p].battle.find(x=>api.allLayers(x).some(y=>y.uid===sourceUid&&(sourceIncarnation===null||(y.incarnation||0)===sourceIncarnation)));if(!host||s.g481Attackers?.turn!==s.turn)return false;const refs=api.allLayers(host).map(key);return s.g481Attackers.events.filter(e=>e.p===p&&e.refs.some(r=>refs.includes(r))).length>1;}
@@ -2357,6 +2358,9 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_UltoRelease1361':if(x)api.dragonRelease1361(s,t.p,x);break;
+ case'g34_GodWall1485':{
+  choice(s,t,'とどまる効果を与える自分のクリーチャーを選ぶ',targetOptions(s,t.p,creatures(s,t.p)));break;
+ }
  case'g34_FortressRelease1480':if(x)api.dragonRelease1361(s,t.p,x,{fortress:true});break;
  // Evo Charger continues after the physical spell has completed its move to mana.
  case'g34_EvoCharge566':{const hosts=creatures(s,t.p).filter(y=>!y.sealed&&api.isEvolution(y)),rows=own.mana.filter(y=>!y.faceDown&&faces(card(y)).some(c=>c.type==='creature'));if(!api.canMoveZone(s,t.p,'mana')||!hosts.length||!rows.length)break;if(!t.host)choice(s,t,'進化元を追加する自分の進化クリーチャーを選ぶ（任意）',[...hosts.map(y=>opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},8,y.cardId)),skip()]);else if(hosts.some(y=>key(y)===key(t.host)))choice(s,t,'進化元に追加するマナのクリーチャーを選ぶ（任意）',[...rows.map(y=>opt(card(y).name,{uid:y.uid,serial:y.zoneSerial||0},6-cost(card(y)),y.cardId)),skip()]);break;}
@@ -6383,6 +6387,9 @@ export function createSixPhotoRules(api){
   if(host)put(s,{...t,op:'g34_DeployDragheart1361',uid:host.uid,incarnation:host.incarnation||0,weaponOnly:true});
   break;
  }
+ case'g34_GodWall1485':{
+  const y=own.battle.find(x=>x.uid===v);if(y)(s.extLimits??=[]).push({kind:'g627Stay',ref:{uid:y.uid,incarnation:y.incarnation||0},destroyOnly:!race(effective(y,s),'ゴッド'),expires:'start',who:t.p,source:t.source,spellCost:cost(card(t.source))});break;
+ }
  case'g34_DeployDragheart1361':{
   const y=dragheartOptions1361(s,t).find(y=>y.uid===v);
   if(!y)break;
@@ -8568,7 +8575,7 @@ export function createSixPhotoRules(api){
   if(!x.sealed&&c.neoEvolution&&api.isEvolution(x)&&api.allLayers(x).length>=3&&
    s.players[p].battle.some(y=>!y.sealed&&card(y).g1132NeoStay&&effective(y,s).g1132NeoStay)&&
    (context.battlePower??currentPower506(s,x))>0)return false;
-  if((s.extLimits||[]).some(l=>l.kind==='g627Stay'&&!spellGrantIgnored(s,l)&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)))return false;
+  if((s.extLimits||[]).some(l=>l.kind==='g627Stay'&&(!l.destroyOnly||context.destroy!==false)&&!spellGrantIgnored(s,l)&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)))return false;
   return context.skip577Stay||!(c.g577Stay&&stay577(s,p,x,context.battlePower)||allyStay1246(s,p,x,context.battlePower));
  },
  stay577,allyStay1246,

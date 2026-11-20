@@ -266236,7 +266236,8 @@
               "filter": {
                 "race": "ゴッド"
               },
-              "min": 1
+              "min": 1,
+              "g557Elements": true
             }
           }
         ]
@@ -266290,15 +266291,139 @@
       },
       "supportBatch": "phase-1484",
       "supportKind": "effect"
+    },
+    {
+      "id": "promoy9-001",
+      "name": "バルケリオス・武者・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "アーマード・ドラゴン/サムライ",
+      "text": "G・ゼロ-バトルゾーンに自分の《ボルメテウス・武者・ドラゴン》があれば、このクリーチャーをコストを支払わずに召喚してもよい。\nバトルゾーンにある自分のドラゴンはすべて、種族にサムライを追加する。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy9-001",
+      "limit": 4,
+      "breaker": 2,
+      "g396Zero": {
+        "all": [
+          {
+            "g1485BattleName": {
+              "name": "ボルメテウス・武者・ドラゴン"
+            }
+          }
+        ]
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "race": "ドラゴン"
+          },
+          "grants": {
+            "raceAdd": [
+              "サムライ"
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-1485",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmc45-006",
+      "name": "ボルメテウス・剣誠・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "アーマード・ドラゴン/サムライ",
+      "text": "G・ゼロ -バトルゾーンに自分のサムライが５枚以上あり、自分の《ボルメテウス・剣誠・ドラゴン》が１体もなければ、このクリーチャーをコストを支払わずに召喚してもよい。\nこのクリーチャーが攻撃する時、相手のパワー6000以下のクリーチャーを１体破壊してもよい。\nバトルゾーンにある間、このクリーチャーは名前に《ボルメテウス・武者・ドラゴン》を追加する。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc45-006",
+      "limit": 4,
+      "breaker": 2,
+      "g396Zero": {
+        "all": [
+          {
+            "g370BattleCount": {
+              "min": 5,
+              "filter": {
+                "race": "サムライ"
+              },
+              "g557Elements": true
+            }
+          },
+          {
+            "g1485BattleName": {
+              "name": "ボルメテウス・剣誠・ドラゴン",
+              "absent": true
+            }
+          }
+        ]
+      },
+      "g1485BattleName": "ボルメテウス・武者・ドラゴン",
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "optional": true,
+          "filter": {
+            "maxPower": 6000,
+            "g199Power": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1485",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr10-020",
+      "name": "神の裏技ゴッド・ウォール",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "G・ゼロ - バトルゾーンに自分のゴッドがあれば、この呪文をコストを支払わずに唱えてもよい。\nバトルゾーンにある自分のクリーチャーを１体選ぶ。それがゴッドであれば、自分の次のターンのはじめまで、そのクリーチャーがバトルゾーンを離れる時、離れるかわりにとどまる。ゴッドでなければ、自分の次のターンのはじめまで、そのクリーチャーが破壊される時、墓地に置かれるかわりにバトルゾーンにとどまる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-020",
+      "limit": 4,
+      "g261Free": {
+        "filter": {
+          "g370BattleCount": {
+            "min": 1,
+            "filter": {
+              "race": "ゴッド"
+            },
+            "g557Elements": true
+          }
+        },
+        "label": "G・ゼロ"
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GodWall1485"
+        }
+      ],
+      "supportBatch": "phase-1485",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1484,
+    "phase": 1485,
     "checkedAt": "2026-11-20",
-    "baseCount": 8550,
+    "baseCount": 8553,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 8553,
+    "totalCount": 8556,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -290853,6 +290978,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8550,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1484,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8550,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 8553,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

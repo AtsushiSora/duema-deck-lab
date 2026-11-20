@@ -2240,7 +2240,8 @@
               "filter": {
                 "race": "ゴッド"
               },
-              "min": 1
+              "min": 1,
+              "g557Elements": true
             }
           }
         ]
@@ -2295,6 +2296,141 @@
           }
         ]
       }
+    }
+  },
+  "promoy9-001": {
+    "phase": 1485,
+    "faces": [
+      {
+        "name": "バルケリオス・武者・ドラゴン",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "G・ゼロ-バトルゾーンに自分の《ボルメテウス・武者・ドラゴン》があれば、このクリーチャーをコストを支払わずに召喚してもよい。\nバトルゾーンにある自分のドラゴンはすべて、種族にサムライを追加する。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+        "race": "アーマード・ドラゴン/サムライ",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g396Zero": {
+        "all": [
+          {
+            "g1485BattleName": {
+              "name": "ボルメテウス・武者・ドラゴン"
+            }
+          }
+        ]
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "race": "ドラゴン"
+          },
+          "grants": {
+            "raceAdd": [
+              "サムライ"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "dmc45-006": {
+    "phase": 1485,
+    "faces": [
+      {
+        "name": "ボルメテウス・剣誠・ドラゴン",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "G・ゼロ -バトルゾーンに自分のサムライが５枚以上あり、自分の《ボルメテウス・剣誠・ドラゴン》が１体もなければ、このクリーチャーをコストを支払わずに召喚してもよい。\nこのクリーチャーが攻撃する時、相手のパワー6000以下のクリーチャーを１体破壊してもよい。\nバトルゾーンにある間、このクリーチャーは名前に《ボルメテウス・武者・ドラゴン》を追加する。\nW・ブレイカー",
+        "race": "アーマード・ドラゴン/サムライ",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g396Zero": {
+        "all": [
+          {
+            "g370BattleCount": {
+              "min": 5,
+              "filter": {
+                "race": "サムライ"
+              },
+              "g557Elements": true
+            }
+          },
+          {
+            "g1485BattleName": {
+              "name": "ボルメテウス・剣誠・ドラゴン",
+              "absent": true
+            }
+          }
+        ]
+      },
+      "g1485BattleName": "ボルメテウス・武者・ドラゴン",
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "optional": true,
+          "filter": {
+            "maxPower": 6000,
+            "g199Power": true
+          }
+        }
+      ]
+    }
+  },
+  "dmr10-020": {
+    "phase": 1485,
+    "faces": [
+      {
+        "name": "神の裏技ゴッド・ウォール",
+        "typeText": "呪文",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "G・ゼロ - バトルゾーンに自分のゴッドがあれば、この呪文をコストを支払わずに唱えてもよい。\nバトルゾーンにある自分のクリーチャーを１体選ぶ。それがゴッドであれば、自分の次のターンのはじめまで、そのクリーチャーがバトルゾーンを離れる時、離れるかわりにとどまる。ゴッドでなければ、自分の次のターンのはじめまで、そのクリーチャーが破壊される時、墓地に置かれるかわりにバトルゾーンにとどまる。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g261Free": {
+        "filter": {
+          "g370BattleCount": {
+            "min": 1,
+            "filter": {
+              "race": "ゴッド"
+            },
+            "g557Elements": true
+          }
+        },
+        "label": "G・ゼロ"
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GodWall1485"
+        }
+      ]
     }
   }
 }
