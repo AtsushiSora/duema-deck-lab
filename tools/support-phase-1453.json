@@ -1,0 +1,426 @@
+{
+  "phase": 1453,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8418,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dm25ex4-026",
+      "name": "アーティスト・リンク・ホール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-026",
+      "faces": [
+        {
+          "name": "アーティスト・リンク・ホール",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "シンパシー：自分の墓地にある呪文（自分の墓地にある呪文１枚につき、この呪文を唱えるコストを１少なくする。ただしコストは０以下にならない）\n次の中から１回選ぶ。\n▶跳次元召喚６（コスト６以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）\n▶相手のコスト４以下のクリーチャーをすべて、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "grave",
+          "filter": {
+            "g228Face": {
+              "type": "spell"
+            }
+          },
+          "amount": 1,
+          "excludeExecutingCard": true
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "跳次元召喚6",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "n": 1,
+                    "deploy": true,
+                    "execution": true,
+                    "optional": true,
+                    "g1104PsychicFaces": true,
+                    "g1321Teleport": true,
+                    "filter": {
+                      "creature": true,
+                      "max": 6,
+                      "g1321ManaCivilizations": true
+                    },
+                    "title": "跳次元召喚するクリーチャーを1体選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "もう一つの効果を使う",
+                "defs": [
+                  {
+                    "op": "Sweep",
+                    "to": "hand",
+                    "filter": {
+                      "creature": true,
+                      "max": 4
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "3f34d33eacde548207f2b017365a4d03bc720f9c967c58e44944ab6bd3da79fc",
+        "facesMatched": true,
+        "imageSha256": "fa928b303036fea5d1b8a9345689361c1d0e92cefa19e2740722cd7d4e63edcf",
+        "imageBytes": 178228
+      },
+      "sameNameProducts": [
+        "DM25-EX4 エピソード4 パンドラ・ウォーズ"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-026",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm25ex4-023",
+      "name": "ガーディアン・リンク・ホール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-023",
+      "faces": [
+        {
+          "name": "ガーディアン・リンク・ホール",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "シンパシー：自分のクリーチャー（自分のクリーチャー１体につき、この呪文を唱えるコストを１少なくする。ただしコストは０以下にならない）\n次の中から１回選ぶ。\n▶跳次元召喚６（コスト６以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）\n▶自分のクリーチャー１体につき、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g168Sympathy": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "跳次元召喚6",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "n": 1,
+                    "deploy": true,
+                    "execution": true,
+                    "optional": true,
+                    "g1104PsychicFaces": true,
+                    "g1321Teleport": true,
+                    "filter": {
+                      "creature": true,
+                      "max": 6,
+                      "g1321ManaCivilizations": true
+                    },
+                    "title": "跳次元召喚するクリーチャーを1体選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "もう一つの効果を使う",
+                "defs": [
+                  {
+                    "op": "CountDraw",
+                    "zone": "battle",
+                    "filter": {
+                      "creature": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "21fea0b89b028a0023747d5b7a4a1d5fe9ec85d1565c61fa2cb1d825edabafdb",
+        "facesMatched": true,
+        "imageSha256": "4dfc5b5b9ceb823c05329e1fbf5333a847a657a7adeebac3f9503f3093bf61a0",
+        "imageBytes": 177835
+      },
+      "sameNameProducts": [
+        "DM25-EX4 エピソード4 パンドラ・ウォーズ"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-023",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm25ex4-035",
+      "name": "グレートマザー・リンク・ホール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-035",
+      "faces": [
+        {
+          "name": "グレートマザー・リンク・ホール",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "シンパシー：自分のマナゾーンにあるカード（自分のマナゾーンにあるカード１枚につき、この呪文を唱えるコストを１少なくする。ただしコストは０以下にならない）\n次の中から１回選ぶ。\n▶跳次元召喚６（コスト６以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）\n▶相手のエレメントを１つ選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "manaSympathy": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "跳次元召喚6",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "n": 1,
+                    "deploy": true,
+                    "execution": true,
+                    "optional": true,
+                    "g1104PsychicFaces": true,
+                    "g1321Teleport": true,
+                    "filter": {
+                      "creature": true,
+                      "max": 6,
+                      "g1321ManaCivilizations": true
+                    },
+                    "title": "跳次元召喚するクリーチャーを1体選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "もう一つの効果を使う",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "element": true,
+                    "to": "mana"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "1bc42372e3f3a23ca86b07dfc4b5b9932fc676c3a6673f7198e2a57c59b8363d",
+        "facesMatched": true,
+        "imageSha256": "704fdd7df063a2aa602102fe290da13322c45be6686a11323c3bba353a41ca93",
+        "imageBytes": 144091
+      },
+      "sameNameProducts": [
+        "DM25-EX4 エピソード4 パンドラ・ウォーズ"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-035",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm25ex4-051",
+      "name": "アカシック・マップ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-051",
+      "faces": [
+        {
+          "name": "アカシック・マップ",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "自分の山札の上から５枚を見る。その中からデュエリストを１つ表向きにし、手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 5,
+            "public": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "g228Face": {
+                    "type": "duelist"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "64dbfdc0c3d804f24822e394bbdbb56dfef8d935ecd65ed13a2a60872d9e2792",
+        "facesMatched": true,
+        "imageSha256": "7e11a5afcc0448ad59a4188336cd13fe5428595a91b185d628bb36db0a1d30bf",
+        "imageBytes": 132966
+      },
+      "sameNameProducts": [
+        "DM25-EX4 エピソード4 パンドラ・ウォーズ"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-051",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmbd11-a04",
+      "name": "バリスイトーヨー / 水筒の術",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd11-a04",
+      "faces": [
+        {
+          "name": "バリスイトーヨー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "水筒の術",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "GR召喚を２回する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "spellFace": {
+          "type": "spell",
+          "name": "水筒の術",
+          "cost": 4,
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "AuraGr1353"
+            },
+            {
+              "op": "AuraGr1353"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd11-a04a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "e2ba70dec4460bc25b52a879e2a0e969ac93c9f304ca941c0a79278e00a615ed",
+        "facesMatched": true,
+        "imageSha256": "6502c94306321ef2ea1446d3887d771a2c5cc4d824423ea4594eecc88afd4601",
+        "imageBytes": 113417
+      },
+      "sameNameProducts": [
+        "DMEX-19 マスター・ファイナル・メモリアル・パック",
+        "DMBD-11 ガチヤバ4！無限改造デッキセットDX!! ジョーのビッグバンGR"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd11-a04",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25ex4-026": 4,
+      "dm25ex4-023": 4,
+      "dm25ex4-035": 4,
+      "dm25ex4-051": 4,
+      "dmbd11-a04": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    }
+  ]
+}

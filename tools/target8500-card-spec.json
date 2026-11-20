@@ -13503,5 +13503,304 @@
         }
       ]
     }
+  },
+  "dm25ex4-026": {
+    "phase": 1453,
+    "faces": [
+      {
+        "name": "アーティスト・リンク・ホール",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "シンパシー：自分の墓地にある呪文（自分の墓地にある呪文１枚につき、この呪文を唱えるコストを１少なくする。ただしコストは０以下にならない）\n次の中から１回選ぶ。\n▶跳次元召喚６（コスト６以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）\n▶相手のコスト４以下のクリーチャーをすべて、持ち主の手札に戻す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g212CountDiscount": {
+        "zone": "grave",
+        "filter": {
+          "g228Face": {
+            "type": "spell"
+          }
+        },
+        "amount": 1,
+        "excludeExecutingCard": true
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "跳次元召喚6",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "extra",
+                  "n": 1,
+                  "deploy": true,
+                  "execution": true,
+                  "optional": true,
+                  "g1104PsychicFaces": true,
+                  "g1321Teleport": true,
+                  "filter": {
+                    "creature": true,
+                    "max": 6,
+                    "g1321ManaCivilizations": true
+                  },
+                  "title": "跳次元召喚するクリーチャーを1体選ぶ"
+                }
+              ]
+            },
+            {
+              "label": "もう一つの効果を使う",
+              "defs": [
+                {
+                  "op": "Sweep",
+                  "to": "hand",
+                  "filter": {
+                    "creature": true,
+                    "max": 4
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm25ex4-023": {
+    "phase": 1453,
+    "faces": [
+      {
+        "name": "ガーディアン・リンク・ホール",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "シンパシー：自分のクリーチャー（自分のクリーチャー１体につき、この呪文を唱えるコストを１少なくする。ただしコストは０以下にならない）\n次の中から１回選ぶ。\n▶跳次元召喚６（コスト６以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）\n▶自分のクリーチャー１体につき、カードを１枚引く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g168Sympathy": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "跳次元召喚6",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "extra",
+                  "n": 1,
+                  "deploy": true,
+                  "execution": true,
+                  "optional": true,
+                  "g1104PsychicFaces": true,
+                  "g1321Teleport": true,
+                  "filter": {
+                    "creature": true,
+                    "max": 6,
+                    "g1321ManaCivilizations": true
+                  },
+                  "title": "跳次元召喚するクリーチャーを1体選ぶ"
+                }
+              ]
+            },
+            {
+              "label": "もう一つの効果を使う",
+              "defs": [
+                {
+                  "op": "CountDraw",
+                  "zone": "battle",
+                  "filter": {
+                    "creature": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm25ex4-035": {
+    "phase": 1453,
+    "faces": [
+      {
+        "name": "グレートマザー・リンク・ホール",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "シンパシー：自分のマナゾーンにあるカード（自分のマナゾーンにあるカード１枚につき、この呪文を唱えるコストを１少なくする。ただしコストは０以下にならない）\n次の中から１回選ぶ。\n▶跳次元召喚６（コスト６以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）\n▶相手のエレメントを１つ選び、持ち主のマナゾーンに置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "manaSympathy": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "跳次元召喚6",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "extra",
+                  "n": 1,
+                  "deploy": true,
+                  "execution": true,
+                  "optional": true,
+                  "g1104PsychicFaces": true,
+                  "g1321Teleport": true,
+                  "filter": {
+                    "creature": true,
+                    "max": 6,
+                    "g1321ManaCivilizations": true
+                  },
+                  "title": "跳次元召喚するクリーチャーを1体選ぶ"
+                }
+              ]
+            },
+            {
+              "label": "もう一つの効果を使う",
+              "defs": [
+                {
+                  "op": "Target",
+                  "element": true,
+                  "to": "mana"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm25ex4-051": {
+    "phase": 1453,
+    "faces": [
+      {
+        "name": "アカシック・マップ",
+        "typeText": "呪文",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "自分の山札の上から５枚を見る。その中からデュエリストを１つ表向きにし、手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 5,
+          "public": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "g228Face": {
+                  "type": "duelist"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmbd11-a04": {
+    "phase": 1453,
+    "faces": [
+      {
+        "name": "バリスイトーヨー",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "水筒の術",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "GR召喚を２回する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "blocker": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "水筒の術",
+        "cost": 4,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "AuraGr1353"
+          },
+          {
+            "op": "AuraGr1353"
+          }
+        ]
+      }
+    }
   }
 }

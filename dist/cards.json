@@ -261134,15 +261134,283 @@
       ],
       "supportBatch": "phase-1452",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-026",
+      "name": "アーティスト・リンク・ホール",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 8,
+      "power": 0,
+      "race": "",
+      "text": "シンパシー：自分の墓地にある呪文（自分の墓地にある呪文１枚につき、この呪文を唱えるコストを１少なくする。ただしコストは０以下にならない）\n次の中から１回選ぶ。\n▶跳次元召喚６（コスト６以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）\n▶相手のコスト４以下のクリーチャーをすべて、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-026",
+      "limit": 4,
+      "g212CountDiscount": {
+        "zone": "grave",
+        "filter": {
+          "g228Face": {
+            "type": "spell"
+          }
+        },
+        "amount": 1,
+        "excludeExecutingCard": true
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "跳次元召喚6",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "extra",
+                  "n": 1,
+                  "deploy": true,
+                  "execution": true,
+                  "optional": true,
+                  "g1104PsychicFaces": true,
+                  "g1321Teleport": true,
+                  "filter": {
+                    "creature": true,
+                    "max": 6,
+                    "g1321ManaCivilizations": true
+                  },
+                  "title": "跳次元召喚するクリーチャーを1体選ぶ"
+                }
+              ]
+            },
+            {
+              "label": "もう一つの効果を使う",
+              "defs": [
+                {
+                  "op": "Sweep",
+                  "to": "hand",
+                  "filter": {
+                    "creature": true,
+                    "max": 4
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1453",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-023",
+      "name": "ガーディアン・リンク・ホール",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "シンパシー：自分のクリーチャー（自分のクリーチャー１体につき、この呪文を唱えるコストを１少なくする。ただしコストは０以下にならない）\n次の中から１回選ぶ。\n▶跳次元召喚６（コスト６以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）\n▶自分のクリーチャー１体につき、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-023",
+      "limit": 4,
+      "g168Sympathy": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "跳次元召喚6",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "extra",
+                  "n": 1,
+                  "deploy": true,
+                  "execution": true,
+                  "optional": true,
+                  "g1104PsychicFaces": true,
+                  "g1321Teleport": true,
+                  "filter": {
+                    "creature": true,
+                    "max": 6,
+                    "g1321ManaCivilizations": true
+                  },
+                  "title": "跳次元召喚するクリーチャーを1体選ぶ"
+                }
+              ]
+            },
+            {
+              "label": "もう一つの効果を使う",
+              "defs": [
+                {
+                  "op": "CountDraw",
+                  "zone": "battle",
+                  "filter": {
+                    "creature": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1453",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-035",
+      "name": "グレートマザー・リンク・ホール",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 10,
+      "power": 0,
+      "race": "",
+      "text": "シンパシー：自分のマナゾーンにあるカード（自分のマナゾーンにあるカード１枚につき、この呪文を唱えるコストを１少なくする。ただしコストは０以下にならない）\n次の中から１回選ぶ。\n▶跳次元召喚６（コスト６以下で、その文明がすべて自分のマナゾーンにあるクリーチャーを１体、自分の超次元ゾーンからコストを支払ったものとして召喚してもよい）\n▶相手のエレメントを１つ選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-035",
+      "limit": 4,
+      "manaSympathy": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "跳次元召喚6",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "extra",
+                  "n": 1,
+                  "deploy": true,
+                  "execution": true,
+                  "optional": true,
+                  "g1104PsychicFaces": true,
+                  "g1321Teleport": true,
+                  "filter": {
+                    "creature": true,
+                    "max": 6,
+                    "g1321ManaCivilizations": true
+                  },
+                  "title": "跳次元召喚するクリーチャーを1体選ぶ"
+                }
+              ]
+            },
+            {
+              "label": "もう一つの効果を使う",
+              "defs": [
+                {
+                  "op": "Target",
+                  "element": true,
+                  "to": "mana"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1453",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-051",
+      "name": "アカシック・マップ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "race": "",
+      "text": "自分の山札の上から５枚を見る。その中からデュエリストを１つ表向きにし、手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-051",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 5,
+          "public": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "g228Face": {
+                  "type": "duelist"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1453",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd11-a04",
+      "name": "バリスイトーヨー / 水筒の術",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n【呪文面】\nGR召喚を２回する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd11-a04",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "水筒の術",
+        "cost": 4,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "AuraGr1353"
+          },
+          {
+            "op": "AuraGr1353"
+          }
+        ]
+      },
+      "supportBatch": "phase-1453",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1452,
+    "phase": 1453,
     "checkedAt": "2026-11-20",
-    "baseCount": 8415,
-    "newEffectCards": 3,
+    "baseCount": 8418,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8418,
+    "totalCount": 8423,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -285249,6 +285517,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 8415,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1452,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8415,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 8418,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
