@@ -270841,7 +270841,8 @@
         {
           "op": "EachPlayer459",
           "origin": "hand",
-          "to": "grave"
+          "to": "grave",
+          "discard": true
         }
       ],
       "spellFace": {
@@ -271037,15 +271038,155 @@
       },
       "supportBatch": "phase-1510",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-033",
+      "name": "百全の備え 品紅/モモンド・コール",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "メタリカ",
+      "text": "自分のターンの終わりに、このクリーチャーをアンタップする。\n【呪文面】\nこのターン、自分のクリーチャー１体のパワーを+3000し、ターンの終わりにアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-033",
+      "limit": 4,
+      "g166EndUntap": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "モモンド・コール",
+        "cost": 1,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ChooseEndUntap501",
+            "power": 3000,
+            "thisTurn": true,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1511",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-023",
+      "name": "終端の闇 ウゴカ・ザルコ/再誕の輝き",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 6000,
+      "race": "デーモン・コマンド",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、カードを１枚、自分のマナゾーンから墓地に置く。\n【呪文面】\nカードを１枚、自分の墓地からタップしてマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-023",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "grave",
+          "n": 1,
+          "g184ManaLoss": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "再誕の輝き",
+        "cost": 1,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "mana",
+            "tapped": true,
+            "n": 1,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1511",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex15-b015",
+      "name": "魔刻の騎士オルゲイト /「全員、地獄送りだ!!」",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "デーモン・コマンド",
+      "text": "W・ブレイカー\n自分のクリーチャーが破壊された時、このクリーチャーをアンタップしてもよい。\n【呪文面】\nS・トリガー S・トリガー\n相手のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b015",
+      "limit": 4,
+      "breaker": 2,
+      "g303DeathWatch": {
+        "self": true,
+        "defs": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Untap",
+                "g191First": true
+              }
+            ]
+          }
+        ]
+      },
+      "spellFace": {
+        "type": "spell",
+        "name": "「全員、地獄送りだ!!」",
+        "cost": 6,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1511",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1510,
+    "phase": 1511,
     "checkedAt": "2026-11-20",
-    "baseCount": 8661,
-    "newEffectCards": 5,
+    "baseCount": 8666,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 8666,
+    "totalCount": 8669,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -295964,6 +296105,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8661,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1510,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8661,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8666,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

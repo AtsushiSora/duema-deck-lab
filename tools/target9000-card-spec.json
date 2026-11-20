@@ -7207,7 +7207,8 @@
         {
           "op": "EachPlayer459",
           "origin": "hand",
-          "to": "grave"
+          "to": "grave",
+          "discard": true
         }
       ],
       "spellFace": {
@@ -7465,6 +7466,197 @@
             "to": "mana",
             "tapped": true,
             "n": 2,
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp06-033": {
+    "phase": 1511,
+    "faces": [
+      {
+        "name": "百全の備え 品紅",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "自分のターンの終わりに、このクリーチャーをアンタップする。",
+        "race": "メタリカ",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "モモンド・コール",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "このターン、自分のクリーチャー１体のパワーを+3000し、ターンの終わりにアンタップする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g166EndUntap": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "モモンド・コール",
+        "cost": 1,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ChooseEndUntap501",
+            "power": 3000,
+            "thisTurn": true,
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp10-023": {
+    "phase": 1511,
+    "faces": [
+      {
+        "name": "終端の闇 ウゴカ・ザルコ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、カードを１枚、自分のマナゾーンから墓地に置く。",
+        "race": "デーモン・コマンド",
+        "powerText": "6000",
+        "missingFields": []
+      },
+      {
+        "name": "再誕の輝き",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "カードを１枚、自分の墓地からタップしてマナゾーンに置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "grave",
+          "n": 1,
+          "g184ManaLoss": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "再誕の輝き",
+        "cost": 1,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "mana",
+            "tapped": true,
+            "n": 1,
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmex15-b015": {
+    "phase": 1511,
+    "faces": [
+      {
+        "name": "魔刻の騎士オルゲイト",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "W・ブレイカー\n自分のクリーチャーが破壊された時、このクリーチャーをアンタップしてもよい。",
+        "race": "デーモン・コマンド",
+        "powerText": "6000",
+        "missingFields": []
+      },
+      {
+        "name": "「全員、地獄送りだ!!」",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーを１体破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g303DeathWatch": {
+        "self": true,
+        "defs": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Untap",
+                "g191First": true
+              }
+            ]
+          }
+        ]
+      },
+      "spellFace": {
+        "type": "spell",
+        "name": "「全員、地獄送りだ!!」",
+        "cost": 6,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
             "spell": true
           }
         ]

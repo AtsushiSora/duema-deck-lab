@@ -1,0 +1,306 @@
+{
+  "phase": 1511,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8666,
+  "description": "既存の処理を用いて全能力を個別に検証し3種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "deferred": [
+    {
+      "id": "dmex04-012",
+      "name": "残虐覇王デスカール / ロスト・ソウル",
+      "reason": "公式HTMLの呪文面文明欄が空白で保存済み詳細と不一致。公式画像または完全な再録版との統合照合を別バッチで行う。未登録。"
+    }
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/33716/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/33716/": "S・トリガーの付与や使用可能な面は条件を満たす片面だけに適用する。"
+  },
+  "scopeNotes": [
+    "前バッチのコオニ小町の捨てる処理を明示的discardへ統一し、バイケンの置換を固有テストに追加する。元の8500種類は不変。"
+  ],
+  "cards": [
+    {
+      "id": "dmrp06-033",
+      "name": "百全の備え 品紅/モモンド・コール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-033",
+      "faces": [
+        {
+          "name": "百全の備え 品紅",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のターンの終わりに、このクリーチャーをアンタップする。",
+          "race": "メタリカ",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "モモンド・コール",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このターン、自分のクリーチャー１体のパワーを+3000し、ターンの終わりにアンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g166EndUntap": true,
+        "spellFace": {
+          "type": "spell",
+          "name": "モモンド・コール",
+          "cost": 1,
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "ChooseEndUntap501",
+              "power": 3000,
+              "thisTurn": true,
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-033a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "98af42ce23e3baa27bc3f614eda78a292348839391d1932271eb28767073c164",
+        "facesMatched": true,
+        "imageSha256": "9cdf48e87f081baba05ca8f45a7cc7fefbfe1a13916c734e13670c3334682b1c",
+        "imageBytes": 116935
+      },
+      "sameNameProducts": [
+        "DMRP-06 双極篇 拡張パック第２弾 逆襲のギャラクシー 卍・獄・殺!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-033",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp10-023",
+      "name": "終端の闇 ウゴカ・ザルコ/再誕の輝き",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-023",
+      "faces": [
+        {
+          "name": "終端の闇 ウゴカ・ザルコ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、カードを１枚、自分のマナゾーンから墓地に置く。",
+          "race": "デーモン・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "再誕の輝き",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "カードを１枚、自分の墓地からタップしてマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "grave",
+            "n": 1,
+            "g184ManaLoss": true
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "再誕の輝き",
+          "cost": 1,
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "to": "mana",
+              "tapped": true,
+              "n": 1,
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp10-023a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "a5de84f3ddf020f4f05c5be2fde9437c200d3bac348be96f0100dc13d6581911",
+        "facesMatched": true,
+        "imageSha256": "1f68c828137986e3f1e6f7ffe811cdb901f23b0e9a7090f0bcee0e8bc6f5d5f0",
+        "imageBytes": 133916
+      },
+      "sameNameProducts": [
+        "DMRP-10 超天篇 拡張パック第2弾 青きC.A.P.と漆黒の大卍罪"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-023",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex15-b015",
+      "name": "魔刻の騎士オルゲイト /「全員、地獄送りだ!!」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b015",
+      "faces": [
+        {
+          "name": "魔刻の騎士オルゲイト",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\n自分のクリーチャーが破壊された時、このクリーチャーをアンタップしてもよい。",
+          "race": "デーモン・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "「全員、地獄送りだ!!」",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g303DeathWatch": {
+          "self": true,
+          "defs": [
+            {
+              "op": "Offer",
+              "defs": [
+                {
+                  "op": "Untap",
+                  "g191First": true
+                }
+              ]
+            }
+          ]
+        },
+        "spellFace": {
+          "type": "spell",
+          "name": "「全員、地獄送りだ!!」",
+          "cost": 6,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex15-b015a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "5ce3e80e486364cd55452cba5c19e4cfdf0c949201b7e6b6153fd526edc01416",
+        "facesMatched": true,
+        "imageSha256": "680928101cc742c0edfea0c42f1e492e3c9a5469b989093bd981433693883183",
+        "imageBytes": 181326
+      },
+      "sameNameProducts": [
+        "DMEX-15 20周年超感謝メモリアルパック 魂の章 名場面BEST"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b015",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp06-033": 4,
+      "dmrp10-023": 4,
+      "dmex15-b015": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/33716/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33716/",
+      "sha256": "0e3296031e1dfb8ceec8afade9c5962b09b58597abcfa218c51dc2bac129a205",
+      "result": "S・トリガーの付与や使用可能な面は条件を満たす片面だけに適用する。"
+    }
+  ],
+  "testCorrections": [
+    "アンタップ不能を表すtapLocksを開始時だけのスキップへ修正。遅延アンタップは同じ物理カードの再召喚後に継承しないことを検証。"
+  ]
+}
