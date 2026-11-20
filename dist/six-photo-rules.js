@@ -6125,6 +6125,7 @@ export function createSixPhotoRules(api){
   const n=countDraw(s,t.p,{zone:'battle',filter:{creature:true,g1428Gr:true}});
   if(n)start(s,t,[{op:'Select',origin:'battle',owner:'opponent',n,g173Targets:true,g193Tap:true,filter:{creature:true}}]);break;
  }
+ case'g34_GrSummon1498':api.grSummon(s,t.p,{g1498Grant:{grant:t.grant,permanent:!!t.permanent,delayed:t.delayed,source:t.source,controller:t.controller??t.p}});break;
  case'g34_AuraGr1353':api.grSummon(s,t.p,{tapped:!!t.tapped});break;
  case'g34_SelfAura1460':{
   const host=sourceHost474(s,t);
