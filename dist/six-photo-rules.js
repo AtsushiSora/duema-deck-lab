@@ -6058,6 +6058,7 @@ export function createSixPhotoRules(api){
   else put(s,{...t,op:'g34_AuraReattach1353'});
   break;
  }
+ case'g34_NonSummonShuffle1452':{const host=sourceHost474(s,t);if(host&&host.x.summonedTurn!==s.turn)move(s,[{player:host.p,uid:host.x.uid,to:'deckShuffle1365',controller:t.p}]);break;}
  case'g34_TopZoneLook1450':{
   if(!t.zone){
    choice(s,t,'確認する山札を選ぶ',[opt('山札の上を見る','deck',0),opt('超GRの上を見る','gr',0)]);break;
