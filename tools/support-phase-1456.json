@@ -1,0 +1,372 @@
+{
+  "phase": 1456,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8430,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "deferred": [
+    {
+      "id": "promoy1-011",
+      "name": "超竜ザシャック",
+      "reason": "公式全文のクルー・ブレイカーの各ターン最初のブレイク条件と現行の裁定の追加照合が必要。進化だけの部分実装は登録しない。"
+    }
+  ],
+  "cards": [
+    {
+      "id": "dm26ex4-069",
+      "name": "シェル・ファクトリーγ GR",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-069",
+      "faces": [
+        {
+          "name": "シェル・ファクトリーγ GR",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{S} このクリーチャーが出た時、自分の山札を見る。その中からサバイバー・クリーチャーを１体表向きにし、手札に加えてもよい。その後、山札をシャッフルする。\nサバイバー（自分の他のサバイバーすべてに、上の{S}能力を与える）\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの下に戻す）",
+          "race": "コロニー・ビートル/サバイバー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gr": true,
+        "manaValue": 0,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "creature": true,
+                  "race": "サバイバー"
+                }
+              }
+            ]
+          }
+        ],
+        "g406Survivor": {
+          "g34Tasks": [
+            {
+              "op": "Look",
+              "g201Search": true,
+              "g200Search": true,
+              "n": "all",
+              "rest": "shuffle",
+              "stages": [
+                {
+                  "n": 1,
+                  "to": "hand",
+                  "optional": true,
+                  "reveal": true,
+                  "filter": {
+                    "creature": true,
+                    "race": "サバイバー"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-069.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "7b77c5e1613f62e0913013af3281ca5b201470c9610cc8b8ceaf686cbb84b432",
+        "facesMatched": true,
+        "imageSha256": "4e2a1383217bf4331a81a75b102b16b8842ae5ddb43055bd7bea84e12bc64225",
+        "imageBytes": 124592
+      },
+      "sameNameProducts": [
+        "DM26-EX4 切札不滅!! デュエキング FOREVER 2026"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-069",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm08-021",
+      "name": "日向草",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-021",
+      "faces": [
+        {
+          "name": "日向草",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ターボラッシュ(自分の他のクリーチャーがシールドをブレイクした後、そのターンが終わるまで、このクリーチャーは次の能力を得る)\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかったとき、バトルゾーンにある、日向草以外の自分のクリーチャーをすべてアンタップする。",
+          "race": "スターライト・ツリー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g962TurboRush": true
+          },
+          "grants": {
+            "g482Unblocked": [
+              {
+                "op": "GroupUntap",
+                "owner": "self",
+                "filter": {
+                  "creature": true,
+                  "g412ExceptName": "日向草"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm08-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "e5f0452ac2ccdd9ef0418c3f0294196a952d2f64da2ddbd13e60956c821069d5",
+        "facesMatched": true,
+        "imageSha256": "39dcf66c761a7c1469b671a12e93861b8ff2d23bc035698cd5aeeea2db8a20dc",
+        "imageBytes": 106601
+      },
+      "sameNameProducts": [
+        "DM-08 闘魂編 超神龍の復活(インビンシブル・レジェンド)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-021",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp11-024",
+      "name": "ダダダチッコ・ダッチー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-024",
+      "faces": [
+        {
+          "name": "ダダダチッコ・ダッチー",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナドライブ６（火）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが６枚以上で火文明があれば、自分の山札の上から１枚目を表向きにする。それがコスト６以下の進化ではないクリーチャーならバトルゾーンに出す。それ以外なら山札の一番下に置く。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+          "race": "ビートジョッキー/ワンダフォース",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gr": true,
+        "manaValue": 0,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "all": [
+                {
+                  "g334ZoneCount": {
+                    "zone": "mana",
+                    "min": 6
+                  }
+                },
+                {
+                  "g1064ManaColors": [
+                    "火"
+                  ]
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "RevealTop514",
+                "filter": {
+                  "creature": true,
+                  "nonEvolution": true,
+                  "max": 6
+                },
+                "to": "battle",
+                "elseTo": "deck"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "10648159700aa66a32f2f5d279b106788c20b58d8a761822e4f19a358fe40423",
+        "facesMatched": true,
+        "imageSha256": "f53732b2e7fe11bf4ae6f4e4fa07149594627e25689abcd6d4dfaa0914fc95ff",
+        "imageBytes": 140401
+      },
+      "sameNameProducts": [
+        "DMEX-17 20周年超感謝メモリアルパック 究極の章 デュエキングMAX",
+        "DMRP-11 超天篇 拡張パック第3弾 零誕！魔神おこせジョルネード1059!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-024",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp09-043",
+      "name": "バクシュ 丙-二式",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-043",
+      "faces": [
+        {
+          "name": "バクシュ 丙-二式",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンを離れた時、各プレイヤーは自身の手札を１枚選んで捨てる。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+          "race": "マフィ・ギャング/デリートロン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gr": true,
+        "manaValue": 0,
+        "g172Leave": [
+          {
+            "op": "EachPlayer459",
+            "origin": "hand",
+            "to": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "a6b79c3d70304a66bbae685e29cb4675f12ecb423ecec8e6953c1f36394d1826",
+        "facesMatched": true,
+        "imageSha256": "093f2a46f95252b67c3eb86e96a1717deefcdcfd4cfa91004c9b3a4d181af15b",
+        "imageBytes": 177065
+      },
+      "sameNameProducts": [
+        "DMEX-05 100%新世界！超GRパック100",
+        "DMRP-09 超天篇 拡張パック第１弾 新世界ガチ誕！超ＧＲとオレガ・オーラ!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-043",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmsd13-007",
+      "name": "バブるーと",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd13-007",
+      "faces": [
+        {
+          "name": "バブるーと",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃する時、Jトルネードしてもよい。そうしたら、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "to": "hand",
+            "filter": {
+              "creature": true,
+              "race": "ジョーカーズ"
+            },
+            "n": 1,
+            "optional": true,
+            "afterBattleSelect": [
+              {
+                "op": "AuraGr1353"
+              }
+            ],
+            "g179Other": true,
+            "g187OwnPick": true,
+            "toOwnerHand": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd13-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "3155c52c9efd1349af82f6e674c97a083768a3dbcb57df30f0055b3504d7aaed",
+        "facesMatched": true,
+        "imageSha256": "cc229ff2be21d6168b539e8515707428f6841b3b506d5e73fc39c5eaf61ae593",
+        "imageBytes": 91199
+      },
+      "sameNameProducts": [
+        "DMSD-13 超GRメガスタートデッキ ジョーの超ジョーカーズ旋風"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd13-007",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26ex4-069": 4,
+      "dm08-021": 4,
+      "dmrp11-024": 4,
+      "dmrp09-043": 4,
+      "dmsd13-007": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    }
+  ],
+  "testCorrections": [
+    "離脱能力の既存キーg172Leaveと山札下の既存ゾーン名deckに修正。初回82/84から全項目を再検証。"
+  ]
+}

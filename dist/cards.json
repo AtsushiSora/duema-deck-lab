@@ -261699,15 +261699,231 @@
       },
       "supportBatch": "phase-1455",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex4-069",
+      "name": "シェル・ファクトリーγ GR",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "コロニー・ビートル/サバイバー",
+      "text": "{S} このクリーチャーが出た時、自分の山札を見る。その中からサバイバー・クリーチャーを１体表向きにし、手札に加えてもよい。その後、山札をシャッフルする。\nサバイバー（自分の他のサバイバーすべてに、上の{S}能力を与える）\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-069",
+      "limit": 4,
+      "gr": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g200Search": true,
+          "n": "all",
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "creature": true,
+                "race": "サバイバー"
+              }
+            }
+          ]
+        }
+      ],
+      "g406Survivor": {
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "creature": true,
+                  "race": "サバイバー"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1456",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm08-021",
+      "name": "日向草",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "スターライト・ツリー",
+      "text": "ターボラッシュ(自分の他のクリーチャーがシールドをブレイクした後、そのターンが終わるまで、このクリーチャーは次の能力を得る)\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかったとき、バトルゾーンにある、日向草以外の自分のクリーチャーをすべてアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-021",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "g962TurboRush": true
+        },
+        "grants": {
+          "g482Unblocked": [
+            {
+              "op": "GroupUntap",
+              "owner": "self",
+              "filter": {
+                "creature": true,
+                "g412ExceptName": "日向草"
+              }
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-1456",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-024",
+      "name": "ダダダチッコ・ダッチー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ビートジョッキー/ワンダフォース",
+      "text": "マナドライブ６（火）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが６枚以上で火文明があれば、自分の山札の上から１枚目を表向きにする。それがコスト６以下の進化ではないクリーチャーならバトルゾーンに出す。それ以外なら山札の一番下に置く。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-024",
+      "limit": 4,
+      "gr": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 6
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "火"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "RevealTop514",
+              "filter": {
+                "creature": true,
+                "nonEvolution": true,
+                "max": 6
+              },
+              "to": "battle",
+              "elseTo": "deck"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1456",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-043",
+      "name": "バクシュ 丙-二式",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "マフィ・ギャング/デリートロン",
+      "text": "このクリーチャーがバトルゾーンを離れた時、各プレイヤーは自身の手札を１枚選んで捨てる。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-043",
+      "limit": 4,
+      "gr": true,
+      "g172Leave": [
+        {
+          "op": "EachPlayer459",
+          "origin": "hand",
+          "to": "grave"
+        }
+      ],
+      "supportBatch": "phase-1456",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd13-007",
+      "name": "バブるーと",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "このクリーチャーが攻撃する時、Jトルネードしてもよい。そうしたら、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd13-007",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "to": "hand",
+          "filter": {
+            "creature": true,
+            "race": "ジョーカーズ"
+          },
+          "n": 1,
+          "optional": true,
+          "afterBattleSelect": [
+            {
+              "op": "AuraGr1353"
+            }
+          ],
+          "g179Other": true,
+          "g187OwnPick": true,
+          "toOwnerHand": true
+        }
+      ],
+      "supportBatch": "phase-1456",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1455,
+    "phase": 1456,
     "checkedAt": "2026-11-20",
-    "baseCount": 8426,
-    "newEffectCards": 4,
+    "baseCount": 8430,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8430,
+    "totalCount": 8435,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -285856,6 +286072,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 8426,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1455,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8426,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 8430,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
