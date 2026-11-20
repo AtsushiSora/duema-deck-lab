@@ -9156,5 +9156,271 @@
         ]
       }
     }
+  },
+  "dm22ex1-064": {
+    "phase": 1518,
+    "faces": [
+      {
+        "name": "セブ・コアクマン",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーが出た時、自分の山札の上から３枚を表向きにしてもよい。その中から、光のカードと闇のカードをすべて手札に加え、残りを墓地に置く。",
+        "race": "サイバーロード/エイリアン",
+        "powerText": "2000",
+        "missingFields": []
+      },
+      {
+        "name": "マインド・リセット",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "相手の手札を見て、その中から呪文を１枚選び、捨てさせる。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "山札の上3枚を表向きにする？",
+          "defs": [
+            {
+              "op": "Look",
+              "n": 3,
+              "public": true,
+              "rest": "grave",
+              "stages": [
+                {
+                  "n": "all",
+                  "to": "hand",
+                  "filter": {
+                    "any": [
+                      {
+                        "anyFaceColor": "光"
+                      },
+                      {
+                        "anyFaceColor": "闇"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "マインド・リセット",
+        "cost": 2,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "champion",
+        "g53Effect": "Reset"
+      }
+    }
+  },
+  "dmex15-b012": {
+    "phase": 1518,
+    "faces": [
+      {
+        "name": "浄化の精霊ウルス",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "W・ブレイカー\n自分のターンの終わりに、このクリーチャーをアンタップしてもよい。",
+        "race": "エンジェル・コマンド",
+        "powerText": "6000",
+        "missingFields": []
+      },
+      {
+        "name": "精霊・スパーク",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー\n文明を１つ選び、その文明を持つ相手のクリーチャーをすべてタップする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "endUntap": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "精霊・スパーク",
+        "cost": 3,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "modes": [
+              {
+                "label": "光",
+                "defs": [
+                  {
+                    "op": "TapAll",
+                    "g218Tap": true,
+                    "filter": {
+                      "creature": true,
+                      "color": "光"
+                    },
+                    "spell": true
+                  }
+                ]
+              },
+              {
+                "label": "水",
+                "defs": [
+                  {
+                    "op": "TapAll",
+                    "g218Tap": true,
+                    "filter": {
+                      "creature": true,
+                      "color": "水"
+                    },
+                    "spell": true
+                  }
+                ]
+              },
+              {
+                "label": "闇",
+                "defs": [
+                  {
+                    "op": "TapAll",
+                    "g218Tap": true,
+                    "filter": {
+                      "creature": true,
+                      "color": "闇"
+                    },
+                    "spell": true
+                  }
+                ]
+              },
+              {
+                "label": "火",
+                "defs": [
+                  {
+                    "op": "TapAll",
+                    "g218Tap": true,
+                    "filter": {
+                      "creature": true,
+                      "color": "火"
+                    },
+                    "spell": true
+                  }
+                ]
+              },
+              {
+                "label": "自然",
+                "defs": [
+                  {
+                    "op": "TapAll",
+                    "g218Tap": true,
+                    "filter": {
+                      "creature": true,
+                      "color": "自然"
+                    },
+                    "spell": true
+                  }
+                ]
+              }
+            ],
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp10-026": {
+    "phase": 1518,
+    "faces": [
+      {
+        "name": "FASORASI・ドッカン",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーまたは自分の他のGRではないクリーチャーが破壊された時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+        "race": "ビートジョッキー/ワンダフォース",
+        "powerText": "5000",
+        "missingFields": []
+      },
+      {
+        "name": "♪ドはドッカンのド",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "GR召喚する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g303DeathWatch": {
+        "self": true,
+        "g1518NonGR": true,
+        "defs": [
+          {
+            "op": "AuraGr1353"
+          }
+        ]
+      },
+      "spellFace": {
+        "type": "spell",
+        "name": "♪ドはドッカンのド",
+        "cost": 2,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "AuraGr1353",
+            "spell": true
+          }
+        ]
+      }
+    }
   }
 }

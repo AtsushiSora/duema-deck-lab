@@ -9701,7 +9701,7 @@ export function createSixPhotoRules(api){
    const {race:requiredRace,raceAny}=watcher.watch;
    const victimRace=String(victim.race||'');
    const raceMatches=(!requiredRace||victimRace.includes(requiredRace))&&(!raceAny||victimRace.split('/').some(r=>raceAny.includes(r)));
-   if((!watcher.watch.g1469Blocker||victim.g1469Blocker)&&(!self||watcher.watch.self)&&((self&&!watcher.watch.selfFilter)||raceMatches)&&(!watcher.watch.name||String(victim.name||'').includes(watcher.watch.name))&&(!watcher.watch.colorsAny||watcher.watch.colorsAny.some(c=>(victim.colors||[]).includes(c)))&&(!watcher.watch.g860EvilSoul||victim.g860EvilSoul)&&(!watcher.watch.ownTurn||s.active===watcher.p)&&(!watcher.watch.opponentTurn||s.active!==watcher.p)){
+   if((!watcher.watch.g1518NonGR||self||!card(victim.cardId).gr)&&(!watcher.watch.g1469Blocker||victim.g1469Blocker)&&(!self||watcher.watch.self)&&((self&&!watcher.watch.selfFilter)||raceMatches)&&(!watcher.watch.name||String(victim.name||'').includes(watcher.watch.name))&&(!watcher.watch.colorsAny||watcher.watch.colorsAny.some(c=>(victim.colors||[]).includes(c)))&&(!watcher.watch.g860EvilSoul||victim.g860EvilSoul)&&(!watcher.watch.ownTurn||s.active===watcher.p)&&(!watcher.watch.opponentTurn||s.active!==watcher.p)){
     const defs=watcher.watch.defs.map(d=>{
      if(d.g960DeathNames)return {...d,g960DeathNames:victim.deathNames960??[]};
      if(d.g1192VictimPower)return {...d,filter:{belowPower:victim.g1192Power,g199Power:true}};
