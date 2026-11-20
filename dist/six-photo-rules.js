@@ -412,7 +412,7 @@ export function createSixPhotoRules(api){
  const livePower199=(s,x,inCombat)=>api.power(x,!!inCombat&&(x.uid===s.attack?.attacker||x.uid===s.attackLifecycle?.uid&&(x.incarnation||0)===(s.attackLifecycle.incarnation||0)),s);
  const evolutionOrLinkedGod=(x,c)=>api.isEvolution(x)||!!(x.godLinks?.length&&race(c,'ゴッド'));
  function matches(s,p,x,f={}){
-  if(f.g939ShieldForce&&(api.ignored(s,x)||!effective(x,s).g1304ShieldForce&&!hasCopiedRole393(card(x),'g35Role','galaxy')))return false;
+  if(f.g939ShieldForce&&(api.ignored(s,x)||!effective(x,s).g1304ShieldForce&&!effective(x,s).g1486ShieldForce&&!hasCopiedRole393(card(x),'g35Role','galaxy')))return false;
   if(f.g951ManaCivilizationCost&&cost(effective(x,s))>manaCivilizationCount(s,p))return false;
   const c=api.zoneCard(s,p,x),d=s.players[p].battle.includes(x)?effective(x,s):c;
   if(f.multicolor&&colors(d).length<2)return false;
