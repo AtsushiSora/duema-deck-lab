@@ -3277,5 +3277,353 @@
         ]
       }
     }
+  },
+  "dmbd05-011": {
+    "phase": 1398,
+    "faces": [
+      {
+        "name": "摩破目 ナトゥーラ・トプス",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）",
+        "race": "ジュラシック・コマンド・ドラゴン",
+        "powerText": "12000",
+        "missingFields": []
+      },
+      {
+        "name": "ストンピング・ウィード",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の山札の上から１枚目を、マナゾーンに置く。その後、カードを１枚、自分のマナゾーンから山札の一番上に置いてもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "machFighter": true,
+      "breaker": 3,
+      "spellFace": {
+        "type": "spell",
+        "name": "ストンピング・ウィード",
+        "cost": 3,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "deckTop",
+            "g183Return": true,
+            "n": 1,
+            "optional": true,
+            "title": "山札の一番上に置くマナを選ぶ"
+          }
+        ]
+      }
+    }
+  },
+  "dmex16-009": {
+    "phase": 1398,
+    "faces": [
+      {
+        "name": "勇気と知識 テスタ・ロッサ&アリス",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "このクリーチャーが出た時、カードを１枚引き、その後、自分の手札を１枚捨てる。",
+        "race": "アウトレイジMAX",
+        "powerText": "2000",
+        "missingFields": []
+      },
+      {
+        "name": "「行くぜアリス!」「行けるわテスタ!」",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー7000以下のクリーチャーを１体破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sequence",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            },
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "「行くぜアリス!」「行けるわテスタ!」",
+        "cost": 5,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 7000,
+              "g199Power": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dmrp05-037": {
+    "phase": 1398,
+    "faces": [
+      {
+        "name": "暴君 アーザラン",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、カードを２枚引く。その後、自分の手札を１枚捨てる。",
+        "race": "ムートピア",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "コザラン攪乱大混乱",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        },
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 1
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "コザラン攪乱大混乱",
+        "cost": 1,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ",
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp06-014": {
+    "phase": 1398,
+    "faces": [
+      {
+        "name": "龍装者 シャイニー",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがバトルゾーンに出た時、相手のタップしているクリーチャー１体につき１枚、カードを引く。",
+        "race": "ドラゴンギルド/メタリカ",
+        "powerText": "5000",
+        "missingFields": []
+      },
+      {
+        "name": "エッジ・スパーク",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "owner": "opponent",
+          "filter": {
+            "creature": true,
+            "tapped": true
+          }
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "エッジ・スパーク",
+        "cost": 2,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "lock": true,
+            "g210TapLock": true,
+            "title": "タップして次のターンまで止めるクリーチャーを1体選ぶ",
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp10-002": {
+    "phase": 1398,
+    "faces": [
+      {
+        "name": "赤攻銀 サハラン",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、呪文を１枚、自分の墓地から手札に戻す。",
+        "race": "メタリカ",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "レッド・マジック",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "このターン、自分のクリーチャーすべてに「スピードアタッカー」を与える。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "g228Recovery": true,
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "filter": {
+            "g228Face": {
+              "type": "spell"
+            }
+          },
+          "title": "手札に戻す墓地の呪文を1枚選ぶ"
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "レッド・マジック",
+        "cost": 1,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "grant": {
+              "speedAttacker": true
+            },
+            "spell": true
+          }
+        ]
+      }
+    }
   }
 }
