@@ -2200,5 +2200,263 @@
       "gr": true,
       "manaValue": 0
     }
+  },
+  "dmrp11-038": {
+    "phase": 1394,
+    "faces": [
+      {
+        "name": "オコ・ラッタ",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "マナドライブ５（水）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが５枚以上で水文明があれば、相手のクリーチャーを１体選び、持ち主の手札に戻す。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "トリックス/ワンダフォース",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "mana",
+              "min": 5
+            }
+          },
+          "defs": [
+            {
+              "op": "IfMana",
+              "n": 1,
+              "color": "水",
+              "defs": [
+                {
+                  "op": "Select",
+                  "owner": "opponent",
+                  "origin": "battle",
+                  "n": 1,
+                  "filter": {
+                    "creature": true
+                  },
+                  "g173Targets": true,
+                  "g193Select": true,
+                  "to": "hand",
+                  "title": "手札に戻す相手のクリーチャーを1体選ぶ"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmsd11-010": {
+    "phase": 1394,
+    "faces": [
+      {
+        "name": "シェイク・シャーク",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "マナドライブ２（水）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが２枚以上で水文明があれば、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "トリックス/ワンダフォース",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "mana",
+              "min": 2
+            }
+          },
+          "defs": [
+            {
+              "op": "IfMana",
+              "n": 1,
+              "color": "水",
+              "defs": [
+                {
+                  "op": "Target",
+                  "g190Freeze": "self",
+                  "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmbd12-g04": {
+    "phase": 1394,
+    "faces": [
+      {
+        "name": "タイザイ 丁-二式",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "マナドライブ５（闇）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが５枚以上で闇文明があれば、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－4000する。（パワー０以下のクリーチャーは破壊される）\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "マフィ・ギャング/デリートロン",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "mana",
+              "min": 5
+            }
+          },
+          "defs": [
+            {
+              "op": "IfMana",
+              "n": 1,
+              "color": "闇",
+              "defs": [
+                {
+                  "op": "Target",
+                  "power": -4000,
+                  "g242PowerMinus": true,
+                  "title": "パワーを-4000する相手のクリーチャーを選ぶ"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmrp10-022": {
+    "phase": 1394,
+    "faces": [
+      {
+        "name": "モウドク 乙-一式",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "マナドライブ３（闇）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが３枚以上で闇文明があれば、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－2000する。（パワー０以下のクリーチャーは破壊される）\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "マフィ・ギャング/デリートロン",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "mana",
+              "min": 3
+            }
+          },
+          "defs": [
+            {
+              "op": "IfMana",
+              "n": 1,
+              "color": "闇",
+              "defs": [
+                {
+                  "op": "Target",
+                  "power": -2000,
+                  "g242PowerMinus": true,
+                  "title": "パワーを-2000する相手のクリーチャーを選ぶ"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmrp11-051": {
+    "phase": 1394,
+    "faces": [
+      {
+        "name": "ポッポーポップコー",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "マナドライブ３（火）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが３枚以上で火文明があれば、相手の「ブロッカー」を持つクリーチャーを１体破壊する。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "ビートジョッキー/ワンダフォース",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "mana",
+              "min": 3
+            }
+          },
+          "defs": [
+            {
+              "op": "IfMana",
+              "n": 1,
+              "color": "火",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "optional": false,
+                  "filter": {
+                    "blocker": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
   }
 }

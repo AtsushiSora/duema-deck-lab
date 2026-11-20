@@ -251321,15 +251321,253 @@
       "gr": true,
       "supportBatch": "phase-1393",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-038",
+      "name": "オコ・ラッタ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "トリックス/ワンダフォース",
+      "text": "マナドライブ５（水）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが５枚以上で水文明があれば、相手のクリーチャーを１体選び、持ち主の手札に戻す。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-038",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "mana",
+              "min": 5
+            }
+          },
+          "defs": [
+            {
+              "op": "IfMana",
+              "n": 1,
+              "color": "水",
+              "defs": [
+                {
+                  "op": "Select",
+                  "owner": "opponent",
+                  "origin": "battle",
+                  "n": 1,
+                  "filter": {
+                    "creature": true
+                  },
+                  "g173Targets": true,
+                  "g193Select": true,
+                  "to": "hand",
+                  "title": "手札に戻す相手のクリーチャーを1体選ぶ"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1394",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd11-010",
+      "name": "シェイク・シャーク",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "トリックス/ワンダフォース",
+      "text": "マナドライブ２（水）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが２枚以上で水文明があれば、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd11-010",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "mana",
+              "min": 2
+            }
+          },
+          "defs": [
+            {
+              "op": "IfMana",
+              "n": 1,
+              "color": "水",
+              "defs": [
+                {
+                  "op": "Target",
+                  "g190Freeze": "self",
+                  "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1394",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd12-g04",
+      "name": "タイザイ 丁-二式",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "マフィ・ギャング/デリートロン",
+      "text": "マナドライブ５（闇）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが５枚以上で闇文明があれば、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－4000する。（パワー０以下のクリーチャーは破壊される）\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd12-g04",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "mana",
+              "min": 5
+            }
+          },
+          "defs": [
+            {
+              "op": "IfMana",
+              "n": 1,
+              "color": "闇",
+              "defs": [
+                {
+                  "op": "Target",
+                  "power": -4000,
+                  "g242PowerMinus": true,
+                  "title": "パワーを-4000する相手のクリーチャーを選ぶ"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1394",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-022",
+      "name": "モウドク 乙-一式",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "マフィ・ギャング/デリートロン",
+      "text": "マナドライブ３（闇）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが３枚以上で闇文明があれば、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－2000する。（パワー０以下のクリーチャーは破壊される）\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-022",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "mana",
+              "min": 3
+            }
+          },
+          "defs": [
+            {
+              "op": "IfMana",
+              "n": 1,
+              "color": "闇",
+              "defs": [
+                {
+                  "op": "Target",
+                  "power": -2000,
+                  "g242PowerMinus": true,
+                  "title": "パワーを-2000する相手のクリーチャーを選ぶ"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1394",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-051",
+      "name": "ポッポーポップコー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ビートジョッキー/ワンダフォース",
+      "text": "マナドライブ３（火）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが３枚以上で火文明があれば、相手の「ブロッカー」を持つクリーチャーを１体破壊する。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-051",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "mana",
+              "min": 3
+            }
+          },
+          "defs": [
+            {
+              "op": "IfMana",
+              "n": 1,
+              "color": "火",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "optional": false,
+                  "filter": {
+                    "blocker": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1394",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1393,
+    "phase": 1394,
     "checkedAt": "2026-11-20",
-    "baseCount": 8144,
+    "baseCount": 8149,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8149,
+    "totalCount": 8154,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -274609,6 +274847,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8144,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1393,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8144,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8149,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
