@@ -493492,10 +493492,10 @@
     "nextPhase": 1372,
     "workInProgress": null,
     "nextCandidates": [
-      "新しい一次資料、または正式回答を得てから裁定・版の照合を再開する。",
-      "問い合わせ送信の明示指示とフォーム必須情報・同意が得られた場合のみ、tools/official-inquiry-1371.jsonの2件を送信する。",
-      "同じ検索やNo13長時間試験を繰り返さない。engine0.601.0とNo13検証時の全ソースハッシュは一致。",
-      "未検証2件、公開候補の全対象集約、Netlifyを更新しない公開手順が未確認のためpush・公開なし。"
+      "個別の残件2件はユーザー指示で後回し。完了扱いにせず、再開指示まで追加調査・問い合わせ送信を開始しない。",
+      "独立して進められる次の作業は公開候補の全対象検証の集約。既存の合格証跡を再利用し、未実行範囲を特定してから分割する。",
+      "完了済みのNo13長時間試験は変更なしで再実行しない。",
+      "未検証2件と公開候補の全対象集約、Netlifyを更新しない公開手順が未確認のためpush・公開は保留。"
     ],
     "steps": [
       "開始時にHEAD、作業差分、実行中プロセス、AGENTS、進捗を確認",
@@ -493582,7 +493582,7 @@
       "実データ8072種類・重複0。通常登録停止・automation PAUSEDを維持。",
       "残件は登録済みdm25ex2-082の包含裁定1件とドラン金箔2S/2の公式照合1件。今回の調査でも未解消。",
       "tools/official-evidence-1371.jsonに確認済みの資料・画像・映像の範囲と限界を記録。既存の合格テストを未確定裁定の根拠として使わない。",
-      "tools/official-inquiry-1371.jsonに公式窓口へ送る2件の具体的な質問を保存。送信指示とフォーム必須情報・同意が得られるまで外部へ送らない。",
+      "公式問い合わせ案2件はユーザー指示「後回しにしよう」により保留。未送信のまま保存し、再開指示があるまでこの2件の調査・送信を開始しない。",
       "No13の196再現対戦・28乱数・490ワーカー試合と登場時借用2554件は完了済み。今回も同じソースハッシュであることを確認。変更なしで再実行しない。",
       "公式回答または新しい一次資料が得られたら、必要な能力修正と固有・関連検証を行う。既存ID・保存形式・履歴を維持する。",
       "全体npm testは中断・合否未確認を維持。未検証の解消と公開候補の全対象集約、Netlifyを更新しないPages公開手順が確認できるまではpush・公開しない。"
@@ -493609,7 +493609,20 @@
       }
     ],
     "latestEvidencePhase": 1371,
-    "officialInquiryDraft": "tools/official-inquiry-1371.json"
+    "officialInquiryDraft": "tools/official-inquiry-1371.json",
+    "userDeferral": {
+      "recordedAt": "2026-11-20T12:06:55.773359+00:00",
+      "instruction": "後回しにしよう",
+      "scope": [
+        "dm25ex2-082: キング・ナイト・マジックの包含裁定",
+        "dm22rp1-2B: ドラン・ゴルギーニ金箔2S/2の公式照合"
+      ],
+      "status": "deferred-by-user",
+      "resolved": false,
+      "inquiriesSent": 0,
+      "resumeCondition": "ユーザーがこの2件の再開を明示した時に再開する。問い合わせ送信には別途明示の送信指示と必須情報・同意が必要。",
+      "automaticRetry": false
+    }
   },
   "registeredCardVerification": {
     "checkedAt": "2026-11-15",
@@ -539291,6 +539304,19 @@
             "commit": "ffc0e6f60ed433047d2eb68abb98836c5287abf8",
             "result": "最新の総合ルール、公式の類似キーワード裁定、公式カード本文を確認。キング・ナイト・マジックへの直接適用を確定する一次資料は特定できず。現在のコスト5のテスト合格を正しい裁定の証明には使わない。",
             "next": "作成済みの公式照会案。明示の送信指示とフォーム必須情報・同意が得られた場合だけ送信。"
+          },
+          "userDeferral": {
+            "recordedAt": "2026-11-20T12:06:55.773359+00:00",
+            "instruction": "後回しにしよう",
+            "scope": [
+              "dm25ex2-082: キング・ナイト・マジックの包含裁定",
+              "dm22rp1-2B: ドラン・ゴルギーニ金箔2S/2の公式照合"
+            ],
+            "status": "deferred-by-user",
+            "resolved": false,
+            "inquiriesSent": 0,
+            "resumeCondition": "ユーザーがこの2件の再開を明示した時に再開する。問い合わせ送信には別途明示の送信指示と必須情報・同意が必要。",
+            "automaticRetry": false
           }
         }
       ],
@@ -540338,6 +540364,19 @@
             "result": "公式商品画像30点と連番の追加2画像、隣接素材12件、公式配信2本の398時系列画像を確認。公式の金箔写真actual06はジャシン帝1S/2であり、ドラン2S/2の根拠に流用しない。対象の公式資料は依然特定できず。",
             "videoScope": "約30秒間隔の画像で確認。全フレームを検証したとはしない。",
             "next": "2S/2版の能力と同名カード扱い、および公式参照先についての照会案を作成。未送信。"
+          },
+          "userDeferral": {
+            "recordedAt": "2026-11-20T12:06:55.773359+00:00",
+            "instruction": "後回しにしよう",
+            "scope": [
+              "dm25ex2-082: キング・ナイト・マジックの包含裁定",
+              "dm22rp1-2B: ドラン・ゴルギーニ金箔2S/2の公式照合"
+            ],
+            "status": "deferred-by-user",
+            "resolved": false,
+            "inquiriesSent": 0,
+            "resumeCondition": "ユーザーがこの2件の再開を明示した時に再開する。問い合わせ送信には別途明示の送信指示と必須情報・同意が必要。",
+            "automaticRetry": false
           }
         }
       ],
@@ -545808,16 +545847,27 @@
         ]
       },
       "officialInquiry": {
-        "status": "draft-not-sent",
+        "status": "deferred-by-user",
         "draft": "tools/official-inquiry-1371.json",
         "questions": 2,
         "sent": 0,
         "route": "https://inquiry.takaratomy.co.jp/dm/",
         "waitingFor": [
-          "明示の送信指示",
-          "返信先メールアドレス・年齢区分・関係",
-          "フォーム条件への同意"
-        ]
+          "ユーザーによるこの2件の明示的な再開指示"
+        ],
+        "deferral": {
+          "recordedAt": "2026-11-20T12:06:55.773359+00:00",
+          "instruction": "後回しにしよう",
+          "scope": [
+            "dm25ex2-082: キング・ナイト・マジックの包含裁定",
+            "dm22rp1-2B: ドラン・ゴルギーニ金箔2S/2の公式照合"
+          ],
+          "status": "deferred-by-user",
+          "resolved": false,
+          "inquiriesSent": 0,
+          "resumeCondition": "ユーザーがこの2件の再開を明示した時に再開する。問い合わせ送信には別途明示の送信指示と必須情報・同意が必要。",
+          "automaticRetry": false
+        }
       }
     }
   },
