@@ -267821,15 +267821,382 @@
       ],
       "supportBatch": "phase-1493",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-025",
+      "name": "一極両得 カッキー＆ケッシー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "次のうちいずれかひとつを選ぶ。バトルゾーンに自分のエグザイル・クリーチャーがあれば、両方を選んでもよい。 　▼バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻す。 　▼カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-025",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "効果1",
+              "defs": [
+                {
+                  "op": "Target",
+                  "anyOwner": true,
+                  "to": "hand",
+                  "toOwnerHand": true
+                }
+              ]
+            },
+            {
+              "label": "効果2",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            },
+            {
+              "label": "両方を選ぶ",
+              "condition": {
+                "g1490Exile": true,
+                "creature": true
+              },
+              "defs": [
+                {
+                  "op": "Target",
+                  "anyOwner": true,
+                  "to": "hand",
+                  "toOwnerHand": true
+                },
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1494",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-047",
+      "name": "一極両得 ドンドン＆パンパン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "次のうちいずれかひとつを選ぶ。バトルゾーンに自分のエグザイル・クリーチャーがあれば、両方を選んでもよい。 　▼このターン、バトルゾーンにある自分のクリーチャーはすべて、「スピードアタッカー」を得る。 　▼このターン、バトルゾーンにある自分のクリーチャー１体は、タップされていないクリーチャーを攻撃できる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-047",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "効果1",
+              "defs": [
+                {
+                  "op": "GroupGrant364",
+                  "owner": "self",
+                  "filter": {
+                    "creature": true
+                  },
+                  "grant": {
+                    "speedAttacker": true
+                  }
+                }
+              ]
+            },
+            {
+              "label": "効果2",
+              "defs": [
+                {
+                  "op": "Target",
+                  "owner": "self",
+                  "grant": {
+                    "attackUntapped": true
+                  }
+                }
+              ]
+            },
+            {
+              "label": "両方を選ぶ",
+              "condition": {
+                "g1490Exile": true,
+                "creature": true
+              },
+              "defs": [
+                {
+                  "op": "GroupGrant364",
+                  "owner": "self",
+                  "filter": {
+                    "creature": true
+                  },
+                  "grant": {
+                    "speedAttacker": true
+                  }
+                },
+                {
+                  "op": "Target",
+                  "owner": "self",
+                  "grant": {
+                    "attackUntapped": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1494",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-022",
+      "name": "一極両得 ナグール＆カブール",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "次のうちいずれかひとつを選ぶ。バトルゾーンに自分のエグザイル・クリーチャーがあれば、両方を選んでもよい。 　▼次の自分のターンのはじめまで、バトルゾーンにある自分のクリーチャーすべてのパワーは+3000される。 　▼次の自分のターンのはじめまで、バトルゾーンにある自分のクリーチャーはすべて「ブロッカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-022",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "効果1",
+              "defs": [
+                {
+                  "op": "GroupPower",
+                  "owner": "self",
+                  "filter": {
+                    "creature": true
+                  },
+                  "power": 3000,
+                  "g521UntilStart": true
+                }
+              ]
+            },
+            {
+              "label": "効果2",
+              "defs": [
+                {
+                  "op": "GroupGrant364",
+                  "owner": "self",
+                  "filter": {
+                    "creature": true
+                  },
+                  "g521UntilStart": true,
+                  "grant": {
+                    "blocker": true
+                  }
+                }
+              ]
+            },
+            {
+              "label": "両方を選ぶ",
+              "condition": {
+                "g1490Exile": true,
+                "creature": true
+              },
+              "defs": [
+                {
+                  "op": "GroupPower",
+                  "owner": "self",
+                  "filter": {
+                    "creature": true
+                  },
+                  "power": 3000,
+                  "g521UntilStart": true
+                },
+                {
+                  "op": "GroupGrant364",
+                  "owner": "self",
+                  "filter": {
+                    "creature": true
+                  },
+                  "g521UntilStart": true,
+                  "grant": {
+                    "blocker": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1494",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-044",
+      "name": "一極両得 ボッカン＆ドックン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "次のうちいずれかひとつを選ぶ。バトルゾーンに自分のエグザイル・クリーチャーがあれば、両方を選んでもよい。 　▼バトルゾーンにある相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーはー3000される。（パワー０以下のクリーチャーは破壊される） 　▼このターン、バトルゾーンにある相手のクリーチャーすべてのパワーは?1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-044",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "効果1",
+              "defs": [
+                {
+                  "op": "Target",
+                  "power": -3000,
+                  "g242PowerMinus": true
+                }
+              ]
+            },
+            {
+              "label": "効果2",
+              "defs": [
+                {
+                  "op": "GroupPower",
+                  "owner": "opponent",
+                  "filter": {
+                    "creature": true
+                  },
+                  "power": -1000
+                }
+              ]
+            },
+            {
+              "label": "両方を選ぶ",
+              "condition": {
+                "g1490Exile": true,
+                "creature": true
+              },
+              "defs": [
+                {
+                  "op": "Target",
+                  "power": -3000,
+                  "g242PowerMinus": true
+                },
+                {
+                  "op": "GroupPower",
+                  "owner": "opponent",
+                  "filter": {
+                    "creature": true
+                  },
+                  "power": -1000
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1494",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-032",
+      "name": "一極両得 マクノカ＆ヌクノカ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "次のうちいずれかひとつを選ぶ。バトルゾーンに自分のエグザイル・クリーチャーがあれば、両方を選んでもよい。 　▼自分の山札の上から１枚目を、マナゾーンに置く。 　▼カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-032",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "効果1",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1
+                }
+              ]
+            },
+            {
+              "label": "効果2",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "mana",
+                  "to": "hand",
+                  "n": 1,
+                  "optional": true
+                }
+              ]
+            },
+            {
+              "label": "両方を選ぶ",
+              "condition": {
+                "g1490Exile": true,
+                "creature": true
+              },
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1
+                },
+                {
+                  "op": "Select",
+                  "origin": "mana",
+                  "to": "hand",
+                  "n": 1,
+                  "optional": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1494",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1493,
+    "phase": 1494,
     "checkedAt": "2026-11-20",
-    "baseCount": 8588,
+    "baseCount": 8593,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8593,
+    "totalCount": 8598,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -292510,6 +292877,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8588,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1493,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8588,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8593,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
