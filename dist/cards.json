@@ -252451,15 +252451,251 @@
       },
       "supportBatch": "phase-1398",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex2-072",
+      "name": "記憶の炎 ボルメテウス・エナジー / 魂と怒りの盾",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "ミリオン・フレイム",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、または離れた時、カードを１枚引く。\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nクリーチャーを１体選び、シールド化する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-072",
+      "limit": 4,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "魂と怒りの盾",
+        "cost": 4,
+        "civ": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "shields"
+          }
+        ]
+      },
+      "supportBatch": "phase-1399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-047",
+      "name": "凶鬼30号 カーン/オッケー・パンチ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "マフィ・ギャング",
+      "text": "このクリーチャーを自分の墓地から召喚してもよい。\n【呪文面】\n相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-047",
+      "limit": 4,
+      "graveSummon": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "オッケー・パンチ",
+        "cost": 2,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "lock": true,
+            "g210TapLock": true,
+            "title": "タップして次のターンまで止めるクリーチャーを1体選ぶ",
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex2-076",
+      "name": "襲撃者ディス・ドライブ / パンドラ・タイム",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "リビング・デッド/ドラゴノイド/エイリアン",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n【呪文面】\n{GS} G・ストライク（この呪文を自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n相手のコスト２以下のエレメントを１つ選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-076",
+      "limit": 4,
+      "speedAttacker": true,
+      "slayer": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "パンドラ・タイム",
+        "cost": 2,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "gStrike": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "element": true,
+            "filter": {
+              "max": 2
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd21-013",
+      "name": "終断γ ドルブロ / ボーンおどり・チャージャー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "ソニック・コマンド/イニシャルズX",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカー ブロッカー\nこのクリーチャーがバトルに勝った時、このクリーチャーを破壊する。\n【呪文面】\n自分の山札の上から２枚を墓地に置く。\nチャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd21-013",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "g189BattleWin": [
+        {
+          "op": "SelfDestroy"
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "ボーンおどり・チャージャー",
+        "cost": 3,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 2
+          }
+        ]
+      },
+      "supportBatch": "phase-1399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-019",
+      "name": "ルソー・モンテス / 法と契約の秤",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "マフィ・ギャング",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分の手札を１枚捨ててもよい。そうしたら、相手の手札を１枚見ないで選び、捨てさせる。\n【呪文面】\nコスト７以下のクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-019",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DiscardFor248",
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 1,
+              "random": true
+            }
+          ]
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "法と契約の秤",
+        "cost": 5,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "max": 7
+            },
+            "optional": false,
+            "title": "墓地から出すクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-1399",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1398,
+    "phase": 1399,
     "checkedAt": "2026-11-20",
-    "baseCount": 8169,
+    "baseCount": 8174,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8174,
+    "totalCount": 8179,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -275809,6 +276045,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8169,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1398,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8169,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8174,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

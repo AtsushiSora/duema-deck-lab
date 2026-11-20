@@ -3625,5 +3625,327 @@
         ]
       }
     }
+  },
+  "dm24ex2-072": {
+    "phase": 1399,
+    "faces": [
+      {
+        "name": "記憶の炎 ボルメテウス・エナジー",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、または離れた時、カードを１枚引く。",
+        "race": "ミリオン・フレイム",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "魂と怒りの盾",
+        "typeText": "呪文",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nクリーチャーを１体選び、シールド化する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "魂と怒りの盾",
+        "cost": 4,
+        "civ": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "shields"
+          }
+        ]
+      }
+    }
+  },
+  "dmrp10-047": {
+    "phase": 1399,
+    "faces": [
+      {
+        "name": "凶鬼30号 カーン",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーを自分の墓地から召喚してもよい。",
+        "race": "マフィ・ギャング",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "オッケー・パンチ",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "graveSummon": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "オッケー・パンチ",
+        "cost": 2,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "lock": true,
+            "g210TapLock": true,
+            "title": "タップして次のターンまで止めるクリーチャーを1体選ぶ",
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dm24ex2-076": {
+    "phase": 1399,
+    "faces": [
+      {
+        "name": "襲撃者ディス・ドライブ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇/火",
+        "civilizations": [
+          "闇",
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+        "race": "リビング・デッド/ドラゴノイド/エイリアン",
+        "powerText": "1000",
+        "missingFields": []
+      },
+      {
+        "name": "パンドラ・タイム",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "{GS} G・ストライク（この呪文を自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n相手のコスト２以下のエレメントを１つ選び、破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "slayer": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "パンドラ・タイム",
+        "cost": 2,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "gStrike": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "element": true,
+            "filter": {
+              "max": 2
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dmbd21-013": {
+    "phase": 1399,
+    "faces": [
+      {
+        "name": "終断γ ドルブロ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカー ブロッカー\nこのクリーチャーがバトルに勝った時、このクリーチャーを破壊する。",
+        "race": "ソニック・コマンド/イニシャルズX",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "ボーンおどり・チャージャー",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の山札の上から２枚を墓地に置く。\nチャージャー",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "blocker": true,
+      "g189BattleWin": [
+        {
+          "op": "SelfDestroy"
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "ボーンおどり・チャージャー",
+        "cost": 3,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 2
+          }
+        ]
+      }
+    }
+  },
+  "dmrp05-019": {
+    "phase": 1399,
+    "faces": [
+      {
+        "name": "ルソー・モンテス",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の手札を１枚捨ててもよい。そうしたら、相手の手札を１枚見ないで選び、捨てさせる。",
+        "race": "マフィ・ギャング",
+        "powerText": "1000",
+        "missingFields": []
+      },
+      {
+        "name": "法と契約の秤",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "コスト７以下のクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DiscardFor248",
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 1,
+              "random": true
+            }
+          ]
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "法と契約の秤",
+        "cost": 5,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "max": 7
+            },
+            "optional": false,
+            "title": "墓地から出すクリーチャーを1体選ぶ"
+          }
+        ]
+      }
+    }
   }
 }
