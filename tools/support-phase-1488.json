@@ -1,0 +1,308 @@
+{
+  "phase": 1488,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8565,
+  "description": "既存の処理を用いて全能力を個別に検証し4種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31533/",
+    "https://dm.takaratomy.co.jp/rule/qa/31534/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/31533/": "スーパー・S・トリガーの使用条件はシールドから手札に加えた時点で判定する。",
+    "https://dm.takaratomy.co.jp/rule/qa/31534/": "スーパー・S・トリガーの追加能力と通常の呪文使用を区別する。"
+  },
+  "cards": [
+    {
+      "id": "dmrp01-013",
+      "name": "タイム・ストップン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-013",
+      "faces": [
+        {
+          "name": "タイム・ストップン",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スーパー・S・トリガースーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にoB 能力を与える）\n相手のコスト６以下のクリーチャーを１体選び、相手はそれを自身の山札の一番下に置く。\noB このターン、クリーチャーは攻撃できない。",
+          "race": "ジョーカーズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "deck",
+            "toOwnerDeck": true,
+            "g1089OrderDeck": true,
+            "filter": {
+              "max": 6
+            }
+          }
+        ],
+        "g437Super": [
+          {
+            "op": "LockAttacks726"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "7646b1d78f905358fa89748dcd13f4fa7ad06b94791076ead392165216148620",
+        "facesMatched": true,
+        "imageSha256": "cc621d269d6f6ce60caaf04a0c938491af7d91d8ce1645057d5e68d71dc71728",
+        "imageBytes": 112096
+      },
+      "sameNameProducts": [
+        "DMBD-11 ガチヤバ4！無限改造デッキセットDX!! ジョーのビッグバンGR",
+        "DMRP-01 拡張パック新1弾 ジョーカーズ参上！！",
+        "プロモ限定カード 16期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-013",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp05-022",
+      "name": "怨王の死鎌",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-022",
+      "faces": [
+        {
+          "name": "怨王の死鎌",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スーパー・S・トリガースーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB能力を与える）\n相手は自身のアンタップしているクリーチャーを１体選び、破壊する。\nxB自分の山札の上から２枚を墓地に置く。その後、クリーチャーを好きな数、自分の墓地から手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave",
+            "filter": {
+              "untapped": true
+            }
+          }
+        ],
+        "g437Super": [
+          {
+            "op": "Mill",
+            "n": 2
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": "all",
+            "optional": true,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "082600c5dc4ae895a174775a689751b59dafd3ce76032d76a03ac58b9d9f1d20",
+        "facesMatched": true,
+        "imageSha256": "1e44ea7cdfb8134065da799a3141a2e3c3481d83874daa8039f3eeb88c5336a9",
+        "imageBytes": 115248
+      },
+      "sameNameProducts": [
+        "DMRP-05 双極篇 拡張パック第１弾 轟快!! ジョラゴンGo Fight!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-022",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp03-017",
+      "name": "次元波導魔法 HAL",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-017",
+      "faces": [
+        {
+          "name": "次元波導魔法 HAL",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スーパー・S・トリガー スーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB 能力を与える）\nカードを２枚引く。\nxB ターンの残りをとばす。（次のプレイヤーのターンをすぐに始める）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ],
+        "g437Super": [
+          {
+            "op": "Custom",
+            "name": "endTurn"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "9279ef5a8a80dcb95e7fdf7f79634144bb4f3fbfe7da085a0a2a7be9b217ab2d",
+        "facesMatched": true,
+        "imageSha256": "2214dae71ee012e004f890f3ac43d7f98272802b83b2ef39047596a790352f47",
+        "imageBytes": 112541
+      },
+      "sameNameProducts": [
+        "DMEX-04 夢の最＆強!!ツインパクト超No.1パック",
+        "DMRP-03 拡張パック新3弾 気分Ｊ･O･E×２メラ冒険！！"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-017",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp05-013",
+      "name": "ノヴァルティ・エントリオ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-013",
+      "faces": [
+        {
+          "name": "ノヴァルティ・エントリオ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スーパー・S・トリガースーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB能力を与える）\n相手のクリーチャーを２体選び、タップする。\nxB自分の山札の上から４枚を表向きにする。その中からコスト６以下のメタリカを好きな数、バトルゾーンに出す。残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "g173Targets": true,
+            "g193Tap": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "g437Super": [
+          {
+            "op": "LookDeploy530",
+            "n": 4,
+            "public": true,
+            "limit": "all",
+            "rest": "bottom",
+            "filter": {
+              "race": "メタリカ",
+              "max": 6
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "4cc7d6ea17cf80124074980c044707424c8816ba9803b11542090d4645661162",
+        "facesMatched": true,
+        "imageSha256": "6b8b5e56b165e170bac7fa84376aaa89575ca413e5a19a91d91c3b02406daab2",
+        "imageBytes": 110798
+      },
+      "sameNameProducts": [
+        "DMRP-05 双極篇 拡張パック第１弾 轟快!! ジョラゴンGo Fight!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-013",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp01-013": 4,
+      "dmrp05-022": 4,
+      "dmrp03-017": 4,
+      "dmrp05-013": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/31533/",
+    "https://dm.takaratomy.co.jp/rule/qa/31534/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31533/",
+      "sha256": "9e03e7fcd6ed461008e06543c6b4032479487712d50a8212f0d9cfc8cbc2807d",
+      "result": "スーパー・S・トリガーの使用条件はシールドから手札に加えた時点で判定する。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31534/",
+      "sha256": "c1b0d8ebc83040cfc146b010cfe0d468a6ee0fc431ee3b95d0cfb7de8eed28be",
+      "result": "スーパー・S・トリガーの追加能力と通常の呪文使用を区別する。"
+    }
+  ],
+  "testCorrections": [
+    "公開した山札からの任意展開には、カードをゾーンへ移すLookではなく、既存のLookDeploy530を使用するよう修正。"
+  ]
+}

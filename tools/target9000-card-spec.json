@@ -2691,5 +2691,179 @@
         ]
       }
     }
+  },
+  "dmrp01-013": {
+    "phase": 1488,
+    "faces": [
+      {
+        "name": "タイム・ストップン",
+        "typeText": "呪文",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "スーパー・S・トリガースーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にoB 能力を与える）\n相手のコスト６以下のクリーチャーを１体選び、相手はそれを自身の山札の一番下に置く。\noB このターン、クリーチャーは攻撃できない。",
+        "race": "ジョーカーズ",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "superTrigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "deck",
+          "toOwnerDeck": true,
+          "g1089OrderDeck": true,
+          "filter": {
+            "max": 6
+          }
+        }
+      ],
+      "g437Super": [
+        {
+          "op": "LockAttacks726"
+        }
+      ]
+    }
+  },
+  "dmrp05-022": {
+    "phase": 1488,
+    "faces": [
+      {
+        "name": "怨王の死鎌",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "スーパー・S・トリガースーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB能力を与える）\n相手は自身のアンタップしているクリーチャーを１体選び、破壊する。\nxB自分の山札の上から２枚を墓地に置く。その後、クリーチャーを好きな数、自分の墓地から手札に戻す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "superTrigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "OpponentSelect",
+          "n": 1,
+          "to": "grave",
+          "filter": {
+            "untapped": true
+          }
+        }
+      ],
+      "g437Super": [
+        {
+          "op": "Mill",
+          "n": 2
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": "all",
+          "optional": true,
+          "filter": {
+            "g228Face": {
+              "type": "creature"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "dmrp03-017": {
+    "phase": 1488,
+    "faces": [
+      {
+        "name": "次元波導魔法 HAL",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "スーパー・S・トリガー スーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB 能力を与える）\nカードを２枚引く。\nxB ターンの残りをとばす。（次のプレイヤーのターンをすぐに始める）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "superTrigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        }
+      ],
+      "g437Super": [
+        {
+          "op": "Custom",
+          "name": "endTurn"
+        }
+      ]
+    }
+  },
+  "dmrp05-013": {
+    "phase": 1488,
+    "faces": [
+      {
+        "name": "ノヴァルティ・エントリオ",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "スーパー・S・トリガースーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB能力を与える）\n相手のクリーチャーを２体選び、タップする。\nxB自分の山札の上から４枚を表向きにする。その中からコスト６以下のメタリカを好きな数、バトルゾーンに出す。残りを好きな順序で自分の山札の一番下に置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "superTrigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "g173Targets": true,
+          "g193Tap": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "g437Super": [
+        {
+          "op": "LookDeploy530",
+          "n": 4,
+          "public": true,
+          "limit": "all",
+          "rest": "bottom",
+          "filter": {
+            "race": "メタリカ",
+            "max": 6
+          }
+        }
+      ]
+    }
   }
 }

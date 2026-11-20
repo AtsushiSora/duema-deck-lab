@@ -266647,15 +266647,175 @@
       },
       "supportBatch": "phase-1487",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp01-013",
+      "name": "タイム・ストップン",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "ジョーカーズ",
+      "text": "スーパー・S・トリガースーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にoB 能力を与える）\n相手のコスト６以下のクリーチャーを１体選び、相手はそれを自身の山札の一番下に置く。\noB このターン、クリーチャーは攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-013",
+      "limit": 4,
+      "superTrigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "deck",
+          "toOwnerDeck": true,
+          "g1089OrderDeck": true,
+          "filter": {
+            "max": 6
+          }
+        }
+      ],
+      "g437Super": [
+        {
+          "op": "LockAttacks726"
+        }
+      ],
+      "supportBatch": "phase-1488",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-022",
+      "name": "怨王の死鎌",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "スーパー・S・トリガースーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB能力を与える）\n相手は自身のアンタップしているクリーチャーを１体選び、破壊する。\nxB自分の山札の上から２枚を墓地に置く。その後、クリーチャーを好きな数、自分の墓地から手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-022",
+      "limit": 4,
+      "superTrigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "OpponentSelect",
+          "n": 1,
+          "to": "grave",
+          "filter": {
+            "untapped": true
+          }
+        }
+      ],
+      "g437Super": [
+        {
+          "op": "Mill",
+          "n": 2
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": "all",
+          "optional": true,
+          "filter": {
+            "g228Face": {
+              "type": "creature"
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-1488",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-017",
+      "name": "次元波導魔法 HAL",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "スーパー・S・トリガー スーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB 能力を与える）\nカードを２枚引く。\nxB ターンの残りをとばす。（次のプレイヤーのターンをすぐに始める）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-017",
+      "limit": 4,
+      "superTrigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        }
+      ],
+      "g437Super": [
+        {
+          "op": "Custom",
+          "name": "endTurn"
+        }
+      ],
+      "supportBatch": "phase-1488",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-013",
+      "name": "ノヴァルティ・エントリオ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "スーパー・S・トリガースーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB能力を与える）\n相手のクリーチャーを２体選び、タップする。\nxB自分の山札の上から４枚を表向きにする。その中からコスト６以下のメタリカを好きな数、バトルゾーンに出す。残りを好きな順序で自分の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-013",
+      "limit": 4,
+      "superTrigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "g173Targets": true,
+          "g193Tap": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "g437Super": [
+        {
+          "op": "LookDeploy530",
+          "n": 4,
+          "public": true,
+          "limit": "all",
+          "rest": "bottom",
+          "filter": {
+            "race": "メタリカ",
+            "max": 6
+          }
+        }
+      ],
+      "supportBatch": "phase-1488",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1487,
+    "phase": 1488,
     "checkedAt": "2026-11-20",
-    "baseCount": 8561,
+    "baseCount": 8565,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 8565,
+    "totalCount": 8569,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -291252,6 +291412,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8561,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1487,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8561,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 8565,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
