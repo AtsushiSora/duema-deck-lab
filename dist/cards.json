@@ -262432,15 +262432,151 @@
       ],
       "supportBatch": "phase-1459",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex4-063",
+      "name": "リンネ 丙-三式",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "マフィ・ギャング/デリートロン",
+      "text": "マナドライブ３（闇）：このクリーチャーが出た時、自分のマナゾーンのカードが３枚以上で闇文明があれば、コスト４以下のオーラを１つ、自分の墓地からこのクリーチャーに付ける。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-063",
+      "limit": 4,
+      "gr": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 3
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "闇"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "SelfAura1460",
+              "max": 4
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1460",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd09-014",
+      "name": "*/肆幻モドピトテ/*",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 4,
+      "power": 0,
+      "race": "トリックス/デリートロン",
+      "text": "これを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこれを付けたクリーチャーが破壊された時、そのクリーチャーに付いていたオーラをすべて自分の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd09-014",
+      "limit": 4,
+      "auraPower": 4000,
+      "g1352Powered": true,
+      "g1460HostDeath": [
+        {
+          "op": "AuraGraveReturn1460",
+          "to": "hand"
+        }
+      ],
+      "supportBatch": "phase-1460",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex07-027",
+      "name": "楼罪 ビルデ漸ング",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 5,
+      "power": 0,
+      "race": "マフィ・ギャング/デリートロン",
+      "text": "無月の大罪３（このオーラを使うコストを３少なくしてもよい。そうしたら、このターンの終わりに、自分のクリーチャーを１体破壊する）\nこれを付けたクリーチャーは「ブロッカー」を得、攻撃できない。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）\nこれを付けたクリーチャーが破壊された時、自分の山札の上から１枚目を墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex07-027",
+      "limit": 4,
+      "auraPower": 6000,
+      "g1432Sin": 3,
+      "g1421AuraGrants": {
+        "blocker": true,
+        "noAttack": true
+      },
+      "g1460HostDeath": [
+        {
+          "op": "Mill",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1460",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex05-s10",
+      "name": "ΔΔΣ シグマティス",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 6,
+      "power": 0,
+      "race": "グランセクト/デリートロン",
+      "text": "これをクリーチャーに付けた時、そのターン、そのクリーチャーはタップまたはアンタップしているクリーチャーを攻撃できる。\nこれを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこれを付けたクリーチャーが破壊された時、そのクリーチャーに付いていたオーラをすべて、自分のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex05-s10",
+      "limit": 4,
+      "auraPower": 6000,
+      "g1352Powered": true,
+      "g1421AuraAttach": [
+        {
+          "op": "AuraHostGrant1460",
+          "grant": {
+            "attackUntapped": true
+          }
+        }
+      ],
+      "g1460HostDeath": [
+        {
+          "op": "AuraGraveReturn1460",
+          "to": "mana"
+        }
+      ],
+      "supportBatch": "phase-1460",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1459,
+    "phase": 1460,
     "checkedAt": "2026-11-20",
-    "baseCount": 8445,
-    "newEffectCards": 3,
+    "baseCount": 8448,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 8448,
+    "totalCount": 8452,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -286645,6 +286781,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8445,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1459,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8445,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 8448,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

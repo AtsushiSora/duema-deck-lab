@@ -6095,6 +6095,16 @@ export function createSixPhotoRules(api){
   if(rows.length)choice(s,t,'このクリーチャーに付けるマナのオーラを選ぶ',[...rows.map(x=>opt(card(x).name,{uid:x.uid,serial:x.zoneSerial||0},10+cost(card(x)),x.cardId)),skip()]);break;
  }
  case'g34_AuraGr1353':api.grSummon(s,t.p,{tapped:!!t.tapped});break;
+ case'g34_SelfAura1460':{
+  const host=sourceHost474(s,t);
+  if(host)put(s,{...t,op:'g34_AuraFromGrave1354',host:{uid:host.x.uid,incarnation:host.x.incarnation||0}});break;
+ }
+ case'g34_AuraHostGrant1460':{
+  const host=api.auraHost1352(s,t.p,t.host);if(host)applyGrant(s,t,host);break;
+ }
+ case'g34_AuraGraveReturn1460':{
+  for(const ref of t.auras||[]){const x=own.grave.find(x=>x.uid===ref.uid&&(x.zoneSerial||0)===ref.serial);if(x)zoneMove(s,t.p,'grave',x.uid,t.to,t);}break;
+ }
  case'g34_AuraFromGrave1354':{
   const rows=graveAuras1354(s,t);
   if(rows.length)choice(s,t,'このクリーチャーに付ける墓地のオーラを選ぶ',rows.map(x=>
@@ -9530,6 +9540,11 @@ export function createSixPhotoRules(api){
   const g1256HandEvolutionWatch=s.players.map(own=>own.hand.filter(x=>card(x).g1256HandEvolutionDeath&&
    !api.handAbilityIgnored(s,x)).map(x=>({uid:x.uid,serial:x.zoneSerial||0})));
   const snapshot={
+  g1460AuraDeaths:s.players.flatMap((own,p)=>own.battle.flatMap(a=>{
+   const defs=card(a).g1460HostDeath,host=a.auraTo1352;
+   return defs&&host&&!a.sealed&&!api.ignored(s,a)?[{p,uid:a.uid,incarnation:a.incarnation||0,cardId:a.cardId,host:{...host},defs,
+    auras:own.battle.filter(x=>x.auraTo1352?.uid===host.uid&&x.auraTo1352.incarnation===host.incarnation).map(x=>({uid:x.uid,serial:(x.zoneSerial||0)+1}))}]:[];
+  })),
   ...(g1256HandEvolutionWatch.some(x=>x.length)?{g1256HandEvolutionWatch}:{}),
   g1145GraveWatch:s.players.map(own=>own.grave.flatMap(x=>{
    const minCost=card(x).g1145GraveDeathMinCost;
@@ -9570,6 +9585,8 @@ export function createSixPhotoRules(api){
   const graveDefs=card(x).g838AnyGrave;
   if(to==='grave'&&graveDefs&&(snapshot?.g838SelfGrave?.includes(key(x))??!api.ignored(s,x)))queueBattle(s,p,x,graveDefs.map(d=>d.op==='SelfGraveMana1431'?{...d,serial:(x.zoneSerial||0)+1}:d));
   if(to==='grave'&&destroy){
+   for(const aura of snapshot?.g1460AuraDeaths||[])if(aura.p===p&&aura.host.uid===x.uid&&aura.host.incarnation===(x.incarnation||0))
+    queueBattle(s,p,aura,aura.defs.map(d=>d.op==='AuraGraveReturn1460'?{...d,auras:aura.auras}:d));
    if(s.g1225Destroyed?.turn!==s.turn)s.g1225Destroyed={turn:s.turn,cards:[[],[]]};
    s.g1225Destroyed.cards[p].push({uid:x.uid,serial:(x.zoneSerial||0)+1});
   }

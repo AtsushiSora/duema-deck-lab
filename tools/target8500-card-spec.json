@@ -14912,5 +14912,160 @@
         }
       ]
     }
+  },
+  "dm26ex4-063": {
+    "phase": 1460,
+    "faces": [
+      {
+        "name": "リンネ 丙-三式",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "マナドライブ３（闇）：このクリーチャーが出た時、自分のマナゾーンのカードが３枚以上で闇文明があれば、コスト４以下のオーラを１つ、自分の墓地からこのクリーチャーに付ける。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの下に戻す）",
+        "race": "マフィ・ギャング/デリートロン",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gr": true,
+      "manaValue": 0,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 3
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "闇"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "SelfAura1460",
+              "max": 4
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmsd09-014": {
+    "phase": 1460,
+    "faces": [
+      {
+        "name": "*/肆幻モドピトテ/*",
+        "typeText": "オレガ・オーラ",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "これを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこれを付けたクリーチャーが破壊された時、そのクリーチャーに付いていたオーラをすべて自分の手札に戻す。",
+        "race": "トリックス/デリートロン",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "auraPower": 4000,
+      "g1352Powered": true,
+      "g1460HostDeath": [
+        {
+          "op": "AuraGraveReturn1460",
+          "to": "hand"
+        }
+      ],
+      "type": "aura",
+      "power": 0
+    }
+  },
+  "dmex07-027": {
+    "phase": 1460,
+    "faces": [
+      {
+        "name": "楼罪 ビルデ漸ング",
+        "typeText": "オレガ・オーラ",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "無月の大罪３（このオーラを使うコストを３少なくしてもよい。そうしたら、このターンの終わりに、自分のクリーチャーを１体破壊する）\nこれを付けたクリーチャーは「ブロッカー」を得、攻撃できない。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）\nこれを付けたクリーチャーが破壊された時、自分の山札の上から１枚目を墓地に置く。",
+        "race": "マフィ・ギャング/デリートロン",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "auraPower": 6000,
+      "g1432Sin": 3,
+      "g1421AuraGrants": {
+        "blocker": true,
+        "noAttack": true
+      },
+      "g1460HostDeath": [
+        {
+          "op": "Mill",
+          "n": 1
+        }
+      ],
+      "type": "aura",
+      "power": 0
+    }
+  },
+  "dmex05-s10": {
+    "phase": 1460,
+    "faces": [
+      {
+        "name": "ΔΔΣ シグマティス",
+        "typeText": "オレガ・オーラ",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "これをクリーチャーに付けた時、そのターン、そのクリーチャーはタップまたはアンタップしているクリーチャーを攻撃できる。\nこれを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこれを付けたクリーチャーが破壊された時、そのクリーチャーに付いていたオーラをすべて、自分のマナゾーンに置く。",
+        "race": "グランセクト/デリートロン",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "auraPower": 6000,
+      "g1352Powered": true,
+      "g1421AuraAttach": [
+        {
+          "op": "AuraHostGrant1460",
+          "grant": {
+            "attackUntapped": true
+          }
+        }
+      ],
+      "g1460HostDeath": [
+        {
+          "op": "AuraGraveReturn1460",
+          "to": "mana"
+        }
+      ],
+      "type": "aura",
+      "power": 0
+    }
   }
 }
