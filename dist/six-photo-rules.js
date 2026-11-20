@@ -993,7 +993,7 @@ export function createSixPhotoRules(api){
   const fits=({p,y})=>{
    if(t.zone==='battle'&&(y.sealed||y.faceDown||!t.g561Elements&&!api.isCreature(s,y)))return false;
    if(f.g1085Psychic&&!api.zoneCard(s,p,y,t.zone).psychic)return false;
-   if(t.g1011CountColor&&!colors(api.zoneCard(s,p,y,t.zone)).includes(t.g1011CountColor))return false;
+   if(t.g1011CountColor&&!(t.zone==='battle'?[api.zoneCard(s,p,y,t.zone)]:faces(api.zoneCard(s,p,y,t.zone))).some(face=>colors(face).includes(t.g1011CountColor)))return false;
    if(g876BattleName&&!battleNames676(s,y).includes(exactName(g876BattleName)))return false;
    if(g1116NameIncludes){
     if(y.faceDown)return false;

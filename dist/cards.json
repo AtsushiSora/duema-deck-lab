@@ -273666,15 +273666,220 @@
       },
       "supportBatch": "phase-1524",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmbd16-001",
+      "name": "ボルシャック・大和・ドラゴン / 大和ザンゲキ剣",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アーマード・ドラゴン/サムライ",
+      "text": "スピードアタッカー\nＷ・ブレイカー\n攻撃中、このクリーチャーのパワーを、自分の墓地にある火のカード１枚につき+1000する。\n《ボルメテウス・武者・ドラゴン》の能力によって、相手のパワー6000以下のクリーチャーを破壊する時、かわりに相手のパワー12000以下のクリーチャーを１体破壊する。\n【呪文面】\nS・トリガー S・トリガー\n相手のパワー4000以下のクリーチャーを１体破壊する。バトルゾーンに自分のドラゴンがあれば、かわりに相手のパワー12000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd16-001",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g207CountPower": {
+        "zone": "grave",
+        "attackOnly": true,
+        "g1011CountColor": "火",
+        "amount": 1000
+      },
+      "g1083Yamato": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "大和ザンゲキ剣",
+        "cost": 4,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "filter": {
+                  "race": "ドラゴン"
+                },
+                "min": 1
+              }
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 12000
+                },
+                "spell": true
+              }
+            ],
+            "elseDefs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 4000
+                },
+                "spell": true
+              }
+            ],
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1525",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-055",
+      "name": "ゾーShock/倍ナルファンタジー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ジョーカーズ",
+      "text": "スマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）\n【呪文面】\nこのターン、自分のクリーチャー１体のパワーを２倍にする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-055",
+      "limit": 4,
+      "smashBurst": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "倍ナルファンタジー",
+        "cost": 2,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "powerMultiplier": 2,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1525",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex04-037",
+      "name": "光神龍セブンス/バイオレン・スパーク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5500,
+      "race": "アポロニア・ドラゴン",
+      "text": "バトルゾーンにある自分のドラゴンすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー6000以下のクリーチャーをすべてタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-037",
+      "limit": 4,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "grants": {
+            "blocker": true
+          }
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "バイオレン・スパーク",
+        "cost": 3,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll",
+            "filter": {
+              "maxPower": 6000
+            },
+            "spell": true,
+            "g218Tap": true,
+            "g1108Snapshot": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1525",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex04-056",
+      "name": "口寄の化身/強欲の王国",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "ミステリー・トーテム",
+      "text": "このクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分の、ミステリー・トーテム以外の種族１種類につき１枚、カードを引いてもよい。\n【呪文面】\n自分の手札を好きな枚数、タップしてマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-056",
+      "limit": 4,
+      "effect": "champion",
+      "g83Effect": "Mouth",
+      "spellFace": {
+        "type": "spell",
+        "name": "強欲の王国",
+        "cost": 3,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "mana",
+            "n": "all",
+            "optional": true,
+            "tapped": true,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1525",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1524,
+    "phase": 1525,
     "checkedAt": "2026-11-20",
-    "baseCount": 8714,
-    "newEffectCards": 5,
+    "baseCount": 8719,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 8719,
+    "totalCount": 8723,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -298789,6 +298994,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8714,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1524,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8714,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8719,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

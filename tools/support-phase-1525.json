@@ -1,0 +1,445 @@
+{
+  "phase": 1525,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8719,
+  "description": "既存の処理を用いて全能力を個別に検証し4種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/33716/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35303/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/33716/": "S・トリガーの付与や使用可能な面は条件を満たす片面だけに適用する。",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35303/": "引ける枚数はバトルゾーンの種族の種類で決まり、クリーチャーの体数ではない。"
+  },
+  "cards": [
+    {
+      "id": "dmbd16-001",
+      "name": "ボルシャック・大和・ドラゴン / 大和ザンゲキ剣",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd16-001",
+      "faces": [
+        {
+          "name": "ボルシャック・大和・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー\nＷ・ブレイカー\n攻撃中、このクリーチャーのパワーを、自分の墓地にある火のカード１枚につき+1000する。\n《ボルメテウス・武者・ドラゴン》の能力によって、相手のパワー6000以下のクリーチャーを破壊する時、かわりに相手のパワー12000以下のクリーチャーを１体破壊する。",
+          "race": "アーマード・ドラゴン/サムライ",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "大和ザンゲキ剣",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー\n相手のパワー4000以下のクリーチャーを１体破壊する。バトルゾーンに自分のドラゴンがあれば、かわりに相手のパワー12000以下のクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g207CountPower": {
+          "zone": "grave",
+          "attackOnly": true,
+          "g1011CountColor": "火",
+          "amount": 1000
+        },
+        "g1083Yamato": true,
+        "spellFace": {
+          "type": "spell",
+          "name": "大和ザンゲキ剣",
+          "cost": 4,
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g370BattleCount": {
+                  "filter": {
+                    "race": "ドラゴン"
+                  },
+                  "min": 1
+                }
+              },
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "maxPower": 12000
+                  },
+                  "spell": true
+                }
+              ],
+              "elseDefs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "maxPower": 4000
+                  },
+                  "spell": true
+                }
+              ],
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd16-001a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "9053e6eb055105d75fdb4fc0ea3f86a6e5b4e7d79e4312f0552845b3666dbccf",
+        "facesMatched": true,
+        "imageSha256": "9a7680e8db4521fd77e10ef952182888c94bf410b82d0b17ed4d2e55ee8ffbfc",
+        "imageBytes": 181072
+      },
+      "sameNameProducts": [
+        "DMBD-16 20th クロニクルデッキ 決闘!! ボルシャック・デュエル"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd16-001",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp08-055",
+      "name": "ゾーShock/倍ナルファンタジー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-055",
+      "faces": [
+        {
+          "name": "ゾーShock",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "スマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）",
+          "race": "ジョーカーズ",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "倍ナルファンタジー",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このターン、自分のクリーチャー１体のパワーを２倍にする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "smashBurst": true,
+        "spellFace": {
+          "type": "spell",
+          "name": "倍ナルファンタジー",
+          "cost": 2,
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "owner": "self",
+              "powerMultiplier": 2,
+              "spell": true
+            }
+          ]
+        }
+      },
+      "faceImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-055a.jpg",
+        "sha256": "7540714aaa1e6ad248705008386b731ec802dcdfd4217c3219cc7de95d808882",
+        "reviewedAt": "2026-11-21",
+        "reason": "公式カード画像の呪文面の文明を確認。HTML文明欄の空白のみ補完。",
+        "faces": [
+          {
+            "index": 1,
+            "civilizationText": "自然",
+            "civilizations": [
+              "自然"
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-055a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "1dab29b6c18cc9a5290aaafc3832e2b3d639fff10591d8a26c41c865b2ba1fa7",
+        "facesMatched": true,
+        "imageSha256": "7540714aaa1e6ad248705008386b731ec802dcdfd4217c3219cc7de95d808882",
+        "imageBytes": 141337
+      },
+      "sameNameProducts": [
+        "DMRP-08 双極篇 拡張パック第４弾 超決戦!バラギアラ!!無敵オラオラ輪廻∞"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-055",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex04-037",
+      "name": "光神龍セブンス/バイオレン・スパーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-037",
+      "faces": [
+        {
+          "name": "光神龍セブンス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "バトルゾーンにある自分のドラゴンすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+          "race": "アポロニア・ドラゴン",
+          "powerText": "5500",
+          "missingFields": []
+        },
+        {
+          "name": "バイオレン・スパーク",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー6000以下のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "grants": {
+              "blocker": true
+            }
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "バイオレン・スパーク",
+          "cost": 3,
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "TapAll",
+              "filter": {
+                "maxPower": 6000
+              },
+              "spell": true,
+              "g218Tap": true,
+              "g1108Snapshot": true
+            }
+          ]
+        }
+      },
+      "faceImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-037a.jpg",
+        "sha256": "2deee6295bf8c093fba4dd5ebebad2bde26617d8dc09836f46f138f9cb6ed3dd",
+        "reviewedAt": "2026-11-21",
+        "reason": "公式カード画像の呪文面の文明を確認。HTML文明欄の空白のみ補完。",
+        "faces": [
+          {
+            "index": 1,
+            "civilizationText": "光",
+            "civilizations": [
+              "光"
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-037a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "faa88af974eb19aed50c527654f18a28a5ccf7377b1fb49269270e3b0a926854",
+        "facesMatched": true,
+        "imageSha256": "2deee6295bf8c093fba4dd5ebebad2bde26617d8dc09836f46f138f9cb6ed3dd",
+        "imageBytes": 164060
+      },
+      "sameNameProducts": [
+        "DMEX-04 夢の最＆強!!ツインパクト超No.1パック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-037",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex04-056",
+      "name": "口寄の化身/強欲の王国",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-056",
+      "faces": [
+        {
+          "name": "口寄の化身",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分の、ミステリー・トーテム以外の種族１種類につき１枚、カードを引いてもよい。",
+          "race": "ミステリー・トーテム",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "強欲の王国",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の手札を好きな枚数、タップしてマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "champion",
+        "g83Effect": "Mouth",
+        "spellFace": {
+          "type": "spell",
+          "name": "強欲の王国",
+          "cost": 3,
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "to": "mana",
+              "n": "all",
+              "optional": true,
+              "tapped": true,
+              "spell": true
+            }
+          ]
+        }
+      },
+      "faceImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-056a.jpg",
+        "sha256": "125e028f1864ea0ef1ff5db403ae786b6858aca25b1181ea3ecc7aea46fba4cd",
+        "reviewedAt": "2026-11-21",
+        "reason": "公式カード画像の呪文面の文明を確認。HTML文明欄の空白のみ補完。",
+        "faces": [
+          {
+            "index": 1,
+            "civilizationText": "自然",
+            "civilizations": [
+              "自然"
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-056a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "f96a418e94a47a0dab6f0eb762e01853ee77376b71effd421ae28d56d210cdd1",
+        "facesMatched": true,
+        "imageSha256": "125e028f1864ea0ef1ff5db403ae786b6858aca25b1181ea3ecc7aea46fba4cd",
+        "imageBytes": 137389
+      },
+      "sameNameProducts": [
+        "DMEX-04 夢の最＆強!!ツインパクト超No.1パック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-056",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmbd16-001": 4,
+      "dmrp08-055": 4,
+      "dmex04-037": 4,
+      "dmex04-056": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/33716/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33716/",
+      "sha256": "0e3296031e1dfb8ceec8afade9c5962b09b58597abcfa218c51dc2bac129a205",
+      "result": "S・トリガーの付与や使用可能な面は条件を満たす片面だけに適用する。"
+    }
+  ],
+  "implementationNotes": [
+    "口寄の化身の文面は自分の種族を数えるため、クリーチャー以外の種族を含む既存処理を維持。公式QA_old/35303も確認し、クロスギアによる種類増加を固有テストで検証。",
+    "墓地等のカードの文明集計はツインパクト両面の文明を参照し、バトルゾーンのクリーチャーはその面を参照する。",
+    "バイオレン・スパークは対象パワー6000以下を、タップ前にまとめて判定する。"
+  ]
+}

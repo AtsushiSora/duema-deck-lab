@@ -11002,5 +11002,278 @@
         ]
       }
     }
+  },
+  "dmbd16-001": {
+    "phase": 1525,
+    "faces": [
+      {
+        "name": "ボルシャック・大和・ドラゴン",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "スピードアタッカー\nＷ・ブレイカー\n攻撃中、このクリーチャーのパワーを、自分の墓地にある火のカード１枚につき+1000する。\n《ボルメテウス・武者・ドラゴン》の能力によって、相手のパワー6000以下のクリーチャーを破壊する時、かわりに相手のパワー12000以下のクリーチャーを１体破壊する。",
+        "race": "アーマード・ドラゴン/サムライ",
+        "powerText": "6000",
+        "missingFields": []
+      },
+      {
+        "name": "大和ザンゲキ剣",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー\n相手のパワー4000以下のクリーチャーを１体破壊する。バトルゾーンに自分のドラゴンがあれば、かわりに相手のパワー12000以下のクリーチャーを１体破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "breaker": 2,
+      "g207CountPower": {
+        "zone": "grave",
+        "attackOnly": true,
+        "g1011CountColor": "火",
+        "amount": 1000
+      },
+      "g1083Yamato": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "大和ザンゲキ剣",
+        "cost": 4,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "filter": {
+                  "race": "ドラゴン"
+                },
+                "min": 1
+              }
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 12000
+                },
+                "spell": true
+              }
+            ],
+            "elseDefs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 4000
+                },
+                "spell": true
+              }
+            ],
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp08-055": {
+    "phase": 1525,
+    "faces": [
+      {
+        "name": "ゾーShock",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "スマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）",
+        "race": "ジョーカーズ",
+        "powerText": "2000",
+        "missingFields": []
+      },
+      {
+        "name": "倍ナルファンタジー",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "このターン、自分のクリーチャー１体のパワーを２倍にする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "smashBurst": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "倍ナルファンタジー",
+        "cost": 2,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "powerMultiplier": 2,
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmex04-037": {
+    "phase": 1525,
+    "faces": [
+      {
+        "name": "光神龍セブンス",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "バトルゾーンにある自分のドラゴンすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+        "race": "アポロニア・ドラゴン",
+        "powerText": "5500",
+        "missingFields": []
+      },
+      {
+        "name": "バイオレン・スパーク",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー6000以下のクリーチャーをすべてタップする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "grants": {
+            "blocker": true
+          }
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "バイオレン・スパーク",
+        "cost": 3,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll",
+            "filter": {
+              "maxPower": 6000
+            },
+            "spell": true,
+            "g218Tap": true,
+            "g1108Snapshot": true
+          }
+        ]
+      }
+    }
+  },
+  "dmex04-056": {
+    "phase": 1525,
+    "faces": [
+      {
+        "name": "口寄の化身",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分の、ミステリー・トーテム以外の種族１種類につき１枚、カードを引いてもよい。",
+        "race": "ミステリー・トーテム",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "強欲の王国",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の手札を好きな枚数、タップしてマナゾーンに置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "champion",
+      "g83Effect": "Mouth",
+      "spellFace": {
+        "type": "spell",
+        "name": "強欲の王国",
+        "cost": 3,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "mana",
+            "n": "all",
+            "optional": true,
+            "tapped": true,
+            "spell": true
+          }
+        ]
+      }
+    }
   }
 }
