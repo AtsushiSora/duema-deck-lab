@@ -272656,15 +272656,155 @@
       },
       "supportBatch": "phase-1519",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex04-007",
+      "name": "偽りの王 ナンバーナイン / 歓喜の歌",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 9000,
+      "race": "キング・コマンド・ドラゴン/アンノウン",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n相手は呪文を唱えることができない。\n【呪文面】\n自分の山札の上から９枚を見る。その中からコスト９のカードを１枚、相手に見せてから手札に加えてもよい。残りをシャッフルし、山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-007",
+      "limit": 4,
+      "breaker": 2,
+      "g473OpponentSpellLock": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "歓喜の歌",
+        "cost": 3,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 9,
+            "rest": "randomBottom1520",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "g1134AnyFaceCost": 9
+                }
+              }
+            ],
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1520",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23bd6-006",
+      "name": "アカシック・C / 「叩き潰すのよ、クラッシュ！」",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "スノーフェアリー/ジャイアント",
+      "text": "自分のマナゾーンのツインパクトカードは、すべての文明を持つ。\nツインパクトカードを自分のマナゾーンに置いた時、そのカードをアンタップする。\n【呪文面】\nS・トリガー S・トリガー\n各相手のエレメントを１つずつ選び、持ち主のマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd6-006",
+      "limit": 4,
+      "g972TwinManaColors": true,
+      "g1520TwinManaUntap": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "「叩き潰すのよ、クラッシュ！」",
+        "cost": 7,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "to": "mana",
+            "toOwnerMana": true,
+            "optional": true,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1520",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd08-a-005",
+      "name": "コンダマ / 魂フエミドロ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "グランセクト",
+      "text": "ツインパクトカードを自分のマナゾーンに置いた時、自分のマナゾーンにあるカードを１枚アンタップする。\n【呪文面】\n自分の山札の上から１枚目をマナゾーンに置く。それがツインパクトカードなら、自分の山札の上からもう１枚、マナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd08-a-005",
+      "limit": 4,
+      "g1520TwinMana": true,
+      "g807ManaEntry": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 1,
+          "g210ManaUntap": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "魂フエミドロ",
+        "cost": 3,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RampCheck411",
+            "kind": "match",
+            "filter": {
+              "twin": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1520",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1519,
+    "phase": 1520,
     "checkedAt": "2026-11-20",
-    "baseCount": 8695,
+    "baseCount": 8698,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 8698,
+    "totalCount": 8701,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -297709,6 +297849,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 8695,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1519,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8695,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 8698,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

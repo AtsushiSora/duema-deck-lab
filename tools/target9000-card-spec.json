@@ -9635,5 +9635,196 @@
         ]
       }
     }
+  },
+  "dmex04-007": {
+    "phase": 1520,
+    "faces": [
+      {
+        "name": "偽りの王 ナンバーナイン",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n相手は呪文を唱えることができない。",
+        "race": "キング・コマンド・ドラゴン/アンノウン",
+        "powerText": "9000",
+        "missingFields": []
+      },
+      {
+        "name": "歓喜の歌",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の山札の上から９枚を見る。その中からコスト９のカードを１枚、相手に見せてから手札に加えてもよい。残りをシャッフルし、山札の一番下に置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g473OpponentSpellLock": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "歓喜の歌",
+        "cost": 3,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 9,
+            "rest": "randomBottom1520",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "g1134AnyFaceCost": 9
+                }
+              }
+            ],
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dm23bd6-006": {
+    "phase": 1520,
+    "faces": [
+      {
+        "name": "アカシック・C",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分のマナゾーンのツインパクトカードは、すべての文明を持つ。\nツインパクトカードを自分のマナゾーンに置いた時、そのカードをアンタップする。",
+        "race": "スノーフェアリー/ジャイアント",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "「叩き潰すのよ、クラッシュ！」",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "S・トリガー S・トリガー\n各相手のエレメントを１つずつ選び、持ち主のマナゾーンに置いてもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g972TwinManaColors": true,
+      "g1520TwinManaUntap": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "「叩き潰すのよ、クラッシュ！」",
+        "cost": 7,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "to": "mana",
+            "toOwnerMana": true,
+            "optional": true,
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmbd08-a-005": {
+    "phase": 1520,
+    "faces": [
+      {
+        "name": "コンダマ",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "ツインパクトカードを自分のマナゾーンに置いた時、自分のマナゾーンにあるカードを１枚アンタップする。",
+        "race": "グランセクト",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "魂フエミドロ",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の山札の上から１枚目をマナゾーンに置く。それがツインパクトカードなら、自分の山札の上からもう１枚、マナゾーンに置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1520TwinMana": true,
+      "g807ManaEntry": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 1,
+          "g210ManaUntap": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "魂フエミドロ",
+        "cost": 3,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RampCheck411",
+            "kind": "match",
+            "filter": {
+              "twin": true
+            },
+            "spell": true
+          }
+        ]
+      }
+    }
   }
 }
