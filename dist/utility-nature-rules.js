@@ -15,7 +15,8 @@ export function createUtilityNatureRules(api){
  case'g51_Tower':put(s,task('g34_Ramp',t.p,t.source,{n:own.mana.length>=7?3:1}));break;
  case'g51_Ruins':put(s,task('g34_Ramp',t.p,t.source,{n:1}),task('g51_RuinsBonus',t.p,t.source));break;
  case'g51_RuinsBonus':if(own.mana.filter(x=>api.manaColors(card(x),s,t.p).length>1).length>=4)put(s,task('g34_Ramp',t.p,t.source,{n:2}));break;
- case'g51_Dolge':{const n=dolgeAllies(s,t.p).length;if(n)put(s,task('g34_Draw',t.p,t.source,{n,optional:true}));break;}
+ case'g51_Dolge':{if(t.g1526SeparateDolge){put(s,...['アースイーター','ジャイアント'].map(race=>({...t,op:'g51_DolgeRace1526',race})));break;}const n=dolgeAllies(s,t.p).length;if(n)put(s,task('g34_Draw',t.p,t.source,{n,optional:true}));break;}
+ case'g51_DolgeRace1526':{const n=api.creatures(s,t.p).filter(x=>!x.sealed&&String(api.effective(x,s).race||'').split('/').includes(t.race)).length;if(n)put(s,task('g34_Draw',t.p,t.source,{n,optional:true}));break;}
  case'g51_Garden':put(s,task('g34_Ramp',t.p,t.source,{n:1}),task('g51_GardenPick',t.p,t.source));break;
  case'g51_GardenPick':{if(!hosts(s,t.p).length)break;const list=manaCreatures(s,t.p);if(list.length)choice(s,t,'マナから自分の進化クリーチャーの下に置くクリーチャーを1体まで選ぶ',[...list.map(x=>opt(card(x).name,{...ref(x),serial:x.zoneSerial||0},10-cost(card(x)),x.cardId)),skip()]);break;}
  case'g51_GardenHost':{const x=own.mana.find(x=>key(x)===key(t.material)&&(x.zoneSerial||0)===t.material.serial);if(x&&api.canMoveZone(s,t.p,'mana'))choice(s,t,'マナのクリーチャーを下に置く自分の進化クリーチャーを選ぶ',hosts(s,t.p).map(x=>opt(card(x).name,ref(x),10+cost(card(x)),x.cardId)));break;}
@@ -36,5 +37,5 @@ export function createUtilityNatureRules(api){
  case'g51_LifePick':{const x=v&&own.deck.find(x=>x.uid===v&&t.ids.includes(x.uid));if(x){api.remove(own.deck,x.uid);own.g34Protected=(own.g34Protected||[]).filter(uid=>uid!==x.uid);api.clear(x,'hand');api.addZone(s,t.p,'hand',x);api.log(s,t.p,'reveal',card(x).name+'を公開して手札に加えた',{cardId:x.cardId});}put(s,task('g34_Order',t.p,t.source,{ids:t.ids.filter(uid=>uid!==v),ordered:[],rest:'bottom'}));break;}
  default:throw Error('未実装の自然ユーティリティ選択：'+t.op);
  }return true;}
- return {run,chosen,discount:(s,p,c)=>c.g164Dolge?Math.min(Math.max(0,cost(c)-2),dolgeAllies(s,p).length):0,effect(s,p,c,uid,entry){if(!c.g51Effect)return false;put(s,task('g51_'+c.g51Effect,p,c.id,{uid,incarnation:entry?.incarnation||0}));return true;}};
+ return {run,chosen,discount:(s,p,c)=>c.g164Dolge?Math.min(Math.max(0,cost(c)-2),dolgeAllies(s,p).length):0,effect(s,p,c,uid,entry){if(!c.g51Effect)return false;put(s,task('g51_'+c.g51Effect,p,c.id,{uid,incarnation:entry?.incarnation||0,...(c.g1526SeparateDolge?{g1526SeparateDolge:true}:{})}));return true;}};
 }

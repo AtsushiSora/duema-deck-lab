@@ -106,7 +106,7 @@ export function createRecommendedRules(api){
   effect(s,p,c){if(c.effect!=='recommended')return false;const role=c.recommendRole;
    if(role==='chaff'){lock(s,p,{kind:'cast',player:1-p,spellCost:c.cost,spellSource:c.id});api.draw(s,p,1);return true;}
    const op={olive:'Olive',collapse:'Collapse',water:'Water',love:'Love',dondon:'Look',surasura:'Look',memory:'Memory',pixie:'Pixie',purify:'Purify',dna:'DNA',jack:'Jack',scrapper:'Scrapper'}[role];if(!op)throw Error('未実装のおすすめカード：'+role);
-   put(s,task('g36'+op,p,c.id,{...(role==='dondon'?{n:5,bounceColors:c.bounceColors||['火','自然']}:role==='surasura'?{n:4,enemyOnly:true}:role==='scrapper'?{selected:[],budget:5000}:{})}));return true;
+   put(s,task('g36'+op,p,c.id,{...(c.g1526SpellDondon?{spell:true,spellCost:c.cost}:{}),...(role==='dondon'?{n:5,bounceColors:c.bounceColors||['火','自然']}:role==='surasura'?{n:4,enemyOnly:true}:role==='scrapper'?{selected:[],budget:5000}:{})}));return true;
   },
   allowedEntry(s,p,c,{execution}){return c?.type!=='creature'||execution||s.active!==p||!creatures(s,1-p).some(x=>!api.ignored(s,x)&&effective(x,s).recommendRole==='senno');},
   entry(s,p,x){if(!api.isCreature(s,x)||cost(card(x))<=s.players[p].mana.length)return;

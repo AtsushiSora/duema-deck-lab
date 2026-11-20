@@ -5755,6 +5755,7 @@ export function createSixPhotoRules(api){
   break;
  case'g34_ManaPick582':{
   const rows=manaRows582(s,t.p,t),remaining=rows.filter(x=>!t.chosen.includes(x.uid));
+  if(t.g1526All){finishMana582(s,{...t,chosen:rows.map(x=>x.uid)},rows);break;}
   if(t.keep&&rows.length<=t.n)break;
   if(t.chosen.length>=t.n||!remaining.length){finishMana582(s,t,rows);break;}
   const to=t.destinations?.[t.chosen.length]??t.to;
@@ -8022,7 +8023,7 @@ export function createSixPhotoRules(api){
    if(t.g1198UntapLock)(s.extLimits??=[]).push({kind:'g1198CreatureUntapLock',ref:key(y),host:key(t)});
    if(t.g446BattleOnly)grantBattlePower446(s,t,y,t.g446BattleOnly);
    if(t.powerMultiplier)(y.powerModifiers??=[]).push({amount:0,multiplier:t.powerMultiplier,expires:'end',who:s.active});
-   if(t.g676TapNames)tapNames676(s,y);if(t.g291UntapUntilSelf)(y.tapLocks??=[]).push(t.p);if(t.untap&&api.canUntap(y)){const was=y.tapped;y.tapped=false;if(was)combined.untapped(s,v.p,y);}if(t.lock){if(t.spell)(y.g170StartFreeze??=[]).push({spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});else y.skipUntap=true;}if(t.g1111PowerZero){
+   if(t.g1526BounceNames){const names=new Set(battleNames676(s,y)),rows=[0,1].flatMap(p=>creatures(s,p).filter(z=>!z.sealed&&battleNames676(s,z).some(n=>names.has(n))).map(z=>({player:p,uid:z.uid,to:'hand',toOwnerHand:true,destroy:false,controller:t.p})));move(s,rows);break;}if(t.g676TapNames)tapNames676(s,y);if(t.g291UntapUntilSelf)(y.tapLocks??=[]).push(t.p);if(t.untap&&api.canUntap(y)){const was=y.tapped;y.tapped=false;if(was)combined.untapped(s,v.p,y);}if(t.lock){if(t.spell)(y.g170StartFreeze??=[]).push({spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});else y.skipUntap=true;}if(t.g1111PowerZero){
     (y.powerModifiers??=[]).push({fixedPower:0,expires:'end',who:s.active,spellSource:t.source,spellCost:cost(card(t.source))});
     api.powerCleanup(s);
    }
