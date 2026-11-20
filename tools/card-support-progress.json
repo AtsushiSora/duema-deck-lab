@@ -493715,11 +493715,118 @@
       "reason": "画像と同じ終盤ログ順で、先に宣言された攻撃だけが続行する。シールド1ならその攻撃後にタップ済みの別個体の新規攻撃は存在せず、シールド0ならダイレクトが成立する。能力無視を持たない通常クリーチャーで再現。",
       "limitation": "元の保存対戦データは未取得。画像では攻撃宣言の行と攻撃者は見えないため、実際の153ログ全体や攻撃者の特定まで完了したとはしない。",
       "next": "元の保存対戦データで、新たな攻撃宣言が全タップ後に行われていた場合は別途調査。通常登録停止・保留2件を維持。"
+    },
+    {
+      "phase": 1374,
+      "kind": "attack-feedback-improvement",
+      "checkedAt": "2026-11-20",
+      "baseline": "c3152d3e",
+      "implementationCommit": "4045f26246902418bb4914b56f8cde2793cdc578",
+      "artifact": "tools/attack-feedback-1374.json",
+      "status": "passed",
+      "engineVersion": "0.602.1",
+      "aiVersion": "2.3.418",
+      "before": 8074,
+      "supported": 8074,
+      "pending": 3751,
+      "added": [],
+      "duplicates": 0,
+      "totalTestsPassed": 79,
+      "results": {
+        "focused-final": {
+          "name": "focused-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/attack-continuation-ui.test.mjs",
+            "tests/chaos-attack-continuation.test.mjs",
+            "tests/log-filter.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.79,
+          "log": "tmp/duema-phase-1374/focused-final.log",
+          "passed": 17,
+          "failed": 0
+        },
+        "related-ui-short": {
+          "name": "related-ui-short",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^(AI announces|pause cancels|speed changes|changed states|snapshots and|public attacks|paused playback|initial human|a human block|draw narration|both public|phone restores|the board conceals|Galaxyshield|manual screen|selecting an attacker|quadruple|single effect|Mugen Crime|many choices|the screen never|end-turn review|normal and twinpact|mana summons|desktop hand|card names and log|NewWorld fields|Redzone hand|Murder hand|board badges)",
+            "tests/ai-playback.test.mjs",
+            "tests/manual-ui.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.958,
+          "log": "tmp/duema-phase-1374/related-ui-short.log",
+          "passed": 30,
+          "failed": 0
+        },
+        "related-games": {
+          "name": "related-games",
+          "command": [
+            "node",
+            "--test",
+            "tests/requested1372-games.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 8.446,
+          "log": "tmp/duema-phase-1374/related-games.log",
+          "passed": 2,
+          "failed": 0
+        },
+        "online-short": {
+          "name": "online-short",
+          "command": [
+            "node",
+            "--test",
+            "tests/online-runtime.test.mjs",
+            "tests/online-app.test.mjs",
+            "tests/online-client.test.mjs",
+            "tests/online-ui.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.17,
+          "log": "tmp/duema-phase-1374/online-short.log",
+          "passed": 30,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.587,
+          "log": "tmp/duema-phase-1374/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 15.127,
+          "log": "tmp/duema-phase-1374/audit.log"
+        }
+      },
+      "reason": "攻撃中の全タップで現在の攻撃が続くことを画面見出し・補足・ログに明示。ダイレクト結果に公開攻撃者名とカードへのリンクを追加。攻撃・勝敗判定は維持。",
+      "remaining": "ブラウザの目視検証、公開候補全対象の集約と保留2件は未完了。公開なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1373,
-    "nextPhase": 1374,
+    "lastVerifiedPhase": 1374,
+    "nextPhase": 1375,
     "workInProgress": null,
     "nextCandidates": [
       "新たな明示指定がなければ件数を増やす通常登録を再開しない。",
@@ -493808,7 +493915,7 @@
       "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。"
     ],
     "restartSteps": [
-      "最新の対戦実装は58f1c830、engine0.602.0 / AI2.3.418。HEAD・差分・ステージ・既存プロセスを最初に確認。",
+      "最新の実装は4045f262、engine0.602.1 / AI2.3.418。攻撃中の全タップとダイレクトの案内を改善済み。HEAD・差分・ステージ・既存プロセスを最初に確認。",
       "実データ8074種類・重複0。通常登録停止・automation PAUSEDを維持。",
       "指定5種類は新規2・既存3を完了。manifestに公式全文・基本情報・画像・使用制限・関連裁定・秘版解決・検証結果を記録。",
       "既存8072定義は深い比較で不変。カードID・保存形式・保存済みデッキ・対戦履歴を維持。",
@@ -493877,6 +493984,13 @@
       "artifact": "tools/chaos-attack-verification-1373.json",
       "status": "reproduced-rule-correct",
       "reason": "画像と同じ終盤ログ順で、先に宣言された攻撃だけが続行する。シールド1ならその攻撃後にタップ済みの別個体の新規攻撃は存在せず、シールド0ならダイレクトが成立する。能力無視を持たない通常クリーチャーで再現。"
+    },
+    "latestFeedbackImprovement": {
+      "phase": 1374,
+      "commit": "4045f26246902418bb4914b56f8cde2793cdc578",
+      "artifact": "tools/attack-feedback-1374.json",
+      "status": "passed",
+      "engineVersion": "0.602.1"
     }
   },
   "registeredCardVerification": {
@@ -540851,7 +540965,7 @@
           "result": "全文・基本情報・公式画像・使用制限・既存ID・同名欄を照合。全登録8072行の能力抽出を走査し、821固有ID・833能力と面の組を21分割で解決・保存復元・物理カード保持まで検証。固有18を含む関連353、オンライン30、No13短い32、4対戦、check・audit合格。"
         }
       ],
-      "latestTestCommit": "58f1c830e9d672c7b282f908af39d9476c06b0b9",
+      "latestTestCommit": "4045f26246902418bb4914b56f8cde2793cdc578",
       "counts": {
         "supported": 8074,
         "pending": 3751,
@@ -541713,12 +541827,12 @@
       },
       "finalCheck": {
         "status": "passed",
-        "commit": "58f1c830e9d672c7b282f908af39d9476c06b0b9",
-        "engineVersion": "0.602.0",
+        "commit": "4045f26246902418bb4914b56f8cde2793cdc578",
+        "engineVersion": "0.602.1",
         "command": "npm run check",
-        "log": "tmp/duema-phase-1372/check-complete.log",
-        "seconds": 20.033,
-        "scope": "今回の指定カードの実装と静的・データ整合性。公開候補全対象の検証完了を意味しない。"
+        "log": "tmp/duema-phase-1374/check.log",
+        "seconds": 21.587,
+        "scope": "今回の攻撃案内・ログの更新。公開候補全対象の合格ではない。"
       },
       "abyssShort": {
         "passed": 33,
@@ -541747,7 +541861,7 @@
         }
       },
       "remainingDependencies": [],
-      "remainingTestsSummary": "全体のnpm testは中断・合否未確認を維持。固定e3323a89の344分割（再現対戦886試合、本番ワーカー2460試合）は全件合格。No.16・21の113対象（再現対戦114試合、ワーカー380試合、乱数75種）も全件合格。今回の効果・裁定回帰とオンラインの結果は最新バッチに記録。公開候補での全対象の集約は未完了。 engine 0.596.0で発生源の持ち主を修正し、最終の関連回帰135件、先行の通常バトル回帰366件、オンライン19件が合格。ドリーム・ドラゴン18項目（100対戦と決定性の再現2対戦）は途中構成で合格。ログ内の別テストの誤ったパワー設定は最終135件で修正・合格。全対象を公開コミットで集約する作業は未完了。 phase1365の山札移動置換に関する固有19項目、関連676項目、オンライン30項目、実カード80枚の2対戦と保存復元2回、npm run checkが合格。個別残件は登録済み7種類と再録1種類の合計8種類。公開候補の全対象集約は未完了。 phase1366で必要なDGと転生ノ正裁Zを追加。固有20・関連186・オンライン30項目、80枚2対戦と保存復元12回、npm run check・auditが合格。個別は登録済み6件と再録1件、計7件。旧abyss-effectsを含めた回帰の今回実行は約2分で停止し合否未確認。全対象の公開候補での集約は未完了。 phase1367で検証に必要なシュタインとデュエルメイト3種類を追加し、7r0y QA48142を解消。固有24・関連群306（固有の先行21を含む）・オンライン77・エレメント回帰2・短い手動UI20項目、83枚2対戦・保存復元10回、checkとauditが合格。個別は登録済み5件と再録1件の計6件。過去の中断と公開候補全対象の集約は未解消。 phase1368ではengine 0.599.0・実データ8069種類の全登場時能力2553件を52分割で確認し、物理枚数・UID・保存復元・全序数を検証。短いアビス33項目も合格。個別6件と旧AI/乱数/本番ワーカーの公開候補集約は引き続き未解消。 phase1369 (engine 0.600.0 / AI 2.3.416) で必要なヨミノ晴明R・ライジン天を追加し、通常Jトルネードの期待結果を訂正、バロディアス・ギャラクシーを実測。固有21を含む関連339、オンライン30、80枚2対戦と保存復元13回、check・audit合格。個別残件は登録済み2と再録1の計3。アオハルのQA49221は無視されている能力の参照を許すことも再確認。長い対戦項目を含んだ今回の2群は停止し、除外した改訂コマンドで短い回帰を完了。旧長時間項目と公開候補集約は未解消。 phase1370 (engine0.601.0 / AI2.3.417) でアオハルを追加、QA49222の帝王坂∞を実測。固有18を含む関連353、オンライン30、No13短い32、攻撃時借用833ケース/821固有IDの21分割、実カード80枚の4対戦（うち合法手を選ぶ対象対戦2試合でアオハル計6回実行・保存復元15回）、check・audit合格。個別残件は登録済み1と再録1の計2。No13のAI/乱数/本番ワーカーと公開候補集約は未確認。登場時借用2553件の旧engine0.599.0の合格を現engineの合格に転記しない。 phase1370のNo13継続検証を完了。engine0.601.0 / AI2.3.417を固定し、49対戦相手の196再現対戦（各ペアで同条件を再実行し最終状態一致）、28乱数シード、本番ワーカー490試合と対戦相手ごとの10試合集約、登場時借用2554能力を778分割で全件合格。重複・未実行・失敗・時間切れ0。短い33項目も通過。過去のNo13未確認の記述は今回の固定ソースについて解消。公開候補での全対象の集約と公式根拠2件は未完了。 phase1371は残り2件の公式根拠を追加調査。公式商品画像32点、公式配信2本の約30秒間隔398画像、最新総合ルールと類似裁定を照合したが、対象の確定根拠を特定できず、個別残件は2件のまま。関連10件・check・auditは通過。対戦実装は変更せず、No13検証時の全ソースハッシュとの一致を確認。公式照会案2件を作成し未送信で保存。 phase1372はユーザー指定5種類のうち武将利と威嚇命の決断・冥土人形ロッカ・マグナムを新規対応し、ベンゾ／星龍の暴発・ロマティックダム・アルキング・XXDDZは既存定義のまま再検証。engine0.602.0 / AI2.3.418。固有22・関連141・指定5種の40枚対戦2・オンライン短い47の計212項目、check・audit合格。オンラインの広いファイル実行は中断しており、その長時間項目の現版での合否は未集約。phase1370のNo13長時間合格は旧engine0.601.0の固定ソースの根拠として保持し、現版の全対象合格に転記しない。個別保留2件・一括npm test中断・公開候補集約未完了は維持。",
+      "remainingTestsSummary": "全体のnpm testは中断・合否未確認を維持。固定e3323a89の344分割（再現対戦886試合、本番ワーカー2460試合）は全件合格。No.16・21の113対象（再現対戦114試合、ワーカー380試合、乱数75種）も全件合格。今回の効果・裁定回帰とオンラインの結果は最新バッチに記録。公開候補での全対象の集約は未完了。 engine 0.596.0で発生源の持ち主を修正し、最終の関連回帰135件、先行の通常バトル回帰366件、オンライン19件が合格。ドリーム・ドラゴン18項目（100対戦と決定性の再現2対戦）は途中構成で合格。ログ内の別テストの誤ったパワー設定は最終135件で修正・合格。全対象を公開コミットで集約する作業は未完了。 phase1365の山札移動置換に関する固有19項目、関連676項目、オンライン30項目、実カード80枚の2対戦と保存復元2回、npm run checkが合格。個別残件は登録済み7種類と再録1種類の合計8種類。公開候補の全対象集約は未完了。 phase1366で必要なDGと転生ノ正裁Zを追加。固有20・関連186・オンライン30項目、80枚2対戦と保存復元12回、npm run check・auditが合格。個別は登録済み6件と再録1件、計7件。旧abyss-effectsを含めた回帰の今回実行は約2分で停止し合否未確認。全対象の公開候補での集約は未完了。 phase1367で検証に必要なシュタインとデュエルメイト3種類を追加し、7r0y QA48142を解消。固有24・関連群306（固有の先行21を含む）・オンライン77・エレメント回帰2・短い手動UI20項目、83枚2対戦・保存復元10回、checkとauditが合格。個別は登録済み5件と再録1件の計6件。過去の中断と公開候補全対象の集約は未解消。 phase1368ではengine 0.599.0・実データ8069種類の全登場時能力2553件を52分割で確認し、物理枚数・UID・保存復元・全序数を検証。短いアビス33項目も合格。個別6件と旧AI/乱数/本番ワーカーの公開候補集約は引き続き未解消。 phase1369 (engine 0.600.0 / AI 2.3.416) で必要なヨミノ晴明R・ライジン天を追加し、通常Jトルネードの期待結果を訂正、バロディアス・ギャラクシーを実測。固有21を含む関連339、オンライン30、80枚2対戦と保存復元13回、check・audit合格。個別残件は登録済み2と再録1の計3。アオハルのQA49221は無視されている能力の参照を許すことも再確認。長い対戦項目を含んだ今回の2群は停止し、除外した改訂コマンドで短い回帰を完了。旧長時間項目と公開候補集約は未解消。 phase1370 (engine0.601.0 / AI2.3.417) でアオハルを追加、QA49222の帝王坂∞を実測。固有18を含む関連353、オンライン30、No13短い32、攻撃時借用833ケース/821固有IDの21分割、実カード80枚の4対戦（うち合法手を選ぶ対象対戦2試合でアオハル計6回実行・保存復元15回）、check・audit合格。個別残件は登録済み1と再録1の計2。No13のAI/乱数/本番ワーカーと公開候補集約は未確認。登場時借用2553件の旧engine0.599.0の合格を現engineの合格に転記しない。 phase1370のNo13継続検証を完了。engine0.601.0 / AI2.3.417を固定し、49対戦相手の196再現対戦（各ペアで同条件を再実行し最終状態一致）、28乱数シード、本番ワーカー490試合と対戦相手ごとの10試合集約、登場時借用2554能力を778分割で全件合格。重複・未実行・失敗・時間切れ0。短い33項目も通過。過去のNo13未確認の記述は今回の固定ソースについて解消。公開候補での全対象の集約と公式根拠2件は未完了。 phase1371は残り2件の公式根拠を追加調査。公式商品画像32点、公式配信2本の約30秒間隔398画像、最新総合ルールと類似裁定を照合したが、対象の確定根拠を特定できず、個別残件は2件のまま。関連10件・check・auditは通過。対戦実装は変更せず、No13検証時の全ソースハッシュとの一致を確認。公式照会案2件を作成し未送信で保存。 phase1372はユーザー指定5種類のうち武将利と威嚇命の決断・冥土人形ロッカ・マグナムを新規対応し、ベンゾ／星龍の暴発・ロマティックダム・アルキング・XXDDZは既存定義のまま再検証。engine0.602.0 / AI2.3.418。固有22・関連141・指定5種の40枚対戦2・オンライン短い47の計212項目、check・audit合格。オンラインの広いファイル実行は中断しており、その長時間項目の現版での合否は未集約。phase1370のNo13長時間合格は旧engine0.601.0の固定ソースの根拠として保持し、現版の全対象合格に転記しない。個別保留2件・一括npm test中断・公開候補集約未完了は維持。 phase1374は全タップ後の攻撃続行を案内する表示と、ダイレクト攻撃者のログを改善。固有・関連17、短いUI30、オンライン30、40枚対戦2の計79項目とcheck・auditは合格。engine0.602.1 / AI2.3.418。8074定義は不変。旧ログと勝敗理由を維持。ブラウザ目視は未実施。広いUI実行は中断し、短い項目だけ明示選択で合格に数えた。",
       "advanceImplementation": {
         "status": "implemented",
         "phases": [
@@ -541799,84 +541913,56 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1372,
-        "kind": "explicitly-requested-card-addition",
+        "phase": 1374,
+        "kind": "attack-feedback-improvement",
         "checkedAt": "2026-11-20",
-        "baseline": "78448df4",
-        "implementationCommit": "58f1c830e9d672c7b282f908af39d9476c06b0b9",
-        "artifact": "tools/support-phase-1372.json",
-        "engineVersion": "0.602.0",
+        "baseline": "c3152d3e",
+        "implementationCommit": "4045f26246902418bb4914b56f8cde2793cdc578",
+        "artifact": "tools/attack-feedback-1374.json",
+        "status": "passed",
+        "engineVersion": "0.602.1",
         "aiVersion": "2.3.418",
-        "before": 8072,
+        "before": 8074,
         "supported": 8074,
         "pending": 3751,
-        "added": [
-          {
-            "id": "dm26rp2-011",
-            "name": "武将利と威嚇命の決断"
-          },
-          {
-            "id": "dm24ex1-058",
-            "name": "冥土人形ロッカ・マグナム"
-          }
-        ],
-        "alreadySupportedVerified": [
-          {
-            "id": "dm22ex1-061",
-            "name": "暴発秘宝ベンゾ / 星龍の暴発"
-          },
-          {
-            "id": "dm22ex2-S15",
-            "name": "不敬合成王 ロマティックダム・アルキング"
-          },
-          {
-            "id": "dmrp20-009",
-            "name": "覚醒連結 XXDDZ"
-          }
-        ],
+        "added": [],
         "duplicates": 0,
-        "status": "passed",
+        "totalTestsPassed": 79,
         "results": {
-          "focused": {
-            "name": "focused-complete",
+          "focused-final": {
+            "name": "focused-final",
             "command": [
               "node",
               "--test",
-              "tests/standard1372-effects.test.mjs"
+              "tests/attack-continuation-ui.test.mjs",
+              "tests/chaos-attack-continuation.test.mjs",
+              "tests/log-filter.test.mjs"
             ],
             "code": 0,
             "timedout": false,
-            "seconds": 1.342,
-            "log": "tmp/duema-phase-1372/focused-complete.log",
-            "passed": 22,
-            "failed": 0,
-            "skipped": 0
+            "seconds": 0.79,
+            "log": "tmp/duema-phase-1374/focused-final.log",
+            "passed": 17,
+            "failed": 0
           },
-          "related": {
-            "name": "related",
+          "related-ui-short": {
+            "name": "related-ui-short",
             "command": [
               "node",
               "--test",
-              "tests/standard1267-effects.test.mjs",
-              "tests/standard1336-effects.test.mjs",
-              "tests/standard1339-effects.test.mjs",
-              "tests/standard1087-effects.test.mjs",
-              "tests/standard419-effects.test.mjs",
-              "tests/standard1228-effects.test.mjs",
-              "tests/standard1352-effects.test.mjs",
-              "tests/standard1369-effects.test.mjs",
-              "tests/card-reprint-resolution.test.mjs"
+              "--test-name-pattern=^(AI announces|pause cancels|speed changes|changed states|snapshots and|public attacks|paused playback|initial human|a human block|draw narration|both public|phone restores|the board conceals|Galaxyshield|manual screen|selecting an attacker|quadruple|single effect|Mugen Crime|many choices|the screen never|end-turn review|normal and twinpact|mana summons|desktop hand|card names and log|NewWorld fields|Redzone hand|Murder hand|board badges)",
+              "tests/ai-playback.test.mjs",
+              "tests/manual-ui.test.mjs"
             ],
             "code": 0,
             "timedout": false,
-            "seconds": 26.129,
-            "log": "tmp/duema-phase-1372/related.log",
-            "passed": 141,
-            "failed": 0,
-            "skipped": 0
+            "seconds": 0.958,
+            "log": "tmp/duema-phase-1374/related-ui-short.log",
+            "passed": 30,
+            "failed": 0
           },
-          "requestedGames": {
-            "name": "requested-games-final",
+          "related-games": {
+            "name": "related-games",
             "command": [
               "node",
               "--test",
@@ -541884,13 +541970,12 @@
             ],
             "code": 0,
             "timedout": false,
-            "seconds": 7.974,
-            "log": "tmp/duema-phase-1372/requested-games-final.log",
+            "seconds": 8.446,
+            "log": "tmp/duema-phase-1374/related-games.log",
             "passed": 2,
-            "failed": 0,
-            "skipped": 0
+            "failed": 0
           },
-          "online": {
+          "online-short": {
             "name": "online-short",
             "command": [
               "node",
@@ -541902,30 +541987,13 @@
             ],
             "code": 0,
             "timedout": false,
-            "seconds": 1.127,
-            "log": "tmp/duema-phase-1372/online-short.log",
+            "seconds": 1.17,
+            "log": "tmp/duema-phase-1374/online-short.log",
             "passed": 30,
-            "failed": 0,
-            "skipped": 0
-          },
-          "onlineServer": {
-            "name": "online-server-short",
-            "command": [
-              "node",
-              "--test",
-              "--test-name-pattern=^(room storage|creating, joining|self-play|a waiting invitation|two accounts racing|the server validates|a repeated move|concurrent actions|resignation works|HTTP middleware|Firestore transport|HTTP server rejects|Advance rooms|Advance persists|Advance projects|historical original)",
-              "tests/online-server.test.mjs"
-            ],
-            "code": 0,
-            "timedout": false,
-            "seconds": 0.7,
-            "log": "tmp/duema-phase-1372/online-server-short.log",
-            "passed": 17,
-            "failed": 0,
-            "skipped": 0
+            "failed": 0
           },
           "check": {
-            "name": "check-complete",
+            "name": "check",
             "command": [
               "npm",
               "run",
@@ -541933,8 +542001,8 @@
             ],
             "code": 0,
             "timedout": false,
-            "seconds": 20.033,
-            "log": "tmp/duema-phase-1372/check-complete.log"
+            "seconds": 21.587,
+            "log": "tmp/duema-phase-1374/check.log"
           },
           "audit": {
             "name": "audit",
@@ -541944,19 +542012,12 @@
             ],
             "code": 0,
             "timedout": false,
-            "seconds": 14.926,
-            "log": "tmp/duema-phase-1372/audit.log"
+            "seconds": 15.127,
+            "log": "tmp/duema-phase-1374/audit.log"
           }
         },
-        "totalTestsPassed": 212,
-        "remainingRegistered": 1,
-        "remainingPrints": 1,
-        "reason": "ユーザー指定5種類のうち新規2種類を追加。既存3種類はID・定義を変更せず公式情報と関連テストで再確認。通常登録停止とユーザー保留2件を維持。",
-        "next": [
-          "新たな明示指定がなければ件数を増やす通常登録を再開しない。",
-          "保留2件はユーザーの再開指示まで調査・問い合わせ送信を行わない。",
-          "公開候補の全対象検証集約とNetlifyを更新しない手順が未確認のためpush・公開しない。"
-        ]
+        "reason": "攻撃中の全タップで現在の攻撃が続くことを画面見出し・補足・ログに明示。ダイレクト結果に公開攻撃者名とカードへのリンクを追加。攻撃・勝敗判定は維持。",
+        "remaining": "ブラウザの目視検証、公開候補全対象の集約と保留2件は未完了。公開なし。"
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
@@ -545461,6 +545522,113 @@
         "reason": "画像と同じ終盤ログ順で、先に宣言された攻撃だけが続行する。シールド1ならその攻撃後にタップ済みの別個体の新規攻撃は存在せず、シールド0ならダイレクトが成立する。能力無視を持たない通常クリーチャーで再現。",
         "limitation": "元の保存対戦データは未取得。画像では攻撃宣言の行と攻撃者は見えないため、実際の153ログ全体や攻撃者の特定まで完了したとはしない。",
         "next": "元の保存対戦データで、新たな攻撃宣言が全タップ後に行われていた場合は別途調査。通常登録停止・保留2件を維持。"
+      },
+      "attackFeedback1374": {
+        "phase": 1374,
+        "kind": "attack-feedback-improvement",
+        "checkedAt": "2026-11-20",
+        "baseline": "c3152d3e",
+        "implementationCommit": "4045f26246902418bb4914b56f8cde2793cdc578",
+        "artifact": "tools/attack-feedback-1374.json",
+        "status": "passed",
+        "engineVersion": "0.602.1",
+        "aiVersion": "2.3.418",
+        "before": 8074,
+        "supported": 8074,
+        "pending": 3751,
+        "added": [],
+        "duplicates": 0,
+        "totalTestsPassed": 79,
+        "results": {
+          "focused-final": {
+            "name": "focused-final",
+            "command": [
+              "node",
+              "--test",
+              "tests/attack-continuation-ui.test.mjs",
+              "tests/chaos-attack-continuation.test.mjs",
+              "tests/log-filter.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.79,
+            "log": "tmp/duema-phase-1374/focused-final.log",
+            "passed": 17,
+            "failed": 0
+          },
+          "related-ui-short": {
+            "name": "related-ui-short",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^(AI announces|pause cancels|speed changes|changed states|snapshots and|public attacks|paused playback|initial human|a human block|draw narration|both public|phone restores|the board conceals|Galaxyshield|manual screen|selecting an attacker|quadruple|single effect|Mugen Crime|many choices|the screen never|end-turn review|normal and twinpact|mana summons|desktop hand|card names and log|NewWorld fields|Redzone hand|Murder hand|board badges)",
+              "tests/ai-playback.test.mjs",
+              "tests/manual-ui.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.958,
+            "log": "tmp/duema-phase-1374/related-ui-short.log",
+            "passed": 30,
+            "failed": 0
+          },
+          "related-games": {
+            "name": "related-games",
+            "command": [
+              "node",
+              "--test",
+              "tests/requested1372-games.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 8.446,
+            "log": "tmp/duema-phase-1374/related-games.log",
+            "passed": 2,
+            "failed": 0
+          },
+          "online-short": {
+            "name": "online-short",
+            "command": [
+              "node",
+              "--test",
+              "tests/online-runtime.test.mjs",
+              "tests/online-app.test.mjs",
+              "tests/online-client.test.mjs",
+              "tests/online-ui.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 1.17,
+            "log": "tmp/duema-phase-1374/online-short.log",
+            "passed": 30,
+            "failed": 0
+          },
+          "check": {
+            "name": "check",
+            "command": [
+              "npm",
+              "run",
+              "check"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 21.587,
+            "log": "tmp/duema-phase-1374/check.log"
+          },
+          "audit": {
+            "name": "audit",
+            "command": [
+              "node",
+              "tools/audit-card-support.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 15.127,
+            "log": "tmp/duema-phase-1374/audit.log"
+          }
+        },
+        "reason": "攻撃中の全タップで現在の攻撃が続くことを画面見出し・補足・ログに明示。ダイレクト結果に公開攻撃者名とカードへのリンクを追加。攻撃・勝敗判定は維持。",
+        "remaining": "ブラウザの目視検証、公開候補全対象の集約と保留2件は未完了。公開なし。"
       }
     }
   },
