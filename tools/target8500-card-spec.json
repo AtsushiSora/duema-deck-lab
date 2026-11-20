@@ -6907,5 +6907,182 @@
       "power": 0,
       "auraPower": 2000
     }
+  },
+  "dmex16-097": {
+    "phase": 1416,
+    "faces": [
+      {
+        "name": "【マニフェスト】チームウェイブを救いたい【聞け】",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "バズレンダ [cc02]（この呪文のコストを支払う時、追加で[cc02]を好きな回数支払ってもよい。その[OL]能力を１回と、追加で[cc02]支払った回数、使う）\n{OL}自分の山札の上から２枚をタップしてマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に戻す。",
+        "race": "チームウェイブ",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 2,
+          "tapped": true
+        },
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "g232ManaReturn": true,
+          "title": "手札に戻すマナを1枚選ぶ"
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 2
+      }
+    }
+  },
+  "dmrp14-068": {
+    "phase": 1416,
+    "faces": [
+      {
+        "name": "【奇跡】まさかの神引き!!【豪運】",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "バズレンダ [cc03]（この呪文のコストを支払う時、追加で[cc03]を好きな回数支払ってもよい。そうしたら、その[OL]能力を１回と、追加で[cc03]支払った回数、使う）\n[OL]カードを１枚引く。",
+        "race": "チームウェイブ",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 3
+      }
+    }
+  },
+  "dmex09-032": {
+    "phase": 1416,
+    "faces": [
+      {
+        "name": "【削除】山札の裏側教えます【覚悟】",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "バズレンダ [cc01] （この呪文のコストを支払う時、追加で [cc01] を好きな回数支払ってもよい。そうしたら、その{OL} 能力を１回と、追加で [cc01] 支払った回数、使う）\n{OL}自分の山札の上から２枚を見る。そのうちの１枚を、山札の一番下に置く。\nカードを１枚引く。",
+        "race": "チームウェイブ",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g200Search": true,
+          "n": 2,
+          "rest": "top",
+          "stages": [
+            {
+              "n": 1,
+              "to": "deck"
+            }
+          ]
+        },
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 1,
+        "taskCount": 1
+      }
+    }
+  },
+  "dmex09-039": {
+    "phase": 1416,
+    "faces": [
+      {
+        "name": "【神回】バズレンダでマナが大変なことに?!【驚愕】",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "バズレンダ [cc03]（この呪文のコストを支払う時、追加で [cc03]を好きな回数支払ってもよい。そうしたら、その{OL} 能力を１回と、追加で [cc03]支払った回数、使う）\n{OL}自分の山札の上から１枚目をマナゾーンに置く。",
+        "race": "チームウェイブ",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 3
+      }
+    }
+  },
+  "dmrp13-066": {
+    "phase": 1416,
+    "faces": [
+      {
+        "name": "アルファゴリラー",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "バズレンダ [cc02]（このクリーチャーのコストを支払う時、追加で [cc02]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その{OL} 能力を１回と、追加で [cc02]支払った回数、使う）\n{OL} カードを１枚引く。",
+        "race": "トリックス/チームウェイブ",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 2
+      }
+    }
   }
 }
