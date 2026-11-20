@@ -1,3 +1,4 @@
+import {duelistSpec1367} from './duelist-spec.mjs';
 // Build-time only: accept complete clauses, never infer support from a keyword substring.
 // The resulting definitions are pinned and checked against the official pages before release.
 const colors=['光','水','闇','火','自然'];
@@ -2480,6 +2481,7 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1367){const spec=duelistSpec1367(d);if(spec)return spec;}
  if(phase>=1357&&d?.id==='dmex18-022'&&d.status==='complete'&&d.faces.length===1&&
   f.typeText==='クリーチャー'&&normalize(f.abilityText)===normalize(
    'このクリーチャーが出た時、または自分のターンのはじめに、相手のクリーチャーを１体選ぶ。次の相手のターンの終わりまで、このクリーチャーはその選んだクリーチャーになる。')){

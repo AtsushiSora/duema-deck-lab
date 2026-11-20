@@ -83,7 +83,7 @@ export function createFifteenPhotoRules(api){
  case'freedomIgnore':target(s,t,'能力を無視する相手の1体を選ぶ',creatures(s,1-t.p));break;
  case'timeStop':if(s.extSpells?.some(f=>f.inst.uid===t.uid&&f.spell.superTriggerActive))for(const p of[0,1])for(const y of creatures(s,p))(y.g35NoAttack??=[]).push({turn:s.turn});break;
  case'gaigingReveal':offer(s,t,'山札の上を公開する？');break;
- case'gaigingTop':{const y=peek(s,t.p);if(!y)break;api.log(s,t.p,'reveal',card(y).name,{cardId:y.cardId});if(cost(card(y))<=4&&['creature','seed','gear','field'].includes(card(y).type)&&canPut(s,t.p,y,'deck'))choice(s,{...t,target:y.uid},'公開したエレメントを出す？',[opt('出す',true,15,y.cardId),opt('手札に加える',false,0)]);else zoneMove(s,t.p,'deck',y.uid,'hand',t);api.deckCheck(s,t.p);break;}
+ case'gaigingTop':{const y=peek(s,t.p);if(!y)break;api.log(s,t.p,'reveal',card(y).name,{cardId:y.cardId});if(cost(card(y))<=4&&['creature','seed','gear','field','duelist'].includes(card(y).type)&&canPut(s,t.p,y,'deck'))choice(s,{...t,target:y.uid},'公開したエレメントを出す？',[opt('出す',true,15,y.cardId),opt('手札に加える',false,0)]);else zoneMove(s,t.p,'deck',y.uid,'hand',t);api.deckCheck(s,t.p);break;}
  case'graveAllMana':for(const y of [...own.grave])zoneMove(s,t.p,'grave',y.uid,'mana',{...t,tapped:true});break;
  case'souryu':choice(s,t,'マナから非進化を1体出す',own.mana.filter(y=>card(y).type==='creature'&&!card(y).evolution&&cost(card(y))<own.mana.length&&canPut(s,t.p,y,'mana')).map(y=>opt(card(y).name,y.uid,15+cost(card(y)),y.cardId)));break;
  case'souryuFight':{const y=own.battle.find(y=>y.uid===t.target);if(y&&colors(card(y)).some(v=>['火','自然'].includes(v)))put(s,task('g35_Fight',t.p,t.source,{uid:y.uid,optional:true}));break;}
@@ -179,7 +179,7 @@ export function createFifteenPhotoRules(api){
  case'terminal':if(!s.g7TerminalUsed?.[t.p])offer(s,t,'ファイナル・エンド（終極宣言）を使う？',{score:creatures(s,t.p).filter(y=>effective(y,s).blocker).length>=12||own.hand.some(y=>api.matches(s,t.p,y,{creature:true,blocker:true})&&canPut(s,t.p,y,'hand'))?30:-5});break;
  case'terminalCount':{const n=creatures(s,t.p).filter(y=>effective(y,s).blocker).length;api.log(s,t.p,'ability',card(t.source).name+'：ブロッカー'+n+'体'+(n>=12?'。追加ターンの条件を達成':'（追加ターンには12体必要）'),{cardId:t.source});if(n>=12)pending(s,t,'extraTurn');break;}
  case'extraTurn':if(api.canAddTurn(s,t.p))(s.extraTurns??=[]).push({player:t.p,source:t.source});break;
- case'infinity':if(x){api.shuffleLibrary(s,t.p);const ids=reveal(s,t,own.battle.filter(y=>['creature','seed','gear','field'].includes(effective(y,s).type)).length);pending(s,t,'infinityPick',{ids});}break;
+ case'infinity':if(x){api.shuffleLibrary(s,t.p);const ids=reveal(s,t,own.battle.filter(y=>['creature','seed','gear','field','duelist'].includes(effective(y,s).type)).length);pending(s,t,'infinityPick',{ids});}break;
  case'infinityPick':pickExecute(s,t,{origin:'deck',ids:t.ids,optional:true});break;
  case'untapOther':target(s,t,'アンタップする自分の他のクリーチャーを選ぶ',creatures(s,t.p).filter(y=>y.uid!==t.uid),false);break;
  case'miraFinal':for(const y of creatures(s,1-t.p))api.tap(s,1-t.p,y);give(s,t,[E('Draw',{n:creatures(s,1-t.p).filter(y=>y.tapped).length,optional:true})]);break;
