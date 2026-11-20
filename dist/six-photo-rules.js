@@ -929,7 +929,7 @@ export function createSixPhotoRules(api){
    if(x.sealed||!card(x).g204SpellWatch?.g1189Tamaseed&&!api.isCreature(s,x))return [];
    const watch=effective(x,s).g204SpellWatch;
    if(!watch||(watch.who!=='both'&&owner!==(watch.who==='self'?caster:1-caster)))return [];
-   return (!watch.opponentTurn||s.active!==owner)&&(!watch.origin||watch.origin===origin)&&
+   return (!watch.ownTurn||s.active===owner)&&(!watch.opponentTurn||s.active!==owner)&&(!watch.origin||watch.origin===origin)&&
     useColorsMatch(watch,c)&&(!watch.race||race(c,watch.race))&&
     (!watch.g1252NameIncludes||exactName(c.name).includes(exactName(watch.g1252NameIncludes)))&&
     (!watch.g766Once||!used(s,'g766SpellUse',x))&&!watchUsed792(s,x,watch)?[{owner,x,watch}]:[];
@@ -6093,6 +6093,14 @@ export function createSixPhotoRules(api){
   const host=api.auraHost1352(s,t.p,t.host);
   const rows=host&&api.canMoveZone(s,t.p,'mana')?own.mana.filter(x=>!x.faceDown&&card(x).type==='aura'&&cost(card(x))<=t.max&&api.canEnter(s,t.p,card(x),{origin:'mana',execution:false,auraHost:t.host})):[];
   if(rows.length)choice(s,t,'このクリーチャーに付けるマナのオーラを選ぶ',[...rows.map(x=>opt(card(x).name,{uid:x.uid,serial:x.zoneSerial||0},10+cost(card(x)),x.cardId)),skip()]);break;
+ }
+ case'g34_CountGR1464':{
+  const n=t.difference?Math.max(0,creatures(s,1-t.p).length-creatures(s,t.p).length):countDraw(s,t.p,{zone:'battle',filter:t.filter});
+  start(s,t,Array.from({length:Math.min(n,s.players[t.p].gr.length)},()=>({op:'AuraGr1353',tapped:!!t.tapped})));break;
+ }
+ case'g34_TapPerGR1464':{
+  const n=countDraw(s,t.p,{zone:'battle',filter:{creature:true,g1428Gr:true}});
+  if(n)start(s,t,[{op:'Select',origin:'battle',owner:'opponent',n,g173Targets:true,g193Tap:true,filter:{creature:true}}]);break;
  }
  case'g34_AuraGr1353':api.grSummon(s,t.p,{tapped:!!t.tapped});break;
  case'g34_SelfAura1460':{

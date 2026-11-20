@@ -15641,5 +15641,134 @@
         }
       ]
     }
+  },
+  "dmrp09-035": {
+    "phase": 1464,
+    "faces": [
+      {
+        "name": "音奏 プーンギ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "相手の呪文を唱えるコストは１多くなる。\n自分のターン中、相手が呪文を唱えた時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+        "race": "メタリカ/ワンダフォース",
+        "powerText": "2500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g222SpellTax": {
+        "opponent": true,
+        "amount": 1
+      },
+      "g204SpellWatch": {
+        "who": "opponent",
+        "ownTurn": true,
+        "defs": [
+          {
+            "op": "AuraGr1353"
+          }
+        ]
+      }
+    }
+  },
+  "dmrp12-037": {
+    "phase": 1464,
+    "faces": [
+      {
+        "name": "♪我らの正義が後れをとるなどと思うな！",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nバトルゾーンにある相手のクリーチャーの数が自分のより多ければ、何体多いか数え、その回数GR召喚する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        },
+        {
+          "op": "CountGR1464",
+          "difference": true
+        }
+      ]
+    }
+  },
+  "dmrp09-002": {
+    "phase": 1464,
+    "faces": [
+      {
+        "name": "二重音奏 サクスメロディ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "ブロッカーブロッカー\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分の光のクリーチャー１体につき、GR召喚する。こうして召喚したGRクリーチャーは、バトルゾーンにタップして出る。",
+        "race": "ドラゴンギルド/メタリカ/ワンダフォース",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountGR1464",
+          "filter": {
+            "creature": true,
+            "color": "光"
+          },
+          "tapped": true
+        }
+      ]
+    }
+  },
+  "dmrp10-038": {
+    "phase": 1464,
+    "faces": [
+      {
+        "name": "♪審らかな絆をすませば",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "シンパシー：クリーチャー（この呪文を唱える時支払うコストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nGR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nバトルゾーンにある自分のGRクリーチャー１体につき、相手のクリーチャーを１体選び、タップする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g168Sympathy": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        },
+        {
+          "op": "TapPerGR1464"
+        }
+      ]
+    }
   }
 }
