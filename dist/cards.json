@@ -269702,15 +269702,218 @@
       ],
       "supportBatch": "phase-1502",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-010",
+      "name": "ファーラー王",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。\n自分のGRクリーチャーすべてに「パワーアタッカー+6000」と「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-010",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "g1428Gr": true
+          },
+          "grants": {
+            "attackBonus": 6000,
+            "poweredBreaker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1503",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-s09",
+      "name": "エモG",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "ジョーカーズ/ワンダフォース/スペシャルズ",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、または自分のターンのはじめに、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n自分のGRクリーチャーすべてに「スピードアタッカー」を与える。\n自分のGRではないクリーチャーすべてに「ガードマン」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-s09",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g174Start": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "g1428Gr": true
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        },
+        {
+          "filter": {
+            "creature": true,
+            "g1503NonGR": true
+          },
+          "grants": {
+            "guardman": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1503",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-033",
+      "name": "音奏 スチルパ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7500,
+      "race": "メタリカ/ワンダフォース",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nこのクリーチャーまたは自分の他のクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-033",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g314OtherEntry": {
+        "who": "self",
+        "g1324IncludeSelf": true,
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "tap": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1503",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-053",
+      "name": "POYOYON・ヘイヨー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ビートジョッキー/ワンダフォース",
+      "text": "このクリーチャーが攻撃する時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n自分の他のクリーチャーがバトルゾーンに出た時、それがこのターン中バトルゾーンに出た自分の２体目のクリーチャーなら、このクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-053",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g314OtherEntry": {
+        "who": "self",
+        "entryCount": 2,
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Untap"
+          }
+        ]
+      },
+      "supportBatch": "phase-1503",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-002",
+      "name": "共鳴音奏 リリックバッハ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4500,
+      "race": "メタリカ/ワンダフォース",
+      "text": "このクリーチャーがバトルゾーンに出た時または攻撃する時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n呪文の効果によって自分のクリーチャーを相手が選ぶ時、バトルゾーンに自分のGRクリーチャーが３体以上あれば、自分のメタリカは選ばれない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-002",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "race": "メタリカ"
+          },
+          "g557Condition": {
+            "g1471GrCount": 3
+          },
+          "grants": {
+            "spellUntargetable": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1503",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1502,
+    "phase": 1503,
     "checkedAt": "2026-11-20",
-    "baseCount": 8629,
+    "baseCount": 8634,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8634,
+    "totalCount": 8639,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -294517,6 +294720,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 8629,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1502,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8629,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8634,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
