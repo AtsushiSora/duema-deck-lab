@@ -10,6 +10,14 @@ for(const row of m.cards){
  const response=await fetch(row.image,{signal:AbortSignal.timeout(30000)});assert.ok(response.ok);
  const bytes=Buffer.from(await response.arrayBuffer());assert.ok(bytes.length>1000);assert.match(response.headers.get('content-type'),/^image\//);
  row.verification.imageSha256=hash(bytes);row.verification.imageBytes=bytes.length;
+ if(row.spec.dragheartBack){
+  const source=row.spec.dragheartBack.image;
+  assert.equal(new URL(source).hostname,'dm.takaratomy.co.jp');
+  assert.ok(html.includes(new URL(source).pathname),row.name+'：裏面画像の公式参照');
+  const response=await fetch(source,{signal:AbortSignal.timeout(30000)});assert.ok(response.ok&&response.headers.get('content-type')?.startsWith('image/'));
+  const bytes=Buffer.from(await response.arrayBuffer());assert.ok(bytes.length>1000);
+  row.verification.backImage={source,sha256:hash(bytes),bytes:bytes.length};
+ }
  const list=html.match(/class=["']productCardList["'][^>]*>([\s\S]*?)<\/ul>/)?.[1]||'';
  row.sameNameProducts=[...list.matchAll(/<li[^>]*>([\s\S]*?)<\/li>/g)].map(x=>textContent(x[1]));
  row.reprintVerification={source:row.source,result:'公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。'};

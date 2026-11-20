@@ -648,6 +648,7 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g1475Attacking){const a=s.attack||s.attackLifecycle;return !!a&&s.players[p].battle.some(x=>api.allLayers(x).some(y=>y.uid===sourceUid&&(sourceIncarnation===null||(y.incarnation||0)===sourceIncarnation))&&(x.uid===(a.attacker??a.uid)));}
   if(f.g1473RepeatedUnitAttack){const host=s.players[p].battle.find(x=>api.allLayers(x).some(y=>y.uid===sourceUid&&(sourceIncarnation===null||(y.incarnation||0)===sourceIncarnation)));if(!host||s.g481Attackers?.turn!==s.turn)return false;const refs=api.allLayers(host).map(key);return s.g481Attackers.events.filter(e=>e.p===p&&e.refs.some(r=>refs.includes(r))).length>1;}
   if(f.g1471GrCount!==undefined)return creatures(s,p).filter(x=>!x.sealed&&!x.faceDown&&api.zoneCard(s,p,x,'battle').gr).length>=f.g1471GrCount;
   if(f.g1465ManaRace)return s.players[p].mana.some(x=>!x.faceDown&&faces(card(x)).some(c=>race(c,f.g1465ManaRace)));
@@ -9764,7 +9765,7 @@ export function createSixPhotoRules(api){
   }
   const remaining501=[];for(const r of s.g501EndDelays||[])if(!r.ownEnd||r.p===s.active)out.push({player:r.p,source:r.source,effect:'extended',task:task('g34_ResolveEnd501',r.p,r.source,{...r})});else remaining501.push(r);s.g501EndDelays=remaining501;for(const t of s.g484BreakEnds||[])if(t.turn===s.turn)out.push({player:t.p,source:t.source,uid:t.uid,effect:'extended',task:task('g34_Sequence',t.p,t.source,{uid:t.uid,incarnation:t.incarnation,defs:[E('BreakReturn484')]})});s.g484BreakEnds=[];for(const t of s.g408EndUntaps||[])if(t.turn===s.turn)out.push({player:t.p,source:t.source,uid:t.g399Attacker.uid,effect:'extended',task:task('g34_AttackUntap408',t.p,t.source,{g399Attacker:t.g399Attacker})});s.g408EndUntaps=[];for(const p of[0,1]){const add=(x,defs,source=x.cardId)=>out.push({player:p,uid:x.uid,source,effect:'extended',task:task('g34_Sequence',p,source,{uid:x.uid,incarnation:x.incarnation||0,defs})});for(const x of s.players[p].battle){if(x.g34Delayed?.turn===s.turn){const d=x.g34Delayed,controller=d.controller??p,source=d.source||x.cardId;out.push({player:controller,uid:x.uid,source,effect:'extended',task:task('g34_DelayedMove532',controller,source,{uid:x.uid,incarnation:x.incarnation||0,to:d.to})});}if(api.ignored(s,x))continue;const r=card(x).g34Role;if(!x.sealed&&effective(x,s).g474AnyEnd)add(x,effective(x,s).g474AnyEnd);
   // Rule 603.4 checks the host's tapped state when the end-step ability resolves.
-  if(p===s.active&&card(x).weaponBlocker)add(x,[E('UltoRelease1361')]);
+  if(p===s.active&&(card(x).weaponBlocker||card(x).g1475TappedRelease))add(x,[E('UltoRelease1361')]);
   const manaLeftEnd=card(x).g811ManaLeftEnd;
   if(manaLeftEnd&&s.g47ManaLeft?.[p]===s.turn)add(x,manaLeftEnd);
   if(card(x).g1032ShieldAddedEnd&&!x.sealed&&s.g159ShieldAddedTurns?.[p]===s.turn){
