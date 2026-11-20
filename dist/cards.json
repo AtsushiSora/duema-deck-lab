@@ -253656,15 +253656,302 @@
       "gr": true,
       "supportBatch": "phase-1403",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-057",
+      "name": "クリスマⅢ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "グランセクト/デリートロン",
+      "text": "マナドライブ３（自然）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが３枚以上で自然文明があれば、このクリーチャーを破壊してもよい。そうしたら、このクリーチャーの◇能力を使う。\n◇自分の山札の上から１枚目を、タップしてマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に加えてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-057",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 3
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "自然"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "SelfSacrifice407",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1,
+                  "tapped": true
+                },
+                {
+                  "op": "Select",
+                  "origin": "mana",
+                  "to": "hand",
+                  "n": 1,
+                  "optional": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1404",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy18-070",
+      "name": "パッチネーター",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "マナドライブ３（J）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが３枚以上でジョーカーズがあれば、このクリーチャーを破壊してもよい。そうしたら、このクリーチャーの◇能力を使う。\n◇自分の山札の上から２枚を見る。その中からジョーカーズを１枚選び、相手に見せてから自分の手札に加えてもよい。残りを好きな順序で山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy18-070",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 3
+                }
+              },
+              {
+                "g1197ManaCount": {
+                  "min": 1,
+                  "filter": {
+                    "race": "ジョーカーズ"
+                  }
+                }
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "SelfSacrifice407",
+              "defs": [
+                {
+                  "op": "Look",
+                  "g185Search": true,
+                  "n": 2,
+                  "rest": "bottom",
+                  "stages": [
+                    {
+                      "n": 1,
+                      "to": "hand",
+                      "filter": {
+                        "race": "ジョーカーズ"
+                      },
+                      "reveal": true,
+                      "optional": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1404",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-s01",
+      "name": "ゴッド・ガヨンダム",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "マナドライブ４（J）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが４枚以上でジョーカーズがあれば、ジョーカーズを１枚、自分の手札から捨ててもよい。そうしたら、カードを２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-s01",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 4
+                }
+              },
+              {
+                "g1197ManaCount": {
+                  "min": 1,
+                  "filter": {
+                    "race": "ジョーカーズ"
+                  }
+                }
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "DiscardFor248",
+              "g488DiscardFilter": {
+                "g539JokerCard": true
+              },
+              "title": "捨てるジョーカーズ・カードを1枚選ぶ（任意）",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 2
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1404",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-052",
+      "name": "ブルンランブル",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ビートジョッキー/ワンダフォース",
+      "text": "マナドライブ ２（火）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが２枚以上で火文明があれば、相手のクリーチャーを１体選んでもよい。このクリーチャーとその選んだクリーチャーをバトルさせる。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-052",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 2
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "火"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Fight240",
+              "self": true,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1404",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-004",
+      "name": "静止 TB-30",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "トリックス/デリートロン",
+      "text": "マナドライブ７（水）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが７枚以上で水文明があれば、このクリーチャーを破壊してもよい。そうしたら、このクリーチャーの◇能力を使う。\n◇相手のクリーチャーを３体まで選ぶ。次の自分のターンのはじめまで、それらは攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-004",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 7
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "水"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "SelfSacrifice407",
+              "defs": [
+                {
+                  "op": "Select",
+                  "owner": "opponent",
+                  "origin": "battle",
+                  "n": 3,
+                  "filter": {
+                    "creature": true
+                  },
+                  "g173Targets": true,
+                  "g190Freeze": "self",
+                  "title": "攻撃とブロックを止めるクリーチャーを3体まで選ぶ",
+                  "optional": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1404",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1403,
+    "phase": 1404,
     "checkedAt": "2026-11-20",
-    "baseCount": 8192,
+    "baseCount": 8197,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8197,
+    "totalCount": 8202,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -277084,6 +277371,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8192,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1403,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8192,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8197,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

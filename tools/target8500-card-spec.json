@@ -5092,5 +5092,324 @@
       "gr": true,
       "manaValue": 0
     }
+  },
+  "dmrp12-057": {
+    "phase": 1404,
+    "faces": [
+      {
+        "name": "クリスマⅢ",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "マナドライブ３（自然）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが３枚以上で自然文明があれば、このクリーチャーを破壊してもよい。そうしたら、このクリーチャーの◇能力を使う。\n◇自分の山札の上から１枚目を、タップしてマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に加えてもよい。",
+        "race": "グランセクト/デリートロン",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 3
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "自然"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "SelfSacrifice407",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1,
+                  "tapped": true
+                },
+                {
+                  "op": "Select",
+                  "origin": "mana",
+                  "to": "hand",
+                  "n": 1,
+                  "optional": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "promoy18-070": {
+    "phase": 1404,
+    "faces": [
+      {
+        "name": "パッチネーター",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "マナドライブ３（J）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが３枚以上でジョーカーズがあれば、このクリーチャーを破壊してもよい。そうしたら、このクリーチャーの◇能力を使う。\n◇自分の山札の上から２枚を見る。その中からジョーカーズを１枚選び、相手に見せてから自分の手札に加えてもよい。残りを好きな順序で山札の一番下に置く。",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 3
+                }
+              },
+              {
+                "g1197ManaCount": {
+                  "min": 1,
+                  "filter": {
+                    "race": "ジョーカーズ"
+                  }
+                }
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "SelfSacrifice407",
+              "defs": [
+                {
+                  "op": "Look",
+                  "g185Search": true,
+                  "n": 2,
+                  "rest": "bottom",
+                  "stages": [
+                    {
+                      "n": 1,
+                      "to": "hand",
+                      "filter": {
+                        "race": "ジョーカーズ"
+                      },
+                      "reveal": true,
+                      "optional": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    },
+    "manaImageEvidence": {
+      "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy18-070.jpg",
+      "sha256": "828c51b3cbc33049cb50d1b65a307328186af561e72678385ea732655cf54ed1",
+      "reviewedAt": "2026-11-20T14:51:24.548342+00:00",
+      "htmlManaValue": 1,
+      "printedManaValue": 0,
+      "reason": "公式画像の下部中央のマナシンボルは0。公式HTMLのマナ欄1と異なるため、目視確認した公式画像の印字0を採用する。"
+    }
+  },
+  "dmrp10-s01": {
+    "phase": 1404,
+    "faces": [
+      {
+        "name": "ゴッド・ガヨンダム",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "マナドライブ４（J）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが４枚以上でジョーカーズがあれば、ジョーカーズを１枚、自分の手札から捨ててもよい。そうしたら、カードを２枚引く。",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 4
+                }
+              },
+              {
+                "g1197ManaCount": {
+                  "min": 1,
+                  "filter": {
+                    "race": "ジョーカーズ"
+                  }
+                }
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "DiscardFor248",
+              "g488DiscardFilter": {
+                "g539JokerCard": true
+              },
+              "title": "捨てるジョーカーズ・カードを1枚選ぶ（任意）",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 2
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmrp10-052": {
+    "phase": 1404,
+    "faces": [
+      {
+        "name": "ブルンランブル",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "マナドライブ ２（火）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが２枚以上で火文明があれば、相手のクリーチャーを１体選んでもよい。このクリーチャーとその選んだクリーチャーをバトルさせる。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "ビートジョッキー/ワンダフォース",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 2
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "火"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Fight240",
+              "self": true,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmrp12-004": {
+    "phase": 1404,
+    "faces": [
+      {
+        "name": "静止 TB-30",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "マナドライブ７（水）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが７枚以上で水文明があれば、このクリーチャーを破壊してもよい。そうしたら、このクリーチャーの◇能力を使う。\n◇相手のクリーチャーを３体まで選ぶ。次の自分のターンのはじめまで、それらは攻撃もブロックもできない。",
+        "race": "トリックス/デリートロン",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 7
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "水"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "SelfSacrifice407",
+              "defs": [
+                {
+                  "op": "Select",
+                  "owner": "opponent",
+                  "origin": "battle",
+                  "n": 3,
+                  "filter": {
+                    "creature": true
+                  },
+                  "g173Targets": true,
+                  "g190Freeze": "self",
+                  "title": "攻撃とブロックを止めるクリーチャーを3体まで選ぶ",
+                  "optional": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
   }
 }

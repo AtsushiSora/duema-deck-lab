@@ -12,6 +12,18 @@ const rows=[...m.cards,...(m.printAliases||[])];
 async function fetchPage(url){assert.equal(new URL(url).hostname,'dm.takaratomy.co.jp');for(let i=0;i<3;i++)try{const r=await fetch(url,{signal:AbortSignal.timeout(30000)});assert.ok(r.ok,url+' '+r.status);return await r.text();}catch(e){if(i===2)throw e;}}
 async function verifyMana(row,html){
  const expected=row.spec?.manaValue??1,printed=printedManaValue(html);
+ if(row.manaImageEvidence){
+  const evidence=row.manaImageEvidence;
+  assert.equal(printed,evidence.htmlManaValue);assert.equal(expected,evidence.printedManaValue);
+  assert.ok(evidence.reviewedAt&&evidence.reason);
+  const image=html.match(/class=["']card-img["'][^>]*>\s*<img[^>]*src=["']([^"']+)/)?.[1];
+  assert.ok(image);assert.equal(evidence.source,new URL(image,row.source).href);
+  assert.equal(new URL(evidence.source).hostname,'dm.takaratomy.co.jp');
+  const response=await fetch(evidence.source,{signal:AbortSignal.timeout(30000)});
+  assert.ok(response.ok&&response.headers.get('content-type')?.startsWith('image/'));
+  assert.equal(createHash('sha256').update(Buffer.from(await response.arrayBuffer())).digest('hex'),evidence.sha256);
+  row.manaVerification={...evidence,checkedAt:m.checkedAt};return;
+ }
  if(!row.manaReference){assert.equal(printed,expected,row.name+'：公式のマナ数が一致しません');return;}
  // A catalogue print with a dash for mana can use a same-name printing with matching rules.
  assert.equal(printed,0);
