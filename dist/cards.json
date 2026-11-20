@@ -256444,15 +256444,188 @@
       "gr": true,
       "supportBatch": "phase-1424",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex05-s03",
+      "name": "白皇角の意志 ルーベライノ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "メタリカ/ワンダフォース",
+      "text": "自分の光の呪文を唱えるコストを１少なくする。ただし、コストは０以下にはならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex05-s03",
+      "limit": 4,
+      "g467SpellReduction": {
+        "color": "光",
+        "amount": 1
+      },
+      "gr": true,
+      "supportBatch": "phase-1425",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd08-017",
+      "name": "ヤッタレロボ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "自分のジョーカーズを召喚するコストを１少なくする。ただし、コストは０以下にならない。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd08-017",
+      "limit": 4,
+      "g349SummonAuras": [
+        {
+          "filter": {
+            "race": "ジョーカーズ"
+          },
+          "amount": 1
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1425",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-029",
+      "name": "ツタンメカーネン",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "このクリーチャーがバトルゾーンに出た時、各プレイヤーはカードを１枚引く。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-029",
+      "limit": 0,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "PlayersDraw461",
+          "n": 1
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1425",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd12-003",
+      "name": "オーマ 丙-二式",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "マフィ・ギャング/デリートロン",
+      "text": "このクリーチャーがバトルゾーンを離れた時、闇のクリーチャー１体または闇のオーラを１枚、自分の墓地から手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd12-003",
+      "limit": 4,
+      "g172Leave": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "any": [
+              {
+                "creature": true,
+                "color": "闇"
+              },
+              {
+                "aura": true,
+                "color": "闇"
+              }
+            ]
+          },
+          "title": "墓地から闇のクリーチャーまたはオーラを1枚まで戻す"
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1425",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex07-021",
+      "name": "回収 TE-10",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "トリックス/デリートロン",
+      "text": "マナドライブ ５（水）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが５枚以上で水文明があれば、呪文またはオーラを１枚、自分の墓地から手札に戻してもよい。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex07-021",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 5
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "水"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "to": "hand",
+              "n": 1,
+              "optional": true,
+              "filter": {
+                "any": [
+                  {
+                    "spell": true
+                  },
+                  {
+                    "aura": true
+                  }
+                ]
+              },
+              "title": "墓地から呪文またはオーラを1枚まで戻す"
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1425",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1424,
+    "phase": 1425,
     "checkedAt": "2026-11-20",
-    "baseCount": 8280,
+    "baseCount": 8285,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8285,
+    "totalCount": 8290,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -280167,6 +280340,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 8280,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1424,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8280,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8285,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

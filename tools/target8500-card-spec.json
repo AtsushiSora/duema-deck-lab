@@ -8238,5 +8238,202 @@
       "gr": true,
       "manaValue": 0
     }
+  },
+  "dmex05-s03": {
+    "phase": 1425,
+    "faces": [
+      {
+        "name": "白皇角の意志 ルーベライノ",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の光の呪文を唱えるコストを１少なくする。ただし、コストは０以下にはならない。",
+        "race": "メタリカ/ワンダフォース",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g467SpellReduction": {
+        "color": "光",
+        "amount": 1
+      },
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmsd08-017": {
+    "phase": 1425,
+    "faces": [
+      {
+        "name": "ヤッタレロボ",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "自分のジョーカーズを召喚するコストを１少なくする。ただし、コストは０以下にならない。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g349SummonAuras": [
+        {
+          "filter": {
+            "race": "ジョーカーズ"
+          },
+          "amount": 1
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmrp09-029": {
+    "phase": 1425,
+    "faces": [
+      {
+        "name": "ツタンメカーネン",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、各プレイヤーはカードを１枚引く。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "PlayersDraw461",
+          "n": 1
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmsd12-003": {
+    "phase": 1425,
+    "faces": [
+      {
+        "name": "オーマ 丙-二式",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーがバトルゾーンを離れた時、闇のクリーチャー１体または闇のオーラを１枚、自分の墓地から手札に戻してもよい。",
+        "race": "マフィ・ギャング/デリートロン",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g172Leave": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "any": [
+              {
+                "creature": true,
+                "color": "闇"
+              },
+              {
+                "aura": true,
+                "color": "闇"
+              }
+            ]
+          },
+          "title": "墓地から闇のクリーチャーまたはオーラを1枚まで戻す"
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmex07-021": {
+    "phase": 1425,
+    "faces": [
+      {
+        "name": "回収 TE-10",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "マナドライブ ５（水）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが５枚以上で水文明があれば、呪文またはオーラを１枚、自分の墓地から手札に戻してもよい。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "トリックス/デリートロン",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 5
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "水"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "to": "hand",
+              "n": 1,
+              "optional": true,
+              "filter": {
+                "any": [
+                  {
+                    "spell": true
+                  },
+                  {
+                    "aura": true
+                  }
+                ]
+              },
+              "title": "墓地から呪文またはオーラを1枚まで戻す"
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "manaValue": 0
+    }
   }
 }
