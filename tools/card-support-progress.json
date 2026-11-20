@@ -1,10 +1,10 @@
 {
-  "checkedAt": "2026-11-16",
+  "checkedAt": "2026-11-20",
   "catalogueNames": 11825,
-  "supportedNames": 8059,
-  "pendingNames": 3766,
-  "phase": 1363,
-  "added": 1,
+  "supportedNames": 8061,
+  "pendingNames": 3764,
+  "phase": 1364,
+  "added": 2,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2121,
+    "クリーチャー": 2119,
     "NEOクリーチャー": 69,
     "呪文": 452,
     "GRクリーチャー": 155,
@@ -224,7 +224,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1057,
-    "未対応の能力文": 2519,
+    "未対応の能力文": 2517,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
@@ -491337,14 +491337,159 @@
         }
       ],
       "next": "残る裁定の再現には、キクチ師範代・カレイコの山札移動置換、ヨミノ晴明R・ライジン天の選択者置換、シュタインのデュエリスト処理、DGの同時シールド処理、アオハルの攻撃時能力の使用処理、寄成ギョウの誘発置換への対応が必要。既存の分割ランナーを重ねて起動せず、終了した検証ログを集計する。"
+    },
+    {
+      "phase": 1364,
+      "checkedAt": "2026-11-20",
+      "baseline": "c0937fc1bc7328d5c73a255658eab2850739a1c5",
+      "before": 8059,
+      "supported": 8061,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmex15-b009",
+          "name": "The邪悪 寄成ギョウ"
+        },
+        {
+          "id": "dmrp04s-004",
+          "name": "ソニック・Ⅳ・ワン"
+        }
+      ],
+      "printAliases": 1,
+      "results": {
+        "official": {
+          "prints": 3,
+          "images": 3,
+          "manifest": "tools/support-phase-1364.json"
+        },
+        "focus": {
+          "passed": 15,
+          "failed": 0,
+          "skipped": 0,
+          "seconds": 1.6614878329999998,
+          "log": "tmp/duema-phase-1364/focus-final.log"
+        },
+        "regression": {
+          "passed": 143,
+          "failed": 0,
+          "skipped": 0,
+          "seconds": 6.658173125,
+          "log": "tmp/duema-phase-1364/regression.log"
+        },
+        "abyss": {
+          "passed": 32,
+          "failed": 0,
+          "skipped": 0,
+          "seconds": 1.646649875,
+          "log": "tmp/duema-phase-1364/abyss-final.log"
+        },
+        "legacy": {
+          "passed": 69,
+          "failed": 0,
+          "skipped": 0,
+          "seconds": 2.432770834,
+          "log": "tmp/duema-phase-1364/legacy-final.log"
+        },
+        "online": {
+          "passed": 19,
+          "failed": 0,
+          "skipped": 0,
+          "seconds": 1.058914667,
+          "log": "tmp/duema-phase-1364/online-final.log"
+        },
+        "check": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "tmp/duema-phase-1364/check.log",
+          "rulesBlobs": {
+            "dist/cards.json": "965799cef981b61d6bbf41321d01ac5b8878d309",
+            "dist/details.json": "2dfa282484d4b00bcfe6475bd5504e525553869f",
+            "dist/catalogue.json": "f73e4711ba414827d83b9746c6b3ff89b1418616",
+            "dist/engine.js": "62042b490885fc70031e1f07b0e93b12a2d4de7f",
+            "dist/extended-rules.js": "f8ed28d4878b9414c0e1682a49b265d7b1c70bb1",
+            "dist/abyss-rules.js": "0f35e4fd330d0d87564d851eb47237c85487c386",
+            "dist/champion-combat-rules.js": "a109a0d7791f0eafa2b286b51657529ed4bbc691",
+            "dist/six-photo-rules.js": "65ca52ee59b2d80db545fe8a58c52e24327d7c0b",
+            "dist/online-compatibility.js": "e7c41e637cfd2b1c5c77b46e7b9928cce5d7ce0c"
+          }
+        },
+        "audit": {
+          "supported": 8061,
+          "pending": 3764,
+          "ready": 0,
+          "dependencyBlocked": 0,
+          "log": "tmp/duema-phase-1364/audit.log"
+        },
+        "nameKey": {
+          "before": 8059,
+          "after": 8061,
+          "preserved": 8059,
+          "duplicates": 0,
+          "path": "dist/cards.json",
+          "normalizer": "dist/catalogue.js#nameKey",
+          "officialRechecked": "2026-11-20"
+        },
+        "previousLongRuns": {
+          "checkedAt": "2026-11-20",
+          "frozen": {
+            "baseline": "e3323a89",
+            "parts": 344,
+            "replayGames": 886,
+            "workerGames": 2460,
+            "plan": "tmp/duema-verification-e3323a89/plan.json",
+            "results": "tmp/duema-verification-e3323a89/results.jsonl"
+          },
+          "legacy": {
+            "cases": 113,
+            "parts": 57,
+            "byKind": {
+              "AI replay": 19,
+              "production worker": 19,
+              "random legal choices": 75
+            },
+            "replayGames": 114,
+            "workerGames": 380,
+            "results": "tmp/duema-verification-e3323a89/legacy-fixtures/results.jsonl",
+            "focusedCurrent": {
+              "passed": 69,
+              "failed": 0,
+              "skipped": 0,
+              "seconds": 2.432770834,
+              "log": "tmp/duema-phase-1364/legacy-final.log"
+            }
+          }
+        }
+      },
+      "resolvedRelatedFollowUps": 1,
+      "remainingRegistered": 9,
+      "remainingPrints": 1,
+      "remainingIndividualCards": 10,
+      "interruptedRuns": [
+        {
+          "log": "tmp/duema-phase-1364/online-abyss.log",
+          "status": "中断・合否未確認",
+          "reason": "否定先読みの対象絞り込みが親テストにも一致し、一括対戦を含んだため今回のプロセスを停止。専用のtest-skip-patternで効果確認32件と別のオンライン19件を検証した。"
+        },
+        {
+          "log": "tmp/duema-phase-1364/abyss-focused.log",
+          "status": "中断・合否未確認",
+          "reason": "同じ対象絞り込みの問題を調査し、test-skip-patternへ修正。"
+        },
+        {
+          "log": "tmp/duema-phase-1364/legacy-focused.log",
+          "status": "中断・合否未確認",
+          "reason": "否定先読みで長時間対戦が含まれたため停止。test-skip-patternで効果69件を確認。対戦113件は元の分割ログですべて確認。"
+        }
+      ],
+      "next": "次はキクチ師範代・カレイコの山札移動置換またはヨミノ晴明R・ライジン天の選択者置換を扱う。ドラム・トレボールとキング・ナイト・マジックの包含関係、ドラン金箔2S/2の公式資料も引き続き照合する。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1363,
+    "lastVerifiedPhase": 1364,
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "個別未検証は10種類（裁定9件、再録1件）。ケンゲキオージャの追加裁定が1件残る。残る裁定の再現には、キクチ師範代・カレイコの山札移動置換、ヨミノ晴明R・ライジン天の選択者置換、シュタインのデュエリスト処理、DGの同時シールド処理、アオハルの攻撃時能力の使用処理、寄成ギョウの誘発置換への対応が必要。既存の分割ランナーを重ねて起動せず、終了した検証ログを集計する。",
+    "steps": "個別未検証は10種類（裁定9件、金箔再録1件）。固定344分割とNo.16・21の113件は全件合格。次はキクチ師範代・カレイコの山札移動置換またはヨミノ晴明R・ライジン天の選択者置換を扱う。ドラム・トレボールとキング・ナイト・マジックの包含関係、ドラン金箔2S/2の公式資料も引き続き照合する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "Phase 322の旧スキャナーテストは、Phase 419で対応した真実の名 ワクワク・チャップルン（dmr07-001）を依然として未対応一覧に期待する。Phase 742基点とPhase 743作業ツリーで候補11件・対象はブロック一覧にいないことを再現。今回の変更とは分けて扱う。",
@@ -535651,10 +535796,10 @@
       ]
     },
     "postThreshold": {
-      "checkedAt": "2026-11-15",
+      "checkedAt": "2026-11-20",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8059,
-      "pendingNames": 3766,
+      "supportedNames": 8061,
+      "pendingNames": 3764,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -536681,7 +536826,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "元の個別10種類（裁定9件、金箔再録1件）とケンゲキオージャの追加裁定1件、長時間の分割検証が残る。mainへのpushでNetlifyの本番ワークフローと連携フックが反応する。既存GitHub Pagesの許可ブランチはmainのみなので公開保留。",
+        "reason": "個別10種類（裁定9件と金箔再録1件）の検証が残る。mainのpushはNetlify本番ワークフローとpushフックに連動する。GitHub Pagesの許可ブランチはmainのみのため公開保留。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -537771,6 +537916,18 @@
             "dmex12-022"
           ],
           "result": "アシッド・テクノの終了時能力で2体を破壊。ジョー星があると手札と山札の元は有色のコスト7以下を出せる。ジョー星がない対照では有色カードは候補外。山札は見た側にだけ提示。"
+        },
+        {
+          "cardId": "dm35-004",
+          "phase": 1364,
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40958/",
+          "path": "tests/standard1364-effects.test.mjs",
+          "log": "tmp/duema-phase-1364/focus-final.log",
+          "dependencyIds": [
+            "dmex15-b009",
+            "dmrp04s-004"
+          ],
+          "result": "両プレイヤーで実際に寄成ギョウとブラック・フェザーを出し、ギョウ側がケンゲキオージャを選択して勝利することを保存復元を含め確認。能力使用者が変わっても、元の相手クリーチャーを効果の発生源として保持。"
         }
       ],
       "remainingRegistered": [
@@ -539129,8 +539286,8 @@
       ],
       "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
       "counts": {
-        "supported": 8059,
-        "pending": 3766,
+        "supported": 8061,
+        "pending": 3764,
         "catalogue": 11825,
         "duplicates": 0
       },
@@ -539730,14 +539887,17 @@
       "finalCheck": {
         "status": "passed",
         "command": "npm run check",
-        "log": "tmp/duema-phase-1363/check-final.log",
+        "log": "tmp/duema-phase-1364/check.log",
         "rulesBlobs": {
-          "dist/cards.json": "5b2b325498f0b1c293e5420b52483d7309d286ea",
-          "dist/catalogue.json": "f6ac382797bed08c771b59b3c873b2655f01f8b1",
-          "dist/details.json": "4c8e31d3e8c1e0673431a211894bddfef37f5372",
-          "dist/engine.js": "d5a4f9c039e57c093ef1bbffc1490bd3ab837f9b",
-          "dist/six-photo-rules.js": "37afe83d721136f54d86f54bb916a61350831223",
-          "dist/online-compatibility.js": "650aeb7e692abb66bab5317e3460274d1b538bfd"
+          "dist/cards.json": "965799cef981b61d6bbf41321d01ac5b8878d309",
+          "dist/details.json": "2dfa282484d4b00bcfe6475bd5504e525553869f",
+          "dist/catalogue.json": "f73e4711ba414827d83b9746c6b3ff89b1418616",
+          "dist/engine.js": "62042b490885fc70031e1f07b0e93b12a2d4de7f",
+          "dist/extended-rules.js": "f8ed28d4878b9414c0e1682a49b265d7b1c70bb1",
+          "dist/abyss-rules.js": "0f35e4fd330d0d87564d851eb47237c85487c386",
+          "dist/champion-combat-rules.js": "a109a0d7791f0eafa2b286b51657529ed4bbc691",
+          "dist/six-photo-rules.js": "65ca52ee59b2d80db545fe8a58c52e24327d7c0b",
+          "dist/online-compatibility.js": "e7c41e637cfd2b1c5c77b46e7b9928cce5d7ce0c"
         }
       },
       "abyssShort": {
@@ -539774,7 +539934,7 @@
           "name": "行くよー！アオハル、ハイチーズ！"
         }
       ],
-      "remainingTestsSummary": "全体のnpm testは中断・合否未確認。固定スナップショットe3323a89のNo.03・04・06・13は166/344分割（1692試合）、No.16・21の作業ツリー分割は105/113件が通過。フェニックスの除外していた相手全49試合と本番ワーカー2試合は固定コミット7ca29acbで完了。進行中の分割と公開候補での未確認分が残る。",
+      "remainingTestsSummary": "全体のnpm testは中断・合否未確認を維持。固定e3323a89の344分割（再現対戦886試合、本番ワーカー2460試合）は全件合格。No.16・21の113対象（再現対戦114試合、ワーカー380試合、乱数75種）も全件合格。今回の効果・裁定回帰とオンラインの結果は最新バッチに記録。公開候補での全対象の集約は未完了。",
       "advanceImplementation": {
         "status": "implemented",
         "phases": [
@@ -539826,94 +539986,149 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1363,
-        "baseline": "7ca29acbbae295618333c9b1377654f29724e141",
-        "before": 8058,
-        "supported": 8059,
+        "phase": 1364,
+        "checkedAt": "2026-11-20",
+        "baseline": "c0937fc1bc7328d5c73a255658eab2850739a1c5",
+        "before": 8059,
+        "supported": 8061,
         "duplicates": 0,
         "added": [
           {
-            "id": "dmex12-022",
-            "name": "希望のジョー星"
+            "id": "dmex15-b009",
+            "name": "The邪悪 寄成ギョウ"
+          },
+          {
+            "id": "dmrp04s-004",
+            "name": "ソニック・Ⅳ・ワン"
           }
         ],
         "printAliases": 1,
         "results": {
-          "officialPrints": {
-            "verified": 2,
-            "imagesVerified": 2,
-            "manifest": "tools/support-phase-1363.json"
+          "official": {
+            "prints": 3,
+            "images": 3,
+            "manifest": "tools/support-phase-1364.json"
           },
           "focus": {
-            "passed": 9,
+            "passed": 15,
             "failed": 0,
-            "seconds": 9.186464749999999,
-            "log": "tmp/duema-phase-1363/focus-verified.log"
+            "skipped": 0,
+            "seconds": 1.6614878329999998,
+            "log": "tmp/duema-phase-1364/focus-final.log"
           },
           "regression": {
-            "passed": 278,
+            "passed": 143,
             "failed": 0,
-            "seconds": 121.854119916,
-            "log": "tmp/duema-phase-1363/rules-final.log"
+            "skipped": 0,
+            "seconds": 6.658173125,
+            "log": "tmp/duema-phase-1364/regression.log"
+          },
+          "abyss": {
+            "passed": 32,
+            "failed": 0,
+            "skipped": 0,
+            "seconds": 1.646649875,
+            "log": "tmp/duema-phase-1364/abyss-final.log"
+          },
+          "legacy": {
+            "passed": 69,
+            "failed": 0,
+            "skipped": 0,
+            "seconds": 2.432770834,
+            "log": "tmp/duema-phase-1364/legacy-final.log"
           },
           "online": {
-            "passed": 10,
+            "passed": 19,
             "failed": 0,
-            "seconds": 0.73691825,
-            "log": "tmp/duema-phase-1363/online-final.log"
-          },
-          "phoenix": {
-            "verified": 50,
-            "opponents": 49,
-            "games": 51,
-            "baseline": "7ca29acbbae295618333c9b1377654f29724e141",
-            "plan": "tmp/duema-phase-1363/phoenix/plan.json",
-            "results": "tmp/duema-phase-1363/phoenix/results.jsonl",
-            "harness": "tmp/duema-phase-1363/phoenix/snapshot/tests/duema-phoenix-shards.mjs",
-            "scope": "Phase 1362を固定した50分割すべてが通過。25スターター・24環境デッキとの元テストのシード48000〜48048で物理カード80枚と決着を確認。本番ワーカーは元テストと同じシード48で2試合。"
+            "skipped": 0,
+            "seconds": 1.058914667,
+            "log": "tmp/duema-phase-1364/online-final.log"
           },
           "check": {
             "status": "passed",
             "command": "npm run check",
-            "log": "tmp/duema-phase-1363/check-final.log",
+            "log": "tmp/duema-phase-1364/check.log",
             "rulesBlobs": {
-              "dist/cards.json": "5b2b325498f0b1c293e5420b52483d7309d286ea",
-              "dist/catalogue.json": "f6ac382797bed08c771b59b3c873b2655f01f8b1",
-              "dist/details.json": "4c8e31d3e8c1e0673431a211894bddfef37f5372",
-              "dist/engine.js": "d5a4f9c039e57c093ef1bbffc1490bd3ab837f9b",
-              "dist/six-photo-rules.js": "37afe83d721136f54d86f54bb916a61350831223",
-              "dist/online-compatibility.js": "650aeb7e692abb66bab5317e3460274d1b538bfd"
+              "dist/cards.json": "965799cef981b61d6bbf41321d01ac5b8878d309",
+              "dist/details.json": "2dfa282484d4b00bcfe6475bd5504e525553869f",
+              "dist/catalogue.json": "f73e4711ba414827d83b9746c6b3ff89b1418616",
+              "dist/engine.js": "62042b490885fc70031e1f07b0e93b12a2d4de7f",
+              "dist/extended-rules.js": "f8ed28d4878b9414c0e1682a49b265d7b1c70bb1",
+              "dist/abyss-rules.js": "0f35e4fd330d0d87564d851eb47237c85487c386",
+              "dist/champion-combat-rules.js": "a109a0d7791f0eafa2b286b51657529ed4bbc691",
+              "dist/six-photo-rules.js": "65ca52ee59b2d80db545fe8a58c52e24327d7c0b",
+              "dist/online-compatibility.js": "e7c41e637cfd2b1c5c77b46e7b9928cce5d7ce0c"
             }
           },
           "audit": {
-            "supported": 8059,
-            "pending": 3766,
+            "supported": 8061,
+            "pending": 3764,
             "ready": 0,
             "dependencyBlocked": 0,
-            "log": "tmp/duema-phase-1363/audit.log"
+            "log": "tmp/duema-phase-1364/audit.log"
           },
           "nameKey": {
-            "before": 8058,
-            "after": 8059,
-            "preserved": 8058,
+            "before": 8059,
+            "after": 8061,
+            "preserved": 8059,
             "duplicates": 0,
             "path": "dist/cards.json",
-            "normalizer": "dist/catalogue.js#nameKey"
+            "normalizer": "dist/catalogue.js#nameKey",
+            "officialRechecked": "2026-11-20"
+          },
+          "previousLongRuns": {
+            "checkedAt": "2026-11-20",
+            "frozen": {
+              "baseline": "e3323a89",
+              "parts": 344,
+              "replayGames": 886,
+              "workerGames": 2460,
+              "plan": "tmp/duema-verification-e3323a89/plan.json",
+              "results": "tmp/duema-verification-e3323a89/results.jsonl"
+            },
+            "legacy": {
+              "cases": 113,
+              "parts": 57,
+              "byKind": {
+                "AI replay": 19,
+                "production worker": 19,
+                "random legal choices": 75
+              },
+              "replayGames": 114,
+              "workerGames": 380,
+              "results": "tmp/duema-verification-e3323a89/legacy-fixtures/results.jsonl",
+              "focusedCurrent": {
+                "passed": 69,
+                "failed": 0,
+                "skipped": 0,
+                "seconds": 2.432770834,
+                "log": "tmp/duema-phase-1364/legacy-final.log"
+              }
+            }
           }
         },
-        "resolvedRegistered": 2,
+        "resolvedRelatedFollowUps": 1,
         "remainingRegistered": 9,
         "remainingPrints": 1,
         "remainingIndividualCards": 10,
-        "relatedFollowUps": [
+        "interruptedRuns": [
           {
-            "cardId": "dm35-004",
-            "dependencyId": "dmex15-b009",
-            "source": "https://dm.takaratomy.co.jp/rule/qa/40958/",
-            "reason": "寄成ギョウの登場時誘発の置換が未実装。相手クリーチャーの効果の発生源を保存して、実カードの選択から勝利までを引き続き検証する。"
+            "log": "tmp/duema-phase-1364/online-abyss.log",
+            "status": "中断・合否未確認",
+            "reason": "否定先読みの対象絞り込みが親テストにも一致し、一括対戦を含んだため今回のプロセスを停止。専用のtest-skip-patternで効果確認32件と別のオンライン19件を検証した。"
+          },
+          {
+            "log": "tmp/duema-phase-1364/abyss-focused.log",
+            "status": "中断・合否未確認",
+            "reason": "同じ対象絞り込みの問題を調査し、test-skip-patternへ修正。"
+          },
+          {
+            "log": "tmp/duema-phase-1364/legacy-focused.log",
+            "status": "中断・合否未確認",
+            "reason": "否定先読みで長時間対戦が含まれたため停止。test-skip-patternで効果69件を確認。対戦113件は元の分割ログですべて確認。"
           }
         ],
-        "next": "残る裁定の再現には、キクチ師範代・カレイコの山札移動置換、ヨミノ晴明R・ライジン天の選択者置換、シュタインのデュエリスト処理、DGの同時シールド処理、アオハルの攻撃時能力の使用処理、寄成ギョウの誘発置換への対応が必要。既存の分割ランナーを重ねて起動せず、終了した検証ログを集計する。"
+        "next": "次はキクチ師範代・カレイコの山札移動置換またはヨミノ晴明R・ライジン天の選択者置換を扱う。ドラム・トレボールとキング・ナイト・マジックの包含関係、ドラン金箔2S/2の公式資料も引き続き照合する。"
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
@@ -542373,21 +542588,21 @@
           },
           "resumedOpponentShards": {
             "baseline": "e3323a89",
-            "status": "running",
+            "status": "passed",
             "plan": "tmp/duema-verification-e3323a89/plan.json",
             "results": "tmp/duema-verification-e3323a89/results.jsonl",
             "resume": "tmp/duema-verification-e3323a89/resume.py",
             "testHarness": "tmp/duema-verification-e3323a89/snapshot/tests/duema-long-shards.mjs",
             "plannedParts": 344,
-            "verifiedParts": 12,
+            "verifiedParts": 344,
             "loggedFailures": [],
             "replayGamesPlanned": 886,
             "workerGamesPlanned": 2460,
-            "replayGamesPassed": 44,
-            "workerGamesPassed": 60,
+            "replayGamesPassed": 886,
+            "workerGamesPassed": 2460,
             "note": "No.03・04・06・13を対戦相手単位に分割。前回の二つの一時ランナーとログは再開時に消えていた。記録済みの合否は保持し、新しい対象はこの保存先を参照。現在の実行が終了したことを確認してから中断分のみ再開する。",
             "legacyFixtures": {
-              "status": "running",
+              "status": "passed",
               "files": [
                 "tests/gransect-effects.test.mjs",
                 "tests/kiyonaga-effects.test.mjs"
@@ -542399,32 +542614,39 @@
               "plannedReplayGames": 114,
               "plannedWorkerGames": 380,
               "plannedRandomSeeds": 75,
-              "passedShards": 4,
+              "passedShards": 57,
               "failedShards": 0,
               "results": "tmp/duema-verification-e3323a89/legacy-fixtures/results.jsonl",
-              "note": "もともとの大会4デッキの組み合わせ・順序・乱数を保持し、対戦相手またはシードごとに分割。全対象のログを確認後、テスト差分をコミットする。対象全体を含んだ回帰の試行は中断し、監査対象には足さない。"
+              "note": "もともとの大会4デッキの組み合わせ・順序・乱数を保持し、対戦相手またはシードごとに分割。全対象のログを確認後、テスト差分をコミットする。対象全体を含んだ回帰の試行は中断し、監査対象には足さない。",
+              "passedCases": 113,
+              "passedReplayGames": 114,
+              "passedWorkerGames": 380,
+              "passedRandomSeeds": 75,
+              "scope": "実行時の作業ツリーで実測した合格ログ。固定コミットの証跡と区別して保持する。"
             },
             "latestObserved": {
-              "checkedAt": "2026-11-16",
+              "checkedAt": "2026-11-20",
               "frozen": {
                 "baseline": "e3323a89",
-                "verified": 166,
+                "verified": 344,
                 "planned": 344,
-                "games": 1692,
+                "games": 3346,
                 "results": "tmp/duema-verification-e3323a89/results.jsonl"
               },
               "legacy": {
                 "scope": "実行時の作業ツリー。固定コミットの検証結果としては扱わない。",
-                "verified": 105,
+                "verified": 113,
                 "planned": 113,
                 "byKind": {
                   "AI replay": 19,
                   "production worker": 19,
-                  "random legal choices": 67
+                  "random legal choices": 75
                 },
                 "results": "tmp/duema-verification-e3323a89/legacy-fixtures/results.jsonl"
               }
-            }
+            },
+            "verifiedAt": "2026-11-20",
+            "aggregateEvidence": "tmp/duema-phase-1364/split-summary.json"
           }
         },
         "latestRegisteredRulings": {
@@ -542536,9 +542758,9 @@
           "40960": "相手の呪文でパワー0にしても、破壊は状況起因処理なので勝たない。",
           "41280": "ティーゾリスで離れる時の能力の発動回数は増えない。"
         },
-        "next": "寄成ギョウの登場時誘発の置換とソニック・Ⅳ・ワンとの競合を扱い、ブラック・フェザーとケンゲキオージャでQA40958を実測する。",
-        "verifiedInPhase": 1362,
-        "reproductionLog": "tmp/duema-phase-1362/focus-complete.log",
+        "next": "追加裁定QA40958を実カードで検証済み。",
+        "verifiedInPhase": 1364,
+        "reproductionLog": "tmp/duema-phase-1364/focus-final.log",
         "verified": [
           "40885",
           "40956",
@@ -542549,16 +542771,10 @@
           "41280",
           "33286",
           "旧35985",
-          "旧35986"
+          "旧35986",
+          "40958"
         ],
-        "remaining": [
-          {
-            "cardId": "dm35-004",
-            "dependencyId": "dmex15-b009",
-            "source": "https://dm.takaratomy.co.jp/rule/qa/40958/",
-            "reason": "寄成ギョウの登場時誘発の置換が未実装。相手クリーチャーの効果の発生源を保存して、実カードの選択から勝利までを引き続き検証する。"
-          }
-        ]
+        "remaining": []
       }
     }
   },

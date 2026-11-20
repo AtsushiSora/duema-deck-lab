@@ -393,6 +393,8 @@ export function effectiveCard(inst,context,forPower=false){
  if((inst.g11Triple||[]).some(g=>g.turn===context.turn&&!spellIgnored(context,{type:'spell',cost:g.cost,spellSource:g.spellSource})))c={...c,breaker:c.breaker==='∞'?'∞':Math.max(3,Number(c.breaker)||1)};
  if(c.hachiStorm)c={...c,power:c.power+new Set(context.players[owner].battle.filter(x=>isCreature(context,x)).map(x=>costValue(card(x)))).size*3000};
  if(inst.justDiverActive)c={...c,justDiver:true};
+ if(context.g1364EntryRules&&context.extLimits?.some(l=>l.kind==='g1364Diver'&&
+  layers(inst).some(x=>x.uid===l.uid&&(x.incarnation||0)===l.incarnation)))c={...c,cannotBeAttacked:true};
  if(inst.g2Blocker?.length)c={...c,blocker:true};
  if(inst.g19Blocker!==undefined)c={...c,blocker:true};
  if(civilizations(base).length>1&&context.players[owner].battle.some(x=>x.uid!==inst.uid&&card(x).multiAssault&&!abilitiesIgnored(context,x)))c={...c,speedAttacker:true,machFighter:true,escape:true};
@@ -2959,13 +2961,64 @@ function withDeparture1345(s,p,x,snapshot,to,resolve){
   else departureTriggers1345.delete(s);
  }
 }
+// Determine trigger replacements when the creature enters. The queue keeps
+// the original player's ordering rights even if someone else uses the ability.
+function entryReplacements1364(s,p,inst){
+ if(!s.g1364EntryRules||!isCreature(s,inst))return null;
+ const select=(who,key)=>s.players[who].battle.flatMap(x=>
+  card(x)[key]&&!x.sealed&&!x.faceDown&&isCreature(s,x)&&!abilitiesIgnored(s,x)?
+   [{uid:x.uid,incarnation:x.incarnation||0,cardId:x.cardId}]:[]);
+ const gyou=select(1-p,'g1364Gyou')[0],sonic=select(p,'g1364Sonic');
+ if(!gyou&&!sonic.length)return null;
+ const silence=['entrySilence','g1275Brakkio','selfEntrySilence'].flatMap(key=>select(1-p,key))[0];
+ return {gyou,sonic,silence};
+}
+function entryReplacementOption1364(s,queue){
+ for(let i=0;i<queue.length;i++){
+  const e=queue[i],r=e.g1364EntryReplacement;
+  if(!r)continue;
+  const {player:p}=e,foreign=1-p;
+  const available=r.sonic.filter(x=>s.once?.['sonic:'+x.uid+'@'+x.incarnation]!==s.turn);
+  const own=available.map(x=>({uid:x.uid,cardId:x.cardId,
+   label:card(x.cardId).name+'で2度トリガーする',mode:'sonic',key:'sonic:'+x.uid+'@'+x.incarnation}));
+  const other=[...(r.gyou?[{cardId:r.gyou.cardId,label:card(r.gyou.cardId).name+'でこの能力を使う',mode:'gyou'}]:[]),
+   ...(r.silence?[{cardId:r.silence.cardId,label:card(r.silence.cardId).name+'でトリガーを止める',mode:'silence'}]:[])];
+  const choices=r.ownDeclined||own.length===0||s.active===foreign&&other.length?other:own;
+  if(!choices.length){delete e.g1364EntryReplacement;continue;}
+  const player=choices===own?p:foreign;
+  if(player===foreign&&choices.length===1){
+   applyEntryReplacement1364(s,queue,e,choices[0]);
+   if(choices[0].mode==='silence')i--;
+   continue;
+  }
+  s.decision={type:'entryReplacement1364',player,source:e.source,effectId:e.effectId,
+   entries:queue===s.pendingEffects?'pending':'triggers',options:player===p?
+    [...choices,{label:'この能力には使わない',mode:'decline'}]:choices};
+  return true;
+ }
+ return false;
+}
+function applyEntryReplacement1364(s,queue,e,choice){
+ const index=queue.indexOf(e);
+ if(choice.mode==='decline'){e.g1364EntryReplacement.ownDeclined=true;return;}
+ delete e.g1364EntryReplacement;
+ if(choice.mode==='silence'){queue.splice(index,1);return;}
+ if(choice.mode==='gyou'){e.g1364Resolver=1-e.player;return;}
+ (s.once??={})[choice.key]=s.turn;
+ queue.splice(index+1,0,{...structuredClone(e),effectId:++s.effectSerial});
+}
 function enqueueEffect(s,p,entry,deferred){
  const ctx=s.g1Entering,self=ctx?.player===p&&(entry.uid?entry.uid===ctx.uid:entry.source===ctx.cardId);
  const doubles=self&&(ctx.doubleEntry||canDoubleEntry1300(s,p));
- const hasPriority=doubles&&s.active===p;
- if(!hasPriority&&s.g24EntryMute===p&&s.players[p].battle.some(x=>(entry.uid?x.uid===entry.uid:x.cardId===entry.source)&&isCreature(s,x)))return;
- if(self&&!hasPriority&&s.players[1-p].battle.some(x=>effectiveCard(x,s).selfEntrySilence))return;
+ const eligible=self&&(entry.source===ctx.cardId||entry.source===ctx.definition);
+ const replacements=eligible?ctx.replacements:null;
+ const opposing=!!(replacements?.gyou||replacements?.silence);
+ const competing=doubles&&s.active!==p&&opposing;
+ const hasPriority=doubles&&!competing&&s.active===p;
+ if(!replacements&&!hasPriority&&s.g24EntryMute===p&&s.players[p].battle.some(x=>(entry.uid?x.uid===entry.uid:x.cardId===entry.source)&&isCreature(s,x)))return;
+ if(self&&!replacements&&!hasPriority&&s.players[1-p].battle.some(x=>effectiveCard(x,s).selfEntrySilence))return;
  const queue=deferred??(s.triggers?s.triggers.entries:(s.pendingEffects??=[]));
+ if(replacements&&!hasPriority&&(!doubles||competing))entry={...entry,g1364EntryReplacement:structuredClone(replacements)};
  const creatureOrigin=entry.creatureOrigin??battlefieldAbilityOrigin1362(s,entry.source,entry.uid);
  if(creatureOrigin===0||creatureOrigin===1)entry={...entry,creatureOrigin};
  if(entry.task)entry={...entry,task:{...entry.task,controller:entry.task.controller??p,
@@ -2975,7 +3028,7 @@ function enqueueEffect(s,p,entry,deferred){
  if(departure?.p===p&&departure.creatures.includes(entry.uid)&&card(entry.source)?.type==='creature')
   queue.push({...structuredClone(entry),player:p,effectId:++s.effectSerial});
  if(self){
-  if(doubles){
+  if(doubles&&!competing){
    if(!ctx.doubleEntry){
     s.extLimits=s.extLimits.filter(r=>r.kind!=='g1300DoubleEntry'||r.player!==p);
     ctx.doubleEntry=true;
@@ -2983,7 +3036,7 @@ function enqueueEffect(s,p,entry,deferred){
    queue.push({...structuredClone(entry),player:p,effectId:++s.effectSerial});
   }
   extra.copyEntry(s,p,ctx,entry);
-  if(doubles)extra.copyEntry(s,p,ctx,entry);
+  if(doubles&&!competing)extra.copyEntry(s,p,ctx,entry);
  }
 }
 function speedTapOnEntry(s,p,c,evolved){
@@ -3182,6 +3235,7 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  observeGraveDepartures1300(s);
  const colorSource=printedCard1363(inst);
  if(colorSource.g1363JoeStar)s.g1363JoePlayed=true;
+ if(colorSource.g1364Gyou||colorSource.g1364Sonic)s.g1364EntryRules=true;
  if(grantsCivilizations1363(colorSource))inst.g1363ColorOrder=nextColorOrder1363(s);
  s.players[p].battle.push(inst);
  const copyTarget=entryOptions.g1357BecomeTarget&&s.players[1-p].battle.find(x=>x.uid===entryOptions.g1357BecomeTarget);
@@ -3223,7 +3277,9 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  if(inst.under?.length)evolutionPlaced849(s,p,inst,inst.under.some(x=>baseRaces?.has(x.uid)));
  extra.viride.entry(s,p,inst,!!entryOptions.ignoreEntry);
  const graveMuted=isCreature(s,inst)&&s.players[1-p].battle.some(x=>effectiveCard(x,s).entrySilence);if(graveMuted)s.g24EntryMute=p;
- if(isCreature(s,inst))s.g1Entering={player:p,uid:inst.uid,cardId:inst.cardId};
+ const replacements=entryReplacements1364(s,p,inst);
+ if(isCreature(s,inst))s.g1Entering={player:p,uid:inst.uid,cardId:inst.cardId,
+  ...(replacements?{replacements,definition:c.id}:{})};
  const brakkio=isCreature(s,inst)&&s.players[1-p].battle.find(x=>!x.sealed&&!x.faceDown&&
   card(x).g1275Brakkio&&isCreature(s,x)&&!abilitiesIgnored(s,x));
  const allEntryMuted=graveMuted||isCreature(s,inst)&&(selfTriggersStopped(s,p)||extra.muteEntry(s,p));
@@ -3250,7 +3306,7 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  if(firstNamedEntry)(s.g1086NamedEntries??=[[],[]])[p].push(c.name);
  // The turn player's replacement takes priority over an opponent's entry-trigger replacement (QA 33614).
  const doublePriority=s.active===p&&canDoubleEntry1300(s,p);
- const stopped=!doublePriority&&(graveMuted||!!brakkio)||c.g31God&&genmuActive(s)&&costValue(c)<=5||c.abakuOni&&oniTime1303(s,p)||entryOptions.ignoreEntry||(isCreature(s,inst)&&(!c.stackOnlyEntry&&selfTriggersStopped(s,p)||extra.muteEntry(s,p)))||abilitiesIgnored(s,inst);
+ const stopped=!replacements&&!doublePriority&&(graveMuted||!!brakkio)||c.g31God&&genmuActive(s)&&costValue(c)<=5||c.abakuOni&&oniTime1303(s,p)||entryOptions.ignoreEntry||(isCreature(s,inst)&&(!c.stackOnlyEntry&&selfTriggersStopped(s,p)||extra.muteEntry(s,p)))||abilitiesIgnored(s,inst);
  if(stopped&&(c.effect||c.dragonEntryTap))log(s,p,'triggerPrevented',`${c.name}自身の登場時能力は${abilitiesIgnored(s,inst)?'能力の無視':graveMuted?'ブラキオ龍樹':brakkio?card(brakkio).name:c.abakuOni&&oniTime1303(s,p)?'鬼タイム':extra.muteEntry(s,p)?'マリニャンX':'GG'}によりトリガーしない`,{cardId:c.id});
  if(!stopped){
   if(c.waveSummonCast&&entryOptions.execution)enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,source:c.id,effect:'extended',task:extra.task('waveGraveCast',p,c.id)});
@@ -3340,11 +3396,21 @@ export function entryAbilities(s,p,original,reference){
  if(c.prisonZero&&!s.players[p].shields.length)extended('シールド0枚での登場時能力','g14_RevZero');
  return out;
 }
-function resolveEntry(s,entry){return withEffect(s,entry.player,()=>resolveEntryCore(s,entry));}
+function resolveEntry(s,entry){
+ const controller=entry.g1364Resolver??entry.player;
+ if(entry.g1364Resolver!==undefined&&entry.task)entry={...entry,task:{...entry.task,p:controller,controller}};
+ return withEffect(s,controller,()=>resolveEntryCore(s,entry));
+}
 function resolveEntryCore(s,entry){
- const p=entry.player;
+ const p=entry.g1364Resolver??entry.player;
  if(entry.effect==='extended'){extra.resolve(s,entry);return;}
- if(entry.effect==='justDiver'){const x=s.players[p].battle.find(x=>x.uid===entry.uid&&(x.incarnation||0)===(entry.incarnation||0));if(x)x.justDiverActive=true;return;}
+ if(entry.effect==='justDiver'){
+  const x=s.players[entry.player].battle.find(x=>x.uid===entry.uid&&(x.incarnation||0)===(entry.incarnation||0));
+  if(x&&p===entry.player)x.justDiverActive=true;
+  else if(x)(s.extLimits??=[]).push({kind:'g1364Diver',uid:x.uid,incarnation:x.incarnation||0,
+   player:entry.player,expires:'start',who:p});
+  return;
+ }
  if(entry.effect==='ddd'){s.decision={type:'dddSummon',player:p,uid:entry.uid,source:entry.source,origin:entry.origin||'hand',serial:entry.serial};}
  else if(entry.effect==='g166EndUntap'){const x=s.players[p].battle.find(x=>x.uid===entry.uid&&(x.incarnation||0)===(entry.incarnation||0));if(x?.tapped&&canUntap(x)){x.tapped=false;extra.six.untapped(s,p,x);}return;}
  else if(entry.effect==='endUntap'){s.decision={type:'untap',player:p,uids:entry.uids};}
@@ -3367,6 +3433,7 @@ function pendingBattleEffects1155(s){
 function advanceEffects(s){if(s.lossEvent)return;
  while(!s.lossEvent&&s.pendingEffects?.length&&!s.triggers&&!s.extTasks?.length&&!s.decision&&s.winner===null&&(!s.judge||s.judge.stage==='breaks')){
   s.pendingEffects=availableEffects(s,s.pendingEffects);
+  if(s.g1364EntryRules&&entryReplacementOption1364(s,s.pendingEffects))return;
   const ready=pendingBattleEffects1155(s);if(!ready.length)return;
   if(!ready.some(e=>e.player===s.active)&&extra.beforeNonActive(s))return;
   const p=ready.some(e=>e.player===s.active)?s.active:1-s.active,entries=ready.filter(e=>e.player===p);
@@ -4420,6 +4487,7 @@ function advanceTriggers(s){if(s.lossEvent)return;
   }
   if(s.pendingEffects?.length)t.entries.push(...s.pendingEffects.splice(0));
   t.entries=availableEffects(s,t.entries);
+  if(s.g1364EntryRules&&entryReplacementOption1364(s,t.entries))return;
   if(!t.entries.some(x=>x.player===s.active)&&extra.beforeNonActive(s))return;
   const ep=t.entries.some(x=>x.player===s.active)?s.active:1-s.active,entries=t.entries.filter(x=>x.player===ep);
   if(entries.length>1){s.decision={type:'entryOrder',player:ep};return;}
@@ -4666,6 +4734,8 @@ function legalActionsCore1363(s){
   if(d.type==='victoryLink1356')out=d.groups.map((uids,choice)=>option('victoryLink1356',
    uids.map(uid=>card(own.battle.find(x=>x.uid===uid)).name).join('・'),{choice,cardId:d.source}));
   if(d.type==='godLeave')out=[s.players[p].battle.find(x=>x.uid===d.uid)].flatMap(x=>[x,...x.godLinks]).map(x=>option('godLeave',card(x.cardId).name+'を移動する',{uid:x.uid,cardId:x.cardId}));
+  else if(d.type==='entryReplacement1364')
+   out=d.options.map((x,choice)=>option('entryReplacement1364',x.label,{choice,...(x.cardId?{cardId:x.cardId}:{})}));
   else if(d.type==='extended')out=extra.actions(s,d);
   if(d.type==='leaveReplace'){
    const row=s.leaving.rows.find(x=>x.uid===d.uid&&x.player===(d.owner??p)),v=leaveOptions(s,row),name=card(s.players[row.player].battle.find(x=>x.uid===row.uid)).name;
@@ -5016,6 +5086,11 @@ function applyStepCore1363(s,action){
   resolveVictoryLink1356(s,p,parts,own.battle.find(x=>x.uid===d.entry));
  }
  if(a.kind==='godLeave'){s.leaving.rows.find(r=>r.player===p&&r.uid===d.uid).godPart=a.uid;s.decision=null;}
+ if(a.kind==='entryReplacement1364'){
+  const queue=d.entries==='pending'?s.pendingEffects:s.triggers.entries,e=queue.find(row=>row.effectId===d.effectId);
+  applyEntryReplacement1364(s,queue,e,d.options[a.choice]);
+  s.decision=null;
+ }
  if(a.kind==='extended')extra.step(s,a,d);
  if(a.kind==='g1088Kent'){s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p).plan={kind:'g1088Kent',...a.choice};s.decision=null;}
  if(a.kind==='g393JWD'){const row=s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p);row.plan={kind:'g393JWD',...a.choice};s.decision=null;}

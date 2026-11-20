@@ -73,7 +73,7 @@ export function createSixPhotoRules(api){
    api.isCreature(s,y)&&!api.ignored(s,y)).length;
   return Math.max(0,n-reductions);
  }
- const key=x=>x.uid+'@'+(x.incarnation||0),live=(s,t)=>s.players[t.p].battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===(t.incarnation||0));
+ const key=x=>x.uid+'@'+(x.incarnation||0),live=(s,t)=>s.players[t.creatureOrigin??t.p].battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===(t.incarnation||0));
  function turboReady756(s,p,x){
   const history=s.g756Breaks;
   if(history?.turn!==s.turn)return false;
@@ -4909,6 +4909,15 @@ export function createSixPhotoRules(api){
   if(options.length)choice(s,t,'表向きのシールドから出すクリーチャーを1体まで選ぶ',[...options,skip()]);
   break;
  }
+ case'g34_GyouRevive1364':{
+  const owner=1-t.p;
+  const rows=api.canMoveZone(s,owner,'grave')?opp.grave.filter(y=>card(y).type==='creature'&&
+   canPut(s,owner,y,'grave')):[];
+  if(rows.length)choice(s,t,'相手がタップして出す、相手の墓地のクリーチャーを1体選ぶ',[
+   ...rows.map(y=>opt(card(y).name,{uid:y.uid,serial:y.zoneSerial||0},cost(card(y)),y.cardId)),skip()
+  ]);
+  break;
+ }
  case'g34_Put':{const y=putSource1294(s,t);if(!y||!matchesDeathDeployment960(t,y))break;const selected=t.g1104Back?psychicBack1104(y):y,c=faces(card(selected))[t.face||0];if(t.execution&&c.type==='spell'){doPut(s,t);break;}if(!canPut(s,t.p,selected,t.origin,!!t.execution))break;if(c.g213Mars||c.g31Evolution?.minCards){doPut(s,t);break;}if(c.evolution||c.neoEvolution&&!t.noEvolve){
   let bases=api.evolutionBases(s,t.p,c).filter(b=>b.uid!==y.uid&&(!t.g799YobiBases||t.g799YobiBases.includes(b.uid)));
   if(t.g799YobiBases){
@@ -7350,6 +7359,12 @@ export function createSixPhotoRules(api){
  case'g34_ChooseRaceUntap713':
   start(s,t,[{op:'Schedule537',when:'turnEnd',defs:[{op:'GroupUntap',owner:'both',g713ExactRace:v,filter:{creature:true}}]}]);
   break;
+ case'g34_GyouRevive1364':{
+  const owner=1-t.p;
+  if(v&&s.players[owner].grave.some(y=>y.uid===v.uid&&(y.zoneSerial||0)===v.serial))
+   put(s,{...t,p:owner,op:'g34_Put',origin:'grave',target:v.uid,tapped:true});
+  break;
+ }
  case'g34_Select':
   if(v){
    if(t.g766SpellUse)mark(s,'g766SpellUse',t);

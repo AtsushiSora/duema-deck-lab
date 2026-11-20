@@ -5,7 +5,8 @@ export function createAbyssRules(api){
  const {card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,move,cast,draw,enqueue,log,targetOptions}=api;
  const abyss=c=>String(c.race).includes('アビス'),dark=x=>faces(card(x)).some(c=>colors(c).includes('闇'));
  const on=(s,p,x,op,more={})=>enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task(op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
- const live=(s,t)=>s.players[t.p].battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===(t.incarnation||0)&&!x.sealed);
+ const sourcePlayer=t=>t.creatureOrigin??t.p;
+ const live=(s,t)=>s.players[sourcePlayer(t)].battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===(t.incarnation||0)&&!x.sealed);
  const canPut=(s,p,x,origin)=>card(x).type==='creature'&&api.canEnter(s,p,card(x),{origin,execution:false})&&(!card(x).evolution||api.evolutionBases(s,p,card(x)).length);
  const canUse=(s,p,c)=>api.canCast(s,p,c)&&(c.type==='spell'||api.canEnter(s,p,c,{origin:'deck',execution:true})&&(!c.evolution||api.evolutionBases(s,p,c).length));
  const darkCount=(s,p)=>s.players[p].battle.filter(x=>(api.isCreature(s,x)||card(x).type==='seed')&&colors(card(x)).includes('闇')).length;
@@ -64,7 +65,7 @@ export function createAbyssRules(api){
  case'g13_Foot':api.mill(s,t.p,1);put(s,task('g13_FootRecover',t.p,t.source));break;
  case'g13_FootRecover':choice(s,t,'墓地から闇のカード1枚を手札に戻す？',[...own.grave.filter(dark).map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)),skip()]);break;
  case'g13_Seal':choice(s,t,'封印する相手クリーチャーを選ぶ',targetOptions(s,t.p,creatures(s,1-t.p)));break;
- case'g13_Bella':{const x=live(s,t);if(x&&api.canLeave(s,t.p,x))choice(s,t,'ベラドンナを破壊して効果を使う？',[opt('破壊して使う',true,25,t.source),skip()]);break;}
+ case'g13_Bella':{const x=live(s,t);if(x&&api.canLeave(s,sourcePlayer(t),x))choice(s,t,'ベラドンナを破壊して効果を使う？',[opt('破壊して使う',true,25,t.source),skip()]);break;}
  case'g13_BellaMode':choice(s,t,'ベラドンナ：効果を選ぶ',[opt('相手の手札を見ないで1枚捨てさせる','discard',s.players[1-t.p].hand.length?15:-10),opt('山札の上1枚をマナへ','ramp',own.mana.length<6?25:5)]);break;
  case'g13_SB':{
   if(t.afterGS){const {afterGS,...next}=t;declareSB(s,next,afterGS);break;}
@@ -97,7 +98,7 @@ export function createAbyssRules(api){
  case'g13_Mill':if(v)api.mill(s,t.p,5);break;
  case'g13_FootRecover':if(v){const x=policyRemove(s,t.p,'grave',v,api);if(x){clear(x,'hand');own.hand.push(x);}}break;
  case'g13_Seal':if(v)api.seal(s,1-t.p,[v]);break;
- case'g13_Bella':if(v){put(s,task('g13_BellaMode',t.p,t.source));move(s,[{player:t.p,uid:t.uid,to:'grave'}]);}break;
+ case'g13_Bella':if(v){put(s,task('g13_BellaMode',t.p,t.source));move(s,[{player:sourcePlayer(t),uid:t.uid,to:'grave'}]);}break;
  case'g13_BellaMode':put(s,v==='discard'?task('discard',1-t.p,t.source,{n:1,random:true,causedBy:t.p}):task('g13_BellaRamp',t.p,t.source));break;
  case'g13_SB':if(v)declareSB(s,t,v);else finishSB(s,t);break;
  default:throw Error('未実装のアビス選択：'+t.op);

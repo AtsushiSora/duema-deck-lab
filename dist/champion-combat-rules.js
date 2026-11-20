@@ -5,7 +5,8 @@ export function createCombatChampionRules(api){
  const queue=(s,t,op,more={})=>put(s,{...t,op:'g50_'+op,...more});
  const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g50_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
  const race=(c,q)=>String(c.race).includes(q),dragon=c=>race(c,'ドラゴン'),rek=c=>race(c,'レクスターズ'),fire=c=>colors(c).includes('火');
- const live=(s,t)=>s.players[t.p].battle.find(x=>api.layers(x).some(y=>(t.track||[{uid:t.uid,incarnation:t.incarnation||0}]).some(r=>y.uid===r.uid&&(y.incarnation||0)===r.incarnation)));
+ const sourcePlayer=t=>t.creatureOrigin??t.p;
+ const live=(s,t)=>s.players[sourcePlayer(t)].battle.find(x=>api.layers(x).some(y=>(t.track||[{uid:t.uid,incarnation:t.incarnation||0}]).some(r=>y.uid===r.uid&&(y.incarnation||0)===r.incarnation)));
  const allowedZone=(s,p,z)=>!api.canMoveZone||api.canMoveZone(s,p,z),lookN=(s,p,n)=>api.lookCount?api.lookCount(s,p,n):api.deckLocked(s,p)?0:n;
  const reserved=own=>new Set(Object.entries(own).filter(([k,v])=>Array.isArray(v)&&/Protected$|Reveals$/.test(k)).flatMap(([,v])=>v));
  function look(s,t,n,publicly=false){const own=s.players[t.p],held=reserved(own),xs=own.deck.filter(x=>!held.has(x.uid)).slice(0,lookN(s,t.p,n));(own.g34Protected??=[]).push(...xs.map(x=>x.uid));api.log(s,t.p,publicly?'reveal':'look',card(t.source).name+'：山札の上'+xs.length+'枚'+(publicly?'を公開：'+xs.map(x=>card(x).name).join('・'):'を確認'),{cardId:t.source});return xs.map(x=>x.uid);}
@@ -20,7 +21,7 @@ export function createCombatChampionRules(api){
  function candidateRows(s,t,filter){return(t.zones||[t.origin||'hand']).flatMap(origin=>allowedZone(s,t.p,origin)?s.players[t.p][origin].filter(x=>filter(card(x),x)&&canPut(s,t.p,x,origin,!!t.execution)).map(x=>({x,origin})):[]);}
  function chooseDeploy(s,t,filter,title){const rows=candidateRows(s,t,filter);choice(s,t,title,[...rows.map(({x,origin})=>opt((t.zones?.length>1?({hand:'手札：',mana:'マナ：',grave:'墓地：'}[origin]||''):'')+card(x).name,{uid:x.uid,origin},30+cost(card(x)),x.cardId)),...(t.optional===false?[]:[skip()])]);}
  function beginMeteor(s,t){const x=live(s,t),ids=x?api.layers(x).slice(1).map(x=>x.uid):[];if(ids.length>=3)choice(s,{...t,selected:[]},'メテオバーン：進化元を3枚墓地に置いて、相手のシールドをすべてブレイクする？',[opt('進化元を3枚選ぶ',true,100),skip()]);}
- function finishSacrifice(s,t){const moved=s.players[t.p].grave.some(x=>x.uid===t.target&&(x.zoneSerial||0)>t.serial);if(t.feather){if(!moved){const x=live(s,t);if(x)move(s,[{player:t.p,uid:x.uid,to:'grave',destroy:false}]);}}else if(moved)api.draw(s,t.p,2);}
+ function finishSacrifice(s,t){const moved=s.players[t.p].grave.some(x=>x.uid===t.target&&(x.zoneSerial||0)>t.serial);if(t.feather){if(!moved){const x=live(s,t);if(x)move(s,[{player:sourcePlayer(t),uid:x.uid,to:'grave',destroy:false}]);}}else if(moved)api.draw(s,t.p,2);}
  function castKing(s,t){
   const {p}=t,own=s.players[p],source=card(t.source),c={...source.g50KingFace,id:source.id};
   const rows=t.parts.map(r=>({...r,x:own[r.origin].find(x=>x.uid===r.uid)}));
@@ -48,10 +49,10 @@ export function createCombatChampionRules(api){
  case'g50_Dread':move(s,creatures(s,1-t.p).filter(y=>api.power(y,false,s)<=3000).map(y=>({player:1-t.p,uid:y.uid,to:'grave',destroy:true})));break;
  case'g50_Egg':{const xs=own.deck.slice(0,lookN(s,t.p,own.deck.length)).filter(y=>api.isEvolution(y));choice(s,t,'山札から進化クリーチャーを1体選ぶ',[...xs.map(y=>opt(card(y).name,y.uid,30+cost(card(y)),y.cardId)),opt('該当カードを選ばずシャッフルする',null,-100)]);break;}
  case'g50_Storie':if(own.hand.length)choice(s,t,'山札の下に置く手札を1枚選ぶ',own.hand.map(y=>opt(card(y).name,y.uid,-cost(card(y)),y.cardId)));else api.draw(s,t.p,1);break;
- case'g50_Feather':case'g50_SacrificeDraw':{const rows=creatures(s,t.p).filter(y=>t.op!=='g50_Feather'||y.uid!==x?.uid);if(rows.length)choice(s,t,t.op==='g50_Feather'?'墓地に置く他の自分のクリーチャーを選ぶ':'破壊する自分のクリーチャーを選ぶ',rows.map(y=>opt(card(y).name,y.uid,-cost(card(y)),y.cardId)));else if(t.op==='g50_Feather'&&x)move(s,[{player:t.p,uid:x.uid,to:'grave',destroy:false}]);break;}
+ case'g50_Feather':case'g50_SacrificeDraw':{const rows=creatures(s,t.p).filter(y=>t.op!=='g50_Feather'||y.uid!==x?.uid);if(rows.length)choice(s,t,t.op==='g50_Feather'?'墓地に置く他の自分のクリーチャーを選ぶ':'破壊する自分のクリーチャーを選ぶ',rows.map(y=>opt(card(y).name,y.uid,-cost(card(y)),y.cardId)));else if(t.op==='g50_Feather'&&x)move(s,[{player:sourcePlayer(t),uid:x.uid,to:'grave',destroy:false}]);break;}
  case'g50_AfterSacrifice':finishSacrifice(s,t);break;
  case'g50_Meteor':beginMeteor(s,t);break;
- case'g50_MeteorPick':{const list=x?api.layers(x).slice(1).filter(y=>!t.selected.includes(y.uid)):[];if(t.selected.length===3){if(x&&t.selected.every(uid=>api.layers(x).slice(1).some(y=>y.uid===uid))){for(const uid of t.selected)detach(s,t.p,x,uid);breakAll(s,t,1-t.p,opp.shields.map(y=>y.uid));}break;}choice(s,t,'墓地に置く進化元を3枚選ぶ（'+t.selected.length+'/3）',list.map(y=>opt(y.faceDown?'裏向きの進化元':card(y).name,y.uid,10,y.faceDown?null:y.cardId)));break;}
+ case'g50_MeteorPick':{const list=x?api.layers(x).slice(1).filter(y=>!t.selected.includes(y.uid)):[];if(t.selected.length===3){if(x&&t.selected.every(uid=>api.layers(x).slice(1).some(y=>y.uid===uid))){for(const uid of t.selected)detach(s,sourcePlayer(t),x,uid);breakAll(s,t,1-t.p,opp.shields.map(y=>y.uid));}break;}choice(s,t,'墓地に置く進化元を3枚選ぶ（'+t.selected.length+'/3）',list.map(y=>opt(y.faceDown?'裏向きの進化元':card(y).name,y.uid,10,y.faceDown?null:y.cardId)));break;}
  case'g50_ApolloMana':{const selected=t.selected||[],list=allowedZone(s,1-t.p,'mana')?opp.mana.filter(y=>!selected.includes(y.uid)):[];if(selected.length>=2||!list.length){for(const uid of selected){const y=remove(opp.mana,uid);if(y){clear(y,'grave');api.addZone(s,1-t.p,'grave',y);}}break;}choice(s,{...t,selected},'墓地に置く相手のマナを2枚選ぶ（'+selected.length+'/2）',list.map(y=>opt(card(y).name,y.uid,10,y.cardId)));break;}
  case'g50_Forbidden':{if(!x)break;const ids=look(s,t,own.deck.length,true),y=pool(s,{...t,ids}).find(y=>rek(card(y))&&!api.isEvolution(y));if(y){remove(own.deck,y.uid);clear(y,'battle');(x.under??=[]).push(y);}release(s,t.p,ids);api.shuffleLibrary(s,t.p,[],t.source);api.deckCheck(s,t.p);break;}
  case'g50_KingdomOffer':if(x&&lookN(s,t.p,1)&&own.deck.length)choice(s,t,'モモキングダム：山札の上1枚をこのクリーチャーの下に置く？',[opt('下に置く',true,35),skip()]);break;

@@ -2493,6 +2493,16 @@ export function standardCardSpec(d,{phase=165}={}){
   return {trigger:true,g1357CopyOnEntry:true,g174Start:[{op:'Target',g1357Become:true,
    g1357EndThisTurn:true,optional:true,title:'このクリーチャーがコピーする相手のクリーチャーを選ぶ'}]};
  }
+ if(phase>=1364&&['dmex15-b009','dm22rp1-TR7'].includes(d?.id)&&d.status==='complete'&&
+    d.faces.length===1&&f.typeText==='クリーチャー'&&normalize(f.abilityText)===normalize(
+     'T・ブレイカー'+
+     '相手のクリーチャーが出て、その能力がトリガーする時、かわりに自分がその能力を使う。'+
+     '相手のターンのはじめに、クリーチャーを１体、相手の墓地から選んでもよい。そうしたら、相手はそれをタップして出す。'))
+  return {breaker:3,g1364Gyou:true,g179OpponentStart:[{op:'GyouRevive1364'}]};
+ if(phase>=1364&&d?.id==='dmrp04s-004'&&d.status==='complete'&&d.faces.length===1&&
+    f.typeText==='クリーチャー'&&normalize(f.abilityText)===normalize(
+     '各ターンに一度、自分のクリーチャーがバトルゾーンに出てその能力がトリガーする時、その能力を１度のかわりに２度トリガーしてもよい。'))
+  return {g1364Sonic:true};
  if(phase>=1363&&['dmex12-022','dmex17-Cho38'].includes(d?.id)&&d.status==='complete'&&
     d.faces.length===1&&f.typeText==='D2フィールド'&&normalize(f.abilityText
      .replace('使用する','使う').replace('フィールドが出た時','フィールドがバトルゾーンに出た時'))===normalize(

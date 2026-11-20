@@ -35,8 +35,58 @@ test('Guardman protects only other creatures, works versus unblockable attacks, 
 test('multiple Guardman and Blocker declarations are all chosen first and then resolved in selected order',()=>{const s=setup();give(s,0,'battle',[G]);give(s,1,'battle',[L,D,C,A]);const [l,d,c,a]=s.players[1].battle;l.tapped=true;s.phase='attack';act(s,'attack',x=>x.target===l.uid);act(s,'defendMany');pick(s,{kind:'guardman',uid:d.uid});pick(s,{kind:'block',uid:a.uid});assert.equal(d.tapped,false);assert.equal(a.tapped,false);pick(s,null);assert.equal(s.decision.type,'effectOrder');act(s,'orderEffect',x=>x.uid===a.uid);assert.equal(a.tapped,true);assert.equal(d.tapped,true);assert.ok(s.log.some(x=>x.type==='block'));assert.ok(s.log.some(x=>x.type==='guardman'));assert.ok(s.players[1].battle.some(x=>x.uid===l.uid));});
 test('a nested Deathmatch battle preserves the original Wellkius victory trigger and pending Slayer result',()=>{const s=setup();give(s,0,'battle',[W,A]);give(s,1,'battle',['dm01-088',D]);s.players[1].battle[0].tapped=true;give(s,0,'hand',[A]);const original=s.players[0].battle[1].uid;s.phase='attack';act(s,'attack',a=>a.uid===original&&a.target===s.players[1].battle[0].uid);act(s,'noBlock');pick(s,s.players[0].hand.find(x=>x.cardId===A).uid);assert.equal(s.decision.task.op,'g16Deathmatch');pick(s,true);assert.ok(!s.players[0].battle.some(x=>x.uid===original));assert.deepEqual(s.players[0].battle.map(x=>x.cardId),[W]);assert.equal(s.battleResolution,null);assert.equal(s.battleStack.length,0);});
 test('Haikyu entry is mandatory mana removal and spell ramps normally; Junarakill and Dedekabra never attack unless ignored',()=>{const s=setup();give(s,1,'battle',[L]);cast(s,B);act(s,'effect');assert.equal(s.players[1].battle.length,0);const t=setup(),n=t.players[0].mana.length;spell(t,B);assert.equal(t.players[0].mana.length,n+1);give(t,0,'battle',[J,K,D]);t.phase='attack';assert.ok(!e.getLegalActions(t).some(a=>a.kind==='attack'));give(t,1,'battle',[GEN]);assert.equal(new Set(e.getLegalActions(t).filter(a=>a.kind==='attack').map(a=>a.uid)).size,3);});
-test('No16 finishes against itself, four ready starters and4 tournament lists with80 unique cards throughout',()=>{for(const other of[target,...opponents])for(let seed=1;seed<=6;seed++){const s=e.createGame([target,other],{seed,first:seed%2});while(s.winner===null&&s.actions<3000){const a=e.chooseAI(s);assert.ok(a);e.step(s,a);const all=e.physicalCards(s);assert.equal(all.length,80,'seed '+seed+' action '+s.actions);assert.equal(new Set(all.map(x=>x.uid)).size,80);}assert.notEqual(s.winner,null);assert.deepEqual(e.runGame([target,other],{seed,first:seed%2}),s);}});
-test('No16 random legal choices conserve all cards and serialize every decision and AI score exactly',()=>{for(let seed=1;seed<=35;seed++){const s=e.createGame([target,seed%3?opponents[seed%opponents.length]:target],{seed:seed*211,first:seed%2}),r={rng:seed};for(let n=0;n<650&&s.winner===null;n++){const opts=e.getLegalActions(s);assert.ok(opts.length,'deadlock '+seed+' '+n);e.step(s,opts[Math.floor(e.random(r)*opts.length)]);const all=e.physicalCards(s);assert.equal(all.length,80);assert.equal(new Set(all.map(x=>x.uid)).size,80);const restored=JSON.parse(JSON.stringify(s));assert.deepEqual(e.getLegalActions(restored),e.getLegalActions(s));assert.deepEqual(e.chooseAI(restored),e.chooseAI(s));}}});
-test('production worker completes180 No16 games with no unresolved matches',async()=>{const messages=[];globalThis.self={};globalThis.postMessage=x=>messages.push(structuredClone(x));try{await import('../dist/worker.js?gransect16');await self.onmessage({data:{cards:data.cards,deck:target,opponents:[target,...opponents],count:20,first:'random',seed:2116}});assert.ok(!messages.some(x=>x.type==='error'),JSON.stringify(messages));const done=messages.filter(x=>x.type==='done');assert.equal(done.length,1);assert.equal(done[0].results.length,9);for(const r of done[0].results){assert.equal(r.stats.completed,20);assert.equal(r.stats.unresolved,0);assert.ok(r.games.every(x=>x.version===e.ENGINE_VERSION));}}finally{delete globalThis.self;delete globalThis.postMessage;}});
+for(const other of [target,...opponents])test('No16 AI replay: '+other.id,()=>{
+ for(let seed=1;seed<=6;seed++){
+  const options={seed,first:seed%2},decks=[target,other],state=e.createGame(decks,options);
+  while(state.winner===null&&state.actions<3000){
+   const action=e.chooseAI(state);
+   assert.ok(action);
+   e.step(state,action);
+   const physical=e.physicalCards(state);
+   assert.equal(physical.length,80,'seed '+seed+' action '+state.actions);
+   assert.equal(new Set(physical.map(x=>x.uid)).size,80);
+  }
+  assert.notEqual(state.winner,null,other.id+' seed '+seed);
+  assert.deepEqual(e.runGame(decks,options),state);
+ }
+});
+for(let seed=1;seed<=35;seed++)test('No16 random legal choices: seed '+seed,()=>{
+ const opponent=seed%3?opponents[seed%opponents.length]:target;
+ const state=e.createGame([target,opponent],{seed:seed*211,first:seed%2}),rng={rng:seed};
+ for(let step=0;step<650&&state.winner===null;step++){
+  const actions=e.getLegalActions(state);
+  assert.ok(actions.length,'deadlock '+seed+' '+step);
+  e.step(state,actions[Math.floor(e.random(rng)*actions.length)]);
+  const physical=e.physicalCards(state);
+  assert.equal(physical.length,80);
+  assert.equal(new Set(physical.map(x=>x.uid)).size,80);
+  const restored=JSON.parse(JSON.stringify(state));
+  assert.deepEqual(e.getLegalActions(restored),e.getLegalActions(state));
+  assert.deepEqual(e.chooseAI(restored),e.chooseAI(state));
+ }
+});
+for(const [index,opponent] of [target,...opponents].entries())test('No16 production worker: '+opponent.id,async()=>{
+ const messages=[];
+ globalThis.self={};
+ globalThis.postMessage=x=>messages.push(structuredClone(x));
+ try{
+  await import('../dist/worker.js?gransect='+index);
+  const seed=(2116+Math.imul(index,2246822519))>>>0;
+  await self.onmessage({data:{cards:data.cards,deck:target,opponents:[opponent],count:20,first:'random',seed}});
+  assert.deepEqual(messages.filter(x=>x.type==='error'),[]);
+  const done=messages.filter(x=>x.type==='done');
+  assert.equal(done.length,1);
+  assert.equal(done[0].results.length,1);
+  const [result]=done[0].results;
+  assert.equal(result.opponent.id,opponent.id);
+  assert.equal(result.stats.completed,20);
+  assert.equal(result.stats.unresolved,0);
+  assert.deepEqual(result.games.map(game=>[game.first,game.seed]),Array.from({length:20},(_,i)=>[i%2,(seed+Math.imul(i+1,2654435761))>>>0]));
+  assert.ok(result.games.every(game=>game.version===e.ENGINE_VERSION));
+ }finally{
+  delete globalThis.self;
+  delete globalThis.postMessage;
+ }
+});
 test('a previously declared Guardman ability resolves after Genmu removes the keyword and uses the same incarnation only',()=>{const s=setup();give(s,0,'battle',[G]);give(s,1,'battle',[L,D,C]);const [l,d,c]=s.players[1].battle;l.tapped=true;s.phase='attack';act(s,'attack',a=>a.target===l.uid);act(s,'defendMany');pick(s,{kind:'guardman',uid:d.uid});pick(s,{kind:'guardman',uid:c.uid});pick(s,null);assert.equal(s.decision.type,'effectOrder');s.players[0].battle.push(inst(GEN));assert.equal(e.effectiveCard(d,s).guardman,undefined);act(s,'orderEffect',a=>a.uid===d.uid);assert.equal(d.tapped,true);assert.ok(s.players[1].grave.some(x=>x.uid===c.uid));assert.ok(s.log.filter(x=>x.type==='guardman').length===2);});
 test('a defender that left and reentered cannot pay for a queued Guardman declaration from its old incarnation',()=>{const s=setup();give(s,0,'battle',[G]);give(s,1,'battle',[L,D,C]);const [l,d,c]=s.players[1].battle;l.tapped=true;s.phase='attack';act(s,'attack',a=>a.target===l.uid);act(s,'defendMany');pick(s,{kind:'guardman',uid:d.uid});pick(s,{kind:'guardman',uid:c.uid});pick(s,null);d.incarnation=1;act(s,'orderEffect',a=>a.uid===d.uid);assert.equal(d.tapped,false);assert.ok(!s.log.some(x=>x.type==='guardman'&&x.cardId===D));assert.ok(s.log.some(x=>x.type==='guardman'&&x.cardId===C));});

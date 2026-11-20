@@ -35,9 +35,59 @@ test('Fortress chooses0..3 shields before moving them and never breaks or trigge
 test('Casablanca gives each mana all civilizations without changing manaValue, and hand charge untap is a queued trigger',()=>{const s=setup();give(s,0,'battle',[B]);give(s,0,'mana',[F,F,F,F,F,F]);give(s,0,'hand',[K]);assert.ok(e.getLegalActions(s).some(a=>a.kind==='play'));const pool=e.paymentPool(s,0);assert.ok(pool.every(x=>x.paymentAllColors));assert.equal(e.manaValue(e.card(F)),1);give(s,0,'hand',[Z]);s.phase='charge';act(s,'charge');assert.equal(s.players[0].mana.at(-1).tapped,false);assert.ok(s.log.some(x=>x.type==='charge'));});
 test('Casablanca ramp uses printed tap rules and its untap disappears under Genmu, while five-color mana still produces zero',()=>{const s=setup();give(s,0,'deck',[F,F,F]);cast(s,B);assert.equal(s.players[0].mana.at(-1).tapped,false);give(s,1,'battle',[GEN]);give(s,0,'hand',[Z]);s.phase='charge';act(s,'charge');assert.equal(s.players[0].mana.at(-1).tapped,true);const five=data.cards.find(c=>c.manaValue===0);if(five){give(s,1,'battle',[]);give(s,0,'mana',[five.id]);assert.equal(e.manaPayment(e.paymentPool(s,0),{...e.card(F),cost:1}),null);}});
 test('Casablanca spell bounces every active cost5+ creature on both sides without selecting; Wakumu draws2 and its spell ramps1',()=>{const s=setup();give(s,0,'battle',[K,B]);give(s,1,'battle',[Z,E,D]);spell(s,B);assert.deepEqual(s.players[0].battle.map(x=>x.cardId),[B]);assert.deepEqual(s.players[1].battle.map(x=>x.cardId),[D]);const t=setup();cast(t,W);assert.equal(t.players[0].hand.length,2);const n=t.players[0].mana.length;spell(t,W);assert.equal(t.players[0].mana.length,n+1);});
-test('No21 finishes against itself, five ready starters and4 tournament lists with80 unique cards throughout',()=>{for(const other of[target,...opponents])for(let seed=1;seed<=6;seed++){const s=e.createGame([target,other],{seed,first:seed%2});while(s.winner===null&&s.actions<3000){const a=e.chooseAI(s);assert.ok(a);e.step(s,a);const all=e.physicalCards(s);assert.equal(all.length,80,'seed '+seed+' action '+s.actions);assert.equal(new Set(all.map(x=>x.uid)).size,80);}assert.notEqual(s.winner,null);assert.deepEqual(e.runGame([target,other],{seed,first:seed%2}),s);}});
-test('No21 random legal choices conserve all cards and serialize every decision and AI score exactly',()=>{for(let seed=1;seed<=40;seed++){const s=e.createGame([target,seed%3?opponents[seed%opponents.length]:target],{seed:seed*233,first:seed%2}),r={rng:seed};for(let n=0;n<700&&s.winner===null;n++){const opts=e.getLegalActions(s);assert.ok(opts.length,'deadlock '+seed+' '+n+' '+JSON.stringify(s.decision));e.step(s,opts[Math.floor(e.random(r)*opts.length)]);const all=e.physicalCards(s);assert.equal(all.length,80);assert.equal(new Set(all.map(x=>x.uid)).size,80);const restored=JSON.parse(JSON.stringify(s));assert.deepEqual(e.getLegalActions(restored),e.getLegalActions(s));assert.deepEqual(e.chooseAI(restored),e.chooseAI(s));}}});
-test('production worker completes200 No21 games with no unresolved matches',async()=>{const messages=[];globalThis.self={};globalThis.postMessage=x=>messages.push(structuredClone(x));try{await import('../dist/worker.js?kiyonaga21');await self.onmessage({data:{cards:data.cards,deck:target,opponents:[target,...opponents],count:20,first:'random',seed:2321}});assert.ok(!messages.some(x=>x.type==='error'),JSON.stringify(messages));const done=messages.filter(x=>x.type==='done');assert.equal(done.length,1);assert.equal(done[0].results.length,10);for(const r of done[0].results){assert.equal(r.stats.completed,20);assert.equal(r.stats.unresolved,0);assert.ok(r.games.every(x=>x.version===e.ENGINE_VERSION));}}finally{delete globalThis.self;delete globalThis.postMessage;}});
+for(const other of [target,...opponents])test('No21 AI replay: '+other.id,()=>{
+ for(let seed=1;seed<=6;seed++){
+  const options={seed,first:seed%2},decks=[target,other],state=e.createGame(decks,options);
+  while(state.winner===null&&state.actions<3000){
+   const action=e.chooseAI(state);
+   assert.ok(action);
+   e.step(state,action);
+   const physical=e.physicalCards(state);
+   assert.equal(physical.length,80,'seed '+seed+' action '+state.actions);
+   assert.equal(new Set(physical.map(x=>x.uid)).size,80);
+  }
+  assert.notEqual(state.winner,null,other.id+' seed '+seed);
+  assert.deepEqual(e.runGame(decks,options),state);
+ }
+});
+for(let seed=1;seed<=40;seed++)test('No21 random legal choices: seed '+seed,()=>{
+ const opponent=seed%3?opponents[seed%opponents.length]:target;
+ const state=e.createGame([target,opponent],{seed:seed*233,first:seed%2}),rng={rng:seed};
+ for(let step=0;step<700&&state.winner===null;step++){
+  const actions=e.getLegalActions(state);
+  assert.ok(actions.length,'deadlock '+seed+' '+step);
+  e.step(state,actions[Math.floor(e.random(rng)*actions.length)]);
+  const physical=e.physicalCards(state);
+  assert.equal(physical.length,80);
+  assert.equal(new Set(physical.map(x=>x.uid)).size,80);
+  const restored=JSON.parse(JSON.stringify(state));
+  assert.deepEqual(e.getLegalActions(restored),e.getLegalActions(state));
+  assert.deepEqual(e.chooseAI(restored),e.chooseAI(state));
+ }
+});
+for(const [index,opponent] of [target,...opponents].entries())test('No21 production worker: '+opponent.id,async()=>{
+ const messages=[];
+ globalThis.self={};
+ globalThis.postMessage=x=>messages.push(structuredClone(x));
+ try{
+  await import('../dist/worker.js?kiyonaga='+index);
+  const seed=(2321+Math.imul(index,2246822519))>>>0;
+  await self.onmessage({data:{cards:data.cards,deck:target,opponents:[opponent],count:20,first:'random',seed}});
+  assert.deepEqual(messages.filter(x=>x.type==='error'),[]);
+  const done=messages.filter(x=>x.type==='done');
+  assert.equal(done.length,1);
+  assert.equal(done[0].results.length,1);
+  const [result]=done[0].results;
+  assert.equal(result.opponent.id,opponent.id);
+  assert.equal(result.stats.completed,20);
+  assert.equal(result.stats.unresolved,0);
+  assert.deepEqual(result.games.map(game=>[game.first,game.seed]),Array.from({length:20},(_,i)=>[i%2,(seed+Math.imul(i+1,2654435761))>>>0]));
+  assert.ok(result.games.every(game=>game.version===e.ENGINE_VERSION));
+ }finally{
+  delete globalThis.self;
+  delete globalThis.postMessage;
+ }
+});
 test('Zenon casting AllInCharger performs its judge and draw while the physical Twinpact remains in battle',()=>{const s=setup(),rs='dm22ex1-030';give(s,0,'battle',[Z,rs]);give(s,0,'deck',[O,F,F]);give(s,1,'deck',[F,F,F]);const uid=s.players[0].battle[1].uid,mana=s.players[0].mana.length;attack(s,s.players[0].battle[1]);act(s,'orderEffect',a=>a.cardId===Z);pick(s,true);drain(s);assert.ok(s.log.some(x=>x.type==='judgeResult'));assert.equal(s.players[0].mana.length,mana);assert.ok(s.players[0].battle.some(x=>x.uid===uid));assert.equal(s.players[0].grave.length,0);assert.equal(e.physicalCards(s).filter(x=>x.uid===uid).length,1);});
 test('Casablanca colors satisfy a declared DDD cost using ordinary one-color mana and preserve actual payments',()=>{const s=setup(),dragon=data.cards.find(c=>c.ddd&&c.ddd.cost===7);assert.ok(dragon);give(s,0,'battle',[B,F]);give(s,0,'mana',Array(7).fill(F));give(s,0,'hand',[dragon.id]);s.decision={type:'dddSummon',player:0,uid:s.players[0].hand[0].uid,source:dragon.id};act(s,'summonDDD',a=>!a.baseUid);drain(s);assert.equal(s.players[0].mana.filter(x=>x.tapped).length,7);assert.ok(s.players[0].battle.some(x=>x.cardId===dragon.id));});
 test('Casablanca mana colors satisfy NinjaStrike water requirements through declaration and resolution',()=>{const s=setup(),ninja=data.cards.find(c=>c.ninjaStrike);assert.ok(ninja);give(s,0,'battle',[L]);give(s,1,'battle',[B]);give(s,1,'mana',[F,F,F]);give(s,1,'hand',[ninja.id]);attack(s,s.players[0].battle[0]);assert.equal(s.decision.task.op,'ninjaDeclare');pick(s,true);assert.equal(s.decision.task.op,'ninjaResolve');pick(s,'strike');drain(s);assert.ok(s.players[1].battle.some(x=>x.cardId===ninja.id));});
