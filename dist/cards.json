@@ -265347,15 +265347,196 @@
       },
       "supportBatch": "phase-1479",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-057",
+      "name": "凶乱の魔鎌 ディスカルド",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 0,
+      "type": "weapon",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "これを装備したクリーチャーが攻撃する時、相手は自身の手札を１枚選び、捨てる。\n龍解：自分のターンの終わりに、これを装備したクリーチャーがタップされていれば、このドラグハートをクリーチャー側に裏返し、アンタップする。 （ゲーム開始時、ドラグハートは自身の超次元ゾーンに置き、ドラグハートまたはそれを装備したクリーチャーがバトルゾーンを離れた場合、そこに戻す）\n【龍解面】\nこのクリーチャーが攻撃する時、相手の手札を１枚見ないで選び、捨てさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-057",
+      "limit": 4,
+      "dragheart": true,
+      "g1475TappedRelease": true,
+      "g1480HostAttack": [
+        {
+          "op": "Discard",
+          "n": 1
+        }
+      ],
+      "dragheartBack": {
+        "name": "凶乱の悪魔龍 ドクロカルド",
+        "type": "creature",
+        "cost": 5,
+        "power": 5000,
+        "race": "デーモン・コマンド・ドラゴン",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "g1480HostAttack": null,
+        "g1475TappedRelease": false,
+        "g34Attack": [
+          {
+            "op": "BlindDiscard773",
+            "n": 1
+          }
+        ],
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-057b.jpg"
+      },
+      "supportBatch": "phase-1480",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-018",
+      "name": "神秘の集う遺跡 エウル=ブッカ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 0,
+      "type": "field",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "自分の自然のクリーチャーの召喚コストを１少なくしてもよい。ただし、コストは１より少なくならない。\n龍解：自分のターンのはじめに、バトルゾーンに自分の自然のクリーチャーが２体以上あれば、このドラグハートをクリーチャー側に裏返し、アンタップする。（ゲーム開始時、ドラグハートは自身の超次元ゾーンに置き、バトルゾーンを離れた場合、そこに戻す）\n【龍解面】\n自分のクリーチャーの召喚コストを最大２少なくしてもよい。ただし、コストは１より少なくならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-018",
+      "limit": 4,
+      "dragheart": true,
+      "g290SummonAura": {
+        "color": "自然",
+        "amount": 1,
+        "g560Optional": true,
+        "g1480Fortress": true
+      },
+      "g174Start": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "min": 2,
+              "filter": {
+                "creature": true,
+                "color": "自然"
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "FortressRelease1480"
+            }
+          ]
+        }
+      ],
+      "dragheartBack": {
+        "name": "遺跡類神秘目 レジル=エウル=ブッカ",
+        "type": "creature",
+        "cost": 6,
+        "power": 5000,
+        "race": "ジュラシック・コマンド・ドラゴン",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "g174Start": null,
+        "g290SummonAura": {
+          "filter": {},
+          "amount": 2,
+          "g560Optional": true
+        },
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-018b.jpg"
+      },
+      "supportBatch": "phase-1480",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-008",
+      "name": "浮遊する賛美歌 ゾディアック",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 0,
+      "type": "field",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある自分の光のクリーチャーすべてのパワーは+1000される。\n龍解：自分のターンのはじめに、バトルゾーンに自分の光のクリーチャーが２体以上あれば、このドラグハートをクリーチャー側に裏返し、アンタップする。（ゲーム開始時、ドラグハートは自身の超次元ゾーンに置き、バトルゾーンを離れた場合、そこに戻す）\n【龍解面】\nバトルゾーンにある自分のクリーチャーすべてのパワーは+1000される。\n自分のターンの終わりに、バトルゾーンにある自分のクリーチャーをすべてアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-008",
+      "limit": 4,
+      "dragheart": true,
+      "g1458FieldAura": true,
+      "g205Aura": {
+        "filter": {
+          "creature": true,
+          "color": "光"
+        },
+        "power": 1000
+      },
+      "g174Start": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "min": 2,
+              "filter": {
+                "creature": true,
+                "color": "光"
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "FortressRelease1480"
+            }
+          ]
+        }
+      ],
+      "dragheartBack": {
+        "name": "賛美の精霊龍 ハレルヤ・ゾディア",
+        "type": "creature",
+        "cost": 6,
+        "power": 5000,
+        "race": "エンジェル・コマンド・ドラゴン",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "g174Start": null,
+        "g205Aura": {
+          "filter": {
+            "creature": true
+          },
+          "power": 1000
+        },
+        "g174End": [
+          {
+            "op": "GroupUntap",
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-008b.jpg"
+      },
+      "supportBatch": "phase-1480",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1479,
+    "phase": 1480,
     "checkedAt": "2026-11-20",
-    "baseCount": 8527,
-    "newEffectCards": 5,
+    "baseCount": 8532,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 8532,
+    "totalCount": 8535,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -289840,6 +290021,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 8527,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1479,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8527,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8532,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
