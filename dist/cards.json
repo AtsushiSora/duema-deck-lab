@@ -268503,15 +268503,203 @@
       ],
       "supportBatch": "phase-1495",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr10-004",
+      "name": "百仙閻魔 マジックマ瀧",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "アウトレイジMAX",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが攻撃する時、相手の手札を２枚見ないで選び、捨てさせる。このターン自分のアウトレイジはブロックされない。\nW・ブレイカー\nドロン・ゴー：このクリーチャーが破壊された時、名前に「百仙」または「閻魔」とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に「マジックマ瀧」とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-004",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "マジックマ瀧",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "百仙",
+              "閻魔"
+            ]
+          }
+        }
+      ],
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "BlindDiscard773",
+          "n": 2
+        },
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true,
+            "race": "アウトレイジ"
+          },
+          "grant": {
+            "unblockable": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1496",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-056",
+      "name": "豚魔槍 ブータン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "アウトレイジMAX",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルに勝った時、このクリーチャーを破壊する。\nドロン・ゴー：このクリーチャーが破壊された時、名前に《魔槍》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《魔槍》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-056",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "魔槍",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "魔槍"
+            ]
+          }
+        }
+      ],
+      "breaker": 2,
+      "g189BattleWin": [
+        {
+          "op": "SelfDestroy"
+        }
+      ],
+      "supportBatch": "phase-1496",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd13-005",
+      "name": "無敵剣 カツキングMAX",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "アウトレイジMAX",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、相手のパワー8000以下のクリーチャーを１体破壊する。\n自分のターン中、クリーチャーを１体、自分のマナゾーンから召喚してもよい。\nW・ブレイカー\nドロン・ゴー：このクリーチャーが破壊された時、名前に《無》（ルビ：アウト）とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《無敵》（ルビ：アウト ロー）とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd13-005",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "無敵",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "無"
+            ]
+          }
+        }
+      ],
+      "breaker": 2,
+      "gaiaMana": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 8000
+          }
+        }
+      ],
+      "supportBatch": "phase-1496",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr11-s03",
+      "name": "翔帆轟音 グローバ・ライズ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 15000,
+      "race": "アウトレイジMAX",
+      "text": "進化-自分のアウトレイジ１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から４枚をタップしてマナゾーンに置いてもよい。\nバトルゾーンにある自分の他のクリーチャーすべてのパワーは+3000される。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）\n自分の他の、名前に《翔帆轟音》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-s03",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "翔帆轟音",
+      "breaker": 3,
+      "evolution": {
+        "category": "アウトレイジ"
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 4,
+              "tapped": true
+            }
+          ]
+        }
+      ],
+      "g205Aura": {
+        "other": true,
+        "filter": {
+          "creature": true
+        },
+        "power": 3000
+      },
+      "supportBatch": "phase-1496",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1495,
+    "phase": 1496,
     "checkedAt": "2026-11-20",
-    "baseCount": 8598,
-    "newEffectCards": 5,
+    "baseCount": 8603,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 8603,
+    "totalCount": 8607,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -293220,6 +293408,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8598,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1495,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8598,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8603,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

@@ -1,0 +1,329 @@
+{
+  "phase": 1496,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8603,
+  "description": "既存の処理を用いて全能力を個別に検証し4種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/36874/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36875/"
+  ],
+  "cards": [
+    {
+      "id": "dmr10-004",
+      "name": "百仙閻魔 マジックマ瀧",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-004",
+      "faces": [
+        {
+          "name": "百仙閻魔 マジックマ瀧",
+          "typeText": "エグザイル・クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが攻撃する時、相手の手札を２枚見ないで選び、捨てさせる。このターン自分のアウトレイジはブロックされない。\nW・ブレイカー\nドロン・ゴー：このクリーチャーが破壊された時、名前に「百仙」または「閻魔」とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に「マジックマ瀧」とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+          "race": "アウトレイジMAX",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1490Exile": true,
+        "g1490ExileLimit": "マジックマ瀧",
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "g1490Exile": true,
+              "g220NameAny": [
+                "百仙",
+                "閻魔"
+              ]
+            }
+          }
+        ],
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "BlindDiscard773",
+            "n": 2
+          },
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "race": "アウトレイジ"
+            },
+            "grant": {
+              "unblockable": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "11878ecb30c05078acc8758b23077ffc2ab8cd916ac848ff1924222a5998c745",
+        "facesMatched": true,
+        "imageSha256": "40f7d405499967c4f8dc1c82c5f9d77168ba08d7d0bbfb43d25d3115e65f0fd0",
+        "imageBytes": 160821
+      },
+      "sameNameProducts": [
+        "DMR-10 エピソード3 デッド＆ビート"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-004",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmr09-056",
+      "name": "豚魔槍 ブータン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-056",
+      "faces": [
+        {
+          "name": "豚魔槍 ブータン",
+          "typeText": "エグザイル・クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルに勝った時、このクリーチャーを破壊する。\nドロン・ゴー：このクリーチャーが破壊された時、名前に《魔槍》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《魔槍》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+          "race": "アウトレイジMAX",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1490Exile": true,
+        "g1490ExileLimit": "魔槍",
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "g1490Exile": true,
+              "g220NameAny": [
+                "魔槍"
+              ]
+            }
+          }
+        ],
+        "breaker": 2,
+        "g189BattleWin": [
+          {
+            "op": "SelfDestroy"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-056.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "09e1768154386c4fa8b6b0a5fcd2ccc08e6a64e0e363e53ebdd0b5f87939c219",
+        "facesMatched": true,
+        "imageSha256": "8fde554567aabd4aaeb2d43228f6be7f02151f08c0b2ba3db1a8d2a72313b69d",
+        "imageBytes": 119903
+      },
+      "sameNameProducts": [
+        "DMR-09 エピソード３ レイジVSゴッド"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-056",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmd13-005",
+      "name": "無敵剣 カツキングMAX",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd13-005",
+      "faces": [
+        {
+          "name": "無敵剣 カツキングMAX",
+          "typeText": "エグザイル・クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、相手のパワー8000以下のクリーチャーを１体破壊する。\n自分のターン中、クリーチャーを１体、自分のマナゾーンから召喚してもよい。\nW・ブレイカー\nドロン・ゴー：このクリーチャーが破壊された時、名前に《無》（ルビ：アウト）とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《無敵》（ルビ：アウト ロー）とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+          "race": "アウトレイジMAX",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1490Exile": true,
+        "g1490ExileLimit": "無敵",
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "g1490Exile": true,
+              "g220NameAny": [
+                "無"
+              ]
+            }
+          }
+        ],
+        "breaker": 2,
+        "gaiaMana": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 8000
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd13-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "ec49a68844582ae7a319176f7564418e06d5693c1a83ad361ac3cc68f45bcad2",
+        "facesMatched": true,
+        "imageSha256": "864fd6696e6c699db7386c477e2dab63e7df01c50dabe11e0a4695807bc3e5a0",
+        "imageBytes": 214909
+      },
+      "sameNameProducts": [
+        "DMX-25 ファイナル・メモリアル・パック ～Ｅ１・Ｅ２・Ｅ３編～",
+        "DMX-22 革命 超ブラック・ボックス・パック",
+        "DMD-13 スーパーデッキMAX カツキングと伝説の秘宝"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd13-005",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmr11-s03",
+      "name": "翔帆轟音 グローバ・ライズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-s03",
+      "faces": [
+        {
+          "name": "翔帆轟音 グローバ・ライズ",
+          "typeText": "進化エグザイル・クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "進化-自分のアウトレイジ１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から４枚をタップしてマナゾーンに置いてもよい。\nバトルゾーンにある自分の他のクリーチャーすべてのパワーは+3000される。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）\n自分の他の、名前に《翔帆轟音》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+          "race": "アウトレイジMAX",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1490Exile": true,
+        "g1490ExileLimit": "翔帆轟音",
+        "breaker": 3,
+        "evolution": {
+          "category": "アウトレイジ"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 4,
+                "tapped": true
+              }
+            ]
+          }
+        ],
+        "g205Aura": {
+          "other": true,
+          "filter": {
+            "creature": true
+          },
+          "power": 3000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr11-s03.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "8f0c77ce8cd2bfaff9be6c276d1630869ef4be1a61727236000814b8abfe7212",
+        "facesMatched": true,
+        "imageSha256": "3da3933e828cf782de04591320287634361ab71b93c23246e677b98dbf614177",
+        "imageBytes": 164838
+      },
+      "sameNameProducts": [
+        "DMR-11 エピソード３ ウルトラＶマスター"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-s03",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr10-004": 4,
+      "dmr09-056": 4,
+      "dmd13-005": 4,
+      "dmr11-s03": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36874/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36875/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36874/",
+      "sha256": "886374de8850aa6eda7f727a404ccb95a34581970ca6fa90cf9402d0169c75a7",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36875/",
+      "sha256": "5f1cef89313aa3766da745b44cce0fd8c62edc27168dfb2e154f21f1ad378af1",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    }
+  ],
+  "testCorrections": [
+    "クリーチャーへの攻撃でもnoBlockを選択してバトルを進める。進化召喚は進化元をevolveで明示してから任意ランプを選ぶ。実装と能力結果は変更なし。"
+  ]
+}
