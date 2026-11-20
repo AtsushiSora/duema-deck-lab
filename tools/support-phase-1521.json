@@ -1,0 +1,506 @@
+{
+  "phase": 1521,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8701,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/33716/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/33716/": "S・トリガーの付与や使用可能な面は条件を満たす片面だけに適用する。"
+  },
+  "implementationNotes": [
+    "既存の単面カードの能力処理を両面公式全文と比較。単面IDは保持し、ツインパクト全名だけ別種類として登録。",
+    "呪文面のナイト・マジックは既存KnightMagic1118を利用し、呪文コスト・呪文属性を面から継承する。",
+    "ナチュラル・トラップの持ち主へのマナ移動修正を前バッチで回帰検証済み。"
+  ],
+  "cards": [
+    {
+      "id": "dm22ex1-038",
+      "name": "アクア・スペルブルー / インビンシブル・オーラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-038",
+      "faces": [
+        {
+          "name": "アクア・スペルブルー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、自分の山札をシャッフルし、その後、上から１枚目を表向きにする。そのカードが呪文なら、コストを支払わずに唱えてもよい。呪文でなければ、手札に加える。",
+          "race": "リキッド・ピープル/ハンター",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "インビンシブル・オーラ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 13,
+          "costText": "13",
+          "abilityText": "自分の山札の上から３枚まで、シールド化する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Shuffle405"
+          },
+          {
+            "op": "LookSpell841",
+            "g878SpellBlue": true
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "インビンシブル・オーラ",
+          "cost": 13,
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "race": "",
+          "g156Role": "aura",
+          "effect": "champion",
+          "g61Effect": "InvAura"
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-038a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "f165d903c7d8da8a412789e149c888b273ec5eee5a4aad9721fa5364c3dc9328",
+        "facesMatched": true,
+        "imageSha256": "3332798511f11e095d1fdf6a774db5140018380630c31892bee87abec47afe0f",
+        "imageBytes": 154778
+      },
+      "sameNameProducts": [
+        "DM26-EX5 デュエマプレイス・コラボパック 「電脳対戦 -WAR OF PLAY'S-」",
+        "DM26-EX1 ますますつよいパック 25の援軍",
+        "DM22-EX1 黄金戦略!!デュエキングMAX 2022"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-038",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex15-b006",
+      "name": "ボルシャック・NEX / スーパー・スパーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b006",
+      "faces": [
+        {
+          "name": "ボルシャック・NEX",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが出た時、自分の山札を見る。その中から、名前に《ルピア》とあるカードを１枚出してもよい。その後、山札をシャッフルする。\nこのクリーチャーは、自分の墓地にあるファイアー・バード１体につき「パワーアタッカー+1000」を得る。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "スーパー・スパーク",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "champion",
+        "g80Effect": "Nex",
+        "g80Nex": true,
+        "spellFace": {
+          "type": "spell",
+          "name": "スーパー・スパーク",
+          "cost": 5,
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "trigger": true,
+          "g34Tasks": [
+            {
+              "op": "TapAll",
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex15-b006a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "9137ded82ebbe4f76f9d82628c2ada6edaa0b5b4be312d5068024cdc9efd888f",
+        "facesMatched": true,
+        "imageSha256": "2c24676c2bf92065f27e86dbd282d238c03752f9324d300c42b0f560b39818df",
+        "imageBytes": 168392
+      },
+      "sameNameProducts": [
+        "DM25-EX3 邪神爆発デュエナマイトパック「王道W」",
+        "DM25-RP1 王道W 第1弾 邪神vs邪神 ～ソウル・オブ・ジ・アビス～",
+        "DM24-EX1 超感謝祭 ファンタジーBEST",
+        "DMBD-16 20th クロニクルデッキ 決闘!! ボルシャック・デュエル",
+        "DMEX-15 20周年超感謝メモリアルパック 魂の章 名場面BEST",
+        "DMART-02 神アート Bolshack by Toshiaki Takayama"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b006",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex17-130",
+      "name": "爆獣パンダ・ブーリン / 魔弾パンダフル・ライフ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-130",
+      "faces": [
+        {
+          "name": "爆獣パンダ・ブーリン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "このクリーチャーの召喚コストを、自分のマナゾーンにある呪文１枚につき１少なくしてもよい。ただし、コストは０以下にはならない。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+          "race": "ドリームメイト/ナイト",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "魔弾パンダフル・ライフ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の山札の上から１枚目をマナゾーンに置く。\nナイト・マジック（バトルゾーンに自分のナイトがあれば、この呪文の k 能力をもう一度使ってもよい）",
+          "race": "ナイト",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "mana",
+          "filter": {
+            "spell": true
+          },
+          "amount": 1,
+          "optional": true
+        },
+        "breaker": 2,
+        "spellFace": {
+          "type": "spell",
+          "name": "魔弾パンダフル・ライフ",
+          "cost": 4,
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "race": "ナイト",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Ramp",
+              "n": 1,
+              "spell": true
+            },
+            {
+              "op": "KnightMagic1118",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1,
+                  "spell": true
+                }
+              ],
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-130a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "64eccc1e9042d13516e6223d595d4ae4fb7650df7253cad73c8ef5ac5dfa06e5",
+        "facesMatched": true,
+        "imageSha256": "1efa1bef78d4e3561d48cd1c3b797c44b6f5be9abb0b66b42e96ec5ca3ef96ba",
+        "imageBytes": 190734
+      },
+      "sameNameProducts": [
+        "DMEX-17 20周年超感謝メモリアルパック 究極の章 デュエキングMAX"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-130",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex17-074",
+      "name": "魔光王機デ・バウラ伯 / 魔弾グローリー・ゲート",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-074",
+      "faces": [
+        {
+          "name": "魔光王機デ・バウラ伯",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが出た時、呪文を１枚、自分の墓地から手札に戻してもよい。",
+          "race": "グレートメカオー/ナイト",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "魔弾グローリー・ゲート",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の山札の上から３枚を表向きにする。その中からナイトを１枚手札に加え、残りを好きな順序で山札の下に置く。\nナイト・マジック（バトルゾーンに自分のナイトがあれば、この呪文の k 能力をもう一度使ってもよい）",
+          "race": "ナイト",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "spell": true
+            }
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "魔弾グローリー・ゲート",
+          "cost": 3,
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "race": "ナイト",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Look",
+              "n": 3,
+              "public": true,
+              "stages": [
+                {
+                  "to": "hand",
+                  "n": 1,
+                  "filter": {
+                    "race": "ナイト"
+                  },
+                  "spell": true
+                }
+              ],
+              "spell": true
+            },
+            {
+              "op": "KnightMagic1118",
+              "defs": [
+                {
+                  "op": "Look",
+                  "n": 3,
+                  "public": true,
+                  "stages": [
+                    {
+                      "to": "hand",
+                      "n": 1,
+                      "filter": {
+                        "race": "ナイト"
+                      },
+                      "spell": true
+                    }
+                  ],
+                  "spell": true
+                }
+              ],
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-074a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "1c8607e37dea0f02ccbab8948c063820b87ce791079820a71bdb0ed31c9b3f27",
+        "facesMatched": true,
+        "imageSha256": "5e2c00740a20f526e66cb77b1f8bbcd8da3361793a3f9977f065ff0ab15174c9",
+        "imageBytes": 170501
+      },
+      "sameNameProducts": [
+        "DMEX-17 20周年超感謝メモリアルパック 究極の章 デュエキングMAX"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-074",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex17-031",
+      "name": "魔光帝フェルナンドVII世 / 魔弾デュアル・ザンジバル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-031",
+      "faces": [
+        {
+          "name": "魔光帝フェルナンドVII世",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 11,
+          "costText": "11",
+          "abilityText": "このクリーチャーの召喚コストを、自分の墓地にある呪文１枚につき１少なくしてもよい。ただし、コストは０以下にはならない。\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーは、自分の墓地にある呪文１枚につき －1000される。\nW・ブレイカー",
+          "race": "デーモン・コマンド/ナイト",
+          "powerText": "11000",
+          "missingFields": []
+        },
+        {
+          "name": "魔弾デュアル・ザンジバル",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－2000する。\nナイト・マジック（バトルゾーンに自分のナイトがあれば、この呪文の k 能力をもう一度使ってもよい）",
+          "race": "ナイト",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g86Fernando": true,
+        "spellFace": {
+          "type": "spell",
+          "name": "魔弾デュアル・ザンジバル",
+          "cost": 4,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "ナイト",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "power": -2000,
+              "spell": true
+            },
+            {
+              "op": "KnightMagic1118",
+              "defs": [
+                {
+                  "op": "Target",
+                  "power": -2000,
+                  "spell": true
+                }
+              ],
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-031a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "cc3e42744ee33929be2fd92e909bb9cdc2c1a8ceea485a09fa456d6473601b90",
+        "facesMatched": true,
+        "imageSha256": "ed629764954f498c19d722564180beda6a6505e771fa5d8a7196ad13d015abad",
+        "imageBytes": 180886
+      },
+      "sameNameProducts": [
+        "DMEX-17 20周年超感謝メモリアルパック 究極の章 デュエキングMAX"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-031",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22ex1-038": 4,
+      "dmex15-b006": 4,
+      "dmex17-130": 4,
+      "dmex17-074": 4,
+      "dmex17-031": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/33716/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33716/",
+      "sha256": "0e3296031e1dfb8ceec8afade9c5962b09b58597abcfa218c51dc2bac129a205",
+      "result": "S・トリガーの付与や使用可能な面は条件を満たす片面だけに適用する。"
+    }
+  ]
+}

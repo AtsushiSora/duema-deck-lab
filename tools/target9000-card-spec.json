@@ -9826,5 +9826,361 @@
         ]
       }
     }
+  },
+  "dm22ex1-038": {
+    "phase": 1521,
+    "faces": [
+      {
+        "name": "アクア・スペルブルー",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、自分の山札をシャッフルし、その後、上から１枚目を表向きにする。そのカードが呪文なら、コストを支払わずに唱えてもよい。呪文でなければ、手札に加える。",
+        "race": "リキッド・ピープル/ハンター",
+        "powerText": "2000",
+        "missingFields": []
+      },
+      {
+        "name": "インビンシブル・オーラ",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 13,
+        "costText": "13",
+        "abilityText": "自分の山札の上から３枚まで、シールド化する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Shuffle405"
+        },
+        {
+          "op": "LookSpell841",
+          "g878SpellBlue": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "インビンシブル・オーラ",
+        "cost": 13,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "g156Role": "aura",
+        "effect": "champion",
+        "g61Effect": "InvAura"
+      }
+    }
+  },
+  "dmex15-b006": {
+    "phase": 1521,
+    "faces": [
+      {
+        "name": "ボルシャック・NEX",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "W・ブレイカー\nこのクリーチャーが出た時、自分の山札を見る。その中から、名前に《ルピア》とあるカードを１枚出してもよい。その後、山札をシャッフルする。\nこのクリーチャーは、自分の墓地にあるファイアー・バード１体につき「パワーアタッカー+1000」を得る。",
+        "race": "アーマード・ドラゴン",
+        "powerText": "6000",
+        "missingFields": []
+      },
+      {
+        "name": "スーパー・スパーク",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーをすべてタップする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "champion",
+      "g80Effect": "Nex",
+      "g80Nex": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "スーパー・スパーク",
+        "cost": 5,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "TapAll",
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmex17-130": {
+    "phase": 1521,
+    "faces": [
+      {
+        "name": "爆獣パンダ・ブーリン",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "このクリーチャーの召喚コストを、自分のマナゾーンにある呪文１枚につき１少なくしてもよい。ただし、コストは０以下にはならない。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+        "race": "ドリームメイト/ナイト",
+        "powerText": "6000",
+        "missingFields": []
+      },
+      {
+        "name": "魔弾パンダフル・ライフ",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "自分の山札の上から１枚目をマナゾーンに置く。\nナイト・マジック（バトルゾーンに自分のナイトがあれば、この呪文の k 能力をもう一度使ってもよい）",
+        "race": "ナイト",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g212CountDiscount": {
+        "zone": "mana",
+        "filter": {
+          "spell": true
+        },
+        "amount": 1,
+        "optional": true
+      },
+      "breaker": 2,
+      "spellFace": {
+        "type": "spell",
+        "name": "魔弾パンダフル・ライフ",
+        "cost": 4,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "ナイト",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "spell": true
+          },
+          {
+            "op": "KnightMagic1118",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1,
+                "spell": true
+              }
+            ],
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmex17-074": {
+    "phase": 1521,
+    "faces": [
+      {
+        "name": "魔光王機デ・バウラ伯",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが出た時、呪文を１枚、自分の墓地から手札に戻してもよい。",
+        "race": "グレートメカオー/ナイト",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "魔弾グローリー・ゲート",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の山札の上から３枚を表向きにする。その中からナイトを１枚手札に加え、残りを好きな順序で山札の下に置く。\nナイト・マジック（バトルゾーンに自分のナイトがあれば、この呪文の k 能力をもう一度使ってもよい）",
+        "race": "ナイト",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noPlayerAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "spell": true
+          }
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "魔弾グローリー・ゲート",
+        "cost": 3,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "ナイト",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "stages": [
+              {
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "race": "ナイト"
+                },
+                "spell": true
+              }
+            ],
+            "spell": true
+          },
+          {
+            "op": "KnightMagic1118",
+            "defs": [
+              {
+                "op": "Look",
+                "n": 3,
+                "public": true,
+                "stages": [
+                  {
+                    "to": "hand",
+                    "n": 1,
+                    "filter": {
+                      "race": "ナイト"
+                    },
+                    "spell": true
+                  }
+                ],
+                "spell": true
+              }
+            ],
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmex17-031": {
+    "phase": 1521,
+    "faces": [
+      {
+        "name": "魔光帝フェルナンドVII世",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 11,
+        "costText": "11",
+        "abilityText": "このクリーチャーの召喚コストを、自分の墓地にある呪文１枚につき１少なくしてもよい。ただし、コストは０以下にはならない。\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーは、自分の墓地にある呪文１枚につき －1000される。\nW・ブレイカー",
+        "race": "デーモン・コマンド/ナイト",
+        "powerText": "11000",
+        "missingFields": []
+      },
+      {
+        "name": "魔弾デュアル・ザンジバル",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－2000する。\nナイト・マジック（バトルゾーンに自分のナイトがあれば、この呪文の k 能力をもう一度使ってもよい）",
+        "race": "ナイト",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g86Fernando": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "魔弾デュアル・ザンジバル",
+        "cost": 4,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "ナイト",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -2000,
+            "spell": true
+          },
+          {
+            "op": "KnightMagic1118",
+            "defs": [
+              {
+                "op": "Target",
+                "power": -2000,
+                "spell": true
+              }
+            ],
+            "spell": true
+          }
+        ]
+      }
+    }
   }
 }

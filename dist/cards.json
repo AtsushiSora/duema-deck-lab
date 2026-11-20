@@ -272796,15 +272796,286 @@
       },
       "supportBatch": "phase-1520",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-038",
+      "name": "アクア・スペルブルー / インビンシブル・オーラ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 2000,
+      "race": "リキッド・ピープル/ハンター",
+      "text": "S・トリガー S・トリガー\nこのクリーチャーが出た時、自分の山札をシャッフルし、その後、上から１枚目を表向きにする。そのカードが呪文なら、コストを支払わずに唱えてもよい。呪文でなければ、手札に加える。\n【呪文面】\n自分の山札の上から３枚まで、シールド化する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-038",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Shuffle405"
+        },
+        {
+          "op": "LookSpell841",
+          "g878SpellBlue": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "インビンシブル・オーラ",
+        "cost": 13,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "g156Role": "aura",
+        "effect": "champion",
+        "g61Effect": "InvAura"
+      },
+      "supportBatch": "phase-1521",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex15-b006",
+      "name": "ボルシャック・NEX / スーパー・スパーク",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アーマード・ドラゴン",
+      "text": "W・ブレイカー\nこのクリーチャーが出た時、自分の山札を見る。その中から、名前に《ルピア》とあるカードを１枚出してもよい。その後、山札をシャッフルする。\nこのクリーチャーは、自分の墓地にあるファイアー・バード１体につき「パワーアタッカー+1000」を得る。\n【呪文面】\nS・トリガー S・トリガー\n相手のクリーチャーをすべてタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b006",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "champion",
+      "g80Effect": "Nex",
+      "g80Nex": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "スーパー・スパーク",
+        "cost": 5,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "TapAll",
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1521",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex17-130",
+      "name": "爆獣パンダ・ブーリン / 魔弾パンダフル・ライフ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 6000,
+      "race": "ドリームメイト/ナイト",
+      "text": "このクリーチャーの召喚コストを、自分のマナゾーンにある呪文１枚につき１少なくしてもよい。ただし、コストは０以下にはならない。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n【呪文面】\n自分の山札の上から１枚目をマナゾーンに置く。\nナイト・マジック（バトルゾーンに自分のナイトがあれば、この呪文の k 能力をもう一度使ってもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-130",
+      "limit": 4,
+      "g212CountDiscount": {
+        "zone": "mana",
+        "filter": {
+          "spell": true
+        },
+        "amount": 1,
+        "optional": true
+      },
+      "breaker": 2,
+      "spellFace": {
+        "type": "spell",
+        "name": "魔弾パンダフル・ライフ",
+        "cost": 4,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "ナイト",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "spell": true
+          },
+          {
+            "op": "KnightMagic1118",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1,
+                "spell": true
+              }
+            ],
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1521",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex17-074",
+      "name": "魔光王機デ・バウラ伯 / 魔弾グローリー・ゲート",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "グレートメカオー/ナイト",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが出た時、呪文を１枚、自分の墓地から手札に戻してもよい。\n【呪文面】\n自分の山札の上から３枚を表向きにする。その中からナイトを１枚手札に加え、残りを好きな順序で山札の下に置く。\nナイト・マジック（バトルゾーンに自分のナイトがあれば、この呪文の k 能力をもう一度使ってもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-074",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "spell": true
+          }
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "魔弾グローリー・ゲート",
+        "cost": 3,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "ナイト",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "stages": [
+              {
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "race": "ナイト"
+                },
+                "spell": true
+              }
+            ],
+            "spell": true
+          },
+          {
+            "op": "KnightMagic1118",
+            "defs": [
+              {
+                "op": "Look",
+                "n": 3,
+                "public": true,
+                "stages": [
+                  {
+                    "to": "hand",
+                    "n": 1,
+                    "filter": {
+                      "race": "ナイト"
+                    },
+                    "spell": true
+                  }
+                ],
+                "spell": true
+              }
+            ],
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1521",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex17-031",
+      "name": "魔光帝フェルナンドVII世 / 魔弾デュアル・ザンジバル",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 11,
+      "power": 11000,
+      "race": "デーモン・コマンド/ナイト",
+      "text": "このクリーチャーの召喚コストを、自分の墓地にある呪文１枚につき１少なくしてもよい。ただし、コストは０以下にはならない。\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーは、自分の墓地にある呪文１枚につき －1000される。\nW・ブレイカー\n【呪文面】\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－2000する。\nナイト・マジック（バトルゾーンに自分のナイトがあれば、この呪文の k 能力をもう一度使ってもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-031",
+      "limit": 4,
+      "breaker": 2,
+      "g86Fernando": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "魔弾デュアル・ザンジバル",
+        "cost": 4,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "ナイト",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -2000,
+            "spell": true
+          },
+          {
+            "op": "KnightMagic1118",
+            "defs": [
+              {
+                "op": "Target",
+                "power": -2000,
+                "spell": true
+              }
+            ],
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1521",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1520,
+    "phase": 1521,
     "checkedAt": "2026-11-20",
-    "baseCount": 8698,
-    "newEffectCards": 3,
+    "baseCount": 8701,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8701,
+    "totalCount": 8706,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -297863,6 +298134,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 8698,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1520,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8698,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 8701,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
