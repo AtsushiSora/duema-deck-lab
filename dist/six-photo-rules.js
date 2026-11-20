@@ -6044,6 +6044,15 @@ export function createSixPhotoRules(api){
   else put(s,{...t,op:'g34_AuraReattach1353'});
   break;
  }
+ case'g34_AuraCountDraw1431':{
+  const host=own.battle.find(x=>!x.sealed&&api.isCreature(s,x)&&api.allLayers(x).some(y=>y.uid===t.host?.uid&&(y.incarnation||0)===t.host.incarnation));
+  const n=host?own.battle.filter(x=>card(x).type==='aura'&&x.auraTo1352?.uid===host.uid&&x.auraTo1352.incarnation===(host.incarnation||0)).length:0;
+  if(n)start(s,t,[{op:'Draw',n}]);break;
+ }
+ case'g34_SelfGraveMana1431':{
+  const y=own.grave.find(x=>x.uid===t.uid&&(x.incarnation||0)===(t.incarnation||0)&&(x.zoneSerial||0)===t.serial);
+  if(y)zoneMove(s,t.p,'grave',y.uid,'mana',t);break;
+ }
  case'g34_AuraGr1353':api.grSummon(s,t.p);break;
  case'g34_AuraFromGrave1354':{
   const rows=graveAuras1354(s,t);
@@ -9473,7 +9482,9 @@ export function createSixPhotoRules(api){
   })),
   g838SelfGrave:leaving.flatMap(({player,uid})=>{
   const x=s.players[player]?.battle.find(x=>x.uid===uid);
-  return x&&!x.sealed&&card(x).g838AnyGrave&&!api.ignored(s,x)?[key(x)]:[];
+  if(!x)return [];
+  const related=[x,...s.players[player].battle.filter(a=>a.auraTo1352?.uid===x.uid&&a.auraTo1352.incarnation===(x.incarnation||0))];
+  return related.filter(y=>!y.sealed&&card(y).g838AnyGrave&&!api.ignored(s,y)).map(key);
  }),leave320:s.players.flatMap((own,p)=>own.battle.map(x=>({p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:!x.sealed&&api.isCreature(s,x),race:effective(x,s).race,watch:!x.sealed&&!!effective(x,s).g320Jave}))),death303:s.players.flatMap((own,p)=>own.battle.map(x=>{const c=effective(x,s);return{p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:api.isCreature(s,x),race:c.race,name:c.name,colors:colors(c),
    ...(race(c,'ドリームメイト')?{deathNames960:battleNames676(s,x)}:{}),...(hasSoul(card(x),'E')?{g860EvilSoul:true}:{}),...(c.g303DeathWatch?.g862OtherSoul&&leaving.some(row=>row.player===p&&row.uid===x.uid)?{g862OnlySelf:true}:{}),...(c.g891OwnCreatureLeaves&&!x.sealed&&!api.ignored(s,x)?{leaveDraw891:c.g891OwnCreatureLeaves}:{}),
    ...(c.g965OtherOwnLeave?{g965OtherOwnLeave:true}:{}),
@@ -9502,7 +9513,7 @@ export function createSixPhotoRules(api){
   const queueBattle=(s,owner,source,defs,id=source.cardId)=>queue(s,owner,source,defs,id,owner);
   // An ability that sees its own move to the graveyard looks back only for its own card.
   const graveDefs=card(x).g838AnyGrave;
-  if(to==='grave'&&graveDefs&&(snapshot?.g838SelfGrave?.includes(key(x))??!api.ignored(s,x)))queueBattle(s,p,x,graveDefs);
+  if(to==='grave'&&graveDefs&&(snapshot?.g838SelfGrave?.includes(key(x))??!api.ignored(s,x)))queueBattle(s,p,x,graveDefs.map(d=>d.op==='SelfGraveMana1431'?{...d,serial:(x.zoneSerial||0)+1}:d));
   if(to==='grave'&&destroy){
    if(s.g1225Destroyed?.turn!==s.turn)s.g1225Destroyed={turn:s.turn,cards:[[],[]]};
    s.g1225Destroyed.cards[p].push({uid:x.uid,serial:(x.zoneSerial||0)+1});

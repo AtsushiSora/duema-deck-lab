@@ -14,7 +14,7 @@ import {createExtendedRules} from './extended-rules.js?v=0.722.1';
 import {createStrategicAI} from './strategic-ai.js?v=0.722.1';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.227';
-export const ENGINE_VERSION='0.602.8';
+export const ENGINE_VERSION='0.602.9';
 export const AI_VERSION='2.3.418';
 const EFFECTS=new Set(['champion','environment','recommended','sixPhoto','ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall','bounceBlockers','dragonRamp2','ramp2Return1','optionalRamp4Return2','purgeNonDragonMana','fightOptional','destroyWeakerLimitNextTurn','shieldTop1','deployMulticolor7','superheroSweep','destroyBattleCard3','destroyBattleCard2','jadowShield','vamBounce','goodEvil','aterModes','jaganRevive','reverseLock','urEvolve','muteLoot','tensaiLoot','graveRecycle','destroyMin','vtBounce','miradaCast','spellLock','miracleDraw','serpentModal','icicleModes','mirageModes','judgeDraw','maryRevive','darknessModes','fumiModes','brainSlash','charonReset','jennySacrifice','inspectDiscard','gospelRecover','dolsuzakuTurn','frozenCarnival','finalStop','oriotisJudge','nextSummonSpeed','tripleMode','sirenMana','courageMode','burningLoot','lastDragonFlame','destroy6000','masterGGGLoot','untapTwoMana','fairyDiscard6000','graveShuffle','permitManaSummon','wellkius','mikadoreo','sheva','rudolf','saiphogate','heavensGate','stargaze','bambooRamp','sharappu','fairyPower','takeback','hugePlan','shakoRecycle','naturalGo','herculesRecycle','jurassicHowl','corenReveal','plantRamp','sonicMana','jumboReveal','granRamp','kiyonagaReveal','gohaten','zenonRamp','wiseShutter','dokiBounce','minogamiRecover','hazardPact','fortress','casablancaBounce','sheketDraw','petrovaProtect','bojiMill','dranEntry','goldShield','c0braRevive','mechaDraw','ameliaShield','mechaMinus','goryuShield','magicNapo','magicSmallDestroy','magicIgnore','magicNumberLock','magicFire','magicKaraku','magicHime','magicBounce','magicPeecap','magicDraw','armoredBaku','armoredValkyria','armoredVal','armoredMonster','hunterMekraid','hunterBambi','hunterSweep4','hunterSweep2','hunterVictory','hunterMana','hunterDraw','zardCast','dogiRamp','dolfSweep','damdRemove','fiveModes','dragonSign','aquaReveal','bossDeploy','dedoAllocate','fireAllocate','fairyMiracle','babaBottom','cycleEntry','jaougaShields','katsuLook','reverseMinus','jaoumon','fortuneRamp','giantHeavy','giantLake','giantTouch','giantYuki','giantSpace','giantSineraria','giantFirefly','gachiRobo','gachiCambiare','gachiFight','gachiMystery','gachiNicol','gachiBigBang','gachiMagrul','gachiRice','gachiGuignol','samuraiBui','samuraiMusashi','samuraiMekraid','samuraiFlash','lionelPeace','lionelRune','lionelHeart','lionelSlotton','lionelAQ','lionelKorail','lionelGera','lionelSong','lionelStar','kenjiCrymax','kenjiDida','kenjiMill','kenjiPlan','kenjiHeart','travelJourney','travelAfro','travelKatsura','travelPrison','travelRevZero','travelG3','travelZero','travelHelt','travelOra','travelChicken','graveGT','graveObuza','graveKaibyaku','graveUra','graveAbaku','graveLoot','graveDoor','graveMinus4','maruruOrugate','maruruKiinary','maruruWatch','maruruBunker','maruruSky','girlsDaiou','girlsSavak','girlsZeos','girlsTry','girlsMega','girlsGyai','girlsArshu','girlsRupia','madoNothing','madoAirvo','madoBarred','madoGon','madoBlood','madoBock','madoCombat','madoDollar','madoDraw','madoShuno','madoGokusatsu','madoGyap','redBlack','redMax','redRoyal','redCircle','redClock','redGareck','abyssJaga','abyssSis','abyssMurder','abyssMakua','abyssMill','abyssMek','abyssSeal','abyssBella','hachiRedZ','hachiStorm','hachiFight','hachiForbidden','hachiShibire','hachiPower','hachiSSD','virideEver','golgyEntry','golgyKohaku','golgyBig','golgyShield','golgyHerc','golgyWest','golgyGin','golgyBlueprint','golgyJasmine','bandeRadio','bandePizza','bandeDecision','bandeDagra','bandeBalance','bandeSeal','bandeTaka','madoZadan','madoMaou','madoNameless','madoJaw','madoGride','madoFunz','madoVoga','madoLab','madoTin','bolBaro','bolBT','bolAgony','bolLoot','bolMol','bolLand','bolJura','bolDuel','bolBird','phoenixFel','phoenixGate','phoenixMetal','phoenixReverse','phoenixRecover','phoenixXeno','phoenixLoot','phoenixAbu','phoenixHeavy','phoenixOriginalMetal','phoenixMill','phoenixReload','phoenixOni','kenjiMysteryCube','kenjiCocoon','kenjiPanda','kenjiJaouga8','shieldDogi','shieldResolve','shieldBounce','shieldD4','shieldMirror','shieldMirrorSpell','shieldParfe','shieldDeka','shieldFaceTop']);
 let catalogue=new Map();
@@ -230,6 +230,16 @@ function attachedAuras1352(s,p,host){
  if(!own.hasAuras1352)return [];
  return own.battle.filter(a=>a.auraTo1352?.uid===host.uid&&
   a.auraTo1352.incarnation===(host.incarnation||0)&&card(a.cardId).type==='aura');
+}
+function auraCost1431(s,p,c){
+ const result={tax:0,reduction:0};
+ for(const [owner,own] of s.players.entries())for(const x of own.battle){
+  const d=card(x);
+  if(d.type!=='aura'||!x.auraTo1352||!auraHost1352(s,owner,x.auraTo1352)||abilitiesIgnored(s,x))continue;
+  if(c.type==='spell'&&owner!==p)result.tax+=d.g1431AuraSpellTax||0;
+  if(c.type==='aura'&&owner===p)result.reduction+=d.g1431AuraReduction||0;
+ }
+ return result;
 }
 function auraTargets1352(s,p){
  return s.players[p].battle.filter(x=>!x.sealed&&!x.faceDown&&card(x).gr&&isCreature(s,x));
@@ -2870,7 +2880,7 @@ function baseSummonCost297(s,p,c){
  if(tunePayment1411(s,p,c,effectiveCard,costValue))return 8+buzzAdditional1411(c);
  const handTax=(c.summonOrigin||'hand')==='hand'?(c.g653HandSummonTax||0):0;
  const handCountTax=c.g1136HandTax?s.players[p].hand.filter(x=>x.uid!==c.executionUid).length:0;
- const tax=extra.spellTax(s,p,c)+handTax+handCountTax+buzzAdditional1411(c);
+ const tax=auraCost1431(s,p,c).tax+extra.spellTax(s,p,c)+handTax+handCountTax+buzzAdditional1411(c);
  if(s.players[1-p].battle.some(x=>effectiveCard(x,s).noCostReduction))return costValue(c)+tax;
  if(c.crossing)return Math.max(1,costValue(c)-extra.samuraiDiscount(s,p,c)-(c.g933CrossReduction||0));
  const reduce=c.type==='creature'&&((c.costReduction==='opponentMulticolorMana3'&&s.players[1-p].mana.some(x=>manaColors(card(x),s,p).length>1))||(c.costReduction==='ownFourDragonsMana3'&&s.players[p].mana.filter(x=>isDragon(card(x))).length>=4)||(c.costReduction==='ownFiveLightFireMana3'&&s.players[p].mana.filter(x=>manaColors(card(x),s,p).some(v=>v==='光'||v==='火')).length>=5));
@@ -2894,7 +2904,7 @@ function baseSummonCost297(s,p,c){
  const turnUntap=s.g1285StartUntap;
  const startUntapReduction=c.g1285StartUntapReduction&&turnUntap?.turn===s.turn&&turnUntap.player===p
   ?Math.min(turnUntap.count,Math.max(0,base-2)):0;
- const laterReduction=startUntapReduction+(c.g1269Reduction||0)+(c.g1240DiscardPaid||0)+baseDiscount+soulShift+dddReduction+extra.six.sympathyDiscount211(s,p,c)+extra.six.countDiscount212(s,p,c)+extra.six.conditionalDiscount261(s,p,c)+extra.utilityControl.firstSpellDiscount(s,p,c)+aura.amount+extra.six.firstSummonDiscount463(s,p,c)+once.summon+extra.six.spellDiscount467(s,p,c)+extra.six.useDiscount468(s,p,c)+extra.six.revealDiscount470(s,p,c)+extra.six.untapDiscount472(s,p,c);
+ const laterReduction=auraCost1431(s,p,c).reduction+startUntapReduction+(c.g1269Reduction||0)+(c.g1240DiscardPaid||0)+baseDiscount+soulShift+dddReduction+extra.six.sympathyDiscount211(s,p,c)+extra.six.countDiscount212(s,p,c)+extra.six.conditionalDiscount261(s,p,c)+extra.utilityControl.firstSpellDiscount(s,p,c)+aura.amount+extra.six.firstSummonDiscount463(s,p,c)+once.summon+extra.six.spellDiscount467(s,p,c)+extra.six.useDiscount468(s,p,c)+extra.six.revealDiscount470(s,p,c)+extra.six.untapDiscount472(s,p,c);
  const applyExecutionReduction=total=>total>1?Math.max(1,total-once.execution):total;
  // A printed zero costs nothing until a reduction with a positive minimum applies (QA40378).
  if(costValue(c)===0&&base===0&&beforeMinimum===0&&laterReduction===0&&!gearDiscount)return 0;
@@ -3415,7 +3425,7 @@ function attachAura1352(s,p,aura,host,origin,options={}){
  if(!alreadyAttached){extra.six.rokka1372(s,p,options.paidMana);extra.entry(s,p,aura,{selfMuted:false,allEntryMuted:false,origin});}
  if(c.g1421AuraAttach&&!abilitiesIgnored(s,aura))
   enqueueEffect(s,p,{uid:aura.uid,incarnation:aura.incarnation,source:c.id,effect:'extended',
-   task:extra.task('g34_Sequence',p,c.id,{uid:aura.uid,incarnation:aura.incarnation,defs:c.g1421AuraAttach})});
+   task:extra.task('g34_Sequence',p,c.id,{uid:aura.uid,incarnation:aura.incarnation,defs:c.g1421AuraAttach.map(d=>d.op==='AuraCountDraw1431'?{...d,host:{...aura.auraTo1352}}:d)})});
  if(c.g1362AuraBounce&&!abilitiesIgnored(s,aura))
   enqueueEffect(s,p,{uid:aura.uid,incarnation:aura.incarnation,source:c.id,effect:'extended',
    task:extra.task('g34_Target',p,c.id,{anyOwner:true,to:'hand',toOwnerHand:true,optional:true,
