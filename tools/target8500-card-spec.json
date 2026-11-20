@@ -15256,5 +15256,189 @@
         ]
       }
     }
+  },
+  "dmr14-026": {
+    "phase": 1462,
+    "faces": [
+      {
+        "name": "ニンジシ・チクボーン",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "自分のドラグハートをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-3000される。（パワー０以下のクリーチャーは破壊される）",
+        "race": "ファンキー・ナイトメア",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g250EntryDraw": {
+        "self": false,
+        "filter": {
+          "g1451Dragheart": true
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "power": -3000,
+            "g242PowerMinus": true
+          }
+        ]
+      }
+    }
+  },
+  "dmx11-036": {
+    "phase": 1462,
+    "faces": [
+      {
+        "name": "真実の名 オレコソ・フォックスター",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、名前に《ヘブンズ》とある呪文を１枚、コストを支払わずに自分の手札から唱えてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "エンジェル・コマンド/アンノウン",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "spellOnly": true,
+          "g985FaceNameIncludes": "ヘブンズ"
+        }
+      ]
+    }
+  },
+  "dmd26-003": {
+    "phase": 1462,
+    "faces": [
+      {
+        "name": "オメガ・ゴライアスδ",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "このクリーチャーを自分のマナゾーンから召喚してもよい。oS このクリーチャーのパワーを+5000し、「W・ブレイカー」を与える。\nサバイバー（自分のサバイバーはすべて、上のoS 能力を持つ）",
+        "race": "ジャイアント・インセクト/サバイバー",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "manaSummon": true,
+      "g406OwnPower": 5000,
+      "breaker": 2,
+      "g406Survivor": {
+        "power": 5000,
+        "breaker": 2
+      }
+    }
+  },
+  "promoy1-022": {
+    "phase": 1462,
+    "faces": [
+      {
+        "name": "シェル・ブリゲードγ",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "oS このクリーチャーが攻撃するとき、自分の山札の上から１枚目を表向きにする。そのカードがサバイバーであれば自分の手札に加え、サバイバーでなければ自分の墓地に置く。 サバイバー（このクリーチャーがバトルゾーンにある間、自分の他のサバイバーも上のoS 能力を得る）",
+        "race": "コロニー・ビートル/サバイバー",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g34Attack": [
+        {
+          "op": "RevealTop514",
+          "filter": {
+            "race": "サバイバー"
+          },
+          "to": "hand",
+          "elseTo": "grave"
+        }
+      ],
+      "g406Survivor": {
+        "g34Attack": [
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "race": "サバイバー"
+            },
+            "to": "hand",
+            "elseTo": "grave"
+          }
+        ]
+      }
+    }
+  },
+  "dmd26-001": {
+    "phase": 1462,
+    "faces": [
+      {
+        "name": "雲上の精霊オービスγ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "ブロッカーブロッカー\nW・ブレイカーoS このクリーチャーがバトルゾーンに出た時、相手のアンタップしているクリーチャーを１体選び、タップする。そのクリーチャーは、次の相手のターンのはじめにアンタップしない。\nサバイバー（自分のサバイバーはすべて、上のoS 能力を持つ）",
+        "race": "エンジェル・コマンド/サバイバー",
+        "powerText": "7500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "filter": {
+            "untapped": true
+          },
+          "tap": true,
+          "lock": true,
+          "g210TapLock": true
+        }
+      ],
+      "g406Survivor": {
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "filter": {
+              "untapped": true
+            },
+            "tap": true,
+            "lock": true,
+            "g210TapLock": true
+          }
+        ]
+      }
+    }
   }
 }

@@ -262742,15 +262742,184 @@
       },
       "supportBatch": "phase-1461",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-026",
+      "name": "ニンジシ・チクボーン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ファンキー・ナイトメア",
+      "text": "自分のドラグハートをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-3000される。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-026",
+      "limit": 4,
+      "g250EntryDraw": {
+        "self": false,
+        "filter": {
+          "g1451Dragheart": true
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "power": -3000,
+            "g242PowerMinus": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1462",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx11-036",
+      "name": "真実の名 オレコソ・フォックスター",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "エンジェル・コマンド/アンノウン",
+      "text": "このクリーチャーをバトルゾーンに出した時、名前に《ヘブンズ》とある呪文を１枚、コストを支払わずに自分の手札から唱えてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-036",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "spellOnly": true,
+          "g985FaceNameIncludes": "ヘブンズ"
+        }
+      ],
+      "supportBatch": "phase-1462",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd26-003",
+      "name": "オメガ・ゴライアスδ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 5000,
+      "race": "ジャイアント・インセクト/サバイバー",
+      "text": "このクリーチャーを自分のマナゾーンから召喚してもよい。oS このクリーチャーのパワーを+5000し、「W・ブレイカー」を与える。\nサバイバー（自分のサバイバーはすべて、上のoS 能力を持つ）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd26-003",
+      "limit": 4,
+      "manaSummon": true,
+      "g406OwnPower": 5000,
+      "breaker": 2,
+      "g406Survivor": {
+        "power": 5000,
+        "breaker": 2
+      },
+      "supportBatch": "phase-1462",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy1-022",
+      "name": "シェル・ブリゲードγ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "コロニー・ビートル/サバイバー",
+      "text": "oS このクリーチャーが攻撃するとき、自分の山札の上から１枚目を表向きにする。そのカードがサバイバーであれば自分の手札に加え、サバイバーでなければ自分の墓地に置く。 サバイバー（このクリーチャーがバトルゾーンにある間、自分の他のサバイバーも上のoS 能力を得る）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy1-022",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "RevealTop514",
+          "filter": {
+            "race": "サバイバー"
+          },
+          "to": "hand",
+          "elseTo": "grave"
+        }
+      ],
+      "g406Survivor": {
+        "g34Attack": [
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "race": "サバイバー"
+            },
+            "to": "hand",
+            "elseTo": "grave"
+          }
+        ]
+      },
+      "supportBatch": "phase-1462",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd26-001",
+      "name": "雲上の精霊オービスγ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7500,
+      "race": "エンジェル・コマンド/サバイバー",
+      "text": "ブロッカーブロッカー\nW・ブレイカーoS このクリーチャーがバトルゾーンに出た時、相手のアンタップしているクリーチャーを１体選び、タップする。そのクリーチャーは、次の相手のターンのはじめにアンタップしない。\nサバイバー（自分のサバイバーはすべて、上のoS 能力を持つ）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd26-001",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "filter": {
+            "untapped": true
+          },
+          "tap": true,
+          "lock": true,
+          "g210TapLock": true
+        }
+      ],
+      "g406Survivor": {
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "filter": {
+              "untapped": true
+            },
+            "tap": true,
+            "lock": true,
+            "g210TapLock": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1462",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1461,
+    "phase": 1462,
     "checkedAt": "2026-11-20",
-    "baseCount": 8452,
+    "baseCount": 8457,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8457,
+    "totalCount": 8462,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -286983,6 +287152,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 8452,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1461,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8452,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8457,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
