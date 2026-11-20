@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2119,
+    "クリーチャー": 2117,
     "NEOクリーチャー": 69,
     "呪文": 452,
     "GRクリーチャー": 155,
@@ -224,7 +224,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1057,
-    "未対応の能力文": 2517,
+    "未対応の能力文": 2515,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
@@ -491659,6 +491659,32 @@
           "duplicates": 0,
           "existingDefinitionsUnchangedFrom": "094ae4d9",
           "unchangedDefinitions": 8061
+        },
+        "audit": {
+          "command": "node tools/audit-card-support.mjs",
+          "status": "passed",
+          "supported": 8063,
+          "pending": 3762,
+          "readyForOfficialVerification": 0,
+          "dependencyBlocked": 0
+        },
+        "auditRegression": {
+          "passed": 124,
+          "failed": 0,
+          "skipped": 0,
+          "seconds": 21.8821215,
+          "log": "tmp/duema-phase-1365/audit-regression.log",
+          "coverage": "進捗の実データ件数と新しい置換、既存のマナ回収・任意展開・80枚対戦2件の保存復元"
+        },
+        "finalAuditCheck": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "tmp/duema-phase-1365/check-audit-final.log",
+          "supportedNamesAfter": 8063,
+          "duplicatesAfter": 0,
+          "remainingRegistered": 7,
+          "remainingPrints": 1,
+          "baseImplementationCommit": "b73da50a"
         }
       },
       "resolvedRegistered": [
@@ -491788,29 +491814,75 @@
       "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。"
     ],
     "restartSteps": [
-      "ローカルHEADと作業ツリー、ステージ済み差分、AGENTS.md、実行中のテストを確認する。dist/cards.jsonをnameKeyで再集計する。",
-      "remainingVerificationRunの結果を確認する。全カードの合法経路と登場時能力借用の完走を確認した。残る対戦・ワーカーを対戦相手・シード単位に分ける。",
-      "依存カードの実装と固有テストを続ける。長時間テストは進行中のログを読み、終了したケースの合否を集約して失敗を確認する。",
-      "残る金箔2版は公式IDと公式画像を照合する。全検証が通過し、Netlifyに影響しない公開経路を確認するまで、公開は保留する。"
+      "最新の正常な実装コミットは b73da50a (engine 0.597.0)。作業ツリーと既存プロセスを確認。",
+      "nameKeyの実データは8063種類・重複0。8,001停止条件により通常登録と automation PAUSED を維持。",
+      "phase1365は固有19・関連676・オンライン30・2対戦・保存復元2回・check・audit合格。",
+      "残る個別は登録済み7種類とドラン金箔再録1種類。詳細はpostThreshold.remainingRegisteredとremainingPrints。",
+      "次は選択者置換の共通処理を設計し、枚数指定/カード選択/効果発生源を分離して3件を実カードで検証。公式の不足2件は推測で完了しない。",
+      "一括npm testは実行しない。公開候補の全対象集約は未完了。Netlifyのmain連動を避ける公開手順が未確認のためpush・公開なし。"
     ],
     "registrationStatus": "ユーザーの指示で10分間隔のカード登録を再開。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [
       {
-        "cardId": "dmex12-052",
-        "dependencyIds": [
-          "dmex12-022"
-        ],
-        "test": "希望のジョー星と透明妖精リリンの登場順により、マナのスノーフェアリーの文明が変わる（QA 38608）",
-        "source": "https://dm.takaratomy.co.jp/rule/qa/38608/"
+        "cardId": "dm25ex2-082",
+        "dependencyIds": [],
+        "test": "ドラム・トレボールが参照する「ナイト・マジック」にキング・ナイト・マジックが含まれるかを確認する",
+        "source": [
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm30-047",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-083",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-082"
+        ]
       },
       {
-        "cardId": "dmex17-004",
+        "cardId": "dm23sd2-014",
         "dependencyIds": [
-          "dmex12-022"
+          "dm25ex4-SPR01"
         ],
-        "test": "希望のジョー星で無色になった山札のカードをアシッド・テクノが参照する（裁定変更のお知らせ31641）",
-        "source": "https://dm.takaratomy.co.jp/rule/rulechange/31641/"
+        "test": "メカのデュエリストであるシュタインも7r0yで手札に戻せる（QA 48142）",
+        "source": "https://dm.takaratomy.co.jp/rule/qa/48142/"
+      },
+      {
+        "cardId": "dm24rp2-S07",
+        "dependencyIds": [
+          "dmrp03-dg01"
+        ],
+        "test": "DG ～ヒトノ造リシモノ～自身のタップ時誘発が、攻撃時にも1回だけとなる（QA45139）。",
+        "source": "https://dm.takaratomy.co.jp/rule/qa/45139/"
+      },
+      {
+        "cardId": "dmsd13-019",
+        "dependencyIds": [
+          "dmrp22-003"
+        ],
+        "test": "相手の《「復活」の鬼 ヨミノ晴明R》でクリーチャーを選ぶプレイヤーが置き換わるときのJトルネード。類似のマスターJトルネード裁定QA44324を参照。",
+        "source": "https://dm.takaratomy.co.jp/rule/qa/44324/"
+      },
+      {
+        "cardId": "dmsd18-001",
+        "dependencyIds": [
+          "dmrp15-s10",
+          "dmrp22-003"
+        ],
+        "test": "邪風風邪の解決時に、ライジン天の置換で呪文を唱えた側に選択者が移っても、非多色呪文では相手のバロディアスを選べないことを確認する。",
+        "source": "https://dm.takaratomy.co.jp/rule/qa/39545/"
+      },
+      {
+        "cardId": "dm28-002",
+        "dependencyIds": [
+          "dmrp15-s10",
+          "dmrp22-003"
+        ],
+        "test": "ライジン天の選択者の置換とギャラクシーの離脱置換を実カードで再現する。",
+        "source": "https://dm.takaratomy.co.jp/rule/qa/34254/"
+      },
+      {
+        "cardId": "dm25sp2-012",
+        "dependencyIds": [
+          "dm26ex3-038"
+        ],
+        "test": "行くよー！アオハル、ハイチーズ！で帝王坂∞の攻撃時能力を使う時、呪文によって選ばれないガル・ラガンザークを対象にできず、選べる別のクリーチャーにはパワー−∞を適用する。",
+        "source": "https://dm.takaratomy.co.jp/rule/qa/49222/"
       }
     ],
     "printVerificationPending": [
@@ -539496,7 +539568,7 @@
           ]
         }
       ],
-      "latestTestCommit": "6e6ff1d2a190ed48c915168301e037a561bb594a",
+      "latestTestCommit": "b73da50a",
       "counts": {
         "supported": 8063,
         "pending": 3762,
@@ -540122,14 +540194,6 @@
           "name": "沈黙の守護者、シュタイン"
         },
         {
-          "id": "dmx12b-010",
-          "name": "デュエマの鬼！キクチ師範代"
-        },
-        {
-          "id": "dmx15-005",
-          "name": "禁術のカルマ カレイコ"
-        },
-        {
           "id": "dmrp03-dg01",
           "name": "DG 〜ヒトノ造リシモノ〜"
         },
@@ -540278,6 +540342,32 @@
             "duplicates": 0,
             "existingDefinitionsUnchangedFrom": "094ae4d9",
             "unchangedDefinitions": 8061
+          },
+          "audit": {
+            "command": "node tools/audit-card-support.mjs",
+            "status": "passed",
+            "supported": 8063,
+            "pending": 3762,
+            "readyForOfficialVerification": 0,
+            "dependencyBlocked": 0
+          },
+          "auditRegression": {
+            "passed": 124,
+            "failed": 0,
+            "skipped": 0,
+            "seconds": 21.8821215,
+            "log": "tmp/duema-phase-1365/audit-regression.log",
+            "coverage": "進捗の実データ件数と新しい置換、既存のマナ回収・任意展開・80枚対戦2件の保存復元"
+          },
+          "finalAuditCheck": {
+            "status": "passed",
+            "command": "npm run check",
+            "log": "tmp/duema-phase-1365/check-audit-final.log",
+            "supportedNamesAfter": 8063,
+            "duplicatesAfter": 0,
+            "remainingRegistered": 7,
+            "remainingPrints": 1,
+            "baseImplementationCommit": "b73da50a"
           }
         },
         "resolvedRegistered": [
@@ -542915,7 +543005,33 @@
           "40872",
           "31641"
         ],
-        "result": "初版と再録を同じ初版IDで扱う。殿堂レギュレーションでは0枚。両プレイヤーの全ゾーン、使用コスト、D2フィールド交代、後から適用される文明追加、コピー中の元の特性を検証。"
+        "result": "初版と再録を同じ初版IDで扱う。殿堂レギュレーションでは0枚。両プレイヤーの全ゾーン、使用コスト、D2フィールド交代、後から適用される文明追加、コピー中の元の特性を検証。",
+        "chooserFollowup1365": {
+          "checkedAt": "2026-11-20",
+          "state": "共通選択処理が未実装・未検証",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-s10",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-003",
+            "https://dm.takaratomy.co.jp/rule/qa/44324/",
+            "https://dm.takaratomy.co.jp/rule/qa/44320/",
+            "https://dm.takaratomy.co.jp/rule/qa/39545/",
+            "https://dm.takaratomy.co.jp/rule/qa/34254/",
+            "https://dm.takaratomy.co.jp/rule/qa/44587/"
+          ],
+          "findings": [
+            "ヨミノ晴明Rは全バトルゾーンのカード、ライジン天は鬼タイム時のクリーチャー選択を変更する。両者を同じ無条件置換としない。",
+            "任意枚数の指定は元のプレイヤー、実際のカードは置換後のプレイヤー。マスターJトルネードは指定枚数でコスト合計10以上を満たす。無月の門・絶はバトルと墓地の枚数も先に指定する。",
+            "置換後のプレイヤーに選ばれない保護や同期の妖精の強制選択を適用し、呪文発生源や離脱置換は元のまま保持する。",
+            "現行のextended-rules choiceはt.pを選択者に兼用し、Jトルネードは任意不使用とカード選択を同じ決定にまとめている。decision.playerの変更だけでは前述の裁定を網羅できない。"
+          ],
+          "paths": [
+            "dist/extended-rules.js#choice",
+            "dist/extended-rules.js#jayTornado",
+            "dist/engine.js#targets",
+            "dist/engine.js#choosingSpell996"
+          ],
+          "unchanged": "対象依存カードを部分対応として登録せず、3件は未検証のまま保持。"
+        }
       },
       "onlineBroad1361": {
         "status": "passed",
