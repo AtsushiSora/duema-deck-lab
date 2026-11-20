@@ -647,6 +647,8 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g1455FirstUnitAttack){const host=s.players[p].battle.find(x=>api.allLayers(x).some(y=>y.uid===sourceUid&&(sourceIncarnation===null||(y.incarnation||0)===sourceIncarnation)));if(!host||s.g481Attackers?.turn!==s.turn)return false;const refs=api.allLayers(host).map(key);return s.g481Attackers.events.filter(e=>e.p===p&&e.refs.some(r=>refs.includes(r))).length===1;}
+
   if(f.g1445HostAuras){const r=f.g1445HostAuras,host=s.players[p].battle.flatMap(y=>api.allLayers(y)).find(y=>y.uid===sourceUid&&(sourceIncarnation===null||(y.incarnation||0)===sourceIncarnation));if(!host)return false;const n=api.attachedAuras1352(s,p,host).length;return(r.min===undefined||n>=r.min)&&(r.max===undefined||n<=r.max);}
 
   if(f.g1179OpponentMoreHand)return s.players[1-p].hand.length>s.players[p].hand.length;

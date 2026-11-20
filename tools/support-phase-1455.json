@@ -1,0 +1,289 @@
+{
+  "phase": 1455,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8426,
+  "description": "既存の処理を用いて全能力を個別に検証し4種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp10-s08",
+      "name": "グッドルッキン・ブラボー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-s08",
+      "faces": [
+        {
+          "name": "グッドルッキン・ブラボー",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナドライブ４（火）：このクリーチャーが攻撃する時、自分のマナゾーンのカードが４枚以上で火文明があれば、このクリーチャーの各ターン最初の攻撃の終わりに、これをアンタップする。",
+          "race": "ビートジョッキー/ワンダフォース",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gr": true,
+        "manaValue": 0,
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "all": [
+                {
+                  "g334ZoneCount": {
+                    "zone": "mana",
+                    "min": 4
+                  }
+                },
+                {
+                  "g1064ManaColors": [
+                    "火"
+                  ]
+                },
+                {
+                  "g1455FirstUnitAttack": true
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "AfterAttack542",
+                "defs": [
+                  {
+                    "op": "Untap",
+                    "g191First": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp10-s08.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "9ad8f15d6c3263bb69e5b2a6223f31b52328598d7a4b5deb5e7decdc12dba2f7",
+        "facesMatched": true,
+        "imageSha256": "c4d1c67a03365caa7cb65be583dc09ee7705c18db8195fad038fb14e461db107",
+        "imageBytes": 155348
+      },
+      "sameNameProducts": [
+        "DMRP-21 王来MAX第1弾 鬼ヤバ逆襲S-MAX!!",
+        "DMRP-10 超天篇 拡張パック第2弾 青きC.A.P.と漆黒の大卍罪"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-s08",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex05-006",
+      "name": "パス・オクタン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex05-006",
+      "faces": [
+        {
+          "name": "パス・オクタン",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手のターン中、相手が自分の他のクリーチャーを選ぶ時、可能ならこのクリーチャーを選ぶ。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+          "race": "トリックス/ワンダフォース",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gr": true,
+        "manaValue": 0,
+        "g260Self": {
+          "turn": "opponent",
+          "filter": {
+            "g272ManaCount": 0
+          },
+          "grants": {
+            "forceTarget": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex05-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "f5d5fd622d8e6abf0d7078f9e6a0f0f2b0e073e92f290e8c4d9b096912c228a8",
+        "facesMatched": true,
+        "imageSha256": "bb2a5ffa750aa433e252a8b334aae73480a4f7558023228a1ec16597d6e93c7a",
+        "imageBytes": 142923
+      },
+      "sameNameProducts": [
+        "DMEX-05 100%新世界！超GRパック100"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex05-006",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmd28-016",
+      "name": "四極 キジトロン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd28-016",
+      "faces": [
+        {
+          "name": "四極 キジトロン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nマナ武装 ５：自分のマナゾーンに光のカードが５枚以上あれば、このクリーチャーの召喚コストを５少なくする。",
+          "race": "エンジェル・コマンド/侵略者",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g261Discount": {
+          "filter": {
+            "g267Mana": {
+              "color": "光",
+              "n": 5
+            }
+          },
+          "amount": 5
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd28-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "4650f52c5d67341cfce3fda59570e9c9763c532c32f59ecefa32909c0afb0093",
+        "facesMatched": true,
+        "imageSha256": "5f954ee688ea6ae34954a52722cfff657792f927978ed5dd473888147d26c90a",
+        "imageBytes": 119784
+      },
+      "sameNameProducts": [
+        "DMD-28 カスタム変形デッキ 革命VS侵略 龍極の光文明"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd28-016",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmr15-032",
+      "name": "成長の面 ナム＝アウェイキ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-032",
+      "faces": [
+        {
+          "name": "成長の面 ナム＝アウェイキ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナ武装 ３：このクリーチャーが攻撃する時、自分のマナゾーンに自然のカードが３枚以上あれば、自分の山札の上から１枚目をマナゾーンに置いてもよい。\nマナ武装 ５：このクリーチャーが破壊される時、自分のマナゾーンに自然のカードが５枚以上あれば、墓地に置くかわりに自分のマナゾーンに置いてもよい。",
+          "race": "ビーストフォーク號",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g267Mana": {
+                "color": "自然",
+                "n": 3
+              }
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "Ramp",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g267Mana": {
+              "color": "自然",
+              "n": 5
+            }
+          },
+          "grants": {
+            "destroyToMana": true,
+            "g575OptionalMana": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr15-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "5a9cf9180decab8fea01e54021bd1d355932b27da4c38da4038afb3a6ef19d3d",
+        "facesMatched": true,
+        "imageSha256": "e8bf4091e90aeb536365387841736b44496b907f16e018635a6805a0aa15d340",
+        "imageBytes": 140910
+      },
+      "sameNameProducts": [
+        "DMX-22 革命 超ブラック・ボックス・パック",
+        "DMR-15 ドラゴン・サーガ 拡張パック第３章 双剣オウギンガ"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-032",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp10-s08": 4,
+      "dmex05-006": 4,
+      "dmd28-016": 4,
+      "dmr15-032": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    }
+  ],
+  "testCorrections": [
+    "パス・オクタンの継続的な選択強制は既存forceTargetを使用し、旧式単体・複数対象効果も共通の選択強制判定を使うよう修正。初回focused85/86から再検証。"
+  ]
+}

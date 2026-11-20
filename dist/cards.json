@@ -238061,7 +238061,7 @@
           "g565External": true,
           "g1058FollowUnit": true,
           "grant": {
-            "g1258ForceTarget": true
+            "forceTarget": true
           }
         }
       ],
@@ -261537,15 +261537,177 @@
       },
       "supportBatch": "phase-1454",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-s08",
+      "name": "グッドルッキン・ブラボー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ビートジョッキー/ワンダフォース",
+      "text": "マナドライブ４（火）：このクリーチャーが攻撃する時、自分のマナゾーンのカードが４枚以上で火文明があれば、このクリーチャーの各ターン最初の攻撃の終わりに、これをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-s08",
+      "limit": 4,
+      "gr": true,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 4
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "火"
+                ]
+              },
+              {
+                "g1455FirstUnitAttack": true
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "AfterAttack542",
+              "defs": [
+                {
+                  "op": "Untap",
+                  "g191First": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1455",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex05-006",
+      "name": "パス・オクタン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "トリックス/ワンダフォース",
+      "text": "相手のターン中、相手が自分の他のクリーチャーを選ぶ時、可能ならこのクリーチャーを選ぶ。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex05-006",
+      "limit": 4,
+      "gr": true,
+      "g260Self": {
+        "turn": "opponent",
+        "filter": {
+          "g272ManaCount": 0
+        },
+        "grants": {
+          "forceTarget": true
+        }
+      },
+      "supportBatch": "phase-1455",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd28-016",
+      "name": "四極 キジトロン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 9000,
+      "race": "エンジェル・コマンド/侵略者",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nマナ武装 ５：自分のマナゾーンに光のカードが５枚以上あれば、このクリーチャーの召喚コストを５少なくする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd28-016",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g261Discount": {
+        "filter": {
+          "g267Mana": {
+            "color": "光",
+            "n": 5
+          }
+        },
+        "amount": 5
+      },
+      "supportBatch": "phase-1455",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr15-032",
+      "name": "成長の面 ナム＝アウェイキ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ビーストフォーク號",
+      "text": "マナ武装 ３：このクリーチャーが攻撃する時、自分のマナゾーンに自然のカードが３枚以上あれば、自分の山札の上から１枚目をマナゾーンに置いてもよい。\nマナ武装 ５：このクリーチャーが破壊される時、自分のマナゾーンに自然のカードが５枚以上あれば、墓地に置くかわりに自分のマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-032",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g267Mana": {
+              "color": "自然",
+              "n": 3
+            }
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g267Mana": {
+            "color": "自然",
+            "n": 5
+          }
+        },
+        "grants": {
+          "destroyToMana": true,
+          "g575OptionalMana": true
+        }
+      },
+      "supportBatch": "phase-1455",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1454,
+    "phase": 1455,
     "checkedAt": "2026-11-20",
-    "baseCount": 8423,
-    "newEffectCards": 3,
+    "baseCount": 8426,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 8426,
+    "totalCount": 8430,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -285680,6 +285842,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8423,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1454,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8423,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 8426,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

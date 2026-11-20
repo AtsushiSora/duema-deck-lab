@@ -13946,5 +13946,181 @@
         "minimum": 2
       }
     }
+  },
+  "dmrp10-s08": {
+    "phase": 1455,
+    "faces": [
+      {
+        "name": "グッドルッキン・ブラボー",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "マナドライブ４（火）：このクリーチャーが攻撃する時、自分のマナゾーンのカードが４枚以上で火文明があれば、このクリーチャーの各ターン最初の攻撃の終わりに、これをアンタップする。",
+        "race": "ビートジョッキー/ワンダフォース",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gr": true,
+      "manaValue": 0,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 4
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "火"
+                ]
+              },
+              {
+                "g1455FirstUnitAttack": true
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "AfterAttack542",
+              "defs": [
+                {
+                  "op": "Untap",
+                  "g191First": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmex05-006": {
+    "phase": 1455,
+    "faces": [
+      {
+        "name": "パス・オクタン",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "相手のターン中、相手が自分の他のクリーチャーを選ぶ時、可能ならこのクリーチャーを選ぶ。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "トリックス/ワンダフォース",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gr": true,
+      "manaValue": 0,
+      "g260Self": {
+        "turn": "opponent",
+        "filter": {
+          "g272ManaCount": 0
+        },
+        "grants": {
+          "forceTarget": true
+        }
+      }
+    }
+  },
+  "dmd28-016": {
+    "phase": 1455,
+    "faces": [
+      {
+        "name": "四極 キジトロン",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nマナ武装 ５：自分のマナゾーンに光のカードが５枚以上あれば、このクリーチャーの召喚コストを５少なくする。",
+        "race": "エンジェル・コマンド/侵略者",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g261Discount": {
+        "filter": {
+          "g267Mana": {
+            "color": "光",
+            "n": 5
+          }
+        },
+        "amount": 5
+      }
+    }
+  },
+  "dmr15-032": {
+    "phase": 1455,
+    "faces": [
+      {
+        "name": "成長の面 ナム＝アウェイキ",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "マナ武装 ３：このクリーチャーが攻撃する時、自分のマナゾーンに自然のカードが３枚以上あれば、自分の山札の上から１枚目をマナゾーンに置いてもよい。\nマナ武装 ５：このクリーチャーが破壊される時、自分のマナゾーンに自然のカードが５枚以上あれば、墓地に置くかわりに自分のマナゾーンに置いてもよい。",
+        "race": "ビーストフォーク號",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g267Mana": {
+              "color": "自然",
+              "n": 3
+            }
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g267Mana": {
+            "color": "自然",
+            "n": 5
+          }
+        },
+        "grants": {
+          "destroyToMana": true,
+          "g575OptionalMana": true
+        }
+      }
+    }
   }
 }
