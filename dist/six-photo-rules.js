@@ -2219,7 +2219,8 @@ export function createSixPhotoRules(api){
   const order=t.order||[s.active,1-s.active],selected=t.selected||[],index=t.index||0;
   if(index<order.length){
    const p=order[index],filter=t.origin==='battle'&&!t.element?{creature:true,...t.filter}:t.filter;
-   const rows=list(s,{...t,p,owner:'self',selected:[],g187OwnPick:true,filter});
+   if(t.g1519EachN&&selected.filter(r=>r.p===p).length>=t.g1519EachN){put(s,{...t,order,index:index+1});return;}
+   const rows=list(s,{...t,p,owner:'self',selected:t.g1519EachN?selected.filter(r=>r.p===p).map(r=>r.uid):[],g187OwnPick:true,filter});
    const next={...t,p,order,index,selected,effectPlayer:t.effectPlayer??t.p,controller:t.controller??t.p};
    if(!rows.length){put(s,{...next,index:index+1});return;}
    const title=t.element?'破壊する自分のエレメントを1つ選ぶ':
@@ -6742,7 +6743,7 @@ export function createSixPhotoRules(api){
   else if(t.to==='deck'&&t.order)finishBottomCycle460(s,t,t.selected);
   else finishCycle460(s,t,t.selected);
   break;
- case'g34_EachPlayer459':if(v)put(s,{...t,index:t.index+1,selected:[...t.selected,v]});break;
+ case'g34_EachPlayer459':if(v)put(s,{...t,index:t.index+(t.g1519EachN?0:1),selected:[...t.selected,v]});break;
  case'g34_SpaceCharge454':if(v)start(s,t,t.rules.flatMap((r,i)=>v.includes(i)?r.defs:[]));break;
  case'g34_ManaReveal449':{const c=card(t.source),y=own.hand.find(y=>y.uid===v);if(!y||new Set(faces(card(y)).flatMap(colors)).size<2||api.spellIgnored(s,c))break;api.log(s,t.p,'reveal',c.name+'で公開：'+card(y).name,{cardId:y.cardId});const mana=own.mana.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);if(mana&&api.untap(s,t.p,mana))api.log(s,t.p,'untapMana',c.name+'をアンタップ',{cardId:t.source});break;}
  case'g34_EntryCross728':{

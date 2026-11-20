@@ -1,0 +1,332 @@
+{
+  "phase": 1519,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8695,
+  "description": "既存の処理を用いて全能力を個別に検証し3種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "deferred": [
+    {
+      "id": "dmrp05-s09",
+      "name": "ハイパー・ギガタック / ギガタック・ハイパー・トラップ",
+      "reason": "公式QA31711が封印もマナへ置くと指定。既存Sweepはbattleのみでsealsを網羅しないため、全カード・封印の同時移動を実装する別バッチまで未登録。",
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31711/"
+    }
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/44384/",
+    "https://dm.takaratomy.co.jp/rule/qa/44385/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/44384/": "相手のクリーチャーが0体でも、効果を使えば1枚引ける。",
+    "https://dm.takaratomy.co.jp/rule/qa/44385/": "戻す処理とドローを一連の任意処理として選ぶ。戻して引かないことは選べない。"
+  },
+  "cards": [
+    {
+      "id": "dm22ex1-066",
+      "name": "キング・シビレアシダケ / インビンシブル・テクノロジー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-066",
+      "faces": [
+        {
+          "name": "キング・シビレアシダケ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の手札を好きな数、タップしてマナゾーンに置いてもよい。",
+          "race": "バルーン・マッシュルーム",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "インビンシブル・テクノロジー",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 13,
+          "costText": "13",
+          "abilityText": "自分の山札を見る。その中から好きな枚数を選び、相手に見せてから手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "mana",
+            "n": "all",
+            "optional": true,
+            "tapped": true,
+            "g182HandMana": true
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "インビンシブル・テクノロジー",
+          "cost": 13,
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Look",
+              "n": "all",
+              "g201Search": true,
+              "g200Search": true,
+              "rest": "shuffle",
+              "stages": [
+                {
+                  "n": "all",
+                  "to": "hand",
+                  "optional": true,
+                  "reveal": true
+                }
+              ],
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-066a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "69cf6a5be8df6fb23c6ec2450db396742feb254d055aac1dc2d25a930d38c64b",
+        "facesMatched": true,
+        "imageSha256": "a2a1f9fd1120112d2da056a77b5709b02d2da1b42aca3c9d9419a9e8e2d75860",
+        "imageBytes": 130311
+      },
+      "sameNameProducts": [
+        "DM23-BD6 エキサイティング・デュエパ・デッキ 「双極のアカシックZ計画」",
+        "DM22-EX1 黄金戦略!!デュエキングMAX 2022"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-066",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm23bd7-005",
+      "name": "衒影の悪魔龍 トゥルトゥル / 封じられた真言",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd7-005",
+      "faces": [
+        {
+          "name": "衒影の悪魔龍 トゥルトゥル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが出た時、相手１人につきクリーチャーを１体、自分の墓地から手札に戻す。",
+          "race": "デーモン・コマンド・ドラゴン/トゥルース",
+          "powerText": "7000",
+          "missingFields": []
+        },
+        {
+          "name": "封じられた真言",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\n各プレイヤーは自身のクリーチャーを２体選び、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "封じられた真言",
+          "cost": 7,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "trigger": true,
+          "g34Tasks": [
+            {
+              "op": "EachPlayer459",
+              "origin": "battle",
+              "to": "grave",
+              "g1519EachN": 2,
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd7-005a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "cdf4b9e8e4135bda32fd8dc5d58e8ff82baac6dcb3871f5d10c492c8cd05ffe5",
+        "facesMatched": true,
+        "imageSha256": "685221a075645e4204dd83b8148e24226daa7277d45f61917a71deeb7d86ddce",
+        "imageBytes": 161187
+      },
+      "sameNameProducts": [
+        "DM23-BD7 エキサイティング・デュエパ・デッキ 「ネゴシエートの偽衒学者」"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd7-005",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm23bd6-003",
+      "name": "アカシック・B / 「バブルの泡に溺れるのヨ！」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd6-003",
+      "faces": [
+        {
+          "name": "アカシック・B",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のクリーチャーは出たターン、自分や自分のクリーチャーを攻撃できない。",
+          "race": "マジック・コマンド/マーメイド",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "「バブルの泡に溺れるのヨ！」",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\n相手１人につき、その相手のクリーチャーを１体選んで手札に戻し、カードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "stopEntryAttack": true,
+        "spellFace": {
+          "type": "spell",
+          "name": "「バブルの泡に溺れるのヨ！」",
+          "cost": 7,
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "trigger": true,
+          "g34Tasks": [
+            {
+              "op": "Offer",
+              "title": "相手のクリーチャーを手札へ戻し、カードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "hand",
+                  "toOwnerHand": true,
+                  "spell": true
+                },
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "spell": true
+                }
+              ],
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd6-003a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "dc0a3b1f94680da60f29ae2dc76e844ed533bcff8e50434a70bcffbf34bc8e18",
+        "facesMatched": true,
+        "imageSha256": "5a47b24e3fea3f6443f9838d4930d6d36e06af9a19b28a8616943a5a20266cd9",
+        "imageBytes": 161432
+      },
+      "sameNameProducts": [
+        "DM23-BD6 エキサイティング・デュエパ・デッキ 「双極のアカシックZ計画」"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd6-003",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22ex1-066": 4,
+      "dm23bd7-005": 4,
+      "dm23bd6-003": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/44384/",
+    "https://dm.takaratomy.co.jp/rule/qa/44385/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/44384/",
+      "sha256": "d7f58bedbaac099069f94c6d4d645d84e2e98f38a1b6eaeb905f3f1550bd947c",
+      "result": "相手のクリーチャーが0体でも、効果を使えば1枚引ける。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/44385/",
+      "sha256": "a61c59889dad32a289f986d4ffd62f37d08035017d65d5ca0aaf0c5493ad9e1f",
+      "result": "戻す処理とドローを一連の任意処理として選ぶ。戻して引かないことは選べない。"
+    }
+  ]
+}

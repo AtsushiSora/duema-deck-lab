@@ -9422,5 +9422,218 @@
         ]
       }
     }
+  },
+  "dm22ex1-066": {
+    "phase": 1519,
+    "faces": [
+      {
+        "name": "キング・シビレアシダケ",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーが出た時、自分の手札を好きな数、タップしてマナゾーンに置いてもよい。",
+        "race": "バルーン・マッシュルーム",
+        "powerText": "2000",
+        "missingFields": []
+      },
+      {
+        "name": "インビンシブル・テクノロジー",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 13,
+        "costText": "13",
+        "abilityText": "自分の山札を見る。その中から好きな枚数を選び、相手に見せてから手札に加えてもよい。その後、山札をシャッフルする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "mana",
+          "n": "all",
+          "optional": true,
+          "tapped": true,
+          "g182HandMana": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "インビンシブル・テクノロジー",
+        "cost": 13,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": "all",
+            "g201Search": true,
+            "g200Search": true,
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": "all",
+                "to": "hand",
+                "optional": true,
+                "reveal": true
+              }
+            ],
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dm23bd7-005": {
+    "phase": 1519,
+    "faces": [
+      {
+        "name": "衒影の悪魔龍 トゥルトゥル",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "W・ブレイカー\nこのクリーチャーが出た時、相手１人につきクリーチャーを１体、自分の墓地から手札に戻す。",
+        "race": "デーモン・コマンド・ドラゴン/トゥルース",
+        "powerText": "7000",
+        "missingFields": []
+      },
+      {
+        "name": "封じられた真言",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "S・トリガー S・トリガー\n各プレイヤーは自身のクリーチャーを２体選び、破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "封じられた真言",
+        "cost": 7,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "EachPlayer459",
+            "origin": "battle",
+            "to": "grave",
+            "g1519EachN": 2,
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dm23bd6-003": {
+    "phase": 1519,
+    "faces": [
+      {
+        "name": "アカシック・B",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "相手のクリーチャーは出たターン、自分や自分のクリーチャーを攻撃できない。",
+        "race": "マジック・コマンド/マーメイド",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "「バブルの泡に溺れるのヨ！」",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "S・トリガー S・トリガー\n相手１人につき、その相手のクリーチャーを１体選んで手札に戻し、カードを１枚引いてもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "stopEntryAttack": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "「バブルの泡に溺れるのヨ！」",
+        "cost": 7,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "相手のクリーチャーを手札へ戻し、カードを1枚引く？",
+            "defs": [
+              {
+                "op": "Target",
+                "to": "hand",
+                "toOwnerHand": true,
+                "spell": true
+              },
+              {
+                "op": "Draw",
+                "n": 1,
+                "spell": true
+              }
+            ],
+            "spell": true
+          }
+        ]
+      }
+    }
   }
 }

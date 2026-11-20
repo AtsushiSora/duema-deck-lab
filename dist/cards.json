@@ -272494,15 +272494,177 @@
       },
       "supportBatch": "phase-1518",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-066",
+      "name": "キング・シビレアシダケ / インビンシブル・テクノロジー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "バルーン・マッシュルーム",
+      "text": "このクリーチャーが出た時、自分の手札を好きな数、タップしてマナゾーンに置いてもよい。\n【呪文面】\n自分の山札を見る。その中から好きな枚数を選び、相手に見せてから手札に加えてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-066",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "mana",
+          "n": "all",
+          "optional": true,
+          "tapped": true,
+          "g182HandMana": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "インビンシブル・テクノロジー",
+        "cost": 13,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": "all",
+            "g201Search": true,
+            "g200Search": true,
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": "all",
+                "to": "hand",
+                "optional": true,
+                "reveal": true
+              }
+            ],
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1519",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23bd7-005",
+      "name": "衒影の悪魔龍 トゥルトゥル / 封じられた真言",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "デーモン・コマンド・ドラゴン/トゥルース",
+      "text": "W・ブレイカー\nこのクリーチャーが出た時、相手１人につきクリーチャーを１体、自分の墓地から手札に戻す。\n【呪文面】\nS・トリガー S・トリガー\n各プレイヤーは自身のクリーチャーを２体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd7-005",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "封じられた真言",
+        "cost": 7,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "EachPlayer459",
+            "origin": "battle",
+            "to": "grave",
+            "g1519EachN": 2,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1519",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23bd6-003",
+      "name": "アカシック・B / 「バブルの泡に溺れるのヨ！」",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "マジック・コマンド/マーメイド",
+      "text": "相手のクリーチャーは出たターン、自分や自分のクリーチャーを攻撃できない。\n【呪文面】\nS・トリガー S・トリガー\n相手１人につき、その相手のクリーチャーを１体選んで手札に戻し、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd6-003",
+      "limit": 4,
+      "stopEntryAttack": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "「バブルの泡に溺れるのヨ！」",
+        "cost": 7,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "相手のクリーチャーを手札へ戻し、カードを1枚引く？",
+            "defs": [
+              {
+                "op": "Target",
+                "to": "hand",
+                "toOwnerHand": true,
+                "spell": true
+              },
+              {
+                "op": "Draw",
+                "n": 1,
+                "spell": true
+              }
+            ],
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1519",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1518,
+    "phase": 1519,
     "checkedAt": "2026-11-20",
-    "baseCount": 8692,
+    "baseCount": 8695,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 8695,
+    "totalCount": 8698,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -297533,6 +297695,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 8692,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1518,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8692,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 8695,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
