@@ -21,7 +21,7 @@ for(const row of m.cards){
  keys.add(nameKey(row.name));canonical.add(canonicalCardName(row.name));
 }
 assert.deepEqual(data.cards.slice(0,before.length),before);assert.equal(keys.size,before.length+m.cards.length);
-const old=data.supportExpansion;data.supportExpansion={phase:m.phase,checkedAt:m.checkedAt,baseCount:before.length,newEffectCards:m.cards.filter(x=>Object.keys(x.spec).some(k=>!['gr','manaValue'].includes(k))).length,newVanillaCards:m.cards.filter(x=>Object.keys(x.spec).every(k=>['gr','manaValue'].includes(k))).length,totalCount:data.cards.length,ruleSource:m.rules,next:['8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。'],history:[...(old.history||[]),Object.fromEntries(Object.entries(old).filter(([k])=>k!=='history'))]};
+const old=data.supportExpansion;data.supportExpansion={phase:m.phase,checkedAt:m.checkedAt,baseCount:before.length,newEffectCards:m.cards.filter(x=>Object.keys(x.spec).some(k=>!['gr','manaValue'].includes(k))).length,newVanillaCards:m.cards.filter(x=>Object.keys(x.spec).every(k=>['gr','manaValue'].includes(k))).length,totalCount:data.cards.length,ruleSource:m.rules,next:['9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。'],history:[...(old.history||[]),Object.fromEntries(Object.entries(old).filter(([k])=>k!=='history'))]};
 const file='dist/card-images.js',text=fs.readFileSync(file,'utf8'),images=JSON.parse(text.slice(text.indexOf('export const CARD_IMAGES=')+25).replace(/;\s*$/,''));
 for(const row of m.cards)images[row.id]=row.image;
 write('dist/cards.json',data);write('tools/image-reference-prints.json',refs);fs.writeFileSync(file,text.slice(0,text.indexOf('export const CARD_IMAGES='))+'export const CARD_IMAGES='+JSON.stringify(images,null,2)+';\n');

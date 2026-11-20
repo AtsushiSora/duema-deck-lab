@@ -6121,6 +6121,9 @@ export function createSixPhotoRules(api){
  case'g34_AuraHostGrant1460':{
   const host=api.auraHost1352(s,t.p,t.host);if(host)applyGrant(s,t,host);break;
  }
+ case'g34_AuraHostUntap1472':{
+  const host=api.auraHost1352(s,t.p,t.host);if(host)api.untap(s,t.p,host);break;
+ }
  case'g34_AuraGraveReturn1460':{
   for(const ref of t.auras||[]){const x=own.grave.find(x=>x.uid===ref.uid&&(x.zoneSerial||0)===ref.serial);if(x)zoneMove(s,t.p,'grave',x.uid,t.to,t);}break;
  }
