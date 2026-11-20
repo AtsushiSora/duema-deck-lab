@@ -493822,11 +493822,88 @@
       },
       "reason": "攻撃中の全タップで現在の攻撃が続くことを画面見出し・補足・ログに明示。ダイレクト結果に公開攻撃者名とカードへのリンクを追加。攻撃・勝敗判定は維持。",
       "remaining": "ブラウザの目視検証、公開候補全対象の集約と保留2件は未完了。公開なし。"
+    },
+    {
+      "phase": 1375,
+      "kind": "home-last-match-delete",
+      "checkedAt": "2026-11-20T13:09:06.565604+00:00",
+      "baseline": "8faa56f4d542615f98cd056736f2b27c9df4fa37",
+      "artifact": "tools/home-last-match-delete-1375.json",
+      "status": "passed-local-unpublished",
+      "before": 8074,
+      "supported": 8074,
+      "pending": 3751,
+      "added": [],
+      "duplicates": 0,
+      "totalTestsPassed": 47,
+      "results": {
+        "focused": {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/home-navigation.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 6.564,
+          "log": "tmp/duema-phase-1375/focused.log",
+          "passed": 31,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 18.688,
+          "log": "tmp/duema-phase-1375/check.log"
+        },
+        "related": {
+          "name": "related",
+          "command": [
+            "node",
+            "--test",
+            "tests/deck-history.test.mjs",
+            "tests/online-app.test.mjs",
+            "tests/display-preferences.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.16,
+          "log": "tmp/duema-phase-1375/related.log",
+          "passed": 16,
+          "failed": 0
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 14.881,
+          "log": "tmp/duema-phase-1375/audit.log"
+        }
+      },
+      "reason": [
+        "ホームの「前回の条件で対戦」の右側に独立した×ボタンを追加。44×44pxのタップ領域と削除目的のアクセシブル名を付与。",
+        "保存オブジェクトのlastMatchのみ削除して既存のpersistで保存。デッキ・戦績・大会・中断中の対戦を保持。次に対戦条件を記録すると案内を再表示。"
+      ],
+      "remaining": [
+        "全体npm testは過去の中断・合否未確認を維持。今回の47件を全体検証済みには数えない。",
+        "公式照合保留2件と、2アカウントでの友達対戦の実機確認は今回の対象外として既存記録を維持。"
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1374,
-    "nextPhase": 1375,
+    "lastVerifiedPhase": 1375,
+    "nextPhase": 1376,
     "workInProgress": null,
     "nextCandidates": [
       "通常登録停止と保留2件を維持する。追加はユーザー明示指定または検証依存のみ。",
@@ -493997,6 +494074,11 @@
       "commit": "0f28cee3d71613a49792080daa45bb9e18a2059b",
       "version": "0.722.0",
       "status": "published"
+    },
+    "latestHomeImprovement": {
+      "phase": 1375,
+      "artifact": "tools/home-last-match-delete-1375.json",
+      "status": "passed-local-unpublished"
     }
   },
   "registeredCardVerification": {

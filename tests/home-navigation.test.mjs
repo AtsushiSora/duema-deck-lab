@@ -137,3 +137,21 @@ test('an unfinished or failed improvement cannot rematch with the old cache and 
  await h.click('strongest-build');assert.equal(h.read('strongestJob.status'),'building');h.read("firstHandle.onmessage({data:{type:'done',build:battle.strongestCPU}})");assert.equal(h.read('strongestJob.status'),'building');assert.equal(h.read('strongestBuildFor(myDeck())'),null);
  h.read("const improved=buildStrongestCPU(strongestJob.target,PRESETS,battleCards,{learning:strongestJob.learning,previousBuild:strongestJob.previousBuild});workerHandle.onmessage({data:{type:'done',build:improved}})");assert.equal(h.read('strongestBuildFor(myDeck()).learningRevision'),1);assert.match(h.root.innerHTML,/data-action="strongest-start"/);
 });
+
+
+test('deleting the previous match persists only that removal and keeps decks, records, tournaments and unfinished games',async()=>{
+ const h=harness();h.read("saved.friends=[{...structuredClone(PRESETS[1]),id:'friend',name:'前回の相手'}];saved.history=[{id:'record',results:[]}];rememberMatchSetup(saved.decks[0],saved.friends[0]);battle={state:createGame([saved.decks[0],saved.friends[0]],{seed:4}),decks:structuredClone([saved.decks[0],saved.friends[0]])};saved.localTournament=createLocalTournament({id:'cup',deck:saved.decks[0],opponents:environmentDecks,size:4,seed:9});const retainedSaved=structuredClone(saved);delete retainedSaved.lastMatch;const gameBefore=JSON.stringify(battle);view='home';render()");
+ assert.match(h.root.innerHTML,/aria-label="前回の対戦条件を削除"/);
+ assert.match(h.root.innerHTML,/<\/button><button class="last-match-delete"/);
+ await h.click('delete-last-match');
+ assert.equal(h.dialog.open,false);assert.equal(h.read('view'),'home');
+ assert.equal(h.read('JSON.stringify(saved)===JSON.stringify(retainedSaved)'),true);
+ assert.equal(h.read('JSON.stringify(battle)===gameBefore'),true);
+ assert.deepEqual(h.writes.at(-1),JSON.parse(h.read('JSON.stringify(retainedSaved)')));
+ assert.doesNotMatch(h.root.innerHTML,/data-action="(?:last-match|delete-last-match)"/);
+ assert.match(h.root.innerHTML,/中断した対戦を再開/);assert.match(h.root.innerHTML,/トーナメントの続きから/);
+ h.read(`saved=JSON.parse(${JSON.stringify(JSON.stringify(h.writes.at(-1)))});render()`);
+ assert.doesNotMatch(h.root.innerHTML,/data-action="(?:last-match|delete-last-match)"/);
+ h.read('rememberMatchSetup(saved.decks[0],saved.friends[0]);render()');
+ await h.click('last-match');assert.match(h.dialog.innerHTML,/前回の相手/);
+});

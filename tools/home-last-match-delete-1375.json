@@ -1,0 +1,91 @@
+{
+  "phase": 1375,
+  "kind": "home-last-match-delete",
+  "checkedAt": "2026-11-20T13:09:06.565604+00:00",
+  "baseline": "8faa56f4d542615f98cd056736f2b27c9df4fa37",
+  "status": "passed-local-unpublished",
+  "changes": [
+    "ホームの「前回の条件で対戦」の右側に独立した×ボタンを追加。44×44pxのタップ領域と削除目的のアクセシブル名を付与。",
+    "保存オブジェクトのlastMatchのみ削除して既存のpersistで保存。デッキ・戦績・大会・中断中の対戦を保持。次に対戦条件を記録すると案内を再表示。"
+  ],
+  "cards": {
+    "beforeRows": 8074,
+    "beforeUniqueNames": 8074,
+    "afterRows": 8074,
+    "afterUniqueNames": 8074,
+    "normalizer": "dist/catalogue.js:nameKey",
+    "duplicates": 0,
+    "added": []
+  },
+  "results": {
+    "focused": {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/home-navigation.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 6.564,
+      "log": "tmp/duema-phase-1375/focused.log",
+      "passed": 31,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 18.688,
+      "log": "tmp/duema-phase-1375/check.log"
+    },
+    "related": {
+      "name": "related",
+      "command": [
+        "node",
+        "--test",
+        "tests/deck-history.test.mjs",
+        "tests/online-app.test.mjs",
+        "tests/display-preferences.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.16,
+      "log": "tmp/duema-phase-1375/related.log",
+      "passed": 16,
+      "failed": 0
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 14.881,
+      "log": "tmp/duema-phase-1375/audit.log"
+    }
+  },
+  "totalTestsPassed": 47,
+  "visualVerification": {
+    "status": "passed",
+    "method": "実際のrenderHome出力と本番CSSを375px幅iframeでChrome表示し、文字との重なりがなく独立した×が見えることを目視確認。削除・保存・再読込・再登録は実アプリのVM操作テストで確認。",
+    "scope": "ローカルのテストデータによる表示確認。公開ページ変更なし。"
+  },
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false,
+    "reason": "今回はUI実装依頼。新たな公開指示は受けていない。手動専用Netlify設定は維持。"
+  },
+  "remaining": [
+    "全体npm testは過去の中断・合否未確認を維持。今回の47件を全体検証済みには数えない。",
+    "公式照合保留2件と、2アカウントでの友達対戦の実機確認は今回の対象外として既存記録を維持。"
+  ]
+}
