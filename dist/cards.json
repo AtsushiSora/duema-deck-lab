@@ -262911,15 +262911,201 @@
       },
       "supportBatch": "phase-1462",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-078",
+      "name": "パラダイム・パラダイスLab.",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nクリーチャー１体またはオーラを１枚選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-078",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "element": true,
+          "to": "hand",
+          "filter": {
+            "any": [
+              {
+                "creature": true
+              },
+              {
+                "aura": true
+              }
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-1463",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-052",
+      "name": "カリー・ポッター",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "バトル中、自分のGRクリーチャーのパワーを+3000する。\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-052",
+      "limit": 4,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "g1428Gr": true
+          },
+          "grants": {
+            "g38BattleBonus": 3000
+          }
+        }
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "supportBatch": "phase-1463",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-098",
+      "name": "ソイソイミー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "このクリーチャーがバトルゾーンに出た時、バトルゾーンに自分のパワー4000以上のクリーチャーがあれば、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-098",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "minPower": 4000,
+            "g199Power": true
+          },
+          "defs": [
+            {
+              "op": "AuraGr1353"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1463",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-019",
+      "name": "ヘームル・エンジオン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "トリックス/ワンダフォース",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分の他のクリーチャーを１体、手札に戻してもよい。そうしたら、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-019",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "to": "hand",
+          "toOwnerHand": true,
+          "n": 1,
+          "optional": true,
+          "g179Other": true,
+          "g187OwnPick": true,
+          "filter": {
+            "creature": true
+          },
+          "afterBattleSelect": [
+            {
+              "op": "AuraGr1353"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1463",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd10-014",
+      "name": "音奏 シャンタン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "メタリカ/ワンダフォース",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分の他の光のクリーチャーを１体、タップしてもよい。そうしたら、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd10-014",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g179Other": true,
+          "optional": true,
+          "filter": {
+            "color": "光",
+            "untapped": true
+          },
+          "tap": true,
+          "g1044ImplicitTap": true,
+          "g587AfterSelection": true,
+          "g987AfterNewTap": true,
+          "after": [
+            {
+              "op": "AuraGr1353"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1463",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1462,
+    "phase": 1463,
     "checkedAt": "2026-11-20",
-    "baseCount": 8457,
+    "baseCount": 8462,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8462,
+    "totalCount": 8467,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -287166,6 +287352,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8457,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1462,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8457,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8462,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
