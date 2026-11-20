@@ -502433,7 +502433,65 @@
           "name": "超竜ザシャック",
           "reason": "公式全文のクルー・ブレイカーの各ターン最初のブレイク条件と現行の裁定の追加照合が必要。進化だけの部分実装は登録しない。"
         }
-      ]
+      ],
+      "postRegistrationValidation": {
+        "checkedAt": "2026-11-20T18:56:41.300Z",
+        "reason": "捨てる処理の置換相互作用を補い、修正後の全phase1456と既存バイケン関連テストを再検証。",
+        "report": "tools/target8500-verification.json",
+        "results": {
+          "focused": {
+            "name": "corrected-bakushu",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1456-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.883,
+            "log": "tmp/duema-final8500/corrected-bakushu.log",
+            "passed": 15,
+            "failed": 0,
+            "logSha256": "fb464507fe6202831e84d6a99104326f2fcbff51ecb7c5275b462d1da5c331ec",
+            "summary": [
+              "ℹ tests 15",
+              "ℹ pass 15",
+              "ℹ fail 0",
+              "ℹ cancelled 0",
+              "ℹ skipped 0",
+              "ℹ todo 0",
+              "ℹ duration_ms 817.413125"
+            ]
+          },
+          "related": {
+            "name": "filtered-discard-regression",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=[Bb]aiken|バイケン",
+              "tests/standard1037-effects.test.mjs",
+              "tests/magic-effects.test.mjs",
+              "tests/gospel-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.611,
+            "log": "tmp/duema-final8500/filtered-discard-regression.log",
+            "passed": 3,
+            "failed": 0,
+            "logSha256": "7f1f1c599d631a79c6708c465fadb044fb555ca84a47ad9cf8b8862c13f011fe",
+            "summary": [
+              "ℹ tests 3",
+              "ℹ pass 3",
+              "ℹ fail 0",
+              "ℹ cancelled 0",
+              "ℹ skipped 0",
+              "ℹ todo 0",
+              "ℹ duration_ms 568.0715"
+            ]
+          }
+        }
+      }
     },
     {
       "phase": 1457,
@@ -504218,15 +504276,11 @@
     "lastVerifiedPhase": 1471,
     "nextPhase": 1472,
     "workInProgress": null,
-    "nextCandidates": [
-      "公式照合済みの通常能力を持たないGRクリーチャー",
-      "既存のキーワード処理と一致するGRクリーチャー",
-      "既存処理で両面を完全に扱えるツインパクトを個別検証。公式未確認・特殊条件は保留。"
-    ],
+    "nextCandidates": [],
     "steps": [
       "開始時にHEAD・作業差分・ステージ・既存プロセス・AGENTS・進捗を確認。",
-      "実データ8500種類・重複0。新目標8500種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
-      "phase1372の指定5種類は完了済み。tools/support-phase-1372.jsonと実装コミット58f1c830を参照。",
+      "重複を除く8500種類に到達。新規登録は停止済み。次の目標がユーザーから指示されるまで件数を増やさない。automation PAUSED、公開は今回未実施。",
+      "再開時は既存プロセス・最新コミット・作業ツリーを確認し、tools/verify-target8500.mjsとtools/target8500-verification.jsonを参照。ユーザー保留項目は既存記録を維持。",
       "個別の残件2件はユーザー保留。再開指示まで追加調査・問い合わせ送信をしない。",
       "一括npm testを再実行せず、公開候補の未集約範囲だけ分割検証する。過去の固定ソースの合格と現版の合格を区別する。",
       "Netlifyを更新しないPages公開手順と公開候補全対象の合格が確認できるまでpush・公開しない。"
@@ -504306,14 +504360,14 @@
     ],
     "restartSteps": [
       "公開済みの版はb40ae0df (v0.722.1 / engine0.602.1 / 8074種類)。Pages・Netlifyを同じ版に更新済み。最新HEAD・差分・ステージ・既存プロセスを最初に確認。",
-      "実データ8500種類・重複0。新目標8500種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
-      "指定5種類は新規2・既存3を完了。manifestに公式全文・基本情報・画像・使用制限・関連裁定・秘版解決・検証結果を記録。",
+      "重複を除く8500種類に到達。新規登録は停止済み。次の目標がユーザーから指示されるまで件数を増やさない。automation PAUSED、公開は今回未実施。",
+      "再開時は既存プロセス・最新コミット・作業ツリーを確認し、tools/verify-target8500.mjsとtools/target8500-verification.jsonを参照。ユーザー保留項目は既存記録を維持。",
       "既存8072定義は深い比較で不変。カードID・保存形式・保存済みデッキ・対戦履歴を維持。",
       "個別の残件2件と問い合わせ案はユーザー指示「後回しにしよう」で保留。再開指示があるまでこの2件の調査・送信を行わない。",
       "No13長時間検証はengine0.601.0の固定ソースで完了済み。今回のengine0.602.0の全面検証には数えない。必要な未集約項目は対象を特定し、細かく分割して確認する。",
       "Netlifyは手動反映専用。workflow_dispatchだけ、GitHub pushフック停止、stop_builds=trueを維持。通常のカード追加pushでは反映しない。今回の公開に保留・未検証の解消は含めない。"
     ],
-    "registrationStatus": "ユーザーの新目標8500種類に向けて通常登録を再開。現在8500種類、残り0種類。automationはPAUSEDのまま。",
+    "registrationStatus": "目標8500種類に到達。通常の新規登録を停止し、追加分93バッチの分割テスト・互換性確認・npm run check・実データ再集計を完了。automation PAUSED、pushとNetlify反映なし。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [],
     "printVerificationPending": [
@@ -504473,8 +504527,23 @@
     "parkedRegistrationWork": {
       "kind": "Galaxyshield parameterization",
       "patch": "tmp/duema-target-8500/galaxy-engine.patch",
-      "status": "not-applied-not-verified",
-      "reason": "ユーザー指定2種類を先に完了。Galaxyshield候補は対応済み件数に含めない。"
+      "status": "completed-verified",
+      "reason": "パラメータ化と対象カードの登録はphase1412〜1414で適用・検証済み。未適用作業として再実行しない。",
+      "verifiedPhases": [
+        1412,
+        1413,
+        1414
+      ]
+    },
+    "final8500Verification": {
+      "status": "passed",
+      "checkedAt": "2026-11-20T18:56:41.300Z",
+      "verifiedCommit": "476c552062d1bd3aa50116ec134027208dd82a2c",
+      "report": "tools/target8500-verification.json",
+      "uniqueNames": 8500,
+      "duplicates": 0,
+      "originalDefinitionsUnchanged": 8074,
+      "passedTestExecutions": 2312
     }
   },
   "registeredCardVerification": {
@@ -556361,6 +556430,10 @@
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
       "automationStatus": "PAUSED",
       "automationStatusVerifiedAt": "2026-11-15"
-    }
+    },
+    "registrationCommit": "bdfe018f",
+    "verifiedCommit": "476c552062d1bd3aa50116ec134027208dd82a2c",
+    "verificationReport": "tools/target8500-verification.json",
+    "automationStatusVerifiedAt": "2026-11-20T18:56:41.300Z"
   }
 }
