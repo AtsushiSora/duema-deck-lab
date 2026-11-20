@@ -501943,9 +501943,9 @@
           ],
           "code": 0,
           "timedout": false,
-          "seconds": 1.812,
+          "seconds": 1.678,
           "log": "tmp/duema-phase-1453/focused.log",
-          "passed": 88,
+          "passed": 90,
           "failed": 0
         },
         "related": {
@@ -501959,7 +501959,7 @@
           ],
           "code": 0,
           "timedout": false,
-          "seconds": 3.589,
+          "seconds": 3.617,
           "log": "tmp/duema-phase-1453/related.log",
           "passed": 54,
           "failed": 0
@@ -501973,8 +501973,10 @@
           ],
           "code": 0,
           "timedout": false,
-          "seconds": 18.937,
-          "log": "tmp/duema-phase-1453/check.log"
+          "seconds": 19.325,
+          "log": "tmp/duema-phase-1453/check.log",
+          "passed": 0,
+          "failed": 0
         },
         "audit": {
           "name": "audit",
@@ -501984,16 +501986,106 @@
           ],
           "code": 0,
           "timedout": false,
-          "seconds": 13.887,
-          "log": "tmp/duema-phase-1453/audit.log"
+          "seconds": 13.9,
+          "log": "tmp/duema-phase-1453/audit.log",
+          "passed": 0,
+          "failed": 0
         }
       },
-      "totalTestsPassed": 142,
+      "totalTestsPassed": 144,
       "reason": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
       "remaining": [
         "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
       ],
-      "next": "目標8500種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
+      "next": "目標8500種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。",
+      "previousValidation": {
+        "results": {
+          "focused": {
+            "name": "focused",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1453-effects.test.mjs",
+              "tests/standard1379-effects.test.mjs",
+              "tests/standard1381-effects.test.mjs",
+              "tests/standard1382-effects.test.mjs",
+              "tests/standard1383-effects.test.mjs",
+              "tests/standard1326-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 1.812,
+            "log": "tmp/duema-phase-1453/focused.log",
+            "passed": 88,
+            "failed": 0
+          },
+          "related": {
+            "name": "related",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1321-effects.test.mjs",
+              "tests/standard1324-effects.test.mjs",
+              "tests/standard1430-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 3.589,
+            "log": "tmp/duema-phase-1453/related.log",
+            "passed": 54,
+            "failed": 0
+          },
+          "check": {
+            "name": "check",
+            "command": [
+              "npm",
+              "run",
+              "check"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 18.937,
+            "log": "tmp/duema-phase-1453/check.log"
+          },
+          "audit": {
+            "name": "audit",
+            "command": [
+              "node",
+              "tools/audit-card-support.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 13.887,
+            "log": "tmp/duema-phase-1453/audit.log"
+          }
+        },
+        "totalTestsPassed": 142
+      },
+      "revalidatedAt": "2026-11-20T17:57:45.895Z",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1453-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.725,
+          "log": "tmp/duema-phase-1453/focused.log"
+        }
+      ],
+      "testCorrections": [
+        "跳次元召喚の文明不足テストでマティーニを使うと、光文明の覚醒面(コスト6)が正しく召喚できる。両面とも水文明かつ裏面はコスト6超のアクア・カトラスへフィクスチャを差し替え。",
+        "本バッチのS・トリガーと文明不足テスト2件は追加したため、固有検証を再実行する。"
+      ],
+      "revalidationNote": "追加した2件を含む固有90件・関連検証・npm run check・件数再集計が通過。finish-registration-batchの既存phase重複ガードは意図通り作動し、新しい登録履歴は増やさず既存記録を更新した。"
     }
   ],
   "resume": {
