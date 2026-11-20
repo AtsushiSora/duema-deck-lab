@@ -12255,5 +12255,214 @@
         }
       ]
     }
+  },
+  "dmrp12-097": {
+    "phase": 1445,
+    "faces": [
+      {
+        "name": "ポテトⅠ",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "オーラが付いている間、このクリーチャーのパワーを+3000する。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "グランセクト/デリートロン",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gr": true,
+      "manaValue": 0,
+      "g260Self": {
+        "filter": {
+          "g1445HostAuras": {
+            "min": 1
+          }
+        },
+        "grants": {
+          "power": 3000
+        }
+      }
+    }
+  },
+  "dmsd09-002": {
+    "phase": 1445,
+    "faces": [
+      {
+        "name": "重圧 CS-40",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "オーラが付いていなければ、このクリーチャーは攻撃できない。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "トリックス/デリートロン",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gr": true,
+      "manaValue": 0,
+      "g260Self": {
+        "filter": {
+          "g1445HostAuras": {
+            "max": 0
+          }
+        },
+        "grants": {
+          "noAttack": true
+        }
+      }
+    }
+  },
+  "dmex08-248": {
+    "phase": 1445,
+    "faces": [
+      {
+        "name": "威嚇するスマッシュ・ホーンα GR",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "oSこのクリーチャーのパワーは+1000される。\nサバイバー（自分のサバイバーすべてに、上のoS能力を与える）",
+        "race": "ホーン・ビースト/サバイバー",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gr": true,
+      "manaValue": 0,
+      "g406OwnPower": 1000,
+      "g406Survivor": {
+        "power": 1000
+      }
+    }
+  },
+  "dmrp12-013": {
+    "phase": 1445,
+    "faces": [
+      {
+        "name": "防羅の意志 ベンリーニ",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "マナドライブ７（光）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが７枚以上で光文明があれば、このクリーチャーを破壊してもよい。そうしたら、このクリーチャーの◇能力を使う。\n◇カードを１枚引く。その後、自分の手札を１枚裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。",
+        "race": "メタリカ/ワンダフォース",
+        "powerText": "2500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gr": true,
+      "manaValue": 0,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 7
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "光"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "SelfSacrifice407",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                },
+                {
+                  "op": "Select",
+                  "origin": "hand",
+                  "to": "shields",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmrp12-s09": {
+    "phase": 1445,
+    "faces": [
+      {
+        "name": "アカカゲ・レッドシャドウ",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "マナドライブ５（火）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが５枚以上で火文明があれば、このクリーチャーを破壊してもよい。そうしたら、このクリーチャーの◇能力を使う。\n◇シールドを１つブレイクする。\nバトル中、このクリーチャーのパワーを+2000する。",
+        "race": "ビートジョッキー/ワンダフォース",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gr": true,
+      "manaValue": 0,
+      "g38BattleBonus": 2000,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 5
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "火"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "SelfSacrifice407",
+              "defs": [
+                {
+                  "op": "Break278"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   }
 }

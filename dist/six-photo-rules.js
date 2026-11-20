@@ -647,6 +647,8 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g1445HostAuras){const r=f.g1445HostAuras,host=s.players[p].battle.flatMap(y=>api.allLayers(y)).find(y=>y.uid===sourceUid&&(sourceIncarnation===null||(y.incarnation||0)===sourceIncarnation));if(!host)return false;const n=api.attachedAuras1352(s,p,host).length;return(r.min===undefined||n>=r.min)&&(r.max===undefined||n<=r.max);}
+
   if(f.g1179OpponentMoreHand)return s.players[1-p].hand.length>s.players[p].hand.length;
   if(f.g1176MoreCreatures)
    return creatures(s,p).filter(x=>!x.sealed).length>creatures(s,1-p).filter(x=>!x.sealed).length;

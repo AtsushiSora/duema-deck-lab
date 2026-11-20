@@ -260008,15 +260008,204 @@
       ],
       "supportBatch": "phase-1444",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-097",
+      "name": "ポテトⅠ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 1,
+      "power": 1000,
+      "race": "グランセクト/デリートロン",
+      "text": "オーラが付いている間、このクリーチャーのパワーを+3000する。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-097",
+      "limit": 4,
+      "gr": true,
+      "g260Self": {
+        "filter": {
+          "g1445HostAuras": {
+            "min": 1
+          }
+        },
+        "grants": {
+          "power": 3000
+        }
+      },
+      "supportBatch": "phase-1445",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd09-002",
+      "name": "重圧 CS-40",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "トリックス/デリートロン",
+      "text": "オーラが付いていなければ、このクリーチャーは攻撃できない。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd09-002",
+      "limit": 4,
+      "gr": true,
+      "g260Self": {
+        "filter": {
+          "g1445HostAuras": {
+            "max": 0
+          }
+        },
+        "grants": {
+          "noAttack": true
+        }
+      },
+      "supportBatch": "phase-1445",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex08-248",
+      "name": "威嚇するスマッシュ・ホーンα GR",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ホーン・ビースト/サバイバー",
+      "text": "oSこのクリーチャーのパワーは+1000される。\nサバイバー（自分のサバイバーすべてに、上のoS能力を与える）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-248",
+      "limit": 4,
+      "gr": true,
+      "g406OwnPower": 1000,
+      "g406Survivor": {
+        "power": 1000
+      },
+      "supportBatch": "phase-1445",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-013",
+      "name": "防羅の意志 ベンリーニ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 2500,
+      "race": "メタリカ/ワンダフォース",
+      "text": "マナドライブ７（光）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが７枚以上で光文明があれば、このクリーチャーを破壊してもよい。そうしたら、このクリーチャーの◇能力を使う。\n◇カードを１枚引く。その後、自分の手札を１枚裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-013",
+      "limit": 4,
+      "gr": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 7
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "光"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "SelfSacrifice407",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                },
+                {
+                  "op": "Select",
+                  "origin": "hand",
+                  "to": "shields",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1445",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-s09",
+      "name": "アカカゲ・レッドシャドウ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ビートジョッキー/ワンダフォース",
+      "text": "マナドライブ５（火）：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンのカードが５枚以上で火文明があれば、このクリーチャーを破壊してもよい。そうしたら、このクリーチャーの◇能力を使う。\n◇シールドを１つブレイクする。\nバトル中、このクリーチャーのパワーを+2000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-s09",
+      "limit": 4,
+      "gr": true,
+      "g38BattleBonus": 2000,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "min": 5
+                }
+              },
+              {
+                "g1064ManaColors": [
+                  "火"
+                ]
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "SelfSacrifice407",
+              "defs": [
+                {
+                  "op": "Break278"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1445",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1444,
+    "phase": 1445,
     "checkedAt": "2026-11-20",
-    "baseCount": 8379,
+    "baseCount": 8384,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8384,
+    "totalCount": 8389,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -284011,6 +284200,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8379,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1444,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8379,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8384,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
