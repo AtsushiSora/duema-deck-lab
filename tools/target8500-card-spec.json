@@ -5757,5 +5757,184 @@
       "gr": true,
       "manaValue": 0
     }
+  },
+  "dmrp15-042": {
+    "phase": 1407,
+    "faces": [
+      {
+        "name": "「プレス！粉砕！大圧壊！」",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ビビッドロー [ff01]（自分のターン中、攻撃の前にこの呪文をドローした時、表向きにしてもよい。そうしたら、このターンこの呪文を [ff01]支払って唱えてもよい）\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー4000以下のクリーチャーを１体破壊する。",
+        "race": "美孔麗王国",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 4000,
+            "g199Power": true
+          }
+        }
+      ],
+      "g1335VividDraw": 1
+    }
+  },
+  "dmrp15-068": {
+    "phase": 1407,
+    "faces": [
+      {
+        "name": "「見よ、これぞ超科学の神髄なり！」",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ビビッドロー [ww02]（自分のターン中、攻撃の前にこの呪文をドローした時、表向きにしてもよい。そうしたら、このターンこの呪文を [ww02]支払って唱えてもよい）\nカードを２枚引く。",
+        "race": "美孔麗王国",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        }
+      ],
+      "g1335VividDraw": 2
+    }
+  },
+  "dmrp16-068": {
+    "phase": 1407,
+    "faces": [
+      {
+        "name": "「時間よ、戻れ！」",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ビビッドロー [ww01]（自分のターン中、攻撃の前にこの呪文をドローした時、表向きにしてもよい。そうしたら、このターンこの呪文を[ww01]支払って唱えてもよい）\n相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+        "race": "美孔麗王国",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 1,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "to": "hand",
+          "title": "手札に戻す相手のクリーチャーを1体選ぶ"
+        }
+      ],
+      "g1335VividDraw": 1
+    }
+  },
+  "dmex13-051": {
+    "phase": 1407,
+    "faces": [
+      {
+        "name": "「生まれる前からやりなおしたら？」",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "ビビッドロー [ww04]（自分のターン中、攻撃の前にこの呪文をドローした時、表向きにしてもよい。そうしたら、このターンこの呪文を [ww04]支払って唱えてもよい）\n相手のクリーチャーを２体まで選び、持ち主の手札に戻す。\nカードを１枚引く。",
+        "race": "美孔麗王国",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "to": "hand",
+          "title": "手札に戻す相手のクリーチャーを2体まで選ぶ",
+          "optional": true
+        },
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "g1335VividDraw": 4
+    }
+  },
+  "dmrp16-055": {
+    "phase": 1407,
+    "faces": [
+      {
+        "name": "「伝説のサイバーパワー！」",
+        "typeText": "呪文",
+        "civilizationText": "水/火",
+        "civilizations": [
+          "水",
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ビビッドロー [wf02]（自分のターン中、攻撃の前にこの呪文をドローした時、表向きにしてもよい。そうしたら、このターンこの呪文を[wf02]支払って唱えてもよい）\n自分の手札を１枚捨て、その後、カードを３枚引く。",
+        "race": "美孔麗王国",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 1
+        },
+        {
+          "op": "Draw",
+          "n": 3
+        }
+      ],
+      "g1335VividDraw": 2
+    }
   }
 }
