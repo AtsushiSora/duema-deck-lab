@@ -269905,15 +269905,200 @@
       ],
       "supportBatch": "phase-1503",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-047",
+      "name": "わかりミーア♥",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "ドリームメイト/チームウェイブ",
+      "text": "バズレンダ [cc02]（このクリーチャーのコストを支払う時、追加で [cc02]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その{OL} 能力を１回と、追加で [cc02]支払った回数、使う）\n{OL} 自分のクリーチャーを１体、タップしてマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-047",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "to": "mana",
+          "tapped": true
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 2
+      },
+      "supportBatch": "phase-1504",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-023",
+      "name": "ワビサビ・ヤバタピエン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ツリーフォーク/チームウェイブ",
+      "text": "バズレンダ [cc04]（このクリーチャーのコストを支払う時、追加で[cc04]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その[OL]能力を１回と、追加で[cc04]支払った回数、使う）\n[OL]このターン、自分のクリーチャーすべてのパワーを+6000し、「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-023",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupPower",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "power": 6000
+        },
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "grant": {
+            "poweredBreaker": true
+          }
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 4
+      },
+      "supportBatch": "phase-1504",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex09-016",
+      "name": "カクタキュー #ナイトリバー #KAWAE",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "サイバー・ウイルス/チームウェイブ",
+      "text": "バズレンダ [cc02] （このクリーチャーのコストを支払う時、追加で [cc02] を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その{OL} 能力を１回と、追加で [cc02] 支払った回数、使う）\n{OL}カードを１枚引き、その後、自分の手札を１枚捨てる。\n自分の墓地に５枚以上カードがあれば、このクリーチャーのパワーを+5000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex09-016",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 1
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 2
+      },
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "grave",
+            "min": 5
+          }
+        },
+        "grants": {
+          "power": 5000,
+          "breaker": 2
+        }
+      },
+      "supportBatch": "phase-1504",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-014",
+      "name": "ファボレオン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "トリックス/チームウェイブ",
+      "text": "バズレンダ [cc03]（このクリーチャーのコストを支払う時、追加で [cc03]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その{OL} 能力を１回と、追加で [cc03]支払った回数、使う）\n{OL} カードを１枚引き、自分の手札を１枚、裏向きのまま新しいシールドとしてシールドゾーンに置く。その後、自分のシールドを１つ手札に加える。ただし、その「S・トリガー」は使えない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-014",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "ShieldExchange446"
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 3
+      },
+      "supportBatch": "phase-1504",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex14-s07",
+      "name": "ソーシャル・マニフェストⅡ世",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "トリックス/サイバー・コマンド/チームウェイブ",
+      "text": "バズレンダ [cc03]（このクリーチャーのコストを支払う時、追加で[cc03]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その[OL]能力を１回と、追加で[cc03]支払った回数、使う）\n[OL]自分の山札の上から１枚目をマナゾーンに置く。その後、コスト７以下の呪文を１枚、コストを支払わずに自分のマナゾーンから唱えてもよい。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-s07",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        },
+        {
+          "op": "Execute",
+          "origin": "mana",
+          "spellOnly": true,
+          "max": 7,
+          "optional": true
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 3
+      },
+      "breaker": 2,
+      "supportBatch": "phase-1504",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1503,
+    "phase": 1504,
     "checkedAt": "2026-11-20",
-    "baseCount": 8634,
+    "baseCount": 8639,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8639,
+    "totalCount": 8644,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -294734,6 +294919,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8634,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1503,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8634,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8639,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

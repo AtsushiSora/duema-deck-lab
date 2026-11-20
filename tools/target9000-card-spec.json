@@ -6183,5 +6183,205 @@
         }
       ]
     }
+  },
+  "dmrp13-047": {
+    "phase": 1504,
+    "faces": [
+      {
+        "name": "わかりミーア♥",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "バズレンダ [cc02]（このクリーチャーのコストを支払う時、追加で [cc02]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その{OL} 能力を１回と、追加で [cc02]支払った回数、使う）\n{OL} 自分のクリーチャーを１体、タップしてマナゾーンに置く。",
+        "race": "ドリームメイト/チームウェイブ",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "to": "mana",
+          "tapped": true
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 2
+      }
+    }
+  },
+  "dmrp14-023": {
+    "phase": 1504,
+    "faces": [
+      {
+        "name": "ワビサビ・ヤバタピエン",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "バズレンダ [cc04]（このクリーチャーのコストを支払う時、追加で[cc04]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その[OL]能力を１回と、追加で[cc04]支払った回数、使う）\n[OL]このターン、自分のクリーチャーすべてのパワーを+6000し、「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）",
+        "race": "ツリーフォーク/チームウェイブ",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupPower",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "power": 6000
+        },
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "grant": {
+            "poweredBreaker": true
+          }
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 4
+      }
+    }
+  },
+  "dmex09-016": {
+    "phase": 1504,
+    "faces": [
+      {
+        "name": "カクタキュー #ナイトリバー #KAWAE",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "バズレンダ [cc02] （このクリーチャーのコストを支払う時、追加で [cc02] を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その{OL} 能力を１回と、追加で [cc02] 支払った回数、使う）\n{OL}カードを１枚引き、その後、自分の手札を１枚捨てる。\n自分の墓地に５枚以上カードがあれば、このクリーチャーのパワーを+5000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーはシールドを２つブレイクする）",
+        "race": "サイバー・ウイルス/チームウェイブ",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 1
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 2
+      },
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "grave",
+            "min": 5
+          }
+        },
+        "grants": {
+          "power": 5000,
+          "breaker": 2
+        }
+      }
+    }
+  },
+  "dmrp13-014": {
+    "phase": 1504,
+    "faces": [
+      {
+        "name": "ファボレオン",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "バズレンダ [cc03]（このクリーチャーのコストを支払う時、追加で [cc03]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その{OL} 能力を１回と、追加で [cc03]支払った回数、使う）\n{OL} カードを１枚引き、自分の手札を１枚、裏向きのまま新しいシールドとしてシールドゾーンに置く。その後、自分のシールドを１つ手札に加える。ただし、その「S・トリガー」は使えない。",
+        "race": "トリックス/チームウェイブ",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "ShieldExchange446"
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 3
+      }
+    }
+  },
+  "dmex14-s07": {
+    "phase": 1504,
+    "faces": [
+      {
+        "name": "ソーシャル・マニフェストⅡ世",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/自然",
+        "civilizations": [
+          "水",
+          "自然"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "バズレンダ [cc03]（このクリーチャーのコストを支払う時、追加で[cc03]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その[OL]能力を１回と、追加で[cc03]支払った回数、使う）\n[OL]自分の山札の上から１枚目をマナゾーンに置く。その後、コスト７以下の呪文を１枚、コストを支払わずに自分のマナゾーンから唱えてもよい。\nW・ブレイカー",
+        "race": "トリックス/サイバー・コマンド/チームウェイブ",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        },
+        {
+          "op": "Execute",
+          "origin": "mana",
+          "spellOnly": true,
+          "max": 7,
+          "optional": true
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 3
+      },
+      "breaker": 2
+    }
   }
 }
