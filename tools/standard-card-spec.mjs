@@ -1,3 +1,4 @@
+import {selectionSpec1369} from './selection-spec.mjs';
 import {duelistSpec1367} from './duelist-spec.mjs';
 // Build-time only: accept complete clauses, never infer support from a keyword substring.
 // The resulting definitions are pinned and checked against the official pages before release.
@@ -2481,6 +2482,7 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1369){const spec=selectionSpec1369(d);if(spec)return spec;}
  if(phase>=1367){const spec=duelistSpec1367(d);if(spec)return spec;}
  if(phase>=1357&&d?.id==='dmex18-022'&&d.status==='complete'&&d.faces.length===1&&
   f.typeText==='クリーチャー'&&normalize(f.abilityText)===normalize(

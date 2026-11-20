@@ -114,7 +114,9 @@ export function createPhoenixRules(api){
   if(x&&zeroCanRise(s,t.p,x))choice(s,t,card(x).name+'を墓地から出す？',[opt('進化元を選んで出す',true,35,x.cardId),skip()]);
   break;
  }
- case'g31_Bases':{const c=card(t.source),d=definition(c),options={...(t.options||{}),exclude:t.uid},n=(d.zones??d.conditions)?.length;
+ case'g31_Bases':{
+  if(t.g1369ChosenCount&&t.selected.length>=t.g1369ChosenCount){finishBases(s,t);break;}
+  const c=card(t.source),d=definition(c),options={...(t.options||{}),exclude:t.uid},n=(d.zones??d.conditions)?.length;
  if(d.minCards){
   const rows=cardCountPool(s,t.p,c,options),selected=rows.filter(r=>t.selected.includes(r.x.uid)),total=baseCardCount(selected);
   const available=rows.filter(r=>!t.selected.includes(r.x.uid)),valid=selected.length===t.selected.length&&total>=d.minCards;

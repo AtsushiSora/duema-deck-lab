@@ -249195,26 +249195,90 @@
       },
       "supportBatch": "phase-1367",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-003",
+      "name": "「復活」の鬼 ヨミノ晴明R",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "デモニオ/鬼レクスターズ",
+      "text": "ブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札を見てもよい。そうしたら、その中から好きな数の《ライオス銃鬼の封》を相手に見せ、手札に加えた後、自分の山札をシャッフルする。\n相手がバトルゾーンのカードを選ぶ時、かわりに自分が選ぶ。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-003",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g1369ChooseBattle": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "山札を見てライオス銃鬼の封を探す？",
+          "defs": [
+            {
+              "op": "Look",
+              "g201Search": true,
+              "n": "all",
+              "stages": [
+                {
+                  "n": "all",
+                  "to": "hand",
+                  "optional": true,
+                  "reveal": true,
+                  "filter": {
+                    "g201ExactName": "ライオス銃鬼の封"
+                  }
+                }
+              ],
+              "rest": "shuffle"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1369",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-s10",
+      "name": "「迅雷」の鬼 ライジン天",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "デモニオ/鬼札王国",
+      "text": "W・ブレイカー\n自分のターンの終わりに、相手は自身のクリーチャーを１体選び、破壊する。\n鬼タイム ：相手がクリーチャーを選ぶ時、自分と相手のシールドの数が合計６つ以下なら、相手のかわりに自分が選ぶ。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-s10",
+      "limit": 4,
+      "breaker": 2,
+      "g1369ChooseCreature": true,
+      "g174End": [
+        {
+          "op": "OpponentSelect",
+          "n": 1,
+          "to": "grave"
+        }
+      ],
+      "supportBatch": "phase-1369",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1367,
+    "phase": 1369,
     "checkedAt": "2026-11-20",
-    "baseCount": 8065,
-    "newEffectCards": 4,
+    "baseCount": 8069,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 8069,
-    "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/qa/48138/",
-      "https://dm.takaratomy.co.jp/rule/qa/48142/",
-      "https://dm.takaratomy.co.jp/rule/qa/48143/",
-      "https://dm.takaratomy.co.jp/rule/qa/48144/",
-      "https://dm.takaratomy.co.jp/rule/qa/48147/",
-      "https://dm.takaratomy.co.jp/rule/qa/48148/"
-    ],
-    "next": [
-      "残りの選択者置換と攻撃時能力の再使用を検証する"
-    ],
+    "totalCount": 8071,
     "history": [
       {
         "phase": 1,
@@ -272247,6 +272311,25 @@
         ],
         "next": [
           "残る7種類の裁定・再録を照合し、共通処理を実装する"
+        ]
+      },
+      {
+        "phase": 1367,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8065,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 8069,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/qa/48138/",
+          "https://dm.takaratomy.co.jp/rule/qa/48142/",
+          "https://dm.takaratomy.co.jp/rule/qa/48143/",
+          "https://dm.takaratomy.co.jp/rule/qa/48144/",
+          "https://dm.takaratomy.co.jp/rule/qa/48147/",
+          "https://dm.takaratomy.co.jp/rule/qa/48148/"
+        ],
+        "next": [
+          "残りの選択者置換と攻撃時能力の再使用を検証する"
         ]
       }
     ]

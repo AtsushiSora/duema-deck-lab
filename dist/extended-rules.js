@@ -122,13 +122,13 @@ export function createExtendedRules(api){
   }));
  };
  const task=(op,p,source,more={})=>({op,p,source,...more});
- const choice=(s,t,title,options,chooser=t.p)=>{options=options.filter(x=>api.deckChoiceValid1365(s,x.value));if(options.length)s.decision={type:'extended',player:chooser,source:t.source,title,task:t,choices:options};};
+ const choice=(s,t,title,options,chooser=t.p)=>{options=options.filter(x=>api.deckChoiceValid1365(s,x.value));if(!api.implicitChoice1369(t)&&options.some(o=>{const uid=typeof o.value==='string'?o.value:o.value?.uid,x=uid&&s.players.flatMap(own=>own.battle.flatMap(api.layers)).find(x=>x.uid===uid);return x&&api.battleChooser1369(s,chooser,x)!==chooser;}))options=options.filter(o=>{const uid=typeof o.value==='string'?o.value:o.value?.uid,owner=uid?s.players.findIndex(own=>own.battle.some(top=>api.layers(top).some(x=>x.uid===uid))):-1;if(owner<0)return true;const x=s.players[owner].battle.flatMap(api.layers).find(x=>x.uid===uid);return targetable(s,chooser,owner,x);});if(options.length)s.decision=api.replaceExtendedChoice1369(s,{type:'extended',player:chooser,source:t.source,title,task:t,choices:options});};
  const opt=(label,value,score=0,cardId=null)=>({label,value,score:Number.isFinite(score)?Math.max(-1000,Math.min(1000,score)):score>0?1000:-1000,...(cardId?{cardId}:{})});
  const skip=()=>opt('使わない',null,0);
  const targetOptions=(s,p,list)=>forceTargets(s,p,list.filter(x=>{const owner=s.players.findIndex(y=>y.battle.some(z=>z.uid===x.uid));return owner<0||targetable(s,p,owner,x);})).map(x=>opt(card(x).name,x.uid,cost(card(x))*3,card(x).id));
- const forcedCreatureTarget=(s,p,owner,x)=>owner>=0&&owner!==p&&api.isCreature(s,x)&&
+ const forcedCreatureTarget=(s,p,owner,x)=>owner>=0&&owner!==api.battleChooser1369(s,p,x)&&api.isCreature(s,x)&&
   (effective(x,s).forceTarget||forcedByGitaro1258(s,p,owner,x));
- const forcedByGitaro1258=(s,p,owner,x)=>owner!==p&&(s.extLimits||[]).some(l=>l.grant?.g1258ForceTarget)&&
+ const forcedByGitaro1258=(s,p,owner,x)=>owner!==api.battleChooser1369(s,p,x)&&(s.extLimits||[]).some(l=>l.grant?.g1258ForceTarget)&&
   !!six.externalProtection565(s,x).g1258ForceTarget;
  const forceTargets=(s,p,list)=>{
   const forced=list.filter(x=>forcedCreatureTarget(s,p,s.players.findIndex(y=>y.battle.some(z=>z.uid===x.uid)),x));
@@ -165,11 +165,8 @@ export function createExtendedRules(api){
  };
  const shieldTo=(s,p,uid,to,options)=>api.moveShield(s,p,uid,to,options)[0];
  const gsAllowed=(s,p)=>{const x=s.attack&&s.players[s.active].battle.find(x=>x.uid===s.attack.attacker);return !(x&&p!==s.active&&effective(x,s).attackNoGS);};
- const targetable=(s,p,owner,x)=>!x||!(s.g1364EntryRules&&s.extLimits?.some(l=>
-  l.kind==='g1364Diver'&&l.player===p&&matchesRef(x,l)))&&utilityDispectorSeeds.targetable(s,p,owner,x)&&continuation.targetable(s,p,owner,x)&&six.fifteen.targetable(s,p,owner,x)&&!x.sealed&&!(card(x.cardId)?.nemesis&&effective(x,s).nemesis&&api.choosingEffectCost(s)<=5)&&!(p!==owner&&card(x.cardId)?.startCard&&x.startFlipped&&effective(x,s).forbiddenSpellProtection&&cost(api.choosingSpell996(s)||{cost:Infinity})<=4)&&(!s.extLimits?.length||!six.externalProtection565(s,x).g1082ChoiceProtected)&&!six.civilProtection1280(s,owner,x)&&!six.blockBreakSpellProtection1280(s,p,owner,x)&&(p===owner||!(six.decoyProtected1256(s,owner,x)||samurai.protected(s,owner,x)||six.protects608(s,owner,x)||effective(x,s).untargetable||effective(x,s).g1029TargetProtection&&(api.isSpellChoice(s)||card(s.g35ChoosingSource)?.type==='creature')||effective(x,s).justDiver&&x.justDiverActive||effective(x,s).spellUntargetable&&api.isSpellResolution(s)||
-  effective(x,s).g1303NonMulticolorSpellUntargetable&&api.isNonMulticolorSpellChoice1303(s)||
-  effective(x,s).g996NonLightSpellUntargetable&&api.isNonLightSpellChoice(s)||
-  effective(x,s).g1125FireSpellUntargetable&&api.isFireSpellChoice(s)));
+ const targetable=(s,p,owner,x)=>{const sourcePlayer=api.effectActor(s)??p;p=api.battleChooser1369(s,p,x);const c=x&&effective(x,s),spellBlocked=x&&sourcePlayer!==owner&&api.isSpellChoice(s)&&(c.spellUntargetable||c.g1303NonMulticolorSpellUntargetable&&api.isNonMulticolorSpellChoice1303(s)||c.g996NonLightSpellUntargetable&&api.isNonLightSpellChoice(s)||c.g1125FireSpellUntargetable&&api.isFireSpellChoice(s));return !x||!spellBlocked&&!(s.g1364EntryRules&&s.extLimits?.some(l=>
+  l.kind==='g1364Diver'&&l.player===p&&matchesRef(x,l)))&&utilityDispectorSeeds.targetable(s,p,owner,x)&&continuation.targetable(s,p,owner,x)&&six.fifteen.targetable(s,p,owner,x)&&!x.sealed&&!(card(x.cardId)?.nemesis&&effective(x,s).nemesis&&api.choosingEffectCost(s)<=5)&&!(p!==owner&&card(x.cardId)?.startCard&&x.startFlipped&&effective(x,s).forbiddenSpellProtection&&cost(api.choosingSpell996(s)||{cost:Infinity})<=4)&&(!s.extLimits?.length||!six.externalProtection565(s,x).g1082ChoiceProtected)&&!six.civilProtection1280(s,owner,x)&&!six.blockBreakSpellProtection1280(s,p,owner,x)&&(p===owner||!(six.decoyProtected1256(s,owner,x)||samurai.protected(s,owner,x)||six.protects608(s,owner,x)||effective(x,s).untargetable||effective(x,s).g1029TargetProtection&&(api.isSpellChoice(s)||card(s.g35ChoosingSource)?.type==='creature')||effective(x,s).justDiver&&x.justDiverActive));};
  const environment=createEnvironmentRules({...api,creatures,put,task,choice,opt,skip,targetOptions,targetable,lock,discardSelected:(s,t,ids)=>beginDiscardBatch(s,t,ids)});
  const shared={...api,creatures,put,task,choice,opt,skip,targetOptions};
  const photo159=createPhoto159Rules(shared),photo160=createPhoto160Rules(shared),utility161=createUtility161Rules(shared);

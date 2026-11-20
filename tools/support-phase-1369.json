@@ -1,0 +1,328 @@
+{
+  "phase": 1369,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8069,
+  "description": "既存未検証のJトルネード・バロディアス・ギャラクシーの再現に必要な選択者置換2種類。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/qa/44321/",
+    "https://dm.takaratomy.co.jp/rule/qa/44322/",
+    "https://dm.takaratomy.co.jp/rule/qa/44323/",
+    "https://dm.takaratomy.co.jp/rule/qa/44324/",
+    "https://dm.takaratomy.co.jp/rule/qa/44325/",
+    "https://dm.takaratomy.co.jp/rule/qa/44327/",
+    "https://dm.takaratomy.co.jp/rule/qa/39545/",
+    "https://dm.takaratomy.co.jp/rule/qa/34254/",
+    "https://dm.takaratomy.co.jp/rule/qa/43336/",
+    "https://dm.takaratomy.co.jp/rule/qa/43451/"
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "limits": 4
+  },
+  "cards": [
+    {
+      "id": "dmrp22-003",
+      "name": "「復活」の鬼 ヨミノ晴明R",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-003.jpg",
+      "faces": [
+        {
+          "name": "「復活」の鬼 ヨミノ晴明R",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札を見てもよい。そうしたら、その中から好きな数の《ライオス銃鬼の封》を相手に見せ、手札に加えた後、自分の山札をシャッフルする。\n相手がバトルゾーンのカードを選ぶ時、かわりに自分が選ぶ。",
+          "race": "デモニオ/鬼レクスターズ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g1369ChooseBattle": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "山札を見てライオス銃鬼の封を探す？",
+            "defs": [
+              {
+                "op": "Look",
+                "g201Search": true,
+                "n": "all",
+                "stages": [
+                  {
+                    "n": "all",
+                    "to": "hand",
+                    "optional": true,
+                    "reveal": true,
+                    "filter": {
+                      "g201ExactName": "ライオス銃鬼の封"
+                    }
+                  }
+                ],
+                "rest": "shuffle"
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "facesMatched": true,
+        "htmlSha256": "5fb2b47108b1bd76d532517fb8619282490ccd24ddab5413f1226095ddf0ac86",
+        "imageSha256": "763d1c7cbecc85a9428eefbfdb969d539faf29cd77de022c2e18fa440e0abfa7",
+        "mana": 1
+      },
+      "relatedPrints": {
+        "detailsCatalogueMatches": [
+          "dmrp22-003"
+        ],
+        "result": "名称正規化による収録済み詳細データとの照合。追加は既存の正規ID各1種類。"
+      }
+    },
+    {
+      "id": "dmrp15-s10",
+      "name": "「迅雷」の鬼 ライジン天",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-s10",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-s10.jpg",
+      "faces": [
+        {
+          "name": "「迅雷」の鬼 ライジン天",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\n自分のターンの終わりに、相手は自身のクリーチャーを１体選び、破壊する。\n鬼タイム ：相手がクリーチャーを選ぶ時、自分と相手のシールドの数が合計６つ以下なら、相手のかわりに自分が選ぶ。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g1369ChooseCreature": true,
+        "g174End": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "facesMatched": true,
+        "htmlSha256": "0c7501949731fcd95d45fb95fd5265f659353819762303a6613e6079a53a2168",
+        "imageSha256": "1417b950e4078bb0479157a88ea0196f284c03cfab98ea43370aac995045e232",
+        "mana": 1
+      },
+      "relatedPrints": {
+        "detailsCatalogueMatches": [
+          "dmrp15-s10"
+        ],
+        "result": "名称正規化による収録済み詳細データとの照合。追加は既存の正規ID各1種類。"
+      }
+    }
+  ],
+  "ruleEvidence": [
+    {
+      "url": "https://dm.takaratomy.co.jp/rule/qa/44321/",
+      "checkedAt": "2026-11-20",
+      "sha256": "29f2ff92666435e56b8920f72cb921864d926ba1f81b802ab69797d2816a7a5b"
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/rule/qa/44322/",
+      "checkedAt": "2026-11-20",
+      "sha256": "48c31b85e89f1855f520fd19227cbd520eeb02b853adcee6b856dd0e577821a9"
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/rule/qa/44323/",
+      "checkedAt": "2026-11-20",
+      "sha256": "450da16ca27302e3078c707cf057130a121daa7d988551b05529d3ffd37f8929"
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/rule/qa/44324/",
+      "checkedAt": "2026-11-20",
+      "sha256": "64903739d9e05d0907ef5a39ff8dda7f52825410e932aec08392af15e6bd7162"
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/rule/qa/44325/",
+      "checkedAt": "2026-11-20",
+      "sha256": "fbcfe81d59f88017d0592c15a6fd311b74289daf5bbd08d9b7e09a23d4b4ad66"
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/rule/qa/44327/",
+      "checkedAt": "2026-11-20",
+      "sha256": "2ac0a9e52166e71d45bb7288b6f1084e838062e700bbb4cdaa25796875bd5367"
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/rule/qa/39545/",
+      "checkedAt": "2026-11-20",
+      "sha256": "c50d5c908df07241a40afaff696dd4e390d70f3d81c4003fecc15bb22737b35a"
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/rule/qa/34254/",
+      "checkedAt": "2026-11-20",
+      "sha256": "70818f3e454ab03f1493fce79817f1be6a0fb5778475ba72bc99c81b2c08e186"
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/rule/qa/43336/",
+      "checkedAt": "2026-11-20",
+      "sha256": "932e2b5c915e9bc84f7c4eb0db28610544dc290b5c3157c5bc9f1c2e409a3319"
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/rule/qa/43451/",
+      "checkedAt": "2026-11-20",
+      "sha256": "69e9447fe688140e9f0e482a6a048dfb234a9a231134dce948266ffc440d5b23"
+    }
+  ],
+  "validation": {
+    "test": "tests/standard1369-effects.test.mjs",
+    "counts": {
+      "before": 8069,
+      "after": 8071,
+      "duplicates": 0,
+      "retainedOriginalDefinitions": 8069
+    },
+    "engineVersion": "0.600.0",
+    "aiVersion": "2.3.416",
+    "fullSuiteStatus": "中断・合否未確認（全体npm testは再実行せず）",
+    "results": {
+      "focused": {
+        "log": "tmp/duema-phase-1369/focus-final.log",
+        "passed": 21,
+        "failed": 0
+      },
+      "regression": {
+        "name": "regression-final-verified",
+        "command": [
+          "node",
+          "--test",
+          "--test-concurrency=1",
+          "--test-skip-pattern=^(?:photo plays every|random manual photo|production worker completes real Phoenix|every reachable UI)",
+          "tests/standard1369-effects.test.mjs",
+          "tests/standard1303-effects.test.mjs",
+          "tests/standard1304-effects.test.mjs",
+          "tests/standard1119-effects.test.mjs",
+          "tests/standard1362-effects.test.mjs",
+          "tests/standard1363-effects.test.mjs",
+          "tests/standard1364-effects.test.mjs",
+          "tests/standard1365-effects.test.mjs",
+          "tests/standard1366-effects.test.mjs",
+          "tests/standard1367-effects.test.mjs",
+          "tests/phoenix-photo.test.mjs",
+          "tests/choice-details.test.mjs",
+          "tests/multi-origin-choice.test.mjs",
+          "tests/ai-battle-choices.test.mjs",
+          "tests/manual-ui.test.mjs",
+          "tests/manual-app.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 72.919,
+        "log": "tmp/duema-phase-1369/regression-final-verified.log",
+        "passed": 339,
+        "failed": 0
+      },
+      "online": {
+        "name": "online-final-verified",
+        "command": [
+          "node",
+          "--test",
+          "--test-concurrency=1",
+          "tests/online-client.test.mjs",
+          "tests/online-runtime.test.mjs",
+          "tests/online-ui.test.mjs",
+          "tests/online-app.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.49,
+        "log": "tmp/duema-phase-1369/online-final-verified.log",
+        "passed": 30,
+        "failed": 0
+      },
+      "check": {
+        "name": "check-verified",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.871,
+        "log": "tmp/duema-phase-1369/check-verified.log"
+      },
+      "games": {
+        "name": "games-final-verified",
+        "command": [
+          "node",
+          "tmp/duema-phase-1369/games.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 18.172,
+        "log": "tmp/duema-phase-1369/games-final-verified.log",
+        "matches": [
+          {
+            "seed": 1369,
+            "winner": 1,
+            "actions": 114,
+            "changed": 3,
+            "restores": 8,
+            "played": {
+              "dm01-086": 1,
+              "dm01-089": 3,
+              "dmrp22-062": 2,
+              "dmr19-034": 2,
+              "dmrp22-003": 1,
+              "dmrp14-074": 1,
+              "dm01-108": 1,
+              "dmrp15-s10": 1
+            },
+            "seconds": 8.371
+          },
+          {
+            "seed": 2738,
+            "winner": 1,
+            "actions": 122,
+            "changed": 0,
+            "restores": 5,
+            "played": {
+              "dm01-089": 2,
+              "dm01-086": 2,
+              "dmrp22-003": 2,
+              "dmr19-034": 1,
+              "dmrp22-062": 3,
+              "dm01-108": 1
+            },
+            "seconds": 17.832
+          }
+        ]
+      }
+    },
+    "excludedLongTests": [
+      "photo plays every configured ready opponent without deadlocks or physical-card loss",
+      "random manual photo choices retain all physical cards and replay the same actions through JSON",
+      "production worker completes real Phoenix deck simulations",
+      "every reachable UI action over complete-deck games is legal and rendering is pure through effects, shields and replacements"
+    ],
+    "excludedStatus": "元の長い複合試験の合否未確認を維持。公開候補での全対象集約は未完了。",
+    "interpretation": {
+      "mixedRaijin": "クリーチャーとそれ以外のカードを選べる場合、元の解決者がカード種を決め、その後のクリーチャーを選ぶイベントだけを置換する。公式能力文の条件からの解釈を実カードでテスト。",
+      "implicitSelection": "QA44322/44323に基づき、選ぶ・選びの指示がない戻し、通常進化、Gリンク等の内在的選択を置換しない。"
+    }
+  }
+}

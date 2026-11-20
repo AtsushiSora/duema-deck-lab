@@ -4884,6 +4884,7 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_Select':{
+  if(api.implicitChoice1369(t))t={...t,implicitSelection:true,implicitBattleSelection:true};
   if(t.g1132EntryTarget){
    const host=sourceHost474(s,t.g1132EntryTarget);
    if(!host||host.x.sealed||!api.isCreature(s,host.x))break;
