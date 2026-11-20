@@ -7787,5 +7787,144 @@
         "unblockable": true
       }
     }
+  },
+  "dmbd12-g03": {
+    "phase": 1422,
+    "faces": [
+      {
+        "name": "*/弐幻ムクチューン/*",
+        "typeText": "オレガ・オーラ",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "これをクリーチャーに付けた時、カードを３枚引き、その後、自分の手札を２枚捨てる。",
+        "race": "トリックス/デリートロン",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "aura",
+      "power": 0,
+      "auraPower": 2000,
+      "g1421AuraAttach": [
+        {
+          "op": "Sequence",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 3
+            },
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 2
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmsd09-005": {
+    "phase": 1422,
+    "faces": [
+      {
+        "name": "*/肆幻ヨナビクニ/*",
+        "typeText": "オレガ・オーラ",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "これを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこれをクリーチャーに付けた時、カードを２枚引く。",
+        "race": "トリックス/デリートロン",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "aura",
+      "power": 0,
+      "auraPower": 4000,
+      "g1352Powered": true,
+      "g1421AuraAttach": [
+        {
+          "op": "Draw",
+          "n": 2
+        }
+      ]
+    }
+  },
+  "dmbd12-g02": {
+    "phase": 1422,
+    "faces": [
+      {
+        "name": "*/弐幻ピンドメタル/*",
+        "typeText": "オレガ・オーラ",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー S・トリガー（このオーラをシールドゾーンから手札に加える時、コストを支払わずにすぐ使ってもよい）\nこれをクリーチャーに付けた時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+        "race": "トリックス/デリートロン",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "aura",
+      "power": 0,
+      "auraPower": 2000,
+      "trigger": true,
+      "g1421AuraAttach": [
+        {
+          "op": "Target",
+          "g190Freeze": "self",
+          "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+        }
+      ]
+    }
+  },
+  "dmrp12-009": {
+    "phase": 1422,
+    "faces": [
+      {
+        "name": "骸魔宮 ドクロガリヤ",
+        "typeText": "オレガ・オーラ",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "これを付けたクリーチャーに「パワード・ブレイカー」を与える。\nこれをクリーチャーに付けた時、相手は自身のクリーチャーを１体選び、破壊する。その後、相手は自身の手札を１枚選び、捨てる。",
+        "race": "マフィ・ギャング/デリートロン",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "aura",
+      "power": 0,
+      "auraPower": 4000,
+      "g1352Powered": true,
+      "g1421AuraAttach": [
+        {
+          "op": "OpponentSelect",
+          "n": 1,
+          "to": "grave"
+        },
+        {
+          "op": "Discard",
+          "n": 1
+        }
+      ]
+    }
   }
 }

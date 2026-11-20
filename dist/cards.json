@@ -256059,15 +256059,134 @@
       },
       "supportBatch": "phase-1421",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmbd12-g03",
+      "name": "*/弐幻ムクチューン/*",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 4,
+      "power": 0,
+      "race": "トリックス/デリートロン",
+      "text": "これをクリーチャーに付けた時、カードを３枚引き、その後、自分の手札を２枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd12-g03",
+      "limit": 4,
+      "auraPower": 2000,
+      "g1421AuraAttach": [
+        {
+          "op": "Sequence",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 3
+            },
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 2
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1422",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd09-005",
+      "name": "*/肆幻ヨナビクニ/*",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 5,
+      "power": 0,
+      "race": "トリックス/デリートロン",
+      "text": "これを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこれをクリーチャーに付けた時、カードを２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd09-005",
+      "limit": 4,
+      "auraPower": 4000,
+      "g1352Powered": true,
+      "g1421AuraAttach": [
+        {
+          "op": "Draw",
+          "n": 2
+        }
+      ],
+      "supportBatch": "phase-1422",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd12-g02",
+      "name": "*/弐幻ピンドメタル/*",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 5,
+      "power": 0,
+      "race": "トリックス/デリートロン",
+      "text": "S・トリガー S・トリガー（このオーラをシールドゾーンから手札に加える時、コストを支払わずにすぐ使ってもよい）\nこれをクリーチャーに付けた時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd12-g02",
+      "limit": 4,
+      "auraPower": 2000,
+      "trigger": true,
+      "g1421AuraAttach": [
+        {
+          "op": "Target",
+          "g190Freeze": "self",
+          "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1422",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-009",
+      "name": "骸魔宮 ドクロガリヤ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 6,
+      "power": 0,
+      "race": "マフィ・ギャング/デリートロン",
+      "text": "これを付けたクリーチャーに「パワード・ブレイカー」を与える。\nこれをクリーチャーに付けた時、相手は自身のクリーチャーを１体選び、破壊する。その後、相手は自身の手札を１枚選び、捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-009",
+      "limit": 4,
+      "auraPower": 4000,
+      "g1352Powered": true,
+      "g1421AuraAttach": [
+        {
+          "op": "OpponentSelect",
+          "n": 1,
+          "to": "grave"
+        },
+        {
+          "op": "Discard",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1422",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1421,
+    "phase": 1422,
     "checkedAt": "2026-11-20",
-    "baseCount": 8267,
-    "newEffectCards": 5,
+    "baseCount": 8272,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 8272,
+    "totalCount": 8276,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -279740,6 +279859,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 8267,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1421,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8267,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8272,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
