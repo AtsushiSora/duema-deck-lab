@@ -24,7 +24,7 @@ export function createChampionContinuationRules(api){
  case'g40_Break':choice(s,t,'ブレイクする相手のシールドを選ぶ',s.players[1-t.p].shields.map((x,i)=>opt('シールド'+(i+1),x.uid,0)));break;
  case'g40_UntapTeam':for(const x of creatures(s,t.p)){api.untap(s,t.p,x);x.gospelSpeed=s.turn;}break;
  case'g40_RecklessDeath':{const x=live(s,t.p,t.ids);if(x)move(s,[{player:t.p,uid:x.uid,to:'grave',destroy:true}]);break;}
- case'g40_BadDebt':choice(s,t,'マスターB・A・D：自分のクリーチャーを1体破壊する',creatures(s,t.p).map(x=>opt(card(x).name,x.uid,-cost(card(x)),x.cardId)));break;
+ case'g40_BadDebt':choice(s,t,(card(t.source).g1432Sin?'無月の大罪':'マスターB・A・D')+'：自分のクリーチャーを1体破壊する',creatures(s,t.p).map(x=>opt(card(x).name,x.uid,-cost(card(x)),x.cardId)));break;
  case'g40_Fiona':choice(s,t,'マナから出すフィールドを選ぶ？',[...own.mana.filter(x=>card(x).type==='field'&&api.canEnter(s,t.p,card(x),{origin:'mana',execution:false})).map(x=>opt(card(x).name,x.uid,40+cost(card(x)),x.cardId)),skip()]);break;
  case'g40_PlayerRamp':choice(s,t,'山札の上2枚をマナに置くプレイヤーを選ぶ',[opt('自分',t.p,own.deck.length>2?10:-100),opt('相手',1-t.p,s.players[1-t.p].deck.length<=2?100:-10)]);break;
  case'g40_Orzekia':queue(s,t,'OrzekiaEnemy',{selected:[]});choice(s,t,'オルゼキア：破壊する自分のクリーチャーを選ぶ',creatures(s,t.p).map(x=>opt(card(x).name,x.uid,x.cardId===t.source?10:-cost(card(x)),x.cardId)));break;
