@@ -3833,17 +3833,11 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_GigazandaSearch929':{
-  const opponent=1-t.p;
-  const ids=look(s,{...t,n:s.players[opponent].deck.length},opponent);
-  if(!ids.length){
-   api.shuffleLibrary(s,opponent);
-   break;
-  }
-  const viewed=new Set(ids);
-  const choices=s.players[opponent].deck.filter(x=>viewed.has(x.uid))
-   .map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId));
-  choice(s,{...t,ids},'相手の山札から墓地に置くカードを選ぶ（任意）',[...choices,skip()]);
-  break;
+  if(t.chooseOwner&&t.deckOwner===undefined){choice(s,t,'確認する山札を選ぶ',[opt('自分の山札',{owner:t.p},10),opt('相手の山札',{owner:1-t.p},10)]);break;}
+  const owner=t.deckOwner??1-t.p,ids=t.ids??look(s,{...t,n:s.players[owner].deck.length},owner),chosen=t.chosen??[];
+  const rows=s.players[owner].deck.filter(x=>ids.includes(x.uid)&&!chosen.includes(x.uid));
+  if(chosen.length>=(t.n??1)||!rows.length){for(const uid of ids)release(s,owner,uid);for(const uid of chosen)zoneMove(s,owner,'deck',uid,'grave',t);api.shuffleLibrary(s,owner);api.deckCheck(s,owner);break;}
+  choice(s,{...t,ids,chosen,deckOwner:owner},'山札から墓地に置くカードを選ぶ（任意）',[...rows.map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)),...(!t.exact||!chosen.length?[skip()]:[])]);break;
  }
  case'g34_FreeCross927':put(s,{...t,op:'g18_ChooseFreeCross927'});break;
  case'g34_DestroyPerAlly927':{
@@ -7003,12 +6997,11 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_GigazandaSearch929':{
-  const opponent=1-t.p;
-  for(const uid of t.ids)release(s,opponent,uid);
-  if(v&&t.ids.includes(v))zoneMove(s,opponent,'deck',v,'grave',t);
-  api.shuffleLibrary(s,opponent);
-  api.deckCheck(s,opponent);
-  break;
+  if(v&&typeof v==='object'&&v.owner!==undefined){put(s,{...t,deckOwner:v.owner});break;}
+  if(v&&t.ids.includes(v)&&!t.chosen.includes(v)){put(s,{...t,chosen:[...t.chosen,v]});break;}
+  for(const uid of t.ids)release(s,t.deckOwner,uid);
+  for(const uid of t.chosen)zoneMove(s,t.deckOwner,'deck',uid,'grave',t);
+  api.shuffleLibrary(s,t.deckOwner);api.deckCheck(s,t.deckOwner);break;
  }
  case'g34_HauntedMill833':
   if(v&&zoneMove(s,t.owner,'deck',t.target,'grave',t))api.deckCheck(s,t.owner);
