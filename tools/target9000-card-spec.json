@@ -7662,5 +7662,258 @@
         ]
       }
     }
+  },
+  "dmex04-001": {
+    "phase": 1512,
+    "faces": [
+      {
+        "name": "ボルメテウス・ホワイト・ドラゴン",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "W・ブレイカー\nこのクリーチャーがシールドをブレイクする時、相手はそのシールドを手札に加えるかわりに自身の墓地に置く。",
+        "race": "アーマード・ドラゴン",
+        "powerText": "7000",
+        "missingFields": []
+      },
+      {
+        "name": "ボルメテウス・レジェンド・フレア",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "相手のパワー3000以下のクリーチャーをすべて破壊する。\n相手のシールドを１つ選び、持ち主の墓地に置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "shieldBurn": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "ボルメテウス・レジェンド・フレア",
+        "cost": 6,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 3000,
+              "g199Power": true
+            },
+            "spell": true
+          },
+          {
+            "op": "ShieldMove685",
+            "n": 1,
+            "to": "grave",
+            "required": true,
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "promoy17-002": {
+    "phase": 1512,
+    "faces": [
+      {
+        "name": "ハザード・オウ禍武斗",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nT・ブレイカー",
+        "race": "グランセクト",
+        "powerText": "14000",
+        "missingFields": []
+      },
+      {
+        "name": "禍武斗の轟印",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "このターン、自分のクリーチャーすべてのパワーを+12000し、「T・ブレイカー」を与える。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "machFighter": true,
+      "breaker": 3,
+      "spellFace": {
+        "type": "spell",
+        "name": "禍武斗の轟印",
+        "cost": 7,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupPower",
+            "power": 12000,
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "spell": true
+          },
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "grant": {
+              "g313Breaker": 3,
+              "g1512Breaker": 3
+            },
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp07-021": {
+    "phase": 1512,
+    "faces": [
+      {
+        "name": "龍装者 トラッシュ・ナック",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+        "race": "ドラゴンギルド/ビートジョッキー",
+        "powerText": "5000",
+        "missingFields": []
+      },
+      {
+        "name": "「お前もやったれや！」",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分のクリーチャーと相手のクリーチャーを１体ずつ選ぶ。その２体をバトルさせる。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "g40LastBurst": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "「お前もやったれや！」",
+        "cost": 3,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightPair586",
+            "who": "both",
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dm22ex1-099": {
+    "phase": 1512,
+    "faces": [
+      {
+        "name": "第六戦街 ラヴ・ガトラー",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "ブロッカーブロッカー\nW・ブレイカー\n呪文の効果によって相手がクリーチャーを選ぶ時、このクリーチャーは選べない。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+        "race": "ムートピア/サイバー・コマンド",
+        "powerText": "7000",
+        "missingFields": []
+      },
+      {
+        "name": "インビンシブル・アビス",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 13,
+        "costText": "13",
+        "abilityText": "相手のクリーチャーをすべて破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "spellUntargetable": true,
+      "g40LastBurst": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "インビンシブル・アビス",
+        "cost": 13,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "spell": true
+          }
+        ]
+      }
+    }
   }
 }

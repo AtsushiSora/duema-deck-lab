@@ -271178,15 +271178,200 @@
       },
       "supportBatch": "phase-1511",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex04-001",
+      "name": "ボルメテウス・ホワイト・ドラゴン / ボルメテウス・レジェンド・フレア",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "アーマード・ドラゴン",
+      "text": "W・ブレイカー\nこのクリーチャーがシールドをブレイクする時、相手はそのシールドを手札に加えるかわりに自身の墓地に置く。\n【呪文面】\n相手のパワー3000以下のクリーチャーをすべて破壊する。\n相手のシールドを１つ選び、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-001",
+      "limit": 4,
+      "breaker": 2,
+      "shieldBurn": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "ボルメテウス・レジェンド・フレア",
+        "cost": 6,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 3000,
+              "g199Power": true
+            },
+            "spell": true
+          },
+          {
+            "op": "ShieldMove685",
+            "n": 1,
+            "to": "grave",
+            "required": true,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1512",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy17-002",
+      "name": "ハザード・オウ禍武斗/禍武斗の轟印",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 14000,
+      "race": "グランセクト",
+      "text": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nT・ブレイカー\n【呪文面】\nこのターン、自分のクリーチャーすべてのパワーを+12000し、「T・ブレイカー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy17-002",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 3,
+      "spellFace": {
+        "type": "spell",
+        "name": "禍武斗の轟印",
+        "cost": 7,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupPower",
+            "power": 12000,
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "spell": true
+          },
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "grant": {
+              "g313Breaker": 3,
+              "g1512Breaker": 3
+            },
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1512",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-021",
+      "name": "龍装者 トラッシュ・ナック/ 「お前もやったれや！」",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ドラゴンギルド/ビートジョッキー",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\n自分のクリーチャーと相手のクリーチャーを１体ずつ選ぶ。その２体をバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-021",
+      "limit": 4,
+      "speedAttacker": true,
+      "g40LastBurst": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "「お前もやったれや！」",
+        "cost": 3,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightPair586",
+            "who": "both",
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1512",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-099",
+      "name": "第六戦街 ラヴ・ガトラー / インビンシブル・アビス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ムートピア/サイバー・コマンド",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\n呪文の効果によって相手がクリーチャーを選ぶ時、このクリーチャーは選べない。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\n相手のクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-099",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "spellUntargetable": true,
+      "g40LastBurst": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "インビンシブル・アビス",
+        "cost": 13,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1512",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1511,
+    "phase": 1512,
     "checkedAt": "2026-11-20",
-    "baseCount": 8666,
-    "newEffectCards": 3,
+    "baseCount": 8669,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 8669,
+    "totalCount": 8673,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -296119,6 +296304,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8666,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1511,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8666,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 8669,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
