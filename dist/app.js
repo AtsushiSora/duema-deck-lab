@@ -37,7 +37,7 @@ import {preferredHandFace,handCardModel} from './hand-ui.js?v=0.722.1';
 import {bindFittedBoard,pageWindow} from './board-fit.js';
 import {attackRoute,previewAttackAction,updateBoardFeedback,bindAttackArrow} from './battle-visuals.js?v=0.227.0';
 import {setCards,card as battleCard,validateDeck,createGame,gameFinished,getLegalActions,attackLocked,chooseAI,step,runGame,runSummary,aggregate,power,manaValue,manaValueAt,playFaces,canCastSpell,effectiveCard,canUntap,shieldGuardSources,exLifeShields,exLifeShieldInfo,evolutionBases,isEvolution,selfTriggersStopped,abilitiesIgnored,genmuActive,peekDeckTop,visibleOpponentHand,RULE_VERSION,ENGINE_VERSION,AI_VERSION} from './engine.js';
-import {ORIGINAL,ADVANCE,deckFormat,formatLabel,sameDeckFormat,copyExtraDeck,extraDeckKeys,extraDeckZone,EXTRA_DECK_ZONES} from './deck-format.js';
+import {ORIGINAL,ADVANCE,deckFormat,formatLabel,sameDeckFormat,copyExtraDeck,extraDeckKeys,extraDeckZone,extraDeckCopyLimit,EXTRA_DECK_ZONES} from './deck-format.js';
 import {PRESETS} from './decks.js';
 import {newManualUI,hyperModeModel,manualModel,manualScreenHTML,manualLogHTML,MANUAL_LOG_FILTERS,boardChoice,confirmEndTurn,manualPrimaryAction,manualShieldModel,manaZoneHTML,manaSummonHTML,graveZoneHTML,graveSummonStatusHTML,choiceSelectionModel,choiceDetailCard,rinneActionHTML} from './manual-ui.js?v=0.722.1';
 import {resolveEnvironmentDecks,environmentSupport,groupEnvironmentDecks,ENVIRONMENT_TARGET} from './environment.js';
@@ -341,7 +341,7 @@ function extraDeckHTML(d,{editable=false}={}){
   const total=extraCount(d,key);
   return `<section class="panel mt16 mb16"><div class="row spread"><h3>${label}</h3><span>${total} / ${max}枚</span></div>${rows.map(row=>{
    const c=card(row.id),n=editable?(d[key]||[]).find(x=>x.id===row.id)?.count||0:row.count;
-   const limit=Math.min(c.grCopyLimit??copies,c.limit??copies);
+   const limit=extraDeckCopyLimit(c,key);
    return `<div class="deck-list-row"><button class="details-link grow" data-action="card-detail" data-id="${esc(c.id)}">${esc(c.name)}</button>${editable?
     `<div class="stepper"><button data-action="extra-quantity" data-id="${esc(c.id)}" data-delta="-1" ${n?'':'disabled'} aria-label="${esc(c.name)}を外す">−</button><span>${n}枚</span><button data-action="extra-quantity" data-id="${esc(c.id)}" data-delta="1" ${n>=limit||total>=max?'disabled':''} aria-label="${esc(c.name)}を追加">＋</button></div>`:`<span>${n}枚</span>`}</div>`;
   }).join('')||'<p class="small">カードはありません。</p>'}</section>`;
@@ -353,7 +353,7 @@ function updateExtraQuantity(id,delta){
  if(!key)return;
  const {max,copies}=EXTRA_DECK_ZONES[key],rows=edit[key]||[];
  const next=(rows.find(x=>x.id===id)?.count||0)+delta;
- if(next<0||next>Math.min(c.grCopyLimit??copies,c.limit??copies)||extraCount(edit,key)+delta>max)return;
+ if(next<0||next>extraDeckCopyLimit(c,key)||extraCount(edit,key)+delta>max)return;
  rememberEdit();
  edit[key]=[...rows.filter(x=>x.id!==id),...(next?[{id,count:next}]:[])];
  refreshEditor();

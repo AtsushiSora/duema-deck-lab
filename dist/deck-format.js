@@ -9,6 +9,12 @@ export const EXTRA_DECK_ZONES=Object.freeze({
  startCards:{label:'対戦開始時カード',max:1,copies:1}
 });
 export const extraDeckKeys=Object.keys(EXTRA_DECK_ZONES);
+export function extraDeckCopyLimit(card,key){
+ const normal=card.grCopyLimit??EXTRA_DECK_ZONES[key].copies;
+ // Four is the ordinary catalogue default; only a restriction overrides card text.
+ const restriction=card.limit;
+ return Math.min(normal,restriction===undefined||restriction===4?Infinity:restriction);
+}
 export const extraDeckZone=card=>card?.psychic||card?.dragheart||card?.g1367Duelmate?'extraCards':card?.gr?'grCards':card?.startCard?'startCards':null;
 export function copyExtraDeck(deck,copy){
  return Object.fromEntries(extraDeckKeys.filter(key=>deck[key]?.length).map(key=>[key,copy(deck[key])]));
@@ -45,7 +51,7 @@ function extraZoneErrors(rows,key,get){
  if(total>max)errors.push(label+'は最大'+max+'枚です');
  if(key==='grCards'&&total>0&&total<max)errors.push('超GRゾーンを使う場合は12枚必要です');
  for(const {card,count} of counts.values()){
-  const limit=Math.min(card.grCopyLimit??copies,card.limit??copies);
+  const limit=extraDeckCopyLimit(card,key);
   if(count>limit)errors.push(card.name+'は'+limit+'枚までです');
  }
  return [...new Set(errors)];
