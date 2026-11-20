@@ -273067,15 +273067,165 @@
       },
       "supportBatch": "phase-1521",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-073",
+      "name": "光器ペトローバ / ソーラー・コミューン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3500,
+      "race": "メカ・デル・ソル",
+      "text": "このクリーチャーが出た時、メカ・デル・ソル以外の種族を１つ選ぶ。その種族を持つクリーチャーすべてのパワーを+4000する。\n相手がクリーチャーを選ぶ時、このクリーチャーは選べない。\n【呪文面】\nS・トリガーS・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n種族を１つ選ぶ。選んだ種族の自分のクリーチャー１体につき、相手のクリーチャーを１体選び、タップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-073",
+      "limit": 4,
+      "untargetable": true,
+      "effect": "champion",
+      "g89Effect": "Petrova",
+      "g89Petrova": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "ソーラー・コミューン",
+        "cost": 2,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ChooseRace724",
+            "def": {
+              "op": "Select",
+              "origin": "battle",
+              "owner": "opponent",
+              "optional": true,
+              "g173Targets": true,
+              "g193Select": true,
+              "g193Tap": true,
+              "filter": {
+                "creature": true
+              },
+              "title": "タップする相手のクリーチャーを選ぶ",
+              "spell": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1522",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex2-044",
+      "name": "氷牙アクア・マルガレーテ卿 / スペルブック・チャージャー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 4000,
+      "race": "リキッド・ピープル/ナイト",
+      "text": "自分が呪文を唱えた時、バトルゾーンにある進化ではないカードを１枚選び、持ち主の手札に戻してもよい。\n【呪文面】\n自分の山札の上から５枚を見る。その中から呪文を１枚、相手に見せ、自分の手札に加えてもよい。残りを好きな順序で自分の山札の下に置く。\nチャージャー（この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-044",
+      "limit": 4,
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "BattleCardMove579",
+            "anyOwner": true,
+            "g813NonEvolution": true,
+            "to": "hand",
+            "optional": true
+          }
+        ]
+      },
+      "spellFace": {
+        "type": "spell",
+        "name": "スペルブック・チャージャー",
+        "cost": 4,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 5,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "spell": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ],
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1522",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-044",
+      "name": "霊騎コルテオ / プロテクション・サークル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 2000,
+      "race": "アーク・セラフィム/オリジン",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、自分のクリーチャー１体につき、相手のクリーチャーを１体選んでタップしてもよい。\n【呪文面】\n自分の手札を１枚、シールド化する。\n自分のシールドの数が相手のより多ければ、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-044",
+      "limit": 4,
+      "trigger": true,
+      "effect": "champion",
+      "g81Effect": "Corteo",
+      "spellFace": {
+        "type": "spell",
+        "name": "プロテクション・サークル",
+        "cost": 3,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "g121Role": "protection",
+        "effect": "champion",
+        "g61Effect": "Protection"
+      },
+      "supportBatch": "phase-1522",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1521,
+    "phase": 1522,
     "checkedAt": "2026-11-20",
-    "baseCount": 8701,
-    "newEffectCards": 5,
+    "baseCount": 8706,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 8706,
+    "totalCount": 8709,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -298148,6 +298298,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 8701,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1521,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8701,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8706,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

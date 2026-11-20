@@ -10182,5 +10182,206 @@
         ]
       }
     }
+  },
+  "dm22ex1-073": {
+    "phase": 1522,
+    "faces": [
+      {
+        "name": "光器ペトローバ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "このクリーチャーが出た時、メカ・デル・ソル以外の種族を１つ選ぶ。その種族を持つクリーチャーすべてのパワーを+4000する。\n相手がクリーチャーを選ぶ時、このクリーチャーは選べない。",
+        "race": "メカ・デル・ソル",
+        "powerText": "3500",
+        "missingFields": []
+      },
+      {
+        "name": "ソーラー・コミューン",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "S・トリガーS・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n種族を１つ選ぶ。選んだ種族の自分のクリーチャー１体につき、相手のクリーチャーを１体選び、タップしてもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "untargetable": true,
+      "effect": "champion",
+      "g89Effect": "Petrova",
+      "g89Petrova": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "ソーラー・コミューン",
+        "cost": 2,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ChooseRace724",
+            "def": {
+              "op": "Select",
+              "origin": "battle",
+              "owner": "opponent",
+              "optional": true,
+              "g173Targets": true,
+              "g193Select": true,
+              "g193Tap": true,
+              "filter": {
+                "creature": true
+              },
+              "title": "タップする相手のクリーチャーを選ぶ",
+              "spell": true
+            },
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dm23ex2-044": {
+    "phase": 1522,
+    "faces": [
+      {
+        "name": "氷牙アクア・マルガレーテ卿",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "自分が呪文を唱えた時、バトルゾーンにある進化ではないカードを１枚選び、持ち主の手札に戻してもよい。",
+        "race": "リキッド・ピープル/ナイト",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "スペルブック・チャージャー",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "自分の山札の上から５枚を見る。その中から呪文を１枚、相手に見せ、自分の手札に加えてもよい。残りを好きな順序で自分の山札の下に置く。\nチャージャー（この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "BattleCardMove579",
+            "anyOwner": true,
+            "g813NonEvolution": true,
+            "to": "hand",
+            "optional": true
+          }
+        ]
+      },
+      "spellFace": {
+        "type": "spell",
+        "name": "スペルブック・チャージャー",
+        "cost": 4,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 5,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "spell": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ],
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dm22ex1-044": {
+    "phase": 1522,
+    "faces": [
+      {
+        "name": "霊騎コルテオ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、自分のクリーチャー１体につき、相手のクリーチャーを１体選んでタップしてもよい。",
+        "race": "アーク・セラフィム/オリジン",
+        "powerText": "2000",
+        "missingFields": []
+      },
+      {
+        "name": "プロテクション・サークル",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の手札を１枚、シールド化する。\n自分のシールドの数が相手のより多ければ、カードを１枚引いてもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "champion",
+      "g81Effect": "Corteo",
+      "spellFace": {
+        "type": "spell",
+        "name": "プロテクション・サークル",
+        "cost": 3,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "g121Role": "protection",
+        "effect": "champion",
+        "g61Effect": "Protection"
+      }
+    }
   }
 }
