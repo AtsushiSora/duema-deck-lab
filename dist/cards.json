@@ -251184,15 +251184,152 @@
       "gr": true,
       "supportBatch": "phase-1392",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmbd22-006",
+      "name": "ブレイン・テンタクル",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "デリートロン",
+      "text": "ブロッカー ブロッカー\nこのクリーチャーは攻撃できない。\nこのクリーチャーが出た時、カードを１枚引いてもよい。そうしたら、自分の手札を１枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd22-006",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "カードを1枚引き、手札を1枚捨てる？",
+          "g204DrawDiscard": true,
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            },
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1393",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd08-013",
+      "name": "マシンガン・トーク",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "このクリーチャーがバトルゾーンに出た時、クリーチャーを１体選び、アンタップしてもよい。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd08-013",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "untap": true,
+          "anyOwner": true,
+          "optional": true
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1393",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd09-003",
+      "name": "硬直 TL-20",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "トリックス/デリートロン",
+      "text": "このクリーチャーがバトルゾーンを離れた時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd09-003",
+      "limit": 4,
+      "g172Leave": [
+        {
+          "op": "Target",
+          "g190Freeze": "self",
+          "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1393",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd10-002",
+      "name": "催眠の意志 レンブラ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "メタリカ/ワンダフォース",
+      "text": "このクリーチャーがタップした時、相手のクリーチャーを１体選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd10-002",
+      "limit": 4,
+      "g188Tapped": [
+        {
+          "op": "Target",
+          "tap": true
+        }
+      ],
+      "gr": true,
+      "supportBatch": "phase-1393",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-065",
+      "name": "超衛の意志 エイキャ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "メタリカ/ワンダフォース",
+      "text": "シールド・セイバー（自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい）\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-065",
+      "limit": 4,
+      "g401ShieldSaver": true,
+      "gr": true,
+      "supportBatch": "phase-1393",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1392,
+    "phase": 1393,
     "checkedAt": "2026-11-20",
-    "baseCount": 8139,
+    "baseCount": 8144,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8144,
+    "totalCount": 8149,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -274458,6 +274595,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8139,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1392,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8139,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8144,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
