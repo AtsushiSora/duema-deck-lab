@@ -1,0 +1,142 @@
+{
+  "checkedAt": "2026-11-20T13:01:57.513Z",
+  "status": "published-by-explicit-user-request",
+  "commit": "0f28cee3d71613a49792080daa45bb9e18a2059b",
+  "appVersion": "0.722.0",
+  "engineVersion": "0.602.1",
+  "supportedCards": 8074,
+  "duplicates": 0,
+  "github": {
+    "pushed": true,
+    "pagesUrl": "https://atsushisora.github.io/duema-deck-lab/",
+    "workflowRun": "https://github.com/AtsushiSora/duema-deck-lab/actions/runs/44740090598",
+    "conclusion": "success",
+    "netlifyAutomaticRunsForCommit": 0
+  },
+  "netlify": {
+    "id": "6b0043eaf2b2a0b1ea017187",
+    "state": "ready",
+    "title": "GitHub 0f28cee3d71613a49792080daa45bb9e18a2059b v0.722.0 explicit one-time release",
+    "commit_ref": null,
+    "created_at": "2026-11-20T12:58:18.728Z",
+    "published_at": "2026-11-20T12:58:51.189Z",
+    "manual_deploy": false,
+    "context": "production",
+    "deploy_source": "cli",
+    "functions": [
+      "duel"
+    ],
+    "url": "https://duema-deck-lab.netlify.app",
+    "friendUrl": "https://duema-deck-lab.netlify.app/?view=online",
+    "operation": "CLIによる今回1回のproduction反映。画面とduel関数を同じ作業ツリーから一緒に公開。",
+    "commitEvidence": "Netlifyのcommit_refはnull。CLI deploy_sourceと公開タイトルのSHA、および公開ファイルの内容一致で照合。"
+  },
+  "liveVerification": [
+    {
+      "url": "https://atsushisora.github.io/duema-deck-lab/release.json",
+      "status": 200,
+      "verified": {
+        "version": "0.722.0",
+        "engineVersion": "0.602.1"
+      }
+    },
+    {
+      "url": "https://atsushisora.github.io/duema-deck-lab/online-compatibility.js",
+      "status": 200,
+      "verified": {
+        "sha256": "033abe0956973fa14ca0ec8df52464802b5aebeec200f59f74115eb6a0a95104"
+      }
+    },
+    {
+      "url": "https://duema-deck-lab.netlify.app/release.json",
+      "status": 200,
+      "verified": {
+        "version": "0.722.0",
+        "engineVersion": "0.602.1"
+      }
+    },
+    {
+      "url": "https://duema-deck-lab.netlify.app/online-compatibility.js",
+      "status": 200,
+      "verified": {
+        "sha256": "033abe0956973fa14ca0ec8df52464802b5aebeec200f59f74115eb6a0a95104"
+      }
+    },
+    {
+      "url": "https://duema-deck-lab.netlify.app/api/duel",
+      "status": 401,
+      "error": "auth/required",
+      "rulesHashMatches": true
+    },
+    {
+      "url": "https://duema-deck-lab.netlify.app/api/duel",
+      "status": 401,
+      "error": "auth/invalid",
+      "rulesHashMatches": true
+    }
+  ],
+  "browserVerification": {
+    "method": "Chrome guest profile via computer use",
+    "pages": [
+      "ホームにv0.722.0表示",
+      "対戦対応8,074種類を画面で確認"
+    ],
+    "netlify": [
+      "友達と対戦画面が表示",
+      "Googleでログインしよう・別々のGoogleアカウントで参加する説明を確認"
+    ],
+    "signedInTwoAccountMatch": "未実施。ルーム作成・参加・勝敗の本番2アカウント確認は未完了。"
+  },
+  "automaticUpdates": {
+    "netlifyWorkflow": "workflow_dispatch only; push event removed",
+    "githubHook": {
+      "id": 701628730,
+      "host": "api.netlify.com",
+      "active": false
+    },
+    "netlifyStopBuilds": true,
+    "pages": "mainへのpushで更新を継続",
+    "netlifyPolicy": "以後のカード追加はNetlifyへ反映しない。ユーザーが明示した回だけ同一コミットの画面・カード・関数を手動更新。",
+    "policyFile": "tools/netlify-release-policy.md"
+  },
+  "validation": [
+    {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 19.212,
+      "log": "tmp/duema-release-20261120/check.log"
+    },
+    {
+      "name": "release-tests",
+      "command": [
+        "node",
+        "--test",
+        "tests/attack-continuation-ui.test.mjs",
+        "tests/chaos-attack-continuation.test.mjs",
+        "tests/log-filter.test.mjs",
+        "tests/standard1372-effects.test.mjs",
+        "tests/requested1372-games.test.mjs",
+        "tests/online-runtime.test.mjs",
+        "tests/online-app.test.mjs",
+        "tests/online-client.test.mjs",
+        "tests/online-ui.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 8.155,
+      "log": "tmp/duema-release-20261120/release-tests.log"
+    }
+  ],
+  "preservedUnverified": [
+    "公式照合2件はユーザー保留のまま",
+    "一括npm testは中断・合否未確認のまま",
+    "公開候補全対象の集約は未完了のまま"
+  ],
+  "scope": "今回の明示公開指示による現状版の公開。既存の保留・未検証を公開によって解消扱いにしない。"
+}
