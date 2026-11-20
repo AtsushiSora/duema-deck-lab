@@ -415,6 +415,7 @@ export function createSixPhotoRules(api){
   if(f.g939ShieldForce&&(api.ignored(s,x)||!effective(x,s).g1304ShieldForce&&!effective(x,s).g1486ShieldForce&&!hasCopiedRole393(card(x),'g35Role','galaxy')))return false;
   if(f.g951ManaCivilizationCost&&cost(effective(x,s))>manaCivilizationCount(s,p))return false;
   const c=api.zoneCard(s,p,x),d=s.players[p].battle.includes(x)?effective(x,s):c;
+  if(f.g1490Exile&&!c.g1490Exile)return false;
   if(f.multicolor&&colors(d).length<2)return false;
   if(f.g1321ManaCivilizations){
    const present=new Set(s.players[p].mana.flatMap(y=>

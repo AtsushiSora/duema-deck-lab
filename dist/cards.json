@@ -266922,15 +266922,209 @@
       ],
       "supportBatch": "phase-1489",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex2-036",
+      "name": "制服槍 ブータン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 8000,
+      "race": "アウトレイジMAX",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、自分のクリーチャーを２体破壊する。その後、相手は自身のクリーチャーを１体選び、破壊する。\n自分の他の、名前に《制服》とあるエグザイル・クリーチャーを出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-036",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "制服",
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "to": "grave",
+          "n": 2,
+          "filter": {
+            "creature": true
+          }
+        },
+        {
+          "op": "OpponentSelect",
+          "to": "grave",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1490",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-090",
+      "name": "友情の カツドン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 1000,
+      "race": "アウトレイジMAX",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nウルトラ・ドロン・ゴー：このクリーチャーが離れた時、エグザイル・クリーチャーを１体、自分の手札から出してもよい。\n自分の他の、名前に《友情の カツドン》とあるエグザイル・クリーチャーは出せない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-090",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "友情の カツドン",
+      "g172Leave": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true
+          }
+        }
+      ],
+      "speedAttacker": true,
+      "supportBatch": "phase-1490",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr10-023",
+      "name": "命水百仙 しずく",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "アウトレイジMAX",
+      "text": "このクリーチャーはブロックされない。\nドロン・ゴー：このクリーチャーが破壊された時、名前に「百仙」とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に 「しずく」とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-023",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "しずく",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "百仙"
+            ]
+          }
+        }
+      ],
+      "unblockable": true,
+      "supportBatch": "phase-1490",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr10-025",
+      "name": "閻魔王子 クーマン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "アウトレイジMAX",
+      "text": "このクリーチャーが攻撃する時、相手は自身の手札を１枚選び、捨てる。\nドロン・ゴー：このクリーチャーが破壊された時、名前に「閻魔」とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に「クーマン」とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-025",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "クーマン",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "閻魔"
+            ]
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Discard",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1490",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr10-029",
+      "name": "極太茸 菌次郎",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "アウトレイジMAX",
+      "text": "このクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置いてもよい。\nドロン・ゴー：このクリーチャーが破壊された時、名前に「極太」とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に「菌次郎」とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-029",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "菌次郎",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "極太"
+            ]
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1490",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1489,
+    "phase": 1490,
     "checkedAt": "2026-11-20",
-    "baseCount": 8569,
-    "newEffectCards": 4,
+    "baseCount": 8573,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8573,
+    "totalCount": 8578,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -291555,6 +291749,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 8569,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1489,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8569,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 8573,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

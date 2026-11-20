@@ -2992,5 +2992,214 @@
         }
       ]
     }
+  },
+  "dm22ex2-036": {
+    "phase": 1490,
+    "faces": [
+      {
+        "name": "制服槍 ブータン",
+        "typeText": "エグザイル・クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、自分のクリーチャーを２体破壊する。その後、相手は自身のクリーチャーを１体選び、破壊する。\n自分の他の、名前に《制服》とあるエグザイル・クリーチャーを出すことはできない。",
+        "race": "アウトレイジMAX",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1490Exile": true,
+      "g1490ExileLimit": "制服",
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "to": "grave",
+          "n": 2,
+          "filter": {
+            "creature": true
+          }
+        },
+        {
+          "op": "OpponentSelect",
+          "to": "grave",
+          "n": 1
+        }
+      ]
+    }
+  },
+  "dm22ex1-090": {
+    "phase": 1490,
+    "faces": [
+      {
+        "name": "友情の カツドン",
+        "typeText": "エグザイル・クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nウルトラ・ドロン・ゴー：このクリーチャーが離れた時、エグザイル・クリーチャーを１体、自分の手札から出してもよい。\n自分の他の、名前に《友情の カツドン》とあるエグザイル・クリーチャーは出せない。",
+        "race": "アウトレイジMAX",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1490Exile": true,
+      "g1490ExileLimit": "友情の カツドン",
+      "g172Leave": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true
+          }
+        }
+      ],
+      "speedAttacker": true
+    }
+  },
+  "dmr10-023": {
+    "phase": 1490,
+    "faces": [
+      {
+        "name": "命水百仙 しずく",
+        "typeText": "エグザイル・クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーはブロックされない。\nドロン・ゴー：このクリーチャーが破壊された時、名前に「百仙」とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に 「しずく」とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+        "race": "アウトレイジMAX",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1490Exile": true,
+      "g1490ExileLimit": "しずく",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "百仙"
+            ]
+          }
+        }
+      ],
+      "unblockable": true
+    }
+  },
+  "dmr10-025": {
+    "phase": 1490,
+    "faces": [
+      {
+        "name": "閻魔王子 クーマン",
+        "typeText": "エグザイル・クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーが攻撃する時、相手は自身の手札を１枚選び、捨てる。\nドロン・ゴー：このクリーチャーが破壊された時、名前に「閻魔」とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に「クーマン」とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+        "race": "アウトレイジMAX",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1490Exile": true,
+      "g1490ExileLimit": "クーマン",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "閻魔"
+            ]
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Discard",
+          "n": 1
+        }
+      ]
+    }
+  },
+  "dmr10-029": {
+    "phase": 1490,
+    "faces": [
+      {
+        "name": "極太茸 菌次郎",
+        "typeText": "エグザイル・クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置いてもよい。\nドロン・ゴー：このクリーチャーが破壊された時、名前に「極太」とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に「菌次郎」とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+        "race": "アウトレイジMAX",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1490Exile": true,
+      "g1490ExileLimit": "菌次郎",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "極太"
+            ]
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    }
   }
 }
