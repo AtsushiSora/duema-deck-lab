@@ -10292,5 +10292,179 @@
       "reviewedAt": "2026-11-20T16:59:22.020Z",
       "reason": "公式HTMLのマナ欄がダッシュである一方、公式カード画像の右端にマナ1の数字が明瞭に印刷されている。基本情報・全文と合わせて目視照合。"
     }
+  },
+  "dmrp09-085": {
+    "phase": 1436,
+    "faces": [
+      {
+        "name": "幽影スピナ・ペドロ",
+        "typeText": "オレガ・オーラ",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "これを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこのオーラを、自分の墓地から使ってもよい。",
+        "race": "マフィ・ギャング/デリートロン",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "aura",
+      "power": 0,
+      "auraPower": 4000,
+      "g1352Powered": true,
+      "g1436ZoneUse": "grave"
+    }
+  },
+  "dmrp10-061": {
+    "phase": 1436,
+    "faces": [
+      {
+        "name": "ωΔ ポルンデル",
+        "typeText": "オレガ・オーラ",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "これを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこのオーラを自分のマナゾーンから使ってもよい。",
+        "race": "グランセクト/デリートロン",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "aura",
+      "power": 0,
+      "auraPower": 6000,
+      "g1352Powered": true,
+      "g1436ZoneUse": "mana"
+    }
+  },
+  "dmrp09-s05": {
+    "phase": 1436,
+    "faces": [
+      {
+        "name": "極幻夢 ギャ・ザール",
+        "typeText": "オレガ・オーラ",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "これを付けたクリーチャーが攻撃する時、カードを１枚引く。その後、コスト６以下の呪文またはオーラを自分の手札からコストを支払わずに使ってもよい。",
+        "race": "トリックス/デリートロン",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "aura",
+      "power": 0,
+      "auraPower": 2000,
+      "g1434HostAttack": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "max": 6,
+          "optional": true,
+          "nonCreature": true,
+          "filter": {
+            "any": [
+              {
+                "spell": true
+              },
+              {
+                "aura": true
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "dmbd12-i01": {
+    "phase": 1436,
+    "faces": [
+      {
+        "name": "蒼卍龍 ドギラゲンム",
+        "typeText": "オレガ・オーラ",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "これを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこれをクリーチャーに付けた時、相手のクリーチャーを１体破壊する。\nクリーチャーが破壊された時、カードを１枚引いてもよい。",
+        "race": "ドラゴン・コード/マフィ・ギャング/デリートロン",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "aura",
+      "power": 0,
+      "auraPower": 6000,
+      "g1352Powered": true,
+      "g1421AuraAttach": [
+        {
+          "op": "Target",
+          "to": "grave"
+        }
+      ],
+      "g303DeathWatch": {
+        "self": true,
+        "both": true,
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "カードを1枚引く",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dmrp09-006": {
+    "phase": 1436,
+    "faces": [
+      {
+        "name": "無修羅デジルムカデ",
+        "typeText": "オレガ・オーラ",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "これを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n相手のクリーチャーは、タップしてバトルゾーンに出る。",
+        "race": "マフィ・ギャング/デリートロン",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "aura",
+      "power": 0,
+      "auraPower": 4000,
+      "g1352Powered": true,
+      "g1421AuraGrants": {
+        "opponentTapEntry": true
+      }
+    }
   }
 }

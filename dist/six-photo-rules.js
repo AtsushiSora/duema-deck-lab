@@ -41,13 +41,13 @@ export function createSixPhotoRules(api){
  function zonePermits450(s,p,x,c,origin){if(s.active!==p||c.type!=='creature'||origin==='mana'&&x.faceDown||!api.canMoveZone(s,p,origin))return[];return creatures(s,p).flatMap(y=>{const r=!y.sealed&&effective(y,s).g450ZoneSummon,k='g450:'+y.uid+'@'+(y.incarnation||0);return r&&r.origin===origin&&(!r.entryTurn||(y.originalEntryTurn??y.entered)===s.turn)&&s.g450ZoneUses?.[p]?.[k]!==s.turn&&(r.anyShieldsMax===undefined||s.players.some(w=>w.shields.length<=r.anyShieldsMax))&&(!r.filter.evolution||api.isEvolution(x)||!!c.g48HandEvolution)&&matches(s,p,x,r.filter.evolution?{...r.filter,evolution:false}:r.filter)?[k]:[];});}
  // Count visible Joker cards in both zones; a twinpact is one mana card.
  function jokerCount539(s,p){return s.players[p].battle.filter(y=>!y.sealed&&!y.faceDown&&race(effective(y,s),'ジョーカーズ')).length+s.players[p].mana.filter(y=>!y.faceDown&&faces(card(y)).some(c=>race(c,'ジョーカーズ'))).length;}
- const gravePermits294=(s,p,x,c=card(x))=>s.active!==p||c.type!=='creature'||!api.canMoveZone(s,p,'grave')?[]:[
+ const gravePermits294=(s,p,x,c=card(x))=>c.type==='aura'?(s.active===p&&!x.faceDown&&c.g1436ZoneUse==='grave'&&!api.handAbilityIgnored(s,x)&&api.canMoveZone(s,p,'grave')?['g1436:grave']:[]):s.active!==p||c.type!=='creature'||!api.canMoveZone(s,p,'grave')?[]:[
   ...(!x.faceDown&&c.g978SelfGraveSummon&&(c.g978SelfGraveSummon===true||ownCondition(s,p,c.g978SelfGraveSummon))?['g978:self']:[]),
   ...creatures(s,p).filter(y=>{const rule=effective(y,s).g294GraveAura;return !y.sealed&&rule&&(rule.race?race(c,rule.race):colors(c).includes('闇')&&(api.isEvolution(x)||!!c.g48HandEvolution));}).slice(0,1).map(y=>'g294:'+y.uid+'@'+(y.incarnation||0)),
   ...zonePermits450(s,p,x,c,'grave')
  ];
  // Mana characteristics include both twinpact faces and live Courtney effects.
- const manaPermits297=(s,p,x,c=card(x))=>s.active!==p||x.faceDown||!s.players[p].mana.includes(x)||c.type!=='creature'||!api.canMoveZone(s,p,'mana')?[]:[
+ const manaPermits297=(s,p,x,c=card(x))=>c.type==='aura'?(s.active===p&&!x.faceDown&&c.g1436ZoneUse==='mana'&&s.players[p].mana.includes(x)&&!api.handAbilityIgnored(s,x)&&api.canMoveZone(s,p,'mana')?['g1436:mana']:[]):s.active!==p||x.faceDown||!s.players[p].mana.includes(x)||c.type!=='creature'||!api.canMoveZone(s,p,'mana')?[]:[
   ...(c.g297SelfManaSummon&&ownCondition(s,p,c.g297SelfManaSummon)?['g297:self']:[]),
   ...(s.extLimits||[]).filter(l=>l.kind==='g1288ManaSummon'&&!l.used&&l.player===p&&l.turn===s.turn&&
    l.refs.some(ref=>ref.uid===x.uid&&ref.serial===(x.zoneSerial||0))&&!spellGrantIgnored(s,l)).map(l=>l.permit),
@@ -6239,7 +6239,7 @@ export function createSixPhotoRules(api){
         t.creatureOnly&&type!=='creature'||t.nonCreature&&type==='creature'||
         t.element&&!['creature','seed','gear','field','duelist'].includes(type)||
         max!==undefined&&cost(c)>max||t.trigger&&!(c.trigger||c.triggerPlus||c.superTrigger)||
-        !api.canCast(s,t.p,c,origin)||type==='creature'&&(!api.canEnter(s,t.p,c,{origin,execution:true})||
+        !api.canCast(s,t.p,c,origin)||['creature','aura'].includes(type)&&(!api.canEnter(s,t.p,c,{origin,execution:true})||
         c.evolution&&!api.evolutionBases(s,t.p,c).length))return [];
      const prefix=t.zones?.length>1?(origin==='hand'?'手札：':'墓地：'):'';
      const value={uid:y.uid,face,origin,...(t.g555FinishTo?{serial555:y.zoneSerial||0}:{})};
