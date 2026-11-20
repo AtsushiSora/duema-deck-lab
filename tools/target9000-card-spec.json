@@ -1855,5 +1855,310 @@
         }
       ]
     }
+  },
+  "dm25bd3-017": {
+    "phase": 1483,
+    "faces": [
+      {
+        "name": "響命龍覇 リンクウッド＆ヒビキ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/火",
+        "civilizations": [
+          "水",
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、自分のマナゾーンにあるカードと同じ文明を持つ、コスト４以下のドラグハート・ウエポンを１つ、自分の超次元ゾーンから出し、このクリーチャーに装備する。\nこのクリーチャーが出た時、カードを１枚引く。その後、自分の手札の枚数以下のコストを持つ相手のエレメントを１つ選び、破壊してもよい。",
+        "race": "ガイアール・コマンド・ドラゴン/ヒューマノイド爆/ドラグナー",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DeployDragheart1361",
+          "weaponOnly": true
+        }
+      ],
+      "g527ExtraEntry": [
+        {
+          "label": "カードを引き手札の枚数以下のエレメントを破壊する",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            },
+            {
+              "op": "HandCost262",
+              "defs": [
+                {
+                  "op": "Target",
+                  "element": true,
+                  "to": "grave",
+                  "optional": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmex06-040": {
+    "phase": 1483,
+    "faces": [
+      {
+        "name": "龍覇少女隊ハラグロX",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "このクリーチャーを自分のマナゾーンから召喚してもよい。\nパワーアタッカー+2000（攻撃中、このクリーチャーのパワーを+2000する）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自然のコスト４以下のドラグハートを１枚、自分の超次元ゾーンからバトルゾーンに出す。（それがウエポンであれば、このクリーチャーに装備して出す）",
+        "race": "ビーストフォーク號/ドラグナー",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "manaSummon": true,
+      "attackBonus": 2000,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DeployDragheart1361",
+          "options": [
+            {
+              "max": 4,
+              "color": "自然"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmx11-065": {
+    "phase": 1483,
+    "faces": [
+      {
+        "name": "慈愛の守護者マモリ・タイハッピー",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "バトルゾーンにある自分のガーディアンはすべて「セイバー：ガーディアン」を得る。(自分のガーディアンが破壊される時、かわりに「セイバー：ガーディアン」を持つクリーチャーを１体破壊してもよい)",
+        "race": "ガーディアン/ハンター",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g208Auras": [
+        {
+          "filter": {
+            "race": "ガーディアン"
+          },
+          "grants": {
+            "g571Saver": {
+              "filter": {
+                "race": "ガーディアン"
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "promoy13-011": {
+    "phase": 1483,
+    "faces": [
+      {
+        "name": "英傑の精獣 バアル・バララーク",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、６以下の数字をひとつ選ぶ。選んだ数字と同じコストを持つクリーチャーをすべて破壊する。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+        "race": "マジカル・モンスター",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "0",
+              "defs": [
+                {
+                  "op": "Sweep",
+                  "both": true,
+                  "to": "grave",
+                  "filter": {
+                    "creature": true,
+                    "min": 0,
+                    "max": 0
+                  }
+                }
+              ]
+            },
+            {
+              "label": "1",
+              "defs": [
+                {
+                  "op": "Sweep",
+                  "both": true,
+                  "to": "grave",
+                  "filter": {
+                    "creature": true,
+                    "min": 1,
+                    "max": 1
+                  }
+                }
+              ]
+            },
+            {
+              "label": "2",
+              "defs": [
+                {
+                  "op": "Sweep",
+                  "both": true,
+                  "to": "grave",
+                  "filter": {
+                    "creature": true,
+                    "min": 2,
+                    "max": 2
+                  }
+                }
+              ]
+            },
+            {
+              "label": "3",
+              "defs": [
+                {
+                  "op": "Sweep",
+                  "both": true,
+                  "to": "grave",
+                  "filter": {
+                    "creature": true,
+                    "min": 3,
+                    "max": 3
+                  }
+                }
+              ]
+            },
+            {
+              "label": "4",
+              "defs": [
+                {
+                  "op": "Sweep",
+                  "both": true,
+                  "to": "grave",
+                  "filter": {
+                    "creature": true,
+                    "min": 4,
+                    "max": 4
+                  }
+                }
+              ]
+            },
+            {
+              "label": "5",
+              "defs": [
+                {
+                  "op": "Sweep",
+                  "both": true,
+                  "to": "grave",
+                  "filter": {
+                    "creature": true,
+                    "min": 5,
+                    "max": 5
+                  }
+                }
+              ]
+            },
+            {
+              "label": "6",
+              "defs": [
+                {
+                  "op": "Sweep",
+                  "both": true,
+                  "to": "grave",
+                  "filter": {
+                    "creature": true,
+                    "min": 6,
+                    "max": 6
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmr05-055": {
+    "phase": 1483,
+    "faces": [
+      {
+        "name": "黒神龍オンバシ・ラオーン",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "自分のアンノウンの召喚コストを１、ゼニスの召喚コストを２少なくしてもよい。ただし、コストは１より少なくならない。\n自分のアンノウン/ゼニスをバトルゾーンに出した時、このクリーチャーを破壊する。",
+        "race": "ドラゴン・ゾンビ/アンノイズ",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g349SummonAuras": [
+        {
+          "race": "アンノウン",
+          "amount": 1,
+          "g560Optional": true
+        },
+        {
+          "race": "ゼニス",
+          "amount": 2,
+          "g560Optional": true
+        }
+      ],
+      "g314OtherEntry": {
+        "who": "self",
+        "filter": {
+          "raceAll": [
+            "アンノウン",
+            "ゼニス"
+          ]
+        },
+        "defs": [
+          {
+            "op": "SelfDestroy"
+          }
+        ]
+      }
+    }
   }
 }
