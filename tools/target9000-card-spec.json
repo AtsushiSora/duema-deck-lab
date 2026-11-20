@@ -227,14 +227,7 @@
       "auraPower": 4000,
       "g1352Powered": true,
       "g1421AuraGrants": {
-        "g260Self": {
-          "filter": {
-            "g1471GrCount": 3
-          },
-          "grants": {
-            "untargetable": true
-          }
-        }
+        "g1477GRProtection": 3
       }
     }
   },
@@ -416,14 +409,7 @@
       "manaValue": 0,
       "dragheart": true,
       "g1475WeaponGrants": {
-        "g260Self": {
-          "filter": {
-            "g1475Attacking": true
-          },
-          "grants": {
-            "g465DestroySafe": true
-          }
-        }
+        "g1475AttackDestroySafe": true
       },
       "g1475TappedRelease": true,
       "dragheartBack": {
@@ -727,6 +713,167 @@
             {
               "max": 4,
               "color": "自然"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmr15-006": {
+    "phase": 1477,
+    "faces": [
+      {
+        "name": "龍覇 セイントローズ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、光のコスト５以下のドラグハートを１枚、自分の超次元ゾーンからバトルゾーンに出す。（それがウエポンであれば、このクリーチャーに装備して出す）\nバトルゾーンに自分の光のドラグハートがあれば、このクリーチャーは「ブロッカー」を得る。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+        "race": "ジャスティス・ウイング/ドラグナー",
+        "powerText": "6500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DeployDragheart1361",
+          "options": [
+            {
+              "max": 5,
+              "color": "光"
+            }
+          ]
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g1451Dragheart": true,
+          "color": "光"
+        },
+        "grants": {
+          "blocker": true
+        }
+      }
+    }
+  },
+  "dmr13-098": {
+    "phase": 1477,
+    "faces": [
+      {
+        "name": "龍覇 ストラス・アイラ",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、コスト２以下のドラグハートを１枚、自分の超次元ゾーンからバトルゾーンに出す。（それがウエポンであれば、このクリーチャーに装備して出す）\nバトルゾーンに自分の火のドラグハートがあれば、このクリーチャーのパワーは+2000される。",
+        "race": "ヒューマノイド爆/ドラグナー",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DeployDragheart1361",
+          "max": 2
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g1451Dragheart": true,
+          "color": "火"
+        },
+        "grants": {
+          "power": 2000
+        }
+      }
+    }
+  },
+  "dmr15-029": {
+    "phase": 1477,
+    "faces": [
+      {
+        "name": "龍覇 アイラ・フィズ",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "マナ武装 ３：このクリーチャーをバトルゾーンに出した時、自分のマナゾーンに火のカードが３枚以上あれば、火のコスト２以下のドラグハートを１枚、自分の超次元ゾーンからバトルゾーンに出す。（それがウエポンであれば、このクリーチャーに装備して出す）",
+        "race": "ヒューマノイド爆/ドラグナー",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g267Mana": {
+              "color": "火",
+              "n": 3
+            }
+          },
+          "defs": [
+            {
+              "op": "DeployDragheart1361",
+              "options": [
+                {
+                  "max": 2,
+                  "color": "火"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmr13-018": {
+    "phase": 1477,
+    "faces": [
+      {
+        "name": "龍覇 メタルアベンジャー",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、コスト２以下のドラグハート１枚、または、コスト４以下の水のドラグハート１枚を、自分の超次元ゾーンからバトルゾーンに出す。（それがウエポンであれば、このクリーチャーに装備して出す）\n呪文の効果で相手がバトルゾーンにあるクリーチャーを選ぶ時、このクリーチャーを選ぶことはできない。",
+        "race": "リキッド・ピープル閃/ドラグナー",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "spellUntargetable": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DeployDragheart1361",
+          "options": [
+            {
+              "max": 2
+            },
+            {
+              "max": 4,
+              "color": "水"
             }
           ]
         }
