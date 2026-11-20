@@ -8,7 +8,7 @@ export function decorateSurvivor406(s,p,inst,c,{card,ignored,isCreature}){
  const out={...c,g406Inherited:sources.map(x=>({uid:x.uid,source:x.cardId,grants:card(x).g406Survivor}))};
  let slayers=c.g208SlayerCount||Number(!!c.slayer);
  for(const {grants:g}of out.g406Inherited){
-  for(const k of['speedAttacker','blocker','unblockable'])if(g[k])out[k]=true;
+  for(const k of['speedAttacker','blocker','unblockable','machFighter'])if(g[k])out[k]=true;
   if(g.slayer){out.slayer=true;slayers++;}
   if(g.power&&out.power!=='∞')out.power=Number(out.power)+g.power;
   if(g.attackBonus)out.attackBonus=(out.attackBonus||0)+g.attackBonus;
