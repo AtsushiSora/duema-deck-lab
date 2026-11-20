@@ -493155,6 +493155,27 @@
           "added": [
             "dm26ex3-038"
           ]
+        },
+        "no13Full": {
+          "status": "passed",
+          "checkedAt": "2026-11-20",
+          "commit": "75fcdfab0ccca8c81f60faf7745330779ed17833",
+          "runtimeCommit": "17ad28754cff2c2a72c24ce4395698d42d5a768b",
+          "engineVersion": "0.601.0",
+          "aiVersion": "2.3.417",
+          "manifest": "tools/no13-verification-1370.json",
+          "opponents": 49,
+          "shortTests": 33,
+          "aiReplayPairs": 196,
+          "randomSeeds": 28,
+          "workerGames": 490,
+          "borrowedEntryAbilities": 2554,
+          "borrowedEntryHostIds": 2501,
+          "parts": 778,
+          "maxPartSeconds": 68.486,
+          "failed": 0,
+          "missing": 0,
+          "duplicates": 0
         }
       },
       "sourceHashes": {
@@ -493386,13 +493407,13 @@
       "notResolved": [
         "キング・ナイト・マジックとナイト・マジックの包含関係を直接説明する公式根拠",
         "ドラン・ゴルギーニ金箔2S/2を特定できる公式画像・個別ID",
-        "既存No13のAI・乱数・本番ワーカーの残分割と、公開候補での全対象集約"
+        "公開候補コミットでの全対象集約"
       ],
       "next": [
-        "直接のキーワード包含の一次資料を確認。名称の類似や現在のテストの通過だけで完了にしない。",
-        "金箔2S/2の公式資料を確認。OR2/OR2・2B/10とは区別する。",
-        "No13の旧長時間対象を対戦・シード・ワーカー単位で分割。過去の合格コミットと公開候補を分けて集約する。",
-        "未検証が解消するまで公開しない。Netlifyのmain連動を起こさないPages公開経路が未確認。"
+        "ナイト・マジックの包含関係を直接説明する公式根拠を確認。",
+        "ドラン・ゴルギーニ金箔2S/2を識別できる公式画像・版IDを確認。",
+        "公開候補を確定後、全対象をソースのハッシュと実行結果で集約する。No13と登場時借用の現実装の全ケースは今回完了。",
+        "未検証が解消し、Netlifyを更新しないPages公開手順を確認するまでpush・公開しない。"
       ]
     }
   ],
@@ -493401,10 +493422,10 @@
     "nextPhase": 1371,
     "workInProgress": null,
     "nextCandidates": [
-      "直接のキーワード包含の一次資料を確認。名称の類似や現在のテストの通過だけで完了にしない。",
-      "金箔2S/2の公式資料を確認。OR2/OR2・2B/10とは区別する。",
-      "No13の旧長時間対象を対戦・シード・ワーカー単位で分割。過去の合格コミットと公開候補を分けて集約する。",
-      "未検証が解消するまで公開しない。Netlifyのmain連動を起こさないPages公開経路が未確認。"
+      "ナイト・マジックの包含関係を直接説明する公式根拠を確認。",
+      "ドラン・ゴルギーニ金箔2S/2を識別できる公式画像・版IDを確認。",
+      "公開候補を確定後、全対象をソースのハッシュと実行結果で集約する。No13と登場時借用の現実装の全ケースは今回完了。",
+      "未検証が解消し、Netlifyを更新しないPages公開手順を確認するまでpush・公開しない。"
     ],
     "steps": [
       "開始時にHEAD、作業差分、実行中プロセス、AGENTS、進捗を確認",
@@ -493487,13 +493508,14 @@
       "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。"
     ],
     "restartSteps": [
-      "最新実装は17ad28754cff2c2a72c24ce4395698d42d5a768b (engine0.601.0 / AI2.3.417)。HEAD・差分・ステージ・既存プロセスを最初に確認する。",
-      "実データ8072種類・重複0。dist/catalogue.jsのnameKeyで各回の開始時と検証後に再集計する。",
-      "phase1370のmanifestに正確なコマンド・固定ソースのハッシュ・21分割の全833ケース・結果を記録。tools/verify-borrowed-attack-shards.mjsで計画を再現できる。",
-      "個別残件はdm25ex2-082の包含裁定とdm22rp1-2Bの金箔2S/2公式版照合の計2件。残る依存カードなし。",
-      "No13のAI・乱数・本番ワーカーと公開候補での全対象集約は未確認。過去のコミットごとの合格を現行の合格に転記しない。全体npm testは中断・合否未確認を維持。",
-      "各実行の強制終了を含む上限10分を守り、旧長時間群は対戦・シード単位に分割する。既存プロセスには触れない。",
-      "未検証とNetlifyのmain連動が残るためpush/公開なし。Pagesだけの安全な公開経路を確認するまで保留。"
+      "最新の検証記録は75fcdfab0ccca8c81f60faf7745330779ed17833。対戦実装は17ad28754cff2c2a72c24ce4395698d42d5a768b (engine0.601.0 / AI2.3.417) と同じソース。HEAD・差分・ステージ・実行中プロセスを最初に確認する。",
+      "実データ8072種類・重複0。通常登録停止とautomation PAUSEDを維持。検証依存だけ追加可。",
+      "アオハル固有18を含む関連353、オンライン30、攻撃時借用833ケース、実カード80枚4対戦、check・auditが通過。",
+      "No13は短い33項目、196再現対戦・28乱数シード・ワーカー490試合が全件合格。登場時借用も現在の2554能力が全件合格。tools/no13-verification-1370.jsonに固定入力・ソース・各分割・集約を記録。",
+      "個別残件はdm25ex2-082のキーワード包含と、dm22rp1-2Bの金箔2S/2の公式版照合の計2件。",
+      "公開候補を確定後、全対象を分割した結果をハッシュ付きで集約する。過去の合格を異なるソースの合格に転記しない。全体npm testは中断・合否未確認を維持し、そのまま再実行しない。",
+      "各実行は強制終了まで含め10分以内。実行中プロセスに重複・干渉せず、検証済みの差分だけローカルコミットする。",
+      "個別残件と公開候補の全対象集約、Netlifyを更新しないPages公開経路が未確認のためpush・公開なし。"
     ],
     "registrationStatus": "8001種類到達済みのため通常登録停止。automation PAUSED。検証再現に必要な依存カードのみ追加可。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
@@ -536775,12 +536797,11 @@
     },
     "latestAudit": {
       "checkedAt": "2026-11-20",
-      "commit": "17ad28754cff2c2a72c24ce4395698d42d5a768b",
-      "status": "passed",
-      "log": "tmp/duema-phase-1370/audit-final.log",
+      "commit": "75fcdfab0ccca8c81f60faf7745330779ed17833",
       "supported": 8072,
       "pending": 3753,
-      "duplicates": 0
+      "duplicates": 0,
+      "log": "tmp/duema-phase-1370/audit-no13-final.log"
     },
     "pendingFromUserRequestedBatch": {
       "phase": 1089,
@@ -537844,7 +537865,7 @@
           "pages": "active",
           "netlify": "active"
         },
-        "reason": "個別未検証は登録済み1件と再録1件の計2件。No13の旧長時間項目と公開候補での全対象集約も未完了。既存確認でmainのpushはNetlify本番ワークフローとpushフックに連動し、Pagesの許可ブランチはmainのみ。安全な公開経路が未確認のためpush/公開なし。",
+        "reason": "個別未検証は登録済みのキーワード包含裁定1件と金箔再録の公式照合1件、計2件。No13の全AI・乱数・ワーカーと現実装の登場時借用2554件は完了。公開候補コミットでの全対象集約は未完了。Netlifyのmain連動ワークフローとpushフックが有効でPagesの許可ブランチはmainのみという既存確認のため、Netlifyを更新しない公開手順が未確認。push・公開なし。",
         "remoteWorkflowFiles": {
           "pages": {
             "url": "https://github.com/AtsushiSora/duema-deck-lab/blob/main/.github/workflows/pages.yml",
@@ -540446,7 +540467,7 @@
           "result": "全文・基本情報・公式画像・使用制限・既存ID・同名欄を照合。全登録8072行の能力抽出を走査し、821固有ID・833能力と面の組を21分割で解決・保存復元・物理カード保持まで検証。固有18を含む関連353、オンライン30、No13短い32、4対戦、check・audit合格。"
         }
       ],
-      "latestTestCommit": "17ad28754cff2c2a72c24ce4395698d42d5a768b",
+      "latestTestCommit": "75fcdfab0ccca8c81f60faf7745330779ed17833",
       "counts": {
         "supported": 8072,
         "pending": 3753,
@@ -541258,6 +541279,29 @@
             "JSON保存復元の前後で合法手が完全一致",
             "全登録カードから列挙した能力2553件の序数に欠落・重複なし"
           ]
+        },
+        "currentFullVerification1370": {
+          "status": "passed",
+          "checkedAt": "2026-11-20",
+          "commit": "75fcdfab0ccca8c81f60faf7745330779ed17833",
+          "runtimeCommit": "17ad28754cff2c2a72c24ce4395698d42d5a768b",
+          "engineVersion": "0.601.0",
+          "aiVersion": "2.3.417",
+          "manifest": "tools/no13-verification-1370.json",
+          "opponents": 49,
+          "shortTests": 33,
+          "aiReplayPairs": 196,
+          "randomSeeds": 28,
+          "workerGames": 490,
+          "borrowedEntryAbilities": 2554,
+          "borrowedEntryHostIds": 2501,
+          "parts": 778,
+          "maxPartSeconds": 68.486,
+          "failed": 0,
+          "missing": 0,
+          "duplicates": 0,
+          "scope": "現在の登録8072行から列挙した2554能力。登場時能力試験の全ケースを40件以下に分割。",
+          "plan": "tmp/duema-phase-1370/entry-final-plan.json"
         }
       },
       "online": {
@@ -541286,8 +541330,8 @@
       "finalCheck": {
         "status": "passed",
         "command": "npm run check",
-        "log": "tmp/duema-phase-1370/check-final.log",
-        "commit": "17ad28754cff2c2a72c24ce4395698d42d5a768b",
+        "log": "tmp/duema-phase-1370/check-no13-final.log",
+        "commit": "75fcdfab0ccca8c81f60faf7745330779ed17833",
         "sourceHashes": {
           "dist/abyss-rules.js": "2ae9591c07a7e936a181febdd1a66068c845fa4197a4f825df671f85372281d0",
           "dist/account-data.js": "aeda498ec5f27cc9dc84d37d1c7ad58328e3e6f4df858fa4f961dea48f15e6e5",
@@ -541317,6 +541361,7 @@
           "dist/card-name-aliases.js": "15acd3e45868e2f9ca3960ce7bac831cadfd70cd73e4b3cfd92f17555d5f60de",
           "dist/cards.json": "27a1fb063e4a3498a9c572c8f1f0c78ad23a11d9d0dd5e32d76de80408ad3388",
           "dist/catalogue.js": "524ff5ac7b3dfb87d35fd7da151236684374db7dca7c61e47e3d41505eea6720",
+          "dist/catalogue.json": "218b653889644bd1a2fe0dcf15cc5357356a98f735898948ea95f53fb7a58cad",
           "dist/champion-2025-rules.js": "04d559a8cdc36d015698b9dc909a4ff6293e92f7e0d854d7b8b32a576daa4236",
           "dist/champion-combat-rules.js": "d3bfe91cb7c2effc09b9c2e871e95fc903fcff460f6b3a37840d2cd8d80543c3",
           "dist/champion-continuation-rules.js": "4015f4dd0bae7b7c5e5ced175dd05d146bb1a1bcc3bd3702c58b7460152602fb",
@@ -541344,6 +541389,7 @@
           "dist/deck-save-status.js": "612ad4cd091c55951e18fb4aeff4cb279460712044a0e482c85aaecca66d9054",
           "dist/deck-tags.js": "fdac6768dd8ae8c7a8997a48785ed0d19e245f657a8be09053dc4358c989a8e7",
           "dist/decks.js": "3ce78005ab2c4b1c5198a75f8e1b70fd395bbedc0f19d25e225fb4c4d8e9620a",
+          "dist/details.json": "26e8c40b23e3a58823704248cf9de7d34aa6476a961d50fa2c30ff75ca779da0",
           "dist/display-preferences.js": "227c1a68889a73b46fb7f6937465b3b9d05a73bb2e209dce26ec0970f7ea62f4",
           "dist/draw.js": "e8f13c262e14b28fa67b3df138888507ccfbe0f5a0b8e71d1cc77514eda86ee3",
           "dist/editor-draft.js": "a52547c5287e3d49cd8ad2fbb907fc543bc7f69cf0769e3473b2712e6ec9273a",
@@ -541482,7 +541528,7 @@
           "dist/viride-rules.js": "d22e0bdc89f9ac3d1a9baa2e1dc848d2349a96bfe62a708d17a802207e3868a3",
           "dist/worker.js": "9bb1172ec9f1929f2e065aee94b16c4823b8070abc1a270e57de601b00a13b3c",
           "dist/zard-rules.js": "9b7d368df9325ea31c6335ec0fb5f2d22ea28e5895907e390c0f6bdbb0618b85",
-          "tests/borrowed-attack-fixture.mjs": "d868c71e633426ede8af607555509efebd89e4eb68c4436be7197bfd821eae60",
+          "tests/abyss-effects.test.mjs": "57e2dc678567d80d7d7d98563ddcab76370e6ebbd86a4a2f9d292b031d80b8f8",
           "tests/target-fixture.mjs": "c3701939d2cec1d6a86faf7b619321e40dbbca477bb976af8137151659857244"
         }
       },
@@ -541513,7 +541559,7 @@
         }
       },
       "remainingDependencies": [],
-      "remainingTestsSummary": "全体のnpm testは中断・合否未確認を維持。固定e3323a89の344分割（再現対戦886試合、本番ワーカー2460試合）は全件合格。No.16・21の113対象（再現対戦114試合、ワーカー380試合、乱数75種）も全件合格。今回の効果・裁定回帰とオンラインの結果は最新バッチに記録。公開候補での全対象の集約は未完了。 engine 0.596.0で発生源の持ち主を修正し、最終の関連回帰135件、先行の通常バトル回帰366件、オンライン19件が合格。ドリーム・ドラゴン18項目（100対戦と決定性の再現2対戦）は途中構成で合格。ログ内の別テストの誤ったパワー設定は最終135件で修正・合格。全対象を公開コミットで集約する作業は未完了。 phase1365の山札移動置換に関する固有19項目、関連676項目、オンライン30項目、実カード80枚の2対戦と保存復元2回、npm run checkが合格。個別残件は登録済み7種類と再録1種類の合計8種類。公開候補の全対象集約は未完了。 phase1366で必要なDGと転生ノ正裁Zを追加。固有20・関連186・オンライン30項目、80枚2対戦と保存復元12回、npm run check・auditが合格。個別は登録済み6件と再録1件、計7件。旧abyss-effectsを含めた回帰の今回実行は約2分で停止し合否未確認。全対象の公開候補での集約は未完了。 phase1367で検証に必要なシュタインとデュエルメイト3種類を追加し、7r0y QA48142を解消。固有24・関連群306（固有の先行21を含む）・オンライン77・エレメント回帰2・短い手動UI20項目、83枚2対戦・保存復元10回、checkとauditが合格。個別は登録済み5件と再録1件の計6件。過去の中断と公開候補全対象の集約は未解消。 phase1368ではengine 0.599.0・実データ8069種類の全登場時能力2553件を52分割で確認し、物理枚数・UID・保存復元・全序数を検証。短いアビス33項目も合格。個別6件と旧AI/乱数/本番ワーカーの公開候補集約は引き続き未解消。 phase1369 (engine 0.600.0 / AI 2.3.416) で必要なヨミノ晴明R・ライジン天を追加し、通常Jトルネードの期待結果を訂正、バロディアス・ギャラクシーを実測。固有21を含む関連339、オンライン30、80枚2対戦と保存復元13回、check・audit合格。個別残件は登録済み2と再録1の計3。アオハルのQA49221は無視されている能力の参照を許すことも再確認。長い対戦項目を含んだ今回の2群は停止し、除外した改訂コマンドで短い回帰を完了。旧長時間項目と公開候補集約は未解消。 phase1370 (engine0.601.0 / AI2.3.417) でアオハルを追加、QA49222の帝王坂∞を実測。固有18を含む関連353、オンライン30、No13短い32、攻撃時借用833ケース/821固有IDの21分割、実カード80枚の4対戦（うち合法手を選ぶ対象対戦2試合でアオハル計6回実行・保存復元15回）、check・audit合格。個別残件は登録済み1と再録1の計2。No13のAI/乱数/本番ワーカーと公開候補集約は未確認。登場時借用2553件の旧engine0.599.0の合格を現engineの合格に転記しない。",
+      "remainingTestsSummary": "全体のnpm testは中断・合否未確認を維持。固定e3323a89の344分割（再現対戦886試合、本番ワーカー2460試合）は全件合格。No.16・21の113対象（再現対戦114試合、ワーカー380試合、乱数75種）も全件合格。今回の効果・裁定回帰とオンラインの結果は最新バッチに記録。公開候補での全対象の集約は未完了。 engine 0.596.0で発生源の持ち主を修正し、最終の関連回帰135件、先行の通常バトル回帰366件、オンライン19件が合格。ドリーム・ドラゴン18項目（100対戦と決定性の再現2対戦）は途中構成で合格。ログ内の別テストの誤ったパワー設定は最終135件で修正・合格。全対象を公開コミットで集約する作業は未完了。 phase1365の山札移動置換に関する固有19項目、関連676項目、オンライン30項目、実カード80枚の2対戦と保存復元2回、npm run checkが合格。個別残件は登録済み7種類と再録1種類の合計8種類。公開候補の全対象集約は未完了。 phase1366で必要なDGと転生ノ正裁Zを追加。固有20・関連186・オンライン30項目、80枚2対戦と保存復元12回、npm run check・auditが合格。個別は登録済み6件と再録1件、計7件。旧abyss-effectsを含めた回帰の今回実行は約2分で停止し合否未確認。全対象の公開候補での集約は未完了。 phase1367で検証に必要なシュタインとデュエルメイト3種類を追加し、7r0y QA48142を解消。固有24・関連群306（固有の先行21を含む）・オンライン77・エレメント回帰2・短い手動UI20項目、83枚2対戦・保存復元10回、checkとauditが合格。個別は登録済み5件と再録1件の計6件。過去の中断と公開候補全対象の集約は未解消。 phase1368ではengine 0.599.0・実データ8069種類の全登場時能力2553件を52分割で確認し、物理枚数・UID・保存復元・全序数を検証。短いアビス33項目も合格。個別6件と旧AI/乱数/本番ワーカーの公開候補集約は引き続き未解消。 phase1369 (engine 0.600.0 / AI 2.3.416) で必要なヨミノ晴明R・ライジン天を追加し、通常Jトルネードの期待結果を訂正、バロディアス・ギャラクシーを実測。固有21を含む関連339、オンライン30、80枚2対戦と保存復元13回、check・audit合格。個別残件は登録済み2と再録1の計3。アオハルのQA49221は無視されている能力の参照を許すことも再確認。長い対戦項目を含んだ今回の2群は停止し、除外した改訂コマンドで短い回帰を完了。旧長時間項目と公開候補集約は未解消。 phase1370 (engine0.601.0 / AI2.3.417) でアオハルを追加、QA49222の帝王坂∞を実測。固有18を含む関連353、オンライン30、No13短い32、攻撃時借用833ケース/821固有IDの21分割、実カード80枚の4対戦（うち合法手を選ぶ対象対戦2試合でアオハル計6回実行・保存復元15回）、check・audit合格。個別残件は登録済み1と再録1の計2。No13のAI/乱数/本番ワーカーと公開候補集約は未確認。登場時借用2553件の旧engine0.599.0の合格を現engineの合格に転記しない。 phase1370のNo13継続検証を完了。engine0.601.0 / AI2.3.417を固定し、49対戦相手の196再現対戦（各ペアで同条件を再実行し最終状態一致）、28乱数シード、本番ワーカー490試合と対戦相手ごとの10試合集約、登場時借用2554能力を778分割で全件合格。重複・未実行・失敗・時間切れ0。短い33項目も通過。過去のNo13未確認の記述は今回の固定ソースについて解消。公開候補での全対象の集約と公式根拠2件は未完了。",
       "advanceImplementation": {
         "status": "implemented",
         "phases": [
@@ -542160,6 +542206,27 @@
             "added": [
               "dm26ex3-038"
             ]
+          },
+          "no13Full": {
+            "status": "passed",
+            "checkedAt": "2026-11-20",
+            "commit": "75fcdfab0ccca8c81f60faf7745330779ed17833",
+            "runtimeCommit": "17ad28754cff2c2a72c24ce4395698d42d5a768b",
+            "engineVersion": "0.601.0",
+            "aiVersion": "2.3.417",
+            "manifest": "tools/no13-verification-1370.json",
+            "opponents": 49,
+            "shortTests": 33,
+            "aiReplayPairs": 196,
+            "randomSeeds": 28,
+            "workerGames": 490,
+            "borrowedEntryAbilities": 2554,
+            "borrowedEntryHostIds": 2501,
+            "parts": 778,
+            "maxPartSeconds": 68.486,
+            "failed": 0,
+            "missing": 0,
+            "duplicates": 0
           }
         },
         "sourceHashes": {
@@ -542391,13 +542458,13 @@
         "notResolved": [
           "キング・ナイト・マジックとナイト・マジックの包含関係を直接説明する公式根拠",
           "ドラン・ゴルギーニ金箔2S/2を特定できる公式画像・個別ID",
-          "既存No13のAI・乱数・本番ワーカーの残分割と、公開候補での全対象集約"
+          "公開候補コミットでの全対象集約"
         ],
         "next": [
-          "直接のキーワード包含の一次資料を確認。名称の類似や現在のテストの通過だけで完了にしない。",
-          "金箔2S/2の公式資料を確認。OR2/OR2・2B/10とは区別する。",
-          "No13の旧長時間対象を対戦・シード・ワーカー単位で分割。過去の合格コミットと公開候補を分けて集約する。",
-          "未検証が解消するまで公開しない。Netlifyのmain連動を起こさないPages公開経路が未確認。"
+          "ナイト・マジックの包含関係を直接説明する公式根拠を確認。",
+          "ドラン・ゴルギーニ金箔2S/2を識別できる公式画像・版IDを確認。",
+          "公開候補を確定後、全対象をソースのハッシュと実行結果で集約する。No13と登場時借用の現実装の全ケースは今回完了。",
+          "未検証が解消し、Netlifyを更新しないPages公開手順を確認するまでpush・公開しない。"
         ]
       },
       "currentSplitEvidence": {
@@ -545559,6 +545626,27 @@
         ],
         "coverage": "登録済み8072行の通常面とハイパー・覚醒・リンク・裏返し・ターボラッシュの該当面を走査。821固有ID、833能力・面の組。全ての盤面条件や全選択分岐の網羅ではない。",
         "validatedCommit": "17ad28754cff2c2a72c24ce4395698d42d5a768b"
+      },
+      "no13FullVerification1370": {
+        "status": "passed",
+        "checkedAt": "2026-11-20",
+        "commit": "75fcdfab0ccca8c81f60faf7745330779ed17833",
+        "runtimeCommit": "17ad28754cff2c2a72c24ce4395698d42d5a768b",
+        "engineVersion": "0.601.0",
+        "aiVersion": "2.3.417",
+        "manifest": "tools/no13-verification-1370.json",
+        "opponents": 49,
+        "shortTests": 33,
+        "aiReplayPairs": 196,
+        "randomSeeds": 28,
+        "workerGames": 490,
+        "borrowedEntryAbilities": 2554,
+        "borrowedEntryHostIds": 2501,
+        "parts": 778,
+        "maxPartSeconds": 68.486,
+        "failed": 0,
+        "missing": 0,
+        "duplicates": 0
       }
     }
   },
