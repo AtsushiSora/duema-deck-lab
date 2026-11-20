@@ -259442,15 +259442,244 @@
       },
       "supportBatch": "phase-1441",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24-078",
+      "name": "ソーラー・ドライブ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある自分のクリーチャーを１体選ぶ。このターンの終わりに、そのクリーチャーをアンタップする。\nO・ドライブ 水x１(この呪文を唱える時、自分のマナゾーンで水のカードをさらに１枚タップしてもよい。そうした場合、この呪文は次の能力を得る)\nバトルゾーンにある相手のクリーチャーを１体選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-078",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ChooseUntap562",
+          "n": 1,
+          "delay": true
+        }
+      ],
+      "g1439ODrive": {
+        "options": [
+          {
+            "colors": [
+              "水"
+            ],
+            "defs": [
+              {
+                "op": "Target",
+                "tap": true,
+                "spell": true
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1442",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25-044",
+      "name": "アクアヒート・ドラグーン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "ティラノ・ドレイク",
+      "text": "O・ドライブ 水x１・火x２(このクリーチャーを召喚する時、自分のマナゾーンでさらに水１枚または火２枚またはその両方をタップしてもよい。そうした場合、次の能力を得る)\n水：このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体タップする。\n火：このクリーチャーをバトルゾーンに出した時、相手のタップされているパワー4000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-044",
+      "limit": 4,
+      "g1439ODrive": {
+        "options": [
+          {
+            "colors": [
+              "水"
+            ],
+            "defs": [
+              {
+                "op": "Target",
+                "tap": true
+              }
+            ]
+          },
+          {
+            "colors": [
+              "火",
+              "火"
+            ],
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "tapped": true,
+                  "maxPower": 4000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1442",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25-022",
+      "name": "巡霊騎ガスティン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "コスモ・ウォーカー/アーク・セラフィム",
+      "text": "O・ドライブ水x１・ 自然x１(このクリーチャーを召喚する時、自分のマナゾーンでさらに水１枚または自然１枚またはその両方をタップしてもよい。そうした場合、次の能力を得る)\n水：このクリーチャーをバトルゾーンに出した時、バトルゾーンにあるコスト３以下のクリーチャーを１体、持ち主の手札に戻す。\n自然：このクリーチャーをバトルゾーンに出した時、コスト３以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-022",
+      "limit": 4,
+      "g1439ODrive": {
+        "options": [
+          {
+            "colors": [
+              "水"
+            ],
+            "defs": [
+              {
+                "op": "Target",
+                "anyOwner": true,
+                "to": "hand",
+                "filter": {
+                  "max": 3
+                }
+              }
+            ]
+          },
+          {
+            "colors": [
+              "自然"
+            ],
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "hand",
+                "n": 1,
+                "deploy": true,
+                "optional": true,
+                "filter": {
+                  "creature": true,
+                  "max": 3
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1442",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm27-013",
+      "name": "機械提督デリンダー",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "グレートメカオー/キカイヒーロー",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nO・ドライブ-闇x１と火x１と自然x１(このクリーチャーを召喚する時、自分のマナゾーンでさらに闇１枚と火１枚と自然１枚をタップしてもよい。そうした場合、次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、相手の手札のほうが自分より多い場合、同じ枚数になるようにカードを引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-013",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g1439ODrive": {
+        "options": [
+          {
+            "colors": [
+              "闇",
+              "火",
+              "自然"
+            ],
+            "defs": [
+              {
+                "op": "CountDraw",
+                "g1040EqualizeHands": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1442",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm27-035",
+      "name": "甲蟲幻獣カブトワン",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "ドリームメイト/ビークル・ビー",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nO・ドライブ-光x１と水x１と闇x１(このクリーチャーを召喚する時、自分のマナゾーンでさらに光１枚と水１枚と闇１枚をタップしてもよい。そうした場合、次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、そのターン、バトルゾーンにある自分の他のクリーチャーは「パワーアタッカー+3000」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-035",
+      "limit": 4,
+      "g1439ODrive": {
+        "options": [
+          {
+            "colors": [
+              "光",
+              "水",
+              "闇"
+            ],
+            "defs": [
+              {
+                "op": "GroupGrant364",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                },
+                "grant": {
+                  "attackBonus": 3000
+                },
+                "other": true
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1442",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1441,
+    "phase": 1442,
     "checkedAt": "2026-11-20",
-    "baseCount": 8364,
+    "baseCount": 8369,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8369,
+    "totalCount": 8374,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -283403,6 +283632,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8364,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1441,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8364,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8369,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

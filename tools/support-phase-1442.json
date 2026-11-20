@@ -1,0 +1,418 @@
+{
+  "phase": 1442,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8369,
+  "description": "O・ドライブの追加支払いを色別に選び、追加額を加えてから軽減し、支払った能力のみ取得する。複数色と3色同時支払い、手動マナ選択、キャンセル、離脱後の能力消滅を検証。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/37539/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37542/",
+    "https://dm.takaratomy.co.jp/rule/qa/38697/",
+    "https://dm.takaratomy.co.jp/rule/qa/33406/",
+    "https://dm.takaratomy.co.jp/rule/qa/49223/",
+    "https://dm.takaratomy.co.jp/rule/qa/40938/"
+  ],
+  "cards": [
+    {
+      "id": "dm24-078",
+      "name": "ソーラー・ドライブ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-078",
+      "faces": [
+        {
+          "name": "ソーラー・ドライブ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "バトルゾーンにある自分のクリーチャーを１体選ぶ。このターンの終わりに、そのクリーチャーをアンタップする。\nO・ドライブ 水x１(この呪文を唱える時、自分のマナゾーンで水のカードをさらに１枚タップしてもよい。そうした場合、この呪文は次の能力を得る)\nバトルゾーンにある相手のクリーチャーを１体選び、タップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ChooseUntap562",
+            "n": 1,
+            "delay": true
+          }
+        ],
+        "g1439ODrive": {
+          "options": [
+            {
+              "colors": [
+                "水"
+              ],
+              "defs": [
+                {
+                  "op": "Target",
+                  "tap": true,
+                  "spell": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-078.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "05743bf5556463a6c5f91a8efe59fc03df6d76784bd86f117606f69b95c1be1a",
+        "facesMatched": true,
+        "imageSha256": "3dbeafaccedbf589313036d39a676e3c8010d4db2dcfd5a64959ee6a406ed631",
+        "imageBytes": 84245
+      },
+      "sameNameProducts": [
+        "DM-24 極神編(バイオレンス・ヘヴン) 第1弾"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-078",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm25-044",
+      "name": "アクアヒート・ドラグーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-044",
+      "faces": [
+        {
+          "name": "アクアヒート・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "O・ドライブ 水x１・火x２(このクリーチャーを召喚する時、自分のマナゾーンでさらに水１枚または火２枚またはその両方をタップしてもよい。そうした場合、次の能力を得る)\n水：このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体タップする。\n火：このクリーチャーをバトルゾーンに出した時、相手のタップされているパワー4000以下のクリーチャーを１体破壊する。",
+          "race": "ティラノ・ドレイク",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1439ODrive": {
+          "options": [
+            {
+              "colors": [
+                "水"
+              ],
+              "defs": [
+                {
+                  "op": "Target",
+                  "tap": true
+                }
+              ]
+            },
+            {
+              "colors": [
+                "火",
+                "火"
+              ],
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "tapped": true,
+                    "maxPower": 4000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "774b11f9a50d5948eedaf3c0c6713a48971ce17ae320fd2feed0a238ab276371",
+        "facesMatched": true,
+        "imageSha256": "9ce25315919b3ce3b2e92db36840bbd5e74cb9d8f236ea7bf832c3ec6295e2d8",
+        "imageBytes": 92593
+      },
+      "sameNameProducts": [
+        "DM-25 極神編 第2弾 人造神の創造(バイオレンス・クリエイター)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-044",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm25-022",
+      "name": "巡霊騎ガスティン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-022",
+      "faces": [
+        {
+          "name": "巡霊騎ガスティン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "O・ドライブ水x１・ 自然x１(このクリーチャーを召喚する時、自分のマナゾーンでさらに水１枚または自然１枚またはその両方をタップしてもよい。そうした場合、次の能力を得る)\n水：このクリーチャーをバトルゾーンに出した時、バトルゾーンにあるコスト３以下のクリーチャーを１体、持ち主の手札に戻す。\n自然：このクリーチャーをバトルゾーンに出した時、コスト３以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "コスモ・ウォーカー/アーク・セラフィム",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1439ODrive": {
+          "options": [
+            {
+              "colors": [
+                "水"
+              ],
+              "defs": [
+                {
+                  "op": "Target",
+                  "anyOwner": true,
+                  "to": "hand",
+                  "filter": {
+                    "max": 3
+                  }
+                }
+              ]
+            },
+            {
+              "colors": [
+                "自然"
+              ],
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "hand",
+                  "n": 1,
+                  "deploy": true,
+                  "optional": true,
+                  "filter": {
+                    "creature": true,
+                    "max": 3
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "9cb84fa553a3d71f4f7a54b3eda4f02e9cf318c51c192d92aee96ad95aa2e3ef",
+        "facesMatched": true,
+        "imageSha256": "7a4df02f50edd5c0acd38f4c486ea76320e41dee3457e7d67bf0ab63486698a0",
+        "imageBytes": 107208
+      },
+      "sameNameProducts": [
+        "DM-25 極神編 第2弾 人造神の創造(バイオレンス・クリエイター)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-022",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm27-013",
+      "name": "機械提督デリンダー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-013",
+      "faces": [
+        {
+          "name": "機械提督デリンダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nO・ドライブ-闇x１と火x１と自然x１(このクリーチャーを召喚する時、自分のマナゾーンでさらに闇１枚と火１枚と自然１枚をタップしてもよい。そうした場合、次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、相手の手札のほうが自分より多い場合、同じ枚数になるようにカードを引いてもよい。",
+          "race": "グレートメカオー/キカイヒーロー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g1439ODrive": {
+          "options": [
+            {
+              "colors": [
+                "闇",
+                "火",
+                "自然"
+              ],
+              "defs": [
+                {
+                  "op": "CountDraw",
+                  "g1040EqualizeHands": true,
+                  "optional": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm27-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "73b40d4b1c08d8a44b576ffbc460a5dcade5d52f8c65c6e0b260a9259f91a08a",
+        "facesMatched": true,
+        "imageSha256": "b083252974a92321b2aa329d3ff68ab32163f3286e480c3e5d850ce7e832e1a7",
+        "imageBytes": 116814
+      },
+      "sameNameProducts": [
+        "DM-27 極神編 第4弾 完全極神(パーフェクト・ヘヴン)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-013",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm27-035",
+      "name": "甲蟲幻獣カブトワン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-035",
+      "faces": [
+        {
+          "name": "甲蟲幻獣カブトワン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nO・ドライブ-光x１と水x１と闇x１(このクリーチャーを召喚する時、自分のマナゾーンでさらに光１枚と水１枚と闇１枚をタップしてもよい。そうした場合、次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、そのターン、バトルゾーンにある自分の他のクリーチャーは「パワーアタッカー+3000」を得る。",
+          "race": "ドリームメイト/ビークル・ビー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1439ODrive": {
+          "options": [
+            {
+              "colors": [
+                "光",
+                "水",
+                "闇"
+              ],
+              "defs": [
+                {
+                  "op": "GroupGrant364",
+                  "owner": "self",
+                  "filter": {
+                    "creature": true
+                  },
+                  "grant": {
+                    "attackBonus": 3000
+                  },
+                  "other": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm27-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "bb3a292cc1d4193b574cf3b901bc3453d39711796a42dac7821035e1e6597b0b",
+        "facesMatched": true,
+        "imageSha256": "4d6c95e2d1170c33bfd2ffc8989efb27c691bd8f1155da8f0c873c9645aefad7",
+        "imageBytes": 90151
+      },
+      "sameNameProducts": [
+        "DM-27 極神編 第4弾 完全極神(パーフェクト・ヘヴン)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-035",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24-078": 4,
+      "dm25-044": 4,
+      "dm25-022": 4,
+      "dm27-013": 4,
+      "dm27-035": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37539/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37542/",
+    "https://dm.takaratomy.co.jp/rule/qa/38697/",
+    "https://dm.takaratomy.co.jp/rule/qa/33406/",
+    "https://dm.takaratomy.co.jp/rule/qa/49223/",
+    "https://dm.takaratomy.co.jp/rule/qa/40938/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/37539/",
+      "sha256": "540e2abef31499411e49b01fe73a619b519f0790442c1f8737da61282b3b430c",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/37542/",
+      "sha256": "de3889b8d8729699bc3b9c150496420442ff7a8c4bc51804bb2459549d41ca8f",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/38697/",
+      "sha256": "3b0d45b654a89823a1290dc4574ebe7ff94568be9b196fe1bb939d4c8bde8099",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33406/",
+      "sha256": "752584fd4d916b2bef32d8692ee3cbb90f22ebddbbb1e10823d762509041e479",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/49223/",
+      "sha256": "8bb41781472622ddbb6b0c3c8f41110b24323fb2b9552bb7e35bfbfeff5da879",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40938/",
+      "sha256": "e035798f53495c7b543eafe35e388f09d53ccc2c1c775c50b5d0acc972979908",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    }
+  ],
+  "testCorrections": [
+    "GroupGrant364で自身を除外する指定はother。全体強化で本人が強化されるテスト失敗を修正。",
+    "ガスティンは自身のバウンス・再展開でO・ドライブ能力を失うため個体の新しいincarnationを区別。ソーラーの終了処理はattack段階のendTurnを使用。"
+  ]
+}
