@@ -260526,15 +260526,195 @@
       },
       "supportBatch": "phase-1447",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmsd13-001",
+      "name": "超Ω級 ダルタニックB",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "パワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n自分の手札のカード１枚につき、このクリーチャーのパワーを+1000する。\nこのクリーチャーが攻撃する時、Jトルネードしてもよい。そうしたら、カードを１枚引く。（Jトルネード：自分の他のジョーカーズを１体、手札に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd13-001",
+      "limit": 4,
+      "gr": true,
+      "poweredBreaker": true,
+      "g207CountPower": {
+        "zone": "hand",
+        "amount": 1000
+      },
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "to": "hand",
+          "toOwnerHand": true,
+          "n": 1,
+          "optional": true,
+          "g179Other": true,
+          "g187OwnPick": true,
+          "filter": {
+            "creature": true,
+            "race": "ジョーカーズ"
+          },
+          "title": "Jトルネードする自分の他のジョーカーズを選ぶ",
+          "afterBattleSelect": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1448",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd13-016",
+      "name": "ドリルどーる",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "このクリーチャーが攻撃する時、Jトルネードしてもよい。そうしたら、このターン、このクリーチャーはパワーを+3000され、ブロックされない。（Jトルネード：自分の他のジョーカーズを１体、手札に戻す）\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd13-016",
+      "limit": 4,
+      "gr": true,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "to": "hand",
+          "toOwnerHand": true,
+          "n": 1,
+          "optional": true,
+          "g179Other": true,
+          "g187OwnPick": true,
+          "filter": {
+            "creature": true,
+            "race": "ジョーカーズ"
+          },
+          "title": "Jトルネードする自分の他のジョーカーズを選ぶ",
+          "afterBattleSelect": [
+            {
+              "op": "SelfBoost313",
+              "power": 3000,
+              "g694ClearOnSeal": true
+            },
+            {
+              "op": "SelfGrant754",
+              "g770LiveCreature": true,
+              "grant": {
+                "unblockable": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1448",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd13-017",
+      "name": "くるピカディス君",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "このクリーチャーが攻撃する時、Jトルネードしてもよい。そうしたら、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。（Jトルネード：自分の他のジョーカーズを１体、手札に戻す）\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd13-017",
+      "limit": 4,
+      "gr": true,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "to": "hand",
+          "toOwnerHand": true,
+          "n": 1,
+          "optional": true,
+          "g179Other": true,
+          "g187OwnPick": true,
+          "filter": {
+            "creature": true,
+            "race": "ジョーカーズ"
+          },
+          "title": "Jトルネードする自分の他のジョーカーズを選ぶ",
+          "afterBattleSelect": [
+            {
+              "op": "Target",
+              "g190Freeze": "start"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1448",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd10-001",
+      "name": "ギラミリオン・ギラクシー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "メタリカ/ワンダフォース",
+      "text": "このクリーチャーが攻撃する時、自分のメタリカを１体タップしてもよい。そうしたら、このクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd10-001",
+      "limit": 4,
+      "gr": true,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "filter": {
+            "creature": true,
+            "untapped": true,
+            "race": "メタリカ"
+          },
+          "tap": true,
+          "optional": true,
+          "g1044ImplicitTap": true,
+          "g587AfterSelection": true,
+          "g987AfterNewTap": true,
+          "after": [
+            {
+              "op": "Untap",
+              "g191First": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1448",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1447,
+    "phase": 1448,
     "checkedAt": "2026-11-20",
-    "baseCount": 8394,
-    "newEffectCards": 5,
+    "baseCount": 8399,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 8399,
+    "totalCount": 8403,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -284571,6 +284751,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8394,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1447,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8394,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8399,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

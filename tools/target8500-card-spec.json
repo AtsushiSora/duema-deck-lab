@@ -12823,5 +12823,201 @@
         }
       }
     }
+  },
+  "dmsd13-001": {
+    "phase": 1448,
+    "faces": [
+      {
+        "name": "超Ω級 ダルタニックB",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "パワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n自分の手札のカード１枚につき、このクリーチャーのパワーを+1000する。\nこのクリーチャーが攻撃する時、Jトルネードしてもよい。そうしたら、カードを１枚引く。（Jトルネード：自分の他のジョーカーズを１体、手札に戻す）",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gr": true,
+      "manaValue": 0,
+      "poweredBreaker": true,
+      "g207CountPower": {
+        "zone": "hand",
+        "amount": 1000
+      },
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "to": "hand",
+          "toOwnerHand": true,
+          "n": 1,
+          "optional": true,
+          "g179Other": true,
+          "g187OwnPick": true,
+          "filter": {
+            "creature": true,
+            "race": "ジョーカーズ"
+          },
+          "title": "Jトルネードする自分の他のジョーカーズを選ぶ",
+          "afterBattleSelect": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmsd13-016": {
+    "phase": 1448,
+    "faces": [
+      {
+        "name": "ドリルどーる",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーが攻撃する時、Jトルネードしてもよい。そうしたら、このターン、このクリーチャーはパワーを+3000され、ブロックされない。（Jトルネード：自分の他のジョーカーズを１体、手札に戻す）\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gr": true,
+      "manaValue": 0,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "to": "hand",
+          "toOwnerHand": true,
+          "n": 1,
+          "optional": true,
+          "g179Other": true,
+          "g187OwnPick": true,
+          "filter": {
+            "creature": true,
+            "race": "ジョーカーズ"
+          },
+          "title": "Jトルネードする自分の他のジョーカーズを選ぶ",
+          "afterBattleSelect": [
+            {
+              "op": "SelfBoost313",
+              "power": 3000,
+              "g694ClearOnSeal": true
+            },
+            {
+              "op": "SelfGrant754",
+              "g770LiveCreature": true,
+              "grant": {
+                "unblockable": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmsd13-017": {
+    "phase": 1448,
+    "faces": [
+      {
+        "name": "くるピカディス君",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "このクリーチャーが攻撃する時、Jトルネードしてもよい。そうしたら、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。（Jトルネード：自分の他のジョーカーズを１体、手札に戻す）\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gr": true,
+      "manaValue": 0,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "to": "hand",
+          "toOwnerHand": true,
+          "n": 1,
+          "optional": true,
+          "g179Other": true,
+          "g187OwnPick": true,
+          "filter": {
+            "creature": true,
+            "race": "ジョーカーズ"
+          },
+          "title": "Jトルネードする自分の他のジョーカーズを選ぶ",
+          "afterBattleSelect": [
+            {
+              "op": "Target",
+              "g190Freeze": "start"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmsd10-001": {
+    "phase": 1448,
+    "faces": [
+      {
+        "name": "ギラミリオン・ギラクシー",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーが攻撃する時、自分のメタリカを１体タップしてもよい。そうしたら、このクリーチャーをアンタップする。",
+        "race": "メタリカ/ワンダフォース",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gr": true,
+      "manaValue": 0,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "filter": {
+            "creature": true,
+            "untapped": true,
+            "race": "メタリカ"
+          },
+          "tap": true,
+          "optional": true,
+          "g1044ImplicitTap": true,
+          "g587AfterSelection": true,
+          "g987AfterNewTap": true,
+          "after": [
+            {
+              "op": "Untap",
+              "g191First": true
+            }
+          ]
+        }
+      ]
+    }
   }
 }
