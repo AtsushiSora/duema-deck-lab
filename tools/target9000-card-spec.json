@@ -10383,5 +10383,301 @@
         "g61Effect": "Protection"
       }
     }
+  },
+  "dmrp08-021": {
+    "phase": 1523,
+    "faces": [
+      {
+        "name": "エミール・シオラン",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "バトルゾーンに置く時、このカードはタップして置く。\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）",
+        "race": "マフィ・ギャング",
+        "powerText": "1000",
+        "missingFields": []
+      },
+      {
+        "name": "怒髪の鎮魂打",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "相手は自身の手札を３枚選んで捨てる。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g295EnterTapped": true,
+      "smashBurst": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "怒髪の鎮魂打",
+        "cost": 7,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 3,
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp08-060": {
+    "phase": 1523,
+    "faces": [
+      {
+        "name": "赤攻銀 マレーシュ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "スマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）",
+        "race": "メタリカ",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "フェイスラッシュ",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "相手のクリーチャーを１体選び、タップする。そのクリーチャーは、次の相手のターンのはじめにアンタップしない。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "smashBurst": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "フェイスラッシュ",
+        "cost": 2,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "lock": true,
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp08-009": {
+    "phase": 1523,
+    "faces": [
+      {
+        "name": "メガゴーワン・チュリス",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "スマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）",
+        "race": "ビートジョッキー",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "ゴゴゴ・Go1・ナックル",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー\n相手のパワー9000以下のクリーチャーを１体破壊する。\n自分の手札を１枚捨てる。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "smashBurst": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "ゴゴゴ・Go1・ナックル",
+        "cost": 3,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 9000
+            },
+            "spell": true
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1,
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp08-082": {
+    "phase": 1523,
+    "faces": [
+      {
+        "name": "ゲキトツ汽車 アイアン",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）",
+        "race": "ビートジョッキー",
+        "powerText": "5000",
+        "missingFields": []
+      },
+      {
+        "name": "ポットショット",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "相手の「ブロッカー」を持つクリーチャーを１体、破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "smashBurst": true,
+      "speedAttacker": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "ポットショット",
+        "cost": 2,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "blocker": true
+            },
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dm22ex2-052": {
+    "phase": 1523,
+    "faces": [
+      {
+        "name": "目覚めのファミリア キナコ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーを自分の墓地から召喚してもよい。",
+        "race": "デスパペット/オラクル/ディスタス",
+        "powerText": "1000",
+        "missingFields": []
+      },
+      {
+        "name": "ムボー日和",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "カードを１枚、自分のマナゾーンから墓地に置き、その後、自分の山札の上から２枚をタップしてマナゾーンに置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "slayer": true,
+      "graveSummon": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "ムボー日和",
+        "cost": 3,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "grave",
+            "n": 1,
+            "g184ManaLoss": true,
+            "spell": true
+          },
+          {
+            "op": "Ramp",
+            "n": 2,
+            "tapped": true,
+            "spell": true
+          }
+        ]
+      }
+    }
   }
 }
