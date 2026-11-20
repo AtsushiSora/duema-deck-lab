@@ -1,0 +1,399 @@
+{
+  "phase": 1515,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8682,
+  "description": "既存の処理を用いて全能力を個別に検証し4種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/33716/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/33716/": "S・トリガーの付与や使用可能な面は条件を満たす片面だけに適用する。"
+  },
+  "cards": [
+    {
+      "id": "dmsd04-002",
+      "name": "ガンバＧ/ガガン・ガン・ガガン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd04-002",
+      "faces": [
+        {
+          "name": "ガンバＧ",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーは、バトルゾーンに出たターンの間、相手プレイヤーを攻撃できる。",
+          "race": "ジョーカーズ",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "ガガン・ガン・ガガン",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ジョーカーズを１枚、自分の墓地からマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "entryPlayerAttack": true,
+        "spellFace": {
+          "type": "spell",
+          "name": "ガガン・ガン・ガガン",
+          "cost": 2,
+          "civ": "ゼロ",
+          "civilizations": [],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "to": "mana",
+              "n": 1,
+              "filter": {
+                "race": "ジョーカーズ"
+              },
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd04-002a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "4786bac3eebcab4110b1a6712b1f5d9e05696ec7c4dde2e12cde81c1a75473fb",
+        "facesMatched": true,
+        "imageSha256": "7378185972a12eb32048645f21bafa1f843f34d6b31d4edfd16654b8242d1722",
+        "imageBytes": 141846
+      },
+      "sameNameProducts": [
+        "DMBD-07 超誕!!ツインヒーローデッキ80 Jの超機兵 VS 聖剣神話†",
+        "DMSD-04 ジョーカーズ・弾銃炸裂・スタートデッキ",
+        "コロコロ・スペシャル デッキ4",
+        "プロモ限定カード 17期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd04-002",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp09-020",
+      "name": "ヘラルド・ルドゥーテ/ローズ・セレモニー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-020",
+      "faces": [
+        {
+          "name": "ヘラルド・ルドゥーテ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "T・ブレイカー（このクリーチャーはシールドを３つブレイクする）\n自分の墓地にクリーチャーが６体以上なければ、このクリーチャーは攻撃できない。",
+          "race": "マフィ・ギャング",
+          "powerText": "13000",
+          "missingFields": []
+        },
+        {
+          "name": "ローズ・セレモニー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の手札をすべて捨て、その後、それと同じ枚数、カードを引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "noAttack": true,
+        "g260Self": {
+          "filter": {
+            "g273Grave": {
+              "n": 6,
+              "filter": {
+                "creature": true
+              }
+            }
+          },
+          "grants": {
+            "noAttack": false
+          }
+        },
+        "spellFace": {
+          "type": "spell",
+          "name": "ローズ・セレモニー",
+          "cost": 3,
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "HandCycle460",
+              "to": "grave",
+              "mode": "all",
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-020a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "6bd91e64613b5c94564f3bf3fdb9a43c1a5bda60510ce7e23b493a47888a1427",
+        "facesMatched": true,
+        "imageSha256": "6b45c1d2522822e167f9d1f360718a759c0177374335dec961f54e865ea93887",
+        "imageBytes": 155687
+      },
+      "sameNameProducts": [
+        "DMRP-09 超天篇 拡張パック第１弾 新世界ガチ誕！超ＧＲとオレガ・オーラ!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-020",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm23ex2-109",
+      "name": "爆獣イナバ・ギーゼ / 魔弾ソウル・キャッチャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-109",
+      "faces": [
+        {
+          "name": "爆獣イナバ・ギーゼ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の他のナイトに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "ドラゴノイド/オリジン/ナイト",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "魔弾ソウル・キャッチャー",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "kクリーチャーを１体、自分の墓地から手札に戻す。\nナイト・マジック（自分のナイトがあれば、この呪文の k能力をもう一度使ってもよい）",
+          "race": "ナイト",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "g724ExactRace": "ナイト"
+            },
+            "other": true,
+            "grants": {
+              "speedAttacker": true
+            }
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "魔弾ソウル・キャッチャー",
+          "cost": 2,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "ナイト",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "to": "hand",
+              "n": 1,
+              "filter": {
+                "creature": true
+              },
+              "spell": true
+            },
+            {
+              "op": "KnightMagic1118",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "to": "hand",
+                  "n": 1,
+                  "filter": {
+                    "creature": true
+                  },
+                  "spell": true
+                }
+              ],
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex2-109a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "ebff4edc5c83d12ae8bb86a04b60c1ad1ad3148fb2acaf563ee77dbd784fe1a1",
+        "facesMatched": true,
+        "imageSha256": "4a804e5c89b42bc9086ee21eabdaf8e392a10a67a2de327a2e7236009fb32c65",
+        "imageBytes": 137899
+      },
+      "sameNameProducts": [
+        "DM23-EX2 頂上決戦!!デュエキングMAX 2023"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-109",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp06-054",
+      "name": "アカシシーマ/レッド・アグラフ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-054",
+      "faces": [
+        {
+          "name": "アカシシーマ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）",
+          "race": "グランセクト",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "レッド・アグラフ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このターン、自分のクリーチャー１体はパワーを+4000され、タップまたはアンタップしているクリーチャーを攻撃できる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "spellFace": {
+          "type": "spell",
+          "name": "レッド・アグラフ",
+          "cost": 2,
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "owner": "self",
+              "power": 4000,
+              "grant": {
+                "attackUntapped": true
+              },
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-054a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "124245690c9a33e3c041735ee038c64fecea84c73830c0ddd7ae3aa8db21a7f6",
+        "facesMatched": true,
+        "imageSha256": "e766c94f79bd98700fc4c815f42b80c7138430eafd01459c136a721502a155c0",
+        "imageBytes": 134926
+      },
+      "sameNameProducts": [
+        "DMBD-08 超誕!!ツインヒーローデッキ80 自然大暴走 VS 卍獄の虚無月",
+        "DMRP-06 双極篇 拡張パック第２弾 逆襲のギャラクシー 卍・獄・殺!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-054",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmsd04-002": 4,
+      "dmrp09-020": 4,
+      "dm23ex2-109": 4,
+      "dmrp06-054": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/33716/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33716/",
+      "sha256": "0e3296031e1dfb8ceec8afade9c5962b09b58597abcfa218c51dc2bac129a205",
+      "result": "S・トリガーの付与や使用可能な面は条件を満たす片面だけに適用する。"
+    }
+  ],
+  "testCorrections": [
+    "無色の呪文面は公式の文明表示を保持したまま支払い用の文明配列を空にする。無色を要求文明として扱わない。",
+    "既存phase817の未登録前提を更新し、単面と新ツインパクトを別IDとして保持する検証へ変更。"
+  ]
+}

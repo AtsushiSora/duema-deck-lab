@@ -53,7 +53,10 @@ test('Inaba and the Twinpact sharing its creature name keep separate canonical i
  const registry=createCatalogue(snapshot,data.cards,details);
  assert.equal(registry.resolveRows([{id:INABA,count:1}])[0].id,INABA);
  assert.equal(registry.resolveRows([{id:TWIN_INABA,count:1}])[0].id,TWIN_INABA);
- assert.ok(!data.cards.some(x=>x.id===TWIN_INABA));
+ assert.ok(data.cards.some(x=>x.id===TWIN_INABA));
+ assert.notEqual(INABA,TWIN_INABA);
+ assert.ok(!e.card(INABA).spellFace);
+ assert.equal(e.card(TWIN_INABA).spellFace.name,'魔弾ソウル・キャッチャー');
 });
 
 test('Inaba grants Speed Attacker to other allied Knights by exact race',()=>{

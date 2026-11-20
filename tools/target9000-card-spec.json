@@ -8511,5 +8511,276 @@
         ]
       }
     }
+  },
+  "dmsd04-002": {
+    "phase": 1515,
+    "faces": [
+      {
+        "name": "ガンバＧ",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーは、バトルゾーンに出たターンの間、相手プレイヤーを攻撃できる。",
+        "race": "ジョーカーズ",
+        "powerText": "6000",
+        "missingFields": []
+      },
+      {
+        "name": "ガガン・ガン・ガガン",
+        "typeText": "呪文",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "ジョーカーズを１枚、自分の墓地からマナゾーンに置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "entryPlayerAttack": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "ガガン・ガン・ガガン",
+        "cost": 2,
+        "civ": "ゼロ",
+        "civilizations": [],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "mana",
+            "n": 1,
+            "filter": {
+              "race": "ジョーカーズ"
+            },
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp09-020": {
+    "phase": 1515,
+    "faces": [
+      {
+        "name": "ヘラルド・ルドゥーテ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "T・ブレイカー（このクリーチャーはシールドを３つブレイクする）\n自分の墓地にクリーチャーが６体以上なければ、このクリーチャーは攻撃できない。",
+        "race": "マフィ・ギャング",
+        "powerText": "13000",
+        "missingFields": []
+      },
+      {
+        "name": "ローズ・セレモニー",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の手札をすべて捨て、その後、それと同じ枚数、カードを引く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 3,
+      "noAttack": true,
+      "g260Self": {
+        "filter": {
+          "g273Grave": {
+            "n": 6,
+            "filter": {
+              "creature": true
+            }
+          }
+        },
+        "grants": {
+          "noAttack": false
+        }
+      },
+      "spellFace": {
+        "type": "spell",
+        "name": "ローズ・セレモニー",
+        "cost": 3,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandCycle460",
+            "to": "grave",
+            "mode": "all",
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dm23ex2-109": {
+    "phase": 1515,
+    "faces": [
+      {
+        "name": "爆獣イナバ・ギーゼ",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の他のナイトに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+        "race": "ドラゴノイド/オリジン/ナイト",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "魔弾ソウル・キャッチャー",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "kクリーチャーを１体、自分の墓地から手札に戻す。\nナイト・マジック（自分のナイトがあれば、この呪文の k能力をもう一度使ってもよい）",
+        "race": "ナイト",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "g724ExactRace": "ナイト"
+          },
+          "other": true,
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "魔弾ソウル・キャッチャー",
+        "cost": 2,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "ナイト",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "spell": true
+          },
+          {
+            "op": "KnightMagic1118",
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "creature": true
+                },
+                "spell": true
+              }
+            ],
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp06-054": {
+    "phase": 1515,
+    "faces": [
+      {
+        "name": "アカシシーマ",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）",
+        "race": "グランセクト",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "レッド・アグラフ",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "このターン、自分のクリーチャー１体はパワーを+4000され、タップまたはアンタップしているクリーチャーを攻撃できる。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "machFighter": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "レッド・アグラフ",
+        "cost": 2,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 4000,
+            "grant": {
+              "attackUntapped": true
+            },
+            "spell": true
+          }
+        ]
+      }
+    }
   }
 }
