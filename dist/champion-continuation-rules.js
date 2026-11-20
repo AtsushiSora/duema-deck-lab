@@ -47,7 +47,7 @@ export function createChampionContinuationRules(api){
  case'g40_Orzekia':move(s,[{player:t.p,uid:v,to:'grave',destroy:true}]);break;
  case'g40_OrzekiaEnemy':queue(s,t,'OrzekiaEnemy',{selected:[...t.selected,v]});break;
  case'g40_Salvage':if(v)queue(s,t,'Salvage',{selected:[...t.selected,v]});else for(const uid of t.selected){const x=policyRemove(s,t.p,'grave',uid,api);if(x){clear(x,'hand');api.addZone(s,t.p,'hand',x);}}break;
- case'g40_Sword':{const x=v&&own.deck.find(x=>x.uid===v);if(x){remove(own.deck,v);const to=api.deckRedirect(s,t.p)?'grave':'mana';clear(x,to);if(to==='mana')x.tapped=true;api.addZone(s,t.p,to,x);}api.shuffleLibrary(s,t.p,[],t.source);api.deckCheck(s,t.p);break;}
+ case'g40_Sword':{const x=v&&own.deck.find(x=>x.uid===v);if(x){remove(own.deck,v);const to=api.deckDestination1365(s,t.p,'mana',api.deckRedirect(s,t.p)?'grave':'mana');clear(x,to);if(to==='mana')x.tapped=true;api.addZone(s,t.p,to,x);}api.shuffleLibrary(s,t.p,[],t.source);api.deckCheck(s,t.p);break;}
  case'g40_LastBurst':if(v)api.castBattleSpell(s,t.p,t.uid,0,t.source,'ラスト・バースト');break;
  default:throw Error('未実装の優勝デッキ継続選択：'+t.op);
  }return true;}

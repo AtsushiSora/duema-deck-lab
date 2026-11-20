@@ -29,7 +29,7 @@ export function createVirideRules(api){
   case'g26_Ever':choice(s,t,'エバーラスト：シールド化するエレメントを選ぶ？',[...targetOptions(s,t.p,[...own.battle,...s.players[1-t.p].battle].filter(x=>!x.sealed)).map(o=>({...o,score:s.players[1-t.p].battle.some(x=>x.uid===o.value)?30:0})),opt('エレメントを選ばない',null,5)]);break;
   case'g26_EverAfter':if(!s.players[t.owner].shields.flatMap(api.shieldCards).some(x=>x.uid===t.target))put(s,{...t,op:'g26_TopShield'});break;
   case'g26_TopShield':choice(s,t,'自分の山札の上1枚をシールド化する？',[opt('シールド化する',true,own.deck.length>2?15:-20),skip()]);break;
-  case'g26_Hustle':{const x=api.takeTop(s,t.p);if(x){const to=api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana';api.clear(x,to);x.tapped=to==='mana';api.addZone(s,t.p,to,x);log(s,t.p,'ramp','ハッスル・キャッスル：山札の上1枚をタップしてマナへ',{cardId:t.source});}api.deckCheck(s,t.p);break;}
+  case'g26_Hustle':{const x=api.takeTop(s,t.p);if(x){const to=api.deckDestination1365(s,t.p,'mana',api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana');api.clear(x,to);x.tapped=to==='mana';api.addZone(s,t.p,to,x);log(s,t.p,'ramp','ハッスル・キャッスル：山札の上1枚をタップしてマナへ',{cardId:t.source});}api.deckCheck(s,t.p);break;}
   case'g26_GardenDraw':if(creatures(s,t.p).length>creatures(s,1-t.p).length)put(s,task('optionalDrawOne',t.p,t.source));break;
   case'g26_End':choice(s,t,'ドギラゴン逆：山札の上2枚をマナに置く？',[opt('2枚をマナへ置く',true,own.deck.length>4?15:-20),skip()]);break;
   case'g26_Select':{const selected=t.selected||[],remaining=2-selected.length,budget=7-selected.reduce((n,r)=>n+cost(card(r.cardId)),0),list=['hand','mana'].flatMap(origin=>own[origin].filter(x=>!selected.some(r=>r.uid===x.uid)&&card(x).type==='creature'&&cost(card(x))<=budget&&api.canEnter(s,t.p,card(x),{origin,execution:false})&&(!card(x).evolution||api.evolutionBases(s,t.p,card(x)).length)).map(x=>({x,origin})));
@@ -47,7 +47,7 @@ export function createVirideRules(api){
   case'g26_Tap':{const x=s.players[1-t.p].battle.find(x=>x.uid===v);if(x){api.tap(s,1-t.p,x);x.skipUntap=true;}break;}
   case'g26_Ever':if(v){const owner=s.players.findIndex(p=>p.battle.some(x=>x.uid===v));put(s,{...t,op:'g26_EverAfter',owner,target:v});api.move(s,[{player:owner,uid:v,to:'shields',destroy:false}]);}else put(s,{...t,op:'g26_TopShield'});break;
   case'g26_TopShield':if(v)api.shieldTop(s,t.p,card(t.source));break;
-  case'g26_End':put(s,{...t,op:'g26_Select',selected:[]});if(v){for(let i=0;i<2&&s.winner===null;i++){const x=api.takeTop(s,t.p);if(x){const to=api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana';api.clear(x,to);api.addZone(s,t.p,to,x);}api.deckCheck(s,t.p);}}break;
+  case'g26_End':put(s,{...t,op:'g26_Select',selected:[]});if(v){for(let i=0;i<2&&s.winner===null;i++){const x=api.takeTop(s,t.p);if(x){const to=api.deckDestination1365(s,t.p,'mana',api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana');api.clear(x,to);api.addZone(s,t.p,to,x);}api.deckCheck(s,t.p);}}break;
   case'g26_Select':put(s,{...t,op:v?'g26_Select':'g26_Order',selected:v?[...t.selected,v]:t.selected});break;
   case'g26_Order':{const r=t.selected.find(r=>r.uid===v);put(s,task('putCreature',t.p,t.source,r),{...t,selected:t.selected.filter(r=>r.uid!==v)});break;}
   case'g26_Saint':if(v)api.saintBreak(s,t.p,v,t.context);else{s.breakContext={...t.context,g26SaintUsed:true};api.breakShields(s,t.p,t.uids);}break;

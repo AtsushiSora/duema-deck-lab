@@ -2493,6 +2493,11 @@ export function standardCardSpec(d,{phase=165}={}){
   return {trigger:true,g1357CopyOnEntry:true,g174Start:[{op:'Target',g1357Become:true,
    g1357EndThisTurn:true,optional:true,title:'このクリーチャーがコピーする相手のクリーチャーを選ぶ'}]};
  }
+ if(phase>=1365&&['dmx12b-010','dmx15-005','dmex08-182','promoy14-030','dmd24-020'].includes(d?.id)&&
+    d.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'&&
+    normalize(f.abilityText).replaceAll('自身の','').replace('そのプレイヤーはかわりに','かわりにそのプレイヤーは')===normalize(
+     'いずれかのプレイヤーの山札から、手札以外のゾーンにカードが置かれる時、かわりにそのプレイヤーはそのカードを山札に加えてシャッフルする。'))
+  return {g1365DeckShuffle:true};
  if(phase>=1364&&['dmex15-b009','dm22rp1-TR7'].includes(d?.id)&&d.status==='complete'&&
     d.faces.length===1&&f.typeText==='クリーチャー'&&normalize(f.abilityText)===normalize(
      'T・ブレイカー'+

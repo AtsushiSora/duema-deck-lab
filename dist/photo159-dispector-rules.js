@@ -12,7 +12,7 @@ export function createPhoto159DispectorRules(api){
  const pool=(s,t)=>t.ids.map(uid=>s.players[t.p].deck.find(x=>x.uid===uid)).filter(Boolean);
  const element=c=>['creature','seed','gear','field'].includes(c.type);
  const canPut=(s,p,x)=>element(card(x))&&api.canMoveZone(s,p,'deck')&&api.canEnter(s,p,card(x),{origin:'deck',execution:false})&&(!card(x).evolution||api.evolutionBases(s,p,card(x)).length);
- function rampRest(s,t){const own=s.players[t.p];for(const x of pool(s,t)){if(!api.canMoveZone(s,t.p,'deck'))continue;api.remove(own.deck,x.uid);const to=api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana';api.clear(x,to);api.addZone(s,t.p,to,x);}release(s,t.p,t.ids);api.deckCheck(s,t.p);}
+ function rampRest(s,t){const own=s.players[t.p];for(const x of pool(s,t)){if(!api.canMoveZone(s,t.p,'deck'))continue;api.remove(own.deck,x.uid);const to=api.deckDestination1365(s,t.p,'mana',api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana');api.clear(x,to);api.addZone(s,t.p,to,x);}release(s,t.p,t.ids);api.deckCheck(s,t.p);}
  function finishMaid(s,t){put(s,{...t,op:'g159D_MaidAfter'});const rows=t.selected.filter(r=>s.players[1-t.p].battle.some(x=>key(x)===key(r)));if(rows.length)api.move(s,rows.map(r=>({player:1-t.p,uid:r.uid,to:'hand',destroy:false,controller:t.p})));}
  function run(s,t){if(!t.op.startsWith('g159D_'))return false;const own=s.players[t.p];switch(t.op){
  case'g159D_Trio':{const rows=living(s,1-t.p).map(x=>({player:1-t.p,uid:x.uid,to:'hand',destroy:false,controller:t.p}));if(rows.length)api.move(s,rows);break;}

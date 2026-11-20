@@ -50,7 +50,7 @@ export function createGalaxyRules(api){
   const text=c.text||'';
   return c.g568Alt?.entry?text.split('\n').some(line=>trigger.exec(line)?.index===0):trigger.test(text);
  }
- function replacementOptions(s,p,c,origin,execution=true,manaCount=s.players[p].mana.length){const list=[...api.fifteen.replacementOptions(s,p,c,origin,manaCount)];if(api.wouldEnterCreature(s,p,c)&&!String(c.race).includes('ドラゴン'))for(const owner of[0,1])for(const x of creatures(s,owner))if(effective(x,s).dragonOnlyEntry)list.push({source:x.cardId,owner,to:'grave'});if(origin==='deck')for(const owner of[0,1])for(const x of s.players[owner].battle)if(effective(x,s).deckRedirect)list.push({source:x.cardId,owner,to:'grave'});for(const x of creatures(s,1-p)){const d=effective(x,s);if(d.g40Brella&&origin!=='hand'&&api.wouldEnterCreature(s,p,c)&&cost(c)<=4)list.push({source:x.cardId,owner:1-p,to:'grave'});if(d.g38Ritsui&&api.wouldEnterCreature(s,p,c)&&(s.players[p].enteredThisTurn||0)>=2)list.push({source:x.cardId,owner:1-p,to:'mana'});
+ function replacementOptions(s,p,c,origin,execution=true,manaCount=s.players[p].mana.length){const list=[...api.fifteen.replacementOptions(s,p,c,origin,manaCount)];if(api.wouldEnterCreature(s,p,c)&&!String(c.race).includes('ドラゴン'))for(const owner of[0,1])for(const x of creatures(s,owner))if(effective(x,s).dragonOnlyEntry)list.push({source:x.cardId,owner,to:'grave'});if(origin==='deck')for(const owner of[0,1])for(const x of s.players[owner].battle)if(effective(x,s).deckRedirect)list.push({source:x.cardId,owner,to:'grave'});else if(effective(x,s).g1365DeckShuffle)list.push({source:x.cardId,owner,to:'deckShuffle1365'});for(const x of creatures(s,1-p)){const d=effective(x,s);if(d.g40Brella&&origin!=='hand'&&api.wouldEnterCreature(s,p,c)&&cost(c)<=4)list.push({source:x.cardId,owner:1-p,to:'grave'});if(d.g38Ritsui&&api.wouldEnterCreature(s,p,c)&&(s.players[p].enteredThisTurn||0)>=2)list.push({source:x.cardId,owner:1-p,to:'mana'});
   if(d.g1147ThirdEntryToGrave&&api.wouldEnterCreature(s,p,c)&&(s.players[p].enteredThisTurn||0)>=2)
    list.push({source:x.cardId,owner:1-p,to:'grave',toOwnerGrave:true});
   if(d.g38Bell&&origin!=='hand'&&api.wouldEnterCreature(s,p,c)&&(d.g898BellMax===undefined||cost(c)<=d.g898BellMax))list.push({source:x.cardId,owner:1-p,to:'hand'});if(d.g34Role==='quake'&&c.type==='creature'&&(!execution||c.g34FreeCast))list.push({source:x.cardId,owner:1-p,to:'mana'});if(d.gaiaEntry&&c.type==='creature'&&gaiaEntryText(c))list.push({source:x.cardId,owner:1-p,to:'mana'});if(d.noNonsummonEntry&&s.active===p&&c.type==='creature'&&execution===false)list.push({source:x.cardId,owner:1-p,to:'grave'});if(d.magnum&&s.active===1-p&&c.type==='creature')list.push({source:x.cardId,owner:1-p,to:'grave'});if(d.tokoshie&&origin!=='hand')list.push({source:x.cardId,owner:1-p,to:'mana'});if(d.caddy&&s.active===p&&c.type==='creature'&&cost(c)>manaCount)list.push({source:x.cardId,owner:1-p,to:'mana'});if(d.g26Queen&&c.type==='creature'&&cost(c)>manaCount)list.push({source:x.cardId,owner:1-p,to:'mana'});if(d.segare&&!(api.extremeProtected(s,1-p)&&api.effectActor(s)===p)&&c.type==='creature'&&cost(c)>manaCount)list.push({source:x.cardId,owner:1-p,to:'mana',segare:x.uid});}if(c.type==='creature'&&execution===false)for(const x of s.players[1-p].shields.flatMap(api.shieldCards))if(x.faceUp&&card(x).g26Hustle)list.push({source:x.cardId,owner:1-p,to:'mana'});return list;}
@@ -63,11 +63,11 @@ export function createGalaxyRules(api){
   for(const ref of e.options.mugenBases||[]){const top=own[ref.origin]?.find(y=>y.uid===ref.uid);if(top)for(const y of api.layers(top))origins.set(y.uid,{zone:ref.origin,serial:y.zoneSerial,tapped:y.tapped});}
   if(e.options.mugenBases&&!card(r.source).tokoshie&&!card(r.source).g38Bell)api.attachMugenBases(s,e.p,x,e.options.mugenBases);
   // A creature replacement moves Mars together with its deck-evolution sources (official 47078); card replacements leave them in the library (47056).
-  if(card(x).g213Mars&&!card(r.source).tokoshie&&!card(r.source).deckRedirect)api.attachMarsDeck(s,e.p,x);
+  if(card(x).g213Mars&&!card(r.source).tokoshie&&!card(r.source).deckRedirect&&!card(r.source).g1365DeckShuffle)api.attachMarsDeck(s,e.p,x);
   if(e.options.g831DeckBase){
    const uid=e.options.g831DeckBase;
    own.g34Protected=own.g34Protected.filter(ref=>ref!==uid);
-   if(!card(r.source).tokoshie&&!card(r.source).deckRedirect){
+   if(!card(r.source).tokoshie&&!card(r.source).deckRedirect&&!card(r.source).g1365DeckShuffle){
     const base=remove(own.deck,uid);
     if(base)x.under=[base];
    }
@@ -81,7 +81,7 @@ export function createGalaxyRules(api){
    x.under=bases;
   }
   // Creature replacements include the mana evolution base (QA48906, QA49082).
-  if(card(x).manaEvolution&&!card(r.source).tokoshie&&!card(r.source).deckRedirect){
+  if(card(x).manaEvolution&&!card(r.source).tokoshie&&!card(r.source).deckRedirect&&!card(r.source).g1365DeckShuffle){
    const base=remove(own.mana,e.baseUid);
    if(base){
     origins.set(base.uid,{zone:'mana',serial:base.zoneSerial,tapped:base.tapped});
@@ -90,10 +90,10 @@ export function createGalaxyRules(api){
   }
   const all=api.layers(x),moved=[];for(const y of all){const old=origins.get(y.uid);clear(y,r.to);if(old?.zone===r.to&&(!r.toOwnerGrave||(y.cardOwner??e.p)===e.p)){if(old.serial===undefined)delete y.zoneSerial;else y.zoneSerial=old.serial;y.tapped=old.tapped;own[r.to].push(y);}else moved.push(y);}
   if(r.toOwnerGrave){
-   for(const owner of [0,1])api.addZone(s,owner,'grave',...moved.filter(y=>(y.cardOwner??e.p)===owner));
-  }else if(moved.length)api.addZone(s,e.p,r.to,...moved);
+   for(const owner of [0,1])api.addAfterDeckReplacement1365(s,owner,'grave',...moved.filter(y=>(y.cardOwner??e.p)===owner));
+  }else if(moved.length)api.addAfterDeckReplacement1365(s,e.p,r.to,...moved);
   api.fifteen.replaced(s,e,r);
-  log(s,e.p,'entryReplace',card(r.source).name+'でバトルゾーンのかわりに'+(r.to==='mana'?'マナ':r.to==='hand'?'手札':'墓地')+'へ',{cardId:x.cardId});
+  log(s,e.p,'entryReplace',card(r.source).name+'でバトルゾーンのかわりに'+(r.to==='mana'?'マナ':r.to==='hand'?'手札':r.to==='deckShuffle1365'?'山札に戻してシャッフル':'墓地')+'へ',{cardId:x.cardId});
   if(e.options.g831DeckBase)api.deckCheck(s,e.p);
   if(r.segare&&s.players[1-e.p].battle.some(x=>x.uid===r.segare))move(s,[{player:1-e.p,uid:r.segare,to:'mana',by:e.options.effectController??api.effectActor(s)}]);
  }

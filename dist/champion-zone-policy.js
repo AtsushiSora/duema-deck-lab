@@ -1,6 +1,7 @@
 // Shared zone restrictions for older effect modules. Blind draw/mill/ramp do not use this helper.
 export function policyLook(s,p,n,rows,api){
  const xs=rows.slice(0,api.lookCount(s,p,n));
+ api.freshDeckLook1365?.(s,p,xs);
  if(xs.length&&api.lookPublic?.(s,p))api.log(s,p,'reveal','曲通風：山札の一番上を公開：'+xs.map(x=>api.card(x).name).join('・'),{cardId:xs[0].cardId});
  return xs;
 }

@@ -5,7 +5,7 @@ export function createPhotoRevisionRules(api){
 
  function value(s,p,c){return c==='光'?(s.players[p].deck.length>2?8:-50):c==='水'?(creatures(s,1-p).length?12:-5):c==='闇'?(s.players[1-p].hand.length?10:-5):creatures(s,p).length?5:-5;}
  function run(s,t){if(!t.op.startsWith('g41_'))return false;switch(t.op){
- case'g41_Ramp':{const batch=[];for(let i=0;i<2;i++){const x=api.takeTop(s,t.p);if(x)batch.push(x);}const to=api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana';for(const x of batch){clear(x,to);if(to==='mana')x.tapped=true;}api.addZone(s,t.p,to,...batch);api.log(s,t.p,'ramp','デス＝ヴェルムート：山札の上'+batch.length+'枚を'+(to==='mana'?'タップしてマナ':'墓地')+'へ',{cardId:t.source});api.deckCheck(s,t.p);break;}
+ case'g41_Ramp':{const batch=[];for(let i=0;i<2;i++){const x=api.takeTop(s,t.p);if(x)batch.push(x);}const to=api.deckDestination1365(s,t.p,'mana',api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana');for(const x of batch){clear(x,to);if(to==='mana')x.tapped=true;}api.addZone(s,t.p,to,...batch);api.log(s,t.p,'ramp','デス＝ヴェルムート：山札の上'+batch.length+'枚を'+(to==='mana'?'タップしてマナ':'墓地')+'へ',{cardId:t.source});api.deckCheck(s,t.p);break;}
  case'g41_Charge':{const choices=[];for(let mask=1;mask<1<<t.colors.length;mask++){const list=t.colors.filter((_,i)=>mask&1<<i);choices.push(opt(list.join('・')+'の効果を使う',list,list.reduce((n,c)=>n+value(s,t.p,c),0)));}choice(s,t,'スペース・チャージ：使う文明を先に選ぶ（光→水→闇→火の順）',[...choices,skip()]);break;}
  case'g41_Light':api.shieldTop(s,t.p,card(t.source));api.deckCheck(s,t.p);break;
  case'g41_Water':choice(s,t,'スペース・チャージ（水）：手札に戻す相手のクリーチャーを選ぶ',targetOptions(s,t.p,creatures(s,1-t.p)));break;

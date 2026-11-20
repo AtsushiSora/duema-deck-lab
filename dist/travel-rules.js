@@ -6,7 +6,7 @@ export function createTravelRules(api){
  const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task(op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
  const canPut=(s,p,x,origin)=>!x.faceDown&&['creature','seed'].includes(card(x).type)&&api.canEnter(s,p,card(x),{origin,execution:false})&&(!card(x).evolution||api.evolutionBases(s,p,card(x)).length);
  const mmmReady=(s,p)=>!s.players[p].shields.length&&['光','自然'].every(c=>s.players[p].mana.some(x=>api.manaColors(card(x),s,p).includes(c)));
- function ramp(s,p,n){const added=[];for(let i=0;i<n&&s.winner===null&&!s.lossEvent;i++){const x=api.takeTop(s,p);if(x){const to=api.deckRedirect(s,p)?'grave':'mana';clear(x,to);api.addZone(s,s.players[p],to,x);added.push(x);}api.deckCheck(s,p);}return added;}
+ function ramp(s,p,n){const added=[];for(let i=0;i<n&&s.winner===null&&!s.lossEvent;i++){const x=api.takeTop(s,p);if(x){const to=api.deckDestination1365(s,p,'mana',api.deckRedirect(s,p)?'grave':'mana');clear(x,to);api.addZone(s,s.players[p],to,x);added.push(x);}api.deckCheck(s,p);}return added;}
  function copyAbilities(c){if(c.type!=='creature'||!joker(c))return [];return [...(c.effect?[{effect:c.effect,label:'登場時の能力'}]:[]),...(c.prisonZero?[{effect:'travelRevZero',label:'革命0の登場時能力'}]:[])];}
  function declareDash(s,t){if(!t.remaining.length){for(const d of t.declared)api.enqueue(s,t.p,{uid:d.uid,source:d.source,effect:'extended',task:task('g14_DashResolve',t.p,d.source,d)});return;}const d=t.remaining[0];choice(s,t,'キリフダッシュを宣言する？（すべて宣言してから解決）',[opt(card(d.source).name+'を宣言する',true,20,d.source),skip()]);}
  function dashPayment402(c){return{cost:c.kirifudaDash,...(c.g402DashColors?{civilizations:c.g402DashColors}:{})};}

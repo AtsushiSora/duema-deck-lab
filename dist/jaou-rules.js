@@ -19,7 +19,7 @@ export function createJaouRules(api){
   put(s,task('g3_Declare',p,remaining[0].source,{remaining,declared:[],serial}));
   return true;
  }
- function ramp(s,p){const x=api.takeTop(s,p);if(x){const to=api.deckRedirect(s,p)?'grave':'mana';clear(x,to);api.addZone(s,s.players[p],to,x);}api.deckCheck(s,p);}
+ function ramp(s,p){const x=api.takeTop(s,p);if(x){const to=api.deckDestination1365(s,p,'mana',api.deckRedirect(s,p)?'grave':'mana');clear(x,to);api.addZone(s,s.players[p],to,x);}api.deckCheck(s,p);}
  function run(s,t){if(!t.op.startsWith('g3_'))return false;const own=s.players[t.p];switch(t.op){
  case'g3_Baba':if(oni(s)){const x=own.deck.pop();if(x){clear(x);api.addZone(s,own,'grave',x);api.log(s,t.p,'mill','山札の一番下を墓地へ：'+card(x).name,{cardId:x.cardId});put(s,task('g3_BabaDeploy',t.p,t.source,{uid:x.uid}));}api.deckCheck(s,t.p);}break;
  case'g3_BabaDeploy':{const x=own.grave.find(x=>x.uid===t.uid);if(x&&ready(s,t.p,x,'grave')&&cost(card(x))<=5)choice(s,t,'一番下から墓地に置いたクリーチャーを出しますか？',[opt('出す',true,creatures(s,1-t.p).some(y=>effective(y,s).kakuReturn)?-5:20,x.cardId),skip()]);break;}

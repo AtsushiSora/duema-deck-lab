@@ -5,7 +5,7 @@ export function createRecommendedRules(api){
  const reserved=own=>new Set(Object.entries(own).filter(([k,v])=>Array.isArray(v)&&/Protected$|Reveals$/.test(k)).flatMap(([,v])=>v));
  const release=(own,ids)=>own.g36Protected=(own.g36Protected||[]).filter(uid=>!ids.includes(uid));
  const continuation=(t,op,more={})=>task(op,t.p,t.source,more);
- const ramp=(s,p)=>{const x=api.takeTop(s,p);if(x){const to=api.deckRedirect(s,p)?'grave':'mana';clear(x,to);api.addZone(s,p,to,x);}api.deckCheck(s,p);};
+ const ramp=(s,p)=>{const x=api.takeTop(s,p);if(x){const to=api.deckDestination1365(s,p,'mana',api.deckRedirect(s,p)?'grave':'mana');clear(x,to);api.addZone(s,p,to,x);}api.deckCheck(s,p);};
  function run(s,t){
   if(!t.op.startsWith('g36'))return false;const own=s.players[t.p],opp=s.players[1-t.p];
   switch(t.op){
