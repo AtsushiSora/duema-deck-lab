@@ -15,7 +15,7 @@ import {createExtendedRules} from './extended-rules.js?v=0.722.1';
 import {createStrategicAI} from './strategic-ai.js?v=0.722.1';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.227';
-export const ENGINE_VERSION='0.602.10';
+export const ENGINE_VERSION='0.602.11';
 export const AI_VERSION='2.3.418';
 const EFFECTS=new Set(['champion','environment','recommended','sixPhoto','ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall','bounceBlockers','dragonRamp2','ramp2Return1','optionalRamp4Return2','purgeNonDragonMana','fightOptional','destroyWeakerLimitNextTurn','shieldTop1','deployMulticolor7','superheroSweep','destroyBattleCard3','destroyBattleCard2','jadowShield','vamBounce','goodEvil','aterModes','jaganRevive','reverseLock','urEvolve','muteLoot','tensaiLoot','graveRecycle','destroyMin','vtBounce','miradaCast','spellLock','miracleDraw','serpentModal','icicleModes','mirageModes','judgeDraw','maryRevive','darknessModes','fumiModes','brainSlash','charonReset','jennySacrifice','inspectDiscard','gospelRecover','dolsuzakuTurn','frozenCarnival','finalStop','oriotisJudge','nextSummonSpeed','tripleMode','sirenMana','courageMode','burningLoot','lastDragonFlame','destroy6000','masterGGGLoot','untapTwoMana','fairyDiscard6000','graveShuffle','permitManaSummon','wellkius','mikadoreo','sheva','rudolf','saiphogate','heavensGate','stargaze','bambooRamp','sharappu','fairyPower','takeback','hugePlan','shakoRecycle','naturalGo','herculesRecycle','jurassicHowl','corenReveal','plantRamp','sonicMana','jumboReveal','granRamp','kiyonagaReveal','gohaten','zenonRamp','wiseShutter','dokiBounce','minogamiRecover','hazardPact','fortress','casablancaBounce','sheketDraw','petrovaProtect','bojiMill','dranEntry','goldShield','c0braRevive','mechaDraw','ameliaShield','mechaMinus','goryuShield','magicNapo','magicSmallDestroy','magicIgnore','magicNumberLock','magicFire','magicKaraku','magicHime','magicBounce','magicPeecap','magicDraw','armoredBaku','armoredValkyria','armoredVal','armoredMonster','hunterMekraid','hunterBambi','hunterSweep4','hunterSweep2','hunterVictory','hunterMana','hunterDraw','zardCast','dogiRamp','dolfSweep','damdRemove','fiveModes','dragonSign','aquaReveal','bossDeploy','dedoAllocate','fireAllocate','fairyMiracle','babaBottom','cycleEntry','jaougaShields','katsuLook','reverseMinus','jaoumon','fortuneRamp','giantHeavy','giantLake','giantTouch','giantYuki','giantSpace','giantSineraria','giantFirefly','gachiRobo','gachiCambiare','gachiFight','gachiMystery','gachiNicol','gachiBigBang','gachiMagrul','gachiRice','gachiGuignol','samuraiBui','samuraiMusashi','samuraiMekraid','samuraiFlash','lionelPeace','lionelRune','lionelHeart','lionelSlotton','lionelAQ','lionelKorail','lionelGera','lionelSong','lionelStar','kenjiCrymax','kenjiDida','kenjiMill','kenjiPlan','kenjiHeart','travelJourney','travelAfro','travelKatsura','travelPrison','travelRevZero','travelG3','travelZero','travelHelt','travelOra','travelChicken','graveGT','graveObuza','graveKaibyaku','graveUra','graveAbaku','graveLoot','graveDoor','graveMinus4','maruruOrugate','maruruKiinary','maruruWatch','maruruBunker','maruruSky','girlsDaiou','girlsSavak','girlsZeos','girlsTry','girlsMega','girlsGyai','girlsArshu','girlsRupia','madoNothing','madoAirvo','madoBarred','madoGon','madoBlood','madoBock','madoCombat','madoDollar','madoDraw','madoShuno','madoGokusatsu','madoGyap','redBlack','redMax','redRoyal','redCircle','redClock','redGareck','abyssJaga','abyssSis','abyssMurder','abyssMakua','abyssMill','abyssMek','abyssSeal','abyssBella','hachiRedZ','hachiStorm','hachiFight','hachiForbidden','hachiShibire','hachiPower','hachiSSD','virideEver','golgyEntry','golgyKohaku','golgyBig','golgyShield','golgyHerc','golgyWest','golgyGin','golgyBlueprint','golgyJasmine','bandeRadio','bandePizza','bandeDecision','bandeDagra','bandeBalance','bandeSeal','bandeTaka','madoZadan','madoMaou','madoNameless','madoJaw','madoGride','madoFunz','madoVoga','madoLab','madoTin','bolBaro','bolBT','bolAgony','bolLoot','bolMol','bolLand','bolJura','bolDuel','bolBird','phoenixFel','phoenixGate','phoenixMetal','phoenixReverse','phoenixRecover','phoenixXeno','phoenixLoot','phoenixAbu','phoenixHeavy','phoenixOriginalMetal','phoenixMill','phoenixReload','phoenixOni','kenjiMysteryCube','kenjiCocoon','kenjiPanda','kenjiJaouga8','shieldDogi','shieldResolve','shieldBounce','shieldD4','shieldMirror','shieldMirrorSpell','shieldParfe','shieldDeka','shieldFaceTop']);
 let catalogue=new Map();
@@ -231,6 +231,16 @@ function attachedAuras1352(s,p,host){
  if(!own.hasAuras1352)return [];
  return own.battle.filter(a=>a.auraTo1352?.uid===host.uid&&
   a.auraTo1352.incarnation===(host.incarnation||0)&&card(a.cardId).type==='aura');
+}
+function auraEvent1434(s,p,host,field){
+ let queued=false;
+ for(const aura of attachedAuras1352(s,p,host)){
+  const defs=card(aura)[field];
+  if(!defs||abilitiesIgnored(s,aura))continue;
+  queued=true;enqueueEffect(s,p,{uid:aura.uid,incarnation:aura.incarnation||0,source:aura.cardId,effect:'extended',
+   task:extra.task('g34_Sequence',p,aura.cardId,{uid:aura.uid,incarnation:aura.incarnation||0,host:{uid:host.uid,incarnation:host.incarnation||0},defs})});
+ }
+ return queued;
 }
 function auraCost1431(s,p,c){
  const result={tax:0,reduction:0};
@@ -1597,6 +1607,7 @@ function tapCard(s,p,x,controller=effectActor(s)){
   }
  }
  extra.tapped(s,p,x);
+ auraEvent1434(s,p,x,'g1434HostTap');
 }
 function clearBattleState(x,to='grave'){
  delete x.g1357Copies;
@@ -4573,7 +4584,8 @@ function resolveAttack(s,blockUid){
   // QA35614: fix the civilization count before resolving unblocked triggers.
   if(s.attack.target==='player'&&effectiveCard(a,s,true).g1188CivilizationBreaker)
    s.attack.g1188CivilizationCount=extra.six.manaCivilizationCount(s,s.active);
-  const triggered=extra.unblockedAttack(s,s.active,a);
+  const auraTriggered=s.attack.target==='player'&&auraEvent1434(s,s.active,a,'g1434HostUnblocked');
+  const triggered=extra.unblockedAttack(s,s.active,a)||auraTriggered;
   if(s.attack.target==='player'||triggered)s.attack.g482Unblocked=true;
   if(triggered){s.attack.stage='unblocked482';return;}
  }
@@ -5444,7 +5456,7 @@ function declareAttack(s,p,a){
   if(defender&&effectiveCard(defender,s).g1155BounceAfterAttacked)
    s.attack.g1155AttackedSource={controller:1-p,source:defender.cardId};
   const startOfAttackEffects=s.pendingEffects?.length??0;
-  extra.attackStart(s,p,c);extra.attackTriggers(s,p,c);log(s,p,'attack',a.label,{cardId:c.cardId});
+  extra.attackStart(s,p,c);extra.attackTriggers(s,p,c);auraEvent1434(s,p,c,'g1434HostAttack');log(s,p,'attack',a.label,{cardId:c.cardId});
   s.attackDeclarations=[...s.players[p].hand,...s.players[p].mana.filter(x=>card(x).ddd?.fromMana),...s.players[p].grave.filter(x=>card(x).ddd?.fromGrave&&canMoveZone(s,p,'grave'))].filter(x=>dddPayment(s,p,card(x))).map(x=>x.uid);
   for(const effect of ['attackDragonReveal','attackJudge','deployMulticolor7','attackExecuteHand'])if(data[effect]||(effect==='deployMulticolor7'&&data.effect===effect)){if(stopped)log(s,p,'triggerPrevented',`${data.name}自身の攻撃時能力はGGによりトリガーしない`,{cardId:data.id});else enqueueEffect(s,p,{uid:c.uid,source:data.id,effect:effect==='deployMulticolor7'?'deploy':effect,...(effect==='attackJudge'&&data.attackJudge==='draw'?{judgeDraw880:true}:{})});}
   const doubled=c.g34Grants?.some(grant=>grant.g1083Training&&activeTurnGrant(s,grant))||
