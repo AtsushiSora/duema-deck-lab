@@ -255454,15 +255454,190 @@
       },
       "supportBatch": "phase-1416",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-014",
+      "name": "ASAPプライオリス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 2000,
+      "race": "トリックス/チームウェイブ",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nバズレンダ [cc02]（このクリーチャーのコストを支払う時、追加で[cc02]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その[OL]能力を１回と、追加で[cc02]支払った回数、使う）\n{OL}相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-014",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 1,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "to": "hand",
+          "title": "手札に戻す相手のクリーチャーを1体選ぶ"
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 2
+      },
+      "supportBatch": "phase-1417",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-052",
+      "name": "アリキンオンエア",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "トリックス/チームウェイブ",
+      "text": "バズレンダ [cc03]（このクリーチャーのコストを支払う時、追加で[cc03]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その[OL]能力を１回と、追加で[cc03]支払った回数、使う）\n[OL]相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\nこのクリーチャーが破壊される時、墓地に置くかわりに手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-052",
+      "limit": 4,
+      "destroyToHand": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 1,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "to": "mana",
+          "title": "マナに置く相手のクリーチャーを1体選ぶ"
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 3
+      },
+      "supportBatch": "phase-1417",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-045",
+      "name": "カキンギョ #紫陽花 #ご祝儀 #池",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "トリックス/チームウェイブ",
+      "text": "バズレンダ [cc02]（このクリーチャーのコストを支払う時、追加で[cc02]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その[OL]能力を１回と、追加で[cc02]支払った回数、使う）\n[OL]自分のクリーチャーを１体選び、マナゾーンに置く。その後、相手は自身のクリーチャーを１体選び、マナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-045",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "to": "mana",
+          "g177SelfMana": true
+        },
+        {
+          "op": "OpponentSelect",
+          "n": 1,
+          "to": "mana"
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 2
+      },
+      "supportBatch": "phase-1417",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-035",
+      "name": "ゼロベースハリー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "トリックス/チームウェイブ",
+      "text": "バズレンダ [cc01]（このクリーチャーのコストを支払う時、追加で [cc01]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その{OL} 能力を１回と、追加で [cc01]支払った回数、使う）\n{OL}相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-035",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "g190Freeze": "self",
+          "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 1
+      },
+      "supportBatch": "phase-1417",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-053",
+      "name": "メチャ映えクローラー",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "アースイーター/チームウェイブ",
+      "text": "バズレンダ [cc02]（このクリーチャーのコストを支払う時、追加で[cc02]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その[OL]能力を１回と、追加で[cc02]支払った回数、使う）\n[OL]カードを１枚、自分のマナゾーンから手札に戻す。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-053",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "g232ManaReturn": true,
+          "title": "手札に戻すマナを1枚選ぶ"
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 2
+      },
+      "supportBatch": "phase-1417",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1416,
+    "phase": 1417,
     "checkedAt": "2026-11-20",
-    "baseCount": 8245,
+    "baseCount": 8250,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8250,
+    "totalCount": 8255,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -279065,6 +279240,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 8245,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1416,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8245,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8250,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
