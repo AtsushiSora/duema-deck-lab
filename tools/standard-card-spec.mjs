@@ -1,3 +1,4 @@
+import {target8500CardSpec} from './target8500-card-spec.mjs';
 import {requestedCardSpec1372} from './requested-card-spec-1372.mjs';
 import {borrowedAttackSpec1370} from './borrowed-attack-spec.mjs';
 import {selectionSpec1369} from './selection-spec.mjs';
@@ -2460,6 +2461,7 @@ const brainCoralSpec=()=>({effect:'sixPhoto',g34Tasks:[{op:'Draw',n:3},{
 }]});
 
 export function standardCardSpec(d,{phase=165}={}){
+ if(phase>=1379){const spec=target8500CardSpec(d,phase);if(spec)return spec;}
  // Repair only the complete formatting variants pinned to these official prints.
  if(phase>=533&&d?.faces?.length===1){
   const fix={

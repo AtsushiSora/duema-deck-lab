@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-20",
   "catalogueNames": 11825,
-  "supportedNames": 8074,
-  "pendingNames": 3751,
-  "phase": 1372,
-  "added": 2,
+  "supportedNames": 8079,
+  "pendingNames": 3746,
+  "phase": 1379,
+  "added": 5,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -157,7 +157,7 @@
     "クリーチャー": 2113,
     "NEOクリーチャー": 69,
     "呪文": 449,
-    "GRクリーチャー": 155,
+    "GRクリーチャー": 150,
     "G-NEOクリーチャー": 26,
     "タマシード": 37,
     "デュエルメイト呪文": 8,
@@ -223,7 +223,7 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 1053,
+    "複数面・特殊カードタイプまたは情報不足": 1048,
     "未対応の能力文": 2508,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 18,
@@ -494108,16 +494108,96 @@
       "remaining": [
         "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2Googleアカウント対戦の未確認を維持。"
       ]
+    },
+    {
+      "phase": 1379,
+      "kind": "registration-toward-8500",
+      "checkedAt": "2026-11-20T13:49:31.866Z",
+      "baseline": "e3b37e559497fb8c60daa914bb188fe0839762d8",
+      "manifest": "tools/support-phase-1379.json",
+      "status": "verified-local",
+      "before": 8074,
+      "supported": 8079,
+      "pending": 3746,
+      "added": [
+        {
+          "id": "dmsd08-016",
+          "name": "The カップラー漢"
+        },
+        {
+          "id": "dmex05-010",
+          "name": "キョム 乙-二式"
+        },
+        {
+          "id": "dmex08-241",
+          "name": "シザー・アイ GR"
+        },
+        {
+          "id": "dmrp09-081",
+          "name": "ムガ 丙-三式"
+        },
+        {
+          "id": "dmrp09-089",
+          "name": "ホッピーホップ"
+        }
+      ],
+      "duplicates": 0,
+      "results": {
+        "focused": {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.788,
+          "log": "tmp/duema-phase-1379/focused.log",
+          "passed": 22,
+          "failed": 0
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 16.091,
+          "log": "tmp/duema-phase-1379/audit.log"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.875,
+          "log": "tmp/duema-phase-1379/check.log"
+        }
+      },
+      "totalTestsPassed": 22,
+      "reason": "目標8500種類に向けた通常登録再開。既存GR処理を使う通常能力を持たないGRクリーチャー5種類。",
+      "remaining": [
+        "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
+      ],
+      "next": "目標8500種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1378,
-    "nextPhase": 1379,
+    "lastVerifiedPhase": 1379,
+    "nextPhase": 1380,
     "workInProgress": null,
     "nextCandidates": [
-      "通常登録停止と保留2件を維持する。追加はユーザー明示指定または検証依存のみ。",
-      "次回以降のカード追加はローカルまたはGitHub Pagesのみ。Netlifyへはユーザーが明示した回だけ反映する。",
-      "保留2件と全対象の未集約、2アカウントでの本番対戦確認は未完了として保持する。"
+      "公式照合済みの通常能力を持たないGRクリーチャー",
+      "既存のキーワード処理と一致するGRクリーチャー",
+      "既存処理で両面を完全に扱えるツインパクトを個別検証。公式未確認・特殊条件は保留。"
     ],
     "steps": [
       "開始時にHEAD・作業差分・ステージ・既存プロセス・AGENTS・進捗を確認。",
@@ -494202,14 +494282,14 @@
     ],
     "restartSteps": [
       "公開済みの版はb40ae0df (v0.722.1 / engine0.602.1 / 8074種類)。Pages・Netlifyを同じ版に更新済み。最新HEAD・差分・ステージ・既存プロセスを最初に確認。",
-      "実データ8074種類・重複0。通常登録停止・automation PAUSEDを維持。",
+      "実データ8079種類・重複0。新目標8500種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "指定5種類は新規2・既存3を完了。manifestに公式全文・基本情報・画像・使用制限・関連裁定・秘版解決・検証結果を記録。",
       "既存8072定義は深い比較で不変。カードID・保存形式・保存済みデッキ・対戦履歴を維持。",
       "個別の残件2件と問い合わせ案はユーザー指示「後回しにしよう」で保留。再開指示があるまでこの2件の調査・送信を行わない。",
       "No13長時間検証はengine0.601.0の固定ソースで完了済み。今回のengine0.602.0の全面検証には数えない。必要な未集約項目は対象を特定し、細かく分割して確認する。",
       "Netlifyは手動反映専用。workflow_dispatchだけ、GitHub pushフック停止、stop_builds=trueを維持。通常のカード追加pushでは反映しない。今回の公開に保留・未検証の解消は含めない。"
     ],
-    "registrationStatus": "8001種類到達済みのため通常登録停止。automation PAUSED。検証再現に必要な依存カードのみ追加可。",
+    "registrationStatus": "ユーザーの新目標8500種類に向けて通常登録を再開。現在8079種類、残り421種類。automationはPAUSEDのまま。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [],
     "printVerificationPending": [
@@ -494317,6 +494397,14 @@
         "アカウント・デッキ保存",
         "コンピュータと対戦する"
       ]
+    },
+    "registrationTarget": {
+      "target": 8500,
+      "startCount": 8074,
+      "currentCount": 8079,
+      "remaining": 421,
+      "status": "active",
+      "phase": 1379
     }
   },
   "registeredCardVerification": {
@@ -546182,15 +546270,27 @@
     }
   },
   "registrationStop": {
-    "phase": 1324,
-    "threshold": 8001,
-    "supportedNames": 8001,
-    "pendingNames": 3826,
-    "checkedAt": "2026-11-15",
-    "registrationStopped": true,
+    "phase": 1379,
+    "threshold": 8500,
+    "supportedNames": 8079,
+    "pendingNames": 3746,
+    "checkedAt": "2026-11-20",
+    "registrationStopped": false,
     "automationId": "duema-deck-lab",
-    "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
     "automationStatus": "PAUSED",
-    "automationStatusVerifiedAt": "2026-11-15"
+    "mode": "manual-current-session",
+    "userInstruction": "8500種類までカードを増やして",
+    "previousStop": {
+      "phase": 1324,
+      "threshold": 8001,
+      "supportedNames": 8001,
+      "pendingNames": 3826,
+      "checkedAt": "2026-11-15",
+      "registrationStopped": true,
+      "automationId": "duema-deck-lab",
+      "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
+      "automationStatus": "PAUSED",
+      "automationStatusVerifiedAt": "2026-11-15"
+    }
   }
 }
