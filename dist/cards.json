@@ -268188,15 +268188,330 @@
       ],
       "supportBatch": "phase-1494",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-003",
+      "name": "宇宙美刃 ミケランジェロ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 11000,
+      "race": "アウトレイジMAX",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を見る。その中から１枚を裏向きにして、新しいシールドとして自分のシールドゾーンに加え、残りを手札に加える。\nW・ブレイカー\nドロン・ゴー：このクリーチャーが破壊された時、名前に《宇宙》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《宇宙》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-003",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "宇宙",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "宇宙"
+            ]
+          }
+        }
+      ],
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "stages": [
+            {
+              "to": "shields",
+              "n": 1
+            },
+            {
+              "to": "hand",
+              "n": 2
+            }
+          ],
+          "rest": "top"
+        }
+      ],
+      "supportBatch": "phase-1495",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr10-019",
+      "name": "極太陽 シャイニング・キンジ",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "アウトレイジMAX",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが攻撃する時、自分の山札の上から２枚を見る。その中から１枚を裏向きにして、新しいシールドとして自分のシールドゾーンに加え、もう１枚をマナゾーンに置く。\nW・ブレイカー\nドロン・ゴー：このクリーチャーが破壊された時、名前に「極太」または「太陽」とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に「シャイニング・キンジ」とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-019",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "シャイニング・キンジ",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "極太",
+              "太陽"
+            ]
+          }
+        }
+      ],
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Look",
+          "n": 2,
+          "stages": [
+            {
+              "to": "shields",
+              "n": 1
+            },
+            {
+              "to": "mana",
+              "n": 1
+            }
+          ],
+          "rest": "top"
+        }
+      ],
+      "supportBatch": "phase-1495",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr11-020",
+      "name": "神豚 ブータンPOP",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "アウトレイジMAX/オラクル",
+      "text": "このクリーチャーが攻撃する時、自分の山札の上から３枚を見てもよい。そうした場合、そのうちの１枚を自分の手札に加え、残りを墓地に置く。\nドロン・ゴー：このクリーチャーが破壊された時、名前に《神豚》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《神》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-020",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "神",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "神豚"
+            ]
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Look",
+              "n": 3,
+              "stages": [
+                {
+                  "to": "hand",
+                  "n": 1
+                }
+              ],
+              "rest": "grave"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1495",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-005",
+      "name": "絶超合金 ロビンフッド",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "アウトレイジMAX",
+      "text": "このクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、カードを１枚引くか、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻してもよい。\nW・ブレイカー\nドロン・ゴー：このクリーチャーが破壊された時、名前に《合金》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《合金》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-005",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "合金",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "合金"
+            ]
+          }
+        }
+      ],
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Choose",
+              "modes": [
+                {
+                  "label": "1枚引く",
+                  "defs": [
+                    {
+                      "op": "Draw",
+                      "n": 1
+                    }
+                  ]
+                },
+                {
+                  "label": "クリーチャー1体を手札に戻す",
+                  "defs": [
+                    {
+                      "op": "Target",
+                      "anyOwner": true,
+                      "to": "hand",
+                      "toOwnerHand": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Choose",
+              "modes": [
+                {
+                  "label": "1枚引く",
+                  "defs": [
+                    {
+                      "op": "Draw",
+                      "n": 1
+                    }
+                  ]
+                },
+                {
+                  "label": "クリーチャー1体を手札に戻す",
+                  "defs": [
+                    {
+                      "op": "Target",
+                      "anyOwner": true,
+                      "to": "hand",
+                      "toOwnerHand": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1495",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd11-001",
+      "name": "暴剣王邪 ハリケーン",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 12000,
+      "race": "アウトレイジMAX",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを２体まで選び、タップする。そのクリーチャーは、次の相手のターンのはじめにアンタップされない。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）\nドロン・ゴー：このクリーチャーが破壊された時、名前に《暴剣》とあるエグザイル・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n自分の他の、名前に《暴剣》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd11-001",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "暴剣",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "暴剣"
+            ]
+          }
+        }
+      ],
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "optional": true,
+          "g173Targets": true,
+          "g193Select": true,
+          "g193Tap": true,
+          "g210TapLock": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1495",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1494,
+    "phase": 1495,
     "checkedAt": "2026-11-20",
-    "baseCount": 8593,
+    "baseCount": 8598,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8598,
+    "totalCount": 8603,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -292891,6 +293206,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8593,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1494,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8593,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8598,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
