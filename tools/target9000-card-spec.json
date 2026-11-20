@@ -7915,5 +7915,245 @@
         ]
       }
     }
+  },
+  "dmex04-012": {
+    "phase": 1513,
+    "faces": [
+      {
+        "name": "残虐覇王デスカール",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の t能力を使ってもよい。\nt相手の手札から２枚見ないで選び、捨てさせる。",
+        "race": "ダークロード",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "ロスト・ソウル",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "相手は自身の手札をすべて捨てる。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g439Tap": [
+        {
+          "op": "BlindDiscard773",
+          "n": 2
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "ロスト・ソウル",
+        "cost": 7,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "g756All": true,
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp08-004": {
+    "phase": 1513,
+    "faces": [
+      {
+        "name": "水晶の記録 ゼノシャーク",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "スマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）",
+        "race": "ムートピア",
+        "powerText": "1000",
+        "missingFields": []
+      },
+      {
+        "name": "クリスタル・メモリー",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー\n自分の山札を見る。その中から１枚選び、手札に加える。その後、山札をシャッフルする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "smashBurst": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "クリスタル・メモリー",
+        "cost": 4,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": "all",
+            "g201Search": true,
+            "g200Search": true,
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": false
+              }
+            ],
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp05-042": {
+    "phase": 1513,
+    "faces": [
+      {
+        "name": "傀儡将ボルギーズ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを?4000 する。（パワー０以下のクリーチャーは破壊される）",
+        "race": "デーモン・コマンド",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "ジェニコの知らない世界",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "相手の手札を１枚見ないで選び、捨てさせる。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -4000,
+          "g242PowerMinus": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "ジェニコの知らない世界",
+        "cost": 2,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BlindDiscard773",
+            "n": 1,
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp05-073": {
+    "phase": 1513,
+    "faces": [
+      {
+        "name": "凶鬼96号 ガースー",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+        "race": "マフィ・ギャング",
+        "powerText": "2000",
+        "missingFields": []
+      },
+      {
+        "name": "黒光りの毒ガス",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを?2000 する。（パワー０以下のクリーチャーは破壊される）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "slayer": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "黒光りの毒ガス",
+        "cost": 1,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -2000,
+            "g242PowerMinus": true,
+            "spell": true
+          }
+        ]
+      }
+    }
   }
 }

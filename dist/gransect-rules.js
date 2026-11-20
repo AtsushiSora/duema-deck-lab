@@ -22,7 +22,7 @@ export function createGransectRules(api){
   case'g16Reveal':{const uids=policyLook(s,t.p,t.n,own.deck,api).map(x=>x.uid),hits=uids.filter(uid=>bigCreature(card(own.deck.find(x=>x.uid===uid))));log(s,t.p,'reveal','山札の上'+t.n+'枚を公開：'+policyLook(s,t.p,t.n,own.deck,api).map(x=>card(x).name).join('、'),{cardId:t.source});if(t.all||!hits.length)finishReveal(s,{...t,uids,selected:hits});else put(s,{...t,op:'g16RevealSelect',uids,hits,selected:[]});break;}
   case'g16RevealSelect':{const list=t.hits.filter(uid=>!t.selected.includes(uid));if(!list.length){finishReveal(s,t);break;}choice(s,t,'手札に加えるパワー12000以上を選ぶ（'+t.selected.length+'枚）',[...list.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,10+cost(card(x)),x.cardId);}),opt('ここまでで確定',null,0)]);break;}
   case'g16Plant':{const x=ramp(s,t.p,1)[0];if(x&&bigCreature(card(x))&&s.winner===null)ramp(s,t.p,1);break;}
-  case'g16Smash':{const c=card(t.source);if(faces(c)[1]&&api.canCast(s,t.p,faces(c)[1]))choice(s,t,'スマッシュ・バーストで呪文側を唱える？',[opt('ソニック・ダンスを唱える',true,creatures(s,1-t.p).some(x=>power(x,false,s)<=7000)?20:-1,c.id),skip()]);break;}
+  case'g16Smash':{const c=card(t.source);if(faces(c)[1]&&api.canCast(s,t.p,faces(c)[1]))choice(s,t,'スマッシュ・バーストで呪文側を唱える？',[opt(faces(c)[1].name+'を唱える',true,creatures(s,1-t.p).some(x=>power(x,false,s)<=7000)?20:-1,c.id),skip()]);break;}
   case'g16Defend':api.defend(s,t.p,t.uid,t.kind,t.incarnation);break;
   case'g16DefenseResolve1295':api.resolveDefense1295(s,t.p,t.selected[0],t.selected.slice(1),t.blocker);break;
   case'g16DefenseSelect':{
