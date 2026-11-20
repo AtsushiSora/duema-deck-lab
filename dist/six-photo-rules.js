@@ -237,7 +237,7 @@ export function createSixPhotoRules(api){
    const r=effective(x,s).g485SpellReduction;
    if(typeof r==='number')return n+r;
    if(!r||r.color&&!colors(c).includes(r.color)||r.knightMagic&&!hasKnightMagic(c))return n;
-   return n+r.amount;
+   return n+(r.g1470BattleCount?creatures(s,p).filter(y=>!y.sealed&&matches(s,p,y,r.g1470BattleCount)).length:r.amount);
   },ownReduction);
  }
  function spellReduction485(s,p,c){const max=spellReductionMax485(s,p,c);return c.g485Amount===undefined?max:Math.max(0,Math.min(max,c.g485Amount));}
@@ -556,6 +556,7 @@ export function createSixPhotoRules(api){
   if(!rule||rule.opponentTurn&&s.active===p)return false;
   if(rule.onlyCreature)return ownCondition(s,p,{g479OnlyCreature:true},x.uid,x.incarnation||0);
   if(rule.untapped)return !x.tapped;
+  if(rule.anyPower)return true;
   const attacking=x.uid===s.attack?.attacker||x.uid===s.attackLifecycle?.uid&&(x.incarnation||0)===(s.attackLifecycle.incarnation||0);
   if((battlePower??api.power(x,attacking,s))<=0)return false;
   return !rule.lightMana||s.players[p].mana.filter(y=>!y.faceDown&&api.manaColors(api.zoneCard(s,p,y,'mana'),s,p).includes('光')).length>=rule.lightMana;
@@ -6100,6 +6101,9 @@ export function createSixPhotoRules(api){
   const rows=host&&api.canMoveZone(s,t.p,'mana')?own.mana.filter(x=>!x.faceDown&&card(x).type==='aura'&&cost(card(x))<=t.max&&api.canEnter(s,t.p,card(x),{origin:'mana',execution:false,auraHost:t.host})):[];
   if(rows.length)choice(s,t,'このクリーチャーに付けるマナのオーラを選ぶ',[...rows.map(x=>opt(card(x).name,{uid:x.uid,serial:x.zoneSerial||0},10+cost(card(x)),x.cardId)),skip()]);break;
  }
+ case'g34_SetPower1470':
+  for(const y of creatures(s,1-t.p).filter(y=>!y.sealed&&matches(s,1-t.p,y,t.filter)))
+   (y.powerModifiers??=[]).push({fixedPower:t.value,expires:'end',who:s.active});break;
  case'g34_CountGR1464':{
   const n=t.difference?Math.max(0,creatures(s,1-t.p).length-creatures(s,t.p).length):countDraw(s,t.p,{zone:'battle',filter:t.filter});
   start(s,t,Array.from({length:Math.min(n,s.players[t.p].gr.length)},()=>({op:'AuraGr1353',tapped:!!t.tapped})));break;
@@ -8587,7 +8591,7 @@ export function createSixPhotoRules(api){
   if(r.multi&&colors(c).length<=1||r.race&&!race(c,r.race))return n;
   // A printed Soul icon remains even when the creature's abilities are ignored.
   if(r.soul&&!hasSoul(c,r.soul)&&!hasSoul(card(x),r.soul))return n;
-  return n+r.amount;
+  return n+(r.g1470BattleCount?creatures(s,p).filter(y=>!y.sealed&&matches(s,p,y,r.g1470BattleCount)).length:r.amount);
  },c.g876BreakPerCount?countPower(s,x,c,false,{...c.g207CountPower,attackOnly:false,amount:1}):0),
  countBattleCivilizations,
  manaCivilizationCount,

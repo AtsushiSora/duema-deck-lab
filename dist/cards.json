@@ -238061,7 +238061,7 @@
           "g565External": true,
           "g1058FollowUnit": true,
           "grant": {
-            "forceTarget": true
+            "g1258ForceTarget": true
           }
         }
       ],
@@ -263919,15 +263919,142 @@
       },
       "supportBatch": "phase-1469",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-s01",
+      "name": "白皇世の意志 御嶺",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 25000,
+      "race": "メタリカ/ワンダフォース",
+      "text": "自分の超GRにカードがあれば、このクリーチャーは攻撃できず、バトルゾーンを離れる時、かわりにとどまる。\nワールド・ブレイカー（このクリーチャーは相手のシールドをすべてブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-s01",
+      "limit": 4,
+      "gr": true,
+      "breaker": "∞",
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "gr",
+            "min": 1
+          }
+        },
+        "grants": {
+          "noAttack": true,
+          "g577Stay": {
+            "anyPower": true
+          }
+        }
+      },
+      "supportBatch": "phase-1470",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx24-003",
+      "name": "無限超邪 クロスファイア",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "アウトレイジ・ドラゴン",
+      "text": "G・ゼロ：自分の墓地にドラゴンが６体以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\nスピードアタッカー\nW・ブレイカー\n∞パワーアタッカー（攻撃中、このクリーチャーのパワーは無限大になる）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx24-003",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g1470InfiniteAttacker": true,
+      "g396Zero": {
+        "all": [
+          {
+            "g273Grave": {
+              "n": 6,
+              "filter": {
+                "creature": true,
+                "race": "ドラゴン"
+              }
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1470",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx16-057",
+      "name": "龍素記号Lp エクスペリオン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "クリスタル・コマンド・ドラゴン",
+      "text": "バトルゾーンにある自分のリキッド・ピープル１体につき、自分の水の呪文を唱えるコストを１少なくしてもよい。ただし、コストは１より少なくならない。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-057",
+      "limit": 4,
+      "breaker": 2,
+      "g485SpellReduction": {
+        "color": "水",
+        "amount": 0,
+        "g1470BattleCount": {
+          "race": "リキッド・ピープル"
+        }
+      },
+      "supportBatch": "phase-1470",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-011",
+      "name": "超神龍イエス・ヤザリス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5500,
+      "race": "アポロニア・ドラゴン",
+      "text": "ブロッカー\n進化-自分の「ブロッカー」を持つクリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、そのターン、バトルゾーンにある相手の進化ではないクリーチャーすべてのパワーは500になる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-011",
+      "limit": 4,
+      "blocker": true,
+      "evolution": {
+        "blocker": true
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SetPower1470",
+          "value": 500,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1470",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1469,
+    "phase": 1470,
     "checkedAt": "2026-11-20",
-    "baseCount": 8489,
-    "newEffectCards": 3,
+    "baseCount": 8492,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 8492,
+    "totalCount": 8496,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -288272,6 +288399,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8489,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1469,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8489,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 8492,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
