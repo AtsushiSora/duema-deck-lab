@@ -16683,5 +16683,233 @@
         }
       ]
     }
+  },
+  "dmr08-054": {
+    "phase": 1471,
+    "faces": [
+      {
+        "name": "大集結！ドングリ軍団",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにあるクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは+2000され、相手プレイヤーを攻撃できない。",
+        "race": "ワイルド・ベジーズ",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "power": 2000,
+          "g567PlayerStop": true
+        }
+      ]
+    }
+  },
+  "dm24ex1-016": {
+    "phase": 1471,
+    "faces": [
+      {
+        "name": "料理猫のプワソン",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "シンパシー：ドリームメイト・クリーチャー（自分のドリームメイト・クリーチャー１体につき、このクリーチャーの召喚コストを１少なくする。ただしコストは０以下にはならない）\n進化：ドリームメイト・クリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが出た時または攻撃する時、カードを１枚引く。その後、コスト５以下のドリームメイトを１つ、自分の手札から出してもよい。\n自分のドリームメイト・クリーチャーすべてに「ブロッカー」を与える。",
+        "race": "ドリームメイト",
+        "powerText": "9500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g212CountDiscount": {
+        "zone": "battle",
+        "amount": 1,
+        "filter": {
+          "creature": true,
+          "race": "ドリームメイト"
+        }
+      },
+      "evolution": {
+        "race": "ドリームメイト"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "optional": true,
+          "deploy": true,
+          "filter": {
+            "race": "ドリームメイト",
+            "max": 5
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "optional": true,
+          "deploy": true,
+          "filter": {
+            "race": "ドリームメイト",
+            "max": 5
+          }
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "race": "ドリームメイト"
+          },
+          "grants": {
+            "blocker": true
+          }
+        }
+      ]
+    }
+  },
+  "dmrp12-s02": {
+    "phase": 1471,
+    "faces": [
+      {
+        "name": "煌銀河の弓 ラルクメシア",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "シンパシー：クリーチャー（このクリーチャーの召喚コストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にはならない）\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、自分のGRクリーチャーすべてのパワーを+6000し、「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）",
+        "race": "メタリカ/ワンダフォース",
+        "powerText": "10500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g168Sympathy": true,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g1471GrCount": 3
+        },
+        "grants": {
+          "g205Aura": {
+            "filter": {
+              "creature": true,
+              "g1428Gr": true
+            },
+            "power": 6000
+          }
+        }
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "g1428Gr": true
+          },
+          "g557Condition": {
+            "g1471GrCount": 3
+          },
+          "grants": {
+            "poweredBreaker": true
+          }
+        }
+      ]
+    }
+  },
+  "dmex19-013": {
+    "phase": 1471,
+    "faces": [
+      {
+        "name": "クイーン・オブ・ネイチャー",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "シンパシー：自然のクリーチャー（自分の自然のクリーチャー１体につき、このクリーチャーの召喚コストを１少なくする。ただしコストは０以下にはならない）\nW・ブレイカー\n自分の自然のクリーチャーすべてに「マッハファイター」を与える。\n自分のパワー12000以上のクリーチャーが攻撃する時、自分の山札の上から１枚目を表向きにする。それがパワー12000以上のクリーチャーなら出す。それ以外ならマナゾーンに置く。",
+        "race": "グランセクト",
+        "powerText": "12000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g212CountDiscount": {
+        "zone": "battle",
+        "amount": 1,
+        "filter": {
+          "creature": true,
+          "color": "自然"
+        }
+      },
+      "breaker": 2,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "color": "自然"
+          },
+          "grants": {
+            "machFighter": true
+          }
+        }
+      ],
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "creature": true,
+          "minPower": 12000,
+          "g199Power": true
+        },
+        "defs": [
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "creature": true,
+              "minPower": 12000
+            },
+            "to": "battle",
+            "elseTo": "mana"
+          }
+        ]
+      }
+    }
   }
 }

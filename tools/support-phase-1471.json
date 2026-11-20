@@ -1,0 +1,344 @@
+{
+  "phase": 1471,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8496,
+  "description": "既存の処理を用いて全能力を個別に検証し4種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmr08-054",
+      "name": "大集結！ドングリ軍団",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-054",
+      "faces": [
+        {
+          "name": "大集結！ドングリ軍団",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにあるクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは+2000され、相手プレイヤーを攻撃できない。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "power": 2000,
+            "g567PlayerStop": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "3dd1edb131e4eb6a637070c5b8a475d132a7b8f6728e4ad30ca8e2b60974da8a",
+        "facesMatched": true,
+        "imageSha256": "e793de6f154be5d22db79e6ea2d2ca66a285bb2f54425463008bab8d80d11880",
+        "imageBytes": 147299
+      },
+      "sameNameProducts": [
+        "DMR-16真 ドラゴン・サーガ 拡張パック第4章 超戦ガイネクスト×真",
+        "DMR-16極 ドラゴン・サーガ 拡張パック第4章 超戦ガイネクスト×極",
+        "DMR-08 エピソード2 グレイト・ミラクル",
+        "コロコロ・スペシャル デッキ5"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-054",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm24ex1-016",
+      "name": "料理猫のプワソン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-016",
+      "faces": [
+        {
+          "name": "料理猫のプワソン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "シンパシー：ドリームメイト・クリーチャー（自分のドリームメイト・クリーチャー１体につき、このクリーチャーの召喚コストを１少なくする。ただしコストは０以下にはならない）\n進化：ドリームメイト・クリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが出た時または攻撃する時、カードを１枚引く。その後、コスト５以下のドリームメイトを１つ、自分の手札から出してもよい。\n自分のドリームメイト・クリーチャーすべてに「ブロッカー」を与える。",
+          "race": "ドリームメイト",
+          "powerText": "9500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "battle",
+          "amount": 1,
+          "filter": {
+            "creature": true,
+            "race": "ドリームメイト"
+          }
+        },
+        "evolution": {
+          "race": "ドリームメイト"
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "optional": true,
+            "deploy": true,
+            "filter": {
+              "race": "ドリームメイト",
+              "max": 5
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "optional": true,
+            "deploy": true,
+            "filter": {
+              "race": "ドリームメイト",
+              "max": 5
+            }
+          }
+        ],
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "race": "ドリームメイト"
+            },
+            "grants": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex1-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "32b24210e5953f82142d94d1b670d949327337fb09476443a3deeed0b04b7454",
+        "facesMatched": true,
+        "imageSha256": "068212da799c9f36209db151c749f266a1d2a64fdb84217c27f7ce4e37c59a7a",
+        "imageBytes": 129799
+      },
+      "sameNameProducts": [
+        "DM26-RP3 逆札篇 第3弾 勝敵！逆転おこせ鬼の∞ディスペクター!!",
+        "DM24-EX1 超感謝祭 ファンタジーBEST"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-016",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp12-s02",
+      "name": "煌銀河の弓 ラルクメシア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-s02",
+      "faces": [
+        {
+          "name": "煌銀河の弓 ラルクメシア",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "シンパシー：クリーチャー（このクリーチャーの召喚コストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にはならない）\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、自分のGRクリーチャーすべてのパワーを+6000し、「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）",
+          "race": "メタリカ/ワンダフォース",
+          "powerText": "10500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g168Sympathy": true,
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "AuraGr1353"
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g1471GrCount": 3
+          },
+          "grants": {
+            "g205Aura": {
+              "filter": {
+                "creature": true,
+                "g1428Gr": true
+              },
+              "power": 6000
+            }
+          }
+        },
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "g1428Gr": true
+            },
+            "g557Condition": {
+              "g1471GrCount": 3
+            },
+            "grants": {
+              "poweredBreaker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-s02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "a3dca6b2ff5231b1766242ac38f610f684afb0f720a5491b8281fa7b0ed195eb",
+        "facesMatched": true,
+        "imageSha256": "702b32acef494aa1c663e3aaff9c7ebe76f9954a229d9cd3cfb4750349714839",
+        "imageBytes": 124851
+      },
+      "sameNameProducts": [
+        "DMRP-12 超天篇 拡張パック第4弾 超超超天！覚醒ジョギラゴン vs. 零龍卍誕"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-s02",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex19-013",
+      "name": "クイーン・オブ・ネイチャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-013",
+      "faces": [
+        {
+          "name": "クイーン・オブ・ネイチャー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "シンパシー：自然のクリーチャー（自分の自然のクリーチャー１体につき、このクリーチャーの召喚コストを１少なくする。ただしコストは０以下にはならない）\nW・ブレイカー\n自分の自然のクリーチャーすべてに「マッハファイター」を与える。\n自分のパワー12000以上のクリーチャーが攻撃する時、自分の山札の上から１枚目を表向きにする。それがパワー12000以上のクリーチャーなら出す。それ以外ならマナゾーンに置く。",
+          "race": "グランセクト",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "battle",
+          "amount": 1,
+          "filter": {
+            "creature": true,
+            "color": "自然"
+          }
+        },
+        "breaker": 2,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "color": "自然"
+            },
+            "grants": {
+              "machFighter": true
+            }
+          }
+        ],
+        "g252AttackWatch": {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "minPower": 12000,
+            "g199Power": true
+          },
+          "defs": [
+            {
+              "op": "RevealTop514",
+              "filter": {
+                "creature": true,
+                "minPower": 12000
+              },
+              "to": "battle",
+              "elseTo": "mana"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "d48e1694eeee8db0aa70b09bac3334588a164044e9b465d1dcb73fc7bc4abb55",
+        "facesMatched": true,
+        "imageSha256": "ce94b8161baba6e1a9ef29e72ebf7f9b249f57aebf20e97df9bd0c85c0273195",
+        "imageBytes": 141318
+      },
+      "sameNameProducts": [
+        "DM25-EX1 愛感謝祭 ヒロインBEST",
+        "DMEX-19 マスター・ファイナル・メモリアル・パック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-013",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr08-054": 4,
+      "dm24ex1-016": 4,
+      "dmrp12-s02": 4,
+      "dmex19-013": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    }
+  ],
+  "testCorrections": [
+    "ラルクメシアの継続的付与条件が自己参照しないよう、GRの種別だけを数える条件を追加。2体・3体の境界と非GRへの非適用を検証。"
+  ]
+}
