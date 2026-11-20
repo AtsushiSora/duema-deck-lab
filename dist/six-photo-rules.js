@@ -2639,7 +2639,7 @@ export function createSixPhotoRules(api){
   const ceiling=host?cost(effective(host,s)):t.g399Attacker.cost;
   const filter={creature:true,...(ceiling==='∞'||ceiling===Infinity?{}:{max:ceiling})};
   start(s,t,[{op:'LookDeploy530',n:2,limit:1,rest:'bottom',filter,g841DeckPeek:true,
-   g771DeploySpeed:true,g1317SpeedFromCreature:true}]);
+   g771DeploySpeed:true,g1317SpeedFromCreature:card(t.source).type==='creature'}]);
   break;
  }
  case'g34_AttackHandDeploy798':{
@@ -4008,6 +4008,15 @@ export function createSixPhotoRules(api){
   }else choice(s,t,'ブレイク前に解決する能力を選ぶ',
    t.sources.map((r,i)=>opt(card(r.source).name+'（残り'+r.count+'回）',i,10,r.source)));
   break;
+ }
+ case'g34_BorrowCondition1370':{
+  const ready=t.condition==='zeroShields'?s.players.some(o=>!o.shields.length):
+   t.condition==='kumitate'?own.battle.filter(x=>!x.sealed&&['creature','seed'].includes(effective(x,s).type)&&colors(effective(x,s)).includes('火')).length>=3:false;
+  if(ready)put(s,t.task);break;
+ }
+ case'g34_BorrowAttack1370':{
+  const choices=creatures(s,t.p).filter(x=>!x.sealed&&!x.faceDown).flatMap(x=>api.attackAbilities(s,t.p,x,t).map((entry,index)=>opt(card(x).name+'：'+entry.label,{uid:x.uid,incarnation:x.incarnation||0,index},20,x.cardId)));
+  choice(s,t,'使う攻撃時能力を１つ選ぶ',choices);break;
  }
  case'g34_Sequence':start(s,t,t.defs);break;
  case'g34_PsychicBaseOrder1355':{
@@ -7621,6 +7630,11 @@ export function createSixPhotoRules(api){
  }break;
  case'g34_ManaExchangeBase753':api.beginManaExchange753(s,t,v);break;
  case'g34_CopyOnEntry1357':copyOnEntry1357(s,t,v);break;
+ case'g34_BorrowAttack1370':{
+  const host=own.battle.find(x=>x.uid===v.uid&&(x.incarnation||0)===v.incarnation&&!x.sealed&&!x.faceDown);
+  const entry=host&&api.attackAbilities(s,t.p,host,t)[v.index];
+  if(entry){api.log(s,t.p,'borrowAttack',card(t.source).name+'で'+card(host).name+'の攻撃時能力を１つ使う',{cardId:t.source});api.resolveBorrowedAttack1370(s,entry);}break;
+ }
  case'g34_Target':
   if(used792(s,t,t))break;
   if(t.g1357Become){
@@ -9964,7 +9978,7 @@ for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand
  };
  combined.snapshot=(s,leaving)=>({...hooks.snapshot(s,leaving),fifteen:fifteen.snapshot(s)});
  combined.leaving=(s,p,x,snapshot,to,destroy)=>{hooks.leaving(s,p,x,snapshot,to,destroy);fifteen.leaving(s,p,x,snapshot?.fifteen,to,destroy);};
- return{...combined,fifteen, hyperEntry781(s,p,x,source){
+ return{...combined,fifteen,turboReady756, hyperEntry781(s,p,x,source){
   releaseHyper781(s,p,x);
   applyGrant(s,{p,source,spell:true,g521UntilStart:true,grant:{blocker:true}},x);
  }, deploymentGrant791(s,p,x,grant,source,fight){
