@@ -255921,15 +255921,153 @@
       "grCopyLimit": 12,
       "supportBatch": "phase-1420",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-079",
+      "name": "*/弐幻サンドロニア/*",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 3,
+      "power": 0,
+      "race": "トリックス/デリートロン",
+      "text": "これをクリーチャーに付けた時、カードを３枚引く。その後、自分の手札を２枚、好きな順序で自分の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-079",
+      "limit": 4,
+      "auraPower": 2000,
+      "g1421AuraAttach": [
+        {
+          "op": "Draw",
+          "n": 3
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "deck",
+          "n": 2,
+          "g183Return": true,
+          "title": "山札の下に戻す手札を選ぶ（先に選んだカードから下へ）"
+        }
+      ],
+      "supportBatch": "phase-1421",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-076",
+      "name": "*/零幻ルタチノ/*",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 2,
+      "power": 0,
+      "race": "トリックス/デリートロン",
+      "text": "これをクリーチャーに付けた時、カードを１枚引き、その後、自分の手札を１枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-076",
+      "limit": 4,
+      "auraPower": 0,
+      "g1421AuraAttach": [
+        {
+          "op": "Sequence",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            },
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1421",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-048",
+      "name": "零星アステル",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 5,
+      "power": 0,
+      "race": "マフィ・ギャング/デリートロン/ゼロリスト",
+      "text": "これをクリーチャーに付けた時、相手は自身の手札を２枚選び、捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-048",
+      "limit": 4,
+      "auraPower": 0,
+      "g1421AuraAttach": [
+        {
+          "op": "Discard",
+          "n": 2
+        }
+      ],
+      "supportBatch": "phase-1421",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex08-139",
+      "name": "インビジブル・オーラ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "これを付けたクリーチャーはブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-139",
+      "limit": 4,
+      "auraPower": 0,
+      "g1421AuraGrants": {
+        "unblockable": true
+      },
+      "supportBatch": "phase-1421",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-041",
+      "name": "*/陸幻スルニャン/*",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 5,
+      "power": 0,
+      "race": "トリックス/デリートロン",
+      "text": "これを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこれを付けたクリーチャーはブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-041",
+      "limit": 4,
+      "auraPower": 6000,
+      "g1352Powered": true,
+      "g1421AuraGrants": {
+        "unblockable": true
+      },
+      "supportBatch": "phase-1421",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1420,
+    "phase": 1421,
     "checkedAt": "2026-11-20",
-    "baseCount": 8263,
-    "newEffectCards": 4,
+    "baseCount": 8267,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8267,
+    "totalCount": 8272,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -279588,6 +279726,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 8263,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1420,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8263,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 8267,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

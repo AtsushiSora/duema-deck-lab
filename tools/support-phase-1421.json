@@ -1,0 +1,339 @@
+{
+  "phase": 1421,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8267,
+  "description": "オーラ5種類の全能力を追加。装着時の誘発と、宿主への継続効果を、発生源を保って処理。付け直し・能力無視・封印・GRを含む回帰を検証。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/38019/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/38023/",
+    "https://dm.takaratomy.co.jp/rule/qa/38760/",
+    "https://dm.takaratomy.co.jp/rule/qa/39665/",
+    "https://dm.takaratomy.co.jp/rule/qa/33701/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa_old/38019/": "通常のクリーチャーには付けず、場のGRまたは新たにGR召喚したGRに付ける。",
+    "https://dm.takaratomy.co.jp/rule/qa_old/38023/": "進化してGRではなくなっても、付いていたオーラは残り修正が続く。",
+    "https://dm.takaratomy.co.jp/rule/qa/38760/": "宿主が離れる時、オーラは同じ行先へ移動する。",
+    "https://dm.takaratomy.co.jp/rule/qa/39665/": "GR召喚したクリーチャーが出てからオーラを付ける。登場時のパワー参照にはまだ修正がない。",
+    "https://dm.takaratomy.co.jp/rule/qa/33701/": "宿主が封印されると、その構成カードであるオーラの能力も無視する。オーラは付いたまま残る。"
+  },
+  "cards": [
+    {
+      "id": "dmrp11-079",
+      "name": "*/弐幻サンドロニア/*",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-079",
+      "faces": [
+        {
+          "name": "*/弐幻サンドロニア/*",
+          "typeText": "オレガ・オーラ",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "これをクリーチャーに付けた時、カードを３枚引く。その後、自分の手札を２枚、好きな順序で自分の山札の一番下に置く。",
+          "race": "トリックス/デリートロン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "aura",
+        "power": 0,
+        "auraPower": 2000,
+        "g1421AuraAttach": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "deck",
+            "n": 2,
+            "g183Return": true,
+            "title": "山札の下に戻す手札を選ぶ（先に選んだカードから下へ）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-079.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "22e849a3432f1cd85466b715fe738fcc99d10231e5dd93d30485f9d0e67cbae4",
+        "facesMatched": true,
+        "imageSha256": "2e28e88e7e34ee1232482243fd69ee94b13f12a694bdcc2a28c86cf6314e023b",
+        "imageBytes": 121771
+      },
+      "sameNameProducts": [
+        "DMRP-22 王来MAX最終弾 切札!マスターCRYMAX!!",
+        "DMRP-21 王来MAX第1弾 鬼ヤバ逆襲S-MAX!!",
+        "DMRP-11 超天篇 拡張パック第3弾 零誕！魔神おこせジョルネード1059!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-079",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp09-076",
+      "name": "*/零幻ルタチノ/*",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-076",
+      "faces": [
+        {
+          "name": "*/零幻ルタチノ/*",
+          "typeText": "オレガ・オーラ",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "これをクリーチャーに付けた時、カードを１枚引き、その後、自分の手札を１枚捨てる。",
+          "race": "トリックス/デリートロン",
+          "powerText": "0",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "aura",
+        "power": 0,
+        "auraPower": 0,
+        "g1421AuraAttach": [
+          {
+            "op": "Sequence",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              },
+              {
+                "op": "Discard",
+                "owner": "self",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-076.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "a65ce0bf82895ab7e8907386e2a6fa391c20caa27b8cb7a37abb365ae5180234",
+        "facesMatched": true,
+        "imageSha256": "cd5316720bde8ef383095e2afb3fe0b9a657a63479fa7aa67e41a7469c7a5ded",
+        "imageBytes": 169192
+      },
+      "sameNameProducts": [
+        "DMBD-12 ガチヤバ4！無限改造デッキセットDX!! ゼーロのドラゴンオーラ",
+        "DMEX-05 100%新世界！超GRパック100",
+        "DMRP-09 超天篇 拡張パック第１弾 新世界ガチ誕！超ＧＲとオレガ・オーラ!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-076",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp12-048",
+      "name": "零星アステル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-048",
+      "faces": [
+        {
+          "name": "零星アステル",
+          "typeText": "オレガ・オーラ",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "これをクリーチャーに付けた時、相手は自身の手札を２枚選び、捨てる。",
+          "race": "マフィ・ギャング/デリートロン/ゼロリスト",
+          "powerText": "0",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "aura",
+        "power": 0,
+        "auraPower": 0,
+        "g1421AuraAttach": [
+          {
+            "op": "Discard",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "718f3c21fb485efcc99ada8180f2c76e8fb07e539814ce3c018e9c69cb81f102",
+        "facesMatched": true,
+        "imageSha256": "f83504beee46cf91099d495774cf4b90b51418d5d41bb63df5698927e8d1a5ae",
+        "imageBytes": 78664
+      },
+      "sameNameProducts": [
+        "DMRP-12 超天篇 拡張パック第4弾 超超超天！覚醒ジョギラゴン vs. 零龍卍誕"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-048",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex08-139",
+      "name": "インビジブル・オーラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-139",
+      "faces": [
+        {
+          "name": "インビジブル・オーラ",
+          "typeText": "オレガ・オーラ",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "これを付けたクリーチャーはブロックされない。",
+          "race": "",
+          "powerText": "0",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "aura",
+        "power": 0,
+        "auraPower": 0,
+        "g1421AuraGrants": {
+          "unblockable": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-139.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "def58171885eec4777361eb8ce89499c31b79a75146ba296c3ad1890e1a2dd69",
+        "facesMatched": true,
+        "imageSha256": "fa176af88c1fc1991d945c0f99733e285e89c537e51b31981febf1e7cc1c6bb0",
+        "imageBytes": 99974
+      },
+      "sameNameProducts": [
+        "DMEX-08 謎のブラックボックスパック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-139",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp09-041",
+      "name": "*/陸幻スルニャン/*",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-041",
+      "faces": [
+        {
+          "name": "*/陸幻スルニャン/*",
+          "typeText": "オレガ・オーラ",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "これを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこれを付けたクリーチャーはブロックされない。",
+          "race": "トリックス/デリートロン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "aura",
+        "power": 0,
+        "auraPower": 6000,
+        "g1352Powered": true,
+        "g1421AuraGrants": {
+          "unblockable": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "f80ff27cfbe4b13c8b62092581539cc7a225f08c0d3f1bbb91cd74220c17cdff",
+        "facesMatched": true,
+        "imageSha256": "d3a9d42805edc39cdc325e7b63b22084a7e901984967484e3a77acece274eb21",
+        "imageBytes": 169100
+      },
+      "sameNameProducts": [
+        "DMBD-12 ガチヤバ4！無限改造デッキセットDX!! ゼーロのドラゴンオーラ",
+        "DMEX-05 100%新世界！超GRパック100",
+        "DMRP-09 超天篇 拡張パック第１弾 新世界ガチ誕！超ＧＲとオレガ・オーラ!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-041",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp11-079": 4,
+      "dmrp09-076": 4,
+      "dmrp12-048": 4,
+      "dmex08-139": 4,
+      "dmrp09-041": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/38019/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/38023/",
+    "https://dm.takaratomy.co.jp/rule/qa/38760/",
+    "https://dm.takaratomy.co.jp/rule/qa/39665/",
+    "https://dm.takaratomy.co.jp/rule/qa/33701/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/38019/",
+      "sha256": "ff0073e8f0bc1905b24419b6cb0b3de5b8dc984c38d42da525d121796ad0a561",
+      "result": "通常のクリーチャーには付けず、場のGRまたは新たにGR召喚したGRに付ける。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/38023/",
+      "sha256": "126d4cd44989d64a230537bca6fe842307766ba6800dff2646b6bb9f8148aaa8",
+      "result": "進化してGRではなくなっても、付いていたオーラは残り修正が続く。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/38760/",
+      "sha256": "a6abc1c1627532696f2540b202bcdb9bd64e6f67db214462a55478815989b76e",
+      "result": "宿主が離れる時、オーラは同じ行先へ移動する。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39665/",
+      "sha256": "41c8e68788f0f462d190544dfadb1690a8a6a2e8ef68f94ea372eae5b5dec829",
+      "result": "GR召喚したクリーチャーが出てからオーラを付ける。登場時のパワー参照にはまだ修正がない。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33701/",
+      "sha256": "2cfe06cfdd7fc394b147b97ed903e96aa1cadab404232300022f944e9b068df5",
+      "result": "宿主が封印されると、その構成カードであるオーラの能力も無視する。オーラは付いたまま残る。"
+    }
+  ]
+}
