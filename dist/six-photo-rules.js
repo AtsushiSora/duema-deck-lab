@@ -6056,6 +6056,11 @@ export function createSixPhotoRules(api){
   else put(s,{...t,op:'g34_AuraReattach1353'});
   break;
  }
+ case'g34_AuraIf1444':{
+  const host=own.battle.flatMap(y=>api.allLayers(y)).find(y=>y.uid===t.host?.uid&&(y.incarnation||0)===(t.host.incarnation||0));
+  if(host&&api.attachedAuras1352(s,t.p,host).length>=t.min)start(s,t,t.defs);
+  break;
+ }
  case'g34_AuraCountDraw1431':{
   const host=own.battle.find(x=>!x.sealed&&api.isCreature(s,x)&&api.allLayers(x).some(y=>y.uid===t.host?.uid&&(y.incarnation||0)===t.host.incarnation));
   const n=host?own.battle.filter(x=>card(x).type==='aura'&&x.auraTo1352?.uid===host.uid&&x.auraTo1352.incarnation===(host.incarnation||0)).length:0;

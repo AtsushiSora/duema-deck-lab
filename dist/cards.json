@@ -259823,15 +259823,200 @@
       },
       "supportBatch": "phase-1443",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmbd12-j01",
+      "name": "百卍龍 プチョゲンム",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 7,
+      "power": 0,
+      "race": "ドラゴン・コード/グランセクト/デリートロン",
+      "text": "オーラが２枚以上付いた自分のGRクリーチャーが攻撃する時、これを自分の手札からそのクリーチャーに付けてもよい。\nこれを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこれをクリーチャーに付けた時、相手のパワー2000以下のクリーチャーをすべて、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd12-j01",
+      "limit": 4,
+      "auraPower": 4000,
+      "g1437HandAttach": true,
+      "g1421AuraGrants": {
+        "g1352Powered": true
+      },
+      "g1421AuraAttach": [
+        {
+          "op": "Sweep",
+          "to": "mana",
+          "filter": {
+            "creature": true,
+            "maxPower": 2000,
+            "g199Power": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1444",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd12-001",
+      "name": "牙滅罪 ゲ邪ンブルグ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 7,
+      "power": 0,
+      "race": "ドルスザク/マフィ・ギャング/デリートロン",
+      "text": "無月の大罪２（このオーラを使うコストを２少なくしてもよい。そうしたら、このターンの終わりに、自分のクリーチャーを１体破壊する）\nこれを付けたクリーチャーに「パワード・ブレイカー」を与える。\nこれをクリーチャーに付けた時、またはこれを付けたクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。このターン、自分の墓地にあるカード１枚につき、そのクリーチャーのパワーを－1000 する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd12-001",
+      "limit": 4,
+      "auraPower": 4000,
+      "g1432Sin": 2,
+      "g1421AuraGrants": {
+        "g1352Powered": true
+      },
+      "g1421AuraAttach": [
+        {
+          "op": "CountTarget544",
+          "zone": "grave",
+          "amount": -1000,
+          "def": {
+            "op": "Target",
+            "g242PowerMinus": true
+          }
+        }
+      ],
+      "g1434HostAttack": [
+        {
+          "op": "CountTarget544",
+          "zone": "grave",
+          "amount": -1000,
+          "def": {
+            "op": "Target",
+            "g242PowerMinus": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1444",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd12-g06",
+      "name": "斬罪 シ蔑ザンド",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 4,
+      "power": 0,
+      "race": "マフィ・ギャング/デリートロン",
+      "text": "無月の大罪２（このオーラを使うコストを２少なくしてもよい。そうしたら、このターンの終わりに、自分のクリーチャーを１体破壊する）\nこれを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこれをクリーチャーに付けた時、各プレイヤーはそれぞれ自身のクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd12-g06",
+      "limit": 4,
+      "auraPower": 4000,
+      "g1432Sin": 2,
+      "g1421AuraGrants": {
+        "g1352Powered": true
+      },
+      "g1421AuraAttach": [
+        {
+          "op": "EachPlayer459",
+          "origin": "battle",
+          "to": "grave"
+        }
+      ],
+      "supportBatch": "phase-1444",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy18-072",
+      "name": "零星アンバラン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 3,
+      "power": 0,
+      "race": "マフィ・ギャング/デリートロン/ゼロリスト",
+      "text": "これを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこれをクリーチャーに付けた時、自分のクリーチャーを２体破壊する。その後、相手は自身のクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy18-072",
+      "limit": 4,
+      "auraPower": 8000,
+      "g1421AuraGrants": {
+        "g1352Powered": true
+      },
+      "g1421AuraAttach": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "self",
+          "n": 2,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g187OwnPick": true
+        },
+        {
+          "op": "OpponentSelect",
+          "n": 1,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1444",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-032",
+      "name": "μν クマニャー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 4,
+      "power": 0,
+      "race": "グランセクト/デリートロン",
+      "text": "S・トリガー S・トリガー（このオーラをシールドゾーンから手札に加える時、コストを支払わずにすぐ使ってもよい）\nこれをクリーチャーに付けた時、それにオーラが２枚以上付いていたら、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-032",
+      "limit": 4,
+      "auraPower": 2000,
+      "trigger": true,
+      "g1421AuraAttach": [
+        {
+          "op": "AuraIf1444",
+          "min": 2,
+          "defs": [
+            {
+              "op": "Target",
+              "to": "mana"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1444",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1443,
+    "phase": 1444,
     "checkedAt": "2026-11-20",
-    "baseCount": 8374,
+    "baseCount": 8379,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8379,
+    "totalCount": 8384,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -283812,6 +283997,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8374,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1443,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8374,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8379,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

@@ -12045,5 +12045,215 @@
         }
       }
     }
+  },
+  "dmbd12-j01": {
+    "phase": 1444,
+    "faces": [
+      {
+        "name": "百卍龍 プチョゲンム",
+        "typeText": "オレガ・オーラ",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "オーラが２枚以上付いた自分のGRクリーチャーが攻撃する時、これを自分の手札からそのクリーチャーに付けてもよい。\nこれを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこれをクリーチャーに付けた時、相手のパワー2000以下のクリーチャーをすべて、持ち主のマナゾーンに置く。",
+        "race": "ドラゴン・コード/グランセクト/デリートロン",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "aura",
+      "power": 0,
+      "auraPower": 4000,
+      "g1437HandAttach": true,
+      "g1421AuraGrants": {
+        "g1352Powered": true
+      },
+      "g1421AuraAttach": [
+        {
+          "op": "Sweep",
+          "to": "mana",
+          "filter": {
+            "creature": true,
+            "maxPower": 2000,
+            "g199Power": true
+          }
+        }
+      ]
+    }
+  },
+  "dmsd12-001": {
+    "phase": 1444,
+    "faces": [
+      {
+        "name": "牙滅罪 ゲ邪ンブルグ",
+        "typeText": "オレガ・オーラ",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "無月の大罪２（このオーラを使うコストを２少なくしてもよい。そうしたら、このターンの終わりに、自分のクリーチャーを１体破壊する）\nこれを付けたクリーチャーに「パワード・ブレイカー」を与える。\nこれをクリーチャーに付けた時、またはこれを付けたクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。このターン、自分の墓地にあるカード１枚につき、そのクリーチャーのパワーを－1000 する。",
+        "race": "ドルスザク/マフィ・ギャング/デリートロン",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "aura",
+      "power": 0,
+      "auraPower": 4000,
+      "g1432Sin": 2,
+      "g1421AuraGrants": {
+        "g1352Powered": true
+      },
+      "g1421AuraAttach": [
+        {
+          "op": "CountTarget544",
+          "zone": "grave",
+          "amount": -1000,
+          "def": {
+            "op": "Target",
+            "g242PowerMinus": true
+          }
+        }
+      ],
+      "g1434HostAttack": [
+        {
+          "op": "CountTarget544",
+          "zone": "grave",
+          "amount": -1000,
+          "def": {
+            "op": "Target",
+            "g242PowerMinus": true
+          }
+        }
+      ]
+    }
+  },
+  "dmbd12-g06": {
+    "phase": 1444,
+    "faces": [
+      {
+        "name": "斬罪 シ蔑ザンド",
+        "typeText": "オレガ・オーラ",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "無月の大罪２（このオーラを使うコストを２少なくしてもよい。そうしたら、このターンの終わりに、自分のクリーチャーを１体破壊する）\nこれを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこれをクリーチャーに付けた時、各プレイヤーはそれぞれ自身のクリーチャーを１体選び、破壊する。",
+        "race": "マフィ・ギャング/デリートロン",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "aura",
+      "power": 0,
+      "auraPower": 4000,
+      "g1432Sin": 2,
+      "g1421AuraGrants": {
+        "g1352Powered": true
+      },
+      "g1421AuraAttach": [
+        {
+          "op": "EachPlayer459",
+          "origin": "battle",
+          "to": "grave"
+        }
+      ]
+    }
+  },
+  "promoy18-072": {
+    "phase": 1444,
+    "faces": [
+      {
+        "name": "零星アンバラン",
+        "typeText": "オレガ・オーラ",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "これを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこれをクリーチャーに付けた時、自分のクリーチャーを２体破壊する。その後、相手は自身のクリーチャーを１体選び、破壊する。",
+        "race": "マフィ・ギャング/デリートロン/ゼロリスト",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "aura",
+      "power": 0,
+      "auraPower": 8000,
+      "g1421AuraGrants": {
+        "g1352Powered": true
+      },
+      "g1421AuraAttach": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "self",
+          "n": 2,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g187OwnPick": true
+        },
+        {
+          "op": "OpponentSelect",
+          "n": 1,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          }
+        }
+      ]
+    }
+  },
+  "dmrp10-032": {
+    "phase": 1444,
+    "faces": [
+      {
+        "name": "μν クマニャー",
+        "typeText": "オレガ・オーラ",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー（このオーラをシールドゾーンから手札に加える時、コストを支払わずにすぐ使ってもよい）\nこれをクリーチャーに付けた時、それにオーラが２枚以上付いていたら、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+        "race": "グランセクト/デリートロン",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "aura",
+      "power": 0,
+      "auraPower": 2000,
+      "trigger": true,
+      "g1421AuraAttach": [
+        {
+          "op": "AuraIf1444",
+          "min": 2,
+          "defs": [
+            {
+              "op": "Target",
+              "to": "mana"
+            }
+          ]
+        }
+      ]
+    }
   }
 }
