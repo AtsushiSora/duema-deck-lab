@@ -1,0 +1,498 @@
+{
+  "phase": 1514,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8677,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/33716/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/33716/": "S・トリガーの付与や使用可能な面は条件を満たす片面だけに適用する。"
+  },
+  "cards": [
+    {
+      "id": "dm23ex1-064",
+      "name": "トランプ=ランプゼンゼンマ / 「さぁ、カードを配ろう」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-064",
+      "faces": [
+        {
+          "name": "トランプ=ランプゼンゼンマ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、カードを１枚、自分の墓地から山札の上に置いてもよい。",
+          "race": "アビスロイヤル",
+          "powerText": "1000",
+          "missingFields": []
+        },
+        {
+          "name": "「さぁ、カードを配ろう」",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の山札の上から４枚をタップしてマナゾーンに置く。その後、自分のマナゾーンからカードを４枚墓地に置く。",
+          "race": "アビスへの誘い",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "deckTop",
+            "n": 1,
+            "optional": true,
+            "g183Return": true
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "「さぁ、カードを配ろう」",
+          "cost": 4,
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "race": "アビスへの誘い",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Ramp",
+              "n": 4,
+              "tapped": true,
+              "g809Together": true,
+              "spell": true
+            },
+            {
+              "op": "Select",
+              "origin": "mana",
+              "to": "grave",
+              "n": 4,
+              "g184ManaLoss": true,
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex1-064a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "482ae12a08513d48534c735a2118539121e30e22ea2582a39a4d0ce6fc217b06",
+        "facesMatched": true,
+        "imageSha256": "02181cac488d260fa8cac665064160a0139cbc6e0af533bd724f544a375534d4",
+        "imageBytes": 155245
+      },
+      "sameNameProducts": [
+        "DM23-EX1 大感謝祭 ビクトリーBEST"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-064",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmsd12-004",
+      "name": "凶鬼29号 ゾットバ/ゾットバ・ネッセンス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd12-004",
+      "faces": [
+        {
+          "name": "凶鬼29号 ゾットバ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を墓地に置く。その後、闇のクリーチャー１体または闇のオーラを１枚、自分の墓地から手札に戻す。",
+          "race": "マフィ・ギャング",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "ゾットバ・ネッセンス",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分と相手のクリーチャーをそれぞれ１体ずつ選び、バトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "any": [
+                {
+                  "g228Face": {
+                    "type": "creature",
+                    "color": "闇"
+                  }
+                },
+                {
+                  "aura": true,
+                  "color": "闇"
+                }
+              ]
+            }
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "ゾットバ・ネッセンス",
+          "cost": 2,
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "FightPair586",
+              "who": "both",
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd12-004a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "f2519f72cc1d4dc00fdfb9ef7aad01d7671a485043153b8dfe0b6a4e9624db2a",
+        "facesMatched": true,
+        "imageSha256": "672b23d8eedb9c6c00d39cf32a6b06f13d500389a7cacd43bbd02f323b5a70dd",
+        "imageBytes": 164313
+      },
+      "sameNameProducts": [
+        "DMSD-12 超GRスタートデッキ ゼーロのオレガ無月の大罪"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd12-004",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp07-050",
+      "name": "ラ・トビ・トール/ケンドリック・ハーヴェスト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-050",
+      "faces": [
+        {
+          "name": "ラ・トビ・トール",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+          "race": "グランセクト",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "ケンドリック・ハーヴェスト",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分の山札の上から２枚をマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g40LastBurst": true,
+        "spellFace": {
+          "type": "spell",
+          "name": "ケンドリック・ハーヴェスト",
+          "cost": 6,
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Ramp",
+              "n": 2,
+              "g809Together": true,
+              "spell": true
+            },
+            {
+              "op": "Select",
+              "origin": "mana",
+              "to": "hand",
+              "n": 1,
+              "optional": true,
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-050a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "9284e65700f97d55308d6b130d951df0b88e07a0cad1c4436c026958e7ff6862",
+        "facesMatched": true,
+        "imageSha256": "e2f9d5e7665d3b0c092d2c6a72e2110536abc4acf4bbbb728194dad1a0976aa4",
+        "imageBytes": 140944
+      },
+      "sameNameProducts": [
+        "DMBD-08 超誕!!ツインヒーローデッキ80 自然大暴走 VS 卍獄の虚無月",
+        "DMRP-07 双極篇 拡張パック第３弾 †ギラギラ†煌世主と終葬のQX!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-050",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp07-004",
+      "name": "第六戦街 ラヴ・ガトラー/漆黒の裏六戦街",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-004",
+      "faces": [
+        {
+          "name": "第六戦街 ラヴ・ガトラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\n呪文の効果によって相手がクリーチャーを選ぶ時、このクリーチャーは選ばれない。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+          "race": "ムートピア/サイバー・コマンド",
+          "powerText": "7000",
+          "missingFields": []
+        },
+        {
+          "name": "漆黒の裏六戦街",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "相手のクリーチャーをすべて、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "spellUntargetable": true,
+        "g40LastBurst": true,
+        "spellFace": {
+          "type": "spell",
+          "name": "漆黒の裏六戦街",
+          "cost": 9,
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Sweep",
+              "to": "hand",
+              "filter": {
+                "creature": true
+              },
+              "toOwnerHand": true,
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-004a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "9af6a52720336d29e5d318c13594ab110364f60651e396d30eabde328cd4104e",
+        "facesMatched": true,
+        "imageSha256": "55d7ca8cc0e9750f6005b0f46f7008db8f7a37dd7b768f2f2b096dd2cf89fe47",
+        "imageBytes": 152661
+      },
+      "sameNameProducts": [
+        "DMRP-07 双極篇 拡張パック第３弾 †ギラギラ†煌世主と終葬のQX!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-004",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp05-s05",
+      "name": "ビシャモンス・デーケン/「深淵より来たれ、魂よ」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-s05",
+      "faces": [
+        {
+          "name": "ビシャモンス・デーケン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体破壊する。その後、相手は自身のクリーチャーを１体選び、破壊する。",
+          "race": "マフィ・ギャング",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "「深淵より来たれ、魂よ」",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "進化ではないクリーチャーをすべて、自分の墓地からバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "to": "grave",
+            "n": 1,
+            "g187OwnPick": true,
+            "filter": {
+              "creature": true
+            }
+          },
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave"
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "「深淵より来たれ、魂よ」",
+          "cost": 9,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "deploy": true,
+              "n": "all",
+              "g236GraveDeploy": true,
+              "filter": {
+                "creature": true,
+                "nonEvolution": true
+              },
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-s05a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-20",
+        "sha256": "176be03e35d25e494d6e6a8a57e5fc0f8f23e9cecca66460ea29dbd35a15719f",
+        "facesMatched": true,
+        "imageSha256": "244a79e138523db7eed4519ea0099393e6d12e22a8e0bfceaee3ecb806a6fb54",
+        "imageBytes": 135909
+      },
+      "sameNameProducts": [
+        "DMRP-05 双極篇 拡張パック第１弾 轟快!! ジョラゴンGo Fight!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-s05",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23ex1-064": 4,
+      "dmsd12-004": 4,
+      "dmrp07-050": 4,
+      "dmrp07-004": 4,
+      "dmrp05-s05": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/33716/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33716/",
+      "sha256": "0e3296031e1dfb8ceec8afade9c5962b09b58597abcfa218c51dc2bac129a205",
+      "result": "S・トリガーの付与や使用可能な面は条件を満たす片面だけに適用する。"
+    }
+  ],
+  "testCorrections": [
+    "マナへ4枚タップして置く呪文面は、支払いと効果のタップを固有テストで区別して検証。共通テストから当該面だけ除外。闇オーラの対象フィクスチャを印刷文明が闇の幽鬼ギザノッコへ修正。"
+  ]
+}

@@ -271535,15 +271535,286 @@
       },
       "supportBatch": "phase-1513",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex1-064",
+      "name": "トランプ=ランプゼンゼンマ / 「さぁ、カードを配ろう」",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "アビスロイヤル",
+      "text": "このクリーチャーが出た時、カードを１枚、自分の墓地から山札の上に置いてもよい。\n【呪文面】\n自分の山札の上から４枚をタップしてマナゾーンに置く。その後、自分のマナゾーンからカードを４枚墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-064",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "deckTop",
+          "n": 1,
+          "optional": true,
+          "g183Return": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "「さぁ、カードを配ろう」",
+        "cost": 4,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "アビスへの誘い",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 4,
+            "tapped": true,
+            "g809Together": true,
+            "spell": true
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "grave",
+            "n": 4,
+            "g184ManaLoss": true,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1514",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd12-004",
+      "name": "凶鬼29号 ゾットバ/ゾットバ・ネッセンス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "マフィ・ギャング",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を墓地に置く。その後、闇のクリーチャー１体または闇のオーラを１枚、自分の墓地から手札に戻す。\n【呪文面】\n自分と相手のクリーチャーをそれぞれ１体ずつ選び、バトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd12-004",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "filter": {
+            "any": [
+              {
+                "g228Face": {
+                  "type": "creature",
+                  "color": "闇"
+                }
+              },
+              {
+                "aura": true,
+                "color": "闇"
+              }
+            ]
+          }
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "ゾットバ・ネッセンス",
+        "cost": 2,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightPair586",
+            "who": "both",
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1514",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-050",
+      "name": "ラ・トビ・トール/ケンドリック・ハーヴェスト",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "グランセクト",
+      "text": "ラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\n自分の山札の上から２枚をマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-050",
+      "limit": 4,
+      "g40LastBurst": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "ケンドリック・ハーヴェスト",
+        "cost": 6,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 2,
+            "g809Together": true,
+            "spell": true
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1514",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-004",
+      "name": "第六戦街 ラヴ・ガトラー/漆黒の裏六戦街",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ムートピア/サイバー・コマンド",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\n呪文の効果によって相手がクリーチャーを選ぶ時、このクリーチャーは選ばれない。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\n相手のクリーチャーをすべて、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-004",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "spellUntargetable": true,
+      "g40LastBurst": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "漆黒の裏六戦街",
+        "cost": 9,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "to": "hand",
+            "filter": {
+              "creature": true
+            },
+            "toOwnerHand": true,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1514",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-s05",
+      "name": "ビシャモンス・デーケン/「深淵より来たれ、魂よ」",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "マフィ・ギャング",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体破壊する。その後、相手は自身のクリーチャーを１体選び、破壊する。\n【呪文面】\n進化ではないクリーチャーをすべて、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-s05",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "to": "grave",
+          "n": 1,
+          "g187OwnPick": true,
+          "filter": {
+            "creature": true
+          }
+        },
+        {
+          "op": "OpponentSelect",
+          "n": 1,
+          "to": "grave"
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "「深淵より来たれ、魂よ」",
+        "cost": 9,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "deploy": true,
+            "n": "all",
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1514",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1513,
+    "phase": 1514,
     "checkedAt": "2026-11-20",
-    "baseCount": 8673,
-    "newEffectCards": 4,
+    "baseCount": 8677,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8677,
+    "totalCount": 8682,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -296504,6 +296775,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 8673,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1513,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8673,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 8677,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
