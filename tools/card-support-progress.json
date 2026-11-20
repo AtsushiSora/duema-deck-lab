@@ -493645,11 +493645,81 @@
         "保留2件はユーザーの再開指示まで調査・問い合わせ送信を行わない。",
         "公開候補の全対象検証集約とNetlifyを更新しない手順が未確認のためpush・公開しない。"
       ]
+    },
+    {
+      "phase": 1373,
+      "kind": "reported-attack-investigation",
+      "checkedAt": "2026-11-20",
+      "baseline": "4a7e19ca2b7ce8a1895f46798ee80216a2b47424",
+      "artifact": "tools/chaos-attack-verification-1373.json",
+      "status": "reproduced-rule-correct",
+      "before": 8074,
+      "supported": 8074,
+      "pending": 3751,
+      "added": [],
+      "duplicates": 0,
+      "results": {
+        "focused": {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/chaos-attack-continuation.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.691,
+          "log": "tmp/duema-phase-1373/focused.log",
+          "passed": 8,
+          "failed": 0
+        },
+        "related-focused": {
+          "name": "related-focused",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^(Chaos taps|Ninja Strike|Ninja Change|Revolution Change keeps|XII final revolution|Redzone also|using Ninja Change)",
+            "tests/tournament-complete.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.724,
+          "log": "tmp/duema-phase-1373/related-focused.log",
+          "passed": 8,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.898,
+          "log": "tmp/duema-phase-1373/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 17.192,
+          "log": "tmp/duema-phase-1373/audit.log"
+        }
+      },
+      "reason": "画像と同じ終盤ログ順で、先に宣言された攻撃だけが続行する。シールド1ならその攻撃後にタップ済みの別個体の新規攻撃は存在せず、シールド0ならダイレクトが成立する。能力無視を持たない通常クリーチャーで再現。",
+      "limitation": "元の保存対戦データは未取得。画像では攻撃宣言の行と攻撃者は見えないため、実際の153ログ全体や攻撃者の特定まで完了したとはしない。",
+      "next": "元の保存対戦データで、新たな攻撃宣言が全タップ後に行われていた場合は別途調査。通常登録停止・保留2件を維持。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1372,
-    "nextPhase": 1373,
+    "lastVerifiedPhase": 1373,
+    "nextPhase": 1374,
     "workInProgress": null,
     "nextCandidates": [
       "新たな明示指定がなければ件数を増やす通常登録を再開しない。",
@@ -493801,6 +493871,12 @@
         }
       ],
       "tests": 212
+    },
+    "latestIssueReview": {
+      "phase": 1373,
+      "artifact": "tools/chaos-attack-verification-1373.json",
+      "status": "reproduced-rule-correct",
+      "reason": "画像と同じ終盤ログ順で、先に宣言された攻撃だけが続行する。シールド1ならその攻撃後にタップ済みの別個体の新規攻撃は存在せず、シールド0ならダイレクトが成立する。能力無視を持たない通常クリーチャーで再現。"
     }
   },
   "registeredCardVerification": {
@@ -545315,6 +545391,76 @@
           "保留2件はユーザーの再開指示まで調査・問い合わせ送信を行わない。",
           "公開候補の全対象検証集約とNetlifyを更新しない手順が未確認のためpush・公開しない。"
         ]
+      },
+      "latestReportedIssueReview1373": {
+        "phase": 1373,
+        "kind": "reported-attack-investigation",
+        "checkedAt": "2026-11-20",
+        "baseline": "4a7e19ca2b7ce8a1895f46798ee80216a2b47424",
+        "artifact": "tools/chaos-attack-verification-1373.json",
+        "status": "reproduced-rule-correct",
+        "before": 8074,
+        "supported": 8074,
+        "pending": 3751,
+        "added": [],
+        "duplicates": 0,
+        "results": {
+          "focused": {
+            "name": "focused",
+            "command": [
+              "node",
+              "--test",
+              "tests/chaos-attack-continuation.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.691,
+            "log": "tmp/duema-phase-1373/focused.log",
+            "passed": 8,
+            "failed": 0
+          },
+          "related-focused": {
+            "name": "related-focused",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^(Chaos taps|Ninja Strike|Ninja Change|Revolution Change keeps|XII final revolution|Redzone also|using Ninja Change)",
+              "tests/tournament-complete.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.724,
+            "log": "tmp/duema-phase-1373/related-focused.log",
+            "passed": 8,
+            "failed": 0
+          },
+          "check": {
+            "name": "check",
+            "command": [
+              "npm",
+              "run",
+              "check"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 20.898,
+            "log": "tmp/duema-phase-1373/check.log"
+          },
+          "audit": {
+            "name": "audit",
+            "command": [
+              "node",
+              "tools/audit-card-support.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 17.192,
+            "log": "tmp/duema-phase-1373/audit.log"
+          }
+        },
+        "reason": "画像と同じ終盤ログ順で、先に宣言された攻撃だけが続行する。シールド1ならその攻撃後にタップ済みの別個体の新規攻撃は存在せず、シールド0ならダイレクトが成立する。能力無視を持たない通常クリーチャーで再現。",
+        "limitation": "元の保存対戦データは未取得。画像では攻撃宣言の行と攻撃者は見えないため、実際の153ログ全体や攻撃者の特定まで完了したとはしない。",
+        "next": "元の保存対戦データで、新たな攻撃宣言が全タップ後に行われていた場合は別途調査。通常登録停止・保留2件を維持。"
       }
     }
   },

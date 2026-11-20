@@ -1,0 +1,128 @@
+{
+  "phase": 1373,
+  "kind": "reported-attack-investigation",
+  "checkedAt": "2026-11-20",
+  "baseline": "4a7e19ca2b7ce8a1895f46798ee80216a2b47424",
+  "engineVersion": "0.602.0",
+  "aiVersion": "2.3.418",
+  "status": "reproduced-rule-correct",
+  "report": {
+    "image": "/tmp/codex-remote-attachments/01a156d9-04ac-7d61-bba1-89e71568c1d9/E613A4A2-C7A7-4AAD-A55A-341A8BE451DA/1-写真1.jpg",
+    "observation": "D・D・Dを使わない、カレンが手札へ移動、聖カオスマントラの全タップ、ダイレクト成立の順に表示。",
+    "limitations": "元の保存対戦データは未取得。画像では攻撃宣言の行と攻撃者は見えないため、実際の153ログ全体や攻撃者の特定まで完了したとはしない。"
+  },
+  "rules": [
+    {
+      "url": "https://dm.takaratomy.co.jp/rule/basic/basic08/",
+      "result": "攻撃宣言時に攻撃クリーチャーをタップする。"
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/rule/qa/46967/",
+      "result": "攻撃中に攻撃禁止の能力が有効になっても、その進行中の攻撃は中止されない。"
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+      "section": "505.6a",
+      "result": "攻撃に指定された後の攻撃禁止で進行中の攻撃から取り除かれない。"
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-OR01",
+      "result": "ニンジャ・チェンジは相手の攻撃／ブロック時。登場時に相手を全タップし、出たターンの新規攻撃を禁止する。攻撃中止の本文はない。"
+    }
+  ],
+  "reproduction": {
+    "test": "tests/chaos-attack-continuation.test.mjs",
+    "attacker": "dm01-108",
+    "otherAttacker": "dm01-083",
+    "defendingBase": "dm25ex1-SP3",
+    "handChange": "dm23rp2-OR01",
+    "dddDeclaredAndDeclined": "dm25rp4-DM1",
+    "cases": "両席×シールド0/1の4ケース、先に全タップ済みの2ケース、新規スピードアタッカーの宣言禁止2ケース。途中JSON復元と全物理カード保存を確認。",
+    "result": "画像と同じ終盤ログ順で、先に宣言された攻撃だけが続行する。シールド1ならその攻撃後にタップ済みの別個体の新規攻撃は存在せず、シールド0ならダイレクトが成立する。能力無視を持たない通常クリーチャーで再現。"
+  },
+  "counts": {
+    "before": 8074,
+    "after": 8074,
+    "added": 0,
+    "duplicates": 0
+  },
+  "results": {
+    "focused": {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/chaos-attack-continuation.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.691,
+      "log": "tmp/duema-phase-1373/focused.log",
+      "passed": 8,
+      "failed": 0
+    },
+    "related-focused": {
+      "name": "related-focused",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=^(Chaos taps|Ninja Strike|Ninja Change|Revolution Change keeps|XII final revolution|Redzone also|using Ninja Change)",
+        "tests/tournament-complete.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.724,
+      "log": "tmp/duema-phase-1373/related-focused.log",
+      "passed": 8,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.898,
+      "log": "tmp/duema-phase-1373/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 17.192,
+      "log": "tmp/duema-phase-1373/audit.log"
+    }
+  },
+  "runtimeChanges": false,
+  "existingDefinitionsUnchanged": 8074,
+  "priorVerification": "phase1372の全distソースのハッシュと一致。既存212項目の検証済み実装を維持。",
+  "incomplete": {
+    "originalSavedGame": "未取得。先に全タップ済みだったのに別の新規攻撃が行われた場合は、この再現ケースとは別に保存対戦データで調査する。",
+    "unrelatedBroadTest": {
+      "status": "interrupted-not-aggregated",
+      "run": {
+        "name": "related",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=Chaos|Ninja|ninja|attack target|attack is|change|Change",
+          "tests/tournament-complete.test.mjs"
+        ],
+        "code": 1,
+        "timedout": false,
+        "seconds": 55.205,
+        "log": "tmp/duema-phase-1373/related.log"
+      },
+      "reason": "広い名前フィルターに無関係の長時間ランダム対戦も含まれたため停止。今回に関係する短い項目をrelated-focusedで通過。停止した広い実行は合格に数えない。"
+    },
+    "wholeNpmTest": "中断・合否未確認を維持。再実行しない。"
+  },
+  "publication": "push・公開・デプロイなし。Netlify変更なし。"
+}
