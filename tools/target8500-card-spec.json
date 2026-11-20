@@ -5627,5 +5627,135 @@
       "gr": true,
       "manaValue": 0
     }
+  },
+  "dmrp10-072": {
+    "phase": 1406,
+    "faces": [
+      {
+        "name": "甲殻 TS-10",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "マナドライブ ３ （水）：自分のマナゾーンのカードが３枚以上で水文明があれば、このクリーチャーに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "トリックス/デリートロン",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g260Self": {
+        "filter": {
+          "all": [
+            {
+              "g334ZoneCount": {
+                "zone": "mana",
+                "min": 3
+              }
+            },
+            {
+              "g1064ManaColors": [
+                "水"
+              ]
+            }
+          ]
+        },
+        "grants": {
+          "blocker": true
+        }
+      },
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmrp10-065": {
+    "phase": 1406,
+    "faces": [
+      {
+        "name": "破邪の意志 ティツィ",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "マナドライブ ３ （光）：自分のマナゾーンのカードが３枚以上で光文明があれば、このクリーチャーに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "メタリカ/ワンダフォース",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "noPlayerAttack": true,
+      "g260Self": {
+        "filter": {
+          "all": [
+            {
+              "g334ZoneCount": {
+                "zone": "mana",
+                "min": 3
+              }
+            },
+            {
+              "g1064ManaColors": [
+                "光"
+              ]
+            }
+          ]
+        },
+        "grants": {
+          "blocker": true
+        }
+      },
+      "gr": true,
+      "manaValue": 0
+    }
+  },
+  "dmrp10-029": {
+    "phase": 1406,
+    "faces": [
+      {
+        "name": "ラフシアⅢ",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "マナドライブ４（自然）：自分のマナゾーンのカードが４枚以上で自然文明があれば、このクリーチャーのバトル中のパワーを+3000する。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "グランセクト/デリートロン",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g260Self": {
+        "filter": {
+          "all": [
+            {
+              "g334ZoneCount": {
+                "zone": "mana",
+                "min": 4
+              }
+            },
+            {
+              "g1064ManaColors": [
+                "自然"
+              ]
+            }
+          ]
+        },
+        "grants": {
+          "g38BattleBonus": 3000
+        }
+      },
+      "gr": true,
+      "manaValue": 0
+    }
   }
 }
