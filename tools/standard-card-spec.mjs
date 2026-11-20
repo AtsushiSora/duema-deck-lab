@@ -2493,6 +2493,14 @@ export function standardCardSpec(d,{phase=165}={}){
   return {trigger:true,g1357CopyOnEntry:true,g174Start:[{op:'Target',g1357Become:true,
    g1357EndThisTurn:true,optional:true,title:'このクリーチャーがコピーする相手のクリーチャーを選ぶ'}]};
  }
+ if(phase>=1366&&d?.id==='dmrp07-063'&&d.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
+  if(normalize(f.abilityText)!==normalize('サバキZ（裁きの紋章が自分のシールドゾーンから手札に加えられた時、そのカードを捨ててもよい。そうしたら、この呪文をコストを支払わずに唱える）自分のシールドを１つ、手札に戻してもよい。ただし、その「S・トリガー」は使えない。この呪文を自分の手札から唱えた後、墓地に置くかわりに自分のシールド１つの上に表向きにして置く。（そのシールドの束は１つと数える）'))throw Error('転生ノ正裁Zの能力全文を照合できません');
+  return {g1027Crest:true,g1348Sabaki:true,effect:'sixPhoto',g34Tasks:[{op:'ShieldHandFollow1017',optional:true,noST:true,defs:[]}]};
+ }
+ if(phase>=1366&&d?.id==='dmrp03-dg01'&&d.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  if(normalize(f.abilityText)!==normalize('このクリーチャーがバトルゾーンに出た時またはタップした時、自分と相手のシールドを１つずつ選ぶ。このクリーチャーは選ばれたそれらのシールドをブレイクする。自分のシールドゾーンから手札に加えるメタリカまたは裁きの紋章すべてに「S・トリガー」を与える。'))throw Error('DGの能力全文を照合できません');
+  return {g1366DG:true,effect:'sixPhoto',g34Tasks:[{op:'DGBreak1366'}]};
+ }
  if(phase>=1365&&['dmx12b-010','dmx15-005','dmex08-182','promoy14-030','dmd24-020'].includes(d?.id)&&
     d.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'&&
     normalize(f.abilityText).replaceAll('自身の','').replace('そのプレイヤーはかわりに','かわりにそのプレイヤーは')===normalize(

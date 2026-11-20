@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-20",
   "catalogueNames": 11825,
-  "supportedNames": 8063,
-  "pendingNames": 3762,
-  "phase": 1365,
+  "supportedNames": 8065,
+  "pendingNames": 3760,
+  "phase": 1366,
   "added": 2,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 2117,
+    "クリーチャー": 2116,
     "NEOクリーチャー": 69,
-    "呪文": 452,
+    "呪文": 451,
     "GRクリーチャー": 155,
     "G-NEOクリーチャー": 26,
     "タマシード": 37,
@@ -224,7 +224,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1057,
-    "未対応の能力文": 2515,
+    "未対応の能力文": 2513,
     "未対応のG・ゼロ条件": 21,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
@@ -491722,16 +491722,163 @@
         "DGの両者同時ブレイク、シュタインのデュエリスト、アオハルの攻撃時能力再使用",
         "キング・ナイト・マジックの包含関係とドラン金箔2Sの公式識別資料の確認"
       ]
+    },
+    {
+      "phase": 1366,
+      "checkedAt": "2026-11-20",
+      "baseline": "668ce4c1",
+      "before": 8063,
+      "supported": 8065,
+      "duplicates": 0,
+      "added": [
+        {
+          "id": "dmrp03-dg01",
+          "name": "DG 〜ヒトノ造リシモノ〜"
+        },
+        {
+          "id": "dmrp07-063",
+          "name": "転生ノ正裁Z"
+        }
+      ],
+      "printAliases": 0,
+      "results": {
+        "focus": {
+          "passed": 20,
+          "failed": 0,
+          "skipped": 0,
+          "seconds": 0.73747025,
+          "log": "tmp/duema-phase-1366/focus-final.log"
+        },
+        "regression": {
+          "passed": 186,
+          "failed": 0,
+          "skipped": 0,
+          "seconds": 4.875372791,
+          "log": "tmp/duema-phase-1366/regression-final.log"
+        },
+        "online": {
+          "passed": 30,
+          "failed": 0,
+          "skipped": 0,
+          "seconds": 2.635897292,
+          "log": "tmp/duema-phase-1366/online.log"
+        },
+        "official": {
+          "prints": 2,
+          "imagesViewed": 2,
+          "manifest": "tools/support-phase-1366.json",
+          "regulation": "https://dm.takaratomy.co.jp/rule/regulation/",
+          "limits": 4,
+          "reprints": "公式個別ページは両カードとも対応する初出商品のみを掲載。既存の正規IDと能力全文・基本情報を照合。別IDを捏造せず、再録IDは追加していない。"
+        },
+        "check": {
+          "status": "passed",
+          "command": "npm run check",
+          "log": "tmp/duema-phase-1366/check-complete.log",
+          "sha256": {
+            "dist/engine.js": "97302e48eb0ef2a6aa0a4468fa57fb77f81c65d70fa6f63c508c70218ed054e3",
+            "dist/extended-rules.js": "6e6a687ca04596b8d65866f53998a1ae9a908d1c3494f62907edcb75005eef96",
+            "dist/cards.json": "7a7a45b273b1d91c4b2a2695751b2e910c7aa8e7a279202dfea9925548603eb1",
+            "dist/catalogue.json": "a93fd0515cf00edccea101fec5c8c1fba6ad7ef47d0115991e122dfe142281be",
+            "dist/online-compatibility.js": "0900aeed0fc3c89a3657e54cbf45c03d245b362c85d370d73c5021b8d4035443",
+            "dist/release.json": "654163a2ff5b3286c2e1f240c2ef73866acc4b1d4cfcd7721fa067efbcbccb36",
+            "tools/standard-card-spec.mjs": "6b05619418caab4cf268fd09bc91bed6fe47cefe702c1beff170343c1ce852ff",
+            "tools/support-phase-1366.json": "b53e966af548115d7c18abc1b3a642ac4e6ccf379213b993a991d2c6f9d8c9fb",
+            "tests/standard1366-effects.test.mjs": "d0a2374e9f6a6fe26ee91ce610c8daa79b1be30f674d14e4286c6196a0e12eb1"
+          }
+        },
+        "games": {
+          "passed": 2,
+          "failed": 0,
+          "cardsPerGame": 80,
+          "serializedContinuations": 12,
+          "dgWindowSteps": 4,
+          "results": [
+            {
+              "seed": 1366,
+              "actions": 89,
+              "dgWindows": 0,
+              "restored": 4,
+              "winner": 1,
+              "seconds": 6.59
+            },
+            {
+              "seed": 2732,
+              "actions": 86,
+              "dgWindows": 4,
+              "restored": 8,
+              "winner": 1,
+              "seconds": 12.291
+            }
+          ],
+          "log": "tmp/duema-phase-1366/games-final.log"
+        },
+        "names": {
+          "normalizer": "dist/catalogue.js#nameKey",
+          "path": "dist/cards.json",
+          "before": 8063,
+          "names": 8065,
+          "duplicates": 0,
+          "unchangedDefinitions": 8063,
+          "existingDefinitionsUnchangedFrom": "668ce4c1"
+        },
+        "audit": {
+          "command": "node tools/audit-card-support.mjs",
+          "status": "passed",
+          "log": "tmp/duema-phase-1366/audit.log",
+          "supported": 8065,
+          "pending": 3760,
+          "readyForOfficialVerification": 0
+        }
+      },
+      "resolvedRegistered": [
+        "dm24rp2-S07"
+      ],
+      "resolvedRelatedFollowUps": [
+        "QA45078：両者のST/GS/SB宣言後に両者を手札へ、その後両者のサバキZを宣言し、ターン順で解決。新たな登場時能力はその後。",
+        "QA44100：DG・正義ノ裁キ・転生ノ正裁Zで束の裁きの紋章2枚のST宣言を確認。"
+      ],
+      "remainingRegistered": 6,
+      "remainingPrints": 1,
+      "remainingIndividualCards": 7,
+      "interruptedRuns": [
+        {
+          "log": "tmp/duema-phase-1366/regression.log",
+          "status": "中断・合否未確認",
+          "target": "tests/abyss-effects.test.mjs を含む回帰群",
+          "reason": "No13の長時間3項目を除外指定した実行が約2分CPUを使い続け、項目ごとの進捗を出力しなかった。この回に開始した親子プロセスだけを停止。abyss-effectsのどの項目が実行中かと合否は未確認。再実行していない。",
+          "alternative": "abyss-effectsを除いた短い関連186項目が最終コードで合格。S・バックの新規実カード組み合わせは固有20項目に含む。公開候補の全対象集約は引き続き未完了。"
+        }
+      ],
+      "diagnostics": [
+        {
+          "log": "tmp/duema-phase-1366/games.log",
+          "status": "修正して解消",
+          "reason": "保存復元の厳密一致で、DGフレームにparent:undefinedが残った差を検出。未定義キーを作らないように修正し、最終2対戦・12回の保存復元と固有ケースで合格。"
+        },
+        {
+          "log": "tmp/duema-phase-1366/focus.log",
+          "status": "修正して解消",
+          "reason": "盾を手札に加えるテストを、S・トリガーを使わない通常Selectから実際のShieldHand処理へ変更。無視のテストは現在ターン値を使用。GGでの攻撃テストは召喚酔いを除く準備を加え、最終20項目が合格。"
+        }
+      ],
+      "next": [
+        "ヨミノ晴明R・ライジン天の選択者変更とJトルネード・バロディアス・ギャラクシー3件",
+        "シュタインとデュエルメイト3種類・リンク後の全能力",
+        "アオハルの攻撃時能力再使用。公式QA49216～49222にある条件・自己参照・無視・呪文発生源をすべて検証",
+        "キング・ナイト・マジックの公式包含関係、ドラン金箔2Sの公式画像照合"
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1365,
-    "nextPhase": 1366,
+    "lastVerifiedPhase": 1366,
+    "nextPhase": 1367,
     "workInProgress": null,
     "nextCandidates": [
-      "ヨミノ晴明R・ライジン天の選択者置換を実装してJトルネード・バロディアス・ギャラクシー3件を検証",
-      "DGの両者同時ブレイク、シュタインのデュエリスト、アオハルの攻撃時能力再使用",
-      "キング・ナイト・マジックの包含関係とドラン金箔2Sの公式識別資料の確認"
+      "ヨミノ晴明R・ライジン天の選択者変更とJトルネード・バロディアス・ギャラクシー3件",
+      "シュタインとデュエルメイト3種類・リンク後の全能力",
+      "アオハルの攻撃時能力再使用。公式QA49216～49222にある条件・自己参照・無視・呪文発生源をすべて検証",
+      "キング・ナイト・マジックの公式包含関係、ドラン金箔2Sの公式画像照合"
     ],
     "steps": [
       "開始時にHEAD、作業差分、実行中プロセス、AGENTS、進捗を確認",
@@ -491814,12 +491961,13 @@
       "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。"
     ],
     "restartSteps": [
-      "最新の正常な実装コミットは b73da50a (engine 0.597.0)。作業ツリーと既存プロセスを確認。",
-      "nameKeyの実データは8063種類・重複0。8,001停止条件により通常登録と automation PAUSED を維持。",
-      "phase1365は固有19・関連676・オンライン30・2対戦・保存復元2回・check・audit合格。",
-      "残る個別は登録済み7種類とドラン金箔再録1種類。詳細はpostThreshold.remainingRegisteredとremainingPrints。",
-      "次は選択者置換の共通処理を設計し、枚数指定/カード選択/効果発生源を分離して3件を実カードで検証。公式の不足2件は推測で完了しない。",
-      "一括npm testは実行しない。公開候補の全対象集約は未完了。Netlifyのmain連動を避ける公開手順が未確認のためpush・公開なし。"
+      "最新の実装はphase1366 (engine 0.598.0)。HEAD・作業ツリー・実行中プロセスを確認。",
+      "実データ8065種類・重複0。通常登録停止とautomation PAUSEDを維持。検証に必要な依存カードの追加はユーザーが改めて承認済み。",
+      "phase1366固有20・関連186・オンライン30・80枚2対戦と保存復元12回・check・audit合格。ログはtmp/duema-phase-1366。",
+      "登録済み6件と再録1件の計7件。postThreshold.remainingRegistered/remainingPrintsを参照。",
+      "次はヨミノ晴明R・ライジン天の選択者置換の全能力を実装し、枚数指定・カード選択・効果発生源を区別して検証。必要カードを追加する。",
+      "旧abyss-effectsの今回の合否は未確認。長時間同一実行を繰り返さず項目を特定して分割する。一括npm testは中断・合否未確認を維持。",
+      "未検証とNetlifyのmain連動が残るためpush/公開なし。安全なPages公開手順を確認できるまで保留。"
     ],
     "registrationStatus": "ユーザーの指示で10分間隔のカード登録を再開。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
@@ -491841,14 +491989,6 @@
         ],
         "test": "メカのデュエリストであるシュタインも7r0yで手札に戻せる（QA 48142）",
         "source": "https://dm.takaratomy.co.jp/rule/qa/48142/"
-      },
-      {
-        "cardId": "dm24rp2-S07",
-        "dependencyIds": [
-          "dmrp03-dg01"
-        ],
-        "test": "DG ～ヒトノ造リシモノ～自身のタップ時誘発が、攻撃時にも1回だけとなる（QA45139）。",
-        "source": "https://dm.takaratomy.co.jp/rule/qa/45139/"
       },
       {
         "cardId": "dmsd13-019",
@@ -492081,8 +492221,8 @@
       "id": "duema-deck-lab",
       "status": "ACTIVE"
     },
-    "supportedNames": 8063,
-    "pendingNames": 3762,
+    "supportedNames": 8065,
+    "pendingNames": 3760,
     "fullSuiteStatus": "中断・合否未確認",
     "scope": "進捗の全387バッチ、バッチ履歴導入前のGit版、ローカルの既存ログを照合。ログの合格はテスト名とファイルを一意に結び付けられる場合に採用し、過去ログの合格と今回の合格は別の状態にした。名前が保存されていない回や曖昧なログは該当テストの合否を確定していない。カードIDはテストの定義、登録manifestまたは使用フィクスチャから解決できたもの。",
     "inventory": {
@@ -536076,8 +536216,8 @@
     "postThreshold": {
       "checkedAt": "2026-11-20",
       "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
-      "supportedNames": 8063,
-      "pendingNames": 3762,
+      "supportedNames": 8065,
+      "pendingNames": 3760,
       "state": "incomplete",
       "inventory": {
         "registeredCardCases": 72,
@@ -538234,6 +538374,37 @@
           "log": "tmp/duema-phase-1365/focus.log",
           "phase": 1365,
           "result": "キクチ師範代とカレイコ各々を両者の場で出し、墓地0からの5枚送りは非公開シャッフルとなり全カードが山札に残ることを実カードで検証。"
+        },
+        {
+          "cardId": "dm24rp2-S07",
+          "dependencyIds": [
+            "dmrp03-dg01"
+          ],
+          "test": "DG ～ヒトノ造リシモノ～自身のタップ時誘発が、攻撃時にも1回だけとなる（QA45139）。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/45139/",
+          "dependencyReview": {
+            "checkedAt": "2026-11-15",
+            "sources": [
+              "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-dg01",
+              "https://dm.takaratomy.co.jp/rule/qa/45078/",
+              "https://dm.takaratomy.co.jp/rule/qa/31602/"
+            ],
+            "reason": "DGの能力では両者のS・トリガー、G・ストライク、S・バックの宣言を済ませてからシールドを同時に手札に加え、サバキZの宣言と各プレイヤーの解決へ進む。現在の片側ずつのブレイク処理だけではこの順序を再現できない。"
+          },
+          "dependencyReadiness": {
+            "sources": [
+              "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-dg01",
+              "https://dm.takaratomy.co.jp/rule/qa/45078/",
+              "https://dm.takaratomy.co.jp/rule/qa/44100/",
+              "https://dm.takaratomy.co.jp/rule/qa/45139/"
+            ],
+            "finding": "DGの登場時・タップ時で両者のシールドを同時にブレイクする。両者の宣言を先にターン順で行い、その後両者の手札に移動してサバキZを宣言する。現行のcommitShieldBreakは片側をすぐ手札に移すため、2つの個別ブレイクで代用せず、両側の宣言と移動を分ける共通処理が必要。"
+          },
+          "phase": 1366,
+          "priorReason": "指定カードが未対応。オカルト・チューナーで同じタップ時誘発が1回であることは確認した。",
+          "result": "実データのDGとハイパーモードのヴォルジャアクで攻撃を宣言し、タップ時誘発は1回だけで、両者の盾が1つずつブレイクされることを確認。GGがいる場合も登場時能力は抑止される一方、タップ時能力は抑止されない。",
+          "path": "tests/standard1366-effects.test.mjs",
+          "log": "tmp/duema-phase-1366/focus-final.log"
         }
       ],
       "remainingRegistered": [
@@ -538283,33 +538454,6 @@
           "source": "https://dm.takaratomy.co.jp/rule/qa/48142/",
           "path": "tests/standard1172-effects.test.mjs",
           "log": "/tmp/duema-phase-1172/focused.log"
-        },
-        {
-          "cardId": "dm24rp2-S07",
-          "dependencyIds": [
-            "dmrp03-dg01"
-          ],
-          "test": "DG ～ヒトノ造リシモノ～自身のタップ時誘発が、攻撃時にも1回だけとなる（QA45139）。",
-          "reason": "指定カードが未対応。オカルト・チューナーで同じタップ時誘発が1回であることは確認した。",
-          "source": "https://dm.takaratomy.co.jp/rule/qa/45139/",
-          "dependencyReview": {
-            "checkedAt": "2026-11-15",
-            "sources": [
-              "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-dg01",
-              "https://dm.takaratomy.co.jp/rule/qa/45078/",
-              "https://dm.takaratomy.co.jp/rule/qa/31602/"
-            ],
-            "reason": "DGの能力では両者のS・トリガー、G・ストライク、S・バックの宣言を済ませてからシールドを同時に手札に加え、サバキZの宣言と各プレイヤーの解決へ進む。現在の片側ずつのブレイク処理だけではこの順序を再現できない。"
-          },
-          "dependencyReadiness": {
-            "sources": [
-              "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-dg01",
-              "https://dm.takaratomy.co.jp/rule/qa/45078/",
-              "https://dm.takaratomy.co.jp/rule/qa/44100/",
-              "https://dm.takaratomy.co.jp/rule/qa/45139/"
-            ],
-            "finding": "DGの登場時・タップ時で両者のシールドを同時にブレイクする。両者の宣言を先にターン順で行い、その後両者の手札に移動してサバキZを宣言する。現行のcommitShieldBreakは片側をすぐ手札に移すため、2つの個別ブレイクで代用せず、両側の宣言と移動を分ける共通処理が必要。"
-          }
         },
         {
           "cardId": "dmsd13-019",
@@ -539570,8 +539714,8 @@
       ],
       "latestTestCommit": "b73da50a",
       "counts": {
-        "supported": 8063,
-        "pending": 3762,
+        "supported": 8065,
+        "pending": 3760,
         "catalogue": 11825,
         "duplicates": 0
       },
@@ -540194,10 +540338,6 @@
           "name": "沈黙の守護者、シュタイン"
         },
         {
-          "id": "dmrp03-dg01",
-          "name": "DG 〜ヒトノ造リシモノ〜"
-        },
-        {
           "id": "dmrp22-003",
           "name": "「復活」の鬼 ヨミノ晴明R"
         },
@@ -540210,7 +540350,7 @@
           "name": "行くよー！アオハル、ハイチーズ！"
         }
       ],
-      "remainingTestsSummary": "全体のnpm testは中断・合否未確認を維持。固定e3323a89の344分割（再現対戦886試合、本番ワーカー2460試合）は全件合格。No.16・21の113対象（再現対戦114試合、ワーカー380試合、乱数75種）も全件合格。今回の効果・裁定回帰とオンラインの結果は最新バッチに記録。公開候補での全対象の集約は未完了。 engine 0.596.0で発生源の持ち主を修正し、最終の関連回帰135件、先行の通常バトル回帰366件、オンライン19件が合格。ドリーム・ドラゴン18項目（100対戦と決定性の再現2対戦）は途中構成で合格。ログ内の別テストの誤ったパワー設定は最終135件で修正・合格。全対象を公開コミットで集約する作業は未完了。 phase1365の山札移動置換に関する固有19項目、関連676項目、オンライン30項目、実カード80枚の2対戦と保存復元2回、npm run checkが合格。個別残件は登録済み7種類と再録1種類の合計8種類。公開候補の全対象集約は未完了。",
+      "remainingTestsSummary": "全体のnpm testは中断・合否未確認を維持。固定e3323a89の344分割（再現対戦886試合、本番ワーカー2460試合）は全件合格。No.16・21の113対象（再現対戦114試合、ワーカー380試合、乱数75種）も全件合格。今回の効果・裁定回帰とオンラインの結果は最新バッチに記録。公開候補での全対象の集約は未完了。 engine 0.596.0で発生源の持ち主を修正し、最終の関連回帰135件、先行の通常バトル回帰366件、オンライン19件が合格。ドリーム・ドラゴン18項目（100対戦と決定性の再現2対戦）は途中構成で合格。ログ内の別テストの誤ったパワー設定は最終135件で修正・合格。全対象を公開コミットで集約する作業は未完了。 phase1365の山札移動置換に関する固有19項目、関連676項目、オンライン30項目、実カード80枚の2対戦と保存復元2回、npm run checkが合格。個別残件は登録済み7種類と再録1種類の合計8種類。公開候補の全対象集約は未完了。 phase1366で必要なDGと転生ノ正裁Zを追加。固有20・関連186・オンライン30項目、80枚2対戦と保存復元12回、npm run check・auditが合格。個別は登録済み6件と再録1件、計7件。旧abyss-effectsを含めた回帰の今回実行は約2分で停止し合否未確認。全対象の公開候補での集約は未完了。",
       "advanceImplementation": {
         "status": "implemented",
         "phases": [
@@ -540262,148 +540402,149 @@
         ]
       },
       "latestVerificationBatch": {
-        "phase": 1365,
+        "phase": 1366,
         "checkedAt": "2026-11-20",
-        "baseline": "094ae4d9",
-        "before": 8061,
-        "supported": 8063,
+        "baseline": "668ce4c1",
+        "before": 8063,
+        "supported": 8065,
         "duplicates": 0,
         "added": [
           {
-            "id": "dmx12b-010",
-            "name": "デュエマの鬼！キクチ師範代"
+            "id": "dmrp03-dg01",
+            "name": "DG 〜ヒトノ造リシモノ〜"
           },
           {
-            "id": "dmx15-005",
-            "name": "禁術のカルマ カレイコ"
+            "id": "dmrp07-063",
+            "name": "転生ノ正裁Z"
           }
         ],
-        "printAliases": 3,
+        "printAliases": 0,
         "results": {
           "focus": {
-            "passed": 19,
+            "passed": 20,
             "failed": 0,
             "skipped": 0,
-            "seconds": 1.922259917,
-            "log": "tmp/duema-phase-1365/focus.log"
+            "seconds": 0.73747025,
+            "log": "tmp/duema-phase-1366/focus-final.log"
           },
           "regression": {
-            "passed": 676,
+            "passed": 186,
             "failed": 0,
             "skipped": 0,
-            "seconds": 12.422565208,
-            "log": "tmp/duema-phase-1365/regression-final.log"
+            "seconds": 4.875372791,
+            "log": "tmp/duema-phase-1366/regression-final.log"
           },
           "online": {
             "passed": 30,
             "failed": 0,
             "skipped": 0,
-            "seconds": 1.031645833,
-            "log": "tmp/duema-phase-1365/online.log"
+            "seconds": 2.635897292,
+            "log": "tmp/duema-phase-1366/online.log"
           },
           "official": {
-            "prints": 5,
-            "imagesViewed": 5,
-            "manifest": "tools/support-phase-1365.json",
+            "prints": 2,
+            "imagesViewed": 2,
+            "manifest": "tools/support-phase-1366.json",
             "regulation": "https://dm.takaratomy.co.jp/rule/regulation/",
-            "limits": 4
+            "limits": 4,
+            "reprints": "公式個別ページは両カードとも対応する初出商品のみを掲載。既存の正規IDと能力全文・基本情報を照合。別IDを捏造せず、再録IDは追加していない。"
           },
           "check": {
             "status": "passed",
             "command": "npm run check",
-            "log": "tmp/duema-phase-1365/check.log",
+            "log": "tmp/duema-phase-1366/check-complete.log",
             "sha256": {
-              "dist/engine.js": "f8b83917c00893c873948265d9bfe3175c26aa3db2ac8f4f32876fa5b7f3ccee",
-              "dist/six-photo-rules.js": "0d92df9405f8c063f33356ea9bb299ef9d28ed0e7fb3a369ef9793647d289cd0",
-              "dist/galaxy-rules.js": "76d6e5144cd64f1112f9c5d2e30226e513aaeb81277383be7c7fc71c71f48925",
-              "dist/extended-rules.js": "c0d336d3cc910308bb11ee611e3971d4ad1be1be8ce69217f4639b5053d05e72",
-              "dist/zard-rules.js": "9b7d368df9325ea31c6335ec0fb5f2d22ea28e5895907e390c0f6bdbb0618b85",
-              "dist/online-compatibility.js": "0e97f4c8e18aa5324e8360772b5b27da1951ed7d86727f78d89a3ba18989b292",
-              "dist/cards.json": "61d1d0cc20bfa1a00147c3f4774c703f517e56040b6c13987f1059131eaf7c00"
+              "dist/engine.js": "97302e48eb0ef2a6aa0a4468fa57fb77f81c65d70fa6f63c508c70218ed054e3",
+              "dist/extended-rules.js": "6e6a687ca04596b8d65866f53998a1ae9a908d1c3494f62907edcb75005eef96",
+              "dist/cards.json": "7a7a45b273b1d91c4b2a2695751b2e910c7aa8e7a279202dfea9925548603eb1",
+              "dist/catalogue.json": "a93fd0515cf00edccea101fec5c8c1fba6ad7ef47d0115991e122dfe142281be",
+              "dist/online-compatibility.js": "0900aeed0fc3c89a3657e54cbf45c03d245b362c85d370d73c5021b8d4035443",
+              "dist/release.json": "654163a2ff5b3286c2e1f240c2ef73866acc4b1d4cfcd7721fa067efbcbccb36",
+              "tools/standard-card-spec.mjs": "6b05619418caab4cf268fd09bc91bed6fe47cefe702c1beff170343c1ce852ff",
+              "tools/support-phase-1366.json": "b53e966af548115d7c18abc1b3a642ac4e6ccf379213b993a991d2c6f9d8c9fb",
+              "tests/standard1366-effects.test.mjs": "d0a2374e9f6a6fe26ee91ce610c8daa79b1be30f674d14e4286c6196a0e12eb1"
             }
           },
           "games": {
             "passed": 2,
             "failed": 0,
-            "games": 2,
             "cardsPerGame": 80,
-            "serializedContinuations": 2,
-            "log": "tmp/duema-phase-1365/games.log",
-            "seeds": [
-              1365,
-              2730
+            "serializedContinuations": 12,
+            "dgWindowSteps": 4,
+            "results": [
+              {
+                "seed": 1366,
+                "actions": 89,
+                "dgWindows": 0,
+                "restored": 4,
+                "winner": 1,
+                "seconds": 6.59
+              },
+              {
+                "seed": 2732,
+                "actions": 86,
+                "dgWindows": 4,
+                "restored": 8,
+                "winner": 1,
+                "seconds": 12.291
+              }
             ],
-            "seconds": 16.531
+            "log": "tmp/duema-phase-1366/games-final.log"
           },
           "names": {
             "normalizer": "dist/catalogue.js#nameKey",
             "path": "dist/cards.json",
-            "names": 8063,
+            "before": 8063,
+            "names": 8065,
             "duplicates": 0,
-            "existingDefinitionsUnchangedFrom": "094ae4d9",
-            "unchangedDefinitions": 8061
+            "unchangedDefinitions": 8063,
+            "existingDefinitionsUnchangedFrom": "668ce4c1"
           },
           "audit": {
             "command": "node tools/audit-card-support.mjs",
             "status": "passed",
-            "supported": 8063,
-            "pending": 3762,
-            "readyForOfficialVerification": 0,
-            "dependencyBlocked": 0
-          },
-          "auditRegression": {
-            "passed": 124,
-            "failed": 0,
-            "skipped": 0,
-            "seconds": 21.8821215,
-            "log": "tmp/duema-phase-1365/audit-regression.log",
-            "coverage": "進捗の実データ件数と新しい置換、既存のマナ回収・任意展開・80枚対戦2件の保存復元"
-          },
-          "finalAuditCheck": {
-            "status": "passed",
-            "command": "npm run check",
-            "log": "tmp/duema-phase-1365/check-audit-final.log",
-            "supportedNamesAfter": 8063,
-            "duplicatesAfter": 0,
-            "remainingRegistered": 7,
-            "remainingPrints": 1,
-            "baseImplementationCommit": "b73da50a"
+            "log": "tmp/duema-phase-1366/audit.log",
+            "supported": 8065,
+            "pending": 3760,
+            "readyForOfficialVerification": 0
           }
         },
         "resolvedRegistered": [
-          "dmex18-s07",
-          "dm23rp1-018"
+          "dm24rp2-S07"
         ],
         "resolvedRelatedFollowUps": [
-          "フォック QA43789",
-          "デドダム QA39943",
-          "ジョリー QA39981",
-          "ドンドン火噴くナウ QA41296",
-          "レッドマッド QA49081",
-          "鼓動する石版 QA40785",
-          "アカシック・ヴィジョン QA42507",
-          "サイバー・G・ホーガン QA40537",
-          "VV-8封印"
+          "QA45078：両者のST/GS/SB宣言後に両者を手札へ、その後両者のサバキZを宣言し、ターン順で解決。新たな登場時能力はその後。",
+          "QA44100：DG・正義ノ裁キ・転生ノ正裁Zで束の裁きの紋章2枚のST宣言を確認。"
         ],
-        "remainingRegistered": 7,
+        "remainingRegistered": 6,
         "remainingPrints": 1,
-        "remainingIndividualCards": 8,
+        "remainingIndividualCards": 7,
+        "interruptedRuns": [
+          {
+            "log": "tmp/duema-phase-1366/regression.log",
+            "status": "中断・合否未確認",
+            "target": "tests/abyss-effects.test.mjs を含む回帰群",
+            "reason": "No13の長時間3項目を除外指定した実行が約2分CPUを使い続け、項目ごとの進捗を出力しなかった。この回に開始した親子プロセスだけを停止。abyss-effectsのどの項目が実行中かと合否は未確認。再実行していない。",
+            "alternative": "abyss-effectsを除いた短い関連186項目が最終コードで合格。S・バックの新規実カード組み合わせは固有20項目に含む。公開候補の全対象集約は引き続き未完了。"
+          }
+        ],
         "diagnostics": [
           {
-            "log": "tmp/duema-phase-1365/regression.log",
+            "log": "tmp/duema-phase-1366/games.log",
             "status": "修正して解消",
-            "reason": "動作614項目が通過。進捗の8061→8063件を更新前だった件数検証1件は更新後の関連676項目で合格。"
+            "reason": "保存復元の厳密一致で、DGフレームにparent:undefinedが残った差を検出。未定義キーを作らないように修正し、最終2対戦・12回の保存復元と固有ケースで合格。"
           },
           {
-            "log": "tmp/duema-phase-1365/focus.log",
+            "log": "tmp/duema-phase-1366/focus.log",
             "status": "修正して解消",
-            "reason": "Vision追加検証の初回は手番の準備とデーモン・ハンドのAIが置換元を破壊する問題を修正。相手の別クリーチャーを明示選択し最終19項目全件合格。"
+            "reason": "盾を手札に加えるテストを、S・トリガーを使わない通常Selectから実際のShieldHand処理へ変更。無視のテストは現在ターン値を使用。GGでの攻撃テストは召喚酔いを除く準備を加え、最終20項目が合格。"
           }
         ],
         "next": [
-          "ヨミノ晴明R・ライジン天の選択者置換を実装してJトルネード・バロディアス・ギャラクシー3件を検証",
-          "DGの両者同時ブレイク、シュタインのデュエリスト、アオハルの攻撃時能力再使用",
-          "キング・ナイト・マジックの包含関係とドラン金箔2Sの公式識別資料の確認"
+          "ヨミノ晴明R・ライジン天の選択者変更とJトルネード・バロディアス・ギャラクシー3件",
+          "シュタインとデュエルメイト3種類・リンク後の全能力",
+          "アオハルの攻撃時能力再使用。公式QA49216～49222にある条件・自己参照・無視・呪文発生源をすべて検証",
+          "キング・ナイト・マジックの公式包含関係、ドラン金箔2Sの公式画像照合"
         ]
       },
       "currentSplitEvidence": {

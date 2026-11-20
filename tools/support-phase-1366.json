@@ -1,0 +1,106 @@
+{
+  "phase": 1366,
+  "checkedAt": "2026-11-20",
+  "baseCount": 8063,
+  "description": "DGと、その公式裁定QA44100の再現に必要な転生ノ正裁Zを追加。両者のブレイクの宣言・移動・サバキZ・解決を分離し、ヴォルジャアクとのタップ時誘発を検証。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/qa/45078/",
+    "https://dm.takaratomy.co.jp/rule/qa/45139/",
+    "https://dm.takaratomy.co.jp/rule/qa/44100/",
+    "https://dm.takaratomy.co.jp/rule/qa/31602/"
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-20",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "limits": {
+      "dmrp03-dg01": 4,
+      "dmrp07-063": 4
+    }
+  },
+  "cards": [
+    {
+      "id": "dmrp03-dg01",
+      "name": "DG 〜ヒトノ造リシモノ〜",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-dg01",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-dg01.jpg",
+      "faces": [
+        {
+          "name": "DG 〜ヒトノ造リシモノ〜",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時またはタップした時、自分と相手のシールドを１つずつ選ぶ。このクリーチャーは選ばれたそれらのシールドをブレイクする。\n自分のシールドゾーンから手札に加えるメタリカまたは裁きの紋章すべてに「S・トリガー」を与える。",
+          "race": "メタリカ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1366DG": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DGBreak1366"
+          }
+        ]
+      },
+      "verification": {
+        "facesMatched": true,
+        "checkedAt": "2026-11-20",
+        "sha256": "b98e5515dc9072a4a8d19bbf7ed4d0b78586152cb353fc6b609097cf2b5e0e84",
+        "imageSha256": "399e830332052e4f4b3a9294d6faa89b6a07176b72612dd142ad117b6cc27fed",
+        "number": "DG1/DG1",
+        "printedManaValue": 1
+      }
+    },
+    {
+      "id": "dmrp07-063",
+      "name": "転生ノ正裁Z",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-063",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-063.jpg",
+      "faces": [
+        {
+          "name": "転生ノ正裁Z",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "サバキZ（裁きの紋章が自分のシールドゾーンから手札に加えられた時、そのカードを捨ててもよい。そうしたら、この呪文をコストを支払わずに唱える）\n自分のシールドを１つ、手札に戻してもよい。ただし、その「S・トリガー」は使えない。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに自分のシールド１つの上に表向きにして置く。（そのシールドの束は１つと数える）",
+          "race": "裁きの紋章Z",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1027Crest": true,
+        "g1348Sabaki": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldHandFollow1017",
+            "optional": true,
+            "noST": true,
+            "defs": []
+          }
+        ]
+      },
+      "verification": {
+        "facesMatched": true,
+        "checkedAt": "2026-11-20",
+        "sha256": "6037b91648746b7d09dafd566e717597a870d9a8840a798c5f5ea9db54be834f",
+        "imageSha256": "ef0305cd6578d7acadeb34871713fd472f6812b0580122f6b79a235bb92fcb6e",
+        "number": "63/94",
+        "printedManaValue": 1
+      }
+    }
+  ],
+  "printAliases": []
+}
