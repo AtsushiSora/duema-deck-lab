@@ -8,7 +8,7 @@ export function buzzEntry1411(c,n){
  if(!c.g1411BuzzRenda||!n)return c;
  const count=c.g1411BuzzRenda.taskCount??c.g34Tasks.length;
  const repeated=c.g34Tasks.slice(0,count),after=c.g34Tasks.slice(count);
- return {...c,g34Tasks:[...Array.from({length:n+1},()=>structuredClone(repeated)).flat(),...after]};
+ return {...c,g34Tasks:[...Array.from({length:n+1},()=>structuredClone(repeated)).flat(),...after,...(c.g1505BuzzExtraTurn&&n>=3?[{op:'Custom',name:'extraTurn'}]:[])]};
 }
 export function buzzVariants1411(s,p,actions,{card,faces,freeSpell,canPay,summonCost}){
  if(s.decision||s.phase!=='main')return actions;

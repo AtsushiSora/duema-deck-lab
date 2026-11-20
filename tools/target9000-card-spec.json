@@ -6383,5 +6383,138 @@
       },
       "breaker": 2
     }
+  },
+  "dmrp13-008": {
+    "phase": 1505,
+    "faces": [
+      {
+        "name": "ウシキン☆チャンネル",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/自然",
+        "civilizations": [
+          "水",
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "バズレンダ [cc02]（このクリーチャーのコストを支払う時、追加で [cc02]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その{OL} 能力を１回と、追加で [cc02]支払った回数、使う）\n{OL}このターン、自分のクリーチャー１体は、パワーを+3000され、アンタップしているクリーチャーを攻撃できる。\nマッハファイター\nW・ブレイカー\n自分のクリーチャーがバトルで勝った時、カードを１枚引いてもよい。",
+        "race": "トリックス/チームウェイブ",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "power": 3000,
+          "grant": {
+            "attackUntapped": true
+          }
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 2
+      },
+      "machFighter": true,
+      "breaker": 2,
+      "g252WinWatch": {
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dmrp13-s02": {
+    "phase": 1505,
+    "faces": [
+      {
+        "name": "コスパンダメソッド",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "バズレンダ [cc02]（このクリーチャーのコストを支払う時、追加で [cc02]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その{OL} 能力を１回と、追加で [cc02]支払った回数、使う）\n{OL}相手のクリーチャーを１体選び、持ち主の手札に戻す。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、その{OL}能力を４回以上使った場合、このターンの後にもう一度自分のターンを行う。",
+        "race": "トリックス/チームウェイブ",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "hand",
+          "toOwnerHand": true
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 2
+      },
+      "breaker": 2,
+      "g1505BuzzExtraTurn": true
+    }
+  },
+  "dmrp14-091": {
+    "phase": 1505,
+    "faces": [
+      {
+        "name": "眼鏡妖精コモリ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/自然",
+        "civilizations": [
+          "水",
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "バズレンダ [cc02]（このクリーチャーのコストを支払う時、追加で[cc02]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その[OL]能力を１回と、追加で[cc02]支払った回数、使う）\n[OL]カードを１枚引く。\nこのクリーチャーがバトルゾーンに出た時、自分の手札を１枚マナゾーンに置く。",
+        "race": "スノーフェアリー/チームウェイブ",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 2
+      },
+      "g527ExtraEntry": [
+        {
+          "label": "手札をマナへ置く",
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "to": "mana",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    }
   }
 }

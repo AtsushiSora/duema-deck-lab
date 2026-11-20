@@ -270090,15 +270090,139 @@
       "breaker": 2,
       "supportBatch": "phase-1504",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-008",
+      "name": "ウシキン☆チャンネル",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "トリックス/チームウェイブ",
+      "text": "バズレンダ [cc02]（このクリーチャーのコストを支払う時、追加で [cc02]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その{OL} 能力を１回と、追加で [cc02]支払った回数、使う）\n{OL}このターン、自分のクリーチャー１体は、パワーを+3000され、アンタップしているクリーチャーを攻撃できる。\nマッハファイター\nW・ブレイカー\n自分のクリーチャーがバトルで勝った時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-008",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "power": 3000,
+          "grant": {
+            "attackUntapped": true
+          }
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 2
+      },
+      "machFighter": true,
+      "breaker": 2,
+      "g252WinWatch": {
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1505",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-s02",
+      "name": "コスパンダメソッド",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "トリックス/チームウェイブ",
+      "text": "バズレンダ [cc02]（このクリーチャーのコストを支払う時、追加で [cc02]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その{OL} 能力を１回と、追加で [cc02]支払った回数、使う）\n{OL}相手のクリーチャーを１体選び、持ち主の手札に戻す。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、その{OL}能力を４回以上使った場合、このターンの後にもう一度自分のターンを行う。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-s02",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "hand",
+          "toOwnerHand": true
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 2
+      },
+      "breaker": 2,
+      "g1505BuzzExtraTurn": true,
+      "supportBatch": "phase-1505",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-091",
+      "name": "眼鏡妖精コモリ",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "スノーフェアリー/チームウェイブ",
+      "text": "バズレンダ [cc02]（このクリーチャーのコストを支払う時、追加で[cc02]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その[OL]能力を１回と、追加で[cc02]支払った回数、使う）\n[OL]カードを１枚引く。\nこのクリーチャーがバトルゾーンに出た時、自分の手札を１枚マナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-091",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 2
+      },
+      "g527ExtraEntry": [
+        {
+          "label": "手札をマナへ置く",
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "to": "mana",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1505",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1504,
+    "phase": 1505,
     "checkedAt": "2026-11-20",
-    "baseCount": 8639,
-    "newEffectCards": 5,
+    "baseCount": 8644,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 8644,
+    "totalCount": 8647,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -294933,6 +295057,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8639,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1504,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8639,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8644,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
