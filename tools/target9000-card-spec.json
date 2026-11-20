@@ -6516,5 +6516,103 @@
         }
       ]
     }
+  },
+  "dmrp13-026": {
+    "phase": 1506,
+    "faces": [
+      {
+        "name": "キリンキンTV",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/自然",
+        "civilizations": [
+          "水",
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "バズレンダ [cc02]（このクリーチャーのコストを支払う時、追加で [cc02]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その{OL} 能力を１回と、追加で [cc02]支払った回数、使う）\n{OL} 相手は自身のクリーチャーを１体選ぶ。自分はそのクリーチャーを持ち主のマナゾーンまたは手札に戻す。",
+        "race": "トリックス/チームウェイブ",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "OpponentDestination1506"
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 2
+      }
+    }
+  },
+  "dmrp14-034": {
+    "phase": 1506,
+    "faces": [
+      {
+        "name": "アクア・ウタッテミタ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "バズレンダ [cc01]（このクリーチャーのコストを支払う時、追加で[cc01]を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その[OL]能力を１回と、追加で[cc01]支払った回数、使う）\n[OL]自分のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーがバトルゾーンを離れる時、かわりにそれを手札に戻す。",
+        "race": "リキッド・ピープル/チームウェイブ",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g521UntilStart": true,
+          "grant": {
+            "g1088LeaveToHand": true
+          }
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 1
+      }
+    }
+  },
+  "dmex09-001": {
+    "phase": 1506,
+    "faces": [
+      {
+        "name": "イニシャッフチブ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "バズレンダ [cc02] （このクリーチャーのコストを支払う時、追加で [cc02] を好きな回数支払ってもよい。このクリーチャーがバトルゾーンに出た時、その{OL} 能力を１回と、追加で [cc02] 支払った回数、使う）\n{OL} 数字を１つ言う。次の自分のターンのはじめまで、相手はその数字と同じコストを持つ呪文を唱えられない。\nW・ブレイカー",
+        "race": "マジック・コマンド/チームウェイブ",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "g9Number",
+          "family": "perfectVictory1372"
+        }
+      ],
+      "g1411BuzzRenda": {
+        "cost": 2
+      },
+      "breaker": 2
+    }
   }
 }

@@ -4906,6 +4906,7 @@ export function createSixPhotoRules(api){
   put(s,offer,{...offer,p:1-s.active});
   break;
  }
+ case'g34_OpponentDestination1506':{const rows=targetOptions(s,1-t.p,creatures(s,1-t.p).filter(x=>!x.sealed));if(rows.length)choice(s,t,'マナゾーンまたは手札に戻される自分のクリーチャーを選ぶ',rows.map(o=>{const y=s.players[1-t.p].battle.find(x=>x.uid===o.value);return{...o,value:{uid:y.uid,incarnation:y.incarnation||0}};}),1-t.p);break;}
  case'g34_OpponentSelect':{
   const origin=t.origin||'battle',battle=origin==='battle';
   if(battle&&t.g741MinPower)t={...t,g530Ids:lowestPower741(s,creatures(s,1-t.p).filter(x=>matches(s,1-t.p,x,t.filter))).map(x=>x.uid)};
@@ -7489,6 +7490,7 @@ export function createSixPhotoRules(api){
    put(s,{...t,p:owner,op:'g34_Put',origin:'grave',target:v.uid,tapped:true});
   break;
  }
+ case'g34_OpponentDestination1506':if(v)put(s,{...t,op:'g34_TargetDestination467',target:{p:1-t.p,uid:v.uid,incarnation:v.incarnation},g467Destinations:['mana','hand'],g1129OwnerDestinations:true});break;
  case'g34_Select':
   if(v){
    if(t.g766SpellUse)mark(s,'g766SpellUse',t);
