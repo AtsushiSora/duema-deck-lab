@@ -258067,15 +258067,172 @@
       ],
       "supportBatch": "phase-1434",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmsd12-006",
+      "name": "葬罪 ホネ損ビー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 4,
+      "power": 0,
+      "race": "マフィ・ギャング/デリートロン",
+      "text": "無月の大罪２（このオーラを使うコストを２少なくしてもよい。そうしたら、このターンの終わりに、自分のクリーチャーを１体破壊する）\nこれをクリーチャーに付けた時、自分の山札の上から１枚目を墓地に置く。そのカードが闇のオーラなら、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd12-006",
+      "limit": 4,
+      "auraPower": 2000,
+      "g1432Sin": 2,
+      "g1421AuraAttach": [
+        {
+          "op": "MillMatch520",
+          "n": 1,
+          "filter": {
+            "aura": true,
+            "color": "闇"
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1435",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex4-090",
+      "name": "死罪 デ墓スマーチ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 2,
+      "power": 0,
+      "race": "マフィ・ギャング/デリートロン",
+      "text": "無月の大罪１（このオーラの実行コストを１少なくしてもよい。そうしたら、このターンの終わりに、自分のクリーチャーを１体破壊する）\nこれをクリーチャーに付けた時またはこのオーラが離れた時、自分の山札の上から１枚を墓地に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-090",
+      "limit": 4,
+      "auraPower": 0,
+      "g1432Sin": 1,
+      "g1421AuraAttach": [
+        {
+          "op": "Mill",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "Mill",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1435",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd12-005",
+      "name": "壊罪 フ疑ランケン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 5,
+      "power": 0,
+      "race": "マフィ・ギャング/デリートロン",
+      "text": "無月の大罪２（このオーラを使うコストを２少なくしてもよい。そうしたら、このターンの終わりに、自分のクリーチャーを１体破壊する）\nこれを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n自分のクリーチャーが破壊された時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd12-005",
+      "limit": 4,
+      "auraPower": 4000,
+      "g1432Sin": 2,
+      "g1352Powered": true,
+      "g303DeathWatch": {
+        "self": true,
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "カードを1枚引く",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1435",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-048",
+      "name": "殉罪 ガーディ毒ン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 5,
+      "power": 0,
+      "race": "マフィ・ギャング/デリートロン",
+      "text": "S・トリガー S・トリガー（このオーラをシールドゾーンから手札に加える時、コストを支払わずにすぐ使ってもよい）\n無月の大罪２（このオーラを使うコストを２少なくしてもよい。そうしたら、このターンの終わりに、自分のクリーチャーを１体破壊する）\nこれを付けたクリーチャーに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-048",
+      "limit": 4,
+      "auraPower": 2000,
+      "g1432Sin": 2,
+      "trigger": true,
+      "g1421AuraGrants": {
+        "blocker": true
+      },
+      "supportBatch": "phase-1435",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy18-032",
+      "name": "卍罪 ド・リュザーク",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 7,
+      "power": 0,
+      "race": "マフィ・ギャング/デリートロン",
+      "text": "無月の大罪２（このオーラを使うコストを２少なくしてもよい。そうしたら、このターンの終わりに、自分のクリーチャーを１体破壊する）\nこれをクリーチャーに付けた時、またはこれを付けたクリーチャーが攻撃する時、コスト５以下のオーラを１枚、自分の墓地から選び、そのクリーチャーに付ける。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy18-032",
+      "limit": 4,
+      "auraPower": 2000,
+      "g1432Sin": 2,
+      "g1354AttachFromGrave": 5,
+      "g1434HostAttack": [
+        {
+          "op": "AuraFromGrave1354",
+          "max": 5
+        }
+      ],
+      "supportBatch": "phase-1435",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1434,
+    "phase": 1435,
     "checkedAt": "2026-11-20",
-    "baseCount": 8329,
+    "baseCount": 8334,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8334,
+    "totalCount": 8339,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -281930,6 +282087,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8329,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1434,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8329,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8334,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
