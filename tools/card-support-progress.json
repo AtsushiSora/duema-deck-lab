@@ -494046,11 +494046,73 @@
       ],
       "implementationCommit": "b40ae0df7654d68c7c8dcd5f902709337496e000",
       "netlifyDeployId": "6b004a3150e5e5f6a6e5cdd9"
+    },
+    {
+      "phase": 1378,
+      "kind": "pages-friend-entry-shortcuts-removal",
+      "checkedAt": "2026-11-20T13:29:59.544056+00:00",
+      "baseline": "ff55dedda30a5281e3b8666fa13db53ce4372974",
+      "status": "passed-local-unpublished",
+      "before": 8074,
+      "supported": 8074,
+      "pending": 3751,
+      "added": [],
+      "duplicates": 0,
+      "totalTestsPassed": 41,
+      "results": {
+        "focused": {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/online-app.test.mjs",
+            "tests/home-navigation.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 6.622,
+          "log": "tmp/duema-phase-1378/focused.log",
+          "passed": 41,
+          "failed": 0
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 16.129,
+          "log": "tmp/duema-phase-1378/audit.log"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.657,
+          "log": "tmp/duema-phase-1378/check.log"
+        }
+      },
+      "reason": "ユーザー画像の赤丸にあるPages版の「アカウント・デッキ保存」「コンピュータと対戦する」ボタンを削除。「対戦用ページを開く」の導線、招待コードの引き継ぎ、既存データ、ホーム経由のCPU対戦を保持。",
+      "publication": {
+        "pushed": false,
+        "netlifyUpdated": false,
+        "reason": "今回の変更について新しいpush・公開の指示はない。"
+      },
+      "remaining": [
+        "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2Googleアカウント対戦の未確認を維持。"
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1377,
-    "nextPhase": 1378,
+    "lastVerifiedPhase": 1378,
+    "nextPhase": 1379,
     "workInProgress": null,
     "nextCandidates": [
       "通常登録停止と保留2件を維持する。追加はユーザー明示指定または検証依存のみ。",
@@ -494247,6 +494309,14 @@
       "commit": "b40ae0df7654d68c7c8dcd5f902709337496e000",
       "version": "0.722.1",
       "status": "published"
+    },
+    "latestPagesEntryImprovement": {
+      "phase": 1378,
+      "status": "passed-local-unpublished",
+      "removed": [
+        "アカウント・デッキ保存",
+        "コンピュータと対戦する"
+      ]
     }
   },
   "registeredCardVerification": {

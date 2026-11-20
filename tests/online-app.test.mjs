@@ -33,7 +33,12 @@ test('online attack selection previews its target before the contextual attack b
 
 test('online result button can reopen the local result panel after connection loss without sending a move',async()=>{const h=harness();await h.login();await h.click('online-create');await h.friend();const before=h.game().actions;h.read("onlineState.room.phase='finished';onlineState.connected=false;onlineActionsOpen=false;render()");await h.click('online-primary',{revision:String(h.read('onlineState.room.revision'))});assert.match(h.root.innerHTML,/online-controls/);assert.equal(h.game().actions,before);h.read('onlineClient.dispose()');});
 
-test('Pages app keeps current CPU play available and opens the existing friend page without polling a nonexistent API',async()=>{const h=harness({origin:'https://atsushisora.github.io'});await h.click('nav',{view:'online'});assert.match(h.root.innerHTML,/対戦用ページを開く/);assert.match(h.root.innerHTML,/https:\/\/duema-deck-lab.netlify.app\/\?view=online/);assert.match(h.root.innerHTML,/版が異なる場合/);assert.equal(h.read('onlineClient'),null);await h.click('nav',{view:'battle'});assert.match(h.root.innerHTML,/start-match/);await h.click('choose-opponent');assert.match(h.dialog.innerHTML,/相手の環境デッキを選ぶ/);});
+test('Pages friend entry keeps only the external room link, forwards invitations and leaves CPU play in home navigation',async()=>{
+ const h=harness({origin:'https://atsushisora.github.io'});h.read("onlineCode='1122334455667788';const savedBefore=JSON.stringify(saved)");await h.click('nav',{view:'online'});
+ assert.match(h.root.innerHTML,/対戦用ページを開く/);assert.match(h.root.innerHTML,/href="https:\/\/duema-deck-lab.netlify.app\/\?view=online&amp;room=1122334455667788"/);assert.match(h.root.innerHTML,/版が異なる場合/);
+ assert.doesNotMatch(h.root.innerHTML,/アカウント・デッキ保存|コンピュータと対戦する|data-view="(?:account|battle)"/);assert.equal(h.read('onlineClient'),null);assert.equal(h.read('JSON.stringify(saved)===savedBefore'),true);
+ await h.click('nav',{view:'home'});await h.click('nav',{view:'duel'});await h.click('prepare-match',{mode:'manual'});assert.match(h.root.innerHTML,/start-match/);await h.click('choose-opponent');assert.match(h.dialog.innerHTML,/相手の環境デッキを選ぶ/);
+});
 
 
 test('reorganized lobby joins a friend room with the selected deck and preserves saved decks and AI history',async()=>{
