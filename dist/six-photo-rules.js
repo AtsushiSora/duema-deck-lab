@@ -8478,6 +8478,7 @@ export function createSixPhotoRules(api){
   // This hook runs only for physical hand cards actually discarded after replacements.
   const n=discardCount1235(s,p);
   (s.g1235Discards??=[null,null])[p]={turn:s.turn,n:n+1};
+  for(const x of creatures(s,p)){const defs=!x.sealed&&effective(x,s).g1500SelfDiscard;if(defs)queue(s,p,x,defs);}
   for(const x of creatures(s,1-p)){const defs=!x.sealed&&effective(x,s).g472OpponentDiscard;if(defs)queue(s,1-p,x,defs);}},
  firstOpponentDiscard1037(s,p){
   for(const x of creatures(s,1-p)){
