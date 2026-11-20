@@ -10466,5 +10466,160 @@
         "opponentTapEntry": true
       }
     }
+  },
+  "dmrp11-102": {
+    "phase": 1437,
+    "faces": [
+      {
+        "name": "αχ アバハッパ",
+        "typeText": "オレガ・オーラ",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "オーラが２枚以上付いた自分のGRクリーチャーが攻撃する時、これを自分の手札からそのクリーチャーに付けてもよい。",
+        "race": "グランセクト/デリートロン",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "aura",
+      "power": 0,
+      "auraPower": 2000,
+      "g1437HandAttach": true
+    }
+  },
+  "dmrp11-031": {
+    "phase": 1437,
+    "faces": [
+      {
+        "name": "ωχ ニランギドラ",
+        "typeText": "オレガ・オーラ",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "オーラが２枚以上付いた自分のGRクリーチャーが攻撃する時、これを自分の手札からそのクリーチャーに付けてもよい。\nこれをクリーチャーに付けた時、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+        "race": "グランセクト/デリートロン",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "aura",
+      "power": 0,
+      "auraPower": 2000,
+      "g1437HandAttach": true,
+      "g1421AuraAttach": [
+        {
+          "op": "Target",
+          "to": "mana"
+        }
+      ]
+    }
+  },
+  "dmrp11-059": {
+    "phase": 1437,
+    "faces": [
+      {
+        "name": "φχ スピルバグス",
+        "typeText": "オレガ・オーラ",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "オーラが２枚以上付いた自分のGRクリーチャーが攻撃する時、これを自分の手札からそのクリーチャーに付けてもよい。\nこれを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）",
+        "race": "グランセクト/デリートロン",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "aura",
+      "power": 0,
+      "auraPower": 6000,
+      "g1437HandAttach": true,
+      "g1352Powered": true
+    }
+  },
+  "dmrp11-010": {
+    "phase": 1437,
+    "faces": [
+      {
+        "name": "ΓΛΧ ヴィトラガッタ",
+        "typeText": "オレガ・オーラ",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "オーラが２枚以上付いた自分のGRクリーチャーが攻撃する時、これを自分の手札からそのクリーチャーに付けてもよい。\nこれを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこれを付けたクリーチャーの攻撃の終わりに、相手のシールドが１つもなければ、相手のクリーチャーをすべて持ち主のマナゾーンに置く。",
+        "race": "グランセクト/デリートロン",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "aura",
+      "power": 0,
+      "auraPower": 6000,
+      "g1437HandAttach": true,
+      "g1352Powered": true,
+      "g1437HostAttackEnd": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g465OpponentShieldsMax": 0
+          },
+          "defs": [
+            {
+              "op": "Sweep",
+              "to": "mana",
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmrp12-061": {
+    "phase": 1437,
+    "faces": [
+      {
+        "name": "τξ タウテムン",
+        "typeText": "オレガ・オーラ",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "これをクリーチャーに付けた時、自分のマナゾーンにあるコスト５以下のオーラを１枚選び、そのクリーチャーに付けてもよい。",
+        "race": "グランセクト/デリートロン",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "aura",
+      "power": 0,
+      "auraPower": 2000,
+      "g1421AuraAttach": [
+        {
+          "op": "ManaAura1437",
+          "max": 5
+        }
+      ]
+    }
   }
 }

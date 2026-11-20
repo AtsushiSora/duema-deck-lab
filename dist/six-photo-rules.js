@@ -6053,6 +6053,16 @@ export function createSixPhotoRules(api){
   const y=own.grave.find(x=>x.uid===t.uid&&(x.incarnation||0)===(t.incarnation||0)&&(x.zoneSerial||0)===t.serial);
   if(y)zoneMove(s,t.p,'grave',y.uid,'mana',t);break;
  }
+ case'g34_HandAura1437':{
+  const x=own.hand.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial&&card(x).g1437HandAttach);
+  const host=own.battle.find(x=>!x.sealed&&api.isCreature(s,x)&&api.allLayers(x).some(y=>y.uid===t.host.uid&&(y.incarnation||0)===t.host.incarnation));
+  if(x&&host)choice(s,t,'手札のオーラを攻撃中のクリーチャーに付ける？',[opt('付ける',true,25),skip()]);break;
+ }
+ case'g34_ManaAura1437':{
+  const host=api.auraHost1352(s,t.p,t.host);
+  const rows=host&&api.canMoveZone(s,t.p,'mana')?own.mana.filter(x=>!x.faceDown&&card(x).type==='aura'&&cost(card(x))<=t.max&&api.canEnter(s,t.p,card(x),{origin:'mana',execution:false,auraHost:t.host})):[];
+  if(rows.length)choice(s,t,'このクリーチャーに付けるマナのオーラを選ぶ',[...rows.map(x=>opt(card(x).name,{uid:x.uid,serial:x.zoneSerial||0},10+cost(card(x)),x.cardId)),skip()]);break;
+ }
  case'g34_AuraGr1353':api.grSummon(s,t.p);break;
  case'g34_AuraFromGrave1354':{
   const rows=graveAuras1354(s,t);
@@ -6527,6 +6537,16 @@ export function createSixPhotoRules(api){
   const host=x&&api.auraTargets1352(s,t.p).find(y=>y.uid===v&&y.uid!==x.auraTo1352.uid);
   if(host)api.attachAura1352(s,t.p,x,host,'battle');
   break;
+ }
+ case'g34_HandAura1437':{
+  const x=v&&own.hand.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial&&card(x).g1437HandAttach);
+  const host=own.battle.find(x=>!x.sealed&&api.isCreature(s,x)&&api.allLayers(x).some(y=>y.uid===t.host.uid&&(y.incarnation||0)===t.host.incarnation));
+  if(x&&host){remove(own.hand,x.uid);clear(x,'battle');api.attachAura1352(s,t.p,x,host,'hand');}break;
+ }
+ case'g34_ManaAura1437':{
+  const x=v&&own.mana.find(x=>x.uid===v.uid&&(x.zoneSerial||0)===v.serial&&!x.faceDown&&card(x).type==='aura'&&cost(card(x))<=t.max);
+  const host=api.auraHost1352(s,t.p,t.host);
+  if(x&&host&&api.canMoveZone(s,t.p,'mana')&&api.canEnter(s,t.p,card(x),{origin:'mana',execution:false,auraHost:t.host})){remove(own.mana,x.uid);clear(x,'battle');api.attachAura1352(s,t.p,x,host,'mana');}break;
  }
  case'g34_AuraFromGrave1354':{
   const aura=v&&graveAuras1354(s,t).find(x=>x.uid===v.uid&&(x.zoneSerial||0)===v.serial);

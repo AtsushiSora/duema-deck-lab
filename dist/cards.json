@@ -258373,15 +258373,145 @@
       },
       "supportBatch": "phase-1436",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-102",
+      "name": "αχ アバハッパ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 3,
+      "power": 0,
+      "race": "グランセクト/デリートロン",
+      "text": "オーラが２枚以上付いた自分のGRクリーチャーが攻撃する時、これを自分の手札からそのクリーチャーに付けてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-102",
+      "limit": 4,
+      "auraPower": 2000,
+      "g1437HandAttach": true,
+      "supportBatch": "phase-1437",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-031",
+      "name": "ωχ ニランギドラ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 6,
+      "power": 0,
+      "race": "グランセクト/デリートロン",
+      "text": "オーラが２枚以上付いた自分のGRクリーチャーが攻撃する時、これを自分の手札からそのクリーチャーに付けてもよい。\nこれをクリーチャーに付けた時、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-031",
+      "limit": 4,
+      "auraPower": 2000,
+      "g1437HandAttach": true,
+      "g1421AuraAttach": [
+        {
+          "op": "Target",
+          "to": "mana"
+        }
+      ],
+      "supportBatch": "phase-1437",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-059",
+      "name": "φχ スピルバグス",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 6,
+      "power": 0,
+      "race": "グランセクト/デリートロン",
+      "text": "オーラが２枚以上付いた自分のGRクリーチャーが攻撃する時、これを自分の手札からそのクリーチャーに付けてもよい。\nこれを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-059",
+      "limit": 4,
+      "auraPower": 6000,
+      "g1437HandAttach": true,
+      "g1352Powered": true,
+      "supportBatch": "phase-1437",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-010",
+      "name": "ΓΛΧ ヴィトラガッタ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 7,
+      "power": 0,
+      "race": "グランセクト/デリートロン",
+      "text": "オーラが２枚以上付いた自分のGRクリーチャーが攻撃する時、これを自分の手札からそのクリーチャーに付けてもよい。\nこれを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこれを付けたクリーチャーの攻撃の終わりに、相手のシールドが１つもなければ、相手のクリーチャーをすべて持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-010",
+      "limit": 4,
+      "auraPower": 6000,
+      "g1437HandAttach": true,
+      "g1352Powered": true,
+      "g1437HostAttackEnd": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g465OpponentShieldsMax": 0
+          },
+          "defs": [
+            {
+              "op": "Sweep",
+              "to": "mana",
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1437",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-061",
+      "name": "τξ タウテムン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 5,
+      "power": 0,
+      "race": "グランセクト/デリートロン",
+      "text": "これをクリーチャーに付けた時、自分のマナゾーンにあるコスト５以下のオーラを１枚選び、そのクリーチャーに付けてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-061",
+      "limit": 4,
+      "auraPower": 2000,
+      "g1421AuraAttach": [
+        {
+          "op": "ManaAura1437",
+          "max": 5
+        }
+      ],
+      "supportBatch": "phase-1437",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1436,
+    "phase": 1437,
     "checkedAt": "2026-11-20",
-    "baseCount": 8339,
+    "baseCount": 8344,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8344,
+    "totalCount": 8349,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -282264,6 +282394,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8339,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "8500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1436,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8339,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8344,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
