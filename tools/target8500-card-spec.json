@@ -1414,5 +1414,184 @@
         }
       ]
     }
+  },
+  "dmsd10-005": {
+    "phase": 1389,
+    "faces": [
+      {
+        "name": "審絆 パプルガン",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "シンパシー：クリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+        "race": "メタリカ/ワンダフォース",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g211Sympathy": {
+        "amount": 1,
+        "filter": {
+          "creature": true
+        }
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ]
+    }
+  },
+  "dmex08-001": {
+    "phase": 1389,
+    "faces": [
+      {
+        "name": "最騒音奏 プーーーンギ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "ブロッカーブロッカー\nW・ブレイカー\n相手の呪文を唱えるコストを４多くする。\n相手が呪文を唱えた時、GR召喚する。",
+        "race": "メタリカ",
+        "powerText": "10000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g222SpellTax": {
+        "opponent": true,
+        "amount": 4
+      },
+      "g204SpellWatch": {
+        "who": "opponent",
+        "defs": [
+          {
+            "op": "AuraGr1353"
+          }
+        ]
+      }
+    }
+  },
+  "dmrp09-034": {
+    "phase": 1389,
+    "faces": [
+      {
+        "name": "音奏 シャンヘ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがタップした時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+        "race": "メタリカ/ワンダフォース",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g188Tapped": [
+        {
+          "op": "AuraGr1353"
+        }
+      ]
+    }
+  },
+  "dmsd08-009": {
+    "phase": 1389,
+    "faces": [
+      {
+        "name": "行燈どろん",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを、パワーの合計が6000以下になるよう好きな数選び、破壊する。\nGR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": "all",
+          "optional": true,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g506PowerBudget": 6000,
+          "title": "合計パワー6000以下になるよう好きな数選ぶ"
+        },
+        {
+          "op": "AuraGr1353"
+        }
+      ]
+    }
+  },
+  "dmbd11-d01": {
+    "phase": 1389,
+    "faces": [
+      {
+        "name": "無限剣 リオンザッシュ",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。\nこのクリーチャーが攻撃する時、このターン、自分のクリーチャー１体に「スピードアタッカー」を与える。",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g301Grant": true,
+          "grant": {
+            "speedAttacker": true
+          },
+          "title": "このターン、スピードアタッカーを与える自分のクリーチャーを1体選ぶ"
+        }
+      ]
+    }
   }
 }
