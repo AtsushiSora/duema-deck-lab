@@ -1,0 +1,661 @@
+{
+  "phase": 1372,
+  "checkedAt": "2026-11-20",
+  "baseline": "78448df4",
+  "baseCount": 8072,
+  "description": "ユーザー指定の5種類。未対応2種類を追加し、既存3種類は同じIDのまま再検証する。件数目的の通常登録は停止継続。",
+  "requested": [
+    {
+      "id": "dm26rp2-011",
+      "name": "武将利と威嚇命の決断",
+      "action": "add"
+    },
+    {
+      "id": "dm24ex1-058",
+      "name": "冥土人形ロッカ・マグナム",
+      "action": "add"
+    },
+    {
+      "id": "dm22ex1-061",
+      "name": "暴発秘宝ベンゾ / 星龍の暴発",
+      "action": "verify-existing"
+    },
+    {
+      "id": "dm22ex2-S15",
+      "name": "不敬合成王 ロマティックダム・アルキング",
+      "action": "verify-existing"
+    },
+    {
+      "id": "dmrp20-009",
+      "name": "覚醒連結 XXDDZ",
+      "action": "verify-existing"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "limits": {
+      "dm26rp2-011": 4,
+      "dm24ex1-058": 4
+    },
+    "result": "指定5種類は制限一覧に掲載なし。各4枚。"
+  },
+  "cards": [
+    {
+      "id": "dm26rp2-011",
+      "name": "武将利と威嚇命の決断",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-011",
+      "faces": [
+        {
+          "name": "武将利と威嚇命の決断",
+          "typeText": "呪文",
+          "civilizationText": "水/火/自然",
+          "civilizations": [
+            "水",
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "アタック・チャンス：水、火、または自然の、パワー8000以上のクリーチャー（自分の指定のクリーチャーが攻撃する時、このカードをコストを支払わずに実行してもよい）\n次の中から２回選ぶ。同じものを選んでもよい。\n▶数字を１つ選ぶ。次の自分のターンのはじめまで、相手はその数字と同じコストの呪文を唱えられない。\n▶相手のパワー8000以下のクリーチャーを１体選び、破壊する。\n▶自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを２倍にし、「パワード・ブレイカー」を与える。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "status": "complete",
+      "parserVersion": 2,
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-011.jpg",
+      "verification": {
+        "sha256": "8336793109487f6481f23730d6bf2116000eeac39295eff5199b53f3291a8fa8",
+        "imageSha256": "b254f32b1973b3f585820728f22bdf004af8f6a8d1df541859d524d8c0e7eb61",
+        "manaValue": 1,
+        "facesMatched": true
+      },
+      "sameNameProducts": [
+        "DMPランキング",
+        "DM26-RP2 逆札篇 第2弾 燃えろ禁断！逆転のドギラゴン革命!!"
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g417Chance": {
+          "minPower": 8000,
+          "any": [
+            {
+              "color": "水"
+            },
+            {
+              "color": "火"
+            },
+            {
+              "color": "自然"
+            }
+          ]
+        },
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "g1045Preselect": 2,
+            "modes": [
+              {
+                "label": "数字を宣言し同コストの呪文を禁止する",
+                "defs": [
+                  {
+                    "op": "g9Number",
+                    "family": "perfectVictory1372"
+                  }
+                ]
+              },
+              {
+                "label": "パワー8000以下の相手クリーチャーを破壊する",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 8000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "自分のクリーチャーのパワーを2倍にしパワード・ブレイカーを与える",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "owner": "self",
+                    "filter": {
+                      "creature": true
+                    },
+                    "powerMultiplier": 2,
+                    "grant": {
+                      "poweredBreaker": true,
+                      "g1116PoweredChoice": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "dm24ex1-058",
+      "name": "冥土人形ロッカ・マグナム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-058",
+      "faces": [
+        {
+          "name": "冥土人形ロッカ・マグナム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n相手のターン中に、相手のマナゾーンのカードをタップせずに、相手のエレメントが出た時または相手が呪文を唱えた時、相手は自身のエレメントを１つ選び、破壊する。",
+          "race": "デスパペット",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "status": "complete",
+      "parserVersion": 2,
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex1-058.jpg",
+      "verification": {
+        "sha256": "7d35f4976095297c3762afccc3d23e317e449229369b4633fc09d3fcef763274",
+        "imageSha256": "ac9dfde465f6704f18586eca27294aa243c4d3cf4e4be9928bd63e7e91025cbb",
+        "manaValue": 1,
+        "facesMatched": true
+      },
+      "sameNameProducts": [
+        "DMPランキング",
+        "DM24-EX1 超感謝祭 ファンタジーBEST"
+      ],
+      "spec": {
+        "gStrike": true,
+        "g1372Rokka": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm26rp2-SEC015",
+      "name": "武将利と威嚇命の決断",
+      "faces": [
+        {
+          "name": "武将利と威嚇命の決断",
+          "typeText": "呪文",
+          "civilizationText": "水/火/自然",
+          "civilizations": [
+            "水",
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "アタック・チャンス：水、火、または自然の、パワー8000以上のクリーチャー\n次の中から２回選ぶ。同じものを選んでもよい。\n▶数字を１つ選ぶ。次の自分のターンのはじめまで、相手はその数字と同じコストの呪文を唱えられない。\n▶相手のパワー8000以下のクリーチャーを１体選び、破壊する。\n▶自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを２倍にし、「パワード・ブレイカー」を与える。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "status": "complete",
+      "parserVersion": 2,
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-SEC015.jpg",
+      "verification": {
+        "sha256": "8304aa619a30c54a8ada77df051c4b1a13f55af9d494d87ccb85f543bd12f467",
+        "imageSha256": "b8ea0d4dcedce7bc14c9a44c8678d73956513409b776a3062f42f744ffb95475",
+        "manaValue": 1,
+        "facesMatched": true,
+        "result": "公式の通常版と秘版を照合。秘版はアタック・チャンスの注釈のみ省略。能力全体・基本情報は一致。"
+      },
+      "sameNameProducts": [
+        "DMPランキング",
+        "DM26-RP2 逆札篇 第2弾 燃えろ禁断！逆転のドギラゴン革命!!"
+      ],
+      "canonicalId": "dm26rp2-011",
+      "spec": {
+        "effect": "sixPhoto",
+        "g417Chance": {
+          "minPower": 8000,
+          "any": [
+            {
+              "color": "水"
+            },
+            {
+              "color": "火"
+            },
+            {
+              "color": "自然"
+            }
+          ]
+        },
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "g1045Preselect": 2,
+            "modes": [
+              {
+                "label": "数字を宣言し同コストの呪文を禁止する",
+                "defs": [
+                  {
+                    "op": "g9Number",
+                    "family": "perfectVictory1372"
+                  }
+                ]
+              },
+              {
+                "label": "パワー8000以下の相手クリーチャーを破壊する",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 8000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "自分のクリーチャーのパワーを2倍にしパワード・ブレイカーを与える",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "owner": "self",
+                    "filter": {
+                      "creature": true
+                    },
+                    "powerMultiplier": 2,
+                    "grant": {
+                      "poweredBreaker": true,
+                      "g1116PoweredChoice": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "existingRechecks": [
+    {
+      "id": "dm22ex1-061",
+      "name": "暴発秘宝ベンゾ / 星龍の暴発",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-061",
+      "faces": [
+        {
+          "name": "暴発秘宝ベンゾ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、自分のシールドを１つブレイクする。",
+          "race": "パンドラボックス",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "星龍の暴発",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\n次の自分のターンのはじめまで、自分の手札に加えるシールドカードすべてに「S・トリガー」を与える。このターンが自分のターンなら、クリーチャー側を出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "status": "complete",
+      "parserVersion": 2,
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-061a.jpg",
+      "verification": {
+        "sha256": "92582ff248b59dffaa27e0490eeecf0672f61cc784b4752b7823bfcd83147422",
+        "imageSha256": "d705182c6027c7ad3d235e26e3bf9dfc6c7e531181c1f72066ab53b49964ab5d",
+        "manaValue": 1,
+        "facesMatched": true
+      },
+      "sameNameProducts": [
+        "DMPランキング",
+        "DM26-RP1 逆札篇 第1弾 逆転神VS切札竜",
+        "DM24-EX1 超感謝祭 ファンタジーBEST",
+        "DM22-EX1 黄金戦略!!デュエキングMAX 2022"
+      ],
+      "previousVerification": {
+        "manifest": "tools/support-phase-1339.json",
+        "printIds": [
+          "dm22ex1-061",
+          "promoy22-048",
+          "dm26rp1-T003",
+          "dm24ex1-047"
+        ],
+        "regressionResult": "関連テストで既存の全能力・公式裁定・再録ID解決を再確認。定義変更なし。"
+      }
+    },
+    {
+      "id": "dm22ex2-S15",
+      "name": "不敬合成王 ロマティックダム・アルキング",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-S15",
+      "faces": [
+        {
+          "name": "不敬合成王 ロマティックダム・アルキング",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光/水/闇/火/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "闇",
+            "火",
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "進化GV・Ω：自分の墓地、マナゾーン、バトルゾーンからクリーチャーを１体ずつ選び、このクリーチャーをその上に重ねつつ出す。\nエクストラEXライフ（このクリーチャーを出す時、自分の山札の上から２枚をシールド化する。このクリーチャーが離れる時、かわりにそのシールドのうち１つを墓地に置く）\nワールド・ブレイカー\n「EXライフ」シールドが自分のシールドゾーンを離れた時、このクリーチャーの下にあるカードを１枚、墓地に置く。それが進化ではないクリーチャーなら、自分の墓地から出す。\n自分のシールドゾーンにあるディスペクターすべてに「G・ストライク」を与える。",
+          "race": "ニュー・ワールド・ドラゴン/ディスペクター",
+          "powerText": "25000",
+          "missingFields": []
+        }
+      ],
+      "status": "complete",
+      "parserVersion": 2,
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex2-S15.jpg",
+      "verification": {
+        "sha256": "e27346705511292c6cc2c74a6353e169d5f6ff910b0022e7609902d043cf4922",
+        "imageSha256": "7a85143ed47501e76fd416d1e93cb316708bc9538be9559bd237001fbd7ff322",
+        "manaValue": 0,
+        "facesMatched": true
+      },
+      "sameNameProducts": [
+        "DMPランキング",
+        "DM26-EX2 悪感謝祭 カリスマBEST",
+        "DM22-EX2 ヒーローズ・ダークサイド・パック ～闇のキリフダたち～"
+      ],
+      "previousVerification": {
+        "manifest": "tools/support-phase-1336.json",
+        "printIds": [
+          "dm22ex2-S15",
+          "dm26ex2-MC009",
+          "dm22ex2-8A",
+          "dm22ex2-8B"
+        ],
+        "regressionResult": "関連テストで既存の全能力・公式裁定・再録ID解決を再確認。定義変更なし。"
+      }
+    },
+    {
+      "id": "dmrp20-009",
+      "name": "覚醒連結 XXDDZ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-009",
+      "faces": [
+        {
+          "name": "覚醒連結 XXDDZ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇/火",
+          "civilizations": [
+            "光",
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nW・ブレイカー\n自分のクリーチャーすべてに「スピードアタッカー」と「スレイヤー」を与える。\nこのクリーチャーが攻撃する時、このクリーチャーの「EXライフ」シールドを墓地に置いてもよい。そうしたら、次の自分のターンのはじめまで、相手は呪文を唱えられない。",
+          "race": "ディスペクター/アーマード・ドラゴン/ワールド・コマンド",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "status": "complete",
+      "parserVersion": 2,
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-009.jpg",
+      "verification": {
+        "sha256": "c9ffd9bd2da3e2b1ae6d7403da4017ebbb8546264e991d1e79b24c596891a2a6",
+        "imageSha256": "8307bdafe865d5aa669cbd7d525f8c149eb7726d312ba7a128127991aebb2f5e",
+        "manaValue": 1,
+        "facesMatched": true
+      },
+      "sameNameProducts": [
+        "DMPランキング",
+        "DM26-RP1 逆札篇 第1弾 逆転神VS切札竜",
+        "DM23-BD1 レジェンドスーパーデッキ 禁王創来",
+        "DM22-BD3 開発部セレクションデッキ 「7軸ガチロボ」",
+        "DM22-EX1 黄金戦略!!デュエキングMAX 2022",
+        "DMRP-20 王来篇拡張パック第4弾 終末王龍大戦"
+      ],
+      "previousVerification": {
+        "manifest": "tools/support-phase-1267.json",
+        "printIds": [
+          "dmrp20-009",
+          "dm22ex1-041",
+          "dm22bd3-010",
+          "dm23bd1-SE009",
+          "dm26rp1-TR009"
+        ],
+        "regressionResult": "関連テストで既存の全能力・公式裁定・再録ID解決を再確認。定義変更なし。"
+      }
+    }
+  ],
+  "rules": [
+    {
+      "url": "https://dm.takaratomy.co.jp/rule/qa/48933/",
+      "result": "複数のアタック・チャンスを宣言でき、実行は順番に行う。1枚目で一音の妖精を破壊すれば2枚目も実行できる。",
+      "sha256": "ec2c7017d2eff93b8f05f3a274c1e45a30cd3af111b1167e5f40f09e6ead874f",
+      "evidence": "tmp/duema-phase-1372/extra-0.html"
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/rule/qa/45224/",
+      "result": "相手の効果で自身のエレメントを選ぶ際も、相手に選ばれない効果は適用する。",
+      "sha256": "d357920e693375d76e7f19f1711a365038e7662acbe1f3581261d66a93778214",
+      "evidence": "tmp/duema-phase-1372/extra-1.html"
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "scope": "ユーザー指定5種類の新規2種類・既存3種類と関連回帰。全体テスト完了を意味しない。",
+    "engineVersion": "0.602.0",
+    "aiVersion": "2.3.418",
+    "supported": 8074,
+    "pending": 3751,
+    "duplicates": 0,
+    "results": {
+      "focused": {
+        "name": "focused-complete",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1372-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.342,
+        "log": "tmp/duema-phase-1372/focused-complete.log",
+        "passed": 22,
+        "failed": 0,
+        "skipped": 0
+      },
+      "related": {
+        "name": "related",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1267-effects.test.mjs",
+          "tests/standard1336-effects.test.mjs",
+          "tests/standard1339-effects.test.mjs",
+          "tests/standard1087-effects.test.mjs",
+          "tests/standard419-effects.test.mjs",
+          "tests/standard1228-effects.test.mjs",
+          "tests/standard1352-effects.test.mjs",
+          "tests/standard1369-effects.test.mjs",
+          "tests/card-reprint-resolution.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 26.129,
+        "log": "tmp/duema-phase-1372/related.log",
+        "passed": 141,
+        "failed": 0,
+        "skipped": 0
+      },
+      "requestedGames": {
+        "name": "requested-games-final",
+        "command": [
+          "node",
+          "--test",
+          "tests/requested1372-games.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 7.974,
+        "log": "tmp/duema-phase-1372/requested-games-final.log",
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      "online": {
+        "name": "online-short",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-runtime.test.mjs",
+          "tests/online-app.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/online-ui.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.127,
+        "log": "tmp/duema-phase-1372/online-short.log",
+        "passed": 30,
+        "failed": 0,
+        "skipped": 0
+      },
+      "onlineServer": {
+        "name": "online-server-short",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^(room storage|creating, joining|self-play|a waiting invitation|two accounts racing|the server validates|a repeated move|concurrent actions|resignation works|HTTP middleware|Firestore transport|HTTP server rejects|Advance rooms|Advance persists|Advance projects|historical original)",
+          "tests/online-server.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.7,
+        "log": "tmp/duema-phase-1372/online-server-short.log",
+        "passed": 17,
+        "failed": 0,
+        "skipped": 0
+      },
+      "check": {
+        "name": "check-complete",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.033,
+        "log": "tmp/duema-phase-1372/check-complete.log"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 14.926,
+        "log": "tmp/duema-phase-1372/audit.log"
+      }
+    },
+    "totalPassed": 212,
+    "sourceSha256": {
+      "dist/cards.json": "cb912df5a49b69377f03aeb12b907072bb1585f1a85a2cc92f1984eed7690ae8",
+      "dist/catalogue.json": "b9fe3598d9791320474ebbcec1d9b86b71d318e5a1bf9e6c7ee017602947db52",
+      "dist/engine.js": "c906e62cbe6e63838ff76f9ce3b9599ece29c246c0a048084de6e3b3b92fb45f",
+      "dist/extended-rules.js": "c13efab0dbf78548b1a5adaddbc592be6e68f3b4fa24987bb17fa5e0d764e02a",
+      "dist/six-photo-rules.js": "b82309a62439b74323a8fbb131969ef86ec4e1295e4700e1ea84b3b8c0a9d05d",
+      "dist/magic-rules.js": "1ebc03016943259eeea909cc6dfbde0e850c6e37906fb11b5596e2ebd7d3460d",
+      "dist/online-compatibility.js": "861bf1c80c5194432bc40c755ebbb81b52169ff7eb385a62d321d8946c9a2c16",
+      "dist/release.json": "4695724e17674700bbfa72730a7ee2d966a76fc47cfb51fd6ad02cd0970f11b9",
+      "dist/card-images.js": "2730f6f195f412debba3c39f67d0404893f0bf27c682d3ed5410bdd8c92a3852",
+      "tools/standard-card-spec.mjs": "97960db7451227e8df13d3af7e81f0cb547630ca64646c964bf8d2ee51641756",
+      "tools/requested-card-spec-1372.mjs": "941ab4c31aba9dbf4dab4eb1a831dc3edc37ddd2ed1db6226dd699dc430d11bd",
+      "tools/image-reference-prints.json": "d01dfac4f1d3c668a4adf437c633d42904585c0575826de88b8793e9cae1c408",
+      "tests/standard1372-effects.test.mjs": "8b27b8ce9b80b1de492848aad6c6eec7330a7ec872300dbd2114d19153563336",
+      "tests/requested1372-games.test.mjs": "b2b5892f5817ea78c2b10c50f5aa88b9538abb2476e71cd3e9ec290601aebf20"
+    },
+    "compatibility": {
+      "existingDefinitionsCompared": 8072,
+      "result": "すべて深い比較で一致。既存ID・保存形式・対戦履歴は変更しない。公式カタログは秘版1IDの別名解決のみ追加。",
+      "catalogueAlias": {
+        "id": "dm26rp2-SEC015",
+        "canonicalId": "dm26rp2-011"
+      }
+    },
+    "notRunOrIncomplete": {
+      "wholeNpmTest": "中断・合否未確認を維持。今回も実行しない。",
+      "onlineBroad": {
+        "status": "interrupted-not-aggregated",
+        "runs": [
+          {
+            "name": "online",
+            "command": [
+              "node",
+              "--test",
+              "tests/online-runtime.test.mjs",
+              "tests/online-app.test.mjs",
+              "tests/online-client.test.mjs",
+              "tests/online-server.test.mjs",
+              "tests/online-ui.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 82.798,
+            "log": "tmp/duema-phase-1372/online.log"
+          },
+          {
+            "name": "online-final",
+            "command": [
+              "node",
+              "--test",
+              "tests/online-runtime.test.mjs",
+              "tests/online-app.test.mjs",
+              "tests/online-client.test.mjs",
+              "tests/online-server.test.mjs",
+              "tests/online-ui.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 76.161,
+            "log": "tmp/duema-phase-1372/online-final.log"
+          }
+        ],
+        "reason": "初回は互換性生成情報が古いため失敗。生成後の一括には既存の長時間デッキ検証まで含まれていたため停止。必要な短い30+17件を分離して全件通過。長時間項目の完了には数えない。"
+      },
+      "no13": "phase1370のengine0.601.0の固定ソースで合格済み。今回のengine0.602.0で長時間試験を再実行したことにはしない。公開候補の全対象集約は引き続き未完了。",
+      "deferredOfficialEvidence": [
+        "dm25ex2-082の包含裁定",
+        "ドラン・ゴルギーニ金箔2S/2の公式照合"
+      ]
+    },
+    "developmentCorrections": [
+      "初期固有テストの基本カードのパワー・コスト・アクション名とGRの前提を修正。最終22件が合格。",
+      "releaseのengineVersionとオンライン互換性ハッシュを再生成し、check・関連オンライン検証が合格。"
+    ],
+    "publication": "push・公開・デプロイなし。Netlify更新なし。"
+  }
+}

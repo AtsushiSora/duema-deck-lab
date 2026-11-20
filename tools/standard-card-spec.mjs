@@ -1,3 +1,4 @@
+import {requestedCardSpec1372} from './requested-card-spec-1372.mjs';
 import {borrowedAttackSpec1370} from './borrowed-attack-spec.mjs';
 import {selectionSpec1369} from './selection-spec.mjs';
 import {duelistSpec1367} from './duelist-spec.mjs';
@@ -2483,6 +2484,7 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  const f=d?.faces?.[0];
+ if(phase>=1372){const spec=requestedCardSpec1372(d);if(spec)return spec;}
  if(phase>=1370){const spec=borrowedAttackSpec1370(d);if(spec)return spec;}
  if(phase>=1369){const spec=selectionSpec1369(d);if(spec)return spec;}
  if(phase>=1367){const spec=duelistSpec1367(d);if(spec)return spec;}

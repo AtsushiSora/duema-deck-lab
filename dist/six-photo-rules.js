@@ -5823,7 +5823,7 @@ export function createSixPhotoRules(api){
     const score=moveForRaid?(own.deck.length>1&&!api.deckLocked(s,t.p)?16-cost(c)+(y.tapped?3:0):-1):y.tapped?5:10;
     return opt(c.name,y.uid,score,y.cardId);
    })
-   :targetOptions(s,t.p,rows);
+   :targetOptions(s,t.g1372OpponentSacrifice?t.controller:t.p,rows);
   if(!options.length&&t.g1163SecondDestroy){secondDestroy1163(s,t);break;}
   if(!options.length&&t.g1040OtherPower){otherTargetPower1040(s,t);break;}
   if(!options.length&&t.g1041AfterNoTarget){start(s,t,t.after);break;}
@@ -8427,6 +8427,7 @@ export function createSixPhotoRules(api){
   });
  },
  allowedCast(s,p,c){
+  if(c.type==='spell'&&(s.extLimits||[]).some(l=>l.kind==='g1372ExactSpellLock'&&l.player===p&&cost(c)===(l.cost==='∞'?Infinity:l.cost)))return false;
   if(c.type==='field'&&c.d2Field&&d2Locked1188(s,p))return false;
   const opponent=s.players[1-p];
   const handSize=opponent.hand?.length??opponent.handCount??0;
@@ -8762,6 +8763,14 @@ export function createSixPhotoRules(api){
     queue(s,1-p,x,[{op:'OpponentManaLoss478'}]);
   }
  },
+ rokka1372(s,executor,paidMana=false){
+  if(paidMana||s.active!==executor)return;
+  const controller=1-executor;
+  for(const x of creatures(s,controller))if(!x.sealed&&!x.faceDown&&effective(x,s).g1372Rokka)
+   api.enqueue(s,controller,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',
+    task:task('g34_Target',executor,x.cardId,{owner:'self',element:true,to:'grave',controller,g1372OpponentSacrifice:true,
+     title:'ロッカ・マグナム：破壊する自分のエレメントを1つ選ぶ'})});
+ },
  magnum1087(s,executor){
   for(const p of [s.active,1-s.active])for(const x of s.players[p].battle){
    if(card(x).g1087Magnum&&api.isCreature(s,x)&&!api.ignored(s,x))
@@ -8788,6 +8797,7 @@ export function createSixPhotoRules(api){
  twinFinish1088(s,p){return creatures(s,p).some(x=>card(x).g1088Twin&&!api.ignored(s,x));},
  observedEntry(s,p,y,options){
   const c=card(y),eventType=c.type;
+  if(!y.sealed&&!y.faceDown&&['creature','seed','gear','field','duelist'].includes(eventType))hooks.rokka1372(s,p,options.paidMana);
   if(options.execution===false&&options.origin==='hand'&&(y.cardOwner??p)===p&&
      !y.sealed&&!y.faceDown&&api.isCreature(s,y)){
    for(const watcher of creatures(s,1-p)){

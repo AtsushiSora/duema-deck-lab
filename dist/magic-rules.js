@@ -24,6 +24,11 @@ export function createMagicRules(api){
  }return true;}
  function chosen(s,t,value){if(!t.op.startsWith('g9'))return false;const own=s.players[t.p];switch(t.op){
   case'g9Number':{
+   if(t.family==='perfectVictory1372'){
+    api.lock(s,t.p,{kind:'g1372ExactSpellLock',player:1-t.p,cost:value});
+    api.log(s,t.p,'declare',String(value)+'を宣言',{cardId:t.source});
+    break;
+   }
    if(t.family==='searchCost1134'){
     api.log(s,t.p,'declare',String(value)+'を宣言',{cardId:t.source});
     put(s,task('g34_SearchCost1134',t.p,t.source,{number:value}));

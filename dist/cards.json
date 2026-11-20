@@ -249302,15 +249302,125 @@
       ],
       "supportBatch": "phase-1370",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-011",
+      "name": "武将利と威嚇命の決断",
+      "civ": "水/火/自然",
+      "civilizations": [
+        "水",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "アタック・チャンス：水、火、または自然の、パワー8000以上のクリーチャー（自分の指定のクリーチャーが攻撃する時、このカードをコストを支払わずに実行してもよい）\n次の中から２回選ぶ。同じものを選んでもよい。\n▶数字を１つ選ぶ。次の自分のターンのはじめまで、相手はその数字と同じコストの呪文を唱えられない。\n▶相手のパワー8000以下のクリーチャーを１体選び、破壊する。\n▶自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを２倍にし、「パワード・ブレイカー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-011",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g417Chance": {
+        "minPower": 8000,
+        "any": [
+          {
+            "color": "水"
+          },
+          {
+            "color": "火"
+          },
+          {
+            "color": "自然"
+          }
+        ]
+      },
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "g1045Preselect": 2,
+          "modes": [
+            {
+              "label": "数字を宣言し同コストの呪文を禁止する",
+              "defs": [
+                {
+                  "op": "g9Number",
+                  "family": "perfectVictory1372"
+                }
+              ]
+            },
+            {
+              "label": "パワー8000以下の相手クリーチャーを破壊する",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "maxPower": 8000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            },
+            {
+              "label": "自分のクリーチャーのパワーを2倍にしパワード・ブレイカーを与える",
+              "defs": [
+                {
+                  "op": "Target",
+                  "owner": "self",
+                  "filter": {
+                    "creature": true
+                  },
+                  "powerMultiplier": 2,
+                  "grant": {
+                    "poweredBreaker": true,
+                    "g1116PoweredChoice": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1372",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex1-058",
+      "name": "冥土人形ロッカ・マグナム",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "デスパペット",
+      "text": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n相手のターン中に、相手のマナゾーンのカードをタップせずに、相手のエレメントが出た時または相手が呪文を唱えた時、相手は自身のエレメントを１つ選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-058",
+      "limit": 4,
+      "gStrike": true,
+      "g1372Rokka": true,
+      "supportBatch": "phase-1372",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1370,
+    "phase": 1372,
     "checkedAt": "2026-11-20",
-    "baseCount": 8071,
-    "newEffectCards": 1,
+    "baseCount": 8072,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 8072,
+    "totalCount": 8074,
+    "ruleSource": [
+      "https://dm.takaratomy.co.jp/rule/qa/48933/",
+      "https://dm.takaratomy.co.jp/rule/qa/45224/"
+    ],
+    "next": [
+      "通常登録停止。指定カードの検証を終え、保留2件は再開指示まで維持する。"
+    ],
     "history": [
       {
         "phase": 1,
@@ -272371,6 +272481,14 @@
         "newEffectCards": 2,
         "newVanillaCards": 0,
         "totalCount": 8071
+      },
+      {
+        "phase": 1370,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8071,
+        "newEffectCards": 1,
+        "newVanillaCards": 0,
+        "totalCount": 8072
       }
     ]
   }

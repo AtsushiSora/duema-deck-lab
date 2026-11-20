@@ -13,8 +13,8 @@ import {createExtendedRules} from './extended-rules.js?v=0.721.2';
 import {createStrategicAI} from './strategic-ai.js?v=0.721.2';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.227';
-export const ENGINE_VERSION='0.601.0';
-export const AI_VERSION='2.3.417';
+export const ENGINE_VERSION='0.602.0';
+export const AI_VERSION='2.3.418';
 const EFFECTS=new Set(['champion','environment','recommended','sixPhoto','ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall','bounceBlockers','dragonRamp2','ramp2Return1','optionalRamp4Return2','purgeNonDragonMana','fightOptional','destroyWeakerLimitNextTurn','shieldTop1','deployMulticolor7','superheroSweep','destroyBattleCard3','destroyBattleCard2','jadowShield','vamBounce','goodEvil','aterModes','jaganRevive','reverseLock','urEvolve','muteLoot','tensaiLoot','graveRecycle','destroyMin','vtBounce','miradaCast','spellLock','miracleDraw','serpentModal','icicleModes','mirageModes','judgeDraw','maryRevive','darknessModes','fumiModes','brainSlash','charonReset','jennySacrifice','inspectDiscard','gospelRecover','dolsuzakuTurn','frozenCarnival','finalStop','oriotisJudge','nextSummonSpeed','tripleMode','sirenMana','courageMode','burningLoot','lastDragonFlame','destroy6000','masterGGGLoot','untapTwoMana','fairyDiscard6000','graveShuffle','permitManaSummon','wellkius','mikadoreo','sheva','rudolf','saiphogate','heavensGate','stargaze','bambooRamp','sharappu','fairyPower','takeback','hugePlan','shakoRecycle','naturalGo','herculesRecycle','jurassicHowl','corenReveal','plantRamp','sonicMana','jumboReveal','granRamp','kiyonagaReveal','gohaten','zenonRamp','wiseShutter','dokiBounce','minogamiRecover','hazardPact','fortress','casablancaBounce','sheketDraw','petrovaProtect','bojiMill','dranEntry','goldShield','c0braRevive','mechaDraw','ameliaShield','mechaMinus','goryuShield','magicNapo','magicSmallDestroy','magicIgnore','magicNumberLock','magicFire','magicKaraku','magicHime','magicBounce','magicPeecap','magicDraw','armoredBaku','armoredValkyria','armoredVal','armoredMonster','hunterMekraid','hunterBambi','hunterSweep4','hunterSweep2','hunterVictory','hunterMana','hunterDraw','zardCast','dogiRamp','dolfSweep','damdRemove','fiveModes','dragonSign','aquaReveal','bossDeploy','dedoAllocate','fireAllocate','fairyMiracle','babaBottom','cycleEntry','jaougaShields','katsuLook','reverseMinus','jaoumon','fortuneRamp','giantHeavy','giantLake','giantTouch','giantYuki','giantSpace','giantSineraria','giantFirefly','gachiRobo','gachiCambiare','gachiFight','gachiMystery','gachiNicol','gachiBigBang','gachiMagrul','gachiRice','gachiGuignol','samuraiBui','samuraiMusashi','samuraiMekraid','samuraiFlash','lionelPeace','lionelRune','lionelHeart','lionelSlotton','lionelAQ','lionelKorail','lionelGera','lionelSong','lionelStar','kenjiCrymax','kenjiDida','kenjiMill','kenjiPlan','kenjiHeart','travelJourney','travelAfro','travelKatsura','travelPrison','travelRevZero','travelG3','travelZero','travelHelt','travelOra','travelChicken','graveGT','graveObuza','graveKaibyaku','graveUra','graveAbaku','graveLoot','graveDoor','graveMinus4','maruruOrugate','maruruKiinary','maruruWatch','maruruBunker','maruruSky','girlsDaiou','girlsSavak','girlsZeos','girlsTry','girlsMega','girlsGyai','girlsArshu','girlsRupia','madoNothing','madoAirvo','madoBarred','madoGon','madoBlood','madoBock','madoCombat','madoDollar','madoDraw','madoShuno','madoGokusatsu','madoGyap','redBlack','redMax','redRoyal','redCircle','redClock','redGareck','abyssJaga','abyssSis','abyssMurder','abyssMakua','abyssMill','abyssMek','abyssSeal','abyssBella','hachiRedZ','hachiStorm','hachiFight','hachiForbidden','hachiShibire','hachiPower','hachiSSD','virideEver','golgyEntry','golgyKohaku','golgyBig','golgyShield','golgyHerc','golgyWest','golgyGin','golgyBlueprint','golgyJasmine','bandeRadio','bandePizza','bandeDecision','bandeDagra','bandeBalance','bandeSeal','bandeTaka','madoZadan','madoMaou','madoNameless','madoJaw','madoGride','madoFunz','madoVoga','madoLab','madoTin','bolBaro','bolBT','bolAgony','bolLoot','bolMol','bolLand','bolJura','bolDuel','bolBird','phoenixFel','phoenixGate','phoenixMetal','phoenixReverse','phoenixRecover','phoenixXeno','phoenixLoot','phoenixAbu','phoenixHeavy','phoenixOriginalMetal','phoenixMill','phoenixReload','phoenixOni','kenjiMysteryCube','kenjiCocoon','kenjiPanda','kenjiJaouga8','shieldDogi','shieldResolve','shieldBounce','shieldD4','shieldMirror','shieldMirrorSpell','shieldParfe','shieldDeka','shieldFaceTop']);
 let catalogue=new Map();
 const borrowedDefinition1370=new WeakMap();
@@ -3367,7 +3367,7 @@ function entryBreakShort770(s,p,c){
 function eligibleExtraEntry527(c,origin){
  return (c.g527ExtraEntry||[]).filter(a=>a.fromHand===undefined||origin!=null&&a.fromHand===(origin==='hand'));
 }
-function attachAura1352(s,p,aura,host,origin){
+function attachAura1352(s,p,aura,host,origin,options={}){
  const alreadyAttached=!!aura.auraTo1352;
  aura.auraTo1352={uid:host.uid,incarnation:host.incarnation||0};
  const c=card(aura);
@@ -3378,7 +3378,7 @@ function attachAura1352(s,p,aura,host,origin){
   s.players[p].battle.push(aura);
  }
  log(s,p,'entry',c.name+'を'+card(host).name+'に付ける',{cardId:c.id});
- if(!alreadyAttached)extra.entry(s,p,aura,{selfMuted:false,allEntryMuted:false,origin});
+ if(!alreadyAttached){extra.six.rokka1372(s,p,options.paidMana);extra.entry(s,p,aura,{selfMuted:false,allEntryMuted:false,origin});}
  if(c.g1362AuraBounce&&!abilitiesIgnored(s,aura))
   enqueueEffect(s,p,{uid:aura.uid,incarnation:aura.incarnation,source:c.id,effect:'extended',
    task:extra.task('g34_Target',p,c.id,{anyOwner:true,to:'hand',toOwnerHand:true,optional:true,
@@ -3411,7 +3411,7 @@ function finishAura1352(s){
  const own=s.players[a.player],host=own.battle.find(x=>x.uid===a.grUid&&!x.sealed&&!x.faceDown&&isCreature(s,x));
  if(!host&&(s.extTasks?.length||s.pendingEffects?.length))return;
  delete s.aura1352;
- if(host)attachAura1352(s,a.player,a.inst,host,a.origin);
+ if(host)attachAura1352(s,a.player,a.inst,host,a.origin,a);
  else own[a.origin].splice(a.originIndex??own[a.origin].length,0,a.inst);
 }
 function beginAura1352(s,p,inst,entryOptions){
@@ -3420,7 +3420,7 @@ function beginAura1352(s,p,inst,entryOptions){
   s.players[p][origin].splice(originIndex??s.players[p][origin].length,0,inst);
   return;
  }
- s.aura1352={player:p,inst,origin,originIndex};
+ s.aura1352={player:p,inst,origin,originIndex,...(entryOptions.paidMana?{paidMana:true}:{})};
  s.decision={type:'aura1352',player:p,title:'オーラを付ける方法を選ぶ',source:inst.cardId};
 }
 function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
@@ -3826,7 +3826,7 @@ function completeExecution(s,p,inst,c,{ruleOrigin,origin,free,freeReason,alterna
   extra.spellCast(s,p,c,inst,ruleOrigin,face,paidMana);
  }
  if(c.type==='castle'){inst.faceUp=true;s.players[p].shields.push(inst);extra.shieldAdded(s,p,inst);extra.six.shieldAdded918(s,p);}
- else if(c.type==='aura')beginAura1352(s,p,inst,{origin,auraOriginIndex});
+ else if(c.type==='aura')beginAura1352(s,p,inst,{origin,auraOriginIndex,paidMana});
  else if(['creature','seed','gear','field','duelist'].includes(c.type)){
   const altEnd=!free&&!!alternativeCost?.g1221AltEnd;
   if(altEnd)extra.six.scheduleAltEnd1221(s,p,c,inst);
@@ -5441,7 +5441,7 @@ function applyStepCore1363(s,action){
  if(a.kind==='linkDuelmate1367'){s.decision=null;linkStein1367(s,p,a.uids);}
  if(a.kind==='attachAura1352'){
   const pending=s.aura1352,host=ownCardForRow(s,{player:p,uid:a.uid});
-  s.decision=null;delete s.aura1352;attachAura1352(s,p,pending.inst,host,pending.origin);
+  s.decision=null;delete s.aura1352;attachAura1352(s,p,pending.inst,host,pending.origin,pending);
  }
  if(a.kind==='grAura1352'){
   s.decision=null;s.aura1352.grUid=s.players[p].gr[0].uid;grSummon(s,p);
