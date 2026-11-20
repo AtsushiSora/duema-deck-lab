@@ -12,7 +12,7 @@ import {createExtendedRules} from './extended-rules.js?v=0.721.2';
 import {createStrategicAI} from './strategic-ai.js?v=0.721.2';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.227';
-export const ENGINE_VERSION='0.595.0';
+export const ENGINE_VERSION='0.596.0';
 export const AI_VERSION='2.3.414';
 const EFFECTS=new Set(['champion','environment','recommended','sixPhoto','ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall','bounceBlockers','dragonRamp2','ramp2Return1','optionalRamp4Return2','purgeNonDragonMana','fightOptional','destroyWeakerLimitNextTurn','shieldTop1','deployMulticolor7','superheroSweep','destroyBattleCard3','destroyBattleCard2','jadowShield','vamBounce','goodEvil','aterModes','jaganRevive','reverseLock','urEvolve','muteLoot','tensaiLoot','graveRecycle','destroyMin','vtBounce','miradaCast','spellLock','miracleDraw','serpentModal','icicleModes','mirageModes','judgeDraw','maryRevive','darknessModes','fumiModes','brainSlash','charonReset','jennySacrifice','inspectDiscard','gospelRecover','dolsuzakuTurn','frozenCarnival','finalStop','oriotisJudge','nextSummonSpeed','tripleMode','sirenMana','courageMode','burningLoot','lastDragonFlame','destroy6000','masterGGGLoot','untapTwoMana','fairyDiscard6000','graveShuffle','permitManaSummon','wellkius','mikadoreo','sheva','rudolf','saiphogate','heavensGate','stargaze','bambooRamp','sharappu','fairyPower','takeback','hugePlan','shakoRecycle','naturalGo','herculesRecycle','jurassicHowl','corenReveal','plantRamp','sonicMana','jumboReveal','granRamp','kiyonagaReveal','gohaten','zenonRamp','wiseShutter','dokiBounce','minogamiRecover','hazardPact','fortress','casablancaBounce','sheketDraw','petrovaProtect','bojiMill','dranEntry','goldShield','c0braRevive','mechaDraw','ameliaShield','mechaMinus','goryuShield','magicNapo','magicSmallDestroy','magicIgnore','magicNumberLock','magicFire','magicKaraku','magicHime','magicBounce','magicPeecap','magicDraw','armoredBaku','armoredValkyria','armoredVal','armoredMonster','hunterMekraid','hunterBambi','hunterSweep4','hunterSweep2','hunterVictory','hunterMana','hunterDraw','zardCast','dogiRamp','dolfSweep','damdRemove','fiveModes','dragonSign','aquaReveal','bossDeploy','dedoAllocate','fireAllocate','fairyMiracle','babaBottom','cycleEntry','jaougaShields','katsuLook','reverseMinus','jaoumon','fortuneRamp','giantHeavy','giantLake','giantTouch','giantYuki','giantSpace','giantSineraria','giantFirefly','gachiRobo','gachiCambiare','gachiFight','gachiMystery','gachiNicol','gachiBigBang','gachiMagrul','gachiRice','gachiGuignol','samuraiBui','samuraiMusashi','samuraiMekraid','samuraiFlash','lionelPeace','lionelRune','lionelHeart','lionelSlotton','lionelAQ','lionelKorail','lionelGera','lionelSong','lionelStar','kenjiCrymax','kenjiDida','kenjiMill','kenjiPlan','kenjiHeart','travelJourney','travelAfro','travelKatsura','travelPrison','travelRevZero','travelG3','travelZero','travelHelt','travelOra','travelChicken','graveGT','graveObuza','graveKaibyaku','graveUra','graveAbaku','graveLoot','graveDoor','graveMinus4','maruruOrugate','maruruKiinary','maruruWatch','maruruBunker','maruruSky','girlsDaiou','girlsSavak','girlsZeos','girlsTry','girlsMega','girlsGyai','girlsArshu','girlsRupia','madoNothing','madoAirvo','madoBarred','madoGon','madoBlood','madoBock','madoCombat','madoDollar','madoDraw','madoShuno','madoGokusatsu','madoGyap','redBlack','redMax','redRoyal','redCircle','redClock','redGareck','abyssJaga','abyssSis','abyssMurder','abyssMakua','abyssMill','abyssMek','abyssSeal','abyssBella','hachiRedZ','hachiStorm','hachiFight','hachiForbidden','hachiShibire','hachiPower','hachiSSD','virideEver','golgyEntry','golgyKohaku','golgyBig','golgyShield','golgyHerc','golgyWest','golgyGin','golgyBlueprint','golgyJasmine','bandeRadio','bandePizza','bandeDecision','bandeDagra','bandeBalance','bandeSeal','bandeTaka','madoZadan','madoMaou','madoNameless','madoJaw','madoGride','madoFunz','madoVoga','madoLab','madoTin','bolBaro','bolBT','bolAgony','bolLoot','bolMol','bolLand','bolJura','bolDuel','bolBird','phoenixFel','phoenixGate','phoenixMetal','phoenixReverse','phoenixRecover','phoenixXeno','phoenixLoot','phoenixAbu','phoenixHeavy','phoenixOriginalMetal','phoenixMill','phoenixReload','phoenixOni','kenjiMysteryCube','kenjiCocoon','kenjiPanda','kenjiJaouga8','shieldDogi','shieldResolve','shieldBounce','shieldD4','shieldMirror','shieldMirrorSpell','shieldParfe','shieldDeka','shieldFaceTop']);
 let catalogue=new Map();
@@ -2906,14 +2906,23 @@ function doEffectCore(s,p,c,sourceUid=null,entry=null){
  const e=c.effect;if(!e)return;
  if(extra.effect(s,p,c,sourceUid,entry))return;
  if(e==='destroyWeakerLimitNextTurn'){
-  const source=s.players[p].battle.find(top=>layers(top).some(x=>x.uid===sourceUid&&(x.incarnation||0)===(entry?.incarnation||0))),max=source?power(source,source.uid===s.attack?.attacker,s):entry?.lastKnownPower??c.power;
+  const sourcePlayer=entry?.creatureOrigin??inheritedAbilityOrigin1362(s,c.id)??p;
+  const source=s.players[sourcePlayer].battle.find(top=>layers(top).some(x=>x.uid===sourceUid&&(x.incarnation||0)===(entry?.incarnation||0))),max=source?power(source,source.uid===s.attack?.attacker,s):entry?.lastKnownPower??c.power;
   const ts=s.players[1-p].battle.filter(x=>isCreature(s,x)&&extra.targetable(s,p,1-p,x)).filter(x=>power(x,x.uid===s.attack?.attacker,s)<max).map(x=>({player:1-p,uid:x.uid}));
   if(ts.length)s.decision={type:'effect',player:p,effect:e,source:c.id,targets:prioritizeGitaro1258(s,p,ts),limitAfter:true};else limitNextTurn(s,p,c);
   return;
  }
  if(e==='deployMulticolor7'){s.decision={type:'deploy',player:p,source:c.id};return;}
  if(e==='shieldTop1'){shieldTop(s,p,c);return;}
- if(e==='fightOptional'){const x=s.players[p].battle.find(x=>x.uid===sourceUid&&(entry?.incarnation===undefined||(x.incarnation||0)===entry.incarnation));if(x&&s.players[1-p].battle.length)s.decision={type:'fight',player:p,source:c.id,uid:sourceUid,sourceIncarnation:x.incarnation||0};return;}
+ if(e==='fightOptional'){
+  const sourcePlayer=entry?.creatureOrigin??inheritedAbilityOrigin1362(s,c.id)??p;
+  const x=s.players[sourcePlayer].battle.find(x=>x.uid===sourceUid&&(entry?.incarnation===undefined||(x.incarnation||0)===entry.incarnation));
+  // QA39777/40635: the source remains the fighter, and cannot battle itself.
+  if(x&&s.players[1-p].battle.some(y=>y.uid!==x.uid&&isCreature(s,y)))
+   s.decision={type:'fight',player:p,source:c.id,uid:sourceUid,sourceIncarnation:x.incarnation||0,
+    ...(sourcePlayer!==p?{sourcePlayer}:{})};
+  return;
+ }
  if(e==='dragonRamp2'&&deckLocked(s,p))return;
  if(e==='searchCreature'&&deckLocked(s,p))return;
  if(e==='dragonRamp2'){rampTapped(s,p,c,2,true);return;}
@@ -4889,7 +4898,7 @@ function legalActionsCore1363(s){
   if(d.type==='effectOrder')out=effectOptions(pendingBattleEffects1155(s).filter(e=>e.player===p),'orderEffect');
   if(d.type==='dragonTap'){out=opp.battle.filter(x=>isCreature(s,x)).map(x=>option('dragonTap',`${card(x).name}をタップ${x.tapped?'（タップ中）':''}`,{uid:x.uid,cardId:x.cardId}));out.push(option('skipDragonTap','今回はタップせず、次の登場時に使えるようにする'));}
   if(d.type==='trigger')out=[...(s.triggers.eligibleFaces?.[d.uid]||[0]).map(face=>option('useTrigger',`${playFaces(card(d.source))[face].name}を使う`,{uid:d.uid,cardId:d.source,...(card(d.source).spellFace?{face}:{})})),option('skipTrigger','使わず手札に加える')];
-  if(d.type==='fight'){out=own.battle.some(x=>x.uid===d.uid&&(d.sourceIncarnation===undefined||(x.incarnation||0)===d.sourceIncarnation))?opp.battle.filter(x=>isCreature(s,x)).map(x=>option('fight',`${card(x).name}とバトル（相手のパワー${power(x,x.uid===s.attack?.attacker,s)}）`,{uid:d.uid,target:x.uid,cardId:x.cardId})):[];out.push(option('skipFight','バトルさせない'));}
+  if(d.type==='fight'){out=s.players[d.sourcePlayer??p].battle.some(x=>x.uid===d.uid&&(d.sourceIncarnation===undefined||(x.incarnation||0)===d.sourceIncarnation))?opp.battle.filter(x=>x.uid!==d.uid&&isCreature(s,x)).map(x=>option('fight',`${card(x).name}とバトル（相手のパワー${power(x,x.uid===s.attack?.attacker,s)}）`,{uid:d.uid,target:x.uid,cardId:x.cardId,...(d.sourcePlayer!==undefined?{sourcePlayer:d.sourcePlayer}:{})})):[];out.push(option('skipFight','バトルさせない'));}
   if(d.type==='battleWinOrder')out=d.g1155After?
    s.battleResolution.late.flatMap((e,index)=>e.controller===p?[option('battleWinOrder',
     `${card(e.source).name}のバトルの後の能力を先に解決`,{cardId:e.source,winIndex:index})]:[]):
@@ -5270,7 +5279,7 @@ function applyStepCore1363(s,action){
  if(a.kind==='orderEntry'||a.kind==='orderEffect'){s.decision=null;const queue=a.kind==='orderEntry'?s.triggers.entries:s.pendingEffects,i=queue.findIndex(e=>e.effectId===a.effectId),[entry]=queue.splice(i,1);resolveEntry(s,entry);}
  if(a.kind==='dragonTap'){s.decision=null;tapCard(s,1-p,s.players[1-p].battle.find(x=>x.uid===a.uid),p);(s.once??={})[d.key]=s.turn;log(s,p,'dragonTap',`${card(d.source).name}：${card(a.cardId).name}をタップ（このターンの1回を使用）`,{cardId:d.source});}
  if(a.kind==='skipDragonTap'){s.decision=null;log(s,p,'skip',`${card(d.source).name}の任意タップを見送る（このターンは未使用）`,{cardId:d.source});}
- if(a.kind==='fight'){s.decision=null;const source=s.players[p].battle.find(x=>x.uid===a.uid),target=s.players[1-p].battle.find(x=>x.uid===a.target);if(source&&target){log(s,p,'fight',`${card(source).name}の効果で${card(target).name}とバトル`,{cardId:source.cardId});battle(s,p,source,1-p,target,s.attack?.attacker);}}
+ if(a.kind==='fight'){s.decision=null;const sourcePlayer=d.sourcePlayer??p,source=s.players[sourcePlayer].battle.find(x=>x.uid===a.uid),target=s.players[1-p].battle.find(x=>x.uid===a.target);if(source&&target&&source.uid!==target.uid){log(s,p,'fight',`${card(source).name}の効果で${card(target).name}とバトル`,{cardId:source.cardId});battle(s,sourcePlayer,source,1-p,target,s.attack?.attacker);}}
  if(a.kind==='skipFight'){s.decision=null;log(s,p,'skip',`${card(d.source).name}の登場時バトルを使わない`,{cardId:d.source});}
  if(a.kind==='battleWinOrder'){
   s.decision=null;
@@ -6866,7 +6875,7 @@ export function rankHeuristicActions(s){
   if(a.kind==='search')return a.cardId?20-Math.abs(aiCost(card(a.cardId))-me.mana.length)*2+(card(a.cardId).unblockable?3:0):0;
   if(a.kind==='endUntap')return a.yes?10:0;
   if(a.kind==='fight'){
-   const own=find(p,a.uid),target=find(1-p,a.target),ap=matchupPower(own,target,own.uid===v.attack?.attacker,v),bp=matchupPower(target,own,target.uid===v.attack?.attacker,v);
+   const own=find(a.sourcePlayer??p,a.uid),target=find(1-p,a.target),ap=matchupPower(own,target,own.uid===v.attack?.attacker,v),bp=matchupPower(target,own,target.uid===v.attack?.attacker,v);
    if(effectiveCard(target,v).g34BattleSafe&&!slayerCount534(v,own,target))return -20;
    return ap>bp?25+aiCost(c)*3-(slayerCount534(v,target,own)?aiCost(card(own))*4:0):ap===bp?aiCost(c)*3-aiCost(card(own))*3:-20;
   }

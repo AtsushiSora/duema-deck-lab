@@ -4278,7 +4278,7 @@ export function createSixPhotoRules(api){
   if(!enemies.length&&!t.g1233ReleaseHyper)break;
   if(t.self){
    if(x&&api.isCreature(s,x)&&!x.sealed)
-    put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:x.uid,incarnation:x.incarnation||0}});
+    put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:x.uid,incarnation:x.incarnation||0},fighterOwner:t.creatureOrigin??t.p});
    break;
   }
   const allies=fightRows240(s,t.p,t.p).flatMap(o=>{

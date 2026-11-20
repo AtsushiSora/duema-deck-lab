@@ -75,6 +75,133 @@ test('QA 39776 sacrifices Belladonna itself while Gyou chooses its effect',()=>{
  assert.equal(s.players[0].mana.length,n+1);
 });
 
+test('QA 39777 keeps the original fighter under its owner and lets Gyou choose another opposing creature',()=>{
+ for(const controller of [0,1]){
+  let s=field();const gyou=play(s,controller,GYOU);
+  const small=add(s,1-controller,'battle','dmsd17-006');
+  const fighter=play(s,1-controller,'dmrp20-084');
+  assert.equal(s.decision?.type,'fight');
+  assert.equal(s.decision.player,controller);
+  const choices=e.getLegalActions(s).filter(a=>a.kind==='fight');
+  assert.deepEqual(choices.map(a=>a.target),[small.uid]);
+  assert.ok(e.chooseAI(s));
+  assert.ok(e.rankHeuristicActions(s).every(row=>Number.isFinite(row.value)));
+  s=JSON.parse(JSON.stringify(s));
+  act(s,'fight',a=>a.target===small.uid);
+  drain(s);
+  assert.ok(has(s,1-controller,'grave',small));
+  assert.ok(has(s,1-controller,'battle',fighter));
+  assert.ok(has(s,controller,'battle',gyou));
+ }
+});
+
+test('QA 40635 cannot choose the borrowed entry fighter itself and finishes without a battle',()=>{
+ for(const controller of [0,1]){
+  const s=field();play(s,controller,GYOU);
+  const fighter=play(s,1-controller,'dmrp20-084');
+  assert.equal(s.decision,null);
+  assert.ok(has(s,1-controller,'battle',fighter));
+  assert.equal(s.log.filter(row=>row.type==='battle').length,0);
+ }
+});
+
+test('borrowed sequence fights keep the source owner through their serialized continuation',()=>{
+ for(const controller of [0,1]){
+  let s=field();play(s,controller,GYOU);
+  const small=add(s,1-controller,'battle','dmsd17-006');
+  const fighter=play(s,1-controller,'dmd27-009');
+  assert.equal(s.decision?.task?.op,'g34_FightEnemy240');
+  assert.equal(s.decision.player,controller);
+  assert.equal(s.decision.task.fighterOwner,1-controller);
+  assert.ok(!opts(s).some(x=>x?.uid===fighter.uid));
+  s=JSON.parse(JSON.stringify(s));
+  pick(s,small.uid);drain(s);
+  assert.ok(has(s,1-controller,'grave',small));
+  assert.ok(has(s,1-controller,'battle',fighter));
+ }
+});
+
+test('ordinary entry fights and saved decisions still use the controller as the source owner',()=>{
+ let s=field();const small=add(s,1,'battle','dmsd17-006'),fighter=play(s,0,'dmrp20-084');
+ assert.equal(s.decision.type,'fight');
+ assert.equal(s.decision.sourcePlayer,undefined);
+ s=JSON.parse(JSON.stringify(s));act(s,'fight',a=>a.target===small.uid);drain(s);
+ assert.ok(has(s,1,'grave',small));
+ assert.ok(has(s,0,'battle',fighter));
+});
+
+test('a replacement decision cannot use a source that left and returned as a new incarnation',()=>{
+ const s=field();play(s,0,GYOU);
+ const small=add(s,1,'battle','dmsd17-006'),fighter=play(s,1,'dmrp20-084');
+ assert.equal(s.decision.type,'fight');
+ fighter.incarnation=(fighter.incarnation||0)+1;
+ assert.deepEqual(e.getLegalActions(s).map(a=>a.kind),['skipFight']);
+ act(s,'skipFight');drain(s);
+ assert.ok(has(s,1,'battle',small)&&has(s,1,'battle',fighter));
+});
+
+test('a stolen Rod Zorgia entry compares its source’s current power after another trigger can resolve',()=>{
+ const s=field();play(s,0,GYOU);
+ add(s,1,'battle','dmex18-s07');
+ const big=add(s,1,'battle','dmrp20-084'),small=add(s,1,'battle','dmsd17-006');
+ const rod=play(s,1,'dm23ex2-016');
+ assert.equal(s.decision.type,'effectOrder');
+ rod.powerModifiers=[{amount:-6000,expires:'end',who:s.active}];
+ assert.equal(e.power(rod,false,s),5000);
+ act(s,'orderEffect',a=>a.cardId===rod.cardId);
+ assert.equal(s.decision.type,'effect');
+ assert.equal(s.decision.player,0);
+ assert.ok(!s.decision.targets.some(x=>x.uid===big.uid||x.uid===rod.uid));
+ assert.deepEqual(s.decision.targets.map(x=>x.uid),[small.uid]);
+ act(s,'effect',a=>a.targets.some(x=>x.uid===small.uid));
+ assert.ok(has(s,1,'grave',small));
+});
+
+test('borrowed Burster and Johnny sacrifice their original body before the Gyou player uses the follow-up',()=>{
+ for(const controller of [0,1])for(const id of ['dm34-040','dmd20-013']){
+  let s=field();const gyou=play(s,controller,GYOU),small=add(s,1-controller,'battle','dmsd17-006');
+  const source=play(s,1-controller,id);
+  assert.equal(s.decision?.player,controller);
+  s=JSON.parse(JSON.stringify(s));pick(s,true);
+  assert.ok(has(s,1-controller,'grave',source));
+  if(id==='dmd20-013')pick(s,'burn');
+  pick(s,small.uid);drain(s);
+  assert.ok(has(s,1-controller,id==='dmd20-013'?'grave':'hand',small));
+  assert.ok(has(s,controller,'battle',gyou));
+ }
+});
+
+test('Gyou takes Timpani’s own second-creature entry trigger while the original body is sacrificed',()=>{
+ const s=field();play(s,0,GYOU);
+ const small=add(s,1,'battle','dmsd17-006');s.players[1].enteredThisTurn=1;
+ const timp=play(s,1,'dm24rp3-020');
+ assert.equal(s.decision.type,'effectOrder');
+ act(s,'orderEffect',a=>s.pendingEffects.find(row=>row.effectId===a.effectId)?.task?.op==='g24_Timp');
+ assert.equal(s.decision.player,0);
+ pick(s,true);
+ assert.ok(has(s,1,'grave',timp));
+ assert.equal(s.decision.player,1);
+ pick(s,small.uid);
+ assert.ok(has(s,1,'grave',small));
+});
+
+test('a borrowed Saga entry revives from the Gyou player’s grave and destroys the original Saga',()=>{
+ for(const controller of [0,1]){
+  const s=field();play(s,controller,GYOU);
+  give(s,controller,'grave',['dm22ex2-021','dm01-084','dm01-084']);
+  give(s,controller,'hand',[FIRE]);
+  const revived=s.players[controller].grave[0],source=play(s,1-controller,'dm22ex2-021');
+  let used=false;
+  for(let i=0;s.decision;i++){
+   assert.ok(i<15);
+   if(s.decision.task?.op==='g45_SagaPick'){pick(s,used?null:revived.uid);used=true;}
+   else e.step(s,e.getLegalActions(s)[0]);
+  }
+  assert.ok(has(s,controller,'battle',revived));
+  assert.ok(has(s,1-controller,'grave',source));
+ }
+});
+
 test('Gyou revives the selected opposing grave creature tapped and uses its intervening entry trigger',()=>{
  const s=field();
  play(s,0,GYOU);

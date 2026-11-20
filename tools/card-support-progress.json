@@ -491482,6 +491482,101 @@
         }
       ],
       "next": "次はキクチ師範代・カレイコの山札移動置換またはヨミノ晴明R・ライジン天の選択者置換を扱う。ドラム・トレボールとキング・ナイト・マジックの包含関係、ドラン金箔2S/2の公式資料も引き続き照合する。"
+    },
+    {
+      "phase": 1364,
+      "checkedAt": "2026-11-20",
+      "baseline": "5cda533c",
+      "kind": "source-owner-verification",
+      "engineVersion": "0.596.0",
+      "addedNames": 0,
+      "registeredNames": 8061,
+      "duplicates": 0,
+      "sourceOwnerFixes": [
+        "通常の強制バトル",
+        "自身とのバトル禁止",
+        "自己参照の現在パワー",
+        "アクア・バースター",
+        "ジョニーウォーカー",
+        "ティンパニ＝シンバリー",
+        "絶望神サガ"
+      ],
+      "rules": [
+        "https://dm.takaratomy.co.jp/rule/qa/39777/",
+        "https://dm.takaratomy.co.jp/rule/qa/40635/",
+        "https://dm.takaratomy.co.jp/rule/qa/39776/"
+      ],
+      "results": {
+        "focus": {
+          "passed": 135,
+          "failed": 0,
+          "seconds": 2.971084459,
+          "log": "tmp/duema-phase-1364/owner-complete-regression.log"
+        },
+        "regression": {
+          "passed": 366,
+          "failed": 0,
+          "seconds": 72.43139791600001,
+          "log": "tmp/duema-phase-1364/fight-regression.log"
+        },
+        "online": {
+          "passed": 19,
+          "failed": 0,
+          "seconds": 1.293038417,
+          "log": "tmp/duema-phase-1364/followup-online.log"
+        },
+        "check": {
+          "status": "passed",
+          "log": "tmp/duema-phase-1364/owner-complete-check.log",
+          "sha256": {
+            "dist/engine.js": "5041003fc035e1b928126f8b37a593dd4eea430ce47748e6f19ccd3ea2e2cf44",
+            "dist/six-photo-rules.js": "f2ca7e254e29df27064c0445c36ef32707ddf4a24b186be156e0091103f62329",
+            "dist/utility-control-rules.js": "356e0ec2898827f61b0cc118366520be1dfdd8526de90e6247313df2a9ae0f3b",
+            "dist/utility-modal-rules.js": "2a65e41bd79a1b81fbb85a174b8bb986f92d8856e8f143d0933b3e31094e1dbb",
+            "dist/grave-rules.js": "26e9a028623b57859d84b6a703af2603b3d4a5947d154d1754924feb21c68e7c",
+            "dist/champion-saga-rules.js": "b084142256a635d6d3c3c908c88324c59b1dd15c200275512734388f3e3e6dc1",
+            "dist/release.json": "50e6e0f42a3c9f5ab9992f232142229eb3c290b1ad30abe9075b616bc10b89e5",
+            "dist/online-compatibility.js": "e4add00c1a98317f840cb6f5693b575d0bb17e1f724cb3811ebe18c9ee65a19c",
+            "tests/standard1364-effects.test.mjs": "d12c376f254d7262178d2ab0c2cae4a88011775125175ce90067187c4f8e671e"
+          }
+        },
+        "dreamDragon": {
+          "passed": 18,
+          "failed": 0,
+          "games": 100,
+          "deterministicReplays": 2,
+          "log": "tmp/duema-phase-1364/followup-final.log",
+          "scope": "engine 0.596.0の通常バトル回帰。後から追加した自己破壊3モジュールの修正はこの実行には含まれず、最終135件で個別回帰を検証。",
+          "combinedRun": "合計の実行終了コードは1。同時実行したギョウ側のパワー設定テスト1件が誤ったbuffを使用していたため。powerModifiersへ修正後、最終135件が全件合格。"
+        },
+        "names": {
+          "path": "dist/cards.json",
+          "normalizer": "dist/catalogue.js#nameKey",
+          "names": 8061,
+          "definitionsUnchangedFrom": "5cda533c"
+        }
+      },
+      "diagnostics": [
+        {
+          "log": "tmp/duema-phase-1364/self-reference-regression.log",
+          "status": "修正して解消",
+          "reason": "ロッドの現在パワーを変えるテストで、攻撃時専用buffを誤用。powerModifiersへ修正。"
+        },
+        {
+          "log": "tmp/duema-phase-1364/source-owner-final.log",
+          "status": "中断・合否未確認",
+          "reason": "No24名のケースだけを除外し、別名の460対戦ワーカーまで含めてしまったため、今回の実行のみ停止。再実行は短い効果回帰に限定した。"
+        },
+        {
+          "log": "tmp/duema-phase-1364/fight-check.log",
+          "status": "修正して解消",
+          "reason": "engineVersion更新時のrelease.json不一致を修正し、最終npm run checkが合格。"
+        }
+      ],
+      "remainingRegistered": 9,
+      "remainingPrints": 1,
+      "remainingIndividualCards": 10,
+      "next": "既存残件のキクチ師範代・カレイコの山札移動置換、ヨミノ晴明R・ライジン天の選択者置換を共通処理から実装する。新しい発生源の自己参照経路が判明した場合はギョウの追加検証へ追記する。"
     }
   ],
   "resume": {
@@ -491489,7 +491584,7 @@
     "nextPhase": null,
     "workInProgress": [],
     "nextCandidates": [],
-    "steps": "個別未検証は10種類（裁定9件、金箔再録1件）。固定344分割とNo.16・21の113件は全件合格。次はキクチ師範代・カレイコの山札移動置換またはヨミノ晴明R・ライジン天の選択者置換を扱う。ドラム・トレボールとキング・ナイト・マジックの包含関係、ドラン金箔2S/2の公式資料も引き続き照合する。",
+    "steps": "最新の検証済み登録は1364。追加の自己参照修正は sourceOwnerFollowup1364 に記録。残件は裁定9種・金箔再録1種の10種類。既存残件のキクチ師範代・カレイコの山札移動置換、ヨミノ晴明R・ライジン天の選択者置換を共通処理から実装する。新しい発生源の自己参照経路が判明した場合はギョウの追加検証へ追記する。",
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
       "Phase 322の旧スキャナーテストは、Phase 419で対応した真実の名 ワクワク・チャップルン（dmr07-001）を依然として未対応一覧に期待する。Phase 742基点とPhase 743作業ツリーで候補11件・対象はブロック一覧にいないことを再現。今回の変更とは分けて扱う。",
@@ -539934,7 +540029,7 @@
           "name": "行くよー！アオハル、ハイチーズ！"
         }
       ],
-      "remainingTestsSummary": "全体のnpm testは中断・合否未確認を維持。固定e3323a89の344分割（再現対戦886試合、本番ワーカー2460試合）は全件合格。No.16・21の113対象（再現対戦114試合、ワーカー380試合、乱数75種）も全件合格。今回の効果・裁定回帰とオンラインの結果は最新バッチに記録。公開候補での全対象の集約は未完了。",
+      "remainingTestsSummary": "全体のnpm testは中断・合否未確認を維持。固定e3323a89の344分割（再現対戦886試合、本番ワーカー2460試合）は全件合格。No.16・21の113対象（再現対戦114試合、ワーカー380試合、乱数75種）も全件合格。今回の効果・裁定回帰とオンラインの結果は最新バッチに記録。公開候補での全対象の集約は未完了。 engine 0.596.0で発生源の持ち主を修正し、最終の関連回帰135件、先行の通常バトル回帰366件、オンライン19件が合格。ドリーム・ドラゴン18項目（100対戦と決定性の再現2対戦）は途中構成で合格。ログ内の別テストの誤ったパワー設定は最終135件で修正・合格。全対象を公開コミットで集約する作業は未完了。",
       "advanceImplementation": {
         "status": "implemented",
         "phases": [
@@ -540128,7 +540223,101 @@
             "reason": "否定先読みで長時間対戦が含まれたため停止。test-skip-patternで効果69件を確認。対戦113件は元の分割ログですべて確認。"
           }
         ],
-        "next": "次はキクチ師範代・カレイコの山札移動置換またはヨミノ晴明R・ライジン天の選択者置換を扱う。ドラム・トレボールとキング・ナイト・マジックの包含関係、ドラン金箔2S/2の公式資料も引き続き照合する。"
+        "next": "次はキクチ師範代・カレイコの山札移動置換またはヨミノ晴明R・ライジン天の選択者置換を扱う。ドラム・トレボールとキング・ナイト・マジックの包含関係、ドラン金箔2S/2の公式資料も引き続き照合する。",
+        "sourceOwnerFollowup": {
+          "checkedAt": "2026-11-20",
+          "baseline": "5cda533c",
+          "kind": "source-owner-verification",
+          "engineVersion": "0.596.0",
+          "addedNames": 0,
+          "registeredNames": 8061,
+          "duplicates": 0,
+          "sourceOwnerFixes": [
+            "通常の強制バトル",
+            "自身とのバトル禁止",
+            "自己参照の現在パワー",
+            "アクア・バースター",
+            "ジョニーウォーカー",
+            "ティンパニ＝シンバリー",
+            "絶望神サガ"
+          ],
+          "rules": [
+            "https://dm.takaratomy.co.jp/rule/qa/39777/",
+            "https://dm.takaratomy.co.jp/rule/qa/40635/",
+            "https://dm.takaratomy.co.jp/rule/qa/39776/"
+          ],
+          "results": {
+            "focus": {
+              "passed": 135,
+              "failed": 0,
+              "seconds": 2.971084459,
+              "log": "tmp/duema-phase-1364/owner-complete-regression.log"
+            },
+            "regression": {
+              "passed": 366,
+              "failed": 0,
+              "seconds": 72.43139791600001,
+              "log": "tmp/duema-phase-1364/fight-regression.log"
+            },
+            "online": {
+              "passed": 19,
+              "failed": 0,
+              "seconds": 1.293038417,
+              "log": "tmp/duema-phase-1364/followup-online.log"
+            },
+            "check": {
+              "status": "passed",
+              "log": "tmp/duema-phase-1364/owner-complete-check.log",
+              "sha256": {
+                "dist/engine.js": "5041003fc035e1b928126f8b37a593dd4eea430ce47748e6f19ccd3ea2e2cf44",
+                "dist/six-photo-rules.js": "f2ca7e254e29df27064c0445c36ef32707ddf4a24b186be156e0091103f62329",
+                "dist/utility-control-rules.js": "356e0ec2898827f61b0cc118366520be1dfdd8526de90e6247313df2a9ae0f3b",
+                "dist/utility-modal-rules.js": "2a65e41bd79a1b81fbb85a174b8bb986f92d8856e8f143d0933b3e31094e1dbb",
+                "dist/grave-rules.js": "26e9a028623b57859d84b6a703af2603b3d4a5947d154d1754924feb21c68e7c",
+                "dist/champion-saga-rules.js": "b084142256a635d6d3c3c908c88324c59b1dd15c200275512734388f3e3e6dc1",
+                "dist/release.json": "50e6e0f42a3c9f5ab9992f232142229eb3c290b1ad30abe9075b616bc10b89e5",
+                "dist/online-compatibility.js": "e4add00c1a98317f840cb6f5693b575d0bb17e1f724cb3811ebe18c9ee65a19c",
+                "tests/standard1364-effects.test.mjs": "d12c376f254d7262178d2ab0c2cae4a88011775125175ce90067187c4f8e671e"
+              }
+            },
+            "dreamDragon": {
+              "passed": 18,
+              "failed": 0,
+              "games": 100,
+              "deterministicReplays": 2,
+              "log": "tmp/duema-phase-1364/followup-final.log",
+              "scope": "engine 0.596.0の通常バトル回帰。後から追加した自己破壊3モジュールの修正はこの実行には含まれず、最終135件で個別回帰を検証。",
+              "combinedRun": "合計の実行終了コードは1。同時実行したギョウ側のパワー設定テスト1件が誤ったbuffを使用していたため。powerModifiersへ修正後、最終135件が全件合格。"
+            },
+            "names": {
+              "path": "dist/cards.json",
+              "normalizer": "dist/catalogue.js#nameKey",
+              "names": 8061,
+              "definitionsUnchangedFrom": "5cda533c"
+            }
+          },
+          "diagnostics": [
+            {
+              "log": "tmp/duema-phase-1364/self-reference-regression.log",
+              "status": "修正して解消",
+              "reason": "ロッドの現在パワーを変えるテストで、攻撃時専用buffを誤用。powerModifiersへ修正。"
+            },
+            {
+              "log": "tmp/duema-phase-1364/source-owner-final.log",
+              "status": "中断・合否未確認",
+              "reason": "No24名のケースだけを除外し、別名の460対戦ワーカーまで含めてしまったため、今回の実行のみ停止。再実行は短い効果回帰に限定した。"
+            },
+            {
+              "log": "tmp/duema-phase-1364/fight-check.log",
+              "status": "修正して解消",
+              "reason": "engineVersion更新時のrelease.json不一致を修正し、最終npm run checkが合格。"
+            }
+          ],
+          "remainingRegistered": 9,
+          "remainingPrints": 1,
+          "remainingIndividualCards": 10,
+          "next": "既存残件のキクチ師範代・カレイコの山札移動置換、ヨミノ晴明R・ライジン天の選択者置換を共通処理から実装する。新しい発生源の自己参照経路が判明した場合はギョウの追加検証へ追記する。"
+        }
       },
       "currentSplitEvidence": {
         "baseline": "3a665662",
@@ -542775,6 +542964,100 @@
           "40958"
         ],
         "remaining": []
+      },
+      "sourceOwnerFollowup1364": {
+        "checkedAt": "2026-11-20",
+        "baseline": "5cda533c",
+        "kind": "source-owner-verification",
+        "engineVersion": "0.596.0",
+        "addedNames": 0,
+        "registeredNames": 8061,
+        "duplicates": 0,
+        "sourceOwnerFixes": [
+          "通常の強制バトル",
+          "自身とのバトル禁止",
+          "自己参照の現在パワー",
+          "アクア・バースター",
+          "ジョニーウォーカー",
+          "ティンパニ＝シンバリー",
+          "絶望神サガ"
+        ],
+        "rules": [
+          "https://dm.takaratomy.co.jp/rule/qa/39777/",
+          "https://dm.takaratomy.co.jp/rule/qa/40635/",
+          "https://dm.takaratomy.co.jp/rule/qa/39776/"
+        ],
+        "results": {
+          "focus": {
+            "passed": 135,
+            "failed": 0,
+            "seconds": 2.971084459,
+            "log": "tmp/duema-phase-1364/owner-complete-regression.log"
+          },
+          "regression": {
+            "passed": 366,
+            "failed": 0,
+            "seconds": 72.43139791600001,
+            "log": "tmp/duema-phase-1364/fight-regression.log"
+          },
+          "online": {
+            "passed": 19,
+            "failed": 0,
+            "seconds": 1.293038417,
+            "log": "tmp/duema-phase-1364/followup-online.log"
+          },
+          "check": {
+            "status": "passed",
+            "log": "tmp/duema-phase-1364/owner-complete-check.log",
+            "sha256": {
+              "dist/engine.js": "5041003fc035e1b928126f8b37a593dd4eea430ce47748e6f19ccd3ea2e2cf44",
+              "dist/six-photo-rules.js": "f2ca7e254e29df27064c0445c36ef32707ddf4a24b186be156e0091103f62329",
+              "dist/utility-control-rules.js": "356e0ec2898827f61b0cc118366520be1dfdd8526de90e6247313df2a9ae0f3b",
+              "dist/utility-modal-rules.js": "2a65e41bd79a1b81fbb85a174b8bb986f92d8856e8f143d0933b3e31094e1dbb",
+              "dist/grave-rules.js": "26e9a028623b57859d84b6a703af2603b3d4a5947d154d1754924feb21c68e7c",
+              "dist/champion-saga-rules.js": "b084142256a635d6d3c3c908c88324c59b1dd15c200275512734388f3e3e6dc1",
+              "dist/release.json": "50e6e0f42a3c9f5ab9992f232142229eb3c290b1ad30abe9075b616bc10b89e5",
+              "dist/online-compatibility.js": "e4add00c1a98317f840cb6f5693b575d0bb17e1f724cb3811ebe18c9ee65a19c",
+              "tests/standard1364-effects.test.mjs": "d12c376f254d7262178d2ab0c2cae4a88011775125175ce90067187c4f8e671e"
+            }
+          },
+          "dreamDragon": {
+            "passed": 18,
+            "failed": 0,
+            "games": 100,
+            "deterministicReplays": 2,
+            "log": "tmp/duema-phase-1364/followup-final.log",
+            "scope": "engine 0.596.0の通常バトル回帰。後から追加した自己破壊3モジュールの修正はこの実行には含まれず、最終135件で個別回帰を検証。",
+            "combinedRun": "合計の実行終了コードは1。同時実行したギョウ側のパワー設定テスト1件が誤ったbuffを使用していたため。powerModifiersへ修正後、最終135件が全件合格。"
+          },
+          "names": {
+            "path": "dist/cards.json",
+            "normalizer": "dist/catalogue.js#nameKey",
+            "names": 8061,
+            "definitionsUnchangedFrom": "5cda533c"
+          }
+        },
+        "diagnostics": [
+          {
+            "log": "tmp/duema-phase-1364/self-reference-regression.log",
+            "status": "修正して解消",
+            "reason": "ロッドの現在パワーを変えるテストで、攻撃時専用buffを誤用。powerModifiersへ修正。"
+          },
+          {
+            "log": "tmp/duema-phase-1364/source-owner-final.log",
+            "status": "中断・合否未確認",
+            "reason": "No24名のケースだけを除外し、別名の460対戦ワーカーまで含めてしまったため、今回の実行のみ停止。再実行は短い効果回帰に限定した。"
+          },
+          {
+            "log": "tmp/duema-phase-1364/fight-check.log",
+            "status": "修正して解消",
+            "reason": "engineVersion更新時のrelease.json不一致を修正し、最終npm run checkが合格。"
+          }
+        ],
+        "remainingRegistered": 9,
+        "remainingPrints": 1,
+        "remainingIndividualCards": 10,
+        "next": "既存残件のキクチ師範代・カレイコの山札移動置換、ヨミノ晴明R・ライジン天の選択者置換を共通処理から実装する。新しい発生源の自己参照経路が判明した場合はギョウの追加検証へ追記する。"
       }
     }
   },

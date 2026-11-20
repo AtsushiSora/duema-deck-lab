@@ -3,7 +3,7 @@ export function createUtilityModalRules(api){
  const{card,cost,effective,power,creatures,put,task,choice,opt,targetOptions}=api;
  const follow=(t,op,more={})=>({...t,op:'g69_'+op,...more});
  const living=(s,p)=>creatures(s,p).filter(x=>!x.sealed);
- const live=(s,t)=>s.players[t.p].battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===(t.incarnation||0));
+ const live=(s,t)=>s.players[t.creatureOrigin??t.p].battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===(t.incarnation||0));
  const currentPower=(s,x)=>power(x,x.uid===s.attack?.attacker||s.attackLifecycle?.uid===x.uid&&(s.attackLifecycle.incarnation||0)===(x.incarnation||0),s);
  const both=(s,p)=>[p,1-p].flatMap(q=>living(s,q));
  const demonBoth=(s,p)=>{const colors=s.players[p].battle.filter(x=>!x.sealed&&(api.isCreature(s,x)||card(x).type==='seed'||card(x).seedCreature)).flatMap(x=>api.colors(effective(x,s)));return colors.includes('光')&&colors.includes('闇');};
@@ -19,7 +19,7 @@ export function createUtilityModalRules(api){
  default:throw Error('未実装の選択式ユーティリティ効果：'+t.op);
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g69_'))return false;switch(t.op){
- case'g69_Burster':{const x=live(s,t);if(v&&x){put(s,follow(t,'Bounce'));api.move(s,[{player:t.p,uid:x.uid,to:'grave',destroy:true,controller:t.p}]);}break;}
+ case'g69_Burster':{const x=live(s,t);if(v&&x){put(s,follow(t,'Bounce'));api.move(s,[{player:t.creatureOrigin??t.p,uid:x.uid,to:'grave',destroy:true,controller:t.p}]);}break;}
  case'g69_Bounce':if(v){const owner=s.players.findIndex(p=>p.battle.some(x=>x.uid===v));if(owner>=0)api.move(s,[{player:owner,uid:v,to:'hand',destroy:false,controller:t.p}]);}break;
  case'g69_Variant':if(v)api.tap(s,1-t.p,s.players[1-t.p].battle.find(x=>x.uid===v));break;
  case'g69_Spiral':put(s,...(['draw','both'].includes(v)?[task('g34_Draw',t.p,t.source,{n:2})]:[]),...(['bounce','both'].includes(v)?[follow(t,'Bounce')]:[]));break;

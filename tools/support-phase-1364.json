@@ -22,7 +22,9 @@
     "https://dm.takaratomy.co.jp/rule/qa/41170/",
     "https://dm.takaratomy.co.jp/rule/qa/41171/",
     "https://dm.takaratomy.co.jp/rule/qa/41317/",
-    "https://dm.takaratomy.co.jp/rule/qa/42061/"
+    "https://dm.takaratomy.co.jp/rule/qa/42061/",
+    "https://dm.takaratomy.co.jp/rule/qa/39777/",
+    "https://dm.takaratomy.co.jp/rule/qa/40635/"
   ],
   "regulationVerification": {
     "source": "https://dm.takaratomy.co.jp/rule/regulation/",
@@ -150,5 +152,21 @@
         "printedManaValue": 1
       }
     }
-  ]
+  ],
+  "fightFollowup": {
+    "checkedAt": "2026-11-20",
+    "test": "tests/standard1364-effects.test.mjs",
+    "sourceOwner": "発生源の持ち主を保ったまま、能力の使用者が相手の別のクリーチャーを選ぶ。自身とのバトルは不可。",
+    "exactExample": "QA40635はバイナラ童話を実カードで確認。QA39777のバトクロス・バトル固有ではなく同じ文のバイナラ童話で選択とバトルを検証。",
+    "scenarios": [
+      "発生源と使用者が異なる通常バトル",
+      "自身とのバトル禁止",
+      "保存復元",
+      "出し直しで別物になった発生源の不使用",
+      "発生源の現在のパワー",
+      "アクア・バースターとジョニーウォーカーの自己破壊",
+      "ティンパニ自身が2体目で出る誘発",
+      "サガの蘇生後に元のサガを破壊する"
+    ]
+  }
 }

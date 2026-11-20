@@ -3,7 +3,7 @@ export function createSagaChampionRules(api){
  const{card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,move,targetOptions}=api;
  const race=(c,q)=>String(c.race).includes(q),queue=(s,t,op,more={})=>put(s,{...t,op:'g45_'+op,...more});
  const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g45_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
- const live=(s,t)=>s.players[t.p].battle.find(x=>api.layers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)));
+ const live=(s,t)=>s.players[t.creatureOrigin??t.p].battle.find(x=>api.layers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)));
  const manaCount=(s,p,color)=>s.players[p].mana.filter(y=>(s.players[p].battle.some(z=>(card(z).casablanca||card(z).g51Courtney)&&!api.ignored(s,z))?['光','水','闇','火','自然']:api.manaColors(card(y))).includes(color)).length;
  const allowed=(s,p,z)=>!api.canMoveZone||api.canMoveZone(s,p,z),count=(s,p,n)=>api.lookCount?api.lookCount(s,p,n):api.deckLocked(s,p)?0:n;
  const reserved=own=>new Set(Object.entries(own).filter(([k,v])=>Array.isArray(v)&&/Protected$|Reveals$/.test(k)).flatMap(([,v])=>v));
@@ -16,7 +16,7 @@ export function createSagaChampionRules(api){
  case'g45_Saga':put(s,task('draw',t.p,t.source,{n:1}),task('discard',t.p,t.source,{n:1,causedBy:t.p}),{...t,op:'g45_SagaPick'});break;
  case'g45_SagaPick':if(own.grave.filter(y=>card(y).type==='creature').length>=3){const rows=own.grave.filter(y=>cost(card(y))<=5&&(race(card(y),'ゴッド')||race(card(y),'オリジン'))&&canPut(s,t.p,y,'grave'));choice(s,t,'サガ：墓地からコスト5以下のゴッドかオリジンを出す？',[...rows.map(y=>opt(card(y).name,y.uid,card(y).g45MDeck?70:card(y).g45Babylonia&&!own.battle.some(y=>effective(y,s).g45Babylonia)?55:card(y).g45Saga?own.deck.length>6?30:-100:25+cost(card(y)),y.cardId)),skip()]);}break;
  case'g45_Put':{const y=own[t.origin||'grave'].find(y=>y.uid===t.target);if(y&&canPut(s,t.p,y,t.origin||'grave')){if(card(y).evolution&&!card(y).g45MDeck)choice(s,t,'出すクリーチャーの進化元を選ぶ',api.evolutionBases(s,t.p,card(y)).map(b=>opt(card(b).name,b.uid,10,b.cardId)));else deploy(s,t);}break;}
- case'g45_SagaAfter':if(x&&own.battle.some(y=>api.layers(y).some(z=>z.uid===t.target&&(z.incarnation||0)>t.targetIncarnation)))move(s,[{player:t.p,uid:x.uid,to:'grave',destroy:true}]);break;
+ case'g45_SagaAfter':if(x&&own.battle.some(y=>api.layers(y).some(z=>z.uid===t.target&&(z.incarnation||0)>t.targetIncarnation)))move(s,[{player:t.creatureOrigin??t.p,uid:x.uid,to:'grave',destroy:true,controller:t.p}]);break;
  case'g45_Babylonia':choice(s,t,'相手の手札を見て、山札の下に戻すカードを1枚選ぶ',opp.hand.map(y=>opt(card(y).name,y.uid,20+cost(card(y)),y.cardId)));if(!opp.hand.length)api.draw(s,1-t.p,1);break;
  case'g45_BruceRevive':{const rows=own.grave.filter(y=>cost(card(y))<=3&&canPut(s,t.p,y,'grave'));choice(s,t,'墓地からコスト3以下のクリーチャーを1体出す',rows.map(y=>opt(card(y).name,y.uid,30+cost(card(y)),y.cardId)));break;}
  case'g45_Interrogate':api.log(s,t.p,'look','相手の手札を確認：'+opp.hand.map(y=>card(y).name).join('・'),{cardId:t.source});choice(s,t,'相手のコスト3以下の手札を1枚選ぶ',opp.hand.filter(y=>faces(card(y)).some(c=>cost(c)<=3)).map(y=>opt(card(y).name,y.uid,20+Math.min(...faces(card(y)).map(cost)),y.cardId)));break;

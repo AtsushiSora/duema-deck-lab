@@ -3,7 +3,7 @@ import {policyRemove} from './champion-zone-policy.js';
 export function createGraveRules(api){
  const {card,cost,effective,creatures,put,task,choice,opt,skip,remove,clear,enter,cast,move}=api;
  const graveCreatures=(s,p)=>s.players[p].grave.filter(x=>card(x).type==='creature'),below=x=>api.layers(x).slice(1);
- const live=(s,t)=>s.players[t.p].battle.find(x=>api.layers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)&&(t.serial===undefined||(y.zoneSerial||0)===t.serial)));
+ const live=(s,t)=>s.players[t.creatureOrigin??t.p].battle.find(x=>api.layers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)&&(t.serial===undefined||(y.zoneSerial||0)===t.serial)));
  const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task(op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,serial:x.zoneSerial||0,...more})});
  function detach(s,p,top,uid,to){const parent=api.layers(top).find(x=>x.under?.some(y=>y.uid===uid));if(!parent)return null;const i=parent.under.findIndex(x=>x.uid===uid),x=parent.under[i];if(to==='grave')api.rememberEvolutionGraveSources?.(s,p,top,[x]);api.underCardsLeft(s,p,top,1);parent.under.splice(i,1,...(x.under||[]));clear(x,to);api.addZone(s,s.players[p],to,x);return x;}
  function beginCast(s,p,args){put(s,task('g24_Bases',p,card(s.players[p][args[5]].find(x=>x.uid===args[0])).id,{uid:args[0],mode:'cast',args,selected:args[2]&&args[2]!==args[0]?[args[2]]:[]}));}
@@ -37,7 +37,7 @@ export function createGraveRules(api){
  case'g24_Ura':if(v){const selected=[...t.selected,v],x=live(s,t);if(selected.length<5)put(s,{...t,selected});else if(x&&api.canMoveZone(s,t.p,'grave')&&selected.every(uid=>own.grave.some(y=>y.uid===uid))){for(const uid of selected){const y=policyRemove(s,t.p,'grave',uid,api);clear(y,'battle');(x.under??=[]).push(y);}put(s,task('destroyCost',t.p,t.source,{max:Number.MAX_SAFE_INTEGER,optional:false}));}}break;
  case'g24_UraReplace':{if(!v){beginUra(s,t.p,t.uid,t.mode);break;}const selected=[...t.selected,v];if(selected.length<5){beginUra(s,t.p,t.uid,t.mode,selected);break;}const x=own.battle.find(x=>x.uid===t.uid);for(const uid of selected)detach(s,t.p,x,uid,'deck');api.log(s,t.p,'uraReplace','下のカード5枚を山札の下に置き、'+(t.mode==='loss'?'敗北':'離脱')+'を置換',{cardId:t.source});if(t.mode==='loss')api.completeLossReplacement(s,'ウラギリダムス：下の5枚を山札に戻して敗北を置換');else s.leaving.rows.find(x=>x.player===t.p&&x.uid===t.uid).plan={kind:'ura'};break;}
  case'g24_Loot':if(v)put(s,task('discardChosen',t.p,t.source,{n:1,causedBy:t.p,uid:v}),task('draw',t.p,t.source,{n:2}));break;
- case'g24_Timp':if(v){const x=live(s,t);if(x){put(s,task('g24_TimpAfter',t.p,t.source,{destroyed:x.uid,serial:x.zoneSerial||0}));move(s,[{player:t.p,uid:x.uid,to:'grave'}]);}}break;
+ case'g24_Timp':if(v){const x=live(s,t);if(x){put(s,task('g24_TimpAfter',t.p,t.source,{destroyed:x.uid,serial:x.zoneSerial||0}));move(s,[{player:t.creatureOrigin??t.p,uid:x.uid,to:'grave',controller:t.p}]);}}break;
  case'g24_EnemySacrifice':move(s,[{player:t.p,uid:v,to:'grave'}]);break;
  default:throw Error('未実装の墓地ソース選択：'+t.op);
  }return true;}
