@@ -278257,15 +278257,115 @@
       "g1550LossBounce": true,
       "supportBatch": "phase-1550",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm09-016",
+      "name": "猿神兵アッシュ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "アーマロイド",
+      "text": "このクリーチャーがバトルゾーンにある間、自分のアーマロイドがバトルゾーンから自分の墓地に置かれたとき、相手は自分自身のマナゾーンからカードを１枚選び、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-016",
+      "limit": 4,
+      "g303DeathWatch": {
+        "race": "アーマロイド",
+        "self": true,
+        "selfFilter": true,
+        "defs": [
+          {
+            "op": "OpponentManaLoss478"
+          }
+        ]
+      },
+      "supportBatch": "phase-1551",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx22b-022",
+      "name": "寝転ぶ猫 ニャンニャン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2222,
+      "race": "アウトレイジ猫",
+      "text": "{Cat Souls}\nバトルゾーンにある自分のクリーチャーがこのクリーチャーだけなら、パワーを+2222する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-022",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "g479OnlyCreature": true
+        },
+        "grants": {
+          "power": 2222
+        }
+      },
+      "supportBatch": "phase-1551",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsp01-012",
+      "name": "微笑む巫女 パルル",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ムートピア",
+      "text": "自分が手札を捨てた時、そのターン、このクリーチャーはパワーを+3000され、「W・ブレイカー」を得る。（「W・ブレイカー」を持つクリーチャーは、シールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp01-012",
+      "limit": 4,
+      "g1168DiscardWatch": [
+        {
+          "op": "SelfBoost313",
+          "power": 3000,
+          "breaker": 2
+        }
+      ],
+      "supportBatch": "phase-1551",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsp02-008",
+      "name": "「俺」の頂 ライオネル GS",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 5,
+      "type": "creature",
+      "cost": 10,
+      "power": 13000,
+      "race": "アンノウン/ゼニス",
+      "text": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nブロッカーブロッカー\nT・ブレイカー\n自分の手札に加えるシールドカードすべてに「S・トリガー」を与える。\nエターナル・Ω（このクリーチャーが離れる時、かわりに手札に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp02-008",
+      "limit": 4,
+      "gStrike": true,
+      "blocker": true,
+      "breaker": 3,
+      "g1303AllShieldTrigger": true,
+      "g34Omega": true,
+      "supportBatch": "phase-1551",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1550,
+    "phase": 1551,
     "checkedAt": "2026-11-21",
-    "baseCount": 8823,
-    "newEffectCards": 3,
+    "baseCount": 8826,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 8826,
+    "totalCount": 8830,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -303744,6 +303844,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 8823,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1550,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8823,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 8826,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

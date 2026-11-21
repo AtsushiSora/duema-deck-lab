@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-21",
   "catalogueNames": 11824,
-  "supportedNames": 8826,
-  "pendingNames": 2998,
-  "phase": 1550,
-  "added": 3,
+  "supportedNames": 8830,
+  "pendingNames": 2994,
+  "phase": 1551,
+  "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1734,
+    "クリーチャー": 1730,
     "呪文": 356,
     "GRクリーチャー": 18,
     "G-NEOクリーチャー": 26,
@@ -223,7 +223,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 686,
-    "未対応の能力文": 2156,
+    "未対応の能力文": 2152,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
@@ -514643,11 +514643,158 @@
       "rulingCorrections": {
         "https://dm.takaratomy.co.jp/rule/qa_old/35083/": "ダバ・トーレは一度墓地に置かれるのではなく、手札から直接バトルゾーンに出る置換。カードHTMLの「置かれた場合」という表現だけで誘発型として扱わず、この公式回答に従う。"
       }
+    },
+    {
+      "phase": 1551,
+      "kind": "registration-toward-9000",
+      "checkedAt": "2026-11-21T02:01:55.594Z",
+      "baseline": "e1d60b6b7f222dae430297fd4146ab6340be9eaf",
+      "manifest": "tools/support-phase-1551.json",
+      "status": "verified-local",
+      "before": 8826,
+      "supported": 8830,
+      "pending": 2994,
+      "added": [
+        {
+          "id": "dm09-016",
+          "name": "猿神兵アッシュ"
+        },
+        {
+          "id": "dmx22b-022",
+          "name": "寝転ぶ猫 ニャンニャン"
+        },
+        {
+          "id": "dmsp01-012",
+          "name": "微笑む巫女 パルル"
+        },
+        {
+          "id": "dmsp02-008",
+          "name": "「俺」の頂 ライオネル GS"
+        }
+      ],
+      "duplicates": 0,
+      "results": {
+        "focused": {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1551-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.417,
+          "log": "tmp/duema-phase-1551/focused.log",
+          "passed": 93,
+          "failed": 0
+        },
+        "related": {
+          "name": "related",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=4",
+            "tests/standard1550-effects.test.mjs",
+            "tests/standard284-effects.test.mjs",
+            "tests/standard1303-effects.test.mjs",
+            "tests/standard1168-effects.test.mjs",
+            "tests/standard303-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 18.701,
+          "log": "tmp/duema-phase-1551/related.log",
+          "passed": 136,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.008,
+          "log": "tmp/duema-phase-1551/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.446,
+          "log": "tmp/duema-phase-1551/audit.log"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tools/verify-target9000.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.318,
+          "log": "tmp/duema-phase-1551/invariants.log"
+        }
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1551-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.541,
+          "log": "tmp/duema-phase-1551/focused.log"
+        },
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1551-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.415,
+          "log": "tmp/duema-phase-1551/focused.log"
+        }
+      ],
+      "testCorrections": [],
+      "totalTestsPassed": 229,
+      "reason": "既存の処理を用いて全能力を個別に検証し4種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+      "remaining": [
+        "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
+      ],
+      "next": "目標9000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1550,
-    "nextPhase": 1551,
+    "lastVerifiedPhase": 1551,
+    "nextPhase": 1552,
     "workInProgress": null,
     "nextCandidates": [
       "公式照合済みの通常能力を持たないGRクリーチャー",
@@ -514656,7 +514803,7 @@
     ],
     "steps": [
       "開始時にHEAD・作業差分・ステージ・既存プロセス・AGENTS・進捗を確認。",
-      "実データ8826種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8830種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "再開時は既存プロセス・最新コミット・作業ツリーを確認し、tools/verify-target8500.mjsとtools/target8500-verification.jsonを参照。ユーザー保留項目は既存記録を維持。",
       "個別の残件2件はユーザー保留。再開指示まで追加調査・問い合わせ送信をしない。",
       "一括npm testを再実行せず、公開候補の未集約範囲だけ分割検証する。過去の固定ソースの合格と現版の合格を区別する。",
@@ -514737,14 +514884,14 @@
     ],
     "restartSteps": [
       "公開済みの版はb40ae0df (v0.722.1 / engine0.602.1 / 8074種類)。Pages・Netlifyを同じ版に更新済み。最新HEAD・差分・ステージ・既存プロセスを最初に確認。",
-      "実データ8826種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8830種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "再開時は既存プロセス・最新コミット・作業ツリーを確認し、tools/verify-target8500.mjsとtools/target8500-verification.jsonを参照。ユーザー保留項目は既存記録を維持。",
       "既存8072定義は深い比較で不変。カードID・保存形式・保存済みデッキ・対戦履歴を維持。",
       "個別の残件2件と問い合わせ案はユーザー指示「後回しにしよう」で保留。再開指示があるまでこの2件の調査・送信を行わない。",
       "No13長時間検証はengine0.601.0の固定ソースで完了済み。今回のengine0.602.0の全面検証には数えない。必要な未集約項目は対象を特定し、細かく分割して確認する。",
       "Netlifyは手動反映専用。workflow_dispatchだけ、GitHub pushフック停止、stop_builds=trueを維持。通常のカード追加pushでは反映しない。今回の公開に保留・未検証の解消は含めない。"
     ],
-    "registrationStatus": "ユーザーの新目標9000種類に向けて通常登録を再開。現在8826種類、残り174種類。automationはPAUSEDのまま。",
+    "registrationStatus": "ユーザーの新目標9000種類に向けて通常登録を再開。現在8830種類、残り170種類。automationはPAUSEDのまま。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [],
     "printVerificationPending": [
@@ -514856,10 +515003,10 @@
     "registrationTarget": {
       "target": 9000,
       "startCount": 8500,
-      "currentCount": 8826,
-      "remaining": 174,
+      "currentCount": 8830,
+      "remaining": 170,
       "status": "active",
-      "phase": 1550
+      "phase": 1551
     },
     "deferredRegistrationCandidates": [
       {
@@ -514909,13 +515056,6 @@
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd6-020",
         "status": "duplicate-not-counted",
         "phase": 1534
-      },
-      {
-        "id": "dm09-016",
-        "name": "猿神兵アッシュ",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-016",
-        "reason": "破壊限定の既存DeathWatchでは、破壊ではなくバトルゾーンから墓地に置かれた場合・置換後の実際の墓地到着・封印や進化元を区別する全能力の確認が不足。BattleCardGraveの種族付き監視と合わせる別バッチまで登録しない。",
-        "phase": 1535
       },
       {
         "id": "dmr12-019",
@@ -515007,6 +515147,16 @@
         "phase": 1529,
         "status": "resolved",
         "resolvedPhase": 1530,
+        "kind": "verified-registration"
+      },
+      {
+        "id": "dm09-016",
+        "name": "猿神兵アッシュ",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-016",
+        "reason": "破壊限定の既存DeathWatchでは、破壊ではなくバトルゾーンから墓地に置かれた場合・置換後の実際の墓地到着・封印や進化元を区別する全能力の確認が不足。BattleCardGraveの種族付き監視と合わせる別バッチまで登録しない。",
+        "phase": 1535,
+        "status": "resolved",
+        "resolvedPhase": 1551,
         "kind": "verified-registration"
       }
     ]
@@ -566874,10 +567024,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1550,
+    "phase": 1551,
     "threshold": 9000,
-    "supportedNames": 8826,
-    "pendingNames": 2998,
+    "supportedNames": 8830,
+    "pendingNames": 2994,
     "checkedAt": "2026-11-21",
     "registrationStopped": false,
     "automationId": "duema-deck-lab",

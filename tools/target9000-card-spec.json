@@ -16374,5 +16374,128 @@
       "manaValue": 0,
       "g1550LossBounce": true
     }
+  },
+  "dm09-016": {
+    "phase": 1551,
+    "faces": [
+      {
+        "name": "猿神兵アッシュ",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーがバトルゾーンにある間、自分のアーマロイドがバトルゾーンから自分の墓地に置かれたとき、相手は自分自身のマナゾーンからカードを１枚選び、持ち主の墓地に置く。",
+        "race": "アーマロイド",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g303DeathWatch": {
+        "race": "アーマロイド",
+        "self": true,
+        "selfFilter": true,
+        "defs": [
+          {
+            "op": "OpponentManaLoss478"
+          }
+        ]
+      }
+    }
+  },
+  "dmx22b-022": {
+    "phase": 1551,
+    "faces": [
+      {
+        "name": "寝転ぶ猫 ニャンニャン",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "{Cat Souls}\nバトルゾーンにある自分のクリーチャーがこのクリーチャーだけなら、パワーを+2222する。",
+        "race": "アウトレイジ猫",
+        "powerText": "2222",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g260Self": {
+        "filter": {
+          "g479OnlyCreature": true
+        },
+        "grants": {
+          "power": 2222
+        }
+      }
+    }
+  },
+  "dmsp01-012": {
+    "phase": 1551,
+    "faces": [
+      {
+        "name": "微笑む巫女 パルル",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "自分が手札を捨てた時、そのターン、このクリーチャーはパワーを+3000され、「W・ブレイカー」を得る。（「W・ブレイカー」を持つクリーチャーは、シールドを２つブレイクする）",
+        "race": "ムートピア",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1168DiscardWatch": [
+        {
+          "op": "SelfBoost313",
+          "power": 3000,
+          "breaker": 2
+        }
+      ]
+    }
+  },
+  "dmsp02-008": {
+    "phase": 1551,
+    "faces": [
+      {
+        "name": "「俺」の頂 ライオネル GS",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nブロッカーブロッカー\nT・ブレイカー\n自分の手札に加えるシールドカードすべてに「S・トリガー」を与える。\nエターナル・Ω（このクリーチャーが離れる時、かわりに手札に戻す）",
+        "race": "アンノウン/ゼニス",
+        "powerText": "13000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gStrike": true,
+      "blocker": true,
+      "breaker": 3,
+      "g1303AllShieldTrigger": true,
+      "g34Omega": true,
+      "manaValue": 5
+    },
+    "manaImageEvidence": {
+      "htmlManaValue": 1,
+      "printedManaValue": 5,
+      "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsp02-008.jpg",
+      "sha256": "44e8cff0d2ea765cf176477dfe721ed7104dc6d6cfd28b6edd2efc0d136e6dbb",
+      "reviewedAt": "2026-11-21T01:59:07.678Z",
+      "reason": "公式カード画像の下部にマナ5を印刷。ジョーのS-MAX進化デッキ用再録ではなくDMSP02の特別版の印刷値を保持し、HTML表の一般値1と区別。"
+    }
   }
 }
