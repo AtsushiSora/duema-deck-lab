@@ -26725,5 +26725,125 @@
         }
       ]
     }
+  },
+  "dm24bd2-011": {
+    "phase": 1602,
+    "faces": [
+      {
+        "name": "RinRin Kids",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "{STP} S・トリガー・プラス（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、このクリーチャーに{x+}能力を与える）\n{x+}このクリーチャーが出た時、このターン、誰もゲームに負けない。\nこのクリーチャーが出た時、バトルゾーンまたはマナゾーンに自分のジョーカーズが合計３枚以上あれば、相手のコスト３以下のエレメントを１つ選び、持ち主の山札の下に置く。",
+        "race": "ジョーカーズ",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "triggerPlus": true,
+      "effect": "sixPhoto",
+      "g34Plus": [
+        {
+          "op": "NoLoseTurn1602"
+        }
+      ],
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g539Jokers": 3
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "element": true,
+              "to": "deck",
+              "toOwnerDeck": true,
+              "filter": {
+                "max": 3
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmx13-013": {
+    "phase": 1602,
+    "faces": [
+      {
+        "name": "破界秘伝ナッシング・ゼロ",
+        "typeText": "呪文",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "アタック・チャンス-無色クリーチャー（自分の無色クリーチャーが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n自分の山札の上から３枚をすべてのプレイヤーに見せる。こうして見せた無色カード１枚につき、このターン、バトルゾーンにある自分のクリーチャー１体はシールドをさらに１枚ブレイクする。見せたカードはすべて、好きな順序で山札の上か下のどちらかに戻す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g417Chance": {
+        "g756Colorless": true
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "NothingZero1602",
+          "spell": true
+        }
+      ]
+    }
+  },
+  "dm26ex5-031": {
+    "phase": 1602,
+    "faces": [
+      {
+        "name": "究極・チャージャー",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の山札の上から２枚を表向きにする。その中からコスト９のカードをすべて手札に加え、残りを好きな順序で山札の下に置く。\nチャージャー（この呪文を唱えた後、墓地のかわりにマナゾーンに置く）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "normalCharger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "public": true,
+          "stages": [
+            {
+              "to": "hand",
+              "n": "all",
+              "allMatches": true,
+              "filter": {
+                "g1134AnyFaceCost": 9
+              }
+            }
+          ],
+          "rest": "bottom",
+          "spell": true
+        }
+      ]
+    }
   }
 }

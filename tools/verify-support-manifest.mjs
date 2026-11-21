@@ -9,7 +9,7 @@ const file=process.argv[2];assert.match(file||'',/^tools\/support-phase-\d+\.jso
 const m=JSON.parse(fs.readFileSync(file)),cache='/tmp/duema-official-phase-'+m.phase;
 fs.mkdirSync(cache,{recursive:true});
 // Verify alternate print names without registering a second battle definition.
-const rows=[...m.cards,...(m.printAliases||[])];
+const rows=[...m.cards,...(m.printAliases||[]),...(m.existingCards||[])];
 async function fetchPage(url){assert.equal(new URL(url).hostname,'dm.takaratomy.co.jp');for(let i=0;i<3;i++)try{const r=await fetch(url,{signal:AbortSignal.timeout(30000)});assert.ok(r.ok,url+' '+r.status);return await r.text();}catch(e){if(i===2)throw e;}}
 async function verifyMana(row,html){
  const expected=row.spec?.manaValue??1,printed=printedManaValue(html);

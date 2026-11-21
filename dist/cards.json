@@ -286963,15 +286963,122 @@
       ],
       "supportBatch": "phase-1601",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24bd2-011",
+      "name": "RinRin Kids",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ジョーカーズ",
+      "text": "{STP} S・トリガー・プラス（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、このクリーチャーに{x+}能力を与える）\n{x+}このクリーチャーが出た時、このターン、誰もゲームに負けない。\nこのクリーチャーが出た時、バトルゾーンまたはマナゾーンに自分のジョーカーズが合計３枚以上あれば、相手のコスト３以下のエレメントを１つ選び、持ち主の山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd2-011",
+      "limit": 4,
+      "triggerPlus": true,
+      "effect": "sixPhoto",
+      "g34Plus": [
+        {
+          "op": "NoLoseTurn1602"
+        }
+      ],
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g539Jokers": 3
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "element": true,
+              "to": "deck",
+              "toOwnerDeck": true,
+              "filter": {
+                "max": 3
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1602",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx13-013",
+      "name": "破界秘伝ナッシング・ゼロ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "アタック・チャンス-無色クリーチャー（自分の無色クリーチャーが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n自分の山札の上から３枚をすべてのプレイヤーに見せる。こうして見せた無色カード１枚につき、このターン、バトルゾーンにある自分のクリーチャー１体はシールドをさらに１枚ブレイクする。見せたカードはすべて、好きな順序で山札の上か下のどちらかに戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx13-013",
+      "limit": 4,
+      "g417Chance": {
+        "g756Colorless": true
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "NothingZero1602",
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1602",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex5-031",
+      "name": "究極・チャージャー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "自分の山札の上から２枚を表向きにする。その中からコスト９のカードをすべて手札に加え、残りを好きな順序で山札の下に置く。\nチャージャー（この呪文を唱えた後、墓地のかわりにマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-031",
+      "limit": 4,
+      "normalCharger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "public": true,
+          "stages": [
+            {
+              "to": "hand",
+              "n": "all",
+              "allMatches": true,
+              "filter": {
+                "g1134AnyFaceCost": 9
+              }
+            }
+          ],
+          "rest": "bottom",
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1602",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1601,
+    "phase": 1602,
     "checkedAt": "2026-11-21",
-    "baseCount": 9036,
-    "newEffectCards": 2,
+    "baseCount": 9038,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9038,
+    "totalCount": 9041,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -313164,6 +313271,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 9036,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1601,
+        "checkedAt": "2026-11-21",
+        "baseCount": 9036,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9038,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

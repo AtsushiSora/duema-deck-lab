@@ -2518,6 +2518,29 @@ export function createSixPhotoRules(api){
  case'g34_PaySpell485':paySpell485(s,t);break;
  case'g34_RevealPayment470':revealPayment470(s,t);break;
  case'g34_PayOnce464':payOnce464(s,t);break;
+ case'g34_NoLoseTurn1602':
+  for(const player of[0,1])(s.extLimits??=[]).push({kind:'g34NoLose',player,who:s.active,expires:'end'});
+  break;
+ case'g34_NothingZero1602':{
+  const ids=look(s,{...t,n:3,public:true});
+  const count=ids.filter(uid=>{const y=own.deck.find(x=>x.uid===uid);return y&&faces(api.zoneCard(s,t.p,y,'deck')).every(c=>colors(c).length===0);}).length;
+  put(s,{...t,op:'g34_NothingTarget1602',ids,count},{...t,op:'g34_ReturnTopBottom1602',ids,top:[],bottom:[]});
+  break;
+ }
+ case'g34_NothingTarget1602':{
+  if(!t.count)break;
+  const rows=creatures(s,t.p).filter(y=>!y.sealed);
+  if(rows.length)choice(s,t,'シールドの追加ブレイクを与える自分のクリーチャーを1体選ぶ',targetOptions(s,t.p,rows));
+  break;
+ }
+ case'g34_ReturnTopBottom1602':{
+  const ids=t.ids.filter(uid=>own.deck.some(x=>x.uid===uid));
+  if(!ids.length){start(s,t,[{op:'Order',ids:[],ordered:t.top,rest:'top',g259OrderTop:true},{op:'Order',ids:[],ordered:t.bottom,rest:'bottom'}]);break;}
+  choice(s,{...t,ids},'公開したカードを山札の上・下に置く（先に選んだ順）',ids.flatMap(uid=>{
+   const y=own.deck.find(x=>x.uid===uid);return['top','bottom'].map(to=>opt(card(y).name+'を山札の'+(to==='top'?'上':'下')+'へ',{uid,to},0,y.cardId));
+  }));
+  break;
+ }
  case'g34_BattleLoot1601':
   start(s,t,[{op:'Offer',title:'カードを2枚引いてから手札を1枚捨てる？',g204DrawDiscard:true,defs:[
    {op:'Draw',n:2},{op:'BattleLootDiscard1601',fighter:t.fighter,battleToken:t.battleToken}]}]);
@@ -6892,6 +6915,15 @@ export function createSixPhotoRules(api){
   if(t.after)put(s,{...t.after,g464Reducers:t.selected});
   else{const args=[...t.args];args[18]=t.selected;api.cast(s,t.p,...args);}
  }break;
+ case'g34_NothingTarget1602':{
+  const x=own.battle.find(x=>x.uid===v&&!x.sealed&&api.isCreature(s,x));
+  if(x)(s.extLimits??=[]).push({kind:'g412ExtraBreak',player:t.p,ref:{uid:x.uid,incarnation:x.incarnation||0},amount:t.count,expires:'end',who:s.active,source:t.source,spellSource:t.source,spellCost:cost(card(t.source))});
+  break;
+ }
+ case'g34_ReturnTopBottom1602':{
+  if(t.ids.includes(v.uid)&&['top','bottom'].includes(v.to))put(s,{...t,ids:t.ids.filter(uid=>uid!==v.uid),[v.to]:[...(t[v.to]||[]),v.uid]});
+  break;
+ }
  case'g34_BattleLootDiscard1601':{
   const selected=own.hand.find(x=>x.uid===v);if(!selected)break;
   const creature=faces(card(selected)).some(c=>c.type==='creature');

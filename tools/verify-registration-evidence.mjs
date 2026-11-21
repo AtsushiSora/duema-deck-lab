@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {textContent} from './detail-parser.mjs';
 const path=process.argv[2],m=JSON.parse(fs.readFileSync(path)),hash=x=>createHash('sha256').update(x).digest('hex');
-for(const row of m.cards){
+for(const row of [...m.cards,...(m.existingCards||[])]){
  const html=fs.readFileSync('/tmp/duema-official-phase-'+m.phase+'/'+row.id+'.html','utf8');
  assert.equal(hash(html),row.verification.sha256);assert.equal(new URL(row.image).hostname,'dm.takaratomy.co.jp');
  const response=await fetch(row.image,{signal:AbortSignal.timeout(30000)});assert.ok(response.ok);

@@ -1,0 +1,616 @@
+{
+  "phase": 1602,
+  "checkedAt": "2026-11-21",
+  "baseCount": 9038,
+  "description": "既存の処理を用いて全能力を個別に検証し3種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "existingCards": [
+    {
+      "id": "dm25ex1-036",
+      "name": "赤薔薇の精霊龍 ジェネラローズ / 「ハゲしくアツかりしスパークよ！」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-036",
+      "faces": [
+        {
+          "name": "赤薔薇の精霊龍 ジェネラローズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが出た時、カードを１枚引く。その後、光のコスト６以下の進化ではないクリーチャーを１体、自分の手札から出してもよい。",
+          "race": "エンジェル・コマンド・ドラゴン/革命軍",
+          "powerText": "7500",
+          "missingFields": []
+        },
+        {
+          "name": "「ハゲしくアツかりしスパークよ！」",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーを２体選び、タップする。その後、相手のタップしているクリーチャー１体につき、カードを１枚引いてもよい。",
+          "race": "エンジェル・コマンド・ワード",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "color": "光",
+              "max": 6,
+              "nonEvolution": true
+            },
+            "optional": true
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "「ハゲしくアツかりしスパークよ！」",
+          "cost": 6,
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "race": "エンジェル・コマンド・ワード",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "owner": "opponent",
+              "origin": "battle",
+              "n": 2,
+              "filter": {
+                "creature": true
+              },
+              "g173Targets": true,
+              "g193Select": true,
+              "g193Tap": true,
+              "title": "タップする相手のクリーチャーを2体選ぶ"
+            },
+            {
+              "op": "CountDraw",
+              "zone": "battle",
+              "owner": "opponent",
+              "filter": {
+                "creature": true,
+                "tapped": true
+              },
+              "optional": "each"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex1-036a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "d478b3d722dd9662ac595622b873958dc3168bb8c7ef364e5cfac89281dd1124",
+        "facesMatched": true,
+        "imageSha256": "0a891d1514623228d8e360f4e1048d9c880e9b1fa812b986626c71d2a8f4dbf1",
+        "imageBytes": 195777
+      },
+      "sameNameProducts": [
+        "DM25-EX1 愛感謝祭 ヒロインBEST"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-036",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex04-007",
+      "name": "偽りの王 ナンバーナイン / 歓喜の歌",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-007",
+      "faces": [
+        {
+          "name": "偽りの王 ナンバーナイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n相手は呪文を唱えることができない。",
+          "race": "キング・コマンド・ドラゴン/アンノウン",
+          "powerText": "9000",
+          "missingFields": []
+        },
+        {
+          "name": "歓喜の歌",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の山札の上から９枚を見る。その中からコスト９のカードを１枚、相手に見せてから手札に加えてもよい。残りをシャッフルし、山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g473OpponentSpellLock": true,
+        "spellFace": {
+          "type": "spell",
+          "name": "歓喜の歌",
+          "cost": 3,
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Look",
+              "n": 9,
+              "rest": "randomBottom1520",
+              "stages": [
+                {
+                  "n": 1,
+                  "to": "hand",
+                  "optional": true,
+                  "reveal": true,
+                  "filter": {
+                    "g1134AnyFaceCost": 9
+                  }
+                }
+              ],
+              "spell": true
+            }
+          ]
+        }
+      },
+      "faceImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-007a.jpg",
+        "sha256": "1138b7f92a6d8ab932979593a2709a64bda8470241e97a6cd59704aefeab9555",
+        "reviewedAt": "2026-11-21",
+        "reason": "公式画像の呪文面の文明色とコスト・全文を確認。公式HTMLで空欄の文明だけを補完する。",
+        "faces": [
+          {
+            "index": 1,
+            "civilizationText": "光",
+            "civilizations": [
+              "光"
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-007a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "094e28f2c49db032599c98eaf120dfeda59fcf1bb47daecbcd0453148d682128",
+        "facesMatched": true,
+        "imageSha256": "1138b7f92a6d8ab932979593a2709a64bda8470241e97a6cd59704aefeab9555",
+        "imageBytes": 132261
+      },
+      "sameNameProducts": [
+        "DM26-EX1 ますますつよいパック 25の援軍",
+        "DM24-BD6 エキサイティング・デュエパ・デッキ ツラトゥストラは水晶と語らう",
+        "DM22-EX1 黄金戦略!!デュエキングMAX 2022",
+        "DMEX-04 夢の最＆強!!ツインパクト超No.1パック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-007",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm26rp3-049",
+      "name": "翔天 スケプ-3",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-049",
+      "faces": [
+        {
+          "name": "翔天 スケプ-3",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ビビッドロー [wf02]（自分のターン中、攻撃の前にこのカードをドローした時、表向きにしてもよい。そうしたら、このターンこのカードを[wf02]支払って実行してもよい）\nこのクリーチャーが出た時、カードを４枚引く。その後、自分の手札を２枚、好きな順序で山札の上に置く。\nササゲール３（自分のディスペクター・クリーチャーの召喚コストを３少なくしてもよい。そうしたら、このエレメントを破壊する。ただしコストは０以下にならない）",
+          "race": "ファイアー・バード/ディスタス/美孔麗王国",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "sasage": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 4
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "deckTop",
+            "n": 2,
+            "g183Return": true,
+            "title": "山札の上に戻す手札を選ぶ（先に選んだカードが一番上）"
+          }
+        ],
+        "g1335VividDraw": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp3-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "96341adbcf8ec2b738c4191937f9022a41c9a37906d8f7e8f2dbe06a57faec4f",
+        "facesMatched": true,
+        "imageSha256": "b9b03fd16265cdcc9bc75d5743762a0d7e164683a75c9e448bb1ad62d5622d54",
+        "imageBytes": 107641
+      },
+      "sameNameProducts": [
+        "DM26-RP3 逆札篇 第3弾 勝敵！逆転おこせ鬼の∞ディスペクター!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-049",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm23ex3-S02",
+      "name": "天頂と停滞と水晶の決断",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-S02",
+      "faces": [
+        {
+          "name": "天頂と停滞と水晶の決断",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "アタック・チャンス：ゼニスまたはアンノウン（自分のゼニスまたはアンノウンが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n次の中から２回選ぶ。（同じものを選んでもよい）\n▶自分の山札の上から２枚を裏向きのままマナゾーンに置く。\n▶ゼニスではない相手のエレメントを１つ選び、持ち主の山札の下に置く。\n▶自分の山札の上から４枚を表向きにする。その中からゼニス、アンノウン、無色カードをすべて手札に加える。残りを好きな順序で山札の下に置く。",
+          "race": "ゼニス",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g417Chance": {
+          "raceAny": [
+            "ゼニス",
+            "アンノウン"
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g1045Preselect": 2,
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "山札上2枚を裏向きでマナへ",
+                "defs": [
+                  {
+                    "op": "Ramp",
+                    "n": 2,
+                    "faceDown": true,
+                    "spell": true
+                  }
+                ]
+              },
+              {
+                "label": "ゼニスではない相手のエレメント1つを山札下へ",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "element": true,
+                    "to": "deck",
+                    "toOwnerDeck": true,
+                    "filter": {
+                      "notRace": "ゼニス"
+                    },
+                    "spell": true
+                  }
+                ]
+              },
+              {
+                "label": "山札上4枚からゼニス、アンノウン、無色をすべて手札へ",
+                "defs": [
+                  {
+                    "op": "Look",
+                    "n": 4,
+                    "public": true,
+                    "stages": [
+                      {
+                        "to": "hand",
+                        "n": "all",
+                        "allMatches": true,
+                        "filter": {
+                          "any": [
+                            {
+                              "anyFaceRace": "ゼニス"
+                            },
+                            {
+                              "anyFaceRace": "アンノウン"
+                            },
+                            {
+                              "g217Colorless": true
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "rest": "bottom",
+                    "spell": true
+                  }
+                ]
+              }
+            ],
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-S02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "9fd1448147b26bf3bea95b851a3f4fd0085f3d86bed8ea9a51874e803dc324c9",
+        "facesMatched": true,
+        "imageSha256": "c32c1cd40d400bc0ef6810d0461f65eb1543f3d14ba7dcefba27f93c563b0d14",
+        "imageBytes": 135048
+      },
+      "sameNameProducts": [
+        "DM26-EX5 デュエマプレイス・コラボパック 「電脳対戦 -WAR OF PLAY'S-」",
+        "DM24-BD6 エキサイティング・デュエパ・デッキ ツラトゥストラは水晶と語らう",
+        "DM23-EX3 アビス・レボリューション外伝 「邪神と水晶の華」"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-S02",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/36770/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa_old/36770/": "ナッシング・ゼロで公開したカードは、上と下に好きな組み合わせ・順序で分けてよい。"
+  },
+  "cards": [
+    {
+      "id": "dm24bd2-011",
+      "name": "RinRin Kids",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd2-011",
+      "faces": [
+        {
+          "name": "RinRin Kids",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{STP} S・トリガー・プラス（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、このクリーチャーに{x+}能力を与える）\n{x+}このクリーチャーが出た時、このターン、誰もゲームに負けない。\nこのクリーチャーが出た時、バトルゾーンまたはマナゾーンに自分のジョーカーズが合計３枚以上あれば、相手のコスト３以下のエレメントを１つ選び、持ち主の山札の下に置く。",
+          "race": "ジョーカーズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "triggerPlus": true,
+        "effect": "sixPhoto",
+        "g34Plus": [
+          {
+            "op": "NoLoseTurn1602"
+          }
+        ],
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g539Jokers": 3
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "element": true,
+                "to": "deck",
+                "toOwnerDeck": true,
+                "filter": {
+                  "max": 3
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd2-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "adf0a9fd703e86363db3d910dbf29a5cf1b9f3b4014656391db117594839270f",
+        "facesMatched": true,
+        "imageSha256": "fd5af7aa328d2a31b0d332d52f4ee9f73730d627cb2f12334cf0f181bc5140de",
+        "imageBytes": 131450
+      },
+      "sameNameProducts": [
+        "DM24-BD2 ドリーム英雄譚デッキ ジョニーの書"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd2-011",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmx13-013",
+      "name": "破界秘伝ナッシング・ゼロ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx13-013",
+      "faces": [
+        {
+          "name": "破界秘伝ナッシング・ゼロ",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "アタック・チャンス-無色クリーチャー（自分の無色クリーチャーが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n自分の山札の上から３枚をすべてのプレイヤーに見せる。こうして見せた無色カード１枚につき、このターン、バトルゾーンにある自分のクリーチャー１体はシールドをさらに１枚ブレイクする。見せたカードはすべて、好きな順序で山札の上か下のどちらかに戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g417Chance": {
+          "g756Colorless": true
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "NothingZero1602",
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx13-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "36681f83e8593c82d3a4e1428fdcbc6a6e39c84c33507fc4f4c5a6891dc6e9ca",
+        "facesMatched": true,
+        "imageSha256": "e1b8685a0024b3c797bfd1aa3621112c5ec25b70f72cfa2c8ac84deda6973eb8",
+        "imageBytes": 144572
+      },
+      "sameNameProducts": [
+        "DM24-EX3 刺激爆発デュエナマイトパック",
+        "DM24-RP3 王道篇 第3弾 「ゴールド・オブ・ハイパーエンジェル」",
+        "DMSP-01 ステキ！カンペキ！！ジョーデッキーBOX",
+        "DMX-13 エピソード2 ホワイト・ゼニス・パック",
+        "プロモ限定カード 16期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx13-013",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm26ex5-031",
+      "name": "究極・チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-031",
+      "faces": [
+        {
+          "name": "究極・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の山札の上から２枚を表向きにする。その中からコスト９のカードをすべて手札に加え、残りを好きな順序で山札の下に置く。\nチャージャー（この呪文を唱えた後、墓地のかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 2,
+            "public": true,
+            "stages": [
+              {
+                "to": "hand",
+                "n": "all",
+                "allMatches": true,
+                "filter": {
+                  "g1134AnyFaceCost": 9
+                }
+              }
+            ],
+            "rest": "bottom",
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "7f176d7aba0b22057c5171d46acd21347767db013b67ca05620131f11eb18ea7",
+        "facesMatched": true,
+        "imageSha256": "180657baa0bec674f7e3ee6bb2c0421265790c0daaf2bada91a856c698c2447d",
+        "imageBytes": 92416
+      },
+      "sameNameProducts": [
+        "DM26-EX5 デュエマプレイス・コラボパック 「電脳対戦 -WAR OF PLAY'S-」"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-031",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24bd2-011": 4,
+      "dmx13-013": 4,
+      "dm26ex5-031": 4,
+      "dm25ex1-036": 4,
+      "dmex04-007": 4,
+      "dm26rp3-049": 4,
+      "dm23ex3-S02": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36770/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36770/",
+      "sha256": "741541a5474a6c5d68e3812cc40ec3c654453ca06be7fa5dbf856df7161c80e5",
+      "result": "ナッシング・ゼロで公開したカードは、上と下に好きな組み合わせ・順序で分けてよい。"
+    }
+  ]
+}
