@@ -3851,6 +3851,9 @@ export function createSixPhotoRules(api){
   else throw Error('未対応のクリーチャー数効果');
   break;
  }
+ case'g34_OpponentBlindOwn1610':
+  put(s,task('g34_BlindDiscard773',1-t.p,t.source,{controller:t.controller??t.p,n:2}));
+  break;
  case'g34_PrayerPlayer1609':
   choice(s,t,'カードを3枚引き、手札を2枚捨てるプレイヤーを選ぶ',[
    opt('自分',t.p,10),opt('相手',1-t.p,0)

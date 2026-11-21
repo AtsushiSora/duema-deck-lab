@@ -27923,5 +27923,99 @@
         ]
       }
     }
+  },
+  "dmex04-022": {
+    "phase": 1610,
+    "faces": [
+      {
+        "name": "ほめほめ老",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "Ｊ・Ｏ・Ｅ ２ (このクリーチャーを、コストを２少なくして召喚してもよい。そうしたら、このターンの終わりに、これを自分の山札の一番下に置く。下に置いたら、カードを１枚引く)\nスピードアタッカー\nW・ブレイカー\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）",
+        "race": "ジョーカーズ",
+        "powerText": "7000",
+        "missingFields": []
+      },
+      {
+        "name": "ホメホメ老句",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "カードを３枚引く。その後、自分の手札を２枚、相手に見ないで選ばせ、捨てる。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "joeDiscount": 2,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g1318Smash": true,
+      "spellFace": {
+        "name": "ホメホメ老句",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 2,
+        "race": "",
+        "text": "カードを３枚引く。その後、自分の手札を２枚、相手に見ないで選ばせ、捨てる。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "OpponentBlindOwn1610"
+          }
+        ]
+      }
+    }
+  },
+  "dmex17-108": {
+    "phase": 1610,
+    "faces": [
+      {
+        "name": "Dの光陣 ムルムル守神宮",
+        "typeText": "D2フィールド",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "S・トリガーS・トリガー（このD２フィールドをシールドゾーンから手札に加える時、コストを支払わずにすぐ展開してもよい）\n自分のクリーチャーすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）\n（他のD２フィールドが出た時、このD２フィールドを自分の墓地に置く）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "field",
+      "d2Field": true,
+      "trigger": true,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "blocker": true
+          }
+        }
+      ]
+    }
   }
 }
