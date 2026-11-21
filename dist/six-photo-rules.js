@@ -127,7 +127,7 @@ export function createSixPhotoRules(api){
  }
  function stayUntilStart627(s,t,x){
   if(x&&!x.sealed)(s.extLimits??=[]).push({kind:'g627Stay',ref:{uid:x.uid,incarnation:x.incarnation||0},
-   expires:'start',who:t.p,...(t.spell?{source:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});
+   expires:'start',who:t.p,...(t.destroyOnly?{destroyOnly:true}:{}),...(t.spell?{source:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});
  }
  function sourceHost474(s,t){if(!t)return null;for(const p of[0,1]){const x=s.players[p].battle.find(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)));if(x)return{p,x};}return null;}
  function entryFight624(s,t){

@@ -19702,5 +19702,125 @@
         ]
       }
     }
+  },
+  "dmrp05-065": {
+    "phase": 1570,
+    "faces": [
+      {
+        "name": "不滅ノ裁キ",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーが破壊される時、墓地に置くかわりにバトルゾーンにとどまる。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに自分のシールド１つの上に表向きにして置く。（そのシールドの束は１つと数える）",
+        "race": "裁きの紋章",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1027Crest": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g627StayTarget": true,
+          "destroyOnly": true,
+          "spell": true
+        }
+      ]
+    }
+  },
+  "dm24ex2-053": {
+    "phase": 1570,
+    "faces": [
+      {
+        "name": "無垢の地版",
+        "typeText": "タマシード",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "シンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードから進化するクリーチャーのコストを２少なくする。ただしコストは０以下にはならない。\nこのタマシードの上に、どの種族の進化クリーチャーを置いてもよい。",
+        "race": "ビーストフォーク/レクスターズ",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "seed",
+      "shinkalize": true,
+      "g1239EvolutionBaseDiscount": 2,
+      "g293AnyEvolutionRace": true
+    }
+  },
+  "dm24rp1-S09": {
+    "phase": 1570,
+    "faces": [
+      {
+        "name": "哀樹の夜 シンベロム",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "T・ブレイカー\n自分のクリーチャーすべてに「マッハファイター」を与える。\nハイパー化：自分の他のクリーチャーを１体タップする。",
+        "race": "デーモン・コマンド/超化獣",
+        "powerText": "12000",
+        "missingFields": []
+      },
+      {
+        "name": "哀樹の夜 シンベロム",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "T・ブレイカー\n自分のクリーチャーすべてに「マッハファイター」を与える。\nハイパー化：自分の他のクリーチャーを１体タップする。\nQ・ブレイカー\nこのクリーチャーが攻撃する時、クリーチャーを１体、自分のマナゾーンから出してもよい。",
+        "race": "デーモン・コマンド/超化獣",
+        "powerText": "18000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 3,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "machFighter": true
+          }
+        }
+      ],
+      "hyperTap": true,
+      "hyper": {
+        "power": 18000,
+        "breaker": 4,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      }
+    }
   }
 }
