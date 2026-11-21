@@ -4267,7 +4267,7 @@ export function createSixPhotoRules(api){
    [...candidates.map(y=>opt(card(y).name,y.uid,score-cost(card(y)),y.cardId)),skip()]);
   break;
  }
- case'g34_Smash320':{const row=smashSource320(s,t),c=faces(card(t.source))[1];if(row&&c&&api.canCast(s,t.p,c,row.origin))choice(s,t,'スマッシュ・バーストで呪文側を唱える？',[opt(c.name+'を唱える',true,own.deck.length<=1?-1000:25,t.source),skip()]);break;}
+ case'g34_Smash320':{const row=smashSource320(s,t),c=faces(card(t.source))[1];if(row&&(!t.battleOnly||row.origin==='battle')&&c&&api.canCast(s,t.p,c,row.origin))choice(s,t,t.battleOnly?'呪文側を唱える？':'スマッシュ・バーストで呪文側を唱える？',[opt(c.name+'を唱える',true,own.deck.length<=1?-1000:25,t.source),skip()]);break;}
  case'g34_BattleDeclare588':{
   const cards=t.cards.filter(ref=>own.hand.some(y=>y.uid===ref.uid&&(y.zoneSerial||0)===ref.serial));
   if(cards.length)choice(s,{...t,cards},'バトル勝利で使う手札の能力を宣言（任意）',[
@@ -4599,6 +4599,10 @@ export function createSixPhotoRules(api){
   if(t.g1352Moved.length)api.log(s,t.owner1352,mana?'shieldMana':'shieldGrave',card(t.source).name+'：シールド1つ（カード'+t.g1352Moved.length+'枚）を'+(mana?'マナゾーン':'墓地')+'に置いた',{cardId:t.source});
   put(s,{...t,op:'g34_OwnShieldGraves697'});
   break;
+ }
+ case'g34_BreakEither1612':{
+  const rows=[t.p,1-t.p].flatMap(p=>s.players[p].shields.map((x,i)=>opt((p===t.p?'自分':'相手')+'のシールド'+(i+1),{p,uid:x.uid},p===t.p?-5:10)));
+  if(rows.length)choice(s,t,'ブレイクするシールドを選ぶ',rows);break;
  }
  case'g34_Break497':{
   const self=t.owner==='self',owner=self?t.p:1-t.p,shields=s.players[owner].shields,chooser=t.ownerChooses?owner:t.p;
@@ -6558,6 +6562,7 @@ export function createSixPhotoRules(api){
   const evolved=host&&!host.x.sealed?api.isEvolution(host.x):t.g1059LastEvolution;
   const options=t.modes.flatMap((m,i)=>m.requiresEvolution&&!evolved||
    m.condition&&!ownCondition(s,t.p,m.condition,t.uid,t.incarnation)||
+   t.g1612DistinctModes&&t.modeSelections?.includes(i)||
    t.modesOncePerTurn&&used792(s,t,modeUse1170(t,i))
    ?[]:[opt(m.label||'効果'+(i+1),i,t.g184Modes?sign*modeScore(s,t,m.defs):m.score??10)]);
   choice(s,t,t.title||title,options,chooser);
@@ -7072,7 +7077,7 @@ export function createSixPhotoRules(api){
   }
   break;
  }
- case'g34_Smash320':if(v&&smashSource320(s,t))api.castBattleSpell(s,t.p,t.uid,t.incarnation,t.source);break;
+ case'g34_Smash320':if(v&&smashSource320(s,t)&&(!t.battleOnly||smashSource320(s,t).origin==='battle'))api.castBattleSpell(s,t.p,t.uid,t.incarnation,t.source);break;
  case'g34_Poker763':if(v)start(s,t,[{op:'AfterAttack542',defs:[{op:'Untap',g191First:true}]}]);break;
  case'g34_TapState235':{const y=s.players[t.target.p].battle.find(y=>y.uid===t.target.uid&&(y.incarnation||0)===t.target.incarnation);if(y){if(v)api.tap(s,t.target.p,y);else if(y.tapped&&api.canUntap(y)){y.tapped=false;combined.untapped(s,t.target.p,y);}}break;}
  case'g34_SpellLock589':lockSpells589(s,t,v);break;
@@ -7681,6 +7686,7 @@ export function createSixPhotoRules(api){
   if(v)start(s,{...t,p:1-t.p},[t.recovery]);
   else start(s,t,[{op:'Draw',n:2}]);
   break;
+ case'g34_BreakEither1612':if(v)start(s,t,[{op:'Break497',n:1,owner:v.p===t.p?'self':undefined,selected:[v.uid]}]);break;
  case'g34_Break497':if(v)put(s,{...t,selected:[...(t.selected||[]),v]});break;
  case'g34_ShieldCardManaDeploy1317':
   // An attempted move still satisfies the continuation under a replacement (QA 42955).

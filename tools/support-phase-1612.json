@@ -1,0 +1,366 @@
+{
+  "phase": 1612,
+  "checkedAt": "2026-11-21",
+  "baseCount": 9065,
+  "description": "既存の処理を用いて全能力を個別に検証し3種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "target": 9500,
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31767/",
+    "https://dm.takaratomy.co.jp/rule/qa/44618/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/31767/": "無色2枚は墓地とマナから1枚ずつ戻せる。",
+    "https://dm.takaratomy.co.jp/rule/qa/44618/": "裏向きマナも無色として手札に戻せる。表面を相手に見せない。"
+  },
+  "cards": [
+    {
+      "id": "dmbd06-010",
+      "name": "「逆相」の頂 オガヤード・スンラート",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd06-010",
+      "faces": [
+        {
+          "name": "「逆相」の頂 オガヤード・スンラート",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 15,
+          "costText": "15",
+          "abilityText": "このクリーチャーを召喚するコストは、相手のマナゾーンにあるカード１枚につき１少なくなる。ただし、コストは０以下にならない。\nT・ブレイカー\nこのクリーチャーが召喚によってバトルゾーンに出た時、無色のカードを２枚まで、自分のマナゾーンまたは墓地から手札に戻してもよい。\nエターナル・Ω（このクリーチャーがバトルゾーンを離れる時、かわりに手札に戻す）",
+          "race": "アンノウン/ゼニス",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "g34Omega": true,
+        "g212CountDiscount": {
+          "zone": "mana",
+          "owner": "opponent",
+          "amount": 1,
+          "g753AllMana": true
+        },
+        "summonedEntryOnly": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "zones": [
+              "mana",
+              "grave"
+            ],
+            "to": "hand",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "g217Colorless": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd06-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "a340851f21aabdcd792593469f1f6f84a1b9458ac2e7847887da8249d3739fbc",
+        "facesMatched": true,
+        "imageSha256": "9a66388ff692da21c57da5089553d963faf62cdd88435c506988a86ad0ca3991",
+        "imageBytes": 113512
+      },
+      "sameNameProducts": [
+        "DMBD-06 クロニクル・レガシー・デッキ2018 至高のゼニス頂神殿"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd06-010",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex08-303",
+      "name": "「破壊の赤！スクラッパーレッド！」「知識の青！ブレインブルー！」「魅惑の緑！トラップグリーン！」「閃光の黄色！スパークイエロー！」「強欲の紫！ハンドパープル！」「ブレイクあるところに我らあり！シールド戦隊、トリガージャー!!」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-303",
+      "faces": [
+        {
+          "name": "「破壊の赤！スクラッパーレッド！」「知識の青！ブレインブルー！」「魅惑の緑！トラップグリーン！」「閃光の黄色！スパークイエロー！」「強欲の紫！ハンドパープル！」「ブレイクあるところに我らあり！シールド戦隊、トリガージャー!!」",
+          "typeText": "呪文",
+          "civilizationText": "光/水/闇/火/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "闇",
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\n次のうち２つ選ぶ。\n▶︎相手のクリーチャーを、パワーの合計が5000以下になるように好きな数選び、破壊する。\n▶︎カードを３枚まで引く。\n▶︎相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\n▶︎相手のクリーチャーをすべてタップする。\n▶︎相手のクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "manaValue": 0,
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g1045Preselect": 2,
+            "g1612DistinctModes": true,
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "合計5000以下を破壊",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "owner": "opponent",
+                    "origin": "battle",
+                    "n": "all",
+                    "optional": true,
+                    "to": "grave",
+                    "filter": {
+                      "creature": true
+                    },
+                    "g173Targets": true,
+                    "g193Select": true,
+                    "g506PowerBudget": 5000
+                  }
+                ]
+              },
+              {
+                "label": "3枚まで引く",
+                "defs": [
+                  {
+                    "op": "DrawUpTo",
+                    "n": 3,
+                    "g203Draw": true
+                  }
+                ]
+              },
+              {
+                "label": "1体をマナへ",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "mana",
+                    "toOwnerMana": true
+                  }
+                ]
+              },
+              {
+                "label": "相手すべてタップ",
+                "defs": [
+                  {
+                    "op": "TapAll"
+                  }
+                ]
+              },
+              {
+                "label": "1体破壊",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "currentPrint": {
+        "id": "dm25ex2-040",
+        "name": "「破壊の赤！スクラッパーレッド！」「知識の青！ブレインブルー！」「魅惑の緑！トラップグリーン！」「閃光の黄色！スパークイエロー！」「強欲の紫！ハンドパープル！」「ブレイクあるところに我らあり！シールド戦隊、トリガージャー!!」",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-040",
+        "faces": [
+          {
+            "name": "「破壊の赤！スクラッパーレッド！」「知識の青！ブレインブルー！」「魅惑の緑！トラップグリーン！」「閃光の黄色！スパークイエロー！」「強欲の紫！ハンドパープル！」「ブレイクあるところに我らあり！シールド戦隊、トリガージャー!!」",
+            "typeText": "呪文",
+            "civilizationText": "光/水/闇/火/自然",
+            "civilizations": [
+              "光",
+              "水",
+              "闇",
+              "火",
+              "自然"
+            ],
+            "cost": 7,
+            "costText": "7",
+            "abilityText": "S・トリガー S・トリガー\n次の中から２つ選ぶ。（同じものは選べない）\n▶︎相手のクリーチャーを、パワーの合計が5000以下になるように好きな数選び、破壊する。\n▶︎カードを３枚まで引く。\n▶︎相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\n▶︎相手のクリーチャーをすべてタップする。\n▶︎相手のクリーチャーを１体選び、破壊する。",
+            "race": "",
+            "powerText": "",
+            "missingFields": []
+          }
+        ],
+        "imageVerification": {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-040.jpg",
+          "sha256": "bcb94b551ba5c0383a2f61349ee3de9e6d2aa6787bd0ce8483d2f48f160a4c0a",
+          "reviewedAt": "2026-11-21T09:56:06.277Z"
+        },
+        "verification": {
+          "checkedAt": "2026-11-21",
+          "sha256": "0a2df820c5052ea4231b4cf815bfb786c5f98b1fcf097036b9cc4506e071c332",
+          "facesMatched": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-303.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "17dca1f437fd699c6ea67921fe74f91ac1eaad8500ffa6d9f13924c7535ac042",
+        "facesMatched": true,
+        "imageSha256": "60c864dcf886add6d72f6635cb3a6fbc46bd97316a05bef79b2d8c33109e92e3",
+        "imageBytes": 134423
+      },
+      "sameNameProducts": [
+        "DM25-EX2 王道vs邪道 デュエキングWDreaM 2025",
+        "DMEX-08 謎のブラックボックスパック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-303",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm23rp4-S03",
+      "name": "サケビ・ポエムシャウター / ♪いつまでも オレ様の歌は 終わらねぇ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-S03",
+      "faces": [
+        {
+          "name": "サケビ・ポエムシャウター",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スピードアタッカー\nW・ブレイカー\nバトル中、このクリーチャーのパワーを+3000する。\n自分のクリーチャーがバトルに勝った時、このクリーチャーの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい。",
+          "race": "マジック・ビートジョッキー",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "♪いつまでも オレ様の歌は 終わらねぇ",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のクリーチャーを１体アンタップする。\nシールドを１つブレイクする。",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g209BattlePower": {
+          "amount": 3000
+        },
+        "g252WinWatch": {
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Smash320",
+              "battleOnly": true
+            }
+          ]
+        },
+        "spellFace": {
+          "name": "♪いつまでも オレ様の歌は 終わらねぇ",
+          "type": "spell",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "race": "マジック・ソング",
+          "text": "自分のクリーチャーを１体アンタップする。\nシールドを１つブレイクする。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "owner": "self",
+              "untap": true
+            },
+            {
+              "op": "BreakEither1612"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-S03a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "f0af9a3e43be80468087265d73a71ceb948bc9a7f9b939381e780377c312fa93",
+        "facesMatched": true,
+        "imageSha256": "5db36bdba9c8691dff061066358865d10864d03b3eb1b8188469ef1ada7fcfd0",
+        "imageBytes": 189237
+      },
+      "sameNameProducts": [
+        "DM23-RP4X アビス・レボリューション 第4弾 「竜皇神爆輝」 超刺激パック",
+        "DM23-RP4 アビス・レボリューション 第4弾 「竜皇神爆輝」"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-S03",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmbd06-010": 4,
+      "dmex08-303": 4,
+      "dm23rp4-S03": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/31767/",
+    "https://dm.takaratomy.co.jp/rule/qa/44618/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31767/",
+      "sha256": "6957aa75519e3872dae97d66b6e89f52d3278d1529e2c24abcd50d4661bd7d43",
+      "result": "無色2枚は墓地とマナから1枚ずつ戻せる。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/44618/",
+      "sha256": "db8f900bba4e3ead37ae082c79b29565460a35c27a6f17001d62dfab11751e9c",
+      "result": "裏向きマナも無色として手札に戻せる。表面を相手に見せない。"
+    }
+  ],
+  "testCorrections": [
+    "公式画像・HTMLに記されたトリガージャーのマナ数0を明示。",
+    "既存の全タップ操作名TapAllと一致させた。",
+    "オガヤードの離脱テストで誤ったカードIDをナチュラル・トラップdm01-039へ修正。"
+  ]
+}

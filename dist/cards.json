@@ -288088,15 +288088,202 @@
       "supportBatch": "phase-1611",
       "supportKind": "effect",
       "g40LastBurst": true
+    },
+    {
+      "id": "dmbd06-010",
+      "name": "「逆相」の頂 オガヤード・スンラート",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 15,
+      "power": 13000,
+      "race": "アンノウン/ゼニス",
+      "text": "このクリーチャーを召喚するコストは、相手のマナゾーンにあるカード１枚につき１少なくなる。ただし、コストは０以下にならない。\nT・ブレイカー\nこのクリーチャーが召喚によってバトルゾーンに出た時、無色のカードを２枚まで、自分のマナゾーンまたは墓地から手札に戻してもよい。\nエターナル・Ω（このクリーチャーがバトルゾーンを離れる時、かわりに手札に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd06-010",
+      "limit": 4,
+      "breaker": 3,
+      "g34Omega": true,
+      "g212CountDiscount": {
+        "zone": "mana",
+        "owner": "opponent",
+        "amount": 1,
+        "g753AllMana": true
+      },
+      "summonedEntryOnly": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "zones": [
+            "mana",
+            "grave"
+          ],
+          "to": "hand",
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "g217Colorless": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1612",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex08-303",
+      "name": "「破壊の赤！スクラッパーレッド！」「知識の青！ブレインブルー！」「魅惑の緑！トラップグリーン！」「閃光の黄色！スパークイエロー！」「強欲の紫！ハンドパープル！」「ブレイクあるところに我らあり！シールド戦隊、トリガージャー!!」",
+      "civ": "光/水/闇/火/自然",
+      "civilizations": [
+        "光",
+        "水",
+        "闇",
+        "火",
+        "自然"
+      ],
+      "manaValue": 0,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー\n次のうち２つ選ぶ。\n▶︎相手のクリーチャーを、パワーの合計が5000以下になるように好きな数選び、破壊する。\n▶︎カードを３枚まで引く。\n▶︎相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\n▶︎相手のクリーチャーをすべてタップする。\n▶︎相手のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-303",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g1045Preselect": 2,
+          "g1612DistinctModes": true,
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "合計5000以下を破壊",
+              "defs": [
+                {
+                  "op": "Select",
+                  "owner": "opponent",
+                  "origin": "battle",
+                  "n": "all",
+                  "optional": true,
+                  "to": "grave",
+                  "filter": {
+                    "creature": true
+                  },
+                  "g173Targets": true,
+                  "g193Select": true,
+                  "g506PowerBudget": 5000
+                }
+              ]
+            },
+            {
+              "label": "3枚まで引く",
+              "defs": [
+                {
+                  "op": "DrawUpTo",
+                  "n": 3,
+                  "g203Draw": true
+                }
+              ]
+            },
+            {
+              "label": "1体をマナへ",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "mana",
+                  "toOwnerMana": true
+                }
+              ]
+            },
+            {
+              "label": "相手すべてタップ",
+              "defs": [
+                {
+                  "op": "TapAll"
+                }
+              ]
+            },
+            {
+              "label": "1体破壊",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1612",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-S03",
+      "name": "サケビ・ポエムシャウター / ♪いつまでも オレ様の歌は 終わらねぇ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "マジック・ビートジョッキー",
+      "text": "スピードアタッカー\nW・ブレイカー\nバトル中、このクリーチャーのパワーを+3000する。\n自分のクリーチャーがバトルに勝った時、このクリーチャーの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい。\n【呪文面】\n自分のクリーチャーを１体アンタップする。\nシールドを１つブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-S03",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g209BattlePower": {
+        "amount": 3000
+      },
+      "g252WinWatch": {
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Smash320",
+            "battleOnly": true
+          }
+        ]
+      },
+      "spellFace": {
+        "name": "♪いつまでも オレ様の歌は 終わらねぇ",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "race": "マジック・ソング",
+        "text": "自分のクリーチャーを１体アンタップする。\nシールドを１つブレイクする。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "untap": true
+          },
+          {
+            "op": "BreakEither1612"
+          }
+        ]
+      },
+      "supportBatch": "phase-1612",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1611,
+    "phase": 1612,
     "checkedAt": "2026-11-21",
-    "baseCount": 9063,
-    "newEffectCards": 2,
+    "baseCount": 9065,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9065,
+    "totalCount": 9068,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -314429,6 +314616,20 @@
         "newEffectCards": 2,
         "newVanillaCards": 0,
         "totalCount": 9063,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
+        ]
+      },
+      {
+        "phase": 1611,
+        "checkedAt": "2026-11-21",
+        "baseCount": 9063,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9065,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
