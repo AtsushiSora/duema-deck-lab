@@ -2518,6 +2518,14 @@ export function createSixPhotoRules(api){
  case'g34_PaySpell485':paySpell485(s,t);break;
  case'g34_RevealPayment470':revealPayment470(s,t);break;
  case'g34_PayOnce464':payOnce464(s,t);break;
+ case'g34_BattleHandPower1600':{
+  if(!own.hand.length)break;
+  if(!t.declared){choice(s,t,'相手に自分の手札を裏向きのまま1枚選んで見せる？',
+   [opt('1枚選んで見せる',true,5),skip()]);break;}
+  const slots=api.shuffled(own.hand.map(x=>x.uid),Math.floor(api.random(s)*4294967296));
+  choice(s,{...t,slots},'相手の手札を裏向きのまま1枚選ぶ',slots.map((uid,i)=>opt('裏向きの手札 '+(i+1),i,0)),1-t.p);
+  break;
+ }
  case'g34_HandReveal462':handReveal462(s,t);break;
  case'g34_DrawReveal911':{
   const drawn=t.drawn||[];
@@ -6872,6 +6880,14 @@ export function createSixPhotoRules(api){
   if(t.after)put(s,{...t.after,g464Reducers:t.selected});
   else{const args=[...t.args];args[18]=t.selected;api.cast(s,t.p,...args);}
  }break;
+ case'g34_BattleHandPower1600':{
+  if(!t.declared){if(v)put(s,{...t,declared:true});break;}
+  const shown=own.hand.find(x=>x.uid===t.slots[v]);if(!shown)break;
+  api.log(s,t.p,'reveal',card(t.source).name+'で手札公開：'+card(shown).name,{cardId:shown.cardId,source:t.source});
+  const face=faces(card(shown)).find(c=>c.type==='creature'),host=sourceHost474(s,t);
+  if(face&&host){const amount=face.power==='∞'?'∞':Number(face.power)||0;(host.x.powerModifiers??=[]).push({amount,expires:'end',who:s.active});}
+  break;
+ }
  case'g34_HandReveal462':if(v!==null)put(s,{...t,selected:[...t.selected,v]});else finishReveal462(s,t,own.hand.filter(x=>t.selected.includes(x.uid)));break;
  case'g34_RevealedCostDraw1111':drawPrintedCost1111(s,t,v);break;
  case'g34_PlayerDraw461':if(t.upTo)put(s,{...t,chosen:v});else if(v)put(s,{...t,accepted:true});break;

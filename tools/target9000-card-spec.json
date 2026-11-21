@@ -26572,5 +26572,92 @@
         }
       ]
     }
+  },
+  "dmx09-011": {
+    "phase": 1600,
+    "faces": [
+      {
+        "name": "番傘の牡丹",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "自分の他のビーストフォークがバトルする時、そのターン、そのクリーチャーのパワーは+2000される。",
+        "race": "ビーストフォーク",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1600BattlePowerAura": {
+        "filter": {
+          "race": "ビーストフォーク"
+        },
+        "power": 2000
+      }
+    }
+  },
+  "dmrp18-072": {
+    "phase": 1600,
+    "faces": [
+      {
+        "name": "ジャリ ＜デスマ.Star＞",
+        "typeText": "スター進化クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "スター進化：レクスターズまたは闇のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nこのクリーチャーがバトルする時、このターン、バトルしている相手クリーチャーのパワーを－4000する。（パワー０以下のクリーチャーは破壊される）",
+        "race": "マフィ・ギャング/デスパペット/レクスターズ",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "any": [
+          {
+            "category": "レクスターズ"
+          },
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "starEvolution": true,
+      "g1237BattleMinus": 4000,
+      "g1600BattlePowerUntilEnd": true
+    }
+  },
+  "dm31-018": {
+    "phase": 1600,
+    "faces": [
+      {
+        "name": "爆獣の式神ブラッキー",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーがバトルする時、自分の手札を裏向きにして相手に１枚選ばせ、見せてもよい。それがクリーチャーであれば、そのターンの終わりまで、そのパワーをこのクリーチャーのパワーに追加する。",
+        "race": "ワンダー・トリック/ナイト",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1305BattleTasks": [
+        {
+          "op": "BattleHandPower1600"
+        }
+      ]
+    }
   }
 }
