@@ -3694,6 +3694,11 @@ export function createSixPhotoRules(api){
   moveZoneSelection583(s,{...t,...fromGrave},list(s,{...t,...fromGrave}).map(({x})=>x));
   break;
  }
+ case'g34_TabulaPower1605':{
+  const n=own.mana.filter(y=>y.faceDown).length;
+  if(n)start(s,t,[{op:'GroupPower',owner:'both',filter:{creature:true,g218Colored:true},power:-2000*n}]);
+  break;
+ }
  case'g34_GroupPower':{
   const duration={expires:t.g521UntilStart?'start':'end',who:t.g521UntilStart?t.p:s.active};
   const spell=t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{};

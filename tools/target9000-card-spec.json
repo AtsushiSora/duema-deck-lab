@@ -27062,5 +27062,134 @@
         }
       ]
     }
+  },
+  "dm23ex3-S06": {
+    "phase": 1605,
+    "faces": [
+      {
+        "name": "「使命」の頂天 グレイテスト・グレート",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 11,
+        "costText": "11",
+        "abilityText": "水晶ソウル３（このクリーチャーを召喚する時、自分のマナゾーンにある裏向きのカードのマナの数字は３になる）\nT・ブレイカー\n自分のクリーチャーすべてに「スピードアタッカー」を与える。\nこのクリーチャーが召喚によって出た時、自分の山札の上から３枚を見る。その中から、コスト７以下のクリーチャーを好きな数出し、残りを手札に加える。\nエターナル・Κ（このクリーチャーが離れる時、かわりに自分のマナゾーンにある裏向きのカードを３枚、表向きにしてもよい）",
+        "race": "ゼニス・セレス",
+        "powerText": "12000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g434CrystalSoul": 3,
+      "breaker": 3,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "summonedEntryOnly": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 3,
+          "filter": {
+            "creature": true,
+            "max": 7
+          },
+          "rest": "hand"
+        }
+      ],
+      "g1603Kappa": true
+    }
+  },
+  "dm23ex3-S08": {
+    "phase": 1605,
+    "faces": [
+      {
+        "name": "「戦鬼」の頂天 ベートーベン",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 13,
+        "costText": "13",
+        "abilityText": "水晶ソウル３（このクリーチャーを召喚する時、自分のマナゾーンにある裏向きのカードのマナの数字は３になる）\nマッハファイター\nQ・ブレイカー\nこのクリーチャーが召喚によって出た時、自分の山札の上から３枚を見る。その中から、好きな数のクリーチャーを相手に見せ、手札に加えてもよい。残りを裏向きにして、マナゾーンに置く。\nこのクリーチャーがタップしていれば、相手のクリーチャーは自分を攻撃できない。\nエターナル・Κ（このクリーチャーが離れる時、かわりに自分のマナゾーンにある裏向きのカードを３枚、表向きにしてもよい）",
+        "race": "ゼニス・セレス",
+        "powerText": "19000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g434CrystalSoul": 3,
+      "machFighter": true,
+      "breaker": 4,
+      "summonedEntryOnly": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "stages": [
+            {
+              "n": 3,
+              "to": "hand",
+              "filter": {
+                "creature": true
+              },
+              "optional": true,
+              "reveal": true
+            }
+          ],
+          "rest": "mana",
+          "faceDown": true
+        }
+      ],
+      "g1268TappedPlayerGuard": true,
+      "g1603Kappa": true
+    }
+  },
+  "dm24ex2-023": {
+    "phase": 1605,
+    "faces": [
+      {
+        "name": "「無」の頂天 タブラ＝ラーサ",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 12,
+        "costText": "12",
+        "abilityText": "水晶ソウル３（このクリーチャーを召喚する時、自分のマナゾーンにある裏向きのカードのマナの数字は３になる）\nT・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚を裏向きのままマナゾーンに置く。その後、このターン、無色ではないクリーチャーすべてのパワーを、自分のマナゾーンにある裏向きのカード１枚につき－2000する。\nエターナル・Κ（このクリーチャーが離れる時、かわりに自分のマナゾーンにある裏向きのカードを３枚、表向きにしてもよい）",
+        "race": "ゼニス・セレス",
+        "powerText": "14541",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g434CrystalSoul": 3,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 2,
+          "faceDown": true
+        },
+        {
+          "op": "TabulaPower1605"
+        }
+      ],
+      "g1603Kappa": true
+    }
   }
 }

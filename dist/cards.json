@@ -287264,15 +287264,133 @@
       ],
       "supportBatch": "phase-1604",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-S06",
+      "name": "「使命」の頂天 グレイテスト・グレート",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 11,
+      "power": 12000,
+      "race": "ゼニス・セレス",
+      "text": "水晶ソウル３（このクリーチャーを召喚する時、自分のマナゾーンにある裏向きのカードのマナの数字は３になる）\nT・ブレイカー\n自分のクリーチャーすべてに「スピードアタッカー」を与える。\nこのクリーチャーが召喚によって出た時、自分の山札の上から３枚を見る。その中から、コスト７以下のクリーチャーを好きな数出し、残りを手札に加える。\nエターナル・Κ（このクリーチャーが離れる時、かわりに自分のマナゾーンにある裏向きのカードを３枚、表向きにしてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-S06",
+      "limit": 4,
+      "g434CrystalSoul": 3,
+      "breaker": 3,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "summonedEntryOnly": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 3,
+          "filter": {
+            "creature": true,
+            "max": 7
+          },
+          "rest": "hand"
+        }
+      ],
+      "g1603Kappa": true,
+      "supportBatch": "phase-1605",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-S08",
+      "name": "「戦鬼」の頂天 ベートーベン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 13,
+      "power": 19000,
+      "race": "ゼニス・セレス",
+      "text": "水晶ソウル３（このクリーチャーを召喚する時、自分のマナゾーンにある裏向きのカードのマナの数字は３になる）\nマッハファイター\nQ・ブレイカー\nこのクリーチャーが召喚によって出た時、自分の山札の上から３枚を見る。その中から、好きな数のクリーチャーを相手に見せ、手札に加えてもよい。残りを裏向きにして、マナゾーンに置く。\nこのクリーチャーがタップしていれば、相手のクリーチャーは自分を攻撃できない。\nエターナル・Κ（このクリーチャーが離れる時、かわりに自分のマナゾーンにある裏向きのカードを３枚、表向きにしてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-S08",
+      "limit": 4,
+      "g434CrystalSoul": 3,
+      "machFighter": true,
+      "breaker": 4,
+      "summonedEntryOnly": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "stages": [
+            {
+              "n": 3,
+              "to": "hand",
+              "filter": {
+                "creature": true
+              },
+              "optional": true,
+              "reveal": true
+            }
+          ],
+          "rest": "mana",
+          "faceDown": true
+        }
+      ],
+      "g1268TappedPlayerGuard": true,
+      "g1603Kappa": true,
+      "supportBatch": "phase-1605",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex2-023",
+      "name": "「無」の頂天 タブラ＝ラーサ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 12,
+      "power": 14541,
+      "race": "ゼニス・セレス",
+      "text": "水晶ソウル３（このクリーチャーを召喚する時、自分のマナゾーンにある裏向きのカードのマナの数字は３になる）\nT・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚を裏向きのままマナゾーンに置く。その後、このターン、無色ではないクリーチャーすべてのパワーを、自分のマナゾーンにある裏向きのカード１枚につき－2000する。\nエターナル・Κ（このクリーチャーが離れる時、かわりに自分のマナゾーンにある裏向きのカードを３枚、表向きにしてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-023",
+      "limit": 4,
+      "g434CrystalSoul": 3,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 2,
+          "faceDown": true
+        },
+        {
+          "op": "TabulaPower1605"
+        }
+      ],
+      "g1603Kappa": true,
+      "supportBatch": "phase-1605",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1604,
+    "phase": 1605,
     "checkedAt": "2026-11-21",
-    "baseCount": 9043,
+    "baseCount": 9046,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9046,
+    "totalCount": 9049,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -313512,6 +313630,20 @@
         ],
         "next": [
           "10000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1604,
+        "checkedAt": "2026-11-21",
+        "baseCount": 9043,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9046,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
         ]
       }
     ]
