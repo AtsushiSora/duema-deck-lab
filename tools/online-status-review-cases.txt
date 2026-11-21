@@ -1,0 +1,63 @@
+import {updateOnlineFeedback} from '../dist/online-feedback.js';
+async function declaration(min=0){
+ const h=harness();await h.login();await h.click('online-create');await h.friend();
+ await h.click('online-card',{uid:h.read('onlineState.room.game.players[0].hand[0].uid')});
+ await h.click('online-primary',{revision:String(h.read('onlineState.room.revision'))});
+ await h.editGame(s=>{s.phase='main';s.active=0;s.decision=null;s.extTasks=[{op:'g9Number',p:0,source:'dm24rp4-002',family:'ignore',minNumber:min}];e.step(s,e.getLegalActions(s).find(a=>a.kind==='toAttack'));});
+ h.nodes['#online-number']={value:'0'};
+ return h;
+}
+test('REPRO: choosing the visible 3 declaration actually submits zero',async()=>{
+ const h=await declaration(),a=h.read('onlineState.room.game.actions.find(a=>a.label==="3を宣言")');
+ assert.ok(a);assert.match(h.root.innerHTML,/id="online-number"[^>]*value="0"/);
+ await h.click('online-move',{index:String(a.id),revision:String(h.read('onlineState.room.revision'))});
+ assert.equal(h.game().extLimits.at(-1).cost,0);
+ console.log('CONFIRMED number label=3, actual committed cost='+h.game().extLimits.at(-1).cost);
+ h.read('onlineClient.dispose()');
+});
+test('REPRO: a legal declaration button fails when the minimum exceeds the default zero',async()=>{
+ const h=await declaration(6),a=h.read('onlineState.room.game.actions.find(a=>a.label==="6を宣言")'),revision=h.read('onlineState.room.revision');
+ await h.click('online-move',{index:String(a.id),revision:String(revision)});
+ assert.equal(h.read('onlineState.room.revision'),revision);
+ assert.equal(h.read('onlineState.connected'),false);
+ assert.match(h.read('onlineState.error'),/通信を完了できませんでした/);
+ console.log('CONFIRMED legal minimum6 button yields generic communication error, revision unchanged');
+ h.read('onlineClient.dispose()');
+});
+test('REPRO: result review rebuilds a number input with zero instead of the entered 37',async()=>{
+ const h=await declaration();
+ assert.ok(h.read('onlineState.feedback.items.length')>1);
+ h.nodes['#online-number'].value='37';
+ const before=h.root.innerHTML;
+ await h.click('online-feedback-prev');
+ assert.notEqual(h.root.innerHTML,before);
+ assert.match(h.root.innerHTML,/id="online-number"[^>]*value="0"/);
+ console.log('CONFIRMED full root replacement renders value=0; entered 37 is not supplied to the new input');
+ h.read('onlineClient.dispose()');
+});
+test('REPRO: first and last abyss movements are omitted by the result cue',async()=>{
+ const h=harness();await h.login();await h.click('online-create');await h.friend();
+ const a=h.read('structuredClone(onlineState.room)'),b=structuredClone(a);b.revision++;
+ assert.equal(Object.hasOwn(a.game.players[0],'abyss'),false);
+ b.game.players[0].abyss=[{uid:'abyss-card',id:'dm01-108',name:'炎のたてがみ'}];
+ const entered=updateOnlineFeedback(a,b);
+ assert.ok(!entered?.items.some(e=>/深淵/.test(e.text)));
+ const c=structuredClone(b);c.revision++;delete c.game.players[0].abyss;
+ const left=updateOnlineFeedback(b,c);
+ assert.ok(!left?.items.some(e=>/深淵/.test(e.text)));
+ console.log('CONFIRMED abyss 0→1 and 1→0: no abyss cue');
+ h.read('onlineClient.dispose()');
+});
+test('REVIEW: changing only attack origin and target never changes the visible defense screen',async()=>{
+ const h=harness();await h.login();await h.click('online-create');await h.friend();
+ const a=h.read('structuredClone(onlineState.room)');
+ a.game.phase='attack';a.game.actor=1;a.seat=1;
+ a.game.actions=[{id:0,kind:'noBlock',label:'ブロックしない'}];
+ a.game.players[0].battle=[{uid:'attacker-a',id:'dm01-108',name:'炎のたてがみ',cost:2,power:2000},{uid:'attacker-b',id:'dm01-097',name:'不死身男爵ボーグ',cost:2,power:2000}];
+ a.game.players[1].battle=[{uid:'target',id:'dm01-075',name:'予言者リュゾル',cost:2,power:2000,tapped:true}];
+ a.game.attack={attacker:'attacker-a',target:'player',player:0};
+ const b=structuredClone(a);b.game.attack={attacker:'attacker-b',target:'target',player:0};
+ assert.equal(onlineScreenHTML({room:a,connected:true},{user:{}}),onlineScreenHTML({room:b,connected:true},{user:{}}));
+ console.log('CONFIRMED defense rendering ignores attack origin/target; this is a clarity improvement, not a change to legal defense rules');
+ h.read('onlineClient.dispose()');
+});

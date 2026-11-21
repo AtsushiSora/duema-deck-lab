@@ -524301,6 +524301,51 @@
         "deployed": false,
         "netlifyUpdated": false
       }
+    },
+    "latestOnlineReview": {
+      "artifact": "tools/online-status-review.json",
+      "checkedAt": "2026-11-21T22:12:14.188Z",
+      "baseCommit": "5d813494b14433db6dc95eafc0241cf2f3ad86e7",
+      "status": "review-complete-findings-open",
+      "productCodeChanged": false,
+      "confirmedOpenFindings": [
+        {
+          "id": "online-number-button-override",
+          "severity": "high",
+          "title": "数字の選択ボタンが入力欄の0で上書きされる"
+        },
+        {
+          "id": "online-number-draft-reset",
+          "severity": "medium",
+          "title": "状況表示を切り替えると入力途中の数字が0へ戻る"
+        },
+        {
+          "id": "online-abyss-first-last-cue",
+          "severity": "medium",
+          "title": "深淵ゾーンの最初と最後のカード移動が状況表示から抜ける"
+        }
+      ],
+      "improvements": [
+        {
+          "id": "defense-attack-context",
+          "priority": "medium",
+          "title": "防御時に攻撃元と攻撃先を明示する"
+        },
+        {
+          "id": "log-latest-first",
+          "priority": "low",
+          "title": "対戦ログを最新から確認しやすくする"
+        }
+      ],
+      "existingRegressionCasesPassed": 74,
+      "diagnosticCasesConfirmingOpenFindings": 5,
+      "uniqueNames": 9070,
+      "next": "数字候補と任意入力の分離を最優先で修正。その後入力保持、深淵ゾーン差分を修正し、再現ケースを期待動作の回帰テストへ変換する。公開は別途のユーザー指示まで行わない。",
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      }
     }
   },
   "registeredCardVerification": {

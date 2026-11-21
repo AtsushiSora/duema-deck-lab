@@ -1,0 +1,184 @@
+{
+  "checkedAt": "2026-11-21T22:12:14.188Z",
+  "clientDate": "2026-11-22",
+  "baseCommit": "5d813494b14433db6dc95eafc0241cf2f3ad86e7",
+  "scope": "友達・アカウント対戦の操作、通信、直前の状況表示。ローカルコードと隔離された2アカウント用HTTP/暗号化保存テストによる確認。本番アカウントへの操作は行わない。",
+  "status": "review-complete-findings-open",
+  "productCodeChanged": false,
+  "findings": [
+    {
+      "id": "online-number-button-override",
+      "severity": "high",
+      "status": "confirmed-open",
+      "title": "数字の選択ボタンが入力欄の0で上書きされる",
+      "location": "dist/app.js:881",
+      "related": [
+        "dist/online-ui.js:69",
+        "server/duel-core.mjs:99"
+      ],
+      "reproduction": "数字宣言の選択画面で、入力欄を変更せず「3を宣言」を押す。",
+      "expected": "3が宣言される。",
+      "actual": "HTTP経由でnumber=0が送られ、対戦状態extLimitsのcost=0が保存された。最低値6の選択では、合法な「6を宣言」を押しても0が送られ、エンジンが拒否し、画面に汎用通信エラーが表示された。",
+      "impact": "選んだ数字と異なるカードへ効果が適用される。最低値のある宣言では通常のボタン操作が失敗する。",
+      "recommendation": "数字の候補ボタンと任意の数字入力の送信操作を分ける。候補の数字をそのまま送り、任意入力には最低値も渡して検証する。",
+      "proofCases": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "online-number-draft-reset",
+      "severity": "medium",
+      "status": "confirmed-open",
+      "title": "状況表示を切り替えると入力途中の数字が0へ戻る",
+      "location": "dist/online-ui.js:69",
+      "related": [
+        "dist/app.js:875",
+        "dist/app.js:1038",
+        "dist/online.js:13"
+      ],
+      "reproduction": "数字入力中に、状況表示の「前へ」を押す。",
+      "expected": "入力した数字を保持する。",
+      "actual": "client.reviewFeedbackの通知で画面ルートを再描画し、入力済み37を渡さずvalue=\"0\"の新しい入力欄を作り直すことをVMの実アプリ経路で確認。DOM上での手入力・実機試験は今回行っていない。",
+      "impact": "気付かず確定すると0を宣言する可能性がある。",
+      "recommendation": "ルーム・revision・数字宣言の対象に紐付けた入力下書きを保持する。再接続など同じ選択中の再描画でも保持し、別の選択には持ち越さない。",
+      "proofCases": [
+        3
+      ]
+    },
+    {
+      "id": "online-abyss-first-last-cue",
+      "severity": "medium",
+      "status": "confirmed-open",
+      "title": "深淵ゾーンの最初と最後のカード移動が状況表示から抜ける",
+      "location": "dist/online-feedback.js:22",
+      "related": [
+        "server/duel-core.mjs:66"
+      ],
+      "reproduction": "取得した盤面で深淵ゾーンが0枚から1枚、または1枚から0枚へ変化する。",
+      "expected": "深淵ゾーンのカードが1枚増えた／減った、と表示する。",
+      "actual": "空のabyssはサーバーから省略される。比較がundefinedとの比較になりNumber.isFiniteで除外されるため、該当の通知は生成されない。",
+      "impact": "対戦処理は続くが、状況通知の一部が欠ける。",
+      "recommendation": "省略可能な配列ゾーンは未指定を0枚として比較する。",
+      "proofCases": [
+        4
+      ]
+    }
+  ],
+  "improvements": [
+    {
+      "id": "defense-attack-context",
+      "priority": "medium",
+      "location": "dist/online-ui.js:69",
+      "title": "防御時に攻撃元と攻撃先を明示する",
+      "evidence": "game.attackの攻撃元と攻撃先だけを変えても防御画面HTMLが完全に一致することを確認。攻撃先や攻撃元を強調する表示がない。",
+      "recommendation": "攻撃中のカード名と対象を表示し、該当カード・シールドを強調する。防御ルール変更は不要。",
+      "proofCases": [
+        5
+      ]
+    },
+    {
+      "id": "log-latest-first",
+      "priority": "low",
+      "location": "dist/app.js:1044",
+      "title": "対戦ログを最新から確認しやすくする",
+      "evidence": "静的レビュー:直近40件を古い順のままmapし、ログダイアログを開く。今回この項目の実ブラウザー確認は行っていない。",
+      "recommendation": "最新の行動を上に表示するか、開くときに最新へスクロールする。"
+    }
+  ],
+  "verification": {
+    "results": [
+      {
+        "name": "reproduce-final",
+        "command": [
+          "node",
+          "tools/review-online-status.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.946,
+        "log": "tmp/duema-online-review/reproduce-final.log",
+        "passed": 5,
+        "failed": 0,
+        "sha256": "823c3d97c1d91095ec0d2e6c2ce74c80b091596bf96a3e657a25bf991f3e2752"
+      },
+      {
+        "name": "related",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-feedback.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/online-ui.test.mjs",
+          "tests/online-app.test.mjs",
+          "tests/battle-controls.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.183,
+        "log": "tmp/duema-online-review/related.log",
+        "passed": 74,
+        "failed": 0,
+        "sha256": "6b5f3db38b46696ffc8e3f06c9d12c83e967b7533afbf56f18215a65d183356c"
+      },
+      {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.824,
+        "log": "tmp/duema-online-review/check.log",
+        "sha256": "fd00ef4548eb506e6a627320f0f81809e69c765639f8bb9b2831989aba13f5ca"
+      },
+      {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 13.225,
+        "log": "tmp/duema-online-review/audit.log",
+        "sha256": "f3dce8c6897c86fad30c51a6172abc271f0dea7a15e217958f36c09a29dd682a"
+      }
+    ],
+    "existingRegressionCasesPassed": 74,
+    "diagnosticCasesConfirmingOpenFindings": 5,
+    "diagnosticMeaning": "再現ケースが合格したことは、不具合を再現・確認できたことを意味する。修正済みや期待動作の合格ではない。",
+    "reproduce": "node tools/review-online-status.mjs",
+    "scripts": [
+      "tools/review-online-status.mjs",
+      "tools/online-status-review-cases.txt"
+    ],
+    "fixtureCorrection": "最初の再現スクリプト1件で、app側だけfeedbackを書き換えてclient側へ反映していなかった。実際のマナチャージから複数の通知を作る構成へ修正。製品コードは変更せず、最終5件は全て再現した。",
+    "initialFixtureAttempt": {
+      "code": 1,
+      "log": "tmp/duema-online-review/reproduce-initial-fixture-error.log",
+      "sha256": "48a7fd7a5fe01dc1f98c73a1d3ea6c430e6c1573a0e9a1d9d40e30002602bd8b"
+    }
+  },
+  "cards": {
+    "startUniqueNames": 9070,
+    "endUniqueNames": 9070,
+    "uniqueIds": 9070,
+    "duplicates": 0,
+    "added": 0,
+    "baselineOriginalsUnchanged": 9043,
+    "normalization": "dist/catalogue.js nameKey via node tools/verify-target9500.mjs"
+  },
+  "limits": [
+    "ローカルの現行コミットに対する結果。公開中のNetlify版への適用状況は今回検証していない。",
+    "全カード・全対戦状況に不具合がないことを保証する網羅試験ではない。",
+    "過去の一括npm testは中断・合否未確認を維持。ユーザーが後回しにした裁定・再録2件は対象外。"
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}
