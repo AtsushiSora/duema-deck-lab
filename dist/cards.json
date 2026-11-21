@@ -286906,15 +286906,72 @@
       ],
       "supportBatch": "phase-1600",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx23-050",
+      "name": "ワンダーチューン・MOTORS",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "自分のクリーチャーがバトルする時、カードを２枚引いてもよい。そうしたら、自分の手札を１枚捨てる。そのカードがクリーチャーなら、バトルしている自分のクリーチャーのパワーを、バトルの終わりまで+5000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx23-050",
+      "limit": 4,
+      "d2Field": true,
+      "g1601BattleLoot": true,
+      "supportBatch": "phase-1601",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr10-001",
+      "name": "精霊のイザナイ 天草",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6500,
+      "race": "オラクル/エンジェル・コマンド",
+      "text": "ブロッカー ブロッカー\nこのクリーチャーがバトルする時、自分の山札の上から１枚目をすべてのプレイヤーに見せる。それがゴッドか無色クリーチャーであれば、バトルゾーンに出してもよい。それ以外であれば、自分の手札に加える。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-001",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g1305BattleTasks": [
+        {
+          "op": "RevealTop514",
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "race": "ゴッド"
+              },
+              {
+                "noColor": true
+              }
+            ]
+          },
+          "to": "battle",
+          "optional": true,
+          "elseTo": "hand"
+        }
+      ],
+      "supportBatch": "phase-1601",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1600,
+    "phase": 1601,
     "checkedAt": "2026-11-21",
-    "baseCount": 9033,
-    "newEffectCards": 3,
+    "baseCount": 9036,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 9036,
+    "totalCount": 9038,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -313093,6 +313150,20 @@
         "newEffectCards": 2,
         "newVanillaCards": 0,
         "totalCount": 9033,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1600,
+        "checkedAt": "2026-11-21",
+        "baseCount": 9033,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9036,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

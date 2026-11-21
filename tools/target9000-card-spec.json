@@ -26659,5 +26659,71 @@
         }
       ]
     }
+  },
+  "dmx23-050": {
+    "phase": 1601,
+    "faces": [
+      {
+        "name": "ワンダーチューン・MOTORS",
+        "typeText": "D2フィールド",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "自分のクリーチャーがバトルする時、カードを２枚引いてもよい。そうしたら、自分の手札を１枚捨てる。そのカードがクリーチャーなら、バトルしている自分のクリーチャーのパワーを、バトルの終わりまで+5000する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "field",
+      "d2Field": true,
+      "g1601BattleLoot": true
+    }
+  },
+  "dmr10-001": {
+    "phase": 1601,
+    "faces": [
+      {
+        "name": "精霊のイザナイ 天草",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "ブロッカー ブロッカー\nこのクリーチャーがバトルする時、自分の山札の上から１枚目をすべてのプレイヤーに見せる。それがゴッドか無色クリーチャーであれば、バトルゾーンに出してもよい。それ以外であれば、自分の手札に加える。\nW・ブレイカー",
+        "race": "オラクル/エンジェル・コマンド",
+        "powerText": "6500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g1305BattleTasks": [
+        {
+          "op": "RevealTop514",
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "race": "ゴッド"
+              },
+              {
+                "noColor": true
+              }
+            ]
+          },
+          "to": "battle",
+          "optional": true,
+          "elseTo": "hand"
+        }
+      ]
+    }
   }
 }

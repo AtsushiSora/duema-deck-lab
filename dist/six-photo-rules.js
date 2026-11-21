@@ -2518,6 +2518,18 @@ export function createSixPhotoRules(api){
  case'g34_PaySpell485':paySpell485(s,t);break;
  case'g34_RevealPayment470':revealPayment470(s,t);break;
  case'g34_PayOnce464':payOnce464(s,t);break;
+ case'g34_BattleLoot1601':
+  start(s,t,[{op:'Offer',title:'カードを2枚引いてから手札を1枚捨てる？',g204DrawDiscard:true,defs:[
+   {op:'Draw',n:2},{op:'BattleLootDiscard1601',fighter:t.fighter,battleToken:t.battleToken}]}]);
+  break;
+ case'g34_BattleLootDiscard1601':
+  if(own.hand.length)choice(s,t,'捨てる手札を1枚選ぶ',own.hand.map(y=>opt(card(y).name,y.uid,-cost(card(y)),y.cardId)));
+  break;
+ case'g34_BattleLootPower1601':{
+  const fighter=own.battle.find(x=>x.uid===t.fighter.uid&&(x.incarnation||0)===(t.fighter.incarnation||0));
+  if(fighter)(fighter.powerModifiers??=[]).push({amount:5000,g1237BattleToken:t.battleToken});
+  break;
+ }
  case'g34_BattleHandPower1600':{
   if(!own.hand.length)break;
   if(!t.declared){choice(s,t,'相手に自分の手札を裏向きのまま1枚選んで見せる？',
@@ -6880,6 +6892,12 @@ export function createSixPhotoRules(api){
   if(t.after)put(s,{...t.after,g464Reducers:t.selected});
   else{const args=[...t.args];args[18]=t.selected;api.cast(s,t.p,...args);}
  }break;
+ case'g34_BattleLootDiscard1601':{
+  const selected=own.hand.find(x=>x.uid===v);if(!selected)break;
+  const creature=faces(card(selected)).some(c=>c.type==='creature');
+  api.discardSelected(s,t.p,[v],t.source,t.p,creature?{...t,op:'g34_BattleLootPower1601'}:null);
+  break;
+ }
  case'g34_BattleHandPower1600':{
   if(!t.declared){if(v)put(s,{...t,declared:true});break;}
   const shown=own.hand.find(x=>x.uid===t.slots[v]);if(!shown)break;
