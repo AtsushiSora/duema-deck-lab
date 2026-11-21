@@ -1,0 +1,327 @@
+{
+  "phase": 1528,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8729,
+  "description": "既存の処理を用いて全能力を個別に検証し3種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/33716/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/33716/": "S・トリガーの付与や使用可能な面は条件を満たす片面だけに適用する。"
+  },
+  "implementationNotes": [
+    "ドロー誘発は実際の各ドローを数え、通常のターンドローも含める。手札へ加える検索や相手のドローは含めない。",
+    "サマー・オジサマーは既存の捨て札バッチの実移動数を参照する。手札ゼロでも任意実行でき、捨て札置換による未廃棄分を枚数から除く。",
+    "ハムラティス・ジャッジは解決時の相手マナ枚数で比較し、相手が自分のカードを好きな順序で山札の下へ置く。"
+  ],
+  "cards": [
+    {
+      "id": "dmrp12-031",
+      "name": "ブルックス・ザ・シルバー / ザババン・ライト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-031",
+      "faces": [
+        {
+          "name": "ブルックス・ザ・シルバー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分がカードを引いた時、自分の手札を１枚、タップしてマナゾーンに置いてもよい。",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "5000",
+          "missingFields": []
+        },
+        {
+          "name": "ザババン・ライト",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nカードを２枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1528OwnDraw": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "mana",
+            "n": 1,
+            "tapped": true,
+            "optional": true
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "ザババン・ライト",
+          "cost": 4,
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Draw",
+              "n": 2,
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-031a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "4096ecef997578a4b8d7938812f773a429b7bba9c53961cee33a891b0abd1a4e",
+        "facesMatched": true,
+        "imageSha256": "52e2d6e3de18f6c44fbd334539a9bf5de83ddaf4f287d5a946aa81d7a0140f8b",
+        "imageBytes": 121067
+      },
+      "sameNameProducts": [
+        "DM23-BD6 エキサイティング・デュエパ・デッキ 「双極のアカシックZ計画」",
+        "DMRP-12 超天篇 拡張パック第4弾 超超超天！覚醒ジョギラゴン vs. 零龍卍誕"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-031",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp11-s10",
+      "name": "サマー・オジサマー / ムーン・オジサマー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-s10",
+      "faces": [
+        {
+          "name": "サマー・オジサマー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが攻撃する時、自分の手札をすべて捨ててもよい。そうしたら、こうして捨てた手札の枚数に１枚加えて、カードを引く。",
+          "race": "ビートジョッキー/スペシャルズ",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "ムーン・オジサマー",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\nコスト３以下のクリーチャーを２体、自分の墓地からバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "OjiCycle1528"
+              }
+            ]
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "ムーン・オジサマー",
+          "cost": 5,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "n": 2,
+              "deploy": true,
+              "g236GraveDeploy": true,
+              "filter": {
+                "creature": true,
+                "max": 3
+              },
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-s10a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "a58efaca41bcc8013b2393dbbdeb2fca0fc5e868e074e730e5bb0cda85ac4c55",
+        "facesMatched": true,
+        "imageSha256": "bfd21cc49fc57a4ad1f1c1ed30d8eee51f10dda347cea58cee7e4b084bea125e",
+        "imageBytes": 107830
+      },
+      "sameNameProducts": [
+        "DMRP-11 超天篇 拡張パック第3弾 零誕！魔神おこせジョルネード1059!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-s10",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex04-062",
+      "name": "赤攻銀 ハムラービ/ハムラティス・ジャッジ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-062",
+      "faces": [
+        {
+          "name": "赤攻銀 ハムラービ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、光のコスト３以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "メタリカ",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "ハムラティス・ジャッジ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手は、自身のマナゾーンにあるカードの枚数よりコストが大きい自身のクリーチャーをすべて、好きな順序で山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "color": "光",
+              "max": 3
+            }
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "ハムラティス・ジャッジ",
+          "cost": 2,
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "ManaCostSweep522",
+              "g1528ToBottom": true,
+              "spell": true
+            }
+          ]
+        }
+      },
+      "faceImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-062a.jpg",
+        "sha256": "d7ca8f2ba4b2cd868748569b4c8649c7d50aaf6af4c04f3e1f0561b496c380c9",
+        "reviewedAt": "2026-11-21",
+        "reason": "公式画像の呪文面は光文明。HTML文明欄のみ空白なので画像と照合して補完。",
+        "faces": [
+          {
+            "index": 1,
+            "civilizationText": "光",
+            "civilizations": [
+              "光"
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-062a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "47bf13eef3efb119df7f1ec9237268f78527ab385a2343f064dc491542db6fe6",
+        "facesMatched": true,
+        "imageSha256": "d7ca8f2ba4b2cd868748569b4c8649c7d50aaf6af4c04f3e1f0561b496c380c9",
+        "imageBytes": 162266
+      },
+      "sameNameProducts": [
+        "DMEX-04 夢の最＆強!!ツインパクト超No.1パック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-062",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp12-031": 4,
+      "dmrp11-s10": 4,
+      "dmex04-062": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/33716/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33716/",
+      "sha256": "0e3296031e1dfb8ceec8afade9c5962b09b58597abcfa218c51dc2bac129a205",
+      "result": "S・トリガーの付与や使用可能な面は条件を満たす片面だけに適用する。"
+    }
+  ]
+}

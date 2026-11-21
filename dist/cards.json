@@ -274147,15 +274147,168 @@
       },
       "supportBatch": "phase-1527",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-031",
+      "name": "ブルックス・ザ・シルバー / ザババン・ライト",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "自分がカードを引いた時、自分の手札を１枚、タップしてマナゾーンに置いてもよい。\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nカードを２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-031",
+      "limit": 4,
+      "g1528OwnDraw": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "mana",
+          "n": 1,
+          "tapped": true,
+          "optional": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "ザババン・ライト",
+        "cost": 4,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1528",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-s10",
+      "name": "サマー・オジサマー / ムーン・オジサマー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ビートジョッキー/スペシャルズ",
+      "text": "このクリーチャーが攻撃する時、自分の手札をすべて捨ててもよい。そうしたら、こうして捨てた手札の枚数に１枚加えて、カードを引く。\n【呪文面】\nS・トリガー S・トリガー\nコスト３以下のクリーチャーを２体、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-s10",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "OjiCycle1528"
+            }
+          ]
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "ムーン・オジサマー",
+        "cost": 5,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 2,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            },
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1528",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex04-062",
+      "name": "赤攻銀 ハムラービ/ハムラティス・ジャッジ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "メタリカ",
+      "text": "このクリーチャーがバトルゾーンに出た時、光のコスト３以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n【呪文面】\n相手は、自身のマナゾーンにあるカードの枚数よりコストが大きい自身のクリーチャーをすべて、好きな順序で山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-062",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "color": "光",
+            "max": 3
+          }
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "ハムラティス・ジャッジ",
+        "cost": 2,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ManaCostSweep522",
+            "g1528ToBottom": true,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1528",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1527,
-    "checkedAt": "2026-11-20",
-    "baseCount": 8726,
+    "phase": 1528,
+    "checkedAt": "2026-11-21",
+    "baseCount": 8729,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 8729,
+    "totalCount": 8732,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -299312,6 +299465,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 8726,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1527,
+        "checkedAt": "2026-11-20",
+        "baseCount": 8726,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 8729,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

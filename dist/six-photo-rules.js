@@ -5530,6 +5530,8 @@ export function createSixPhotoRules(api){
    api.draw(s,t.p,1,{drawn:t.drawn});
   }else if(t.drawn.length)put(s,{...t,op:'g52_TopHand',n:t.drawn.length,selected:[]});
   break;
+ case'g34_OjiCycle1528':api.discardSelected(s,t.p,own.hand.map(x=>x.uid),t.source,t.p,null,null,{...t,op:'g34_DrawAfterOji1528',g1528AllowZero:true});break;
+ case'g34_DrawAfterOji1528':start(s,t,[{op:'Draw',n:t.n+1}]);break;
  case'g34_DrawDiscardCount1235':{
   const n=discardCount1235(s,t.p);
   if(n)start(s,t,[{op:'Offer',title:'カードを'+n+'枚引く？',defs:[{op:'Draw',n}]}]);
@@ -5620,7 +5622,7 @@ export function createSixPhotoRules(api){
   if(t.g735BelowColorless){
    const n=own.mana.filter(y=>api.manaColors(card(y.faceDown?'face-down-mana':y),s,t.p).length===0).length;
    if(n)start(s,t,[{op:'Sweep',both:true,filter:{creature:true,belowCost:n}}]);
-  }else start(s,t,[{op:'Sweep',filter:{creature:true,min:opp.mana.length+1}}]);
+  }else start(s,t,[{op:'Sweep',filter:{creature:true,min:opp.mana.length+1},...(t.g1528ToBottom?{to:'deck',toOwnerDeck:true,g994OrderBottom:true}:{})}]);
   break;
  // Capture the physical mana count before moving a card out of that zone. Execute preserves actual summoning.
  case'g34_ManaCountRamp529':{const n=own.mana.length;if(n)start(s,t,[{op:'Offer',title:'山札から'+n+'枚をまとめてタップしてマナに置く？',defs:[{op:'Ramp',n,tapped:true}]}]);break;}
@@ -9534,6 +9536,7 @@ export function createSixPhotoRules(api){
  },
  drawn676(s,p,n,before,turnDraw){
   if(!n)return;
+  for(const source of creatures(s,p)){const defs=!source.sealed&&effective(source,s).g1528OwnDraw;if(defs)for(let i=0;i<n;i++)queue(s,p,source,defs);}
   if(n>Number(turnDraw))for(const source of creatures(s,p)){
    if(!card(source).g1154EffectDraw||api.ignored(s,source))continue;
    for(let i=Number(turnDraw);i<n;i++)queue(s,p,source,card(source).g1154EffectDraw);
