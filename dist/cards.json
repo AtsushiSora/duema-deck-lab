@@ -286543,15 +286543,115 @@
       },
       "supportBatch": "phase-1596",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-032",
+      "name": "浄化ノ正裁Z",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "裁きの紋章Z",
+      "text": "サバキZ（裁きの紋章が自分のシールドゾーンから手札に加えられた時、そのカードを捨ててもよい。そうしたら、この呪文をコストを支払わずに唱える）\n次の自分のターンのはじめまで、自分のクリーチャーがタップした時、カードを１枚引いてもよい。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに自分のシールド１つの上に表向きにして置く。（そのシールドの束は１つと数える）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-032",
+      "limit": 4,
+      "g1027Crest": true,
+      "g1348Sabaki": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Lock",
+          "g746Self": true,
+          "spell": true,
+          "limit": {
+            "kind": "g1597TapDraw"
+          }
+        }
+      ],
+      "supportBatch": "phase-1597",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-013",
+      "name": "堅珠ノ正裁Z",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "裁きの紋章Z",
+      "text": "サバキZ（裁きの紋章が自分のシールドゾーンから手札に加えられた時、そのカードを捨ててもよい。そうしたら、この呪文をコストを支払わずに唱える）\n次の自分のターンのはじめまで、相手は、自身のマナゾーンにあるカードの枚数よりコストが大きいクリーチャーをバトルゾーンに出した時、そのクリーチャーを自身の山札の一番下に置く。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに自分のシールド１つの上に表向きにして置く。（そのシールドの束は１つと数える）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-013",
+      "limit": 4,
+      "g1027Crest": true,
+      "g1348Sabaki": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Lock",
+          "spell": true,
+          "limit": {
+            "kind": "g1597OverManaBottom"
+          }
+        }
+      ],
+      "supportBatch": "phase-1597",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex1-060",
+      "name": "エル・セミファイナルのマスク",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 3,
+      "power": 0,
+      "race": "ポセイディア・ドラゴン/デビルマスク/レクスターズ",
+      "text": "シンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、カードを３枚引き、自分の手札を３枚捨てる。\n自分のターン中、自分の手札が１枚もなければ、クリーチャーを１体、自分の墓地から召喚してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-060",
+      "limit": 4,
+      "shinkalize": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 3
+        },
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 3
+        }
+      ],
+      "g450ZoneSummon": {
+        "origin": "grave",
+        "filter": {
+          "creature": true
+        },
+        "emptyHand": true
+      },
+      "supportBatch": "phase-1597",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1596,
+    "phase": 1597,
     "checkedAt": "2026-11-21",
-    "baseCount": 9022,
+    "baseCount": 9025,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9025,
+    "totalCount": 9028,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -312674,6 +312774,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 9022,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1596,
+        "checkedAt": "2026-11-21",
+        "baseCount": 9022,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9025,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

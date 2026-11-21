@@ -39,7 +39,7 @@ export function createSixPhotoRules(api){
  const hasSoul=(c,soul)=>c.g558Souls?.includes(soul)||c.text?.includes('【'+soul+'・ソウル】');
  const race=(c,q)=>String(c.race).includes(q),mecha=c=>race(c,'メカ'),ninja=c=>race(c,'シノビ'),demon=c=>race(c,'デーモン・コマンド'),angel=c=>race(c,'エンジェル・コマンド');
  // A restricted origin permission belongs to one incarnation of its provider.
- function zonePermits450(s,p,x,c,origin){if(s.active!==p||c.type!=='creature'||origin==='mana'&&x.faceDown||!api.canMoveZone(s,p,origin))return[];return creatures(s,p).flatMap(y=>{const r=!y.sealed&&effective(y,s).g450ZoneSummon,k='g450:'+y.uid+'@'+(y.incarnation||0);return r&&r.origin===origin&&(!r.entryTurn||(y.originalEntryTurn??y.entered)===s.turn)&&s.g450ZoneUses?.[p]?.[k]!==s.turn&&(r.anyShieldsMax===undefined||s.players.some(w=>w.shields.length<=r.anyShieldsMax))&&(!r.filter.evolution||api.isEvolution(x)||!!c.g48HandEvolution)&&matches(s,p,x,r.filter.evolution?{...r.filter,evolution:false}:r.filter)?[k]:[];});}
+ function zonePermits450(s,p,x,c,origin){if(s.active!==p||c.type!=='creature'||origin==='mana'&&x.faceDown||!api.canMoveZone(s,p,origin))return[];return s.players[p].battle.filter(y=>api.isCreature(s,y)||card(y).type==='seed'&&card(y).g450ZoneSummon?.emptyHand).flatMap(y=>{const r=!y.sealed&&!y.faceDown&&effective(y,s).g450ZoneSummon,k='g450:'+y.uid+'@'+(y.incarnation||0);return r&&r.origin===origin&&(!r.emptyHand||s.players[p].hand.length===0)&&(!r.entryTurn||(y.originalEntryTurn??y.entered)===s.turn)&&s.g450ZoneUses?.[p]?.[k]!==s.turn&&(r.anyShieldsMax===undefined||s.players.some(w=>w.shields.length<=r.anyShieldsMax))&&(!r.filter.evolution||api.isEvolution(x)||!!c.g48HandEvolution)&&matches(s,p,x,r.filter.evolution?{...r.filter,evolution:false}:r.filter)?[k]:[];});}
  // Count visible Joker cards in both zones; a twinpact is one mana card.
  function jokerCount539(s,p){return s.players[p].battle.filter(y=>!y.sealed&&!y.faceDown&&race(effective(y,s),'ジョーカーズ')).length+s.players[p].mana.filter(y=>!y.faceDown&&faces(card(y)).some(c=>race(c,'ジョーカーズ'))).length;}
  const gravePermits294=(s,p,x,c=card(x))=>c.type==='aura'?(s.active===p&&!x.faceDown&&c.g1436ZoneUse==='grave'&&!api.handAbilityIgnored(s,x)&&api.canMoveZone(s,p,'grave')?['g1436:grave']:[]):s.active!==p||c.type!=='creature'||!api.canMoveZone(s,p,'grave')?[]:[
@@ -9191,6 +9191,13 @@ export function createSixPhotoRules(api){
   }
  },
  entry(s,p,y,options){const c=card(y),creature=api.isCreature(s,y);
+  if(creature&&!y.sealed&&cost(effective(y,s))>s.players[p].mana.length){
+   for(const limit of s.extLimits||[])if(limit.kind==='g1597OverManaBottom'&&limit.player===p&&!api.spellIgnored(s,{type:'spell',cost:limit.spellCost,spellSource:limit.spellSource})){
+    const actor=limit.who;
+    queue(s,actor,{cardId:limit.spellSource},[{op:'ExactMove',owner:p,to:'deck',target:y.uid,targetIncarnation:y.incarnation||0,
+     g403Refs:api.allLayers(y).map(x=>({uid:x.uid,incarnation:x.incarnation||0})),followEvolution:true}]);
+   }
+  }
   if(creature&&!y.sealed&&race(effective(y,s),'ゼニス'))for(const field of s.players[p].battle){
    if(!field.sealed&&!field.g1175DSwitched&&card(field).g1175CrystalField&&effective(field,s).g1175CrystalField)
     send(s,p,field,'CrystalSwitch1175');
@@ -9471,6 +9478,10 @@ export function createSixPhotoRules(api){
  },
  mugenTapped415(s,p,x){const c=effective(x,s);if(!x.sealed&&c.g415MugenTapped)queue(s,p,x,c.g415MugenTapped);},
  tapped(s,p,x){
+  if(!x.sealed&&!x.faceDown&&api.isCreature(s,x)&&s.players[p].battle.includes(x)){
+   for(const limit of s.extLimits||[])if(limit.kind==='g1597TapDraw'&&limit.player===p&&!api.spellIgnored(s,{type:'spell',cost:limit.spellCost,spellSource:limit.spellSource}))
+    queue(s,p,{cardId:limit.spellSource},[{op:'Draw',n:1,optional:true}]);
+  }
   if(!x.sealed&&api.isCreature(s,x))for(const y of s.players[p].battle){
    const watcher=card(y);
    if(watcher.g1217AllyTapDraw&&!x.faceDown&&s.players[p].battle.includes(x)&&

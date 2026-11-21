@@ -26262,5 +26262,115 @@
         ]
       }
     }
+  },
+  "dmrp07-032": {
+    "phase": 1597,
+    "faces": [
+      {
+        "name": "浄化ノ正裁Z",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "サバキZ（裁きの紋章が自分のシールドゾーンから手札に加えられた時、そのカードを捨ててもよい。そうしたら、この呪文をコストを支払わずに唱える）\n次の自分のターンのはじめまで、自分のクリーチャーがタップした時、カードを１枚引いてもよい。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに自分のシールド１つの上に表向きにして置く。（そのシールドの束は１つと数える）",
+        "race": "裁きの紋章Z",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1027Crest": true,
+      "g1348Sabaki": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Lock",
+          "g746Self": true,
+          "spell": true,
+          "limit": {
+            "kind": "g1597TapDraw"
+          }
+        }
+      ]
+    }
+  },
+  "dmrp07-013": {
+    "phase": 1597,
+    "faces": [
+      {
+        "name": "堅珠ノ正裁Z",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "サバキZ（裁きの紋章が自分のシールドゾーンから手札に加えられた時、そのカードを捨ててもよい。そうしたら、この呪文をコストを支払わずに唱える）\n次の自分のターンのはじめまで、相手は、自身のマナゾーンにあるカードの枚数よりコストが大きいクリーチャーをバトルゾーンに出した時、そのクリーチャーを自身の山札の一番下に置く。\nこの呪文を自分の手札から唱えた後、墓地に置くかわりに自分のシールド１つの上に表向きにして置く。（そのシールドの束は１つと数える）",
+        "race": "裁きの紋章Z",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1027Crest": true,
+      "g1348Sabaki": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Lock",
+          "spell": true,
+          "limit": {
+            "kind": "g1597OverManaBottom"
+          }
+        }
+      ]
+    }
+  },
+  "dm23ex1-060": {
+    "phase": 1597,
+    "faces": [
+      {
+        "name": "エル・セミファイナルのマスク",
+        "typeText": "タマシード",
+        "civilizationText": "水/闇",
+        "civilizations": [
+          "水",
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "シンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、カードを３枚引き、自分の手札を３枚捨てる。\n自分のターン中、自分の手札が１枚もなければ、クリーチャーを１体、自分の墓地から召喚してもよい。",
+        "race": "ポセイディア・ドラゴン/デビルマスク/レクスターズ",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "seed",
+      "shinkalize": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 3
+        },
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 3
+        }
+      ],
+      "g450ZoneSummon": {
+        "origin": "grave",
+        "filter": {
+          "creature": true
+        },
+        "emptyHand": true
+      }
+    }
   }
 }
