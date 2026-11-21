@@ -521673,9 +521673,10 @@
     "nextPhase": 1602,
     "workInProgress": null,
     "nextCandidates": [
-      "公式照合済みの通常能力を持たないGRクリーチャー",
-      "既存のキーワード処理と一致するGRクリーチャー",
-      "既存処理で両面を完全に扱えるツインパクトを個別検証。公式未確認・特殊条件は保留。"
+      "dmx19-s17 龍素記号Cg ダイシャリン：公式全文・画像・使用制限を再取得し、唱える全呪文へのチャージャー付与と置換順序を検討する。",
+      "dmrp12-043 滝水仙人：公式再照合から開始。手札に戻ったジョーカーズの出た時能力の再使用を、物理カードと発生元を維持して扱う。",
+      "dmr12-008 散舞する世界 パシフィック R：公式再照合から開始。ターン開始時の自身・手札・墓地の同時山札移動を既存の山札置換と照合する。",
+      "tools/card-support-progress.jsonのdeferredRegistrationCandidatesに候補ごとの基盤不足を記録。部分実装を登録済みに数えない。"
     ],
     "steps": [
       "開始時にHEAD・作業差分・ステージ・既存プロセス・AGENTS・進捗を確認。",
@@ -521766,7 +521767,8 @@
       "個別の残件2件と問い合わせ案はユーザー指示「後回しにしよう」で保留。再開指示があるまでこの2件の調査・送信を行わない。",
       "No13長時間検証はengine0.601.0の固定ソースで完了済み。今回のengine0.602.0の全面検証には数えない。必要な未集約項目は対象を特定し、細かく分割して確認する。",
       "Netlifyは手動反映専用。workflow_dispatchだけ、GitHub pushフック停止、stop_builds=trueを維持。通常のカード追加pushでは反映しない。今回の公開に保留・未検証の解消は含めない。",
-      "10000種類は未達。現在9025種類、残り975。checkpoint-1596 の135テスト合格と旧9000定義の不変を確認し、phase1597以降を公式照合から継続。通常の新規登録は継続対象。自動化はPAUSEDのまま。"
+      "10000種類は未達。現在9025種類、残り975。checkpoint-1596 の135テスト合格と旧9000定義の不変を確認し、phase1597以降を公式照合から継続。通常の新規登録は継続対象。自動化はPAUSEDのまま。",
+      "今回の13種類を含む全38追加種類はcheckpoint-1601で再検証済み。HEADのカード実装は9f87c9e9。作業再開時は既存プロセス・差分と実データのnameKeyを再確認し、phase1602を開始。10,000種類には未到達（残り962）。通常登録を続け、公開は別指示時のみ。"
     ],
     "registrationStatus": "ユーザーの新目標10000種類に向けて通常登録を再開。現在9038種類、残り962種類。automationはPAUSEDのまま。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
@@ -522199,7 +522201,7 @@
       "testFiles": 117,
       "partitions": 6
     },
-    "registrationCheckpoint": "tools/target10000-registration-checkpoint-1596.json",
+    "registrationCheckpoint": "tools/target10000-registration-checkpoint-1601.json",
     "registrationSession": {
       "checkedAt": "2026-11-21T07:34:08.755Z",
       "status": "in-progress",
@@ -522285,6 +522287,17 @@
       },
       "remainingVerification": "全体npm testの過去の中断・合否未確認、以前から未確認の長時間テスト、ユーザー保留2件、本番2アカウント対戦確認は継続して未解消として保持。",
       "artifact": "tools/target10000-registration-checkpoint-1596.json"
+    },
+    "latestManualCheck": {
+      "checkedAt": "2026-11-21T08:13:26.585Z",
+      "verifiedCodeCommit": "9f87c9e94d2d18ca969751edbee72c503509e044",
+      "checkpoint": "tools/target10000-registration-checkpoint-1601.json",
+      "uniqueNames": 9038,
+      "duplicates": 0,
+      "addedThisSession": 13,
+      "campaignPassed": 268,
+      "targetReached": false,
+      "remaining": 962
     }
   },
   "registeredCardVerification": {
