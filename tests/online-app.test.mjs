@@ -161,3 +161,19 @@ test('own face-down mana opens its original details while the opponent receives 
  await h.click('online-zone',{player:'0',zone:'mana'});assert.ok(h.dialog.innerHTML.includes(e.card('dm26rp1-S002').name));await h.click('online-pick-card',{uid:'own-hidden-mana'});assert.match(h.root.innerHTML,/data-action="card-detail"[^>]*data-id="dm26rp1-S002"/);
  const guest=await h.service.get(h.read('onlineState.room.code'),{uid:'u2'},'u2');assert.equal(guest.game.players[0].mana[0].privateFace,undefined);assert.ok(!JSON.stringify(guest.game.players[0].mana).includes('dm26rp1-S002'));h.read('onlineClient.dispose()');
 });
+
+test('actual friend board reviews visible changes and opens the log without changing the game or saved decks',async()=>{
+ const h=harness();await h.login();await h.click('online-create');await h.friend();
+ const uid=h.read('onlineState.room.game.players[0].hand[0].uid');
+ await h.click('online-card',{uid});await h.click('online-primary',{revision:String(h.read('onlineState.room.revision'))});
+ assert.match(h.root.innerHTML,/マナが1枚増えた/);
+ assert.match(h.root.innerHTML,/あなたの場の変化 · 3\/3/);
+ const revision=h.read('onlineState.room.revision'),actions=h.game().actions,saved=h.read('JSON.stringify(saved)');
+ await h.click('online-feedback-prev');assert.match(h.root.innerHTML,/手札が1枚減った/);
+ await h.click('online-feedback-prev');assert.match(h.root.innerHTML,/カードをマナに置きました。/);
+ await h.click('online-refresh');assert.match(h.root.innerHTML,/あなたの場の変化 · 1\/3/);
+ await h.click('online-feedback-next');assert.match(h.root.innerHTML,/あなたの場の変化 · 2\/3/);
+ await h.click('online-log');assert.match(h.dialog.innerHTML,/カードをマナに置きました。/);
+ assert.equal(h.read('onlineState.room.revision'),revision);assert.equal(h.game().actions,actions);assert.equal(h.read('JSON.stringify(saved)'),saved);
+ h.read('onlineClient.dispose()');
+});

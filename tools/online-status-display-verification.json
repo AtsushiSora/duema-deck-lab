@@ -1,0 +1,137 @@
+{
+  "checkedAt": "2026-11-21T21:51:37.354Z",
+  "clientDate": "2026-11-22",
+  "baseCommit": "d77ed3f310b872c94541a5e0e470b408355d7ff1",
+  "status": "verified-local-not-published",
+  "request": "友達対戦に、直前の状況が分かる表示を追加",
+  "implementation": [
+    "サーバーから取得済みの公開イベントと盤面の枚数・タップ差分を、操作ステータス直下に表示する。",
+    "最新の変化を表示し、複数あるときは前へ・次へで確認。ログも直接開ける。表示の切替でHTTPリクエストやゲーム操作を送らない。",
+    "同じ更新の再取得や支払い途中では読んでいる項目を保ち、別アカウント・別ルーム・ルーム終了後のクリアで持ち越さない。",
+    "手札増加の原因はドロー・探索・回収を区別できないため、推測せず「手札が1枚増えた」と表示する。カード名・IDを差分通知へ転記しない。",
+    "対戦エンジン、カード定義、保存デッキ、対戦履歴、サーバーの保存形式・通信形式には変更なし。"
+  ],
+  "tests": [
+    {
+      "name": "targeted",
+      "command": [
+        "node",
+        "--test",
+        "tests/online-feedback.test.mjs",
+        "tests/online-client.test.mjs",
+        "tests/online-ui.test.mjs",
+        "tests/online-app.test.mjs",
+        "tests/battle-controls.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.454,
+      "log": "tmp/duema-online-feedback/targeted.log",
+      "passed": 74,
+      "failed": 0,
+      "sha256": "aea0e0ecb072ae49fa3e17a1f0930b8d2262cd46c9e84933385cff3bafa78e70"
+    },
+    {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 22.349,
+      "log": "tmp/duema-online-feedback/check.log",
+      "sha256": "fd00ef4548eb506e6a627320f0f81809e69c765639f8bb9b2831989aba13f5ca"
+    },
+    {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 13.149,
+      "log": "tmp/duema-online-feedback/audit.log",
+      "sha256": "f3dce8c6897c86fad30c51a6172abc271f0dea7a15e217958f36c09a29dd682a"
+    },
+    {
+      "name": "related",
+      "command": [
+        "node",
+        "--test",
+        "tests/online-server.test.mjs",
+        "tests/online-runtime.test.mjs",
+        "tests/ai-playback.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 191.972,
+      "log": "tmp/duema-online-feedback/related.log",
+      "passed": 68,
+      "failed": 0,
+      "sha256": "bd357c1d9e44be90cc67338dc48d3f32cbcfe1ffbf084641bab9119fe0b9bb93"
+    }
+  ],
+  "totalTestsPassed": 142,
+  "actualData": {
+    "startUniqueNames": 9070,
+    "endUniqueNames": 9070,
+    "uniqueIds": 9070,
+    "duplicates": 0,
+    "newCards": 0,
+    "originalDefinitionAudit": "node tools/verify-target9500.mjs: baseline9043 definitions unchanged, added27, duplicates0, catalogue/aliases unchanged"
+  },
+  "visualVerification": {
+    "method": "localhost preview renders the actual onlineScreenHTML and updateOnlineFeedback with synthetic projected rooms; not a live account match",
+    "controls": [
+      "前へで1/2の操作表示へ戻る",
+      "次へで2/2の手札変化へ戻る"
+    ],
+    "viewports": [
+      {
+        "width": 390,
+        "height": 844,
+        "screenshot": "/tmp/duema-online-feedback/mobile.jpg"
+      },
+      {
+        "width": 320,
+        "height": 568,
+        "screenshot": "/tmp/duema-online-feedback/small-mobile.jpg",
+        "cueHeight": 57,
+        "boardHeight": 285,
+        "dockBottom": 568
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "screenshot": "/tmp/duema-online-feedback/landscape.jpg",
+        "cueHeight": 47,
+        "boardHeight": 134,
+        "dockBottom": 390
+      }
+    ],
+    "result": "状況パネル・盤面・手札・下部操作ボタンが画面幅と高さに収まる。viewport設定を復元し、一時サーバーを停止。"
+  },
+  "hashes": {
+    "dist/online-feedback.js": "a9ffcba4abe876371e68757a723bac79b19341324cc36959a04d593b6f9c7a63",
+    "dist/online.js": "fc4032fb544c6077724ae7375d9a3f81c654789f6450fbe434e5af57e5e90ef7",
+    "dist/online-ui.js": "11e376d9eeaffff2588137e1e8f7b9c5eeb843abcd36947cbbe1f516aa3ad56d",
+    "dist/online.css": "217e1a958de8dc270630863d7fb5b9964615487dede00516007992903fe9f6ad",
+    "dist/app.js": "a7d112b4a9f6bd98da1f84a6ae604f85bfcee62465eeeb44334319943815cf98",
+    "tests/online-feedback.test.mjs": "4a85a3dee8ac92f3d972ec40bfdfdd3b253d20a0359b6dd7666c7dc778ba9116",
+    "tests/online-client.test.mjs": "401143d0ff15a2beab7ae9afacb0afcd97392ce9ffb058fddd51d847d974e17a",
+    "tests/online-app.test.mjs": "26825568fd55fbe9c2f0d35b062154fbfe87e62fcd165a6626fda1fd166921b8"
+  },
+  "limits": [
+    "盤面差分は取得した前後の状態を比較した結果。複数の更新を受け取れなかった間の中間処理や、同時に増減して相殺されたカード移動は復元しない。既存の公開ログは従来通り閲覧可能。",
+    "新表示を含む未公開ローカル修正の本番での2アカウント確認は公開後。公開中の版で完了した実機確認とは区別する。",
+    "過去の一括npm testは中断・合否未確認を維持。ユーザーが後回しにした裁定・再録2件は対象外。"
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

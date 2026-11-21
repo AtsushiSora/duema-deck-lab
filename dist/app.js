@@ -1035,6 +1035,7 @@ document.addEventListener('click',async event=>{
  else if(action==='online-clear-selection'){onlinePending=null;onlineSelected=null;onlineActionsOpen=false;render();}
  else if(action==='online-cancel-move'){onlinePending=null;onlineActionsOpen=false;render();}
  else if(action==='online-confirm-move'){const room=onlineState.room,pending=onlinePendingMove(room,onlinePending);if(pending&&String(room.revision)===el.dataset.revision&&pending.id===a)await onlineMove(a,true);}
+ else if(action==='online-feedback-prev'||action==='online-feedback-next')onlineClient?.reviewFeedback(action==='online-feedback-prev'?-1:1);
  else if(action==='online-menu')onlineMenu();
  else if(action==='online-account'||action==='online-leave'){closeDialog();onlineClient?.setActive(false);view=action==='online-account'?'account':'battle';render();if(view==='account')void initAccount();}
  else if(action==='online-confirm-resign'){showDialog('投了しますか？','<p>投了すると相手の勝利になります。</p>','<button class="btn" data-action="close-dialog">対戦を続ける</button><button class="btn primary" data-action="online-resign">投了する</button>');}
