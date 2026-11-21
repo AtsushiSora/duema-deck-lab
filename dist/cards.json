@@ -285150,15 +285150,321 @@
       },
       "supportBatch": "phase-1587",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmbd08-a-002",
+      "name": "虹出づる繭 ミノガミ/帝の目覚め",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "グランセクト",
+      "text": "このクリーチャーを自分のマナゾーンから召喚してもよい。\nW・ブレイカー\n自分のターンのはじめに、ツインパクトカードを１枚、自分のマナゾーンから手札に戻してもよい。\n自分のマナゾーンにあるツインパクトカードを、すべての文明のカードとして扱う。\n【呪文面】\nカードを１枚、自分の墓地からマナゾーンにタップして置く。その後、ツインパクトカードを１枚、自分のマナゾーンから手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd08-a-002",
+      "limit": 4,
+      "manaSummon": true,
+      "breaker": 2,
+      "g174Start": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "twin": true
+          }
+        }
+      ],
+      "g972TwinManaColors": true,
+      "spellFace": {
+        "name": "帝の目覚め",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "カードを１枚、自分の墓地からマナゾーンにタップして置く。その後、ツインパクトカードを１枚、自分のマナゾーンから手札に戻してもよい。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "mana",
+            "n": 1,
+            "tapped": true
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "twin": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1588",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex19-s14",
+      "name": "始全虹帝 ミノガミ / 自然の肯定",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "グランセクト",
+      "text": "マッハファイター\nW・ブレイカー\nこのクリーチャーが出た時、自分のマナゾーンにあるツインパクトカードをすべてアンタップする。\n【呪文面】\nツインパクトカードをすべて、自分の墓地からマナゾーンに置く。その後、自分のマナゾーンにあるカードの枚数以下のコストを持つクリーチャーを１体、自分のマナゾーンから出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-s14",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "UntapMana",
+          "filter": {
+            "twin": true
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "自然の肯定",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 8,
+        "race": "",
+        "text": "ツインパクトカードをすべて、自分の墓地からマナゾーンに置く。その後、自分のマナゾーンにあるカードの枚数以下のコストを持つクリーチャーを１体、自分のマナゾーンから出してもよい。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "mana",
+            "n": "all",
+            "filter": {
+              "twin": true
+            }
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "g746OwnManaCost": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1588",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-s01",
+      "name": "龍蒼者 ゼブルエ/ローゼス・ブルーム",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8500,
+      "race": "ドラゴンギルド/メタリカ",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）\n自分のシールドゾーンにカードが置かれた時、相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、それはアンタップしない。\n【呪文面】\n自分の山札の上から１枚目を裏向きにして、新しいシールドとして自分のシールドゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-s01",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "smashBurst": true,
+      "g918ShieldAdded": [
+        {
+          "op": "Target",
+          "tap": true,
+          "lock": true,
+          "g210TapLock": true
+        }
+      ],
+      "spellFace": {
+        "name": "ローゼス・ブルーム",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "race": "",
+        "text": "自分の山札の上から１枚目を裏向きにして、新しいシールドとして自分のシールドゾーンに置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1588",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22bd1-012",
+      "name": "次世代龍覇 グレングラッサ / 「ここはまかせて、お姉ちゃん！」",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ガイアール・コマンド・ドラゴン/ヒューマノイド爆/ドラグナー",
+      "text": "このクリーチャーが出た時、相手のコスト２以下のクリーチャーを１体破壊する。その後、火のコスト３以下のドラグハートを１枚、自分の超次元ゾーンから出す。（それがウエポンであれば、このクリーチャーに装備して出す）\n【呪文面】\nS・トリガーS・トリガー\n相手のクリーチャーをすべてタップする。\n自分のドラゴンまたはドラグナーが合計２体以上あれば、自分の山札の上から１枚目をシールド化してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22bd1-012",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "max": 2
+          }
+        },
+        {
+          "op": "DeployDragheart1361",
+          "options": [
+            {
+              "color": "火",
+              "max": 3
+            }
+          ]
+        }
+      ],
+      "spellFace": {
+        "name": "「ここはまかせて、お姉ちゃん！」",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "race": "",
+        "text": "S・トリガーS・トリガー\n相手のクリーチャーをすべてタップする。\n自分のドラゴンまたはドラグナーが合計２体以上あれば、自分の山札の上から１枚目をシールド化してもよい。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll",
+            "filter": {
+              "creature": true
+            }
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "min": 2,
+                "filter": {
+                  "raceAny": [
+                    "ドラゴン",
+                    "ドラグナー"
+                  ]
+                }
+              }
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1588",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-023",
+      "name": "フット“FNT“ジスタ/火の玉ドライシュート",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "ビートジョッキー",
+      "text": "このターン、他のクリーチャーが２体以上攻撃していなければ、このクリーチャーは攻撃できない。\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）\nW・ブレイカー\n【呪文面】\n自分の山札の上から３枚を見る。その中からコスト３以下のクリーチャーをすべてバトルゾーンに出す。残りをすべて、好きな順序で山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-023",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "smashBurst": true,
+      "g225AttackRequires": {
+        "kind": "otherAttack",
+        "min": 2
+      },
+      "spellFace": {
+        "name": "火の玉ドライシュート",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "race": "",
+        "text": "自分の山札の上から３枚を見る。その中からコスト３以下のクリーチャーをすべてバトルゾーンに出す。残りをすべて、好きな順序で山札の一番下に置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LookDeploy530",
+            "n": 3,
+            "g749Required": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            },
+            "rest": "bottom"
+          }
+        ]
+      },
+      "supportBatch": "phase-1588",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1587,
+    "phase": 1588,
     "checkedAt": "2026-11-21",
-    "baseCount": 8990,
+    "baseCount": 8995,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8995,
+    "totalCount": 9000,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -311155,6 +311461,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8990,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1587,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8990,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8995,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

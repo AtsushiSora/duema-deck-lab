@@ -1232,7 +1232,13 @@ export function createSixPhotoRules(api){
    case'selfEvolution':return !!x&&api.isEvolution(x);
    case'stackCards':return !!x&&api.allLayers(x).length>=rule.min;
    case'ally':return bodies().some(y=>(!rule.other||y.uid!==x?.uid)&&matches(s,p,y,rule.filter));
-   case'otherAttack':{const refs=new Set(x?api.allLayers(x).map(y=>y.uid+'@'+(y.incarnation||0)):[]);return s.g481Attackers?.turn===s.turn&&s.g481Attackers.events.some(event=>(!rule.own||event.p===p)&&!event.refs.some(ref=>refs.has(ref)));}
+   case'otherAttack':{
+    const refs=new Set(x?api.allLayers(x).map(y=>y.uid+'@'+(y.incarnation||0)):[]);
+    if(s.g481Attackers?.turn!==s.turn)return false;
+    const events=s.g481Attackers.events.filter(event=>(!rule.own||event.p===p)&&!event.refs.some(ref=>refs.has(ref)));
+    // Count distinct attacking creatures, rather than repeated attacks by one creature.
+    return rule.min>1?new Set(events.map(event=>event.refs[0])).size>=rule.min:events.length>0;
+   }
    case'handCount':return own.hand.length<=rule.max;
    case'seed':return own.battle.some(y=>!y.sealed&&(card(y).type==='seed'||card(y).seedCreature||card(y).natureAce4));
    case'graveCards':return own.grave.length>=rule.min;

@@ -24526,5 +24526,396 @@
         ]
       }
     }
+  },
+  "dmbd08-a-002": {
+    "phase": 1588,
+    "faces": [
+      {
+        "name": "虹出づる繭 ミノガミ",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "このクリーチャーを自分のマナゾーンから召喚してもよい。\nW・ブレイカー\n自分のターンのはじめに、ツインパクトカードを１枚、自分のマナゾーンから手札に戻してもよい。\n自分のマナゾーンにあるツインパクトカードを、すべての文明のカードとして扱う。",
+        "race": "グランセクト",
+        "powerText": "7000",
+        "missingFields": []
+      },
+      {
+        "name": "帝の目覚め",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "カードを１枚、自分の墓地からマナゾーンにタップして置く。その後、ツインパクトカードを１枚、自分のマナゾーンから手札に戻してもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "manaSummon": true,
+      "breaker": 2,
+      "g174Start": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "twin": true
+          }
+        }
+      ],
+      "g972TwinManaColors": true,
+      "spellFace": {
+        "name": "帝の目覚め",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "カードを１枚、自分の墓地からマナゾーンにタップして置く。その後、ツインパクトカードを１枚、自分のマナゾーンから手札に戻してもよい。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "mana",
+            "n": 1,
+            "tapped": true
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "twin": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dmex19-s14": {
+    "phase": 1588,
+    "faces": [
+      {
+        "name": "始全虹帝 ミノガミ",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "マッハファイター\nW・ブレイカー\nこのクリーチャーが出た時、自分のマナゾーンにあるツインパクトカードをすべてアンタップする。",
+        "race": "グランセクト",
+        "powerText": "6000",
+        "missingFields": []
+      },
+      {
+        "name": "自然の肯定",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "ツインパクトカードをすべて、自分の墓地からマナゾーンに置く。その後、自分のマナゾーンにあるカードの枚数以下のコストを持つクリーチャーを１体、自分のマナゾーンから出してもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "machFighter": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "UntapMana",
+          "filter": {
+            "twin": true
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "自然の肯定",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 8,
+        "race": "",
+        "text": "ツインパクトカードをすべて、自分の墓地からマナゾーンに置く。その後、自分のマナゾーンにあるカードの枚数以下のコストを持つクリーチャーを１体、自分のマナゾーンから出してもよい。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "mana",
+            "n": "all",
+            "filter": {
+              "twin": true
+            }
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "g746OwnManaCost": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dmrp08-s01": {
+    "phase": 1588,
+    "faces": [
+      {
+        "name": "龍蒼者 ゼブルエ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）\n自分のシールドゾーンにカードが置かれた時、相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、それはアンタップしない。",
+        "race": "ドラゴンギルド/メタリカ",
+        "powerText": "8500",
+        "missingFields": []
+      },
+      {
+        "name": "ローゼス・ブルーム",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "自分の山札の上から１枚目を裏向きにして、新しいシールドとして自分のシールドゾーンに置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "smashBurst": true,
+      "g918ShieldAdded": [
+        {
+          "op": "Target",
+          "tap": true,
+          "lock": true,
+          "g210TapLock": true
+        }
+      ],
+      "spellFace": {
+        "name": "ローゼス・ブルーム",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "race": "",
+        "text": "自分の山札の上から１枚目を裏向きにして、新しいシールドとして自分のシールドゾーンに置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          }
+        ]
+      }
+    }
+  },
+  "dm22bd1-012": {
+    "phase": 1588,
+    "faces": [
+      {
+        "name": "次世代龍覇 グレングラッサ",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "このクリーチャーが出た時、相手のコスト２以下のクリーチャーを１体破壊する。その後、火のコスト３以下のドラグハートを１枚、自分の超次元ゾーンから出す。（それがウエポンであれば、このクリーチャーに装備して出す）",
+        "race": "ガイアール・コマンド・ドラゴン/ヒューマノイド爆/ドラグナー",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "「ここはまかせて、お姉ちゃん！」",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "S・トリガーS・トリガー\n相手のクリーチャーをすべてタップする。\n自分のドラゴンまたはドラグナーが合計２体以上あれば、自分の山札の上から１枚目をシールド化してもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "max": 2
+          }
+        },
+        {
+          "op": "DeployDragheart1361",
+          "options": [
+            {
+              "color": "火",
+              "max": 3
+            }
+          ]
+        }
+      ],
+      "spellFace": {
+        "name": "「ここはまかせて、お姉ちゃん！」",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "race": "",
+        "text": "S・トリガーS・トリガー\n相手のクリーチャーをすべてタップする。\n自分のドラゴンまたはドラグナーが合計２体以上あれば、自分の山札の上から１枚目をシールド化してもよい。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll",
+            "filter": {
+              "creature": true
+            }
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "min": 2,
+                "filter": {
+                  "raceAny": [
+                    "ドラゴン",
+                    "ドラグナー"
+                  ]
+                }
+              }
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dmrp08-023": {
+    "phase": 1588,
+    "faces": [
+      {
+        "name": "フット“FNT“ジスタ",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このターン、他のクリーチャーが２体以上攻撃していなければ、このクリーチャーは攻撃できない。\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）\nW・ブレイカー",
+        "race": "ビートジョッキー",
+        "powerText": "6000",
+        "missingFields": []
+      },
+      {
+        "name": "火の玉ドライシュート",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "自分の山札の上から３枚を見る。その中からコスト３以下のクリーチャーをすべてバトルゾーンに出す。残りをすべて、好きな順序で山札の一番下に置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "breaker": 2,
+      "smashBurst": true,
+      "g225AttackRequires": {
+        "kind": "otherAttack",
+        "min": 2
+      },
+      "spellFace": {
+        "name": "火の玉ドライシュート",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "race": "",
+        "text": "自分の山札の上から３枚を見る。その中からコスト３以下のクリーチャーをすべてバトルゾーンに出す。残りをすべて、好きな順序で山札の一番下に置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LookDeploy530",
+            "n": 3,
+            "g749Required": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            },
+            "rest": "bottom"
+          }
+        ]
+      }
+    }
   }
 }

@@ -1,0 +1,563 @@
+{
+  "phase": 1588,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8995,
+  "description": "既存の両面・マナ・シールド・ドラグハート処理を再利用し5種類を追加。フットFNTジスタは既存の他クリーチャー攻撃条件を、同一個体の再攻撃を重複計上せず2体以上まで検査できるよう拡張。元の単体条件・保存形式を維持。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmbd08-a-002",
+      "name": "虹出づる繭 ミノガミ/帝の目覚め",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd08-a-002",
+      "faces": [
+        {
+          "name": "虹出づる繭 ミノガミ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーを自分のマナゾーンから召喚してもよい。\nW・ブレイカー\n自分のターンのはじめに、ツインパクトカードを１枚、自分のマナゾーンから手札に戻してもよい。\n自分のマナゾーンにあるツインパクトカードを、すべての文明のカードとして扱う。",
+          "race": "グランセクト",
+          "powerText": "7000",
+          "missingFields": []
+        },
+        {
+          "name": "帝の目覚め",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "カードを１枚、自分の墓地からマナゾーンにタップして置く。その後、ツインパクトカードを１枚、自分のマナゾーンから手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "manaSummon": true,
+        "breaker": 2,
+        "g174Start": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "twin": true
+            }
+          }
+        ],
+        "g972TwinManaColors": true,
+        "spellFace": {
+          "name": "帝の目覚め",
+          "type": "spell",
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "race": "",
+          "text": "カードを１枚、自分の墓地からマナゾーンにタップして置く。その後、ツインパクトカードを１枚、自分のマナゾーンから手札に戻してもよい。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "to": "mana",
+              "n": 1,
+              "tapped": true
+            },
+            {
+              "op": "Select",
+              "origin": "mana",
+              "to": "hand",
+              "n": 1,
+              "optional": true,
+              "filter": {
+                "twin": true
+              }
+            }
+          ]
+        }
+      },
+      "faceImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd08-a-002a.jpg",
+        "sha256": "305b56920414e3a200e3e20c24d690f7390a0afbd85aef45050ed2eab9382385",
+        "reviewedAt": "2026-11-21T04:52:12.011Z",
+        "reason": "公式画像の下側呪文の文明を確認。HTMLの文明欠落のみ補完。",
+        "faces": [
+          {
+            "index": 1,
+            "civilizationText": "自然",
+            "civilizations": [
+              "自然"
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd08-a-002a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "0e3cbb3037615fa1bdcaa2d1fbc9d54d590730b1beb609cdd73633ac5993086d",
+        "facesMatched": true,
+        "imageSha256": "305b56920414e3a200e3e20c24d690f7390a0afbd85aef45050ed2eab9382385",
+        "imageBytes": 143677
+      },
+      "sameNameProducts": [
+        "DMBD-08 超誕!!ツインヒーローデッキ80 自然大暴走 VS 卍獄の虚無月"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd08-a-002",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex19-s14",
+      "name": "始全虹帝 ミノガミ / 自然の肯定",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-s14",
+      "faces": [
+        {
+          "name": "始全虹帝 ミノガミ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マッハファイター\nW・ブレイカー\nこのクリーチャーが出た時、自分のマナゾーンにあるツインパクトカードをすべてアンタップする。",
+          "race": "グランセクト",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "自然の肯定",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ツインパクトカードをすべて、自分の墓地からマナゾーンに置く。その後、自分のマナゾーンにあるカードの枚数以下のコストを持つクリーチャーを１体、自分のマナゾーンから出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "UntapMana",
+            "filter": {
+              "twin": true
+            }
+          }
+        ],
+        "spellFace": {
+          "name": "自然の肯定",
+          "type": "spell",
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "race": "",
+          "text": "ツインパクトカードをすべて、自分の墓地からマナゾーンに置く。その後、自分のマナゾーンにあるカードの枚数以下のコストを持つクリーチャーを１体、自分のマナゾーンから出してもよい。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "to": "mana",
+              "n": "all",
+              "filter": {
+                "twin": true
+              }
+            },
+            {
+              "op": "Select",
+              "origin": "mana",
+              "n": 1,
+              "deploy": true,
+              "optional": true,
+              "g746OwnManaCost": true,
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-s14a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "01fdb30a975dd8bf4c274d114ee6584a49a7f6f4d7fd093a91bed6c77cf80eff",
+        "facesMatched": true,
+        "imageSha256": "fe982fd644b7a4eee7299125db6864878bef04bb5b97ef7aa6f34eaac52e741b",
+        "imageBytes": 144059
+      },
+      "sameNameProducts": [
+        "DMEX-19 マスター・ファイナル・メモリアル・パック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-s14",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp08-s01",
+      "name": "龍蒼者 ゼブルエ/ローゼス・ブルーム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-s01",
+      "faces": [
+        {
+          "name": "龍蒼者 ゼブルエ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）\n自分のシールドゾーンにカードが置かれた時、相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、それはアンタップしない。",
+          "race": "ドラゴンギルド/メタリカ",
+          "powerText": "8500",
+          "missingFields": []
+        },
+        {
+          "name": "ローゼス・ブルーム",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の山札の上から１枚目を裏向きにして、新しいシールドとして自分のシールドゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "smashBurst": true,
+        "g918ShieldAdded": [
+          {
+            "op": "Target",
+            "tap": true,
+            "lock": true,
+            "g210TapLock": true
+          }
+        ],
+        "spellFace": {
+          "name": "ローゼス・ブルーム",
+          "type": "spell",
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "race": "",
+          "text": "自分の山札の上から１枚目を裏向きにして、新しいシールドとして自分のシールドゾーンに置く。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "faceImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-s01a.jpg",
+        "sha256": "8340de865d46113f5c2a864ff38c71def2e8c07778404829e87fb4d30ce513fc",
+        "reviewedAt": "2026-11-21T04:52:12.014Z",
+        "reason": "公式画像の下側呪文の文明を確認。HTMLの文明欠落のみ補完。",
+        "faces": [
+          {
+            "index": 1,
+            "civilizationText": "光",
+            "civilizations": [
+              "光"
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-s01a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "5d0ef9f94996654bb9c316cc5d384f8aa99f5a256117587b1a48f6b78fb2b1eb",
+        "facesMatched": true,
+        "imageSha256": "8340de865d46113f5c2a864ff38c71def2e8c07778404829e87fb4d30ce513fc",
+        "imageBytes": 190435
+      },
+      "sameNameProducts": [
+        "DMRP-08 双極篇 拡張パック第４弾 超決戦!バラギアラ!!無敵オラオラ輪廻∞"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-s01",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm22bd1-012",
+      "name": "次世代龍覇 グレングラッサ / 「ここはまかせて、お姉ちゃん！」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22bd1-012",
+      "faces": [
+        {
+          "name": "次世代龍覇 グレングラッサ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが出た時、相手のコスト２以下のクリーチャーを１体破壊する。その後、火のコスト３以下のドラグハートを１枚、自分の超次元ゾーンから出す。（それがウエポンであれば、このクリーチャーに装備して出す）",
+          "race": "ガイアール・コマンド・ドラゴン/ヒューマノイド爆/ドラグナー",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "「ここはまかせて、お姉ちゃん！」",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガーS・トリガー\n相手のクリーチャーをすべてタップする。\n自分のドラゴンまたはドラグナーが合計２体以上あれば、自分の山札の上から１枚目をシールド化してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "max": 2
+            }
+          },
+          {
+            "op": "DeployDragheart1361",
+            "options": [
+              {
+                "color": "火",
+                "max": 3
+              }
+            ]
+          }
+        ],
+        "spellFace": {
+          "name": "「ここはまかせて、お姉ちゃん！」",
+          "type": "spell",
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "race": "",
+          "text": "S・トリガーS・トリガー\n相手のクリーチャーをすべてタップする。\n自分のドラゴンまたはドラグナーが合計２体以上あれば、自分の山札の上から１枚目をシールド化してもよい。",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "TapAll",
+              "filter": {
+                "creature": true
+              }
+            },
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g370BattleCount": {
+                  "min": 2,
+                  "filter": {
+                    "raceAny": [
+                      "ドラゴン",
+                      "ドラグナー"
+                    ]
+                  }
+                }
+              },
+              "defs": [
+                {
+                  "op": "Offer",
+                  "defs": [
+                    {
+                      "op": "ShieldTop",
+                      "n": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22bd1-012a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "188d00a1e2374f6e52c342c371827e54d66e0af701afa0c13701b7924a990e7e",
+        "facesMatched": true,
+        "imageSha256": "cc90c9c245426362f1fb7cf8f861dd6f7df4aafeb621fd14ca45f3b06228f5b4",
+        "imageBytes": 160272
+      },
+      "sameNameProducts": [
+        "DM22-BD1 レジェンドスーパーデッキ 龍覇爆炎",
+        "DMART-15 神アート 激筆!!超獣戯画"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22bd1-012",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp08-023",
+      "name": "フット“FNT“ジスタ/火の玉ドライシュート",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-023",
+      "faces": [
+        {
+          "name": "フット“FNT“ジスタ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このターン、他のクリーチャーが２体以上攻撃していなければ、このクリーチャーは攻撃できない。\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）\nW・ブレイカー",
+          "race": "ビートジョッキー",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "火の玉ドライシュート",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分の山札の上から３枚を見る。その中からコスト３以下のクリーチャーをすべてバトルゾーンに出す。残りをすべて、好きな順序で山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "smashBurst": true,
+        "g225AttackRequires": {
+          "kind": "otherAttack",
+          "min": 2
+        },
+        "spellFace": {
+          "name": "火の玉ドライシュート",
+          "type": "spell",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "race": "",
+          "text": "自分の山札の上から３枚を見る。その中からコスト３以下のクリーチャーをすべてバトルゾーンに出す。残りをすべて、好きな順序で山札の一番下に置く。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "LookDeploy530",
+              "n": 3,
+              "g749Required": true,
+              "filter": {
+                "creature": true,
+                "max": 3
+              },
+              "rest": "bottom"
+            }
+          ]
+        }
+      },
+      "faceImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-023a.jpg",
+        "sha256": "2455e7090892e476fd4165fcc4380b3de79616bfdac3c76bd3c2b0914dd9ea49",
+        "reviewedAt": "2026-11-21T04:52:12.015Z",
+        "reason": "公式画像の下側呪文の文明を確認。HTMLの文明欠落のみ補完。",
+        "faces": [
+          {
+            "index": 1,
+            "civilizationText": "火",
+            "civilizations": [
+              "火"
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-023a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "87026f02deefe992f4c6fc807b67107d0edddeb14489e9fb444e39af09206a16",
+        "facesMatched": true,
+        "imageSha256": "2455e7090892e476fd4165fcc4380b3de79616bfdac3c76bd3c2b0914dd9ea49",
+        "imageBytes": 159086
+      },
+      "sameNameProducts": [
+        "DMRP-08 双極篇 拡張パック第４弾 超決戦!バラギアラ!!無敵オラオラ輪廻∞"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-023",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmbd08-a-002": 4,
+      "dmex19-s14": 4,
+      "dmrp08-s01": 4,
+      "dm22bd1-012": 4,
+      "dmrp08-023": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    }
+  ]
+}
