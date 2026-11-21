@@ -20376,5 +20376,231 @@
         }
       ]
     }
+  },
+  "dmpcd02-a05": {
+    "phase": 1574,
+    "faces": [
+      {
+        "name": "パーフィン",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガーS・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、自分のクロスギアを１枚、手札に戻してもよい。そうしたら、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+        "race": "サイバーロード/サムライ",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "g201Gear": true
+          },
+          "afterBattleSelect": [
+            {
+              "op": "Target",
+              "to": "hand"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm35-006": {
+    "phase": 1574,
+    "faces": [
+      {
+        "name": "神羅ビクトリーメテオ・ムーン",
+        "typeText": "進化クリーチャー(究極進化)",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "究極進化-自分の進化クリーチャー１体の上に置く。\n相手のクリーチャーが攻撃する時、自分の山札の上から１枚目を見る。それが「ブロッカー」を持つカードであれば、バトルゾーンに出してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "エンジェル・コマンド/ルナティック・エンペラー",
+        "powerText": "11500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "ultimateEvolution": true,
+      "evolution": {
+        "evolution": true
+      },
+      "breaker": 2,
+      "g252AttackWatch": {
+        "who": "opponent",
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "LookDeploy530",
+            "n": 1,
+            "limit": 1,
+            "filter": {
+              "creature": true,
+              "blocker": true
+            },
+            "rest": "top"
+          }
+        ]
+      }
+    }
+  },
+  "dmrp01-s04": {
+    "phase": 1574,
+    "faces": [
+      {
+        "name": "深海の覇王 シャークウガ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "W・ブレイカー\nこのクリーチャーはブロックされない。\nこのクリーチャーがバトルゾーンに出た時、カードを２枚引く。その後、自分の手札を好きな枚数捨ててもよい。こうして捨てた手札１枚につき、相手のコスト７以下のクリーチャーを１体選び、持ち主の手札に戻す。",
+        "race": "ムートピア",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "unblockable": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        },
+        {
+          "op": "Discard",
+          "owner": "self",
+          "optional": true,
+          "g1233AnyDiscard": true,
+          "afterDiscardCount": {
+            "op": "g34_Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "to": "hand",
+            "filter": {
+              "creature": true,
+              "max": 7
+            },
+            "g173Targets": true
+          }
+        }
+      ]
+    }
+  },
+  "dm22-033": {
+    "phase": 1574,
+    "faces": [
+      {
+        "name": "地彗星アステロイド・ガイア",
+        "typeText": "進化クリーチャー(進化V)",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "進化V-自分のドリームメイト、ビークル・ビー、アース・ドラゴンのいずれか２体を重ねた上に置く。\nこのクリーチャーがブロックされた時、このクリーチャーは相手のシールドを１枚ブレイクする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "フェニックス",
+        "powerText": "11000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "any": [
+              {
+                "race": "ドリームメイト"
+              },
+              {
+                "race": "ビークル・ビー"
+              },
+              {
+                "race": "アース・ドラゴン"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "ドリームメイト"
+              },
+              {
+                "race": "ビークル・ビー"
+              },
+              {
+                "race": "アース・ドラゴン"
+              }
+            ]
+          }
+        ]
+      },
+      "breaker": 2,
+      "g559Blocked": [
+        {
+          "op": "Break497",
+          "n": 1,
+          "g747CreatureBreak": true
+        }
+      ]
+    }
+  },
+  "promoy19-102": {
+    "phase": 1574,
+    "faces": [
+      {
+        "name": "爺モン&婆ファンクル",
+        "typeText": "クリーチャー",
+        "civilizationText": "火/自然",
+        "civilizations": [
+          "火",
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、相手は自身の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置く。",
+        "race": "ジョーカーズ/チーム切札",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldTop",
+          "opponent": true
+        }
+      ]
+    }
   }
 }

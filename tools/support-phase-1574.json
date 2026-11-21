@@ -1,0 +1,366 @@
+{
+  "phase": 1574,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8927,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/35951/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa_old/35951/": "ビクトリーメテオ・ムーンで見たカードがブロッカーではなければ山札の上にそのまま残る。"
+  },
+  "cards": [
+    {
+      "id": "dmpcd02-a05",
+      "name": "パーフィン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd02-a05",
+      "faces": [
+        {
+          "name": "パーフィン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガーS・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、自分のクロスギアを１枚、手札に戻してもよい。そうしたら、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "サイバーロード/サムライ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "g201Gear": true
+            },
+            "afterBattleSelect": [
+              {
+                "op": "Target",
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmpcd02-a05.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "d1dd3895c1e51687a010b6a23563e82103d408a0e2521ccdd0ba81ada110cecc",
+        "facesMatched": true,
+        "imageSha256": "04bd45c3b4db65a1949101407255251fab252d94fae502e09476b7ea77959ed7",
+        "imageBytes": 128319
+      },
+      "sameNameProducts": [
+        "DMPCD-02 デュエマプレイス・コラボデッキ 竜装の武者＆魔弾の騎士"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd02-a05",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm35-006",
+      "name": "神羅ビクトリーメテオ・ムーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-006",
+      "faces": [
+        {
+          "name": "神羅ビクトリーメテオ・ムーン",
+          "typeText": "進化クリーチャー(究極進化)",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "究極進化-自分の進化クリーチャー１体の上に置く。\n相手のクリーチャーが攻撃する時、自分の山札の上から１枚目を見る。それが「ブロッカー」を持つカードであれば、バトルゾーンに出してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "エンジェル・コマンド/ルナティック・エンペラー",
+          "powerText": "11500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ultimateEvolution": true,
+        "evolution": {
+          "evolution": true
+        },
+        "breaker": 2,
+        "g252AttackWatch": {
+          "who": "opponent",
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "LookDeploy530",
+              "n": 1,
+              "limit": 1,
+              "filter": {
+                "creature": true,
+                "blocker": true
+              },
+              "rest": "top"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm35-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "7b5764b586170538a380d9b486718975e49daf9e5a73cd6603ae17a07f2fe7b9",
+        "facesMatched": true,
+        "imageSha256": "3cf95ec9843e2150559d450e78b53e7d2f619d2435deba57a5e4e798911da9fa",
+        "imageBytes": 124235
+      },
+      "sameNameProducts": [
+        "DM-35 神化編 第4弾 超極竜 VS 六体神 (ネバーエンディング・サーガ)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-006",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp01-s04",
+      "name": "深海の覇王 シャークウガ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-s04",
+      "faces": [
+        {
+          "name": "深海の覇王 シャークウガ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nこのクリーチャーはブロックされない。\nこのクリーチャーがバトルゾーンに出た時、カードを２枚引く。その後、自分の手札を好きな枚数捨ててもよい。こうして捨てた手札１枚につき、相手のコスト７以下のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "ムートピア",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "unblockable": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "optional": true,
+            "g1233AnyDiscard": true,
+            "afterDiscardCount": {
+              "op": "g34_Select",
+              "origin": "battle",
+              "owner": "opponent",
+              "to": "hand",
+              "filter": {
+                "creature": true,
+                "max": 7
+              },
+              "g173Targets": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-s04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "e883471eb38d6c38a61cefb9a13d461f68ba68b6f1b7456d7aa6b4321561223b",
+        "facesMatched": true,
+        "imageSha256": "66010bd24c9ab21ed4511549741c7ce59949ae42da725c2d2277aaa2102c4a51",
+        "imageBytes": 141063
+      },
+      "sameNameProducts": [
+        "DMRP-01 拡張パック新1弾 ジョーカーズ参上！！"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-s04",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm22-033",
+      "name": "地彗星アステロイド・ガイア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-033",
+      "faces": [
+        {
+          "name": "地彗星アステロイド・ガイア",
+          "typeText": "進化クリーチャー(進化V)",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化V-自分のドリームメイト、ビークル・ビー、アース・ドラゴンのいずれか２体を重ねた上に置く。\nこのクリーチャーがブロックされた時、このクリーチャーは相手のシールドを１枚ブレイクする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "フェニックス",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "any": [
+                {
+                  "race": "ドリームメイト"
+                },
+                {
+                  "race": "ビークル・ビー"
+                },
+                {
+                  "race": "アース・ドラゴン"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "ドリームメイト"
+                },
+                {
+                  "race": "ビークル・ビー"
+                },
+                {
+                  "race": "アース・ドラゴン"
+                }
+              ]
+            }
+          ]
+        },
+        "breaker": 2,
+        "g559Blocked": [
+          {
+            "op": "Break497",
+            "n": 1,
+            "g747CreatureBreak": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "505e56680efa027d13287c00ec28c6c7001f997203f3007b23fb5dd270e8ef98",
+        "facesMatched": true,
+        "imageSha256": "faced92cc4a2c48824969590b3c79890d61c164a2a4eafad602d534c7fdaeb06",
+        "imageBytes": 114021
+      },
+      "sameNameProducts": [
+        "DMC-55 コロコロ・レジェンド・７",
+        "DM-22 不死鳥編 第4弾 超神龍雷撃(ザ・ドラゴニック・ノヴァ)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-033",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "promoy19-102",
+      "name": "爺モン&婆ファンクル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy19-102",
+      "faces": [
+        {
+          "name": "爺モン&婆ファンクル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、相手は自身の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置く。",
+          "race": "ジョーカーズ/チーム切札",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "opponent": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy19-102.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "bb34fefd358455dce565c62d8cf3e548b5328ec770e28070452c1a628f89a52e",
+        "facesMatched": true,
+        "imageSha256": "375a50694cbf855536f56aed80116f6d7e302e980ae5874cca5d7b704ce624b1",
+        "imageBytes": 128220
+      },
+      "sameNameProducts": [
+        "DMEX-14 弩闘×十王超ファイナルウォーズ!!!",
+        "プロモ限定カード 19期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy19-102",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmpcd02-a05": 4,
+      "dm35-006": 4,
+      "dmrp01-s04": 4,
+      "dm22-033": 4,
+      "promoy19-102": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35951/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35951/",
+      "sha256": "135b092d1398d899dfccd3b669e73a8e315ebcd7351df3ba466df816729ae18f",
+      "result": "ビクトリーメテオ・ムーンで見たカードがブロッカーではなければ山札の上にそのまま残る。"
+    }
+  ]
+}

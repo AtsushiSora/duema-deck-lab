@@ -4853,6 +4853,7 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_ShieldTop':
+  if(t.opponent){put(s,{...t,p:1-t.p,opponent:false,controller:t.controller??t.p});break;}
   if(t.g1233Look){
    const [uid]=look(s,{...t,n:1});
    if(uid)choice(s,{...t,target:uid,...deckPeek841(own,[uid])},'山札の上から1枚目を確認',

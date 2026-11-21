@@ -281897,15 +281897,226 @@
       ],
       "supportBatch": "phase-1573",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmpcd02-a05",
+      "name": "パーフィン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "サイバーロード/サムライ",
+      "text": "S・トリガーS・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、自分のクロスギアを１枚、手札に戻してもよい。そうしたら、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd02-a05",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "g201Gear": true
+          },
+          "afterBattleSelect": [
+            {
+              "op": "Target",
+              "to": "hand"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1574",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm35-006",
+      "name": "神羅ビクトリーメテオ・ムーン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 11500,
+      "race": "エンジェル・コマンド/ルナティック・エンペラー",
+      "text": "究極進化-自分の進化クリーチャー１体の上に置く。\n相手のクリーチャーが攻撃する時、自分の山札の上から１枚目を見る。それが「ブロッカー」を持つカードであれば、バトルゾーンに出してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-006",
+      "limit": 4,
+      "ultimateEvolution": true,
+      "evolution": {
+        "evolution": true
+      },
+      "breaker": 2,
+      "g252AttackWatch": {
+        "who": "opponent",
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "LookDeploy530",
+            "n": 1,
+            "limit": 1,
+            "filter": {
+              "creature": true,
+              "blocker": true
+            },
+            "rest": "top"
+          }
+        ]
+      },
+      "supportBatch": "phase-1574",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp01-s04",
+      "name": "深海の覇王 シャークウガ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ムートピア",
+      "text": "W・ブレイカー\nこのクリーチャーはブロックされない。\nこのクリーチャーがバトルゾーンに出た時、カードを２枚引く。その後、自分の手札を好きな枚数捨ててもよい。こうして捨てた手札１枚につき、相手のコスト７以下のクリーチャーを１体選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-s04",
+      "limit": 4,
+      "breaker": 2,
+      "unblockable": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        },
+        {
+          "op": "Discard",
+          "owner": "self",
+          "optional": true,
+          "g1233AnyDiscard": true,
+          "afterDiscardCount": {
+            "op": "g34_Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "to": "hand",
+            "filter": {
+              "creature": true,
+              "max": 7
+            },
+            "g173Targets": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1574",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22-033",
+      "name": "地彗星アステロイド・ガイア",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 11000,
+      "race": "フェニックス",
+      "text": "進化V-自分のドリームメイト、ビークル・ビー、アース・ドラゴンのいずれか２体を重ねた上に置く。\nこのクリーチャーがブロックされた時、このクリーチャーは相手のシールドを１枚ブレイクする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-033",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "any": [
+              {
+                "race": "ドリームメイト"
+              },
+              {
+                "race": "ビークル・ビー"
+              },
+              {
+                "race": "アース・ドラゴン"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "ドリームメイト"
+              },
+              {
+                "race": "ビークル・ビー"
+              },
+              {
+                "race": "アース・ドラゴン"
+              }
+            ]
+          }
+        ]
+      },
+      "breaker": 2,
+      "g559Blocked": [
+        {
+          "op": "Break497",
+          "n": 1,
+          "g747CreatureBreak": true
+        }
+      ],
+      "supportBatch": "phase-1574",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy19-102",
+      "name": "爺モン&婆ファンクル",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、相手は自身の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy19-102",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldTop",
+          "opponent": true
+        }
+      ],
+      "supportBatch": "phase-1574",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1573,
+    "phase": 1574,
     "checkedAt": "2026-11-21",
-    "baseCount": 8922,
+    "baseCount": 8927,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8927,
+    "totalCount": 8932,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -307706,6 +307917,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 8922,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1573,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8922,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8927,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
