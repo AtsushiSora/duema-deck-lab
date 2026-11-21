@@ -523207,17 +523207,18 @@
     "nextPhase": 1614,
     "workInProgress": null,
     "nextCandidates": [
-      "公式照合済みの通常能力を持たないGRクリーチャー",
-      "既存のキーワード処理と一致するGRクリーチャー",
-      "既存処理で両面を完全に扱えるツインパクトを個別検証。公式未確認・特殊条件は保留。"
+      "龍素記号Cg ダイシャリン：呪文へのチャージャー付与と使用後の移動・置換を検証。",
+      "散舞する世界 パシフィック R：ターン開始時の本体・手札・墓地のシャッフルと後続ドローを検証。",
+      "巡霊者ウイニング・スター／スーパー・ウイニング・スター：公式のビクトリーマーク情報を確認して共通判定から実装。"
     ],
     "steps": [
-      "開始時にHEAD・作業差分・ステージ・既存プロセス・AGENTS・進捗を確認。",
-      "実データ9070種類・重複0。新目標9500種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
-      "追加500種類の117固有テストファイルはengine0.602.107で6分割して合格。旧全体npm test、phase1512・1584長時間AI検証、ユーザー保留2件と本番2アカウント対戦は別の未確認項目として記録を維持。",
-      "個別の残件2件はユーザー保留。再開指示まで追加調査・問い合わせ送信をしない。",
-      "一括npm testを再実行せず、公開候補の未集約範囲だけ分割検証する。過去の固定ソースの合格と現版の合格を区別する。",
-      "Netlifyを更新しないPages公開手順と公開候補全対象の合格が確認できるまでpush・公開しない。"
+      "開始時にHEAD、差分とステージ、実行中プロセス、AGENTS、進捗と前回のテストを確認し、実行中の作業があれば重複実行しない。",
+      "nameKeyによる実データは9070種類・重複0。新目標9500まで残り430種類。自動実行はPAUSEDのまま。",
+      "ローカルの検証済み実装はphase1613まで。tools/target9500-registration-checkpoint-1613.jsonの実測結果とハッシュを確認する。",
+      "次のphase1614で、未対応3〜5種類を目安に公式の全文・基本情報・画像・制限・再録と関連裁定を照合し、全能力の実装・固有テスト・関連回帰を行う。部分対応や同名再録を新規種類に数えない。",
+      "npm run check、監査、tools/verify-target9500.mjsを実行し、進捗を更新して検証済みのファイルだけをローカルコミット。9500に達したら件数を増やす登録を止める。",
+      "全体npm testの再実行、旧長時間テストの未確認状態、ユーザー保留2件、本番2アカウント検証の未完了を混同しない。今回の新規テストから旧未確認項目の解消を推定しない。",
+      "ユーザーから別途公開指示があるまでpush・公開・Netlify更新を行わない。現在のユーザー指示ではNetlifyを更新しない。"
     ],
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
@@ -523293,16 +523294,13 @@
       "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。"
     ],
     "restartSteps": [
-      "公開済みの版はb40ae0df (v0.722.1 / engine0.602.1 / 8074種類)。Pages・Netlifyを同じ版に更新済み。最新HEAD・差分・ステージ・既存プロセスを最初に確認。",
-      "実データ9070種類・重複0。新目標9500種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
-      "追加500種類の117固有テストファイルはengine0.602.107で6分割して合格。旧全体npm test、phase1512・1584長時間AI検証、ユーザー保留2件と本番2アカウント対戦は別の未確認項目として記録を維持。",
-      "既存8072定義は深い比較で不変。カードID・保存形式・保存済みデッキ・対戦履歴を維持。",
-      "個別の残件2件と問い合わせ案はユーザー指示「後回しにしよう」で保留。再開指示があるまでこの2件の調査・送信を行わない。",
-      "No13長時間検証はengine0.601.0の固定ソースで完了済み。今回のengine0.602.0の全面検証には数えない。必要な未集約項目は対象を特定し、細かく分割して確認する。",
-      "Netlifyは手動反映専用。workflow_dispatchだけ、GitHub pushフック停止、stop_builds=trueを維持。通常のカード追加pushでは反映しない。今回の公開に保留・未検証の解消は含めない。",
-      "10000種類は未達。現在9025種類、残り975。checkpoint-1596 の135テスト合格と旧9000定義の不変を確認し、phase1597以降を公式照合から継続。通常の新規登録は継続対象。自動化はPAUSEDのまま。",
-      "今回の13種類を含む全38追加種類はcheckpoint-1601で再検証済み。HEADのカード実装は9f87c9e9。作業再開時は既存プロセス・差分と実データのnameKeyを再確認し、phase1602を開始。10,000種類には未到達（残り962）。通常登録を続け、公開は別指示時のみ。",
-      "依頼9種類はtools/requested-card-verification-1603.jsonで全件ローカル検証済み。新規5種類で実データ9,043種類、重複0。究極・チャージャーは公式ID dm26ex5-031で一覧にも追加済み。次回はphase1604から。公開・Netlify更新は別途指示時のみ。"
+      "開始時にHEAD、差分とステージ、実行中プロセス、AGENTS、進捗と前回のテストを確認し、実行中の作業があれば重複実行しない。",
+      "nameKeyによる実データは9070種類・重複0。新目標9500まで残り430種類。自動実行はPAUSEDのまま。",
+      "ローカルの検証済み実装はphase1613まで。tools/target9500-registration-checkpoint-1613.jsonの実測結果とハッシュを確認する。",
+      "次のphase1614で、未対応3〜5種類を目安に公式の全文・基本情報・画像・制限・再録と関連裁定を照合し、全能力の実装・固有テスト・関連回帰を行う。部分対応や同名再録を新規種類に数えない。",
+      "npm run check、監査、tools/verify-target9500.mjsを実行し、進捗を更新して検証済みのファイルだけをローカルコミット。9500に達したら件数を増やす登録を止める。",
+      "全体npm testの再実行、旧長時間テストの未確認状態、ユーザー保留2件、本番2アカウント検証の未完了を混同しない。今回の新規テストから旧未確認項目の解消を推定しない。",
+      "ユーザーから別途公開指示があるまでpush・公開・Netlify更新を行わない。現在のユーザー指示ではNetlifyを更新しない。"
     ],
     "registrationStatus": "ユーザーの新目標9500種類に向けて通常登録を再開。現在9070種類、残り430種類。automationはPAUSEDのまま。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
@@ -523607,6 +523605,41 @@
         "name": "ピッピ・修・ピヨッコ",
         "reason": "バイクロ・チュリスと同じシールド追加の墓地置換基盤が必要。公式全文と画像を確認。",
         "phase": 1599
+      },
+      {
+        "id": "dm01-028",
+        "name": "ブラック・スレイヤー",
+        "reason": "公式本文・画像・単一収録を確認。ブロック時に生成する効果の持続とバトル後の墓地移動・置換競合の専用処理とテストが未実装。部分登録しない。",
+        "phase": 1613,
+        "status": "not-registered"
+      },
+      {
+        "id": "dm15-047",
+        "name": "リアリティ・ヴォイド",
+        "reason": "公式本文と基本情報を取得。通常チャージと効果による手札からのマナ移動を、次の自分のターン開始まで一貫して禁止する共通処理・画像確認・固有テストが未完了。",
+        "phase": 1613,
+        "status": "not-registered"
+      },
+      {
+        "id": "dm22ex1-050",
+        "name": "漂流大陸の復活",
+        "reason": "公式本文と基本情報を取得。ウェーブストライカー・サバイバー・ダイナモの墓地判定と、両プレイヤーの全対象の同時展開、未対応ダイナモを含めた全能力の検証が必要。画像確認と実装は未完了。",
+        "phase": 1613,
+        "status": "not-registered"
+      },
+      {
+        "id": "dmx01-029",
+        "name": "巡霊者ウイニング・スター",
+        "reason": "公式本文・基本情報・画像を照合。既存カードのビクトリーマーク情報が対戦用データにないため、公式に基づく判定情報と全バトル勝利の回帰を作るまで未登録。",
+        "phase": 1613,
+        "status": "not-registered"
+      },
+      {
+        "id": "dmx03-001",
+        "name": "巡霊者スーパー・ウイニング・スター",
+        "reason": "公式本文・基本情報・画像を照合。ビクトリーマークの判定、ブロッカー付与・全バトル勝利・ターン終了時アンタップの全能力を検証するまで未登録。",
+        "phase": 1613,
+        "status": "not-registered"
       }
     ],
     "lastExplicitUserAddition": {
@@ -523743,49 +523776,181 @@
       "testFiles": 117,
       "partitions": 6
     },
-    "registrationCheckpoint": "tools/target10000-registration-checkpoint-1601.json",
+    "registrationCheckpoint": "tools/target9500-registration-checkpoint-1613.json",
     "registrationSession": {
-      "checkedAt": "2026-11-21T07:34:08.755Z",
+      "checkedAt": "2026-11-21T10:03:37.879Z",
       "status": "in-progress",
-      "target": 10000,
-      "baseline": "2f838446a748399b53422d1caab279209c74465d",
-      "verifiedCodeCommit": "ab85a3cacf98993ce79d22249bc857d7be9370be",
-      "startNames": 9000,
-      "currentNames": 9025,
+      "target": 9500,
+      "baseline": "4801e7b369aca914bf44d719ceede4c6d589df09",
+      "verifiedCodeCommit": "1a636cf1f59b0b056eceb85e99e170ae7f455f27",
+      "startNames": 9043,
+      "currentNames": 9070,
       "duplicateNames": 0,
-      "addedNames": 25,
-      "remainingNames": 975,
-      "engineVersion": "0.602.111",
+      "addedNames": 27,
+      "remainingNames": 430,
+      "engineVersion": "0.602.128",
       "hashes": {
-        "dist/cards.json": "1a6e1101a22c04fb5e1dc3e3df426d96a41f2e789b5f56c9a378963bb98054a8",
-        "dist/engine.js": "e7a425d13627db253f13de8c3ccab9cb08707d71fbfea5ee0ccdc450de3d8523",
-        "dist/six-photo-rules.js": "4f79bc100cfcb9801d6d500b3ea58518730a30c8ad19b5750490bb0bebb0d8d2",
-        "dist/online-compatibility.js": "e186375e0a45d82bc5a3f39fa2077bb9eb01ebf0c270ebd40877f46fea356bed"
+        "dist/cards.json": "42c3b7b8060c037d25105c6320c4bd597a47be5e94fcec473de4f685e90bbb40",
+        "dist/engine.js": "ce9a75b82d978037b2a771fcc500d6152aa61ab28398bdda6a19b8a314c1bf50",
+        "dist/six-photo-rules.js": "4283e3ac3d9c9ebbe126e18d5260cc98175a5e326173df8889153403fa555d6d",
+        "dist/online-compatibility.js": "9f3187963c877e3feba8b52a1f9c677110bba83078f15ed83a4eca58650f5a8f",
+        "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
       },
       "phaseRange": [
-        1589,
-        1596
+        1604,
+        1613
       ],
+      "added": [
+        {
+          "id": "dm23ex3-S04",
+          "name": "「狡智」の頂天 レディオ・ローゼス"
+        },
+        {
+          "id": "dm24ex2-041",
+          "name": "「胡乱」の頂天 クリス＝ビュート"
+        },
+        {
+          "id": "dm24ex2-042",
+          "name": "騎士のコード オルタナティブ"
+        },
+        {
+          "id": "dm23ex3-S06",
+          "name": "「使命」の頂天 グレイテスト・グレート"
+        },
+        {
+          "id": "dm23ex3-S08",
+          "name": "「戦鬼」の頂天 ベートーベン"
+        },
+        {
+          "id": "dm24ex2-023",
+          "name": "「無」の頂天 タブラ＝ラーサ"
+        },
+        {
+          "id": "dmrp09-055",
+          "name": "タラトゥイユ・パンツァー/デリシャ・スパーク"
+        },
+        {
+          "id": "dmbd07-b-002",
+          "name": "煌メク聖晶 弩楼 / ビスティック・マース"
+        },
+        {
+          "id": "dmex06-039",
+          "name": "未来妖精ミクル / ミラクル・ブレイン"
+        },
+        {
+          "id": "dmrp09-009",
+          "name": "マナの長老 ジョウモン爺/枯れ葉マナ隠し"
+        },
+        {
+          "id": "dm23rp3-016",
+          "name": "トング＝ゴング / 「世界をつかませてやろうか？」"
+        },
+        {
+          "id": "dm25ex4-060",
+          "name": "ボルシャック・デニーヒーロー / 超素敵タイム"
+        },
+        {
+          "id": "dmr02-001",
+          "name": "ガンリキ・インディゴ・カイザー"
+        },
+        {
+          "id": "dm27-043",
+          "name": "月光電人オボロカゲロウ"
+        },
+        {
+          "id": "dm07-044",
+          "name": "夢幻の影ダーク・バンディット"
+        },
+        {
+          "id": "dmex04-067",
+          "name": "凶鬼12号 ジャーゴン/邪魂創世"
+        },
+        {
+          "id": "dmrp10-007",
+          "name": "スキマ・デ・ミール / こちらにイラッシャ～イ…!!"
+        },
+        {
+          "id": "dm23ex3-004",
+          "name": "水晶の祈り / クリスタル・ドゥーム"
+        },
+        {
+          "id": "dmex04-022",
+          "name": "ほめほめ老 / ホメホメ老句"
+        },
+        {
+          "id": "dmex17-108",
+          "name": "Dの光陣 ムルムル守神宮"
+        },
+        {
+          "id": "promoy12-004",
+          "name": "日曜日よりの使者 メーテル"
+        },
+        {
+          "id": "dmrp07-044",
+          "name": "デコピン・チュリス/ アンタモ・アーメン"
+        },
+        {
+          "id": "dmbd06-010",
+          "name": "「逆相」の頂 オガヤード・スンラート"
+        },
+        {
+          "id": "dmex08-303",
+          "name": "「破壊の赤！スクラッパーレッド！」「知識の青！ブレインブルー！」「魅惑の緑！トラップグリーン！」「閃光の黄色！スパークイエロー！」「強欲の紫！ハンドパープル！」「ブレイクあるところに我らあり！シールド戦隊、トリガージャー!!」"
+        },
+        {
+          "id": "dm23rp4-S03",
+          "name": "サケビ・ポエムシャウター / ♪いつまでも オレ様の歌は 終わらねぇ"
+        },
+        {
+          "id": "dmex18-039",
+          "name": "Dの学園 ナメティック・アカデミー"
+        },
+        {
+          "id": "dmex02-079",
+          "name": "インパラスカス"
+        }
+      ],
+      "batchTestExecutions": 2469,
+      "aggregateNote": "共通の回帰テストを複数バッチで実行しているため、実行件数であり固有テストの数ではない。",
       "campaign": {
         "name": "campaign",
         "command": [
           "node",
           "--test",
           "--test-concurrency=4",
-          "tests/standard1589-effects.test.mjs",
-          "tests/standard1590-effects.test.mjs",
-          "tests/standard1591-effects.test.mjs",
-          "tests/standard1592-effects.test.mjs",
-          "tests/standard1593-effects.test.mjs",
-          "tests/standard1594-effects.test.mjs",
-          "tests/standard1595-effects.test.mjs",
-          "tests/standard1596-effects.test.mjs"
+          "tests/standard1604-effects.test.mjs",
+          "tests/standard1605-effects.test.mjs",
+          "tests/standard1606-effects.test.mjs",
+          "tests/standard1607-effects.test.mjs",
+          "tests/standard1608-effects.test.mjs",
+          "tests/standard1609-effects.test.mjs",
+          "tests/standard1610-effects.test.mjs",
+          "tests/standard1611-effects.test.mjs",
+          "tests/standard1612-effects.test.mjs",
+          "tests/standard1613-effects.test.mjs",
+          "tests/requested-nine-1603.test.mjs",
+          "tests/standard1602-effects.test.mjs",
+          "tests/standard1603-effects.test.mjs"
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 3.388,
-        "log": "tmp/duema-target-10000/validation-1596/campaign.log",
-        "passed": 135,
+        "seconds": 11.548,
+        "log": "tmp/duema-target-9500/validation-1613/campaign.log",
+        "passed": 290,
+        "failed": 0
+      },
+      "games": {
+        "name": "games",
+        "command": [
+          "node",
+          "--test",
+          "tests/target9500-session-games.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 44.127,
+        "log": "tmp/duema-target-9500/validation-1613/games.log",
+        "passed": 7,
         "failed": 0
       },
       "latestCheck": {
@@ -523797,8 +523962,10 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 19.11,
-        "log": "tmp/duema-phase-1596/check.log"
+        "seconds": 19.255,
+        "log": "tmp/duema-target-9500/validation-1613/check.log",
+        "passed": 0,
+        "failed": 0
       },
       "latestAudit": {
         "name": "audit",
@@ -523808,38 +523975,63 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 11.947,
-        "log": "tmp/duema-phase-1596/audit.log"
+        "seconds": 11.795,
+        "log": "tmp/duema-phase-1613/audit.log"
       },
       "invariants": {
-        "baseline": "2f838446",
-        "originalDefinitionsUnchanged": 9000,
-        "added": 25,
-        "uniqueNames": 9025,
-        "uniqueIds": 9025,
+        "baseline": "4801e7b369aca914bf44d719ceede4c6d589df09",
+        "target": 9500,
+        "originalDefinitionsUnchanged": 9043,
+        "added": 27,
+        "uniqueNames": 9070,
+        "uniqueIds": 9070,
         "duplicateNames": 0,
         "partialNewDefinitions": 0,
-        "remaining": 975
+        "catalogueAndAliasesUnchanged": true,
+        "remaining": 430
       },
-      "existingDefinitionsUnchanged": 9000,
+      "existingDefinitionsUnchanged": 9043,
+      "additionalVerification": [
+        {
+          "target": "dm07-044 夢幻の影ダーク・バンディット",
+          "test": "tests/standard1608-effects.test.mjs",
+          "result": "破壊でないbattlefield-to-graveイベントをエンジンの実際の移動キューで両プレイヤー・承認/辞退の4通り検証。破壊のみのケンキの置換を発動させない。"
+        },
+        {
+          "target": "promoy12-004 日曜日よりの使者 メーテル",
+          "test": "tests/standard1611-effects.test.mjs",
+          "result": "QA40218・44088、バビロニアとの置換元選択とJSON再開を検証。"
+        },
+        {
+          "target": "dmex08-303 トリガージャー",
+          "test": "tests/standard1612-effects.test.mjs",
+          "result": "最新再録の公式本文・画像でマナ数0と異なる2モードを照合し、全10組み合わせ・5000ちょうどの破壊・Sトリガーを検証。"
+        }
+      ],
       "publication": {
         "pushed": false,
         "deployed": false,
         "netlifyUpdated": false
       },
-      "remainingVerification": "全体npm testの過去の中断・合否未確認、以前から未確認の長時間テスト、ユーザー保留2件、本番2アカウント対戦確認は継続して未解消として保持。",
-      "artifact": "tools/target10000-registration-checkpoint-1596.json"
+      "remainingVerification": "全体npm testの過去の中断・合否未確認、phase1512 No16とphase1584 No04の長時間検証、ユーザー保留2件、本番2アカウント対戦確認は未解消のまま保持。今回の27種類に新たな未完了検証は記録されていない。",
+      "artifact": "tools/target9500-registration-checkpoint-1613.json"
     },
     "latestManualCheck": {
-      "checkedAt": "2026-11-21T08:37:45.550Z",
-      "verifiedCodeCommit": "5c23182b4b5425febdfd84f6d7faa0119bf3f2bc",
-      "record": "tools/requested-card-verification-1603.json",
-      "uniqueNames": 9043,
+      "checkedAt": "2026-11-21T10:03:37.879Z",
+      "verifiedCodeCommit": "1a636cf1f59b0b056eceb85e99e170ae7f455f27",
+      "record": "tools/target9500-registration-checkpoint-1613.json",
+      "uniqueNames": 9070,
       "duplicates": 0,
-      "addedThisRequest": 5,
-      "requestedCardsPassed": 119,
+      "addedThisRequest": 27,
+      "target": 9500,
       "targetReached": false,
-      "remaining": 957
+      "remaining": 430,
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "previousRequestedCardVerification": "tools/requested-card-verification-1603.json"
     },
     "latestRequestedCards": {
       "checkedAt": "2026-11-21T08:37:45.550Z",
@@ -523859,6 +524051,105 @@
       "added": 5,
       "reverified": 4,
       "remaining": []
+    },
+    "previousRegistrationSessions": [
+      {
+        "checkedAt": "2026-11-21T07:34:08.755Z",
+        "status": "in-progress",
+        "target": 10000,
+        "baseline": "2f838446a748399b53422d1caab279209c74465d",
+        "verifiedCodeCommit": "ab85a3cacf98993ce79d22249bc857d7be9370be",
+        "startNames": 9000,
+        "currentNames": 9025,
+        "duplicateNames": 0,
+        "addedNames": 25,
+        "remainingNames": 975,
+        "engineVersion": "0.602.111",
+        "hashes": {
+          "dist/cards.json": "1a6e1101a22c04fb5e1dc3e3df426d96a41f2e789b5f56c9a378963bb98054a8",
+          "dist/engine.js": "e7a425d13627db253f13de8c3ccab9cb08707d71fbfea5ee0ccdc450de3d8523",
+          "dist/six-photo-rules.js": "4f79bc100cfcb9801d6d500b3ea58518730a30c8ad19b5750490bb0bebb0d8d2",
+          "dist/online-compatibility.js": "e186375e0a45d82bc5a3f39fa2077bb9eb01ebf0c270ebd40877f46fea356bed"
+        },
+        "phaseRange": [
+          1589,
+          1596
+        ],
+        "campaign": {
+          "name": "campaign",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=4",
+            "tests/standard1589-effects.test.mjs",
+            "tests/standard1590-effects.test.mjs",
+            "tests/standard1591-effects.test.mjs",
+            "tests/standard1592-effects.test.mjs",
+            "tests/standard1593-effects.test.mjs",
+            "tests/standard1594-effects.test.mjs",
+            "tests/standard1595-effects.test.mjs",
+            "tests/standard1596-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 3.388,
+          "log": "tmp/duema-target-10000/validation-1596/campaign.log",
+          "passed": 135,
+          "failed": 0
+        },
+        "latestCheck": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.11,
+          "log": "tmp/duema-phase-1596/check.log"
+        },
+        "latestAudit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.947,
+          "log": "tmp/duema-phase-1596/audit.log"
+        },
+        "invariants": {
+          "baseline": "2f838446",
+          "originalDefinitionsUnchanged": 9000,
+          "added": 25,
+          "uniqueNames": 9025,
+          "uniqueIds": 9025,
+          "duplicateNames": 0,
+          "partialNewDefinitions": 0,
+          "remaining": 975
+        },
+        "existingDefinitionsUnchanged": 9000,
+        "publication": {
+          "pushed": false,
+          "deployed": false,
+          "netlifyUpdated": false
+        },
+        "remainingVerification": "全体npm testの過去の中断・合否未確認、以前から未確認の長時間テスト、ユーザー保留2件、本番2アカウント対戦確認は継続して未解消として保持。",
+        "artifact": "tools/target10000-registration-checkpoint-1596.json"
+      }
+    ],
+    "previousManualCheck": {
+      "checkedAt": "2026-11-21T08:37:45.550Z",
+      "verifiedCodeCommit": "5c23182b4b5425febdfd84f6d7faa0119bf3f2bc",
+      "record": "tools/requested-card-verification-1603.json",
+      "uniqueNames": 9043,
+      "duplicates": 0,
+      "addedThisRequest": 5,
+      "requestedCardsPassed": 119,
+      "targetReached": false,
+      "remaining": 957
     }
   },
   "registeredCardVerification": {
