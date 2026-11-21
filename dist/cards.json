@@ -278941,15 +278941,169 @@
       ],
       "supportBatch": "phase-1554",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm11-006",
+      "name": "命運の伝道師ラミエル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "バーサーカー",
+      "text": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\n相手のターン中に自分のクリーチャーが破壊された時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-006",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "g303DeathWatch": {
+            "self": true,
+            "opponentTurn": true,
+            "defs": [
+              {
+                "op": "DrawUpTo",
+                "n": 1
+              }
+            ]
+          }
+        }
+      },
+      "supportBatch": "phase-1555",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm11-s02",
+      "name": "アドラス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 4000,
+      "race": "シー・ハッカー",
+      "text": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、各プレイヤーは、バトルゾーンにある自分自身の「ウェーブストライカー」を持つクリーチャー１体につき１枚カードを引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-s02",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "WaveDraw1555"
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-1555",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd26-006",
+      "name": "宣凶師ラッセルズβ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "グラディエーター/サバイバー",
+      "text": "oS ウルトラ・セイバー：サバイバー（自分のサバイバーがバトルゾーンを離れる時、かわりにこのクリーチャーを破壊してもよい）\nサバイバー（自分のサバイバーはすべて、上のoS 能力を持つ）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd26-006",
+      "limit": 4,
+      "g571Saver": {
+        "filter": {
+          "race": "サバイバー"
+        },
+        "ultra": true
+      },
+      "g406Survivor": {
+        "g571Saver": {
+          "filter": {
+            "race": "サバイバー"
+          },
+          "ultra": true
+        }
+      },
+      "supportBatch": "phase-1555",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex18-041",
+      "name": "フューチャー・ハンド",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガーS・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれか１つを選ぶ。\n▶相手のクリーチャーを１体破壊する。\n▶相手のデュエリストを１つ破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-041",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "相手のクリーチャーを破壊",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "creature": true
+                  },
+                  "spell": true
+                }
+              ]
+            },
+            {
+              "label": "相手のデュエリストを破壊",
+              "defs": [
+                {
+                  "op": "Target",
+                  "element": true,
+                  "to": "grave",
+                  "filter": {
+                    "g1535Duelist": true
+                  },
+                  "spell": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1555",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1554,
+    "phase": 1555,
     "checkedAt": "2026-11-21",
-    "baseCount": 8839,
+    "baseCount": 8843,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 8843,
+    "totalCount": 8847,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -304484,6 +304638,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 8839,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1554,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8839,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 8843,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

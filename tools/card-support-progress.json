@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-21",
   "catalogueNames": 11824,
-  "supportedNames": 8843,
-  "pendingNames": 2981,
-  "phase": 1554,
+  "supportedNames": 8847,
+  "pendingNames": 2977,
+  "phase": 1555,
   "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,8 +154,8 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1721,
-    "呪文": 354,
+    "クリーチャー": 1718,
+    "呪文": 353,
     "GRクリーチャー": 18,
     "G-NEOクリーチャー": 26,
     "タマシード": 37,
@@ -223,14 +223,14 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 685,
-    "未対応の能力文": 2141,
+    "未対応の能力文": 2139,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
     "未対応のD2フィールド能力": 37,
     "複雑な進化条件": 12,
     "未対応のスリリング・スリー効果": 2,
-    "未対応の選択能力": 12,
+    "未対応の選択能力": 11,
     "コスト・文明の個別処理が必要": 2,
     "未対応のスーパー・S・トリガー能力": 4,
     "未対応のスペース・チャージ条件": 4,
@@ -246,7 +246,6 @@
     "未対応のS・トリガー・プラス能力": 1,
     "未対応の被攻撃・被選択能力": 1,
     "未対応の非ブロック時能力": 1,
-    "再録サバイバーの共有処理が未対応": 1,
     "独立した誘発能力の順序対応が必要": 2,
     "特殊なパワー": 1,
     "未対応のアクセル能力": 2,
@@ -527,12 +526,6 @@
       {
         "id": "dm09-004",
         "name": "聖剣炎獣バーレスク"
-      }
-    ],
-    "再録サバイバーの共有処理が未対応": [
-      {
-        "id": "dmd26-006",
-        "name": "宣凶師ラッセルズβ"
       }
     ],
     "独立した誘発能力の順序対応が必要": [
@@ -515203,11 +515196,148 @@
         "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
       ],
       "next": "目標9000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
+    },
+    {
+      "phase": 1555,
+      "kind": "registration-toward-9000",
+      "checkedAt": "2026-11-21T02:21:07.641Z",
+      "baseline": "a4bcc3cd5a83c9a978562e56f6c874f1d4f4f42a",
+      "manifest": "tools/support-phase-1555.json",
+      "status": "verified-local",
+      "before": 8843,
+      "supported": 8847,
+      "pending": 2977,
+      "added": [
+        {
+          "id": "dm11-006",
+          "name": "命運の伝道師ラミエル"
+        },
+        {
+          "id": "dm11-s02",
+          "name": "アドラス"
+        },
+        {
+          "id": "dmd26-006",
+          "name": "宣凶師ラッセルズβ"
+        },
+        {
+          "id": "dmex18-041",
+          "name": "フューチャー・ハンド"
+        }
+      ],
+      "duplicates": 0,
+      "results": {
+        "focused": {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1555-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.961,
+          "log": "tmp/duema-phase-1555/focused.log",
+          "passed": 94,
+          "failed": 0
+        },
+        "related": {
+          "name": "related",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=4",
+            "tests/standard1554-effects.test.mjs",
+            "tests/standard400-effects.test.mjs",
+            "tests/standard406-effects.test.mjs",
+            "tests/standard571-effects.test.mjs",
+            "tests/standard838-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 39.498,
+          "log": "tmp/duema-phase-1555/related.log",
+          "passed": 491,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.45,
+          "log": "tmp/duema-phase-1555/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.534,
+          "log": "tmp/duema-phase-1555/audit.log"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tools/verify-target9000.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.327,
+          "log": "tmp/duema-phase-1555/invariants.log"
+        }
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1555-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.903,
+          "log": "tmp/duema-phase-1555/focused.log"
+        }
+      ],
+      "testCorrections": [],
+      "totalTestsPassed": 585,
+      "reason": "既存の処理を用いて全能力を個別に検証し4種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+      "remaining": [
+        "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
+      ],
+      "next": "目標9000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。",
+      "deferred": [
+        {
+          "id": "promoy3-012",
+          "name": "電脳奇面アンギラー",
+          "reason": "公式HTMLとdist/detailsのコスト6に対して、公式カード画像はコスト3。基本情報の不一致を確定できず今回未登録。画像とHTMLはtmp/duema-target-9000/twin-evidence/promoy3-012へ保存。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1554,
-    "nextPhase": 1555,
+    "lastVerifiedPhase": 1555,
+    "nextPhase": 1556,
     "workInProgress": null,
     "nextCandidates": [
       "公式照合済みの通常能力を持たないGRクリーチャー",
@@ -515216,7 +515346,7 @@
     ],
     "steps": [
       "開始時にHEAD・作業差分・ステージ・既存プロセス・AGENTS・進捗を確認。",
-      "実データ8843種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8847種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "再開時は既存プロセス・最新コミット・作業ツリーを確認し、tools/verify-target8500.mjsとtools/target8500-verification.jsonを参照。ユーザー保留項目は既存記録を維持。",
       "個別の残件2件はユーザー保留。再開指示まで追加調査・問い合わせ送信をしない。",
       "一括npm testを再実行せず、公開候補の未集約範囲だけ分割検証する。過去の固定ソースの合格と現版の合格を区別する。",
@@ -515297,14 +515427,14 @@
     ],
     "restartSteps": [
       "公開済みの版はb40ae0df (v0.722.1 / engine0.602.1 / 8074種類)。Pages・Netlifyを同じ版に更新済み。最新HEAD・差分・ステージ・既存プロセスを最初に確認。",
-      "実データ8843種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8847種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "再開時は既存プロセス・最新コミット・作業ツリーを確認し、tools/verify-target8500.mjsとtools/target8500-verification.jsonを参照。ユーザー保留項目は既存記録を維持。",
       "既存8072定義は深い比較で不変。カードID・保存形式・保存済みデッキ・対戦履歴を維持。",
       "個別の残件2件と問い合わせ案はユーザー指示「後回しにしよう」で保留。再開指示があるまでこの2件の調査・送信を行わない。",
       "No13長時間検証はengine0.601.0の固定ソースで完了済み。今回のengine0.602.0の全面検証には数えない。必要な未集約項目は対象を特定し、細かく分割して確認する。",
       "Netlifyは手動反映専用。workflow_dispatchだけ、GitHub pushフック停止、stop_builds=trueを維持。通常のカード追加pushでは反映しない。今回の公開に保留・未検証の解消は含めない。"
     ],
-    "registrationStatus": "ユーザーの新目標9000種類に向けて通常登録を再開。現在8843種類、残り157種類。automationはPAUSEDのまま。",
+    "registrationStatus": "ユーザーの新目標9000種類に向けて通常登録を再開。現在8847種類、残り153種類。automationはPAUSEDのまま。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [],
     "printVerificationPending": [
@@ -515416,10 +515546,10 @@
     "registrationTarget": {
       "target": 9000,
       "startCount": 8500,
-      "currentCount": 8843,
-      "remaining": 157,
+      "currentCount": 8847,
+      "remaining": 153,
       "status": "active",
-      "phase": 1554
+      "phase": 1555
     },
     "deferredRegistrationCandidates": [
       {
@@ -515482,6 +515612,12 @@
         "name": "王牙秘伝ゴールデン・ビクトリー",
         "reason": "アタック・チャンス指定の黄金龍鬼丸「王牙」が未対応。攻撃元を含めて公式照合・実装・実戦経路検証が必要。",
         "phase": 1549
+      },
+      {
+        "id": "promoy3-012",
+        "name": "電脳奇面アンギラー",
+        "reason": "公式HTMLとdist/detailsのコスト6に対して、公式カード画像はコスト3。基本情報の不一致を確定できず今回未登録。画像とHTMLはtmp/duema-target-9000/twin-evidence/promoy3-012へ保存。",
+        "phase": 1555
       }
     ],
     "lastExplicitUserAddition": {
@@ -567440,10 +567576,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1554,
+    "phase": 1555,
     "threshold": 9000,
-    "supportedNames": 8843,
-    "pendingNames": 2981,
+    "supportedNames": 8847,
+    "pendingNames": 2977,
     "checkedAt": "2026-11-21",
     "registrationStopped": false,
     "automationId": "duema-deck-lab",

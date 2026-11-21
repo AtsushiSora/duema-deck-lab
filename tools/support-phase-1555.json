@@ -1,0 +1,306 @@
+{
+  "phase": 1555,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8843,
+  "description": "既存の処理を用いて全能力を個別に検証し4種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "deferred": [
+    {
+      "id": "promoy3-012",
+      "name": "電脳奇面アンギラー",
+      "reason": "公式HTMLとdist/detailsのコスト6に対して、公式カード画像はコスト3。基本情報の不一致を確定できず今回未登録。画像とHTMLはtmp/duema-target-9000/twin-evidence/promoy3-012へ保存。"
+    }
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/35188/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35189/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa_old/35188/": "登場した自身を含めてウェーブストライカー3体なら登場時能力を得て誘発。",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35189/": "場の合計が2体に減れば与えられた常在能力を失い、3体以上なら再び得る。"
+  },
+  "implementationNotes": [
+    "ウェーブストライカー2種類は両者の場の現在の有効な能力を数える既存条件処理を使用。",
+    "アドラスは解決時に各プレイヤーのウェーブストライカー数を数え、その枚数のカードを引く。",
+    "ラッセルズのウルトラセイバーはサバイバー共有を利用し、破壊以外の離脱も置換する。"
+  ],
+  "cards": [
+    {
+      "id": "dm11-006",
+      "name": "命運の伝道師ラミエル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-006",
+      "faces": [
+        {
+          "name": "命運の伝道師ラミエル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\n相手のターン中に自分のクリーチャーが破壊された時、カードを１枚引いてもよい。",
+          "race": "バーサーカー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "g303DeathWatch": {
+              "self": true,
+              "opponentTurn": true,
+              "defs": [
+                {
+                  "op": "DrawUpTo",
+                  "n": 1
+                }
+              ]
+            }
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "570f9288677d9f51da522a0a1c0847ba878027b0ef1485a67c92fe2f23bacb2e",
+        "facesMatched": true,
+        "imageSha256": "199a49e008ab06bb765175d2ccc31e44f40122f983cdd56c8783b79675f26a15",
+        "imageBytes": 102996
+      },
+      "sameNameProducts": [
+        "DM-11 聖拳編 第2弾 無限軍団の飛翔(エターナル・ウェーブ)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-006",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm11-s02",
+      "name": "アドラス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-s02",
+      "faces": [
+        {
+          "name": "アドラス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、各プレイヤーは、バトルゾーンにある自分自身の「ウェーブストライカー」を持つクリーチャー１体につき１枚カードを引く。",
+          "race": "シー・ハッカー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "effect": "sixPhoto",
+            "g34Tasks": [
+              {
+                "op": "WaveDraw1555"
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-s02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "b9f9509bf14da255d5563229938405c6cd277d77e6cb52dd7c49e7f56e153bff",
+        "facesMatched": true,
+        "imageSha256": "83f049e7b394d5145dd168cf3ad86981e5f86ff4a4f1249e7f9592678ee1a529",
+        "imageBytes": 106715
+      },
+      "sameNameProducts": [
+        "DM-11 聖拳編 第2弾 無限軍団の飛翔(エターナル・ウェーブ)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-s02",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmd26-006",
+      "name": "宣凶師ラッセルズβ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd26-006",
+      "faces": [
+        {
+          "name": "宣凶師ラッセルズβ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "oS ウルトラ・セイバー：サバイバー（自分のサバイバーがバトルゾーンを離れる時、かわりにこのクリーチャーを破壊してもよい）\nサバイバー（自分のサバイバーはすべて、上のoS 能力を持つ）",
+          "race": "グラディエーター/サバイバー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g571Saver": {
+          "filter": {
+            "race": "サバイバー"
+          },
+          "ultra": true
+        },
+        "g406Survivor": {
+          "g571Saver": {
+            "filter": {
+              "race": "サバイバー"
+            },
+            "ultra": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd26-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "68f3f2cf937236a6c08f4343335e80959c2ddc86240df41d7a21a31a8d842ac0",
+        "facesMatched": true,
+        "imageSha256": "2ba2fa261017d438d8db5ed952087779110d4eefda11be0e42e1024ea1501342",
+        "imageBytes": 113946
+      },
+      "sameNameProducts": [
+        "DMD-26 マスターズ・クロニクル・デッキ サバイバー進化論 α to Ω"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd26-006",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex18-041",
+      "name": "フューチャー・ハンド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-041",
+      "faces": [
+        {
+          "name": "フューチャー・ハンド",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガーS・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれか１つを選ぶ。\n▶相手のクリーチャーを１体破壊する。\n▶相手のデュエリストを１つ破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "modes": [
+              {
+                "label": "相手のクリーチャーを破壊",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "creature": true
+                    },
+                    "spell": true
+                  }
+                ]
+              },
+              {
+                "label": "相手のデュエリストを破壊",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "element": true,
+                    "to": "grave",
+                    "filter": {
+                      "g1535Duelist": true
+                    },
+                    "spell": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "7633e4c9210ee0e5450873243cad03f93950f3eec2b731087979b3b10d60aee0",
+        "facesMatched": true,
+        "imageSha256": "fd7e83828e7da6e4451e4239387a6f9b8cea8659dd1b9f1f9a4dcce711f75131",
+        "imageBytes": 175859
+      },
+      "sameNameProducts": [
+        "DMEX-18 20周年超感謝メモリアルパック 裏の章 パラレル･マスターズ"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-041",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm11-006": 4,
+      "dm11-s02": 4,
+      "dmd26-006": 4,
+      "dmex18-041": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35188/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35189/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35188/",
+      "sha256": "042f281a7e557f6a331ef3b28922fcfe9ae844861f38f98e9fb2426d0f099aa5",
+      "result": "登場した自身を含めてウェーブストライカー3体なら登場時能力を得て誘発。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35189/",
+      "sha256": "162f902e7a5865c3e2b8bbc9c4b22a4c029dfb4cf4304bb52d78c1e9e60591d9",
+      "result": "場の合計が2体に減れば与えられた常在能力を失い、3体以上なら再び得る。"
+    }
+  ]
+}

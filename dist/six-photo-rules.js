@@ -2860,6 +2860,11 @@ export function createSixPhotoRules(api){
  // QA40275: choosing to shield a hand card satisfies 'if you do' even if addition is prohibited.
  case'g34_ShieldExchange446':if(own.hand.length)choice(s,t,'シールドに置く手札を1枚選ぶ'+(t.optional?'（任意）':''),[...own.hand.map(y=>opt(card(y).name,y.uid,faces(card(y)).some(c=>c.trigger)?25:5,y.cardId)),...(t.optional?[skip()]:[])]);else if(!t.optional)put(s,{...t,op:'g34_ShieldHand',g238ShieldHand:true});break;
  case'g34_UseBlocker524':{const host=sourceHost474(s,t);if(host)(host.x.g34Grants??=[]).push({turn:s.turn,blocker:true});break;}
+ case'g34_WaveDraw1555':{
+  const counts=[0,1].map(p=>creatures(s,p).filter(y=>!y.sealed&&!y.faceDown&&effective(y,s).g400Wave).length);
+  put(s,...[s.active,1-s.active].filter(p=>counts[p]).map(p=>task('draw',p,t.source,{n:counts[p],controller:t.p})));
+  break;
+ }
  case'g34_JupiterDeploy1554':{
   const host=sourceHost474(s,t)?.x;
   const rows=host&&!host.sealed?api.layers(host).slice(1).filter(y=>{

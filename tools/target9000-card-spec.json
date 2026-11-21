@@ -17120,5 +17120,171 @@
         }
       ]
     }
+  },
+  "dm11-006": {
+    "phase": 1555,
+    "faces": [
+      {
+        "name": "命運の伝道師ラミエル",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\n相手のターン中に自分のクリーチャーが破壊された時、カードを１枚引いてもよい。",
+        "race": "バーサーカー",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "g303DeathWatch": {
+            "self": true,
+            "opponentTurn": true,
+            "defs": [
+              {
+                "op": "DrawUpTo",
+                "n": 1
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "dm11-s02": {
+    "phase": 1555,
+    "faces": [
+      {
+        "name": "アドラス",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、各プレイヤーは、バトルゾーンにある自分自身の「ウェーブストライカー」を持つクリーチャー１体につき１枚カードを引く。",
+        "race": "シー・ハッカー",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "WaveDraw1555"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "dmd26-006": {
+    "phase": 1555,
+    "faces": [
+      {
+        "name": "宣凶師ラッセルズβ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "oS ウルトラ・セイバー：サバイバー（自分のサバイバーがバトルゾーンを離れる時、かわりにこのクリーチャーを破壊してもよい）\nサバイバー（自分のサバイバーはすべて、上のoS 能力を持つ）",
+        "race": "グラディエーター/サバイバー",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g571Saver": {
+        "filter": {
+          "race": "サバイバー"
+        },
+        "ultra": true
+      },
+      "g406Survivor": {
+        "g571Saver": {
+          "filter": {
+            "race": "サバイバー"
+          },
+          "ultra": true
+        }
+      }
+    }
+  },
+  "dmex18-041": {
+    "phase": 1555,
+    "faces": [
+      {
+        "name": "フューチャー・ハンド",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "S・トリガーS・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれか１つを選ぶ。\n▶相手のクリーチャーを１体破壊する。\n▶相手のデュエリストを１つ破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "相手のクリーチャーを破壊",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "creature": true
+                  },
+                  "spell": true
+                }
+              ]
+            },
+            {
+              "label": "相手のデュエリストを破壊",
+              "defs": [
+                {
+                  "op": "Target",
+                  "element": true,
+                  "to": "grave",
+                  "filter": {
+                    "g1535Duelist": true
+                  },
+                  "spell": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   }
 }
