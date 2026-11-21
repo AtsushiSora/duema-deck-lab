@@ -17399,5 +17399,158 @@
         ]
       }
     }
+  },
+  "dmx08-023": {
+    "phase": 1557,
+    "faces": [
+      {
+        "name": "電脳護聖ビョイト",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分の手札に加える、「ブロッカー」を持つ光または水のシールドカードはすべて、「S・トリガー」を得る。",
+        "race": "ガーディアン/サイバーロード/アンノイズ",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1557ShieldTrigger": {
+        "blocker": true,
+        "civs": [
+          "光",
+          "水"
+        ]
+      }
+    }
+  },
+  "dm33-008": {
+    "phase": 1557,
+    "faces": [
+      {
+        "name": "白騎士の光器ナターリア",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n自分の手札に加えられる、名前に《白騎士》とあるシールドカードはすべて「S・トリガー」を得る。",
+        "race": "メカ・デル・ソル",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g1557ShieldTrigger": {
+        "nameIncludes": "白騎士"
+      }
+    }
+  },
+  "promoy3-002": {
+    "phase": 1557,
+    "faces": [
+      {
+        "name": "電脳聖霊グラリス",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分のクリーチャーは、同じ文明のクリーチャーから攻撃されない。",
+        "race": "エンジェル・コマンド/ゲル・フィッシュ",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1557SameCivilizationAttackProtection": true
+    }
+  },
+  "dm08-007": {
+    "phase": 1557,
+    "faces": [
+      {
+        "name": "疾風の守護者スール・ミース",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "このクリーチャーがバトルゾーンにある間、自分のクリーチャーが攻撃するとき、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。(ただし、まず何を攻撃するか選んでから、タップしたいクリーチャーを選ぶ)",
+        "race": "ガーディアン",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true
+          }
+        ]
+      }
+    }
+  },
+  "dmx12a-009": {
+    "phase": 1557,
+    "faces": [
+      {
+        "name": "解放の女傑 ドラクロワ",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "カードに能力が書かれていない自分のクリーチャーが攻撃する時、そのターン、そのクリーチャーのパワーは+6000され、シールドをさらに１枚ブレイクする。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+        "race": "ヒューマノイド/ハンター/エイリアン",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "creature": true,
+          "g990PrintedNoAbilities": true,
+          "g1113LegacyManaText": true
+        },
+        "g399Attacker": true,
+        "defs": [
+          {
+            "op": "AttackGrant399",
+            "power": 6000
+          },
+          {
+            "op": "AttackExtraBreak511",
+            "amount": 1,
+            "g969FollowControl": true
+          }
+        ]
+      }
+    }
   }
 }

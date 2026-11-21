@@ -279199,15 +279199,153 @@
       },
       "supportBatch": "phase-1556",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx08-023",
+      "name": "電脳護聖ビョイト",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ガーディアン/サイバーロード/アンノイズ",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n自分の手札に加える、「ブロッカー」を持つ光または水のシールドカードはすべて、「S・トリガー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx08-023",
+      "limit": 4,
+      "g1557ShieldTrigger": {
+        "blocker": true,
+        "civs": [
+          "光",
+          "水"
+        ]
+      },
+      "supportBatch": "phase-1557",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm33-008",
+      "name": "白騎士の光器ナターリア",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "メカ・デル・ソル",
+      "text": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n自分の手札に加えられる、名前に《白騎士》とあるシールドカードはすべて「S・トリガー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm33-008",
+      "limit": 4,
+      "breaker": 2,
+      "g1557ShieldTrigger": {
+        "nameIncludes": "白騎士"
+      },
+      "supportBatch": "phase-1557",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy3-002",
+      "name": "電脳聖霊グラリス",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "エンジェル・コマンド/ゲル・フィッシュ",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n自分のクリーチャーは、同じ文明のクリーチャーから攻撃されない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy3-002",
+      "limit": 4,
+      "g1557SameCivilizationAttackProtection": true,
+      "supportBatch": "phase-1557",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm08-007",
+      "name": "疾風の守護者スール・ミース",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 3000,
+      "race": "ガーディアン",
+      "text": "このクリーチャーがバトルゾーンにある間、自分のクリーチャーが攻撃するとき、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。(ただし、まず何を攻撃するか選んでから、タップしたいクリーチャーを選ぶ)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-007",
+      "limit": 4,
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1557",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx12a-009",
+      "name": "解放の女傑 ドラクロワ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ヒューマノイド/ハンター/エイリアン",
+      "text": "カードに能力が書かれていない自分のクリーチャーが攻撃する時、そのターン、そのクリーチャーのパワーは+6000され、シールドをさらに１枚ブレイクする。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12a-009",
+      "limit": 4,
+      "breaker": 2,
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "creature": true,
+          "g990PrintedNoAbilities": true,
+          "g1113LegacyManaText": true
+        },
+        "g399Attacker": true,
+        "defs": [
+          {
+            "op": "AttackGrant399",
+            "power": 6000
+          },
+          {
+            "op": "AttackExtraBreak511",
+            "amount": 1,
+            "g969FollowControl": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1557",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1556,
+    "phase": 1557,
     "checkedAt": "2026-11-21",
-    "baseCount": 8847,
-    "newEffectCards": 3,
+    "baseCount": 8850,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8850,
+    "totalCount": 8855,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -304770,6 +304908,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 8847,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1556,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8847,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 8850,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
