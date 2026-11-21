@@ -1,10 +1,10 @@
-import {overdrivePayment1439} from './overdrive1439-rules.js?v=0.722.1';
-import {createFifteenPhotoRules} from './fifteen-photo-rules.js?v=0.722.1';
+import {overdrivePayment1439} from './overdrive1439-rules.js?v=0.722.2';
+import {createFifteenPhotoRules} from './fifteen-photo-rules.js?v=0.722.2';
 import {createChampionRaid} from './champion-raid-helpers.js';
 import {policyLook,policyTake} from './champion-zone-policy.js';
 import {RECOVERY_RACES} from './utility-recovery-races.js?v=0.119.0';
-import {hasCopiedRole393} from './requested393-joker-rules.js?v=0.722.1';
-import {afterEntry} from './entry-followup.js?v=0.722.1';
+import {hasCopiedRole393} from './requested393-joker-rules.js?v=0.722.2';
+import {afterEntry} from './entry-followup.js?v=0.722.2';
 import {hasKnightMagic} from './utility-knight-rules.js?v=0.124.0';
 // Six photographed deck lists: serializable effects, physical cards and explicit choices.
 export function createSixPhotoRules(api){

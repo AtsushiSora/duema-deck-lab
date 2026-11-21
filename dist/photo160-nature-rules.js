@@ -1,4 +1,4 @@
-import {forceAttackTargets} from './forced-attack-targets.js?v=0.722.1';
+import {forceAttackTargets} from './forced-attack-targets.js?v=0.722.2';
 // Photographed nature cards: mana thresholds, first-attack targeting and Zolge battles.
 export function createPhoto160NatureRules(api){
  const{card,cost,effective,put,task,choice,opt}=api;

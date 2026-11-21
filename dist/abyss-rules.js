@@ -1,4 +1,4 @@
-import {forceAttackTargets} from './forced-attack-targets.js?v=0.722.1';
+import {forceAttackTargets} from './forced-attack-targets.js?v=0.722.2';
 import {policyRemove,policyTake,policyLook} from './champion-zone-policy.js';
 // No.13: grave summons, delayed returns, private Mekraid and borrowed entry abilities.
 export function createAbyssRules(api){
