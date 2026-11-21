@@ -274739,15 +274739,130 @@
       },
       "supportBatch": "phase-1531",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-036",
+      "name": "特級チューシ・シャオ・ハン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 12000,
+      "race": "ドリームメイト",
+      "text": "ガードマン\nT・ブレイカー\nこのクリーチャーが出た時、各プレイヤーは自身の山札の上から２枚を、それぞれのマナゾーンにタップして置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-036",
+      "limit": 4,
+      "guardman": true,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "EachRamp1532",
+          "n": 2,
+          "tapped": true,
+          "g809Together": true
+        }
+      ],
+      "supportBatch": "phase-1532",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx22a-049",
+      "name": "飢えと乾き ケローラ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 2000,
+      "race": "アウトレイジ",
+      "text": "自分のマナゾーンに水のカードがなければ、このクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22a-049",
+      "limit": 4,
+      "g1532RequireManaCivilization": "水",
+      "supportBatch": "phase-1532",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex4-054",
+      "name": "精霊龍 ライトマスターズ / 龍素解析",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 11000,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "W・ブレイカー\nこのクリーチャーが出た時、エレメントを３つまで選び、シールド化する。\n【呪文面】\n自分の手札をすべて山札に加えてシャッフルし、カードを４枚引く。その後、コスト７以下の、進化ではないコマンド・ドラゴン・クリーチャーを１体、自分の手札から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-054",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "anyOwner": true,
+          "n": 3,
+          "optional": true,
+          "to": "shields",
+          "toOwnerShields": true,
+          "g173Targets": true,
+          "g193Select": true,
+          "g187OwnPick": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandCycle460",
+            "to": "deck",
+            "fixedDraw": 4,
+            "spell": true
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "optional": true,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "max": 7,
+              "race": "コマンド・ドラゴン"
+            },
+            "spell": true
+          }
+        ],
+        "name": "龍素解析",
+        "cost": 7,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": ""
+      },
+      "supportBatch": "phase-1532",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1531,
+    "phase": 1532,
     "checkedAt": "2026-11-21",
-    "baseCount": 8737,
+    "baseCount": 8740,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 8740,
+    "totalCount": 8743,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -299960,6 +300075,20 @@
         "newEffectCards": 2,
         "newVanillaCards": 0,
         "totalCount": 8737,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1531,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8737,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 8740,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

@@ -12418,5 +12418,143 @@
         ]
       }
     }
+  },
+  "dm22ex1-036": {
+    "phase": 1532,
+    "faces": [
+      {
+        "name": "特級チューシ・シャオ・ハン",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "ガードマン\nT・ブレイカー\nこのクリーチャーが出た時、各プレイヤーは自身の山札の上から２枚を、それぞれのマナゾーンにタップして置く。",
+        "race": "ドリームメイト",
+        "powerText": "12000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "guardman": true,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "EachRamp1532",
+          "n": 2,
+          "tapped": true,
+          "g809Together": true
+        }
+      ]
+    }
+  },
+  "dmx22a-049": {
+    "phase": 1532,
+    "faces": [
+      {
+        "name": "飢えと乾き ケローラ",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "自分のマナゾーンに水のカードがなければ、このクリーチャーを破壊する。",
+        "race": "アウトレイジ",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1532RequireManaCivilization": "水"
+    }
+  },
+  "dm26ex4-054": {
+    "phase": 1532,
+    "faces": [
+      {
+        "name": "精霊龍 ライトマスターズ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "W・ブレイカー\nこのクリーチャーが出た時、エレメントを３つまで選び、シールド化する。",
+        "race": "エンジェル・コマンド・ドラゴン",
+        "powerText": "11000",
+        "missingFields": []
+      },
+      {
+        "name": "龍素解析",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "自分の手札をすべて山札に加えてシャッフルし、カードを４枚引く。その後、コスト７以下の、進化ではないコマンド・ドラゴン・クリーチャーを１体、自分の手札から出してもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "anyOwner": true,
+          "n": 3,
+          "optional": true,
+          "to": "shields",
+          "toOwnerShields": true,
+          "g173Targets": true,
+          "g193Select": true,
+          "g187OwnPick": true
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandCycle460",
+            "to": "deck",
+            "fixedDraw": 4,
+            "spell": true
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "optional": true,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "max": 7,
+              "race": "コマンド・ドラゴン"
+            },
+            "spell": true
+          }
+        ],
+        "name": "龍素解析",
+        "cost": 7,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": ""
+      }
+    }
   }
 }

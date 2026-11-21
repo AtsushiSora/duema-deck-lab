@@ -1849,7 +1849,7 @@ export function createSixPhotoRules(api){
   if(t.g210TapLockIf&&ownCondition(s,t.p,t.g210TapLockIf))
    for(const {x} of targets)startUntapLock210(t,x);
  }if(t.g510Untap)for(const r of rows){const x=s.players[r.p].battle.find(x=>x.uid===r.uid);if(x?.tapped&&api.canUntap(x)){x.tapped=false;combined.untapped(s,r.p,x);}}if(t.g335Grant)for(const r of rows){const x=s.players[r.p].battle.find(x=>x.uid===r.uid);if(x)(x.g34Grants??=[]).push(timedGrant335(s,t,t.g335Grant));}if(t.g210ManaUntap){let n=0;for(const r of rows){const x=s.players[r.p].mana.find(x=>x.uid===r.uid);if(x&&api.canUntap(x)){if(x.tapped)n++;x.tapped=false;}}api.log(s,t.p,'untapMana',card(t.source).name+'：マナを'+n+'枚アンタップ',{cardId:t.source});}const b=rows.filter(r=>r.origin==='battle');for(const r of rows.filter(r=>r.origin!=='battle'))if(t.to)zoneMove(s,r.p,r.origin,r.uid,t.to,t);if(b.length&&t.to)move(s,b.map(r=>({player:r.p,uid:r.uid,to:t.to,destroy:t.to==='grave',
-  controller:t.controller??t.p,...(t.toOwnerHand?{toOwnerHand:true}:{}),...(t.toOwnerMana?{toOwnerMana:true}:{})})));
+  controller:t.controller??t.p,...(t.toOwnerHand?{toOwnerHand:true}:{}),...(t.toOwnerMana?{toOwnerMana:true}:{}),...(t.toOwnerShields?{toOwnerShields:true}:{})})));
  if(t.after)start(s,t,t.after);}}
  // A resolved group effect is a snapshot, not an aura. Match the source creature through its layers for "other".
  function groupPowerRows(s,t){
@@ -5498,6 +5498,9 @@ export function createSixPhotoRules(api){
   else ramp(s,t,count);
   break;
  }
+ case'g34_EachRamp1532':
+  for(const p of[s.active,1-s.active])if(s.winner===null&&!s.lossEvent)ramp(s,{...t,p},t.n);
+  break;
  case'g34_Ramp':
   if(t.optional)choice(s,t,'山札からマナに置く枚数を選ぶ',Array.from({length:Math.min(t.n,own.deck.length)+1},(_,n)=>opt(n+'枚',n,n<own.deck.length?n*5:-100)));
   else if(t.g1152CreatureCivilizations){
