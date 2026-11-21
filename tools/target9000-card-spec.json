@@ -17286,5 +17286,118 @@
         }
       ]
     }
+  },
+  "dm28-042": {
+    "phase": 1556,
+    "faces": [
+      {
+        "name": "天雷の使徒ロドミア",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーがサムライとバトルする時、自分の山札を見る。その中から呪文を１枚選んで相手に見せ、手札に加えてもよい。その後、山札をシャッフルする。",
+        "race": "イニシエート/ナイト",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1310BattleOpponentRace": "サムライ",
+      "g1305BattleTasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "n": 0,
+          "stages": [
+            {
+              "to": "hand",
+              "n": 1,
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "spell": true
+              }
+            }
+          ],
+          "rest": "shuffle"
+        }
+      ]
+    }
+  },
+  "dmr08-015": {
+    "phase": 1556,
+    "faces": [
+      {
+        "name": "凶導の堕天ケーキ・カット",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "このクリーチャーがバトルする時、自分のシールドをひとつ、墓地に置いてもよい。そうした場合、そのターン、このクリーチャーはすべてのバトルに勝つ。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "エンジェル・コマンド",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g1305BattleTasks": [
+        {
+          "op": "ShieldGrave588",
+          "owner": "self",
+          "n": 1,
+          "optionalExact": true,
+          "afterAttempt": [
+            {
+              "op": "SelfGrant754",
+              "g770LiveCreature": true,
+              "grant": {
+                "g34AlwaysWin": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm05-034": {
+    "phase": 1556,
+    "faces": [
+      {
+        "name": "フウセンアワダケβ",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーがバトルゾーンから自分の墓地に置かれたとき、自分のマナゾーンに置く。\nサバイバー(このクリーチャーがバトルゾーンにある間、自分の他のサバイバーも上の能力を得る)",
+        "race": "バルーン・マッシュルーム/サバイバー",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g172Death": [
+        {
+          "op": "SelfGraveMana1431"
+        }
+      ],
+      "g406Survivor": {
+        "g172Death": [
+          {
+            "op": "SelfGraveMana1431"
+          }
+        ]
+      }
+    }
   }
 }

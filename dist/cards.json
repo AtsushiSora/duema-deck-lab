@@ -278270,7 +278270,7 @@
       "cost": 4,
       "power": 3000,
       "race": "アーマロイド",
-      "text": "このクリーチャーがバトルゾーンにある間、自分のアーマロイドがバトルゾーンから自分の墓地に置かれたとき、相手は自分自身のマナゾーンからカードを１枚選び、持ち主の墓地に置く。",
+      "text": "このクリーチャーまたは自分の他のアーマロイドが破壊された時、相手はカードを１枚自身のマナゾーンから選び、墓地に置く。",
       "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-016",
       "limit": 4,
       "g303DeathWatch": {
@@ -278428,7 +278428,7 @@
       "cost": 6,
       "power": 9000,
       "race": "ドラゴン・ゾンビ",
-      "text": "このクリーチャーをバトルゾーンに出した時、自分のシールドをすべて自分の手札に加える。(その「S・トリガー」を使ってもよい)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "text": "W・ブレイカー\nこのクリーチャーが出た時、このクリーチャーは自分のシールドをすべてブレイクする。",
       "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-s04",
       "limit": 1,
       "breaker": 2,
@@ -279095,15 +279095,119 @@
       ],
       "supportBatch": "phase-1555",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm28-042",
+      "name": "天雷の使徒ロドミア",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "イニシエート/ナイト",
+      "text": "このクリーチャーがサムライとバトルする時、自分の山札を見る。その中から呪文を１枚選んで相手に見せ、手札に加えてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-042",
+      "limit": 4,
+      "g1310BattleOpponentRace": "サムライ",
+      "g1305BattleTasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "n": 0,
+          "stages": [
+            {
+              "to": "hand",
+              "n": 1,
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "spell": true
+              }
+            }
+          ],
+          "rest": "shuffle"
+        }
+      ],
+      "supportBatch": "phase-1556",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr08-015",
+      "name": "凶導の堕天ケーキ・カット",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "エンジェル・コマンド",
+      "text": "このクリーチャーがバトルする時、自分のシールドをひとつ、墓地に置いてもよい。そうした場合、そのターン、このクリーチャーはすべてのバトルに勝つ。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-015",
+      "limit": 4,
+      "breaker": 2,
+      "g1305BattleTasks": [
+        {
+          "op": "ShieldGrave588",
+          "owner": "self",
+          "n": 1,
+          "optionalExact": true,
+          "afterAttempt": [
+            {
+              "op": "SelfGrant754",
+              "g770LiveCreature": true,
+              "grant": {
+                "g34AlwaysWin": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1556",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm05-034",
+      "name": "フウセンアワダケβ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "バルーン・マッシュルーム/サバイバー",
+      "text": "oSこのクリーチャーが破壊された時、自分のマナゾーンに置く。\nサバイバー（自分のサバイバーすべてに、上のoS能力を与える）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-034",
+      "limit": 4,
+      "g172Death": [
+        {
+          "op": "SelfGraveMana1431"
+        }
+      ],
+      "g406Survivor": {
+        "g172Death": [
+          {
+            "op": "SelfGraveMana1431"
+          }
+        ]
+      },
+      "supportBatch": "phase-1556",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1555,
+    "phase": 1556,
     "checkedAt": "2026-11-21",
-    "baseCount": 8843,
-    "newEffectCards": 4,
+    "baseCount": 8847,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 8847,
+    "totalCount": 8850,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -304652,6 +304756,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 8843,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1555,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8843,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 8847,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

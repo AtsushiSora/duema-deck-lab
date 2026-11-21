@@ -1,0 +1,259 @@
+{
+  "phase": 1556,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8847,
+  "description": "既存の処理を用いて全能力を個別に検証し3種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/35078/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35079/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa_old/35078/": "共有元フウセンが場を離れた後に破壊された別のサバイバーはマナへ移動する能力を得ていない。",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35079/": "複数の行先へ移動させる能力がある場合、使用順を選べる。後発DMEX08-095の破壊された時の表記を優先し、直接マナへの置換と混同しない。"
+  },
+  "implementationNotes": [
+    "共有されたサバイバーの破壊時能力を離脱前に個別に保存し、それぞれ独立した誘発能力として解決。墓地経由と移動後のzoneSerialを維持。",
+    "アッシュとブライゼナーガは実装済みの後発ルールに合わせ、表示用能力文にも照合済み再録の全文を使用。既存IDと元画像は維持し種類数を増やさない。"
+  ],
+  "cards": [
+    {
+      "id": "dm28-042",
+      "name": "天雷の使徒ロドミア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-042",
+      "faces": [
+        {
+          "name": "天雷の使徒ロドミア",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがサムライとバトルする時、自分の山札を見る。その中から呪文を１枚選んで相手に見せ、手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "イニシエート/ナイト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1310BattleOpponentRace": "サムライ",
+        "g1305BattleTasks": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "n": 0,
+            "stages": [
+              {
+                "to": "hand",
+                "n": 1,
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "spell": true
+                }
+              }
+            ],
+            "rest": "shuffle"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "d0e21aa5b5d7e3ce80b7a2cc75194e3a6b426eeeff26e2c8b96b8e8b4672fd20",
+        "facesMatched": true,
+        "imageSha256": "bb40f92a70839a4b43b3ed27b28a6eee7f4750373da4636782de2c23557a5198",
+        "imageBytes": 122945
+      },
+      "sameNameProducts": [
+        "DM-28 戦国編(バトル・ギャラクシー) 第1弾"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-042",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmr08-015",
+      "name": "凶導の堕天ケーキ・カット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-015",
+      "faces": [
+        {
+          "name": "凶導の堕天ケーキ・カット",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーがバトルする時、自分のシールドをひとつ、墓地に置いてもよい。そうした場合、そのターン、このクリーチャーはすべてのバトルに勝つ。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "エンジェル・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g1305BattleTasks": [
+          {
+            "op": "ShieldGrave588",
+            "owner": "self",
+            "n": 1,
+            "optionalExact": true,
+            "afterAttempt": [
+              {
+                "op": "SelfGrant754",
+                "g770LiveCreature": true,
+                "grant": {
+                  "g34AlwaysWin": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "cf8d1a0e153679aabf52ad6c5ad3cf26fc406450e5a70adb6c2549dc7b16510b",
+        "facesMatched": true,
+        "imageSha256": "21d9d621c22a5ac3eca6bdc51467b9af397c92d966d69accaa21c12b67f2b45b",
+        "imageBytes": 144014
+      },
+      "sameNameProducts": [
+        "DMR-08 エピソード2 グレイト・ミラクル"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-015",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm05-034",
+      "name": "フウセンアワダケβ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-034",
+      "faces": [
+        {
+          "name": "フウセンアワダケβ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンから自分の墓地に置かれたとき、自分のマナゾーンに置く。\nサバイバー(このクリーチャーがバトルゾーンにある間、自分の他のサバイバーも上の能力を得る)",
+          "race": "バルーン・マッシュルーム/サバイバー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "SelfGraveMana1431"
+          }
+        ],
+        "g406Survivor": {
+          "g172Death": [
+            {
+              "op": "SelfGraveMana1431"
+            }
+          ]
+        }
+      },
+      "currentPrint": {
+        "id": "dmex08-095",
+        "name": "フウセンアワダケβ",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-095",
+        "faces": [
+          {
+            "name": "フウセンアワダケβ",
+            "typeText": "クリーチャー",
+            "civilizationText": "自然",
+            "civilizations": [
+              "自然"
+            ],
+            "cost": 4,
+            "costText": "4",
+            "abilityText": "oSこのクリーチャーが破壊された時、自分のマナゾーンに置く。\nサバイバー（自分のサバイバーすべてに、上のoS能力を与える）",
+            "race": "バルーン・マッシュルーム/サバイバー",
+            "powerText": "2000",
+            "missingFields": []
+          }
+        ],
+        "status": "complete",
+        "parserVersion": 2,
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-095.jpg",
+        "sha256": "9dc240badf3132886217b95c5c59a0d7185586f8d18329c06404f64f5d581529",
+        "useRulesText": true,
+        "verification": {
+          "checkedAt": "2026-11-21",
+          "sha256": "a95509c2afabb04d55b3bc6a5dbcd13617658aebbb0b79b9fa3ac8c8ee663082",
+          "facesMatched": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm05-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "d112c6c0f4f47e512567816cbe5514e6a6f90e878362b2c7fa19fb60624bf1c5",
+        "facesMatched": true,
+        "imageSha256": "f8f386d4bfaa281dec2d1934561b8646eef73a3b4b4b87866c5df87115c0850c",
+        "imageBytes": 129070
+      },
+      "sameNameProducts": [
+        "DMEX-08 謎のブラックボックスパック",
+        "DM-05 漂流大陸の末裔(リターン・オブ・ザ・サバイバー)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-034",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm28-042": 4,
+      "dmr08-015": 4,
+      "dm05-034": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35078/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35079/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35078/",
+      "sha256": "58a857ef152e23960d3a9801af92167a55e3ae3b97df6ca06ab3a062b7643c4d",
+      "result": "共有元フウセンが場を離れた後に破壊された別のサバイバーはマナへ移動する能力を得ていない。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35079/",
+      "sha256": "19b5985aaa8bd624092a17f350de468c29535941640cd1796b1e82d35ecc5b49",
+      "result": "複数の行先へ移動させる能力がある場合、使用順を選べる。後発DMEX08-095の破壊された時の表記を優先し、直接マナへの置換と混同しない。"
+    }
+  ]
+}
