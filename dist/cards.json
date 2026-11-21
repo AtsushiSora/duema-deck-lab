@@ -286088,15 +286088,155 @@
       "supportBatch": "phase-1592",
       "supportKind": "effect",
       "g624EntryResponse": "opponentTurnUntappedManaDestroy"
+    },
+    {
+      "id": "dmd03-003",
+      "name": "アパッチ・ヒャッホー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "メルト・ウォリアー/ハンター",
+      "text": "このクリーチャーをバトルゾーンに出した時、コスト４以下のハンター・サイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd03-003",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "n": 1,
+          "deploy": true,
+          "g1104PsychicFaces": true,
+          "filter": {
+            "g1085Psychic": true,
+            "race": "ハンター",
+            "max": 4
+          }
+        }
+      ],
+      "supportBatch": "phase-1593",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr02-007",
+      "name": "アクア・ジェット ＜突撃・ブラザー！＞",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "リキッド・ピープル/ハンター",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から５枚を見る。その中から《アクア・アタック》《アクア・カスケード》いずれか、あるいは両方を１枚ずつ、バトルゾーンに出してもよい。その後、残りを好きな順序で自分の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-007",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 5,
+          "limit": 2,
+          "rest": "bottom",
+          "g1593DistinctNames": true,
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "g201ExactName": "アクア・アタック"
+              },
+              {
+                "g201ExactName": "アクア・カスケード"
+              }
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-1593",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-004",
+      "name": "カダブランプー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "キリフダッシュ [ff02]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを [ff02]支払って召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、クリーチャーを１体選び、アンタップする。そのターン、そのクリーチャーのパワーを+2000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-004",
+      "limit": 4,
+      "kirifudaDash": 2,
+      "g402DashColors": [
+        "火"
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "untap": true,
+          "power": 2000
+        }
+      ],
+      "supportBatch": "phase-1593",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-107",
+      "name": "アクア・ジゲンガエシ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "リキッド・ピープル/サムライ",
+      "text": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nこのクリーチャーが出た時、自分の手札または超次元ゾーンにあるクロスギアを１枚、出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-107",
+      "limit": 4,
+      "gStrike": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "zones": [
+            "hand",
+            "extra"
+          ],
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g228Face": {
+              "type": "gear"
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-1593",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1592,
+    "phase": 1593,
     "checkedAt": "2026-11-21",
-    "baseCount": 9009,
-    "newEffectCards": 3,
+    "baseCount": 9012,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9012,
+    "totalCount": 9016,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -312163,6 +312303,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 9009,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1592,
+        "checkedAt": "2026-11-21",
+        "baseCount": 9009,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9012,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
