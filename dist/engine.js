@@ -16,7 +16,7 @@ import {createExtendedRules} from './extended-rules.js?v=0.722.3';
 import {createStrategicAI} from './strategic-ai.js?v=0.722.3';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.227';
-export const ENGINE_VERSION='0.602.125';
+export const ENGINE_VERSION='0.602.126';
 export const AI_VERSION='2.3.437';
 const EFFECTS=new Set(['champion','environment','recommended','sixPhoto','ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall','bounceBlockers','dragonRamp2','ramp2Return1','optionalRamp4Return2','purgeNonDragonMana','fightOptional','destroyWeakerLimitNextTurn','shieldTop1','deployMulticolor7','superheroSweep','destroyBattleCard3','destroyBattleCard2','jadowShield','vamBounce','goodEvil','aterModes','jaganRevive','reverseLock','urEvolve','muteLoot','tensaiLoot','graveRecycle','destroyMin','vtBounce','miradaCast','spellLock','miracleDraw','serpentModal','icicleModes','mirageModes','judgeDraw','maryRevive','darknessModes','fumiModes','brainSlash','charonReset','jennySacrifice','inspectDiscard','gospelRecover','dolsuzakuTurn','frozenCarnival','finalStop','oriotisJudge','nextSummonSpeed','tripleMode','sirenMana','courageMode','burningLoot','lastDragonFlame','destroy6000','masterGGGLoot','untapTwoMana','fairyDiscard6000','graveShuffle','permitManaSummon','wellkius','mikadoreo','sheva','rudolf','saiphogate','heavensGate','stargaze','bambooRamp','sharappu','fairyPower','takeback','hugePlan','shakoRecycle','naturalGo','herculesRecycle','jurassicHowl','corenReveal','plantRamp','sonicMana','jumboReveal','granRamp','kiyonagaReveal','gohaten','zenonRamp','wiseShutter','dokiBounce','minogamiRecover','hazardPact','fortress','casablancaBounce','sheketDraw','petrovaProtect','bojiMill','dranEntry','goldShield','c0braRevive','mechaDraw','ameliaShield','mechaMinus','goryuShield','magicNapo','magicSmallDestroy','magicIgnore','magicNumberLock','magicFire','magicKaraku','magicHime','magicBounce','magicPeecap','magicDraw','armoredBaku','armoredValkyria','armoredVal','armoredMonster','hunterMekraid','hunterBambi','hunterSweep4','hunterSweep2','hunterVictory','hunterMana','hunterDraw','zardCast','dogiRamp','dolfSweep','damdRemove','fiveModes','dragonSign','aquaReveal','bossDeploy','dedoAllocate','fireAllocate','fairyMiracle','babaBottom','cycleEntry','jaougaShields','katsuLook','reverseMinus','jaoumon','fortuneRamp','giantHeavy','giantLake','giantTouch','giantYuki','giantSpace','giantSineraria','giantFirefly','gachiRobo','gachiCambiare','gachiFight','gachiMystery','gachiNicol','gachiBigBang','gachiMagrul','gachiRice','gachiGuignol','samuraiBui','samuraiMusashi','samuraiMekraid','samuraiFlash','lionelPeace','lionelRune','lionelHeart','lionelSlotton','lionelAQ','lionelKorail','lionelGera','lionelSong','lionelStar','kenjiCrymax','kenjiDida','kenjiMill','kenjiPlan','kenjiHeart','travelJourney','travelAfro','travelKatsura','travelPrison','travelRevZero','travelG3','travelZero','travelHelt','travelOra','travelChicken','graveGT','graveObuza','graveKaibyaku','graveUra','graveAbaku','graveLoot','graveDoor','graveMinus4','maruruOrugate','maruruKiinary','maruruWatch','maruruBunker','maruruSky','girlsDaiou','girlsSavak','girlsZeos','girlsTry','girlsMega','girlsGyai','girlsArshu','girlsRupia','madoNothing','madoAirvo','madoBarred','madoGon','madoBlood','madoBock','madoCombat','madoDollar','madoDraw','madoShuno','madoGokusatsu','madoGyap','redBlack','redMax','redRoyal','redCircle','redClock','redGareck','abyssJaga','abyssSis','abyssMurder','abyssMakua','abyssMill','abyssMek','abyssSeal','abyssBella','hachiRedZ','hachiStorm','hachiFight','hachiForbidden','hachiShibire','hachiPower','hachiSSD','virideEver','golgyEntry','golgyKohaku','golgyBig','golgyShield','golgyHerc','golgyWest','golgyGin','golgyBlueprint','golgyJasmine','bandeRadio','bandePizza','bandeDecision','bandeDagra','bandeBalance','bandeSeal','bandeTaka','madoZadan','madoMaou','madoNameless','madoJaw','madoGride','madoFunz','madoVoga','madoLab','madoTin','bolBaro','bolBT','bolAgony','bolLoot','bolMol','bolLand','bolJura','bolDuel','bolBird','phoenixFel','phoenixGate','phoenixMetal','phoenixReverse','phoenixRecover','phoenixXeno','phoenixLoot','phoenixAbu','phoenixHeavy','phoenixOriginalMetal','phoenixMill','phoenixReload','phoenixOni','kenjiMysteryCube','kenjiCocoon','kenjiPanda','kenjiJaouga8','shieldDogi','shieldResolve','shieldBounce','shieldD4','shieldMirror','shieldMirrorSpell','shieldParfe','shieldDeka','shieldFaceTop']);
 let catalogue=new Map();
@@ -3159,16 +3159,17 @@ function executeManaMove(s,action,baseDecision=s.decision,payments=[],randomTape
 }
 function babyloniaDraw(s,p,firstDraw){
  if(!manaTransaction)return null;
- const source=s.players[p].battle.find(x=>!abilitiesIgnored(s,x)&&
+ const sources=s.players[p].battle.filter(x=>!abilitiesIgnored(s,x)&&
   (card(x)?.g45Babylonia||firstDraw&&card(x)?.g1273FirstDrawReplacement&&isCreature(s,x)));
- if(!source)return null;
- const tx=manaTransaction,index=tx.drawIndex++,selected=tx.drawChoices[index];
- if(selected===undefined)throw new DrawSelectionRequired({player:p,source:source.cardId,drawIndex:index,stage:'replace'});
+ if(!sources.length)return null;
+ const tx=manaTransaction,index=tx.drawIndex++,selected=tx.drawChoices[index],source=selected?.sourceUid?sources.find(x=>x.uid===selected.sourceUid):sources[0];
+ if(!source)throw Error('ドローの置換元を確認できません');
+ if(selected===undefined)throw new DrawSelectionRequired({player:p,source:source.cardId,drawIndex:index,stage:'replace',replacementSources:sources.map(x=>({uid:x.uid,cardId:x.cardId}))});
  if(!selected.replace)return null;
  const drawn=draw(s,p,2,{unreplaceable:true});if(s.winner!==null||!s.players[p].hand.length)return drawn;
- if(!selected.discard)throw new DrawSelectionRequired({player:p,source:source.cardId,drawIndex:index,stage:'discard',manaSource:extra.discardManaSource(s,p)?.cardId,cards:s.players[p].hand.map(x=>({uid:x.uid,cardId:x.cardId}))});
+ if(!selected.discard)throw new DrawSelectionRequired({player:p,source:source.cardId,drawIndex:index,stage:'discard',manaSource:!effectiveCard(source,s).g1611DrawDiscardWithinReplacement?extra.discardManaSource(s,p)?.cardId:undefined,cards:s.players[p].hand.map(x=>({uid:x.uid,cardId:x.cardId}))});
  if(!s.players[p].hand.some(x=>x.uid===selected.discard))throw Error('捨てる手札を確認できません');
- extra.forcedDiscard(s,p,[selected.discard],source.cardId,{allowTurnReplacement:true,replaceToMana:selected.discardMana});return drawn;
+ extra.forcedDiscard(s,p,[selected.discard],source.cardId,{allowTurnReplacement:!effectiveCard(source,s).g1611DrawDiscardWithinReplacement,replaceToMana:selected.discardMana});return drawn;
 }
 
 // Move the whole batch together (400.7). Looking/revealing alone does not empty the library.
@@ -5213,7 +5214,7 @@ function legalActionsCore1363(s){
    option('vividReveal',card(d.source).name+'を表向きにする',{reveal:true,cardId:d.source,score:5}),
    option('vividReveal','表向きにしない',{reveal:false,score:0})
   ].map((a,id)=>({...a,id,player:p}));
-  if(d.type==='drawReplacement')return (d.stage==='replace'?[option('replaceDraw','2枚引いて1枚捨てる',{replace:true,score:10}),option('replaceDraw','通常どおり1枚引く',{replace:false,score:0})]:d.cards.flatMap(x=>[
+  if(d.type==='drawReplacement')return (d.stage==='replace'?[...(d.replacementSources?.length>1?d.replacementSources.map(x=>option('replaceDraw',card(x.cardId).name+'で2枚引いて1枚捨てる',{replace:true,sourceUid:x.uid,cardId:x.cardId,score:10})):[option('replaceDraw','2枚引いて1枚捨てる',{replace:true,score:10})]),option('replaceDraw','通常どおり1枚引く',{replace:false,score:0})]:d.cards.flatMap(x=>[
    option('discardDraw',card(x.cardId).name+'を捨てる',{uid:x.uid,cardId:x.cardId,score:-costValue(card(x.cardId))}),
    ...(d.manaSource?[option('discardDraw',card(x.cardId).name+'を捨てるかわりにマナへ置く',{uid:x.uid,cardId:x.cardId,toMana:true,score:15})]:[])
   ])).map((a,id)=>({...a,id,player:p}));
@@ -5526,7 +5527,7 @@ function stepWithEffect1363(s,action,manualMana){return withEffect(s,s.decision?
  if(s.decision?.type==='deckMove1365'){const d=s.decision,opts=getLegalActions(s),a=typeof action==='number'?opts[action]:opts.find(x=>JSON.stringify(x)===JSON.stringify(action));if(!a)throw Error('選択できない行動です');const choices=[...d.deckChoices];choices[d.deckIndex]=a.choice;return executeManaMove(s,d.action,d.baseDecision,d.payments,d.randomTape,d.drawChoices,d.manualMana,choices);}
  if(s.decision?.type==='drawReplacement'){
   const d=s.decision,a=(typeof action==='number'?getLegalActions(s)[action]:getLegalActions(s).find(x=>JSON.stringify(x)===JSON.stringify(action)));if(!a)throw Error('選択できない行動です');
-  const choices=structuredClone(d.drawChoices);choices[d.drawIndex]=a.kind==='vividReveal'?{reveal:a.reveal}:a.kind==='replaceDraw'?{replace:a.replace}:{...choices[d.drawIndex],discard:a.uid,...(a.toMana?{discardMana:true}:{})};
+  const choices=structuredClone(d.drawChoices);choices[d.drawIndex]=a.kind==='vividReveal'?{reveal:a.reveal}:a.kind==='replaceDraw'?{replace:a.replace,...(a.sourceUid?{sourceUid:a.sourceUid}:{})}:{...choices[d.drawIndex],discard:a.uid,...(a.toMana?{discardMana:true}:{})};
   return executeManaMove(s,d.action,d.baseDecision,d.payments,d.randomTape,choices,d.manualMana,d.deckChoices||[]);
  }
  if(s.decision?.type==='manaPayment'){
