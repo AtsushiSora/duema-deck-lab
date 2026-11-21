@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-21",
   "catalogueNames": 11824,
-  "supportedNames": 8956,
-  "pendingNames": 2868,
-  "phase": 1579,
+  "supportedNames": 8961,
+  "pendingNames": 2863,
+  "phase": 1580,
   "added": 5,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1641,
+    "クリーチャー": 1636,
     "呪文": 340,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 26,
@@ -222,7 +222,7 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 662,
+    "複数面・特殊カードタイプまたは情報不足": 657,
     "未対応の能力文": 2058,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
@@ -518553,11 +518553,194 @@
           "reason": "元の公式ページで呪文側の文明・コスト・能力文が欠落。再録dmex02-024では全文と光5を確認できたが、元画像に基づく欠落補完と再録の照合を残し、このバッチでは未登録。"
         }
       ]
+    },
+    {
+      "phase": 1580,
+      "kind": "registration-toward-9000",
+      "checkedAt": "2026-11-21T04:18:07.987Z",
+      "baseline": "0ef804cc940a1679191127eed19abd1d49fe779b",
+      "manifest": "tools/support-phase-1580.json",
+      "status": "verified-local",
+      "before": 8956,
+      "supported": 8961,
+      "pending": 2863,
+      "added": [
+        {
+          "id": "dmrp08-030",
+          "name": "奇石 アンコバ/ブツブッツ・レイン"
+        },
+        {
+          "id": "dmrp07-s09",
+          "name": "龍罠 エスカルデン / マクスカルゴ・トラップ"
+        },
+        {
+          "id": "dmrp11-021",
+          "name": "龍装30号 シグルネ/グール・チューン"
+        },
+        {
+          "id": "dm23sd3-003",
+          "name": "踊戯音愛 パステル / ♪摩訶不思議 マジカルプリズン キンキラリン"
+        },
+        {
+          "id": "dmrp05-029",
+          "name": "フットンダ/ネルネ・ネルネルネ"
+        }
+      ],
+      "duplicates": 0,
+      "results": {
+        "focused": {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1580-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.472,
+          "log": "tmp/duema-phase-1580/focused.log",
+          "passed": 97,
+          "failed": 0
+        },
+        "related": {
+          "name": "related",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=4",
+            "tests/standard1198-effects.test.mjs",
+            "tests/standard530-effects.test.mjs",
+            "tests/standard1364-effects.test.mjs",
+            "tests/standard1579-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 16.77,
+          "log": "tmp/duema-phase-1580/related.log",
+          "passed": 163,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 18.915,
+          "log": "tmp/duema-phase-1580/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.164,
+          "log": "tmp/duema-phase-1580/audit.log"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tools/verify-target9000.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.323,
+          "log": "tmp/duema-phase-1580/invariants.log"
+        }
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1580-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.675,
+          "log": "tmp/duema-phase-1580/focused.log"
+        },
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1580-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.592,
+          "log": "tmp/duema-phase-1580/focused.log"
+        },
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1580-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.48,
+          "log": "tmp/duema-phase-1580/focused.log"
+        },
+        {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 18.66,
+          "log": "tmp/duema-phase-1580/check.log"
+        }
+      ],
+      "testCorrections": [
+        "フットンダの呪文面を無色の文明表記から、エンジンの無色支払い定義（文明配列なし）へ正規化。",
+        "シグルネの名前フィルターを既存の名前正規化形式に合わせて空白を除去。",
+        "呪文の対象には呪文への選択耐性を持たないデスライガーを使用し、対象が尽きて自動確定した場合の追加操作を除去。"
+      ],
+      "totalTestsPassed": 260,
+      "reason": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+      "remaining": [
+        "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
+      ],
+      "next": "目標9000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1579,
-    "nextPhase": 1580,
+    "lastVerifiedPhase": 1580,
+    "nextPhase": 1581,
     "workInProgress": null,
     "nextCandidates": [
       "公式照合済みの通常能力を持たないGRクリーチャー",
@@ -518566,7 +518749,7 @@
     ],
     "steps": [
       "開始時にHEAD・作業差分・ステージ・既存プロセス・AGENTS・進捗を確認。",
-      "実データ8956種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8961種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "再開時は既存プロセス・最新コミット・作業ツリーを確認し、tools/verify-target8500.mjsとtools/target8500-verification.jsonを参照。ユーザー保留項目は既存記録を維持。",
       "個別の残件2件はユーザー保留。再開指示まで追加調査・問い合わせ送信をしない。",
       "一括npm testを再実行せず、公開候補の未集約範囲だけ分割検証する。過去の固定ソースの合格と現版の合格を区別する。",
@@ -518647,14 +518830,14 @@
     ],
     "restartSteps": [
       "公開済みの版はb40ae0df (v0.722.1 / engine0.602.1 / 8074種類)。Pages・Netlifyを同じ版に更新済み。最新HEAD・差分・ステージ・既存プロセスを最初に確認。",
-      "実データ8956種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8961種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "再開時は既存プロセス・最新コミット・作業ツリーを確認し、tools/verify-target8500.mjsとtools/target8500-verification.jsonを参照。ユーザー保留項目は既存記録を維持。",
       "既存8072定義は深い比較で不変。カードID・保存形式・保存済みデッキ・対戦履歴を維持。",
       "個別の残件2件と問い合わせ案はユーザー指示「後回しにしよう」で保留。再開指示があるまでこの2件の調査・送信を行わない。",
       "No13長時間検証はengine0.601.0の固定ソースで完了済み。今回のengine0.602.0の全面検証には数えない。必要な未集約項目は対象を特定し、細かく分割して確認する。",
       "Netlifyは手動反映専用。workflow_dispatchだけ、GitHub pushフック停止、stop_builds=trueを維持。通常のカード追加pushでは反映しない。今回の公開に保留・未検証の解消は含めない。"
     ],
-    "registrationStatus": "ユーザーの新目標9000種類に向けて通常登録を再開。現在8956種類、残り44種類。automationはPAUSEDのまま。",
+    "registrationStatus": "ユーザーの新目標9000種類に向けて通常登録を再開。現在8961種類、残り39種類。automationはPAUSEDのまま。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [],
     "printVerificationPending": [
@@ -518766,10 +518949,10 @@
     "registrationTarget": {
       "target": 9000,
       "startCount": 8500,
-      "currentCount": 8956,
-      "remaining": 44,
+      "currentCount": 8961,
+      "remaining": 39,
       "status": "active",
-      "phase": 1579
+      "phase": 1580
     },
     "deferredRegistrationCandidates": [
       {
@@ -570840,10 +571023,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1579,
+    "phase": 1580,
     "threshold": 9000,
-    "supportedNames": 8956,
-    "pendingNames": 2868,
+    "supportedNames": 8961,
+    "pendingNames": 2863,
     "checkedAt": "2026-11-21",
     "registrationStopped": false,
     "automationId": "duema-deck-lab",

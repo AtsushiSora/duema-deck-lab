@@ -283104,15 +283104,282 @@
       },
       "supportBatch": "phase-1579",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-030",
+      "name": "奇石 アンコバ/ブツブッツ・レイン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "メタリカ",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）\n【呪文面】\n呪文を１枚、自分の墓地から手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-030",
+      "limit": 4,
+      "trigger": true,
+      "smashBurst": true,
+      "spellFace": {
+        "name": "ブツブッツ・レイン",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 2,
+        "race": "",
+        "text": "呪文を１枚、自分の墓地から手札に戻す。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "spell": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1580",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-s09",
+      "name": "龍罠 エスカルデン / マクスカルゴ・トラップ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ドラゴンギルド/グランセクト",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から２枚を表向きにする。その中からクリーチャーを１体、自分の手札に加えてもよい。残りをマナゾーンに置く。\n【呪文面】\n相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\nコスト６以下のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-s09",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "public": true,
+          "stages": [
+            {
+              "to": "hand",
+              "n": 1,
+              "optional": true,
+              "filter": {
+                "creature": true
+              },
+              "reveal": true
+            }
+          ],
+          "rest": "mana"
+        }
+      ],
+      "spellFace": {
+        "name": "マクスカルゴ・トラップ",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 7,
+        "race": "",
+        "text": "相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\nコスト６以下のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "mana",
+            "toOwnerMana": true
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "max": 6
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1580",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-021",
+      "name": "龍装30号 シグルネ/グール・チューン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ドラゴンギルド/マフィ・ギャング",
+      "text": "このクリーチャーがバトルゾーンに出た時、名前に《龍装30号 シグルネ》とあるクリーチャーをすべて、自分の墓地からバトルゾーンに出す。\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nカードを２枚引き、その後、自分の手札を２枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-021",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "deploy": true,
+          "n": "all",
+          "g236GraveDeploy": true,
+          "filter": {
+            "creature": true,
+            "g819CreatureNameIncludes": "龍装30号シグルネ"
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "グール・チューン",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nカードを２枚引き、その後、自分の手札を２枚捨てる。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 2
+          }
+        ]
+      },
+      "supportBatch": "phase-1580",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23sd3-003",
+      "name": "踊戯音愛 パステル / ♪摩訶不思議 マジカルプリズン キンキラリン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "マジック・マーメイド",
+      "text": "S・トリガー S・トリガー\nブロッカー ブロッカー\nメガ・ラスト・バースト（このクリーチャーが離れて、手札、マナゾーン、または墓地に置かれた時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\n相手のクリーチャーを２体まで選ぶ。次の自分のターンのはじめまで、それらは攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd3-003",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "megaLastBurst": true,
+      "spellFace": {
+        "name": "♪摩訶不思議 マジカルプリズン キンキラリン",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "race": "マジック・ソング",
+        "text": "相手のクリーチャーを２体まで選ぶ。次の自分のターンのはじめまで、それらは攻撃もブロックもできない。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g190Freeze": "start",
+            "g1058FollowUnit": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1580",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-029",
+      "name": "フットンダ/ネルネ・ネルネルネ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2222,
+      "race": "ジョーカーズ",
+      "text": "このクリーチャーがバトルゾーンに出た時、このクリーチャーをタップする。その後、相手のクリーチャーを１体選び、タップする。\nこのクリーチャーがタップしている間、選ばれたクリーチャーはアンタップしない。\n【呪文面】\n相手のタップしているクリーチャーを１体選び、持ち主の山札の一番下に置く。その後、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-029",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SelfTap314",
+          "g536Source": true
+        },
+        {
+          "op": "Target",
+          "tap": true,
+          "g1198UntapLock": true,
+          "g1580HostTapped": true
+        }
+      ],
+      "spellFace": {
+        "name": "ネルネ・ネルネルネ",
+        "type": "spell",
+        "civ": "ゼロ",
+        "civilizations": [],
+        "cost": 6,
+        "race": "",
+        "text": "相手のタップしているクリーチャーを１体選び、持ち主の山札の一番下に置く。その後、カードを１枚引く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "deck",
+            "toOwnerDeck": true,
+            "filter": {
+              "tapped": true
+            }
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1580",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1579,
+    "phase": 1580,
     "checkedAt": "2026-11-21",
-    "baseCount": 8951,
+    "baseCount": 8956,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8956,
+    "totalCount": 8961,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -308997,6 +309264,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8951,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1579,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8951,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8956,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

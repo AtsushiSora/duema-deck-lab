@@ -1,0 +1,503 @@
+{
+  "phase": 1580,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8956,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp08-030",
+      "name": "奇石 アンコバ/ブツブッツ・レイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-030",
+      "faces": [
+        {
+          "name": "奇石 アンコバ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）",
+          "race": "メタリカ",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "ブツブッツ・レイン",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "呪文を１枚、自分の墓地から手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "smashBurst": true,
+        "spellFace": {
+          "name": "ブツブッツ・レイン",
+          "type": "spell",
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "race": "",
+          "text": "呪文を１枚、自分の墓地から手札に戻す。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "to": "hand",
+              "n": 1,
+              "filter": {
+                "spell": true
+              }
+            }
+          ]
+        }
+      },
+      "faceImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-030a.jpg",
+        "sha256": "7b6059db4722df70130befd12ae227c37489cdc46c1a25bb4955756dab1187a6",
+        "reviewedAt": "2026-11-21T04:11:35.457Z",
+        "reason": "公式カード画像の下側呪文は黄色の光文明。公式HTMLで欠落した文明だけを補完。",
+        "faces": [
+          {
+            "index": 1,
+            "civilizationText": "光",
+            "civilizations": [
+              "光"
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-030a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "feb5928304d9e14e662477b5fadeb7a4695de83f13947667569d9e042bf45e26",
+        "facesMatched": true,
+        "imageSha256": "7b6059db4722df70130befd12ae227c37489cdc46c1a25bb4955756dab1187a6",
+        "imageBytes": 147359
+      },
+      "sameNameProducts": [
+        "DMRP-08 双極篇 拡張パック第４弾 超決戦!バラギアラ!!無敵オラオラ輪廻∞"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-030",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp07-s09",
+      "name": "龍罠 エスカルデン / マクスカルゴ・トラップ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-s09",
+      "faces": [
+        {
+          "name": "龍罠 エスカルデン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から２枚を表向きにする。その中からクリーチャーを１体、自分の手札に加えてもよい。残りをマナゾーンに置く。",
+          "race": "ドラゴンギルド/グランセクト",
+          "powerText": "5000",
+          "missingFields": []
+        },
+        {
+          "name": "マクスカルゴ・トラップ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\nコスト６以下のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 2,
+            "public": true,
+            "stages": [
+              {
+                "to": "hand",
+                "n": 1,
+                "optional": true,
+                "filter": {
+                  "creature": true
+                },
+                "reveal": true
+              }
+            ],
+            "rest": "mana"
+          }
+        ],
+        "spellFace": {
+          "name": "マクスカルゴ・トラップ",
+          "type": "spell",
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "race": "",
+          "text": "相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\nコスト６以下のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "to": "mana",
+              "toOwnerMana": true
+            },
+            {
+              "op": "Select",
+              "origin": "mana",
+              "n": 1,
+              "deploy": true,
+              "filter": {
+                "creature": true,
+                "max": 6
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-s09a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "e82e6a5a2c56edc038b8450fc87873cd857b5f7151955397e6c23baa1026b4eb",
+        "facesMatched": true,
+        "imageSha256": "5ff170c8e2ef6869f4179253731a8f78d7a9925a428cf74479bd3cdaa196cf18",
+        "imageBytes": 158505
+      },
+      "sameNameProducts": [
+        "DM23-BD6 エキサイティング・デュエパ・デッキ 「双極のアカシックZ計画」",
+        "DMRP-21 王来MAX第1弾 鬼ヤバ逆襲S-MAX!!",
+        "DMRP-07 双極篇 拡張パック第３弾 †ギラギラ†煌世主と終葬のQX!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-s09",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp11-021",
+      "name": "龍装30号 シグルネ/グール・チューン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-021",
+      "faces": [
+        {
+          "name": "龍装30号 シグルネ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、名前に《龍装30号 シグルネ》とあるクリーチャーをすべて、自分の墓地からバトルゾーンに出す。",
+          "race": "ドラゴンギルド/マフィ・ギャング",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "グール・チューン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nカードを２枚引き、その後、自分の手札を２枚捨てる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "deploy": true,
+            "n": "all",
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "g819CreatureNameIncludes": "龍装30号シグルネ"
+            }
+          }
+        ],
+        "spellFace": {
+          "name": "グール・チューン",
+          "type": "spell",
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "race": "",
+          "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nカードを２枚引き、その後、自分の手札を２枚捨てる。",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Draw",
+              "n": 2
+            },
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 2
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-021a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "618b73994e86f3656697edb27f40dd8c3d560b6344f634fcb214bf3176e3a297",
+        "facesMatched": true,
+        "imageSha256": "6fdc624eae6d3112c5f402851af5e0b947db1e8cc501a539759c1894ca95bb9f",
+        "imageBytes": 118033
+      },
+      "sameNameProducts": [
+        "DMRP-11 超天篇 拡張パック第3弾 零誕！魔神おこせジョルネード1059!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-021",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm23sd3-003",
+      "name": "踊戯音愛 パステル / ♪摩訶不思議 マジカルプリズン キンキラリン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd3-003",
+      "faces": [
+        {
+          "name": "踊戯音愛 パステル",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nブロッカー ブロッカー\nメガ・ラスト・バースト（このクリーチャーが離れて、手札、マナゾーン、または墓地に置かれた時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+          "race": "マジック・マーメイド",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "♪摩訶不思議 マジカルプリズン キンキラリン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のクリーチャーを２体まで選ぶ。次の自分のターンのはじめまで、それらは攻撃もブロックもできない。",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "megaLastBurst": true,
+        "spellFace": {
+          "name": "♪摩訶不思議 マジカルプリズン キンキラリン",
+          "type": "spell",
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "race": "マジック・ソング",
+          "text": "相手のクリーチャーを２体まで選ぶ。次の自分のターンのはじめまで、それらは攻撃もブロックもできない。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "origin": "battle",
+              "owner": "opponent",
+              "n": 2,
+              "optional": true,
+              "filter": {
+                "creature": true
+              },
+              "g173Targets": true,
+              "g190Freeze": "start",
+              "g1058FollowUnit": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23sd3-003a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "3a764f6b9eaded9550436445a0112c11525f34145dbee7f8d2ee574c592c28dc",
+        "facesMatched": true,
+        "imageSha256": "80dd44e3a060e4d22eaa0e20b66bf5482ce5a5522edececa780590128ebf7fc1",
+        "imageBytes": 142442
+      },
+      "sameNameProducts": [
+        "DM23-RP3 アビス・レボリューション 第3弾 「魔覇革命」",
+        "DM23-SD3 スタートWINデッキ 革命・アメイジン・マジック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd3-003",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp05-029",
+      "name": "フットンダ/ネルネ・ネルネルネ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-029",
+      "faces": [
+        {
+          "name": "フットンダ",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、このクリーチャーをタップする。その後、相手のクリーチャーを１体選び、タップする。\nこのクリーチャーがタップしている間、選ばれたクリーチャーはアンタップしない。",
+          "race": "ジョーカーズ",
+          "powerText": "2222",
+          "missingFields": []
+        },
+        {
+          "name": "ネルネ・ネルネルネ",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "相手のタップしているクリーチャーを１体選び、持ち主の山札の一番下に置く。その後、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SelfTap314",
+            "g536Source": true
+          },
+          {
+            "op": "Target",
+            "tap": true,
+            "g1198UntapLock": true,
+            "g1580HostTapped": true
+          }
+        ],
+        "spellFace": {
+          "name": "ネルネ・ネルネルネ",
+          "type": "spell",
+          "civ": "ゼロ",
+          "civilizations": [],
+          "cost": 6,
+          "race": "",
+          "text": "相手のタップしているクリーチャーを１体選び、持ち主の山札の一番下に置く。その後、カードを１枚引く。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "to": "deck",
+              "toOwnerDeck": true,
+              "filter": {
+                "tapped": true
+              }
+            },
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-029a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "7cd5fedaa0a952d52123d59ecc508a770d0a076d839f2709ddc3a394324b715d",
+        "facesMatched": true,
+        "imageSha256": "50127c7f6546892931ef11c939deb1286cc52570b33c55ff98d057fef6d24030",
+        "imageBytes": 143289
+      },
+      "sameNameProducts": [
+        "DMRP-05 双極篇 拡張パック第１弾 轟快!! ジョラゴンGo Fight!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-029",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp08-030": 4,
+      "dmrp07-s09": 4,
+      "dmrp11-021": 4,
+      "dm23sd3-003": 4,
+      "dmrp05-029": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    }
+  ],
+  "testCorrections": [
+    "フットンダの呪文面を無色の文明表記から、エンジンの無色支払い定義（文明配列なし）へ正規化。",
+    "シグルネの名前フィルターを既存の名前正規化形式に合わせて空白を除去。",
+    "呪文の対象には呪文への選択耐性を持たないデスライガーを使用し、対象が尽きて自動確定した場合の追加操作を除去。"
+  ]
+}

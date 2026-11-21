@@ -8150,7 +8150,7 @@ export function createSixPhotoRules(api){
     kind:'g1116CreatureUntapLock',ref:key(y),who:t.p,expires:'start',
     spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))
    });
-   if(t.g1198UntapLock)(s.extLimits??=[]).push({kind:'g1198CreatureUntapLock',ref:key(y),host:key(t)});
+   if(t.g1198UntapLock)(s.extLimits??=[]).push({kind:'g1198CreatureUntapLock',ref:key(y),host:key(t),...(t.g1580HostTapped?{g1580HostTapped:true}:{})});
    if(t.g446BattleOnly)grantBattlePower446(s,t,y,t.g446BattleOnly);
    if(t.powerMultiplier)(y.powerModifiers??=[]).push({amount:0,multiplier:t.powerMultiplier,expires:'end',who:s.active});
    if(t.g1526BounceNames){const names=new Set(battleNames676(s,y)),rows=[0,1].flatMap(p=>creatures(s,p).filter(z=>!z.sealed&&battleNames676(s,z).some(n=>names.has(n))).map(z=>({player:p,uid:z.uid,to:'hand',toOwnerHand:true,destroy:false,controller:t.p})));move(s,rows);break;}if(t.g676TapNames)tapNames676(s,y);if(t.g291UntapUntilSelf)(y.tapLocks??=[]).push(t.p);if(t.untap&&api.canUntap(y)){const was=y.tapped;y.tapped=false;if(was)combined.untapped(s,v.p,y);}if(t.lock){if(t.spell)(y.g170StartFreeze??=[]).push({spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});else y.skipUntap=true;}if(t.g1111PowerZero){
@@ -8586,7 +8586,7 @@ export function createSixPhotoRules(api){
   if(s.extLimits?.some(l=>l.kind==='g1116CreatureUntapLock'&&api.allLayers(x).some(y=>key(y)===l.ref)&&
    !api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})))return true;
   if(s.extLimits?.some(l=>l.kind==='g1198CreatureUntapLock'&&api.allLayers(x).some(y=>key(y)===l.ref)&&
-   s.players.some(owner=>owner.battle.some(host=>key(host)===l.host&&!host.sealed&&!host.faceDown&&
+   s.players.some(owner=>owner.battle.some(host=>key(host)===l.host&&!host.sealed&&!host.faceDown&&(!l.g1580HostTapped||host.tapped)&&
     card(host).g34Tasks?.some(d=>d.g1198UntapLock)&&!api.ignored(s,host)&&api.isCreature(s,host)))))return true;
   const c=effective(x,s);
   return c.g1561UntapRequires&&!ownCondition(s,p,c.g1561UntapRequires,x.uid,x.incarnation||0)||s.players[p].grave.length<(c.g1016UntapMinGrave??0)||

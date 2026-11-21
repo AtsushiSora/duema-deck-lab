@@ -21815,5 +21815,359 @@
         ]
       }
     }
+  },
+  "dmrp08-030": {
+    "phase": 1580,
+    "faces": [
+      {
+        "name": "奇石 アンコバ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）",
+        "race": "メタリカ",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "ブツブッツ・レイン",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "呪文を１枚、自分の墓地から手札に戻す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "smashBurst": true,
+      "spellFace": {
+        "name": "ブツブッツ・レイン",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 2,
+        "race": "",
+        "text": "呪文を１枚、自分の墓地から手札に戻す。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "spell": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dmrp07-s09": {
+    "phase": 1580,
+    "faces": [
+      {
+        "name": "龍罠 エスカルデン",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から２枚を表向きにする。その中からクリーチャーを１体、自分の手札に加えてもよい。残りをマナゾーンに置く。",
+        "race": "ドラゴンギルド/グランセクト",
+        "powerText": "5000",
+        "missingFields": []
+      },
+      {
+        "name": "マクスカルゴ・トラップ",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\nコスト６以下のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "public": true,
+          "stages": [
+            {
+              "to": "hand",
+              "n": 1,
+              "optional": true,
+              "filter": {
+                "creature": true
+              },
+              "reveal": true
+            }
+          ],
+          "rest": "mana"
+        }
+      ],
+      "spellFace": {
+        "name": "マクスカルゴ・トラップ",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 7,
+        "race": "",
+        "text": "相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\nコスト６以下のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "mana",
+            "toOwnerMana": true
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "max": 6
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dmrp11-021": {
+    "phase": 1580,
+    "faces": [
+      {
+        "name": "龍装30号 シグルネ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、名前に《龍装30号 シグルネ》とあるクリーチャーをすべて、自分の墓地からバトルゾーンに出す。",
+        "race": "ドラゴンギルド/マフィ・ギャング",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "グール・チューン",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nカードを２枚引き、その後、自分の手札を２枚捨てる。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "deploy": true,
+          "n": "all",
+          "g236GraveDeploy": true,
+          "filter": {
+            "creature": true,
+            "g819CreatureNameIncludes": "龍装30号シグルネ"
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "グール・チューン",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nカードを２枚引き、その後、自分の手札を２枚捨てる。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 2
+          }
+        ]
+      }
+    }
+  },
+  "dm23sd3-003": {
+    "phase": 1580,
+    "faces": [
+      {
+        "name": "踊戯音愛 パステル",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "S・トリガー S・トリガー\nブロッカー ブロッカー\nメガ・ラスト・バースト（このクリーチャーが離れて、手札、マナゾーン、または墓地に置かれた時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+        "race": "マジック・マーメイド",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "♪摩訶不思議 マジカルプリズン キンキラリン",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "相手のクリーチャーを２体まで選ぶ。次の自分のターンのはじめまで、それらは攻撃もブロックもできない。",
+        "race": "マジック・ソング",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "blocker": true,
+      "megaLastBurst": true,
+      "spellFace": {
+        "name": "♪摩訶不思議 マジカルプリズン キンキラリン",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "race": "マジック・ソング",
+        "text": "相手のクリーチャーを２体まで選ぶ。次の自分のターンのはじめまで、それらは攻撃もブロックもできない。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g190Freeze": "start",
+            "g1058FollowUnit": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp05-029": {
+    "phase": 1580,
+    "faces": [
+      {
+        "name": "フットンダ",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、このクリーチャーをタップする。その後、相手のクリーチャーを１体選び、タップする。\nこのクリーチャーがタップしている間、選ばれたクリーチャーはアンタップしない。",
+        "race": "ジョーカーズ",
+        "powerText": "2222",
+        "missingFields": []
+      },
+      {
+        "name": "ネルネ・ネルネルネ",
+        "typeText": "呪文",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "相手のタップしているクリーチャーを１体選び、持ち主の山札の一番下に置く。その後、カードを１枚引く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SelfTap314",
+          "g536Source": true
+        },
+        {
+          "op": "Target",
+          "tap": true,
+          "g1198UntapLock": true,
+          "g1580HostTapped": true
+        }
+      ],
+      "spellFace": {
+        "name": "ネルネ・ネルネルネ",
+        "type": "spell",
+        "civ": "ゼロ",
+        "civilizations": [],
+        "cost": 6,
+        "race": "",
+        "text": "相手のタップしているクリーチャーを１体選び、持ち主の山札の一番下に置く。その後、カードを１枚引く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "deck",
+            "toOwnerDeck": true,
+            "filter": {
+              "tapped": true
+            }
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      }
+    }
   }
 }
