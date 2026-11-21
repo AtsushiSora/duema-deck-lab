@@ -1,0 +1,318 @@
+{
+  "phase": 1529,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8732,
+  "description": "既存の処理を用いて全能力を個別に検証し3種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "deferred": [
+    {
+      "id": "dmex04-032",
+      "name": "暗黒の騎士ザガーン / 「一方的に勝つに決まっている」",
+      "reason": "公式HTMLの呪文面の種類と文明が空欄。現行の公式画像補完器は文明のみ対象なので、種類も画像と照合する限定的な検証を追加するまで登録せず保留。公式画像・全文は取得済み。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-032"
+    }
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/33716/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/33716/": "S・トリガーの付与や使用可能な面は条件を満たす片面だけに適用する。"
+  },
+  "cards": [
+    {
+      "id": "dmrp10-011",
+      "name": "グリージー・ファブノーレ/死的で詩的な制裁",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-011",
+      "faces": [
+        {
+          "name": "グリージー・ファブノーレ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ガードマン\nW・ブレイカー\nこのクリーチャーがタップした時、コスト５以下のクリーチャーを１体またはオーラを１枚、自分のマナゾーンからバトルゾーンに出してもよい。",
+          "race": "グランセクト/デリートロン",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "死的で詩的な制裁",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のタップしているクリーチャーを１体、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "guardman": true,
+        "breaker": 2,
+        "g188Tapped": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "any": [
+                {
+                  "creature": true,
+                  "max": 5
+                },
+                {
+                  "aura": true,
+                  "max": 5
+                }
+              ]
+            }
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "死的で詩的な制裁",
+          "cost": 3,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "tapped": true
+              },
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp10-011a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "ae7b3dbe1610755ad4deb675394c8eb8eab1975b0374dbaf7c4423dd61494de8",
+        "facesMatched": true,
+        "imageSha256": "b508adb78979a21d48399dd2c32bdc7884d1e7132e7c35ca914eada207eebf81",
+        "imageBytes": 155160
+      },
+      "sameNameProducts": [
+        "DMRP-10 超天篇 拡張パック第2弾 青きC.A.P.と漆黒の大卍罪"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-011",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm24bd4-006",
+      "name": "魔城の死神エルガイザ / 「ようこそ、我が魔城へ」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd4-006",
+      "faces": [
+        {
+          "name": "魔城の死神エルガイザ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが離れる時、かわりに自分の他のクリーチャーを１体破壊してもよい。",
+          "race": "デーモン・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "「ようこそ、我が魔城へ」",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\n自分の山札の上から１枚目をシールド化する。\n相手のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "aterGuard": true,
+        "spellFace": {
+          "type": "spell",
+          "name": "「ようこそ、我が魔城へ」",
+          "cost": 7,
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "ShieldTop",
+              "n": 1,
+              "spell": true
+            },
+            {
+              "op": "TapAll",
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd4-006a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "f7d27b946db7ea745ba039e7bbde6dd7751413470cd8e2b1f6b22eb92944a6b8",
+        "facesMatched": true,
+        "imageSha256": "dfa74b6656ba84de2a03cd83e7a8f9bc29f87cb75a18635db9d179ed62b5f454",
+        "imageBytes": 150946
+      },
+      "sameNameProducts": [
+        "DM24-BD4 ナイトメア黙示録デッキ バロムの章"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd4-006",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp11-003",
+      "name": "スゴ腕プロジューサー / りんご娘はさんにんっ娘",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-003",
+      "faces": [
+        {
+          "name": "スゴ腕プロジューサー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカーブロッカー\nこのクリーチャーがバトルゾーンに出た時またはバトルゾーンを離れた時、GR召喚する。",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "りんご娘はさんにんっ娘",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nこのカードをバトルゾーンに出す。\nこのターンの終わりに、このカードをバトルゾーンから自分のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "AuraGr1353"
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "AuraGr1353"
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "りんご娘はさんにんっ娘",
+          "cost": 6,
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "SelfSpellPut1529",
+              "delayed": "mana",
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-003a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "40f1cd7d50115540b9f0b3fb3065a3ed67fd64fa54c1dbc83ec22456dfa337ca",
+        "facesMatched": true,
+        "imageSha256": "3b24c4dfd17b07896ec8ee7fe5771e8bc7f74275be329de3922f12231ddd0275",
+        "imageBytes": 110541
+      },
+      "sameNameProducts": [
+        "DM26-EX4 切札不滅!! デュエキング FOREVER 2026",
+        "DMEX-17 20周年超感謝メモリアルパック 究極の章 デュエキングMAX",
+        "DMRP-11 超天篇 拡張パック第3弾 零誕！魔神おこせジョルネード1059!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-003",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp10-011": 4,
+      "dm24bd4-006": 4,
+      "dmrp11-003": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/33716/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33716/",
+      "sha256": "0e3296031e1dfb8ceec8afade9c5962b09b58597abcfa218c51dc2bac129a205",
+      "result": "S・トリガーの付与や使用可能な面は条件を満たす片面だけに適用する。"
+    }
+  ]
+}

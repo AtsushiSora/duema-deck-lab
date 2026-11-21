@@ -11857,5 +11857,211 @@
         ]
       }
     }
+  },
+  "dmrp10-011": {
+    "phase": 1529,
+    "faces": [
+      {
+        "name": "グリージー・ファブノーレ",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "ガードマン\nW・ブレイカー\nこのクリーチャーがタップした時、コスト５以下のクリーチャーを１体またはオーラを１枚、自分のマナゾーンからバトルゾーンに出してもよい。",
+        "race": "グランセクト/デリートロン",
+        "powerText": "6000",
+        "missingFields": []
+      },
+      {
+        "name": "死的で詩的な制裁",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "相手のタップしているクリーチャーを１体、破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "guardman": true,
+      "breaker": 2,
+      "g188Tapped": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "any": [
+              {
+                "creature": true,
+                "max": 5
+              },
+              {
+                "aura": true,
+                "max": 5
+              }
+            ]
+          }
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "死的で詩的な制裁",
+        "cost": 3,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "tapped": true
+            },
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dm24bd4-006": {
+    "phase": 1529,
+    "faces": [
+      {
+        "name": "魔城の死神エルガイザ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "ブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが離れる時、かわりに自分の他のクリーチャーを１体破壊してもよい。",
+        "race": "デーモン・コマンド",
+        "powerText": "6000",
+        "missingFields": []
+      },
+      {
+        "name": "「ようこそ、我が魔城へ」",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "S・トリガー S・トリガー\n自分の山札の上から１枚目をシールド化する。\n相手のクリーチャーをすべてタップする。",
+        "race": "",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "aterGuard": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "「ようこそ、我が魔城へ」",
+        "cost": 7,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 1,
+            "spell": true
+          },
+          {
+            "op": "TapAll",
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp11-003": {
+    "phase": 1529,
+    "faces": [
+      {
+        "name": "スゴ腕プロジューサー",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "ブロッカーブロッカー\nこのクリーチャーがバトルゾーンに出た時またはバトルゾーンを離れた時、GR召喚する。",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "りんご娘はさんにんっ娘",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "S・トリガー S・トリガー\nこのカードをバトルゾーンに出す。\nこのターンの終わりに、このカードをバトルゾーンから自分のマナゾーンに置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "りんご娘はさんにんっ娘",
+        "cost": 6,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SelfSpellPut1529",
+            "delayed": "mana",
+            "spell": true
+          }
+        ]
+      }
+    }
   }
 }

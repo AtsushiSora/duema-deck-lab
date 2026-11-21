@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-21",
   "catalogueNames": 11825,
-  "supportedNames": 8732,
-  "pendingNames": 3093,
-  "phase": 1528,
+  "supportedNames": 8735,
+  "pendingNames": 3090,
+  "phase": 1529,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -46,7 +46,7 @@
     },
     {
       "ability": "GR召喚",
-      "pendingNames": 57,
+      "pendingNames": 56,
       "examples": [
         {
           "id": "dmrp12-s11",
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1789,
+    "クリーチャー": 1786,
     "NEOクリーチャー": 69,
     "呪文": 370,
     "GRクリーチャー": 19,
@@ -222,7 +222,7 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 707,
+    "複数面・特殊カードタイプまたは情報不足": 704,
     "未対応の能力文": 2226,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
@@ -511616,11 +511616,148 @@
         "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
       ],
       "next": "目標9000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
+    },
+    {
+      "phase": 1529,
+      "kind": "registration-toward-9000",
+      "checkedAt": "2026-11-21T00:07:59.773Z",
+      "baseline": "be29cdf4efd4078f36a18c80b4cec73473712d94",
+      "manifest": "tools/support-phase-1529.json",
+      "status": "verified-local",
+      "before": 8732,
+      "supported": 8735,
+      "pending": 3090,
+      "added": [
+        {
+          "id": "dmrp10-011",
+          "name": "グリージー・ファブノーレ/死的で詩的な制裁"
+        },
+        {
+          "id": "dm24bd4-006",
+          "name": "魔城の死神エルガイザ / 「ようこそ、我が魔城へ」"
+        },
+        {
+          "id": "dmrp11-003",
+          "name": "スゴ腕プロジューサー / りんご娘はさんにんっ娘"
+        }
+      ],
+      "duplicates": 0,
+      "results": {
+        "focused": {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1529-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.919,
+          "log": "tmp/duema-phase-1529/focused.log",
+          "passed": 87,
+          "failed": 0
+        },
+        "related": {
+          "name": "related",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=4",
+            "tests/standard1527-effects.test.mjs",
+            "tests/standard1528-effects.test.mjs",
+            "tests/standard1499-effects.test.mjs",
+            "tests/standard1437-effects.test.mjs",
+            "tests/standard188-effects.test.mjs",
+            "tests/standard785-effects.test.mjs",
+            "tests/standard1199-effects.test.mjs",
+            "tests/standard532-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 30.323,
+          "log": "tmp/duema-phase-1529/related.log",
+          "passed": 275,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.278,
+          "log": "tmp/duema-phase-1529/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.974,
+          "log": "tmp/duema-phase-1529/audit.log"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tools/verify-target9000.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.267,
+          "log": "tmp/duema-phase-1529/invariants.log"
+        }
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1529-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.121,
+          "log": "tmp/duema-phase-1529/focused.log"
+        }
+      ],
+      "testCorrections": [],
+      "totalTestsPassed": 362,
+      "reason": "既存の処理を用いて全能力を個別に検証し3種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+      "remaining": [
+        "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
+      ],
+      "next": "目標9000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。",
+      "deferred": [
+        {
+          "id": "dmex04-032",
+          "name": "暗黒の騎士ザガーン / 「一方的に勝つに決まっている」",
+          "reason": "公式HTMLの呪文面の種類と文明が空欄。現行の公式画像補完器は文明のみ対象なので、種類も画像と照合する限定的な検証を追加するまで登録せず保留。公式画像・全文は取得済み。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-032"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1528,
-    "nextPhase": 1529,
+    "lastVerifiedPhase": 1529,
+    "nextPhase": 1530,
     "workInProgress": null,
     "nextCandidates": [
       "公式照合済みの通常能力を持たないGRクリーチャー",
@@ -511629,7 +511766,7 @@
     ],
     "steps": [
       "開始時にHEAD・作業差分・ステージ・既存プロセス・AGENTS・進捗を確認。",
-      "実データ8732種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8735種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "再開時は既存プロセス・最新コミット・作業ツリーを確認し、tools/verify-target8500.mjsとtools/target8500-verification.jsonを参照。ユーザー保留項目は既存記録を維持。",
       "個別の残件2件はユーザー保留。再開指示まで追加調査・問い合わせ送信をしない。",
       "一括npm testを再実行せず、公開候補の未集約範囲だけ分割検証する。過去の固定ソースの合格と現版の合格を区別する。",
@@ -511710,14 +511847,14 @@
     ],
     "restartSteps": [
       "公開済みの版はb40ae0df (v0.722.1 / engine0.602.1 / 8074種類)。Pages・Netlifyを同じ版に更新済み。最新HEAD・差分・ステージ・既存プロセスを最初に確認。",
-      "実データ8732種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8735種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "再開時は既存プロセス・最新コミット・作業ツリーを確認し、tools/verify-target8500.mjsとtools/target8500-verification.jsonを参照。ユーザー保留項目は既存記録を維持。",
       "既存8072定義は深い比較で不変。カードID・保存形式・保存済みデッキ・対戦履歴を維持。",
       "個別の残件2件と問い合わせ案はユーザー指示「後回しにしよう」で保留。再開指示があるまでこの2件の調査・送信を行わない。",
       "No13長時間検証はengine0.601.0の固定ソースで完了済み。今回のengine0.602.0の全面検証には数えない。必要な未集約項目は対象を特定し、細かく分割して確認する。",
       "Netlifyは手動反映専用。workflow_dispatchだけ、GitHub pushフック停止、stop_builds=trueを維持。通常のカード追加pushでは反映しない。今回の公開に保留・未検証の解消は含めない。"
     ],
-    "registrationStatus": "ユーザーの新目標9000種類に向けて通常登録を再開。現在8732種類、残り268種類。automationはPAUSEDのまま。",
+    "registrationStatus": "ユーザーの新目標9000種類に向けて通常登録を再開。現在8735種類、残り265種類。automationはPAUSEDのまま。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [],
     "printVerificationPending": [
@@ -511829,10 +511966,10 @@
     "registrationTarget": {
       "target": 9000,
       "startCount": 8500,
-      "currentCount": 8732,
-      "remaining": 268,
+      "currentCount": 8735,
+      "remaining": 265,
       "status": "active",
-      "phase": 1528
+      "phase": 1529
     },
     "deferredRegistrationCandidates": [
       {
@@ -511879,6 +512016,13 @@
         "reason": "公式QA31711が封印もマナへ置くと指定。既存Sweepはbattleのみでsealsを網羅しないため、全カード・封印の同時移動を実装する別バッチまで未登録。",
         "source": "https://dm.takaratomy.co.jp/rule/qa/31711/",
         "phase": 1519
+      },
+      {
+        "id": "dmex04-032",
+        "name": "暗黒の騎士ザガーン / 「一方的に勝つに決まっている」",
+        "reason": "公式HTMLの呪文面の種類と文明が空欄。現行の公式画像補完器は文明のみ対象なので、種類も画像と照合する限定的な検証を追加するまで登録せず保留。公式画像・全文は取得済み。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-032",
+        "phase": 1529
       }
     ],
     "lastExplicitUserAddition": {
@@ -563797,10 +563941,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1528,
+    "phase": 1529,
     "threshold": 9000,
-    "supportedNames": 8732,
-    "pendingNames": 3093,
+    "supportedNames": 8735,
+    "pendingNames": 3090,
     "checkedAt": "2026-11-21",
     "registrationStopped": false,
     "automationId": "duema-deck-lab",

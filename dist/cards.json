@@ -274300,15 +274300,170 @@
       },
       "supportBatch": "phase-1528",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-011",
+      "name": "グリージー・ファブノーレ/死的で詩的な制裁",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "グランセクト/デリートロン",
+      "text": "ガードマン\nW・ブレイカー\nこのクリーチャーがタップした時、コスト５以下のクリーチャーを１体またはオーラを１枚、自分のマナゾーンからバトルゾーンに出してもよい。\n【呪文面】\n相手のタップしているクリーチャーを１体、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-011",
+      "limit": 4,
+      "guardman": true,
+      "breaker": 2,
+      "g188Tapped": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "any": [
+              {
+                "creature": true,
+                "max": 5
+              },
+              {
+                "aura": true,
+                "max": 5
+              }
+            ]
+          }
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "死的で詩的な制裁",
+        "cost": 3,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "tapped": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1529",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24bd4-006",
+      "name": "魔城の死神エルガイザ / 「ようこそ、我が魔城へ」",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "デーモン・コマンド",
+      "text": "ブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが離れる時、かわりに自分の他のクリーチャーを１体破壊してもよい。\n【呪文面】\nS・トリガー S・トリガー\n自分の山札の上から１枚目をシールド化する。\n相手のクリーチャーをすべてタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd4-006",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "aterGuard": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "「ようこそ、我が魔城へ」",
+        "cost": 7,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 1,
+            "spell": true
+          },
+          {
+            "op": "TapAll",
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1529",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-003",
+      "name": "スゴ腕プロジューサー / りんご娘はさんにんっ娘",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "ブロッカーブロッカー\nこのクリーチャーがバトルゾーンに出た時またはバトルゾーンを離れた時、GR召喚する。\n【呪文面】\nS・トリガー S・トリガー\nこのカードをバトルゾーンに出す。\nこのターンの終わりに、このカードをバトルゾーンから自分のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-003",
+      "limit": 4,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "りんご娘はさんにんっ娘",
+        "cost": 6,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SelfSpellPut1529",
+            "delayed": "mana",
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1529",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1528,
+    "phase": 1529,
     "checkedAt": "2026-11-21",
-    "baseCount": 8729,
+    "baseCount": 8732,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 8732,
+    "totalCount": 8735,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -299479,6 +299634,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 8729,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1528,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8729,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 8732,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
