@@ -1,0 +1,50 @@
+// REPRO assertions confirm open problems; they do not assert fixed behavior.
+test('REPRO: private online zone dialog remains open after the authentication session signs out',async()=>{
+ const h=harness();await h.login();await h.click('online-create');await h.friend();
+ await h.editGame(s=>{s.players[0].mana=[{uid:'private-mana-review',cardId:'dm01-108',faceDown:true,tapped:false,entered:0}];});
+ await h.click('online-zone',{player:'0',zone:'mana'});
+ assert.equal(h.dialog.open,true);assert.match(h.dialog.innerHTML,/炎のたてがみ/);
+ await h.read('accountClient.signOut()');await tick();
+ assert.equal(h.read('accountState.user'),null);assert.equal(h.read('onlineState.room'),null);
+ assert.equal(h.dialog.open,true);assert.match(h.dialog.innerHTML,/炎のたてがみ/);assert.ok(h.dialog.innerHTML.includes('private-mana-review'));
+ assert.ok(!h.root.innerHTML.includes('private-mana-review'));assert.match(h.root.innerHTML,/まずはGoogleでログイン/);
+ console.log('CONFIRMED auth and main board are cleared, but old private-face dialog stays open');
+ await h.click('close-dialog');h.read('onlineClient.dispose()');
+});
+test('REPRO: a field overview remains untapped after a real opposing attack updates the room',async()=>{
+ const h=harness();await h.login();await h.click('online-create');await h.friend();
+ await h.editGame(s=>{s.phase='attack';s.active=1;s.decision=null;s.players[1].battle=[{uid:'attacking-creature-review',cardId:'dm01-108',entered:0,tapped:false}];});
+ await h.click('online-field',{player:'1'});assert.ok(h.dialog.innerHTML.includes('attacking-creature-review'));assert.ok(!h.dialog.innerHTML.includes('タップ中'));
+ const code=h.read('onlineState.room.code'),opponent=await h.service.get(code,{uid:'u2'},'u2'),attack=opponent.game.actions.find(a=>a.kind==='attack');assert.ok(attack);
+ await h.service.move({code,revision:opponent.revision,actionId:attack.id,requestId:'dialog-review-opposing-attack'},{uid:'u2',name:'友達'},'u2');
+ await h.read('onlineClient.refresh()');
+ assert.equal(h.read('onlineState.room.game.players[1].battle[0].tapped'),true);
+ assert.equal(h.dialog.open,true);assert.ok(h.dialog.innerHTML.includes('attacking-creature-review'));assert.ok(!h.dialog.innerHTML.includes('タップ中'));
+ console.log('CONFIRMED a real encrypted opposing attack taps the creature, but the open field dialog still shows the old untapped state');
+ await h.click('close-dialog');await h.click('online-field',{player:'1'});assert.match(h.dialog.innerHTML,/タップ中/);
+ await h.click('close-dialog');h.read('onlineClient.dispose()');
+});
+test('REPRO: selecting a legal fight target hides its legal battle choice, while the all-actions path still resolves it',async()=>{
+ const h=harness();await h.login();await h.click('online-create');await h.friend();
+ await h.editGame(s=>{
+  s.phase='main';s.active=0;s.decision=null;
+  const c=(uid,cardId)=>({uid,cardId,entered:0,tapped:false});
+  s.players[0].battle=[];s.players[0].hand=[c('fighter-review','dmr21-092')];
+  s.players[0].mana=Array.from({length:15},(_,i)=>c('mana-review-'+i,i%2?'dm01-027':'dm01-097'));
+  s.players[1].battle=[c('fight-target-review','dm01-108')];
+  e.step(s,e.getLegalActions(s).find(a=>a.kind==='play'&&a.uid==='fighter-review'));
+ });
+ assert.equal(h.game().decision.type,'fight');
+ const legal=h.read('onlineState.room.game.actions.find(a=>a.kind==="fight")');assert.ok(legal);
+ assert.ok(!legal.targetUids?.includes('fight-target-review'));
+ const before=h.game().actions;
+ await h.click('online-card',{uid:'fight-target-review'});
+ assert.match(h.root.innerHTML,/このカードで選べる操作はありません/);
+ assert.ok(!h.root.innerHTML.includes('data-action="online-move"'));
+ assert.equal(h.game().actions,before);
+ await h.click('online-all-actions');
+ await h.click('online-move',{index:String(legal.id),revision:String(h.read('onlineState.room.revision'))});
+ assert.ok(!h.game().players[1].battle.some(c=>c.uid==='fight-target-review'));
+ console.log('CONFIRMED legal target is omitted from targetUids; tapping it reports no action, but all-actions can execute the fight');
+ h.read('onlineClient.dispose()');
+});

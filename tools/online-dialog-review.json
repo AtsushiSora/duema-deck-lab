@@ -1,0 +1,200 @@
+{
+  "checkedAt": "2026-11-21T22:45:04.307Z",
+  "clientDate": "2026-11-22",
+  "baseCommit": "bae8f49d9a906138ab73ee2bb35bd4e56a7944bc",
+  "status": "additional-dialog-review-complete-two-open-findings",
+  "scope": "友達・アカウント対戦のダイアログ、認証解除時の表示、相手の実操作後の盤面更新、効果によるバトルのカード選択。実アプリVM・HTTPサービス・暗号化保存を用いた隔離ローカル検証。",
+  "productCodeChanged": false,
+  "findings": [
+    {
+      "id": "online-dialog-stale-context",
+      "severity": "medium",
+      "status": "confirmed-open",
+      "title": "対戦ダイアログがアカウント解除・盤面更新へ追従しない",
+      "locations": [
+        "dist/app.js:889",
+        "dist/app.js:878",
+        "dist/app.js:1019",
+        "dist/app.js:1054"
+      ],
+      "reproductions": [
+        {
+          "trigger": "自分の裏向きマナの確認ダイアログを開いた状態で、認証のログアウト通知が発生する。",
+          "expected": "旧アカウントの対戦情報を閉じる、または消去する。",
+          "actual": "accountState.userとonlineState.roomはnullになりメイン画面もログイン表示になるが、ダイアログは開いたままで旧マナの元カード名を表示する。ログアウトAPI→実アプリの認証通知経路で確認。"
+        },
+        {
+          "trigger": "相手の場の一覧ダイアログを開き、相手が攻撃した新しい盤面を取得する。",
+          "expected": "タップ状態等を最新の盤面へ更新するか、古くなった一覧を閉じる。",
+          "actual": "別アカウントの合法なattackをHTTPサービス・暗号化保存経由で実行。取得済みの盤面ではtapped=trueでも、開いた一覧にはタップ中の表示が付かない。閉じて開き直すと正しく表示される。"
+        }
+      ],
+      "impact": "ログアウト後に旧アカウントのカード確認内容が画面に残る。閲覧中の一覧ではタップ状態等を誤認する。今回確認したのは同じ端末内の表示の残留であり、別アカウントへのサーバー配信を示す結果ではない。",
+      "recommendation": "オンライン用ダイアログにアカウント・ルーム・種別を紐付け、アカウント/ルームの変更では消去する。盤面更新時は対象の一覧・ログを更新するか、状態が古いことを明示して閉じる。一般の公開カード詳細・アカウント保存確認との区別を維持。",
+      "workaround": "盤面の一覧は閉じて開き直す。ログアウト後に残った対戦ダイアログも閉じる。",
+      "diagnosticCases": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "online-fight-target-reference-missing",
+      "severity": "medium",
+      "status": "confirmed-open",
+      "title": "効果によるバトルの合法な対象カードをタップすると操作がないと表示する",
+      "locations": [
+        "server/duel-core.mjs:50",
+        "dist/online-ui.js:9",
+        "dist/online-ui.js:67"
+      ],
+      "reproduction": "バグ丸くんの登場時能力で相手の炎のたてがみとバトルできる選択を作り、盤面の相手カードをタップする。",
+      "expected": "そのカードとのバトルを選べる。",
+      "actual": "エンジンには合法なfightが存在するが、単数のa.targetがactionCardRefsの参照に含まれない。targetUidsには元の自分のカードだけが入り、相手カードで絞り込むと操作が0件になる。実際に「このカードで選べる操作はありません」と表示した。",
+      "impact": "合法な対象でも操作できないように見える。カードの効果処理自体は可能。",
+      "workaround": "「全操作を表示」へ戻ると同じfightを選択でき、HTTPサービス・暗号化保存経由でバトルを解決できることを確認。",
+      "recommendation": "単数の公開対象UIDもactionCardRefsへ含める。相手の非公開カード情報を追加しないよう、現在の公開参照フィルターを維持する。元カード・対象カード・全操作のいずれからも同じ合法操作へ進めることを回帰確認。",
+      "diagnosticCases": [
+        3
+      ]
+    }
+  ],
+  "verification": {
+    "results": [
+      {
+        "name": "diagnostic-live-move",
+        "command": [
+          "node",
+          "tools/review-online-dialogs.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.886,
+        "log": "tmp/duema-online-dialog-review/diagnostic-live-move.log",
+        "passed": 3,
+        "failed": 0,
+        "sha256": "c6bd4936e9a8c6ab02fb3189da6f570e9d37e098c52abbd0ab1aca136ee6fd3e"
+      },
+      {
+        "name": "related",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-app.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/online-ui.test.mjs",
+          "tests/online-feedback.test.mjs",
+          "tests/battle-controls.test.mjs",
+          "tests/account-app.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 4.416,
+        "log": "tmp/duema-online-dialog-review/related.log",
+        "passed": 138,
+        "failed": 0,
+        "sha256": "110ce101c3f45b36e075db081cb1540834642dafdfebed0d84ce7b468eecc49a"
+      },
+      {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.794,
+        "log": "tmp/duema-online-dialog-review/check.log",
+        "sha256": "fd00ef4548eb506e6a627320f0f81809e69c765639f8bb9b2831989aba13f5ca"
+      },
+      {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 14.372,
+        "log": "tmp/duema-online-dialog-review/audit.log",
+        "sha256": "f3dce8c6897c86fad30c51a6172abc271f0dea7a15e217958f36c09a29dd682a"
+      }
+    ],
+    "existingRegressionCasesPassed": 138,
+    "diagnosticCasesConfirmingOpenFindings": 3,
+    "diagnosticMeaning": "REPRO3件の合格は、不具合2件を3通りの条件で再現したという意味。修正済み・不具合なしではない。",
+    "reproduce": "node tools/review-online-dialogs.mjs",
+    "fixtureNotes": [
+      "監査用のeditGameは、モーダルで隠れた再接続ボタンを押す代わりにバックグラウンドのclient.refreshで取得する。",
+      "バトル再現の召喚コストは闇/火。最初のテスト用マナ不足を訂正し、製品コードを変更せず再現した。"
+    ],
+    "resolvedFixtureAttempts": [
+      {
+        "name": "diagnostic",
+        "command": [
+          "node",
+          "tools/review-online-dialogs.mjs"
+        ],
+        "code": 1,
+        "timedout": false,
+        "seconds": 0.885,
+        "log": "tmp/duema-online-dialog-review/diagnostic.log",
+        "sha256": "d9632daab3a96041c4e45eccea043c8f6c16e1af8ad5fd66d0f616977193b5da",
+        "reason": "監査用フィクスチャの背景更新経路とマナ文明を修正して解消。"
+      },
+      {
+        "name": "diagnostic-corrected",
+        "command": [
+          "node",
+          "tools/review-online-dialogs.mjs"
+        ],
+        "code": 1,
+        "timedout": false,
+        "seconds": 0.886,
+        "log": "tmp/duema-online-dialog-review/diagnostic-corrected.log",
+        "sha256": "da6609337e874a3548e12ecf716aade63de884a6513fffd494b61ea6c7614ba2",
+        "reason": "監査用フィクスチャの背景更新経路とマナ文明を修正して解消。"
+      }
+    ],
+    "noWholeNpmTest": true,
+    "maxProcessSeconds": 570
+  },
+  "actualCards": {
+    "startUniqueNames": 9070,
+    "endUniqueNames": 9070,
+    "uniqueIds": 9070,
+    "duplicates": 0,
+    "added": 0,
+    "normalization": "dist/catalogue.js nameKey",
+    "invariants": {
+      "baseline": "4801e7b369aca914bf44d719ceede4c6d589df09",
+      "target": 9500,
+      "originalDefinitionsUnchanged": 9043,
+      "added": 27,
+      "uniqueNames": 9070,
+      "uniqueIds": 9070,
+      "duplicateNames": 0,
+      "partialNewDefinitions": 0,
+      "catalogueAndAliasesUnchanged": true,
+      "remaining": 430
+    }
+  },
+  "hashes": {
+    "dist/app.js": "3ef781968479de5626e09ffce76e773e9b11ce0929dc0092c2d52ca444d5c464",
+    "dist/online-ui.js": "8fadacb9fa237cf4b3612019dddd32deec6a43fe52c49d404b51501995dbfac2",
+    "dist/online.js": "702bca239d614d27b780cb4981695e291d13e6c18bf0fa702dc632a01332d964",
+    "server/duel-core.mjs": "264f47bdb34586ea38b989ad72c3d358b3557727b7f44ae0d35afe4142c2796e",
+    "tools/review-online-dialogs.mjs": "cb8add6dc2f76727cbca2d5ce8d42309e818ad8894531bb2ccf01a4de0c6102c",
+    "tools/online-dialog-review-cases.txt": "674d922eb3c2f032c551cf5dd12430b5e02d73bc8aeb5d69645b6d84657da079"
+  },
+  "limits": [
+    "今回確認したのはローカルの現行コミット。本番アカウントの操作、実機確認、Netlify更新は行っていない。",
+    "前回までの修正完了記録を保持し、今回の2件を新たな未修正として記録する。",
+    "全カード・全対戦状況を保証する網羅試験ではない。一括npm testは中断・合否未確認のまま。後回しにした裁定・再録2件は維持。"
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

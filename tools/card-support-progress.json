@@ -524408,7 +524408,8 @@
         }
       ],
       "resolutionArtifact": "tools/online-recovery-fixes-verification.json",
-      "resolvedAt": "2026-11-21T22:38:16.124Z"
+      "resolvedAt": "2026-11-21T22:38:16.124Z",
+      "followUpReview": "tools/online-dialog-review.json"
     },
     "latestOnlineRecoveryFixes": {
       "artifact": "tools/online-recovery-fixes-verification.json",
@@ -524424,6 +524425,35 @@
         "今回の3件と前回の修正は未公開。本番2アカウント対戦での確認は公開後。Netlifyはまだ更新しないという指示を継続。",
         "一括npm testの中断・合否未確認と、後回しにした裁定・再録2件は維持。次のカード登録phaseは変更しない。"
       ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      }
+    },
+    "latestOnlineDialogReview": {
+      "artifact": "tools/online-dialog-review.json",
+      "checkedAt": "2026-11-21T22:45:04.307Z",
+      "baseCommit": "bae8f49d9a906138ab73ee2bb35bd4e56a7944bc",
+      "status": "additional-dialog-review-complete-two-open-findings",
+      "productCodeChanged": false,
+      "confirmedOpenFindings": [
+        {
+          "id": "online-dialog-stale-context",
+          "severity": "medium",
+          "title": "対戦ダイアログがアカウント解除・盤面更新へ追従しない"
+        },
+        {
+          "id": "online-fight-target-reference-missing",
+          "severity": "medium",
+          "title": "効果によるバトルの合法な対象カードをタップすると操作がないと表示する"
+        }
+      ],
+      "existingRegressionCasesPassed": 138,
+      "diagnosticCasesConfirmingOpenFindings": 3,
+      "uniqueNames": 9070,
+      "added": 0,
+      "next": "今回の2件は未修正。対戦ダイアログのアカウント・ルーム・盤面更新への追従と、公開された単数対象UIDの参照を修正し、再現ケースを期待動作の回帰テストへ変換する。公開は別途のユーザー指示まで行わない。",
       "publication": {
         "pushed": false,
         "deployed": false,
