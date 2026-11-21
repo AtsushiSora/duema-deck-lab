@@ -281386,15 +281386,213 @@
       },
       "supportBatch": "phase-1570",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx10-001",
+      "name": "偽りの名 ビルド・レオーネ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "エンジェル・コマンド/アンノウン",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーが攻撃する時、バトルゾーンにある相手の進化ではないクリーチャーを１体選び、新しいシールドとして持ち主のシールドゾーンに裏向きにして加える。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx10-001",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "shields",
+          "filter": {
+            "nonEvolution": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1571",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd18-004",
+      "name": "熱血提督 ザーク・タイザー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 7000,
+      "race": "ガイアール・コマンド・ドラゴン",
+      "text": "相手の呪文またはクリーチャーの能力によって、このクリーチャーを自分の手札から捨てる時、墓地に置くかわりにバトルゾーンに出してもよい。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚をすべてのプレイヤーに見せる。その中からヒューマノイド爆とコマンド・ドラゴンをすべて自分の手札に加え、残りを好きな順序で自分の山札の一番下に置く。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd18-004",
+      "limit": 4,
+      "g591Discard": "opponentEffect",
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "public": true,
+          "stages": [
+            {
+              "to": "hand",
+              "n": "all",
+              "allMatches": true,
+              "filter": {
+                "creature": true,
+                "raceAny": [
+                  "ヒューマノイド爆",
+                  "コマンド・ドラゴン"
+                ]
+              }
+            }
+          ],
+          "rest": "bottom"
+        }
+      ],
+      "supportBatch": "phase-1571",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr11-019",
+      "name": "復活と激突の呪印",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれかひとつを選ぶ。 　▼コスト６以下の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。 　▼バトルゾーンにある自分と相手のクリーチャーを１体ずつ選び、その２体をバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-019",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "墓地からコスト6以下の非進化クリーチャーを出す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "deploy": true,
+                  "n": 1,
+                  "filter": {
+                    "creature": true,
+                    "nonEvolution": true,
+                    "max": 6
+                  }
+                }
+              ]
+            },
+            {
+              "label": "自分と相手のクリーチャーをバトルさせる",
+              "defs": [
+                {
+                  "op": "Fight240",
+                  "spell": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1571",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp18-034",
+      "name": "ジャスティス・フォース",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nコスト４以下のクリーチャーを１体、自分の手札から出してもよい。\n次の自分のターンのはじめまで、自分のクリーチャーすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-034",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "max": 4
+          }
+        },
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "grant": {
+            "blocker": true
+          },
+          "g521UntilStart": true,
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1571",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-022",
+      "name": "スポーツ大尉",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 12000,
+      "race": "ジョーカーズ",
+      "text": "Ｊ・Ｏ・Ｅ ２ (このクリーチャーを、コストを２少なくして召喚してもよい。そうしたら、このターンの終わりに、これを自分の山札の一番下に置く。下に置いたら、カードを１枚引く)\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分のシールドを１つ、手札に加えてもよい。（その「S・トリガー」能力を使ってもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-022",
+      "limit": 4,
+      "joeDiscount": 2,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldHandFollow1017",
+          "optional": true,
+          "defs": []
+        }
+      ],
+      "supportBatch": "phase-1571",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1570,
+    "phase": 1571,
     "checkedAt": "2026-11-21",
-    "baseCount": 8910,
-    "newEffectCards": 3,
+    "baseCount": 8913,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8913,
+    "totalCount": 8918,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -307153,6 +307351,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 8910,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1570,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8910,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 8913,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

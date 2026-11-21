@@ -19822,5 +19822,218 @@
         ]
       }
     }
+  },
+  "dmx10-001": {
+    "phase": 1571,
+    "faces": [
+      {
+        "name": "偽りの名 ビルド・レオーネ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーが攻撃する時、バトルゾーンにある相手の進化ではないクリーチャーを１体選び、新しいシールドとして持ち主のシールドゾーンに裏向きにして加える。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "エンジェル・コマンド/アンノウン",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "shields",
+          "filter": {
+            "nonEvolution": true
+          }
+        }
+      ]
+    }
+  },
+  "dmd18-004": {
+    "phase": 1571,
+    "faces": [
+      {
+        "name": "熱血提督 ザーク・タイザー",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "相手の呪文またはクリーチャーの能力によって、このクリーチャーを自分の手札から捨てる時、墓地に置くかわりにバトルゾーンに出してもよい。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚をすべてのプレイヤーに見せる。その中からヒューマノイド爆とコマンド・ドラゴンをすべて自分の手札に加え、残りを好きな順序で自分の山札の一番下に置く。\nW・ブレイカー",
+        "race": "ガイアール・コマンド・ドラゴン",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g591Discard": "opponentEffect",
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "public": true,
+          "stages": [
+            {
+              "to": "hand",
+              "n": "all",
+              "allMatches": true,
+              "filter": {
+                "creature": true,
+                "raceAny": [
+                  "ヒューマノイド爆",
+                  "コマンド・ドラゴン"
+                ]
+              }
+            }
+          ],
+          "rest": "bottom"
+        }
+      ]
+    }
+  },
+  "dmr11-019": {
+    "phase": 1571,
+    "faces": [
+      {
+        "name": "復活と激突の呪印",
+        "typeText": "呪文",
+        "civilizationText": "闇/自然",
+        "civilizations": [
+          "闇",
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれかひとつを選ぶ。 　▼コスト６以下の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。 　▼バトルゾーンにある自分と相手のクリーチャーを１体ずつ選び、その２体をバトルさせる。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "墓地からコスト6以下の非進化クリーチャーを出す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "deploy": true,
+                  "n": 1,
+                  "filter": {
+                    "creature": true,
+                    "nonEvolution": true,
+                    "max": 6
+                  }
+                }
+              ]
+            },
+            {
+              "label": "自分と相手のクリーチャーをバトルさせる",
+              "defs": [
+                {
+                  "op": "Fight240",
+                  "spell": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmrp18-034": {
+    "phase": 1571,
+    "faces": [
+      {
+        "name": "ジャスティス・フォース",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nコスト４以下のクリーチャーを１体、自分の手札から出してもよい。\n次の自分のターンのはじめまで、自分のクリーチャーすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "max": 4
+          }
+        },
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "grant": {
+            "blocker": true
+          },
+          "g521UntilStart": true,
+          "spell": true
+        }
+      ]
+    }
+  },
+  "dmrp03-022": {
+    "phase": 1571,
+    "faces": [
+      {
+        "name": "スポーツ大尉",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "Ｊ・Ｏ・Ｅ ２ (このクリーチャーを、コストを２少なくして召喚してもよい。そうしたら、このターンの終わりに、これを自分の山札の一番下に置く。下に置いたら、カードを１枚引く)\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分のシールドを１つ、手札に加えてもよい。（その「S・トリガー」能力を使ってもよい）",
+        "race": "ジョーカーズ",
+        "powerText": "12000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "joeDiscount": 2,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldHandFollow1017",
+          "optional": true,
+          "defs": []
+        }
+      ]
+    }
   }
 }

@@ -1,0 +1,344 @@
+{
+  "phase": 1571,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8913,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmx10-001",
+      "name": "偽りの名 ビルド・レオーネ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx10-001",
+      "faces": [
+        {
+          "name": "偽りの名 ビルド・レオーネ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーが攻撃する時、バトルゾーンにある相手の進化ではないクリーチャーを１体選び、新しいシールドとして持ち主のシールドゾーンに裏向きにして加える。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "エンジェル・コマンド/アンノウン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Target",
+            "to": "shields",
+            "filter": {
+              "nonEvolution": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx10-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "381ae8f9c9479097a49a484bfe4b2eb8bede88bc4c03b244fe5fb249fb79f446",
+        "facesMatched": true,
+        "imageSha256": "0b4e672f8025ad84af60582df4548354d11938e35bffdc9015173b5bcc778f5c",
+        "imageBytes": 152937
+      },
+      "sameNameProducts": [
+        "DMX-14 最強戦略 パーフェクト12",
+        "DMX-10 デッキビルダー鬼DX キラリ！レオ編"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx10-001",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmd18-004",
+      "name": "熱血提督 ザーク・タイザー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd18-004",
+      "faces": [
+        {
+          "name": "熱血提督 ザーク・タイザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "相手の呪文またはクリーチャーの能力によって、このクリーチャーを自分の手札から捨てる時、墓地に置くかわりにバトルゾーンに出してもよい。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚をすべてのプレイヤーに見せる。その中からヒューマノイド爆とコマンド・ドラゴンをすべて自分の手札に加え、残りを好きな順序で自分の山札の一番下に置く。\nW・ブレイカー",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g591Discard": "opponentEffect",
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "stages": [
+              {
+                "to": "hand",
+                "n": "all",
+                "allMatches": true,
+                "filter": {
+                  "creature": true,
+                  "raceAny": [
+                    "ヒューマノイド爆",
+                    "コマンド・ドラゴン"
+                  ]
+                }
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd18-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "42a3a4b7487aa452df7333794179c7050e215d3bddd822553f6853618491693c",
+        "facesMatched": true,
+        "imageSha256": "e0b6bfc83d08f0ba3c2e283e00f208641baacee8b4da8ff27b822b490e7d82b7",
+        "imageBytes": 154159
+      },
+      "sameNameProducts": [
+        "DMX-26 ファイナル・メモリアル・パック ～DS・Rev・RevF編～",
+        "DMD-18 スーパーVデッキ 燃えよ龍剣 ガイアール",
+        "プロモ限定カード 14期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd18-004",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmr11-019",
+      "name": "復活と激突の呪印",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-019",
+      "faces": [
+        {
+          "name": "復活と激突の呪印",
+          "typeText": "呪文",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれかひとつを選ぶ。 　▼コスト６以下の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。 　▼バトルゾーンにある自分と相手のクリーチャーを１体ずつ選び、その２体をバトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "modes": [
+              {
+                "label": "墓地からコスト6以下の非進化クリーチャーを出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "grave",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "creature": true,
+                      "nonEvolution": true,
+                      "max": 6
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "自分と相手のクリーチャーをバトルさせる",
+                "defs": [
+                  {
+                    "op": "Fight240",
+                    "spell": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr11-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "c71ffb81819a272c0f0052235d52ca85808b5aba69309bbc583f13c7f16a3a55",
+        "facesMatched": true,
+        "imageSha256": "a23857e658d07f292393a49b1c0667ae4cdf3e0f583493f0879a3c6ec025537f",
+        "imageBytes": 129386
+      },
+      "sameNameProducts": [
+        "DMX-22 革命 超ブラック・ボックス・パック",
+        "DMR-11 エピソード３ ウルトラＶマスター"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-019",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp18-034",
+      "name": "ジャスティス・フォース",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-034",
+      "faces": [
+        {
+          "name": "ジャスティス・フォース",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nコスト４以下のクリーチャーを１体、自分の手札から出してもよい。\n次の自分のターンのはじめまで、自分のクリーチャーすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 4
+            }
+          },
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "grant": {
+              "blocker": true
+            },
+            "g521UntilStart": true,
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "34d2cdf0a21d46fab1cc5e7e0fee11b3255bf3c6f97e1eadd00f8b11a85b9033",
+        "facesMatched": true,
+        "imageSha256": "1e14259ad74d24fb04d481c810d79e5537ff584cfcf2f57feebee18b7a2a8dd7",
+        "imageBytes": 136185
+      },
+      "sameNameProducts": [
+        "DMRP-18 王来篇拡張パック第2弾 禁時王の凶来",
+        "プロモ限定カード 20期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-034",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp03-022",
+      "name": "スポーツ大尉",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-022",
+      "faces": [
+        {
+          "name": "スポーツ大尉",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "Ｊ・Ｏ・Ｅ ２ (このクリーチャーを、コストを２少なくして召喚してもよい。そうしたら、このターンの終わりに、これを自分の山札の一番下に置く。下に置いたら、カードを１枚引く)\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分のシールドを１つ、手札に加えてもよい。（その「S・トリガー」能力を使ってもよい）",
+          "race": "ジョーカーズ",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "joeDiscount": 2,
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldHandFollow1017",
+            "optional": true,
+            "defs": []
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "68eac3483e29c901c38c463901a70fd21f03fc12f4a60ef797bcb242fb8eac9f",
+        "facesMatched": true,
+        "imageSha256": "c350c6182d363cee96f606e82da2fa715af23f498f1dab41f364eb300acf9ef5",
+        "imageBytes": 109496
+      },
+      "sameNameProducts": [
+        "DMRP-03 拡張パック新3弾 気分Ｊ･O･E×２メラ冒険！！"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-022",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx10-001": 4,
+      "dmd18-004": 4,
+      "dmr11-019": 4,
+      "dmrp18-034": 4,
+      "dmrp03-022": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    }
+  ]
+}
