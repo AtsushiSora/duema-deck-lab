@@ -49,7 +49,7 @@ function onlineManaPaymentHTML(payment,actions,revision,disabled){
 }
 export function onlinePrimaryAction(room,selected=null,pending=null){
  const g=room?.game;if(!g)return {label:'対戦結果',command:'result',disabled:true};
- const own=g.players[room.seat],actions=g.actions||[],selectedCard=[...own.hand,...(own.grave||[]),...(own.mana||[]),...(own.extra||[]),...(own.abyss||[])].find(x=>x.uid===selected),moves=actions.filter(a=>actionMatchesCard(a,selected)),review=onlinePendingMove(room,pending);
+ const own=g.players[room.seat],actions=g.actions||[],selectedCard=[...own.hand,...(own.battle||[]),...(own.grave||[]),...(own.mana||[]),...(own.extra||[]),...(own.abyss||[])].find(x=>x.uid===selected),moves=actions.filter(a=>actionMatchesCard(a,selected)),review=onlinePendingMove(room,pending);
  if(room.phase==='playing'&&g.actor===room.seat&&g.manaPayment){
   const confirm=actions.find(a=>a.kind==='confirmMana');
   return {label:confirm?'このマナで使う':'支払うマナを選ぶ',command:confirm?'move':'choices',move:confirm??null,disabled:false};
@@ -60,7 +60,7 @@ export function onlinePrimaryAction(room,selected=null,pending=null){
 }
 export function onlineScreenHTML(state,{user,decks=[],selectedDeckId,code='',selected=null,page=0,art,actionsOpen=false,pending=null,numberValue='',valid=()=>true,history=[],evolutionCard=c=>!!c.evolution}={}){
  const room=state.room,game=room?.game,busy=state.busy,disabled=busy||!state.connected;
- const notice=state.error?`<div class="notice" role="alert">${esc(state.error)} ${button('online-refresh','再接続',busy)}</div>`:'';
+ const notice=state.error?`<div class="notice" role="alert">${esc(state.error)} ${state.retry?.automatic===false?'<small>自動再接続を停止中</small> ':''}${button('online-refresh','再接続',busy)}</div>`:'';
  if(!user)return `<div class="page-head online-lobby-head"><div><h1>友達と対戦</h1><p>デッキを選んで、ルームで待ち合わせ。</p></div></div><section class="panel online-lobby online-login"><h2>まずはGoogleでログイン</h2><p>それぞれ別のGoogleアカウントで参加します。</p>${button('nav','アカウントを開く',false,'data-view="account"',true)}</section>`;
  if(room&&room.phase==='waiting'&&room.seat===0)return `<div class="page-head"><div><div class="eyebrow">PRIVATE ROOM</div><h1>友達を待っています</h1><p>相手がデッキを選んで参加すると対戦が始まります。</p></div></div>${notice}<section class="panel online-lobby">${room.format===ADVANCE?`<p class="small">${formatLabel(room.format)}</p>`:''}<small>ルームコード</small><div class="online-room-code">${esc(room.code.slice(0,8))} ${esc(room.code.slice(8))}</div><div class="row">${button('online-copy-code','コードをコピー')}${button('online-copy-link','招待リンクをコピー')}</div><p>相手もGoogleでログインし、このコードまたは招待リンクから参加してください。</p><p class="small">待機ルームの有効期限は作成から6時間です。手札と山札の中身は相手に表示されません。</p>${button('online-cancel','ルームを閉じる',disabled)}${button('online-refresh',busy?'確認中…':'再接続',busy)}</section>`;
  if(game){

@@ -524376,31 +524376,54 @@
       "artifact": "tools/online-recovery-review.json",
       "checkedAt": "2026-11-21T22:28:59.348Z",
       "baseCommit": "4b225426ffe8c5bc8f6ffae6239a049c50c26a0f",
-      "status": "additional-review-complete-three-open-findings",
+      "status": "resolved-locally-after-review",
       "productCodeChanged": false,
-      "confirmedOpenFindings": [
-        {
-          "id": "online-field-primary-ignores-selection",
-          "severity": "medium",
-          "title": "場のハイパー化対象を選んでもメインボタンが攻撃ステップへ進める"
-        },
-        {
-          "id": "online-room-code-draft-lost-on-recovery",
-          "severity": "medium",
-          "title": "通信復旧時に入力途中のルームコードが消える"
-        },
-        {
-          "id": "online-permanent-errors-retry-without-backoff",
-          "severity": "medium",
-          "title": "版不一致・参加権限エラーでも3秒ごとの自動通信が続く"
-        }
-      ],
+      "confirmedOpenFindings": [],
       "existingRegressionCasesPassed": 89,
       "additionalSafetyChecksPassed": 3,
       "diagnosticCasesConfirmingOpenFindings": 4,
       "uniqueNames": 9070,
       "added": 0,
-      "next": "今回の3件は未修正。場の選択をメインボタンへ反映、コード入力の保持、再試行方針の修正を行い、診断ケースを期待動作の回帰テストに変換する。公開は別途のユーザー指示まで行わない。",
+      "next": "追加3件のローカル検証は完了。公開後の本番確認は未実施。push・公開・Netlify更新は別途のユーザー指示まで行わない。",
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "resolvedFindings": [
+        {
+          "id": "online-field-primary-ignores-selection",
+          "status": "fixed-local",
+          "result": "自分のバトルゾーンも選択中カードの判定対象に含める。ハイパー化を選ぶ下部ボタンは操作パネルを開き、攻撃ステップへ進めない。実アプリ→HTTP→暗号化保存経由で素材のタップとハイパー化を確認。両座席のクリーチャー・ギア・フィールド・タマシード、通常の攻撃選択も回帰検証。"
+        },
+        {
+          "id": "online-room-code-draft-lost-on-recovery",
+          "status": "fixed-local",
+          "result": "inputイベントごとにルームコードを保持。フォーカスを外す前に接続が回復しても16文字の入力を保持。入力を消した場合は古いコードを復活させない。保存形式の追加なし。"
+        },
+        {
+          "id": "online-permanent-errors-retry-without-backoff",
+          "status": "fixed-local",
+          "result": "版・エンジン・通信形式の不一致、認証・権限・ルーム不存在・期限切れ等のエラーでは自動GETを停止。タブの再表示やネットワーク復帰でも再開せず、手動再接続またはアカウント切替で復帰する。JSONでない403・空のJSONの403もHTTPステータスで停止する。ネットワーク・タイムアウト・429・503は6→12→24→48→60秒、以後最大60秒間隔。接続成功時は通常の3秒間隔へ戻る。自動再試行はGETだけで、送信済み操作を再送しない。"
+        }
+      ],
+      "resolutionArtifact": "tools/online-recovery-fixes-verification.json",
+      "resolvedAt": "2026-11-21T22:38:16.124Z"
+    },
+    "latestOnlineRecoveryFixes": {
+      "artifact": "tools/online-recovery-fixes-verification.json",
+      "checkedAt": "2026-11-21T22:38:16.124Z",
+      "baseCommit": "4700a96f32b016fe57e8a39ea742a0fb8e2dbd52",
+      "status": "three-additional-defects-verified-local-not-published",
+      "resolvedDefects": 3,
+      "totalDistinctTestsPassed": 174,
+      "regressionEntrySubsetPassed": 31,
+      "uniqueNames": 9070,
+      "added": 0,
+      "remaining": [
+        "今回の3件と前回の修正は未公開。本番2アカウント対戦での確認は公開後。Netlifyはまだ更新しないという指示を継続。",
+        "一括npm testの中断・合否未確認と、後回しにした裁定・再録2件は維持。次のカード登録phaseは変更しない。"
+      ],
       "publication": {
         "pushed": false,
         "deployed": false,

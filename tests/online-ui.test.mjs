@@ -93,3 +93,15 @@ test('numeric entry is separate from legal candidates, shows its server minimum 
  assert.match(html,/data-action="online-number-submit"[^>]*data-index="4" data-revision="10"/);
  assert.match(html,/data-action="online-move"[^>]*data-index="4"/);
 });
+
+for(const seat of [0,1])for(const type of ['creature','gear','field','seed'])test('a selected field '+type+' keeps contextual controls at seat '+seat,async()=>{
+ const {onlinePrimaryAction}=await import('../dist/online-ui.js'),state=fixture(seat),g=state.room.game,x={...c('field-object'),type};
+ g.phase='main';g.players[seat].battle=[x];g.actions=[{id:3,kind:type==='creature'?'hyper':'extended',uid:x.uid,label:'能力を使う'},{id:8,kind:'toAttack',label:'攻撃へ進む'}];
+ const primary=onlinePrimaryAction(state.room,x.uid);assert.equal(primary.command,'card');assert.equal(primary.label,'使う方法を選ぶ');assert.equal(primary.move,null);
+ g.phase='attack';g.actions=[{id:5,kind:'attack',uid:x.uid,label:'攻撃'},{id:8,kind:'endTurn',label:'ターン終了'}];
+ assert.equal(onlinePrimaryAction(state.room,x.uid).command,'targets');
+});
+test('a permanent connection error explains that automatic retries are paused while manual reconnect stays available',()=>{
+ const state=fixture();state.connected=false;state.error='更新してから再接続してください。';state.retry={automatic:false,delay:6000};
+ const html=onlineScreenHTML(state,{user:{}});assert.match(html,/自動再接続を停止中/);assert.match(html,/data-action="online-refresh"/);
+});

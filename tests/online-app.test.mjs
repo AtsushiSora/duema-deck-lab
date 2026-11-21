@@ -11,7 +11,7 @@ import test from'node:test';import assert from'node:assert/strict';import vm fro
 const source=fs.readFileSync(new URL('../dist/app.js',import.meta.url),'utf8').replace(/^import .*;\n/gm,'').replace(/\bboot\(\);\s*$/,'').replaceAll('import.meta.url',JSON.stringify(new URL('../dist/app.js',import.meta.url).href)),tick=()=>new Promise(r=>setImmediate(r));
 function harness({origin='https://duema-deck-lab.netlify.app'}={}){const key=randomBytes(32).toString('base64'),root={innerHTML:''},dialog={innerHTML:'',open:false,addEventListener(){},showModal(){this.open=true;},close(){this.open=false;}},listeners={},errors=[],writes=[],copied=[],nodes={},classes=new Set(),registry=createCatalogue(snapshot,data.cards,details),local={decks:[{...structuredClone(PRESETS[0]),id:'mine',name:'自分の40枚'}],friends:[],history:[{id:'existing-result'}],selected:'mine'},rooms=new Map(),sessions=new Map();let version=0,watch;
  // Model native input replacement when the real application replaces its root HTML.
- let rendered='';Object.defineProperty(root,'innerHTML',{get:()=>rendered,set:value=>{rendered=value;const field=value.match(/id="online-number"[^>]*value="([^"]*)"/);if(field)nodes['#online-number']={value:field[1]};else delete nodes['#online-number'];}});
+ let rendered='';Object.defineProperty(root,'innerHTML',{get:()=>rendered,set:value=>{rendered=value;const field=value.match(/id="online-number"[^>]*value="([^"]*)"/);if(field)nodes['#online-number']={value:field[1]};else delete nodes['#online-number'];const code=value.match(/id="online-code"[^>]*value="([^"]*)"/);if(code)nodes['#online-code']={value:code[1]};else delete nodes['#online-code'];}});
  const service=createDuelService({key,code:()=> '1122334455667788',seed:()=>42,store:{getRoom:async c=>structuredClone(rooms.get(c)||null),getSession:async uid=>structuredClone(sessions.get(uid)||null),commit:async({doc,previous,session})=>{const old=rooms.get(doc.code);if(old?old.version!==previous:previous!==null)throw new DuelError('room/conflict','競合',409);if(session){const prior=sessions.get(session.uid);if(prior?prior.version!==session.previous:session.previous!==null)throw new DuelError('room/conflict','セッション更新競合',409);}rooms.set(doc.code,{doc:structuredClone(doc),version:String(++version)});if(session)sessions.set(session.uid,{code:session.code,version:String(version)});}}}),handler=createDuelHandler({service,verifyToken:async t=>({uid:t,name:t==='u1'?'自分':'友達',firebase:{sign_in_provider:'google.com'}})}),onlineFactory=options=>createOnlineClient({...options,timer:()=>1,cancel(){},fetcher:(url,opts)=>handler(new Request('https://duema-deck-lab.netlify.app'+url,opts))}),accountFactory=options=>createAccountClient({...options,fetchConfig:async()=>({schemaVersion:1,firebase:{projectId:'duema-example',authDomain:'duema-example.firebaseapp.com',apiKey:'AIza'+'x'.repeat(35),appId:'1:123:web:abc123'}}),createAdapter:async()=>({watch(cb){watch=cb;queueMicrotask(()=>cb(null));return()=>{};},signIn:()=>watch({uid:'u1',name:'自分',email:'u@example.com'}),signOut:()=>watch(null),getIdToken:async()=> 'u1',read:async()=>null})});
  const ctx=vm.createContext({...appFeatures,...characterRoster,...extraCharacters,PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS,...championLibrary,...opponentProgress,...updates,createCardArt,...e,...info,...manual,...environment,...starter,bindFittedBoard,createAccountClient:accountFactory,createOnlineClient:onlineFactory,onlineScreenHTML,onlinePrimaryAction,onlinePendingMove,accountScreenHTML,mergeAccountSnapshot,battleCard:e.card,createCatalogue,prepareDeckCopy,PRESETS,fixtureRegistry:registry,fixtureData:data,fixtureSaved:local,console:{error:e=>errors.push(e)},structuredClone,crypto:globalThis.crypto,TextDecoder,TextEncoder,URL,URLSearchParams,Intl,Date,fetch:async url=>({ok:true,json:async()=>structuredClone(url.startsWith('cards.json')?data:url.startsWith('catalogue.json')?snapshot:details)}),navigator:{clipboard:{writeText:async s=>copied.push(s)}},localStorage:{getItem:()=>null,setItem:(key,v)=>writes.push({key,value:JSON.parse(v)})},setTimeout:()=>1,clearTimeout(){},setInterval:()=>1,clearInterval(){},document:{querySelector:q=>q==='#app'?root:q==='#dialog'?dialog:q==='#toast'?{textContent:'',classList:{add(){},remove(){}}}:nodes[q]||null,querySelectorAll:()=>[],body:{classList:{toggle(c,value){value?classes.add(c):classes.delete(c);}}},addEventListener:(k,f)=>listeners[k]=f},window:{addEventListener(){},scrollTo(){}},location:{hash:'',pathname:'/',origin,reload(){}},history:{replaceState(){}}});vm.runInContext(source,ctx);vm.runInContext('registry=fixtureRegistry;cards=registry.cards;battleCards=fixtureData.cards;metadata=fixtureData;environmentDecks=resolveEnvironmentDecks(registry);starterDecks=resolveStarter25Decks(registry);saved=fixtureSaved;view="battle";render();',ctx);const read=c=>vm.runInContext(c,ctx),click=async(action,extra={})=>{if(await routeToAction({action,extra,getHTML:()=>dialog.open?dialog.innerHTML:root.innerHTML,fire:(action,extra)=>listeners.click({target:{closest:()=>({dataset:{action,...extra},closest:()=>null})}})}))return;const html=dialog.open?dialog.innerHTML:root.innerHTML;assert.ok([...html.matchAll(/<button\b([^>]*)>/g)].some(m=>m[1].includes(`data-action="${action}"`)&&!/\bdisabled\b/.test(m[1])&&Object.entries(extra).every(([k,v])=>m[1].includes(`data-${k}="${v}"`))),'visible '+action);await listeners.click({target:{closest:()=>({dataset:{action,...extra},closest:()=>null})}});for(let n=0;n<4;n++)await tick();assert.deepEqual(errors,[]);};return{root,dialog,read,click,input:(id,value)=>{nodes['#'+id].value=value;listeners.input({target:{id,value}});},change:async(id,value)=>{await listeners.change({target:{id,value,matches:()=>false}});assert.deepEqual(errors,[]);},dispatch:async(action,extra={})=>{await listeners.click({target:{closest:()=>({dataset:{action,...extra},closest:()=>null})}});await tick();assert.deepEqual(errors,[]);},writes,copied,nodes,classes,service,game:()=>openRoom(rooms.get(read('onlineState.room.code')).doc,key).game,async editGame(fn){const row=rooms.get(read('onlineState.room.code')),state=openRoom(row.doc,key);fn(state.game);state.revision++;row.doc=sealRoom(state,key);row.version=String(++version);await click('online-refresh');},async login(){await click('nav',{view:'online'});await click('nav',{view:'account'});await click('account-login');await click('nav',{view:'online'});},async friend(){const code=read('onlineState.room.code');await service.join({code,deck:PRESETS[1],requestId:'friend-join-123456789'}, {uid:'u2',name:'友達'},'u2');await click('online-refresh');}};
 }
@@ -231,4 +231,56 @@ test('online log opens with the newest event first without changing the underlyi
  await h.click('online-log');assert.ok(h.dialog.innerHTML.indexOf('latest-event')<h.dialog.innerHTML.indexOf('old-event'));
  assert.equal(h.read('JSON.stringify(onlineState.room.events)===chronologicalBefore'),true);assert.equal(h.read('JSON.stringify(saved)===savedBeforeLog'),true);
  h.read('onlineClient.dispose()');
+});
+
+test('room-code input survives background recovery before blur and can be cleared without resurrecting an older code',async()=>{
+ const h=harness();await h.login();const original=h.service.resume;
+ h.service.resume=async()=>{throw Error('synthetic network interruption');};
+ await h.read('onlineClient.refresh()');assert.equal(h.read('onlineState.connected'),false);
+ h.input('online-code','AABBCCDDEEFF0011');
+ h.service.resume=original;await h.read('onlineClient.refresh()');
+ assert.equal(h.read('onlineState.connected'),true);assert.equal(h.nodes['#online-code'].value,'AABBCCDDEEFF0011');assert.equal(h.read('onlineCode'),'AABBCCDDEEFF0011');
+ h.input('online-code','');await h.read('renderOnline()');assert.equal(h.nodes['#online-code'].value,'');assert.equal(h.read('onlineCode'),'');
+ h.read('onlineClient.dispose()');
+});
+test('selected field Hyper ability opens its choices instead of advancing and resolves through real server moves',async()=>{
+ const h=harness();await h.login();await h.click('online-create');await h.friend();
+ await h.editGame(s=>{s.phase='main';s.active=0;s.decision=null;s.players[0].battle=[{uid:'field-hyper',cardId:'dm24ex1-028',entered:0,tapped:false},{uid:'donor',cardId:'dm01-108',entered:0,tapped:false}];});
+ await h.click('online-card',{uid:'field-hyper'});const before=h.game().actions,revision=String(h.read('onlineState.room.revision'));
+ assert.equal(h.read('onlinePrimaryAction(onlineState.room,onlineSelected,onlinePending).label'),'使う方法を選ぶ');
+ await h.click('online-primary',{revision});assert.equal(h.game().actions,before);assert.equal(h.game().phase,'main');
+ let a=h.read('onlineState.room.game.actions.find(a=>a.kind==="hyper"&&a.uid==="field-hyper")');
+ await h.click('online-move',{index:String(a.id),revision});
+ a=h.read('onlineState.room.game.actions.find(a=>a.targetUids?.includes("donor"))');assert.ok(a);
+ await h.click('online-move',{index:String(a.id),revision:String(h.read('onlineState.room.revision'))});
+ assert.equal(h.game().phase,'main');assert.equal(h.game().players[0].battle.find(c=>c.uid==='field-hyper').hyperActive,true);assert.equal(h.game().players[0].battle.find(c=>c.uid==='donor').tapped,true);
+ h.read('onlineClient.dispose()');
+});
+
+test('recovery safety: a response lost after a committed charge reconciles without applying the charge twice',async()=>{
+ const h=harness();await h.login();await h.click('online-create');await h.friend();
+ const original=h.service.move,uid=h.read('onlineState.room.game.players[0].hand[0].uid'),before=h.game().actions,revision=h.read('onlineState.room.revision');let calls=0;
+ h.service.move=async(...args)=>{calls++;await original(...args);throw Error('synthetic response lost after commit');};
+ await h.click('online-card',{uid});await h.click('online-primary',{revision:String(revision)});
+ assert.equal(h.read('onlineState.connected'),false);assert.equal(h.game().actions,before+1);
+ h.service.move=original;await h.click('online-refresh');
+ assert.equal(h.read('onlineState.connected'),true);assert.equal(h.read('onlineState.room.revision'),revision+1);assert.equal(h.game().actions,before+1);assert.equal(calls,1);
+ assert.ok(h.game().players[0].mana.some(c=>c.uid===uid));assert.ok(!h.game().players[0].hand.some(c=>c.uid===uid));
+ console.log('CHECK PASSED committed charge survives lost response and refresh exactly once');h.read('onlineClient.dispose()');
+});
+test('recovery safety: two simultaneous client mutations commit only once',async()=>{
+ const h=harness();await h.login();await h.click('online-create');await h.friend();const before=h.game().actions,revision=h.read('onlineState.room.revision');
+ const result=await h.read('Promise.all([onlineClient.move(onlineState.room.game.actions.find(a=>a.kind==="charge").id),onlineClient.move(onlineState.room.game.actions.find(a=>a.kind==="charge").id)])');
+ assert.equal(result.filter(Boolean).length,1);assert.equal(h.game().actions,before+1);assert.equal(h.read('onlineState.room.revision'),revision+1);
+ console.log('CHECK PASSED concurrent same-device mutations apply once');h.read('onlineClient.dispose()');
+});
+
+test('recovery safety: clearing an ended room does not reopen it on resume or delete its result',async()=>{
+ const h=harness();await h.login();await h.click('online-create');await h.friend();const code=h.read('onlineState.room.code');
+ await h.click('online-menu');await h.click('online-confirm-resign');await h.click('online-resign');
+ assert.equal(h.read('onlineState.room.phase'),'finished');const history=h.read('JSON.stringify(saved.onlineHistory)');
+ await h.click('online-back');await h.read('onlineClient.refresh()');assert.equal(h.read('onlineState.room'),null);assert.match(h.root.innerHTML,/data-action="online-create"/);
+ const finished=await h.service.get(code,{uid:'u1'},'u1');assert.equal(finished.phase,'finished');assert.equal(finished.game.winner,1);
+ assert.equal(h.read('JSON.stringify(saved.onlineHistory)'),history);
+ console.log('CHECK PASSED ended room remains stored while normal resume returns to lobby');h.read('onlineClient.dispose()');
 });

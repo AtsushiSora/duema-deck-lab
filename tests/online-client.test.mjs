@@ -57,3 +57,49 @@ test('a late cleared request cannot mark a new connection as already verified',a
  const c=createOnlineClient({...clock,getToken:async()=> 'token',fetcher:async(_,opts)=>{if(opts.method==='POST'){posts++;return reply({room:{...room,phase:'waiting'}});}if(++reads===2)await wait;return reply({room:reads>2?null:room});}});
  c.setIdentity('host');await c.refresh();const stale=c.refresh();await tick();c.clear();release();await stale;await c.create(PRESETS[0]);assert.equal(reads,3);assert.equal(posts,1);c.dispose();
 });
+
+function retryClock(){let id=0;const tasks=new Map();return{tasks,timer:(fn,delay)=>{const next=++id;tasks.set(next,{fn,delay});return next;},cancel:id=>tasks.delete(id),async fire(delay){const task=[...tasks].find(([,t])=>t.delay===delay);assert.ok(task,'scheduled '+delay);tasks.delete(task[0]);task[1].fn();await tick();}};}
+for(const mode of ['version','engine','schema','auth','permission','not-found','expired','non-json-forbidden','empty-json-forbidden'])test('permanent '+mode+' stops automatic requests until manual recovery',async()=>{
+ const clock=retryClock();let reads=0,healthy=false;
+ const room={schemaVersion:1,code:'AAAAAAAAAAAAAAAA',revision:1,phase:'waiting',engineVersion:ONLINE_COMPATIBILITY.engineVersion};
+ const c=createOnlineClient({...clock,getToken:async()=> 'token',fetcher:async()=>{
+  reads++;if(healthy)return reply({room});
+  if(mode==='version')return Response.json({room},{headers:{'X-Duema-Rules':'incompatible'}});
+  if(mode==='engine')return reply({room:{...room,engineVersion:'old'}});
+  if(mode==='schema')return reply({room:{...room,schemaVersion:99}});
+  if(mode==='non-json-forbidden')return new Response('<html>forbidden</html>',{status:403});
+  if(mode==='empty-json-forbidden')return Response.json(null,{status:403});
+  const status={auth:401,permission:403,'not-found':404,expired:410}[mode];return reply({error:'test/failure',message:'操作が必要です'},{status});
+ }});
+ c.setIdentity('u');c.setActive(true);await tick();assert.equal(reads,1);assert.equal(clock.tasks.size,0);assert.equal(c.getState().retry.automatic,false);
+ c.setActive(false);c.setActive(true);await c.refresh({automatic:true});assert.equal(reads,1);assert.equal(clock.tasks.size,0);
+ healthy=true;await c.refresh();assert.equal(reads,2);assert.equal(c.getState().connected,true);assert.equal(c.getState().retry,null);assert.ok([...clock.tasks.values()].some(t=>t.delay===3000));c.dispose();assert.equal(clock.tasks.size,0);
+});
+for(const mode of ['network','quota','server','timeout'])test('transient '+mode+' backs off to one minute and returns to normal after recovery',async()=>{
+ const clock=retryClock();let healthy=false,gets=0;
+ const c=createOnlineClient({...clock,getToken:async()=> 'token',fetcher:async()=>{gets++;if(healthy)return reply({room:null});if(mode==='network')throw TypeError('network');if(mode==='timeout')throw new DOMException('timeout','AbortError');return reply({error:'room/unavailable',message:'一時的な障害'},{status:mode==='quota'?429:503});}});
+ c.setIdentity('u');c.setActive(true);await tick();
+ for(const delay of [6000,12000,24000,48000,60000,60000]){assert.equal(c.getState().retry.delay,delay);await clock.fire(delay);}
+ assert.equal(gets,7);assert.equal(c.getState().retry.delay,60000);
+ healthy=true;await clock.fire(60000);assert.equal(c.getState().retry,null);assert.ok([...clock.tasks.values()].some(t=>t.delay===3000));
+ c.clear();assert.equal(clock.tasks.size,0);assert.equal(c.getState().retry,null);c.dispose();
+});
+test('an uncertain committed move is never retried automatically; only a GET reconciles it',async()=>{
+ const clock=retryClock();let revision=1,posts=0,gets=0;
+ const c=createOnlineClient({...clock,getToken:async()=> 'token',fetcher:async(_,options)=>{if(options.method==='POST'){posts++;revision++;throw TypeError('response lost');}gets++;return reply({room:{schemaVersion:1,code:'AAAAAAAAAAAAAAAA',phase:'playing',revision}});}});
+ c.setIdentity('u');c.setActive(true);await tick();await c.move(0);assert.equal(posts,1);assert.equal(c.getState().room.revision,1);
+ await clock.fire(6000);assert.equal(posts,1);assert.equal(gets,2);assert.equal(c.getState().room.revision,2);assert.equal(c.getState().connected,true);c.dispose();
+});
+test('identity changes clear paused retries and ignore a late permanent error from the old account',async()=>{
+ const clock=retryClock();let release,reads=0;const pending=new Promise(r=>release=r);
+ const c=createOnlineClient({...clock,getToken:async()=> 'token',fetcher:async()=>{if(++reads===1){await pending;return reply({error:'room/forbidden',message:'old failure'},{status:403});}return reply({room:null});}});
+ c.setIdentity('old');c.setActive(true);await tick();c.setIdentity('new');await tick();release();await tick();assert.equal(c.getState().connected,true);assert.equal(c.getState().retry,null);assert.ok([...clock.tasks.values()].some(t=>t.delay===3000));c.dispose();
+});
+
+for(const code of ['auth/invalid-user-token','auth/network-request-failed'])test('token provider '+code+' uses the appropriate retry policy',async()=>{
+ const clock=retryClock();let healthy=false,calls=0;
+ const c=createOnlineClient({...clock,getToken:async()=>{if(!healthy)throw Object.assign(Error('token problem'),{code});return 'token';},fetcher:async()=>{calls++;return reply({room:null});}});
+ c.setIdentity('u');c.setActive(true);await tick();assert.equal(calls,0);
+ const automatic=code==='auth/network-request-failed';assert.equal(c.getState().retry.automatic,automatic);assert.equal(clock.tasks.size,automatic?1:0);
+ healthy=true;if(automatic)await clock.fire(6000);else await c.refresh();assert.equal(calls,1);assert.equal(c.getState().connected,true);assert.equal(c.getState().retry,null);c.dispose();
+});

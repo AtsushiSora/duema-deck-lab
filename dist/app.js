@@ -1278,7 +1278,7 @@ document.addEventListener('compositionend',event=>{const e=event.target;if(!sear
  // after the committed text is available, without removing a live IME field.
  Promise.resolve().then(()=>applySearchInput(e));
 });
-document.addEventListener('input',event=>{const e=event.target;if(e.id==='online-number'){onlineNumberDraft={context:onlineNumberContext(),value:e.value};return;}if(e.dataset?.issueField){updateScreenshotIssueField(e);return;}if(searchInputIds.has(e.id)){if(!event.isComposing&&!composingSearchInputs.has(e))applySearchInput(e);return;}if(e.id==='deck-tags'&&edit){edit.tags=normalizeDeckTags(e.value);clearTimeout(draftTimer);draftTimer=setTimeout(flushEditorDraft,300);return;}if(e.id==='deck-name'&&edit){edit.name=e.value;const label=$('[data-draft-status]');if(label)label.textContent='下書きを保存中…';clearTimeout(draftTimer);draftTimer=setTimeout(flushEditorDraft,300);return;}if(e.id==='replay-range'){replayIndex=Number(e.value);render();}});
+document.addEventListener('input',event=>{const e=event.target;if(e.id==='online-code'){onlineCode=e.value;return;}if(e.id==='online-number'){onlineNumberDraft={context:onlineNumberContext(),value:e.value};return;}if(e.dataset?.issueField){updateScreenshotIssueField(e);return;}if(searchInputIds.has(e.id)){if(!event.isComposing&&!composingSearchInputs.has(e))applySearchInput(e);return;}if(e.id==='deck-tags'&&edit){edit.tags=normalizeDeckTags(e.value);clearTimeout(draftTimer);draftTimer=setTimeout(flushEditorDraft,300);return;}if(e.id==='deck-name'&&edit){edit.name=e.value;const label=$('[data-draft-status]');if(label)label.textContent='下書きを保存中…';clearTimeout(draftTimer);draftTimer=setTimeout(flushEditorDraft,300);return;}if(e.id==='replay-range'){replayIndex=Number(e.value);render();}});
 document.addEventListener('change',async event=>{const e=event.target;
  if(e.dataset?.deleteDeckId&&deckDeletion&&!deckDeletion.confirmed){
   const id=e.dataset.deleteDeckId;
@@ -1311,6 +1311,6 @@ async function boot(){try{const responses=await Promise.all([fetch('cards.json?v
 const manualBreakpoint=window.matchMedia?.('(max-width: 850px)');
 manualBreakpoint?.addEventListener?.('change',()=>{if(view==='manual')render();});
 window.matchMedia?.(PHONE_LANDSCAPE_QUERY)?.addEventListener?.('change',()=>{if(view==='manual')render();});
-window.addEventListener('online',()=>{if(view==='online')void onlineClient?.refresh();});
+window.addEventListener('online',()=>{if(view==='online')void onlineClient?.refresh({automatic:true});});
 document.addEventListener('visibilitychange',()=>{onlineClient?.setActive(view==='online'&&!document.hidden);cancelTournamentAutoAdvance();if(document.hidden){flushEditorDraft();aiPlayback?.suspend();}else{if(view==='manual')scheduleAI();syncTournamentAutoAdvance();void appUpdates?.check();}});
 boot();

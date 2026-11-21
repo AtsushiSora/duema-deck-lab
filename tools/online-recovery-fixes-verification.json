@@ -1,0 +1,188 @@
+{
+  "checkedAt": "2026-11-21T22:38:16.124Z",
+  "clientDate": "2026-11-22",
+  "baseCommit": "4700a96f32b016fe57e8a39ea742a0fb8e2dbd52",
+  "status": "three-additional-defects-verified-local-not-published",
+  "review": "tools/online-recovery-review.json",
+  "fixes": [
+    {
+      "id": "online-field-primary-ignores-selection",
+      "status": "fixed-local",
+      "result": "自分のバトルゾーンも選択中カードの判定対象に含める。ハイパー化を選ぶ下部ボタンは操作パネルを開き、攻撃ステップへ進めない。実アプリ→HTTP→暗号化保存経由で素材のタップとハイパー化を確認。両座席のクリーチャー・ギア・フィールド・タマシード、通常の攻撃選択も回帰検証。"
+    },
+    {
+      "id": "online-room-code-draft-lost-on-recovery",
+      "status": "fixed-local",
+      "result": "inputイベントごとにルームコードを保持。フォーカスを外す前に接続が回復しても16文字の入力を保持。入力を消した場合は古いコードを復活させない。保存形式の追加なし。"
+    },
+    {
+      "id": "online-permanent-errors-retry-without-backoff",
+      "status": "fixed-local",
+      "result": "版・エンジン・通信形式の不一致、認証・権限・ルーム不存在・期限切れ等のエラーでは自動GETを停止。タブの再表示やネットワーク復帰でも再開せず、手動再接続またはアカウント切替で復帰する。JSONでない403・空のJSONの403もHTTPステータスで停止する。ネットワーク・タイムアウト・429・503は6→12→24→48→60秒、以後最大60秒間隔。接続成功時は通常の3秒間隔へ戻る。自動再試行はGETだけで、送信済み操作を再送しない。"
+    }
+  ],
+  "results": [
+    {
+      "name": "focused-final",
+      "command": [
+        "node",
+        "--test",
+        "tests/online-client.test.mjs",
+        "tests/online-app.test.mjs",
+        "tests/online-ui.test.mjs",
+        "tests/online-feedback.test.mjs",
+        "tests/battle-controls.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 4.112,
+      "log": "tmp/duema-online-recovery-fixes/focused-final.log",
+      "passed": 120,
+      "failed": 0,
+      "sha256": "fdaf157cf5dd533a040241c88cb0e1bee005daa07496c091e7629015a02abd05"
+    },
+    {
+      "name": "account-regression",
+      "command": [
+        "node",
+        "--test",
+        "tests/account-app.test.mjs",
+        "tests/account.test.mjs",
+        "tests/account-ios.test.mjs",
+        "tests/online-runtime.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.703,
+      "log": "tmp/duema-online-recovery-fixes/account-regression.log",
+      "passed": 54,
+      "failed": 0,
+      "sha256": "2e2a85b846fe6c8ac4bf2237af5e905fc11c23afbe98c414c6b37d48b2dc6158"
+    },
+    {
+      "name": "regression-entry-final",
+      "command": [
+        "node",
+        "tools/review-online-recovery.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.865,
+      "log": "tmp/duema-online-recovery-fixes/regression-entry-final.log",
+      "passed": 31,
+      "failed": 0,
+      "sha256": "1e0422a325225f034004a55dc4ca5d9c5132c37a4063fe9b106053b563b72c42"
+    },
+    {
+      "name": "check-final",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.869,
+      "log": "tmp/duema-online-recovery-fixes/check-final.log",
+      "sha256": "fd00ef4548eb506e6a627320f0f81809e69c765639f8bb9b2831989aba13f5ca"
+    },
+    {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 13.737,
+      "log": "tmp/duema-online-recovery-fixes/audit.log",
+      "sha256": "f3dce8c6897c86fad30c51a6172abc271f0dea7a15e217958f36c09a29dd682a"
+    }
+  ],
+  "totalDistinctTestsPassed": 174,
+  "regressionEntrySubsetPassed": 31,
+  "counting": "操作・表示・通信120件+アカウント・実行環境54件=174件。再開コマンド31件は重複する部分集合として別記し二重計上しない。",
+  "resolvedAttempts": [
+    {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/online-client.test.mjs",
+        "tests/online-app.test.mjs",
+        "tests/online-ui.test.mjs",
+        "tests/online-feedback.test.mjs",
+        "tests/battle-controls.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 3.26,
+      "log": "tmp/duema-online-recovery-fixes/focused.log",
+      "reason": "軽量な既存テスト盤面はbattle配列を省略するため、追加した検索を空配列で補完して互換性を維持。修正後の関連テストは全通過。",
+      "sha256": "4efac67bcbf7a8346c9bfbccd86c1b6b6a48d373288c653d1d0cf114d4d41829"
+    }
+  ],
+  "compatibility": {
+    "cardDefinitionsChanged": false,
+    "cardIdsChanged": false,
+    "savedDecksChanged": false,
+    "savedHistoriesChanged": false,
+    "roomStorageSchemaChanged": false,
+    "serverCodeChanged": false,
+    "clientState": "retryはメモリ内の接続表示専用。ルームコード保持も既存のメモリ変数を利用。"
+  },
+  "actualCards": {
+    "startUniqueNames": 9070,
+    "endUniqueNames": 9070,
+    "uniqueIds": 9070,
+    "duplicates": 0,
+    "added": 0,
+    "normalization": "dist/catalogue.js nameKey",
+    "invariants": {
+      "baseline": "4801e7b369aca914bf44d719ceede4c6d589df09",
+      "target": 9500,
+      "originalDefinitionsUnchanged": 9043,
+      "added": 27,
+      "uniqueNames": 9070,
+      "uniqueIds": 9070,
+      "duplicateNames": 0,
+      "partialNewDefinitions": 0,
+      "catalogueAndAliasesUnchanged": true,
+      "remaining": 430
+    }
+  },
+  "visualVerification": {
+    "scope": "localhost上で実際のonlineScreenHTML/onlinePrimaryAction/createOnlineClientを使用。公開盤面・認証・応答は合成データ。本番アカウントへ操作しない。",
+    "checks": [
+      "390×844で403の自動再接続停止表示を確認",
+      "16文字コードを入力し、手動で正常応答へ再接続してもコードを保持",
+      "場のカード選択中に能力パネルと「使う方法を選ぶ」を表示",
+      "320×568でも操作パネルと下部操作ボタンが画面内"
+    ],
+    "screenshots": [
+      "/tmp/duema-online-recovery-fixes/retries-paused.jpg",
+      "/tmp/duema-online-recovery-fixes/code-preserved.jpg",
+      "/tmp/duema-online-recovery-fixes/field-primary.jpg",
+      "/tmp/duema-online-recovery-fixes/field-small.jpg"
+    ],
+    "cleanup": "viewportを復元し、一時プレビューサーバーを停止。"
+  },
+  "hashes": {
+    "dist/app.js": "3ef781968479de5626e09ffce76e773e9b11ce0929dc0092c2d52ca444d5c464",
+    "dist/online-ui.js": "8fadacb9fa237cf4b3612019dddd32deec6a43fe52c49d404b51501995dbfac2",
+    "dist/online.js": "702bca239d614d27b780cb4981695e291d13e6c18bf0fa702dc632a01332d964",
+    "tests/online-app.test.mjs": "82fe98b84baff91da9292a6c87818d04ec4b04b94a17fcc970cdfa88b95904dd",
+    "tests/online-client.test.mjs": "26ff8554408992121b26e1e7cf710f7b05500f066119838632cf9fc767a0faa0",
+    "tests/online-ui.test.mjs": "3697cfa92291aef033c24d8fbda2e384aecdfcb902244d08fb1ee2e72c5a98e9",
+    "tools/review-online-recovery.mjs": "619e6a2636a72b900607c06505397201b719aadcbaf722113947d6f7d158d654"
+  },
+  "remaining": [
+    "今回の3件と前回の修正は未公開。本番2アカウント対戦での確認は公開後。Netlifyはまだ更新しないという指示を継続。",
+    "一括npm testの中断・合否未確認と、後回しにした裁定・再録2件は維持。次のカード登録phaseは変更しない。"
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

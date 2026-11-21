@@ -2,14 +2,14 @@
   "checkedAt": "2026-11-21T22:28:59.348Z",
   "clientDate": "2026-11-22",
   "baseCommit": "4b225426ffe8c5bc8f6ffae6239a049c50c26a0f",
-  "status": "additional-review-complete-three-open-findings",
+  "status": "resolved-locally-after-review",
   "scope": "友達・アカウント対戦のエラー復旧、連続操作、場のカード選択、終了後の再開。実アプリのVM、HTTP境界、暗号化保存と制御したタイマーによる隔離ローカル検証。",
   "productCodeChanged": false,
   "findings": [
     {
       "id": "online-field-primary-ignores-selection",
       "severity": "medium",
-      "status": "confirmed-open",
+      "status": "fixed-local",
       "title": "場のハイパー化対象を選んでもメインボタンが攻撃ステップへ進める",
       "location": "dist/online-ui.js:46",
       "related": [
@@ -28,7 +28,7 @@
     {
       "id": "online-room-code-draft-lost-on-recovery",
       "severity": "medium",
-      "status": "confirmed-open",
+      "status": "fixed-local",
       "title": "通信復旧時に入力途中のルームコードが消える",
       "location": "dist/app.js:1281",
       "related": [
@@ -48,7 +48,7 @@
     {
       "id": "online-permanent-errors-retry-without-backoff",
       "severity": "medium",
-      "status": "confirmed-open",
+      "status": "fixed-local",
       "title": "版不一致・参加権限エラーでも3秒ごとの自動通信が続く",
       "location": "dist/online.js:5",
       "related": [
@@ -176,5 +176,15 @@
     "pushed": false,
     "deployed": false,
     "netlifyUpdated": false
+  },
+  "resolution": {
+    "checkedAt": "2026-11-21T22:38:16.124Z",
+    "artifact": "tools/online-recovery-fixes-verification.json",
+    "baseCommit": "4700a96f32b016fe57e8a39ea742a0fb8e2dbd52",
+    "status": "three-additional-defects-verified-local-not-published",
+    "productCodeChanged": true,
+    "totalDistinctTestsPassed": 174,
+    "reproduce": "node tools/review-online-recovery.mjs",
+    "note": "検出時の再現記録は元のコミットに対する証拠として保持。再開コマンドは現在の期待動作を検証する回帰テストへ変更。"
   }
 }
