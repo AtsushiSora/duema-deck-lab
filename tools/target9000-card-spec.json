@@ -18261,5 +18261,236 @@
       ],
       "type": "gear"
     }
+  },
+  "dm22ex1-114": {
+    "phase": 1562,
+    "faces": [
+      {
+        "name": "神影剣士ジュウベイ",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、自分の手札または超次元ゾーンにあるクロスギアを１枚出してもよい。",
+        "race": "ヒューマノイド/サムライ",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "zones": [
+            "hand",
+            "extra"
+          ],
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "g201Gear": true
+          }
+        }
+      ]
+    }
+  },
+  "dm26ex4-065": {
+    "phase": 1562,
+    "faces": [
+      {
+        "name": "罪侵入",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\n自分の山札の上から４枚を墓地に置く。その後、コスト５以下のオーラを１つ、自分の墓地から出す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 4
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "aura": true,
+            "max": 5
+          }
+        }
+      ]
+    }
+  },
+  "dmx21-042": {
+    "phase": 1562,
+    "faces": [
+      {
+        "name": "死神スクリーム",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から６枚を墓地に置く。その後、闇のクリーチャー１体と闇の進化クリーチャー１体を墓地から手札に戻してもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 6
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "color": "闇"
+          }
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "evolution": true,
+            "color": "闇"
+          }
+        }
+      ]
+    }
+  },
+  "dm13-020": {
+    "phase": 1562,
+    "faces": [
+      {
+        "name": "吸引のシーリゲル",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇/自然",
+        "civilizations": [
+          "闇",
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが攻撃する時、カードを１枚、自分のマナゾーンまたはシールドゾーンから自分の手札に戻してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "スピリット・クォーツ",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "title": "マナまたはシールドゾーンからカードを1枚手札へ戻す？",
+          "defs": [
+            {
+              "op": "Choose",
+              "modes": [
+                {
+                  "label": "マナから戻す",
+                  "defs": [
+                    {
+                      "op": "Select",
+                      "origin": "mana",
+                      "to": "hand",
+                      "n": 1
+                    }
+                  ]
+                },
+                {
+                  "label": "シールドゾーンから戻す",
+                  "defs": [
+                    {
+                      "op": "ShieldHand",
+                      "g533CardOnly": true,
+                      "g1562PrintedST": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmr18-010": {
+    "phase": 1562,
+    "faces": [
+      {
+        "name": "革命類 ネロティウス",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "革命２―このクリーチャーがバトルゾーンに出た時、自分のシールドが２つ以下なら、自分の山札の上から５枚を表向きにする。その中の進化ではないコスト３以下のクリーチャーをすべてバトルゾーンに出し、その後、残りをタップしてマナゾーンに置く。",
+        "race": "ジュラシック・コマンド・ドラゴン/革命軍",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g265ShieldsMax": 2
+          },
+          "defs": [
+            {
+              "op": "LookDeploy530",
+              "n": 5,
+              "public": true,
+              "g749Required": true,
+              "rest": "mana",
+              "restTapped": true,
+              "filter": {
+                "creature": true,
+                "nonEvolution": true,
+                "max": 3
+              }
+            }
+          ]
+        }
+      ]
+    }
   }
 }

@@ -279986,15 +279986,231 @@
       ],
       "supportBatch": "phase-1561",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-114",
+      "name": "神影剣士ジュウベイ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ヒューマノイド/サムライ",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、自分の手札または超次元ゾーンにあるクロスギアを１枚出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-114",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "zones": [
+            "hand",
+            "extra"
+          ],
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "g201Gear": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1562",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex4-065",
+      "name": "罪侵入",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\n自分の山札の上から４枚を墓地に置く。その後、コスト５以下のオーラを１つ、自分の墓地から出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-065",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 4
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "aura": true,
+            "max": 5
+          }
+        }
+      ],
+      "supportBatch": "phase-1562",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx21-042",
+      "name": "死神スクリーム",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から６枚を墓地に置く。その後、闇のクリーチャー１体と闇の進化クリーチャー１体を墓地から手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-042",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 6
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "color": "闇"
+          }
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "evolution": true,
+            "color": "闇"
+          }
+        }
+      ],
+      "supportBatch": "phase-1562",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm13-020",
+      "name": "吸引のシーリゲル",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "スピリット・クォーツ",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが攻撃する時、カードを１枚、自分のマナゾーンまたはシールドゾーンから自分の手札に戻してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-020",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "title": "マナまたはシールドゾーンからカードを1枚手札へ戻す？",
+          "defs": [
+            {
+              "op": "Choose",
+              "modes": [
+                {
+                  "label": "マナから戻す",
+                  "defs": [
+                    {
+                      "op": "Select",
+                      "origin": "mana",
+                      "to": "hand",
+                      "n": 1
+                    }
+                  ]
+                },
+                {
+                  "label": "シールドゾーンから戻す",
+                  "defs": [
+                    {
+                      "op": "ShieldHand",
+                      "g533CardOnly": true,
+                      "g1562PrintedST": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1562",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr18-010",
+      "name": "革命類 ネロティウス",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ジュラシック・コマンド・ドラゴン/革命軍",
+      "text": "革命２―このクリーチャーがバトルゾーンに出た時、自分のシールドが２つ以下なら、自分の山札の上から５枚を表向きにする。その中の進化ではないコスト３以下のクリーチャーをすべてバトルゾーンに出し、その後、残りをタップしてマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-010",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g265ShieldsMax": 2
+          },
+          "defs": [
+            {
+              "op": "LookDeploy530",
+              "n": 5,
+              "public": true,
+              "g749Required": true,
+              "rest": "mana",
+              "restTapped": true,
+              "filter": {
+                "creature": true,
+                "nonEvolution": true,
+                "max": 3
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1562",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1561,
+    "phase": 1562,
     "checkedAt": "2026-11-21",
-    "baseCount": 8870,
-    "newEffectCards": 4,
+    "baseCount": 8874,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8874,
+    "totalCount": 8879,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -305627,6 +305843,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8870,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1561,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8870,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 8874,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

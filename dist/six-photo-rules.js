@@ -5314,7 +5314,7 @@ export function createSixPhotoRules(api){
    const costs=new Set(creatures(s,t.p).filter(x=>!x.sealed).map(x=>cost(api.zoneCard(s,t.p,x,'battle'))));
    eligible=own.deck.filter(x=>ids.includes(x.uid)&&matches(s,t.p,x,{creature:true,max:t.g798DifferentCost})&&!costs.has(cost(api.zoneCard(s,t.p,x,'deck')))).map(x=>x.uid);
   }
-  const rest=t.g798DifferentCost!==undefined?{op:'Distribute255',ids,rest:'grave'}:{op:'LookRest530',ids,rest:t.rest||'top'};
+  const rest=t.g798DifferentCost!==undefined?{op:'Distribute255',ids,rest:'grave'}:{op:'LookRest530',ids,rest:t.rest||'top',...(t.restTapped?{restTapped:true}:{})};
   const inspection=t.g841DeckPeek?deckPeek841(own,ids):{};
   put(s,{...t,...inspection,op:'g34_Select',origin:'deck',g530Ids:eligible,deploy:true,n:t.limit??'all',optional:!t.g749Required,
    title:t.title||'確認したカードから出すクリーチャーを選ぶ',after:[rest]});
