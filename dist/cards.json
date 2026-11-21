@@ -276129,15 +276129,199 @@
       ],
       "supportBatch": "phase-1539",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04m-039",
+      "name": "夜のコッツナ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 12000,
+      "race": "グランセクト",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーは攻撃できない。\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）\nP自分のクリーチャーを１体、タップしてマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-039",
+      "limit": 4,
+      "trigger": true,
+      "noAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "n": 1,
+          "optional": true,
+          "to": "mana",
+          "filter": {
+            "creature": true
+          },
+          "g187OwnPick": true,
+          "g193Tap": true,
+          "g1540ManaTapped": true
+        }
+      ],
+      "supportBatch": "phase-1540",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04m-035",
+      "name": "夜のジャッジ・チュリス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "ビートジョッキー",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）\nP相手のパワー11000以下の、「ブロッカー」を持つクリーチャーを１体、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-035",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "blocker": true,
+            "maxPower": 11000
+          }
+        }
+      ],
+      "supportBatch": "phase-1540",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04m-025",
+      "name": "夜の青守銀 シャイン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2500,
+      "race": "メタリカ",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）\nPクリーチャーを１体選び、タップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-025",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "anyOwner": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "g193Tap": true,
+          "g173Targets": true,
+          "g187OwnPick": true
+        }
+      ],
+      "supportBatch": "phase-1540",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04m-028",
+      "name": "夜の南国別荘 クジハウス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 2000,
+      "race": "ムートピア",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）\nP相手のコスト３以下のクリーチャーをすべて、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-028",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Sweep",
+          "to": "hand",
+          "toOwnerHand": true,
+          "filter": {
+            "creature": true,
+            "max": 3
+          }
+        }
+      ],
+      "supportBatch": "phase-1540",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-013",
+      "name": "足跡の絡み 汰弧",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "メタリカ",
+      "text": "キズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）P自分の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-013",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "ShieldTop",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1540",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1539,
+    "phase": 1540,
     "checkedAt": "2026-11-21",
-    "baseCount": 8769,
+    "baseCount": 8774,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8774,
+    "totalCount": 8779,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -301462,6 +301646,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8769,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1539,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8769,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8774,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

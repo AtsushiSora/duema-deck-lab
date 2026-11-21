@@ -1852,7 +1852,7 @@ export function createSixPhotoRules(api){
   if(t.g210TapLockIf&&ownCondition(s,t.p,t.g210TapLockIf))
    for(const {x} of targets)startUntapLock210(t,x);
  }if(t.g510Untap)for(const r of rows){const x=s.players[r.p].battle.find(x=>x.uid===r.uid);if(x?.tapped&&api.canUntap(x)){x.tapped=false;combined.untapped(s,r.p,x);}}if(t.g335Grant)for(const r of rows){const x=s.players[r.p].battle.find(x=>x.uid===r.uid);if(x)(x.g34Grants??=[]).push(timedGrant335(s,t,t.g335Grant));}if(t.g210ManaUntap){let n=0;for(const r of rows){const x=s.players[r.p].mana.find(x=>x.uid===r.uid);if(x&&api.canUntap(x)){if(x.tapped)n++;x.tapped=false;}}api.log(s,t.p,'untapMana',card(t.source).name+'：マナを'+n+'枚アンタップ',{cardId:t.source});}const b=rows.filter(r=>r.origin==='battle');for(const r of rows.filter(r=>r.origin!=='battle'))if(t.to)zoneMove(s,r.p,r.origin,r.uid,t.to,t);if(b.length&&t.to)move(s,b.map(r=>({player:r.p,uid:r.uid,to:t.to,destroy:t.to==='grave',
-  controller:t.controller??t.p,...(t.toOwnerHand?{toOwnerHand:true}:{}),...(t.toOwnerMana?{toOwnerMana:true}:{}),...(t.toOwnerShields?{toOwnerShields:true}:{})})));
+  controller:t.controller??t.p,...(t.toOwnerHand?{toOwnerHand:true}:{}),...(t.toOwnerMana?{toOwnerMana:true}:{}),...(t.toOwnerShields?{toOwnerShields:true}:{}),...(t.to==='mana'&&t.g1540ManaTapped?{tapped:true}:{})})));
  if(t.after)start(s,t,t.after);}}
  // A resolved group effect is a snapshot, not an aura. Match the source creature through its layers for "other".
  function groupPowerRows(s,t){
@@ -2912,6 +2912,11 @@ export function createSixPhotoRules(api){
   const host=sourceHost474(s,t),attack=s.attackLifecycle;
   if(attack&&s.attack&&host&&!host.x.sealed&&api.isCreature(s,host.x))
    (attack.g814Blockers??=[]).push({uid:t.uid,incarnation:t.incarnation||0});
+  break;
+ }
+ case'g34_Kizuna1540':{
+  const rows=creatures(s,t.p).filter(y=>!y.sealed&&!y.faceDown&&effective(y,s).g1540P?.length);
+  if(rows.length)choice(s,t,'使うP能力を持つ自分のクリーチャーを選ぶ',rows.map(y=>opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},10,y.cardId)));
   break;
  }
  case'g34_SelfGrant754':{const host=sourceHost474(s,t);if(host&&(!t.g770LiveCreature||!host.x.sealed&&api.isCreature(s,host.x)))applyGrant(s,t,host.x);break;}
@@ -6416,6 +6421,12 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
  }
  function chosen(s,t,v){if(fifteen.chosen(s,t,v))return true;if(!t.op.startsWith('g34_'))return false;const own=s.players[t.p],x=live(s,t);switch(t.op){
+ case'g34_Kizuna1540':{
+  const y=own.battle.find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation&&!y.sealed&&!y.faceDown&&api.isCreature(s,y));
+  const defs=y&&effective(y,s).g1540P;
+  if(defs?.length)queue(s,t.p,y,defs);
+  break;
+ }
  case'g34_ChooseWeaponHost1361':{
   const host=creatures(s,t.p).find(y=>y.uid===v);
   if(host)put(s,{...t,op:'g34_DeployDragheart1361',uid:host.uid,incarnation:host.incarnation||0,weaponOnly:true});

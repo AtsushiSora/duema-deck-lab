@@ -14083,5 +14083,204 @@
         }
       ]
     }
+  },
+  "dmrp04m-039": {
+    "phase": 1540,
+    "faces": [
+      {
+        "name": "夜のコッツナ",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーは攻撃できない。\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）\nP自分のクリーチャーを１体、タップしてマナゾーンに置いてもよい。",
+        "race": "グランセクト",
+        "powerText": "12000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "noAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "n": 1,
+          "optional": true,
+          "to": "mana",
+          "filter": {
+            "creature": true
+          },
+          "g187OwnPick": true,
+          "g193Tap": true,
+          "g1540ManaTapped": true
+        }
+      ]
+    }
+  },
+  "dmrp04m-035": {
+    "phase": 1540,
+    "faces": [
+      {
+        "name": "夜のジャッジ・チュリス",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）\nP相手のパワー11000以下の、「ブロッカー」を持つクリーチャーを１体、破壊する。",
+        "race": "ビートジョッキー",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "blocker": true,
+            "maxPower": 11000
+          }
+        }
+      ]
+    }
+  },
+  "dmrp04m-025": {
+    "phase": 1540,
+    "faces": [
+      {
+        "name": "夜の青守銀 シャイン",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）\nPクリーチャーを１体選び、タップしてもよい。",
+        "race": "メタリカ",
+        "powerText": "2500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "anyOwner": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "g193Tap": true,
+          "g173Targets": true,
+          "g187OwnPick": true
+        }
+      ]
+    }
+  },
+  "dmrp04m-028": {
+    "phase": 1540,
+    "faces": [
+      {
+        "name": "夜の南国別荘 クジハウス",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）\nP相手のコスト３以下のクリーチャーをすべて、持ち主の手札に戻す。",
+        "race": "ムートピア",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Sweep",
+          "to": "hand",
+          "toOwnerHand": true,
+          "filter": {
+            "creature": true,
+            "max": 3
+          }
+        }
+      ]
+    }
+  },
+  "dmrp04s-013": {
+    "phase": 1540,
+    "faces": [
+      {
+        "name": "足跡の絡み 汰弧",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "キズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）P自分の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置く。",
+        "race": "メタリカ",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "ShieldTop",
+          "n": 1
+        }
+      ]
+    }
   }
 }

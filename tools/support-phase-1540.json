@@ -1,0 +1,341 @@
+{
+  "phase": 1540,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8774,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31596/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/31596/": "キズナを使って選んだP能力は誘発して解決を待つ。キズナプラスの複数誘発は別能力なので今回の通常キズナとは区別。"
+  },
+  "implementationNotes": [
+    "通常キズナの選択は自分のバトルゾーンで有効なP能力を持つクリーチャーだけ。選んだクリーチャーを発生源とするP能力のみを別の待機効果としてキューし、登場時のキズナを再実行しない。",
+    "夜のコッツナは選んだ自分のクリーチャーを実際にタップしてからタップ状態でマナへ置き、タップ時能力の誘発も保持。新フラグを指定した効果だけに適用。"
+  ],
+  "cards": [
+    {
+      "id": "dmrp04m-039",
+      "name": "夜のコッツナ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-039",
+      "faces": [
+        {
+          "name": "夜のコッツナ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーは攻撃できない。\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）\nP自分のクリーチャーを１体、タップしてマナゾーンに置いてもよい。",
+          "race": "グランセクト",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "noAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Kizuna1540"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "n": 1,
+            "optional": true,
+            "to": "mana",
+            "filter": {
+              "creature": true
+            },
+            "g187OwnPick": true,
+            "g193Tap": true,
+            "g1540ManaTapped": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04m-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "57bb3fbda4779735085009934712465199e90a5dd37559471459507e4951c857",
+        "facesMatched": true,
+        "imageSha256": "74a83d66fb97ffb8d579e802d3b0e57e15acfe31058d984cf66445a7d9ad339a",
+        "imageBytes": 106116
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスター・ドルスザク！！～無月の魔凰～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-039",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp04m-035",
+      "name": "夜のジャッジ・チュリス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-035",
+      "faces": [
+        {
+          "name": "夜のジャッジ・チュリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）\nP相手のパワー11000以下の、「ブロッカー」を持つクリーチャーを１体、破壊する。",
+          "race": "ビートジョッキー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Kizuna1540"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "blocker": true,
+              "maxPower": 11000
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04m-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "409b94f5ac6214a5fdc2b93044c53b9bfa3c846160335a02a59fca8f0e1c3db1",
+        "facesMatched": true,
+        "imageSha256": "8c1ea2862ead1c45c719175af437b1c8967b6af2d4534096ee22d169f37c4b64",
+        "imageBytes": 126936
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスター・ドルスザク！！～無月の魔凰～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-035",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp04m-025",
+      "name": "夜の青守銀 シャイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-025",
+      "faces": [
+        {
+          "name": "夜の青守銀 シャイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）\nPクリーチャーを１体選び、タップしてもよい。",
+          "race": "メタリカ",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Kizuna1540"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "anyOwner": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "g193Tap": true,
+            "g173Targets": true,
+            "g187OwnPick": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04m-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "8a570af6fbf877ccbfae3c3ed04508c660eeaea02fd5c558cb819571f2adca5b",
+        "facesMatched": true,
+        "imageSha256": "e606209597b710f002ada210b88a43e91e4993bdcf5ea0d329704b37ca17dc17",
+        "imageBytes": 134913
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスター・ドルスザク！！～無月の魔凰～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-025",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp04m-028",
+      "name": "夜の南国別荘 クジハウス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-028",
+      "faces": [
+        {
+          "name": "夜の南国別荘 クジハウス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）\nP相手のコスト３以下のクリーチャーをすべて、持ち主の手札に戻す。",
+          "race": "ムートピア",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Kizuna1540"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "Sweep",
+            "to": "hand",
+            "toOwnerHand": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04m-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "ffeab6256dc9ab70c3df9ed491742eb5534a7e3d735b79a0313fc7b3fd499f35",
+        "facesMatched": true,
+        "imageSha256": "ec27794f042686e01774174832e9c793c675c980a106e3c2288aab2b7103bb5a",
+        "imageBytes": 117902
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスター・ドルスザク！！～無月の魔凰～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-028",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp04s-013",
+      "name": "足跡の絡み 汰弧",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-013",
+      "faces": [
+        {
+          "name": "足跡の絡み 汰弧",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "キズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）P自分の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置く。",
+          "race": "メタリカ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Kizuna1540"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "dd4f4a1a55fc3fbb4527b1a718f9f89ad5da9ddfbd052bc655027b7c513a1049",
+        "facesMatched": true,
+        "imageSha256": "82db8900963f31bb2b92121115fadc1871bdd18f8c525d218e1479243e9bdb7f",
+        "imageBytes": 141065
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスタードラゴン！！～正義ノ裁キ～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-013",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp04m-039": 4,
+      "dmrp04m-035": 4,
+      "dmrp04m-025": 4,
+      "dmrp04m-028": 4,
+      "dmrp04s-013": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/31596/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31596/",
+      "sha256": "f93027f8bffda2b665ffc5dcfeeeb964502075a30aee7dc8354a0942666aa142",
+      "result": "キズナを使って選んだP能力は誘発して解決を待つ。キズナプラスの複数誘発は別能力なので今回の通常キズナとは区別。"
+    }
+  ]
+}
