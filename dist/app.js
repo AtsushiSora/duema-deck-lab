@@ -64,6 +64,7 @@ let registry=null,battleCards=[],environmentDecks=[],starterDecks=[],heroDecks=[
 const card=id=>id?.faceDown?battleCard(id):registry?.get(id)||battleCard(id),registrationErrors=d=>registry.validate(d),coverage=d=>registry.coverage(d),maxCopies=c=>registry.maxCopies(c,edit);
 let cards=[],metadata={},view='home',edit=null,editRole='mine',editTab='cards',query='',civ='',costFilter='',typeFilter='',page=0,opponentQuery='',selectedOpp=null,mode='auto',count=1000,first='random',allOpp=false,practice=true,activeRun=null,running=null,worker=null,comparisonId=null,battle=null,battleUndo=[],battleTimer=null,selectedHand=null,photo=null,ocrWorker=null,ocrPromise=null,ocrBusy=false,replayData=null,replayIndex=0,replayTimer=null;
 let accountClient=null,accountState={phase:'idle',user:null,cloud:null,loaded:false,busy:null,error:null},accountDialog=null,accountImportPreview=null;
+let deckDeletion=null;
 let onlineClient=null,onlineState={room:null,busy:false,connected:false,error:null,loaded:false},onlineDeckId='',onlineCode='',onlineSelected=null,onlinePage=0,onlineActionsOpen=false,onlinePending=null;
 let homeTag='',homeQuery='',homeOrder='selected',environmentYearFilter='all',environmentPickerRole=null;
 let deckViewId=null,deckReturnView='decks',editorReturnView='decks',deckQuery='',deckSort='cost',deckDisplay='grid',editHistory=[];
@@ -193,7 +194,7 @@ function updateDisplaySetting(el){
 }
 function toast(text){$('#toast').textContent=text;$('#toast').classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('#toast').classList.remove('show'),3500);}
 function showDialog(title,html,footer=''){logCardReturnActive=false;dialog.classList?.remove('screenshot-report-dialog');detailsDialogToken=null;manualLogDialogOpen=false;cancelTournamentAutoAdvance();aiPlayback?.suspend();starterPickerRole=null;environmentPickerRole=null;dialog.innerHTML=`<div class="dialog-head"><h2>${esc(title)}</h2><button class="icon-btn" data-action="close-dialog" aria-label="閉じる">${icon('close')}</button></div><div class="dialog-content">${html}</div>${footer?`<div class="dialog-actions">${footer}</div>`:''}`;if(!dialog.open)dialog.showModal();applyTextSize(dialog,displayPreferences.textSize);}
-function closeDialog(){if(logCardReturnActive){returnToManualLog();return;}detailsDialogToken=null;manualLogDialogOpen=false;accountDialog=null;accountImportPreview=null;starterPickerRole=null;environmentPickerRole=null;dialog.close();aiPlayback?.start();syncTournamentAutoAdvance();}
+function closeDialog(){if(logCardReturnActive){returnToManualLog();return;}detailsDialogToken=null;manualLogDialogOpen=false;accountDialog=null;accountImportPreview=null;deckDeletion=null;starterPickerRole=null;environmentPickerRole=null;dialog.close();aiPlayback?.start();syncTournamentAutoAdvance();}
 function navItem(v,label){return `<button class="nav-btn ${view===v||(view==='deck'&&v==='decks'||view==='editor'&&v===(editRole==='opponent'?'battle':'decks'))||(v==='analysis'&&view==='replay')||(v==='battle'&&['manual','online','challenge'].includes(view))?'active':''}" data-action="nav" data-view="${v}">${icon(v)}<span>${label}</span></button>`;}
 function navigationParent(){return view==='deck'?deckReturnView:view==='editor'?editorReturnView:({home:'home',decks:'home',duel:'home',records:'home',account:'home',battle:'duel',challenge:'duel',strongest:'duel',tournament:'duel',online:'duel',analysis:'records',history:'records',replay:'analysis',manual:'battle'}[view]||'home');}
 function navigationTitle(){return ({home:'デュエマ・デッキラボ',decks:'マイデッキ',duel:'対戦する',records:'戦績・分析',account:'アカウント',battle:mode==='spectate'?'CPU同士を観戦':mode==='manual'?'CPUと手動対戦':'自動シミュレーション',editor:'デッキを編集',deck:'デッキの内容',challenge:'レジェンドデュエル',strongest:'最強CPU戦',tournament:'トーナメント',online:'友達と対戦',analysis:'自動対戦の分析',history:'自動対戦の履歴',manual:'対戦中',replay:'対戦リプレイ'}[view]||'デッキラボ');}
@@ -283,7 +284,7 @@ function playtimeValue(){return formatPlayTime(playtimeSnapshot().totalMs);}
 function updatePlaytimeDisplay(){const value=playtimeValue(),v=playtimeSnapshot();for(const el of document.querySelectorAll('[data-playtime-value]'))if(el.textContent!==value)el.textContent=value;for(const el of document.querySelectorAll('[data-playtime-note]'))el.textContent=playTimeStorageNote(v.storageOK,v.syncPhase);for(const el of document.querySelectorAll('[data-playtime-scope]'))el.textContent=v.syncPhase&&v.syncPhase!=='local'?'アカウントの累計':'このブラウザの累計';for(const el of document.querySelectorAll('[data-action="account-sync-playtime"]'))el.disabled=!accountState.user||v.syncPhase==='syncing';}
 function initPlaytime(){if(playtime||typeof document.hasFocus!=='function')return;playtime=createPlayTimeTracker({onChange:value=>{playtimeSync?.capture(value);if(playtime)updatePlaytimeDisplay();}});let storage=null;try{storage=window.localStorage;}catch{}playtimeSync=createPlayTimeSync({storage,getLocal:()=>playtime.snapshot(),syncAccount:(uid,id,ms)=>accountClient.syncPlayTime(uid,id,ms),onChange:()=>updatePlaytimeDisplay()});const resume=()=>{playtime.flush();playtimeSync.capture();void playtimeSync.sync({force:true});};window.addEventListener('online',resume);window.addEventListener('pageshow',resume);}
 
-function renderDecks(){const total=saved.history.reduce((s,r)=>s+(r.stats?.total||0),0),tags=[...new Set(saved.decks.flatMap(d=>normalizeDeckTags(d.tags)))];if(homeTag&&!tags.includes(homeTag))homeTag='';const list=saved.decks.filter(d=>deckHasTag(d,homeTag)&&norm(d.name+' '+normalizeDeckTags(d.tags).join(' ')).includes(norm(homeQuery))).sort((a,b)=>Number(b.favorite===true)-Number(a.favorite===true)||(homeOrder==='name'?a.name.localeCompare(b.name,'ja'):homeOrder==='updated'?String(b.updated||b.created||'').localeCompare(String(a.updated||a.created||'')):Number(b.id===saved.selected)-Number(a.id===saved.selected)));shell(`<div class="home-collection">${pageHead('マイデッキ','デッキを選んで、すぐに対戦。',`<button class="btn primary home-new-deck" data-action="new-deck">${icon('plus',16)}新しいデッキ</button>`,'YOUR COLLECTION')}<div class="home-summary" aria-label="保存と対戦の件数"><span><b>${saved.decks.length}</b> デッキ</span><span><b>${fmt(total)}</b> 戦</span><span>分析 <b>${saved.history.length}</b> 件</span></div>${saved.decks.length>3||homeQuery||tags.length?`<div class="home-deck-tools"><div class="search-wrap">${icon('search',16)}<input class="field" id="home-deck-search" aria-label="デッキ名で検索" placeholder="デッキ名で検索" value="${esc(homeQuery)}"></div><select class="field" id="home-deck-sort" aria-label="デッキの並び順"><option value="selected" ${homeOrder==='selected'?'selected':''}>お気に入り優先</option><option value="updated" ${homeOrder==='updated'?'selected':''}>更新した順</option><option value="name" ${homeOrder==='name'?'selected':''}>名前順</option></select></div>`:''}${tags.length?`<label class="home-tag-filter">タグで絞り込む<select class="field" id="deck-tag-filter"><option value="">すべて</option>${tags.map(tag=>`<option value="${esc(tag)}" ${homeTag===tag?'selected':''}>${esc(tag)}</option>`).join('')}</select></label>`:''}<div class="home-deck-list-caption"><span>${homeQuery||homeTag?list.length+' / '+saved.decks.length+'件を表示':'保存したデッキ'}</span><small>★でお気に入りを上に固定</small></div><div class="deck-grid home-deck-grid">${list.map(deckCard).join('')}</div>${!list.length?`<div class="home-empty"><span>${icon(homeQuery?'search':'decks',26)}</span><h2>${homeQuery||homeTag?'該当するデッキがありません':'最初のデッキを作ろう'}</h2><p>${homeQuery||homeTag?'デッキ名やタグを変えて検索してください。':'「新しいデッキ」から、カードやスクショで登録できます。'}</p></div>`:''}<details class="home-guide"><summary>使い方・対応カードについて</summary><div class="mt16">${notice(`<strong>デッキを作って、対戦で確かめよう。</strong><br>「リスト」でカードと枚数を確認し、「編集」で構成を変更できます。「対戦」はCPUとの手動・自動対戦へ進みます。<br>同名でまとめた${fmt(cards.length)}種類を登録できます。効果を処理する対戦は${battleCards.length}種類に対応しています。`)}</div><p class="art-disclaimer">カード画像：タカラトミー公式カード検索。同名カードは代表の絵柄を表示します。</p></details></div>`);}
+function renderDecks(){const total=saved.history.reduce((s,r)=>s+(r.stats?.total||0),0),tags=[...new Set(saved.decks.flatMap(d=>normalizeDeckTags(d.tags)))];if(homeTag&&!tags.includes(homeTag))homeTag='';const list=saved.decks.filter(d=>deckHasTag(d,homeTag)&&norm(d.name+' '+normalizeDeckTags(d.tags).join(' ')).includes(norm(homeQuery))).sort((a,b)=>Number(b.favorite===true)-Number(a.favorite===true)||(homeOrder==='name'?a.name.localeCompare(b.name,'ja'):homeOrder==='updated'?String(b.updated||b.created||'').localeCompare(String(a.updated||a.created||'')):Number(b.id===saved.selected)-Number(a.id===saved.selected)));shell(`<div class="home-collection">${pageHead('マイデッキ','デッキを選んで、すぐに対戦。',`<button class="btn primary home-new-deck" data-action="new-deck">${icon('plus',16)}新しいデッキ</button>`,'YOUR COLLECTION')}<div class="home-summary" aria-label="保存と対戦の件数"><span><b>${saved.decks.length}</b> デッキ</span><span><b>${fmt(total)}</b> 戦</span><span>分析 <b>${saved.history.length}</b> 件</span></div>${saved.decks.length>3||homeQuery||tags.length?`<div class="home-deck-tools"><div class="search-wrap">${icon('search',16)}<input class="field" id="home-deck-search" aria-label="デッキ名で検索" placeholder="デッキ名で検索" value="${esc(homeQuery)}"></div><select class="field" id="home-deck-sort" aria-label="デッキの並び順"><option value="selected" ${homeOrder==='selected'?'selected':''}>お気に入り優先</option><option value="updated" ${homeOrder==='updated'?'selected':''}>更新した順</option><option value="name" ${homeOrder==='name'?'selected':''}>名前順</option></select></div>`:''}${tags.length?`<label class="home-tag-filter">タグで絞り込む<select class="field" id="deck-tag-filter"><option value="">すべて</option>${tags.map(tag=>`<option value="${esc(tag)}" ${homeTag===tag?'selected':''}>${esc(tag)}</option>`).join('')}</select></label>`:''}<div class="home-deck-list-caption"><span>${homeQuery||homeTag?list.length+' / '+saved.decks.length+'件を表示':'保存したデッキ'}</span>${saved.decks.length?'<button class="btn sm" data-action="manage-deck-deletion">選択して削除</button>':''}</div><div class="deck-grid home-deck-grid">${list.map(deckCard).join('')}</div>${!list.length?`<div class="home-empty"><span>${icon(homeQuery?'search':'decks',26)}</span><h2>${homeQuery||homeTag?'該当するデッキがありません':'最初のデッキを作ろう'}</h2><p>${homeQuery||homeTag?'デッキ名やタグを変えて検索してください。':'「新しいデッキ」から、カードやスクショで登録できます。'}</p></div>`:''}<details class="home-guide"><summary>使い方・対応カードについて</summary><div class="mt16">${notice(`<strong>デッキを作って、対戦で確かめよう。</strong><br>「リスト」でカードと枚数を確認し、「編集」で構成を変更できます。「対戦」はCPUとの手動・自動対戦へ進みます。<br>同名でまとめた${fmt(cards.length)}種類を登録できます。効果を処理する対戦は${battleCards.length}種類に対応しています。`)}</div><p class="art-disclaimer">カード画像：タカラトミー公式カード検索。同名カードは代表の絵柄を表示します。</p></details></div>`);}
 
 function curve(d){const values=Array(9).fill(0);for(const r of d.cards){const c=card(r.id);const cost=primaryCost(c);if(cost!==null)values[Math.min(cost,8)]+=r.count;}const max=Math.max(...values,1);return `<div class="curve">${values.map((n,i)=>`<div class="curve-col"><div class="curve-bar" style="height:${n/max*53}px"><span>${n||''}</span></div><small>${i===8?'8+':i}</small></div>`).join('')}</div>`;}
 function clearPhoto(){if(photo?.url)URL.revokeObjectURL(photo.url);photo=null;}
@@ -805,7 +806,7 @@ function savedOpponentListHTML(){const matches=d=>matchesFormat(d)&&norm(d.name)
 function showSavedOpponentPicker(){opponentQuery='';showDialog('保存したデッキから相手を選ぶ',`<div class="search-wrap">${icon('search',17)}<input class="field" id="opponent-search" placeholder="デッキ名で検索" aria-label="相手のデッキ名で検索" value="${esc(opponentQuery)}"></div><div id="saved-opponent-results">${savedOpponentListHTML()}</div>`,`${view==='battle'&&matchFormat()===ADVANCE?
   '<button class="btn" data-action="new-opponent">相手デッキを作る</button><button class="btn" data-action="random-opponent">ランダムで選ぶ</button>':
   '<button class="btn" data-action="choose-opponent">選び方に戻る</button>'}`);}
-function commitDeckSnapshot(next){try{localStorage.setItem(key,JSON.stringify(next));}catch{storageOK=false;toast('保存できませんでした。編集中の内容と保存前のデッキは残しています');return false;}saved=next;storageOK=true;return true;}
+function commitDeckSnapshot(next,error='保存できませんでした。編集中の内容と保存前のデッキは残しています'){try{localStorage.setItem(key,JSON.stringify(next));}catch{storageOK=false;toast(error);return false;}saved=next;storageOK=true;return true;}
 function saveDeck(){
  if(!edit)return;const errors=registrationErrors(edit);if(errors.length){toast(errors[0]);return;}
  const opponent=editRole==='opponent',nextDeck=clone(edit);nextDeck.cards=registry.resolveRows(nextDeck.cards);
@@ -891,9 +892,61 @@ function confirmAccountSave(){
  const preview=accountClient.prepareSave(saved);accountImportPreview=null;accountDialog={kind:'save',uid:preview.uid};
  showDialog('アカウントにデッキを保存',`<p class="small">${esc(accountState.user.name)} の保存内容を、この端末のマイデッキ ${preview.snapshot.decks.length}件・相手デッキ ${preview.snapshot.friends.length}件で${preview.cloud?'更新':'作成'}します。</p>${preview.cloud?`<p class="small mt16">現在のクラウド保存：マイデッキ ${preview.cloud.snapshot.decks.length}件・相手デッキ ${preview.cloud.snapshot.friends.length}件。別の端末にある変更を残す場合は、先に「取り込む」を使ってください。</p>`:''}<p class="small mt16">対戦履歴と写真は送信しません。この端末のデッキも残ります。</p>`,'<button class="btn" data-action="close-dialog">キャンセル</button><button class="btn primary" data-action="account-confirm-save">アカウントに保存する</button>');
 }
+function accountImportBase(){return JSON.stringify([saved.decks,saved.friends]);}
 function previewAccountImport(){
- const remote=accountClient.getSnapshot(),result=mergeAccountSnapshot(saved,remote.snapshot,registry);accountImportPreview=remote;accountDialog={kind:'import',uid:remote.uid};
- showDialog('保存したデッキを取り込む',`<p class="small">マイデッキ ${result.report.decks}件・相手デッキ ${result.report.friends}件を、この端末へ追加します。</p><p class="small mt16">同じ名前と構成の${result.report.duplicates}件は重複させません。既存デッキ・選択中のデッキ・対戦履歴は残ります。</p>`,'<button class="btn" data-action="close-dialog">キャンセル</button><button class="btn primary" data-action="account-confirm-import">追加して取り込む</button>');
+ const remote=accountClient.getSnapshot();
+ const {report}=mergeAccountSnapshot(saved,remote.snapshot,registry);
+ accountImportPreview={...remote,localDecks:accountImportBase()};
+ accountDialog={kind:'import',uid:remote.uid};
+ const deckNames=(groups)=>Object.entries(groups).flatMap(([zone,names])=>names.map(name=>
+  `<li>${zone==='decks'?'マイデッキ':'相手デッキ'} · ${esc(name)}</li>`)).join('');
+ const updates=deckNames(report.updated),conflicts=deckNames(report.conflicts);
+ showDialog('保存したデッキを取り込む',
+  `<p>追加するデッキ：マイデッキ ${report.decks}件・相手デッキ ${report.friends}件</p>
+   ${updates?`<p class="mt16">同名の次のデッキは、アカウントに保存した構成で上書きします。変更前の構成は保存履歴から戻せます。</p><ul>${updates}</ul>`:''}
+   ${conflicts?`<p class="mt16">次の名前は、この端末またはアカウントに同名デッキが複数あるため、更新の対象外です。</p><ul>${conflicts}</ul>`:''}
+   ${report.duplicates?`<p class="small mt16">名前と構成が同じ ${report.duplicates}件は重複を省きます。</p>`:''}`,
+  '<button class="btn" data-action="close-dialog">キャンセル</button><button class="btn primary" data-action="account-confirm-import">この内容で取り込む</button>');
+}
+function showDeckDeletion(){
+ deckDeletion={selected:new Set(),confirmed:null};
+ const decks=[...saved.decks].sort((a,b)=>a.name.localeCompare(b.name,'ja')||String(b.updated||b.created||'').localeCompare(String(a.updated||a.created||'')));
+ const nameCounts=new Map();
+ for(const deck of decks)nameCounts.set(deck.name,(nameCounts.get(deck.name)||0)+1);
+ const rows=decks.map(d=>{
+  const updated=[d.updated,d.created].find(value=>Number.isFinite(Date.parse(value)));
+  const cardRows=rows=>(rows||[]).map(r=>`<li>${esc(card(r.id)?.name||r.id)} ×${r.count}</li>`).join('');
+  return `<div><label class="opponent-choice">
+   <input type="checkbox" data-delete-deck-id="${esc(d.id)}">
+   <span class="grow"><strong>${esc(d.name)}</strong><br>
+   <small>${formatLabel(deckFormat(d))} · ${sum(d)}枚${updated?` · ${esc(date(updated))}`:''}${d.id===saved.selected?' · 使用中':''}</small>
+   <br><small>${esc(d.cards.slice(0,3).map(r=>`${card(r.id)?.name||r.id} ×${r.count}`).join(' / '))}</small></span>
+  </label>
+  ${nameCounts.get(d.name)>1?`<details class="small mt8"><summary>カード構成を確認</summary><ul>${cardRows(d.cards)}</ul>${extraDeckKeys.filter(key=>d[key]?.length).map(key=>`<strong>${esc(EXTRA_DECK_ZONES[key].label)}</strong><ul>${cardRows(d[key])}</ul>`).join('')}</details>`:''}</div>`;
+ }).join('');
+ showDialog('削除するデッキを選択',`<div class="stack">${rows}</div>`,
+  '<button class="btn" data-action="close-dialog">キャンセル</button><button class="btn danger" id="review-deck-deletion" data-action="review-deck-deletion" disabled>0件を選択中</button>');
+}
+function reviewDeckDeletion(){
+ if(!deckDeletion)return;
+ const rows=saved.decks.filter(d=>deckDeletion.selected.has(d.id));
+ if(!rows.length)return;
+ deckDeletion.confirmed=new Set(rows.map(d=>d.id));
+ showDialog(`${rows.length}件のデッキを削除しますか？`,
+  `<ul>${rows.map(d=>`<li>${esc(d.name)}</li>`).join('')}</ul><p class="small mt16">この端末のマイデッキと、そのデッキの保存履歴を削除します。対戦履歴は残ります。</p>`,
+  '<button class="btn" data-action="close-dialog">キャンセル</button><button class="btn danger" data-action="confirm-deck-deletion">削除する</button>');
+}
+function deleteLocalDecks(ids){
+ const rows=saved.decks.filter(d=>ids.has(d.id));
+ if(!rows.length)return;
+ let next=saved;
+ for(const deck of rows)next=forgetDeckRevisions(next,'mine',deck.id);
+ next.decks=next.decks.filter(d=>!ids.has(d.id));
+ if(ids.has(next.selected))next.selected=next.decks[0]?.id||null;
+ if(!commitDeckSnapshot(next,'削除を保存できませんでした。デッキは残っています'))return;
+ closeDialog();
+ render();
+ toast(`デッキを${rows.length}件削除しました`);
 }
 function showResultDetail(run,index){const r=run.results[index];showDialog(r.opponent.name,`<div class="win-number" style="font-size:54px">${pct(r.stats.rate)}<span>%</span></div>${resultBar(r.stats)}<h3 class="mt24">実際の対戦記録</h3><p class="small mt8">代表的な勝ち・負けの対戦を最大8戦保存しています。</p>${r.samples.map((s,i)=>`<button class="opponent mt8" data-action="open-sample" data-run="${run.id}" data-result="${index}" data-sample="${i}"><span class="badge ${s.winner===0?'green':''}">${s.winner===0?'勝ち':s.winner===1?'負け':'未決着'}</span><div class="grow"><h3>${s.first===0?'先攻':'後攻'} · ${displayTurn(s)}ターン</h3><p>${esc(s.reason)}</p></div>${icon('chevron',15)}</button>`).join('')}`);}
 document.addEventListener('click',async event=>{
@@ -994,7 +1047,20 @@ document.addEventListener('click',async event=>{
  else if(action==='account-save')confirmAccountSave();
  else if(action==='account-import')previewAccountImport();
  else if(action==='account-confirm-save'){if(accountDialog?.kind!=='save'||accountDialog.uid!==accountState.user?.uid)throw Error('現在のアカウントで保存内容を確認してください');closeDialog();if(await accountClient.save())toast('アカウントにデッキを保存しました');}
- else if(action==='account-confirm-import'){const preview=accountImportPreview,remote=accountClient.getSnapshot();if(accountDialog?.kind!=='import'||!preview||preview.uid!==remote.uid||preview.revision!==remote.revision)throw Error('保存内容が変わりました。もう一度確認してください');const result=mergeAccountSnapshot(saved,preview.snapshot,registry);saved=result.saved;comparisonId=null;persist();closeDialog();render();if(storageOK)toast('保存したデッキを追加しました');}
+ else if(action==='account-confirm-import'){
+  const preview=accountImportPreview,remote=accountClient.getSnapshot();
+  if(accountDialog?.kind!=='import'||!preview||preview.uid!==remote.uid||preview.revision!==remote.revision||preview.localDecks!==accountImportBase()){
+   previewAccountImport();
+   toast('内容が変わりました。取り込むデッキをもう一度確認してください');
+   return;
+  }
+  const result=mergeAccountSnapshot(saved,preview.snapshot,registry);
+  if(!commitDeckSnapshot(result.saved,'取り込みを保存できませんでした。この端末のデッキは残っています'))return;
+  comparisonId=null;
+  closeDialog();
+  render();
+  toast('保存したデッキを取り込みました');
+ }
  else if(action==='about')showAbout();
  else if(action==='photo-deck-review'){const source=PHOTO_RECENT_DECKS.find(x=>x.id===id);if(source){showDeck(source);dialog.scrollTop=0;}}
  else if(action==='photo-deck-use'){const source=PHOTO_RECENT_DECKS.find(x=>x.id===id);if(source)saveCopiedDeck(source,el.dataset.role==='opponent'?'opponent':'mine');}
@@ -1050,7 +1116,10 @@ document.addEventListener('click',async event=>{
  else if(action==='share-deck')shareDeck(d);
  else if(action==='copy-share'){try{await navigator.clipboard.writeText(sharedURL(d));toast('共有リンクをコピーしました');}catch{toast('リンクを選択してコピーしてください');}}
  else if(action==='confirm-delete')showDialog('デッキを削除しますか？',`<p class="small">「${esc(d.name)}」をこの端末から削除します。対戦履歴は残ります。</p>`,`<button class="btn" data-action="close-dialog">キャンセル</button><button class="btn danger" data-action="delete-deck" data-id="${id}">削除する</button>`);
- else if(action==='delete-deck'){saved=forgetDeckRevisions(saved,'mine',id);saved.decks=saved.decks.filter(x=>x.id!==id);if(saved.selected===id)saved.selected=saved.decks[0]?.id;persist();closeDialog();render();toast('デッキを削除しました');}
+ else if(action==='delete-deck')deleteLocalDecks(new Set([id]));
+ else if(action==='manage-deck-deletion')showDeckDeletion();
+ else if(action==='review-deck-deletion')reviewDeckDeletion();
+ else if(action==='confirm-deck-deletion'&&deckDeletion?.confirmed)deleteLocalDecks(deckDeletion.confirmed);
  else if(action==='choose-support')$('#support-file').click();
  else if(action==='read-support')await readSupportPhoto();
  else if(action==='support-layout'){if(ocrBusy||!photo?.prepared)return;try{const bounds=Object.fromEntries(['left','top','right','bottom'].map(k=>[k,Number($('#support-'+k).value)/100]));photo.prepared.grid=makeSupportGrid(photo.prepared.canvas.width,photo.prepared.canvas.height,{columns:Number($('#support-columns').value),bounds});await readSupportPhoto();}catch(e){toast(e.message);}}
@@ -1196,6 +1265,18 @@ document.addEventListener('compositionend',event=>{const e=event.target;if(!sear
 });
 document.addEventListener('input',event=>{const e=event.target;if(e.dataset?.issueField){updateScreenshotIssueField(e);return;}if(searchInputIds.has(e.id)){if(!event.isComposing&&!composingSearchInputs.has(e))applySearchInput(e);return;}if(e.id==='deck-tags'&&edit){edit.tags=normalizeDeckTags(e.value);clearTimeout(draftTimer);draftTimer=setTimeout(flushEditorDraft,300);return;}if(e.id==='deck-name'&&edit){edit.name=e.value;const label=$('[data-draft-status]');if(label)label.textContent='下書きを保存中…';clearTimeout(draftTimer);draftTimer=setTimeout(flushEditorDraft,300);return;}if(e.id==='replay-range'){replayIndex=Number(e.value);render();}});
 document.addEventListener('change',async event=>{const e=event.target;
+ if(e.dataset?.deleteDeckId&&deckDeletion&&!deckDeletion.confirmed){
+  const id=e.dataset.deleteDeckId;
+  if(e.checked)deckDeletion.selected.add(id);
+  else deckDeletion.selected.delete(id);
+  const button=$('#review-deck-deletion');
+  if(button){
+   const count=deckDeletion.selected.size;
+   button.disabled=!count;
+   button.textContent=count?`${count}件の削除を確認`:'0件を選択中';
+  }
+  return;
+ }
 if(e.id==='deck-tag-filter'){homeTag=e.value;render();return;}if(e.dataset?.issueField){updateScreenshotIssueField(e);return;}if(e.dataset?.preference){updateDisplaySetting(e);return;}if(e.dataset?.control==='manual-log-filter'){manualUI.logFilter=MANUAL_LOG_FILTERS.some(([id])=>id===e.value)?e.value:'all';manualUI.logLimit=20;refreshManualLog();document.querySelector('#dialog [data-control=manual-log-filter]')?.focus?.({preventScroll:true});return;}if(['match-count','match-first','all-opponents','practice-mode'].includes(e.id))matchOptionsOpen=!!$('.match-options')?.open;if(['tournament-mode','tournament-size','tournament-source','tournament-first'].includes(e.id)){updateTournamentSetup(e);return;}if(e.id==='tournament-own-deck'){if(tournamentDraft?.mode!=='human')return;tournamentDraft.expanded=$('.tournament-participants')?.open||false;tournamentDraft.scroll=$('.dialog-content')?.scrollTop||0;tournamentPickerSlot=0;selectTournamentSlot(e.value||null);$('#tournament-own-deck')?.focus({preventScroll:true});return;}if(e.id==='tournament-picker-source'){tournamentPickerSource=e.value;refreshTournamentPicker();return;}if(e.id==='home-deck-sort'){if(['selected','updated','name'].includes(e.value)){homeOrder=e.value;render();$('#home-deck-sort')?.focus({preventScroll:true});}return;}if(e.id==='deck-sort'){if(['cost','name','count'].includes(e.value)){deckSort=e.value;render();$('#deck-sort')?.focus({preventScroll:true});}return;}if(e.id==='online-deck'){onlineDeckId=e.value;return;}if(e.id==='online-code'){onlineCode=e.value;return;}
  if(e.id==='cost-filter'){costFilter=e.value;page=0;render();}if(e.id==='type-filter'){typeFilter=e.value;page=0;render();}
  if(e.id==='match-count'){count=Number(e.value);render();$('#match-count')?.focus({preventScroll:true});}if(e.id==='match-first'){first=e.value;render();$('#match-first')?.focus({preventScroll:true});}if(e.id==='all-opponents'){allOpp=e.checked;render();}if(e.id==='practice-mode')practice=e.checked;
@@ -1205,7 +1286,7 @@ if(e.id==='deck-tag-filter'){homeTag=e.value;render();return;}if(e.dataset?.issu
  if(e.matches('.ocr-confirm')){photo.rows[Number(e.dataset.index)].confirmed=e.checked;render();}
 });
 document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('[role="button"]')){e.preventDefault();e.target.click();}});
-dialog.addEventListener('close',()=>{if(logCardReturnActive){returnToManualLog();return;}if(!dialog.open){accountDialog=null;accountImportPreview=null;aiPlayback?.start();}});
+dialog.addEventListener('close',()=>{if(logCardReturnActive){returnToManualLog();return;}if(!dialog.open){accountDialog=null;accountImportPreview=null;deckDeletion=null;aiPlayback?.start();}});
 dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});
 window.addEventListener('pagehide',()=>flushEditorDraft());
 window.addEventListener('beforeunload',e=>{flushEditorDraft();if(edit&&!draftOK||running||(battle&&!gameFinished(battle.state))){e.preventDefault();e.returnValue='';}});

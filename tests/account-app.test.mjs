@@ -14,8 +14,12 @@ const config={schemaVersion:1,firebase:{projectId:'duema-example',apiKey:'AIza'+
 function harness({configured=true,remote=null,loginPending=false}={}){const root={innerHTML:''},dialog={innerHTML:'',open:false,addEventListener(){},showModal(){this.open=true;},close(){this.open=false;}},listeners={},errors=[],writes=[],remoteWrites=[],toast={textContent:'',classList:{add(){},remove(){}}},registry=createCatalogue(snapshot,data.cards,details),saved={decks:[{...structuredClone(PRESETS[0]),id:'existing',name:'端末のデッキ',category:'自分'}],friends:[],history:[{id:'history-to-keep',stats:{total:1}}],selected:'existing'};let notify,client,authUid=null,cloud=remote,completeLogin;const loginWait=new Promise(r=>completeLogin=r);
  const adapter={watch(cb){notify=cb;queueMicrotask(()=>cb(null));return()=>{};},signIn(){if(loginPending)return loginWait;authUid='u1';return notify({uid:authUid,name:'テストユーザー',email:'u@example.com'});},currentUser:async()=>authUid?{uid:authUid,name:'テストユーザー',email:'u@example.com'}:null,signOut(){authUid=null;return notify(null);},read:async uid=>{assert.equal(uid,authUid);return structuredClone(cloud);},write:async(uid,payload,revision)=>{assert.equal(uid,authUid);assert.equal(revision,cloud?.revision||0);remoteWrites.push({uid,payload,revision});cloud={payload,revision:revision+1,updatedAt:null};return structuredClone(cloud);}};
  const factory=opts=>client=createAccountClient({...opts,fetchConfig:async()=>configured?config:{schemaVersion:1,firebase:null},createAdapter:async()=>adapter});
- const ctx=vm.createContext({...appFeatures,...characterRoster,...extraCharacters,PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS,...championLibrary,...opponentProgress,...updates,createCardArt,createCardDetailsLoader:opts=>createCardDetailsLoader({...opts,fetcher:async()=>({ok:true,json:async()=>structuredClone(details)})}),...e,...info,...manual,...environment,...starter,createAccountClient:factory,accountScreenHTML,mergeAccountSnapshot,battleCard:e.card,createCatalogue,prepareDeckCopy,PRESETS,fixtureRegistry:registry,fixtureData:data,fixtureSaved:saved,console:{error:e=>errors.push(e)},structuredClone,crypto:globalThis.crypto,TextDecoder,TextEncoder,URL,URLSearchParams,Intl,Date,fetch:async url=>({ok:true,json:async()=>structuredClone(url.startsWith('cards.json')?data:url.startsWith('catalogue.json')?snapshot:details)}),localStorage:{getItem:()=>null,setItem:(key,v)=>writes.push({key,value:JSON.parse(v)})},setTimeout:()=>1,clearTimeout(){},setInterval:()=>1,clearInterval(){},document:{querySelector:q=>q==='#app'?root:q==='#dialog'?dialog:q==='#toast'?toast:null,querySelectorAll:()=>[],body:{classList:{toggle(){}}},addEventListener:(k,f)=>listeners[k]=f},window:{addEventListener(){},scrollTo(){}},location:{hash:'',pathname:'/',reload(){}},sessionStorage:{getItem:()=>null},history:{replaceState(){}}});vm.runInContext(source,ctx);vm.runInContext('registry=fixtureRegistry;cards=registry.cards;battleCards=fixtureData.cards;metadata=fixtureData;environmentDecks=resolveEnvironmentDecks(registry);starterDecks=resolveStarter25Decks(registry);saved=fixtureSaved;view="decks";render();',ctx);
- const read=c=>vm.runInContext(c,ctx),click=async(action,extra={})=>{if(await routeToAction({action,extra,getHTML:()=>dialog.open?dialog.innerHTML:root.innerHTML,fire:(action,extra)=>listeners.click({target:{closest:()=>({dataset:{action,...extra},closest:()=>null})}})}))return;const html=dialog.open?dialog.innerHTML:root.innerHTML,buttons=[...html.matchAll(/<button\b([^>]*)>/g)].map(m=>m[1]);assert.ok(buttons.some(a=>a.includes(`data-action="${action}"`)&&Object.entries(extra).every(([k,v])=>a.includes(`data-${k}="${v}"`))&&!/\bdisabled\b/.test(a)),`visible enabled ${action}`);await listeners.click({target:{closest:()=>({dataset:{action,...extra},closest:()=>null})}});await tick();assert.deepEqual(errors,[]);};return{root,dialog,read,click,change:(id,value)=>listeners.change({target:{id,value,dataset:{}}}),writes,remoteWrites,registry,setPendingUser:uid=>authUid=uid,completeLogin,async bootAccount(){vm.runInContext("location.search='?view=account'",ctx);await read('boot()');await tick();assert.doesNotMatch(root.innerHTML,/読み込みできませんでした/);},client:()=>client,switchUser:async uid=>{authUid=uid;await notify(uid?{uid,name:'別のアカウント',email:'other@example.com'}:null);},remote:()=>cloud};
+ const reviewButton={
+  set disabled(value){dialog.innerHTML=dialog.innerHTML.replace(/(data-action="review-deck-deletion")( disabled)?/,'$1'+(value?' disabled':''));},
+  set textContent(value){dialog.innerHTML=dialog.innerHTML.replace(/(data-action="review-deck-deletion"[^>]*>)[^<]*/,'$1'+value);}
+ };
+ const ctx=vm.createContext({...appFeatures,...characterRoster,...extraCharacters,PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS,...championLibrary,...opponentProgress,...updates,createCardArt,createCardDetailsLoader:opts=>createCardDetailsLoader({...opts,fetcher:async()=>({ok:true,json:async()=>structuredClone(details)})}),...e,...info,...manual,...environment,...starter,createAccountClient:factory,accountScreenHTML,mergeAccountSnapshot,battleCard:e.card,createCatalogue,prepareDeckCopy,PRESETS,fixtureRegistry:registry,fixtureData:data,fixtureSaved:saved,console:{error:e=>errors.push(e)},structuredClone,crypto:globalThis.crypto,TextDecoder,TextEncoder,URL,URLSearchParams,Intl,Date,fetch:async url=>({ok:true,json:async()=>structuredClone(url.startsWith('cards.json')?data:url.startsWith('catalogue.json')?snapshot:details)}),localStorage:{getItem:()=>null,setItem:(key,v)=>writes.push({key,value:JSON.parse(v)})},setTimeout:()=>1,clearTimeout(){},setInterval:()=>1,clearInterval(){},document:{querySelector:q=>q==='#app'?root:q==='#dialog'?dialog:q==='#toast'?toast:q==='#review-deck-deletion'&&dialog.innerHTML.includes('id="review-deck-deletion"')?reviewButton:null,querySelectorAll:()=>[],body:{classList:{toggle(){}}},addEventListener:(k,f)=>listeners[k]=f},window:{addEventListener(){},scrollTo(){}},location:{hash:'',pathname:'/',reload(){}},sessionStorage:{getItem:()=>null},history:{replaceState(){}}});vm.runInContext(source,ctx);vm.runInContext('registry=fixtureRegistry;cards=registry.cards;battleCards=fixtureData.cards;metadata=fixtureData;environmentDecks=resolveEnvironmentDecks(registry);starterDecks=resolveStarter25Decks(registry);saved=fixtureSaved;view="decks";render();',ctx);
+ const read=c=>vm.runInContext(c,ctx),click=async(action,extra={})=>{if(await routeToAction({action,extra,getHTML:()=>dialog.open?dialog.innerHTML:root.innerHTML,fire:(action,extra)=>listeners.click({target:{closest:()=>({dataset:{action,...extra},closest:()=>null})}})}))return;const html=dialog.open?dialog.innerHTML:root.innerHTML,buttons=[...html.matchAll(/<button\b([^>]*)>/g)].map(m=>m[1]);assert.ok(buttons.some(a=>a.includes(`data-action="${action}"`)&&Object.entries(extra).every(([k,v])=>a.includes(`data-${k}="${v}"`))&&!/\bdisabled\b/.test(a)),`visible enabled ${action}`);await listeners.click({target:{closest:()=>({dataset:{action,...extra},closest:()=>null})}});await tick();assert.deepEqual(errors,[]);};return{root,dialog,read,click,checkDeck:(id,checked)=>listeners.change({target:{checked,dataset:{deleteDeckId:id}}}),change:(id,value)=>listeners.change({target:{id,value,dataset:{}}}),writes,remoteWrites,registry,setPendingUser:uid=>authUid=uid,completeLogin,async bootAccount(){vm.runInContext("location.search='?view=account'",ctx);await read('boot()');await tick();assert.doesNotMatch(root.innerHTML,/読み込みできませんでした/);},client:()=>client,switchUser:async uid=>{authUid=uid;await notify(uid?{uid,name:'別のアカウント',email:'other@example.com'}:null);},remote:()=>cloud};
 }
 test('actual account navigation shows honest setup guidance and never fabricates a Google session',async()=>{const h=harness({configured:false}),before=h.read('JSON.stringify(saved)');assert.match(h.root.innerHTML,/aria-label="メニューを開く"/);await h.click('nav',{view:'account'});assert.match(h.root.innerHTML,/Googleログインは初期設定待ち/);assert.match(h.root.innerHTML,/data-action="account-login" disabled/);assert.equal(h.read('JSON.stringify(saved)'),before);assert.equal(h.remoteWrites.length,0);});
 test('actual Google login and cloud save require the visible confirmation and leave local history intact',async()=>{const h=harness();await h.click('nav',{view:'account'});await h.click('account-login');assert.match(h.root.innerHTML,/Googleでログイン中/);assert.match(h.root.innerHTML,/テストユーザー/);assert.equal(h.remoteWrites.length,0);await h.click('account-save');assert.match(h.dialog.innerHTML,/アカウントにデッキを保存/);assert.equal(h.remoteWrites.length,0);await h.click('account-confirm-save');assert.equal(h.remoteWrites.length,1);assert.equal(h.remoteWrites[0].uid,'u1');assert.equal(h.read('saved.history[0].id'),'history-to-keep');assert.ok(!h.remoteWrites[0].payload.includes('history-to-keep'));await h.click('account-logout');assert.match(h.root.innerHTML,/Googleで登録・ログイン/);assert.equal(h.read('saved.decks[0].id'),'existing');});
@@ -81,4 +85,66 @@ test('format buttons show distinct creature art for each editor and match screen
   await h.click('prepare-match',{mode});
   expectArt(original,advance);
  }
+});
+
+test('account preview confirms one-card overwrite and records its previous deck list',async()=>{
+ const r=createCatalogue(snapshot,data.cards,details);
+ const deck={...structuredClone(PRESETS[0]),id:'other-device',name:'端末のデッキ'};
+ const newId=['dm01-015','dm01-027','dm01-108','dm06-085'].find(id=>!deck.cards.some(row=>row.id===id));
+ assert.ok(newId);
+ deck.cards[0].count--;
+ deck.cards=deck.cards.filter(row=>row.count>0);
+ deck.cards.push({id:newId,count:1});
+ const snapshotData=makeAccountSnapshot({decks:[deck],friends:[]},r);
+ const h=harness({remote:{payload:encodeAccountSnapshot(snapshotData),revision:1,updatedAt:null}});
+ const before=h.read('JSON.stringify(saved.decks[0].cards)');
+ await h.click('nav',{view:'account'});
+ await h.click('account-login');
+ await h.click('account-import');
+ assert.match(h.dialog.innerHTML,/上書きします/);
+ assert.match(h.dialog.innerHTML,/マイデッキ · 端末のデッキ/);
+ assert.equal(h.read('JSON.stringify(saved.decks[0].cards)'),before);
+ await h.click('account-confirm-import');
+ assert.equal(h.read('saved.decks.length'),1);
+ assert.equal(h.read('saved.selected'),'existing');
+ assert.equal(h.read('JSON.stringify(saved.decks[0].cards)'),JSON.stringify(snapshotData.decks[0].cards));
+ assert.equal(h.read('JSON.stringify(saved.deckRevisions["mine:existing"][0].deck.cards)'),before);
+ assert.equal(h.read('saved.history[0].id'),'history-to-keep');
+ await h.click('account-import');
+ assert.doesNotMatch(h.dialog.innerHTML,/上書きします/);
+ await h.click('account-confirm-import');
+ assert.equal(h.read('saved.deckRevisions["mine:existing"].length'),1);
+ assert.equal(h.remoteWrites.length,0);
+});
+test('bulk deletion selects same-name decks by ID and saves only after confirming',async()=>{
+ const h=harness();
+ h.read(`saved.decks.push({...saved.decks[0],id:'duplicate-a'},{...saved.decks[0],id:'duplicate-b'});
+ saved.friends=[{...saved.decks[0],id:'opponent'}];
+ saved.deckRevisions={'mine:existing':[{id:'old',deck:saved.decks[0]}],'mine:duplicate-a':[{id:'old-dup',deck:saved.decks[1]}]};
+ render();`);
+ await h.click('manage-deck-deletion');
+ assert.match(h.dialog.innerHTML,/review-deck-deletion" disabled/);
+ assert.match(h.dialog.innerHTML,/カード構成を確認/);
+ assert.doesNotMatch(h.dialog.innerHTML,/data-delete-deck-id="opponent"/);
+ await h.checkDeck('existing',true);
+ await h.checkDeck('duplicate-a',true);
+ await h.checkDeck('duplicate-b',true);
+ await h.checkDeck('duplicate-b',false);
+ await h.click('review-deck-deletion');
+ assert.match(h.dialog.innerHTML,/2件のデッキを削除しますか/);
+ assert.equal(h.read('saved.decks.length'),3);
+ await h.click('close-dialog');
+ assert.equal(h.writes.length,0);
+ await h.click('manage-deck-deletion');
+ await h.checkDeck('existing',true);
+ await h.checkDeck('duplicate-a',true);
+ await h.click('review-deck-deletion');
+ await h.click('confirm-deck-deletion');
+ const saved=h.writes.at(-1).value;
+ assert.deepEqual(saved.decks.map(d=>d.id),['duplicate-b']);
+ assert.equal(saved.selected,'duplicate-b');
+ assert.equal(saved.history[0].id,'history-to-keep');
+ assert.equal(saved.friends[0].id,'opponent');
+ assert.deepEqual(saved.deckRevisions,{});
+ assert.equal(h.remoteWrites.length,0);
 });

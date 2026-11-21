@@ -1,6 +1,7 @@
 import {normalizeDeckTags} from './deck-tags.js?v=0.722.1';
 import {historicalMetadata} from './historical-regulations.js';
 import {copyExtraDeck,extraDeckKeys} from './deck-format.js';
+import {saveDeckWithHistory} from './deck-history.js?v=0.722.1';
 
 // Account backups contain deck lists only. Local match history stays on this device.
 export const ACCOUNT_SCHEMA=1,MAX_ACCOUNT_DECKS=1000,MAX_ACCOUNT_CHARS=200000,MAX_ACCOUNT_BYTES=700000;
@@ -28,12 +29,70 @@ export function makeAccountSnapshot(saved,registry){return validateAccountSnapsh
 export function encodeAccountSnapshot(value){const payload=JSON.stringify(value);if(payload.length>MAX_ACCOUNT_CHARS||new TextEncoder().encode(payload).length>MAX_ACCOUNT_BYTES)throw Error('保存するデッキが多すぎます。デッキを書き出して整理してください');return payload;}
 export function decodeAccountSnapshot(payload,registry){if(typeof payload!=='string'||payload.length>MAX_ACCOUNT_CHARS||new TextEncoder().encode(payload).length>MAX_ACCOUNT_BYTES)throw Error('アカウント保存のサイズが正しくありません');let value;try{value=JSON.parse(payload);}catch{throw Error('アカウントの保存内容を読み取れません');}return validateAccountSnapshot(value,registry);}
 const signature=d=>JSON.stringify([d.name,d.format||'original',[...d.cards].sort((a,b)=>a.id.localeCompare(b.id)),...extraDeckKeys.map(key=>[...(d[key]||[])].sort((a,b)=>a.id.localeCompare(b.id)))]);
+function groupByName(decks){
+ const groups=new Map();
+ for(const deck of decks){
+  if(!groups.has(deck.name))groups.set(deck.name,[]);
+  groups.get(deck.name).push(deck);
+ }
+ return groups;
+}
+function mergeDeckLabels(target,remote){
+ if(remote.favorite===true)target.favorite=true;
+ if(remote.tags?.length)target.tags=normalizeDeckTags([...(target.tags||[]),...remote.tags]);
+}
 export function mergeAccountSnapshot(local,remote,registry,{newId=()=>crypto.randomUUID()}={}){
- const snapshot=validateAccountSnapshot(remote,registry),saved=structuredClone(local),used=new Set([...(saved.decks||[]),...(saved.friends||[])].map(d=>d.id)),report={decks:0,friends:0,duplicates:0,renamed:0};saved.decks??=[];saved.friends??=[];const selectedMap=new Map();
- for(const zone of['decks','friends'])for(const d of snapshot[zone]){
-  const same=saved[zone].find(old=>{try{return signature(cleanDeck(old,registry,zone==='decks'?'自分':'相手'))===signature(d);}catch{return false;}});
-  if(same){if(d.favorite===true)same.favorite=true;if(d.tags?.length)same.tags=normalizeDeckTags([...(same.tags||[]),...d.tags]);report.duplicates++;if(zone==='decks')selectedMap.set(d.id,same.id);continue;}
-  const copy=structuredClone(d);if(used.has(copy.id)){let id;for(let i=0;i<20;i++){id=newId();if(validId(id)&&!used.has(id))break;id=null;}if(!id)throw Error('新しいデッキIDを作成できません');copy.id=id;report.renamed++;}used.add(copy.id);saved[zone].push(copy);report[zone]++;if(zone==='decks')selectedMap.set(d.id,copy.id);
+ const snapshot=validateAccountSnapshot(remote,registry);
+ let saved=structuredClone(local);
+ saved.decks??=[];
+ saved.friends??=[];
+ const used=new Set([...saved.decks,...saved.friends].map(d=>d.id));
+ const report={decks:0,friends:0,duplicates:0,renamed:0,updated:{decks:[],friends:[]},conflicts:{decks:[],friends:[]}};
+ const selectedMap=new Map();
+ for(const zone of ['decks','friends']){
+  const mine=zone==='decks',role=mine?'mine':'opponent',category=mine?'自分':'相手';
+  const localNames=groupByName(saved[zone]),remoteNames=groupByName(snapshot[zone]);
+  const newlyAdded=new Map();
+  for(const d of snapshot[zone]){
+   const candidates=localNames.get(d.name)||[];
+   const incoming=signature(d);
+   const same=[...candidates,...(newlyAdded.get(d.name)||[])].find(old=>{
+    try{return signature(cleanDeck(old,registry,category))===incoming;}catch{return false;}
+   });
+   if(same){
+    mergeDeckLabels(same,d);
+    report.duplicates++;
+    if(mine)selectedMap.set(d.id,same.id);
+    continue;
+   }
+   if(candidates.length){
+    if(candidates.length!==1||remoteNames.get(d.name).length!==1){
+     if(!report.conflicts[zone].includes(d.name))report.conflicts[zone].push(d.name);
+     continue;
+    }
+    const [old]=candidates;
+    const replacement={...d,id:old.id,created:old.created??d.created,updated:d.updated??new Date().toISOString()};
+    mergeDeckLabels(replacement,old);
+    saved=saveDeckWithHistory(saved,replacement,{role});
+    report.updated[zone].push(d.name);
+    if(mine)selectedMap.set(d.id,old.id);
+    continue;
+   }
+   const copy=structuredClone(d);
+   if(used.has(copy.id)){
+    let id;
+    for(let i=0;i<20;i++){id=newId();if(validId(id)&&!used.has(id))break;id=null;}
+    if(!id)throw Error('新しいデッキIDを作成できません');
+    copy.id=id;
+    report.renamed++;
+   }
+   used.add(copy.id);
+   saved[zone].push(copy);
+   if(!newlyAdded.has(d.name))newlyAdded.set(d.name,[]);
+   newlyAdded.get(d.name).push(copy);
+   report[zone]++;
+   if(mine)selectedMap.set(d.id,copy.id);
+  }
  }
  if(!saved.decks.some(d=>d.id===saved.selected))saved.selected=selectedMap.get(snapshot.selected)||saved.decks[0]?.id||null;
  return {saved,report};
