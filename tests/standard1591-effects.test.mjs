@@ -1,0 +1,23 @@
+import test from'node:test';import assert from'node:assert/strict';import{e,setup,inst,act,drain,attack}from'./target-fixture.mjs';import{verifyTwinBatch,put,pick,playFace}from'./target8500-twin-fixture.mjs';verifyTwinBatch(1591);
+const M='dmrp08-035',H='dmrp09-001',L='dmex04-047',N='dm01-108',GR='dmsd08-016';const physical=s=>e.physicalCards(s).map(x=>x.uid).sort();
+test('Clam Dunk draws3 then returns exactly2 in the selected bottom order, without exposing extra identities',()=>{
+ let s=setup();const top=s.players[0].deck.slice(0,3),before=s.players[0].deck.length;playFace(s,M,1);assert.equal(s.players[0].hand.length,3);s=JSON.parse(JSON.stringify(s));pick(s,top[2].uid);pick(s,top[0].uid);drain(s);assert.equal(s.players[0].hand.length,1);assert.equal(s.players[0].hand[0].uid,top[1].uid);assert.equal(s.players[0].deck.length,before-1);assert.deepEqual(s.players[0].deck.slice(-2).map(x=>x.uid),[top[2].uid,top[0].uid]);
+});
+test('Mardek actually triggers as a creature and later Smash Bursts without moving the body',()=>{
+ const s=setup(),shield=inst(M),enemy=put(s,1,N);s.players[0].mana=[];s.players[0].shields=[shield];s.active=1;attack(s,enemy.uid);act(s,'noBlock');act(s,'useTrigger',a=>a.face===undefined||a.face===0);drain(s);assert.ok(s.players[0].battle.some(x=>x.uid===shield.uid));s.active=0;shield.entered=0;const before=physical(s);attack(s,shield.uid);pick(s,true);drain(s);assert.ok(s.players[0].battle.some(x=>x.uid===shield.uid));assert.deepEqual(physical(s),before);assert.equal(s.players[0].hand.length,1);
+});
+test('Haiorida shields top1 and its own shield addition GR summons once, keeps blocker and exact IDs',()=>{
+ const s=setup();s.format='advance';const top=s.players[0].deck[0],gr=inst(GR);s.players[0].gr=[gr];const source=playFace(s,H);drain(s);assert.ok(s.players[0].shields.some(x=>x.uid===top.uid));assert.ok(s.players[0].battle.some(x=>x.uid===gr.uid));assert.ok(e.effectiveCard(source,s).blocker);assert.equal(gr.summonedTurn,s.turn);
+});
+test('Haiorida responds to later friendly shield additions, with no trigger for enemy shields',()=>{
+ const s=setup();s.format='advance';put(s,0,H);const grs=[inst(GR),inst(GR)];s.players[0].gr=[...grs];playFace(s,H,1);const drawn=s.players[0].hand[0];pick(s,drawn.uid);drain(s);assert.ok(s.players[0].battle.some(x=>x.uid===grs[0].uid));assert.ok(s.players[0].gr.some(x=>x.uid===grs[1].uid));s.active=1;s.phase='main';playFace(s,'dm01-004');drain(s);assert.ok(s.players[0].gr.some(x=>x.uid===grs[1].uid));
+});
+for(const selectInner of[false,true])test('Genwaku graves exactly one card of a stacked shield, preserving the other and all physical IDs '+selectInner,()=>{
+ let s=setup();const root=inst(N),inner=inst('dm01-083');root.shieldStack=[inner];s.players[0].shields=[root];const source=playFace(s,H,1),drawn=s.players[0].hand[0];pick(s,drawn.uid);const before=physical(s);assert.equal(s.decision.choices.length,3);s=JSON.parse(JSON.stringify(s));pick(s,(selectInner?inner:root).uid);drain(s);assert.ok(s.players[0].grave.some(x=>x.uid===(selectInner?inner:root).uid));assert.ok(s.players[0].shields.some(x=>x.uid===(selectInner?root:inner).uid));assert.deepEqual(physical(s),before);assert.ok(s.players[0].grave.some(x=>x.uid===source.uid));
+});
+test('La Zuneyoma ramps once per physical shield card leaving, cannot attack player and can guard an ally',()=>{
+ const s=setup(),source=put(s,0,L),ally=put(s,0,N),enemy=put(s,1,N);s.phase='attack';assert.ok(!e.getLegalActions(s).some(a=>a.kind==='attack'&&a.uid===source.uid&&a.target==='player'));const root=inst(N),inner=inst(N);root.shieldStack=[inner];s.players[0].shields=[root];s.active=1;attack(s,enemy.uid);act(s,'noBlock');drain(s);assert.equal(s.players[0].mana.length,52);assert.ok(s.players[0].hand.some(x=>x.uid===root.uid)&&s.players[0].hand.some(x=>x.uid===inner.uid));enemy.tapped=false;ally.tapped=true;attack(s,enemy.uid,ally.uid);assert.ok(e.getLegalActions(s).some(a=>a.kind==='guardman'&&a.uid===source.uid));act(s,'guardman',a=>a.uid===source.uid);drain(s);assert.ok(source.tapped);assert.ok(s.players[0].battle.some(x=>x.uid===ally.uid));
+});
+for(const n of[0,2,5])test('Aurora selects any number of whole shields to mana, with shield-leave ramps and saved state '+n,()=>{
+ let s=setup();put(s,0,L);const shields=s.players[0].shields.slice(),before=physical(s);playFace(s,L,1);for(let i=0;i<n;i++)pick(s,shields[i].uid);if(s.decision?.task?.op==='g34_ShieldHand')pick(s,null);drain(s);assert.equal(s.players[0].shields.length,5-n);assert.equal(s.players[0].mana.length,50+2*n);for(const sh of shields.slice(0,n))assert.ok(s.players[0].mana.some(x=>x.uid===sh.uid));s=JSON.parse(JSON.stringify(s));assert.deepEqual(physical(s).filter(uid=>before.includes(uid)),before);
+});

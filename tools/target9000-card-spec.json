@@ -25338,5 +25338,206 @@
         ]
       }
     }
+  },
+  "dmrp08-035": {
+    "phase": 1591,
+    "faces": [
+      {
+        "name": "貝獣 マーデク",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）",
+        "race": "ムートピア",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "クラムダンク",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "カードを３枚引く。その後、自分の手札を２枚、好きな順序で山札の一番下に置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "smashBurst": true,
+      "spellFace": {
+        "name": "クラムダンク",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "カードを３枚引く。その後、自分の手札を２枚、好きな順序で山札の一番下に置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "deck",
+            "n": 2,
+            "g183Return": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp09-001": {
+    "phase": 1591,
+    "faces": [
+      {
+        "name": "音奏 ハイオリーダ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "ブロッカーブロッカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。\n自分のシールドゾーンにカードが置かれた時、GR召喚する。",
+        "race": "メタリカ/ワンダフォース",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "音奏曲第3番「幻惑」",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "カードを１枚引き、その後、自分の手札を１枚裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。その後、カードを１枚、自分のシールドゾーンから墓地に置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldTop",
+          "n": 1
+        }
+      ],
+      "g918ShieldAdded": [
+        {
+          "op": "GrSummon1498"
+        }
+      ],
+      "spellFace": {
+        "name": "音奏曲第3番「幻惑」",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "カードを１枚引き、その後、自分の手札を１枚裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。その後、カードを１枚、自分のシールドゾーンから墓地に置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "shields",
+            "n": 1
+          },
+          {
+            "op": "ShieldGrave",
+            "cardOnly": true
+          }
+        ]
+      }
+    }
+  },
+  "dmex04-047": {
+    "phase": 1591,
+    "faces": [
+      {
+        "name": "ラ・ズーネヨマ・パンツァー",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nカードが自分のシールドゾーンを離れた時、自分の山札の上から１枚目をマナゾーンに置く。",
+        "race": "グランセクト",
+        "powerText": "12000",
+        "missingFields": []
+      },
+      {
+        "name": "逆転のオーロラ",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "自分のシールドを好きな数、マナゾーンに置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "guardman": true,
+      "noPlayerAttack": true,
+      "g536ShieldLeft": [
+        {
+          "op": "Ramp",
+          "n": 1
+        }
+      ],
+      "spellFace": {
+        "name": "逆転のオーロラ",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "race": "",
+        "text": "自分のシールドを好きな数、マナゾーンに置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldHand",
+            "g535Count": "any",
+            "g554To": "mana",
+            "optional": true
+          }
+        ]
+      }
+    }
   }
 }

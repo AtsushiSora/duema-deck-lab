@@ -64,7 +64,9 @@ test('Phase 919 verifies complete card faces, six reprints and distinct Twinpact
  for(const [id,paired] of [[AURORA,'dmex04-047'],[BENZO,'dm22ex1-061']]){
   assert.equal(cat.get(paired).id,paired);
   assert.notEqual(nameKey(cat.get(id).name),nameKey(cat.get(paired).name));
-  assert.ok(!data.cards.some(c=>c.id===paired));
+  const registered=data.cards.find(c=>c.id===paired);
+  if(registered){assert.notEqual(registered.id,id);assert.equal(registered.spellFace.name,details.cards.find(c=>c.id===paired).faces[1].name);}
+  else assert.equal(cat.coverage({cards:[{id:paired,count:1}]}).unsupported,1);
  }
  const deck={id:'phase919',name:'シールド操作',cards:['dmsd07-012','dmx12b-082','dmr20-056',NATURE,FIRE,DARK,WATER,LIGHT,HAND,SURFER]
   .map(id=>({id,count:4}))};

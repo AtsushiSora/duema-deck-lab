@@ -4486,8 +4486,9 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_ShieldGrave':{
-  const options=ownShieldGraveOptions(s,t.p);
-  if(options.length)choice(s,t,'墓地に置く自分のシールドを1つ選ぶ',t.optional?[...options,skip()]:options);
+  const options=t.cardOnly?own.shields.flatMap((root,i)=>api.shieldCards(root).flatMap((y,j)=>
+   y.g37ShieldHeld?[]:[opt('シールド '+(i+1)+' のカード '+(j+1),y.uid,10)])):ownShieldGraveOptions(s,t.p);
+  if(options.length)choice(s,t,t.cardOnly?'墓地に置く自分のシールドのカードを1枚選ぶ':'墓地に置く自分のシールドを1つ選ぶ',t.optional?[...options,skip()]:options);
   break;
  }
  case'g34_OwnShieldGraves697':{
@@ -7289,7 +7290,7 @@ export function createSixPhotoRules(api){
   }
   break;
  case'g34_ShieldGrave':if(v){
-  const moved=api.moveShield(s,t.p,v,'grave');
+  const moved=api.moveShield(s,t.p,v,'grave',{cardOnly:!!t.cardOnly});
   finishOrDeferShield1352(s,t,'ownGrave',t.p,moved);
  }break;
  case'g34_BlindReveal803':{
