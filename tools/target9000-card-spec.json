@@ -28313,5 +28313,78 @@
         ]
       }
     }
+  },
+  "dmex18-039": {
+    "phase": 1613,
+    "faces": [
+      {
+        "name": "Dの学園 ナメティック・アカデミー",
+        "typeText": "D2フィールド",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "自分の、カードに能力が書かれていないクリーチャーの召喚コストを１少なくする。ただし、コストは０以下にはならない。\n自分の、カードに能力が書かれていないクリーチャーが出た時、カードを１枚引いてもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "field",
+      "d2Field": true,
+      "g1613D2PrintedEntry": true,
+      "g290SummonAura": {
+        "g560D2Field": true,
+        "filter": {
+          "g990PrintedNoAbilities": true
+        },
+        "amount": 1
+      },
+      "g314OtherEntry": {
+        "filter": {
+          "creature": true,
+          "g990PrintedNoAbilities": true
+        },
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      }
+    }
+  },
+  "dmex02-079": {
+    "phase": 1613,
+    "faces": [
+      {
+        "name": "インパラスカス",
+        "typeText": "NEOクリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "NEO進化：自分のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーの上に、どの文明のNEOクリーチャーまたは進化クリーチャーを置いてもよい。",
+        "race": "グランセクト",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "neoEvolution": {
+        "any": [
+          {
+            "creature": true
+          }
+        ]
+      },
+      "g1613AnyEvolutionCivilization": true
+    }
   }
 }
