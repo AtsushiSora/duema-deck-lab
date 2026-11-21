@@ -218,7 +218,7 @@ export function createSixPhotoRules(api){
    matches(s,owner,x,t.filter)).length,0);
   return Math.min(t.max??Infinity,(t.owner==='both'?count(p)+count(1-p):count(owner))*t.amount);
  }
- function payCount499(s,t){const choices=[],max=countDiscountMax499(s,t.p,t.c);for(let amount=max;amount>=0;amount--){if(t.c.g212CountDiscount.fullOrNone&&amount!==0&&amount!==max)continue;const c={...t.c,g499Handled:true,g499Reduction:amount};if(api.canPay(s,t.p,c)){const n=api.summonCost(s,t.p,c);choices.push(opt((amount?amount+'軽減する':'軽減しない')+'（'+n+'マナ）',amount,100-n*5,t.source));}}choice(s,t,'召喚の軽減量を選ぶ',[...choices,opt('召喚をやめる',false,-1000)]);}
+ function payCount499(s,t){const choices=[],max=countDiscountMax499(s,t.p,t.c);for(let amount=max;amount>=0;amount--){if(t.c.g212CountDiscount.fullOrNone&&amount!==0&&amount!==max)continue;const c={...t.c,g499Handled:true,g499Reduction:amount};if(api.canPay(s,t.p,c)){const n=api.summonCost(s,t.p,c);choices.push(opt((amount?amount+'軽減する':'軽減しない')+'（'+n+'マナ）',amount,100-n*5,t.source));}}choice(s,t,t.c.type==='spell'?'呪文の軽減量を選ぶ':'召喚の軽減量を選ぶ',[...choices,opt(t.c.type==='spell'?'唱えるのをやめる':'召喚をやめる',false,-1000)]);}
  // Apply higher floors before the independent one-mana-floor reductions.
  function sympathyAmount500(s,p,c){
   const r=c.g211Sympathy;
@@ -418,6 +418,7 @@ export function createSixPhotoRules(api){
   if(f.g951ManaCivilizationCost&&cost(effective(x,s))>manaCivilizationCount(s,p))return false;
   const c=api.zoneCard(s,p,x),d=s.players[p].battle.includes(x)?effective(x,s):c;
   if(f.g1490Exile&&!c.g1490Exile)return false;
+  if(f.g1537LinkedGod&&(!race(d,'ゴッド')||!x.godLinks?.length))return false;
   if(f.g1535Duelist&&!c.g1367Duelist&&c.type!=='duelist')return false;
   if(f.g1535Duelmate&&!d.g1367Duelmate)return false;
   if(f.multicolor&&colors(d).length<2)return false;
@@ -8540,7 +8541,7 @@ export function createSixPhotoRules(api){
  },
  beginPayment500(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g500Handled||!floorOptions500(s,p,c)[0]||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PayFloor500',p,c.id,{c:payment,args}));return true;},
  floorCost500(s,p,c,base){if(c.type!=='creature'||c.crossing)return base;const minimum=c.g211Sympathy?.minimum;if(minimum>=3)base=Math.min(base,Math.max(minimum,base-sympathyAmount500(s,p,c)));const amounts=floorOptions500(s,p,c),aura=c.g500Amount===undefined?amounts[0]:amounts.includes(c.g500Amount)?c.g500Amount:0,n=aura+(c.g212CountDiscount?.minimum===2?countDiscountMax499(s,p,c):0)+(c.g211Sympathy?.minimum===2?sympathyAmount500(s,p,c):0);return n?Math.min(base,Math.max(2,base-n)):base;},
- beginPayment499(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g499Handled||c.type!=='creature'||!c.g212CountDiscount?.optional||!countDiscountMax499(s,p,c)||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PayCount499',p,c.id,{c:payment,args}));return true;},
+ beginPayment499(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g499Handled||c.type!=='creature'&&!c.g1537OptionalSpellDiscount||!c.g212CountDiscount?.optional||!countDiscountMax499(s,p,c)||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PayCount499',p,c.id,{c:payment,args}));return true;},
  beginOverdrive1439(s,p,c,args){if(args[1]||args[4]?.g1439Handled||!c.g1439ODrive)return false;put(s,task('g34_ODrive1439',p,c.id,{c,args}));return true;},
  beginPayment485(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g485Handled||!spellReductionMax485(s,p,c)||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PaySpell485',p,c.id,{c:payment,args}));return true;},
  beginPayment470(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g470Handled||!c.g470RevealReduction||!revealCards470(s,p,c).length)return false;put(s,task('g34_RevealPayment470',p,c.id,{c,args,revealed:null}));return true;},

@@ -275630,15 +275630,123 @@
       ],
       "supportBatch": "phase-1536",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-036",
+      "name": "オト☆トメ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ムートピア/ムーゲッツ",
+      "text": "自分の「無月の門」能力を使った時、このクリーチャーを自分の手札または墓地からバトルゾーンにタップして出してもよい。\n自分のムートピアまたはムーゲッツが破壊される時、墓地に置くかわりに自分の手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-036",
+      "limit": 4,
+      "g4Tin": {
+        "origins": [
+          "hand",
+          "grave"
+        ]
+      },
+      "g720OptionalDestroyToHand": {
+        "creature": true,
+        "raceAny": [
+          "ムートピア",
+          "ムーゲッツ"
+        ]
+      },
+      "supportBatch": "phase-1537",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd08-b-003",
+      "name": "ソー☆ギョッ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ムートピア",
+      "text": "自分の「無月の門」能力を使った時、このクリーチャーを自分の手札または墓地からバトルゾーンにタップして出してもよい。\nこのクリーチャーがバトルゾーンに出た時、カードを１枚引く。その後、自分の手札を１枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd08-b-003",
+      "limit": 4,
+      "g4Tin": {
+        "origins": [
+          "hand",
+          "grave"
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1537",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm27-001",
+      "name": "バイオレンス・ヘヴン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 10,
+      "power": 0,
+      "race": "",
+      "text": "自分のリンクしているゴッド１体につき、この呪文を唱えるコストを最大３少なくしてもよい。ただし、コストは１より少なくならない。\nゴッド以外のクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-001",
+      "limit": 4,
+      "g212CountDiscount": {
+        "zone": "battle",
+        "filter": {
+          "creature": true,
+          "g1537LinkedGod": true
+        },
+        "amount": 3,
+        "optional": true
+      },
+      "g1537OptionalSpellDiscount": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "notRace": "ゴッド"
+          },
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1537",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1536,
+    "phase": 1537,
     "checkedAt": "2026-11-21",
-    "baseCount": 8756,
-    "newEffectCards": 5,
+    "baseCount": 8761,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 8761,
+    "totalCount": 8764,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -300921,6 +301029,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 8756,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1536,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8756,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8761,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

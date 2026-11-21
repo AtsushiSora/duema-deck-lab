@@ -13543,5 +13543,122 @@
         }
       ]
     }
+  },
+  "dmrp08-036": {
+    "phase": 1537,
+    "faces": [
+      {
+        "name": "オト☆トメ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の「無月の門」能力を使った時、このクリーチャーを自分の手札または墓地からバトルゾーンにタップして出してもよい。\n自分のムートピアまたはムーゲッツが破壊される時、墓地に置くかわりに自分の手札に戻してもよい。",
+        "race": "ムートピア/ムーゲッツ",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g4Tin": {
+        "origins": [
+          "hand",
+          "grave"
+        ]
+      },
+      "g720OptionalDestroyToHand": {
+        "creature": true,
+        "raceAny": [
+          "ムートピア",
+          "ムーゲッツ"
+        ]
+      }
+    }
+  },
+  "dmbd08-b-003": {
+    "phase": 1537,
+    "faces": [
+      {
+        "name": "ソー☆ギョッ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の「無月の門」能力を使った時、このクリーチャーを自分の手札または墓地からバトルゾーンにタップして出してもよい。\nこのクリーチャーがバトルゾーンに出た時、カードを１枚引く。その後、自分の手札を１枚捨てる。",
+        "race": "ムートピア",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g4Tin": {
+        "origins": [
+          "hand",
+          "grave"
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 1
+        }
+      ]
+    }
+  },
+  "dm27-001": {
+    "phase": 1537,
+    "faces": [
+      {
+        "name": "バイオレンス・ヘヴン",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "自分のリンクしているゴッド１体につき、この呪文を唱えるコストを最大３少なくしてもよい。ただし、コストは１より少なくならない。\nゴッド以外のクリーチャーをすべて破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g212CountDiscount": {
+        "zone": "battle",
+        "filter": {
+          "creature": true,
+          "g1537LinkedGod": true
+        },
+        "amount": 3,
+        "optional": true
+      },
+      "g1537OptionalSpellDiscount": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "notRace": "ゴッド"
+          },
+          "spell": true
+        }
+      ]
+    }
   }
 }

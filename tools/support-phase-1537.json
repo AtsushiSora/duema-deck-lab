@@ -1,0 +1,240 @@
+{
+  "phase": 1537,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8761,
+  "description": "既存の処理を用いて全能力を個別に検証し3種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31729/",
+    "https://dm.takaratomy.co.jp/rule/qa/31730/",
+    "https://dm.takaratomy.co.jp/rule/qa/31731/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/31729/": "通常召喚では門を使った扱いにならない。",
+    "https://dm.takaratomy.co.jp/rule/qa/31730/": "条件不足で宣言だけの場合は使った扱いにならない。",
+    "https://dm.takaratomy.co.jp/rule/qa/31731/": "出る先の置換でも門の使用は成立。"
+  },
+  "implementationNotes": [
+    "既存g4Tinのtrueは墓地のみの動作を維持。新しいorigins指定で手札と墓地を区別し、同じ訪問のシリアル番号を確認して出す。",
+    "任意の枚数軽減はバイオレンス・ヘヴンに限定した新フラグで呪文にも選択を提供し、既存のクリーチャーの支払い処理を利用。"
+  ],
+  "cards": [
+    {
+      "id": "dmrp08-036",
+      "name": "オト☆トメ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-036",
+      "faces": [
+        {
+          "name": "オト☆トメ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の「無月の門」能力を使った時、このクリーチャーを自分の手札または墓地からバトルゾーンにタップして出してもよい。\n自分のムートピアまたはムーゲッツが破壊される時、墓地に置くかわりに自分の手札に戻してもよい。",
+          "race": "ムートピア/ムーゲッツ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g4Tin": {
+          "origins": [
+            "hand",
+            "grave"
+          ]
+        },
+        "g720OptionalDestroyToHand": {
+          "creature": true,
+          "raceAny": [
+            "ムートピア",
+            "ムーゲッツ"
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "40276668354c843944a4dbe984cae149d9e1d2fd873a3468becee741fe9ba0e6",
+        "facesMatched": true,
+        "imageSha256": "89595e6d9a60c335f9f41a044d755fd79b4fddb571f5e16fe815c2ba8531aa1c",
+        "imageBytes": 120526
+      },
+      "sameNameProducts": [
+        "DMRP-08 双極篇 拡張パック第４弾 超決戦!バラギアラ!!無敵オラオラ輪廻∞"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-036",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmbd08-b-003",
+      "name": "ソー☆ギョッ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd08-b-003",
+      "faces": [
+        {
+          "name": "ソー☆ギョッ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の「無月の門」能力を使った時、このクリーチャーを自分の手札または墓地からバトルゾーンにタップして出してもよい。\nこのクリーチャーがバトルゾーンに出た時、カードを１枚引く。その後、自分の手札を１枚捨てる。",
+          "race": "ムートピア",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g4Tin": {
+          "origins": [
+            "hand",
+            "grave"
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd08-b-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "bd1a49661b7bcd6b00f2649c675846d52c7613d0ad7f3d3f40be43319f2388e7",
+        "facesMatched": true,
+        "imageSha256": "f2e43f479d881820346432b55534d7c6f45cd6638f9c5ecf072144a5e90338fd",
+        "imageBytes": 99933
+      },
+      "sameNameProducts": [
+        "DMBD-08 超誕!!ツインヒーローデッキ80 自然大暴走 VS 卍獄の虚無月"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd08-b-003",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm27-001",
+      "name": "バイオレンス・ヘヴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-001",
+      "faces": [
+        {
+          "name": "バイオレンス・ヘヴン",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "自分のリンクしているゴッド１体につき、この呪文を唱えるコストを最大３少なくしてもよい。ただし、コストは１より少なくならない。\nゴッド以外のクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "g1537LinkedGod": true
+          },
+          "amount": 3,
+          "optional": true
+        },
+        "g1537OptionalSpellDiscount": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "notRace": "ゴッド"
+            },
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm27-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "ee92316e282b8beeaa36b63c918e56e2256ded112f2ee04238c441add1f6e4fb",
+        "facesMatched": true,
+        "imageSha256": "ff495bae51c20ac80072c2183374598e06451a549a188395486618abfe7b59fd",
+        "imageBytes": 99773
+      },
+      "sameNameProducts": [
+        "DM-27 極神編 第4弾 完全極神(パーフェクト・ヘヴン)",
+        "DMC-57 スーパーデッキ サーガ ザ・ゴッド・キングダム"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-001",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp08-036": 4,
+      "dmbd08-b-003": 4,
+      "dm27-001": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/31729/",
+    "https://dm.takaratomy.co.jp/rule/qa/31730/",
+    "https://dm.takaratomy.co.jp/rule/qa/31731/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31729/",
+      "sha256": "e836f6f1f617221244d802fef7b043755c807442225e39ec915f1742b9baeb73",
+      "result": "通常召喚では門を使った扱いにならない。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31730/",
+      "sha256": "9b93d9fe605a50c97ea79881e037a31ad66ab38f371eb3bb3b83cd10c33d1f9f",
+      "result": "条件不足で宣言だけの場合は使った扱いにならない。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31731/",
+      "sha256": "928b89278ab5cf0fff500884174f3efd8ca65caef5dadc1567068a58657cd551",
+      "result": "出る先の置換でも門の使用は成立。"
+    }
+  ]
+}

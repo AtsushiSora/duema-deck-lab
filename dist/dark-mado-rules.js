@@ -59,7 +59,7 @@ export function createDarkMadoRules(api){
    case'g30_Gride':{const before=new Set(own.grave.map(x=>x.uid));api.mill(s,t.p,3);const amount=own.grave.filter(x=>!before.has(x.uid)&&faces(card(x)).some(magic)).length*2000;choice(s,{...t,amount},'グリデリア：相手1体を−'+amount+'する？',[...targetOptions(s,t.p,creatures(s,1-t.p)),skip()]);break;}
    case'g30_Funz':{const selected=t.selected||[];if(selected.length===2){move(s,selected.map(uid=>({player:1-t.p,uid,to:'hand',destroy:false})));break;}choice(s,{...t,selected},'フンズヴァイ：戻すエレメントを2つまで選ぶ',[...targetOptions(s,t.p,s.players[1-t.p].battle.filter(x=>!selected.includes(x.uid))),opt('この内容で戻す',null,selected.length?10:0)]);break;}
    case'g30_GraveHand':choice(s,t,'墓地の闇のカードを1枚、手札に戻す',own.grave.filter(x=>faces(card(x)).some(c=>colors(c).includes('闇'))).map(x=>opt(card(x).name,x.uid,10+Math.min(20,cost(card(x))),x.cardId)));break;
-   case'g30_Tin':{const x=own.grave.find(x=>x.uid===t.uid&&serial(x)===t.serial);if(x&&api.canEnter(s,t.p,card(x),{origin:'grave',execution:false}))choice(s,t,card(x).name+'を墓地からタップして出す？',[opt('タップして出す',true,30,x.cardId),skip()]);break;}
+   case'g30_Tin':{const origin=t.origin||'grave',x=own[origin].find(x=>x.uid===t.uid&&serial(x)===t.serial);if(x&&api.canEnter(s,t.p,card(x),{origin,execution:false}))choice(s,t,card(x).name+'を'+(origin==='hand'?'手札':'墓地')+'からタップして出す？',[opt('タップして出す',true,30,x.cardId),skip()]);break;}
    default:throw Error('未実装の闇魔導具効果：'+t.op);
   }return true;
  }
@@ -74,7 +74,7 @@ export function createDarkMadoRules(api){
    case'g30_JawDeploy':put(s,task('putCreature',t.p,t.source,{origin:'grave',uid:v}),{...t,uids:t.uids.filter(uid=>uid!==v)});break;
    case'g30_Funz':{const selected=t.selected||[];if(v)put(s,{...t,selected:[...selected,v]});else if(selected.length)move(s,selected.map(uid=>({player:1-t.p,uid,to:'hand',destroy:false})));break;}
    case'g30_GraveHand':{const x=policyRemove(s,t.p,'grave',v,api);if(x){clear(x,'hand');own.hand.push(x);}break;}
-   case'g30_Tin':if(v){const x=own.grave.find(x=>x.uid===t.uid&&serial(x)===t.serial);if(x&&api.canMoveZone(s,t.p,'grave')){policyRemove(s,t.p,'grave',x.uid,api);api.enter(s,t.p,x,null,{origin:'grave',execution:false,tapped:true});}}break;
+   case'g30_Tin':if(v){const origin=t.origin||'grave',x=own[origin].find(x=>x.uid===t.uid&&serial(x)===t.serial);if(x&&api.canMoveZone(s,t.p,origin)){policyRemove(s,t.p,origin,x.uid,api);api.enter(s,t.p,x,null,{origin,execution:false,tapped:true});}}break;
    default:throw Error('未実装の闇魔導具選択：'+t.op);
   }return true;
  }
@@ -85,7 +85,7 @@ export function createDarkMadoRules(api){
   summoned(s,p,x){watchLarge(s,card(x));},spellCast(s,p,c){watchLarge(s,c);},
   attack(s,p,x){const c=effective(x,s);if(api.selfStopped(s,p))return;if(c.g4Zadan)on(s,p,x,'g30_Zadan');if(c.g4Manji)on(s,p,x,'destroyPower',{max:'∞'});},
   end(s){return s.players[s.active].battle.filter(x=>card(x).g4Vogen&&effective(x,s).g4Vogen).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task('mill',s.active,x.cardId,{n:13})}));},
-  gateWatchers(s,p){return s.players[p].grave.filter(x=>card(x).g4Tin).map(x=>({uid:x.uid,serial:serial(x),source:x.cardId}));},
+  gateWatchers(s,p){return ['grave','hand'].flatMap(origin=>s.players[p][origin].filter(x=>{const rule=card(x).g4Tin;return rule&&(rule===true?origin==='grave':rule.origins.includes(origin));}).map(x=>({uid:x.uid,serial:serial(x),source:x.cardId,origin})));},
   gateUsed(s,p,rows){for(const x of rows)api.enqueue(s,p,{uid:x.uid,source:x.source,effect:'extended',task:task('g30_Tin',p,x.source,x)});},
  };
 }
