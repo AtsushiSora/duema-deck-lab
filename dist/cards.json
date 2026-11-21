@@ -275888,15 +275888,256 @@
       "effect": "madoNothing",
       "supportBatch": "phase-1538",
       "supportKind": "effect"
+    },
+    {
+      "id": "promoy18-045",
+      "name": "ゴールド＆ジョルネード",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nこのクリーチャーが攻撃する時、Jトルネードしてもよい。そうしたら、カードを３枚引く。（Jトルネード：自分の他のジョーカーズを１体、手札に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy18-045",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "to": "hand",
+          "toOwnerHand": true,
+          "n": 1,
+          "optional": true,
+          "g179Other": true,
+          "g187OwnPick": true,
+          "filter": {
+            "creature": true,
+            "race": "ジョーカーズ"
+          },
+          "title": "Jトルネードする自分の他のジョーカーズを選ぶ",
+          "afterBattleSelect": [
+            {
+              "op": "Draw",
+              "n": 3
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1539",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd13-002",
+      "name": "ポセイドン・ザ・ゴールド",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "このクリーチャーがバトルゾーンに出た時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nこのクリーチャーが攻撃する時、Jトルネードしてもよい。そうしたら、このターン、このクリーチャーのパワーは+2000され、「W・ブレイカー」を得、ブロックされない。（Jトルネード：自分の他のジョーカーズを１体、手札に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd13-002",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "to": "hand",
+          "toOwnerHand": true,
+          "n": 1,
+          "optional": true,
+          "g179Other": true,
+          "g187OwnPick": true,
+          "filter": {
+            "creature": true,
+            "race": "ジョーカーズ"
+          },
+          "title": "Jトルネードする自分の他のジョーカーズを選ぶ",
+          "afterBattleSelect": [
+            {
+              "op": "SelfBoost313",
+              "power": 2000,
+              "g536Source": true
+            },
+            {
+              "op": "SelfGrant754",
+              "grant": {
+                "breaker": 2,
+                "unblockable": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1539",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-059",
+      "name": "とことこガム太郎",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 12000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。その後、バトルゾーンに自分のGRクリーチャーが３体以上あれば、そのターン、このクリーチャーに「マッハファイター」を与える。\n（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n（「マッハファイター」を持つクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-059",
+      "limit": 4,
+      "guardman": true,
+      "noPlayerAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g1471GrCount": 3
+          },
+          "defs": [
+            {
+              "op": "SelfGrant754",
+              "grant": {
+                "machFighter": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1539",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-030",
+      "name": "元気健康バラカルビ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンに自分のGRクリーチャーが３体以上あれば、自分のマナゾーンのカードを６枚までアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-030",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g527ExtraEntry": [
+        {
+          "label": "GRが3体以上ならマナを6枚までアンタップ",
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g1471GrCount": 3
+              },
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "mana",
+                  "n": 6,
+                  "optional": true,
+                  "filter": {
+                    "tapped": true
+                  },
+                  "g210ManaUntap": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1539",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-011",
+      "name": "バンオク・ロック",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "このクリーチャーをマナゾーンから召喚してもよい。\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、このクリーチャーのパワーを+10000し、「T・ブレイカー」を与える。\n自分のターンの終わりに、バトルゾーンにある自分のGRクリーチャーが２体以下なら、このクリーチャーを自分のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-011",
+      "limit": 4,
+      "manaSummon": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g1471GrCount": 3
+        },
+        "grants": {
+          "power": 10000,
+          "breaker": 3
+        }
+      },
+      "g174End": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g1471GrCount": 3
+          },
+          "defs": [],
+          "elseDefs": [
+            {
+              "op": "SelfMana297"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1539",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1538,
+    "phase": 1539,
     "checkedAt": "2026-11-21",
-    "baseCount": 8764,
+    "baseCount": 8769,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8769,
+    "totalCount": 8774,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -301207,6 +301448,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 8764,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1538,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8764,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8769,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

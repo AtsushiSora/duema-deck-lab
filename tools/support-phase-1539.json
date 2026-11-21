@@ -1,0 +1,407 @@
+{
+  "phase": 1539,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8769,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/32320/",
+    "https://dm.takaratomy.co.jp/rule/qa/32352/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/32320/": "Jトルネードは自分の他のジョーカーズ1体を手札に戻す。",
+    "https://dm.takaratomy.co.jp/rule/qa/32352/": "Jトルネードで手札に戻らなくても後続の能力を使う。"
+  },
+  "implementationNotes": [
+    "GR召喚は既存AuraGr1353を利用し、GRの物理カードと召喚扱いを維持。",
+    "バラカルビは2つの登場能力を別々にキューし、GR召喚とアンタップの順序を選べるようにする。",
+    "Jトルネードの後続は既存afterBattleSelectを利用する。"
+  ],
+  "cards": [
+    {
+      "id": "promoy18-045",
+      "name": "ゴールド＆ジョルネード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy18-045",
+      "faces": [
+        {
+          "name": "ゴールド＆ジョルネード",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nこのクリーチャーが攻撃する時、Jトルネードしてもよい。そうしたら、カードを３枚引く。（Jトルネード：自分の他のジョーカーズを１体、手札に戻す）",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "AuraGr1353"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "to": "hand",
+            "toOwnerHand": true,
+            "n": 1,
+            "optional": true,
+            "g179Other": true,
+            "g187OwnPick": true,
+            "filter": {
+              "creature": true,
+              "race": "ジョーカーズ"
+            },
+            "title": "Jトルネードする自分の他のジョーカーズを選ぶ",
+            "afterBattleSelect": [
+              {
+                "op": "Draw",
+                "n": 3
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy18-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "04397b8154eb86027d236395d1b297ea2ac75f64a0a9638cc670a7ee3f502fb2",
+        "facesMatched": true,
+        "imageSha256": "4414214cac069c07deb8956b2084b0678e4c6deaf591ac0108907b7b6a52c5d8",
+        "imageBytes": 136984
+      },
+      "sameNameProducts": [
+        "プロモ限定カード 18期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy18-045",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmsd13-002",
+      "name": "ポセイドン・ザ・ゴールド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd13-002",
+      "faces": [
+        {
+          "name": "ポセイドン・ザ・ゴールド",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nこのクリーチャーが攻撃する時、Jトルネードしてもよい。そうしたら、このターン、このクリーチャーのパワーは+2000され、「W・ブレイカー」を得、ブロックされない。（Jトルネード：自分の他のジョーカーズを１体、手札に戻す）",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "AuraGr1353"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "to": "hand",
+            "toOwnerHand": true,
+            "n": 1,
+            "optional": true,
+            "g179Other": true,
+            "g187OwnPick": true,
+            "filter": {
+              "creature": true,
+              "race": "ジョーカーズ"
+            },
+            "title": "Jトルネードする自分の他のジョーカーズを選ぶ",
+            "afterBattleSelect": [
+              {
+                "op": "SelfBoost313",
+                "power": 2000,
+                "g536Source": true
+              },
+              {
+                "op": "SelfGrant754",
+                "grant": {
+                  "breaker": 2,
+                  "unblockable": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd13-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "13fd7a93fbbf9e24eff84d01a526accb4121531d09116b237d829fba69022cc0",
+        "facesMatched": true,
+        "imageSha256": "b0012f563798885145a2f2b8d2a143d2262f06af38324f35710d68bcad35bc3c",
+        "imageBytes": 145347
+      },
+      "sameNameProducts": [
+        "DMSD-13 超GRメガスタートデッキ ジョーの超ジョーカーズ旋風"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd13-002",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp12-059",
+      "name": "とことこガム太郎",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-059",
+      "faces": [
+        {
+          "name": "とことこガム太郎",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。その後、バトルゾーンに自分のGRクリーチャーが３体以上あれば、そのターン、このクリーチャーに「マッハファイター」を与える。\n（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n（「マッハファイター」を持つクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "guardman": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "AuraGr1353"
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g1471GrCount": 3
+            },
+            "defs": [
+              {
+                "op": "SelfGrant754",
+                "grant": {
+                  "machFighter": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-059.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "961d1f548a156efbde320571311d721d632c8121fb1b17406612d143b336f63f",
+        "facesMatched": true,
+        "imageSha256": "3460be56799257ddc1b5af58338797dfcf9f0122e8d6d5a928c94d8ef1b31534",
+        "imageBytes": 128292
+      },
+      "sameNameProducts": [
+        "DMRP-12 超天篇 拡張パック第4弾 超超超天！覚醒ジョギラゴン vs. 零龍卍誕"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-059",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp11-030",
+      "name": "元気健康バラカルビ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-030",
+      "faces": [
+        {
+          "name": "元気健康バラカルビ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンに自分のGRクリーチャーが３体以上あれば、自分のマナゾーンのカードを６枚までアンタップする。",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "AuraGr1353"
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "GRが3体以上ならマナを6枚までアンタップ",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g1471GrCount": 3
+                },
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "mana",
+                    "n": 6,
+                    "optional": true,
+                    "filter": {
+                      "tapped": true
+                    },
+                    "g210ManaUntap": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "56245ac96ce292dc78c70f3d84099709722ef5cd5efeea52de541043924dd647",
+        "facesMatched": true,
+        "imageSha256": "c72807c54f5eafc591b9ec0f5832e36abf0ce3e9d7083f29a784a9f36f9fada6",
+        "imageBytes": 99478
+      },
+      "sameNameProducts": [
+        "DMRP-11 超天篇 拡張パック第3弾 零誕！魔神おこせジョルネード1059!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-030",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp12-011",
+      "name": "バンオク・ロック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-011",
+      "faces": [
+        {
+          "name": "バンオク・ロック",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをマナゾーンから召喚してもよい。\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、このクリーチャーのパワーを+10000し、「T・ブレイカー」を与える。\n自分のターンの終わりに、バトルゾーンにある自分のGRクリーチャーが２体以下なら、このクリーチャーを自分のマナゾーンに置く。",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "manaSummon": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "AuraGr1353"
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g1471GrCount": 3
+          },
+          "grants": {
+            "power": 10000,
+            "breaker": 3
+          }
+        },
+        "g174End": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g1471GrCount": 3
+            },
+            "defs": [],
+            "elseDefs": [
+              {
+                "op": "SelfMana297"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "cdffccd9691f2b1e30143e9e64417e97e3368e9c56fcf60cc2ba2c3d1b401042",
+        "facesMatched": true,
+        "imageSha256": "95b24a88554bf18cb79a99ae69be107f35efd5984c00df348d220715121c1dba",
+        "imageBytes": 111501
+      },
+      "sameNameProducts": [
+        "DMRP-12 超天篇 拡張パック第4弾 超超超天！覚醒ジョギラゴン vs. 零龍卍誕"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-011",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "promoy18-045": 4,
+      "dmsd13-002": 4,
+      "dmrp12-059": 4,
+      "dmrp11-030": 4,
+      "dmrp12-011": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/32320/",
+    "https://dm.takaratomy.co.jp/rule/qa/32352/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/32320/",
+      "sha256": "eb32c2f32818ab32d13503a53c79b7dc8e9cec20bec3bb692b13fba10b5c711b",
+      "result": "Jトルネードは自分の他のジョーカーズ1体を手札に戻す。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/32352/",
+      "sha256": "e0b63cdd93a5d81767fbe6d5371ea81e1153666b64c15f90ece814b5a290d1ee",
+      "result": "Jトルネードで手札に戻らなくても後続の能力を使う。"
+    }
+  ]
+}
