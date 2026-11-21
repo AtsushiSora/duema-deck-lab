@@ -62,3 +62,8 @@ test('grave alternate summons show their methods and never create a move absent 
  const s=fixture(),g=s.room.game,x=c('grave-alternative');g.phase='main';g.players[0].grave=[x];g.actions=[{id:3,kind:'play',uid:x.uid,requiresMethod:true,playType:'creature',label:'アビスラッシュ'},{id:4,kind:'toAttack'}];
  assert.equal(onlinePrimaryAction(s.room,x.uid).command,'card');g.actor=1;assert.equal(onlinePrimaryAction(s.room,x.uid).disabled,true);
 });
+
+test('ordinary online moves carry their room revision and retain multi-card effect targets when a creature is selected',()=>{
+ const s=fixture();s.room.revision=18;s.room.game.decision='2体を選ぶ';const first=c('target-one'),second=c('target-two');s.room.game.players[1].battle=[first,second];s.room.game.actions=[{id:7,kind:'effect',uid:null,targetUids:[first.uid,second.uid],label:'この2体をタップ'},{id:8,kind:'effect',uid:'other',label:'別の対象'}];
+ for(const selected of[first.uid,second.uid]){const html=onlineScreenHTML(s,{user:{},actionsOpen:true,selected});assert.match(html,/data-action="online-move"[^>]*data-index="7"[^>]*data-revision="18"/);assert.doesNotMatch(html,/data-index="8"/);}
+});

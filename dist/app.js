@@ -1019,7 +1019,7 @@ document.addEventListener('click',async event=>{
  else if(action==='online-actions-toggle'){onlineActionsOpen=!onlineActionsOpen;render();}
  else if(action==='online-all-actions'){closeDialog();onlinePending=null;onlineActionsOpen=true;onlineSelected=null;onlinePage=0;render();}
  else if(action==='online-page'){onlinePage=Math.max(0,Number(el.dataset.page)||0);render();}
- else if(action==='online-move')await onlineMove(a);
+ else if(action==='online-move'){const room=onlineState.room;if(room&&String(room.revision)===el.dataset.revision)await onlineMove(a);}
  else if(action==='online-pay-mana'){
   const room=onlineState.room;
   if(room?.game?.manaPayment&&String(room.revision)===el.dataset.revision&&
@@ -1041,7 +1041,7 @@ document.addEventListener('click',async event=>{
  else if(action==='online-resign'){closeDialog();await onlineClient?.resign();}
  else if(action==='online-back'){onlineClient?.clear();onlineSelected=null;render();}
  else if(action==='online-log'){showDialog('オンライン対戦ログ',onlineState.room.events.map(x=>`<p class="online-history-line"><span class="badge">T${displayTurn(x)}</span> ${esc(onlineState.room.players[x.player]?.name)}：${esc(x.text)}</p>`).join(''));}
- else if(action==='online-zone'){const game=onlineState.room?.game,p=game?.players[Number(el.dataset.player)],zone=el.dataset.zone;if(p&&['mana','grave','extra','seals','abyss','faceUpShields','revealedHand'].includes(zone)){showDialog(`${p.name}の${zone==='mana'?'マナ':zone==='grave'?'墓地':zone==='extra'?'超次元ゾーン':zone==='seals'?'封印':zone==='abyss'?'深淵ゾーン':zone==='revealedHand'?'確認中の手札':'表向きシールド'}`,`<div class="online-zone-list">${(zone==='revealedHand'?game.revealedHand||[]:p[zone]||[]).map(c=>`<button class="btn" data-action="${['mana','grave','extra','seals','abyss','revealedHand'].includes(zone)?'online-pick-card':'card-detail'}" data-uid="${esc(c.uid)}" data-id="${esc(c.id||'')}" ${c.hidden&&zone!=='seals'?'disabled':''}>${esc(c.hidden?'裏向き':c.name)}${c.tapped?' · タップ中':''}</button>`).join('')||'<p>カードはありません。</p>'}</div>`);}}
+ else if(action==='online-zone'){const game=onlineState.room?.game,p=game?.players[Number(el.dataset.player)],zone=el.dataset.zone;if(p&&['mana','grave','extra','seals','abyss','faceUpShields','revealedHand'].includes(zone)){showDialog(`${p.name}の${zone==='mana'?'マナ':zone==='grave'?'墓地':zone==='extra'?'超次元ゾーン':zone==='seals'?'封印':zone==='abyss'?'深淵ゾーン':zone==='revealedHand'?'確認中の手札':'表向きシールド'}`,`<div class="online-zone-list">${(zone==='revealedHand'?game.revealedHand||[]:p[zone]||[]).map(c=>`<button class="btn" data-action="${['mana','grave','extra','seals','abyss','revealedHand'].includes(zone)?'online-pick-card':'card-detail'}" data-uid="${esc(c.uid)}" data-id="${esc(c.id||'')}" ${c.hidden&&zone!=='seals'&&!game.actions?.some(a=>a.uid===c.uid||a.targetUids?.includes(c.uid))?'disabled':''}>${esc(c.hidden?'裏向き':c.name)}${c.tapped?' · タップ中':''}</button>`).join('')||'<p>カードはありません。</p>'}</div>`);}}
  else if(action==='account-login')await accountClient?.signIn();
  else if(action==='account-check-login')await accountClient?.resumeSignIn();
  else if(action==='account-cancel-login')accountClient?.cancelSignIn();

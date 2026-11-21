@@ -1,0 +1,175 @@
+{
+  "checkedAt": "2026-11-21T10:51:51.681Z",
+  "baseline": "4c6500e0608b84606e532ab2d68fae8e91308dfb",
+  "status": "verified-local-not-published",
+  "scope": "通信対戦の画面、合法手の表示、盤面更新時の操作、カード対象と非公開情報の境界。全カード・全対戦の不具合不在を保証する監査ではない。",
+  "findings": [
+    {
+      "id": "stale-action",
+      "severity": "high",
+      "problem": "更新前の通常操作ボタンが同じ番号の更新後の操作を送信し、別のカードを使用し得る。",
+      "reproduction": "tests/online-app.test.mjs: stale ordinary action button",
+      "beforeFix": {
+        "name": "stale-repro",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern",
+          "stale ordinary action button",
+          "tests/online-app.test.mjs"
+        ],
+        "code": 1,
+        "timedout": false,
+        "seconds": 0.841,
+        "log": "tmp/duema-online-audit/stale-repro.log"
+      },
+      "afterFix": "focused",
+      "fix": "通常操作ボタンにもルームrevisionを付け、現在のrevisionと一致する場合だけ送信。マナ支払い・攻撃確認での既存チェックと統一。"
+    },
+    {
+      "id": "public-target-card",
+      "severity": "medium",
+      "problem": "通常効果や汎用g34の選択に対象UIDが付かず、対象クリーチャーをタップすると操作が消える。",
+      "reproduction": "デーモン・ハンドとデコピンの呪文面の実際の対象選択。",
+      "beforeFix": {
+        "name": "targets-repro",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern",
+          "effect target can be selected",
+          "tests/online-app.test.mjs"
+        ],
+        "code": 1,
+        "timedout": false,
+        "seconds": 0.723,
+        "log": "tmp/duema-online-audit/targets-repro.log"
+      },
+      "afterFix": "focused + server",
+      "fix": "現在見えるカードのUIDに限って、合法手の対象参照を公開。単体および複数対象を画面側で照合し、元のサーバーの操作IDを維持。"
+    },
+    {
+      "id": "face-down-mana-target",
+      "severity": "medium",
+      "problem": "相手の裏向きマナは合法な効果対象でもカード一覧で常に押せなかった。",
+      "reproduction": "マナ・クライシスの実際の効果と裏向きの相手マナ。",
+      "beforeFix": {
+        "name": "hidden-repro",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern",
+          "legal face-down opponent mana target",
+          "tests/online-app.test.mjs"
+        ],
+        "code": 1,
+        "timedout": false,
+        "seconds": 0.656,
+        "log": "tmp/duema-online-audit/hidden-repro.log"
+      },
+      "afterFix": "focused",
+      "fix": "サーバーが選択を許可したUIDの場合だけボタンを有効化。表面の名前・画像・カードIDは引き続き表示しない。"
+    }
+  ],
+  "results": {
+    "focused": {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=2",
+        "tests/online-ui.test.mjs",
+        "tests/online-app.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.941,
+      "log": "tmp/duema-online-audit/focused.log",
+      "passed": 41,
+      "failed": 0,
+      "logSha256": "c79257d8ac4b6d123839b116fca9483065f49d7ed3011cb629580be40e000775"
+    },
+    "server": {
+      "name": "server",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "online public effect references|^the server validates|^creating, joining|^online seals hide|^Murder hand inspection|^Golgy private library choices|^QQ online shares|^online play labels|^historical original forty",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.708,
+      "log": "tmp/duema-online-audit/server.log",
+      "passed": 9,
+      "failed": 0,
+      "logSha256": "e282d6acd90a5760c130f873bf263ba085140f6475a9010b933bc37a7f27cef8"
+    },
+    "controls": {
+      "name": "controls",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=2",
+        "tests/online-client.test.mjs",
+        "tests/online-runtime.test.mjs",
+        "tests/battle-controls.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.014,
+      "log": "tmp/duema-online-audit/controls.log",
+      "passed": 21,
+      "failed": 0,
+      "logSha256": "49184151316db2c951f134a22be16416d8f7b8f4004e6f84e5a2cc69cff9c2e1"
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 19.384,
+      "log": "tmp/duema-online-audit/check.log",
+      "passed": 0,
+      "failed": 0,
+      "logSha256": "29eaae5683e519e74f6e3289264792125adb683071d6359795a09846a9b5b42f"
+    }
+  },
+  "successfulTestExecutions": 71,
+  "privacyChecks": [
+    "手札と非公開の山札のUIDを新しい対象参照から除外。",
+    "非操作側には合法手を送信しない。",
+    "相手の裏向きマナの中身を表示せず、解決して公開ゾーンに移動した後だけ公開。"
+  ],
+  "compatibility": {
+    "schemaVersion": 1,
+    "additiveOptionalActionField": "targetUids",
+    "engineChanged": false,
+    "cardDataChanged": false,
+    "saveFormatChanged": false,
+    "uniqueNames": 9070,
+    "duplicates": 0
+  },
+  "remaining": [
+    "Googleの実アカウント2つによる本番対戦は未検証。ローカルの認証アダプター・HTTP・暗号化サーバー保存を使った検証と区別。",
+    "過去の全体npm test、中断済みNo16・No04の長時間検証、前回のmanual-ui全30対戦走査の未確認を維持。今回は同じ長時間走査を再実行していない。",
+    "他のカード固有の不具合がないとは断言しない。",
+    "今回の修正は未公開。フロントと通信APIの変更を含むため、公開時には両方の反映が必要。現時点ではpush・公開・Netlify更新を行っていない。"
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  },
+  "hashes": {
+    "dist/app.js": "b5086e553fa173ddeb941c077fa90edad6aca92d1a9bf07e4376bbcd1c819f34",
+    "dist/online-ui.js": "da6b63f36f41ee9f0a52b1b787c1a16c5c250794d7fe3dd0c9dd511aebc12bb7",
+    "server/duel-core.mjs": "7b5dcbf516963c06090f743dadd66ad205d5c2ac8f593ea92513f7d26bec3ce6",
+    "dist/cards.json": "42c3b7b8060c037d25105c6320c4bd597a47be5e94fcec473de4f685e90bbb40"
+  }
+}

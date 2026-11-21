@@ -195,3 +195,14 @@ test('Advance projects an equipped Dragheart and its released side across encryp
   assert.equal(shown.weaponTo,undefined);
  }
 });
+
+test('online public effect references include every target and never send unexposed private choice UIDs',async()=>{
+ const {projectRoom}=await import('../server/duel-core.mjs'),{inst}=await import('./target-fixture.mjs'),h=setup(),{code}=await h.start(),room=h.raw(code),s=room.game;
+ s.phase='main';s.active=0;s.players[0].hand=[];s.players[0].battle=[];s.players[1].battle=[inst('dm01-083'),inst('dm01-108')];
+ const [a,b]=s.players[1].battle,secret=inst('dm01-097');s.players[0].deck.unshift(secret);
+ s.decision={type:'extended',player:0,title:'対象を選ぶ',source:'dmrp07-044',task:{op:'g34_Target',p:0,source:'dmrp07-044'},choices:[{label:'公開された対象',value:{p:1,uid:a.uid}},{label:'非公開の山札選択',value:{uid:secret.uid}}]};
+ let own=projectRoom(room,host,room.updatedAt);assert.deepEqual(own.game.actions[0].targetUids,[a.uid]);assert.equal(own.game.actions[1].targetUids,undefined);assert.ok(!JSON.stringify(own).includes(secret.uid));assert.deepEqual(projectRoom(room,guest,room.updatedAt).game.actions,[]);
+ // Core multi-target moves use the same public references as extended choices.
+ s.decision=null;s.players[0].hand=[inst('dm01-046')];s.players[0].mana=Array.from({length:4},()=>inst('dm01-075'));
+ e.step(s,e.getLegalActions(s).find(a=>a.kind==='play'));own=projectRoom(room,host,room.updatedAt);const both=own.game.actions.find(x=>x.targetUids?.includes(a.uid)&&x.targetUids?.includes(b.uid));assert.ok(both);assert.equal(both.uid,null);assert.ok(!JSON.stringify(own.game.actions).includes(secret.uid));
+});

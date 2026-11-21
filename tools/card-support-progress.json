@@ -524191,6 +524191,41 @@
         },
         "note": "30完全対戦を含む画面走査は今回は中断・合否未確認。通常の画面操作20件と通信・操作回帰は分割して合格。過去の全体npm testや長時間テストの未確認状態も保持。"
       }
+    },
+    "latestOnlineAdditionalAudit": {
+      "artifact": "tools/online-additional-audit.json",
+      "checkedAt": "2026-11-21T10:51:51.681Z",
+      "status": "verified-local-not-published",
+      "confirmedAndFixed": [
+        {
+          "id": "stale-action",
+          "problem": "更新前の通常操作ボタンが同じ番号の更新後の操作を送信し、別のカードを使用し得る。",
+          "fix": "通常操作ボタンにもルームrevisionを付け、現在のrevisionと一致する場合だけ送信。マナ支払い・攻撃確認での既存チェックと統一。"
+        },
+        {
+          "id": "public-target-card",
+          "problem": "通常効果や汎用g34の選択に対象UIDが付かず、対象クリーチャーをタップすると操作が消える。",
+          "fix": "現在見えるカードのUIDに限って、合法手の対象参照を公開。単体および複数対象を画面側で照合し、元のサーバーの操作IDを維持。"
+        },
+        {
+          "id": "face-down-mana-target",
+          "problem": "相手の裏向きマナは合法な効果対象でもカード一覧で常に押せなかった。",
+          "fix": "サーバーが選択を許可したUIDの場合だけボタンを有効化。表面の名前・画像・カードIDは引き続き表示しない。"
+        }
+      ],
+      "tests": 71,
+      "uniqueNames": 9070,
+      "pending": [
+        "Googleの実アカウント2つによる本番対戦は未検証。ローカルの認証アダプター・HTTP・暗号化サーバー保存を使った検証と区別。",
+        "過去の全体npm test、中断済みNo16・No04の長時間検証、前回のmanual-ui全30対戦走査の未確認を維持。今回は同じ長時間走査を再実行していない。",
+        "他のカード固有の不具合がないとは断言しない。",
+        "今回の修正は未公開。フロントと通信APIの変更を含むため、公開時には両方の反映が必要。現時点ではpush・公開・Netlify更新を行っていない。"
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      }
     }
   },
   "registeredCardVerification": {
