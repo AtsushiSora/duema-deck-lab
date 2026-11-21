@@ -23831,5 +23831,353 @@
         ]
       }
     }
+  },
+  "dmrp11-025": {
+    "phase": 1586,
+    "faces": [
+      {
+        "name": "龍装者 “OGU”ヴァル",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "相手の手札が４枚以上あれば、このクリーチャーのパワーは+4000され、「スピードアタッカー」と「W・ブレイカー」を得る。（「スピードアタッカー」と「W・ブレイカー」を持つクリーチャーは召喚酔いせず、シールドを２つブレイクする）",
+        "race": "ドラゴンギルド/ビートジョッキー",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "「静謐よ、世界に満ちよ」",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "hand",
+            "opponent": true,
+            "min": 4
+          }
+        },
+        "grants": {
+          "power": 4000,
+          "speedAttacker": true,
+          "breaker": 2
+        }
+      },
+      "spellFace": {
+        "name": "「静謐よ、世界に満ちよ」",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "hand",
+            "toOwnerHand": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp07-030": {
+    "phase": 1586,
+    "faces": [
+      {
+        "name": "奇石 イシガネ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+        "race": "メタリカ",
+        "powerText": "3500",
+        "missingFields": []
+      },
+      {
+        "name": "センキン・ウォール",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分のクリーチャーをすべてアンタップする。次の自分のターンのはじめまで、それらすべてに「ブロッカー」を与える。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g40LastBurst": true,
+      "spellFace": {
+        "name": "センキン・ウォール",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "自分のクリーチャーをすべてアンタップする。次の自分のターンのはじめまで、それらすべてに「ブロッカー」を与える。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupUntap",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            }
+          },
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "g521UntilStart": true,
+            "grant": {
+              "blocker": true
+            },
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmex04-042": {
+    "phase": 1586,
+    "faces": [
+      {
+        "name": "アーチャー・チュリス",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "B・A・D２（このクリーチャーを、コストを２少なくして召喚してもよい。そうしたら、このターンの終わりにこのクリーチャーを破壊する）\nスピードアタッカー\nW・ブレイカー\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+        "race": "ビートジョッキー",
+        "powerText": "7000",
+        "missingFields": []
+      },
+      {
+        "name": "ボルカニック・アロー",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "S・トリガー S・トリガー\nパワー6000以下のクリーチャーを１体、破壊する。\n自分のシールドを１つ選び、墓地に置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "bad": 2,
+      "g175Bad": true,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g40LastBurst": true,
+      "spellFace": {
+        "name": "ボルカニック・アロー",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 2,
+        "race": "",
+        "text": "S・トリガー S・トリガー\nパワー6000以下のクリーチャーを１体、破壊する。\n自分のシールドを１つ選び、墓地に置く。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 6000,
+              "g199Power": true
+            },
+            "anyOwner": true
+          },
+          {
+            "op": "ShieldGrave588",
+            "owner": "self",
+            "n": 1,
+            "required": true
+          }
+        ]
+      }
+    }
+  },
+  "dm26ex4-071": {
+    "phase": 1586,
+    "faces": [
+      {
+        "name": "心山の炎 ボルメテウス・ピアラ",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nこのクリーチャーが出た時、相手のコスト３以下のエレメントを１つ選び、破壊する。",
+        "race": "ミリオン・フレイム",
+        "powerText": "1000",
+        "missingFields": []
+      },
+      {
+        "name": "マウンテン・チャージャー",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の山札の上から１枚を表向きにする。それが呪文または名前に《ボルメテウス》とあるカードなら、手札に加える。\nチャージャー（この呪文を唱えた後、墓地のかわりにマナゾーンに置く）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "max": 3
+          },
+          "element": true
+        }
+      ],
+      "spellFace": {
+        "name": "マウンテン・チャージャー",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "自分の山札の上から１枚を表向きにする。それが呪文または名前に《ボルメテウス》とあるカードなら、手札に加える。\nチャージャー（この呪文を唱えた後、墓地のかわりにマナゾーンに置く）",
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "any": [
+                {
+                  "spell": true
+                },
+                {
+                  "name": "ボルメテウス"
+                }
+              ]
+            },
+            "to": "hand"
+          }
+        ]
+      }
+    }
+  },
+  "dmrp07-005": {
+    "phase": 1586,
+    "faces": [
+      {
+        "name": "グロティス・インカーン",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－5000する。（パワー０以下のクリーチャーは破壊される）\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+        "race": "マフィ・ギャング",
+        "powerText": "6000",
+        "missingFields": []
+      },
+      {
+        "name": "陰影なる印影",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－5000する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g40LastBurst": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -5000
+        }
+      ],
+      "spellFace": {
+        "name": "陰影なる印影",
+        "type": "spell",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－5000する。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -5000
+          }
+        ]
+      }
+    }
   }
 }

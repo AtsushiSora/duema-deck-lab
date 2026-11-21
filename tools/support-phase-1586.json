@@ -1,0 +1,489 @@
+{
+  "phase": 1586,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8985,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp11-025",
+      "name": "龍装者 “OGU”ヴァル/「静謐よ、世界に満ちよ」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-025",
+      "faces": [
+        {
+          "name": "龍装者 “OGU”ヴァル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手の手札が４枚以上あれば、このクリーチャーのパワーは+4000され、「スピードアタッカー」と「W・ブレイカー」を得る。（「スピードアタッカー」と「W・ブレイカー」を持つクリーチャーは召喚酔いせず、シールドを２つブレイクする）",
+          "race": "ドラゴンギルド/ビートジョッキー",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "「静謐よ、世界に満ちよ」",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "hand",
+              "opponent": true,
+              "min": 4
+            }
+          },
+          "grants": {
+            "power": 4000,
+            "speedAttacker": true,
+            "breaker": 2
+          }
+        },
+        "spellFace": {
+          "name": "「静謐よ、世界に満ちよ」",
+          "type": "spell",
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "race": "",
+          "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "to": "hand",
+              "toOwnerHand": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-025a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "e7b333ecfdb802b5d88efd1af7b15e36684868e7719c037c10f731bb8cc5f0bc",
+        "facesMatched": true,
+        "imageSha256": "86b4f499a20842edf30f5913b249841360c5c8ceff9714ea6288c6622f340271",
+        "imageBytes": 129593
+      },
+      "sameNameProducts": [
+        "DMRP-11 超天篇 拡張パック第3弾 零誕！魔神おこせジョルネード1059!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-025",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp07-030",
+      "name": "奇石 イシガネ/センキン・ウォール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-030",
+      "faces": [
+        {
+          "name": "奇石 イシガネ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+          "race": "メタリカ",
+          "powerText": "3500",
+          "missingFields": []
+        },
+        {
+          "name": "センキン・ウォール",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のクリーチャーをすべてアンタップする。次の自分のターンのはじめまで、それらすべてに「ブロッカー」を与える。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g40LastBurst": true,
+        "spellFace": {
+          "name": "センキン・ウォール",
+          "type": "spell",
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "race": "",
+          "text": "自分のクリーチャーをすべてアンタップする。次の自分のターンのはじめまで、それらすべてに「ブロッカー」を与える。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "GroupUntap",
+              "owner": "self",
+              "filter": {
+                "creature": true
+              }
+            },
+            {
+              "op": "GroupGrant364",
+              "owner": "self",
+              "filter": {
+                "creature": true
+              },
+              "g521UntilStart": true,
+              "grant": {
+                "blocker": true
+              },
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-030a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "ad35036455a0b23e7f44e512fe24373faa4eb86a2156e885f6488e4e21e37b02",
+        "facesMatched": true,
+        "imageSha256": "326f13ab733ab11f0a731bbeecd5d5bb64b9142f55655638295201826c684e8f",
+        "imageBytes": 139029
+      },
+      "sameNameProducts": [
+        "DMRP-07 双極篇 拡張パック第３弾 †ギラギラ†煌世主と終葬のQX!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-030",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex04-042",
+      "name": "アーチャー・チュリス/ボルカニック・アロー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-042",
+      "faces": [
+        {
+          "name": "アーチャー・チュリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "B・A・D２（このクリーチャーを、コストを２少なくして召喚してもよい。そうしたら、このターンの終わりにこのクリーチャーを破壊する）\nスピードアタッカー\nW・ブレイカー\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+          "race": "ビートジョッキー",
+          "powerText": "7000",
+          "missingFields": []
+        },
+        {
+          "name": "ボルカニック・アロー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー\nパワー6000以下のクリーチャーを１体、破壊する。\n自分のシールドを１つ選び、墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "bad": 2,
+        "g175Bad": true,
+        "speedAttacker": true,
+        "breaker": 2,
+        "g40LastBurst": true,
+        "spellFace": {
+          "name": "ボルカニック・アロー",
+          "type": "spell",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "race": "",
+          "text": "S・トリガー S・トリガー\nパワー6000以下のクリーチャーを１体、破壊する。\n自分のシールドを１つ選び、墓地に置く。",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "maxPower": 6000,
+                "g199Power": true
+              },
+              "anyOwner": true
+            },
+            {
+              "op": "ShieldGrave588",
+              "owner": "self",
+              "n": 1,
+              "required": true
+            }
+          ]
+        }
+      },
+      "faceImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-042a.jpg",
+        "sha256": "343bd1b3e4faba8f39d5cff7af9ffa52ba63a38a956b593960d78d5681a77075",
+        "reviewedAt": "2026-11-21T04:45:27.919Z",
+        "reason": "公式画像の下側呪文の火文明を確認。HTMLの文明欠落のみ補完。",
+        "faces": [
+          {
+            "index": 1,
+            "civilizationText": "火",
+            "civilizations": [
+              "火"
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-042a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "fd36eb1bfd1fb6b55d8327f29aaf151ac953d63d9f7ebc42c835e918a418c22c",
+        "facesMatched": true,
+        "imageSha256": "343bd1b3e4faba8f39d5cff7af9ffa52ba63a38a956b593960d78d5681a77075",
+        "imageBytes": 147389
+      },
+      "sameNameProducts": [
+        "DMEX-04 夢の最＆強!!ツインパクト超No.1パック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-042",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm26ex4-071",
+      "name": "心山の炎 ボルメテウス・ピアラ / マウンテン・チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-071",
+      "faces": [
+        {
+          "name": "心山の炎 ボルメテウス・ピアラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nこのクリーチャーが出た時、相手のコスト３以下のエレメントを１つ選び、破壊する。",
+          "race": "ミリオン・フレイム",
+          "powerText": "1000",
+          "missingFields": []
+        },
+        {
+          "name": "マウンテン・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の山札の上から１枚を表向きにする。それが呪文または名前に《ボルメテウス》とあるカードなら、手札に加える。\nチャージャー（この呪文を唱えた後、墓地のかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "max": 3
+            },
+            "element": true
+          }
+        ],
+        "spellFace": {
+          "name": "マウンテン・チャージャー",
+          "type": "spell",
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "race": "",
+          "text": "自分の山札の上から１枚を表向きにする。それが呪文または名前に《ボルメテウス》とあるカードなら、手札に加える。\nチャージャー（この呪文を唱えた後、墓地のかわりにマナゾーンに置く）",
+          "normalCharger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "RevealTop514",
+              "filter": {
+                "any": [
+                  {
+                    "spell": true
+                  },
+                  {
+                    "name": "ボルメテウス"
+                  }
+                ]
+              },
+              "to": "hand"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-071a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "0b04d8748eaf7cfdec5967bf3d5637226c684a61b75655019ac9b463a8aa8662",
+        "facesMatched": true,
+        "imageSha256": "e3e06d4a71ae3e10977f193438e21312f8c4a889649ef2b6a1836e4db35d0133",
+        "imageBytes": 129347
+      },
+      "sameNameProducts": [
+        "DM26-EX4 切札不滅!! デュエキング FOREVER 2026"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-071",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp07-005",
+      "name": "グロティス・インカーン/陰影なる印影",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-005",
+      "faces": [
+        {
+          "name": "グロティス・インカーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－5000する。（パワー０以下のクリーチャーは破壊される）\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+          "race": "マフィ・ギャング",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "陰影なる印影",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－5000する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g40LastBurst": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -5000
+          }
+        ],
+        "spellFace": {
+          "name": "陰影なる印影",
+          "type": "spell",
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "race": "",
+          "text": "相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－5000する。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "power": -5000
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-005a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "9b399ba01b4817eb25115ba8771fa54c2384bdfba350b09296317bd2a119842a",
+        "facesMatched": true,
+        "imageSha256": "bb02397842e18473ad50e56d965dfc9da8714c26347bfa031242bc5b0eedb10d",
+        "imageBytes": 152540
+      },
+      "sameNameProducts": [
+        "DMRP-07 双極篇 拡張パック第３弾 †ギラギラ†煌世主と終葬のQX!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-005",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp11-025": 4,
+      "dmrp07-030": 4,
+      "dmex04-042": 4,
+      "dm26ex4-071": 4,
+      "dmrp07-005": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    }
+  ]
+}

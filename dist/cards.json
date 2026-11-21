@@ -284625,15 +284625,278 @@
       },
       "supportBatch": "phase-1585",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-025",
+      "name": "龍装者 “OGU”ヴァル/「静謐よ、世界に満ちよ」",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ドラゴンギルド/ビートジョッキー",
+      "text": "相手の手札が４枚以上あれば、このクリーチャーのパワーは+4000され、「スピードアタッカー」と「W・ブレイカー」を得る。（「スピードアタッカー」と「W・ブレイカー」を持つクリーチャーは召喚酔いせず、シールドを２つブレイクする）\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-025",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "hand",
+            "opponent": true,
+            "min": 4
+          }
+        },
+        "grants": {
+          "power": 4000,
+          "speedAttacker": true,
+          "breaker": 2
+        }
+      },
+      "spellFace": {
+        "name": "「静謐よ、世界に満ちよ」",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "hand",
+            "toOwnerHand": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1586",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-030",
+      "name": "奇石 イシガネ/センキン・ウォール",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3500,
+      "race": "メタリカ",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\n自分のクリーチャーをすべてアンタップする。次の自分のターンのはじめまで、それらすべてに「ブロッカー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-030",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g40LastBurst": true,
+      "spellFace": {
+        "name": "センキン・ウォール",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "自分のクリーチャーをすべてアンタップする。次の自分のターンのはじめまで、それらすべてに「ブロッカー」を与える。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupUntap",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            }
+          },
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "g521UntilStart": true,
+            "grant": {
+              "blocker": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1586",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex04-042",
+      "name": "アーチャー・チュリス/ボルカニック・アロー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ビートジョッキー",
+      "text": "B・A・D２（このクリーチャーを、コストを２少なくして召喚してもよい。そうしたら、このターンの終わりにこのクリーチャーを破壊する）\nスピードアタッカー\nW・ブレイカー\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\nS・トリガー S・トリガー\nパワー6000以下のクリーチャーを１体、破壊する。\n自分のシールドを１つ選び、墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-042",
+      "limit": 4,
+      "bad": 2,
+      "g175Bad": true,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g40LastBurst": true,
+      "spellFace": {
+        "name": "ボルカニック・アロー",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 2,
+        "race": "",
+        "text": "S・トリガー S・トリガー\nパワー6000以下のクリーチャーを１体、破壊する。\n自分のシールドを１つ選び、墓地に置く。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 6000,
+              "g199Power": true
+            },
+            "anyOwner": true
+          },
+          {
+            "op": "ShieldGrave588",
+            "owner": "self",
+            "n": 1,
+            "required": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1586",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex4-071",
+      "name": "心山の炎 ボルメテウス・ピアラ / マウンテン・チャージャー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "ミリオン・フレイム",
+      "text": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nこのクリーチャーが出た時、相手のコスト３以下のエレメントを１つ選び、破壊する。\n【呪文面】\n自分の山札の上から１枚を表向きにする。それが呪文または名前に《ボルメテウス》とあるカードなら、手札に加える。\nチャージャー（この呪文を唱えた後、墓地のかわりにマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-071",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "max": 3
+          },
+          "element": true
+        }
+      ],
+      "spellFace": {
+        "name": "マウンテン・チャージャー",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "自分の山札の上から１枚を表向きにする。それが呪文または名前に《ボルメテウス》とあるカードなら、手札に加える。\nチャージャー（この呪文を唱えた後、墓地のかわりにマナゾーンに置く）",
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "any": [
+                {
+                  "spell": true
+                },
+                {
+                  "name": "ボルメテウス"
+                }
+              ]
+            },
+            "to": "hand"
+          }
+        ]
+      },
+      "supportBatch": "phase-1586",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-005",
+      "name": "グロティス・インカーン/陰影なる印影",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "マフィ・ギャング",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－5000する。（パワー０以下のクリーチャーは破壊される）\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－5000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-005",
+      "limit": 4,
+      "breaker": 2,
+      "g40LastBurst": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -5000
+        }
+      ],
+      "spellFace": {
+        "name": "陰影なる印影",
+        "type": "spell",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－5000する。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -5000
+          }
+        ]
+      },
+      "supportBatch": "phase-1586",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1585,
+    "phase": 1586,
     "checkedAt": "2026-11-21",
-    "baseCount": 8980,
+    "baseCount": 8985,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8985,
+    "totalCount": 8990,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -310602,6 +310865,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8980,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1585,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8980,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8985,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
