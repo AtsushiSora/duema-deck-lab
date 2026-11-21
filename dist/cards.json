@@ -282306,15 +282306,179 @@
       ],
       "supportBatch": "phase-1575",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-073",
+      "name": "シャンデレラ・ボーイ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "このクリーチャーが攻撃する時、自分のシールド・カードを１枚見る。そのカードを、自分の山札の上から１枚目と入れ替えてもよい。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-073",
+      "limit": 4,
+      "gr": true,
+      "g34Attack": [
+        {
+          "op": "Peek585",
+          "who": "self",
+          "cardOnly": true,
+          "swap": true
+        }
+      ],
+      "supportBatch": "phase-1576",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx21-047",
+      "name": "究極竜装 ビクトリーソウル",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nクロスギア\nこれをクロスしたクリーチャーのパワーを+3000する。\nこれをクロスしたクリーチャーが攻撃する時、自分の山札の上から２枚をマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-047",
+      "limit": 4,
+      "g123CrossPower": 3000,
+      "g931CrossAttack": [
+        {
+          "op": "Ramp",
+          "n": 2
+        },
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1576",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmpcd02-a13",
+      "name": "覇翼 フェアリー・ アクセラー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 1,
+      "power": 0,
+      "race": "サムライ",
+      "text": "クロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーが離れても、このカードは残る。\nこれをクロスしたクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd02-a13",
+      "limit": 4,
+      "g931CrossAttack": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1576",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm35-044",
+      "name": "死神竜凰ドルゲドス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 5000,
+      "race": "ティラノ・ドレイク",
+      "text": "墓地進化-闇のクリーチャーを１体自分の墓地から選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーはブロックすることができない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-044",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "grave",
+        "conditions": [
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "g816BlockOnly": true
+        }
+      ],
+      "supportBatch": "phase-1576",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx22b-154",
+      "name": "灼熱憤怒 テスタ・ロッサ",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "アウトレイジMAX",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nスピードアタッカー\nこのクリーチャーが攻撃する時、自分の手札からアウトレイジを１体捨ててもよい。そうしたら、カードを２枚引き、このターン、このクリーチャーのパワーを+3000し、「W・ブレイカー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-154",
+      "limit": 4,
+      "speedAttacker": true,
+      "g34Attack": [
+        {
+          "op": "DiscardFor248",
+          "g488DiscardFilter": {
+            "creature": true,
+            "race": "アウトレイジ"
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 2
+            },
+            {
+              "op": "SelfBoost313",
+              "power": 3000,
+              "breaker": 2
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1576",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1575,
+    "phase": 1576,
     "checkedAt": "2026-11-21",
-    "baseCount": 8932,
+    "baseCount": 8937,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8937,
+    "totalCount": 8942,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -308143,6 +308307,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8932,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1575,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8932,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8937,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

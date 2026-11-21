@@ -20815,5 +20815,187 @@
         }
       ]
     }
+  },
+  "dmrp12-073": {
+    "phase": 1576,
+    "faces": [
+      {
+        "name": "シャンデレラ・ボーイ",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーが攻撃する時、自分のシールド・カードを１枚見る。そのカードを、自分の山札の上から１枚目と入れ替えてもよい。\n（ゲーム開始時、GRクリーチャーは山札には含めず、自分の超GRに置き、バトルゾーン以外のゾーンに行った場合、超GRの一番下に戻す）",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gr": true,
+      "manaValue": 0,
+      "g34Attack": [
+        {
+          "op": "Peek585",
+          "who": "self",
+          "cardOnly": true,
+          "swap": true
+        }
+      ]
+    }
+  },
+  "dmx21-047": {
+    "phase": 1576,
+    "faces": [
+      {
+        "name": "究極竜装 ビクトリーソウル",
+        "typeText": "クロスギア",
+        "civilizationText": "火/自然",
+        "civilizations": [
+          "火",
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nクロスギア\nこれをクロスしたクリーチャーのパワーを+3000する。\nこれをクロスしたクリーチャーが攻撃する時、自分の山札の上から２枚をマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に戻す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "gear",
+      "g123CrossPower": 3000,
+      "g931CrossAttack": [
+        {
+          "op": "Ramp",
+          "n": 2
+        },
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1
+        }
+      ]
+    }
+  },
+  "dmpcd02-a13": {
+    "phase": 1576,
+    "faces": [
+      {
+        "name": "覇翼 フェアリー・ アクセラー",
+        "typeText": "クロスギア",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "クロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーが離れても、このカードは残る。\nこれをクロスしたクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+        "race": "サムライ",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "gear",
+      "g931CrossAttack": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm35-044": {
+    "phase": 1576,
+    "faces": [
+      {
+        "name": "死神竜凰ドルゲドス",
+        "typeText": "進化クリーチャー(墓地進化)",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "墓地進化-闇のクリーチャーを１体自分の墓地から選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーはブロックすることができない。",
+        "race": "ティラノ・ドレイク",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "grave",
+        "conditions": [
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "g816BlockOnly": true
+        }
+      ]
+    }
+  },
+  "dmx22b-154": {
+    "phase": 1576,
+    "faces": [
+      {
+        "name": "灼熱憤怒 テスタ・ロッサ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/火",
+        "civilizations": [
+          "水",
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nスピードアタッカー\nこのクリーチャーが攻撃する時、自分の手札からアウトレイジを１体捨ててもよい。そうしたら、カードを２枚引き、このターン、このクリーチャーのパワーを+3000し、「W・ブレイカー」を与える。",
+        "race": "アウトレイジMAX",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "g34Attack": [
+        {
+          "op": "DiscardFor248",
+          "g488DiscardFilter": {
+            "creature": true,
+            "race": "アウトレイジ"
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 2
+            },
+            {
+              "op": "SelfBoost313",
+              "power": 3000,
+              "breaker": 2
+            }
+          ]
+        }
+      ]
+    }
   }
 }
