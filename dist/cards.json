@@ -281036,15 +281036,130 @@
       ],
       "supportBatch": "phase-1567",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-031",
+      "name": "瞬速チョッパヤ・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 11000,
+      "race": "アーマード・ドラゴン/ハンター",
+      "text": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n自分のターンの終わりに、このクリーチャーを自分の手札に戻す。その後、自分の手札を相手に見せずに１枚選ばせ、それを捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-031",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g174End": [
+        {
+          "op": "SelfHand299"
+        },
+        {
+          "op": "BlindReveal803",
+          "g1568Discard": true
+        }
+      ],
+      "supportBatch": "phase-1568",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp01-s03",
+      "name": "赤攻銀 アサラーム",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "メタリカ",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分のシールドを数える。それと同じ枚数のカードを、自分の山札の上から裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。\n自分の光ではないカードの「S・トリガー」は使えない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-s03",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DoubleShields1568"
+        }
+      ],
+      "g597TriggerLock": {
+        "ownOnly": true,
+        "exceptColor": "光"
+      },
+      "supportBatch": "phase-1568",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm31-003",
+      "name": "天牙海聖キング・サプライズ",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "エンジェル・コマンド/リヴァイアサン/ナイト",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nナイト流ジェネレート(このクリーチャーをバトルゾーンに出した時、自分の手札にある「ナイト・マジック」付き呪文を１枚、コストを支払わずに唱えてもよい)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-003",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "spellOnly": true,
+          "g1568KnightMagic": true
+        }
+      ],
+      "supportBatch": "phase-1568",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26-017",
+      "name": "霊騎秘宝ヒャックメー",
+      "civ": "光/闇/自然",
+      "civilizations": [
+        "光",
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 8000,
+      "race": "アーク・セラフィム/パンドラボックス",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー\nこのクリーチャーをバトルゾーンに出した時、自分の手札をすべて捨てる。このようにして手札を１枚も捨てない場合、このクリーチャーを破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-017",
+      "limit": 4,
+      "trigger": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "HyackmeDiscard1568"
+        }
+      ],
+      "supportBatch": "phase-1568",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1567,
+    "phase": 1568,
     "checkedAt": "2026-11-21",
-    "baseCount": 8897,
-    "newEffectCards": 5,
+    "baseCount": 8902,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 8902,
+    "totalCount": 8906,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -306761,6 +306876,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 8897,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1567,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8897,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8902,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

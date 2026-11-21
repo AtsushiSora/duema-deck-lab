@@ -107,7 +107,7 @@ export function createExtendedRules(api){
   const other=1-p,field=creatures(s,other);
   const applies=(x,own)=>{
    const lock=!x.sealed&&!x.faceDown&&effective(x,s).g597TriggerLock;
-   return lock&&(own?lock.both||lock.ownOnly:!lock.ownOnly)&&(!lock.type||lock.type===c.type)&&(!lock.color||colors(c).includes(lock.color))&&(!lock.tapped||x.tapped)
+   return lock&&(own?lock.both||lock.ownOnly:!lock.ownOnly)&&(!lock.type||lock.type===c.type)&&(!lock.color||colors(c).includes(lock.color))&&(!lock.exceptColor||!colors(c).includes(lock.exceptColor))&&(!lock.tapped||x.tapped)
     &&(!lock.ownBreak||x.uid===breaker?.uid&&(breaker.incarnation===undefined||(x.incarnation||0)===breaker.incarnation))
     &&(lock.minShields===undefined||remaining>=lock.minShields)
     &&(!lock.allColors||['光','水','闇','火','自然'].every(color=>field.some(y=>!y.sealed&&colors(effective(y,s)).includes(color))));

@@ -5589,6 +5589,9 @@ export function createSixPhotoRules(api){
  case'g34_WinOpponentGrave1530':if(s.players[1-t.p].grave.filter(x=>faces(api.zoneCard(s,1-t.p,x,'grave')).some(c=>c.type==='creature')).length>=t.n)api.finish(s,t.p,card(t.source).name+'：相手の墓地にクリーチャーが'+t.n+'体以上');break;
  case'g34_SelfSpellPut1529':{const i=(s.extSpells||[]).findIndex(f=>f.inst.uid===t.uid);if(i<0)break;const frame=s.extSpells[i];if(frame.virtual||!api.canEnter(s,t.p,card(frame.inst),{origin:'spell',execution:false}))break;s.extSpells.splice(i,1);enter(s,t.p,frame.inst,null,{origin:'spell',execution:false});if(t.delayed&&s.players[t.p].battle.some(x=>x.uid===frame.inst.uid))frame.inst.g34Delayed={turn:s.turn,to:t.delayed,source:t.source,controller:t.p};break;}
  case'g34_OjiCycle1528':api.discardSelected(s,t.p,own.hand.map(x=>x.uid),t.source,t.p,null,null,{...t,op:'g34_DrawAfterOji1528',g1528AllowZero:true});break;
+ case'g34_DoubleShields1568':start(s,t,[{op:'ShieldTop',n:own.shields.length,g779Simultaneous:true}]);break;
+ case'g34_HyackmeDiscard1568':api.discardSelected(s,t.p,own.hand.map(x=>x.uid),t.source,t.p,null,{...t,op:'g34_HyackmeAfter1568'});break;
+ case'g34_HyackmeAfter1568':if(!t.discarded)start(s,t,[{op:'SelfDestroy'}]);break;
  case'g34_DrawAfterOji1528':start(s,t,[{op:'Draw',n:t.n+1}]);break;
  case'g34_DrawDiscardCount1235':{
   const n=discardCount1235(s,t.p);
@@ -6399,6 +6402,7 @@ export function createSixPhotoRules(api){
     return faces(card(y)).flatMap((c,face)=>{
      const type=c.type;
      if(!api.canExecuteUnpaid(s,t.p,c))return [];
+     if(t.g1568KnightMagic&&!hasKnightMagic(c))return [];
      if(t.g1324ExecuteRace&&!race(c,t.g1324ExecuteRace)&&!(type==='spell'&&cost(c)<=t.g1324SpellMax))return [];
      if(t.spellOnly&&type!=='spell'||t.g1225SeedOnly&&!(type==='seed'||c.seedCreature||c.natureAce4)||t.g985FaceNameIncludes&&!c.name.includes(t.g985FaceNameIncludes)||
         t.g556SpellColor&&!colors(c).includes(t.g556SpellColor)||
@@ -7263,6 +7267,7 @@ export function createSixPhotoRules(api){
   const owner=t.owner==='opponent'?1-t.p:t.p,hand=s.players[owner].hand;
   const y=t.slots?hand.find(x=>x.uid===t.slots[v]):hand[v];
   if(y){
+   if(t.g1568Discard){api.discardSelected(s,owner,[y.uid],t.source,t.controller??t.p);break;}
    if(t.g1267Execute){
     start(s,t,[{op:'Execute',origin:'hand',filter:{exactUid:y.uid},g1244NoEmptyOffer:true}]);
     break;
