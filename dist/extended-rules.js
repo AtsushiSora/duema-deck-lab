@@ -752,17 +752,20 @@ if(f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.to='hand';f.g416S
    return mode==='opponentDiscard'||mode==='draw'&&s.active!==p?
     [{uid:x.uid,cardId:x.cardId,mode}]:[];
   });
-  const enemy=s.players[1-p].battle.flatMap(x=>
-   card(x).g949OpponentDiscardDraw&&!x.sealed&&api.isCreature(s,x)&&effective(x,s).g949OpponentDiscardDraw?
-    [{uid:x.uid,cardId:x.cardId,mode:'opponentDraw949'}]:[]);
+  const enemy=s.players[1-p].battle.flatMap(x=>{
+   const printed=card(x);if((!printed.g949OpponentDiscardDraw&&!printed.g1582OpponentDiscardWatch)||x.sealed||!api.isCreature(s,x))return [];
+   const c=effective(x,s),defs=c.g1582OpponentDiscardWatch;
+   return [...(c.g949OpponentDiscardDraw?[{uid:x.uid,cardId:x.cardId,mode:'opponentDraw949'}]:[]),
+    ...(defs?[{uid:x.uid,incarnation:x.incarnation||0,cardId:x.cardId,defs,player:1-p}]:[])];
+  });
   return [...own,...enemy];
  }
  function notifyDiscard848(s,p,watchers,n){
   if(!n)return;
-  for(const {uid,incarnation,cardId,mode,defs} of watchers||[]){
+  for(const {uid,incarnation,cardId,mode,defs,player:watchOwner=p} of watchers||[]){
    if(defs){
-    for(let i=0;i<n;i++)enqueue(s,p,{uid,incarnation,source:cardId,effect:'extended',
-     task:task('g34_Sequence',p,cardId,{uid,incarnation,defs})});
+    for(let i=0;i<n;i++)enqueue(s,watchOwner,{uid,incarnation,source:cardId,effect:'extended',
+     task:task('g34_Sequence',watchOwner,cardId,{uid,incarnation,defs})});
     continue;
    }
    if(mode==='opponentDraw949'){

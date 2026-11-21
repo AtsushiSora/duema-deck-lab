@@ -1,0 +1,525 @@
+{
+  "phase": 1582,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8966,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dm23bd6-007",
+      "name": "K・アトラン＆キング海賊団 / アイアイサー・チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd6-007",
+      "faces": [
+        {
+          "name": "K・アトラン＆キング海賊団",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n各ターンのはじめに、このクリーチャーをアンタップする。",
+          "race": "サイバー・ウイルス海",
+          "powerText": "13000",
+          "missingFields": []
+        },
+        {
+          "name": "アイアイサー・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "呪文を１枚、自分の墓地から手札に戻す。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g174Start": [
+          {
+            "op": "Untap",
+            "g191First": true
+          }
+        ],
+        "g179OpponentStart": [
+          {
+            "op": "Untap",
+            "g191First": true
+          }
+        ],
+        "spellFace": {
+          "name": "アイアイサー・チャージャー",
+          "type": "spell",
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "race": "",
+          "text": "呪文を１枚、自分の墓地から手札に戻す。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+          "normalCharger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "to": "hand",
+              "n": 1,
+              "filter": {
+                "spell": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd6-007a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "9622768c1d25d41c474ea3f41cca5f55cf4b6cf644154748d6a3b77bc6ac3562",
+        "facesMatched": true,
+        "imageSha256": "9d1d5aa0dc29e1bdd8f21456eef03a74e21f4ca95c1adacea40dba7dc30d0de3",
+        "imageBytes": 178808
+      },
+      "sameNameProducts": [
+        "DM23-BD6 エキサイティング・デュエパ・デッキ 「双極のアカシックZ計画」",
+        "プロモ限定カード 23期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd6-007",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex15-b022",
+      "name": "超幽龍アブゾ・ドルバ / 切り札をねらう悪魔!!",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b022",
+      "faces": [
+        {
+          "name": "超幽龍アブゾ・ドルバ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化：ドラゴン１体の上に置く。\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n自分の墓地にあるクリーチャー１体につき、このクリーチャーのパワーを+2000する。",
+          "race": "ドラゴン・ゾンビ",
+          "powerText": "11000",
+          "missingFields": []
+        },
+        {
+          "name": "切り札をねらう悪魔!!",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー\n自分の山札の上から３枚を墓地に置く。\n相手のドラゴンを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "category": "ドラゴン"
+        },
+        "poweredBreaker": true,
+        "g207CountPower": {
+          "zone": "grave",
+          "amount": 2000,
+          "filter": {
+            "creature": true
+          }
+        },
+        "spellFace": {
+          "name": "切り札をねらう悪魔!!",
+          "type": "spell",
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "race": "",
+          "text": "S・トリガー S・トリガー\n自分の山札の上から３枚を墓地に置く。\n相手のドラゴンを１体破壊する。",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Mill",
+              "n": 3
+            },
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "race": "ドラゴン"
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex15-b022a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "d6043dd37c92461b0df5f5a90955a36df6c8c50c2e97f79f92e0d52953dca4c4",
+        "facesMatched": true,
+        "imageSha256": "3bf12d33a12ce726342bcaf6c367cfaeaa23ac7d0d85a29c9498145e94759106",
+        "imageBytes": 173280
+      },
+      "sameNameProducts": [
+        "DMEX-15 20周年超感謝メモリアルパック 魂の章 名場面BEST"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b022",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp08-011",
+      "name": "カワモリデン / リーフストーム・トラップ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-011",
+      "faces": [
+        {
+          "name": "カワモリデン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーを自分のマナゾーンから召喚してもよい。\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）",
+          "race": "グランセクト",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "リーフストーム・トラップ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー\n自分のクリーチャーを１体、マナゾーンに置く。その後、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "manaSummon": true,
+        "smashBurst": true,
+        "spellFace": {
+          "name": "リーフストーム・トラップ",
+          "type": "spell",
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "race": "",
+          "text": "S・トリガー S・トリガー\n自分のクリーチャーを１体、マナゾーンに置く。その後、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "owner": "self",
+              "to": "mana",
+              "toOwnerMana": true
+            },
+            {
+              "op": "Target",
+              "to": "mana",
+              "toOwnerMana": true
+            }
+          ]
+        }
+      },
+      "faceImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-011a.jpg",
+        "sha256": "986b8308bcd372cfe2542ef0df5e4e62b7c944aac32ef8846bb39baa40f7c263",
+        "reviewedAt": "2026-11-21T04:20:12.550Z",
+        "reason": "公式画像の呪文側文明（枠とコストの色）を確認し、HTMLで欠落している文明だけを補完。",
+        "faces": [
+          {
+            "index": 1,
+            "civilizationText": "自然",
+            "civilizations": [
+              "自然"
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-011a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "ee1c7184e49517cb83bc8bf2eab85131b6ea0d54c9754ac5f5d46fb7f9c1b7a4",
+        "facesMatched": true,
+        "imageSha256": "986b8308bcd372cfe2542ef0df5e4e62b7c944aac32ef8846bb39baa40f7c263",
+        "imageBytes": 154760
+      },
+      "sameNameProducts": [
+        "DM23-BD6 エキサイティング・デュエパ・デッキ 「双極のアカシックZ計画」",
+        "DMRP-08 双極篇 拡張パック第４弾 超決戦!バラギアラ!!無敵オラオラ輪廻∞"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-011",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex04-046",
+      "name": "ストロング・ゴライアス/ 氷結ハンマー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-046",
+      "faces": [
+        {
+          "name": "ストロング・ゴライアス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "マッハファイター\nT・ブレイカー\nこのクリーチャーがバトルに勝った時、自分の山札の上から３枚を見る。その中から、自然のパワー12000以上の進化ではないクリーチャーを１体、バトルゾーンに出してもよい。残りを好きな順序で山札の一番下に置く。",
+          "race": "グランセクト",
+          "powerText": "12000",
+          "missingFields": []
+        },
+        {
+          "name": "氷結ハンマー",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "バトルゾーンにある相手の闇または水のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "breaker": 3,
+        "g189BattleWin": [
+          {
+            "op": "LookDeploy530",
+            "n": 3,
+            "limit": 1,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "color": "自然",
+              "minPower": 12000,
+              "g199Power": true
+            },
+            "rest": "bottom"
+          }
+        ],
+        "spellFace": {
+          "name": "氷結ハンマー",
+          "type": "spell",
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "race": "",
+          "text": "バトルゾーンにある相手の闇または水のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "to": "mana",
+              "toOwnerMana": true,
+              "filter": {
+                "any": [
+                  {
+                    "color": "水"
+                  },
+                  {
+                    "color": "闇"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "faceImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-046a.jpg",
+        "sha256": "213e288a58417eb04c11ac6428cfe2c36721ca71627f49c6f4cc50cf96258f83",
+        "reviewedAt": "2026-11-21T04:20:12.551Z",
+        "reason": "公式画像の呪文側文明（枠とコストの色）を確認し、HTMLで欠落している文明だけを補完。",
+        "faces": [
+          {
+            "index": 1,
+            "civilizationText": "自然",
+            "civilizations": [
+              "自然"
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-046a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "c490dbc4ed82ef4b0c90296242455751b2e35df5c305ca5b57787a3dbf158efa",
+        "facesMatched": true,
+        "imageSha256": "213e288a58417eb04c11ac6428cfe2c36721ca71627f49c6f4cc50cf96258f83",
+        "imageBytes": 141079
+      },
+      "sameNameProducts": [
+        "DMEX-04 夢の最＆強!!ツインパクト超No.1パック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-046",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp08-007",
+      "name": "ゲオルグ・バーボシュタイン / ゴースト・タッチ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-007",
+      "faces": [
+        {
+          "name": "ゲオルグ・バーボシュタイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）\n相手が手札を１枚捨てた時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－3000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "マフィ・ギャング",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "ゴースト・タッチ",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー\n相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "smashBurst": true,
+        "g1582OpponentDiscardWatch": [
+          {
+            "op": "Target",
+            "power": -3000,
+            "g242PowerMinus": true
+          }
+        ],
+        "spellFace": {
+          "name": "ゴースト・タッチ",
+          "type": "spell",
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "race": "",
+          "text": "S・トリガー S・トリガー\n相手の手札を１枚見ないで選び、捨てさせる。",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "BlindDiscard773",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "faceImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-007a.jpg",
+        "sha256": "8f60ec9eb591861dea4e1a169d0fd89d593c4cdf9531f16128a61190a6cd0b2b",
+        "reviewedAt": "2026-11-21T04:20:12.552Z",
+        "reason": "公式画像の呪文側文明（枠とコストの色）を確認し、HTMLで欠落している文明だけを補完。",
+        "faces": [
+          {
+            "index": 1,
+            "civilizationText": "闇",
+            "civilizations": [
+              "闇"
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-007a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "adc1ca6b8b122f9bfbc04364567ba698c405a2851bb6d7fbb79f2204004cc9c3",
+        "facesMatched": true,
+        "imageSha256": "8f60ec9eb591861dea4e1a169d0fd89d593c4cdf9531f16128a61190a6cd0b2b",
+        "imageBytes": 145702
+      },
+      "sameNameProducts": [
+        "DM22-EX2 ヒーローズ・ダークサイド・パック ～闇のキリフダたち～",
+        "DMRP-08 双極篇 拡張パック第４弾 超決戦!バラギアラ!!無敵オラオラ輪廻∞"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-007",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23bd6-007": 4,
+      "dmex15-b022": 4,
+      "dmrp08-011": 4,
+      "dmex04-046": 4,
+      "dmrp08-007": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    }
+  ]
+}
