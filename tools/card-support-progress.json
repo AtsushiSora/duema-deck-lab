@@ -520308,17 +520308,14 @@
             "node",
             "--test",
             "tests/standard1592-effects.test.mjs",
-            "tests/standard1379-effects.test.mjs",
-            "tests/standard1381-effects.test.mjs",
-            "tests/standard1382-effects.test.mjs",
-            "tests/standard1383-effects.test.mjs",
-            "tests/standard1326-effects.test.mjs"
+            "tests/standard1590-effects.test.mjs",
+            "tests/standard1591-effects.test.mjs"
           ],
           "code": 0,
           "timedout": false,
-          "seconds": 2.542,
+          "seconds": 2.17,
           "log": "tmp/duema-phase-1592/focused.log",
-          "passed": 95,
+          "passed": 59,
           "failed": 0
         },
         "related": {
@@ -520327,18 +520324,17 @@
             "node",
             "--test",
             "--test-concurrency=4",
-            "tests/standard485-effects.test.mjs",
+            "tests/standard601-effects.test.mjs",
+            "tests/standard624-effects.test.mjs",
+            "tests/standard1112-effects.test.mjs",
             "tests/standard1350-effects.test.mjs",
-            "tests/standard1498-effects.test.mjs",
-            "tests/standard1590-effects.test.mjs",
-            "tests/standard1591-effects.test.mjs",
-            "tests/mana-payment.test.mjs"
+            "tests/online-app.test.mjs"
           ],
           "code": 0,
           "timedout": false,
-          "seconds": 18.153,
+          "seconds": 2.012,
           "log": "tmp/duema-phase-1592/related.log",
-          "passed": 138,
+          "passed": 47,
           "failed": 0
         },
         "check": {
@@ -520350,8 +520346,10 @@
           ],
           "code": 0,
           "timedout": false,
-          "seconds": 19.081,
-          "log": "tmp/duema-phase-1592/check.log"
+          "seconds": 18.99,
+          "log": "tmp/duema-phase-1592/check.log",
+          "passed": 0,
+          "failed": 0
         },
         "audit": {
           "name": "audit",
@@ -520361,8 +520359,10 @@
           ],
           "code": 0,
           "timedout": false,
-          "seconds": 12.03,
-          "log": "tmp/duema-phase-1592/audit.log"
+          "seconds": 11.989,
+          "log": "tmp/duema-phase-1592/audit.log",
+          "passed": 0,
+          "failed": 0
         },
         "invariants": {
           "name": "invariants",
@@ -520372,16 +520372,44 @@
           ],
           "code": 0,
           "timedout": false,
-          "seconds": 0.206,
-          "log": "tmp/duema-phase-1592/invariants.log"
+          "seconds": 0.196,
+          "log": "tmp/duema-phase-1592/invariants.log",
+          "passed": 0,
+          "failed": 0
         }
       },
-      "totalTestsPassed": 233,
+      "totalTestsPassed": 106,
       "reason": "既存の処理を用いて全能力を個別に検証し3種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
       "remaining": [
         "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
       ],
-      "next": "目標10000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
+      "next": "目標10000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1592-effects.test.mjs",
+            "tests/standard1590-effects.test.mjs",
+            "tests/standard1591-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.139,
+          "log": "tmp/duema-phase-1592/focused.log"
+        }
+      ],
+      "testCorrections": [
+        "アカシック・AはGR召喚を含むマナタップ未使用の登場を相手ターンだけ強制破壊。ヘブンズ・ゲート実動作、自分ターンST、通常支払い、GR召喚を固有テストで再検証。任意シールド化のvenerakを置き換え。"
+      ],
+      "supplementalVerification": {
+        "checkedAt": "2026-11-21T07:18:40.693Z",
+        "baseline": "8fc67977edf9059c294b89519ee412323d777785",
+        "engineVersion": "0.602.110",
+        "supported": 9012,
+        "remaining": 988
+      }
     }
   ],
   "resume": {

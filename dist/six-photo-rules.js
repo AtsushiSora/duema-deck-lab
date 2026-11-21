@@ -9290,6 +9290,7 @@ export function createSixPhotoRules(api){
    const bloomDestroys=options.execution===false&&g403Bloom&&(s.active===p||g403Bloom==='eitherTurn');
    const unpaidDestroys=g601UnpaidDestroy&&(g601UnpaidDestroy!=='opponentTurn'||s.active===p)&&
     !options.costPaid&&!options.paidMana;
+   const untappedManaDestroys=g624EntryResponse==='opponentTurnUntappedManaDestroy'&&s.active===p&&!options.paidMana&&!y.sealed;
    const offHand=options.origin!==undefined&&options.origin!=='hand';
    const offHandMana=g601OffHandMana&&offHand,offHandDestroy=g1161OffHandDestroy&&offHand;
    const nonSummon=options.execution===false?g621NonSummon:null;
@@ -9299,9 +9300,9 @@ export function createSixPhotoRules(api){
       g624EntryResponse==='multicolorFight'&&colors(effective(y,s)).length>1||
       g624EntryResponse==='outsideHandFight'&&options.origin!==undefined&&options.origin!=='hand'))
     queue(s,1-p,watcher,[{op:'EntryFight624',enemy:{uid:y.uid,incarnation:y.incarnation||0}}]);
-   if(!bloomDestroys&&!unpaidDestroys&&!offHandMana&&!offHandDestroy&&!g600OverManaEntry&&!nonSummon&&!shieldWithoutMana&&!unpaidBounce)continue;
+   if(!bloomDestroys&&!unpaidDestroys&&!untappedManaDestroys&&!offHandMana&&!offHandDestroy&&!g600OverManaEntry&&!nonSummon&&!shieldWithoutMana&&!unpaidBounce)continue;
    const exact={op:'ExactMove',owner:p,g403Refs:[y,...(y.godLinks||[])].map(x=>({uid:x.uid,incarnation:x.incarnation||0}))};
-   if(bloomDestroys||unpaidDestroys)queue(s,1-p,watcher,[{...exact,to:'grave',target:y.uid,targetIncarnation:y.incarnation||0}]);
+   if(bloomDestroys||unpaidDestroys||untappedManaDestroys)queue(s,1-p,watcher,[{...exact,to:'grave',target:y.uid,targetIncarnation:y.incarnation||0}]);
    if(offHandMana)queue(s,1-p,watcher,[{...exact,to:'mana'}]);
    if(offHandDestroy)queue(s,1-p,watcher,[{...exact,to:'grave',followEvolution:'evolutionOnly',filter:{creature:true}}]);
    if(shieldWithoutMana)queue(s,1-p,watcher,[{...exact,to:'shields',optional:true,followEvolution:true}]);
