@@ -1,0 +1,407 @@
+{
+  "phase": 1583,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8971,
+  "description": "既存の処理を用いて全能力を個別に検証し4種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp09-005",
+      "name": "龍装05号 イヴィルヴィ / イーヴィル・フォース",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-005",
+      "faces": [
+        {
+          "name": "龍装05号 イヴィルヴィ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体破壊してもよい。そうしたら、相手は自身のクリーチャーを１体選び、破壊する。",
+          "race": "ドラゴンギルド/マフィ・ギャング/デーモン・コマンド",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "イーヴィル・フォース",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "闇または火の、コスト４以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。そのクリーチャーに「スピードアタッカー」を与える。このターンの終わりに、そのクリーチャーを破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "OpponentSelect",
+                "n": 1,
+                "to": "grave"
+              }
+            ]
+          }
+        ],
+        "spellFace": {
+          "name": "イーヴィル・フォース",
+          "type": "spell",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "race": "",
+          "text": "闇または火の、コスト４以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。そのクリーチャーに「スピードアタッカー」を与える。このターンの終わりに、そのクリーチャーを破壊する。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "deploy": true,
+              "n": 1,
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "max": 4,
+                "any": [
+                  {
+                    "color": "闇"
+                  },
+                  {
+                    "color": "火"
+                  }
+                ]
+              },
+              "grant": {
+                "speedAttacker": true
+              },
+              "delayed": "grave"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-005a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "cd11d41c17d8b9ad45de35130ada7eebc3278c6b01d1e965c016c99a4ce10124",
+        "facesMatched": true,
+        "imageSha256": "e48a782ea34a8ac5589b846e7729cf0855ffabe2d2a149d4b3e3b27af1433517",
+        "imageBytes": 176218
+      },
+      "sameNameProducts": [
+        "DMEX-19 マスター・ファイナル・メモリアル・パック",
+        "DMRP-09 超天篇 拡張パック第１弾 新世界ガチ誕！超ＧＲとオレガ・オーラ!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-005",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex18-054",
+      "name": "Disマスター /「己の弱さが敗北させるのだよ！」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-054",
+      "faces": [
+        {
+          "name": "Disマスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ササゲール１（ディスペクターを召喚する時、コストを１少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+          "race": "リキッド・ピープル/ディスタス",
+          "powerText": "1000",
+          "missingFields": []
+        },
+        {
+          "name": "「己の弱さが敗北させるのだよ！」",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガーS・トリガー\n相手のシールドを１つ見てもよい。\nカードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "sasage": 1,
+        "g40LastBurst": true,
+        "spellFace": {
+          "name": "「己の弱さが敗北させるのだよ！」",
+          "type": "spell",
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "race": "",
+          "text": "S・トリガーS・トリガー\n相手のシールドを１つ見てもよい。\nカードを１枚引く。",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Peek585",
+              "who": "opponent",
+              "optional": true
+            },
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-054a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "bfbeeef59fffed2974b5f68a15cc4b8da4fbdaf8a8ac203d479c77f9fa23bb47",
+        "facesMatched": true,
+        "imageSha256": "cc336d5836a6635e77c29b6d6d9e370efbffd22db2ea01a1462ac7e48326e3e2",
+        "imageBytes": 182336
+      },
+      "sameNameProducts": [
+        "DMEX-18 20周年超感謝メモリアルパック 裏の章 パラレル･マスターズ"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-054",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp08-088",
+      "name": "バー・キューベー/クー・ラクタロウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-088",
+      "faces": [
+        {
+          "name": "バー・キューベー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+          "race": "ジョーカーズ",
+          "powerText": "7000",
+          "missingFields": []
+        },
+        {
+          "name": "クー・ラクタロウ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の山札の上から３枚を表向きにする。その中からクリーチャーを１体、相手に見せてから自分の手札に加えてもよい。残りをすべて好きな順序で山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "smashBurst": true,
+        "breaker": 2,
+        "spellFace": {
+          "name": "クー・ラクタロウ",
+          "type": "spell",
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "race": "",
+          "text": "自分の山札の上から３枚を表向きにする。その中からクリーチャーを１体、相手に見せてから自分の手札に加えてもよい。残りをすべて好きな順序で山札の一番下に置く。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Look",
+              "n": 3,
+              "public": true,
+              "stages": [
+                {
+                  "to": "hand",
+                  "n": 1,
+                  "optional": true,
+                  "filter": {
+                    "creature": true
+                  },
+                  "reveal": true
+                }
+              ],
+              "rest": "bottom"
+            }
+          ]
+        }
+      },
+      "faceImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-088a.jpg",
+        "sha256": "07f250f48aeccfbfb9c391f53cd6a2cb13f52520ec0e3fd78bd2a991a8597053",
+        "reviewedAt": "2026-11-21T04:26:27.669Z",
+        "reason": "公式画像で呪文側は自然文明、コスト2、上3枚を表向きにする全文を確認。HTMLの文明欠落のみ補完。",
+        "faces": [
+          {
+            "index": 1,
+            "civilizationText": "自然",
+            "civilizations": [
+              "自然"
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-088a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "e28e77bbb53266c4de257da5172daf3de6b9b594120c8eb048be42cf04a234d7",
+        "facesMatched": true,
+        "imageSha256": "07f250f48aeccfbfb9c391f53cd6a2cb13f52520ec0e3fd78bd2a991a8597053",
+        "imageBytes": 152723
+      },
+      "sameNameProducts": [
+        "DMBD-11 ガチヤバ4！無限改造デッキセットDX!! ジョーのビッグバンGR",
+        "DMRP-08 双極篇 拡張パック第４弾 超決戦!バラギアラ!!無敵オラオラ輪廻∞"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-088",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmbd15-be3",
+      "name": "鳳翔竜騎ソウルピアレイジ / 高貴なる魂炎",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd15-be3",
+      "faces": [
+        {
+          "name": "鳳翔竜騎ソウルピアレイジ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "NEO進化：自分の火のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）",
+          "race": "ファイアー・バード/アーマード・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        },
+        {
+          "name": "高貴なる魂炎",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\n相手のパワー3000以下のクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "smashBurst": true,
+        "spellFace": {
+          "name": "高貴なる魂炎",
+          "type": "spell",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "race": "",
+          "text": "S・トリガー S・トリガー\n相手のパワー3000以下のクリーチャーをすべて破壊する。",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Sweep",
+              "filter": {
+                "creature": true,
+                "maxPower": 3000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd15-be3a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "48b426b855265a0a3aae3d8906ac261efd6a683fd311369e453bd5571f508248",
+        "facesMatched": true,
+        "imageSha256": "41e90e447fcc6da135355551e276a5ca02954d3e95f67a1a5d571243c76e552f",
+        "imageBytes": 119970
+      },
+      "sameNameProducts": [
+        "DM23-BD4 エキサイティング・デュエパ・デッキ 「ドラドラドラゴン龍幻郷」",
+        "DMEX-17 20周年超感謝メモリアルパック 究極の章 デュエキングMAX",
+        "DMBD-15 レジェンドスーパーデッキ 蒼龍革命"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd15-be3",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp09-005": 4,
+      "dmex18-054": 4,
+      "dmrp08-088": 4,
+      "dmbd15-be3": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    }
+  ]
+}

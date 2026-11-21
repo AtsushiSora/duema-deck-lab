@@ -22842,5 +22842,285 @@
         ]
       }
     }
+  },
+  "dmrp09-005": {
+    "phase": 1583,
+    "faces": [
+      {
+        "name": "龍装05号 イヴィルヴィ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体破壊してもよい。そうしたら、相手は自身のクリーチャーを１体選び、破壊する。",
+        "race": "ドラゴンギルド/マフィ・ギャング/デーモン・コマンド",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "イーヴィル・フォース",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "闇または火の、コスト４以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。そのクリーチャーに「スピードアタッカー」を与える。このターンの終わりに、そのクリーチャーを破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SacrificeAlly413",
+          "defs": [
+            {
+              "op": "OpponentSelect",
+              "n": 1,
+              "to": "grave"
+            }
+          ]
+        }
+      ],
+      "spellFace": {
+        "name": "イーヴィル・フォース",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "闇または火の、コスト４以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。そのクリーチャーに「スピードアタッカー」を与える。このターンの終わりに、そのクリーチャーを破壊する。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 4,
+              "any": [
+                {
+                  "color": "闇"
+                },
+                {
+                  "color": "火"
+                }
+              ]
+            },
+            "grant": {
+              "speedAttacker": true
+            },
+            "delayed": "grave"
+          }
+        ]
+      }
+    }
+  },
+  "dmex18-054": {
+    "phase": 1583,
+    "faces": [
+      {
+        "name": "Disマスター",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "ササゲール１（ディスペクターを召喚する時、コストを１少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+        "race": "リキッド・ピープル/ディスタス",
+        "powerText": "1000",
+        "missingFields": []
+      },
+      {
+        "name": "「己の弱さが敗北させるのだよ！」",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "S・トリガーS・トリガー\n相手のシールドを１つ見てもよい。\nカードを１枚引く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "sasage": 1,
+      "g40LastBurst": true,
+      "spellFace": {
+        "name": "「己の弱さが敗北させるのだよ！」",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "race": "",
+        "text": "S・トリガーS・トリガー\n相手のシールドを１つ見てもよい。\nカードを１枚引く。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Peek585",
+            "who": "opponent",
+            "optional": true
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      }
+    }
+  },
+  "dmrp08-088": {
+    "phase": 1583,
+    "faces": [
+      {
+        "name": "バー・キューベー",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "スマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+        "race": "ジョーカーズ",
+        "powerText": "7000",
+        "missingFields": []
+      },
+      {
+        "name": "クー・ラクタロウ",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "自分の山札の上から３枚を表向きにする。その中からクリーチャーを１体、相手に見せてから自分の手札に加えてもよい。残りをすべて好きな順序で山札の一番下に置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "smashBurst": true,
+      "breaker": 2,
+      "spellFace": {
+        "name": "クー・ラクタロウ",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 2,
+        "race": "",
+        "text": "自分の山札の上から３枚を表向きにする。その中からクリーチャーを１体、相手に見せてから自分の手札に加えてもよい。残りをすべて好きな順序で山札の一番下に置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "stages": [
+              {
+                "to": "hand",
+                "n": 1,
+                "optional": true,
+                "filter": {
+                  "creature": true
+                },
+                "reveal": true
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      }
+    }
+  },
+  "dmbd15-be3": {
+    "phase": 1583,
+    "faces": [
+      {
+        "name": "鳳翔竜騎ソウルピアレイジ",
+        "typeText": "NEOクリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "NEO進化：自分の火のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）",
+        "race": "ファイアー・バード/アーマード・ドラゴン",
+        "powerText": "5000",
+        "missingFields": []
+      },
+      {
+        "name": "高貴なる魂炎",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "S・トリガー S・トリガー\n相手のパワー3000以下のクリーチャーをすべて破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "smashBurst": true,
+      "spellFace": {
+        "name": "高貴なる魂炎",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "race": "",
+        "text": "S・トリガー S・トリガー\n相手のパワー3000以下のクリーチャーをすべて破壊する。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "filter": {
+              "creature": true,
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ]
+      }
+    }
   }
 }
