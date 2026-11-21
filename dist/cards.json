@@ -281735,15 +281735,177 @@
       ],
       "supportBatch": "phase-1572",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-052",
+      "name": "罪無 ジョイダム垓",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "マフィ・ギャング/チーム零",
+      "text": "ムゲンクライム ２（自分のクリーチャーを２体タップし、[wd02]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、コスト３以下のクリーチャーを１体、\n自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-052",
+      "limit": 4,
+      "mugenCrime": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "creature": true,
+            "max": 3
+          }
+        }
+      ],
+      "supportBatch": "phase-1573",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx08-017",
+      "name": "カビパン男",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 1000,
+      "race": "ヘドリアン",
+      "text": "バトルゾーンにある他のクリーチャーすべてのパワーは-1000される。(パワー０以下のクリーチャーは破壊される)\n他のクリーチャーが破壊された時、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx08-017",
+      "limit": 4,
+      "g205Aura": {
+        "both": true,
+        "other": true,
+        "power": -1000,
+        "filter": {
+          "creature": true
+        }
+      },
+      "g303DeathWatch": {
+        "both": true,
+        "defs": [
+          {
+            "op": "Target",
+            "power": -1000,
+            "g242PowerMinus": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1573",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp01-s06",
+      "name": "阿修羅ムカデ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "マフィ・ギャング/スペシャルズ",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－9000する。\nこのクリーチャーが破壊された時、自分の墓地からタップして出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-s06",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -9000,
+          "g242PowerMinus": true
+        }
+      ],
+      "g172Death": [
+        {
+          "op": "GraveReturn754",
+          "deploy": true,
+          "tapped": true
+        }
+      ],
+      "supportBatch": "phase-1573",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx21-043",
+      "name": "ボルベルグ・勝利・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 9000,
+      "race": "アーマード・ドラゴン/サムライ",
+      "text": "スピードアタッカー\nW・ブレイカー\n侍流ジェネレート（このクリーチャーがバトルゾーンに出た時、自分の手札にあるクロスギアを１枚、コストを支払わずにジェネレートしてもよい）\n自分のクロスギアを、コストを支払わずにこのクリーチャーにクロスしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-043",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "samuraiGenerate": true,
+      "g946FreeCross": true,
+      "supportBatch": "phase-1573",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23bd4-001",
+      "name": "ボルシャック・ドラゴ大王",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 12000,
+      "race": "アーマード・ドラゴン/レッド・コマンド・ドラゴン",
+      "text": "スピードアタッカー\nT・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から、相手の人数と同じ枚数、見る。その中から、好きな数のドラゴンを出し、残りをタップしてマナゾーンに置く。このターン、それらのドラゴンに「スピードアタッカー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd4-001",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "LookDeploy530",
+          "n": 1,
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "rest": "mana",
+          "restTapped": true,
+          "grant": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1573",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1572,
+    "phase": 1573,
     "checkedAt": "2026-11-21",
-    "baseCount": 8918,
-    "newEffectCards": 4,
+    "baseCount": 8922,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8922,
+    "totalCount": 8927,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -307530,6 +307692,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8918,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1572,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8918,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 8922,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

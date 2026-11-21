@@ -2981,7 +2981,7 @@ export function createSixPhotoRules(api){
    if(!t.colors.every(c=>manaColors.has(c)))break;
   }
   start(s,t,[{op:'Offer',title:card(y).name+(t.deploy?'を墓地からバトルゾーンに出す？':'を墓地から手札に戻す？'),
-   score:18,defs:[{op:t.deploy?'SelfGraveRevive644':'SelfGraveHand476',serial:t.serial,
+   score:18,defs:[{op:t.deploy?'SelfGraveRevive644':'SelfGraveHand476',serial:t.serial,...(t.tapped?{tapped:true}:{}),
     ...(t.g1069AllowEvolution?{g1069AllowEvolution:true}:{})}]}]);
   break;
  }
