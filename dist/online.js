@@ -1,5 +1,5 @@
 import {updateOnlineFeedback} from './online-feedback.js';
-import {ONLINE_COMPATIBILITY} from './online-compatibility.js?v=0.722.3';
+import {ONLINE_COMPATIBILITY} from './online-compatibility.js?v=0.722.4';
 const needsUserAction=e=>['room/version','room/schema','room/integrity'].includes(e.code)
  ||[400,401,403,404,405,410,413,415].includes(e.status)
  ||/^auth\//.test(String(e.code||''))&&!['auth/network-request-failed','auth/internal-error'].includes(e.code);

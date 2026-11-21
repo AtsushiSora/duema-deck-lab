@@ -1,0 +1,238 @@
+{
+  "checkedAt": "2026-11-21T23:36:51.371Z",
+  "status": "verified-for-pages-only-publication",
+  "sourceCommit": "e4eca93496414a92bbdb645315281eab8bd8a711",
+  "appVersion": "0.722.4",
+  "engineVersion": "0.602.129",
+  "supportedCards": 9070,
+  "duplicates": 0,
+  "scope": "未公開の27種類と前回までの検証済み修正をまとめ、GitHub Pagesだけ公開する準備。Netlifyは明示的な更新指示まで維持。",
+  "changes": {
+    "addedInThisTurn": 0,
+    "newSincePublishedPages": 27,
+    "releaseNotes": "コンピュータ対戦の対応9,070種類と追加27種類を案内。Netlifyの友達対戦修正が公開済みという案内はしない。",
+    "moduleCache": "変更したモジュールと依存元のimport map・既存バージョン付き参照を0.722.4へ更新。bare importは保持。",
+    "cacheModules": [
+      "ai-decision-worker.js",
+      "ai-decision.js",
+      "ai-playback.js",
+      "app-updates.js",
+      "app.js",
+      "battle-insights.js",
+      "battle-visuals.js",
+      "card-art.js",
+      "card-images.js",
+      "choice-summary.js",
+      "draw.js",
+      "engine.js",
+      "extended-rules.js",
+      "hand-ui.js",
+      "log-card-links.js",
+      "manual-ui.js",
+      "online-compatibility.js",
+      "online-feedback.js",
+      "online-ui.js",
+      "online.js",
+      "release-notes.js",
+      "screenshot-report.js",
+      "six-photo-rules.js",
+      "strongest-cpu-worker.js",
+      "strongest-cpu.js",
+      "tournament-simulation.js",
+      "tournament-worker.js",
+      "worker.js"
+    ],
+    "executableChangesBeyondVersionUrls": false,
+    "cardDataUnchanged": true,
+    "saveFormatsUnchanged": true,
+    "serverCodeUnchanged": true
+  },
+  "github": {
+    "branch": "main",
+    "remoteBefore": "4801e7b369aca914bf44d719ceede4c6d589df09",
+    "pagesUrl": "https://atsushisora.github.io/duema-deck-lab/",
+    "publication": "mainへの通常のfast-forward pushによる既存Pagesワークフロー"
+  },
+  "netlify": {
+    "operation": "更新しない",
+    "workflow": "workflow_dispatch only; not dispatched",
+    "stopBuilds": true,
+    "githubHooks": [
+      {
+        "active": false,
+        "events": [
+          "push"
+        ],
+        "host": "api.netlify.com",
+        "id": 701628730
+      }
+    ],
+    "preservedDeploy": {
+      "id": "6b013f2a926fe1454faa389b",
+      "state": "ready",
+      "commit_ref": null,
+      "published_at": "2026-11-21T06:50:32.338Z"
+    },
+    "publicBefore": {
+      "url": "https://duema-deck-lab.netlify.app/release.json",
+      "release": {
+        "version": "0.722.2",
+        "engineVersion": "0.602.107",
+        "aiVersion": "2.3.437"
+      },
+      "sha256": "978538535cfd8d27bedf1aa68c36d01bb9e6c1dfff89852678c2025b3dccb27d"
+    }
+  },
+  "validation": [
+    {
+      "name": "release-regression-final",
+      "command": [
+        "node",
+        "--test",
+        "tests/app-updates.test.mjs",
+        "tests/home-navigation.test.mjs",
+        "tests/online-app.test.mjs",
+        "tests/online-client.test.mjs",
+        "tests/online-ui.test.mjs",
+        "tests/online-feedback.test.mjs",
+        "tests/battle-controls.test.mjs",
+        "tests/account-app.test.mjs",
+        "tests/online-runtime.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 8.115,
+      "log": "tmp/duema-release-7224/release-regression-final.log",
+      "passed": 185,
+      "failed": 0,
+      "sha256": "b0c8629d7b2f9aa4889d2c214f078cb4a120ab2e908c9eaced3c3b41160c4992"
+    },
+    {
+      "name": "check-final",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.264,
+      "log": "tmp/duema-release-7224/check-final.log",
+      "sha256": "53385cc776e247358f25f6106b71c99729e696703f83d3d63f78ab15f517e134"
+    },
+    {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 14.96,
+      "log": "tmp/duema-release-7224/audit.log",
+      "sha256": "f3dce8c6897c86fad30c51a6172abc271f0dea7a15e217958f36c09a29dd682a"
+    }
+  ],
+  "passedTests": 185,
+  "earlierFailedAttempt": {
+    "name": "release-regression",
+    "command": [
+      "node",
+      "--test",
+      "tests/app-updates.test.mjs",
+      "tests/home-navigation.test.mjs",
+      "tests/online-app.test.mjs",
+      "tests/online-client.test.mjs",
+      "tests/online-ui.test.mjs",
+      "tests/online-feedback.test.mjs",
+      "tests/battle-controls.test.mjs",
+      "tests/account-app.test.mjs",
+      "tests/online-runtime.test.mjs"
+    ],
+    "code": 1,
+    "timedout": false,
+    "seconds": 5.899,
+    "log": "tmp/duema-release-7224/release-regression.log",
+    "passed": 169,
+    "failed": 16,
+    "reason": "キャッシュ用URLをbare importにも追加してNode側でengineの別インスタンスが作られた。bare importを保持し、既存のバージョン付き参照だけを変更して解消。期待動作やテストのアサーションは変更せず、全185件を再実行して通過。"
+  },
+  "localBrowser": {
+    "url": "http://127.0.0.1:4173/",
+    "checks": [
+      "v0.722.4の更新案内",
+      "対戦対応9,070種類",
+      "追加27カードの一覧",
+      "console error 0件"
+    ],
+    "screenshot": "/tmp/duema-release-7224/local-release-notes.jpg",
+    "screenshotSha256": "4083002ae327e286efb08e897ce5a1754a192c1fe9b146585f7d2bc32aa21aa6"
+  },
+  "authentication": {
+    "standardGitHelperIssue": "設定済みのGitHub CLIがIntel版でApple Silicon上で起動不可。",
+    "temporaryCli": {
+      "tag": "v2.92.0",
+      "asset": "gh_2.92.0_macOS_arm64.zip",
+      "officialUrl": "https://github.com/cli/cli/releases/download/v2.92.0/gh_2.92.0_macOS_arm64.zip",
+      "sha256": "b11c54f6bd7d15ed6590475079e5b2fcf36f45d3991a80041b29c9d0cc1f1d07",
+      "checksumMatched": true,
+      "installedGlobally": false
+    },
+    "existingAccount": "AtsushiSora",
+    "credentialsChanged": false,
+    "globalSettingsChanged": false,
+    "dryRun": "通常のHTTPS pushを既存認証と一時的なcredential helper指定でdry-run成功。"
+  },
+  "invariants": {
+    "baseline": "4801e7b369aca914bf44d719ceede4c6d589df09",
+    "target": 9500,
+    "originalDefinitionsUnchanged": 9043,
+    "added": 27,
+    "uniqueNames": 9070,
+    "uniqueIds": 9070,
+    "duplicateNames": 0,
+    "partialNewDefinitions": 0,
+    "catalogueAndAliasesUnchanged": true,
+    "remaining": 430
+  },
+  "carriedEvidence": [
+    "tools/online-dialog-fixes-verification.json",
+    "tools/local-real-account-duel-verification.json",
+    "tools/online-preflight-verification.json",
+    "tools/pending-game-verification.json"
+  ],
+  "preservedUnverified": [
+    "一括npm testの過去の中断・合否未確認は維持。今回も実行していない。",
+    "ユーザー保留の裁定・再録2件を未解決として保持。公開操作をもって解消扱いにしない。",
+    "未公開修正版の2アカウント試験はローカル環境。公開Netlify版での最終確認は未実施。"
+  ],
+  "hashes": {
+    "dist/ai-decision-worker.js": "2cbcf1659c00a2f1e4f6e7e281e83d245b76e99be7dd996075cda3c0edc407aa",
+    "dist/ai-decision.js": "a7f596ce8f66b4891fb73d489cc3d0306b5c0c7b7e76719f3b4932bd14fd3ad9",
+    "dist/ai-playback.js": "fc63e8902345e09d56bf446aaab0d36e0f88f345bfda347003af63ba0f0267a0",
+    "dist/app-updates.js": "0eb3931f5a1e2e9b4f911835d35b71f0120105f8f6b6c28c2154f2369ca53ef4",
+    "dist/app.js": "5e65de4a23c3284ca3b09bde033a388b528995cc86b923c4d4da8a458132d42a",
+    "dist/card-art.js": "b20bee9f2b9bb86cf5d1eebddcdb42b971e332c2accdb5b06342798aaac17c56",
+    "dist/engine.js": "2a3e92cf3407833542eb94fd45ba8d535c209b593b4288406b57aceb14d929a6",
+    "dist/extended-rules.js": "2e670ef6283d4c0eb99c7b096243f9f08f93884ce94959edb772aebf4a95f10e",
+    "dist/index.html": "071bb5e0e2d4fd40d27662e530bb66d321112ca9cbfb39ae6ea96f264d8964b9",
+    "dist/log-card-links.js": "96ae4a2f66ec88567b518665aa207046f9e03dcabe82049e79d6f29991607eb4",
+    "dist/manual-ui.js": "51847eb6fe5d1a9cc7e206c56aec8b4a93a79d7413264dbd57764958ef750d5d",
+    "dist/online.js": "f95525477c683c515f581d086e3acbd6f9c9513a13a2f656230563664a4f64f2",
+    "dist/release-notes.js": "ecdba0eaa4005cf43b815a0c03e00bd726ab9b0574d95892d11681cd482b2b9c",
+    "dist/release.json": "3bca36d3d97f14c0118a9499d03bfe66e34e07ac00f8335dab87b0016ebf4af4",
+    "dist/screenshot-report.js": "7866b0ed0ad522ad3ce3ecdf45a3b2fd0251229d02833c35375c3602bbd319e5",
+    "dist/strongest-cpu-worker.js": "460d1fb3e154d8f4e3e63c0a13bd8fb15e70e57d1a4ba581e8faa210e501eb26",
+    "dist/strongest-cpu.js": "6c2818cf3bb211c125a9afc5021ba223b4e1d76df7bbb9bc4cb19ac3471a9743",
+    "dist/tournament-simulation.js": "cdd311b343eb48296c512cce63916978ee5762bf4c8fcd9d82dd592c046e919d",
+    "dist/tournament-worker.js": "427a44e176aba380afe44754e3f0518ddff8150ff84719d758c1945d055b41e5",
+    "dist/worker.js": "1b6345f7b505e5f76feb3e2d303abe6e1c68b1e2ba874a17de203727f9c18559",
+    "package-lock.json": "fb2cd02b6befa7947f3253e264273c183292997ea5fcadf8d08e8c4513912597",
+    "package.json": "ab85280727cf982c947630d543a52404aa70ff926b4b7fa75b512f1d6eacba54"
+  },
+  "publication": {
+    "pushed": false,
+    "pagesDeployed": false,
+    "netlifyUpdated": false
+  }
+}
