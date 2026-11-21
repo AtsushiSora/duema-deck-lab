@@ -17552,5 +17552,197 @@
         ]
       }
     }
+  },
+  "promoy13-084": {
+    "phase": 1558,
+    "faces": [
+      {
+        "name": "熱血龍 ガイアール・キラー・カイザー",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）\nこのクリーチャーは、バトルゾーンに出したターン、アンタップされているクリーチャーを攻撃できる。",
+        "race": "ガイアール・コマンド・ドラゴン",
+        "powerText": "12000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "breaker": 3,
+      "g1248EntryAttackUntapped": true
+    }
+  },
+  "dmd28-008": {
+    "phase": 1558,
+    "faces": [
+      {
+        "name": "赤薔薇の精霊龍 ジェネラローズ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、カードを１枚引く。その後、進化ではない光のコスト６以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+        "race": "エンジェル・コマンド・ドラゴン/革命軍",
+        "powerText": "7500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "color": "光",
+            "max": 6
+          }
+        }
+      ]
+    }
+  },
+  "promoy12-065": {
+    "phase": 1558,
+    "faces": [
+      {
+        "name": "冥界王 ブルースDead",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から５枚を墓地に置いてもよい。その後、好きな数のエグザイル・クリーチャーを、自分の墓地から手札に戻す。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+        "race": "アウトレイジMAX",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "山札の上から5枚を墓地に置く？",
+          "defs": [
+            {
+              "op": "Mill",
+              "n": 5
+            }
+          ]
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": "all",
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "g1490Exile": true
+          }
+        }
+      ]
+    }
+  },
+  "dmrp10-048": {
+    "phase": 1558,
+    "faces": [
+      {
+        "name": "シュレー・ディンガー",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが破壊された時、コスト５以下のオーラを１枚またはコスト５以下の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。",
+        "race": "マフィ・ギャング",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "max": 5,
+            "any": [
+              {
+                "aura": true
+              },
+              {
+                "creature": true,
+                "nonEvolution": true
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "dmr21-062": {
+    "phase": 1558,
+    "faces": [
+      {
+        "name": "ヘブンズ・フォース",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nコストの合計が４以下になるように、好きな数の進化ではないクリーチャーを自分の手札からバトルゾーンに出す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": "all",
+          "optional": true,
+          "g550CostBudget": 4,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true
+          }
+        }
+      ]
+    }
   }
 }

@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-21",
   "catalogueNames": 11824,
-  "supportedNames": 8855,
-  "pendingNames": 2969,
-  "phase": 1557,
+  "supportedNames": 8860,
+  "pendingNames": 2964,
+  "phase": 1558,
   "added": 5,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,8 +154,8 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1710,
-    "呪文": 353,
+    "クリーチャー": 1706,
+    "呪文": 352,
     "GRクリーチャー": 18,
     "G-NEOクリーチャー": 26,
     "タマシード": 37,
@@ -223,7 +223,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 685,
-    "未対応の能力文": 2131,
+    "未対応の能力文": 2126,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
@@ -515575,11 +515575,173 @@
         "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
       ],
       "next": "目標9000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
+    },
+    {
+      "phase": 1558,
+      "kind": "registration-toward-9000",
+      "checkedAt": "2026-11-21T02:42:11.794Z",
+      "baseline": "6669437249c4e3b38344b5173263227acd03195f",
+      "manifest": "tools/support-phase-1558.json",
+      "status": "verified-local",
+      "before": 8855,
+      "supported": 8860,
+      "pending": 2964,
+      "added": [
+        {
+          "id": "promoy13-084",
+          "name": "熱血龍 ガイアール・キラー・カイザー"
+        },
+        {
+          "id": "dmd28-008",
+          "name": "赤薔薇の精霊龍 ジェネラローズ"
+        },
+        {
+          "id": "promoy12-065",
+          "name": "冥界王 ブルースDead"
+        },
+        {
+          "id": "dmrp10-048",
+          "name": "シュレー・ディンガー"
+        },
+        {
+          "id": "dmr21-062",
+          "name": "ヘブンズ・フォース"
+        }
+      ],
+      "duplicates": 0,
+      "results": {
+        "focused": {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1558-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.35,
+          "log": "tmp/duema-phase-1558/focused.log",
+          "passed": 90,
+          "failed": 0
+        },
+        "related": {
+          "name": "related",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=4",
+            "tests/standard550-effects.test.mjs",
+            "tests/standard1248-effects.test.mjs",
+            "tests/standard1490-effects.test.mjs",
+            "tests/standard1431-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 33.547,
+          "log": "tmp/duema-phase-1558/related.log",
+          "passed": 169,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 18.849,
+          "log": "tmp/duema-phase-1558/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.276,
+          "log": "tmp/duema-phase-1558/audit.log"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tools/verify-target9000.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.322,
+          "log": "tmp/duema-phase-1558/invariants.log"
+        }
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1558-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.38,
+          "log": "tmp/duema-phase-1558/focused.log"
+        },
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1558-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.37,
+          "log": "tmp/duema-phase-1558/focused.log"
+        }
+      ],
+      "testCorrections": [],
+      "totalTestsPassed": 259,
+      "reason": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+      "remaining": [
+        "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
+      ],
+      "next": "目標9000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。",
+      "deferred": [
+        {
+          "id": "sp-018",
+          "name": "無敵巨兵グランダイバーX",
+          "reason": "公式の低解像度画像のパワーと本文の照合が不確実。高解像度の公式資料を確認するまで登録保留。"
+        },
+        {
+          "id": "promoy11-046",
+          "name": "偽りの王ヴァルトシュタイン",
+          "reason": "公式HTMLは登場時5枚を墓地に置く（強制）、公式画像は置いてもよい（任意）。全文が一致する公式資料を確定できるまで保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1557,
-    "nextPhase": 1558,
+    "lastVerifiedPhase": 1558,
+    "nextPhase": 1559,
     "workInProgress": null,
     "nextCandidates": [
       "公式照合済みの通常能力を持たないGRクリーチャー",
@@ -515588,7 +515750,7 @@
     ],
     "steps": [
       "開始時にHEAD・作業差分・ステージ・既存プロセス・AGENTS・進捗を確認。",
-      "実データ8855種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8860種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "再開時は既存プロセス・最新コミット・作業ツリーを確認し、tools/verify-target8500.mjsとtools/target8500-verification.jsonを参照。ユーザー保留項目は既存記録を維持。",
       "個別の残件2件はユーザー保留。再開指示まで追加調査・問い合わせ送信をしない。",
       "一括npm testを再実行せず、公開候補の未集約範囲だけ分割検証する。過去の固定ソースの合格と現版の合格を区別する。",
@@ -515669,14 +515831,14 @@
     ],
     "restartSteps": [
       "公開済みの版はb40ae0df (v0.722.1 / engine0.602.1 / 8074種類)。Pages・Netlifyを同じ版に更新済み。最新HEAD・差分・ステージ・既存プロセスを最初に確認。",
-      "実データ8855種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8860種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "再開時は既存プロセス・最新コミット・作業ツリーを確認し、tools/verify-target8500.mjsとtools/target8500-verification.jsonを参照。ユーザー保留項目は既存記録を維持。",
       "既存8072定義は深い比較で不変。カードID・保存形式・保存済みデッキ・対戦履歴を維持。",
       "個別の残件2件と問い合わせ案はユーザー指示「後回しにしよう」で保留。再開指示があるまでこの2件の調査・送信を行わない。",
       "No13長時間検証はengine0.601.0の固定ソースで完了済み。今回のengine0.602.0の全面検証には数えない。必要な未集約項目は対象を特定し、細かく分割して確認する。",
       "Netlifyは手動反映専用。workflow_dispatchだけ、GitHub pushフック停止、stop_builds=trueを維持。通常のカード追加pushでは反映しない。今回の公開に保留・未検証の解消は含めない。"
     ],
-    "registrationStatus": "ユーザーの新目標9000種類に向けて通常登録を再開。現在8855種類、残り145種類。automationはPAUSEDのまま。",
+    "registrationStatus": "ユーザーの新目標9000種類に向けて通常登録を再開。現在8860種類、残り140種類。automationはPAUSEDのまま。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [],
     "printVerificationPending": [
@@ -515788,10 +515950,10 @@
     "registrationTarget": {
       "target": 9000,
       "startCount": 8500,
-      "currentCount": 8855,
-      "remaining": 145,
+      "currentCount": 8860,
+      "remaining": 140,
       "status": "active",
-      "phase": 1557
+      "phase": 1558
     },
     "deferredRegistrationCandidates": [
       {
@@ -515860,6 +516022,18 @@
         "name": "電脳奇面アンギラー",
         "reason": "公式HTMLとdist/detailsのコスト6に対して、公式カード画像はコスト3。基本情報の不一致を確定できず今回未登録。画像とHTMLはtmp/duema-target-9000/twin-evidence/promoy3-012へ保存。",
         "phase": 1555
+      },
+      {
+        "id": "sp-018",
+        "name": "無敵巨兵グランダイバーX",
+        "reason": "公式の低解像度画像のパワーと本文の照合が不確実。高解像度の公式資料を確認するまで登録保留。",
+        "phase": 1558
+      },
+      {
+        "id": "promoy11-046",
+        "name": "偽りの王ヴァルトシュタイン",
+        "reason": "公式HTMLは登場時5枚を墓地に置く（強制）、公式画像は置いてもよい（任意）。全文が一致する公式資料を確定できるまで保留。",
+        "phase": 1558
       }
     ],
     "lastExplicitUserAddition": {
@@ -567818,10 +567992,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1557,
+    "phase": 1558,
     "threshold": 9000,
-    "supportedNames": 8855,
-    "pendingNames": 2969,
+    "supportedNames": 8860,
+    "pendingNames": 2964,
     "checkedAt": "2026-11-21",
     "registrationStopped": false,
     "automationId": "duema-deck-lab",

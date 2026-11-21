@@ -279337,15 +279337,192 @@
       },
       "supportBatch": "phase-1557",
       "supportKind": "effect"
+    },
+    {
+      "id": "promoy13-084",
+      "name": "熱血龍 ガイアール・キラー・カイザー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 12000,
+      "race": "ガイアール・コマンド・ドラゴン",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）\nこのクリーチャーは、バトルゾーンに出したターン、アンタップされているクリーチャーを攻撃できる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-084",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 3,
+      "g1248EntryAttackUntapped": true,
+      "supportBatch": "phase-1558",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd28-008",
+      "name": "赤薔薇の精霊龍 ジェネラローズ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7500,
+      "race": "エンジェル・コマンド・ドラゴン/革命軍",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、カードを１枚引く。その後、進化ではない光のコスト６以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd28-008",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "color": "光",
+            "max": 6
+          }
+        }
+      ],
+      "supportBatch": "phase-1558",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy12-065",
+      "name": "冥界王 ブルースDead",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "アウトレイジMAX",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から５枚を墓地に置いてもよい。その後、好きな数のエグザイル・クリーチャーを、自分の墓地から手札に戻す。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy12-065",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "山札の上から5枚を墓地に置く？",
+          "defs": [
+            {
+              "op": "Mill",
+              "n": 5
+            }
+          ]
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": "all",
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "g1490Exile": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1558",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-048",
+      "name": "シュレー・ディンガー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "マフィ・ギャング",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが破壊された時、コスト５以下のオーラを１枚またはコスト５以下の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-048",
+      "limit": 4,
+      "breaker": 2,
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "max": 5,
+            "any": [
+              {
+                "aura": true
+              },
+              {
+                "creature": true,
+                "nonEvolution": true
+              }
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-1558",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-062",
+      "name": "ヘブンズ・フォース",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nコストの合計が４以下になるように、好きな数の進化ではないクリーチャーを自分の手札からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-062",
+      "limit": 0,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": "all",
+          "optional": true,
+          "g550CostBudget": 4,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1558",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1557,
+    "phase": 1558,
     "checkedAt": "2026-11-21",
-    "baseCount": 8850,
+    "baseCount": 8855,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8855,
+    "totalCount": 8860,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -304922,6 +305099,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 8850,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1557,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8850,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8855,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
