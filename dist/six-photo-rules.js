@@ -5530,6 +5530,7 @@ export function createSixPhotoRules(api){
    api.draw(s,t.p,1,{drawn:t.drawn});
   }else if(t.drawn.length)put(s,{...t,op:'g52_TopHand',n:t.drawn.length,selected:[]});
   break;
+ case'g34_WinOpponentGrave1530':if(s.players[1-t.p].grave.filter(x=>faces(api.zoneCard(s,1-t.p,x,'grave')).some(c=>c.type==='creature')).length>=t.n)api.finish(s,t.p,card(t.source).name+'：相手の墓地にクリーチャーが'+t.n+'体以上');break;
  case'g34_SelfSpellPut1529':{const i=(s.extSpells||[]).findIndex(f=>f.inst.uid===t.uid);if(i<0)break;const frame=s.extSpells[i];if(frame.virtual||!api.canEnter(s,t.p,card(frame.inst),{origin:'spell',execution:false}))break;s.extSpells.splice(i,1);enter(s,t.p,frame.inst,null,{origin:'spell',execution:false});if(t.delayed&&s.players[t.p].battle.some(x=>x.uid===frame.inst.uid))frame.inst.g34Delayed={turn:s.turn,to:t.delayed,source:t.source,controller:t.p};break;}
  case'g34_OjiCycle1528':api.discardSelected(s,t.p,own.hand.map(x=>x.uid),t.source,t.p,null,null,{...t,op:'g34_DrawAfterOji1528',g1528AllowZero:true});break;
  case'g34_DrawAfterOji1528':start(s,t,[{op:'Draw',n:t.n+1}]);break;

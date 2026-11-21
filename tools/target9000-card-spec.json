@@ -12063,5 +12063,134 @@
         ]
       }
     }
+  },
+  "dmex08-004": {
+    "phase": 1530,
+    "faces": [
+      {
+        "name": "蓮根の槌",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "",
+        "race": "ビーストフォーク/ハンター",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "番長大号令",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から５枚を見る。その中からハンターを１体選び、相手に見せてから自分の手札に加えてもよい。その後、残りを好きな順序で山札の一番下に置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "spellFace": {
+        "type": "spell",
+        "name": "番長大号令",
+        "cost": 1,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 5,
+            "stages": [
+              {
+                "to": "hand",
+                "n": 1,
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "creature": true,
+                  "race": "ハンター"
+                }
+              }
+            ],
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmex04-032": {
+    "phase": 1530,
+    "faces": [
+      {
+        "name": "暗黒の騎士ザガーン",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+        "race": "デーモン・コマンド",
+        "powerText": "7000",
+        "missingFields": []
+      },
+      {
+        "name": "「一方的に勝つに決まっている」",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "相手のクリーチャーを１体破壊する。その後、相手の墓地にクリーチャーが20体以上あれば、自分はゲームに勝つ。\nこの呪文を唱えた後、墓地に置くかわりにこのカードをバトルゾーンに出す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "spellFace": {
+        "type": "spell",
+        "name": "「一方的に勝つに決まっている」",
+        "cost": 7,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "spell": true
+          },
+          {
+            "op": "WinOpponentGrave1530",
+            "n": 20,
+            "spell": true
+          },
+          {
+            "op": "SelfSpellPut1529",
+            "spell": true
+          }
+        ]
+      }
+    }
   }
 }

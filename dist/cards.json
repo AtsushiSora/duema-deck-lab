@@ -274455,15 +274455,110 @@
       },
       "supportBatch": "phase-1529",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex08-004",
+      "name": "蓮根の槌 /番長大号令",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ビーストフォーク/ハンター",
+      "text": "\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から５枚を見る。その中からハンターを１体選び、相手に見せてから自分の手札に加えてもよい。その後、残りを好きな順序で山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-004",
+      "limit": 4,
+      "spellFace": {
+        "type": "spell",
+        "name": "番長大号令",
+        "cost": 1,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 5,
+            "stages": [
+              {
+                "to": "hand",
+                "n": 1,
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "creature": true,
+                  "race": "ハンター"
+                }
+              }
+            ],
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1530",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex04-032",
+      "name": "暗黒の騎士ザガーン/「一方的に勝つに決まっている」",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "デーモン・コマンド",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n【呪文面】\n相手のクリーチャーを１体破壊する。その後、相手の墓地にクリーチャーが20体以上あれば、自分はゲームに勝つ。\nこの呪文を唱えた後、墓地に置くかわりにこのカードをバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-032",
+      "limit": 4,
+      "breaker": 2,
+      "spellFace": {
+        "type": "spell",
+        "name": "「一方的に勝つに決まっている」",
+        "cost": 7,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "spell": true
+          },
+          {
+            "op": "WinOpponentGrave1530",
+            "n": 20,
+            "spell": true
+          },
+          {
+            "op": "SelfSpellPut1529",
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1530",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1529,
+    "phase": 1530,
     "checkedAt": "2026-11-21",
-    "baseCount": 8732,
-    "newEffectCards": 3,
+    "baseCount": 8735,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 8735,
+    "totalCount": 8737,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -299648,6 +299743,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 8732,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1529,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8732,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 8735,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

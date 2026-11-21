@@ -1,0 +1,361 @@
+{
+  "phase": 1530,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8735,
+  "description": "既存の処理を用いて全能力を個別に検証し2種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/33716/",
+    "https://dm.takaratomy.co.jp/rule/qa/44318/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/33716/": "S・トリガーは条件を満たす面のみを利用。",
+    "https://dm.takaratomy.co.jp/rule/qa/44318/": "母なる星域はクリーチャーをマナへ置こうとすれば、離れなかった場合も後半を解決する。"
+  },
+  "implementationNotes": [
+    "幻緑の双月/母なる星域の公式名にのみ存在する区切り前後の空白を、公式ページを確認した明示的な別表記として扱う。元のIDとカタログ名は維持。",
+    "欠けた呪文種類と文明は公式画像URL・SHA256・確認日・確認理由を保存し、既存値の上書きや他の数値の補完を拒否する。",
+    "暗黒の騎士ザガーンの呪文は破壊処理後の実際の相手墓地のクリーチャー数を数え、勝利しなかった場合は同じ物理IDをバトルゾーンへ出す。",
+    "公式に照合した幻緑の双月/母なる星域は既存dmex16-078への再録で、追加件数0。今回の新規は2種類、検証対象は再録を含む3種類。",
+    "元のカタログ行を削除せず、元のIDを別表記エイリアスへ追加。登録名件数は空白差の重複1種類を除いた実件数へ補正。実装済みの既存8500定義は変更しない。"
+  ],
+  "printAliases": [
+    {
+      "id": "dmex04-052",
+      "name": "幻緑の双月/母なる星域",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-052",
+      "canonicalId": "dmex16-078",
+      "faces": [
+        {
+          "name": "幻緑の双月",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の手札を１枚、マナゾーンに置いてもよい。",
+          "race": "ビーストフォーク",
+          "powerText": "1000",
+          "missingFields": []
+        },
+        {
+          "name": "母なる星域",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の進化ではないクリーチャーを１体、マナゾーンに置く。そうしたら、自分のマナゾーンにあるカードの枚数以下のコストを持つ進化クリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "faceImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-052a.jpg",
+        "sha256": "a57d315dfe64010285bf59993e225156df09f8882ba12b4e4d34ddc0256ca66f",
+        "reviewedAt": "2026-11-21",
+        "reason": "公式カード画像の呪文面の種類と文明を目視確認。公式HTMLの空欄のみを同じ画像のSHA256で限定補完。",
+        "faces": [
+          {
+            "index": 1,
+            "civilizationText": "自然",
+            "civilizations": [
+              "自然"
+            ]
+          }
+        ]
+      },
+      "spec": {
+        "manaValue": 1
+      },
+      "currentPrint": {
+        "id": "dmex16-078",
+        "name": "幻緑の双月/母なる星域",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex16-078",
+        "faces": [
+          {
+            "name": "幻緑の双月",
+            "typeText": "クリーチャー",
+            "civilizationText": "自然",
+            "civilizations": [
+              "自然"
+            ],
+            "cost": 2,
+            "costText": "2",
+            "abilityText": "このクリーチャーが出た時、自分の手札を１枚、マナゾーンに置いてもよい。",
+            "race": "ビーストフォーク",
+            "powerText": "1000",
+            "missingFields": []
+          },
+          {
+            "name": "母なる星域",
+            "typeText": "呪文",
+            "civilizationText": "自然",
+            "civilizations": [
+              "自然"
+            ],
+            "cost": 3,
+            "costText": "3",
+            "abilityText": "自分の進化ではないクリーチャーを１体、マナゾーンに置く。そうしたら、自分のマナゾーンにあるカードの枚数以下のコストを持つ進化クリーチャーを１体、自分のマナゾーンから出す。",
+            "race": "",
+            "powerText": "",
+            "missingFields": []
+          }
+        ],
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex16-078a.jpg",
+        "imageSha256": "3d51c4133cb2d6cc9ddb6360ef417854e01e8bf94ff99e9948e34be985e6a811",
+        "verification": {
+          "checkedAt": "2026-11-21",
+          "sha256": "66018f3df8e4d37b9ab0b3e9285ce8d24aa3051ad5268fdd14721a2dccbd3883",
+          "facesMatched": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-052a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "fe84369d6e799d7f2ef1a2bd53b6366f30d6e8f97561ee1ad6311a60d5cc44c7",
+        "facesMatched": true
+      }
+    }
+  ],
+  "cards": [
+    {
+      "id": "dmex08-004",
+      "name": "蓮根の槌 /番長大号令",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-004",
+      "faces": [
+        {
+          "name": "蓮根の槌",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "",
+          "race": "ビーストフォーク/ハンター",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "番長大号令",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から５枚を見る。その中からハンターを１体選び、相手に見せてから自分の手札に加えてもよい。その後、残りを好きな順序で山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "spellFace": {
+          "type": "spell",
+          "name": "番長大号令",
+          "cost": 1,
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Look",
+              "n": 5,
+              "stages": [
+                {
+                  "to": "hand",
+                  "n": 1,
+                  "optional": true,
+                  "reveal": true,
+                  "filter": {
+                    "creature": true,
+                    "race": "ハンター"
+                  }
+                }
+              ],
+              "spell": true
+            }
+          ]
+        }
+      },
+      "faceImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-004a.jpg",
+        "sha256": "4f857f355365dc50116130dde9c01182899e56a9b2a4432dd6da31056e5c461e",
+        "reviewedAt": "2026-11-21",
+        "reason": "公式カード画像の呪文面の種類と文明を目視確認。公式HTMLの空欄のみを同じ画像のSHA256で限定補完。",
+        "faces": [
+          {
+            "index": 1,
+            "typeText": "呪文"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-004a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "bb67efa80920ebbfb63995973851a671f0ee2aad14f679543b467d34efc284d2",
+        "facesMatched": true,
+        "imageSha256": "4f857f355365dc50116130dde9c01182899e56a9b2a4432dd6da31056e5c461e",
+        "imageBytes": 153804
+      },
+      "sameNameProducts": [
+        "DMEX-08 謎のブラックボックスパック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-004",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex04-032",
+      "name": "暗黒の騎士ザガーン/「一方的に勝つに決まっている」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-032",
+      "faces": [
+        {
+          "name": "暗黒の騎士ザガーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+          "race": "デーモン・コマンド",
+          "powerText": "7000",
+          "missingFields": []
+        },
+        {
+          "name": "「一方的に勝つに決まっている」",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "相手のクリーチャーを１体破壊する。その後、相手の墓地にクリーチャーが20体以上あれば、自分はゲームに勝つ。\nこの呪文を唱えた後、墓地に置くかわりにこのカードをバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "spellFace": {
+          "type": "spell",
+          "name": "「一方的に勝つに決まっている」",
+          "cost": 7,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "spell": true
+            },
+            {
+              "op": "WinOpponentGrave1530",
+              "n": 20,
+              "spell": true
+            },
+            {
+              "op": "SelfSpellPut1529",
+              "spell": true
+            }
+          ]
+        }
+      },
+      "faceImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-032a.jpg",
+        "sha256": "df20d9ff9a6e1829d741ad36c2768d2bb47139dd6dca4875b6320cfa3c263307",
+        "reviewedAt": "2026-11-21",
+        "reason": "公式カード画像の呪文面の種類と文明を目視確認。公式HTMLの空欄のみを同じ画像のSHA256で限定補完。",
+        "faces": [
+          {
+            "index": 1,
+            "typeText": "呪文",
+            "civilizationText": "闇",
+            "civilizations": [
+              "闇"
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-032a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "bc941e960b8493a292bded542aed52b0fb975273c7493910a42530f7295c526f",
+        "facesMatched": true,
+        "imageSha256": "df20d9ff9a6e1829d741ad36c2768d2bb47139dd6dca4875b6320cfa3c263307",
+        "imageBytes": 152081
+      },
+      "sameNameProducts": [
+        "DMEX-04 夢の最＆強!!ツインパクト超No.1パック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-032",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex08-004": 4,
+      "dmex04-032": 4,
+      "dmex04-052": 1
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/33716/",
+    "https://dm.takaratomy.co.jp/rule/qa/44318/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33716/",
+      "sha256": "0e3296031e1dfb8ceec8afade9c5962b09b58597abcfa218c51dc2bac129a205",
+      "result": "S・トリガーは条件を満たす面のみを利用。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/44318/",
+      "sha256": "a2955b34ee8cd860e1e42a80b5cc8e5f00ef98c3e19fdb89a93dfe70fc585837",
+      "result": "母なる星域はクリーチャーをマナへ置こうとすれば、離れなかった場合も後半を解決する。"
+    }
+  ]
+}

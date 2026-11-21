@@ -16,6 +16,11 @@ if(m.deferred?.length){
  const deferred=progress.resume.deferredRegistrationCandidates??=[];
  for(const row of m.deferred)if(!deferred.some(x=>x.id===row.id))deferred.push({...row,phase});
 }
+// Retain the reasons as resolved history once their registered batch or reprint is verified.
+const supportedIds=new Set(data.cards.map(c=>c.id)),verifiedById=new Map(progress.batchHistory.filter(b=>b.status==='verified-local').flatMap(b=>(b.added||[]).map(c=>[c.id,b.phase])));
+const aliases=new Map((m.printAliases||[]).filter(r=>r.verification?.facesMatched&&supportedIds.has(r.canonicalId)).map(r=>[r.id,r.canonicalId]));
+const deferred=progress.resume.deferredRegistrationCandidates||[],resolved=deferred.filter(r=>supportedIds.has(r.id)&&verifiedById.has(r.id)||aliases.has(r.id));
+if(resolved.length){const history=progress.resume.resolvedRegistrationCandidates??=[];for(const row of resolved)if(!history.some(x=>x.id===row.id))history.push({...row,status:'resolved',resolvedPhase:aliases.has(row.id)?phase:verifiedById.get(row.id),...(aliases.has(row.id)?{canonicalId:aliases.get(row.id),kind:'verified-reprint',newNames:0}:{kind:'verified-registration'})});const done=new Set(resolved.map(r=>r.id));progress.resume.deferredRegistrationCandidates=deferred.filter(r=>!done.has(r.id));}
 const old=progress.registrationStop;
 progress.registrationStop={phase,threshold:9000,supportedNames:supported,pendingNames:progress.pendingNames,checkedAt:new Date().toISOString().slice(0,10),registrationStopped:supported>=9000,automationId:'duema-deck-lab',automationStatus:'PAUSED',mode:'manual-current-session',userInstruction:'9000種類までカードを増やして',previousStop:old.previousStop||old};
 Object.assign(progress.resume,{lastVerifiedPhase:phase,nextPhase:phase+1,workInProgress:null,registrationStatus:'ユーザーの新目標9000種類に向けて通常登録を再開。現在'+supported+'種類、残り'+(9000-supported)+'種類。automationはPAUSEDのまま。',registrationTarget:{target:9000,startCount:8500,currentCount:supported,remaining:9000-supported,status:supported>=9000?'complete':'active',phase},nextCandidates:['公式照合済みの通常能力を持たないGRクリーチャー','既存のキーワード処理と一致するGRクリーチャー','既存処理で両面を完全に扱えるツインパクトを個別検証。公式未確認・特殊条件は保留。']});
