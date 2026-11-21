@@ -279682,15 +279682,185 @@
       ],
       "supportBatch": "phase-1559",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-067",
+      "name": "祭喰の超人",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ジャイアント/アンノイズ",
+      "text": "自分のアンノウンの召喚コストを１、ゼニスの召喚コストを１少なくしてもよい。ただし、コストは１より少なくならない。\n自分のアンノウンがバトルゾーンにある時、このクリーチャーのパワーは+5000され、「W・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-067",
+      "limit": 4,
+      "g349SummonAuras": [
+        {
+          "race": "アンノウン",
+          "amount": 1,
+          "g560Optional": true
+        },
+        {
+          "race": "ゼニス",
+          "amount": 1,
+          "g560Optional": true
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "creature": true,
+          "race": "アンノウン"
+        },
+        "grants": {
+          "power": 5000,
+          "breaker": 2
+        }
+      },
+      "supportBatch": "phase-1560",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp19-053",
+      "name": "異鎧 ディスマジ-２",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 5000,
+      "race": "ロスト・クルセイダー/エイリアン/ディスタス",
+      "text": "このクリーチャーを自分の墓地またはマナゾーンから召喚してもよい。\nササゲール２（ディスペクターを召喚する時、コストを２少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-053",
+      "limit": 4,
+      "sasage": 2,
+      "g978SelfGraveSummon": true,
+      "g297SelfManaSummon": {
+        "g272ManaCount": 0
+      },
+      "supportBatch": "phase-1560",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmpcd03-b12",
+      "name": "暗黒獣ヤミノシーザー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "ダーク・モンスター/ナイト",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n各ターン、自分がはじめて呪文を唱えた時、自分の山札の上から２枚を墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd03-b12",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g204SpellWatch": {
+        "who": "self",
+        "g965FirstSpell": true,
+        "defs": [
+          {
+            "op": "Mill",
+            "n": 2
+          }
+        ]
+      },
+      "supportBatch": "phase-1560",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-009",
+      "name": "ボルシャック・モモキング・クロスNEX",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 12000,
+      "race": "ジョーカーズ/アーマード・ドラゴン/レクスターズ",
+      "text": "スター進化：レクスターズまたは火のクリーチャー１体の上に置く。\nT・ブレイカー\nこのクリーチャーが出た時、相手のコスト４以下のクリーチャーをすべて破壊する。\n攻撃中、このクリーチャーは、相手のコスト４以下の呪文によって選ばれない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-009",
+      "limit": 4,
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "category": "レクスターズ"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "max": 4
+          }
+        }
+      ],
+      "g1560AttackingSpellProtection": 4,
+      "supportBatch": "phase-1560",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd07-017",
+      "name": "偽りの王 モーツァルト",
+      "civ": "闇/火/自然",
+      "civilizations": [
+        "闇",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 11,
+      "power": 17000,
+      "race": "キング・コマンド・ドラゴン/アンノウン",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、ドラゴン以外をすべて破壊する。\n相手のドラゴンは攻撃することができない。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd07-017",
+      "limit": 4,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "notRace": "ドラゴン"
+          }
+        }
+      ],
+      "g1560OpponentDragonAttackLock": true,
+      "supportBatch": "phase-1560",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1559,
+    "phase": 1560,
     "checkedAt": "2026-11-21",
-    "baseCount": 8860,
+    "baseCount": 8865,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8865,
+    "totalCount": 8870,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -305295,6 +305465,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8860,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1559,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8860,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8865,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

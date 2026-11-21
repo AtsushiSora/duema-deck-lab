@@ -17929,5 +17929,190 @@
         }
       ]
     }
+  },
+  "dmr05-067": {
+    "phase": 1560,
+    "faces": [
+      {
+        "name": "祭喰の超人",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "自分のアンノウンの召喚コストを１、ゼニスの召喚コストを１少なくしてもよい。ただし、コストは１より少なくならない。\n自分のアンノウンがバトルゾーンにある時、このクリーチャーのパワーは+5000され、「W・ブレイカー」を得る。",
+        "race": "ジャイアント/アンノイズ",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g349SummonAuras": [
+        {
+          "race": "アンノウン",
+          "amount": 1,
+          "g560Optional": true
+        },
+        {
+          "race": "ゼニス",
+          "amount": 1,
+          "g560Optional": true
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "creature": true,
+          "race": "アンノウン"
+        },
+        "grants": {
+          "power": 5000,
+          "breaker": 2
+        }
+      }
+    }
+  },
+  "dmrp19-053": {
+    "phase": 1560,
+    "faces": [
+      {
+        "name": "異鎧 ディスマジ-２",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇/自然",
+        "civilizations": [
+          "闇",
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーを自分の墓地またはマナゾーンから召喚してもよい。\nササゲール２（ディスペクターを召喚する時、コストを２少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+        "race": "ロスト・クルセイダー/エイリアン/ディスタス",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "sasage": 2,
+      "g978SelfGraveSummon": true,
+      "g297SelfManaSummon": {
+        "g272ManaCount": 0
+      }
+    }
+  },
+  "dmpcd03-b12": {
+    "phase": 1560,
+    "faces": [
+      {
+        "name": "暗黒獣ヤミノシーザー",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n各ターン、自分がはじめて呪文を唱えた時、自分の山札の上から２枚を墓地に置く。",
+        "race": "ダーク・モンスター/ナイト",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noAttack": true,
+      "g204SpellWatch": {
+        "who": "self",
+        "g965FirstSpell": true,
+        "defs": [
+          {
+            "op": "Mill",
+            "n": 2
+          }
+        ]
+      }
+    }
+  },
+  "dm22ex1-009": {
+    "phase": 1560,
+    "faces": [
+      {
+        "name": "ボルシャック・モモキング・クロスNEX",
+        "typeText": "スター進化クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "スター進化：レクスターズまたは火のクリーチャー１体の上に置く。\nT・ブレイカー\nこのクリーチャーが出た時、相手のコスト４以下のクリーチャーをすべて破壊する。\n攻撃中、このクリーチャーは、相手のコスト４以下の呪文によって選ばれない。",
+        "race": "ジョーカーズ/アーマード・ドラゴン/レクスターズ",
+        "powerText": "12000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "category": "レクスターズ"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "max": 4
+          }
+        }
+      ],
+      "g1560AttackingSpellProtection": 4
+    }
+  },
+  "dmd07-017": {
+    "phase": 1560,
+    "faces": [
+      {
+        "name": "偽りの王 モーツァルト",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇/火/自然",
+        "civilizations": [
+          "闇",
+          "火",
+          "自然"
+        ],
+        "cost": 11,
+        "costText": "11",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、ドラゴン以外をすべて破壊する。\n相手のドラゴンは攻撃することができない。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+        "race": "キング・コマンド・ドラゴン/アンノウン",
+        "powerText": "17000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "notRace": "ドラゴン"
+          }
+        }
+      ],
+      "g1560OpponentDragonAttackLock": true
+    }
   }
 }
