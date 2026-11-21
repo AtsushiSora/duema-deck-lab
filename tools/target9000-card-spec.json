@@ -14282,5 +14282,192 @@
         }
       ]
     }
+  },
+  "dmrp04s-024": {
+    "phase": 1541,
+    "faces": [
+      {
+        "name": "バング“BNG”ドンゴ",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "キズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）P自分の手札を捨て、その後、カードを３枚引く。",
+        "race": "ビートジョッキー",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "DiscardAll244",
+          "draw": 3
+        }
+      ]
+    }
+  },
+  "dmrp04s-009": {
+    "phase": 1541,
+    "faces": [
+      {
+        "name": "マスティーカ・パンツァー",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "T・ブレイカー\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）P相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+        "race": "グランセクト",
+        "powerText": "12000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Target",
+          "to": "mana",
+          "toOwnerMana": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ]
+    }
+  },
+  "dmrp04s-019": {
+    "phase": 1541,
+    "faces": [
+      {
+        "name": "コネチカット・ヤンキー",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）Pコスト３以下の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+        "race": "マフィ・ギャング",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "max": 3
+          },
+          "deploy": true
+        }
+      ]
+    }
+  },
+  "dmrp04m-031": {
+    "phase": 1541,
+    "faces": [
+      {
+        "name": "夜の集器医 ランプ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）\nPこのターン、相手のクリーチャーすべてのパワーを ?1000 する。（パワー０以下のクリーチャーは破壊される）",
+        "race": "マフィ・ギャング",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "GroupPower",
+          "owner": "opponent",
+          "power": -1000,
+          "filter": {
+            "creature": true
+          }
+        }
+      ]
+    }
+  },
+  "dmrp04s-041": {
+    "phase": 1541,
+    "faces": [
+      {
+        "name": "集器医 ランプ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）Pバトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを ?5000 する。（パワー０以下のクリーチャーは破壊される）",
+        "race": "マフィ・ギャング",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Target",
+          "power": -5000,
+          "filter": {
+            "creature": true
+          }
+        }
+      ]
+    }
   }
 }

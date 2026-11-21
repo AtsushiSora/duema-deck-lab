@@ -1,0 +1,327 @@
+{
+  "phase": 1541,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8779,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31596/"
+  ],
+  "implementationNotes": [
+    "ランプ2種の公式HTMLにある ?1000/?5000 は公式画像でマイナス1000/5000と確認。原文は変更せず実装の符号のみ画像の表記に一致させる。",
+    "P能力を選んだクリーチャーを発生源として既存の全手札破棄・ドロー、マナ送り、非進化蘇生、ターン終了までのパワー低下を実行。"
+  ],
+  "cards": [
+    {
+      "id": "dmrp04s-024",
+      "name": "バング“BNG”ドンゴ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-024",
+      "faces": [
+        {
+          "name": "バング“BNG”ドンゴ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "キズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）P自分の手札を捨て、その後、カードを３枚引く。",
+          "race": "ビートジョッキー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Kizuna1540"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "DiscardAll244",
+            "draw": 3
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "7b10a01cc24a8dee714a00201b955466ff57864a75c99bdf5c35e9216aebafb3",
+        "facesMatched": true,
+        "imageSha256": "d0c650bdc74a0cf8629f5b1dc660d747ee6f549a03444acb62e0a1e5cd604782",
+        "imageBytes": 124330
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスタードラゴン！！～正義ノ裁キ～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-024",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp04s-009",
+      "name": "マスティーカ・パンツァー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-009",
+      "faces": [
+        {
+          "name": "マスティーカ・パンツァー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "T・ブレイカー\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）P相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "グランセクト",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Kizuna1540"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "Target",
+            "to": "mana",
+            "toOwnerMana": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "8bf7202d0e0e1ddbf64133f478644a6774043731ecac71b4ddf25ce92ded46d5",
+        "facesMatched": true,
+        "imageSha256": "ef9d83023d8b24cd57641451e39f12bcb04fbc0f674680ea6ed08553dcf092d2",
+        "imageBytes": 133101
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスタードラゴン！！～正義ノ裁キ～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-009",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp04s-019",
+      "name": "コネチカット・ヤンキー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-019",
+      "faces": [
+        {
+          "name": "コネチカット・ヤンキー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）Pコスト３以下の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+          "race": "マフィ・ギャング",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Kizuna1540"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "max": 3
+            },
+            "deploy": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "bfe1de5c4ca4e9e3a7cd9fdbc9f8f4228e42a502ab781b0e0f04ea27ee8db535",
+        "facesMatched": true,
+        "imageSha256": "f3a393ae7f3b75a3727547d6bf60418c0b2ec1c52b23aae0752fa71506be3850",
+        "imageBytes": 126943
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスタードラゴン！！～正義ノ裁キ～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-019",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp04m-031",
+      "name": "夜の集器医 ランプ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-031",
+      "faces": [
+        {
+          "name": "夜の集器医 ランプ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）\nPこのターン、相手のクリーチャーすべてのパワーを ?1000 する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "マフィ・ギャング",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Kizuna1540"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "GroupPower",
+            "owner": "opponent",
+            "power": -1000,
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04m-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "656e59055509d48041a0f9a03030b43a09757cc5075a803226615142b9bcf79b",
+        "facesMatched": true,
+        "imageSha256": "102d804e8f94fdedc814ae5b05723110dbd49b585028ab4300582ee7f476541d",
+        "imageBytes": 108048
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスター・ドルスザク！！～無月の魔凰～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-031",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp04s-041",
+      "name": "集器医 ランプ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-041",
+      "faces": [
+        {
+          "name": "集器医 ランプ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）Pバトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを ?5000 する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "マフィ・ギャング",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Kizuna1540"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "Target",
+            "power": -5000,
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "39bd111a1cf866d870ad7826165a7a10965c22b7520dcd3a68be54715c77fb03",
+        "facesMatched": true,
+        "imageSha256": "eeaa0887ad1da7060fcc768f13bc332fdc73756710c3d066051e7a5911dc845a",
+        "imageBytes": 115667
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスタードラゴン！！～正義ノ裁キ～",
+        "プロモ限定カード 16期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-041",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp04s-024": 4,
+      "dmrp04s-009": 4,
+      "dmrp04s-019": 4,
+      "dmrp04m-031": 4,
+      "dmrp04s-041": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/31596/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31596/",
+      "sha256": "f93027f8bffda2b665ffc5dcfeeeb964502075a30aee7dc8354a0942666aa142",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    }
+  ]
+}

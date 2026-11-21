@@ -276313,15 +276313,187 @@
       ],
       "supportBatch": "phase-1540",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-024",
+      "name": "バング“BNG”ドンゴ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ビートジョッキー",
+      "text": "キズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）P自分の手札を捨て、その後、カードを３枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-024",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "DiscardAll244",
+          "draw": 3
+        }
+      ],
+      "supportBatch": "phase-1541",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-009",
+      "name": "マスティーカ・パンツァー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 12000,
+      "race": "グランセクト",
+      "text": "T・ブレイカー\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）P相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-009",
+      "limit": 4,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Target",
+          "to": "mana",
+          "toOwnerMana": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1541",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-019",
+      "name": "コネチカット・ヤンキー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "マフィ・ギャング",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）Pコスト３以下の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-019",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "max": 3
+          },
+          "deploy": true
+        }
+      ],
+      "supportBatch": "phase-1541",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04m-031",
+      "name": "夜の集器医 ランプ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "マフィ・ギャング",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）\nPこのターン、相手のクリーチャーすべてのパワーを ?1000 する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-031",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "GroupPower",
+          "owner": "opponent",
+          "power": -1000,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1541",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-041",
+      "name": "集器医 ランプ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 1000,
+      "race": "マフィ・ギャング",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）Pバトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを ?5000 する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-041",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Target",
+          "power": -5000,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1541",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1540,
+    "phase": 1541,
     "checkedAt": "2026-11-21",
-    "baseCount": 8774,
+    "baseCount": 8779,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8779,
+    "totalCount": 8784,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -301660,6 +301832,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8774,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1540,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8774,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8779,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
