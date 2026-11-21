@@ -521805,7 +521805,25 @@
       "remaining": [
         "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
       ],
-      "next": "目標10000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
+      "next": "目標10000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。",
+      "reverifiedExisting": [
+        {
+          "id": "dm25ex1-036",
+          "name": "赤薔薇の精霊龍 ジェネラローズ / 「ハゲしくアツかりしスパークよ！」"
+        },
+        {
+          "id": "dmex04-007",
+          "name": "偽りの王 ナンバーナイン / 歓喜の歌"
+        },
+        {
+          "id": "dm26rp3-049",
+          "name": "翔天 スケプ-3"
+        },
+        {
+          "id": "dm23ex3-S02",
+          "name": "天頂と停滞と水晶の決断"
+        }
+      ]
     },
     {
       "phase": 1603,
@@ -521944,7 +521962,8 @@
       "remaining": [
         "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
       ],
-      "next": "目標10000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
+      "next": "目標10000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。",
+      "requestedVerification": "tools/requested-card-verification-1603.json"
     }
   ],
   "resume": {
@@ -521952,9 +521971,9 @@
     "nextPhase": 1604,
     "workInProgress": null,
     "nextCandidates": [
-      "公式照合済みの通常能力を持たないGRクリーチャー",
-      "既存のキーワード処理と一致するGRクリーチャー",
-      "既存処理で両面を完全に扱えるツインパクトを個別検証。公式未確認・特殊条件は保留。"
+      "dmx19-s17 龍素記号Cg ダイシャリン：公式再照合と全呪文へのチャージャー付与を検討。",
+      "dmrp12-043 滝水仙人：手札へ戻ったジョーカーズの出た時能力を物理IDを維持して扱う。",
+      "dmr12-008 散舞する世界 パシフィック R：ターン開始時の自身・手札・墓地の山札移動と置換を検証。"
     ],
     "steps": [
       "開始時にHEAD・作業差分・ステージ・既存プロセス・AGENTS・進捗を確認。",
@@ -522046,7 +522065,8 @@
       "No13長時間検証はengine0.601.0の固定ソースで完了済み。今回のengine0.602.0の全面検証には数えない。必要な未集約項目は対象を特定し、細かく分割して確認する。",
       "Netlifyは手動反映専用。workflow_dispatchだけ、GitHub pushフック停止、stop_builds=trueを維持。通常のカード追加pushでは反映しない。今回の公開に保留・未検証の解消は含めない。",
       "10000種類は未達。現在9025種類、残り975。checkpoint-1596 の135テスト合格と旧9000定義の不変を確認し、phase1597以降を公式照合から継続。通常の新規登録は継続対象。自動化はPAUSEDのまま。",
-      "今回の13種類を含む全38追加種類はcheckpoint-1601で再検証済み。HEADのカード実装は9f87c9e9。作業再開時は既存プロセス・差分と実データのnameKeyを再確認し、phase1602を開始。10,000種類には未到達（残り962）。通常登録を続け、公開は別指示時のみ。"
+      "今回の13種類を含む全38追加種類はcheckpoint-1601で再検証済み。HEADのカード実装は9f87c9e9。作業再開時は既存プロセス・差分と実データのnameKeyを再確認し、phase1602を開始。10,000種類には未到達（残り962）。通常登録を続け、公開は別指示時のみ。",
+      "依頼9種類はtools/requested-card-verification-1603.jsonで全件ローカル検証済み。新規5種類で実データ9,043種類、重複0。究極・チャージャーは公式ID dm26ex5-031で一覧にも追加済み。次回はphase1604から。公開・Netlify更新は別途指示時のみ。"
     ],
     "registrationStatus": "ユーザーの新目標10000種類に向けて通常登録を再開。現在9043種類、残り957種類。automationはPAUSEDのまま。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
@@ -522567,15 +522587,34 @@
       "artifact": "tools/target10000-registration-checkpoint-1596.json"
     },
     "latestManualCheck": {
-      "checkedAt": "2026-11-21T08:13:26.585Z",
-      "verifiedCodeCommit": "9f87c9e94d2d18ca969751edbee72c503509e044",
-      "checkpoint": "tools/target10000-registration-checkpoint-1601.json",
-      "uniqueNames": 9038,
+      "checkedAt": "2026-11-21T08:37:45.550Z",
+      "verifiedCodeCommit": "5c23182b4b5425febdfd84f6d7faa0119bf3f2bc",
+      "record": "tools/requested-card-verification-1603.json",
+      "uniqueNames": 9043,
       "duplicates": 0,
-      "addedThisSession": 13,
-      "campaignPassed": 268,
+      "addedThisRequest": 5,
+      "requestedCardsPassed": 119,
       "targetReached": false,
-      "remaining": 962
+      "remaining": 957
+    },
+    "latestRequestedCards": {
+      "checkedAt": "2026-11-21T08:37:45.550Z",
+      "record": "tools/requested-card-verification-1603.json",
+      "status": "all-requested-cards-verified-local",
+      "ids": [
+        "dm25ex1-036",
+        "dmex04-007",
+        "dm26rp3-049",
+        "dm24bd2-011",
+        "dmx13-013",
+        "dm23ex3-S02",
+        "dm23ex3-S01",
+        "dm26ex4-002",
+        "dm26ex5-031"
+      ],
+      "added": 5,
+      "reverified": 4,
+      "remaining": []
     }
   },
   "registeredCardVerification": {
