@@ -280712,15 +280712,119 @@
       ],
       "supportBatch": "phase-1565",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm17-055",
+      "name": "ダンディ・ナスオ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ワイルド・ベジーズ",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中から１枚選んで自分のマナゾーンに置き、自分のマナゾーンから１枚選んで墓地に置く。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-055",
+      "limit": 0,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "n": 0,
+          "stages": [
+            {
+              "to": "mana",
+              "n": 1
+            }
+          ],
+          "rest": "top",
+          "after": [
+            {
+              "op": "Select",
+              "origin": "mana",
+              "to": "grave",
+              "n": 1
+            },
+            {
+              "op": "Shuffle405"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1566",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm02-023",
+      "name": "ダイヤモンド・カッター",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "このターン、バトルゾーンにある自分のクリーチャーはすべて、たとえ召喚酔いであったり、「このクリーチャーは攻撃することができない」または「このクリーチャーは相手プレイヤーを攻撃できない」と書かれていても、相手プレイヤーを攻撃することができる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-023",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "grant": {
+            "g1331Diamond": true
+          },
+          "g1106ExternalUntilEnd": true,
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1566",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm38-s04",
+      "name": "剛撃無双カンクロウ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 19000,
+      "race": "アース・ドラゴン/ジャイアント/サムライ",
+      "text": "リベンジ・チャンス-各ターンの終わりに、バトルゾーンに相手のコスト11以上またはパワー18000以上のクリーチャーがあれば、このクリーチャーをコストを支払わずに召喚してもよい。\nQ・ブレイカー(このクリーチャーはシールドを４枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-s04",
+      "limit": 4,
+      "breaker": 4,
+      "g795Revenge": {
+        "any": [
+          {
+            "min": 11
+          },
+          {
+            "minPower": 18000
+          }
+        ],
+        "g199Power": true
+      },
+      "supportBatch": "phase-1566",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1565,
+    "phase": 1566,
     "checkedAt": "2026-11-21",
-    "baseCount": 8889,
-    "newEffectCards": 5,
+    "baseCount": 8894,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 8894,
+    "totalCount": 8897,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -306409,6 +306513,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8889,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1565,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8889,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8894,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

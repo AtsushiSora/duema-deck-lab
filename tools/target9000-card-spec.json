@@ -19048,5 +19048,118 @@
         }
       ]
     }
+  },
+  "dm17-055": {
+    "phase": 1566,
+    "faces": [
+      {
+        "name": "ダンディ・ナスオ",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中から１枚選んで自分のマナゾーンに置き、自分のマナゾーンから１枚選んで墓地に置く。その後、山札をシャッフルする。",
+        "race": "ワイルド・ベジーズ",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "n": 0,
+          "stages": [
+            {
+              "to": "mana",
+              "n": 1
+            }
+          ],
+          "rest": "top",
+          "after": [
+            {
+              "op": "Select",
+              "origin": "mana",
+              "to": "grave",
+              "n": 1
+            },
+            {
+              "op": "Shuffle405"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm02-023": {
+    "phase": 1566,
+    "faces": [
+      {
+        "name": "ダイヤモンド・カッター",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "このターン、バトルゾーンにある自分のクリーチャーはすべて、たとえ召喚酔いであったり、「このクリーチャーは攻撃することができない」または「このクリーチャーは相手プレイヤーを攻撃できない」と書かれていても、相手プレイヤーを攻撃することができる。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "grant": {
+            "g1331Diamond": true
+          },
+          "g1106ExternalUntilEnd": true,
+          "spell": true
+        }
+      ]
+    }
+  },
+  "dm38-s04": {
+    "phase": 1566,
+    "faces": [
+      {
+        "name": "剛撃無双カンクロウ",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "リベンジ・チャンス-各ターンの終わりに、バトルゾーンに相手のコスト11以上またはパワー18000以上のクリーチャーがあれば、このクリーチャーをコストを支払わずに召喚してもよい。\nQ・ブレイカー(このクリーチャーはシールドを４枚ブレイクする)",
+        "race": "アース・ドラゴン/ジャイアント/サムライ",
+        "powerText": "19000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 4,
+      "g795Revenge": {
+        "any": [
+          {
+            "min": 11
+          },
+          {
+            "minPower": 18000
+          }
+        ],
+        "g199Power": true
+      }
+    }
   }
 }
