@@ -285456,20 +285456,170 @@
       },
       "supportBatch": "phase-1588",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex12-090",
+      "name": "カシス・ソーダ / ♥あたしたちがみんなに元気を届け～る",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "スプラッシュ・クイーン",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを１体、手札に戻す。その後、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-090",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g40LastBurst": true,
+      "spellFace": {
+        "name": "♥あたしたちがみんなに元気を届け～る",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "race": "",
+        "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを１体、手札に戻す。その後、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "to": "hand",
+            "toOwnerHand": true
+          },
+          {
+            "op": "Target",
+            "to": "hand",
+            "toOwnerHand": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1589",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd13-014",
+      "name": "The 大親分 鬼流院 刃 / 「アンノウンがナンボのモンじゃ！」",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "ビーストフォーク/ハンター",
+      "text": "マッハファイター\nW・ブレイカー\nこのクリーチャーがバトルに勝った時、自然のコスト７以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\n【呪文面】\n自分の山札の上から１枚目をマナゾーンに置く。それが名前に《超次元》とある呪文なら、自分の山札の上からもう１枚、マナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd13-014",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 2,
+      "g189BattleWin": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "g1104PsychicFaces": true,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 7,
+            "color": "自然"
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "「アンノウンがナンボのモンじゃ！」",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "自分の山札の上から１枚目をマナゾーンに置く。それが名前に《超次元》とある呪文なら、自分の山札の上からもう１枚、マナゾーンに置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RampCheck411",
+            "kind": "match",
+            "filter": {
+              "spell": true,
+              "name": "超次元"
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1589",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex08-156",
+      "name": "キングダム・オウ禍武斗 /チャージ３回、フリーエントリー！",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 14000,
+      "race": "グランセクト",
+      "text": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nT・ブレイカー\n破天九語：このクリーチャーがバトルに勝った時、相手のシールドを９つブレイクする。\n【呪文面】\n各プレイヤーは、自身の山札の上から３枚をマナゾーンに置く。\nクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。その後、相手はクリーチャーを１体、自身のマナゾーンからバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-156",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 3,
+      "g189BattleWin": [
+        {
+          "op": "Break497",
+          "n": 9
+        }
+      ],
+      "spellFace": {
+        "name": "チャージ３回、フリーエントリー！",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 10,
+        "race": "",
+        "text": "各プレイヤーは、自身の山札の上から３枚をマナゾーンに置く。\nクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。その後、相手はクリーチャーを１体、自身のマナゾーンからバトルゾーンに出す。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "EachRamp1532",
+            "n": 3
+          },
+          {
+            "op": "EachManaDeploy1589"
+          }
+        ]
+      },
+      "supportBatch": "phase-1589",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1588,
+    "phase": 1589,
     "checkedAt": "2026-11-21",
-    "baseCount": 8995,
-    "newEffectCards": 5,
+    "baseCount": 9000,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9000,
+    "totalCount": 9003,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
-      "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+      "10000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
     ],
     "history": [
       {
@@ -311475,6 +311625,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8995,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1588,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8995,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 9000,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

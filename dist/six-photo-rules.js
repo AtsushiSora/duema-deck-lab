@@ -5566,6 +5566,12 @@ export function createSixPhotoRules(api){
   else ramp(s,t,count);
   break;
  }
+ case'g34_EachManaDeploy1589':
+  put(s,...[t.p,1-t.p].map(player=>task('g34_Select',player,t.source,{
+   origin:'mana',n:1,deploy:true,filter:{creature:true},
+   controller:t.controller??t.p
+  })));
+  break;
  case'g34_EachRamp1532':
   put(s,...[s.active,1-s.active].map(p=>({...t,op:'g34_Ramp',p,controller:t.controller??t.p})));
   break;

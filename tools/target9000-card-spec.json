@@ -24917,5 +24917,206 @@
         ]
       }
     }
+  },
+  "dmex12-090": {
+    "phase": 1589,
+    "faces": [
+      {
+        "name": "カシス・ソーダ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+        "race": "スプラッシュ・クイーン",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "♥あたしたちがみんなに元気を届け～る",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを１体、手札に戻す。その後、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noAttack": true,
+      "g40LastBurst": true,
+      "spellFace": {
+        "name": "♥あたしたちがみんなに元気を届け～る",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "race": "",
+        "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを１体、手札に戻す。その後、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "to": "hand",
+            "toOwnerHand": true
+          },
+          {
+            "op": "Target",
+            "to": "hand",
+            "toOwnerHand": true
+          }
+        ]
+      }
+    }
+  },
+  "dmbd13-014": {
+    "phase": 1589,
+    "faces": [
+      {
+        "name": "The 大親分 鬼流院 刃",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "マッハファイター\nW・ブレイカー\nこのクリーチャーがバトルに勝った時、自然のコスト７以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。",
+        "race": "ビーストフォーク/ハンター",
+        "powerText": "9000",
+        "missingFields": []
+      },
+      {
+        "name": "「アンノウンがナンボのモンじゃ！」",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の山札の上から１枚目をマナゾーンに置く。それが名前に《超次元》とある呪文なら、自分の山札の上からもう１枚、マナゾーンに置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "machFighter": true,
+      "breaker": 2,
+      "g189BattleWin": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "g1104PsychicFaces": true,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 7,
+            "color": "自然"
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "「アンノウンがナンボのモンじゃ！」",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "自分の山札の上から１枚目をマナゾーンに置く。それが名前に《超次元》とある呪文なら、自分の山札の上からもう１枚、マナゾーンに置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RampCheck411",
+            "kind": "match",
+            "filter": {
+              "spell": true,
+              "name": "超次元"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dmex08-156": {
+    "phase": 1589,
+    "faces": [
+      {
+        "name": "キングダム・オウ禍武斗",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nT・ブレイカー\n破天九語：このクリーチャーがバトルに勝った時、相手のシールドを９つブレイクする。",
+        "race": "グランセクト",
+        "powerText": "14000",
+        "missingFields": []
+      },
+      {
+        "name": "チャージ３回、フリーエントリー！",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "各プレイヤーは、自身の山札の上から３枚をマナゾーンに置く。\nクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。その後、相手はクリーチャーを１体、自身のマナゾーンからバトルゾーンに出す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "machFighter": true,
+      "breaker": 3,
+      "g189BattleWin": [
+        {
+          "op": "Break497",
+          "n": 9
+        }
+      ],
+      "spellFace": {
+        "name": "チャージ３回、フリーエントリー！",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 10,
+        "race": "",
+        "text": "各プレイヤーは、自身の山札の上から３枚をマナゾーンに置く。\nクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。その後、相手はクリーチャーを１体、自身のマナゾーンからバトルゾーンに出す。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "EachRamp1532",
+            "n": 3
+          },
+          {
+            "op": "EachManaDeploy1589"
+          }
+        ]
+      }
+    }
   }
 }
