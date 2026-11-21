@@ -287552,15 +287552,157 @@
       },
       "supportBatch": "phase-1606",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-009",
+      "name": "マナの長老 ジョウモン爺/枯れ葉マナ隠し",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 13000,
+      "race": "グランセクト/スペシャルズ",
+      "text": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nT・ブレイカー\n相手のパワー3000以下のクリーチャーはすべて、プレイヤーを攻撃できない。\n【呪文面】\nパワー3000以下の進化ではないクリーチャーを１体選び、裏向きにして、新しいシールドとして持ち主のシールドゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-009",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 3,
+      "g1607OpponentPlayerPowerMax": 3000,
+      "spellFace": {
+        "name": "枯れ葉マナ隠し",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 2,
+        "race": "",
+        "text": "パワー3000以下の進化ではないクリーチャーを１体選び、裏向きにして、新しいシールドとして持ち主のシールドゾーンに置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "shields",
+            "toOwnerShields": true,
+            "filter": {
+              "nonEvolution": true,
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1607",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp3-016",
+      "name": "トング＝ゴング / 「世界をつかませてやろうか？」",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "アビスロイヤル",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のターンに一度、自分の墓地からクリーチャーを召喚してもよい。\nメガ・ラスト・バースト（このクリーチャーが離れて、手札、マナゾーン、または墓地に置かれた時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\n相手のコスト４以下のクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-016",
+      "limit": 4,
+      "breaker": 2,
+      "g450ZoneSummon": {
+        "origin": "grave",
+        "filter": {
+          "creature": true
+        }
+      },
+      "megaLastBurst": true,
+      "spellFace": {
+        "name": "「世界をつかませてやろうか？」",
+        "type": "spell",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "race": "アビスへの誘い",
+        "text": "相手のコスト４以下のクリーチャーを１体選び、破壊する。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "max": 4
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1607",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-060",
+      "name": "ボルシャック・デニーヒーロー / 超素敵タイム",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アーマード・ドラゴン/ハンター",
+      "text": "攻撃中、このクリーチャーのパワーを、自分の超次元ゾーンにある火のカード１枚につき+1000する。\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをもう１つブレイクする）\n【呪文面】\n自分の手札を１枚、超次元ゾーンに置く。その後、カードを２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-060",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "extra",
+        "amount": 1000,
+        "attackOnly": true,
+        "g1011CountColor": "火"
+      },
+      "poweredBreaker": true,
+      "spellFace": {
+        "name": "超素敵タイム",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "自分の手札を１枚、超次元ゾーンに置く。その後、カードを２枚引く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "extra",
+            "n": 1
+          },
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      },
+      "supportBatch": "phase-1607",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1606,
+    "phase": 1607,
     "checkedAt": "2026-11-21",
-    "baseCount": 9049,
+    "baseCount": 9052,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9052,
+    "totalCount": 9055,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -313823,6 +313965,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 9049,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
+        ]
+      },
+      {
+        "phase": 1606,
+        "checkedAt": "2026-11-21",
+        "baseCount": 9049,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9052,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

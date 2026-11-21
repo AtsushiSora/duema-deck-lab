@@ -10442,10 +10442,11 @@ weakerBlock569(s,a,b){const p=s.players.findIndex(own=>own.battle.includes(a));i
 attackPower593(s,p,x,playerOnly){
  const locks=(s.extLimits||[]).filter(l=>l.kind==='g593AttackPower'&&l.playerOnly===playerOnly&&
   (l.player===null||l.player===p)&&(l.ref||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})));
- const sources=playerOnly?[]:s.players[1-p].battle.filter(y=>!y.sealed&&card(y).g1067OpponentAttackPowerMax!==undefined&&api.isCreature(s,y));
+ const powerLimitKey=playerOnly?'g1607OpponentPlayerPowerMax':'g1067OpponentAttackPowerMax';
+ const sources=s.players[1-p].battle.filter(y=>!y.sealed&&card(y)[powerLimitKey]!==undefined&&api.isCreature(s,y));
  if(!locks.length&&!sources.length||creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks))return false;
  const attackerPower=api.power(x,false,s);
- if(sources.some(y=>attackerPower<=effective(y,s).g1067OpponentAttackPowerMax))return true;
+ if(sources.some(y=>attackerPower<=effective(y,s)[powerLimitKey]))return true;
  return locks.some(l=>{
   if(!l.ref)return attackerPower<=l.max;
   const host=sourceHost474(s,l.ref)?.x;

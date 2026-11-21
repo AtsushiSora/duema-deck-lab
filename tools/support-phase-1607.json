@@ -1,0 +1,297 @@
+{
+  "phase": 1607,
+  "checkedAt": "2026-11-21",
+  "baseCount": 9052,
+  "description": "既存の処理を用いて全能力を個別に検証し3種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "target": 9500,
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/33716/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/33716/": "能力は使用する片面だけに適用する。"
+  },
+  "cards": [
+    {
+      "id": "dmrp09-009",
+      "name": "マナの長老 ジョウモン爺/枯れ葉マナ隠し",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-009",
+      "faces": [
+        {
+          "name": "マナの長老 ジョウモン爺",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nT・ブレイカー\n相手のパワー3000以下のクリーチャーはすべて、プレイヤーを攻撃できない。",
+          "race": "グランセクト/スペシャルズ",
+          "powerText": "13000",
+          "missingFields": []
+        },
+        {
+          "name": "枯れ葉マナ隠し",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "パワー3000以下の進化ではないクリーチャーを１体選び、裏向きにして、新しいシールドとして持ち主のシールドゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "breaker": 3,
+        "g1607OpponentPlayerPowerMax": 3000,
+        "spellFace": {
+          "name": "枯れ葉マナ隠し",
+          "type": "spell",
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "race": "",
+          "text": "パワー3000以下の進化ではないクリーチャーを１体選び、裏向きにして、新しいシールドとして持ち主のシールドゾーンに置く。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "anyOwner": true,
+              "to": "shields",
+              "toOwnerShields": true,
+              "filter": {
+                "nonEvolution": true,
+                "maxPower": 3000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-009a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "b5d52bd74d3374c34f104e836410589a80327d6a58ce1cd21b956b1df785df92",
+        "facesMatched": true,
+        "imageSha256": "76bfd913d512f4be236f5a3f0ad5fce4483b45eb64c38518202df361127f854d",
+        "imageBytes": 175507
+      },
+      "sameNameProducts": [
+        "DMRP-09 超天篇 拡張パック第１弾 新世界ガチ誕！超ＧＲとオレガ・オーラ!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-009",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm23rp3-016",
+      "name": "トング＝ゴング / 「世界をつかませてやろうか？」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-016",
+      "faces": [
+        {
+          "name": "トング＝ゴング",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のターンに一度、自分の墓地からクリーチャーを召喚してもよい。\nメガ・ラスト・バースト（このクリーチャーが離れて、手札、マナゾーン、または墓地に置かれた時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+          "race": "アビスロイヤル",
+          "powerText": "7000",
+          "missingFields": []
+        },
+        {
+          "name": "「世界をつかませてやろうか？」",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のコスト４以下のクリーチャーを１体選び、破壊する。",
+          "race": "アビスへの誘い",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g450ZoneSummon": {
+          "origin": "grave",
+          "filter": {
+            "creature": true
+          }
+        },
+        "megaLastBurst": true,
+        "spellFace": {
+          "name": "「世界をつかませてやろうか？」",
+          "type": "spell",
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "race": "アビスへの誘い",
+          "text": "相手のコスト４以下のクリーチャーを１体選び、破壊する。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "max": 4
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-016a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "ca4d07e78044bcb812f41a4faee40a9174ada05ca63234dba3303f71b2dc6990",
+        "facesMatched": true,
+        "imageSha256": "60d756d7941c56f2acd723e9a9b62a87f2a9fc9bae1b59b1775a87b7947b34a1",
+        "imageBytes": 192035
+      },
+      "sameNameProducts": [
+        "DM23-RP3 アビス・レボリューション 第3弾 「魔覇革命」",
+        "プロモ限定カード 22期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-016",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm25ex4-060",
+      "name": "ボルシャック・デニーヒーロー / 超素敵タイム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-060",
+      "faces": [
+        {
+          "name": "ボルシャック・デニーヒーロー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "攻撃中、このクリーチャーのパワーを、自分の超次元ゾーンにある火のカード１枚につき+1000する。\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをもう１つブレイクする）",
+          "race": "アーマード・ドラゴン/ハンター",
+          "powerText": "6000+",
+          "missingFields": []
+        },
+        {
+          "name": "超素敵タイム",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の手札を１枚、超次元ゾーンに置く。その後、カードを２枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g207CountPower": {
+          "zone": "extra",
+          "amount": 1000,
+          "attackOnly": true,
+          "g1011CountColor": "火"
+        },
+        "poweredBreaker": true,
+        "spellFace": {
+          "name": "超素敵タイム",
+          "type": "spell",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "race": "",
+          "text": "自分の手札を１枚、超次元ゾーンに置く。その後、カードを２枚引く。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "to": "extra",
+              "n": 1
+            },
+            {
+              "op": "Draw",
+              "n": 2
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-060a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "065651af0300e0faff5447867c977eb1cc21983839479f11a2e0651249d5b2ee",
+        "facesMatched": true,
+        "imageSha256": "93374fb21833d42a730e9aadbef26fa92262687eecbac82a29d56e418926b9e7",
+        "imageBytes": 190117
+      },
+      "sameNameProducts": [
+        "DM25-EX4 エピソード4 パンドラ・ウォーズ"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-060",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp09-009": 4,
+      "dm23rp3-016": 4,
+      "dm25ex4-060": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/33716/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33716/",
+      "sha256": "0e3296031e1dfb8ceec8afade9c5962b09b58597abcfa218c51dc2bac129a205",
+      "result": "能力は使用する片面だけに適用する。"
+    }
+  ]
+}
