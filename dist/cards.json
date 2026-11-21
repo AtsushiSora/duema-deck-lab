@@ -281151,15 +281151,154 @@
       ],
       "supportBatch": "phase-1568",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr04-028",
+      "name": "勝利の道標レティーシャ",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 1000,
+      "race": "エイリアン/ハンター",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、コスト６以下の多色サイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)\nセイバー:サイキック・クリーチャー(自分のサイキック・クリーチャーが破壊される時、このクリーチャーをかわりに破壊してもよい)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-028",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "creature": true,
+            "g1085Psychic": true,
+            "multi": true,
+            "max": 6
+          }
+        }
+      ],
+      "g571Saver": {
+        "other": true,
+        "filter": {
+          "g1085Psychic": true
+        }
+      },
+      "supportBatch": "phase-1569",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx23-031",
+      "name": "金色目 ポラリス",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 11,
+      "power": 18500,
+      "race": "ジュラシック・コマンド・ドラゴン/革命軍",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nブロッカーブロッカー\nQ・ブレイカー（このクリーチャーはシールドを４つブレイクする）\n自分のマナゾーンに光または自然のカードが７枚以上あれば、自分のシールドゾーンにあるこのクリーチャーに「S・トリガー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx23-031",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 4,
+      "g876ShieldTriggerCondition": {
+        "g267Mana": {
+          "n": 7,
+          "filter": {
+            "faceUp": true,
+            "any": [
+              {
+                "color": "光"
+              },
+              {
+                "color": "自然"
+              }
+            ]
+          }
+        }
+      },
+      "supportBatch": "phase-1569",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-014",
+      "name": "「我の全ての力を捧げる！」",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "美孔麗王国",
+      "text": "ビビッドロー [ww02]（自分のターン中、攻撃の前にこの呪文をドローした時、表向きにしてもよい。そうしたら、このターンこの呪文を [ww02]支払って唱えてもよい）\n自分のマナゾーンにあるカードの枚数よりコストが小さいクリーチャーをすべて、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-014",
+      "limit": 4,
+      "g1335VividDraw": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BelowManaBounce1569"
+        }
+      ],
+      "supportBatch": "phase-1569",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-s06",
+      "name": "死神の邪蹄ベル・ヘル・デ・ガウル",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "デーモン・コマンド",
+      "text": "相手のクリーチャーが破壊された時、自分の山札をシャッフルした後、上から１枚目を表向きにする。そのカードが進化ではないデーモン・コマンドであれば、バトルゾーンに出す。それ以外の場合、自分の手札に加える。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-s06",
+      "limit": 4,
+      "breaker": 2,
+      "g303DeathWatch": {
+        "opponent": true,
+        "defs": [
+          {
+            "op": "Shuffle405"
+          },
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "race": "デーモン・コマンド"
+            },
+            "to": "battle",
+            "elseTo": "hand"
+          }
+        ]
+      },
+      "supportBatch": "phase-1569",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1568,
+    "phase": 1569,
     "checkedAt": "2026-11-21",
-    "baseCount": 8902,
+    "baseCount": 8906,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 8906,
+    "totalCount": 8910,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -306890,6 +307029,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8902,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1568,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8902,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 8906,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

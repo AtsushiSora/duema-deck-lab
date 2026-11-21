@@ -1,0 +1,296 @@
+{
+  "phase": 1569,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8906,
+  "description": "既存の処理を用いて全能力を個別に検証し4種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "deferred": [
+    {
+      "id": "dmr18-024",
+      "name": "雪精 バケラッタ",
+      "reason": "盾束を山札の下へ移す際の持ち主による順序選択と盾移動置換の完了待ちを既存処理に正しく接続する必要がある。今回の4種類と混ぜず次候補で継続。"
+    }
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/35833/",
+    "https://dm.takaratomy.co.jp/rule/qa/39104/",
+    "https://dm.takaratomy.co.jp/rule/qa/40964/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa_old/35833/": "破壊が置換され実際に墓地へ置かれない場合、ガウルの能力は誘発しない。",
+    "https://dm.takaratomy.co.jp/rule/qa/39104/": "ゲーム開始時にはビビッドローを宣言できない。",
+    "https://dm.takaratomy.co.jp/rule/qa/40964/": "ドローの時点で他の能力の解決前に表向きにして宣言する。"
+  },
+  "cards": [
+    {
+      "id": "dmr04-028",
+      "name": "勝利の道標レティーシャ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-028",
+      "faces": [
+        {
+          "name": "勝利の道標レティーシャ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、コスト６以下の多色サイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)\nセイバー:サイキック・クリーチャー(自分のサイキック・クリーチャーが破壊される時、このクリーチャーをかわりに破壊してもよい)",
+          "race": "エイリアン/ハンター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "creature": true,
+              "g1085Psychic": true,
+              "multi": true,
+              "max": 6
+            }
+          }
+        ],
+        "g571Saver": {
+          "other": true,
+          "filter": {
+            "g1085Psychic": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr04-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "2b8d4f3a9d71a074abe43006d3b6369e12ab9b90553c70230f87726cfd5ea806",
+        "facesMatched": true,
+        "imageSha256": "d2dde27113608eb1b26881da72b4029eb1bfbdd3b14f00be199f2c7bf5c86304",
+        "imageBytes": 142455
+      },
+      "sameNameProducts": [
+        "DMEX-08 謎のブラックボックスパック",
+        "DMR-04 エピソード1 ライジング・ホープ"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-028",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmx23-031",
+      "name": "金色目 ポラリス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx23-031",
+      "faces": [
+        {
+          "name": "金色目 ポラリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 11,
+          "costText": "11",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカーブロッカー\nQ・ブレイカー（このクリーチャーはシールドを４つブレイクする）\n自分のマナゾーンに光または自然のカードが７枚以上あれば、自分のシールドゾーンにあるこのクリーチャーに「S・トリガー」を与える。",
+          "race": "ジュラシック・コマンド・ドラゴン/革命軍",
+          "powerText": "18500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 4,
+        "g876ShieldTriggerCondition": {
+          "g267Mana": {
+            "n": 7,
+            "filter": {
+              "faceUp": true,
+              "any": [
+                {
+                  "color": "光"
+                },
+                {
+                  "color": "自然"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx23-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "0d14525068aac0565632d50d2f9344c38d1e819892ad85cbb7491ad5aacbe693",
+        "facesMatched": true,
+        "imageSha256": "7618b94d4117bc41ac7e95df1d61f352c7b6f4da1987815e70149b1536d27f73",
+        "imageBytes": 140308
+      },
+      "sameNameProducts": [
+        "DMX-23 革命ファイナル 奥義伝授!! デッキLv.マックスパック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx23-031",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp16-014",
+      "name": "「我の全ての力を捧げる！」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-014",
+      "faces": [
+        {
+          "name": "「我の全ての力を捧げる！」",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ビビッドロー [ww02]（自分のターン中、攻撃の前にこの呪文をドローした時、表向きにしてもよい。そうしたら、このターンこの呪文を [ww02]支払って唱えてもよい）\n自分のマナゾーンにあるカードの枚数よりコストが小さいクリーチャーをすべて、持ち主の手札に戻す。",
+          "race": "美孔麗王国",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1335VividDraw": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BelowManaBounce1569"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "cab34a0ef84f39a6db91ffc5881652ca24b6f7c9ee33847944148cea2bf0a888",
+        "facesMatched": true,
+        "imageSha256": "276b75be1fa97c66d93b6ec04e9cb1c202136f7e9c8181c23a2b7949742f0de7",
+        "imageBytes": 87897
+      },
+      "sameNameProducts": [
+        "DMRP-16 十王篇拡張パック第4弾 百王×邪王 鬼レヴォリューション!!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-014",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm32-s06",
+      "name": "死神の邪蹄ベル・ヘル・デ・ガウル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-s06",
+      "faces": [
+        {
+          "name": "死神の邪蹄ベル・ヘル・デ・ガウル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "相手のクリーチャーが破壊された時、自分の山札をシャッフルした後、上から１枚目を表向きにする。そのカードが進化ではないデーモン・コマンドであれば、バトルゾーンに出す。それ以外の場合、自分の手札に加える。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "デーモン・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g303DeathWatch": {
+          "opponent": true,
+          "defs": [
+            {
+              "op": "Shuffle405"
+            },
+            {
+              "op": "RevealTop514",
+              "filter": {
+                "creature": true,
+                "nonEvolution": true,
+                "race": "デーモン・コマンド"
+              },
+              "to": "battle",
+              "elseTo": "hand"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-s06.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "992641826d1526a0f1d99743691979a35b5bd56dbc518fd084d714eab2925c27",
+        "facesMatched": true,
+        "imageSha256": "ae835786ce205920a0f9c7bfa267927f28e320d104769e0981d3a6829c163a01",
+        "imageBytes": 104384
+      },
+      "sameNameProducts": [
+        "DM-32 神化編(エボリューション・サーガ) 第1弾",
+        "DMC-60 エントリーデッキ 2010 エターナル・デス"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-s06",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr04-028": 4,
+      "dmx23-031": 4,
+      "dmrp16-014": 4,
+      "dm32-s06": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35833/",
+    "https://dm.takaratomy.co.jp/rule/qa/39104/",
+    "https://dm.takaratomy.co.jp/rule/qa/40964/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35833/",
+      "sha256": "47ecb10309b2065b4d83cd8f0cbf865d64d9f4ca62d4d55a2ff4561c688afeab",
+      "result": "破壊が置換され実際に墓地へ置かれない場合、ガウルの能力は誘発しない。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39104/",
+      "sha256": "2d5d2fd82910d6c17398fafe484086ec5915fdea5f77aed1441096cae0453c9f",
+      "result": "ゲーム開始時にはビビッドローを宣言できない。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40964/",
+      "sha256": "1b4286ee8ed83ed647c19ba48764421a642c8f50f3c4839c7c04e53a05a93de6",
+      "result": "ドローの時点で他の能力の解決前に表向きにして宣言する。"
+    }
+  ]
+}
