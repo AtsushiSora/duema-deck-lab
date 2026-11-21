@@ -520969,9 +520969,10 @@
     "nextPhase": 1597,
     "workInProgress": null,
     "nextCandidates": [
-      "公式照合済みの通常能力を持たないGRクリーチャー",
-      "既存のキーワード処理と一致するGRクリーチャー",
-      "既存処理で両面を完全に扱えるツインパクトを個別検証。公式未確認・特殊条件は保留。"
+      "dmrp07-003 魂穿ツ煌世ノ正裁Z：対象クリーチャーを相手の既存シールドの上へ表向きに置く処理を照合する。",
+      "dmrp07-032 浄化ノ正裁Z：次の自分の開始時までのタップ誘発ドローを調査する。",
+      "dmrp07-013 堅珠ノ正裁Z：マナ枚数を超える登場への期限付き山札下移動を調査する。",
+      "dmr01-v02/060/062：ガイアール・カイザーのシールド置換を先に実装し、覚醒リンク3枚とカモン・ピッピーをまとめて実カード検証する。"
     ],
     "steps": [
       "開始時にHEAD・作業差分・ステージ・既存プロセス・AGENTS・進捗を確認。",
@@ -521061,7 +521062,8 @@
       "既存8072定義は深い比較で不変。カードID・保存形式・保存済みデッキ・対戦履歴を維持。",
       "個別の残件2件と問い合わせ案はユーザー指示「後回しにしよう」で保留。再開指示があるまでこの2件の調査・送信を行わない。",
       "No13長時間検証はengine0.601.0の固定ソースで完了済み。今回のengine0.602.0の全面検証には数えない。必要な未集約項目は対象を特定し、細かく分割して確認する。",
-      "Netlifyは手動反映専用。workflow_dispatchだけ、GitHub pushフック停止、stop_builds=trueを維持。通常のカード追加pushでは反映しない。今回の公開に保留・未検証の解消は含めない。"
+      "Netlifyは手動反映専用。workflow_dispatchだけ、GitHub pushフック停止、stop_builds=trueを維持。通常のカード追加pushでは反映しない。今回の公開に保留・未検証の解消は含めない。",
+      "10000種類は未達。現在9025種類、残り975。checkpoint-1596 の135テスト合格と旧9000定義の不変を確認し、phase1597以降を公式照合から継続。通常の新規登録は継続対象。自動化はPAUSEDのまま。"
     ],
     "registrationStatus": "ユーザーの新目標10000種類に向けて通常登録を再開。現在9025種類、残り975種類。automationはPAUSEDのまま。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
@@ -521463,6 +521465,93 @@
       "testsPassed": 2522,
       "testFiles": 117,
       "partitions": 6
+    },
+    "registrationCheckpoint": "tools/target10000-registration-checkpoint-1596.json",
+    "registrationSession": {
+      "checkedAt": "2026-11-21T07:34:08.755Z",
+      "status": "in-progress",
+      "target": 10000,
+      "baseline": "2f838446a748399b53422d1caab279209c74465d",
+      "verifiedCodeCommit": "ab85a3cacf98993ce79d22249bc857d7be9370be",
+      "startNames": 9000,
+      "currentNames": 9025,
+      "duplicateNames": 0,
+      "addedNames": 25,
+      "remainingNames": 975,
+      "engineVersion": "0.602.111",
+      "hashes": {
+        "dist/cards.json": "1a6e1101a22c04fb5e1dc3e3df426d96a41f2e789b5f56c9a378963bb98054a8",
+        "dist/engine.js": "e7a425d13627db253f13de8c3ccab9cb08707d71fbfea5ee0ccdc450de3d8523",
+        "dist/six-photo-rules.js": "4f79bc100cfcb9801d6d500b3ea58518730a30c8ad19b5750490bb0bebb0d8d2",
+        "dist/online-compatibility.js": "e186375e0a45d82bc5a3f39fa2077bb9eb01ebf0c270ebd40877f46fea356bed"
+      },
+      "phaseRange": [
+        1589,
+        1596
+      ],
+      "campaign": {
+        "name": "campaign",
+        "command": [
+          "node",
+          "--test",
+          "--test-concurrency=4",
+          "tests/standard1589-effects.test.mjs",
+          "tests/standard1590-effects.test.mjs",
+          "tests/standard1591-effects.test.mjs",
+          "tests/standard1592-effects.test.mjs",
+          "tests/standard1593-effects.test.mjs",
+          "tests/standard1594-effects.test.mjs",
+          "tests/standard1595-effects.test.mjs",
+          "tests/standard1596-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 3.388,
+        "log": "tmp/duema-target-10000/validation-1596/campaign.log",
+        "passed": 135,
+        "failed": 0
+      },
+      "latestCheck": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 19.11,
+        "log": "tmp/duema-phase-1596/check.log"
+      },
+      "latestAudit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.947,
+        "log": "tmp/duema-phase-1596/audit.log"
+      },
+      "invariants": {
+        "baseline": "2f838446",
+        "originalDefinitionsUnchanged": 9000,
+        "added": 25,
+        "uniqueNames": 9025,
+        "uniqueIds": 9025,
+        "duplicateNames": 0,
+        "partialNewDefinitions": 0,
+        "remaining": 975
+      },
+      "existingDefinitionsUnchanged": 9000,
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "remainingVerification": "全体npm testの過去の中断・合否未確認、以前から未確認の長時間テスト、ユーザー保留2件、本番2アカウント対戦確認は継続して未解消として保持。",
+      "artifact": "tools/target10000-registration-checkpoint-1596.json"
     }
   },
   "registeredCardVerification": {

@@ -1,0 +1,85 @@
+{
+  "checkedAt": "2026-11-21T07:34:08.755Z",
+  "status": "in-progress",
+  "target": 10000,
+  "baseline": "2f838446a748399b53422d1caab279209c74465d",
+  "verifiedCodeCommit": "ab85a3cacf98993ce79d22249bc857d7be9370be",
+  "startNames": 9000,
+  "currentNames": 9025,
+  "duplicateNames": 0,
+  "addedNames": 25,
+  "remainingNames": 975,
+  "engineVersion": "0.602.111",
+  "hashes": {
+    "dist/cards.json": "1a6e1101a22c04fb5e1dc3e3df426d96a41f2e789b5f56c9a378963bb98054a8",
+    "dist/engine.js": "e7a425d13627db253f13de8c3ccab9cb08707d71fbfea5ee0ccdc450de3d8523",
+    "dist/six-photo-rules.js": "4f79bc100cfcb9801d6d500b3ea58518730a30c8ad19b5750490bb0bebb0d8d2",
+    "dist/online-compatibility.js": "e186375e0a45d82bc5a3f39fa2077bb9eb01ebf0c270ebd40877f46fea356bed"
+  },
+  "phaseRange": [
+    1589,
+    1596
+  ],
+  "campaign": {
+    "name": "campaign",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=4",
+      "tests/standard1589-effects.test.mjs",
+      "tests/standard1590-effects.test.mjs",
+      "tests/standard1591-effects.test.mjs",
+      "tests/standard1592-effects.test.mjs",
+      "tests/standard1593-effects.test.mjs",
+      "tests/standard1594-effects.test.mjs",
+      "tests/standard1595-effects.test.mjs",
+      "tests/standard1596-effects.test.mjs"
+    ],
+    "code": 0,
+    "timedout": false,
+    "seconds": 3.388,
+    "log": "tmp/duema-target-10000/validation-1596/campaign.log",
+    "passed": 135,
+    "failed": 0
+  },
+  "latestCheck": {
+    "name": "check",
+    "command": [
+      "npm",
+      "run",
+      "check"
+    ],
+    "code": 0,
+    "timedout": false,
+    "seconds": 19.11,
+    "log": "tmp/duema-phase-1596/check.log"
+  },
+  "latestAudit": {
+    "name": "audit",
+    "command": [
+      "node",
+      "tools/audit-card-support.mjs"
+    ],
+    "code": 0,
+    "timedout": false,
+    "seconds": 11.947,
+    "log": "tmp/duema-phase-1596/audit.log"
+  },
+  "invariants": {
+    "baseline": "2f838446",
+    "originalDefinitionsUnchanged": 9000,
+    "added": 25,
+    "uniqueNames": 9025,
+    "uniqueIds": 9025,
+    "duplicateNames": 0,
+    "partialNewDefinitions": 0,
+    "remaining": 975
+  },
+  "existingDefinitionsUnchanged": 9000,
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  },
+  "remainingVerification": "全体npm testの過去の中断・合否未確認、以前から未確認の長時間テスト、ユーザー保留2件、本番2アカウント対戦確認は継続して未解消として保持。"
+}
