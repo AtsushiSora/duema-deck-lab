@@ -26513,5 +26513,64 @@
         "color": "火"
       }
     }
+  },
+  "dmr21-007": {
+    "phase": 1599,
+    "faces": [
+      {
+        "name": "九極の精霊 マウリエル",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカー ブロッカー\nT・ブレイカー\n相手のクリーチャーはすべて、シールドをひとつ少なくブレイクする。",
+        "race": "エンジェル・コマンド/革命軍/侵略者",
+        "powerText": "12500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 3,
+      "g1599BreakReduction": 1
+    }
+  },
+  "dmr05-062": {
+    "phase": 1599,
+    "faces": [
+      {
+        "name": "鬼姫モエル",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、パワー6000以下のサイキック・クリーチャーをすべて破壊する。\nこのクリーチャーは攻撃されない。",
+        "race": "ヒューマノイド/ハンター/エイリアン",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "cannotBeAttacked": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "filter": {
+            "creature": true,
+            "g1085Psychic": true,
+            "maxPower": 6000
+          }
+        }
+      ]
+    }
   }
 }

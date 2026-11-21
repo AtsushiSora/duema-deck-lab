@@ -1,0 +1,198 @@
+{
+  "phase": 1599,
+  "checkedAt": "2026-11-21",
+  "baseCount": 9031,
+  "description": "既存の処理を用いて全能力を個別に検証し2種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "deferred": [
+    {
+      "id": "dmrp13-013",
+      "name": "「古の守護者」",
+      "reason": "全てのシールド選択（ラッキー・ダーツを含む）の選択者置換を共通処理に追加する必要がある。QA33417/40539を確認済み。部分登録せず別候補を優先。"
+    },
+    {
+      "id": "dm06-021",
+      "name": "キュロロ",
+      "reason": "シールド選択者を防御側に変更する基盤を先に整備する必要がある。QA35093確認済み。"
+    },
+    {
+      "id": "dmex19-054",
+      "name": "終わりポンの助",
+      "reason": "選択式や付与された全ブレイカー能力を横断して無視する仕組みが必要。通常のブレイク数変更のみでは不完全。"
+    },
+    {
+      "id": "dmrp08-046",
+      "name": "バイクロ・チュリス",
+      "reason": "相手ターンのシールド置換を山札・手札・盤面・封印・EXライフ・シールド追加の全経路で処理し、墓地移動と追加イベントを一致させる必要がある。公式全文と画像を確認。"
+    },
+    {
+      "id": "dm23rp4-036",
+      "name": "ピッピ・修・ピヨッコ",
+      "reason": "バイクロ・チュリスと同じシールド追加の墓地置換基盤が必要。公式全文と画像を確認。"
+    }
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/43223/",
+    "https://dm.takaratomy.co.jp/rule/qa/43224/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37843/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37844/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/43223/": "R.S.F.K.の効果は1つずつ別々にブレイクするため、各回の1が0になる。",
+    "https://dm.takaratomy.co.jp/rule/qa/43224/": "破天九語の効果による9ブレイクは8になる。",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37843/": "ワールド・ギャラクシーは全シールドのため減らない。∞は宣言した数から減らす。",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37844/": "攻撃以外のクリーチャー能力によるブレイクにも適用。"
+  },
+  "cards": [
+    {
+      "id": "dmr21-007",
+      "name": "九極の精霊 マウリエル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-007",
+      "faces": [
+        {
+          "name": "九極の精霊 マウリエル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカー ブロッカー\nT・ブレイカー\n相手のクリーチャーはすべて、シールドをひとつ少なくブレイクする。",
+          "race": "エンジェル・コマンド/革命軍/侵略者",
+          "powerText": "12500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 3,
+        "g1599BreakReduction": 1
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "e6611c836f8d703e6cd4d291106b1cee10d96d995e4646b6c98a26271b93ff9e",
+        "facesMatched": true,
+        "imageSha256": "a964dcadb2b53c76fe7e5aa3519469c55b7bd21c36d10a8be931296f5a4e5f5f",
+        "imageBytes": 122073
+      },
+      "sameNameProducts": [
+        "DMR-21 革命ファイナル 拡張パック第１章 ハムカツ団とドギラゴン剣"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-007",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmr05-062",
+      "name": "鬼姫モエル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-062",
+      "faces": [
+        {
+          "name": "鬼姫モエル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、パワー6000以下のサイキック・クリーチャーをすべて破壊する。\nこのクリーチャーは攻撃されない。",
+          "race": "ヒューマノイド/ハンター/エイリアン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "cannotBeAttacked": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "filter": {
+              "creature": true,
+              "g1085Psychic": true,
+              "maxPower": 6000
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-062.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "64c1b148ae3a19f00ec6627b4fd0c4cd030b85fd6468ef099d4c6346490f9271",
+        "facesMatched": true,
+        "imageSha256": "c45871c508d7b328c2b7bb2d34aab9a71b6bf38a0fba00c7874de704e333393b",
+        "imageBytes": 10432
+      },
+      "sameNameProducts": [
+        "DMR-05 エピソード2 ゴールデン・エイジ"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-062",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr21-007": 4,
+      "dmr05-062": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/43223/",
+    "https://dm.takaratomy.co.jp/rule/qa/43224/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37843/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37844/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43223/",
+      "sha256": "43679971a0d763ae9d1de95dc6e761edab9e5616dec9c8ae3321f0caa4425bbe",
+      "result": "R.S.F.K.の効果は1つずつ別々にブレイクするため、各回の1が0になる。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43224/",
+      "sha256": "35212f19ce8cd5f6f462ad76c93d6d26224df05355a80af6816ed9b5bf3b413f",
+      "result": "破天九語の効果による9ブレイクは8になる。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/37843/",
+      "sha256": "f761c1c1bbab4e5b4a6cc043df3502b14e068cc6324d5cd60a08747182c648f1",
+      "result": "ワールド・ギャラクシーは全シールドのため減らない。∞は宣言した数から減らす。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/37844/",
+      "sha256": "5bb2983f8276a346c299403ae3c6b3037267e8cfd331d7277e191e7f42c7a4ce",
+      "result": "攻撃以外のクリーチャー能力によるブレイクにも適用。"
+    }
+  ],
+  "testCorrections": [
+    "パワー変更の対戦状態はbuff（攻撃中専用）でなくpowerModifiersを用いて現在パワー6000/7000を比較。",
+    "R.S.F.K.途中のS・トリガーは正式なヘブンズ・ゲートdm16-007を使用。R.S.F.K.は通常1ブレイクなのでマウリエル着地後は攻撃のブレイクも0になる。"
+  ]
+}

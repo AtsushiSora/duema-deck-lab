@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-21",
   "catalogueNames": 11824,
-  "supportedNames": 9031,
-  "pendingNames": 2793,
-  "phase": 1598,
-  "added": 3,
+  "supportedNames": 9033,
+  "pendingNames": 2791,
+  "phase": 1599,
+  "added": 2,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1575,
+    "クリーチャー": 1573,
     "呪文": 336,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 26,
@@ -222,7 +222,7 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "未対応の能力文": 2040,
+    "未対応の能力文": 2038,
     "複数面・特殊カードタイプまたは情報不足": 605,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
@@ -521233,11 +521233,213 @@
         "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
       ],
       "next": "目標10000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
+    },
+    {
+      "phase": 1599,
+      "kind": "registration-toward-10000",
+      "checkedAt": "2026-11-21T08:01:56.936Z",
+      "baseline": "33fca53fd84bb6c35af69784ff518fb1ad730fb6",
+      "manifest": "tools/support-phase-1599.json",
+      "status": "verified-local",
+      "before": 9031,
+      "supported": 9033,
+      "pending": 2791,
+      "added": [
+        {
+          "id": "dmr21-007",
+          "name": "九極の精霊 マウリエル"
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル"
+        }
+      ],
+      "duplicates": 0,
+      "results": {
+        "focused": {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1599-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.734,
+          "log": "tmp/duema-phase-1599/focused.log",
+          "passed": 99,
+          "failed": 0
+        },
+        "related": {
+          "name": "related",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=4",
+            "tests/standard1342-effects.test.mjs",
+            "tests/standard1344-effects.test.mjs",
+            "tests/standard1598-effects.test.mjs",
+            "tests/online-app.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.343,
+          "log": "tmp/duema-phase-1599/related.log",
+          "passed": 67,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.147,
+          "log": "tmp/duema-phase-1599/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.877,
+          "log": "tmp/duema-phase-1599/audit.log"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tools/verify-target10000.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.202,
+          "log": "tmp/duema-phase-1599/invariants.log"
+        }
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1599-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.912,
+          "log": "tmp/duema-phase-1599/focused.log"
+        },
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1599-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.691,
+          "log": "tmp/duema-phase-1599/focused.log"
+        },
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1599-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.693,
+          "log": "tmp/duema-phase-1599/focused.log"
+        },
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1599-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.801,
+          "log": "tmp/duema-phase-1599/focused.log"
+        }
+      ],
+      "testCorrections": [
+        "パワー変更の対戦状態はbuff（攻撃中専用）でなくpowerModifiersを用いて現在パワー6000/7000を比較。",
+        "R.S.F.K.途中のS・トリガーは正式なヘブンズ・ゲートdm16-007を使用。R.S.F.K.は通常1ブレイクなのでマウリエル着地後は攻撃のブレイクも0になる。"
+      ],
+      "totalTestsPassed": 166,
+      "reason": "既存の処理を用いて全能力を個別に検証し2種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+      "remaining": [
+        "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
+      ],
+      "next": "目標10000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。",
+      "deferred": [
+        {
+          "id": "dmrp13-013",
+          "name": "「古の守護者」",
+          "reason": "全てのシールド選択（ラッキー・ダーツを含む）の選択者置換を共通処理に追加する必要がある。QA33417/40539を確認済み。部分登録せず別候補を優先。"
+        },
+        {
+          "id": "dm06-021",
+          "name": "キュロロ",
+          "reason": "シールド選択者を防御側に変更する基盤を先に整備する必要がある。QA35093確認済み。"
+        },
+        {
+          "id": "dmex19-054",
+          "name": "終わりポンの助",
+          "reason": "選択式や付与された全ブレイカー能力を横断して無視する仕組みが必要。通常のブレイク数変更のみでは不完全。"
+        },
+        {
+          "id": "dmrp08-046",
+          "name": "バイクロ・チュリス",
+          "reason": "相手ターンのシールド置換を山札・手札・盤面・封印・EXライフ・シールド追加の全経路で処理し、墓地移動と追加イベントを一致させる必要がある。公式全文と画像を確認。"
+        },
+        {
+          "id": "dm23rp4-036",
+          "name": "ピッピ・修・ピヨッコ",
+          "reason": "バイクロ・チュリスと同じシールド追加の墓地置換基盤が必要。公式全文と画像を確認。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1598,
-    "nextPhase": 1599,
+    "lastVerifiedPhase": 1599,
+    "nextPhase": 1600,
     "workInProgress": null,
     "nextCandidates": [
       "公式照合済みの通常能力を持たないGRクリーチャー",
@@ -521246,7 +521448,7 @@
     ],
     "steps": [
       "開始時にHEAD・作業差分・ステージ・既存プロセス・AGENTS・進捗を確認。",
-      "実データ9031種類・重複0。新目標10000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ9033種類・重複0。新目標10000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "追加500種類の117固有テストファイルはengine0.602.107で6分割して合格。旧全体npm test、phase1512・1584長時間AI検証、ユーザー保留2件と本番2アカウント対戦は別の未確認項目として記録を維持。",
       "個別の残件2件はユーザー保留。再開指示まで追加調査・問い合わせ送信をしない。",
       "一括npm testを再実行せず、公開候補の未集約範囲だけ分割検証する。過去の固定ソースの合格と現版の合格を区別する。",
@@ -521327,7 +521529,7 @@
     ],
     "restartSteps": [
       "公開済みの版はb40ae0df (v0.722.1 / engine0.602.1 / 8074種類)。Pages・Netlifyを同じ版に更新済み。最新HEAD・差分・ステージ・既存プロセスを最初に確認。",
-      "実データ9031種類・重複0。新目標10000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ9033種類・重複0。新目標10000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "追加500種類の117固有テストファイルはengine0.602.107で6分割して合格。旧全体npm test、phase1512・1584長時間AI検証、ユーザー保留2件と本番2アカウント対戦は別の未確認項目として記録を維持。",
       "既存8072定義は深い比較で不変。カードID・保存形式・保存済みデッキ・対戦履歴を維持。",
       "個別の残件2件と問い合わせ案はユーザー指示「後回しにしよう」で保留。再開指示があるまでこの2件の調査・送信を行わない。",
@@ -521335,7 +521537,7 @@
       "Netlifyは手動反映専用。workflow_dispatchだけ、GitHub pushフック停止、stop_builds=trueを維持。通常のカード追加pushでは反映しない。今回の公開に保留・未検証の解消は含めない。",
       "10000種類は未達。現在9025種類、残り975。checkpoint-1596 の135テスト合格と旧9000定義の不変を確認し、phase1597以降を公式照合から継続。通常の新規登録は継続対象。自動化はPAUSEDのまま。"
     ],
-    "registrationStatus": "ユーザーの新目標10000種類に向けて通常登録を再開。現在9031種類、残り969種類。automationはPAUSEDのまま。",
+    "registrationStatus": "ユーザーの新目標10000種類に向けて通常登録を再開。現在9033種類、残り967種類。automationはPAUSEDのまま。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [],
     "printVerificationPending": [
@@ -521447,10 +521649,10 @@
     "registrationTarget": {
       "target": 10000,
       "startCount": 9000,
-      "currentCount": 9031,
-      "remaining": 969,
+      "currentCount": 9033,
+      "remaining": 967,
       "status": "active",
-      "phase": 1598
+      "phase": 1599
     },
     "deferredRegistrationCandidates": [
       {
@@ -521600,6 +521802,36 @@
         "name": "ドラゴニック・ピッピー",
         "reason": "公式表裏を照合。覚醒リンク3枚の能力全体を同時に検証できるよう相方の実装を先行する。カモン・ピッピーの選択検証にも必要。",
         "phase": 1595
+      },
+      {
+        "id": "dmrp13-013",
+        "name": "「古の守護者」",
+        "reason": "全てのシールド選択（ラッキー・ダーツを含む）の選択者置換を共通処理に追加する必要がある。QA33417/40539を確認済み。部分登録せず別候補を優先。",
+        "phase": 1599
+      },
+      {
+        "id": "dm06-021",
+        "name": "キュロロ",
+        "reason": "シールド選択者を防御側に変更する基盤を先に整備する必要がある。QA35093確認済み。",
+        "phase": 1599
+      },
+      {
+        "id": "dmex19-054",
+        "name": "終わりポンの助",
+        "reason": "選択式や付与された全ブレイカー能力を横断して無視する仕組みが必要。通常のブレイク数変更のみでは不完全。",
+        "phase": 1599
+      },
+      {
+        "id": "dmrp08-046",
+        "name": "バイクロ・チュリス",
+        "reason": "相手ターンのシールド置換を山札・手札・盤面・封印・EXライフ・シールド追加の全経路で処理し、墓地移動と追加イベントを一致させる必要がある。公式全文と画像を確認。",
+        "phase": 1599
+      },
+      {
+        "id": "dm23rp4-036",
+        "name": "ピッピ・修・ピヨッコ",
+        "reason": "バイクロ・チュリスと同じシールド追加の墓地置換基盤が必要。公式全文と画像を確認。",
+        "phase": 1599
       }
     ],
     "lastExplicitUserAddition": {
@@ -573687,10 +573919,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1598,
+    "phase": 1599,
     "threshold": 10000,
-    "supportedNames": 9031,
-    "pendingNames": 2793,
+    "supportedNames": 9033,
+    "pendingNames": 2791,
     "checkedAt": "2026-11-21",
     "registrationStopped": false,
     "automationId": "duema-deck-lab",

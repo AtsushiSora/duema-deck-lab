@@ -69,9 +69,11 @@ export function createSixPhotoRules(api){
  const remainingGears929=(s,t)=>crossGears728(s,t.p)
   .filter(g=>!g.faceDown&&t.gears.some(ref=>ref.uid===g.uid&&ref.incarnation===(g.incarnation||0)));
  function creatureBreakCount1342(s,p,x,n){
-  if(!x?.tapped||x.sealed||x.faceDown||!api.isCreature(s,x))return n;
-  const reductions=s.players[1-p].battle.filter(y=>card(y).g1342Kabord&&!y.sealed&&!y.faceDown&&
-   api.isCreature(s,y)&&!api.ignored(s,y)).length;
+  if(!x||x.sealed||x.faceDown||!api.isCreature(s,x)||!s.players[p].battle.includes(x))return n;
+  const reductions=s.players[1-p].battle.reduce((count,y)=>{
+   if(y.sealed||y.faceDown||!api.isCreature(s,y)||api.ignored(s,y))return count;
+   return count+(x.tapped&&card(y).g1342Kabord?1:0)+(effective(y,s).g1599BreakReduction||0);
+  },0);
   return Math.max(0,n-reductions);
  }
  const key=x=>x.uid+'@'+(x.incarnation||0),live=(s,t)=>s.players[t.creatureOrigin??t.p].battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===(t.incarnation||0));
