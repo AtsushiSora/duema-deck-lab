@@ -283371,15 +283371,252 @@
       },
       "supportBatch": "phase-1580",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-015",
+      "name": "貝獣 パリフ/トゥインクル・フラッシュ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ムートピア",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーが破壊される時、墓地に置くかわりに手札に戻す。\n【呪文面】\n自分の山札の上から１枚目を、裏向きにして、新しいシールドとして、自分のシールドゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-015",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "destroyToHand": true,
+      "spellFace": {
+        "name": "トゥインクル・フラッシュ",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "自分の山札の上から１枚目を、裏向きにして、新しいシールドとして、自分のシールドゾーンに置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1581",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23sd2-009",
+      "name": "星姫械 ミモザスター / 招光呪文「メカミング」",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7500,
+      "race": "メカ・デル・ステラ",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n【呪文面】\n自分の山札の上から３枚を見る。その中から、メカを１枚、相手に見せてから手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd2-009",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "spellFace": {
+        "name": "招光呪文「メカミング」",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 1,
+        "race": "メカ・デル・テック",
+        "text": "自分の山札の上から３枚を見る。その中から、メカを１枚、相手に見せてから手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "stages": [
+              {
+                "to": "hand",
+                "n": 1,
+                "optional": true,
+                "filter": {
+                  "anyFaceRace": "メカ"
+                },
+                "reveal": true
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      },
+      "supportBatch": "phase-1581",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-044",
+      "name": "フンバルさん/フンバ・フライ・ダイ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "ジョーカーズ",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）\n【呪文面】\n相手のパワー3000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd11-f04",
+      "limit": 4,
+      "trigger": true,
+      "smashBurst": true,
+      "spellFace": {
+        "name": "フンバ・フライ・ダイ",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 1,
+        "race": "",
+        "text": "相手のパワー3000以下のクリーチャーを１体破壊する。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1581",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-s05",
+      "name": "阿修羅ンチュラ/傀儡が来る！",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "マフィ・ギャング",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から４枚を墓地に置いてもよい。\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）\n【呪文面】\nクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-s05",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "smashBurst": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 4,
+          "optional": true
+        }
+      ],
+      "spellFace": {
+        "name": "傀儡が来る！",
+        "type": "spell",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 8,
+        "race": "",
+        "text": "クリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1581",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-035",
+      "name": "奇石 ジャーリー/センチメンタル・ジャーリー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6500,
+      "race": "メタリカ",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n相手のクリーチャーがバトルゾーンに出た時、このクリーチャーをアンタップする。\n【呪文面】\n相手の「ブロッカー」を持つクリーチャーを１体、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-035",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g314OtherEntry": {
+        "who": "opponent",
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Untap",
+            "g191First": true
+          }
+        ]
+      },
+      "spellFace": {
+        "name": "センチメンタル・ジャーリー",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 2,
+        "race": "",
+        "text": "相手の「ブロッカー」を持つクリーチャーを１体、破壊する。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1581",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1580,
+    "phase": 1581,
     "checkedAt": "2026-11-21",
-    "baseCount": 8956,
+    "baseCount": 8961,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8961,
+    "totalCount": 8966,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -309278,6 +309515,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8956,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1580,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8956,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8961,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

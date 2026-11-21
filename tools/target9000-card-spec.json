@@ -22169,5 +22169,327 @@
         ]
       }
     }
+  },
+  "dmrp09-015": {
+    "phase": 1581,
+    "faces": [
+      {
+        "name": "貝獣 パリフ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーが破壊される時、墓地に置くかわりに手札に戻す。",
+        "race": "ムートピア",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "トゥインクル・フラッシュ",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の山札の上から１枚目を、裏向きにして、新しいシールドとして、自分のシールドゾーンに置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noAttack": true,
+      "destroyToHand": true,
+      "spellFace": {
+        "name": "トゥインクル・フラッシュ",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "自分の山札の上から１枚目を、裏向きにして、新しいシールドとして、自分のシールドゾーンに置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          }
+        ]
+      }
+    }
+  },
+  "dm23sd2-009": {
+    "phase": 1581,
+    "faces": [
+      {
+        "name": "星姫械 ミモザスター",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+        "race": "メカ・デル・ステラ",
+        "powerText": "7500",
+        "missingFields": []
+      },
+      {
+        "name": "招光呪文「メカミング」",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "自分の山札の上から３枚を見る。その中から、メカを１枚、相手に見せてから手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+        "race": "メカ・デル・テック",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "spellFace": {
+        "name": "招光呪文「メカミング」",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 1,
+        "race": "メカ・デル・テック",
+        "text": "自分の山札の上から３枚を見る。その中から、メカを１枚、相手に見せてから手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "stages": [
+              {
+                "to": "hand",
+                "n": 1,
+                "optional": true,
+                "filter": {
+                  "anyFaceRace": "メカ"
+                },
+                "reveal": true
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      }
+    }
+  },
+  "dmrp08-044": {
+    "phase": 1581,
+    "faces": [
+      {
+        "name": "フンバルさん",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）",
+        "race": "ジョーカーズ",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "フンバ・フライ・ダイ",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "相手のパワー3000以下のクリーチャーを１体破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "smashBurst": true,
+      "spellFace": {
+        "name": "フンバ・フライ・ダイ",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 1,
+        "race": "",
+        "text": "相手のパワー3000以下のクリーチャーを１体破壊する。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dmrp08-s05": {
+    "phase": 1581,
+    "faces": [
+      {
+        "name": "阿修羅ンチュラ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から４枚を墓地に置いてもよい。\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）",
+        "race": "マフィ・ギャング",
+        "powerText": "9000",
+        "missingFields": []
+      },
+      {
+        "name": "傀儡が来る！",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "クリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "smashBurst": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 4,
+          "optional": true
+        }
+      ],
+      "spellFace": {
+        "name": "傀儡が来る！",
+        "type": "spell",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 8,
+        "race": "",
+        "text": "クリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dmrp10-035": {
+    "phase": 1581,
+    "faces": [
+      {
+        "name": "奇石 ジャーリー",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n相手のクリーチャーがバトルゾーンに出た時、このクリーチャーをアンタップする。",
+        "race": "メタリカ",
+        "powerText": "6500",
+        "missingFields": []
+      },
+      {
+        "name": "センチメンタル・ジャーリー",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "相手の「ブロッカー」を持つクリーチャーを１体、破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g314OtherEntry": {
+        "who": "opponent",
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Untap",
+            "g191First": true
+          }
+        ]
+      },
+      "spellFace": {
+        "name": "センチメンタル・ジャーリー",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 2,
+        "race": "",
+        "text": "相手の「ブロッカー」を持つクリーチャーを１体、破壊する。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "blocker": true
+            }
+          }
+        ]
+      }
+    }
   }
 }
