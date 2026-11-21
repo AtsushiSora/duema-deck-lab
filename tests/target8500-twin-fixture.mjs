@@ -9,7 +9,7 @@ export const put=(s,p,id)=>{const x=inst(id);x.cardOwner=p;s.players[p].battle.p
 export function playFace(s,id,face=0){const x=inst(id);s.players[s.active].hand.push(x);act(s,'play',a=>a.uid===x.uid&&(a.face||0)===face&&!a.alternative);return x;}
 export function pick(s,v){act(s,'extended',a=>{const x=s.decision?.choices?.[a.choice]?.value;return(x?.uid??x)===v;});}
 export function verifyTwinBatch(phase,options={}){
- const manifest=JSON.parse(fs.readFileSync(new URL('../tools/support-phase-'+phase+'.json',import.meta.url))),cat=createCatalogue(snapshot,data.cards,details),ids=manifest.cards.map(x=>x.id);
+ const manifest=JSON.parse(fs.readFileSync(new URL('../tools/support-phase-'+phase+'.json',import.meta.url)));manifest.cards=manifest.cards.filter(row=>!options.excludeIds?.includes(row.id));const cat=createCatalogue(snapshot,data.cards,details),ids=manifest.cards.map(x=>x.id);
  test('phase '+phase+' pins both official faces, images and restrictions without new IDs for the spell sides',()=>{
   for(const row of manifest.cards){const d=details.cards.find(x=>x.id===row.id),c=e.card(row.id);assert.deepEqual(row.faces,d.faces);assert.deepEqual(standardCardSpec(d,{phase}),row.spec);const bad=structuredClone(d);bad.faces[1].abilityText+='\n未対応の能力';assert.throws(()=>standardCardSpec(bad,{phase}));assert.equal(CARD_IMAGES[row.id],row.image);assert.match(row.verification.imageSha256,/^[a-f0-9]{64}$/);assert.equal(c.limit,manifest.regulationVerification.limits[row.id]);assert.equal(c.manaValue,1);assert.equal(c.type,'creature');assert.equal(c.spellFace.type,'spell');assert.equal(c.spellFace.cost,row.faces[1].cost);assert.equal(cat.get(row.id).id,row.id);}
  });

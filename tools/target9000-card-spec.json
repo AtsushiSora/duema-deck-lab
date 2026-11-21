@@ -12192,5 +12192,231 @@
         ]
       }
     }
+  },
+  "dm26ex4-055": {
+    "phase": 1531,
+    "faces": [
+      {
+        "name": "珊瑚妖精キユリ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/自然",
+        "civilizations": [
+          "水",
+          "自然"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "各ターン、自分のクリーチャー１体目の召喚コストを１少なくする。ただしコストは０以下にならない。\n相手はこのクリーチャーを選べない。（ただし、このクリーチャーを攻撃またはブロックしてもよい）",
+        "race": "スノーフェアリー/チームウェイブ",
+        "powerText": "2000",
+        "missingFields": []
+      },
+      {
+        "name": "キユリのFSMラジオ",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の山札の上から３枚を見る。その中から、コスト３以下のクリーチャーを１体出す。残りを好きな順序で山札の下に置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g463FirstSummon": {
+        "colors": [],
+        "amount": 1,
+        "mandatory": true
+      },
+      "untargetable": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "キユリのFSMラジオ",
+        "cost": 3,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LookDeploy530",
+            "n": 3,
+            "limit": 1,
+            "g749Required": true,
+            "rest": "bottom",
+            "filter": {
+              "creature": true,
+              "max": 3
+            },
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmex17-070": {
+    "phase": 1531,
+    "faces": [
+      {
+        "name": "天雷の導士アヴァラルド公",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーが出た時、自分の山札の上から３枚を表向きにする。その中から呪文を好きな枚数手札に加え、残りを好きな順序で山札の下に置く。",
+        "race": "アーク・セラフィム/ナイト",
+        "powerText": "1000",
+        "missingFields": []
+      },
+      {
+        "name": "魔弾アルカディア・エッグ",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー S・トリガー\n相手のアンタップしているクリーチャーを１体破壊する。\n《魔弾グローリー・ゲート》が自分の墓地にあれば、《魔光大帝ネロ・グリフィス》を１体、自分の手札から出してもよい。",
+        "race": "ナイト",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "public": true,
+          "stages": [
+            {
+              "to": "hand",
+              "n": "all",
+              "optional": true,
+              "filter": {
+                "spell": true
+              }
+            }
+          ]
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "魔弾アルカディア・エッグ",
+        "cost": 5,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "ナイト",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "untapped": true
+            },
+            "spell": true
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g273Grave": {
+                "n": 1,
+                "filter": {
+                  "g201ExactName": "魔弾グローリー・ゲート"
+                }
+              }
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "hand",
+                "n": 1,
+                "deploy": true,
+                "optional": true,
+                "filter": {
+                  "g201ExactName": "魔光大帝ネロ・グリフィス"
+                },
+                "spell": true
+              }
+            ],
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmc46-010": {
+    "phase": 1531,
+    "faces": [
+      {
+        "name": "魔光大帝ネロ・グリフィス",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/闇",
+        "civilizations": [
+          "光",
+          "闇"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカー\n自分のナイト・クリーチャーが破壊された時、自分の手札から光または闇の、コスト６以下のナイト呪文または「S・トリガー」付き呪文を１枚、コストを支払わずに唱えてもよい。\nW・ブレイカー",
+        "race": "エンジェル・コマンド/ダークロード/ナイト",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g303DeathWatch": {
+        "race": "ナイト",
+        "self": true,
+        "selfFilter": true,
+        "defs": [
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "spellOnly": true,
+            "spellColorsAny": [
+              "光",
+              "闇"
+            ],
+            "max": 6,
+            "filter": {
+              "any": [
+                {
+                  "g228Face": {
+                    "type": "spell",
+                    "raceAll": [
+                      "ナイト"
+                    ]
+                  }
+                },
+                {
+                  "g228Face": {
+                    "type": "spell",
+                    "shieldTrigger": true
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
   }
 }

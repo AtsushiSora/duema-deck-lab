@@ -1,0 +1,337 @@
+{
+  "phase": 1531,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8737,
+  "description": "既存の処理を用いて全能力を個別に検証し3種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/33716/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/33716/": "S・トリガーの付与や使用可能な面は条件を満たす片面だけに適用する。"
+  },
+  "implementationNotes": [
+    "新しいキユリはコスト軽減が任意ではないため、旧版の任意軽減を保ったまま新フラグで最低軽減量を強制する。",
+    "アルカディア・エッグの展開先に必要な魔光大帝ネロ・グリフィスも全能力を公式照合し、ナイト破壊時の条件付き手札呪文実行まで検証して登録する。"
+  ],
+  "cards": [
+    {
+      "id": "dm26ex4-055",
+      "name": "珊瑚妖精キユリ / キユリのFSMラジオ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-055",
+      "faces": [
+        {
+          "name": "珊瑚妖精キユリ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "各ターン、自分のクリーチャー１体目の召喚コストを１少なくする。ただしコストは０以下にならない。\n相手はこのクリーチャーを選べない。（ただし、このクリーチャーを攻撃またはブロックしてもよい）",
+          "race": "スノーフェアリー/チームウェイブ",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "キユリのFSMラジオ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の山札の上から３枚を見る。その中から、コスト３以下のクリーチャーを１体出す。残りを好きな順序で山札の下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g463FirstSummon": {
+          "colors": [],
+          "amount": 1,
+          "mandatory": true
+        },
+        "untargetable": true,
+        "spellFace": {
+          "type": "spell",
+          "name": "キユリのFSMラジオ",
+          "cost": 3,
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "LookDeploy530",
+              "n": 3,
+              "limit": 1,
+              "g749Required": true,
+              "rest": "bottom",
+              "filter": {
+                "creature": true,
+                "max": 3
+              },
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-055a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "eedb6561fec606d24515d0aa0047149551fb9824c3d9c94eb08a96055ef1995c",
+        "facesMatched": true,
+        "imageSha256": "7233e1343f6e8deffd679cdc134081c78fd0fdf1d3b316b3675536f90a7422b9",
+        "imageBytes": 127165
+      },
+      "sameNameProducts": [
+        "DM26-EX4 切札不滅!! デュエキング FOREVER 2026"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-055",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex17-070",
+      "name": "天雷の導士アヴァラルド公 / 魔弾アルカディア・エッグ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-070",
+      "faces": [
+        {
+          "name": "天雷の導士アヴァラルド公",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から３枚を表向きにする。その中から呪文を好きな枚数手札に加え、残りを好きな順序で山札の下に置く。",
+          "race": "アーク・セラフィム/ナイト",
+          "powerText": "1000",
+          "missingFields": []
+        },
+        {
+          "name": "魔弾アルカディア・エッグ",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\n相手のアンタップしているクリーチャーを１体破壊する。\n《魔弾グローリー・ゲート》が自分の墓地にあれば、《魔光大帝ネロ・グリフィス》を１体、自分の手札から出してもよい。",
+          "race": "ナイト",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "stages": [
+              {
+                "to": "hand",
+                "n": "all",
+                "optional": true,
+                "filter": {
+                  "spell": true
+                }
+              }
+            ]
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "魔弾アルカディア・エッグ",
+          "cost": 5,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "ナイト",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "untapped": true
+              },
+              "spell": true
+            },
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g273Grave": {
+                  "n": 1,
+                  "filter": {
+                    "g201ExactName": "魔弾グローリー・ゲート"
+                  }
+                }
+              },
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "hand",
+                  "n": 1,
+                  "deploy": true,
+                  "optional": true,
+                  "filter": {
+                    "g201ExactName": "魔光大帝ネロ・グリフィス"
+                  },
+                  "spell": true
+                }
+              ],
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-070a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "fac56c18edbe239ad92a12728f2c77d7554ecb78a9ed26cb798810a9d4c6127b",
+        "facesMatched": true,
+        "imageSha256": "2be90d16632bc1ca40fd17db6a64432bcee00dd44bd9a14cf45aa8837c6c8107",
+        "imageBytes": 189319
+      },
+      "sameNameProducts": [
+        "DM23-BD7 エキサイティング・デュエパ・デッキ 「ネゴシエートの偽衒学者」",
+        "DM23-EX2 頂上決戦!!デュエキングMAX 2023",
+        "DMEX-17 20周年超感謝メモリアルパック 究極の章 デュエキングMAX"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-070",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmc46-010",
+      "name": "魔光大帝ネロ・グリフィス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc46-010",
+      "faces": [
+        {
+          "name": "魔光大帝ネロ・グリフィス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカー\n自分のナイト・クリーチャーが破壊された時、自分の手札から光または闇の、コスト６以下のナイト呪文または「S・トリガー」付き呪文を１枚、コストを支払わずに唱えてもよい。\nW・ブレイカー",
+          "race": "エンジェル・コマンド/ダークロード/ナイト",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g303DeathWatch": {
+          "race": "ナイト",
+          "self": true,
+          "selfFilter": true,
+          "defs": [
+            {
+              "op": "Execute",
+              "origin": "hand",
+              "spellOnly": true,
+              "spellColorsAny": [
+                "光",
+                "闇"
+              ],
+              "max": 6,
+              "filter": {
+                "any": [
+                  {
+                    "g228Face": {
+                      "type": "spell",
+                      "raceAll": [
+                        "ナイト"
+                      ]
+                    }
+                  },
+                  {
+                    "g228Face": {
+                      "type": "spell",
+                      "shieldTrigger": true
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc46-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "c139e27485c43895527567538aee48e2801016912bd9a9a931b6ad48135e32f6",
+        "facesMatched": true,
+        "imageSha256": "221821299cda7b39ac999dadac2cecc1d3e2c5f01fb9f5c12e380a74f12de379",
+        "imageBytes": 125723
+      },
+      "sameNameProducts": [
+        "DMPCD-02 デュエマプレイス・コラボデッキ 竜装の武者＆魔弾の騎士",
+        "DMEX-15 20周年超感謝メモリアルパック 魂の章 名場面BEST",
+        "DMX-12 エピソード2 ブラック・ボックス・パック",
+        "DMC-46 スーパーデッキクロス「アルカディアス騎士団」"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc46-010",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26ex4-055": 4,
+      "dmex17-070": 4,
+      "dmc46-010": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/33716/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33716/",
+      "sha256": "0e3296031e1dfb8ceec8afade9c5962b09b58597abcfa218c51dc2bac129a205",
+      "result": "S・トリガーの付与や使用可能な面は条件を満たす片面だけに適用する。"
+    }
+  ]
+}
