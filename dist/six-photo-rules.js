@@ -419,6 +419,7 @@ export function createSixPhotoRules(api){
   if(f.g951ManaCivilizationCost&&cost(effective(x,s))>manaCivilizationCount(s,p))return false;
   const c=api.zoneCard(s,p,x),d=s.players[p].battle.includes(x)?effective(x,s):c;
   if(f.g1490Exile&&!c.g1490Exile)return false;
+  if(f.g1579AnyFaceTrigger&&!faces(c).some(face=>face.trigger||face.triggerPlus||face.superTrigger))return false;
   if(f.g1537LinkedGod&&(!race(d,'ゴッド')||!x.godLinks?.length))return false;
   if(f.g1535Duelist&&!c.g1367Duelist&&c.type!=='duelist')return false;
   if(f.g1535Duelmate&&!d.g1367Duelmate)return false;

@@ -21468,5 +21468,352 @@
         ]
       }
     }
+  },
+  "dm23ex1-051": {
+    "phase": 1579,
+    "faces": [
+      {
+        "name": "情熱の薔薇 メーテル",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーが出た時、自分の手札を１枚、シールド化してもよい。そうしたら、自分のシールドを１つ手札に加える。ただし、その「S・トリガー」は使えない。",
+        "race": "マジック・アウトレイジMAX",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "神にも届く歌声",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーを１体選び、持ち主の手札に戻す。\nカードを１枚引き、自分の手札を１枚捨てる。",
+        "race": "マジック・ソング",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldExchange446",
+          "optional": true
+        }
+      ],
+      "spellFace": {
+        "name": "神にも届く歌声",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "race": "マジック・ソング",
+        "text": "S・トリガー S・トリガー\n相手のクリーチャーを１体選び、持ち主の手札に戻す。\nカードを１枚引き、自分の手札を１枚捨てる。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "hand"
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ]
+      }
+    }
+  },
+  "dm22ex2-041": {
+    "phase": 1579,
+    "faces": [
+      {
+        "name": "虚無の守護者グリ・ラ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーが出た時、自分の山札の上から３枚を墓地に置く。その後、「S・トリガー」を持つカードを１枚、墓地から手札に戻してもよい。",
+        "race": "ガーディアン",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "無情の光",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の手札を１枚、シールド化する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 3
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "g1579AnyFaceTrigger": true
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "無情の光",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "race": "",
+        "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の手札を１枚、シールド化する。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "shields",
+            "n": 1
+          }
+        ]
+      }
+    }
+  },
+  "dmrp07-035": {
+    "phase": 1579,
+    "faces": [
+      {
+        "name": "龍装者 バタラス",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "このクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+        "race": "ドラゴンギルド/ムートピア",
+        "powerText": "5000",
+        "missingFields": []
+      },
+      {
+        "name": "ネプタラン・ウェイブ",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "クリーチャーを１体選び、持ち主の手札に戻す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g40LastBurst": true,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "g190Freeze": "start",
+          "g1058FollowUnit": true
+        }
+      ],
+      "spellFace": {
+        "name": "ネプタラン・ウェイブ",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "race": "",
+        "text": "クリーチャーを１体選び、持ち主の手札に戻す。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "hand",
+            "toOwnerHand": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp07-025": {
+    "phase": 1579,
+    "faces": [
+      {
+        "name": "エイトビートルズ",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、カードを２枚、自分の墓地からマナゾーンに置く。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+        "race": "グランセクト",
+        "powerText": "6000",
+        "missingFields": []
+      },
+      {
+        "name": "R.C.4.",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "自然のコスト４以下のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g40LastBurst": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "mana",
+          "n": 2
+        }
+      ],
+      "spellFace": {
+        "name": "R.C.4.",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "race": "",
+        "text": "自然のコスト４以下のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "color": "自然",
+              "max": 4
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dmrp06-s02": {
+    "phase": 1579,
+    "faces": [
+      {
+        "name": "龍装の調べ 初不",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時あるいは自分が名前に《スパーク》とある呪文を唱えた時、相手のクリーチャーは次の相手のターンのはじめにアンタップしない。",
+        "race": "ドラゴンギルド/メタリカ",
+        "powerText": "7500",
+        "missingFields": []
+      },
+      {
+        "name": "ホーリー・スパーク",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーをすべてタップする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LockUntap606"
+        }
+      ],
+      "g204SpellWatch": {
+        "who": "self",
+        "g1252NameIncludes": "スパーク",
+        "defs": [
+          {
+            "op": "LockUntap606"
+          }
+        ]
+      },
+      "spellFace": {
+        "name": "ホーリー・スパーク",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "race": "",
+        "text": "S・トリガー S・トリガー\n相手のクリーチャーをすべてタップする。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll"
+          }
+        ]
+      }
+    }
   }
 }

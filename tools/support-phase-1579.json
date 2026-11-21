@@ -1,0 +1,483 @@
+{
+  "phase": 1579,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8951,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "deferred": [
+    {
+      "id": "dmbd07-b-006",
+      "name": "ハヤブサノ裁徒Z／ヒーリン・マスカラス",
+      "reason": "元の公式ページで呪文側の文明・コスト・能力文が欠落。再録dmex02-024では全文と光5を確認できたが、元画像に基づく欠落補完と再録の照合を残し、このバッチでは未登録。"
+    }
+  ],
+  "cards": [
+    {
+      "id": "dm23ex1-051",
+      "name": "情熱の薔薇 メーテル / 神にも届く歌声",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-051",
+      "faces": [
+        {
+          "name": "情熱の薔薇 メーテル",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、自分の手札を１枚、シールド化してもよい。そうしたら、自分のシールドを１つ手札に加える。ただし、その「S・トリガー」は使えない。",
+          "race": "マジック・アウトレイジMAX",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "神にも届く歌声",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーを１体選び、持ち主の手札に戻す。\nカードを１枚引き、自分の手札を１枚捨てる。",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldExchange446",
+            "optional": true
+          }
+        ],
+        "spellFace": {
+          "name": "神にも届く歌声",
+          "type": "spell",
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "race": "マジック・ソング",
+          "text": "S・トリガー S・トリガー\n相手のクリーチャーを１体選び、持ち主の手札に戻す。\nカードを１枚引き、自分の手札を１枚捨てる。",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "to": "hand"
+            },
+            {
+              "op": "Draw",
+              "n": 1
+            },
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex1-051a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "03d225d4dc908fe51f4f9555fe9521434e63cc7171dc3cab66f7c2095f6f3523",
+        "facesMatched": true,
+        "imageSha256": "4ac9a6e78adc987a8ca049e4637b06f0646b8b2c974d6121167405cedca62096",
+        "imageBytes": 139032
+      },
+      "sameNameProducts": [
+        "DM23-EX1 大感謝祭 ビクトリーBEST"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-051",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm22ex2-041",
+      "name": "虚無の守護者グリ・ラ / 無情の光",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-041",
+      "faces": [
+        {
+          "name": "虚無の守護者グリ・ラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から３枚を墓地に置く。その後、「S・トリガー」を持つカードを１枚、墓地から手札に戻してもよい。",
+          "race": "ガーディアン",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "無情の光",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の手札を１枚、シールド化する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 3
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "g1579AnyFaceTrigger": true
+            }
+          }
+        ],
+        "spellFace": {
+          "name": "無情の光",
+          "type": "spell",
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "race": "",
+          "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の手札を１枚、シールド化する。",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "to": "shields",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex2-041a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "fa5c5436333220bac197378645d19e9cc4db104c4d31d39a7a676de803a48ea2",
+        "facesMatched": true,
+        "imageSha256": "111ca5e561e4824ed1e6c944f80e8c994cce78bd93bce468e2d01d5d54cc8ea7",
+        "imageBytes": 143682
+      },
+      "sameNameProducts": [
+        "DM22-EX2 ヒーローズ・ダークサイド・パック ～闇のキリフダたち～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-041",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp07-035",
+      "name": "龍装者 バタラス/ネプタラン・ウェイブ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-035",
+      "faces": [
+        {
+          "name": "龍装者 バタラス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+          "race": "ドラゴンギルド/ムートピア",
+          "powerText": "5000",
+          "missingFields": []
+        },
+        {
+          "name": "ネプタラン・ウェイブ",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "クリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g40LastBurst": true,
+        "g34Attack": [
+          {
+            "op": "Target",
+            "g190Freeze": "start",
+            "g1058FollowUnit": true
+          }
+        ],
+        "spellFace": {
+          "name": "ネプタラン・ウェイブ",
+          "type": "spell",
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "race": "",
+          "text": "クリーチャーを１体選び、持ち主の手札に戻す。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "anyOwner": true,
+              "to": "hand",
+              "toOwnerHand": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-035a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "eceaf6964302193b6d6cc75c8791b9e93dfcb8eb72f5feda18bb73d78e55ddbd",
+        "facesMatched": true,
+        "imageSha256": "1d576fa841d936aa03f8ed08341620bb6bd675e1dd54ad787e17f4b4456417b2",
+        "imageBytes": 167401
+      },
+      "sameNameProducts": [
+        "DMRP-07 双極篇 拡張パック第３弾 †ギラギラ†煌世主と終葬のQX!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-035",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp07-025",
+      "name": "エイトビートルズ / R.C.4.",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-025",
+      "faces": [
+        {
+          "name": "エイトビートルズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、カードを２枚、自分の墓地からマナゾーンに置く。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+          "race": "グランセクト",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "R.C.4.",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自然のコスト４以下のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g40LastBurst": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "mana",
+            "n": 2
+          }
+        ],
+        "spellFace": {
+          "name": "R.C.4.",
+          "type": "spell",
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "race": "",
+          "text": "自然のコスト４以下のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "origin": "mana",
+              "n": 1,
+              "deploy": true,
+              "filter": {
+                "creature": true,
+                "color": "自然",
+                "max": 4
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-025a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "bb5c8934cddbad214acfc75bf7ea0532853049342213fc8c0e7ee809907a1814",
+        "facesMatched": true,
+        "imageSha256": "2bef2e9c45deb736c0d62f337cdf761ac8ac49f51e3cf31e0d3e04fddcaba70f",
+        "imageBytes": 158190
+      },
+      "sameNameProducts": [
+        "DM23-BD6 エキサイティング・デュエパ・デッキ 「双極のアカシックZ計画」",
+        "DMRP-07 双極篇 拡張パック第３弾 †ギラギラ†煌世主と終葬のQX!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-025",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp06-s02",
+      "name": "龍装の調べ 初不 / ホーリー・スパーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-s02",
+      "faces": [
+        {
+          "name": "龍装の調べ 初不",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時あるいは自分が名前に《スパーク》とある呪文を唱えた時、相手のクリーチャーは次の相手のターンのはじめにアンタップしない。",
+          "race": "ドラゴンギルド/メタリカ",
+          "powerText": "7500",
+          "missingFields": []
+        },
+        {
+          "name": "ホーリー・スパーク",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LockUntap606"
+          }
+        ],
+        "g204SpellWatch": {
+          "who": "self",
+          "g1252NameIncludes": "スパーク",
+          "defs": [
+            {
+              "op": "LockUntap606"
+            }
+          ]
+        },
+        "spellFace": {
+          "name": "ホーリー・スパーク",
+          "type": "spell",
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "race": "",
+          "text": "S・トリガー S・トリガー\n相手のクリーチャーをすべてタップする。",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "TapAll"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-s02a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "12fe5d98efb43e4a8915fdacfdcf40845d5c5997504e5ab874c47508aa2860e2",
+        "facesMatched": true,
+        "imageSha256": "a8c65d3771dab27ec0891b1af0d4b1382d263fdf9deb95bd6ad06c1317ab09fd",
+        "imageBytes": 151736
+      },
+      "sameNameProducts": [
+        "DM23-BD5 エキサイティング・デュエパ・デッキ 「不敬なり！真邪眼騎士団」",
+        "DMBD-14 クロニクル最終決戦デッキ 龍魂紅蓮譚",
+        "DMRP-06 双極篇 拡張パック第２弾 逆襲のギャラクシー 卍・獄・殺!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-s02",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23ex1-051": 4,
+      "dm22ex2-041": 4,
+      "dmrp07-035": 4,
+      "dmrp07-025": 4,
+      "dmrp06-s02": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    }
+  ]
+}

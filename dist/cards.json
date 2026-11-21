@@ -282842,15 +282842,277 @@
       },
       "supportBatch": "phase-1578",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex1-051",
+      "name": "情熱の薔薇 メーテル / 神にも届く歌声",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "マジック・アウトレイジMAX",
+      "text": "このクリーチャーが出た時、自分の手札を１枚、シールド化してもよい。そうしたら、自分のシールドを１つ手札に加える。ただし、その「S・トリガー」は使えない。\n【呪文面】\nS・トリガー S・トリガー\n相手のクリーチャーを１体選び、持ち主の手札に戻す。\nカードを１枚引き、自分の手札を１枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-051",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldExchange446",
+          "optional": true
+        }
+      ],
+      "spellFace": {
+        "name": "神にも届く歌声",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "race": "マジック・ソング",
+        "text": "S・トリガー S・トリガー\n相手のクリーチャーを１体選び、持ち主の手札に戻す。\nカードを１枚引き、自分の手札を１枚捨てる。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "hand"
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1579",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex2-041",
+      "name": "虚無の守護者グリ・ラ / 無情の光",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ガーディアン",
+      "text": "このクリーチャーが出た時、自分の山札の上から３枚を墓地に置く。その後、「S・トリガー」を持つカードを１枚、墓地から手札に戻してもよい。\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の手札を１枚、シールド化する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-041",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 3
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "g1579AnyFaceTrigger": true
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "無情の光",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "race": "",
+        "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の手札を１枚、シールド化する。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "shields",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1579",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-035",
+      "name": "龍装者 バタラス/ネプタラン・ウェイブ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ドラゴンギルド/ムートピア",
+      "text": "このクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\nクリーチャーを１体選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-035",
+      "limit": 4,
+      "g40LastBurst": true,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "g190Freeze": "start",
+          "g1058FollowUnit": true
+        }
+      ],
+      "spellFace": {
+        "name": "ネプタラン・ウェイブ",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "race": "",
+        "text": "クリーチャーを１体選び、持ち主の手札に戻す。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "hand",
+            "toOwnerHand": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1579",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-025",
+      "name": "エイトビートルズ / R.C.4.",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "グランセクト",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、カードを２枚、自分の墓地からマナゾーンに置く。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\n自然のコスト４以下のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-025",
+      "limit": 4,
+      "breaker": 2,
+      "g40LastBurst": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "mana",
+          "n": 2
+        }
+      ],
+      "spellFace": {
+        "name": "R.C.4.",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "race": "",
+        "text": "自然のコスト４以下のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "color": "自然",
+              "max": 4
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1579",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-s02",
+      "name": "龍装の調べ 初不 / ホーリー・スパーク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7500,
+      "race": "ドラゴンギルド/メタリカ",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時あるいは自分が名前に《スパーク》とある呪文を唱えた時、相手のクリーチャーは次の相手のターンのはじめにアンタップしない。\n【呪文面】\nS・トリガー S・トリガー\n相手のクリーチャーをすべてタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-s02",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LockUntap606"
+        }
+      ],
+      "g204SpellWatch": {
+        "who": "self",
+        "g1252NameIncludes": "スパーク",
+        "defs": [
+          {
+            "op": "LockUntap606"
+          }
+        ]
+      },
+      "spellFace": {
+        "name": "ホーリー・スパーク",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "race": "",
+        "text": "S・トリガー S・トリガー\n相手のクリーチャーをすべてタップする。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll"
+          }
+        ]
+      },
+      "supportBatch": "phase-1579",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1578,
+    "phase": 1579,
     "checkedAt": "2026-11-21",
-    "baseCount": 8946,
+    "baseCount": 8951,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8951,
+    "totalCount": 8956,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -308721,6 +308983,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 8946,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1578,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8946,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8951,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
