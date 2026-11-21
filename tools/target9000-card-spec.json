@@ -16052,5 +16052,259 @@
         }
       ]
     }
+  },
+  "dmrp18-009": {
+    "phase": 1549,
+    "faces": [
+      {
+        "name": "禁時王秘伝エンドオブランド",
+        "typeText": "呪文",
+        "civilizationText": "光/水/火",
+        "civilizations": [
+          "光",
+          "水",
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "アタック・チャンス：光と水と火を持つディスペクター（自分の光と水と火のすべてを持つディスペクターが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n相手のコスト８以下のクリーチャーを１体破壊する。\nカードを２枚引き、その後、自分の手札を１枚捨てる。\n次の自分のターンのはじめまで、相手はコスト５以下の呪文を唱えられない。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g417Chance": {
+        "race": "ディスペクター",
+        "colorsAll": [
+          "光",
+          "水",
+          "火"
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "max": 8
+          },
+          "spell": true
+        },
+        {
+          "op": "Draw",
+          "n": 2,
+          "spell": true
+        },
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 1,
+          "spell": true
+        },
+        {
+          "op": "Lock",
+          "limit": {
+            "kind": "spellCostLock",
+            "max": 5
+          },
+          "spell": true
+        }
+      ]
+    }
+  },
+  "dmbd06-011": {
+    "phase": 1549,
+    "faces": [
+      {
+        "name": "天頂秘伝ゼニス・レクイエム",
+        "typeText": "呪文",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 12,
+        "costText": "12",
+        "abilityText": "アタック・チャンス：ゼニス（自分のゼニスが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\nこのターン、バトルゾーンにある自分のクリーチャー１体のパワーを+50000し、「ワールド・ブレイカー」と「このクリーチャーがバトルに勝った時、このクリーチャーをアンタップしてもよい」を与える。（「ワールド・ブレイカー」を持つクリーチャーは、相手のシールドをすべてブレイクする）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g417Chance": {
+        "race": "ゼニス"
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "power": 50000,
+          "grant": {
+            "worldBreaker": true,
+            "breaker": "∞",
+            "g189BattleWin": [
+              {
+                "op": "Offer",
+                "title": "このクリーチャーをアンタップする？",
+                "defs": [
+                  {
+                    "op": "Untap",
+                    "g191First": true
+                  }
+                ]
+              }
+            ]
+          },
+          "filter": {
+            "creature": true
+          },
+          "spell": true
+        }
+      ]
+    }
+  },
+  "dm23ex3-S02": {
+    "phase": 1549,
+    "faces": [
+      {
+        "name": "天頂と停滞と水晶の決断",
+        "typeText": "呪文",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "アタック・チャンス：ゼニスまたはアンノウン（自分のゼニスまたはアンノウンが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n次の中から２回選ぶ。（同じものを選んでもよい）\n▶自分の山札の上から２枚を裏向きのままマナゾーンに置く。\n▶ゼニスではない相手のエレメントを１つ選び、持ち主の山札の下に置く。\n▶自分の山札の上から４枚を表向きにする。その中からゼニス、アンノウン、無色カードをすべて手札に加える。残りを好きな順序で山札の下に置く。",
+        "race": "ゼニス",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g417Chance": {
+        "raceAny": [
+          "ゼニス",
+          "アンノウン"
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g1045Preselect": 2,
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "山札上2枚を裏向きでマナへ",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 2,
+                  "faceDown": true,
+                  "spell": true
+                }
+              ]
+            },
+            {
+              "label": "ゼニスではない相手のエレメント1つを山札下へ",
+              "defs": [
+                {
+                  "op": "Target",
+                  "element": true,
+                  "to": "deck",
+                  "toOwnerDeck": true,
+                  "filter": {
+                    "notRace": "ゼニス"
+                  },
+                  "spell": true
+                }
+              ]
+            },
+            {
+              "label": "山札上4枚からゼニス、アンノウン、無色をすべて手札へ",
+              "defs": [
+                {
+                  "op": "Look",
+                  "n": 4,
+                  "public": true,
+                  "stages": [
+                    {
+                      "to": "hand",
+                      "n": "all",
+                      "allMatches": true,
+                      "filter": {
+                        "any": [
+                          {
+                            "anyFaceRace": "ゼニス"
+                          },
+                          {
+                            "anyFaceRace": "アンノウン"
+                          },
+                          {
+                            "g217Colorless": true
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "rest": "bottom",
+                  "spell": true
+                }
+              ]
+            }
+          ],
+          "spell": true
+        }
+      ]
+    }
+  },
+  "dmrp04s-053": {
+    "phase": 1549,
+    "faces": [
+      {
+        "name": "コッツナ",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）P他のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーはパワーを+3000され、相手プレイヤーを攻撃できない。",
+        "race": "グランセクト",
+        "powerText": "12000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "noPlayerAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "g179Other": true,
+          "power": 3000,
+          "g521UntilStart": true,
+          "grant": {
+            "noPlayerAttack": true
+          },
+          "filter": {
+            "creature": true
+          }
+        }
+      ]
+    }
   }
 }
