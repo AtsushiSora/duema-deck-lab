@@ -35,8 +35,7 @@ test('Guardman protects only other creatures, works versus unblockable attacks, 
 test('multiple Guardman and Blocker declarations are all chosen first and then resolved in selected order',()=>{const s=setup();give(s,0,'battle',[G]);give(s,1,'battle',[L,D,C,A]);const [l,d,c,a]=s.players[1].battle;l.tapped=true;s.phase='attack';act(s,'attack',x=>x.target===l.uid);act(s,'defendMany');pick(s,{kind:'guardman',uid:d.uid});pick(s,{kind:'block',uid:a.uid});assert.equal(d.tapped,false);assert.equal(a.tapped,false);pick(s,null);assert.equal(s.decision.type,'effectOrder');act(s,'orderEffect',x=>x.uid===a.uid);assert.equal(a.tapped,true);assert.equal(d.tapped,true);assert.ok(s.log.some(x=>x.type==='block'));assert.ok(s.log.some(x=>x.type==='guardman'));assert.ok(s.players[1].battle.some(x=>x.uid===l.uid));});
 test('a nested Deathmatch battle preserves the original Wellkius victory trigger and pending Slayer result',()=>{const s=setup();give(s,0,'battle',[W,A]);give(s,1,'battle',['dm01-088',D]);s.players[1].battle[0].tapped=true;give(s,0,'hand',[A]);const original=s.players[0].battle[1].uid;s.phase='attack';act(s,'attack',a=>a.uid===original&&a.target===s.players[1].battle[0].uid);act(s,'noBlock');pick(s,s.players[0].hand.find(x=>x.cardId===A).uid);assert.equal(s.decision.task.op,'g16Deathmatch');pick(s,true);assert.ok(!s.players[0].battle.some(x=>x.uid===original));assert.deepEqual(s.players[0].battle.map(x=>x.cardId),[W]);assert.equal(s.battleResolution,null);assert.equal(s.battleStack.length,0);});
 test('Haikyu entry is mandatory mana removal and spell ramps normally; Junarakill and Dedekabra never attack unless ignored',()=>{const s=setup();give(s,1,'battle',[L]);cast(s,B);act(s,'effect');assert.equal(s.players[1].battle.length,0);const t=setup(),n=t.players[0].mana.length;spell(t,B);assert.equal(t.players[0].mana.length,n+1);give(t,0,'battle',[J,K,D]);t.phase='attack';assert.ok(!e.getLegalActions(t).some(a=>a.kind==='attack'));give(t,1,'battle',[GEN]);assert.equal(new Set(e.getLegalActions(t).filter(a=>a.kind==='attack').map(a=>a.uid)).size,3);});
-for(const other of [target,...opponents])test('No16 AI replay: '+other.id,()=>{
- for(let seed=1;seed<=6;seed++){
+for(const other of [target,...opponents])for(let seed=1;seed<=6;seed++)test('No16 AI replay: '+other.id+' seed '+seed,()=>{
   const options={seed,first:seed%2},decks=[target,other],state=e.createGame(decks,options);
   while(state.winner===null&&state.actions<3000){
    const action=e.chooseAI(state);
@@ -48,7 +47,6 @@ for(const other of [target,...opponents])test('No16 AI replay: '+other.id,()=>{
   }
   assert.notEqual(state.winner,null,other.id+' seed '+seed);
   assert.deepEqual(e.runGame(decks,options),state);
- }
 });
 for(let seed=1;seed<=35;seed++)test('No16 random legal choices: seed '+seed,()=>{
  const opponent=seed%3?opponents[seed%opponents.length]:target;
@@ -65,23 +63,23 @@ for(let seed=1;seed<=35;seed++)test('No16 random legal choices: seed '+seed,()=>
   assert.deepEqual(e.chooseAI(restored),e.chooseAI(state));
  }
 });
-for(const [index,opponent] of [target,...opponents].entries())test('No16 production worker: '+opponent.id,async()=>{
+for(const [index,opponent] of [target,...opponents].entries())for(let game=0;game<20;game++)test('No16 production worker: '+opponent.id+' game '+(game+1),async()=>{
  const messages=[];
  globalThis.self={};
  globalThis.postMessage=x=>messages.push(structuredClone(x));
  try{
-  await import('../dist/worker.js?gransect='+index);
-  const seed=(2116+Math.imul(index,2246822519))>>>0;
-  await self.onmessage({data:{cards:data.cards,deck:target,opponents:[opponent],count:20,first:'random',seed}});
+  await import('../dist/worker.js?gransect='+index+'-'+game);
+  const seed=(2116+Math.imul(index,2246822519)+Math.imul(game,2654435761))>>>0;
+  await self.onmessage({data:{cards:data.cards,deck:target,opponents:[opponent],count:1,first:game%2?'second':'first',seed}});
   assert.deepEqual(messages.filter(x=>x.type==='error'),[]);
   const done=messages.filter(x=>x.type==='done');
   assert.equal(done.length,1);
   assert.equal(done[0].results.length,1);
   const [result]=done[0].results;
   assert.equal(result.opponent.id,opponent.id);
-  assert.equal(result.stats.completed,20);
+  assert.equal(result.stats.completed,1);
   assert.equal(result.stats.unresolved,0);
-  assert.deepEqual(result.games.map(game=>[game.first,game.seed]),Array.from({length:20},(_,i)=>[i%2,(seed+Math.imul(i+1,2654435761))>>>0]));
+  assert.deepEqual(result.games.map(game=>[game.first,game.seed]),[[game%2,(seed+2654435761)>>>0]]);
   assert.ok(result.games.every(game=>game.version===e.ENGINE_VERSION));
  }finally{
   delete globalThis.self;

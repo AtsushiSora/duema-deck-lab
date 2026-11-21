@@ -44,9 +44,28 @@ test('Galy limits start-of-turn mana untap to3 selected cards before drawing',()
 test('Galy preserves already untapped mana and allows zero untaps',()=>{const s=setup();give(s,0,'battle',[Y]);give(s,1,'mana',[N,V]);s.players[1].mana[0].tapped=true;s.phase='attack';act(s,'endTurn');pick(s,null);assert.equal(s.players[1].mana[0].tapped,true);assert.equal(s.players[1].mana[1].tapped,false);});
 test('all-seeing spell limits attacks including those already made in the current turn',()=>{const s=setup();give(s,0,'battle',[N,N]);s.phase='attack';act(s,'attack',a=>a.target==='player');act(s,'noBlock');s.phase='main';give(s,1,'hand',[Y]);const spell=s.players[1].hand[0];s.extTasks=[{op:'execute',p:1,source:Y,origin:'hand',max:5,spellOnly:true,optional:false}];act(s,'toAttack');pick(s,v=>v?.uid===spell.uid&&v?.face===1);s.phase='attack';assert.ok(!e.getLegalActions(s).some(a=>a.kind==='attack'));});
 test('all-seeing spell allows one block per turn and its ongoing restriction is ignored by Genmu',()=>{const s=setup();give(s,0,'battle',[V,V]);give(s,1,'battle',[H,H]);give(s,0,'hand',[Y]);act(s,'play',a=>a.face===1);s.phase='attack';act(s,'attack',a=>a.target==='player');act(s,'block');drain(s);s.phase='attack';act(s,'attack',a=>a.target==='player');assert.ok(!e.getLegalActions(s).some(a=>a.kind==='block'));});
-test('No04 AI matches against all26 ready opponents preserve80 cards and deterministic replay',()=>{for(const other of opponents)for(let seed=1;seed<=4;seed++){const s=e.createGame([target,other],{seed:seed*251,first:seed%2});while(s.winner===null&&s.actions<2500){const a=e.chooseAI(s);assert.ok(a,'deadlock '+other.id);e.step(s,a);conserve(s,80);}assert.notEqual(s.winner,null,other.id+' seed'+seed);assert.deepEqual(e.runGame([target,other],{seed:seed*251,first:seed%2}),s);}});
-test('No04 random choices preserve80 unique cards and JSON legal actions',()=>{for(let seed=1;seed<=26;seed++){const s=e.createGame([target,opponents[seed%opponents.length]],{seed:seed*317,first:seed%2}),rng={rng:seed};for(let n=0;n<800&&s.winner===null;n++){const actions=e.getLegalActions(s);assert.ok(actions.length);e.step(s,actions[Math.floor(e.random(rng)*actions.length)]);conserve(s,80);const v=JSON.parse(JSON.stringify(s));assert.deepEqual(e.getLegalActions(v),e.getLegalActions(s));assert.deepEqual(e.chooseAI(v),e.chooseAI(s));}}});
-test('No04 production worker completes260 matches across all26 ready opponents',async()=>{const messages=[];globalThis.self={};globalThis.postMessage=x=>messages.push(structuredClone(x));try{await import('../dist/worker.js?mado04');await self.onmessage({data:{cards:data.cards,deck:target,opponents,count:10,first:'random',seed:3804}});assert.ok(!messages.some(x=>x.type==='error'),JSON.stringify(messages.filter(x=>x.type==='error')));const done=messages.filter(x=>x.type==='done');assert.equal(done.length,1);assert.equal(done[0].results.length,opponents.length);for(const r of done[0].results){assert.equal(r.stats.completed,10,JSON.stringify(r));assert.equal(r.stats.unresolved,0);}}finally{delete globalThis.self;delete globalThis.postMessage;}});
+for(const other of opponents)for(let seed=1;seed<=4;seed++)test('No04 AI replay: '+other.id+' seed '+seed,()=>{
+ const options={seed:seed*251,first:seed%2},s=e.createGame([target,other],options);
+ while(s.winner===null&&s.actions<2500){const a=e.chooseAI(s);assert.ok(a,'deadlock '+other.id);e.step(s,a);conserve(s,80);}
+ assert.notEqual(s.winner,null,other.id+' seed'+seed);assert.deepEqual(e.runGame([target,other],options),s);
+});
+for(let seed=1;seed<=26;seed++)test('No04 random choices: seed '+seed,()=>{
+ const s=e.createGame([target,opponents[seed%opponents.length]],{seed:seed*317,first:seed%2}),rng={rng:seed};
+ for(let n=0;n<800&&s.winner===null;n++){const actions=e.getLegalActions(s);assert.ok(actions.length);e.step(s,actions[Math.floor(e.random(rng)*actions.length)]);conserve(s,80);const v=JSON.parse(JSON.stringify(s));assert.deepEqual(e.getLegalActions(v),e.getLegalActions(s));assert.deepEqual(e.chooseAI(v),e.chooseAI(s));}
+});
+for(const [index,opponent] of opponents.entries())for(let game=0;game<10;game++)test('No04 production worker: '+opponent.id+' game '+(game+1),async()=>{
+ const messages=[];globalThis.self={};globalThis.postMessage=x=>messages.push(structuredClone(x));
+ try{
+  await import('../dist/worker.js?mado04='+index+'-'+game);
+  const seed=(3804+Math.imul(index,2246822519)+Math.imul(game,2654435761))>>>0;
+  await self.onmessage({data:{cards:data.cards,deck:target,opponents:[opponent],count:1,first:game%2?'second':'first',seed}});
+  assert.deepEqual(messages.filter(x=>x.type==='error'),[]);
+  const done=messages.filter(x=>x.type==='done');assert.equal(done.length,1);assert.equal(done[0].results.length,1);
+  const [r]=done[0].results;assert.equal(r.opponent.id,opponent.id);assert.equal(r.stats.completed,1);assert.equal(r.stats.unresolved,0);
+  assert.deepEqual(r.games.map(g=>[g.first,g.seed]),[[game%2,(seed+2654435761)>>>0]]);
+  assert.ok(r.games.every(g=>g.version===e.ENGINE_VERSION));
+ }finally{delete globalThis.self;delete globalThis.postMessage;}
+});
 
 test('NewWorld replacement draw still permits Shako loss replacement (QA44088)',()=>{const s=setup();give(s,0,'battle',[W,data.cards.find(c=>c.shako).id]);give(s,0,'deck',[N]);cast(s,Z);pick(s,s.decision.choices[0].value);assert.equal(s.winner,0);assert.match(s.reason,/シャコガイル/);});
 test('Bockdu plus is granted only on a shield-trigger execution with two broken shields',()=>{for(const n of[1,2]){const s=setup();give(s,0,'battle',[N]);give(s,1,'shields',[C,N,N,N,N]);s.players[1].brokenThisTurn=n-1;s.phase='attack';act(s,'attack',a=>a.target==='player'&&a.shield===s.players[1].shields[0].uid);act(s,'noBlock');act(s,'useTrigger');assert.equal(s.decision.task.op,n===2?'elementBounce':'attackBlock');if(n===2)pick(s,s.players[0].battle[0].uid);else pick(s,s.players[0].battle[0].uid);drain(s);assert.equal(s.players[0].battle.length,n===2?0:1);}const s=setup();give(s,1,'battle',[N]);const x=inst(C);x.triggerPlus=true;s.players[0].hand.push(x);act(s,'play');assert.equal(s.decision.task.op,'attackBlock');});

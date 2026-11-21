@@ -1,0 +1,764 @@
+{
+  "checkedAt": "2026-11-21T14:32:39.290Z",
+  "baseCommit": "a45de3e8",
+  "status": "verified-local-not-published",
+  "engineVersion": "0.602.129",
+  "confirmedAndFixed": [
+    {
+      "id": "closed-room-late-response",
+      "problem": "閉じた対戦結果が遅延応答で復活し、操作中のままになる。古い応答が新しい接続の互換性確認を上書きする。",
+      "fix": "clearで世代を進め、通信とポーリングを取り消し、状態を初期化。互換性確認済みフラグは現行世代の応答だけで更新。"
+    },
+    {
+      "id": "concurrent-account-rooms",
+      "problem": "同じアカウントで別端末から作成・参加すると、複数の進行中ルームが保存される。",
+      "fix": "読み出したFirestore sessionのupdateTimeを原子的保存の前提条件に使用。ルーム本体とポインターを同時に確定し、競合した側は保存しない。保存フィールドは変更しない。"
+    },
+    {
+      "id": "own-face-down-mana-inspection",
+      "problem": "自分の裏向きマナの元のカード名・能力が確認できない。",
+      "fix": "所有者にだけprivateFaceを公開し、一覧・詳細・支払い候補で参照。ルール上の値は無色・コスト0のまま。相手と封印には元のID・名前を渡さない。"
+    },
+    {
+      "id": "caddy-replacement-crash",
+      "problem": "キャディ・ビートルのマナ移動への置換が起きると、共通離脱処理で未定義のkappaMana.lengthを参照し対戦が止まる。",
+      "fix": "既に置換を適用する分岐にも空のkappaMana配列を初期化し、置換を重ねずに処理を続ける。既存固有テストとNo17の暗号化対戦で再現・修正を確認。"
+    }
+  ],
+  "previousFixCommits": [
+    "4c6500e0",
+    "a45de3e8"
+  ],
+  "testInventoryCoverage": {
+    "server": {
+      "registeredCases": 56,
+      "passed": 56,
+      "missing": []
+    },
+    "games": {
+      "registeredCases": 1109,
+      "longPlanned": 1011,
+      "ordinaryPassed": 98,
+      "missing": []
+    }
+  },
+  "references": [
+    {
+      "url": "https://firebase.google.com/docs/firestore/reference/rest/v1/Precondition",
+      "purpose": "updateTime/existsによる書込み前提条件"
+    },
+    {
+      "url": "https://firebase.google.com/docs/firestore/reference/rest/v1/projects.databases.documents/commit",
+      "purpose": "ルームとsessionを同時に確定する原子的commit"
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/rule/rulechange/316661/",
+      "purpose": "405.4/405.4a: 自分の裏向きマナの確認と相手に対する秘匿"
+    }
+  ],
+  "tests": [
+    {
+      "name": "worker-batch",
+      "command": [
+        "node",
+        "--test",
+        "tests/worker-batch.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 436.049,
+      "log": "tmp/duema-online-preflight/worker-batch.log",
+      "passed": 1,
+      "failed": 0,
+      "sha256": "308a8e6877ed96a900fc8b595eccfaf7a75f7a81ba8603f4c4091142c544166a"
+    },
+    {
+      "name": "controls-fixed",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=2",
+        "tests/online-client.test.mjs",
+        "tests/online-runtime.test.mjs",
+        "tests/battle-controls.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.353,
+      "log": "tmp/duema-online-preflight/controls-fixed.log",
+      "passed": 25,
+      "failed": 0,
+      "sha256": "8fbee74ba53d4392d678dfbaf703d476d1a47061d85dab606675cbbc6f641e70"
+    },
+    {
+      "name": "server-fixed",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^room storage|^creating|^self-play|^a waiting|^two accounts|^the server|^a repeated|^concurrent|^resignation|^HTTP |^Firestore |^negative infinity|^public online|^online |^Murder |^QQ |^Viride online choices|^Golgy private|^historical |^Advance |^an account session|^only the mana|^a face-down mana payment",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.158,
+      "log": "tmp/duema-online-preflight/server-fixed.log",
+      "passed": 37,
+      "failed": 0,
+      "sha256": "92f9d9be638e357e23b55ad4b6b1047ec5cf47a3e4fc54024a0e7c32ac169a3e"
+    },
+    {
+      "name": "ui-fixed",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=2",
+        "tests/online-ui.test.mjs",
+        "tests/online-app.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 3.054,
+      "log": "tmp/duema-online-preflight/ui-fixed.log",
+      "passed": 42,
+      "failed": 0,
+      "sha256": "b6280f2f028c12ff3281561e7922157149a241365720642b5c4646a19ef1c3df"
+    },
+    {
+      "name": "account-fixed",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=2",
+        "tests/account.test.mjs",
+        "tests/account-ios.test.mjs",
+        "tests/account-app.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 3.047,
+      "log": "tmp/duema-online-preflight/account-fixed.log",
+      "passed": 53,
+      "failed": 0,
+      "sha256": "702b6ec940a67a41bcd6cdf7d8e6f1305d2ac6383f69ee692ccd846ad50d68c5"
+    },
+    {
+      "name": "mana-fixed",
+      "command": [
+        "node",
+        "--test",
+        "tests/mana-payment.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.826,
+      "log": "tmp/duema-online-preflight/mana-fixed.log",
+      "passed": 15,
+      "failed": 0,
+      "sha256": "5abb9ed73817bfc6d92b5169db5f4ff4a74eb5dfc17daf68e9cbe93a9172919f"
+    },
+    {
+      "name": "ordinary-games-fixed",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=2",
+        "--test-name-pattern",
+        "^(?:twelve\\ official\\ definitions\\ and\\ seventeen\\ faces\\ complete\\ No16\\ without\\ changing\\ canonical\\ IDs|W\\ Sympathy\\ counts\\ actual\\ big\\ creatures,\\ stacks\\ every\\ Gale\\ grant\\ with\\ hand\\ Gales\\ own\\ ability,\\ and\\ preserves\\ minimum1|Gale\\ grants\\ only\\ to\\ hand\\ creatures;\\ intrinsic\\ sympathy\\ works\\ from\\ mana,\\ and\\ Genmu\\ leaves\\ hand\\ discounts\\ intact|normal\\ summoning\\ uses\\ the\\ reduced\\ cost\\ yet\\ requires\\ the\\ executed\\ civilizations|Shako\\ shuffles\\ the\\ entire\\ grave\\ into\\ its\\ deck\\ on\\ entry\\ and\\ can\\ have\\ that\\ self\\ entry\\ stopped\\ by\\ GG|Shako\\ draws5\\ and\\ discards3\\ at\\ the\\ opponents\\ start\\ before\\ the\\ opponents\\ ordinary\\ draw|drawing\\ Shakos\\ final\\ card\\ wins\\ immediately\\ with\\ it\\ in\\ hand,\\ but\\ milling\\ or\\ shielding\\ the\\ final\\ card\\ loses|turn\\ player\\ Mikadoreo\\ win\\ resolves\\ before\\ opposing\\ Shako\\ start\\ draw|Nacht\\ ramps2\\ untapped\\ then\\ mandates\\ a\\ creature\\ return,\\ including\\ when\\ BlackStatue\\ replaced\\ the\\ ramp|each\\ Nacht\\ observes\\ other\\ qualifying\\ entries\\ and\\ own\\ entry\\ while\\ GG\\ stops\\ only\\ the\\ entering\\ source|Nacht\\ may\\ return\\ itself\\ from\\ mana\\ on\\ own\\ start\\ before\\ normal\\ draw\\ and\\ is\\ not\\ offered\\ from\\ opposing\\ mana|NaturalGo\\ deploys\\ one\\ nature\\ cost6\\-or\\-less\\ from\\ hand\\ or\\ mana\\ and\\ can\\ be\\ declined|a\\ cast\\ Trap\\ triggers\\ each\\ NaturalGo\\ after\\ the\\ spell\\ finishes;\\ an\\ opponents\\ Trap\\ does\\ not\\ trigger\\ yours|Hercules\\ dormant\\ is\\ a\\ seed\\ and\\ cannot\\ attack,\\ be\\ creature\\-targeted,\\ count\\ for\\ sympathy\\ or\\ pay\\ Mugen\\ tap\\ costs|Hercules\\ counts\\ itself\\ and\\ other\\ nature\\ elements,\\ becoming\\ a\\ creature\\ at4\\ then\\ dormant\\ again\\ below4|dormant\\ Hercules\\ retains\\ mana\\-summon\\ permission,\\ each\\ source\\ is\\ once\\ per\\ turn,\\ and\\ mana\\ Gale\\ grants\\ are\\ excluded|an\\ inactive\\ ACE\\ is\\ still\\ a\\ creature\\ outside\\ battle\\ so\\ off\\-zone\\ entry\\ prohibitions\\ reject\\ it|dormant\\ ACE\\ entry\\ does\\ not\\ trigger\\ creature\\ observers\\ such\\ as\\ Nacht\\ or\\ opposing\\ entry\\ draw|Genmu\\ present\\ before\\ ACE\\ entry\\ makes\\ it\\ a\\ creature\\ and\\ ignores\\ its\\ entry\\ ability\\ even\\ below4\\ nature|Genmu\\ arriving\\ after\\ dormant\\ ACE\\ leaves\\ it\\ dormant\\ until4;\\ then\\ creature\\ status\\ latches\\ until\\ Genmu\\ leaves|Hercules\\ shuffles\\ just\\ a\\ chosen\\ grave\\ at\\ deck\\ bottom,\\ preserving\\ existing\\ deck\\ order|active\\ Hercules\\ attack\\ moves\\ one\\ opponent\\ to\\ mana\\ before\\ its\\ optional0\\.\\.2\\ ramp|Corencoco\\ lets\\ any\\ subset\\ of\\ big\\ revealed\\ creatures\\ enter\\ hand\\ and\\ taps\\ every\\ remaining\\ mana\\ card|Jumbo\\ takes\\ all\\ actual\\ creature\\ power12000\\+\\ and\\ orders\\ misses\\ at\\ bottom\\ while\\ Plant\\ checks\\ the\\ printed\\ creature\\ power|JurassicHowl\\ snapshots\\ the\\ opponents\\ mana\\ count\\ and\\ tests\\ only\\ creature\\ face\\ costs\\ of\\ active\\ creatures|Vam\\ cannot\\ attack\\ before\\ a\\ power12000\\+\\ attack\\ this\\ turn\\ and\\ SmashBurst\\ casts\\ the\\ spell\\ without\\ moving\\ its\\ card|SmashBurst\\ resolves\\ from\\ LKI\\ after\\ its\\ source\\ leaves\\ and\\ does\\ not\\ recast\\ or\\ move\\ the\\ returned\\ physical\\ card|Deathmatch\\ reacts\\ only\\ to\\ free\\ opponent\\ creature\\ entry\\ on\\ their\\ turn,\\ not\\ a\\ normal\\ Bird\\-paid\\ summon\\ or\\ inactive\\ ACE|Guardman\\ protects\\ only\\ other\\ creatures,\\ works\\ versus\\ unblockable\\ attacks,\\ and\\ never\\ counts\\ as\\ blocking|multiple\\ Guardman\\ and\\ Blocker\\ declarations\\ are\\ all\\ chosen\\ first\\ and\\ then\\ resolved\\ in\\ selected\\ order|a\\ nested\\ Deathmatch\\ battle\\ preserves\\ the\\ original\\ Wellkius\\ victory\\ trigger\\ and\\ pending\\ Slayer\\ result|Haikyu\\ entry\\ is\\ mandatory\\ mana\\ removal\\ and\\ spell\\ ramps\\ normally;\\ Junarakill\\ and\\ Dedekabra\\ never\\ attack\\ unless\\ ignored|a\\ previously\\ declared\\ Guardman\\ ability\\ resolves\\ after\\ Genmu\\ removes\\ the\\ keyword\\ and\\ uses\\ the\\ same\\ incarnation\\ only|a\\ defender\\ that\\ left\\ and\\ reentered\\ cannot\\ pay\\ for\\ a\\ queued\\ Guardman\\ declaration\\ from\\ its\\ old\\ incarnation|No04\\ adds\\ twelve\\ names\\ and\\ fourteen\\ faces\\ with\\ official40\\ and\\ twenty\\-two\\ ready\\ starter\\ lists|NewWorld\\ is\\ deployed\\ as\\ a\\ field\\ and\\ attaches\\ a\\ resolved\\ spell\\ before\\ its\\ mandatory\\ draw|NewWorld\\ may\\ decline\\ storage,\\ and\\ multiple\\ fields\\ offer\\ independent\\ destinations\\ but\\ only\\ one\\ draw|NewWorld\\ may\\ store\\ a\\ Twinpact\\ magic\\ spell\\ as\\ its\\ whole\\ physical\\ card,\\ not\\ its\\ creature\\ face\\ ability|NewWorld\\ ignores\\ spell\\ prohibitions\\ including\\ all\\-card\\ lock,\\ but\\ does\\ not\\ ignore\\ Genmu\\ effect\\ suppression|Kurokami\\ mandatory\\ spell\\ reduction\\ stacks\\ with\\ min1\\ and\\ respects\\ no\\-reduction\\ locks|Kurokami\\ locks\\ one\\ enemy\\ per\\ spell\\ until\\ its\\ controller\\ next\\ turn\\ and\\ can\\ target\\ a\\ spell\\-protected\\ creature|Momo99\\ reduction\\ counts\\ noncreature\\ cards,\\ excludes\\ creature\\ Twinpacts,\\ and\\ has9\\ payable\\ cost|Momo\\ grants\\ EXlife,\\ permits\\ light\\ spells\\ only\\ and\\ deploys\\ one\\ hand\\ creature\\ at\\ its\\ own\\ end|Galar\\ declares\\ before\\ a\\ magic\\ spell\\ resolves\\ and\\ cannot\\ cancel\\ a\\ declared\\ summon\\ after\\ seeing\\ draw\\ results|declared\\ hand\\ Galar\\ cannot\\ follow\\ itself\\ into\\ grave\\ \\(QA41292\\)|a\\ Galar\\ drawn\\ by\\ the\\ spell\\ was\\ not\\ present\\ at\\ declaration\\ time\\ and\\ cannot\\ retroactively\\ declare|Galar\\ may\\ declare\\ with\\ fewer\\ than4\\ materials\\ but\\ does\\ not\\ summon\\ if\\ resolution\\ still\\ lacks4|Mugen\\ cannot\\ use\\ cards\\ under\\ NewWorld\\ or\\ another\\ creature\\ \\(QA40430/49535\\)|a\\ battlefield\\ material\\ carries\\ all\\ its\\ own\\ underlying\\ cards\\ into\\ Mugen\\ without\\ leaving\\ the\\ battlefield\\ \\(QA41806\\)|Mugen\\ from\\ hand\\ bypasses\\ Tokoshie\\ for\\ its\\ grave\\ materials\\ \\(QA42530\\)|Tokoshie\\ replacing\\ Mugen\\ from\\ grave\\ leaves\\ chosen\\ materials\\ in\\ original\\ zones\\ \\(QA39947\\)|Galar\\ replaces\\ opponent\\ nonsummoned\\ entries\\ on\\ their\\ own\\ turn\\ but\\ permits\\ summons|Galar\\ does\\ not\\ replace\\ its\\ controller\\ own\\-turn\\ opponent\\ entry\\ or\\ spells\\ choosing\\ its\\ base\\ cards\\ \\(QA39946\\)|Galar\\ cannot\\ be\\ selected\\ by\\ enemy\\ spell\\ effects\\ but\\ can\\ be\\ selected\\ by\\ creature\\ effects|Airvo\\ returns\\ only\\ the\\ selected\\ non\\-evolution\\ top\\ and\\ sends\\ its\\ underlying\\ cards\\ to\\ grave\\ \\(QA40427\\)|Airvo\\ can\\ return\\ an\\ evolution\\ base\\ and\\ reconstructs\\ only\\ when\\ the\\ selected\\ top\\ is\\ evolution|Gonpadu\\ chooses1\\ of3\\ and\\ orders\\ remaining\\ cards\\ at\\ library\\ bottom|Blood\\ shuffles\\ the\\ chosen\\ grave\\ into\\ its\\ library\\ then\\ draws\\ for\\ the\\ caster|Gashagon\\ forces\\ a\\ discard\\ on\\ attacking\\ or\\ blocking\\ and\\ has\\ no\\ entry\\ discard|absolute\\ Mugen\\ declares\\ at\\ either\\ turn\\ end\\ then\\ shares\\ ordering\\ with\\ other\\ end\\ abilities|NewWorld99\\ chooses\\ a\\ water\\ spell\\ from\\ hand\\ or\\ grave,\\ counts\\ printed\\ cost,\\ and\\ is\\ once\\ per\\ field\\ incarnation|NewWorld99\\ does\\ not\\ consume\\ its\\ one\\ use\\ when\\ declined\\ and\\ can\\ be\\ used\\ independently\\ by\\ another\\ field|Dollar\\ summoned\\ entry\\ destroys\\ then\\ randomly\\ discards\\ and\\ draws\\ once\\ for\\ each\\ opposing\\ grave\\ card\\ \\(QA42929\\)|Dollar\\ direct\\ deployment\\ skips\\ its\\ summoned\\-only\\ entry\\ and\\ still\\ watches\\ all\\ grave\\ origins|Dollar\\ watches\\ enemy\\ milling\\ but\\ not\\ NewWorld\\ storage|Dollar\\ LKI\\ still\\ draws\\ for\\ enemy\\ simultaneous\\ destruction\\ when\\ Dollar\\ leaves\\ first\\ in\\ the\\ same\\ batch|Galy\\ limits\\ start\\-of\\-turn\\ mana\\ untap\\ to3\\ selected\\ cards\\ before\\ drawing|Galy\\ preserves\\ already\\ untapped\\ mana\\ and\\ allows\\ zero\\ untaps|all\\-seeing\\ spell\\ limits\\ attacks\\ including\\ those\\ already\\ made\\ in\\ the\\ current\\ turn|all\\-seeing\\ spell\\ allows\\ one\\ block\\ per\\ turn\\ and\\ its\\ ongoing\\ restriction\\ is\\ ignored\\ by\\ Genmu|NewWorld\\ replacement\\ draw\\ still\\ permits\\ Shako\\ loss\\ replacement\\ \\(QA44088\\)|Bockdu\\ plus\\ is\\ granted\\ only\\ on\\ a\\ shield\\-trigger\\ execution\\ with\\ two\\ broken\\ shields|Gaiha\\ moves\\ Mela\\ Volgar\\ and\\ all\\ four\\ Gate\\ bases\\ to\\ mana\\ before\\ any\\ break\\ \\(QA39117\\)|Gaiha\\ does\\ not\\ replace\\ Dollar\\ whose\\ trigger\\ begins\\ with\\ a\\ summon\\ condition\\ \\(QA42535\\)|NewWorld\\ use\\ resets\\ after\\ the\\ field\\ leaves\\ and\\ is\\ played\\ again|all\\-seeing\\ restriction\\ is\\ ignored\\ while\\ Genmu\\ is\\ present\\ and\\ resumes\\ after\\ it\\ leaves|NewWorld\\ draw\\ cannot\\ apply\\ a\\ second\\ draw\\ replacement\\ from\\ BigBang\\ \\(QA42954\\)|Dollar\\ observes\\ shield\\ destruction,\\ redirected\\ ramp\\ and\\ undercards\\ falling\\ from\\ an\\ opposing\\ field|both\\ public\\ mana\\ strips\\ show\\ every\\ card\\ and\\ its\\ tap\\ state\\ without\\ changing\\ the\\ game|phone\\ restores\\ the\\ classic\\ mana\\ counters,\\ placement\\ highlight\\ and\\ AI\\ anchors\\ without\\ changing\\ the\\ game|the\\ board\\ conceals\\ opposing\\ face\\-down\\ mana\\ identities\\ while\\ its\\ owner\\ can\\ inspect\\ them|Galaxyshield\\ adds\\ one\\ face\\-up\\ tile\\ and\\ reveals\\ only\\ public\\ shield\\ cards|manual\\ screen\\ renders\\ the\\ three\\ phase\\ steps,\\ current\\ guidance,\\ readable\\ cards\\ and\\ only\\ valid\\ engine\\ action\\ buttons|selecting\\ an\\ attacker\\ highlights\\ legal\\ creature\\ and\\ shield\\ targets\\ without\\ executing\\ the\\ attack\\ or\\ reading\\ shield\\ contents|quadruple\\ and\\ infinity\\ breakers\\ expose\\ a\\ player\\ attack\\ and\\ preserve\\ their\\ subsequent\\ shield\\-selection\\ decisions|single\\ effect\\ targets,\\ blockers\\ and\\ evolution\\ bases\\ can\\ be\\ selected\\ from\\ the\\ board,\\ while\\ ambiguous\\ multi\\-target\\ choices\\ cannot|Mugen\\ Crime\\ and\\ mana\\-return\\ selections\\ show\\ the\\ selected\\ count\\ and\\ retain\\ unambiguous\\ board\\ selection|many\\ choices\\ can\\ be\\ filtered\\ without\\ changing\\ action\\ ids,\\ losing\\ decline\\ choices\\ or\\ mutating\\ the\\ engine|the\\ screen\\ never\\ exposes\\ opponent\\ private\\ hand\\ or\\ shield\\ card\\ ids,\\ including\\ while\\ AI\\ is\\ declaring\\ a\\ hand\\ ability|end\\-turn\\ review\\ appears\\ only\\ for\\ an\\ available\\ attack\\ and\\ cannot\\ replace\\ or\\ bypass\\ engine\\ permission|normal\\ and\\ twinpact\\ hand\\ actions\\ expose\\ legal\\ faces,\\ disabled\\ reasons\\ and\\ an\\ ability\\-details\\ button|mana\\ summons\\ remain\\ accessible\\ and\\ the\\ desktop\\ hand\\ stays\\ visible\\ during\\ attacks\\ even\\ after\\ panel\\ minimization|desktop\\ hand\\ stays\\ visible\\ with\\ every\\ card\\ during\\ mana\\ payment\\ without\\ changing\\ the\\ pending\\ decision|card\\ names\\ and\\ log\\ content\\ are\\ escaped,\\ while\\ current\\ public\\ power\\ and\\ game\\ restrictions\\ remain\\ readable|NewWorld\\ fields\\ show\\ stored\\ cards\\ and\\ use\\ state\\ and\\ Mugen\\ choices\\ show\\ progress\\ and\\ board\\ targets|Redzone\\ hand\\ and\\ zone\\ controls\\ expose\\ Pandora\\ and\\ extra\\ summons\\ with\\ sealed\\ hosts\\ inert|Murder\\ hand\\ view\\ and\\ sealing\\ targets\\ are\\ usable\\ from\\ the\\ same\\ manual\\ board|board\\ badges\\ count\\ nested\\ evolution\\ sources\\ on\\ both\\ sides\\ and\\ refresh\\ after\\ source\\ removal)$",
+        "tests/gransect-effects.test.mjs",
+        "tests/mado-effects.test.mjs",
+        "tests/manual-ui.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 4.052,
+      "log": "tmp/duema-online-preflight/ordinary-games-fixed.log",
+      "passed": 98,
+      "failed": 0,
+      "sha256": "de40d8997c9e618edc8abe1342f6b4352146f2542d007ca9e3bc24a69ac1ba36"
+    },
+    {
+      "name": "giant-fixed",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=2",
+        "--test-name-pattern",
+        "^(?:No17\\ has\\ twelve\\ complete\\ canonical\\ definitions,\\ thirteen\\ faces\\ and\\ forty\\ legal\\ cards|Heavy\\ entry\\ optionally\\ deploys\\ cost6\\ Giant\\ from\\ mana\\ with\\ evolution\\ bases\\ and\\ no\\ non\\-Giants|Heavy\\ makes\\ every\\ own\\ Giant\\ unblockable\\ including\\ itself\\ and\\ ignored\\ sources\\ stop\\ granting\\ it|Heavy\\ terminal\\ permits\\ independent\\ draw\\ and\\ ramp\\ decisions\\ after\\ observing\\ drawn\\ cards\\ and\\ consumes\\ game\\-wide\\ cap|Heavy\\ terminal\\ may\\ skip\\ draw\\ but\\ double\\ current\\ mana\\ and\\ declining\\ entire\\ terminal\\ preserves\\ use|Scarlet\\ gives\\ one\\ paid\\ Giant\\ mana\\ summon\\ per\\ instance\\ and\\ ramps\\ after\\ summoning\\ before\\ entry\\ effects|Scarlet\\ mana\\ permission\\ is\\ consumed\\ for\\ G\\-zero\\ evolution\\ and\\ cannot\\ summon\\ a\\ prohibited\\ card|Scarlet\\ resolves\\ Mekraid\\ after\\ normal\\ mana\\ placement\\ and\\ Ultra\\ Saver\\ replacement|Giant\\ mekraid\\ uses\\ the\\ selected\\ spell\\ face\\ and\\ protects\\ unselected\\ top\\ cards\\ while\\ spell\\ draws|Lake\\ must\\ select\\ two\\ distinct\\ cards,\\ orders\\ the\\ rest,\\ reveals\\ a\\ hand\\ card\\ then\\ chooses\\ exact\\-cost\\ bounce|Lake\\ reveals\\ twinpact\\ and\\ chooses\\ which\\ of\\ its\\ two\\ costs\\ to\\ reference|Lake\\ taking\\ last\\ available\\ cards\\ loses\\ before\\ optional\\ reveal\\ and\\ never\\ duplicates\\ library\\ cards|Orb\\ locks\\ all\\ noncreature\\ executions\\ costing5\\ or\\ less,\\ including\\ seeds,\\ but\\ permits\\ direct\\ deployment|Orb\\ battle\\ victory\\ optionally\\ moves\\ a\\ shield\\ to\\ mana\\ without\\ ST|Touchdown\\ can\\ deploy\\ an\\ evolution\\ strictly\\ below\\ target\\ cost\\ even\\ if\\ its\\ removal\\ was\\ replaced|Marinyan\\ summons\\ natively\\ from\\ mana\\ and\\ suppresses\\ entrant\\ own\\ abilities\\ at\\ five\\ Snow\\ Fairies\\ only|Marinyan\\ does\\ not\\ suppress\\ attack\\ triggers,\\ other\\ creatures\\ watchers\\ or\\ EX\\-life\\ replacement|Genmu\\ ignores\\ Marinyan\\ and\\ Sineraria\\ abilities\\ without\\ removing\\ their\\ printed\\ race|Yukimura\\ G\\-zero\\ uses\\ four\\ actual\\ Giant\\ creatures\\ and\\ still\\ requires\\ an\\ evolution\\ base|Yukimura\\ recovers\\ up\\ to3\\ selected\\ creatures\\ then\\ independently\\ charges\\ up\\ to3\\ chosen\\ hand\\ cards\\ tapped|Galactic\\ entry\\ observer\\ locks\\ only\\ the\\ new\\ opposing\\ creature\\ until\\ its\\ controllers\\ next\\ start|Galactic\\ battle\\ replacement\\ substitutes\\ the\\ actual\\ fighter\\ without\\ changing\\ the\\ declared\\ attack|Galactic\\ replacement\\ is\\ offered\\ to\\ the\\ active\\ owner\\ first\\ and\\ cannot\\ itself\\ be\\ replaced\\ again|Space\\ allocates\\ exactly\\ top2\\ to\\ hand\\ and\\ mana,\\ respecting\\ multicolour\\ tap\\ and\\ deck\\ redirect|Explosion\\ Akane\\ has\\ usable\\ distinct\\-cost\\ Hyper\\-energy\\ and\\ independent\\ optional\\ win\\ ramp/return|Sineraria\\ draws\\ for\\ another\\ Giant\\ and\\ reduces\\ Giant\\ spells\\ as\\ well\\ as\\ creature\\ costs|Giant\\ Ultra\\-Saver\\ protects\\ another\\ Giant\\ or\\ itself,\\ and\\ cannot\\ redirect\\ its\\ replacement\\ destruction|Caddy\\ entry\\ replacement\\ runs\\ only\\ on\\ the\\ entrants\\ own\\ turn\\ and\\ its\\ death\\ goes\\ to\\ mana|Firefly\\ bounces\\ one\\ opponent\\ then\\ locks\\ a\\ different\\ remaining\\ creature|Touchdown\\ and\\ Lake\\ serialize\\ an\\ infinite\\ printed\\ cost\\ without\\ converting\\ it\\ to\\ null|Touchdown\\ successfully\\ puts\\ a\\ strictly\\ cheaper\\ Giant\\ evolution\\ on\\ a\\ legal\\ base\\ without\\ payment|Caddy\\ also\\ replaces\\ an\\ effect\\ which\\ says\\ put\\ in\\ grave\\ under\\ official\\ QA45909|Sheva\\ variety5\\ prevents\\ the\\ mana\\ movement\\ from\\ Caddys\\ self\\ replacement)",
+        "tests/giant-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.779,
+      "log": "tmp/duema-online-preflight/giant-fixed.log",
+      "passed": 33,
+      "failed": 0,
+      "sha256": "86ed1ef0b2022cf85b4b1930235c884ef07f728a3e709bbd8c1dc5a7181c1a8c"
+    },
+    {
+      "name": "replacement-fixed",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=2",
+        "tests/standard1190-effects.test.mjs",
+        "tests/standard1193-effects.test.mjs",
+        "tests/standard1196-effects.test.mjs",
+        "tests/standard1602-effects.test.mjs",
+        "tests/standard1603-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 5.426,
+      "log": "tmp/duema-online-preflight/replacement-fixed.log",
+      "passed": 90,
+      "failed": 0,
+      "sha256": "1a695453860ac79b88a9c3671f3f5dcc089a7319c19373f404b76397f0ca0c66"
+    },
+    {
+      "name": "server-missing-fixed",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^Orochi private deck top",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.84,
+      "log": "tmp/duema-online-preflight/server-missing-fixed.log",
+      "passed": 1,
+      "failed": 0,
+      "sha256": "3814a4412c99b0f691a2883618d09d65aca505d841f1f60dfa2a1a727100078c"
+    },
+    {
+      "name": "server-fixed-game-01",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^a\\ complete\\ two\\-account\\ game\\ passes\\ through\\ encrypted\\ persistence\\ after\\ every\\ action\\ and\\ produces\\ the\\ same\\ winner\\ for\\ both\\ clients$",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 22.58,
+      "log": "tmp/duema-online-preflight/server-fixed-game-01.log",
+      "passed": 1,
+      "failed": 0,
+      "sha256": "968e017b57dbc1751c57aa8e41418fbe90318aa4097d3a4df3b980026292bf2e"
+    },
+    {
+      "name": "server-fixed-game-02",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^new\\ No02\\ is\\ accepted\\ by\\ both\\ accounts\\ and\\ all\\ effects\\ survive\\ encrypted\\ online\\ play\\ with\\ private\\ hands$",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 13.592,
+      "log": "tmp/duema-online-preflight/server-fixed-game-02.log",
+      "passed": 1,
+      "failed": 0,
+      "sha256": "9fd0cb083c8546b659c285920c3a36ed7c8c778432d2577d98ccaa4b586ca80c"
+    },
+    {
+      "name": "server-fixed-game-03",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^new\\ No03\\ is\\ accepted\\ by\\ both\\ accounts\\ and\\ all\\ effects\\ survive\\ encrypted\\ online\\ play\\ with\\ private\\ hands$",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.952,
+      "log": "tmp/duema-online-preflight/server-fixed-game-03.log",
+      "passed": 1,
+      "failed": 0,
+      "sha256": "9a8632e0e462175c0fb1d3e364e6a44466996e9fd0582c9dbd5d5632dd89af08"
+    },
+    {
+      "name": "server-fixed-game-04",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^new\\ No17\\ is\\ accepted\\ by\\ both\\ accounts\\ and\\ all\\ effects\\ survive\\ encrypted\\ online\\ play\\ with\\ private\\ hands$",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 17.665,
+      "log": "tmp/duema-online-preflight/server-fixed-game-04.log",
+      "passed": 1,
+      "failed": 0,
+      "sha256": "a70662d89b84c05d669a1138a76b3bd3f575e604ee272f7b0a385df0a81f892a"
+    },
+    {
+      "name": "server-fixed-game-05",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^new\\ No10\\ is\\ accepted\\ by\\ both\\ accounts\\ and\\ all\\ effects\\ survive\\ encrypted\\ online\\ play\\ with\\ private\\ hands$",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 6.163,
+      "log": "tmp/duema-online-preflight/server-fixed-game-05.log",
+      "passed": 1,
+      "failed": 0,
+      "sha256": "bc37125bc97ab560b412763568fcb91a35229c037079b3471d28feb208b296bf"
+    },
+    {
+      "name": "server-fixed-game-06",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^new\\ No18\\ is\\ accepted\\ by\\ both\\ accounts\\ and\\ all\\ effects\\ survive\\ encrypted\\ online\\ play\\ with\\ private\\ hands$",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.36,
+      "log": "tmp/duema-online-preflight/server-fixed-game-06.log",
+      "passed": 1,
+      "failed": 0,
+      "sha256": "93c64b9c1d7f1daa897630c3aafc457a7ffa8eeab48a7a58a1ea45fe8881e7a9"
+    },
+    {
+      "name": "server-fixed-game-07",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^new\\ No15\\ is\\ accepted\\ by\\ both\\ accounts\\ and\\ all\\ effects\\ survive\\ encrypted\\ online\\ play\\ with\\ private\\ hands$",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 16.061,
+      "log": "tmp/duema-online-preflight/server-fixed-game-07.log",
+      "passed": 1,
+      "failed": 0,
+      "sha256": "fbddd5cb46efda9edc9aa06cae47033f8e9185d16a355e5239b335656baac714"
+    },
+    {
+      "name": "server-fixed-game-08",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^new\\ No25\\ is\\ accepted\\ by\\ both\\ accounts\\ and\\ all\\ effects\\ survive\\ encrypted\\ online\\ play\\ with\\ private\\ hands$",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 16.63,
+      "log": "tmp/duema-online-preflight/server-fixed-game-08.log",
+      "passed": 1,
+      "failed": 0,
+      "sha256": "393b2b45bb5ff040f3b351ad91895db7ae9dc0ff83cf2f0c15805aef7a798996"
+    },
+    {
+      "name": "server-fixed-game-09",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^new\\ No14\\ is\\ accepted\\ by\\ both\\ accounts\\ and\\ all\\ effects\\ survive\\ encrypted\\ online\\ play\\ with\\ private\\ hands$",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 8.051,
+      "log": "tmp/duema-online-preflight/server-fixed-game-09.log",
+      "passed": 1,
+      "failed": 0,
+      "sha256": "d2a7f3da978a945d199c58f90dc7772442897f100acc2fca958b8dadd219435f"
+    },
+    {
+      "name": "server-fixed-game-10",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^new\\ No24\\ is\\ accepted\\ by\\ both\\ accounts\\ and\\ all\\ effects\\ survive\\ encrypted\\ online\\ play\\ with\\ private\\ hands$",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 4.043,
+      "log": "tmp/duema-online-preflight/server-fixed-game-10.log",
+      "passed": 1,
+      "failed": 0,
+      "sha256": "b06fff4bfad2d53f8bfdabd732e27a8611f489715a557f5289bdf3a6c0cd6dd4"
+    },
+    {
+      "name": "server-fixed-game-11",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^new\\ No01\\ is\\ accepted\\ by\\ both\\ accounts\\ and\\ all\\ effects\\ survive\\ encrypted\\ online\\ play\\ with\\ private\\ hands$",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 10.509,
+      "log": "tmp/duema-online-preflight/server-fixed-game-11.log",
+      "passed": 1,
+      "failed": 0,
+      "sha256": "02301d20d894926c7df75ea65c6749bfd329a6f3bdced137b08e7ad7012c9387"
+    },
+    {
+      "name": "server-fixed-game-12",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^No08\\ accepts\\ both\\ accounts\\ and\\ finishes\\ with80\\ unique\\ cards\\ after\\ every\\ encrypted\\ move$",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 6.719,
+      "log": "tmp/duema-online-preflight/server-fixed-game-12.log",
+      "passed": 1,
+      "failed": 0,
+      "sha256": "c223061b9319abc3fd825046553d474f9176a3a783804674e6831ece5e2d9545"
+    },
+    {
+      "name": "server-fixed-game-13",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^No04\\ accepts\\ both\\ accounts\\ and\\ finishes\\ with80\\ unique\\ cards\\ after\\ every\\ encrypted\\ move$",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 6.17,
+      "log": "tmp/duema-online-preflight/server-fixed-game-13.log",
+      "passed": 1,
+      "failed": 0,
+      "sha256": "db94f4fe60c7298f4fe3490167f70ecc03a0ed312fd29f117e5fe998d6a3fd8f"
+    },
+    {
+      "name": "server-fixed-game-14",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^No23\\ accepts\\ both\\ accounts\\ and\\ finishes\\ with80\\ unique\\ cards\\ after\\ every\\ encrypted\\ move$",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 6.122,
+      "log": "tmp/duema-online-preflight/server-fixed-game-14.log",
+      "passed": 1,
+      "failed": 0,
+      "sha256": "07529c2d024a5cfbca1c1bf2dc83d19a8de4b34ce6885da0306e6e44dd682f48"
+    },
+    {
+      "name": "server-fixed-game-15",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^No13\\ accepts\\ both\\ accounts\\ and\\ finishes\\ with80\\ unique\\ cards\\ after\\ every\\ encrypted\\ move$",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 13.975,
+      "log": "tmp/duema-online-preflight/server-fixed-game-15.log",
+      "passed": 1,
+      "failed": 0,
+      "sha256": "c867bddc0eef60fb3877c667db0d222c2ecb3dcedf8aed85e3a508dcd30789c0"
+    },
+    {
+      "name": "server-fixed-game-16",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^No11\\ accepts\\ both\\ accounts\\ and\\ finishes\\ with80\\ unique\\ cards\\ after\\ every\\ encrypted\\ move$",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 8.481,
+      "log": "tmp/duema-online-preflight/server-fixed-game-16.log",
+      "passed": 1,
+      "failed": 0,
+      "sha256": "f4d29d6ebbf827a78e120579fd9e9cf082240ab5e48c76578b640af5a7e260a9"
+    },
+    {
+      "name": "server-fixed-game-17",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^Viride\\ accepts\\ both\\ accounts\\ and\\ completes\\ encrypted\\ play\\ with\\ eighty\\ unique\\ cards\\ and\\ private\\ shields$",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 24.576,
+      "log": "tmp/duema-online-preflight/server-fixed-game-17.log",
+      "passed": 1,
+      "failed": 0,
+      "sha256": "1b5e184625b2278bd3306d71750971df481381a3a7abb403a09a3804bf951eaf"
+    },
+    {
+      "name": "server-fixed-game-18",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^Golgy\\ accounts\\ complete\\ encrypted\\ play\\ with\\ eighty\\ unique\\ cards\\ and\\ private\\ hands$",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 25.043,
+      "log": "tmp/duema-online-preflight/server-fixed-game-18.log",
+      "passed": 1,
+      "failed": 0,
+      "sha256": "7897fd56408c2b14db900b52f81d073c4e22f8c818036b0bc7863a340575edc8"
+    }
+  ],
+  "selectedTestsPassed": 413,
+  "longRunning": {
+    "status": "passed",
+    "plannedCases": 1011,
+    "completedCases": 1011,
+    "failed": [],
+    "artifact": "tools/pending-game-verification.json",
+    "deckCounts": {
+      "gransect": 9,
+      "mado": 49
+    },
+    "coverage": {
+      "scenes": 1225,
+      "types": [
+        "charge",
+        "main",
+        "attack",
+        "block",
+        "fight",
+        "breakChoice",
+        "effect",
+        "trigger",
+        "effectOrder",
+        "dddDeclare",
+        "dddSummon",
+        "deploy",
+        "draw",
+        "manaTop",
+        "optionalRamp",
+        "dragonTap",
+        "entryOrder",
+        "revealEvolution",
+        "judgeContinue",
+        "judgeBreak",
+        "judgeCost",
+        "leaveReplace",
+        "battleWinOrder"
+      ]
+    },
+    "sha256": "da1688201456b1adc3ef64ecd019caded358a714bb0c0740a309db8d3dc1c1c4",
+    "groups": [
+      {
+        "prefix": "No16 ",
+        "expected": 269,
+        "passed": 269,
+        "status": "passed-in-parts"
+      },
+      {
+        "prefix": "No04 ",
+        "expected": 712,
+        "passed": 712,
+        "status": "passed-in-parts"
+      }
+    ]
+  },
+  "reproductions": [
+    {
+      "name": "clear-repro",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "clearing a.*room",
+        "tests/online-client.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 0.715,
+      "log": "tmp/duema-online-preflight/clear-repro.log",
+      "sha256": "f65c3f2bbdcd0b2c78364cd93f0d5d508ecc425ae4d434013793e0b7a2965610"
+    },
+    {
+      "name": "sessions-repro",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "concurrent room creation on two devices",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 0.488,
+      "log": "tmp/duema-online-preflight/sessions-repro.log",
+      "sha256": "8d42add082193847961d22e4e9f371453d99228134c334ed5255f573fbd84844"
+    },
+    {
+      "name": "own-mana-repro",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "own face-down mana opens|mana controller can inspect",
+        "tests/online-app.test.mjs",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 0.672,
+      "log": "tmp/duema-online-preflight/own-mana-repro.log",
+      "sha256": "d98ab8c954a052ac2b6e64c80c5f8e50d8985d958d86d81589f2159bcc113164"
+    },
+    {
+      "name": "clear-verification-repro",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "late cleared request",
+        "tests/online-client.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 0.495,
+      "log": "tmp/duema-online-preflight/clear-verification-repro.log",
+      "sha256": "054410af13f161af8c5020441d8b6c344666ec8738d4a15faa3c62494f3c34b3"
+    },
+    {
+      "name": "caddy-repro",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^Caddy|^Sheva variety5",
+        "tests/giant-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 0.792,
+      "log": "tmp/duema-online-preflight/caddy-repro.log",
+      "sha256": "c44cce8ff91fa407c846f7b5a7abbd6acf05f09ec997679301bd65db9a5b14a7"
+    },
+    {
+      "name": "server-game-04",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^new\\ No17\\ is\\ accepted\\ by\\ both\\ accounts\\ and\\ all\\ effects\\ survive\\ encrypted\\ online\\ play\\ with\\ private\\ hands$",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 3.201,
+      "log": "tmp/duema-online-preflight/server-game-04.log",
+      "sha256": "bcd3d5a02133a422d265866a301fe74b0d0e103f7d021ea7ec4b4ab76a141537"
+    }
+  ],
+  "interruptedBeforeEngineFix": {
+    "status": "excluded-from-final-results",
+    "engineVersion": "0.602.128",
+    "report": "tmp/duema-pending-games-before-caddy-fix/results.json",
+    "reason": "No17の通信対戦で共通エンジンの例外を検出したため、この回で開始した分割プロセスだけを停止。ログを保持して最終結果から除外し、修正後の0.602.129で検証。"
+  },
+  "check": {
+    "name": "check-final-runner",
+    "command": [
+      "npm",
+      "run",
+      "check"
+    ],
+    "code": 0,
+    "timedout": false,
+    "seconds": 36.691,
+    "log": "tmp/duema-online-preflight/check-final-runner.log"
+  },
+  "audit": {
+    "name": "audit-final",
+    "command": [
+      "node",
+      "tools/audit-card-support.mjs"
+    ],
+    "code": 0,
+    "timedout": false,
+    "seconds": 12.181,
+    "log": "tmp/duema-online-preflight/audit-final.log"
+  },
+  "invariants": {
+    "baseline": "4801e7b369aca914bf44d719ceede4c6d589df09",
+    "target": 9500,
+    "originalDefinitionsUnchanged": 9043,
+    "added": 27,
+    "uniqueNames": 9070,
+    "uniqueIds": 9070,
+    "duplicateNames": 0,
+    "partialNewDefinitions": 0,
+    "catalogueAndAliasesUnchanged": true,
+    "remaining": 430
+  },
+  "hashes": {
+    "dist/app.js": "860251edc8cff2f5965593041cac695232fc79af78407b75716eabb9dd0c2dc6",
+    "dist/online.js": "ab5d491ab01707709e7a6db8eba92174105e5837992c5ad1e43e402b90c68f8d",
+    "dist/online-ui.js": "f791698b0a4461e9abde167e34f1a9a40d4c5174b29fc76156d61405dffef93e",
+    "dist/engine.js": "d162b069e8220ec669822799842e11e8a1b955ea3ff8b347e295e537525d1532",
+    "dist/online-compatibility.js": "154128e391479f40be29123bea7f744163c7487711277367ef0f6f930cac7e0d",
+    "dist/release.json": "1e3c6713b73e32be794cacbd3826be9513d96f8ad2ac49a91acc1dd30ce506fc",
+    "server/duel-core.mjs": "c18917a47e5f6cd78b909b41e0e512a699c4ec8c47747a2fe5910a0573177bb3",
+    "server/duel-store.mjs": "87e63c20c15e80207362f217829c9390b6e778ebb72032dbe6a2633d248b15ce",
+    "dist/cards.json": "42c3b7b8060c037d25105c6320c4bd597a47be5e94fcec473de4f685e90bbb40",
+    "dist/catalogue.js": "80667ca88a615c72121c301f58d18b50361811a4cb64d9be42793e4b2ab40356",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935",
+    "dist/details.json": "68c32faa8003c0564f6e6cc8c703774683cea98abc03d194cecbb026d66771fe",
+    "tests/online-app.test.mjs": "972cdf7bab96052d88f5643ab70c271fe14b4691d8ab5938ee6a83bf12ad3ee7",
+    "tests/online-client.test.mjs": "8a1fd819513496e195cc0315b2024e4b155f5f042ecc5cadb4e86da7d2a0206c",
+    "tests/online-server.test.mjs": "8ac8bd2c4acfe0fd34aad41dcd08bbc222bf7e0063e680290ca01f55da77e228",
+    "tests/gransect-effects.test.mjs": "08fa75f8b617ce56efd3bbcccc9ffbc9320ec059e3251081a2edbc1feada7b38",
+    "tests/mado-effects.test.mjs": "657f63dcb70e97e96a24b084ffdfa0ab475124afaa5f22b94c5239d7f24e8cc2",
+    "tests/manual-ui.test.mjs": "3b9c412f7eb8bde3850b085f80650eae72821a719d348e11ddd741ecd4a63ed0",
+    "tests/worker-batch.test.mjs": "659b18aa329a6778b7e3fdce6a36f5ed011bba88e2f0d4fd679219e275e64980",
+    "tools/verify-pending-games.mjs": "040d3dbca18756779d9ebfc32d787585f24574489f4f776c29921589b65c6583"
+  },
+  "remaining": [
+    "実Googleアカウント2つと本番Firestoreによる確認は未実施。今回はNetlifyを更新しないため、修正後の本番確認は未公開のまま。",
+    "全体npm testは再実行していない。過去の中断・合否未確認を保持し、今回の分割検証と区別。",
+    "ユーザーが後回しにしたキング・ナイト・マジックの包含裁定とドラン・ゴルギーニ金箔版は再開・問い合わせ送信を行っていない。"
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  },
+  "totalSelectedTestsPassed": 1424
+}

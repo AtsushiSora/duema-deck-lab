@@ -523683,17 +523683,7 @@
       "status": "active",
       "phase": 1603
     },
-    "registrationValidationPending": [
-      {
-        "phase": 1512,
-        "target": "tests/gransect-effects.test.mjs: No16 AI replay / random legal choices / production worker",
-        "reason": "旧No16の多数回対戦を含む全ファイル指定を189.38秒、否定名フィルター指定を70.473秒で中断・合否未確認。SmashBurstの2項目は肯定名で単独実行し通過。長時間の対戦群は個別に分割して後続検証する。",
-        "log": "tmp/duema-phase-1512/related-interrupted.log",
-        "engineVersion": "0.602.58",
-        "resume": "No16 AI replayは対戦相手ごと、random legal choicesはseed 1〜35ごと、production workerは対戦相手ごとに分割し、各項目を単独実行する。全体npm testは再実行しない。",
-        "additionalLog": "tmp/duema-phase-1512/related-filter-interrupted.log"
-      }
-    ],
+    "registrationValidationPending": [],
     "resolvedRegistrationCandidates": [
       {
         "id": "dmex04-012",
@@ -523754,16 +523744,7 @@
         "kind": "verified-registration"
       }
     ],
-    "incompleteLongRunningVerification": [
-      {
-        "phase": 1584,
-        "target": "tests/mado-effects.test.mjs の No04 AI matches / No04 random choices / No04 production worker 260 matches",
-        "status": "中断・合否未確認",
-        "reason": "多数デッキ・シードのAI対戦と260戦のワーカーベンチマークを個別に中断し、3ケースを明示して通常能力回帰から除外。同じ長時間ケースは再実行しない。",
-        "log": "tmp/duema-phase-1584/related-interrupted.json",
-        "measuredSeconds": 92.517
-      }
-    ],
+    "incompleteLongRunningVerification": [],
     "final9000Verification": {
       "artifact": "tools/target9000-verification.json",
       "registrationCommit": "8424df73254767088e972075438ce22ee996f704",
@@ -524172,7 +524153,7 @@
         "command": "node --test --test-concurrency=2 tests/online-client.test.mjs tests/online-runtime.test.mjs tests/battle-controls.test.mjs tests/manual-ui.test.mjs",
         "target": "tests/manual-ui.test.mjs: every reachable UI action over complete-deck games",
         "reason": "30 complete AI games are outside the targeted online zone selection change; keep this optional full-game scan unconfirmed and run the ordinary UI cases separately.",
-        "status": "interrupted, outcome unconfirmed",
+        "status": "passed-in-parts",
         "execution": {
           "name": "related",
           "command": [
@@ -524189,7 +524170,9 @@
           "seconds": 130.484,
           "log": "tmp/duema-online-grave-fix/related.log"
         },
-        "note": "30完全対戦を含む画面走査は今回は中断・合否未確認。通常の画面操作20件と通信・操作回帰は分割して合格。過去の全体npm testや長時間テストの未確認状態も保持。"
+        "note": "30完全対戦を含む画面走査は今回は中断・合否未確認。通常の画面操作20件と通信・操作回帰は分割して合格。過去の全体npm testや長時間テストの未確認状態も保持。",
+        "resolutionArtifact": "tools/pending-game-verification.json",
+        "resolution": "元の30シードとアサーションを保持して個別実行し、場面数とdecision種別の和集合も集約確認。過去の中断実行そのものの記録は保持。"
       }
     },
     "latestOnlineAdditionalAudit": {
@@ -524226,7 +524209,59 @@
         "deployed": false,
         "netlifyUpdated": false
       }
-    }
+    },
+    "latestOnlinePreflight": {
+      "artifact": "tools/online-preflight-verification.json",
+      "checkedAt": "2026-11-21T14:32:39.290Z",
+      "status": "verified-local-not-published",
+      "engineVersion": "0.602.129",
+      "uniqueNames": 9070,
+      "confirmedAndFixed": [
+        "closed-room-late-response",
+        "concurrent-account-rooms",
+        "own-face-down-mana-inspection",
+        "caddy-replacement-crash"
+      ],
+      "testsPassed": 1424,
+      "longCasesCompleted": 1011,
+      "longCasesPlanned": 1011,
+      "resumeCommand": "node tools/verify-pending-games.mjs",
+      "resumeNote": "Resume only the unchanged-source pending cases from tmp/duema-pending-games/results.json. Do not run npm test or publish.",
+      "remaining": [
+        "実Googleアカウント2つと本番Firestoreによる確認は未実施。今回はNetlifyを更新しないため、修正後の本番確認は未公開のまま。",
+        "全体npm testは再実行していない。過去の中断・合否未確認を保持し、今回の分割検証と区別。",
+        "ユーザーが後回しにしたキング・ナイト・マジックの包含裁定とドラン・ゴルギーニ金箔版は再開・問い合わせ送信を行っていない。"
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      }
+    },
+    "resolvedLongRunningVerification": [
+      {
+        "phase": 1512,
+        "target": "tests/gransect-effects.test.mjs: No16 AI replay / random legal choices / production worker",
+        "reason": "旧No16の多数回対戦を含む全ファイル指定を189.38秒、否定名フィルター指定を70.473秒で中断・合否未確認。SmashBurstの2項目は肯定名で単独実行し通過。長時間の対戦群は個別に分割して後続検証する。",
+        "log": "tmp/duema-phase-1512/related-interrupted.log",
+        "engineVersion": "0.602.58",
+        "resume": "No16 AI replayは対戦相手ごと、random legal choicesはseed 1〜35ごと、production workerは対戦相手ごとに分割し、各項目を単独実行する。全体npm testは再実行しない。",
+        "additionalLog": "tmp/duema-phase-1512/related-filter-interrupted.log",
+        "status": "passed-in-parts",
+        "resolutionArtifact": "tools/pending-game-verification.json",
+        "verifiedEngineVersion": "0.602.129"
+      },
+      {
+        "phase": 1584,
+        "target": "tests/mado-effects.test.mjs の No04 AI matches / No04 random choices / No04 production worker 260 matches",
+        "status": "passed-in-parts",
+        "reason": "多数デッキ・シードのAI対戦と260戦のワーカーベンチマークを個別に中断し、3ケースを明示して通常能力回帰から除外。同じ長時間ケースは再実行しない。",
+        "log": "tmp/duema-phase-1584/related-interrupted.json",
+        "measuredSeconds": 92.517,
+        "resolutionArtifact": "tools/pending-game-verification.json",
+        "verifiedEngineVersion": "0.602.129"
+      }
+    ]
   },
   "registeredCardVerification": {
     "checkedAt": "2026-11-20",

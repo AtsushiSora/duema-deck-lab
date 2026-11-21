@@ -1,4 +1,4 @@
-import test from 'node:test';import assert from 'node:assert/strict';
+import test,{after} from 'node:test';import assert from 'node:assert/strict';
 import {e,PRESETS,target,DOGI,VEG,GEN,GG,DREAM,ROD,Y,KIRA,RS,inst,give,act,setup,cast,attack,drain} from './target-fixture.mjs';
 import {newManualUI,manualModel,manualScreenHTML,manualBoardHTML,boardChoice,confirmEndTurn,selectionHint} from '../dist/manual-ui.js';
 const h={art:id=>`<span class="test-art" data-card="${id}"></span>`,icon:name=>`<svg data-icon="${name}"></svg>`};
@@ -100,8 +100,13 @@ test('desktop hand stays visible with every card during mana payment without cha
 test('card names and log content are escaped, while current public power and game restrictions remain readable',()=>{
  const s=setup();give(s,0,'battle',[GEN]);give(s,1,'battle',[Y]);s.log.push({turn:1,player:1,text:'<img src=x onerror=alert(1)>',type:'play'});const html=markup(s);assert.ok(html.includes('&lt;img'));assert.ok(!html.includes('<img src=x'));assert.ok(html.includes('∞'));assert.ok(html.includes('ゲンム：'));assert.ok(html.includes('能力無効'));assert.ok(html.includes('対戦ログ'));
 });
-test('every reachable UI action over complete-deck games is legal and rendering is pure through effects, shields and replacements',()=>{
- let scenes=0;const types=new Set();for(let seed=1;seed<=30;seed++){const s=e.createGame([target,seed%2?target:PRESETS[0]],{seed:seed*197,first:seed%2});while(s.winner===null&&s.actions<2500){const ui=newManualUI(),a=e.chooseAI(s);if(a.player===0){ui.hand=s.players[0].hand[0]?.uid||null;ui.attacker=e.getLegalActions(s).find(a=>a.kind==='attack')?.uid||null;const before=structuredClone(s),html=markup(s,ui);assert.deepEqual(s,before);for(const id of buttonIds(html))assert.ok(e.getLegalActions(s).some(a=>a.id===id&&a.player===0));types.add(s.decision?.type||s.phase);scenes++;}e.step(s,a);}}assert.ok(scenes>500);for(const type of ['charge','main','attack','effect','dddSummon','deploy','leaveReplace'])assert.ok(types.has(type),type);
+const gameScans=[];
+after(()=>{if(gameScans.length===30)assertGameScanCoverage(gameScans);});
+function assertGameScanCoverage(scans){assert.ok(scans.reduce((n,x)=>n+x.scenes,0)>500);const types=new Set(scans.flatMap(x=>x.types));for(const type of ['charge','main','attack','effect','dddSummon','deploy','leaveReplace'])assert.ok(types.has(type),type);}
+for(let seed=1;seed<=30;seed++)test('manual UI complete game: seed '+seed,t=>{
+ let scenes=0;const types=new Set(),s=e.createGame([target,seed%2?target:PRESETS[0]],{seed:seed*197,first:seed%2});
+ while(s.winner===null&&s.actions<2500){const ui=newManualUI(),a=e.chooseAI(s);assert.ok(a,'deadlock seed '+seed);if(a.player===0){ui.hand=s.players[0].hand[0]?.uid||null;ui.attacker=e.getLegalActions(s).find(a=>a.kind==='attack')?.uid||null;const before=structuredClone(s),html=markup(s,ui);assert.deepEqual(s,before);for(const id of buttonIds(html))assert.ok(e.getLegalActions(s).some(a=>a.id===id&&a.player===0));types.add(s.decision?.type||s.phase);scenes++;}e.step(s,a);}
+ assert.ok(scenes>0);const result={seed,scenes,types:[...types]};gameScans.push(result);t.diagnostic('manual-ui-coverage '+JSON.stringify(result));
 });
 
 test('NewWorld fields show stored cards and use state and Mugen choices show progress and board targets',()=>{const s=setup();give(s,0,'battle',['dmrp08-005','dm22ex2-070']);s.players[0].battle[0].under=[inst('dmex08-293')];s.players[0].battle[0].g4WorldUsed=true;let html=markup(s);assert.match(html,/下 1枚 · 使用済/);assert.match(html,/新世壊：/);give(s,0,'grave',Array(3).fill('dmex08-293'));give(s,0,'hand',['dmex16-061']);cast(s,'dmex08-293');assert.match(manualModel(s).help,/宣言/);act(s,'extended',a=>s.decision.choices[a.choice].value===true);act(s,'extended',a=>s.decision.choices[a.choice].value===null);assert.equal(manualModel(s).progress,'0 / 4つ');assert.ok(boardChoice(s,newManualUI(),0,'battle',s.players[0].battle[1].uid));assert.ok(boardChoice(s,newManualUI(),0,'grave',s.players[0].grave[0].uid));assert.equal(boardChoice(s,newManualUI(),1,'grave',s.players[0].grave[0].uid),null);});
