@@ -5499,7 +5499,7 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_EachRamp1532':
-  for(const p of[s.active,1-s.active])if(s.winner===null&&!s.lossEvent)ramp(s,{...t,p},t.n);
+  put(s,...[s.active,1-s.active].map(p=>({...t,op:'g34_Ramp',p,controller:t.controller??t.p})));
   break;
  case'g34_Ramp':
   if(t.optional)choice(s,t,'山札からマナに置く枚数を選ぶ',Array.from({length:Math.min(t.n,own.deck.length)+1},(_,n)=>opt(n+'枚',n,n<own.deck.length?n*5:-100)));
@@ -5611,6 +5611,9 @@ export function createSixPhotoRules(api){
   else choice(s,t,'墓地に置こうとしたカードのコストを選ぶ',t.costs.map(n=>opt('コスト'+n,n,n==='∞'?100:n)));
   break;
  }
+ case'g34_EachMill1534':
+  put(s,...[s.active,1-s.active].map(p=>({...t,op:'g34_Mill',p,controller:t.controller??t.p})));
+  break;
  case'g34_Mill':{
   const p=t.opponent?1-t.p:t.owner??t.p,n=t.n==='∞'?s.players[p].deck.length:t.n;
   if(t.optional)choice(s,t,t.n==='∞'?'山札をすべて墓地に置く？':'山札の上'+n+'枚を墓地に置く？',[opt('置く',true,own.deck.length>n?10:-100),skip()]);
@@ -9202,6 +9205,7 @@ export function createSixPhotoRules(api){
      g831Subject:{uid:y.uid,incarnation:y.incarnation||0,cost:value===Infinity?'∞':value}
     });
    }
+   else if(watch.g1534EntrantDestroy)send(s,owner,x,'ExactMove',{owner:p,target:y.uid,targetIncarnation:y.incarnation||0,to:'grave'});
    else if(watch.g1088Bottom)send(s,owner,x,'ExactMove',{
     target:y.uid,targetIncarnation:y.incarnation||0,to:'deck',g1088OwnerMoves:true,
     // The creature remains the same when an evolution is placed on it (QA40249).

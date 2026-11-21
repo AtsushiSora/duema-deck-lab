@@ -1,0 +1,511 @@
+{
+  "phase": 1534,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8748,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "deferred": [
+    {
+      "id": "dm23bd6-020",
+      "canonicalId": "dmrp07-004",
+      "name": "第六戦街 ラヴ・ガトラー / 漆黒の裏六戦街",
+      "reason": "既存dmrp07-004と同じ両面の再録。区切り前後の空白と「選べない／選ばれない」の表記差だけで、別種類として追加しない。公式全文と画像を取得し能力全体を照合。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd6-020",
+      "status": "duplicate-not-counted"
+    }
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/33716/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/33716/": "S・トリガーの付与や使用可能な面は条件を満たす片面だけに適用する。"
+  },
+  "cards": [
+    {
+      "id": "dm24ex2-047",
+      "name": "凶骨の邪将クエイクス / クエイクス・ハンド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-047",
+      "faces": [
+        {
+          "name": "凶骨の邪将クエイクス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーが出た時、自分の他の闇のクリーチャー１体につき、相手の手札を１枚見ないで選び、捨てさせる。\nＷ・ブレイカー",
+          "race": "デーモン・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "クエイクス・ハンド",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\n相手のアンタップしているクリーチャーを１体選び、破壊する。\n相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountBlindDiscard983",
+            "zone": "battle",
+            "g329Other": true,
+            "filter": {
+              "creature": true,
+              "color": "闇"
+            }
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "クエイクス・ハンド",
+          "cost": 6,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "untapped": true
+              },
+              "spell": true
+            },
+            {
+              "op": "BlindDiscard773",
+              "n": 1,
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex2-047a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "c8f826fd72eb0f3a41caf38e26e177a05bc6667a40eb81a3edbff0df80324e18",
+        "facesMatched": true,
+        "imageSha256": "1f785cae30f970e1bcc745ff0005f20773127fc32ce9e0ac750ad09926389531",
+        "imageBytes": 146632
+      },
+      "sameNameProducts": [
+        "DM24-EX2 天下夢双!!デュエキングDreaM 2024"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-047",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm23bd4-003",
+      "name": "ボルザード・スーパーヒーロー / 超帝王タイム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd4-003",
+      "faces": [
+        {
+          "name": "ボルザード・スーパーヒーロー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー\nこのクリーチャーが攻撃する時、相手のコスト６以下のドラゴンではないエレメントを１つ選び、破壊してもよい。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "超帝王タイム",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\nコスト３以下のドラゴンではないエレメントをすべて破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Target",
+            "element": true,
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "max": 6,
+              "notRace": "ドラゴン"
+            }
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "超帝王タイム",
+          "cost": 5,
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Sweep",
+              "both": true,
+              "filter": {
+                "max": 3,
+                "notRace": "ドラゴン"
+              },
+              "to": "grave",
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd4-003a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "d26b12005bcac11ae5fb4957127a71c8f7436f1bb1023e6de93ea5ac581fe118",
+        "facesMatched": true,
+        "imageSha256": "d7be33007156d78cc42e08cd2690571aae46237830cdc717c832db15fcd72395",
+        "imageBytes": 179059
+      },
+      "sameNameProducts": [
+        "DM23-BD4 エキサイティング・デュエパ・デッキ 「ドラドラドラゴン龍幻郷」",
+        "プロモ限定カード 23期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd4-003",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex04-002",
+      "name": "マグナム・ルピア / クリムゾン・チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-002",
+      "faces": [
+        {
+          "name": "マグナム・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手が、自身のマナゾーンのカードの枚数よりコストが大きいクリーチャーをバトルゾーンに出した時、そのクリーチャーを破壊する。",
+          "race": "ファイアー・バード",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "クリムゾン・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手のパワー2000以下のクリーチャーを１体破壊する。\nチャージャー（この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g314OtherEntry": {
+          "who": "opponent",
+          "g1088EntrantOverMana": true,
+          "g1534EntrantDestroy": true
+        },
+        "spellFace": {
+          "type": "spell",
+          "name": "クリムゾン・チャージャー",
+          "cost": 4,
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "race": "",
+          "normalCharger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "maxPower": 2000
+              },
+              "spell": true
+            }
+          ]
+        }
+      },
+      "faceImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-002a.jpg",
+        "sha256": "e7db8ff1eee8c0b0dcab93971cff5f5acf4840e7b01ccfd6f1000b3cdea2a396",
+        "reviewedAt": "2026-11-21",
+        "reason": "同じ公式画像の呪文面の火文明を確認し、HTMLの文明空欄だけ補完。",
+        "faces": [
+          {
+            "index": 1,
+            "civilizationText": "火",
+            "civilizations": [
+              "火"
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-002a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "ff5115e1680c37434fb4b7db1299eaee931cb4c6acc773c2262b998b68214431",
+        "facesMatched": true,
+        "imageSha256": "e7db8ff1eee8c0b0dcab93971cff5f5acf4840e7b01ccfd6f1000b3cdea2a396",
+        "imageBytes": 145320
+      },
+      "sameNameProducts": [
+        "DMBD-15 レジェンドスーパーデッキ 蒼龍革命",
+        "DMEX-04 夢の最＆強!!ツインパクト超No.1パック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-002",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp07-s07",
+      "name": "ゴリガン砕車 ゴルドーザ / ダイナマウス・スクラッパー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-s07",
+      "faces": [
+        {
+          "name": "ゴリガン砕車 ゴルドーザ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー\nこのクリーチャーは、各ターンはじめて攻撃する時、アンタップする。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+          "race": "ビートジョッキー",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "ダイナマウス・スクラッパー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手のクリーチャーを、パワーの合計が6000以下になるように好きな数選び、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "g540FirstAttack": [
+          {
+            "op": "Untap",
+            "g191First": true
+          }
+        ],
+        "g40LastBurst": true,
+        "spellFace": {
+          "type": "spell",
+          "name": "ダイナマウス・スクラッパー",
+          "cost": 5,
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "owner": "opponent",
+              "origin": "battle",
+              "n": "all",
+              "optional": true,
+              "to": "grave",
+              "filter": {
+                "creature": true
+              },
+              "g173Targets": true,
+              "g193Select": true,
+              "g506PowerBudget": 6000,
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-s07a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "75c25a21eeca63caa35e560872b8b468a542071625c7fe0de2ab62266e0f21c2",
+        "facesMatched": true,
+        "imageSha256": "42a3153eb9ea5e0f7bbd30adc77e7860c906c128f68f12c1c22205d2693e0032",
+        "imageBytes": 174724
+      },
+      "sameNameProducts": [
+        "DMEX-12 最強戦略!!ドラリンパック",
+        "DMRP-07 双極篇 拡張パック第３弾 †ギラギラ†煌世主と終葬のQX!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-s07",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm23rp2-036",
+      "name": "モノクル＝ドクトール / 「すべてを見通す眼だ」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-036",
+      "faces": [
+        {
+          "name": "モノクル＝ドクトール",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、破壊する。",
+          "race": "アビスロイヤル",
+          "powerText": "8000",
+          "missingFields": []
+        },
+        {
+          "name": "「すべてを見通す眼だ」",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "各プレイヤーは、自身の山札の上から２枚を墓地に置く。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+          "race": "アビスへの誘い",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave"
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "「すべてを見通す眼だ」",
+          "cost": 3,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "アビスへの誘い",
+          "normalCharger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "EachMill1534",
+              "n": 2,
+              "g1042Together": true,
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-036a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "c7be0472fa927bd349a6348be6198629db3f9476ec796c5007ffd4aeba662892",
+        "facesMatched": true,
+        "imageSha256": "c262eed248da56053af83ad5ad76b140031c963d54904d778328a001a911fedd",
+        "imageBytes": 178496
+      },
+      "sameNameProducts": [
+        "DM23-RP2X アビス・レボリューション 第2弾 「忍邪乱武」 超刺激パック",
+        "DM23-RP2 アビス・レボリューション 第2弾 「忍邪乱武」"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-036",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24ex2-047": 4,
+      "dm23bd4-003": 4,
+      "dmex04-002": 4,
+      "dmrp07-s07": 4,
+      "dm23rp2-036": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/33716/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33716/",
+      "sha256": "0e3296031e1dfb8ceec8afade9c5962b09b58597abcfa218c51dc2bac129a205",
+      "result": "S・トリガーの付与や使用可能な面は条件を満たす片面だけに適用する。"
+    }
+  ]
+}
