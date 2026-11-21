@@ -5113,6 +5113,16 @@ export function createSixPhotoRules(api){
   const options=[...(c.neoEvolution?[opt('進化させずに出す',null,1)]:[]),...bases.map(b=>opt(card(b).name,b.uid,10,b.cardId))];
   if(options.length)choice(s,t,'出すクリーチャーの進化元を選ぶ',options);
  }else doPut(s,t);break;}
+ case'g34_ManaDownUpTo1604':{
+  const remaining=t.remaining??[0,1],p=remaining[0],selected=t.selected??[],chosen=t.chosen??[];
+  if(p===undefined){for(const ref of selected)turnManaDown(s,t,ref);break;}
+  const rows=s.players[p].mana.filter(y=>!chosen.some(ref=>ref.uid===y.uid));
+  if(chosen.length>=t.n||!rows.length){put(s,{...t,remaining:remaining.slice(1),selected:[...selected,...chosen],chosen:[]});break;}
+  choice(s,t,(p===t.p?'自分':'相手')+'のマナを'+t.n+'枚まで選んで裏向きにする',[
+   ...rows.map(y=>opt(y.faceDown?'裏向きのマナ '+(s.players[p].mana.indexOf(y)+1):card(y).name,
+    {p,uid:y.uid,serial:y.zoneSerial||0},y.faceDown?0:10,y.faceDown?null:y.cardId)),skip()
+  ]);break;
+ }
  case'g34_ManaDown426':{
   const rows=own.mana.filter(y=>!y.faceDown);
   if(rows.length)choice(s,t,'裏向きにする自分のマナを1枚選ぶ'+(t.required?'':'（任意）'),[
@@ -7817,6 +7827,10 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_LookAll424':{const chosen=v?t.g424Ids:[];put(s,{...t,op:'g34_LookPick',chosen,stages:t.stages.map((q,i)=>i===t.stage?{...q,n:chosen.length,optional:false,g424AllOrNone:false}:q)});break;}
+ case'g34_ManaDownUpTo1604':{
+  const remaining=t.remaining??[0,1],chosen=t.chosen??[],selected=t.selected??[];
+  put(s,v?{...t,chosen:[...chosen,v]}:{...t,remaining:remaining.slice(1),selected:[...selected,...chosen],chosen:[]});break;
+ }
  case'g34_ManaDown426':if(v)turnManaDown(s,t,{...v,p:t.p});break;
  case'g34_ManaDownEach1041':
   if(v===true)for(const ref of t.selected)turnManaDown(s,t,ref);

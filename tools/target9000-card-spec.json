@@ -26931,5 +26931,136 @@
       "shieldBurn": true,
       "g34Omega": true
     }
+  },
+  "dm23ex3-S04": {
+    "phase": 1604,
+    "faces": [
+      {
+        "name": "「狡智」の頂天 レディオ・ローゼス",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "水晶ソウル３（このクリーチャーを召喚する時、自分のマナゾーンにある裏向きのカードのマナの数字は３になる）\nジャストダイバー\nT・ブレイカー\nこのクリーチャーが召喚によって出た時、相手のクリーチャーを３体まで選び、持ち主の手札に戻す。\n相手のクリーチャーが出た時、カードを１枚引いてもよい。\nエターナル・Κ（このクリーチャーが離れる時、かわりに自分のマナゾーンにある裏向きのカードを３枚、表向きにしてもよい）",
+        "race": "ゼニス・セレス",
+        "powerText": "13000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g434CrystalSoul": 3,
+      "justDiver": true,
+      "breaker": 3,
+      "summonedEntryOnly": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 3,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "to": "hand",
+          "optional": true
+        }
+      ],
+      "g314OtherEntry": {
+        "who": "opponent",
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "g1603Kappa": true
+    }
+  },
+  "dm24ex2-041": {
+    "phase": 1604,
+    "faces": [
+      {
+        "name": "「胡乱」の頂天 クリス＝ビュート",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 12,
+        "costText": "12",
+        "abilityText": "水晶ソウル３（このクリーチャーを召喚する時、自分のマナゾーンにある裏向きのカードのマナの数字は３になる）\nT・ブレイカー\nこのクリーチャーが出た時、各プレイヤーのマナゾーンにあるカードをそれぞれ２枚まで選び、裏向きにする。\nエターナル・Κ（このクリーチャーが離れる時、かわりに自分のマナゾーンにある裏向きのカードを３枚、表向きにしてもよい）",
+        "race": "ゼニス・セレス",
+        "powerText": "12921",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g434CrystalSoul": 3,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ManaDownUpTo1604",
+          "n": 2
+        }
+      ],
+      "g1603Kappa": true
+    }
+  },
+  "dm24ex2-042": {
+    "phase": 1604,
+    "faces": [
+      {
+        "name": "騎士のコード オルタナティブ",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "水晶ソウル２（このクリーチャーを召喚する時、自分のマナゾーンにある裏向きのカードのマナの数字は２になる）\nW・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを０にする。（パワー０以下のクリーチャーは破壊される）\nこのクリーチャーが破壊された時、無色ゼニス・クリーチャーを１体、自分の手札からコストを支払わずに召喚してもよい。",
+        "race": "アンノウン・セレス",
+        "powerText": "6543",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g434CrystalSoul": 2,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "g1111PowerZero": true
+        }
+      ],
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "execution": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "noColor": true,
+            "race": "ゼニス"
+          }
+        }
+      ]
+    }
   }
 }

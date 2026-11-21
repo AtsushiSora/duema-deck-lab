@@ -287146,20 +287146,138 @@
       "g34Omega": true,
       "supportBatch": "phase-1603",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-S04",
+      "name": "「狡智」の頂天 レディオ・ローゼス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 13000,
+      "race": "ゼニス・セレス",
+      "text": "水晶ソウル３（このクリーチャーを召喚する時、自分のマナゾーンにある裏向きのカードのマナの数字は３になる）\nジャストダイバー\nT・ブレイカー\nこのクリーチャーが召喚によって出た時、相手のクリーチャーを３体まで選び、持ち主の手札に戻す。\n相手のクリーチャーが出た時、カードを１枚引いてもよい。\nエターナル・Κ（このクリーチャーが離れる時、かわりに自分のマナゾーンにある裏向きのカードを３枚、表向きにしてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-S04",
+      "limit": 4,
+      "g434CrystalSoul": 3,
+      "justDiver": true,
+      "breaker": 3,
+      "summonedEntryOnly": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 3,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "to": "hand",
+          "optional": true
+        }
+      ],
+      "g314OtherEntry": {
+        "who": "opponent",
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "g1603Kappa": true,
+      "supportBatch": "phase-1604",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex2-041",
+      "name": "「胡乱」の頂天 クリス＝ビュート",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 12,
+      "power": 12921,
+      "race": "ゼニス・セレス",
+      "text": "水晶ソウル３（このクリーチャーを召喚する時、自分のマナゾーンにある裏向きのカードのマナの数字は３になる）\nT・ブレイカー\nこのクリーチャーが出た時、各プレイヤーのマナゾーンにあるカードをそれぞれ２枚まで選び、裏向きにする。\nエターナル・Κ（このクリーチャーが離れる時、かわりに自分のマナゾーンにある裏向きのカードを３枚、表向きにしてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-041",
+      "limit": 4,
+      "g434CrystalSoul": 3,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ManaDownUpTo1604",
+          "n": 2
+        }
+      ],
+      "g1603Kappa": true,
+      "supportBatch": "phase-1604",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex2-042",
+      "name": "騎士のコード オルタナティブ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6543,
+      "race": "アンノウン・セレス",
+      "text": "水晶ソウル２（このクリーチャーを召喚する時、自分のマナゾーンにある裏向きのカードのマナの数字は２になる）\nW・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを０にする。（パワー０以下のクリーチャーは破壊される）\nこのクリーチャーが破壊された時、無色ゼニス・クリーチャーを１体、自分の手札からコストを支払わずに召喚してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-042",
+      "limit": 4,
+      "g434CrystalSoul": 2,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "g1111PowerZero": true
+        }
+      ],
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "execution": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "noColor": true,
+            "race": "ゼニス"
+          }
+        }
+      ],
+      "supportBatch": "phase-1604",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1603,
+    "phase": 1604,
     "checkedAt": "2026-11-21",
-    "baseCount": 9041,
-    "newEffectCards": 2,
+    "baseCount": 9043,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9043,
+    "totalCount": 9046,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
-      "10000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+      "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
     ],
     "history": [
       {
@@ -313375,6 +313493,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 9041,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1603,
+        "checkedAt": "2026-11-21",
+        "baseCount": 9041,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9043,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
