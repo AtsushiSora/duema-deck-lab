@@ -1105,6 +1105,7 @@ export function createSixPhotoRules(api){
   const fromBottom=t.fromBottom&&!replaced;
   const available=own.deck.filter(x=>!held.has(x.uid));
   let rows=fromBottom?available.slice(Math.max(0,available.length-n)):available.slice(0,n);
+  if(t.g1603UntilFilter){const stop=rows.findIndex(x=>matches(s,owner,x,t.g1603UntilFilter));if(stop>=0)rows=rows.slice(0,stop+1);}
   if(t.g1013ThroughNonMulti){
    const stop=rows.findIndex(x=>new Set(faces(card(x)).flatMap(colors)).size<2);
    if(stop>=0)rows=rows.slice(0,stop+1);
@@ -2518,6 +2519,22 @@ export function createSixPhotoRules(api){
  case'g34_PaySpell485':paySpell485(s,t);break;
  case'g34_RevealPayment470':revealPayment470(s,t);break;
  case'g34_PayOnce464':payOnce464(s,t);break;
+ case'g34_ShangAttack1603':{
+  const ref=t.g399Attacker;if(ref)start(s,{...t,uid:ref.uid,incarnation:ref.incarnation},[{op:'SelfSacrifice407',defs:[{op:'ShangReveal1603'}]}]);
+  break;
+ }
+ case'g34_ShangReveal1603':{
+  const filter={creature:true,raceAny:['アンノウン','ゼニス']},ids=look(s,{...t,n:own.deck.length,public:true,g1603UntilFilter:filter}),last=ids.at(-1);
+  const found=last&&own.deck.find(x=>x.uid===last);
+  if(found&&matches(s,t.p,found,filter))release(s,t.p,last);
+  start(s,t,[...(found&&matches(s,t.p,found,filter)?[{op:'Put',origin:'deck',target:last}]:[]),{op:'RevealRelease514',ids},{op:'Shuffle405'}]);
+  break;
+ }
+ case'g34_WeddingHands1603':{
+  const n=t.n??creatures(s,t.p).filter(x=>!x.sealed&&!x.faceDown&&colors(effective(x,s)).length===0).length;
+  if(n>0&&opp.hand.length)choice(s,{...t,n},'自身の手札からシールド化するカードを1枚選ぶ（残り'+n+'枚）',opp.hand.map(x=>opt(card(x).name,x.uid,0,x.cardId)),1-t.p);
+  break;
+ }
  case'g34_NoLoseTurn1602':
   for(const player of[0,1])(s.extLimits??=[]).push({kind:'g34NoLose',player,who:s.active,expires:'end'});
   break;
@@ -5854,7 +5871,9 @@ export function createSixPhotoRules(api){
     &&(!t.g994ExcludeRaces||!y.sealed&&!t.g994ExcludeRaces.some(r=>race(effective(y,s),r)))
     &&(!t.g1041Colored||!y.sealed&&!y.faceDown&&colors(effective(y,s)).length>0))
    .map(y=>({player:p,uid:y.uid,to,destroy:to==='grave'&&!t.g815PutInGrave,
-    ...(t.toOwnerHand?{toOwnerHand:true}:{}),...(t.toOwnerDeck?{toOwnerDeck:true}:{}),
+    ...(t.toOwnerHand?{toOwnerHand:true}:{}),
+    ...(t.toOwnerShields?{toOwnerShields:true}:{}),
+    ...(t.toOwnerDeck?{toOwnerDeck:true}:{}),
     ...(t.toOwnerMana?{toOwnerMana:true}:{}),...(to==='mana'&&t.tapped?{tapped:true}:{}),
     ...(t.g1117ShieldDraw?{faceUp:true,toOwnerShields:true}:{})})));
   if(rows.length){
@@ -6915,6 +6934,11 @@ export function createSixPhotoRules(api){
   if(t.after)put(s,{...t.after,g464Reducers:t.selected});
   else{const args=[...t.args];args[18]=t.selected;api.cast(s,t.p,...args);}
  }break;
+ case'g34_WeddingHands1603':{
+  const x=s.players[1-t.p].hand.find(x=>x.uid===v);if(x)zoneMove(s,1-t.p,'hand',v,'shields',{...t,g904ShieldOwner:x.cardOwner??1-t.p});
+  if(t.n>1)put(s,{...t,n:t.n-1});
+  break;
+ }
  case'g34_NothingTarget1602':{
   const x=own.battle.find(x=>x.uid===v&&!x.sealed&&api.isCreature(s,x));
   if(x)(s.extLimits??=[]).push({kind:'g412ExtraBreak',player:t.p,ref:{uid:x.uid,incarnation:x.incarnation||0},amount:t.count,expires:'end',who:s.active,source:t.source,spellSource:t.source,spellCost:cost(card(t.source))});

@@ -1,0 +1,160 @@
+{
+  "phase": 1603,
+  "checkedAt": "2026-11-21",
+  "baseCount": 9041,
+  "description": "既存の処理を用いて全能力を個別に検証し2種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dm23ex3-S01",
+      "name": "「無上」の頂天 シャングリラ・ファンタジア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-S01",
+      "faces": [
+        {
+          "name": "「無上」の頂天 シャングリラ・ファンタジア",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 12,
+          "costText": "12",
+          "abilityText": "水晶ソウル３\nT・ブレイカー\n自分のクリーチャーは、出たターンにプレイヤーを攻撃できる。\n各ターン、はじめて自分のクリーチャーが攻撃する時、そのクリーチャーを破壊してもよい。そうしたら、自分の山札の上から、アンノウン・クリーチャーまたはゼニス・クリーチャーが出るまで表向きにする。そのクリーチャーを出し、その後、山札をシャッフルする。\nエターナル・Κ（このクリーチャーが離れる時、かわりに自分のマナゾーンにある裏向きのカードを３枚、表向きにしてもよい）",
+          "race": "ゼニス・セレス",
+          "powerText": "12321",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g434CrystalSoul": 3,
+        "breaker": 3,
+        "g1603Kappa": true,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "entryPlayerAttack": true
+            }
+          }
+        ],
+        "g252AttackWatch": {
+          "who": "self",
+          "first": true,
+          "g399Attacker": true,
+          "defs": [
+            {
+              "op": "ShangAttack1603"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-S01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "4bfeb2a4400be9e111985f6bec2d20e36b462f90dcc5a75c29c7b05190db4e71",
+        "facesMatched": true,
+        "imageSha256": "1a0172b663666424cfe389dad07c36a1a6ec55bcaecf1fb1093827594007a091",
+        "imageBytes": 164249
+      },
+      "sameNameProducts": [
+        "DM24-BD6 エキサイティング・デュエパ・デッキ ツラトゥストラは水晶と語らう",
+        "DM23-EX3 アビス・レボリューション外伝 「邪神と水晶の華」"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-S01",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm26ex4-002",
+      "name": "「誣」の頂 ウェディング・イノセンス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-002",
+      "faces": [
+        {
+          "name": "「誣」の頂 ウェディング・イノセンス",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 13,
+          "costText": "13",
+          "abilityText": "このクリーチャーの召喚コストを、相手のエレメントの文明１つにつき２少なくする。\nT・ブレイカー\nこのクリーチャーが召喚によって出た時、無色ではないクリーチャーをすべてシールド化する。その後、自分の無色クリーチャー１体につき、相手は自身の手札を１枚選び、シールド化する。\nこのクリーチャーがシールドをブレイクする時、相手はそのシールドを手札に加えるかわりに墓地に置く。\nエターナル・Ω（このクリーチャーが離れる時、かわりに手札に戻す）",
+          "race": "アンノウン/ゼニス",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1603ElementColorDiscount": 2,
+        "breaker": 3,
+        "summonedEntryOnly": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "shields",
+            "toOwnerShields": true,
+            "filter": {
+              "creature": true,
+              "g218Colored": true
+            }
+          },
+          {
+            "op": "WeddingHands1603"
+          }
+        ],
+        "shieldBurn": true,
+        "g34Omega": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "9ff1f38a29f0b8444a5e464d6c8cd0ca9ae6435096a10263db4dc02b1d158610",
+        "facesMatched": true,
+        "imageSha256": "734ccdf50100a9a5633e10eef33f1915e44ce9817f38afcf9277b68cf1408f98",
+        "imageBytes": 141332
+      },
+      "sameNameProducts": [
+        "DM26-EX5 デュエマプレイス・コラボパック 「電脳対戦 -WAR OF PLAY'S-」",
+        "DM26-EX4 切札不滅!! デュエキング FOREVER 2026"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-002",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23ex3-S01": 4,
+      "dm26ex4-002": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    }
+  ]
+}
