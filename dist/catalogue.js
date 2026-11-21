@@ -1,4 +1,4 @@
-import {canonicalCardName,hasVerifiedCardNameAlias} from './card-name-aliases.js?v=0.722.2';
+import {canonicalCardName,hasVerifiedCardNameAlias} from './card-name-aliases.js?v=0.722.3';
 import {extraDeckErrors,extraDeckZone,EXTRA_DECK_ZONES} from './deck-format.js';
 import {deckCopyLimit,editingCopyLimit} from './historical-regulations.js';
 // Registration is deliberately separate from the battle engine's supported cards.

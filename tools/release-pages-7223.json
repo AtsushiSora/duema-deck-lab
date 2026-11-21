@@ -1,0 +1,83 @@
+{
+  "checkedAt": "2026-11-21T08:43:37.906Z",
+  "status": "verified-for-explicit-pages-only-publication",
+  "sourceCommit": "1795a8a0fea5cc718603c7e8a8aebee7f1dae737",
+  "appVersion": "0.722.3",
+  "engineVersion": "0.602.118",
+  "supportedCards": 9043,
+  "duplicates": 0,
+  "requestedCardsRecord": "tools/requested-card-verification-1603.json",
+  "github": {
+    "branch": "main",
+    "pagesUrl": "https://atsushisora.github.io/duema-deck-lab/",
+    "publication": "mainへの通常のpushによるPagesワークフロー"
+  },
+  "netlify": {
+    "operation": "更新しない（最新のユーザー指示）",
+    "workflow": "workflow_dispatch only; not dispatched",
+    "githubHook": {
+      "id": 701628730,
+      "active": false
+    },
+    "stopBuilds": true,
+    "preservedDeploy": {
+      "id": "6b013f2a926fe1454faa389b",
+      "state": "ready",
+      "commit_ref": null,
+      "published_at": "2026-11-21T06:50:32.338Z"
+    },
+    "filesBeforePublication": {
+      "release.json": {
+        "sha256": "978538535cfd8d27bedf1aa68c36d01bb9e6c1dfff89852678c2025b3dccb27d",
+        "value": {
+          "version": "0.722.2",
+          "engineVersion": "0.602.107",
+          "aiVersion": "2.3.437"
+        }
+      },
+      "cards.json": {
+        "sha256": "9569d50bd68926d10546d4ea9815fd0cbcdc529c6572cffe67cf32e9ccb5e526"
+      }
+    }
+  },
+  "validation": [
+    {
+      "name": "pages-release-check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.644,
+      "log": "tmp/duema-requested-nine-1603/pages-release-check.log"
+    },
+    {
+      "name": "pages-release-tests",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=4",
+        "tests/requested-nine-1603.test.mjs",
+        "tests/standard1602-effects.test.mjs",
+        "tests/standard1603-effects.test.mjs",
+        "tests/standard1401-effects.test.mjs",
+        "tests/standard1409-effects.test.mjs",
+        "tests/standard1520-effects.test.mjs",
+        "tests/standard1549-effects.test.mjs",
+        "tests/app-updates.test.mjs",
+        "tests/home-navigation.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 12.435,
+      "log": "tmp/duema-requested-nine-1603/pages-release-tests.log"
+    }
+  ],
+  "passedTests": 157,
+  "preservedUnverified": [
+    "一括npm testの過去の中断・合否未確認は維持",
+    "ユーザー保留中の公式照合・長時間検証・本番2アカウント対戦の記録は維持"
+  ]
+}
