@@ -284336,15 +284336,304 @@
       },
       "supportBatch": "phase-1584",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmbd07-a-003",
+      "name": "ふでがき師匠/一筆奏上！",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ジョーカーズ",
+      "text": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\n自分の山札の上から２枚を表向きにする。その中から、ジョーカーズをすべて自分のマナゾーンに置き、残りを好きな順序で山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd07-a-003",
+      "limit": 4,
+      "machFighter": true,
+      "g40LastBurst": true,
+      "spellFace": {
+        "name": "一筆奏上！",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "race": "",
+        "text": "自分の山札の上から２枚を表向きにする。その中から、ジョーカーズをすべて自分のマナゾーンに置き、残りを好きな順序で山札の一番下に置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 2,
+            "public": true,
+            "stages": [
+              {
+                "to": "mana",
+                "n": "all",
+                "allMatches": true,
+                "filter": {
+                  "anyFaceRace": "ジョーカーズ"
+                }
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      },
+      "supportBatch": "phase-1585",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-051",
+      "name": "ホービット/壁キョーボリア",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "グランセクト",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）\n【呪文面】\nこのターン、自分のアンタップしているクリーチャー１体はパワーを+5000され、シールドをさらに１つブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-051",
+      "limit": 4,
+      "trigger": true,
+      "smashBurst": true,
+      "spellFace": {
+        "name": "壁キョーボリア",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "このターン、自分のアンタップしているクリーチャー１体はパワーを+5000され、シールドをさらに１つブレイクする。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "untapped": true
+            },
+            "power": 5000,
+            "g455ExtraBreak": 1,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1585",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd06-014",
+      "name": "懐疑の虎狼 ミラーズホロウ / 「汝は偽名なりや？」",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "デーモン・コマンド/アンノウン",
+      "text": "ブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から４枚を表向きにする。その中から、アンノウン１体と呪文を１枚、手札に加える。その後、残りを好きな順序で自分の山札の一番下に置く。\n【呪文面】\n自分の山札の上から２枚を表向きにする。その中から、アンノウン１体と呪文を１枚、手札に加える。その後、残りを好きな順序で自分の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd06-014",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 4,
+          "public": true,
+          "stages": [
+            {
+              "to": "hand",
+              "n": 1,
+              "filter": {
+                "creature": true,
+                "race": "アンノウン"
+              }
+            },
+            {
+              "to": "hand",
+              "n": 1,
+              "filter": {
+                "spell": true
+              }
+            }
+          ],
+          "rest": "bottom"
+        }
+      ],
+      "spellFace": {
+        "name": "「汝は偽名なりや？」",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "自分の山札の上から２枚を表向きにする。その中から、アンノウン１体と呪文を１枚、手札に加える。その後、残りを好きな順序で自分の山札の一番下に置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 2,
+            "public": true,
+            "stages": [
+              {
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "creature": true,
+                  "race": "アンノウン"
+                }
+              },
+              {
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "spell": true
+                }
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      },
+      "supportBatch": "phase-1585",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd10-006",
+      "name": "音奏 トラークル / 音奏曲第5番「音竜巻」",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "メタリカ/ワンダフォース",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n【呪文面】\n相手のパワー5000以下のクリーチャーを１体選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd10-006",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "spellFace": {
+        "name": "音奏曲第5番「音竜巻」",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 1,
+        "race": "",
+        "text": "相手のパワー5000以下のクリーチャーを１体選び、持ち主の手札に戻す。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "hand",
+            "toOwnerHand": true,
+            "filter": {
+              "maxPower": 5000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1585",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23bd6-008",
+      "name": "雪精 サエポヨ＆ユキぴょん / ハンマー・チャージャー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "スノーフェアリー風",
+      "text": "このクリーチャーを自分のマナゾーンから召喚してもよい。\nこのクリーチャーが出た時、ツインパクトカードを１枚、自分のマナゾーンから手札に戻してもよい。\n【呪文面】\n自分の山札の上から３枚を見る。その中からツインパクトカードを１枚選び、表向きにしてから手札に加えてもよい。その後、残りを好きな順序で山札の下に置く。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd6-008",
+      "limit": 4,
+      "manaSummon": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "twin": true
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "ハンマー・チャージャー",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "自分の山札の上から３枚を見る。その中からツインパクトカードを１枚選び、表向きにしてから手札に加えてもよい。その後、残りを好きな順序で山札の下に置く。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "stages": [
+              {
+                "to": "hand",
+                "n": 1,
+                "optional": true,
+                "filter": {
+                  "twin": true
+                },
+                "reveal": true
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      },
+      "supportBatch": "phase-1585",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1584,
+    "phase": 1585,
     "checkedAt": "2026-11-21",
-    "baseCount": 8975,
+    "baseCount": 8980,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8980,
+    "totalCount": 8985,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -310299,6 +310588,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 8975,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1584,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8975,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8980,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
