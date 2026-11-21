@@ -608,7 +608,8 @@ export function createExtendedRules(api){
    case 'mirageCast':{const x=own.hand.find(x=>x.uid===t.uid);if(x&&(s.creaturesEntered||0)>=3&&canCast(s,t.p,card(x)))cast(s,t.p,x.uid,true,null,0,null,'hand','ターン終了時の能力');break;}
    case 'invasionZero1315':{
     const x=own.hand.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);
-    if(x&&canCast(s,t.p,card(x),'hand'))cast(s,t.p,x.uid,true,null,0,null,'hand','侵略ZERO');
+    if(x&&card(x).g1563InvasionDeploy)put(s,task('g34_Put',t.p,t.source,{origin:'hand',target:x.uid,execution:false}));
+    else if(x&&canCast(s,t.p,card(x),'hand'))cast(s,t.p,x.uid,true,null,0,null,'hand','侵略ZERO');
     break;
    }
    case 'finishSpell':{const i=(s.extSpells||[]).findIndex(x=>x.inst.uid===t.uid);if(i>=0){const f=s.extSpells[i];

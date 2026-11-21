@@ -394,7 +394,7 @@ export function createSixPhotoRules(api){
     ...(card(source).g953BioK?.effect?.op==='BioKAttackerSearch1081'?{g399Attacker:t.g399Attacker}:{})});
   }
   if(t.battle)put(s,...declared.map(x=>task('g34_BioT952',t.p,x.cardId,{
-   uid:x.uid,serial:x.zoneSerial||0,attacker:t.battle.attacker
+   uid:x.uid,serial:x.zoneSerial||0,attacker:t.battle.attacker,...(card(x).g952BioT?.bounceBattle?{defender:t.battle.defender}:{})
   })),task('g34_BioBattle952',t.p,t.source,t.battle));
  }
  const bioBattleUnit=(s,ref)=>s.players[ref.p].battle.find(x=>
@@ -953,7 +953,7 @@ export function createSixPhotoRules(api){
   const owner=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));
   if(owner<0||x.sealed||c.type!=='creature')return 0;
   const fits=f=>(!f.g1503NonGR||!c.gr)&&(!f.g1490Exile||!!c.g1490Exile)&&(!f.speedAttacker||!!c.speedAttacker)&&(!f.g1428Gr||!!c.gr)&&(!f.g856Souls||f.g856Souls.some(soul=>hasSoul(card(x),soul)))&&
-   (!f.creature||c.type==='creature')&&(f.g1085Psychic===undefined||!!c.psychic===f.g1085Psychic)&&
+   (!f.creature||c.type==='creature')&&(!f.g1451Dragheart||c.dragheart)&&(f.g1085Psychic===undefined||!!c.psychic===f.g1085Psychic)&&
    (!f.color||colors(c).includes(f.color))&&(!f.race||race(c,f.race))&&
    (!f.raceAny||f.raceAny.some(q=>race(c,q)))&&
    (!f.g220NameAny||f.g220NameAny.some(q=>String(c.name).normalize('NFKC').includes(q.normalize('NFKC'))))&&
@@ -4663,6 +4663,7 @@ export function createSixPhotoRules(api){
  }
  case'g34_BioPower952':{
   const attacker=bioBattleUnit(s,t.attacker),rule=card(t.source).g952BioT;
+  if(rule.bounceBattle){const defender=t.defender&&bioBattleUnit(s,t.defender);const rows=[...(attacker?[{player:t.attacker.p,uid:attacker.uid,to:'hand',destroy:false,controller:t.p}]:[]),...(defender?[{player:t.defender.p,uid:defender.uid,to:'hand',destroy:false,controller:t.p}]:[])];if(rows.length)move(s,rows);break;}
   if(!attacker)break;
   if(rule.attackBonus)(attacker.g34Grants??=[]).push({turn:s.turn,attackBonus:rule.attackBonus});
   else if(rule.slayer)(attacker.g34Grants??=[]).push({turn:s.turn,slayer:true});
@@ -7099,7 +7100,7 @@ export function createSixPhotoRules(api){
   break;
  case'g34_BioT952':
   if(v&&own.hand.some(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial))
-   api.discardSelected(s,t.p,[t.uid],t.source,t.p,task('g34_BioPower952',t.p,t.source,{attacker:t.attacker}));
+   api.discardSelected(s,t.p,[t.uid],t.source,t.p,task('g34_BioPower952',t.p,t.source,{attacker:t.attacker,...(t.defender?{defender:t.defender}:{})}));
   break;
  case'g34_ShinobiSearch950':
   if(t.g950Revealed){

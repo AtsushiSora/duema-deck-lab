@@ -18492,5 +18492,172 @@
         }
       ]
     }
+  },
+  "dmr22-054": {
+    "phase": 1563,
+    "faces": [
+      {
+        "name": "黒速 The ZERO",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "侵略ZERO：相手のターンの終わりに、そのターン相手がコストを支払わずにクリーチャーをバトルゾーンに出していたら、このクリーチャーを自分の手札からバトルゾーンに出してもよい。",
+        "race": "ソニック・コマンド/侵略者ZERO",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1315InvasionZero": true,
+      "g1563InvasionDeploy": true
+    }
+  },
+  "dmd35-004": {
+    "phase": 1563,
+    "faces": [
+      {
+        "name": "ZERO ハンド",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "侵略ZERO：相手のターンの終わりに、そのターン相手がコストを支払わずにクリーチャーをバトルゾーンに出していたら、この呪文を自分の手札からコストを支払わずに唱えてもよい。\n相手のクリーチャーを１体、破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1315InvasionZero": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave"
+        }
+      ]
+    }
+  },
+  "dmr13-059": {
+    "phase": 1563,
+    "faces": [
+      {
+        "name": "爆師匠 フィディック",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "バトルゾーンにある自分のドラグナーとドラグハート・クリーチャーすべてのパワーは+3000される。\nウルトラ・セイバー：ドラグナー（自分のドラグナーがバトルゾーンを離れる時、かわりにこのクリーチャーを破壊してもよい）",
+        "race": "ヒューマノイド爆",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g205Aura": {
+        "filter": {
+          "creature": true,
+          "any": [
+            {
+              "race": "ドラグナー"
+            },
+            {
+              "g1451Dragheart": true
+            }
+          ]
+        },
+        "power": 3000
+      },
+      "g571Saver": {
+        "filter": {
+          "race": "ドラグナー"
+        },
+        "ultra": true
+      }
+    }
+  },
+  "dmx08-008": {
+    "phase": 1563,
+    "faces": [
+      {
+        "name": "天頂開戦ゼニス",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 11,
+        "costText": "11",
+        "abilityText": "バトルゾーンにある自分のアンノウンとゼニス両方を種族に持つクリーチャー１体につき、この呪文を唱えるコストを最大２少なくしてもよい。ただし、コストは１より少なくならない。\nアンノウン以外のクリーチャーをすべて破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g212CountDiscount": {
+        "zone": "battle",
+        "filter": {
+          "creature": true,
+          "g228Face": {
+            "type": "creature",
+            "raceAll": [
+              "アンノウン",
+              "ゼニス"
+            ]
+          }
+        },
+        "amount": 2,
+        "optional": true
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "notRace": "アンノウン"
+          }
+        }
+      ],
+      "g1537OptionalSpellDiscount": true
+    }
+  },
+  "dm23-040": {
+    "phase": 1563,
+    "faces": [
+      {
+        "name": "封魔グレミー",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "バイオ・T-自分のグランド・デビルが攻撃して、バトルが始まった時、このカードを自分の手札から捨ててもよい。そうした場合、そのグランド・デビルおよびバトルしている相手クリーチャーを、それぞれ持ち主の手札に戻す。",
+        "race": "グランド・デビル",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g952BioT": {
+        "race": "グランド・デビル",
+        "bounceBattle": true
+      }
+    }
   }
 }

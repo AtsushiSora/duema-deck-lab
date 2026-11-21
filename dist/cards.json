@@ -280202,15 +280202,167 @@
       ],
       "supportBatch": "phase-1562",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr22-054",
+      "name": "黒速 The ZERO",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ソニック・コマンド/侵略者ZERO",
+      "text": "侵略ZERO：相手のターンの終わりに、そのターン相手がコストを支払わずにクリーチャーをバトルゾーンに出していたら、このクリーチャーを自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-054",
+      "limit": 4,
+      "g1315InvasionZero": true,
+      "g1563InvasionDeploy": true,
+      "supportBatch": "phase-1563",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd35-004",
+      "name": "ZERO ハンド",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "侵略ZERO：相手のターンの終わりに、そのターン相手がコストを支払わずにクリーチャーをバトルゾーンに出していたら、この呪文を自分の手札からコストを支払わずに唱えてもよい。\n相手のクリーチャーを１体、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd35-004",
+      "limit": 4,
+      "g1315InvasionZero": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave"
+        }
+      ],
+      "supportBatch": "phase-1563",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-059",
+      "name": "爆師匠 フィディック",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ヒューマノイド爆",
+      "text": "バトルゾーンにある自分のドラグナーとドラグハート・クリーチャーすべてのパワーは+3000される。\nウルトラ・セイバー：ドラグナー（自分のドラグナーがバトルゾーンを離れる時、かわりにこのクリーチャーを破壊してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-059",
+      "limit": 4,
+      "g205Aura": {
+        "filter": {
+          "creature": true,
+          "any": [
+            {
+              "race": "ドラグナー"
+            },
+            {
+              "g1451Dragheart": true
+            }
+          ]
+        },
+        "power": 3000
+      },
+      "g571Saver": {
+        "filter": {
+          "race": "ドラグナー"
+        },
+        "ultra": true
+      },
+      "supportBatch": "phase-1563",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx08-008",
+      "name": "天頂開戦ゼニス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 11,
+      "power": 0,
+      "race": "",
+      "text": "自分の、アンノウンとゼニス両方を種族に持つクリーチャー１体につき、この呪文を唱えるコストを最大２少なくする。ただし、コストは０以下にはならない。\nアンノウン以外のクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx08-008",
+      "limit": 4,
+      "g212CountDiscount": {
+        "zone": "battle",
+        "filter": {
+          "creature": true,
+          "g228Face": {
+            "type": "creature",
+            "raceAll": [
+              "アンノウン",
+              "ゼニス"
+            ]
+          }
+        },
+        "amount": 2,
+        "optional": true
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "notRace": "アンノウン"
+          }
+        }
+      ],
+      "supportBatch": "phase-1563",
+      "supportKind": "effect",
+      "g1537OptionalSpellDiscount": true
+    },
+    {
+      "id": "dm23-040",
+      "name": "封魔グレミー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "グランド・デビル",
+      "text": "バイオ・T-自分のグランド・デビルが攻撃して、バトルが始まった時、このカードを自分の手札から捨ててもよい。そうした場合、そのグランド・デビルおよびバトルしている相手クリーチャーを、それぞれ持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-040",
+      "limit": 4,
+      "g952BioT": {
+        "race": "グランド・デビル",
+        "bounceBattle": true
+      },
+      "supportBatch": "phase-1563",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1562,
+    "phase": 1563,
     "checkedAt": "2026-11-21",
-    "baseCount": 8874,
+    "baseCount": 8879,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8879,
+    "totalCount": 8884,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -305857,6 +306009,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 8874,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1562,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8874,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8879,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
