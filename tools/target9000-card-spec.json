@@ -16667,5 +16667,227 @@
         }
       ]
     }
+  },
+  "promoy5-044": {
+    "phase": 1553,
+    "faces": [
+      {
+        "name": "封魔フェルノダロス",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "Ｗ・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nこのクリーチャーが攻撃する時、自分の手札を１枚捨ててもよい。そうしなかった場合、このクリーチャーを破壊する。",
+        "race": "グランド・デビル",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "手札を1枚捨てる",
+              "defs": [
+                {
+                  "op": "Discard",
+                  "owner": "self",
+                  "n": 1,
+                  "g1308DiscardElse": [
+                    {
+                      "op": "SelfDestroy"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "手札を捨てずに破壊する",
+              "defs": [
+                {
+                  "op": "SelfDestroy"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmrp08-043": {
+    "phase": 1553,
+    "faces": [
+      {
+        "name": "零王の円卓",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nコスト７以下の「ブロッカー」を持つ進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "blocker": true,
+            "max": 7
+          }
+        }
+      ]
+    }
+  },
+  "dm31-051": {
+    "phase": 1553,
+    "faces": [
+      {
+        "name": "魔弾ソード・ランチャー",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "相手のパワー3000以下のクリーチャーを１体破壊するか、バトルゾーンににある相手のクロスギアを１枚選んで墓地に置く。\nナイト・マジック(バトルゾーンに自分のナイトがあれば、この呪文の能力をもう一度使ってもよい)",
+        "race": "ナイト",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "パワー3000以下のクリーチャーを破壊",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "creature": true,
+                    "maxPower": 3000,
+                    "g199Power": true
+                  },
+                  "spell": true
+                }
+              ]
+            },
+            {
+              "label": "クロスギアを墓地に置く",
+              "defs": [
+                {
+                  "op": "Target",
+                  "element": true,
+                  "to": "grave",
+                  "filter": {
+                    "g201Gear": true
+                  },
+                  "spell": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "op": "KnightMagic1118",
+          "defs": [
+            {
+              "op": "Choose",
+              "modes": [
+                {
+                  "label": "パワー3000以下のクリーチャーを破壊",
+                  "defs": [
+                    {
+                      "op": "Target",
+                      "to": "grave",
+                      "filter": {
+                        "creature": true,
+                        "maxPower": 3000,
+                        "g199Power": true
+                      },
+                      "spell": true
+                    }
+                  ]
+                },
+                {
+                  "label": "クロスギアを墓地に置く",
+                  "defs": [
+                    {
+                      "op": "Target",
+                      "element": true,
+                      "to": "grave",
+                      "filter": {
+                        "g201Gear": true
+                      },
+                      "spell": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm09-001": {
+    "phase": 1553,
+    "faces": [
+      {
+        "name": "守護聖天グレナ・ビューレ",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "進化-自分のガーディアン１体の上に置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンにある間、相手が「S・トリガー」を使ったとき、自分の山札の上から１枚目を裏向きのまま自分のシールドに加えてもよい。",
+        "race": "ガーディアン",
+        "powerText": "8500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "race": "ガーディアン"
+      },
+      "breaker": 2,
+      "g699OpponentShieldTrigger": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    }
   }
 }

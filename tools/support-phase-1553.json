@@ -1,0 +1,347 @@
+{
+  "phase": 1553,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8835,
+  "description": "既存の処理を用いて全能力を個別に検証し4種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/34888/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa_old/34888/": "ナイト・マジックで2回目を使う時は、最初と異なるモードを選べる。"
+  },
+  "implementationNotes": [
+    "フェルノダロスは手札を捨てるか自身を破壊するかを選択する既存の選択処理を再利用。手札0枚で捨てられない場合も自身を破壊する。",
+    "円卓はコスト7以下の非進化ブロッカーを墓地から出す。進化・コスト8・ブロッカーなし・墓地利用禁止を除外。"
+  ],
+  "cards": [
+    {
+      "id": "promoy5-044",
+      "name": "封魔フェルノダロス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy5-044",
+      "faces": [
+        {
+          "name": "封魔フェルノダロス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "Ｗ・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nこのクリーチャーが攻撃する時、自分の手札を１枚捨ててもよい。そうしなかった場合、このクリーチャーを破壊する。",
+          "race": "グランド・デビル",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Choose",
+            "modes": [
+              {
+                "label": "手札を1枚捨てる",
+                "defs": [
+                  {
+                    "op": "Discard",
+                    "owner": "self",
+                    "n": 1,
+                    "g1308DiscardElse": [
+                      {
+                        "op": "SelfDestroy"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "手札を捨てずに破壊する",
+                "defs": [
+                  {
+                    "op": "SelfDestroy"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy5-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "ca5425c96a39e2d3aa3ccc767157e3688d8c2c57c9f3434d07dceb656151d2bc",
+        "facesMatched": true,
+        "imageSha256": "9e50d979460e6736d105a7867d1b4450dea93f3e0ca29cfe71543f827a930e0e",
+        "imageBytes": 112127
+      },
+      "sameNameProducts": [
+        "プロモ限定カード 5期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy5-044",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp08-043",
+      "name": "零王の円卓",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-043",
+      "faces": [
+        {
+          "name": "零王の円卓",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nコスト７以下の「ブロッカー」を持つ進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "blocker": true,
+              "max": 7
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "37d2366d8dc5cc16dd4dd84a355e1f58964ca4461673f4b31e2bb1c93e6d92d2",
+        "facesMatched": true,
+        "imageSha256": "1666bcc9378eda6c9f85f3459779308c9364ef37ea5058e851c03ea98d8d517a",
+        "imageBytes": 103786
+      },
+      "sameNameProducts": [
+        "DMEX-13 四強集結→最強直結パック",
+        "DMRP-08 双極篇 拡張パック第４弾 超決戦!バラギアラ!!無敵オラオラ輪廻∞"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-043",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm31-051",
+      "name": "魔弾ソード・ランチャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-051",
+      "faces": [
+        {
+          "name": "魔弾ソード・ランチャー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手のパワー3000以下のクリーチャーを１体破壊するか、バトルゾーンににある相手のクロスギアを１枚選んで墓地に置く。\nナイト・マジック(バトルゾーンに自分のナイトがあれば、この呪文の能力をもう一度使ってもよい)",
+          "race": "ナイト",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "modes": [
+              {
+                "label": "パワー3000以下のクリーチャーを破壊",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "creature": true,
+                      "maxPower": 3000,
+                      "g199Power": true
+                    },
+                    "spell": true
+                  }
+                ]
+              },
+              {
+                "label": "クロスギアを墓地に置く",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "element": true,
+                    "to": "grave",
+                    "filter": {
+                      "g201Gear": true
+                    },
+                    "spell": true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "op": "KnightMagic1118",
+            "defs": [
+              {
+                "op": "Choose",
+                "modes": [
+                  {
+                    "label": "パワー3000以下のクリーチャーを破壊",
+                    "defs": [
+                      {
+                        "op": "Target",
+                        "to": "grave",
+                        "filter": {
+                          "creature": true,
+                          "maxPower": 3000,
+                          "g199Power": true
+                        },
+                        "spell": true
+                      }
+                    ]
+                  },
+                  {
+                    "label": "クロスギアを墓地に置く",
+                    "defs": [
+                      {
+                        "op": "Target",
+                        "element": true,
+                        "to": "grave",
+                        "filter": {
+                          "g201Gear": true
+                        },
+                        "spell": true
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "5420c16c2f4516ad6aaec8fbe008922fad77e8e1785880091fec889f1763e970",
+        "facesMatched": true,
+        "imageSha256": "0766ff99f4ae929a8ee02c08398861a0477e61b71a3e2d5191ff22461241bf7b",
+        "imageBytes": 101282
+      },
+      "sameNameProducts": [
+        "DM-31 戦国編 第4弾 戦国武闘会(グレイテスト・チャンピオン)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-051",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm09-001",
+      "name": "守護聖天グレナ・ビューレ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-001",
+      "faces": [
+        {
+          "name": "守護聖天グレナ・ビューレ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分のガーディアン１体の上に置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンにある間、相手が「S・トリガー」を使ったとき、自分の山札の上から１枚目を裏向きのまま自分のシールドに加えてもよい。",
+          "race": "ガーディアン",
+          "powerText": "8500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "ガーディアン"
+        },
+        "breaker": 2,
+        "g699OpponentShieldTrigger": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "0c690236a1d47627d2e6fcf4da03d6f637f8ed0439d20526364f9faaf010c459",
+        "facesMatched": true,
+        "imageSha256": "bc8bd4bb20c784f34f5c23f293cc9ac4165845b71bcd78d144d63b5d7bb742d5",
+        "imageBytes": 123681
+      },
+      "sameNameProducts": [
+        "DM-09 闘魂編 覇道帝国の絆(インビンシブル・ブラッド)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-001",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "promoy5-044": 4,
+      "dmrp08-043": 4,
+      "dm31-051": 4,
+      "dm09-001": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34888/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/34888/",
+      "sha256": "e9f7b004f3d0bd770b5f274995c0ce010c7f371f77876aa2b46ad08e30db08a1",
+      "result": "ナイト・マジックで2回目を使う時は、最初と異なるモードを選べる。"
+    }
+  ]
+}

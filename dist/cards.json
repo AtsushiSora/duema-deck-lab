@@ -278512,15 +278512,225 @@
       ],
       "supportBatch": "phase-1552",
       "supportKind": "effect"
+    },
+    {
+      "id": "promoy5-044",
+      "name": "封魔フェルノダロス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 9000,
+      "race": "グランド・デビル",
+      "text": "Ｗ・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nこのクリーチャーが攻撃する時、自分の手札を１枚捨ててもよい。そうしなかった場合、このクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy5-044",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "手札を1枚捨てる",
+              "defs": [
+                {
+                  "op": "Discard",
+                  "owner": "self",
+                  "n": 1,
+                  "g1308DiscardElse": [
+                    {
+                      "op": "SelfDestroy"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "手札を捨てずに破壊する",
+              "defs": [
+                {
+                  "op": "SelfDestroy"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1553",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-043",
+      "name": "零王の円卓",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nコスト７以下の「ブロッカー」を持つ進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-043",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "blocker": true,
+            "max": 7
+          }
+        }
+      ],
+      "supportBatch": "phase-1553",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm31-051",
+      "name": "魔弾ソード・ランチャー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "ナイト",
+      "text": "相手のパワー3000以下のクリーチャーを１体破壊するか、バトルゾーンににある相手のクロスギアを１枚選んで墓地に置く。\nナイト・マジック(バトルゾーンに自分のナイトがあれば、この呪文の能力をもう一度使ってもよい)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-051",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "パワー3000以下のクリーチャーを破壊",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "creature": true,
+                    "maxPower": 3000,
+                    "g199Power": true
+                  },
+                  "spell": true
+                }
+              ]
+            },
+            {
+              "label": "クロスギアを墓地に置く",
+              "defs": [
+                {
+                  "op": "Target",
+                  "element": true,
+                  "to": "grave",
+                  "filter": {
+                    "g201Gear": true
+                  },
+                  "spell": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "op": "KnightMagic1118",
+          "defs": [
+            {
+              "op": "Choose",
+              "modes": [
+                {
+                  "label": "パワー3000以下のクリーチャーを破壊",
+                  "defs": [
+                    {
+                      "op": "Target",
+                      "to": "grave",
+                      "filter": {
+                        "creature": true,
+                        "maxPower": 3000,
+                        "g199Power": true
+                      },
+                      "spell": true
+                    }
+                  ]
+                },
+                {
+                  "label": "クロスギアを墓地に置く",
+                  "defs": [
+                    {
+                      "op": "Target",
+                      "element": true,
+                      "to": "grave",
+                      "filter": {
+                        "g201Gear": true
+                      },
+                      "spell": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1553",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm09-001",
+      "name": "守護聖天グレナ・ビューレ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 8500,
+      "race": "ガーディアン",
+      "text": "進化-自分のガーディアン１体の上に置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンにある間、相手が「S・トリガー」を使ったとき、自分の山札の上から１枚目を裏向きのまま自分のシールドに加えてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-001",
+      "limit": 4,
+      "evolution": {
+        "race": "ガーディアン"
+      },
+      "breaker": 2,
+      "g699OpponentShieldTrigger": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1553",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1552,
+    "phase": 1553,
     "checkedAt": "2026-11-21",
-    "baseCount": 8830,
-    "newEffectCards": 5,
+    "baseCount": 8835,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 8835,
+    "totalCount": 8839,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -304027,6 +304237,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 8830,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1552,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8830,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8835,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
