@@ -654,6 +654,7 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g1564Opponent)return s.players[1-p].battle.some(x=>!x.sealed&&!x.faceDown&&matches(s,1-p,x,f.g1564Opponent));
   if(f.g1486ShieldForce){const x=s.players[p].battle.find(x=>x.uid===sourceUid&&(sourceIncarnation===null||(x.incarnation||0)===sourceIncarnation));return !!x&&!!api.findShield(s.players[p],x.g35ShieldForce);}
   if(f.g1485BattleName){const r=f.g1485BattleName,found=s.players[p].battle.some(x=>!x.sealed&&!x.faceDown&&battleNames676(s,x).includes(exactName(r.name)));return r.absent?!found:found;}
   if(f.g1484ZoneCount){const r=f.g1484ZoneCount,who=r.opponent?1-p:p,n=s.players[who][r.zone].filter(y=>matches(s,who,y,r.filter)).length;return(r.min===undefined||n>=r.min)&&(r.max===undefined||n<=r.max);}
@@ -1597,6 +1598,7 @@ export function createSixPhotoRules(api){
   });
  }
  function finishSelect(s,{g585Peek,...t}){
+  if(t.g1564SelectedPower!==undefined){for(const r of t.rows||[]){const y=s.players[r.p].battle.find(x=>x.uid===r.uid&&!x.sealed&&api.isCreature(s,x));if(y)(y.powerModifiers??=[]).push({amount:t.g1564SelectedPower,expires:'end',who:s.active,...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});}api.powerCleanup(s);return;}
   if(t.g1255HasteEntrant){
    const [selected]=t.rows||[];
    if(!selected||!s.players[t.p].grave.some(x=>x.uid===selected.uid))return;

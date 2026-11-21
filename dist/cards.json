@@ -280354,15 +280354,185 @@
       },
       "supportBatch": "phase-1563",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-088",
+      "name": "深夜の怪電波",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを２体まで選ぶ。このターン、それらのパワーをそれぞれ－2000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-088",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "opponent",
+          "n": 2,
+          "optional": true,
+          "g173Targets": true,
+          "g193Select": true,
+          "filter": {
+            "creature": true
+          },
+          "g1564SelectedPower": -2000,
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1564",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm28-037",
+      "name": "パオルネイチャー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "エメラルド・モンスター",
+      "text": "シールド・フォース(このクリーチャーをバトルゾーンに出す時、自分のシールドを１枚選んでもよい。そのシールドがシールドゾーンにある間、このクリーチャーは次の能力を得る。)\nこのクリーチャーのパワーは+3000され、「W・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-037",
+      "limit": 4,
+      "g1486ShieldForce": {
+        "power": 3000,
+        "breaker": 2
+      },
+      "supportBatch": "phase-1564",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-037",
+      "name": "森獣ガロウネイチャー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "エメラルド・モンスター/サムライ",
+      "text": "バトルゾーンに相手のナイトがある時、このクリーチャーのパワーは+6000され、「W・ブレイカー」を得る。\nバトルゾーンに相手のナイトがあり、このクリーチャーがバトルゾーンを離れる時、このクリーチャーはバトルゾーンを離れるかわりにとどまる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-037",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "g1564Opponent": {
+            "race": "ナイト"
+          }
+        },
+        "grants": {
+          "power": 6000,
+          "breaker": 2,
+          "g577Stay": {
+            "anyPower": true
+          }
+        }
+      },
+      "supportBatch": "phase-1564",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-005",
+      "name": "拷問の魔黒スネーク・テイルコート",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 8000,
+      "race": "ゴースト",
+      "text": "進化-自分のゴースト１体の上に置く。\nこのクリーチャーが攻撃する時、自分の手札を１枚捨ててもよい。そうした場合、そのカードよりコストが小さい相手のクリーチャーを１体破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-005",
+      "limit": 4,
+      "evolution": {
+        "race": "ゴースト"
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "DiscardFor248",
+          "defs": [
+            {
+              "op": "DiscardCost655",
+              "g835Creature": true,
+              "g1048AnyDiscardedFace": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1564",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx24-s01",
+      "name": "覇王ブラックモナーク",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 17000,
+      "race": "デーモン・コマンド/ダークロード",
+      "text": "進化：自分のデーモン・コマンド１体の上に置く。\nT・ブレイカー\nこのクリーチャーが攻撃する時、闇の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。その後、闇のクリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx24-s01",
+      "limit": 4,
+      "evolution": {
+        "race": "デーモン・コマンド"
+      },
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "color": "闇"
+          }
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "color": "闇"
+          }
+        }
+      ],
+      "supportBatch": "phase-1564",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1563,
+    "phase": 1564,
     "checkedAt": "2026-11-21",
-    "baseCount": 8879,
+    "baseCount": 8884,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8884,
+    "totalCount": 8889,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -306023,6 +306193,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8879,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1563,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8879,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8884,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
