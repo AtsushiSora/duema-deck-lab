@@ -13660,5 +13660,172 @@
         }
       ]
     }
+  },
+  "dmex02-002": {
+    "phase": 1538,
+    "faces": [
+      {
+        "name": "マツぽっくん",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーは、召喚できない。\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置く。\n相手がクリーチャーを選ぶ時、自分の自然のコスト２以下のクリーチャーは選べない。（ただし、そのクリーチャーを攻撃またはブロックしてもよい）",
+        "race": "グランセクト",
+        "powerText": "13000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g475NoSummon": true,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "color": "自然",
+            "g562MaxCost": 2
+          },
+          "grants": {
+            "untargetable": true
+          }
+        }
+      ]
+    }
+  },
+  "dmrp02-030": {
+    "phase": 1538,
+    "faces": [
+      {
+        "name": "ウラNICE",
+        "typeText": "呪文",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "スーパー・S・トリガー スーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にoB 能力を与える）\nカードを１枚引く。\noB バトルゾーンとマナゾーンにある自分のジョーカーズの合計枚数以下のコストを持つクリーチャーをすべて破壊する。",
+        "race": "ジョーカーズ",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "superTrigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "spell": true
+        }
+      ],
+      "g437Super": [
+        {
+          "op": "JokerSweep1538",
+          "spell": true
+        }
+      ]
+    }
+  },
+  "promoy16-026": {
+    "phase": 1538,
+    "faces": [
+      {
+        "name": "ルクショップ・チェサイズ",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "スーパー・S・トリガースーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にoB 能力を与える）\n自分の山札の上から２枚を見る。そのうちの１枚を自分の手札に加え、もう１枚を裏向きにして、新しいシールドとして自分のシールドゾーンに加える。\noB 次の自分のターンのはじめまで、自分の手札に加える光のシールドカードすべてに「S・トリガー」を与える。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "superTrigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "spell": true,
+          "stages": [
+            {
+              "to": "hand",
+              "n": 1
+            },
+            {
+              "to": "shields",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "g437Super": [
+        {
+          "op": "LightShieldTrigger1538",
+          "spell": true
+        }
+      ]
+    }
+  },
+  "dmx22b-160": {
+    "phase": 1538,
+    "faces": [
+      {
+        "name": "偉大なる感謝",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "",
+        "race": "スペシャル・サンクス",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "madoNothing"
+    }
+  },
+  "dmx12b-021": {
+    "phase": 1538,
+    "faces": [
+      {
+        "name": "偉大なる無駄",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "",
+        "race": "スペシャル・クライマックス",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "madoNothing"
+    }
   }
 }

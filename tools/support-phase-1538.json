@@ -1,0 +1,302 @@
+{
+  "phase": 1538,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8764,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "implementationNotes": [
+    "能力なしの呪文2種類は公式画像でもルール能力がないことを確認。フレーバー・感謝状を能力に変換せず、既存の効果なし呪文処理を利用。",
+    "マツぽっくんは召喚禁止を保持し、インフェルノ・サインで出す場合と自然・コスト2以下の選択禁止を個別確認。",
+    "スーパー・S・トリガーは実際の最後のシールドから使った場合のみ追加効果を得る。光のS・トリガー付与は面ごとの文明を参照。"
+  ],
+  "cards": [
+    {
+      "id": "dmex02-002",
+      "name": "マツぽっくん",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-002",
+      "faces": [
+        {
+          "name": "マツぽっくん",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーは、召喚できない。\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置く。\n相手がクリーチャーを選ぶ時、自分の自然のコスト２以下のクリーチャーは選べない。（ただし、そのクリーチャーを攻撃またはブロックしてもよい）",
+          "race": "グランセクト",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g475NoSummon": true,
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ],
+        "g208Auras": [
+          {
+            "filter": {
+              "color": "自然",
+              "g562MaxCost": 2
+            },
+            "grants": {
+              "untargetable": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex02-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "246a917de1da89d4a78e6b09b63a6ebc181de737549e696aa4f4b33affc3bdc8",
+        "facesMatched": true,
+        "imageSha256": "e5d82a8f460c7c4bc85d20e7cf5d9d4e95127a0d723437c916a6791f916b9233",
+        "imageBytes": 138566
+      },
+      "sameNameProducts": [
+        "DMEX-02 デュエマクエスト・パック ～伝説の最強戦略12～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-002",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp02-030",
+      "name": "ウラNICE",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-030",
+      "faces": [
+        {
+          "name": "ウラNICE",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "スーパー・S・トリガー スーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にoB 能力を与える）\nカードを１枚引く。\noB バトルゾーンとマナゾーンにある自分のジョーカーズの合計枚数以下のコストを持つクリーチャーをすべて破壊する。",
+          "race": "ジョーカーズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "spell": true
+          }
+        ],
+        "g437Super": [
+          {
+            "op": "JokerSweep1538",
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "5c5764fbce03167779e2d7a4486eff20932f5fd556883c3c59cf7b16bc40ac21",
+        "facesMatched": true,
+        "imageSha256": "d34d99f4caab966420b0dbfe3957a4ed658a6364c5d6efe2687635b616f4d32a",
+        "imageBytes": 111406
+      },
+      "sameNameProducts": [
+        "DMSD-04 ジョーカーズ・弾銃炸裂・スタートデッキ",
+        "DMSP-01 ステキ！カンペキ！！ジョーデッキーBOX",
+        "DMRP-02 拡張パック新2弾 マジでB・A・Dなラビリンス!!",
+        "DMBD-03 超メガ盛りプレミアム７デッキ 集結!! 炎のＪ・Ｏ・Ｅカーズ"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-030",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "promoy16-026",
+      "name": "ルクショップ・チェサイズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-026",
+      "faces": [
+        {
+          "name": "ルクショップ・チェサイズ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スーパー・S・トリガースーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にoB 能力を与える）\n自分の山札の上から２枚を見る。そのうちの１枚を自分の手札に加え、もう１枚を裏向きにして、新しいシールドとして自分のシールドゾーンに加える。\noB 次の自分のターンのはじめまで、自分の手札に加える光のシールドカードすべてに「S・トリガー」を与える。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 2,
+            "spell": true,
+            "stages": [
+              {
+                "to": "hand",
+                "n": 1
+              },
+              {
+                "to": "shields",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "g437Super": [
+          {
+            "op": "LightShieldTrigger1538",
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy16-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "a1477bd829fb000cc2ff2cb9c0baa9f19cc210155b26981d1b6320c225281696",
+        "facesMatched": true,
+        "imageSha256": "aba8896fb5c6fe8c62265654eb08a1a69a8861b6b6d6f4b71a76d254fbf9af5a",
+        "imageBytes": 130410
+      },
+      "sameNameProducts": [
+        "DMRP-02 拡張パック新2弾 マジでB・A・Dなラビリンス!!",
+        "プロモ限定カード 16期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-026",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmx22b-160",
+      "name": "偉大なる感謝",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-160",
+      "faces": [
+        {
+          "name": "偉大なる感謝",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "",
+          "race": "スペシャル・サンクス",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "madoNothing"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx22b-160.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "6385f52d5b176d5992da2cc00d018fa6b0f7d1f09b5c9005df56cec601a9e385",
+        "facesMatched": true,
+        "imageSha256": "fab00f8681c075af865b6362a88e24726c6f05154356b9588bb400295b3b11b5",
+        "imageBytes": 133073
+      },
+      "sameNameProducts": [
+        "DMX-22 革命 超ブラック・ボックス・パック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-160",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmx12b-021",
+      "name": "偉大なる無駄",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12b-021",
+      "faces": [
+        {
+          "name": "偉大なる無駄",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "",
+          "race": "スペシャル・クライマックス",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "madoNothing"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx12b-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "5376000a48eccbdc3e671d515db82b9bfb3af433c6a28c2033fd4e8b0415fb9f",
+        "facesMatched": true,
+        "imageSha256": "fd461ad7bcd3a60d8d01dca9fabe5d17aa4db1fd829c0afcc8de0e36a33a84d0",
+        "imageBytes": 113830
+      },
+      "sameNameProducts": [
+        "DMX-12 エピソード2 ブラック・ボックス・パック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12b-021",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex02-002": 4,
+      "dmrp02-030": 4,
+      "promoy16-026": 4,
+      "dmx22b-160": 4,
+      "dmx12b-021": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    }
+  ]
+}

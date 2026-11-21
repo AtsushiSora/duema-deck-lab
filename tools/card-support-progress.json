@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-21",
   "catalogueNames": 11824,
-  "supportedNames": 8764,
-  "pendingNames": 3060,
-  "phase": 1537,
-  "added": 3,
+  "supportedNames": 8769,
+  "pendingNames": 3055,
+  "phase": 1538,
+  "added": 5,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1758,
+    "クリーチャー": 1757,
     "NEOクリーチャー": 69,
-    "呪文": 368,
+    "呪文": 364,
     "GRクリーチャー": 19,
     "G-NEOクリーチャー": 26,
     "タマシード": 37,
@@ -223,22 +223,21 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 687,
-    "未対応の能力文": 2213,
+    "未対応の能力文": 2212,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
     "未対応のD2フィールド能力": 37,
     "複雑な進化条件": 12,
     "未対応のスリリング・スリー効果": 2,
-    "未対応のスーパー・S・トリガー能力": 6,
     "未対応の選択能力": 12,
     "コスト・文明の個別処理が必要": 2,
+    "未対応のスーパー・S・トリガー能力": 4,
     "未対応のスペース・チャージ条件": 4,
     "未対応の攻撃時能力": 1,
     "未対応のレインボーナス効果": 1,
     "既存名の別表記": 5,
     "未対応の進化V能力": 15,
-    "呪文の効果がありません": 2,
     "未対応のスペース・チャージ効果": 2,
     "未対応の光臨条件": 2,
     "未対応のアバレチェーン": 3,
@@ -358,20 +357,6 @@
         "name": "楯神の賢者レオルド"
       }
     ],
-    "未対応のスーパー・S・トリガー能力": [
-      {
-        "id": "dmrp02-030",
-        "name": "ウラNICE"
-      },
-      {
-        "id": "dmrp03-023",
-        "name": "ジバボン３兄弟"
-      },
-      {
-        "id": "dmrp06-036",
-        "name": "スパーク×スパーク"
-      }
-    ],
     "未対応の選択能力": [
       {
         "id": "dmr03-026",
@@ -394,6 +379,20 @@
       {
         "id": "dm23ex2-036",
         "name": "魅惑のロイヤル・エイリアン"
+      }
+    ],
+    "未対応のスーパー・S・トリガー能力": [
+      {
+        "id": "dmrp03-023",
+        "name": "ジバボン３兄弟"
+      },
+      {
+        "id": "dmrp06-036",
+        "name": "スパーク×スパーク"
+      },
+      {
+        "id": "dm26rp3-019",
+        "name": "ドドンガ轟キャイエス"
       }
     ],
     "未対応のスペース・チャージ条件": [
@@ -448,16 +447,6 @@
       {
         "id": "dm22-021",
         "name": "光彗星アステロイド・マイン"
-      }
-    ],
-    "呪文の効果がありません": [
-      {
-        "id": "dmx22b-160",
-        "name": "偉大なる感謝"
-      },
-      {
-        "id": "dmx12b-021",
-        "name": "偉大なる無駄"
       }
     ],
     "未対応のスペース・チャージ効果": [
@@ -512822,11 +512811,180 @@
         "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
       ],
       "next": "目標9000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
+    },
+    {
+      "phase": 1538,
+      "kind": "registration-toward-9000",
+      "checkedAt": "2026-11-21T01:00:08.865Z",
+      "baseline": "e5ceb86788e78f880cc15c19aee32f42d967d1d7",
+      "manifest": "tools/support-phase-1538.json",
+      "status": "verified-local",
+      "before": 8764,
+      "supported": 8769,
+      "pending": 3055,
+      "added": [
+        {
+          "id": "dmex02-002",
+          "name": "マツぽっくん"
+        },
+        {
+          "id": "dmrp02-030",
+          "name": "ウラNICE"
+        },
+        {
+          "id": "promoy16-026",
+          "name": "ルクショップ・チェサイズ"
+        },
+        {
+          "id": "dmx22b-160",
+          "name": "偉大なる感謝"
+        },
+        {
+          "id": "dmx12b-021",
+          "name": "偉大なる無駄"
+        }
+      ],
+      "duplicates": 0,
+      "results": {
+        "focused": {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1538-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.406,
+          "log": "tmp/duema-phase-1538/focused.log",
+          "passed": 81,
+          "failed": 0
+        },
+        "related": {
+          "name": "related",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=4",
+            "tests/standard1537-effects.test.mjs",
+            "tests/standard437-effects.test.mjs",
+            "tests/standard475-effects.test.mjs",
+            "tests/standard539-effects.test.mjs",
+            "tests/standard1339-effects.test.mjs",
+            "tests/standard276-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 37.526,
+          "log": "tmp/duema-phase-1538/related.log",
+          "passed": 310,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.24,
+          "log": "tmp/duema-phase-1538/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.877,
+          "log": "tmp/duema-phase-1538/audit.log"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tools/verify-target9000.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.33,
+          "log": "tmp/duema-phase-1538/invariants.log"
+        }
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1538-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.595,
+          "log": "tmp/duema-phase-1538/focused.log"
+        },
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1538-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.402,
+          "log": "tmp/duema-phase-1538/focused.log"
+        },
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1538-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.502,
+          "log": "tmp/duema-phase-1538/focused.log"
+        }
+      ],
+      "testCorrections": [],
+      "totalTestsPassed": 391,
+      "reason": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+      "remaining": [
+        "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
+      ],
+      "next": "目標9000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1537,
-    "nextPhase": 1538,
+    "lastVerifiedPhase": 1538,
+    "nextPhase": 1539,
     "workInProgress": null,
     "nextCandidates": [
       "公式照合済みの通常能力を持たないGRクリーチャー",
@@ -512835,7 +512993,7 @@
     ],
     "steps": [
       "開始時にHEAD・作業差分・ステージ・既存プロセス・AGENTS・進捗を確認。",
-      "実データ8764種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8769種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "再開時は既存プロセス・最新コミット・作業ツリーを確認し、tools/verify-target8500.mjsとtools/target8500-verification.jsonを参照。ユーザー保留項目は既存記録を維持。",
       "個別の残件2件はユーザー保留。再開指示まで追加調査・問い合わせ送信をしない。",
       "一括npm testを再実行せず、公開候補の未集約範囲だけ分割検証する。過去の固定ソースの合格と現版の合格を区別する。",
@@ -512916,14 +513074,14 @@
     ],
     "restartSteps": [
       "公開済みの版はb40ae0df (v0.722.1 / engine0.602.1 / 8074種類)。Pages・Netlifyを同じ版に更新済み。最新HEAD・差分・ステージ・既存プロセスを最初に確認。",
-      "実データ8764種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8769種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "再開時は既存プロセス・最新コミット・作業ツリーを確認し、tools/verify-target8500.mjsとtools/target8500-verification.jsonを参照。ユーザー保留項目は既存記録を維持。",
       "既存8072定義は深い比較で不変。カードID・保存形式・保存済みデッキ・対戦履歴を維持。",
       "個別の残件2件と問い合わせ案はユーザー指示「後回しにしよう」で保留。再開指示があるまでこの2件の調査・送信を行わない。",
       "No13長時間検証はengine0.601.0の固定ソースで完了済み。今回のengine0.602.0の全面検証には数えない。必要な未集約項目は対象を特定し、細かく分割して確認する。",
       "Netlifyは手動反映専用。workflow_dispatchだけ、GitHub pushフック停止、stop_builds=trueを維持。通常のカード追加pushでは反映しない。今回の公開に保留・未検証の解消は含めない。"
     ],
-    "registrationStatus": "ユーザーの新目標9000種類に向けて通常登録を再開。現在8764種類、残り236種類。automationはPAUSEDのまま。",
+    "registrationStatus": "ユーザーの新目標9000種類に向けて通常登録を再開。現在8769種類、残り231種類。automationはPAUSEDのまま。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [],
     "printVerificationPending": [
@@ -513035,10 +513193,10 @@
     "registrationTarget": {
       "target": 9000,
       "startCount": 8500,
-      "currentCount": 8764,
-      "remaining": 236,
+      "currentCount": 8769,
+      "remaining": 231,
       "status": "active",
-      "phase": 1537
+      "phase": 1538
     },
     "deferredRegistrationCandidates": [
       {
@@ -565041,10 +565199,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1537,
+    "phase": 1538,
     "threshold": 9000,
-    "supportedNames": 8764,
-    "pendingNames": 3060,
+    "supportedNames": 8769,
+    "pendingNames": 3055,
     "checkedAt": "2026-11-21",
     "registrationStopped": false,
     "automationId": "duema-deck-lab",

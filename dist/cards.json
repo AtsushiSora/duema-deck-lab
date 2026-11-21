@@ -275738,15 +275738,165 @@
       ],
       "supportBatch": "phase-1537",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex02-002",
+      "name": "マツぽっくん",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 13000,
+      "race": "グランセクト",
+      "text": "このクリーチャーは、召喚できない。\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置く。\n相手がクリーチャーを選ぶ時、自分の自然のコスト２以下のクリーチャーは選べない。（ただし、そのクリーチャーを攻撃またはブロックしてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-002",
+      "limit": 4,
+      "g475NoSummon": true,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "color": "自然",
+            "g562MaxCost": 2
+          },
+          "grants": {
+            "untargetable": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1538",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp02-030",
+      "name": "ウラNICE",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "ジョーカーズ",
+      "text": "スーパー・S・トリガー スーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にoB 能力を与える）\nカードを１枚引く。\noB バトルゾーンとマナゾーンにある自分のジョーカーズの合計枚数以下のコストを持つクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-030",
+      "limit": 4,
+      "superTrigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "spell": true
+        }
+      ],
+      "g437Super": [
+        {
+          "op": "JokerSweep1538",
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1538",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy16-026",
+      "name": "ルクショップ・チェサイズ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "スーパー・S・トリガースーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にoB 能力を与える）\n自分の山札の上から２枚を見る。そのうちの１枚を自分の手札に加え、もう１枚を裏向きにして、新しいシールドとして自分のシールドゾーンに加える。\noB 次の自分のターンのはじめまで、自分の手札に加える光のシールドカードすべてに「S・トリガー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-026",
+      "limit": 4,
+      "superTrigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "spell": true,
+          "stages": [
+            {
+              "to": "hand",
+              "n": 1
+            },
+            {
+              "to": "shields",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "g437Super": [
+        {
+          "op": "LightShieldTrigger1538",
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1538",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx22b-160",
+      "name": "偉大なる感謝",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "race": "スペシャル・サンクス",
+      "text": "",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-160",
+      "limit": 4,
+      "effect": "madoNothing",
+      "supportBatch": "phase-1538",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx12b-021",
+      "name": "偉大なる無駄",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "race": "スペシャル・クライマックス",
+      "text": "",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12b-021",
+      "limit": 4,
+      "effect": "madoNothing",
+      "supportBatch": "phase-1538",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1537,
+    "phase": 1538,
     "checkedAt": "2026-11-21",
-    "baseCount": 8761,
-    "newEffectCards": 3,
+    "baseCount": 8764,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8764,
+    "totalCount": 8769,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -301043,6 +301193,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8761,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1537,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8761,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 8764,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

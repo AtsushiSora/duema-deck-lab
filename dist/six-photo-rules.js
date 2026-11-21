@@ -6036,6 +6036,12 @@ export function createSixPhotoRules(api){
   ]);
   break;
  }
+ case'g34_JokerSweep1538':
+  start(s,t,[{op:'Sweep',both:true,to:'grave',filter:{creature:true,max:jokerCount539(s,t.p)},spell:true}]);
+  break;
+ case'g34_LightShieldTrigger1538':
+  (s.extLimits??=[]).push({kind:'g1538LightShieldTriggers',player:t.p,expires:'start',who:t.p,spellSource:t.source,spellCost:cost(card(t.source))});
+  break;
  case'g34_BenzoSide1339':{
   (s.extLimits??=[]).push({kind:'g1339ShieldTriggers',expires:'start',who:t.p,controller:t.p});
   const frame=s.extSpells?.find(f=>f.inst.uid===t.uid);
@@ -8718,6 +8724,7 @@ export function createSixPhotoRules(api){
  destroyStay1193:(s,p)=>(s.extLimits||[]).some(l=>l.kind==='g1193DestroyStay'&&l.player===p&&
   !api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})),
  shieldTrigger(s,p,x,c){
+  if(colors(c).includes('光')&&(s.extLimits||[]).some(l=>l.kind==='g1538LightShieldTriggers'&&l.player===p&&!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})))return true;
   if(c.type==='creature'&&colors(c).includes('光')&&s.players[p].battle.some(y=>{
    if(y.sealed||y.faceDown||!card(y).g1266LightCreatureShieldTrigger||s.g20LeavingUids?.includes(y.uid))return false;
    const max=effective(y,s).g1266LightCreatureShieldTrigger;
