@@ -279514,15 +279514,183 @@
       ],
       "supportBatch": "phase-1558",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx11-003",
+      "name": "ガイアール・ディエス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "レッド・コマンド・ドラゴン/ハンター",
+      "text": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n自分の手札に加えるシールドカードが、コスト５以下の火のハンターであれば、そのカードは「S・トリガー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-003",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g1557ShieldTrigger": {
+        "civs": [
+          "火"
+        ],
+        "race": "ハンター",
+        "max": 5
+      },
+      "supportBatch": "phase-1559",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex1-001",
+      "name": "マーシャル・プリンス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "マジック・スプラッシュ・クイーン",
+      "text": "S・トリガー S・トリガー\nブロッカーブロッカー\n自分のシールドゾーンにあるスプラッシュ・クイーンに「S・トリガー」を与える。\n自分のスプラッシュ・クイーン・クリーチャーが出た時、相手のクリーチャーを１体選び、タップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-001",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "g1557ShieldTrigger": {
+        "race": "スプラッシュ・クイーン"
+      },
+      "g251EntryDraw": {
+        "selfAlways": true,
+        "filter": {
+          "creature": true,
+          "race": "スプラッシュ・クイーン"
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1559",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy19-021",
+      "name": "ナチュラ・スコーピオン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 3000,
+      "race": "ジャイアント・インセクト",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、クリーチャーを１体選び、タップして持ち主のマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy19-021",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "to": "mana",
+          "toOwnerMana": true,
+          "tapped": true,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1559",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy11-073",
+      "name": "宿命のディスティニー・リュウセイ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "キング・コマンド・ドラゴン/ハンター",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中から無色のカードを１枚選び、相手に見せてから、自分の手札に加えてもよい。その後、山札をシャッフルする。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy11-073",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "n": 0,
+          "stages": [
+            {
+              "to": "hand",
+              "n": 1,
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "noColor": true
+              }
+            }
+          ],
+          "rest": "shuffle"
+        }
+      ],
+      "supportBatch": "phase-1559",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmc55-001",
+      "name": "超神龍ルナーズベルグ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 11000,
+      "race": "ドラゴン・ゾンビ",
+      "text": "進化-自分のドラゴン１体の上に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーが破壊された時、コスト７以下の進化ではない闇のクリーチャーを２体まで、自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc55-001",
+      "limit": 4,
+      "evolution": {
+        "category": "ドラゴン"
+      },
+      "breaker": 2,
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "color": "闇",
+            "max": 7
+          }
+        }
+      ],
+      "supportBatch": "phase-1559",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1558,
+    "phase": 1559,
     "checkedAt": "2026-11-21",
-    "baseCount": 8855,
+    "baseCount": 8860,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8860,
+    "totalCount": 8865,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -305113,6 +305281,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8855,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1558,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8855,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8860,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
