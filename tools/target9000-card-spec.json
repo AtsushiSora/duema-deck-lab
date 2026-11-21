@@ -20035,5 +20035,169 @@
         }
       ]
     }
+  },
+  "dm23ex2-027": {
+    "phase": 1572,
+    "faces": [
+      {
+        "name": "禁断樹幹 WO-ZERO",
+        "typeText": "禁断クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "T・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から４枚を見て、そのうちの１枚をマナゾーンに置く。その後、このクリーチャーに封印を３つ付ける。\n（カードを封印するには、自分の山札の上から１枚目を裏向きのままそのカードの上に置く。コマンドが出た時、その持ち主はそれと同じ文明を持つ自身のカードから封印を１つ、墓地に置く。封印されているクリーチャーは無視される）",
+        "race": "禁断/フィオナ・ガーディアン",
+        "powerText": "12345",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 4,
+          "stages": [
+            {
+              "to": "mana",
+              "n": 1
+            }
+          ],
+          "rest": "top",
+          "after": [
+            {
+              "op": "Custom",
+              "name": "sealSelf",
+              "n": 3
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmrp16-042": {
+    "phase": 1572,
+    "faces": [
+      {
+        "name": "「時空さえも突き抜けろ！」",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "ビビッドロー [ff03]（自分のターン中、攻撃の前にこの呪文をドローした時、表向きにしてもよい。そうしたら、このターンこの呪文を[ff03]支払って唱えてもよい）\nコスト４以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。このターン、そのクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+        "race": "美孔麗王国",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1335VividDraw": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "max": 4
+          },
+          "grant": {
+            "speedAttacker": true
+          }
+        }
+      ]
+    }
+  },
+  "dm27-054": {
+    "phase": 1572,
+    "faces": [
+      {
+        "name": "護精霊騎ヴァルチャー",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/自然",
+        "civilizations": [
+          "光",
+          "自然"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nO・ドライブ-水x１と闇x１と火x１(このクリーチャーを召喚する時、自分のマナゾーンでさらに水１枚と闇１枚と火１枚をタップしてもよい。そうした場合、次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を自分のマナゾーンに置き、カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+        "race": "アーク・セラフィム/セイント・ヘッド",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1439ODrive": {
+        "options": [
+          {
+            "colors": [
+              "水",
+              "闇",
+              "火"
+            ],
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              },
+              {
+                "op": "Select",
+                "origin": "mana",
+                "to": "hand",
+                "n": 1,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dm31-026": {
+    "phase": 1572,
+    "faces": [
+      {
+        "name": "賢弓 トライ・スネーク",
+        "typeText": "クロスギア",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "クロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーのパワーは+2000される。\nこれをクロスしたクリーチャーが攻撃する時、カードを３枚引き、その後、自分の手札を３枚、好きな順序で山札の一番下に置く。",
+        "race": "サムライ",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "gear",
+      "g123CrossPower": 2000,
+      "g931CrossAttack": [
+        {
+          "op": "Draw",
+          "n": 3
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "deck",
+          "n": 3,
+          "title": "山札の下に置く手札3枚を順序どおりに選ぶ"
+        }
+      ]
+    }
   }
 }
