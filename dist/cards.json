@@ -276485,15 +276485,201 @@
       ],
       "supportBatch": "phase-1541",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-046",
+      "name": "ジャッジ・チュリス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 4000,
+      "race": "ビートジョッキー",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）P自分と相手のクリーチャーをそれぞれ１体ずつ選ぶ。その２体をバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-046",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Fight240"
+        }
+      ],
+      "supportBatch": "phase-1542",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-032",
+      "name": "青守銀 シャイン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2500,
+      "race": "メタリカ",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）P次の自分のターンのはじめまで、自分のクリーチャー１体に「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-032",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g521UntilStart": true,
+          "grant": {
+            "blocker": true
+          },
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1542",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-036",
+      "name": "南国別荘 クジハウス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 2000,
+      "race": "ムートピア",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）Pバトルゾーンにある、コスト７以下のカードを１枚選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-036",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "BattleCardMove579",
+          "anyOwner": true,
+          "max": 7,
+          "to": "hand"
+        }
+      ],
+      "supportBatch": "phase-1542",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex03-s03",
+      "name": "ナゾの光・リリアング",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "メタリカ/スペシャルズ",
+      "text": "キズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）\nP光のコスト３以下の呪文を１枚、コストを支払わずに自分の手札から唱えてもよい。\nエスケープ（このクリーチャーが破壊される時、墓地に置くかわりに自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-s03",
+      "limit": 4,
+      "escape": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "max": 3,
+          "spellOnly": true,
+          "g556SpellColor": "光"
+        }
+      ],
+      "supportBatch": "phase-1542",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp3-005",
+      "name": "蒸光逆夢 リリオクパング",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 10500,
+      "race": "ディスペクター/メタリカ/ムートピア/スペシャルズ",
+      "text": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nブロッカー ブロッカー\nW・ブレイカー\nキズナ（このクリーチャーが出た時、自分のクリーチャーの[P]能力を１つ使う）\n[P]カードを１枚引く。その後、コスト６以下の呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体選び、持ち主の手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-005",
+      "limit": 4,
+      "exLife": true,
+      "blocker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "hand",
+          "toOwnerHand": true,
+          "optional": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "max": 6,
+          "spellOnly": true
+        }
+      ],
+      "supportBatch": "phase-1542",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1541,
+    "phase": 1542,
     "checkedAt": "2026-11-21",
-    "baseCount": 8779,
+    "baseCount": 8784,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8784,
+    "totalCount": 8789,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -301846,6 +302032,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8779,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1541,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8779,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8784,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

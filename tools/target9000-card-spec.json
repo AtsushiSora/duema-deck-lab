@@ -14469,5 +14469,206 @@
         }
       ]
     }
+  },
+  "dmrp04s-046": {
+    "phase": 1542,
+    "faces": [
+      {
+        "name": "ジャッジ・チュリス",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）P自分と相手のクリーチャーをそれぞれ１体ずつ選ぶ。その２体をバトルさせる。",
+        "race": "ビートジョッキー",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Fight240"
+        }
+      ]
+    }
+  },
+  "dmrp04s-032": {
+    "phase": 1542,
+    "faces": [
+      {
+        "name": "青守銀 シャイン",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）P次の自分のターンのはじめまで、自分のクリーチャー１体に「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+        "race": "メタリカ",
+        "powerText": "2500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g521UntilStart": true,
+          "grant": {
+            "blocker": true
+          },
+          "filter": {
+            "creature": true
+          }
+        }
+      ]
+    }
+  },
+  "dmrp04s-036": {
+    "phase": 1542,
+    "faces": [
+      {
+        "name": "南国別荘 クジハウス",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）Pバトルゾーンにある、コスト７以下のカードを１枚選び、持ち主の手札に戻す。",
+        "race": "ムートピア",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "BattleCardMove579",
+          "anyOwner": true,
+          "max": 7,
+          "to": "hand"
+        }
+      ]
+    }
+  },
+  "dmex03-s03": {
+    "phase": 1542,
+    "faces": [
+      {
+        "name": "ナゾの光・リリアング",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "キズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）\nP光のコスト３以下の呪文を１枚、コストを支払わずに自分の手札から唱えてもよい。\nエスケープ（このクリーチャーが破壊される時、墓地に置くかわりに自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない）",
+        "race": "メタリカ/スペシャルズ",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "escape": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "max": 3,
+          "spellOnly": true,
+          "g556SpellColor": "光"
+        }
+      ]
+    }
+  },
+  "dm26rp3-005": {
+    "phase": 1542,
+    "faces": [
+      {
+        "name": "蒸光逆夢 リリオクパング",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nブロッカー ブロッカー\nW・ブレイカー\nキズナ（このクリーチャーが出た時、自分のクリーチャーの[P]能力を１つ使う）\n[P]カードを１枚引く。その後、コスト６以下の呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体選び、持ち主の手札に戻してもよい。",
+        "race": "ディスペクター/メタリカ/ムートピア/スペシャルズ",
+        "powerText": "10500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "exLife": true,
+      "blocker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "hand",
+          "toOwnerHand": true,
+          "optional": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Kizuna1540"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "max": 6,
+          "spellOnly": true
+        }
+      ]
+    }
   }
 }

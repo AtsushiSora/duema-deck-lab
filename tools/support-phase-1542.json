@@ -1,0 +1,343 @@
+{
+  "phase": 1542,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8784,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31596/"
+  ],
+  "implementationNotes": [
+    "通常キズナの発生源参照と既存のバトル、次の自分の開始までの付与、バトルゾーンの物理カード移動、呪文面に絞った無料詠唱を使用。",
+    "リリアングのエスケープ、リリオクパングのEXライフと攻撃時の任意バウンスも省略せず実装。"
+  ],
+  "cards": [
+    {
+      "id": "dmrp04s-046",
+      "name": "ジャッジ・チュリス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-046",
+      "faces": [
+        {
+          "name": "ジャッジ・チュリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）P自分と相手のクリーチャーをそれぞれ１体ずつ選ぶ。その２体をバトルさせる。",
+          "race": "ビートジョッキー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Kizuna1540"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "Fight240"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "55de12f26c6301bc5ede121f662b8c06d5444c8cd7d8a488cce69356f2bd5126",
+        "facesMatched": true,
+        "imageSha256": "6666db2927f2198d90cc7439a541d9fd539982a0d38d47a52d0971dab37b5bf2",
+        "imageBytes": 110830
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスタードラゴン！！～正義ノ裁キ～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-046",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp04s-032",
+      "name": "青守銀 シャイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-032",
+      "faces": [
+        {
+          "name": "青守銀 シャイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）P次の自分のターンのはじめまで、自分のクリーチャー１体に「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+          "race": "メタリカ",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Kizuna1540"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g521UntilStart": true,
+            "grant": {
+              "blocker": true
+            },
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "19b1bbe8ecb55a7acb33cb24127914bff2541c0ccac0ee51c1a40bb207475986",
+        "facesMatched": true,
+        "imageSha256": "03830047b34e8c14e904405137cfa461d26aebf18d24bb77bf44455659b9a47a",
+        "imageBytes": 142705
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスタードラゴン！！～正義ノ裁キ～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-032",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp04s-036",
+      "name": "南国別荘 クジハウス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-036",
+      "faces": [
+        {
+          "name": "南国別荘 クジハウス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nキズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）Pバトルゾーンにある、コスト７以下のカードを１枚選び、持ち主の手札に戻す。",
+          "race": "ムートピア",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Kizuna1540"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "BattleCardMove579",
+            "anyOwner": true,
+            "max": 7,
+            "to": "hand"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "ff24b14c6be0c0354606c7f845f980e60c6d2e380a5fdcc30c8aec7463c4aaac",
+        "facesMatched": true,
+        "imageSha256": "f6de122cd0a6be9f857492763ba79b7bb92e0877d5fa330da5c284d57800b9ce",
+        "imageBytes": 122179
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスタードラゴン！！～正義ノ裁キ～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-036",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmex03-s03",
+      "name": "ナゾの光・リリアング",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-s03",
+      "faces": [
+        {
+          "name": "ナゾの光・リリアング",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "キズナ（このクリーチャーがバトルゾーンに出た時、自分のクリーチャー１体のP能力を使う）\nP光のコスト３以下の呪文を１枚、コストを支払わずに自分の手札から唱えてもよい。\nエスケープ（このクリーチャーが破壊される時、墓地に置くかわりに自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない）",
+          "race": "メタリカ/スペシャルズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "escape": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Kizuna1540"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "max": 3,
+            "spellOnly": true,
+            "g556SpellColor": "光"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex03-s03.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "bd32b695bda1d185436ba47cd156702bd7ecc075fdbf1e32ef14f70c25f8a50b",
+        "facesMatched": true,
+        "imageSha256": "e3be3f8496d352c6bc510f619f61b43ee15d248b15dc866cbf98ddcede6870ff",
+        "imageBytes": 146570
+      },
+      "sameNameProducts": [
+        "DM22-BD2 開発部セレクションデッキ 「光水火鬼羅.Star」",
+        "DMEX-19 マスター・ファイナル・メモリアル・パック",
+        "DMEX-08 謎のブラックボックスパック",
+        "DMEX-03 ペリッ!! スペシャルだらけのミステリーパック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-s03",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm26rp3-005",
+      "name": "蒸光逆夢 リリオクパング",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-005",
+      "faces": [
+        {
+          "name": "蒸光逆夢 リリオクパング",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nブロッカー ブロッカー\nW・ブレイカー\nキズナ（このクリーチャーが出た時、自分のクリーチャーの[P]能力を１つ使う）\n[P]カードを１枚引く。その後、コスト６以下の呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体選び、持ち主の手札に戻してもよい。",
+          "race": "ディスペクター/メタリカ/ムートピア/スペシャルズ",
+          "powerText": "10500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "exLife": true,
+        "blocker": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Target",
+            "to": "hand",
+            "toOwnerHand": true,
+            "optional": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Kizuna1540"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "max": 6,
+            "spellOnly": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp3-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "72ecdc70fda14ea50a5f367d72c426abd6e0a372d70e345e5466ba1cbe22183c",
+        "facesMatched": true,
+        "imageSha256": "41a9fe6aa6556dfcb4602b0e878ea19bb10b468416fdd6d194b682edc7dc2bf7",
+        "imageBytes": 145202
+      },
+      "sameNameProducts": [
+        "DM26-RP3 逆札篇 第3弾 勝敵！逆転おこせ鬼の∞ディスペクター!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-005",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp04s-046": 4,
+      "dmrp04s-032": 4,
+      "dmrp04s-036": 4,
+      "dmex03-s03": 4,
+      "dm26rp3-005": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/31596/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31596/",
+      "sha256": "f93027f8bffda2b665ffc5dcfeeeb964502075a30aee7dc8354a0942666aa142",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    }
+  ]
+}
