@@ -1,0 +1,355 @@
+{
+  "phase": 1554,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8839,
+  "description": "既存の処理を用いて全能力を個別に検証し4種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/37354/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa_old/37354/": "指定3種族のどの組合せでも3体なら進化GVの素材にできる。同種族3体も可。"
+  },
+  "implementationNotes": [
+    "ジュピターの進化元は墓地を経由させず直接切り離し、既存の登場処理を呼び出す。非召喚・出たターン・進化元離脱・置換・登場時能力を維持。",
+    "墓地・マナ・山札にあるジュピターを回収する3種類を再現用にも追加し、両方の指定名と所有者を現在の場で判定。"
+  ],
+  "cards": [
+    {
+      "id": "dm19-067",
+      "name": "霊騎クルス・タスポル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-067",
+      "faces": [
+        {
+          "name": "霊騎クルス・タスポル",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンに自分の《博識の森のポルタス》と《カラテ・キャロット》があれば、自分の山札を見る。その中から《超神星ジュピター・キングエンパイア》を１体取り出して相手に見せ、自分の手札に加える。その後、山札をシャッフルする。",
+          "race": "アーク・セラフィム",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "all": [
+                {
+                  "g201ExactName": "博識の森のポルタス"
+                },
+                {
+                  "g201ExactName": "カラテ・キャロット"
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "Look",
+                "g201Search": true,
+                "n": 0,
+                "stages": [
+                  {
+                    "to": "hand",
+                    "n": 1,
+                    "filter": {
+                      "g201ExactName": "超神星ジュピター・キングエンパイア",
+                      "creature": true
+                    },
+                    "reveal": true,
+                    "optional": true
+                  }
+                ],
+                "rest": "shuffle"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-067.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "e239f0ffcbb1f35414aca271de860ceb3cb42f4ff28fa95599e0d3054402564a",
+        "facesMatched": true,
+        "imageSha256": "13d04971c46c9fb7d937d12770c313fb3ee04651427f2d0625c37510b0605c80",
+        "imageBytes": 119053
+      },
+      "sameNameProducts": [
+        "DM-19 不死鳥編(スペクタクル・ノヴァ) 第1弾"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-067",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm19-009",
+      "name": "超神星ジュピター・キングエンパイア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-009",
+      "faces": [
+        {
+          "name": "超神星ジュピター・キングエンパイア",
+          "typeText": "進化クリーチャー(進化GV)",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化GV-自分のドリームメイト、アーク・セラフィム、ワイルド・ベジーズのいずれか３体を重ねた上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にある、進化クリーチャーではないカードを１枚選び、バトルゾーンに出してもよい。(ただし、そのクリーチャーは召喚酔いする)\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "フェニックス",
+          "powerText": "14000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "any": [
+                {
+                  "race": "ドリームメイト"
+                },
+                {
+                  "race": "アーク・セラフィム"
+                },
+                {
+                  "race": "ワイルド・ベジーズ"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "ドリームメイト"
+                },
+                {
+                  "race": "アーク・セラフィム"
+                },
+                {
+                  "race": "ワイルド・ベジーズ"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "ドリームメイト"
+                },
+                {
+                  "race": "アーク・セラフィム"
+                },
+                {
+                  "race": "ワイルド・ベジーズ"
+                }
+              ]
+            }
+          ]
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "JupiterDeploy1554"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "9895a5048289a7944acce28e4431e2e42cc8973084c0ff17e6ba03245e572e4f",
+        "facesMatched": true,
+        "imageSha256": "1e86c87f5fade60b06f421fce3ccbb232cac86797f2a3bd68ffbcea0cd8fd9e4",
+        "imageBytes": 116674
+      },
+      "sameNameProducts": [
+        "DM-19 不死鳥編(スペクタクル・ノヴァ) 第1弾"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-009",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm19-070",
+      "name": "博識の森のポルタス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-070",
+      "faces": [
+        {
+          "name": "博識の森のポルタス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンに自分の《カラテ・キャロット》と《霊騎クルス・タスポル》があれば、《超神星ジュピター・キングエンパイア》を１体、自分の墓地から手札に戻してもよい。",
+          "race": "ドリームメイト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "all": [
+                {
+                  "g201ExactName": "霊騎クルス・タスポル"
+                },
+                {
+                  "g201ExactName": "カラテ・キャロット"
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "optional": true,
+                "filter": {
+                  "g201ExactName": "超神星ジュピター・キングエンパイア",
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-070.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "5edb4a9e8e6f7789ea2661a08f6c34eaff4c48d492c41b200dccda70a9768d2d",
+        "facesMatched": true,
+        "imageSha256": "59b678bc87818ef48f94d0a59dc493f44895dd0c5236fa6296f8a5bcf293a7c6",
+        "imageBytes": 98148
+      },
+      "sameNameProducts": [
+        "DM-19 不死鳥編(スペクタクル・ノヴァ) 第1弾"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-070",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm19-068",
+      "name": "カラテ・キャロット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-068",
+      "faces": [
+        {
+          "name": "カラテ・キャロット",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンに自分の《博識の森のポルタス》と《霊騎クルス・タスポル》があれば、《超神星ジュピター・キングエンパイア》を１体、自分のマナゾーンから手札に戻してもよい。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "all": [
+                {
+                  "g201ExactName": "霊騎クルス・タスポル"
+                },
+                {
+                  "g201ExactName": "博識の森のポルタス"
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "mana",
+                "to": "hand",
+                "n": 1,
+                "optional": true,
+                "filter": {
+                  "g201ExactName": "超神星ジュピター・キングエンパイア",
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-068.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "0a8ae09804943b89431672e862cf83791d2990d3c703034b124db07e6d032f77",
+        "facesMatched": true,
+        "imageSha256": "e91f2c2133d147594c37ae0e13da49a4354e1992809935492f4d9de82923326e",
+        "imageBytes": 99807
+      },
+      "sameNameProducts": [
+        "DM-19 不死鳥編(スペクタクル・ノヴァ) 第1弾"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-068",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm19-067": 4,
+      "dm19-009": 4,
+      "dm19-070": 4,
+      "dm19-068": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37354/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/37354/",
+      "sha256": "a06c837a98d18ef3722a9ff1fce29ebb948c16f4b0c2d14529789eaa62ad9064",
+      "result": "指定3種族のどの組合せでも3体なら進化GVの素材にできる。同種族3体も可。"
+    }
+  ]
+}

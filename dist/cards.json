@@ -278722,15 +278722,234 @@
       ],
       "supportBatch": "phase-1553",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm19-067",
+      "name": "霊騎クルス・タスポル",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "アーク・セラフィム",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンに自分の《博識の森のポルタス》と《カラテ・キャロット》があれば、自分の山札を見る。その中から《超神星ジュピター・キングエンパイア》を１体取り出して相手に見せ、自分の手札に加える。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-067",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g201ExactName": "博識の森のポルタス"
+              },
+              {
+                "g201ExactName": "カラテ・キャロット"
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Look",
+              "g201Search": true,
+              "n": 0,
+              "stages": [
+                {
+                  "to": "hand",
+                  "n": 1,
+                  "filter": {
+                    "g201ExactName": "超神星ジュピター・キングエンパイア",
+                    "creature": true
+                  },
+                  "reveal": true,
+                  "optional": true
+                }
+              ],
+              "rest": "shuffle"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1554",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm19-009",
+      "name": "超神星ジュピター・キングエンパイア",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 14000,
+      "race": "フェニックス",
+      "text": "進化GV-自分のドリームメイト、アーク・セラフィム、ワイルド・ベジーズのいずれか３体を重ねた上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にある、進化クリーチャーではないカードを１枚選び、バトルゾーンに出してもよい。(ただし、そのクリーチャーは召喚酔いする)\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-009",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "any": [
+              {
+                "race": "ドリームメイト"
+              },
+              {
+                "race": "アーク・セラフィム"
+              },
+              {
+                "race": "ワイルド・ベジーズ"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "ドリームメイト"
+              },
+              {
+                "race": "アーク・セラフィム"
+              },
+              {
+                "race": "ワイルド・ベジーズ"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "ドリームメイト"
+              },
+              {
+                "race": "アーク・セラフィム"
+              },
+              {
+                "race": "ワイルド・ベジーズ"
+              }
+            ]
+          }
+        ]
+      },
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "JupiterDeploy1554"
+        }
+      ],
+      "supportBatch": "phase-1554",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm19-070",
+      "name": "博識の森のポルタス",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ドリームメイト",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンに自分の《カラテ・キャロット》と《霊騎クルス・タスポル》があれば、《超神星ジュピター・キングエンパイア》を１体、自分の墓地から手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-070",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g201ExactName": "霊騎クルス・タスポル"
+              },
+              {
+                "g201ExactName": "カラテ・キャロット"
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "to": "hand",
+              "n": 1,
+              "optional": true,
+              "filter": {
+                "g201ExactName": "超神星ジュピター・キングエンパイア",
+                "creature": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1554",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm19-068",
+      "name": "カラテ・キャロット",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ワイルド・ベジーズ",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンに自分の《博識の森のポルタス》と《霊騎クルス・タスポル》があれば、《超神星ジュピター・キングエンパイア》を１体、自分のマナゾーンから手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-068",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "all": [
+              {
+                "g201ExactName": "霊騎クルス・タスポル"
+              },
+              {
+                "g201ExactName": "博識の森のポルタス"
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "mana",
+              "to": "hand",
+              "n": 1,
+              "optional": true,
+              "filter": {
+                "g201ExactName": "超神星ジュピター・キングエンパイア",
+                "creature": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1554",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1553,
+    "phase": 1554,
     "checkedAt": "2026-11-21",
-    "baseCount": 8835,
+    "baseCount": 8839,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 8839,
+    "totalCount": 8843,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -304251,6 +304470,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8835,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1553,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8835,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 8839,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

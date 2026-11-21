@@ -2860,6 +2860,17 @@ export function createSixPhotoRules(api){
  // QA40275: choosing to shield a hand card satisfies 'if you do' even if addition is prohibited.
  case'g34_ShieldExchange446':if(own.hand.length)choice(s,t,'シールドに置く手札を1枚選ぶ'+(t.optional?'（任意）':''),[...own.hand.map(y=>opt(card(y).name,y.uid,faces(card(y)).some(c=>c.trigger)?25:5,y.cardId)),...(t.optional?[skip()]:[])]);else if(!t.optional)put(s,{...t,op:'g34_ShieldHand',g238ShieldHand:true});break;
  case'g34_UseBlocker524':{const host=sourceHost474(s,t);if(host)(host.x.g34Grants??=[]).push({turn:s.turn,blocker:true});break;}
+ case'g34_JupiterDeploy1554':{
+  const host=sourceHost474(s,t)?.x;
+  const rows=host&&!host.sealed?api.layers(host).slice(1).filter(y=>{
+   if(y.faceDown)return true;
+   const c=card(y.cardId);
+   return !c.evolution&&['creature','seed','gear','field','aura','duelist'].includes(c.type)&&api.canEnter(s,t.p,c,{origin:'battle',execution:false});
+  }):[];
+  if(rows.length)choice(s,t,'進化元の進化クリーチャーではないカードを1枚出す？',[
+   ...rows.map((y,i)=>opt(y.faceDown?'裏向きの進化元 '+(i+1):card(y).name,y.uid,10,y.faceDown?null:y.cardId)),skip()]);
+  break;
+ }
  case'g34_SelfAttackedEnd1552':{const host=sourceHost474(s,t);if(host&&s.g481Attackers?.turn===s.turn){const refs=new Set(api.allLayers(host.x).map(y=>key(y)));if(s.g481Attackers.events.some(e=>e.p===t.p&&e.refs.some(ref=>refs.has(ref))))start(s,t,[{op:'SelfDestroy'}]);}break;}
  case'g34_IfNeo563':if(sourceNeo563(s,t)!==!!t.g1059Negate)start(s,t,t.defs);break;
  case'g34_IfSource541':{
@@ -6445,6 +6456,11 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
  }
  function chosen(s,t,v){if(fifteen.chosen(s,t,v))return true;if(!t.op.startsWith('g34_'))return false;const own=s.players[t.p],x=live(s,t);switch(t.op){
+ case'g34_JupiterDeploy1554':{
+  const host=sourceHost474(s,t)?.x;
+  if(v&&host&&!host.sealed)api.deployUnder1554(s,t.p,{uid:host.uid,incarnation:host.incarnation||0},v);
+  break;
+ }
  case'g34_KizunaPlus1544':{
   if(v==null)break;
   const host=sourceHost474(s,t)?.x,below=host&&api.layers(host).slice(1).find(y=>y.uid===v);
