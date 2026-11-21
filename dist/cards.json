@@ -285924,15 +285924,179 @@
       },
       "supportBatch": "phase-1591",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-019",
+      "name": "イルフィン・ザ・シルバー/メラメラ・チェイン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、カードを３枚引く。\n自分の呪文を唱えるコストを最大２少なくする。ただし、コストは０以下にはならない。\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の手札を好きな枚数捨ててもよい。こうして捨てた手札１枚につき、相手のパワー6000以下のクリーチャーを１体、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-019",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Draw",
+          "n": 3
+        }
+      ],
+      "g485SpellReduction": 2,
+      "spellFace": {
+        "name": "メラメラ・チェイン",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "race": "",
+        "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の手札を好きな枚数捨ててもよい。こうして捨てた手札１枚につき、相手のパワー6000以下のクリーチャーを１体、破壊する。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandCycle460",
+            "mode": "any",
+            "to": "grave",
+            "afterDiscardSelect": {
+              "owner": "opponent",
+              "origin": "battle",
+              "to": "grave",
+              "filter": {
+                "creature": true,
+                "maxPower": 6000,
+                "g199Power": true
+              },
+              "g173Targets": true,
+              "g193Select": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1592",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-s10",
+      "name": "バーンメア・ザ・シルバー / オラオラ・スラッシュ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、GR召喚を２回する。このターン、それらのGRクリーチャーに「スピードアタッカー」を与える。\n【呪文面】\nS・トリガー S・トリガー\n次の自分のターンのはじめまで、相手のクリーチャーが攻撃する時、可能ならクリーチャーを攻撃する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-s10",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GrSummon1498",
+          "grant": {
+            "speedAttacker": true
+          }
+        },
+        {
+          "op": "GrSummon1498",
+          "grant": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "オラオラ・スラッシュ",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "S・トリガー S・トリガー\n次の自分のターンのはじめまで、相手のクリーチャーが攻撃する時、可能ならクリーチャーを攻撃する。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Lock",
+            "spell": true,
+            "limit": {
+              "kind": "g1021CreatureAttackTarget",
+              "active": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1592",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23bd6-005",
+      "name": "アカシック・A / 「アサルト！やっちまいな！」",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "アーマード・ワイバーン/ヒューマノイド",
+      "text": "相手のターン中、相手のクリーチャーがマナゾーンのカードをタップせずに出た時、そのクリーチャーを破壊する。\n【呪文面】\nS・トリガー S・トリガー\n各相手のクリーチャーを、相手１人につきパワーの合計が9000以下になるよう、それぞれ２体まで選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd6-005",
+      "limit": 4,
+      "venerak": true,
+      "spellFace": {
+        "name": "「アサルト！やっちまいな！」",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "race": "",
+        "text": "S・トリガー S・トリガー\n各相手のクリーチャーを、相手１人につきパワーの合計が9000以下になるよう、それぞれ２体まで選び、破壊する。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g506PowerBudget": 9000,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1592",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1591,
+    "phase": 1592,
     "checkedAt": "2026-11-21",
-    "baseCount": 9006,
+    "baseCount": 9009,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9009,
+    "totalCount": 9012,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -311985,6 +312149,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 9006,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1591,
+        "checkedAt": "2026-11-21",
+        "baseCount": 9006,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9009,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

@@ -1,0 +1,307 @@
+{
+  "phase": 1592,
+  "checkedAt": "2026-11-21",
+  "baseCount": 9009,
+  "description": "既存の処理を用いて全能力を個別に検証し3種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp12-019",
+      "name": "イルフィン・ザ・シルバー/メラメラ・チェイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-019",
+      "faces": [
+        {
+          "name": "イルフィン・ザ・シルバー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、カードを３枚引く。\n自分の呪文を唱えるコストを最大２少なくする。ただし、コストは０以下にはならない。",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "メラメラ・チェイン",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の手札を好きな枚数捨ててもよい。こうして捨てた手札１枚につき、相手のパワー6000以下のクリーチャーを１体、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Draw",
+            "n": 3
+          }
+        ],
+        "g485SpellReduction": 2,
+        "spellFace": {
+          "name": "メラメラ・チェイン",
+          "type": "spell",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "race": "",
+          "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の手札を好きな枚数捨ててもよい。こうして捨てた手札１枚につき、相手のパワー6000以下のクリーチャーを１体、破壊する。",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "HandCycle460",
+              "mode": "any",
+              "to": "grave",
+              "afterDiscardSelect": {
+                "owner": "opponent",
+                "origin": "battle",
+                "to": "grave",
+                "filter": {
+                  "creature": true,
+                  "maxPower": 6000,
+                  "g199Power": true
+                },
+                "g173Targets": true,
+                "g193Select": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-019a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "4e2e7ea8c4ae341fb44e114d209520f75f483348c55a5fbcab354e3cf37c091e",
+        "facesMatched": true,
+        "imageSha256": "a1a6a61548fa8f5e53071f729c910831857df3f1a7b5a456d126f91e13443975",
+        "imageBytes": 124176
+      },
+      "sameNameProducts": [
+        "DMRP-12 超天篇 拡張パック第4弾 超超超天！覚醒ジョギラゴン vs. 零龍卍誕"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-019",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp12-s10",
+      "name": "バーンメア・ザ・シルバー / オラオラ・スラッシュ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-s10",
+      "faces": [
+        {
+          "name": "バーンメア・ザ・シルバー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、GR召喚を２回する。このターン、それらのGRクリーチャーに「スピードアタッカー」を与える。",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "オラオラ・スラッシュ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー\n次の自分のターンのはじめまで、相手のクリーチャーが攻撃する時、可能ならクリーチャーを攻撃する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GrSummon1498",
+            "grant": {
+              "speedAttacker": true
+            }
+          },
+          {
+            "op": "GrSummon1498",
+            "grant": {
+              "speedAttacker": true
+            }
+          }
+        ],
+        "spellFace": {
+          "name": "オラオラ・スラッシュ",
+          "type": "spell",
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "race": "",
+          "text": "S・トリガー S・トリガー\n次の自分のターンのはじめまで、相手のクリーチャーが攻撃する時、可能ならクリーチャーを攻撃する。",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Lock",
+              "spell": true,
+              "limit": {
+                "kind": "g1021CreatureAttackTarget",
+                "active": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-s10a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "8d71395ec34a20d122fdb832baf045c2a6a47fd0ab4720547300a07a09ff7ed8",
+        "facesMatched": true,
+        "imageSha256": "5ac82131d2af53e28a77c4fb06b4a7c32e9aec4f278dff058400c8f13ec4ec27",
+        "imageBytes": 128790
+      },
+      "sameNameProducts": [
+        "DM26-EX4 切札不滅!! デュエキング FOREVER 2026",
+        "DMRP-20 王来篇拡張パック第4弾 終末王龍大戦",
+        "DMRP-12 超天篇 拡張パック第4弾 超超超天！覚醒ジョギラゴン vs. 零龍卍誕"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-s10",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm23bd6-005",
+      "name": "アカシック・A / 「アサルト！やっちまいな！」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd6-005",
+      "faces": [
+        {
+          "name": "アカシック・A",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手のターン中、相手のクリーチャーがマナゾーンのカードをタップせずに出た時、そのクリーチャーを破壊する。",
+          "race": "アーマード・ワイバーン/ヒューマノイド",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "「アサルト！やっちまいな！」",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\n各相手のクリーチャーを、相手１人につきパワーの合計が9000以下になるよう、それぞれ２体まで選び、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "venerak": true,
+        "spellFace": {
+          "name": "「アサルト！やっちまいな！」",
+          "type": "spell",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "race": "",
+          "text": "S・トリガー S・トリガー\n各相手のクリーチャーを、相手１人につきパワーの合計が9000以下になるよう、それぞれ２体まで選び、破壊する。",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "owner": "opponent",
+              "origin": "battle",
+              "n": 2,
+              "optional": true,
+              "to": "grave",
+              "filter": {
+                "creature": true
+              },
+              "g173Targets": true,
+              "g193Select": true,
+              "g506PowerBudget": 9000,
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd6-005a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "6306719d53b65b4cc2b59a65b014ffd3434b01641dacfe1b69628184d9be55f6",
+        "facesMatched": true,
+        "imageSha256": "cb9fdfa117564546286e48f04de46f7d5c2661f270b741f78e32f0d4e1da5971",
+        "imageBytes": 164862
+      },
+      "sameNameProducts": [
+        "DM23-BD6 エキサイティング・デュエパ・デッキ 「双極のアカシックZ計画」"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd6-005",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp12-019": 4,
+      "dmrp12-s10": 4,
+      "dm23bd6-005": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    }
+  ]
+}

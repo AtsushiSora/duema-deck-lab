@@ -25539,5 +25539,220 @@
         ]
       }
     }
+  },
+  "dmrp12-019": {
+    "phase": 1592,
+    "faces": [
+      {
+        "name": "イルフィン・ザ・シルバー",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、カードを３枚引く。\n自分の呪文を唱えるコストを最大２少なくする。ただし、コストは０以下にはならない。",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "6000",
+        "missingFields": []
+      },
+      {
+        "name": "メラメラ・チェイン",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の手札を好きな枚数捨ててもよい。こうして捨てた手札１枚につき、相手のパワー6000以下のクリーチャーを１体、破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Draw",
+          "n": 3
+        }
+      ],
+      "g485SpellReduction": 2,
+      "spellFace": {
+        "name": "メラメラ・チェイン",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "race": "",
+        "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の手札を好きな枚数捨ててもよい。こうして捨てた手札１枚につき、相手のパワー6000以下のクリーチャーを１体、破壊する。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandCycle460",
+            "mode": "any",
+            "to": "grave",
+            "afterDiscardSelect": {
+              "owner": "opponent",
+              "origin": "battle",
+              "to": "grave",
+              "filter": {
+                "creature": true,
+                "maxPower": 6000,
+                "g199Power": true
+              },
+              "g173Targets": true,
+              "g193Select": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dmrp12-s10": {
+    "phase": 1592,
+    "faces": [
+      {
+        "name": "バーンメア・ザ・シルバー",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、GR召喚を２回する。このターン、それらのGRクリーチャーに「スピードアタッカー」を与える。",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "6000",
+        "missingFields": []
+      },
+      {
+        "name": "オラオラ・スラッシュ",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー\n次の自分のターンのはじめまで、相手のクリーチャーが攻撃する時、可能ならクリーチャーを攻撃する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GrSummon1498",
+          "grant": {
+            "speedAttacker": true
+          }
+        },
+        {
+          "op": "GrSummon1498",
+          "grant": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "オラオラ・スラッシュ",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "S・トリガー S・トリガー\n次の自分のターンのはじめまで、相手のクリーチャーが攻撃する時、可能ならクリーチャーを攻撃する。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Lock",
+            "spell": true,
+            "limit": {
+              "kind": "g1021CreatureAttackTarget",
+              "active": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dm23bd6-005": {
+    "phase": 1592,
+    "faces": [
+      {
+        "name": "アカシック・A",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "相手のターン中、相手のクリーチャーがマナゾーンのカードをタップせずに出た時、そのクリーチャーを破壊する。",
+        "race": "アーマード・ワイバーン/ヒューマノイド",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "「アサルト！やっちまいな！」",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "S・トリガー S・トリガー\n各相手のクリーチャーを、相手１人につきパワーの合計が9000以下になるよう、それぞれ２体まで選び、破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "venerak": true,
+      "spellFace": {
+        "name": "「アサルト！やっちまいな！」",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "race": "",
+        "text": "S・トリガー S・トリガー\n各相手のクリーチャーを、相手１人につきパワーの合計が9000以下になるよう、それぞれ２体まで選び、破壊する。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g506PowerBudget": 9000,
+            "spell": true
+          }
+        ]
+      }
+    }
   }
 }
