@@ -13365,5 +13365,183 @@
         ]
       }
     }
+  },
+  "dmsd06-005": {
+    "phase": 1536,
+    "faces": [
+      {
+        "name": "テン★カッツ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n自分の「無月の門」能力を使った時、このクリーチャーを自分の墓地からバトルゾーンにタップして出してもよい。",
+        "race": "マフィ・ギャング/ムーゲッツ",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "slayer": true,
+      "g4Tin": true
+    }
+  },
+  "dmsd06-003": {
+    "phase": 1536,
+    "faces": [
+      {
+        "name": "ハク★ヨン",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが攻撃する時、攻撃の後、このクリーチャーを破壊する。\n自分の「無月の門」能力を使った時、このクリーチャーを自分の墓地からバトルゾーンにタップして出してもよい。",
+        "race": "マフィ・ギャング/ムーゲッツ",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "blocker": true,
+      "g4Tin": true,
+      "g34Attack": [
+        {
+          "op": "AfterAttackDestroy"
+        }
+      ]
+    }
+  },
+  "dmex02-064": {
+    "phase": 1536,
+    "faces": [
+      {
+        "name": "堕魔 ジグス★ガルビ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "W・ブレイカー\n自分の「無月の門」能力を使った時、このクリーチャーを自分の墓地からバトルゾーンにタップして出してもよい。",
+        "race": "マフィ・ギャング/魔導具/ムーゲッツ",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g4Tin": true
+    }
+  },
+  "dmrp06-045": {
+    "phase": 1536,
+    "faces": [
+      {
+        "name": "マッ★カーツ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "自分の「無月の門」能力を使った時、このクリーチャーを自分の墓地からバトルゾーンにタップして出してもよい。",
+        "race": "マフィ・ギャング/ムーゲッツ",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "魔渇弓・冥",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "相手の手札を見て、クリーチャーではないカードを１枚選び、捨てさせる。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g4Tin": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "魔渇弓・冥",
+        "cost": 3,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "hand",
+            "n": 1,
+            "to": "grave",
+            "filter": {
+              "nonCreature": true
+            },
+            "g585Peek": true,
+            "g829InspectDiscard": true,
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dm22ex1-072": {
+    "phase": 1536,
+    "faces": [
+      {
+        "name": "無法設計図",
+        "typeText": "呪文",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "自分の山札の上から５枚を表向きにする。その中から好きな数のエグザイル・クリーチャーを手札に加え、残りを好きな順序で山札の下に置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 5,
+          "public": true,
+          "spell": true,
+          "stages": [
+            {
+              "to": "hand",
+              "n": "all",
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "g1490Exile": true
+              }
+            }
+          ]
+        }
+      ]
+    }
   }
 }
