@@ -50,3 +50,15 @@ test('lobby blocks creation and joining when no playable deck exists or a reques
  }
  const html=onlineScreenHTML({room:null},{user:null});assert.match(html,/まずはGoogleでログイン/);assert.match(html,/data-view="account"/);assert.doesNotMatch(html,/data-action="online-(create|join)"/);
 });
+
+const {onlinePrimaryAction}=await import('../dist/online-ui.js');
+for(const seat of[0,1])for(const zone of['grave','mana','extra','abyss'])test('a selected playable '+zone+' card at seat '+seat+' uses its server move instead of advancing the phase',()=>{
+ const s=fixture(seat),g=s.room.game,x=c('zone-card');g.phase='main';g.players[seat][zone]=[x];g.actions=[{id:91,kind:'play',uid:x.uid,playType:'creature',label:'墓地から召喚する'},{id:92,kind:'toAttack',label:'攻撃へ'}];
+ const primary=onlinePrimaryAction(s.room,x.uid);assert.equal(primary.command,'move');assert.equal(primary.move.id,91);assert.equal(primary.label,'召喚する');
+ const html=onlineScreenHTML(s,{user:{},selected:x.uid,actionsOpen:true});assert.match(html,/data-action="online-move"[^>]*data-index="91"/);assert.doesNotMatch(html,/data-index="92"/);
+ g.actions=[g.actions[1]];assert.equal(onlinePrimaryAction(s.room,x.uid).command,'card');
+});
+test('grave alternate summons show their methods and never create a move absent from the server',()=>{
+ const s=fixture(),g=s.room.game,x=c('grave-alternative');g.phase='main';g.players[0].grave=[x];g.actions=[{id:3,kind:'play',uid:x.uid,requiresMethod:true,playType:'creature',label:'アビスラッシュ'},{id:4,kind:'toAttack'}];
+ assert.equal(onlinePrimaryAction(s.room,x.uid).command,'card');g.actor=1;assert.equal(onlinePrimaryAction(s.room,x.uid).disabled,true);
+});

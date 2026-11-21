@@ -29,13 +29,13 @@ function onlineManaPaymentHTML(payment,actions,revision,disabled){
 }
 export function onlinePrimaryAction(room,selected=null,pending=null){
  const g=room?.game;if(!g)return {label:'対戦結果',command:'result',disabled:true};
- const own=g.players[room.seat],actions=g.actions||[],hand=own.hand.find(x=>x.uid===selected),moves=actions.filter(a=>a.uid===selected),review=onlinePendingMove(room,pending);
+ const own=g.players[room.seat],actions=g.actions||[],selectedCard=[...own.hand,...(own.grave||[]),...(own.mana||[]),...(own.extra||[]),...(own.abyss||[])].find(x=>x.uid===selected),moves=actions.filter(a=>a.uid===selected),review=onlinePendingMove(room,pending);
  if(room.phase==='playing'&&g.actor===room.seat&&g.manaPayment){
   const confirm=actions.find(a=>a.kind==='confirmMana');
   return {label:confirm?'このマナで使う':'支払うマナを選ぶ',command:confirm?'move':'choices',move:confirm??null,disabled:false};
  }
  return battlePrimaryAction({actions,human:g.actor===room.seat,finished:['finished','expired'].includes(room.phase),decision:!!g.decision,phase:g.phase,
-  selected:!!hand,selectedMoves:moves,selectedType:hand?.type,attacker:moves.some(a=>a.kind==='attack'),attackChoice:review?.kind==='attack'?review:null,endReview:review?.kind==='endTurn'});
+  selected:!!selectedCard,selectedMoves:moves,selectedType:selectedCard?.type,attacker:moves.some(a=>a.kind==='attack'),attackChoice:review?.kind==='attack'?review:null,endReview:review?.kind==='endTurn'});
 }
 export function onlineScreenHTML(state,{user,decks=[],selectedDeckId,code='',selected=null,page=0,art,actionsOpen=false,pending=null,valid=()=>true,history=[],evolutionCard=c=>!!c.evolution}={}){
  const room=state.room,game=room?.game,busy=state.busy,disabled=busy||!state.connected;
@@ -43,7 +43,7 @@ export function onlineScreenHTML(state,{user,decks=[],selectedDeckId,code='',sel
  if(!user)return `<div class="page-head online-lobby-head"><div><h1>友達と対戦</h1><p>デッキを選んで、ルームで待ち合わせ。</p></div></div><section class="panel online-lobby online-login"><h2>まずはGoogleでログイン</h2><p>それぞれ別のGoogleアカウントで参加します。</p>${button('nav','アカウントを開く',false,'data-view="account"',true)}</section>`;
  if(room&&room.phase==='waiting'&&room.seat===0)return `<div class="page-head"><div><div class="eyebrow">PRIVATE ROOM</div><h1>友達を待っています</h1><p>相手がデッキを選んで参加すると対戦が始まります。</p></div></div>${notice}<section class="panel online-lobby">${room.format===ADVANCE?`<p class="small">${formatLabel(room.format)}</p>`:''}<small>ルームコード</small><div class="online-room-code">${esc(room.code.slice(0,8))} ${esc(room.code.slice(8))}</div><div class="row">${button('online-copy-code','コードをコピー')}${button('online-copy-link','招待リンクをコピー')}</div><p>相手もGoogleでログインし、このコードまたは招待リンクから参加してください。</p><p class="small">待機ルームの有効期限は作成から6時間です。手札と山札の中身は相手に表示されません。</p>${button('online-cancel','ルームを閉じる',disabled)}${button('online-refresh',busy?'確認中…':'再接続',busy)}</section>`;
  if(game){
- const seat=room.seat,own=game.players[seat],opp=game.players[1-seat],finished=['finished','expired'].includes(room.phase),mine=game.actor===seat&&!finished,all=game.actions||[],cards=[...(game.revealedHand||[]),...own.hand,...own.battle,...own.mana,...own.grave,...(own.extra||[]),...(own.seals||[]),...opp.battle,...opp.mana,...opp.grave,...(opp.extra||[]),...(opp.seals||[])],card=cards.find(x=>x.uid===selected),actions=card?all.filter(a=>a.uid===selected||cards.some(x=>x.uid===a.uid&&x.sealOf===selected)):all,pages=Math.max(1,Math.ceil(actions.length/8)),current=Math.max(0,Math.min(page,pages-1));
+ const seat=room.seat,own=game.players[seat],opp=game.players[1-seat],finished=['finished','expired'].includes(room.phase),mine=game.actor===seat&&!finished,all=game.actions||[],cards=[...(game.revealedHand||[]),...own.hand,...own.battle,...own.mana,...own.grave,...(own.abyss||[]),...(own.extra||[]),...(own.seals||[]),...opp.battle,...opp.mana,...opp.grave,...(opp.abyss||[]),...(opp.extra||[]),...(opp.seals||[])],card=cards.find(x=>x.uid===selected),actions=card?all.filter(a=>a.uid===selected||cards.some(x=>x.uid===a.uid&&x.sealOf===selected)):all,pages=Math.max(1,Math.ceil(actions.length/8)),current=Math.max(0,Math.min(page,pages-1));
  const payment=mine?game.manaPayment:null;
  const status=finished?room.phase==='expired'?'ルームの有効期限が切れました':game.phase==='rematch'?'再試合':game.draw?'引き分け':game.winner===seat?'あなたの勝利！':'相手の勝利':!state.connected?'再接続してください':busy?'送信・更新中…':mine?'あなたの操作':'相手の操作を待っています';
  const title=finished?'対戦終了':game.decision||({charge:'マナに置くカードを選ぼう',main:'召喚・呪文を使おう',attack:'攻撃するクリーチャーを選ぼう'})[game.phase]||'操作を選ぶ';

@@ -1,0 +1,149 @@
+{
+  "checkedAt": "2026-11-21T10:38:07.136Z",
+  "baseline": "9b7b9035e9c64fdc41f051022f2506ab7e62bf0c",
+  "status": "verified-local-not-published",
+  "report": "通信対戦で墓地からクリーチャーを召喚できない。申告カード名は問い合わせ中。",
+  "causes": [
+    "通信対戦の墓地・マナ・深淵の一覧はカード詳細だけを開き、サーバーが返したカード操作を選ぶ画面につながっていなかった。",
+    "メインの操作ボタンは手札だけを選択済みと認識し、墓地から選んだカードでも攻撃フェーズへ進む操作を表示していた。",
+    "深淵ゾーンが操作パネルのカード検索対象から漏れていた。"
+  ],
+  "changes": [
+    "墓地・マナ・深淵のカード一覧を対戦のカード選択画面に接続。",
+    "サーバーから受け取った合法手だけで召喚・方法選択・条件確認を表示。",
+    "既存の手動マナ選択・暗号化ルーム保存・相手への非公開情報の制限を維持。"
+  ],
+  "reproductions": [
+    {
+      "card": "dm24rp1-064 タブ＝タラウプ",
+      "result": "墓地を開く→カード選択→召喚→選んだ2マナのみ支払う→墓地から場に1枚だけ出る。"
+    },
+    {
+      "card": "dm23rp3-016 トング＝ゴング + dm01-083 アクア・ビークル",
+      "result": "他のクリーチャーによる墓地召喚許可でも同じ操作経路とマナ支払いを検証。"
+    },
+    {
+      "card": "dm22rp1-060 キーロック＝デボック",
+      "result": "アビスラッシュでも同じ墓地選択から召喚まで通過。"
+    },
+    {
+      "card": "許可のないdm01-083",
+      "result": "詳細と条件は確認できるが召喚を追加せず、選択中に攻撃フェーズへ勝手に進まない。"
+    }
+  ],
+  "results": {
+    "focused": {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=2",
+        "tests/online-ui.test.mjs",
+        "tests/online-app.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.646,
+      "log": "tmp/duema-online-grave-fix/focused.log",
+      "passed": 36,
+      "failed": 0,
+      "logSha256": "47c577fa3f16f887a571c711ade5874132dd63922d251cfcd2209fa0619e1ed0"
+    },
+    "related-controls": {
+      "name": "related-controls",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=2",
+        "tests/online-client.test.mjs",
+        "tests/online-runtime.test.mjs",
+        "tests/battle-controls.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.972,
+      "log": "tmp/duema-online-grave-fix/related-controls.log",
+      "passed": 21,
+      "failed": 0,
+      "logSha256": "ffea97fe884d07333ce6071f3740c2f771a8559542a904411977dd92450918d4"
+    },
+    "related-manual": {
+      "name": "related-manual",
+      "command": [
+        "node",
+        "--test",
+        "--test-skip-pattern",
+        "^every reachable UI action over complete-deck games",
+        "tests/manual-ui.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.139,
+      "log": "tmp/duema-online-grave-fix/related-manual.log",
+      "passed": 20,
+      "failed": 0,
+      "logSha256": "0b4463c1ffb27d598768e771deed4a750fcb8a12dedf7c15cc4539d90d43009d"
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.38,
+      "log": "tmp/duema-online-grave-fix/check.log",
+      "passed": 0,
+      "failed": 0,
+      "logSha256": "29eaae5683e519e74f6e3289264792125adb683071d6359795a09846a9b5b42f"
+    }
+  },
+  "successfulTestExecutions": 77,
+  "optionalLongScan": {
+    "scope": "current-task-owned process only",
+    "command": "node --test --test-concurrency=2 tests/online-client.test.mjs tests/online-runtime.test.mjs tests/battle-controls.test.mjs tests/manual-ui.test.mjs",
+    "target": "tests/manual-ui.test.mjs: every reachable UI action over complete-deck games",
+    "reason": "30 complete AI games are outside the targeted online zone selection change; keep this optional full-game scan unconfirmed and run the ordinary UI cases separately.",
+    "status": "interrupted, outcome unconfirmed",
+    "execution": {
+      "name": "related",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=2",
+        "tests/online-client.test.mjs",
+        "tests/online-runtime.test.mjs",
+        "tests/battle-controls.test.mjs",
+        "tests/manual-ui.test.mjs"
+      ],
+      "code": -9,
+      "timedout": false,
+      "seconds": 130.484,
+      "log": "tmp/duema-online-grave-fix/related.log"
+    },
+    "note": "30完全対戦を含む画面走査は今回は中断・合否未確認。通常の画面操作20件と通信・操作回帰は分割して合格。過去の全体npm testや長時間テストの未確認状態も保持。"
+  },
+  "limitations": [
+    "Googleの実アカウント2つでの本番動作は未検証。テストでは認証・HTTP・サーバー・暗号化保存をローカル環境で再現。",
+    "申告カード固有の能力条件が別途原因になっていないかは、カード名が分かり次第確認する。",
+    "この修正は未公開。push・GitHub Pages公開・Netlify更新は行っていない。"
+  ],
+  "cardData": {
+    "uniqueNames": 9070,
+    "duplicateNames": 0,
+    "definitionsChanged": false,
+    "idsChanged": false,
+    "saveFormatChanged": false
+  },
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  },
+  "hashes": {
+    "dist/app.js": "4fa3220736ed219ef8e6004374bd0a96c3949b9d0e162e59a28c0e3d2021b7e7",
+    "dist/online-ui.js": "768bcec939faa4e1297195f56de07e2ca7d3e3c62e1d9ddf894a6a7f75a525d6"
+  }
+}

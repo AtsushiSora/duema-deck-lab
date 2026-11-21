@@ -109,3 +109,25 @@ test('account duel pays only chosen mana after confirmation and keeps pending se
  assert.equal(h.read('onlineState.room.game.manaPayment'),undefined);
  h.read('onlineClient.dispose()');
 });
+
+for(const method of['self','granted','abyss'])test('account duel can select a grave card from its actual zone dialog, choose mana, refresh, and summon through encrypted storage '+method,async()=>{
+ const h=harness();await h.login();await h.click('online-create');await h.friend();
+ const granted=method==='granted',id=granted?'dm01-083':method==='abyss'?'dm22rp1-060':'dm24rp1-064';
+ await h.editGame(s=>{s.phase='main';s.active=0;s.decision=null;const card=(cardId,uid)=>({cardId,uid,tapped:false,entered:0});s.players[0].hand=[];s.players[0].grave=[card(id,'grave-summon')];s.players[0].battle=granted?[card('dm23rp3-016','grave-authority')]:[];s.players[1].battle=[];s.players[0].mana=[card('dm01-090','dark'),card('dm01-083','water'),card('dm01-108','nature')];});
+ const code=h.read('onlineState.room.code'),revision=()=>String(h.read('onlineState.room.revision'));
+ await h.click('online-zone',{player:'0',zone:'grave'});assert.match(h.dialog.innerHTML,/data-action="online-pick-card"[^>]*data-uid="grave-summon"/);
+ await h.click('online-pick-card',{uid:'grave-summon'});assert.equal(h.dialog.open,false);assert.match(h.root.innerHTML,/data-action="online-move"/);
+ await h.click('online-primary',{revision:revision()});assert.equal(h.game().decision.type,'manaPayment');assert.ok(h.game().players[0].grave.some(x=>x.uid==='grave-summon'));
+ const choose=async(kind,uid)=>{const index=String(h.read(`onlineState.room.game.actions.find(a=>a.kind===${JSON.stringify(kind)}${uid?`&&a.uid===${JSON.stringify(uid)}`:''}).id`));await h.click('online-pay-mana',{index,revision:revision()});};
+ await choose('selectMana',granted?'water':'dark');await choose('selectMana','nature');await h.click('online-refresh');
+ const guest=await h.service.get(code,{uid:'u2'},'u2');assert.equal(guest.game.manaPayment,undefined);assert.deepEqual(guest.game.actions,[]);
+ await choose('confirmMana');const game=h.game();assert.ok(!game.players[0].grave.some(x=>x.uid==='grave-summon'));assert.equal(game.players[0].battle.filter(x=>x.uid==='grave-summon').length,1);assert.deepEqual(game.players[0].mana.filter(x=>x.tapped).map(x=>x.uid),[granted?'water':'dark','nature']);
+ const otherView=await h.service.get(code,{uid:'u2'},'u2');assert.ok(otherView.game.players[0].battle.some(x=>x.uid==='grave-summon'));h.read('onlineClient.dispose()');
+});
+
+test('an ordinary grave creature without permission stays inspectable but never offers a summon or advances the phase',async()=>{
+ const h=harness();await h.login();await h.click('online-create');await h.friend();
+ await h.editGame(s=>{s.phase='main';s.active=0;s.decision=null;s.players[0].hand=[];s.players[0].battle=[];s.players[1].battle=[];s.players[0].grave=[{cardId:'dm01-083',uid:'no-permission',tapped:false,entered:0}];});
+ await h.click('online-zone',{player:'0',zone:'grave'});await h.click('online-pick-card',{uid:'no-permission'});assert.match(h.root.innerHTML,/このカードで選べる操作はありません/);assert.equal(h.read('onlineState.room.game.actions.some(a=>a.kind==="play"&&a.uid==="no-permission")'),false);
+ const revision=h.read('onlineState.room.revision');await h.click('online-primary',{revision:String(revision)});assert.equal(h.read('onlineState.room.revision'),revision);assert.equal(h.game().phase,'main');assert.ok(h.game().players[0].grave.some(x=>x.uid==='no-permission'));h.read('onlineClient.dispose()');
+});

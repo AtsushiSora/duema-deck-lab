@@ -524150,6 +524150,47 @@
       "requestedCardsPassed": 119,
       "targetReached": false,
       "remaining": 957
+    },
+    "latestOnlineGraveSummonFix": {
+      "artifact": "tools/online-grave-summon-fix.json",
+      "checkedAt": "2026-11-21T10:38:07.136Z",
+      "status": "verified-local-not-published",
+      "uniqueNames": 9070,
+      "tests": 77,
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "pending": [
+        "Googleの実アカウント2つでの本番動作は未検証。テストでは認証・HTTP・サーバー・暗号化保存をローカル環境で再現。",
+        "申告カード固有の能力条件が別途原因になっていないかは、カード名が分かり次第確認する。",
+        "この修正は未公開。push・GitHub Pages公開・Netlify更新は行っていない。"
+      ],
+      "optionalLongScan": {
+        "scope": "current-task-owned process only",
+        "command": "node --test --test-concurrency=2 tests/online-client.test.mjs tests/online-runtime.test.mjs tests/battle-controls.test.mjs tests/manual-ui.test.mjs",
+        "target": "tests/manual-ui.test.mjs: every reachable UI action over complete-deck games",
+        "reason": "30 complete AI games are outside the targeted online zone selection change; keep this optional full-game scan unconfirmed and run the ordinary UI cases separately.",
+        "status": "interrupted, outcome unconfirmed",
+        "execution": {
+          "name": "related",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=2",
+            "tests/online-client.test.mjs",
+            "tests/online-runtime.test.mjs",
+            "tests/battle-controls.test.mjs",
+            "tests/manual-ui.test.mjs"
+          ],
+          "code": -9,
+          "timedout": false,
+          "seconds": 130.484,
+          "log": "tmp/duema-online-grave-fix/related.log"
+        },
+        "note": "30完全対戦を含む画面走査は今回は中断・合否未確認。通常の画面操作20件と通信・操作回帰は分割して合格。過去の全体npm testや長時間テストの未確認状態も保持。"
+      }
     }
   },
   "registeredCardVerification": {
