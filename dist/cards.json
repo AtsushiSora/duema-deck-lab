@@ -277069,15 +277069,244 @@
       ],
       "supportBatch": "phase-1544",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-045",
+      "name": "“RED”ダスター",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ビートジョッキー",
+      "text": "NEO進化：自分の火のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nキズナプラス（このクリーチャーが攻撃する時、その下にあるカードを１枚、自分の墓地に置いてもよい。そうしたら、このクリーチャーと自分の他のクリーチャー１体の oP 能力を使う）\noP 相手のパワー6000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-045",
+      "limit": 4,
+      "breaker": 2,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "KizunaPlus1544"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "maxPower": 6000
+          }
+        }
+      ],
+      "supportBatch": "phase-1545",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-025",
+      "name": "ゴアジゴティ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "グランセクト",
+      "text": "NEO進化：自分の自然のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nキズナプラス（このクリーチャーが攻撃する時、その下にあるカードを１枚、自分の墓地に置いてもよい。そうしたら、このクリーチャーと自分の他のクリーチャー１体の oP 能力を使う）\noP このターン、自分のクリーチャー１体はパワーを+4000され、シールドをさらに１つブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-025",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "KizunaPlus1544"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "power": 4000,
+          "g1438ExtraBreak": 1,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1545",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-s04",
+      "name": "グスタフ・アルブサール",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 11000,
+      "race": "マフィ・ギャング",
+      "text": "NEO進化：自分の闇のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー\nキズナプラス（このクリーチャーが攻撃する時、その下にあるカードを１枚、自分の墓地に置いてもよい。そうしたら、このクリーチャーと自分の他のクリーチャー１体の oP 能力を使う）\noP 進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-s04",
+      "limit": 4,
+      "breaker": 2,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "KizunaPlus1544"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1545",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-052",
+      "name": "ばーどりあん",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "グランセクト",
+      "text": "NEO進化：自分の自然のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nキズナプラス（このクリーチャーが攻撃する時、その下にあるカードを１枚、自分の墓地に置いてもよい。そうしたら、このクリーチャーと自分の他のクリーチャー１体のP 能力を使う）P自分の山札の上から３枚を表向きにする。その中からクリーチャーを１体、手札に加えてもよい。残りを好きな順序で山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-052",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "KizunaPlus1544"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Look",
+          "n": 3,
+          "public": true,
+          "stages": [
+            {
+              "to": "hand",
+              "n": 1,
+              "optional": true,
+              "filter": {
+                "creature": true
+              }
+            }
+          ],
+          "rest": "bottom"
+        }
+      ],
+      "supportBatch": "phase-1545",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-s08",
+      "name": "マイト・アンティリティ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "グランセクト",
+      "text": "NEO進化：自分の自然のクリーチャー１体の上に置いてもよい。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、クリーチャーを２体、自分の墓地からマナゾーンに置く。\nキズナプラス（このクリーチャーが攻撃する時、その下にあるカードを１枚、自分の墓地に置いてもよい。そうしたら、このクリーチャーと自分の他のクリーチャー１体の oP 能力を使う）\noP コスト４以下のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-s08",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "mana",
+          "n": 2,
+          "g583Group": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "KizunaPlus1544"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 1,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "max": 4
+          }
+        }
+      ],
+      "supportBatch": "phase-1545",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1544,
+    "phase": 1545,
     "checkedAt": "2026-11-21",
-    "baseCount": 8794,
+    "baseCount": 8799,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8799,
+    "totalCount": 8804,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -302472,6 +302701,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8794,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1544,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8794,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8799,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
