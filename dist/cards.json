@@ -285606,15 +285606,183 @@
       },
       "supportBatch": "phase-1589",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmsd11-008",
+      "name": "ジェンネ・トーピー / GYORAI-CANNON!",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 1000,
+      "race": "トリックス/ワンダフォース",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのターン中に、自分が呪文を唱えていなければ、このクリーチャーは攻撃できない。\n【呪文面】\nGR召喚する。このターン、そのGRクリーチャーに「スピードアタッカー」を与える。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd11-008",
+      "limit": 4,
+      "blocker": true,
+      "g225AttackRequires": {
+        "kind": "spells",
+        "min": 1
+      },
+      "spellFace": {
+        "name": "GYORAI-CANNON!",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "GR召喚する。このターン、そのGRクリーチャーに「スピードアタッカー」を与える。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GrSummon1498",
+            "grant": {
+              "speedAttacker": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1590",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-049",
+      "name": "GARIGARI・ナッパム/一触即死",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ビートジョッキー/ワンダフォース",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、そのターン、自分のクリーチャーすべての、バトル中のパワーを +6000する。\n自分の他のGRではないクリーチャーが破壊された時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n【呪文面】\nこのターン、自分のクリーチャーすべてに「スレイヤー」を与える。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-049",
+      "limit": 4,
+      "breaker": 2,
+      "g34Tasks": [
+        {
+          "op": "GroupPower",
+          "power": 6000,
+          "g446BattleOnly": true,
+          "owner": "self",
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "g303DeathWatch": {
+        "g1518NonGR": true,
+        "g891LookBackSelf": true,
+        "defs": [
+          {
+            "op": "GrSummon1498"
+          }
+        ]
+      },
+      "spellFace": {
+        "name": "一触即死",
+        "type": "spell",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 2,
+        "race": "",
+        "text": "このターン、自分のクリーチャーすべてに「スレイヤー」を与える。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupGrant364",
+            "grant": {
+              "slayer": true
+            },
+            "spell": true,
+            "owner": "self",
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1590",
+      "supportKind": "effect",
+      "effect": "sixPhoto"
+    },
+    {
+      "id": "dmrp08-s08",
+      "name": "“B-暴” 砲台 ストロンガ/絶対無敵シールド",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "ビートジョッキー",
+      "text": "W・ブレイカー\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）\nこのクリーチャーまたは自分の他のクリーチャーが破壊された時、相手のシールドを１つブレイクする。\n【呪文面】\n自分のクリーチャーを１体破壊してもよい。そうしたら、次の自分のターンのはじめまで、自分はゲームに負けず、相手は勝てない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-s08",
+      "limit": 4,
+      "breaker": 2,
+      "smashBurst": true,
+      "g303DeathWatch": {
+        "self": true,
+        "g891LookBackSelf": true,
+        "defs": [
+          {
+            "op": "Break497",
+            "n": 1
+          }
+        ]
+      },
+      "spellFace": {
+        "name": "絶対無敵シールド",
+        "type": "spell",
+        "civ": "火/自然",
+        "civilizations": [
+          "火",
+          "自然"
+        ],
+        "cost": 6,
+        "race": "",
+        "text": "自分のクリーチャーを１体破壊してもよい。そうしたら、次の自分のターンのはじめまで、自分はゲームに負けず、相手は勝てない。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "optional": true,
+            "defs": [
+              {
+                "op": "Lock",
+                "g746Self": true,
+                "spell": true,
+                "limit": {
+                  "kind": "g34NoLose"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1590",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1589,
+    "phase": 1590,
     "checkedAt": "2026-11-21",
-    "baseCount": 9000,
+    "baseCount": 9003,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9003,
+    "totalCount": 9006,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -311644,6 +311812,20 @@
         ],
         "next": [
           "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1589,
+        "checkedAt": "2026-11-21",
+        "baseCount": 9000,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9003,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
         ]
       }
     ]
