@@ -280816,15 +280816,235 @@
       },
       "supportBatch": "phase-1566",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23sd1-007",
+      "name": "ボルシャック・ヒート・ドラゴン / ヒートブレス・チャージャー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アーマード・ドラゴン/アーマード・ファイアー・バード",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n【呪文面】\n自分の山札の上から１枚目を表向きにする。それがアーマードなら手札に加える。そうでなければ、山札の下に置く。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd1-007",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "spellFace": {
+        "name": "ヒートブレス・チャージャー",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "race": "アーマード・アーツ",
+        "text": "自分の山札の上から１枚目を表向きにする。それがアーマードなら手札に加える。そうでなければ、山札の下に置く。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "anyFaceRace": "アーマード"
+            },
+            "to": "hand",
+            "elseTo": "deck"
+          }
+        ]
+      },
+      "supportBatch": "phase-1567",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-041",
+      "name": "機術士 マギー / 「ハンドのパワーです」",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "マジック・コマンド",
+      "text": "このクリーチャーがバトルゾーンに出た時、カードを１枚引く。\nこのクリーチャーが破壊される時、墓地に置くかわりに自分の手札に戻す。\n【呪文面】\n相手のアンタップしているクリーチャーを１体選び、持ち主のマナゾーンに置く。\nGR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-041",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "destroyToHand": true,
+      "spellFace": {
+        "name": "「ハンドのパワーです」",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "race": "",
+        "text": "相手のアンタップしているクリーチャーを１体選び、持ち主のマナゾーンに置く。\nGR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "mana",
+            "toOwnerMana": true,
+            "filter": {
+              "untapped": true
+            }
+          },
+          {
+            "op": "AuraGr1353"
+          }
+        ]
+      },
+      "supportBatch": "phase-1567",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx17-s02",
+      "name": "悪魔龍王 ドルバロムD",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 13000,
+      "race": "デーモン・コマンド・ドラゴン",
+      "text": "進化-自分の闇のドラゴン１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、闇以外のクリーチャーをすべて破壊する。その後、各プレイヤーは自身のマナゾーンにある闇以外のカードをすべて墓地に置く。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx17-s02",
+      "limit": 4,
+      "evolution": {
+        "category": "ドラゴン",
+        "civilization": "闇"
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "filter": {
+            "creature": true,
+            "notColor": "闇"
+          },
+          "both": true,
+          "to": "grave"
+        },
+        {
+          "op": "Custom",
+          "name": "purgeNonDarkMana"
+        }
+      ],
+      "supportBatch": "phase-1567",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex18-001",
+      "name": "連珠の精霊アガピトス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "エンジェル・コマンド",
+      "text": "ブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札を見る。その中から光のコスト３以下のクリーチャーを１体出してもよい。その後、山札をシャッフルする。\n自分の光のコスト３以下のクリーチャーが出た時、相手のクリーチャーを１体選びタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-001",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "g201Search": true,
+          "n": 0,
+          "limit": 1,
+          "filter": {
+            "creature": true,
+            "color": "光",
+            "max": 3
+          },
+          "rest": "shuffle"
+        }
+      ],
+      "g251EntryDraw": {
+        "filter": {
+          "creature": true,
+          "color": "光",
+          "max": 3
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "tap": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1567",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd05-001",
+      "name": "無双龍幻バルガ・ド・ライバー",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 14000,
+      "race": "アーマード・ドラゴン/アース・ドラゴン/ハンター",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nスピードアタッカー\nマッハファイター\nT・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目を表向きにしてもよい。それがドラゴンなら、バトルゾーンに出す。ドラゴンでなければ、自分のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd05-001",
+      "limit": 4,
+      "speedAttacker": true,
+      "machFighter": true,
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "title": "山札の上1枚を表向きにする？",
+          "defs": [
+            {
+              "op": "RevealTop514",
+              "filter": {
+                "creature": true,
+                "race": "ドラゴン"
+              },
+              "to": "battle",
+              "elseTo": "mana"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1567",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1566,
+    "phase": 1567,
     "checkedAt": "2026-11-21",
-    "baseCount": 8894,
-    "newEffectCards": 3,
+    "baseCount": 8897,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8897,
+    "totalCount": 8902,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -306527,6 +306747,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8894,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1566,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8894,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 8897,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
