@@ -2914,6 +2914,18 @@ export function createSixPhotoRules(api){
    (attack.g814Blockers??=[]).push({uid:t.uid,incarnation:t.incarnation||0});
   break;
  }
+ case'g34_KizunaPlus1544':{
+  const host=sourceHost474(s,t)?.x,below=host&&!host.sealed?api.layers(host).slice(1):[];
+  if(below?.length)choice(s,t,'キズナプラス：下のカード1枚を墓地に置く？',
+   [...below.map(y=>opt(y.faceDown?'裏向きの進化元':card(y).name,y.uid,20,y.faceDown?null:y.cardId)),skip()]);
+  break;
+ }
+ case'g34_KizunaPlusOther1544':{
+  if(t.g1544Others.length)choice(s,t,'他の自分のクリーチャーのP能力を選ぶ',
+   t.g1544Others.map(y=>opt(card(y).name,y.uid,10,y.cardId)));
+  else for(const y of t.g1544Self)queue(s,t.p,y,y.defs);
+  break;
+ }
  case'g34_KizunaComp1543':{
   const rows=t.g1543Rows??creatures(s,t.p).filter(y=>!y.sealed&&!y.faceDown&&effective(y,s).g1540P?.length)
    .map(y=>({uid:y.uid,incarnation:y.incarnation||0,cardId:y.cardId,defs:structuredClone(effective(y,s).g1540P)}));
@@ -6430,6 +6442,22 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
  }
  function chosen(s,t,v){if(fifteen.chosen(s,t,v))return true;if(!t.op.startsWith('g34_'))return false;const own=s.players[t.p],x=live(s,t);switch(t.op){
+ case'g34_KizunaPlus1544':{
+  if(v==null)break;
+  const host=sourceHost474(s,t)?.x,below=host&&api.layers(host).slice(1).find(y=>y.uid===v);
+  if(!host||host.sealed||!below||!api.canMoveZone(s,t.p,'battle'))break;
+  const snapshot=y=>({uid:y.uid,incarnation:y.incarnation||0,cardId:y.cardId,
+   ...(y.g1357Copies?{g1357Copies:structuredClone(y.g1357Copies)}:{}),defs:structuredClone(effective(y,s).g1540P||[])});
+  const ownP=snapshot(host),others=creatures(s,t.p).filter(y=>y.uid!==host.uid&&!y.sealed&&!y.faceDown&&effective(y,s).g1540P?.length).map(snapshot);
+  api.moveBattleCard(s,t.p,v,'grave',{controller:t.p});
+  if(own.grave.some(y=>y.uid===v))put(s,{...t,op:'g34_KizunaPlusOther1544',g1544Self:ownP.defs.length?[ownP]:[],g1544Others:others});
+  break;
+ }
+ case'g34_KizunaPlusOther1544':{
+  const other=t.g1544Others.find(y=>y.uid===v);
+  for(const y of [...t.g1544Self,...(other?[other]:[])])queue(s,t.p,y,y.defs);
+  break;
+ }
  case'g34_KizunaComp1543':{
   if(v!=null){if(t.g1543Rows.some(y=>y.uid===v)&&!t.g1543Selected.includes(v))put(s,{...t,g1543Selected:[...t.g1543Selected,v]});}
   else for(const y of t.g1543Rows.filter(y=>t.g1543Selected.includes(y.uid)))queue(s,t.p,y,y.defs);

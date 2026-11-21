@@ -1,0 +1,352 @@
+{
+  "phase": 1544,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8794,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31596/"
+  ],
+  "implementationNotes": [
+    "キズナプラスは攻撃したクリーチャーの下にある物理カード1枚を任意で自分の墓地へ置き、実際に墓地へ移動した場合だけP能力を待機。",
+    "自分と他の1体のP能力を独立した待機効果として保持。先にP能力を解決してもう一方の発生源が離れても、既に待機したP能力は残る。",
+    "進化元がない場合や支払いを断った場合にP能力を使わない。墓地以外へ置換された支払いも成立しない。"
+  ],
+  "cards": [
+    {
+      "id": "dmrp04s-045",
+      "name": "ラッシュ・チュリス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-045",
+      "faces": [
+        {
+          "name": "ラッシュ・チュリス",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "NEO進化：自分の火のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nキズナプラス（このクリーチャーが攻撃する時、その下にあるカードを１枚、自分の墓地に置いてもよい。そうしたら、このクリーチャーと自分の他のクリーチャー１体のP 能力を使う）P相手のパワー1000以下のクリーチャーを１体破壊する。",
+          "race": "ビートジョッキー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "KizunaPlus1544"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 1000
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "dab8a38bcd40477c848fc00e5d53b0a0e3ed756c336a3614d153dd57bd439962",
+        "facesMatched": true,
+        "imageSha256": "273ef169e73c2b32233654c38c5f311663e80aaeb24727e1b47bc2b2d56693f8",
+        "imageBytes": 127357
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスター・ドルスザク！！～無月の魔凰～",
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスタードラゴン！！～正義ノ裁キ～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-045",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp03-052",
+      "name": "ロロカゲティ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-052",
+      "faces": [
+        {
+          "name": "ロロカゲティ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "NEO進化：自分の自然のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nキズナプラス（このクリーチャーが攻撃する時、その下にあるカードを１枚、自分の墓地に置いてもよい。そうしたら、このクリーチャーと自分の他のクリーチャー１体の oP 能力を使う）\noP 自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "グランセクト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "KizunaPlus1544"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "c62335714f523871f923982bf18d614ca40c0e1573af3e5de132995efed38c83",
+        "facesMatched": true,
+        "imageSha256": "bb8bb8ae4fd2440852d2c2f465cf0703ce2ac76b078640ee3809d3c9ba673269",
+        "imageBytes": 119945
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスター・ドルスザク！！～無月の魔凰～",
+        "DMRP-03 拡張パック新3弾 気分Ｊ･O･E×２メラ冒険！！"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-052",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp03-039",
+      "name": "凶鬼82号 スタフ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-039",
+      "faces": [
+        {
+          "name": "凶鬼82号 スタフ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "NEO進化：自分の闇のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nキズナプラス（このクリーチャーが攻撃する時、その下にあるカードを１枚、自分の墓地に置いてもよい。そうしたら、このクリーチャーと自分の他のクリーチャー１体の oP 能力を使う）\noP 相手は自身の手札を１枚選んで捨てる。",
+          "race": "マフィ・ギャング",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "KizunaPlus1544"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "fb869111e1be8107c020266b2bd4317db78e56e8d9354114b721f532bfed5fda",
+        "facesMatched": true,
+        "imageSha256": "a823b46e55060140be25979794e761aa5eb46208395bbb5cf2de666722cd3406",
+        "imageBytes": 110895
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスター・ドルスザク！！～無月の魔凰～",
+        "DMRP-03 拡張パック新3弾 気分Ｊ･O･E×２メラ冒険！！"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-039",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp03-034",
+      "name": "貝鬼動 アワービ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-034",
+      "faces": [
+        {
+          "name": "貝鬼動 アワービ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "NEO進化：自分の水のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nキズナプラス（このクリーチャーが攻撃する時、その下にあるカードを１枚、自分の墓地に置いてもよい。そうしたら、このクリーチャーと自分の他のクリーチャー１体の oP 能力を使う）\noP カードを２枚引く。その後、自分の手札を１枚捨てる。",
+          "race": "ムートピア",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "水"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "KizunaPlus1544"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "6cbc6a29d09ba26185bbd423486d64241dcedd5b7a934d694e5ed4a9e47e419f",
+        "facesMatched": true,
+        "imageSha256": "d6db8f1f1b50b57288c41fb3fb03efe88c61e9a2d937340c9a5e9eae61782ea7",
+        "imageBytes": 125999
+      },
+      "sameNameProducts": [
+        "DMRP-03 拡張パック新3弾 気分Ｊ･O･E×２メラ冒険！！"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-034",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp03-018",
+      "name": "忠験医 グスタスク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-018",
+      "faces": [
+        {
+          "name": "忠験医 グスタスク",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "NEO進化：自分の闇のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nキズナプラス（このクリーチャーが攻撃する時、その下にあるカードを１枚、自分の墓地に置いてもよい。そうしたら、このクリーチャーと自分の他のクリーチャー１体の oP 能力を使う）\noP 相手は自身のアンタップしているクリーチャーを１体選び、破壊する。",
+          "race": "マフィ・ギャング",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "KizunaPlus1544"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "untapped": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "2d3e14e491e686f082a7cac413ae69ad808e362dbe2c4e099e3b6e023ba7f9cc",
+        "facesMatched": true,
+        "imageSha256": "58a9938e86f96c7bbed64104da81bb55952f5b84ad3a0a1b5e2aeddc1a20ad0d",
+        "imageBytes": 119779
+      },
+      "sameNameProducts": [
+        "DMRP-03 拡張パック新3弾 気分Ｊ･O･E×２メラ冒険！！"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-018",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp04s-045": 4,
+      "dmrp03-052": 4,
+      "dmrp03-039": 4,
+      "dmrp03-034": 4,
+      "dmrp03-018": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/31596/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31596/",
+      "sha256": "f93027f8bffda2b665ffc5dcfeeeb964502075a30aee7dc8354a0942666aa142",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    }
+  ]
+}
