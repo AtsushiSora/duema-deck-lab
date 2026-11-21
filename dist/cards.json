@@ -280524,15 +280524,203 @@
       ],
       "supportBatch": "phase-1564",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04m-036",
+      "name": "ドクターDr．",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 3000,
+      "race": "ジョーカーズ",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、そのターン、相手のコストが奇数のクリーチャーは、攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-036",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ParityCombatLock1315",
+          "parity": 1,
+          "untilEnd": true
+        }
+      ],
+      "supportBatch": "phase-1565",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm28-001",
+      "name": "聖帝リオン・ザード",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5500,
+      "race": "アーク・セラフィム",
+      "text": "マナ進化-光のクリーチャーを１体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\n自分の他の、《聖帝リオン・ザード》以外のクリーチャーが相手プレイヤーを攻撃する時、このクリーチャーをアンタップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-001",
+      "limit": 4,
+      "evolution": {
+        "civilization": "光"
+      },
+      "manaEvolution": true,
+      "g252AttackWatch": {
+        "who": "self",
+        "other": true,
+        "playerAttack": true,
+        "filter": {
+          "creature": true,
+          "g412ExceptName": "聖帝リオン・ザード"
+        },
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "聖帝リオン・ザードをアンタップする？",
+            "defs": [
+              {
+                "op": "Untap"
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1565",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22-024",
+      "name": "氷彗星アステロイド・レイザ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 11000,
+      "race": "フェニックス",
+      "text": "進化V-自分のグレートメカオー、キカイヒーロー、ポセイディア・ドラゴンのいずれか２体を重ねた上に置く。\nこのクリーチャーが破壊される時、墓地に置くかわりに自分の手札に戻す。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-024",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "any": [
+              {
+                "race": "グレートメカオー"
+              },
+              {
+                "race": "キカイヒーロー"
+              },
+              {
+                "race": "ポセイディア・ドラゴン"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "グレートメカオー"
+              },
+              {
+                "race": "キカイヒーロー"
+              },
+              {
+                "race": "ポセイディア・ドラゴン"
+              }
+            ]
+          }
+        ]
+      },
+      "breaker": 2,
+      "destroyToHand": true,
+      "supportBatch": "phase-1565",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-005",
+      "name": "死皇帝ハデス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 9000,
+      "race": "ダークロード",
+      "text": "墓地進化-闇のクリーチャーを１体自分の墓地から選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\n自分のターンにクリーチャーを１体、自分の墓地から召喚してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-005",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "grave",
+        "conditions": [
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g450ZoneSummon": {
+        "origin": "grave",
+        "filter": {
+          "creature": true
+        }
+      },
+      "supportBatch": "phase-1565",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex3-054",
+      "name": "帝王坂∞＜…………！＞",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": "∞",
+      "race": "∞ドラゴン/アオハル組",
+      "text": "S・トリガー S・トリガー\nブロッカー ブロッカー\nこのクリーチャーは攻撃できない。\nこのクリーチャーが出た時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－∞ する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex3-054",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "noAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": "-infinity",
+          "g242PowerMinus": true
+        }
+      ],
+      "supportBatch": "phase-1565",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1564,
+    "phase": 1565,
     "checkedAt": "2026-11-21",
-    "baseCount": 8884,
+    "baseCount": 8889,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8889,
+    "totalCount": 8894,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -306207,6 +306395,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8884,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1564,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8884,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8889,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

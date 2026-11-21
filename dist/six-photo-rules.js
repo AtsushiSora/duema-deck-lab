@@ -362,6 +362,7 @@ export function createSixPhotoRules(api){
   api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source,effect:'extended',
    task:task('g34_'+op,p,source,{uid:x.uid,incarnation:x.incarnation||0,...more})},deferred);
  };
+ function applyParityCombat1565(s,t,parity){const player=1-t.p,refs=creatures(s,player).filter(x=>!x.sealed).flatMap(x=>api.allLayers(x).map(y=>({uid:y.uid,incarnation:y.incarnation||0})));if(refs.length)api.lock(s,t.p,{kind:'g1315ParityCombat',player,refs,parity,...(t.untilEnd?{expires:'end',who:s.active}:{})});}
  function bioKScore(s,p,source){
   const {recovery,effect}=card(source).g953BioK??{};
   const own=s.players[p],opp=s.players[1-p];
@@ -4624,6 +4625,7 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_ParityCombatLock1315':
+  if(t.parity===0||t.parity===1){applyParityCombat1565(s,t,t.parity);break;}
   choice(s,t,'攻撃もブロックもできなくなるコストを選ぶ',[opt('奇数',1,10),opt('偶数',0,10)]);
   break;
  case'g34_FlipShields949':{
@@ -7077,9 +7079,7 @@ export function createSixPhotoRules(api){
   }
   break;
  case'g34_ParityCombatLock1315':{
-  const player=1-t.p;
-  const refs=creatures(s,player).filter(x=>!x.sealed).flatMap(x=>api.allLayers(x).map(y=>({uid:y.uid,incarnation:y.incarnation||0})));
-  if(refs.length)api.lock(s,t.p,{kind:'g1315ParityCombat',player,refs,parity:v});
+  applyParityCombat1565(s,t,v);
   break;
  }
  case'g34_FlipShields949':

@@ -18844,5 +18844,209 @@
         }
       ]
     }
+  },
+  "dmrp04m-036": {
+    "phase": 1565,
+    "faces": [
+      {
+        "name": "ドクターDr．",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、そのターン、相手のコストが奇数のクリーチャーは、攻撃もブロックもできない。",
+        "race": "ジョーカーズ",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ParityCombatLock1315",
+          "parity": 1,
+          "untilEnd": true
+        }
+      ]
+    }
+  },
+  "dm28-001": {
+    "phase": 1565,
+    "faces": [
+      {
+        "name": "聖帝リオン・ザード",
+        "typeText": "進化クリーチャー(マナ進化)",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "マナ進化-光のクリーチャーを１体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\n自分の他の、《聖帝リオン・ザード》以外のクリーチャーが相手プレイヤーを攻撃する時、このクリーチャーをアンタップしてもよい。",
+        "race": "アーク・セラフィム",
+        "powerText": "5500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "civilization": "光"
+      },
+      "manaEvolution": true,
+      "g252AttackWatch": {
+        "who": "self",
+        "other": true,
+        "playerAttack": true,
+        "filter": {
+          "creature": true,
+          "g412ExceptName": "聖帝リオン・ザード"
+        },
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "聖帝リオン・ザードをアンタップする？",
+            "defs": [
+              {
+                "op": "Untap"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dm22-024": {
+    "phase": 1565,
+    "faces": [
+      {
+        "name": "氷彗星アステロイド・レイザ",
+        "typeText": "進化クリーチャー(進化V)",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "進化V-自分のグレートメカオー、キカイヒーロー、ポセイディア・ドラゴンのいずれか２体を重ねた上に置く。\nこのクリーチャーが破壊される時、墓地に置くかわりに自分の手札に戻す。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "フェニックス",
+        "powerText": "11000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "any": [
+              {
+                "race": "グレートメカオー"
+              },
+              {
+                "race": "キカイヒーロー"
+              },
+              {
+                "race": "ポセイディア・ドラゴン"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "グレートメカオー"
+              },
+              {
+                "race": "キカイヒーロー"
+              },
+              {
+                "race": "ポセイディア・ドラゴン"
+              }
+            ]
+          }
+        ]
+      },
+      "breaker": 2,
+      "destroyToHand": true
+    }
+  },
+  "dm32-005": {
+    "phase": 1565,
+    "faces": [
+      {
+        "name": "死皇帝ハデス",
+        "typeText": "進化クリーチャー(墓地進化)",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "墓地進化-闇のクリーチャーを１体自分の墓地から選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\n自分のターンにクリーチャーを１体、自分の墓地から召喚してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "ダークロード",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "grave",
+        "conditions": [
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g450ZoneSummon": {
+        "origin": "grave",
+        "filter": {
+          "creature": true
+        }
+      }
+    }
+  },
+  "dm26ex3-054": {
+    "phase": 1565,
+    "faces": [
+      {
+        "name": "帝王坂∞＜…………！＞",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "S・トリガー S・トリガー\nブロッカー ブロッカー\nこのクリーチャーは攻撃できない。\nこのクリーチャーが出た時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－∞ する。（パワー０以下のクリーチャーは破壊される）",
+        "race": "∞ドラゴン/アオハル組",
+        "powerText": "∞",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "power": "∞",
+      "trigger": true,
+      "blocker": true,
+      "noAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": "-infinity",
+          "g242PowerMinus": true
+        }
+      ]
+    }
   }
 }
