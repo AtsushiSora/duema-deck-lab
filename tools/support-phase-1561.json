@@ -1,0 +1,270 @@
+{
+  "phase": 1561,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8870,
+  "description": "既存の処理を用いて全能力を個別に検証し4種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/37248/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa_old/37248/": "自然のマナが6枚以下ではジュランネルは呪文やクリーチャーの能力を含め、どの方法でもアンタップできない。"
+  },
+  "cards": [
+    {
+      "id": "dmr17-s10",
+      "name": "界王類七動目 ジュランネル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-s10",
+      "faces": [
+        {
+          "name": "界王類七動目 ジュランネル",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "ワールド・ブレイカー（このクリーチャーは相手のシールドをすべてブレイクする）\nこのクリーチャーは、バトルゾーンにタップして置く。\n自分のマナゾーンに自然のカードが６枚以下しかない場合、このクリーチャーをアンタップできない。",
+          "race": "ジュラシック・コマンド・ドラゴン",
+          "powerText": "24000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "worldBreaker": true,
+        "breaker": "∞",
+        "tapEntry": true,
+        "g1561UntapRequires": {
+          "g1197ManaCount": {
+            "min": 7,
+            "filter": {
+              "color": "自然",
+              "faceUp": true
+            }
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-s10.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "155ee6eb0e633207fefdfdb8fdb4426106b1f55b74c10bcf55f9d7907d38530b",
+        "facesMatched": true,
+        "imageSha256": "2b87622562cfa2fe1dec879de70455946b593da8d88809630d185b1ef127e18a",
+        "imageBytes": 158402
+      },
+      "sameNameProducts": [
+        "DMRP-07 双極篇 拡張パック第３弾 †ギラギラ†煌世主と終葬のQX!!",
+        "DMR-17 革命 拡張パック第1章 燃えろドギラゴン!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-s10",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmsp01-002",
+      "name": "紅の猛り 天鎖",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp01-002",
+      "faces": [
+        {
+          "name": "紅の猛り 天鎖",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "T・ブレイカー\nこのクリーチャーは、タップしてバトルゾーンに出る。\n自分のシールドが６つ以下なら、このクリーチャーはアンタップしない。\nラビリンス：自分のターンのはじめに、自分のシールドが相手より多ければ、カードを１枚引いてもよい。",
+          "race": "メタリカ",
+          "powerText": "14500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "tapEntry": true,
+        "g1561UntapRequires": {
+          "g334ZoneCount": {
+            "zone": "shields",
+            "min": 7
+          }
+        },
+        "g174Start": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "moreThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "title": "ラビリンスでカードを1枚引く？",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsp01-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "a181ce87a7572f2575bce5a98f12b0eb4ca09084be6585ff6e9ab5db8ca30bac",
+        "facesMatched": true,
+        "imageSha256": "4b6cb69813aab51499b18d5671fe9ddaa37300aa8551b340d08c8e9e54905f5a",
+        "imageBytes": 130144
+      },
+      "sameNameProducts": [
+        "DMEX-02 デュエマクエスト・パック ～伝説の最強戦略12～",
+        "DMSP-01 ステキ！カンペキ！！ジョーデッキーBOX"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp01-002",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmsd02-007",
+      "name": "赤攻銀 カ・ダブラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd02-007",
+      "faces": [
+        {
+          "name": "赤攻銀 カ・ダブラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーは、タップしてバトルゾーンに出る。\nバトルゾーンにある自分の他のクリーチャーが２体以下なら、このクリーチャーはアンタップしない。",
+          "race": "メタリカ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "tapEntry": true,
+        "g1561UntapRequires": {
+          "creature": true,
+          "g334Other": true,
+          "g258Civil": 3
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd02-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "6ff32667cfb181e2b79dee30ea8d52aadb5a4225d0f82e4b040cc366322314cf",
+        "facesMatched": true,
+        "imageSha256": "d18198e82c960926b083fbaf93d59a876db9eaada3631709ca94968907233d42",
+        "imageBytes": 131538
+      },
+      "sameNameProducts": [
+        "DMSD-02 NEWヒーローデッキ キラのラビリンス",
+        "プロモ限定カード 18期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd02-007",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmpcd02-a11",
+      "name": "助太刀 メモリー・アクセラー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd02-a11",
+      "faces": [
+        {
+          "name": "助太刀 メモリー・アクセラー",
+          "typeText": "クロスギア",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "クロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーが離れても、このカードは残る。\nこれをクロスしたクリーチャーが攻撃する時、カードを１枚引いてもよい。",
+          "race": "サムライ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g931CrossAttack": [
+          {
+            "op": "Offer",
+            "title": "カードを1枚引く？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "type": "gear"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmpcd02-a11.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "37f4982372968aec1f00d8982b0e22b78d329cbcedd92837cee0a16262acd181",
+        "facesMatched": true,
+        "imageSha256": "46616cc52c556454b97c318dc7903116f48e82dbdde875e176fc249517253c57",
+        "imageBytes": 104634
+      },
+      "sameNameProducts": [
+        "DMPCD-02 デュエマプレイス・コラボデッキ 竜装の武者＆魔弾の騎士"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd02-a11",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr17-s10": 4,
+      "dmsp01-002": 4,
+      "dmsd02-007": 4,
+      "dmpcd02-a11": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37248/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/37248/",
+      "sha256": "bc4820ed0dcdf37c8a80ad4227199ea218e9739f8276f168f8b198528a16aaf1",
+      "result": "自然のマナが6枚以下ではジュランネルは呪文やクリーチャーの能力を含め、どの方法でもアンタップできない。"
+    }
+  ]
+}

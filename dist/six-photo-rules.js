@@ -8559,7 +8559,7 @@ export function createSixPhotoRules(api){
    s.players.some(owner=>owner.battle.some(host=>key(host)===l.host&&!host.sealed&&!host.faceDown&&
     card(host).g34Tasks?.some(d=>d.g1198UntapLock)&&!api.ignored(s,host)&&api.isCreature(s,host)))))return true;
   const c=effective(x,s);
-  return s.players[p].grave.length<(c.g1016UntapMinGrave??0)||
+  return c.g1561UntapRequires&&!ownCondition(s,p,c.g1561UntapRequires,x.uid,x.incarnation||0)||s.players[p].grave.length<(c.g1016UntapMinGrave??0)||
    !mecha(c)&&(active(s,0,'shinGod').length||active(s,1,'shinGod').length)>0;
  },
  countDiscount212(s,p,c){if(c.g212CountDiscount?.minimum===2)return 0;const max=countDiscountMax499(s,p,c);return c.g212CountDiscount?.optional&&c.g499Reduction!==undefined?Math.min(max,Math.max(0,c.g499Reduction)):max;},
