@@ -1,0 +1,275 @@
+{
+  "phase": 1598,
+  "checkedAt": "2026-11-21",
+  "baseCount": 9028,
+  "description": "既存の処理を用いて全能力を個別に検証し3種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/39639/",
+    "https://dm.takaratomy.co.jp/rule/qa/41570/",
+    "https://dm.takaratomy.co.jp/rule/qa/33431/",
+    "https://dm.takaratomy.co.jp/rule/qa/33435/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/39639/": "手札で使う単色クリーチャーのG・ストライクはモモキングを選べる。バトルゾーンでのクリーチャー能力の発生元を保存して判定する。",
+    "https://dm.takaratomy.co.jp/rule/qa/41570/": "バイケンの捨てる置換に続く手札戻しは、バトルゾーンのクリーチャー能力としてモモキングを選べない。",
+    "https://dm.takaratomy.co.jp/rule/qa/33431/": "唱えた呪文の実際の文明を判定し、文明追加で多色になった場合にはモモキングを選べる。",
+    "https://dm.takaratomy.co.jp/rule/qa/33435/": "進化元に移動しても、生成した能力の多色の発生元を引き継ぐ。"
+  },
+  "cards": [
+    {
+      "id": "dmrp10-m02",
+      "name": "Wave All ウェイボール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-m02",
+      "faces": [
+        {
+          "name": "Wave All ウェイボール",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーは攻撃できない。\n各ターン、自分がはじめて呪文を唱えた時、GR召喚する。\nクリーチャーの能力によって、相手がクリーチャーを選ぶ時、このクリーチャーは選べない。",
+          "race": "トリックス/ワンダフォース",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "noAttack": true,
+        "grOnFirstSpell": true,
+        "g1598ChoiceProtection": {
+          "creatureOnly": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp10-m02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "6e30fb316a7e830bef33b09c4181e1f1e0e73cb6b63e5c3ce16891eda2374a48",
+        "facesMatched": true,
+        "imageSha256": "dbbaa1b869b240d9b32cb39fa5d4e5dea7d22900c76516d82cf6ba75f7559efe",
+        "imageBytes": 242597
+      },
+      "sameNameProducts": [
+        "DMEX-19 マスター・ファイナル・メモリアル・パック",
+        "DMRP-10 超天篇 拡張パック第2弾 青きC.A.P.と漆黒の大卍罪"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-m02",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp13-km1",
+      "name": "勝熱英雄 モモキング",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-km1",
+      "faces": [
+        {
+          "name": "勝熱英雄 モモキング",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "キリフダッシュ [fn06]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを [fn06] 支払って召喚してもよい）\nスピードアタッカー\nT・ブレイカー\n各ターン、このクリーチャーがはじめて攻撃する時、その攻撃の後、このクリーチャーをアンタップする。\n多色ではない呪文の効果、または、多色ではないクリーチャーの能力によって、相手がクリーチャーを選ぶ時、このクリーチャーは選べない。",
+          "race": "ヒーロー・ドラゴン/ジョーカーズ/チーム切札",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "kirifudaDash": 6,
+        "g402DashColors": [
+          "火",
+          "自然"
+        ],
+        "speedAttacker": true,
+        "breaker": 3,
+        "g540FirstAttack": [
+          {
+            "op": "AfterAttack542",
+            "defs": [
+              {
+                "op": "Untap",
+                "g191First": true
+              }
+            ]
+          }
+        ],
+        "g1598ChoiceProtection": {
+          "mono": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp13-km1.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "fd6e69fc69d1d852e3575fb8f2967840ff2602e017bcb29f9793bed79fc53e96",
+        "facesMatched": true,
+        "imageSha256": "a6cb84fc4c1df28caed2cda0ffca12edadf7ecdff3eec73c49ec50bf19df65d2",
+        "imageBytes": 249143
+      },
+      "sameNameProducts": [
+        "DM25-EX2 王道vs邪道 デュエキングWDreaM 2025",
+        "DM24-EX2 天下夢双!!デュエキングDreaM 2024",
+        "DM23-BD4 エキサイティング・デュエパ・デッキ 「ドラドラドラゴン龍幻郷」",
+        "DMEX-19 マスター・ファイナル・メモリアル・パック",
+        "DMEX-17 20周年超感謝メモリアルパック 究極の章 デュエキングMAX",
+        "DMRP-13 十王篇拡張パック第1弾 切札x鬼札 キングウォーズ!!!",
+        "プロモ限定カード 19期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-km1",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmr03-s01",
+      "name": "勝利の女神ジャンヌ・ダルク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-s01",
+      "faces": [
+        {
+          "name": "勝利の女神ジャンヌ・ダルク",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー\nこのクリーチャーをバトルゾーンに出した時、または、このクリーチャーが攻撃あるいはブロックした時、バトルゾーンにある相手のクリーチャーを２体まで選び、タップしてもよい。\nW・ブレイカー\n火の呪文または火のクリーチャーの能力によって、相手がバトルゾーンにあるクリーチャーを選ぶ時、このクリーチャーを選ぶことはできない。",
+          "race": "メカ・デル・ソル/ハンター",
+          "powerText": "7500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Tap": true,
+            "g193Select": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Tap": true,
+            "g193Select": true
+          }
+        ],
+        "g178Block": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Tap": true,
+            "g193Select": true
+          }
+        ],
+        "g1598ChoiceProtection": {
+          "color": "火"
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-s01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "d18646480bead8da4f96340f7beebe95b18a599682dfe996b215f54b93b3da55",
+        "facesMatched": true,
+        "imageSha256": "a050fcf412cde0412e9b6e76ddce5d82b57d27171508616536135e6932b61e0c",
+        "imageBytes": 136270
+      },
+      "sameNameProducts": [
+        "DMX-19 スーパーレア100%パック",
+        "DMR-03 エピソード1 ガイアール・ビクトリー"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-s01",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp10-m02": 4,
+      "dmrp13-km1": 4,
+      "dmr03-s01": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/39639/",
+    "https://dm.takaratomy.co.jp/rule/qa/41570/",
+    "https://dm.takaratomy.co.jp/rule/qa/33431/",
+    "https://dm.takaratomy.co.jp/rule/qa/33435/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39639/",
+      "sha256": "97ba73ee1b3b83ba59c52b60b3267a31dbc04336820c42eea5a75e20779531a0",
+      "result": "手札で使う単色クリーチャーのG・ストライクはモモキングを選べる。バトルゾーンでのクリーチャー能力の発生元を保存して判定する。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/41570/",
+      "sha256": "da486150cfd1abb680710e8f26f9ef192d648c34c84d7c28711b8f351641aca4",
+      "result": "バイケンの捨てる置換に続く手札戻しは、バトルゾーンのクリーチャー能力としてモモキングを選べない。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33431/",
+      "sha256": "4b93aee50ac3c777a1b36eaa4e5b4a64f3812d5e86b1d30f8dc884162ef2d119",
+      "result": "唱えた呪文の実際の文明を判定し、文明追加で多色になった場合にはモモキングを選べる。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33435/",
+      "sha256": "083abff4b65ddccbb1e1dd21147d817e102972978a7ef6bc32cb1af9d5b2d57c",
+      "result": "進化元に移動しても、生成した能力の多色の発生元を引き継ぐ。"
+    }
+  ]
+}

@@ -26372,5 +26372,146 @@
         "emptyHand": true
       }
     }
+  },
+  "dmrp10-m02": {
+    "phase": 1598,
+    "faces": [
+      {
+        "name": "Wave All ウェイボール",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "このクリーチャーは攻撃できない。\n各ターン、自分がはじめて呪文を唱えた時、GR召喚する。\nクリーチャーの能力によって、相手がクリーチャーを選ぶ時、このクリーチャーは選べない。",
+        "race": "トリックス/ワンダフォース",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "noAttack": true,
+      "grOnFirstSpell": true,
+      "g1598ChoiceProtection": {
+        "creatureOnly": true
+      }
+    }
+  },
+  "dmrp13-km1": {
+    "phase": 1598,
+    "faces": [
+      {
+        "name": "勝熱英雄 モモキング",
+        "typeText": "クリーチャー",
+        "civilizationText": "火/自然",
+        "civilizations": [
+          "火",
+          "自然"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "キリフダッシュ [fn06]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを [fn06] 支払って召喚してもよい）\nスピードアタッカー\nT・ブレイカー\n各ターン、このクリーチャーがはじめて攻撃する時、その攻撃の後、このクリーチャーをアンタップする。\n多色ではない呪文の効果、または、多色ではないクリーチャーの能力によって、相手がクリーチャーを選ぶ時、このクリーチャーは選べない。",
+        "race": "ヒーロー・ドラゴン/ジョーカーズ/チーム切札",
+        "powerText": "12000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "kirifudaDash": 6,
+      "g402DashColors": [
+        "火",
+        "自然"
+      ],
+      "speedAttacker": true,
+      "breaker": 3,
+      "g540FirstAttack": [
+        {
+          "op": "AfterAttack542",
+          "defs": [
+            {
+              "op": "Untap",
+              "g191First": true
+            }
+          ]
+        }
+      ],
+      "g1598ChoiceProtection": {
+        "mono": true
+      }
+    }
+  },
+  "dmr03-s01": {
+    "phase": 1598,
+    "faces": [
+      {
+        "name": "勝利の女神ジャンヌ・ダルク",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "ブロッカー\nこのクリーチャーをバトルゾーンに出した時、または、このクリーチャーが攻撃あるいはブロックした時、バトルゾーンにある相手のクリーチャーを２体まで選び、タップしてもよい。\nW・ブレイカー\n火の呪文または火のクリーチャーの能力によって、相手がバトルゾーンにあるクリーチャーを選ぶ時、このクリーチャーを選ぶことはできない。",
+        "race": "メカ・デル・ソル/ハンター",
+        "powerText": "7500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Tap": true,
+          "g193Select": true
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Tap": true,
+          "g193Select": true
+        }
+      ],
+      "g178Block": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Tap": true,
+          "g193Select": true
+        }
+      ],
+      "g1598ChoiceProtection": {
+        "color": "火"
+      }
+    }
   }
 }

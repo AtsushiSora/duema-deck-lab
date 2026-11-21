@@ -286643,15 +286643,147 @@
       },
       "supportBatch": "phase-1597",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-m02",
+      "name": "Wave All ウェイボール",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 5000,
+      "race": "トリックス/ワンダフォース",
+      "text": "このクリーチャーは攻撃できない。\n各ターン、自分がはじめて呪文を唱えた時、GR召喚する。\nクリーチャーの能力によって、相手がクリーチャーを選ぶ時、このクリーチャーは選べない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-m02",
+      "limit": 4,
+      "noAttack": true,
+      "grOnFirstSpell": true,
+      "g1598ChoiceProtection": {
+        "creatureOnly": true
+      },
+      "supportBatch": "phase-1598",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-km1",
+      "name": "勝熱英雄 モモキング",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 12000,
+      "race": "ヒーロー・ドラゴン/ジョーカーズ/チーム切札",
+      "text": "キリフダッシュ [fn06]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを [fn06] 支払って召喚してもよい）\nスピードアタッカー\nT・ブレイカー\n各ターン、このクリーチャーがはじめて攻撃する時、その攻撃の後、このクリーチャーをアンタップする。\n多色ではない呪文の効果、または、多色ではないクリーチャーの能力によって、相手がクリーチャーを選ぶ時、このクリーチャーは選べない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-km1",
+      "limit": 4,
+      "kirifudaDash": 6,
+      "g402DashColors": [
+        "火",
+        "自然"
+      ],
+      "speedAttacker": true,
+      "breaker": 3,
+      "g540FirstAttack": [
+        {
+          "op": "AfterAttack542",
+          "defs": [
+            {
+              "op": "Untap",
+              "g191First": true
+            }
+          ]
+        }
+      ],
+      "g1598ChoiceProtection": {
+        "mono": true
+      },
+      "supportBatch": "phase-1598",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr03-s01",
+      "name": "勝利の女神ジャンヌ・ダルク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7500,
+      "race": "メカ・デル・ソル/ハンター",
+      "text": "ブロッカー\nこのクリーチャーをバトルゾーンに出した時、または、このクリーチャーが攻撃あるいはブロックした時、バトルゾーンにある相手のクリーチャーを２体まで選び、タップしてもよい。\nW・ブレイカー\n火の呪文または火のクリーチャーの能力によって、相手がバトルゾーンにあるクリーチャーを選ぶ時、このクリーチャーを選ぶことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-s01",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Tap": true,
+          "g193Select": true
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Tap": true,
+          "g193Select": true
+        }
+      ],
+      "g178Block": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Tap": true,
+          "g193Select": true
+        }
+      ],
+      "g1598ChoiceProtection": {
+        "color": "火"
+      },
+      "supportBatch": "phase-1598",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1597,
+    "phase": 1598,
     "checkedAt": "2026-11-21",
-    "baseCount": 9025,
+    "baseCount": 9028,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9028,
+    "totalCount": 9031,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -312788,6 +312920,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 9025,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1597,
+        "checkedAt": "2026-11-21",
+        "baseCount": 9025,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9028,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
