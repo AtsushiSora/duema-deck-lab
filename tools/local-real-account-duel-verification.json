@@ -1,0 +1,224 @@
+{
+  "checkedAt": "2026-11-21T23:26:01.783Z",
+  "clientDate": "2026-11-22",
+  "timezone": "Asia/Tokyo",
+  "baseCommit": "de6d8282a3f4d7aa00f5c418a46b2b9f19dd9558",
+  "status": "local-unpublished-build-two-real-accounts-passed",
+  "scope": "同じMacのChromeとアプリ内ブラウザ。実Google認証、現行の未公開フロントエンド・対戦サービス・HTTPハンドラを使い、ローカル暗号化メモリ保存で12項目を確認。",
+  "testedUrl": "http://localhost:4175/?view=online",
+  "productCodeChanged": false,
+  "setup": {
+    "sameMac": true,
+    "browsers": [
+      "Chrome",
+      "ChatGPT in-app browser"
+    ],
+    "googleAccounts": 2,
+    "fakeAuthentication": false,
+    "normalGoogleAccountSelection": true,
+    "tokenVerification": "firebase-admin getAuth(...).verifyIdToken(token)",
+    "passwordsOrTokensRecorded": false,
+    "productionRoomsWritten": false,
+    "cloudDecksWritten": false,
+    "accountDataAccess": "通常の認証後のクラウド読込と既存アプリによるプレイ時間の自動同期あり。クラウドのデッキ保存・取込は操作していない。",
+    "storage": "本番storeを使わず、ランダムなAES鍵で暗号化したルームをローカルのメモリ内だけに保持。鍵と対戦データはサーバー終了で破棄。",
+    "scenarioSetup": "作成・参加後にローカル専用のファイル制御で4つの検証盤面を配置。元の40枚デッキから自然に引いた対戦ではなく、問題操作を再現する固定盤面である。各操作・支払い・バトル・防御は本来のUIとサービス経由。",
+    "fixturePreparation": "予備ルーム後、墓地召喚盤面を既存回帰テストのカード・文明へ揃えてローカルサーバーを再起動し、最終確認用ルームを作成し直した。",
+    "fixtureScript": "tmp/duema-local-real-accounts/server.mjs",
+    "fixtureSha256": "179c3d8023d4e610feae89600c42d54d606cc13a099c310e0ca5e1335047f6ab",
+    "serverStopped": true,
+    "temporaryTabs": "今回作成した検証用タブは一時タブ。本番の既存タブとログインは操作していない。"
+  },
+  "checks": [
+    {
+      "id": "two-real-accounts",
+      "result": "passed",
+      "observed": "Chromeとアプリ内ブラウザで別々の既存Googleアカウントを通常の選択画面から認証。Firebase AdminのverifyIdTokenを通したローカル対戦。"
+    },
+    {
+      "id": "create-join-resume",
+      "result": "passed",
+      "observed": "未公開版でルームを作成し別アカウントで参加。同じ盤面を表示。再読み込みでも認証と参加ルームが復元。"
+    },
+    {
+      "id": "manual-mana-and-reload",
+      "result": "passed",
+      "observed": "バグ丸くんの支払いを0/2から開始。闇1枚と2枚目の火マナを手動選択。再読み込み後も選択2/2と必要文明の充足を維持し、支払って召喚。"
+    },
+    {
+      "id": "payment-private",
+      "result": "passed",
+      "observed": "支払い中の相手画面には支払いパネルを表示せず、手札は非公開の枚数表示。"
+    },
+    {
+      "id": "fight-target",
+      "result": "passed",
+      "observed": "相手の炎のたてがみを選ぶと、そのカードとのバトル操作が表示。全操作に戻ることなく確定し、双方のクリーチャーが墓地へ移動。バグ丸くんの破壊時ドローも表示。"
+    },
+    {
+      "id": "grave-summon",
+      "result": "passed",
+      "observed": "トング＝ゴングが存在する検証盤面で、墓地一覧のアクア・ビークルを選択。墓地からの召喚を実行し、水・自然マナを選んで支払う。墓地1→0、自分の場1→2となり、相手画面にも同じクリーチャーを表示。"
+    },
+    {
+      "id": "live-field-dialog",
+      "result": "passed",
+      "observed": "相手の場の一覧を開いたまま、別アカウントから炎のたてがみの攻撃を確定。閉じ直し・再読み込みなしで一覧に「タップ中」が追加。"
+    },
+    {
+      "id": "defense-guidance",
+      "result": "passed",
+      "observed": "攻撃を受けた側の主操作が「防御を選ぶ」、操作欄が「防御方法を選ぼう」。ブロックしないを選び、シールド5→4と手札0→1を確認。"
+    },
+    {
+      "id": "live-log-dialog",
+      "result": "passed",
+      "observed": "攻撃側でログを開いたまま、防御側がブロックしないを実行。新しいイベントが一覧の先頭へ追加され、古い順序は保持。"
+    },
+    {
+      "id": "disconnect-recovery",
+      "result": "passed",
+      "observed": "ローカル対戦APIだけを一時的に503応答へ切り替え。開いたログに「通信が切れています。最後に確認した内容です。」と表示。API復旧後に自動で案内が消え、同じタップ状態とログを保持。切断期間の更新保存は0回。"
+    },
+    {
+      "id": "face-down-mana-privacy",
+      "result": "passed",
+      "observed": "自分のマナ一覧では裏向きマナの元カード名を確認できる一方、別アカウントの同じ一覧には無効化された「裏向き」だけを表示。"
+    },
+    {
+      "id": "logout-purges-dialog",
+      "result": "passed",
+      "observed": "元カード名が見えるマナ一覧を開いた状態で、同一ブラウザの別タブからログアウト。対戦タブがログイン案内へ切り替わり、dialog.open=false、dialog.textContentが空文字になることをDOMでも確認。"
+    }
+  ],
+  "checksPassed": 12,
+  "observedNewProductDefects": [],
+  "serverEvidence": {
+    "eventLog": "tmp/duema-local-real-accounts/events.json",
+    "sha256": "91237a1e8766dfb84462e904097e181d50e11218e32a42a16ce59dae5a49a59d",
+    "events": 20,
+    "commits": 14,
+    "distinctVerifiedActors": 2,
+    "scenarios": [
+      "fight",
+      "grave",
+      "tap",
+      "private-mana"
+    ],
+    "mutationsDuringDisconnect": 0
+  },
+  "validation": [
+    {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 13.115,
+      "log": "tmp/duema-local-real-accounts/audit.log",
+      "sha256": "f3dce8c6897c86fad30c51a6172abc271f0dea7a15e217958f36c09a29dd682a"
+    },
+    {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.199,
+      "log": "tmp/duema-local-real-accounts/check.log",
+      "sha256": "fd00ef4548eb506e6a627320f0f81809e69c765639f8bb9b2831989aba13f5ca"
+    }
+  ],
+  "carriedRegressionEvidence": {
+    "artifact": "tools/online-dialog-fixes-verification.json",
+    "totalDistinctTestsPassed": 196,
+    "productAndTestHashesUnchanged": true,
+    "note": "今回は製品コードとテストを変更していない。前回の196件を再実行せず、全記録ハッシュが現行ファイルと一致することを確認。npm run checkは今回も実行。"
+  },
+  "remainingVerificationInventory": {
+    "incompleteLongRunningVerification": 0,
+    "registrationValidationPending": 0,
+    "splitGameVerificationStatus": "passed",
+    "splitGameVerificationArtifact": "tools/pending-game-verification.json",
+    "fullSuiteStatus": "中断・合否未確認",
+    "userDeferredItems": [
+      "dm25ex2-082: キング・ナイト・マジックの包含裁定",
+      "dm22rp1-2B: ドラン・ゴルギーニ金箔2S/2の公式照合"
+    ],
+    "userDeferralKept": true
+  },
+  "actualCards": {
+    "startUniqueNames": 9070,
+    "endUniqueNames": 9070,
+    "uniqueIds": 9070,
+    "duplicateNames": 0,
+    "added": 0,
+    "normalization": "dist/catalogue.js nameKey",
+    "invariants": {
+      "baseline": "4801e7b369aca914bf44d719ceede4c6d589df09",
+      "target": 9500,
+      "originalDefinitionsUnchanged": 9043,
+      "added": 27,
+      "uniqueNames": 9070,
+      "uniqueIds": 9070,
+      "duplicateNames": 0,
+      "partialNewDefinitions": 0,
+      "catalogueAndAliasesUnchanged": true,
+      "remaining": 430
+    }
+  },
+  "screenshots": [
+    {
+      "file": "/tmp/duema-local-real-accounts/fight-target.jpg",
+      "sha256": "6b85813d3ef483832e276a3bc578b865e37c6045a22722e5482d792914e51f08"
+    },
+    {
+      "file": "/tmp/duema-local-real-accounts/grave-summoned.jpg",
+      "sha256": "33cbcd909db018831ae8768a9db4a83e70a04c9a8fa10e7e58b93dfa2f3e56a0"
+    },
+    {
+      "file": "/tmp/duema-local-real-accounts/live-dialog-tapped.jpg",
+      "sha256": "13042c188835b66c87a108cb9384e5149d06fe6ace8282b9ce676701852bb01f"
+    },
+    {
+      "file": "/tmp/duema-local-real-accounts/live-log-updated.jpg",
+      "sha256": "6f67f0fb90e4624efb386bbb45ee324e09285f6294bb9106c009150856a219d4"
+    },
+    {
+      "file": "/tmp/duema-local-real-accounts/disconnected-dialog.jpg",
+      "sha256": "3840f7805cc1210afd4479a2cb8a1da29a1e496acce6d0658c45b0ba1ec1e1e5"
+    },
+    {
+      "file": "/tmp/duema-local-real-accounts/private-mana-opponent.jpg",
+      "sha256": "f42187d2b5211f8caead9e948038743a98f286553bcc2279664611327dbc8fb1"
+    },
+    {
+      "file": "/tmp/duema-local-real-accounts/logout-purged.jpg",
+      "sha256": "d61f79399bd2bafd5e19521df2742f820555e4344fb1213c8cc6da66cc970098"
+    }
+  ],
+  "sourceHashes": {
+    "dist/app.js": "1f9cdd4528ecf71f2eae29136573bf0fb95dc6235373a6429aa5290285e16c37",
+    "dist/online.js": "702bca239d614d27b780cb4981695e291d13e6c18bf0fa702dc632a01332d964",
+    "dist/online-ui.js": "a8616d7be78358c9f8f6cf387a7b32767e20fc58c653e70a02f6ee78a2d45cc1",
+    "server/duel-core.mjs": "4d83b04f01194f3d458d91e3de0a160e7e68971f8c8e77da5001fbf57d8b95f4",
+    "server/duel-handler.mjs": "d39d43a973bba1c3189fd1c7a9456b34e090df40f88a7d9fbc5e6d0f398bfae7",
+    "dist/engine.js": "d162b069e8220ec669822799842e11e8a1b955ea3ff8b347e295e537525d1532",
+    "dist/cards.json": "42c3b7b8060c037d25105c6320c4bd597a47be5e94fcec473de4f685e90bbb40"
+  },
+  "remaining": [
+    "公開環境へは今回の修正版を反映していないため、公開後の2アカウント確認は未実施。Netlify更新は別途の明示指示まで行わない。",
+    "ユーザーが後回しにしたキング・ナイト・マジックの包含裁定と、ドラン・ゴルギーニ金箔2S/2の公式照合は再開せず保持。",
+    "全カード・すべての対戦状況の網羅試験ではない。一括npm testの過去の状態は中断・合否未確認のまま。"
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}
